@@ -45,6 +45,14 @@ class ApiService
                 $galleryIds[] = $shape['uuid'];
             } elseif ($shape['type'] === 'entity') {
                 $entityIds[] = $shape['entity'];
+            } elseif ($shape['type'] === 'group') {
+                foreach ($shape['children'] as $subShape) {
+                    if ($subShape['type'] === 'image') {
+                        $galleryIds[] = $subShape['uuid'];
+                    } elseif ($subShape['type'] === 'entity') {
+                        $entityIds[] = $subShape['entity'];
+                    }
+                }
             }
         }
 

@@ -116,6 +116,7 @@
                     <Entity v-if="shape.type === 'entity'"
                         :shape="shape"
                         :get-image-el="getImageEl"
+                        :isGrouped="false"
                     />
 
                     <v-text v-if="shape.type === 'text' && (!editingTextId || editingTextId !== shape.id)"
@@ -136,9 +137,48 @@
                     />
                 </template>
 
+                <!-- If its a group of only drawings -->
+                <v-line 
+                    v-if="isPureDrawGroup(shape)"
+                    v-for="line in shape.children"
+                    :key="line.id"
+                    :config="{
+                        points: line.points,
+                        stroke: line.fill,
+                        strokeWidth: line.strokeWidth,
+                        hitStrokeWidth: hitStrokeWidth,
+                        lineCap: 'round',
+                        lineJoin: 'round',
+                        opacity: shape.opacity || 1,
+                    }"
+                />
+
                 <!-- GROUPED SHAPES -->
                 <template v-else>
                     <template v-for="child in shape.children" :key="child.id">
+                        <!-- If theres a group inside a group it has to be a drawing -->
+                        <v-line 
+                            v-if="isPureDrawGroup(child)"
+                            v-for="line in child.children"
+                            :key="line.id"
+                            :config="{
+                                x: child.x,
+                                y: child.y,
+                                rotation: child.rotation,
+                                width: child.width,
+                                height: child.height,
+                                scaleX: child.scaleX,
+                                scaleY: child.scaleY,
+                                points: line.points,
+                                stroke: line.fill,
+                                strokeWidth: line.strokeWidth,
+                                hitStrokeWidth: hitStrokeWidth,
+                                lineCap: 'round',
+                                lineJoin: 'round',
+                                opacity: child.opacity || 1,
+                            }"
+                        />
+
                         <v-rect v-if="child.type==='rect'"
                             :config="{
                                 x: child.x,
@@ -184,6 +224,7 @@
                         <Entity v-if="child.type === 'entity'"
                             :shape="child"
                             :get-image-el="getImageEl"
+                            :isGrouped="true"
                         />
 
                         <v-text v-if="child.type === 'text'"
@@ -922,6 +963,7 @@ const deleteSelected = () => {
     // Ensure transformer no longer references removed nodes
     updateTransformer();
 };
+
 const toggleGroup = () => {
     if (selectedIds.value.length < 1) return;
 
@@ -932,6 +974,11 @@ const toggleGroup = () => {
 
     const selectedGroups = selected.filter(s => s.type === 'group');
     const selectedNonGroups = selected.filter(s => s.type !== 'group');
+
+    //detect draw groups
+    const isDrawGroup = (g) => {
+        return g.type === "group" && g.children.every(c => c.type === "draw");
+    };
 
     // A single group selected, dissolve group
     if (selected.length === 1 && selected[0].type === 'group') {
@@ -953,7 +1000,6 @@ const toggleGroup = () => {
 
         selectedIds.value = group.children.map(c => c.id);
         selectedId.value = null;
-        // update transformer to reflect multiple selection
         nextTick(() => {
             updateTransformer(false);
             setupTransformerEvents();
@@ -966,11 +1012,20 @@ const toggleGroup = () => {
     // Multiple groups selected, merge into one.
     if (selectedGroups.length >= 2) {
 
-        // Gather all children from all groups
         const allChildren = [];
         for (const g of selectedGroups) {
+
+            // if draw group, store group as 1 element
+            if (isDrawGroup(g)) {
+                allChildren.push({
+                    ...g,
+                    __isGroupElement: true,
+                });
+                continue;
+            }
+
+            // Flatten children normally
             for (const child of g.children) {
-                // Convert local → global
                 allChildren.push({
                     ...child,
                     x: g.x + child.x,
@@ -985,10 +1040,18 @@ const toggleGroup = () => {
         }
 
         // Compute bounding box
-        const minX = Math.min(...allChildren.map(s => s.x));
-        const minY = Math.min(...allChildren.map(s => s.y));
-        const maxX = Math.max(...allChildren.map(s => s.x + (s.width ?? s.radius * 2 ?? 0)));
-        const maxY = Math.max(...allChildren.map(s => s.y + (s.height ?? s.radius * 2 ?? 0)));
+        const minX = Math.min(...allChildren.map(s => s.__isGroupElement ? s.x : s.x));
+        const minY = Math.min(...allChildren.map(s => s.__isGroupElement ? s.y : s.y));
+        const maxX = Math.max(...allChildren.map(s =>
+            s.__isGroupElement
+                ? s.x + s.width
+                : s.x + (s.width ?? s.radius * 2 ?? 0)
+        ));
+        const maxY = Math.max(...allChildren.map(s =>
+            s.__isGroupElement
+                ? s.y + s.height
+                : s.y + (s.height ?? s.radius * 2 ?? 0)
+        ));
 
         const newGroup = {
             id: Math.random().toString(36).slice(2),
@@ -1001,11 +1064,22 @@ const toggleGroup = () => {
             rotation: 0,
             scaleX: 1,
             scaleY: 1,
-            children: allChildren.map(child => ({
-                ...child,
-                x: child.x - minX,
-                y: child.y - minY
-            }))
+
+            // keep draw groups as children
+            children: allChildren.map(child => {
+                if (child.__isGroupElement) {
+                    return {
+                        ...child,
+                        x: child.x - minX,
+                        y: child.y - minY,
+                    };
+                }
+                return {
+                    ...child,
+                    x: child.x - minX,
+                    y: child.y - minY
+                };
+            })
         };
 
         // Remove old groups + shapes
@@ -1016,7 +1090,6 @@ const toggleGroup = () => {
         selectedIds.value = [newGroup.id];
         selectedId.value = newGroup.id;
 
-        // update transformer to reflect multiple selection
         nextTick(() => {
             updateTransformer(false);
             setupTransformerEvents();
@@ -1030,44 +1103,69 @@ const toggleGroup = () => {
     if (selectedGroups.length === 1 && selectedNonGroups.length >= 1) {
         const group = selectedGroups[0];
 
-        // Convert existing children back to global
-        const allChildren = group.children.map(c => ({
-            ...c,
-            x: group.x + c.x,
-            y: group.y + c.y
-        }));
+        const allChildren = [];
 
-        // Add the selected non-group shapes (already global coords)
+        if (isDrawGroup(group)) {
+            // --- NEW: treat entire group as one element ---
+            allChildren.push({
+                ...group,
+                __isGroupElement: true
+            });
+        } else {
+            // Convert existing children back to global
+            for (const c of group.children) {
+                allChildren.push({
+                    ...c,
+                    x: group.x + c.x,
+                    y: group.y + c.y
+                });
+            }
+        }
+
+        // Add the selected non-group shapes
         for (const s of selectedNonGroups) {
             allChildren.push({ ...s });
         }
 
-        // Compute bounding box
-        const minX = Math.min(...allChildren.map(s => s.x));
-        const minY = Math.min(...allChildren.map(s => s.y));
-        const maxX = Math.max(...allChildren.map(s => s.x + (s.width ?? s.radius * 2 ?? 0)));
-        const maxY = Math.max(...allChildren.map(s => s.y + (s.height ?? s.radius * 2 ?? 0)));
+        const minX = Math.min(...allChildren.map(s => s.__isGroupElement ? s.x : s.x));
+        const minY = Math.min(...allChildren.map(s => s.__isGroupElement ? s.y : s.y));
+        const maxX = Math.max(...allChildren.map(s =>
+            s.__isGroupElement
+                ? s.x + s.width
+                : s.x + (s.width ?? s.radius * 2 ?? 0)
+        ));
+        const maxY = Math.max(...allChildren.map(s =>
+            s.__isGroupElement
+                ? s.y + s.height
+                : s.y + (s.height ?? s.radius * 2 ?? 0)
+        ));
 
-        // Update group
         group.x = minX;
         group.y = minY;
         group.width = maxX - minX;
         group.height = maxY - minY;
 
-        group.children = allChildren.map(child => ({
-            ...child,
-            x: child.x - minX,
-            y: child.y - minY
-        }));
+        group.children = allChildren.map(child => {
+            if (child.__isGroupElement) {
+                return {
+                    ...child,
+                    x: child.x - minX,
+                    y: child.y - minY
+                };
+            }
+            return {
+                ...child,
+                x: child.x - minX,
+                y: child.y - minY
+            };
+        });
 
-        // Remove the non-group shapes from root array
         const removeIds = new Set(selectedNonGroups.map(s => s.id));
         shapes.value = shapes.value.filter(s => !removeIds.has(s.id));
 
         selectedIds.value = [group.id];
         selectedId.value = group.id;
 
-        // update transformer to reflect multiple selection
         nextTick(() => {
             updateTransformer(false);
             setupTransformerEvents();
@@ -1080,30 +1178,23 @@ const toggleGroup = () => {
     // Shapes only, create new group
     const selectedNormals = selectedNonGroups;
     if (selectedNormals.length >= 2) {
-
         const minX = Math.min(...selectedNormals.map(s => s.x));
         const minY = Math.min(...selectedNormals.map(s => s.y));
 
-
         const newGroupChildren = selectedNormals.map(child => {
-        const stageNode = stage.value?.getNode();
+            const stageNode = stage.value?.getNode();
+            const node = stageNode.findOne(`#group-${child.id}`);
 
-        const node = stageNode.findOne(`#group-${child.id}`);
+            const absPos = node.getAbsolutePosition();
+            const absRot = node.getAbsoluteRotation();
 
-        const absPos = node.getAbsolutePosition();
-        const absRot = node.getAbsoluteRotation();
-        
-        const transform = node.getAbsoluteTransform();
-        const attrs = transform.decompose();
-
-        console.log(node);
-        return {
-            ...child,
-            x: absPos.x - minX,
-            y: absPos.y - minY,
-            rotation: absRot,
-        };
-    });
+            return {
+                ...child,
+                x: absPos.x - minX,
+                y: absPos.y - minY,
+                rotation: absRot,
+            };
+        });
 
         const newGroup = {
             id: Math.random().toString(36).slice(2),
@@ -1116,14 +1207,12 @@ const toggleGroup = () => {
             children: newGroupChildren,
         };
 
-        console.log(newGroup);
         shapes.value = shapes.value.filter(s => !selectedNormals.some(s2 => s2.id === s.id));
         shapes.value.push(newGroup);
 
         selectedIds.value = [newGroup.id];
         selectedId.value = newGroup.id;
 
-        // update transformer to reflect multiple selection
         nextTick(() => {
             updateTransformer(false);
             setupTransformerEvents();
@@ -1132,6 +1221,13 @@ const toggleGroup = () => {
         uiTick.value++;
     }
 };
+
+
+const isDrawGroup = g =>
+    g.type === "group" &&
+    g.children.length > 0 &&
+    g.children.every(c => c.type === "draw");
+
 
 const duplicateSelected = () => {
     if (!selectedIds.value.length) return;
@@ -2183,8 +2279,7 @@ const nothingToRotate = () => {
 const nothingToGroup = () => {
     if (selectedIds.value) {
         const selected = shapes.value.filter(s => selectedIds.value.includes(s.id));
-
-        if (selectedIds.value.length < 2 && selected[0].type != 'group') return true;
+        if (selectedIds.value.length < 2 && (selected[0].type != 'group' || isPureDrawGroup(selected[0]))) return true;
     }
 
     return false;
@@ -2193,12 +2288,18 @@ const nothingToGroup = () => {
 const groupIcon = () => {
     if (selectedIds.value) {
         const selected = shapes.value.filter(s => selectedIds.value.includes(s.id));
-
-        if (selectedIds.value.length < 2 && selected[0].type == 'group') return 'fa-regular fa-skull';
+        if (selectedIds.value.length < 2 && selected[0].type == 'group' && !isPureDrawGroup(selected[0])) return 'fa-regular fa-chain-broken';
     }
 
-    return 'fa-regular fa-tree';
+    return 'fa-regular fa-object-group';
 }
+
+const isPureDrawGroup = (shape) => {
+    return shape.type === 'group' 
+        && Array.isArray(shape.children)
+        && shape.children.length > 0
+        && shape.children.every(c => c.type === 'draw');
+};
 
 const pushTo = (where: 'front' | 'back') => {
     if (!selectedIds.value || !selectedIds.value.length) return;
