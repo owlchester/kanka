@@ -9,6 +9,16 @@
             <input type="text" name="name" placeholder="{{ __('campaigns.placeholders.name') }}" data-live-disabled="1" maxlength="191" required value="{!! old('name', $model->name ?? null) !!}" />
         </x-forms.field>
 
+
+
+        <x-forms.field
+            field="entry"
+            :label="__('campaigns.fields.description')">
+            <textarea name="entry" id="entry" class="w-full html-editor">{!! old('entry', $campaign->entryForEdition ?? null) !!}</textarea>
+        </x-forms.field>
+
+        @include('cruds.fields.image-old', ['model' => $campaign ?? null, 'campaignImage' => true, 'imageLabel' => 'campaigns.fields.image', 'recommended' => '240x208'])
+
         <x-forms.field
             field="vanity"
             :label="__('campaigns.fields.vanity')">
@@ -25,10 +35,10 @@
                 </x-helper>
 
                 <input type="text" maxlength="45" name="vanity" class="w-full" data-url="{{ route('campaign.vanity-validate', $model) }}" value="{{ old('vanity') }}" placeholder="exandria-unlimited" />
-            <p class="text-neutral-content text-xs">
-                <x-icon class="fa-regular fa-circle-info" />
-                {!! __('campaigns/vanity.forever', ['docs' => '<a href="https://docs.kanka.io/en/latest/features/campaigns/vanity-url.html">' . __('general.learn-more') . '</a>']) !!}
-            </p>
+                <p class="text-neutral-content text-xs">
+                    <x-icon class="fa-regular fa-circle-info" />
+                    {!! __('campaigns/vanity.forever', ['docs' => '<a href="https://docs.kanka.io/en/latest/features/campaigns/vanity-url.html">' . __('general.learn-more') . '</a>']) !!}
+                </p>
                 <p class="hidden" id="vanity-loading">
                     <x-icon class="loading" />
                 </p>
@@ -54,13 +64,5 @@
                 @endif
             @endif
         </x-forms.field>
-
-        <x-forms.field
-            field="entry"
-            :label="__('campaigns.fields.description')">
-            <textarea name="entry" id="entry" class="w-full html-editor">{!! old('entry', $campaign->entryForEdition ?? null) !!}</textarea>
-        </x-forms.field>
-
-        @include('cruds.fields.image-old', ['model' => $campaign ?? null, 'campaignImage' => true, 'imageLabel' => 'campaigns.fields.image', 'recommended' => '240x208'])
     </x-grid>
 </div>

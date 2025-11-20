@@ -22,21 +22,21 @@
                 <li class="px-2 section-overview {{ $active('recovery') }}">
                     <x-sidebar.element
                         :url="route('recovery', [$campaign])"
-                        icon="fa-duotone fa-trash-undo"
+                        icon="fa-duotone fa-trash-restore"
                         :text="__('campaigns.show.tabs.recovery')"
                         premium
                     ></x-sidebar.element>
                 </li>
             @endcan
-            <li class="px-2 section-overview {{ $active('achievements') }}">
+            <li class="px-2 section-achievements {{ $active('achievements') }}">
                 <x-sidebar.element
                     :url="route('campaign.achievements', [$campaign])"
-                    icon="fa-duotone fa-bars-progress"
+                    icon="fa-duotone fa-trophy"
                     :text="__('campaigns.show.tabs.achievements')"
                     premium
                 ></x-sidebar.element>
             </li>
-            <li class="px-2 section-overview {{ $active('stats') }}">
+            <li class="px-2 section-stats {{ $active('stats') }}">
                 <x-sidebar.element
                     :url="route('campaign.stats', [$campaign])"
                     icon="fa-duotone fa-bars"
@@ -60,7 +60,7 @@
                             <li class="px-2 section-roles {{ $active('campaign_roles') }}">
                                 <x-sidebar.element
                                     :url="route('campaign_roles.index', [$campaign])"
-                                    icon="fa-duotone fa-screen-users"
+                                    icon="fa-duotone fa-user-shield"
                                     :text="__('campaigns.show.tabs.roles')"
                                 ></x-sidebar.element>
                             </li>
@@ -69,7 +69,7 @@
                             <li class="px-2 section-applications {{ $active('applications') }}">
                                 <x-sidebar.element
                                     :url="route('applications.index', [$campaign])"
-                                    icon="fa-duotone fa-arrow-right-to-bracket"
+                                    icon="fa-duotone fa-inbox"
                                     :text="__('campaigns.show.tabs.applications')"
                                 ></x-sidebar.element>
                             </li>
@@ -91,27 +91,28 @@
                             ></x-sidebar.element>
                         </li>
                     @endcan
-                    @if(config('marketplace.enabled'))
-                        <li class="px-2 section-modules {{ $active('plugins') }}">
+                    @can('update', $campaign)
+                        <li class="px-2 section-defaults {{ $active('campaign-defaults') }}">
                             <x-sidebar.element
-                                :url="route('campaign_plugins.index', [$campaign])"
-                                icon="fa-duotone fa-shop"
-                                :text="__('campaigns.show.tabs.plugins')"
+                                :url="route('campaign-defaults', [$campaign])"
+                                icon="fa-duotone fa-sliders"
+                                :text="__('campaigns.show.tabs.defaults')"
                                 premium
                             ></x-sidebar.element>
                         </li>
                     @endif
-                    <li class="px-2 section-modules {{ $active('default-images') }}">
+                    <li class="px-2 section-placeholders {{ $active('default-images') }}">
                         <x-sidebar.element
                             :url="route('campaign.default-images', [$campaign])"
                             icon="fa-duotone fa-image"
-                            :text="__('campaigns.show.tabs.default-images')"
+                            :text="__('campaigns/default-images.title')"
                             premium
                         ></x-sidebar.element>
                     </li>
 
+
                     @can('update', $campaign)
-                        <li class="px-2 section-modules {{ $active(['campaign_styles', 'theme-builder']) }}">
+                        <li class="px-2 section-styles {{ $active(['campaign_styles', 'theme-builder']) }}">
                             <x-sidebar.element
                                 :url="route('campaign_styles.index', [$campaign])"
                                 icon="fa-duotone fa-palette"
@@ -119,7 +120,20 @@
                                 premium
                             ></x-sidebar.element>
                         </li>
-                        <li class="px-2 section-modules {{ $active('sidebar-setup') }}">
+                    @endif
+
+                    @if(config('marketplace.enabled'))
+                        <li class="px-2 section-plugins {{ $active('plugins') }}">
+                            <x-sidebar.element
+                                :url="route('campaign_plugins.index', [$campaign])"
+                                icon="fa-duotone fa-puzzle-piece"
+                                :text="__('campaigns.show.tabs.plugins')"
+                                premium
+                            ></x-sidebar.element>
+                        </li>
+                    @endif
+                    @can('update', $campaign)
+                        <li class="px-2 section-sidebar {{ $active('sidebar-setup') }}">
                             <x-sidebar.element
                                 :url="route('campaign-sidebar', [$campaign])"
                                 icon="fa-duotone fa-bars-staggered"
@@ -135,14 +149,14 @@
                 <li class="section-management pt-4">
                     <x-sidebar.section :text="__('campaigns.show.tabs.data')" />
                     <ul class="sidebar-submenu list-none p-0 m-0">
-                        <li class="px-2 section-overview {{ $active('campaign-export') }}">
+                        <li class="px-2 section-export {{ $active('campaign-export') }}">
                             <x-sidebar.element
                                 :url="route('campaign.export', [$campaign])"
                                 icon="fa-duotone fa-download"
                                 :text="__('campaigns.show.tabs.export')"
                             ></x-sidebar.element>
                         </li>
-                        <li class="px-2 section-overview {{ $active('campaign-import') }}">
+                        <li class="px-2 section-import {{ $active('campaign-import') }}">
                             <x-sidebar.element
                                 :url="route('campaign.import', [$campaign])"
                                 icon="fa-duotone fa-upload"
@@ -160,11 +174,11 @@
                             </li>
                         @endif
                         @can('logs', $campaign)
-                            <li class="px-2 section-webhooks {{ $active('logs') }}">
+                            <li class="px-2 section-logs {{ $active('logs') }}">
                                 <x-sidebar.element
                                     :url="route('campaign.logs', [$campaign])"
-                                    icon="fa-duotone fa-timeline"
-                                    :text="__('campaigns.show.tabs.logs')"
+                                    icon="fa-duotone fa-history"
+                                    :text="__('campaigns/logs.title')"
                                 ></x-sidebar.element>
                             </li>
                         @endif
@@ -176,7 +190,7 @@
                 <li class="section-management pt-4">
                     <x-sidebar.section :text="__('campaigns.show.tabs.danger')" />
                     <ul class="sidebar-submenu list-none p-0 m-0">
-                        <li class="px-2 section-overview {{ $active('deletion') }}">
+                        <li class="px-2 section-deletion {{ $active('deletion') }}">
                             <x-sidebar.element
                                 :url="route('campaign.delete', [$campaign])"
                                 icon="fa-duotone fa-radiation"

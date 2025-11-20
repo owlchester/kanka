@@ -75,46 +75,5 @@ if (!isset($model) || !$model->boosted()) {
                 @endif
             </x-forms.field>
         </x-grid>
-
-        <hr />
-
-        <h4>{{ __('campaigns.ui.other') }}</h4>
-        <x-helper>
-            <p>{{  __('campaigns.ui.helpers.other') }}</p>
-        </x-helper>
-
-        <x-grid>
-            <x-forms.field
-                field="connections"
-                :label="__('campaigns.ui.fields.connections')"
-                :helper="__('campaigns.ui.helpers.connections')"
-                >
-                <x-forms.select name="ui_settings[connections]" :options="[0 => __('campaigns.ui.connections.explorer'), 1 => __('campaigns.ui.connections.list')]" :selected="$campaign->ui_settings['connections'] ?? null"  />
-            </x-forms.field>
-
-            <x-forms.field
-                field="connections-mode"
-                :label="__('campaigns.ui.fields.connections_mode')"
-                :helper="__('campaigns.ui.helpers.connections_mode')"
-                >
-                <x-forms.select name="ui_settings[connections_mode]" :options="[0 => __('campaigns.ui.collapsed.default'), 1 => __('entities/relations.options.only_relations'), 2 => __('entities/relations.options.related'), 3 => __('entities/relations.options.mentions')]" :selected="$campaign->ui_settings['connections_mode'] ?? null"  />
-            </x-forms.field>
-
-            <x-forms.field
-                field="post-collapsed"
-                :label="__('campaigns.ui.fields.post_collapsed')"
-                :helper="__('campaigns.ui.helpers.post_collapsed')"
-                >
-                <x-forms.select name="ui_settings[post_collapsed]" :options="[0 => __('campaigns.ui.collapsed.expanded'), 1 => __('campaigns.ui.collapsed.collapsed')]" :selected="$campaign->ui_settings['post_collapsed'] ?? null"  />
-            </x-forms.field>
-
-            <x-forms.field
-                field="descendants"
-                :label="__('campaigns.ui.fields.descendants')"
-                :helper="__('campaigns.ui.helpers.descendants')"
-                >
-                <x-forms.select name="ui_settings[descendants]" :options="[0 => __('campaigns.ui.descendants.direct'), 1 => __('campaigns.ui.descendants.all')]" :selected="$campaign->ui_settings['descendants'] ?? null"  />
-            </x-forms.field>
-        </x-grid>
     </x-grid>
 </div>

@@ -35,7 +35,6 @@ class StoreCampaign extends FormRequest
             'systems.*' => 'distinct|exists:game_systems,id',
             'entity_visibility' => 'nullable',
             'entity_personality_visibility' => 'nullable',
-            'is_public' => 'nullable',
             'css' => 'nullable|string',
             'theme_id' => 'nullable|exists:themes,id',
         ];

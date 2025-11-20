@@ -1,8 +1,8 @@
 <?php /** @var \App\Models\Campaign $campaign */?>
 @extends('layouts.app', [
-    'title' => __('campaigns.show.tabs.default-images') . ' - ' . $campaign->name,
+    'title' => __('campaigns/default-images.title') . ' - ' . $campaign->name,
     'breadcrumbs' => [
-        __('campaigns.show.tabs.default-images')
+        __('campaigns/default-images.title')
     ],
     'mainTitle' => false,
     'sidebar' => 'campaign',
@@ -15,7 +15,7 @@
         @include('partials.errors')
         <div class="flex gap-2 items-center">
             <h3 class="inline-block grow">
-                {{ __('campaigns.show.tabs.default-images') }}
+                {{ __('campaigns/default-images.title') }}
             </h3>
             <x-learn-more url="features/campaigns/default-thumbnails.html" />
             @if ($campaign->boosted())

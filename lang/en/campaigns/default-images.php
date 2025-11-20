@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'title' => 'Placeholder images',
     'actions'           => [
         'add'   => 'New thumbnail',
     ],

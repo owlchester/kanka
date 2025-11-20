@@ -1,4 +1,4 @@
-<?php /** @var \App\Models\CampaignStyle $style */?>
+<?php /** @var \App\Models\Campaign $campaign */?>
 @extends('layouts.app', [
     'title' => __('campaigns.show.tabs.sidebar') . ' - ' . $campaign->name,
     'breadcrumbs' => [
