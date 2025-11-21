@@ -93,6 +93,7 @@ class MarkdownExportService
             return str_repeat('    ', $depth) . "* empty \n";
         }
         // Convert Resource or ResourceCollection to array
+        // @phpstan-ignore-next-line
         if ($data instanceof JsonResource || $data instanceof AnonymousResourceCollection) {
             $data = $data->toArray(request());
         }
@@ -120,9 +121,11 @@ class MarkdownExportService
         foreach ($data as $key => $value) {
 
             // Normalize nested values early
+            // @phpstan-ignore-next-line
             if ($value instanceof JsonResource || $value instanceof AnonymousResourceCollection) {
                 $value = $value->toArray(request());
             }
+            /** @var mixed|JsonResource|Model $value */
             if ($value instanceof Collection || $value instanceof Model) {
                 $value = $value->toArray();
             }
