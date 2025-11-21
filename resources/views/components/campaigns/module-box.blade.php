@@ -44,8 +44,8 @@
 
 
     @if ($entityType->isDeprecated())
-        <div class="rounded-xl border px-2 py-0.5 bg-base-300">
-            <span data-toggle="tooltip" data-title="{{ __('campaigns.settings.deprecated.help') }}">
+        <div class="rounded-xl border px-2 py-0.5 bg-base-300" data-toggle="tooltip" data-title="{{ __('campaigns.settings.deprecated.help') }}">
+            <span >
                 ⚠️
                 {{ __('campaigns.settings.deprecated.title') }}
             </span>
@@ -53,7 +53,7 @@
         </div>
     @endif
 
-    <p class="text-neutral-content text-sm text-break">
+    <p class="text-neutral-content text-xs text-break">
         @if ($entityType->isStandard())
             {{ __('campaigns.settings.helpers.' . $entityType->pluralCode()) }}
         @else
