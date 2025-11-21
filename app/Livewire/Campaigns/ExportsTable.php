@@ -72,6 +72,16 @@ class ExportsTable extends Component
         return __('campaigns/export.status.' . $key);
     }
 
+    public function type(CampaignExport $export): string
+    {
+        $key = 'Markdown';
+        if ($export->type == 1) {
+            $key = 'JSON';
+        }
+
+        return $key;
+    }
+
     public function progress(CampaignExport $model): string
     {
         if ($model->finished()) {

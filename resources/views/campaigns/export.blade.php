@@ -46,18 +46,28 @@
             $campaign,
         ) . '">' . $campaign->adminRoleName() . '</a>']) !!}</p>
             </x-helper>
+            <x-form :action="['campaign.export-process', $campaign]">
+                <x-forms.field
+                    field="type"
+                    required
+                    :label="__('campaigns/export.confirm.type')"
+                    :helper="__('campaigns/export.helpers.type')">
+                    @if(!$campaign->premium()) 
+                        <x-forms.select name="type" radio :options="[1 => __('campaigns/export.types.json'), 2 => __('campaigns/export.types.md-pitch')]" :disabled="['2' => 2]" selected="1"/>
+                    @else 
+                        <x-forms.select name="type" radio :options="[1 => __('campaigns/export.types.json'), 2 => __('campaigns/export.types.md')]" selected="1"/>
+                    @endif 
+                </x-forms.field>
+                <div class="grid grid-cols-2 gap-2 w-full">
+                    <x-buttons.confirm type="ghost" full="true" dismiss="dialog">
+                        {{ __('crud.cancel') }}
+                    </x-buttons.confirm>
 
-            <div class="grid grid-cols-2 gap-2 w-full">
-                <x-buttons.confirm type="ghost" full="true" dismiss="dialog">
-                    {{ __('crud.cancel') }}
-                </x-buttons.confirm>
-
-                <x-form :action="['campaign.export-process', $campaign]">
                     <x-buttons.confirm type="primary" full="true">
                         {{ __('crud.actions.confirm') }}
                     </x-buttons.confirm>
-                </x-form>
-            </div>
+                </div>
+            </x-form>
         @else
             <x-helper>
                 <p>

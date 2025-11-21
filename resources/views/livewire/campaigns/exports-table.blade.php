@@ -27,6 +27,9 @@
                     </a>
                 </th>
                 <th>
+                    {{ __('campaigns/export.type') }}
+                </th>
+                <th>
                     {{ __('campaigns/export.progress') }}
                 </th>
                 <th>
@@ -50,6 +53,9 @@
                     </td>
                     <td>
                         <x-since :date="$campaignExport->created_at" />
+                    </td>
+                    <td>
+                        {!! $this->type($campaignExport) !!}
                     </td>
                     <td>
                         {!! $this->progress($campaignExport) !!}
