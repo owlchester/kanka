@@ -112,4 +112,25 @@ class DefaultImageController extends Controller
                 __('campaigns/default-images.destroy.success', ['type' => $entityType->plural()])
             );
     }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function reset(Campaign $campaign)
+    {
+        $this->authorize('recover', $campaign);
+
+        $this->service
+            ->campaign($campaign)
+            ->user(auth()->user())
+            ->destroyAll();
+
+        return redirect()->route('campaign.default-images', $campaign)
+            ->with(
+                'success',
+                __('campaigns/default-images.reset.success')
+            );
+    }
 }

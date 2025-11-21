@@ -80,6 +80,8 @@ Route::post('/w/{campaign}/default-images/create', 'Campaign\DefaultImageControl
     ->name('campaign.default-images.store');
 Route::delete('/w/{campaign}/default-images', 'Campaign\DefaultImageController@destroy')
     ->name('campaign.default-images.delete');
+Route::delete('/w/{campaign}/default-images/reset', 'Campaign\DefaultImageController@reset')
+    ->name('campaign.default-images.reset');
 
 Route::resources([
     '/w/{campaign}/campaign_users' => 'Campaign\UserController',
