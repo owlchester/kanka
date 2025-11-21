@@ -19,8 +19,8 @@ return [
         'type'          => 'Order by: Type',
         'type_order'    => 'Type',
     ],
-    'tutorial' => 'View and restore recently deleted item from the campaign. Entities, posts, and other supporting data can be recovered for :amount days before they are permanently removed. Restoring an item returns it with all its data intact.',
+    'tutorial' => 'View and restore recently deleted items from the campaign. Entities, posts, and other supporting data can be recovered for :amount days before they are permanently removed. Restoring an item returns it with all its data intact.',
     'premium'   => 'Recovering elements is a premium campaign feature.',
     'success_v2'=> '{1} :count element was recovered.|[2,*] :count elements were recovered.',
-    'title'     => 'Entity Recovery',
+    'title'     => 'Recovery',
 ];
