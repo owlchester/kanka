@@ -19,18 +19,17 @@
             </h3>
             <x-learn-more url="features/campaigns/default-thumbnails.html" />
             @if ($campaign->boosted())
-                @if (true)
-                    <a href="#" class="btn2 btn-sm" data-toggle="dialog" data-target="reset-confirm">
-                        <x-icon class="fa-regular fa-eraser" />
-                        {{ __('crud.actions.reset') }}
-                    </a>
-                @endif
                 @can('recover', $campaign)
                 <a href="{{ route('campaign.default-images.create', $campaign) }}" class="btn2 btn-primary btn-sm"
                    data-toggle="dialog-ajax" data-target="new-thumbnail"
                    data-url="{{ route('campaign.default-images.create', $campaign) }}">
                     <x-icon class="plus" />
                     {{ __('campaigns/default-images.actions.add') }}
+                </a>
+
+                <a href="#" class="btn2 btn-sm" data-toggle="dialog" data-target="reset-confirm">
+                    <x-icon class="fa-regular fa-eraser" />
+                    {{ __('crud.actions.reset') }}
                 </a>
                 @endif
             @endif
