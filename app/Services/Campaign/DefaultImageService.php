@@ -96,10 +96,9 @@ class DefaultImageService
             if (! empty($image)) {
                 $image->delete();
             }
-            unset($images[$key]);
         }
 
-        $this->campaign->default_images = $images;
+        $this->campaign->default_images = [];
         $this->campaign->saveQuietly();
 
         ThumbnailsDeleted::dispatch($this->campaign, $this->user);
