@@ -17,8 +17,7 @@ class ModuleBox extends Component
     public function __construct(
         public Campaign $campaign,
         public EntityType $entityType,
-    )
-    {
+    ) {
         //
     }
 
@@ -37,6 +36,7 @@ class ModuleBox extends Component
         if ($this->entityType->isStandard()) {
             return $this->campaign->enabled($this->entityType);
         }
+
         return $this->entityType->isEnabled();
     }
 
@@ -47,8 +47,10 @@ class ModuleBox extends Component
             if ($thumbnail['type'] !== $this->entityType->pluralCode()) {
                 continue;
             }
+
             return Img::crop(96, 96)->url($thumbnail['path']);
         }
+
         return '';
     }
 }
