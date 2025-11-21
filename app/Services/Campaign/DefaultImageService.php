@@ -90,7 +90,6 @@ class DefaultImageService
     {
         $images = $this->campaign->default_images ?? [];
 
-        /** @var ?Image $image */
         $imageModels = Image::find($images);
 
         foreach ($imageModels as $image) {
