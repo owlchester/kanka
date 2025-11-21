@@ -188,7 +188,6 @@ Route::get('/w/{campaign}/sidebar-setup', 'Campaign\SidebarController@index')->n
 Route::post('/w/{campaign}/sidebar-setup', 'Campaign\SidebarController@save')->name('campaign-sidebar-save');
 Route::delete('/w/{campaign}/sidebar-setup/reset', 'Campaign\SidebarController@reset')->name('campaign-sidebar-reset');
 
-
 Route::get('/w/{campaign}/campaign-defaults', 'Campaign\DefaultsController@index')->name('campaign-defaults');
 Route::post('/w/{campaign}/sidebar-defaults', 'Campaign\DefaultsController@save')->name('campaign-defaults-save');
 

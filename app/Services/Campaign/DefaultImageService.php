@@ -89,11 +89,11 @@ class DefaultImageService
     public function destroyAll(): void
     {
         $images = $campaign->default_images ?? [];
-    
+
         foreach ($images as $img) {
             /** @var ?Image $image */
             $image = Image::find($img);
-            if (!empty($image)) {
+            if (! empty($image)) {
                 $image->delete();
             }
         }
