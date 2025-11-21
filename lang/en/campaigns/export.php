@@ -8,8 +8,8 @@ return [
     'confirm'   => [
         'type'          => 'Export type',
         'notification'  => 'Members of the :admin role will be notified when the export is ready for download.',
-        'title'         => 'Export confirmation',
-        'warning'       => 'You are about to export all the data from the campaign :name. This process can take a long time depending on the size of campaign and how busy our servers are. You can continue using Kanka while our servers generate the export.',
+        'title'         => 'Export :name',
+        'warning'       => 'You are about to export all data from :name. This may take a few minutes depending on campaign size. You\'ll receive a notification when it\'s ready and can continue using Kanka in the meantime.',
     ],
     'errors'    => [
         'limit' => 'The campaign has already been exported once today. Please try again tomorrow.',
@@ -17,7 +17,9 @@ return [
     ],
     'expired'   => 'Link expired',
     'helpers'   => [
-        'type'  => 'Export as JSON, used for re-importing, or export as markdown, which cannot be used for re-importing',
+        'json'  => 'For backup & restoring - can be used as a campaign import ',
+        'markdown' => 'For sharing & reading - human readable format',
+        'premium' => 'Available for premium campaigns only.',
     ],
     'progress'  => 'Progress',
     'size'      => 'Size',
@@ -32,7 +34,6 @@ return [
     'type'      => 'Type',
     'types'     => [
         'md'       => 'Markdown',
-        'md-pitch' => 'Markdown (Premium Campaigns only)',
         'json'     => 'JSON',
-    ]
+    ],
 ];

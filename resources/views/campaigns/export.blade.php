@@ -35,38 +35,72 @@
 
 @section('modals')
     @parent
-    <x-dialog id="export-confirm" :title="__('campaigns/export.confirm.title')">
+    <x-dialog id="export-confirm" :title="__('campaigns/export.confirm.title', ['name' => $campaign->name])">
         @can('export', $campaign)
             <x-helper>
                 <p>{!! __('campaigns/export.confirm.warning', ['name' => '<strong>' . $campaign->name . '</strong>']) !!}</p>
             </x-helper>
-            <x-helper>
-                <p>{!! __('campaigns/export.confirm.notification', ['admin' => '<a href="' . route(
+            <x-form :action="['campaign.export-process', $campaign]">
+                <x-grid type="1/1">
+                    <x-forms.field
+                        field="type"
+                        required
+                        :label="__('campaigns/export.confirm.type')">
+                        <div class="grid grid-cols-2 gap-4">
+
+
+                            <div class="rounded-xl border p-2 flex gap-2 items-start hover:shadow-sm @if(!$campaign->premium()) cursor-not-allowed bg-base-200 @else cursor-pointer @endif">
+                                <input type="radio" name="type" id="md" value="2"
+                                       @if(!$campaign->premium()) disabled="disabled" @else checked="checked" @endif class="mt-2">
+
+                                <label for="md" class="w-full @if(!$campaign->premium()) cursor-not-allowed @else cursor-pointer @endif flex flex-col gap-0.5">
+                                    <span class="text-semibold text-lg">
+                                        <x-icon class="fa-brands fa-markdown" />
+                                        {{ __('campaigns/export.types.md') }}
+                                    </span>
+                                    <p class="text-xs text-neutral-content">
+                                        {{ __('campaigns/export.helpers.markdown') }}
+                                    </p>
+                                    @if(!$campaign->premium())
+                                        <a href="{{ route('settings.subscription', ['f' => 'export', 'w' => $campaign->id]) }}" class="text-xs">
+                                            {{ __('campaigns/export.helpers.premium') }}</a>
+                                    @endif
+                                </label>
+                            </div>
+
+                            <div class="rounded-xl border p-2 flex gap-2 items-start cursor-pointer hover:shadow-sm">
+                                <input type="radio" name="type" id="json" value="1" @if (!$campaign->premium()) checked="checked" @endif class="mt-2">
+
+                                <label for="json" class="w-full cursor-pointer flex flex-col gap-0.5">
+                                    <span class="text-semibold text-lg">
+                                        <x-icon class="fa-regular fa-code" />
+                                        {{ __('campaigns/export.types.json') }}
+                                    </span>
+                                    <p class="text-xs text-neutral-content">
+                                        {{ __('campaigns/export.helpers.json') }}
+                                    </p>
+                                </label>
+                            </div>
+                        </div>
+                    </x-forms.field>
+
+                        <p class="text-xs text-neutral-content">
+                            {!! __('campaigns/export.confirm.notification', ['admin' => '<a href="' . route(
             'campaigns.campaign_roles.admin',
             $campaign,
-        ) . '">' . $campaign->adminRoleName() . '</a>']) !!}</p>
-            </x-helper>
-            <x-form :action="['campaign.export-process', $campaign]">
-                <x-forms.field
-                    field="type"
-                    required
-                    :label="__('campaigns/export.confirm.type')"
-                    :helper="__('campaigns/export.helpers.type')">
-                    @if(!$campaign->premium()) 
-                        <x-forms.select name="type" radio :options="[1 => __('campaigns/export.types.json'), 2 => __('campaigns/export.types.md-pitch')]" :disabled="['2' => 2]" selected="1"/>
-                    @else 
-                        <x-forms.select name="type" radio :options="[1 => __('campaigns/export.types.json'), 2 => __('campaigns/export.types.md')]" selected="1"/>
-                    @endif 
-                </x-forms.field>
-                <div class="grid grid-cols-2 gap-2 w-full">
-                    <x-buttons.confirm type="ghost" full="true" dismiss="dialog">
-                        {{ __('crud.cancel') }}
-                    </x-buttons.confirm>
+        ) . '">' . $campaign->adminRoleName() . '</a>']) !!}
+                        </p>
 
-                    <x-buttons.confirm type="primary" full="true">
-                        {{ __('crud.actions.confirm') }}
-                    </x-buttons.confirm>
-                </div>
+                    <div class="grid grid-cols-2 gap-2 w-full">
+                        <x-buttons.confirm type="ghost" full="true" dismiss="dialog">
+                            {{ __('crud.cancel') }}
+                        </x-buttons.confirm>
+
+                        <x-buttons.confirm type="primary" full="true">
+                            {{ __('crud.actions.confirm') }}
+                        </x-buttons.confirm>
+                    </div>
+                </x-grid>
             </x-form>
         @else
             <x-helper>
