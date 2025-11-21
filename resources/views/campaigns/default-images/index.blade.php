@@ -26,6 +26,11 @@
                     <x-icon class="plus" />
                     {{ __('campaigns/default-images.actions.add') }}
                 </a>
+
+                <a href="#" class="btn2 btn-sm" data-toggle="dialog" data-target="reset-confirm">
+                    <x-icon class="fa-regular fa-eraser" />
+                    {{ __('crud.actions.reset') }}
+                </a>
                 @endif
             @endif
         </div>
@@ -54,4 +59,23 @@
 @section('modals')
     @parent
     <x-dialog id="new-thumbnail" :loading="true" />
+
+    <x-dialog id="reset-confirm" :title="__('campaigns/default-images.reset.title')">
+        <x-helper>
+            <p>{{ __('campaigns/default-images.reset.helper') }}</p>
+            <p>{{ __('campaigns/default-images.reset.warning') }}</p>
+        </x-helper>
+
+        <div class="grid grid-cols-2 gap-2 w-full">
+            <x-buttons.confirm type="ghost" full="true" dismiss="dialog">
+                {{ __('crud.cancel') }}
+            </x-buttons.confirm>
+
+            <x-form method="DELETE" :action="['campaign.default-images.reset', $campaign]">
+            <x-buttons.confirm type="danger" full="true" outline="true">
+                {{ __('crud.actions.confirm') }}
+            </x-buttons.confirm>
+            </x-form>
+        </div>
+    </x-dialog>
 @endsection

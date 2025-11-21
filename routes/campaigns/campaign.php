@@ -80,6 +80,8 @@ Route::post('/w/{campaign}/default-images/create', 'Campaign\DefaultImageControl
     ->name('campaign.default-images.store');
 Route::delete('/w/{campaign}/default-images', 'Campaign\DefaultImageController@destroy')
     ->name('campaign.default-images.delete');
+Route::delete('/w/{campaign}/default-images/reset', 'Campaign\DefaultImageController@reset')
+    ->name('campaign.default-images.reset');
 
 Route::resources([
     '/w/{campaign}/campaign_users' => 'Campaign\UserController',
@@ -185,7 +187,6 @@ Route::post('/w/{campaign}/campaign-applications', 'Campaign\ApplicationControll
 Route::get('/w/{campaign}/sidebar-setup', 'Campaign\SidebarController@index')->name('campaign-sidebar');
 Route::post('/w/{campaign}/sidebar-setup', 'Campaign\SidebarController@save')->name('campaign-sidebar-save');
 Route::delete('/w/{campaign}/sidebar-setup/reset', 'Campaign\SidebarController@reset')->name('campaign-sidebar-reset');
-
 
 Route::get('/w/{campaign}/campaign-defaults', 'Campaign\DefaultsController@index')->name('campaign-defaults');
 Route::post('/w/{campaign}/sidebar-defaults', 'Campaign\DefaultsController@save')->name('campaign-defaults-save');

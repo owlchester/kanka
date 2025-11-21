@@ -38,6 +38,7 @@ use App\Events\Campaigns\Styles\StyleDeleted;
 use App\Events\Campaigns\Styles\StyleUpdated;
 use App\Events\Campaigns\Thumbnails\ThumbnailCreated;
 use App\Events\Campaigns\Thumbnails\ThumbnailDeleted;
+use App\Events\Campaigns\Thumbnails\ThumbnailsDeleted;
 use App\Events\Campaigns\Updated;
 use App\Events\Campaigns\Webhooks\WebhookCreated;
 use App\Events\Campaigns\Webhooks\WebhookDeleted;
@@ -76,6 +77,7 @@ use App\Listeners\Campaigns\Sidebar\LogSidebar;
 use App\Listeners\Campaigns\Styles\ClearStylesCache;
 use App\Listeners\Campaigns\Styles\LogStyle;
 use App\Listeners\Campaigns\Thumbnails\LogThumbnail;
+use App\Listeners\Campaigns\Thumbnails\LogThumbnails;
 use App\Listeners\Campaigns\Webhooks\LogWebhook;
 use App\Listeners\Entities\LogEntity;
 use App\Listeners\Posts\LogPost;
@@ -224,6 +226,10 @@ class EventServiceProvider extends ServiceProvider
         ],
         ThumbnailDeleted::class => [
             LogThumbnail::class,
+            ClearCampaignCache::class,
+        ],
+        ThumbnailsDeleted::class => [
+            LogThumbnails::class,
             ClearCampaignCache::class,
         ],
         UserJoined::class => [

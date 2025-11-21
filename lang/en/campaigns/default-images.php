@@ -15,6 +15,12 @@ return [
     'destroy'           => [
         'success'   => 'Default thumbnail for :type removed.',
     ],
+    'reset'             => [
+        'title'     => 'Reset module thumbnails',
+        'helper'    => 'Are you sure you want to remove the default images for all campaign modules?',
+        'warning'   => 'This action is permanent and cannot be undone.',
+        'success'   => 'Successfully removed all module\'s default images',
+    ],
     'tutorial' => 'Set default images for entities without custom pictures. These thumbnails appear immediately across the campaign and keep lists visually consistent.',
     'empty'             => 'No modules currently have a default thumbnail setup.',
     'helper'            => 'Used for all entities of this module without an image.',
