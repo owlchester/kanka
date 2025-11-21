@@ -27,17 +27,19 @@ class CancellationController extends Controller
 
         // Loss data
         $premiumCampaign = null;
-        $members = new Collection();
+        $members = new Collection;
         $plugins = 0;
         $premiumCampaigns = $user->boosts()
             ->with([
-                'campaign' => function ($sub) { return $sub->select('campaigns.id', 'campaigns.name'); },
+                'campaign' => function ($sub) {
+                    return $sub->select('campaigns.id', 'campaigns.name');
+                },
                 'campaign.members',
                 'campaign.plugins',
             ])
             ->groupBy('campaign_id')->get();
         foreach ($premiumCampaigns as $campaign) {
-            if (!$premiumCampaign) {
+            if (! $premiumCampaign) {
                 $premiumCampaign = $campaign->campaign;
                 foreach ($campaign->campaign->members as $member) {
                     $members->push($member->user_id);
@@ -47,11 +49,9 @@ class CancellationController extends Controller
         }
         $members = $members->unique();
         $userId = auth()->user()->id;
-        $players = $members->reject(fn($userId) => $userId == $user->id)->count();
+        $players = $members->reject(fn ($userId) => $userId == $user->id)->count();
 
         $discord = auth()->user()->discord();
-
-
 
         return view('settings.subscription.cancellation.form', compact(
             'user',
