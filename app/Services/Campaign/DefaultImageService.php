@@ -90,12 +90,11 @@ class DefaultImageService
     {
         $images = $this->campaign->default_images ?? [];
 
-        foreach ($images as $key => $img) {
-            /** @var ?Image $image */
-            $image = Image::find($img);
-            if (! empty($image)) {
-                $image->delete();
-            }
+        /** @var ?Image $image */
+        $imageModels = Image::find($images);
+
+        foreach ($imageModels as $image) {
+            $image->delete();
         }
 
         $this->campaign->default_images = [];
