@@ -12,8 +12,51 @@
         <x-grid type="1/1">
 
             <x-helper>
-                <p>{!! __('settings.subscription.cancel.text', ['date' => $endDate])!!}</p>
+                <p>{!! __('subscriptions/cancellation.intro', ['date' => $endDate])!!}</p>
             </x-helper>
+
+            <div class="flex flex-col gap-2">
+                <span class="font-semibold">
+                    {{ __('subscriptions/cancellation.loss.title') }}
+                </span>
+
+                @if ($premiumCampaign)
+                <div class="flex flex-col gap-0.5">
+                    <div>
+                        <x-icon class="fa-regular fa-times text-red-500"></x-icon>
+                        {{ trans_choice('subscriptions/cancellation.loss.premium.title', $premiumCampaigns->count() - 1, ['campaign' => $premiumCampaign->name, 'count' => $premiumCampaigns->count() - 1 ]) }}
+                    </div>
+                    @if ($players > 0)
+                    <div class="pl-4">
+                        <x-icon class="fa-regular fa-arrow-right"></x-icon>
+                        {{ trans_choice('subscriptions/cancellation.loss.premium.players', $players, ['count' => $players]) }}
+                    </div>
+                    @endif
+                    @if ($plugins > 0)
+                    <div class="pl-4">
+                        <x-icon class="fa-regular fa-arrow-right"></x-icon>
+                        {{ trans_choice('subscriptions/cancellation.loss.premium.plugins', $plugins, ['count' => $plugins]) }}
+                    </div>
+                    @endif
+                </div>
+                @endif
+
+                <div class="flex flex-col gap-0.5">
+                    <div>
+                        <x-icon class="fa-regular fa-times text-red-500"></x-icon>
+                        {{ __('subscriptions/cancellation.loss.ads.title') }}
+                    </div>
+                </div>
+
+                @if ($discord)
+                <div class="flex flex-col gap-0.5">
+                    <div>
+                        <x-icon class="fa-regular fa-times text-red-500"></x-icon>
+                        {{ __('subscriptions/cancellation.loss.discord.title', ['role' => auth()->user()->pledge]) }}
+                    </div>
+                </div>
+                @endif
+            </div>
 
             <x-forms.field field="cancel-reason" :label="__('settings.subscription.fields.reason')">
                 <x-grid type="1/1">
@@ -37,6 +80,13 @@
                     <textarea name="reason_custom" placeholder="{{ __('settings.subscription.placeholders.reason') }}" class="w-full" rows="4" id="cancel-reason-custom"></textarea>
                 </x-grid>
             </x-forms.field>
+
+{{--            <button class="btn2 btn-lg btn-block btn-primary btn-outline subscription-pause-button flex flex-col gap-0.5">--}}
+{{--                {{ __('subscriptions/cancellation.pause.button') }}<br />--}}
+{{--                <span class="text-xs">--}}
+{{--                    {{ __('subscriptions/cancellation.pause.helper') }}--}}
+{{--                </span>--}}
+{{--            </button>--}}
 
             <button class="btn2 btn-lg btn-block btn-primary btn-error btn-outline subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
                 <span>{{ __('settings.subscription.actions.cancel_sub') }}</span>

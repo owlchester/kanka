@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SubscriptionCancel;
 use App\Services\Subscription\CancellationService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class CancellationController extends Controller
 {
@@ -24,8 +25,41 @@ class CancellationController extends Controller
             ));
         }
 
+        // Loss data
+        $premiumCampaign = null;
+        $members = new Collection();
+        $plugins = 0;
+        $premiumCampaigns = $user->boosts()
+            ->with([
+                'campaign' => function ($sub) { return $sub->select('campaigns.id', 'campaigns.name'); },
+                'campaign.members',
+                'campaign.plugins',
+            ])
+            ->groupBy('campaign_id')->get();
+        foreach ($premiumCampaigns as $campaign) {
+            if (!$premiumCampaign) {
+                $premiumCampaign = $campaign->campaign;
+                foreach ($campaign->campaign->members as $member) {
+                    $members->push($member->user_id);
+                }
+                $plugins += $campaign->campaign->plugins->count();
+            }
+        }
+        $members = $members->unique();
+        $userId = auth()->user()->id;
+        $players = $members->reject(fn($userId) => $userId === $user->id)->count();
+
+        $discord = auth()->user()->discord();
+
+
+
         return view('settings.subscription.cancellation.form', compact(
             'user',
+            'premiumCampaigns',
+            'premiumCampaign',
+            'players',
+            'discord',
+            'plugins',
         ));
     }
 
