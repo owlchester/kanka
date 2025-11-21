@@ -88,17 +88,18 @@ class DefaultImageService
      */
     public function destroyAll(): void
     {
-        $images = $campaign->default_images ?? [];
+        $images = $this->campaign->default_images ?? [];
 
-        foreach ($images as $img) {
+        foreach ($images as $key => $img) {
             /** @var ?Image $image */
             $image = Image::find($img);
             if (! empty($image)) {
                 $image->delete();
             }
+            unset($images[$key]);
         }
 
-        $this->campaign->default_images = [];
+        $this->campaign->default_images = $images;
         $this->campaign->saveQuietly();
 
         ThumbnailsDeleted::dispatch($this->campaign, $this->user);
