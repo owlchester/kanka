@@ -13,9 +13,7 @@
     <div class="flex gap-5 flex-col">
         @include('ads.top')
         @include('partials.errors')
-        <h1>{{ __('campaigns/modules.delete.title') }}</h1>
-
-
+        <h3>{{ __('campaigns/modules.delete.title') }}</h3>
 
         <p>
             {!! __('campaigns/modules.delete.helper', ['name' => $entityType->name()]) !!}
