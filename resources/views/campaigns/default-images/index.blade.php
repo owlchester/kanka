@@ -39,7 +39,7 @@
             @if (empty($images))
                 <p class="italic">{{ __('campaigns/default-images.empty') }}</p>
             @endif
-            <div class="grid grid-cols-1 gap-2 xl:grid-cols-2 xl:gap-5">
+            <div class="grid grid-cols-1 gap-2 md:gap-3 xl:grid-cols-2 xl:gap-5">
                 @foreach ($images as $image)
                     @if (!\Illuminate\Support\Arr::has($entityTypes, $image['type']))
                         @continue
@@ -61,21 +61,23 @@
     <x-dialog id="new-thumbnail" :loading="true" />
 
     <x-dialog id="reset-confirm" :title="__('campaigns/default-images.reset.title')">
-        <x-helper>
-            <p>{{ __('campaigns/default-images.reset.helper') }}</p>
-            <p>{{ __('campaigns/default-images.reset.warning') }}</p>
-        </x-helper>
+        <x-grid type="1/1">
+            <x-helper>
+                <p>{{ __('campaigns/default-images.reset.helper') }}</p>
+                <p>{{ __('campaigns/default-images.reset.warning') }}</p>
+            </x-helper>
 
-        <div class="grid grid-cols-2 gap-2 w-full">
-            <x-buttons.confirm type="ghost" full="true" dismiss="dialog">
-                {{ __('crud.cancel') }}
-            </x-buttons.confirm>
+            <div class="grid grid-cols-2 gap-2 w-full">
+                <x-buttons.confirm type="ghost" full="true" dismiss="dialog">
+                    {{ __('crud.cancel') }}
+                </x-buttons.confirm>
 
-            <x-form method="DELETE" :action="['campaign.default-images.reset', $campaign]">
-            <x-buttons.confirm type="danger" full="true" outline="true">
-                {{ __('crud.actions.confirm') }}
-            </x-buttons.confirm>
-            </x-form>
-        </div>
+                <x-form method="DELETE" :action="['campaign.default-images.reset', $campaign]">
+                <x-buttons.confirm type="danger" full="true" outline="true">
+                    {{ __('crud.actions.confirm') }}
+                </x-buttons.confirm>
+                </x-form>
+            </div>
+        </x-grid>
     </x-dialog>
 @endsection

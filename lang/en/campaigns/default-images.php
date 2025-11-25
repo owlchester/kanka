@@ -3,25 +3,25 @@
 return [
     'title' => 'Placeholder images',
     'actions'           => [
-        'add'   => 'New thumbnail',
+        'add'   => 'New placeholder',
     ],
     'call-to-action'    => 'Upload a custom thumbnail for all the characters, locations, or other entities of the campaign. These images are then shown on various lists.',
     'create'            => [
-        'error'     => 'Error saving the new default entity thumbnails. Is :type already set?',
-        'helper'    => 'Upload an image that will be used as the default thumbnail for entities of the selected module.',
-        'success'   => 'New thumbnail for :type created.',
-        'title'     => 'New default thumbnail',
+        'error'     => 'Error saving the new placeholder image. Is :type already set?',
+        'helper'    => 'Upload an image that will be used as the placeholder image for entities of the selected module.',
+        'success'   => 'New placeholder for :type created.',
+        'title'     => 'New placeholder image',
     ],
     'destroy'           => [
-        'success'   => 'Default thumbnail for :type removed.',
+        'success'   => 'Placeholder image for :type removed.',
     ],
     'reset'             => [
-        'title'     => 'Reset module thumbnails',
-        'helper'    => 'Are you sure you want to remove the default images for all campaign modules?',
+        'title'     => 'Reset placeholder images',
+        'helper'    => 'Are you sure you want to remove the placeholder images for all campaign modules?',
         'warning'   => 'This action is permanent and cannot be undone.',
-        'success'   => 'Successfully removed all module\'s default images',
+        'success'   => 'Successfully removed all modules\' placeholder images',
     ],
     'tutorial' => 'Set default images for entities without custom pictures. These thumbnails appear immediately across the campaign and keep lists visually consistent.',
-    'empty'             => 'No modules currently have a default thumbnail setup.',
+    'empty'             => 'No modules currently have a placeholder image.',
     'helper'            => 'Used for all entities of this module without an image.',
 ];

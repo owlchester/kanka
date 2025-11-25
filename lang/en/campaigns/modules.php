@@ -31,7 +31,7 @@ return [
         'plural'        => 'Module plural name',
         'singular'      => 'Module singular name',
         'update_name'   => 'Rename module bookmark with new name',
-        'image'         => 'Default image',
+        'image'         => 'Placeholder image',
     ],
     'status' => [
         'enabled' => 'Module enabled',
