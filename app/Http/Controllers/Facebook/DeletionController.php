@@ -18,7 +18,7 @@ class DeletionController extends Controller
             return response()->json(['error' => 'missing signed_request'], 400);
         }
 
-        $data = $this->parseSignedRequest($signedRequest, env('FACEBOOK_CLIENT_SECRET'));
+        $data = $this->parseSignedRequest($signedRequest, config('services.facebook.client_secret'));
         if (! $data || ! isset($data['user_id'])) {
             return response()->json(['error' => 'invalid signed_request'], 400);
         }
@@ -56,7 +56,7 @@ class DeletionController extends Controller
             abort(404);
         }
 
-        $secret = env('FACEBOOK_CLIENT_SECRET');
+        $secret = config('services.facebook.client_secret');
 
         $payload = json_encode([
             'user_id' => $request->query('user_id', '123456789'),
