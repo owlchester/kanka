@@ -33,14 +33,14 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         $schedule->command(ExpiringCardCommand::class)->onOneServer()->monthly()->sentryMonitor();
-        $schedule->command('model:prune')->onOneServer()->daily()->sentryMonitor();
+        $schedule->command('model:prune')->onOneServer()->daily();
         $schedule->command(CalendarAdvancer::class)->onOneServer()->daily()->sentryMonitor();
         $schedule->command(AnonymiseUserLogs::class)->onOneServer()->daily()->sentryMonitor();
         $schedule->command(EndSubscriptions::class)->onOneServer()->dailyAt('00:05')->sentryMonitor();
         $schedule->command(EndFreeTrials::class)->onOneServer()->dailyAt('00:01')->sentryMonitor();
         $schedule->command(RegenerateDiscordToken::class)->onOneServer()->dailyAt('00:15')->sentryMonitor();
         $schedule->command(VisibileEntityCountCommand::class)->onOneServer()->dailyAt('01:00')->sentryMonitor();
-        $schedule->command('backup:clean')->onOneServer()->dailyAt('01:00')->sentryMonitor();
+        $schedule->command('backup:clean')->onOneServer()->dailyAt('01:00');
         $schedule->command(CleanupTrashed::class)->onOneServer()->dailyAt('01:15')->sentryMonitor();
         $schedule->command(CleanupEntityLogs::class)->onOneServer()->dailyAt('01:30')->sentryMonitor();
         $schedule->command(CleanupTrashedCampaigns::class)->onOneServer()->dailyAt('01:45')->sentryMonitor();
