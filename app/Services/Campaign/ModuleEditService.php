@@ -60,10 +60,7 @@ class ModuleEditService
                 ->destroy();
 
             if ($request->hasFile('default_entity_image')) {
-                $this->defaultImageService->campaign($this->campaign)
-                    ->user($this->user)
-                    ->entityType($this->entityType)
-                    ->save($request);
+                $this->defaultImageService->save($request);
             }
         }
 

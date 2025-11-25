@@ -154,10 +154,7 @@ class EntityTypeService
                 ->destroy();
 
             if ($this->request->hasFile('default_entity_image')) {
-                $this->defaultImageService->campaign($this->campaign)
-                    ->user($this->user)
-                    ->entityType($this->entityType)
-                    ->save($this->request);
+                $this->defaultImageService->save($this->request);
             }
         }
 
