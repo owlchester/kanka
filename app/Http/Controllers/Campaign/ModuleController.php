@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Campaign;
 
-use App\Facades\Img;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateModuleName;
 use App\Models\Campaign;
