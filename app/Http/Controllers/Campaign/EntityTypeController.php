@@ -138,8 +138,11 @@ class EntityTypeController extends Controller
         $this->authorize('setting', $campaign);
         $this->authorize('delete', [$entityType, $campaign]);
 
+        $entityCount = $entityType->entities->count();
+
         return view('campaigns.entity-types.confirm')
             ->with('campaign', $campaign)
+            ->with('entityCount', $entityCount)
             ->with('entityType', $entityType);
     }
 

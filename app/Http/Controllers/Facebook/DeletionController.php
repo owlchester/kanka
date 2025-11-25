@@ -14,12 +14,12 @@ class DeletionController extends Controller
     public function handle(Request $request)
     {
         $signedRequest = $request->input('signed_request');
-        if (!$signedRequest) {
+        if (! $signedRequest) {
             return response()->json(['error' => 'missing signed_request'], 400);
         }
 
         $data = $this->parseSignedRequest($signedRequest, env('FACEBOOK_CLIENT_SECRET'));
-        if (!$data || !isset($data['user_id'])) {
+        if (! $data || ! isset($data['user_id'])) {
             return response()->json(['error' => 'invalid signed_request'], 400);
         }
 
@@ -46,6 +46,7 @@ class DeletionController extends Controller
     public function status(Request $request)
     {
         $code = $request->query('code');
+
         return "Data deletion processed. Confirmation code: {$code}";
     }
 
@@ -64,19 +65,20 @@ class DeletionController extends Controller
         $payloadB64 = rtrim(strtr(base64_encode($payload), '+/', '-_'), '=');
         $sig = hash_hmac('sha256', $payloadB64, $secret, true);
         $sigB64 = rtrim(strtr(base64_encode($sig), '+/', '-_'), '=');
+
         return $sigB64 . '.' . $payloadB64;
     }
 
     private function parseSignedRequest($signedRequest, $secret)
     {
-        list($encodedSig, $payload) = explode('.', $signedRequest, 2);
+        [$encodedSig, $payload] = explode('.', $signedRequest, 2);
 
         $sig = $this->base64UrlDecode($encodedSig);
         $data = json_decode($this->base64UrlDecode($payload), true);
 
         $expectedSig = hash_hmac('sha256', $payload, $secret, true);
 
-        if (!hash_equals($expectedSig, $sig)) {
+        if (! hash_equals($expectedSig, $sig)) {
             return null;
         }
 

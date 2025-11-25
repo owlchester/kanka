@@ -11,10 +11,12 @@ return [
         'title'     => 'New module',
     ],
     'delete'        => [
-        'confirm'   => 'Write :code if you are sure you want to permanently delete the :name custom module.',
-        'helper'    => 'Are you sure you want to remove the :name custom module? This will also permanently delete all entities, bookmarks and widgets linked to this module.',
-        'success'   => 'Module :name deleted.',
-        'title'     => 'Module deletion',
+        'confirm'           => 'Write :code if you are sure you want to permanently delete the :name custom module.',
+        'confirm-button'    => '{0} Permanently delete :name|{1} Permanently delete :name and :count entity|[2,*] Permanently delete :name and :count entities',
+        'helper'            => 'Are you sure you want to remove the :name custom module? This will also permanently delete all entities, bookmarks and widgets linked to this module.',
+        'entities'          => '{1} This will permanently delete :count entity.|[2,*] This will permanently delete :count entities.',
+        'success'           => 'Module :name deleted.',
+        'title'             => 'Module deletion',
     ],
     'errors'        => [
         'disabled'              => 'The :name module is disabled. :fix',
