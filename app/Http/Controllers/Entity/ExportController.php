@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Entity;
 
+use App\Facades\Avatar;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Entity;
@@ -45,8 +46,10 @@ class ExportController extends Controller
         $converter = new HtmlConverter;
         $converter->getConfig()->setOption('strip_tags', true);
         $converter->getEnvironment()->addConverter(new TableConverter);
+        
+        $entityData = $this->markdownExportService->campaign($campaign)->entity($entity)->entityData();
 
-        return response()->view('entities.pages.print.markdown', ['markdown' => $this->markdownExportService->entity($entity)->markdown()])
+        return response()->view('entities.markdown.base', ['entity' => $entity, 'entityData' => $entityData, 'converter' => $converter, 'campaign' => $campaign])
             ->header('Content-Type', 'application/md')
             ->header('Content-disposition', 'attachment; filename="' . Str::slug($entity->name) . '.md"');
     }

@@ -91,7 +91,7 @@ class ExportService
                 ->campaignJson()
                 ->campaignModules()
                 ->customCampaignModules()
-                //->entities()
+                ->entities()
                 ->customEntities()
                 ->gallery()
                 ->finish()
@@ -235,7 +235,7 @@ class ExportService
         ];
 
         if ($this->isMarkdown) {
-            $this->archive->addFromString('campaign.md', $this->markdown->campaign($this->campaign)->markdown());
+            $this->archive->addFromString('campaign.md', $this->markdown->campaign($this->campaign)->campaignMarkdown());
         } else {
             $this->archive->addFromString('campaign.json', $this->campaign->makeHidden($hidden)->toJson());
         }
@@ -400,8 +400,8 @@ class ExportService
         }
 
         if ($this->isMarkdown) {
-            $exportData = $this->markdown->entity($entity)->markdown();
-            $this->archive->addFromString($module . '/' . Str::slug($model->name) . '.md', $exportData);
+            $exportData = $this->markdown->campaign($this->campaign)->module($module)->entity($entity)->markdown();
+            $this->archive->addFromString($module . '/' . Str::slug($model->name) . '_' . $entity->id . '.md', $exportData);
         } else {
             $exportData = $model->export();
             if ($model instanceof Entity) {
@@ -469,6 +469,13 @@ class ExportService
     {
         // Save all the content.
         try {
+
+            if ($this->isMarkdown) {
+                $exportData = $this->markdown->exportIndex();
+                $this->archive->addFromString('index.md', $exportData);
+                $this->files++;
+            }
+
             $this->archive->close();
             $path = 'exports/' . $this->campaign->id;
             $this->exportPath = $path . '/' . $this->file;
