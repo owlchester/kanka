@@ -3,10 +3,13 @@
 namespace App\Console\Commands\Users;
 
 use App\Services\Users\OfferTrialService;
+use App\Traits\HasJobLog;
 use Illuminate\Console\Command;
 
 class OfferFreeTrial extends Command
 {
+    use HasJobLog;
+
     /**
      * The name and signature of the console command.
      *
@@ -32,6 +35,8 @@ class OfferFreeTrial extends Command
     public function handle()
     {
         $count = $this->service->run();
-        $this->info('Offered free trial to ' . $count . ' users.');
+        $log = 'Offered free trial to ' . $count . ' users.';
+        $this->info($log);
+        $this->log($log . ' ' . implode(',', $this->service->ids()));
     }
 }

@@ -3,7 +3,6 @@
 namespace App\Services\Campaign;
 
 use App\Models\Campaign;
-use App\Models\JobLog;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Log;
@@ -19,6 +18,11 @@ class PurgeService
     public function __construct(
         protected DeletionService $deletionService,
     ) {}
+
+    public function ids(): array
+    {
+        return $this->ids;
+    }
 
     public function real(): self
     {
@@ -68,11 +72,6 @@ class PurgeService
                     $this->count++;
                 }
             });
-
-        JobLog::create([
-            'name' => 'cleanup:trashed-campaigns',
-            'result' => implode('<br />', $this->ids),
-        ]);
 
         return $this->count;
     }

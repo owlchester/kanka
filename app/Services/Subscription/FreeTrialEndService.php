@@ -3,7 +3,7 @@
 namespace App\Services\Subscription;
 
 use App\Jobs\SubscriptionEndJob;
-use App\Models\JobLog;
+use App\Models\User;
 use Carbon\Carbon;
 use Laravel\Cashier\Subscription;
 
@@ -14,6 +14,13 @@ class FreeTrialEndService
     protected array $logs = [];
 
     protected bool $dispatch;
+
+    protected array $ids = [];
+
+    public function ids(): array
+    {
+        return $this->ids;
+    }
 
     /**
      * Find users with expired subscriptions and dispatch a cleanup job for each one
@@ -26,7 +33,6 @@ class FreeTrialEndService
         $this->dispatch = $dispatch;
 
         $this->endFreeTrials();
-        $this->log();
 
         return $this->count;
     }
@@ -50,29 +56,13 @@ class FreeTrialEndService
 
     protected function process(Subscription $subscription): void
     {
-        // @phpstan-ignore-next-line
-        $this->logs[] = 'User ' . $subscription->user->name . ' (' . $subscription->user->id . '): ' . $subscription->ends_at;
+        /** @var User $user */
+        $user = $subscription->user;
+        $this->logs[] = 'User ' . $user->name . ' (' . $user->id . '): ' . $subscription->ends_at;
         if ($this->dispatch) {
-            // @phpstan-ignore-next-line
-            SubscriptionEndJob::dispatch($subscription->user, false, true);
+            $this->ids[] = $user->id;
+            SubscriptionEndJob::dispatch($user, false, true);
         }
         $this->count++;
-    }
-
-    /**
-     * Save an job log for the admin interface
-     *
-     * @return void
-     */
-    protected function log()
-    {
-        if (! config('app.log_jobs')) {
-            return;
-        }
-
-        JobLog::create([
-            'name' => 'subscriptions:end-free-trials',
-            'result' => implode("\n", $this->logs),
-        ]);
     }
 }

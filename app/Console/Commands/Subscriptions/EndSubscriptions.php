@@ -3,10 +3,13 @@
 namespace App\Console\Commands\Subscriptions;
 
 use App\Services\Subscription\SubscriptionEndService;
+use App\Traits\HasJobLog;
 use Illuminate\Console\Command;
 
 class EndSubscriptions extends Command
 {
+    use HasJobLog;
+
     /**
      * The name and signature of the console command.
      *
@@ -36,7 +39,9 @@ class EndSubscriptions extends Command
         $fake = $this->argument('fake');
 
         $count = $this->service->run($fake === 'false');
-        $this->info('Ended ' . $count . ' subscriptions.');
+        $log = 'Ended ' . $count . ' subscriptions.';
+        $this->info($log);
+        $this->log($log . ' ' . implode(', ', $this->service->ids()));
 
         return 0;
     }

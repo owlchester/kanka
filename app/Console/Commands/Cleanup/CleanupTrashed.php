@@ -90,10 +90,10 @@ class CleanupTrashed extends Command
 
         $this->info('');
         $this->info('Deleted ' . $this->service->count() . ' trashed entities.');
-        $log .= '<br />' . 'Deleted ' . $this->service->count() . ' trashed entities.';
+        $log .= "\n" . 'Deleted ' . $this->service->count() . ' trashed entities.';
 
         $this->info('Deleted ' . $this->postService->count() . ' trashed posts.');
-        $log .= '<br />' . 'Deleted ' . $this->postService->count() . ' trashed posts.';
+        $log .= "\n" . 'Deleted ' . $this->postService->count() . ' trashed posts.';
         $this->log($log);
 
         return 0;
