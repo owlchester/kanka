@@ -26,11 +26,12 @@ return [
         'empty-custom' => 'Add custom modules to organise data that doesn\'t fit in the default ones.',
     ],
     'fields'        => [
-        'status' => 'Module status',
+        'status'        => 'Module status',
         'icon'          => 'Module icon',
         'plural'        => 'Module plural name',
         'singular'      => 'Module singular name',
         'update_name'   => 'Rename module bookmark with new name',
+        'image'         => 'Default image',
     ],
     'status' => [
         'enabled' => 'Module enabled',

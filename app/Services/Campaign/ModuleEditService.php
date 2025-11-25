@@ -52,7 +52,8 @@ class ModuleEditService
             $settings['modules'][$key]['i'] = $icon;
         }
 
-        if ($request->hasFile('default_entity_image') || $request->filled('remove-image')) {
+        //Bookmarks cant have default images.
+        if (($request->hasFile('default_entity_image') || $request->filled('remove-image')) && !$this->entityType->isBookmark()) {
 
             $this->defaultImageService->campaign($this->campaign)
                 ->user($this->user)
