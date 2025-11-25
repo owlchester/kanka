@@ -32,24 +32,24 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command(CalendarAdvancer::class)->onOneServer()->dailyAt('00:00');
-        $schedule->command(VisibileEntityCountCommand::class)->onOneServer()->dailyAt('01:00');
-        // $schedule->command(UpcomingYearlyCommand::class)->dailyAt('06:30');
-        $schedule->command(EndSubscriptions::class)->onOneServer()->dailyAt('00:05');
-        $schedule->command(EndFreeTrials::class)->onOneServer()->dailyAt('00:01');
-        $schedule->command(RegenerateDiscordToken::class)->onOneServer()->dailyAt('00:15');
-        $schedule->command(ExpiringCardCommand::class)->onOneServer()->monthlyOn(1, '02:00');
+        $schedule->command(ExpiringCardCommand::class)->onOneServer()->monthly()->sentryMonitor();
+        $schedule->command('model:prune')->onOneServer()->daily()->sentryMonitor();
+        $schedule->command(CalendarAdvancer::class)->onOneServer()->daily()->sentryMonitor();
+        $schedule->command(AnonymiseUserLogs::class)->onOneServer()->daily()->sentryMonitor();
+        $schedule->command(EndSubscriptions::class)->onOneServer()->dailyAt('00:05')->sentryMonitor();
+        $schedule->command(EndFreeTrials::class)->onOneServer()->dailyAt('00:01')->sentryMonitor();
+        $schedule->command(RegenerateDiscordToken::class)->onOneServer()->dailyAt('00:15')->sentryMonitor();
+        $schedule->command(VisibileEntityCountCommand::class)->onOneServer()->dailyAt('01:00')->sentryMonitor();
+        $schedule->command('backup:clean')->onOneServer()->dailyAt('01:00')->sentryMonitor();
+        $schedule->command(CleanupTrashed::class)->onOneServer()->dailyAt('01:15')->sentryMonitor();
+        $schedule->command(CleanupEntityLogs::class)->onOneServer()->dailyAt('01:30')->sentryMonitor();
+        $schedule->command(CleanupTrashedCampaigns::class)->onOneServer()->dailyAt('01:45')->sentryMonitor();
+        $schedule->command(CleanupUsers::class)->onOneServer()->dailyAt('01:50')->sentryMonitor();
+        $schedule->command('backup:run')->onOneServer()->twiceDaily();
 
-        $schedule->command('backup:clean')->onOneServer()->daily()->at('01:00');
-        $schedule->command('backup:run')->onOneServer()->twiceDaily(2, 14);
         // $schedule->command('backup:monitor')->daily()->at('03:00');
+        // $schedule->command(UpcomingYearlyCommand::class)->dailyAt('06:30');
 
-        $schedule->command('model:prune')->onOneServer()->daily();
-        $schedule->command(CleanupEntityLogs::class)->onOneServer()->dailyAt('03:30');
-        $schedule->command(AnonymiseUserLogs::class)->onOneServer()->dailyAt('03:50');
-        $schedule->command(CleanupTrashed::class)->onOneServer()->dailyAt('02:15');
-        $schedule->command(CleanupTrashedCampaigns::class)->onOneServer()->dailyAt('02:45');
-        $schedule->command(CleanupUsers::class)->onOneServer()->dailyAt('01:50');
     }
 
     /**
