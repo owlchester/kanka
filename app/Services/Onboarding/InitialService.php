@@ -126,7 +126,7 @@ class InitialService
         ]);
 
         Family::create([
-            'name' => __('dashboards/onboarding.families.varren.title'),
+            'name' => __('starter.name', ['name' => __('dashboards/onboarding.families.varren.title')]),
             'campaign_id' => $this->campaign->id,
         ]);
     }
@@ -140,7 +140,7 @@ class InitialService
         $settings->save();
 
         $tag = Tag::create([
-            'name' => __('onboarding.ttrpg.tags.npcs'),
+            'name' => __('onboarding/tags.npcs'),
             'campaign_id' => $this->campaign->id,
         ]);
 
@@ -183,14 +183,17 @@ class InitialService
 
         CampaignDashboardWidget::create([
             'campaign_id' => $this->campaign->id,
-            'filters' => ['is_completed' => false, 'text' => __('dashboards/onboarding.widgets.active-quests')],
+            'config' => [
+                'filters' => 'is_completed=0',
+                'text' => __('dashboards/onboarding.widgets.active-quests')
+            ],
             'position' => 3,
             'widget' => Widget::Recent,
             'entity_type_id' => config('entities.ids.quest'),
         ]);
 
         Quest::create([
-            'name' => __('dashboards/onboarding.quests.crown.title'),
+            'name' => __('starter.name', ['name' => __('dashboards/onboarding.quests.crown.title')]),
             'campaign_id' => $this->campaign->id,
         ]);
     }

@@ -55,7 +55,7 @@ class GettingStartedService
     {
         $completed = $this->campaign
             ->characters()
-            ->where('created_at', '>', $this->campaign->created_at)
+            ->where('created_at', '>', $this->campaign->created_at->addSeconds(10))
             ->count() > 0;
         $this->track(
             'character',
@@ -70,7 +70,7 @@ class GettingStartedService
     {
         $completed = $this->campaign
             ->locations()
-            ->where('created_at', '>', $this->campaign->created_at)
+            ->where('created_at', '>', $this->campaign->created_at->addSeconds(10))
             ->count() > 0;
         $this->track(
             'location',
@@ -97,7 +97,7 @@ class GettingStartedService
     {
         $completed = $this->campaign
             ->widgets()
-            ->where('created_at', '>', $this->campaign->created_at)
+            ->where('created_at', '>', $this->campaign->created_at->addSeconds(10))
             ->count() > 0;
         $this->track(
             'widgets',
