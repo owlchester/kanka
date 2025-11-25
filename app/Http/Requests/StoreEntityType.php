@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Facades\Limit;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreEntityType extends FormRequest
@@ -27,6 +28,7 @@ class StoreEntityType extends FormRequest
             'icon' => ['required', 'string', 'max:100'],
             'roles' => 'array',
             'roles.*' => 'exists:campaign_roles,id',
+            'default_entity_image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
         ];
     }
 }

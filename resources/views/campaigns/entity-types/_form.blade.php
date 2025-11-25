@@ -82,4 +82,6 @@
         </x-forms.field>
     @endif
 
+    @include('cruds.fields.image-old', ['model' => $entityType ?? null, 'campaignImage' => true, 'imageLabel' => 'campaigns.fields.image', 'recommended' => '240x208', 'isModule' => true, 'image' => isset($image) ? Img::crop(96, 96)->url($image['path']) : null])
+
 </x-grid>

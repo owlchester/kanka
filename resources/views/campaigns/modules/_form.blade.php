@@ -45,4 +45,7 @@
         ])">
         <input type="text" name="icon" value="{{ old('icon', $icon) }}" maxlength="60" class="w-full" list="module-icon-list" placeholder="{{ $entityType->icon() }}" />
     </x-forms.field>
+
+    @include('cruds.fields.image-old', ['model' => $entityType ?? null, 'campaignImage' => true, 'imageLabel' => 'campaigns.fields.image', 'recommended' => '240x208', 'isModule' => true, 'image' => isset($image) ? Img::crop(96, 96)->url($image['path']) : null])
+
 </x-grid>

@@ -6,6 +6,7 @@ use App\Models\Bookmark;
 use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\Models\EntityType;
+use App\Services\Campaign\DefaultImageService;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
 use App\Traits\RequestAware;
@@ -29,6 +30,10 @@ class EntityTypeService
     protected bool $withDisabled = false;
 
     protected bool $creatable = false;
+
+    public function __construct(
+        protected DefaultImageService $defaultImageService
+    ) {}
 
     public function exclude(mixed $ids): self
     {
@@ -139,6 +144,21 @@ class EntityTypeService
 
         if ($this->request->get('update_name')) {
             $this->updateBookmark();
+        }
+
+        if ($this->request->hasFile('default_entity_image') || $this->request->filled('remove-image')) {
+
+            $this->defaultImageService->campaign($this->campaign)
+                ->user($this->user)
+                ->entityType($this->entityType)
+                ->destroy();
+
+            if ($this->request->hasFile('default_entity_image')) {
+                $this->defaultImageService->campaign($this->campaign)
+                    ->user($this->user)
+                    ->entityType($this->entityType)
+                    ->save($this->request);
+            }
         }
 
         return $this->entityType;

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Facades\Limit;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateModuleName extends FormRequest
@@ -26,6 +27,7 @@ class UpdateModuleName extends FormRequest
             'singular' => 'nullable|string|max:45',
             'plural' => 'nullable|string|max:45',
             'icon' => 'nullable|string|max:60',
+            'default_entity_image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Campaign;
 
+use App\Facades\Img;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateModuleName;
 use App\Models\Campaign;
@@ -47,6 +48,13 @@ class ModuleController extends Controller
             return view('campaigns.modules.not-premium')
                 ->with('campaign', $campaign);
         }
+        $image = null;
+        $thumbnails = $campaign->defaultImages();
+        foreach ($thumbnails as $thumbnail) {
+            if ($thumbnail['type'] == $entityType->pluralCode()) {
+                $image = $thumbnail;
+            }
+        }
 
         $singular = $campaign->moduleName($entityType->id);
         $plural = $campaign->moduleName($entityType->id, true);
@@ -57,7 +65,8 @@ class ModuleController extends Controller
             ->with('entityType', $entityType)
             ->with('singular', $singular)
             ->with('plural', $plural)
-            ->with('icon', $icon);
+            ->with('icon', $icon)
+            ->with('image', $image);
     }
 
     public function update(UpdateModuleName $request, Campaign $campaign, EntityType $entityType)
