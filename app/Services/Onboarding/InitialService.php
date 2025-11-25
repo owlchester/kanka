@@ -185,7 +185,7 @@ class InitialService
             'campaign_id' => $this->campaign->id,
             'config' => [
                 'filters' => 'is_completed=0',
-                'text' => __('dashboards/onboarding.widgets.active-quests')
+                'text' => __('dashboards/onboarding.widgets.active-quests'),
             ],
             'position' => 3,
             'widget' => Widget::Recent,
