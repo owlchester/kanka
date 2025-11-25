@@ -4,6 +4,7 @@ namespace App\Services\Campaign;
 
 use App\Enums\CampaignExportStatus;
 use App\Facades\CampaignCache;
+use App\Facades\CampaignLocalization;
 use App\Facades\Mentions;
 use App\Models\CampaignExport;
 use App\Models\Entity;
@@ -53,9 +54,8 @@ class ExportService
 
     protected int $currentElements;
 
-    public function __construct(protected MarkdownExportService $markdownExportService)
+    public function __construct(protected MarkdownExportService $markdown)
     {
-        $this->markdownExportService = $markdownExportService;
     }
 
     public function exportPath(): string
@@ -91,7 +91,7 @@ class ExportService
                 ->campaignJson()
                 ->campaignModules()
                 ->customCampaignModules()
-                ->entities()
+                //->entities()
                 ->customEntities()
                 ->gallery()
                 ->finish()
@@ -187,6 +187,7 @@ class ExportService
             CampaignCache::user($this->user);
             Mentions::campaign($this->campaign);
             Avatar::campaign($this->campaign);
+            CampaignLocalization::forceCampaign($this->campaign);
         }
         $this->path = $saveFolder . $this->file;
         $this->archive = new ZipArchive;
@@ -234,7 +235,7 @@ class ExportService
         ];
 
         if ($this->isMarkdown) {
-            $this->archive->addFromString('campaign.md', $this->markdownExportService->campaign($this->campaign)->markdown());
+            $this->archive->addFromString('campaign.md', $this->markdown->campaign($this->campaign)->markdown());
         } else {
             $this->archive->addFromString('campaign.json', $this->campaign->makeHidden($hidden)->toJson());
         }
@@ -330,6 +331,7 @@ class ExportService
                 }
             } catch (Exception $e) {
                 Log::error('Campaign export', ['err' => $e->getMessage()]);
+                throw $e;
                 //                $saveFolder = storage_path($this->exportPath);
                 //                $this->archive->saveTo($saveFolder);
                 throw new Exception(
@@ -398,7 +400,7 @@ class ExportService
         }
 
         if ($this->isMarkdown) {
-            $exportData = $this->markdownExportService->entity($entity)->markdown();
+            $exportData = $this->markdown->entity($entity)->markdown();
             $this->archive->addFromString($module . '/' . Str::slug($model->name) . '.md', $exportData);
         } else {
             $exportData = $model->export();
@@ -497,7 +499,9 @@ class ExportService
         if (app()->hasDebugModeEnabled()) {
             return;
         }
-        unlink($this->path);
+        if (file_exists($this->path) && ! is_dir($this->path)) {
+            unlink($this->path);
+        }
     }
 
     /**

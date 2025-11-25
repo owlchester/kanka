@@ -31,7 +31,7 @@ class MarkdownExportService
             $resource = new CampaignResource($this->campaign);
             $this->exportedCampaign = true;
 
-            return $this->resourceToMarkdown($resource->toArray(request()));
+            return $this->resourceToMarkdown($resource->resolve());
         }
 
         // Get the model's resource.
@@ -42,12 +42,12 @@ class MarkdownExportService
         if (class_exists($className)) {
             $resource = new $className($this->entity->child);
 
-            return $this->resourceToMarkdown($resource->withRelated()->toArray(request()));
+            return $this->resourceToMarkdown($resource->withRelated()->resolve());
 
         } elseif ($this->entity->entityType->isCustom()) {
             $resource = new EntityResource($this->entity);
 
-            return $this->resourceToMarkdown($resource->toArray(request()));
+            return $this->resourceToMarkdown($resource->resolve());
 
         } else {
             return ['error' => 'unknown resource ' . $className];
@@ -95,7 +95,7 @@ class MarkdownExportService
         // Convert Resource or ResourceCollection to array
         // @phpstan-ignore-next-line
         if ($data instanceof JsonResource || $data instanceof AnonymousResourceCollection) {
-            $data = $data->toArray(request());
+            $data = $data->resolve();
         }
 
         // Convert Collections
