@@ -20,6 +20,10 @@ class ModuleEditService
     use PurifiableTrait;
     use UserAware;
 
+    public function __construct(
+        protected DefaultImageService $defaultImageService
+    ) {}
+
     public function update(UpdateModuleName $request): self
     {
         $settings = $this->campaign->settings;
@@ -46,6 +50,18 @@ class ModuleEditService
         }
         if (! empty($icon)) {
             $settings['modules'][$key]['i'] = $icon;
+        }
+
+        if ($request->hasFile('default_entity_image') || $request->filled('remove-image')) {
+
+            $this->defaultImageService->campaign($this->campaign)
+                ->user($this->user)
+                ->entityType($this->entityType)
+                ->destroy();
+
+            if ($request->hasFile('default_entity_image')) {
+                $this->defaultImageService->save($request);
+            }
         }
 
         $this->campaign->settings = $settings;

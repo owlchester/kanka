@@ -22,6 +22,8 @@ if (!empty($model->entity) && !empty($model->entity->image_uuid) && !empty($mode
     $previewThumbnail = Avatar::entity($entity)->size(192, 144)->thumbnail();
 } elseif (isset($model) && method_exists($model, 'thumbnail') && !empty($model->image)) {
     $previewThumbnail = $model->thumbnail(200, 160);
+} elseif (isset($image)) {
+   $previewThumbnail = $image;
 }
 
 // If the image is from the gallery and the user can't browse or upload, disable the field
@@ -41,15 +43,16 @@ if (!empty($model->entity) && !empty($model->entity->image) && !$canBrowse) {
             <div class="image-file field">
                 <input
                     type="file"
-                    name="image"
+                    name="{{ isset($isModule) ? 'default_entity_image' : 'image'}}"
                     class="image w-full"
                     id="image_field_{{ rand() }}"
                     accept="{{ $inputFileTypes }}" />
             </div>
-            <div class="image-url field">
-                <input type="text" name="image_url" value="{{ old('image_url', ((!empty($source) && $source->entity->image_path) ? Avatar::entity($source->entity)->original() : '')) }}" placeholder="{{ __('crud.placeholders.image_url') }}" class="w-full" />
-            </div>
-
+            @if(!isset($isModule))
+                <div class="image-url field">
+                    <input type="text" name="image_url" value="{{ old('image_url', ((!empty($source) && $source->entity->image_path) ? Avatar::entity($source->entity)->original() : '')) }}" placeholder="{{ __('crud.placeholders.image_url') }}" class="w-full" />
+                </div>
+            @endif
             @php
                 $preset = null;
                 if (isset($model) && $model->entity && $model->entity->image_uuid) {
@@ -82,7 +85,7 @@ if (!empty($model->entity) && !empty($model->entity->image) && !$canBrowse) {
                     'target' => !isset($removable) && $canDelete && (empty($imageRequired) || !$imageRequired) ? 'remove-image' : null,
                 ])
             </div>
-        @elseif (isset($campaignImage) && $campaignImage)
+        @elseif (isset($campaignImage) && $campaignImage && !isset($isModule))
             <div class="preview w-32">
                 @include('cruds.fields._image_preview', [
                     'image' => 'https://th.kanka.io/UngNKwPxKUPKSZ4z_Qjc9QiyeQs=/280x210/smart/src/app/backgrounds/mountain-background-medium.jpg',

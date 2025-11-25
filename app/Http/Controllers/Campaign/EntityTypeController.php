@@ -77,8 +77,17 @@ class EntityTypeController extends Controller
                 ->with('campaign', $campaign);
         }
 
+        $image = null;
+        $thumbnails = $campaign->defaultImages();
+        foreach ($thumbnails as $thumbnail) {
+            if ($thumbnail['type'] == $entityType->pluralCode()) {
+                $image = $thumbnail;
+            }
+        }
+
         return view('campaigns.entity-types.edit')
             ->with('campaign', $campaign)
+            ->with('image', $image)
             ->with('entityType', $entityType);
     }
 
