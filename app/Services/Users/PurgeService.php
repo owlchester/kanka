@@ -319,7 +319,9 @@ class PurgeService
 
         JobLog::create([
             'name' => 'users:purge',
-            'result' => 'Purged: ' . implode(', ', $this->warnedIds),
+            'result' => 'Purged: ' . collect($this->warnedIds)
+                ->map(fn ($v, $k) => "$k:$v")
+                ->implode(', '),
         ]);
         $this->warnedIds = [];
 

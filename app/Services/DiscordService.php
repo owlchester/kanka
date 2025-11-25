@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Models\JobLog;
 use App\Models\User;
 use App\Models\UserApp;
 use Carbon\Carbon;
@@ -28,6 +27,13 @@ class DiscordService
     protected $me;
 
     protected array $logs = [];
+
+    protected array $ids = [];
+
+    public function ids(): array
+    {
+        return $this->ids;
+    }
 
     public function user(User $user): self
     {
@@ -303,22 +309,5 @@ class DiscordService
     public function logs(): array
     {
         return $this->logs;
-    }
-
-    /**
-     * Save an job log for the admin interface
-     *
-     * @return void
-     */
-    public function log()
-    {
-        if (! config('app.log_jobs')) {
-            return;
-        }
-
-        JobLog::create([
-            'name' => 'users:renew-discord-tokens',
-            'result' => implode('<br />', $this->logs),
-        ]);
     }
 }

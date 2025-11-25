@@ -3,20 +3,24 @@
 namespace App\Services\Users;
 
 use App\Enums\UserFlags;
-use App\Models\JobLog;
 use App\Models\User;
 use App\Models\UserFlag;
 use Illuminate\Support\Facades\Storage;
 
 class OfferTrialService
 {
-    protected array $users = [];
+    protected array $ids = [];
+
+    public function ids(): array
+    {
+        return $this->ids;
+    }
 
     public function run(): int
     {
         $this->find();
 
-        return count($this->users);
+        return count($this->ids);
     }
 
     protected function find(): void
@@ -41,23 +45,11 @@ class OfferTrialService
 
     protected function flag(User $user): void
     {
-        $this->users[] = $user->id;
+        $this->ids[] = $user->id;
 
         $flag = new UserFlag;
         $flag->user_id = $user->id;
         $flag->flag = UserFlags::freeTrial;
         $flag->save();
-    }
-
-    protected function log(): void
-    {
-        if (! config('app.log_jobs')) {
-            return;
-        }
-
-        JobLog::create([
-            'name' => 'users:trial',
-            'result' => implode(', ', $this->users),
-        ]);
     }
 }

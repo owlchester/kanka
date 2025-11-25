@@ -3,7 +3,7 @@
 namespace App\Services\Subscription;
 
 use App\Jobs\SubscriptionEndJob;
-use App\Models\JobLog;
+use App\Models\User;
 use Carbon\Carbon;
 use Laravel\Cashier\Subscription;
 
@@ -14,6 +14,13 @@ class SubscriptionEndService
     protected array $logs = [];
 
     protected bool $dispatch;
+
+    protected array $ids = [];
+
+    public function ids(): array
+    {
+        return $this->ids;
+    }
 
     /**
      * Find users with expired subscriptions and dispatch a cleanup job for each one
@@ -27,7 +34,6 @@ class SubscriptionEndService
 
         $this->endSoforts();
         $this->endManuals();
-        $this->log();
 
         return $this->count;
     }
@@ -71,31 +77,15 @@ class SubscriptionEndService
 
     protected function process(Subscription $subscription): void
     {
-        // @phpstan-ignore-next-line
-        $this->logs[] = 'User ' . $subscription->user->name . ' (' . $subscription->user->id . '): ' . $subscription->ends_at;
+        /** @var User $user */
+        $user = $subscription->user;
+        $this->logs[] = 'User ' . $user->name . ' (' . $user->id . '): ' . $subscription->ends_at;
         if ($this->dispatch) {
-            // @phpstan-ignore-next-line
-            SubscriptionEndJob::dispatch($subscription->user);
+            SubscriptionEndJob::dispatch($user);
             $subscription->stripe_status = 'canceled';
             $subscription->save();
+            $this->ids[] = $user->id;
         }
         $this->count++;
-    }
-
-    /**
-     * Save an job log for the admin interface
-     *
-     * @return void
-     */
-    protected function log()
-    {
-        if (! config('app.log_jobs')) {
-            return;
-        }
-
-        JobLog::create([
-            'name' => 'subscriptions:end',
-            'result' => implode('<br />', $this->logs),
-        ]);
     }
 }

@@ -71,8 +71,8 @@ class CalendarAdvancer extends Command
             $this->error('Errors for ' . count($this->errors) . ' calendars.');
             $this->error(implode(', ', array_keys($this->errors)));
 
-            $log .= '<br />' . 'Errors for ' . count($this->errors) . ' calendars.';
-            $log .= '<br />' . implode(', ', array_keys($this->errors));
+            $log .= "\n" . 'Errors for ' . count($this->errors) . ' calendars.';
+            $log .= "\n" . implode(', ', array_keys($this->errors));
         }
         $this->log($log);
 

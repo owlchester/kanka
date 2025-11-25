@@ -5,6 +5,7 @@ namespace App\Console\Commands\Users;
 use App\Jobs\Users\UnsyncDiscord;
 use App\Models\UserApp;
 use App\Services\DiscordService;
+use App\Traits\HasJobLog;
 use Carbon\Carbon;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Console\Command;
@@ -12,6 +13,8 @@ use Illuminate\Support\Str;
 
 class RegenerateDiscordToken extends Command
 {
+    use HasJobLog;
+
     /**
      * The name and signature of the console command.
      */
@@ -61,14 +64,9 @@ class RegenerateDiscordToken extends Command
             }
         }
 
-        $logs = $this->service->logs();
-        $this->service->log();
-
-        foreach ($logs as $log) {
-            $this->info($log);
-        }
-
-        $this->info('Renewed ' . $count . ' tokens.');
+        $log = 'Renewed ' . $count . ' tokens.';
+        $this->info($log);
+        $this->log($log . ' ' . implode(',', $this->service->ids()));
 
         return 0;
     }

@@ -46,7 +46,7 @@ class CleanupTrashedCampaigns extends Command
         $count = $this->service->purgeDeleted();
         $log = 'Deleted ' . $count . ' trashed campaigns.';
         $this->info($log);
-        $this->log($log);
+        $this->log($log . ' ' . implode(',', $this->service->ids()));
 
         return 0;
     }
