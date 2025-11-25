@@ -30,8 +30,13 @@
                             'name' => '<strong>' . $entityType->name . '</strong>',
                             'code' => '<code>delete</code>'
                         ]) !!}
-                    </p>
 
+                    </p>
+                    @if ($entityCount > 0)
+                        <p class="">
+                            {!! trans_choice('campaigns/modules.delete.entities', $entityCount, ['count' => $entityCount]) !!}
+                        </p>
+                    @endif
                     <div class="required field flex gap-2 flex-wrap">
                         <input type="text" name="delete" @if (config('app.debug')) value="delete" @endif autofocus maxlength="10" required id="module-delete-form" class="w-full" />
                     </div>
@@ -39,8 +44,9 @@
 
                     <x-buttons.confirm type="danger" full="true">
                         <x-icon class="trash" />
-                        {!! __('campaigns/delete.confirm-button', [
-                            'name' => $entityType->name()]) !!}
+                        {!! trans_choice('campaigns/modules.delete.confirm-button', $entityCount, 
+                            ['count' => $entityCount, 'name' => $entityType->name()]) 
+                        !!}
                     </x-buttons.confirm>
 
                 </x-grid>
