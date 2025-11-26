@@ -15,6 +15,7 @@ class MarkdownExportService
     use EntityAware;
 
     protected array $index = [];
+
     protected string $module = '';
 
     /**
@@ -24,7 +25,7 @@ class MarkdownExportService
      */
     public function markdown()
     {
-        $converter = new HtmlConverter();
+        $converter = new HtmlConverter;
         $converter->getConfig()->setOption('strip_tags', true);
         $converter->getEnvironment()->addConverter(new TableConverter);
 
@@ -37,7 +38,7 @@ class MarkdownExportService
 
     public function addToIndex()
     {
-        if (!isset($this->index[$this->module])) {
+        if (! isset($this->index[$this->module])) {
             $this->index[$this->module] = [];
         }
 
@@ -64,16 +65,16 @@ class MarkdownExportService
      */
     public function campaignMarkdown()
     {
-        $converter = new HtmlConverter();
+        $converter = new HtmlConverter;
         $converter->getConfig()->setOption('strip_tags', true);
         $converter->getEnvironment()->addConverter(new TableConverter);
 
         return Blade::render('campaigns.markdown', ['converter' => $converter, 'campaign' => $this->campaign]);
     }
 
-    public function entityData() 
+    public function entityData()
     {
-        //Move to service
+        // Move to service
         $entityData = [];
         $entityData['tags'] = '**Tags:** ';
         $entityData['attributes'] = '';
@@ -84,11 +85,11 @@ class MarkdownExportService
         }
         foreach ($this->entity->attributes as $attribute) {
             $entityData['attributes'] .= '* **' . $attribute->name . '**: ' . $attribute->value . '
-' ;
+';
         }
 
         foreach ($this->entity->relationships as $relation) {
-            if ($relation->target->entityType->isCustom() ) {
+            if ($relation->target->entityType->isCustom()) {
                 $entityData['relations'] .= '* [' . $relation->target->name . '](' . Str::camel($relation->target->entityType->code) . '_' . $relation->target->entityType->id . '/' . $relation->target->name . '_' . $relation->target_id . ')
 ';
             } else {
@@ -100,5 +101,4 @@ class MarkdownExportService
 
         return $entityData;
     }
-
 }

@@ -54,9 +54,7 @@ class ExportService
 
     protected int $currentElements;
 
-    public function __construct(protected MarkdownExportService $markdown)
-    {
-    }
+    public function __construct(protected MarkdownExportService $markdown) {}
 
     public function exportPath(): string
     {
