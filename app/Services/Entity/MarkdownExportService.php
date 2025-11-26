@@ -15,6 +15,7 @@ class MarkdownExportService
     use EntityAware;
 
     protected array $index = [];
+
     protected string $module = '';
 
     /**
@@ -24,7 +25,7 @@ class MarkdownExportService
      */
     public function markdown()
     {
-        $converter = new HtmlConverter();
+        $converter = new HtmlConverter;
         $converter->getConfig()->setOption('strip_tags', true);
         $converter->getEnvironment()->addConverter(new TableConverter);
 
@@ -66,16 +67,16 @@ class MarkdownExportService
      */
     public function campaignMarkdown()
     {
-        $converter = new HtmlConverter();
+        $converter = new HtmlConverter;
         $converter->getConfig()->setOption('strip_tags', true);
         $converter->getEnvironment()->addConverter(new TableConverter);
 
         return Blade::render('campaigns.markdown', ['converter' => $converter, 'campaign' => $this->campaign]);
     }
 
-    public function entityData() 
+    public function entityData()
     {
-        //Move to service
+        // Move to service
         $entityData = [];
         $entityData['tags'] = '**Tags:** ';
         $entityData['attributes'] = '';
@@ -86,7 +87,7 @@ class MarkdownExportService
         }
         foreach ($this->entity->attributes as $attribute) {
             $entityData['attributes'] .= '* **' . $attribute->name . '**: ' . $attribute->value . '
-' ;
+';
         }
 
         foreach ($this->entity->relationships as $relation) {
@@ -102,5 +103,4 @@ class MarkdownExportService
 
         return $entityData;
     }
-
 }
