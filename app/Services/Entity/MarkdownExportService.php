@@ -40,7 +40,7 @@ class MarkdownExportService
     {
         $moduleName = $this->entity->entityType->plural() . '_' . $this->entity->entityType->id;
 
-        if (!isset($this->index[$moduleName])) {
+        if (! isset($this->index[$moduleName])) {
             $this->index[$moduleName] = [];
         }
 
@@ -91,11 +91,11 @@ class MarkdownExportService
         }
 
         foreach ($this->entity->relationships as $relation) {
-            if ($relation->target->entityType->isCustom() ) {
-                $entityData['relations'] .= '* [' . $relation->target->name . '](' . str_replace(' ', '-', Str::camel($relation->target->entityType->code)) . '_' . $relation->target->entityType->id . '/' . str_replace(' ', '-',  Str::slug($relation->target->name) ) . '_' . $relation->target_id . ')
+            if ($relation->target->entityType->isCustom()) {
+                $entityData['relations'] .= '* [' . $relation->target->name . '](' . str_replace(' ', '-', Str::camel($relation->target->entityType->code)) . '_' . $relation->target->entityType->id . '/' . str_replace(' ', '-', Str::slug($relation->target->name)) . '_' . $relation->target_id . ')
 ';
             } else {
-                $entityData['relations'] .= '* [' . $relation->target->name . '](' . str_replace(' ', '-',  $relation->target->entityType->code ) . '/' . str_replace(' ', '-',  Str::slug($relation->target->name) ) . '_' . $relation->target_id . ')
+                $entityData['relations'] .= '* [' . $relation->target->name . '](' . str_replace(' ', '-', $relation->target->entityType->code) . '/' . str_replace(' ', '-', Str::slug($relation->target->name)) . '_' . $relation->target_id . ')
 ';
             }
 
