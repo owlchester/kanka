@@ -65,34 +65,13 @@
 ## Profile
 @endif
 
-@if ($entity->isCharacter() && $entity->child->isDead())
-{{ __('characters.hints.is_dead') }}
-@endif
-@if ($entity->isQuest() && $entity->child->isCompleted())
-{{ __('quests.fields.is_completed') }}
-@endif
-@if ($entity->isOrganisation() && $entity->child->isDefunct())
-{{ __('organisations.hints.is_defunct') }}
-@endif
-@if ($entity->isLocation() && $entity->child->isDestroyed())
-{{ __('locations.hints.is_destroyed') }}
-@endif
-@if ($entity->isCreature() && $entity->child->isExtinct())
-{{ __('creatures.hints.is_extinct') }}
-@endif
-@if ($entity->isRace() && $entity->child->isExtinct())
-{{ __('races.hints.is_extinct') }}
-@endif
-@if ($entity->isCreature() && $entity->child->isDead())
-{{ __('creatures.hints.is_dead') }}
-@endif
-@if ($entity->isFamily() && $entity->child->isExtinct())
-{{ __('families.hints.is_extinct') }}
-@endif
-
-@if ($entity->isCharacter() && !empty($entity->child->title))
-{{ $entity->child->title }}
-@endif
+@includeWhen($entity->isCharacter(), 'entities.markdown.characters')
+@includeWhen($entity->isQuest(), 'entities.markdown.quests')
+@includeWhen($entity->isOrganisation(), 'entities.markdown.organisations')
+@includeWhen($entity->isLocation(), 'entities.markdown.locations')
+@includeWhen($entity->isCreature(), 'entities.markdown.creatures')
+@includeWhen($entity->isRace(), 'entities.markdown.races')
+@includeWhen($entity->isFamily(), 'entities.markdown.families')
 
 @if ($entity->hasPins())
 ## {{ __('entities/pins.title') }}
