@@ -37,11 +37,13 @@ class MarkdownExportService
 
     public function addToIndex()
     {
-        if (!isset($this->index[$this->module])) {
-            $this->index[$this->module] = [];
+        $moduleName = $this->entity->entityType->plural() . '_' . $this->entity->entityType->id;
+
+        if (!isset($this->index[$moduleName])) {
+            $this->index[$moduleName] = [];
         }
 
-        $this->index[$this->module][$this->entity->id] = '* [' . $this->entity->name . '](' . $this->module . '/' . $this->entity->name . '_' . $this->entity->id . ')
+        $this->index[$moduleName][$this->entity->id] = '* [' . $this->entity->name . '](' . str_replace(' ', '-', $this->module) . '/' . str_replace(' ', '-', Str::slug($this->entity->name)) . '_' . $this->entity->id . ')
 ';
     }
 
@@ -80,7 +82,7 @@ class MarkdownExportService
         $entityData['relations'] = '';
 
         foreach ($this->entity->tags as $tag) {
-            $entityData['tags'] .= '[' . $tag->name . '](tags/' . $tag->id . '),';
+            $entityData['tags'] .= '[' . $tag->name . '](tags/' . str_replace(' ', '-', $tag->name) . '_' . $tag->id . '),';
         }
         foreach ($this->entity->attributes as $attribute) {
             $entityData['attributes'] .= '* **' . $attribute->name . '**: ' . $attribute->value . '
@@ -89,10 +91,10 @@ class MarkdownExportService
 
         foreach ($this->entity->relationships as $relation) {
             if ($relation->target->entityType->isCustom() ) {
-                $entityData['relations'] .= '* [' . $relation->target->name . '](' . Str::camel($relation->target->entityType->code) . '_' . $relation->target->entityType->id . '/' . $relation->target->name . '_' . $relation->target_id . ')
+                $entityData['relations'] .= '* [' . $relation->target->name . '](' . str_replace(' ', '-', Str::camel($relation->target->entityType->code)) . '_' . $relation->target->entityType->id . '/' . str_replace(' ', '-',  Str::slug($relation->target->name) ) . '_' . $relation->target_id . ')
 ';
             } else {
-                $entityData['relations'] .= '* [' . $relation->target->name . '](' . $relation->target->entityType->code . '/' . $relation->target->name . '_' . $relation->target_id . ')
+                $entityData['relations'] .= '* [' . $relation->target->name . '](' . str_replace(' ', '-',  $relation->target->entityType->code ) . '/' . str_replace(' ', '-',  Str::slug($relation->target->name) ) . '_' . $relation->target_id . ')
 ';
             }
 

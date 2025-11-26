@@ -1,8 +1,11 @@
-# Entity index
+@php
+use Illuminate\Support\Str;
+@endphp
+# {!! __('export.index') !!}
 
 @foreach ($index as $key => $subIndex)
-## {!! $key !!}
+## {!! Str::beforeLast($key, '_') !!}
 @foreach($subIndex as $entity)
-{{ $entity }}  
+{{ $entity }}
 @endforeach
 @endforeach

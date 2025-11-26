@@ -6,6 +6,7 @@ use App\Enums\CampaignExportStatus;
 use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
 use App\Facades\Mentions;
+use App\Facades\Module;
 use App\Models\CampaignExport;
 use App\Models\Entity;
 use App\Models\EntityAsset;
@@ -188,6 +189,7 @@ class ExportService
             Mentions::campaign($this->campaign);
             Avatar::campaign($this->campaign);
             CampaignLocalization::forceCampaign($this->campaign);
+            Module::campaign($this->campaign);
         }
         $this->path = $saveFolder . $this->file;
         $this->archive = new ZipArchive;
@@ -215,6 +217,10 @@ class ExportService
 
     protected function info(): self
     {
+        if ($this->isMarkdown) {
+            return $this;
+        }
+
         $info = [
             'kanka_version' => config('app.version'),
             'export_version' => $this->version,

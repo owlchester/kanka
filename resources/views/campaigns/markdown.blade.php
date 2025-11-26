@@ -5,20 +5,21 @@
 # {!! $campaign->name !!}
 
 @if ($campaign->type)
-**Type:** {{ $campaign->type }}
+**{!! __('crud.fields.type') !!}:** {{ $campaign->type }}
 
 @endif
 
-**Visibility:** {{ $campaign->isUnlisted() ? 'Discreet' : ($campaign->isPublic() ? 'Public' : 'Private') }}
+**{!! __('crud.fields.visibility') !!}:** {{ $campaign->isUnlisted() ? 'Discreet' : ($campaign->isPublic() ? 'Public' : 'Private') }}
 
 @if ($campaign->is_hidden)
-**Hidden Campaign**
+**{!! __('export.hidden_campaign') !!}**
 @endif
 
 @if($campaign->hasEntry())
 ---
-## Entry
+## {!! __('crud.fields.entry') !!}
 {!! $converter->convert((string) $campaign->entry) !!}
+
 ---
 
 @endif

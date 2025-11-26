@@ -15,54 +15,47 @@
 # {!! $entity->name !!}
 
 @if ($entity->type)
-**type:** {{ $entity->type }}
-
+**{!! __('crud.fields.type') !!}:** {{ $entity->type }}
 @endif
+
 @if ($entity->tags->count() > 0)
-{{ $entityData['tags']}}
-
+{{ $entityData['tags'] }}
 @endif
-**visibility:** {{ $entity->is_private ? 'Private' : 'Public' }}
+**{!! __('crud.fields.visibility') !!}:** {!! $entity->is_private ? __('campaigns/visibilities.titles.private') : __('campaigns/visibilities.titles.public') !!}
 
 @if($entity->hasEntry())
 ---
-## Entry
+## {!! __('crud.fields.entry') !!}
 {!! $converter->convert((string) $entity->entry) !!}
+
 ---
 
 @endif
-
-### Notes
+@if ($entity->tooltip || $entity->is_template || $entity->archived_at)
+### {!! __('entities.notes') !!}
+@endif
 @if ($entity->tooltip)
-* Tooltip: {!! strip_tags($entity->tooltip) !!}
-
+* {!! __('crud.fields.tooltip') !!}: {!! strip_tags($entity->tooltip) !!}
 @endif
-
 @if ($entity->is_template)
-* Template: Yes
-
+* {!! __('crud.fields.template') !!}: Yes
 @endif
-
 @if ($entity->archived_at)
-* Archived: Yes
-
+* {!! __('crud.fields.archived') !!}: Yes
 @endif
 
 @if (!empty($entityData['attributes']))
-## Attributes
+## {!! __('crud.tabs.attributes') !!}
 
 {{ $entityData['attributes'] }}  
 
 @endif
 
 @if (!empty($entityData['relations']))
-## Relations
+## {!! __('crud.tabs.connections') !!}
 
 {{ $entityData['relations'] }}  
 
-@endif
-@if (!$entity->entityType->isCustom())
-## Profile
 @endif
 
 @includeWhen($entity->isCharacter(), 'entities.markdown.characters')
@@ -76,7 +69,7 @@
 @if ($entity->hasPins())
 ## {{ __('entities/pins.title') }}
 
-| Name | Content |
+| {!! __('crud.fields.name') !!} | {!! __('export.content') !!} |
 |:-|:-|
 @if(!$entity->pinnedFiles->isEmpty())
 @foreach ($entity->pinnedFiles as $asset)
