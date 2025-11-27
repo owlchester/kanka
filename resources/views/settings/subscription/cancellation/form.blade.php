@@ -58,6 +58,14 @@
                 @endif
             </div>
 
+            <div class="hidden" id="roadmap">
+                {!! __('subscriptions/cancellation.loss.roadmap', ['roadmap' => '<a href="' . route('roadmap') . '">' .  strtolower(__('footer.roadmap'))  . '</a>']) !!}
+            </div>
+
+            <div class="hidden" id="financial">
+                {{ __('subscriptions/cancellation.loss.downgrade') }}
+            </div>
+
             <x-forms.field field="cancel-reason" :label="__('settings.subscription.fields.reason')">
                 <x-grid type="1/1">
                     @php $reasons = [
@@ -76,7 +84,7 @@
 
                     $reasons['custom'] = __('settings.subscription.cancel.options.other');
                     @endphp
-                    <x-forms.select name="reason" :options="$reasons" class="w-full" />
+                    <x-forms.select name="reason" id="cancel-reason" :options="$reasons" class="w-full" />
                     <textarea name="reason_custom" placeholder="{{ __('settings.subscription.placeholders.reason') }}" class="w-full" rows="4" id="cancel-reason-custom"></textarea>
                 </x-grid>
             </x-forms.field>

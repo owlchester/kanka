@@ -15,7 +15,9 @@ return [
         ],
         'discord' => [
             'title' => '":role" role in our Discord community',
-        ]
+        ],
+        'roadmap' => 'We\'re constantly working on improving and creating new features for our users, feel free to take a look at our :roadmap, maybe that feature is right around the corner?',
+        'downgrade'   => 'Remember, you can always downgrade your subscription instead of cancelling it to keep most of the awesome benefits that come with being premium.',
     ],
     'pause' => [
         'button' => 'Pause subscription for 1-3 months',
