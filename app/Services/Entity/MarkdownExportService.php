@@ -83,8 +83,10 @@ class MarkdownExportService
         $entityData['relations'] = '';
 
         foreach ($this->entity->tags as $tag) {
-            $entityData['tags'] .= '[' . $tag->name . '](tags/' . str_replace(' ', '-', $tag->name) . '_' . $tag->id . '),';
+            $entityData['tags'] .= '[' . $tag->name . '](tags/' . str_replace(' ', '-', $tag->name) . '_' . $tag->id . '), ';
         }
+        $entityData['tags'] = substr($entityData['tags'], 0, -2);
+
         foreach ($this->entity->attributes as $attribute) {
             $entityData['attributes'] .= '* **' . $attribute->name . '**: ' . $attribute->value . '
 ';
@@ -92,10 +94,12 @@ class MarkdownExportService
 
         foreach ($this->entity->relationships as $relation) {
             if ($relation->target->entityType->isCustom()) {
-                $entityData['relations'] .= '* [' . $relation->target->name . '](' . str_replace(' ', '-', Str::camel($relation->target->entityType->code)) . '_' . $relation->target->entityType->id . '/' . str_replace(' ', '-', Str::slug($relation->target->name)) . '_' . $relation->target_id . ')
+                $moduleName = $relation->target->entityType->code . '_' . $relation->target->entityType->id;
+
+                $entityData['relations'] .= '* [' . $relation->target->name . '](' . Str::slug($moduleName) . '/' . Str::slug($relation->target->name) . '_' . $relation->target_id . ')
 ';
             } else {
-                $entityData['relations'] .= '* [' . $relation->target->name . '](' . str_replace(' ', '-', $relation->target->entityType->code) . '/' . str_replace(' ', '-', Str::slug($relation->target->name)) . '_' . $relation->target_id . ')
+                $entityData['relations'] .= '* [' . $relation->target->name . '](' . str_replace(' ', '-', $relation->target->entityType->pluralCode()) . '/' . Str::slug($relation->target->name) . '_' . $relation->target_id . ')
 ';
             }
 

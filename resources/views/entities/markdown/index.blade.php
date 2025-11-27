@@ -6,6 +6,6 @@ use Illuminate\Support\Str;
 @foreach ($index as $key => $subIndex)
 ## {!! Str::beforeLast($key, '_') !!}
 @foreach($subIndex as $entity)
-{{ $entity }}
+{!! $entity !!}
 @endforeach
 @endforeach
