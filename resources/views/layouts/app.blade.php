@@ -28,6 +28,9 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
     @if (config('app.asset_url'))
         <link rel="preconnect" href="{{ config('app.asset_url') }}" crossorigin>
     @endif
+    <link rel="preconnect" href="https://cdn.kanka.io" crossorigin>
+    <link rel="preconnect" href="https://images.kanka.io" crossorigin>
+    <link rel="preconnect" href="https://th.kanka.io" crossorigin>
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="//www.googletagmanager.com">
     @vite([
