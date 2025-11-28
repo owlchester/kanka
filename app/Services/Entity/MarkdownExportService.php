@@ -86,7 +86,7 @@ class MarkdownExportService
         foreach ($this->entity->tags as $tag) {
             $entityData['tags'][] = '[' . $tag->name . '](tags/' . str_replace(' ', '-', $tag->name) . '_' . $tag->id . ')';
         }
-             
+
         foreach ($this->entity->pinnedAliases as $asset) {
             $entityData['pinnedAliases'][] = $asset->name;
         }
