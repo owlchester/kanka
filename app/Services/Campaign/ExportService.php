@@ -6,6 +6,7 @@ use App\Enums\CampaignExportStatus;
 use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
 use App\Facades\Mentions;
+use App\Facades\Module;
 use App\Models\CampaignExport;
 use App\Models\Entity;
 use App\Models\EntityAsset;
@@ -54,9 +55,7 @@ class ExportService
 
     protected int $currentElements;
 
-    public function __construct(protected MarkdownExportService $markdown)
-    {
-    }
+    public function __construct(protected MarkdownExportService $markdown) {}
 
     public function exportPath(): string
     {
@@ -91,7 +90,7 @@ class ExportService
                 ->campaignJson()
                 ->campaignModules()
                 ->customCampaignModules()
-                //->entities()
+                ->entities()
                 ->customEntities()
                 ->gallery()
                 ->finish()
@@ -188,6 +187,7 @@ class ExportService
             Mentions::campaign($this->campaign);
             Avatar::campaign($this->campaign);
             CampaignLocalization::forceCampaign($this->campaign);
+            Module::campaign($this->campaign);
         }
         $this->path = $saveFolder . $this->file;
         $this->archive = new ZipArchive;
@@ -215,6 +215,10 @@ class ExportService
 
     protected function info(): self
     {
+        if ($this->isMarkdown) {
+            return $this;
+        }
+
         $info = [
             'kanka_version' => config('app.version'),
             'export_version' => $this->version,
@@ -235,7 +239,7 @@ class ExportService
         ];
 
         if ($this->isMarkdown) {
-            $this->archive->addFromString('campaign.md', $this->markdown->campaign($this->campaign)->markdown());
+            $this->archive->addFromString('campaign.md', $this->markdown->campaign($this->campaign)->campaignMarkdown());
         } else {
             $this->archive->addFromString('campaign.json', $this->campaign->makeHidden($hidden)->toJson());
         }
@@ -400,8 +404,8 @@ class ExportService
         }
 
         if ($this->isMarkdown) {
-            $exportData = $this->markdown->entity($entity)->markdown();
-            $this->archive->addFromString($module . '/' . Str::slug($model->name) . '.md', $exportData);
+            $exportData = $this->markdown->campaign($this->campaign)->module($module)->entity($entity)->markdown();
+            $this->archive->addFromString($module . '/' . Str::slug($model->name) . '_' . $entity->id . '.md', $exportData);
         } else {
             $exportData = $model->export();
             if ($model instanceof Entity) {
@@ -469,6 +473,13 @@ class ExportService
     {
         // Save all the content.
         try {
+
+            if ($this->isMarkdown) {
+                $exportData = $this->markdown->exportIndex();
+                $this->archive->addFromString('index.md', $exportData);
+                $this->files++;
+            }
+
             $this->archive->close();
             $path = 'exports/' . $this->campaign->id;
             $this->exportPath = $path . '/' . $this->file;
