@@ -18,7 +18,7 @@
 **{!! __('crud.fields.type') !!}:** {!! $entity->type !!}  
 @endif
 @if ($entity->tags->count() > 0)
-{!! $entityData['tags'] !!}  
+**{!! __('entities.tags') !!}:** {!! implode(', ', $entityData['tags']) !!}  
 @endif
 **{!! __('crud.fields.visibility') !!}:** {!! $entity->is_private ? __('campaigns/visibilities.titles.private') : __('campaigns/visibilities.titles.public') !!}
 
@@ -71,8 +71,8 @@
 @endforeach
 @endif
 @if(!$entity->pinnedAliases->isEmpty())
-| {!! __('entities/assets.actions.alias') !!} | @foreach ($entity->pinnedAliases as $asset) {!! $asset->name !!}@if ($counter < $entity->pinnedAliases->count() - 1)@php $counter++; @endphp, @endif @endforeach |@endif
-
+| {!! __('entities/assets.actions.alias') !!} | {!! implode(', ', $entityData['pinnedAliases']) !!} |
+@endif
 @if($entity->hasChild() && method_exists($entity->child, 'pinnedMembers') && !$entity->child->pinnedMembers->isEmpty())
 @foreach ($entity->child->pinnedMembers as $member)
 @if ($member instanceof \App\Models\Character)

@@ -78,14 +78,18 @@ class MarkdownExportService
     {
         // Move to service
         $entityData = [];
-        $entityData['tags'] = '**Tags:** ';
+        $entityData['tags'] = [];
         $entityData['attributes'] = '';
         $entityData['relations'] = '';
+        $entityData['pinnedAliases'] = [];
 
         foreach ($this->entity->tags as $tag) {
-            $entityData['tags'] .= '[' . $tag->name . '](tags/' . str_replace(' ', '-', $tag->name) . '_' . $tag->id . '), ';
+            $entityData['tags'][] = '[' . $tag->name . '](tags/' . str_replace(' ', '-', $tag->name) . '_' . $tag->id . ')';
         }
-        $entityData['tags'] = substr($entityData['tags'], 0, -2);
+             
+        foreach ($this->entity->pinnedAliases as $asset) {
+            $entityData['pinnedAliases'][] = $asset->name;
+        }
 
         foreach ($this->entity->attributes as $attribute) {
             $entityData['attributes'] .= '* **' . $attribute->name . '**: ' . $attribute->value . '
