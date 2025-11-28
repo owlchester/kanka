@@ -1,6 +1,8 @@
 <nav class="flex items-center justify-between gap-16 lg:gap-20 h-32 px-5 max-w-7xl mx-auto">
     <a href="/" class="text-dark">
-        @include('icons.kanka-svg')
+        <svg class="h-28 w-28"  alt="Kanka Logo" >
+            <use href="/images/svgs/sprites.svg#kanka-logo"></use>
+        </svg>
     </a>
     <div class="gap-8 lg:gap-12 items-center grow hidden lg:flex">
         <a href="{{ Domain::toFront('features') }}" class="link text-nav">
