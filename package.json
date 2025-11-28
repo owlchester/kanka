@@ -23,6 +23,7 @@
     },
     "dependencies": {
         "@coddicat/vue-pinch-scroll-zoom": "^4.3.5",
+        "@fontsource-variable/roboto": "^5.2.9",
         "@melloware/coloris": "^0.22.0",
         "@syncfusion/ej2-vue-grids": "^24.2.7",
         "@tiptap/core": "^2.11.3",
