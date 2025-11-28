@@ -1,9 +1,6 @@
 <?php /**
  * @var \App\Models\Entity $entity
  */?>
-@php
-    $counter = 0;
-@endphp
 
 @if ($entity->image)
 ![avatar]({!! $entity->image->url() !!})
