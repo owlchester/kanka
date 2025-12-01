@@ -21,7 +21,6 @@ class CachedResponse
 
         $response = $next($request);
         $response->headers->set('Cache-Control', 'public, max-age=300, s-maxage=600');
-        $response->headers->remove('Set-Cookie');
 
         return $response;
 
