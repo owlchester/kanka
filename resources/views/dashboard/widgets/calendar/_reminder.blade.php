@@ -1,3 +1,4 @@
+<?php /** @var \App\Models\Reminder $reminder */?>
 <li data-ago="{{ isset($future) ? $reminder->inDays() : $reminder->daysAgo() }}" class="flex gap-2 justify-between overflow-hidden">
     <div class="truncate">
         @if ($reminder->isPost())
