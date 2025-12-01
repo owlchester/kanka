@@ -1,9 +1,9 @@
 {
-  "_Browser.vue_vue_type_script_setup_true_lang-D5V1tGoe.js": {
-    "file": "assets/Browser.vue_vue_type_script_setup_true_lang-D5V1tGoe.js",
+  "_Browser.vue_vue_type_script_setup_true_lang-CrCCdjGs.js": {
+    "file": "assets/Browser.vue_vue_type_script_setup_true_lang-CrCCdjGs.js",
     "name": "Browser.vue_vue_type_script_setup_true_lang",
     "imports": [
-      "_vue.esm-bundler-BhwKxBR5.js"
+      "_vue.esm-bundler-DB8zkVd9.js"
     ]
   },
   "__commonjsHelpers-Cpj98o6Y.js": {
@@ -53,9 +53,45 @@
       "__commonjsHelpers-Cpj98o6Y.js"
     ]
   },
-  "_vue.esm-bundler-BhwKxBR5.js": {
-    "file": "assets/vue.esm-bundler-BhwKxBR5.js",
+  "_vue.esm-bundler-DB8zkVd9.js": {
+    "file": "assets/vue.esm-bundler-DB8zkVd9.js",
     "name": "vue.esm-bundler"
+  },
+  "node_modules/@fontsource-variable/roboto/files/roboto-cyrillic-ext-wdth-normal.woff2": {
+    "file": "assets/roboto-cyrillic-ext-wdth-normal-Dhyce-Pj.woff2",
+    "src": "node_modules/@fontsource-variable/roboto/files/roboto-cyrillic-ext-wdth-normal.woff2"
+  },
+  "node_modules/@fontsource-variable/roboto/files/roboto-cyrillic-wdth-normal.woff2": {
+    "file": "assets/roboto-cyrillic-wdth-normal-BsksX6tq.woff2",
+    "src": "node_modules/@fontsource-variable/roboto/files/roboto-cyrillic-wdth-normal.woff2"
+  },
+  "node_modules/@fontsource-variable/roboto/files/roboto-greek-ext-wdth-normal.woff2": {
+    "file": "assets/roboto-greek-ext-wdth-normal-BYpwsbQR.woff2",
+    "src": "node_modules/@fontsource-variable/roboto/files/roboto-greek-ext-wdth-normal.woff2"
+  },
+  "node_modules/@fontsource-variable/roboto/files/roboto-greek-wdth-normal.woff2": {
+    "file": "assets/roboto-greek-wdth-normal-BfW7Njdt.woff2",
+    "src": "node_modules/@fontsource-variable/roboto/files/roboto-greek-wdth-normal.woff2"
+  },
+  "node_modules/@fontsource-variable/roboto/files/roboto-latin-ext-wdth-normal.woff2": {
+    "file": "assets/roboto-latin-ext-wdth-normal-DRS-BNlt.woff2",
+    "src": "node_modules/@fontsource-variable/roboto/files/roboto-latin-ext-wdth-normal.woff2"
+  },
+  "node_modules/@fontsource-variable/roboto/files/roboto-latin-wdth-normal.woff2": {
+    "file": "assets/roboto-latin-wdth-normal-ClS9VhqK.woff2",
+    "src": "node_modules/@fontsource-variable/roboto/files/roboto-latin-wdth-normal.woff2"
+  },
+  "node_modules/@fontsource-variable/roboto/files/roboto-math-wdth-normal.woff2": {
+    "file": "assets/roboto-math-wdth-normal-UmVxaSdA.woff2",
+    "src": "node_modules/@fontsource-variable/roboto/files/roboto-math-wdth-normal.woff2"
+  },
+  "node_modules/@fontsource-variable/roboto/files/roboto-symbols-wdth-normal.woff2": {
+    "file": "assets/roboto-symbols-wdth-normal-CLw08Y-f.woff2",
+    "src": "node_modules/@fontsource-variable/roboto/files/roboto-symbols-wdth-normal.woff2"
+  },
+  "node_modules/@fontsource-variable/roboto/files/roboto-vietnamese-wdth-normal.woff2": {
+    "file": "assets/roboto-vietnamese-wdth-normal-DDpurHh1.woff2",
+    "src": "node_modules/@fontsource-variable/roboto/files/roboto-vietnamese-wdth-normal.woff2"
   },
   "node_modules/cytoscape-dblclick/dist/index.esm.js": {
     "file": "assets/index.esm-CafSDg77.js",
@@ -97,16 +133,16 @@
     "src": "resources/images/leaflet/icon.png"
   },
   "resources/js/abilities.js": {
-    "file": "assets/abilities-BBho9TBi.js",
+    "file": "assets/abilities-CMWrvfN3.js",
     "name": "abilities",
     "src": "resources/js/abilities.js",
     "isEntry": true,
     "imports": [
-      "_vue.esm-bundler-BhwKxBR5.js"
+      "_vue.esm-bundler-DB8zkVd9.js"
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-B00xchUw.js",
+    "file": "assets/app-DwMWZQOI.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -114,20 +150,20 @@
       "_sortable.esm-C83syoBY.js",
       "_dialog-bdBi4zz3.js",
       "_tippy.esm-IVmNb8lF.js",
-      "_vue.esm-bundler-BhwKxBR5.js",
+      "_vue.esm-bundler-DB8zkVd9.js",
       "_v-click-outside.umd-CFxmCgl1.js",
       "__plugin-vue_export-helper-DlAUqK2U.js",
-      "_Browser.vue_vue_type_script_setup_true_lang-D5V1tGoe.js",
+      "_Browser.vue_vue_type_script_setup_true_lang-CrCCdjGs.js",
       "__commonjsHelpers-Cpj98o6Y.js"
     ]
   },
   "resources/js/attributes-manager.js": {
-    "file": "assets/attributes-manager-DHK5oHOZ.js",
+    "file": "assets/attributes-manager-CCPXtTW6.js",
     "name": "attributes-manager",
     "src": "resources/js/attributes-manager.js",
     "isEntry": true,
     "imports": [
-      "_vue.esm-bundler-BhwKxBR5.js",
+      "_vue.esm-bundler-DB8zkVd9.js",
       "_v-click-outside.umd-CFxmCgl1.js",
       "__commonjsHelpers-Cpj98o6Y.js"
     ]
@@ -145,12 +181,12 @@
     "isEntry": true
   },
   "resources/js/billing.js": {
-    "file": "assets/billing-BFMOcF4O.js",
+    "file": "assets/billing-BVqsxIqt.js",
     "name": "billing",
     "src": "resources/js/billing.js",
     "isEntry": true,
     "imports": [
-      "_vue.esm-bundler-BhwKxBR5.js",
+      "_vue.esm-bundler-DB8zkVd9.js",
       "__plugin-vue_export-helper-DlAUqK2U.js"
     ]
   },
@@ -173,12 +209,12 @@
     ]
   },
   "resources/js/conversation.js": {
-    "file": "assets/conversation-DUXS7KFt.js",
+    "file": "assets/conversation-CrCjC2UI.js",
     "name": "conversation",
     "src": "resources/js/conversation.js",
     "isEntry": true,
     "imports": [
-      "_vue.esm-bundler-BhwKxBR5.js",
+      "_vue.esm-bundler-DB8zkVd9.js",
       "_v-click-outside.umd-CFxmCgl1.js",
       "__plugin-vue_export-helper-DlAUqK2U.js",
       "__commonjsHelpers-Cpj98o6Y.js"
@@ -191,15 +227,12 @@
     "isEntry": true
   },
   "resources/js/dashboard.js": {
-    "file": "assets/dashboard-UTWGY6uE.js",
+    "file": "assets/dashboard-rWGrOyGB.js",
     "name": "dashboard",
     "src": "resources/js/dashboard.js",
     "isEntry": true,
     "imports": [
-      "_sortable.esm-C83syoBY.js",
-      "_vue.esm-bundler-BhwKxBR5.js",
-      "_v-click-outside.umd-CFxmCgl1.js",
-      "__commonjsHelpers-Cpj98o6Y.js"
+      "_sortable.esm-C83syoBY.js"
     ]
   },
   "resources/js/editors/summernote.js": {
@@ -209,24 +242,24 @@
     "isEntry": true
   },
   "resources/js/entities/explore.js": {
-    "file": "assets/explore-B-7uq6zP.js",
+    "file": "assets/explore-Ht4pEdCy.js",
     "name": "explore",
     "src": "resources/js/entities/explore.js",
     "isEntry": true,
     "imports": [
-      "_vue.esm-bundler-BhwKxBR5.js",
+      "_vue.esm-bundler-DB8zkVd9.js",
       "__plugin-vue_export-helper-DlAUqK2U.js",
       "_v-click-outside.umd-CFxmCgl1.js",
       "__commonjsHelpers-Cpj98o6Y.js"
     ]
   },
   "resources/js/family-tree-vue.js": {
-    "file": "assets/family-tree-vue-w_5-LNph.js",
+    "file": "assets/family-tree-vue-C8D0cfy6.js",
     "name": "family-tree-vue",
     "src": "resources/js/family-tree-vue.js",
     "isEntry": true,
     "imports": [
-      "_vue.esm-bundler-BhwKxBR5.js",
+      "_vue.esm-bundler-DB8zkVd9.js",
       "_index-NIGUFBhG.js",
       "__plugin-vue_export-helper-DlAUqK2U.js"
     ]
@@ -263,12 +296,12 @@
     ]
   },
   "resources/js/gallery/gallery.js": {
-    "file": "assets/gallery-Dirbh3VO.js",
+    "file": "assets/gallery-BcUJe8gC.js",
     "name": "gallery",
     "src": "resources/js/gallery/gallery.js",
     "isEntry": true,
     "imports": [
-      "_vue.esm-bundler-BhwKxBR5.js",
+      "_vue.esm-bundler-DB8zkVd9.js",
       "__commonjsHelpers-Cpj98o6Y.js",
       "_v-click-outside.umd-CFxmCgl1.js"
     ]
@@ -292,12 +325,12 @@
     "isEntry": true
   },
   "resources/js/recovery/recovery.js": {
-    "file": "assets/recovery-CjkbSlMY.js",
+    "file": "assets/recovery-KE9DT5Pq.js",
     "name": "recovery",
     "src": "resources/js/recovery/recovery.js",
     "isEntry": true,
     "imports": [
-      "_vue.esm-bundler-BhwKxBR5.js",
+      "_vue.esm-bundler-DB8zkVd9.js",
       "_v-click-outside.umd-CFxmCgl1.js",
       "__commonjsHelpers-Cpj98o6Y.js"
     ]
@@ -339,22 +372,22 @@
     "isEntry": true
   },
   "resources/js/whiteboards.js": {
-    "file": "assets/whiteboards-BqcBDlti.js",
+    "file": "assets/whiteboards-VHLHlJQr.js",
     "name": "whiteboards",
     "src": "resources/js/whiteboards.js",
     "isEntry": true,
     "imports": [
-      "_vue.esm-bundler-BhwKxBR5.js",
-      "_Browser.vue_vue_type_script_setup_true_lang-D5V1tGoe.js"
+      "_vue.esm-bundler-DB8zkVd9.js",
+      "_Browser.vue_vue_type_script_setup_true_lang-CrCCdjGs.js"
     ]
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-BdmOp_7x.css",
+    "file": "assets/app-9CWsmuXk.css",
     "src": "resources/sass/app.scss",
     "isEntry": true
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-BrhbosN6.css",
+    "file": "assets/auth-xewdtNyO.css",
     "src": "resources/sass/auth.scss",
     "isEntry": true
   },
@@ -379,7 +412,7 @@
     "isEntry": true
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-oec78mUm.css",
+    "file": "assets/front-CZF_x1SR.css",
     "src": "resources/sass/front.scss",
     "isEntry": true
   },

@@ -26,12 +26,13 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
     @yield('og')
     @include('layouts.links.icons')
     @if (config('app.asset_url'))
-        <link rel="dns-prefetch" href="{{ config('app.asset_url') }}">
+        <link rel="preconnect" href="{{ config('app.asset_url') }}" crossorigin>
     @endif
+    <link rel="preconnect" href="https://cdn.kanka.io" crossorigin>
+    <link rel="preconnect" href="https://images.kanka.io" crossorigin>
+    <link rel="preconnect" href="https://th.kanka.io" crossorigin>
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="//www.googletagmanager.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     @vite([
         'resources/sass/vendor.scss',
         'resources/sass/app.scss',
@@ -60,7 +61,7 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
     @endif
 
     @includeWhen(!empty($campaign), 'layouts._theme')
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preload" href="/fonts/roboto/Roboto-VariableFont_wdth,wght.ttf" as="font" crossorigin />
     @livewireStyles
 </head>
 {{-- Hide the sidebar if the there is no current campaign --}}

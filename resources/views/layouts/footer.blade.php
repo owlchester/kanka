@@ -3,11 +3,14 @@
         <div class="flex flex-col gap-10">
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5">
                 <div class="flex-col gap-4 hidden lg:flex col-span-2 ">
-                    <div>
-                    <a href="{{ route('home') }}" class="logo">
-                        @include('icons.kanka-svg')
-                    </a>
+                    <div class="flex">
+                        <a href="{{ route('home') }}" class="logo">
+                            <svg class="h-28 w-28"  alt="Kanka Logo" >
+                                <use href="/images/svgs/sprites.svg#kanka-logo" fill="red"></use>
+                            </svg>
+                        </a>
                     </div>
+
 
                     <div class="flex items-center gap-5 text-3xl flex-wrap">
                         @include('layouts._socials')
@@ -72,7 +75,12 @@
             <div class="lg:hidden flex flex-col gap-5 text-center">
                 <div class="logo text-center">
                     <div class="inline-block">
-                        @include('icons.kanka-svg')
+                        <a href="{{ route('home') }}" class="logo">
+
+                            <svg class="h-28 w-28" alt="Kanka Logo" >
+                                <use href="/images/svgs/sprites.svg#kanka-logo"></use>
+                            </svg>
+                        </a>
                     </div>
                 </div>
 
@@ -83,7 +91,10 @@
                 @include('layouts._lang-switcher')
 
                 <div class="text-center text-sm">
-                    Kanka v{{ config('app.version') }} - {!! __('footer.copyright', ['copy' => '&copy;', 'year' => date('Y'), 'company' => 'Owlchester SNC'])!!} - {{ __('footer.server_time', ['time' => \Carbon\Carbon::now()->isoFormat('MMMM Do YYYY, h:mm a')]) }} ({{ gethostname() }})
+
+                    <p>Kanka v{{ config('app.version') }} - {!! __('footer.copyright', ['copy' => '&copy;', 'year' => date('Y'), 'company' => 'Owlchester SNC'])!!}</p>
+
+                    <p>{{ \Carbon\Carbon::now()->isoFormat('MMMM Do YYYY, h:mm a') }} ({{ gethostname() }})</p>
                 </div>
             </div>
             <span data-ccpa-link="1"></span>
