@@ -335,7 +335,6 @@ class ExportService
                 }
             } catch (Exception $e) {
                 Log::error('Campaign export', ['err' => $e->getMessage()]);
-                throw $e;
                 //                $saveFolder = storage_path($this->exportPath);
                 //                $this->archive->saveTo($saveFolder);
                 throw new Exception(
