@@ -22,7 +22,7 @@
 @if($entity->hasEntry())
 ---
 ## {!! __('crud.fields.entry') !!}
-{!! $converter->convert((string) $entity->entry) !!}
+{!! $converter->convert((string) $entityData['entry']) !!}
 
 ---
 
@@ -82,10 +82,8 @@
 @endif
 
 @foreach ($entity->posts as $post)
-@if(!$post->layout_id)
+@if(isset($entityData['posts'][$post->id]))
 ## {!! $post->name !!}
-@if(!empty($post->entry))
-{!! $converter->convert($post->entry) !!}
-@endif
+{!! $converter->convert($entityData['posts'][$post->id]) !!}
 @endif
 @endforeach

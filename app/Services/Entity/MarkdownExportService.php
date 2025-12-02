@@ -2,10 +2,13 @@
 
 namespace App\Services\Entity;
 
+use App\Models\Post;
+use App\Services\MarkdownMentionsService;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
+use League\HTMLToMarkdown\Converter\LinkConverter;
 use League\HTMLToMarkdown\Converter\TableConverter;
 use League\HTMLToMarkdown\HtmlConverter;
 
@@ -18,6 +21,11 @@ class MarkdownExportService
 
     protected string $module = '';
 
+    public function __construct(
+        protected MarkdownMentionsService $markdownMentionsService
+    ) {
+    }
+
     /**
      * Main function for the Entity to Markdown conversion.
      *
@@ -27,7 +35,7 @@ class MarkdownExportService
     {
         $converter = new HtmlConverter;
         $converter->getConfig()->setOption('strip_tags', true);
-        $converter->getEnvironment()->addConverter(new TableConverter);
+        $converter->getEnvironment()->addConverter(new TableConverter, new LinkConverter);
 
         $entityData = $this->entityData();
 
@@ -82,13 +90,20 @@ class MarkdownExportService
         $entityData['attributes'] = '';
         $entityData['relations'] = '';
         $entityData['pinnedAliases'] = [];
-
+        $entityData['entry'] = $this->markdownEntry();
+        $entityData['posts'] = [];
         foreach ($this->entity->tags as $tag) {
             $entityData['tags'][] = '[' . $tag->name . '](tags/' . str_replace(' ', '-', $tag->name) . '_' . $tag->id . ')';
         }
 
         foreach ($this->entity->pinnedAliases as $asset) {
             $entityData['pinnedAliases'][] = $asset->name;
+        }
+
+        foreach ($this->entity->posts as $post) {
+            if (!$post->layout_id) { 
+                $entityData['posts'][$post->id] = $this->markdownPost($post);
+            }
         }
 
         foreach ($this->entity->attributes as $attribute) {
@@ -111,4 +126,21 @@ class MarkdownExportService
 
         return $entityData;
     }
+
+    /**
+     * Get the entry where mentions are made to look nice for the text editor
+     */
+    public function markdownEntry(): string
+    {
+        return $this->markdownMentionsService->parseForMarkdown($this->entity);
+    }
+
+    /**
+     * Get the entry where mentions are made to look nice for the text editor
+     */
+    public function markdownPost(Post $post): string
+    {
+        return $this->markdownMentionsService->parseForMarkdown($post);
+    }
+
 }
