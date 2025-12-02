@@ -188,7 +188,6 @@
 
 <script setup lang="ts">
 import { onMounted, ref, watch } from "vue";
-import {toInteger} from "lodash";
 
 const props = defineProps<{
     file: Object;
@@ -336,8 +335,8 @@ const setFocus = (event) => {
     const percentageX = (originalX / originalWidth) * 100;
     const percentageY = (originalY / originalHeight) * 100;
 
-    focusX.value = toInteger(originalX);
-    focusY.value = toInteger(originalY);
+    focusX.value = parseInt(String(originalX), 10);
+    focusY.value = parseInt(String(originalY), 10);
 };
 
 const focusStyle = (event) => {
