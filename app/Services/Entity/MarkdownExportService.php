@@ -23,8 +23,7 @@ class MarkdownExportService
 
     public function __construct(
         protected MarkdownMentionsService $markdownMentionsService
-    ) {
-    }
+    ) {}
 
     /**
      * Main function for the Entity to Markdown conversion.
@@ -101,7 +100,7 @@ class MarkdownExportService
         }
 
         foreach ($this->entity->posts as $post) {
-            if (!$post->layout_id) { 
+            if (! $post->layout_id) {
                 $entityData['posts'][$post->id] = $this->markdownPost($post);
             }
         }
@@ -142,5 +141,4 @@ class MarkdownExportService
     {
         return $this->markdownMentionsService->parseForMarkdown($post);
     }
-
 }

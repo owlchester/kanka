@@ -20,7 +20,6 @@ class ShowController extends Controller
         $this->middleware([CachedResponse::class]);
     }
 
-
     public function index(Campaign $campaign, Entity $entity)
     {
         $this->campaign($campaign)->authEntityView($entity);
