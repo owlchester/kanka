@@ -3,7 +3,7 @@
     --tw-text-opacity: 1;
     color: hsl(var(--bc)/var(--tw-text-opacity));
 
-    // Last paragraphs should have no bottom margin and just use the alert's padding
+    /* Last paragraphs should have no bottom margin and just use the alert's padding */
     p:last-of-type {
         margin-bottom: 0;
     }

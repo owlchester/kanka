@@ -59,8 +59,7 @@ export default defineConfig({
                 'resources/js/campaigns/theme-builder.js',
                 'resources/js/campaigns/import.js',
 
-                'resources/sass/app.scss',
-
+                'resources/css/app.css',
                 'resources/css/vendors/tinymce.css',
                 'resources/css/maps/maps.css',
                 'resources/css/subscription.css',

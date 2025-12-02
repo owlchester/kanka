@@ -41,8 +41,6 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    transition-property: color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;
-    transition-property: color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;
     transition-property: color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;
     transition-duration: .2s;
     transition-timing-function: cubic-bezier(.4,0,.2,1);
@@ -53,7 +51,6 @@
     min-height: 2.5rem;
     gap: .5rem;
     font-size: 1rem;
-    //font-weight:600;
     text-decoration-line: none;
     border-width: var(--border-btn, 0px);
     border-color: hsl(var(--b3)/var(--tw-border-opacity, 1));

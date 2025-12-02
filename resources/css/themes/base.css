@@ -1,4 +1,5 @@
-@use "themes/light";
+@import "light.css";
+@import "colour.css";
 
 *,
 ::before,

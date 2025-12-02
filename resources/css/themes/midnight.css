@@ -4,10 +4,10 @@
         accent-color: hsl(var(--a)/1);
     }
     :root {
-        // Background color
+        /* Background color */
         --content-wrapper-background: hsl(var(--b3)/1);
 
-        // Make the legacy editor work with dark mode
+        /* Make the legacy editor work with dark mode */
         --tinymce-filter: invert(90%) !important;
 
         --pf: 198 93% 53%;

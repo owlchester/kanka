@@ -35,7 +35,7 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
     <link rel="dns-prefetch" href="//www.googletagmanager.com">
     @vite([
         'resources/css/vendor.css',
-        'resources/sass/app.scss',
+        'resources/css/app.css',
     ])
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
     @includeWhen (config('ads.nitro.enabled'), 'ads.nitro.styles')

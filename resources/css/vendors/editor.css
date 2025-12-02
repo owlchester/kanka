@@ -25,11 +25,11 @@ div.mce-fullscreen {
 /**
  * Summernote
  */
-// Chrome bug: merging lines when the body or p elements have a font-size in "em" break stuff
+/* Chrome bug: merging lines when the body or p elements have a font-size in "em" break stuff */
 .note-editable p {
   font-size: 14px;
 }
-// Avoid floating images in summernote to be too large
+/* Avoid floating images in summernote to be too large */
 .note-editable img {
   max-width: 100%;
 }
@@ -37,7 +37,6 @@ div.mce-fullscreen {
   border: none;
 }
 .note-editable {
-  //color: var(--summernote-editable-text);
 }
 .note-popover {
     position: absolute;
@@ -91,7 +90,7 @@ img.note-float-left {
         text-decoration: none;
     }
 }
-// Gallery
+/* Gallery */
 .images-list {
     .img-item {
         .img-thumbnail {
@@ -142,9 +141,9 @@ img.note-float-left {
 .mce-btn-group:not(:first-child) {
     border-left: none !important;
 }
-// Tinymce stuff for dark mode
+/* Tinymce stuff for dark mode */
 .mce-edit-area, .mce-content-body {
-  filter: var(--tinymce-filter, none) !important; // set to invert(90%) for dark mode
+  filter: var(--tinymce-filter, none) !important; /* set to invert(90%) for dark mode */
 }
 .mce-panel {
     --tw-bg-opacity: 1;
@@ -163,7 +162,6 @@ img.note-float-left {
 }
 .mce-btn {
     border-color: transparent !important;
-    //border-radius: 2px !important;
     background: none !important;
 
     .mce-txt {
@@ -177,7 +175,6 @@ img.note-float-left {
   }
 }
 .mce-menubtn button, .mce-menubtn button span, .mce-ico {
-  //color: var(--theme-main-text) !important;
 }
 .mce-tabs, .mce-tabs+.mce-container-body, .mce-tab {
   background: none !important;
@@ -198,7 +195,7 @@ img.note-float-left {
     text-shadow: none !important;
 }
 
-// Tinymce mentions dropdown
+/* Tinymce mentions dropdown */
 .rte-autocomplete {
     z-index: 9920;
 }

@@ -1,9 +1,39 @@
-@use "sass:meta";
-@font-face {
-  font-family: Verdana, sans-serif;
-  font-display: fallback;
-}
 @import '@fontsource-variable/roboto/wdth.css';
+
+
+@import "themes/base.css";
+@import "typography.css";
+@import "alerts.css";
+@import "buttons.css";
+@import "badge.css";
+@import "calendar.css";
+@import "code.css";
+@import "tooltip.css";
+@import "timeline.css";
+@import "mobile.css";
+@import "premium.css";
+@import "entity.css";
+
+@import "footer.css";
+@import "vendors/editor.css";
+@import "box.css";
+@import "conversation.css";
+@import "quest.css";
+
+@import "quick-creator.css";
+@import "sortable.css";
+@import "campaign.css";
+@import "attributes/attributes.css";
+@import "toggle.css";
+@import "tabs.css";
+@import "vendors/adminlte.css";
+@import "print/general.css";
+@import "html/table.css";
+@import "html/dialog.css";
+@import "html/dl.css";
+@import 'freyja/freyja.css';
+@import 'cookieconsent/build/cookieconsent.min.css';
+
 
 @tailwind base;
 @tailwind components;
@@ -12,8 +42,6 @@
 :root {
     --kanka-boost-accent: 338 78% 48%;
 }
-
-@include meta.load-css("theming");
 
 .content-header {
     .breadcrumb {
@@ -70,7 +98,7 @@ tr.tr-hover {
 }
 
 
-// Attributes in entities and text area
+/* Attributes in entities and text area */
 .attribute, .note-editing-area > .attribute {
     border-radius: 0.25rem;
     --tw-border-opacity: 1;
@@ -81,15 +109,10 @@ tr.tr-hover {
     padding: .1rem .25rem;
 }
 
-// Allow buttons to be multi-lined
-.btn {
-    white-space: normal;
-}
-
-// Bootstrap3 sets summary to display:block which isn't correct
+/* Bootstrap3 sets summary to display:block which isn't correct */
 summary { display: list-item; }
 
-// RPG awesome dropdown icon margin
+/* RPG awesome dropdown icon margin */
 .dropdown-menu > li > a > :is(.fas, .fab, .far, .ra, .fa-solid, .fa-light, .fa-thin, .fa-regular) {
     margin-right: 10px;
     width: 14px;
@@ -121,7 +144,7 @@ button.dropdown-item {
     }
 }
 
-// UX
+/* UX */
 .skip-nav-link {
     transform: translateY(-120%);
     transition: transform 325ms ease-in;
@@ -143,7 +166,7 @@ button.dropdown-item {
     color: hsl(var(--kanka-boost-accent)/1);
 }
 
-// Helper block in forms, closer to field
+/* Helper block in forms, closer to field */
 .form-group > .help-block {
     margin-top: 0;
 }
@@ -176,12 +199,10 @@ button.loading {
 ul {
     list-style: disc;
     padding: 0 1.5rem;
-    //margin: 0.5rem 0.25rem;
 }
 ol {
     list-style: decimal;
     padding: 0 1.5rem;
-    //margin: 0.5rem 0.25rem;
 }
 ol, ul {
     margin-top: 0;
@@ -281,39 +302,3 @@ ul.entity-menu {
     box-shadow: 0 0 0 1px rgb(255 255 255/var(--glass-border-opacity,10%)) inset,0 0 0 2px #0000000d;
     text-shadow: 0 1px rgb(0 0 0/var(--glass-text-shadow-opacity,5%));
 }
-
-@include meta.load-css("typography");
-@include meta.load-css("alerts");
-@include meta.load-css("buttons");
-@include meta.load-css("badge");
-@include meta.load-css("calendar");
-@include meta.load-css("code");
-@include meta.load-css("tooltip");
-@include meta.load-css("timeline");
-@include meta.load-css("mobile");
-@include meta.load-css("boosted");
-@include meta.load-css("entity");
-@include meta.load-css("footer");
-@include meta.load-css("editor");
-@include meta.load-css("box");
-//@import "tutorial";
-@include meta.load-css("conversation");
-@include meta.load-css("quest");
-@include meta.load-css("quick-creator");
-@include meta.load-css("ads");
-@include meta.load-css("sortable");
-@include meta.load-css("campaign");
-@include meta.load-css("attributes/attributes");
-@include meta.load-css("ab-testing");
-@include meta.load-css("toggle");
-@include meta.load-css("tabs");
-@include meta.load-css("table");
-//@import "tw/tailwind";
-@include meta.load-css("dialog");
-@include meta.load-css("adminlte");
-@include meta.load-css("print/general");
-@include meta.load-css("colour");
-@include meta.load-css("dl");
-
-@include meta.load-css('freyja/freyja');
-@import 'cookieconsent/build/cookieconsent.min.css';

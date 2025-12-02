@@ -18,7 +18,7 @@ $specificTheme = null;
 
     @vite([
         'resources/css/vendor.css',
-        'resources/sass/app.scss',
+        'resources/css/app.css',
         'resources/css/maps/maps.css'
     ])
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif

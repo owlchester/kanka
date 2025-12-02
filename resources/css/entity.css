@@ -45,6 +45,6 @@
 }
 .animate-collapsed {
     .collapsed\:flip {
-        rotate: (180deg) ;
+        rotate: 180deg ;
     }
 }

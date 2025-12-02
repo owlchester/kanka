@@ -3,7 +3,7 @@
  * Contains all the stuff for the entity's overview and subpages.
  */
 
-// Dynamically control which privacy status icon is shown based on the page's class
+/* Dynamically control which privacy status icon is shown based on the page's class */
 .entity-privacy-icon {
     .fa-lock-open {
         display: inline-block;

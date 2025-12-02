@@ -18,7 +18,7 @@ $specificTheme = null;
     @include('layouts.links.icons')
     @vite([
         'resources/css/vendor.css',
-        'resources/sass/app.scss',
+        'resources/css/app.css',
     ])
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
     @yield('styles')

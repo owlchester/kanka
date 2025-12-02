@@ -28,7 +28,7 @@
 
     .campaigns {
         .campaign {
-            background-image: url(https://th.kanka.io/c26cVXHRNnJXThmKZry4xpUuBS8=/100x96/smart/src/app/backgrounds/mountain-background-medium.jpg);
+            background-image: url('https://th.kanka.io/c26cVXHRNnJXThmKZry4xpUuBS8=/100x96/smart/src/app/backgrounds/mountain-background-medium.jpg');
 
             .name {
                 background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, hsl(var(--b2)/1) 100%);
