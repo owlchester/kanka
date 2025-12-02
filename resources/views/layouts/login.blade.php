@@ -12,7 +12,7 @@
     <meta property="og:site_name" content="{{ config('app.site_name') }}" />
     @include('layouts.links.icons')
 
-    @vite('resources/sass/auth.scss')
+    @vite('resources/css/auth.css')
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
 </head>
 <body class="hold-transition register-page">

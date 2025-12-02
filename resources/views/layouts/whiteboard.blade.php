@@ -18,7 +18,7 @@ $specificTheme = null;
     @include('layouts.links.icons')
 
     @vite([
-        'resources/sass/vendor.scss',
+        'resources/css/vendor.css',
         'resources/sass/app.scss',
         'resources/sass/whiteboards.scss',
     ])

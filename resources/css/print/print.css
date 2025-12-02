@@ -35,7 +35,6 @@
         display: none !important;
     }
 
-    // Hide all buttons
     .btn, .btn2 {
         display: none !important;
     }
@@ -53,7 +52,6 @@
         display: block;
     }
 
-    // Characters
     .box-solid.character-appearances, .box-solid.character-personalities {
         display: none;
     }
@@ -70,7 +68,6 @@
         max-width: 100% !important;
     }
 
-    // Profile
     .col-sm-4 {
         width: 33.333333%;
     }

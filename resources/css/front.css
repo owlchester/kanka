@@ -1,87 +1,90 @@
-@use "sass:meta";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-$dark: #112B6B;
-$purple: #40479E;
-$light: #95B5D8;
-$blue: #4A58FF;
-$switcher: #D8DBFF;
+@include meta.load-css("dialog");
+
+:root {
+    --dark: #112B6B;
+    --purple: #40479e;
+    --light: #95B5D8;
+    --blue: #4A58FF;
+    --switcher: #D8DBFF;
+}
 
 .bg-dark {
-    background-color: $dark;
+    background-color: var(--dark);
 }
 .bg-purple {
-    background-color: $purple;
+    background-color: var(--purple);
 }
 .bg-light {
-    background-color: $light;
+    background-color: var(--light);
 }
 .bg-blue {
-    background-color: $blue;
+    background-color: var(--blue);
 }
 .bg-switcher {
-    background-color: $switcher;
+    background-color: var(--switcher);
 }
 .border-dark {
-    border-color: $dark;
+    border-color: var(--dark);
 }
 .border-blue {
-    border-color: $blue;
+    border-color: var(--blue);
 }
 .hover\:bg-light {
     &:hover {
-        background-color: $light;
+        background-color: var(--light);
     }
 }
 .hover\:text-light {
     &:hover {
-        color: $light;
+        color: var(--light);
     }
 }
 .hover\:text-dark {
     &:hover {
-        color: $dark;
+        color: var(--dark);
     }
 }
 .hover\:text-purple {
     &:hover {
-        color: $purple;
+        color: var(--purple);
     }
 }
 .hover\:text-blue {
     &:hover {
-        color: $blue;
+        color: var(--blue);
     }
 }
 
 .link, .link-light {
-    color: $dark;
+    color: var(--dark);
     font-weight: 500;
     transition: all 0.2s;
 
     &:hover, &:focus {
-        color: $light;
+        color: var(--light);
     }
     &.active {
         font-weight: 700;
     }
 }
 .link-light {
-    color: $light;
+    color: var(--light);
     &:hover, &:focus {
-        color: $blue;
+        color: var(--blue);
     }
 }
 .link-blue {
-    color: $blue;
+    color: var(--blue);
 }
 
 .btn-round {
     padding: 1rem 2rem;
-    background-color: $blue;
+    background-color: var(--blue);
     color: white;
     font-size: 1rem;
     font-weight: 500;
@@ -91,7 +94,7 @@ $switcher: #D8DBFF;
     align-items: center;
 
     &:hover, &:focus {
-        background-color: $dark;
+        background-color: var(--dark);
         color: white;
     }
 }
@@ -101,14 +104,14 @@ $switcher: #D8DBFF;
 }
 
 .block-input, .block-btn {
-    border: 1px solid $purple;
-    color: $purple;
+    border: 1px solid var(--purple);
+    color: var(--purple);
     padding: 1rem 2rem;
     transition: all 0.2s;
 }
 .block-btn {
     &:hover, &:focus {
-        background-color: $purple;
+        background-color: var(--purple);
         color: white;
     }
 }
@@ -120,16 +123,16 @@ $switcher: #D8DBFF;
 }
 .btn-register {
     color: white;
-    background-color: $purple;
+    background-color: var(--purple);
     &:hover {
-        background-color: $dark;
+        background-color: var(--dark);
     }
 }
 .btn-login {
-    border: 1px solid $purple;
-    color: $purple;
+    border: 1px solid var(--purple);
+    color: var(--purple);
     &:hover {
-        background-color: $purple;
+        background-color: var(--purple);
         color: white;
     }
 }
@@ -137,36 +140,36 @@ $switcher: #D8DBFF;
 .btn-primary {
     border-radius: 0.2rem;
     padding: 13px 32px;
-    background-color: $dark;
+    background-color: var(--dark);
     color: white;
     text-align: center;
 
     &:hover {
-        background-color: $purple;
+        background-color: var(--purple);
     }
 }
 
 nav.text-nav a {
     &:hover {
-        color: $blue;
+        color: var(--blue);
     }
     &.active, .active {
-        color: $light;
+        color: var(--light);
     }
 }
 
 
 .text-dark {
-    color: $dark;
+    color: var(--dark);
 }
 .text-light {
-    color: $light;
+    color: var(--light);
 }
 .text-blue {
-    color: $blue;
+    color: var(--blue);
 }
 .text-purple {
-    color: $purple;
+    color: var(--purple);
 }
 
 
@@ -240,7 +243,7 @@ p, li {
 }
 
 code {
-    color: $light;
+    color: var(--light);
 }
 html {
     scroll-behavior: smooth;
@@ -261,4 +264,3 @@ html {
     }
 }
 
-@include meta.load-css("dialog");

@@ -3,7 +3,4 @@
     body {
         -webkit-print-color-adjust: exact;
     }
-    .main-footer {
-        display: none !important;
-    }
 }

@@ -17,7 +17,7 @@ $specificTheme = null;
 
     @include('layouts.links.icons')
     @vite([
-        'resources/sass/vendor.scss',
+        'resources/css/vendor.css',
         'resources/sass/app.scss',
     ])
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
@@ -40,7 +40,7 @@ $specificTheme = null;
     @endif
     @includeWhen(!empty($campaign), 'layouts._theme')
     @vite([
-    'resources/sass/print/print.scss',
+    'resources/css/print/print.css',
     ])
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
 </head>

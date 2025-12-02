@@ -1,4 +1,4 @@
-<footer id="footer" class="main-footer px-4 py-10">
+<footer id="footer" class="main-footer px-4 py-10 print:hidden">
     <div class="lg:max-w-7xl lg:mx-auto">
         <div class="flex flex-col gap-10">
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5">

@@ -28,7 +28,7 @@
 </head>
 
 <body id="page-top">
-@vite('resources/sass/front.scss')
+@vite('resources/css/front.css')
 <noscript id="deferred-styles">
 </noscript>
 

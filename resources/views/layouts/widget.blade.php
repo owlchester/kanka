@@ -17,7 +17,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
     <meta property="og:title" content="{!! $seoTitle !!} - {{ config('app.name') }}" />
     <meta property="og:site_name" content="{{ config('app.site_name') }}" />
     @vite([
-        'resources/sass/vendor.scss',
+        'resources/css/vendor.css',
         'resources/sass/app.scss',
     ])
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
