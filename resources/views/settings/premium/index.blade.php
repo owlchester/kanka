@@ -124,11 +124,6 @@
 
 @endsection
 
-@section('styles')
-    @parent
-    @vite('resources/sass/settings.scss')
-@endsection
-
 @section('modals')
     @parent
     @if ($focus)

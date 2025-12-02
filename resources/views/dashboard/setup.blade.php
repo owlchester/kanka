@@ -145,5 +145,5 @@ $overlayClass = 'rounded-xl flex gap-2 flex-col p-2 items-center h-full';
 @endsection
 
 @section('styles')
-    @vite('resources/sass/dashboard.scss')
+    @vite('resources/css/dashboard.css')
 @endsection

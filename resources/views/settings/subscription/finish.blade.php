@@ -123,5 +123,5 @@
 @endsection
 
 @section('styles')
-    @vite('resources/sass/subscription.scss')
+    @vite('resources/css/subscription.css')
 @endsection

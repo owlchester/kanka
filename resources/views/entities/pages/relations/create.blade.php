@@ -21,11 +21,3 @@
         <input type="hidden" name="owner_id" value="{{ $entity->id }}" />
     </x-form>
 @endsection
-
-@section('scripts')
-    @vite('resources/js/relations.js')
-@endsection
-
-@section('styles')
-    @vite('resources/sass/relations.scss')
-@endsection

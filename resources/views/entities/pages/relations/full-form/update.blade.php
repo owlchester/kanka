@@ -31,13 +31,3 @@
 @include('editors.editor')
 
 
-
-@section('scripts')
-    @parent
-    @vite('resources/js/relations.js')
-@endsection
-
-@section('styles')
-    @parent
-    @vite('resources/sass/relations.scss')
-@endsection

@@ -20,7 +20,6 @@ $specificTheme = null;
     @vite([
         'resources/css/vendor.css',
         'resources/sass/app.scss',
-        'resources/sass/whiteboards.scss',
     ])
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
     @if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'base']))

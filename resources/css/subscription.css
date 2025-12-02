@@ -38,9 +38,6 @@
 }
 
 .card {
-    //margin: 30px 0;
-    //background-color: rgba(0, 0, 0, 0.1);
-
     .card-element {
         --tw-border-opacity: .2;
         border: 1px solid hsl(var(--bc)/var(--tw-border-opacity));

@@ -31,11 +31,3 @@
     <x-dialog id="edit-dialog" :loading="true" />
     @include('layouts.datagrid.delete-forms', ['models' => Datagrid::deleteForms(), 'params' => []])
 @endsection
-
-@section('scripts')
-    @vite('resources/js/relations.js')
-@endsection
-
-@section('styles')
-    @vite('resources/sass/relations.scss')
-@endsection

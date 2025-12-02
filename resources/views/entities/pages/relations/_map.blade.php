@@ -39,5 +39,5 @@ $options = [
 
 @section('styles')
     @parent
-    @vite('resources/sass/relations.scss')
+    @vite('resources/css/relations.css')
 @endsection

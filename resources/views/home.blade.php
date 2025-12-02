@@ -100,7 +100,7 @@ use App\Enums\Widget;
     @endif
 
     @vite([
-        'resources/sass/dashboard.scss',
+        'resources/css/dashboard.css',
         'resources/sass/map-v3.scss'
     ])
 @endsection

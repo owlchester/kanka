@@ -1,0 +1,5 @@
+@import 'cytoscape-panzoom/cytoscape.js-panzoom.css';
+.cy-panzoom {
+    z-index: 800;
+}
+
