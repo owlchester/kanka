@@ -1,4 +1,6 @@
-$mapSidebarWidth: 380px;
+@import "leaflet.markercluster/dist/MarkerCluster.css";
+@import "leaflet.markercluster/dist/MarkerCluster.Default.css";
+@import "leaflet.zoomdisplay.css";
 
 :root {
     --map-hero-ratio: 2/1;
@@ -59,17 +61,14 @@ $mapSidebarWidth: 380px;
 
 .marker.size-1 {
     font-size: 0.5em;
-    //line-height: 20px;
 }
 
 .marker.size-2 {
     font-size: 1em;
-    //line-height: 40px;
 }
 
 .marker.size-3 {
     font-size: 2em;
-    //line-height: 40px;
 }
 
 .marker.size-4 {
@@ -84,7 +83,7 @@ $mapSidebarWidth: 380px;
     i {
         font-size: 1.25rem;
         margin: 0;
-        // Sometimes FA does weird stuff like putting position: relative, breaking markers
+        /* Sometimes FA does weird stuff like putting position: relative, breaking markers */
         position: absolute !important;
         top: 50%;
         left: 50%;
@@ -192,12 +191,6 @@ body.map-drawing-mode {
     }
 }
 
-//@media (max-width: 767px) {
-//  .main-sidebar {
-//    transform: translate(-430px, 0);
-//  }
-//}
-
 /** Theming of the leaflet stuff **/
 .leaflet-popup-content-wrapper,
 .leaflet-popup-tip,
@@ -267,7 +260,3 @@ body.map-drawing-mode {
     padding-left: 45px;
 }
 /** END Used by the ruler plugin */
-
-@import "leaflet.markercluster/dist/MarkerCluster.css";
-@import "leaflet.markercluster/dist/MarkerCluster.Default.css";
-@import "maps/leaflet.zoomdisplay.css";

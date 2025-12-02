@@ -19,7 +19,7 @@ $specificTheme = null;
     @vite([
         'resources/css/vendor.css',
         'resources/sass/app.scss',
-        'resources/sass/map-v3.scss',
+        'resources/css/maps/maps.css'
     ])
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
     <link rel="stylesheet" href="{{ 'https://unpkg.com/leaflet@' . config('app.leaflet_source') . '/dist/leaflet.css' }}" integrity="{{ config('app.leaflet_css') }}" crossorigin="" />

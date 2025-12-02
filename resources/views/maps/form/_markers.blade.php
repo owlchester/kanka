@@ -96,7 +96,7 @@
     @parent
     <link rel="stylesheet" href="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.layerstree.css"/>
     <link rel="stylesheet" href="{{ 'https://unpkg.com/leaflet@' . config('app.leaflet_source') . '/dist/leaflet.css' }}" integrity="{{ config('app.leaflet_css') }}" crossorigin="" />
-    @vite('resources/sass/map-v3.scss')
+    @vite('resources/css/maps/maps.css')
 
     <style>
         @foreach ($model->markers as $marker)

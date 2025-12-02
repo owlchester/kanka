@@ -62,7 +62,7 @@ export default defineConfig({
                 'resources/css/vendor.css',
                 'resources/sass/app.scss',
 
-                'resources/sass/map-v3.scss',
+                'resources/css/maps/maps.css',
                 'resources/css/subscription.css',
                 'resources/css/front.css',
                 'resources/css/auth.css',
