@@ -24,6 +24,5 @@ class CachedResponse
 
         return $response;
 
-
     }
 }
