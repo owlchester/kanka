@@ -101,3 +101,7 @@
         padding: 0;
     }
 }
+/*.tippy-box[data-theme~="kanka"] {*/
+/*    background-color: hsl(var(--b1)/var(--tw-bg-opacity));*/
+/*    color: hsl(var(--bc)/var(--tw-text-opacity));*/
+/*}*/

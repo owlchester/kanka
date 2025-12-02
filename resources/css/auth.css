@@ -1,10 +1,6 @@
 
 @import 'cookieconsent/build/cookieconsent.min.css';
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 
 .login-page, .register-page {
     background-color: #eef1f4;

@@ -1,43 +1,41 @@
+@import 'tailwindcss';
+
+@import "./themes/base.css";
+@import "./typography.css";
+@import "./alerts.css";
+@import "./buttons.css";
+@import "./badge.css";
+@import "./calendar.css";
+@import "./code.css";
+@import "./tooltip.css";
+@import "./timeline.css";
+@import "./mobile.css";
+@import "./premium.css";
+@import "./entity.css";
+@import "./footer.css";
+@import "./box.css";
+@import "./conversation.css";
+@import "./quest.css";
+@import "./quick-creator.css";
+@import "./sortable.css";
+@import "./campaign.css";
+@import "./attributes/attributes.css";
+@import "./toggle.css";
+@import "./tabs.css";
+@import "./vendors/editor.css";
+@import "./vendors/adminlte.css";
+@import "./print/general.css";
+@import "./html/table.css";
+@import "./html/dialog.css";
+@import "./html/dl.css";
+@import './freyja/freyja.css';
+@import 'cookieconsent/build/cookieconsent.min.css';
 @import '@fontsource-variable/roboto/wdth.css';
 
-
-@import "themes/base.css";
-@import "typography.css";
-@import "alerts.css";
-@import "buttons.css";
-@import "badge.css";
-@import "calendar.css";
-@import "code.css";
-@import "tooltip.css";
-@import "timeline.css";
-@import "mobile.css";
-@import "premium.css";
-@import "entity.css";
-
-@import "footer.css";
-@import "vendors/editor.css";
-@import "box.css";
-@import "conversation.css";
-@import "quest.css";
-
-@import "quick-creator.css";
-@import "sortable.css";
-@import "campaign.css";
-@import "attributes/attributes.css";
-@import "toggle.css";
-@import "tabs.css";
-@import "vendors/adminlte.css";
-@import "print/general.css";
-@import "html/table.css";
-@import "html/dialog.css";
-@import "html/dl.css";
-@import 'freyja/freyja.css';
-@import 'cookieconsent/build/cookieconsent.min.css';
-
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
 
 :root {
     --kanka-boost-accent: 338 78% 48%;
@@ -194,21 +192,6 @@ button.loading {
     background-color: var(--box-background, hsl(var(--b1)/var(--tw-bg-opacity)));
 }
 
-/** Cancel some of tw's resets **/
-
-ul {
-    list-style: disc;
-    padding: 0 1.5rem;
-}
-ol {
-    list-style: decimal;
-    padding: 0 1.5rem;
-}
-ol, ul {
-    margin-top: 0;
-    margin-bottom: 0.5rem;
-}
-
 .stack > * {
     grid-column-start: 1;
     grid-row-start: 1;
@@ -245,11 +228,6 @@ ol, ul {
     border-color: hsl(var(--er)/var(--tw-border-opacity));
 }
 
-/*ul.pagination {
-    margin: 0;
-    padding: 0;
-}*/
-
 ul.entity-menu {
     li {
         a {
@@ -267,31 +245,6 @@ ul.entity-menu {
         }
     }
 }
-/*.input-group {
-    display: flex;
-    width: 100%;
-    align-items: stretch;
-}
-.input-group>:first-child {
-    border-top-left-radius:var(--rounded-btn,.5rem);
-    border-top-right-radius:0;
-    border-bottom-left-radius:var(--rounded-btn,.5rem);
-    border-bottom-right-radius:0
-}
-.input-group>:last-child {
-    border-top-left-radius:0;
-    border-top-right-radius:var(--rounded-btn,.5rem);
-    border-bottom-left-radius:0;
-    border-bottom-right-radius:var(--rounded-btn,.5rem)
-}
-.input-group :where(span) {
-    display: flex;
-    align-items: center;
-    --tw-bg-opacity: 1;
-    background-color: hsl(var(--b3)/var(--tw-bg-opacity));
-    padding-left: 1rem;
-    padding-right: 1rem;
-}*/
 
 .glass, .glass.btn-active {
     border: none;

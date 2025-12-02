@@ -1,5 +1,5 @@
-@import "light.css";
-@import "colour.css";
+@import "./light.css";
+@import "./colour.css";
 
 *,
 ::before,

@@ -74,8 +74,22 @@
 }
 
 /** Stop tables from being stupid wide **/
-.entity-content table {
-    max-width: 100%;
+.entity-content {
+    table {
+        max-width: 100%;
+    }
+    ul {
+        list-style: disc;
+        padding: 0 1.5rem;
+    }
+    ol {
+        list-style: decimal;
+        padding: 0 1.5rem;
+    }
+    ol, ul {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+    }
 }
 
 .comma-separated {

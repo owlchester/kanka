@@ -1,6 +1,6 @@
 @import "leaflet.markercluster/dist/MarkerCluster.css";
 @import "leaflet.markercluster/dist/MarkerCluster.Default.css";
-@import "leaflet.zoomdisplay.css";
+@import "./leaflet.zoomdisplay.css";
 
 :root {
     --map-hero-ratio: 2/1;

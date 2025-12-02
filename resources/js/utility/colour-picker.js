@@ -1,4 +1,4 @@
-
+import "@melloware/coloris/dist/coloris.css";
 import Coloris from "@melloware/coloris";
 
 // Key to store colors in the cookie

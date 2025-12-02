@@ -1,3 +1,4 @@
+
 import tippy from 'tippy.js';
 const entityTooltips = Array();
 
