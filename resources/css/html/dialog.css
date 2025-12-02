@@ -1,9 +1,10 @@
-.dialog {
+dialog {
     display: grid;
     max-inline-size: min(90vw, var(--size-content-3));
     max-block-size: min(80vh, 100%);
     padding: 0;
     position: fixed;
+    margin: auto;
     inset: 0;
     z-index: 1050;
     border: 0;
@@ -36,12 +37,12 @@
     }
 }
 
-.dialog:not([open]) {
+dialog:not([open]) {
     pointer-events: none;
     opacity: 0;
 }
 
-.dialog::backdrop {
+dialog::backdrop {
     backdrop-filter: blur(5px);
     transition: backdrop-filter .3s ease;
 }

@@ -32,11 +32,6 @@
 @import 'cookieconsent/build/cookieconsent.min.css';
 @import '@fontsource-variable/roboto/wdth.css';
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
-
 :root {
     --kanka-boost-accent: 338 78% 48%;
 }

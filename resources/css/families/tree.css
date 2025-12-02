@@ -37,12 +37,3 @@
 
 }
 
-
-/*@for $i from 1 through 52 {*/
-/*    .ft-col-#{$i} {*/
-/*        left: calc(#{$i} * var(--family-tree-column-width));*/
-/*    }*/
-/*    .ft-row-#{$i} {*/
-/*        top: calc(#{$i} * var(--family-tree-row-height));*/
-/*    }*/
-/*}*/
