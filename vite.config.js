@@ -59,19 +59,20 @@ export default defineConfig({
                 'resources/js/campaigns/theme-builder.js',
                 'resources/js/campaigns/import.js',
 
-                'resources/css/vendor.css',
                 'resources/sass/app.scss',
 
+                'resources/css/vendors/tinymce.css',
                 'resources/css/maps/maps.css',
                 'resources/css/subscription.css',
                 'resources/css/front.css',
                 'resources/css/auth.css',
                 'resources/css/relations.css',
                 'resources/css/dashboard.css',
-                'resources/sass/family-tree.scss',
-                'resources/sass/themes/dark.scss',
-                'resources/sass/themes/midnight.scss',
-                'resources/sass/tinymce.scss',
+                'resources/css/families/tree.css',
+                'resources/css/vendor.css',
+                'resources/css/themes/dark.css',
+                'resources/css/themes/midnight.css',
+
                 'resources/css/print/print.css',
 
                 'resources/js/vendor-final.js',
