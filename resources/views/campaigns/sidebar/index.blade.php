@@ -49,7 +49,7 @@
                             <input type="text" class="w-20 lg:w-40" name="{{ $name }}_icon" value="{{ $setup['custom_icon'] ?? null }}" placeholder="{{ $setup['icon'] }}" maxlength="50" data-paste="fontawesome" />
                         </div>
                         <input type="text" class="w-40 lg:w-80" name="{{ $name }}_label" value="{!! $setup['custom_label'] ?? null !!}" placeholder="{{ $setup['label'] ?? __($setup['label_key'])  }}" maxlength="90" />
-                        <span class="text-neutral-content text-xs hidden md:!inline">( {{ $setup['label'] ?? __($setup['label_key']) }} )</span>
+                        <span class="text-neutral-content text-xs hidden md:inline!">( {{ $setup['label'] ?? __($setup['label_key']) }} )</span>
                         <input type="hidden" name="order[{{ $name }}]" value="1" />
                     </div>
 

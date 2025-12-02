@@ -1,6 +1,6 @@
 <template>
     <div :class="backgroundClass(release)" v-if="!is_dismissed" :data-id="release.id">
-        <div class="flex-grow p-2">
+        <div class="grow p-2">
             <a v-html="release.title" class="font-bold cursor-pointer block w-full" v-bind:href="release.url" target="_blank"></a>
             <p v-html="release.text"></p>
         </div>

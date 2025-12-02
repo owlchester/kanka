@@ -117,12 +117,12 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
     </div>
 
     <x-dialog id="primary-dialog" :loading="true" />
-    <div id="dialog-backdrop" class="z-[1000] fixed top-0 left-0 right-0 bottom-0 h-full w-full backdrop-blur-sm bg-base-100 hidden" style="--tw-bg-opacity: 0.2"></div>
+    <div id="dialog-backdrop" class="z-1000 fixed top-0 left-0 right-0 bottom-0 h-full w-full backdrop-blur-sm bg-base-100 hidden" style="--tw-bg-opacity: 0.2"></div>
 
     @include('layouts.dialogs.languages')
     @yield('modals')
 
-    <div class="toast-container fixed overflow-y-auto overflow-x-hidden bottom-4 right-4 max-h-full flex flex-col gap-2 z-[1001]"></div>
+    <div class="toast-container fixed overflow-y-auto overflow-x-hidden bottom-4 right-4 max-h-full flex flex-col gap-2 z-1001"></div>
 
 @if (config('fontawesome.kit'))
     <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>

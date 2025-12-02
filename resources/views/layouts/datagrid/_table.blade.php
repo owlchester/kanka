@@ -26,7 +26,7 @@
         </tr>
     @empty
         <tr>
-            <td colspan="{{ count(Datagrid::headers()) }}" class="!align-middle">
+            <td colspan="{{ count(Datagrid::headers()) }}" class="align-middle!">
                 <i>{{ __('crud.datagrid.empty') }}</i>
             </td>
         </tr>

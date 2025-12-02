@@ -57,8 +57,8 @@ foreach ($elapsed as $event) {
     @endphp
     @if (!empty($birth) && !empty($death))
         <li class="flex">
-            <div class="flex-grow font-bold">{{ __('characters.fields.life') }}</div>
-            <div class="flex-grow text-right">
+            <div class="grow font-bold">{{ __('characters.fields.life') }}</div>
+            <div class="grow text-right">
                 <a href="{{ $birth->calendar->getLink() }}?year={{ $birth->year }}&month={{ $birth->month }}" data-title="{{ $birth->calendar->name }}" data-toggle="tooltip">
                     {{ $birth->readableDate() }}
                 </a> &#10013; <a href="{{ $death->calendar->getLink() }}?year={{ $death->year }}&month={{ $death->month }}" data-title="{{ $death->calendar->name }}" data-toggle="tooltip">
@@ -68,8 +68,8 @@ foreach ($elapsed as $event) {
         </li>
     @elseif (!empty($birth))
         <li class="flex">
-            <div class="flex-grow font-bold">{{ __('entities/events.types.birth') }}</div>
-            <div class="flex-grow text-right">
+            <div class="grow font-bold">{{ __('entities/events.types.birth') }}</div>
+            <div class="grow text-right">
                 <a href="{{ $birth->calendar->getLink() }}?year={{ $birth->year }}&month={{ $birth->month }}" data-title="{{ $birth->calendar->name }}" data-toggle="tooltip">
                 {{ $birth->readableDate() }}
                 </a> ({{ $birth->calcElapsed() }})
@@ -77,8 +77,8 @@ foreach ($elapsed as $event) {
         </li>
     @elseif (!empty($death))
         <li class="flex">
-            <div class="flex-grow font-bold">{{ __('entities/events.types.death') }}</div>
-            <div class="flex-grow text-right">
+            <div class="grow font-bold">{{ __('entities/events.types.death') }}</div>
+            <div class="grow text-right">
                 <a href="{{ $death->calendar->getLink() }}?year={{ $death->year }}&month={{ $death->month }}" data-title="{{ $death->calendar->name }}" data-toggle="tooltip">
                 {{ $death->readableDate() }}
                 </a> ({{ $death->calcElapsed() }})

@@ -39,7 +39,7 @@
                         </div>
                         <div class="flex gap-2">
                             <input type="text" class="picker rounded flex-none h-6 w-6 cursor-pointer border bg-neutral" data-toggle="tooltip" data-title="Click me to change the colour" data-target="n" />
-                            <div class="break-words">
+                            <div class="wrap-break-word">
                                 <p class="m-0">Neutral </p>
                                 <x-helper>
                                     <p>Used for tooltips, default tags and calendar weather</p>
@@ -48,7 +48,7 @@
                         </div>
                         <div class="flex gap-2">
                             <input type="text" class="picker rounded flex-none h-6 w-6 cursor-pointer border bg-base-100" data-toggle="tooltip" data-title="Click me to change the colour" data-target="b" />
-                            <div class="break-words">
+                            <div class="wrap-break-word">
                                 <p class="m-0">Content </p>
                                 <x-helper>
                                     <p>Used for menus, boxes, panels, forms. Its contrast is used as the main text colour.</p>

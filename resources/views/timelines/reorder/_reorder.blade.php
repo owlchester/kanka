@@ -13,7 +13,7 @@
             <div class="element bg-base-200 rounded flex flex-col gap-2 p-2" data-id="{{ $era->id }}">
                 <input type="hidden" name="timeline_era[]" value="{{ $era->id }}" />
                 <div class="flex gap-2 items-center">
-                    <div class="dragger flex-grow-0">
+                    <div class="dragger grow-0">
                         <x-icon class="fa-solid fa-sort" />
                     </div>
                     <div class="overflow-hidden grow flex flex-no-wrap items-center gap-2">
@@ -36,7 +36,7 @@
                                 <div class="dragger relative rounded-full text-2xl text-center grow-0 w-8">
                                     @include('timelines.elements._icon', ['absolute' => false])
                                 </div>
-                                <div class="overflow-hidden flex-grow">
+                                <div class="overflow-hidden grow">
                                     @if ($element->entity)
                                         <x-entity-link :entity="$element->entity" :campaign="$campaign">
                                             {!! $element->name !!}

@@ -207,7 +207,7 @@ class Tag extends MiscModel
     public function colourClass(): string
     {
         if (! $this->hasColour()) {
-            return '!border-0';
+            return 'border-0!';
         }
 
         $mappings = config('colours.mappings');
@@ -220,7 +220,7 @@ class Tag extends MiscModel
             $text = 'text-white';
         }
 
-        return 'bg-' . $colour . ' color-palette color-tag !border-0 ' . $text . ' ';
+        return 'bg-' . $colour . ' color-palette color-tag border-0! ' . $text . ' ';
     }
 
     public function hasColour(): bool

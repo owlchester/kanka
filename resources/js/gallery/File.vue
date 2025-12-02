@@ -149,7 +149,7 @@
                 <p v-html="trans('focus_locked')"></p>
                 <a href="https://kanka.io/premium">Learn more</a>
             </div>
-            <div v-else class="max-w-[8rem] flex items-center justify-center">
+            <div v-else class="max-w-32 flex items-center justify-center">
                 <div class="relative inline-block">
                     <div
                         class="absolute cursor-pointer text-4xl text-accent "

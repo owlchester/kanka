@@ -3,13 +3,13 @@
     <span class="sr-only" id="dialog-label-primary-dialog">{{ __('Quick creator dialog') }}</span>
 </x-dialog.header>
 @endif
-<article id="qq-modal-loading" class="!hidden p-4 md:px-6">
+<article id="qq-modal-loading" class="hidden! p-4 md:px-6">
     <div class="text-center text-4xl">
         <x-icon class="load" />
         <span class="sr-only">Loading...</span>
     </div>
 </article>
-<article id="qq-modal-form" class="!hidden p-4 md:px-6">
+<article id="qq-modal-form" class="hidden! p-4 md:px-6">
 </article>
 <div class="container">
     <article id="qq-modal-selection" class="p-4 md:px-6">

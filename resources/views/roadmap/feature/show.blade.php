@@ -2,7 +2,7 @@
 
 <header class="bg-purple text-white rounded-t-2xl flex flex-col gap-2 p-4">
     <div class="flex gap-2 w-full">
-        <h4 class="text-md grow !text-left">
+        <h4 class="text-md grow text-left!">
             {!! $feature->name !!}
         </h4>
         <button autofocus type="button" class="text-md self-start" onclick="this.closest('dialog').close('close')" title="{{ __('crud.actions.close') }}">
@@ -11,7 +11,7 @@
         </button>
     </div>
     <div class="flex gap-5 w-full">
-        <p class="m-0 flex-grow text-light">
+        <p class="m-0 grow text-light">
             @if ($feature->category){!! $feature->category->name !!}@endif
         </p>
 

@@ -1,6 +1,6 @@
 @import 'tailwindcss';
 
-@import "./dialog.css";
+@import "./html/dialog.css";
 
 :root {
     --dark: #112B6B;

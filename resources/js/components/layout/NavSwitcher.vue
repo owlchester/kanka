@@ -25,7 +25,7 @@
                         <div class="flex-none">
                             <GridSvg :size="6" />
                         </div>
-                        <div class="flex-grow">
+                        <div class="grow">
                             <div class="font-bold">{{ campaigns.texts.campaigns }}</div>
                             <div>{{campaigns.texts.count }}</div>
                         </div>
@@ -41,7 +41,7 @@
                         </div>
                         <div class="flex-none w-9 h-9 rounded-lg cover-background" v-bind:style="{backgroundImage: profilePictureUrl()}" v-else></div>
 
-                        <div class="flex-grow">
+                        <div class="grow">
                             <div class="font-bold">{{ profile.name }}</div>
                             <div>{{ profile.created }}</div>
                         </div>
@@ -57,10 +57,10 @@
             <div class="profile p-5 flex flex-col gap-5" v-if="view_profile">
                 <div class="notifications" v-if="notifications.title">
                     <div class="flex w-full py-2">
-                        <div class="flex-grow uppercase font-bold">
+                        <div class="grow uppercase font-bold">
                             {{ notifications.title }}
                         </div>
-                        <div class="flex-grow text-right">
+                        <div class="grow text-right">
                             <a v-bind:href="notifications.all.url">
                                 {{ notifications.all.text}}
                             </a>
@@ -81,7 +81,7 @@
 
                 <div class="releases" v-if="releases.title && releases.releases.length > 0">
                     <div class="flex w-full py-2">
-                        <div class="flex-grow uppercase font-bold">
+                        <div class="grow uppercase font-bold">
                             {{ releases.title }}
                         </div>
                     </div>
@@ -98,10 +98,10 @@
                 <div class="marketplace" v-if="!profile.is_impersonating && marketplace.title">
 
                     <div class="flex w-full py-2">
-                        <div class="flex-grow uppercase font-bold">
+                        <div class="grow uppercase font-bold">
                             {{ marketplace.title }}
                         </div>
-                        <div class="flex-grow text-right">
+                        <div class="grow text-right">
                             <a v-bind:href="marketplace.explore.url" target="_blank">
                                 {{ marketplace.explore.text}}
                             </a>
@@ -139,7 +139,7 @@
                         <div class="flex-none p-2">
                             <img class="w-16 h-16" v-bind:src="profile.subscription.image" v-bind:alt="profile.subscription.tier">
                         </div>
-                        <div class="flex-grow p-2">
+                        <div class="grow p-2">
                             <div class="font-bold text-lg">
                                 {{ profile.subscription.tier}}
                             </div>
@@ -198,10 +198,10 @@
                 <div v-if="!profile.is_impersonating" class="campaigns flex flex-col gap-5">
                   <div class="flex flex-col gap-2">
                     <div class="flex w-full">
-                        <div class="flex-grow uppercase font-bold">
+                        <div class="grow uppercase font-bold">
                           {{campaigns.texts.campaigns }}
                         </div>
-                        <div class="flex-grow text-right" v-if="campaigns.member.length > 0">
+                        <div class="grow text-right" v-if="campaigns.member.length > 0">
                             <a v-bind:href="campaigns.urls.reorder">
                                 {{ campaigns.texts.reorder}}
                             </a>
@@ -325,7 +325,7 @@ const loadData = () => {
 }
 const blockClass = (active) => {
     if (active) {
-        return 'block p-4 flex-grow items-center focus:box-shadow';
+        return 'block p-4 grow items-center focus:box-shadow';
     }
     return 'block p-4  items-center bg-base-200 cursor-pointer flex-none focus:box-shadow';
 }
