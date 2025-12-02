@@ -4,7 +4,7 @@
         accent-color: hsl(var(--a)/1);
     }
     :root {
-        // General background color
+        /* General background color */
         --base: 240 21% 15%;
         --crust: 240 23% 9%;
         --mantle: 240 21% 12%;
@@ -18,7 +18,7 @@
         --mauve: 287 84% 81%;
         --pink: 316 72% 86%;
 
-        // For the legacy editor, make it compatible with dark mode
+        /* For the legacy editor, make it compatible with dark mode */
         --tinymce-filter: invert(90%) !important;
         --body-background: hsl(var(--base)/1);
         --sf: 316 70% 43%;
