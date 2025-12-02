@@ -1,4 +1,17 @@
 <template>
+
+<v-group
+    :config="{
+        x: groupedX(),
+        y: groupedY(),
+        opacity: shape.opacity || 1,
+        ...(isGrouped && {
+            scaleX: shape.scaleX,
+            scaleY: shape.scaleY,
+            rotation: shape.rotation,
+        }),
+    }"
+>
     <v-rect
         :config="{
             x: 0, y: 0,
@@ -17,7 +30,7 @@
             image: imageEl,
             cornerRadius: radius,
             opacity: shape.opacity || 1,
-         }">
+        }">
     </v-image>
     <v-text
         @click="handleClick"
@@ -40,6 +53,8 @@
             opacity: shape.opacity || 1,
         }"
     />
+</v-group>
+
 </template>
 <script setup lang="ts">
 import { computed, ref } from 'vue';
@@ -50,6 +65,7 @@ const nameHeight = ref(26);
 
 const props = defineProps<{
     shape: any,
+    isGrouped: any,
     // function that receives shape and returns HTMLImageElement|null
     getImageEl: (shape: any) => HTMLImageElement | null,
     // function that opens entity link, receives shape
@@ -59,7 +75,6 @@ const imageEl = computed(() => {
     // call provided helper to get image element; keep compatible with previous approach
     return props.getImageEl ? props.getImageEl(props.shape) : null;
 });
-
 
 const handleClick = (e: Event) => {
     if (!props.shape || !props.shape.link) return;
@@ -100,5 +115,19 @@ const cssVariable = (variable: string) => {
     return hslString(base);
 }
 
+const groupedX = () => {
+    console.log(props.shape);
+    if (!props.isGrouped) {
+        return 0;
+    }
+    return props.shape.x;
+}
+
+const groupedY = () => {
+    if (!props.isGrouped) {
+        return 0;
+    }
+    return props.shape.y;
+}
 
 </script>
