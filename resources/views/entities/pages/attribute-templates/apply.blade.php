@@ -13,7 +13,7 @@
     @include('partials.errors')
 
     <x-form :action="['entities.attributes.template-process', $campaign, $entity->id]">
-    @include('partials.forms._dialog', [
+    @include('partials.forms.form', [
             'title' => __('entities.attribute_template'),
             'content' => 'entities.pages.attribute-templates._form',
             'actions' => 'entities.pages.attribute-templates._actions',

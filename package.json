@@ -10,11 +10,9 @@
         "@vitejs/plugin-vue": "^4.1.0",
         "autoprefixer": "^10.4.20",
         "axios": "^1.12",
-        "bootstrap-sass": "^3.4.3",
         "jquery": "^3.7.1",
         "laravel-vite-plugin": "^2.0",
         "postcss": "^8.5.1",
-        "sass": "^1.22.9",
         "tailwindcss": "^4.1",
         "vite": "^7.0.7",
         "vue": "^3.3"

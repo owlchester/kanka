@@ -11,7 +11,7 @@
 
 @section('content')
     <x-form :action="['entities.entity_assets.store', $campaign, $entity]">
-        @include('partials.forms._dialog', [
+        @include('partials.forms.form', [
             'title' => __('entities/links.create.title', ['name' => $entity->name]),
             'content' => 'entities.pages.links._form',
         ])

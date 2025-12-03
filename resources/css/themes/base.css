@@ -182,11 +182,6 @@ input[type="checkbox"]:checked:after {
         color: var(--box-header-text);
     }
 
-    .with-border {
-        --tw-border-opacity: 0.1;
-        border-bottom-color: hsl(var(--bc)/var(--tw-border-opacity));
-    }
-
     .box-footer {
         background: var(--box-footer-background);
         --tw-border-opacity: 0.1;

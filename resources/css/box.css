@@ -8,11 +8,6 @@
     width: 100%;
     box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
 
-    .box-header.with-border {
-        --tw-border-opacity: 0.1;
-        border-bottom: 1px solid hsl(var(--bc)/var(--tw-border-opacity));
-    }
-
     .box-header {
         display: block;
         padding: 10px;

@@ -1,5 +1,5 @@
 @empty($relation)<x-helper>
-    <p>{{ __('entities/relations.create.helper', ['name' => $entity->name]) }}</p>
+    <p>{!! __('entities/relations.create.helper', ['name' => $entity->name]) !!}</p>
 </x-helper>@endif
 
 <x-grid xdata="{opened: {{ old('two_way', false) ? 'true' : 'false' }}}">
