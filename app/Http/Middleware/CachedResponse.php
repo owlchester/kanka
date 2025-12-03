@@ -15,15 +15,17 @@ class CachedResponse
      */
     public function handle(Request $request, Closure $next): Response
     {
+        $response = $next($request);
+
         if (auth()->check()) {
-            return $next($request);
+            $response->headers->setCookie(
+                cookie('authenticated', '1', 0, '/', null, null, false)
+            );
+        } else {
+            $response->headers->clearCookie('authenticated');
+            $response->headers->set('Cache-Control', 'public, max-age=600, s-maxage=1200');
         }
 
-        $response = $next($request);
-        $response->headers->set('Cache-Control', 'public, max-age=300, s-maxage=600');
-
         return $response;
-
-
     }
 }
