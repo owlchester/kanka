@@ -1,4 +1,4 @@
-<div class="quick-creator-header pb-4 ">
+<div class="quick-creator-header pb-4 border-b border-base-300 ">
     <div class="flex gap-1">
         <div class="grow flex flex-col gap-2">
             <div class="qq-mode text-sm text-uppercase sm:w-96">

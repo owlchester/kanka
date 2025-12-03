@@ -2,11 +2,15 @@
 table {
     tbody {
         td {
+            border-color: hsl(var(--bc)/var(--tw-border-opacity));
+            --tw-border-opacity: 0.2;
         }
     }
     thead {
         th {
             text-align: left;
+            border-color: hsl(var(--bc)/var(--tw-border-opacity));
+            --tw-border-opacity: 0.2;
         }
     }
 }

@@ -671,3 +671,7 @@
     border-radius:9999px;
     padding:0
 }
+
+[role="button"] {
+    cursor: pointer;
+}

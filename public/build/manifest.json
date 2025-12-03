@@ -124,8 +124,17 @@
     "file": "assets/rpgawesome-webfont-Dqq2L5LG.woff",
     "src": "node_modules/rpg-awesome/fonts/rpgawesome-webfont.woff"
   },
+  "resources/css/app.css": {
+    "file": "assets/app-DG04IZF8.css",
+    "src": "resources/css/app.css",
+    "isEntry": true,
+    "name": "app",
+    "names": [
+      "app.css"
+    ]
+  },
   "resources/css/auth.css": {
-    "file": "assets/auth-QjBKf0WV.css",
+    "file": "assets/auth-Bk96MrwB.css",
     "src": "resources/css/auth.css",
     "isEntry": true,
     "name": "auth",
@@ -152,7 +161,7 @@
     ]
   },
   "resources/css/front.css": {
-    "file": "assets/front-B3Y0iu3X.css",
+    "file": "assets/front-Ck4yQ907.css",
     "src": "resources/css/front.css",
     "isEntry": true,
     "name": "front",
@@ -161,7 +170,7 @@
     ]
   },
   "resources/css/maps/maps.css": {
-    "file": "assets/maps-DWC_876S.css",
+    "file": "assets/maps-BT3009Oq.css",
     "src": "resources/css/maps/maps.css",
     "isEntry": true,
     "name": "maps",
@@ -179,7 +188,7 @@
     ]
   },
   "resources/css/relations.css": {
-    "file": "assets/relations-BdnNKdiy.css",
+    "file": "assets/relations-BhqWrOkS.css",
     "src": "resources/css/relations.css",
     "isEntry": true,
     "name": "relations",
@@ -215,7 +224,7 @@
     ]
   },
   "resources/css/vendor.css": {
-    "file": "assets/vendor-U3o-kaR0.css",
+    "file": "assets/vendor-Dp4mr55M.css",
     "src": "resources/css/vendor.css",
     "isEntry": true,
     "name": "vendor",
@@ -250,7 +259,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-Cuq7JZ1M.js",
+    "file": "assets/app-Dyi90asR.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -263,10 +272,13 @@
       "__plugin-vue_export-helper-DlAUqK2U.js",
       "_Browser.vue_vue_type_script_setup_true_lang-BbqD9HTD.js",
       "__commonjsHelpers-CqkleIqs.js"
+    ],
+    "css": [
+      "assets/app-7Sr4fLAQ.css"
     ]
   },
   "resources/js/attributes-manager.js": {
-    "file": "assets/attributes-manager-CyUNg3x0.js",
+    "file": "assets/attributes-manager-BCdVshvI.js",
     "name": "attributes-manager",
     "src": "resources/js/attributes-manager.js",
     "isEntry": true,
@@ -317,7 +329,7 @@
     ]
   },
   "resources/js/conversation.js": {
-    "file": "assets/conversation-BUAPyN8r.js",
+    "file": "assets/conversation-BXr09y14.js",
     "name": "conversation",
     "src": "resources/js/conversation.js",
     "isEntry": true,
@@ -365,7 +377,7 @@
     ]
   },
   "resources/js/family-tree-vue.js": {
-    "file": "assets/family-tree-vue-Bns7hN0c.js",
+    "file": "assets/family-tree-vue-BpLQft6_.js",
     "name": "family-tree-vue",
     "src": "resources/js/family-tree-vue.js",
     "isEntry": true,
@@ -407,7 +419,7 @@
     ]
   },
   "resources/js/gallery/gallery.js": {
-    "file": "assets/gallery-10HKYfj6.js",
+    "file": "assets/gallery-u0udgzLZ.js",
     "name": "gallery",
     "src": "resources/js/gallery/gallery.js",
     "isEntry": true,
@@ -490,15 +502,6 @@
     "imports": [
       "_vue.esm-bundler-CSDHRrjm.js",
       "_Browser.vue_vue_type_script_setup_true_lang-BbqD9HTD.js"
-    ]
-  },
-  "resources/sass/app.scss": {
-    "file": "assets/app-DufoYDc_.css",
-    "src": "resources/sass/app.scss",
-    "isEntry": true,
-    "name": "app",
-    "names": [
-      "app.css"
     ]
   }
 }

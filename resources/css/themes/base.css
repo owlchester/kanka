@@ -1,13 +1,6 @@
 @import "./light.css";
 @import "./colour.css";
 
-*,
-::before,
-::after {
-    --tw-border-opacity: .2;
-    border-color: hsl(var(--bc)/var(--tw-border-opacity));
-}
-
 body {
     --tw-background-opacity: 1;
     background-color: var(--body-background, var(--content-wrapper-background, hsl(var(--b1)/var(--tw-background-opacity))));
@@ -15,6 +8,10 @@ body {
     color: var(--body-text, hsl(var(--bc)/var(--tw-text-opacity)));
 }
 
+hr {
+    border-color: hsl(var(--bc)/var(--tw-border-opacity));
+    --tw-border-opacity: 0.2;
+}
 a, .text-link {
     --tw-text-opacity: 1;
     color: var(--link-text, hsl(var(--p)/var(--tw-text-opacity)));
