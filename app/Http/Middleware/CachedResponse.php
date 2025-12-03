@@ -17,14 +17,7 @@ class CachedResponse
     {
         $response = $next($request);
 
-        if (auth()->check()) {
-            $response->headers->setCookie(
-                cookie('authenticated', '1', 0, '/', null, null, false)
-            );
-        } else {
-            $cookie = cookie('authenticated', '', -1, '/', null, null, false);
-            $response->headers->setCookie($cookie);
-
+        if (auth()->guest()) {
             $response->headers->set('Cache-Control', 'public, max-age=600, s-maxage=1200');
         }
 
