@@ -31,7 +31,7 @@
             branding: false,
             media_live_embeds: true,
             menubar: false,
-            content_css: '{{ Vite::asset('resources/sass/tinymce.scss') }}',
+            content_css: '{{ Vite::asset('resources/css/vendors/tinymce.css') }}',
             extended_valid_elements: "+@[data-mention]",
             @if (!empty($campaign))
             mentions: {

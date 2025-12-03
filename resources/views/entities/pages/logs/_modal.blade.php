@@ -23,7 +23,7 @@
             {{--                    @foreach ($logs as $log)--}}
             {{--                        @if ($log->action < 7 || $log->post)--}}
             {{--                            <tr>--}}
-            {{--                                <td class="break-words">--}}
+            {{--                                <td class="wrap-break-word">--}}
             {{--                                    {{ __('entities/logs.actions.' . $log->actionCode(), ['post' => $log->post?->name]) }}--}}
             {{--                                </td>--}}
             {{--                                <td class="">@if ($log->user)--}}

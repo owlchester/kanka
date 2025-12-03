@@ -19,7 +19,7 @@
                                 <x-icon class="fa-solid fa-sort" />
                             </div>
                         @endif
-                        <div class="flex flex-wrap md:flex-no-wrap gap-2 md:gap-2 member-row items-center flex-grow">
+                        <div class="flex flex-wrap md:flex-no-wrap gap-2 md:gap-2 member-row items-center grow">
                             <x-entities.thumbnail :entity="$race->race->entity" :title="$race->race->name" />
                             <x-entity-link
                                 :entity="$race->race->entity"

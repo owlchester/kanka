@@ -1,9 +1,6 @@
+@import 'tailwindcss';
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@include meta.load-css("dialog");
+@import "./html/dialog.css";
 
 :root {
     --dark: #112B6B;

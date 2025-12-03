@@ -51,7 +51,7 @@
                 @endif
             </x-grid>
 
-            <x-dialog.footer class="!px-0">
+            <x-dialog.footer class="px-0!">
                 <button class="btn2 btn-primary">
                     <x-icon class="fa-regular fa-arrows-rotate" />
                     {{ __('entities/transform.actions.convert') }}

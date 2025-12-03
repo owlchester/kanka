@@ -1,0 +1,86 @@
+
+table {
+    tbody {
+        td {
+        }
+    }
+    thead {
+        th {
+            text-align: left;
+        }
+    }
+}
+
+.table {
+    width: 100%;
+    th, td {
+        line-height: 1.5rem;
+        padding: .5rem;
+    }
+    thead th {
+        border-bottom-width: 1px;
+    }
+    tbody tr:not(:last-of-type) {
+        td {
+            border-bottom-width: 1px;
+        }
+    }
+}
+
+.table-bordered {
+    --tw-border-opacity: .2;
+    border-width: 1px;
+    th, td {
+        border-width: 1px;
+    }
+}
+
+.table :is(thead, tbody, tfoot) tr :is(td, th) {
+    /*--tw-border-opacity: .2;
+    border-color: hsl(var(--b2)/var(--tw-border-opacity));*/
+}
+.table :is(thead, tbody, tfoot) tr.warning :is(td, th) {
+    background-color: hsl(var(--a)/1);
+    color: hsl(var(--ac)/1);
+}
+.table :is(thead, tbody, tfoot) tr.warning:hover :is(td, th) {
+    background-color: hsl(var(--af)/1);
+    color: hsl(var(--ac)/1);
+}
+
+.table-responsive {
+    overflow-x: unset;
+}
+.table-compact {
+    width: auto;
+}
+.table-right {
+    width: auto;
+    float: right;
+}
+.table-centered {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.table-condensed > :is(thead, tbody, tfoot) > tr > :is(th, td) {
+    padding: .25rem;
+}
+
+/** Old bootstrap 3.4 stuff to keep people happy? **/
+legend {
+    display: block;
+    width: 100%;
+    margin-bottom: 22px;
+    font-size: 21px;
+    line-height: inherit;
+    color: hsl(var(--nc)/1);
+    border-bottom: 1px solid hsl(var(--n)/1)
+}
+
+.entity-content, .note-editing-area {
+    table {
+        margin-bottom: 0.75rem;
+    }
+}

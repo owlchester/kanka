@@ -3,9 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\PasswordConfirm;
-use App\Http\Middleware\PublicCacheIfNoSession;
 use App\Http\Middleware\ReplicationSwitcher;
-use App\Http\Middleware\SessionlessView;
 use App\Http\Middleware\Tracking;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use Laravel\Passport\Http\Middleware\ValidateToken;
@@ -44,24 +42,6 @@ class Kernel extends HttpKernel
             Middleware\CheckIfUserBanned::class,
             Middleware\OTP::class,
             ReplicationSwitcher::class,
-        ],
-
-        'web-cached' => [
-            Middleware\EncryptCookies::class,
-            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-            //\Illuminate\Session\Middleware\StartSession::class,
-            //\Illuminate\Session\Middleware\AuthenticateSession::class,
-            //\Illuminate\View\Middleware\ShareErrorsFromSession::class,
-            //Middleware\VerifyCsrfToken::class,
-            \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            // Middleware\HttpsProtocol::class, // Force https in prod
-            Middleware\LocaleChange::class, // Save language changing
-            Tracking::class,
-            Middleware\CheckIfUserBanned::class,
-            Middleware\OTP::class,
-            ReplicationSwitcher::class,
-            SessionlessView::class,
-            PublicCacheIfNoSession::class
         ],
 
         'api' => [

@@ -1,0 +1,252 @@
+@import 'tailwindcss';
+
+@import "./themes/base.css";
+@import "./typography.css";
+@import "./alerts.css";
+@import "./buttons.css";
+@import "./badge.css";
+@import "./calendar.css";
+@import "./code.css";
+@import "./tooltip.css";
+@import "./timeline.css";
+@import "./mobile.css";
+@import "./premium.css";
+@import "./entity.css";
+@import "./footer.css";
+@import "./box.css";
+@import "./conversation.css";
+@import "./quest.css";
+@import "./quick-creator.css";
+@import "./sortable.css";
+@import "./campaign.css";
+@import "./attributes/attributes.css";
+@import "./toggle.css";
+@import "./tabs.css";
+@import "./vendors/editor.css";
+@import "./vendors/adminlte.css";
+@import "./print/general.css";
+@import "./html/table.css";
+@import "./html/dialog.css";
+@import "./html/dl.css";
+@import './freyja/freyja.css';
+@import 'cookieconsent/build/cookieconsent.min.css';
+@import '@fontsource-variable/roboto/wdth.css';
+
+:root {
+    --kanka-boost-accent: 338 78% 48%;
+}
+
+.content-header {
+    .breadcrumb {
+        background: transparent;
+
+        > li + li:before {
+            content: ">";
+        }
+    }
+}
+
+
+/** required form fields **/
+div.required label:after {
+    content: " *";
+    color: var(--input-required-text, red);
+}
+
+.tab-content, .box-body {
+    table {
+        max-width: 100% !important;
+    }
+
+    img {
+        max-width: 100%;
+    }
+}
+
+.entity-image {
+    border-radius: 50%;
+    display: block;
+}
+.cover-background {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+tr.tr-hover {
+    font-weight: 700;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.1) !important;
+    }
+}
+
+.field {
+    > input, > select, > textarea {
+        padding: 0.5rem 0.5rem;
+        &:placeholder-shown {
+            text-overflow: ellipsis;
+        }
+    }
+}
+
+
+/* Attributes in entities and text area */
+.attribute, .note-editing-area > .attribute {
+    border-radius: 0.25rem;
+    --tw-border-opacity: 1;
+    background-color: hsl(var(--n)/var(--tw-border-opacity));
+    --tw-text-opacity: 1;
+    color: hsl(var(--nc)/var(--tw-text-opacity));
+    font-style: italic;
+    padding: .1rem .25rem;
+}
+
+/* Bootstrap3 sets summary to display:block which isn't correct */
+summary { display: list-item; }
+
+/* RPG awesome dropdown icon margin */
+.dropdown-menu > li > a > :is(.fas, .fab, .far, .ra, .fa-solid, .fa-light, .fa-thin, .fa-regular) {
+    margin-right: 10px;
+    width: 14px;
+}
+button.dropdown-item {
+    background: none;
+    border: none;
+    padding: 3px 20px;
+    display: block;
+    width: 100%;
+    font-weight: 400;
+    line-height: 1.6;
+    white-space: nowrap;
+    color: var(--dropdown-link);
+    text-align: left;
+
+    &:hover {
+        background-color: var(--dropdown-hover-background);
+    }
+}
+.dropdown-menu-top {
+    top: unset;
+    bottom: 100%;
+}
+
+.banner-notification {
+    a {
+        color: hsl(var(--ac)/1);
+    }
+}
+
+/* UX */
+.skip-nav-link {
+    transform: translateY(-120%);
+    transition: transform 325ms ease-in;
+    z-index: 1040;
+
+    &:focus {
+        transform: translateY(0);
+        color: var(--link-text);
+    }
+}
+
+.bg-boost {
+    background-color: hsl(var(--kanka-boost-accent)/1);
+    --b1: var(--kanka-boost-accent);
+    --b2: var(--kanka-boost-accent);
+    --bc: 0 0% 100%;
+}
+.text-boost {
+    color: hsl(var(--kanka-boost-accent)/1);
+}
+
+/* Helper block in forms, closer to field */
+.form-group > .help-block {
+    margin-top: 0;
+}
+.grid > .form-group {
+    margin: 0;
+}
+
+button.loading {
+    cursor: wait;
+}
+.loading, .loading:hover {
+    pointer-events: none;
+}
+.loading:before {
+    margin-right: .5rem;
+    display: inline-block;
+    font-family: "Font Awesome 6 Pro";
+    font-weight: 900;
+    animation: fa-spin 2s linear infinite;
+    content: "\f110";
+}
+
+.bg-box {
+    --tw-bg-opacity: 1;
+    background-color: var(--box-background, hsl(var(--b1)/var(--tw-bg-opacity)));
+}
+
+.stack > * {
+    grid-column-start: 1;
+    grid-row-start: 1;
+    transform: translateY(10%) translateX(10%) scale(0.9);
+    z-index: 1;
+}
+.stack > :nth-child(1) {
+    transform: unset;
+    z-index: 3;
+}
+/** As of July 2023, firefox doesn't yet support the :has selector, but chrome does **/
+/** We need this to avoid the tooltip being behind the next in row stacked block **/
+.stack > :nth-child(1):has(.tooltip) {
+    z-index:4
+}
+.stack > :nth-child(2) {
+    transform: translateY(05%) translateX(05%) scale(0.95);
+    z-index: 2;
+}
+
+.entity-story-block :is(.box-entity-entry, .entity-content.collapse.in) {
+    display: flow-root;
+}
+
+/** Old DatagridRenderer **/
+.table-entities {
+    td {
+        vertical-align: middle !important;
+    }
+}
+
+.input-error {
+    --tw-border-opacity: 1;
+    border-color: hsl(var(--er)/var(--tw-border-opacity));
+}
+
+ul.entity-menu {
+    li {
+        a {
+            color: hsl(var(--bc)/0.8);
+            &:hover {
+                background-color: hsl(var(--b2)/1);
+                color: hsl(var(--bc)/1);
+            }
+        }
+    }
+    li.active {
+        a {
+            background-color: hsl(var(--b2)/1);
+            color: hsl(var(--bc)/1);
+        }
+    }
+}
+
+.glass, .glass.btn-active {
+    border: none;
+    -webkit-backdrop-filter: blur(var(--glass-blur,40px));
+    backdrop-filter: blur(var(--glass-blur,40px));
+    background-color: transparent;
+    background-image: linear-gradient(135deg,rgb(255 255 255/var(--glass-opacity,30%)) 0%,rgb(0 0 0/0%) 100%),linear-gradient(var(--glass-reflex-degree,100deg),rgb(255 255 255/var(--glass-reflex-opacity,10%)) 25%,rgb(0 0 0/0%) 25%);
+    box-shadow: 0 0 0 1px rgb(255 255 255/var(--glass-border-opacity,10%)) inset,0 0 0 2px #0000000d;
+    text-shadow: 0 1px rgb(0 0 0/var(--glass-text-shadow-opacity,5%));
+}

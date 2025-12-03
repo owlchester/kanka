@@ -17,13 +17,13 @@ const registerModules = () => {
 const registerModuleChange = (field) => {
     field.addEventListener('change', function (event) {
         event.preventDefault();
-        field.closest('.toggle').classList.add('!hidden');
+        field.closest('.toggle').classList.add('hidden!');
         field.closest('.box-module').querySelector('.action-loading').classList.remove('hidden');
 
         axios
             .post(field.dataset.url)
             .then(response => {
-                field.closest('.toggle').classList.remove('!hidden');
+                field.closest('.toggle').classList.remove('hidden!');
                 field.closest('.box-module').querySelector('.action-loading').classList.add('hidden');
                 if (!response.data.success) {
                     return;

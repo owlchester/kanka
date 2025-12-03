@@ -17,5 +17,5 @@
 @endsection
 @section('styles')
     @parent
-    @vite('resources/sass/family-tree.scss')
+    @vite('resources/css/families/tree.css')
 @endsection

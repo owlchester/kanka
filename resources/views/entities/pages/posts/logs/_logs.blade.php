@@ -48,7 +48,7 @@
                                 {{ __('entities/logs.actions.reveal') }}
                             </a>
                         @elseif (!$campaign->superboosted())
-                            <a @click="opened = !opened" class="btn btn-sm btn-outline">
+                            <a @click="opened = !opened" class="btn2 btn-sm btn-outline">
                                 <x-icon class="fa-regular fa-eye" />
                                 {{ __('entities/logs.actions.reveal') }}
                             </a>

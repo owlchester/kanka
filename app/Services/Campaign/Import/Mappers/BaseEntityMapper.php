@@ -16,10 +16,10 @@ use App\Models\Post;
 use App\Models\PostTag;
 use App\Models\Relation;
 use App\Models\Reminder;
+use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Exception;
 
 trait BaseEntityMapper
 {
@@ -392,13 +392,13 @@ trait BaseEntityMapper
                 $men = new EntityMention;
                 $men->entity_id = $this->entity->id;
                 $men->target_id = ImportIdMapper::getEntity($data['target_id']);
-                if (!empty($data['campaign_id'])) {
+                if (! empty($data['campaign_id'])) {
                     $men->campaign_id = $this->campaign->id;
-                } elseif (!empty($data['post_id'])) {
+                } elseif (! empty($data['post_id'])) {
                     $men->post_id = ImportIdMapper::getPost($data['post_id']);
-                } elseif (!empty($data['timeline_element_id'])) {
+                } elseif (! empty($data['timeline_element_id'])) {
                     $men->timeline_element_id = ImportIdMapper::getTimelineElement($data['timeline_element_id']);
-                } elseif (!empty($data['quest_element_id'])) {
+                } elseif (! empty($data['quest_element_id'])) {
                     $men->quest_element_id = ImportIdMapper::getQuestElement($data['quest_element_id']);
                 }
                 $men->save();

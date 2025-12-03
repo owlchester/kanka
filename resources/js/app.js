@@ -1,7 +1,6 @@
 import './events';
 import './tags';
 import './components/select2.js';
-import dynamicMentions from "./mention";
 
 import.meta.glob([
     '../images/**',
@@ -328,7 +327,6 @@ initSubmenuSwitcher();
 
 manageTabs();
 
-dynamicMentions();
 initAjaxPagination();
 initDynamicDelete();
 initImageRemoval();

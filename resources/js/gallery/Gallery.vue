@@ -124,7 +124,7 @@
             </div>
             <div class="flex gap-2 flex-row">
                 <div :class="gridClass()">
-                    <div v-if="canUpload && !showUnused" class="rounded-xl shadow bg-base-100 overflow-hidden col-span-2 sm:col-span-3 md:w-[12rem] cursor-pointer flex justify-center items-center flex-col gap-4" @click="selectFiles">
+                    <div v-if="canUpload && !showUnused" class="rounded-xl shadow bg-base-100 overflow-hidden col-span-2 sm:col-span-3 md:w-48 cursor-pointer flex justify-center items-center flex-col gap-4" @click="selectFiles">
                         <div class="flex flex-col gap-4 p-2" v-if="!uploading">
                             <div class="flex flex-col gap-2 items-center">
                                 <i class="fa-regular fa-image text-4xl text-neutral-content" aria-hidden="true"></i>
