@@ -22,7 +22,9 @@ class CachedResponse
                 cookie('authenticated', '1', 0, '/', null, null, false)
             );
         } else {
-            $response->headers->clearCookie('authenticated');
+            $cookie = cookie('authenticated', '', -1, '/', null, null, false);
+            $response->headers->setCookie($cookie);
+
             $response->headers->set('Cache-Control', 'public, max-age=600, s-maxage=1200');
         }
 
