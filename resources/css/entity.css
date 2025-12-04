@@ -1,0 +1,50 @@
+/**
+ * Contains styling for an entity's submenu and various elements related.
+ * For styling regarding the general layout of entities, check boosted.scss.
+ */
+
+.entity-posts, .entity-notes {
+    img {
+        max-width: 100%;
+    }
+
+    .post-details {
+        .post-detail-element:not(:last-child) {
+            &:after {
+                content: "|";
+            }
+        }
+    }
+
+    .post-footer {
+        .post-updated {
+            &:before {
+                content: "|";
+            }
+        }
+    }
+}
+
+/** Collapsed / Expanded elements **/
+.element-toggle, .post-block {
+    .icon-hide {
+        display: none;
+    }
+}
+.element-toggle.collapsed, .post-block .collapsed, .element-toggle.animate-collapsed {
+    .icon-hide {
+        display: inline-block;
+    }
+    .icon-show {
+        display: none;
+    }
+}
+
+.collapsed\:show {
+    --fa-display: none;
+}
+.animate-collapsed {
+    .collapsed\:flip {
+        rotate: 180deg ;
+    }
+}

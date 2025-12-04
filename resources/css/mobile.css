@@ -1,0 +1,14 @@
+@media (max-width: 767px) {
+    .content-header {
+        padding-top: 5px;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+        overflow-y: auto;
+        border: none;
+    }
+    .keyboard-shortcut {
+        display: none;
+    }
+}

@@ -9,7 +9,7 @@
                 :title="entity.name"
                 class="rounded cover-background block h-16 w-16" />
         </div>
-        <div class="flex-grow truncate pl-1 text-base-content"  @click="preview">
+        <div class="grow truncate pl-1 text-base-content"  @click="preview">
             <div class="font-extrabold entity-name truncate" :title="entity.name" v-html="entity.name">
             </div>
             <div class="entity-type text-xs" v-html="entity.type">

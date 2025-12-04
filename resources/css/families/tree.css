@@ -1,0 +1,39 @@
+#family-tree {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    --family-tree-column-width: 220px;
+    --family-tree-row-height: 110px;
+}
+
+.family-node-entity {
+    border: 1px solid hsl(var(--nc)/1);
+    --tw-background-opacity: 1;
+    background-color: hsl(var(--b1)/var(--tw-background-opacity));
+    width: var(--family-tree-entity-width, 200px);
+    height: var(--family-tree-entity-height, 60px);
+}
+.family-node-entity-founder {
+    --tw-background-opacity: 1;
+    background-color: var(--family-tree-founder, hsl(var(--pc)/var(--tw-background-opacity)));
+    color: hsl(var(--p)/1);
+}
+.family-node-entity-relation {
+    --tw-background-opacity: 1;
+    background-color: hsl(var(--b3)/var(--tw-background-opacity));
+}
+
+.family-tree-line {
+    background-color: var(--family-tree-line, #333);
+}
+.family-tree-child-line {
+    background-color: var(--family-tree-line, #333);
+}
+.family-tree-child-parent-line {
+    background-color: var(--family-tree-line, #333);
+}
+.family-tree-relation {
+
+}
+

@@ -9,13 +9,13 @@
 ![header]({!! $entity->header->getUrl(480, 270) !!})
 @endif
 
-# {!! $entity->name !!}
+# {!! html_entity_decode($entity->name, ENT_QUOTES, 'UTF-8') !!}
 
 @if ($entity->type)
-**{!! __('crud.fields.type') !!}:** {!! $entity->type !!}  
+**{!! __('crud.fields.type') !!}:** {!! html_entity_decode($entity->type, ENT_QUOTES, 'UTF-8') !!}
 @endif
 @if ($entity->tags->count() > 0)
-**{!! __('entities.tags') !!}:** {!! implode(', ', $entityData['tags']) !!}  
+**{!! __('entities.tags') !!}:** {!! implode(', ', $entityData['tags']) !!}
 @endif
 **{!! __('crud.fields.visibility') !!}:** {!! $entity->is_private ? __('campaigns/visibilities.titles.private') : __('campaigns/visibilities.titles.public') !!}
 
@@ -40,13 +40,13 @@
 @if (!empty($entityData['attributes']))
 ## {!! __('crud.tabs.attributes') !!}
 
-{!! $entityData['attributes'] !!}  
+{!! $entityData['attributes'] !!}
 
 @endif
 @if (!empty($entityData['relations']))
 ## {!! __('crud.tabs.connections') !!}
 
-{!! $entityData['relations'] !!}  
+{!! $entityData['relations'] !!}
 
 @endif
 @includeWhen($entity->isCharacter(), 'entities.markdown.characters')

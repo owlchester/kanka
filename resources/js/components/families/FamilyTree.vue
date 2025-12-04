@@ -46,7 +46,7 @@
                 :scale="1"
                 :maxScale="3"
                 :within="false"
-                class="!cursor-move"
+                class="cursor-move!"
                 >
                 <div class="relative" v-bind:style="{width: dragWidth() + 'px', height: dragHeight() + 'px'}">
                     <a class="btn2 btn-primary" v-on:click="createNode()" v-if="showCreateNode()">

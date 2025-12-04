@@ -1,0 +1,107 @@
+/**
+ * Control the way tooltips appear. Boosted campaigns can have entity images displayed in tooltips.
+ */
+.tooltip-content {
+    max-width: 378px !important;
+    .tooltip-header {
+        background:
+            linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, hsl(var(--b1)/var(--tw-bg-opacity, 1)) 100%),
+            var(--tooltip-background);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+    }
+    .tooltip-text {
+        /* Boosted campaigns can set a custom tooltip WITH html, including headers, so we need to make them way smaller here */
+        h1 {
+            font-size: 1.16rem;
+        }
+        h2 {
+            font-size: 1.12rem;
+        }
+        h3 {
+            font-size: 1.09rem;
+        }
+        h4, h5, h6 {
+            font-size: 0.95rem;
+        }
+    }
+}
+
+
+
+/** Change positioning of various elements so tooltips can extend beyond overflow:hidden containers **/
+
+/* Dashboard widgets */
+.panel .panel-body .preview {
+    position: unset;
+}
+
+.keyboard-shortcut {
+    padding: 0.1rem 0.4rem;
+    font-size: 0.75rem;
+    --tw-border-opacity: .2;
+    border: 1px solid hsl(var(--bc)/var(--tw-border-opacity));
+    border-radius: 5px;
+    margin-right: 5px;
+    pointer-events: unset;
+}
+.keyboard-shortcut.form-control-feedback {
+    line-height: 24px;
+    height: 30px;
+    width: 30px;
+    margin-top: 3px;
+}
+.dropdown-menu .keyboard-shortcut {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    margin-right: 0;
+}
+
+
+/** tippy **/
+.tippy-box {
+    border-radius: var(--rounded-btn, .25rem);
+    --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--b1)/var(--tw-bg-opacity));
+    --tw-text-opacity: 1;
+    color: hsl(var(--bc)/var(--tw-text-opacity));
+
+    .tippy-content {
+        padding: .5rem;
+        font-size: 0.8rem;
+    }
+}
+.tippy-box[data-placement^='top'] > .tippy-arrow::before {
+    --tw-bg-opacity: 1;
+    border-top-color: hsl(var(--b1)/var(--tw-bg-opacity));
+}
+.tippy-box[data-placement^='bottom'] > .tippy-arrow::before {
+    --tw-bg-opacity: 1;
+    border-bottom-color: hsl(var(--b1)/var(--tw-bg-opacity));
+}
+.tippy-box[data-placement^='left'] > .tippy-arrow::before {
+    --tw-bg-opacity: 1;
+    border-left-color: hsl(var(--b1)/var(--tw-bg-opacity));
+}
+.tippy-box[data-placement^='right'] > .tippy-arrow::before {
+    --tw-bg-opacity: 1;
+    border-right-color: hsl(var(--b1)/var(--tw-bg-opacity));
+}
+.tippy-box[data-theme~="kanka-dropdown"] {
+    --n: var(--b1);
+}
+
+.tippy-box[data-theme~="entity-tooltip"] {
+    background-color: hsl(var(--b1)/var(--tw-bg-opacity));
+
+    .tippy-content {
+        padding: 0;
+    }
+}
+/*.tippy-box[data-theme~="kanka"] {*/
+/*    background-color: hsl(var(--b1)/var(--tw-bg-opacity));*/
+/*    color: hsl(var(--bc)/var(--tw-text-opacity));*/
+/*}*/

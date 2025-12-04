@@ -143,6 +143,6 @@ class ExportsTable extends Component
             $icon = 'fa-regular fa-arrow-up-a-z';
         }
 
-        return '<i class="' . $icon . ' !mr-0"></i>';
+        return '<i class="' . $icon . ' mr-0!"></i>';
     }
 }

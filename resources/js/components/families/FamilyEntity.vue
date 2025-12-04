@@ -98,9 +98,10 @@ export default {
             return css;
         },
         position() {
-            return '';
-            /*return 'left: ' + this.drawX + 'px; top: ' + this.drawY + 'px;' +
-                'width:' + this.entityWidth + 'px; height: ' + this.entityHeight + 'px';*/
+            return {
+                left: `calc(${this.column} * var(--family-tree-column-width))`,
+                top: `calc(${this.row} * var(--family-tree-row-height))`,
+            };
         },
         editEntity(uuid, node) {
             this.emitter.emit('editEntity', {uuid: uuid, relation: node});

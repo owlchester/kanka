@@ -1,0 +1,15 @@
+@media (min-width: 768px) {
+    .quick-creator-body {
+        .selection .option {
+            .full-form {
+                display: none;
+            }
+
+            &:hover {
+                .full-form {
+                    display: inline;
+                }
+            }
+        }
+    }
+}

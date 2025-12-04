@@ -6,7 +6,7 @@
             @livewire('roadmap.upvote', ['feature' => $feature], key("idea-{$feature->id}"))
         </div>
     </div>
-    <div class="bg-gray-200 p-5 flex-grow flex flex-col gap-5">
+    <div class="bg-gray-200 p-5 grow flex flex-col gap-5">
         <h2 class="text-md">{{ $feature->name }}</h2>
         {!! $feature->cleanDescription() !!}
     </div>

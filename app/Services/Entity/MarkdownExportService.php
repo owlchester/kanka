@@ -49,10 +49,9 @@ class MarkdownExportService
 
         $entityData = $this->entityData();
 
-        if (!$this->isSingle) {
+        if (! $this->isSingle) {
             $this->addToIndex();
         }
-        
 
         return Blade::render('entities.markdown.base', ['entity' => $this->entity, 'entityData' => $entityData, 'converter' => $converter, 'campaign' => $this->campaign]);
     }
@@ -108,11 +107,11 @@ class MarkdownExportService
 
         if ($this->isSingle) {
             foreach ($this->entity->tags as $tag) {
-                $entityData['tags'][] = '[' . $tag->name . '](' . $tag->entity->url() . ')';
+                $entityData['tags'][] = '[' . html_entity_decode($tag->name, ENT_QUOTES, 'UTF-8') . '](' . $tag->entity->url() . ')';
             }
         } else {
             foreach ($this->entity->tags as $tag) {
-                $entityData['tags'][] = '[' . $tag->name . '](tags/' . Str::slug($tag->name) . '_' . $tag->entity->id . ')';
+                $entityData['tags'][] = '[' . html_entity_decode($tag->name, ENT_QUOTES, 'UTF-8') . '](tags/' . Str::slug($tag->name) . '_' . $tag->entity->id . ')';
             }
         }
 
@@ -127,13 +126,13 @@ class MarkdownExportService
         }
 
         foreach ($this->entity->attributes as $attribute) {
-            $entityData['attributes'] .= '* **' . $attribute->name . '**: ' . $attribute->value . '
+            $entityData['attributes'] .= '* **' . $attribute->name . '**: ' . html_entity_decode($attribute->value, ENT_QUOTES, 'UTF-8') . '
 ';
         }
 
         if ($this->isSingle) {
             foreach ($this->entity->relationships as $relation) {
-                    $entityData['relations'] .= '* [' . $relation->target->name . '](' . $relation->target->url() . ')
+                $entityData['relations'] .= '* [' . html_entity_decode($relation->target->name, ENT_QUOTES, 'UTF-8') . '](' . $relation->target->url() . ')
 ';
             }
         } else {

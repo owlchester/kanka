@@ -37,7 +37,7 @@ if ($firstPost && $firstPost->position >= 0) {
                 <div class="dragger">
                     <x-icon class="fa-regular fa-sort" />
                 </div>
-                <div class="truncate flex-grow">
+                <div class="truncate grow">
                     {!! $note->name !!}
                 </div>
 
