@@ -49,10 +49,9 @@ class MarkdownExportService
 
         $entityData = $this->entityData();
 
-        if (!$this->isSingle) {
+        if (! $this->isSingle) {
             $this->addToIndex();
         }
-
 
         return Blade::render('entities.markdown.base', ['entity' => $this->entity, 'entityData' => $entityData, 'converter' => $converter, 'campaign' => $this->campaign]);
     }
@@ -133,7 +132,7 @@ class MarkdownExportService
 
         if ($this->isSingle) {
             foreach ($this->entity->relationships as $relation) {
-                    $entityData['relations'] .= '* [' . html_entity_decode($relation->target->name, ENT_QUOTES, 'UTF-8') . '](' . $relation->target->url() . ')
+                $entityData['relations'] .= '* [' . html_entity_decode($relation->target->name, ENT_QUOTES, 'UTF-8') . '](' . $relation->target->url() . ')
 ';
             }
         } else {
