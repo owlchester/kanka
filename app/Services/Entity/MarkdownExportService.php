@@ -45,8 +45,8 @@ class MarkdownExportService
     {
         $converter = new HtmlConverter;
         $converter->getConfig()->setOption('strip_tags', true);
-        $converter->getEnvironment()->addConverter(new TableConverter, new LinkConverter);
-
+        $converter->getEnvironment()->addConverter(new TableConverter);
+        $converter->getEnvironment()->addConverter(new LinkConverter);
         $entityData = $this->entityData();
 
         if (!$this->isSingle) {

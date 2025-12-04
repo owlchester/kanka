@@ -171,9 +171,9 @@ class MarkdownMentionsService
                     $url = $entity->url();
                 } else {
                     //Get module name
-                    if (!empty($entity) && $entity->entityType->isCustom()) {
+                    if ($entity->entityType->isCustom()) {
                         $moduleName = Str::slug($entity->entityType->plural() . '_' . $entity->entityType->id);
-                    } elseif (!empty($entity)) {
+                    } else {
                         $moduleName = Str::slug($entity->entityType->pluralCode());  
                     }
 
@@ -250,9 +250,9 @@ class MarkdownMentionsService
         } else {
             //Get entitytype from the post
             if ($post->entity->entityType->isCustom()) {
-                $moduleName = Str::slug($post?->entity->entityType->plural() . '_' . $post?->entity->entityType->id);
+                $moduleName = Str::slug($post->entity->entityType->plural() . '_' . $post->entity->entityType->id);
             } else {
-                $moduleName = Str::slug($post?->entity->entityType->pluralCode());  
+                $moduleName = Str::slug($post->entity->entityType->pluralCode());  
             }
 
             $url =  str_replace(' ', '-', $moduleName) . '/'
