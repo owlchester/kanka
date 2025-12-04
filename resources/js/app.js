@@ -1,10 +1,42 @@
 import './events';
 import './tags';
 import './components/select2.js';
+import './keyboard';
+import './crud';
+import './entities';
+import './post';
+import './post-layouts';
+import './calendar';
+import './forms/calendar-date';
+import './keep-alive';
+import './quick-creator';
+import './datagrids';
+import './datagrids2';
+import './animations';
+import './bookmarks';
+import './webhooks';
+import './members';
+import './campaign';
+import './clipboard';
+import './toast';
+import './banner';
+import './timelines';
+import './utility/sortable';
+import './utility/formError';
+import './utility/dialog';
+import './utility/colour-picker';
+import './togglers';
+
+// VueJS elements
+import './header'
+import './gallery/selection'
+import './utility/tippy';
+import './maintenance';
 
 import.meta.glob([
     '../images/**',
 ]);
+
 
 /**
  * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
@@ -28,23 +60,13 @@ window.onEvent(function() {
 
 function initAdblocker() {
     let adscript = document.getElementById('ad-client');
-    if (!adscript) {
-        return;
-    }
-    fetch(adscript.src, {
-        // headers: {'X-Requested-With': 'XMLHttpRequest'}
-    })
-    .catch(() => {
-        let reminder = document.getElementById('adblock-plea');
-        if (!reminder) {
-            return;
-        }
-        reminder.classList.remove('hidden');
-    });
+    if (!adscript)  return;
+
+    fetch(adscript.src, { method: 'HEAD', mode: 'no-cors' })
+        .catch(() => {
+            document.getElementById('adblock-plea')?.classList.remove('hidden');
+        });
 }
-
-
-
 
 /**
  * Save and manage tabs for when refreshing
@@ -57,19 +79,14 @@ const manageTabs = () => {
             e.preventDefault();
             const parent = tab.closest('.nav-tabs-custom');
 
-            // Disable all but this tab
-            parent.querySelectorAll('.nav-tabs li').forEach(function (subtab) {
-                subtab.classList.remove('active');
-            });
-            tab.parentNode.classList.add('active');
+            // 1. Deactivate current active elements within this container
+            parent.querySelector('.nav-tabs li.active')?.classList.remove('active');
+            parent.querySelector('.tab-pane.active')?.classList.remove('active');
 
-            // Disable all but this panel
-            parent.querySelectorAll('.tab-pane').forEach(function (subtab) {
-                subtab.classList.remove('active');
-            });
-
+            // 2. Activate new elements
+            tab.parentElement.classList.add('active');
             const target = document.querySelector(tab.getAttribute('href'));
-            target.classList.add('active');
+            target?.classList.add('active');
         });
     });
 }
@@ -123,8 +140,9 @@ const initDynamicDelete = () => {
         ele.addEventListener('click', function (e) {
             e.preventDefault();
             if (ele.dataset.confirming === '1') {
+                // ... existing submission logic ...
                 ele.classList.add('loading');
-                ele.innerHTML = ''
+                ele.innerHTML = '';
                 const target = document.querySelector(ele.dataset.target);
                 if (!target) {
                     console.error('Unknown target', target);
@@ -135,10 +153,20 @@ const initDynamicDelete = () => {
                 return;
             }
 
+            // Save original text to restore it later
+            const originalText = ele.innerHTML;
+
             ele.dataset.confirming = '1';
             ele.querySelector('span').classList.add('md:inline');
             ele.querySelector('span').innerHTML = ele.dataset.confirm;
+
+            // Reset if user clicks away (loses focus)
+            ele.addEventListener('blur', function() {
+                ele.dataset.confirming = '0';
+                ele.innerHTML = originalText;
+            }, { once: true });
         });
+
     });
     document.querySelectorAll('a[data-toggle="delete-form"]')?.forEach(function (ele) {
         if (ele.dataset.loaded === '1') {
@@ -164,58 +192,6 @@ const initSubmenuSwitcher = () => {
     });
 };
 
-/**
- * AdminLTE legacy. The CSS is a bit weird, for small pages we need to force a min-height
- * So that the footer is at the bottom, and so that the sidebar can be fully scrolled
- */
-const initPageHeight = () => {
-    let controlSidebar = 0;
-
-    const heights = {
-        window: window.innerHeight,
-        header: document.querySelector('header') ? outerHeight(document.querySelector('header')) : 0,
-        footer: document.querySelector('.main-footer') ? outerHeight(document.querySelector('.main-footer')) : 0,
-        sidebar: document.querySelector('.main-sidebar .sidebar') ? outerHeight(document.querySelector('.main-sidebar .sidebar')) : 0,
-        controlSidebar
-    };
-
-    const max = heighestValue(heights);
-
-    const $contentSelector = document.querySelector('.content-wrapper');
-    if (max === heights.controlSidebar) {
-        $contentSelector.style.minHeight = max;
-    } else if (max === heights.window) {
-        $contentSelector.style.minHeight = (max - heights.header - heights.footer);
-    } else {
-        $contentSelector.style.minHeight = (max - heights.header);
-    }
-};
-
-const outerHeight = (el, includeMargin = false) => {
-    // Get the height of the element including padding
-    let height = el.getBoundingClientRect().height;
-
-    // Optionally include the margin
-    if (includeMargin) {
-        const style = getComputedStyle(el);
-        height += parseInt(style.marginTop) + parseInt(style.marginBottom);
-    }
-
-    return height;
-};
-
-const heighestValue = (numbers) => {
-    // Calculate the maximum number in a list
-    let max = 0;
-
-    Object.keys(numbers).forEach(key => {
-        if (numbers[key] > max) {
-            max = numbers[key];
-        }
-    });
-
-    return max;
-};
 
 /**
  * When clicking on these buttons, adds a "loading" spinner to indicate that something is happening
@@ -262,9 +238,9 @@ const initDismissible = () => {
             target.classList.remove('opacity-100');
             target.classList.add('opacity-0');
 
-            setTimeout(function () {
+            target.addEventListener('transitionend', () => {
                 target.remove();
-            }, 150);
+            }, { once: true });
         });
     });
 };
@@ -282,44 +258,6 @@ const initPermBtn = () => {
     });
 };
 
-// Splitting off the js files into logical blocks
-import './keyboard';
-// import './vue';
-import './crud';
-import './entities';
-import './post';
-import './post-layouts';
-import './calendar';
-import './forms/calendar-date';
-import './keep-alive';
-import './quick-creator';
-import './datagrids';
-import './datagrids2';
-import './animations';
-import './bookmarks';
-import './webhooks';
-import './members';
-import './campaign';
-import './clipboard';
-import './toast';
-import './banner';
-import './timelines';
-import './utility/sortable';
-import './utility/formError';
-import './utility/dialog';
-import './utility/colour-picker';
-import './togglers';
-
-// VueJS elements
-//import './navigation');
-import './header'
-import './gallery/selection'
-//import './ads');
-import './utility/tippy';
-import './maintenance';
-
-
-initPageHeight();
 
 window.initForeignSelect();
 window.initDialogs();

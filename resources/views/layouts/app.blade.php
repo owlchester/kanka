@@ -72,11 +72,11 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
 <a href="#{{ isset($contentId) ? $contentId : "main-content" }}" class="skip-nav-link absolute mx-2 top-0 btn2 btn-primary btn-sm rounded-t-none" tabindex="0">
     {{ __('crud.navigation.skip_to_content') }}
 </a>
-    <div id="app" class="wrapper h-full min-h-screen relative mt-12">
+    <div id="app" class="wrapper min-h-screen relative mt-12 flex flex-col">
         @include('layouts.header', ['toggle' => $showSidebar])
         @includeWhen(isset($campaign) || (isset($sidebar) && $sidebar === 'settings'), 'layouts.sidebars.' . ($sidebar ?? 'app'))
 
-        <div class="content-wrapper transition-all duration-150" id="{{ isset($contentId) ? $contentId : "main-content" }}">
+        <div class="content-wrapper transition-all duration-150 grow" id="{{ isset($contentId) ? $contentId : "main-content" }}">
             @includeWhen(!isset($skipBanners), 'layouts.banner')
 
             @if(!view()->hasSection('content-header') && (isset($breadcrumbs) && $breadcrumbs !== false))

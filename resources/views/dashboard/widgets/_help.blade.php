@@ -2,7 +2,7 @@
     <span class="widget-title block text-lg mb-3">
         {{ __('dashboards/widgets/help.title') }}
     </span>
-    <div class="entity-content">
+    <div class="">
         <ul class="flex flex-col gap-2 lg:gap-3 xl:gap-4 list-none m-0 px-1">
         <li>
             <a href="https://docs.kanka.io/">

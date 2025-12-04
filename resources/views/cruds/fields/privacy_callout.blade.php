@@ -3,7 +3,7 @@ $isPrivate = old('is_private', $source->is_private ?? $model->is_private ?? $cam
 @endphp
 <div class="privacy-callout rounded-xl p-4 border border-red-300">
     <input type="hidden" name="is_private" value="0" />
-    <label class="flex items-start gap-2 cursor-pointer">
+    <label class="flex! items-start gap-2 cursor-pointer">
         <input type="checkbox" name="is_private" value="1" @if ($isPrivate) checked="checked" @endif data-toggle="entity-privacy" class="" />
 
         <div>

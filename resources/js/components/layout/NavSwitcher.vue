@@ -109,21 +109,21 @@
                     </div>
 
                     <div class="grid grid-cols-3 gap-2">
-                        <a v-bind:href="marketplace.themes.url" class="border py-2 items-center justify-center rounded-md hover:shadow-md flex flex-col gap-1" target="_blank">
+                        <a v-bind:href="marketplace.themes.url" class="border py-2 items-center justify-center rounded-md hover:shadow-md flex flex-col gap-1 border-base-300">
                             <div class="icon bg-base-200 rounded-full w-14 h-14 text-3xl aspect-square flex justify-center items-center">
                                 <i class="fa-duotone fa-palette" aria-hidden="true"></i>
                             </div>
                             <div>{{ marketplace.themes.title }}</div>
                             <div class="text-muted text-xs">{{ marketplace.themes.number }}</div>
                         </a>
-                        <a v-bind:href="marketplace.sheets.url" class="border py-2 items-center justify-center rounded-md hover:shadow-md flex flex-col gap-1" target="_blank">
+                        <a v-bind:href="marketplace.sheets.url" class="border py-2 items-center justify-center rounded-md hover:shadow-md flex flex-col gap-1 border-base-300">
                             <div class="icon bg-base-200 rounded-full w-14 h-14 text-3xl aspect-square flex justify-center items-center">
                             <i class="fa-duotone fa-table-cells" aria-hidden="true"></i>
                             </div>
                             <div>{{ marketplace.sheets.title }}</div>
                             <div class="text-muted text-xs">{{ marketplace.sheets.number }}</div>
                         </a>
-                        <a v-bind:href="marketplace.content.url" class="border py-2 items-center justify-center rounded-md hover:shadow-md flex flex-col gap-1" target="_blank">
+                        <a v-bind:href="marketplace.content.url" class="border py-2 items-center justify-center rounded-md hover:shadow-md flex flex-col gap-1 border-base-300">
                             <div class="icon bg-base-200 rounded-full w-14 h-14 text-3xl aspect-square flex justify-center items-center">
                                 <i class="fa-duotone fa-dice-d20" aria-hidden="true"></i>
                             </div>
@@ -135,7 +135,7 @@
 
                 <div class="subscription" v-if="!profile.is_impersonating && profile.subscription">
                     <div class="uppercase font-bold py-2">{{ profile.subscription.title }}</div>
-                    <a class="border rounded-lg flex justify-center items-center hover:shadow-md" v-bind:href="profile.urls.subscription">
+                    <a class="border rounded-lg flex justify-center items-center hover:shadow-md border-base-300" v-bind:href="profile.urls.subscription">
                         <div class="flex-none p-2">
                             <img class="w-16 h-16" v-bind:src="profile.subscription.image" v-bind:alt="profile.subscription.tier">
                         </div>
