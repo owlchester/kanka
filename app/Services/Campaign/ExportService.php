@@ -362,6 +362,10 @@ class ExportService
 
     protected function gallery(): self
     {
+        if ($this->isMarkdown) {
+            return $this;
+        }
+
         foreach ($this->campaign->images()->with('imageFolder')->get() as $image) {
             try {
                 /** @var Image $image */

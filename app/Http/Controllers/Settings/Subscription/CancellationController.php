@@ -48,7 +48,6 @@ class CancellationController extends Controller
             }
         }
         $members = $members->unique();
-        // @phpstan-ignore-next-line
         $players = $members->reject(fn ($userId) => $userId == $user->id)->count();
 
         $discord = auth()->user()->discord();
