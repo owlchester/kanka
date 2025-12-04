@@ -8,17 +8,21 @@ use App\Models\EntityAsset;
 use App\Models\Post;
 use App\Traits\CampaignAware;
 use App\Traits\MentionTrait;
+use App\Traits\UserAware;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class MarkdownMentionsService
 {
+    use UserAware;
     use CampaignAware;
     use MentionTrait;
 
     /** The text that is being parsed, usually an entry field */
     protected ?string $text = '';
+
+    protected bool $isSingle = false;
 
     /** @var array|Entity[] List of entities */
     protected array $entities = [];
@@ -35,6 +39,13 @@ class MarkdownMentionsService
     /** @var array|Attribute[] List of attributes */
     protected array $attributes = [];
 
+    public function single(bool $isSingle = true)
+    {
+        $this->isSingle = $isSingle;
+
+        return $this;
+    }
+
     /**
      * Parse a model's text for markdown export
      */
@@ -50,6 +61,7 @@ class MarkdownMentionsService
 
         return $this->replaceForMarkdown();
     }
+
 
     protected function replaceForMarkdown(): string
     {
@@ -75,70 +87,74 @@ class MarkdownMentionsService
             $hasCustom = Arr::has($data, 'custom');
 
             // If the user always wants advanced mentions, we force the [] syntax upon them
-            if ($hasCustom || auth()->user()->alwaysAdvancedMentions()) {
+            if ($hasCustom || $this->user->alwaysAdvancedMentions()) {
 
-                // Get entity
+                //Get entity
                 $entity = $this->entity($data['id']);
-                if (! empty($entity) && $entity->entityType->isCustom()) {
+                if (!empty($entity) && $entity->entityType->isCustom()) {
                     $moduleName = Str::slug($entity->entityType->plural() . '_' . $entity->entityType->id);
-                } elseif (! empty($entity)) {
-                    $moduleName = Str::slug($entity->entityType->plural());
+                } elseif (!empty($entity)) {
+                    $moduleName = Str::slug($entity->entityType->pluralCode());  
                 }
 
-                // If no entity then render as unknown
+                //If no entity then render as unknown
                 if (empty($entity) || ($entity->hasChild() && $entity->isMissingChild())) {
                     return __('crud.history.unknown');
                 }
 
-                // If field, render that.
+                if ($this->isSingle) {
+                    $url = $entity->url();
+                } else {
+                    $url = str_replace(' ', '-', $moduleName) . '/'
+                        . str_replace(' ', '-', Str::slug($entity->name)) . '_' . $entity->id;
+                }
+
+                //If field, render that.
                 if (Arr::has($data, 'field')) {
                     $name = $entity->name;
                     $field = $data['field'];
-                    // Check for field
-                    if (isset($entity->$field)) {
+                    //Check for field
+                    if(isset($entity->$field)) {
                         $name = $entity->$field;
                     }
 
                     return '<a href="'
-                        . str_replace(' ', '-', $moduleName) . '/'
-                        . str_replace(' ', '-', Str::slug($entity->name)) . '_' . $entity->id
+                        . $url
                         . '">'
                         . $name
                         . '</a>';
                 }
 
-                // If no alias, render name
+                //If no alias, render name
                 if (! Arr::has($data, 'alias')) {
 
                     $name = $entity->name;
 
-                    // Check for custom name
-                    if (isset($data['text'])) {
+                    //Check for custom name
+                    if(isset($data['text'])) {
                         $name = $data['text'];
                     }
 
                     return '<a href="'
-                        . str_replace(' ', '-', $moduleName) . '/'
-                        . str_replace(' ', '-', Str::slug($entity->name)) . '_' . $entity->id
+                        . $url
                         . '">'
                         . $name
                         . '</a>';
                 }
+
 
                 // An alias was attached, try loading that too
                 $alias = $this->alias($data['alias']);
                 if (empty($alias) || empty($alias->entity)) {
 
-                    return '<a href="'
-                        . str_replace(' ', '-', $moduleName) . '/'
-                        . str_replace(' ', '-', Str::slug($entity->name)) . '_' . $entity->id
+                    return '<a href="' 
+                        . $url
                         . '">' . $entity->name . '</a>';
                 }
-
-                // If alias use that.
+                
+                //If alias use that.
                 return '<a href="'
-                    . str_replace(' ', '-', $moduleName) . '/'
-                    . str_replace(' ', '-', Str::slug($entity->name)) . '_' . $entity->id
+                    . $url
                     . '">'
                     . $alias->name
                     . '</a>';
@@ -150,17 +166,24 @@ class MarkdownMentionsService
             if (empty($entity) || ($entity->hasChild() && $entity->isMissingChild())) {
                 return __('crud.history.unknown');
             } else {
-                // Get module name
-                if (! empty($entity) && $entity->entityType->isCustom()) {
-                    $moduleName = Str::slug($entity->entityType->plural() . '_' . $entity->entityType->id);
-                } elseif (! empty($entity)) {
-                    $moduleName = Str::slug($entity->entityType->plural());
+
+                if ($this->isSingle) {
+                    $url = $entity->url();
+                } else {
+                    //Get module name
+                    if (!empty($entity) && $entity->entityType->isCustom()) {
+                        $moduleName = Str::slug($entity->entityType->plural() . '_' . $entity->entityType->id);
+                    } elseif (!empty($entity)) {
+                        $moduleName = Str::slug($entity->entityType->pluralCode());  
+                    }
+
+                    $url = str_replace(' ', '-', $moduleName) . '/'
+                        . str_replace(' ', '-', Str::slug($entity->name)) . '_' . $entity->id;
                 }
 
-                // Render normally
+                //Render normally
                 return '<a href="'
-                    . str_replace(' ', '-', $moduleName) . '/'
-                    . str_replace(' ', '-', Str::slug($entity->name)) . '_' . $entity->id
+                    . $url
                     . '">'
                     . $entity->name
                     . '</a>';
@@ -187,17 +210,23 @@ class MarkdownMentionsService
             if (empty($attribute)) {
                 return __('crud.history.unknown');
             }
-            // Get entity type for linking
-            if ($attribute->entity->entityType->isCustom()) {
-                $moduleName = Str::slug($attribute->entity->entityType->plural() . '_' . $attribute->entity->entityType->id);
+
+            if ($this->isSingle) {
+                $url = $attribute->entity->url();
             } else {
-                $moduleName = Str::slug($attribute->entity->entityType->plural());
+                //Get entity type for linking
+                if ($attribute->entity->entityType->isCustom()) {
+                    $moduleName = Str::slug($attribute->entity->entityType->plural() . '_' . $attribute->entity->entityType->id);
+                } else {
+                    $moduleName = Str::slug($attribute->entity->entityType->pluralCode());  
+                }
+                $url = str_replace(' ', '-', $moduleName) . '/'
+                    . str_replace(' ', '-', Str::slug($attribute->entity->name)) . '_' . $attribute->entity->id;
             }
 
-            // Render attribute.
+            //Render attribute.
             return '<a href="'
-                . str_replace(' ', '-', $moduleName) . '/'
-                . str_replace(' ', '-', Str::slug($attribute->entity->name)) . '_' . $attribute->entity->id
+                . $url
                 . '">'
                 . $attribute->value
                 . '</a>';
@@ -211,32 +240,38 @@ class MarkdownMentionsService
     {
         $post = $this->post($data['id']);
 
-        // If no post then render unknown
+        //If no post then render unknown
         if (empty($post) || $post->entity->isMissingChild()) {
             return __('crud.history.unknown');
         }
 
-        // Get entitytype from the post
-        if ($post->entity->entityType->isCustom()) {
-            $moduleName = Str::slug($post?->entity->entityType->plural() . '_' . $post?->entity->entityType->id);
+        if ($this->isSingle) {
+            $url = $post->entity->url();
         } else {
-            $moduleName = Str::slug($post?->entity->entityType->plural());
+            //Get entitytype from the post
+            if ($post->entity->entityType->isCustom()) {
+                $moduleName = Str::slug($post?->entity->entityType->plural() . '_' . $post?->entity->entityType->id);
+            } else {
+                $moduleName = Str::slug($post?->entity->entityType->pluralCode());  
+            }
+
+            $url =  str_replace(' ', '-', $moduleName) . '/'
+                . str_replace(' ', '-', Str::slug($post->entity->name)) . '_' . $post->entity->id;
         }
 
-        // If transcluding a post, render its entry
+
+        //If transcluding a post, render its entry
         if (Arr::has($data, 'text') && $data['text'] == 'transclude') {
             return '<a href="'
-                . str_replace(' ', '-', $moduleName) . '/'
-                . str_replace(' ', '-', Str::slug($post->entity->name)) . '_' . $post->entity->id
+                . $url
                 . '">'
                 . $post->entry
                 . '</a>';
         }
 
-        // Render normally
+        //Render normally
         return '<a href="'
-            . str_replace(' ', '-', $moduleName) . '/'
-            . str_replace(' ', '-', Str::slug($post->entity->name)) . '_' . $post->entity->id
+            . $url
             . '">'
             . $post->name
             . '</a>';
@@ -282,4 +317,5 @@ class MarkdownMentionsService
 
         return Arr::get($this->posts, $id);
     }
+
 }
