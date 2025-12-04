@@ -188,6 +188,7 @@ class ExportService
             Avatar::campaign($this->campaign);
             CampaignLocalization::forceCampaign($this->campaign);
             Module::campaign($this->campaign);
+            $this->markdown->user($this->user);
         }
         $this->path = $saveFolder . $this->file;
         $this->archive = new ZipArchive;

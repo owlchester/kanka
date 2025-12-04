@@ -43,7 +43,6 @@ class Kernel extends HttpKernel
             Middleware\OTP::class,
             ReplicationSwitcher::class,
         ],
-
         'api' => [
             // Do this in the routes 'throttle:rate_limit,1',
             'bindings',
