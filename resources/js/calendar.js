@@ -23,33 +23,53 @@ const initCalendarEventModal = () => {
     if (!recurring) {
         return;
     }
-    recurring.onchange = function () {
+    // Logic extracted to a function so it can be run on init and on change
+    const toggleUntil = () => {
         const until = document.querySelector('.field-recurring-until');
+        // Safety check in case the field is missing in specific forms
+        if (!until) return;
+
         if (recurring.value) {
             until.classList.remove('hidden');
         } else {
             until.classList.add('hidden');
         }
     };
+
+    // Use addEventListener instead of onchange property
+    recurring.addEventListener('change', toggleUntil);
+
+    // Run immediately to sync UI with current value (e.g. editing an existing event)
+    toggleUntil();
 };
 
 /**
  * Register keyboard shortcuts for previous/next view
  */
 const registerKeyboardShortcuts = () => {
-    if (!document.querySelector('[data-shortcut="previous"]')) {
+    const hasNav = document.querySelector('[data-shortcut="previous"]') || document.querySelector('[data-shortcut="next"]');
+    if (!hasNav) {
         return;
     }
+
     document.addEventListener('keydown', function(e) {
         // Ctrl + <- for previous, Ctrl + -> for next
-        if ((e.ctrlKey || e.metaKey) && e.which === 37) {
-            const previous = document.querySelector('[data-shortcut="previous"]');
-            previous.classList.add('loading');
-            previous.click();
-        } else if ((e.ctrlKey || e.metaKey) && e.which === 39) {
-            const next = document.querySelector('[data-shortcut="next"]');
-            next.classList.add('loading');
-            next.click();
+        if (e.ctrlKey || e.metaKey) {
+            // Modern replacement for deprecated e.which
+            if (e.key === 'ArrowLeft') {
+                const previous = document.querySelector('[data-shortcut="previous"]');
+                // Safety check: element might not exist (e.g. first page)
+                if (previous) {
+                    previous.classList.add('loading');
+                    previous.click();
+                }
+            } else if (e.key === 'ArrowRight') {
+                const next = document.querySelector('[data-shortcut="next"]');
+                if (next) {
+                    next.classList.add('loading');
+                    next.click();
+                }
+            }
         }
     });
 };
@@ -57,10 +77,8 @@ const registerKeyboardShortcuts = () => {
 
 initCalendarEventBlock();
 registerKeyboardShortcuts();
+initCalendarEventModal();
 
-if (document.querySelector('select[name="recurring_periodicity"]')) {
-    initCalendarEventModal();
-}
 window.onEvent(function() {
     initCalendarEventModal();
 });

@@ -25,7 +25,6 @@ import './utility/sortable';
 import './utility/formError';
 import './utility/dialog';
 import './utility/colour-picker';
-import './togglers';
 
 // VueJS elements
 import './header'

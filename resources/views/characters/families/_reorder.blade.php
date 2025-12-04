@@ -24,9 +24,13 @@
                                 :entity="$family->family->entity"
                                 :campaign="$campaign" />
                         </div>
-                        <div class="grow-0 px-2 text-lg">
-                            <input type="hidden" name="family_privates[{{ $family->family_id }}]" value="{{ $family->is_private }}" />
-                            <i class="cursor-pointer hover:text-accent @if($family->is_private) fa-solid fa-lock-keyhole @else fa-regular fa-unlock-keyhole  @endif" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
+                        <div class="grow-0 px-2 text-lg" x-data="{ isPrivate: {{ $family->is_private }} }">
+                            <input type="hidden" name="family_privates[{{ $family->family_id }}]" :value="isPrivate ? 1 : 0" />
+                            <i
+                                class="cursor-pointer hover:text-accent"
+                                @click="isPrivate = !isPrivate"
+                                :class="isPrivate ? 'fa-solid fa-lock-keyhole' : 'fa-regular fa-unlock-keyhole'"
+                                :title="isPrivate ? '{{ __('entities/attributes.visibility.private') }}' : '{{ __('entities/attributes.visibility.public') }}'"></i>
                         </div>
                     </x-reorder.child>
                 @endforeach

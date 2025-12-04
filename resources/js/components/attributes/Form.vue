@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-wrap gap-2 md:gap-5 lg:gap-10 justify-center justify-items-stretch items-center
-     lg:border lg:rounded p-2 lg:p-5 text-xs md:text-sm m-0 lg:m-5 ">
+     lg:border border-base-300 lg:rounded p-2 lg:p-5 text-xs md:text-sm m-0 lg:m-5 ">
         <div v-if="showAddForm" role="button" @click="addAttribute($event, '')" class="flex flex-col gap-1 items-center hover:text-primary">
             <i class="fa-regular fa-person text-xl md:text-2xl" aria-hidden="true" />
             <span v-html="trans('types.attribute')" class="text-xs"></span>

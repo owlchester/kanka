@@ -35,7 +35,12 @@ if (!empty($source) && $source->is_private) {
         @include('cruds.fields.privacy_callout', ['privacyToggle' => true])
     @endif
 
-    <x-alert type="warning" class="rounded-xl" id="entity-is-private" :hidden="!$hidden">
+    <div
+        id="entity-is-private"
+        x-data="{ show: {{ $hidden ? 'true' : 'false' }} }"
+        @entity-privacy-changed.window="show = $event.detail"
+        x-show="show">
+    <x-alert type="warning" class="rounded-xl">
         <strong>{{ __('entities/permissions.privacy.warning') }}</strong>
         <p>{!! __('entities/permissions.privacy.text', [
         'admin' => '<a href="' . route(
@@ -45,6 +50,7 @@ if (!empty($source) && $source->is_private) {
         $campaign->adminRoleName() . '</a>',
     ]) !!}</p>
     </x-alert>
+    </div>
 
     @include('cruds.permissions.permissions_table', ['skipUsers' => true, 'campaign'])
 </x-grid>

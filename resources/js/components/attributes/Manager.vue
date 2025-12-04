@@ -11,7 +11,7 @@
                     <i class="fa-regular fa-bars-filter" aria-hidden="true" />
                     <span v-html="trans('actions.filters')"></span>
                 </a>
-                <div class="border shadow rounded bg-base-100 p-4 absolute right-0 flex flex-col gap-5 w-60" v-if="showFilters"  v-click-outside="onClickOutside">
+                <div class="border border-base-300 shadow rounded bg-base-100 p-4 absolute right-0 flex flex-col gap-5 w-60" v-if="showFilters"  v-click-outside="onClickOutside">
                     <div class="flex gap-2">
                         <div>
                             <input type="checkbox" v-model="showHidden" value="1" id="_show_hidden_attributes" />
@@ -31,17 +31,17 @@
                 <i class="fa-regular fa-lock-open" aria-hidden="true" />
                 <span v-html="trans('actions.toggle')"></span>
             </a>
-            <a role="button" class="btn2 btn-outline md:ml-auto" @click="toggleTemplates()">
+            <a role="button" class="btn2 btn-outline btn-sm md:ml-auto" @click="toggleTemplates()">
                 <i class="fa-regular fa-file-import" aria-hidden="true" />
                 <span v-html="trans('actions.load')"></span>
             </a>
-            <a href="https://docs.kanka.io/en/latest/features/attributes.html" target="_blank" class="btn2 btn-ghost">
+            <a href="https://docs.kanka.io/en/latest/features/attributes.html" class="btn2 btn-ghost btn-sm">
                 <i class="fa-regular fa-question-circle" aria-hidden="true" />
                 <span v-html="trans('actions.help')"></span>
             </a>
         </div>
         <div class="w-full flex flex-col gap-2">
-            <div class="flex gap-2 border-b text-neutral-content text-xs md:text-sm font-light px-4">
+            <div class="flex gap-2 border-b border-base-300 text-neutral-content text-xs md:text-sm font-light px-4">
                 <div class="w-6 md:w-8 flex-none"></div>
                 <div class="w-6 md:w-8 flex-none">
                     <input type="checkbox" @change="toggleAll()" v-model="checkedAll" />
@@ -213,9 +213,9 @@ const removeAttribute = (attribute) => {
 const deleteClass = () => {
     let checked = attributes.value.find(attribute => attribute.is_checked == true);
     if (!checked) {
-        return 'btn2 btn-ghost'
+        return 'btn2 btn-ghost  btn-sm'
     }
-    return 'btn2 btn-error btn-outline'
+    return 'btn2 btn-error btn-outline  btn-sm'
 }
 
 const deleteAll = () => {
@@ -235,9 +235,9 @@ const deleteAll = () => {
 const togglePrivateClass = () => {
     let checked = attributes.value.find(attribute => attribute.is_checked == true);
     if (!checked) {
-        return 'btn2 btn-ghost'
+        return 'btn2 btn-ghost btn-sm'
     }
-    return 'btn2 btn-outline'
+    return 'btn2 btn-outline  btn-sm'
 }
 const togglePrivate = () => {
     let selected = attributes.value.filter(attribute => attribute.is_checked);

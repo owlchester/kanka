@@ -192,8 +192,7 @@ const registerPermissionToggleAll = () => {
                     checkbox.checked = false;
                 }
             });
-        })
-
+        });
     });
 };
 
