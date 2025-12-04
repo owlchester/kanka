@@ -49,7 +49,7 @@ class MarkdownExportService
 
         $entityData = $this->entityData();
 
-        if ($this->isSingle) {
+        if (!$this->isSingle) {
             $this->addToIndex();
         }
         
