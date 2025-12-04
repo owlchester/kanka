@@ -1,5 +1,5 @@
 <?php /** @var \App\Models\Campaign $campaign */
-$boxClass = 'rounded p-5 text-center bg-box shadow-xs flex items-center justify-center gap-3 flex-col w-40 break-words';
+$boxClass = 'rounded p-5 text-center bg-box shadow-xs flex items-center justify-center gap-3 flex-col w-40 wrap-break-word';
 ?>
 
 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">

@@ -66,10 +66,10 @@
             @include('.entities.creator.forms.template')
         @endif
 
-        <a href="#" class="qq-action-more text-uppercase cursor-pointer text-sm {{ !isset($entityType) ? 'hidden' : null }}">
+        <span role="button" class="qq-action-more text-uppercase cursor-pointer text-sm border-dotted border-base-300 border-b {{ !isset($entityType) ? 'hidden' : null }}">
             <x-icon class="fa-regular fa-caret-down" />
             {{ __('entities.creator.actions.more') }}
-        </a>
+        </span>
         <div class="qq-more-fields flex flex-col gap-5 {{ isset($entityType) ? 'hidden' : null }}">
             @php $allowNew = false; $dropdownParent = '#primary-dialog';@endphp
             @if (isset($entityType))

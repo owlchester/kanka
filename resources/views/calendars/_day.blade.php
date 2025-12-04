@@ -19,7 +19,7 @@
     }
     @endphp
 
-    <td class="h-24 text-center break-words align-top {{ $day['isToday'] ? 'today bg-base-200' : null }}" data-date="{{ \Illuminate\Support\Arr::get($day, 'date', null) }}" @if ($canEdit) data-dbclick data-target="primary-dialog" data-url="{{ route('calendars.event.create', $routeOptions) }}" @endif>
+    <td class="h-24 text-center wrap-break-word align-top {{ $day['isToday'] ? 'today bg-base-200' : null }}" data-date="{{ \Illuminate\Support\Arr::get($day, 'date', null) }}" @if ($canEdit) data-dbclick data-target="primary-dialog" data-url="{{ route('calendars.event.create', $routeOptions) }}" @endif>
         <div class="flex flex-col gap-1">
         @if ($day['day'])
             <div class="flex gap-1 items-center">
@@ -67,7 +67,7 @@
                 @endforeach
             @endif
             @if (!empty($day['season']))
-                <div class="badge calendar-season bg-season block w-full !text-xs" data-toggle="tooltip" data-title="{{ __('calendars.parameters.seasons.name') }}">
+                <div class="badge calendar-season bg-season block w-full text-xs!" data-toggle="tooltip" data-title="{{ __('calendars.parameters.seasons.name') }}">
                     {{ $day['season'] }}
                 </div>
             @endif

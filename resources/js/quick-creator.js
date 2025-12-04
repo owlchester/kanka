@@ -23,17 +23,17 @@ const buildEntityForm = (event) => {
     if (type === 'inline') {
         document.querySelector('.quick-creator-body').classList.add('hidden');
         document.querySelector('.quick-creator-footer')?.classList.add('hidden');
-        document.querySelector('.quick-creator-loading').classList.remove('!hidden');
+        document.querySelector('.quick-creator-loading').classList.remove('hidden!');
     } else {
         quickCreatorLoadingModal();
     }
 
     axios.get(element.dataset.url)
         .then(res => {
-            loadingArticle.classList.add('!hidden');
-            selectionArticle.classList.add('!hidden');
+            loadingArticle.classList.add('hidden!');
+            selectionArticle.classList.add('hidden!');
             formArticle.innerHTML = res.data;
-            formArticle.classList.remove('!hidden');
+            formArticle.classList.remove('hidden!');
 
             quickCreatorSubformHandler();
             quickCreatorToggles();
@@ -78,9 +78,9 @@ const quickCreatorDuplicateName = () => {
 };
 
 const quickCreatorLoadingModal = () => {
-    document.querySelector('#qq-modal-form').classList.add('!hidden');
-    document.querySelector('#qq-modal-selection').classList.add('!hidden');
-    document.querySelector('#qq-modal-loading').classList.remove('!hidden');
+    document.querySelector('#qq-modal-form').classList.add('hidden!');
+    document.querySelector('#qq-modal-selection').classList.add('hidden!');
+    document.querySelector('#qq-modal-loading').classList.remove('hidden!');
 };
 
 /**
@@ -137,11 +137,11 @@ const quickCreatorSubformHandler = () => {
                     const form = document.querySelector('#qq-modal-form');
                     if (form) {
                         form.innerHTML = '';
-                        form.classList.remove('!hidden');
+                        form.classList.remove('hidden!');
                     }
 
-                    document.querySelector('#qq-modal-loading')?.classList.add('!hidden');
-                    document.querySelector('#qq-modal-selection')?.classList.remove('!hidden');
+                    document.querySelector('#qq-modal-loading')?.classList.add('hidden!');
+                    document.querySelector('#qq-modal-selection')?.classList.remove('hidden!');
 
                     const target = document.getElementById('primary-dialog');
                     target.close();
@@ -183,12 +183,12 @@ const quickCreatorToggles = () => {
 
             document.querySelector('.quick-creator-body').classList.add('hidden');
             document.querySelector('.quick-creator-footer')?.classList.add('hidden');
-            document.querySelector('.quick-creator-loading').classList.remove('!hidden');
+            document.querySelector('.quick-creator-loading').classList.remove('hidden!');
 
             axios.get(this.dataset.url)
                 .then(res => {
                     formArticle.innerHTML = res.data;
-                    formArticle.classList.remove('!hidden');
+                    formArticle.classList.remove('hidden!');
                     quickCreatorHandleEvents();
                     window.triggerEvent();
                 })

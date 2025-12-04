@@ -53,9 +53,9 @@
             @if ($log->day() !== $previous)
                 @if ($previous !== null) </div> @endif
                 <div class="font-bold">{{ $log->created_at->format('M d, Y') }}</div>
-                <div class="rounded bg-box border border-b-0 ">
+                <div class="rounded bg-box border border-base-200 border-b-0 ">
             @endif
-            <div class="p-2 border-solid border-b" x-data="{opened: false}">
+            <div class="p-2 border-solid border-base-200 border-b" x-data="{opened: false}">
                 <div class="flex justify-center items-center gap-2 {{ $count > 0 && !$superboosted ? 'blur' : null }}">
                     <div class="flex-none rounded-full {{ $log->actionBackground() }} inline-block text-center text-xs p-1 h-6 w-6 ">
                         <x-icon class="fa-regular {{ $log->actionIcon() }}" />

@@ -1,0 +1,57 @@
+@layer theme {
+    html {
+        color-scheme: dark;
+        accent-color: hsl(var(--a)/1);
+    }
+    :root {
+        /* General background color */
+        --base: 240 21% 15%;
+        --crust: 240 23% 9%;
+        --mantle: 240 21% 12%;
+        --content-wrapper-background: hsl(var(--base)/1);
+        --surface0: 237 16% 23%;
+        --surface1: 234 13% 31%;
+        --surface2: 233 12% 39%;
+        --text: 226 64% 88%;
+        --subtext0: 228 24% 72%;
+        --subtext1: 227 35% 80%;
+        --mauve: 287 84% 81%;
+        --pink: 316 72% 86%;
+
+        /* For the legacy editor, make it compatible with dark mode */
+        --tinymce-filter: invert(90%) !important;
+        --body-background: hsl(var(--base)/1);
+        --sf: 316 70% 43%;
+        --af: 175 70% 34%;
+        --su: 144 31% 36%;
+        --wa: 23 92% 75%;
+        --er: 343 81% 75%;
+        --in: 199 76% 69%;
+        --inc: var(--text);
+        --suc: var(--text);
+        --wac: var(--text);
+        --erc: var(--text);
+        --p: 287 84% 81%;
+        --pc: 287 78% 1%;
+        --pf: 287 88% 62%;
+        --s: 316 70% 50%;
+        --sc: var(--text);
+        --a: 175 70% 41%;
+        --ac: var(--text);
+        --n: 213 18% 20%;
+        --nf: 212 17% 17%;
+        --nc: 228 17% 64%;
+        --b1: var(--mantle);
+        --b2: var(--base);
+        --b3: 240 23% 9%;
+        --bc: var(--text);
+
+        --si: var(--mantle);
+        --sif: var(--surface1);
+    }
+
+}
+.alert {
+    border: 1px solid var(--alert-bg);
+    --alert-bg: hsl(var(--b1)/1);
+}

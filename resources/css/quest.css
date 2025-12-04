@@ -1,0 +1,18 @@
+.box-quest-element {
+    /* Quest panels */
+    .widget-user-username {
+        a {
+            color: white;
+        }
+    }
+
+    .bg-gray, .bg-none {
+        .widget-user-username {
+            a {
+                color: hsl(var(--p)/1);
+            }
+        }
+    }
+}
+
+

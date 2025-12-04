@@ -1,4 +1,4 @@
-<header id="header" class="fixed top-0 h-12 w-full bg-navbar bg-base-100 z-[900]">
+<header id="header" class="fixed top-0 h-12 w-full bg-navbar bg-base-100 z-900">
     <nav class="flex gap-2 justify-center items-center h-full px-3">
         <noscript>
                 <span class="bg-error text-error-content p-1 rounded text-sm">

@@ -1,9 +1,9 @@
-<div class="box">
-    <div class="box-body">
+<div class="bg-box rounded-xl p-4 flex flex-col gap-6 lg:gap-12 shadow-xs">
+    <div class="flex flex-col gap-4">
         @include('partials.errors')
         @include($content)
     </div>
-    <div class="box-footer flex gap-2 items-center justify-between">
+    <div class="flex gap-2 items-center justify-between">
         <div class="flex gap-2 items-center">
             @include('partials.footer_cancel')
 

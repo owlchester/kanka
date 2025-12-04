@@ -31,7 +31,7 @@
             @keydown.esc="hideSuggestions"
             @blur="onBlur"
         ></textarea>
-        <ul class="absolute w-full left-0 bg-base-100 shadow list-none p-2 m-0 z-[1000]" v-if="suggestions.length" v-click-outside="hideSuggestions">
+        <ul class="absolute w-full left-0 bg-base-100 shadow list-none p-2 m-0 z-1000" v-if="suggestions.length" v-click-outside="hideSuggestions">
             <li
                 v-for="(suggestion, id) in suggestions"
                 :key="suggestion.id"

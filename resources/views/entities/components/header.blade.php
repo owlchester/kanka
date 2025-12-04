@@ -45,7 +45,7 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
 $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
 
 ?>
-<div class="w-full h-full entity-header flex-wrap md:flex-no-wrap flex gap-2 md:gap-5 items-end relative @if ($hasBanner) with-entity-banner p-4 text-white aspect-[3/1] xl:aspect-auto @endif">
+<div class="w-full h-full entity-header flex-wrap md:flex-no-wrap flex gap-2 md:gap-5 items-end relative @if ($hasBanner) with-entity-banner p-4 text-white aspect-3/1 xl:aspect-auto @endif">
     @if ($imageUrl)
     <div class="entity-header-image relative w-28 flex-none md:w-48 self-start md:self-auto z-10">
 
