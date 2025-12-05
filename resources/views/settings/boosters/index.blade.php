@@ -13,7 +13,7 @@
     <x-grid type="1/1">
         @include('partials.errors')
 
-        <h1 class="">
+        <h1 class="text-2xl">
             <x-icon class="premium" />
             {{ __('settings/boosters.title') }}
         </h1>

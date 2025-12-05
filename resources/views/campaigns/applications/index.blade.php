@@ -17,8 +17,8 @@
     @include('partials.errors')
 
     <div class="flex gap-5 flex-col">
-        <div class="flex gap-2 items-center">
-            <h1 class="inline-block grow text-2xl">
+        <div class="flex gap-2 items-center justify-between">
+            <h1 class="text-2xl">
                 {{ __('campaigns/applications.title') }}
             </h1>
             <x-learn-more url="features/campaigns/applications.html" />

@@ -98,8 +98,8 @@
 
         </div>
 
-        <div class="flex gap-2 items-center">
-            <h1 class="text-2xl grow">
+        <div class="flex gap-2 items-center justify-between">
+            <h1 class="text-2xl">
                 @if ($inventory->item)
                     <x-entity-link
                         :entity="$inventory->item->entity"

@@ -14,7 +14,7 @@
 
 @section('content')
     <x-grid type="1/1">
-        <h1>{{ __('settings.subscription.manage_subscription') }}</h1>
+        <h1 class="text-2xl">{{ __('settings.subscription.manage_subscription') }}</h1>
 
         <p class="">
             {!! __('subscription.benefits.main', [
@@ -28,7 +28,7 @@
 
         @include('settings.subscription._recap')
 
-        <h2 class="m-0">
+        <h2 class="text-xl m-0">
             {{ __('settings.subscription.tiers') }}
         </h2>
         @if (!$isPayPal && !$hasManual)

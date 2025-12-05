@@ -1,7 +1,8 @@
-<div class="flex gap-2 items-center">
-    <h1 class="inline-block grow text-2xl">
+<div class="flex gap-2 items-center justify-between">
+    <h1 class="text-2xl">
         {{ __('campaigns.show.tabs.roles') }}
     </h1>
+    <div class="flex gap-2">
     <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
             data-target="roles-help">
         <x-icon class="question" />
@@ -16,6 +17,7 @@
             {{ __('campaigns.roles.actions.add') }}
         </a>
     @endif
+    </div>
 </div>
 
 <x-grid>

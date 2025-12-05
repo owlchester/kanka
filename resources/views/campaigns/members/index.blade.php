@@ -13,8 +13,8 @@
     @include('ads.top')
     @include('partials.errors')
     <div class="flex gap-5 flex-col">
-        <div class="flex gap-2 items-center">
-            <h1 class="inline-block grow text-2xl">
+        <div class="flex gap-2 items-center justify-between">
+            <h1 class="text-2xl">
                 {{ __('campaigns.show.tabs.members') }} <span class="text-sm">({{ $rows->total() }} / @if ($limit = $campaign->memberLimit()){{ $limit }}@else <x-icon class="fa-solid fa-infinity" /> @endif)</span>
             </h1>
             <x-learn-more url="features/campaigns/members.html" />

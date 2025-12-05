@@ -49,7 +49,7 @@
                         <div class="grid grid-cols-2 gap-4">
 
 
-                            <div class="rounded-xl border p-2 flex gap-2 items-start hover:shadow-sm @if(!$campaign->premium()) cursor-not-allowed bg-base-200 @else cursor-pointer @endif">
+                            <div class="rounded-xl border border-base-300 p-2 flex gap-2 items-start hover:shadow-sm @if(!$campaign->premium()) cursor-not-allowed bg-base-200 @else cursor-pointer @endif">
                                 <input type="radio" name="type" id="md" value="2"
                                        @if(!$campaign->premium()) disabled="disabled" @else checked="checked" @endif class="mt-2">
 
@@ -68,7 +68,7 @@
                                 </label>
                             </div>
 
-                            <div class="rounded-xl border p-2 flex gap-2 items-start cursor-pointer hover:shadow-sm">
+                            <div class="rounded-xl border border-base-300 p-2 flex gap-2 items-start cursor-pointer hover:shadow-sm">
                                 <input type="radio" name="type" id="json" value="1" @if (!$campaign->premium()) checked="checked" @endif class="mt-2">
 
                                 <label for="json" class="w-full cursor-pointer flex flex-col gap-0.5">

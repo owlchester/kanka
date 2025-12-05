@@ -5,8 +5,8 @@
 
 @section('content')
 
-    <div class="max-w-2xl mx-auto">
-        <h1 class="mb-3">{{ __('helpers.troubleshooting.subtitle') }}</h1>
+    <div class="max-w-2xl mx-auto flex flex-col gap-4 ">
+        <h1 class="text-2xl">{{ __('helpers.troubleshooting.subtitle') }}</h1>
 
         <x-form action="troubleshooting.generate">
         <x-box class="rounded-2xl">

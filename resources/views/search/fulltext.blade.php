@@ -11,7 +11,7 @@
     @include('partials.errors')
 
     <div class="flex flex-col gap-5">
-        <div class="flex gap-2 items-center mb-5 justify-between">
+        <div class="flex gap-2 items-center justify-between">
             <h1 class="text-2xl category-title">{{ __('search/fulltext.title') }}</h1>
             <x-learn-more url="advanced/fulltext-search.html" />
         </div>

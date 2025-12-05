@@ -85,7 +85,7 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
                     @if (!view()->hasSection('entity-header'))
                         @if (isset($mainTitle))
                         @else
-                            <h1 class="truncate m-0 text-lg">
+                            <h1 class="truncate m-0 text-2xl">
                                 {!! $title ?? "Page Title" !!}
                             </h1>
                         @endif

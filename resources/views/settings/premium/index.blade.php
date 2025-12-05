@@ -15,7 +15,7 @@
         @include('partials.errors')
 
         <div class="flex gap-1 justify-between">
-            <h1 class="">
+            <h1 class="text-2xl">
                 {{ __('settings.menu.premium') }}
             </h1>
 

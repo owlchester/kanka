@@ -15,7 +15,7 @@
                 <p class="text-neutral-content">{{ $application->created_at->diffForHumans() }}</p>
             </div>
 
-            <div class="rounded-full border h-8 w-8 flex items-center justify-center flex-none cursor-pointer" data-toggle="dialog" data-url="{{  route('applications.show', [$campaign, $application])}}">
+            <div class="rounded-full border border-base-300 h-8 w-8 flex items-center justify-center flex-none cursor-pointer" data-toggle="dialog" data-url="{{  route('applications.show', [$campaign, $application])}}">
                 <x-icon class="fa-solid fa-angle-right" />
             </div>
         </div>
