@@ -125,7 +125,7 @@
     "src": "node_modules/rpg-awesome/fonts/rpgawesome-webfont.woff"
   },
   "resources/css/app.css": {
-    "file": "assets/app-3ldo-nDf.css",
+    "file": "assets/app-CkXan_ag.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -161,7 +161,7 @@
     ]
   },
   "resources/css/front.css": {
-    "file": "assets/front-t3hnmAFh.css",
+    "file": "assets/front-acAltpYn.css",
     "src": "resources/css/front.css",
     "isEntry": true,
     "name": "front",
@@ -259,7 +259,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-Dyi90asR.js",
+    "file": "assets/app-DrI0kiRy.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -278,7 +278,7 @@
     ]
   },
   "resources/js/attributes-manager.js": {
-    "file": "assets/attributes-manager-BCdVshvI.js",
+    "file": "assets/attributes-manager-Bu9AGvY-.js",
     "name": "attributes-manager",
     "src": "resources/js/attributes-manager.js",
     "isEntry": true,
@@ -347,7 +347,7 @@
     "isEntry": true
   },
   "resources/js/dashboard.js": {
-    "file": "assets/dashboard-D3Q4_k7n.js",
+    "file": "assets/dashboard-BqjGP3BV.js",
     "name": "dashboard",
     "src": "resources/js/dashboard.js",
     "isEntry": true,
@@ -407,15 +407,6 @@
     "imports": [
       "_index-B9ygI19o.js",
       "_dialog-bdBi4zz3.js"
-    ]
-  },
-  "resources/js/gallery.js": {
-    "file": "assets/gallery-B_xBFv_w.js",
-    "name": "gallery",
-    "src": "resources/js/gallery.js",
-    "isEntry": true,
-    "imports": [
-      "_index-B9ygI19o.js"
     ]
   },
   "resources/js/gallery/gallery.js": {

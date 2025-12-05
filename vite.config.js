@@ -49,7 +49,6 @@ export default defineConfig({
                 'resources/js/cookieconsent.js',
                 'resources/js/relations.js',
                 'resources/js/recovery/recovery.js',
-                'resources/js/gallery.js',
                 'resources/js/gallery/gallery.js',
                 'resources/js/history.js',
                 'resources/js/whiteboards.js',
