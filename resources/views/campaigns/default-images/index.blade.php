@@ -21,7 +21,7 @@
             @if ($campaign->boosted())
                 @can('recover', $campaign)
                 <a href="{{ route('campaign.default-images.create', $campaign) }}" class="btn2 btn-primary btn-sm"
-                   data-toggle="dialog-ajax" data-target="new-thumbnail"
+                   data-toggle="dialog"
                    data-url="{{ route('campaign.default-images.create', $campaign) }}">
                     <x-icon class="plus" />
                     {{ __('campaigns/default-images.actions.add') }}
@@ -58,7 +58,6 @@
 
 @section('modals')
     @parent
-    <x-dialog id="new-thumbnail" :loading="true" />
 
     <x-dialog id="reset-confirm" :title="__('campaigns/default-images.reset.title')">
         <x-grid type="1/1">

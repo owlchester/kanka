@@ -25,7 +25,7 @@
 
         @if (auth()->check() && !empty($campaign) && auth()->user()->can('member', $campaign) && (!isset($qq) || $qq))
         <div class="flex-none">
-            <a href="#" data-url="{{ route('entity-creator.selection', $campaign) }}" data-toggle="dialog" data-target="primary-dialog" class="quick-creator-button btn2 btn-primary btn-sm"
+            <a href="#" data-url="{{ route('entity-creator.selection', $campaign) }}" data-toggle="dialog"  class="quick-creator-button btn2 btn-primary btn-sm"
             tabindex="0">
                 <x-icon class="flex-none fa-regular fa-plus" />
                 <span class="grow hidden sm:inline-block">

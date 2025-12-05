@@ -32,7 +32,6 @@ $overlayClass = 'rounded-xl flex gap-2 flex-col p-2 items-center h-full';
 
                 <a class="btn2 btn-primary btn-sm"
                    data-toggle="dialog"
-                   data-target="primary-dialog"
                    data-url="{{ route('campaign_dashboards.create', $campaign) }}"
                 >
                     <x-icon class="plus" />
@@ -114,7 +113,6 @@ $overlayClass = 'rounded-xl flex gap-2 flex-col p-2 items-center h-full';
                 <div class="col-span-12">
                     <div class="{{ $widgetClass }} border-dashboard widget-campaign cover-background h-auto p-4 " @if($campaign->header_image) style="background-image: url({{ Img::crop(1200, 400)->url($campaign->header_image) }})" @endif
                         data-toggle="dialog"
-                         data-target="primary-dialog"
                          data-url="{{ route('campaigns.dashboard-header.edit', $campaign) }}"
                     >
                         <div class="{{ $overlayClass }} backdrop-blur bg-box opacity-60">
@@ -127,7 +125,7 @@ $overlayClass = 'rounded-xl flex gap-2 flex-col p-2 items-center h-full';
                     @includeWhen($widget->visible(), '.dashboard._widget')
                 @endforeach
 
-                <div class="col-span-4 widget rounded-xl h-28 hover:border-primary text-primary transition-all duration-150 cursor-pointer border-dashed border-2 py-6" data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('campaign_dashboard_widgets.index', [$campaign, 'dashboard' => $dashboard]) }}">
+                <div class="col-span-4 widget rounded-xl h-28 hover:border-primary text-primary transition-all duration-150 cursor-pointer border-dashed border-2 py-6" data-toggle="dialog" data-url="{{ route('campaign_dashboard_widgets.index', [$campaign, 'dashboard' => $dashboard]) }}">
                     <div class="text-lg flex gap-2 items-center justify-center p-2 align-middle h-full">
                         <x-icon class="plus" />
                         <span class="uppercase">{{ __('crud.add') }}</span>

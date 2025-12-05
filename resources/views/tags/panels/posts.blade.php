@@ -25,7 +25,7 @@ $all = $model->posts()->count();
         {{ __('entities.posts') }}
     </h3>
     <div class="gap-2 flex-wrap overflow-auto">
-        <button data-url="{{ route('tags.transfer.posts', [$campaign, $model->id]) }}" data-toggle="dialog" data-target="primary-dialog" class="btn2 btn-sm">
+        <button data-url="{{ route('tags.transfer.posts', [$campaign, $model->id]) }}" data-toggle="dialog" class="btn2 btn-sm">
             <x-icon class="fa-solid fa-arrow-right"/>
             <span class="hidden xl:inline">{{ __('tags.transfer.transfer') }}</span>
         </button>

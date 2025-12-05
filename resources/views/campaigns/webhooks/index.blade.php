@@ -9,7 +9,6 @@
             href="{{ route('webhooks.create', $campaign) }}"
             class="btn2 btn-primary btn-sm"
             data-toggle="dialog"
-            data-target="primary-dialog"
             data-url="{{ route('webhooks.create', $campaign) }}"
         >
             <x-icon class="plus" />

@@ -27,7 +27,7 @@
             @can('update', $campaign)
                 <button
                     class="btn2 btn-default btn-xs"
-                    data-toggle="dialog-ajax"
+                    data-toggle="dialog"
                     @if ($entityType->isStandard())
                     data-url="{{ route('modules.edit', [$campaign, $entityType]) }}"
                     @else

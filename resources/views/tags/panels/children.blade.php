@@ -27,7 +27,7 @@ $direct = $entity->child->entities()->count();
         {{ __('tags.show.tabs.children') }}
     </h3>
     <div class="gap-2 flex-wrap overflow-auto">
-        <button data-url="{{ route('tags.transfer', [$campaign, $entity->child]) }}" data-toggle="dialog" data-target="primary-dialog" class="btn2 btn-sm">
+        <button data-url="{{ route('tags.transfer', [$campaign, $entity->child]) }}" data-toggle="dialog" class="btn2 btn-sm">
             <x-icon class="fa-regular fa-arrow-right"/>
             <span class="hidden xl:inline">{{ __('tags.transfer.transfer') }}</span>
         </button>
@@ -57,7 +57,7 @@ $direct = $entity->child->entities()->count();
         @if ($all > 0)
             @can('update', $entity)
                 <a href="{{ $addEntityUrl }}" class="btn2 btn-primary btn-sm"
-                   data-toggle="dialog" data-target="primary-dialog" data-url="{{ $addEntityUrl }}">
+                   data-toggle="dialog" data-url="{{ $addEntityUrl }}">
                     <x-icon class="plus" />
                     <span class="hidden xl:inline">{{ __('tags.children.actions.add') }}</span>
                 </a>
@@ -73,7 +73,7 @@ $direct = $entity->child->entities()->count();
         </x-helper>
         @can('update', $entity)
             <a href="{{ $addEntityUrl }}" class="btn2 btn-primary btn-sm"
-                data-toggle="dialog" data-target="primary-dialog" data-url="{{ $addEntityUrl }}">
+                data-toggle="dialog" data-url="{{ $addEntityUrl }}">
                 <x-icon class="plus" />
                 <span class="hidden xl:inline">{{ __('tags.children.actions.add') }}</span>
             </a>

@@ -88,7 +88,7 @@
                     </x-helper>
                 @endif
                 <div class="">
-                    <button class="btn2 btn-outline" data-toggle="dialog" data-target="primary-dialog" data-url="{{  route('account.billing.info') }}">
+                    <button class="btn2 btn-outline" data-toggle="dialog" data-url="{{  route('account.billing.info') }}">
                         {{ __('billing/information.actions.update') }}
                     </button>
                 </div>

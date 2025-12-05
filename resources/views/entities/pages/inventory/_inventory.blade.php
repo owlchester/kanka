@@ -29,7 +29,7 @@
                     {!! $item->position ?: '<i>' . __('entities/inventories.show.unsorted') . '</i>' !!}
 
                     <a class="print-none" href="{{ route('entities.inventories.create', [$campaign, $entity, 'position' => $item->position]) }}"
-                        data-toggle="dialog" data-target="primary-dialog"
+                        data-toggle="dialog"
                         data-url="{{ route('entities.inventories.create', [$campaign, $entity, 'position' => $item->position]) }}"
                     >
                         <x-icon class="plus" />
@@ -74,7 +74,7 @@
                     <td class="text-right print-none">
                         <a href="{{ route('entities.inventories.edit', [$campaign, $entity, $item]) }}"
                            class="btn2 btn-outline btn-xs"
-                           data-toggle="dialog" data-target="primary-dialog"
+                           data-toggle="dialog"
                            data-url="{{ route('entities.inventories.edit', [$campaign, $entity, $item]) }}"
                            title="{{ __('crud.edit') }}">
                             <x-icon class="edit" /> {{ __('crud.edit') }}

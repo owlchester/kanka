@@ -291,6 +291,7 @@ Route::get('/w/{campaign}/entities/{entity}/move', 'Entity\MoveController@index'
 Route::post('/w/{campaign}/entities/{entity}/move', 'Entity\MoveController@move')->name('entities.move-process');
 Route::get('/w/{campaign}/entities/{entity}/posts/{post}/move', 'Entity\Posts\MoveController@index')->name('posts.move');
 Route::post('/w/{campaign}/entities/{entity}/posts/{post}/move', 'Entity\Posts\MoveController@move')->name('posts.move-process');
+Route::get('/w/{campaign}/entities/{entity}/post-layouts', [\App\Http\Controllers\Entity\Posts\LayoutController::class, 'index'])->name('posts.layouts');
 
 // Transform
 Route::get('/w/{campaign}/entities/{entity}/transform', 'Entity\TransformController@index')->name('entities.transform');

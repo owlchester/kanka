@@ -40,12 +40,21 @@ $bragiName = $entity->isCharacter() ? $entity->name : null;
 
         @if (isset($layoutOptions))
             <x-forms.field field="layout" label="{{ __('posts.fields.layout') }}">
-                <x-forms.select name="layout_id" :options="$layoutOptions" :selected="$source->layout_id ?? $model->layout_id ?? null"  id="post-layout-selector" x-model="layout" />
+                <x-forms.select name="layout_id" :options="$layoutOptions" :selected="$source->layout_id ?? $model->layout_id ?? null"  id="post-layout-selector" x-model="layout" :disabled="$disabledLayoutOptions" />
 
                 @if (!$campaign->superboosted())
-                <div id="post-layout-subform" class="bg-warning text-warning-content p-2 rounded-xl" style="display: none" x-show="layout">
-                    @includeWhen(!$campaign->superboosted(), 'entities.pages.posts._boosted')
-                </div>
+                    <x-helper>
+                        <p class="text-xs">
+                            <x-icon class="fa-regular fa-question-circle"></x-icon>
+                            {{ __('post_layouts.premium') }}
+                            <a
+                                href="#"
+                                data-toggle="dialog"
+                                data-url="{{ route('posts.layouts', [$campaign, $entity]) }}">
+                                {{ __('general.learn-more') }}
+                            </a>
+                        </p>
+                    </x-helper>
                 @endif
             </x-forms.field>
         @endif

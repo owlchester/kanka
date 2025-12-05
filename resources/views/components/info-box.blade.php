@@ -10,7 +10,7 @@
     </div>
     @if ($url)
         @if ($ajax)
-            <div class="rounded-full border h-12 w-12 flex items-center justify-center cursor-pointer hover:bg-base-200" data-target="{{ $target }}" data-url="{{ $url }}" data-toggle="dialog-ajax" @if ($urlTooltip) data-tooltip data-title="{{ $urlTooltip }}" @endif>
+            <div class="rounded-full border h-12 w-12 flex items-center justify-center cursor-pointer hover:bg-base-200" data-target="{{ $target }}" data-url="{{ $url }}" data-toggle="dialog" @if ($urlTooltip) data-tooltip data-title="{{ $urlTooltip }}" @endif>
                 <x-icon class="{{ $urlIcon }}"/>
             </div>
         @else

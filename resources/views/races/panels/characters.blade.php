@@ -37,7 +37,7 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
         @endif
         @can('update', $entity)
             <a href="{{ route('races.members.create', [$campaign, $entity->child]) }}" class="btn2 btn-primary btn-sm"
-               data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('races.members.create', [$campaign, $entity->child]) }}">
+               data-toggle="dialog" data-url="{{ route('races.members.create', [$campaign, $entity->child]) }}">
                 <x-icon class="plus" />
                 <span class="hidden xl:inline">{{ __('crud.add') }}</span>
             </a>

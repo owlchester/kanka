@@ -14,7 +14,7 @@
                 <span class="text-red-600">{!! __('campaigns/applications.open.closed') !!}</span>
             @endif
         </div>
-        <div class="rounded-full border h-12 w-12 flex items-center justify-center cursor-pointer" data-url="{{ route('campaign-applications', $campaign) }}" data-target="application-dialog" data-toggle="dialog-ajax">
+        <div class="rounded-full border h-12 w-12 flex items-center justify-center cursor-pointer" data-url="{{ route('campaign-applications', $campaign) }}" data-target="application-dialog" data-toggle="dialog">
             <x-icon class="fa-solid fa-angle-right" />
         </div>
     </x-box>
@@ -30,7 +30,7 @@
                 <span class="text-red-600">{!! __('campaigns/applications.public.private') !!}</span>
             @endif
         </div>
-        <div class="rounded-full border h-12 w-12 flex items-center justify-center cursor-pointer" data-url="{{ route('campaign-visibility', $campaign) }}" data-target="primary-dialog" data-toggle="dialog-ajax">
+        <div class="rounded-full border h-12 w-12 flex items-center justify-center cursor-pointer" data-url="{{ route('campaign-visibility', $campaign) }}" data-toggle="dialog">
             <x-icon class="fa-solid fa-angle-right" />
         </div>
     </x-box>

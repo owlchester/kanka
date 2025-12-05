@@ -24,8 +24,8 @@
                 {{ __('settings/api.tokens.title') }}
             </span>
             <a href="{{ route('settings.api.create') }}" class="btn2 btn-primary btn-outline btn-sm"
-                data-toggle="dialog-ajax" data-target="primary-dialog" data-url="{{ route('settings.api.create') }}">
-                <x-icon class="fa-solid fa-plus" />
+                data-toggle="dialog" data-url="{{ route('settings.api.create') }}">
+                <x-icon class="fa-regular fa-plus" />
                 <span class="hidden lg:inline"> {{ __('settings/api.tokens.new') }}</span>
             </a>
         </div>
@@ -112,8 +112,8 @@
                 </span>
 
                 <a href="{{ route('settings.client.create') }}" class="btn2 btn-primary btn-outline btn-sm"
-                    data-toggle="dialog-ajax" data-target="primary-dialog" data-url="{{ route('settings.client.create') }}">
-                    <x-icon class="fa-solid fa-plus" />
+                    data-toggle="dialog" data-url="{{ route('settings.client.create') }}">
+                    <x-icon class="fa-regular fa-plus" />
                     <span class="hidden lg:inline">{{ __('settings/api.clients.new') }}</span>
                 </a>
             </div>
@@ -145,8 +145,8 @@
                                     </td>
                                     <td class="align-middle text-right">
                                         <a href="{{ route('settings.client.edit', ['client' => $client['id']]) }}" class="btn2 btn-primary btn-outline btn-sm"
-                                            data-toggle="dialog-ajax" data-target="primary-dialog" data-url="{{ route('settings.client.edit', ['client' => $client['id']]) }}">
-                                            <x-icon class="fa-solid fa-pencil" />
+                                            data-toggle="dialog" data-url="{{ route('settings.client.edit', ['client' => $client['id']]) }}">
+                                            <x-icon class="fa-regular fa-pencil" />
                                             <span class="hidden lg:inline">Edit</span>
                                         </a>
                                         <form action="{{ route('settings.client.revoke', ['client' => $client['id']]) }}" method="POST" class="inline">

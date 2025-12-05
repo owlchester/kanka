@@ -22,7 +22,7 @@ $child = $entity->child;
             <div class="title text-uppercase text-xs">
                 {!! \App\Facades\Module::singular(config('entities.ids.family'), __('entities.families')) !!}
                 @can('update', $entity)
-                    <span role="button" tabindex="0" class="entity-families-icon hover:text-primary" data-toggle="dialog" data-url="{{ route('characters.families.management', [$campaign, $entity->child]) }}" data-target="primary-dialog" aria-haspopup="dialog">
+                    <span role="button" tabindex="0" class="entity-families-icon hover:text-primary" data-toggle="dialog" data-url="{{ route('characters.families.management', [$campaign, $entity->child]) }}" aria-haspopup="dialog">
                         <x-icon class="cog" tooltip title="{{ __('characters.families.title2') }}" />
                     </span>
                 @endif
@@ -39,7 +39,7 @@ $child = $entity->child;
             <div class="title text-uppercase text-xs">
                 {!! \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races')) !!}
                 @can('update', $entity)
-                    <span role="button" tabindex="0" class="entity-races-icon hover:text-primary" data-toggle="dialog" data-url="{{ route('characters.races.management', [$campaign, $entity->child]) }}" data-target="primary-dialog" aria-haspopup="dialog">
+                    <span role="button" tabindex="0" class="entity-races-icon hover:text-primary" data-toggle="dialog" data-url="{{ route('characters.races.management', [$campaign, $entity->child]) }}" aria-haspopup="dialog">
                         <x-icon class="cog" tooltip title="{{ __('characters.races.title2') }}" />
                     </span>
                 @endif
@@ -58,7 +58,7 @@ $child = $entity->child;
             <div class="title text-uppercase text-xs">
                 {!! \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races')) !!}
                 @can('update', $entity)
-                    <span role="button" tabindex="0" class="entity-races-icon hover:text-primary" data-toggle="dialog" data-url="{{ route('characters.races.management', [$campaign, $child]) }}" data-target="primary-dialog" aria-haspopup="dialog">
+                    <span role="button" tabindex="0" class="entity-races-icon hover:text-primary" data-toggle="dialog" data-url="{{ route('characters.races.management', [$campaign, $child]) }}" aria-haspopup="dialog">
                         <x-icon class="cog" tooltip title="{{ __('characters.races.title2') }}" />
                     </span>
                 @endif

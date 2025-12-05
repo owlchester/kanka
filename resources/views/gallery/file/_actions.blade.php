@@ -1,7 +1,7 @@
 
 @can('edit', [$image, $campaign])
     @if ($image->hasThumbnail())
-        <a href="#" class="btn2 btn-ghost" data-toggle="dialog" data-target="primary-dialog" data-url="{{  route('campaign.gallery.focus', [$campaign, $image]) }}">
+        <a href="#" class="btn2 btn-ghost" data-toggle="dialog" data-url="{{  route('campaign.gallery.focus', [$campaign, $image]) }}">
             <x-icon class="fa-regular fa-bullseye" />
             <span class="hidden md:inline">
                 {{ __('campaigns/gallery.actions.focus_point') }}

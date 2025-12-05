@@ -48,7 +48,7 @@ $all = number_format($model->allMembers()->count());
         @endif
         @can('update', $entity)
             <a href="{{ route('families.members.create', [$campaign, 'family' => $model]) }}" class="btn2 btn-sm"
-               data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('families.members.create', [$campaign, $model]) }}">
+               data-toggle="dialog" data-url="{{ route('families.members.create', [$campaign, $model]) }}">
                 <x-icon class="plus" />
                 <span class="hidden lg:inline">{{ __('organisations.members.actions.add_multiple') }}</span>
             </a>

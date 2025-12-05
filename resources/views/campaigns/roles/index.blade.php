@@ -9,7 +9,7 @@
     </button>
     @if (auth()->user()->can('update', $campaign))
         <a href="{{ route('campaign_roles.create', $campaign) }}" class="btn2 btn-primary btn-sm"
-           data-toggle="dialog-ajax" data-target="role-dialog"
+           data-toggle="dialog" data-target="role-dialog"
            data-url="{{ route('campaign_roles.create', $campaign) }}"
         >
             <x-icon class="plus" />

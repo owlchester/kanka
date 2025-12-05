@@ -10,7 +10,7 @@
 
         <div class="text-lg">
         @can('update', $entity)
-            <a href="{{ route('entities.entity_assets.edit', [$campaign, $entity, $asset]) }}" data-toggle="dialog-ajax" data-target="asset-update-dialog" data-url="{{ route('entities.entity_assets.edit', [$campaign, $entity, $asset]) }}">
+            <a href="{{ route('entities.entity_assets.edit', [$campaign, $entity, $asset]) }}" data-toggle="dialog" data-target="asset-update-dialog" data-url="{{ route('entities.entity_assets.edit', [$campaign, $entity, $asset]) }}">
                 <i class="fa-regular fa-pencil" aria-hidden="true" aria-label="{{ __('crud.edit') }}"></i>
             </a>
         @endif

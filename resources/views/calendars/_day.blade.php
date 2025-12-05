@@ -19,7 +19,7 @@
     }
     @endphp
 
-    <td class="h-24 text-center wrap-break-word align-top {{ $day['isToday'] ? 'today bg-base-200' : null }}" data-date="{{ \Illuminate\Support\Arr::get($day, 'date', null) }}" @if ($canEdit) data-dbclick data-target="primary-dialog" data-url="{{ route('calendars.event.create', $routeOptions) }}" @endif>
+    <td class="h-24 text-center wrap-break-word align-top {{ $day['isToday'] ? 'today bg-base-200' : null }}" data-date="{{ \Illuminate\Support\Arr::get($day, 'date', null) }}" @if ($canEdit) data-dbclick data-url="{{ route('calendars.event.create', $routeOptions) }}" @endif>
         <div class="flex flex-col gap-1">
         @if ($day['day'])
             <div class="flex gap-1 items-center">
@@ -83,11 +83,11 @@
                     <div class="calendar-event-block text-left rounded-sm p-1 relative cursor-pointer text-sm flex gap-1 flex-col   {{ $event->getLabelColour() }}" style="background-color: {{ $event->getLabelBackgroundColour() }}; @if (\Illuminate\Support\Str::startsWith($event->colour, '#')) color: {{ $colours->contrastBW($event->colour) }};"@endif
                         @if ($canEdit && $event->isEntity())
                             @php unset($routeOptions[0]); unset($routeOptions['date']); @endphp
-                            data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('reminders.edit', ($event->calendar_id !== $model->id ? [$campaign, $event->id, 'from' => $model->calendar_id, 'next' => 'calendar.' . $model->id] : [$campaign, $event->id, 'next' => 'calendar.' . $model->id]) + $routeOptions) }}"
+                            data-toggle="dialog" data-url="{{ route('reminders.edit', ($event->calendar_id !== $model->id ? [$campaign, $event->id, 'from' => $model->calendar_id, 'next' => 'calendar.' . $model->id] : [$campaign, $event->id, 'next' => 'calendar.' . $model->id]) + $routeOptions) }}"
 
                         @elseif ($canEdit && $event->isPost())
                             @php unset($routeOptions[0]); unset($routeOptions['date']); @endphp
-                            data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('reminders.edit', ($event->calendar_id !== $model->id ? [$campaign, $event->id, 'from' => $model->calendar_id, 'next' => 'calendar.' . $model->id] : [$campaign, $event->id, 'next' => 'calendar.' . $model->id]) + $routeOptions) }}"
+                            data-toggle="dialog" data-url="{{ route('reminders.edit', ($event->calendar_id !== $model->id ? [$campaign, $event->id, 'from' => $model->calendar_id, 'next' => 'calendar.' . $model->id] : [$campaign, $event->id, 'next' => 'calendar.' . $model->id]) + $routeOptions) }}"
                         @elseif ($event->isPost())
                             data-url="{{ route('entities.show', [$campaign, $event->remindable->entity, '#post-' . $event->remindable_id]) }}"
                         @else

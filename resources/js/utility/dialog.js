@@ -18,11 +18,11 @@ const dialogLoadedEvent = new Event('dialog.loaded');
 
 function openingDialog(e) {
     e.preventDefault();
-    let target = this.dataset.target;
-    if (!target) {
-        return;
-    }
-    let url = this.dataset.url;
+    console.log('hein');
+    let target = this.dataset.target ?? 'primary-dialog';
+    console.log('target', target);
+    let url = this.dataset.url ?? this.url;
+    console.log('url', url);
     let focus = this.dataset.focus;
     openDialog(target, url, focus);
 }

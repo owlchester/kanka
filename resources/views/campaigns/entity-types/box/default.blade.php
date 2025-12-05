@@ -22,7 +22,7 @@ $enabled = $campaign->enabled($entityType);
         @can('update', $campaign)
             <button
                 class="btn2 btn-default btn-sm"
-                data-toggle="dialog-ajax"
+                data-toggle="dialog"
                 data-url="{{ route('modules.edit', [$campaign, $entityType]) }}"
                 data-target="rename-dialog"
                 title="{{ __('campaigns/modules.actions.customise') }}">

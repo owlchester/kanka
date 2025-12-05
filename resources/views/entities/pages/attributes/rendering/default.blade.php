@@ -74,7 +74,7 @@ $uid = 1;
                     @if (!isset($fromDashboard) || !$fromDashboard)
                         @can('update', $entity)
                             <div class="flex-none p-2">
-                                <a href="{{ route('entities.attributes.live.edit2', [$campaign, $entity, $attribute, 'uid' => $uid++]) }}" data-toggle="dialog" data-url="{{ route('entities.attributes.live.edit2', [$campaign, $entity, $attribute, 'target' => '[data-live-id=' . $attribute->id . ']', 'uid' => $uid++]) }}" data-target="primary-dialog" title="{{ __('crud.edit') }}">
+                                <a href="{{ route('entities.attributes.live.edit2', [$campaign, $entity, $attribute, 'uid' => $uid++]) }}" data-toggle="dialog" data-url="{{ route('entities.attributes.live.edit2', [$campaign, $entity, $attribute, 'target' => '[data-live-id=' . $attribute->id . ']', 'uid' => $uid++]) }}"  title="{{ __('crud.edit') }}">
                                     <x-icon class="fa-regular fa-pen-to-square" />
                                 </a>
                             </div>
