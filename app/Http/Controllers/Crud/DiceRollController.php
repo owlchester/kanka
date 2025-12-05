@@ -37,7 +37,7 @@ class DiceRollController extends CrudController
         );
         $this->addNavAction(
             '//docs.kanka.io/en/latest/entities/dice-rolls.html',
-            '<i class="fa-solid fa-question-circle" aria-hidden="true"></i> ' . __('crud.actions.help'),
+            '<i class="fa-regular fa-book" aria-hidden="true"></i> ' . __('general.learn-more'),
             '',
             true
         );

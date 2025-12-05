@@ -4,7 +4,7 @@
  * @var \App\Models\MapMarker $marker
  */
 ?>
-<h4 class="text-sidebar-content flex gap-2 items-center">
+<h4 class="text-sidebar-content flex gap-2 items-center text-lg">
     <span class="">{{ __('maps.panels.legend') }}</span>
     <button class="btn2 btn-xs btn-ghost" data-animate="collapse" data-target=".map-legend-group-markers" data-toggle="tooltip" data-title="{{ __('maps/explore.toggle') }}">
         <x-icon class="fa-regular fa-folder-tree" />

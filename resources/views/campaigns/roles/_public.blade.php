@@ -7,18 +7,16 @@
  */
 ?>
 <div class="flex flex-col gap-5">
-    <div class="flex gap-2">
-        <h1 class="grow">
+    <div class="flex gap-2 justify-between">
+        <h1 class="text-2xl">
             {{ __('crud.permissions.title') }}
         </h1>
-        <div class="flex-none flex gap-2">
-            <a href="#" data-url="{{ route('campaign-visibility', $campaign) }}" data-target="campaign-visibility" data-toggle="dialog-ajax" class="btn2 btn-sm btn-primary" >
-                <x-icon class="fa-solid fa-user-secret" />
-                {{ __('campaigns/roles.actions.status', [
-                'status' => $campaign->isUnlisted() ? __('campaigns/visibilities.titles.unlisted') : ($campaign->isPublic() ? __('campaigns/visibilities.titles.public') : __('campaigns/visibilities.titles.private'))
-                ]) }}
-            </a>
-        </div>
+        <a href="#" data-url="{{ route('campaign-visibility', $campaign) }}" data-target="campaign-visibility" data-toggle="dialog-ajax" class="btn2 btn-sm btn-primary" >
+            <x-icon class="fa-solid fa-user-secret" />
+            {{ __('campaigns/roles.actions.status', [
+            'status' => $campaign->isUnlisted() ? __('campaigns/visibilities.titles.unlisted') : ($campaign->isPublic() ? __('campaigns/visibilities.titles.public') : __('campaigns/visibilities.titles.private'))
+            ]) }}
+        </a>
     </div>
 
     <p>

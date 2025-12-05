@@ -4,7 +4,7 @@
 </x-dialog.header>
 @endif
 <article id="qq-modal-loading" class="hidden! p-4 md:px-6">
-    <div class="text-center text-4xl">
+    <div class="text-center text-lg">
         <x-icon class="load" />
         <span class="sr-only">Loading...</span>
     </div>

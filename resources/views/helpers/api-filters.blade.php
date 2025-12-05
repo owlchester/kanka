@@ -5,7 +5,7 @@
 
 @section('content')
     @if (request()->ajax())
-    <h3 class="">
+    <h3 class="text-xl">
         {{ __('helpers.api-filters.title') }}
     </h3>
     @endif

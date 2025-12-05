@@ -1,7 +1,7 @@
 <?php $r = $entity->child->diceRollResults()->with('creator')->orderBy('created_at', 'DESC')->paginate(); ?>
 
-<div class="flex gap-2 items-center">
-    <h4 class="grow">{{ __('dice_rolls.index.actions.results') }}</h4>
+<div class="flex gap-2 items-center justify-between">
+    <h4 class="text-lg">{{ __('dice_rolls.index.actions.results') }}</h4>
     @can('view', $entity)
         <a href="{{ route('dice_rolls.roll', [$campaign, 'dice_roll' => $entity->child]) }}" class="btn2 btn-sm">
             <x-icon class="plus" /> {{ __('dice_rolls.results.actions.add') }}

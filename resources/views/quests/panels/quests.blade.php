@@ -12,11 +12,11 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
 $direct = $entity->child->children()->has('parent')->count();
 $all = $entity->child->descendants()->has('parent')->count();
 ?>
-<div class="flex gap-2 items-center">
-    <h3 class="grow">
+<div class="flex gap-2 items-center justify-between">
+    <h3 class="text-xl">
         {!! \App\Facades\Module::plural(config('entities.ids.quest'), __('entities.quests')) !!}
     </h3>
-    <div class="flex-none flex gap-2 flex-wrap">
+    <div class="flex gap-2 flex-wrap">
         @if (request()->has('parent_id'))
             <a href="{{ $entity->url() }}" class="btn2 btn-sm">
                 <x-icon class="filter" />

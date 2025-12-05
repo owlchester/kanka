@@ -12,7 +12,7 @@ $entityTags = $post->visibleTags();
         <div class="flex gap-2 items-center cursor-pointer element-toggle group overflow-hidden {{ $post->collapsed() ? "animate-collapsed" : null }}" data-animate="collapse" data-target="#post-body-{{ $post->id }}">
             <x-icon class="fa-regular fa-chevron-up icon-show transition-transform duration-200 group-hover:-translate-y-0.5" />
             <x-icon class="fa-regular fa-chevron-down icon-hide transition-transform duration-200 group-hover:translate-y-0.5" />
-            <h3 class="post-title truncate {{ $post->collapsed() ? "collapsed" : null }}"  >
+            <h3 class="post-title truncate text-xl {{ $post->collapsed() ? "collapsed" : null }}"  >
                 {!! $post->name !!}
             </h3>
         </div>

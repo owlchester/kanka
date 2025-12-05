@@ -8,10 +8,10 @@
     @foreach ($entity->orderedInventory() as $position => $items)
         <div class="flex flex-col gap-4" data-position="{{ \Illuminate\Support\Str::slug($position) }}">
             <div class="section-title flex justify-between gap-4 items-center">
-                <h2 class="overflow-hidden text-2xl flex items-center gap-1 cursor-pointer inventory-position" data-animate="collapse" data-target="#inventory-section-body-{{ \Illuminate\Support\Str::slug($position) }}">
+                <div class="overflow-hidden text-xl flex items-center gap-1 cursor-pointer inventory-position grow" data-animate="collapse" data-target="#inventory-section-body-{{ \Illuminate\Support\Str::slug($position) }}">
                     <x-icon class="fa-regular fa-chevron-up collapsed:flip transition-all duration-150" />
                     <span class="truncate">{!! $position ?? __('entities/inventories.show.unsorted') !!}</span>
-                </h2>
+                </div>
                 <div class="flex items-center gap-2 lg:gap-4">
                     @can('inventory', $entity)
                         <a

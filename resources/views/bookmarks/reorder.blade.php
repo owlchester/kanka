@@ -17,9 +17,9 @@
     <x-grid type="1/1">
         @include('partials.errors')
 
-        <h3 class="">
+        <h1 class="text-2xl">
             {{ __('bookmarks.reorder.title') }}
-        </h3>
+        </h1>
 
         <div class="box-entity-story-reorder max-w-4xl flex flex-col gap-5">
             <div class="element-live-reorder sortable-elements flex flex-col gap-2">

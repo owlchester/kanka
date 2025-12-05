@@ -1,7 +1,7 @@
 <?php /** @var \App\Models\Entity $entity
  * @var \App\Models\Relation $relation
  */?>
-<h3 class="">
+<h3 class="text-xl">
     {{ __('sidebar.relations') }}
 </h3>
 <x-box class="box-entity-relations box-entity-relations-table" id="entity-relations-table" :padding="$rows->count() === 0">

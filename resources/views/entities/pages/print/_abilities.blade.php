@@ -6,11 +6,11 @@
     <h2>{{ __('entities.abilities') }}</h2>
 
     @foreach ($entityAbilities['groups'] as $parent)
-        <h3 class="box-title">{{ $parent['name'] }}</h3>
+        <h3 class="box-title text-xl">{{ $parent['name'] }}</h3>
         <div class="parent-ability parent-ability-{{ $parent['id'] }}">
             @foreach ($parent['abilities'] as $ability)
                 <div class="ability ability-{{ $ability['ability_id'] }}">
-                    <h3>
+                    <h3 class="text-xl">
                         <strong>{{ $ability['name'] }}</strong>
                         @if ($ability['type']) - <i>{{ $ability['type'] }}</i>@endif
                     </h3>

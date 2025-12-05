@@ -14,19 +14,21 @@
     @include('partials.errors')
     <div class="grow flex flex-col gap-5" id="campaign-modules">
 
-        <div class="flex gap-2 items-center">
-            <h3 class="inline-block grow">
+        <div class="flex gap-2 items-center justify-between">
+            <h1 class="inline-block text-2xl">
                 {{ __('campaigns.show.tabs.modules') }}
-            </h3>
-            <x-learn-more url="features/campaigns/modules.html" />
-            @can('update', $campaign)
-            @if ($canReset)
-                <a href="#" class="btn2 btn-sm" data-toggle="dialog" data-target="reset-confirm">
-                    <x-icon class="fa-regular fa-eraser" />
-                    {{ __('crud.actions.reset') }}
-                </a>
-            @endif
-            @endcan
+            </h1>
+            <div class="flex gap-1">
+                <x-learn-more url="features/campaigns/modules.html" />
+                @can('update', $campaign)
+                @if ($canReset)
+                    <a href="#" class="btn2 btn-sm" data-toggle="dialog" data-target="reset-confirm">
+                        <x-icon class="fa-regular fa-eraser" />
+                        {{ __('crud.actions.reset') }}
+                    </a>
+                @endif
+                @endcan
+            </div>
         </div>
 
         <p>

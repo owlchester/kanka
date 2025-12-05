@@ -50,7 +50,7 @@ class BookmarkController extends CrudController
 
         $this->addNavAction(
             '//docs.kanka.io/en/latest/advanced/bookmarks.html',
-            '<i class="fa-solid fa-question-circle" aria-hidden="true"></i> <span class="hidden md:inline">' . __('crud.actions.help') . '</span>',
+            '<i class="fa-regular fa-book" aria-hidden="true"></i> <span class="hidden md:inline">' . __('general.learn-more') . '</span>',
             '',
             true
         );

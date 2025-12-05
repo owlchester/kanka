@@ -20,7 +20,7 @@
         <x-grid type="1/1" class="">
             @include('cruds.forms._errors')
 
-            <h1 class="text-lg md:text-4xl">{{ __('bookmarks.create.title') }}</h1>
+            <h1 class="text-lg">{{ __('bookmarks.create.title') }}</h1>
 
             @include('bookmarks.forms._entry')
 

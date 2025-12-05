@@ -14,7 +14,7 @@
 @section('content')
     <x-box>
         <div class="text-center">
-            <h3>{{ __('entities/links.go.title') }}</h3>
+            <h3 class="text-xl">{{ __('entities/links.go.title') }}</h3>
 
             <p>{!! __('entities/links.go.description', ['link' => '<strong>' . $entityAsset->metadata['url'] . '</strong>']) !!}</p>
         </div>

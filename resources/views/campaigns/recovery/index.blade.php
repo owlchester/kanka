@@ -12,9 +12,9 @@
     <div class="flex gap-5 flex-col">
         @include('partials.errors')
         <div class="flex gap-2 items-center justify-between">
-            <h3 class="">
+            <h1 class="text-2xl">
                 {{ __('campaigns/recovery.title') }}
-            </h3>
+            </h1>
 
             <x-learn-more url="features/campaigns/recovery.html" />
         </div>

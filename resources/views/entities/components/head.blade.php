@@ -8,7 +8,7 @@
         </a>
     @endif
 
-    <h3>{{ $model->name }}
+    <h3 class="text-xl">{{ $model->name }}
         @if ($model->is_private)
             <x-icon class="fa-regular fa-lock" :title="__('crud.is_private')" />
         @endif

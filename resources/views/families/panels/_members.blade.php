@@ -21,7 +21,7 @@ $direct = number_format($model->members()->has('entity')->count());
 $all = number_format($model->allMembers()->count());
 ?>
 <div class="flex gap-2 items-center justify-between flex-wrap">
-    <h3 class="members-title">
+    <h3 class="members-title text-xl">
         {{ __('organisations.fields.members') }}
     </h3>
     <div class="flex gap-2 flex-wrap overflow-auto">

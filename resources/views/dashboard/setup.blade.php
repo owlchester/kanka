@@ -15,7 +15,7 @@ $overlayClass = 'rounded-xl flex gap-2 flex-col p-2 items-center h-full';
 @section('content')
     <x-grid type="1/1">
         <div class="flex gap-2 items-center justify-between">
-            <h4>
+            <h4 class="text-lg">
                 @if ($dashboard)
                     {!! $dashboard->name !!}
                 @else

@@ -1,11 +1,11 @@
 <?php /** @var \App\Models\Feature $feature */ ?>
 
 <header class="bg-purple text-white rounded-t-2xl flex flex-col gap-2 p-4">
-    <div class="flex gap-2 w-full">
-        <h4 class="text-md grow text-left!">
+    <div class="flex gap-2 w-full justify-between">
+        <h4 class="text-md text-left!">
             {!! $feature->name !!}
         </h4>
-        <button autofocus type="button" class="text-md self-start" onclick="this.closest('dialog').close('close')" title="{{ __('crud.actions.close') }}">
+        <button autofocus type="button" class="text-md" onclick="this.closest('dialog').close('close')" title="{{ __('crud.actions.close') }}">
             <x-icon class="fa-regular fa-times" />
             <span class="sr-only">{{ __('crud.actions.close') }}</span>
         </button>

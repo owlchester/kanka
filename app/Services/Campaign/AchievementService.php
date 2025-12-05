@@ -281,7 +281,7 @@ class AchievementService
         ];
     }
 
-    protected function random(int $min = 50, int $max = 400): int
+    protected function random(int $min = 50, int $max = 4000): int
     {
         if (app()->isProduction()) {
             return 0;

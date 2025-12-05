@@ -8,8 +8,8 @@
 ])
 
 @section('entity-header')
-    <div class="flex gap-2 items-center mb-5">
-        <h1 class="grow text-4xl category-title truncate">{!! $titleKey ?? __('entities.' . $langKey) !!}</h1>
+    <div class="flex gap-2 items-center mb-5 justify-between">
+        <h1 class="text-2xl category-title truncate">{!! $titleKey ?? __('entities.' . $langKey) !!}</h1>
         <div class="flex flex-wrap gap-2 justify-end">
             @includeWhen(isset($route) && $route !== 'relations', 'layouts.datagrid._togglers', ['route' => $name . '.index'])
             @includeWhen(isset($actions), 'cruds.lists._actions')

@@ -14,9 +14,9 @@
     <div class="flex gap-5 flex-col">
         @include('partials.errors')
         <div class="flex gap-2 items-center">
-            <h3 class="inline-block grow">
+            <h1 class="inline-block grow text-2xl">
                 {{ __('campaigns/default-images.title') }}
-            </h3>
+            </h1>
             <x-learn-more url="features/campaigns/default-thumbnails.html" />
             @if ($campaign->boosted())
                 @can('recover', $campaign)

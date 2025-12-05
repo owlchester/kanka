@@ -19,7 +19,7 @@
         @if (request()->ajax())
             <div class="modal-heading">
                 <x-dialog.close />
-                <h4>
+                <h4 class="text-lg">
                     {{ __('maps/markers.edit.title', ['name' => $model->name]) }}
                 </h4>
             </div>

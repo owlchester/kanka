@@ -14,10 +14,10 @@ use App\Facades\Datagrid ?>
     @include('partials.errors')
 
     <div class="flex gap-5 flex-col">
-        <div class="flex gap-2">
-            <h3 class="grow">
+        <div class="flex gap-2 justify-between">
+            <h1 class="text-2xl">
                 {{ __('campaigns.show.tabs.styles') }}
-            </h3>
+            </h1>
             <div class="flex gap-2 flex-wrap items-center justify-end">
                 <x-learn-more url="features/campaigns/theming.html" />
                 @if ($campaign->boosted())

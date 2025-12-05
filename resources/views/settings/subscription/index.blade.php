@@ -69,14 +69,14 @@
                                 </div>
                             @else
                                 <div class="price price-monthly flex gap-2 w-full items-end">
-                                    <div class="text-4xl">
+                                    <div class="text-2xl">
                                         {{ $user->currencySymbol() }}
                                         {{ number_format($tier->price($user->currency(), \App\Enums\PricingPeriod::Monthly), 2) }}
                                     </div>
                                     <span class="text-sm text-neutral-content ">{{ __('tiers.periods.billed_monthly') }}</span>
                                 </div>
                                 <div class="price price-yearly flex gap-2 w-full items-end">
-                                    <div class="text-4xl">
+                                    <div class="text-2xl">
                                         {{ $user->currencySymbol() }}
                                         {{ number_format($tier->price($user->currency(), \App\Enums\PricingPeriod::Yearly), 2) }}
                                     </div>

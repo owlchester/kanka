@@ -16,9 +16,9 @@ use \Illuminate\Support\Arr;
 
     <div class="flex gap-5 flex-col achievements">
         <div class="flex gap-2 items-center">
-            <h3 class="inline-block grow">
+            <h1 class="inline-block grow text-2xl">
             {{ __('campaigns.show.tabs.achievements') }}
-            </h3>
+            </h1>
 
             <x-learn-more url="features/campaigns/achievements.html" />
         </div>

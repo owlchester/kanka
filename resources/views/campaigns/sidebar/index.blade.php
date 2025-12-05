@@ -14,10 +14,10 @@
     <div class="flex gap-5 flex-col">
         @include('partials.errors')
 
-        <div class="flex gap-2 items-center">
-            <h3 class="inline-block grow">
+        <div class="flex gap-2 items-center justify-between">
+            <h1 class="inline-block text-2xl">
                 {{ __('campaigns.show.tabs.sidebar') }}
-            </h3>
+            </h1>
 
             <x-learn-more url="features/campaigns/sidebar.html" />
         </div>

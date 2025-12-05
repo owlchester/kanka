@@ -21,7 +21,7 @@
         @if (auth()->user()->hasBoosterNomenclature())
             <x-alert type="warning">
                 <x-grid type="1/1">
-                    <h3 class="m-0">Legacy boosters</h3>
+                    <h3 class="m-0 text-xl">Legacy boosters</h3>
                     <p>
                         Dear user, you are still using our legacy campaign boosters concept. Switching to premium campaigns will unboost your campaigns and give you a number of premium campaigns based on your subscription.
                     </p>
@@ -43,10 +43,10 @@
 
         <x-box>
             <x-grid type="1/1">
-                <h3 class="">{{ __('settings/boosters.pitch.title') }}</h3>
+                <h3 class="text-xl">{{ __('settings/boosters.pitch.title') }}</h3>
                 <p class="">{{ __('settings/boosters.pitch.description') }}</p>
 
-                <h4 class="">{{ __('settings/boosters.pitch.benefits.title') }}</h4>
+                <h4 class="text-lg">{{ __('settings/boosters.pitch.benefits.title') }}</h4>
                 <div class="grid grid-cols-2 lg:grid-cols-3 gap-1">
                     <div class="flex items-center">
                         <div class="p-1 w-12 flex-none">

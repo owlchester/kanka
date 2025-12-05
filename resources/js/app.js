@@ -5,7 +5,6 @@ import './keyboard';
 import './crud';
 import './entities';
 import './post';
-import './post-layouts';
 import './calendar';
 import './forms/calendar-date';
 import './keep-alive';
@@ -27,8 +26,8 @@ import './utility/dialog';
 import './utility/colour-picker';
 
 // VueJS elements
-import './header'
-import './gallery/selection'
+import './header';
+import './gallery/selection';
 import './utility/tippy';
 import './maintenance';
 

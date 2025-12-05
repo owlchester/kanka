@@ -3,7 +3,7 @@
 return [
     'character_orgs'        => 'Character organisations',
     'connection_map'        => 'Connection map',
-    'helper'                => 'This post is set up to display the :subpage subpage of the entity.',
+    'helper'                => 'This post is set up to display the :subpage subpage of :name.',
     'location_characters'   => 'Location characters',
     'location_events'       => 'Location events',
     'location_quests'       => 'Location quests',

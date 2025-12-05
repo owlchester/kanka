@@ -1,5 +1,6 @@
 <div class="field field-{{ $field }} flex flex-col gap-1 {{ $css ?? null }}
     @if ($hidden) hidden @endif"
+     @if ($attributes->has('x-show')) x-show="{{ $attributes->get('x-show') }}" @endif
 >
     @if (isset($label) && !empty($label))
         <div class="flex items-center justify-between @if (isset($required) && $required) required @endif">

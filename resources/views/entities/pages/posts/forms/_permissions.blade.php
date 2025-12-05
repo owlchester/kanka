@@ -1,3 +1,15 @@
+<?php
+/**
+ * @var \App\Models\Post $post
+ * @var \App\Models\PostPermission $perm
+ */
+
+$permissions = [
+    0 => __('crud.view'),
+    1 => __('crud.edit'),
+    2 => __('crud.permissions.actions.bulk.deny')
+];
+?>
 <div class="tab-pane" id="form-permissions">
     <div class="max-w-4xl flex flex-col gap-2">
         @if(!empty($model))

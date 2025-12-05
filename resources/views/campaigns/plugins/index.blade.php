@@ -1,10 +1,10 @@
 <?php /** @var \App\Models\Campaign $campaign
  * @var \App\Models\Plugin $plugin
  */?>
-<div class="flex gap-2 items-center">
-    <h3 class="inline-block grow">
+<div class="flex gap-2 items-center justify-between">
+    <h1 class="inline-block text-2xl">
         {{ __('campaigns.show.tabs.plugins') }}
-    </h3>
+    </h1>
     <a href="{{ config('marketplace.url') }}" class="btn2 btn-primary btn-sm">
         {{ __('campaigns/plugins.actions.find-plugins') }} <x-icon class="link" />
     </a>

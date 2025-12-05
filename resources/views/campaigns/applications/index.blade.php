@@ -18,9 +18,9 @@
 
     <div class="flex gap-5 flex-col">
         <div class="flex gap-2 items-center">
-            <h3 class="inline-block grow">
+            <h1 class="inline-block grow text-2xl">
                 {{ __('campaigns/applications.title') }}
-            </h3>
+            </h1>
             <x-learn-more url="features/campaigns/applications.html" />
         </div>
 

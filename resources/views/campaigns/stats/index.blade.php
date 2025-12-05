@@ -1,7 +1,9 @@
 <?php /** @var \App\Models\Campaign $campaign */?>
 @extends('layouts.app', [
     'title' => __('campaigns/stats.title2') . ' - ' . $campaign->name,
-    'breadcrumbs' => false,
+    'breadcrumbs' => [
+        __('campaigns.show.tabs.stats')
+    ],
     'canonical' => true,
     'mainTitle' => false,
     'sidebar' => 'campaign',
@@ -14,9 +16,9 @@
 
     <div class="flex gap-5 flex-col">
         <div class="flex gap-2 items-center justify-between">
-            <h3 class="">
+            <h1 class="text-2xl">
                 {!! __('campaigns/stats.title2') !!}
-            </h3>
+            </h1>
         </div>
 
             <p>
@@ -26,7 +28,7 @@
         <x-grid>
 
             <div class="flex flex-col gap-5 stats-entities">
-                <h3>{{ __('campaigns.show.tabs.modules') }}</h3>
+                <h3 class="text-xl">{{ __('campaigns.show.tabs.modules') }}</h3>
                 <x-box>
                     <div class="grid grid-cols-2 gap-2 items-center">
                         <div class="entity-total font-bold">
@@ -53,7 +55,7 @@
 
             <div class="flex flex-col gap-5">
                 <div class="flex flex-col gap-5 stats-modules">
-                    <h3>{{ __('campaigns/modules.sections.features') }}</h3>
+                    <h3 class="text-xl">{{ __('campaigns/modules.sections.features') }}</h3>
                     <x-box>
                         <div class="grid grid-cols-2 gap-2 items-center">
                             @foreach ($stats['modules'] as $module => $count)
@@ -69,7 +71,7 @@
                 </div>
 
                 <div class="flex flex-col gap-5 stats-permissions">
-                    <h3>{{ __('campaigns/stats.fields.general') }}</h3>
+                    <h3 class="text-xl">{{ __('campaigns/stats.fields.general') }}</h3>
                     <x-box>
                         <div class="grid grid-cols-2 gap-2 items-center">
                             @if ($campaign->creator)

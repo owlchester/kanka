@@ -1,7 +1,7 @@
 <div class="flex gap-2 items-center">
-    <h3 class="inline-block grow">
+    <h1 class="inline-block grow text-2xl">
         {{ __('campaigns.show.tabs.roles') }}
-    </h3>
+    </h1>
     <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
             data-target="roles-help">
         <x-icon class="question" />

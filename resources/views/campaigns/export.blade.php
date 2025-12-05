@@ -15,9 +15,9 @@
         @include('partials.errors')
 
         <div class="flex gap-2 items-center justify-between">
-            <h3 class="">
+            <h1 class="text-2xl">
                 {{ __('campaigns/export.title') }}
-            </h3>
+            </h1>
             <div class="flex gap-2 flex-wrap items-center">
                 <x-learn-more url="features/campaigns/export.html" />
                 <a href="#" class="btn2 btn-sm btn-primary" data-toggle="dialog" data-target="export-confirm">

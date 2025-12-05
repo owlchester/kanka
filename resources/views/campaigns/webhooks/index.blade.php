@@ -1,7 +1,8 @@
-<div class="flex gap-2 items-center">
-    <h3 class="inline-block grow">
-        {{ __('campaigns.show.tabs.webhooks') }}</span>
-    </h3>
+<div class="flex gap-2 items-center justify-between">
+    <h1 class="inline-block text-2xl">
+        {{ __('campaigns.show.tabs.webhooks') }}
+    </h1>
+    <div class="flex gap-1">
     <x-learn-more url="features/campaigns/webhooks.html" />
     @can('update', $campaign)
         <a
@@ -15,6 +16,7 @@
             {{ __('campaigns/webhooks.actions.add') }}
         </a>
     @endif
+    </div>
 </div>
 
 <p>

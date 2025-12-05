@@ -16,6 +16,7 @@
 @if ($multiple) multiple @endif
 @if (!empty($label)) aria-label="{!! $label !!}" @endif
 @foreach ($extra as $k => $v)   {{ $k }}="{{ $v }}" @endforeach
+@if ($attributes->has('x-model')) x-model="{{ $attributes->get('x-model') }}" @endif
 >
 @foreach ($options as $k => $v)
     @if (is_array($v))

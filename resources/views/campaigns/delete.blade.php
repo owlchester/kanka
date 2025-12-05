@@ -14,7 +14,7 @@
         @include('ads.top')
         @include('partials.errors')
 
-        <h1 class="grow">
+        <h1 class="text-2xl">
             {{ __('campaigns/delete.title') }}
         </h1>
 

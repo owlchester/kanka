@@ -34,10 +34,10 @@
             @endif
         @endcan
 
-        <div class="flex gap-2 items-center">
-            <h3 class="inline-block grow">
+        <div class="flex gap-2 items-center justify-between">
+            <h1 class="inline-block text-2xl">
                 {!! $campaign->name !!}
-            </h3>
+            </h1>
             <div class="flex-none flex gap-1">
 {{--                @can('member', $campaign)--}}
 {{--                    <button type="button" class="btn2 btn-sm" data-toggle="dialog-ajax" data-target="leave-confirm" data-url="{{ route('campaign.leave', $campaign) }}">--}}

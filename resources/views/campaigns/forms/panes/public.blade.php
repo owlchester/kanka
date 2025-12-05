@@ -20,7 +20,7 @@
             @endif
             <hr />
 
-            <h4 class="m-0">{{ __('campaigns.fields.public_campaign_filters') }}</h4>
+            <h4 class="m-0 text-lg">{{ __('campaigns.fields.public_campaign_filters') }}</h4>
 
             <x-helper>
                 <p>{!! __('campaigns.sharing.filters', [
