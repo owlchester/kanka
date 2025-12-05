@@ -29,22 +29,6 @@ class DiceRollController extends CrudController
 
     protected string $forceMode = 'table';
 
-    protected function setNavActions(): CrudController
-    {
-        $this->addNavAction(
-            route('dice_rolls.results', $this->campaign),
-            '<i class="fa-solid fa-list"></i> ' . __('dice_rolls.index.actions.results')
-        );
-        $this->addNavAction(
-            '//docs.kanka.io/en/latest/entities/dice-rolls.html',
-            '<i class="fa-regular fa-book" aria-hidden="true"></i> ' . __('general.learn-more'),
-            '',
-            true
-        );
-
-        return parent::setNavActions();
-    }
-
     /**
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      *

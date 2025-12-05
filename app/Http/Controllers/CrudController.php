@@ -72,9 +72,6 @@ class CrudController extends Controller
     /** If the boosted tab and pane is enabled or not */
     protected bool $tabBoosted = true;
 
-    /** List of navigation actions on top of the datagrids */
-    protected array $navActions = [];
-
     /** Make the request play nice with the model */
     protected string $sanitizer;
 
@@ -180,21 +177,6 @@ class CrudController extends Controller
             $base->where([$model->getTable() . '.' . $parentKey => request()->get('parent_id')]);
 
             $parent = $model->where('id', request()->get('parent_id'))->first();
-            if ($mode === 'table') {
-                if (! empty($parent) && ! empty($parent->parent)) {
-                    // Go back to previous parent
-                    $this->addNavAction(
-                        route($this->route . '.index', [$campaign, 'parent_id' => $parent->parent->id]),
-                        '<i class="fa-solid fa-arrow-left" aria-hidden="true"></i> ' . $parent->parent->name
-                    );
-                } else {
-                    // Go back to first level
-                    $this->addNavAction(
-                        route($this->route . '.index', [$campaign]),
-                        '<i class="fa-solid fa-arrow-left" aria-hidden="true"></i> ' . __('crud.actions.back')
-                    );
-                }
-            }
         } elseif ($nested && $this->filterService->activeFiltersCount() === 0) {
             // @phpstan-ignore-next-line
             $base->whereNull($model->getTable() . '.' . $model->getParentKeyName());
@@ -242,16 +224,12 @@ class CrudController extends Controller
             ]);
         }
 
-        $this->setNavActions();
-        $actions = $this->navActions;
-
         $data = compact(
             'campaign',
             'models',
             'name',
             'langKey',
             'model',
-            'actions',
             'filter',
             'filteredCount',
             'unfilteredCount',
@@ -712,28 +690,6 @@ class CrudController extends Controller
     protected function moduleEnabled(): bool
     {
         return ! isset($this->module) || $this->campaign->enabled($this->module);
-    }
-
-    /**
-     * Add a button to the top of a datagrid
-     *
-     * @param  string  $route
-     */
-    protected function addNavAction($route, string $label, string $class = '', bool $blank = false): self
-    {
-        $this->navActions[] = [
-            'route' => $route,
-            'class' => $class,
-            'label' => $label,
-            'blank' => $blank,
-        ];
-
-        return $this;
-    }
-
-    protected function setNavActions(): self
-    {
-        return $this;
     }
 
     /**

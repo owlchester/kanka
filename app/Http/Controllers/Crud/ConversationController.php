@@ -26,18 +26,6 @@ class ConversationController extends CrudController
 
     protected string $forceMode = 'table';
 
-    protected function setNavActions(): CrudController
-    {
-        $this->addNavAction(
-            '//docs.kanka.io/en/latest/entities/conversations.html',
-            '<i class="fa-regular fa-book" aria-hidden="true"></i> ' . __('general.learn-more'),
-            '',
-            true
-        );
-
-        return parent::setNavActions();
-    }
-
     public function store(StoreConversation $request, Campaign $campaign)
     {
         return $this->campaign($campaign)->crudStore($request);
