@@ -26,25 +26,26 @@
                 {!! $campaign->name !!}
             </h1>
 
-            <div class="join">
+            <div class="flex gap-2">
                 @can('update', $campaign)
-                    <a href="{{ route('campaigns.edit', $campaign) }}" class="btn2 join-item" title="{{ __('campaigns.show.actions.edit') }}">
+                    <a href="{{ route('campaigns.edit', $campaign) }}" class="btn2 " title="{{ __('campaigns.show.actions.edit') }}">
                         <x-icon class="edit" />
                         {{ __('campaigns.show.actions.edit') }}
                     </a>
                 @endcan
                 @can('member', $campaign)
                     <div class="dropdown">
-                        <button type="button" class="btn2 join-item" data-dropdown
+                        <button type="button" class="btn2" data-dropdown
                                 aria-expanded="false">
-                            <x-icon class="fa-regular fa-bars" />
+                            <x-icon class="fa-regular fa-ellipsis-h" />
                             <span class="sr-only">{{ __('crud.actions.actions') }}</span>
                         </button>
                         <div class="dropdown-menu hidden" role="menu">
                             <x-dropdowns.item
                                 link="#"
+                                css="text-error hover:bg-error hover:text-error-content"
                                 :dialog="route('campaign.leave', $campaign)"
-                                icon="fa-regular fa-person-walking text-neutral-content">
+                                icon="fa-regular fa-person-walking ">
                                 {{ __('campaigns.leave.action') }}
                             </x-dropdowns.item>
                         </div>
