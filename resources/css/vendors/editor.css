@@ -37,6 +37,23 @@ div.mce-fullscreen {
   border: none;
 }
 .note-editable {
+    ul, ol {
+        margin-top: 0;
+        padding: 0 1.5rem;
+        list-style: outside;
+    }
+    ul {
+        list-style-type: disc;
+    }
+    ol {
+        list-style-type: decimal;
+    }
+    > ul:first-of-type {
+        margin-bottom: .5rem;
+    }
+    > ol:first-of-type {
+        margin-bottom: .5rem;
+    }
 }
 .note-popover {
     position: absolute;
