@@ -184,6 +184,7 @@ return [
     'panels'                            => [
         'dashboard' => 'Tableau de bord',
         'permission'=> 'Permission',
+        'privacy'   => 'Confidentialité par défaut',
         'setup'     => 'Configuration',
         'sharing'   => 'Partage',
         'systems'   => 'Systèmes',
@@ -380,6 +381,7 @@ return [
             'danger'            => 'Danger',
             'data'              => 'Données',
             'default-images'    => 'Images par défaut',
+            'defaults'          => 'Défauts',
             'deletion'          => 'Suppression',
             'export'            => 'Export',
             'import'            => 'Import',
@@ -454,6 +456,7 @@ return [
         'private'   => 'Privée',
         'public'    => 'Publique',
         'review'    => 'En attente de revue',
+        'unlisted'  => 'Public (non répertorié)',
     ],
     'warning'                           => [],
 ];

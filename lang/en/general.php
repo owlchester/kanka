@@ -14,6 +14,6 @@ return [
         'deleted-cancel'    => ':name removed. :cancel.',
         'updated'           => ':name updated.',
     ],
+    'tutorial'      => 'Watch tutorial',
     'yes'           => 'Yes',
-    'tutorial' => 'Watch tutorial',
 ];

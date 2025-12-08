@@ -32,4 +32,5 @@ return [
         'tags'          => 'Sous contrôle',
         'themes'        => 'Peintre',
     ],
+    'tutorial'          => 'Les succès suivent les actions importantes dans cette campagne, comme créer des entités ou utiliser des fonctionnalités clés. Ils sont uniquement informatifs et se mettent à jour automatiquement pendant que tu explores et construis',
 ];

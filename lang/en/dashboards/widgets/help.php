@@ -2,6 +2,6 @@
 
 return [
     'description'   => 'Shows help and community links.',
-    'name' => 'Help & Community',
+    'name'          => 'Help & Community',
     'title'         => 'Help & Community',
 ];

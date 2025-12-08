@@ -52,7 +52,7 @@ return [
         'active'    => 'The webhook is active and will trigger on the selected event.',
         'message'   => 'Add a custom message with support for mappings',
         'status'    => 'Toggle the active status of the webhook',
-        'tutorial' => 'Use webhooks to send real-time updates from the campaign to external tools. Events trigger automatically when entities are created, updated, or deleted. You can add multiple webhooks and test them from this page.',
+        'tutorial'  => 'Use webhooks to send real-time updates from the campaign to external tools. Events trigger automatically when entities are created, updated, or deleted. You can add multiple webhooks and test them from this page.',
     ],
     'pitch'         => 'Create custom webhooks to receive custom updates whenever an entity from the campaign is updated.',
     'placeholders'  => [

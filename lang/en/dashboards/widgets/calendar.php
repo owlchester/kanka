@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'name' => 'Calendar',
-    'description' => 'Shows upcoming reminders.',
+    'description'   => 'Shows upcoming reminders.',
+    'name'          => 'Calendar',
 ];

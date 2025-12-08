@@ -1,11 +1,15 @@
 <?php
 
 return [
-    'archive'   => [
+    'archive'           => [
         'success'   => ':name a été archivé.',
         'title'     => 'Archiver',
     ],
-    'templates' => [
+    'convert'           => 'Convertir le module',
+    'copy-campaign'     => 'Copier vers la campagne',
+    'json-export'       => 'Export JSON',
+    'markdown-export'   => 'Export Markdown',
+    'templates'         => [
         'set'       => 'Définir comme modèle',
         'success'   => [
             'set'   => 'L\'entité :name définie comme modèle.',
@@ -14,7 +18,8 @@ return [
         'toggle'    => 'Changement d\'état.',
         'unset'     => 'Retirer des modèles',
     ],
-    'unarchive' => [
+    'transfer'          => 'Transférer de campagne',
+    'unarchive'         => [
         'success'   => ':name n\'est plus archivé.',
         'title'     => 'Désarchiver',
     ],

@@ -1,6 +1,7 @@
 <?php
 
 return [
-    'description'   => 'Affiche des liens vers l\'aide et les ressources communautaires sur le tableau de bord.',
-    'title'         => 'Aide & communauté',
+    'description'   => 'Affiche des liens vers l\'aide et les ressources communautaires.',
+    'name'          => 'Aide & Communauté',
+    'title'         => 'Aide & Communauté',
 ];

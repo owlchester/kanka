@@ -8,7 +8,8 @@ return [
         'title'     => 'Nouvel article',
     ],
     'fields'        => [
-        'name'  => 'Nom',
+        'layout'    => 'Mise en page',
+        'name'      => 'Nom',
     ],
     'helpers'       => [
         'new'           => 'Ajouter un nouvel article à cette entité.',

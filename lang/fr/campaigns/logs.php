@@ -10,4 +10,5 @@ return [
     'premium'   => [
         'helper'    => 'Les journaux datant de plus de :amount jours ne peuvent être consultés qu\'avec une campagne premium.',
     ],
+    'title'     => 'Journal d\'audit',
 ];

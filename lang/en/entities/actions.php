@@ -1,14 +1,15 @@
 <?php
 
 return [
-    'transfer' => 'Transfer to campaign',
-    'copy-campaign' => 'Copy to campaign',
-    'convert' => 'Convert module',
-    'archive'   => [
+    'archive'           => [
         'success'   => ':name has been archived.',
         'title'     => 'Archive',
     ],
-    'templates' => [
+    'convert'           => 'Convert module',
+    'copy-campaign'     => 'Copy to campaign',
+    'json-export'       => 'JSON export',
+    'markdown-export'   => 'Markdown export',
+    'templates'         => [
         'set'       => 'Set as template',
         'success'   => [
             'set'   => ':name set as a template.',
@@ -17,10 +18,9 @@ return [
         'toggle'    => 'Toggled template status.',
         'unset'     => 'Remove as template',
     ],
-    'unarchive' => [
+    'transfer'          => 'Transfer to campaign',
+    'unarchive'         => [
         'success'   => ':name is no longer archived.',
         'title'     => 'Unarchive',
     ],
-    'json-export' => 'JSON export',
-    'markdown-export' => 'Markdown export',
 ];

@@ -1,7 +1,6 @@
 <?php
 
 return [
-    'title' => 'Placeholder images',
     'actions'           => [
         'add'   => 'New placeholder',
     ],
@@ -15,13 +14,14 @@ return [
     'destroy'           => [
         'success'   => 'Placeholder image for :type removed.',
     ],
-    'reset'             => [
-        'title'     => 'Reset placeholder images',
-        'helper'    => 'Are you sure you want to remove the placeholder images for all campaign modules?',
-        'warning'   => 'This action is permanent and cannot be undone.',
-        'success'   => 'Successfully removed all modules\' placeholder images',
-    ],
-    'tutorial' => 'Set default images for entities without custom pictures. These thumbnails appear immediately across the campaign and keep lists visually consistent.',
     'empty'             => 'No modules currently have a placeholder image.',
     'helper'            => 'Used for all entities of this module without an image.',
+    'reset'             => [
+        'helper'    => 'Are you sure you want to remove the placeholder images for all campaign modules?',
+        'success'   => 'Successfully removed all modules\' placeholder images.',
+        'title'     => 'Reset placeholder images',
+        'warning'   => 'This action is permanent and cannot be undone.',
+    ],
+    'title'             => 'Placeholder images',
+    'tutorial'          => 'Set default images for entities without custom pictures. These thumbnails appear immediately across the campaign and keep lists visually consistent.',
 ];

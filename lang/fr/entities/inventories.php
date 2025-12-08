@@ -60,6 +60,7 @@ return [
         'equipped'  => 'Cet objet est équipé',
     ],
     'tutorials'         => [
+        'all'       => 'Suis ce que :name possède, garde ou vend en ajoutant des objets à cet inventaire',
         'character' => 'Garder la trace de ce que :name possède ou a à vendre en ajoutant des objets à l\'inventaire.',
         'location'  => 'Garder la trace de ce que :name a à vendre ou à piller en ajoutant des objets à l\'inventaire.',
         'other'     => 'Garder la trace de ce que :name possède en ajoutant des objets à l\'inventaire.',

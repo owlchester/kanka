@@ -26,6 +26,10 @@ return [
         'large-stroke'  => 'Grand trait',
         'thin-stroke'   => 'Petit trait',
     ],
+    'reset'         => [
+        'helper'    => 'Es-tu sûr de vouloir réinitialiser le tableau blanc? Cette action est irréversible.',
+        'title'     => 'Réinitialiser le tableau blanc',
+    ],
     'toast'         => [
         'copy'  => [
             'success'   => 'Éléments copiés au presse papier.',

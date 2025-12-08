@@ -11,7 +11,6 @@ return [
             'title' => 'Murderer',
         ],
     ],
-    'tutorial'        => 'Campaign statistics show entity counts and recent activity. Data updates every :amount hours. Use this to track growth and usage over time.',
     'fields'        => [
         'created'       => 'Created on',
         'creator'       => 'Created by',
@@ -31,4 +30,5 @@ return [
         'quests'    => 'Mastermind level :level',
         'races'     => 'Breeder level :level',
     ],
+    'tutorial'      => 'Campaign statistics show entity counts and recent activity. Data updates every :amount hours. Use this to track growth and usage over time.',
 ];

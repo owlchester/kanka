@@ -7,7 +7,6 @@ return [
     'character1'    => [
         'fears'     => 'James a peur du bruit et des explosions.',
         'history'   => 'Ceci est un exemple de personnage.',
-        'name'      => 'James Owlchester (exemple)',
         'race'      => 'Humain',
         'sex'       => 'Mâle',
         'title'     => 'Chasseur Gris',
@@ -16,7 +15,6 @@ return [
     'character2'    => [
         'fears'     => 'Créer la plus grande explosion possible.',
         'history'   => 'Ceci est un exemple de personnage.',
-        'name'      => 'Irwie Gemstone (exemple)',
         'race'      => 'Gnome',
         'sex'       => 'Femelle',
         'title'     => 'Reine des Explosions',
@@ -25,15 +23,16 @@ return [
     'kingdom1'      => [
         'description'   => 'Ceci est un exemple de localité.',
         'history'       => '(exemple) Le royaume de Genory fut fondé par la tribu des Genoriens durant le 5ème sciècle.',
-        'name'          => 'Genory (exemple)',
+        'name'          => 'Genory',
         'type'          => 'Royaume',
     ],
     'kingdom2'      => [
         'description'   => '(exemple) Ulyss est la capitale du royaume de Genory.',
         'history'       => '(exemple) Ulyss est la capitale du royaume de Genory.',
-        'name'          => 'Ulyss (exemple)',
+        'name'          => 'Ulyss',
         'type'          => 'Capitale',
     ],
+    'name'          => ':name (exemple)',
     'note1'         => [
         'entry'         => <<<'TEXT'
 Bienvenue sur Kanka! Ta première campagne a été créée et nous avons inclus quelques exemples d'entités pour t'inspirer que tu peux supprimer.

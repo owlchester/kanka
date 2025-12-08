@@ -60,7 +60,7 @@ return [
         'equipped'  => 'This item is equipped',
     ],
     'tutorials'         => [
-        'all' => 'Track what :name owns, stores, or offers by adding items to this inventory.',
+        'all'   => 'Track what :name owns, stores, or offers by adding items to this inventory.',
     ],
     'update'            => [
         'success'   => 'Item :item updated for :entity.',

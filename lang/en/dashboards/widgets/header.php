@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'name' => 'Header',
-    'description' => 'Shows a text header.',
+    'description'   => 'Shows a text header.',
+    'name'          => 'Header',
 ];

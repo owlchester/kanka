@@ -52,6 +52,7 @@ return [
         'active'    => 'Si le webhook est actuellement activé',
         'message'   => 'Ajouter un message personnalisé avec prise en charge des paramètres',
         'status'    => 'Basculer l\'état actif du webhook',
+        'tutorial'  => 'Utilise des webhooks pour envoyer des mises à jour en temps réel de la campagne vers des outils externes. Les événements se déclenchent automatiquement quand des entités sont créées, modifiées ou supprimées. Tu peux ajouter plusieurs webhooks et les tester depuis cette page',
     ],
     'pitch'         => 'Créer des webhooks personnalisés pour recevoir des mises à jour personnalisées chaque fois qu\'une entité de la campagne est mise à jour.',
     'placeholders'  => [

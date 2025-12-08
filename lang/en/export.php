@@ -2,6 +2,6 @@
 
 return [
     'content'           => 'Content',
-    'index'             => 'Entity Index',
     'hidden_campaign'   => 'Hidden Campaign',
+    'index'             => 'Entity Index',
 ];

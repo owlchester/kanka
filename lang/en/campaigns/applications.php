@@ -41,8 +41,7 @@ return [
         'public'    => 'Campaign is public.',
         'title'     => 'Public campaign',
     ],
-    'title' => 'Join requests',
-    'tutorial' => 'Campaign applications let people request access to this campaign. Applicants submit a short form, and campaign admins can review, accept, or decline each request. Approved users are added to the campaign with the role you assign during review.',
+    'title'         => 'Join requests',
     'toggle'        => [
         'closed'    => 'Closed to applications',
         'label'     => 'Status',
@@ -50,6 +49,7 @@ return [
         'success'   => 'Campaign application status updated.',
         'title'     => 'Application status',
     ],
+    'tutorial'      => 'Campaign applications let people request access to this campaign. Applicants submit a short form, and campaign admins can review, accept, or decline each request. Approved users are added to the campaign with the role you assign during review.',
     'update'        => [
         'approve'   => 'Select the role the user will be added as in the campaign.',
         'approved'  => 'Application approved.',

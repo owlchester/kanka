@@ -12,6 +12,7 @@ return [
         '2' => 'Pour commencer, cliques sur le gros bouton :new-entity (ou appuies sur :letter sur ton clavier), puis cliques sur :characters pour créer ton premier personnage. C\'est aussi simple que cela! Tu peux retrouver tous tes personnages, lieux et autres :entities dans la barre latérale située à gauche de la page.',
         '3' => 'Voici nos 5 meilleures astuces pour utiliser Kanka',
     ],
+    'name'          => 'Bienvenue',
     'title'         => 'Bienvenue à :kanka! 🎉',
     'tricks'        => [
         '1'         => 'Lors de la rédaction de description, n\'écris pas les noms des éléments. Au lieu de cela, tappes :code et trois lettres pour créer des :mention vers d\'autres entités. Ces mentions seront automatiquement mises à jour lorsque tu changeras leurs noms.',

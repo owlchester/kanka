@@ -70,7 +70,7 @@ class StarterService
 
         // Generate locations
         $kingdom = new Location([
-            'name' => __('starter.name', ['name' => __('starter.kingdom1.name')]),
+            'name' => __('starter.name', ['name' => 'Genory']),
             'type' => __('starter.kingdom1.type'),
             'entry' => '<p>' . __('starter.kingdom1.description') . '</p>',
             'campaign_id' => $this->campaign->id,
@@ -79,7 +79,7 @@ class StarterService
         $kingdom->save();
 
         $city = new Location([
-            'name' => __('starter.name', ['name' => __('starter.kingdom2.name')]),
+            'name' => __('starter.name', ['name' => 'Ulyss']),
             'type' => __('starter.kingdom2.type'),
             'location_id' => $kingdom->id,
             'entry' => '<p>' . __('starter.kingdom2.description') . '</p>',
@@ -90,29 +90,25 @@ class StarterService
 
         // Generate characters
         $james = new Character([
-            'name' => __('starter.name', ['name' => __('starter.character1.name')]),
+            'name' => __('starter.name', ['name' => 'James Owlchester']),
             'title' => __('starter.character1.title'),
             'age' => '43',
             'sex' => __('starter.character1.sex'),
             'entry' => '<p>' . __('starter.character1.history') . '</p>',
             'location_id' => $city->id,
             'campaign_id' => $this->campaign->id,
-            'fears' => __('starter.character1.fears'),
-            'traits' => __('starter.character1.traits'),
             'is_private' => false,
         ]);
         $james->save();
 
         $irwie = new Character([
-            'name' => __('starter.name', ['name' => __('starter.character2.name')]),
+            'name' => __('starter.name', ['name' => 'Irwie Gemstone']),
             'title' => __('starter.character2.title'),
             'age' => '31',
             'sex' => __('starter.character2.sex'),
             'entry' => '<p>' . __('starter.character2.history') . '</p>',
             'location_id' => $city->id,
             'campaign_id' => $this->campaign->id,
-            'fears' => __('starter.character2.fears'),
-            'traits' => __('starter.character2.traits'),
             'is_private' => false,
         ]);
         $irwie->save();
