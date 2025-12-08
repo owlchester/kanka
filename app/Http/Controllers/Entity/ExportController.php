@@ -46,7 +46,14 @@ class ExportController extends Controller
         $converter->getConfig()->setOption('strip_tags', true);
         $converter->getEnvironment()->addConverter(new TableConverter);
 
-        $entityData = $this->markdownExportService->user(auth()->user())->campaign($campaign)->entity($entity)->single(true)->entityData();
+        if (auth()->check()) {
+            $this->markdownExportService->user(auth()->user());
+        }
+        $entityData = $this->markdownExportService
+            ->campaign($campaign)
+            ->entity($entity)
+            ->single(true)
+            ->entityData();
 
         return response()->view('entities.markdown.base', ['entity' => $entity, 'entityData' => $entityData, 'converter' => $converter, 'campaign' => $campaign])
             ->header('Content-Type', 'application/md')

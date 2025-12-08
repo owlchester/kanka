@@ -14,7 +14,7 @@ $boxClass = 'rounded p-5 text-center bg-box shadow-xs flex items-center justify-
                 }
             @endphp
         @endif
-        <div class="rounded {{ $campaign->boosted() ? 'bg-green-200' : 'bg-red-200' }} w-12 h-12 flex items-center justify-center text-xl">
+        <div class="rounded {{ $campaign->boosted() ? 'bg-green-200' : 'bg-red-200' }} w-12 h-12 flex items-center justify-center text-xl flex-none">
             <x-icon class="fa-regular {{ $campaign->boosted() ? 'fa-gem text-green-600' : 'fa-times text-red-500' }}" />
         </div>
         <div class="flex flex-col gap-0 grow">
@@ -34,16 +34,16 @@ $boxClass = 'rounded p-5 text-center bg-box shadow-xs flex items-center justify-
         </div>
         @if (!$campaign->boosted() && auth()->check())
             @if (auth()->user()->hasBoosterNomenclature())
-                <a class="rounded-full border border-base-300 h-12 w-12 gap-2 flex items-center justify-center cursor-pointer neutral-link hover:bg-base-200" href="{{ route('settings.boost', ['campaign' => $campaign->id]) }}">
+                <a class="rounded-full border border-base-300 h-12 w-12 gap-2 flex items-center justify-center cursor-pointer neutral-link hover:bg-base-200 flex-none" href="{{ route('settings.boost', ['campaign' => $campaign->id]) }}">
                     <x-icon class="fa-regular fa-angle-right" />
                 </a>
             @else
-                <a class="rounded-full border border-base-300 h-12 w-12 flex gap-2 items-center justify-center cursor-pointer neutral-link hover:bg-base-200" href="{{ route('settings.premium', ['campaign' => $campaign->id]) }}" data-tooltip data-title="{{ __('campaigns/overview.premium.enable') }}">
+                <a class="rounded-full border border-base-300 h-12 w-12 flex gap-2 items-center justify-center cursor-pointer neutral-link hover:bg-base-200 flex-none" href="{{ route('settings.premium', ['campaign' => $campaign->id]) }}" data-tooltip data-title="{{ __('campaigns/overview.premium.enable') }}">
                     <x-icon class="fa-regular fa-angle-right" />
                 </a>
             @endif
         @elseif (auth()->check())
-            <a class="rounded-full border border-base-300 h-12 w-12 flex items-center justify-center cursor-pointer neutral-link hover:bg-base-200" href="{{ route('settings.premium') }}" >
+            <a class="rounded-full border border-base-300 h-12 w-12 flex items-center justify-center cursor-pointer neutral-link hover:bg-base-200 flex-none" href="{{ route('settings.premium') }}" >
                 <x-icon class="fa-regular fa-angle-right" />
             </a>
         @endif
@@ -70,7 +70,8 @@ $boxClass = 'rounded p-5 text-center bg-box shadow-xs flex items-center justify-
             :campaign="$campaign"
             :url="route('campaign.leave', $campaign)"
             :urlTooltip="__('campaigns.leave.action')"
-            urlIcon="fa-regular fa-person-walking"
+            urlIcon="fa-regular fa-person-walking text-error"
+            urlButton="border-error"
             ajax
         ></x-infoBox>
     @endif

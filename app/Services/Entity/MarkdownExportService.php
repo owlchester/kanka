@@ -157,7 +157,10 @@ class MarkdownExportService
      */
     public function markdownEntry(): string
     {
-        return $this->markdownMentionsService->user($this->user)->single($this->isSingle)->parseForMarkdown($this->entity);
+        if (isset($this->user)) {
+            $this->markdownMentionsService->user($this->user);
+        }
+        return $this->markdownMentionsService->single($this->isSingle)->parseForMarkdown($this->entity);
     }
 
     /**
@@ -165,6 +168,9 @@ class MarkdownExportService
      */
     public function markdownPost(Post $post): string
     {
-        return $this->markdownMentionsService->user($this->user)->single($this->isSingle)->parseForMarkdown($post);
+        if (isset($this->user)) {
+            $this->markdownMentionsService->user($this->user);
+        }
+        return $this->markdownMentionsService->single($this->isSingle)->parseForMarkdown($post);
     }
 }

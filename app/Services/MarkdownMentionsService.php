@@ -86,7 +86,7 @@ class MarkdownMentionsService
             $hasCustom = Arr::has($data, 'custom');
 
             // If the user always wants advanced mentions, we force the [] syntax upon them
-            if ($hasCustom || $this->user->alwaysAdvancedMentions()) {
+            if ($hasCustom || (isset($this->user) && $this->user->alwaysAdvancedMentions())) {
 
                 // Get entity
                 $entity = $this->entity($data['id']);
