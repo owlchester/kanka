@@ -73,6 +73,7 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  * @property EntityAsset[]|Collection $pinnedAssets
  * @property EntityAsset[]|Collection $pinnedAliases
  * @property Relation[]|Collection $relationships
+ * @property Relation[]|Collection $allRelationships
  * @property Reminder[]|Collection $elapsedEvents
  * @property Reminder[]|Collection $calendarDateEvents
  * @property Reminder[]|Collection $reminders
