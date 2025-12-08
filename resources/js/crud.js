@@ -15,11 +15,15 @@ function registerEntityNameCheck() {
     if (field.dataset.liveDisabled) {
         return;
     }
+
+    let lastCheckedValue = '';
     field.addEventListener('focusout', function (event) {
-        // Don't bother if the user didn't set any value
-        if (!field.value) {
+        // Don't bother if the user didn't set any value or value hasn't changed
+        if (!field.value || field.value === lastCheckedValue) {
             return;
         }
+        lastCheckedValue = field.value;
+
         const block = this.dataset.duplicate;
         const entityCreatorDuplicateWarning = document.querySelector(block);
         if (!entityCreatorDuplicateWarning) {
@@ -106,9 +110,16 @@ function registerUnsavedChanges() {
         });
         // For select2 fields, we need to listen to onchange directly, because jquery won't trigger the change event
         if (input.classList.contains('select2')) {
-            input.onchange = () => {
-                window.entityFormHasUnsavedChanges = true;
-            };
+            if (typeof $ !== 'undefined') {
+                $(input).on('change', () => {
+                    window.entityFormHasUnsavedChanges = true;
+                });
+            } else {
+                // Fallback if jQuery isn't global, but use addEventListener, not .onchange
+                input.addEventListener('change', () => {
+                    window.entityFormHasUnsavedChanges = true;
+                });
+            }
         }
     });
 

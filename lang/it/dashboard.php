@@ -71,16 +71,6 @@ return [
             'blog'  => 'nostro tutorial',
             'text'  => 'Hai bisogno di aiuto per configurare la Pagina Principale della tua campagna? Leggi :blog per trovare aiuto e ispirazione.',
         ],
-        'widgets'   => [
-            'calendar'      => 'Calendario',
-            'campaign'      => 'Intestazione della campagna',
-            'header'        => 'Intestazione testuale',
-            'preview'       => 'Anteprima dell\'entità',
-            'random'        => 'Entità casuale',
-            'recent'        => 'Lista di entità',
-            'unmentioned'   => 'Lista di entità non menzionate',
-            'welcome'       => 'Benvenuto',
-        ],
     ],
     'title'         => 'Pagina Principale',
     'widgets'       => [

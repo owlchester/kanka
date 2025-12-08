@@ -13,7 +13,7 @@
 
         <div class="text-lg">
         @can('update', $entity)
-            <a href="#" data-toggle="dialog-ajax" data-target="asset-update-dialog" data-url="{{ route('entities.entity_assets.edit', [$campaign, $entity, $asset]) }}">
+            <a href="#" data-toggle="dialog" data-target="asset-update-dialog" data-url="{{ route('entities.entity_assets.edit', [$campaign, $entity, $asset]) }}">
                 <x-icon class="pencil" title="{{ __('crud.edit') }}" tooltip />
             </a>
         @endif

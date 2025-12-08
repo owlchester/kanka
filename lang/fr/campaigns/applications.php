@@ -41,6 +41,7 @@ return [
         'public'    => 'La campagne est publique',
         'title'     => 'Campaign publique',
     ],
+    'title'         => 'Candidatures',
     'toggle'        => [
         'closed'    => 'Fermé aux candidatures',
         'label'     => 'Status',
@@ -48,6 +49,7 @@ return [
         'success'   => 'Le status de candidature de la campagne a été modifié.',
         'title'     => 'Status des candidatures',
     ],
+    'tutorial'      => 'Les candidatures permettent aux gens de demander l\'accès à cette campagne. Les candidats remplissent un court formulaire, et les admins peuvent examiner, accepter ou refuser chaque demande. Les utilisateurs approuvés sont ajoutés à la campagne avec le rôle que tu leur attribues pendant la revue',
     'update'        => [
         'approve'   => 'Sélectionner le rôle auquel l\'utilisateur sera ajouté à la campagne.',
         'approved'  => 'Candidatures approuvée.',

@@ -1,7 +1,7 @@
 <template>
     <div v-if="loading" class="flex flex-col gap-4 w-full">
         <div class="flex gap-2 justify-between items-center">
-            <h1 class="grow text-3xl category-title truncate" v-html="props.module"></h1>
+            <h1 class="grow text-2xl category-title truncate" v-html="props.module"></h1>
             <div class="flex gap-2 items-center">
                 <button class="btn2 btn-disabled" disabled="disabled">
                     <i class="fa-solid fa-spinner fa-spin" aria-label="Loading"></i>
@@ -17,7 +17,7 @@
     <div class="flex flex-col gap-4 w-full" v-else>
         <div class="flex gap-2 justify-between items-center flex-wrap ">
             <div class="flex gap-1 items-center flex-wrap ">
-                <h1 class="grow text-3xl category-title truncate" v-html="props.module"></h1>
+                <h1 class="grow text-2xl category-title truncate" v-html="props.module"></h1>
                 <div class="bg-base-200 flex items-stretch gap-1 rounded-xl" v-if="filters > 0">
                     <div class="flex items-center rounded-xl gap-2 hover:bg-base-300 px-2 py-2 cursor-pointer" v-bind:aria-label="i18n.filters" :title="i18n.filters" @click="openFilters">
                         <i class="fa-regular fa-filter hover:bg-base-300" aria-label="Filter"></i>

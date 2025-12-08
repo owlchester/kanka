@@ -81,7 +81,7 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
 
         @if (count($appearances) > 0)
             <div class="character-appearances flex flex-col gap-4 md:gap-6">
-                <h4 class="">{{ __('characters.sections.appearance') }}</h4>
+                <h4 class="text-lg">{{ __('characters.sections.appearance') }}</h4>
                 <x-box class="character-appearances grid grid-cols-2 gap-5">
                     @foreach ($appearances as $trait)
                         <p class="entity-appearance-{{ \Illuminate\Support\Str::slug($trait->name) }}">
@@ -97,7 +97,7 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
 
             <div class="character-personalities flex flex-col gap-4 md:gap-6">
                 <div class="flex items-center justify-between gap-2">
-                    <h4 >{{ __('characters.sections.personality') }}</h4>
+                    <h4 class="text-lg">{{ __('characters.sections.personality') }}</h4>
                     @can('personality', $model)
                         @if (!$model->is_personality_visible)
                             <x-icon class="lock" tooltip :title="__('characters.hints.personality_not_visible')" />

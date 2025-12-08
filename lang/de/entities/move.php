@@ -3,7 +3,6 @@
 return [
     'actions'       => [
         'copy'  => 'Kopiere',
-        'move'  => 'Bewege',
     ],
     'errors'        => [
         'permission'        => 'Sie dürfen keine Objekte dieses Typs in der Zielkampagne erstellen.',

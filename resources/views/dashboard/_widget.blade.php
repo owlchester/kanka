@@ -7,11 +7,9 @@ use App\Enums\Widget;
     <div class="{{ $widgetClass }} cursor-pointer widget-{{ $widget->widget->value }} cover-background {{ $widget->widget->isHeader() ? 'h-28' : null }}"
     @if($widget->widget == Widget::Campaign)
          data-toggle="dialog"
-         data-target="primary-dialog"
          data-url="{{ route('campaigns.dashboard-header.edit', ['campaign' => $campaign, 'campaignDashboardWidget' => $widget]) }}"
     @else
          data-toggle="dialog"
-         data-target="primary-dialog"
          data-url="{{ route('campaign_dashboard_widgets.edit', [$campaign, $widget]) }}"
     @endif
     @if ($widget->widget == Widget::Campaign && $campaign->header_image)

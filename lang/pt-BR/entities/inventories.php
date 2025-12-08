@@ -50,11 +50,7 @@ return [
     'tooltips'          => [
         'equipped'  => 'Este item está equipado',
     ],
-    'tutorials'         => [
-        'character' => 'Acompanhe o que :name possui ou tem para vender adicionando itens ao seu inventário.',
-        'location'  => 'Acompanhe o que :name tem para vender ou saquear adicionando itens ao seu inventário.',
-        'other'     => 'Acompanhe o que :name possui adicionando itens ao seu inventário.',
-    ],
+    'tutorials'         => [],
     'update'            => [
         'success'   => 'Item :item de :entity atualizado.',
         'title'     => 'Atualizar o item de :name',

@@ -7,17 +7,15 @@
 ])
 
 @section('content')
-    <div class="max-w-4xl mx-auto">
-        <div class="flex gap-2 mb-3">
-            <h1 class="grow">{{ __('notifications.index.title') }}</h1>
+    <div class="max-w-4xl mx-auto flex flex-col gap-4">
+        <div class="flex gap-2 items-center justify-between">
+            <h1 class="grow text-2xl">{{ __('notifications.index.title') }}</h1>
 
             @if ($notifications->count() >= 0)
-            <div class="flex-none self-end">
-                <x-buttons.confirm type="danger" target="delete-confirm-notifications" size="sm">
-                    <x-icon class="trash" />
-                    <span>{{ __('notifications.clear.action') }}</span>
-                </x-buttons.confirm>
-            </div>
+            <x-buttons.confirm type="danger" target="delete-confirm-notifications" size="sm">
+                <x-icon class="trash" />
+                <span>{{ __('notifications.clear.action') }}</span>
+            </x-buttons.confirm>
             @endif
         </div>
 

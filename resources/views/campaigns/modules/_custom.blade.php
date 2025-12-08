@@ -1,11 +1,10 @@
 <div class="flex gap-2 items-center justify-between">
-    <h3 id="custom">{{ __('campaigns/modules.sections.custom')}}</h3>
+    <h3 id="custom" class="text-xl">{{ __('campaigns/modules.sections.custom')}}</h3>
 
     <a
         class="btn2 btn-primary btn-sm"
-        data-toggle="dialog-ajax"
+        data-toggle="dialog"
         data-url="{{ route('entity_types.create', [$campaign]) }}"
-        data-target="primary-dialog"
         title="{{ __('campaigns/modules.actions.new') }}">
         <x-icon class="plus" />
         {{ __('crud.create') }}

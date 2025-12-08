@@ -1,0 +1,27 @@
+@import 'tailwindcss';
+@import 'cookieconsent/build/cookieconsent.min.css';
+
+
+.login-page, .register-page {
+    background-color: #eef1f4;
+    background-position: 50% 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    background-image: url('https://th.kanka.io/smu57gaTzoPAMo9OQYfsHFTi-fA=/560x600/smart/src/app/backgrounds/mountain-background-desktop.jp');
+}
+
+
+/* Hover Effects on Card */
+
+@media (min-width: 992px) {
+  .login-box, .register-box {
+    width: 450px;
+  }
+
+  .login-page, .register-page, header.masthead-img {
+    background-image: url('https://th.kanka.io/9764KQH7QXGYsnWsRGVKTCzQWgA=/1050x600/smart/src/app/backgrounds/mountain-background-desktop.jpg');
+  }
+}
+

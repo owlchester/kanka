@@ -1,4 +1,4 @@
-<header id="header" class="fixed top-0 h-12 w-full bg-navbar bg-base-100 z-[900]">
+<header id="header" class="fixed top-0 h-12 w-full bg-navbar bg-base-100 z-900">
     <nav class="flex gap-2 justify-center items-center h-full px-3">
         <noscript>
                 <span class="bg-error text-error-content p-1 rounded text-sm">
@@ -25,7 +25,7 @@
 
         @if (auth()->check() && !empty($campaign) && auth()->user()->can('member', $campaign) && (!isset($qq) || $qq))
         <div class="flex-none">
-            <a href="#" data-url="{{ route('entity-creator.selection', $campaign) }}" data-toggle="dialog" data-target="primary-dialog" class="quick-creator-button btn2 btn-primary btn-sm"
+            <a href="#" data-url="{{ route('entity-creator.selection', $campaign) }}" data-toggle="dialog"  class="quick-creator-button btn2 btn-primary btn-sm"
             tabindex="0">
                 <x-icon class="flex-none fa-regular fa-plus" />
                 <span class="grow hidden sm:inline-block">

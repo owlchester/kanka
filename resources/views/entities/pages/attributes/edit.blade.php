@@ -24,34 +24,6 @@ $isAdmin = auth()->user()->isAdmin();
         unload
         class="entity-form flex flex-col gap-5"
     >
-        @if(request()->has('old'))
-        <x-box>
-            <div id="entity-attributes-all">
-                <div class="entity-attributes sortable-elements"  data-handle=".sortable-handler" id="add_attribute_target">
-                    @foreach ($r = $entity->attributes()->ordered()->get() as $attribute)
-                        @if (!$attribute->is_hidden)
-                            @include('cruds.forms.attributes._attribute')
-                        @endif
-                    @endforeach
-                </div>
-            </div>
-
-            @include('cruds.forms.attributes._blocks', ['existing' => $r->count()])
-            @include('cruds.forms.attributes._buttons', ['entity' => $entity, 'existing' => $r->count()])
-
-            <div class="flex gap-2 items-center">
-                <a href="{{ url()->previous() }}" class="btn2 btn-ghost">
-                    {{ __('crud.cancel') }}
-                </a>
-                <div class="grow text-right">
-                    <button class="btn2 btn-primary">
-                        {{ __('crud.save') }}
-                    </button>
-                </div>
-            </div>
-
-        </x-box>
-        @endif
 
         <x-box :padding="false">
             <div id="attributes-manager">

@@ -21,6 +21,38 @@
     @include('ads.top')
 
     <div class="flex gap-5 flex-col">
+        <div class="flex gap-2 items-center justify-between">
+            <h1 class="inline-block text-2xl">
+                {!! $campaign->name !!}
+            </h1>
+
+            <div class="flex gap-2">
+                @can('update', $campaign)
+                    <a href="{{ route('campaigns.edit', $campaign) }}" class="btn2 " title="{{ __('campaigns.show.actions.edit') }}">
+                        <x-icon class="edit" />
+                        {{ __('campaigns.show.actions.edit') }}
+                    </a>
+                @endcan
+                @can('member', $campaign)
+                    <div class="dropdown">
+                        <button type="button" class="btn2" data-dropdown
+                                aria-expanded="false">
+                            <x-icon class="fa-regular fa-ellipsis-h" />
+                            <span class="sr-only">{{ __('crud.actions.actions') }}</span>
+                        </button>
+                        <div class="dropdown-menu hidden" role="menu">
+                            <x-dropdowns.item
+                                link="#"
+                                css="text-error hover:bg-error hover:text-error-content"
+                                :dialog="route('campaign.leave', $campaign)"
+                                icon="fa-regular fa-person-walking ">
+                                {{ __('campaigns.leave.action') }}
+                            </x-dropdowns.item>
+                        </div>
+                    </div>
+                @endcan
+            </div>
+        </div>
 
         @include('campaigns._overview')
 
@@ -34,26 +66,6 @@
             @endif
         @endcan
 
-        <div class="flex gap-2 items-center">
-            <h3 class="inline-block grow">
-                {!! $campaign->name !!}
-            </h3>
-            <div class="flex-none flex gap-1">
-{{--                @can('member', $campaign)--}}
-{{--                    <button type="button" class="btn2 btn-sm" data-toggle="dialog-ajax" data-target="leave-confirm" data-url="{{ route('campaign.leave', $campaign) }}">--}}
-{{--                        <x-icon class="fa-solid fa-sign-out-alt" />--}}
-{{--                        {{ __('campaigns.show.actions.leave') }}--}}
-{{--                    </button>--}}
-{{--                @endif--}}
-
-                @can('update', $campaign)
-                    <a href="{{ route('campaigns.edit', $campaign) }}" class="btn2 btn-sm" title="{{ __('campaigns.show.actions.edit') }}">
-                        <x-icon class="edit" />
-                        {{ __('campaigns.show.actions.edit') }}
-                    </a>
-                @endcan
-            </div>
-        </div>
         <div class="flex flex-col gap-2">
             <x-box class="rounded-xl">
                 @if (auth()->check() && auth()->user()->can('update', $campaign) && empty($campaign->entry))

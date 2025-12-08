@@ -11,7 +11,7 @@
 
 @section('content')
     <x-form :action="$formOptions">
-        @include('partials.forms._dialog', [
+        @include('partials.forms.form', [
             'title' => __('entities/tags.create.title', ['name' => $entity->name]),
             'content' => 'entities.pages.tags._form',
             'submit' =>  __('crud.save'),

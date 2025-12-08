@@ -2,7 +2,7 @@
 
 return [
     'actions'       => [
-        'copy'  => 'Copy',
+        'copy'      => 'Copy',
         'transfer'  => 'Transfer',
     ],
     'errors'        => [

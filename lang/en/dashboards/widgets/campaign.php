@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'name' => 'Campaign',
-    'description' => 'Shows a preview of the campaign.',
+    'description'   => 'Shows a preview of the campaign.',
+    'name'          => 'Campaign',
 ];

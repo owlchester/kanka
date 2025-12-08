@@ -14,7 +14,7 @@
         @can('update', $campaign)
             <button
                 class="hover:shadow-sm text-xl transition-all hover:rotate-45 flex items-center"
-                data-toggle="dialog-ajax"
+                data-toggle="dialog"
                 data-url="{{ route('entity_types.edit', [$campaign, $entityType]) }}"
                 data-target="rename-dialog"
                 title="{{ __('campaigns/modules.actions.customise') }}">

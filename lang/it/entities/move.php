@@ -3,7 +3,6 @@
 return [
     'actions'       => [
         'copy'  => 'Copia',
-        'move'  => 'Muovi',
     ],
     'errors'        => [
         'permission'        => 'Non puoi creare entità di questo tipo nella campagna di destinazione.',

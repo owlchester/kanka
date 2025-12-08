@@ -8,7 +8,8 @@ return [
         'title'     => 'New Post',
     ],
     'fields'        => [
-        'name'  => 'Name',
+        'layout'    => 'Post layout',
+        'name'      => 'Post name',
     ],
     'helpers'       => [
         'new'           => 'Add a new post to this entity.',

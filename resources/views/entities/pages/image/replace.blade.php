@@ -14,7 +14,7 @@
 
 @section('content')
     <x-form :action="['entities.image.replace', $campaign, $entity]" files>
-        @include('partials.forms._dialog', [
+        @include('partials.forms.form', [
             'title' => __('entities/image.replace.title', ['name' => $entity->name]),
             'content' => 'entities.pages.image._form',
             'submit' => __('entities/image.actions.save-replace'),

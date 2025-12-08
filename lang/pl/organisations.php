@@ -15,6 +15,9 @@ return [
         'is_defunct'    => 'Ta organizacja obecnie nie działa',
     ],
     'index'         => [],
+    'lists'         => [
+        'empty' => 'Twórz gildie, frakcje i tajne stowarzyszenia pływające na kształt świata.',
+    ],
     'members'       => [
         'actions'       => [
             'add_multiple'  => 'Dodaj członków',

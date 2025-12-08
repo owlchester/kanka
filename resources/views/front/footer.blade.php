@@ -2,8 +2,12 @@
     <div class="mx-auto lg:max-w-7xl flex flex-col gap-10">
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5">
             <div class="flex-col gap-8 hidden lg:flex col-span-2 ">
-                <div>
-                    @include('icons.kanka-svg')
+                <div class="flex">
+                    <a href="{{ route('home') }}" class="">
+                        <svg class="h-28 w-28"  alt="Kanka Logo" >
+                            <use href="/images/svgs/sprites.svg#kanka-logo"></use>
+                        </svg>
+                    </a>
                 </div>
 
                 <div class="flex items-center gap-5 text-3xl flex-wrap">
@@ -60,8 +64,12 @@
         </div>
 
         <div class="lg:hidden flex flex-col gap-5 text-center">
-            <div class="">
-                <img class="inline-block" src="https://th.kanka.io/tNmf0YlrJqMPrQE7iPW5bdcsPtQ=/103x103/smart/src/app/logos/logo-white.png" title="Kanka logo" alt="Kanka logo" />
+            <div class="flex justify-center">
+                <a href="{{ route('home') }}">
+                    <svg class="h-28 w-28"  alt="Kanka Logo" >
+                        <use href="/images/svgs/sprites.svg#kanka-logo"></use>
+                    </svg>
+                </a>
             </div>
 
             <div class="flex justify-center gap-5 text-3xl">

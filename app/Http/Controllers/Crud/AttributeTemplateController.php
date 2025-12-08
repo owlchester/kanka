@@ -23,18 +23,6 @@ class AttributeTemplateController extends CrudController
 
     protected string $forceMode = 'table';
 
-    protected function setNavActions(): CrudController
-    {
-        $this->addNavAction(
-            '//docs.kanka.io/en/latest/entities/attribute-templates.html',
-            '<i class="fa-solid fa-question-circle" aria-hidden="true"></i> <span class="hidden md:inline">' . __('crud.actions.help') . '</span>',
-            '',
-            true
-        );
-
-        return parent::setNavActions();
-    }
-
     public function store(StoreAttributeTemplate $request, Campaign $campaign)
     {
         return $this->campaign($campaign)->crudStore($request, true);

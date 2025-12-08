@@ -11,7 +11,6 @@ return [
             'title' => 'Asesino',
         ],
     ],
-    'cached'        => 'Estas estadísticas se recalculan cada :amount horas.',
     'fields'        => [
         'created'       => 'Creado el',
         'creator'       => 'Creado por',

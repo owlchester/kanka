@@ -93,7 +93,7 @@ if (isset($model) && $model->isChunked()) {
         </p>
 
         <div class="nav-tabs-custom">
-            <ul class="nav-tabs bg-base-300 !p-1 rounded" role="tablist">
+            <ul class="nav-tabs bg-base-300 p-1! rounded" role="tablist">
                 <li class="active rounded">
                     <a data-toggle="tab" href="#coordinates">
                         {{ __('maps.fields.tabs.coordinates') }}

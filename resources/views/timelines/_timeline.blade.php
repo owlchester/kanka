@@ -39,7 +39,6 @@ $loadedElements = [];
                     <a href="#" class="btn2 btn-ghost btn-xs text-error
                        role="button"
                        data-toggle="dialog"
-                       data-target="primary-dialog"
                        data-url="{{ route('confirm-delete', [$campaign, 'route' => route('timelines.timeline_eras.destroy', [$campaign, $timeline, $era, 'from' => 'view']), 'name' => $era->name, 'permanent' => true]) }}"
                        title="{{ __('crud.remove') }}">
                         <x-icon class="trash" />

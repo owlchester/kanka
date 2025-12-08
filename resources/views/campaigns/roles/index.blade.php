@@ -1,7 +1,8 @@
-<div class="flex gap-2 items-center">
-    <h3 class="inline-block grow">
+<div class="flex gap-2 items-center justify-between">
+    <h1 class="text-2xl">
         {{ __('campaigns.show.tabs.roles') }}
-    </h3>
+    </h1>
+    <div class="flex gap-2">
     <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
             data-target="roles-help">
         <x-icon class="question" />
@@ -9,13 +10,14 @@
     </button>
     @if (auth()->user()->can('update', $campaign))
         <a href="{{ route('campaign_roles.create', $campaign) }}" class="btn2 btn-primary btn-sm"
-           data-toggle="dialog-ajax" data-target="role-dialog"
+           data-toggle="dialog" data-target="role-dialog"
            data-url="{{ route('campaign_roles.create', $campaign) }}"
         >
             <x-icon class="plus" />
             {{ __('campaigns.roles.actions.add') }}
         </a>
     @endif
+    </div>
 </div>
 
 <x-grid>

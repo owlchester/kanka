@@ -9,7 +9,7 @@ $entityTags = $post->visibleTags();
 ?>
 <article id="post-{{ $post->id }}" class="flex flex-col gap-2 post-block post-{{ $post->id }} post-position-{{ $post->position }}@if (isset($post->settings['class'])) {{ $post->settings['class'] }}@endif @foreach ($entityTags as $tag) tag-{{ $tag->slug }} @endforeach" data-visibility="{{ $post->visibility_id }}" data-position="{{ $post->position }}" data-word-count="{{ $post->words }}">
     <div class="post-header flex gap-1 md:gap-2 items-center justify-between overflow-hidden">
-        <h3 class="post-title truncate" >
+        <h3 class="post-title truncate text-xl" >
             {!! $post->name !!}
         </h3>
         <div class="post-buttons flex gap-1 md:gap-2 items-center flex-wrap">
@@ -18,7 +18,7 @@ $entityTags = $post->visibleTags();
             @endif
             @auth
                 @can('visibility', $post)
-                    <span id="visibility-icon-{{ $post->id }}" class="btn2 btn-ghost btn-sm" data-toggle="dialog" data-url="{{ route('posts.edit.visibility', [$campaign, $entity->id, $post->id]) }}" data-target="primary-dialog">
+                    <span id="visibility-icon-{{ $post->id }}" class="btn2 btn-ghost btn-sm" data-toggle="dialog" data-url="{{ route('posts.edit.visibility', [$campaign, $entity->id, $post->id]) }}">
                     @include('icons.visibility', ['icon' => $post->visibilityIcon()])
                 </span>
                 @else

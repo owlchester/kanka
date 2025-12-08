@@ -8,7 +8,7 @@ $appearances = $entity->child->appearances;
             <div class="flex gap-2 items-center cursor-pointer element-toggle group" data-animate="collapse" data-target="#character-appearance-body">
                 <x-icon class="fa-solid fa-chevron-up icon-show transition-transform duration-200 group-hover:-translate-y-0.5" />
                 <x-icon class="fa-solid fa-chevron-down icon-hide transition-transform duration-200 group-hover:translate-y-0.5" />
-                <h3 class="post-title">
+                <h3 class="post-title truncate text-xl">
                     {{ __('characters.sections.appearance') }}
                 </h3>
             </div>

@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'npcs' => 'NPCs',
+    'npcs'  => 'NPCs',
 ];

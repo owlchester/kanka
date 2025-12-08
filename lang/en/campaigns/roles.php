@@ -1,42 +1,41 @@
 <?php
 
 return [
-    'actions'   => [
+    'actions'       => [
         'status'    => 'Visibility: :status',
     ],
-    'create'    => [
+    'create'        => [
         'helper'    => 'Create a new role for the campaign.',
     ],
-    'overview'  => [
+    'overview'      => [
         'limited'   => ':amount of :total roles created.',
         'title'     => 'Available roles',
         'unlimited' => ':amount of unlimited roles created.',
     ],
-    'public'    => [
-        'helpers' => [
-            'intro' => 'Control what non-members can see in the campaign.',
-            'main' => 'Select which modules are visible to anyone viewing the campaign, whether they\'re logged in or not. This includes both public visitors and Kanka users who aren\'t campaign members.',
-            'preview' => 'Preview as non-member',
-            'click' => 'Click any module to toggle public access to all entities within it.',
+    'permissions'   => [
+        'campaign-features' => 'Campaign features',
+        'content-modules'   => 'Content modules',
+        'toggle'            => [
+            'action'    => 'Toggle all',
+            'tooltip'   => 'Toggle the :action permission for all modules.',
         ],
     ],
-    'show'      => [
+    'public'        => [
+        'helpers'   => [
+            'click'     => 'Click any module to toggle public access to all entities within it.',
+            'intro'     => 'Control what non-members can see in the campaign.',
+            'main'      => 'Select which modules are visible to anyone viewing the campaign, whether they\'re logged in or not. This includes both public visitors and Kanka users who aren\'t campaign members.',
+            'preview'   => 'Preview as non-member',
+        ],
+    ],
+    'show'          => [
         'title' => ':role permissions - :campaign',
     ],
-    'toggle'    => [
+    'toggle'        => [
         'disabled'  => 'Members of the :role role can no longer :action :entities',
         'enabled'   => 'Members of the :role role can now :action :entities',
     ],
-    'warnings'  => [
+    'warnings'      => [
         'adding-to-admin'   => 'Members of the :name role have access to everything in the campaign, and cannot be removed by other members of the role. After :amount minutes, only they can remove themselves from the role.',
-    ],
-    'permissions' => [
-        'content-modules' => 'Content modules',
-        'campaign-features' => 'Campaign features',
-
-        'toggle' => [
-            'action' => 'Toggle all',
-            'tooltip' => 'Toggle the :action permission for all modules.',
-        ],
     ],
 ];

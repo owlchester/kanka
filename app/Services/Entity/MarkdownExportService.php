@@ -2,163 +2,175 @@
 
 namespace App\Services\Entity;
 
-use App\Http\Resources\EntityResource;
-use App\Http\Resources\Public\CampaignResource;
+use App\Models\Post;
+use App\Services\MarkdownMentionsService;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Collection;
+use App\Traits\UserAware;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
+use League\HTMLToMarkdown\Converter\LinkConverter;
+use League\HTMLToMarkdown\Converter\TableConverter;
+use League\HTMLToMarkdown\HtmlConverter;
 
 class MarkdownExportService
 {
     use CampaignAware;
     use EntityAware;
+    use UserAware;
 
-    protected bool $exportedCampaign = false;
+    protected array $index = [];
+
+    protected string $module = '';
+
+    protected bool $isSingle = false;
+
+    public function __construct(
+        protected MarkdownMentionsService $markdownMentionsService
+    ) {}
+
+    public function single(bool $isSingle = true)
+    {
+        $this->isSingle = $isSingle;
+
+        return $this;
+    }
 
     /**
-     * Main function for the Resource to Markdown conversion.
+     * Main function for the Entity to Markdown conversion.
      *
      * @return string|mixed
      */
     public function markdown()
     {
-        // Check if we're exporting a campaign, if so, then export the campaign.
-        if (isset($this->campaign) && ! $this->exportedCampaign) {
-            $resource = new CampaignResource($this->campaign);
-            $this->exportedCampaign = true;
+        $converter = new HtmlConverter;
+        $converter->getConfig()->setOption('strip_tags', true);
+        $converter->getEnvironment()->addConverter(new TableConverter);
+        $converter->getEnvironment()->addConverter(new LinkConverter);
+        $entityData = $this->entityData();
 
-            return $this->resourceToMarkdown($resource->resolve());
+        if (! $this->isSingle) {
+            $this->addToIndex();
         }
 
-        // Get the model's resource.
-        $child = Str::studly($this->entity->entityType->code);
-        $className = 'App\Http\Resources\\' . $child . 'Resource';
+        return Blade::render('entities.markdown.base', ['entity' => $this->entity, 'entityData' => $entityData, 'converter' => $converter, 'campaign' => $this->campaign]);
+    }
 
-        // If its a normal entity type, export it using its own resource, if its a custom, use the entity resource.
-        if (class_exists($className)) {
-            $resource = new $className($this->entity->child);
+    public function addToIndex()
+    {
+        $moduleName = $this->entity->entityType->plural() . '_' . $this->entity->entityType->id;
 
-            return $this->resourceToMarkdown($resource->withRelated()->resolve());
-
-        } elseif ($this->entity->entityType->isCustom()) {
-            $resource = new EntityResource($this->entity);
-
-            return $this->resourceToMarkdown($resource->resolve());
-
-        } else {
-            return ['error' => 'unknown resource ' . $className];
+        if (! isset($this->index[$moduleName])) {
+            $this->index[$moduleName] = [];
         }
+
+        $this->index[$moduleName][$this->entity->id] = '* [' . $this->entity->name . '](' . str_replace(' ', '-', $this->module) . '/' . str_replace(' ', '-', Str::slug($this->entity->name)) . '_' . $this->entity->id . ')
+';
+    }
+
+    public function exportIndex()
+    {
+        return Blade::render('entities.markdown.index', ['index' => $this->index]);
+    }
+
+    public function module(string $module)
+    {
+        $this->module = $module;
+
+        return $this;
     }
 
     /**
-     * Converts a JsonResource to Markdown format
+     * Main function for the Campaign to Markdown conversion.
+     *
+     * @return string|mixed
      */
-    protected function resourceToMarkdown(array $data): string
+    public function campaignMarkdown()
     {
-        $markdown = '';
+        $converter = new HtmlConverter;
+        $converter->getConfig()->setOption('strip_tags', true);
+        $converter->getEnvironment()->addConverter(new TableConverter);
 
-        // If there's a clear title field, adjust accordingly
-        if (isset($data['name'])) {
-            $markdown .= '## ' . $data['name'] . "\n\n";
-            unset($data['name']);
-        } else {
-            $markdown .= "## Export\n\n";
-        }
-
-        if (isset($data['image_full'])) {
-            $markdown .= '![avatar](' . $data['image_full'] . ")\n\n";
-            unset($data['image_full']);
-        }
-
-        // Iterate on each data entry to convert it into a list.
-        foreach ($data as $key => $value) {
-            $markdown .= '### ' . Str::title(str_replace('_', ' ', $key)) . "\n\n";
-            $markdown .= $this->markdownList($value);
-            $markdown .= "\n";
-        }
-
-        return trim($markdown);
+        return Blade::render('campaigns.markdown', ['converter' => $converter, 'campaign' => $this->campaign]);
     }
 
-    /**
-     * Generate a nested list, according to the array depth.
-     */
-    protected function markdownList($data, int $depth = 0): string
+    public function entityData()
     {
-        if (empty($data)) {
-            return str_repeat('    ', $depth) . "* empty \n";
-        }
-        // Convert Resource or ResourceCollection to array
-        // @phpstan-ignore-next-line
-        if ($data instanceof JsonResource || $data instanceof AnonymousResourceCollection) {
-            $data = $data->resolve();
-        }
+        // Move to service
+        $entityData = [];
+        $entityData['tags'] = [];
+        $entityData['attributes'] = '';
+        $entityData['relations'] = '';
+        $entityData['pinnedAliases'] = [];
+        $entityData['entry'] = $this->markdownEntry();
+        $entityData['posts'] = [];
 
-        // Convert Collections
-        if ($data instanceof Collection) {
-            $data = $data->toArray();
-        }
-
-        // Convert Models
-        if ($data instanceof Model) {
-            $data = $data->toArray();
-        }
-
-        // If still not array, now it's safe to render it as a string
-        if (! is_array($data)) {
-            return str_repeat('    ', $depth) . '* ' . (string) $data . "\n";
-        }
-
-        // Determine if associative array
-        $isAssoc = array_keys($data) !== range(0, count($data) - 1);
-
-        $markdown = '';
-
-        foreach ($data as $key => $value) {
-
-            // Normalize nested values early
-            // @phpstan-ignore-next-line
-            if ($value instanceof JsonResource || $value instanceof AnonymousResourceCollection) {
-                $value = $value->toArray(request());
+        if ($this->isSingle) {
+            foreach ($this->entity->tags as $tag) {
+                $entityData['tags'][] = '[' . html_entity_decode($tag->name, ENT_QUOTES, 'UTF-8') . '](' . $tag->entity->url() . ')';
             }
-            /** @var mixed|JsonResource|Model $value */
-            if ($value instanceof Collection || $value instanceof Model) {
-                $value = $value->toArray();
+        } else {
+            foreach ($this->entity->tags as $tag) {
+                $entityData['tags'][] = '[' . html_entity_decode($tag->name, ENT_QUOTES, 'UTF-8') . '](tags/' . Str::slug($tag->name) . '_' . $tag->entity->id . ')';
             }
+        }
 
-            // Enums
-            if ($value instanceof \BackedEnum) {
-                $value = $value->value;
-            } elseif ($value instanceof \UnitEnum) {
-                $value = $value->name;
+        foreach ($this->entity->pinnedAliases as $asset) {
+            $entityData['pinnedAliases'][] = $asset->name;
+        }
+
+        foreach ($this->entity->posts as $post) {
+            if (! $post->layout_id) {
+                $entityData['posts'][$post->id] = $this->markdownPost($post);
             }
+        }
 
-            $indent = str_repeat('    ', $depth);
+        foreach ($this->entity->attributes as $attribute) {
+            $entityData['attributes'] .= '* **' . $attribute->name . '**: ' . html_entity_decode($attribute->value, ENT_QUOTES, 'UTF-8') . '
+';
+        }
 
-            if (is_array($value)) {
-                // Nested section
-                if (isset($value['name'])) {
-                    $markdown .= "{$indent}* **{$value['name']}**\n";
-                    unset($value['name']);
+        if ($this->isSingle) {
+            foreach ($this->entity->relationships as $relation) {
+                $entityData['relations'] .= '* [' . html_entity_decode($relation->target->name, ENT_QUOTES, 'UTF-8') . '](' . $relation->target->url() . ')
+';
+            }
+        } else {
+            foreach ($this->entity->relationships as $relation) {
+                if ($relation->target->entityType->isCustom()) {
+                    $moduleName = $relation->target->entityType->code . '_' . $relation->target->entityType->id;
+
+                    $entityData['relations'] .= '* [' . $relation->target->name . '](' . Str::slug($moduleName) . '/' . Str::slug($relation->target->name) . '_' . $relation->target_id . ')
+';
                 } else {
-                    $markdown .= "{$indent}* **{$key}**\n";
-                }
-                $markdown .= $this->markdownList($value, $depth + 1);
-
-            } else {
-                // Simple value
-                if ($isAssoc) {
-                    $markdown .= "{$indent}* **{$key}:** " . (string) $value . "\n";
-                } else {
-                    $markdown .= "{$indent}* " . (string) $value . "\n";
+                    $entityData['relations'] .= '* [' . $relation->target->name . '](' . str_replace(' ', '-', $relation->target->entityType->pluralCode()) . '/' . Str::slug($relation->target->name) . '_' . $relation->target_id . ')
+';
                 }
             }
         }
 
-        return $markdown;
+        return $entityData;
+    }
+
+    /**
+     * Get the entry where mentions are made to look nice for the text editor
+     */
+    public function markdownEntry(): string
+    {
+        if (isset($this->user)) {
+            $this->markdownMentionsService->user($this->user);
+        }
+        return $this->markdownMentionsService->single($this->isSingle)->parseForMarkdown($this->entity);
+    }
+
+    /**
+     * Get the entry where mentions are made to look nice for the text editor
+     */
+    public function markdownPost(Post $post): string
+    {
+        if (isset($this->user)) {
+            $this->markdownMentionsService->user($this->user);
+        }
+        return $this->markdownMentionsService->single($this->isSingle)->parseForMarkdown($post);
     }
 }

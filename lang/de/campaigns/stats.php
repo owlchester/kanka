@@ -11,7 +11,6 @@ return [
             'title' => 'Mörder',
         ],
     ],
-    'cached'        => 'Diese Statistiken werden alle :amount Stunden neu berechnet.',
     'fields'        => [
         'created'   => 'Erstellt am',
         'creator'   => 'Erstellt von',

@@ -86,7 +86,7 @@ class ReminderUpdateController extends Controller
         }
 
         if (! is_null($this->post)) {
-            $request->merge(['type_id' => EntityEventTypes::calendarDate]);
+            $request->merge(['type_id' => EntityEventTypes::calendarDate->value]);
         }
 
         $routeOptions = ['campaign' => $campaign, 'entity' => $reminder->calendar->entity, 'year' => request()->post('year')];

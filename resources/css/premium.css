@@ -1,0 +1,118 @@
+/**
+ * Entity
+ * Contains all the stuff for the entity's overview and subpages.
+ */
+
+/* Dynamically control which privacy status icon is shown based on the page's class */
+.entity-privacy-icon {
+    .fa-lock-open {
+        display: inline-block;
+    }
+
+    .fa-lock {
+        display: none;
+    }
+}
+.kanka-entity-private {
+    .entity-privacy-icon {
+        .fa-lock-open {
+            display: none;
+        }
+
+        .fa-lock {
+            display: inline-block;
+        }
+    }
+}
+
+.sidebar-section-box {
+    background: var(--sidebar-section-background, none);
+    padding: var(--sidebar-section-padding, 0);
+}
+
+.entity-header {
+    .entity-breadcrumb {
+        li + li:before {
+            content: ">\A0";
+            padding: 0 5px;
+            --tw-text-opacity: .6;
+            color: hsl(var(--bc)/var(--tw-text-opacity));
+        }
+    }
+}
+.entity-grid > .entity-header.with-entity-banner {
+    .entity-name-header {
+        > .entity-name, > .entity-title {
+            text-shadow: rgba(0, 0, 0, 0.5) 0 1px 4px;
+            color: white;
+        }
+        > .entity-icons {
+            color: white;
+        }
+    }
+
+
+    .entity-header-sub {
+        color: white;
+        .entity-header-sub-element > a {
+            color: white;
+            text-decoration: underline;
+            text-underline-offset: 0.2rem;
+        }
+    }
+
+    .entity-breadcrumb {
+        color: white;
+
+        a {
+            color: white;
+        }
+        li:before {
+            color: white;
+        }
+    }
+}
+
+/** Stop tables from being stupid wide **/
+.entity-content {
+    table {
+        max-width: 100%;
+    }
+    ul {
+        list-style: disc;
+        padding: 0 1.5rem;
+    }
+    ol {
+        list-style: decimal;
+        padding: 0 1.5rem;
+    }
+    > ol, > ul {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+    }
+}
+
+.comma-separated {
+  .element ~ .element::before {
+    content: ', ';
+  }
+}
+
+/**
+ * Everything is a grid now
+ */
+body.entity-with-banner .content-wrapper > .content {
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+
+    .entity-body {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    > .alert {
+        border-radius: 0;
+        margin-bottom: -0.5rem;
+    }
+}

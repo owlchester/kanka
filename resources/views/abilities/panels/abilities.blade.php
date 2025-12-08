@@ -25,7 +25,7 @@ if (!empty($onload)) {
     $all = $entity->child->children()->has('entity')->count();
     @endphp
 <div class="flex gap-2 items-center">
-    <h3 class="grow">
+    <h3 class="text-xl grow">
         {!! \App\Facades\Module::plural(config('entities.ids.ability'), __('entities.abilities')) !!}
     </h3>
     <div class="flex gap-2 flex-wrap overflow-auto">

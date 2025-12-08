@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Entity;
 
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\CachedResponse;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Traits\CampaignAware;
@@ -12,6 +13,12 @@ class ShowController extends Controller
 {
     use CampaignAware;
     use GuestAuthTrait;
+
+    public function __construct()
+    {
+
+        $this->middleware([CachedResponse::class]);
+    }
 
     public function index(Campaign $campaign, Entity $entity)
     {

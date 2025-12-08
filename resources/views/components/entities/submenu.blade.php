@@ -40,7 +40,7 @@ use \Illuminate\Support\Arr;
                     name="{{ $key }}"
                     data-route="{{ route($menuItem['route'], [$campaign, (!isset($menuItem['entity']) ? $entity->child : $entity)]) }}"
                     @if($key == $active) selected="selected" @endif
-                    @if(Arr::get($menuItem, 'ajax')) data-toggle="dialog" data-target="primary-dialog" data-url="{{ route($menuItem['route'], [$campaign, (!isset($menuItem['entity']) ? $entity->child : $entity)]) }}" @endif
+                    @if(Arr::get($menuItem, 'ajax')) data-toggle="dialog" data-url="{{ route($menuItem['route'], [$campaign, (!isset($menuItem['entity']) ? $entity->child : $entity)]) }}" @endif
                 >
                     {{  $menuItem['name'] }}
                     @if (!empty($menuItem['count']))

@@ -62,15 +62,6 @@ return [
             'edit'              => 'Uredi programčić',
         ],
         'title'     => 'Postavljanje naslovne ploče kampanje',
-        'widgets'   => [
-            'calendar'      => 'Kalendar',
-            'campaign'      => 'Zaglavlje kampanje',
-            'header'        => 'Zaglavlje',
-            'preview'       => 'Skraćeni pregled entiteta',
-            'random'        => 'Nasumični entitet',
-            'recent'        => 'Nedavno',
-            'unmentioned'   => 'Entiteti koji nisu nigdje spomenuti',
-        ],
     ],
     'title'         => 'Naslovna ploča',
     'widgets'       => [

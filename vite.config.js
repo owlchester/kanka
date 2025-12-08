@@ -1,6 +1,8 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
+import tailwindcss from '@tailwindcss/vite';
+
 
 export default defineConfig({
     server: {
@@ -47,7 +49,6 @@ export default defineConfig({
                 'resources/js/cookieconsent.js',
                 'resources/js/relations.js',
                 'resources/js/recovery/recovery.js',
-                'resources/js/gallery.js',
                 'resources/js/gallery/gallery.js',
                 'resources/js/history.js',
                 'resources/js/whiteboards.js',
@@ -59,23 +60,20 @@ export default defineConfig({
                 'resources/js/campaigns/theme-builder.js',
                 'resources/js/campaigns/import.js',
 
-                'resources/sass/vendor.scss',
-                'resources/sass/app.scss',
-                'resources/sass/export.scss',
-                'resources/sass/map-v3.scss',
-                'resources/sass/subscription.scss',
-                'resources/sass/front.scss',
-                'resources/sass/auth.scss',
-                'resources/sass/relations.scss',
-                'resources/sass/dashboard.scss',
-                'resources/sass/family-tree.scss',
-                'resources/sass/settings.scss',
-                'resources/sass/whiteboards.scss',
-                'resources/sass/themes/dark.scss',
-                'resources/sass/themes/midnight.scss',
-                'resources/sass/tinymce.scss',
-                'resources/sass/freyja/freyja.scss',
-                'resources/sass/print/print.scss',
+                'resources/css/app.css',
+                'resources/css/vendors/tinymce.css',
+                'resources/css/maps/maps.css',
+                'resources/css/subscription.css',
+                'resources/css/front.css',
+                'resources/css/auth.css',
+                'resources/css/relations.css',
+                'resources/css/dashboard.css',
+                'resources/css/families/tree.css',
+                'resources/css/vendor.css',
+                'resources/css/themes/dark.css',
+                'resources/css/themes/midnight.css',
+
+                'resources/css/print/print.css',
 
                 'resources/js/vendor-final.js',
             ],
@@ -99,6 +97,7 @@ export default defineConfig({
                 },
             },
         }),
+        tailwindcss(),
     ],
     resolve: {
         alias: {

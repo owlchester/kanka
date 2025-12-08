@@ -22,6 +22,9 @@ return [
             'results'   => 'Wyniki',
         ],
     ],
+    'lists'         => [
+        'empty' => 'Twórz i zapisuj rzuty kośćmi, by stworzyć w Kance bazę ich rezultatów.',
+    ],
     'placeholders'  => [
         'name'          => 'Nazwa rzutu kośćmi',
         'parameters'    => '4d6+3',

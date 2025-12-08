@@ -11,7 +11,7 @@ $traits = $entity->child->personality;
 " />
                 <x-icon class="fa-solid fa-chevron-down icon-hide transition-transform duration-200 group-hover:translate-y-0.5
 " />
-                <h3 class="post-title">
+                <h3 class="post-title truncate text-xl">
                     {{ __('characters.sections.personality') }}
                 </h3>
             </div>

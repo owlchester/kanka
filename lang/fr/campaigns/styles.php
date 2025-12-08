@@ -35,6 +35,7 @@ return [
         'here'          => 'sur notre blog',
         'is_enabled'    => 'Activer ce style sur chaque page.',
         'main'          => 'Tu peux créer des règles CSS personnalisées pour ta campagne premium. Ces styles sont chargés après les thèmes du marketplace activés pour la campagne. Tu peux en savoir plus sur comment personnalisé ta campagne :here.',
+        'tutorial'      => 'Contrôle le style visuel de la campagne. Choisis les couleurs, les préférences de mise en page et les autres options de présentation. Ces changements n\'affectent que cette campagne et peuvent être modifiés à tout moment.',
     ],
     'pitch'         => 'Définis du CSS pour complètement personnalisé le look de la campagne.',
     'placeholders'  => [

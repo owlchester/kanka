@@ -130,7 +130,7 @@
               if (this.current_message) {
                 bg = 'bg-accent';
               }
-              return 'box-footer rounded p-2 ' + bg;
+              return 'rounded p-2 ' + bg;
             }
         },
 

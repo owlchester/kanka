@@ -30,6 +30,7 @@ return [
         'print'             => 'Imprimer',
         'reorder'           => 'Réordonner',
         'reset'             => 'Réinitialiser',
+        'save-changes'      => 'Sauvegarder les changements',
         'transform'         => 'Transformer',
     ],
     'add'               => 'Ajouter',

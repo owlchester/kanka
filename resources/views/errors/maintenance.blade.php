@@ -19,7 +19,7 @@
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="//kit.fontawesome.com">
     <link rel="dns-prefetch" href="//www.googletagmanager.com">
-    @vite('resources/sass/front.scss')
+    @vite('resources/css/front.css')
 </head>
 
 <body id="page-top">

@@ -12,7 +12,7 @@ $sizeOptions = [
 ?>
 
 <div class="nav-tabs-custom">
-    <ul class="nav-tabs bg-base-300 !p-1 rounded" role="tablist">
+    <ul class="nav-tabs bg-base-300 p-1! rounded" role="tablist">
         <li role="presentation" @if($activeTab == 1) class="active" @endif>
             <a href="#marker-pin" data-nohash="true" data-toggle="tooltip" class="text-center" data-title="{{ __('maps/markers.tabs.marker') }}">
                 <x-icon class="fa-regular fa-2x fa-map-pin" />

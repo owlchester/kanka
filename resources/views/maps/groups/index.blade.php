@@ -20,7 +20,7 @@
                 </a>
             @endif
             <a href="{{ route('maps.map_groups.create', [$campaign, $model]) }}" class="btn2 btn-sm"
-                data-toggle="dialog" data-target="primary-dialog"
+                data-toggle="dialog"
                 data-url="{{ route('maps.map_groups.create', [$campaign, $model]) }}"
             >
                 <x-icon class="plus" />

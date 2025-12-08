@@ -28,7 +28,6 @@ return [
     'helpers'       => [
         'custom'    => 'Esse é um módulo personalizado.',
         'icon'      => 'Dê a este módulo um ícone especial :fontawesome, por exemplo :example.',
-        'info'      => 'Uma campanha é dividida em vários módulos que interagem entre si. Habilite ou desabilite aqueles que você não precisa. A desativação de um módulo não exclui nenhum de seus dados, apenas os oculta.',
         'plural'    => 'O nome plural das entidades do novo módulo. Por exemplo, poções',
         'roles'     => 'Selecione os cargos que devem ter permissão para visualizar entidades deste novo módulo. Isso pode ser alterado posteriormente nas permissões da função.',
         'singular'  => 'O nome singular de uma entidade do novo módulo. Por exemplo, poção',

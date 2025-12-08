@@ -11,7 +11,6 @@ return [
             'title' => 'Vrah',
         ],
     ],
-    'cached'        => 'Tieto štatistiky sú prepočítavané každých :amount hod.',
     'fields'        => [
         'created'   => 'Vytvorené dňa',
         'creator'   => 'Vytvorené',

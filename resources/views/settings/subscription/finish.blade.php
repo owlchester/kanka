@@ -49,7 +49,7 @@
                                     <p>{{ __('settings/boosters.campaign.standard') }}</p>
                                 </x-helper>
                             </div>
-                            <a href="#" data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('campaign_boosts.create', ['campaign' => $availableCampaign, 'next' => 'subscription.finish']) }}" class="btn2 btn-outline btn-sm">
+                            <a href="#" data-toggle="dialog" data-url="{{ route('campaign_boosts.create', ['campaign' => $availableCampaign, 'next' => 'subscription.finish']) }}" class="btn2 btn-outline btn-sm">
                                 <x-icon class="premium" />
                                 {!! __('settings/premium.actions.unlock') !!}
                             </a>
@@ -123,5 +123,5 @@
 @endsection
 
 @section('styles')
-    @vite('resources/sass/subscription.scss')
+    @vite('resources/css/subscription.css')
 @endsection

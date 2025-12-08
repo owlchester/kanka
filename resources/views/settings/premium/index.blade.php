@@ -15,7 +15,7 @@
         @include('partials.errors')
 
         <div class="flex gap-1 justify-between">
-            <h1 class="">
+            <h1 class="text-2xl">
                 {{ __('settings.menu.premium') }}
             </h1>
 
@@ -28,10 +28,10 @@
 
         <x-box>
             <x-grid type="1/1">
-                <h3 class="">{{ __('settings/boosters.pitch.title') }}</h3>
+                <h3 class="text-xl">{{ __('settings/boosters.pitch.title') }}</h3>
                 <p class="">{{ __('settings/premium.pitch.description') }}</p>
 
-                <h4 class="">{{ __('settings/premium.pitch.title') }}</h4>
+                <h4 class="text-lg">{{ __('settings/premium.pitch.title') }}</h4>
                 <div class="grid grid-cols-2 lg:grid-cols-3 gap-1 mb-3">
                     <div class="flex items-center">
                         <div class="p-1 w-12 flex-none">
@@ -122,11 +122,6 @@
         </div>
     </x-grid>
 
-@endsection
-
-@section('styles')
-    @parent
-    @vite('resources/sass/settings.scss')
 @endsection
 
 @section('modals')

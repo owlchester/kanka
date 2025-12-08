@@ -4,14 +4,14 @@
 <div class="achievement shadow-xs hover:shadow rounded-xl bg-base-100 w-full sm:w-80 md:w-96 flex flex-col gap-2 md:gap-3 p-5 md:p-5 level-{{ $stat['level'] }}" data-achievement="{{ $key }}">
 
     <div class="flex gap-2 md:gap-5 items-center grow">
-        <div class="flex-none text-accent text-8xl border-accent border-opacity-20 rounded-full border-4 flex items-center justify-center w-36 h-36">
+        <div class="flex-none text-accent text-4xl border-accent border-opacity-20 rounded-full border-4 flex items-center justify-center w-20 h-20">
             <x-icon class="fa-duotone fa-crown" />
         </div>
         <div class="grow">
             <p class="text-neutral-content">
                 {{  __('campaigns/achievements.congratulations') }}
             </p>
-            <p class="text-xl">
+            <p class="text-lg">
                 {{  __('campaigns/achievements.goal_reached') }}
             </p>
             <p class="text-accent text-xl">
@@ -27,7 +27,7 @@
         {{ trans_choice('campaigns/achievements.' . Arr::get($stat, 'history', 'created'), Arr::get($stat, 'amount', 0), [
 'singular' => Arr::get($stat, 'module.singular', 'Forgot singular'),
 'plural' => Arr::get($stat, 'module.plural', 'Forgot plural'),
-'amount' => Arr::get($stat, 'amount', 0) . ' / ' . Arr::get($stat, 'target', 0)
+'amount' => number_format(Arr::get($stat, 'amount', 0)) . ' / ' . number_format(Arr::get($stat, 'target', 0))
 ]) }}
     </div>
 </div>

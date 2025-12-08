@@ -26,15 +26,16 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
     @yield('og')
     @include('layouts.links.icons')
     @if (config('app.asset_url'))
-        <link rel="dns-prefetch" href="{{ config('app.asset_url') }}">
+        <link rel="preconnect" href="{{ config('app.asset_url') }}" crossorigin>
     @endif
+    <link rel="preconnect" href="https://cdn.kanka.io" crossorigin>
+    <link rel="preconnect" href="https://images.kanka.io" crossorigin>
+    <link rel="preconnect" href="https://th.kanka.io" crossorigin>
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="//www.googletagmanager.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     @vite([
-        'resources/sass/vendor.scss',
-        'resources/sass/app.scss',
+        'resources/css/vendor.css',
+        'resources/css/app.css',
     ])
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
     @includeWhen (config('ads.nitro.enabled'), 'ads.nitro.styles')
@@ -43,24 +44,24 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
         @php $specificTheme = $themeOverride; @endphp
         @if($themeOverride != 'base')
 
-    @vite('resources/sass/themes/' . $themeOverride . '.scss')
+    @vite('resources/css/themes/' . $themeOverride . '.css')
         @endif
     @else
         @if (!empty($campaign) && $campaign->boosted() && !empty($campaign->theme_id))
             @if ($campaign->theme_id !== 1)
 
-        @vite('resources/sass/themes/' . ($campaign->theme_id === 2 ? 'dark' : 'midnight') . '.scss')
+        @vite('resources/css/themes/' . ($campaign->theme_id === 2 ? 'dark' : 'midnight') . '.css')
                 @php $specificTheme = ($campaign->theme_id === 2 ? 'dark' : 'midnight') @endphp
             @endif
         @elseif (auth()->check() && !empty(auth()->user()->theme))
 
-            @vite('resources/sass/themes/' . auth()->user()->theme . '.scss')
+            @vite('resources/css/themes/' . auth()->user()->theme . '.css')
             @php $specificTheme = auth()->user()->theme @endphp
         @endif
     @endif
 
     @includeWhen(!empty($campaign), 'layouts._theme')
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preload" href="/fonts/roboto/Roboto-VariableFont_wdth,wght.ttf" as="font" crossorigin />
     @livewireStyles
 </head>
 {{-- Hide the sidebar if the there is no current campaign --}}
@@ -71,11 +72,11 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
 <a href="#{{ isset($contentId) ? $contentId : "main-content" }}" class="skip-nav-link absolute mx-2 top-0 btn2 btn-primary btn-sm rounded-t-none" tabindex="0">
     {{ __('crud.navigation.skip_to_content') }}
 </a>
-    <div id="app" class="wrapper h-full min-h-screen relative mt-12">
+    <div id="app" class="wrapper min-h-screen relative mt-12 flex flex-col">
         @include('layouts.header', ['toggle' => $showSidebar])
         @includeWhen(isset($campaign) || (isset($sidebar) && $sidebar === 'settings'), 'layouts.sidebars.' . ($sidebar ?? 'app'))
 
-        <div class="content-wrapper transition-all duration-150" id="{{ isset($contentId) ? $contentId : "main-content" }}">
+        <div class="content-wrapper transition-all duration-150 grow" id="{{ isset($contentId) ? $contentId : "main-content" }}">
             @includeWhen(!isset($skipBanners), 'layouts.banner')
 
             @if(!view()->hasSection('content-header') && (isset($breadcrumbs) && $breadcrumbs !== false))
@@ -84,7 +85,7 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
                     @if (!view()->hasSection('entity-header'))
                         @if (isset($mainTitle))
                         @else
-                            <h1 class="truncate m-0 text-lg">
+                            <h1 class="truncate m-0 text-2xl">
                                 {!! $title ?? "Page Title" !!}
                             </h1>
                         @endif
@@ -116,12 +117,12 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
     </div>
 
     <x-dialog id="primary-dialog" :loading="true" />
-    <div id="dialog-backdrop" class="z-[1000] fixed top-0 left-0 right-0 bottom-0 h-full w-full backdrop-blur-sm bg-base-100 hidden" style="--tw-bg-opacity: 0.2"></div>
+    <div id="dialog-backdrop" class="z-1000 fixed top-0 left-0 right-0 bottom-0 h-full w-full backdrop-blur-sm bg-base-100 hidden" style="--tw-bg-opacity: 0.2"></div>
 
     @include('layouts.dialogs.languages')
     @yield('modals')
 
-    <div class="toast-container fixed overflow-y-auto overflow-x-hidden bottom-4 right-4 max-h-full flex flex-col gap-2 z-[1001]"></div>
+    <div class="toast-container fixed overflow-y-auto overflow-x-hidden bottom-4 right-4 max-h-full flex flex-col gap-2 z-1001"></div>
 
 @if (config('fontawesome.kit'))
     <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>

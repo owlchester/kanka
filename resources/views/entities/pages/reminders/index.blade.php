@@ -16,7 +16,7 @@
         <x-learn-more url="features/reminders.html" />
         @can('reminders', $entity)
             <a href="{{ route('entities.reminders.create', [$campaign, $entity, 'next' => 'entity.reminders']) }}" id="entity-calendar-modal-add"
-               class="btn2 btn-sm" data-toggle="dialog" data-target="primary-dialog"
+               class="btn2 btn-sm" data-toggle="dialog"
                data-url="{{ route('entities.reminders.create', [$campaign, $entity, 'next' => 'entity.reminders']) }}">
                 <x-icon class="plus" /> {{ __('entities/events.show.actions.add') }}
             </a>

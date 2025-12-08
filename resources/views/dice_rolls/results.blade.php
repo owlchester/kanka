@@ -8,7 +8,7 @@
 
 @section('entity-header')
     <div class="flex gap-2 items-center mb-5">
-        <h1 class="grow text-4xl category-title truncate">{!! __('dice_roll_results.index.title') !!}</h1>
+        <h1 class="grow text-2xl category-title truncate">{!! __('dice_roll_results.index.title') !!}</h1>
         <div class="flex flex-wrap gap-2 justify-end">
             <a href="{{ route('dice_rolls.index', $campaign) }}" class="btn2 btn-">
                 <x-icon class="fa-solid fa-square"></x-icon>

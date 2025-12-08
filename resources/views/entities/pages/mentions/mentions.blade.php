@@ -14,7 +14,7 @@
         <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
                 data-target="dialog-help">
             <x-icon class="question" />
-            {{ __('crud.actions.help') }}
+            <div class="hidden lg:inline">{{ __('crud.actions.help') }}</div>
         </button>
         @include('entities.headers.actions', ['edit' => false])
     </div>

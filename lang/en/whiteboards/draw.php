@@ -27,8 +27,8 @@ return [
         'thin-stroke'   => 'Thin stroke',
     ],
     'reset'         => [
-        'helper'  => 'Are you sure you want to reset the whiteboard? This action cannot be undone.',
-        'title'   => 'Reset Whiteboard',
+        'helper'    => 'Are you sure you want to reset the whiteboard? This action cannot be undone.',
+        'title'     => 'Reset Whiteboard',
     ],
     'toast'         => [
         'copy'  => [

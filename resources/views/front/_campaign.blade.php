@@ -5,7 +5,7 @@
 
     <div class="flex flex-col gap-2">
         <div class="flex gap-2">
-            <h3 class="grow">{!! $campaign->name !!}</h3>
+            <h3 class="text-xl">{!! $campaign->name !!}</h3>
         </div>
 
         <div class="flex flex-wrap gap-6 text-sm">

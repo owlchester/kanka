@@ -1,4 +1,4 @@
-<h3 class="">
+<h3 class="text-xl">
     {!! \App\Facades\Module::plural(config('entities.ids.note'), __('entities.notes')) !!}
 </h3>
 <x-box>

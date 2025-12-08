@@ -23,7 +23,7 @@ if (auth()->check() && auth()->user()->isAdmin()) {
             'text' => __('crud.bulk.actions.permissions')
         ];
         /*$dropdownActions[] = '
-            <a href="#" class="bulk-permissions" data-toggle="dialog" data-target="primary-dialog" data-url="' . route('bulk.permissions', [$campaign, 'entity_type' => $entityTypeId]) . '" data-bulk-action="ajax">
+            <a href="#" class="bulk-permissions" data-toggle="dialog" data-url="' . route('bulk.permissions', [$campaign, 'entity_type' => $entityTypeId]) . '" data-bulk-action="ajax">
                 <i class="fa-solid fa-cog" aria-hidden="true"></i> ' .  __('crud.bulk.actions.permissions') . '
             </a>';*/
     }
@@ -51,7 +51,7 @@ if (auth()->check() && auth()->user()->isAdmin()) {
             'text' => __('crud.actions.copy_to_campaign')
         ];
         /*$dropdownActions[] = '
-            <a href="#" class="bulk-copy-campaign" data-toggle="dialog" data-target="primary-dialog" data-url="' .  route('bulk.copy-to-campaign', [$campaign, 'entity_type' => $entityTypeId]) . '" data-bulk-action="ajax">
+            <a href="#" class="bulk-copy-campaign" data-toggle="dialog" data-url="' .  route('bulk.copy-to-campaign', [$campaign, 'entity_type' => $entityTypeId]) . '" data-bulk-action="ajax">
                 <x-icon class="fa-regular fa-clone" /> ' .  __('crud.actions.copy_to_campaign') . '
             </a>';*/
     }

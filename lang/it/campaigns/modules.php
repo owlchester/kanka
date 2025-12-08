@@ -9,9 +9,7 @@ return [
         'plural'    => 'Nome plurale del modulo',
         'singular'  => 'Nome singolare del modulo',
     ],
-    'helpers'   => [
-        'info'  => 'Una campagna è suddivisa in diversi moduli che interagiscono tra loro. Attiva o disattiva quelli che non servono. La disattivazione di un modulo non cancella i suoi dati, ma li nasconde soltanto.',
-    ],
+    'helpers'   => [],
     'pitch'     => 'Rinomina e cambia l\'cona associata a questo modulo per l\'intera campagna.',
     'rename'    => [
         'helper'    => 'Cambia il nome e l\'icona del modulo durante la campagna. Lascia vuoto per utilizzare l\'icona predefinita di Kanka.',

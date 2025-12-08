@@ -2,8 +2,8 @@
 
 return [
     'actions'       => [
-        'copy'  => 'Copier',
-        'move'  => 'Déplacer',
+        'copy'      => 'Copier',
+        'transfer'  => 'Transférer',
     ],
     'errors'        => [
         'permission'        => 'Ce type d\'entité ne peut pas être créée dans la campagne ciblée.',

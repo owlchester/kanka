@@ -11,7 +11,6 @@ return [
             'title' => 'Morderca',
         ],
     ],
-    'cached'        => 'Statystyki są aktualizowane co :amount godzin.',
     'fields'        => [
         'created'       => 'Stworzono dnia',
         'creator'       => 'Stworzono przez',

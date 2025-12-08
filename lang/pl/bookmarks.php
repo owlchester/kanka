@@ -34,6 +34,9 @@ return [
         'type'              => 'Stwórz skrót prowadzący do listy elementów. By filtrować rezultaty, skopuj część adresu filtrowanej listy elementów po znaku :? w pole :filter.',
     ],
     'index'             => [],
+    'lists'             => [
+        'empty' => 'Zapisz skróty do najczęściej używanych elementów albo filtrów, ułatwiające dostęp.',
+    ],
     'placeholders'      => [
         'filters'   => 'location_id=15&type=city',
         'menu'      => 'Podstrona menu (użyj ostatniego tekstu adresu)',

@@ -3,7 +3,6 @@
 return [
     'actions'       => [
         'copy'  => 'Copiar',
-        'move'  => 'Mover',
     ],
     'errors'        => [
         'permission'        => 'No tienes permiso para crear entidades de este tipo en la campaña objetivo.',

@@ -74,7 +74,7 @@ $box = 'rounded-2xl p-2 lg:p-3 bg-box shadow-xs hover:shadow flex flex-col items
         </div>
         @endif
         <a class="{{ $box }}" href="#" data-toggle="dialog"
-           data-target="primary-dialog" data-url="{{ route('billing.currency') }}">
+           data-url="{{ route('billing.currency') }}">
             <div class="text-xl text-center">
                 <span class="uppercase">{{ $user->currency() }}</span>
                 <x-icon class="fa-solid fa-pencil-alt" />

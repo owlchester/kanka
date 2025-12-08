@@ -22,6 +22,7 @@ return [
     ],
     'fields'        => [
         'is_shown'  => 'Pokaż kategorię znaczników',
+        'parent'    => 'Grupa źródłowa',
         'position'  => 'Kolejność',
     ],
     'helper'        => [

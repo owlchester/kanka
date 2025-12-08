@@ -3,7 +3,6 @@
 return [
     'actions'       => [
         'copy'  => 'Kopírovať',
-        'move'  => 'Presunúť',
     ],
     'errors'        => [
         'permission'        => 'V tejto kampani nemáš povolenie na vytváranie objektov tohto typu.',

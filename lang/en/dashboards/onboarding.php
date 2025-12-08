@@ -1,51 +1,51 @@
 <?php
 
 return [
-    'splash' => 'Welcome, :name 👋 Your world is ready.',
-    'title' => 'Make this world yours',
-    'intro' => 'Your world is ready. Make it yours before you dive in.',
-    'fields' => [
-        'name' => 'World name',
+    'actions'       => [
+        'continue'  => 'Start building',
+        'skip'      => 'Skip for now',
     ],
-    'placeholders' => [
-        'name' => 'You can change this anytime.',
-    ],
-    'selection' => [
-        'title' => 'World type',
-        'intro' => 'What are you creating?',
-        'worldbuilding' => 'Worldbuilding project',
-        'worldbuilding-description' => 'Build and organize the lore, places, and people of your own world.',
-        'campaign' => 'Tabletop RPG campaign',
-        'campaign-description' => 'Manage your campaign, characters, and sessions for your TTRPG group.',
-        'story' => 'Novel or story universe',
-        'story-description' => 'Develop your story\'s characters, settings, and timeline as you write.',
-        'helper' => '(Your choice will personalise demo content and your dashboard layout.)',
-    ],
-    'actions' => [
-        'continue' => 'Start building',
-        'skip' => 'Skip for now',
-    ],
-    'success' => 'Welcome! We\'ve customised your world for a quick start.',
-    'ttrpg' => [
-        'tags' => [
-            'npcs' => 'NPCs',
+    'families'      => [
+        'varren'    => [
+            'title' => 'House Varren',
         ],
     ],
-    'roles' => [
-        'contributor' => 'Contributor',
-        'co-writer' => 'Co-writer',
+    'fields'        => [
+        'name'  => 'World name',
     ],
-    'widgets' => [
-        'active-quests' => 'Active quests',
+    'intro'         => 'Your world is ready. Make it yours before you dive in.',
+    'placeholders'  => [
+        'name'  => 'You can change this anytime.',
     ],
-    'quests' => [
+    'quests'        => [
         'crown' => [
             'title' => 'Retrieve the shattered crown',
-        ]
+        ],
     ],
-    'families' => [
-        'varren' => [
-            'title' => 'House Varren',
-        ]
+    'roles'         => [
+        'co-writer'     => 'Co-writer',
+        'contributor'   => 'Contributor',
+    ],
+    'selection'     => [
+        'campaign'                  => 'Tabletop RPG campaign',
+        'campaign-description'      => 'Manage your campaign, characters, and sessions for your TTRPG group.',
+        'helper'                    => '(Your choice will personalise demo content and your dashboard layout.)',
+        'intro'                     => 'What are you creating?',
+        'story'                     => 'Novel or story universe',
+        'story-description'         => 'Develop your story\'s characters, settings, and timeline as you write.',
+        'title'                     => 'World type',
+        'worldbuilding'             => 'Worldbuilding project',
+        'worldbuilding-description' => 'Build and organize the lore, places, and people of your own world.',
+    ],
+    'splash'        => 'Welcome, :name 👋 Your world is ready.',
+    'success'       => 'Welcome! We\'ve customised your world for a quick start.',
+    'title'         => 'Make this world yours',
+    'ttrpg'         => [
+        'tags'  => [
+            'npcs'  => 'NPCs',
+        ],
+    ],
+    'widgets'       => [
+        'active-quests' => 'Active quests',
     ],
 ];

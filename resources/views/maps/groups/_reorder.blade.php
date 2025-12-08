@@ -1,5 +1,5 @@
 
-<h3 class="">
+<h3 class="text-xl">
     {{ __('maps/groups.reorder.title') }}
 </h3>
 <x-form :action="['maps.groups.reorder-save', $campaign, 'map' => $model]">

@@ -14,7 +14,7 @@
 
 @section('content')
     <x-grid type="1/1">
-        <h1>{{ __('settings.subscription.manage_subscription') }}</h1>
+        <h1 class="text-2xl">{{ __('settings.subscription.manage_subscription') }}</h1>
 
         <p class="">
             {!! __('subscription.benefits.main', [
@@ -28,7 +28,7 @@
 
         @include('settings.subscription._recap')
 
-        <h2 class="m-0">
+        <h2 class="text-xl m-0">
             {{ __('settings.subscription.tiers') }}
         </h2>
         @if (!$isPayPal && !$hasManual)
@@ -69,14 +69,14 @@
                                 </div>
                             @else
                                 <div class="price price-monthly flex gap-2 w-full items-end">
-                                    <div class="text-4xl">
+                                    <div class="text-2xl">
                                         {{ $user->currencySymbol() }}
                                         {{ number_format($tier->price($user->currency(), \App\Enums\PricingPeriod::Monthly), 2) }}
                                     </div>
                                     <span class="text-sm text-neutral-content ">{{ __('tiers.periods.billed_monthly') }}</span>
                                 </div>
                                 <div class="price price-yearly flex gap-2 w-full items-end">
-                                    <div class="text-4xl">
+                                    <div class="text-2xl">
                                         {{ $user->currencySymbol() }}
                                         {{ number_format($tier->price($user->currency(), \App\Enums\PricingPeriod::Yearly), 2) }}
                                     </div>
@@ -146,5 +146,5 @@
 @endsection
 
 @section('styles')
-    @vite('resources/sass/subscription.scss')
+    @vite('resources/css/subscription.css')
 @endsection

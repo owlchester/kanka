@@ -18,6 +18,7 @@ return [
     'helpers'       => [
         'primary'   => 'Wyposażenie elementu w jeden lub więcej aliasów pozwoli wyszukiwać go za pomocą globalnego wyszukiwania (górny pasek) oraz przez wzmianki.',
     ],
+    'limit'         => 'Kampania osiągnęła limit dostępnych aliasów. By go zwiększyć, odblokuj funkcje premium.',
     'pitch'         => 'Możliwość nadawania elementom aliasów pozwala łatwo je wyszukiwać i tworzyć wzmianki.',
     'placeholders'  => [
         'name'  => 'Nowy alias',

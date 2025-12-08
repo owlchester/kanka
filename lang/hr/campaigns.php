@@ -35,11 +35,9 @@ return [
         'name'                      => 'Naziv',
         'open'                      => 'Otvoreno za prijave',
         'public_campaign_filters'   => 'Filteri javnih kampanja',
-        'related_visibility'        => 'Vidljivost povezanih elemenata',
         'superboosted'              => 'Super pojačali',
         'system'                    => 'Sustav',
         'theme'                     => 'Tema',
-        'visibility'                => 'Vidljivost',
     ],
     'following'                         => 'Praćenje',
     'helpers'                           => [
@@ -54,12 +52,10 @@ return [
         'name'                      => 'Tvoj svijet ili kampanja može imati bilo koje ime dok god sadrži 4 slova ili broja.',
         'public_campaign_filters'   => 'Pomozi drugima da pronađu kampanju među ostalim javnim kampanjama pružanjem sljedećih informacija.',
         'public_no_visibility'      => 'Pažnja! Tvoja kampanja je javna, ali javna uloga kampanje ne može pristupiti ničemu. :fix.',
-        'related_visibility'        => 'Zadana vrijednost vidljivosti prilikom stvaranja novog elementa s ovim poljem (bilješke entiteta, odnosi, sposobnosti itd.)',
         'system'                    => 'Ako je tvoja kampanja vidljiva javnosti, sustav je pokazan na stranici :link.',
         'systems'                   => 'Kako bi izbjegli zatrpavanje korisnika opcijama, neke funkcionalnosti Kanke su dostupne samo s određenim RPG sustavima (npr. D&D 5e blok sa statistikama za nemani). Dodavanje podržanih sustava na ovom mjestu će omogućiti te funkcionalnosti.',
         'theme'                     => 'Prisili korisnike da koriste ovu temu za kampanju, nadjačavajući njihov odabir.',
         'view_public'               => 'Da bi vidio/la svoju kampanju kao javni gledatelj, otvori :link u anonimnom prozoru.',
-        'visibility'                => 'Proglašavanje kampanje javnom znači da će ju moći vidjeti svi koji imaju s odgovarajućom poveznicom.',
     ],
     'index'                             => [],
     'invites'                           => [
@@ -129,7 +125,6 @@ return [
     'open_campaign'                     => [],
     'panels'                            => [
         'dashboard' => 'Naslovna ploča',
-        'permission'=> 'Ovlasti',
         'setup'     => 'Postavljanje',
         'sharing'   => 'Dijeljenje',
         'systems'   => 'Sustavi',
@@ -262,6 +257,5 @@ return [
     'visibilities'                      => [
         'private'   => 'Privatna',
         'public'    => 'Javna',
-        'review'    => 'Čeka na pregled',
     ],
 ];

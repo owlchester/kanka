@@ -22,12 +22,12 @@ if (!empty($onload)) {
 $all = $entity->child->allChildren()->count();
 $direct = $entity->child->entities()->count();
 ?>
-<div class="flex flex-col xl:flex-row gap-2 items-center">
-    <h3 class="grow">
+<div class="flex flex-col xl:flex-row gap-2 justify-between items-center">
+    <h3 class="text-xl">
         {{ __('tags.show.tabs.children') }}
     </h3>
-    <div class="flex gap-2 flex-wrap overflow-auto">
-        <button data-url="{{ route('tags.transfer', [$campaign, $entity->child]) }}" data-toggle="dialog" data-target="primary-dialog" class="btn2 btn-sm">
+    <div class="gap-2 flex-wrap overflow-auto">
+        <button data-url="{{ route('tags.transfer', [$campaign, $entity->child]) }}" data-toggle="dialog" class="btn2 btn-sm">
             <x-icon class="fa-regular fa-arrow-right"/>
             <span class="hidden xl:inline">{{ __('tags.transfer.transfer') }}</span>
         </button>
@@ -57,7 +57,7 @@ $direct = $entity->child->entities()->count();
         @if ($all > 0)
             @can('update', $entity)
                 <a href="{{ $addEntityUrl }}" class="btn2 btn-primary btn-sm"
-                   data-toggle="dialog" data-target="primary-dialog" data-url="{{ $addEntityUrl }}">
+                   data-toggle="dialog" data-url="{{ $addEntityUrl }}">
                     <x-icon class="plus" />
                     <span class="hidden xl:inline">{{ __('tags.children.actions.add') }}</span>
                 </a>
@@ -73,7 +73,7 @@ $direct = $entity->child->entities()->count();
         </x-helper>
         @can('update', $entity)
             <a href="{{ $addEntityUrl }}" class="btn2 btn-primary btn-sm"
-                data-toggle="dialog" data-target="primary-dialog" data-url="{{ $addEntityUrl }}">
+                data-toggle="dialog" data-url="{{ $addEntityUrl }}">
                 <x-icon class="plus" />
                 <span class="hidden xl:inline">{{ __('tags.children.actions.add') }}</span>
             </a>

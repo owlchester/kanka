@@ -19,7 +19,7 @@
         @if (request()->ajax())
             <div class="modal-heading">
                 <x-dialog.close />
-                <h4>
+                <h4 class="text-lg">
                     {{ __('maps/markers.edit.title', ['name' => $model->name]) }}
                 </h4>
             </div>
@@ -101,7 +101,7 @@
 @section('styles')
     @parent
     <link rel="stylesheet" href="{{ 'https://unpkg.com/leaflet@' . config('app.leaflet_source') . '/dist/leaflet.css' }}" integrity="{{ config('app.leaflet_css') }}" crossorigin="" />
-    @vite('resources/sass/map-v3.scss')
+    @vite('resources/css/maps/maps.css')
 
     <style>
         .marker-{{ $model->id }} {

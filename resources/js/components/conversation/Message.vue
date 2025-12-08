@@ -101,7 +101,7 @@
                 if (message.group) {
                     classes += ' message-followup';
                 } else {
-                    classes += ' message-first'
+                    classes += ' message-first rounded-t-lg'
                 }
                 return classes;
             },

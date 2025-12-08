@@ -4,7 +4,7 @@
             <img class="w-16 h-16" src="https://d3a4xjr8r2ldhu.cloudfront.net/app/tiers/elemental-128.png" alt="Elemental">
         </div>
         <div class="grow">
-            <h3>Elemental</h3>
+            <h3 class="text-xl">Elemental</h3>
             <h5>{{ auth()->user()->currencySymbol() }}25 / {{ __('front.pricing.tier.month') }}</h5>
         </div>
     </div>

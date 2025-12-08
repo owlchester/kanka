@@ -10,7 +10,6 @@ return [
     'helpers'   => [
         'characters'    => 'Ustawienie rodzaju jako daty narodzin albo śmieci tej postaci automatycznie wyliczy jej wiek. :more.',
         'founding'      => 'Ustawienie typu :type automatycznie przeliczy wiek elementu od chwili powstania.',
-        'reminders'     => 'Tu wyświetlane są epizody związane z :name.',
     ],
     'show'      => [
         'actions'   => [

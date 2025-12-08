@@ -3,7 +3,6 @@
 return [
     'actions'       => [
         'copy'  => 'Kopiraj',
-        'move'  => 'Premjesti',
     ],
     'errors'        => [
         'permission'        => 'Nije ti dopušteno stvarati entitete te vrste u ciljanoj kampanji.',

@@ -3,7 +3,7 @@
             <img class="w-16 h-16" src="https://d3a4xjr8r2ldhu.cloudfront.net/app/tiers/goblin-128.png" alt="Goblin">
         </div>
         <div class="grow">
-            <h3>Goblin</h3>
+            <h3 class="text-xl">Goblin</h3>
             <h5>{{ auth()->user()->currencySymbol() }}3 / {{ __('front.pricing.tier.month') }}</h5>
         </div>
     </div>

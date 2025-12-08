@@ -12,14 +12,7 @@ return [
         'title'     => 'Roles disponibles',
         'unlimited' => ':amount de roles ilimitados creados.',
     ],
-    'public'    => [
-        'campaign'      => [
-            'private'   => 'La campaña es privada actualmente.',
-            'public'    => 'La campaña es pública actualmente.',
-        ],
-        'description'   => 'Establezca los permisos para que el rol público pueda ver las entidades de los siguientes módulos de la campaña. Se considera que un usuario tiene el rol público si está viendo la campaña sin ser uno de sus miembros.',
-        'test'          => 'Para comprobar los permisos del rol público, abra el panel de control de la campaña :url en una ventana de incógnito.',
-    ],
+    'public'    => [],
     'show'      => [
         'title' => 'permisos de :role - :campaign',
     ],

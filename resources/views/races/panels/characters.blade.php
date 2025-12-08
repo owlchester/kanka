@@ -17,11 +17,11 @@ if (request()->get('m') == \App\Enums\Descendants::All->value || (!request()->ha
 $datagridOptions = Datagrid::initOptions($datagridOptions);
 ?>
 
-<div class="flex gap-2 items-center">
-    <h3 class="grow">
+<div class="flex gap-2 items-center justify-between">
+    <h3 class="text-xl">
         {!! \App\Facades\Module::plural(config('entities.ids.character'), __('entities.characters')) !!}
     </h3>
-    <div class="flex gap-2 flex-wrap overflow-auto">
+    <div class="gap-2 flex-wrap overflow-auto">
         @if (!$allMembers)
             <a href="{{ route('entities.show', [$campaign, $entity, 'm' => \App\Enums\Descendants::All]) }}" class="btn2 btn-sm" data-toggle="tooltip" data-title="{{ __('crud.filters.lists.paginated') }}">
                 <x-icon class="filter" />
@@ -37,7 +37,7 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
         @endif
         @can('update', $entity)
             <a href="{{ route('races.members.create', [$campaign, $entity->child]) }}" class="btn2 btn-primary btn-sm"
-               data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('races.members.create', [$campaign, $entity->child]) }}">
+               data-toggle="dialog" data-url="{{ route('races.members.create', [$campaign, $entity->child]) }}">
                 <x-icon class="plus" />
                 <span class="hidden xl:inline">{{ __('crud.add') }}</span>
             </a>

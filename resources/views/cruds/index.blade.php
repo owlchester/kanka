@@ -8,12 +8,15 @@
 ])
 
 @section('entity-header')
-    <div class="flex gap-2 items-center mb-5">
-        <h1 class="grow text-4xl category-title truncate">{!! $titleKey ?? __('entities.' . $langKey) !!}</h1>
+    <div class="flex gap-2 items-center mb-5 justify-between">
+        <h1 class="text-2xl category-title truncate">{!! $titleKey ?? __('entities.' . $langKey) !!}</h1>
         <div class="flex flex-wrap gap-2 justify-end">
+            @if($mode === 'table' && $parent)
+                @include('entities.index.actions.parent')
+            @endif
             @includeWhen(isset($route) && $route !== 'relations', 'layouts.datagrid._togglers', ['route' => $name . '.index'])
-            @includeWhen(isset($actions), 'cruds.lists._actions')
             @if (isset($entityType))
+                @includeIf('entities.index.actions.' . $entityType->code)
                 @includeWhen(isset($model) && auth()->check() && auth()->user()->can('create', [$entityType, $campaign]), 'cruds.lists._create')
             @else
                 @includeWhen(isset($model) && auth()->check() && auth()->user()->can('create', $model), 'cruds.lists._create')

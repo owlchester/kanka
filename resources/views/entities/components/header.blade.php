@@ -45,7 +45,7 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
 $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
 
 ?>
-<div class="w-full h-full entity-header flex-wrap md:flex-no-wrap flex gap-2 md:gap-5 items-end relative @if ($hasBanner) with-entity-banner p-4 text-white aspect-[3/1] xl:aspect-auto @endif">
+<div class="w-full h-full entity-header flex-wrap md:flex-no-wrap flex gap-2 md:gap-5 items-end relative @if ($hasBanner) with-entity-banner p-4 text-white aspect-3/1 xl:aspect-auto @endif">
     @if ($imageUrl)
     <div class="entity-header-image relative w-28 flex-none md:w-48 self-start md:self-auto z-10">
 
@@ -185,7 +185,7 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
                 </span>
             @endif
             @can('admin', $campaign)
-                <span role="button" tabindex="0" class="entity-privacy-icon md:text-2xl hover:text-primary" data-toggle="dialog" data-url="{{ route('entities.quick-privacy', [$campaign, $entity]) }}" data-target="primary-dialog" aria-haspopup="dialog">
+                <span role="button" tabindex="0" class="entity-privacy-icon md:text-2xl hover:text-primary" data-toggle="dialog" data-url="{{ route('entities.quick-privacy', [$campaign, $entity]) }}" aria-haspopup="dialog">
                         <i class="fa-regular fa-lock entity-icons" data-title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
                         <i class="fa-regular fa-lock-open entity-icons" data-title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
                         <span class="sr-only">{{ __('entities/permissions.quick.screen-reader') }}</span>
@@ -213,7 +213,7 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
             @endforeach
         @endif
             @can('update', $entity)
-                <span role="button" tabindex="0" class="entity-tag-icon text-xl hover:text-primary" data-toggle="dialog" data-url="{{ $addTagsUrl }}" data-target="primary-dialog" aria-haspopup="dialog">
+                <span role="button" tabindex="0" class="entity-tag-icon text-xl hover:text-primary" data-toggle="dialog" data-url="{{ $addTagsUrl }}" aria-haspopup="dialog">
                     <x-icon class="fa-regular fa-tag" tooltip="1" :title="__('entities/tags.create.title')" />
                     <span class="sr-only">{{ __('entities/tags.create.title')  }}</span>
                 </span>
@@ -242,7 +242,6 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
             class="header-visibility absolute top-2 right-2 rounded cursor-pointer z-10"
             data-toggle="dialog"
             data-url="{{ route('gallery.file.visibility', [$campaign, $entity->header]) }}"
-            data-target="primary-dialog"
             aria-haspopup="dialog"
         >
             <x-icon :class="$entity->header->visibilityIcon()['class']" :title="$headerHelper" tooltip />

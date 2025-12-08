@@ -1,10 +1,14 @@
 @php
 $isPrivate = old('is_private', $source->is_private ?? $model->is_private ?? $campaign->entity_visibility)
 @endphp
-<div class="privacy-callout rounded-xl p-4 border border-red-300">
+<div
+    class="privacy-callout rounded-xl p-4 border border-red-300"
+    x-data="{ isPrivate: {{ $isPrivate ? 'true' : 'false' }} }"
+    x-init="$watch('isPrivate', value => { $dispatch('entity-privacy-changed', value) })"
+>
     <input type="hidden" name="is_private" value="0" />
-    <label class="flex items-start gap-2 cursor-pointer">
-        <input type="checkbox" name="is_private" value="1" @if ($isPrivate) checked="checked" @endif data-toggle="entity-privacy" class="" />
+    <label class="flex! items-start gap-2 cursor-pointer">
+        <input type="checkbox" name="is_private" value="1" x-model="isPrivate" class="" />
 
         <div>
             <p class="font-semibold ">
@@ -17,7 +21,7 @@ $isPrivate = old('is_private', $source->is_private ?? $model->is_private ?? $cam
                 <br /><a href="https://docs.kanka.io/en/latest/features/permissions.html#entity-permissions">
                     <x-icon class="fa-regular fa-book" />
                     {{ __('general.documentation') }}
-                </a>.</p>
+                </a></p>
             </x-helper>
         </div>
     </label>

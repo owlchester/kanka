@@ -27,7 +27,7 @@
             @can('update', $campaign)
                 <button
                     class="btn2 btn-default btn-xs"
-                    data-toggle="dialog-ajax"
+                    data-toggle="dialog"
                     @if ($entityType->isStandard())
                     data-url="{{ route('modules.edit', [$campaign, $entityType]) }}"
                     @else
@@ -44,7 +44,7 @@
 
 
     @if ($entityType->isDeprecated())
-        <div class="rounded-xl border px-2 py-0.5 bg-base-300" data-toggle="tooltip" data-title="{{ __('campaigns.settings.deprecated.help') }}">
+        <div class="rounded-xl border border-base-300 px-2 py-0.5 bg-base-300" data-toggle="tooltip" data-title="{{ __('campaigns.settings.deprecated.help') }}">
             <span >
                 ⚠️
                 {{ __('campaigns.settings.deprecated.title') }}

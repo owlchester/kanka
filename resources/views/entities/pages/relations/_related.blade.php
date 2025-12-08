@@ -3,7 +3,7 @@
  * @var \App\Services\Entity\Connections\RelatedService $connectionService
  */
 ?>
-<h3 class="">
+<h3 class="text-xl">
     {{ __('entities/relations.panels.related') }}
 </h3>
 <x-box class="box-entity-connections" id="entity-related" :padding="false">

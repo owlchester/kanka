@@ -8,7 +8,7 @@
 @can('invite', $campaign)
 
     <div class="flex gap-2 items-center">
-        <h3 class="inline-block grow">
+        <h3 class="inline-block grow text-xl">
             {{ __('campaigns.members.invite.title') }}
         </h3>
         <button class="btn2 btn-sm btn-ghost" data-toggle="dialog" data-target="invite-help">
@@ -17,7 +17,7 @@
         </button>
 
         <a href="{{ route('campaign_invites.create', $campaign) }}" class="btn2 btn-primary btn-sm"
-            data-toggle="dialog-ajax" data-target="primary-dialog" data-url="{{ route('campaign_invites.create', $campaign) }}">
+            data-toggle="dialog" data-url="{{ route('campaign_invites.create', $campaign) }}">
             <x-icon class="fa-solid fa-user-plus" />
             <span class="hidden lg:inline">{{ __('campaigns.invites.actions.link') }}</span>
         </a>

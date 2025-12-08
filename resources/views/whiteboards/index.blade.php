@@ -9,7 +9,7 @@
 @section('content')
 
     <div class="flex gap-2 justify-between items-center">
-        <h3>{{ __('entities.whiteboards') }}</h3>
+        <h3 class="text-xl">{{ __('entities.whiteboards') }}</h3>
         <a href="{{ route('whiteboards.create', $campaign) }}" class="btn2 btn-primary">
             <x-icon class="plus" />
             {{ __('entities.whiteboard') }}

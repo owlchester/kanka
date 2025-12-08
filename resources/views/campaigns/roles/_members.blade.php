@@ -4,9 +4,9 @@
  * @var \App\Models\CampaignRoleUser[]|\Illuminate\Pagination\LengthAwarePaginator $members
  */
 ?>
-<h3 class="">
+<h2 class="text-xl">
     {{ __('campaigns.roles.members') }} ({{ $members->count() }})
-</h3>
+</h2>
 
 
 <div class="flex flex-wrap gap-2 flex-stretch">
@@ -26,7 +26,6 @@
                 @can('delete', [$relation, $role])
                     <a href="#" class="btn2 btn-error btn-outline btn-sm"
                        data-toggle="dialog"
-                       data-target="primary-dialog"
                        data-url="{{ route('confirm-delete', [$campaign, 'route' => route('campaign_roles.campaign_role_users.destroy', [$campaign, $role, 'campaign_role_user' => $relation->id]), 'name' => __('campaigns.roles.users.actions.remove', ['user' => $relation->user->name, 'role' => $role->name]), 'permanent' => true]) }}"
                        title="{{ __('campaigns.roles.users.actions.remove_user') }}">
                         <x-icon class="fa-solid fa-user-slash" />
@@ -43,7 +42,7 @@
     @can('user', $role)
         <a href="{{ route('campaign_roles.campaign_role_users.create', [$campaign, 'campaign_role' => $role]) }}"
            class="btn2 btn-primary"
-           data-toggle="dialog-ajax" data-target="new-member"
+           data-toggle="dialog" data-target="new-member"
            data-url="{{ route('campaign_roles.campaign_role_users.create', [$campaign, 'campaign_role' => $role]) }}">
             <x-icon class="plus" />
             {{ __('campaigns.roles.users.actions.add') }}

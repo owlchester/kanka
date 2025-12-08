@@ -45,10 +45,11 @@ class PostController extends Controller
         /** @var PostLayout[] $layouts */
         $layouts = PostLayout::entity($entity->entityType)->get();
         $layoutDefault = ['' => __('crud.fields.entry')];
-        $layoutOptions = [];
+        $layoutOptions = $disabledLayoutOptions = [];
 
         foreach ($layouts as $layout) {
             $layoutOptions[$layout->id] = $layout->name();
+            $disabledLayoutOptions[$layout->id] = true;
         }
 
         $collator = new Collator(app()->getLocale());
@@ -59,6 +60,7 @@ class PostController extends Controller
             'campaign',
             'post',
             'layoutOptions',
+            'disabledLayoutOptions',
             'entity',
             'parentRoute',
             'templates',

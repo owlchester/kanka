@@ -61,6 +61,7 @@ return [
         'base'                      => 'Dodaj znacznik, klikając w dowolnym miejscu mapy.',
         'copy_elements'             => 'Kopiuj kategorie, warstwy i znaczniki.',
         'copy_elements_to_campaign' => 'Kopiuje kategorie, warstwy i znaczniki na mapach. Znaczniki prowadzące do elementów zostaną zamienione na standardowe.',
+        'css'                       => 'Definiuje klasę CSS dodaną do znacznika.',
         'custom_icon_v2'            => 'Używaj ikon z :fontawesome, :rpgawesome, albo własnych plików SVG. Więcej instrukcji znajdziesz tutaj: :docs.',
         'custom_radius'             => 'Wybierz opcję z rozwijanej listy by określić wielkość.',
         'draggable'                 => 'Pozwala przeciągać znacznik po mapie w trybie eksploracji.',

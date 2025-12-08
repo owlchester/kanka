@@ -8,7 +8,7 @@ data-visibility="{{ $item->visibility_id }}"
         @include('icons.visibility', ['icon' => $item->visibilityIcon()])
     </div>
 
-    <div class="flex flex-col m-4 gap-1 items-center overflow-hidden cursor-pointer" data-toggle="dialog" data-url="{{ route('entities.inventory.details', [$campaign, $entity, $item]) }}" data-target="primary-dialog">
+    <div class="flex flex-col m-4 gap-1 items-center overflow-hidden cursor-pointer" data-toggle="dialog" data-url="{{ route('entities.inventory.details', [$campaign, $entity, $item]) }}">
         @include('entities.pages.inventory._thumbnail')
 
         <div class="flex flex-col gap-0.5 items-center">
@@ -24,7 +24,7 @@ data-visibility="{{ $item->visibility_id }}"
             @endif
             </h3>
 
-            <p class="text-xs text-neutral-content text-center mx-4 overflow-hidden cursor-pointer item-description" data-toggle="dialog" data-url="{{ route('entities.inventory.details', [$campaign, $entity, $item]) }}" data-target="primary-dialog">
+            <p class="text-xs text-neutral-content text-center mx-4 overflow-hidden cursor-pointer item-description" data-toggle="dialog" data-url="{{ route('entities.inventory.details', [$campaign, $entity, $item]) }}">
                 @if ($item->item && $item->copy_item_entry)
                     {!! \Illuminate\Support\Str::limit(strip_tags($item->item->entity->parsedEntry()) ?? '', 100) !!}
                 @else
@@ -65,7 +65,7 @@ data-visibility="{{ $item->visibility_id }}"
     <div class="right-2 bottom-1 absolute  text-lg">
         <a href="{{ route('entities.inventories.edit', [$campaign, $entity, $item]) }}"
            class="link link-accent"
-           data-toggle="dialog" data-target="primary-dialog"
+           data-toggle="dialog"
            data-url="{{ route('entities.inventories.edit', [$campaign, $entity, $item]) }}"
            title="{{ __('crud.edit') }}">
             <x-icon class="edit" />

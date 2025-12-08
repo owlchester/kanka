@@ -508,7 +508,6 @@ class CampaignDashboardWidget extends Model
         return in_array($this->widget, [
             Widget::Calendar,
             Widget::Preview,
-            Widget::Random,
             Widget::Unmentioned,
         ]) && empty($this->entity);
     }

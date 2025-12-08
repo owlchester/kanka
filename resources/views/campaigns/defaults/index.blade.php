@@ -25,9 +25,9 @@ $visibilities = [
             @include('partials.errors')
 
             <div class="flex gap-2 items-center">
-                <h3 class="inline-block grow">
+                <h1 class="inline-block grow text-2xl">
                     {{ __('campaigns.show.tabs.defaults') }}
-                </h3>
+                </h1>
 
                 <x-learn-more url="features/campaigns/defaults.html" />
             </div>
@@ -36,7 +36,7 @@ $visibilities = [
                 {!! __('campaigns/defaults.tutorial') !!}
             </p>
 
-            <h4>{{ __('campaigns/defaults.sections.entity') }}</h4>
+            <div class="text-lg">{{ __('campaigns/defaults.sections.entity') }}</div>
             <x-box>
                 <x-grid type="1/1">
 
@@ -67,7 +67,7 @@ $visibilities = [
                 </x-grid>
             </x-box>
 
-            <h4>{{ __('campaigns/defaults.sections.media') }}</h4>
+            <div class="text-lg">{{ __('campaigns/defaults.sections.media') }}</div>
             <x-box>
                 <x-forms.field
                     field="gallery-visibility"
@@ -77,7 +77,7 @@ $visibilities = [
                 </x-forms.field>
             </x-box>
 
-            <h4>{{ __('campaigns/defaults.sections.mention') }}</h4>
+            <div class="text-lg">{{ __('campaigns/defaults.sections.mention') }}</div>
             <x-box>
                 <x-forms.field
                     field="private_mention_visibility"
@@ -88,7 +88,7 @@ $visibilities = [
             </x-box>
 
 
-            <h4>{{ __('campaigns/defaults.sections.display') }}</h4>
+            <div class="text-lg">{{ __('campaigns/defaults.sections.display') }}</div>
             <x-box>
                 <x-grid type="1/1">
                     <x-helper>

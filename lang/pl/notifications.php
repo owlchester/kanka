@@ -78,6 +78,7 @@ return [
         'ended'         => 'Twoja subskrypcja została zakończona. Usunięto doładowania kampanii i kanał na Discordzie. Do zobaczenia niedługo!',
         'failed'        => 'Nie można pobrać płatności. Uaktualnij ustawienia Metody Płatności.',
         'started'       => 'Subskrybujesz od teraz Kankę.',
+        'trial'         => 'Zakończył się darmowy okres próbny Kanki. Mamy nadzieję, że ci się podobało i jeszcze do nas wrócisz!',
     ],
     'unread'            => 'Nowe powiadomienie',
 ];

@@ -1,0 +1,262 @@
+@import "leaflet.markercluster/dist/MarkerCluster.css";
+@import "leaflet.markercluster/dist/MarkerCluster.Default.css";
+@import "./leaflet.zoomdisplay.css";
+
+:root {
+    --map-hero-ratio: 2/1;
+    --map-ruler-color: #de0000;
+}
+
+.map {
+    width: 100%;
+    min-height: calc(50vh);
+}
+
+.map-explore {
+    min-height: calc(100vh - 50px) !important;
+}
+
+.map-dashboard {
+    min-height: calc(30vh);
+}
+
+.map-preview {
+    min-height: calc(100vh);
+}
+
+.marker {
+    color: white;
+    background-color: unset;
+    text-align: center;
+}
+
+.marker-pin {
+    width: 40px;
+    height: 40px;
+    border-radius: 50% 50% 50% 0;
+    position: absolute;
+    transform: rotate(-45deg);
+    left: 50%;
+    top: 50%;
+    margin: -20px 0 0 -20px;
+    box-shadow: 0 6px 6px rgba(50, 50, 93, 0.31), 0 1px 3px rgba(0, 0, 0, 0.08);;
+
+    &:after {
+        content: '';
+        width: 36px;
+        height: 36px;
+        margin: 2px 0 0 -18px;
+        position: absolute;
+        border-radius: 50%;
+        background-position: 50% 50%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        transform: rotate(45deg);
+    }
+}
+
+.btn-map-explore {
+    color: hsl(var(--pc)/1) !important;
+}
+
+.marker.size-1 {
+    font-size: 0.5em;
+}
+
+.marker.size-2 {
+    font-size: 1em;
+}
+
+.marker.size-3 {
+    font-size: 2em;
+}
+
+.marker.size-4 {
+    font-size: 3em;
+}
+
+.marker.size-5 {
+    font-size: 4em;
+}
+
+.marker {
+    i {
+        font-size: 1.25rem;
+        margin: 0;
+        /* Sometimes FA does weird stuff like putting position: relative, breaking markers */
+        position: absolute !important;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+}
+
+.toast-container {
+    bottom: 60px;
+    z-index: 910;
+}
+
+.map-actions {
+    z-index: 500;
+
+    .btn-mode-enable {
+        display: inline-block;
+    }
+
+    .btn-mode-disable, .btn-mode-drawing {
+        display: none;
+    }
+}
+#map-body {
+    #sidebar-content {
+        padding: 0;
+        overflow: auto;
+        max-height: calc(100vh);
+        white-space: unset;
+    }
+
+    .search-drawer, nav {
+        z-index: 1050;
+    }
+
+    .main-sidebar {
+        padding-top: 0;
+        z-index: 1040;
+        --sidebar-link: hsl(var(--bc)/1);
+
+    }
+    header {
+        z-index: 1050;
+    }
+
+    .marker-header.with-image {
+        aspect-ratio: var(--map-hero-ratio);
+        --tw-bg-opacity: 1;
+        background: linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, var(--sidebar-background, hsl(var(--si)/var(--tw-bg-opacity))) 100%);
+
+        .marker-header-fade {
+            --tw-bg-opacity: 1;
+            background: linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, var(--sidebar-background, hsl(var(--si)/var(--tw-bg-opacity))) 100%);
+        }
+    }
+}
+
+body.map-edit-mode {
+    .map-actions {
+        .btn-mode-enable {
+            display: none;
+        }
+
+        .btn-mode-disable {
+            display: inline-block;
+        }
+    }
+}
+
+body.map-drawing-mode {
+    .map-actions {
+        .btn-mode-enable, .btn-mode-disable {
+            display: none;
+        }
+
+        .btn-mode-drawing {
+            display: inline-block;
+        }
+    }
+}
+
+
+.marker-close {
+    font-size: 2rem;
+    margin: 0.325rem;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.leaflet-top, .leaflet-bottom {
+    z-index: 800;
+}
+
+.leaflet-popup img, #sidebar-marker img {
+    max-width: 100%;
+    height: auto;
+}
+
+@media (min-width: 768px) {
+    #map-body {
+        --sidebar-width: 24rem; /* 384px */
+    }
+}
+
+/** Theming of the leaflet stuff **/
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip,
+.leaflet-control-layers-expanded,
+.leaflet-control-layers,
+.leaflet-bar a {
+    background-color: var(--leaflet-popup-background, hsl(var(--b1)/1)) !important;
+    color: var(--leaflet-popup-text, hsl(var(--bc)/1)) !important;
+}
+
+.leaflet-bar a {
+    &:hover {
+        background: var(--leaflet-popup-background, hsl(var(--b1)/1));
+    }
+}
+
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+    background: var(--leaflet-popup-background, hsl(var(--b1)/1));
+}
+
+.leaflet-container {
+    background: transparent !important;
+}
+
+/** Used by the ruler plugin */
+.leaflet-ruler {
+    height: 48px;
+    width: 48px;
+    background-image: url(/resources/images/leaflet/icon.png); /* <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> */
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.leaflet-ruler:hover {
+    background-image: url(/resources/images/leaflet/icon-colored.png); /* <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> */
+}
+
+.leaflet-ruler-clicked {
+    height: 48px;
+    width: 48px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(/resources/images/leaflet/icon-colored.png);
+}
+.leaflet-bar {
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--b1)/var(--tw-bg-opacity));
+}
+
+.result-tooltip {
+    background-color: white;
+    border-width: medium;
+    border-color: var(--map-ruler-color);
+    font-size: smaller;
+}
+
+.moving-tooltip {
+    background-color: rgba(255, 255, 255, .7);
+    background-clip: padding-box;
+    opacity: 0.5;
+    border: dotted;
+    border-color: var(--map-ruler-color);
+    font-size: smaller;
+}
+
+.plus-length {
+    padding-left: 45px;
+}
+/** END Used by the ruler plugin */

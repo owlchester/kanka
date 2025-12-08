@@ -25,6 +25,9 @@ return [
     ],
     'helpers'       => [],
     'index'         => [],
+    'lists'         => [
+        'empty' => 'Dodaj moce, czary i talenty. Wielu twórców używa ich do modelowania klas z D&D.',
+    ],
     'placeholders'  => [
         'charges'   => 'Liczba ładunków zdolności. Możesz wpisać wartość cechy jako {Level}*{CHA}',
         'name'      => 'Kula ognia, alarm, podstępny atak',

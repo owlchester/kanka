@@ -3,7 +3,10 @@
 namespace App\Services\Calendars;
 
 use App\Models\Calendar;
+use App\Models\Entity;
+use App\Models\Post;
 use App\Models\Reminder;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 
 class ReminderService
@@ -26,7 +29,14 @@ class ReminderService
         // @phpstan-ignore-next-line
         $reminders = $this->calendar->calendarEvents()
             ->with(['remindable'])
-            ->whereHas('remindable')
+            ->whereHasMorph(
+                'remindable',
+                [Entity::class, Post::class],
+                function (Builder $query, string $type) {
+                    if ($type === Post::class) {
+                        $query->whereHas('entity');
+                    }
+                })
             ->where(function ($primary) {
                 $primary->where(function ($sub) {
                     $sub->where(function ($recurring) {

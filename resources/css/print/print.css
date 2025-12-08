@@ -1,0 +1,189 @@
+/**
+ * SASS file for all that is print related.
+ * This file contains all the stuff to hide when printing
+ */
+:root {
+    --header-text: inherit;
+}
+
+.entity-image.hidden-xs {
+  display: none !important;
+}
+.entity-print-image {
+  width: 100%;
+}
+.entity-header {
+    background-image: none !important;
+}
+.entity-header .entity-header-text .entity-header-line:nth-last-child(2) {
+  display: block;
+}
+.entity-content .p-4, .entity-content {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+@media print {
+
+    .print-none, .entity-empty-pin {
+        display: none;
+    }
+    body {
+        -webkit-print-color-adjust: exact;
+    }
+    .main-footer {
+        display: none !important;
+    }
+
+    .btn, .btn2 {
+        display: none !important;
+    }
+
+    a[href]:after {
+        content: none !important;
+    }
+
+
+    .entity-image {
+        -webkit-print-color-adjust: exact;
+    }
+
+    .collapse {
+        display: block;
+    }
+
+    .box-solid.character-appearances, .box-solid.character-personalities {
+        display: none;
+    }
+    .dropdown {
+        display: none;
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    .col-sm-4 {
+        width: 33.333333%;
+    }
+
+    .col-md-3 {
+        width: 25%;
+    }
+
+    .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
+        float: left;
+    }
+    .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+        float: left;
+    }
+}
+body, #app.wrapper, .wrapper, .content-wrapper, .box {
+    background: unset;
+    background-image: unset;
+    background-color: unset;
+    box-shadow: unset;
+}
+
+.shadow-xs, .shadow-sm {
+    box-shadow: unset;
+}
+
+.content-wrapper {
+    margin-left: 0;
+    background-color: white;
+
+    .content-header {
+        padding-top: 0;
+    }
+
+    .content {
+        padding-top: 0;
+    }
+}
+
+.entity-grid {
+    grid-template-columns: 16% minmax(auto, calc(100% - 32%)) 16%;
+
+    .entity-submenu {
+        display: none;
+    }
+
+    .entity-print-image {
+        display: unset;
+    }
+
+    .entity-image {
+        display: none;
+    }
+
+
+    .entity-story-block {
+        grid-column: 1 / span 2;
+        width: 100%;
+        padding-left: 0;
+    }
+
+    .entity-sidebar-pins {
+        display: none;
+
+        .fa-question-circle {
+            display: none;
+        }
+    }
+
+    .btn, .btn2 {
+        display: none;
+    }
+
+    .entity-modification-history, .entity-mentions-box {
+        display: none;
+    }
+
+    .entity-header {
+        .entity-header-image {
+            padding-left: 0;
+        }
+        .dropdown {
+            display: none;
+        }
+
+        .entity-grid .entity-header .entity-header-image + .entity-header-text {
+            padding-left: 0;
+        }
+
+        .entity-image-col {
+            .entity-image {
+                display: none;
+            }
+        }
+
+        .fa-cog {
+            display: none;
+        }
+
+        .entity-breadcrumb {
+            display: none;
+        }
+    }
+}
+
+.fa-solid.fa-chevron-up, .fa-solid.fa-chevron-down, .fa-solid.fa-question-circle {
+    display: none;
+}
+
+
+.btn-primary, .btn-xs, .btn-secondary, .btn-warning, .fa-solid.fa-edit {
+    display: none;
+}
+.btn-print {
+    z-index: 2;
+    display: unset;
+}
+
+.pagebreak { page-break-before: always; }

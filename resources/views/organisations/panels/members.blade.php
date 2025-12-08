@@ -25,7 +25,7 @@ $direct = number_format($model->members()->has('character')->count());
 $all = number_format($model->allMembersCount());
 ?>
 <div class="flex gap-2 items-center justify-between flex-wrap">
-    <h3 class="members-title">
+    <h3 class="members-title text-xl">
         {{ __('organisations.fields.members') }}
     </h3>
     <div class="flex gap-2 flex-wrap overflow-auto">
@@ -53,7 +53,7 @@ $all = number_format($model->allMembersCount());
 
         @can('update', $entity)
             <a href="{{ route('organisations.organisation_members.create', [$campaign, 'organisation' => $model->id]) }}" class="btn2 btn-sm"
-               data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('organisations.organisation_members.create', [$campaign, $model->id]) }}">
+               data-toggle="dialog" data-url="{{ route('organisations.organisation_members.create', [$campaign, $model->id]) }}">
                 <x-icon class="plus" />
                 <span class="hidden lg:inline">
                     {{ __('organisations.members.actions.add_multiple') }}

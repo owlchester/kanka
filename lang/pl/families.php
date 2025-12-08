@@ -14,6 +14,9 @@ return [
         'members'       => 'Lista członków rodziny. Aby dodać postać do rodziny, wybierz ją z listy w pozycji "Rodzina" podczas edycji tej postaci.',
     ],
     'index'         => [],
+    'lists'         => [
+        'empty' => 'Układaj rodowody, klany i koligacje łączące stworzone postacie.',
+    ],
     'members'       => [
         'create'    => [
             'helper'    => 'Dodaj jednego lub więcej członków do :name',

@@ -1,7 +1,6 @@
 <?php
 
 return [
-    'name' => 'Welcome',
     'description'   => 'Shows a welcome message with tips.',
     'focus'         => [
         'text'  => 'Here, that\'s me!',
@@ -12,6 +11,7 @@ return [
         '2' => 'To get started, click on the big :new-entity button (or press :letter on your keyboard), and click on :characters to create your first character. It\'s that easy! You can find all your characters, locations, and other :entities from the sidebar on the left of the page.',
         '3' => 'Here are our top 5 tricks for using Kanka',
     ],
+    'name'          => 'Welcome',
     'title'         => 'Welcome to :kanka! 🎉',
     'tricks'        => [
         '1'         => 'When writing descriptions, don\'t re-write names of elements of the campaign. Instead, type :code and three letters to :mention other entities of the campaign. These mentions will automatically update when you change names around.',

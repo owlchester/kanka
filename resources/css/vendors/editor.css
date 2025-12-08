@@ -1,0 +1,280 @@
+/**
+ * Code for tinymce and summernote.
+ */
+
+/**
+ * vendor layout fix for ckeditor full screen mode
+ */
+div.mce-fullscreen {
+  z-index: 1400;
+}
+
+.editor-panel {
+  padding: 5px;
+
+  .form-group {
+    margin-bottom: 0;
+
+    .mce-container {
+      border: 0;
+      box-shadow: none;
+    }
+  }
+}
+
+/**
+ * Summernote
+ */
+/* Chrome bug: merging lines when the body or p elements have a font-size in "em" break stuff */
+.note-editable p {
+  font-size: 14px;
+}
+/* Avoid floating images in summernote to be too large */
+.note-editable img {
+  max-width: 100%;
+}
+.note-editor.note-airframe, .note-editor.note-frame {
+  border: none;
+}
+.note-editable {
+    ul, ol {
+        margin-top: 0;
+        padding: 0 1.5rem;
+        list-style: outside;
+    }
+    ul {
+        list-style-type: disc;
+    }
+    ol {
+        list-style-type: decimal;
+    }
+    > ul:first-of-type {
+        margin-bottom: .5rem;
+    }
+    > ol:first-of-type {
+        margin-bottom: .5rem;
+    }
+}
+.note-popover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    padding: 1px;
+    z-index: 99;
+}
+
+img.note-float-right {
+    float: right;
+}
+img.note-float-left {
+    float: left;
+}
+
+.note-btn i.fa, .note-btn i.fas, .note-btn i.fa-brands, .note-btn i.far, .note-btn i.fa-solid, .note-btn i.fa-sharp, .note-icon-code {
+    min-height: 18px;
+    line-height: 20px;
+    height: 18px;
+    display: inline-block;
+    &:before {
+        height: 20px;
+        display: inline-block;
+        font-style: normal;
+        font-size: inherit;
+        text-decoration: inherit;
+        text-rendering: auto;
+        text-transform: none;
+        vertical-align: middle;
+    }
+}
+.note-hint-popover {
+    background-color: hsl(var(--b1)/1);
+}
+.note-hint-item {
+    .entity-hint {
+        display: grid;
+        align-items: center;
+        grid-template-columns: 45px auto;
+    }
+}
+
+.note-editing-area {
+    .mention, .attribute, .post-mention {
+        background-color: var(--mention-background, hsl(var(--in)/1));
+        padding: 3px 5px;
+        border-radius: 0.25rem;
+        color: var(--mention-text, hsl(var(--inc)/1));
+        text-decoration: none;
+    }
+}
+/* Gallery */
+.images-list {
+    .img-item {
+        .img-thumbnail {
+            .text {
+                display: inline-block;
+                vertical-align: middle;
+                line-height: normal;
+
+                i {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+.note-editor .note-popover {
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+.note-editor .note-toolbar .note-color .note-dropdown-menu .note-palette .note-color-reset:hover, .note-editor .note-toolbar .note-color .note-dropdown-menu .note-palette .note-color-select:hover, .note-popover .popover-content .note-color .note-dropdown-menu .note-palette .note-color-reset:hover, .note-popover .popover-content .note-color .note-dropdown-menu .note-palette .note-color-select:hover {
+  color: hsl(var(--bc)/1);
+}
+.note-hint-popover .popover-content .note-hint-group .note-hint-item.active, .note-hint-popover .popover-content .note-hint-group .note-hint-item:hover {
+    white-space: normal !important;
+}
+.note-hint-popover .popover-content .note-hint-group .note-hint-item.active, .note-hint-popover .popover-content .note-hint-group .note-hint-item:hover {
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--b2)/var(--tw-bg-opacity)) !important;
+    color: hsl(var(--bc)) !important;
+    line-height: inherit !important;
+}
+.note-placeholder {
+    --tw-text-opacity: .5;
+    color: hsl(var(--bc)/var(--tw-text-opacity)) !important;
+}
+.note-editor.fullscreen {
+    background-color: hsl(var(--b1)/1);
+}
+
+
+/**
+ * Tinymce
+ */
+.mce-btn-group:not(:first-child) {
+    border-left: none !important;
+}
+
+.mce-btn-group:not(:first-child) {
+    border-left: none !important;
+}
+/* Tinymce stuff for dark mode */
+.mce-edit-area, .mce-content-body {
+  filter: var(--tinymce-filter, none) !important; /* set to invert(90%) for dark mode */
+}
+.mce-panel {
+    --tw-bg-opacity: 1;
+    background-color: var(--tinymce-background, hsl(var(--b1)/var(--tw-bg-opacity))) !important;
+
+    --tw-border-opacity: 1;
+    border-color: hsl(var(--b2)/var(--tw-border-opacity)) !important;
+    border: 0 solid hsl(var(--b2)/var(--tw-border-opacity)) !important;
+}
+.mce-menubar {
+    border: none;
+}
+.mce-edit-area, .mce-content-body {
+    --tw-bg-opacity: 1;
+    background-color: var(--tinymce-background, hsl(var(--b1)/var(--tw-bg-opacity))) !important;
+}
+.mce-btn {
+    border-color: transparent !important;
+    background: none !important;
+
+    .mce-txt {
+        --tw-text-opacity: 1;
+        color: var(--tinymce-input-text, hsl(var(--bc)/var(--tw-text-opacity))) !important;
+    }
+}
+.mce-btn.mce-active, .mce-btn.mce-active:hover, .mce-btn.mce-active:focus, .mce-btn.mce-active:active {
+  i {
+    text-shadow: 1px 1px 0 black;
+  }
+}
+.mce-menubtn button, .mce-menubtn button span, .mce-ico {
+}
+.mce-tabs, .mce-tabs+.mce-container-body, .mce-tab {
+  background: none !important;
+}
+.mce-textbox {
+    --tw-bg-opacity: 1;
+    background-color: var(--tinymce-background, hsl(var(--b1)/var(--tw-bg-opacity))) !important;
+    --tw-text-opacity: 1;
+    color: var(--tinymce-input-text, hsl(var(--bc)/var(--tw-text-opacity))) !important;
+    --tw-border-opacity: .2;
+    border-color: var(--tinymce-input-border, hsl(var(--bc)/var(--tw-border-opacity))) !important;
+}
+#mce-modal-block {
+    --tw-bg-opacity: 1;
+    background-color: var(--tinymce-background, hsl(var(--b2)/var(--tw-bg-opacity))) !important;
+}
+.mce-label {
+    text-shadow: none !important;
+}
+
+/* Tinymce mentions dropdown */
+.rte-autocomplete {
+    z-index: 9920;
+}
+
+/** Code mirror **/
+.CodeMirror {
+    resize: vertical;
+}
+
+.advanced-mention-name {
+    text-decoration: none;
+
+    &:after {
+        margin-left: 0.1rem;
+        content: attr(data-name);
+        font-size: 0.7rem;
+        background-color: var(--advanced-mention-background, hsl(var(--in)/1));
+        color: var(--mention-text, hsl(var(--inc)/1));
+        padding: 0.15rem;
+        border-radius: 0.25rem;
+    }
+}
+
+.btn-default {
+    border-width: 1px;
+    border-color: hsl(var(--bc)/var(--tw-border-opacity));
+    --tw-border-opacity: 0.2;
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--b1)/var(--tw-bg-opacity));
+    border-radius: var(--rounded-btn,.5rem);
+    line-height: 1.5rem;
+    box-shadow: none;
+    color: inherit;
+
+    &:hover, &:focus, &:active {
+        box-shadow: none;
+        border-color: transparent;
+        background-color: hsl(var(--b2)/1);
+        color: hsl(var(--bc)/1);
+    }
+}
+.btn-default:active:hover, .btn-default:active:focus, .btn-default:active.focus, .btn-default.active:hover, .btn-default.active:focus, .btn-default.active.focus, .open > .btn-default.dropdown-toggle:hover, .open > .btn-default.dropdown-toggle:focus, .open > .btn-default.dropdown-toggle.focus, .btn-default:active, .btn-default.active, .open > .btn-default.dropdown-toggle {
+    background-color: hsl(var(--b2)/1);
+    border-color: hsl(var(--b2)/1);
+    color: hsl(var(--bc)/1);
+}
+.btn.btn-primary {
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--p)/var(--tw-bg-opacity));
+    --tw-border-opacity: 1;
+    border-color: hsl(var(--p)/var(--tw-border-opacity));
+    color: hsl(var(--pc)/1);
+
+    &:hover {
+        --tw-border-opacity: 1;
+        border-color:hsl(var(--pf)/var(--tw-border-opacity));
+        --tw-bg-opacity: 1;
+        background-color:hsl(var(--pf)/var(--tw-bg-opacity));
+        color:hsl(var(--pc)/var(--tw-text-opacity));
+    }
+}
+.modal-content .modal-header .close {
+    float: right;
+    font-size: 1.2rem;
+}

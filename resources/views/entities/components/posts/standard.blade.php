@@ -12,7 +12,7 @@ $entityTags = $post->visibleTags();
         <div class="flex gap-2 items-center cursor-pointer element-toggle group overflow-hidden {{ $post->collapsed() ? "animate-collapsed" : null }}" data-animate="collapse" data-target="#post-body-{{ $post->id }}">
             <x-icon class="fa-regular fa-chevron-up icon-show transition-transform duration-200 group-hover:-translate-y-0.5" />
             <x-icon class="fa-regular fa-chevron-down icon-hide transition-transform duration-200 group-hover:translate-y-0.5" />
-            <h3 class="post-title truncate {{ $post->collapsed() ? "collapsed" : null }}"  >
+            <h3 class="post-title truncate text-xl {{ $post->collapsed() ? "collapsed" : null }}"  >
                 {!! $post->name !!}
             </h3>
         </div>
@@ -22,7 +22,7 @@ $entityTags = $post->visibleTags();
             @endif
             @can('post', [$entity, 'edit', $post])
                 @can('visibility', $post)
-                    <span id="visibility-icon-{{ $post->id }}" class="btn2 btn-ghost btn-sm" data-toggle="dialog" data-url="{{ route('posts.edit.visibility', [$campaign, $entity->id, $post->id]) }}" data-target="primary-dialog">
+                    <span id="visibility-icon-{{ $post->id }}" class="btn2 btn-ghost btn-sm" data-toggle="dialog" data-url="{{ route('posts.edit.visibility', [$campaign, $entity->id, $post->id]) }}">
                         @include('icons.visibility', ['icon' => $post->visibilityIcon()])
                     </span>
                 @else

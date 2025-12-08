@@ -12,7 +12,7 @@
     title="{{ $image->name }}">
     @if ($image->isFolder())
         <div class="w-full flex flex-col items-center gap-2">
-            <x-icon class="fa-regular fa-folder text-lg md:text-4xl" />
+            <x-icon class="fa-regular fa-folder text-lg" />
             <div class="text-base overflow-hidden text-center px-2">
 
                 @if ($image->visibility_id != \App\Enums\Visibility::All)

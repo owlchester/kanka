@@ -111,7 +111,7 @@ class ModuleEditService
         $this->campaign->setting->{$this->entityType->pluralCode()} = ! $this->campaign->setting->{$this->entityType->pluralCode()};
         $this->campaign->setting->saveQuietly();
         Cache::forget('campaign_' . $this->campaign->id . '_sidebar');
-        EntityTypeToggled::dispatch($this->entityType, auth()->user(), $this->campaign);
+        EntityTypeToggled::dispatch($this->entityType, $this->user, $this->campaign);
 
         return (bool) $this->campaign->setting->{$this->entityType->pluralCode()};
     }

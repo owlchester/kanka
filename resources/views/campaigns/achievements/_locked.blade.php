@@ -4,10 +4,10 @@
 <div class="achievement shadow-xs hover:shadow rounded-xl bg-base-100 w-full sm:w-80 md:w-96 flex flex-col gap-2 md:gap-3 p-5 level-{{ $stat['level'] }}" data-achievement="{{ $key }}">
 
     <div class="achievement-header flex gap-2 items-center">
-        <div class="grow text-2xl">
+        <div class="grow text-xl">
             {{  __('campaigns/achievements.titles.' . $key) }}
         </div>
-        <div class="flex-none bg-base-200 rounded-xl p-2">
+        <div class="flex-none bg-base-200 rounded-lg p-2">
             {{  __('campaigns/achievements.level', ['number' => Arr::get($stat, 'level', 0)]) }}
         </div>
     </div>
@@ -39,15 +39,15 @@
                     {{ trans_choice('campaigns/achievements.' . Arr::get($stat, 'history', 'created'), Arr::get($stat, 'amount', 0), [
 'singular' => Arr::get($stat, 'module.singular', 'Forgot singular'),
 'plural' => Arr::get($stat, 'module.plural', 'Forgot plural'),
-'amount' => Arr::get($stat, 'amount', 0)
+'amount' => number_format(Arr::get($stat, 'amount', 0))
 ]) }}
                 </div>
                 <div class="flex-none">
-                    {{  __('campaigns/achievements.goal', ['number' => Arr::get($stat, 'target', 0)]) }}
+                    {{  __('campaigns/achievements.goal', ['number' => number_format(Arr::get($stat, 'target', 0))]) }}
                 </div>
             </div>
         </div>
-        <div class="flex-none text-4xl text-primary mb-2">
+        <div class="flex-none text-2xl text-primary mb-2">
             @if ($stat['level'] === 0)
                 <x-icon class="fa-duotone fa-coin" />
             @elseif ($stat['level'] === 1)

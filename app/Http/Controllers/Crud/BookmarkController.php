@@ -35,29 +35,6 @@ class BookmarkController extends CrudController
 
     protected string $forceMode = 'table';
 
-    protected function setNavActions(): CrudController
-    {
-        $this->addNavAction(
-            route('bookmarks.reorder', $this->campaign),
-            '<i class="fa-solid fa-arrow-up-arrow-down" aria-hidden="true"></i> <span class="hidden md:inline">' .
-                __('bookmarks.reorder.title') . '</span>'
-        );
-        $this->addNavAction(
-            route('campaign-sidebar', $this->campaign),
-            '<i class="fa-solid fa-bars-staggered" aria-hidden="true"></i> <span class="hidden md:inline">' .
-                __('bookmarks.actions.customise') . '</span>'
-        );
-
-        $this->addNavAction(
-            '//docs.kanka.io/en/latest/advanced/bookmarks.html',
-            '<i class="fa-solid fa-question-circle" aria-hidden="true"></i> <span class="hidden md:inline">' . __('crud.actions.help') . '</span>',
-            '',
-            true
-        );
-
-        return parent::setNavActions();
-    }
-
     public function index(Request $request, Campaign $campaign)
     {
         // Check that the user has permission to actually be here

@@ -95,11 +95,7 @@ return [
         'unlock'        => 'Atributo desbloqueado',
         'unpin'         => 'Atributo desafixado',
     ],
-    'tutorials'     => [
-        'character' => 'Por exemplo, eles podem ter uma propriedade :hp e :str.',
-        'general'   => 'Atributos são pequenos pedaços de informação anexados a :name.',
-        'location'  => 'Por exemplo, eles podem ter uma propriedade :pop.',
-    ],
+    'tutorials'     => [],
     'types'         => [
         'attribute' => 'Atributo',
         'block'     => 'Bloco',

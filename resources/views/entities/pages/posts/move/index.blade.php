@@ -11,7 +11,7 @@
 @section('content')
     @include('partials.errors')
     <x-form :action="['posts.move-process', $campaign, $entity->id, $post->id]">
-        @include('partials.forms._dialog', [
+        @include('partials.forms.form', [
             'title' => __('posts.move.title'),
             'content' => 'entities.pages.posts.move.form',
             'submit' => auth()->check() && auth()->user()->can('update', $entity) ? __('entities/move.actions.move') : __('entities/move.actions.copy'),

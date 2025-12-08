@@ -53,9 +53,13 @@ $statuses = [
                     <x-forms.select name="organisation_pins[{{ $organisation->id }}]" :options="$options" :selected="$organisation->pin_id ?? null" :label="__('organisations.members.fields.pinned')" />
                 </div>
                 @if ($isAdmin)
-                    <div class="text-lg">
-                        <input type="hidden" name="organisation_privates[{{ $organisation->id }}]" value="{{ $organisation->is_private }}" />
-                        <i class="cursor-pointer hover:text-accent @if($organisation->is_private) fa-solid fa-lock-keyhole @else fa-regular fa-unlock-keyhole @endif" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
+                    <div class="text-lg" x-data="{ isPrivate: {{ $organisation->is_private }} }">
+                        <input type="hidden" name="organisation_privates[{{ $organisation->id }}]" :value="isPrivate ? 1 : 0" />
+                        <i
+                            class="cursor-pointer hover:text-accent"
+                            @click="isPrivate = !isPrivate"
+                            :class="isPrivate ? 'fa-solid fa-lock-keyhole' : 'fa-regular fa-unlock-keyhole'"
+                            :title="isPrivate ? '{{ __('entities/attributes.visibility.private') }}' : '{{ __('entities/attributes.visibility.public') }}'"></i>
                     </div>
                 @endif
                 <div class="flex items-center">
