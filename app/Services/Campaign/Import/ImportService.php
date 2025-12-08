@@ -353,7 +353,7 @@ class ImportService
             $bookmark = new Bookmark;
             $bookmark->campaign_id = $this->campaign->id;
             $bookmark->entity_type_id = $newModule->id;
-            $bookmark->name = $newModule->singular;
+            $bookmark->name = $newModule->plural;
             $bookmark->save();
 
             ImportIdMapper::putCustomEntityType($module['id'], $newModule->id);
