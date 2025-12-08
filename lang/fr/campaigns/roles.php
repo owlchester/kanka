@@ -21,18 +21,12 @@ return [
         ],
     ],
     'public'        => [
-        'campaign'      => [
-            'private'   => 'La campagne est actuellement privée.',
-            'public'    => 'La campagne est actuellement publique.',
-        ],
-        'description'   => 'Définis les autorisations pour le rôle public afin de visualiser les entités suivantes de la campagne. Un utilisateur est automatiquement dans le rôle public s\'il accède la campagne sans en être un membre.',
-        'helpers'       => [
+        'helpers'   => [
             'click'     => 'Clique sur n\'importe quel module pour activer ou désactiver l\'accès public à toutes les entités qu\'il contient',
             'intro'     => 'Contrôle ce que les non-membres peuvent voir dans la campagne',
             'main'      => 'Sélectionne quels modules sont visibles pour toute personne qui consulte la campagne, qu\'elle soit connectée ou non. Ça inclut les visiteurs publics et les utilisateurs de Kanka qui ne sont pas membres de la campagne',
             'preview'   => 'Aperçu en tant que non-membre',
         ],
-        'test'          => 'Pour tester les permissions du rôle public, ouvres l\'url de la campagne :url dans une fenêtre incognito.',
     ],
     'show'          => [
         'title' => 'Permissions :role - :campaign',

@@ -108,4 +108,6 @@ return [
     'timeline'              => 'Historia',
     'timeline_element'      => 'Element historii',
     'timelines'             => 'Historie',
+    'whiteboard'            => 'Tablica',
+    'whiteboards'           => 'Tablice',
 ];

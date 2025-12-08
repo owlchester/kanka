@@ -3,7 +3,6 @@
 return [
     'actions'       => [
         'copy'  => 'Kopiuj',
-        'move'  => 'Przenieś',
     ],
     'errors'        => [
         'permission'        => 'Nie możesz tworzyć elementów tego typu w kampanii docelowej.',

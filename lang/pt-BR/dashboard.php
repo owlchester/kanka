@@ -74,16 +74,6 @@ return [
             'blog'  => 'nosso tutorial',
             'text'  => 'Precisa de ajuda para configurar o dashboard de sua campanha? Leia o :blog para alguma ajuda e inspiração.',
         ],
-        'widgets'   => [
-            'calendar'      => 'Calendário',
-            'campaign'      => 'Cabeçalho da campanha',
-            'header'        => 'Cabeçalho',
-            'preview'       => 'Pré-visualização da entidade',
-            'random'        => 'Entidade aleatória',
-            'recent'        => 'Lista de entidade',
-            'unmentioned'   => 'Lista de entidades não mencionadas',
-            'welcome'       => 'Boas-vindas',
-        ],
     ],
     'title'         => 'Dashboard',
     'widgets'       => [

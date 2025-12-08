@@ -95,11 +95,7 @@ return [
         'unlock'        => 'Attribut déverouillé',
         'unpin'         => 'Attribut non-épinglé',
     ],
-    'tutorials'     => [
-        'character' => 'Par exemple, un personnage peut avoir une stat :hp et :str.',
-        'general'   => 'Les attributs sont des petits bouts d\'information attachés à :name.',
-        'location'  => 'Par exemple, ils peuvent avoir une stat :pop.',
-    ],
+    'tutorials'     => [],
     'types'         => [
         'attribute' => 'Attribut',
         'block'     => 'Bloc',

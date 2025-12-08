@@ -73,16 +73,6 @@ return [
             'blog'  => 'náš návod',
             'text'  => 'Potrebuješ nastaviť nástenku tvojej kampane? Prečítaj si :blog, ktorý ti poskytne pomoc a inšpiráciu.',
         ],
-        'widgets'   => [
-            'calendar'      => 'Kalendár',
-            'campaign'      => 'Záhlavie kampane',
-            'header'        => 'Záhlavie',
-            'preview'       => 'Náhľad objektu',
-            'random'        => 'Náhodný objekt',
-            'recent'        => 'Nedávne',
-            'unmentioned'   => 'Objekty bez referencií',
-            'welcome'       => 'Vitaj',
-        ],
     ],
     'title'         => 'Nástenka',
     'widgets'       => [

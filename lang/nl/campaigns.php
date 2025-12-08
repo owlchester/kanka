@@ -35,11 +35,9 @@ return [
         'name'                      => 'Naam',
         'open'                      => 'Open voor sollicitaties',
         'public_campaign_filters'   => 'Openbare Campaign Filters',
-        'related_visibility'        => 'Gerelateerde Elementen Zichtbaarheid',
         'superboosted'              => 'Superboosted door',
         'system'                    => 'Systeem',
         'theme'                     => 'Thema',
-        'visibility'                => 'Zichtbaarheid',
     ],
     'following'                         => 'Volgend',
     'helpers'                           => [
@@ -51,12 +49,10 @@ return [
         'locale'                    => 'De taal waarin je campaign is geschreven. Dit wordt gebruikt voor het genereren van inhoud en het groeperen van openbare campaigns.',
         'name'                      => 'Je campaign / wereld kan elke naam hebben, zolang deze maar minimaal 4 letters of cijfers bevat.',
         'public_campaign_filters'   => 'Help anderen de campaign te vinden naast andere openbare campaigns door de volgende informatie te verstrekken.',
-        'related_visibility'        => 'Standaard Zichtbaarheid waarde bij het maken van een nieuw element met dit veld (entiteit notities, relaties, vaardigheden, enz.)',
         'system'                    => 'Als je campaign openbaar zichtbaar is, wordt het systeem weergegeven op de :link pagina.',
         'systems'                   => 'Om te voorkomen dat gebruikers volgestopt raken met opties, zijn sommige functies van Kanka alleen beschikbaar met specifieke RPG-systemen (dwz het D & D 5e monster stat-blok). Als je hier ondersteunde systemen toevoegt, worden deze functies ingeschakeld.',
         'theme'                     => 'Forceer het thema voor de campaign, waarbij de voorkeur van een gebruiker wordt overschreven.',
         'view_public'               => 'Om je campaign te bekijken zoals een openbare kijker dat zou doen, open je :link in een incognitovenster.',
-        'visibility'                => 'Als je een campaign openbaar maakt, kan iedereen met een link ernaar de campaign zien.',
     ],
     'index'                             => [],
     'invites'                           => [
@@ -125,7 +121,6 @@ return [
     'open_campaign'                     => [],
     'panels'                            => [
         'dashboard' => 'Dashboard',
-        'permission'=> 'Permissie',
         'setup'     => 'Opstelling',
         'sharing'   => 'Delen',
         'systems'   => 'Systemen',
@@ -256,6 +251,5 @@ return [
     'visibilities'                      => [
         'private'   => 'Privé',
         'public'    => 'Openbaar',
-        'review'    => 'Beoordeling Afwachten',
     ],
 ];

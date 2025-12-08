@@ -22,6 +22,9 @@ return [
         'reverse_order' => 'Zaznacz by wyświetlać epoki w odwróconym porządku chronologicznym (od najdawniejszej)',
     ],
     'index'         => [],
+    'lists'         => [
+        'empty' => 'Przygotuj oś czasu, na której umieścisz najważniejsze wydarzenia kształujące obecną postać świata.',
+    ],
     'placeholders'  => [
         'type'  => 'Główna, kronika dziejów świata, historia królestwa',
     ],

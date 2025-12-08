@@ -31,6 +31,7 @@ return [
         'restore'       => ':user przywrócił :entity',
         'update'        => ':user zmienił :entity',
         'update_post'   => ':user zmienił komentarz ":post" dotyczący :entity',
+        'update_tree'   => ':user zmienił genealogię elementu :entity',
     ],
     'title'     => 'Historia',
     'unknown'   => [

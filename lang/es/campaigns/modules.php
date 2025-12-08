@@ -28,7 +28,6 @@ return [
     'helpers'       => [
         'custom'    => 'Este es un módulo personalizado.',
         'icon'      => 'El icono :fontawesome, por ejemplo :ejemplo.',
-        'info'      => 'Una campaña se divide en varios módulos que interactúan entre sí. Habilita o deshabilita los que no necesites. Deshabilitar un módulo no elimina ninguno de sus datos, solo los oculta.',
         'plural'    => 'El nombre en plural de las entidades del nuevo módulo. Por ejemplo, pociones',
         'roles'     => 'Selecciona los roles que tienen permiso para ver las entidades de este nuevo módulo. Esto puede cambiarse posteriormente en los permisos de rol.',
         'singular'  => 'El nombre singular de una entidad del nuevo módulo. Por ejemplo, poción',

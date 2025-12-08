@@ -47,11 +47,7 @@ return [
     'tooltips'          => [
         'equipped'  => 'Predmet je vo vybavení.',
     ],
-    'tutorials'         => [
-        'character' => 'Sleduj, čo :name vlastní alebo má na predaj tak, že predmety pridáš do inventára.',
-        'location'  => 'Sleduj, čo môže :name predať alebo niekto ulúpiť tak, že predmety pridáš do inventára.',
-        'other'     => 'Sleduj, čo všetko vlastní :name tak, že predmety pridáš do inventára.',
-    ],
+    'tutorials'         => [],
     'update'            => [
         'success'   => 'Predmet :item pre :entity upravený.',
         'title'     => 'Uprav Predmet :name',

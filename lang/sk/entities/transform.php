@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'actions'   => [
-        'transform' => 'Transformovať',
-    ],
+    'actions'   => [],
     'bulk'      => [
         'errors'    => [
             'unknown_type'  => 'Neznámy alebo nesprávny typ objektu.',
@@ -17,7 +15,6 @@ return [
     'panel'     => [
         'bulk_description'  => 'Zmeň typ pre viacero objektov. Prosím, uvedom si, že niektoré údaje vzhľadom na rôzne polia v daných objektoch môžeš stratiť.',
         'bulk_title'        => 'Hromadne transformovať objekty',
-        'description'       => 'Podarilo sa ti vytvoriť tento objekt ako daný typ, ale myslíš si, že iný by sa mu hodil viac? Bez problému môžeš hocikedy zmeniť jeho umiestnenie. Je nutné mať ale na pozore, že niektoré dáta sa môžu vzhľadom na rôzne polia medzi objektami stratiť.',
         'title'             => 'Transformovať objekt',
     ],
     'success'   => 'Objekt :name transformovaný.',

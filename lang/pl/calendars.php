@@ -120,6 +120,9 @@ return [
         'year'      => 'Rok',
         'yearly'    => 'Roczny',
     ],
+    'lists'         => [
+        'empty' => 'Stwórz kalendarz z datami świąt i ważnych wydarzeń w świecie gry.',
+    ],
     'modals'        => [
         'switcher'  => [
             'title' => 'Przełącznik lat',

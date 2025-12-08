@@ -13,6 +13,9 @@ return [
     'helpers'       => [],
     'index'         => [],
     'journals'      => [],
+    'lists'         => [
+        'empty' => 'Twórz dzienniki opisujące dotychczasowe przygody, przemyślenia postaci albo podsumowania sesji.',
+    ],
     'placeholders'  => [
         'author'    => 'Osoba, która napisała dziennik',
         'date'      => 'Data utworzenia dziennika (w prawdziwym świecie)',

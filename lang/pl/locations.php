@@ -21,6 +21,9 @@ return [
     'index'         => [],
     'items'         => [],
     'journals'      => [],
+    'lists'         => [
+        'empty' => 'Dodaj pierwsze miasto, tawernę albo tajemnicze ruiny, by rozpocząć tworzenie świata',
+    ],
     'locations'     => [],
     'map'           => [],
     'maps'          => [],

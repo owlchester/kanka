@@ -96,11 +96,7 @@ return [
         'unlock'        => 'Odblokowano',
         'unpin'         => 'Odpięto',
     ],
-    'tutorials'     => [
-        'character' => 'Na przykład, postać może mieć cechę :hp i :str.',
-        'general'   => 'Cechy to drobne informacje opisujące :name.',
-        'location'  => 'Na przykład, miejsce może mieć cechę :pop.',
-    ],
+    'tutorials'     => [],
     'types'         => [
         'attribute' => 'Cecha',
         'block'     => 'Blok',

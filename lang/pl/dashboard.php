@@ -74,16 +74,6 @@ return [
             'blog'  => 'ten wpis',
             'text'  => 'Potrzebujesz pomocy w przygotowaniu pulpitu kampanii? Sprawdź :blog, znajdziesz w nim porady i inspiracje.',
         ],
-        'widgets'   => [
-            'calendar'      => 'Kalendarz',
-            'campaign'      => 'Nagłówek kampanii',
-            'header'        => 'Nagłówek',
-            'preview'       => 'Skrót elementu',
-            'random'        => 'Losowy element',
-            'recent'        => 'Ostatnie zmiany',
-            'unmentioned'   => 'Elementy bez wzmianki',
-            'welcome'       => 'Witaj',
-        ],
     ],
     'title'         => 'Pulpit',
     'widgets'       => [

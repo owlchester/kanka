@@ -21,6 +21,9 @@ return [
         'parent_attribute_template' => 'Ten szablon może pochodzić od innego szablonu cech. Kiedy przypisujesz szablon do jakieś elementu, wszystkie jego szablony źródłowe zostają również przypisane.',
     ],
     'index'                 => [],
+    'lists'                 => [
+        'empty' => 'Stwórz szablony, pozwalące nadać ten sam zestaw cech wielu elementom.',
+    ],
     'placeholders'          => [
         'name'  => 'Nazwa szablonu cech',
     ],

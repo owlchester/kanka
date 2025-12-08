@@ -12,14 +12,7 @@ return [
         'title'     => 'Cargos disponíveis',
         'unlimited' => ':amount de cargos ilimitados criados.',
     ],
-    'public'    => [
-        'campaign'      => [
-            'private'   => 'A campanha está atualmente privada.',
-            'public'    => 'A campanha está atualmente pública.',
-        ],
-        'description'   => 'Defina as permissões para o cargo público para visualizar as seguintes entidades da campanha. Um usuário está automaticamente no cargo público se estiver visualizando a campanha, mas não for um membro.',
-        'test'          => 'Para testar as permissões do cargo público, abra a campanha :url em uma janela anônima.',
-    ],
+    'public'    => [],
     'show'      => [
         'title' => ':role permissões - :campaign',
     ],

@@ -15,6 +15,9 @@ return [
         'is_extinct'    => 'Ta rasa wymarła.',
     ],
     'index'         => [],
+    'lists'         => [
+        'empty' => 'Zaprojektuj gatunki, kultury i odmiany istot zamieszkujących twój świat.',
+    ],
     'members'       => [
         'create'    => [
             'helper'    => 'Dodaje jedną lub więcej postaci do :name',

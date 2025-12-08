@@ -10,7 +10,6 @@ return [
     'helpers'   => [
         'characters'    => 'Définir le type comme la date de naissance ou de mort pour ce personnage calculera automatiquement leur âge. :more.',
         'founding'      => 'Définir le type comme :type calculera automatiquement l\'âge de fondation de l\'entité.',
-        'reminders'     => 'Les rappels liés à :name seront affichés ici.',
     ],
     'show'      => [
         'actions'   => [

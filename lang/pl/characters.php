@@ -57,6 +57,9 @@ return [
             'name'  => 'Nazwa cechy osobowości',
         ],
     ],
+    'lists'         => [
+        'empty' => 'Stwórz pierwszego bohatera, łotra albo szarego mieszkańca powstającego świata.',
+    ],
     'maps'          => [],
     'organisations' => [
         'create'    => [

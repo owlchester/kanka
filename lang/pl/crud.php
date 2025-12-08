@@ -117,6 +117,7 @@ return [
     ],
     'events'            => [],
     'fields'            => [
+        'archived'          => 'Zarchiwizowane',
         'calendar_date'     => 'Data',
         'child'             => 'Pochodzenie',
         'closed'            => 'Zamknięta',
@@ -184,12 +185,14 @@ return [
                 'all'       => 'Pokaż wszystkie pochodne (:count)',
                 'filtered'  => 'Pokaż bezpośrednio pochodne  (:count)',
             ],
+            'paginated' => 'Przełącza między elementami pochodnymi bezpośrednio oraz wszystkimi pochodnymi. Dla usprawnienia wyniki dzielą się na strony.',
         ],
         'mobile'            => [
             'clear' => 'Wyczyść',
             'copy'  => 'Schowek',
         ],
         'options'           => [
+            'any'       => 'Każdy',
             'children'  => 'Z pochodnymi',
             'exclude'   => 'Nie zawiera',
             'hide'      => 'Ukryj',
@@ -340,6 +343,9 @@ return [
         'relations'     => 'Relacje',
         'reminders'     => 'Epizody',
         'story'         => 'Podstawy',
+    ],
+    'timestamps'        => [
+        'edited'    => 'Edytowano :ago',
     ],
     'titles'            => [
         'editing'   => 'Edycja :name',

@@ -3,7 +3,6 @@
 return [
     'actions'       => [
         'copy'      => 'Copier',
-        'move'      => 'Déplacer',
         'transfer'  => 'Transférer',
     ],
     'errors'        => [

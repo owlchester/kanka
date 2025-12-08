@@ -38,6 +38,9 @@ return [
     ],
     'hints'         => [],
     'index'         => [],
+    'lists'         => [
+        'empty' => 'Twórz zadania, by dokumentować cele drużyny, przebieg zdarzeń oraz motywacje postaci.',
+    ],
     'placeholders'  => [
         'date'      => 'Data zadania w prawdziwym świecie',
         'entity'    => 'Nazwa elementu z tego zadania',

@@ -8,6 +8,7 @@ return [
         ],
         'upgrade'   => [
             'limit'     => 'Osiągnięto limit :limit plików dla tego elementu.',
+            'premium'   => 'Ulepsz kampanię do poziomu premium by dodawać nieograniczoną liczbę plików i zyskać większą swobodę twórczą.',
             'upgrade'   => 'Ulepsz kampanię do poziomu premium by zwiększyć limit plików do :limit i zyskać większą swobodę twórczą.',
         ],
     ],

@@ -35,6 +35,9 @@ return [
         'tag'               => 'Na liście znajdują się wszystkie elementy posiadające tę etykietę.',
     ],
     'index'         => [],
+    'lists'         => [
+        'empty' => 'Stosuj etykiety, by łączyć i grupować różne elementy, ułatwiając filtrowanie i nawigację.',
+    ],
     'placeholders'  => [
         'type'  => 'Wiedza tajemna, wojna, historia, religia, weksylologia',
     ],

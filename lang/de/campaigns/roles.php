@@ -12,14 +12,7 @@ return [
         'title'     => 'verfügbare Rollen',
         'unlimited' => ':amount der erstellten unbegrenzten Rollen.',
     ],
-    'public'    => [
-        'campaign'      => [
-            'private'   => 'Die Kampagne ist derzeit privat.',
-            'public'    => 'Die Kampagne ist derzeit öffentlich.',
-        ],
-        'description'   => 'Lege die Berechtigungen für die öffentliche Rolle fest, um die folgenden Objekte der Kampagne anzuzeigen. Ein Benutzer ist automatisch in der öffentlichen Rolle, wenn er die Kampagne anzeigt, aber kein Mitglied ist.',
-        'test'          => 'Um die Berechtigungen der öffentlichen Rolle zu testen, öffne die URL der Kampagne in einem Inkognito-Fenster.',
-    ],
+    'public'    => [],
     'show'      => [
         'title' => ':role Berechtigungen - :campaign',
     ],

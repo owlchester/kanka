@@ -10,7 +10,6 @@ return [
     'helpers'   => [
         'characters'    => 'Al seleccionar fecha de nacimiento o de fallecimiento, se calculará automáticamente la edad de este personaje. :more',
         'founding'      => 'Al establecer el tipo como :type se calculará automáticamente la antigüedad de la entidad desde su fundación.',
-        'reminders'     => 'Los recordatorios vinculados a :name se mostrarán aquí.',
     ],
     'show'      => [
         'actions'   => [

@@ -60,6 +60,9 @@ return [
         'missing_image'         => 'Zapisz obraz mapy zanim dodasz do niego znaczniki i warstwy.',
     ],
     'index'         => [],
+    'lists'         => [
+        'empty' => 'Dodaj mapę przedstawiającą twój świat i wskazująca położenie różnych miejsc.',
+    ],
     'maps'          => [],
     'panels'        => [
         'groups'    => 'Kategorie',

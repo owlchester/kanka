@@ -62,15 +62,6 @@ return [
             'edit'              => 'Wijzig een widget',
         ],
         'title'     => 'Campaign Dashboard Setup',
-        'widgets'   => [
-            'calendar'      => 'Kalender',
-            'campaign'      => 'Campaign Header',
-            'header'        => 'Header',
-            'preview'       => 'Entiteit preview',
-            'random'        => 'Willekeurige entiteit',
-            'recent'        => 'Recentelijk aangepast',
-            'unmentioned'   => 'Niet-genoemde entiteiten',
-        ],
     ],
     'title'         => 'Dashboard',
     'widgets'       => [

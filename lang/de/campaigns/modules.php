@@ -28,7 +28,6 @@ return [
     'helpers'       => [
         'custom'    => 'Dies ist ein benutzerdefiniertes Modul.',
         'icon'      => 'Das Symbol :fontawesome, zum Beispiel :example.',
-        'info'      => 'Eine Kampagne ist in mehrere Module aufgeteilt, die miteinander interagieren. Aktiviere oder deaktiviere diejenigen, die du nicht benötigst. Das Deaktivieren eines Moduls löscht keine seiner Daten, sondern blendet sie nur aus.',
         'plural'    => 'Der Pluralname für Objekte des neuen Moduls. Zum Beispiel, Tränke',
         'roles'     => 'Wähle die Rollen aus, die die Berechtigung haben sollen, Objekte dieses neuen Moduls anzuzeigen. Dies kann später in den Rollenberechtigungen geändert werden.',
         'singular'  => 'Der Einzahlname für ein Objekt des neuen Moduls. Zum Beispiel, Trank',

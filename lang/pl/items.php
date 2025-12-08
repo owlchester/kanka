@@ -17,6 +17,9 @@ return [
     'hints'         => [],
     'index'         => [],
     'inventories'   => [],
+    'lists'         => [
+        'empty' => 'Dodawaj występującą w świecie broń, artefakty oraz przedmioty o szczególnym znaczeniu.',
+    ],
     'placeholders'  => [
         'price' => 'Cena przedmiotu',
         'size'  => 'Wielkość, ciężar, wymiary',
