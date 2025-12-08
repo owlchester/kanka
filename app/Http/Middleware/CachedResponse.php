@@ -15,14 +15,12 @@ class CachedResponse
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->check()) {
-            return $next($request);
+        $response = $next($request);
+
+        if (auth()->guest()) {
+            $response->headers->set('Cache-Control', 'public, max-age=600, s-maxage=1200');
         }
 
-        $response = $next($request);
-        $response->headers->set('Cache-Control', 'public, max-age=300, s-maxage=600');
-
         return $response;
-
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Entities;
 
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\CachedResponse;
 use App\Http\Resources\Entities\ExploreResource;
 use App\Http\Resources\Entities\TemplateResource;
 use App\Http\Resources\EntityTypeResource;
@@ -27,7 +28,9 @@ class IndexController extends Controller
 
     public function __construct(
         protected FilterService $filterService
-    ) {}
+    ) {
+        $this->middleware([CachedResponse::class]);
+    }
 
     public function index(Request $request, Campaign $campaign, EntityType $entityType)
     {

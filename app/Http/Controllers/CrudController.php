@@ -8,6 +8,7 @@ use App\Datagrids\Sorters\DatagridSorter;
 use App\Facades\Breadcrumb;
 use App\Facades\FormCopy;
 use App\Facades\Module;
+use App\Http\Middleware\CachedResponse;
 use App\Models\Bookmark;
 use App\Models\Campaign;
 use App\Models\Entity;
@@ -98,6 +99,8 @@ class CrudController extends Controller
         $this->filterService = $filterService;
         $this->datagrid = $datagridRenderer;
         $this->attributeService = $attributeService;
+
+        $this->middleware([CachedResponse::class]);
     }
 
     public function index(Request $request, Campaign $campaign)
