@@ -12,31 +12,37 @@ body {
     letter-spacing: 0.5px;
 }
 
-/*h1 {*/
-/*    font-weight: 300;*/
-/*    font-size: 2rem;*/
-/*    letter-spacing: -0.5px;*/
-/*}*/
-/*h2 {*/
-/*    font-weight: 300;*/
-/*    font-size: 1.8rem;*/
-/*    letter-spacing: -0.5px;*/
-/*}*/
-h3 {
-    /*font-style: normal;*/
-    /*font-weight: normal;*/
-    /*font-size: 1.5rem;*/
-}
-h4 {
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: 0.25px;
-    font-size: 1.1rem;
-}
-h5 {
-    font-style: normal;
-    font-weight: normal;
-    font-size: 1rem;
+@layer base {
+    h1 {
+        font-weight: 300;
+        font-size: 2rem;
+        letter-spacing: -0.5px;
+    }
+
+    h2 {
+        font-weight: 300;
+        font-size: 1.8rem;
+        letter-spacing: -0.5px;
+    }
+
+    h3 {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 1.5rem;
+    }
+
+    h4 {
+        font-style: normal;
+        font-weight: normal;
+        letter-spacing: 0.25px;
+        font-size: 1.1rem;
+    }
+
+    h5 {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 1rem;
+    }
 }
 a:hover, a:active, a:focus {
     outline: none;
