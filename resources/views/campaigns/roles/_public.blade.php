@@ -36,7 +36,7 @@
         </a>
     </div>
 
-    <h2>
+    <h2 class="text-xl">
         {{ __('campaigns.show.tabs.modules') }}
     </h2>
 
