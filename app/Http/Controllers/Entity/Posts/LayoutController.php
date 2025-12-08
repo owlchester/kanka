@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Entity\Posts;
 
 use App\Http\Controllers\Controller;
-use App\Models\Entity;
 use App\Models\Campaign;
+use App\Models\Entity;
 
 class LayoutController extends Controller
 {
