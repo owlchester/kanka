@@ -191,42 +191,6 @@ const initSubmenuSwitcher = () => {
 };
 
 
-/**
- * When clicking on these buttons, adds a "loading" spinner to indicate that something is happening
- */
-const initFeedbackButtons = () => {
-    document.querySelectorAll('.btn-feedback').forEach((el) => {
-        let feedback = el.dataset.feedback;
-        if (feedback) {
-            return;
-        }
-        el.dataset.feedback = 1;
-        el.addEventListener('click', (e) => {
-            e.target.classList.add('loading');
-        }, false);
-    });
-
-    // We should move this to a custom event handler?
-    const quickPrivacy = document.getElementById('quick-privacy-select');
-    if (quickPrivacy) {
-        quickPrivacy.addEventListener('change', function () {
-            const toggleUrl = this.dataset.url;
-
-            axios
-                .post(toggleUrl)
-                .then(response => {
-                    window.showToast(response.data.toast);
-                    let body = document.querySelector('body');
-                    if (response.data.status) {
-                        body.classList.add('kanka-entity-private');
-                    } else {
-                        body.classList.remove('kanka-entity-private');
-                    }
-                });
-        });
-    }
-};
-
 const initDismissible = () => {
     const elements = document.querySelectorAll('[data-dismisses]');
     elements.forEach(el => {
@@ -266,6 +230,5 @@ manageTabs();
 initAjaxPagination();
 initDynamicDelete();
 initImageRemoval();
-initFeedbackButtons();
 initDismissible();
 initAdblocker();
