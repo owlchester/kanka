@@ -59,14 +59,6 @@
             </div>
 
             <div x-data="{ reason: '', canDowngrade: '{{ !$user->isOwlbear() }}'}" class="space-y-2">
-                <div x-show="reason === 'missing_features'" x-cloak>
-                    {!! __('subscriptions/cancellation.loss.roadmap', ['roadmap' => '<a href="' . route('roadmap') . '">' .  strtolower(__('footer.roadmap'))  . '</a>']) !!}
-                </div>
-
-                <div x-show="reason === 'financial' && canDowngrade" x-cloak>
-                    {{ __('subscriptions/cancellation.loss.downgrade') }}
-                </div>
-
                 <x-forms.field field="cancel-reason" :label="__('settings.subscription.fields.reason')">
                     <x-grid type="1/1">
                         <select name="reason" id="cancel-reason" class="w-full" x-model="reason">
@@ -104,6 +96,16 @@
                         ></textarea>
                     </x-grid>
                 </x-forms.field>
+
+                <div x-show="reason === 'missing_features'" x-cloak>
+                    </br>
+                    {!! __('subscriptions/cancellation.loss.roadmap', ['roadmap' => '<a href="' . route('roadmap') . '">' . __('footer.roadmap') . '</a>']) !!}
+                </div>
+
+                <div x-show="reason === 'financial' && canDowngrade" x-cloak>
+                    </br>
+                    {{ __('subscriptions/cancellation.loss.downgrade') }}
+                </div>
             </div>
 
 {{--            <button class="btn2 btn-lg btn-block btn-primary btn-outline subscription-pause-button flex flex-col gap-0.5">--}}
