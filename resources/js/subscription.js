@@ -62,7 +62,6 @@ const initConfirmListener = ()=> {
     }
 
     document.getElementById('subscription-confirm')?.addEventListener('submit', subscribe);
-    document.getElementById('cancel-reason')?.addEventListener('change', cancelOptions);
 
     couponField = document.getElementById('coupon-check');
     if (couponField) {
@@ -93,22 +92,6 @@ const changeMethod = (event) => {
         paypal.classList.add('hidden');
     }
 }
-
-const cancelOptions = (event) => {
-    let downgrade = document.getElementById('financial');
-    let roadmap = document.getElementById('roadmap');
-
-    if (event.target.value == "financial") {
-        roadmap.classList.add('hidden');
-        downgrade.classList.remove('hidden');
-    } else if (event.target.value == "missing_features") {
-        roadmap.classList.remove('hidden');
-        downgrade.classList.add('hidden');
-    } else {
-        downgrade.classList.add('hidden');
-        roadmap.classList.add('hidden');
-    }
-};
 
 const checkCoupon = (event) => {
     const element = event.target;
