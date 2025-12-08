@@ -58,28 +58,55 @@
                 @endif
             </div>
 
-            <x-forms.field field="cancel-reason" :label="__('settings.subscription.fields.reason')">
-                <x-grid type="1/1">
-                    @php $reasons = [
-                        '' => __('crud.select'),
-                        'financial' => __('settings.subscription.cancel.options.financial'),
-                        'not_for' => __('settings.subscription.cancel.options.not_for'),
-                        'not_using' => __('settings.subscription.cancel.options.not_using'),
-                        'not_playing' => __('settings.subscription.cancel.options.not_playing'),
-                        'missing_features' => __('settings.subscription.cancel.options.missing_features'),
-                        'competitor' => __('settings.subscription.cancel.options.competitor'),
-                    ];
+            <div x-data="{ reason: '', canDowngrade: '{{ !$user->isOwlbear() }}'}" class="space-y-2">
+                <x-forms.field field="cancel-reason" :label="__('settings.subscription.fields.reason')">
+                    <x-grid type="1/1">
+                        <select name="reason" id="cancel-reason" class="w-full" x-model="reason">
+                            @php
+                                $reasons = [
+                                    '' => __('crud.select'),
+                                    'financial' => __('settings.subscription.cancel.options.financial'),
+                                    'not_for' => __('settings.subscription.cancel.options.not_for'),
+                                    'not_using' => __('settings.subscription.cancel.options.not_using'),
+                                    'not_playing' => __('settings.subscription.cancel.options.not_playing'),
+                                    'missing_features' => __('settings.subscription.cancel.options.missing_features'),
+                                    'competitor' => __('settings.subscription.cancel.options.competitor'),
+                                ];
 
-                    if ($user->subscription('kanka') && $user->subscription('kanka')->created_at->greaterThanOrEqualTo(Carbon\Carbon::now()->subHour())) {
-                        $reasons['testing'] =  __('settings.subscription.cancel.options.testing');
-                    }
+                                if ($user->subscription('kanka') && $user->subscription('kanka')->created_at->greaterThanOrEqualTo(\Carbon\Carbon::now()->subHour())) {
+                                    $reasons['testing'] =  __('settings.subscription.cancel.options.testing');
+                                }
 
-                    $reasons['custom'] = __('settings.subscription.cancel.options.other');
-                    @endphp
-                    <x-forms.select name="reason" :options="$reasons" class="w-full" />
-                    <textarea name="reason_custom" placeholder="{{ __('settings.subscription.placeholders.reason') }}" class="w-full" rows="4" id="cancel-reason-custom"></textarea>
-                </x-grid>
-            </x-forms.field>
+                                $reasons['custom'] = __('settings.subscription.cancel.options.other');
+                            @endphp
+
+                            @foreach($reasons as $value => $label)
+                                <option value="{{ $value }}">{{ $label }}</option>
+                            @endforeach
+                        </select>
+
+                        <textarea
+                            name="reason_custom"
+                            placeholder="{{ __('settings.subscription.placeholders.reason') }}"
+                            class="w-full"
+                            rows="4"
+                            id="cancel-reason-custom"
+                            x-show="reason === 'custom'"
+                            x-cloak
+                        ></textarea>
+                    </x-grid>
+                </x-forms.field>
+
+                <div x-show="reason === 'missing_features'" x-cloak>
+                    </br>
+                    {!! __('subscriptions/cancellation.loss.roadmap', ['roadmap' => '<a href="' . route('roadmap') . '">' . __('footer.roadmap') . '</a>']) !!}
+                </div>
+
+                <div x-show="reason === 'financial' && canDowngrade" x-cloak>
+                    </br>
+                    {{ __('subscriptions/cancellation.loss.downgrade') }}
+                </div>
+            </div>
 
 {{--            <button class="btn2 btn-lg btn-block btn-primary btn-outline subscription-pause-button flex flex-col gap-0.5">--}}
 {{--                {{ __('subscriptions/cancellation.pause.button') }}<br />--}}

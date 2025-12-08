@@ -5,7 +5,7 @@ let stripe, elements, card;
 let formSubmitBtn;
 
 // Coupon stuff
-let couponField, couponSuccess, couponError, couponId, couponValidating, paypalCoupon;
+let couponField, couponSuccess, couponError, couponId, couponValidating, paypalCoupon, cancelField;
 
 const subscribeModal = document.getElementById('subscribe-confirm');
 
@@ -62,7 +62,6 @@ const initConfirmListener = ()=> {
     }
 
     document.getElementById('subscription-confirm')?.addEventListener('submit', subscribe);
-
 
     couponField = document.getElementById('coupon-check');
     if (couponField) {
