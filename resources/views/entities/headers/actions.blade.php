@@ -116,12 +116,14 @@
             <x-dropdowns.item link="{{ route('entities.html-export', [$campaign, $entity]) }}" icon="fa-regular fa-print">
                 {{ __('crud.actions.print') }}
             </x-dropdowns.item>
+            @auth
             <x-dropdowns.item link="{{ route('entities.json.export', [$campaign, $entity]) }}" icon="fa-regular fa-download">
                 {{ __('entities/actions.json-export') }}
             </x-dropdowns.item>
             <x-dropdowns.item link="{{ route('entities.markdown.export', [$campaign, $entity]) }}" icon="fa-brands fa-markdown">
                 {{ __('entities/actions.markdown-export') }}
             </x-dropdowns.item>
+            @endauth
         @endif
 
         @can('delete', $entity)
