@@ -35,7 +35,7 @@ use App\Enums\Widget;
                 <div class="widget-entity flex items-center gap-2 w-full">
                     <div class="rounded entity-picture w-9 h-9 flex-none" style="background-image: url('{!! Avatar::entity($widget->entity)->size(40)->fallback()->thumbnail() !!}');"></div>
                     <div class="truncate text-md">
-                        <a href="{{ $widget->entity->url() }}">
+                        <a href="{{ $widget->entity->url() }}" class="text-link">
                             {!! $widget->entity->name !!}
                         </a>
                     </div>

@@ -23,7 +23,7 @@
             </picture>
         </a>
     @endif
-    <a href="{{ $entity->url() }}" class="flex gap-1 text-xl p-4 pb-0">
+    <a href="{{ $entity->url() }}" class="flex gap-1 text-xl p-4 pb-0 text-link">
         @if ($entity->is_private)
             <x-icon class="lock" :title="__('crud.is_private')" tooltip />
         @endif

@@ -31,7 +31,7 @@ $conversation = $entity->child;
                             @if ($message->user)
                                 {{ $message->user->name }}
                             @elseif ($message->character)
-                                <a href="{{ $message->character->getLink() }}">{{ $message->character->name }}</a>
+                                <a href="{{ $message->character->getLink() }}" class="text-link">{{ $message->character->name }}</a>
                             @endif
                         </span>
                     @elseif (!empty($message->user_id))
@@ -41,7 +41,7 @@ $conversation = $entity->child;
                         <span class="direct-chat-timestamp">{{ $message->created_at->diffForHumans() }}</span>
                     @else
                         <span class="direct-chat-name grow">
-                            <a href="{{ $message->character->getLink() }}">{{ $message->character->name }}</a>
+                            <a href="{{ $message->character->getLink() }}" class="text-link">{{ $message->character->name }}</a>
                         </span>
                         <span class="direct-chat-timestamp">{{ $message->created_at->diffForHumans() }}</span>
                     @endif

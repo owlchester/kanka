@@ -25,7 +25,7 @@
 
         @foreach($campaign->roles as $role)
             <div class="truncate">
-                <a href="{{ route('campaign_roles.show', [$campaign, $role]) }}">
+                <a href="{{ route('campaign_roles.show', [$campaign, $role]) }}" class="text-link">
                     {!! $role->name !!}
                 </a>
             </div>

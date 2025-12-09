@@ -51,7 +51,7 @@
         @else
             <x-helper>
                 <p>{!! __('dashboard.widgets.advanced_options_boosted', [
-        'boosted_campaign' => '<a href="https://kanka.io/premium" target="_blank">' . __('concept.premium-campaigns') . '</a>']) !!}</p>
+        'boosted_campaign' => '<a href="https://kanka.io/premium" class="text-link">' . __('concept.premium-campaigns') . '</a>']) !!}</p>
             </x-helper>
         @endif
     </div>
