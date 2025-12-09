@@ -524,7 +524,7 @@ const props = defineProps<{
     readonly: Boolean,
     creator: Boolean,
     entity: String,
-    user: String,
+    user: Boolean,
 }>()
 
 const shapes = ref([]);
