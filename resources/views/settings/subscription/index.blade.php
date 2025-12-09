@@ -51,7 +51,7 @@
                 @if ($tier->isFree() && $user->isSubscriber())
                     @continue
                 @endif
-                <article class="rounded-2xl bg-box flex flex-col gap-4 p-4 relative max-w-2xl lg:max-w-none shadow-xs hover:shadow @if ($tier->isCurrent($user)) drop-shadow border-primary border @endif">
+                <article class="rounded-2xl bg-box flex flex-col gap-4 p-4 relative max-w-2xl lg:max-w-none shadow-xs hover:shadow-md @if ($tier->isCurrent($user)) border-primary border @endif">
                     <div class="flex gap-2 flex-col ">
                         <img class="w-16 h-16 " src="{{ $tier->image() }}" alt="{{ $tier->name }}"/>
                         <div class="grow flex flex-col gap-2 w-full">

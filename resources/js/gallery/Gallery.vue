@@ -34,7 +34,7 @@
                         <span v-html="trans('filters')" class="hidden md:inline"></span>
                         <span v-if="showUnused">(1)</span>
                     </button>
-                    <div class="border shadow rounded bg-base-100 p-4 absolute right-0 flex flex-col gap-5 w-60" v-if="showFilters"  v-click-outside="onClickOutside">
+                    <div class="border shadow-sm rounded bg-base-100 p-4 absolute right-0 flex flex-col gap-5 w-60" v-if="showFilters"  v-click-outside="onClickOutside">
                         <div class="flex gap-2 items-center">
                             <input type="checkbox" v-model="showUnused" value="1" id="_show_unused" @change="toggleUnused" />
                             <label for="_show_unused" class="cursor-pointer" v-html="trans('filter_only_unused')">
@@ -50,7 +50,7 @@
                         <span v-if="sortAsc || sortDesc">(1)</span>
                     </button>
                     <div
-                        class="border shadow rounded bg-base-100 p-4 absolute right-0 top-full mt-2 flex flex-col gap-1 w-60 z-50"
+                        class="border shadow-sm rounded bg-base-100 p-4 absolute right-0 top-full mt-2 flex flex-col gap-1 w-60 z-50"
                         v-if="showSort"
                         v-click-outside="onClickOutside"
                     >
@@ -359,7 +359,7 @@ onMounted(() => {
 
     if (infiniteScrollTrigger.value) {
         observer.observe(infiniteScrollTrigger.value)
-    }        
+    }
     window.addEventListener('keydown', handleEscapeKey)
 })
 
@@ -510,7 +510,7 @@ const search = () => {
 
     // Nothing? Go back home
     if (!searchTerm.value) {
-        apiParameters.value['searchParam'] = ''; 
+        apiParameters.value['searchParam'] = '';
         home()
         return;
     }

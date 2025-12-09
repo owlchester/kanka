@@ -13,7 +13,7 @@
                         <i class="fa-regular fa-filter" aria-hidden="true" />
                         <span v-html="trans('order_by_' + filter)" class="hidden md:inline"></span>
                     </button>
-                    <div class="border shadow rounded bg-base-100 p-4 absolute right-0 flex flex-col gap-5 w-60" v-if="showFilters"  v-click-outside="onClickOutside">
+                    <div class="border shadow-sm rounded bg-base-100 p-4 absolute right-0 flex flex-col gap-5 w-60" v-if="showFilters"  v-click-outside="onClickOutside">
                         <label @click="orderByNew" class="cursor-pointer" v-html="trans('newest')"></label>
                         <label @click="orderByOld" class="cursor-pointer" v-html="trans('oldest')"></label>
                         <label @click="orderByType" class="cursor-pointer" v-html="trans('type')"></label>

@@ -251,29 +251,6 @@ blockquote {
 /*    --tw-bg-opacity: 1;*/
 /*    background-color:hsl(var(--b3)/var(--tw-bg-opacity))*/
 /*}*/
-.hover\:bg-accent:hover {
-    --tw-bg-opacity: 1;
-    background-color:hsl(var(--a)/var(--tw-bg-opacity))
-}
-.hover\:bg-primary:hover {
-    --tw-bg-opacity: 1;
-    background-color:hsl(var(--p)/var(--tw-bg-opacity))
-}
-
-.hover\:shadow-md:hover {
-    --tw-shadow-color: hsl(var(--n)/1);
-    --tw-shadow: var(--tw-shadow-colored);
-}
-
-.focus\:bg-base-200:focus {
-    --tw-bg-opacity: 1;
-    background-color:hsl(var(--b2)/var(--tw-bg-opacity))
-}
-.focus\:border-accent:focus {
-    --tw-bg-opacity: 1;
-    border-color:hsl(var(--a)/var(--tw-bg-opacity))
-}
-
 
 .bg-opacity-50 {
     --tw-bg-opacity: 0.5;

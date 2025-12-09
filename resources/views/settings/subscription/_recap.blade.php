@@ -20,7 +20,7 @@ if ($user->isLegacyPatron()) {
         }
     }
 }
-$box = 'rounded-2xl p-2 lg:p-3 bg-box shadow-xs hover:shadow flex flex-col items-center justify-center gap-2';
+$box = 'rounded-2xl p-2 lg:p-3 bg-box shadow-xs hover:shadow-md flex flex-col items-center justify-center gap-2';
 
 @endphp
 

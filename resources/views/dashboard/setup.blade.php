@@ -8,7 +8,7 @@
 ])
 
 @php
-$widgetClass = 'widget rounded-xl h-28 shadow-xs hover:shadow cursor-pointer bg-box' ;
+$widgetClass = 'widget rounded-xl h-28 shadow-xs hover:shadow-md cursor-pointer bg-box' ;
 $overlayClass = 'rounded-xl flex gap-2 flex-col p-2 items-center h-full';
 @endphp
 

@@ -1,7 +1,7 @@
 <template>
     <div v-if="isGrid() && stacked()" class="stack inline-grid items-center align-items-end w-[47%] xs:w-[25%] sm:w-48" v-bind:data-stack="entity.children">
         <div
-            class="entity overflow-hidden rounded shadow-xs hover:shadow aspect-square w-full flex flex-col bg-box"
+            class="entity overflow-hidden rounded shadow-xs hover:shadow-md aspect-square w-full flex flex-col bg-box"
             v-bind="dataAttributes()">
             <a
                 :href="entity.urls.children"
@@ -144,7 +144,7 @@ const props = defineProps<{
 }>()
 
 const entityClass = () => {
-    let css = 'entity overflow-hidden rounded shadow-xs hover:shadow w-[47%] xs:w-[25%] sm:w-48 aspect-square flex flex-col bg-box';
+    let css = 'entity overflow-hidden rounded shadow-xs hover:shadow-md w-[47%] xs:w-[25%] sm:w-48 aspect-square flex flex-col bg-box';
 
     if (props.isParent) {
         css += 'shadow-lg stacking-parent font-bold'

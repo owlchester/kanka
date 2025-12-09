@@ -33,7 +33,7 @@
 ]) !!}</p>
             <div class="flex flex-col gap-4">
                 @foreach ($availableCampaigns as $availableCampaign)
-                    <div id="campaign-{{ $availableCampaign->id }}" class="flex gap-4 border border-base-200 shadow-xs hover:shadow rounded-2xl px-4 py-2 items-center">
+                    <div id="campaign-{{ $availableCampaign->id }}" class="flex gap-4 border border-base-200 shadow-xs hover:shadow-md rounded-2xl px-4 py-2 items-center">
                         @if ($availableCampaign->image)
                             <img src="{{ $availableCampaign->thumbnail(320, 240) }}" alt="{{ $availableCampaign->name }}" loading="lazy" class="rounded-full w-12 h-12" />
                         @else

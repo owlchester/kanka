@@ -5,7 +5,7 @@
     'centered' => true,
 ])
 @php
-$boxClass = "rounded-2xl p-4 bg-box flex flex-col gap-2 hover:shadow";
+$boxClass = "rounded-2xl p-4 bg-box flex flex-col gap-2 hover:shadow-xs";
 $highlightClass = 'shadow-xs border-primary border-solid border-2';
 @endphp
 

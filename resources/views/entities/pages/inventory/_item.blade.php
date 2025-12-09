@@ -16,7 +16,7 @@ if ($item->item) {
 
 <div class="flex flex-col gap-0 relative item-wrapper">
     <a
-        class="w-40 h-40 rounded relative flex flex-col cursor-pointer overflow-hidden bg-base-200 hover:shadow"
+        class="w-40 h-40 rounded relative flex flex-col cursor-pointer overflow-hidden bg-base-200 shadow-xs hover:shadow-md"
     @if ($item->item) data-object-size="{{ $item->item->size }}"
     data-object-price="{{ $item->item->price }}"
     data-object-weight="{{ $item->item->weight }}" @endif

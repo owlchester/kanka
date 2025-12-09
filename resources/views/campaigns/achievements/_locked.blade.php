@@ -1,7 +1,7 @@
 @php
     use \Illuminate\Support\Arr;
 @endphp
-<div class="achievement shadow-xs hover:shadow rounded-xl bg-base-100 w-full sm:w-80 md:w-96 flex flex-col gap-2 md:gap-3 p-5 level-{{ $stat['level'] }}" data-achievement="{{ $key }}">
+<div class="achievement shadow-xs hover:shadow-md rounded-xl bg-base-100 w-full sm:w-80 md:w-96 flex flex-col gap-2 md:gap-3 p-5 level-{{ $stat['level'] }}" data-achievement="{{ $key }}">
 
     <div class="achievement-header flex gap-2 items-center">
         <div class="grow text-xl">
@@ -13,7 +13,7 @@
     </div>
 
     <div class="achievement-motivation flex gap-2 md:gap-6 grow">
-        <div class="flex-none w-20 h-20 rounded-full bg-primary text-primary-content text-4xl flex items-center justify-center shadow">
+        <div class="flex-none w-20 h-20 rounded-full bg-primary text-primary-content text-4xl flex items-center justify-center">
             <x-icon class="{{ $stat['icon'] }}" />
         </div>
         <div class="grow flex flex-col">

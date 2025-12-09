@@ -18,7 +18,7 @@
         </div>
     </div>
 
-    <div v-if="!model.is_hidden && model.url" class="rounded shadow p-4 flex gap-2 items-center bg-base-200 hover:shadow-lg">
+    <div v-if="!model.is_hidden && model.url" class="rounded shadow-sm p-4 flex gap-2 items-center bg-base-200 hover:shadow-lg">
         <div class="flex-none">
             <i class="fa-solid text-green-500 fa-circle-check" aria-hidden="true" />
         </div>

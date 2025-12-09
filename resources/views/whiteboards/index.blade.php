@@ -18,7 +18,7 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 xl:flex flex-wrap gap-4 w-full">
         @foreach ($models as $whiteboard)
-            <a href="{{ route('whiteboards.show', [$campaign, $whiteboard]) }}" class="rounded-xl hover:shadow bg-base-100 xl:w-80 overflow-hidden flex flex-col">
+            <a href="{{ route('whiteboards.show', [$campaign, $whiteboard]) }}" class="rounded-xl hover:shadow-md bg-base-100 xl:w-80 overflow-hidden flex flex-col">
                 <div class="bg-base-200 w-full h-40"></div>
                 <div class="flex gap-1 p-4 ">
                     <div class="flex flex-col gap-1">

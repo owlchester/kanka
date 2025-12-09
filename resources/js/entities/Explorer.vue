@@ -64,7 +64,7 @@
                     <button @click="orderDropdown = !orderDropdown" class="btn2" :title="i18n.order">
                         <i class="fa-regular fa-arrow-down-a-z" aria-hidden="true"></i>
                     </button>
-                    <div class="dropdown-menu absolute mt-2 flex flex-col gap-1 bg-base-200 shadow p-2 rounded z-10" role="menu" id="templates-submenu" v-if="orderDropdown" v-click-outside="onClickOutside">
+                    <div class="dropdown-menu absolute mt-2 flex flex-col gap-1 bg-base-200 shadow-sm p-2 rounded z-10" role="menu" id="templates-submenu" v-if="orderDropdown" v-click-outside="onClickOutside">
                         <button @click="orderBy('name')" :class="orderByClass('name')">
                             <i v-if="isOrdering('name')" :class="orderByIcon('name')"></i>
                             <span v-html="i18n.fields['name']"></span>
@@ -114,7 +114,7 @@
                             <i class="fa-regular fa-caret-down" aria-hidden="true"></i>
                             <span class="sr-only" v-html="i18n.actions"></span>
                         </button>
-                        <div class="dropdown-menu absolute mt-2 flex flex-col gap-1 right-0 bg-base-200 shadow p-2 rounded z-10" role="menu" id="templates-submenu" v-if="templating" v-click-outside="onClickOutside">
+                        <div class="dropdown-menu absolute mt-2 flex flex-col gap-1 right-0 bg-base-200 shadow-sm p-2 rounded z-10" role="menu" id="templates-submenu" v-if="templating" v-click-outside="onClickOutside">
                             <a
                                 v-for="template in templates"
                                 :href="template.url"
@@ -154,7 +154,7 @@
                             <i class="fa-regular fa-caret-down" aria-hidden="true"></i>
                             <span class="sr-only" v-html="i18n.actions"></span>
                         </button>
-                        <div class="dropdown-menu absolute mt-2 flex flex-col gap-1 right-0 bg-base-200 shadow p-2 rounded z-10" role="menu" id="templates-submenu" v-if="templating" v-click-outside="onClickOutside">
+                        <div class="dropdown-menu absolute mt-2 flex flex-col gap-1 right-0 bg-base-200 shadow-sm p-2 rounded z-10" role="menu" id="templates-submenu" v-if="templating" v-click-outside="onClickOutside">
                             <button
                                 v-if="permissions.admin"
                                 @click="bulkDialog(urls.permissions)"
@@ -209,7 +209,7 @@
         </div>
         <div class="flex gap-1 items-start">
             <div :class="gridLayout()">
-                <a v-if="parent && isGrid()" :href="parent.urls.parent" class="entity w-[47%] xs:w-[25%] sm:w-48 overflow-hidden rounded flex flex-col shadow-xs hover:shadow sm text-link">
+                <a v-if="parent && isGrid()" :href="parent.urls.parent" class="entity w-[47%] xs:w-[25%] sm:w-48 overflow-hidden rounded flex flex-col shadow-xs hover:shadow-md sm text-link">
                     <div class="w-46 flex items-center justify-center grow  text-6xl">
                         <i class="fa-regular fa-arrow-left" aria-hidden="true"></i>
                     </div>

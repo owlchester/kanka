@@ -1,5 +1,5 @@
 <div
-    class="bg-base-100 rounded-2xl shadow-xs hover:shadow overflow-hidden"
+    class="bg-base-100 rounded-2xl shadow-xs hover:shadow-md overflow-hidden"
 >
     <button class="flex justify-between items-center w-full gap-2 px-6 py-4 text-left focus:outline-none" data-animate="collapse" data-target="#{{ $id }}">
         <span class="text-lg font-medium">{{ $question }}</span>

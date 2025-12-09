@@ -11,7 +11,7 @@
                     <i class="fa-regular fa-bars-filter" aria-hidden="true" />
                     <span v-html="trans('actions.filters')"></span>
                 </a>
-                <div class="border border-base-300 shadow rounded bg-base-100 p-4 absolute right-0 flex flex-col gap-5 w-60" v-if="showFilters"  v-click-outside="onClickOutside">
+                <div class="border border-base-300 shadow-sm rounded bg-base-100 p-4 absolute right-0 flex flex-col gap-5 w-60" v-if="showFilters"  v-click-outside="onClickOutside">
                     <div class="flex gap-2">
                         <div>
                             <input type="checkbox" v-model="showHidden" value="1" id="_show_hidden_attributes" />

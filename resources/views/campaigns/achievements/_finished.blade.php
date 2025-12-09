@@ -1,7 +1,7 @@
 @php
     use \Illuminate\Support\Arr;
 @endphp
-<div class="achievement shadow-xs hover:shadow rounded-xl bg-base-100 w-full sm:w-80 md:w-96 flex flex-col gap-2 md:gap-3 p-5 md:p-5 level-{{ $stat['level'] }}" data-achievement="{{ $key }}">
+<div class="achievement shadow-xs hover:shadow-md rounded-xl bg-base-100 w-full sm:w-80 md:w-96 flex flex-col gap-2 md:gap-3 p-5 md:p-5 level-{{ $stat['level'] }}" data-achievement="{{ $key }}">
 
     <div class="flex gap-2 md:gap-5 items-center grow">
         <div class="flex-none text-accent text-4xl border-accent border-opacity-20 rounded-full border-4 flex items-center justify-center w-20 h-20">

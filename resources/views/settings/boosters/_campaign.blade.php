@@ -3,7 +3,7 @@
  * @var \App\Models\CampaignBoost $boost
  */
 $boost = isset($boost) ? $boost : $campaign->boosts->first();?>
-<div class="flex rounded-2xl shadow-xs hover:shadow gap-3 px-3 bg-box py-3 flex-nowrap justify-between items-center">
+<div class="flex rounded-2xl shadow-xs hover:shadow-md gap-3 px-3 bg-box py-3 flex-nowrap justify-between items-center">
     <div class="flex gap-4 items-center">
         @if ($campaign->image)
             <img src="{{ $campaign->thumbnail(320, 240) }}" alt="{{ $campaign->name }}" loading="lazy" class="rounded-full w-16 h-16" />

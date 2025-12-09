@@ -4,7 +4,7 @@
 
 <div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 lg:gap-4 xl:gap-5">
     @foreach($applications as $application)
-        <div class="bg-base-100 shadow-xs hover:shadow rounded-xl flex p-4 items-center justify-center gap-3">
+        <div class="bg-base-100 shadow-xs hover:shadow-md rounded-xl flex p-4 items-center justify-center gap-3">
             @if ($application->user->hasAvatar())
                 <x-users.avatar :user="$application->user" class="h-10 w-10" />
             @else

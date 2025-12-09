@@ -30,7 +30,7 @@
             </div>
 
             <div :class="gridClass()" v-else>
-                <div v-for="image in images" class="cursor-pointer shadow rounded hover:shadow-lg overflow-hidden" @click="selectImage(image)">
+                <div v-for="image in images" class="cursor-pointer shadow-sm rounded hover:shadow-lg overflow-hidden" @click="selectImage(image)">
                     <div :class="previewSize('cover-background')" :style="{'backgroundImage': 'url(\'' + image.thumbnail + '\')'}" v-if="!image.folder" />
                     <div :class="previewSize('flex items-center align-middle justify-center text-4xl')" v-else>
                         <i :class="image.icon" aria-label="Folder" />

@@ -37,7 +37,7 @@ $source = empty($entity->image_path) && !empty($entity->image_uuid) ? $entity->i
         @endif
 
         <div class="focus-selector relative flex mx-auto max-w-sm">
-            <div class="focus absolute text-white drop-shadow cursor-pointer text-2xl @if(empty($source->focus_x))hidden @endif" data-focus-x="{{ $source->focus_x }}" data-focus-y="{{ $source->focus_y }}" >
+            <div class="focus absolute text-white shadow-sm cursor-pointer text-2xl @if(empty($source->focus_x))hidden @endif" data-focus-x="{{ $source->focus_x }}" data-focus-y="{{ $source->focus_y }}" >
                 <x-icon class="fa-duotone fa-arrow-up-left-from-circle fa-2x hover:text-error" />
             </div>
 

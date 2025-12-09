@@ -68,7 +68,7 @@ const click = () => {
 }
 
 const fileClass = () => {
-    let css = 'rounded-xl shadow bg-base-100 overflow-hidden sm:w-48 cursor-pointer hover:shadow-lg relative flex flex-row md:flex-col gap-2 md:gap-0';
+    let css = 'rounded-xl shadow-sm bg-base-100 overflow-hidden sm:w-48 cursor-pointer hover:shadow-lg relative flex flex-row md:flex-col gap-2 md:gap-0';
 
     if (!props.file.is_selected || !props.isBulking) {
         return css + '  '
