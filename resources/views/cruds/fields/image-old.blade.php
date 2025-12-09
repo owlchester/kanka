@@ -38,8 +38,8 @@ if (!empty($model->entity) && !empty($model->entity->image) && !$canBrowse) {
 
     <label>{{ __($label) }}</label>
 
-    <div class="flex flex-row gap-2">
-        <div class="grow flex flex-col gap-2 w-full">
+    <div class="flex flex-row gap-2 justify-between">
+        <div class=" flex flex-col gap-2">
             <div class="image-file field">
                 <input
                     type="file"
@@ -76,6 +76,13 @@ if (!empty($model->entity) && !empty($model->entity->image) && !$canBrowse) {
                     <input type="hidden" name="entity_image_uuid" value="{{ $model->entity->image_uuid }}" />
                 @endif
             @endif
+
+
+            <x-helper class="text-xs">
+                <p><x-icon class="fa-regular fa-question-circle" />
+                    {{ __('crud.hints.image_limitations', ['formats' => $formats, 'size' => (isset($size) ? Limit::readable()->map()->upload() : Limit::readable()->upload())]) }} @if (isset($recommended)) {{ __('crud.hints.image_dimension', ['dimension' => $recommended]) }} @endif
+                    @includeWhen(config('services.stripe.enabled'), 'cruds.fields.helpers.share')</p>
+            </x-helper>
         </div>
         @if (!empty($previewThumbnail))
             <div class="preview w-32">
@@ -94,10 +101,4 @@ if (!empty($model->entity) && !empty($model->entity->image) && !$canBrowse) {
             </div>
         @endif
     </div>
-
-    <x-helper class="text-xs">
-        <p><x-icon class="fa-regular fa-question-circle" />
-        {{ __('crud.hints.image_limitations', ['formats' => $formats, 'size' => (isset($size) ? Limit::readable()->map()->upload() : Limit::readable()->upload())]) }} @if (isset($recommended)) {{ __('crud.hints.image_dimension', ['dimension' => $recommended]) }} @endif
-        @includeWhen(config('services.stripe.enabled'), 'cruds.fields.helpers.share')</p>
-    </x-helper>
 </div>

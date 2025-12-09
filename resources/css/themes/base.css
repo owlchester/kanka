@@ -88,7 +88,6 @@ input[type="checkbox"] {
     accent-color: hsl(var(--p)/var(--tw-accent-opacity));
     position: relative;
     margin: 0;
-
 }
 input[type="checkbox"]:checked {
     --tw-bg-opacity: 1;

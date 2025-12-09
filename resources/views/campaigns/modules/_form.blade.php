@@ -26,14 +26,14 @@
         field="singular"
         :label="__('campaigns/modules.fields.singular')"
         :helper="__('campaigns/modules.helpers.singular')">
-        <input type="text" name="singular" value="{!! old('singular', $singular) !!}" maxlength="45" class="w-full" placeholder="{{ $entityType->name() }}" />
+        <input type="text" name="singular" value="{!! old('singular', $singular) !!}" maxlength="45" class="w-full @if (!$campaign->boosted()) form-control @endif" placeholder="{{ $entityType->name() }}" @if (!$campaign->boosted()) disabled="disabled" @endif" />
     </x-forms.field>
 
     <x-forms.field
         field="plural"
         :label="__('campaigns/modules.fields.plural')"
         :helper="__('campaigns/modules.helpers.plural')">
-        <input type="text" name="plural" value="{!! old('plural', $plural) !!}" maxlength="45" class="w-full" placeholder="{{ $entityType->plural() }}" />
+        <input type="text" name="plural" value="{!! old('plural', $plural) !!}" maxlength="45" class="w-full @if (!$campaign->boosted()) form-control @endif" placeholder="{{ $entityType->plural() }}" @if (!$campaign->boosted()) disabled="disabled" @endif />
     </x-forms.field>
 
     <x-forms.field
@@ -41,9 +41,9 @@
         :label="__('campaigns/modules.fields.icon')"
         :helper="__('campaigns/modules.helpers.icon', [
         'fontawesome' => '<a href=\'' . config('fontawesome.search') . '\'>FontAwesome</a>',
-        'example' => '<i class=\'fa-solid fa-horse\' aria-hidden=\'true\'></i> <code>fa-solid fa-horse</code>',
+        'example' => '<i class=\'fa-solid fa-horse\' aria-hidden=\'true\'></i> <span class=\'font-bold\'>fa-solid fa-horse</span>',
         ])">
-        <input type="text" name="icon" value="{{ old('icon', $icon) }}" maxlength="60" class="w-full" list="module-icon-list" placeholder="{{ $entityType->icon() }}" />
+        <input type="text" name="icon" value="{{ old('icon', $icon) }}" maxlength="60" class="w-full @if (!$campaign->boosted()) form-control @endif" list="module-icon-list" placeholder="{{ $entityType->icon() }}" @if (!$campaign->boosted()) disabled="disabled" @endif />
     </x-forms.field>
 
     @includeWhen(!$entityType->isBookmark(), 'cruds.fields.image-old', ['model' => $entityType ?? null, 'campaignImage' => true, 'imageLabel' => 'campaigns/modules.fields.image', 'isModule' => true, 'image' => isset($image) ? Img::crop(96, 96)->url($image['path']) : null])

@@ -43,10 +43,6 @@ class ModuleController extends Controller
     {
         $this->authorize('setting', $campaign);
 
-        if (! $campaign->boosted()) {
-            return view('campaigns.modules.not-premium')
-                ->with('campaign', $campaign);
-        }
         $image = null;
         $thumbnails = $campaign->defaultImages();
         foreach ($thumbnails as $thumbnail) {
@@ -72,10 +68,6 @@ class ModuleController extends Controller
     {
         $this->authorize('setting', $campaign);
 
-        if (! $campaign->boosted()) {
-            return redirect()->route('campaign.modules', $campaign)
-                ->with('error', __('This feature is only available on premium and boosted campaigns'));
-        }
         if (request()->ajax()) {
             return response()->json(['success' => true]);
         }
