@@ -8,7 +8,7 @@
                 {!! $label !!}
                 @if ($tooltip && isset($helper))
                     @if (isset($link))
-                        <a href="{{ $link }}">
+                        <a href="{{ $link }}" class="text-link">
                             <x-helpers.tooltip :title="$helper" />
                         </a>
                     @else

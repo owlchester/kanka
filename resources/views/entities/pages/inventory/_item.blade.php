@@ -16,19 +16,21 @@ if ($item->item) {
 
 <div class="flex flex-col gap-0 relative item-wrapper">
     <a
-        class="w-40 h-40 bg-base-100 rounded relative bg-cover bg-center flex flex-col cursor-pointer overflow-hidden @if ($image === false) bg-base-200 @endif"
+        class="w-40 h-40 rounded relative flex flex-col cursor-pointer overflow-hidden bg-base-200 hover:shadow"
     @if ($item->item) data-object-size="{{ $item->item->size }}"
     data-object-price="{{ $item->item->price }}"
     data-object-weight="{{ $item->item->weight }}" @endif
     data-visibility="{{ $item->visibility_id }}"
-    @if ($image !== false) style="background-image: url('{{ $image }}')" @endif
     data-toggle="dialog"
     data-url="{{ route('entities.inventory.details', [$campaign, $entity, $item]) }}"
     >
+        @if ($image !== false)
+            <img loading="lazy" class="z-5 absolute" src="{{ $image }}" alt="{{ $itemName }}" />
+        @endif
 
 
     @if ($item->isEquipped())
-        <div class="left-2 top-2 absolute flex gap-1 text-neutral-content">
+        <div class="left-2 top-2 absolute flex gap-1 text-neutral-content z-10">
             <div class="rounded-full bg-base-200 w-6 h-6 flex items-center justify-center">
                 <x-icon class="fa-regular fa-backpack" tooltip="1" :title="__('entities/inventories.tooltips.equipped')" />
             </div>
@@ -47,7 +49,7 @@ if ($item->item) {
                 <x-icon class="fa-regular fa-treasure-chest"></x-icon>
             @endif
         </div>
-        <div class="flex flex-col gap-0 items-center overflow-hidden bg-base-100 p-1 px-1.5 text-base-content justify-center h-12" >
+        <div class="flex flex-col gap-0 items-center overflow-hidden bg-base-100 p-1 px-1.5 text-base-content justify-center h-12 z-10" >
             <div class="flex gap-1 items-center justify-center w-full">
                 <span class="item-name truncate" data-toggle="tooltip" data-title="{{ $itemName }}">
                    {!! $itemName !!}

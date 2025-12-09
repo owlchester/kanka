@@ -1,4 +1,5 @@
-<a class="entity-image cover-background w-10 h-10"
-    style="background-image: url('{{ Avatar::entity($entity)->size($size)->fallback()->thumbnail() }}');"
+<a class="entity-image overflow-hidden rounded-full w-10 h-10"
     title="{{ $title }}"
-    href="{{ $entity->url() }}"></a>
+    href="{{ $entity->url() }}">
+    <img alt="{{ $title }}" loading="lazy" src="{{ Avatar::entity($entity)->size($size)->fallback()->thumbnail() }}" />
+</a>
