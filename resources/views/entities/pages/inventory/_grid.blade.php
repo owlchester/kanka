@@ -5,7 +5,7 @@
  */
 @endphp
 <div class="flex flex-col gap-4" x-data="{ showPrice: {{ $entity->isLocation() ? 'true' : 'false' }}, showQuantity: true, showWeight: false, showSize: false }">
-    <div class="flex gap-2 inventory-toggles flex-wrap justify-center md:justify-start">
+    <div class="flex gap-2 inventory-toggles flex-wrap justify-center md:justify-start join">
         <span role="button" @click="showQuantity = !showQuantity" class="btn2 btn-sm">
             <x-icon class="fa-regular fa-hashtag" />
             <span x-cloak x-show="!showQuantity">

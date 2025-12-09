@@ -65,7 +65,7 @@
             {{ __('entities/permissions.quick.viewable-by') }}
         </p>
         @if (!empty($visibility['roles']) || !empty($visibility['users']))
-            <div class="flex flex-wrap gap-2 items-center " :class="{ 'line-through text-slate-400': private === '1'}">
+            <div class="flex flex-wrap gap-2 items-center " :class="{ 'line-through text-neutral-content': private === '1'}">
                 @foreach ($visibility['roles'] as $role)
                     <span>
                         <x-icon class="fa-regular fa-user-group" />
