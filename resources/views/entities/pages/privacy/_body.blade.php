@@ -70,7 +70,7 @@
                     <span>
                         <x-icon class="fa-regular fa-user-group" />
                         @can('update', $role)
-                            <a href="{{ route('campaign_roles.edit', [$campaign, $role]) }}">
+                            <a href="{{ route('campaign_roles.edit', [$campaign, $role]) }}" class="text-link">
                                 {!! $role->name !!}
                             </a>
                         @else

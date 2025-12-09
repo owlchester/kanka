@@ -13,7 +13,7 @@
         @endif>
         <div class="grow entity-names flex flex-col gap-0.5 overflow-hidden">
             <div class="flex gap-1 overflow-hidden items-center text-xl ">
-                <a href="{{ $entity->url() }}" class="entity-name truncate">
+                <a href="{{ $entity->url() }}" class="entity-name truncate text-link">
                     {!! $entity->name !!}
                 </a>
                 @if ($entity->isCharacter() && $entity->character->isDead())

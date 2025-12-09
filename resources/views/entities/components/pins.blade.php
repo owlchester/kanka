@@ -18,7 +18,7 @@ if (auth()->check() && auth()->user()->can('update', $entity)) {
                     <x-icon class="fa-regular fa-chevron-down icon-hide transition-transform duration-200 group-hover:translate-y-0.5" />
                     <span class="text-lg ">{{ __('entities/pins.title') }}</span>
                 </div>
-                <a href="https://docs.kanka.io/en/latest/features/profile-sidebar.html" data-toggle="tooltip" data-title="{{ __('general.documentation') }}" class="">
+                <a href="https://docs.kanka.io/en/latest/features/profile-sidebar.html" data-toggle="tooltip" data-title="{{ __('general.documentation') }}" class="text-link">
                     <x-icon class="question" />
                     <span class="sr-only">{{ __('general.documentation') }}</span>
                 </a>

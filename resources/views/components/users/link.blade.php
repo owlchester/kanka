@@ -1,7 +1,7 @@
 <?php /** @var \App\Models\User $user */ ?>
-<a href="{{  route('users.profile', $user) }}" class="flex items-center gap-2">
+<a href="{{  route('users.profile', $user) }}" class="flex items-center gap-2 text-link">
     @if ($user->hasAvatar())
-        <div {{ $attributes->merge(['class' => 'rounded-full cover-background']) }} style="background-image: url('{{ $user->getAvatarUrl($size) }}')"></div>
+        <img src="{{ $user->getAvatarUrl($size) }}" loading="lazy" class="rounded-full w-10 h-10" />
     @endif
     {!! $user->name !!}
 </a>

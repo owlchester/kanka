@@ -54,7 +54,7 @@ $entityTags = $post->visibleTags();
                     @endif
                     @if ($post->calendarReminder()?->calendar_id)
                         <span class="entity-note-detail-element entity-note-reminder post-detail-element post-reminder">
-                            <a href="{{ $post->calendarReminder()->calendar->getLink() . '?year=' . $post->calendarReminder()->year . '&month=' . $post->calendarReminder()->month }} "> {{ $post->calendarReminder()->readableDate() }} </a>
+                            <a href="{{ $post->calendarReminder()->calendar->getLink() . '?year=' . $post->calendarReminder()->year . '&month=' . $post->calendarReminder()->month }} " class="text-link"> {{ $post->calendarReminder()->readableDate() }} </a>
                         </span>
                     @endif
                 </div>
@@ -67,7 +67,7 @@ $entityTags = $post->visibleTags();
                 <div class="post-footer entity-note-footer text-right text-muted text-xs ">
 
                 @can('update', $entity)
-                <a href="{{ route('entities.posts.logs', [$campaign, $entity, $post]) }}" title="{{ __('crud.history.view') }}" class="print-none">
+                <a href="{{ route('entities.posts.logs', [$campaign, $entity, $post]) }}" title="{{ __('crud.history.view') }}" class="print-none text-link">
                     <x-icon class="fa-regular fa-history" />
                 </a>
                 @endcan

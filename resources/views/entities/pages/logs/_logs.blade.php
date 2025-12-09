@@ -14,17 +14,17 @@
         </x-form>
         @foreach ($logs as $log)
             <div class="rounded p-4 shadow-xs bg-box entity-log flex flex-col gap-2" x-data="{ opened: @if (!$expanded) false @else true @endif }">
-                <div class="log-title flex gap-2">
-                    <div class="grow action flex gap-2 items-center">
+                <div class="log-title flex gap-2 justify-between">
+                    <div class="action flex gap-2 items-center">
                         @if ($log->isPost())
-                            <a href="{{ route('entities.show', [$campaign, $entity, '#post-' . $log->parent->id]) }}" data-title="{{ __('entities/logs.tooltips.post') }}" data-toggle="tooltip">
+                            <a href="{{ route('entities.show', [$campaign, $entity, '#post-' . $log->parent->id]) }}" data-title="{{ __('entities/logs.tooltips.post') }}" data-toggle="tooltip" class="text-link">
                                 {!! $log->parent->name !!}
                             </a>
                             <x-icon class="fa-regular fa-chevron-right" />
                         @endif
-                        <span class="font-extrabold ">{!! __('entities/logs.actions.' . $log->actionCode()) !!}</span>
+                        <span class="font-bold ">{!! __('entities/logs.actions.' . $log->actionCode()) !!}</span>
                     </div>
-                    <div class="flex-0">
+                    <div class="text-xs">
                         <span data-title="{{ $log->created_at }} UTC" data-toggle="tooltip" class="text-neutral-content">
                             {{ $log->created_at->diffForHumans() }}
                         </span>

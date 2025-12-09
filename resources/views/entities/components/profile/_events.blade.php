@@ -51,9 +51,9 @@ foreach ($elapsed as $event) {
     @if (!empty($birth) && !empty($death))
         <div class="element profile-life">
             <div class="title text-uppercase text-xs">{{ __('characters.fields.life') }}</div>
-            <a href="{{ $birth->calendar->getLink() }}?year={{ $birth->year }}&month={{ $birth->month }}" data-title="{{ $birth->calendar->name }}" data-toggle="tooltip">
+            <a href="{{ $birth->calendar->getLink() }}?year={{ $birth->year }}&month={{ $birth->month }}" data-title="{{ $birth->calendar->name }}" data-toggle="tooltip" class="text-link">
                 {{ $birth->readableDate() }}
-            </a> &#10013; <a href="{{ $death->calendar->getLink() }}?year={{ $death->year }}&month={{ $death->month }}" data-title="{{ $death->calendar->name }}" data-toggle="tooltip">
+            </a> &#10013; <a href="{{ $death->calendar->getLink() }}?year={{ $death->year }}&month={{ $death->month }}" data-title="{{ $death->calendar->name }}" data-toggle="tooltip" class="text-link">
                 {{ $death->readableDate() }}
             </a> ({{ $birth->calcElapsed($death) }})
         </div>
@@ -66,7 +66,7 @@ foreach ($elapsed as $event) {
             @else
                 <div class="title text-uppercase text-xs">{{ __('entities/events.types.founded') }}</div>
             @endif
-            <a href="{{ $birth->calendar->getLink() }}?year={{ $birth->year }}&month={{ $birth->month }}" data-title="{{ $birth->calendar->name }}" data-toggle="tooltip">
+            <a href="{{ $birth->calendar->getLink() }}?year={{ $birth->year }}&month={{ $birth->month }}" data-title="{{ $birth->calendar->name }}" data-toggle="tooltip" class="text-link">
             {{ $birth->readableDate() }}
             </a> ({{ $event->isBirth() ? $yearsAgo : trans_choice('entities/events.years-ago', $yearsAgo, ['count' => $yearsAgo]) }})
         </div>
@@ -74,7 +74,7 @@ foreach ($elapsed as $event) {
     @elseif (!empty($death))
         <div class="element profile-life">
             <div class="title text-uppercase text-xs">{{ __('entities/events.types.death') }}</div>
-            <a href="{{ $death->calendar->getLink() }}?year={{ $death->year }}&month={{ $death->month }}" data-title="{{ $death->calendar->name }}" data-toggle="tooltip">
+            <a href="{{ $death->calendar->getLink() }}?year={{ $death->year }}&month={{ $death->month }}" data-title="{{ $death->calendar->name }}" data-toggle="tooltip" class="text-link">
             {{ $death->readableDate() }}
             </a> (&#10013;{{ $death->calcElapsed() }})
         </div>
