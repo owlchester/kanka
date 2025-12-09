@@ -115,7 +115,7 @@ $overlayClass = 'rounded-xl flex gap-2 flex-col p-2 items-center h-full';
                         data-toggle="dialog"
                          data-url="{{ route('campaigns.dashboard-header.edit', $campaign) }}"
                     >
-                        <div class="{{ $overlayClass }} backdrop-blur bg-box opacity-60">
+                        <div class="{{ $overlayClass }} backdrop-blur-sm bg-box opacity-60">
                             <span class="widget-type">{{ __('dashboards/widgets/campaign.name') }}</span>
                         </div>
                     </div>

@@ -4,7 +4,7 @@
     </div>
     <div v-else :class="backgroundClass()" :style="{'backgroundImage': backgroundImage()}">
         <div :class="buttonsClass()">
-            <div class="rounded p-2 cursor-pointer backdrop-blur backdrop-opacity-30 bg-red-700/50 text-white hover:backdrop-opacity-100 transition" v-if="hasPreview()" @click="removeImage()" v-html="trans.remove">
+            <div class="rounded p-2 cursor-pointer backdrop-blur-sm backdrop-opacity-30 bg-red-700/50 text-white hover:backdrop-opacity-100 transition" v-if="hasPreview()" @click="removeImage()" v-html="trans.remove">
             </div>
             <div class="flex items-center gap-1" v-if="!hasImage()">
                 <input type="file" v-bind:accept="props.accepts" class="w-full" @change="upload" ref="fileField" />
@@ -23,7 +23,7 @@
                     <span class="sr-only"></span>
                 </div>
             </div>
-            <div class="rounded p-2 cursor-pointer backdrop-blur backdrop-opacity-30 bg-red-700/50 text-white hover:backdrop-opacity-100 transition flex items-center gap-2" @click="cancelUpload()">
+            <div class="rounded p-2 cursor-pointer backdrop-blur-sm backdrop-opacity-30 bg-red-700/50 text-white hover:backdrop-opacity-100 transition flex items-center gap-2" @click="cancelUpload()">
                 <span class="grow" v-html="trans.cancel"></span>
                 <span class="text-xs flex-none" v-html="progressPercentage()"></span>
             </div>
