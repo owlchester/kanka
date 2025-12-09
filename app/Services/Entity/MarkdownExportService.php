@@ -160,6 +160,7 @@ class MarkdownExportService
         if (isset($this->user)) {
             $this->markdownMentionsService->user($this->user);
         }
+
         return $this->markdownMentionsService->single($this->isSingle)->parseForMarkdown($this->entity);
     }
 
@@ -171,6 +172,7 @@ class MarkdownExportService
         if (isset($this->user)) {
             $this->markdownMentionsService->user($this->user);
         }
+
         return $this->markdownMentionsService->single($this->isSingle)->parseForMarkdown($post);
     }
 }
