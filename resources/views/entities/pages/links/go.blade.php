@@ -27,7 +27,7 @@
             </a>
         </div>
         <div class="text-center">
-            <a href="{{ $entityAsset->metadata['url'] }}" rel="noreferrer nofollow" class="domain-trust" data-domain="{{ $entityAsset->urlDomain() }}">
+            <a href="{{ $entityAsset->metadata['url'] }}" rel="noreferrer nofollow" class="domain-trust text-link" data-domain="{{ $entityAsset->urlDomain() }}">
                 {{ __('entities/links.go.actions.trust') }}
             </a>
         </div>
