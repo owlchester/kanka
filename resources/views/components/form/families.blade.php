@@ -42,7 +42,7 @@ if ($quickCreator) {
 
 @if ($quickCreator)
     <x-slot name="action">
-        <a class="quick-creator-subform text-xs cursor-pointer" data-url="{{ route('entity-creator.form', [$campaign, 'entity_type' => config('entities.ids.family'), 'origin' => 'entity-form', 'target' => $fieldUniqIdentifier, 'multi' => true]) }}" aria-label="Create a new family" tabindex="0">
+        <a class="quick-creator-subform text-xs cursor-pointer text-link" data-url="{{ route('entity-creator.form', [$campaign, 'entity_type' => config('entities.ids.family'), 'origin' => 'entity-form', 'target' => $fieldUniqIdentifier, 'multi' => true]) }}" aria-label="Create a new family" tabindex="0">
             <x-icon class="plus" />
             {{ __('crud.actions.new') }}
         </a>

@@ -56,12 +56,33 @@ if ($item->item) {
                 </span>
             </div>
 
-
-            @if ($item->amount > 1)
-                <div class="item-amount">
-                    x{!! number_format($item->amount) !!}
-                </div>
-            @endif
+            <div class="flex gap-2 items-center justify-center w-full">
+                @if ($item->amount > 1)
+                    <div class="item-amount" x-cloak x-show="showQuantity">
+                        x{!! number_format($item->amount) !!}
+                    </div>
+                @endif
+                @if ($item->item)
+                    @if (!empty($item->item->price))
+                        <div class="object-price truncate" x-cloak x-show="showPrice" data-toggle="tooltip" data-title="{{ $item->item->price }}">
+                            <x-icon class="fa-duotone fa-coins text-accent" />
+                            {{ $item->item->price }}
+                        </div>
+                    @endif
+                    @if (!empty($item->item->size))
+                        <div class="object-size truncate" x-cloak x-show="showSize" data-toggle="tooltip" data-title="{{ $item->item->size }}">
+                            <x-icon class="fa-duotone fa-up-right-and-down-left-from-center text-accent" />
+                            {{ $item->item->size }}
+                        </div>
+                    @endif
+                    @if (!empty($item->item->weight))
+                        <div class="object-weight truncate" x-cloak x-show="showWeight" data-toggle="tooltip" data-title="{{ $item->item->weight }}">
+                            <x-icon class="fa-duotone fa-weight-hanging text-accent" />
+                            {{ $item->item->weight }}
+                        </div>
+                    @endif
+                @endif
+            </div>
 
             <p class="text-xs text-neutral-content text-center mx-4 overflow-hidden cursor-pointer item-description hidden item-description" data-toggle="dialog" data-url="{{ route('entities.inventory.details', [$campaign, $entity, $item]) }}">
                 @if ($item->item && $item->copy_item_entry)
@@ -70,27 +91,6 @@ if ($item->item) {
                     {!! \Illuminate\Support\Str::limit($item->description ?? '', 100) !!}
                 @endif
             </p>
-
-            @if ($item->item)
-                @if (!empty($item->item->price))
-                <div class="object-price text-xs text-neutral-content text-center hidden">
-                    <x-icon class="fa-duotone fa-coins" />
-                    {{ $item->item->price }}
-                </div>
-                @endif
-                @if (!empty($item->item->size))
-                <div class="object-size text-xs text-neutral-content text-center hidden">
-                    <x-icon class="fa-duotone fa-up-right-and-down-left-from-center" />
-                    {{ $item->item->size }}
-                </div>
-                @endif
-                @if (!empty($item->item->weight))
-                <div class="object-weight text-xs text-neutral-content text-center hidden">
-                    <x-icon class="fa-duotone fa-weight-hanging" />
-                    {{ $item->item->weight }}
-                </div>
-                @endif
-            @endif
         </div>
     </a>
 </div>

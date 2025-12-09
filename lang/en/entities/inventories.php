@@ -56,6 +56,20 @@ return [
         'title'     => ':name Inventory',
         'unsorted'  => 'Unsorted',
     ],
+    'togglers' => [
+        'show' => [
+            'quantity' => 'Show quantity',
+            'price' => 'Show price',
+            'weight' => 'Show weight',
+            'size' => 'Show size',
+        ],
+        'hide' => [
+            'quantity' => 'Hide quantity',
+            'price' => 'Hide price',
+            'weight' => 'Hide weight',
+            'size' => 'Hide size',
+        ],
+    ],
     'tooltips'          => [
         'equipped'  => 'This item is equipped',
     ],

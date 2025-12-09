@@ -4,7 +4,45 @@
  * @var \App\Models\Inventory $item
  */
 @endphp
-<div class="flex flex-col gap-4">
+<div class="flex flex-col gap-4" x-data="{ showPrice: {{ $entity->isLocation() ? 'true' : 'false' }}, showQuantity: true, showWeight: false, showSize: false }">
+    <div class="flex gap-2 inventory-toggles flex-wrap justify-center md:justify-start">
+        <span role="button" @click="showQuantity = !showQuantity" class="btn2 btn-sm">
+            <x-icon class="fa-regular fa-hashtag" />
+            <span x-cloak x-show="!showQuantity">
+                {{ __('entities/inventories.togglers.show.quantity') }}
+            </span>
+            <span x-cloak x-show="showQuantity">
+                {{ __('entities/inventories.togglers.hide.quantity') }}
+            </span>
+        </span>
+        <span role="button" @click="showPrice = !showPrice" class="btn2 btn-sm">
+            <x-icon class="fa-regular fa-coins" />
+            <span x-cloak x-show="!showPrice">
+                {{ __('entities/inventories.togglers.show.price') }}
+            </span>
+            <span x-cloak x-show="showPrice">
+                {{ __('entities/inventories.togglers.hide.price') }}
+            </span>
+        </span>
+        <span role="button" @click="showSize = !showSize" class="btn2 btn-sm">
+            <x-icon class="fa-regular fa-up-right-and-down-left-from-center" />
+            <span x-cloak x-show="!showSize">
+                {{ __('entities/inventories.togglers.show.size') }}
+            </span>
+            <span x-cloak x-show="showSize">
+                {{ __('entities/inventories.togglers.hide.size') }}
+            </span>
+        </span>
+        <span role="button" @click="showWeight = !showWeight" class="btn2 btn-sm">
+            <x-icon class="fa-regular fa-weight-hanging" />
+            <span x-cloak x-show="!showWeight">
+                {{ __('entities/inventories.togglers.show.weight') }}
+            </span>
+            <span x-cloak x-show="showWeight">
+                {{ __('entities/inventories.togglers.hide.weight') }}
+            </span>
+        </span>
+    </div>
     @foreach ($entity->orderedInventory() as $position => $items)
         <div class="flex flex-col gap-4" data-position="{{ \Illuminate\Support\Str::slug($position) }}">
             <div class="section-title flex justify-between gap-4 items-center">
