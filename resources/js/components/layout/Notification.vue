@@ -3,7 +3,7 @@
         <div class="flex-none p-2">
             <i :class="iconClass(notification)" aria-hidden="true"></i>
         </div>
-        <a class="grow p-2 break-all " v-html="notification.text" v-bind:href="notification.url" ></a>
+        <a class="grow p-2 break-all text-link" v-html="notification.text" v-bind:href="notification.url" ></a>
 
         <div class="flex-none p-2 cursor-pointer dismissable" v-on:click="dismiss(notification)" v-if="!is_loading" :title="notification.dismiss_text">
             <i class="fa-solid fa-times" aria-hidden="true"></i>

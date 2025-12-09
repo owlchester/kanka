@@ -19,7 +19,7 @@ class Plugin extends Layout
                 'key' => 'name',
                 'label' => 'campaigns/plugins.fields.name',
                 'render' => function (\App\Models\Plugin $model) {
-                    return '<a href="' . $model->libraryUrl() . '">'
+                    return '<a href="' . $model->libraryUrl() . '" class="text-link">'
                              . $model->name
                             . '</a>';
                 },

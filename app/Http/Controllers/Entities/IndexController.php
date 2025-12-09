@@ -39,7 +39,7 @@ class IndexController extends Controller
                 'error_raw',
                 __('campaigns/modules.errors.disabled', [
                     'name' => $entityType->plural(),
-                    'fix' => '<a href="' . route('campaign.modules', [$campaign, '#' . $entityType->code]) . '">' . __('crud.fix-this-issue') . '</a>',
+                    'fix' => '<a href="' . route('campaign.modules', [$campaign, '#' . $entityType->code]) . '" class="text-link">' . __('crud.fix-this-issue') . '</a>',
                 ])
             );
         }

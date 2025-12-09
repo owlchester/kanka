@@ -28,7 +28,7 @@ class Theme extends Layout
                 'render' => function ($model) {
                     $campaign = CampaignLocalization::getCampaign();
 
-                    return '<a href="' . route('campaign_styles.edit', [$campaign, $model]) . '">' . $model->name . '</a>';
+                    return '<a href="' . route('campaign_styles.edit', [$campaign, $model]) . '" class="text-link">' . $model->name . '</a>';
                 },
             ],
             'length' => [

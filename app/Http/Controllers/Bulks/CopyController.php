@@ -53,7 +53,7 @@ class CopyController extends Controller
             ->entities($models)
             ->copyToCampaign($target);
 
-        $link = '<a href="' . route('dashboard', $target) . '">' . $target->name . '</a>';
+        $link = '<a href="' . route('dashboard', $target) . '" class="text-link">' . $target->name . '</a>';
 
         return redirect()
             ->back()

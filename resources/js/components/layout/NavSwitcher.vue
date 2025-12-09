@@ -61,7 +61,7 @@
                             {{ notifications.title }}
                         </div>
                         <div class="grow text-right">
-                            <a v-bind:href="notifications.all.url">
+                            <a v-bind:href="notifications.all.url" class="text-link">
                                 {{ notifications.all.text}}
                             </a>
                         </div>
@@ -102,28 +102,28 @@
                             {{ marketplace.title }}
                         </div>
                         <div class="grow text-right">
-                            <a v-bind:href="marketplace.explore.url" target="_blank">
+                            <a v-bind:href="marketplace.explore.url" class="text-link">
                                 {{ marketplace.explore.text}}
                             </a>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-3 gap-2">
-                        <a v-bind:href="marketplace.themes.url" class="border py-2 items-center justify-center rounded-md hover:shadow-md flex flex-col gap-1 border-base-300">
+                        <a v-bind:href="marketplace.themes.url" class="border py-2 items-center justify-center rounded-md hover:shadow-md flex flex-col gap-1 border-base-300 text-link">
                             <div class="icon bg-base-200 rounded-full w-14 h-14 text-3xl aspect-square flex justify-center items-center">
                                 <i class="fa-duotone fa-palette" aria-hidden="true"></i>
                             </div>
                             <div>{{ marketplace.themes.title }}</div>
                             <div class="text-muted text-xs">{{ marketplace.themes.number }}</div>
                         </a>
-                        <a v-bind:href="marketplace.sheets.url" class="border py-2 items-center justify-center rounded-md hover:shadow-md flex flex-col gap-1 border-base-300">
+                        <a v-bind:href="marketplace.sheets.url" class="border py-2 items-center justify-center rounded-md hover:shadow-md flex flex-col gap-1 border-base-300 text-link">
                             <div class="icon bg-base-200 rounded-full w-14 h-14 text-3xl aspect-square flex justify-center items-center">
                             <i class="fa-duotone fa-table-cells" aria-hidden="true"></i>
                             </div>
                             <div>{{ marketplace.sheets.title }}</div>
                             <div class="text-muted text-xs">{{ marketplace.sheets.number }}</div>
                         </a>
-                        <a v-bind:href="marketplace.content.url" class="border py-2 items-center justify-center rounded-md hover:shadow-md flex flex-col gap-1 border-base-300">
+                        <a v-bind:href="marketplace.content.url" class="border py-2 items-center justify-center rounded-md hover:shadow-md flex flex-col gap-1 border-base-300 text-link">
                             <div class="icon bg-base-200 rounded-full w-14 h-14 text-3xl aspect-square flex justify-center items-center">
                                 <i class="fa-duotone fa-dice-d20" aria-hidden="true"></i>
                             </div>
@@ -135,7 +135,7 @@
 
                 <div class="subscription" v-if="!profile.is_impersonating && profile.subscription">
                     <div class="uppercase font-bold py-2">{{ profile.subscription.title }}</div>
-                    <a class="border rounded-lg flex justify-center items-center hover:shadow-md border-base-300" v-bind:href="profile.urls.subscription">
+                    <a class="border rounded-lg flex justify-center items-center hover:shadow-md border-base-300 text-link" v-bind:href="profile.urls.subscription">
                         <div class="flex-none p-2">
                             <img class="w-16 h-16" v-bind:src="profile.subscription.image" v-bind:alt="profile.subscription.tier">
                         </div>
@@ -161,25 +161,25 @@
 
                 <ul class="m-0 p-0 list-none flex flex-col gap-2" v-if="!profile.is_impersonating">
                     <li>
-                        <a v-bind:href="profile.urls.settings.url" class="p-2 block">
+                        <a v-bind:href="profile.urls.settings.url" class="p-2 block text-link">
                             <i class="fa-regular fa-cog mr-3" aria-hidden="true"></i>
                             {{ profile.urls.settings.name }}
                         </a>
                     </li>
                     <li>
-                        <a v-bind:href="profile.urls.profile.url" class="p-2 block">
+                        <a v-bind:href="profile.urls.profile.url" class="p-2 block text-link">
                             <i class="fa-regular fa-user mr-3" aria-hidden="true"></i>
                             {{ profile.urls.profile.name }}
                         </a>
                     </li>
                     <li>
-                        <a v-bind:href="profile.urls.help.url" class="p-2 block" target="_blank">
+                        <a v-bind:href="profile.urls.help.url" class="p-2 block text-link" target="_blank">
                             <i class="fa-regular fa-question-circle mr-3" aria-hidden="true"></i>
                             {{ profile.urls.help.name }}
                         </a>
                     </li>
                     <li>
-                        <a href="#" v-on:click="logout()" class="p-2 block">
+                        <a href="#" v-on:click="logout()" class="p-2 block text-link">
                             <i class="fa-regular fa-sign-out mr-3" aria-hidden="true"></i>
                             {{ profile.urls.logout.name }}
                         </a>
@@ -187,7 +187,7 @@
                 </ul>
                 <ul class="m-0 p-0 list-none flex flex-col gap-2" v-else>
                     <li>
-                        <a v-bind:href="profile.return.url" class="">
+                        <a v-bind:href="profile.return.url" class="text-link">
                             <i class="fa-regular fa-sign-out-alt mr-3" aria-hidden="true"></i>
                             {{ profile.return.name }}
                         </a>
@@ -202,7 +202,7 @@
                           {{campaigns.texts.campaigns }}
                         </div>
                         <div class="grow text-right" v-if="campaigns.member.length > 0">
-                            <a v-bind:href="campaigns.urls.reorder">
+                            <a v-bind:href="campaigns.urls.reorder" class="text-link">
                                 {{ campaigns.texts.reorder}}
                             </a>
                         </div>
@@ -213,7 +213,7 @@
                                   :campaign="campaign">
                         </Campaign>
 
-                        <a v-bind:href="campaigns.urls.new" class="new-campaign flex items-center text-center border-dashed border rounded-lg h-24 p-2 overflow-hidden">
+                        <a v-bind:href="campaigns.urls.new" class="new-campaign flex items-center text-center border-dashed border rounded-lg h-24 p-2 overflow-hidden text-link">
                             <span class="text-xs text-break uppercase">
                                 <i class="fa-regular fa-plus" aria-hidden="true" style="display: none"></i>
                                 {{ campaigns.texts.new }}
@@ -233,7 +233,7 @@
                         </Campaign>
 
 
-                        <a v-bind:href="campaigns.urls.follow" class="new-campaign flex items-center text-center border-dashed border rounded-lg h-24 p-2 overflow-hidden">
+                        <a v-bind:href="campaigns.urls.follow" class="new-campaign flex items-center text-center border-dashed border rounded-lg h-24 p-2 overflow-hidden text-link">
                         <span class="text-xs uppercase text-break">
                             {{ campaigns.texts.follow }}
                         </span>

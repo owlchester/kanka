@@ -16,9 +16,9 @@ $fieldname = $iconFieldName ?? 'icon';
         </div>
         <x-slot name="helper">
             {!! __('entities/links.helpers.icon', [
-                'fontawesome' => '<a href="' . config('fontawesome.search') .'">FontAwesome</a>',
-                'rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/">RPGAwesome</a>',
-                'docs' => '<a href="https://docs.kanka.io/en/latest/articles/available-icons.html">' . __('footer.documentation') . '</a>',
+                'fontawesome' => '<a href="' . config('fontawesome.search') .'" class="text-link">FontAwesome</a>',
+                'rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/" class="text-link">RPGAwesome</a>',
+                'docs' => '<a href="https://docs.kanka.io/en/latest/articles/available-icons.html" class="text-link">' . __('footer.documentation') . '</a>',
                 'example' => '<i class="fa-solid fa-horse" aria-hidden="true"></i> <code>fa-solid fa-horse</code>',
             ]) !!}
         </x-slot>
@@ -26,13 +26,13 @@ $fieldname = $iconFieldName ?? 'icon';
         <x-slot name="helper">
         @can('boost', auth()->user())
             {!! __('callouts.booster.pitches.icon', [
-                'boosted-campaign' => '<a href="' . route('settings.premium', ['campaign' => $campaign]) . '">' . __('concept.premium-campaign') . '</a>',
-                'fontawesome' => '<a href="' . config('fontawesome.search') .'">FontAwesome</a>',
+                'boosted-campaign' => '<a href="' . route('settings.premium', ['campaign' => $campaign]) . '" class="text-link">' . __('concept.premium-campaign') . '</a>',
+                'fontawesome' => '<a href="' . config('fontawesome.search') .'" class="text-link">FontAwesome</a>',
             ]) !!}
         @else
             {!! __('callouts.booster.pitches.icon', [
-                'boosted-campaign' => '<a href="https://kanka.io/premium">' . __('concept.premium-campaign') . '</a>',
-                'fontawesome' => '<a href="' . config('fontawesome.search') .'">FontAwesome</a>',
+                'boosted-campaign' => '<a href="https://kanka.io/premium" class="text-link">' . __('concept.premium-campaign') . '</a>',
+                'fontawesome' => '<a href="' . config('fontawesome.search') .'" class="text-link">FontAwesome</a>',
             ]) !!}
         @endif
         </x-slot>

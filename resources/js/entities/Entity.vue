@@ -6,7 +6,7 @@
             <a
                 :href="entity.urls.children"
                 :title="entity.name"
-                class="block avatar grow relative cover-background overflow-hidden text-center"
+                class="block avatar grow relative cover-background overflow-hidden text-center text-link"
                 v-bind:style="entityImage()"
                 @click.prevent="selectingAction">
                 <div
@@ -20,7 +20,7 @@
             </a>
             <a
                 :href="entity.urls.show"
-                class="block text-center relative truncate h-12 p-4"
+                class="block text-center relative truncate h-12 p-4 text-link"
                 data-toggle="tooltip-ajax"
                 v-bind:data-id="entity.id"
                 v-bind:data-url="entity.urls.tooltip"
@@ -55,7 +55,7 @@
         </a>
         <a
             :href="entity.urls.show"
-            class="block text-center relative truncate h-12 p-4"
+            class="block text-center relative truncate h-12 p-4 text-link"
             data-toggle="tooltip-ajax"
             v-bind:data-id="entity.id"
             v-bind:data-url="entity.urls.tooltip"
@@ -83,7 +83,7 @@
             </a>
             <a
                 :href="entity.urls.show"
-                class="truncate lg:w-40"
+                class="truncate lg:w-40 text-link"
                 data-toggle="tooltip-ajax"
                 v-bind:data-id="entity.id"
                 v-bind:data-url="entity.urls.tooltip"

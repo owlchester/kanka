@@ -19,7 +19,7 @@ class Era extends Layout
                 'key' => 'name',
                 'label' => 'crud.fields.name',
                 'render' => function (TimelineEra $model) {
-                    return '<a href="' . $model->getLink() . '">' . $model->name . '</a>';
+                    return '<a href="' . $model->getLink() . '" class="text-link">' . $model->name . '</a>';
                 },
             ],
             'abbreviation' => [

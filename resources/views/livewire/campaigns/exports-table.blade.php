@@ -3,7 +3,7 @@
         <thead>
             <tr>
                 <th wire:click="sortBy('status')" style="cursor: pointer;">
-                    <a href="#" >
+                    <a href="#" class="text-link">
                         @if ($sortColumn === 'status')
                             <span>{!! $this->sortIcon() !!}</span>
                         @endif
@@ -11,7 +11,7 @@
                     </a>
                 </th>
                 <th wire:click="sortBy('created_by')" style="cursor: pointer;">
-                    <a href="#" >
+                    <a href="#" class="text-link">
                         @if ($sortColumn === 'created_by')
                             <span>{!! $this->sortIcon() !!}</span>
                         @endif
@@ -19,7 +19,7 @@
                     </a>
                 </th>
                 <th wire:click="sortBy('created_at')" style="cursor: pointer;">
-                    <a href="#" >
+                    <a href="#" class="text-link">
                         @if ($sortColumn === 'created_at')
                             <span>{!! $this->sortIcon() !!}</span>
                         @endif

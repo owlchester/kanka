@@ -16,9 +16,9 @@ $isPrivate = old('is_private', $source->is_private ?? $model->is_private ?? $cam
             </p>
             <x-helper>
                 <p>{!! __('crud.fields.is_private_v3', [
-        'admin-role' => '<a href=\'' . route('campaigns.campaign_roles.admin', $campaign) . '\'>' . $campaign->adminRoleName() . '</a>'
+        'admin-role' => '<a href=\'' . route('campaigns.campaign_roles.admin', $campaign) . '\' class="text-link">' . $campaign->adminRoleName() . '</a>'
         ]) !!}
-                <br /><a href="https://docs.kanka.io/en/latest/features/permissions.html#entity-permissions">
+                <br /><a href="https://docs.kanka.io/en/latest/features/permissions.html#entity-permissions" class="text-link">
                     <x-icon class="fa-regular fa-book" />
                     {{ __('general.documentation') }}
                 </a></p>

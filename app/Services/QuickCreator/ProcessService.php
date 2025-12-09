@@ -200,9 +200,9 @@ class ProcessService
         $links = [];
         foreach ($this->new as $new) {
             if ($new instanceof Post) {
-                $links[] = '<a href="' . $new->entity->url() . '">' . $new->name . '</a>';
+                $links[] = '<a href="' . $new->entity->url() . '" class="text-link">' . $new->name . '</a>';
             } else {
-                $links[] = '<a href="' . $new->url() . '">' . $new->name . '</a>';
+                $links[] = '<a href="' . $new->url() . '" class="text-link">' . $new->name . '</a>';
             }
         }
 

@@ -19,7 +19,7 @@ class Group extends Layout
                 'key' => 'name',
                 'label' => 'crud.fields.name',
                 'render' => function ($model) {
-                    return '<a href="' . $model->getLink() . '" data-target="primary-dialog" data-url="' . $model->getLink() . '" data-toggle="dialog">' . $model->name . '</a>';
+                    return '<a href="' . $model->getLink() . '" data-target="primary-dialog" data-url="' . $model->getLink() . '" data-toggle="dialog" class="text-link">' . $model->name . '</a>';
                 },
             ],
             'position' => [
@@ -41,7 +41,7 @@ class Group extends Layout
                 'key' => 'parent_id',
                 'render' => function ($model) {
                     if ($model->parent) {
-                        return '<a href="' . $model->parent->getLink() . '" data-target="primary-dialog" data-url="' . $model->parent->getLink() . '" data-toggle="dialog">' . $model->parent->name . '</a>';
+                        return '<a href="' . $model->parent->getLink() . '" data-target="primary-dialog" data-url="' . $model->parent->getLink() . '" data-toggle="dialog" class="text-link">' . $model->parent->name . '</a>';
                     }
 
                     return '';

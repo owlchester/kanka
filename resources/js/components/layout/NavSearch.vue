@@ -48,7 +48,7 @@
                             </LookupPage>
                         </div>
 
-                        <a class="grow text-sm uppercase hover:underline" v-bind:href="searchFullTextUrl()">
+                        <a class="grow text-sm uppercase hover:underline text-link" v-bind:href="searchFullTextUrl()">
                             {{ texts.fulltext }}
                         </a>
 

@@ -117,7 +117,7 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
     </div>
 
     <x-dialog id="primary-dialog" :loading="true" />
-    <div id="dialog-backdrop" class="z-1000 fixed top-0 left-0 right-0 bottom-0 h-full w-full backdrop-blur-sm bg-base-100 hidden" style="--tw-bg-opacity: 0.2"></div>
+    <div id="dialog-backdrop" class="z-1000 fixed top-0 left-0 right-0 bottom-0 h-full w-full backdrop-blur-sm hidden" style="--tw-bg-opacity: 0.2"></div>
 
     @include('layouts.dialogs.languages')
     @yield('modals')

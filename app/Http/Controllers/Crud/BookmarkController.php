@@ -104,7 +104,7 @@ class BookmarkController extends CrudController
             $this->view . '.edit',
             [$campaign, $bookmark->id]
         )
-            . '">' . $bookmark->name . '</a>';
+            . '" class="text-link">' . $bookmark->name . '</a>';
         $success = __('general.success.updated', [
             'name' => $link,
         ]);

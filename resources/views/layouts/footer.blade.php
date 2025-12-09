@@ -4,7 +4,7 @@
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5">
                 <div class="flex-col gap-4 hidden lg:flex col-span-2 ">
                     <div class="flex">
-                        <a href="{{ route('home') }}" class="logo">
+                        <a href="{{ route('home') }}" class="logo text-link">
                             <svg class="h-28 w-28"  alt="Kanka Logo" >
                                 <use href="/images/svgs/sprites.svg#kanka-logo" fill="red"></use>
                             </svg>
@@ -38,44 +38,44 @@
                 </div>
                 <div class="flex flex-col gap-3 text-sm">
                     <span class="block text-nav uppercase">{{ __('footer.platform') }}</span>
-                    <a href="{{ Domain::toFront('features') }}">{{ __('footer.features') }}</a>
-                    <a href="{{ Domain::toFront('premium') }}">{{ __('footer.premium') }}</a>
-                    <a href="{{ Domain::toFront('pricing') }}">{{ __('footer.pricing') }}</a>
-                    <a href="{{ config('marketplace.url') }}">{{ __('footer.plugins') }}</a>
+                    <a href="{{ Domain::toFront('features') }}" class="text-link">{{ __('footer.features') }}</a>
+                    <a href="{{ Domain::toFront('premium') }}" class="text-link">{{ __('footer.premium') }}</a>
+                    <a href="{{ Domain::toFront('pricing') }}" class="text-link">{{ __('footer.pricing') }}</a>
+                    <a href="{{ config('marketplace.url') }}" class="text-link">{{ __('footer.plugins') }}</a>
                 </div>
 
                 <div class="flex flex-col gap-3 text-sm">
                     <span class="block text-nav uppercase">{{ __('footer.resources') }}</span>
-                    <a href="{{ Domain::toFront('kb') }}">{{ __('footer.kb') }}</a>
-                    <a href="https://docs.kanka.io/en/latest/index.html" target="_blank">{{ __('footer.documentation') }}</a>
-                    <a href="{{ route('larecipe.index') }}" target="_blank">{{ __('front.features.api.link') }}</a>
-                    <a href="https://blog.kanka.io" target="_blank">{{ __('footer.blog') }}</a>
-                    <a href="https://status.kanka.io" target="_blank">{{ __('footer.status') }}</a>
-                    <a href="{{ Domain::toFront('newsletter') }}">{{ __('footer.newsletter') }}</a>
+                    <a href="{{ Domain::toFront('kb') }}" class="text-link">{{ __('footer.kb') }}</a>
+                    <a href="https://docs.kanka.io/en/latest/index.html" target="_blank" class="text-link">{{ __('footer.documentation') }}</a>
+                    <a href="{{ route('larecipe.index') }}" target="_blank" class="text-link">{{ __('front.features.api.link') }}</a>
+                    <a href="https://blog.kanka.io" target="_blank" class="text-link">{{ __('footer.blog') }}</a>
+                    <a href="https://status.kanka.io" target="_blank" class="text-link">{{ __('footer.status') }}</a>
+                    <a href="{{ Domain::toFront('newsletter') }}" class="text-link">{{ __('footer.newsletter') }}</a>
                 </div>
 
                 <div class="flex flex-col gap-3 text-sm">
                     <span class="block text-nav uppercase">{{ __('footer.community') }}</span>
-                    <a href="https://blog.kanka.io/category/news/" target="_blank">{{ __('footer.whats-new') }}</a>
-                    <a href="{{ Domain::toFront('campaigns') }}">{{ __('footer.public-campaigns') }}</a>
-                    <a href="{{ route('roadmap') }}">{{ __('footer.roadmap') }}</a>
-                    <a href="{{ Domain::toFront('hall-of-fame') }}">{{ __('front/hall-of-fame.title') }}</a>
+                    <a href="https://blog.kanka.io/category/news/" class="text-link" target="_blank">{{ __('footer.whats-new') }}</a>
+                    <a href="{{ Domain::toFront('campaigns') }}" class="text-link">{{ __('footer.public-campaigns') }}</a>
+                    <a href="{{ route('roadmap') }}" class="text-link">{{ __('footer.roadmap') }}</a>
+                    <a href="{{ Domain::toFront('hall-of-fame') }}" class="text-link">{{ __('front/hall-of-fame.title') }}</a>
                 </div>
 
                 <div class="flex flex-col gap-3 text-sm">
                     <span class="block text-nav uppercase">{{ __('footer.company') }}</span>
-                    <a href="{{ Domain::toFront('about') }}">{{ __('footer.about') }}</a>
-                    <a href="{{ Domain::toFront('contact') }}">{{ __('footer.contact') }}</a>
-                    <a href="{{ Domain::toFront('privacy-policy') }}">{{ __('footer.privacy') }}</a>
-                    <a href="{{ Domain::toFront('terms-and-conditions') }}">{{ __('footer.terms') }}</a>
-                    <a href="{{ Domain::toFront('security') }}">{{ __('footer.security') }}</a>
-                    <a href="{{ Domain::toFront('press-kit') }}">{{ __('footer.press-kit') }}</a>
+                    <a href="{{ Domain::toFront('about') }}" class="text-link">{{ __('footer.about') }}</a>
+                    <a href="{{ Domain::toFront('contact') }}" class="text-link">{{ __('footer.contact') }}</a>
+                    <a href="{{ Domain::toFront('privacy-policy') }}" class="text-link">{{ __('footer.privacy') }}</a>
+                    <a href="{{ Domain::toFront('terms-and-conditions') }}" class="text-link">{{ __('footer.terms') }}</a>
+                    <a href="{{ Domain::toFront('security') }}" class="text-link">{{ __('footer.security') }}</a>
+                    <a href="{{ Domain::toFront('press-kit') }}" class="text-link">{{ __('footer.press-kit') }}</a>
                 </div>
             </div>
             <div class="lg:hidden flex flex-col gap-5 text-center">
                 <div class="logo text-center">
                     <div class="inline-block">
-                        <a href="{{ route('home') }}" class="logo">
+                        <a href="{{ route('home') }}" class="logo text-link">
 
                             <svg class="h-28 w-28" alt="Kanka Logo" >
                                 <use href="/images/svgs/sprites.svg#kanka-logo"></use>

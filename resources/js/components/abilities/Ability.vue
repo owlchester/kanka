@@ -12,7 +12,7 @@
             <div class="flex flex-col gap-4 w-full">
                 <div class="flex gap-2 md:gap-4 items-center w-full">
                     <div class="flex gap-2 items-center text-xl grow">
-                        <a v-bind:href="ability.actions.view" class="ability-name text-2xl" v-html="ability.name"></a>
+                        <a v-bind:href="ability.actions.view" class="ability-name text-2xl text-link" v-html="ability.name"></a>
                         <i class="fa-regular fa-lock" v-if="ability.visibility_id === 2" v-bind:title="ability.visibility"></i>
                         <i class="fa-regular fa-user-lock" v-if="ability.visibility_id === 3" v-bind:title="ability.visibility"></i>
                         <i class="fa-regular fa-users" v-if="ability.visibility_id === 5" v-bind:title="ability.visibility"></i>

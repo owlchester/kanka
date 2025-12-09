@@ -17,7 +17,7 @@ const props = defineProps<{
 }>()
 
 const boxCss = () => {
-    let css = 'flex justify-center gap-2 cursor-pointer w-full';
+    let css = 'flex justify-center gap-2 cursor-pointer w-full text-link';
     return css;
 }
 </script>

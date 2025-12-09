@@ -69,7 +69,7 @@ const quickCreatorDuplicateName = () => {
                 return;
             }
             const entities = Object.keys(res.data)
-                .map(function (k) { return '<a href="' + res.data[k].url + '">' + res.data[k].name + '</a>'; })
+                .map(function (k) { return '<a href="' + res.data[k].url + '" class="text-link">' + res.data[k].name + '</a>'; })
                 .join(', ');
             field.parentNode.querySelector('.duplicate-entities').innerHTML = entities;
             warning.classList.remove('hidden');

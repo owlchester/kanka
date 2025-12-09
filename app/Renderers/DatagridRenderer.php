@@ -288,7 +288,7 @@ class DatagridRenderer
         }
 
         return "<a href='" .
-            url()->route($this->getOption('route'), $routeOptions) . "'>" . $label . $orderImg . '</a>';
+            url()->route($this->getOption('route'), $routeOptions) . "' class='text-link'>" . $label . $orderImg . '</a>';
     }
 
     private function renderRows()
@@ -485,7 +485,7 @@ class DatagridRenderer
                 /** @var Journal $model */
                 if ($model->entity->calendarDate && $model->entity->calendarDate->calendar && $model->entity->calendarDate->calendar->entity) {
                     $reminder = $model->entity->calendarDate;
-                    $content = '<a href="' . route('entities.show', [$this->campaign, $reminder->calendar->entity, 'month' => $reminder->month, 'year' => $reminder->year]) . '">' . $reminder->readableDate() . '</a>';
+                    $content = '<a href="' . route('entities.show', [$this->campaign, $reminder->calendar->entity, 'month' => $reminder->month, 'year' => $reminder->year]) . '" class="text-link">' . $reminder->readableDate() . '</a>';
                 }
             } else {
                 // Exception
@@ -555,7 +555,7 @@ class DatagridRenderer
         if (isset($this->user) && $this->user->can('update', $model)) {
             $actions .= ' <a href="'
                 . route($this->getOption('baseRoute') . '.edit', [$this->campaign, $model])
-                . '" title="' . __('crud.edit') . '">
+                . '" title="' . __('crud.edit') . '" class="text-link">
                 <i class="fa-regular fa-edit" aria-hidden="true"></i>
             </a>';
         }
@@ -606,6 +606,6 @@ class DatagridRenderer
         }
 
         // @phpstan-ignore-next-line
-        return '<a href="' . $model->getLink() . '">' . $model->name . '</a>';
+        return '<a href="' . $model->getLink() . '" class="text-link">' . $model->name . '</a>';
     }
 }

@@ -12,7 +12,7 @@
         @endif
         {!! $slot !!}
         @if (!empty($doc))
-            <a href="{{ $doc }}">
+            <a href="{{ $doc }}" class="text-link">
                 <x-icon class="fa-regular fa-book" />
                 {{ __('general.documentation') }}
             </a>

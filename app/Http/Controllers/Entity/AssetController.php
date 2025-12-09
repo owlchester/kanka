@@ -30,7 +30,7 @@ class AssetController extends Controller
             return redirect()->route('entities.show', [$campaign, $entity])->with(
                 'error_raw',
                 __('campaigns.settings.errors.module-disabled', [
-                    'fix' => '<a href="' . route('campaign.modules', [$campaign, '#assets']) . '">' . __('crud.fix-this-issue') . '</a>',
+                    'fix' => '<a href="' . route('campaign.modules', [$campaign, '#assets']) . '" class="text-link">' . __('crud.fix-this-issue') . '</a>',
                 ])
             );
         }

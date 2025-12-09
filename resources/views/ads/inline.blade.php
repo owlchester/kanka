@@ -69,7 +69,7 @@
             'currency' => auth()->check() ? auth()->user()->currencySymbol() : '$',
             'premium' =>  __('concept.premium-campaigns'),
             ]) !!}
-            <a href="{{ route('settings.subscription') }}">
+            <a href="{{ route('settings.subscription') }}" class="text-link">
                 {{ __('misc.ads.member') }}
             </a>
         </p>

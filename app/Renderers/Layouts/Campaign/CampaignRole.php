@@ -23,7 +23,7 @@ class CampaignRole extends Layout
                     /** @var \App\Models\CampaignRole $model */
                     $campaign = CampaignLocalization::getCampaign();
                     $html = '<a href="' . route('campaign_roles.show', [$campaign, 'campaign_role' => $model])
-                        . '">' . $model->name
+                        . '" class="text-link">' . $model->name
                         . '</a><br />';
 
                     return $html;

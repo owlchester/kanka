@@ -31,7 +31,7 @@ class CampaignUser extends Layout
                 'key' => 'user.name',
                 'label' => 'campaigns.members.fields.name',
                 'render' => function (\App\Models\CampaignUser $model) {
-                    $html = '<a class="block break-all truncate" href="' . route('users.profile', [$model->user]) . '" target="_blank">' . $model->user->name . '</a>';
+                    $html = '<a class="block break-all truncate text-link" href="' . route('users.profile', [$model->user]) . '" target="_blank">' . $model->user->name . '</a>';
                     if ($model->user->isBanned()) {
                         $html .= '<i class="fa-regular fa-ban" aria-hidden="true" data-toggle="tooltip" data-title = "' . __('campaigns.members.fields.banned') . '"></i>';
                     }
@@ -49,7 +49,7 @@ class CampaignUser extends Layout
                     $roleLinks = [];
                     foreach ($roles as $role) {
                         if (auth()->user()->isAdmin()) {
-                            $roleLinks[] = '<a href="' . route('campaign_roles.show', [$campaign, $role->id]) . '">' . $role->name . '</a>';
+                            $roleLinks[] = '<a href="' . route('campaign_roles.show', [$campaign, $role->id]) . '" class="text-link">' . $role->name . '</a>';
                         } else {
                             $roleLinks[] = $role->name;
                         }

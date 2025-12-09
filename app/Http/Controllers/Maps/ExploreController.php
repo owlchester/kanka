@@ -52,8 +52,8 @@ class ExploreController extends Controller
         } catch (Exception $e) {
             return redirect()->route('entities.show', [$campaign, $map->entity])
                 ->with('error_raw', __('Error getting bounds from the map. This sometimes happens with animated WebP files, which aren\'t supported. Please contact us on :discord or at at :email.', [
-                    'discord' => '<a href="http://kanka.io/go/discord">Discord</a>',
-                    'email' => '<a href="mailto:' . config('app.email') . '">' . config('app.email') . '</a>',
+                    'discord' => '<a href="http://kanka.io/go/discord" class="text-link">Discord</a>',
+                    'email' => '<a href="mailto:' . config('app.email') . '" class="text-link">' . config('app.email') . '</a>',
                 ]));
         }
 

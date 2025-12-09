@@ -94,7 +94,7 @@ class RelationController extends CrudController
             $count = $this->relationService->getCount();
 
             $success = trans_choice($this->langKey . '.create.success_bulk', $count, [
-                'entity' => '<a href="' . $new->owner->url() . '">' . $new->owner->name . '</a>',
+                'entity' => '<a href="' . $new->owner->url() . '" class="text-link">' . $new->owner->name . '</a>',
                 'count' => $count,
             ]);
             session()->flash('success_raw', $success);

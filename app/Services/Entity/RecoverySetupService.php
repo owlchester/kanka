@@ -136,7 +136,7 @@ class RecoverySetupService
             'upgrade' => __('cookieconsent.link'),
             'confirm' => __('crud.actions.confirm'),
             'deleted_at' => __('campaigns/recovery.fields.deleted_at', ['date' => 'placeholder', 'user' => 'placeholder']),
-            'recovery_success' => __('campaigns/recovery.name_link', ['name' => '<a href="placeholder">placeholder</a>']),
+            'recovery_success' => __('campaigns/recovery.name_link', ['name' => '<a href="placeholder" class="text-link">placeholder</a>']),
 
         ];
         // Modules

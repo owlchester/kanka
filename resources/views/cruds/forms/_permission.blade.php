@@ -46,7 +46,7 @@ if (!empty($source) && $source->is_private) {
         'admin' => '<a href="' . route(
             'campaigns.campaign_roles.admin',
             $campaign,
-        ) . '">' .
+        ) . '" class="text-link">' .
         $campaign->adminRoleName() . '</a>',
     ]) !!}</p>
     </x-alert>

@@ -19,7 +19,7 @@ class PreviewController extends Controller
             return redirect()->route('dashboard', $campaign)->with(
                 'error_raw',
                 __('campaigns.settings.errors.module-disabled', [
-                    'fix' => '<a href="' . route('campaign.modules', [$campaign, '#maps']) . '">' . __('crud.fix-this-issue') . '</a>',
+                    'fix' => '<a href="' . route('campaign.modules', [$campaign, '#maps']) . '" class="text-link">' . __('crud.fix-this-issue') . '</a>',
                 ])
             );
         }

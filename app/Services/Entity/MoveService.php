@@ -98,7 +98,7 @@ class MoveService
         if (! $this->user->can('create', [$this->entity->entityType, $campaign])) {
             throw (new TranslatableException('entities/move.errors.permission'))->setOptions([
                 'type' => $this->entity->entityType->name(),
-                'target' => '<a href="' . route('dashboard', $campaign) . '">' . $campaign->name . '</a>',
+                'target' => '<a href="' . route('dashboard', $campaign) . '" class="text-link">' . $campaign->name . '</a>',
             ]);
         }
 

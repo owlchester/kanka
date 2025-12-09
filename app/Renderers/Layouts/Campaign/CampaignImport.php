@@ -22,7 +22,7 @@ class CampaignImport extends Layout
                     if (! $model->user_id) {
                         return '';
                     }
-                    $html = '<a class="block break-all truncate" href="' . route('users.profile', [$model->user]) . '" target="_blank">' . $model->user->name . '</a>';
+                    $html = '<a class="block break-all truncate text-link" href="' . route('users.profile', [$model->user]) . '" target="_blank">' . $model->user->name . '</a>';
 
                     return $html;
                 },

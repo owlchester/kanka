@@ -123,7 +123,7 @@ class ExportsTable extends Component
             if (Storage::disk('s3')->visibility($model->path) == 'private') {
                 Storage::disk('s3')->setVisibility($model->path, 'public');
             }
-            $html = '<a class="flex items-center gap-1" href="' . Storage::disk('s3')->url($model->path) . '">' .
+            $html = '<a class="flex items-center gap-1 text-link" href="' . Storage::disk('s3')->url($model->path) . '">' .
                 '<i class="fa-regular fa-download" aria-hidden="true"></i>' .
                 __('campaigns/export.actions.download') .
                 '</a>';

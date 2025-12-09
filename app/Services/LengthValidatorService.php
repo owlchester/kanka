@@ -29,13 +29,13 @@ class LengthValidatorService
         if ($length >= $totalLength) {
             return [
                 'overflow' => true,
-                'message' => __('calendars.warnings.event_length', ['documentation' => '<a href="https://docs.kanka.io/en/latest/entities/calendars.html#long-lasting-reminders" target="_blank"><i class="fa-solid fa-external-link" aria-hidden="true"></i> ' . __('footer.documentation') . '</a>',
+                'message' => __('calendars.warnings.event_length', ['documentation' => '<a href="https://docs.kanka.io/en/latest/entities/calendars.html#long-lasting-reminders"  class="text-link"><i class="fa-solid fa-external-link" aria-hidden="true"></i> ' . __('footer.documentation') . '</a>',
                 ])];
         }
 
         return [
             'overflow' => false,
-            'message' => __('calendars.warnings.event_length', ['documentation' => '<a href="https://docs.kanka.io/en/latest/entities/calendars.html#long-lasting-reminders" target="_blank"><i class="fa-solid fa-external-link" aria-hidden="true"></i> ' . __('footer.documentation') . '</a>',
+            'message' => __('calendars.warnings.event_length', ['documentation' => '<a href="https://docs.kanka.io/en/latest/entities/calendars.html#long-lasting-reminders" class="text-link"><i class="fa-solid fa-external-link" aria-hidden="true"></i> ' . __('footer.documentation') . '</a>',
             ])];
     }
 }

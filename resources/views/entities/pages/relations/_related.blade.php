@@ -16,7 +16,7 @@
                         {{ __('crud.fields.entity') }}
                         <x-icon class="fa-regular fa-arrow-down" />
                     @else
-                        <a href="{{ route('entities.relations.index', [$campaign, $entity, 'mode' => 'table', '#entity-related', 'order' => 'name']) }}">
+                        <a href="{{ route('entities.relations.index', [$campaign, $entity, 'mode' => 'table', '#entity-related', 'order' => 'name']) }}" class="text-link">
                             {{ __('crud.fields.name') }}
                         </a>
                     @endif

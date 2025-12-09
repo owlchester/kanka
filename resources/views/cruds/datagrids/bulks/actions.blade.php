@@ -10,10 +10,6 @@ if (auth()->check() && auth()->user()->isAdmin()) {
             'icon' => 'edit',
             'text' => __('crud.bulk.actions.edit')
         ];
-        /*'
-        <a href="#" class="bulk-edit" data-toggle="dialog" data-target="bulk-edit" data-bulk-action="batch">
-             ' .  . '
-        </a>';*/
     }
     if ($datagridActions->hasBulkPermissions()) {
         $dropdownActions[] = [
@@ -22,10 +18,6 @@ if (auth()->check() && auth()->user()->isAdmin()) {
             'icon' => 'lock',
             'text' => __('crud.bulk.actions.permissions')
         ];
-        /*$dropdownActions[] = '
-            <a href="#" class="bulk-permissions" data-toggle="dialog" data-url="' . route('bulk.permissions', [$campaign, 'entity_type' => $entityTypeId]) . '" data-bulk-action="ajax">
-                <i class="fa-solid fa-cog" aria-hidden="true"></i> ' .  __('crud.bulk.actions.permissions') . '
-            </a>';*/
     }
     if ($datagridActions->hasBulkTemplate() && $campaign->enabled('entity_attributes')) {
         $dropdownActions[] = [
@@ -50,10 +42,6 @@ if (auth()->check() && auth()->user()->isAdmin()) {
             'icon' => 'fa-regular fa-clone',
             'text' => __('crud.actions.copy_to_campaign')
         ];
-        /*$dropdownActions[] = '
-            <a href="#" class="bulk-copy-campaign" data-toggle="dialog" data-url="' .  route('bulk.copy-to-campaign', [$campaign, 'entity_type' => $entityTypeId]) . '" data-bulk-action="ajax">
-                <x-icon class="fa-regular fa-clone" /> ' .  __('crud.actions.copy_to_campaign') . '
-            </a>';*/
     }
 }
 if ($datagridActions->hasBulkPrint()) {
@@ -62,11 +50,6 @@ if ($datagridActions->hasBulkPrint()) {
             'icon' => 'fa-regular fa-print',
             'text' => __('crud.actions.print')
         ];
-    /*$dropdownActions[] = '
-    <a href="#" class="bulk-print">
-        <x-icon class="fa-solid fa-print" />
-        ' . __('crud.actions.print') . '
-    </a>';*/
 }
 if ($model instanceof \App\Models\Relation && auth()->user()->can('delete', $model)) {
     $dropdownActions[] = 'divider';

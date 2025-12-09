@@ -1,4 +1,4 @@
-<a class="name"
+<a class="name text-link"
    data-toggle="tooltip-ajax"
    data-id="{{ $entity->id }}"
    data-url="{{ route('entities.tooltip', [$campaign, $entity->id]) }}"

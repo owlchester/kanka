@@ -58,7 +58,7 @@ $old = isset($entity) && !empty($entity->image_path) || isset($model) && !empty(
         'cta_title' => __('gallery.cta.title'),
         'cta_action' => __('gallery.cta.action'),
         'cta_helper' => __('gallery.cta.helper', [
-            'premium-campaign' => '<a href="https://kanka.io/premium" target="_blank">' . __('concept.premium-campaign') . '</a>',
+            'premium-campaign' => '<a href="https://kanka.io/premium" class="text-link">' . __('concept.premium-campaign') . '</a>',
             'size' => number_format(config('limits.gallery.premium') / (1024 * 1024), 2)
             ]),
     ]);

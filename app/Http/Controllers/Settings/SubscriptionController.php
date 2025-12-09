@@ -238,7 +238,7 @@ class SubscriptionController extends Controller
                     ->with('error_raw', __('subscription.errors.invalid_currency', [
                         'old' => mb_strtoupper($currencies[1][0]),
                         'new' => mb_strtoupper($currencies[1][1]),
-                        'email' => '<a href="mailto:' . config('app.email') . '">' . config('app.email') . '</a>',
+                        'email' => '<a href="mailto:' . config('app.email') . '" class="text-link">' . config('app.email') . '</a>',
                     ]));
             }
 

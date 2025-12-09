@@ -364,7 +364,7 @@ class MentionsService
                         }
                         $cssClasses[] = 'mention-field-entry block';
                         $entityName = '<a href="' . $url . '"'
-                            . ' class="entity-mention-name block mb-2"'
+                            . ' class="entity-mention-name block mb-2 text-link"'
                             . ' data-toggle="tooltip-ajax"'
                             . ' data-id="' . $entity->id . '"'
                             . ' data-url="' . $dataUrl . '"'
@@ -422,7 +422,7 @@ class MentionsService
                 }
 
                 if ($this->isCopying) {
-                    return '<a href="' . $url . '" class="external-mention" data-entity-type="' . $entity->entityType->code . '"'
+                    return '<a href="' . $url . '" class="external-mention text-link" data-entity-type="' . $entity->entityType->code . '"'
                     . '>'
                     . Arr::get($data, 'text', $entity->name)
                     . '</a>';

@@ -54,6 +54,9 @@ div.mce-fullscreen {
     > ol:first-of-type {
         margin-bottom: .5rem;
     }
+    a {
+        color: var(--link-text, hsl(var(--p)/var(--tw-text-opacity)));
+    }
 }
 .note-popover {
     position: absolute;

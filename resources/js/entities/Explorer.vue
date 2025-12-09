@@ -209,7 +209,7 @@
         </div>
         <div class="flex gap-1 items-start">
             <div :class="gridLayout()">
-                <a v-if="parent && isGrid()" :href="parent.urls.parent" class="entity w-[47%] xs:w-[25%] sm:w-48 overflow-hidden rounded flex flex-col shadow-xs hover:shadow sm">
+                <a v-if="parent && isGrid()" :href="parent.urls.parent" class="entity w-[47%] xs:w-[25%] sm:w-48 overflow-hidden rounded flex flex-col shadow-xs hover:shadow sm text-link">
                     <div class="w-46 flex items-center justify-center grow  text-6xl">
                         <i class="fa-regular fa-arrow-left" aria-hidden="true"></i>
                     </div>
@@ -217,7 +217,7 @@
                         <span v-html="parent.links.back"></span>
                     </div>
                 </a>
-                <a v-else-if="parent && !isGrid()" :href="parent.urls.parent" class="rounded-xl flex bg-base-100 shadow-xs items-center gap-4 py-2 px-4 overflow-hidden">
+                <a v-else-if="parent && !isGrid()" :href="parent.urls.parent" class="rounded-xl flex bg-base-100 shadow-xs items-center gap-4 py-2 px-4 overflow-hidden text-link">
                     <div class="">
                         <i class="fa-regular fa-arrow-left" aria-hidden="true"></i>
                     </div>

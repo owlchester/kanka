@@ -28,7 +28,7 @@ class Reminder extends Layout
                 'render' => function (Model $reminder) {
                     $params = '?year=' . $reminder->year . '&month=' . $reminder->month;
 
-                    return '<a href="' . $reminder->calendar->getLink() . $params . '">' . $reminder->readableDate() . '</a>';
+                    return '<a href="' . $reminder->calendar->getLink() . $params . '" class="text-link">' . $reminder->readableDate() . '</a>';
                 },
             ],
             'length' => [

@@ -17,9 +17,6 @@
                 <x-dropdowns.item :link="$action['route']" :icon="$action['icon']">
                     {{ __($action['label']) }}
                 </x-dropdowns.item>
-{{--                <a href="{{ $action['route'] }}" class="p-1 flex items-center gap-2 text-sm text-base-content font-normal">--}}
-{{--                    <x-icon class="{{ $action['icon'] }}" />--}}
-{{--                </a>--}}
             @endif
         @endforeach
     </div>

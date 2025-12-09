@@ -115,7 +115,7 @@ class CrudController extends Controller
                 'error_raw',
                 __('campaigns/modules.errors.disabled', [
                     'name' => $this->getEntityType()->plural(), // @phpstan-ignore-line
-                    'fix' => '<a href="' . route('campaign.modules', [$this->campaign, '#' . $this->getEntityType()->code]) . '">' . __('crud.fix-this-issue') . '</a>', // @phpstan-ignore-line
+                    'fix' => '<a href="' . route('campaign.modules', [$this->campaign, '#' . $this->getEntityType()->code]) . '" class="text-link">' . __('crud.fix-this-issue') . '</a>', // @phpstan-ignore-line
                 ])
             );
         }
@@ -434,7 +434,7 @@ class CrudController extends Controller
                 $new->entity ? 'entities.show' : $this->view . '.show',
                 $new->entity ? [$this->campaign, $new->entity] : [$this->campaign, $new->id]
             )
-                . '">' . $new->name . '</a>';
+                . '" class="text-link">' . $new->name . '</a>';
             $success = __('general.success.created', [
                 'name' => $link,
             ]);
@@ -591,7 +591,7 @@ class CrudController extends Controller
                 $model->entity ? 'entities.show' : $this->view . '.show',
                 $model->entity ? [$this->campaign, $model->entity] : [$this->campaign, $model->id]
             )
-                . '">' . $model->name . '</a>';
+                . '" class="text-link">' . $model->name . '</a>';
             $success = __('general.success.updated', [
                 'name' => $link,
             ]);
@@ -657,7 +657,7 @@ class CrudController extends Controller
             ->with('success_raw', __('general.success.deleted-cancel', [
                 'name' => $model->name,
                 // @phpstan-ignore-next-line
-                'cancel' => '<a href="' . route('recovery', $model->campaign) . '">' . __('crud.cancel') . '</a>',
+                'cancel' => '<a href="' . route('recovery', $model->campaign) . '" class="text-link">' . __('crud.cancel') . '</a>',
             ]));
     }
 

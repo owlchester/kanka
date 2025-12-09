@@ -27,7 +27,7 @@ class AttributeController extends Controller
             return redirect()->route('entities.show', [$campaign, $entity])->with(
                 'error_raw',
                 __('campaigns.settings.errors.module-disabled', [
-                    'fix' => '<a href="' . route('campaign.modules', [$campaign, '#entity_attributes']) . '">' . __('crud.fix-this-issue') . '</a>',
+                    'fix' => '<a href="' . route('campaign.modules', [$campaign, '#entity_attributes']) . '" class="text-link">' . __('crud.fix-this-issue') . '</a>',
                 ])
             );
         }
@@ -58,7 +58,7 @@ class AttributeController extends Controller
             return redirect()->route('dashboard', $campaign)->with(
                 'error_raw',
                 __('campaigns.settings.errors.module-disabled', [
-                    'fix' => '<a href="' . route('campaign.modules', [$campaign, '#entity_attributes']) . '">' . __('crud.fix-this-issue') . '</a>',
+                    'fix' => '<a href="' . route('campaign.modules', [$campaign, '#entity_attributes']) . '" class="text-link">' . __('crud.fix-this-issue') . '</a>',
                 ])
             );
         }
@@ -90,7 +90,7 @@ class AttributeController extends Controller
             return redirect()->route('dashboard', $campaign)->with(
                 'error_raw',
                 __('campaigns.settings.errors.module-disabled', [
-                    'fix' => '<a href="' . route('campaign.modules', [$campaign, '#entity_attributes']) . '">' . __('crud.fix-this-issue') . '</a>',
+                    'fix' => '<a href="' . route('campaign.modules', [$campaign, '#entity_attributes']) . '" class="text-link">' . __('crud.fix-this-issue') . '</a>',
                 ])
             );
         }

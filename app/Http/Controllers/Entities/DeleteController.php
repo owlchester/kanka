@@ -28,7 +28,7 @@ class DeleteController extends Controller
         return redirect()->route($routeName . '.index', $params)
             ->with('success_raw', __('general.success.deleted-cancel', [
                 'name' => $entity->name,
-                'cancel' => '<a href="' . route('recovery', $campaign) . '">' . __('crud.cancel') . '</a>',
+                'cancel' => '<a href="' . route('recovery', $campaign) . '" class="text-link">' . __('crud.cancel') . '</a>',
             ]));
     }
 }

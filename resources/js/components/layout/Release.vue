@@ -1,7 +1,7 @@
 <template>
     <div :class="backgroundClass(release)" v-if="!is_dismissed" :data-id="release.id">
         <div class="grow p-2">
-            <a v-html="release.title" class="font-bold cursor-pointer block w-full" v-bind:href="release.url" target="_blank"></a>
+            <a v-html="release.title" class="font-bold cursor-pointer block w-full text-link" v-bind:href="release.url" target="_blank"></a>
             <p v-html="release.text"></p>
         </div>
         <div class="flex-none p-2 cursor-pointer dismissable" v-on:click="dismiss(release)" v-if="!is_loading" :title="release.dismiss_text">

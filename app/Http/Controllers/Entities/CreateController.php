@@ -90,7 +90,7 @@ class CreateController extends Controller
                 'entities.show',
                 [$campaign, $entity]
             )
-                . '">' . $entity->name . '</a>';
+                . '" class="text-link">' . $entity->name . '</a>';
             $success = __('general.success.created', [
                 'name' => $link,
             ]);

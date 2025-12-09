@@ -9,19 +9,19 @@
         @if ($entity)
             <p class="m-0">
             {!! __('crud.history.created_clean', [
-                'name' => (!empty($entity->created_by) ? '<a href="' . route('users.profile', $entity->created_by) . '">' . e(\App\Facades\UserCache::name($entity->created_by)) . '</a>' : __('crud.history.unknown')),
+                'name' => (!empty($entity->created_by) ? '<a href="' . route('users.profile', $entity->created_by) . '" class="text-link">' . e(\App\Facades\UserCache::name($entity->created_by)) . '</a>' : __('crud.history.unknown')),
                 'date' => '<span data-toggle="tooltip" data-title="' . $entity->created_at . ' UTC' . '">' . $entity->created_at->diffForHumans() . '</span>',
             ]) !!}
             </p>
             @if (!$entity->created_at->equalTo($entity->updated_at))
             <p class="m-0">{!! __('crud.history.updated_clean', [
-            'name' => (!empty($entity->updated_by) ? '<a href="' . route('users.profile', $entity->updated_by) . '">' . e(\App\Facades\UserCache::name($entity->updated_by)) . '</a>' : __('crud.history.unknown')),
+            'name' => (!empty($entity->updated_by) ? '<a href="' . route('users.profile', $entity->updated_by) . '" class="text-link">' . e(\App\Facades\UserCache::name($entity->updated_by)) . '</a>' : __('crud.history.unknown')),
             'date' => '<span data-toggle="tooltip" data-title="' . $entity->updated_at . ' UTC' . '">' . $entity->updated_at->diffForHumans() . '</span>',
         ]) !!}
             </p>
             @endif
             @can('update', $entity)
-                <a href="{{ route('entities.logs', [$campaign, $entity]) }}" title="{{ __('crud.history.view') }}" class="print-none">
+                <a href="{{ route('entities.logs', [$campaign, $entity]) }}" title="{{ __('crud.history.view') }}" class="print-none text-link">
                     <x-icon class="fa-regular fa-history" />
                     <span class="hidden md:inline">{{ __('crud.history.view') }}</span>
                 </a>
@@ -29,12 +29,12 @@
         @else
             <p class="m-0">
             {!! __('crud.history.created_clean', [
-                'name' => (!empty($model->created_by) ? '<a href="' . route('users.profile', $model->created_by) . '">' . e(\App\Facades\UserCache::name($model->created_by)) . '</a>' : __('crud.history.unknown')),
+                'name' => (!empty($model->created_by) ? '<a href="' . route('users.profile', $model->created_by) . '" class="text-link">' . e(\App\Facades\UserCache::name($model->created_by)) . '</a>' : __('crud.history.unknown')),
                 'date' => '<span data-toggle="tooltip" data-title="' . $model->created_at . ' UTC' . '">' . $model->created_at->diffForHumans() . '</span>',
             ]) !!}
             </p>
             <p class="m-0">{!! __('crud.history.updated_clean', [
-            'name' => (!empty($model->updated_by) ? '<a href="' . route('users.profile', $model->updated_by) . '">' . e(\App\Facades\UserCache::name($model->updated_by)) . '</a>' : __('crud.history.unknown')),
+            'name' => (!empty($model->updated_by) ? '<a href="' . route('users.profile', $model->updated_by) . '" class="text-link">' . e(\App\Facades\UserCache::name($model->updated_by)) . '</a>' : __('crud.history.unknown')),
             'date' =>'<span data-toggle="tooltip" data-title="' . $model->updated_at . ' UTC' . '">' . $model->updated_at->diffForHumans() . '</span>',
         ]) !!}
             </p>

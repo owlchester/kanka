@@ -294,6 +294,6 @@ class DatagridRenderer2
         }
 
         // @phpstan-ignore-next-line
-        return '<a href="' . $model->getLink() . '">' . $model->name . '</a>';
+        return '<a href="' . $model->getLink() . '" class="text-link">' . $model->name . '</a>';
     }
 }
