@@ -26,7 +26,7 @@ class ModuleEditService
 
     public function update(UpdateModuleName $request): self
     {
-        $settings = $this->campaign->settings;
+        $settings = $this->campaign->§settings;
 
         $key = $this->entityType->id;
         unset($settings['modules'][$key]['s'], $settings['modules'][$key]['p'], $settings['modules'][$key]['i']);
@@ -34,7 +34,7 @@ class ModuleEditService
 
         if ($this->campaign->boosted()) {
             $singular = $plural = $icon = null;
-            if ($this->campaign->$request->filled('singular')) {
+            if ($request->filled('singular')) {
                 $singular = $this->purify(mb_trim($request->get('singular')));
             }
             if ($request->filled('plural')) {
