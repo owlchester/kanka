@@ -8,7 +8,7 @@
         <div class="campaign-content flex flex-col gap-2 ">
             <div class="campaign-head flex gap-2 justify-between items-center">
                 <div class="truncate">
-                    <a href="{{ route('overview', $campaign) }}" title="{!! $campaign->name !!}" class="campaign-title text-2xl drop-shadow-sm">
+                    <a href="{{ route('overview', $campaign) }}" title="{!! $campaign->name !!}" class="campaign-title text-2xl text-link">
                         {!! $campaign->name !!}
                     </a>
                 </div>
@@ -17,7 +17,7 @@
                 </div>
             </div>
             @if ($campaign->hasPreview())
-                <div class="preview">
+                <div class="preview entity-content">
                     {!! $campaign->preview() !!}
                 </div>
             @endif

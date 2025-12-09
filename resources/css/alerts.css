@@ -25,25 +25,3 @@
     color: hsl(var(--inc)/var(--tw-text-opacity));
     --alert-bg: hsl(var(--in));
 }
-
-.bg-success {
-    --tw-bg-opacity: 1;
-    background-color: hsl(var(--su)/var(--tw-bg-opacity));
-}
-.bg-error {
-    --tw-bg-opacity: 1;
-    background-color: hsl(var(--er)/var(--tw-bg-opacity));
-}
-.hover\:bg-error:hover {
-    --tw-bg-opacity: 1;
-    background-color: hsl(var(--er)/var(--tw-bg-opacity));
-}
-
-.bg-warning {
-    --tw-bg-opacity: 1;
-    background-color: hsl(var(--wa)/var(--tw-bg-opacity));
-}
-.bg-info {
-    --tw-bg-opacity: 1;
-    background-color: hsl(var(--in)/var(--tw-bg-opacity));
-}

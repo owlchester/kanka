@@ -1,5 +1,5 @@
 @can ('follow', $campaign)
-    <button id="campaign-follow" class="btn2 btn-sm hidden" data-id="{{ $campaign->id }}"
+    <button id="campaign-follow" class="btn2 btn-sm btn-outline hidden" data-id="{{ $campaign->id }}"
             data-following="{{ $campaign->isFollowing() ? true : false }}"
             data-follow="{{ __('dashboard.actions.follow') }}"
             data-unfollow="{{ __('dashboard.actions.unfollow') }}"
@@ -12,13 +12,13 @@
     </button>
 @endcan
 @can('apply', $campaign)
-    <button id="campaign-apply" class="btn2 btn-sm" data-id="{{ $campaign->id }}"
+    <button id="campaign-apply" class="btn2 btn-sm btn-outline" data-id="{{ $campaign->id }}"
             data-url="{{ route('campaign.apply', $campaign) }}"
             data-toggle="dialog" data-title="{{ __('dashboard.helpers.join') }}"
             data-target="apply-dialog"
             data-placement="bottom"
     >
-        <x-icon class="fa-solid fa-door-open" />
+        <x-icon class="fa-regular fa-door-open" />
         {{ __('dashboard.actions.join') }}
     </button>
 @endcan
@@ -26,7 +26,7 @@
 @cannot('update', $campaign)
     @if(!empty($dashboards))
         <div class="dropdown ">
-            <button type="button" class="btn2 btn-sm" data-dropdown aria-expanded="false">
+            <button type="button" class="btn2 btn-sm btn-outline" data-dropdown aria-expanded="false">
                 <x-icon class="fa-regular fa-th-large" />
             </button>
             <div class="dropdown-menu hidden" role="menu">
@@ -55,7 +55,7 @@
         </div>
     @else
         @can('dashboard', $campaign)
-            <a href="{{ route('dashboard.setup', [$campaign]) }}" class="btn2 btn-sm">
+            <a href="{{ route('dashboard.setup', [$campaign]) }}" class="btn2 btn-sm btn-outline">
                 <x-icon class="cog" /> {{ __('dashboard.actions.customise') }}
             </a>
         @endcan
@@ -64,9 +64,8 @@
 
 @can('update', $campaign)
     <div class="dropdown">
-        <button class="btn2 btn-sm" data-dropdown aria-expanded="false">
+        <button class="btn2 btn-sm btn-outline" data-dropdown aria-expanded="false">
             <x-icon class="fa-regular fa-ellipsis-h" />
-
         </button>
         <div class="dropdown-menu hidden" role="menu">
             @if (!empty($dashboard))

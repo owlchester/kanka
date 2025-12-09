@@ -22,6 +22,7 @@
     --color-error-content: hsl(var(--erc)/1);
     --color-primary: hsl(var(--p)/1);
     --color-primary-content: hsl(var(--pc)/1);
+    --color-primary-focus: hsl(var(--pf)/1);
     --color-success: hsl(var(--su)/1);
     --color-success-content: hsl(var(--suc)/1);
     --color-accent: hsl(var(--a)/1);
@@ -31,6 +32,8 @@
     --color-neutral-content: hsl(var(--nc)/1);
     --color-warning: hsl(var(--wa)/1);
     --color-warning-content: hsl(var(--wac)/1);
+    --color-info: hsl(var(--in)/1);
+    --color-info-content: hsl(var(--inc)/1);
 }
 
 .text-sidebar-content {
@@ -43,11 +46,6 @@
     color:hsl(var(--sic)/var(--tw-text-opacity)) !important;
 }
 
-.hover\:text-primary-focus:hover {
-  --tw-text-opacity: 1;
-  color:hsl(var(--pf)/var(--tw-text-opacity))
-}
-
 .help-block {
     --tw-text-opacity: 1;
     color:hsl(var(--nc)/var(--tw-text-opacity))
@@ -55,12 +53,6 @@
 
 
 /** background colours **/
-.odd\:bg-base-200:nth-child(odd) {
-    background-color: hsl(var(--b2)/var(--tw-bg-opacity, 1));
-}
-.even\:bg-base-200:nth-child(even) {
-    background-color: hsl(var(--b2)/var(--tw-bg-opacity, 1));
-}
 .gradient-to-base-100 {
     background: linear-gradient(transparent 0px, var(--dashboard-preview-gradient, hsl(var(--b1)/1)));
 }

@@ -84,7 +84,7 @@
                             v-bind:href="bookmark.url"
                             v-on:click.stop
                             :title="bookmark.text"
-                            class="flex gap-2 items-center ">
+                            class="flex gap-2 items-center text-link ">
                             <i class="w-4" v-bind:class="bookmark.icon" aria-hidden="true"></i>
                             <span v-html="bookmark.text"></span>
                         </a>
@@ -95,7 +95,7 @@
                             v-bind:href="link.url"
                             v-on:click.stop
                             :title="link.name"
-                            class="flex gap-2 items-center ">
+                            class="flex gap-2 items-center text-link ">
                             <i class="w-4 text-center" v-bind:class="link.icon" aria-hidden="true"></i>
                             <span v-html="link.name"></span>
                         </a>

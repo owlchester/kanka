@@ -102,7 +102,7 @@ $overlayClass = 'rounded-xl flex gap-2 flex-col p-2 items-center h-full';
         <x-tutorial code="dashboard-setup">
             <p>
                 {!! __('dashboard.setup.tutorial.text', [
-'blog' => '<a href="https://blog.kanka.io/2020/09/20/how-to-style-your-kanka-campaign-dashboard/" target="_blank">' . __('dashboard.setup.tutorial.blog') . '</a>',
+'blog' => '<a href="https://blog.kanka.io/2020/09/20/how-to-style-your-kanka-campaign-dashboard/" class="text-link">' . __('dashboard.setup.tutorial.blog') . '</a>',
 ]) !!}
             </p>
         </x-tutorial>
