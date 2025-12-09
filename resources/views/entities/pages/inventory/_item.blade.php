@@ -47,7 +47,7 @@ if ($item->item) {
                 <x-icon class="fa-regular fa-treasure-chest"></x-icon>
             @endif
         </div>
-        <div class="flex flex-col gap-0 items-center overflow-hidden cursor-pointer bg-base-100 p-1 text-base-content" >
+        <div class="flex flex-col gap-0 items-center overflow-hidden bg-base-100 p-1 px-1.5 text-base-content justify-center h-12" >
             <div class="flex gap-1 items-center justify-center w-full">
                 <span class="item-name truncate" data-toggle="tooltip" data-title="{{ $itemName }}">
                    {!! $itemName !!}
