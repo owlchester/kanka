@@ -524,6 +524,7 @@ const props = defineProps<{
     readonly: Boolean,
     creator: Boolean,
     entity: String,
+    user: Boolean,
 }>()
 
 const shapes = ref([]);
@@ -2076,6 +2077,15 @@ const trans = (key: string) => {
 
 
 onMounted(() => {
+
+    if (props.user) {
+        window.Echo.channel('kanka-websockets')
+            .listen('.WhiteboardUpdated', (e) => {
+                console.log('Whiteboard event', e);
+                alert('Websocket');
+            });
+    }
+
     currentColor.value = cssVariable('--bc')
     currentBgColor.value = cssVariable('--b1')
     savingUrl.value = props.save
