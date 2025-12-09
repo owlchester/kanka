@@ -127,4 +127,16 @@
             @endif
         </p>
     </article>
+    <x-dialog.footer class="">
+        @can('inventory', $entity)
+            <a href="{{ route('entities.inventories.edit', [$campaign, $entity, $inventory]) }}"
+               class="btn2 btn-outline"
+               data-toggle="dialog"
+               data-url="{{ route('entities.inventories.edit', [$campaign, $entity, $inventory]) }}"
+               title="{{ __('crud.edit') }}">
+                <x-icon class="edit" />
+                {{ __('crud.edit') }}
+            </a>
+        @endcan
+    </x-dialog.footer>
 </div>

@@ -126,4 +126,9 @@ trait HasVisibility
     {
         return $this->created_by == auth()->user()->id;
     }
+
+    public function isVisibleAll(): bool
+    {
+        return $this->visibility_id === Visibility::All;
+    }
 }

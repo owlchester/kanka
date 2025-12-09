@@ -125,4 +125,9 @@ class Inventory extends Model
 
         return $new->save();
     }
+
+    public function isEquipped(): bool
+    {
+        return $this->is_equipped;
+    }
 }
