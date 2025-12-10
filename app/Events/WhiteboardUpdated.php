@@ -3,6 +3,7 @@
 namespace App\Events;
 
 use Illuminate\Broadcasting\Channel;
+use Illuminate\Broadcasting\InteractsWithBroadcasting;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
@@ -11,7 +12,7 @@ use Illuminate\Queue\SerializesModels;
 
 class WhiteboardUpdated implements ShouldBroadcastNow
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable, InteractsWithBroadcasting, InteractsWithSockets, SerializesModels;
 
     public int $whiteboardId;
 
@@ -21,6 +22,7 @@ class WhiteboardUpdated implements ShouldBroadcastNow
     {
         $this->whiteboardId = $whiteboardId;
         $this->payload = $payload;
+        $this->broadcastVia('pusher');
     }
 
     public function broadcastAs()
