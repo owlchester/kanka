@@ -5,7 +5,6 @@ namespace App\Events;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithBroadcasting;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
@@ -38,9 +37,7 @@ class WhiteboardUpdated implements ShouldBroadcastNow
     public function broadcastOn(): array
     {
         return [
-            new Channel('kanka-websockets'),
-
-            // new PrivateChannel("whiteboard.{$this->whiteboardId}"),
+            new Channel('kanka-whiteboard-' . $this->whiteboardId),
         ];
     }
 }
