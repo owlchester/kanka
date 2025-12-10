@@ -52,6 +52,7 @@ export default defineConfig({
                 'resources/js/gallery/gallery.js',
                 'resources/js/history.js',
                 'resources/js/whiteboards.js',
+                'resources/js/connections/web.js',
                 'resources/js/editors/summernote.js',
                 //'resources/js/editors/tiptap.js',
                 'resources/js/family-tree-vue.js',

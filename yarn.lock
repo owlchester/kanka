@@ -1202,6 +1202,11 @@ cytoscape-panzoom@^2.5.3:
   dependencies:
     jquery "^1.4 || ^2.0 || ^3.0"
 
+cytoscape-popper@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/cytoscape-popper/-/cytoscape-popper-4.0.1.tgz#259a582878621b7f68258e881e05d22c93f02c01"
+  integrity sha512-u2gYDMMvGSlAJbNfKvMljOM/p+BrHu0A4VcpELa+xJf54HoMn+nV0iuhALZx+O89b74SKJRy7jYo2WfkD5uvsw==
+
 cytoscape@^3.27.0:
   version "3.32.1"
   resolved "https://registry.yarnpkg.com/cytoscape/-/cytoscape-3.32.1.tgz#8475a892a43c79a26825b4f16946fa1491020798"

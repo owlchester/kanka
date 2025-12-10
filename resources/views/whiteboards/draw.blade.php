@@ -1,7 +1,8 @@
-@extends('layouts.whiteboard', [
+@extends('layouts.rich', [
     'title' => $whiteboard->name,
     'breadcrumbs' => false,
     'mainTitle' => false,
+    'pageClass' => 'whiteboard-page'
 ])
 
 @section('content')
@@ -18,4 +19,9 @@
         />
     </div>
 
+@endsection
+
+@section('scripts')
+    @parent
+    @vite('resources/js/whiteboards.js')
 @endsection

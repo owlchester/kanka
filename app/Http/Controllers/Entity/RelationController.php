@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Entity;
 use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRelation;
+use App\Http\Resources\Web\EntityResource;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Relation;
@@ -144,7 +145,10 @@ class RelationController extends Controller
     {
         $this->authorize('update', $entity);
 
-        $from = (int) request()->get('from', 0);
+        $from = request()->get('from', 0);
+        if ($from !== 'web') {
+            $from = (int) $from;
+        }
         $mode = $this->getModeOption();
 
         return view('entities.pages.relations.update', compact(
@@ -171,9 +175,20 @@ class RelationController extends Controller
         $mode = $this->getModeOption();
 
         if (request()->has('from')) {
-            $from = (int) request()->post('from');
-            if (! empty($from)) {
-                $redirect = [$campaign, $from];
+            $from = request()->post('from');
+            if ($from === 'web') {
+                return response()
+                    ->json([
+                        'updated' => true,
+                        'id' => $relation->id,
+                        'colour' => $relation->colour,
+                        'attitude' => $relation->attitude,
+                        'text' => $relation->relation,
+                        'target' => (new EntityResource($relation->target))->campaign($campaign),
+                    ]);
+            }
+            elseif (! empty($from)) {
+                $redirect = [$campaign, (int) $from];
                 if (! empty($mode)) {
                     $redirect['mode'] = $mode;
                 }
@@ -240,6 +255,10 @@ class RelationController extends Controller
         }
         if (request()->has('option')) {
             $redirect['option'] = request()->get('option');
+        }
+        if (request()->get('from') === 'web') {
+            return response()
+                ->json(['deleted' => true, 'id' => $relation->id]);
         }
 
         return redirect()
