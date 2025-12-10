@@ -185,7 +185,7 @@ class CampaignPolicy
      */
     public function apply(User $user, Campaign $campaign): bool
     {
-        if (! $campaign->isPublic() || ! $campaign->is_open) {
+        if ( $campaign->isPrivate() || ! $campaign->is_open) {
             return false;
         }
 
