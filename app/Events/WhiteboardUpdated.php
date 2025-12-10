@@ -38,9 +38,7 @@ class WhiteboardUpdated implements ShouldBroadcastNow
     public function broadcastOn(): array
     {
         return [
-            new Channel('kanka-websockets'),
-
-            // new PrivateChannel("whiteboard.{$this->whiteboardId}"),
+            new Channel('kanka-whiteboard-' . $this->whiteboardId),
         ];
     }
 }

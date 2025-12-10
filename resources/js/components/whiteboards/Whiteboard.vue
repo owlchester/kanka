@@ -524,6 +524,7 @@ const props = defineProps<{
     readonly: Boolean,
     creator: Boolean,
     entity: String,
+    whiteboard: String,
     user: Boolean,
 }>()
 
@@ -2079,7 +2080,7 @@ const trans = (key: string) => {
 onMounted(() => {
 
     if (props.user) {
-        window.Echo.channel('kanka-websockets')
+        window.Echo.channel('kanka-whiteboard-' + props.whiteboard)
             .listen('.WhiteboardUpdated', (e) => {
                 console.log('Whiteboard event', e);
                 alert('Websocket');

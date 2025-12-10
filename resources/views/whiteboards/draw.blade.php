@@ -15,6 +15,7 @@
             user="{{ auth()->check() }}"
             :readonly="{{ auth()->check() && auth()->user()->can('update', $whiteboard->entity) && auth()->user()->can('whiteboards', $campaign) ? 0 : 1 }}"
             :creator="{{ auth()->check() && !empty($campaign) && auth()->user()->can('member', $campaign) ? 1 : 0 }}"
+            :whiteboard="{{ $whiteboard->id }}"
         />
     </div>
 
