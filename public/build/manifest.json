@@ -125,7 +125,7 @@
     "src": "node_modules/rpg-awesome/fonts/rpgawesome-webfont.woff"
   },
   "resources/css/app.css": {
-    "file": "assets/app-CvNIg8Ew.css",
+    "file": "assets/app-2Al1lMT0.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -134,7 +134,7 @@
     ]
   },
   "resources/css/auth.css": {
-    "file": "assets/auth-Cugy3lGj.css",
+    "file": "assets/auth-CB8FM0CP.css",
     "src": "resources/css/auth.css",
     "isEntry": true,
     "name": "auth",
@@ -161,7 +161,7 @@
     ]
   },
   "resources/css/front.css": {
-    "file": "assets/front-DsT_bCpF.css",
+    "file": "assets/front-gICtBcC0.css",
     "src": "resources/css/front.css",
     "isEntry": true,
     "name": "front",
@@ -486,13 +486,14 @@
     "isEntry": true
   },
   "resources/js/whiteboards.js": {
-    "file": "assets/whiteboards-x38wIk0u.js",
+    "file": "assets/whiteboards-aCGWUTuj.js",
     "name": "whiteboards",
     "src": "resources/js/whiteboards.js",
     "isEntry": true,
     "imports": [
       "_vue.esm-bundler-CSDHRrjm.js",
-      "_Browser.vue_vue_type_script_setup_true_lang-Dvk83Nhl.js"
+      "_Browser.vue_vue_type_script_setup_true_lang-Dvk83Nhl.js",
+      "__commonjsHelpers-CqkleIqs.js"
     ]
   }
 }
