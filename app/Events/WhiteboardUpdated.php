@@ -12,7 +12,7 @@ use Illuminate\Queue\SerializesModels;
 
 class WhiteboardUpdated implements ShouldBroadcastNow
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels, InteractsWithBroadcasting;
+    use Dispatchable, InteractsWithBroadcasting, InteractsWithSockets, SerializesModels;
 
     public int $whiteboardId;
 
