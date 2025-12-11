@@ -551,9 +551,10 @@ class ImportService
             return Storage::disk('local')->files($path);
         } elseif (Storage::disk('local')->exists($pluralPath)) {
             return Storage::disk('local')->files($pluralPath);
-        } 
+        }
 
         $this->logs[] = 'No ' . $model;
+
         return [];
     }
 
