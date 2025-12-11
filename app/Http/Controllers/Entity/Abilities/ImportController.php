@@ -33,4 +33,23 @@ class ImportController extends Controller
                 ->with('error', __('entities/abilities.import.errors.' . $e->getMessage()));
         }
     }
+
+    public function create(Campaign $campaign, Entity $entity)
+    {
+        $this->authorize('update', $entity);
+
+        $races = [];
+        foreach ($entity->child->characterRaces as $race) {
+            //Exclude races with no abilities from the list.
+            if ($race->race->entity->abilities->count() > 0) {
+                $races[$race->race->name] = $race->race->entity->abilities->count();
+            }
+        }
+
+        return view('entities.pages.abilities.import', compact(
+            'campaign',
+            'entity',
+            'races'
+        ));
+    }
 }

@@ -10,10 +10,13 @@
 </a>
 @if ($entity->isCharacter())
     @php $raceModule = \App\Models\EntityType::default()->where('code', 'race')->first(); @endphp
-    <a href="{{ route('entities.entity_abilities.import', [$campaign, $entity, 'from' => 'race']) }}" class="btn2 btn-sm" data-title="{{ __('entities/abilities.helpers.sync') }}" data-toggle="tooltip">
+    <a href="{{ route('entities.entity_abilities.import.confirm', [$campaign, $entity]) }}" class="btn2 btn-sm"
+        data-toggle="dialog" data-target="abilities-dialog" data-url="{{ route('entities.entity_abilities.import.confirm', [$campaign, $entity]) }}" data-title="{{ __('entities/abilities.helpers.sync') }}" data-toggle="tooltip">
         <x-icon :class="$raceModule->icon()" />
         <span class="hidden md:inline">{{ __('entities/abilities.actions.sync') }}</span>
+        <span class="md:hidden">{{ __('crud.add') }}</span>
     </a>
+
 @endif
 <a href="{{ route('entities.entity_abilities.create', [$campaign, $entity]) }}" class="btn2 btn-sm"
     data-toggle="dialog" data-target="abilities-dialog" data-url="{{ route('entities.entity_abilities.create', [$campaign, $entity]) }}">
