@@ -357,7 +357,7 @@ class ImportService
             $bookmark->save();
 
             ImportIdMapper::putCustomEntityType($module['id'], $newModule->id);
-            ImportIdMapper::putCustomEntityTypeName($module['code'] . '_' . $module['id'], $newModule->id);
+            ImportIdMapper::putCustomEntityTypeName($module['code'] . '_' . $module['id'], Str::camel(Str::slug($module['plural'])) . '_' . $module['id']);
             $entityTypes++;
         }
 
@@ -376,10 +376,10 @@ class ImportService
             if ($model == 'custom') {
                 Log::info('Campaign import', ['importing' => 'custom entities']);
                 // We handle custom models differently.
-                foreach ($fileNames as $fileName => $newID) {
+                foreach ($fileNames as $fileName => $pluralFileName) {
                     $this->logs[] = 'Processing ' . $fileName;
                     $count = 0;
-                    foreach ($this->files($fileName) as $file) {
+                    foreach ($this->customFiles($fileName, $pluralFileName) as $file) {
                         if (! Str::endsWith($file, '.json')) {
                             continue;
                         }
@@ -540,6 +540,21 @@ class ImportService
         }
 
         return Storage::disk('local')->files($path);
+    }
+
+    protected function customFiles(string $model, string $pluralModel): array
+    {
+        $path = $this->dataPath . '/' . $model;
+        $pluralPath = $this->dataPath . '/' . $pluralModel;
+
+        if (Storage::disk('local')->exists($path)) {
+            return Storage::disk('local')->files($path);
+        } elseif (Storage::disk('local')->exists($pluralPath)) {
+            return Storage::disk('local')->files($pluralPath);
+        } 
+
+        $this->logs[] = 'No ' . $model;
+        return [];
     }
 
     protected function open(string $file): array
