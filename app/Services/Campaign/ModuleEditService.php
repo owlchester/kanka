@@ -26,33 +26,36 @@ class ModuleEditService
 
     public function update(UpdateModuleName $request): self
     {
-        $settings = $this->campaign->settings;
+        $settings = $this->campaign->§settings;
 
         $key = $this->entityType->id;
         unset($settings['modules'][$key]['s'], $settings['modules'][$key]['p'], $settings['modules'][$key]['i']);
 
-        $singular = $plural = $icon = null;
-        if ($request->filled('singular')) {
-            $singular = $this->purify(mb_trim($request->get('singular')));
-        }
-        if ($request->filled('plural')) {
-            $plural = $this->purify(mb_trim($request->get('plural')));
-        }
-        if ($request->filled('icon')) {
-            $icon = $this->purify(mb_trim($request->get('icon')));
+
+        if ($this->campaign->boosted()) {
+            $singular = $plural = $icon = null;
+            if ($request->filled('singular')) {
+                $singular = $this->purify(mb_trim($request->get('singular')));
+            }
+            if ($request->filled('plural')) {
+                $plural = $this->purify(mb_trim($request->get('plural')));
+            }
+            if ($request->filled('icon')) {
+                $icon = $this->purify(mb_trim($request->get('icon')));
+            }
+
+            if (!empty($singular)) {
+                $settings['modules'][$key]['s'] = $singular;
+            }
+            if (!empty($plural)) {
+                $settings['modules'][$key]['p'] = $plural;
+            }
+            if (!empty($icon)) {
+                $settings['modules'][$key]['i'] = $icon;
+            }
         }
 
-        if (! empty($singular)) {
-            $settings['modules'][$key]['s'] = $singular;
-        }
-        if (! empty($plural)) {
-            $settings['modules'][$key]['p'] = $plural;
-        }
-        if (! empty($icon)) {
-            $settings['modules'][$key]['i'] = $icon;
-        }
-
-        // Bookmarks cant have default images.
+        // Bookmarks can't have default images.
         if (($request->hasFile('default_entity_image') || $request->filled('remove-image')) && ! $this->entityType->isBookmark()) {
 
             $this->defaultImageService->campaign($this->campaign)

@@ -8,7 +8,7 @@
 
     if (isset($entityType) && $entityType->isCustom()) {
         $formRoute = ['entities.index', $campaign, $entityType];
-        $clearRoute = route('entities.index', [$campaign, $entityType, 'reset-filter' => 'true']);
+        $resetRoute = route('entities.index', [$campaign, $entityType, 'reset-filter' => 'true']);
     } else {
         $formRoute = [$route, $campaign, 'm' => $mode];
         $resetRoute = route($route, [$campaign, 'reset-filter' => 'true']);

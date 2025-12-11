@@ -1,5 +1,8 @@
 <?php
-/** @var \App\Models\CampaignRole $model */
+/**
+ * @var \App\Models\CampaignRole $model
+ * @var \App\Models\Campaign $campaign
+ */
 ?>
 <div class="flex gap-2 items-center">
 
@@ -11,7 +14,7 @@
     </a>
 @endif
 
-@if ($model->isPublic() && !$campaign->isPublic() && $model->role_permissions_count > 0)
+@if ($model->isPublic() && $campaign->isPrivate() && $model->role_permissions_count > 0)
     <div class="hidden sm:block">
         <x-icon class="fa-regular fa-exclamation-triangle" tooltip title="{{ __('campaigns.roles.hints.campaign_not_public') }}" />
     </div>

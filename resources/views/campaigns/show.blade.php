@@ -57,7 +57,7 @@
         @include('campaigns._overview')
 
         @can('update', $campaign)
-            @if($campaign->isPublic() && $campaign->publicHasNoVisibility())
+            @if(!$campaign->isPrivate() && $campaign->publicHasNoVisibility())
                 <x-alert type="warning">
                     <p>{!! __('campaigns.helpers.public_no_visibility', [
 'fix' => '<a href="' . route('campaigns.campaign_roles.public', $campaign) . '">' . __('crud.fix-this-issue') . '</a>'

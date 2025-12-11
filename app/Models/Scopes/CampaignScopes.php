@@ -76,9 +76,12 @@ trait CampaignScopes
         return $query->where($this->getTable() . '.' . $key, '=', $slug);
     }
 
-    public function scopeVisibility(Builder $query, CampaignVisibility $visibility): Builder
+    public function scopeVisibility(Builder $query, CampaignVisibility|array $visibility): Builder
     {
-        return $query->where($this->getTable() . '.visibility_id', $visibility->value);
+        if ($visibility instanceof CampaignVisibility) {
+            return $query->where($this->getTable() . '.visibility_id', $visibility->value);
+        }
+        return $query->whereIn($this->getTable() . '.visibility_id', $visibility);
     }
 
     public function scopeOpen(Builder $query, bool $open = true): Builder
@@ -121,7 +124,7 @@ trait CampaignScopes
     public function scopePublic(Builder $query): Builder
     {
         // @phpstan-ignore-next-line
-        return $query->visibility(\App\Enums\CampaignVisibility::public);
+        return $query->visibility([\App\Enums\CampaignVisibility::public, CampaignVisibility::unlisted]);
     }
 
     /**

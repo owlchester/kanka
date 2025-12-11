@@ -131,12 +131,12 @@ class MarkdownExportService
         }
 
         if ($this->isSingle) {
-            foreach ($this->entity->relationships as $relation) {
+            foreach ($this->entity->allRelationships as $relation) {
                 $entityData['relations'] .= '* [' . html_entity_decode($relation->target->name, ENT_QUOTES, 'UTF-8') . '](' . $relation->target->url() . ')
 ';
             }
         } else {
-            foreach ($this->entity->relationships as $relation) {
+            foreach ($this->entity->allRelationships as $relation) {
                 if ($relation->target->entityType->isCustom()) {
                     $moduleName = $relation->target->entityType->code . '_' . $relation->target->entityType->id;
 

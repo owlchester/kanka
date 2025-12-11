@@ -49,7 +49,9 @@ class PostController extends Controller
 
         foreach ($layouts as $layout) {
             $layoutOptions[$layout->id] = $layout->name();
-            $disabledLayoutOptions[$layout->id] = true;
+            if (!$campaign->superboosted()) {
+                $disabledLayoutOptions[$layout->id] = true;
+            }
         }
 
         $collator = new Collator(app()->getLocale());

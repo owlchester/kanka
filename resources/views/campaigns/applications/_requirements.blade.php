@@ -19,12 +19,12 @@
         </div>
     </x-box>
     <x-box class="flex items-center gap-5 rounded-xl">
-        <div class="rounded {{ $campaign->isPublic() ? 'bg-green-200' : 'bg-red-200' }} w-12 h-12 flex items-center justify-center">
-            <x-icon class="fa-solid {{ $campaign->isPublic() ? 'fa-check text-green-600' : 'fa-times text-red-600' }}" />
+        <div class="rounded {{ !$campaign->isPrivate() ? 'bg-green-200' : 'bg-red-200' }} w-12 h-12 flex items-center justify-center">
+            <x-icon class="fa-solid {{ !$campaign->isPrivate() ? 'fa-check text-green-600' : 'fa-times text-red-600' }}" />
         </div>
         <div class="flex flex-col gap-0 grow">
             <span>{!! __('campaigns/applications.public.title') !!}</span>
-            @if ($campaign->isPublic())
+            @if (!$campaign->isPrivate())
                 <span class="text-green-600">{!! __('campaigns/applications.public.public') !!}</span>
             @else
                 <span class="text-red-600">{!! __('campaigns/applications.public.private') !!}</span>
