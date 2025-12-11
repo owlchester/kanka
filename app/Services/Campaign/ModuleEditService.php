@@ -31,7 +31,6 @@ class ModuleEditService
         $key = $this->entityType->id;
         unset($settings['modules'][$key]['s'], $settings['modules'][$key]['p'], $settings['modules'][$key]['i']);
 
-
         if ($this->campaign->boosted()) {
             $singular = $plural = $icon = null;
             if ($request->filled('singular')) {
@@ -44,13 +43,13 @@ class ModuleEditService
                 $icon = $this->purify(mb_trim($request->get('icon')));
             }
 
-            if (!empty($singular)) {
+            if (! empty($singular)) {
                 $settings['modules'][$key]['s'] = $singular;
             }
-            if (!empty($plural)) {
+            if (! empty($plural)) {
                 $settings['modules'][$key]['p'] = $plural;
             }
-            if (!empty($icon)) {
+            if (! empty($icon)) {
                 $settings['modules'][$key]['i'] = $icon;
             }
         }

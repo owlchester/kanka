@@ -81,6 +81,7 @@ trait CampaignScopes
         if ($visibility instanceof CampaignVisibility) {
             return $query->where($this->getTable() . '.visibility_id', $visibility->value);
         }
+
         return $query->whereIn($this->getTable() . '.visibility_id', $visibility);
     }
 

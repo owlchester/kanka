@@ -41,9 +41,9 @@ class ImportIdMapper
         return $this;
     }
 
-    public function putCustomEntityTypeName(string $old, int $new): self
+    public function putCustomEntityTypeName(string $old, string $oldPlural): self
     {
-        $this->customEntityTypeNames[$old] = $new;
+        $this->customEntityTypeNames[$old] = $oldPlural;
 
         return $this;
     }
