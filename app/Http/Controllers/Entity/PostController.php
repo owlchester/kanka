@@ -49,7 +49,7 @@ class PostController extends Controller
 
         foreach ($layouts as $layout) {
             $layoutOptions[$layout->id] = $layout->name();
-            if (!$campaign->superboosted()) {
+            if (! $campaign->superboosted()) {
                 $disabledLayoutOptions[$layout->id] = true;
             }
         }
