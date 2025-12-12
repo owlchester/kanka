@@ -1,5 +1,4 @@
 <div class="join flex items-center">
-    <!-- Main add button -->
     <a href="{{ route('entities.entity_abilities.create', [$campaign, $entity]) }}" class="btn2 btn-sm join-item"
         data-toggle="dialog" data-target="abilities-dialog" data-url="{{ route('entities.entity_abilities.create', [$campaign, $entity]) }}">
         <x-icon class="plus" />
@@ -7,7 +6,6 @@
         <span class="md:hidden">{{ __('crud.add') }}</span>
     </a>
 
-    <!-- Dropdown using the entity-actions style -->
     <div class="dropdown entity-actions-dropdown flex items-center join-item">
 
         <div data-dropdown aria-expanded="false" aria-haspopup="menu" aria-controls="abilities-submenu" class="btn2 btn-sm join-item entity-actions-button">
