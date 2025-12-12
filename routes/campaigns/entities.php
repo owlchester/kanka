@@ -222,6 +222,7 @@ Route::get('/w/{campaign}/entity_types/{entity_type}/bookmark-form', [App\Http\C
 Route::get('/w/{campaign}/entities/{entity}/abilities', 'Entity\AbilityController@index')->name('entities.abilities');
 Route::get('/w/{campaign}/entities/{entity}/entity_abilities/api', 'Entity\Abilities\ApiController@index')->name('entities.entity_abilities.api');
 Route::get('/w/{campaign}/entities/{entity}/entity_abilities/import', 'Entity\Abilities\ImportController@index')->name('entities.entity_abilities.import');
+Route::get('/w/{campaign}/entities/{entity}/entity_abilities/import-confirm', 'Entity\Abilities\ImportController@create')->name('entities.entity_abilities.import.confirm');
 Route::post('/w/{campaign}/entities/{entity}/entity_abilities/{entity_ability}/use', 'Entity\Abilities\ChargeController@use')->name('entities.entity_abilities.use');
 Route::get('/w/{campaign}/entities/{entity}/entity_abilities/reset', 'Entity\Abilities\ChargeController@reset')->name('entities.entity_abilities.reset');
 

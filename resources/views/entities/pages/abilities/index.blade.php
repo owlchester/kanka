@@ -12,7 +12,6 @@
 @section('entity-header-actions')
     <div class="header-buttons flex flex-wrap gap-2 items-center justify-end">
         @can('update', $entity)
-            <x-learn-more url="entities/abilities.html#entity-abilities" />
             @include('entities.pages.abilities._buttons')
         @endcan
         @include('entities.headers.actions', ['edit' => false])

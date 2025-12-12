@@ -14,7 +14,7 @@
         @includeWhen(!empty($actions), $actions)
     @else
         <div class="submit-group">
-            <button class="btn2 btn-primary">
+            <button class="btn2 @if (isset($disableSubmit) && $disableSubmit == true)btn-disabled btn-block @else btn-primary @endif">
                 {{ $submit ?? __('crud.save') }}
             </button>
         </div>
