@@ -45,6 +45,14 @@ class ApiService
                 $galleryIds[] = $shape['uuid'];
             } elseif ($shape['type'] === 'entity') {
                 $entityIds[] = $shape['entity'];
+            } elseif ($shape['type'] === 'group') {
+                foreach ($shape['children'] as $subShape) {
+                    if ($subShape['type'] === 'image') {
+                        $galleryIds[] = $subShape['uuid'];
+                    } elseif ($subShape['type'] === 'entity') {
+                        $entityIds[] = $subShape['entity'];
+                    }
+                }
             }
         }
 
@@ -76,7 +84,7 @@ class ApiService
             'duplicate' => __('whiteboards/draw.actions.duplicate'),
             'copy-success' => __('whiteboards/draw.toast.copy.success'),
             'paste-error' => __('whiteboards/draw.toast.paste.error'),
-
+            'group' => __('whiteboards/draw.actions.group'),
             // Reset
             'reset-helper' => __('whiteboards/draw.reset.helper'),
             'reset' => __('crud.actions.reset'),
