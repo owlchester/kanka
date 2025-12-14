@@ -10,9 +10,8 @@
 <div id="web">
     <connections-web
         api="{{ route('connections.web.api', [$campaign]) }}"
-        back="{{ route('relations.index', [$campaign]) }}"
-        action-back="{{ __('connections/web.actions.back') }}"
         :premium="@js($campaign->boosted())"
+        :creator="{{ auth()->check() && !empty($campaign) && auth()->user()->can('member', $campaign) ? 1 : 0 }}"
     >
     </connections-web>
 </div>

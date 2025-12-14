@@ -25,7 +25,12 @@ class WebService
     {
         $this->mirrored = new Collection();
         $this->loadConnections();
-        return ['entities' => $this->entities, 'nodes' => $this->nodes];
+        return [
+            'entities' => $this->entities,
+            'nodes' => $this->nodes,
+            'i18n' => $this->i18n(),
+            'urls' => $this->urls(),
+        ];
     }
 
     protected function loadConnections(): void
@@ -89,5 +94,22 @@ class WebService
         if ($connection->isMirrored() && $connection->mirror && $connection->relation && $connection->relation == $connection->mirror->relation) {
             $this->mirrored->put($connection->id . '-' . $connection->mirror_id, true);
         }
+    }
+
+    protected function i18n(): array
+    {
+        return [
+            'create' => __('crud.create'),
+            'qq-keyboard-shortcut' => __('crud.keyboard-shortcut', ['code' => '<code>N</code>']),
+            'back' => __('connections/web.actions.back'),
+        ];
+    }
+
+    protected function urls(): array
+    {
+        return [
+            'creator' => route('entity-creator.selection', $this->campaign),
+            'back' => route('relations.index', [$this->campaign]),
+        ];
     }
 }

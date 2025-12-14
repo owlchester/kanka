@@ -1,4 +1,21 @@
 <template>
+    <div class="toolbar fixed w-full p-2 flex items-center justify-between gap-2 z-700" v-if="ready">
+        <div class="flex gap-4 items-center">
+            <a :href="urls.back" :title="trans('back')" class="flex items-center gap-1 text-link rounded bg-base-100 p-1" tabindex="0">
+                <i class="fa-regular fa-left-to-bracket" aria-hidden="true"></i>
+                <span v-html="trans('back')"></span>
+            </a>
+
+            <div v-if="props.creator" class="relative">
+                <a v-if="props.creator" href="#" @click="openQQ()"  class="quick-creator-button btn2 btn-primary btn-sm" tabindex="0">
+                    <i class="flex-none fa-regular fa-plus" aria-hidden="true"></i>
+                    <span class="grow hidden sm:inline-block" v-html="trans('create')"></span>
+                    <span class="flex-none keyboard-shortcut" id="qq-kb-shortcut" data-toggle="tooltip" :data-title="trans('qq-keyboard-shortcut')" data-html="true" data-placement="bottom" >N</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
     <div v-if="!ready" class="w-full h-screen flex items-center justify-center text-4xl gap-2 absolute bg-base-100 transition-all duration-300 top-0 bottom-0 left-0 right-0 z-900">
         <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
         <span v-if="loading">Loading</span>
@@ -8,18 +25,14 @@
     <div ref="cyContainer" class="min-h-screen text-base-content cy-map bg-base-100">
     </div>
 
-    <div class="fixed top-2 right-2" v-if="ready">
-        <a :href="props.back" class="btn2 btn-default z-900">
-            <i class="fa-regular fa-arrow-left" aria-hidden="true"></i>
-            <span v-html="props.actionBack"></span>
-        </a>
-    </div>
-
 </template>
 <style>
 @import 'cytoscape-panzoom/cytoscape.js-panzoom.css';
 .cy-panzoom {
     z-index: 800;
+    left: unset;
+    right: 3.7rem;
+    top: 0.7rem;
 }
 </style>
 
@@ -31,9 +44,8 @@ import tippy, { Instance, ReferenceElement } from 'tippy.js'
 
 const props = defineProps<{
     api: String,
-    back: String,
-    actionBack: String,
-    premium: boolean,
+    premium: Boolean,
+    creator: Boolean,
 }>()
 
 const ready = ref(false)
@@ -45,8 +57,10 @@ const cy = ref(null)
 const currentEntity = ref(null)
 const relation = ref(null)
 const cyContainer = ref()
-const entityTooltips = ref(Array);
-let nodeTippy: Instance | null = null;
+const entityTooltips = ref(Array)
+let nodeTippy: Instance | null = null
+const i18n = ref(null)
+const urls = ref(null)
 
 onMounted(async () => {
     await initCytoscape()
@@ -81,6 +95,9 @@ const parseData = (data) => {
     data.nodes.forEach((node: any) => {
         addNode(node)
     })
+    i18n.value = data.i18n
+    urls.value = data.urls
+
     parsing.value = false
 }
 
@@ -449,5 +466,13 @@ const handleRelationUpdate = async (data) => {
             attitude: width,
         })
     }
+}
+
+const openQQ = () => {
+    window.openDialog("primary-dialog", urls.value.creator)
+}
+
+const trans = (key: string) => {
+    return i18n.value[key] || key
 }
 </script>
