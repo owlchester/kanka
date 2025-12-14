@@ -133,7 +133,7 @@
     "src": "node_modules/rpg-awesome/fonts/rpgawesome-webfont.woff"
   },
   "resources/css/app.css": {
-    "file": "assets/app-2Al1lMT0.css",
+    "file": "assets/app-CCbugj_O.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -142,7 +142,7 @@
     ]
   },
   "resources/css/auth.css": {
-    "file": "assets/auth-CB8FM0CP.css",
+    "file": "assets/auth-CPwujbqZ.css",
     "src": "resources/css/auth.css",
     "isEntry": true,
     "name": "auth",
@@ -169,7 +169,7 @@
     ]
   },
   "resources/css/front.css": {
-    "file": "assets/front-gICtBcC0.css",
+    "file": "assets/front-CsNTZcOS.css",
     "src": "resources/css/front.css",
     "isEntry": true,
     "name": "front",
@@ -196,12 +196,11 @@
     ]
   },
   "resources/css/relations.css": {
-    "file": "assets/web-BhqWrOkS.css",
-    "src": "resources/js/connections/web.js",
+    "file": "assets/relations-BhqWrOkS.css",
+    "src": "resources/css/relations.css",
     "isEntry": true,
     "name": "relations",
     "names": [
-      "web.css",
       "relations.css"
     ]
   },
@@ -340,7 +339,7 @@
     ]
   },
   "resources/js/connections/web.js": {
-    "file": "assets/web-ANAT-zdX.js",
+    "file": "assets/web-CZGM-Eal.js",
     "name": "web",
     "src": "resources/js/connections/web.js",
     "isEntry": true,
@@ -355,7 +354,7 @@
       "_cytoscape-panzoom-CwP9w_A0.js"
     ],
     "css": [
-      "assets/web-BhqWrOkS.css"
+      "assets/web-C9wt4HvN.css"
     ]
   },
   "resources/js/conversation.js": {
