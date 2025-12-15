@@ -284,8 +284,6 @@ Route::resources([
     // 'presets' => 'PresetController',
 ]);
 
-Route::get('/w/{campaign}/redirect', 'RedirectController@index')->name('redirect');
-
 // Move
 Route::get('/w/{campaign}/entities/{entity}/move', 'Entity\MoveController@index')->name('entities.move');
 Route::post('/w/{campaign}/entities/{entity}/move', 'Entity\MoveController@move')->name('entities.move-process');

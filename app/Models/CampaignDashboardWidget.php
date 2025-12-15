@@ -263,17 +263,7 @@ class CampaignDashboardWidget extends Model
         if (isset($this->cachedEntities)) {
             return $this->cachedEntities;
         }
-        $base = Entity::select([
-            'entities.id',
-            'entities.name',
-            'entities.is_private',
-            'entities.type_id',
-            'entities.entity_id',
-            'entities.image_path',
-            'entities.updated_by',
-            'entities.updated_at',
-            'entities.image_uuid',
-        ]);
+        $base = new Entity;
 
         $excludedTypes = [];
 
@@ -286,6 +276,17 @@ class CampaignDashboardWidget extends Model
         }
         // Get only non archived entities
         $base = $base->whereNull('archived_at');
+        $base->select([
+            'entities.id',
+            'entities.name',
+            'entities.is_private',
+            'entities.type_id',
+            'entities.entity_id',
+            'entities.image_path',
+            'entities.updated_by',
+            'entities.updated_at',
+            'entities.image_uuid',
+        ]);
 
         // Ordering
         $order = Arr::get($this->config, 'order', null);

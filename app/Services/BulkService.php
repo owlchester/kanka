@@ -41,7 +41,6 @@ class BulkService
     protected int $count = 0;
 
     public function __construct(
-        protected EntityService $entityService,
         protected BulkPermissionService $permissionService,
         protected TransformService $transformService,
         protected MoveService $moveService

@@ -64,7 +64,6 @@ class StarterService
 
     public function entities()
     {
-        CampaignLocalization::forceCampaign($this->campaign);
         EntityCache::campaign($this->campaign);
         CharacterCache::campaign($this->campaign);
 

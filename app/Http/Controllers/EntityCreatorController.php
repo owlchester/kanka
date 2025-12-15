@@ -10,7 +10,6 @@ use App\Models\Entity;
 use App\Models\EntityType;
 use App\Models\Post;
 use App\Services\Entity\PopularService;
-use App\Services\EntityService;
 use App\Services\EntityTypeService;
 use App\Services\QuickCreator\ProcessService;
 use Illuminate\Http\Request;
@@ -21,7 +20,6 @@ class EntityCreatorController extends Controller
     protected Campaign $campaign;
 
     public function __construct(
-        protected EntityService $entityService,
         protected PopularService $popularService,
         protected EntityTypeService $entityTypeService,
         protected ProcessService $processService,

@@ -4,6 +4,7 @@ namespace App\Http\Middleware\Campaigns;
 
 use App\Facades\CampaignLocalization;
 use App\Facades\Domain;
+use App\Models\Campaign;
 use Closure;
 
 class Boosted
@@ -16,7 +17,8 @@ class Boosted
     public function handle($request, Closure $next)
     {
         // Make sure we have an id
-        $campaign = CampaignLocalization::getCampaign();
+        /** @var Campaign $campaign */
+        $campaign = $request->route('campaign');
         if (empty($campaign)) {
             return redirect()->route('login')
                 ->withErrors(__('You\'ve been banned'));

@@ -4,7 +4,6 @@ namespace App\Livewire;
 
 use App\Facades\Avatar;
 use App\Facades\CampaignCache;
-use App\Facades\CampaignLocalization;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
@@ -39,7 +38,6 @@ class EntityListing extends Component
 
     public function loadEntities()
     {
-        CampaignLocalization::forceCampaign($this->campaign);
         UserCache::campaign($this->campaign);
         Avatar::campaign($this->campaign);
         CampaignCache::campaign($this->campaign);

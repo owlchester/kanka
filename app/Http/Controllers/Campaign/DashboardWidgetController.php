@@ -8,22 +8,18 @@ use App\Http\Requests\StoreCampaignDashboardWidget;
 use App\Models\Campaign;
 use App\Models\CampaignDashboard;
 use App\Models\CampaignDashboardWidget;
-use App\Services\EntityService;
+use App\Services\EntityTypeService;
 
 class DashboardWidgetController extends Controller
 {
-    protected EntityService $entityService;
-
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(EntityService $entityService)
+    public function __construct(protected EntityTypeService $entityTypeService)
     {
         $this->middleware('auth');
-
-        $this->entityService = $entityService;
     }
 
     public function index(Campaign $campaign)
@@ -53,7 +49,12 @@ class DashboardWidgetController extends Controller
         if (! view()->exists('dashboard.widgets.forms._' . $widget)) {
             abort(404);
         }
-        $entities = $this->buildEntities($campaign);
+
+        $entityTypes = $this->entityTypeService
+            ->campaign($campaign)
+            ->exclude([config('entities.ids.bookmark')])
+            ->prepend(['' => __('dashboard.widgets.random.type.all')])
+            ->toSelect();
 
         $dashboard = request()->has('dashboard') ?
             CampaignDashboard::where('id', request()->get('dashboard'))->first() : null;
@@ -61,7 +62,7 @@ class DashboardWidgetController extends Controller
         return view('dashboard.widgets.forms.create', [
             'campaign' => $campaign,
             'widget' => $widget,
-            'entities' => $entities,
+            'entityTypes' => $entityTypes,
             'dashboard' => $dashboard,
         ]);
     }
@@ -91,18 +92,23 @@ class DashboardWidgetController extends Controller
     public function edit(Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
     {
         $this->authorize('dashboard', $campaign);
-        $entities = $this->buildEntities($campaign);
 
         $dashboards = [null => __('dashboard.dashboards.default.title')];
         foreach (CampaignDashboard::orderBy('name')->pluck('name', 'id')->toArray() as $id => $dashboard) {
             $dashboards[$id] = $dashboard;
         }
 
+        $entityTypes = $this->entityTypeService
+            ->campaign($campaign)
+            ->exclude([config('entities.ids.bookmark')])
+            ->prepend(['' => __('dashboard.widgets.random.type.all')])
+            ->toSelect();
+
         return view('dashboard.widgets.forms.edit', [
             'campaign' => $campaign,
             'model' => $campaignDashboardWidget,
             'widget' => $campaignDashboardWidget->widget->value,
-            'entities' => $entities,
+            'entityTypes' => $entityTypes,
             'dashboards' => $dashboards,
         ]);
     }
@@ -136,24 +142,5 @@ class DashboardWidgetController extends Controller
             ->route('dashboard.setup', $campaignDashboardWidget->dashboard_id ?
                 [$campaign, 'dashboard' => $campaignDashboardWidget->dashboard_id] : $campaign)
             ->with('success', __('dashboard.widgets.delete.success'));
-    }
-
-    /**
-     * Get a list of available entities
-     */
-    private function buildEntities(Campaign $campaign): array
-    {
-        $entities = [
-            '' => 'All',
-        ];
-
-        $enabledEntities = $this
-            ->entityService
-            ->getEnabledEntities($campaign, ['bookmarks']);
-        foreach ($enabledEntities as $entity) {
-            $entities[$entity] = __('entities.' . $entity);
-        }
-
-        return $entities;
     }
 }

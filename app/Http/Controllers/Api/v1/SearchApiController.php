@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Services\EntityService;
+use App\Services\EntityTypeService;
 use Illuminate\Http\Request;
 
 class SearchApiController extends ApiController
@@ -14,7 +14,7 @@ class SearchApiController extends ApiController
      *
      * @return void
      */
-    public function __construct(protected EntityService $entityService) {}
+    public function __construct(protected EntityTypeService $entityTypeService) {}
 
     /**
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
@@ -26,8 +26,8 @@ class SearchApiController extends ApiController
         $this->authorize('access', $campaign);
 
         $term = mb_trim($search);
-        $enabledEntities = $this->entityService->campaign($campaign)->getEnabledEntitiesID();
-        $models = Entity::with('entityType')
+        $enabledEntities = array_keys($this->entityTypeService->campaign($campaign)->toSelect());
+        $models = Entity::with(['entityType', 'image'])
             ->whereIn('type_id', $enabledEntities)
             ->where('name', 'like', "%{$term}%")
             ->limit(10)

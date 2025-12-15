@@ -139,8 +139,6 @@ if (config('marketplace.enabled')) {
     Route::post('/w/{campaign}/plugins/bulk', [BulkController::class, 'index'])->name('campaign_plugins.bulk');
 }
 
-Route::get('/w/{campaign}/redirect', 'RedirectController@index')->name('redirect');
-
 // Campaign Dashboard Widgets
 Route::get('/w/{campaign}/dashboard-setup', [App\Http\Controllers\Dashboards\SetupController::class, 'index'])->name('dashboard.setup');
 Route::post('/w/{campaign}/dashboard-setup/reorder', [App\Http\Controllers\Dashboards\SetupController::class, 'save'])->name('dashboard.reorder');

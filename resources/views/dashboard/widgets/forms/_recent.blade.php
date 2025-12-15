@@ -6,12 +6,6 @@
         'mentionless' => __('dashboard.widgets.recent.advanced_filters.mentionless'),
     ];
     $boosted = $campaign->boosted();
-
-    $entityTypes = $entityTypeService
-        ->campaign($campaign)
-        ->exclude([config('entities.ids.bookmark')])
-        ->prepend(['' => __('dashboard.widgets.random.type.all')])
-        ->toSelect();
 @endphp
 
 <x-grid>

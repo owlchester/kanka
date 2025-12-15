@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Facades\CampaignLocalization;
+use App\Models\Campaign;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,7 +20,8 @@ class LastCampaign
         }
 
         // When a user looks at another campaign, track it for when they come back later to Kanka and log in
-        $campaign = CampaignLocalization::getCampaign();
+        /** @var Campaign $campaign */
+        $campaign = $request->route('campaign');
         if ($request->user()->last_campaign_id !== $campaign->id) {
             $request->user()->last_campaign_id = $campaign->id;
             $request->user()->saveQuietly();

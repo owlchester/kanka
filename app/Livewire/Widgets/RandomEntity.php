@@ -4,7 +4,6 @@ namespace App\Livewire\Widgets;
 
 use App\Facades\Avatar;
 use App\Facades\CampaignCache;
-use App\Facades\CampaignLocalization;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
@@ -35,7 +34,6 @@ class RandomEntity extends Component
     {
         $this->readyToLoad = true;
 
-        CampaignLocalization::forceCampaign($this->campaign);
         request()->route()->setParameter('campaign', $this->campaign);
         UserCache::campaign($this->campaign);
         Avatar::campaign($this->campaign);

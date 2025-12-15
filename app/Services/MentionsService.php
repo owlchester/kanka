@@ -708,11 +708,7 @@ class MentionsService
      */
     protected function prepareHiddenEntities(): void
     {
-        // For some reason this is sometimes false
-        if (! isset($this->campaign)) {
-            $this->campaign = CampaignLocalization::getCampaign();
-        }
-        if (! $this->campaign->showPrivateEntityMentions()) {
+        if (isset($this->campaign) && ! $this->campaign->showPrivateEntityMentions()) {
             return;
         }
 
