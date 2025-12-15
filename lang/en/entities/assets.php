@@ -2,9 +2,9 @@
 
 return [
     'actions'       => [
-        'alias' => 'Alias',
-        'file'  => 'File',
-        'link'  => 'Link',
+        'alias' => 'Alias or Secret identity',
+        'file'  => 'Add a file',
+        'link'  => 'External link',
     ],
     'copy_alias'    => [
         'success'   => 'Alias mention copied to the clipboard.',

@@ -9,7 +9,7 @@
             <span class="hidden md:inline">{{ __('entities/assets.actions.alias') }}</span>
         </x-dropdowns.item>
 
-        <x-dropdowns.item link="#" icon="fa-regular fa-file" :dialog="route('entities.entity_assets.create', [$campaign, $entity, 'type' => \App\Enums\EntityAssetType::file])">
+        <x-dropdowns.item link="#" icon="fa-regular fa-upload" :dialog="route('entities.entity_assets.create', [$campaign, $entity, 'type' => \App\Enums\EntityAssetType::file])">
             <span class="hidden md:inline">{{ __('entities/assets.actions.file') }}</span>
         </x-dropdowns.item>
 
