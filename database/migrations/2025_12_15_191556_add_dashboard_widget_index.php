@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::table('entities', function (Blueprint $table) {
             $table->index(
                 [
-                'campaign_id',
-                'type_id',
-                'archived_at',
-                'deleted_at',
-                'updated_at',
-            ], 'dashboard_entity_list_idx');
+                    'campaign_id',
+                    'type_id',
+                    'archived_at',
+                    'deleted_at',
+                    'updated_at',
+                ], 'dashboard_entity_list_idx');
         });
     }
 
