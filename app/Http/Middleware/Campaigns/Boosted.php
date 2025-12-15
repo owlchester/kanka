@@ -2,7 +2,6 @@
 
 namespace App\Http\Middleware\Campaigns;
 
-use App\Facades\CampaignLocalization;
 use App\Facades\Domain;
 use App\Models\Campaign;
 use Closure;
