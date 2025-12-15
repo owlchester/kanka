@@ -34,6 +34,7 @@ class SubscriptionEndService
 
         $this->endSoforts();
         $this->endManuals();
+        $this->endPaypals();
 
         return $this->count;
     }
@@ -64,12 +65,29 @@ class SubscriptionEndService
             ->where('stripe_id', 'like', 'manual_sub%')
             ->where('stripe_status', 'canceled')
             ->whereNotLike('stripe_price', 'trial_%')
-            ->whereDate('ends_at', '=', Carbon::today()->toDateString())
+            ->whereDate('ends_at', '=', Carbon::today()->subDays(4)->toDateString())
             ->get();
         if ($subscriptions->count() === 0) {
             return;
         }
         $this->logs[] = 'Manual';
+        foreach ($subscriptions as $subscription) {
+            $this->process($subscription);
+        }
+    }
+
+    protected function endPaypals(): void
+    {
+        // Now do the same thing for manual subs which ended on the current day, as manual subs end at midnight server time
+        $subscriptions = Subscription::with(['user', 'user.boosts', 'user.boosts.campaign'])
+            ->where('stripe_id', 'like', 'paypal_%')
+            ->where('stripe_status', 'canceled')
+            ->whereDate('ends_at', '=', Carbon::today()->toDateString())
+            ->get();
+        if ($subscriptions->count() === 0) {
+            return;
+        }
+        $this->logs[] = 'Paypal';
         foreach ($subscriptions as $subscription) {
             $this->process($subscription);
         }
