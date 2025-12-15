@@ -53,7 +53,7 @@ class StyleController extends Controller
         }
 
         $theme = $campaign->theme;
-        $reorderStyles = $campaign->styles()->defaultOrder()->take(self::MAX_THEMES)->get();
+        $reorderStyles = $campaign->styles()->select(['id', 'name', 'is_enabled'])->defaultOrder()->take(self::MAX_THEMES)->get();
 
         return view('campaigns.styles.index', compact('campaign', 'styles', 'theme', 'reorderStyles'));
     }

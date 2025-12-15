@@ -33,7 +33,7 @@ class LimitService
     public function upload(): int|string
     {
         // Default for Owlbears and legacy Goblins/Kobolds, or members of a campaign
-        $min = $this->map ? 10 : 8;
+        $min = config('limits.filesize.image.owlbear');
         if (! $this->user->isSubscriber() && (! isset($this->campaign) || ! $this->campaign->boosted())) {
             $min = config('limits.filesize.image.standard');
             if ($this->map) {

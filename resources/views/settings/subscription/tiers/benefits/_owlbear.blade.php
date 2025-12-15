@@ -19,13 +19,7 @@
     <div class="w-8 shrink-0 text-center">
         <x-icon class="fa-regular fa-image" />
     </div>
-    {{ __('tiers.features.file_size', ['size' => '8 MiB']) }}
-</div>
-<div class="flex gap-1">
-    <div class="w-8 shrink-0 text-center">
-        <x-icon class="fa-regular fa-map" />
-    </div>
-    {{ __('tiers.features.map_size', ['size' => '10 MiB']) }}
+    {{ __('tiers.features.file_size', ['size' => config('limits.filesize.image.owlbear') . ' MiB']) }}
 </div>
 <div class="flex gap-1">
     <div class="w-8 shrink-0 text-center">

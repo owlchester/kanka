@@ -2,7 +2,6 @@
 
 namespace App\Renderers\Layouts\Campaign;
 
-use App\Facades\CampaignLocalization;
 use App\Renderers\Layouts\Layout;
 
 class Plugin extends Layout
@@ -38,15 +37,14 @@ class Plugin extends Layout
                         return $base;
                     }
 
-                    $campaign = CampaignLocalization::getCampaign();
-                    if (! auth()->check() || ! auth()->user()->can('recover', $campaign)) {
+                    if (! auth()->check() || ! auth()->user()->can('recover', $this->campaign)) {
                         return $base;
                     }
 
-                    return '<a href="' . route('campaign_plugins.update-info', [$campaign, $model])
+                    return '<a href="' . route('campaign_plugins.update-info', [$this->campaign, $model])
                             . '" class="btn2 btn-xs btn-accent" data-toggle="dialog-ajax" '
                             . 'data-target="plugin-update" data-url="'
-                            . route('campaign_plugins.update-info', [$campaign, $model]) . '">'
+                            . route('campaign_plugins.update-info', [$this->campaign, $model]) . '">'
                             . __('campaigns/plugins.actions.update_available')
                             . '</a> ' . $base;
                 },

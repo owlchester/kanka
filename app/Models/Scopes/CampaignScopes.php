@@ -51,7 +51,9 @@ trait CampaignScopes
 
         // Limit to the campaigns the user is in
         return $this
-            ->select($this->getTable() . '.*')
+            ->select([
+                $this->getTable() . '.*',
+            ])
             ->leftJoin('campaign_user as cu', function (JoinClause $sub) {
                 return $sub->on('cu.campaign_id', $this->getTable() . '.id')
                     ->where('cu.user_id', auth()->user()->id);
@@ -81,6 +83,7 @@ trait CampaignScopes
         if ($visibility instanceof CampaignVisibility) {
             return $query->where($this->getTable() . '.visibility_id', $visibility->value);
         }
+
         return $query->whereIn($this->getTable() . '.visibility_id', $visibility);
     }
 

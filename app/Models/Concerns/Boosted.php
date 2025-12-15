@@ -13,7 +13,8 @@ trait Boosted
      */
     public function boosts(): HasMany
     {
-        return $this->hasMany('App\Models\CampaignBoost', 'campaign_id', 'id');
+        return $this->hasMany('App\Models\CampaignBoost', 'campaign_id', 'id')
+            ->with('user:id,name,pledge');
     }
 
     /**
