@@ -3,7 +3,7 @@
 return [
     'actions'           => [
         'add'               => 'Add Item',
-        'copy_from'         => 'Copy from',
+        'copy_from_entity'  => 'Copy from another entity',
         'copy_inventory'    => 'Copy inventory',
         'generate'          => 'Generate',
     ],
