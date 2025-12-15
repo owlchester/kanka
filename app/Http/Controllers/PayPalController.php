@@ -46,13 +46,21 @@ class PayPalController extends Controller
 
             return redirect()
                 ->route('settings.subscription')
-                ->with('error', __('settings.subscription.errors.failed', ['email' => config('app.email')]));
+                ->with(
+                    'error',
+                    __('subscriptions/paypal.errors.rejected') . ' ' .
+                    __('subscriptions/paypal.errors.contact', ['email' => config('app.email')])
+                );
         } else {
             Log::error('Subscription PayPal error', $response);
 
             return redirect()
                 ->route('settings.subscription')
-                ->with('error', __('settings.subscription.errors.failed', ['email' => config('app.email')]));
+                ->with(
+                    'error',
+                    __('subscriptions/paypal.errors.failed') . ' ' .
+                    __('subscriptions/paypal.errors.contact', ['email' => config('app.email')])
+                );
         }
     }
 
@@ -94,7 +102,11 @@ class PayPalController extends Controller
 
             return redirect()
                 ->route('settings.subscription')
-                ->with('error', __('settings.subscription.errors.failed', ['email' => config('app.email')]));
+                ->with(
+                    'error',
+                    __('subscriptions/paypal.errors.incomplete') . ' ' .
+                    __('subscriptions/paypal.errors.contact', ['email' => config('app.email')])
+                );
         }
     }
 
