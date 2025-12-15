@@ -1,4 +1,4 @@
-<div class="dropdown entity-actions-dropdown flex items-center join-item">
+<div class="dropdown entity-actions-dropdown join-item">
     <div data-dropdown aria-expanded="false" aria-haspopup="menu" aria-controls="inventories-submenu" class="btn2 btn-sm join-item entity-actions-button">
         <x-icon class="fa-solid fa-plus" />
         {{ __('crud.add') }}
