@@ -105,6 +105,7 @@ class IndexController extends Controller
         }
 
         return Entity::select('id', 'name', 'entity_id')
+            ->with('entityType')
             ->templates($entityType->id)
             ->orderBy('name')
             ->get();
@@ -120,7 +121,7 @@ class IndexController extends Controller
         $nested = $this->isNested();
         $layout = $this->layoutMode();
 
-        $with = ['entityType', 'image', 'locations'];
+        $with = ['entityType', 'image', 'locations', 'parent', 'tags'];
         if ($this->entityType->isStandard()) {
             $with[] = $this->entityType->code;
         }
