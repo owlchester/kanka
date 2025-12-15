@@ -37,7 +37,10 @@ class UserController extends Controller
         $this->rows = $campaign
             ->members()
             ->sort(request()->only(['o', 'k']), ['id' => 'desc'])
-            ->with(['user', 'campaign', 'user.campaignRoles', 'user.campaignRoleUser', 'user.tutorials'])
+            ->with([
+                'user:id,name,avatar,last_login_at,has_last_login_sharing,banned_until',
+                'user.campaignRoles',
+            ])
             ->paginate();
 
         $invitations = $campaign
@@ -48,7 +51,7 @@ class UserController extends Controller
 
         $roles = $campaign->roles->where('is_public', false)->all();
 
-        Datagrid::layout(\App\Renderers\Layouts\Campaign\CampaignUser::class);
+        Datagrid::campaign($campaign)->layout(\App\Renderers\Layouts\Campaign\CampaignUser::class);
         if (request()->ajax()) {
             return $this->campaign($campaign)->datagridAjax();
         }

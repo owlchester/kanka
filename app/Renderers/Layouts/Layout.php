@@ -4,10 +4,13 @@ namespace App\Renderers\Layouts;
 
 use App\Models\Entity;
 use App\Models\MiscModel;
+use App\Traits\CampaignAware;
 use Illuminate\Database\Eloquent\Model;
 
 abstract class Layout
 {
+    use CampaignAware;
+
     public const ONLY_DESKTOP = 'hidden lg:table-cell';
 
     public const ACTION_EDIT = 'edit';

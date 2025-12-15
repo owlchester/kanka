@@ -43,7 +43,7 @@ class DatagridRenderer2
     public function layout(string|Layout $layout): self
     {
         if (is_string($layout)) {
-            $layout = new $layout;
+            $layout = (new $layout)->campaign($this->campaign);
         }
         $this->layout = $layout;
 

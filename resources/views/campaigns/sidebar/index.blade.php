@@ -67,7 +67,7 @@
                                 <div class="flex flex-col md:flex-row items-center gap-2">
                                     <div class="flex gap-2">
                                         <span class="bg-base-300 p-2 w-10 text-center flex-none rounded dnd-handle cursor-move">
-                                            <x-icon class="inline-block w-6 {{ $child['custom_icon'] ?? $child['icon'] }}" />
+                                            <x-icon class="inline-block w-6 {{ $child['custom_icon'] ?? $child['icon'] ?? 'fa-regular fa-question-circle' }}" />
                                         </span>
                                         <input type="text" class="w-20 lg:w-40" name="{{ $childName }}_icon" value="{{ $child['custom_icon'] ?? null }}" placeholder="{{ $child['icon'] ?? null }}" data-paste="fontawesome" maxlength="50" />
                                     </div>

@@ -263,7 +263,17 @@ class CampaignDashboardWidget extends Model
         if (isset($this->cachedEntities)) {
             return $this->cachedEntities;
         }
-        $base = new Entity;
+        $base = Entity::select([
+            'entities.id',
+            'entities.name',
+            'entities.is_private',
+            'entities.type_id',
+            'entities.entity_id',
+            'entities.image_path',
+            'entities.updated_by',
+            'entities.updated_at',
+            'entities.image_uuid',
+        ]);
 
         $excludedTypes = [];
 

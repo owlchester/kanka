@@ -2,7 +2,6 @@
 
 namespace App\Renderers\Layouts\Campaign;
 
-use App\Facades\CampaignLocalization;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 
@@ -21,8 +20,7 @@ class CampaignRole extends Layout
                 'label' => 'campaigns.roles.fields.name',
                 'render' => function ($model) {
                     /** @var \App\Models\CampaignRole $model */
-                    $campaign = CampaignLocalization::getCampaign();
-                    $html = '<a href="' . route('campaign_roles.show', [$campaign, 'campaign_role' => $model])
+                    $html = '<a href="' . route('campaign_roles.show', [$this->campaign, 'campaign_role' => $model])
                         . '">' . $model->name
                         . '</a><br />';
 

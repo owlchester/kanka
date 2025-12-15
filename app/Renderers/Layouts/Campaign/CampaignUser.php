@@ -2,7 +2,6 @@
 
 namespace App\Renderers\Layouts\Campaign;
 
-use App\Facades\CampaignLocalization;
 use App\Models\CampaignRole;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
@@ -43,13 +42,12 @@ class CampaignUser extends Layout
                 'key' => 'user.roles',
                 'label' => 'campaigns.members.fields.roles',
                 'render' => function (\App\Models\CampaignUser $model) {
-                    $campaign = CampaignLocalization::getCampaign();
                     /** @var CampaignRole[] $roles */
-                    $roles = $model->user->campaignRoles->where('campaign_id', $campaign->id);
+                    $roles = $model->user->campaignRoles->where('campaign_id', $this->campaign->id);
                     $roleLinks = [];
                     foreach ($roles as $role) {
                         if (auth()->user()->isAdmin()) {
-                            $roleLinks[] = '<a href="' . route('campaign_roles.show', [$campaign, $role->id]) . '">' . $role->name . '</a>';
+                            $roleLinks[] = '<a href="' . route('campaign_roles.show', [$this->campaign, $role->id]) . '">' . $role->name . '</a>';
                         } else {
                             $roleLinks[] = $role->name;
                         }
@@ -57,8 +55,8 @@ class CampaignUser extends Layout
                     $html = (string) implode(', ', $roleLinks);
 
                     if (auth()->user()->can('update', $model)) {
-                        $html .= ' <i href="' . route('campaign.members.roles', [$campaign, $model->id]) . '" class="fa-regular fa-pencil cursor-pointer"
-                            data-toggle="dialog-ajax" data-target="new-invite" data-url="' . route('campaign.members.roles', [$campaign, $model->id]) . '" data-tooltip data-title="' . __('campaigns/members.roles.title') . '" aria-label="' . __('campaigns/members.roles.title') . '">
+                        $html .= ' <i href="' . route('campaign.members.roles', [$this->campaign, $model->id]) . '" class="fa-regular fa-pencil cursor-pointer"
+                            data-toggle="dialog-ajax" data-target="new-invite" data-url="' . route('campaign.members.roles', [$this->campaign, $model->id]) . '" data-tooltip data-title="' . __('campaigns/members.roles.title') . '" aria-label="' . __('campaigns/members.roles.title') . '">
                         </i>';
                     }
 
