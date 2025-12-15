@@ -49,6 +49,7 @@ return [
     'filesize' => [
         'image' => [
             'standard' => env('APP_IMAGE_SIZE_MB', 3),
+            'owlbear' => env('APP_IMAGE_SIZE_OWLBEAR_MB', 10),
             'wyvern' => env('APP_IMAGE_SIZE_WYVERN_MB', 25),
             'elemental' => env('APP_IMAGE_SIZE_ELEMENTAL_MB', 100),
         ],
