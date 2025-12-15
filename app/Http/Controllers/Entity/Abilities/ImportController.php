@@ -21,7 +21,7 @@ class ImportController extends Controller
     {
         $this->authorize('update', $entity);
 
-        if (!$entity->isCharacter()) {
+        if (! $entity->isCharacter()) {
             return redirect()->route('entities.entity_abilities.index', [$campaign, $entity])
                 ->with('error', __('entities/abilities.import.errors.not_character'));
         }
