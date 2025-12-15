@@ -21,22 +21,10 @@ class ImportController extends Controller
     {
         $this->authorize('update', $entity);
 
-        try {
-            $count = $this->service
-                ->entity($entity)
-                ->import();
-
+        if (!$entity->isCharacter()) {
             return redirect()->route('entities.entity_abilities.index', [$campaign, $entity])
-                ->with('success', trans_choice('entities/abilities.import.success', $count, ['count' => $count]));
-        } catch (Exception $e) {
-            return redirect()->route('entities.entity_abilities.index', [$campaign, $entity])
-                ->with('error', __('entities/abilities.import.errors.' . $e->getMessage()));
+                ->with('error', __('entities/abilities.import.errors.not_character'));
         }
-    }
-
-    public function create(Campaign $campaign, Entity $entity)
-    {
-        $this->authorize('update', $entity);
 
         $races = [];
         foreach ($entity->child->characterRaces as $race) {
@@ -51,5 +39,22 @@ class ImportController extends Controller
             'entity',
             'races'
         ));
+    }
+
+    public function import(Campaign $campaign, Entity $entity)
+    {
+        $this->authorize('update', $entity);
+
+        try {
+            $count = $this->service
+                ->entity($entity)
+                ->import();
+
+            return redirect()->route('entities.entity_abilities.index', [$campaign, $entity])
+                ->with('success', trans_choice('entities/abilities.import.success', $count, ['count' => $count]));
+        } catch (Exception $e) {
+            return redirect()->route('entities.entity_abilities.index', [$campaign, $entity])
+                ->with('error', __('entities/abilities.import.errors.' . $e->getMessage()));
+        }
     }
 }
