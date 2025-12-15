@@ -16,4 +16,15 @@
 @endif
 @if ($entity->child->isDead())
 * {!! __('characters.hints.is_dead') !!}
+
+@endif
+@if ($entity->child->characterTraits->count() > 0)
+@foreach ($entity->child->characterTraits->groupBy('section_id') as $sectionId => $traits)
+### {!! $sectionId == App\Models\CharacterTrait::SECTION_APPEARANCE ? __('characters.sections.appearance') : __('characters.sections.personality') !!}
+
+@foreach ($traits as $trait)
+* {!! $trait->name !!}@if($sectionId == App\Models\CharacterTrait::SECTION_APPEARANCE): {!! $trait->entry !!}@endif  
+@endforeach
+
+@endforeach
 @endif
