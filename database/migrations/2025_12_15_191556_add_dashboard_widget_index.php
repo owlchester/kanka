@@ -29,7 +29,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('entities', function (Blueprint $table) {
-            //
+            $table->dropIndex('dashboard_entity_list_idx');
         });
     }
 };
