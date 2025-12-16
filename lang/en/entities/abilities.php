@@ -28,13 +28,13 @@ return [
         'sync'      => 'Import abilities that are defined on the character\'s races.',
     ],
     'import'    => [
-        'helper'            => 'Attach abilities from the following races :name belongs to:',
-        'no_abilities'      => 'Currently there are no abilities to import from the races :name belongs to.',
-        'race_abilities'    => '{1} :name (:count ability)|[2,*] :name (:count abilities)',
         'errors'            => [
             'no_race'       => 'The character has no race.',
             'not_character' => 'The entity isn\'t a character.',
         ],
+        'helper'            => 'Attach abilities from the following races :name belongs to:',
+        'no_abilities'      => 'Currently there are no abilities to import from the races :name belongs to.',
+        'race_abilities'    => '{1} :name (:count ability)|[2,*] :name (:count abilities)',
         'success'           => '{1} :count race ability imported.|[2,*] :count race abilities imported.',
     ],
     'recharge'  => [

@@ -23,4 +23,15 @@ return [
         'title'             => 'Permissions',
         'viewable-by'       => 'Visible par',
     ],
+    'toggle'    => [
+        'label'     => 'Confidentialité de l\'entité',
+        'private'   => [
+            'description'   => 'Seulement visible aux membres du rôle :admin.',
+            'title'         => 'Privé',
+        ],
+        'public'    => [
+            'description'   => 'Visibles aux rôles et membres suivants.',
+            'title'         => 'Publique',
+        ],
+    ],
 ];

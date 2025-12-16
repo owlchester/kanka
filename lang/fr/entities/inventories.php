@@ -56,6 +56,20 @@ return [
         'title'     => 'Inventaire de :name',
         'unsorted'  => 'Autre',
     ],
+    'togglers'          => [
+        'hide'  => [
+            'price'     => 'Cacher prix',
+            'quantity'  => 'Cacher quantité',
+            'size'      => 'Cacher taille',
+            'weight'    => 'Cacher poids',
+        ],
+        'show'  => [
+            'price'     => 'Afficher prix',
+            'quantity'  => 'Afficher quantité',
+            'size'      => 'Afficher taille',
+            'weight'    => 'Afficher poids',
+        ],
+    ],
     'tooltips'          => [
         'equipped'  => 'Cet objet est équipé',
     ],

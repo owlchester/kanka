@@ -56,18 +56,18 @@ return [
         'title'     => ':name Inventory',
         'unsorted'  => 'Unsorted',
     ],
-    'togglers' => [
-        'show' => [
-            'quantity' => 'Show quantity',
-            'price' => 'Show price',
-            'weight' => 'Show weight',
-            'size' => 'Show size',
+    'togglers'          => [
+        'hide'  => [
+            'price'     => 'Hide price',
+            'quantity'  => 'Hide quantity',
+            'size'      => 'Hide size',
+            'weight'    => 'Hide weight',
         ],
-        'hide' => [
-            'quantity' => 'Hide quantity',
-            'price' => 'Hide price',
-            'weight' => 'Hide weight',
-            'size' => 'Hide size',
+        'show'  => [
+            'price'     => 'Show price',
+            'quantity'  => 'Show quantity',
+            'size'      => 'Show size',
+            'weight'    => 'Show weight',
         ],
     ],
     'tooltips'          => [

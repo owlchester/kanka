@@ -28,11 +28,14 @@ return [
         'sync'      => 'Importer les pouvoirs définis sur les races du personnage.',
     ],
     'import'    => [
-        'errors'    => [
+        'errors'            => [
             'no_race'       => 'Ce personnage n\'as pas de race.',
             'not_character' => 'Cette entité n\'est pas un personnage.',
         ],
-        'success'   => '{1} :count pouvoir ajouté.|[2,*] :count pouvoirs ajoutés.',
+        'helper'            => 'Attacher des pouvoir des races auxquelles :name appartient:',
+        'no_abilities'      => 'Actuellement, il n\'existe aucune possibilité d\'importer des pouvoirs provenant des races auxquelles :name appartient.',
+        'race_abilities'    => '{1} :name (:count pouvoir)|[2,*] :name (:count pouvoirs)',
+        'success'           => '{1} :count pouvoir ajouté.|[2,*] :count pouvoirs ajoutés.',
     ],
     'recharge'  => [
         'success'   => 'Toutes les charges ont été réinitialisées.',

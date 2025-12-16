@@ -47,7 +47,7 @@ class RelatedService
         $this->prepareIds();
 
         return Entity::whereIn('id', $this->ids)
-            ->with(['image', 'entityType'])
+            ->with(['image', 'entityType', 'map'])
             ->orderBy($this->order)
             ->paginate();
     }
