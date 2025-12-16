@@ -37,7 +37,8 @@ class EntityListing extends Component
     }
 
     public function loadEntities()
-    {
+    {i
+        request()->route()->setParameter('campaign', $this->campaign);
         UserCache::campaign($this->campaign);
         Avatar::campaign($this->campaign);
         CampaignCache::campaign($this->campaign);
