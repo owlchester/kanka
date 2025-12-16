@@ -7,10 +7,12 @@ use App\Models\Entity;
 use App\Models\Image;
 use App\Models\Whiteboard;
 use App\Traits\CampaignAware;
+use App\Traits\UserAware;
 
 class ApiService
 {
     use CampaignAware;
+    use UserAware;
 
     protected Whiteboard $whiteboard;
 
@@ -30,6 +32,7 @@ class ApiService
         $this->loadImages();
         $this->translations();
         $this->urls();
+        $this->interactive();
         $this->fixData();
 
         return $this->data;
@@ -160,6 +163,19 @@ class ApiService
         $this->data['urls'] = [
             'overview' => route('entities.show', [$this->campaign, $this->whiteboard->entity]),
             'creator' => route('entity-creator.selection', $this->campaign),
+        ];
+    }
+
+    protected function interactive(): void
+    {
+        $pusher = config('broadcasting.connections.pusher.key');
+        if (empty($pusher) || !isset($this->user)) {
+            return;
+        }
+
+        $this->data['interactive'] = [
+            'key' => $pusher,
+            'cluster' => config('broadcasting.connections.pusher.options.cluster'),
         ];
     }
 }

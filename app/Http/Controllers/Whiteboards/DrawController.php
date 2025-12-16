@@ -27,9 +27,15 @@ class DrawController extends Controller
     public function api(Campaign $campaign, Whiteboard $whiteboard)
     {
         $this->campaign($campaign)->authEntityView($whiteboard->entity);
+        if (auth()->check()) {
+            $this->apiService->user(auth()->user());
+        }
 
         return response()->json(
-            $this->apiService->campaign($campaign)->whiteboard($whiteboard)->load()
+            $this->apiService
+                ->campaign($campaign)
+                ->whiteboard($whiteboard)
+                ->load()
         );
     }
 

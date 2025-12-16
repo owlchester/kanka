@@ -91,8 +91,6 @@
                             class="w-full"
                             rows="4"
                             id="cancel-reason-custom"
-                            x-show="reason === 'custom'"
-                            x-cloak
                         ></textarea>
                     </x-grid>
                 </x-forms.field>

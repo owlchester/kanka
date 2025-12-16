@@ -12,12 +12,13 @@
 
             <div v-if="props.creator" class="relative">
                 <button @click="settingsOpen = !settingsOpen"
-                        class="btn2 btn-primary btn-sm flex items-center gap-1">
-                    <i class="fa-regular fa-gear"></i>
+                        v-show="false"
+                        class="btn2 btn-default btn-sm flex items-center gap-1">
+                    <i class="fa-regular fa-gear" aria-hidden="true"></i>
                 </button>
 
                 <div v-if="settingsOpen" class="absolute left-0 mt-1 border shadow-md bg-base-100 rounded z-20 w-36">
-                    <button 
+                    <button
                         class="px-3 py-2 w-full hover:bg-base-200 rounded flex items-center gap-1.5 text-sm text-base-content transition-all duration-150"
                         @click="openResetDialog" v-html="trans('reset')">
                     </button>
@@ -515,6 +516,8 @@ import EntitySearch from "./EntitySearch.vue";
 import Entity from "./Entity.vue";
 import Settings from "./Settings.vue";
 import Reset from './Reset.vue';
+import Echo from 'laravel-echo';
+import Pusher from 'pusher-js';
 
 const props = defineProps<{
     save: String,
@@ -2079,14 +2082,6 @@ const trans = (key: string) => {
 
 onMounted(() => {
 
-    if (props.user) {
-        window.Echo.channel('kanka-whiteboard-' + props.whiteboard)
-            .listen('.WhiteboardUpdated', (e) => {
-                console.log('Whiteboard event', e);
-                alert('Websocket');
-            });
-    }
-
     currentColor.value = cssVariable('--bc')
     currentBgColor.value = cssVariable('--b1')
     savingUrl.value = props.save
@@ -2109,6 +2104,10 @@ onMounted(() => {
 
             if (res.data.images) {
                 loadImages(res.data.images)
+            }
+
+            if (res.data.interactive) {
+                setupWebsockets(res.data.interactive)
             }
         }
         loading.value = false
@@ -2144,6 +2143,27 @@ const handleClick = (e: MouseEvent) => {
         e.preventDefault();
         resetSelection();
     }
+}
+
+const setupWebsockets = (data: any) => {
+
+    console.log('setup websockets', data);
+    // Make Pusher global for Echo
+    window.Pusher = Pusher;
+
+    // Create global Echo instance
+    window.Echo = new Echo({
+        broadcaster: 'pusher',
+        key: data.key,
+        cluster: data.cluster,
+        forceTLS: true,
+    });
+
+    window.Echo.channel('kanka-whiteboard-' + props.whiteboard)
+        .listen('.WhiteboardUpdated', (e) => {
+            console.log('Whiteboard event', e);
+            alert('Websocket');
+        });
 }
 
 // Keyboard handler: delete selected shape when Delete key pressed

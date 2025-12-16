@@ -235,7 +235,7 @@ return [
         ],
         'placeholders'          => [
             'downgrade_reason'  => 'Optionally tell us why you are downgrading your subscription.',
-            'reason'            => 'Optionally tell us why you are no longer supporting Kanka. Was a feature missing? Did your financial situation change?',
+            'reason'            => 'Optionally tell us why you are no longer supporting Kanka.',
         ],
         'plans'                 => [
             'cost_monthly'  => ':currency :amount billed monthly',

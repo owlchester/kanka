@@ -220,7 +220,7 @@ class EntityCreatorController extends Controller
         $types = $this->entityTypeService
             ->campaign($this->campaign)
             ->user(auth()->user())
-            ->exclude([config('entities.ids.bookmark')])
+            ->exclude([config('entities.ids.bookmark'), config('entities.ids.whiteboard')])
             ->creatable()
             ->ordered();
 
