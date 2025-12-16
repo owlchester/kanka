@@ -1,8 +1,8 @@
 <div class="dropdown entity-actions-dropdown join-item">
     <div data-dropdown aria-expanded="false" aria-haspopup="menu" aria-controls="inventories-submenu" class="btn2 btn-sm join-item entity-actions-button">
-        <x-icon class="fa-solid fa-plus" />
+        <x-icon class="fa-regular fa-plus" />
         {{ __('crud.add') }}
-        <x-icon class="fa-solid fa-caret-down" />
+        <x-icon class="fa-regular fa-caret-down" />
     </div>
 
     <div class="dropdown-menu hidden" role="menu" id="inventories-submenu">
