@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'actions'       => [
-        'add'   => 'Voeg Voorwerp toe',
-    ],
+    'actions'       => [],
     'create'        => [
         'success'   => 'Voorwerp :item toegevoegd aan :entity.',
         'title'     => 'Voeg een Voorwerp toe aan :name',

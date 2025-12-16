@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'actions'       => [
-        'add'   => 'Dodaj predmet',
-    ],
+    'actions'       => [],
     'create'        => [
         'success'   => 'Predmet :item dodan :entity.',
         'title'     => 'Dodaj predmet :name',
