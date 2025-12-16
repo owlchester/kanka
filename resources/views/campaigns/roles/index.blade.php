@@ -58,7 +58,7 @@
                 'admin' => '<a href="' . route(
                     'campaigns.campaign_roles.admin',
                     $campaign,
-                ) . '">' .
+                ) . '" class="text-link">' .
                     $campaign->adminRoleName() . '</a>',
             ]),
             __('campaigns.roles.helper.2'),

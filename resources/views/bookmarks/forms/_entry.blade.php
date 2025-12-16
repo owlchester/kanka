@@ -18,8 +18,8 @@ if (isset($model)) {
         $isRandom = true;
     }
 }
-$settingsLink = '<a href="' . route('settings.premium', ['campaign' => $campaign]) . '">' . __('concept.premium-campaign') . '</a>';
-$premiumLink = '<a href="https://kanka.io/premium">' . __('concept.premium-campaign') . '</a>';
+$settingsLink = '<a href="' . route('settings.premium', ['campaign' => $campaign]) . '" class="text-link">' . __('concept.premium-campaign') . '</a>';
+$premiumLink = '<a href="https://kanka.io/premium" class="text-link">' . __('concept.premium-campaign') . '</a>';
 ?>
 <x-box class="flex flex-col gap-4">
     @include('cruds.fields.name', ['trans' => 'bookmarks'])

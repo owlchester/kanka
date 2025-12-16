@@ -40,7 +40,7 @@
 
             <div class="flex justify-end items-center gap-2">
                 @guest
-                    <a href="{{ route('login') }}" class="">
+                    <a href="{{ route('login') }}" class="text-link">
                         {{ __('front.menu.login') }}
                     </a>
                     @if(config('auth.register_enabled'))

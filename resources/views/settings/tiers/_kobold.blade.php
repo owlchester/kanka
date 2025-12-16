@@ -16,7 +16,7 @@
         <div class="">{{ __('front.features.patreon.upload_limit_map') }}</div>
         <div class="">10 MiB</div>
 
-        <div class="">{!! __('front.features.patreon.discord', ['discord' => '<a href="https://kanka.io/go/discord">Discord</a>']) !!}</div>
+        <div class="">{!! __('front.features.patreon.discord', ['discord' => '<a href="https://kanka.io/go/discord" class="text-link">Discord</a>']) !!}</div>
         <div class=""><x-icon class="fa-solid fa-check-circle" /></div>
     </div>
 

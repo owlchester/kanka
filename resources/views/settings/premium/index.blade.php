@@ -84,7 +84,7 @@
                 </div>
                 <p>
                     {!! __('settings/premium.pitch.more', [
-    'premium' => '<a href="https://kanka.io/premium?utm_source=premium&utm_medium=referral&utm_campaign=findoutmore">' . __('concept.premium-campaigns') . '</a>'
+    'premium' => '<a href="https://kanka.io/premium?utm_source=premium&utm_medium=referral&utm_campaign=findoutmore" class="text-link">' . __('concept.premium-campaigns') . '</a>'
     ]) !!}
                 </p>
             </x-grid>

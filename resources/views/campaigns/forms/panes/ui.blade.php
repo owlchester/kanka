@@ -18,11 +18,11 @@ if (!isset($model) || !$model->boosted()) {
     <x-grid type="1/1">
         @if (isset($model) && $model->boosted())
             <x-helper>
-                <p>{!! __('campaigns.helpers.premium', ['settings' => '<a href="https://kanka.io/premium">' . __('concept.premium-campaigns') . '</a>']) !!}</p>
+                <p>{!! __('campaigns.helpers.premium', ['settings' => '<a href="https://kanka.io/premium" class="text-link">' . __('concept.premium-campaigns') . '</a>']) !!}</p>
             </x-helper>
         @else
             <x-helper>
-                <p>{!! __('campaigns.helpers.premium', ['settings' => '<a href="https://kanka.io/premium">' . __('concept.premium-campaigns') . '</a>']) !!}</p>
+                <p>{!! __('campaigns.helpers.premium', ['settings' => '<a href="https://kanka.io/premium" class="text-link">' . __('concept.premium-campaigns') . '</a>']) !!}</p>
             </x-helper>
         @endif
 

@@ -21,7 +21,7 @@
                 <p>{{ __('settings.account.2fa.social') }}</p>
         @elseif(empty($user->passwordSecurity))
                 <p>
-                    {{ __('settings.account.2fa.helper') }} <a href="https://docs.kanka.io/en/latest/account/security/two-factor-authentication.html">{{ __('settings.account.2fa.learn_more') }}</a>
+                    {{ __('settings.account.2fa.helper') }} <a href="https://docs.kanka.io/en/latest/account/security/two-factor-authentication.html" class="text-link">{{ __('settings.account.2fa.learn_more') }}</a>
                 </p>
 
                 <p>{!! __('settings.account.2fa.enable_instructions', [

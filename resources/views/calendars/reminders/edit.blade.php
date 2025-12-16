@@ -18,7 +18,7 @@
     <x-form method="PATCH" :action="['reminders.update', $campaign, $reminder->id]" class="entity-calendar-subform">
 
     @include('partials.forms._dialog', [
-        'title' => __('calendars.event.edit.title', ['name' => '<a href="' . $entity->url() . '">' . $entity->name . '</a>']),
+        'title' => __('calendars.event.edit.title', ['name' => '<a href="' . $entity->url() . '" class="text-link">' . $entity->name . '</a>']),
         'content' => 'calendars.reminders._form',
         'deleteID' => '#delete-reminder-' . $reminder->id,
         'dropdownParent' => request()->ajax() ? '#primary-dialog' : null,

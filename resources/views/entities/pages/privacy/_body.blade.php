@@ -76,7 +76,7 @@
                         @else
                             {!! $role->name !!}
                         @endif
-                        @if ($role->isPublic() && !$campaign->isPublic())
+                        @if ($role->isPublic() && $campaign->isPrivate())
                             <x-icon class="fa-regular fa-exclamation-triangle text-accent" tooltip :title="__('campaigns.roles.permissions.helpers.not_public')" />
                         @endif
                     </span>

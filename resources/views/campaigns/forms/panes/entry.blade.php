@@ -37,7 +37,7 @@
                 <input type="text" maxlength="45" name="vanity" class="w-full" data-url="{{ route('campaign.vanity-validate', $model) }}" value="{{ old('vanity') }}" placeholder="exandria-unlimited" />
                 <p class="text-neutral-content text-xs">
                     <x-icon class="fa-regular fa-circle-info" />
-                    {!! __('campaigns/vanity.forever', ['docs' => '<a href="https://docs.kanka.io/en/latest/features/campaigns/vanity-url.html">' . __('general.learn-more') . '</a>']) !!}
+                    {!! __('campaigns/vanity.forever', ['docs' => '<a href="https://docs.kanka.io/en/latest/features/campaigns/vanity-url.html" class="text-link">' . __('general.learn-more') . '</a>']) !!}
                 </p>
                 <p class="hidden" id="vanity-loading">
                     <x-icon class="loading" />
@@ -55,9 +55,9 @@
                 </x-helper>
                 @if (isset($model))
                     @if ($model->legacyBoosted())
-                        <a href="{{ route('settings.boost') }}">Switch to premium campaigns to unlock vanity urls on campaigns.</a>
+                        <a href="{{ route('settings.boost') }}" class="text-link">Switch to premium campaigns to unlock vanity urls on campaigns.</a>
                     @else
-                        <a href="{{ route('settings.premium') }}">{{ __('callouts.premium.unlock', ['campaign' => $campaign->name]) }}</a>
+                        <a href="{{ route('settings.premium') }}" class="text-link">{{ __('callouts.premium.unlock', ['campaign' => $campaign->name]) }}</a>
                     @endif
                 @else
                     <input type="text" maxlength="45" name="" class="w-full" readonly="readonly" />

@@ -99,7 +99,7 @@
 
                 <div x-show="reason === 'missing_features'" x-cloak>
                     </br>
-                    {!! __('subscriptions/cancellation.loss.roadmap', ['roadmap' => '<a href="' . route('roadmap') . '">' . __('footer.roadmap') . '</a>']) !!}
+                    {!! __('subscriptions/cancellation.loss.roadmap', ['roadmap' => '<a href="' . route('roadmap') . '" class="text-link">' . __('footer.roadmap') . '</a>']) !!}
                 </div>
 
                 <div x-show="reason === 'financial' && canDowngrade" x-cloak>

@@ -44,7 +44,7 @@
         field="icon"
         :label="__('campaigns/modules.fields.icon')"
         :helper="__('campaigns/modules.helpers.icon', [
-        'fontawesome' => '<a href=\'' . config('fontawesome.search') . '\'>FontAwesome</a>',
+        'fontawesome' => '<a href=\'' . config('fontawesome.search') . '\' class=\'text-link\'>FontAwesome</a>',
         'example' => '<i class=\'fa-solid fa-flask-round-potion\' aria-hidden=\'true\'></i>  <code>fa-solid fa-flask-round-potion</code>',
         ])"
     >

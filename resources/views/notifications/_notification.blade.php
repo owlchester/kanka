@@ -15,11 +15,11 @@ use \Illuminate\Support\Str;
                     // Fix to new links?
                     //$url = \Illuminate\Support\Str::replace(['/campaign/'], ['/w/'], $url);
                 @endphp
-                <a href="{{ $url }}">
+                <a href="{{ $url }}" class="text-link">
                     {!! __('notifications.' . $notification->data['key'], $notification->data['params']) !!}
                 </a>
             @elseif (Arr::has($notification->data['params'], 'route'))
-                <a href="{{ route($notification->data['params']['route']) }}">
+                <a href="{{ route($notification->data['params']['route']) }}" class="text-link">
                     {!! __('notifications.' . $notification->data['key'], $notification->data['params']) !!}
                 </a>
             @else

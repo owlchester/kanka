@@ -62,7 +62,7 @@
                                         {{ __('campaigns/export.helpers.markdown') }}
                                     </p>
                                     @if(!$campaign->premium())
-                                        <a href="{{ route('settings.subscription', ['f' => 'export', 'w' => $campaign->id]) }}" class="text-xs">
+                                        <a href="{{ route('settings.subscription', ['f' => 'export', 'w' => $campaign->id]) }}" class="text-xs text-link">
                                             {{ __('campaigns/export.helpers.premium') }}</a>
                                     @endif
                                 </label>
@@ -88,7 +88,7 @@
                             {!! __('campaigns/export.confirm.notification', ['admin' => '<a href="' . route(
             'campaigns.campaign_roles.admin',
             $campaign,
-        ) . '">' . $campaign->adminRoleName() . '</a>']) !!}
+        ) . '" class="text-link">' . $campaign->adminRoleName() . '</a>']) !!}
                         </p>
 
                     <div class="grid grid-cols-2 gap-2 w-full">

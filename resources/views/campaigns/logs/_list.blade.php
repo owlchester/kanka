@@ -35,7 +35,7 @@
         <tr>
             <td>
                 @if ($log->user)
-                    <a href="{{ route('users.profile', $log->user) }}">
+                    <a href="{{ route('users.profile', $log->user) }}" class="text-link">
                     {!! $log->user->name !!}
                     </a>
                 @else

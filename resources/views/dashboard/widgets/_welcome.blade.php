@@ -35,7 +35,7 @@
         </li>
         <li class="">
             {!! __('dashboards/widgets/welcome.tricks.2', [
-'world' => '<a href="' . route('overview', $campaign) . '"><i class="fa-solid fa-cog" aria-hidden="true"></i> ' . __('sidebar.settings') . '</a>',
+'world' => '<a href="' . route('overview', $campaign) . '" class="text-link"><i class="fa-solid fa-cog" aria-hidden="true"></i> ' . __('sidebar.settings') . '</a>',
 'edit' => '<span class="badge border select-none flex items-center gap-2"><i class="fa-solid fa-pencil" aria-hidden="true"></i> ' . __('campaigns.show.actions.edit') . '</span>',
 ]) !!}
         </li>
@@ -45,8 +45,8 @@
         </li>
         <li class="">
             {!! __('dashboards/widgets/welcome.tricks.4', [
- 'world' => '<a href="' . route('overview', $campaign) . '"><i class="fa-solid fa-cog" aria-hidden="true"></i> ' . __('sidebar.settings') . '</a>',
-'members' => '<a href="' . route('campaign_users.index', $campaign) . '">' . __('campaigns.show.tabs.members') . '</a>',
+ 'world' => '<a href="' . route('overview', $campaign) . '" class="text-link"><i class="fa-solid fa-cog" aria-hidden="true"></i> ' . __('sidebar.settings') . '</a>',
+'members' => '<a href="' . route('campaign_users.index', $campaign) . '" class="text-link">' . __('campaigns.show.tabs.members') . '</a>',
 ]) !!}
         </li>
         <li class="">

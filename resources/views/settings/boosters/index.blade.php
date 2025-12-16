@@ -97,7 +97,7 @@
                         </div>
                     </div>
                 </div>
-                <p>{!! __('settings/boosters.pitch.more', ['boosters' => '<a href="https://kanka.io/premiumutm_source=boosters&utm_medium=referral&utm_campaign=findoutmore">' . __('concept.premium-campaigns') . '</a>']) !!}</p>
+                <p>{!! __('settings/boosters.pitch.more', ['boosters' => '<a href="https://kanka.io/premiumutm_source=boosters&utm_medium=referral&utm_campaign=findoutmore" class="text-link">' . __('concept.premium-campaigns') . '</a>']) !!}</p>
             </x-grid>
         </x-box>
 

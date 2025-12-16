@@ -26,11 +26,11 @@
         {!! __('campaigns/roles.public.helpers.main') !!}
     </p>
     <div class="flex gap-4">
-        <a href="{{ route('dashboard', [$campaign, 'goal' => 'incognito']) }}" target="_blank">
+        <a href="{{ route('dashboard', [$campaign, 'goal' => 'incognito']) }}" target="_blank" class="text-link">
             {!! __('campaigns/roles.public.helpers.preview') !!}
             <x-icon class="link" />
         </a>
-        <a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank">
+        <a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank" class="text-link">
             {{ __('general.tutorial') }}
             <x-icon class="link" />
         </a>

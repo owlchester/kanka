@@ -25,7 +25,7 @@
 @else
     <x-premium-cta :campaign="$campaign">
         <p>
-            {!! __('campaigns/plugins.pitch', ['marketplace' => '<a href="' . config('marketplace.url') . '">' . __('footer.plugins'). '</a>']) !!}
+            {!! __('campaigns/plugins.pitch', ['marketplace' => '<a href="' . config('marketplace.url') . '" class="text-link">' . __('footer.plugins'). '</a>']) !!}
         </p>
     </x-premium-cta>
 @endif

@@ -5,7 +5,7 @@
     @can('boost', auth()->user())
         <p>
             {!! __('settings/boosters.boost.errors.out-of-boosters', [
-                'upgrade' => '<a href="' . route('settings.subscription') . '">' . __('settings/boosters.boost.upgrade') . '</a>',
+                'upgrade' => '<a href="' . route('settings.subscription') . '" class="text-link">' . __('settings/boosters.boost.upgrade') . '</a>',
                 'cost' => '<code>' . 1 . '</code>',
                 'available' => '<strong>' . auth()->user()->availableBoosts() . '</strong>'
             ]) !!}

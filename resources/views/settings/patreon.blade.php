@@ -31,7 +31,7 @@
     @else
         <x-alert type="warning">
             <p>
-                {!! __('settings.patreon.deprecated', ['subscription' => '<a href="' . route('settings.subscription') . '">' . __('settings.menu.subscription') . '</a>']) !!}
+                {!! __('settings.patreon.deprecated', ['subscription' => '<a href="' . route('settings.subscription') . '" class="text-link">' . __('settings.menu.subscription') . '</a>']) !!}
             </p>
         </x-alert>
     @endif

@@ -26,7 +26,7 @@
                         @if($image->inEntitiesCount() > 0)
                             <div class="grid grid-cols-2 gap-2">
                                 @foreach($image->inEntities() as $entity)
-                                    <a href="{{ $entity->url() }}">{{ $entity->name }}</a>
+                                    <a href="{{ $entity->url() }}" class="text-link">{{ $entity->name }}</a>
                                 @endforeach
                             </div>
                         @endif
@@ -39,9 +39,9 @@
                         <div class="grid grid-cols-2 gap-2">
                             @foreach($image->mentions as $mention)
                                 @if($mention->isPost())
-                                    <a href="{{ $mention->entity->url() }}?#post-{{ $mention->post_id }}"> {{ $mention->post->name }}</a>
+                                    <a href="{{ $mention->entity->url() }}?#post-{{ $mention->post_id }}"  class="text-link">{{ $mention->post->name }}</a>
                                 @else
-                                    <a href="{{ $mention->entity->url() }}">{{ $mention->entity->name }}</a>
+                                    <a href="{{ $mention->entity->url() }}" class="text-link">{{ $mention->entity->name }}</a>
                                 @endif
                             @endforeach
                         </div>

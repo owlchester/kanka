@@ -27,7 +27,7 @@
             <x-icon class="fa-regular fa-circle-info" />
             {!! $helper !!}
             @if (isset($link))
-                <a href="{{ $link }}">
+                <a href="{{ $link }}" class="text-link">
                     <x-icon class="fa-regular fa-book" />
                     {{ __('general.documentation') }}
                 </a>

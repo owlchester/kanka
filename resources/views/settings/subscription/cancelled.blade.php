@@ -35,7 +35,7 @@
                 </p>
             <ul>
                 <li>{!! __('subscriptions/cancelled.active.premium' ) !!}</li>
-                <li>{!! __('subscriptions/cancelled.active.discord', ['discord' => '<a href="' . \App\Facades\Domain::toFront('go/discord') . '">Discord</a>'] ) !!}</li>
+                <li>{!! __('subscriptions/cancelled.active.discord', ['discord' => '<a href="' . \App\Facades\Domain::toFront('go/discord') . '" class="text-link">Discord</a>'] ) !!}</li>
                 <li>{!! __('subscriptions/cancelled.active.adfree' ) !!}</li>
                 <li>{!! __('subscriptions/cancelled.active.limit' ) !!}</li>
                 <li>{!! __('subscriptions/cancelled.active.more' ) !!}</li>
@@ -51,7 +51,7 @@
 ]) !!}</p>
             <ul>
                 <li>{!! __('subscriptions/cancelled.next.premium' ) !!}</li>
-                <li>{!! __('subscriptions/cancelled.next.discord', ['discord' => '<a href="' . \App\Facades\Domain::toFront('go/discord') . '">Discord</a>'] ) !!}</li>
+                <li>{!! __('subscriptions/cancelled.next.discord', ['discord' => '<a href="' . \App\Facades\Domain::toFront('go/discord') . '" class="text-link">Discord</a>'] ) !!}</li>
                 <li>{!! __('subscriptions/cancelled.next.data' ) !!}</li>
             </ul>
         </x-box>
@@ -78,7 +78,7 @@
             <p>{!! __('subscriptions/cancelled.contact.helper', []) !!}</p>
             <p>
                 {!! __('subscriptions/cancelled.contact.feedback', []) !!}
-                <a href="{{ \App\Facades\Domain::toFront('contact') }}">
+                <a href="{{ \App\Facades\Domain::toFront('contact') }}" class="text-link">
                     {{ __('subscriptions/cancelled.contact.send') }}
                 </a>
             </p>

@@ -39,10 +39,10 @@
                     @foreach ($invitations as $relation)
                         <tr>
                             <td>
-                                <a href="{{ route('campaigns.join', [$campaign, 'token' => $relation->token]) }}">
+                                <a href="{{ route('campaigns.join', [$campaign, 'token' => $relation->token]) }}" class="text-link">
                                     {{ substr($relation->token, 0, 6) . '...' }}
                                 </a>
-                                <a href="#" data-title="{{ __('campaigns.invites.actions.copy') }}" data-clipboard="{{ route('campaigns.join', ['token' => $relation->token]) }}" data-toggle="tooltip" data-toast="{{ __('crud.alerts.copy_invite') }}">
+                                <a href="#" data-title="{{ __('campaigns.invites.actions.copy') }}" data-clipboard="{{ route('campaigns.join', ['token' => $relation->token]) }}" data-toggle="tooltip" data-toast="{{ __('crud.alerts.copy_invite') }}" class="text-link">
                                     <x-icon class="fa-solid fa-copy" />
                                     <span class="sr-only">{{ __('Copy') }}</span>
                                 </a>
@@ -89,7 +89,7 @@
             __('campaigns.members.invite.description', ['campaign' => $campaign->link()]),
             __('campaigns.members.invite.more', [
                         'link' =>
-                            '<a href="' . route('campaign_roles.index', $campaign) . '">'
+                            '<a href="' . route('campaign_roles.index', $campaign) . '" class="text-link">'
                             . __('campaigns.show.tabs.roles') . '</a>'
                     ])
         ]

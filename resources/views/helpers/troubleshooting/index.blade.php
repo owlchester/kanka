@@ -14,11 +14,11 @@
 
             @if($token)
                 <p class="">{!! __('assistance.success.opening', [
-'discord' => '<a href="https://kanka.io/go/discord">Discord</a>'
+'discord' => '<a href="https://kanka.io/go/discord" class="text-link">Discord</a>'
 ]) !!}</p>
                 <p>
                     <strong>{{ __('assistance.success.token') }}</strong><br />
-                    <a href="#" data-clipboard="{{ $token }}" data-toggle="tooltip" data-toast="Token copied to the clipboard" data-title="{{__('campaigns.invites.actions.copy') }}">
+                    <a href="#" data-clipboard="{{ $token }}" data-toggle="tooltip" data-toast="Token copied to the clipboard" data-title="{{__('campaigns.invites.actions.copy') }}" class="text-link">
                         <x-icon class="fa-regular fa-copy" />
                         {{ $token }}
                     </a>

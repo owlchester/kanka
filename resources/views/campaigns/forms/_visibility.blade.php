@@ -73,8 +73,8 @@ use App\Enums\CampaignVisibility;
         <x-helper>
             <p>
                 <x-icon class="fa-regular fa-circle-info" />
-                {!! __('campaigns/public.helpers.permissions', ['public' => '<a href="' . route('campaigns.campaign_roles.public', $campaign). '">' .  __('campaigns.members.roles.public') . '</a>']) !!}
-                <a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank">
+                {!! __('campaigns/public.helpers.permissions', ['public' => '<a href="' . route('campaigns.campaign_roles.public', $campaign). '" class="text-link">' .  __('campaigns.members.roles.public') . '</a>']) !!}
+                <a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank" class="text-link">
                     {{ __('general.tutorial') }} <x-icon class="link" />
                 </a>
             </p>

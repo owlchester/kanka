@@ -12,7 +12,7 @@
             <x-slot name="title">{{ __('settings.api.title') }}</x-slot>
             <x-slot name="subtitle">{{ __('settings.api.helper') }}</x-slot>
             <x-slot name="link">
-                <a href="{{ route('larecipe.index') }}" class="">
+                <a href="{{ route('larecipe.index') }}" class="text-link">
                     <x-icon class="link" />
                     {{ __('front.features.api.link') }}
                 </a>

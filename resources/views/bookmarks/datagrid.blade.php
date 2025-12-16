@@ -31,7 +31,7 @@
                     if (!$model->target) {
                         return __('crud.users.unknown');
                     }
-                    return '<a href="' . $model->target->url() . '">' . $model->target->name . '</a>';
+                    return '<a href="' . $model->target->url() . '" class="text-link">' . $model->target->name . '</a>';
                 } elseif ($model->isList()) {
                     return $model->entityType->plural();
                 } elseif ($model->isRandom()) {

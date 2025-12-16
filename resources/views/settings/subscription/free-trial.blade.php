@@ -46,7 +46,7 @@
                 {!! __('subscriptions/free-trial.included.upsell.pitch', [
     'tier' => 'Owlbear',
 ]) !!}
-                <a href="{{ route('settings.subscription') }}">
+                <a href="{{ route('settings.subscription') }}" class="text-link">
                     {{ __('subscriptions/free-trial.included.upsell.action') }}
                 </a>
 
@@ -59,7 +59,7 @@
                 {{ __('subscriptions/free-trial.why.title') }}
             </h2>
             <p>{!! __('subscriptions/free-trial.why.helper', [
-    'plugins' => '<a href="' . config('marketplace.url') . '">' . __('footer.plugins') . '</a>'
+    'plugins' => '<a href="' . config('marketplace.url') . '" class="text-link">' . __('footer.plugins') . '</a>'
 ]) !!}</p>
         </div>
 
@@ -70,7 +70,7 @@
                 {{ __('subscriptions/free-trial.tease.title') }}
             </h2>
             <p>{!! __('subscriptions/free-trial.tease.helper', [
-    'subscription' => '<a href="' . route('settings.subscription') . '">' . __('billing/menu.overview') . '</a>'
+    'subscription' => '<a href="' . route('settings.subscription') . '" class="text-link">' . __('billing/menu.overview') . '</a>'
 ]) !!}</p>
         </div>
 

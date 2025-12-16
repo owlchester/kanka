@@ -60,7 +60,7 @@ $moduleName = isset($entityType) ? $entityType->name() : $entity->entityType->na
         <div class="grid grid-cols-2 {{ $cols }} gap-2 items-center">
             <div class="w-40 col-span-2 md:col-span-1">
                 @can('update', $role)
-                    <a href="{{ route('campaign_roles.show', [$campaign, $role]) }}">
+                    <a href="{{ route('campaign_roles.show', [$campaign, $role]) }}" class="text-link">
                         {!! $role->name !!}
                     </a>
                     @if ($role->isPublic() && !$campaign->isPublic())

@@ -17,7 +17,7 @@
         </x-slot>
         <x-slot name="subtitle">
             {!! __('settings.subscription.billing.helper', [
-                'stripe' => '<a href="https://www.stripe.com" target="_blank">Stripe</a>'
+                'stripe' => '<a href="https://www.stripe.com" rel="nofollow" class="text-link">Stripe</a>'
             ]) !!}
         </x-slot>
     </x-hero>

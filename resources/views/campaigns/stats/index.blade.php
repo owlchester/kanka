@@ -79,7 +79,7 @@
                                     {{ __('campaigns/stats.fields.creator') }}
                                 </div>
                                 <div class="permission-count">
-                                    <a href="{{ route('users.profile', [$campaign->creator->id]) }}">
+                                    <a href="{{ route('users.profile', [$campaign->creator->id]) }}" class="text-link">
                                         {!! $campaign->creator->name !!}
                                     </a>
                                 </div>

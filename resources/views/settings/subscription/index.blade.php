@@ -18,9 +18,9 @@
 
         <p class="">
             {!! __('subscription.benefits.main', [
-                'more' => '<a href="https://kanka.io/pricing">' . __('subscription.benefits.more') . '</a>',
-                'boosters' => '<a href="https://kanka.io/premium">' . __('concept.premium-campaigns') . '</a>',
-                'stripe' => '<a href="https://stripe.com">Stripe</a>'
+                'more' => '<a href="https://kanka.io/pricing" class="text-link">' . __('subscription.benefits.more') . '</a>',
+                'boosters' => '<a href="https://kanka.io/premium" class="text-link">' . __('concept.premium-campaigns') . '</a>',
+                'stripe' => '<a href="https://stripe.com" class="text-link">Stripe</a>'
             ]) !!}
         </p>
 

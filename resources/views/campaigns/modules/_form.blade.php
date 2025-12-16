@@ -40,7 +40,7 @@
         field="icon"
         :label="__('campaigns/modules.fields.icon')"
         :helper="__('campaigns/modules.helpers.icon', [
-        'fontawesome' => '<a href=\'' . config('fontawesome.search') . '\'>FontAwesome</a>',
+        'fontawesome' => '<a href=\'' . config('fontawesome.search') . '\' class=\'text-link\'>FontAwesome</a>',
         'example' => '<i class=\'fa-solid fa-horse\' aria-hidden=\'true\'></i> <span class=\'font-bold\'>fa-solid fa-horse</span>',
         ])">
         <input type="text" name="icon" value="{{ old('icon', $icon) }}" maxlength="60" class="w-full @if (!$campaign->boosted()) form-control @endif" list="module-icon-list" placeholder="{{ $entityType->icon() }}" @if (!$campaign->boosted()) disabled="disabled" @endif />

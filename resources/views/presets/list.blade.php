@@ -6,7 +6,7 @@
                     <i class="fa-solid fa-spin fa-spinner" style="display: none" aria-hidden="true"></i>
                     {{ $preset->name }}
                 </span>
-                <a href="{{ route('preset_types.presets.edit', [$campaign, $presetType, $preset, 'from' => $from]) }}" class="preset-edit px-1">
+                <a href="{{ route('preset_types.presets.edit', [$campaign, $presetType, $preset, 'from' => $from]) }}" class="preset-edit px-1 text-link">
                     <x-icon class="pencil" />
                 </a>
             </div>

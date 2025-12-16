@@ -79,7 +79,7 @@
         @else
         <x-box>
             <p class="text-2xl">Limited access</p>
-            <p class="">To access this feature, upgrade to a <a href="{{ route('settings.subscription') }}">Wyvern or Elemental subscription</a>.</p>
+            <p class="">To access this feature, upgrade to a <a href="{{ route('settings.subscription') }}" class="text-link">Wyvern or Elemental subscription</a>.</p>
         </x-box>
         @endif
     </div>

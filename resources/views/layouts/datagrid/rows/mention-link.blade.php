@@ -15,18 +15,18 @@
 @if ($model->isQuestElement())
     @if ($model->questElement && $model->entity)
         - @include('icons.visibility', ['icon' => $model->questElement->skipAllIcon()->visibilityIcon()])
-        <a href="{{ $model->getLink() }}">{!! $model->questElement->name() !!}</a>
+        <a href="{{ $model->getLink() }}" class="text-link">{!! $model->questElement->name() !!}</a>
     @endif
 @elseif ($model->isTimelineElement())
     @if ($model->timelineElement && $model->entity)
         - @include('icons.visibility', ['icon' => $model->timelineElement->skipAllIcon()->visibilityIcon()])
-        <a href="{{ $model->getLink() }}">{!! $model->timelineElement->elementName() !!}</a>
+        <a href="{{ $model->getLink() }}" class="text-link">{!! $model->timelineElement->elementName() !!}</a>
     @endif
 @elseif ($model->isPost())
     @if ($model->post && $model->entity)
         - @include('icons.visibility', ['icon' => $model->post->skipAllIcon()->visibilityIcon()])
-        <a href="{{ $model->getLink() }}">{!! $model->post->name !!}</a>
+        <a href="{{ $model->getLink() }}" class="text-link">{!! $model->post->name !!}</a>
     @endif
 @elseif ($model->isCampaign())
-    <a href="{{ route('overview', $campaign) }}">{!! $campaign->name !!}</a>
+    <a href="{{ route('overview', $campaign) }}" class="text-link">{!! $campaign->name !!}</a>
 @endif

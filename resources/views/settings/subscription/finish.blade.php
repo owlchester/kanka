@@ -29,7 +29,7 @@
                 {{ __('subscriptions/finish.premium.title') }}
             </h2>
             <p>{!! __('subscriptions/finish.premium.helper', [
-    'plugins' => '<a href="' . config('marketplace.url') . '">' . __('footer.plugins') . '</a>'
+    'plugins' => '<a href="' . config('marketplace.url') . '" class="text-link">' . __('footer.plugins') . '</a>'
 ]) !!}</p>
             <div class="flex flex-col gap-4">
                 @foreach ($availableCampaigns as $availableCampaign)
@@ -69,11 +69,11 @@
 ]) !!}</p>
             <p>
             @if (!$user->discord())
-                <a href="{{ route('settings.apps') }}">
+                <a href="{{ route('settings.apps') }}" class="text-link">
                     {{ __('subscriptions/finish.discord.action') }}
                 </a>
             @else
-                <a href="{{ \App\Facades\Domain::toFront('go/discord') }}">
+                <a href="{{ \App\Facades\Domain::toFront('go/discord') }}" class="text-link">
                     {{ __('subscriptions/finish.discord.enjoy') }}
                 </a>
             @endif
@@ -88,7 +88,7 @@
             <p>{!! __('subscriptions/finish.roadmap.helper', [
 ]) !!}</p>
             <p>
-            <a href="{{ route('roadmap') }}">
+            <a href="{{ route('roadmap') }}" class="text-link">
                 {{ __('subscriptions/finish.roadmap.action') }}
             </a>
             </p>
@@ -99,8 +99,8 @@
                 {{ __('subscriptions/finish.help.title') }}
             </h2>
             <p>{!! __('subscriptions/finish.help.helper', [
-    'contact-us' => '<a href="' . \App\Facades\Domain::toFront('contact') . '">' . __('subscriptions/finish.help.contact-us') . '</a>',
-    'docs' => '<a href="https://docs.kanka.io">' . __('footer.documentation') . '</a>'
+    'contact-us' => '<a href="' . \App\Facades\Domain::toFront('contact') . '" class="text-link">' . __('subscriptions/finish.help.contact-us') . '</a>',
+    'docs' => '<a href="https://docs.kanka.io" class="text-link">' . __('footer.documentation') . '</a>'
 ]) !!}</p>
         </div>
     </x-grid>

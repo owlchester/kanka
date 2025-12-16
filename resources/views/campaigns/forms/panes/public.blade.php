@@ -7,13 +7,13 @@
 
             @if (isset($model) && $model->isPublic())
                 <x-helper>
-                    <p>{!! __('campaigns.helpers.view_public', ['link' => '<a href="' . route('dashboard', $campaign) . '">' . route('dashboard', $campaign) . '</a>']) !!}</p>
+                    <p>{!! __('campaigns.helpers.view_public', ['link' => '<a href="' . route('dashboard', $campaign) . '" class="text-link">' . route('dashboard', $campaign) . '</a>']) !!}</p>
                 </x-helper>
 
                 @if ($model->publicHasNoVisibility())
                     <x-alert type="warning">
                         {!! __('campaigns.helpers.public_no_visibility', [
-        'fix' => '<a href="' . route('campaigns.campaign_roles.public', $campaign) . '">' . __('crud.fix-this-issue') . '</a>',
+        'fix' => '<a href="' . route('campaigns.campaign_roles.public', $campaign) . '" class="text-link">' . __('crud.fix-this-issue') . '</a>',
         ]) !!}
                     </x-alert>
                 @endif
@@ -24,7 +24,7 @@
 
             <x-helper>
                 <p>{!! __('campaigns.sharing.filters', [
-        'public-campaigns' => '<a href="https://kanka.io/campaigns" target="_blank">' . __('footer.public-campaigns') . '</a>'
+        'public-campaigns' => '<a href="https://kanka.io/campaigns" target="_blank" class="text-link">' . __('footer.public-campaigns') . '</a>'
         ]) !!}</p>
             </x-helper>
 

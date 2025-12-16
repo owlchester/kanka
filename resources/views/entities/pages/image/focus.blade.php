@@ -58,11 +58,11 @@ $source = empty($entity->image_path) && !empty($entity->image_uuid) ? $entity->i
         <x-alert type="warning">
             <p>
             {!! __('entities/image.focus.unboosted', [
-    'boosted-campaigns' => '<a href="https://kanka.io/premium" target="_blank">' . __('concept.premium-campaigns') . '</a>'
+    'boosted-campaigns' => '<a href="https://kanka.io/premium" class="text-link">' . __('concept.premium-campaigns') . '</a>'
 ]) !!}
             </p>
         </x-alert>
-        <a href="{{ $model->getLink() }}">
+        <a href="{{ $model->getLink() }}" class="text-link">
             <x-icon class="fa-regular fa-arrow-left" />
             {{ __('crud.actions.back') }}
         </a>

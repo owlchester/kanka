@@ -69,7 +69,7 @@
                 @if (auth()->user()->subscribed('kanka') && !auth()->user()->subscription('kanka')->canceled())
                     <p>
                         {!! __('profiles.sections.delete.subscribed', [
-        'subscription' => '<a href="' . route('settings.subscription') . '">' . __('settings.menu.subscription') . '</a>'
+        'subscription' => '<a href="' . route('settings.subscription') . '" class="text-link">' . __('settings.menu.subscription') . '</a>'
     ]) !!}
                     </p>
                 @endif

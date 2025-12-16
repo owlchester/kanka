@@ -11,9 +11,9 @@
                 <x-slot name="answer">
                     <p>
                         {!! __('subscriptions/faq.' . $key . '.answer', [
-    'billing' => '<a href="' . route('billing.payment-method') . '">' . __('billing/menu.payment-method') . '</a>',
-    'stripe' => '<a href="https://stripe.com">Stripe</a>',
-    'email' => '<a href="mailto:' . config('app.email') . '">' . config('app.email') . '</a>'
+    'billing' => '<a href="' . route('billing.payment-method') . '" class="text-link">' . __('billing/menu.payment-method') . '</a>',
+    'stripe' => '<a href="https://stripe.com" class="text-link">Stripe</a>',
+    'email' => '<a href="mailto:' . config('app.email') . '" class="text-link">' . config('app.email') . '</a>'
 ]) !!}
                     </p>
                 </x-slot>

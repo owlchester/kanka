@@ -15,7 +15,7 @@
             <x-helper>
                 <p>{!! __('campaigns/plugins.import.helper', [
                 'count' => $version->version->entities()->count(),
-                'plugin' => '<a href="' . $plugin->libraryUrl() . '">' . $plugin->name . '</a>'
+                'plugin' => '<a href="' . $plugin->libraryUrl() . '" class="text-link">' . $plugin->name . '</a>'
             ]) !!}</p>
             </x-helper>
 

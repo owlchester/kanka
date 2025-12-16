@@ -14,11 +14,11 @@
         <div class="">25 MiB</div>
         <div class="">{{ __('front.features.patreon.upload_limit_map') }}</div>
         <div class="">50 MiB</div>
-        <div class="">{!! __('front.features.patreon.discord', ['discord' => '<a href="https://kanka.io/go/discord">Discord</a>']) !!}</div>
+        <div class="">{!! __('front.features.patreon.discord', ['discord' => '<a href="https://kanka.io/go/discord" class="text-link">Discord</a>']) !!}</div>
         <div class=""><x-icon class="fa-solid fa-check-circle" /></div>
         <div class="">{{ __('front.features.patreon.default_image') }}</div>
         <div class=""><x-icon class="fa-solid fa-check-circle" /></div>
-        <div class="">{!! __('front.features.patreon.hall_of_fame', ['link' => '<a href="https://kanka.io/hall-of-fame">' . __('front/hall-of-fame.title') . '</a>']) !!}</div>
+        <div class="">{!! __('front.features.patreon.hall_of_fame', ['link' => '<a href="https://kanka.io/hall-of-fame" class="text-link">' . __('front/hall-of-fame.title') . '</a>']) !!}</div>
         <div class=""><x-icon class="fa-solid fa-check-circle" /></div>
         <div class="">{{ __('front.features.patreon.api_calls') }}</div>
         <div class=""><x-icon class="fa-solid fa-check-circle" /></div>

@@ -6,7 +6,7 @@
             <x-icon class="fa-regular fa-gem text-boost" />
         @endif
     </div>
-    <a href="https://kanka.io/premium?utm_source=subscription&utm_medium=referral&utm_campaign=owlbear">
+    <a href="https://kanka.io/premium?utm_source=subscription&utm_medium=referral&utm_campaign=owlbear" class="text-link">
         @if (auth()->user()->hasBoosterNomenclature())
             3 {{ __('tiers.features.boosters') }}
         @else
@@ -41,7 +41,7 @@
     <div class="w-8 shrink-0 text-center">
         <x-icon class="fa-regular fa-webhook" />
     </div>
-    <a href="{{ route('larecipe.index') }}">
+    <a href="{{ route('larecipe.index') }}" class="text-link">
         {{ __('tiers.features.api_requests', ['amount' => config('limits.api.throttle.subscriber')]) }}
     </a>
 </div>
@@ -51,7 +51,7 @@
         <x-icon class="check" />
     </div>
     <div>
-        {!! __('tiers.features.discord', ['discord' => '<a href="https://kanka.io/go/discord">Discord</a>',]) !!}
+        {!! __('tiers.features.discord', ['discord' => '<a href="https://kanka.io/go/discord" class="text-link">Discord</a>',]) !!}
     </div>
 </div>
 
@@ -66,5 +66,5 @@
     <div class="w-8 shrink-0 text-center">
         <x-icon class="check" />
     </div>
-    <a href="{{ route('roadmap', ['utm_source' => 'subscription', 'utm_campaign' => 'owlbear']) }}">{{ __('tiers.features.roadmap') }}</a>
+    <a href="{{ route('roadmap', ['utm_source' => 'subscription', 'utm_campaign' => 'owlbear']) }}" class="text-link">{{ __('tiers.features.roadmap') }}</a>
 </div>

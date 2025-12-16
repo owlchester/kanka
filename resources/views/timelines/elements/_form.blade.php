@@ -64,8 +64,8 @@ if (!empty($era)) {
         </div>
             <x-helper>
                 <p>{!! __('timelines/elements.helpers.icon', [
-        'rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/">RPG Awesome</a>',
-        'fontawesome' => '<a href="' . config('fontawesome.search') . '">Font Awesome</a>'
+        'rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/" class="text-link">RPG Awesome</a>',
+        'fontawesome' => '<a href="' . config('fontawesome.search') . '" class="text-link">Font Awesome</a>'
         ]) !!}</p>
             </x-helper>
 
@@ -74,14 +74,14 @@ if (!empty($era)) {
                 <x-helper>
                     <p>
                     <x-icon class="premium" />
-                    {!! __('crud.errors.boosted_campaigns', ['boosted' => '<a href="' . route('settings.premium', ['campaign' => $campaign]) . '">' . __('concept.premium-campaign') . '</a>']) !!}
+                    {!! __('crud.errors.boosted_campaigns', ['boosted' => '<a href="' . route('settings.premium', ['campaign' => $campaign]) . '" class="text-link">' . __('concept.premium-campaign') . '</a>']) !!}
                     </p>
                 </x-helper>
             @else
                 <x-helper>
                     <p>
                     <x-icon class="premium" />
-                    {!! __('crud.errors.boosted_campaigns', ['boosted' => '<a href="https://kanka.io/premium">' . __('concept.premium-campaign') . '</a>']) !!}
+                    {!! __('crud.errors.boosted_campaigns', ['boosted' => '<a href="https://kanka.io/premium" class="text-link">' . __('concept.premium-campaign') . '</a>']) !!}
                     </p>
                 </x-helper>
             @endif

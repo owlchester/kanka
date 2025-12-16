@@ -1,5 +1,5 @@
 @if ($isLink)
-    <a href="{{ $url }}">{!! $title !!}</a>
+    <a href="{{ $url }}" class="text-link">{!! $title !!}</a>
 @else
     {!! $title !!}
 @endif

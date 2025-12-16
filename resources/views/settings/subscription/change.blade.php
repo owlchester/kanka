@@ -18,7 +18,7 @@
         </div>
         <div class="text-xl grow">
         @if ($user->hasManualSubscription())
-                    You currently have a manual subscription managed by our team. Please contact us at <a href="mailto:{{ config('app.email') }}">{{ config('app.email') }}</a> for assistance.
+                    You currently have a manual subscription managed by our team. Please contact us at <a href="mailto:{{ config('app.email') }}" class="text-link">{{ config('app.email') }}</a> for assistance.
         @elseif ($user->hasPayPal())
             {!! __('settings.subscription.change.text.upgrade_paypal', [
                 'upgrade' => "<strong>$currency" . number_format($upgrade, 2) . "</strong>",
@@ -71,7 +71,7 @@
                     <div class="text-center">
                         <strong>{{ __('settings.subscription.fields.payment_method') }}</strong><br />
                         <x-icon class="fa-solid fa-credit-card" /> **** {{ $card->card->last4 }} {{ $card->card->exp_month }}/{{ $card->card->exp_year }}
-                        <p><a href="{{ route('billing.payment-method') }}">{{ __('settings.subscription.payment_method.actions.change') }}</a></p>
+                        <p><a href="{{ route('billing.payment-method') }}" class="text-link">{{ __('settings.subscription.payment_method.actions.change') }}</a></p>
                     </div>
                     @if ($isDowngrading)
 
@@ -123,13 +123,13 @@
                     </div>
                     <div class="flex gap-1">
                         <x-icon class="fa-regular fa-shield w-5 flex-none" />
-                        <p class="text-xs">{!! __('settings.subscription.helpers.stripe', ['stripe' => '<a href="https://stripe.com" target="_blank">Stripe</a>']) !!}</p>
+                        <p class="text-xs">{!! __('settings.subscription.helpers.stripe', ['stripe' => '<a href="https://stripe.com" class="text-link">Stripe</a>']) !!}</p>
                     </div>
                     @if($isYearly)
                         <div class="flex gap-1">
                             <x-icon class="fa-regular fa-handshake w-5 flex-none" />
                             <p class="text-xs grow">
-                                {!! __('subscriptions/confirm.helpers.refund', ['email' => '<a href="mailto' . config('app.email') . '">' . config('app.email') . '</a>']) !!}
+                                {!! __('subscriptions/confirm.helpers.refund', ['email' => '<a href="mailto' . config('app.email') . '" class="text-link">' . config('app.email') . '</a>']) !!}
                             </p>
                         </div>
                     @endif
@@ -192,7 +192,7 @@
                                 <div class="flex gap-1">
                                     <x-icon class="fa-regular fa-handshake w-5 flex-none" />
                                     <p class="text-xs grow">
-                                        {!! __('subscriptions/confirm.helpers.refund', ['email' => '<a href="mailto' . config('app.email') . '">' . config('app.email') . '</a>']) !!}
+                                        {!! __('subscriptions/confirm.helpers.refund', ['email' => '<a href="mailto' . config('app.email') . '" class="text-link">' . config('app.email') . '</a>']) !!}
                                     </p>
                                 </div>
                             @endif

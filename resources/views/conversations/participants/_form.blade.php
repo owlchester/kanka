@@ -13,7 +13,7 @@
             @if ($participant->isMember())
                 <x-users.link :user="$participant->entity()" class="w-10 h-10" />
             @else
-                <a href="{{ route('characters.show', [$campaign, $participant->entity()]) }}" class="flex items-center gap-2">
+                <a href="{{ route('characters.show', [$campaign, $participant->entity()]) }}" class="flex items-center gap-2 text-link">
                     <div class="cover-background rounded-full h-10 w-10" style="background-image: url('{{ \App\Facades\Avatar::entity($participant->entity()->entity)->size(40)->fallback()->thumbnail() }}')"></div>
                     {!! $participant->entity()->name !!}
                 </a>

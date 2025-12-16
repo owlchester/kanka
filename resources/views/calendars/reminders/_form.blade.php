@@ -1,6 +1,6 @@
 @if (!empty($from))
     <x-alert type="warning" class="w-full">
-        <p>{!! __('calendars.event.helpers.other_calendar', ['calendar' => '<a href="' . $from->entity?->url() . '">' . $from->name . '</a>']) !!}</p>
+        <p>{!! __('calendars.event.helpers.other_calendar', ['calendar' => '<a href="' . $from->entity?->url() . '" class="text-link">' . $from->name . '</a>']) !!}</p>
     </x-alert>
 @endif
 

@@ -20,7 +20,7 @@
 
         <p class="">
             {!! __('campaigns/delete.helper', [
-    'backup' => '<a href="' . route('campaign.export', $campaign) . '">'. __('campaigns/delete.backup'). ' </a>'
+    'backup' => '<a href="' . route('campaign.export', $campaign) . '" class="text-link">'. __('campaigns/delete.backup'). ' </a>'
 ]) !!}
         </p>
 
@@ -28,7 +28,7 @@
             @cannot('delete', $campaign)
                 <p class="mb-2">{{ __('campaigns/delete.issue') }}</p>
 
-                <a href="{{ route('campaign_users.index', $campaign) }}">
+                <a href="{{ route('campaign_users.index', $campaign) }}" class="text-link">
                     <x-icon class="fa-solid fa-circle-xmark" />
                     {{ __('campaigns/delete.members') }}
 
