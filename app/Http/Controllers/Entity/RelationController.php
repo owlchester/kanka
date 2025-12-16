@@ -186,8 +186,7 @@ class RelationController extends Controller
                         'text' => $relation->relation,
                         'target' => (new EntityResource($relation->target))->campaign($campaign),
                     ]);
-            }
-            elseif (! empty($from)) {
+            } elseif (! empty($from)) {
                 $redirect = [$campaign, (int) $from];
                 if (! empty($mode)) {
                     $redirect['mode'] = $mode;

@@ -33,7 +33,7 @@ class GroupController extends Controller
         $this->rows = $map
             ->groups()
             ->sort(request()->only(['o', 'k']), ['position' => 'asc'])
-            ->with(['map'])
+            ->with(['map', 'parent'])
             ->paginate(config('limits.pagination'));
 
         $groups = $map

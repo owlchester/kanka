@@ -54,7 +54,7 @@ if (isset($single) && $single) {
 
 @if(!isset($single) || !$single)
     /** Groups Init **/
-@foreach($map->groups as $group)
+@foreach($map->groups()->with('children')->get() as $group)
     @if ($map->isClustered())
     var group{{ $group->id }} = L.layerGroup(/**[{{ $group->markerGroupHtml() }}]**/);
     @else

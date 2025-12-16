@@ -8,8 +8,7 @@ use App\Services\Campaign\Connections\WebService;
 
 class WebController extends Controller
 {
-    public function __construct(protected WebService $webService)
-    {}
+    public function __construct(protected WebService $webService) {}
 
     public function index(Campaign $campaign)
     {

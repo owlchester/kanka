@@ -2,7 +2,6 @@
 
 namespace App\Services\Campaign\Connections;
 
-use App\Facades\Avatar;
 use App\Http\Resources\Web\EntityResource;
 use App\Models\Entity;
 use App\Models\Relation;
@@ -16,15 +15,18 @@ class WebService
     use UserAware;
 
     protected array $entities = [];
+
     protected array $parsedEntities = [];
+
     protected array $nodes = [];
 
     protected Collection $mirrored;
 
     public function build(): array
     {
-        $this->mirrored = new Collection();
+        $this->mirrored = new Collection;
         $this->loadConnections();
+
         return [
             'entities' => $this->entities,
             'nodes' => $this->nodes,
@@ -36,7 +38,7 @@ class WebService
     protected function loadConnections(): void
     {
         $query = Relation::preparedWith();
-        if (!$this->campaign->boosted()) {
+        if (! $this->campaign->boosted()) {
             $query->limit(config('limits.campaigns.web'))->latest();
         }
         $connections = $query->get();
@@ -89,7 +91,6 @@ class WebService
             ]);
         }
         $this->nodes[] = $node;
-
 
         if ($connection->isMirrored() && $connection->mirror && $connection->relation && $connection->relation == $connection->mirror->relation) {
             $this->mirrored->put($connection->id . '-' . $connection->mirror_id, true);

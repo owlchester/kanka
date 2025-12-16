@@ -85,7 +85,7 @@ class MapGroup extends Model
      */
     public function children(): HasMany
     {
-        return $this->hasMany(MapGroup::class, 'parent_id');
+        return $this->hasMany(MapGroup::class, 'parent_id')->with('children');
     }
 
     public function descendantGroupIds(): array
