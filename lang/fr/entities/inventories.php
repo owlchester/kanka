@@ -2,8 +2,6 @@
 
 return [
     'actions'           => [
-        'add'               => 'Ajouter',
-        'copy_from'         => 'Copier depuis',
         'copy_inventory'    => 'Copier l\'inventaire',
         'generate'          => 'Générer',
     ],

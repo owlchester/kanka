@@ -7,14 +7,7 @@ return [
     ],
     'quick'     => [
         'empty-permissions' => 'Nessun ruolo o utente fuori dagli amministratori della campagna hanno accesso a questa entità.',
-        'field'             => 'Modifica rapida',
         'manage'            => 'Gestisci i Permessi',
-        'options'           => [
-            'private'   => 'Privato a tutti tranne agli amministratori',
-            'visible'   => 'Visibile ai seguenti',
-        ],
-        'private'           => 'Solo i membri del ruolo di amministratore della campagna possono attualmente vedere questa entità.',
-        'public'            => 'Questa entità è attualmente visibile da qualsiasi utente o ruolo che vi abbia accesso.',
         'screen-reader'     => 'Apri impostazioni della privacy',
         'success'           => [
             'private'   => ':entity è attualmente nascosto.',

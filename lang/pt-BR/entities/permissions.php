@@ -7,14 +7,7 @@ return [
     ],
     'quick'     => [
         'empty-permissions' => 'Nenhum cargo ou usuário além dos administradores da campanha tem acesso a esta entidade.',
-        'field'             => 'Edição rápida',
         'manage'            => 'Gerenciar Permissões',
-        'options'           => [
-            'private'   => 'Privado para todos, exceto administradores',
-            'visible'   => 'Visível para o seguinte',
-        ],
-        'private'           => 'Somente membros do cargo de administrador da campanha pode atualmente ver essa entidade.',
-        'public'            => 'Essa entidade é atualmente visível a qualquer usuário ou cargo com acesso a ela.',
         'screen-reader'     => 'Abrir as configurações de privacidade',
         'success'           => [
             'private'   => ':entity está agora escondida.',

@@ -2,8 +2,6 @@
 
 return [
     'actions'           => [
-        'add'               => 'Pridaj Predmet',
-        'copy_from'         => 'Kopírovať z',
         'copy_inventory'    => 'Kopírovať inventár',
     ],
     'copy'              => [],

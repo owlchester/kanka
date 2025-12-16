@@ -2,8 +2,6 @@
 
 return [
     'actions'           => [
-        'add'               => 'Adicionar item',
-        'copy_from'         => 'Copiar de',
         'copy_inventory'    => 'Copiar inventário',
     ],
     'copy'              => [
