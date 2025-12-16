@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Enums\Widget;
 use App\Facades\CampaignCache;
+use App\Facades\CampaignLocalization;
 use App\Facades\CharacterCache;
 use App\Facades\EntityCache;
 use App\Facades\EntityPermission;
@@ -63,6 +64,8 @@ class StarterService
 
     public function entities()
     {
+        CampaignLocalization::forceCampaign($this->campaign);
+        request()->route()->setParameter('campaign', $this->campaign);
         EntityCache::campaign($this->campaign);
         CharacterCache::campaign($this->campaign);
 
