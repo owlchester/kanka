@@ -13,7 +13,7 @@
         @include('partials.forms.form', [
             'title' => __('entities/inventories.create.title', ['name' => $entity->name]),
             'content' => 'entities.pages.inventory._form',
-            'submit' => __('entities/inventories.actions.add'),
+            'submit' => __('entities/inventories.actions.multiple'),
             'multiple' => true,
         ])
     <input type="hidden" name="entity_id" value="{{ $entity->id }}" />

@@ -64,7 +64,7 @@
                     </x-dropdowns.item>
                 @endcan
                 @can('update', $entity)
-                    <x-dropdowns.item :link="route('entities.archive', [$campaign, $entity])" icon="fa-solid fa-archive">
+                    <x-dropdowns.item :link="route('entities.archive', [$campaign, $entity])" icon="fa-regular fa-archive">
                         @if ($entity->archived_at)
                             {{ __('entities/actions.unarchive.title') }}
                         @else

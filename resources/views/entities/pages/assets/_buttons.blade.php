@@ -1,20 +1,19 @@
 <div class="dropdown entity-actions-dropdown">
     <div data-dropdown aria-expanded="false" aria-haspopup="menu" aria-controls="assets-submenu" class="btn2 btn-sm join-item entity-actions-button">
-        <x-icon class="fa-solid fa-plus" />
         {{ __('crud.add') }}
-        <x-icon class="fa-solid fa-caret-down" />
+        <x-icon class="fa-regular fa-caret-down" />
     </div>
     <div class="dropdown-menu hidden" role="menu" id="assets-submenu">
         <x-dropdowns.item link="#" icon="fa-regular fa-masks-theater" :dialog="route('entities.entity_assets.create', [$campaign, $entity, 'type' => \App\Enums\EntityAssetType::alias])">
-            <span class="hidden md:inline">{{ __('entities/assets.actions.alias') }}</span>
+            {{ __('entities/assets.actions.alias') }}
         </x-dropdowns.item>
 
         <x-dropdowns.item link="#" icon="fa-regular fa-upload" :dialog="route('entities.entity_assets.create', [$campaign, $entity, 'type' => \App\Enums\EntityAssetType::file])">
-            <span class="hidden md:inline">{{ __('entities/assets.actions.file') }}</span>
+            {{ __('entities/assets.actions.file') }}
         </x-dropdowns.item>
 
         <x-dropdowns.item link="#" icon="fa-regular fa-link" :dialog="route('entities.entity_assets.create', [$campaign, $entity, 'type' => \App\Enums\EntityAssetType::link])">
-            <span class="hidden md:inline">{{ __('entities/assets.actions.link') }}</span>
+            {{ __('entities/assets.actions.link') }}
         </x-dropdowns.item>
         <x-dropdowns.divider />
 

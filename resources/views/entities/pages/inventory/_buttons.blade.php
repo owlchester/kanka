@@ -1,6 +1,5 @@
 <div class="dropdown entity-actions-dropdown join-item">
     <div data-dropdown aria-expanded="false" aria-haspopup="menu" aria-controls="inventories-submenu" class="btn2 btn-sm join-item entity-actions-button">
-        <x-icon class="fa-regular fa-plus" />
         {{ __('crud.add') }}
         <x-icon class="fa-regular fa-caret-down" />
     </div>
@@ -12,7 +11,7 @@
             icon="plus"
             data-toggle="dialog" data-target="inventories-dialog" data-url="{{ route('entities.inventories.create', [$campaign, $entity]) }}" data-title="{{ __('entities/inventories.actions.create') }}" data-toggle="tooltip"
         >
-            <span class="hidden md:inline">{{ __('entities/inventories.actions.add') }}</span>
+            {{ __('entities/inventories.actions.multiple') }}
         </x-dropdowns.item>
 
         <x-dropdowns.item
@@ -21,7 +20,7 @@
             icon="fa-regular fa-dice"
             data-toggle="dialog" data-target="inventories-dialog" data-url="{{ route('entities.inventory.generate', [$campaign, $entity]) }}" data-title="{{ __('entities/inventories.actions.generate') }}" data-toggle="tooltip"
         >
-            <span class="hidden md:inline">{{ __('entities/inventories.actions.generate') }}</span>
+            {{ __('entities/inventories.actions.generate') }}
         </x-dropdowns.item>
 
         <x-dropdowns.item
@@ -30,7 +29,7 @@
             icon="fa-regular fa-copy"
             data-toggle="dialog" data-target="inventories-dialog" data-url="{{ route('entities.inventory.copy', [$campaign, $entity]) }}" data-title="{{ __('entities/inventories.actions.copy_from') }}" data-toggle="tooltip"
         >
-            <span class="hidden md:inline">{{ __('entities/inventories.actions.copy_from_entity') }}</span>
+            {{ __('entities/inventories.actions.copy_from_entity') }}
         </x-dropdowns.item>
 
         <x-dropdowns.divider />

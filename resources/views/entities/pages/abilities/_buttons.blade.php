@@ -9,7 +9,7 @@
     <div class="dropdown entity-actions-dropdown flex items-center join-item">
 
         <div data-dropdown aria-expanded="false" aria-haspopup="menu" aria-controls="abilities-submenu" class="btn2 btn-sm join-item entity-actions-button">
-            <x-icon class="fa-solid fa-caret-down" />
+            <x-icon class="fa-regular fa-caret-down" />
         </div>
 
         <div class="dropdown-menu hidden" role="menu" id="abilities-submenu">
@@ -21,7 +21,7 @@
                     icon="{{ $raceModule->icon() }}"
                     data-toggle="dialog" data-target="abilities-dialog" data-url="{{ route('entities.entity_abilities.import.confirm', [$campaign, $entity]) }}" data-title="{{ __('entities/abilities.helpers.sync') }}" data-toggle="tooltip"
                 >
-                    <span class="hidden md:inline">{{ __('entities/abilities.actions.sync') }}</span>
+                    <span class="grow">{{ __('entities/abilities.actions.sync') }}</span>
                 </x-dropdowns.item>
             @endif
 
@@ -33,7 +33,7 @@
                               icon="fa-regular fa-arrow-up-arrow-down">
                 <span class="grow">{{ __('entities/abilities.show.reorder') }}</span>
             </x-dropdowns.item>
-            
+
             <x-dropdowns.divider />
 
             <x-dropdowns.item :link="'https://docs.kanka.io/en/latest/entities/abilities.html#entity-abilities'" icon="fa-regular fa-book">
