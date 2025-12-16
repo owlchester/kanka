@@ -27,7 +27,8 @@ class ImportController extends Controller
         }
 
         $races = [];
-        foreach ($entity->child->characterRaces as $race) {
+
+        foreach ($entity->child->characterRaces()->with('race', 'race.entity', 'race.entity.abilities')->get() as $race) {
             // Exclude races with no abilities from the list.
             if ($race->race->entity->abilities->count() > 0) {
                 $races[$race->race->name] = $race->race->entity->abilities->count();
