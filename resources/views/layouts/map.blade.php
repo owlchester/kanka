@@ -154,6 +154,7 @@ $specificTheme = null;
 <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.layerstree.js"></script>
 @vite('resources/js/location/map-v3.js')
 @yield('scripts')
+@livewireScripts
 @yield('modals')
 @includeWhen(config('tracking.consent'), 'partials.cookieconsent')
 </body>
