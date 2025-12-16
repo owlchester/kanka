@@ -6,6 +6,7 @@ use App\Http\Controllers\Campaign\Plugins\BulkController;
 use App\Http\Controllers\Campaign\Plugins\ImportController;
 use App\Http\Controllers\Campaign\Plugins\ToggleController;
 use App\Http\Controllers\Campaign\Plugins\UpdateController;
+use App\Http\Controllers\Campaign\WebController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/w/{campaign}', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
@@ -235,3 +236,7 @@ Route::post('/w/{campaign}/onboarding/initial-skip', [
 Route::get('/w/{campaign}/widgets/getting-started', [
     \App\Http\Controllers\Dashboards\GettingStartedController::class, 'index',
 ])->name('campaign.widgets.getting-started');
+
+
+Route::get('/w/{campaign}/connections/web', [WebController::class, 'index'])->name('connections.web');
+Route::get('/w/{campaign}/connections/web/api', [WebController::class, 'api'])->name('connections.web.api');

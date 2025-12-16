@@ -51,7 +51,6 @@ window.onEvent(function() {
     initAjaxPagination();
     initDynamicDelete();
     initImageRemoval();
-    initFeedbackButtons();
     initDismissible();
     initPermBtn();
 });

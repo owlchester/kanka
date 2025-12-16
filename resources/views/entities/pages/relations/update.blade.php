@@ -11,7 +11,7 @@
 ])
 
 @section('content')
-    <x-form :action="['entities.relations.update', $campaign, $entity->id, $relation]" method="PATCH">
+    <x-form :action="['entities.relations.update', $campaign, $entity->id, $relation]" method="PATCH" :direct="$from === 'web' ?? null">
         @include('partials.forms.form', [
             'title' => __('entities/relations.update.title', ['name' => '<a href="' .$entity->url() . '">' . $entity->name . '</a>']),
             'content' => 'entities.pages.relations._form',
@@ -27,5 +27,6 @@
 
     <x-form method="DELETE" :action="['entities.relations.destroy', 'campaign' => $campaign, 'entity' => $entity->id, 'relation' => $relation->id, 'mode' => request()->mode, 'option' => request()->option]" id="delete-relation-{{ $relation->id }}">
     @if ($relation->isMirrored())<input type="hidden" name="remove_mirrored" value="1" />@endif
+        @if (!empty($from)) <input type="hidden" name="from" value="{{ $from }}" /> @endif
     </x-form>
 @endsection

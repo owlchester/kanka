@@ -19,6 +19,7 @@
                 @includeIf('entities.index.actions.' . $entityType->code)
                 @includeWhen(isset($model) && auth()->check() && auth()->user()->can('create', [$entityType, $campaign]), 'cruds.lists._create')
             @else
+                @includeWhen(isset($route) && $route === 'relations', 'entities.index.actions.connection')
                 @includeWhen(isset($model) && auth()->check() && auth()->user()->can('create', $model), 'cruds.lists._create')
             @endif
         </div>

@@ -41,6 +41,7 @@ return [
             'standard' => 7,
             'premium' => 180,
         ],
+        'web' => 10,
     ],
 
     /**
