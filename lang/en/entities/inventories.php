@@ -2,10 +2,10 @@
 
 return [
     'actions'           => [
-        'multiple'          => 'Add items',
         'copy_from_entity'  => 'Copy from another entity',
         'copy_inventory'    => 'Copy inventory',
         'generate'          => 'Generate',
+        'multiple'          => 'Add items',
     ],
     'copy'              => [
         'helper'    => 'Copy the whole inventory of an entity to :name.',

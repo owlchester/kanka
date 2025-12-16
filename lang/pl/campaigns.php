@@ -164,6 +164,7 @@ return [
     ],
     'panels'                            => [
         'dashboard' => 'Pulpit',
+        'privacy'   => 'Domyślne ustawienia prywatności',
         'setup'     => 'Konfiguracja',
         'sharing'   => 'Udostępnianie',
         'systems'   => 'System',
@@ -360,6 +361,7 @@ return [
             'danger'            => 'Zagrożenia',
             'data'              => 'Dane',
             'default-images'    => 'Domyślne ikony',
+            'defaults'          => 'Domyślne',
             'deletion'          => 'Usunięcie',
             'export'            => 'Eksport',
             'import'            => 'Import',
@@ -411,6 +413,7 @@ return [
     'visibilities'                      => [
         'private'   => 'Prywatna',
         'public'    => 'Publiczna',
+        'unlisted'  => 'Publiczna (niewidoczna)',
     ],
     'warning'                           => [],
 ];

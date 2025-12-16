@@ -43,6 +43,7 @@ return [
         'title'     => 'Kampania publiczna',
     ],
     'statuses'      => [],
+    'title'         => 'Zgłoszenia',
     'toggle'        => [
         'closed'    => 'Zamknięta na zgłoszenia',
         'label'     => 'Status',
@@ -50,6 +51,7 @@ return [
         'success'   => 'Zmieniono status kampanii.',
         'title'     => 'Status zgłoszenia',
     ],
+    'tutorial'      => 'Zgłoszenia pozwalają innym wyrazić chęć dołączenia do kampanii. W tym celu wypełniają krótki formularz, a administrator może każde złożenie przejżeć, a potem zaakceptować lub odrzucić. Akceptacja oznacza dołączenie kogoś do kampanii w roli przyznanej na poprzednim etapie.',
     'update'        => [
         'approve'   => 'Wybierz rolę, którą otrzymają uczestnicy dodawani do kampanii.',
         'approved'  => 'Zatwierdzono zgłoszenie.',

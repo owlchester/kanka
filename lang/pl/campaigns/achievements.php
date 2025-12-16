@@ -32,4 +32,5 @@ return [
         'tags'          => 'Wszystko pod kontrolą',
         'themes'        => 'Pomaluj mój świat',
     ],
+    'tutorial'          => 'Osiągnięcia rejestrują znaczące działania podejmowanie w kampanii, na przykład tworzenie elementów albo używanie ważnych funkcji. Mają wyłącznie funkcję informacyjną i aktualizują się na bieżąco.',
 ];
