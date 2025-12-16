@@ -330,7 +330,7 @@ class ExportService
                     ->with($entityWith)
                     ->get();
 
-                $name = Str::camel($entityType->code) . '_' . $entityType->id;
+                $name = Str::camel(Str::slug($entityType->plural)) . '_' . $entityType->id;
                 foreach ($base as $model) {
                     $this->process($name, $model);
                 }
