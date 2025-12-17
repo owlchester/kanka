@@ -8,7 +8,8 @@ return [
         'title'     => 'Nuevo post',
     ],
     'fields'        => [
-        'name'  => 'Nombre',
+        'layout'    => 'Diseño de publicación',
+        'name'      => 'Nombre',
     ],
     'helpers'       => [
         'new'           => 'Añadir un nuevo post a esta entidad.',

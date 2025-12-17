@@ -108,4 +108,6 @@ return [
     'timeline'              => 'Línea de tiempo',
     'timeline_element'      => 'Elemento de línea de tiempo',
     'timelines'             => 'Líneas de tiempo',
+    'whiteboard'            => 'Pizarra',
+    'whiteboards'           => 'Pizarras',
 ];

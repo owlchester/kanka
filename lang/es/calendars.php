@@ -119,6 +119,9 @@ return [
         'year'      => 'Año',
         'yearly'    => 'Anual por defecto',
     ],
+    'lists'         => [
+        'empty' => 'Crea un calendario para seguir fechas, festivales o eventos dentro del juego a lo largo del tiempo.',
+    ],
     'modals'        => [
         'switcher'  => [
             'title' => 'Conmutador de año',

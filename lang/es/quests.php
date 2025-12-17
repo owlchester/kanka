@@ -38,6 +38,9 @@ return [
     ],
     'hints'         => [],
     'index'         => [],
+    'lists'         => [
+        'empty' => 'Crea misiones para registrar objetivos, tramas o motivaciones de los personajes.',
+    ],
     'placeholders'  => [
         'date'      => 'Fecha real de la misión',
         'entity'    => 'Nombre de un elemento de la misión',

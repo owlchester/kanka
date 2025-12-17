@@ -57,6 +57,9 @@ return [
             'name'  => 'Nombre del rasgo de personalidad',
         ],
     ],
+    'lists'         => [
+        'empty' => 'Crea tu primer héroe, villano o acompañante para dar vida a tu mundo.',
+    ],
     'maps'          => [],
     'organisations' => [
         'create'    => [

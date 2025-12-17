@@ -22,6 +22,9 @@ return [
         'reverse_order' => 'Habilitar para mostrar las eras en orden cronológico inverso (la era más antigua primero)',
     ],
     'index'         => [],
+    'lists'         => [
+        'empty' => 'Construye una línea de tiempo visual para registrar eventos importantes y seguir cómo ha evolucionado tu mundo.',
+    ],
     'placeholders'  => [
         'type'  => 'Primaria, Crónica del mundo, Legado del reino...',
     ],

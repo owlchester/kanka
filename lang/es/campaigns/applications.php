@@ -43,6 +43,7 @@ return [
         'title'     => 'Campaña pública',
     ],
     'statuses'      => [],
+    'title'         => 'Solicitudes de ingreso',
     'toggle'        => [
         'closed'    => 'Cerrada a solicitudes',
         'label'     => 'Estado',
@@ -50,6 +51,7 @@ return [
         'success'   => 'Actualización del estado de la solicitud para la campaña.',
         'title'     => 'Estado de la solicitud',
     ],
+    'tutorial'      => 'Las solicitudes de campaña permiten que las personas pidan acceso a esta campaña. Los solicitantes envían un formulario breve y los administradores de la campaña pueden revisar, aceptar o rechazar cada solicitud. Los usuarios aprobados se agregan a la campaña con el rol que asignes durante la revisión.',
     'update'        => [
         'approve'   => 'Selecciona el rol que se asignará al usuario en tu campaña.',
         'approved'  => 'Solicitud aprobada.',

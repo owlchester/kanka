@@ -2,8 +2,10 @@
 
 return [
     'actions'           => [
+        'copy_from_entity'  => 'Copiar desde otra entidad',
         'copy_inventory'    => 'Copiar inventario',
         'generate'          => 'Generar',
+        'multiple'          => 'Añadir elementos',
     ],
     'copy'              => [
         'helper'    => 'Copiar todo el inventario de una entidad a :name.',
@@ -54,10 +56,26 @@ return [
         'title'     => 'Inventario de :name',
         'unsorted'  => 'Sin clasificar',
     ],
+    'togglers'          => [
+        'hide'  => [
+            'price'     => 'Ocultar precio',
+            'quantity'  => 'Ocultar cantidad',
+            'size'      => 'Ocultar tamaño',
+            'weight'    => 'Ocultar peso',
+        ],
+        'show'  => [
+            'price'     => 'Mostrar precio',
+            'quantity'  => 'Mostrar cantidad',
+            'size'      => 'Mostrar tamaño',
+            'weight'    => 'Mostrar peso',
+        ],
+    ],
     'tooltips'          => [
         'equipped'  => 'Este objeto está equipado',
     ],
-    'tutorials'         => [],
+    'tutorials'         => [
+        'all'   => 'Lleva un registro de lo que :name posee, almacena u ofrece añadiendo objetos a este inventario.',
+    ],
     'update'            => [
         'success'   => 'Objeto :item actualizado en :entity.',
         'title'     => 'Actualizar un objeto de :name',

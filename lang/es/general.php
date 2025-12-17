@@ -14,5 +14,6 @@ return [
         'deleted-cancel'    => 'Se ha eliminado :name. :cancel.',
         'updated'           => 'Se ha actualizado :name.',
     ],
+    'tutorial'      => 'Ver tutorial',
     'yes'           => 'Si',
 ];
