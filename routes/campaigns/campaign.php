@@ -237,6 +237,5 @@ Route::get('/w/{campaign}/widgets/getting-started', [
     \App\Http\Controllers\Dashboards\GettingStartedController::class, 'index',
 ])->name('campaign.widgets.getting-started');
 
-
 Route::get('/w/{campaign}/connections/web', [WebController::class, 'index'])->name('connections.web');
 Route::get('/w/{campaign}/connections/web/api', [WebController::class, 'api'])->name('connections.web.api');
