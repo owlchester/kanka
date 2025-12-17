@@ -17,6 +17,7 @@ class ModuleBox extends Component
     public function __construct(
         public Campaign $campaign,
         public EntityType $entityType,
+        public array $thumbnails
     ) {
         //
     }
@@ -42,8 +43,7 @@ class ModuleBox extends Component
 
     protected function image(): string
     {
-        $thumbnails = $this->campaign->defaultImages();
-        foreach ($thumbnails as $thumbnail) {
+        foreach ($this->thumbnails as $thumbnail) {
             if ($thumbnail['type'] !== $this->entityType->pluralCode()) {
                 continue;
             }
