@@ -25,8 +25,7 @@ $headerImage = true;
 
 
 @section('content')
-
-    @if(view()->exists($entity->entityType->pluralCode() . '.show'))
+    @if($entity->entityType->isStandard() && view()->exists($entity->entityType->pluralCode() . '.show'))
         @include($entity->entityType->pluralCode() . '.show')
     @else
         @include('cruds.overview')
