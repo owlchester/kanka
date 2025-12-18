@@ -29,7 +29,13 @@
             data-name="{{ $tier->name }} Monthly"
             data-price="{{ $tier->price($user->currency(), \App\Enums\PricingPeriod::Monthly) }}"
         >
-            {{ __('tiers.actions.subscribe.choose', ['tier' => $tier->name]) }}
+            @if (in_array($tier->id, $upgrades))
+                {{ __('tiers.actions.subscribe.upgrade', ['tier' => $tier->name]) }}
+            @elseif (in_array($tier->id, $downgrades))
+                {{ __('tiers.actions.subscribe.downgrade', ['tier' => $tier->name]) }}
+            @else
+                {{ __('tiers.actions.subscribe.choose', ['tier' => $tier->name]) }}
+            @endif
         </a>
     @endif
 
@@ -48,7 +54,13 @@
             data-name="{{ $tier->name }} Yearly"
             data-price="{{ $tier->price($user->currency(), \App\Enums\PricingPeriod::Yearly) }}"
         >
-            {{ __('tiers.actions.subscribe.choose', ['tier' => $tier->name]) }}
+            @if (in_array($tier->id, $upgrades))
+                {{ __('tiers.actions.subscribe.upgrade', ['tier' => $tier->name]) }}
+            @elseif (in_array($tier->id, $downgrades))
+                {{ __('tiers.actions.subscribe.downgrade', ['tier' => $tier->name]) }}
+            @else
+                {{ __('tiers.actions.subscribe.choose', ['tier' => $tier->name]) }}
+            @endif
         </a>
     @endif
 @endif

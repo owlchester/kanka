@@ -11,6 +11,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 class EntityResource extends JsonResource
 {
     use CampaignAware;
+
     /**
      * Transform the resource into an array.
      *
@@ -20,9 +21,10 @@ class EntityResource extends JsonResource
     {
         /** @var Entity $entity */
         $entity = $this->resource;
-        if (!isset($this->campaign)) {
+        if (! isset($this->campaign)) {
             dd($this);
         }
+
         return [
             'id' => $entity->id,
             'name' => $entity->name,

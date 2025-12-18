@@ -9,7 +9,9 @@ return [
         ],
         'subscribe' => [
             'choose'    => 'Choose :tier',
+            'downgrade' => 'Downgrade to :tier',
             'monthly'   => ':tier monthly',
+            'upgrade'   => 'Upgrade to :tier',
             'yearly'    => ':tier yearly',
         ],
     ],
