@@ -162,6 +162,8 @@ return [
         'cancelled'             => 'Your subscription has been cancelled. You can renew a subscription once your current subscription ends after :date.',
         'change'                => [
             'text'  => [
+                'downgrade_monthly' => 'You are downgrading to the :tier tier for :downgrade, thereafter billed monthly for :amount.',
+                'downgrade_yearly'  => 'You are downgrading to the :tier tier for :downgrade, thereafter billed annually for :amount.',
                 'monthly'           => 'You are subscribing at the :tier tier, billed monthly for :amount.',
                 'upgrade_monthly'   => 'You are upgrading to the :tier tier for :upgrade, thereafter billed monthly for :amount.',
                 'upgrade_paypal'    => 'You are upgrading to the :tier tier for :upgrade until :date.',

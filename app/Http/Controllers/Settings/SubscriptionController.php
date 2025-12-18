@@ -59,6 +59,19 @@ class SubscriptionController extends Controller
         $tiers = Tier::with('prices')->ordered()->get();
         $isPayPal = $user->hasPayPal();
         $hasManual = $user->hasManualSubscription();
+        $tempTiers = [];
+        $downgrades = [];
+        $upgrades = [];
+        if (isset($current)) {
+            foreach ($tiers as $tier) {
+                if ($tier->id == $current->tier->id) {
+                    $downgrades = $tempTiers;
+                } else {
+                    $tempTiers[] = $tier->id;
+                }
+            }
+            $upgrades = array_diff($tempTiers, $downgrades);
+        }
 
         return view('settings.subscription.index', compact(
             'stripeApiToken',
@@ -69,6 +82,8 @@ class SubscriptionController extends Controller
             'tiers',
             'isPayPal',
             'hasManual',
+            'upgrades',
+            'downgrades',
         ));
     }
 
