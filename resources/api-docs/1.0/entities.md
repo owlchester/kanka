@@ -361,10 +361,20 @@ You can post an array with the ids of the entities you want to transform to the 
 | :- |   :-   |  :-  |
 | POST | `transform` | Default |
 
-| Parameter | Type | Description
-| :- | :- | :- |
-| `entities` | `array`(required) | The ids of the entities to transform. |
-| `entity_type` | `string`(required) | The type of entity the entity will be transformed to. |
+| Parameter | Type               | Description                                                 
+| :- |:-------------------|:------------------------------------------------------------|
+| `entities` | `array`(required)  | The ids of the entities to transform.                       |
+| `entity_type` | `string`(required) | The entity type "code" the entities will be transformed to. |
+
+
+### Example
+
+```json
+{
+    "entities": [551, 1153, 8330],
+    "entity_type": "character"
+}
+```
 
 ### Result
 
