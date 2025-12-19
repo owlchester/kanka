@@ -43,7 +43,7 @@ class ModuleBox extends Component
 
     protected function image(): string
     {
-        if (!empty($this->thumbnail)) {
+        if (! empty($this->thumbnail)) {
             return Img::crop(96, 96)->url($this->thumbnail['path']);
         }
 
