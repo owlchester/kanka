@@ -17,7 +17,7 @@ class ModuleBox extends Component
     public function __construct(
         public Campaign $campaign,
         public EntityType $entityType,
-        public array $thumbnail
+        public ?String $thumbnail
     ) {
         //
     }
@@ -44,7 +44,7 @@ class ModuleBox extends Component
     protected function image(): string
     {
         if (! empty($this->thumbnail)) {
-            return Img::crop(96, 96)->url($this->thumbnail['path']);
+            return Img::crop(96, 96)->url($this->thumbnail);
         }
 
         return '';
