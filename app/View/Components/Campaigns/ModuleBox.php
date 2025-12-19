@@ -17,7 +17,7 @@ class ModuleBox extends Component
     public function __construct(
         public Campaign $campaign,
         public EntityType $entityType,
-        public array $thumbnails
+        public array $thumbnail
     ) {
         //
     }
@@ -43,12 +43,8 @@ class ModuleBox extends Component
 
     protected function image(): string
     {
-        foreach ($this->thumbnails as $thumbnail) {
-            if ($thumbnail['type'] !== $this->entityType->pluralCode()) {
-                continue;
-            }
-
-            return Img::crop(96, 96)->url($thumbnail['path']);
+        if (!empty($this->thumbnail)) {
+            return Img::crop(96, 96)->url($this->thumbnail['path']);
         }
 
         return '';

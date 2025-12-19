@@ -284,7 +284,7 @@ class Campaign extends Model
     /**
      * Prepare the default entity images
      */
-    public function defaultImages(): array
+    public function defaultImages($withKey = false): array
     {
         if (empty($this->default_images)) {
             return [];
@@ -300,12 +300,19 @@ class Campaign extends Model
             if (empty($image) || in_array($type, ['relations', 'bookmarks', 'menu_links'])) {
                 continue;
             }
-
-            $data[] = [
-                'type' => $type,
-                'uuid' => $uuid,
-                'path' => $image->path,
-            ];
+            if ($withKey) {
+                $data[$type] = [
+                    'type' => $type,
+                    'uuid' => $uuid,
+                    'path' => $image->path,
+                ];
+            } else {
+                $data[] = [
+                    'type' => $type,
+                    'uuid' => $uuid,
+                    'path' => $image->path,
+                ];
+            }
         }
 
         return $data;

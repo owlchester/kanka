@@ -31,7 +31,7 @@ class ModuleController extends Controller
 
         $customEntityTypes = $entityTypes->whereNotNull('campaign_id');
         $entityTypes = $entityTypes->whereNull('campaign_id');
-        $thumbnails = $campaign->defaultImages();
+        $thumbnails = $campaign->defaultImages(true);
 
         return view('campaigns.modules.index')
             ->with('campaign', $campaign)
