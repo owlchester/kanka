@@ -17,7 +17,7 @@ class ModuleBox extends Component
     public function __construct(
         public Campaign $campaign,
         public EntityType $entityType,
-        public ?String $thumbnail
+        public ?string $thumbnail
     ) {
         //
     }
