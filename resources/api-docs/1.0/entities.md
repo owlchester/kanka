@@ -355,7 +355,7 @@ To patch an entity, use the following endpoint.
 <a name="transform-entities"></a>
 ## Transform Entities
 
-You can post an array with the ids of the entities you want to transform to the `/transform` endpoint to transform them into a different entity type.
+You can post an array with the ids of the entities you want to transform to the `/transform` endpoint to transform them into a different entity type that exists in the campaign.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
@@ -364,7 +364,7 @@ You can post an array with the ids of the entities you want to transform to the 
 | Parameter | Type | Description
 | :- | :- | :- |
 | `entities` | `array`(required) | The ids of the entities to transform. |
-| `entity_type` | `string`(required) | The type of entity the entity will be transformed to. |
+| `entity_type` | `int`(required) | The id of the entity type the entity will be transformed to. |
 
 ### Result
 
