@@ -30,14 +30,15 @@ class ImportService
         $abilities = $this->entity->abilities()->with('ability')->get();
         $existingIds = [];
         foreach ($abilities as $ability) {
-            // The ability is soft deleted so we can skip it
+            // The ability is soft-deleted so we can skip it
             if (empty($ability) || empty($ability->ability)) {
                 continue;
             }
             $existingIds[] = $ability->ability_id;
         }
 
-        foreach ($character->characterRaces()->with('race', 'race.entity', 'race.entity.abilities') as $race) {
+        $characterRaces = $character->characterRaces()->with('race', 'race.entity', 'race.entity.abilities')->get();
+        foreach ($characterRaces as $race) {
             /** @var EntityAbility[] $abilities */
             $abilities = $race->race->entity->abilities;
             $count = 0;
