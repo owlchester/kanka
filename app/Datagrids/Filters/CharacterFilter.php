@@ -11,22 +11,6 @@ class CharacterFilter extends DatagridFilter
      */
     public function build()
     {
-        $orgName = Module::singular(config('entities.ids.organisation'));
-        $orgPlaceholder = __('crud.placeholders.organisation');
-        if (! empty($orgName)) {
-            $orgPlaceholder = __('crud.placeholders.fallback', ['module' => $orgName]);
-        }
-        $famName = Module::singular(config('entities.ids.family'));
-        $famPlaceholder = __('crud.placeholders.family');
-        if (! empty($famName)) {
-            $famPlaceholder = __('crud.placeholders.fallback', ['module' => $famName]);
-        }
-        $raceName = Module::singular(config('entities.ids.race'));
-        $racePlaceholder = __('crud.placeholders.race');
-        if (! empty($raceName)) {
-            $racePlaceholder = __('crud.placeholders.fallback', ['module' => $raceName]);
-        }
-
         $this
             ->add('name')
             ->add('title')

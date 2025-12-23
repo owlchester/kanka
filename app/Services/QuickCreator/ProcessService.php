@@ -72,7 +72,7 @@ class ProcessService
             ->dynamicParent($this->entityType)
             ->dynamicLocations()
             ->dynamicLocation();
-        if ($this->entityType->id === config('entities.ids.character')) {
+        if ($this->entityType->isCharacter()) {
             $this->dynamicFamilies()
                 ->dynamicRaces();
         }

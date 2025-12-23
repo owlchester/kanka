@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Query\Builder as QueryBuilder;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
@@ -117,9 +118,9 @@ class Location extends MiscModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Character, $this>
      */
-    public function characters(): HasMany
+    public function characters(): BelongsToMany
     {
-        return $this->hasMany('App\Models\Character', 'location_id', 'id');
+        return $this->entities()->where('type_id', config('entities.ids.character'));
     }
 
     /**
@@ -194,18 +195,23 @@ class Location extends MiscModel
     /**
      * Get all characters in the location and descendants
      */
-    public function allCharacters(): Builder|Character
+    public function allCharacters(bool $direct = false): Builder|Character
     {
         $locationIds = [$this->id];
-        foreach ($this->descendants as $descendant) {
-            $locationIds[] = $descendant->id;
+        if ($direct) {
+            foreach ($this->descendants as $descendant) {
+                $locationIds[] = $descendant->id;
+            }
         }
 
-        $table = new Character;
-
-        return Character::whereIn($table->getTable() . '.location_id', $locationIds)
-            ->with('location')
-            ->has('entity');
+        return Character::distinct()
+            ->join('entities', function ($join) {
+                $join
+                    ->on('entities.entity_id', '=', 'characters.id')
+                    ->where('entities.type_id', config('entities.ids.character'));
+            })
+            ->join('entity_locations', 'entity_locations.entity_id', '=', 'entities.id')
+            ->whereIn('entity_locations.location_id', $locationIds);
     }
 
     /**

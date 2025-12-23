@@ -43,6 +43,12 @@ trait Orderable
             return $query
                 ->joinEntity()
                 ->orderBy('e.type', $direction);
+        } elseif ($field === 'locations') {
+            return $query
+                ->joinEntity()
+                ->join('entity_locations', 'entity_locations.entity_id', '=', 'e.id')
+                ->join('locations', 'locations.id', '=', 'entity_locations.location_id')
+                ->orderBy('locations.name', $direction);
         }
         if (! empty($field)) {
             $segments = explode('.', $field);

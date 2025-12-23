@@ -3,6 +3,7 @@
 namespace App\Models\Concerns;
 
 use App\Enums\FilterOption;
+use App\Models\Character;
 use App\Models\Family;
 use App\Models\Location;
 use App\Models\Organisation;
@@ -591,6 +592,13 @@ trait HasFilters
         }
 
         if ($this->filterOption('exclude')) {
+            if ($this instanceof Character) {
+                $query->whereRaw('(
+                    select count(*) from entity_locations as el
+                    where el.entity_id = e.id and el.location_id in (' . implode(', ', $locationIds) . ')
+                ) = 0');
+                return;
+            }
             $query->whereNotIn($this->getTable() . '.location_id', $locationIds)->distinct();
 
             return;
@@ -607,7 +615,13 @@ trait HasFilters
             $locationIds = $ids;
         }
 
-        $query->whereIn($this->getTable() . '.location_id', $locationIds)->distinct();
+        if ($this instanceof Character) {
+            $query
+                ->join('entity_locations', 'entity_locations.entity_id', '=', 'e.id')
+                ->whereIn('entity_locations.location_id', $locationIds)->distinct();
+        } else {
+            $query->whereIn($this->getTable() . '.location_id', $locationIds)->distinct();
+        }
     }
 
     /**
