@@ -100,8 +100,10 @@ class WebService
     {
         return [
             'create' => __('crud.create'),
+            'print' => __('crud.actions.print'),
             'qq-keyboard-shortcut' => __('crud.keyboard-shortcut', ['code' => '<code>N</code>']),
             'back' => __('connections/web.actions.back'),
+            'campaign' => $this->campaign->name,
         ];
     }
 

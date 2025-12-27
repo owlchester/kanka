@@ -18,6 +18,10 @@
     "file": "assets/coloris-DsKOFKq5.js",
     "name": "coloris"
   },
+  "_colours-Dh8441-n.js": {
+    "file": "assets/colours-Dh8441-n.js",
+    "name": "colours"
+  },
   "_cytoscape-cose-bilkent-DF4CVbNw.js": {
     "file": "assets/cytoscape-cose-bilkent-DF4CVbNw.js",
     "name": "cytoscape-cose-bilkent",
@@ -339,14 +343,15 @@
     ]
   },
   "resources/js/connections/web.js": {
-    "file": "assets/web-B91lUvJy.js",
+    "file": "assets/web-4vdaYJeo.js",
     "name": "web",
     "src": "resources/js/connections/web.js",
     "isEntry": true,
     "imports": [
       "_vue.esm-bundler-CSDHRrjm.js",
       "_preload-helper-I4rgV-VL.js",
-      "_tippy.esm-CnBRltuW.js"
+      "_tippy.esm-CnBRltuW.js",
+      "_colours-Dh8441-n.js"
     ],
     "dynamicImports": [
       "node_modules/cytoscape/dist/cytoscape.esm.mjs",
@@ -518,12 +523,13 @@
     "isEntry": true
   },
   "resources/js/whiteboards.js": {
-    "file": "assets/whiteboards-Bq3zG3Ti.js",
+    "file": "assets/whiteboards-BM27egYr.js",
     "name": "whiteboards",
     "src": "resources/js/whiteboards.js",
     "isEntry": true,
     "imports": [
       "_vue.esm-bundler-CSDHRrjm.js",
+      "_colours-Dh8441-n.js",
       "_Browser.vue_vue_type_script_setup_true_lang-Dvk83Nhl.js",
       "__commonjsHelpers-CqkleIqs.js"
     ]

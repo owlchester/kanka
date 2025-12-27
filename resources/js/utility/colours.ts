@@ -36,4 +36,11 @@ function tweakHsl(hsl: HSL, { dh = 0, ds = 0, dl = 0, a }: { dh?: number; ds?: n
     } as HSL;
 }
 
-export { hslFromVar, hslString, tweakHsl, readCssVar };
+
+function cssVariable (variable: string){
+    const base = hslFromVar(variable);
+    if (!base) return `hsl(${readCssVar('--p')})`;
+    return hslString(base);
+}
+
+export { hslFromVar, hslString, tweakHsl, readCssVar, cssVariable };

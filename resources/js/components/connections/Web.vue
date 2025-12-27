@@ -6,11 +6,16 @@
                 <span v-html="trans('back')"></span>
             </a>
 
-            <div v-if="props.creator" class="relative">
+            <div v-if="props.creator" class="relative flex gap-2">
                 <a v-if="props.creator" href="#" @click="openQQ()"  class="quick-creator-button btn2 btn-primary btn-sm" tabindex="0">
                     <i class="flex-none fa-regular fa-plus" aria-hidden="true"></i>
                     <span class="grow hidden sm:inline-block" v-html="trans('create')"></span>
                     <span class="flex-none keyboard-shortcut" id="qq-kb-shortcut" data-toggle="tooltip" :data-title="trans('qq-keyboard-shortcut')" data-html="true" data-placement="bottom" >N</span>
+                </a>
+
+                <a href="#" @click="print()" class="btn2 btn-sm">
+                    <i class="fa-regular fa-print" aria-hidden="true"></i>
+                    <span v-html="trans('print')"></span>
                 </a>
             </div>
         </div>
@@ -40,6 +45,7 @@
 
 import { ref, onMounted, onBeforeUnmount} from 'vue';
 import tippy, { Instance, ReferenceElement } from 'tippy.js'
+import { cssVariable } from '../../utility/colours';
 
 
 const props = defineProps<{
@@ -475,4 +481,23 @@ const openQQ = () => {
 const trans = (key: string) => {
     return i18n.value[key] || key
 }
+
+const print = () => {
+    if (!cy.value) {
+        return
+    }
+    const options = {
+        full: true,
+        bg: cssVariable('--b1'),
+    };
+    const base64 = cy.value.png(options);
+
+    const link = document.createElement('a');
+    link.href = base64;
+    link.download = `${trans('campaign')}-web-${Date.now()}.png`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
 </script>
