@@ -13,9 +13,9 @@
                     <span class="flex-none keyboard-shortcut" id="qq-kb-shortcut" data-toggle="tooltip" :data-title="trans('qq-keyboard-shortcut')" data-html="true" data-placement="bottom" >N</span>
                 </a>
 
-                <a href="#" @click="print()" class="btn2 btn-sm">
-                    <i class="fa-regular fa-print" aria-hidden="true"></i>
-                    <span v-html="trans('print')"></span>
+                <a href="#" @click="print()" class="btn2 btn-sm btn-outline">
+                    <i class="fa-regular fa-download" aria-hidden="true"></i>
+                    <span v-html="trans('download')"></span>
                 </a>
             </div>
         </div>
