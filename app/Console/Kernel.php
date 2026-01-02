@@ -44,7 +44,7 @@ class Kernel extends ConsoleKernel
         $schedule->command(CleanupTrashed::class)->onOneServer()->dailyAt('01:15');
         $schedule->command(CleanupEntityLogs::class)->onOneServer()->dailyAt('01:30');
         $schedule->command(CleanupTrashedCampaigns::class)->onOneServer()->dailyAt('01:45');
-        $schedule->command(CleanupUsers::class)->onOneServer()->dailyAt('01:50');
+        //$schedule->command(CleanupUsers::class)->onOneServer()->dailyAt('01:50');
         $schedule->command('backup:run')->onOneServer()->twiceDaily();
 
         // $schedule->command('backup:monitor')->daily()->at('03:00');
