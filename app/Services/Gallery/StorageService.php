@@ -56,6 +56,11 @@ class StorageService
             return $flags->get('gallery');
         }
         if ($this->campaign->boosted()) {
+            if ($this->campaign->isWyvern()) {
+                return config('limits.gallery.wyvern');
+            } elseif ($this->campaign->isElemental()) {
+                return config('limits.gallery.elemental');
+            }
             return config('limits.gallery.premium');
         }
 
