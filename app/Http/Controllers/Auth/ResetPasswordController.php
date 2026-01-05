@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\Rules\SocialLogin;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Validation\Rules;
 
 class ResetPasswordController extends Controller
 {
@@ -30,5 +32,20 @@ class ResetPasswordController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+
+    /**
+     * Get the password reset validation rules.
+     *
+     * @return array
+     */
+    protected function rules()
+    {
+        return [
+            'token' => 'required',
+            'email' => ['required', 'email', new SocialLogin()],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ];
     }
 }
