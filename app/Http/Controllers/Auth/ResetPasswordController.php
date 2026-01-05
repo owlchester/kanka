@@ -34,7 +34,6 @@ class ResetPasswordController extends Controller
         $this->middleware('guest');
     }
 
-
     /**
      * Get the password reset validation rules.
      *
@@ -44,7 +43,7 @@ class ResetPasswordController extends Controller
     {
         return [
             'token' => 'required',
-            'email' => ['required', 'email', new SocialLogin()],
+            'email' => ['required', 'email', new SocialLogin],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ];
     }

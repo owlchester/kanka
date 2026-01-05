@@ -61,6 +61,7 @@ class StorageService
             } elseif ($this->campaign->isElemental()) {
                 return config('limits.gallery.elemental');
             }
+
             return config('limits.gallery.premium');
         }
 

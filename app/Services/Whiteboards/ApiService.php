@@ -169,7 +169,7 @@ class ApiService
     protected function interactive(): void
     {
         $pusher = config('broadcasting.connections.pusher.key');
-        if (empty($pusher) || !isset($this->user)) {
+        if (empty($pusher) || ! isset($this->user)) {
             return;
         }
 

@@ -113,7 +113,7 @@ class Campaign extends Component
      */
     public function __construct(
         public \App\Models\Campaign $campaign,
-        public ?Entity $entity = null,
+        public ?Entity $entity,
         protected SetupService $sidebar)
     {
         $sidebar
