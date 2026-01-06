@@ -21,7 +21,7 @@ $specificTheme = null;
         'resources/css/app.css',
         'resources/css/maps/maps.css'
     ])
-    @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
+    @includeWhen(!config('fontawesome.kit'), 'layouts.styles.fontawesome')
     <link rel="stylesheet" href="{{ 'https://unpkg.com/leaflet@' . config('app.leaflet_source') . '/dist/leaflet.css' }}" integrity="{{ config('app.leaflet_css') }}" crossorigin="" />
     @if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'base']))
         @php $specificTheme = $themeOverride; @endphp
@@ -135,9 +135,7 @@ $specificTheme = null;
 @endif
 
 @vite(['resources/js/vendor-final.js', 'resources/js/app.js'])
-@if (config('fontawesome.kit'))
-    <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
-@endif
+@includeWhen(config('fontawesome.kit'), 'layouts.scripts.fontawesome')
 <!-- Make sure you put this AFTER Leaflet's CSS -->
 <script src="{{ 'https://unpkg.com/leaflet@' . config('app.leaflet_source') . '/dist/leaflet.js' }}" integrity="{{ config('app.leaflet_js') }}" crossorigin=""></script>
 <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.zoomdisplay.js" type="text/javascript" ></script>

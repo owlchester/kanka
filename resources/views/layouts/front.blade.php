@@ -79,9 +79,7 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
 @include('front.footer')
 
 @vite(['resources/js/front.js'])
-@if (config('fontawesome.kit'))
-<script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
-@endif
+@includeWhen(config('fontawesome.kit'), 'layouts.scripts.fontawesome')
 @includeWhen(config('tracking.consent'), 'partials.cookieconsent')
 <div id="dialog-backdrop" class="z-1000 fixed top-0 left-0 right-0 bottom-0 h-full w-full backdrop-blur-sm hidden" style="--tw-bg-opacity: 0.2"></div>
 @yield('modals')

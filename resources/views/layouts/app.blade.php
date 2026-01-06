@@ -37,7 +37,7 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
         'resources/css/vendor.css',
         'resources/css/app.css',
     ])
-    @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
+    @includeWhen(!config('fontawesome.kit'), 'layouts.styles.fontawesome')
     @includeWhen (config('ads.nitro.enabled'), 'ads.nitro.styles')
     @yield('styles')
     @if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'base']))
@@ -124,9 +124,7 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
 
     <div class="toast-container fixed overflow-y-auto overflow-x-hidden bottom-4 right-4 max-h-full flex flex-col gap-2 z-1001"></div>
 
-@if (config('fontawesome.kit'))
-    <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
-@endif
+    @includeWhen(config('fontawesome.kit'), 'layouts.scripts.fontawesome')
     @vite(['resources/js/vendor-final.js', 'resources/js/app.js'])
     @yield('scripts')
 

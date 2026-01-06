@@ -17,7 +17,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content='width=device-width, initial-scale=1, maximum-scale=5' name='viewport'>
     @include('layouts.links.icons')
-    @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
+    @includeWhen(!config('fontawesome.kit'), 'layouts.styles.fontawesome')
 
     @if (config('app.asset_url'))
         <link rel="dns-prefetch" href="{{ config('app.asset_url') }}">
@@ -78,9 +78,7 @@
 
 @includeWhen(Route::has('home'), 'front.footer')
 @vite('resources/js/front.js')
-@if (config('fontawesome.kit'))
-    <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
-@endif
+@includeWhen(config('fontawesome.kit'), 'layouts.scripts.fontawesome')
 
 @includeWhen(config('tracking.consent'), 'partials.cookieconsent')
 </body>

@@ -13,7 +13,7 @@
     @include('layouts.links.icons')
 
     @vite('resources/css/auth.css')
-    @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
+    @includeWhen(!config('fontawesome.kit'), 'layouts.styles.fontawesome')
 </head>
 <body class="hold-transition register-page">
     <div class="login-box mx-auto">
@@ -30,9 +30,7 @@
         </div>
     </div>
 
-@if (config('fontawesome.kit'))
-    <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
-@endif
+    @includeWhen(config('fontawesome.kit'), 'layouts.scripts.fontawesome')
     @vite(['resources/js/auth.js'])
 @yield('scripts')
 
