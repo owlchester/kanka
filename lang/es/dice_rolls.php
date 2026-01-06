@@ -22,6 +22,9 @@ return [
             'results'   => 'Resultados',
         ],
     ],
+    'lists'         => [
+        'empty' => 'Crea y guarda tiradas para la campaña y lleva un registro de los resultados directamente en Kanka.',
+    ],
     'placeholders'  => [
         'name'          => 'Nombre de la tirada de dados',
         'parameters'    => '4d6+3',

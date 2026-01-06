@@ -60,6 +60,9 @@ return [
         'missing_image'         => 'Guarda el mapa con una imagen antes de añadir capas y marcadores.',
     ],
     'index'         => [],
+    'lists'         => [
+        'empty' => 'Sube un mapa para visualizar las ubicaciones y mostrar la geografía de tu mundo.',
+    ],
     'maps'          => [],
     'panels'        => [
         'groups'    => 'Grupos',

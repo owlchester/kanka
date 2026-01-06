@@ -30,6 +30,7 @@ return [
         'print'             => 'Imprimir',
         'reorder'           => 'Reordenar',
         'reset'             => 'Restablecer',
+        'save-changes'      => 'Guardar cambios',
         'transform'         => 'Transformar',
     ],
     'add'               => 'Añadir',
@@ -117,6 +118,7 @@ return [
     ],
     'events'            => [],
     'fields'            => [
+        'archived'          => 'Archivado',
         'calendar_date'     => 'Fecha del calendario',
         'child'             => 'Hijo',
         'closed'            => 'Cerrado',
@@ -184,12 +186,14 @@ return [
                 'all'       => 'Mostrar todos los descendientes (:count)',
                 'filtered'  => 'Mostrar los descendientes directos (:count)',
             ],
+            'paginated' => 'Alterna entre hijos directos y todos los niveles de descendientes. Los resultados se muestran paginados para un mejor rendimiento.',
         ],
         'mobile'            => [
             'clear' => 'Quitar',
             'copy'  => 'Portapapeles',
         ],
         'options'           => [
+            'any'       => 'Cualquiera',
             'children'  => 'Coincide con éste o sus descendientes',
             'exclude'   => 'Excluir',
             'hide'      => 'Ocultar',
@@ -341,6 +345,9 @@ return [
         'relations'     => 'Relaciones',
         'reminders'     => 'Recordatorios',
         'story'         => 'Historia',
+    ],
+    'timestamps'        => [
+        'edited'    => 'Editado hace :ago',
     ],
     'titles'            => [
         'editing'   => 'Editando :name',

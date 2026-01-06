@@ -16,6 +16,9 @@ return [
         'participants'  => 'Añade participantes a la conversación mediante el icono :icon arriba a la derecha.',
     ],
     'index'         => [],
+    'lists'         => [
+        'empty' => 'Registra diálogos, cartas o intercambios entre personajes y facciones.',
+    ],
     'messages'      => [
         'destroy'       => [
             'success'   => 'Mensaje eliminado.',

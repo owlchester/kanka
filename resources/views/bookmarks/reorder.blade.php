@@ -27,7 +27,7 @@
                     <x-reorder.child :id="$link->id">
                         <input type="hidden" name="bookmark[]" value="{{ $link->id }}" />
                         <div class="dragger">
-                            <x-icon class="fa-regular fa-sort" />
+                            <x-icon class="sort" />
                         </div>
                         <div class="grow flex items-center flex-no-wrap gap-2 overflow-hidden">
                             <i class="{{ $link->iconClass() }}" aria-hidden="true"></i>

@@ -13,6 +13,10 @@ Route::get('/login-as', [LoginController::class, 'loginAs'])->name('login-as');
 // OAuth Routes
 Route::get('auth/{provider}', [AuthController::class, 'redirectToProvider'])->name('auth.provider');
 
+// Password Reset Routes...
+Route::post('password/email', [\App\Http\Controllers\Auth\ResetPasswordController::class, 'reset'])->name('password.email');
+
+
 include 'oauth.php';
 /*
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -28,11 +32,6 @@ if (config('auth.register_enabled')) {
     Route::post('register', 'Auth\LoginController@register');
 }
 
-// Password Reset Routes...
-Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
-Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
 
 
 // Password Confirmation Routes...

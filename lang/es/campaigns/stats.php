@@ -31,4 +31,5 @@ return [
         'quests'    => 'Mastermind nivel :level',
         'races'     => 'Criador nivel :level',
     ],
+    'tutorial'      => 'Las estadísticas de la campaña muestran el recuento de entidades y la actividad reciente. Los datos se actualizan cada :amount horas. Úsalas para seguir el crecimiento y el uso a lo largo del tiempo.',
 ];

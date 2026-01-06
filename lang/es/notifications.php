@@ -78,6 +78,7 @@ return [
         'ended'         => 'Tu suscripción a Kanka ha finalizado. Se han eliminado tus mejoras de campaña y tus roles de Discord. ¡Esperamos volver a verte pronto!',
         'failed'        => 'Tu suscripción a Kanka se ha cancelado tras demasiados intentos de cargar el cobro en tu tarjeta. Dirígete a los ajustes de suscripción e intenta actualizar tus detalles de pago.',
         'started'       => 'Tu suscripción a Kanka ha empezado.',
+        'trial'         => 'Tu prueba gratuita de Kanka ha finalizado. ¡Esperamos que la hayas disfrutado y te volvamos a ver pronto!',
     ],
     'unread'            => 'Nueva notificación',
 ];

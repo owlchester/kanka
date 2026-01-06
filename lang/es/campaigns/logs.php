@@ -10,4 +10,5 @@ return [
     'premium'   => [
         'helper'    => 'Se necesitan funciones premium para ver registros con más de :amount días.',
     ],
+    'title'     => 'Registro de auditoría',
 ];

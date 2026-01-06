@@ -113,6 +113,7 @@ class Campaign extends Component
      */
     public function __construct(
         public \App\Models\Campaign $campaign,
+        public ?Entity $entity,
         protected SetupService $sidebar)
     {
         $sidebar
@@ -154,7 +155,9 @@ class Campaign extends Component
         /** @var ?Entity $entity */
         $entity = request()->route('entity');
         if ($entity) {
-            if ($entity->entityType->pluralCode() == $menu) {
+            // Custom modules are currently dealt with "bookmarks" (we need to change that in the future)
+            // so we need this check in case someone makes a custom module named "races" again
+            if ($entity->entityType->isStandard() && $entity->entityType->pluralCode() == $menu) {
                 return " {$class}";
             }
         }

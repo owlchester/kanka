@@ -28,11 +28,14 @@ return [
         'sync'      => 'Importa habilidades que estén definidas en las razas del personaje.',
     ],
     'import'    => [
-        'errors'    => [
+        'errors'            => [
             'no_race'       => 'El personaje no tiene raza.',
             'not_character' => 'La entidad no es un personaje.',
         ],
-        'success'   => '{1} Se han importado :count habilidades.|[2,*] Se han importado :count habilidades.',
+        'helper'            => 'Adjunta habilidades de las siguientes razas a las que pertenece :name:',
+        'no_abilities'      => 'Actualmente no hay habilidades para importar de las razas a las que pertenece :name.',
+        'race_abilities'    => '{1} :name (:count habilidad) |[2,*] :name (:count habilidades)',
+        'success'           => '{1} Se han importado :count habilidades.|[2,*] Se han importado :count habilidades.',
     ],
     'recharge'  => [
         'success'   => 'Se han restablecido todos las cargas.',

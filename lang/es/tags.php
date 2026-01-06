@@ -35,6 +35,9 @@ return [
         'tag'               => 'A continuación se muestran todas las etiquetas que están directamente bajo esta etiqueta.',
     ],
     'index'         => [],
+    'lists'         => [
+        'empty' => 'Usa etiquetas para agrupar y filtrar entidades en todo tu mundo para facilitar la navegación.',
+    ],
     'placeholders'  => [
         'type'  => 'Tradiciones, guerras, historia, religión...',
     ],

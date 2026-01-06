@@ -105,4 +105,9 @@ class Tier extends Model
 
         return $price->cost;
     }
+
+    public function isWyvern(): bool
+    {
+        return $this->code === 'wyvern';
+    }
 }

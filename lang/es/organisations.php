@@ -15,6 +15,9 @@ return [
         'is_defunct'    => 'Esta organización ha desaparecido.',
     ],
     'index'         => [],
+    'lists'         => [
+        'empty' => 'Crea gremios, facciones o sociedades secretas para dar forma a la estructura de poder de tu mundo.',
+    ],
     'members'       => [
         'actions'       => [
             'add_multiple'  => 'Agregar miembros',
