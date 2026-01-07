@@ -21,7 +21,7 @@
         </a>
     @else
         <a
-            class="btn2 btn-block btn-accent price-monthly"
+            class="btn2 btn-block btn-primary price-monthly"
             data-toggle="dialog"
             data-target="subscribe-confirm"
             data-url="{{ route('settings.subscription.change', ['tier' => $tier, 'period' => 'monthly']) }}"
@@ -46,7 +46,7 @@
         </a>
     @else
         <a
-            class="btn2 btn-block btn-accent price-yearly"
+            class="btn2 btn-block btn-primary price-yearly"
             data-toggle="dialog"
             data-target="subscribe-confirm"
             data-url="{{ route('settings.subscription.change', ['tier' => $tier, 'period' => 'yearly']) }}"

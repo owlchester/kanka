@@ -20,7 +20,7 @@ return [
         'api_requests'      => 'Up to :amount API requests per minute',
         'boosters'          => 'Campaign Boosters',
         'discord'           => 'Unique :discord role and channel',
-        'feature_influence' => 'Influence roadmap priorities',
+        'feature_influence' => 'Direct input into roadmap decisions',
         'file_size'         => ':size File size uploads',
         'import'            => 'Campaign importer',
         'map_size'          => ':size Map size uploads',
@@ -49,4 +49,6 @@ return [
         'owlbear'   => 'Perfect for solo worldbuilders who want to supercharge their main campaign',
         'wyvern'    => 'Ideal for game masters running multiple adventures or collaborative storytellers',
     ],
+    'why' => 'Kanka is built by a :tiny of passionate worldbuilders. Subscriptions fund the people, servers, and time needed to keep improving the platform sustainably. There are no dark patterns, no investor pressure, and no infinite growth chasing. Development is steady and guided by our community.',
+    'tiny' => 'tiny team',
 ];

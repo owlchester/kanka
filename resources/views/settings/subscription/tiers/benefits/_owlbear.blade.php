@@ -11,7 +11,7 @@
             @if (auth()->user()->hasBoosterNomenclature())
                 3 {{ __('tiers.features.boosters') }}
             @else
-                1 {{ __('concept.premium-campaigns') }}<br />
+                1 {{ __('concept.premium-campaign') }}<br />
             @endif
         </a>
         <span class="text-xs text-neutral-content">

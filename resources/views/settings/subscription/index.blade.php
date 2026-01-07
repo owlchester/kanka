@@ -31,6 +31,11 @@
         <h2 class="text-xl m-0">
             {{ __('settings.subscription.tiers') }}
         </h2>
+
+            <p>
+                {!! __('tiers.why', ['tiny' => '<a href="' . \App\Facades\Domain::toFront('about') . '" class="text-link" >' . __('tiers.tiny') . '</a>']) !!}
+            </p>
+
         @if (!$isPayPal && !$hasManual)
             <div class="flex justify-center">
                 <div class="grid grid-cols-2 gap-2 rounded-2xl bg-base-200 p-0.5 items-center justify-items-stretch font-bold w-full xl:w-auto">
@@ -51,19 +56,10 @@
                 @if ($tier->isFree() && $user->isSubscriber())
                     @continue
                 @endif
-                <article class="rounded-2xl bg-box flex flex-col gap-4 p-4 relative max-w-2xl lg:max-w-none @if ($tier->isCurrent($user)) border-primary border @elseif ($tier->isWyvern()) border-accent border md:py-6 @else md:my-2 @endif shadow-xs hover:shadow-md ">
+                <article class="rounded-2xl bg-box flex flex-col gap-4 p-4 relative max-w-2xl lg:max-w-none @if ($tier->isCurrent($user)) border-primary border  @endif shadow-xs hover:shadow-md ">
                     <div class="flex gap-2 flex-col ">
                         <div class="flex justify-between gap-2">
                             <img class="w-16 h-16 " src="{{ $tier->image() }}" alt="{{ $tier->name }}"/>
-
-                            @if ($tier->isCurrent($user))
-                            @elseif ($tier->isBestValue())
-                                <div>
-                                    <div class="bg-accent text-accent-content text-sm rounded-full px-3 py-1.5">
-                                        🏆 {{ __('tiers.ribbons.best-value') }}
-                                    </div>
-                                </div>
-                            @endif
                         </div>
                         <div class="grow flex flex-col gap-2 w-full">
                             <div class="text-lg">
