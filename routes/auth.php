@@ -16,7 +16,6 @@ Route::get('auth/{provider}', [AuthController::class, 'redirectToProvider'])->na
 // Password Reset Routes...
 Route::post('password/email', [\App\Http\Controllers\Auth\ResetPasswordController::class, 'reset'])->name('password.email');
 
-
 include 'oauth.php';
 /*
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
