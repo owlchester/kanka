@@ -62,4 +62,12 @@ TEXT
         'answer'    => 'Updating your billing details is simple, just visit your :billing page in your account settings. There you can modify payment methods, update card information, or change billing addresses as needed.',
         'question'  => 'How do I update my billing information?',
     ],
+    'why' => [
+        'answer' => 'Kanka is built and maintained by a tiny, independent team. Subscriptions are what allow us to work on it long-term, improve it steadily, and keep it free of dark patterns. You\'re not paying a corporation, you\'re directly funding the people who design, build, and support the platform.',
+        'question' => 'Why does Kanka charge for subscriptions?'
+    ],
+    'help' => [
+        'answer' => 'Your subscription pays for our time, our servers, and the freedom to keep Kanka sustainable without chasing growth at all costs. It lets us fix bugs faster, build features we actually believe in, and stay responsive to the community instead of investors. Quite simply: it keeps Kanka alive and getting better.',
+        'question' => 'How does my subscription help Kanka?',
+    ],
 ];
