@@ -21,6 +21,9 @@ return [
     'index'         => [],
     'items'         => [],
     'journals'      => [],
+    'lists'         => [
+        'empty' => 'Añade tu primera ciudad, taberna o ruina oculta para dar base a tu mundo.',
+    ],
     'locations'     => [],
     'map'           => [],
     'maps'          => [],

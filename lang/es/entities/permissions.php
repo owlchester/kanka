@@ -16,4 +16,15 @@ return [
         'title'             => 'Permisos',
         'viewable-by'       => 'Visible por',
     ],
+    'toggle'    => [
+        'label'     => 'Privacidad de la entidad',
+        'private'   => [
+            'description'   => 'Visible solo para los miembros con el rol :admin.',
+            'title'         => 'Privado',
+        ],
+        'public'    => [
+            'description'   => 'Visible para los siguientes roles y miembros.',
+            'title'         => 'Público',
+        ],
+    ],
 ];

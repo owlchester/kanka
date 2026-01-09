@@ -61,6 +61,7 @@ return [
         'base'                      => 'Añade marcadores al mapa haciendo clic en cualquier lugar.',
         'copy_elements'             => 'Copiar grupos, capas y marcadores.',
         'copy_elements_to_campaign' => 'Copiar grupos, capas y marcadores de los mapas. Los marcadores vinculados a una entidad se convertirán en marcadores normales.',
+        'css'                       => 'Define una clase CSS personalizada añadida al marcador.',
         'custom_icon_v2'            => 'Utiliza iconos de :fontawesome, :rpgawesome o un icono SVG personalizado. Descubre cómo en la  :docs.',
         'custom_radius'             => 'Selecciona la opción de tamaño personalizado en el desplegable para definir un tamaño.',
         'draggable'                 => 'Actívalo para poder mover el marcador en el modo de exploración.',

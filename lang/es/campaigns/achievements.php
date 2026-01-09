@@ -32,4 +32,5 @@ return [
         'tags'          => 'Bajo control',
         'themes'        => 'Pintor',
     ],
+    'tutorial'          => 'Los logros registran acciones destacadas dentro de esta campaña, como crear entidades o usar funciones clave. Son solo informativos y se actualizan automáticamente a medida que exploras y construyes.',
 ];

@@ -22,4 +22,5 @@ return [
     'premium'   => 'La recuperación de elementos es una función de las campañas premium.',
     'success_v2'=> '{1} Se recuperó un elemento. |[2,*] Se han recuperado :count elementos.',
     'title'     => 'Recuperación de entidades de :campaign',
+    'tutorial'  => 'Visualiza y restaura elementos eliminados recientemente de la campaña. Las entidades, publicaciones y otros datos de apoyo pueden recuperarse durante :amount días antes de eliminarse de forma permanente. Al restaurar un elemento, regresa con todos sus datos intactos.',
 ];

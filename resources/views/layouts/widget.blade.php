@@ -20,7 +20,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
         'resources/css/vendor.css',
         'resources/css/app.css',
     ])
-    @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
+    @includeWhen(!config('fontawesome.kit'), 'layouts.styles.fontawesome')
     @yield('styles')
     @if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'base']))
         @php $specificTheme = $themeOverride; @endphp
@@ -54,10 +54,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
 
     @yield('modals')
 
-
-@if (config('fontawesome.kit'))
-    <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
-@endif
+    @includeWhen(config('fontawesome.kit'), 'layouts.scripts.fontawesome')
     @vite(['resources/js/vendor-final.js', 'resources/js/app.js'])
     @yield('scripts')
 </body>

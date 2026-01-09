@@ -12,6 +12,9 @@ return [
         'is_dead'       => 'Esta criatura está muerta.',
         'is_extinct'    => 'Esta criatura está extinguida.',
     ],
+    'lists'         => [
+        'empty' => 'Añade bestias, monstruos o seres míticos que tus héroes puedan enfrentar o entablar amistad.',
+    ],
     'placeholders'  => [
         'type'  => 'Herbívoro, Acuático, Mítico',
     ],

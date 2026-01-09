@@ -4,8 +4,10 @@ return [
     'actions'   => [
         'pay'       => 'Pay :currency:amount now',
         'paypal'    => 'Pay :currency:amount with PayPal',
+        'subscribe' => 'Subscribe for :currency:amount',
     ],
     'helpers'   => [
+        'tiny' => 'Thanks for supporting a tiny team of passionate worldbuilders.',
         'auto-renew'    => [
             'monthly'   => 'Your subscription auto-renews every month. Your next billing date is :date.',
             'none'      => 'Paying with PayPal is a one-time payment and doesn\'t auto-renew. You can resubscribe once your subscription ends after :date.',

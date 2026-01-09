@@ -4,6 +4,7 @@ return [
     'actions'   => [
         'back'  => 'Back to connections',
         'view'  => 'View web',
+        'download' => 'Download PNG',
     ],
     'cta'       => [
         'text'  => 'This is a preview of the full campaign-wide connections web. Free campaigns can explore up to :amount nodes. Premium campaigns unlock the complete map with every connection and full navigation. Upgrade to see your entier world\'s structure at once.',

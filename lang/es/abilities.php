@@ -25,6 +25,9 @@ return [
     ],
     'helpers'       => [],
     'index'         => [],
+    'lists'         => [
+        'empty' => 'Agrega poderes, hechizos o talentos. Muchos creadores usan esto para modelar clases de D&D.',
+    ],
     'placeholders'  => [
         'charges'   => 'Cantidad de usos. Puedes hacer referencia a un atributo con {Nivel}*{CHA}',
         'name'      => 'Bola de fuego, Alerta, Puñalada trasera',

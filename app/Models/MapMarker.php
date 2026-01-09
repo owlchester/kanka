@@ -170,11 +170,6 @@ class MapMarker extends Model
         return $this->shape_id === MapMarkerShape::circle;
     }
 
-    public function css(): string
-    {
-        return (string) $this->css;
-    }
-
     /**
      * Determine if the marker is of the polygon type and has a custom shape
      */

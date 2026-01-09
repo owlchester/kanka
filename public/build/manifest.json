@@ -18,6 +18,10 @@
     "file": "assets/coloris-DsKOFKq5.js",
     "name": "coloris"
   },
+  "_colours-Dh8441-n.js": {
+    "file": "assets/colours-Dh8441-n.js",
+    "name": "colours"
+  },
   "_cytoscape-cose-bilkent-DF4CVbNw.js": {
     "file": "assets/cytoscape-cose-bilkent-DF4CVbNw.js",
     "name": "cytoscape-cose-bilkent",
@@ -133,7 +137,7 @@
     "src": "node_modules/rpg-awesome/fonts/rpgawesome-webfont.woff"
   },
   "resources/css/app.css": {
-    "file": "assets/app-CCbugj_O.css",
+    "file": "assets/app-D5bEtJk0.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -142,7 +146,7 @@
     ]
   },
   "resources/css/auth.css": {
-    "file": "assets/auth-CPwujbqZ.css",
+    "file": "assets/auth-6QbLfiRJ.css",
     "src": "resources/css/auth.css",
     "isEntry": true,
     "name": "auth",
@@ -169,7 +173,7 @@
     ]
   },
   "resources/css/front.css": {
-    "file": "assets/front-CsNTZcOS.css",
+    "file": "assets/front-C2aVzE_M.css",
     "src": "resources/css/front.css",
     "isEntry": true,
     "name": "front",
@@ -339,14 +343,15 @@
     ]
   },
   "resources/js/connections/web.js": {
-    "file": "assets/web-B91lUvJy.js",
+    "file": "assets/web-bI1Txpi9.js",
     "name": "web",
     "src": "resources/js/connections/web.js",
     "isEntry": true,
     "imports": [
       "_vue.esm-bundler-CSDHRrjm.js",
       "_preload-helper-I4rgV-VL.js",
-      "_tippy.esm-CnBRltuW.js"
+      "_tippy.esm-CnBRltuW.js",
+      "_colours-Dh8441-n.js"
     ],
     "dynamicImports": [
       "node_modules/cytoscape/dist/cytoscape.esm.mjs",
@@ -518,12 +523,13 @@
     "isEntry": true
   },
   "resources/js/whiteboards.js": {
-    "file": "assets/whiteboards-Bq3zG3Ti.js",
+    "file": "assets/whiteboards-BM27egYr.js",
     "name": "whiteboards",
     "src": "resources/js/whiteboards.js",
     "isEntry": true,
     "imports": [
       "_vue.esm-bundler-CSDHRrjm.js",
+      "_colours-Dh8441-n.js",
       "_Browser.vue_vue_type_script_setup_true_lang-Dvk83Nhl.js",
       "__commonjsHelpers-CqkleIqs.js"
     ]

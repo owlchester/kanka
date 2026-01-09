@@ -60,6 +60,8 @@ return [
     'gallery' => [
         'standard' => env('APP_GALLERY_STANDARD', 150 * 1024),
         'premium' => env('APP_GALLERY_PREMIUM', 3 * 1024 * 1024),
+        'wyvern' => env('APP_GALLERY_WYVERN', 10 * 1024 * 1024),
+        'elemental' => env('APP_GALLERY_ELEMENTAL', 25 * 1024 * 1024),
         // 'premium' => 20 * 1024,
     ],
 

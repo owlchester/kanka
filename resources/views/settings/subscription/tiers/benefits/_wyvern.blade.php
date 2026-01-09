@@ -6,13 +6,19 @@
             <x-icon class="fa-regular fa-gem text-boost" />
         @endif
     </div>
-    <a href="https://kanka.io/premium?utm_source=subscription&utm_medium=referral&utm_campaign=wyvern" class="text-link">
-        @if (auth()->user()->hasBoosterNomenclature())
-            6 {{ __('tiers.features.boosters') }}
-        @else
-            3 {{ __('concept.premium-campaigns') }}
-        @endif
-    </a>
+    <div class="flex flex-col gap-0.5">
+        <a href="https://kanka.io/premium?utm_source=subscription&utm_medium=referral&utm_campaign=wyvern" class="text-link">
+            @if (auth()->user()->hasBoosterNomenclature())
+                6 {{ __('tiers.features.boosters') }}
+            @else
+                3 {{ __('concept.premium-campaigns') }}
+            @endif
+        </a>
+
+        <span class="text-xs text-neutral-content">
+            {{ __('tiers.features.premium', ['storage' => config('limits.gallery.wyvern') / 1024 / 1024, 'modules' => config('limits.campaigns.modules.wyvern')]) }}
+        </span>
+    </div>
 </div>
 
 <div class="flex gap-1">
@@ -59,15 +65,6 @@
     <div class="w-8 shrink-0 text-center">
         <x-icon class="check" />
     </div>
-    <div>
-        {!! __('tiers.features.discord', ['discord' => '<a href="https://kanka.io/go/discord" class="text-link">Discord</a>',]) !!}
-    </div>
-</div>
-
-<div class="flex gap-1">
-    <div class="w-8 shrink-0 text-center">
-        <x-icon class="check" />
-    </div>
     {{ __('tiers.features.nice_image') }}
 </div>
 
@@ -76,4 +73,13 @@
         <x-icon class="check" />
     </div>
     <a href="{{ route('roadmap', ['utm_source' => 'subscription', 'utm_campaign' => 'wyvern']) }}" class="text-link">{{ __('tiers.features.roadmap') }}</a>
+</div>
+
+<div class="flex gap-1">
+    <div class="w-8 shrink-0 text-center">
+        <x-icon class="check" />
+    </div>
+    <div>
+        {!! __('tiers.features.discord', ['discord' => '<a href="https://kanka.io/go/discord" class="text-link">Discord</a>',]) !!}
+    </div>
 </div>

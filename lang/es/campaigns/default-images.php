@@ -17,4 +17,12 @@ return [
     'empty'             => 'Actualmente, ningún módulo tiene una miniatura predeterminada configurada.',
     'helper'            => 'Se usa para todas las entidades de este módulo que no tengan imagen.',
     'index'             => [],
+    'reset'             => [
+        'helper'    => '¿Estás seguro de que deseas eliminar las imágenes predeterminadas de todos los módulos de la campaña?',
+        'success'   => 'Las imágenes predeterminadas de todos los módulos se eliminaron correctamente.',
+        'title'     => 'Restablecer imágenes predeterminadas',
+        'warning'   => 'Esta acción es permanente y no se puede deshacer.',
+    ],
+    'title'             => 'Imágenes predeterminadas',
+    'tutorial'          => 'Establece imágenes predeterminadas para las entidades sin imágenes personalizadas. Estas miniaturas aparecen de inmediato en toda la campaña y mantienen las listas visualmente consistentes.',
 ];

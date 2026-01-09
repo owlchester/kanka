@@ -14,6 +14,9 @@ return [
         'members'       => 'Aquí se muestran los miembros de la familia. Se puede añadir un personaje a una familia en el menú de edición de dicho personaje, usando el desplegable "Familia".',
     ],
     'index'         => [],
+    'lists'         => [
+        'empty' => 'Haz seguimiento de linajes, clanes o casas nobles que conectan a tus personajes.',
+    ],
     'members'       => [
         'create'    => [
             'helper'    => 'Añadir uno o mas miembros a :name.',

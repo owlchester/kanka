@@ -52,6 +52,7 @@ return [
         'active'    => 'Si el webhook está activo',
         'message'   => 'Añade un mensaje personalizado con soporte para asignaciones',
         'status'    => 'Cambiar el estado activo del webhook',
+        'tutorial'  => 'Usa webhooks para enviar actualizaciones en tiempo real de la campaña a herramientas externas. Los eventos se activan automáticamente cuando se crean, actualizan o eliminan entidades. Puedes añadir varios webhooks y probarlos desde esta página.',
     ],
     'pitch'         => 'Crea webhooks personalizados para recibir actualizaciones personalizadas cada vez que se actualice una entidad de la campaña.',
     'placeholders'  => [

@@ -16,7 +16,8 @@
         <div class="flex-none">
             <img class="rounded-full w-fit flex-none" src="{{ $tier->image() }}" alt="{{ $tier->name }}"/>
         </div>
-        <div class="text-xl grow">
+        <div class="flex flex-col gap-2 grow">
+            <div class="text-xl">
         @if ($user->hasManualSubscription())
                     You currently have a manual subscription managed by our team. Please contact us at <a href="mailto:{{ config('app.email') }}" class="text-link">{{ config('app.email') }}</a> for assistance.
         @elseif ($user->hasPayPal())
@@ -41,6 +42,12 @@
                 ]) !!}
             @endif
         @endif
+            </div>
+            @if (!$isDowngrading)
+            <div class="text-sm text-neutral-content">
+                {{ __('subscriptions/confirm.helpers.tiny') }}
+            </div>
+            @endif
         </div>
     </div>
 
@@ -110,7 +117,7 @@
                 @includeWhen($hasPromo, 'settings.subscription._promo')
                 <div class="text-center">
                     <button class="btn2 btn-block btn-primary subscription-confirm-button">
-                        {{ __('subscriptions/confirm.actions.pay', [
+                        {{ __('subscriptions/confirm.actions.subscribe', [
     'currency' => $currency,
     'amount' => $amount,
 ]) }}

@@ -31,6 +31,7 @@ return [
         'restore'       => ':user restauró :entity',
         'update'        => ':user actualizó :entity',
         'update_post'   => ':user actualizó el post ":post" en :entity',
+        'update_tree'   => ':user actualizó el árbol genealógico de :entity',
     ],
     'title'     => 'Historial',
     'unknown'   => [

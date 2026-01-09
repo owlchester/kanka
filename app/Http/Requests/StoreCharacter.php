@@ -43,6 +43,7 @@ class StoreCharacter extends FormRequest
             'sex' => 'nullable|max:45',
             'pronouns' => 'nullable|max:45',
             'title' => 'nullable|max:191',
+            'is_dead' => 'boolean',
             'template_id' => 'nullable',
             'families' => 'array',
             'families.*' => 'distinct|exists:families,id',

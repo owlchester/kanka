@@ -2,10 +2,12 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\ConversationTarget;
 use App\Facades\Limit;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Enum;
 
 class StoreConversation extends FormRequest
 {
@@ -31,7 +33,7 @@ class StoreConversation extends FormRequest
         $rules = [
             'name' => 'required|max:191',
             'type' => 'nullable|string|max:45',
-            'target_id' => 'required|numeric',
+            'target_id' => ['required', new Enum(ConversationTarget::class)],
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
             'entity_image_uuid' => 'nullable|exists:images,id',

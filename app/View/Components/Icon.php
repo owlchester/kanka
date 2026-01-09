@@ -55,6 +55,7 @@ class Icon extends Component
             'permissions' => 'fa-regular fa-user-shield',
             'attributes' => 'fa-regular fa-rectangle-list',
             'link' => 'fa-regular fa-external-link',
+            'sort' => 'fa-regular fa-grip-vertical',
             default => $class,
         };
     }

@@ -343,7 +343,7 @@ class Bookmark extends Model
 
             return 'active';
         }
-        if ($current->entityType->isStandard() || $current->type_id != $this->entity_type_id) {
+        if (($current instanceof Entity && $current->entityType && $current->entityType->isStandard()) || $current->type_id != $this->entity_type_id) {
             return null;
         }
 

@@ -3,7 +3,7 @@
 
     <div class="space-y-4">
 
-        @foreach (['cost', 'methods', 'cancellation', 'renewal', 'trial', 'data' , 'downgrade', 'refund', 'discount', 'sharing', 'security', 'update', 'fail'] as $key)
+        @foreach (['why', 'help', 'cost', 'methods', 'cancellation', 'renewal', 'trial', 'data' , 'downgrade', 'refund', 'discount', 'sharing', 'security', 'update', 'fail'] as $key)
             <x-faq-element id="{{ $key }}">
                 <x-slot name="question">
                     {{ __('subscriptions/faq.' . $key . '.question') }}

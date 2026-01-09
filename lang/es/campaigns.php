@@ -164,6 +164,7 @@ return [
     ],
     'panels'                            => [
         'dashboard' => 'Tablero',
+        'privacy'   => 'Valores predeterminados de privacidad',
         'setup'     => 'Configuración',
         'sharing'   => 'Compartir',
         'systems'   => 'Sistemas',
@@ -341,6 +342,7 @@ return [
             'races'             => 'Si tu campaña tiene más de una raza, de esta forma no las perderás de vista.',
             'tags'              => 'Cada entidad puede tener varias etiquetas. Éstas pueden pertenecer a otras etiquetas, y las entradas pueden filtrarse por etiqueta.',
             'timelines'         => 'Representa la historia de tu mundo con líneas de tiempo.',
+            'whiteboards'       => 'Dibuja y escribe en pizarras para planificar visualmente tu mundo y tus objetivos.',
         ],
     ],
     'sharing'                           => [
@@ -359,6 +361,7 @@ return [
             'danger'            => 'Peligro',
             'data'              => 'Datos',
             'default-images'    => 'Imágenes por defecto',
+            'defaults'          => 'Valores predeterminados',
             'deletion'          => 'Eliminación',
             'export'            => 'Exportar',
             'import'            => 'Importar',
@@ -410,6 +413,7 @@ return [
     'visibilities'                      => [
         'private'   => 'Privada',
         'public'    => 'Pública',
+        'unlisted'  => 'Público (no listado)',
     ],
     'warning'                           => [],
 ];

@@ -25,5 +25,6 @@ return [
         'history'       => '(ejemplo) Ulyss es la capital del reino de Genoria. Fue fundada por Frasan Irwen y se encuentra en el río Unri.',
         'type'          => 'Capital',
     ],
+    'name'          => ':name (ejemplo)',
     'note1'         => [],
 ];

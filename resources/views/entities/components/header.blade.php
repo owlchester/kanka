@@ -224,8 +224,9 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
         <div class="entity-header-sub flex gap-4 items-center flex-wrap">
             @if ($entity->entityType->isCustom())
                 @includeIf('entities.headers._custom')
+            @else
+                @includeIf('entities.headers._' . $entity->entityType->code)
             @endif
-            @includeIf('entities.headers._' . $entity->entityType->code)
         </div>
 
         @yield($entityHeaderActions ?? 'entity-header-actions')

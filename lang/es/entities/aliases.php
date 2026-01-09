@@ -18,6 +18,7 @@ return [
     'helpers'       => [
         'primary'   => 'Añade uno o más alias a una entidad para encontrarla mediante la búsqueda global (en la barra superior) o las menciones.',
     ],
+    'limit'         => 'La campaña ha alcanzado el límite de alias disponibles. Para obtener alias ilimitados, desbloquea las funciones premium.',
     'pitch'         => 'Crea alias para esta entidad que te permitan encontrarla fácilmente a través de la búsqueda y de menciones.',
     'placeholders'  => [
         'name'  => 'Nuevo alias',

@@ -15,7 +15,7 @@
             @else
                 <div class="field field-name">
                     <label>One sentence that summarises your idea</label>
-                    <input type="text" maxlength="80" class="rounded text-dark  w-full p-2" wire:model.blur="title" />
+                    <input type="text" maxlength="80" class="rounded text-dark w-full p-2 bg-white" wire:model.blur="title" />
                     <div>
                         @error('title') <span class="text-red-300">{{ $message }}</span> @enderror
                     </div>
@@ -38,7 +38,7 @@
 
                 <div class="field field-description">
                     <label>Why your idea is useful, who should benefit and how should it work?</label>
-                    <textarea wire:model="description" class="rounded text-dark w-full p-2" rows="5"></textarea>
+                    <textarea wire:model="description" class="rounded text-dark w-full p-2 bg-white" rows="5"></textarea>
                     <div>
                         @error('description') <span class="text-red-300">{{ $message }}</span> @enderror
                     </div>
@@ -46,7 +46,7 @@
 
                 <div class="field field-description">
                     <label>An image is worth a thousand words. Show us how you think the idea should look like.</label>
-                    <input type="file" wire:model="file" class="w-full" accept=".jpg, .jpeg, .png" id="upload-{{ $iteration }}">
+                    <input type="file" wire:model="file" class="w-full bg-white rounded text-dark p-2" accept=".jpg, .jpeg, .png" id="upload-{{ $iteration }}">
                     <div>
                         @error('file') <span class="text-red-300">{{ $message }}</span> @enderror
                     </div>
