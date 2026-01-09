@@ -14,7 +14,7 @@ Route::get('/login-as', [LoginController::class, 'loginAs'])->name('login-as');
 Route::get('auth/{provider}', [AuthController::class, 'redirectToProvider'])->name('auth.provider');
 
 // Password Reset Routes...
-Route::post('password/email', [\App\Http\Controllers\Auth\ResetPasswordController::class, 'reset'])->name('password.email');
+Route::post('password/email', [\App\Http\Controllers\Auth\ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
 
 
 include 'oauth.php';
