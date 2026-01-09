@@ -518,9 +518,4 @@ class Character extends MiscModel
                 'entity', 'entity.tags', 'entity.tags.entity', 'entity.image', 'entity.locations'])
             ->has('entity');
     }
-
-    public function entityLocations()
-    {
-        return $this->entity->locations;
-    }
 }

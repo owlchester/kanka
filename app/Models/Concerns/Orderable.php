@@ -46,8 +46,8 @@ trait Orderable
         } elseif ($field === 'locations') {
             return $query
                 ->joinEntity()
-                ->join('entity_locations', 'entity_locations.entity_id', '=', 'e.id')
-                ->join('locations', 'locations.id', '=', 'entity_locations.location_id')
+                ->leftJoin('entity_locations', 'entity_locations.entity_id', '=', 'e.id')
+                ->leftJoin('locations', 'locations.id', '=', 'entity_locations.location_id')
                 ->orderBy('locations.name', $direction);
         }
         if (! empty($field)) {
