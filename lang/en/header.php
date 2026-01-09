@@ -16,4 +16,7 @@ return [
         'upgrade'       => 'Upgrade',
         'your-profile'  => 'Your profile',
     ],
+    'qq' => [
+        'tooltip' => 'Create an entity or post',
+    ],
 ];

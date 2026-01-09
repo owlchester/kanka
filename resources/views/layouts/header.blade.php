@@ -23,18 +23,7 @@
         @endif
         </div>
 
-        @if (auth()->check() && !empty($campaign) && auth()->user()->can('member', $campaign) && (!isset($qq) || $qq))
-        <div class="flex-none">
-            <a href="#" data-url="{{ route('entity-creator.selection', $campaign) }}" data-toggle="dialog"  class="quick-creator-button btn2 btn-primary btn-sm"
-            tabindex="0">
-                <x-icon class="flex-none fa-regular fa-plus" />
-                <span class="grow hidden sm:inline-block">
-                    {{ __('crud.create') }}
-                </span>
-                <span class="flex-none keyboard-shortcut" id="qq-kb-shortcut" data-toggle="tooltip" data-title="{!! __('crud.keyboard-shortcut', ['code' => '<code>N</code>']) !!}" data-html="true" data-placement="bottom" >N</span>
-            </a>
-        </div>
-        @endif
+        @includeWhen(auth()->check() && !empty($campaign) && auth()->user()->can('member', $campaign) && (!isset($qq) || $qq), 'layouts.header.qq')
 
         <div class="flex-1 navbar-actions">
 

@@ -1,5 +1,5 @@
 @php $unique = 'alert-' . uniqid(); @endphp
-<div class="alert alert-{{ $type }} {!! $class ?? null !!} border-0 rounded p-4 flex shadow-xs gap-2 items-center {{ $hidden ? 'hidden' : null }}
+<div class="alert alert-{{ $type }} {!! $class ?? null !!} border-0 rounded-lg p-4 flex shadow-xs gap-2 items-center {{ $hidden ? 'hidden' : null }}
 @if ($dismissible) opacity-100 duration-150 transition-opacity {{ $unique }} @endif"
      @if ($id) id="{{ $id }}" @endif
 >

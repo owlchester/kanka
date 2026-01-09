@@ -1,4 +1,4 @@
-<div {{ $attributes->merge(['class' => 'rounded ' . ($padding ? 'p-4' : ''). ' shadow-xs bg-box w-full transition-all duration-150']) }}
+<div {{ $attributes->merge(['class' => 'rounded-lg ' . ($padding ? 'p-4' : ''). ' shadow-xs bg-box w-full transition-all duration-150']) }}
 @if(!empty($id)) id="{{ $id }}" @endif
 @if ($url) data-url="{{ $url }}" @endif
 @if ($href) href="{{ $href }}" @endif
