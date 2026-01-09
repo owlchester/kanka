@@ -519,7 +519,7 @@ class Character extends MiscModel
             ->has('entity');
     }
 
-    public function entityLocations(): Bob
+    public function entityLocations()
     {
         return $this->entity->locations;
     }
