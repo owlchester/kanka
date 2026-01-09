@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use App\Facades\Limit;
 use App\Rules\EntityLocations;
-use App\Rules\Location;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
@@ -36,7 +35,7 @@ class StoreCharacter extends FormRequest
             'type' => 'nullable|string|max:191',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
-            'locations' => ['nullable', 'array', new EntityLocations()],
+            'locations' => ['nullable', 'array', new EntityLocations],
             'entity_image_uuid' => 'nullable|exists:images,id',
             'entity_header_uuid' => 'nullable|exists:images,id',
             'age' => 'nullable|max:25',

@@ -149,7 +149,7 @@ class PreviewService
         ];
     }
 
-    protected function locations(): array|null
+    protected function locations(): ?array
     {
         if ($this->entity->locations->isEmpty()) {
             return null;

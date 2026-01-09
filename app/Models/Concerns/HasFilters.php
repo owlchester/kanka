@@ -597,6 +597,7 @@ trait HasFilters
                     select count(*) from entity_locations as el
                     where el.entity_id = e.id and el.location_id in (' . implode(', ', $locationIds) . ')
                 ) = 0');
+
                 return;
             }
             $query->whereNotIn($this->getTable() . '.location_id', $locationIds)->distinct();

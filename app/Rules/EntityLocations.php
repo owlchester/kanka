@@ -19,10 +19,10 @@ class EntityLocations implements ValidationRule
         /** @var EntityType $module */
         $module = EntityType::find(config('entities.ids.location'));
 
-        if (!is_array($value)) {
+        if (! is_array($value)) {
             $value = [$value];
         }
-        foreach  ($value as $id) {
+        foreach ($value as $id) {
             if (is_numeric($id)) {
                 if (\App\Models\Location::find($id)) {
                     return;
@@ -35,7 +35,7 @@ class EntityLocations implements ValidationRule
             }
 
             $campaign = CampaignLocalization::getCampaign();
-            if (!auth()->user()->can('create', [$module, $campaign])) {
+            if (! auth()->user()->can('create', [$module, $campaign])) {
                 $fail(__('crud.dynamic.permission', ['module' => $module->name()]));
             }
         }

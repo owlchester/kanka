@@ -21,6 +21,7 @@ class Standard extends Column
     public const VIEW = 'view';
 
     public const LOCATION = 'location';
+
     public const ENTITY_LOCATIONS = 'locations';
 
     public const MENTION_LINK = 'mention-link';

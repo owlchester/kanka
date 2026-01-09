@@ -2,8 +2,6 @@
 
 namespace App\Datagrids\Filters;
 
-use App\Facades\Module;
-
 class CharacterFilter extends DatagridFilter
 {
     /**

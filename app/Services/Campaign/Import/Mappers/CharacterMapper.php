@@ -10,7 +10,7 @@ use Illuminate\Support\Arr;
 
 class CharacterMapper extends MiscMapper
 {
-    protected array $ignore = ['id', 'entry', 'type', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'created_at', 'location_id','updated_at', 'race_id', 'family_id'];
+    protected array $ignore = ['id', 'entry', 'type', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'created_at', 'location_id', 'updated_at', 'race_id', 'family_id'];
 
     protected string $className = Character::class;
 
@@ -84,14 +84,14 @@ class CharacterMapper extends MiscMapper
     protected function characterLocations(): self
     {
         // Support old format
-        if (!empty($this->data['location_id'])) {
+        if (! empty($this->data['location_id'])) {
             $locationID = ImportIdMapper::get('locations', $this->data['location_id']);
-            if (!empty($locationID)) {
+            if (! empty($locationID)) {
                 $this->entity->locations()->attach($locationID);
             }
         }
 
-        if (!Arr::has($this->data, 'entity.entityLocations')) {
+        if (! Arr::has($this->data, 'entity.entityLocations')) {
             return $this;
         }
         // New 3.8 format
