@@ -85,36 +85,37 @@
         </x-forms.field>
 
 
-        @if (!isset($model) || auth()->user()->can('personality', $model))
-            <x-forms.field
-                field="personality-pinned"
-                :label="__('characters.fields.is_personality_pinned')"
-            >
-                <input type="hidden" name="is_personality_pinned" value="0" />
-                <x-checkbox :text="__('characters.hints.is_personality_pinned')">
-                    <input type="checkbox" name="is_personality_pinned" value="1" @if (old('is_personality_pinned', $source->child->is_personality_pinned ?? $model->is_personality_pinned ?? false)) checked="checked" @endif/>
-                </x-checkbox>
-            </x-forms.field>
-        @endif
+    @if (!isset($model) || auth()->user()->can('personality', $model))
+        <x-forms.field
+            field="personality-pinned"
+            :label="__('characters.fields.is_personality_pinned')"
+        >
+            <input type="hidden" name="is_personality_pinned" value="0" />
+            <x-checkbox :text="__('characters.hints.is_personality_pinned')">
+                <input type="checkbox" name="is_personality_pinned" value="1" @if (old('is_personality_pinned', $source->child->is_personality_pinned ?? $model->is_personality_pinned ?? false)) checked="checked" @endif/>
+            </x-checkbox>
+        </x-forms.field>
+    @endif
 
-        @can('admin', $campaign)
-                <hr>
-            <input type="hidden" name="is_personality_visible" value="0" />
-            <x-forms.field
-                field="personality-visible"
-                :label="__('characters.fields.is_personality_visible')"
-                :helper="__('characters.helpers.personality_visible', [
-                'admin' => '<a href=\'' . route('campaigns.campaign_roles.admin', $campaign) . '\' class=\'text-link\>' . $campaign->adminRoleName() . '</a>'])"
-            >
-                <x-checkbox :text="__('characters.hints.is_personality_visible', [
-        'admin' => '<a href=\'' . route('campaigns.campaign_roles.admin', $campaign) . '\' class=\'text-link\'>' . $campaign->adminRoleName() . '</a>'
+    @can('admin', $campaign)
+        @php $helper = __('characters.helpers.personality_visible', [
+            'admin' => '<a href=\'' . route('campaigns.campaign_roles.admin', $campaign) . '\' class=\'text-link\'>' . $campaign->adminRoleName() . '</a>']); @endphp
+        <hr>
+        <input type="hidden" name="is_personality_visible" value="0" />
+        <x-forms.field
+            field="personality-visible"
+            :label="__('characters.fields.is_personality_visible')"
+            :helper="$helper"
+        >
+            <x-checkbox :text="__('characters.hints.is_personality_visible', [
+    'admin' => '<a href=\'' . route('campaigns.campaign_roles.admin', $campaign) . '\' class=\'text-link\'>' . $campaign->adminRoleName() . '</a>'
 ])">
-                    <input type="checkbox" name="is_personality_visible" value="1" @if (old('is_personality_visible', $source->child->is_personality_visible ?? $model->is_personality_visible ?? false)) checked="checked" @endif/>
-                </x-checkbox>
-            </x-forms.field>
-        @else
-            <input type="hidden" name="is_personality_visible" value="1" />
-        @endif
+                <input type="checkbox" name="is_personality_visible" value="1" @if (old('is_personality_visible', $source->child->is_personality_visible ?? $model->is_personality_visible ?? false)) checked="checked" @endif/>
+            </x-checkbox>
+        </x-forms.field>
+    @else
+        <input type="hidden" name="is_personality_visible" value="1" />
+    @endif
     </x-grid>
 </x-grid>
 
@@ -172,3 +173,4 @@
     </template>
 
 @endsection
+
