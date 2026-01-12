@@ -260,3 +260,26 @@ body.map-drawing-mode {
     padding-left: 45px;
 }
 /** END Used by the ruler plugin */
+
+/** Provided by Salvatos **/
+.leaflet-control-layers-overlays .leaflet-layerstree-node:not(:has(.leaflet-layerstree-header-pointer)) {
+    .leaflet-control-layers-selector {
+        display: none;
+    }
+    .leaflet-layerstree-header-name {
+        font-weight: bold;
+    }
+}
+/** Tweaks **/
+.leaflet-layerstree-header {
+    display: flex;
+    gap: 0.5rem;
+}
+.leaflet-layerstree-header-label {
+    display: flex !important;
+    gap: 0.25rem;
+    align-items: center;
+    &:hover {
+        font-weight: bold;
+    }
+}

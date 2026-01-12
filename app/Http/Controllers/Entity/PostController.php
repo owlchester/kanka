@@ -96,7 +96,9 @@ class PostController extends Controller
         $data['entity_id'] = $entity->id;
         $post = Post::create($data);
 
-        $this->savePermissionsService->post($post)->request($request)->save();
+        if (auth()->user()->can('permissions', $entity)) {
+            $this->savePermissionsService->post($post)->request($request)->save();
+        }
 
         if ($request->has('submit-new')) {
             $route = route('entities.posts.create', [$campaign, $entity]);
@@ -159,10 +161,12 @@ class PostController extends Controller
             unset($data['position']);
         }
         $post->update($data);
-        $this->savePermissionsService
-            ->post($post)
-            ->request($request)
-            ->save();
+        if (auth()->user()->can('permissions', $entity)) {
+            $this->savePermissionsService
+                ->post($post)
+                ->request($request)
+                ->save();
+        }
 
         $this->editingService->model($post)
             ->user($request->user())
