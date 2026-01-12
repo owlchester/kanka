@@ -37,7 +37,7 @@ class ImportService
             $existingIds[] = $ability->ability_id;
         }
 
-        foreach ($character->characterRaces()->with('race', 'race.entity', 'race.entity.abilities') as $race) {
+        foreach ($character->characterRaces()->with('race', 'race.entity', 'race.entity.abilities')->get() as $race) {
             /** @var EntityAbility[] $abilities */
             $abilities = $race->race->entity->abilities;
             $count = 0;
