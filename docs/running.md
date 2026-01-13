@@ -27,7 +27,7 @@ Kanka is set up to run with Docker and [Laravel Sail](https://laravel.com/docs/1
 * Laravel Sail for running the Kanka PHP application
 * [Mariadb](https://mariadb.org/) for the database
 * [Redis](https://redis.com/) for the cache
-* [RustFS](https://rustfs.com/) for file storage
+* [minIO](https://min.io/) for file storage
 * [Thumbor](https://www.thumbor.org/) for image thumbnails
 * [Mailpit](https://mailpit.axllent.org/) for email testing
 
@@ -96,13 +96,13 @@ sail up -d
 
 ### 5. Bucket setup
 
-> Warning, as of 2026, minIO is deprecated and no longer supports features required by Kanka. RustFS is a promising alternative which isn't quite ready yet. For new installs, we recommend using RustFS directly, however Kanka's docker-composer doesn't ship with it yet, as there is no migration tools available as of right now. Consider the following section a placeholder for when RustFS is ready.
+> Warning, we use an older version of minIO, despite minIO being abandoned and having multiple vulnerabilities. RustFS will eventually replace minIO, but it's still in Alpha and doesn't have a migration tool.
 
-Image uploading in the app is stored on a *RustFs* service. This mimics the amazon S3 storage, and makes it easier to handle images rather than hosting them directly in the docker responsible for PHP.
+Image uploading in the app is stored on a *minio* service. This mimics the amazon S3 storage, and makes it easier to handle images rather than hosting them directly in the docker responsible for PHP.
 
-First, go to [localhost:9001](http://localhost:9001). This is where your files will be stored. Login with `sail` as the user and `password` as the password.
+First, go to [localhost:9000](http://localhost:9000). This is where your files will be stored. Login with `sail` as the user and `password` as the password.
 
-Create a new bucket called `kanka`. In the new bucket's `settings`, change the `Access policy` from `private` to `public`. Without this, uploaded files won't be visible in the browser.
+Create a new bucket called `kanka`. This will redirect you to the new `kanka` bucket. Click on the top right cogwheel icon to access the bucket's config interface. On this page, change the `Access Policy` from `private` to `public`. Without this, uploaded file won't be visible in the browser.
 
 Next up, create a second bucket called `thumbnails`. Same as before, go back and set it's `Access Policy` from `private` to `public`. This bucket will contain your thumbnails.
 
