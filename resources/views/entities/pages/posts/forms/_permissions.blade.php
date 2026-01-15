@@ -55,11 +55,11 @@ $permissions = [
         <div id="post-perm-target" class=""></div>
     </div>
     <div class="join">
-        <a href="#" class="join-item btn2 btn-outline" data-toggle="dialog" data-target="post-new-user">
+        <a href="#" class="join-item btn2 btn-sm btn-outline" data-toggle="dialog" data-target="post-new-user">
             <x-icon class="fa-regular fa-user" />
             {{ __('posts.permissions.actions.members') }}
         </a>
-        <a href="#" class="join-item btn2 btn-outline" data-toggle="dialog" data-target="post-new-role">
+        <a href="#" class="join-item btn2 btn-sm btn-outline" data-toggle="dialog" data-target="post-new-role">
             <x-icon class="fa-regular fa-users" />
             {{ __('posts.permissions.actions.roles') }}
         </a>

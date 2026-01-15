@@ -49,7 +49,7 @@ h1, h2, h3, h4, h5, h6, h1 > small, .panel-title {
 input, textarea, .select2, select, .form-control {
     border-width: 1px;
     border-color: hsl(var(--bc)/var(--tw-border-opacity));
-    --tw-border-opacity: 0.2;
+    --tw-border-opacity: 0.1;
     --tw-bg-opacity: 1;
     background-color: hsl(var(--b1)/var(--tw-bg-opacity));
     border-radius: var(--rounded-btn,.5rem);
@@ -58,10 +58,10 @@ input, textarea, .select2, select, .form-control {
     color: inherit;
 }
 input, textarea, select {
-    padding: 0.5rem 0.5rem;
+    padding: 0.6rem 0.8rem;
 }
 input::placeholder, textarea::placeholder, select::placeholder, .form-control::placeholder {
-    --tw-text-opacity: .5;
+    --tw-text-opacity: .4;
     color: hsl(var(--bc)/var(--tw-text-opacity));
 }
 input[type="text"], input[type="date"], input[type="number"], input[type="file"], select {
@@ -71,7 +71,7 @@ input:focus, select:focus, .textarea:focus, .form-control:focus {
     outline-style: solid;
     outline-width: 2px;
     outline-offset: 2px;
-    outline-color: hsl(var(--bc)/.2);
+    outline-color: hsl(var(--p)/0.3);
     box-shadow: none;
     border-color: transparent;
 }
@@ -88,6 +88,7 @@ input[type="checkbox"] {
     accent-color: hsl(var(--p)/var(--tw-accent-opacity));
     position: relative;
     margin: 0;
+    padding: 0.8rem;
 }
 input[type="checkbox"]:checked {
     --tw-bg-opacity: 1;
@@ -97,10 +98,10 @@ input[type="checkbox"]:checked {
 }
 input[type="checkbox"]:checked:after {
     content: var(--checkbox-content, '\2714');
-    font-size: 1rem;
+    font-size: 1.4rem;
     position: absolute;
     top: 0;
-    left: 0.1rem;
+    left: 0.2rem;
 }
 /**, ::before, ::after {
     --tw-border-opacity: 0.2;
@@ -119,7 +120,7 @@ input[type="checkbox"]:checked:after {
 .select2-container--default .select2-selection--single, .select2-dropdown, .select2-container--default .select2-selection--multiple {
     border-width: 1px;
     border-color: hsl(var(--bc)/var(--tw-border-opacity));
-    --tw-border-opacity: 0.2;
+    --tw-border-opacity: 0.1;
     --tw-bg-opacity: 1;
     background-color: hsl(var(--b1)/var(--tw-bg-opacity));
     border-radius: var(--rounded-btn, .5rem);

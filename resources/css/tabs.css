@@ -2,7 +2,6 @@
     margin: 0;
     padding: 0;
     display: flex;
-    gap: 0.25rem;
     list-style: none;
 }
 .nav-tabs>li{
@@ -11,7 +10,7 @@
 .nav-tabs>li>a{
     line-height:1.25rem;
     border-radius:var(--tab-radius, .25rem) var(--tab-radius, .25rem) 0 0;
-    padding: 0.7rem 1rem;
+    padding: 0.4rem 0.6rem;
     display: block;
     border-width: var(--tab-border, 0);
     --tw-bg-opacity: 0.5;
@@ -21,6 +20,10 @@
     --tw-text-opacity: .5;
     --tab-color: hsl(var(--bc) / var(--tw-text-opacity, 1));
     color:var(--tab-color);
+}
+.nav-tabs>li.active {
+    color: hsl(var(--p)/var(--tw-text-opacity));
+    font-weight: 500;
 }
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
     --tw-bg-opacity: 1;
