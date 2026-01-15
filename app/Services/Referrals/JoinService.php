@@ -17,6 +17,7 @@ class JoinService
     public function referral(Referral $referral): self
     {
         $this->referral = $referral;
+
         return $this;
     }
 
@@ -46,10 +47,10 @@ class JoinService
 
     public function event(User $user, ReferralEventType $type): void
     {
-        if (!isset($this->referral)) {
+        if (! isset($this->referral)) {
             return;
         }
-        $event = new ReferralEvent();
+        $event = new ReferralEvent;
         $event->created_by = $user->id;
         $event->referred_by = $this->referral->user_id;
         $event->type = $type;

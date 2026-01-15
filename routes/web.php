@@ -34,5 +34,4 @@ Route::get('/validation/{userValidation}', [App\Http\Controllers\User\EmailValid
 // Game System Search
 Route::get('/search/systems', [App\Http\Controllers\Search\GameSystemSearchController::class, 'index'])->name('search.systems');
 
-
 Route::get('/r/{referral}', [App\Http\Controllers\ReferralController::class, 'index'])->name('referrals');

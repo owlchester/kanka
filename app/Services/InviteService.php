@@ -12,7 +12,6 @@ use App\Models\CampaignRoleUser;
 use App\Models\CampaignUser;
 use App\Models\ReferralEvent;
 use App\Services\Campaign\FollowService;
-use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Exception;
 use Illuminate\Support\Facades\Session;
@@ -29,7 +28,6 @@ class InviteService
     {
         $this->campaignFollowService = $campaignFollowService;
     }
-
 
     /**
      * @throws RequireLoginException
@@ -76,12 +74,14 @@ class InviteService
             'referred_by' => $this->invite->created_by,
             'type' => ReferralEventType::invite,
         ]);
+
         return $this;
     }
 
     public function invite(CampaignInvite $invite): self
     {
         $this->invite = $invite;
+
         return $this;
     }
 
@@ -90,8 +90,6 @@ class InviteService
         return $this->invite->campaign;
     }
 
-    /**
-     */
     public function join(): self
     {
         Session::forget('invite_token');

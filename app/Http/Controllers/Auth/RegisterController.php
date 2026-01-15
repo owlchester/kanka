@@ -72,6 +72,7 @@ class RegisterController extends Controller
             'referred_by' => $referrer,
         ]);
         $this->referralService->event($user, ReferralEventType::register);
+
         return $user;
     }
 

@@ -24,13 +24,13 @@ use App\Http\Controllers\Settings\NewsletterController;
 use App\Http\Controllers\Settings\PatreonController;
 use App\Http\Controllers\Settings\PremiumController;
 use App\Http\Controllers\Settings\ProfileController;
+use App\Http\Controllers\Settings\ReferralController;
 use App\Http\Controllers\Settings\ReleaseController;
 use App\Http\Controllers\Settings\Subscription\CancellationController;
 use App\Http\Controllers\Settings\Subscription\CancelledController;
 use App\Http\Controllers\Settings\Subscription\FinishController;
 use App\Http\Controllers\Settings\Subscription\FreeTrialController;
 use App\Http\Controllers\Settings\SubscriptionController;
-use App\Http\Controllers\Settings\ReferralController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProfileController::class, 'index'])->name('settings');

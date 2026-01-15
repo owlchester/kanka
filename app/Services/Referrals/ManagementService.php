@@ -19,8 +19,9 @@ class ManagementService
     {
         $code = Referral::where('user_id', $this->user->id)->firstOrNew();
         if (! $code->exists()) {
-           return $this->createReferral();
+            return $this->createReferral();
         }
+
         return $code;
     }
 
@@ -34,6 +35,7 @@ class ManagementService
         if (isset($this->referrals)) {
             return $this->referrals;
         }
+
         return $this->referrals = User::select(['id', 'pledge'])->where('referred_by', $this->user->id)->get();
     }
 
@@ -50,6 +52,7 @@ class ManagementService
         } elseif ($count < 10) {
             return 'II';
         }
+
         return 'III';
     }
 

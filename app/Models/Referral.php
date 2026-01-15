@@ -23,10 +23,8 @@ class Referral extends Model
         return 'code';
     }
 
-
     public $fillable = [
         'user_id',
-        'code'
+        'code',
     ];
-
 }

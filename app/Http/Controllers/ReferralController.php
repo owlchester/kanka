@@ -7,8 +7,7 @@ use App\Services\Referrals\JoinService;
 
 class ReferralController extends Controller
 {
-    public function __construct(protected JoinService $service)
-    {}
+    public function __construct(protected JoinService $service) {}
 
     public function index(Referral $referral)
     {
@@ -17,6 +16,7 @@ class ReferralController extends Controller
                 abort(404);
             }
             $this->service->flag();
+
             return redirect()->route('register');
         }
 

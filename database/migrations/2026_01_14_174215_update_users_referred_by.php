@@ -15,7 +15,6 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->unsignedBigInteger('referred_by')->nullable();
 
-
             $table->foreign('referred_by')->references('id')->on('referrals')->nullOnDelete();
         });
     }
