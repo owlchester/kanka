@@ -112,7 +112,7 @@
                             <x-sidebar.element
                                 :url="route('settings.referrals')"
                                 icon="fa-regular fa-users"
-                                :text="__('referrals.title')"
+                                :text="__('settings.referrals.title')"
                             ></x-sidebar.element>
                         </li>
                     <li class="px-2 {{ $active('api') }} subsection">

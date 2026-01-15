@@ -12,7 +12,7 @@ class JoinService
 {
     use HasUser;
 
-    protected Referral $referral;
+    protected ?Referral $referral;
 
     public function referral(Referral $referral): self
     {

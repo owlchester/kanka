@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Concerns\HasTimestamps;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property int id
+ * @property int $id
  * @property ?int $created_by
  * @property ?int $referred_by
  * @property ReferralEventType $type

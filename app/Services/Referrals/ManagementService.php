@@ -49,7 +49,7 @@ class ManagementService
         $count = $this->referrals()->count();
         if ($count < 5) {
             return 'I';
-        } elseif ($count < 10) {
+        } elseif ($count < 12) {
             return 'II';
         }
 

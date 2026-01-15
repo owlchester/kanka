@@ -1,5 +1,5 @@
 @extends('layouts.app', [
-    'title' => __('referrals.title'),
+    'title' => __('settings.referrals.title'),
     'description' => '',
     'breadcrumbs' => false,
     'sidebar' => 'settings',

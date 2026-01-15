@@ -22,7 +22,7 @@ class InviteService
 
     public FollowService $campaignFollowService;
 
-    protected CampaignInvite $invite;
+    protected ?CampaignInvite $invite;
 
     public function __construct(FollowService $campaignFollowService)
     {
@@ -39,7 +39,6 @@ class InviteService
             throw new Exception(__('campaigns.invites.error.invalid_token'));
         }
 
-        /** @var ?CampaignInvite $invite */
         $this->invite = CampaignInvite::where('token', $token)->first();
         if (empty($this->invite)) {
             throw new Exception(__('campaigns.invites.error.invalid_token'));
