@@ -32,27 +32,27 @@ $moduleName = isset($entityType) ? $entityType->name() : $entity->entityType->na
     <div id="roles-permissions" class="flex flex-col gap-2 relative">
         <div class="hidden md:grid {{ $cols }} gap-2 @if (!request()->ajax()) sticky top-12 z-10 bg-base-100 py-2 @endif ">
             <div class="w-40 ">
-                <span class="font-bold">{{ __('crud.permissions.fields.role') }}</span>
+                <span class="font-medium">{{ __('crud.permissions.fields.role') }}</span>
             </div>
             <div class="" data-title="{{ __('permissions.helpers.view') }}" data-tooltip>
-                <span class="hidden md:inline font-bold">{{ __('crud.permissions.actions.view') }}</span>
+                <span class="hidden md:inline font-medium">{{ __('crud.permissions.actions.view') }}</span>
                 <x-icon class="fa-regular fa-eye md:hidden" />
             </div>
             <div class="" data-title="{{ __('permissions.helpers.edit') }}" data-tooltip>
-                <span class="hidden md:inline font-bold">{{ __('crud.permissions.actions.edit') }}</span>
+                <span class="hidden md:inline font-medium">{{ __('crud.permissions.actions.edit') }}</span>
                 <x-icon class="fa-regular fa-edit md:hidden" />
             </div>
             <div class="" data-title="{{ __('permissions.helpers.delete') }}" data-tooltip>
-                <span class="hidden md:inline font-bold">{{ __('crud.permissions.actions.delete') }}</span>
+                <span class="hidden md:inline font-medium">{{ __('crud.permissions.actions.delete') }}</span>
                 <x-icon class="fa-regular fa-trash-can md:hidden" />
             </div>
             <div class="" data-title="{{ __('campaigns.roles.permissions.helpers.entity_note') }}" data-tooltip>
-                <span class="hidden md:inline font-bold">{{ __('entities.posts') }}</span>
+                <span class="hidden md:inline font-medium">{{ __('entities.posts') }}</span>
                 <x-icon class="fa-regular fa-note-sticky md:hidden" />
             </div>
             @if ($hasActionCol)
                 <div class="">
-                    <span class="hidden md:inline font-bold">{{ __('crud.actions.actions') }}</span>
+                    <span class="hidden md:inline font-medium">{{ __('crud.actions.actions') }}</span>
                 </div>
             @endif
         </div>
@@ -154,27 +154,27 @@ $moduleName = isset($entityType) ? $entityType->name() : $entity->entityType->na
 
         <div id="members-permissions" class="relative flex flex-col gap-2">
             <div class="hidden md:grid {{ $cols }} gap-2 justify-center @if (!request()->ajax()) sticky top-12 z-10 bg-base-100 py-2 @endif">
-                <div class="font-bold">{{ __('crud.permissions.fields.member') }}</div>
+                <div class="font-medium">{{ __('crud.permissions.fields.member') }}</div>
 
                 <div class="" data-title="{{ __('permissions.helpers.view') }}" data-tooltip>
-                    <span class="hidden md:inline font-bold">{{ __('crud.permissions.actions.view') }}</span>
+                    <span class="hidden md:inline font-medium">{{ __('crud.permissions.actions.view') }}</span>
                     <x-icon class="fa-regular fa-eye md:hidden" />
                 </div>
                 <div class="" data-title="{{ __('permissions.helpers.edit') }}" data-tooltip>
-                    <span class="hidden md:inline font-bold">{{ __('crud.permissions.actions.edit') }}</span>
+                    <span class="hidden md:inline font-medium">{{ __('crud.permissions.actions.edit') }}</span>
                     <x-icon class="fa-regular fa-edit md:hidden" />
                 </div>
                 <div class="" data-title="{{ __('permissions.helpers.delete') }}" data-tooltip>
-                    <span class="hidden md:inline font-bold">{{ __('crud.permissions.actions.delete') }}</span>
+                    <span class="hidden md:inline font-medium">{{ __('crud.permissions.actions.delete') }}</span>
                     <x-icon class="fa-regular fa-trash-can md:hidden"  />
                 </div>
                 <div class="" data-title="{{ __('campaigns.roles.permissions.helpers.entity_note') }}" data-tooltip>
-                    <span class="hidden md:inline font-bold">{{ __('entities.posts') }}</span>
+                    <span class="hidden md:inline font-medium">{{ __('entities.posts') }}</span>
                     <x-icon class="fa-regular fa-sticky-note md:hidden" />
                 </div>
                 @if ($hasActionCol)
                     <div class="">
-                        <span class="hidden md:inline font-bold">{{ __('crud.actions.actions') }}</span>
+                        <span class="hidden md:inline font-medium">{{ __('crud.actions.actions') }}</span>
                     </div>
                 @endif
             </div>
