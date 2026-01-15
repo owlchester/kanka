@@ -11,10 +11,10 @@
             </div>
             <div class="flex flex-col gap-1 grow overflow-hidden">
                 <div v-if="group.url">
-                    <a v-bind:href="group.url" v-html="group.name" class="parent-name text-xl md:text-2xl"></a>
+                    <a v-bind:href="group.url" v-html="group.name" class="parent-name text-xl"></a>
                 </div>
-                <span v-else class="parent-name text-xl md:text-2xl" v-html="group.name"></span>
-                <p class="md:text-lg truncate" v-html="group.type"></p>
+                <span v-else class="parent-name text-xl" v-html="group.name"></span>
+                <p class="truncate" v-html="group.type" data-toggle="tooltip" :data-title="group.type"></p>
             </div>
             <div class="flex-none self-end">
                 <span role="button" @click="click(group)" class="cursor-pointer inline-block">

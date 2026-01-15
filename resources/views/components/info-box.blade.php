@@ -3,7 +3,7 @@
         <div class="rounded {{ $background }} w-12 h-12 text-xl flex items-center justify-center flex-none">
             <x-icon class="{{ $icon }}" />
         </div>
-        <div class="flex flex-col gap-0">
+        <div class="flex flex-col gap-1">
             <span>{!! $title !!}</span>
             @if (isset($subtitle))
                 <span class="{{ $subtitleColour }}">{!! $subtitle !!}</span>

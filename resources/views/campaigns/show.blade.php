@@ -69,7 +69,7 @@
         <div class="flex flex-col gap-2">
             <x-box class="rounded-xl">
                 @if (auth()->check() && auth()->user()->can('update', $campaign) && empty($campaign->entry))
-                    <a href="{{ route('campaigns.edit', $campaign) }}">
+                    <a href="{{ route('campaigns.edit', $campaign) }}" class="text-link">
                         {{ __('campaigns.helpers.no_entry') }}
                     </a>
                 @else

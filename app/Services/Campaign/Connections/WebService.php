@@ -103,7 +103,7 @@ class WebService
             'create' => __('crud.create'),
             'print' => __('crud.actions.print'),
             'download' => __('connections/web.actions.download'),
-            'qq-keyboard-shortcut' => __('crud.keyboard-shortcut', ['code' => '<code>N</code>']),
+            'qq-keyboard-shortcut' => __('header.qq.tooltip') . ' [ N ]',
             'back' => __('connections/web.actions.back'),
             'campaign' => $this->campaign->name,
         ];

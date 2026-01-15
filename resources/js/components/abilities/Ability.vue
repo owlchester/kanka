@@ -2,24 +2,24 @@
 
 <template>
     <div class="ability" v-bind:data-tags="ability.class">
-        <div class="ability-box p-4 rounded bg-box shadow-xs flex flex-col md:flex-row items-center md:items-start gap-2 md:gap-4">
+        <div class="ability-box p-4 rounded-lg bg-box shadow-xs flex flex-col md:flex-row items-center md:items-start gap-2 md:gap-4">
             <div class="" v-if="ability.images.has">
-                <a class="ability-image rounded-xl block w-40 h-40 cover-background"
+                <a class="ability-image rounded-lg block w-40 h-40 cover-background"
                    v-bind:href="ability.images.url"
                    v-bind:style="backgroundImage()">
                 </a>
             </div>
             <div class="flex flex-col gap-4 w-full">
                 <div class="flex gap-2 md:gap-4 items-center w-full">
-                    <div class="flex gap-2 items-center text-xl grow">
-                        <a v-bind:href="ability.actions.view" class="ability-name text-2xl text-link" v-html="ability.name"></a>
+                    <div class="flex gap-2 items-center text-lg grow">
+                        <a v-bind:href="ability.actions.view" class="ability-name text-lg text-link" v-html="ability.name"></a>
                         <i class="fa-regular fa-lock" v-if="ability.visibility_id === 2" v-bind:title="ability.visibility"></i>
                         <i class="fa-regular fa-user-lock" v-if="ability.visibility_id === 3" v-bind:title="ability.visibility"></i>
                         <i class="fa-regular fa-users" v-if="ability.visibility_id === 5" v-bind:title="ability.visibility"></i>
                         <i class="fa-regular fa-user-secret" v-if="ability.visibility_id === 4" v-bind:title="ability.visibility"></i>
                         <i class="fa-regular fa-eye" v-if="ability.visibility_id === 1" v-bind:title="ability.visibility"></i>
                     </div>
-                    <div v-if="ability.type" class="hidden md:inline bg-base-200 p-2 rounded-xl flex-none" v-html="ability.type"></div>
+                    <div v-if="ability.type" class="hidden md:inline bg-base-200 p-2 px-3  rounded-2xl flex-none" v-html="ability.type"></div>
 
                     <div v-if="permission" class="">
                         <a role="button"
@@ -27,7 +27,7 @@
                             v-if="canDelete"
                             class="btn2 btn-ghost btn-sm"
                             v-bind:title="ability.i18n.edit">
-                            <i class="fa-regular fa-pencil text-xl" aria-hidden="true"></i>
+                            <i class="fa-regular fa-pencil " aria-hidden="true"></i>
                             <span class="sr-only" v-html="ability.i18n.edit"></span>
                         </a>
                     </div>
@@ -47,7 +47,7 @@
                        v-html="tag.name">
                     </a>
                 </div>
-                <div class="entity-content" v-if="ability.note" v-html="ability.note">
+                <div class="entity-content text-sm text-neutral-content" v-if="ability.note" v-html="ability.note">
                 </div>
 
                 <div v-if="ability.charges && permission" class="flex gap-2 md:gap-4 ability-charges w-full items-end">
@@ -58,7 +58,7 @@
                         </div>
                     </div>
                     <div class="flex-none">
-                        <span class="text-2xl" v-html="remainingNumber()"></span>
+                        <span class="text-lg" v-html="remainingNumber()"></span>
                         <span v-html="remainingText()"></span>
                     </div>
                 </div>
