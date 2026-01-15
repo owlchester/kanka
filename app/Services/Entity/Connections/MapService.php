@@ -375,7 +375,7 @@ class MapService
                 ->addOrganisation()
                 ->addItems()
                 ->addAuthorJournals()
-                ->addLocation()
+                ->addEntityLocations()
                 ->addDiceRolls()
                 ->addConversations()
                 ->addMapMarkers()
@@ -630,7 +630,7 @@ class MapService
             return $this;
         }
 
-        /** @var Character $child */
+        /** @var Map $child */
         $child = $this->entity->child;
         $this->addEntity($child->location->entity);
         $this->relations[] = [
@@ -853,6 +853,30 @@ class MapService
                 'colour' => '#ccc',
                 'attitude' => null,
                 'type' => 'location-creature',
+                'shape' => 'triangle',
+            ];
+        }
+
+        return $this;
+    }
+
+    protected function addEntityLocations(): self
+    {
+        $locations = $this->entity->locations()
+            ->with(['entity.image'])
+            ->get();
+        foreach ($locations as $location) {
+            $entity = $location->entity;
+            $this->addEntity($entity);
+            $this->addRelations($entity);
+
+            $this->relations[] = [
+                'source' => $entity->id,
+                'target' => $this->entity->id,
+                'text' => $this->entity->entityType->name(),
+                'colour' => '#ccc',
+                'attitude' => null,
+                'type' => 'location-entity',
                 'shape' => 'triangle',
             ];
         }
