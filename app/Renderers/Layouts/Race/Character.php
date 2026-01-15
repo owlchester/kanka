@@ -31,9 +31,9 @@ class Character extends Layout
                     return $model->entity->type;
                 },
             ],
-            'location' => [
-                'label' => Module::singular(config('entities.ids.location'), 'entities.location'),
-                'render' => Standard::LOCATION,
+            'locations' => [
+                'label' => Module::plural(config('entities.ids.location'), 'entities.locations'),
+                'render' => Standard::ENTITY_LOCATIONS,
             ],
             'races' => [
                 'label' => Module::plural(config('entities.ids.race'), 'entities.races'),

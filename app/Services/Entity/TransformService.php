@@ -331,8 +331,12 @@ class TransformService
         // We need to get rid of the entity's locations, for now. In a future refactor, we can skip this part
         if (method_exists($this->new, 'locations')) {
             $this->new->locations()->sync($this->entity->locations()->get()->pluck('id'));
+        } elseif (method_exists($this->new, 'entityLocations')) {
+            // Characters use the entity.locations table so no mess needed.
+            // todo: races, orgs, families, creatures
+        } else {
+            $this->entity->locations()->sync([]);
         }
-        $this->entity->locations()->sync([]);
 
         $this->finish();
 

@@ -22,6 +22,8 @@ class Standard extends Column
 
     public const LOCATION = 'location';
 
+    public const ENTITY_LOCATIONS = 'locations';
+
     public const MENTION_LINK = 'mention-link';
 
     public const VISIBILITY = 'visibility';
@@ -69,6 +71,7 @@ class Standard extends Column
             self::TAGS,
             self::ENTITYLINK,
             self::LOCATION,
+            self::ENTITY_LOCATIONS,
             self::ENTITYLIST,
             self::ParentLink,
             self::VISIBILITY,

@@ -8,7 +8,6 @@ use App\Facades\CharacterCache;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
-use App\Models\Concerns\HasLocation;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
@@ -33,8 +32,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property bool|int $is_personality_pinned
  * @property Collection|CharacterFamily[] $characterFamilies
  * @property Collection|Family[] $families
- * @property ?Location $location
- * @property ?int $location_id
  * @property Collection|Race[] $races
  * @property Collection|CharacterRace[] $characterRaces
  * @property Collection|Organisation[] $organisations
@@ -52,7 +49,6 @@ class Character extends MiscModel
     use HasCampaign;
     use HasFactory;
     use HasFilters;
-    use HasLocation;
     use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
@@ -60,7 +56,6 @@ class Character extends MiscModel
     protected $fillable = [
         'name',
         'campaign_id',
-        'location_id',
         'title',
         'age',
         'sex',
@@ -77,15 +72,14 @@ class Character extends MiscModel
      */
     protected array $sortableColumns = [
         'title',
-        'location.name',
         'age',
         'sex',
         'is_dead',
+        'locations',
     ];
 
     protected array $sortable = [
         'name',
-        'location.name',
         'type',
         'is_dead',
     ];
@@ -143,7 +137,6 @@ class Character extends MiscModel
      * @var string[]
      */
     public array $nullableForeignKeys = [
-        'location_id',
         'is_personality_visible', // checkbox
     ];
 
@@ -153,8 +146,8 @@ class Character extends MiscModel
     public function scopePreparedWith(Builder $query): Builder
     {
         return parent::scopePreparedWith($query->with([
-            'location' => function ($sub) {
-                $sub->select('id', 'name');
+            'entity.locations' => function ($sub) {
+                $sub->select('locations.id', 'locations.name');
             },
             'characterFamilies' => function ($sub) {
                 $sub->select('character_family.id', 'character_family.family_id', 'character_family.character_id');
@@ -220,7 +213,7 @@ class Character extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['title', 'location_id', 'sex', 'is_dead'];
+        return ['title', 'sex', 'is_dead'];
     }
 
     /**
@@ -472,7 +465,6 @@ class Character extends MiscModel
             'age',
             'sex',
             'pronouns',
-            'location_id',
             'locations',
             'organisations',
             'races',
@@ -496,7 +488,7 @@ class Character extends MiscModel
             'title' => __('characters.fields.title'),
             'sex' => __('characters.fields.sex'),
             'is_dead' => __('characters.fields.is_dead'),
-            'location.name' => __('entities.location'),
+            'locations.name' => __('entities.locations'),
         ];
 
         if (auth()->check() && auth()->user()->isAdmin()) {
@@ -518,13 +510,12 @@ class Character extends MiscModel
     {
         // @phpstan-ignore-next-line
         return $query
-            ->select(['id', 'title', 'location_id', 'is_dead', 'is_private'])
-            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
+            ->select([$this->getTable() . '.id', 'title', 'is_dead', $this->getTable() . '.is_private'])
+            ->sort(request()->only(['o', 'k']), ['entities.name' => 'asc'])
             ->with([
-                'location', 'location.entity',
                 'characterRaces',
                 'characterFamilies',
-                'entity', 'entity.tags', 'entity.tags.entity', 'entity.image'])
+                'entity', 'entity.tags', 'entity.tags.entity', 'entity.image', 'entity.locations'])
             ->has('entity');
     }
 }

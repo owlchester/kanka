@@ -31,10 +31,10 @@ class Character extends Layout
                     return $model->entity->type;
                 },
             ],
-            'location' => [
-                'key' => 'location.name',
-                'label' => Module::singular(config('entities.ids.location'), 'entities.location'),
-                'render' => Standard::LOCATION,
+            'locations' => [
+                'key' => 'locations.name',
+                'label' => Module::plural(config('entities.ids.location'), 'entities.locations'),
+                'render' => Standard::ENTITY_LOCATIONS,
                 'visible' => function () {
                     return ! request()->has('location_id');
                 },
