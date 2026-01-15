@@ -27,6 +27,8 @@ class CancellationController extends Controller
 
         // Loss data
         $premiumCampaign = null;
+
+        /** @var Collection<int, int> $members */
         $members = new Collection;
         $plugins = 0;
         $premiumCampaigns = $user->boosts()
