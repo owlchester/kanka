@@ -13,8 +13,8 @@ use App\Models\EntityUser;
 use App\Models\FeatureVote;
 use App\Models\PasswordSecurity;
 use App\Models\Plugin;
-use App\Models\Referral;
 use App\Models\Role;
+use App\Models\User;
 use App\Models\UserApp;
 use App\Models\UserFlag;
 use App\Models\Users\Tutorial;
@@ -34,7 +34,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property Collection|Campaign[] $campaigns
  * @property Collection|Campaign[] $following
  * @property Campaign|null $lastCampaign
- * @property Referral|null $referrer
+ * @property ?User $referrer
  * @property Collection|Application[] $applications
  * @property Collection|Entity[] $entities
  * @property Collection|Plugin[] $plugins
@@ -157,11 +157,11 @@ trait UserRelations
     /**
      * The referral code a user used
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Referral, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\User, $this>
      */
     public function referrer(): BelongsTo
     {
-        return $this->belongsTo(Referral::class, 'referral_id', 'id');
+        return $this->belongsTo(User::class, 'referred_by', 'id');
     }
 
     /**

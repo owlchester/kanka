@@ -148,7 +148,6 @@ class PurgeService
      */
     public function firstWarning(): int
     {
-        return 0;
         if ($this->count >= $this->limit) {
             return 0;
         }

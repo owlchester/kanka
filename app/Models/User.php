@@ -40,7 +40,7 @@ use Laravel\Passport\HasApiTokens;
  * @property ?string $pledge
  * @property ?string $timezone
  * @property ?string $currency
- * @property int $referral_id
+ * @property ?User $referred_by
  * @property ?Carbon $card_expires_at
  * @property ?Carbon $banned_until
  * @property ?Carbon $created_at
@@ -78,7 +78,7 @@ class User extends \Illuminate\Foundation\Auth\User implements \Laravel\Passport
         'last_login_at',
         'has_last_login_sharing',
         'pledge',
-        'referral_id',
+        'referred_by',
         'profile',
         'settings',
     ];
