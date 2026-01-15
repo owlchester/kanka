@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Enums\ReferralEventType;
 use App\Events\Campaigns\Members\UserJoined;
 use App\Exceptions\RequireLoginException;
 use App\Facades\UserCache;
@@ -9,7 +10,9 @@ use App\Models\Campaign;
 use App\Models\CampaignInvite;
 use App\Models\CampaignRoleUser;
 use App\Models\CampaignUser;
+use App\Models\ReferralEvent;
 use App\Services\Campaign\FollowService;
+use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Exception;
 use Illuminate\Support\Facades\Session;
@@ -20,70 +23,87 @@ class InviteService
 
     public FollowService $campaignFollowService;
 
+    protected CampaignInvite $invite;
+
     public function __construct(FollowService $campaignFollowService)
     {
         $this->campaignFollowService = $campaignFollowService;
     }
 
+
     /**
      * @throws RequireLoginException
      * @throws Exception
      */
-    public function useToken(?string $token = null)
+    public function useToken(?string $token = null): self
     {
         if (empty($token)) {
             throw new Exception(__('campaigns.invites.error.invalid_token'));
         }
 
         /** @var ?CampaignInvite $invite */
-        $invite = CampaignInvite::where('token', $token)->first();
-        if (empty($invite)) {
+        $this->invite = CampaignInvite::where('token', $token)->first();
+        if (empty($this->invite)) {
             throw new Exception(__('campaigns.invites.error.invalid_token'));
         }
 
         // Inactive (removed campaigns won't have their token still in the db)
-        if (! $invite->is_active) {
+        if (! $this->invite->is_active) {
             throw new Exception(__('campaigns.invites.error.inactive_token'));
         }
 
-        if (! $invite->campaign->canHaveMoreMembers()) {
+        if (! $this->invite->campaign->canHaveMoreMembers()) {
             throw new Exception(__('campaigns/limits.members'));
         }
 
         if (! isset($this->user)) {
-            Session::put('invite_token', $invite->token);
-            throw new RequireLoginException(__('campaigns.invites.error.join', ['campaign' => '<strong>' . $invite->campaign->name . '</strong>']));
+            Session::put('invite_token', $this->invite->token);
+            throw new RequireLoginException(__('campaigns.invites.error.join', ['campaign' => '<strong>' . $this->invite->campaign->name . '</strong>']));
         }
 
-        $this->join($invite->token);
+        $this->join();
 
-        return $invite->campaign;
+        return $this;
+    }
+
+    public function attribute(): self
+    {
+        $this->user->referred_by = $this->invite->created_by;
+        $this->user->save();
+
+        ReferralEvent::create([
+            'created_by' => $this->user->id,
+            'referred_by' => $this->invite->created_by,
+            'type' => ReferralEventType::invite,
+        ]);
+        return $this;
+    }
+
+    public function invite(CampaignInvite $invite): self
+    {
+        $this->invite = $invite;
+        return $this;
+    }
+
+    public function campaign(): Campaign
+    {
+        return $this->invite->campaign;
     }
 
     /**
-     * @return bool|Campaign
      */
-    public function join(?string $token = null)
+    public function join(): self
     {
-        if (empty($token)) {
-            $token = Session::get('invite_token');
-        }
-        /** @var CampaignInvite $invite */
-        $invite = CampaignInvite::where('token', $token)
-            ->first();
-
         Session::forget('invite_token');
 
-        $campaign = $invite->campaign;
-
         // Already a member?
-        $role = CampaignUser::campaignUser($campaign->id, $this->user->id)
+        $role = CampaignUser::campaignUser($this->invite->campaign->id, $this->user->id)
             ->first();
 
         if (empty($role)) {
             $role = new CampaignUser([
                 'user_id' => $this->user->id,
-                'campaign_id' => $campaign->id,
+                'campaign_id' => $this->invite->campaign->id,
             ]);
             $role->save();
         } else {
@@ -91,36 +111,42 @@ class InviteService
             // use up all the available tokens (validity field).
             UserCache::clear();
 
-            return true;
+            return $this;
         }
 
         // Add the user to a role if it's provided by the invite link
-        if ($invite->role) {
+        if ($this->invite->role) {
             $memberRole = CampaignRoleUser::create([
-                'campaign_role_id' => $invite->role->id,
+                'campaign_role_id' => $this->invite->role->id,
                 'user_id' => $role->user_id,
             ]);
         }
 
         // Invitation links can have a set number of usage (validity)
-        if (! empty($invite->validity)) {
-            $invite->validity--;
-            if ($invite->validity <= 0) {
-                $invite->is_active = false;
-            }
-        }
-        $invite->save();
+        $this->invalidate();
 
         // If the user was following the campaign, remove it
-        if ($campaign->isFollowing()) {
+        if ($this->invite->campaign->isFollowing()) {
             $this->campaignFollowService
-                ->campaign($campaign)
+                ->campaign($this->invite->campaign)
                 ->user($this->user)
                 ->remove();
         }
 
-        UserJoined::dispatch($campaign, $this->user, $invite);
+        UserJoined::dispatch($this->invite->campaign, $this->user, $this->invite);
 
-        return $role->campaign;
+        return $this;
+    }
+
+    protected function invalidate(): void
+    {
+        if (empty($this->invite->validity)) {
+            return;
+        }
+        $this->invite->validity--;
+        if ($this->invite->validity <= 0) {
+            $this->invite->is_active = false;
+        }
+        $this->invite->save();
     }
 }

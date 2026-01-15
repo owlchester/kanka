@@ -30,6 +30,7 @@ use App\Http\Controllers\Settings\Subscription\CancelledController;
 use App\Http\Controllers\Settings\Subscription\FinishController;
 use App\Http\Controllers\Settings\Subscription\FreeTrialController;
 use App\Http\Controllers\Settings\SubscriptionController;
+use App\Http\Controllers\Settings\ReferralController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProfileController::class, 'index'])->name('settings');
@@ -186,3 +187,5 @@ Route::post('/notifications/read/{id}', [NotificationController::class, 'read'])
 Route::post('/notifications/clear-all', [NotificationController::class, 'clearAll'])->name('notifications.clear-all');
 
 Route::get('/layout/navigation', [NavigationController::class, 'index'])->name('layout.navigation');
+
+Route::get('/referrals', [ReferralController::class, 'index'])->name('settings.referrals');

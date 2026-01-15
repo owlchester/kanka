@@ -108,6 +108,13 @@
                             :text="__('settings.menu.apps')"
                         ></x-sidebar.element>
                     </li>
+                        <li class="px-2 {{ $active('referrals') }} subsection">
+                            <x-sidebar.element
+                                :url="route('settings.referrals')"
+                                icon="fa-regular fa-users"
+                                :text="__('referrals.title')"
+                            ></x-sidebar.element>
+                        </li>
                     <li class="px-2 {{ $active('api') }} subsection">
                         <x-sidebar.element
                             :url="route('settings.api')"

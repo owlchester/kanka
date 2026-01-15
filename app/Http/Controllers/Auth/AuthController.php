@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Enums\ReferralEventType;
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Services\ReferralService;
+use App\Services\Referrals\JoinService;
 use Exception;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -21,17 +22,15 @@ class AuthController extends Controller
      */
     protected $redirectTo = '/';
 
-    protected ReferralService $referralService;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(ReferralService $referralService)
+    public function __construct(protected JoinService $referralService)
     {
         $this->middleware('guest')->except('logout');
-        $this->referralService = $referralService;
     }
 
     /**
@@ -114,14 +113,16 @@ class AuthController extends Controller
             throw new AccessDeniedHttpException('ACCOUNT REGISTRATION DISABLED');
         }
 
+        $referrer = $this->referralService->referrer();
         $authUser = User::create([
             'name' => $user->name,
             'email' => $user->email,
             'password' => $user->email,
             'provider' => $provider,
             'provider_id' => $user->id,
-            'referral_id' => $this->referralService->referralId(),
+            'referred_by' => $referrer,
         ]);
+        $this->referralService->event($authUser, ReferralEventType::register);
 
         // Call the registered event
         event(new Registered($authUser));
