@@ -3,28 +3,28 @@
 namespace App\Models;
 
 use App\Models\Concerns\HasUser;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Concerns\HasTimestamps;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * Class Referral
- *
  * @property int $id
  * @property string $code
- * @property bool|int $is_valid
- * @property User[] $users
+ * @property Carbon $created_at
+ * @property Carbon $revoked_at
  */
 class Referral extends Model
 {
+    use HasTimestamps;
     use HasUser;
 
-    /**
-     * Users who used the referral
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\User, $this>
-     */
-    public function users(): HasMany
+    public function getRouteKeyName()
     {
-        return $this->hasMany(User::class);
+        return 'code';
     }
+
+    public $fillable = [
+        'user_id',
+        'code',
+    ];
 }

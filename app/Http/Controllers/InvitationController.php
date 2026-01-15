@@ -36,11 +36,15 @@ class InvitationController extends Controller
                     ->user(auth()->user());
             }
             $campaign = $this->inviteService
-                ->useToken($token);
-            $this->campaignService
-                ->user(auth()->user())
-                ->campaign($campaign)
-                ->set();
+                ->useToken($token)
+                ->campaign();
+
+            if (auth()->check()) {
+                $this->campaignService
+                    ->user(auth()->user())
+                    ->campaign($campaign)
+                    ->set();
+            }
 
             return redirect()->to('/');
         } catch (RequireLoginException $e) {
@@ -57,7 +61,7 @@ class InvitationController extends Controller
 
             return redirect()
                 ->route('dashboard', $campaign)
-                ->withError($e->getMessage());
+                ->withErrors($e->getMessage());
         }
     }
 }

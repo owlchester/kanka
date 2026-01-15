@@ -51,6 +51,9 @@ return [
         'link'      => 'Read the API documentation',
         'title'     => 'API',
     ],
+    'referrals' => [
+        'title' => 'Referrals',
+    ],
     'apps'          => [
         'actions'   => [
             'connect'   => 'Connect',

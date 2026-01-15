@@ -27,7 +27,9 @@ class SessionService
         try {
             $campaign = $this->inviteService
                 ->user($this->user)
-                ->useToken(session()->get('invite_token'));
+                ->useToken(session()->get('invite_token'))
+                ->attribute()
+                ->campaign();
             $this->campaignService
                 ->user($this->user)
                 ->campaign($campaign)
