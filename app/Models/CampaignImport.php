@@ -80,6 +80,18 @@ class CampaignImport extends Model
         return $this->status_id == CampaignImportStatus::FAILED;
     }
 
+    public function isCsv(): bool
+    {
+        $files = $this->config['files'];
+        foreach ($files as $file) {
+            if (is_string($file) && str_ends_with($file, '.csv')) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     protected function pruning(): void
     {
         $files = Arr::get($this->config, 'files');

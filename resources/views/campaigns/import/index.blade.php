@@ -41,7 +41,7 @@
                                 <div class="field field-entities flex flex-col gap-1">
                                     <label>{{ __('campaigns/import.fields.file') }}</label>
 
-                                    <input type="file" name="file" class="w-full" id="export-files" accept=".zip" />
+                                    <input type="file" name="file" class="w-full" id="export-files" accept=".zip, .csv" />
                                     <x-helper>
                                         <p>{{ __('campaigns/import.limitation', ['size' => '512 MiB']) }}</p>
                                     </x-helper>

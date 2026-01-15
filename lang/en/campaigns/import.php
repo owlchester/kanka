@@ -16,10 +16,13 @@ return [
         'validating'=> 'Validating',
     ],
     'status'        => [
-        'failed'    => 'Failed',
-        'finished'  => 'Finished',
-        'queued'    => 'Queued',
-        'running'   => 'Running',
+        'failed'        => 'Failed',
+        'finished'      => 'Finished',
+        'queued'        => 'Queued',
+        'running'       => 'Running',
+        'ready'         => 'Ready',
+        'validating'    => 'Mapping',
+        'invalid'       => 'Invalid Data',
     ],
     'title'         => 'Import',
 ];

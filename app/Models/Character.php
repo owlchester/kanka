@@ -147,6 +147,14 @@ class Character extends MiscModel
         'is_personality_visible', // checkbox
     ];
 
+    public function fillableFields(): array
+    {
+        $fields = $this->fillable;
+        $fields = array_values(array_diff($fields, ['campaign_id']));
+
+        return $fields;
+    }
+
     /**
      * Performance with for old table view of all the campaign characters
      */
