@@ -451,7 +451,6 @@ class DatagridRenderer
                 }
             } elseif ($type == 'entityLocations') {
                 $class = $this->hidden;
-                // @phpstan-ignore-next-line
                 $locations = [];
                 if ($model->entity->locations->isNotEmpty()) {
                     foreach ($model->entity->locations as $location) {

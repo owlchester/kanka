@@ -396,18 +396,17 @@ class MapService
 
         if ($this->withRelated()) {
             $this->relatedRelations()
-//                ->addCharacters()
-//                ->addItems()
-//                ->addFamilies()
-//                ->addJournals()
-//                ->addOrganisations()
-//                ->addParent()
-//                ->addQuests()
-//                ->addMapMarkers()
-//                ->addMaps()
-//                ->addAuthorJournals()
-//                ->addRaces()
-//                ->addLocationCreatures()
+                ->addItems()
+                ->addFamilies()
+                ->addJournals()
+                ->addOrganisations()
+                ->addParent()
+                ->addQuests()
+                ->addMapMarkers()
+                ->addMaps()
+                ->addAuthorJournals()
+                ->addRaces()
+                ->addLocationCreatures()
                 ->addEntities();
         }
 
@@ -554,29 +553,6 @@ class MapService
                 'colour' => '#ccc',
                 'attitude' => null,
                 'type' => 'sub-org',
-                'shape' => 'triangle',
-            ];
-        }
-
-        return $this;
-    }
-
-    protected function addCharacters(): self
-    {
-        /** @var Location $related */
-        $related = $this->entity->child;
-
-        foreach ($related->characters()->with(['entity', 'entity.image', 'entity.entityType'])->has('entity')->get() as $sub) {
-            $this->addEntity($sub->entity);
-            // $this->addRelations($sub->entity);
-
-            $this->relations[] = [
-                'target' => $sub->entity->id,
-                'source' => $this->entity->id,
-                'text' => Module::singular(config('entities.ids.character'), __('entities.character')),
-                'colour' => '#ccc',
-                'attitude' => null,
-                'type' => 'entity-character',
                 'shape' => 'triangle',
             ];
         }

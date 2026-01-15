@@ -115,14 +115,6 @@ class Location extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Character, $this>
-     */
-    public function characters(): BelongsToMany
-    {
-        return $this->entities()->where('type_id', config('entities.ids.character'));
-    }
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Race, $this>
      */
     public function races(): BelongsToMany
@@ -259,11 +251,6 @@ class Location extends MiscModel
      */
     public function detach(): void
     {
-        foreach ($this->characters as $child) {
-            $child->location_id = null;
-            $child->saveQuietly();
-        }
-
         foreach ($this->families as $child) {
             $child->location_id = null;
             $child->saveQuietly();
@@ -278,6 +265,7 @@ class Location extends MiscModel
         $this->races()->delete();
         $this->creatures()->delete();
         $this->organisations()->delete();
+        $this->entities()->delete();
     }
 
     /**
