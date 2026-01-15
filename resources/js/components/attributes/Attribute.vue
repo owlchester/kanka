@@ -86,7 +86,7 @@
             </div>
         </div>
 
-        <div class="flex text-xl gap-2 lg:text-base pt-2 flex-none">
+        <div class="flex gap-2 pt-2 flex-none">
             <a role="button" @click="pinnedToggle(attribute)" class="w-6 lg:w-16 text-center inline-block cursor-pointer text-base-content hover:text-accent" v-if="!attribute.is_hidden">
                 <i v-bind:class="pinnedClass(attribute)"  v-bind:aria-label="pinnedLabel(attribute)" />
             </a>

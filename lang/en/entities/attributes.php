@@ -96,14 +96,15 @@ return [
         'unpin'         => 'Attribute unpinned',
     ],
     'types'         => [
-        'attribute' => 'Attribute',
+        'attribute' => 'Text',
         'block'     => 'Block',
         'checkbox'  => 'Checkbox',
         'icon'      => 'Icon',
         'number'    => 'Number',
         'random'    => 'Random',
         'section'   => 'Section',
-        'text'      => 'Multiline',
+        'text'      => 'Paragraph',
+        'templates' => 'Templates',
     ],
     'update'        => [
         'success'   => 'Attributes for :entity updated.',
