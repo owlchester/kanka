@@ -23,4 +23,7 @@ return [
         'success'   => ':name is no longer archived.',
         'title'     => 'Unarchive',
     ],
+    'tooltips' => [
+        'edit' => 'Edit this entity',
+    ]
 ];
