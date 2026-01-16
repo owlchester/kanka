@@ -348,5 +348,7 @@ Route::post('/w/{campaign}/entity-creator-post', [App\Http\Controllers\EntityCre
 
 // Whiteboards
 Route::get('/w/{campaign}/whiteboards/{whiteboard}/draw', [App\Http\Controllers\Whiteboards\DrawController::class, 'show'])->name('whiteboards.draw');
-Route::get('/w/{campaign}/whiteboards/{whiteboard}/api', [App\Http\Controllers\Whiteboards\DrawController::class, 'api'])->name('whiteboards.api');
-Route::put('/w/{campaign}/whiteboards/{whiteboard}/api', [App\Http\Controllers\Whiteboards\DrawController::class, 'save'])->name('whiteboards.save-draw');
+Route::get('/w/{campaign}/whiteboards/{whiteboard}/api', [App\Http\Controllers\Whiteboards\ApiController::class, 'index'])->name('whiteboards.api');
+Route::put('/w/{campaign}/whiteboards/{whiteboard}/api', [App\Http\Controllers\Whiteboards\ApiController::class, 'store'])->name('whiteboards.shapes.store');
+Route::patch('/w/{campaign}/whiteboards/{whiteboard}/api/{whiteboard_shape}', [App\Http\Controllers\Whiteboards\ApiController::class, 'update'])->name('whiteboards.shapes.update');
+Route::delete('/w/{campaign}/whiteboards/{whiteboard}/api/{whiteboard_shape}', [App\Http\Controllers\Whiteboards\ApiController::class, 'update'])->name('whiteboards.shapes.delete');

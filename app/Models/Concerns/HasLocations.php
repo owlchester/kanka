@@ -30,6 +30,7 @@ trait HasLocations
     public function locations(): BelongsToMany
     {
         return $this->belongsToMany('App\Models\Location', $this->getLocationPivotTableName())
+            ->has('entity')
             ->with('entity');
     }
 

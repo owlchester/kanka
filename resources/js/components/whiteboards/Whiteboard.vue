@@ -614,6 +614,37 @@ const resetOpen = ref(false);
 // Hidden clipboard fallback element (used for dev)
 let hiddenClipboardEl: HTMLTextAreaElement | null = null;
 
+const persistShape = (shape) => {
+    if (props.readonly || (shape.urls && shape.urls.edit)) return;
+
+    const payload = {
+        type: shape.type,
+        x: shape.x,
+        y: shape.y,
+        width: shape.width,
+        height: shape.height,
+        scale_x: shape.scaleX,
+        scale_y: shape.scaleY,
+        rotation: shape.rotation,
+        fill: shape.fill,
+        text: shape.text,
+        is_locked: shape.locked ? 1 : 0,
+        // Add other fields as per your WhiteboardShape model
+        shape: JSON.stringify(shape)
+    };
+
+    axios.put(props.save, payload)
+        .then(res => {
+            if (res.data.success) {
+                shape.id = res.data.id;
+                shape.urls = res.data.urls;
+            }
+        })
+        .catch(err => {
+            window.showToast(trans('error-saving-shape'), 'error');
+        });
+}
+
 // Reactive input style that updates automatically
 const inputStyle = computed(() => {
     // depend on uiTick so Konva drag/transform events can refresh this computed
@@ -695,6 +726,14 @@ const handleDragend = (e, shape) => {
     };
     shape.x = pos.x;
     shape.y = pos.y;
+
+    // If the shape has an update URL, save its new position
+    if (shape.urls?.edit) {
+        axios.patch(shape.urls.edit, {
+            x: shape.x,
+            y: shape.y
+        });
+    }
 };
 
 const handleDragmove = () => {
@@ -740,15 +779,22 @@ const setupTransformerEvents = () => {
         const nodes = transformerNode.nodes() || [];
         if (!nodes.length) return;
 
+        console.log('transforming', nodes);
+
+
         // When multiple nodes are selected, persist each node's transform back to its shape model.
         nodes.forEach((group) => {
             // group.id() is `group-<shapeId>`; extract the shape id suffix.
             const gid = group.id();
             const match = gid && gid.toString().match(/^group-(.+)$/);
+            console.log('match', gid, match);
             if (!match) return;
             const sid = match[1];
+            console.log('search for shapes with id', sid);
             const shape = shapes.value.find(s => s.id === sid);
+            console.log('found shape', shape);
             if (!shape) return;
+            console.log('transform end?', shape);
 
             const scaleX = group.scaleX() || 1;
             const scaleY = group.scaleY() || 1;
@@ -759,6 +805,17 @@ const setupTransformerEvents = () => {
             shape.rotation = group.rotation() || 0;
             shape.x = group.x();
             shape.y = group.y();
+
+            // Persist changes if URL exists
+            if (shape.urls?.edit) {
+                axios.patch(shape.urls.edit, {
+                    x: shape.x,
+                    y: shape.y,
+                    scale_x: shape.scaleX,
+                    scale_y: shape.scaleY,
+                    rotation: shape.rotation
+                });
+            }
         });
 
         // Force redraw and update overlays
@@ -772,8 +829,9 @@ const selectShape = (shape, event?: MouseEvent) => {
     if (toolbarMode.value === 'drawing') {
         return;
     }
+    toolbarMode.value = 'select';
 
-    // If clicking a second time on a text, edit the text
+        // If clicking a second time on a text, edit the text
     let editingText = false;
     if (shape.text && selectedId.value === shape.id) {
         editText(shape)
@@ -867,7 +925,12 @@ const deleteSelected = () => {
     // Remove all selected shapes from shapes array
     const idsToRemove = new Set(selectedIds.value);
     for (let i = shapes.value.length - 1; i >= 0; i--) {
-        if (idsToRemove.has(shapes.value[i].id)) {
+        const shape = shapes.value[i];
+        if (idsToRemove.has(shape.id)) {
+            // If the shape is persisted, call the delete API
+            if (shape.urls?.delete) {
+                axios.delete(shape.urls.delete);
+            }
             shapes.value.splice(i, 1);
         }
     }
@@ -898,7 +961,7 @@ const duplicateSelected = () => {
         const clone = JSON.parse(JSON.stringify(shape));
 
         // Generate new unique ID
-        clone.id = Math.round(Math.random() * 10000).toString();
+        clone.id = Math.round(Math.random() * -10000).toString();
 
         // Offset position
         if (typeof clone.x === 'number') clone.x += offset;
@@ -1123,7 +1186,7 @@ const pasteFromClipboard = async () => {
 
                 pasted = copiedShapes.map(shape => {
                     const newShape = { ...shape };
-                    newShape.id = Math.round(Math.random() * 10000).toString();
+                    newShape.id = Math.round(Math.random() * -10000).toString();
 
                     if (typeof newShape.x === 'number') newShape.x += offsetX;
                     if (typeof newShape.y === 'number') newShape.y += offsetY;
@@ -1169,7 +1232,7 @@ const createTextShapeFromClipboard = (textValue: string) => {
     const y = pointer?.y ?? stageNode.height() / 2;
 
     return {
-        id: Math.round(Math.random() * 10000).toString(),
+        id: Math.round(Math.random() * -10000).toString(),
         type: 'text',
         x: x,
         y: y,
@@ -1198,10 +1261,10 @@ const createEntityShape = (entity: any) => {
     const x = pointer?.x ?? stageNode.width() / 2;
     const y = pointer?.y ?? stageNode.height() / 2;
 
-    const id = Math.round(Math.random() * 10000).toString();
+    const id = Math.round(Math.random() * -10000).toString();
     saveHistory();
 
-    shapes.value.push({
+    const newShape = {
         id: id,
         type: "entity",
         x: x,
@@ -1216,7 +1279,10 @@ const createEntityShape = (entity: any) => {
         fill: currentColor.value,
         locked: false,
         moving: false,
-    });
+    };
+
+    shapes.value.push(newShape);
+    persistShape(newShape);
 
     // Select the newly added entity
     selectedIds.value = [id];
@@ -1628,7 +1694,7 @@ const handleMouseUp = (e) => {
         if (tempRect.value) {
             // Push normalized rect into shapes
             const newRect = {
-                id: Math.round(Math.random() * 10000).toString(),
+                id: Math.round(Math.random() * -10000).toString(),
                 type: 'rect',
                 x: tempRect.value.x,
                 y: tempRect.value.y,
@@ -1644,6 +1710,8 @@ const handleMouseUp = (e) => {
             saveHistory();
 
             shapes.value.push(newRect);
+            console.log('new rectangle?');
+            persistShape(newRect);
             uiTick.value++;
         }
 
@@ -1657,7 +1725,7 @@ const handleMouseUp = (e) => {
         if (tempRect.value) {
             // Push normalized rect into shapes
             const newText = {
-                id: Math.round(Math.random() * 10000).toString(),
+                id: Math.round(Math.random() * -10000).toString(),
                 type: 'text',
                 x: tempRect.value.x,
                 y: tempRect.value.y,
@@ -1675,6 +1743,7 @@ const handleMouseUp = (e) => {
             saveHistory();
 
             shapes.value.push(newText);
+            persistShape(newText);
             uiTick.value++;
         }
 
@@ -1687,7 +1756,7 @@ const handleMouseUp = (e) => {
     if (toolbarMode.value === 'circle') {
         if (tempCircle.value) {
             const newCircle = {
-                id: Math.round(Math.random() * 10000).toString(),
+                id: Math.round(Math.random() * -10000).toString(),
                 type: 'circle',
                 x: tempCircle.value.cx - tempCircle.value.radius,
                 y: tempCircle.value.cy - tempCircle.value.radius,
@@ -1703,6 +1772,7 @@ const handleMouseUp = (e) => {
             saveHistory();
 
             shapes.value.push(newCircle);
+            persistShape(newCircle);
             uiTick.value++;
         }
 
@@ -1793,10 +1863,10 @@ const selectImage = (image) => {
     const offsetX = 50 / scaleX;
     const offsetY = 50 / scaleY;
 
-    const id = Math.round(Math.random() * 10000).toString();
+    const id = Math.round(Math.random() * -10000).toString();
     saveHistory();
 
-    shapes.value.push({
+    const newShape = {
         id: id,
         type: "image",
         x: tlx + offsetX,
@@ -1809,8 +1879,11 @@ const selectImage = (image) => {
         name: image.name,
         locked: false,
         moving: false,
-    });
+    };
+
+    shapes.value.push(newShape);
     watchImage(image.uuid, id);
+    persistShape(newShape);
 }
 
 const closedGallery = () => {
@@ -1845,10 +1918,10 @@ const selectEntity = (entity) => {
     const offsetX = 50 / scaleX;
     const offsetY = 50 / scaleY;
 
-    const id = Math.round(Math.random() * 10000).toString();
+    const id = Math.round(Math.random() * -10000).toString();
     saveHistory();
 
-    shapes.value.push({
+    const newShape = {
         id: id,
         type: "entity",
         x: tlx + offsetX,
@@ -1863,7 +1936,10 @@ const selectEntity = (entity) => {
         fill: cssVariable('--bc'),
         locked: false,
         moving: false,
-    });
+    };
+
+    shapes.value.push(newShape);
+    persistShape(newShape);
 }
 
 
@@ -1910,6 +1986,12 @@ const resetRotation = () => {
         const shape = shapes.value.find(s => s.id === id);
         if (shape) {
             shape.rotation = 0;
+
+            if (shape.urls && shape.urls.edit) {
+                axios.patch(shape.urls.edit, {
+                    rotation: 0
+                });
+            }
         }
     })
 }

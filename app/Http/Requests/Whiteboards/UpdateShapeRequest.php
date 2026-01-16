@@ -4,7 +4,7 @@ namespace App\Http\Requests\Whiteboards;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateRequest extends FormRequest
+class UpdateShapeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,15 +22,13 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'type' => 'required|string',
-            'shape' => 'required',
-            'x' => 'required|integer',
-            'y' => 'required|integer',
-            'scale_x' => 'required|integer',
-            'scale_y' => 'required|integer',
-            'rotation' => 'integer',
-            'width' => 'required|integer',
-            'height' => 'required|integer',
+            'x' => '',
+            'y' => '',
+            'scale_x' => '',
+            'scale_y' => '',
+            'rotation' => '',
+            'width' => '',
+            'height' => '',
             'is_locked' => 'boolean',
             'z_index' => 'integer',
         ];
