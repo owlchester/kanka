@@ -57,7 +57,7 @@ $hasDashboards = !$dashboards->isEmpty() || !empty($dashboard);
             <div class="flex items-center gap-2">
                 <div class="hidden lg:inline-block">
                     <a href="{{ route('dashboard', isset($dashboard) ? [$campaign, 'dashboard' => $dashboard->id] : [$campaign]) }}" class="btn2 btn-sm" title="{{ __('dashboard.setup.actions.back_to_dashboard') }}">
-                        <x-icon class="fa-solid fa-arrow-left" />
+                        <x-icon class="fa-regular fa-arrow-left" />
                         <span class="hidden sm:inline">{{ __('dashboard.setup.actions.back_to_dashboard') }}</span>
                     </a>
                 </div>
@@ -68,7 +68,7 @@ $hasDashboards = !$dashboards->isEmpty() || !empty($dashboard);
                 <div class="dropdown">
                     <button type="button" class="btn2 btn-sm" data-dropdown aria-expanded="false">
                         <span class="hidden sm:inline">{{ __('crud.actions.actions') }}</span>
-                        <x-icon class="fa-solid fa-caret-down" />
+                        <x-icon class="fa-regular fa-caret-down" />
                     </button>
                     <div class="dropdown-menu hidden" role="menu">
 
