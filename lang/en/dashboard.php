@@ -11,7 +11,6 @@ return [
         'actions'       => [
             'edit'      => 'Edit name & permissions',
             'new'       => 'New Dashboard',
-            'switch'    => 'Switch to dashboard',
         ],
         'create'        => [
             'helper'    => 'Create a new dashboard for :name, and assign which roles can see it or have it as their default dashboard.',

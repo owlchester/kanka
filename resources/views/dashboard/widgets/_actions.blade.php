@@ -68,6 +68,24 @@
             <x-icon class="fa-regular fa-ellipsis-h" />
         </button>
         <div class="dropdown-menu hidden" role="menu">
+
+            <x-dropdowns.section>
+                @if ($dashboard)
+                    {!! $dashboard->name !!}
+                @else
+                    {{ __('dashboard.dashboards.default.title') }}
+                @endif
+            </x-dropdowns.section>
+
+            <x-dropdowns.item :link="route('dashboard.setup', !empty($dashboard) ? [$campaign, 'dashboard' => $dashboard->id] : [$campaign])" icon="cog">
+                {{ __('dashboard.actions.customise') }}
+            </x-dropdowns.item>
+
+            @if (!empty($dashboard) || !empty($dashboards))
+            <x-dropdowns.section>
+                {{ __('dashboards/setup.sections.switch') }}
+            </x-dropdowns.section>
+            @endif
             @if (!empty($dashboard))
                 <x-dropdowns.item :link="route('dashboard', [$campaign, 'dashboard' => 'default'])" icon="fa-regular fa-home">
                     {{ __('dashboard.dashboards.default.title')}}
@@ -81,24 +99,23 @@
                     {!! $dash->name !!}
                 </x-dropdowns.item>
             @endforeach
-            <x-dropdowns.item :link="route('dashboard.setup', !empty($dashboard) ? [$campaign, 'dashboard' => $dashboard->id] : [$campaign])" icon="cog">
-                {{ __('dashboard.actions.customise') }}
-            </x-dropdowns.item>
-            <x-dropdowns.divider />
+
+            <x-dropdowns.section>
+                {{ __('dashboards/setup.sections.settings') }}
+            </x-dropdowns.section>
 
             <x-dropdowns.item :link="route('campaigns.edit', $campaign)" icon="pencil">
                 {{ __('campaigns.show.actions.edit') }}
             </x-dropdowns.item>
 
-            <x-dropdowns.divider />
-            <x-dropdowns.item :link="route('campaign_users.index', $campaign)" icon="fa-solid fa-users">
+            <x-dropdowns.item :link="route('campaign_users.index', $campaign)" icon="fa-regular fa-users">
                 {{ __('campaigns.show.tabs.members') }}
             </x-dropdowns.item>
-            <x-dropdowns.item :link="route('campaign_roles.index', $campaign)" icon="fa-solid fa-screen-users">
+            <x-dropdowns.item :link="route('campaign_roles.index', $campaign)" icon="fa-regular fa-user-shield">
                 {{ __('campaigns.show.tabs.roles') }}
             </x-dropdowns.item>
 
-            <x-dropdowns.item :link="route('campaign.modules', $campaign)" icon="fa-solid fa-floppy-disks">
+            <x-dropdowns.item :link="route('campaign.modules', $campaign)" icon="fa-regular fa-floppy-disks">
                 {{ __('campaigns.show.tabs.modules') }}
             </x-dropdowns.item>
         </div>
