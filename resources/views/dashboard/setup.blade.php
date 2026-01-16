@@ -10,18 +10,50 @@
 @php
 $widgetClass = 'widget rounded-xl h-28 shadow-xs hover:shadow-md cursor-pointer bg-box' ;
 $overlayClass = 'rounded-xl flex gap-2 flex-col p-2 items-center h-full';
+
+$hasDashboards = !$dashboards->isEmpty() || !empty($dashboard);
 @endphp
 
 @section('content')
     <x-grid type="1/1">
         <div class="flex gap-2 items-center justify-between">
-            <h4 class="text-lg">
+            @if ($hasDashboards)
+                <div class="flex gap-1 items-center dropdown" role="button" data-dropdown aria-expanded="false">
+                    <h4 class="text-lg group cursor-pointer" data-tooltip data-title="{{ __('dashboards/setup.tooltips.switch') }}">
+                        @if ($dashboard)
+                            {!! $dashboard->name !!}
+                        @else
+                            {{ __('dashboard.dashboards.default.title') }}
+                        @endif
+
+                        <x-icon class="fa-regular fa-caret-down group-hover:text-primary duration-150 transition-colors" />
+                    </h4>
+
+                    <div class="dropdown-menu hidden" role="menu">
+                        <x-dropdowns.section>
+                            {{ __('dashboard.dashboards.actions.switch') }}
+                        </x-dropdowns.section>
+                        @if (!empty($dashboard))
+                            <x-dropdowns.item :link="route('dashboard.setup', $campaign)" icon="cog">
+                                {{ __('dashboard.dashboards.default.title')}}
+                            </x-dropdowns.item>
+                        @endif
+                        @foreach ($dashboards as $dash)
+                            <x-dropdowns.item :link="route('dashboard.setup', [$campaign, 'dashboard' => $dash->id])" icon="cog">
+                                {!! $dash->name !!}
+                            </x-dropdowns.item>
+                        @endforeach
+                    </div>
+                </div>
+            @else
+                <h4 class="text-lg">
                 @if ($dashboard)
                     {!! $dashboard->name !!}
                 @else
                     {{ __('dashboard.dashboards.default.title') }}
                 @endif
-            </h4>
+                </h4>
+            @endif
             <div class="flex items-center gap-2">
                 <div class="hidden lg:inline-block">
                     <a href="{{ route('dashboard', isset($dashboard) ? [$campaign, 'dashboard' => $dashboard->id] : [$campaign]) }}" class="btn2 btn-sm" title="{{ __('dashboard.setup.actions.back_to_dashboard') }}">
@@ -30,6 +62,34 @@ $overlayClass = 'rounded-xl flex gap-2 flex-col p-2 items-center h-full';
                     </a>
                 </div>
 
+
+
+                @if($dashboard)
+                <div class="dropdown">
+                    <button type="button" class="btn2 btn-sm" data-dropdown aria-expanded="false">
+                        <span class="hidden sm:inline">{{ __('crud.actions.actions') }}</span>
+                        <x-icon class="fa-solid fa-caret-down" />
+                    </button>
+                    <div class="dropdown-menu hidden" role="menu">
+
+                        @php $url = route('campaign_dashboards.edit', [$campaign, $dashboard]); @endphp
+                        <x-dropdowns.item link="#" :dialog="$url" icon="edit">
+                            {{ __('dashboard.dashboards.actions.edit') }}
+                        </x-dropdowns.item>
+
+                        @php $url = route('campaign_dashboards.create', [$campaign, 'source' => $dashboard]); @endphp
+                        <x-dropdowns.item link="#" :dialog="$url" icon="copy">
+                            {{ __('crud.actions.copy') }}
+                        </x-dropdowns.item>
+
+                        @php $data = route('confirm-delete', [$campaign, 'route' => route('campaign_dashboards.destroy', [$campaign, $dashboard]), 'name' => $dashboard->name, 'permanent' => true]); @endphp
+                        <x-dropdowns.divider />
+                        <x-dropdowns.item link="#" css="text-error hover:bg-error hover:text-error-content" :dialog="$data" icon="trash">
+                            {{ __('crud.remove') }}
+                        </x-dropdowns.item>
+                    </div>
+                </div>
+                @endif
                 <a class="btn2 btn-primary btn-sm"
                    data-toggle="dialog"
                    data-url="{{ route('campaign_dashboards.create', $campaign) }}"
@@ -37,57 +97,6 @@ $overlayClass = 'rounded-xl flex gap-2 flex-col p-2 items-center h-full';
                     <x-icon class="plus" />
                     <span class="hidden sm:inline">{{ __('dashboard.dashboards.actions.new') }}</span>
                 </a>
-
-                <div class="dropdown">
-                    <button type="button" class="btn2 btn-sm" data-dropdown aria-expanded="false">
-                        <span class="hidden sm:inline">{{ __('crud.actions.actions') }}</span>
-                        <x-icon class="fa-solid fa-caret-down" />
-                    </button>
-                    <div class="dropdown-menu hidden" role="menu">
-                        @if($dashboard)
-                            <x-dropdowns.item :link="route('dashboard', [$campaign, 'dashboard' => $dashboard->id])" icon="fa-solid fa-arrow-left">
-                                {{ __('dashboard.setup.actions.back_to_dashboard') }}
-                            </x-dropdowns.item>
-                        @else
-                            <x-dropdowns.item :link="route('dashboard', [$campaign])" icon="fa-solid fa-arrow-left">
-                                {{ __('dashboard.setup.actions.back_to_dashboard') }}
-                            </x-dropdowns.item>
-                        @endif
-
-                        @if($dashboard)
-                            @php $url = route('campaign_dashboards.edit', [$campaign, $dashboard]); @endphp
-                            <x-dropdowns.item link="#" :dialog="$url" icon="edit">
-                                {{ __('dashboard.dashboards.actions.edit') }}
-                            </x-dropdowns.item>
-
-                            @php $url = route('campaign_dashboards.create', [$campaign, 'source' => $dashboard]); @endphp
-                            <x-dropdowns.item link="#" :dialog="$url" icon="copy">
-                                {{ __('crud.actions.copy') }}
-                            </x-dropdowns.item>
-
-                            @php $data = route('confirm-delete', [$campaign, 'route' => route('campaign_dashboards.destroy', [$campaign, $dashboard]), 'name' => $dashboard->name, 'permanent' => true]); @endphp
-                            <x-dropdowns.item link="#" css="text-error hover:bg-error hover:text-error-content" :dialog="$data" icon="trash">
-                                {{ __('crud.remove') }}
-                            </x-dropdowns.item>
-                        @endif
-                        @if(!$dashboards->isEmpty() || !empty($dashboard))
-                            <x-dropdowns.section>
-                                {{ __('dashboard.dashboards.actions.switch') }}
-                            </x-dropdowns.section>
-                            <span class="" ></span>
-                            @if (!empty($dashboard))
-                                <x-dropdowns.item :link="route('dashboard.setup', $campaign)" icon="cog">
-                                    {{ __('dashboard.dashboards.default.title')}}
-                                </x-dropdowns.item>
-                            @endif
-                            @foreach ($dashboards as $dash)
-                                <x-dropdowns.item :link="route('dashboard.setup', [$campaign, 'dashboard' => $dash->id])" icon="cog">
-                                    {!! $dash->name !!}
-                                </x-dropdowns.item>
-                            @endforeach
-                        @endif
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -125,10 +134,10 @@ $overlayClass = 'rounded-xl flex gap-2 flex-col p-2 items-center h-full';
                     @includeWhen($widget->visible(), '.dashboard._widget')
                 @endforeach
 
-                <div class="col-span-4 widget rounded-xl h-28 hover:border-primary text-primary transition-all duration-150 cursor-pointer border-dashed border-2 py-6" data-toggle="dialog" data-url="{{ route('campaign_dashboard_widgets.index', [$campaign, 'dashboard' => $dashboard]) }}">
+                <div class="col-span-4 widget rounded-xl h-28 hover:border-primary text-primary transition-all duration-150 cursor-pointer border-dashed border-2 py-6" data-toggle="dialog" data-url="{{ route('campaign_dashboard_widgets.index', [$campaign, 'dashboard' => $dashboard]) }}" data-tooltip data-title="{{ __('dashboards/setup.tooltips.add') }}">
                     <div class="text-lg flex gap-2 items-center justify-center p-2 align-middle h-full">
                         <x-icon class="plus" />
-                        <span class="uppercase">{{ __('crud.add') }}</span>
+                        <span class="uppercase">{{ __('dashboards/setup.actions.add') }}</span>
                     </div>
                 </div>
             </div>
