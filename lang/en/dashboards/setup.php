@@ -10,6 +10,5 @@ return [
     ],
     'sections' => [
         'switch' => 'Switch to...',
-        'settings' => 'Campaign settings',
     ],
 ];

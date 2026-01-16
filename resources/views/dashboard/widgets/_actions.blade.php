@@ -101,7 +101,7 @@
             @endforeach
 
             <x-dropdowns.section>
-                {{ __('dashboards/setup.sections.settings') }}
+                {{ __('campaigns.show.tabs.management') }}
             </x-dropdowns.section>
 
             <x-dropdowns.item :link="route('campaigns.edit', $campaign)" icon="pencil">
