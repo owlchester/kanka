@@ -25,5 +25,5 @@ return [
     ],
     'tooltips' => [
         'edit' => 'Edit this entity',
-    ]
+    ],
 ];

@@ -11,7 +11,7 @@ $data = false;
 
 @if (!isset($edit) || $edit !== false)
 @can('update', $entity)
-    <a href="{{ $entity->url('edit') }}" class="btn2 btn-sm" data-tooltip data-title="<div class='flex gap-3 items-center'><span>{{ __('entities/actions.tooltips.edit') }}</span><span class='inline-block rounded border-base-300 border px-1'>E</span></div>" data-html="true">
+    <a href="{{ $entity->url('edit') }}" class="btn2 btn-sm" data-tooltip data-title="<div class='flex gap-3 items-center'><span>{{ __('entities/actions.tooltips.edit') }}</span><span class='inline-block rounded border-base-300 border px-1'>E</span></div>" data-html="true" data-keyboard="edit">
         <x-icon class="pencil" />
         {{ __('crud.edit') }}
     </a>
