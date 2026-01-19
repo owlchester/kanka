@@ -3,11 +3,15 @@
 namespace App\Services\Whiteboards;
 
 use App\Facades\Avatar;
+use App\Http\Resources\Whiteboards\ShapeResource;
 use App\Models\Entity;
 use App\Models\Image;
 use App\Models\Whiteboard;
+use App\Models\WhiteboardShape;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 
 class ApiService
 {
@@ -17,6 +21,8 @@ class ApiService
     protected Whiteboard $whiteboard;
 
     protected array $data = [];
+    protected array $images = [];
+    protected array $entityIds = [];
 
     public function whiteboard(Whiteboard $whiteboard): self
     {
@@ -28,7 +34,8 @@ class ApiService
     public function load(): array
     {
         $this->data['name'] = $this->whiteboard->name;
-        $this->data['data'] = $this->whiteboard->data ?? [];
+        $this->loadShapes();
+        $this->loadEntities();
         $this->loadImages();
         $this->translations();
         $this->urls();
@@ -38,22 +45,36 @@ class ApiService
         return $this->data;
     }
 
-    protected function loadImages(): void
+    protected function loadShapes(): self
     {
-        $this->data['images'] = [];
+        $this->data['data'] = $this->whiteboard->data ?? [];
 
-        $galleryIds = $entityIds = [];
-        foreach ($this->data['data'] as $shape) {
-            if ($shape['type'] === 'image') {
-                $galleryIds[] = $shape['uuid'];
-            } elseif ($shape['type'] === 'entity') {
-                $entityIds[] = $shape['entity'];
+        /** @var WhiteboardShape[]|Collection $shapes */
+        $shapes = $this->whiteboard->shapes()->with(['whiteboard', 'whiteboard.campaign'])->get();
+        $this->data['data'] = ShapeResource::collection($shapes);
+
+        // Collect image UUIDs from image shapes
+        foreach ($shapes as $shape) {
+            if ($shape->isImage()) {
+                $uuid = Arr::get($shape->shape, 'uuid');
+                if ($uuid) {
+                    $this->images[] = $uuid;
+                }
+            } elseif ($shape->isEntity()) {
+                $entity = Arr::get($shape->shape, 'entity_id');
+                if ($entity) {
+                    $this->entityIds[] = $entity;
+                }
             }
         }
 
+        return $this;
+    }
+
+    protected function loadImages(): void
+    {
         $this
-            ->loadEntities($entityIds)
-            ->loadGallery($galleryIds);
+            ->loadGallery();
     }
 
     protected function translations(): void
@@ -120,23 +141,30 @@ class ApiService
         ];
     }
 
-    protected function loadEntities(array $ids): self
+    protected function loadEntities(): self
     {
-        $entities = Entity::select('id', 'image_path', 'image_uuid', 'type_id')
+        $entities = Entity::select('id', 'name', 'image_path', 'image_uuid', 'type_id')
             ->with(['image', 'entityType'])
-            ->whereIn('id', $ids)
+            ->whereIn('id', $this->entityIds)
             ->get();
+        /** @var Entity $entity */
         foreach ($entities as $entity) {
+            $this->data['entities'][$entity->id] = [
+                'id' => $entity->id,
+                'name' => $entity->name,
+                'link' => $entity->url(),
+                'preview' => route('entities.tooltip', [$this->campaign, $entity]),
+            ];
             $this->data['images'][$entity->id] = Avatar::entity($entity)->size(256)->fallback()->thumbnail();
         }
 
         return $this;
     }
 
-    protected function loadGallery(array $ids): self
+    protected function loadGallery(): self
     {
         /** @var Image[] $images */
-        $images = Image::whereIn('id', $ids)
+        $images = Image::whereIn('id', $this->images)
             ->get();
         foreach ($images as $image) {
             $this->data['images'][$image->id] = $image->url();

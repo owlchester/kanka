@@ -23,16 +23,15 @@ class StoreShapeRequest extends FormRequest
     {
         return [
             'type' => 'required|string',
-            'shape' => 'required',
-            'x' => 'required|integer',
-            'y' => 'required|integer',
-            'scale_x' => 'required|integer',
-            'scale_y' => 'required|integer',
-            'rotation' => 'integer',
-            'width' => 'required|integer',
-            'height' => 'required|integer',
+            'x' => 'required|numeric',
+            'y' => 'required|numeric',
+            'scale_x' => 'required|numeric',
+            'scale_y' => 'required|numeric',
+            'rotation' => 'nullable|numeric',
+            'width' => 'required|numeric',
+            'height' => 'required|numeric',
             'is_locked' => 'boolean',
-            'z_index' => 'integer',
+            'z_index' => 'integer|integer',
         ];
     }
 }

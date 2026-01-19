@@ -40,17 +40,6 @@
                 <span class="flex-none keyboard-shortcut" id="qq-kb-shortcut" data-toggle="tooltip" :data-title="trans('qq-keyboard-shortcut')" data-html="true" data-placement="bottom" >N</span>
             </a>
         </div>
-
-        <div class="actions flex items-center" v-if="!props.readonly">
-            <button
-                class="btn2 btn-sm btn-primary join-item"
-                :class="{ 'btn-disabled': saving }"
-                @click="saveWhiteboard">
-                <i class="fa-regular fa-save" aria-hidden="true" v-if="!saving" />
-                <i class="fa-solid fa-spinner fa-spin" aria-hidden="true" v-else />
-                <span v-html="trans('save')"></span>
-            </button>
-        </div>
     </div>
 
     <v-stage v-if="!loading"
@@ -68,7 +57,7 @@
                 :key="shape.id"
                 :config="{
                     id: `group-${shape.id}`,
-                    draggable: !shape.locked,
+                    draggable: !shape.is_locked,
                     x: shape.x,
                     y: shape.y,
                     scaleX: shape.scaleX || 1,
@@ -82,7 +71,8 @@
             >
                 <v-rect v-if="shape.type==='rect'"
                         :config="{
-                            x: 0, y: 0,
+                            x: 0,
+                            y: 0,
                             width: shape.width,
                             height: shape.height,
                             fill: shape.fill || 'lightblue',
@@ -121,35 +111,38 @@
                          }" />
 
 
-                <Entity v-if="shape.type === 'entity'"
-                        :shape="shape"
-                        :get-image-el="getImageEl">
+                <Entity
+                    v-if="shape.type === 'entity'"
+                    :shape="shape"
+                    :entity="entityRefs[shape.entity] || {}"
+                    :get-image-el="getImageEl">
                 </Entity>
 
 
-                <v-text v-if="shape.type === 'text' && (!editingTextId || editingTextId !== shape.id)"
-                        :config="{
-                            x: getTextPadding(shape),
-                            y: getTextPadding(shape),
-                            width: shape.width - (getTextPadding(shape) * 2),
-                            height: shape.height - (getTextPadding(shape) * 2),
-                            opacity: shape.opacity || 1,
-                            text: shape.text,
-                            fontSize: getTextSize(shape),
-                            fontFamily: shape.fontFamily || 'Arial',
-                            fill: getTextColor(shape),
-                            align: 'center',
-                            verticalAlign: 'middle',
-                            wrap: 'word',
-                        }"
+                <v-text
+                    v-if="shape.type === 'text' && (!editingTextId || editingTextId !== shape.id)"
+                    :config="{
+                        x: getTextPadding(shape),
+                        y: getTextPadding(shape),
+                        width: shape.width - (getTextPadding(shape) * 2),
+                        height: shape.height - (getTextPadding(shape) * 2),
+                        opacity: shape.opacity || 1,
+                        text: shape.text,
+                        fontSize: getTextSize(shape),
+                        fontFamily: shape.fontFamily || 'Arial',
+                        fill: getTextColor(shape),
+                        align: 'center',
+                        verticalAlign: 'middle',
+                        wrap: 'word',
+                    }"
                 />
 
                 <!-- Selection outline overlays (pointerEvents disabled so they don't block clicks) -->
                 <v-rect
                     v-if="isSelected(shape.id) && selectedIds.length > 1 && shape.type !== 'circle'"
                     :config="{
-                            x: 0,
-                            y: 0,
+                            x: shape.x,
+                            y: shape.y,
                             width: shape.width,
                             height: shape.height,
                             stroke: cssVariable('--p'),
@@ -299,12 +292,12 @@
             <div class="join">
                 <button
                     class="btn2 btn-sm join-item"
-                    :class="selectedShape.locked ? 'btn-warning' : ''"
-                    :title="selectedShape.locked ? trans('unlock') : trans('lock')"
+                    :class="selectedShape.is_locked ? 'btn-warning' : ''"
+                    :title="selectedShape.is_locked ? trans('unlock') : trans('lock')"
                     @click.stop="toggleLock"
                 >
-                    <i class="fa-regular" :class="selectedShape.locked ? 'fa-lock' : 'fa-lock-open'" aria-hidden="true"></i>
-                    <span class="sr-only">{{ selectedShape.locked ? trans('unlock') : trans('lock') }}</span>
+                    <i class="fa-regular" :class="selectedShape.is_locked ? 'fa-lock' : 'fa-lock-open'" aria-hidden="true"></i>
+                    <span class="sr-only">{{ selectedShape.is_locked ? trans('unlock') : trans('lock') }}</span>
                 </button>
 
                 <button
@@ -468,7 +461,6 @@
         type="color"
         class="hidden"
         :value="currentColor"
-        @input="onPickColor"
         @change="onPickColor"
     />
 
@@ -520,14 +512,14 @@ import Echo from 'laravel-echo';
 import Pusher from 'pusher-js';
 
 const props = defineProps<{
-    save: String,
-    load: String,
-    gallery: String,
-    search: String,
+    save: string,
+    load: string,
+    gallery: string,
+    search: string,
     readonly: Boolean,
     creator: Boolean,
-    entity: String,
-    whiteboard: String,
+    entity: string,
+    whiteboard: number,
     user: Boolean,
 }>()
 
@@ -546,7 +538,6 @@ const urls = ref(null);
 const toolbarMode = ref('select')
 
 // Saving
-const saving = ref(false);
 const loading = ref(true);
 const savingUrl = ref()
 
@@ -569,11 +560,11 @@ const colorInput = ref<HTMLInputElement|null>(null);
 const selectedShape = computed(() => {
     // If multiple selected, prefer the primary selectedId for single-shape UI.
     if (selectedId.value) {
-        return shapes.value.find(s => s.id === selectedId.value) || null;
+        return getShape(selectedId.value);
     }
     // fallback to first of selectedIds when primary isn't set
     if (selectedIds.value.length > 0) {
-        return shapes.value.find(s => s.id === selectedIds.value[0]) || null;
+        return getShape(selectedIds.value[0]);
     }
     return null;
 });
@@ -599,6 +590,9 @@ const imageRefs = ref({})
 // Search
 const searchOpened = ref(false)
 
+// Entities
+const entityRefs = ref({})
+
 // Settings
 const settingsOpened = ref(false)
 
@@ -615,7 +609,9 @@ const resetOpen = ref(false);
 let hiddenClipboardEl: HTMLTextAreaElement | null = null;
 
 const persistShape = (shape) => {
-    if (props.readonly || (shape.urls && shape.urls.edit)) return;
+    if (props.readonly || (shape.urls && shape.urls.edit)) {
+        return;
+    };
 
     const payload = {
         type: shape.type,
@@ -628,7 +624,9 @@ const persistShape = (shape) => {
         rotation: shape.rotation,
         fill: shape.fill,
         text: shape.text,
-        is_locked: shape.locked ? 1 : 0,
+        uuid: shape.uuid,
+        entity_id: shape.entity,
+        is_locked: shape.is_locked ? 1 : 0,
         // Add other fields as per your WhiteboardShape model
         shape: JSON.stringify(shape)
     };
@@ -636,8 +634,18 @@ const persistShape = (shape) => {
     axios.put(props.save, payload)
         .then(res => {
             if (res.data.success) {
+                const oldId = shape.id;
                 shape.id = res.data.id;
                 shape.urls = res.data.urls;
+
+                // Manually update the Konva node ID if it exists
+                const stageNode = stage.value?.getNode();
+                const groupNode = stageNode?.findOne(`#group-${oldId}`);
+                if (groupNode) {
+                    groupNode.id(`group-${shape.id}`);
+                }
+
+                uiTick.value++;
             }
         })
         .catch(err => {
@@ -652,7 +660,7 @@ const inputStyle = computed(() => {
 
     if (!editingTextId.value) return {};
 
-    const shape = shapes.value.find(s => s.id === editingTextId.value);
+    const shape = getShape(editingTextId.value);
     if (!shape) return {};
 
     const stageNode = stage.value?.getNode();
@@ -728,12 +736,10 @@ const handleDragend = (e, shape) => {
     shape.y = pos.y;
 
     // If the shape has an update URL, save its new position
-    if (shape.urls?.edit) {
-        axios.patch(shape.urls.edit, {
-            x: shape.x,
-            y: shape.y
-        });
-    }
+    patch(shape, {
+        x: shape.x,
+        y: shape.y
+    })
 };
 
 const handleDragmove = () => {
@@ -779,43 +785,51 @@ const setupTransformerEvents = () => {
         const nodes = transformerNode.nodes() || [];
         if (!nodes.length) return;
 
-        console.log('transforming', nodes);
-
-
         // When multiple nodes are selected, persist each node's transform back to its shape model.
         nodes.forEach((group) => {
             // group.id() is `group-<shapeId>`; extract the shape id suffix.
             const gid = group.id();
             const match = gid && gid.toString().match(/^group-(.+)$/);
-            console.log('match', gid, match);
             if (!match) return;
             const sid = match[1];
-            console.log('search for shapes with id', sid);
-            const shape = shapes.value.find(s => s.id === sid);
-            console.log('found shape', shape);
+            const shape = getShape(sid);
             if (!shape) return;
-            console.log('transform end?', shape);
 
             const scaleX = group.scaleX() || 1;
             const scaleY = group.scaleY() || 1;
 
             // Persist transforms/position/rotation
-            shape.scaleX = scaleX;
-            shape.scaleY = scaleY;
+            if (shape.type === 'circle') {
+                // For circles, we normalize the radius based on scale
+                // Since keepRatio is true, we can just use scaleX
+                shape.radius = (shape.radius || (shape.width / 2)) * scaleX;
+                shape.width = shape.radius * 2;
+                shape.height = shape.radius * 2;
+            } else {
+                shape.width = (shape.width || 0) * scaleX;
+                shape.height = (shape.height || 0) * scaleY;
+            }
+
+            shape.scaleX = 1;
+            shape.scaleY = 1;
             shape.rotation = group.rotation() || 0;
             shape.x = group.x();
             shape.y = group.y();
 
+            // Reset the node scale so it doesn't double-up visually
+            group.scaleX(1);
+            group.scaleY(1);
+
             // Persist changes if URL exists
-            if (shape.urls?.edit) {
-                axios.patch(shape.urls.edit, {
-                    x: shape.x,
-                    y: shape.y,
-                    scale_x: shape.scaleX,
-                    scale_y: shape.scaleY,
-                    rotation: shape.rotation
-                });
-            }
+            patch(shape, {
+                x: shape.x,
+                y: shape.y,
+                width: shape.width,
+                height: shape.height,
+                scale_x: 1,
+                scale_y: 1,
+                rotation: shape.rotation
+            })
         });
 
         // Force redraw and update overlays
@@ -823,6 +837,7 @@ const setupTransformerEvents = () => {
         transformerNode.getLayer().batchDraw();
     });
 };
+
 
 const selectShape = (shape, event?: MouseEvent) => {
     // Don't do any selection while in drawing mode to avoid confusion
@@ -904,8 +919,8 @@ const updateTransformer = (editingText: boolean = false) => {
 
     // If any of selected shapes are locked or editing text -> disable transformer
     const anyLocked = selectedIds.value.some(id => {
-        const s = shapes.value.find(x => x.id === id);
-        return s && s.locked;
+        const s = getShape(id);
+        return s && s.is_locked;
     });
     if (anyLocked || editingText) {
         transformerNode.nodes([]);
@@ -955,13 +970,13 @@ const duplicateSelected = () => {
 
     // Duplicate each selected shape
     for (const id of selectedIds.value) {
-        const shape = shapes.value.find(s => s.id === id);
+        const shape = getShape(id);
         if (!shape) continue;
 
         const clone = JSON.parse(JSON.stringify(shape));
 
         // Generate new unique ID
-        clone.id = Math.round(Math.random() * -10000).toString();
+        clone.id = tempID();
 
         // Offset position
         if (typeof clone.x === 'number') clone.x += offset;
@@ -969,6 +984,7 @@ const duplicateSelected = () => {
 
         shapes.value.push(clone);
         newShapes.push(clone);
+        persistShape(clone);
     }
 
     // Update selection to new clones
@@ -1012,8 +1028,8 @@ const moveSelectedByArrowKey = (key: string) => {
     const reposition = 10;
 
     for (const id of selectedIds.value) {
-        const shape = shapes.value.find(s => s.id === id);
-        if (!shape || shape.locked) continue;
+        const shape = getShape(id);
+        if (!shape || shape.is_locked) continue;
         saveHistory();
         switch (key) {
             case 'ArrowUp':
@@ -1072,11 +1088,15 @@ const ensureHiddenClipboard = () => {
     return hiddenClipboardEl;
 };
 
+const selectedShapes = computed(() => {
+    return shapes.value.filter(s => selectedIds.value.includes(s.id));
+});
+
 const copySelectedToClipboard = () => {
     try {
         if (!selectedIds.value.length) return;
 
-        const selectedShapes = shapes.value.filter(s => selectedIds.value.includes(s.id));
+        const selectedShapes = selectedShapes();
         const json = JSON.stringify(selectedShapes);
 
         const isSecure = window.isSecureContext && navigator.clipboard;
@@ -1186,7 +1206,7 @@ const pasteFromClipboard = async () => {
 
                 pasted = copiedShapes.map(shape => {
                     const newShape = { ...shape };
-                    newShape.id = Math.round(Math.random() * -10000).toString();
+                    newShape.id = tempID();
 
                     if (typeof newShape.x === 'number') newShape.x += offsetX;
                     if (typeof newShape.y === 'number') newShape.y += offsetY;
@@ -1232,7 +1252,7 @@ const createTextShapeFromClipboard = (textValue: string) => {
     const y = pointer?.y ?? stageNode.height() / 2;
 
     return {
-        id: Math.round(Math.random() * -10000).toString(),
+        id: tempID(),
         type: 'text',
         x: x,
         y: y,
@@ -1250,8 +1270,7 @@ const createTextShapeFromClipboard = (textValue: string) => {
 };
 
 const createEntityShape = (entity: any) => {
-    const [imageNode] = useImage(entity.image_thumb, 'anonymous');
-    imageRefs.value[entity.id] = imageNode;
+    loadImage(entity.image_thumb, entity.id);
 
     const stageNode = stage.value?.getNode?.();
     if (!stageNode) return;
@@ -1261,7 +1280,7 @@ const createEntityShape = (entity: any) => {
     const x = pointer?.x ?? stageNode.width() / 2;
     const y = pointer?.y ?? stageNode.height() / 2;
 
-    const id = Math.round(Math.random() * -10000).toString();
+    const id = tempID();
     saveHistory();
 
     const newShape = {
@@ -1274,8 +1293,6 @@ const createEntityShape = (entity: any) => {
         scaleX: 1,
         scaleY: 1,
         entity: entity.id,
-        name: entity.name,
-        link: entity.urls.view,
         fill: currentColor.value,
         locked: false,
         moving: false,
@@ -1288,17 +1305,29 @@ const createEntityShape = (entity: any) => {
     selectedIds.value = [id];
     selectedId.value = id;
     updateTransformer();
+
     uiTick.value++;
 };
 
 const toggleLock = () => {
-    const s = selectedShape.value;
-    if (!s) return;
+    if (!selectedIds.value.length) return;
     saveHistory();
-    s.locked = !s.locked;
+
+    selectedShapes.value.forEach(shape => {
+        shape.is_locked = !shape.is_locked;
+        patch(shape, { is_locked: shape.is_locked });
+    });
     updateTransformer();
     uiTick.value++;
 };
+
+const patch = (shape: any, fields: object) => {
+    if (!shape.urls?.edit) {
+        return;
+    }
+    axios.patch(shape.urls.edit, fields);
+
+}
 
 const openColorPicker = () => {
     colorInput.value?.click();
@@ -1314,11 +1343,12 @@ const onPickColor = (e: Event) => {
         currentBgColor.value = input.value
         return
     }
-    const s = selectedShape.value;
-    if (!s) return;
-    if (input?.value) {
+    if (selectedIds.value.length) {
         saveHistory();
-        s.fill = input.value;
+        selectedShapes.value.forEach(shape => {
+            shape.fill = input.value;
+            patch(shape, { fill: shape.fill });
+        });
         currentColor.value = input.value;
         currentBgColor.value = input.value
         uiTick.value++;
@@ -1356,7 +1386,7 @@ const getTextPadding = (shape) => {
 };
 
 const editText = (shape) => {;
-    if (!shape || shape.locked) return;
+    if (!shape || shape.is_locked) return;
     editingTextId.value = shape.id;
     editingText.value = shape.text || '';
     nextTick(() => {
@@ -1366,7 +1396,7 @@ const editText = (shape) => {;
 
 const updateTextPreview = () => {
     if (editingTextId.value) {
-        const shape = shapes.value.find(s => s.id === editingTextId.value);
+        const shape = getShape(editingTextId.value);
         if (shape) {
             saveHistory();
             shape.text = editingText.value;
@@ -1376,10 +1406,13 @@ const updateTextPreview = () => {
 
 const saveText = () => {
     if (editingTextId.value) {
-        const shape = shapes.value.find(s => s.id === editingTextId.value);
+        const shape = getShape(editingTextId.value);
         if (shape) {
             saveHistory();
             shape.text = editingText.value;
+            patch(shape, {
+                text: shape.text
+            });
         }
     }
     cancelTextEdit();
@@ -1442,7 +1475,7 @@ const toggleDrawing = () => {
         }
 
         tempGroup.value.moving = false;
-        tempGroup.value.locked = false;
+        tempGroup.value.is_locked = false;
         tempGroup.value.draggable = true;
         saveHistory();
         shapes.value.push(tempGroup.value);
@@ -1566,8 +1599,8 @@ const handleMouseDown = (e) => {
         tempCircle.value = {
             id: 'temp-circle-' + Date.now(),
             type: 'circle',
-            cx: pos.x,
-            cy: pos.y,
+            x: pos.x,
+            y: pos.y,
             radius: 0,
             scaleX: 1,
             scaleY: 1,
@@ -1691,10 +1724,10 @@ const handleMouseUp = (e) => {
 
     // Finalize rectangle drawing
     if (toolbarMode.value === 'rect') {
-        if (tempRect.value) {
+        if (tempRect.value && tempRect.value.width > 1) {
             // Push normalized rect into shapes
             const newRect = {
-                id: Math.round(Math.random() * -10000).toString(),
+                id: tempID(),
                 type: 'rect',
                 x: tempRect.value.x,
                 y: tempRect.value.y,
@@ -1702,7 +1735,6 @@ const handleMouseUp = (e) => {
                 scaleY: 1,
                 width: tempRect.value.width,
                 height: tempRect.value.height,
-                radius: null,
                 fill: tempRect.value.fill || cssVariable('--b1'),
                 locked: false,
                 moving: false,
@@ -1710,9 +1742,13 @@ const handleMouseUp = (e) => {
             saveHistory();
 
             shapes.value.push(newRect);
-            console.log('new rectangle?');
+            console.log('new rectangle?', newRect);
             persistShape(newRect);
             uiTick.value++;
+            nextTick(() => {
+                updateTransformer();
+                uiTick.value++;
+            });
         }
 
         // Clear temporary state and exit shape draw mode
@@ -1725,7 +1761,7 @@ const handleMouseUp = (e) => {
         if (tempRect.value) {
             // Push normalized rect into shapes
             const newText = {
-                id: Math.round(Math.random() * -10000).toString(),
+                id: tempID(),
                 type: 'text',
                 x: tempRect.value.x,
                 y: tempRect.value.y,
@@ -1733,7 +1769,6 @@ const handleMouseUp = (e) => {
                 scaleY: 1,
                 width: tempRect.value.width,
                 height: tempRect.value.height,
-                radius: null,
                 fill: cssVariable('--bc'),
                 text: "Click to edit",
                 fontFamily: 'Arial',
@@ -1754,9 +1789,9 @@ const handleMouseUp = (e) => {
 
     // Finalize circle drawing
     if (toolbarMode.value === 'circle') {
-        if (tempCircle.value) {
+        if (tempCircle.value && tempCircle.value.radius > 1) {
             const newCircle = {
-                id: Math.round(Math.random() * -10000).toString(),
+                id: tempID(),
                 type: 'circle',
                 x: tempCircle.value.cx - tempCircle.value.radius,
                 y: tempCircle.value.cy - tempCircle.value.radius,
@@ -1807,6 +1842,10 @@ watch(
     { deep: true }
 );
 
+const tempID = () => {
+    return  'local-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
+}
+
 // Compute the visible top-left of the stage in stage coordinates
 function getStageVisibleTopLeft() {
     const stageNode = stage.value?.getNode();
@@ -1837,11 +1876,14 @@ function watchImage(uuid: string, shapeId: string) {
         (imgEl) => {
             if (imgEl) {
                 // If you want the shape to match the real image size the first time it loads:
-                const shape = shapes.value.find(s => s.id === shapeId);
+                const shape = getShape(shapeId);
                 if (shape && (!shape.width || !shape.height)) {
                     // Use natural size on first load if width/height were falsy
-                    shape.width = imgEl.naturalWidth || shape.width || 100;
-                    shape.height = imgEl.naturalHeight || shape.height || 80;
+                    shape.width = imgEl.naturalWidth || 100;
+                    shape.height = imgEl.naturalHeight || 80;
+
+                    // Now that we have dimensions, persist to backend
+                    persistShape(shape);
                 }
 
                 // Force Konva to repaint immediately
@@ -1855,15 +1897,14 @@ function watchImage(uuid: string, shapeId: string) {
 
 
 const selectImage = (image) => {
-    const [imageNode] = useImage(image.src, 'anonymous');
-    imageRefs.value[image.uuid] = imageNode;
+    loadImage(image.src, image.uuid);
 
     const { x: tlx, y: tly, scaleX, scaleY } = getStageVisibleTopLeft();
     // Convert 50px screen offset into stage-space offset
     const offsetX = 50 / scaleX;
     const offsetY = 50 / scaleY;
 
-    const id = Math.round(Math.random() * -10000).toString();
+    const id = tempID();
     saveHistory();
 
     const newShape = {
@@ -1876,14 +1917,12 @@ const selectImage = (image) => {
         width: null,
         height: null,
         uuid: image.uuid,
-        name: image.name,
         locked: false,
         moving: false,
     };
 
     shapes.value.push(newShape);
     watchImage(image.uuid, id);
-    persistShape(newShape);
 }
 
 const closedGallery = () => {
@@ -1906,19 +1945,22 @@ const closedSearch = () => {
     searchOpened.value = false
 }
 
+const getShape = (id: string|number) => {
+    return shapes.value.find(s => s.id == id) || null;
+}
 const selectEntity = (entity) => {
     searchOpened.value = false;
 
-
-    const [imageNode] = useImage(entity.image, 'anonymous');
-    imageRefs.value[entity.id] = imageNode;
+    loadImage(entity.image, entity.id);
+    console.log('selected entity', entity);
+    loadEntity(entity);
 
     const { x: tlx, y: tly, scaleX, scaleY } = getStageVisibleTopLeft();
     // Convert 50px screen offset into stage-space offset
     const offsetX = 50 / scaleX;
     const offsetY = 50 / scaleY;
 
-    const id = Math.round(Math.random() * -10000).toString();
+    const id = tempID();
     saveHistory();
 
     const newShape = {
@@ -1931,8 +1973,6 @@ const selectEntity = (entity) => {
         scaleX: 1,
         scaleY: 1,
         entity: entity.id,
-        name: entity.name,
-        link: entity.link,
         fill: cssVariable('--bc'),
         locked: false,
         moving: false,
@@ -1942,56 +1982,14 @@ const selectEntity = (entity) => {
     persistShape(newShape);
 }
 
-
-
-const saveWhiteboard = () => {
-    if (saving.value) return
-
-    let data = {
-        'name': name.value,
-        'data': shapes.value
-    }
-
-    saving.value = true;
-
-    axios({
-        method: 'put',
-        url: savingUrl.value,
-        data: data
-    })
-        .then(res => {
-
-            if (res.data?.toast) {
-                window.showToast(res.data.toast);
-            }
-
-            saving.value = false
-            isDirty.value = false; // reset after successful save
-        }).catch(err => {
-        // Result with a response, hopefully a 422 error
-        saving.value = false
-
-        if (err.response.data.errors) {
-            Object.entries(err.response.data.errors).forEach(([name, text]) => {
-                window.showToast(text, 'error');
-            })
-        }
-    })
-}
-
 const resetRotation = () => {
     if (!selectedIds.value || !selectedIds.value.length) return;
     saveHistory();
     selectedIds.value.forEach(id => {
-        const shape = shapes.value.find(s => s.id === id);
+        const shape = getShape(id);
         if (shape) {
             shape.rotation = 0;
-
-            if (shape.urls && shape.urls.edit) {
-                axios.patch(shape.urls.edit, {
-                    rotation: 0
-                });
-            }
+            patch(shape, {rotation: 0})
         }
     })
 }
@@ -2003,7 +2001,7 @@ const nothingToRotate = () => {
     }
     let rotatable = false;
     selectedIds.value.forEach(id => {
-        const shape = shapes.value.find(s => s.id === id);
+        const shape = getShape(id);
         if (shape && shape.rotation) {
             rotatable = true;
         }
@@ -2050,12 +2048,39 @@ const cssVariable = (variable: string) => {
     return hslString(base);
 }
 
-const loadImages = (images) => {
+const loadImages = (images: any) => {
     //console.log(images);
     Object.entries(images).forEach(([id, src]) => {
-        const [imageNode] = useImage(src, 'anonymous');
-        imageRefs.value[id] = imageNode;
+        loadImage(src, id);
     })
+}
+
+const loadEntities = (entities: any) => {
+    Object.entries(entities).forEach(([id, entity]) => {
+        loadEntity(entity);
+    });
+}
+
+const loadEntity = (entity: any) => {
+    entityRefs.value[entity.id] = entity;
+}
+
+const loadImage = (url, id) => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.src = url;
+    img.onload = () => {
+        imageRefs.value[id] = img;
+        uiTick.value++;
+
+        // If this image belongs to a specific shape, check for natural size
+        const shape = shapes.value.find(s => s.uuid === id || s.entity === id || s.id === id);
+        if (shape && (!shape.width || !shape.height)) {
+            shape.width = img.naturalWidth;
+            shape.height = img.naturalHeight;
+            persistShape(shape);
+        }
+    };
 }
 
 
@@ -2186,6 +2211,10 @@ onMounted(() => {
 
             if (res.data.images) {
                 loadImages(res.data.images)
+            }
+
+            if (res.data.entities) {
+                loadEntities(res.data.entities)
             }
 
             if (res.data.interactive) {
@@ -2408,18 +2437,27 @@ const autoFont = () => {
     if (!selectedShape.value || selectedShape.value.type !== 'text') return
     saveHistory();
     delete selectedShape.value.fontSize;
+    patch(selectedShape.value, {
+        fontSize: null
+    });
 }
 
 const biggerFont = () => {
     if (!selectedShape.value || selectedShape.value.type !== 'text') return
     saveHistory();
-    selectedShape.value.fontSize = (selectedShape.value.fontSize || 10) + 2
+    selectedShape.value.fontSize = (selectedShape.value.fontSize || 10) + 2;
+    patch(selectedShape.value, {
+        fontSize: selectedShape.value.fontSize
+    });
 }
 
 const smallerFont = () => {
     if (!selectedShape.value || selectedShape.value.type !== 'text') return
     saveHistory();
-    selectedShape.value.fontSize = (selectedShape.value.fontSize || 12) - 2
+    selectedShape.value.fontSize = (selectedShape.value.fontSize || 12) - 2;
+    patch(selectedShape.value, {
+        fontSize: selectedShape.value.fontSize
+    });
 }
 
 const openQQ = () => {

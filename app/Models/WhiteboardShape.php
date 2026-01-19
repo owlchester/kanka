@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Models\Concerns\Blameable;
+use App\Observers\WhiteboardShapeObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Concerns\HasTimestamps;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -27,6 +29,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Whiteboard $whiteboard
  * @property ?WhiteboardShape $group
  */
+#[ObservedBy(WhiteboardShapeObserver::class)]
 class WhiteboardShape extends Model
 {
     use Blameable;
@@ -41,16 +44,22 @@ class WhiteboardShape extends Model
         'y',
         'width',
         'height',
-        'scale_x',
-        'scale_y',
         'rotation',
         'is_locked',
         'z_index',
         'shape',
+        // Transistent ui data
+        'scale_x',
+        'scale_y',
     ];
 
 
     public $casts = [
+        'x' => 'float',
+        'y' => 'float',
+        'width' => 'float',
+        'height' => 'float',
+        'rotation' => 'float',
         'shape' => 'array',
     ];
 
@@ -62,5 +71,26 @@ class WhiteboardShape extends Model
     public function group(): BelongsTo
     {
         return $this->belongsTo(WhiteboardShape::class, 'id', 'group_id');
+    }
+
+    public function isRectangle(): bool
+    {
+        return $this->type === 'rect';
+    }
+    public function isCircle(): bool
+    {
+        return $this->type === 'circle';
+    }
+    public function isText(): bool
+    {
+        return $this->type === 'text';
+    }
+    public function isEntity(): bool
+    {
+        return $this->type === 'entity';
+    }
+    public function isImage(): bool
+    {
+        return $this->type === 'image';
     }
 }

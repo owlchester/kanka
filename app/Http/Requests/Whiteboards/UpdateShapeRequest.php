@@ -22,13 +22,14 @@ class UpdateShapeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'x' => '',
-            'y' => '',
-            'scale_x' => '',
-            'scale_y' => '',
-            'rotation' => '',
-            'width' => '',
-            'height' => '',
+            'group_id' => 'nullable|integer|exists:whiteboard_shapes,id',
+            'x' => 'numeric',
+            'y' => 'numeric',
+            'scale_x' => 'numeric',
+            'scale_y' => 'numeric',
+            'rotation' => 'numeric',
+            'width' => 'numeric',
+            'height' => 'numeric',
             'is_locked' => 'boolean',
             'z_index' => 'integer',
         ];

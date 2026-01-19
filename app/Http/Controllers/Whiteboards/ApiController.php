@@ -60,18 +60,25 @@ class ApiController extends Controller
         $this->authorize('view', $campaign);
         $this->authorize('update', $whiteboard->entity);
 
-        $whiteboardShape->update($request->only([
-            'x', 'y',
-            'width', 'height',
-            'scale_x', 'scale_y',
-            'rotation',
-            'is_locked',
-            'z_index',
-            'shape',
-        ]));
+        $this->persistanceService
+            ->whiteboard($whiteboard)
+            ->request($request)
+            ->shape($whiteboardShape)
+            ->save()
+        ;
 
         return response()->json([
             'success' => true,
         ]);
+    }
+
+    public function destroy(Campaign $campaign, Whiteboard $whiteboard, WhiteboardShape $whiteboardShape)
+    {
+        $this->authorize('view', $campaign);
+        $this->authorize('update', $whiteboard->entity);
+
+        $whiteboardShape->delete();
+
+        return response(null, 204);
     }
 }
