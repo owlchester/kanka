@@ -15,10 +15,4 @@ return [
         'description'           => 'Display a background image in the entity\'s header. For best results, use an image which is very large.',
         'title'                 => 'Header Image',
     ],
-    'tooltip'           => [
-        'boosted-description'   => 'Replace the automatically generated tooltip of the entity with a :boosted-campaign.',
-        'description'           => 'Replace the automatically generated tooltip of the entity with the following text.',
-        'helper'                => 'The following HTML elements are allowed in tooltips: :tags',
-        'name'                  => 'Tooltip',
-    ],
 ];
