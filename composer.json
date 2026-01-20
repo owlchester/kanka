@@ -29,6 +29,7 @@
         "laravel/framework": "^11.0",
         "laravel/pail": "^1.1",
         "laravel/passport": "^13.0",
+        "laravel/reverb": "^1.0",
         "laravel/scout": "^10.5",
         "laravel/socialite": "^5.0",
         "laravel/ui": "^4.6",

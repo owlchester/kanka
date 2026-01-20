@@ -28,6 +28,7 @@ services:
             - minio
             - meilisearch
             - mailpit
+#            - reverb
     mariadb:
         image: 'mariadb:11'
         ports:
@@ -150,6 +151,31 @@ services:
             test: ["CMD", "wget", "--no-verbose", "--spider",  "http://127.0.0.1:7700/health"]
             retries: 3
             timeout: 5s
+#    reverb:
+#        build:
+#            context: ./vendor/laravel/sail/runtimes/8.4
+#            dockerfile: Dockerfile
+#            args:
+#                WWWGROUP: "${WWWGROUP}"
+#        image: sail-8.4/app
+#        extra_hosts:
+#            - "host.docker.internal:host-gateway"
+#        ports:
+#            - "${REVERB_PORT:-8080}:8080"
+#        command: "php artisan reverb:start"
+#        environment:
+#            WWWUSER: "${WWWUSER}"
+#            LARAVEL_SAIL: 1
+#            XDEBUG_MODE: "${SAIL_XDEBUG_MODE:-off}"
+#            XDEBUG_CONFIG: "${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}"
+#            IGNITION_LOCAL_SITES_PATH: "${PWD}"
+#        volumes:
+#            - ".:/var/www/html"
+#        networks:
+#            - sail
+#        depends_on:
+#            - mariadb
+#            - redis
 networks:
     sail:
         name: sail

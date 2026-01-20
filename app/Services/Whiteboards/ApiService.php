@@ -196,14 +196,16 @@ class ApiService
 
     protected function interactive(): void
     {
-        $pusher = config('broadcasting.connections.pusher.key');
+        $pusher = config('broadcasting.connections.reverb.key');
         if (empty($pusher) || ! isset($this->user)) {
             return;
         }
 
         $this->data['interactive'] = [
             'key' => $pusher,
-            'cluster' => config('broadcasting.connections.pusher.options.cluster'),
+            'host' => config('broadcasting.connections.reverb.options.host'),
+            'port' => config('broadcasting.connections.reverb.options.port'),
+            'scheme' => config('broadcasting.connections.reverb.options.scheme'),
         ];
     }
 }

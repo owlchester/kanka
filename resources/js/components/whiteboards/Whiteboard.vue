@@ -2273,10 +2273,13 @@ const setupWebsockets = (data: any) => {
 
     // Create global Echo instance
     window.Echo = new Echo({
-        broadcaster: 'pusher',
+        broadcaster: 'reverb',
         key: data.key,
-        cluster: data.cluster,
-        forceTLS: true,
+        wsHost: data.host || window.location.hostname,
+        wsPort: data.port ?? 8080,
+        wssPort: data.port ?? 8080,
+        forceTLS: (data.scheme ?? 'https') === 'https',
+        enabledTransports: ['ws', 'wss'],
     });
 
     window.Echo.channel('kanka-whiteboard-' + props.whiteboard)

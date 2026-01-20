@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Tests;
 
 use App\Events\WhiteboardUpdated;
 use Illuminate\Console\Command;
