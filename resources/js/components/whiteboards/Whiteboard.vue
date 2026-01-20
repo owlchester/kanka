@@ -89,7 +89,7 @@
                             opacity: shape.opacity || 1
                         }"
                 />
-                <v-line v-if="shape.type === 'group'" v-for="line in shape.children"
+                <v-line v-if="shape.type === 'drawing'" v-for="line in shape.children"
                         :key="line.id"
                         :config="{
                             points: line.points,
@@ -553,7 +553,6 @@ const moving = ref(false);
 //Check if there are any unsaved changes.
 const isDirty = ref(false);
 let initialState = null;
-const hasLoaded = ref(false);
 
 // Toolbar refs and helpers
 const colorInput = ref<HTMLInputElement|null>(null);
@@ -596,12 +595,6 @@ const entityRefs = ref({})
 // Settings
 const settingsOpened = ref(false)
 
-//Ctrl+z/Ctrl+y stacks
-const undoStack: any[] = [];
-const redoStack: any[] = [];
-const drawUndoStack: string[] = [];
-const drawRedoStack: string[] = [];
-
 const settingsOpen = ref(false);
 const resetOpen = ref(false);
 
@@ -610,7 +603,7 @@ let hiddenClipboardEl: HTMLTextAreaElement | null = null;
 
 const persistShape = (shape) => {
     if (props.readonly || (shape.urls && shape.urls.edit)) {
-        return;
+        return Promise.resolve({ data: {  success: true, id: shape.id, urls: shape.urls } });
     };
 
     const payload = {
@@ -627,6 +620,7 @@ const persistShape = (shape) => {
         uuid: shape.uuid,
         entity_id: shape.entity,
         is_locked: shape.is_locked ? 1 : 0,
+        children: shape.children ?? [],
         // Add other fields as per your WhiteboardShape model
         shape: JSON.stringify(shape)
     };
@@ -705,11 +699,9 @@ const openResetDialog = () => {
 // Clears board and saves
 const confirmReset = () => {
     shapes.value = [];
-    saveWhiteboard();
 };
 
 const handleDragstart = (shape) => {
-    saveHistory();
     dragItemId.value = shape.id;
     shape.moving = true;
     moving.value = true;
@@ -936,7 +928,6 @@ const updateTransformer = (editingText: boolean = false) => {
 // Actions: delete, lock, color
 const deleteSelected = () => {
     if (!selectedIds.value.length) return;
-    saveHistory();
     // Remove all selected shapes from shapes array
     const idsToRemove = new Set(selectedIds.value);
     for (let i = shapes.value.length - 1; i >= 0; i--) {
@@ -966,8 +957,6 @@ const duplicateSelected = () => {
     const offset = 30;
     const newShapes = [];
 
-    saveHistory();
-
     // Duplicate each selected shape
     for (const id of selectedIds.value) {
         const shape = getShape(id);
@@ -975,8 +964,16 @@ const duplicateSelected = () => {
 
         const clone = JSON.parse(JSON.stringify(shape));
 
-        // Generate new unique ID
+        // Generate new unique ID and remove
         clone.id = tempID();
+        delete clone.urls;
+
+        // For drawings, we need to delete the strokes
+        if (clone.children && Array.isArray(clone.children)) {
+            clone.children.forEach(stroke => {
+                delete stroke.id;
+            });
+        }
 
         // Offset position
         if (typeof clone.x === 'number') clone.x += offset;
@@ -984,6 +981,7 @@ const duplicateSelected = () => {
 
         shapes.value.push(clone);
         newShapes.push(clone);
+
         persistShape(clone);
     }
 
@@ -1030,7 +1028,6 @@ const moveSelectedByArrowKey = (key: string) => {
     for (const id of selectedIds.value) {
         const shape = getShape(id);
         if (!shape || shape.is_locked) continue;
-        saveHistory();
         switch (key) {
             case 'ArrowUp':
                 shape.y = (shape.y ?? 0) - reposition;
@@ -1222,7 +1219,6 @@ const pasteFromClipboard = async () => {
         }
 
         if (!pasted.length) return;
-        saveHistory();
 
         shapes.value.push(...pasted);
         selectedIds.value = pasted.map(s => s.id);
@@ -1281,7 +1277,6 @@ const createEntityShape = (entity: any) => {
     const y = pointer?.y ?? stageNode.height() / 2;
 
     const id = tempID();
-    saveHistory();
 
     const newShape = {
         id: id,
@@ -1311,7 +1306,6 @@ const createEntityShape = (entity: any) => {
 
 const toggleLock = () => {
     if (!selectedIds.value.length) return;
-    saveHistory();
 
     selectedShapes.value.forEach(shape => {
         shape.is_locked = !shape.is_locked;
@@ -1337,14 +1331,12 @@ const onPickColor = (e: Event) => {
     const input = e.target as HTMLInputElement
     if (!input) return
     if (toolbarMode.value === 'drawing') {
-        saveHistory();
         tempGroup.value.fill = input.value
         currentColor.value = input.value
         currentBgColor.value = input.value
         return
     }
     if (selectedIds.value.length) {
-        saveHistory();
         selectedShapes.value.forEach(shape => {
             shape.fill = input.value;
             patch(shape, { fill: shape.fill });
@@ -1398,7 +1390,6 @@ const updateTextPreview = () => {
     if (editingTextId.value) {
         const shape = getShape(editingTextId.value);
         if (shape) {
-            saveHistory();
             shape.text = editingText.value;
         }
     }
@@ -1408,7 +1399,6 @@ const saveText = () => {
     if (editingTextId.value) {
         const shape = getShape(editingTextId.value);
         if (shape) {
-            saveHistory();
             shape.text = editingText.value;
             patch(shape, {
                 text: shape.text
@@ -1444,8 +1434,6 @@ const getTextColor = (shape) => {
 const toggleDrawing = () => {
     // Start
     if (toolbarMode.value !== 'drawing') {
-        drawUndoStack.length = 0;
-        drawRedoStack.length = 0;
         toolbarMode.value = 'drawing';
         return;
     }
@@ -1453,10 +1441,10 @@ const toggleDrawing = () => {
     // Finalize
     toolbarMode.value = 'select';
     if (tempGroup.value) {
-        // Measure visual bounds and normalize children points
+
         const stageNode = stage.value?.getNode();
         const node = stageNode?.findOne(`#temp-group-${tempGroup.value.id}`);
-        // console.log('on a le node', node);
+
         if (node) {
             const r = node.getClientRect();
 
@@ -1467,17 +1455,25 @@ const toggleDrawing = () => {
                 return { ...line, points: normalized };
             });
 
-            // Save group geometry
+            // Set final geometry
             tempGroup.value.x = r.x;
             tempGroup.value.y = r.y;
             tempGroup.value.width = r.width;
             tempGroup.value.height = r.height;
+
+            // Update the backend with the final bounds and normalized points
+            patch(tempGroup.value, {
+                x: tempGroup.value.x,
+                y: tempGroup.value.y,
+                width: tempGroup.value.width,
+                height: tempGroup.value.height,
+            });
         }
 
         tempGroup.value.moving = false;
         tempGroup.value.is_locked = false;
         tempGroup.value.draggable = true;
-        saveHistory();
+
         shapes.value.push(tempGroup.value);
         tempGroup.value = null;
     }
@@ -1539,29 +1535,33 @@ const handleMouseDown = (e) => {
     // If freehand drawing mode
     if (toolbarMode.value === 'drawing') {
         isDrawing.value = true;
-        drawRedoStack.length = 0;
 
         const pos = getPointerInLayerSpace();
         if (!pos) return;
 
-        if (!tempGroup.value) {
-            tempGroup.value = {
-                id: Date.now(),
-                type: "group",
-                children: [],
-                scaleX: 1,
-                scaleY: 1,
-            };
-        }
-
-        tempGroup.value.children.push({
-            id: Date.now() + "-lin",
-            type: "draw",
+        const strokeID = Date.now() + "-lin";
+        const strokeData = {
+            id: strokeID,
             points: [pos.x, pos.y],
             fill: currentColor.value,
             strokeWidth: strokeSize.value,
-            hitStrokeWidth: hitStrokeWidth.value,
-        });
+        }
+
+        if (!tempGroup.value) {
+            tempGroup.value = {
+                id: tempID(),
+                type: "drawing",
+                children: [strokeData],
+                scaleX: 1,
+                scaleY: 1,
+                x: 0,
+                y: 0,
+                width: 0,
+                height: 0,
+            };
+        } else {
+            tempGroup.value.children.push(strokeData);
+        }
         return;
     }
 
@@ -1709,15 +1709,32 @@ const draw = (e) => {
 const handleMouseUp = (e) => {
     // Finalize freehand drawing
     if (toolbarMode.value === 'drawing') {
-        //Record for undo
-        drawUndoStack.push(JSON.stringify(tempGroup.value.children));
-        if (drawUndoStack.length > 20) drawUndoStack.shift();
-        // new input invalidates redo for local stack
-        drawRedoStack.length = 0;
+        if (isDrawing.value) {
+            const lastStroke = tempGroup.value.children[tempGroup.value.children.length - 1];
 
-        // re-render
+            if (!tempGroup.value.persistencePromise && !tempGroup.value.urls?.stroke) {
+                tempGroup.value.persistencePromise = persistShape(tempGroup.value);
+            }
+            const parentReady = tempGroup.value.persistencePromise || Promise.resolve();
+
+            parentReady.then(() => {
+                // Send only the newest stroke to the API
+                axios.post(tempGroup.value.urls.stroke, {
+                    points: lastStroke.points,
+                    width: lastStroke.strokeWidth,
+                    fill: lastStroke.fill,
+                }).then(res => {
+                    if (res.data.success) {
+                        lastStroke.id = res.data.id;
+                    }
+                })
+                    .catch(() => {
+                        window.showToast(trans('error-saving-stroke'), 'error');
+                    });
+            });
+        }
+
         uiTick.value++;
-
         isDrawing.value = false;
         return;
     }
@@ -1739,10 +1756,8 @@ const handleMouseUp = (e) => {
                 locked: false,
                 moving: false,
             };
-            saveHistory();
 
             shapes.value.push(newRect);
-            console.log('new rectangle?', newRect);
             persistShape(newRect);
             uiTick.value++;
             nextTick(() => {
@@ -1775,7 +1790,6 @@ const handleMouseUp = (e) => {
                 locked: false,
                 moving: false,
             };
-            saveHistory();
 
             shapes.value.push(newText);
             persistShape(newText);
@@ -1804,7 +1818,6 @@ const handleMouseUp = (e) => {
                 locked: false,
                 moving: false,
             };
-            saveHistory();
 
             shapes.value.push(newCircle);
             persistShape(newCircle);
@@ -1827,20 +1840,20 @@ watch(toolbarMode, (isOn) => {
 });
 
 //Check for unsaved changes
-watch(
-    [shapes, name],
-    () => {
-        if (loading.value || !initialState) return;
-
-        const current = JSON.stringify({
-            shapes: shapes.value,
-            name: name.value,
-        });
-
-        isDirty.value = current !== JSON.stringify(initialState);
-    },
-    { deep: true }
-);
+// watch(
+//     [shapes, name],
+//     () => {
+//         if (loading.value || !initialState) return;
+//
+//         const current = JSON.stringify({
+//             shapes: shapes.value,
+//             name: name.value,
+//         });
+//
+//         isDirty.value = current !== JSON.stringify(initialState);
+//     },
+//     { deep: true }
+// );
 
 const tempID = () => {
     return  'local-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
@@ -1905,7 +1918,6 @@ const selectImage = (image) => {
     const offsetY = 50 / scaleY;
 
     const id = tempID();
-    saveHistory();
 
     const newShape = {
         id: id,
@@ -1961,7 +1973,6 @@ const selectEntity = (entity) => {
     const offsetY = 50 / scaleY;
 
     const id = tempID();
-    saveHistory();
 
     const newShape = {
         id: id,
@@ -1984,7 +1995,6 @@ const selectEntity = (entity) => {
 
 const resetRotation = () => {
     if (!selectedIds.value || !selectedIds.value.length) return;
-    saveHistory();
     selectedIds.value.forEach(id => {
         const shape = getShape(id);
         if (shape) {
@@ -2024,7 +2034,6 @@ const pushTo = (where: 'front' | 'back') => {
             shapes.value.splice(i, 1);
         }
     }
-    saveHistory();
     if (where === 'front') {
         // Append selected items in their original relative order -> top of canvas
         selectedItems.forEach(item => shapes.value.push(item));
@@ -2357,7 +2366,6 @@ const handleKeyDown = (e: KeyboardEvent) => {
     // Undo (Ctrl/Cmd+Z)
     if ((e.ctrlKey || e.metaKey) && !e.shiftKey && e.key.toLowerCase() === 'z') {
         e.preventDefault();
-        console.log('undo');
         if (toolbarMode.value === 'drawing') {
             undoStroke();
         } else {
@@ -2376,66 +2384,8 @@ const handleKeyDown = (e: KeyboardEvent) => {
     }
 };
 
-const undo = () => {
-  if (!undoStack.length) return;
-
-  const last = undoStack.pop();
-  redoStack.push(JSON.stringify(shapes.value)); // Save current for redo
-
-  const restored = JSON.parse(last);
-
-  // Replace contents without replacing ref
-  shapes.value.splice(0, shapes.value.length, ...restored);
-};
-
-const redo = () => {
-  if (!redoStack.length) return;
-
-  undoStack.push(JSON.stringify(shapes.value)); // Save current
-
-  const restored = JSON.parse(redoStack.pop());
-
-  shapes.value.splice(0, shapes.value.length, ...restored);
-};
-
-const undoStroke = () => {
-    console.log('undo stroke');
-  if (!tempGroup.value) return;
-    console.log('stroke exists');
-
-  if (drawUndoStack.length > 1) {
-    drawRedoStack.push(drawUndoStack.pop()!);
-    const prev = drawUndoStack[drawUndoStack.length - 1];
-    tempGroup.value.children = JSON.parse(prev);
-    uiTick.value++;
-    return;
-  }
-
-  if (drawUndoStack.length === 1) {
-    // go back to empty
-    drawRedoStack.push(drawUndoStack.pop()!);
-    tempGroup.value.children = [];
-    uiTick.value++;
-  }
-};
-
-const redoStroke = () => {
-  if (!tempGroup.value || !drawRedoStack.length) return;
-  const next = drawRedoStack.pop()!;
-  drawUndoStack.push(next);
-  tempGroup.value.children = JSON.parse(next);
-  uiTick.value++;
-};
-
-const saveHistory = () => {
-  undoStack.push(JSON.stringify(shapes.value));
-  if (undoStack.length > 20) undoStack.shift(); // keep last 20 snapshots
-  redoStack.length = 0; // clear redo history when doing a new action
-};
-
 const autoFont = () => {
     if (!selectedShape.value || selectedShape.value.type !== 'text') return
-    saveHistory();
     delete selectedShape.value.fontSize;
     patch(selectedShape.value, {
         fontSize: null
@@ -2444,7 +2394,6 @@ const autoFont = () => {
 
 const biggerFont = () => {
     if (!selectedShape.value || selectedShape.value.type !== 'text') return
-    saveHistory();
     selectedShape.value.fontSize = (selectedShape.value.fontSize || 10) + 2;
     patch(selectedShape.value, {
         fontSize: selectedShape.value.fontSize
@@ -2453,7 +2402,6 @@ const biggerFont = () => {
 
 const smallerFont = () => {
     if (!selectedShape.value || selectedShape.value.type !== 'text') return
-    saveHistory();
     selectedShape.value.fontSize = (selectedShape.value.fontSize || 12) - 2;
     patch(selectedShape.value, {
         fontSize: selectedShape.value.fontSize

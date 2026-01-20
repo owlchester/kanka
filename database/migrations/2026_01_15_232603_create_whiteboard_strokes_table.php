@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('shape_id')->cascadeOnDelete();
             $table->binary('points', 4294967295);
-            $table->unsignedInteger('color');
+            $table->string('color');
             $table->unsignedBigInteger('width');
             $table->timestamps();
         });

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Whiteboards;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Whiteboards\CreateStrokeRequest;
 use App\Http\Requests\Whiteboards\StoreShapeRequest;
 use App\Http\Requests\Whiteboards\UpdateShapeRequest;
 use App\Models\Campaign;
@@ -51,6 +52,7 @@ class ApiController extends Controller
             'urls' => [
                 'edit' => route('whiteboards.shapes.update', [$campaign, $whiteboard, $shape]),
                 'delete' => route('whiteboards.shapes.delete', [$campaign, $whiteboard, $shape]),
+                'stroke' => route('whiteboards.shapes.stroke', [$campaign, $whiteboard, $shape]),
             ]
         ]);
     }
@@ -80,5 +82,22 @@ class ApiController extends Controller
         $whiteboardShape->delete();
 
         return response(null, 204);
+    }
+
+    public function stroke(CreateStrokeRequest $request, Campaign $campaign, Whiteboard $whiteboard, WhiteboardShape $whiteboardShape)
+    {
+        $this->authorize('view', $campaign);
+        $this->authorize('update', $whiteboard->entity);
+
+        $stroke = $this->persistanceService
+            ->whiteboard($whiteboard)
+            ->request($request)
+            ->shape($whiteboardShape)
+            ->addStroke();
+
+        return response()->json([
+            'success' => true,
+            'id' => $stroke->id,
+        ]);
     }
 }

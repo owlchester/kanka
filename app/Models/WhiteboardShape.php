@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Concerns\HasTimestamps;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -24,10 +25,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $rotation
  * @property int $z_index
  * @property bool|int $is_locked
- * @property data $shape
+ * @property array $shape
  *
  * @property Whiteboard $whiteboard
  * @property ?WhiteboardShape $group
+ * @property WhiteboardStroke[]|Collection $strokes
  */
 #[ObservedBy(WhiteboardShapeObserver::class)]
 class WhiteboardShape extends Model
@@ -73,6 +75,11 @@ class WhiteboardShape extends Model
         return $this->belongsTo(WhiteboardShape::class, 'id', 'group_id');
     }
 
+    public function strokes(): HasMany
+    {
+        return $this->hasMany(WhiteboardStroke::class, 'shape_id');
+    }
+
     public function isRectangle(): bool
     {
         return $this->type === 'rect';
@@ -92,5 +99,9 @@ class WhiteboardShape extends Model
     public function isImage(): bool
     {
         return $this->type === 'image';
+    }
+    public function isDrawing(): bool
+    {
+        return $this->type === 'drawing';
     }
 }

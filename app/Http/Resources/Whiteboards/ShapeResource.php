@@ -42,6 +42,7 @@ class ShapeResource extends JsonResource
             'urls' => [
                 'edit' => route('whiteboards.shapes.update', [$campaign, $whiteboard, $shape]),
                 'delete' =>route('whiteboards.shapes.delete', [$campaign, $whiteboard, $shape]),
+                'stroke' => route('whiteboards.shapes.stroke', [$campaign, $whiteboard, $shape]),
             ]
         ];
 
@@ -58,7 +59,16 @@ class ShapeResource extends JsonResource
         if ($shape->isEntity()) {
             $data['entity'] = Arr::get($shape->shape, 'entity_id');
         }
+        if ($shape->isDrawing()) {
+            $data['children'] = StrokeResource::collection($shape->strokes);
+        }
 
         return $data;
     }
+
+    protected function strokes(): array
+    {
+
+    }
+
 }
