@@ -14,6 +14,7 @@ class PersistanceService
     use RequestAware;
 
     protected WhiteboardShape $shape;
+
     protected Whiteboard $whiteboard;
 
     protected array $fill;
@@ -21,6 +22,7 @@ class PersistanceService
     public function shape(WhiteboardShape $shape): self
     {
         $this->shape = $shape;
+
         return $this;
     }
 
@@ -38,6 +40,7 @@ class PersistanceService
         $this->cleanData();
         $this->shape->save();
         $this->points();
+
         return $this->shape;
     }
 
@@ -53,7 +56,7 @@ class PersistanceService
             'group_id',
             'rotation',
             'is_locked',
-            'z_index'
+            'z_index',
         ]);
         $this->shape->fill($data);
         $this->fillShape();
@@ -63,11 +66,11 @@ class PersistanceService
 
     public function addStroke(): ?WhiteboardStroke
     {
-        if (!$this->shape->isDrawing()) {
+        if (! $this->shape->isDrawing()) {
             return null;
         }
 
-        if (!$this->request->filled('points')) {
+        if (! $this->request->filled('points')) {
             return null;
         }
 
@@ -77,6 +80,7 @@ class PersistanceService
         $stroke->width = $this->request->get('strokeWidth', 1);
         $stroke->points = $this->pack($this->request->get('points'));
         $stroke->save();
+
         return $stroke;
     }
 
@@ -85,7 +89,6 @@ class PersistanceService
         $data = $this->request->except('shape');
         $this->shape->fill($data);
         $this->shape->shape = [];
-
 
         // Do the shape stuff
         $this->fillShape();
@@ -105,7 +108,7 @@ class PersistanceService
             $this->gallery();
         } elseif ($this->shape->isEntity()) {
             $this->entity()
-            ->colour();
+                ->colour();
         } elseif ($this->shape->isDrawing()) {
 
         }
@@ -117,6 +120,7 @@ class PersistanceService
         if ($this->request->filled('fill')) {
             $this->fill['fill'] = $this->request->get('fill');
         }
+
         return $this;
     }
 
@@ -128,6 +132,7 @@ class PersistanceService
         if ($this->request->filled('fontSize')) {
             $this->fill['fontSize'] = $this->request->get('fontSize');
         }
+
         return $this;
     }
 
@@ -136,6 +141,7 @@ class PersistanceService
         if ($this->request->filled('uuid')) {
             $this->fill['uuid'] = $this->request->get('uuid');
         }
+
         return $this;
     }
 
@@ -144,22 +150,23 @@ class PersistanceService
         if ($this->request->filled('entity_id')) {
             $this->fill['entity_id'] = $this->request->get('entity_id');
         }
+
         return $this;
     }
 
     protected function points(): void
     {
-        if (!$this->shape->isDrawing()) {
+        if (! $this->shape->isDrawing()) {
             return;
         }
 
-        if (!$this->request->filled('children')) {
+        if (! $this->request->filled('children')) {
             return;
         }
 
         $children = $this->request->get('children');
         foreach ($children as $data) {
-            $stroke = new WhiteboardStroke();
+            $stroke = new WhiteboardStroke;
             $stroke->shape_id = $this->shape->id;
             $stroke->color = Arr::get($data, 'fill', '#cccccc');
             $stroke->width = Arr::get($data, 'strokeWidth', 1);
@@ -181,7 +188,7 @@ class PersistanceService
         }
 
         for ($i = 0; $i < $count; $i += 2) {
-            $x = (int) round($points[$i]     * $scale);
+            $x = (int) round($points[$i] * $scale);
             $y = (int) round($points[$i + 1] * $scale);
 
             $bin .= pack('q', $x);

@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Whiteboards;
 
-use App\Models\WhiteboardShape;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreShapeRequest extends FormRequest

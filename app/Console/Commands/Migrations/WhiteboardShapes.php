@@ -5,9 +5,9 @@ namespace App\Console\Commands\Migrations;
 use App\Models\Whiteboard;
 use App\Models\WhiteboardShape;
 use App\Models\WhiteboardStroke;
-use InvalidArgumentException;
 use Illuminate\Console\Command;
 use Illuminate\Support\Arr;
+use InvalidArgumentException;
 
 class WhiteboardShapes extends Command
 {
@@ -38,6 +38,7 @@ class WhiteboardShapes extends Command
             foreach ($whiteboard->data as $json) {
                 if (! $this->validShape($json)) {
                     $this->warn('Invalid shape');
+
                     continue;
                 }
                 try {
@@ -84,22 +85,20 @@ class WhiteboardShapes extends Command
                 'fill' => Arr::get($json, 'fill'),
                 'fontSize' => Arr::get($json, 'fontSize'),
             ];
-        }
-        elseif ($json['type'] === 'image') {
+        } elseif ($json['type'] === 'image') {
             return [
                 'uuid' => $json['uuid'],
             ];
-        }
-        elseif ($json['type'] === 'entity') {
+        } elseif ($json['type'] === 'entity') {
             return [
                 'entity' => $json['entity'],
             ];
-        }
-        elseif ($json['type'] === 'rect') {
+        } elseif ($json['type'] === 'rect') {
             return [
                 'fill' => Arr::get($json, $json['fill']),
             ];
         }
+
         return [
 
         ];
@@ -107,7 +106,7 @@ class WhiteboardShapes extends Command
 
     protected function validShape($json): bool
     {
-        return Arr::has($json, ['width', 'height', 'x', 'y']) && !empty($json['width']) && !empty($json['height']);
+        return Arr::has($json, ['width', 'height', 'x', 'y']) && ! empty($json['width']) && ! empty($json['height']);
     }
 
     protected function draw(WhiteboardShape $shape, array $json)
@@ -142,10 +141,10 @@ class WhiteboardShapes extends Command
                 throw new InvalidArgumentException("Invalid HEX color: $color");
             }
 
-            return (($r & 0xff) << 24)
-                | (($g & 0xff) << 16)
-                | (($b & 0xff) << 8)
-                | ($alpha & 0xff);
+            return (($r & 0xFF) << 24)
+                | (($g & 0xFF) << 16)
+                | (($b & 0xFF) << 8)
+                | ($alpha & 0xFF);
         }
 
         // HSL: hsl(h, s%, l%)
@@ -162,7 +161,7 @@ class WhiteboardShapes extends Command
         // hsl(233, 27%, 13%)
         // hsl(233 27% 13%)
         // hsl(233 27% 13% / 0.5)
-        if (!preg_match(
+        if (! preg_match(
             '/hsl\(\s*([\d.]+)(?:deg)?[\s,]+([\d.]+)%[\s,]+([\d.]+)%(?:\s*\/\s*([\d.]+))?\s*\)/i',
             $hsl,
             $m
@@ -170,8 +169,7 @@ class WhiteboardShapes extends Command
             throw new InvalidArgumentException("Invalid HSL: $hsl");
         }
 
-
-        [$h, $s, $l] = [(float)$m[1], (float)$m[2] / 100, (float)$m[3] / 100];
+        [$h, $s, $l] = [(float) $m[1], (float) $m[2] / 100, (float) $m[3] / 100];
         $h = fmod($h, 360) / 360;
 
         if ($s == 0) {
@@ -180,28 +178,39 @@ class WhiteboardShapes extends Command
             $q = $l < 0.5 ? $l * (1 + $s) : $l + $s - $l * $s;
             $p = 2 * $l - $q;
 
-            $r = $this->hueToRgb($p, $q, $h + 1/3);
+            $r = $this->hueToRgb($p, $q, $h + 1 / 3);
             $g = $this->hueToRgb($p, $q, $h);
-            $b = $this->hueToRgb($p, $q, $h - 1/3);
+            $b = $this->hueToRgb($p, $q, $h - 1 / 3);
         }
 
-        $ri = (int)round($r * 255);
-        $gi = (int)round($g * 255);
-        $bi = (int)round($b * 255);
+        $ri = (int) round($r * 255);
+        $gi = (int) round($g * 255);
+        $bi = (int) round($b * 255);
 
-        return (($ri & 0xff) << 24)
-            | (($gi & 0xff) << 16)
-            | (($bi & 0xff) << 8)
-            | ($alpha & 0xff);
+        return (($ri & 0xFF) << 24)
+            | (($gi & 0xFF) << 16)
+            | (($bi & 0xFF) << 8)
+            | ($alpha & 0xFF);
     }
 
     protected function hueToRgb(float $p, float $q, float $t): float
     {
-        if ($t < 0) $t += 1;
-        if ($t > 1) $t -= 1;
-        if ($t < 1/6) return $p + ($q - $p) * 6 * $t;
-        if ($t < 1/2) return $q;
-        if ($t < 2/3) return $p + ($q - $p) * (2/3 - $t) * 6;
+        if ($t < 0) {
+            $t += 1;
+        }
+        if ($t > 1) {
+            $t -= 1;
+        }
+        if ($t < 1 / 6) {
+            return $p + ($q - $p) * 6 * $t;
+        }
+        if ($t < 1 / 2) {
+            return $q;
+        }
+        if ($t < 2 / 3) {
+            return $p + ($q - $p) * (2 / 3 - $t) * 6;
+        }
+
         return $p;
     }
 
@@ -215,7 +224,7 @@ class WhiteboardShapes extends Command
         }
 
         for ($i = 0; $i < $count; $i += 2) {
-            $x = (int) round($points[$i]     * $scale);
+            $x = (int) round($points[$i] * $scale);
             $y = (int) round($points[$i + 1] * $scale);
 
             $bin .= pack('q', $x);

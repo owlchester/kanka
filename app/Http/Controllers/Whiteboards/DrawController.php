@@ -13,7 +13,6 @@ class DrawController extends Controller
     use CampaignAware;
     use GuestAuthTrait;
 
-
     public function show(Campaign $campaign, Whiteboard $whiteboard)
     {
         $this->campaign($campaign)->authEntityView($whiteboard->entity);

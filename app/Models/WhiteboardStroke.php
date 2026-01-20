@@ -29,7 +29,8 @@ class WhiteboardStroke extends Model
     {
         return $this->belongsTo(WhiteboardShape::class);
     }
-    function unpack(int $scale = 1000): array
+
+    public function unpack(int $scale = 1000): array
     {
         $points = [];
         $len = strlen($this->points);
