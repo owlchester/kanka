@@ -21,7 +21,7 @@ class ShapeResource extends JsonResource
     public function toArray(Request $request): array
     {
         /** @var WhiteboardShape $shape */
-        $shape = $this;
+        $shape = $this->resource;
         $campaign = $shape->whiteboard->campaign;
         $whiteboard = $shape->whiteboard;
 
@@ -63,6 +63,4 @@ class ShapeResource extends JsonResource
 
         return $data;
     }
-
-    protected function strokes(): array {}
 }
