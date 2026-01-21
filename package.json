@@ -20,6 +20,7 @@
     "dependencies": {
         "@coddicat/vue-pinch-scroll-zoom": "^4.3.5",
         "@fontsource-variable/roboto": "^5.2.9",
+        "@laravel/echo-vue": "^2.3.0",
         "@melloware/coloris": "^0.22.0",
         "@syncfusion/ej2-vue-grids": "^24.2.7",
         "@tailwindcss/vite": "^4.1.17",

@@ -201,6 +201,10 @@ class ApiService
             return;
         }
 
+        if (!$this->user->can('update', $this->whiteboard->entity)) {
+            return;
+        }
+
         $this->data['interactive'] = [
             'key' => $pusher,
             'host' => config('broadcasting.connections.reverb.options.host'),

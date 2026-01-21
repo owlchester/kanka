@@ -228,6 +228,11 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
+"@laravel/echo-vue@^2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@laravel/echo-vue/-/echo-vue-2.3.0.tgz#07549fba092ea761d12d37248cc11d578b628c62"
+  integrity sha512-IWHFrRw1A7OE7rwB2q2ZqsuBjeI4HGUzaRSxBzPzkx8cKq0ten8/1jN6v3jg+Xe2dLGKYQXQoMNj9xbJxV4gbA==
+
 "@melloware/coloris@^0.22.0":
   version "0.22.0"
   resolved "https://registry.yarnpkg.com/@melloware/coloris/-/coloris-0.22.0.tgz#917fc64a38d951f10dd707996d305fdf166c5fc3"

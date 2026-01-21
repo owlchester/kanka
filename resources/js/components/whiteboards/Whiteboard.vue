@@ -39,6 +39,18 @@
                 <span class="grow hidden sm:inline-block" v-html="trans('create')"></span>
                 <span class="flex-none keyboard-shortcut" id="qq-kb-shortcut" data-toggle="tooltip" :data-title="trans('qq-keyboard-shortcut')" data-html="true" data-placement="bottom" >N</span>
             </a>
+
+
+        </div>
+        <div class="flex gap-1 overflow-hidden">
+            <a v-for="user in activeUsers" :key="user.id"
+               :href="user.profile"
+               class="bg-base-200 text-neutral-content rounded-full h-8 w-8 overflow-hidden flex items-center justify-center cursor-pointer" :title="user.name">
+                <img :src="user.image" v-if="user.image" class="w-8 h-8">
+                <span v-else>
+                        {{ user.name.substring(0, 2).toUpperCase() }}
+                    </span>
+            </a>
         </div>
     </div>
 
@@ -510,6 +522,7 @@ import Settings from "./Settings.vue";
 import Reset from './Reset.vue';
 import Echo from 'laravel-echo';
 import Pusher from 'pusher-js';
+import { configureEcho, useEcho, useEchoPresence } from "@laravel/echo-vue"
 
 const props = defineProps<{
     save: string,
@@ -597,6 +610,10 @@ const settingsOpened = ref(false)
 
 const settingsOpen = ref(false);
 const resetOpen = ref(false);
+
+// Present users
+let channel
+const activeUsers = ref([]);
 
 // Hidden clipboard fallback element (used for dev)
 let hiddenClipboardEl: HTMLTextAreaElement | null = null;
@@ -2253,6 +2270,9 @@ onMounted(() => {
     onBeforeUnmount(() => {
         window.removeEventListener('beforeunload', handleBeforeUnload);
         cleanupBeforeUnmount();
+        if (echo) {
+            echo.leave(`whiteboard.${props.whiteboard}`)
+        }
     });
 
 })
@@ -2267,26 +2287,31 @@ const handleClick = (e: MouseEvent) => {
 
 const setupWebsockets = (data: any) => {
 
-    console.log('setup websockets', data);
-    // Make Pusher global for Echo
-    window.Pusher = Pusher;
-
-    // Create global Echo instance
-    window.Echo = new Echo({
+    configureEcho({
+        broadcaster: 'reverb'
+    })
+    const echo = new Echo({
         broadcaster: 'reverb',
         key: data.key,
-        wsHost: data.host || window.location.hostname,
-        wsPort: data.port ?? 8080,
-        wssPort: data.port ?? 8080,
-        forceTLS: (data.scheme ?? 'https') === 'https',
+        wsHost: data.host,
+        wsPort: data.port,
+        wssPort: data.port,
+        forceTLS: data.schema == 'https',
         enabledTransports: ['ws', 'wss'],
     });
 
-    window.Echo.channel('kanka-whiteboard-' + props.whiteboard)
-        .listen('.WhiteboardUpdated', (e) => {
-            console.log('Whiteboard event', e);
-            alert('Websocket');
-        });
+    channel = echo.join(`whiteboard.${props.whiteboard}`);
+
+    channel.here((users) => {
+        activeUsers.value = users
+    })
+    channel.joining((user) => {
+        activeUsers.value.push(user)
+    })
+    channel.leaving((user) => {
+        activeUsers.value = activeUsers.value.filter(u => u.id !== user.id)
+    })
+
 }
 
 // Keyboard handler: delete selected shape when Delete key pressed
