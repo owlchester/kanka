@@ -23,16 +23,17 @@
         @click="handleClick"
         @mouseenter="handleMouseEnter"
         @mouseleave="handleMouseLeave"
-        :config="{
+        :config="
+{
             x: 0,
             y: shape.height,
             width: shape.width,
             height: nameHeight,
-            text: shape.name || '',
+            text: entity.name || 'Unknown untity',
             padding: 6,
             fontSize: 14,
             fontFamily: shape.fontFamily || 'Arial',
-            fill: shape.fill,
+            fill: shape.fill || cssVariable('--bc'),
             align: 'center',
             verticalAlign: 'middle',
             draggable: false,
@@ -43,16 +44,18 @@
 </template>
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import { hslFromVar, readCssVar, hslString, tweakHsl } from '../../utility/colours';
+import { cssVariable } from '../../utility/colours';
 
 const radius = ref(2);
 const nameHeight = ref(26);
+
 
 const props = defineProps<{
     shape: any,
     // function that receives shape and returns HTMLImageElement|null
     getImageEl: (shape: any) => HTMLImageElement | null,
     // function that opens entity link, receives shape
+    entity: any
 }>();
 
 const imageEl = computed(() => {
@@ -62,12 +65,12 @@ const imageEl = computed(() => {
 
 
 const handleClick = (e: Event) => {
-    if (!props.shape || !props.shape.link) return;
+    if (!props.entity?.link) return;
     try {
-        window.open(props.shape.link, '_blank', 'noopener');
+        window.open(props.entity.link, '_blank', 'noopener');
     } catch (e) {
         // Fallback: set location
-        window.location.href = props.shape.link;
+        window.location.href = props.entity.link;
     }
 }
 
@@ -92,13 +95,6 @@ const handleMouseLeave = (e: any) => {
         // ignore
     }
 };
-
-
-const cssVariable = (variable: string) => {
-    const base = hslFromVar(variable);
-    if (!base) return `hsl(${readCssVar('--p')})`;
-    return hslString(base);
-}
 
 
 </script>

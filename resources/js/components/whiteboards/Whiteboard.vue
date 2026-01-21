@@ -40,17 +40,6 @@
                 <span class="flex-none keyboard-shortcut" id="qq-kb-shortcut" data-toggle="tooltip" :data-title="trans('qq-keyboard-shortcut')" data-html="true" data-placement="bottom" >N</span>
             </a>
         </div>
-
-        <div class="actions flex items-center" v-if="!props.readonly">
-            <button
-                class="btn2 btn-sm btn-primary join-item"
-                :class="{ 'btn-disabled': saving }"
-                @click="saveWhiteboard">
-                <i class="fa-regular fa-save" aria-hidden="true" v-if="!saving" />
-                <i class="fa-solid fa-spinner fa-spin" aria-hidden="true" v-else />
-                <span v-html="trans('save')"></span>
-            </button>
-        </div>
     </div>
 
     <v-stage v-if="!loading"
@@ -68,7 +57,7 @@
                 :key="shape.id"
                 :config="{
                     id: `group-${shape.id}`,
-                    draggable: !shape.locked,
+                    draggable: !shape.is_locked,
                     x: shape.x,
                     y: shape.y,
                     scaleX: shape.scaleX || 1,
@@ -82,7 +71,8 @@
             >
                 <v-rect v-if="shape.type==='rect'"
                         :config="{
-                            x: 0, y: 0,
+                            x: 0,
+                            y: 0,
                             width: shape.width,
                             height: shape.height,
                             fill: shape.fill || 'lightblue',
@@ -99,7 +89,7 @@
                             opacity: shape.opacity || 1
                         }"
                 />
-                <v-line v-if="shape.type === 'group'" v-for="line in shape.children"
+                <v-line v-if="shape.type === 'drawing'" v-for="line in shape.children"
                         :key="line.id"
                         :config="{
                             points: line.points,
@@ -121,35 +111,38 @@
                          }" />
 
 
-                <Entity v-if="shape.type === 'entity'"
-                        :shape="shape"
-                        :get-image-el="getImageEl">
+                <Entity
+                    v-if="shape.type === 'entity'"
+                    :shape="shape"
+                    :entity="entityRefs[shape.entity] || {}"
+                    :get-image-el="getImageEl">
                 </Entity>
 
 
-                <v-text v-if="shape.type === 'text' && (!editingTextId || editingTextId !== shape.id)"
-                        :config="{
-                            x: getTextPadding(shape),
-                            y: getTextPadding(shape),
-                            width: shape.width - (getTextPadding(shape) * 2),
-                            height: shape.height - (getTextPadding(shape) * 2),
-                            opacity: shape.opacity || 1,
-                            text: shape.text,
-                            fontSize: getTextSize(shape),
-                            fontFamily: shape.fontFamily || 'Arial',
-                            fill: getTextColor(shape),
-                            align: 'center',
-                            verticalAlign: 'middle',
-                            wrap: 'word',
-                        }"
+                <v-text
+                    v-if="shape.type === 'text' && (!editingTextId || editingTextId !== shape.id)"
+                    :config="{
+                        x: getTextPadding(shape),
+                        y: getTextPadding(shape),
+                        width: shape.width - (getTextPadding(shape) * 2),
+                        height: shape.height - (getTextPadding(shape) * 2),
+                        opacity: shape.opacity || 1,
+                        text: shape.text,
+                        fontSize: getTextSize(shape),
+                        fontFamily: shape.fontFamily || 'Arial',
+                        fill: getTextColor(shape),
+                        align: 'center',
+                        verticalAlign: 'middle',
+                        wrap: 'word',
+                    }"
                 />
 
                 <!-- Selection outline overlays (pointerEvents disabled so they don't block clicks) -->
                 <v-rect
                     v-if="isSelected(shape.id) && selectedIds.length > 1 && shape.type !== 'circle'"
                     :config="{
-                            x: 0,
-                            y: 0,
+                            x: shape.x,
+                            y: shape.y,
                             width: shape.width,
                             height: shape.height,
                             stroke: cssVariable('--p'),
@@ -299,12 +292,12 @@
             <div class="join">
                 <button
                     class="btn2 btn-sm join-item"
-                    :class="selectedShape.locked ? 'btn-warning' : ''"
-                    :title="selectedShape.locked ? trans('unlock') : trans('lock')"
+                    :class="selectedShape.is_locked ? 'btn-warning' : ''"
+                    :title="selectedShape.is_locked ? trans('unlock') : trans('lock')"
                     @click.stop="toggleLock"
                 >
-                    <i class="fa-regular" :class="selectedShape.locked ? 'fa-lock' : 'fa-lock-open'" aria-hidden="true"></i>
-                    <span class="sr-only">{{ selectedShape.locked ? trans('unlock') : trans('lock') }}</span>
+                    <i class="fa-regular" :class="selectedShape.is_locked ? 'fa-lock' : 'fa-lock-open'" aria-hidden="true"></i>
+                    <span class="sr-only">{{ selectedShape.is_locked ? trans('unlock') : trans('lock') }}</span>
                 </button>
 
                 <button
@@ -468,7 +461,6 @@
         type="color"
         class="hidden"
         :value="currentColor"
-        @input="onPickColor"
         @change="onPickColor"
     />
 
@@ -520,14 +512,14 @@ import Echo from 'laravel-echo';
 import Pusher from 'pusher-js';
 
 const props = defineProps<{
-    save: String,
-    load: String,
-    gallery: String,
-    search: String,
+    save: string,
+    load: string,
+    gallery: string,
+    search: string,
     readonly: Boolean,
     creator: Boolean,
-    entity: String,
-    whiteboard: String,
+    entity: string,
+    whiteboard: number,
     user: Boolean,
 }>()
 
@@ -546,7 +538,6 @@ const urls = ref(null);
 const toolbarMode = ref('select')
 
 // Saving
-const saving = ref(false);
 const loading = ref(true);
 const savingUrl = ref()
 
@@ -562,18 +553,17 @@ const moving = ref(false);
 //Check if there are any unsaved changes.
 const isDirty = ref(false);
 let initialState = null;
-const hasLoaded = ref(false);
 
 // Toolbar refs and helpers
 const colorInput = ref<HTMLInputElement|null>(null);
 const selectedShape = computed(() => {
     // If multiple selected, prefer the primary selectedId for single-shape UI.
     if (selectedId.value) {
-        return shapes.value.find(s => s.id === selectedId.value) || null;
+        return getShape(selectedId.value);
     }
     // fallback to first of selectedIds when primary isn't set
     if (selectedIds.value.length > 0) {
-        return shapes.value.find(s => s.id === selectedIds.value[0]) || null;
+        return getShape(selectedIds.value[0]);
     }
     return null;
 });
@@ -599,20 +589,63 @@ const imageRefs = ref({})
 // Search
 const searchOpened = ref(false)
 
+// Entities
+const entityRefs = ref({})
+
 // Settings
 const settingsOpened = ref(false)
-
-//Ctrl+z/Ctrl+y stacks
-const undoStack: any[] = [];
-const redoStack: any[] = [];
-const drawUndoStack: string[] = [];
-const drawRedoStack: string[] = [];
 
 const settingsOpen = ref(false);
 const resetOpen = ref(false);
 
 // Hidden clipboard fallback element (used for dev)
 let hiddenClipboardEl: HTMLTextAreaElement | null = null;
+
+const persistShape = (shape) => {
+    if (props.readonly || (shape.urls && shape.urls.edit)) {
+        return Promise.resolve({ data: {  success: true, id: shape.id, urls: shape.urls } });
+    };
+
+    const payload = {
+        type: shape.type,
+        x: shape.x,
+        y: shape.y,
+        width: shape.width,
+        height: shape.height,
+        scale_x: shape.scaleX,
+        scale_y: shape.scaleY,
+        rotation: shape.rotation,
+        fill: shape.fill,
+        text: shape.text,
+        uuid: shape.uuid,
+        entity_id: shape.entity,
+        is_locked: shape.is_locked ? 1 : 0,
+        children: shape.children ?? [],
+        // Add other fields as per your WhiteboardShape model
+        shape: JSON.stringify(shape)
+    };
+
+    axios.put(props.save, payload)
+        .then(res => {
+            if (res.data.success) {
+                const oldId = shape.id;
+                shape.id = res.data.id;
+                shape.urls = res.data.urls;
+
+                // Manually update the Konva node ID if it exists
+                const stageNode = stage.value?.getNode();
+                const groupNode = stageNode?.findOne(`#group-${oldId}`);
+                if (groupNode) {
+                    groupNode.id(`group-${shape.id}`);
+                }
+
+                uiTick.value++;
+            }
+        })
+        .catch(err => {
+            window.showToast(trans('error-saving-shape'), 'error');
+        });
+}
 
 // Reactive input style that updates automatically
 const inputStyle = computed(() => {
@@ -621,7 +654,7 @@ const inputStyle = computed(() => {
 
     if (!editingTextId.value) return {};
 
-    const shape = shapes.value.find(s => s.id === editingTextId.value);
+    const shape = getShape(editingTextId.value);
     if (!shape) return {};
 
     const stageNode = stage.value?.getNode();
@@ -666,11 +699,9 @@ const openResetDialog = () => {
 // Clears board and saves
 const confirmReset = () => {
     shapes.value = [];
-    saveWhiteboard();
 };
 
 const handleDragstart = (shape) => {
-    saveHistory();
     dragItemId.value = shape.id;
     shape.moving = true;
     moving.value = true;
@@ -695,6 +726,12 @@ const handleDragend = (e, shape) => {
     };
     shape.x = pos.x;
     shape.y = pos.y;
+
+    // If the shape has an update URL, save its new position
+    patch(shape, {
+        x: shape.x,
+        y: shape.y
+    })
 };
 
 const handleDragmove = () => {
@@ -747,18 +784,44 @@ const setupTransformerEvents = () => {
             const match = gid && gid.toString().match(/^group-(.+)$/);
             if (!match) return;
             const sid = match[1];
-            const shape = shapes.value.find(s => s.id === sid);
+            const shape = getShape(sid);
             if (!shape) return;
 
             const scaleX = group.scaleX() || 1;
             const scaleY = group.scaleY() || 1;
 
             // Persist transforms/position/rotation
-            shape.scaleX = scaleX;
-            shape.scaleY = scaleY;
+            if (shape.type === 'circle') {
+                // For circles, we normalize the radius based on scale
+                // Since keepRatio is true, we can just use scaleX
+                shape.radius = (shape.radius || (shape.width / 2)) * scaleX;
+                shape.width = shape.radius * 2;
+                shape.height = shape.radius * 2;
+            } else {
+                shape.width = (shape.width || 0) * scaleX;
+                shape.height = (shape.height || 0) * scaleY;
+            }
+
+            shape.scaleX = 1;
+            shape.scaleY = 1;
             shape.rotation = group.rotation() || 0;
             shape.x = group.x();
             shape.y = group.y();
+
+            // Reset the node scale so it doesn't double-up visually
+            group.scaleX(1);
+            group.scaleY(1);
+
+            // Persist changes if URL exists
+            patch(shape, {
+                x: shape.x,
+                y: shape.y,
+                width: shape.width,
+                height: shape.height,
+                scale_x: 1,
+                scale_y: 1,
+                rotation: shape.rotation
+            })
         });
 
         // Force redraw and update overlays
@@ -767,13 +830,15 @@ const setupTransformerEvents = () => {
     });
 };
 
+
 const selectShape = (shape, event?: MouseEvent) => {
     // Don't do any selection while in drawing mode to avoid confusion
     if (toolbarMode.value === 'drawing') {
         return;
     }
+    toolbarMode.value = 'select';
 
-    // If clicking a second time on a text, edit the text
+        // If clicking a second time on a text, edit the text
     let editingText = false;
     if (shape.text && selectedId.value === shape.id) {
         editText(shape)
@@ -846,8 +911,8 @@ const updateTransformer = (editingText: boolean = false) => {
 
     // If any of selected shapes are locked or editing text -> disable transformer
     const anyLocked = selectedIds.value.some(id => {
-        const s = shapes.value.find(x => x.id === id);
-        return s && s.locked;
+        const s = getShape(id);
+        return s && s.is_locked;
     });
     if (anyLocked || editingText) {
         transformerNode.nodes([]);
@@ -863,11 +928,15 @@ const updateTransformer = (editingText: boolean = false) => {
 // Actions: delete, lock, color
 const deleteSelected = () => {
     if (!selectedIds.value.length) return;
-    saveHistory();
     // Remove all selected shapes from shapes array
     const idsToRemove = new Set(selectedIds.value);
     for (let i = shapes.value.length - 1; i >= 0; i--) {
-        if (idsToRemove.has(shapes.value[i].id)) {
+        const shape = shapes.value[i];
+        if (idsToRemove.has(shape.id)) {
+            // If the shape is persisted, call the delete API
+            if (shape.urls?.delete) {
+                axios.delete(shape.urls.delete);
+            }
             shapes.value.splice(i, 1);
         }
     }
@@ -888,17 +957,23 @@ const duplicateSelected = () => {
     const offset = 30;
     const newShapes = [];
 
-    saveHistory();
-
     // Duplicate each selected shape
     for (const id of selectedIds.value) {
-        const shape = shapes.value.find(s => s.id === id);
+        const shape = getShape(id);
         if (!shape) continue;
 
         const clone = JSON.parse(JSON.stringify(shape));
 
-        // Generate new unique ID
-        clone.id = Math.round(Math.random() * 10000).toString();
+        // Generate new unique ID and remove
+        clone.id = tempID();
+        delete clone.urls;
+
+        // For drawings, we need to delete the strokes
+        if (clone.children && Array.isArray(clone.children)) {
+            clone.children.forEach(stroke => {
+                delete stroke.id;
+            });
+        }
 
         // Offset position
         if (typeof clone.x === 'number') clone.x += offset;
@@ -906,6 +981,8 @@ const duplicateSelected = () => {
 
         shapes.value.push(clone);
         newShapes.push(clone);
+
+        persistShape(clone);
     }
 
     // Update selection to new clones
@@ -949,9 +1026,8 @@ const moveSelectedByArrowKey = (key: string) => {
     const reposition = 10;
 
     for (const id of selectedIds.value) {
-        const shape = shapes.value.find(s => s.id === id);
-        if (!shape || shape.locked) continue;
-        saveHistory();
+        const shape = getShape(id);
+        if (!shape || shape.is_locked) continue;
         switch (key) {
             case 'ArrowUp':
                 shape.y = (shape.y ?? 0) - reposition;
@@ -1009,11 +1085,15 @@ const ensureHiddenClipboard = () => {
     return hiddenClipboardEl;
 };
 
+const selectedShapes = computed(() => {
+    return shapes.value.filter(s => selectedIds.value.includes(s.id));
+});
+
 const copySelectedToClipboard = () => {
     try {
         if (!selectedIds.value.length) return;
 
-        const selectedShapes = shapes.value.filter(s => selectedIds.value.includes(s.id));
+        const selectedShapes = selectedShapes();
         const json = JSON.stringify(selectedShapes);
 
         const isSecure = window.isSecureContext && navigator.clipboard;
@@ -1123,7 +1203,7 @@ const pasteFromClipboard = async () => {
 
                 pasted = copiedShapes.map(shape => {
                     const newShape = { ...shape };
-                    newShape.id = Math.round(Math.random() * 10000).toString();
+                    newShape.id = tempID();
 
                     if (typeof newShape.x === 'number') newShape.x += offsetX;
                     if (typeof newShape.y === 'number') newShape.y += offsetY;
@@ -1139,7 +1219,6 @@ const pasteFromClipboard = async () => {
         }
 
         if (!pasted.length) return;
-        saveHistory();
 
         shapes.value.push(...pasted);
         selectedIds.value = pasted.map(s => s.id);
@@ -1169,7 +1248,7 @@ const createTextShapeFromClipboard = (textValue: string) => {
     const y = pointer?.y ?? stageNode.height() / 2;
 
     return {
-        id: Math.round(Math.random() * 10000).toString(),
+        id: tempID(),
         type: 'text',
         x: x,
         y: y,
@@ -1187,8 +1266,7 @@ const createTextShapeFromClipboard = (textValue: string) => {
 };
 
 const createEntityShape = (entity: any) => {
-    const [imageNode] = useImage(entity.image_thumb, 'anonymous');
-    imageRefs.value[entity.id] = imageNode;
+    loadImage(entity.image_thumb, entity.id);
 
     const stageNode = stage.value?.getNode?.();
     if (!stageNode) return;
@@ -1198,10 +1276,9 @@ const createEntityShape = (entity: any) => {
     const x = pointer?.x ?? stageNode.width() / 2;
     const y = pointer?.y ?? stageNode.height() / 2;
 
-    const id = Math.round(Math.random() * 10000).toString();
-    saveHistory();
+    const id = tempID();
 
-    shapes.value.push({
+    const newShape = {
         id: id,
         type: "entity",
         x: x,
@@ -1211,28 +1288,40 @@ const createEntityShape = (entity: any) => {
         scaleX: 1,
         scaleY: 1,
         entity: entity.id,
-        name: entity.name,
-        link: entity.urls.view,
         fill: currentColor.value,
         locked: false,
         moving: false,
-    });
+    };
+
+    shapes.value.push(newShape);
+    persistShape(newShape);
 
     // Select the newly added entity
     selectedIds.value = [id];
     selectedId.value = id;
     updateTransformer();
+
     uiTick.value++;
 };
 
 const toggleLock = () => {
-    const s = selectedShape.value;
-    if (!s) return;
-    saveHistory();
-    s.locked = !s.locked;
+    if (!selectedIds.value.length) return;
+
+    selectedShapes.value.forEach(shape => {
+        shape.is_locked = !shape.is_locked;
+        patch(shape, { is_locked: shape.is_locked });
+    });
     updateTransformer();
     uiTick.value++;
 };
+
+const patch = (shape: any, fields: object) => {
+    if (!shape.urls?.edit) {
+        return;
+    }
+    axios.patch(shape.urls.edit, fields);
+
+}
 
 const openColorPicker = () => {
     colorInput.value?.click();
@@ -1242,17 +1331,16 @@ const onPickColor = (e: Event) => {
     const input = e.target as HTMLInputElement
     if (!input) return
     if (toolbarMode.value === 'drawing') {
-        saveHistory();
         tempGroup.value.fill = input.value
         currentColor.value = input.value
         currentBgColor.value = input.value
         return
     }
-    const s = selectedShape.value;
-    if (!s) return;
-    if (input?.value) {
-        saveHistory();
-        s.fill = input.value;
+    if (selectedIds.value.length) {
+        selectedShapes.value.forEach(shape => {
+            shape.fill = input.value;
+            patch(shape, { fill: shape.fill });
+        });
         currentColor.value = input.value;
         currentBgColor.value = input.value
         uiTick.value++;
@@ -1290,7 +1378,7 @@ const getTextPadding = (shape) => {
 };
 
 const editText = (shape) => {;
-    if (!shape || shape.locked) return;
+    if (!shape || shape.is_locked) return;
     editingTextId.value = shape.id;
     editingText.value = shape.text || '';
     nextTick(() => {
@@ -1300,9 +1388,8 @@ const editText = (shape) => {;
 
 const updateTextPreview = () => {
     if (editingTextId.value) {
-        const shape = shapes.value.find(s => s.id === editingTextId.value);
+        const shape = getShape(editingTextId.value);
         if (shape) {
-            saveHistory();
             shape.text = editingText.value;
         }
     }
@@ -1310,10 +1397,12 @@ const updateTextPreview = () => {
 
 const saveText = () => {
     if (editingTextId.value) {
-        const shape = shapes.value.find(s => s.id === editingTextId.value);
+        const shape = getShape(editingTextId.value);
         if (shape) {
-            saveHistory();
             shape.text = editingText.value;
+            patch(shape, {
+                text: shape.text
+            });
         }
     }
     cancelTextEdit();
@@ -1345,8 +1434,6 @@ const getTextColor = (shape) => {
 const toggleDrawing = () => {
     // Start
     if (toolbarMode.value !== 'drawing') {
-        drawUndoStack.length = 0;
-        drawRedoStack.length = 0;
         toolbarMode.value = 'drawing';
         return;
     }
@@ -1354,10 +1441,10 @@ const toggleDrawing = () => {
     // Finalize
     toolbarMode.value = 'select';
     if (tempGroup.value) {
-        // Measure visual bounds and normalize children points
+
         const stageNode = stage.value?.getNode();
         const node = stageNode?.findOne(`#temp-group-${tempGroup.value.id}`);
-        // console.log('on a le node', node);
+
         if (node) {
             const r = node.getClientRect();
 
@@ -1368,17 +1455,25 @@ const toggleDrawing = () => {
                 return { ...line, points: normalized };
             });
 
-            // Save group geometry
+            // Set final geometry
             tempGroup.value.x = r.x;
             tempGroup.value.y = r.y;
             tempGroup.value.width = r.width;
             tempGroup.value.height = r.height;
+
+            // Update the backend with the final bounds and normalized points
+            patch(tempGroup.value, {
+                x: tempGroup.value.x,
+                y: tempGroup.value.y,
+                width: tempGroup.value.width,
+                height: tempGroup.value.height,
+            });
         }
 
         tempGroup.value.moving = false;
-        tempGroup.value.locked = false;
+        tempGroup.value.is_locked = false;
         tempGroup.value.draggable = true;
-        saveHistory();
+
         shapes.value.push(tempGroup.value);
         tempGroup.value = null;
     }
@@ -1440,29 +1535,33 @@ const handleMouseDown = (e) => {
     // If freehand drawing mode
     if (toolbarMode.value === 'drawing') {
         isDrawing.value = true;
-        drawRedoStack.length = 0;
 
         const pos = getPointerInLayerSpace();
         if (!pos) return;
 
-        if (!tempGroup.value) {
-            tempGroup.value = {
-                id: Date.now(),
-                type: "group",
-                children: [],
-                scaleX: 1,
-                scaleY: 1,
-            };
-        }
-
-        tempGroup.value.children.push({
-            id: Date.now() + "-lin",
-            type: "draw",
+        const strokeID = Date.now() + "-lin";
+        const strokeData = {
+            id: strokeID,
             points: [pos.x, pos.y],
             fill: currentColor.value,
             strokeWidth: strokeSize.value,
-            hitStrokeWidth: hitStrokeWidth.value,
-        });
+        }
+
+        if (!tempGroup.value) {
+            tempGroup.value = {
+                id: tempID(),
+                type: "drawing",
+                children: [strokeData],
+                scaleX: 1,
+                scaleY: 1,
+                x: 0,
+                y: 0,
+                width: 0,
+                height: 0,
+            };
+        } else {
+            tempGroup.value.children.push(strokeData);
+        }
         return;
     }
 
@@ -1500,8 +1599,8 @@ const handleMouseDown = (e) => {
         tempCircle.value = {
             id: 'temp-circle-' + Date.now(),
             type: 'circle',
-            cx: pos.x,
-            cy: pos.y,
+            x: pos.x,
+            y: pos.y,
             radius: 0,
             scaleX: 1,
             scaleY: 1,
@@ -1610,25 +1709,42 @@ const draw = (e) => {
 const handleMouseUp = (e) => {
     // Finalize freehand drawing
     if (toolbarMode.value === 'drawing') {
-        //Record for undo
-        drawUndoStack.push(JSON.stringify(tempGroup.value.children));
-        if (drawUndoStack.length > 20) drawUndoStack.shift();
-        // new input invalidates redo for local stack
-        drawRedoStack.length = 0;
+        if (isDrawing.value) {
+            const lastStroke = tempGroup.value.children[tempGroup.value.children.length - 1];
 
-        // re-render
+            if (!tempGroup.value.persistencePromise && !tempGroup.value.urls?.stroke) {
+                tempGroup.value.persistencePromise = persistShape(tempGroup.value);
+            }
+            const parentReady = tempGroup.value.persistencePromise || Promise.resolve();
+
+            parentReady.then(() => {
+                // Send only the newest stroke to the API
+                axios.post(tempGroup.value.urls.stroke, {
+                    points: lastStroke.points,
+                    width: lastStroke.strokeWidth,
+                    fill: lastStroke.fill,
+                }).then(res => {
+                    if (res.data.success) {
+                        lastStroke.id = res.data.id;
+                    }
+                })
+                    .catch(() => {
+                        window.showToast(trans('error-saving-stroke'), 'error');
+                    });
+            });
+        }
+
         uiTick.value++;
-
         isDrawing.value = false;
         return;
     }
 
     // Finalize rectangle drawing
     if (toolbarMode.value === 'rect') {
-        if (tempRect.value) {
+        if (tempRect.value && tempRect.value.width > 1) {
             // Push normalized rect into shapes
             const newRect = {
-                id: Math.round(Math.random() * 10000).toString(),
+                id: tempID(),
                 type: 'rect',
                 x: tempRect.value.x,
                 y: tempRect.value.y,
@@ -1636,15 +1752,18 @@ const handleMouseUp = (e) => {
                 scaleY: 1,
                 width: tempRect.value.width,
                 height: tempRect.value.height,
-                radius: null,
                 fill: tempRect.value.fill || cssVariable('--b1'),
                 locked: false,
                 moving: false,
             };
-            saveHistory();
 
             shapes.value.push(newRect);
+            persistShape(newRect);
             uiTick.value++;
+            nextTick(() => {
+                updateTransformer();
+                uiTick.value++;
+            });
         }
 
         // Clear temporary state and exit shape draw mode
@@ -1657,7 +1776,7 @@ const handleMouseUp = (e) => {
         if (tempRect.value) {
             // Push normalized rect into shapes
             const newText = {
-                id: Math.round(Math.random() * 10000).toString(),
+                id: tempID(),
                 type: 'text',
                 x: tempRect.value.x,
                 y: tempRect.value.y,
@@ -1665,16 +1784,15 @@ const handleMouseUp = (e) => {
                 scaleY: 1,
                 width: tempRect.value.width,
                 height: tempRect.value.height,
-                radius: null,
                 fill: cssVariable('--bc'),
                 text: "Click to edit",
                 fontFamily: 'Arial',
                 locked: false,
                 moving: false,
             };
-            saveHistory();
 
             shapes.value.push(newText);
+            persistShape(newText);
             uiTick.value++;
         }
 
@@ -1685,9 +1803,9 @@ const handleMouseUp = (e) => {
 
     // Finalize circle drawing
     if (toolbarMode.value === 'circle') {
-        if (tempCircle.value) {
+        if (tempCircle.value && tempCircle.value.radius > 1) {
             const newCircle = {
-                id: Math.round(Math.random() * 10000).toString(),
+                id: tempID(),
                 type: 'circle',
                 x: tempCircle.value.cx - tempCircle.value.radius,
                 y: tempCircle.value.cy - tempCircle.value.radius,
@@ -1700,9 +1818,9 @@ const handleMouseUp = (e) => {
                 locked: false,
                 moving: false,
             };
-            saveHistory();
 
             shapes.value.push(newCircle);
+            persistShape(newCircle);
             uiTick.value++;
         }
 
@@ -1722,20 +1840,24 @@ watch(toolbarMode, (isOn) => {
 });
 
 //Check for unsaved changes
-watch(
-    [shapes, name],
-    () => {
-        if (loading.value || !initialState) return;
+// watch(
+//     [shapes, name],
+//     () => {
+//         if (loading.value || !initialState) return;
+//
+//         const current = JSON.stringify({
+//             shapes: shapes.value,
+//             name: name.value,
+//         });
+//
+//         isDirty.value = current !== JSON.stringify(initialState);
+//     },
+//     { deep: true }
+// );
 
-        const current = JSON.stringify({
-            shapes: shapes.value,
-            name: name.value,
-        });
-
-        isDirty.value = current !== JSON.stringify(initialState);
-    },
-    { deep: true }
-);
+const tempID = () => {
+    return  'local-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
+}
 
 // Compute the visible top-left of the stage in stage coordinates
 function getStageVisibleTopLeft() {
@@ -1767,11 +1889,14 @@ function watchImage(uuid: string, shapeId: string) {
         (imgEl) => {
             if (imgEl) {
                 // If you want the shape to match the real image size the first time it loads:
-                const shape = shapes.value.find(s => s.id === shapeId);
+                const shape = getShape(shapeId);
                 if (shape && (!shape.width || !shape.height)) {
                     // Use natural size on first load if width/height were falsy
-                    shape.width = imgEl.naturalWidth || shape.width || 100;
-                    shape.height = imgEl.naturalHeight || shape.height || 80;
+                    shape.width = imgEl.naturalWidth || 100;
+                    shape.height = imgEl.naturalHeight || 80;
+
+                    // Now that we have dimensions, persist to backend
+                    persistShape(shape);
                 }
 
                 // Force Konva to repaint immediately
@@ -1785,18 +1910,16 @@ function watchImage(uuid: string, shapeId: string) {
 
 
 const selectImage = (image) => {
-    const [imageNode] = useImage(image.src, 'anonymous');
-    imageRefs.value[image.uuid] = imageNode;
+    loadImage(image.src, image.uuid);
 
     const { x: tlx, y: tly, scaleX, scaleY } = getStageVisibleTopLeft();
     // Convert 50px screen offset into stage-space offset
     const offsetX = 50 / scaleX;
     const offsetY = 50 / scaleY;
 
-    const id = Math.round(Math.random() * 10000).toString();
-    saveHistory();
+    const id = tempID();
 
-    shapes.value.push({
+    const newShape = {
         id: id,
         type: "image",
         x: tlx + offsetX,
@@ -1806,10 +1929,11 @@ const selectImage = (image) => {
         width: null,
         height: null,
         uuid: image.uuid,
-        name: image.name,
         locked: false,
         moving: false,
-    });
+    };
+
+    shapes.value.push(newShape);
     watchImage(image.uuid, id);
 }
 
@@ -1833,22 +1957,24 @@ const closedSearch = () => {
     searchOpened.value = false
 }
 
+const getShape = (id: string|number) => {
+    return shapes.value.find(s => s.id == id) || null;
+}
 const selectEntity = (entity) => {
     searchOpened.value = false;
 
-
-    const [imageNode] = useImage(entity.image, 'anonymous');
-    imageRefs.value[entity.id] = imageNode;
+    loadImage(entity.image, entity.id);
+    console.log('selected entity', entity);
+    loadEntity(entity);
 
     const { x: tlx, y: tly, scaleX, scaleY } = getStageVisibleTopLeft();
     // Convert 50px screen offset into stage-space offset
     const offsetX = 50 / scaleX;
     const offsetY = 50 / scaleY;
 
-    const id = Math.round(Math.random() * 10000).toString();
-    saveHistory();
+    const id = tempID();
 
-    shapes.value.push({
+    const newShape = {
         id: id,
         type: "entity",
         x: tlx + offsetX,
@@ -1858,58 +1984,22 @@ const selectEntity = (entity) => {
         scaleX: 1,
         scaleY: 1,
         entity: entity.id,
-        name: entity.name,
-        link: entity.link,
         fill: cssVariable('--bc'),
         locked: false,
         moving: false,
-    });
-}
+    };
 
-
-
-const saveWhiteboard = () => {
-    if (saving.value) return
-
-    let data = {
-        'name': name.value,
-        'data': shapes.value
-    }
-
-    saving.value = true;
-
-    axios({
-        method: 'put',
-        url: savingUrl.value,
-        data: data
-    })
-        .then(res => {
-
-            if (res.data?.toast) {
-                window.showToast(res.data.toast);
-            }
-
-            saving.value = false
-            isDirty.value = false; // reset after successful save
-        }).catch(err => {
-        // Result with a response, hopefully a 422 error
-        saving.value = false
-
-        if (err.response.data.errors) {
-            Object.entries(err.response.data.errors).forEach(([name, text]) => {
-                window.showToast(text, 'error');
-            })
-        }
-    })
+    shapes.value.push(newShape);
+    persistShape(newShape);
 }
 
 const resetRotation = () => {
     if (!selectedIds.value || !selectedIds.value.length) return;
-    saveHistory();
     selectedIds.value.forEach(id => {
-        const shape = shapes.value.find(s => s.id === id);
+        const shape = getShape(id);
         if (shape) {
             shape.rotation = 0;
+            patch(shape, {rotation: 0})
         }
     })
 }
@@ -1921,7 +2011,7 @@ const nothingToRotate = () => {
     }
     let rotatable = false;
     selectedIds.value.forEach(id => {
-        const shape = shapes.value.find(s => s.id === id);
+        const shape = getShape(id);
         if (shape && shape.rotation) {
             rotatable = true;
         }
@@ -1944,7 +2034,6 @@ const pushTo = (where: 'front' | 'back') => {
             shapes.value.splice(i, 1);
         }
     }
-    saveHistory();
     if (where === 'front') {
         // Append selected items in their original relative order -> top of canvas
         selectedItems.forEach(item => shapes.value.push(item));
@@ -1968,12 +2057,39 @@ const cssVariable = (variable: string) => {
     return hslString(base);
 }
 
-const loadImages = (images) => {
+const loadImages = (images: any) => {
     //console.log(images);
     Object.entries(images).forEach(([id, src]) => {
-        const [imageNode] = useImage(src, 'anonymous');
-        imageRefs.value[id] = imageNode;
+        loadImage(src, id);
     })
+}
+
+const loadEntities = (entities: any) => {
+    Object.entries(entities).forEach(([id, entity]) => {
+        loadEntity(entity);
+    });
+}
+
+const loadEntity = (entity: any) => {
+    entityRefs.value[entity.id] = entity;
+}
+
+const loadImage = (url, id) => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.src = url;
+    img.onload = () => {
+        imageRefs.value[id] = img;
+        uiTick.value++;
+
+        // If this image belongs to a specific shape, check for natural size
+        const shape = shapes.value.find(s => s.uuid === id || s.entity === id || s.id === id);
+        if (shape && (!shape.width || !shape.height)) {
+            shape.width = img.naturalWidth;
+            shape.height = img.naturalHeight;
+            persistShape(shape);
+        }
+    };
 }
 
 
@@ -2104,6 +2220,10 @@ onMounted(() => {
 
             if (res.data.images) {
                 loadImages(res.data.images)
+            }
+
+            if (res.data.entities) {
+                loadEntities(res.data.entities)
             }
 
             if (res.data.interactive) {
@@ -2246,7 +2366,6 @@ const handleKeyDown = (e: KeyboardEvent) => {
     // Undo (Ctrl/Cmd+Z)
     if ((e.ctrlKey || e.metaKey) && !e.shiftKey && e.key.toLowerCase() === 'z') {
         e.preventDefault();
-        console.log('undo');
         if (toolbarMode.value === 'drawing') {
             undoStroke();
         } else {
@@ -2265,79 +2384,28 @@ const handleKeyDown = (e: KeyboardEvent) => {
     }
 };
 
-const undo = () => {
-  if (!undoStack.length) return;
-
-  const last = undoStack.pop();
-  redoStack.push(JSON.stringify(shapes.value)); // Save current for redo
-
-  const restored = JSON.parse(last);
-
-  // Replace contents without replacing ref
-  shapes.value.splice(0, shapes.value.length, ...restored);
-};
-
-const redo = () => {
-  if (!redoStack.length) return;
-
-  undoStack.push(JSON.stringify(shapes.value)); // Save current
-
-  const restored = JSON.parse(redoStack.pop());
-
-  shapes.value.splice(0, shapes.value.length, ...restored);
-};
-
-const undoStroke = () => {
-    console.log('undo stroke');
-  if (!tempGroup.value) return;
-    console.log('stroke exists');
-
-  if (drawUndoStack.length > 1) {
-    drawRedoStack.push(drawUndoStack.pop()!);
-    const prev = drawUndoStack[drawUndoStack.length - 1];
-    tempGroup.value.children = JSON.parse(prev);
-    uiTick.value++;
-    return;
-  }
-
-  if (drawUndoStack.length === 1) {
-    // go back to empty
-    drawRedoStack.push(drawUndoStack.pop()!);
-    tempGroup.value.children = [];
-    uiTick.value++;
-  }
-};
-
-const redoStroke = () => {
-  if (!tempGroup.value || !drawRedoStack.length) return;
-  const next = drawRedoStack.pop()!;
-  drawUndoStack.push(next);
-  tempGroup.value.children = JSON.parse(next);
-  uiTick.value++;
-};
-
-const saveHistory = () => {
-  undoStack.push(JSON.stringify(shapes.value));
-  if (undoStack.length > 20) undoStack.shift(); // keep last 20 snapshots
-  redoStack.length = 0; // clear redo history when doing a new action
-};
-
 const autoFont = () => {
     if (!selectedShape.value || selectedShape.value.type !== 'text') return
-    saveHistory();
     delete selectedShape.value.fontSize;
+    patch(selectedShape.value, {
+        fontSize: null
+    });
 }
 
 const biggerFont = () => {
     if (!selectedShape.value || selectedShape.value.type !== 'text') return
-    saveHistory();
-    selectedShape.value.fontSize = (selectedShape.value.fontSize || 10) + 2
+    selectedShape.value.fontSize = (selectedShape.value.fontSize || 10) + 2;
+    patch(selectedShape.value, {
+        fontSize: selectedShape.value.fontSize
+    });
 }
 
 const smallerFont = () => {
     if (!selectedShape.value || selectedShape.value.type !== 'text') return
-    saveHistory();
-    selectedShape.value.fontSize = (selectedShape.value.fontSize || 12) - 2
+    selectedShape.value.fontSize = (selectedShape.value.fontSize || 12) - 2;
+    patch(selectedShape.value, {
+        fontSize: selectedShape.value.fontSize
+    });
 }
 
 const openQQ = () => {
