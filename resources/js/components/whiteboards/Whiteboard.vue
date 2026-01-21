@@ -2353,7 +2353,7 @@ const handleRemoteShape = (e) => {
     const { action, shape, image, entity } = e;
     const index = shapes.value.findIndex(s => s.id === shape.id || (s.uuid && s.uuid === shape.uuid));
 
-    console.info('Shape arrived', action, shape);
+    //console.info('Shape arrived', action, shape);
 
     if (action === 'deleted') {
         if (index !== -1) {
