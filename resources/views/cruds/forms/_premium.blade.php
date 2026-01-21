@@ -22,26 +22,25 @@
 <x-grid type="1/1">
     <x-forms.field
         field="tooltips"
-        :label="__('fields.tooltip.name')">
+        :label="__('entities/tooltips.label')">
         @if($campaign->boosted())
             <x-helper>
-                <p>{{ __('fields.tooltip.description') }}</p>
+                <p>{{ __('entities/tooltips.helper') }}</p>
             </x-helper>
 
-            <textarea name="tooltip" class="" id="tooltip" rows="3" placeholder="{{ __('fields.tooltip.description') }}">{!! old('tooltip', FormCopy::field('tooltip')->string() ?: $entity->tooltip ?? null) !!}</textarea>
+            <textarea name="tooltip" class="" id="tooltip" rows="3" placeholder="{{ __('entities/tooltips.placeholder') }}">{!! old('tooltip', FormCopy::field('tooltip')->string() ?: $entity->tooltip ?? null) !!}</textarea>
 
             <x-slot name="helper">
                 @php
-                $tooltipTags = [];
-                foreach (config('purify.configs.tooltips.allowed') as $tag) {
-                    $tooltipTags[] = '<code>'. $tag . '</code> ';
-                }
-                $tooltipTags = implode(', ', $tooltipTags);
+                $tooltipTags = [
+                    'text' => '<em>b, i, strong, a, h1-6</em>',
+                    'layout' => '<em>p, div, span</em>',
+];
                 @endphp
-                {!! __('fields.tooltip.helper', ['tags' => $tooltipTags]) !!}
+                {!! __('entities/tooltips.formatting', $tooltipTags) !!}
             </x-slot>
         @else
-            @include('cruds.fields.helpers.boosted', ['key' => 'fields.tooltip.boosted-description'])
+            @include('cruds.fields.helpers.boosted', ['key' => 'entities/tooltips.premium'])
         @endif
     </x-forms.field>
 
