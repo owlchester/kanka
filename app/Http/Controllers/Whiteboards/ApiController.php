@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Whiteboards;
 
+use App\Events\Whiteboards\Updated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Whiteboards\CreateStrokeRequest;
 use App\Http\Requests\Whiteboards\StoreShapeRequest;
@@ -46,6 +47,10 @@ class ApiController extends Controller
             ->request($request)
             ->create();
 
+        $shape->setRelation('whiteboard', $whiteboard);
+        $whiteboard->setRelation('campaign', $campaign);
+        broadcast(new Updated($whiteboard, 'created', $shape))->toOthers();
+
         return response()->json([
             'success' => true,
             'id' => $shape->id,
@@ -69,6 +74,10 @@ class ApiController extends Controller
             ->save()
         ;
 
+        $whiteboardShape->setRelation('whiteboard', $whiteboard);
+        $whiteboard->setRelation('campaign', $campaign);
+        broadcast(new Updated($whiteboard, 'updated', $whiteboardShape))->toOthers();
+
         return response()->json([
             'success' => true,
         ]);
@@ -80,6 +89,9 @@ class ApiController extends Controller
         $this->authorize('update', $whiteboard->entity);
 
         $whiteboardShape->delete();
+        $whiteboardShape->setRelation('whiteboard', $whiteboard);
+        $whiteboard->setRelation('campaign', $campaign);
+        broadcast(new Updated($whiteboard, 'deleted', $whiteboardShape))->toOthers();
 
         return response(null, 204);
     }

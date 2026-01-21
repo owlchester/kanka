@@ -2312,6 +2312,57 @@ const setupWebsockets = (data: any) => {
         activeUsers.value = activeUsers.value.filter(u => u.id !== user.id)
     })
 
+    channel.listen('.shape.created', (e) => {
+        handleRemoteUpdated(e);
+    })
+
+    // useEcho(
+    //     `whiteboard.${props.whiteboard}`,
+    //     "shape.created",
+    //     (e) => {
+    //         handleRemoteUpdated(e);
+    //     },
+    // );
+}
+
+const handleRemoteUpdated = (e) => {
+    const { action, shape } = e;
+    const index = shapes.value.findIndex(s => s.id === shape.id || (s.uuid && s.uuid === shape.uuid));
+
+    console.log('remote', action, index, shape);
+
+    if (action === 'deleted') {
+        if (index !== -1) {
+            shapes.value.splice(index, 1);
+            // If the deleted shape was selected, clear selection
+            if (selectedIds.value.includes(shape.id)) {
+                selectedIds.value = selectedIds.value.filter(id => id !== shape.id);
+                if (selectedId.value === shape.id) selectedId.value = null;
+            }
+        }
+    } else if (action === 'created' || action === 'updated') {
+        if (index !== -1) {
+            // Update existing shape
+            // We merge properties to avoid losing local-only state like 'moving' if necessary
+            Object.assign(shapes.value[index], shape);
+        } else {
+            // Add new shape
+            shapes.value.push(shape);
+
+            // If it's an image or entity, trigger image loading
+            if (shape.type === 'image' || shape.type === 'entity') {
+                const id = shape.type === 'entity' ? shape.entity : shape.uuid;
+                const url = shape.type === 'entity' ? entityRefs.value[shape.entity]?.image : shape.url;
+                if (url) loadImage(url, id);
+            }
+        }
+    }
+
+    // Force Konva redraw and transformer update
+    uiTick.value++;
+    nextTick(() => {
+        updateTransformer();
+    });
 }
 
 // Keyboard handler: delete selected shape when Delete key pressed
