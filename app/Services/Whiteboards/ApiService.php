@@ -22,7 +22,9 @@ class ApiService
     protected Whiteboard $whiteboard;
 
     protected array $data = [];
+
     protected array $images = [];
+
     protected array $entityIds = [];
 
     public function whiteboard(Whiteboard $whiteboard): self

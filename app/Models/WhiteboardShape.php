@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Collection;
 
 /**
  * @property int $id
@@ -27,7 +28,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $z_index
  * @property bool|int $is_locked
  * @property array $shape
- *
  * @property Whiteboard $whiteboard
  * @property ?WhiteboardShape $group
  * @property WhiteboardStroke[]|Collection $strokes
@@ -36,8 +36,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class WhiteboardShape extends Model
 {
     use Blameable;
-    use SoftDeletes;
     use HasTimestamps;
+    use SoftDeletes;
 
     public $fillable = [
         'whiteboard_id',
@@ -55,7 +55,6 @@ class WhiteboardShape extends Model
         'scale_x',
         'scale_y',
     ];
-
 
     public $casts = [
         'x' => 'float',
@@ -85,22 +84,27 @@ class WhiteboardShape extends Model
     {
         return $this->type === 'rect';
     }
+
     public function isCircle(): bool
     {
         return $this->type === 'circle';
     }
+
     public function isText(): bool
     {
         return $this->type === 'text';
     }
+
     public function isEntity(): bool
     {
         return $this->type === 'entity';
     }
+
     public function isImage(): bool
     {
         return $this->type === 'image';
     }
+
     public function isDrawing(): bool
     {
         return $this->type === 'drawing';

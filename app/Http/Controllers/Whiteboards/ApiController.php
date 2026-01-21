@@ -75,7 +75,7 @@ class ApiController extends Controller
                 'edit' => route('whiteboards.shapes.update', [$campaign, $whiteboard, $shape]),
                 'delete' => route('whiteboards.shapes.delete', [$campaign, $whiteboard, $shape]),
                 'stroke' => route('whiteboards.shapes.stroke', [$campaign, $whiteboard, $shape]),
-            ]
+            ],
         ]);
     }
 
@@ -88,8 +88,7 @@ class ApiController extends Controller
             ->whiteboard($whiteboard)
             ->request($request)
             ->shape($whiteboardShape)
-            ->save()
-        ;
+            ->save();
 
         $whiteboardShape->setRelation('whiteboard', $whiteboard);
         $whiteboard->setRelation('campaign', $campaign);
