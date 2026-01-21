@@ -19,13 +19,12 @@ class Updated implements ShouldBroadcastNow
     use Dispatchable;
     use InteractsWithSockets;
 
-    /**
-     * Create a new event instance.
-     */
     public function __construct(
         public Whiteboard $whiteboard,
         public string $action,
-        public WhiteboardShape $shape
+        public WhiteboardShape $shape,
+        public ?string $image = null,
+        public ?array $entity = null,
     )
     {
         $this->broadcastVia('reverb');
@@ -56,6 +55,8 @@ class Updated implements ShouldBroadcastNow
         return [
             'action' => $this->action,
             'shape' => new ShapeResource($this->shape),
+            'image' => $this->image,
+            'entity' => $this->entity,
         ];
     }
 }

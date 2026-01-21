@@ -4,6 +4,7 @@ namespace App\Http\Resources\Whiteboards;
 
 use App\Facades\Avatar;
 use App\Models\Entity;
+use App\Models\Image;
 use App\Models\WhiteboardShape;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;

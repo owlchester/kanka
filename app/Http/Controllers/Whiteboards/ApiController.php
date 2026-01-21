@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Whiteboards\CreateStrokeRequest;
 use App\Http\Requests\Whiteboards\StoreShapeRequest;
 use App\Http\Requests\Whiteboards\UpdateShapeRequest;
+use App\Http\Resources\Whiteboards\EntityResource;
 use App\Models\Campaign;
+use App\Models\Entity;
 use App\Models\Whiteboard;
 use App\Models\WhiteboardShape;
 use App\Services\Whiteboards\ApiService;
@@ -49,7 +51,22 @@ class ApiController extends Controller
 
         $shape->setRelation('whiteboard', $whiteboard);
         $whiteboard->setRelation('campaign', $campaign);
-        broadcast(new Updated($whiteboard, 'created', $shape))->toOthers();
+        $entity = null;
+        if ($request->has('entity_id')) {
+            $entity = Entity::find($request->get('entity_id'));
+            if ($entity) {
+                $entity = new EntityResource($entity)->campaign($campaign)->toArray($request);
+            } else {
+                $entity = null;
+            }
+        }
+        broadcast(new Updated(
+            $whiteboard,
+            'created',
+            $shape,
+            $shape->image(),
+            $entity
+        ))->toOthers();
 
         return response()->json([
             'success' => true,
