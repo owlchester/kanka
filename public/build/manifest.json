@@ -523,15 +523,14 @@
     "isEntry": true
   },
   "resources/js/whiteboards.js": {
-    "file": "assets/whiteboards-4ArHe4K4.js",
+    "file": "assets/whiteboards-ClUxDm_l.js",
     "name": "whiteboards",
     "src": "resources/js/whiteboards.js",
     "isEntry": true,
     "imports": [
       "_vue.esm-bundler-dvkJlbb0.js",
       "_colours-Dh8441-n.js",
-      "_Browser.vue_vue_type_script_setup_true_lang-CGVxe5k9.js",
-      "__commonjsHelpers-CqkleIqs.js"
+      "_Browser.vue_vue_type_script_setup_true_lang-CGVxe5k9.js"
     ]
   }
 }
