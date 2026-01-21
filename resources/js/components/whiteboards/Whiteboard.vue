@@ -2312,8 +2312,8 @@ const setupWebsockets = (data: any) => {
         activeUsers.value = activeUsers.value.filter(u => u.id !== user.id)
     })
 
-    channel.listen('.shape.created', (e) => {
-        handleRemoteUpdated(e);
+    channel.listen('.shape', (e) => {
+        handleRemoteShape(e);
     })
 
     // useEcho(
@@ -2325,11 +2325,9 @@ const setupWebsockets = (data: any) => {
     // );
 }
 
-const handleRemoteUpdated = (e) => {
+const handleRemoteShape = (e) => {
     const { action, shape } = e;
     const index = shapes.value.findIndex(s => s.id === shape.id || (s.uuid && s.uuid === shape.uuid));
-
-    console.log('remote', action, index, shape);
 
     if (action === 'deleted') {
         if (index !== -1) {

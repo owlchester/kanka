@@ -48,7 +48,7 @@ class Updated implements ShouldBroadcastNow
      */
     public function broadcastAs(): string
     {
-        return 'shape.created';
+        return 'shape';
     }
 
     public function broadcastWith(): array
