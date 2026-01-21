@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\Avatar;
 use App\Models\Concerns\Blameable;
 use App\Observers\WhiteboardShapeObserver;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
@@ -107,5 +108,21 @@ class WhiteboardShape extends Model
     public function isDrawing(): bool
     {
         return $this->type === 'drawing';
+    }
+
+    public function image(): ?string
+    {
+        if ($this->isImage()) {
+            $image = Image::find($this->shape['uuid']);
+            if ($image) {
+                return $image->url();
+            }
+        } elseif ($this->isEntity()) {
+            $entity = Entity::find($this->shape['entity_id']);
+            if ($entity) {
+                return Avatar::entity($entity)->size(256)->fallback()->thumbnail();
+            }
+        }
+        return null;
     }
 }

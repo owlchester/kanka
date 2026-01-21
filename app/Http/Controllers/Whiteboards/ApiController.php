@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Whiteboards;
 
+use App\Events\Whiteboards\Updated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Whiteboards\CreateStrokeRequest;
 use App\Http\Requests\Whiteboards\StoreShapeRequest;
 use App\Http\Requests\Whiteboards\UpdateShapeRequest;
+use App\Http\Resources\Whiteboards\EntityResource;
 use App\Models\Campaign;
+use App\Models\Entity;
 use App\Models\Whiteboard;
 use App\Models\WhiteboardShape;
 use App\Services\Whiteboards\ApiService;
@@ -46,6 +49,25 @@ class ApiController extends Controller
             ->request($request)
             ->create();
 
+        $shape->setRelation('whiteboard', $whiteboard);
+        $whiteboard->setRelation('campaign', $campaign);
+        $entity = null;
+        if ($request->has('entity_id')) {
+            $entity = Entity::find($request->get('entity_id'));
+            if ($entity) {
+                $entity = new EntityResource($entity)->campaign($campaign)->toArray($request);
+            } else {
+                $entity = null;
+            }
+        }
+        broadcast(new Updated(
+            $whiteboard,
+            'created',
+            $shape,
+            $shape->image(),
+            $entity
+        ))->toOthers();
+
         return response()->json([
             'success' => true,
             'id' => $shape->id,
@@ -68,6 +90,10 @@ class ApiController extends Controller
             ->shape($whiteboardShape)
             ->save();
 
+        $whiteboardShape->setRelation('whiteboard', $whiteboard);
+        $whiteboard->setRelation('campaign', $campaign);
+        broadcast(new Updated($whiteboard, 'updated', $whiteboardShape))->toOthers();
+
         return response()->json([
             'success' => true,
         ]);
@@ -79,6 +105,9 @@ class ApiController extends Controller
         $this->authorize('update', $whiteboard->entity);
 
         $whiteboardShape->delete();
+        $whiteboardShape->setRelation('whiteboard', $whiteboard);
+        $whiteboard->setRelation('campaign', $campaign);
+        broadcast(new Updated($whiteboard, 'deleted', $whiteboardShape))->toOthers();
 
         return response(null, 204);
     }

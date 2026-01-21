@@ -21,7 +21,7 @@ class WhiteboardUpdated implements ShouldBroadcastNow
     {
         $this->whiteboardId = $whiteboardId;
         $this->payload = $payload;
-        $this->broadcastVia('pusher');
+        $this->broadcastVia('reverb');
     }
 
     public function broadcastAs()

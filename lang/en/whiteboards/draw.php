@@ -19,6 +19,13 @@ return [
         'placeholder'   => 'Type an entity\'s name or alias',
         'title'         => 'Entity search',
     ],
+    'errors' => [
+        'websockets' => [
+            'unavailable' => 'The websocket server is unavailable. Please try again later.',
+            'error' => 'An error occurred while connecting to the websocket server.',
+            'websocket-disconnected' => 'The connection to the websocket was lost. Please try again.',
+        ],
+    ],
     'fields'        => [
         'color' => 'Colour',
     ],

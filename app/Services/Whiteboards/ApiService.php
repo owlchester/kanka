@@ -3,6 +3,7 @@
 namespace App\Services\Whiteboards;
 
 use App\Facades\Avatar;
+use App\Http\Resources\Whiteboards\EntityResource;
 use App\Http\Resources\Whiteboards\ShapeResource;
 use App\Models\Entity;
 use App\Models\Image;
@@ -140,6 +141,10 @@ class ApiService
             ]),
             'qq-keyboard-shortcut' => __('crud.keyboard-shortcut', ['code' => '<code>N</code>']),
 
+            // Errors
+            'websocket-server-unavailable' => __('whiteboards/draw.errors.websockets.unavailable'),
+            'error-connecting-websocket' => __('whiteboards/draw.errors.websockets.error'),
+            'websocket-disconnected' => __('whiteboards/draw.errors.websockets.disconnected'),
         ];
     }
 
@@ -151,12 +156,7 @@ class ApiService
             ->get();
         /** @var Entity $entity */
         foreach ($entities as $entity) {
-            $this->data['entities'][$entity->id] = [
-                'id' => $entity->id,
-                'name' => $entity->name,
-                'link' => $entity->url(),
-                'preview' => route('entities.tooltip', [$this->campaign, $entity]),
-            ];
+            $this->data['entities'][$entity->id] = new EntityResource($entity)->campaign($this->campaign);
             $this->data['images'][$entity->id] = Avatar::entity($entity)->size(256)->fallback()->thumbnail();
         }
 
@@ -198,14 +198,20 @@ class ApiService
 
     protected function interactive(): void
     {
-        $pusher = config('broadcasting.connections.pusher.key');
+        $pusher = config('broadcasting.connections.reverb.key');
         if (empty($pusher) || ! isset($this->user)) {
+            return;
+        }
+
+        if (!$this->user->can('update', $this->whiteboard->entity)) {
             return;
         }
 
         $this->data['interactive'] = [
             'key' => $pusher,
-            'cluster' => config('broadcasting.connections.pusher.options.cluster'),
+            'host' => config('broadcasting.connections.reverb.options.host'),
+            'port' => config('broadcasting.connections.reverb.options.port'),
+            'scheme' => config('broadcasting.connections.reverb.options.scheme'),
         ];
     }
 }

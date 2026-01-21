@@ -1,9 +1,21 @@
 <template>
-    <div class="w-full h-screen flex items-center justify-center align-middle text-2xl flex-col gap-4" v-if="loading">
-        <i class="fa-solid fa-spinner fa-spin" aria-hidden="true" />
-        <span>Loading</span>
+    <div class="w-full h-screen flex items-center justify-center align-middle text-2xl" v-if="loading || error">
+
+        <div class="flex items-center gap-2" v-if="loading && !error">
+            <i class="fa-solid fa-spinner fa-spin" aria-hidden="true" />
+            <span>Joining the whiteboard</span>
+        </div>
+        <div class="flex flex-col gap-2 text-error" v-else-if="error">
+            <i class="fa-reguar fa-circle-exclamation" aria-hidden="true" />
+            <span v-html="error"></span>
+            <button class="btn2 btn-default btn-sm" @click="reload()">
+                <i class="fa-regular fa-rotate-right" aria-hidden="true"></i>
+                <span>Retry</span>
+            </button>
+        </div>
     </div>
-    <div class="toolbar fixed w-full bg-base-100 p-2 flex items-center justify-between gap-2 z-50" v-if="!loading">
+
+    <div class="toolbar fixed w-full bg-base-100 p-2 flex items-center justify-between gap-2 z-50" v-if="!loading && !error">
         <div class="flex gap-1 items-center">
             <a :href="urls.overview" :title="trans('back')" class="flex items-center gap-1">
                 <i class="fa-regular fa-left-to-bracket" aria-hidden="true"></i>
@@ -39,10 +51,22 @@
                 <span class="grow hidden sm:inline-block" v-html="trans('create')"></span>
                 <span class="flex-none keyboard-shortcut" id="qq-kb-shortcut" data-toggle="tooltip" :data-title="trans('qq-keyboard-shortcut')" data-html="true" data-placement="bottom" >N</span>
             </a>
+
+
+        </div>
+        <div class="flex gap-1 overflow-hidden">
+            <a v-for="user in activeUsers" :key="user.id"
+               :href="user.profile"
+               class="bg-base-200 text-neutral-content rounded-full h-8 w-8 overflow-hidden flex items-center justify-center cursor-pointer" :title="user.name">
+                <img :src="user.image" v-if="user.image" class="w-8 h-8">
+                <span v-else>
+                        {{ user.name.substring(0, 2).toUpperCase() }}
+                    </span>
+            </a>
         </div>
     </div>
 
-    <v-stage v-if="!loading"
+    <v-stage v-if="!loading && !error"
         ref="stage"
         :config="stageSize"
         @click="handleStageClick"
@@ -243,7 +267,7 @@
     ></textarea>
 
     <div
-        v-if="!loading"
+        v-if="!loading && !error"
         :style="toolbarStyle"
         class="fixed z-50 flex items-center justify-center inset-x-0 gap-1 bottom-8 tools"
         @mousedown.stop
@@ -510,6 +534,7 @@ import Settings from "./Settings.vue";
 import Reset from './Reset.vue';
 import Echo from 'laravel-echo';
 import Pusher from 'pusher-js';
+import { configureEcho, useEcho, useEchoPresence } from "@laravel/echo-vue"
 
 const props = defineProps<{
     save: string,
@@ -538,7 +563,8 @@ const urls = ref(null);
 const toolbarMode = ref('select')
 
 // Saving
-const loading = ref(true);
+const loading = ref(true)
+const error = ref()
 const savingUrl = ref()
 
 // Text editing state
@@ -597,6 +623,10 @@ const settingsOpened = ref(false)
 
 const settingsOpen = ref(false);
 const resetOpen = ref(false);
+
+// Present users
+let channel
+const activeUsers = ref([]);
 
 // Hidden clipboard fallback element (used for dev)
 let hiddenClipboardEl: HTMLTextAreaElement | null = null;
@@ -1264,6 +1294,10 @@ const createTextShapeFromClipboard = (textValue: string) => {
         moving: false,
     };
 };
+
+const reload = () => {
+    window.location.reload();
+}
 
 const createEntityShape = (entity: any) => {
     loadImage(entity.image_thumb, entity.id);
@@ -2196,22 +2230,14 @@ const trans = (key: string) => {
 
 
 
-onMounted(() => {
+onMounted(async () => {
 
     currentColor.value = cssVariable('--bc')
     currentBgColor.value = cssVariable('--b1')
     savingUrl.value = props.save
 
-    if (props.new) {
-        loading.value = false
-        initialState = JSON.parse(JSON.stringify({
-            shapes: [],
-            name: '',
-        }));
-        return
-    }
-
-    axios.get(props.load).then(res => {
+    try {
+        const res = await axios.get(props.load);
         if (res.data) {
             name.value = res.data.name
             shapes.value = res.data.data
@@ -2227,33 +2253,37 @@ onMounted(() => {
             }
 
             if (res.data.interactive) {
-                setupWebsockets(res.data.interactive)
+                try {
+                    setupWebsockets(res.data.interactive)
+                } catch (wsSetupError) {
+                    console.error('Failed to initialize websocket', wsSetupError);
+                }
+            } else {
+                loading.value = false
             }
         }
-        loading.value = false
         initialState = JSON.parse(JSON.stringify({
             shapes: shapes.value,
             name: name.value,
         }));
-    })
 
-    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
-        if (isDirty.value) {
-            e.preventDefault();
-            e.returnValue = ''; // triggers browser’s default “leave site?” dialog
-        }
-    };
+        window.addEventListener('keydown', handleKeyDown);
+        window.addEventListener('mousedown', handleClick);
+        window.addEventListener('contextmenu', e => e.preventDefault());
 
-    window.addEventListener('beforeunload', handleBeforeUnload);
-    window.addEventListener('keydown', handleKeyDown);
-    window.addEventListener('mousedown', handleClick);
-    window.addEventListener('contextmenu', e => e.preventDefault());
+        // Clean up listener on unmount
+        onBeforeUnmount(() => {
+            cleanupBeforeUnmount();
+            if (echo) {
+                echo.leave(`whiteboard.${props.whiteboard}`)
+            }
+        });
+    } catch (err)  {
+        console.error('Failed to load whiteboard data:', err);
+        error.value = 'Error loading whiteboard.';
+    }
 
-    // Clean up listener on unmount
-    onBeforeUnmount(() => {
-        window.removeEventListener('beforeunload', handleBeforeUnload);
-        cleanupBeforeUnmount();
-    });
+
 
 })
 
@@ -2267,23 +2297,102 @@ const handleClick = (e: MouseEvent) => {
 
 const setupWebsockets = (data: any) => {
 
-    console.log('setup websockets', data);
-    // Make Pusher global for Echo
-    window.Pusher = Pusher;
+    configureEcho({
+        broadcaster: 'reverb'
+    })
 
-    // Create global Echo instance
-    window.Echo = new Echo({
-        broadcaster: 'pusher',
+    const echo = new Echo({
+        broadcaster: 'reverb',
         key: data.key,
-        cluster: data.cluster,
-        forceTLS: true,
+        wsHost: data.host,
+        wsPort: data.port,
+        wssPort: data.port,
+        forceTLS: data.schema == 'https',
+        enabledTransports: ['ws', 'wss'],
     });
 
-    window.Echo.channel('kanka-whiteboard-' + props.whiteboard)
-        .listen('.WhiteboardUpdated', (e) => {
-            console.log('Whiteboard event', e);
-            alert('Websocket');
-        });
+    // Listen if the connection to the websocket fails at init
+    echo.connector.pusher.connection.bind('unavailable', () => {
+        console.error('Websocket unavailable');
+        error.value = trans('websocket-server-unavailable');
+        loading.value = false
+    });
+
+    echo.connector.pusher.connection.bind('error', (err) => {
+        console.error('Websocket error', err);
+        // If the handshake fails (bad auth, bad key)
+        error.value = trans('error-connecting-websocket');
+        loading.value = false
+    });
+
+    channel = echo.join(`whiteboard.${props.whiteboard}`);
+
+    channel.here((users: any) => {
+        activeUsers.value = users
+        loading.value = false
+    })
+    channel.joining((user: any) => {
+        activeUsers.value.push(user)
+    })
+    channel.leaving((user: any) => {
+        activeUsers.value = activeUsers.value.filter(u => u.id !== user.id)
+    })
+
+    channel.listen('.shape', (e: any) => {
+        handleRemoteShape(e);
+    })
+
+    channel.error((err: any) => {
+        console.error('Websocket lost connection', err);
+        // If the handshake fails (bad auth, bad key)
+        error.value = trans('websocket-disconnected');
+    });
+}
+
+const handleRemoteShape = (e) => {
+    const { action, shape, image, entity } = e;
+    const index = shapes.value.findIndex(s => s.id === shape.id || (s.uuid && s.uuid === shape.uuid));
+
+    //console.info('Shape arrived', action, shape);
+
+    if (action === 'deleted') {
+        if (index !== -1) {
+            shapes.value.splice(index, 1);
+            // If the deleted shape was selected, clear selection
+            if (selectedIds.value.includes(shape.id)) {
+                selectedIds.value = selectedIds.value.filter(id => id !== shape.id);
+                if (selectedId.value === shape.id) selectedId.value = null;
+            }
+        }
+    } else if (action === 'created' || action === 'updated') {
+        if (index !== -1) {
+            // Update existing shape
+            // We merge properties to avoid losing local-only state like 'moving' if necessary
+            Object.assign(shapes.value[index], shape);
+        } else {
+            // Add new shape
+            shapes.value.push(shape);
+
+            // If it's an image or entity, trigger image loading
+            if (shape.type === 'entity') {
+                if (!entityRefs.value[shape.entity]) {
+                    entityRefs.value[shape.entity] = entity;
+                }
+                loadImage(image, shape.entity);
+            }
+            if (shape.type === 'image') {
+                const id = shape.uuid;
+                const url = image;
+                if (url) loadImage(url, id);
+            }
+        }
+    }
+
+    // Force Konva redraw and transformer update
+    uiTick.value++;
+    nextTick(() => {
+        updateTransformer();
+    });
 }
 
 // Keyboard handler: delete selected shape when Delete key pressed
