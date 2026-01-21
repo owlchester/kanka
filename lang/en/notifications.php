@@ -26,8 +26,9 @@ return [
         'export_error'      => 'An error occurred while exporting :campaign. Please contact us if this problem persists.',
         'hidden'            => 'The campaign :campaign is now hidden from the public campaigns page.',
         'import'            => [
-            'failed'    => 'The import for :campaign failed.',
-            'success'   => 'The import finished for :campaign.',
+            'failed'        => 'The import for :campaign failed.',
+            'success'       => 'The import finished for :campaign.',
+            'csv_success'   => 'Successfully imported :count entities via CSV import to :campaign.',
         ],
         'join'              => ':user joined :campaign.',
         'leave'             => ':user left :campaign.',

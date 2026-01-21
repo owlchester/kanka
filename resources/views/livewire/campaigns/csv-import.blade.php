@@ -23,29 +23,32 @@
 
 <div class="overflow-x-auto">
     @if (!empty($preview))
-        <table class="table-auto w-full border-collapse border border-gray-200">
-            <thead>
-                <tr>
-                    @foreach ($preview[0] as $header)
-                        <th class="border border-gray-200 px-3 py-2 text-left font-semibold">
-                            {{ $header }}
-                        </th>
-                    @endforeach
-                </tr>
-            </thead>
 
-            <tbody>
-                @foreach (array_slice($preview, 1) as $row)
-                    <tr>
-                        @foreach ($row as $cell)
-                            <td class="border border-gray-200 px-3 py-2">
-                                {{ $cell }}
-                            </td>
-                        @endforeach
-                    </tr>
+
+<table class="table-auto w-full border-collapse border">
+    <thead>
+        <tr>
+            @foreach ($columnMap as $field => $columnIndex)
+                <th class="border px-2 py-1 text-left">
+                    {{  $field }}
+                </th>
+            @endforeach
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (array_slice($preview, 1) as $row)
+            <tr>
+                @foreach ($columnMap as $field => $columnIndex)
+                    <td class="border px-2 py-1">
+                        {{ $row[$columnIndex] ?? '' }}
+                    </td>
                 @endforeach
-            </tbody>
-        </table>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
+
     @else
         <p class="text-sm text-gray-500">
             No preview data available.
@@ -55,8 +58,21 @@
 
 
 
-        <form wire:submit.prevent="setColumn">
+        <form wire:submit.prevent="submit">
             <div class="p-5 flex flex-col gap-5">
+
+
+    <label>{{ $tagLabel }}
+        @if(!empty($helper))
+            <x-helpers.tooltip :title="$helper" />
+        @endif
+    </label>
+
+<livewire:campaigns.tags
+    :campaign="$campaign"
+    wire:model="tags"
+/>
+
                 <h3>Set fields</h3>
                 <p class="text-light">
                     Select a column to assign to each of the fillable fields of the entity
@@ -69,9 +85,9 @@
                         </label>
 
                         <select
-                            wire:model="columnMap.{{ $field }}"
+                            wire:model.live="columnMap.{{ $field }}"
                             class="form-control w-full"
-                            required
+                            @if ($index == 0) required @endif
                         >
                             <option value="">— Select a column —</option>
 

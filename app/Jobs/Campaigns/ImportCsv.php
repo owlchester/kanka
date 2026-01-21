@@ -1,0 +1,107 @@
+<?php
+
+namespace App\Jobs\Campaigns;
+
+use App\Enums\CampaignImportStatus;
+use App\Models\CampaignImport;
+use App\Models\EntityType;
+use App\Services\Campaign\Import\ImportService;
+use App\Services\CsvImportService;
+use App\Services\CsvValidatorService;
+use Exception;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
+use Throwable;
+
+class ImportCsv implements ShouldQueue
+{
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
+
+    /**
+     * The number of times the job may be attempted.
+     *
+     * @var int
+     */
+    public $tries = 1;
+
+    protected int $jobID;
+    protected int $userId;
+    protected int $entityTypeId;
+    protected array $columnMap;
+    protected array $tagIds;
+
+    /**
+     * CampaignExport constructor.
+     */
+    public function __construct(CampaignImport $campaignImport, int $userId, int $entityTypeId, array $columnMap, array $tagIds)
+    {
+        $this->jobID = $campaignImport->id;
+        $this->userId = $userId;
+        $this->columnMap = $columnMap;
+        $this->tagIds = $tagIds;
+        $this->entityTypeId = $entityTypeId;
+    }
+
+    /**
+     * Execute the job
+     *
+     * @throws Exception
+     */
+    public function handle()
+    {
+        Log::info('CSV campaign import', ['init', 'id' => $this->jobID]);
+        /** @var CampaignImport $job */
+        $job = CampaignImport::find($this->jobID);
+
+        $entityType = EntityType::inCampaign($job->campaign)->where('id', $this->entityTypeId)->first();
+
+        if (! $job || ! $entityType) {
+            Log::info('CSV campaign import', ['empty', 'id' => $this->jobID]);
+
+            return 0;
+        }
+
+        if (! $job->campaign || ! $job->user) {
+            Log::info('Campaign import', ['empty_campaign_or_user', 'id' => $this->jobID]);
+
+            return 0;
+        }
+
+        Log::info('CSV campaign import', ['running', 'id' => $this->jobID]);
+        $job->update(['status_id' => CampaignImportStatus::RUNNING]);
+
+        $service = app()->make(CsvImportService::class)
+            ->job($job)
+            ->campaign($job->campaign)
+            ->user($job->user)
+            ->entityType($entityType)
+            ->fieldMap($this->columnMap)
+            ->tags($this->tagIds)
+            ->run();
+
+        return 1;
+    }
+
+    public function failed(Throwable $exception)
+    {
+        $job = CampaignImport::find($this->jobID);
+        if (! $job) {
+            Log::info('Campaign import', ['empty', 'id' => $this->jobID]);
+
+            return 0;
+        }
+
+        /** @var ImportService $service */
+        $service = app()->make(ImportService::class);
+        $service
+            ->job($job)
+            ->fail($exception);
+    }
+}

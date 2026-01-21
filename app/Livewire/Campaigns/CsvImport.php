@@ -8,6 +8,7 @@ use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
 use App\Facades\Module;
 use App\Facades\UserCache;
+use App\Jobs\Campaigns\ImportCsv;
 use App\Models\Campaign;
 use App\Models\CampaignImport;
 use App\Models\Entity;
@@ -46,17 +47,22 @@ class CsvImport extends Component
     public CampaignImport $import;
     public EntityType $type;
     public bool $canAssign = false;
+    public string $tagLabel = '';
+    public array $tags = [];
+
     //public CsvValidatorService $csvValidatorService;
 
     public function mount(Campaign $campaign, CampaignImport $campaignImport)
     {
         $this->campaign = $campaign;
         
-        //UserCache::campaign($this->campaign);
-        //Avatar::campaign($this->campaign);
-        CampaignCache::campaign($campaign);
-        //CampaignLocalization::forceCampaign($this->campaign);
-        //Module::campaign($this->campaign);
+        UserCache::campaign($this->campaign);
+        Avatar::campaign($this->campaign);
+        CampaignCache::campaign($this->campaign);
+        CampaignLocalization::forceCampaign($this->campaign);
+
+        $this->tagLabel = Module::plural(config('entities.ids.tag'), __('entities.tags'));
+
         $this->import = $campaignImport;
         $entityTypeService = app(EntityTypeService::class);
 
@@ -86,7 +92,11 @@ class CsvImport extends Component
 
         $this->type = EntityType::where('id', $this->entityType)->first();
         $this->canAssign = true;
-        $this->fillableFields = $this->type->getMiscClass()->fillableFields();
+        $this->fillableFields = $this->type->getMiscClass()->getFillable();
+
+        $this->fillableFields = array_values(array_diff($this->fillableFields, ['campaign_id']));
+
+
         //$this->columns = $this->csvValidatorService->toSelect();
         
 
@@ -110,6 +120,17 @@ class CsvImport extends Component
 
         $this->success = true;
         $this->title = '';
+    }
+
+    public function submit() 
+    {
+        $tagIds = [];
+        foreach ($this->tags as $tag) {
+            $tagIds[] = $tag['id'];
+        }
+
+        ImportCsv::dispatch($this->import, auth()->user()->id, $this->entityType, $this->columnMap, $tagIds)->onQueue('heavy');
+
     }
 
     public function render()
