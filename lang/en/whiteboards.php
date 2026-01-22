@@ -4,8 +4,8 @@ return [
     'actions'       => [
         'draw'  => 'Draw',
     ],
-    'create'        => [],
     'cta'           => [
+        'title' => 'Whiteboards are a special premium feature',
         'text'  => 'To unlock whiteboards, a campaign needs to be made premium by a member at the :wyvern or :elemental tier.',
     ],
     'lists'         => [
@@ -13,8 +13,5 @@ return [
     ],
     'placeholders'  => [
         'type'  => 'Idea, relationships, story structure',
-    ],
-    'update'        => [
-        'success'   => ':name saved',
     ],
 ];
