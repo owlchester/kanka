@@ -35,11 +35,11 @@
                         @click="openResetDialog" v-html="trans('reset')">
                     </button>
 
-                    <button disabled class="block px-3 py-2 w-full hover:bg-base-200 rounded flex items-center gap-1.5 text-sm text-base-content transition-all duration-150">
+                    <button disabled class="px-3 py-2 w-full hover:bg-base-200 rounded flex items-center gap-1.5 text-sm text-base-content transition-all duration-150">
                         Placeholder 1
                     </button>
 
-                    <button disabled class="block px-3 py-2 w-full hover:bg-base-200 rounded flex items-center gap-1.5 text-sm text-base-content transition-all duration-150">
+                    <button disabled class="px-3 py-2 w-full hover:bg-base-200 rounded flex items-center gap-1.5 text-sm text-base-content transition-all duration-150">
                         Placeholder 2
                     </button>
                 </div>
@@ -55,14 +55,17 @@
 
         </div>
         <div class="flex gap-1 overflow-hidden">
-            <a v-for="user in activeUsers" :key="user.id"
-               :href="user.profile"
-               class="bg-base-200 text-neutral-content rounded-full h-8 w-8 overflow-hidden flex items-center justify-center cursor-pointer" :title="user.name">
+            <span v-for="user in activeUsers"
+               :key="user.id"
+               :aria-label="user.name"
+               class="bg-base-200 text-neutral-content rounded-full h-8 w-8 overflow-hidden flex items-center justify-center cursor-pointer"
+               v-tippy="getUserTooltip(user)"
+            >
                 <img :src="user.image" v-if="user.image" class="w-8 h-8">
                 <span v-else>
-                        {{ user.name.substring(0, 2).toUpperCase() }}
-                    </span>
-            </a>
+                    {{ user.name.substring(0, 2).toUpperCase() }}
+                </span>
+            </span>
         </div>
     </div>
 
@@ -524,8 +527,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, reactive, nextTick, computed, watch, onBeforeUnmount} from 'vue';
-import {useImage} from "vue-konva";
+import { ref, onMounted, nextTick, computed, watch, onBeforeUnmount} from 'vue';
 import { hslFromVar, readCssVar, hslString, tweakHsl } from '../../utility/colours';
 import Browser from "../../gallery/Browser.vue";
 import EntitySearch from "./EntitySearch.vue";
@@ -533,8 +535,7 @@ import Entity from "./Entity.vue";
 import Settings from "./Settings.vue";
 import Reset from './Reset.vue';
 import Echo from 'laravel-echo';
-import Pusher from 'pusher-js';
-import { configureEcho, useEcho, useEchoPresence } from "@laravel/echo-vue"
+import { configureEcho } from "@laravel/echo-vue"
 
 const props = defineProps<{
     save: string,
@@ -547,6 +548,7 @@ const props = defineProps<{
     whiteboard: number,
     user: Boolean,
 }>()
+
 
 const shapes = ref([]);
 const dragItemId = ref(null);
@@ -861,7 +863,8 @@ const setupTransformerEvents = () => {
 };
 
 
-const selectShape = (shape, event?: MouseEvent) => {
+const selectShape = (shape: any, event?: MouseEvent) => {
+    if (props.readonly) return
     // Don't do any selection while in drawing mode to avoid confusion
     if (toolbarMode.value === 'drawing') {
         return;
@@ -2521,8 +2524,16 @@ const openQQ = () => {
     window.openDialog("primary-dialog", urls.value.creator)
 }
 
+
 const cleanupBeforeUnmount = () => {
     window.removeEventListener('keydown', handleKeyDown);
+}
+
+const getUserTooltip = (user: any) => {
+    let role = user.role == 'edit' ? trans('role-edit') : trans('role-view');
+    return '<div class="flex flex-col gap-1">' +
+    '<a class="text-link text-lg" href="' + user.link + '">' + user.name + '</a>' +
+    '<span class="text-neutral-content text-xs">' + role + '</span></div>';
 }
 
 </script>

@@ -145,6 +145,9 @@ class ApiService
             'websocket-server-unavailable' => __('whiteboards/draw.errors.websockets.unavailable'),
             'error-connecting-websocket' => __('whiteboards/draw.errors.websockets.error'),
             'websocket-disconnected' => __('whiteboards/draw.errors.websockets.disconnected'),
+
+            'role-edit' => __('whiteboards/draw.roles.edit'),
+            'role-view' => __('whiteboards/draw.roles.view'),
         ];
     }
 
@@ -203,7 +206,7 @@ class ApiService
             return;
         }
 
-        if (!$this->user->can('update', $this->whiteboard->entity)) {
+        if (!$this->user->can('view', $this->whiteboard->entity)) {
             return;
         }
 

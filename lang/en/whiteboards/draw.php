@@ -23,7 +23,7 @@ return [
         'websockets' => [
             'unavailable' => 'The websocket server is unavailable. Please try again later.',
             'error' => 'An error occurred while connecting to the websocket server.',
-            'websocket-disconnected' => 'The connection to the websocket was lost. Please try again.',
+            'disconnected' => 'The connection to the websocket was lost. Please try again.',
         ],
     ],
     'fields'        => [
@@ -36,6 +36,10 @@ return [
     'reset'         => [
         'helper'    => 'Are you sure you want to reset the whiteboard? This action cannot be undone.',
         'title'     => 'Reset Whiteboard',
+    ],
+    'roles' => [
+        'edit' => 'This user can edit the whiteboard',
+        'view' => 'This user can view the whiteboard',
     ],
     'toast'         => [
         'copy'  => [

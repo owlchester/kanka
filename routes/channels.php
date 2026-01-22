@@ -13,12 +13,13 @@ Broadcast::channel('whiteboard.{id}', function (User $user, $id) {
     $entity = $whiteboard->entity()->withInvisible()->firstOrFail();
 
     \App\Facades\EntityPermission::campaign($entity->campaign);
-    if ($user->can('update', $entity)) {
+    if ($user->can('member', $entity->campaign) && $user->can('view', $entity)) {
         return [
             'id' => $user->id,
             'name' => $user->name,
             'image' => $user->hasAvatar() ? $user->getAvatarUrl() : null,
-            'url' => route('users.profile', [$user])
+            'url' => route('users.profile', [$user]),
+            'role' => $user->can('update', $entity) ? 'edit' : 'view',
         ];
     }
     return false;
