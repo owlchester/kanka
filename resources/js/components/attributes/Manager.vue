@@ -3,8 +3,9 @@
     <div class="text-center text-4xl p-4" v-if="loading">
         <i class="fa-solid fa-spinner fa-spin" aria-label="Loading" />
     </div>
-    <div class="flex flex-col gap-2 lg:gap-5 relative" v-else>
-        <div class="attributes-toolbar flex gap-2 lg:gap-2 items-center flex-wrap">
+    <div class="flex flex-col gap-2 lg:gap-5 relative h-full min-h-0 " v-else>
+        <!-- Toolbar -->
+        <div class="attributes-toolbar flex gap-2 lg:gap-2 items-center flex-wrap flex-none">
             <a role="button" v-bind:class="deleteClass()" @click="deleteAll()" v-if="hasSelected()">
                 <i class="fa-regular fa-trash-can" aria-hidden="true" />
                 <span v-html="trans('columns.delete')"></span>
@@ -35,8 +36,10 @@
                 <span v-html="trans('actions.help')"></span>
             </a>
         </div>
-        <div class="w-full flex flex-col gap-2">
-            <div class="flex gap-2 border-b border-base-300 text-neutral-content items-center text-xs font-light px-4 ">
+
+        <!-- Middle -->
+        <div class="w-full flex flex-col gap-2 flex-1 min-h-0 overflow-hidden">
+            <div class="flex gap-2 border-b border-base-300 text-neutral-content items-center text-xs font-light px-4 flex-none">
                 <div class="w-6 md:w-8 flex-none"></div>
                 <div class="w-6 md:w-8 flex-none">
                     <input type="checkbox" @change="toggleAll()" v-model="checkedAll" />
@@ -55,34 +58,39 @@
                 <div class="lg:hidden flex-none text-center" v-html="trans('columns.preferences')">
                 </div>
             </div>
-            <draggable v-model="visibleAttributes" handle=".handle" class="w-full flex flex-col gap-2">
-                <attributes-manager-attribute
-                    v-for="attribute in visibleAttributes"
-                    :key="attribute.id"
-                    :attribute="attribute"
-                    :attributes="attributes"
-                    :isAdmin="isAdmin()"
-                    :showHidden="showHidden"
-                    :i18n="i18n"
-                    :search-term="searchTerm"
-                    :mention-api="meta.mentions"
-                    @remove="removeAttribute"
-                >
-                </attributes-manager-attribute>
-            </draggable>
+            <div class="flex-1 min-h-0 overflow-y-auto">
+                <draggable v-model="visibleAttributes" handle=".handle" class="w-full flex flex-col gap-2">
+                    <attributes-manager-attribute
+                        v-for="attribute in visibleAttributes"
+                        :key="attribute.id"
+                        :attribute="attribute"
+                        :attributes="attributes"
+                        :isAdmin="isAdmin()"
+                        :showHidden="showHidden"
+                        :i18n="i18n"
+                        :search-term="searchTerm"
+                        :mention-api="meta.mentions"
+                        @remove="removeAttribute"
+                    >
+                    </attributes-manager-attribute>
+                </draggable>
+            </div>
             <div v-if="visibleAttributes.length === 0" class="w-full px-5 italic" v-html="trans('filters.no_results')">
             </div>
         </div>
-        <attributes-manager-form
-            :attributes="attributes"
-            :visible-attributes="visibleAttributes"
-            :i18n="i18n"
-            :newAttributeID="newAttributeID"
-            :max="meta.max"
-            @incrementNewAttributeID="incrementNewAttributeID"
-            @openTemplates="toggleTemplates"
-        >
-        </attributes-manager-form>
+
+        <div class="flex-none">
+            <attributes-manager-form
+                :attributes="attributes"
+                :visible-attributes="visibleAttributes"
+                :i18n="i18n"
+                :newAttributeID="newAttributeID"
+                :max="meta.max"
+                @incrementNewAttributeID="incrementNewAttributeID"
+                @openTemplates="toggleTemplates"
+            >
+            </attributes-manager-form>
+        </div>
     </div>
 
     <dialog class="dialog rounded-top md:rounded-2xl bg-base-100 min-w-fit shadow-md text-base-content" id="templates-dialog" aria-modal="true" v-if="!loading">
