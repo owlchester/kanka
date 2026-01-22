@@ -43,8 +43,8 @@
                 </x-helper>
             @else
             <div class="flex flex-col gap-2">
-                <p>{{ __('referrals.stats.invited') }} {{ trans_choice('referrals.stats.users', $users, ['amount' => $users]) }}</p>
-                <p>{{ __('referrals.stats.subscribers', ['amount' => $subscribers]) }}</p>
+                <p>{{ __('referrals.stats.invited') }} {{ trans_choice('referrals.stats.users', $users, ['amount' => number_format($users)]) }}</p>
+                <p>{{ __('referrals.stats.subscribers', ['amount' => number_format($subscribers)]) }}</p>
                 <p>{{ __('referrals.stats.badge', ['level' => $badge]) }}</p>
             </div>
             @endif

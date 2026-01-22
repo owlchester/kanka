@@ -27,6 +27,9 @@ class ManagementService
 
     public function users(): int
     {
+        if (app()->hasDebugModeEnabled()) {
+            return mt_rand(1, 50);
+        }
         return $this->referrals()->count();
     }
 
@@ -41,12 +44,15 @@ class ManagementService
 
     public function subscribers(): int
     {
+        if (app()->hasDebugModeEnabled()) {
+            return mt_rand(0, 10);
+        }
         return $this->referrals()->whereNotNull('pledge')->count();
     }
 
     public function badge(): string
     {
-        $count = $this->referrals()->count();
+        $count = $this->users();
         if ($count < 5) {
             return 'I';
         } elseif ($count < 12) {
