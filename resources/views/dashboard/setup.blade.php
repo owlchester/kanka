@@ -108,7 +108,7 @@ $hasDashboards = !$dashboards->isEmpty() || !empty($dashboard);
 
         @include('partials.errors')
 
-        <x-tutorial code="dashboard-setup">
+        <x-tutorial code="dashboard_setup">
             <p>
                 {!! __('dashboard.setup.tutorial.text', [
 'blog' => '<a href="https://blog.kanka.io/2020/09/20/how-to-style-your-kanka-campaign-dashboard/" class="text-link">' . __('dashboard.setup.tutorial.blog') . '</a>',

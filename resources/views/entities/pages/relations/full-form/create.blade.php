@@ -12,8 +12,8 @@
 
     @include('cruds.forms._errors')
     <x-form files :action="['relations.store', $campaign]" class="entity-form" id="entity-form" unload>
-        <div class="nav-tabs-custom bg-base-100 p-4 rounded-xl flex flex-col gap-6">
-            <div class="flex gap-2 items-center justify-between ">
+        <div class="nav-tabs-custom bg-base-100 p-4 rounded-xl flex flex-col gap-6 relative">
+            <div class="flex gap-2 items-center justify-between sticky z-10 bg-base-100 top-12">
                 <div class="overflow-x-auto">
                     <ul class="nav-tabs flex items-stretch w-full" role="tablist">
                         <x-tab.tab target="entry" :default="true" :title="__('crud.fields.entry')"></x-tab.tab>

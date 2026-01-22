@@ -25,8 +25,8 @@
     <x-grid type="1/1">
         @include('cruds.forms._errors')
 
-        <div class="nav-tabs-custom bg-base-100 p-4 rounded-xl flex flex-col gap-6">
-            <div class="flex gap-2 items-center justify-between ">
+        <div class="nav-tabs-custom bg-base-100 p-4 rounded-xl flex flex-col gap-6 relative">
+            <div class="flex gap-2 items-center justify-between sticky z-10 top-12 bg-base-100">
                 <div class="overflow-x-auto">
                     <ul class="nav-tabs flex items-stretch w-full" role="tablist">
                         <x-tab.tab target="entry" :default="true" :title="__('crud.fields.entry')"></x-tab.tab>
