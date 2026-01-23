@@ -44,6 +44,7 @@ use App\Models\Plugin;
 use App\Models\Post;
 use App\Models\Quest;
 use App\Models\Race;
+use App\Models\Spotlight;
 use App\Models\Tag;
 use App\Models\Theme;
 use App\Models\Timeline;
@@ -53,6 +54,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Collection;
 
 /**
@@ -82,6 +84,7 @@ use Illuminate\Support\Collection;
  * @property Collection|CampaignExport[] $queuedCampaignExports
  * @property Collection|EntityType[] $entityTypes
  * @property Collection|CampaignFlag[] $flags
+ * @property ?Spotlight $spotlight
  */
 trait CampaignRelations
 {
@@ -521,5 +524,13 @@ trait CampaignRelations
     public function flags(): HasMany
     {
         return $this->hasMany(CampaignFlag::class, 'campaign_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\Spotlight, $this>
+     */
+    public function spotlight(): HasOne
+    {
+        return $this->hasOne(Spotlight::class);
     }
 }

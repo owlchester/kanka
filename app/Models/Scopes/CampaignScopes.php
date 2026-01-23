@@ -103,22 +103,25 @@ trait CampaignScopes
     /**
      * Featured Campaigns
      */
-    public function scopeFeatured(Builder $query, $featured = true): Builder
+    public function scopeSpotlight(Builder $query, ?int $limit = 4): Builder
     {
-        if ($featured) {
-            return $query->where('is_featured', true)
-                ->where(function ($sub) {
-                    return $sub->whereNull('featured_until')
-                        ->orWhereDate('featured_until', '>=', Carbon::today()->toDateString());
-                });
+        $activeSpotlights = DB::table('spotlights')
+            ->selectRaw('campaign_id, MAX(featured_at) as featured_at')
+            ->where('status', 1)
+            ->groupBy('campaign_id');
+
+        $query
+            ->select($this->getTable() . '.*')
+            ->joinSub($activeSpotlights, 'active_spotlights', function ($join) {
+                $join->on('active_spotlights.campaign_id', '=', $this->getTable() . '.id');
+            })
+            ->orderByDesc('active_spotlights.featured_at');
+
+        if ($limit !== null) {
+            $query->limit($limit);
         }
 
-        // Not featured, or featured in the past
-        return $query->where('is_featured', $featured)
-            ->orWhere(function ($sub) {
-                return $sub->where('is_featured', true)
-                    ->whereDate('featured_until', '<', Carbon::today()->toDateString());
-            });
+        return $query;
     }
 
     /**
@@ -141,7 +144,7 @@ trait CampaignScopes
         }
         $defaultSort = $sort == 1 ? 'follower' : 'visible_entity_count';
         $query
-            ->with('systems')
+            ->with(['systems', 'spotlight'])
             ->where('is_hidden', 0)
             ->orderBy($defaultSort, 'desc')
             ->orderBy('name');

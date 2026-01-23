@@ -7,7 +7,6 @@ use App\Models\Campaign;
 use App\Models\GameSystem;
 use App\Services\GenreService;
 use App\Traits\RequestAware;
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Cache;
@@ -23,7 +22,7 @@ class CampaignService
     public function setup(): array
     {
         return $this->filters()
-            ->featured()
+            ->spotlight()
             ->data;
     }
 
@@ -83,7 +82,7 @@ class CampaignService
 
         $this->data['featured'] = Campaign::public()
             ->front()
-            ->featured()
+            ->spotlight()
             ->get()
             ->map(fn ($campaign) => new CampaignResource($campaign));
 
@@ -102,7 +101,6 @@ class CampaignService
         } else {
             $campaigns = Campaign::public()
                 ->front((int) $this->request->get('sort_field_name'))
-                ->featured(false)
                 ->filterPublic($this->request->only(['language', 'system', 'is_boosted', 'is_open', 'genre']))
                 ->paginate();
             $this->data['campaigns'] = CampaignResource::collection($campaigns);
@@ -129,7 +127,6 @@ class CampaignService
         return Cache::remember('public-campaigns-page-1', 24 * 3600, function () {
             $campaigns = Campaign::public()
                 ->front()
-                ->featured(false)
                 ->filterPublic([])
                 ->paginate();
 

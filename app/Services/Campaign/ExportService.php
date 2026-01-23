@@ -235,8 +235,8 @@ class ExportService
         // We don't want the whole model to be available to the export.
         // It would probably make more sense to have a resource for this.
         $hidden = [
-            'boost_count', 'export_date', 'is_featured', 'featured_until',
-            'featured_reason', 'visible_entity_count', 'system', 'follower', 'is_hidden',
+            'boost_count', 'export_date',
+            'visible_entity_count', 'system', 'follower', 'is_hidden',
         ];
 
         if ($this->isMarkdown) {
