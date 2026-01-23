@@ -50,6 +50,7 @@ use App\Events\Posts\PostCreated;
 use App\Events\Posts\PostDeleted;
 use App\Events\Posts\PostRestored;
 use App\Events\Posts\PostUpdated;
+use App\Events\SpotlightSubmitted;
 use App\Events\Subscriptions\AutoRemove;
 use App\Events\Subscriptions\Boost;
 use App\Events\Subscriptions\Disable;
@@ -83,6 +84,7 @@ use App\Listeners\Entities\LogEntity;
 use App\Listeners\Posts\LogPost;
 use App\Listeners\SendAdminInviteNotification;
 use App\Listeners\SendFeatureNotification;
+use App\Listeners\SendSpotlightNotification;
 use App\Listeners\Users\ClearUserCache;
 use App\Listeners\Users\SendEmailUpdate;
 use App\Listeners\Users\Subscriptions\LogPremium;
@@ -104,6 +106,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         FeatureCreated::class => [
             SendFeatureNotification::class,
+        ],
+        SpotlightSubmitted::class => [
+            SendSpotlightNotification::class,
         ],
         RoleUserAdded::class => [
             RunRoleUserJob::class,
