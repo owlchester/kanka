@@ -3,6 +3,7 @@
 namespace App\Models\Scopes;
 
 use App\Enums\CampaignVisibility;
+use App\Enums\SpotlightStatus;
 use App\Facades\Identity;
 use App\Models\Campaign;
 use App\Models\User;
@@ -107,7 +108,7 @@ trait CampaignScopes
     {
         $activeSpotlights = DB::table('spotlights')
             ->selectRaw('campaign_id, MAX(featured_at) as featured_at')
-            ->where('status', 1)
+            ->where('status', SpotlightStatus::active)
             ->groupBy('campaign_id');
 
         $query
