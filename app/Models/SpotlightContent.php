@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int $id
  * @property SpotlightContentStatus $status
- * @property string $content_json
+ * @property array $content_json
  */
 class SpotlightContent extends Model
 {

@@ -22,12 +22,12 @@ class ShowcaseController extends Controller
             ->header('Expires', Carbon::now()->addDays(1)->toDateTimeString());
     }
 
-    public function setup()
+    public function setup(Request $request)
     {
         return response()
             ->json(
                 $this->service
-                    ->request(null)
+                    ->request($request)
                     ->search()
             )
             ->header('Expires', Carbon::now()->addDays(1)->toDateTimeString());

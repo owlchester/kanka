@@ -139,6 +139,7 @@ trait CampaignScopes
             $values[] = CampaignVisibility::unlisted;
         }
 
+        // @phpstan-ignore-next-line
         return $query->visibility($values);
     }
 

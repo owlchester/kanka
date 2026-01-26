@@ -6,6 +6,7 @@ use App\Models\SpotlightContent;
 use App\Services\Discord\NotificationService;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class DiscordSpotlightJob implements ShouldQueue
@@ -38,7 +39,7 @@ class DiscordSpotlightJob implements ShouldQueue
             ->title('Spotlight application for ' . $this->spotlightContent->campaign->name)
             ->content('A campaign applied for a spotlight.')
             ->user($this->spotlightContent->creator)
-            ->description(Str::limit($this->spotlightContent->content_json['time'], 250))
+            ->description(Str::limit(Arr::get($this->spotlightContent->content_json, 'time'), 250))
             ->url('https://admin.kanka.io/spotlight-contents/' . $this->spotlightContent->id)
             ->send();
     }
