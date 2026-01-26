@@ -8,6 +8,7 @@ use App\Models\SpotlightContent;
 use App\Traits\CampaignAware;
 use App\Traits\RequestAware;
 use App\Traits\UserAware;
+use Stevebauman\Purify\Facades\Purify;
 
 class ApplyService
 {
@@ -65,7 +66,7 @@ class ApplyService
             $this->content->status = SpotlightContentStatus::draft;
         }
 
-        $this->content->content_json = $this->request->only([
+        $fields = $this->request->only([
             'time',
             'world',
             'proud',
@@ -74,5 +75,9 @@ class ApplyService
             'kanka',
             'share'
         ]);
+        foreach ($fields as $key => $value) {
+            $fields[$key] = Purify::clean($value);
+        }
+        $this->content->content_json = $fields;
     }
 }
