@@ -17,11 +17,18 @@
         @include('partials.errors')
         <x-box>
             <x-forms.field field="entry">
+                @if (request()->has('tiptap'))
+                    <div class="tiptap-editor entity-content">
+                        <tiptap
+                            api="{{ route('entities.api.document', [$campaign, $source ?? $entity]) }}" />
+                    </div>
+                @else
                 <textarea name="entry"
                           id="entry"
                           class="html-editor"
                           rows="3"
                 >{!! $entity->entryForEdition !!}</textarea>
+                @endif
             </x-forms.field>
 
             <div class="flex gap-2 items-center">
