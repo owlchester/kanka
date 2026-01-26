@@ -22,7 +22,7 @@ class CampaignService
     public function setup(): array
     {
         return $this->filters()
-            ->spotlight()
+            ->showcased()
             ->data;
     }
 
@@ -77,12 +77,11 @@ class CampaignService
     /**
      * Build a list of featured campaigns
      */
-    protected function featured(): self
+    protected function showcased(): self
     {
 
-        $this->data['featured'] = Campaign::public()
-            ->front()
-            ->spotlight()
+        $this->data['featured'] = Campaign::public(false)
+            ->showcased()
             ->get()
             ->map(fn ($campaign) => new CampaignResource($campaign));
 
@@ -144,7 +143,8 @@ class CampaignService
         $this->data['pagination'] = [
             'per_page' => $paginator->perPage(),
             'current_page' => $paginator->currentPage(),
-            'total_pages' => $paginator->total(),
+            'total' => $paginator->total(),
+            'has_pages' => $paginator->hasPages(),
             'next' => $paginator->nextPageUrl(),
             'previous' => $paginator->previousPageUrl(),
         ];

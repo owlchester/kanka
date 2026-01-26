@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Query\JoinClause;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Trait CampaignScopes
@@ -28,6 +29,7 @@ use Illuminate\Support\Arr;
  * @method static self|Builder slug(string|int $slug)
  * @method static self|Builder acl(string|int $slug)
  * @method static self|Builder userOrdered(User $user)
+ * @method static self|Builder showcased(?int $limit = 4)
  */
 trait CampaignScopes
 {
@@ -104,7 +106,7 @@ trait CampaignScopes
     /**
      * Featured Campaigns
      */
-    public function scopeSpotlight(Builder $query, ?int $limit = 4): Builder
+    public function scopeShowcased(Builder $query, ?int $limit = 4): Builder
     {
         $activeSpotlights = DB::table('spotlights')
             ->selectRaw('campaign_id, MAX(featured_at) as featured_at')
@@ -128,10 +130,16 @@ trait CampaignScopes
     /**
      * Public campaigns
      */
-    public function scopePublic(Builder $query): Builder
+    public function scopePublic(Builder $query, bool $withUnlisted = true): Builder
     {
         // @phpstan-ignore-next-line
-        return $query->visibility([\App\Enums\CampaignVisibility::public, CampaignVisibility::unlisted]);
+        $values = [
+            CampaignVisibility::public
+        ];
+        if ($withUnlisted) {
+            $values[] = CampaignVisibility::unlisted;
+        }
+        return $query->visibility($values);
     }
 
     /**
