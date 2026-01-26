@@ -2,7 +2,7 @@
 
 return [
     'title' => 'Apply for the Spotlight',
-    'rules' => 'We select 1–3 campaigns each month to feature on the Kanka Showcase.
+    'rules' => 'We select 1–3 campaigns each month to feature on the Kanka :showcase.
 Selection isn’t guaranteed. Spotlighted campaigns receive a permanent achievement and a published interview.',
     'started' => 'To get started, select one of your campaigns.',
     'apply' => [

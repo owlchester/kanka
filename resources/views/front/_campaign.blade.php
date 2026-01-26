@@ -1,13 +1,18 @@
 <?php /** @var \App\Models\Campaign $campaign */?>
-<a class="flex flex-col gap-5 text-left w-72" href="{{ route('dashboard', $campaign) }}" title="{!! $campaign->name !!}">
-
-    <img src="{{ $campaign->image ? $campaign->thumbnail(320, 240) : 'https://th.kanka.io/zzKcBpijSBvm4rPWdzRpI82pTNQ=/320x240/smart/src/app/backgrounds/mountain-background-medium.jpg' }}" alt="{{ $campaign->name }}" class="w-80 h-60">
+<div class="flex flex-col gap-5 text-left w-72" title="{!! $campaign->name !!}">
+    <a href="{{ route('dashboard', $campaign) }}">
+        <img src="{{ $campaign->image ? $campaign->thumbnail(320, 240) : 'https://th.kanka.io/zzKcBpijSBvm4rPWdzRpI82pTNQ=/320x240/smart/src/app/backgrounds/mountain-background-medium.jpg' }}" alt="{{ $campaign->name }}" class="w-80 h-60">
+    </a>
 
     <div class="flex flex-col gap-2">
-        <div class="flex gap-2">
-            <h3 class="text-xl">{!! $campaign->name !!}</h3>
-        </div>
+        <a class="flex gap-2" href="{{ route('dashboard', $campaign) }}">
+            <h3 class="block" >{!! $campaign->name !!}</h3>
+        </a>
 
+        @if ($campaign->spotlight)
+            <a class="text-sm text-light hover:font-semibold" href="{{ $campaign->spotlight->url }}">View spotlight</a>
+
+        @endif
         <div class="flex flex-wrap gap-6 text-sm">
 
             <span class="" title="{{ __('campaigns.fields.entity_count') }}" data-toggle="tooltip">
@@ -32,4 +37,4 @@
             @endif
         </div>
     </div>
-</a>
+</div>

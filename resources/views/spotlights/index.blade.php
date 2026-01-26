@@ -13,7 +13,9 @@
                     <h1 class="">{{ __('spotlights.title') }}</h1>
 
                     <p class="text-light">
-                        {{ __('spotlights.rules') }}
+                        {!! __('spotlights.rules', [
+    'showcase' => '<a href="' . Domain::toFront('showcase') . '" class="font-semibold text-light">' . __('footer.showcase') . '</a>'
+]) !!}
                     </p>
                 </div>
             </div>
