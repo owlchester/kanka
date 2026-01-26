@@ -24,7 +24,6 @@ class ApplyRequest extends FormRequest
         $isApply = $this->string('action')->toString() === 'apply';
         $requiredOrNullable = $isApply ? 'required|string|min:15' : 'nullable|string';
 
-
         return [
             'action' => 'nullable|in:save,apply',
 

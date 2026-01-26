@@ -28,7 +28,7 @@ class ApplyService
     public function save()
     {
         $this->content = $this->content();
-        if (isset($this->content) && !$this->content->isDraft()) {
+        if (isset($this->content) && ! $this->content->isDraft()) {
             return;
         }
         $this->fill();
@@ -73,7 +73,7 @@ class ApplyService
             'inspiration',
             'stories',
             'kanka',
-            'share'
+            'share',
         ]);
         foreach ($fields as $key => $value) {
             $fields[$key] = Purify::clean($value);

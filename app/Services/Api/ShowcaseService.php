@@ -2,10 +2,8 @@
 
 namespace App\Services\Api;
 
-use App\Enums\CampaignVisibility;
 use App\Http\Resources\Public\CampaignResource;
 use App\Models\Campaign;
-use App\Models\GameSystem;
 use App\Services\GenreService;
 use App\Traits\RequestAware;
 use Illuminate\Database\Eloquent\Builder;
@@ -34,7 +32,7 @@ class ShowcaseService
     {
         $this->data['campaigns'] = [];
 
-        if ($this->usesDefaultFilters() && !app()->hasDebugModeEnabled()) {
+        if ($this->usesDefaultFilters() && ! app()->hasDebugModeEnabled()) {
             $this->data['campaigns'] = $this->cachedCampaigns();
         } else {
             $campaigns = $this->baseQuery()

@@ -7,7 +7,6 @@ use App\Enums\SpotlightStatus;
 use App\Facades\Identity;
 use App\Models\Campaign;
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Query\JoinClause;
 use Illuminate\Support\Arr;
@@ -134,11 +133,12 @@ trait CampaignScopes
     {
         // @phpstan-ignore-next-line
         $values = [
-            CampaignVisibility::public
+            CampaignVisibility::public,
         ];
         if ($withUnlisted) {
             $values[] = CampaignVisibility::unlisted;
         }
+
         return $query->visibility($values);
     }
 

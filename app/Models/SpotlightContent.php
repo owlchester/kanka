@@ -5,8 +5,6 @@ namespace App\Models;
 use App\Enums\SpotlightContentStatus;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasCampaign;
-use App\Observers\SpotlightContentObserver;
-use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Concerns\HasTimestamps;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,8 +15,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class SpotlightContent extends Model
 {
-    use HasCampaign;
     use Blameable;
+    use HasCampaign;
     use HasTimestamps;
 
     public $casts = [
@@ -35,10 +33,12 @@ class SpotlightContent extends Model
     {
         return $this->status === SpotlightContentStatus::applied;
     }
+
     public function isRejected(): bool
     {
         return $this->status === SpotlightContentStatus::rejected;
     }
+
     public function isApproved(): bool
     {
         return $this->status === SpotlightContentStatus::approved;

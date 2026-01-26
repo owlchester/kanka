@@ -206,7 +206,7 @@ class ApiService
             return;
         }
 
-        if (!$this->user->can('view', $this->whiteboard->entity)) {
+        if (! $this->user->can('view', $this->whiteboard->entity)) {
             return;
         }
 

@@ -23,6 +23,7 @@ class ApplicationController extends Controller
         if (request()->has('campaign')) {
             $campaign = $campaigns->where('slug', request()->get('campaign'))->firstOrFail();
         }
+
         return view('spotlights.index')
             ->with('campaigns', $campaigns)
             ->with('campaign', $campaign ?? null);
@@ -72,7 +73,6 @@ class ApplicationController extends Controller
             ->with('success', __('spotlights.form.success'));
     }
 
-
     public function retract(Request $request, Campaign $campaign)
     {
         $this->authorize('member', $campaign);
@@ -85,7 +85,6 @@ class ApplicationController extends Controller
         return redirect()
             ->route('spotlights.form', [$campaign])
             ->with('success', __('spotlights.retract.success'));
-
 
     }
 }

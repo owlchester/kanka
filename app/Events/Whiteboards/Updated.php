@@ -6,18 +6,18 @@ use App\Http\Resources\Whiteboards\ShapeResource;
 use App\Models\Whiteboard;
 use App\Models\WhiteboardShape;
 use Illuminate\Broadcasting\InteractsWithBroadcasting;
+use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
-use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
-use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Queue\SerializesModels;
 
 class Updated implements ShouldBroadcastNow
 {
-    use InteractsWithBroadcasting;
-    use SerializesModels;
     use Dispatchable;
+    use InteractsWithBroadcasting;
     use InteractsWithSockets;
+    use SerializesModels;
 
     public function __construct(
         public Whiteboard $whiteboard,
@@ -25,8 +25,7 @@ class Updated implements ShouldBroadcastNow
         public WhiteboardShape $shape,
         public ?string $image = null,
         public ?array $entity = null,
-    )
-    {
+    ) {
         $this->broadcastVia('reverb');
     }
 

@@ -14,7 +14,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $featured_at
  * @property ?int $featured_by
  * @property int $status
- *
  */
 class Spotlight extends Model
 {

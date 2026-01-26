@@ -9,9 +9,7 @@ use Illuminate\Http\Request;
 
 class ShowcaseController extends Controller
 {
-    public function __construct(protected ShowcaseService $service)
-    {
-    }
+    public function __construct(protected ShowcaseService $service) {}
 
     public function index(Request $request)
     {

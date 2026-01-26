@@ -30,6 +30,7 @@ class ManagementService
         if (app()->hasDebugModeEnabled()) {
             return mt_rand(1, 50);
         }
+
         return $this->referrals()->count();
     }
 
@@ -47,6 +48,7 @@ class ManagementService
         if (app()->hasDebugModeEnabled()) {
             return mt_rand(0, 10);
         }
+
         return $this->referrals()->whereNotNull('pledge')->count();
     }
 
