@@ -26,7 +26,7 @@ class TutorialService
         'map_markers',
         'map_groups',
         'map_layers',
-        'dashboard_setup'
+        'dashboard_setup',
     ];
 
     /**

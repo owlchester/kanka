@@ -2,11 +2,13 @@
 
 namespace App\Services\Campaign;
 
+use App\Enums\SpotlightStatus;
 use App\Models\CampaignPlugin;
 use App\Models\EntityTag;
 use App\Models\EntityType;
 use App\Models\MapMarker;
 use App\Models\Relation;
+use App\Models\Spotlight;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Facades\Cache;
 
@@ -60,7 +62,20 @@ class AchievementService
 
         $this->loadModules();
 
+        /** @var ?Spotlight $spotlight */
+        $spotlight = $this->campaign->spotlight()
+            ->where('status', SpotlightStatus::active)
+            ->first();
+
         $stats = [
+            'spotlighted' => [
+                'icon' => 'fa-duotone fa-stars',
+                'amount' => $spotlight ? 1 : 0,
+                'target' => 1,
+                'level' => $spotlight ? 5 : 0,
+                'history' => 'spotlighted',
+                'url' => $spotlight?->url,
+            ],
             'characters' => [
                 'icon' => $this->modules['character']->icon(),
                 'amount' => $characters,

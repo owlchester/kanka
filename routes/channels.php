@@ -1,12 +1,11 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Broadcast;
 
-use App\Models\User;
-
-//Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
+// Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
 //    return (int) $user->id === (int) $id;
-//});
+// });
 
 Broadcast::channel('whiteboard.{id}', function (User $user, $id) {
     $whiteboard = \App\Models\Whiteboard::withInvisible()->findOrFail($id);
@@ -22,5 +21,6 @@ Broadcast::channel('whiteboard.{id}', function (User $user, $id) {
             'role' => $user->can('update', $entity) ? 'edit' : 'view',
         ];
     }
+
     return false;
 });

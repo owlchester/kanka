@@ -123,6 +123,7 @@ class WhiteboardShape extends Model
                 return Avatar::entity($entity)->size(256)->fallback()->thumbnail();
             }
         }
+
         return null;
     }
 }
