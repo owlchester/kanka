@@ -19,13 +19,15 @@ class ApplyService
 
     public function content(): ?SpotlightContent
     {
-        return SpotlightContent::where('campaign_id', $this->campaign->id)->first();
+        return SpotlightContent::where('campaign_id', $this->campaign->id)
+            ->where('status', '<>', SpotlightContentStatus::rejected)
+            ->first();
     }
 
     public function save()
     {
         $this->content = $this->content();
-        if (!$this->content?->isDraft()) {
+        if (isset($this->content) && !$this->content->isDraft()) {
             return;
         }
         $this->fill();

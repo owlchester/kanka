@@ -2,7 +2,7 @@
     <label for="{{ $field }}" class="text-md @if ($errors->has($field)) text-red-400 @endif">
         {{ __('spotlights.questions.' . $field) }}
     </label>
-    @if (!isset($content) || !$content->isDraft())
+    @if ($content?->isApproved() || $content?->isApplied())
         <span class="text-light">{!! \Illuminate\Support\Arr::get($content->content_json, $field) !!}</span>
     @else
         <textarea

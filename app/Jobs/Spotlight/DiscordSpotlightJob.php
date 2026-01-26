@@ -39,7 +39,7 @@ class DiscordSpotlightJob implements ShouldQueue
             ->content('A campaign applied for a spotlight.')
             ->user($this->spotlightContent->creator)
             ->description(Str::limit($this->spotlightContent->content_json['time'], 250))
-            ->url('https://admin.kanka.io/spotlight_contents/' . $this->spotlightContent->id)
+            ->url('https://admin.kanka.io/spotlight-contents/' . $this->spotlightContent->id)
             ->send();
     }
 }

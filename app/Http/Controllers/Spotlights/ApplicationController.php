@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Spotlights;
 
+use App\Enums\CampaignVisibility;
 use App\Exceptions\TranslatableException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Spotlights\ApplyRequest;
@@ -18,9 +19,13 @@ class ApplicationController extends Controller
 
     public function index()
     {
-        $campaigns = auth()->user()->campaigns;
+        $campaigns = auth()->user()->campaigns->where('visibility_id', CampaignVisibility::public);
+        if (request()->has('campaign')) {
+            $campaign = $campaigns->where('slug', request()->get('campaign'))->firstOrFail();
+        }
         return view('spotlights.index')
-            ->with('campaigns', $campaigns);
+            ->with('campaigns', $campaigns)
+            ->with('campaign', $campaign ?? null);
     }
 
     public function form(Campaign $campaign)

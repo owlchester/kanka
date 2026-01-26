@@ -1,8 +1,9 @@
 <?php
 
 return [
-    'title' => 'Spotlight application',
-    'rules' => 'We feature 1-3 campaigns per month. Submitting doesn\'t guarantee selection, but every featured campaign gets a permanent achievement and spotlight.',
+    'title' => 'Apply for the Spotlight',
+    'rules' => 'We select 1–3 campaigns each month to feature on the Kanka Showcase.
+Selection isn’t guaranteed. Spotlighted campaigns receive a permanent achievement and a published interview.',
     'started' => 'To get started, select one of your campaigns.',
     'apply' => [
         'errors' => [
@@ -10,6 +11,7 @@ return [
         ],
     ],
     'form' => [
+        'not-public' => 'This campaign isn\'t publically visible and cannot apply to the spotlight.',
         'title' => 'Spotlight application form',
         'preset' => 'Tell us a little bit about :campaign and why you think it deserves to be featured. You can save and come back to these questions later.',
         'actions' => [
@@ -22,7 +24,7 @@ return [
     ],
     'applied' => [
         'title' => 'Application applied',
-        'description' => 'Your application has been submitted and is now under review. You will receive an email when it has been approved or rejected.',
+        'description' => 'Your application has been submitted and is now under review. You will receive a notification when it has been approved or rejected.',
         'actions' => [
             'retract' => 'Retract application',
         ],
@@ -54,5 +56,53 @@ return [
     'rejected' => [
         'title' => 'Application rejected',
         'description' => 'Your application has been rejected. Please try again later.',
+    ],
+    'overview' => [
+        'cta' => 'Apply for spotlight with :name',
+        'not-public' => ':name isn\'t a publically visible campaign.',
+        'showcase' => 'View Showcase',
+    ],
+    'faq' => [
+        'what' => [
+            'q' => 'What is the Spotlight?',
+            'a' => 'The Spotlight highlights exceptional campaigns built with Kanka. Selected campaigns are featured on the Kanka Showcase and in a short interview-style blog post.'
+        ],
+        'who' => [
+            'q' => 'Who can apply?',
+            'a' => [
+                'lead' => 'Any public campaign on Kanka can apply',
+                'requirements' => 'Your campaign should:',
+                'req1' => 'Be publically accessible',
+                'req2' => 'Show active use (content, history, or players)',
+                'req3' => 'Represent the kind of worlds others can learn from',
+                'end' => 'No minimum size. No system restriction.'
+            ]
+        ],
+        'how' => [
+            'q' => 'How are campaigns selected?',
+            'a' => [
+                'lead' => 'We select 1-3 campaigns per month.',
+                'requirements' => 'Selection is editorial, not competitive. We look for:',
+                'req1' => 'Clear identity and themes',
+                'req2' => 'Thoughtful worldbuilding',
+                'req3' => 'Interesting stories or approaches',
+                'end' => 'Not follower count. Not popularity. Not membership status',
+            ]
+        ],
+        'selected' => [
+            'q' => 'What happens if my campaign is selected?',
+            'a' => [
+                'lead' => 'If selected:',
+                'req1' => 'Your campaign receives the Spotlighted Campaign achievement',
+                'req2' => 'We publish a feature on the :blog and :showcase',
+                'req3' => 'We might lightly edit your answers for clarity',
+                'end' => 'You\'ll be notified before publication.'
+            ],
+        ],
+        'reapply' => [
+            'q' => 'Can I apply more than once?',
+            'a' => 'Yes. If your campaign isn\'t selected, you\'re welcome to apply again later, especially if your world has evolved.',
+        ],
+        'finisher' => 'Submitted doesn\'t guarantee selection. We read every application, but can\'t feature them all.',
     ],
 ];

@@ -7,25 +7,49 @@
         <div class="grow text-xl">
             {{  __('campaigns/achievements.titles.' . $key) }}
         </div>
+        @if ($key !== 'spotlighted')
         <div class="flex-none bg-base-200 rounded-lg p-2">
             {{  __('campaigns/achievements.level', ['number' => Arr::get($stat, 'level', 0)]) }}
         </div>
+        @endif
     </div>
 
     <div class="achievement-motivation flex gap-2 md:gap-6 grow">
-        <div class="flex-none w-20 h-20 rounded-full bg-primary text-primary-content text-4xl flex items-center justify-center">
+        <div class="flex-none w-20 h-20 rounded-full  text-4xl flex items-center justify-center
+            @if ($key === 'spotlighted' && !$campaign->isPublic()) bg-base-300 text-neutral-content' @else bg-primary text-primary-content @endif">
             <x-icon class="{{ $stat['icon'] }}" />
         </div>
         <div class="grow flex flex-col">
-            <div class="text-2xl">
-                @php
-                    $remaining = Arr::get($stat, 'target', 0) - Arr::get($stat, 'amount', 0);
-                @endphp
-                {{ $remaining }}
-            </div>
-            <div class="text-neutral-content">
-                {{  __('campaigns/achievements.remaining.generic') }}
-            </div>
+            @if ($key === 'spotlighted')
+                @if ($campaign->isPublic())
+                    <x-helper>
+                        <p>{{ __('campaigns/achievements.spotlight.public.helper') }}</p>
+                    </x-helper>
+                    <a href="{{ route('spotlights.application', ['campaign' => $campaign]) }}" class="text-link">
+                        {{ __('campaigns/achievements.spotlight.public.cta') }}
+                    </a>
+                @else
+                    <x-helper>
+                        <p>{{ __('campaigns/achievements.spotlight.private.helper') }}</p>
+                    </x-helper>
+                    @can('update', $campaign)
+
+                        <a href="{{ route('campaigns.edit', ['campaign' => $campaign]) }}" class="text-link">
+                            {{ __('campaigns/achievements.spotlight.private.cta') }}
+                        </a>
+                    @endif
+                @endif
+            @else
+                <div class="text-2xl">
+                    @php
+                        $remaining = Arr::get($stat, 'target', 0) - Arr::get($stat, 'amount', 0);
+                    @endphp
+                    {{ $remaining }}
+                </div>
+                <div class="text-neutral-content">
+                    {{  __('campaigns/achievements.remaining.generic') }}
+                </div>
+            @endif
         </div>
     </div>
 
