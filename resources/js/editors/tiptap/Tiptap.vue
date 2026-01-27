@@ -2,6 +2,7 @@
     import { useEditor, EditorContent } from '@tiptap/vue-3'
     import StarterKit from '@tiptap/starter-kit'
     import { BubbleMenu, FloatingMenu } from '@tiptap/vue-3/menus'
+    import Link from '@tiptap/extension-link'
     import {ref, onMounted, onBeforeUnmount, onUnmounted, computed} from 'vue'
 
 
@@ -12,12 +13,25 @@
     const html = ref(props.modelValue ?? '<p>Loading...</p>')
     const showHeadingDropdown = ref(false)
     const showListDropdown = ref(false)
+    const showLinkInput = ref(false)
+    const linkUrl = ref('')
+    const linkInputRef = ref<HTMLInputElement | null>(null)
+
 
 
     const editor = useEditor({
         content: html.value,
         extensions: [
-            StarterKit,
+            StarterKit.configure({
+                link: false,
+            }),
+            Link.configure({
+                openOnClick: false,
+                defaultProtocol: 'https',
+                HTMLAttributes: {
+                    class: 'text-link',
+                },
+            }),
         ],
         onUpdate: ({ editor }) => {
             html.value = editor.getHTML()
@@ -101,8 +115,69 @@
         if (editor.value.isActive('bulletList')) return 'fa-regular fa-list-ul'
         if (editor.value.isActive('orderedList')) return 'fa-regular fa-list-ol'
 
-        return 'fa-regular fa-list-ol'
+        return 'fa-regular fa-list-ul'
     })
+    const openLinkInput = () => {
+        // Get existing link URL if there is one
+        const previousUrl = editor?.value.getAttributes('link').href || ''
+        linkUrl.value = previousUrl
+        showLinkInput.value = true
+
+        // Focus the input after Vue updates the DOM
+        setTimeout(() => {
+            linkInputRef.value?.focus()
+        }, 10)
+    }
+
+    const setLink = () => {
+        if (!linkUrl.value) {
+            closeLinkInput()
+            return
+        }
+
+        // Add https:// if no protocol is specified
+        let url = linkUrl.value
+        if (!/^https?:\/\//i.test(url)) {
+            url = 'https://' + url
+        }
+
+        editor?.value
+            .chain()
+            .focus()
+            .extendMarkRange('link')
+            .setLink({ href: url })
+            .run()
+
+        closeLinkInput()
+    }
+
+    const removeLink = () => {
+        editor?.value
+            .chain()
+            .focus()
+            .extendMarkRange('link')
+            .unsetLink()
+            .run()
+
+        closeLinkInput()
+    }
+
+    const closeLinkInput = () => {
+        showLinkInput.value = false
+        linkUrl.value = ''
+        editor?.value.commands.focus()
+    }
+
+    const handleLinkKeydown = (event: KeyboardEvent) => {
+        if (event.key === 'Enter') {
+            event.preventDefault()
+            setLink()
+        } else if (event.key === 'Escape') {
+            event.preventDefault()
+            closeLinkInput()
+        }
+    }
+
 
     onBeforeUnmount(() => {
         editor?.value.destroy()
@@ -113,146 +188,183 @@
 
     <div v-if="editor">
         <bubble-menu :editor="editor">
-            <div class="bubble-menu bg-base-100 shadow rounded-2xl flex gap-0.5 items-center px-2 py-2">
-                <div class="relative">
-                    <button
-                        @click.prevent="toggleDropdown"
-                        :class="buttonClass(false)"
-                        class="flex items-center gap-0.5"
-                        @blur="closeDropdown"
-                    >
-                        <i :class="currentHeadingIcon"></i>
-                        <sub v-if="editor.isActive('heading')" class="text-xs">
-                            <span v-html="currentHeadingLevel()"></span>
-                        </sub>
-                        <i class="fa-regular fa-chevron-down" aria-label="Toggle paragraph styles"></i>
-                    </button>
-                    <div
-                        v-show="showHeadingDropdown"
-                        class="absolute top-full left-0 mt-1 bg-base-100 shadow-lg rounded-lg py-1 z-50 min-w-[120px]"
-                        @mousedown.prevent
-                    >
-                        <button
-                            @click.prevent="setHeading(null)"
-                            class="block w-full text-left px-3 py-2 hover:bg-base-200 text-neutral-content text-xs flex items-center justify-between gap-1"
-                            :class="{ 'text-semibold text-base-content': editor.isActive('paragraph') }"
+            <div class="bubble-menu bg-base-100 shadow rounded-2xl flex gap-0.5 items-center px-2 py-2 ">
+                <template v-if="showLinkInput || editor.isActive('link')">
+                    <div class="flex gap-2 items-center">
+                        <input
+                            ref="linkInputRef"
+                            v-model="editor.getAttributes('link').href"
+                            type="text"
+                            placeholder="Enter URL..."
+                            class="p-0 px-1 rounded text-xs outline-none focus:ring-1 focus:ring-primary min-w-[200px]"
+                            @keydown="handleLinkKeydown"
+                        />
+                        <a
+                            v-if="editor.isActive('link')"
+                            :href="editor.getAttributes('link').href"
+                            target="_blank"
+                            class="hover:text-base-content text-neutral-content"
+                            title="Open in a new window"
                         >
-                            Paragraph
-                            <i class="fa-regular fa-check" v-if="editor.isActive('paragraph')"></i>
-                        </button>
+                            <i class="fa-regular fa-external-link-alt" />
+                        </a>
                         <button
-                            @click.prevent="setHeading(1)"
-                            class="block w-full text-left px-3 py-2 hover:bg-base-200 text-neutral-content flex items-center justify-between gap-1 text-[1.4rem]"
-                            :class="{ 'font-semibold text-base-content': editor.isActive('heading', { level: 1 }) }"
+                            v-if="editor.isActive('link')"
+                            @click.prevent="removeLink"
+                            class="text-neutral-content hover:text-base-content"
+                            title="Remove link"
                         >
-                            Heading 1
-                            <i class="fa-regular fa-check" v-if="editor.isActive('heading', {level: 1})"></i>
-                        </button>
-                        <button
-                            @click.prevent="setHeading(2)"
-                            class="block w-full text-left px-3 py-2 hover:bg-base-200 text-neutral-content flex items-center justify-between gap-1 text-[1.3rem]"
-                            :class="{ 'font-semibold text-base-content': editor.isActive('heading', { level: 2 }) }"
-                        >
-                            Heading 2
-                            <i class="fa-regular fa-check" v-if="editor.isActive('heading', {level: 2})"></i>
-                        </button>
-                        <button
-                            @click.prevent="setHeading(3)"
-                            class="block w-full text-left px-3 py-2 hover:bg-base-200 text-neutral-content flex items-center justify-between gap-1 text-[1.2rem]"
-                            :class="{ 'font-semibold text-base-content': editor.isActive('heading', { level: 3 }) }"
-                        >
-                            Heading 3
-                            <i class="fa-regular fa-check" v-if="editor.isActive('heading', {level: 3})"></i>
-                        </button>
-                        <button
-                            @click.prevent="setHeading(4)"
-                            class="block w-full text-left px-3 py-2 hover:bg-base-200 text-neutral-content text-xs flex items-center justify-between gap-1 text[1.1rem]"
-                            :class="{ 'font-semibold text-base-content': editor.isActive('heading', { level: 4 }) }"
-                        >
-                            Heading 4
-                            <i class="fa-regular fa-check" v-if="editor.isActive('heading', {level: 4})"></i>
-                        </button>
-                        <button
-                            @click.prevent="setHeading(5)"
-                            class="block w-full text-left px-3 py-2 hover:bg-base-200 text-neutral-content text-xs flex items-center justify-between gap-1 "
-                            :class="{ 'font-semibold text-base-content': editor.isActive('heading', { level: 5 }) }"
-                        >
-                            Heading 5
-                            <i class="fa-regular fa-check" v-if="editor.isActive('heading', {level: 5})"></i>
+                            <i class="fa-regular fa-unlink" />
                         </button>
                     </div>
-                </div>
-
-                <button
-                    @click.prevent="editor.chain().focus().toggleBold().run()"
-                    :class="buttonClass(editor.isActive('bold'))"
-                    >
-                    <i class="fa-solid fa-bold" aria-label="Bold" />
-                </button>
-                <button
-                    @click.prevent="editor.chain().focus().toggleItalic().run()"
-                    :class="buttonClass(editor.isActive('italic'))"
-                >
-                    <i class="fa-solid fa-italic" aria-label="Bold" />
-                </button>
-                <button
-                    @click.prevent="editor.chain().focus().toggleStrike().run()"
-                    :class="buttonClass(editor.isActive('strike'))"
-                >
-                    <i class="fa-solid fa-strikethrough" aria-label="Strikethrough" />
-                </button>
-                <button
-                    @click.prevent="editor.chain().focus().toggleUnderline().run()"
-                    :class="buttonClass(editor.isActive('underline'))"
-                >
-                    <i class="fa-solid fa-underline" aria-label="Underline" />
-                </button>
-                <button
-                    @click.prevent="editor.chain().focus().toggleBlockquote().run()"
-                    :class="buttonClass(editor.isActive('quote'))"
-                >
-                    <i class="fa-solid fa-quote-right" aria-label="Quote" />
-                </button>
-
-                <div class="relative">
-                    <button
-                        @click.prevent="toggleListDropdown"
-                        :class="buttonClass(false)"
-                        class="flex items-center gap-0.5"
-                        @blur="closeListDropdown"
-                    >
-                        <i :class="getCurrentListIcon"></i>
-                        <i class="fa-regular fa-chevron-down" aria-label="Toggle paragraph styles"></i>
-                    </button>
-                    <div
-                        v-show="showListDropdown"
-                        class="absolute top-full left-0 mt-1 bg-base-100 shadow-lg rounded-lg py-1 z-50 min-w-[120px]"
-                        @mousedown.prevent
-                    >
+                </template>
+                <template v-else>
+                    <div class="relative">
                         <button
-                            @click.prevent="toggleList('bullet')"
-                            class="block w-full text-left px-3 py-2 hover:bg-base-200 text-neutral-content text-xs flex items-center justify-between gap-1"
-                            :class="{ 'text-semibold text-base-content': editor.isActive('bulletList') }"
+                            @click.prevent="toggleDropdown"
+                            :class="buttonClass(false)"
+                            class="flex items-center gap-0.5"
+                            @blur="closeDropdown"
                         >
-                            <div class="flex gap-1 items-center">
-                                <i class="fa-regular fa-list-ul" aria-hidden="true"></i>
-                                List
-                            </div>
-                            <i class="fa-regular fa-check" v-if="editor.isActive('bulletList')"></i>
+                            <i :class="currentHeadingIcon"></i>
+                            <sub v-if="editor.isActive('heading')" class="text-xs">
+                                <span v-html="currentHeadingLevel()"></span>
+                            </sub>
+                            <i class="fa-regular fa-chevron-down" aria-label="Toggle paragraph styles"></i>
                         </button>
-                        <button
-                            @click.prevent="toggleList('ordered')"
-                            class="block w-full text-left px-3 py-2 hover:bg-base-200 text-neutral-content text-xs flex items-center justify-between gap-1"
-                            :class="{ 'text-semibold text-base-content': editor.isActive('orderedList') }"
+                        <div
+                            v-show="showHeadingDropdown"
+                            class="absolute top-full left-0 mt-1 bg-base-100 shadow-lg rounded-lg py-1 z-50 min-w-[200px]"
+                            @mousedown.prevent
                         >
-                            <div class="flex gap-1 items-center">
-                            <i class="fa-regular fa-list-ol" aria-hidden="true"></i>
-                            Numbered list
-                            </div>
-                            <i class="fa-regular fa-check" v-if="editor.isActive('orderedList')"></i>
-                        </button>
+                            <button
+                                @click.prevent="setHeading(null)"
+                                class="block w-full text-left px-3 py-2 hover:bg-base-200 text-neutral-content text-xs flex items-center justify-between gap-1"
+                                :class="{ 'text-semibold text-base-content': editor.isActive('paragraph') }"
+                            >
+                                Paragraph
+                                <i class="fa-regular fa-check" v-if="editor.isActive('paragraph')"></i>
+                            </button>
+                            <button
+                                @click.prevent="setHeading(1)"
+                                class="block w-full text-left px-3 py-2 hover:bg-base-200 text-neutral-content flex items-center justify-between gap-1 text-[1.4rem]"
+                                :class="{ 'font-semibold text-base-content': editor.isActive('heading', { level: 1 }) }"
+                            >
+                                Heading 1
+                                <i class="fa-regular fa-check" v-if="editor.isActive('heading', {level: 1})"></i>
+                            </button>
+                            <button
+                                @click.prevent="setHeading(2)"
+                                class="block w-full text-left px-3 py-2 hover:bg-base-200 text-neutral-content flex items-center justify-between gap-1 text-[1.3rem]"
+                                :class="{ 'font-semibold text-base-content': editor.isActive('heading', { level: 2 }) }"
+                            >
+                                Heading 2
+                                <i class="fa-regular fa-check" v-if="editor.isActive('heading', {level: 2})"></i>
+                            </button>
+                            <button
+                                @click.prevent="setHeading(3)"
+                                class="block w-full text-left px-3 py-2 hover:bg-base-200 text-neutral-content flex items-center justify-between gap-1 text-[1.2rem]"
+                                :class="{ 'font-semibold text-base-content': editor.isActive('heading', { level: 3 }) }"
+                            >
+                                Heading 3
+                                <i class="fa-regular fa-check" v-if="editor.isActive('heading', {level: 3})"></i>
+                            </button>
+                            <button
+                                @click.prevent="setHeading(4)"
+                                class="block w-full text-left px-3 py-2 hover:bg-base-200 text-neutral-content text-xs flex items-center justify-between gap-1 text[1.1rem]"
+                                :class="{ 'font-semibold text-base-content': editor.isActive('heading', { level: 4 }) }"
+                            >
+                                Heading 4
+                                <i class="fa-regular fa-check" v-if="editor.isActive('heading', {level: 4})"></i>
+                            </button>
+                            <button
+                                @click.prevent="setHeading(5)"
+                                class="block w-full text-left px-3 py-2 hover:bg-base-200 text-neutral-content text-xs flex items-center justify-between gap-1 "
+                                :class="{ 'font-semibold text-base-content': editor.isActive('heading', { level: 5 }) }"
+                            >
+                                Heading 5
+                                <i class="fa-regular fa-check" v-if="editor.isActive('heading', {level: 5})"></i>
+                            </button>
+                        </div>
                     </div>
-                </div>
+
+                    <button
+                        @click.prevent="editor.chain().focus().toggleBold().run()"
+                        :class="buttonClass(editor.isActive('bold'))"
+                        >
+                        <i class="fa-solid fa-bold" aria-label="Bold" />
+                    </button>
+                    <button
+                        @click.prevent="editor.chain().focus().toggleItalic().run()"
+                        :class="buttonClass(editor.isActive('italic'))"
+                    >
+                        <i class="fa-solid fa-italic" aria-label="Bold" />
+                    </button>
+                    <button
+                        @click.prevent="editor.chain().focus().toggleStrike().run()"
+                        :class="buttonClass(editor.isActive('strike'))"
+                    >
+                        <i class="fa-solid fa-strikethrough" aria-label="Strikethrough" />
+                    </button>
+                    <button
+                        @click.prevent="editor.chain().focus().toggleUnderline().run()"
+                        :class="buttonClass(editor.isActive('underline'))"
+                    >
+                        <i class="fa-solid fa-underline" aria-label="Underline" />
+                    </button>
+                    <button
+                        @click.prevent="openLinkInput"
+                        :class="buttonClass(editor.isActive('link'))"
+                    >
+                        <i class="fa-regular fa-link" aria-label="Link" />
+                    </button>
+                    <button
+                        @click.prevent="editor.chain().focus().toggleBlockquote().run()"
+                        :class="buttonClass(editor.isActive('quote'))"
+                    >
+                        <i class="fa-solid fa-quote-right" aria-label="Quote" />
+                    </button>
+
+                    <div class="relative">
+                        <button
+                            @click.prevent="toggleListDropdown"
+                            :class="buttonClass(false)"
+                            class="flex items-center gap-0.5"
+                            @blur="closeListDropdown"
+                        >
+                            <i :class="getCurrentListIcon"></i>
+                            <i class="fa-regular fa-chevron-down" aria-label="Toggle paragraph styles"></i>
+                        </button>
+                        <div
+                            v-show="showListDropdown"
+                            class="absolute top-full left-0 mt-1 bg-base-100 shadow-lg rounded-lg py-1 z-50 min-w-[200px]"
+                            @mousedown.prevent
+                        >
+                            <button
+                                @click.prevent="toggleList('bullet')"
+                                class="block w-full text-left px-3 py-2 hover:bg-base-200 text-neutral-content text-xs flex items-center justify-between gap-1"
+                                :class="{ 'text-semibold text-base-content': editor.isActive('bulletList') }"
+                            >
+                                <div class="flex gap-1 items-center">
+                                    <i class="fa-regular fa-list-ul" aria-hidden="true"></i>
+                                    List
+                                </div>
+                                <i class="fa-regular fa-check" v-if="editor.isActive('bulletList')"></i>
+                            </button>
+                            <button
+                                @click.prevent="toggleList('ordered')"
+                                class="block w-full text-left px-3 py-2 hover:bg-base-200 text-neutral-content text-xs flex items-center justify-between gap-1"
+                                :class="{ 'text-semibold text-base-content': editor.isActive('orderedList') }"
+                            >
+                                <div class="flex gap-1 items-center">
+                                <i class="fa-regular fa-list-ol" aria-hidden="true"></i>
+                                Numbered list
+                                </div>
+                                <i class="fa-regular fa-check" v-if="editor.isActive('orderedList')"></i>
+                            </button>
+                        </div>
+                    </div>
+                </template>
             </div>
         </bubble-menu>
 
