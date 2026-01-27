@@ -18,10 +18,7 @@
         <x-box>
             <x-forms.field field="entry">
                 @if (request()->has('tiptap'))
-                    <div class="tiptap-editor entity-content">
-                        <tiptap
-                            api="{{ route('entities.api.document', [$campaign, $source ?? $entity]) }}" />
-                    </div>
+                    @include('editors.tiptap_editor')
                 @else
                 <textarea name="entry"
                           id="entry"

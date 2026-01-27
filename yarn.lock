@@ -1305,6 +1305,11 @@
   resolved "https://registry.yarnpkg.com/@tiptap/extension-list/-/extension-list-3.17.1.tgz#c7a013e9c4fa515a60048595147fe0c79308d5a2"
   integrity sha512-LHKIxmXe5Me+vJZKhiwMBGHlApaBIAduNMRUpm5mkY7ER/m96zKR0VqrJd4LjVVH2iDvck5h1Ka4396MHWlKNg==
 
+"@tiptap/extension-mention@^3.17.1":
+  version "3.17.1"
+  resolved "https://registry.yarnpkg.com/@tiptap/extension-mention/-/extension-mention-3.17.1.tgz#e68c3d2a810b8f90fb1fd0fadf94da9ba49b2344"
+  integrity sha512-rggEOD7cnuglVtc7zvVYx/2u7w7XpkdR6BTSXNWohsCJDwpKx5MBfuQMXULlRKY9/N49FgwHzP8ipkSvgOtiEw==
+
 "@tiptap/extension-ordered-list@^3.17.1":
   version "3.17.1"
   resolved "https://registry.yarnpkg.com/@tiptap/extension-ordered-list/-/extension-ordered-list-3.17.1.tgz#60e7918cae5671f8c0eadb2f7c6bbdb10828d166"
@@ -1388,6 +1393,11 @@
     "@tiptap/extension-underline" "^3.17.1"
     "@tiptap/extensions" "^3.17.1"
     "@tiptap/pm" "^3.17.1"
+
+"@tiptap/suggestion@^3.17.1":
+  version "3.17.1"
+  resolved "https://registry.yarnpkg.com/@tiptap/suggestion/-/suggestion-3.17.1.tgz#6e1c5c82d0de26df42ff60cfc18be99ffcbf6978"
+  integrity sha512-a188uVYjlLsUiwK3Ki7KsaWVWC0u28KsqGEAqCk9ECYmtVY99Hrb+rcAwGpMjA7tn8WAwThOxiLISoMdpuqXwg==
 
 "@tiptap/vue-3@^3.17.1":
   version "3.17.1"

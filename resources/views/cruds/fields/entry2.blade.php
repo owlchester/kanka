@@ -14,10 +14,7 @@ $old = old('entry');
     </div>
 
     @if (request()->has('tiptap'))
-        <div class="tiptap-editor">
-            <tiptap
-                api="{{ route('entities.api.document', [$campaign, $source ?? $entity]) }}" />
-        </div>
+        @include('editors.tiptap_editor')
     @else
         <textarea id="entry" name="entry" class="w-full html-editor" rows="3">{!! FormCopy::field('entryForEdition')->string() ?: old('entry', $entity->entryForEdition ?? $model->entryForEdition ?? null) !!}</textarea>
 

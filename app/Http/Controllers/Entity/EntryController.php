@@ -35,6 +35,8 @@ class EntryController extends Controller
             return response()->json(['success' => true]);
         }
 
+        dd($request->all());
+
         $fields = $request->only('entry');
         $entity->update($fields);
         if ($entity->wasChanged()) {

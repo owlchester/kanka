@@ -4,11 +4,15 @@
     import { BubbleMenu, FloatingMenu } from '@tiptap/vue-3/menus'
     import Link from '@tiptap/extension-link'
     import {ref, onMounted, onBeforeUnmount, onUnmounted, computed} from 'vue'
+    import { Mention } from './extensions/mentions/Mention'
+    import suggestion from './extensions/mentions/suggestion'
+    import { MentionParser } from './extensions/mentions/MentionParser'
 
 
     const props = defineProps<{
         modelValue?: string
-        api?: String
+        api?: String,
+        mentions?: String,
     }>()
     const html = ref(props.modelValue ?? '<p>Loading...</p>')
     const showHeadingDropdown = ref(false)
@@ -17,22 +21,67 @@
     const linkUrl = ref('')
     const linkInputRef = ref<HTMLInputElement | null>(null)
 
+    /** Mentions **/
+    const mentions = ref([]);
+    const mentionLabelInput = ref<HTMLInputElement | null>(null)
+    const editingMentionLabel = ref('')
 
+
+    const extensions = [
+        StarterKit.configure({
+            link: false,
+        }),
+        Link.configure({
+            openOnClick: false,
+            defaultProtocol: 'https',
+            HTMLAttributes: {
+                class: 'text-link',
+            },
+        }),
+    ];
+    // Add mention extension if mentions URL is provided
+    if (props.mentions) {
+        extensions.push(
+            Mention.configure({
+                HTMLAttributes: {
+                    class: 'mention text-link',
+                },
+                suggestion: suggestion(props.mentions),
+
+                renderText({ node }) {
+                    // Get entity info from mentions to compare with label
+                    const mention = node.attrs.mention
+                    const label = node.attrs.label
+                    const id = node.attrs.id
+
+                    // Extract type from mention (e.g., [character:123] -> "character")
+                    const mentionMatch = mention?.match(/\[([^:]+):(\d+)/)
+                    const type = mentionMatch ? mentionMatch[1] : null
+
+                    // If we have type, id, and label, check if label differs from default
+                    if (type && id && label && mention) {
+                        // Extract the entity name from the full mention format
+                        // If mention was stored as [type:id], the label would be the entity name
+                        // We need to check if current label differs
+
+                        // Check if this mention has a custom label by seeing if it differs from the original
+                        // Since we don't have direct access to the entity list here, we'll format it
+                        // to include the label if it exists and is not empty
+                        return mention.includes('|') ? mention : `[${type}:${id}|${label}]`
+                    }
+
+                    return mention || `[${label}]`
+                },
+            }),
+            MentionParser.configure({
+                entities: mentions
+            })
+        )
+    }
 
     const editor = useEditor({
         content: html.value,
-        extensions: [
-            StarterKit.configure({
-                link: false,
-            }),
-            Link.configure({
-                openOnClick: false,
-                defaultProtocol: 'https',
-                HTMLAttributes: {
-                    class: 'text-link',
-                },
-            }),
-        ],
+        extensions: extensions,
         onUpdate: ({ editor }) => {
             html.value = editor.getHTML()
         },
@@ -46,7 +95,9 @@
             axios.get(props.api)
                 .then(res => {
                     html.value = res.data.document
-                    editor?.value.commands.setContent(html.value)
+                    mentions.value = res.data.mentions
+
+                    editor?.value?.commands.setContent(html.value)
                 })
         }
     });
@@ -179,6 +230,63 @@
     }
 
 
+    const deleteMention = () => {
+        editor?.value.chain().focus().deleteSelection().run()
+    }
+
+    const startEditingMentionLabel = () => {
+        editingMentionLabel.value = editor?.value.getAttributes('mention').label || ''
+
+        // Focus the input after Vue updates the DOM
+        setTimeout(() => {
+            mentionLabelInput.value?.focus()
+            mentionLabelInput.value?.select()
+        }, 10)
+    }
+
+    const updateMentionLabel = () => {
+        const trimmedLabel = editingMentionLabel.value.trim()
+        const mentionAttrs = editor?.value.getAttributes('mention')
+        const entityId = mentionAttrs?.id
+
+        // If input is empty, revert to the entity's original name
+        if (!trimmedLabel) {
+            const entity = mentions.value.find(e => e.id === parseInt(entityId))
+            if (entity) {
+                editor?.value
+                    .chain()
+                    .focus()
+                    .updateAttributes('mention', {
+                        label: entity.name
+                    })
+                    .run()
+            }
+        } else {
+            // Update with the new label
+            editor?.value
+                .chain()
+                .focus()
+                .updateAttributes('mention', {
+                    label: trimmedLabel
+                })
+                .run()
+        }
+
+        editingMentionLabel.value = ''
+    }
+
+    const handleMentionLabelKeydown = (event: KeyboardEvent) => {
+        if (event.key === 'Enter') {
+            event.preventDefault()
+            updateMentionLabel()
+        } else if (event.key === 'Escape') {
+            event.preventDefault()
+            editingMentionLabel.value = ''
+            editor?.value.commands.focus()
+        }
+    }
+
+
     onBeforeUnmount(() => {
         editor?.value.destroy()
     })
@@ -189,8 +297,37 @@
     <div v-if="editor">
         <bubble-menu :editor="editor">
             <div class="bubble-menu bg-base-100 shadow rounded-2xl flex gap-0.5 items-center px-2 py-2 ">
-                <template v-if="showLinkInput || editor.isActive('link')">
-                    <div class="flex gap-2 items-center">
+                <template v-if="editor.isActive('mention')">
+                    <div class="flex items-center gap-2 text-xs text-neutral-content px-2">
+                        <input
+                            ref="mentionLabelInput"
+                            v-model="editingMentionLabel"
+                            type="text"
+                            :placeholder="editor.getAttributes('mention').label"
+                            class="p-0 px-1 rounded text-xs outline-none focus:ring-1 focus:ring-primary min-w-[150px]"
+                            @focus="startEditingMentionLabel"
+                            @blur="updateMentionLabel"
+                            @keydown="handleMentionLabelKeydown"
+                        />
+
+                        <a
+                            class="text-link"
+                            :href="editor.getAttributes('mention').url"
+                            title="Go to entity"
+                        >
+                            <i class="fa-regular fa-external-link-alt"></i>
+                        </a>
+                        <button
+                            @click.prevent="deleteMention"
+                            class="hover:text-error"
+                            title="Remove mention"
+                        >
+                            <i class="fa-regular fa-trash" />
+                        </button>
+                    </div>
+                </template>
+                <template v-else-if="showLinkInput || editor.isActive('link')">
+                    <div class="flex gap-2 items-center text-xs text-neutral-content px-2">
                         <input
                             ref="linkInputRef"
                             v-model="editor.getAttributes('link').href"
@@ -203,7 +340,7 @@
                             v-if="editor.isActive('link')"
                             :href="editor.getAttributes('link').href"
                             target="_blank"
-                            class="hover:text-base-content text-neutral-content"
+                            class="hover:text-base-content"
                             title="Open in a new window"
                         >
                             <i class="fa-regular fa-external-link-alt" />
@@ -211,10 +348,10 @@
                         <button
                             v-if="editor.isActive('link')"
                             @click.prevent="removeLink"
-                            class="text-neutral-content hover:text-base-content"
+                            class="hover:text-error"
                             title="Remove link"
                         >
-                            <i class="fa-regular fa-unlink" />
+                            <i class="fa-regular fa-unlink" aria-label="Removal icon" />
                         </button>
                     </div>
                 </template>
@@ -271,7 +408,7 @@
                             </button>
                             <button
                                 @click.prevent="setHeading(4)"
-                                class="block w-full text-left px-3 py-2 hover:bg-base-200 text-neutral-content text-xs flex items-center justify-between gap-1 text[1.1rem]"
+                                class="w-full text-left px-3 py-2 hover:bg-base-200 text-neutral-content text-xs flex items-center justify-between gap-1 text[1.1rem]"
                                 :class="{ 'font-semibold text-base-content': editor.isActive('heading', { level: 4 }) }"
                             >
                                 Heading 4
@@ -279,7 +416,7 @@
                             </button>
                             <button
                                 @click.prevent="setHeading(5)"
-                                class="block w-full text-left px-3 py-2 hover:bg-base-200 text-neutral-content text-xs flex items-center justify-between gap-1 "
+                                class="w-full text-left px-3 py-2 hover:bg-base-200 text-neutral-content text-xs flex items-center justify-between gap-1 "
                                 :class="{ 'font-semibold text-base-content': editor.isActive('heading', { level: 5 }) }"
                             >
                                 Heading 5
