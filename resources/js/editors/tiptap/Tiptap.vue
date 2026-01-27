@@ -26,6 +26,13 @@
     const mentionLabelInput = ref<HTMLInputElement | null>(null)
     const editingMentionLabel = ref('')
 
+    const addEntityToMentions = (entity: any) => {
+        // Check if entity already exists in the mentions array
+        const exists = mentions.value.find(e => e.id === entity.id)
+        if (!exists) {
+            mentions.value.push(entity)
+        }
+    }
 
     const extensions = [
         StarterKit.configure({
@@ -46,7 +53,7 @@
                 HTMLAttributes: {
                     class: 'mention text-link',
                 },
-                suggestion: suggestion(props.mentions),
+                suggestion: suggestion(props.mentions, addEntityToMentions),
 
                 renderText({ node }) {
                     // Get entity info from mentions to compare with label

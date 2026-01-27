@@ -6,8 +6,10 @@ interface MentionItem {
     id: string
     name: string
     image: string
-    url: string
+    link: string
     mention: string
+    preview: string
+    type?: string
 }
 
 const updatePosition = (editor, element) => {
@@ -27,7 +29,7 @@ const updatePosition = (editor, element) => {
     })
 }
 
-export default (mentionsUrl: string) => {
+export default (mentionsUrl: string, onEntityAdded?: (entity: any) => void) => {
     let abortController: AbortController | null = null
 
     return {
@@ -64,8 +66,9 @@ export default (mentionsUrl: string) => {
                     id: item.id,
                     name: item.name,
                     image: item.image,
-                    url: item.url,
+                    url: item.link,
                     mention: item.mention,
+                    type: item.type,
                 }))
             } catch (error: any) {
                 // Ignore abort errors
@@ -85,7 +88,21 @@ export default (mentionsUrl: string) => {
                     component = new VueRenderer(MentionList, {
                         props: {
                             items: props.items,
-                            command: props.command,
+                            command: (item: MentionItem) => {
+                                // Add entity to the mentions array if callback provided
+                                if (onEntityAdded) {
+                                    onEntityAdded({
+                                        id: parseInt(item.id),
+                                        name: item.name,
+                                        type: item.type,
+                                        image: item.image,
+                                        url: item.link,
+                                    })
+                                }
+
+                                // Execute the original command
+                                props.command(item)
+                            },
                             loading: true,
                         },
                         editor: props.editor,
@@ -105,7 +122,24 @@ export default (mentionsUrl: string) => {
                 onUpdate(props: any) {
 
                     props.loading = false
-                    component.updateProps(props)
+                    // Update the command wrapper with the new command
+                    const wrappedCommand = (item: MentionItem) => {
+                        if (onEntityAdded) {
+                            onEntityAdded({
+                                id: parseInt(item.id),
+                                name: item.name,
+                                type: item.type,
+                                image: item.image,
+                                url: item.url,
+                            })
+                        }
+                        props.command(item)
+                    }
+
+                    component.updateProps({
+                        ...props,
+                        command: wrappedCommand,
+                    })
 
                     if (!props.clientRect) {
                         return

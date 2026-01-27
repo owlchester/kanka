@@ -446,7 +446,7 @@ class SearchService
             'link' => $entity->url(),
             'type' => $entity->entityType->name(),
             'preview' => route('entities.preview', [$this->campaign, $entity]),
-            'mention' => '[' . $entity->entityType->code() . ':' . $entity->id . ']'
+            'mention' => '[' . $entity->entityType->code . ':' . $entity->id . ']',
         ];
     }
 
