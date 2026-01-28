@@ -1,5 +1,5 @@
 <div class="relative" wire:click.away="$set('open', false)">
-    {{-- Selected tags --}}
+    {{ __('campaigns/import.csv.selected_tags') }}
     <div class="flex flex-wrap gap-2 mb-2">
         @foreach ($selected as $tag)
             <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded flex items-center gap-1">

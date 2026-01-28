@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Enums\CampaignImportStatus;
 use App\Models\CampaignImport;
+use App\Notifications\Header;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Illuminate\Http\UploadedFile;
@@ -206,6 +207,12 @@ class CsvValidatorService
         $this->job->status_id = CampaignImportStatus::READY;
         $this->job->config = $config;
         $this->job->save();
+
+        $this->user->notify(new Header('campaign.import.csv_ready', 'upload', 'info', 
+            [
+                'campaign' => $this->campaign->name,
+                'link' => route('campaign.import.csv', ['campaign' => $this->campaign, 'campaign_import' => $this->job]),
+            ]));
 
         return;
     }

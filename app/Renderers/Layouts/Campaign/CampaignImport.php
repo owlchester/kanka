@@ -50,7 +50,7 @@ class CampaignImport extends Layout
                     } elseif ($model->status_id == CampaignImportStatus::FINISHED) {
                         return '<span class="text-success"><i class="fa-regular fa-check-circle" aria-hidden="true"></i> ' . __('campaigns/import.status.finished') . '</span>';
                     } elseif ($model->status_id == CampaignImportStatus::READY) {
-                        return '<span class="text-success"> <a href="' . route('campaign.import.csv', [$model->campaign, $model]) . '" class="text-success text-decoration-none"> <i class="fa-regular fa-check-circle" aria-hidden="true"></i> ' . __('campaigns/import.status.ready') . '</a> </span>';
+                        return '<span class="text-success"> <a href="' . route('campaign.import.csv', [$model->campaign, $model]) . '" class="text-link text-decoration-none"> <i class="fa-regular fa-check-circle" aria-hidden="true"></i> ' . __('campaigns/import.status.ready') . '</a> </span>';
                     } elseif ($model->status_id == CampaignImportStatus::VALIDATING) {
                         return '<span class="text-success"><i class="fa-regular fa-check-circle" aria-hidden="true"></i> ' . __('campaigns/import.status.validating') . '</span>';
                     }

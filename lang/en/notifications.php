@@ -29,6 +29,7 @@ return [
             'failed'        => 'The import for :campaign failed.',
             'success'       => 'The import finished for :campaign.',
             'csv_success'   => 'Successfully imported :count entities via CSV import to :campaign.',
+            'csv_ready'     => 'The CSV import for :campaign is ready.',
         ],
         'join'              => ':user joined :campaign.',
         'leave'             => ':user left :campaign.',

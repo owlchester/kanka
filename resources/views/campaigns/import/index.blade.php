@@ -21,7 +21,7 @@
             <x-learn-more url="features/campaigns/import.html" />
         </div>
 
-        <p class="max-w-2xl">{{ __('campaigns/import.description') }}</p>
+        <p class="max-w-2xl">{{ __('campaigns/import.description_v2') }}</p>
 
         @can('import', $campaign)
             @if (empty($token))
@@ -39,11 +39,11 @@
                                 <h4 class="text-lg">{{ __('campaigns/import.form') }}</h4>
 
                                 <div class="field field-entities flex flex-col gap-1">
-                                    <label>{{ __('campaigns/import.fields.file') }}</label>
+                                    <label>{{ __('campaigns/import.fields.file_v2') }}</label>
 
                                     <input type="file" name="file" class="w-full" id="export-files" accept=".zip, .csv" />
                                     <x-helper>
-                                        <p>{{ __('campaigns/import.limitation', ['size' => '512 MiB']) }}</p>
+                                        <p>{{ __('campaigns/import.limitation_v2', ['size' => '512 MiB']) }}</p>
                                     </x-helper>
                                 </div>
 
