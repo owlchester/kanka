@@ -99,6 +99,20 @@ export const Mention = Node.create<MentionOptions>({
                 },
             },
 
+            name: {
+                default: null,
+                parseHTML: element => element.getAttribute('data-name'),
+                renderHTML: attributes => {
+                    if (!attributes.name) {
+                        return {}
+                    }
+
+                    return {
+                        'data-name': attributes.name,
+                    }
+                },
+            },
+
             mention: {
                 default: null,
                 parseHTML: element => element.getAttribute('data-mention'),
@@ -187,7 +201,7 @@ export const Mention = Node.create<MentionOptions>({
         innerContent.push(label)
 
         return [
-            'span',
+            'a',
             mergeAttributes(
                 { 'data-type': 'mention' },
                 this.options.HTMLAttributes,

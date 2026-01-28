@@ -84,6 +84,7 @@ export const MentionParser = Extension.create<MentionParserOptions>({
                                         // Replace text with mention node
                                         const mentionNode = mentionType.create({
                                             id: id,
+                                            name: entity ? entity.name : `${module}:${id}`,
                                             label: label,
                                             mention: mention,
                                             image: image,

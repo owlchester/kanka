@@ -19,6 +19,11 @@ return [
     'editors'           => [
         'default'   => 'Default (:name)',
         'legacy'    => 'Legacy (:name)',
+        'tiptap'    => 'Experimental 2026',
+        'helpers' => [
+            'legacy' => 'The legacy text editor (TinyMCE) doesn\'t support mentions on mobile devices, campaign galleries or other advanced features.',
+            'tiptap' => 'This is our new experimental text editor that is actively being worked on and updated regularly. It doesn\'t yet contain all the features you might be accustomed to.',
+        ],
     ],
     'explore'           => [
         'grid'  => 'Grid (default)',
@@ -38,7 +43,7 @@ return [
         'advanced-mentions'     => 'When writing texts, control how @mentions are displayed.',
         'campaign-order'        => 'Change the order in which campaigns are listed in the campaign switcher.',
         'date-format'           => 'When available, control the format in which to display real world dates.',
-        'editor'                => 'Using the legacy text editor (TinyMCE) doesn\'t support mentions on mobile devices, campaign galleries or other advanced features.',
+        'editors'               => 'Switch between text editors for when creating or editing large text fields.',
         'entity-explore'        => 'Control the way in which entity lists are displayed on campaigns.',
         'new-entity-workflow'   => 'Control which interface you are taken to after creating a new entity.',
         'overridable'           => 'Individual campaigns can override this preference.',
@@ -54,4 +59,5 @@ return [
         'pagination'        => ':amount results per page',
         'pagination-sub'    => ':amount (available for subscribers)',
     ],
+
 ];

@@ -54,7 +54,7 @@
         extensions.push(
             Mention.configure({
                 HTMLAttributes: {
-                    class: 'mention text-link',
+                    class: 'mention',
                 },
                 suggestion: suggestion(props.mentions, addEntityToMentions),
 
@@ -634,5 +634,7 @@
 
 <style scoped>
 .bubble-menu {
+    z-index: 845;
+    position: relative;
 }
 </style>

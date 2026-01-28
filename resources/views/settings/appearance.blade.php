@@ -107,8 +107,10 @@ $highlightClass = 'shadow-xs border-primary border-solid border-2';
                         ]" :selected="auth()->user()->campaignSwitcherOrderBy" class="self-end w-full border rounded p-2" />
                 </div>
 
-                @if ($textEditorSelect)
-                    <div class="{{ $boxClass }}">
+                @if (!empty($editorOptions))
+                    <div
+                        class="{{ $boxClass }}"
+                        x-data="{ editor: '{{ auth()->user()->editor }}' }">
                         <div class="flex gap-2 justify-between">
                             <h2 class="text-base flex items-center gap-2">
                                 <x-icon class="pencil" />
@@ -118,11 +120,21 @@ $highlightClass = 'shadow-xs border-primary border-solid border-2';
                                 <x-icon class="fa-regular fa-arrow-up-right-from-square" /> {{ __('general.learn-more') }}
                             </a>
                         </div>
-                        <p class="text-sm grow">{{ __('settings/appearance.helpers.editor') }}</p>
-                        <x-forms.select name="editor" :options="[
-                            '' => __('settings/appearance.editors.default', ['name' => 'Summernote']),
-                            'legacy' => __('settings/appearance.editors.legacy', ['name' => 'TinyMCE 4']),
-                        ]" :selected="auth()->user()->editor" class="self-end w-full border rounded p-2" />
+                        <p class="text-sm grow">{{ __('settings/appearance.helpers.editors') }}</p>
+                        <x-forms.select
+                            x-model="editor"
+                            name="editor"
+                            :options="$editorOptions"
+                            :selected="auth()->user()->editor"
+                            class="self-end w-full border rounded p-2" />
+
+                        <x-helper class="text-xs" x-show="editor === 'legacy'" x-cloak>
+                            <p>{{ __('settings/appearance.editors.helpers.legacy') }}</p>
+                        </x-helper>
+
+                        <x-helper class="text-xs" x-show="editor === 'tiptap'" x-cloak>
+                            <p>{{ __('settings/appearance.editors.helpers.tiptap') }}</p>
+                        </x-helper>
                     </div>
                 @endif
 
@@ -140,10 +152,16 @@ $highlightClass = 'shadow-xs border-primary border-solid border-2';
                         <p>{{ __('settings/appearance.helpers.entity-explore') }}</p>
                     </x-helper>
 
-                    <x-forms.select name="entity_explore" radio :options="[
+                    <x-forms.select
+                        name="entity_explore"
+                        radio
+                        :options="[
                             0 => '<i class=\'fa-regular fa-grid\' aria-hidden=\'true\'></i> ' . __('settings/appearance.explore.grid'),
                             1 => '<i class=\'fa-solid fa-list-ul\' aria-hidden=\'true\'></i> ' . __('settings/appearance.explore.table'),
-                        ]" :selected="auth()->user()->entity_explore" class="self-end w-full border rounded p-2" />
+                        ]"
+                        :selected="auth()->user()->entity_explore"
+                        class="self-end w-full border rounded p-2"
+                    />
                 </div>
 
                 <div class="{{ $boxClass }}">
@@ -160,10 +178,10 @@ $highlightClass = 'shadow-xs border-primary border-solid border-2';
                         <p>{!! __('settings/appearance.helpers.advanced-mentions') !!}</p>
                     </x-helper>
                     <div class="note-editing-area">
-                    <x-forms.select name="advanced_mentions" radio :options="[
-                            0 => __('settings/appearance.mentions.default', ['mention' => '<span class=\'mention\'>Entity</span>']),
-                            1 => __('settings/appearance.mentions.advanced', ['code' => '<code>[entity:123]</code>']),
-                        ]" :selected="auth()->user()->alwaysAdvancedMentions()" class="self-end w-full border rounded p-2"/>
+                        <x-forms.select name="advanced_mentions" radio :options="[
+                                0 => __('settings/appearance.mentions.default', ['mention' => '<span class=\'mention\'>Entity</span>']),
+                                1 => __('settings/appearance.mentions.advanced', ['code' => '<code>[entity:123]</code>']),
+                            ]" :selected="auth()->user()->alwaysAdvancedMentions()" class="self-end w-full border rounded p-2"/>
                     </div>
                 </div>
 

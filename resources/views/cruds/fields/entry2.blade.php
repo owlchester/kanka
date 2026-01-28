@@ -7,16 +7,14 @@ $old = old('entry');
             {{ __('crud.fields.entry') }}
         </label>
 
-        <a href="//docs.kanka.io/en/latest/features/mentions.html" class="btn2 btn-xs btn-link"
-           target="_blank" data-title="{{ __('helpers.link.description') }}" data-toggle="tooltip">
+        <a
+            href="//docs.kanka.io/en/latest/features/mentions.html"
+            class="btn2 btn-xs btn-link"
+            data-title="{{ __('helpers.link.description') }}"
+            data-toggle="tooltip">
             {{ __('crud.helpers.linking') }}
         </a>
     </div>
 
-    @if (request()->has('tiptap'))
-        @include('editors.tiptap_editor')
-    @else
-        <textarea id="entry" name="entry" class="w-full html-editor" rows="3">{!! FormCopy::field('entryForEdition')->string() ?: old('entry', $entity->entryForEdition ?? $model->entryForEdition ?? null) !!}</textarea>
-
-    @endif
+    @include('cruds.fields.entry')
 </div>

@@ -9,6 +9,7 @@ use App\Traits\UserAware;
 use DOMDocument;
 use DomElement;
 use DOMXPath;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 class SaveService
@@ -122,6 +123,7 @@ class SaveService
             contains(concat(" ", normalize-space(@class), " "), " attribute-mention ")
         ]');
 
+
         foreach ($nodes as $element) {
             if ($element instanceof DomElement) {
                 $this->parseMention($element);
@@ -160,11 +162,19 @@ class SaveService
 
         // If the name isn't the target name, transform it into an advanced mention
         $originalName = $mentionLink->getAttribute('data-name');
+        $params = new Collection(explode('|', $mentionLink->getAttribute('data-config')));
         if (! empty($originalName) && $originalName != Str::replace('&quot;', '"', $mentionName)) {
-            $mention = Str::replace(']', '|' . $mentionName . ']', $advancedMention);
+            // Merge custom name with params (page:abc|anchor:#post-1 etc)
+            $params->prepend($mentionName);
+            $mention = Str::replace(']', '|' . $params->implode('|') . ']', $advancedMention);
             $this->replace($mention, $mentionLink);
 
             return;
+        }
+
+        // Add params to the mention link
+        if ($params->isNotEmpty()) {
+            $advancedMention = Str::replaceLast(']', '|' . $params->implode('|') . ']', $advancedMention);
         }
 
         $this->replace($advancedMention, $mentionLink);

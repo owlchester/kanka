@@ -17,15 +17,7 @@
         @include('partials.errors')
         <x-box>
             <x-forms.field field="entry">
-                @if (request()->has('tiptap'))
-                    @include('editors.tiptap_editor')
-                @else
-                <textarea name="entry"
-                          id="entry"
-                          class="html-editor"
-                          rows="3"
-                >{!! $entity->entryForEdition !!}</textarea>
-                @endif
+                @include('cruds.fields.entry')
             </x-forms.field>
 
             <div class="flex gap-2 items-center">
