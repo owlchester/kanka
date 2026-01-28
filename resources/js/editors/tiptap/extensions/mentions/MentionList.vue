@@ -1,6 +1,6 @@
 
 <script setup lang="ts">
-import { ref, watch, onMounted, onBeforeUnmount } from 'vue'
+import { ref, watch, computed } from 'vue'
 
 interface MentionItem {
     id: string
@@ -14,12 +14,25 @@ const props = defineProps<{
     items: MentionItem[]
     command: (item: MentionItem) => void
     loading: boolean
+    query: string
 }>()
 
 const selectedIndex = ref(0)
 
 watch(() => props.items, () => {
     selectedIndex.value = 0
+})
+
+const showMinCharacterMessage = computed(() => {
+    return props.query.length < 3
+})
+
+const showLoading = computed(() => {
+    return !showMinCharacterMessage.value && props.loading
+})
+
+const showNoResults = computed(() => {
+    return !showMinCharacterMessage.value && !props.loading && props.items.length === 0
 })
 
 const onKeyDown = ({ event }: { event: KeyboardEvent }): boolean => {
@@ -86,11 +99,14 @@ defineExpose({
             </button>
         </template>
         <div v-else class="px-3 py-2 text-neutral-content text-xs">
-            <span v-if="loading">
-                <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
-                Loading
+            <span v-if="showMinCharacterMessage">
+                Type at least 3 characters
             </span>
-            <span v-else>
+            <span v-else-if="showLoading">
+                <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
+                Loading...
+            </span>
+            <span v-else-if="showNoResults">
                 No results
             </span>
         </div>

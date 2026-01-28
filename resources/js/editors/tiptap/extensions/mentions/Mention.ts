@@ -140,6 +140,19 @@ export const Mention = Node.create<MentionOptions>({
                     }
                 },
             },
+            config: {
+                default: null,
+                parseHTML: element => element.getAttribute('data-config'),
+                renderHTML: attributes => {
+                    if (!attributes.config) {
+                        return {}
+                    }
+
+                    return {
+                        'data-config': attributes.config,
+                    }
+                },
+            },
         }
     },
 
@@ -183,7 +196,7 @@ export const Mention = Node.create<MentionOptions>({
             [
                 'span',
                 {
-                    class: 'rounded-xl bg-base-200 hover:bg-base-300 text-base-content px-2 py-0.5 inline-flex items-center gap-1'
+                    class: 'rounded-xl bg-base-200 hover:bg-base-300 text-base-content px-2 py-0.5 inline-flex items-center gap-1 cursor-pointer'
                 },
                 ...innerContent
             ]

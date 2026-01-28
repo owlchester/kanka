@@ -25,6 +25,9 @@
     const mentions = ref([]);
     const mentionLabelInput = ref<HTMLInputElement | null>(null)
     const editingMentionLabel = ref('')
+    const mentionConfigInput = ref<HTMLInputElement | null>(null)
+    const editingMentionConfig = ref('')
+    const showMentionConfig = ref(false)
 
     const addEntityToMentions = (entity: any) => {
         // Check if entity already exists in the mentions array
@@ -56,25 +59,35 @@
                 suggestion: suggestion(props.mentions, addEntityToMentions),
 
                 renderText({ node }) {
-                    // Get entity info from mentions to compare with label
+                    // Get attributes
                     const mention = node.attrs.mention
                     const label = node.attrs.label
                     const id = node.attrs.id
+                    const config = node.attrs.config
 
                     // Extract type from mention (e.g., [character:123] -> "character")
                     const mentionMatch = mention?.match(/\[([^:]+):(\d+)/)
                     const type = mentionMatch ? mentionMatch[1] : null
 
-                    // If we have type, id, and label, check if label differs from default
-                    if (type && id && label && mention) {
-                        // Extract the entity name from the full mention format
-                        // If mention was stored as [type:id], the label would be the entity name
-                        // We need to check if current label differs
+                    if (type && id) {
+                        // Find the entity to compare label with original name
+                        const entity = mentions.value.find(e => e.id === parseInt(id))
+                        const entityName = entity ? entity.name : null
 
-                        // Check if this mention has a custom label by seeing if it differs from the original
-                        // Since we don't have direct access to the entity list here, we'll format it
-                        // to include the label if it exists and is not empty
-                        return mention.includes('|') ? mention : `[${type}:${id}|${label}]`
+                        // Build the mention parts
+                        const parts = [`${type}:${id}`]
+
+                        // Add config if present
+                        if (config) {
+                            parts.push(config)
+                        }
+
+                        // Add label if it differs from entity name (must come last to detect custom names)
+                        if (label && entityName && label !== entityName) {
+                            parts.push(label)
+                        }
+
+                        return `[${parts.join('|')}]`
                     }
 
                     return mention || `[${label}]`
@@ -92,7 +105,6 @@
         onUpdate: ({ editor }) => {
             html.value = editor.getHTML()
         },
-
     })
 
 
@@ -282,6 +294,16 @@
         editingMentionLabel.value = ''
     }
 
+    const handleMentionLabelBlur = (event: FocusEvent) => {
+        // Check if the new focus target is within the bubble menu
+        const relatedTarget = event.relatedTarget as HTMLElement
+        if (relatedTarget && relatedTarget.closest('.bubble-menu')) {
+            // Don't update if clicking within bubble menu
+            return
+        }
+        updateMentionLabel()
+    }
+
     const handleMentionLabelKeydown = (event: KeyboardEvent) => {
         if (event.key === 'Enter') {
             event.preventDefault()
@@ -289,6 +311,67 @@
         } else if (event.key === 'Escape') {
             event.preventDefault()
             editingMentionLabel.value = ''
+            editor?.value.commands.focus()
+        }
+    }
+    const openMentionConfig = () => {
+        const mentionAttrs = editor?.value.getAttributes('mention')
+        editingMentionConfig.value = mentionAttrs?.config || ''
+        showMentionConfig.value = true
+
+        // Focus the input after Vue updates the DOM
+        setTimeout(() => {
+            mentionConfigInput.value?.focus()
+            mentionConfigInput.value?.select()
+        }, 10)
+    }
+
+    const updateMentionConfig = () => {
+        const trimmedConfig = editingMentionConfig.value.trim()
+
+        editor?.value
+            .chain()
+            .focus()
+            .updateAttributes('mention', {
+                config: trimmedConfig || null
+            })
+            .run()
+
+        showMentionConfig.value = false
+        editingMentionConfig.value = ''
+    }
+
+    const handleMentionConfigBlur = (event: FocusEvent) => {
+        // Check if the new focus target is within the bubble menu
+        const relatedTarget = event.relatedTarget as HTMLElement
+        if (relatedTarget && relatedTarget.closest('.bubble-menu')) {
+            // Don't update if clicking within bubble menu
+            return
+        }
+        updateMentionConfig()
+    }
+
+    const clearMentionConfig = () => {
+        editor?.value
+            .chain()
+            .focus()
+            .updateAttributes('mention', {
+                config: null
+            })
+            .run()
+
+        showMentionConfig.value = false
+        editingMentionConfig.value = ''
+    }
+
+    const handleMentionConfigKeydown = (event: KeyboardEvent) => {
+        if (event.key === 'Enter') {
+            event.preventDefault()
+            updateMentionConfig()
+        } else if (event.key === 'Escape') {
+            event.preventDefault()
+            showMentionConfig.value = false
+            editingMentionConfig.value = ''
             editor?.value.commands.focus()
         }
     }
@@ -306,31 +389,61 @@
             <div class="bubble-menu bg-base-100 shadow rounded-2xl flex gap-0.5 items-center px-2 py-2 ">
                 <template v-if="editor.isActive('mention')">
                     <div class="flex items-center gap-2 text-xs text-neutral-content px-2">
-                        <input
-                            ref="mentionLabelInput"
-                            v-model="editingMentionLabel"
-                            type="text"
-                            :placeholder="editor.getAttributes('mention').label"
-                            class="p-0 px-1 rounded text-xs outline-none focus:ring-1 focus:ring-primary min-w-[150px]"
-                            @focus="startEditingMentionLabel"
-                            @blur="updateMentionLabel"
-                            @keydown="handleMentionLabelKeydown"
-                        />
+                        <template v-if="showMentionConfig">
+                            <input
+                                ref="mentionConfigInput"
+                                v-model="editingMentionConfig"
+                                type="text"
+                                placeholder="page:abilities|anchor:#ability-1"
+                                class="p-0 px-1 rounded text-xs outline-none focus:ring-1 focus:ring-primary min-w-[250px]"
+                                @blur="handleMentionConfigBlur"
+                                @keydown="handleMentionConfigKeydown"
+                            />
+                            <button
+                                v-if="editor.getAttributes('mention').config"
+                                @click.prevent="clearMentionConfig"
+                                class="hover:text-warning"
+                                title="Clear config"
+                            >
+                                <i class="fa-regular fa-times" />
+                            </button>
+                        </template>
+                        <template v-else>
+                            <input
+                                ref="mentionLabelInput"
+                                v-model="editingMentionLabel"
+                                type="text"
+                                :placeholder="editor.getAttributes('mention').label"
+                                class="p-0 px-1 rounded text-xs outline-none focus:ring-1 focus:ring-primary min-w-[150px]"
+                                @focus="startEditingMentionLabel"
+                                @blur="handleMentionLabelBlur"
+                                @keydown="handleMentionLabelKeydown"
+                            />
 
-                        <a
-                            class="text-link"
-                            :href="editor.getAttributes('mention').url"
-                            title="Go to entity"
-                        >
-                            <i class="fa-regular fa-external-link-alt"></i>
-                        </a>
-                        <button
-                            @click.prevent="deleteMention"
-                            class="hover:text-error"
-                            title="Remove mention"
-                        >
-                            <i class="fa-regular fa-trash" />
-                        </button>
+                            <a
+                                v-if="editor.getAttributes('mention').url"
+                                class="text-link"
+                                :href="editor.getAttributes('mention').url"
+                                title="Go to entity"
+                            >
+                                <i class="fa-regular fa-external-link-alt" aria-hidden="true" />
+                            </a>
+                            <button
+                                @click.prevent="openMentionConfig"
+                                class="hover:text-primary"
+                                :class="{ 'text-primary': editor.getAttributes('mention').config }"
+                                title="Customize mention"
+                            >
+                                <i class="fa-regular fa-cog" aria-hidden="true" />
+                            </button>
+                            <button
+                                @click.prevent="deleteMention"
+                                class="hover:text-error"
+                                title="Remove mention"
+                            >
+                                <i class="fa-regular fa-trash" aria-hidden="true"  />
+                            </button>
+                        </template>
                     </div>
                 </template>
                 <template v-else-if="showLinkInput || editor.isActive('link')">

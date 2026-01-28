@@ -1,3 +1,4 @@
+
 import { computePosition, flip, shift } from '@floating-ui/dom'
 import { posToDOMRect, VueRenderer } from '@tiptap/vue-3'
 import MentionList from './MentionList.vue'
@@ -103,7 +104,8 @@ export default (mentionsUrl: string, onEntityAdded?: (entity: any) => void) => {
                                 // Execute the original command
                                 props.command(item)
                             },
-                            loading: true,
+                            loading: props.query && props.query.length >= 3,
+                            query: props.query || '',
                         },
                         editor: props.editor,
                     })
@@ -120,8 +122,9 @@ export default (mentionsUrl: string, onEntityAdded?: (entity: any) => void) => {
                 },
 
                 onUpdate(props: any) {
+                    // Determine loading state: loading if query is >= 3 chars and items haven't loaded yet
+                    const isLoading = props.query && props.query.length >= 3 && props.items.length === 0
 
-                    props.loading = false
                     // Update the command wrapper with the new command
                     const wrappedCommand = (item: MentionItem) => {
                         if (onEntityAdded) {
@@ -130,15 +133,17 @@ export default (mentionsUrl: string, onEntityAdded?: (entity: any) => void) => {
                                 name: item.name,
                                 type: item.type,
                                 image: item.image,
-                                url: item.url,
+                                url: item.link,
                             })
                         }
                         props.command(item)
                     }
 
                     component.updateProps({
-                        ...props,
+                        items: props.items,
                         command: wrappedCommand,
+                        loading: isLoading,
+                        query: props.query || '',
                     })
 
                     if (!props.clientRect) {
