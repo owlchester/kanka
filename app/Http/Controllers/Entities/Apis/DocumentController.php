@@ -21,7 +21,7 @@ class DocumentController extends Controller
 
     protected function mentions(Entity $entity): array
     {
-        return $entity->mentions()->with(['entity', 'entity.entityType'])->get()->map(function ($mention) {
+        return $entity->mentions()->with(['entity', 'entity.entityType', 'entity.aliases'])->get()->map(function ($mention) {
             if ($mention->isEntity()) {
                 return [
                     'id' => $mention->target_id,
@@ -29,6 +29,10 @@ class DocumentController extends Controller
                     'type' => $mention->target->entityType->code,
                     'image' => Avatar::entity($mention->target)->fallback()->size(32)->thumbnail(),
                     'url' => $mention->target->url(),
+                    'aliases' => $mention->target->aliases->map(fn ($alias) => [
+                        'id' => $alias->id,
+                        'name' => $alias->name,
+                    ])->toArray(),
                 ];
             }
             return [

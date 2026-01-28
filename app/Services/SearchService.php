@@ -255,6 +255,9 @@ class SearchService
         }
 
         $with = ['image', 'entityType'];
+        if ($this->v2) {
+            $with[] = 'aliases';
+        }
         if ($this->posts) {
             $with[] = 'posts';
         }
@@ -451,8 +454,10 @@ class SearchService
             'type' => $entity->entityType->name(),
             'preview' => route('entities.preview', [$this->campaign, $entity]),
             'mention' => $mention,
-            'alias_name' => $entity->alias_name,
-            'alias_id' => $entity->alias_id
+            'aliases' => $entity->aliases->map(fn ($alias) => [
+                'id' => $alias->id,
+                'name' => $alias->name,
+            ])->toArray()
         ];
     }
 

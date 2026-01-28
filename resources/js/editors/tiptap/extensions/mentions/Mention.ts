@@ -141,6 +141,10 @@ export const Mention = Node.create<MentionOptions>({
                 },
             },
 
+            entity: {
+                default: null,
+            },
+
             url: {
                 default: null,
                 parseHTML: element => element.getAttribute('data-url'),
@@ -206,13 +210,18 @@ export const Mention = Node.create<MentionOptions>({
             const aliasPart = configParts.find((part: string) => part.startsWith('alias:'))
             if (aliasPart) {
                 const aliasId = aliasPart.split(':')[1]
-                innerContent.push([
-                    'i',
-                    {
-                        class: 'fa-regular fa-masks-theater',
-                    }
-                ])
-                innerContent.push(`(${aliasId})`)
+
+                const alias = node.attrs.entity.aliases.find(a => a.id === parseInt(aliasId))
+                if (alias) {
+                    innerContent.push([
+                        'i',
+                        {
+                            class: 'fa-regular fa-masks-theater',
+                        }
+                    ])
+                    innerContent.push(`(${alias.name})`)
+                }
+
             }
         }
 

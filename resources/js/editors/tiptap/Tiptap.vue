@@ -436,7 +436,7 @@
                                 ref="mentionLabelInput"
                                 v-model="editingMentionLabel"
                                 type="text"
-                                :placeholder="editor.getAttributes('mention').label"
+                                :placeholder="editor.getAttributes('mention').entity.name"
                                 class="p-0 px-1 rounded text-xs outline-none focus:ring-1 focus:ring-primary min-w-[150px]"
                                 @focus="startEditingMentionLabel"
                                 @blur="handleMentionLabelBlur"
