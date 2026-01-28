@@ -200,19 +200,20 @@ export const Mention = Node.create<MentionOptions>({
 
         innerContent.push(label)
 
-        // If the node has a config, and in that config we have an "alias:id" property, we need to load that and show the ID inside a span element
-
-
-
-        console.log('node', node.attrs);
+        // If the node has a config with an "alias:id" property, show an icon and the alias ID
         if (node.attrs.config) {
-            innerContent.push([
-                'span',
-                {
-                    class: 'rounded-2xl bg-primary text-primary-content',
-                    html: 'config'
-                }
-            ])
+            const configParts = node.attrs.config.split('|')
+            const aliasPart = configParts.find((part: string) => part.startsWith('alias:'))
+            if (aliasPart) {
+                const aliasId = aliasPart.split(':')[1]
+                innerContent.push([
+                    'i',
+                    {
+                        class: 'fa-regular fa-masks-theater',
+                    }
+                ])
+                innerContent.push(`(${aliasId})`)
+            }
         }
 
         return [

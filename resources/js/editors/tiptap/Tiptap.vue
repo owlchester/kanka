@@ -32,8 +32,22 @@
     const addEntityToMentions = (entity: any) => {
         // Check if entity already exists in the mentions array
         const exists = mentions.value.find(e => e.id === entity.id)
+        const alias_id = entity.alias_id;
+        const alias_name = entity.alias_name;
         if (!exists) {
+            delete entity.alias_id
+            delete entity.alias_name
             mentions.value.push(entity)
+        }
+        console.log('alias_id', alias_id, entity)
+        if (alias_id) {
+            const aliasExists = mentions.value.find(e => e.alias_id === alias_id)
+            if (!aliasExists) {
+                mentions.value.push({
+                    alias_id: alias_id,
+                    name: alias_name
+                })
+            }
         }
     }
 

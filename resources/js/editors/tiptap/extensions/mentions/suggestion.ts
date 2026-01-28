@@ -11,6 +11,8 @@ interface MentionItem {
     mention: string
     preview: string
     type?: string
+    alias_id?: string
+    alias_name?: string
 }
 
 const updatePosition = (editor, element) => {
@@ -67,7 +69,9 @@ export default (mentionsUrl: string, onEntityAdded?: (entity: any) => void) => {
                     id: item.id,
                     name: item.name,
                     image: item.image,
-                    url: item.link,
+                    link: item.link,
+                    alias_id: item.alias_id,
+                    alias_name: item.alias_name,
                     mention: item.mention,
                     type: item.type,
                 }))
@@ -97,7 +101,9 @@ export default (mentionsUrl: string, onEntityAdded?: (entity: any) => void) => {
                                         name: item.name,
                                         type: item.type,
                                         image: item.image,
-                                        url: item.link,
+                                        link: item.link,
+                                        alias_id: item.alias_id,
+                                        alias_name: item.alias_name,
                                     })
                                 }
 
@@ -133,7 +139,9 @@ export default (mentionsUrl: string, onEntityAdded?: (entity: any) => void) => {
                                 name: item.name,
                                 type: item.type,
                                 image: item.image,
-                                url: item.link,
+                                link: item.link,
+                                alias_id: item.alias_id,
+                                alias_name: item.alias_name,
                             })
                         }
                         props.command(item)
