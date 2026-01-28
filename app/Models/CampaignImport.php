@@ -61,12 +61,19 @@ class CampaignImport extends Model
     public function prunable(): Builder
     {
         return static::where(function ($query) {
+            //Stuck in PREPARED or QUEUED > 24h
             $query->whereIn('status_id', [
                 CampaignImportStatus::PREPARED,
                 CampaignImportStatus::QUEUED,
             ])
-                ->where('created_at', '<=', now()->subDay());
+            ->where('created_at', '<=', now()->subDay());
         })
+            //CSV imports that are (READY) > 24h ago
+            ->orWhere(function ($query) {
+                $query->where('status_id', CampaignImportStatus::READY)
+                    ->where('updated_at', '<=', now()->subHours(24));
+            })
+            // Existing: Catch-all cleanup for very old records
             ->orWhere('created_at', '<=', now()->subDays(config('imports.prune')));
     }
 
@@ -100,6 +107,7 @@ class CampaignImport extends Model
         }
         foreach ($files as $file) {
             Storage::disk('s3')->delete($file);
+            Storage::disk('export')->delete($file);
         }
     }
 }

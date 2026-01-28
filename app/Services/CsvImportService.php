@@ -14,6 +14,8 @@ use App\Facades\MapMarkerCache;
 use App\Facades\QuestCache;
 use App\Facades\TimelineElementCache;
 use App\Models\CampaignImport;
+use App\Models\Character;
+use App\Models\CharacterTrait;
 use App\Models\Entity;
 use App\Models\EntityType;
 use App\Notifications\Header;
@@ -29,6 +31,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use SplFileObject;
 use RuntimeException;
+use Throwable;
 
 class CsvImportService
 {
@@ -43,7 +46,9 @@ class CsvImportService
     protected array $tags = [];
     protected array $fieldMap = [];
     protected array $data = [];
-
+    protected array $appearances = [];
+    protected array $personalities = [];
+    protected array $headers = [];
 
     public function job(CampaignImport $job)
     {
@@ -69,10 +74,17 @@ class CsvImportService
         return $this;
     }
 
-        public function fieldMap(array $fieldMap)
+    public function fieldMap(array $fieldMap)
     {
         $this->fieldMap = $fieldMap;
 
+        return $this;
+    }
+
+    public function traits(array $appearances, array $personalities)
+    {
+        $this->appearances = $appearances;
+        $this->personalities = $personalities;
         return $this;
     }
 
@@ -81,7 +93,7 @@ class CsvImportService
         $this
             ->init()
             ->download()
-            ->map();
+            ->processCsv();
     }
 
     protected function init(): self
@@ -134,8 +146,9 @@ class CsvImportService
         return [];
     }
 
-    public function map(): self
+    public function processCsv(): self
     {
+        //Open the CSV file
         $csv = new SplFileObject($this->filePath);
         $csv->setFlags(
             SplFileObject::READ_CSV |
@@ -145,6 +158,7 @@ class CsvImportService
 
         DB::beginTransaction();
         try {
+            //We're in the queue after all
             CampaignLocalization::forceCampaign($this->campaign);
             CampaignCache::campaign($this->campaign)->clear();
             EntityCache::campaign($this->campaign);
@@ -154,17 +168,17 @@ class CsvImportService
             MapMarkerCache::campaign($this->campaign);
             EntityAssetCache::campaign($this->campaign);
             BookmarkCache::campaign($this->campaign);
-
             Limit::campaign($this->campaign);
             Limit::user($this->user);
-            $headers = null;
-            $entityMap = [];
-            $batchSize = 50;
+
+            //Batch size controls how many rows are loaded into memory at once.
+            $batchSize = 5;
             $batch = [];
             $count = 0;
             foreach ($csv as $rowIndex => $row) {
                 // Skip header if needed
                 if ($rowIndex === 0) {
+                    $this->headers = $row;
                     continue;
                 }
 
@@ -191,18 +205,7 @@ class CsvImportService
 
         } catch (Exception $e) {
             DB::rollBack();
-
-            // Notify the user that something went wrong
-            $this->user->notify(new Header(
-                'campaign.import.failed',
-                'circle-exclamation',
-                'red',
-                [
-                    'campaign' => $this->campaign->name,
-                    'link' => route('dashboard', ['campaign' => $this->campaign]),
-                ]
-            ));
-
+            $this->fail($e);
             throw $e;
         }
 
@@ -220,13 +223,35 @@ class CsvImportService
 
     protected function processBatch(array $rows): void
     {
-        $data = [];
         foreach ($rows as $row) {
+            if ($row === false) {
+                continue;
+            }
             $temp = [];
             foreach ($this->fieldMap as $field => $index) {
-                $temp[$field] = $row[$index];
+                if (str_starts_with($field, 'is_')) {
+                    // Correctly handles "true", "false", "1", "0", "on", "off"
+                    $temp[$field] = filter_var($row[$index], FILTER_VALIDATE_BOOL);
+                } else {
+                    $temp[$field] = $row[$index];
+                }
             }
-            
+
+            $mappedPersonalities = [];
+            foreach ($this->personalities as $key) {
+                if (isset($row[$key])) {
+                    $mappedPersonalities[$this->headers[$key]] = $row[$key];
+                }
+            }
+
+            $mappedAppearances = [];
+            foreach ($this->appearances as $key) {
+                if (isset($row[$key])) {
+                    $mappedAppearances[$this->headers[$key]] = $row[$key];
+                }
+            }
+            $temp['traits'] = ['personalities' => $mappedPersonalities, 'appearances' => $mappedAppearances];
+
             $this->data = $temp;
             $this->create();
         }
@@ -241,6 +266,10 @@ class CsvImportService
         } elseif ($this->entityType->id == config('entities.ids.note')) {
             $this->data['entry'] = '';
         }
+
+        
+        $traits = $this->data['traits'];
+        unset($this->data['traits']);
 
         if ($this->entityType->isCustom()) {
             return $this->createEntity();
@@ -261,6 +290,10 @@ class CsvImportService
         $new->createEntity();
         $entity = $new->entity;
         $this->saveTags($entity);
+
+        if ($this->entityType->isCharacter()) {
+            $this->saveTraits($new, $traits);
+        }
 
         return $new->entity;
     }
@@ -308,13 +341,72 @@ class CsvImportService
             ->sync($this->tags);
     }
 
+    /**
+     * Save the character traits
+     */
+    protected function saveTraits(Character $character, array $traits): void
+    {
+        
+        foreach ($traits as $type => $entries) {
+            $traitOrder = 0;
+            foreach ($entries as $name => $entry) {
+                if (empty($name)) {
+                    continue;
+                }
+
+                $model = new CharacterTrait();
+                $model->character_id = $character->id;
+                $model->section_id = $type == 'personalities' ?
+                    CharacterTrait::SECTION_PERSONALITY : CharacterTrait::SECTION_APPEARANCE;
+
+                $model->name = $name;
+                $model->entry = $entry;
+                $model->default_order = $traitOrder;
+                $model->save();
+                $traitOrder++;
+            }
+        }
+    }
+
     protected function cleanup(): self
     {
         $files = $this->job->config['files'];
         foreach ($files as $file) {
-            Storage::disk('local')->delete($file);
+            Storage::disk('export')->delete($file);
+        }
+        Storage::disk('local')->delete($this->filePath);
+        
+        return $this;
+    }
+
+    public function fail(Throwable $e): self
+    {
+        // Notify the user that something went wrong
+        $this->user->notify(new Header(
+            'campaign.import.failed',
+            'circle-exclamation',
+            'red',
+            [
+                'campaign' => $this->campaign->name,
+                'link' => route('dashboard', ['campaign' => $this->campaign]),
+            ]
+        ));
+
+        $config = $this->job->config;
+        if (! isset($config['logs'])) {
+            $config['logs'] = [];
+        }
+        $this->job->errors = [$e->getMessage()];
+        $this->job->config = $config;
+        $this->job->status_id = CampaignImportStatus::FAILED;
+        $this->job->save();
+
+        if (app()->bound('sentry')) {
+            app('sentry')->captureException($e);
         }
 
-        return $this;
+        Log::error('CSV Import', ['where' => 'fail', 'error' => $e->getMessage()]);
+
+        return $this->cleanup();
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Campaigns;
 
-use App\Enums\FeatureStatus;
 use App\Facades\Avatar;
 use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
@@ -13,9 +12,6 @@ use App\Models\Campaign;
 use App\Models\CampaignImport;
 use App\Models\Entity;
 use App\Models\EntityType;
-use App\Models\Feature;
-use App\Models\FeatureFile;
-use App\Models\FeatureVote;
 use App\Services\CsvValidatorService;
 use App\Services\EntityTypeService;
 use Livewire\Attributes\Validate;
@@ -26,31 +22,26 @@ class CsvImport extends Component
 {
     use WithFileUploads;
 
-    #[Validate('required|min:5')]
-    public string $title = '';
-
-    public bool $success = false;
+    public Campaign $campaign;
+    public CampaignImport $import;
+    public EntityType $type;
 
     #[Validate('required|exists:entity_types,id')]
     public int $entityType = 0;
 
     public array $columnMap = [];
-
-
     public array $entityTypes = [];
     public array $headers = [];
     public array $fillableFields = [];
     public array $columns = [];
     public array $fullColumns = [];
     public array $preview = [];
-    public Campaign $campaign;
-    public CampaignImport $import;
-    public EntityType $type;
     public bool $canAssign = false;
     public string $tagLabel = '';
     public array $tags = [];
-
-    //public CsvValidatorService $csvValidatorService;
+    public bool $success = false;
+    public $personalities = [];
+    public $appearances = [];
 
     public function mount(Campaign $campaign, CampaignImport $campaignImport)
     {
@@ -68,8 +59,7 @@ class CsvImport extends Component
 
         $this->entityTypes = $entityTypeService
             ->campaign($campaign)
-            ->exclude([config('entities.ids.bookmark')])
-            //->prepend(['' => __('entities/transform.fields.select_one')])
+            ->exclude([config('entities.ids.bookmark'), config('entities.ids.whiteboard'), config('entities.ids.bookmark'), config('entities.ids.dice_roll'), config('entities.ids.attribute_template'), config('entities.ids.conversation'), config('entities.ids.calendar')])
             ->toSelect();
 
         $this->entityType = array_key_first($this->entityTypes);
@@ -80,46 +70,80 @@ class CsvImport extends Component
             ->campaign($campaign)
             ->job($campaignImport)
             ->toSelect();
-        $this->preview = $csvValidatorService->preview();
 
+        $this->preview = $csvValidatorService->preview();
+    }
+
+    public function addPersonality()
+    {
+        $this->personalities[] = null; // Adds a new empty entry
+    }
+
+    public function addAppearance()
+    {
+        $this->appearances[] = null; // Adds a new empty entry
+    }
+
+    public function removePersonality($index)
+    {
+        unset($this->personalities[$index]);
+        $this->personalities = array_values($this->personalities);
+    }
+
+    public function removeAppearance($index)
+    {
+        unset($this->appearances[$index]);
+        $this->appearances = array_values($this->appearances);
     }
 
     public function selectEntity()
     {
-        //dd($this->entityType);
-        //$this->authorize('create', Entity::class);
-        //$this->validate();
-
         $this->type = EntityType::where('id', $this->entityType)->first();
         $this->canAssign = true;
-        $this->fillableFields = $this->type->getMiscClass()->getFillable();
+        if ($this->type->isCustom()) {
+            $fields = app()->make(Entity::class)->getFillable();
+        } else {
+            $fields = $this->type->getMiscClass()->getFillable();
+        }
 
-        $this->fillableFields = array_values(array_diff($this->fillableFields, ['campaign_id']));
+        //$this->fillableFields = array_values(array_diff($this->fillableFields, ['campaign_id', 'entity_id']));
 
-
-        //$this->columns = $this->csvValidatorService->toSelect();
+        $fields = array_values(array_filter(
+            $fields,
+            fn($field) => !str_ends_with($field, '_id') && !str_ends_with($field, 'uuid') && $field != 'is_template' && $field != 'is_template' && $field != 'slug' && $field != 'is_attributes_private'
+        ));
         
-
-
+        foreach ($fields as $field) {
+            $this->fillableFields[$field] = $this->fieldName($field);
+        }
+        //dd($this->fillableFields);
+        
         $this->fullColumns = $this->import->config['filled_columns'];
-        //dd($fillableFields);
     }
 
-
-    public function save()
+    public function fieldName(string $field): string
     {
-        //$this->authorize('create', Feature::class);
-        $this->validate();
+        try {
+            $crudKey = 'crud.fields.' . $field;
+            $crudTrans = __($crudKey);
+            if ($crudTrans != $crudKey) {
+                return $crudTrans;
+            }
+            return __($this->type->pluralCode() . '.fields.' . $field);
+        } catch (\Exception $e) {
+            return 'Invalid_field_translation';
+        }
 
-        $feat = new Feature;
-        $feat->created_by = auth()->user()->id;
-        $feat->name = $this->title;
-        $feat->description = $this->description;
-        $feat->status_id = FeatureStatus::Draft;
-        $feat->save();
+        return __($this->type->pluralCode() . '.fields.' . $field);
+    }
 
-        $this->success = true;
-        $this->title = '';
+    public function updatedColumnMap($value, $key)
+    {
+        // If the selected value is empty or null
+        if (blank($value)) {
+            // Remove the key entirely from the array
+            unset($this->columnMap[$key]);
+        }
     }
 
     public function submit() 
@@ -129,8 +153,12 @@ class CsvImport extends Component
             $tagIds[] = $tag['id'];
         }
 
-        ImportCsv::dispatch($this->import, auth()->user()->id, $this->entityType, $this->columnMap, $tagIds)->onQueue('heavy');
+        ImportCsv::dispatch($this->import, auth()->user()->id, $this->entityType, $this->columnMap, $tagIds, $this->appearances, $this->personalities)->onQueue('heavy');
 
+        return $this->redirectRoute(
+            'campaign.import',
+            ['campaign' => $this->campaign]
+        );
     }
 
     public function render()

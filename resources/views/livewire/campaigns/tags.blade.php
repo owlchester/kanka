@@ -20,15 +20,15 @@
         wire:model.live.debounce.350ms="search"
         wire:focus="show"
         class="w-full border rounded px-3 py-2"
-        placeholder="Search tags..."
+        placeholder="Search tags"
         autocomplete="off"
     >
     @if ($open && count($options))
-        <ul class="absolute z-10 bg-white border w-full mt-1 rounded shadow max-h-60 overflow-y-auto">
+        <ul class="tippy-box ">
             @foreach ($options as $option)
                 <li
                     wire:click="select('{{ $option['id'] }}', '{{ $option['label'] }}')"
-                    class="px-3 py-2 hover:bg-gray-100 cursor-pointer"
+                    class=" px-1.5 py-1.5 hover:bg-base-200 rounded flex items-center gap-1.5 text-sm text-base-content transition-all duration-150"
                 >
                     {{ $option['label'] }}
                 </li>

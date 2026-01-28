@@ -147,7 +147,7 @@ class CsvValidatorService
 
         foreach ($csv as $row) {
             // Skip empty lines / EOF
-            if ($row === [null]) {
+            if ($row === [null] || $row === false) {
                 continue;
             }
 

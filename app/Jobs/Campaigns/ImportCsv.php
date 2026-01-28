@@ -36,17 +36,21 @@ class ImportCsv implements ShouldQueue
     protected int $entityTypeId;
     protected array $columnMap;
     protected array $tagIds;
+    protected array $appearances;
+    protected array $personalities;
 
     /**
      * CampaignExport constructor.
      */
-    public function __construct(CampaignImport $campaignImport, int $userId, int $entityTypeId, array $columnMap, array $tagIds)
+    public function __construct(CampaignImport $campaignImport, int $userId, int $entityTypeId, array $columnMap, array $tagIds, array $appearances, array $personalities)
     {
         $this->jobID = $campaignImport->id;
         $this->userId = $userId;
         $this->columnMap = $columnMap;
         $this->tagIds = $tagIds;
         $this->entityTypeId = $entityTypeId;
+        $this->appearances = $appearances;
+        $this->personalities = $personalities;
     }
 
     /**
@@ -83,6 +87,7 @@ class ImportCsv implements ShouldQueue
             ->user($job->user)
             ->entityType($entityType)
             ->fieldMap($this->columnMap)
+            ->traits($this->appearances, $this->personalities)
             ->tags($this->tagIds)
             ->run();
 
