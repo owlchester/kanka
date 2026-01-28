@@ -49,26 +49,66 @@ export const MentionParser = Extension.create<MentionParserOptions>({
                         if (node.isText && node.text) {
                             const text = node.text
                             let match: RegExpExecArray | null
-                            const matches: Array<{ start: number; end: number; mention: string; module: string; id: string; customLabel?: string }> = []
+                            const matches: Array<{ start: number; end: number; mention: string; module: string; id: string; customLabel?: string; config?: string }> = []
 
                             // Collect all matches first to avoid position issues
                             while ((match = mentionRegex.exec(text)) !== null) {
+                                const fullMention = match[0]
+                                const module = match[1]
+                                const id = match[2]
+
+                                const baseMention = `[${module}:${id}]`
+
+                                // Parse the parts after the pipe separator
+                                // Format: [type:id|CustomName|page:abilities|anchor:#post-1]
+                                let customLabel: string | undefined
+                                let config: string | undefined
+
+                                // Extract everything after the first pipe if it exists
+                                const pipeIndex = fullMention.indexOf('|')
+                                if (pipeIndex !== -1) {
+                                    // Get all parts after type:id
+                                    const parts = fullMention.substring(pipeIndex + 1, fullMention.length - 1).split('|')
+
+                                    const configParts: string[] = []
+
+                                    for (const part of parts) {
+                                        // Check if this part is a config (contains a colon)
+                                        if (part.includes(':')) {
+                                            configParts.push(part)
+                                        } else if (!customLabel) {
+                                            // First non-config part is the custom label
+                                            customLabel = part
+                                        }
+                                    }
+
+                                    if (configParts.length > 0) {
+                                        config = configParts.join('|')
+                                    }
+                                }
+
                                 matches.push({
                                     start: pos + match.index,
                                     end: pos + match.index + match[0].length,
-                                    mention: match[0],
-                                    module: match[1],
-                                    id: match[2],
-                                    customLabel: match[3]
+                                    mention: baseMention,
+                                    module: module,
+                                    id: id,
+                                    customLabel: customLabel,
+                                    config: config
                                 })
                             }
 
                             // Process matches in reverse order to maintain correct positions
                             for (let i = matches.length - 1; i >= 0; i--) {
-                                const { start, end, mention, module, id, customLabel } = matches[i]
+                                const { start, end, mention, module, id, customLabel, config } = matches[i]
+
+                                // Map positions through the transaction to account for previous changes
+                                const mappedStart = tr.mapping.map(start)
+                                const mappedEnd = tr.mapping.map(end)
 
                                 // Check if this position isn't already a mention node
-                                const nodeAtPos = newState.doc.nodeAt(start)
+                                const $pos = tr.doc.resolve(mappedStart)
+                                const nodeAtPos = tr.doc.nodeAt(mappedStart)
 
                                 if (nodeAtPos?.type.name !== 'mention') {
                                     // Check if mention node type exists
@@ -89,9 +129,10 @@ export const MentionParser = Extension.create<MentionParserOptions>({
                                             mention: mention,
                                             image: image,
                                             url: url,
+                                            config: config || null,
                                         })
 
-                                        tr.replaceWith(start, end, mentionNode)
+                                        tr.replaceWith(mappedStart, mappedEnd, mentionNode)
                                         modified = true
                                     }
                                 }

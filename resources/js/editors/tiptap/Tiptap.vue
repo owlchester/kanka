@@ -3,7 +3,7 @@
     import StarterKit from '@tiptap/starter-kit'
     import { BubbleMenu, FloatingMenu } from '@tiptap/vue-3/menus'
     import Link from '@tiptap/extension-link'
-    import {ref, onMounted, onBeforeUnmount, onUnmounted, computed} from 'vue'
+    import {ref, onMounted, onBeforeUnmount, watch, computed} from 'vue'
     import { Mention } from './extensions/mentions/Mention'
     import suggestion from './extensions/mentions/suggestion'
     import { MentionParser } from './extensions/mentions/MentionParser'
@@ -107,6 +107,15 @@
         },
     })
 
+    // Watch for selection changes to reset mention editing state
+    watch(() => editor?.value?.state.selection, (newSelection, oldSelection) => {
+        if (newSelection && oldSelection) {
+            // Reset editing states when selection changes
+            editingMentionLabel.value = ''
+            showMentionConfig.value = false
+            editingMentionConfig.value = ''
+        }
+    }, { deep: true })
 
 
     onMounted(() => {
