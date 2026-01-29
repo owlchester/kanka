@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Gallery;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Campaigns\StoreImage;
 use App\Http\Resources\Gallery\Tiptap\ImageResource;
 use App\Models\Campaign;
 use App\Services\Gallery\TiptapService;
@@ -25,10 +26,5 @@ class TiptapController extends Controller
                 ->request($request)
                 ->images()
         );
-    }
-
-    public function save(Request $request, Campaign $campaign)
-    {
-        $this->authorize('galleryBrowse', $campaign);
     }
 }

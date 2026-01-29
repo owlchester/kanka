@@ -38,6 +38,14 @@ const commands: SlashCommandItem[] = [
         },
     },
     {
+        title: 'Insert Media',
+        description: 'Upload an image from your device',
+        icon: 'fa-regular fa-upload',
+        command: (editor: Editor) => {
+            editor.commands.uploadMedia()
+        },
+    },
+    {
         title: 'Table',
         description: 'Insert a table',
         icon: 'fa-regular fa-table',

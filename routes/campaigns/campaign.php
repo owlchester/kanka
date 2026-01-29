@@ -29,7 +29,7 @@ Route::post('/w/{campaign}/gallery/upload/url', [App\Http\Controllers\Gallery\Up
 Route::get('/w/{campaign}/gallery/browse', [App\Http\Controllers\Gallery\BrowseController::class, 'index'])->name('gallery.browse');
 
 Route::get('/w/{campaign}/gallery/tiptap', [\App\Http\Controllers\Gallery\TiptapController::class, 'index'])->name('gallery.tiptap');
-Route::post('/w/{campaign}/gallery/tiptap', [\App\Http\Controllers\Gallery\TiptapController::class, 'save'])->name('gallery.tiptap.save');
+Route::post('/w/{campaign}/gallery/tiptap', [\App\Http\Controllers\Gallery\UploadController::class, 'file'])->name('gallery.tiptap.save');
 
 Route::get('/w/{campaign}/gallery/setup', [App\Http\Controllers\Gallery\SetupController::class, 'index'])->name('gallery.setup');
 Route::get('/w/{campaign}/gallery/open/{image}', [App\Http\Controllers\Gallery\ImageController::class, 'show'])->name('gallery.show');

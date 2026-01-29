@@ -17,6 +17,7 @@
     import { Gallery } from './extensions/gallery/Gallery'
     import GalleryDialog from './extensions/gallery/GalleryDialog.vue'
     import { GalleryImage } from './extensions/gallery/GalleryImage'
+    import { Iframe } from './extensions/Iframe'
 
 
     const props = defineProps<{
@@ -86,6 +87,7 @@
             inline: false,
             allowBase64: false,
         }),
+        Iframe,
     ];
     // Add gallery extension if gallery URL is provided
     if (props.gallery) {
@@ -172,8 +174,22 @@
                 return text
             },
             handlePaste: (view, event, slice) => {
-                // Check if plain text contains mention patterns
                 const plainText = event.clipboardData?.getData('text/plain') || ''
+                const htmlText = event.clipboardData?.getData('text/html') || ''
+
+                // Check if pasted content contains an iframe
+                const iframeMatch = (htmlText || plainText).match(/<iframe[^>]*src=["']([^"']+)["'][^>]*>/i)
+                if (iframeMatch || plainText.includes('<iframe')) {
+                    const content = htmlText || plainText
+                    editor.value?.commands.insertContent(content, {
+                        parseOptions: {
+                            preserveWhitespace: false,
+                        },
+                    })
+                    return true
+                }
+
+                // Check if plain text contains mention patterns
                 const mentionPattern = /\[([a-zA-Z_]+):(\d+)(?:\|[^\]]+)?\]/
 
                 if (mentionPattern.test(plainText)) {
@@ -927,5 +943,20 @@
 .bubble-menu {
     z-index: 845;
     position: relative;
+}
+
+:deep(.ProseMirror) {
+    min-height: 200px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+:deep(.iframe-wrapper) {
+    margin: 1rem 0;
+}
+
+:deep(.iframe-wrapper iframe) {
+    max-width: 100%;
+    border: 0;
 }
 </style>

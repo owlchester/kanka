@@ -18,7 +18,6 @@ class TiptapService
     public function images()
     {
         return $this->setup();
-
     }
 
     /**

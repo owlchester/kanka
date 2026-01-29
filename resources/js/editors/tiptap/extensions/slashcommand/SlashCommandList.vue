@@ -71,15 +71,15 @@ defineExpose({
                 v-for="(item, index) in items"
                 :key="item.title"
                 @click="selectItem(index)"
-                class="slash-command-item flex items-center gap-3 w-full text-left px-3 py-2 hover:bg-base-200 text-sm cursor-pointer"
-                :class="{ 'bg-base-200': index === selectedIndex }"
+                class="slash-command-item flex items-center gap-2 w-full text-left px-3 py-2 hover:bg-base-300 text-sm cursor-pointer"
+                :class="{ 'bg-base-300': index === selectedIndex }"
             >
-                <div class="w-8 h-8 rounded bg-base-200 flex items-center justify-center">
-                    <i :class="item.icon" aria-hidden="true"></i>
+                <div class="w-6 h-6 rounded bg-base-200 flex items-center justify-center">
+                    <i :class="item.icon" class="text-xs" aria-hidden="true"></i>
                 </div>
                 <div class="flex flex-col">
-                    <span class="font-medium">{{ item.title }}</span>
-                    <span class="text-xs text-neutral-content/70">{{ item.description }}</span>
+                    <span class="font-medium text-sm">{{ item.title }}</span>
+                    <span class="text-xs text-neutral-content">{{ item.description }}</span>
                 </div>
             </button>
         </template>
