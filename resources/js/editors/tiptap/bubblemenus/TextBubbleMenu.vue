@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue'
 import type { Editor } from '@tiptap/core'
 import { buttonClass } from '../utils'
+import ColorPicker from './ColorPicker.vue'
 
 const props = defineProps<{
     editor: Editor
@@ -13,6 +14,30 @@ const emit = defineEmits<{
 
 const showHeadingDropdown = ref(false)
 const showListDropdown = ref(false)
+
+const currentTextColor = computed(() => {
+    return props.editor.getAttributes('textStyle').color || null
+})
+
+const currentHighlightColor = computed(() => {
+    return props.editor.getAttributes('highlight').color || null
+})
+
+const setTextColor = (color: string | null) => {
+    if (color) {
+        props.editor.chain().focus().setColor(color).run()
+    } else {
+        props.editor.chain().focus().unsetColor().run()
+    }
+}
+
+const setHighlightColor = (color: string | null) => {
+    if (color) {
+        props.editor.chain().focus().setHighlight({ color }).run()
+    } else {
+        props.editor.chain().focus().unsetHighlight().run()
+    }
+}
 
 const currentHeadingIcon = computed(() => {
     if (!props.editor) return 'fa-regular fa-paragraph'
@@ -177,6 +202,20 @@ const closeListDropdown = () => {
     >
         <i class="fa-solid fa-quote-right" aria-label="Quote" />
     </button>
+
+    <ColorPicker
+        :current-color="currentTextColor"
+        icon="fa-solid fa-font"
+        title="Text color"
+        @select="setTextColor"
+    />
+
+    <ColorPicker
+        :current-color="currentHighlightColor"
+        icon="fa-solid fa-highlighter"
+        title="Highlight color"
+        @select="setHighlightColor"
+    />
 
     <div class="relative">
         <button

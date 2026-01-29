@@ -18,6 +18,9 @@
     import GalleryDialog from './extensions/gallery/GalleryDialog.vue'
     import { GalleryImage } from './extensions/gallery/GalleryImage'
     import { Iframe } from './extensions/Iframe'
+    import { TextStyle } from '@tiptap/extension-text-style'
+    import { Color } from '@tiptap/extension-color'
+    import Highlight from '@tiptap/extension-highlight'
 
     // Bubble menus
     import MentionBubbleMenu from './bubblemenus/MentionBubbleMenu.vue'
@@ -87,6 +90,11 @@
             allowBase64: false,
         }),
         Iframe,
+        TextStyle,
+        Color,
+        Highlight.configure({
+            multicolor: true,
+        }),
     ];
 
     if (props.gallery) {
