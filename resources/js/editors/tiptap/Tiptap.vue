@@ -19,6 +19,7 @@
     const props = defineProps<{
         modelValue?: string
         api?: String,
+        gallery?: String,
         mentions?: String,
     }>()
     const html = ref(props.modelValue ?? '<p>Loading...</p>')
