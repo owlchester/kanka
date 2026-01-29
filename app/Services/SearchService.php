@@ -255,9 +255,6 @@ class SearchService
         }
 
         $with = ['image', 'entityType'];
-        if ($this->v2) {
-            $with[] = 'aliases';
-        }
         if ($this->posts) {
             $with[] = 'posts';
         }

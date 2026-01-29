@@ -4,16 +4,16 @@ import { posToDOMRect, VueRenderer } from '@tiptap/vue-3'
 import MentionList from './MentionList.vue'
 
 interface MentionItem {
-    id: string
+    id?: string
     name: string
-    image: string
-    link: string
-    mention: string
-    preview: string
+    image?: string
+    link?: string
+    mention?: string
     type?: string
     aliases?: any
-    new?: boolean
     inject?: string
+    value?: string
+    section: 'entities' | 'posts' | 'new' | 'attributes'
 }
 
 const updatePosition = (editor, element) => {
@@ -65,18 +65,62 @@ export default (mentionsUrl: string, onEntityAdded?: (entity: any) => void) => {
                 }
 
                 const data = await response.json()
-                // Map API response to what MentionList expects
-                return (data.entities || data || []).map((item: any) => ({
-                    id: item.id,
-                    name: item.name,
-                    image: item.image,
-                    link: item.link,
-                    aliases: item.aliases,
-                    mention: item.mention,
-                    type: item.type,
-                    new: item.new,
-                    inject: item.inject,
-                }))
+                const items: MentionItem[] = []
+
+                // Map entities
+                if (data.entities?.length) {
+                    data.entities.forEach((item: any) => {
+                        items.push({
+                            id: item.id,
+                            name: item.name,
+                            image: item.image,
+                            link: item.link,
+                            aliases: item.aliases,
+                            mention: item.mention,
+                            type: item.type,
+                            section: 'entities',
+                        })
+                    })
+                }
+
+                // Map posts
+                if (data.posts?.length) {
+                    data.posts.forEach((item: any) => {
+                        items.push({
+                            id: item.id,
+                            name: item.name,
+                            inject: item.inject,
+                            section: 'posts',
+                        })
+                    })
+                }
+
+                // Map attributes
+                if (data.attributes?.length) {
+                    data.attributes.forEach((item: any) => {
+                        items.push({
+                            id: item.id,
+                            name: item.name,
+                            value: item.value,
+                            inject: item.inject,
+                            section: 'attributes',
+                        })
+                    })
+                }
+
+                // Map new entity suggestions
+                if (data.new?.length) {
+                    data.new.forEach((item: any) => {
+                        items.push({
+                            name: item.name,
+                            type: item.type,
+                            inject: item.inject,
+                            section: 'new',
+                        })
+                    })
+                }
+
+                return items
             } catch (error: any) {
                 // Ignore abort errors
                 if (error.name === 'AbortError') {
@@ -97,8 +141,8 @@ export default (mentionsUrl: string, onEntityAdded?: (entity: any) => void) => {
                             items: props.items,
                             command: (item: MentionItem) => {
                                 // Add entity to the mentions array if callback provided
-                                // Skip for "new" entities since they don't exist yet
-                                if (onEntityAdded && !item.new) {
+                                // Only for actual entities (not posts, new, or attributes)
+                                if (onEntityAdded && item.section === 'entities') {
                                     onEntityAdded({
                                         id: parseInt(item.id),
                                         name: item.name,
@@ -135,8 +179,8 @@ export default (mentionsUrl: string, onEntityAdded?: (entity: any) => void) => {
 
                     // Update the command wrapper with the new command
                     const wrappedCommand = (item: MentionItem) => {
-                        // Skip for "new" entities since they don't exist yet
-                        if (onEntityAdded && !item.new) {
+                        // Only add to mentions for actual entities
+                        if (onEntityAdded && item.section === 'entities') {
                             onEntityAdded({
                                 id: parseInt(item.id),
                                 name: item.name,

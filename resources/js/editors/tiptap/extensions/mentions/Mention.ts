@@ -34,8 +34,8 @@ export const Mention = Node.create<MentionOptions>({
                         range.to += 1
                     }
 
-                    // Use inject for new entities, otherwise use mention
-                    const textToInsert = props.new ? props.inject : props.mention
+                    // Use inject for posts, new, and attributes; mention for entities
+                    const textToInsert = props.section === 'entities' ? props.mention : props.inject
 
                     editor
                         .chain()
@@ -72,6 +72,8 @@ export const Mention = Node.create<MentionOptions>({
     selectable: true,
 
     atom: true,
+
+    draggable: true,
 
     addAttributes() {
         return {
@@ -127,6 +129,7 @@ export const Mention = Node.create<MentionOptions>({
                     }
 
                     const parts = [`${attributes.mention}`]
+                    console.log('mentions', parts);
 
                     if (attributes.label) {
                         parts.push(attributes.label)
@@ -187,9 +190,10 @@ export const Mention = Node.create<MentionOptions>({
                 default: null,
                 parseHTML: element => element.getAttribute('data-config'),
                 renderHTML: attributes => {
-                    return {}
                     if (!attributes.config) {
-                        return {}
+                        return {
+                            'data-config': ''
+                        }
                     }
 
                     return {

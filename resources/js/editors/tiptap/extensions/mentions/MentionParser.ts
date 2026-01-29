@@ -57,6 +57,10 @@ export const MentionParser = Extension.create<MentionParserOptions>({
                                 const module = match[1]
                                 const id = match[2]
 
+                                if (module === 'post') {
+                                    continue
+                                }
+
                                 const baseMention = `${module}:${id}`
 
                                 // Parse the parts after the pipe separator
@@ -117,10 +121,11 @@ export const MentionParser = Extension.create<MentionParserOptions>({
                                         // Find entity by id to get the name and image
                                         const entity = entities.find(e => e.id === parseInt(id))
                                         const defaultLabel = entity ? entity.name : `${module}:${id}`
-                                        const label = customLabel || defaultLabel
+                                        const label = customLabel || ''
                                         const image = entity?.image || null
                                         const url = entity?.url || null
 
+                                        console.log('parsed', mention, defaultLabel, config)
                                         // Replace text with mention node
                                         const mentionNode = mentionType.create({
                                             id: id,

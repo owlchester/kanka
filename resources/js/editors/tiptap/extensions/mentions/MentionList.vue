@@ -2,15 +2,25 @@
 <script setup lang="ts">
 import { ref, watch, computed } from 'vue'
 
+type SectionType = 'entities' | 'posts' | 'new' | 'attributes'
+
 interface MentionItem {
-    id: string
+    id?: string
     name: string
     image?: string
     url?: string
-    mention: string
+    mention?: string
     type?: string
-    new?: boolean
     inject?: string
+    value?: string
+    section: SectionType
+}
+
+interface Section {
+    key: SectionType
+    label: string
+    icon: string
+    items: MentionItem[]
 }
 
 const props = defineProps<{
@@ -24,6 +34,26 @@ const selectedIndex = ref(0)
 
 watch(() => props.items, () => {
     selectedIndex.value = 0
+})
+
+const sectionConfig: Record<SectionType, { label: string; icon: string }> = {
+    entities: { label: 'Entities', icon: 'fa-regular fa-bookmark' },
+    posts: { label: 'Posts', icon: 'fa-regular fa-newspaper' },
+    attributes: { label: 'Attributes', icon: 'fa-regular fa-heart' },
+    new: { label: 'Create New', icon: 'fa-regular fa-plus' },
+}
+
+const sections = computed<Section[]>(() => {
+    const sectionOrder: SectionType[] = ['entities', 'posts', 'attributes', 'new']
+
+    return sectionOrder
+        .map(key => ({
+            key,
+            label: sectionConfig[key].label,
+            icon: sectionConfig[key].icon,
+            items: props.items.filter(item => item.section === key),
+        }))
+        .filter(section => section.items.length > 0)
 })
 
 const showMinCharacterMessage = computed(() => {
@@ -77,6 +107,18 @@ const selectItem = (index: number) => {
     }
 }
 
+// Get the flat index for an item within a section
+const getFlatIndex = (sectionKey: SectionType, itemIndex: number): number => {
+    let flatIndex = 0
+    for (const section of sections.value) {
+        if (section.key === sectionKey) {
+            return flatIndex + itemIndex
+        }
+        flatIndex += section.items.length
+    }
+    return flatIndex
+}
+
 defineExpose({
     onKeyDown,
 })
@@ -85,27 +127,37 @@ defineExpose({
 <template>
     <div class="mention-list bg-base-100 shadow-lg rounded-lg z-50 max-h-[300px] overflow-y-auto">
         <template v-if="items.length">
-            <button
-                v-for="(item, index) in items"
-                :key="item.id ?? `new-${index}`"
-                @click="selectItem(index)"
-                class="mention-item flex items-center gap-2 w-full text-left px-3 py-2 hover:bg-base-200 text-xs justify-between cursor-pointer"
-                :class="{ 'bg-base-200': index === selectedIndex }"
-            >
-                <div class="flex gap-2 items-center">
-                    <template v-if="item.new">
-                        <i class="fa-regular fa-plus text-success" aria-hidden="true"></i>
-                    </template>
-                    <img
-                        v-else-if="item.image"
-                        :src="item.image"
-                        :alt="item.name"
-                        class="w-6 h-6 rounded-full object-cover"
-                    />
-                    <span class="mention-name">{{ item.name }}</span>
+            <div v-for="section in sections" :key="section.key" class="mention-section">
+                <!-- Section header -->
+                <div class="section-header px-3 py-1 text-xs font-semibold text-neutral-content/70 bg-base-200/50 flex items-center gap-2">
+                    <i :class="section.icon" aria-hidden="true"></i>
+                    {{ section.label }}
                 </div>
-                <span v-if="item.type" class="mention-type text-neutral-content">{{ item.type }}</span>
-            </button>
+
+                <!-- Section items -->
+                <button
+                    v-for="(item, itemIndex) in section.items"
+                    :key="item.id ?? `${section.key}-${itemIndex}`"
+                    @click="selectItem(getFlatIndex(section.key, itemIndex))"
+                    class="mention-item flex items-center gap-2 w-full text-left px-3 py-2 hover:bg-base-200 text-xs justify-between cursor-pointer"
+                    :class="{ 'bg-base-200': getFlatIndex(section.key, itemIndex) === selectedIndex }"
+                >
+                    <div class="flex gap-2 items-center">
+                        <template v-if="section.key === 'new'">
+                            <i class="fa-regular fa-plus text-success" aria-hidden="true"></i>
+                        </template>
+                        <img
+                            v-else-if="item.image"
+                            :src="item.image"
+                            :alt="item.name"
+                            class="w-6 h-6 rounded-full object-cover"
+                        />
+                        <span class="mention-name" v-html="item.name"></span>
+                    </div>
+                    <span v-if="item.type" class="mention-type text-neutral-content" v-html="item.type"></span>
+                    <span v-if="item.value" class="text-neutral-content" v-html="item.value"></span>
+                </button>
+            </div>
         </template>
         <div v-else class="px-3 py-2 text-neutral-content text-xs">
             <span v-if="showMinCharacterMessage">

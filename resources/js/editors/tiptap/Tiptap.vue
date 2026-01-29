@@ -1,6 +1,7 @@
 <script setup lang="ts">
     import { useEditor, EditorContent } from '@tiptap/vue-3'
     import StarterKit from '@tiptap/starter-kit'
+    import { Placeholder } from '@tiptap/extensions'
     import { BubbleMenu, FloatingMenu } from '@tiptap/vue-3/menus'
     import Link from '@tiptap/extension-link'
     import {ref, onMounted, onBeforeUnmount, watch, computed} from 'vue'
@@ -40,6 +41,9 @@
     const extensions = [
         StarterKit.configure({
             link: false,
+        }),
+        Placeholder.configure({
+            placeholder: 'Write something …',
         }),
         Link.configure({
             openOnClick: false,
@@ -107,10 +111,12 @@
             html.value = editor.getHTML()
         },
         onSelectionUpdate: ({ editor }) => {
-            // Pre-fill mention label when a mention is selected
+            // Pre-fill mention label when a mention is selected (only if entity exists)
             if (editor.isActive('mention')) {
                 const mentionAttrs = editor.getAttributes('mention')
-                editingMentionLabel.value = mentionAttrs?.label || ''
+                if (mentionAttrs?.entity) {
+                    editingMentionLabel.value = mentionAttrs?.label || ''
+                }
             } else {
                 // Clear when leaving mention
                 editingMentionLabel.value = ''
@@ -201,6 +207,9 @@
 
                     editor?.value?.commands.setContent(html.value)
                 })
+        } else {
+            html.value = ""
+            editor?.value?.commands.setContent(html.value)
         }
     });
 
@@ -478,25 +487,34 @@
                             </button>
                         </template>
                         <template v-else>
-                            <input
-                                ref="mentionLabelInput"
-                                v-model="editingMentionLabel"
-                                type="text"
-                                :placeholder="editor.getAttributes('mention').entity.name"
-                                class="p-0 px-1 rounded text-xs outline-none focus:ring-1 focus:ring-primary min-w-[150px]"
-                                @focus="startEditingMentionLabel"
-                                @blur="handleMentionLabelBlur"
-                                @keydown="handleMentionLabelKeydown"
-                            />
-
-                            <a
-                                v-if="editor.getAttributes('mention').url"
-                                class="text-link"
-                                :href="editor.getAttributes('mention').url"
-                                title="Go to entity"
-                            >
-                                <i class="fa-regular fa-external-link-alt" aria-hidden="true" />
-                            </a>
+                            <!-- Valid entity: show editable label and link -->
+                            <template v-if="editor.getAttributes('mention').entity">
+                                <input
+                                    ref="mentionLabelInput"
+                                    v-model="editingMentionLabel"
+                                    type="text"
+                                    :placeholder="editor.getAttributes('mention').entity.name"
+                                    class="p-0 px-1 rounded text-xs outline-none focus:ring-1 focus:ring-primary min-w-[150px]"
+                                    @focus="startEditingMentionLabel"
+                                    @blur="handleMentionLabelBlur"
+                                    @keydown="handleMentionLabelKeydown"
+                                />
+                                <a
+                                    v-if="editor.getAttributes('mention').url"
+                                    class="text-link"
+                                    :href="editor.getAttributes('mention').url"
+                                    title="Go to entity"
+                                >
+                                    <i class="fa-regular fa-external-link-alt" aria-hidden="true" />
+                                </a>
+                            </template>
+                            <!-- Unknown entity: show warning -->
+                            <template v-else>
+                                <span class="text-neutral-content flex items-center gap-1">
+                                    <i class="fa-regular fa-exclamation-triangle" aria-hidden="true" />
+                                    Unknown entity
+                                </span>
+                            </template>
                             <button
                                 @click.prevent="openMentionConfig"
                                 class="hover:text-primary"
