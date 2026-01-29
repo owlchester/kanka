@@ -94,6 +94,10 @@ const toggleListDropdown = () => {
 const closeListDropdown = () => {
     showListDropdown.value = false
 }
+
+const clearFormatting = () => {
+    props.editor.chain().focus().unsetAllMarks().clearNodes().run()
+}
 </script>
 
 <template>
@@ -170,90 +174,104 @@ const closeListDropdown = () => {
         @click.prevent="editor.chain().focus().toggleBold().run()"
         :class="buttonClass(editor.isActive('bold'))"
     >
-        <i class="fa-solid fa-bold" aria-label="Bold" />
+        <i class="fa-regular fa-bold" aria-label="Bold" />
     </button>
     <button
         @click.prevent="editor.chain().focus().toggleItalic().run()"
         :class="buttonClass(editor.isActive('italic'))"
     >
-        <i class="fa-solid fa-italic" aria-label="Italic" />
+        <i class="fa-regular fa-italic" aria-label="Italic" />
     </button>
     <button
         @click.prevent="editor.chain().focus().toggleStrike().run()"
         :class="buttonClass(editor.isActive('strike'))"
     >
-        <i class="fa-solid fa-strikethrough" aria-label="Strikethrough" />
+        <i class="fa-regular fa-strikethrough" aria-label="Strikethrough" />
     </button>
     <button
         @click.prevent="editor.chain().focus().toggleUnderline().run()"
         :class="buttonClass(editor.isActive('underline'))"
     >
-        <i class="fa-solid fa-underline" aria-label="Underline" />
-    </button>
-    <button
-        @click.prevent="emit('openLink')"
-        :class="buttonClass(editor.isActive('link'))"
-    >
-        <i class="fa-regular fa-link" aria-label="Link" />
-    </button>
-    <button
-        @click.prevent="editor.chain().focus().toggleBlockquote().run()"
-        :class="buttonClass(editor.isActive('quote'))"
-    >
-        <i class="fa-solid fa-quote-right" aria-label="Quote" />
+        <i class="fa-regular fa-underline" aria-label="Underline" />
     </button>
 
-    <ColorPicker
-        :current-color="currentTextColor"
-        icon="fa-solid fa-font"
-        title="Text color"
-        @select="setTextColor"
-    />
+    <div class="flex items-center gap-0.5 border-r border-base-300 pr-2 mr-1">
+        <ColorPicker
+            :current-color="currentTextColor"
+            icon="fa-regular fa-font"
+            title="Text color"
+            @select="setTextColor"
+        />
 
-    <ColorPicker
-        :current-color="currentHighlightColor"
-        icon="fa-solid fa-highlighter"
-        title="Highlight color"
-        @select="setHighlightColor"
-    />
+        <ColorPicker
+            :current-color="currentHighlightColor"
+            icon="fa-regular fa-fill"
+            title="Highlight color"
+            @select="setHighlightColor"
+        />
+    </div>
+
+    <div class="flex items-center gap-0.5 border-r border-base-300 pr-2 mr-1">
+        <button
+            @click.prevent="emit('openLink')"
+            :class="buttonClass(editor.isActive('link'))"
+        >
+            <i class="fa-regular fa-link" aria-label="Link" />
+        </button>
+        <button
+            @click.prevent="editor.chain().focus().toggleBlockquote().run()"
+            :class="buttonClass(editor.isActive('blockquote'))"
+        >
+            <i class="fa-regular fa-quote-right" aria-label="Quote" />
+        </button>
 
     <div class="relative">
-        <button
-            @click.prevent="toggleListDropdown"
-            :class="buttonClass(false)"
-            class="flex items-center gap-0.5"
-            @blur="closeListDropdown"
-        >
-            <i :class="getCurrentListIcon"></i>
-            <i class="fa-regular fa-chevron-down" aria-label="Toggle paragraph styles"></i>
-        </button>
-        <div
-            v-show="showListDropdown"
-            class="absolute top-full left-0 mt-1 bg-base-100 shadow-lg rounded-lg py-1 z-50 min-w-[200px]"
-            @mousedown.prevent
-        >
             <button
-                @click.prevent="toggleList('bullet')"
-                class="block w-full text-left px-3 py-2 hover:bg-base-200 text-neutral-content text-xs flex items-center justify-between gap-1"
-                :class="{ 'text-semibold text-base-content': editor.isActive('bulletList') }"
+                @click.prevent="toggleListDropdown"
+                :class="buttonClass(false)"
+                class="flex items-center gap-0.5"
+                @blur="closeListDropdown"
             >
-                <div class="flex gap-1 items-center">
-                    <i class="fa-regular fa-list-ul" aria-hidden="true"></i>
-                    List
-                </div>
-                <i class="fa-regular fa-check" v-if="editor.isActive('bulletList')"></i>
+                <i :class="getCurrentListIcon"></i>
+                <i class="fa-regular fa-chevron-down" aria-label="Toggle paragraph styles"></i>
             </button>
-            <button
-                @click.prevent="toggleList('ordered')"
-                class="block w-full text-left px-3 py-2 hover:bg-base-200 text-neutral-content text-xs flex items-center justify-between gap-1"
-                :class="{ 'text-semibold text-base-content': editor.isActive('orderedList') }"
+            <div
+                v-show="showListDropdown"
+                class="absolute top-full left-0 mt-1 bg-base-100 shadow-lg rounded-lg py-1 z-50 min-w-[200px]"
+                @mousedown.prevent
             >
-                <div class="flex gap-1 items-center">
-                    <i class="fa-regular fa-list-ol" aria-hidden="true"></i>
-                    Numbered list
-                </div>
-                <i class="fa-regular fa-check" v-if="editor.isActive('orderedList')"></i>
-            </button>
+                <button
+                    @click.prevent="toggleList('bullet')"
+                    class="block w-full text-left px-3 py-2 hover:bg-base-200 text-neutral-content text-xs flex items-center justify-between gap-1"
+                    :class="{ 'text-semibold text-base-content': editor.isActive('bulletList') }"
+                >
+                    <div class="flex gap-1 items-center">
+                        <i class="fa-regular fa-list-ul" aria-hidden="true"></i>
+                        List
+                    </div>
+                    <i class="fa-regular fa-check" v-if="editor.isActive('bulletList')"></i>
+                </button>
+                <button
+                    @click.prevent="toggleList('ordered')"
+                    class="block w-full text-left px-3 py-2 hover:bg-base-200 text-neutral-content text-xs flex items-center justify-between gap-1"
+                    :class="{ 'text-semibold text-base-content': editor.isActive('orderedList') }"
+                >
+                    <div class="flex gap-1 items-center">
+                        <i class="fa-regular fa-list-ol" aria-hidden="true"></i>
+                        Numbered list
+                    </div>
+                    <i class="fa-regular fa-check" v-if="editor.isActive('orderedList')"></i>
+                </button>
+            </div>
         </div>
+
     </div>
+
+    <button
+        @click.prevent="clearFormatting"
+        :class="buttonClass(false)"
+        title="Clear formatting"
+    >
+        <i class="fa-regular fa-paint-roller" aria-label="Clear formatting" />
+    </button>
 </template>
