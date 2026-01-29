@@ -172,7 +172,7 @@ class CsvImportService
             Limit::user($this->user);
 
             //Batch size controls how many rows are loaded into memory at once.
-            $batchSize = 5;
+            $batchSize = 50;
             $batch = [];
             $count = 0;
             foreach ($csv as $rowIndex => $row) {
