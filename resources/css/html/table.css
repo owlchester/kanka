@@ -19,6 +19,7 @@ table {
     min-width: 180px !important;
 
     th {
+        text-align: left;
     }
 
     th, td {
