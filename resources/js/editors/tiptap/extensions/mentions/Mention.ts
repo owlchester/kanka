@@ -18,7 +18,8 @@ export const Mention = Node.create<MentionOptions>({
         return {
             HTMLAttributes: {},
             renderLabel({ options, node }) {
-                return node.attrs.label ?? node.attrs.name ?? node.attrs.id
+                // Use label if set, otherwise fall back to name (from data-name attribute)
+                return node.attrs.label || node.attrs.name || node.attrs.id
             },
             suggestion: {
                 char: '@',

@@ -106,6 +106,16 @@
         onUpdate: ({ editor }) => {
             html.value = editor.getHTML()
         },
+        onSelectionUpdate: ({ editor }) => {
+            // Pre-fill mention label when a mention is selected
+            if (editor.isActive('mention')) {
+                const mentionAttrs = editor.getAttributes('mention')
+                editingMentionLabel.value = mentionAttrs?.label || ''
+            } else {
+                // Clear when leaving mention
+                editingMentionLabel.value = ''
+            }
+        },
         editorProps: {
             clipboardTextSerializer: (slice) => {
                 let text = ''
@@ -172,14 +182,14 @@
     }
 
     // Watch for selection changes to reset mention editing state
-    watch(() => editor?.value?.state.selection, (newSelection, oldSelection) => {
-        if (newSelection && oldSelection) {
-            // Reset editing states when selection changes
-            editingMentionLabel.value = ''
-            showMentionConfig.value = false
-            editingMentionConfig.value = ''
-        }
-    }, { deep: true })
+    // watch(() => editor?.value?.state.selection, (newSelection, oldSelection) => {
+    //     if (newSelection && oldSelection) {
+    //         // Reset editing states when selection changes
+    //         editingMentionLabel.value = ''
+    //         showMentionConfig.value = false
+    //         editingMentionConfig.value = ''
+    //     }
+    // }, { deep: true })
 
 
     onMounted(() => {
@@ -327,14 +337,7 @@
     }
 
     const startEditingMentionLabel = () => {
-        editingMentionLabel.value = editor?.value.getAttributes('mention').label || ''
-
-
-        // Focus the input after Vue updates the DOM
-        setTimeout(() => {
-            mentionLabelInput.value?.focus()
-            mentionLabelInput.value?.select()
-        }, 10)
+        // Value is pre-filled by onSelectionUpdate, nothing to do here
     }
 
     const updateMentionLabel = () => {
@@ -342,34 +345,20 @@
         const mentionAttrs = editor?.value.getAttributes('mention')
         const entityId = mentionAttrs?.id
 
-        // If the new name is the entity's default name, erase the label property
+        // If the new name matches the entity's default name, clear the label
         const entity = mentions.value.find(e => e.id === parseInt(entityId))
         if (trimmedLabel === entity?.name) {
-            trimmedLabel = '';
+            trimmedLabel = ''
         }
 
-        // If input is empty, revert to the entity's original name
-        if (!trimmedLabel) {
-            const entity = mentions.value.find(e => e.id === parseInt(entityId))
-            if (entity) {
-                editor?.value
-                    .chain()
-                    .focus()
-                    .updateAttributes('mention', {
-                        label: trimmedLabel
-                    })
-                    .run()
-            }
-        } else {
-            // Update with the new label
-            editor?.value
-                .chain()
-                .focus()
-                .updateAttributes('mention', {
-                    label: trimmedLabel
-                })
-                .run()
-        }
+        // Update the label (empty string will cause renderLabel to fall back to name)
+        editor?.value
+            .chain()
+            .focus()
+            .updateAttributes('mention', {
+                label: trimmedLabel
+            })
+            .run()
 
         editingMentionLabel.value = ''
     }
@@ -493,7 +482,7 @@
                                 ref="mentionLabelInput"
                                 v-model="editingMentionLabel"
                                 type="text"
-                                :placeholder="editor.getAttributes('mention').label ?? editor.getAttributes('mention').entity.name"
+                                :placeholder="editor.getAttributes('mention').entity.name"
                                 class="p-0 px-1 rounded text-xs outline-none focus:ring-1 focus:ring-primary min-w-[150px]"
                                 @focus="startEditingMentionLabel"
                                 @blur="handleMentionLabelBlur"
