@@ -18,7 +18,7 @@ export const Mention = Node.create<MentionOptions>({
         return {
             HTMLAttributes: {},
             renderLabel({ options, node }) {
-                return node.attrs.label ?? node.attrs.id
+                return node.attrs.label ?? node.attrs.name ?? node.attrs.id
             },
             suggestion: {
                 char: '@',
@@ -33,13 +33,16 @@ export const Mention = Node.create<MentionOptions>({
                         range.to += 1
                     }
 
+                    // Use inject for new entities, otherwise use mention
+                    const textToInsert = props.new ? props.inject : props.mention
+
                     editor
                         .chain()
                         .focus()
                         .insertContentAt(range, [
                             {
                                 type: 'text',
-                                text: props.mention,
+                                text: textToInsert,
                             },
                             {
                                 type: 'text',
@@ -89,6 +92,7 @@ export const Mention = Node.create<MentionOptions>({
                 default: null,
                 parseHTML: element => element.getAttribute('data-label'),
                 renderHTML: attributes => {
+                    return {}
                     if (!attributes.label) {
                         return {}
                     }
@@ -121,6 +125,20 @@ export const Mention = Node.create<MentionOptions>({
                         return {}
                     }
 
+                    const parts = [`${attributes.mention}`]
+
+                    if (attributes.label) {
+                        parts.push(attributes.label)
+                    }
+
+                    if (attributes.config) {
+                        parts.push(attributes.config)
+                    }
+
+                    return {
+                        'data-mention': `[${parts.join('|')}]`
+                    }
+
                     return {
                         'data-mention': attributes.mention,
                     }
@@ -131,6 +149,7 @@ export const Mention = Node.create<MentionOptions>({
                 default: null,
                 parseHTML: element => element.getAttribute('data-image'),
                 renderHTML: attributes => {
+                    return {}
                     if (!attributes.image) {
                         return {}
                     }
@@ -143,12 +162,17 @@ export const Mention = Node.create<MentionOptions>({
 
             entity: {
                 default: null,
+                parseHTML: element => element.getAttribute('data-entity'),
+                renderHTML: attributes => {
+                    return {}
+                }
             },
 
             url: {
                 default: null,
                 parseHTML: element => element.getAttribute('data-url'),
                 renderHTML: attributes => {
+                    return {}
                     if (!attributes.url) {
                         return {}
                     }
@@ -162,6 +186,7 @@ export const Mention = Node.create<MentionOptions>({
                 default: null,
                 parseHTML: element => element.getAttribute('data-config'),
                 renderHTML: attributes => {
+                    return {}
                     if (!attributes.config) {
                         return {}
                     }

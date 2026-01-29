@@ -8,6 +8,9 @@ interface MentionItem {
     image?: string
     url?: string
     mention: string
+    type?: string
+    new?: boolean
+    inject?: string
 }
 
 const props = defineProps<{
@@ -84,18 +87,24 @@ defineExpose({
         <template v-if="items.length">
             <button
                 v-for="(item, index) in items"
-                :key="item.id"
+                :key="item.id ?? `new-${index}`"
                 @click="selectItem(index)"
-                class="mention-item flex items-center gap-2 w-full text-left px-3 py-2 hover:bg-base-200 text-neutral-content text-xs"
+                class="mention-item flex items-center gap-2 w-full text-left px-3 py-2 hover:bg-base-200 text-xs justify-between cursor-pointer"
                 :class="{ 'bg-base-200': index === selectedIndex }"
             >
-                <img
-                    v-if="item.image"
-                    :src="item.image"
-                    :alt="item.name"
-                    class="w-6 h-6 rounded-full object-cover"
-                />
-                <span class="mention-name">{{ item.name }}</span>
+                <div class="flex gap-2 items-center">
+                    <template v-if="item.new">
+                        <i class="fa-regular fa-plus text-success" aria-hidden="true"></i>
+                    </template>
+                    <img
+                        v-else-if="item.image"
+                        :src="item.image"
+                        :alt="item.name"
+                        class="w-6 h-6 rounded-full object-cover"
+                    />
+                    <span class="mention-name">{{ item.name }}</span>
+                </div>
+                <span v-if="item.type" class="mention-type text-neutral-content">{{ item.type }}</span>
             </button>
         </template>
         <div v-else class="px-3 py-2 text-neutral-content text-xs">

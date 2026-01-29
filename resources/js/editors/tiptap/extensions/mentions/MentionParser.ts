@@ -57,7 +57,7 @@ export const MentionParser = Extension.create<MentionParserOptions>({
                                 const module = match[1]
                                 const id = match[2]
 
-                                const baseMention = `[${module}:${id}]`
+                                const baseMention = `${module}:${id}`
 
                                 // Parse the parts after the pipe separator
                                 // Format: [type:id|CustomName|page:abilities|anchor:#post-1]

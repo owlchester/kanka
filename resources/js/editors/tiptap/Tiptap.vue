@@ -32,22 +32,8 @@
     const addEntityToMentions = (entity: any) => {
         // Check if entity already exists in the mentions array
         const exists = mentions.value.find(e => e.id === entity.id)
-        const alias_id = entity.alias_id;
-        const alias_name = entity.alias_name;
         if (!exists) {
-            delete entity.alias_id
-            delete entity.alias_name
             mentions.value.push(entity)
-        }
-        console.log('alias_id', alias_id, entity)
-        if (alias_id) {
-            const aliasExists = mentions.value.find(e => e.alias_id === alias_id)
-            if (!aliasExists) {
-                mentions.value.push({
-                    alias_id: alias_id,
-                    name: alias_name
-                })
-            }
         }
     }
 
@@ -91,14 +77,15 @@
                         // Build the mention parts
                         const parts = [`${type}:${id}`]
 
+                        // Add label if it differs from entity name (must come last to detect custom names)
+                        console.log('checking', label, entityName)
+                        if (label && entityName && label !== entityName) {
+                            parts.push(label)
+                        }
+
                         // Add config if present
                         if (config) {
                             parts.push(config)
-                        }
-
-                        // Add label if it differs from entity name (must come last to detect custom names)
-                        if (label && entityName && label !== entityName) {
-                            parts.push(label)
                         }
 
                         return `[${parts.join('|')}]`
@@ -119,7 +106,70 @@
         onUpdate: ({ editor }) => {
             html.value = editor.getHTML()
         },
+        editorProps: {
+            clipboardTextSerializer: (slice) => {
+                let text = ''
+                slice.content.forEach(node => {
+                    text += serializeNodeToText(node)
+                })
+                return text
+            },
+            handlePaste: (view, event, slice) => {
+                // Check if plain text contains mention patterns
+                const plainText = event.clipboardData?.getData('text/plain') || ''
+                const mentionPattern = /\[([a-zA-Z_]+):(\d+)(?:\|[^\]]+)?\]/
+
+                if (mentionPattern.test(plainText)) {
+                    // Insert as plain text so MentionParser can convert the patterns
+                    editor.value?.commands.insertContent(plainText)
+                    return true
+                }
+
+                // Let TipTap handle paste normally
+                return false
+            },
+        },
     })
+
+    const serializeNodeToText = (node: any): string => {
+        if (node.type.name === 'mention') {
+            return serializeMentionToText(node)
+        }
+
+        if (node.isText) {
+            return node.text || ''
+        }
+
+        let text = ''
+        if (node.content) {
+            node.content.forEach((child: any) => {
+                text += serializeNodeToText(child)
+            })
+        }
+
+        // Add newlines for block nodes
+        if (node.isBlock && text) {
+            text += '\n'
+        }
+
+        return text
+    }
+
+    const serializeMentionToText = (node: any): string => {
+        const config = node.attrs.config
+        const id = node.attrs.id
+        const type = node.attrs.type
+
+        // Build the mention parts
+        const parts = [`${type}:${id}`]
+
+        // Add config if present
+        if (config) {
+            parts.push(config)
+        }
+
+        return `[${parts.join('|')}]`
+    }
 
     // Watch for selection changes to reset mention editing state
     watch(() => editor?.value?.state.selection, (newSelection, oldSelection) => {
@@ -279,6 +329,7 @@
     const startEditingMentionLabel = () => {
         editingMentionLabel.value = editor?.value.getAttributes('mention').label || ''
 
+
         // Focus the input after Vue updates the DOM
         setTimeout(() => {
             mentionLabelInput.value?.focus()
@@ -287,9 +338,15 @@
     }
 
     const updateMentionLabel = () => {
-        const trimmedLabel = editingMentionLabel.value.trim()
+        let trimmedLabel = editingMentionLabel.value.trim()
         const mentionAttrs = editor?.value.getAttributes('mention')
         const entityId = mentionAttrs?.id
+
+        // If the new name is the entity's default name, erase the label property
+        const entity = mentions.value.find(e => e.id === parseInt(entityId))
+        if (trimmedLabel === entity?.name) {
+            trimmedLabel = '';
+        }
 
         // If input is empty, revert to the entity's original name
         if (!trimmedLabel) {
@@ -299,7 +356,7 @@
                     .chain()
                     .focus()
                     .updateAttributes('mention', {
-                        label: entity.name
+                        label: trimmedLabel
                     })
                     .run()
             }
@@ -436,7 +493,7 @@
                                 ref="mentionLabelInput"
                                 v-model="editingMentionLabel"
                                 type="text"
-                                :placeholder="editor.getAttributes('mention').entity.name"
+                                :placeholder="editor.getAttributes('mention').label ?? editor.getAttributes('mention').entity.name"
                                 class="p-0 px-1 rounded text-xs outline-none focus:ring-1 focus:ring-primary min-w-[150px]"
                                 @focus="startEditingMentionLabel"
                                 @blur="handleMentionLabelBlur"

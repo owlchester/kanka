@@ -12,6 +12,8 @@ interface MentionItem {
     preview: string
     type?: string
     aliases?: any
+    new?: boolean
+    inject?: string
 }
 
 const updatePosition = (editor, element) => {
@@ -64,7 +66,7 @@ export default (mentionsUrl: string, onEntityAdded?: (entity: any) => void) => {
 
                 const data = await response.json()
                 // Map API response to what MentionList expects
-                return (data.entities || []).map((item: any) => ({
+                return (data.entities || data || []).map((item: any) => ({
                     id: item.id,
                     name: item.name,
                     image: item.image,
@@ -72,6 +74,8 @@ export default (mentionsUrl: string, onEntityAdded?: (entity: any) => void) => {
                     aliases: item.aliases,
                     mention: item.mention,
                     type: item.type,
+                    new: item.new,
+                    inject: item.inject,
                 }))
             } catch (error: any) {
                 // Ignore abort errors
@@ -93,7 +97,8 @@ export default (mentionsUrl: string, onEntityAdded?: (entity: any) => void) => {
                             items: props.items,
                             command: (item: MentionItem) => {
                                 // Add entity to the mentions array if callback provided
-                                if (onEntityAdded) {
+                                // Skip for "new" entities since they don't exist yet
+                                if (onEntityAdded && !item.new) {
                                     onEntityAdded({
                                         id: parseInt(item.id),
                                         name: item.name,
@@ -130,7 +135,8 @@ export default (mentionsUrl: string, onEntityAdded?: (entity: any) => void) => {
 
                     // Update the command wrapper with the new command
                     const wrappedCommand = (item: MentionItem) => {
-                        if (onEntityAdded) {
+                        // Skip for "new" entities since they don't exist yet
+                        if (onEntityAdded && !item.new) {
                             onEntityAdded({
                                 id: parseInt(item.id),
                                 name: item.name,

@@ -44,6 +44,7 @@ class EntryController extends Controller
             $entity->touch();
         }
 
+        dd('w');
         return redirect()->to($entity->url());
     }
 }

@@ -169,7 +169,8 @@ class SaveService
             $params = new Collection(explode('|', $mentionLink->getAttribute('data-config')));
         }
 
-        if (! empty($originalName) && $originalName != Str::replace('&quot;', '"', $mentionName)) {
+        // Tiptap will send the custom name in the config, so we can skip this garbage
+        if ($params->isNotEmpty() && ! empty($originalName) && $originalName != Str::replace('&quot;', '"', $mentionName)) {
             // Merge custom name with params (page:abc|anchor:#post-1 etc)
             $params->prepend($mentionName);
             $mention = Str::replace(']', '|' . $params->implode('|') . ']', $advancedMention);
