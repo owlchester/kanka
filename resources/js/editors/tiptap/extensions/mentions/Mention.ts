@@ -129,7 +129,6 @@ export const Mention = Node.create<MentionOptions>({
                     }
 
                     const parts = [`${attributes.mention}`]
-                    console.log('mentions', parts);
 
                     if (attributes.label) {
                         parts.push(attributes.label)

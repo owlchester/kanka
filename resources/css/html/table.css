@@ -15,6 +15,23 @@ table {
     }
 }
 
+.table-tiptap {
+    min-width: 180px !important;
+
+    th {
+    }
+
+    th, td {
+        line-height: 1.5rem;
+        padding: .5rem;
+        border: 1px solid hsl(var(--b2)/1);
+        border-collapse: collapse;
+    }
+    th {
+        background-color: hsl(var(--b2)/1);
+    }
+}
+
 .table {
     width: 100%;
     th, td {

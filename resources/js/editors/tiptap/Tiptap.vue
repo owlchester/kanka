@@ -4,10 +4,16 @@
     import { Placeholder } from '@tiptap/extensions'
     import { BubbleMenu, FloatingMenu } from '@tiptap/vue-3/menus'
     import Link from '@tiptap/extension-link'
+    import TableRow from '@tiptap/extension-table-row'
+    import TableCell from '@tiptap/extension-table-cell'
+    import TableHeader from '@tiptap/extension-table-header'
+    import { TableWithControls } from './extensions/table/TableWithControls'
     import {ref, onMounted, onBeforeUnmount, watch, computed} from 'vue'
     import { Mention } from './extensions/mentions/Mention'
     import suggestion from './extensions/mentions/suggestion'
     import { MentionParser } from './extensions/mentions/MentionParser'
+    import { SlashCommand } from './extensions/slashcommand/SlashCommand'
+    import slashCommandSuggestion from './extensions/slashcommand/suggestion'
 
 
     const props = defineProps<{
@@ -52,6 +58,26 @@
                 class: 'text-link',
             },
         }),
+        TableWithControls.configure({
+            resizable: true,
+            HTMLAttributes: {
+                class: '',
+            },
+        }),
+        TableRow,
+        TableCell.configure({
+            HTMLAttributes: {
+                class: '',
+            },
+        }),
+        TableHeader.configure({
+            HTMLAttributes: {
+                class: '',
+            },
+        }),
+        SlashCommand.configure({
+            suggestion: slashCommandSuggestion(),
+        }),
     ];
     // Add mention extension if mentions URL is provided
     if (props.mentions) {
@@ -82,7 +108,6 @@
                         const parts = [`${type}:${id}`]
 
                         // Add label if it differs from entity name (must come last to detect custom names)
-                        console.log('checking', label, entityName)
                         if (label && entityName && label !== entityName) {
                             parts.push(label)
                         }
@@ -454,6 +479,30 @@
         }
     }
 
+    /** Table controls **/
+    const addColumnAfter = () => {
+        editor?.value.chain().focus().addColumnAfter().run()
+    }
+
+    const addRowAfter = () => {
+        editor?.value.chain().focus().addRowAfter().run()
+    }
+
+    const deleteTable = () => {
+        editor?.value.chain().focus().deleteTable().run()
+    }
+
+    const deleteRow = () => {
+        editor?.value.chain().focus().deleteRow().run()
+    }
+
+    const deleteColumn = () => {
+        editor?.value.chain().focus().deleteColumn().run()
+    }
+
+    const toggleHeaderRow = () => {
+        editor?.value.chain().focus().toggleHeaderRow().run()
+    }
 
     onBeforeUnmount(() => {
         editor?.value.destroy()
@@ -559,6 +608,56 @@
                             title="Remove link"
                         >
                             <i class="fa-regular fa-unlink" aria-label="Removal icon" />
+                        </button>
+                    </div>
+                </template>
+                <template v-else-if="editor.isActive('table')">
+                    <div class="flex gap-1 items-center text-xs text-neutral-content px-2">
+                        <button
+                            @click.prevent="addColumnAfter"
+                            :class="buttonClass(false)"
+                            title="Add column"
+                        >
+                            <i class="fa-solid fa-table-columns" aria-hidden="true" />
+                            <i class="fa-solid fa-plus text-[8px]" aria-hidden="true" />
+                        </button>
+                        <button
+                            @click.prevent="addRowAfter"
+                            :class="buttonClass(false)"
+                            title="Add row"
+                        >
+                            <i class="fa-solid fa-table-rows" aria-hidden="true" />
+                            <i class="fa-solid fa-plus text-[8px]" aria-hidden="true" />
+                        </button>
+                        <button
+                            @click.prevent="deleteColumn"
+                            :class="buttonClass(false)"
+                            title="Delete column"
+                        >
+                            <i class="fa-solid fa-table-columns" aria-hidden="true" />
+                            <i class="fa-solid fa-minus text-[8px]" aria-hidden="true" />
+                        </button>
+                        <button
+                            @click.prevent="deleteRow"
+                            :class="buttonClass(false)"
+                            title="Delete row"
+                        >
+                            <i class="fa-solid fa-table-rows" aria-hidden="true" />
+                            <i class="fa-solid fa-minus text-[8px]" aria-hidden="true" />
+                        </button>
+                        <button
+                            @click.prevent="toggleHeaderRow"
+                            :class="buttonClass(false)"
+                            title="Toggle header row"
+                        >
+                            <i class="fa-solid fa-heading" aria-hidden="true" />
+                        </button>
+                        <button
+                            @click.prevent="deleteTable"
+                            class="hover:text-error px-2 py-1"
+                            title="Delete table"
+                        >
+                            <i class="fa-solid fa-trash" aria-hidden="true" />
                         </button>
                     </div>
                 </template>
