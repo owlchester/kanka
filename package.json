@@ -25,6 +25,7 @@
         "@syncfusion/ej2-vue-grids": "^24.2.7",
         "@tailwindcss/vite": "^4.1.17",
         "@tiptap/cli": "^3.11.1",
+        "@tiptap/extension-image": "^3.18.0",
         "@tiptap/extension-mention": "^3.17.1",
         "@tiptap/extension-table": "^3.18.0",
         "@tiptap/extension-table-cell": "^3.18.0",

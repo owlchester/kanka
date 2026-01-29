@@ -30,6 +30,14 @@ const updatePosition = (editor: Editor, element: HTMLElement) => {
 
 const commands: SlashCommandItem[] = [
     {
+        title: 'Gallery',
+        description: 'Insert an image from gallery',
+        icon: 'fa-regular fa-images',
+        command: (editor: Editor) => {
+            editor.commands.openGallery()
+        },
+    },
+    {
         title: 'Table',
         description: 'Insert a table',
         icon: 'fa-regular fa-table',

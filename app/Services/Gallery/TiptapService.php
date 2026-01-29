@@ -17,9 +17,8 @@ class TiptapService
 
     public function images()
     {
-        if ($this->request->has('setup')) {
-            return $this->setup();
-        }
+        return $this->setup();
+
     }
 
     /**

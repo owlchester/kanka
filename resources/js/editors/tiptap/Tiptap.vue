@@ -14,6 +14,9 @@
     import { MentionParser } from './extensions/mentions/MentionParser'
     import { SlashCommand } from './extensions/slashcommand/SlashCommand'
     import slashCommandSuggestion from './extensions/slashcommand/suggestion'
+    import { Gallery } from './extensions/gallery/Gallery'
+    import GalleryDialog from './extensions/gallery/GalleryDialog.vue'
+    import { GalleryImage } from './extensions/gallery/GalleryImage'
 
 
     const props = defineProps<{
@@ -79,7 +82,19 @@
         SlashCommand.configure({
             suggestion: slashCommandSuggestion(),
         }),
+        GalleryImage.configure({
+            inline: false,
+            allowBase64: false,
+        }),
     ];
+    // Add gallery extension if gallery URL is provided
+    if (props.gallery) {
+        extensions.push(
+            Gallery.configure({
+                galleryUrl: props.gallery as string,
+            })
+        )
+    }
     // Add mention extension if mentions URL is provided
     if (props.mentions) {
         extensions.push(
@@ -505,6 +520,27 @@
         editor?.value.chain().focus().toggleHeaderRow().run()
     }
 
+    /** Image controls **/
+    const setImageWidth = (width: string | null) => {
+        editor?.value.commands.setImageWidth(width)
+    }
+
+    const setImageFloat = (float: 'left' | 'right' | null) => {
+        editor?.value.commands.setImageFloat(float)
+    }
+
+    const deleteImage = () => {
+        editor?.value.chain().focus().deleteSelection().run()
+    }
+
+    const getImageWidth = () => {
+        return editor?.value.getAttributes('image').width || null
+    }
+
+    const getImageFloat = () => {
+        return editor?.value.getAttributes('image').float || null
+    }
+
     onBeforeUnmount(() => {
         editor?.value.destroy()
     })
@@ -659,6 +695,73 @@
                             title="Delete table"
                         >
                             <i class="fa-solid fa-trash" aria-hidden="true" />
+                        </button>
+                    </div>
+                </template>
+                <template v-else-if="editor.isActive('image')">
+                    <div class="flex gap-1 items-center text-xs text-neutral-content px-2">
+                        <!-- Width controls -->
+                        <div class="flex items-center gap-0.5 border-r border-base-300 pr-2 mr-1">
+                            <button
+                                @click.prevent="setImageWidth('25%')"
+                                :class="buttonClass(getImageWidth() === '25%')"
+                                title="25% width"
+                            >
+                                25%
+                            </button>
+                            <button
+                                @click.prevent="setImageWidth('50%')"
+                                :class="buttonClass(getImageWidth() === '50%')"
+                                title="50% width"
+                            >
+                                50%
+                            </button>
+                            <button
+                                @click.prevent="setImageWidth('100%')"
+                                :class="buttonClass(getImageWidth() === '100%')"
+                                title="100% width"
+                            >
+                                100%
+                            </button>
+                            <button
+                                @click.prevent="setImageWidth(null)"
+                                :class="buttonClass(getImageWidth() === null)"
+                                title="Reset width"
+                            >
+                                <i class="fa-regular fa-undo" aria-hidden="true" />
+                            </button>
+                        </div>
+                        <!-- Float controls -->
+                        <div class="flex items-center gap-0.5 border-r border-base-300 pr-2 mr-1">
+                            <button
+                                @click.prevent="setImageFloat('left')"
+                                :class="buttonClass(getImageFloat() === 'left')"
+                                title="Float left"
+                            >
+                                <i class="fa-regular fa-align-left" aria-hidden="true" />
+                            </button>
+                            <button
+                                @click.prevent="setImageFloat('right')"
+                                :class="buttonClass(getImageFloat() === 'right')"
+                                title="Float right"
+                            >
+                                <i class="fa-regular fa-align-right" aria-hidden="true" />
+                            </button>
+                            <button
+                                @click.prevent="setImageFloat(null)"
+                                :class="buttonClass(getImageFloat() === null)"
+                                title="No float"
+                            >
+                                <i class="fa-regular fa-align-justify" aria-hidden="true" />
+                            </button>
+                        </div>
+                        <!-- Delete -->
+                        <button
+                            @click.prevent="deleteImage"
+                            class="hover:text-error px-2 py-1"
+                            title="Delete image"
+                        >
+                            <i class="fa-regular fa-trash" aria-hidden="true" />
                         </button>
                     </div>
                 </template>
@@ -817,6 +920,7 @@
 
     <input type="hidden" name="entry" :value="html" />
 
+    <GalleryDialog v-if="gallery" />
 </template>
 
 <style scoped>
