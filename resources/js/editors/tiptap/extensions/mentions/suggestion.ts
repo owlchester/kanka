@@ -7,7 +7,7 @@ interface MentionItem {
     id?: string
     name: string
     image?: string
-    link?: string
+    url?: string
     mention?: string
     type?: string
     aliases?: any
@@ -74,7 +74,7 @@ export default (mentionsUrl: string, onEntityAdded?: (entity: any) => void) => {
                             id: item.id,
                             name: item.name,
                             image: item.image,
-                            link: item.link,
+                            url: item.url,
                             aliases: item.aliases,
                             mention: item.mention,
                             type: item.type,
@@ -148,7 +148,7 @@ export default (mentionsUrl: string, onEntityAdded?: (entity: any) => void) => {
                                         name: item.name,
                                         type: item.type,
                                         image: item.image,
-                                        link: item.link,
+                                        url: item.url,
                                         aliases: item.aliases,
                                     })
                                 }
@@ -186,7 +186,7 @@ export default (mentionsUrl: string, onEntityAdded?: (entity: any) => void) => {
                                 name: item.name,
                                 type: item.type,
                                 image: item.image,
-                                link: item.link,
+                                url: item.url,
                                 aliases: item.aliases,
                             })
                         }

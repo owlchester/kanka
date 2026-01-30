@@ -32,7 +32,6 @@
     const props = defineProps<{
         modelValue?: string
         content?: string
-        mentionsApi?: string
         gallery?: string
         mentions?: string
     }>()
@@ -238,13 +237,48 @@
         linkBubbleRef.value?.openLinkInput()
     }
 
+    const parseMentionsFromContent = (content: string) => {
+        const entityIds: number[] = []
+        const postIds: number[] = []
+
+        // Match patterns like [entity_type:123] or [entity_type:123|label] or [entity_type:123|label|config]
+        const mentionPattern = /\[([a-zA-Z_]+):(\d+)(?:\|[^\]]+)?\]/g
+        let match
+
+        while ((match = mentionPattern.exec(content)) !== null) {
+            const type = match[1]
+            const id = parseInt(match[2], 10)
+
+            if (type === 'post') {
+                if (!postIds.includes(id)) {
+                    postIds.push(id)
+                }
+            } else {
+                // All other types are entities (character, location, item, etc.)
+                if (!entityIds.includes(id)) {
+                    entityIds.push(id)
+                }
+            }
+        }
+
+        return { entityIds, postIds }
+    }
+
     onMounted(() => {
-        // Load mentions from API if available
-        if (props.mentionsApi) {
-            axios.get(props.mentionsApi)
-                .then(res => {
-                    mentions.value = res.data.mentions
+        // Parse content for mentions and load their data
+        if (props.mentions && props.content) {
+            const { entityIds, postIds } = parseMentionsFromContent(props.content)
+
+            if (entityIds.length > 0 || postIds.length > 0) {
+                axios.post(props.mentions, {
+                    entities: entityIds,
+                    posts: postIds,
+                }).then(res => {
+                    mentions.value = res.data
+                    // Re-set content to trigger MentionParser with loaded mentions
+                    editor.value?.commands.setContent(props.content)
                 })
+            }
         }
     })
 
@@ -302,6 +336,16 @@
     min-height: 200px;
     max-height: 70vh;
     overflow-y: auto;
+    border: 1px solid hsl(var(--bc)/.1);
+    border-radius: var(--rounded-btn);
+    padding: 0.6rem 0.8rem;
+    &:focus {
+        outline-style: solid;
+        outline-width: 2px;
+        outline-offset: 2px;
+        outline-color: hsl(var(--p)/0.3);
+        border-color: transparent;
+    }
 }
 
 :deep(.iframe-wrapper) {

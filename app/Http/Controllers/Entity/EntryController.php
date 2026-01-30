@@ -35,8 +35,6 @@ class EntryController extends Controller
             return response()->json(['success' => true]);
         }
 
-        dump($request->get('entry'));
-
         $fields = $request->only('entry');
         $entity->update($fields);
         if ($entity->wasChanged()) {
@@ -44,7 +42,6 @@ class EntryController extends Controller
             $entity->touch();
         }
 
-        dd('w');
         return redirect()->to($entity->url());
     }
 }

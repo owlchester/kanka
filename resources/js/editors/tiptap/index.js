@@ -20,7 +20,6 @@ const loadWidget = () => {
         const props = {
             content,
             mentions: tiptapEl?.getAttribute('mentions') || undefined,
-            mentionsApi: tiptapEl?.getAttribute('mentions-api') || undefined,
             gallery: tiptapEl?.getAttribute('gallery') || undefined,
         }
 

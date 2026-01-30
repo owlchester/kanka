@@ -16,5 +16,5 @@ $old = old('entry');
         </a>
     </div>
 
-    @include('cruds.fields.entry')
+    @include('cruds.fields.entry', ['model' => $entity])
 </div>

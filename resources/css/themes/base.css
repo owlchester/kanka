@@ -10,7 +10,7 @@ body {
 
 hr {
     border-color: hsl(var(--bc)/var(--tw-border-opacity));
-    --tw-border-opacity: 0.2;
+    --tw-border-opacity: 0.1;
 }
 .entity-content a, .text-link {
     --tw-text-opacity: 1;

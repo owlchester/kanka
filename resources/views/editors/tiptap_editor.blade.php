@@ -1,11 +1,15 @@
-<div class="tiptap-editor entity-content" data-content="{{ ($source ?? $entity ?? null)?->entry ?? '' }}">
+@php
+$mentionUrlParams = [$campaign];
+if (isset($entity)) {
+    $mentionUrlParams['entity'] = $entity;
+}
+@endphp
+
+<div class="tiptap-editor entity-content" data-content="{{ ($source ?? $model ?? null)?->entry ?? '' }}">
     <tiptap
         @if (isset($campaign))
-        mentions="{{ route('search.mention', [$campaign, 'entity' => $entity ?? null]) }}"
+        mentions="{{ route('search.mention', $mentionUrlParams) }}"
         gallery="{{ route('gallery.tiptap', [$campaign]) }}"
-        @if (isset($entity) && $entity instanceof \App\Models\Entity)
-        mentions-api="{{ route('entities.api.document', [$campaign, $source ?? $entity]) }}"
-        @endif
         @endif
     />
 </div>

@@ -48,23 +48,31 @@ class MentionService
 
     public function load(): array
     {
-        $this->data = [];
+        $results = [];
+
         if ($this->request->filled('entities')) {
-            $this->data['entities'] = [];
-            $entities = Entity::whereIn('id', $this->request->get('entities'))->get();
+            $entities = Entity::with(['entityType', 'aliases'])->whereIn('id', $this->request->get('entities'))->get();
             foreach ($entities as $entity) {
-                $this->addEntity($entity);
-            }
-        }
-        if ($this->request->filled('posts')) {
-            $this->data['posts'] = [];
-            $posts = Post::has('entity')->whereIn('id', $this->request->get('posts'))->get();
-            foreach ($posts as $post) {
-                $this->addPost($post);
+                if ($entity->entityType->isStandard() && !$entity->child) {
+                    continue;
+                }
+                $results[] = $this->formatEntity($entity);
             }
         }
 
-        return $this->data();
+        if ($this->request->filled('posts')) {
+            $posts = Post::has('entity')->whereIn('id', $this->request->get('posts'))->get();
+            foreach ($posts as $post) {
+                $results[] = [
+                    'type' => 'post',
+                    'id' => $post->id,
+                    'name' => $post->name,
+                    'inject' => "[post:{$post->id}]",
+                ];
+            }
+        }
+
+        return $results;
     }
 
     protected function prepare(): self
@@ -168,10 +176,10 @@ class MentionService
         return [
             'id' => $entity->id,
             'name' => $entity->name,
+            'type' => $entity->entityType->name(),
             'is_private' => $entity->is_private,
             'image' => Avatar::entity($entity)->fallback()->size(32)->thumbnail(),
-            'link' => $entity->url(),
-            'type' => $entity->entityType->name(),
+            'url' => $entity->url(),
             'preview' => route('entities.preview', [$this->campaign, $entity]),
             'mention' => $mention,
             'aliases' => $entity->aliases->map(fn ($alias) => [

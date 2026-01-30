@@ -10,13 +10,13 @@
 @endphp
 
 @if ($editor === 'tiptap')
-    @include('editors.tiptap_editor')
+    @include('editors.tiptap_editor', ['model' => $model])
 @else
     <textarea
         id="entry"
         name="entry"
         class="w-full html-editor"
         rows="3">
-        {!! FormCopy::field('entryForEdition')->string() ?: old('entry', $entity->entryForEdition ?? $model->entryForEdition ?? null) !!}
+        {!! FormCopy::field('entryForEdition')->string() ?: old('entry', $model->entryForEdition ?? $model->entryForEdition ?? null) !!}
     </textarea>
 @endif
