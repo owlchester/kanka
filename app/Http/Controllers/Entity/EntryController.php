@@ -36,15 +36,22 @@ class EntryController extends Controller
         }
 
         $fields = $request->only('entry');
-        dump($fields);
         $entity->update($fields);
-        dd($entity->entry);
 
         if ($entity->wasChanged()) {
             EntityLogger::entity($entity);
             $entity->touch();
         }
 
-        return redirect()->to($entity->url());
+        $return = redirect()->to($entity->url());
+        if (auth()->user()->editor === 'tiptap') {
+            $count = session()->get('tiptap_survey_count', 0);
+            $count++;
+            session()->put('tiptap_survey_count', $count);
+            if ($count % 5 === 0) {
+                session()->flash('tiptap_survey', true);
+            }
+        }
+        return $return;
     }
 }

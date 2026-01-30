@@ -441,6 +441,15 @@ class CrudController extends Controller
 
             session()->flash('success_raw', $success);
 
+            if (auth()->user()->editor === 'tiptap') {
+                $count = session()->get('tiptap_survey_count', 0);
+                $count++;
+                session()->put('tiptap_survey_count', $count);
+                if ($count % 5 === 0) {
+                    session()->flash('tiptap_survey', true);
+                }
+            }
+
             if ($request->has('submit-new')) {
                 $route = route($this->route . '.create', $this->campaign);
 
