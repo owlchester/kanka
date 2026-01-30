@@ -59,7 +59,8 @@
             link: false,
         }),
         Placeholder.configure({
-            placeholder: 'Write something …',
+            placeholder: 'Mention or create entities using @. Access the command menu using /.',
+            emptyNodeClass: 'text-neutral-content'
         }),
         Link.configure({
             openOnClick: false,
@@ -348,6 +349,15 @@
         outline-offset: 2px;
         outline-color: hsl(var(--p)/0.3);
         border-color: transparent;
+    }
+
+    p.is-editor-empty:first-child::before {
+        content: attr(data-placeholder);
+        color: hsl(var(--nc));
+        opacity: 0.5;
+        pointer-events: none;
+        float: left;
+        height: 0;
     }
 }
 
