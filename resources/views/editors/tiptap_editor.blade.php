@@ -1,4 +1,9 @@
-<div class="tiptap-editor entity-content" data-content="{{ ($source ?? $model ?? null)?->entry ?? '' }}">
+@php
+    $fieldName = $fieldName ?? 'entry';
+    $contentModel = $source ?? $model ?? null;
+    $content = $contentModel?->{$fieldName} ?? '';
+@endphp
+<div class="tiptap-editor entity-content" data-content="{{ $content }}" data-field-name="{{ $fieldName }}">
     <tiptap
         @if (isset($campaign))
             @php

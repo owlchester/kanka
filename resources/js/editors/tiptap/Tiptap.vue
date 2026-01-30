@@ -29,12 +29,15 @@
     import ImageBubbleMenu from './bubblemenus/ImageBubbleMenu.vue'
     import TextBubbleMenu from './bubblemenus/TextBubbleMenu.vue'
 
-    const props = defineProps<{
+    const props = withDefaults(defineProps<{
         modelValue?: string
         content?: string
         gallery?: string
         mentions?: string
-    }>()
+        fieldName?: string
+    }>(), {
+        fieldName: 'entry'
+    })
 
     const html = ref(props.content ?? props.modelValue ?? '')
     const mentions = ref([])
@@ -321,7 +324,7 @@
 
     <editor-content :editor="editor" />
 
-    <input type="hidden" name="entry" :value="html" />
+    <input type="hidden" :name="props.fieldName" :value="html" />
 
     <GalleryDialog v-if="gallery" />
 </template>

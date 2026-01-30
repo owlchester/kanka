@@ -12,13 +12,15 @@ const loadWidget = () => {
         }
         el.dataset.init = '1'
 
-        // Get content from data attribute
+        // Get content and field name from data attributes
         const content = el.dataset.content || ''
+        const fieldName = el.dataset.fieldName || 'entry'
 
         // Get props from the tiptap element
         const tiptapEl = el.querySelector('tiptap')
         const props = {
             content,
+            fieldName,
             mentions: tiptapEl?.getAttribute('mentions') || undefined,
             gallery: tiptapEl?.getAttribute('gallery') || undefined,
         }

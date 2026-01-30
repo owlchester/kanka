@@ -7,16 +7,18 @@
     } elseif (request()->has('summernote')) {
         $editor = '';
     }
+    $fieldName = $fieldName ?? 'entry';
+    $fieldNameForEdition = $fieldName . 'ForEdition';
 @endphp
 
 @if ($editor === 'tiptap')
-    @include('editors.tiptap_editor', ['model' => $model])
+    @include('editors.tiptap_editor', ['model' => $model, 'fieldName' => $fieldName])
 @else
     <textarea
-        id="entry"
-        name="entry"
+        id="{{ $fieldName }}"
+        name="{{ $fieldName }}"
         class="w-full html-editor"
         rows="3">
-        {!! FormCopy::field('entryForEdition')->string() ?: old('entry', $model->entryForEdition ?? $model->entryForEdition ?? null) !!}
+        {!! FormCopy::field($fieldNameForEdition)->string() ?: old($fieldName, $model->{$fieldNameForEdition} ?? null) !!}
     </textarea>
 @endif
