@@ -8,7 +8,7 @@
     import TableCell from '@tiptap/extension-table-cell'
     import TableHeader from '@tiptap/extension-table-header'
     import { TableWithControls } from './extensions/table/TableWithControls'
-    import { ref, onMounted, onBeforeUnmount } from 'vue'
+    import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
     import { Mention } from './extensions/mentions/Mention'
     import suggestion from './extensions/mentions/suggestion'
     import { MentionParser } from './extensions/mentions/MentionParser'
@@ -42,6 +42,12 @@
     const html = ref(props.content ?? props.modelValue ?? '')
     const mentions = ref([])
     const showLinkBubble = ref(false)
+    const isFocused = ref(false)
+    const hasReceivedInput = ref(false)
+
+    const showHelperText = computed(() => {
+        return isFocused.value && !hasReceivedInput.value && editor.value?.isEmpty
+    })
 
     // Refs for bubble menu components
     const mentionBubbleRef = ref<InstanceType<typeof MentionBubbleMenu> | null>(null)
@@ -59,8 +65,7 @@
             link: false,
         }),
         Placeholder.configure({
-            placeholder: 'Mention or create entities using @. Access the command menu using /.',
-            emptyNodeClass: 'text-neutral-content'
+            placeholder: 'Start writing...',
         }),
         Link.configure({
             openOnClick: false,
@@ -153,8 +158,17 @@
     const editor = useEditor({
         content: html.value,
         extensions: extensions,
+        onFocus: () => {
+            isFocused.value = true
+        },
+        onBlur: () => {
+            isFocused.value = false
+        },
         onUpdate: ({ editor }) => {
             html.value = editor.getHTML()
+            if (!hasReceivedInput.value && !editor.isEmpty) {
+                hasReceivedInput.value = true
+            }
         },
         onSelectionUpdate: ({ editor }) => {
             if (editor.isActive('mention')) {
@@ -325,6 +339,15 @@
 
     <editor-content :editor="editor" />
 
+    <p v-if="showHelperText" class="text-neutral-content text-xs mt-2 flex items-center gap-5">
+        <span>
+            Use <kbd>@</kbd> to reference entities
+        </span>
+        <span>
+            <kbd>/</kbd> for commands
+        </span>
+    </p>
+
     <input type="hidden" :name="props.fieldName" :value="html" />
 
     <GalleryDialog v-if="gallery" />
@@ -353,8 +376,8 @@
 
     p.is-editor-empty:first-child::before {
         content: attr(data-placeholder);
-        color: hsl(var(--nc));
-        opacity: 0.5;
+        --tw-text-opacity: .4;
+        color: hsl(var(--bc)/var(--tw-text-opacity));
         pointer-events: none;
         float: left;
         height: 0;
