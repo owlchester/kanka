@@ -17,7 +17,7 @@
         @include('partials.errors')
         <x-box>
             <x-forms.field field="entry">
-                @include('cruds.fields.entry', ['model' => $entity])
+                @include('cruds.fields.entry', ['model' => $entity ?? null])
             </x-forms.field>
 
             <div class="flex gap-2 items-center">

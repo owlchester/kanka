@@ -14,7 +14,7 @@
         <x-forms.field
             field="entry"
             :label="__('campaigns.fields.description')">
-            @include('cruds.fields.entry', ['model' => $campaign])
+            @include('cruds.fields.entry', ['model' => $campaign ?? null])
         </x-forms.field>
 
         @include('cruds.fields.image-old', ['model' => $campaign ?? null, 'campaignImage' => true, 'imageLabel' => 'campaigns.fields.image', 'recommended' => '240x208'])

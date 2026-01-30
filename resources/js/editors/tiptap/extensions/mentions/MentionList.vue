@@ -150,6 +150,7 @@ defineExpose({
                             v-else-if="item.image"
                             :src="item.image"
                             :alt="item.name"
+                            loading="lazy"
                             class="w-6 h-6 rounded-full object-cover"
                         />
                         <span class="mention-name" v-html="item.name"></span>
