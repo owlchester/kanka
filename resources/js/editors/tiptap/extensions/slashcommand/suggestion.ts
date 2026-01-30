@@ -28,6 +28,26 @@ const updatePosition = (editor: Editor, element: HTMLElement) => {
     })
 }
 
+const tableHTML = `
+  <table class="table table-striped table-bordered" style="width: 200px;">
+    <thead>
+        <tr>
+            <th>a</th>
+            <th>b</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>1</td>
+          <td>2</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>4</td>
+        </tr>
+    </tbody>
+  </table>`
+
 const commands: SlashCommandItem[] = [
     {
         title: 'Source',
@@ -61,7 +81,7 @@ const commands: SlashCommandItem[] = [
             editor
                 .chain()
                 .focus()
-                .insertTable({ rows: 3, cols: 2, withHeaderRow: true })
+                .insertContent(tableHTML, { parseOptions: { preserveWhitespace: true } })
                 .run()
         },
     },

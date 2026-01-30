@@ -8,6 +8,7 @@
     import TableCell from '@tiptap/extension-table-cell'
     import TableHeader from '@tiptap/extension-table-header'
     import { TableWithControls } from './extensions/table/TableWithControls'
+    import { TableKit } from "@tiptap/extension-table";
     import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
     import { Mention } from './extensions/mentions/Mention'
     import suggestion from './extensions/mentions/suggestion'
@@ -90,20 +91,19 @@
                 class: 'text-link',
             },
         }),
+
         TableWithControls.configure({
             resizable: true,
         }),
         TableRow,
         TableCell.configure({
-            HTMLAttributes: {
-                class: '',
-            },
         }),
         TableHeader.configure({
-            HTMLAttributes: {
-                class: '',
-            },
         }),
+        // TableKit.configure({
+        //     table: {
+        //     },
+        // }),
         SlashCommand.configure({
             suggestion: slashCommandSuggestion(),
         }),
@@ -178,7 +178,11 @@
             isFocused.value = false
         },
         onUpdate: ({ editor }) => {
-            html.value = editor.getHTML()
+            // Convert data-table-class to class for new tables, preserve existing classes
+            html.value = editor.getHTML().replace(
+                /<table([^>]*) data-table-class="([^"]+)"([^>]*)>/g,
+                '<table$1 class="$2"$3>'
+            )
             if (!hasReceivedInput.value && !editor.isEmpty) {
                 hasReceivedInput.value = true
             }

@@ -36,7 +36,10 @@ class EntryController extends Controller
         }
 
         $fields = $request->only('entry');
+        dump($fields);
         $entity->update($fields);
+        dd($entity->entry);
+
         if ($entity->wasChanged()) {
             EntityLogger::entity($entity);
             $entity->touch();

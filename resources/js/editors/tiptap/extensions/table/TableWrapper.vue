@@ -1,6 +1,6 @@
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { NodeViewWrapper, NodeViewContent } from '@tiptap/vue-3'
 
 const props = defineProps<{
@@ -16,7 +16,6 @@ const checkIfActive = () => {
     const pos = props.getPos()
     const { from, to } = props.editor.state.selection
     const nodeSize = props.node.nodeSize
-    // Check if selection is within this table
     isTableActive.value = from >= pos && to <= pos + nodeSize
 }
 
@@ -42,39 +41,39 @@ const addRowAfter = () => {
 
 <template>
     <NodeViewWrapper class="table-wrapper" :class="{ 'is-active': isTableActive }">
-        <NodeViewContent as="table" class="table-tiptap" />
+        <NodeViewContent
+            as="table"
+            :class="node.attrs.class || 'table table-striped'"
+            :style="node.attrs.style"
+        />
 
         <!-- Add column button (right side) -->
-        <button
-            v-if="isTableActive"
-            class="add-column-btn hover:bg-base-200 rounded"
-            @click.prevent="addColumnAfter"
-            title="Add column"
-            contenteditable="false"
-        >
-            <i class="fa-regular fa-plus" aria-hidden="true"></i>
-        </button>
+<!--        <button-->
+<!--            v-if="isTableActive"-->
+<!--            class="add-column-btn hover:bg-base-200 rounded"-->
+<!--            @click.prevent="addColumnAfter"-->
+<!--            title="Add column"-->
+<!--            contenteditable="false"-->
+<!--        >-->
+<!--            <i class="fa-regular fa-plus" aria-hidden="true"></i>-->
+<!--        </button>-->
 
-        <!-- Add row button (bottom) -->
-        <button
-            v-if="isTableActive"
-            class="add-row-btn hover:bg-base-200 rounded"
-            @click.prevent="addRowAfter"
-            title="Add row"
-            contenteditable="false"
-        >
-            <i class="fa-regular fa-plus" aria-hidden="true"></i>
-        </button>
+<!--        &lt;!&ndash; Add row button (bottom) &ndash;&gt;-->
+<!--        <button-->
+<!--            v-if="isTableActive"-->
+<!--            class="add-row-btn hover:bg-base-200 rounded"-->
+<!--            @click.prevent="addRowAfter"-->
+<!--            title="Add row"-->
+<!--            contenteditable="false"-->
+<!--        >-->
+<!--            <i class="fa-regular fa-plus" aria-hidden="true"></i>-->
+<!--        </button>-->
     </NodeViewWrapper>
 </template>
 
 <style scoped>
 .table-wrapper {
     display: inline-block;
-    position: relative;
-    padding-right: 24px;
-    padding-bottom: 24px;
-    margin: .5rem 0rem;
     overflow-x: auto;
 }
 
@@ -110,17 +109,8 @@ const addRowAfter = () => {
 .tiptap {
 
     table {
-        height: fit-content;
-        table-layout: fixed;
-        margin-bottom: 1px;
-        overflow: auto;
-        border-spacing: 0px;
-        border-collapse: collapse;
-        margin: 0;
 
         td, th {
-            position: relative;
-            vertical-align: top;
 
             /* Prevent margin jump when resize handle div is added */
             > p {

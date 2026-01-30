@@ -98,10 +98,12 @@ return [
                 . 'strong,em,b,strike,'
 
                 /** Tables */
-                . 'table[class|style|summary|border|cellpadding|cellspacing|id],'
+                . 'table[class|style|summary|border|cellpadding|cellspacing|id|width],'
                 . 'tbody[class|style|id],'
                 . 'thead[class|style|id],'
                 . 'tfoot[class|style|id],'
+                . 'colgroup,'
+                . 'col[style],'
                 . 'tr[class|style|id],'
                 . 'td[class|style|abbr|colspan|rowspan|title|align],'
                 . 'th[class|style|abbr|colspan|rowspan|title|align],',

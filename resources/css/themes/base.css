@@ -205,7 +205,7 @@ blockquote {
 
 /** Tables */
 
-.table-striped > tbody > tr:nth-of-type(odd) {
+.table-striped > tr:nth-of-type(odd) {
     --tw-bg-opacity: 1;
     background-color: hsl(var(--b3)/var(--tw-bg-opacity));
 }
