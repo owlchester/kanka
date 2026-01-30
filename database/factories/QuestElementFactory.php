@@ -24,7 +24,7 @@ class QuestElementFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'description' => '<p>' . fake()->text(50) . '<p>',
+            'entry' => '<p>' . fake()->text(50) . '<p>',
         ];
     }
 }
