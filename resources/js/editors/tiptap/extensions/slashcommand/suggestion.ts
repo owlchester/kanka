@@ -30,6 +30,14 @@ const updatePosition = (editor: Editor, element: HTMLElement) => {
 
 const commands: SlashCommandItem[] = [
     {
+        title: 'Source',
+        description: 'Edit raw HTML source',
+        icon: 'fa-regular fa-code',
+        command: (editor: Editor) => {
+            window.dispatchEvent(new CustomEvent('tiptap:source-mode'))
+        },
+    },
+    {
         title: 'Gallery',
         description: 'Insert an image from gallery',
         icon: 'fa-regular fa-images',

@@ -28,6 +28,7 @@
     import TableBubbleMenu from './bubblemenus/TableBubbleMenu.vue'
     import ImageBubbleMenu from './bubblemenus/ImageBubbleMenu.vue'
     import TextBubbleMenu from './bubblemenus/TextBubbleMenu.vue'
+    import SourceEditor from './SourceEditor.vue'
 
     const props = withDefaults(defineProps<{
         modelValue?: string
@@ -44,10 +45,25 @@
     const showLinkBubble = ref(false)
     const isFocused = ref(false)
     const hasReceivedInput = ref(false)
+    const sourceMode = ref(false)
 
     const showHelperText = computed(() => {
         return isFocused.value && !hasReceivedInput.value && editor.value?.isEmpty
     })
+
+    const enterSourceMode = () => {
+        sourceMode.value = true
+    }
+
+    const exitSourceMode = () => {
+        // Sync HTML back to editor when exiting source mode
+        editor.value?.commands.setContent(html.value)
+        sourceMode.value = false
+        // Focus the editor after a short delay to ensure it's mounted
+        setTimeout(() => {
+            editor.value?.commands.focus()
+        }, 50)
+    }
 
     // Refs for bubble menu components
     const mentionBubbleRef = ref<InstanceType<typeof MentionBubbleMenu> | null>(null)
@@ -283,6 +299,9 @@
     }
 
     onMounted(() => {
+        // Listen for source mode event
+        window.addEventListener('tiptap:source-mode', enterSourceMode)
+
         // Parse content for mentions and load their data
         if (props.mentions && props.content) {
             const { entityIds, postIds } = parseMentionsFromContent(props.content)
@@ -301,52 +320,61 @@
     })
 
     onBeforeUnmount(() => {
+        window.removeEventListener('tiptap:source-mode', enterSourceMode)
         editor?.value.destroy()
     })
 </script>
 
 <template>
-    <div v-if="editor">
-        <bubble-menu :editor="editor">
-            <div class="bubble-menu bg-base-100 shadow rounded-2xl flex gap-0.5 items-center px-2 py-2">
-                <MentionBubbleMenu
-                    v-if="editor.isActive('mention')"
-                    ref="mentionBubbleRef"
-                    :editor="editor"
-                    :mentions="mentions"
-                />
-                <LinkBubbleMenu
-                    v-else-if="showLinkBubble || editor.isActive('link')"
-                    ref="linkBubbleRef"
-                    :editor="editor"
-                />
-                <TableBubbleMenu
-                    v-else-if="editor.isActive('table')"
-                    :editor="editor"
-                />
-                <ImageBubbleMenu
-                    v-else-if="editor.isActive('image')"
-                    :editor="editor"
-                />
-                <TextBubbleMenu
-                    v-else
-                    :editor="editor"
-                    @open-link="openLinkBubble"
-                />
-            </div>
-        </bubble-menu>
-    </div>
+    <SourceEditor
+        v-if="sourceMode"
+        v-model="html"
+        @exit="exitSourceMode"
+    />
 
-    <editor-content :editor="editor" />
+    <template v-else>
+        <div v-if="editor">
+            <bubble-menu :editor="editor">
+                <div class="bubble-menu bg-base-100 shadow rounded-2xl flex gap-0.5 items-center px-2 py-2">
+                    <MentionBubbleMenu
+                        v-if="editor.isActive('mention')"
+                        ref="mentionBubbleRef"
+                        :editor="editor"
+                        :mentions="mentions"
+                    />
+                    <LinkBubbleMenu
+                        v-else-if="showLinkBubble || editor.isActive('link')"
+                        ref="linkBubbleRef"
+                        :editor="editor"
+                    />
+                    <TableBubbleMenu
+                        v-else-if="editor.isActive('table')"
+                        :editor="editor"
+                    />
+                    <ImageBubbleMenu
+                        v-else-if="editor.isActive('image')"
+                        :editor="editor"
+                    />
+                    <TextBubbleMenu
+                        v-else
+                        :editor="editor"
+                        @open-link="openLinkBubble"
+                    />
+                </div>
+            </bubble-menu>
+        </div>
 
-    <p v-if="showHelperText" class="text-neutral-content text-xs mt-2 flex items-center gap-5">
-        <span>
-            Use <kbd>@</kbd> to reference entities
-        </span>
-        <span>
-            <kbd>/</kbd> for commands
-        </span>
-    </p>
+        <editor-content :editor="editor" />
+
+        <p v-if="showHelperText" class="text-neutral-content text-xs mt-2 flex items-center gap-5">
+            <span>
+                Use <kbd>@</kbd> to reference entities
+            </span>
+            <span>
+                <kbd>/</kbd> for commands
+            </span>
+        </p>
+    </template>
 
     <input type="hidden" :name="props.fieldName" :value="html" />
 
