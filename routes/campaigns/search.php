@@ -47,3 +47,4 @@ Route::get('/w/{campaign}/search/fulltext', [FullTextController::class, 'index']
 
 
 Route::get('/w/{campaign}/search/mention', [MentionController::class, 'index'])->name('search.mention');
+Route::post('/w/{campaign}/search/mention', [MentionController::class, 'load'])->name('search.mention.load');

@@ -46,6 +46,27 @@ class MentionService
             ->data();
     }
 
+    public function load(): array
+    {
+        $this->data = [];
+        if ($this->request->filled('entities')) {
+            $this->data['entities'] = [];
+            $entities = Entity::whereIn('id', $this->request->get('entities'))->get();
+            foreach ($entities as $entity) {
+                $this->addEntity($entity);
+            }
+        }
+        if ($this->request->filled('posts')) {
+            $this->data['posts'] = [];
+            $posts = Post::has('entity')->whereIn('id', $this->request->get('posts'))->get();
+            foreach ($posts as $post) {
+                $this->addPost($post);
+            }
+        }
+
+        return $this->data();
+    }
+
     protected function prepare(): self
     {
         if ($this->request->has('entity')) {

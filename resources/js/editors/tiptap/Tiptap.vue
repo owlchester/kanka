@@ -31,12 +31,13 @@
 
     const props = defineProps<{
         modelValue?: string
-        api?: String,
-        gallery?: String,
-        mentions?: String,
+        content?: string
+        mentionsApi?: string
+        gallery?: string
+        mentions?: string
     }>()
 
-    const html = ref(props.modelValue ?? '<p>Loading...</p>')
+    const html = ref(props.content ?? props.modelValue ?? '')
     const mentions = ref([])
     const showLinkBubble = ref(false)
 
@@ -238,16 +239,12 @@
     }
 
     onMounted(() => {
-        if (props.api) {
-            axios.get(props.api)
+        // Load mentions from API if available
+        if (props.mentionsApi) {
+            axios.get(props.mentionsApi)
                 .then(res => {
-                    html.value = res.data.document
                     mentions.value = res.data.mentions
-                    editor?.value?.commands.setContent(html.value)
                 })
-        } else {
-            html.value = ""
-            editor?.value?.commands.setContent(html.value)
         }
     })
 
