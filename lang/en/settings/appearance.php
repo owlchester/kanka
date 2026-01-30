@@ -23,6 +23,7 @@ return [
         'helpers' => [
             'legacy' => 'The legacy text editor (TinyMCE) doesn\'t support mentions on mobile devices, campaign galleries or other advanced features.',
             'tiptap' => 'This is our new experimental text editor that is actively being worked on and updated regularly. It doesn\'t yet contain all the features you might be accustomed to.',
+            'feedback' => 'Help us improve it by giving feedback (2min)'
         ],
     ],
     'explore'           => [

@@ -42,14 +42,12 @@ const addRowAfter = () => {
 
 <template>
     <NodeViewWrapper class="table-wrapper" :class="{ 'is-active': isTableActive }">
-        <div class="table-inner">
-            <NodeViewContent as="table" class="table-tiptap" />
-        </div>
+        <NodeViewContent as="table" class="table-tiptap" />
 
         <!-- Add column button (right side) -->
         <button
             v-if="isTableActive"
-            class="add-column-btn"
+            class="add-column-btn hover:bg-base-200 rounded"
             @click.prevent="addColumnAfter"
             title="Add column"
             contenteditable="false"
@@ -60,7 +58,7 @@ const addRowAfter = () => {
         <!-- Add row button (bottom) -->
         <button
             v-if="isTableActive"
-            class="add-row-btn"
+            class="add-row-btn hover:bg-base-200 rounded"
             @click.prevent="addRowAfter"
             title="Add row"
             contenteditable="false"
@@ -74,48 +72,36 @@ const addRowAfter = () => {
 .table-wrapper {
     display: inline-block;
     position: relative;
-    padding-right: 28px;
-    padding-bottom: 28px;
-    margin: 0.5rem 0;
-}
-
-.table-inner {
-    border-radius: 0.5rem;
-    overflow: hidden;
-    border: 1px solid oklch(var(--bc) / 0.2);
+    padding-right: 24px;
+    padding-bottom: 24px;
+    margin: .5rem 0rem;
+    overflow-x: auto;
 }
 
 .add-column-btn,
 .add-row-btn {
     position: absolute;
-    width: 22px;
-    height: 22px;
-    background-color: oklch(var(--b2));
-    border: 1px solid oklch(var(--bc) / 0.2);
-    border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    font-size: 11px;
-    color: oklch(var(--bc) / 0.5);
-    transition: background-color 0.2s;
-}
-
-.add-column-btn:hover,
-.add-row-btn:hover {
-    background-color: oklch(var(--b3));
-    color: oklch(var(--bc));
+    font-size: .7rem;
+    color: oklch(var(--bc) / 0.3);
+    transition: background-color 0.15s, color 0.15s, border-color 0.15s;
 }
 
 .add-column-btn {
     right: 0;
-    top: calc(50% - 14px);
+    top: 0;
+    bottom: 24px;
+    width: 20px;
 }
 
 .add-row-btn {
     bottom: 0;
-    left: calc(50% - 14px);
+    left: 0;
+    right: 24px;
+    height: 20px;
 }
 </style>
 
@@ -123,17 +109,23 @@ const addRowAfter = () => {
 /* Table functional styles (unscoped) */
 .tiptap {
 
-    /* Column resize handle */
     table {
-        border-collapse: collapse;
+        height: fit-content;
         table-layout: fixed;
-        overflow: hidden;
+        margin-bottom: 1px;
+        overflow: auto;
+        border-spacing: 0px;
+        border-collapse: collapse;
         margin: 0;
-        /* Selected cell */
 
         td, th {
             position: relative;
             vertical-align: top;
+
+            /* Prevent margin jump when resize handle div is added */
+            > p {
+                margin-bottom: 0 !important;
+            }
         }
 
         .selectedCell {
@@ -148,12 +140,8 @@ const addRowAfter = () => {
             right: -2px;
             width: 4px;
             pointer-events: none;
+            z-index: 10;
         }
-    }
-
-    .tableWrapper {
-        margin: 1.5rem 0;
-        overflow-x: auto;
     }
 
     &.resize-cursor {

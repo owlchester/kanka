@@ -92,9 +92,6 @@
         }),
         TableWithControls.configure({
             resizable: true,
-            HTMLAttributes: {
-                class: '',
-            },
         }),
         TableRow,
         TableCell.configure({

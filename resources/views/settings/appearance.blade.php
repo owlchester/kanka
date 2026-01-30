@@ -112,10 +112,10 @@ $highlightClass = 'shadow-xs border-primary border-solid border-2';
                         class="{{ $boxClass }}"
                         x-data="{ editor: '{{ auth()->user()->editor }}' }">
                         <div class="flex gap-2 justify-between">
-                            <h2 class="text-base flex items-center gap-2">
-                                <x-icon class="pencil" />
+                            <div class="font-light text-xl flex items-center gap-2">
+                                <x-icon class="fa-regular fa-typewriter" />
                                 {{ __('settings/appearance.fields.editor') }}
-                            </h2>
+                            </div>
                             <a href="https://docs.kanka.io/en/latest/account/appearance.html#text-editor" target="_blank" class="text-link" data-tooltip data-title="{{ __('settings/appearance.actions.learn-more') }}">
                                 <x-icon class="fa-regular fa-arrow-up-right-from-square" /> {{ __('general.learn-more') }}
                             </a>
@@ -134,6 +134,9 @@ $highlightClass = 'shadow-xs border-primary border-solid border-2';
 
                         <x-helper class="text-xs" x-show="editor === 'tiptap'" x-cloak>
                             <p>{{ __('settings/appearance.editors.helpers.tiptap') }}</p>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSccG0m-Ka1uTNHunCqOeSyhHq84iVxQO8z2hzOT0ALsjUPdMw/viewform?usp=publish-editor" target="_blank" class="text-link">
+                                <p>{{ __('settings/appearance.editors.helpers.feedback') }}</p>
+                            </a>
                         </x-helper>
                     </div>
                 @endif
