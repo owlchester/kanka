@@ -1,6 +1,6 @@
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { NodeViewWrapper, NodeViewContent } from '@tiptap/vue-3'
 
 const props = defineProps<{
@@ -18,6 +18,25 @@ const checkIfActive = () => {
     const nodeSize = props.node.nodeSize
     isTableActive.value = from >= pos && to <= pos + nodeSize
 }
+
+// Extract alignment class for the wrapper
+const wrapperClass = computed(() => {
+    const tableClass = props.node.attrs.class || ''
+    const classes = ['table-wrapper']
+
+    if (isTableActive.value) {
+        classes.push('is-active')
+    }
+
+    // Apply float classes to wrapper
+    if (tableClass.includes('table-left')) {
+        classes.push('table-wrapper-left')
+    } else if (tableClass.includes('table-right')) {
+        classes.push('table-wrapper-right')
+    }
+
+    return classes
+})
 
 onMounted(() => {
     props.editor.on('selectionUpdate', checkIfActive)
@@ -40,7 +59,7 @@ const addRowAfter = () => {
 </script>
 
 <template>
-    <NodeViewWrapper class="table-wrapper" :class="{ 'is-active': isTableActive }">
+    <NodeViewWrapper :class="wrapperClass">
         <NodeViewContent
             as="table"
             :class="node.attrs.class || 'table table-striped'"
@@ -75,6 +94,20 @@ const addRowAfter = () => {
 .table-wrapper {
     display: inline-block;
     overflow-x: auto;
+}
+
+.table-wrapper-left {
+    float: left;
+    margin-right: 1rem;
+    margin-bottom: 0.5rem;
+    width: auto;
+}
+
+.table-wrapper-right {
+    float: right;
+    margin-left: 1rem;
+    margin-bottom: 0.5rem;
+    width: auto;
 }
 
 .add-column-btn,

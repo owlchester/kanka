@@ -395,6 +395,7 @@
     border: 1px solid hsl(var(--bc)/.1);
     border-radius: var(--rounded-btn);
     padding: 0.6rem 0.8rem;
+    margin-bottom: 1rem;
     &:focus {
         outline-style: solid;
         outline-width: 2px;
