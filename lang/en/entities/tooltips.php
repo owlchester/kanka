@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'label' => 'Summary',
-    'helper' => 'Override the default auto-generated preview text for this entity\'s links.',
+    'label' => 'Teaser',
+    'helper' => 'Override the default auto-generated preview text shown when hovering over links to this entity.',
     'placeholder' => 'Briefly describe this entity in a sentence or two.',
     'formatting' => 'Supported HTML: text (:text), structure (:layout), lists/tables, and images.',
-    'premium'   => 'Customise the text that appears when hovering over links with a :boosted-campaign.',
+    'premium'   => 'Unlock the ability to customise the hover teaser with a :boosted-campaign.',
 ];
