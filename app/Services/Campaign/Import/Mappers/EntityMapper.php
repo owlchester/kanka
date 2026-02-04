@@ -167,6 +167,34 @@ trait EntityMapper
         return $this;
     }
 
+    /**
+     * Import locations through the entity_locations pivot table
+     */
+    protected function entityLocations(): self
+    {
+        // Handle old location_id field from legacy exports
+        if (isset($this->data['location_id']) && ImportIdMapper::has('locations', $this->data['location_id'])) {
+            $foreignID = ImportIdMapper::get('locations', $this->data['location_id']);
+            $this->entity->locations()->attach($foreignID);
+        }
+
+        // Handle pivotLocations data from exports
+        if (isset($this->data['pivotLocations'])) {
+            foreach ($this->data['pivotLocations'] as $pivot) {
+                if (! ImportIdMapper::has('locations', $pivot['location_id'])) {
+                    continue;
+                }
+                $foreignID = ImportIdMapper::get('locations', $pivot['location_id']);
+                // Avoid duplicates (e.g., if location_id was already handled above)
+                if (! $this->entity->locations()->where('location_id', $foreignID)->exists()) {
+                    $this->entity->locations()->attach($foreignID);
+                }
+            }
+        }
+
+        return $this;
+    }
+
     protected function saveModel(): self
     {
         $this->model->save();

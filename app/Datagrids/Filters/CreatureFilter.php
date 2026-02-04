@@ -22,7 +22,7 @@ class CreatureFilter extends DatagridFilter
                 'placeholder' => __('crud.placeholders.parent'),
                 'model' => Creature::class,
             ])
-            ->location()
+            ->locations()
             ->add('is_extinct')
             ->add('is_dead')
             ->isPrivate()

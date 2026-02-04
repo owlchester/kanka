@@ -20,7 +20,9 @@ if (!empty($previous)) {
 // If we didn't get anything, and there is a model sent, use that
 elseif(!empty($model)) {
     /** @var \App\Models\Location $location */
-    foreach ($model->locations as $location) {
+    // Get locations from entity for models using entity_locations (Character, Organisation, Race, Creature)
+    $locationsSource = $model->entity?->locations ?? $model->locations ?? collect();
+    foreach ($locationsSource as $location) {
         $selectedOption[$location->id] = strip_tags($location->name);
     }
 }

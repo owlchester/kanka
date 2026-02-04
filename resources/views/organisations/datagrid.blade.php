@@ -12,20 +12,8 @@
             'type' => 'parent',
         ],
         [
-            'label' => \App\Facades\Module::plural(config('entities.ids.location'), __('entities.locations')),
-            'render' => function($model) use ($campaign) {
-                $locations = [];
-                foreach ($model->locations as $location) {
-                    if (!$location->entity) {
-                        continue;
-                    }
-                    $locations[] = \Illuminate\Support\Facades\Blade::renderComponent(
-                    new \App\View\Components\EntityLink($location->entity, $campaign)
-                );
-                }
-                return implode(', ', $locations);
-            },
-            'disableSort' => true,
+            'type' => 'entityLocations',
+            'visible' => $campaign->enabled('locations'),
         ],
         [
             'label' => '<i class="fa-regular fa-users" title="' . trans('organisations.fields.members') . '"></i>',
