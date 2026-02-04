@@ -16,7 +16,7 @@ class OrganisationFilter extends DatagridFilter
         $this
             ->add('name')
             ->add('type')
-            ->location()
+            ->locations()
             ->add([
                 'field' => 'organisation_id',
                 'label' => __('crud.fields.parent'),

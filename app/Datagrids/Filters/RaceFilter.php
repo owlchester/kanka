@@ -22,7 +22,7 @@ class RaceFilter extends DatagridFilter
                 'placeholder' => __('crud.placeholders.parent'),
                 'model' => Race::class,
             ])
-            ->location()
+            ->locations()
             ->add('is_extinct')
             ->isPrivate()
             ->template()

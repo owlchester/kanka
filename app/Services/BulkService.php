@@ -5,13 +5,9 @@ namespace App\Services;
 use App\Datagrids\Bulks\Bulk;
 use App\Exceptions\TranslatableException;
 use App\Models\Campaign;
-use App\Models\Character;
-use App\Models\Creature;
 use App\Models\Entity;
 use App\Models\EntityType;
 use App\Models\MiscModel;
-use App\Models\Organisation;
-use App\Models\Race;
 use App\Models\Relation;
 use App\Observers\Concerns\SaveLocations;
 use App\Services\Entity\MoveService;
@@ -388,7 +384,7 @@ class BulkService
             if ($locationsAction === 'remove') {
                 $entity->entity->locations()->detach($locationIds);
             } elseif (! empty($locationIds)) {
-                $this->saveLocations($entity, $locationIds);
+                $this->saveLocations($entity->entity, $locationIds);
             }
 
             // No tags? We're done

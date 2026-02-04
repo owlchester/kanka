@@ -272,7 +272,6 @@ class Organisation extends MiscModel
             'organisation_id',
             'is_defunct',
             'member_id',
-            'locations',
         ];
     }
 }

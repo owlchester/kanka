@@ -4,7 +4,6 @@ namespace App\Models\Concerns;
 
 use App\Enums\FilterOption;
 use App\Models\Character;
-use App\Models\Creature;
 use App\Models\Family;
 use App\Models\Location;
 use App\Models\Organisation;
@@ -885,8 +884,18 @@ trait HasFilters
     {
         $key = Str::beforeLast($key, '_option');
 
-        if (in_array($key, ['races', 'families', 'locations', 'organisations'])) {
-            $names = ['races' => 'race_id', 'families' => 'family_id', 'organisations' => 'organisation_id', 'locations' => 'location_id'];
+        // Handle locations filter through entity_locations
+        if ($key === 'locations' && in_array('locations', $fields)) {
+            $query
+                ->joinEntity()
+                ->leftJoin('entity_locations as el_none', 'el_none.entity_id', 'e.id')
+                ->whereNull('el_none.location_id');
+
+            return;
+        }
+
+        if (in_array($key, ['races', 'families', 'organisations'])) {
+            $names = ['races' => 'race_id', 'families' => 'family_id', 'organisations' => 'organisation_id'];
             $key = $names[$key];
         }
         // Validate the key is a filter
@@ -895,11 +904,7 @@ trait HasFilters
         }
         // Left join shenanigans
         if (! in_array($key, ['race_id', 'family_id', 'tags', 'quest_element_id', 'member_id'])) {
-            if ($key === 'location_id' && method_exists($this, 'scopeLocation')) {
-                $query->location(null, FilterOption::NONE);
-            } else {
-                $query->whereNull($this->getTable() . '.' . $key);
-            }
+            $query->whereNull($this->getTable() . '.' . $key);
         } elseif ($key === 'tags') {
             $query
                 ->joinEntity()
