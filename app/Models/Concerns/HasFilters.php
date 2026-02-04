@@ -4,6 +4,7 @@ namespace App\Models\Concerns;
 
 use App\Enums\FilterOption;
 use App\Models\Character;
+use App\Models\Creature;
 use App\Models\Family;
 use App\Models\Location;
 use App\Models\Organisation;
@@ -464,7 +465,6 @@ trait HasFilters
         } else {
             $query->whereNull('e.entry')
                 ->orWhere('e.entry', '');
-
         }
     }
 
@@ -571,7 +571,7 @@ trait HasFilters
     }
 
     /**
-     * Filter on characters on multiple locations
+     * Filter on multiple locations
      */
     protected function filterLocations(Builder $query, null|string|array $value = null, ?string $key = null): void
     {
@@ -592,15 +592,10 @@ trait HasFilters
         }
 
         if ($this->filterOption('exclude')) {
-            if ($this instanceof Character) {
-                $query->whereRaw('(
-                    select count(*) from entity_locations as el
-                    where el.entity_id = e.id and el.location_id in (' . implode(', ', $locationIds) . ')
-                ) = 0');
-
-                return;
-            }
-            $query->whereNotIn($this->getTable() . '.location_id', $locationIds)->distinct();
+            $query->whereRaw('(
+                select count(*) from entity_locations as el
+                where el.entity_id = e.id and el.location_id in (' . implode(', ', $locationIds) . ')
+            ) = 0');
 
             return;
         }
@@ -616,13 +611,9 @@ trait HasFilters
             $locationIds = $ids;
         }
 
-        if ($this instanceof Character) {
-            $query
-                ->join('entity_locations', 'entity_locations.entity_id', '=', 'e.id')
-                ->whereIn('entity_locations.location_id', $locationIds)->distinct();
-        } else {
-            $query->whereIn($this->getTable() . '.location_id', $locationIds)->distinct();
-        }
+        $query
+            ->join('entity_locations', 'entity_locations.entity_id', '=', 'e.id')
+            ->whereIn('entity_locations.location_id', $locationIds)->distinct();
     }
 
     /**

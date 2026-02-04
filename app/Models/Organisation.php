@@ -7,7 +7,6 @@ use App\Enums\OrganisationMemberPin;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
-use App\Models\Concerns\HasLocations;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
@@ -23,7 +22,6 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * Class Organisation
  *
  * @property ?int $organisation_id
- * @property ?int $location_id
  * @property Collection|OrganisationMember[] $members
  * @property Collection|Organisation[] $descendants
  * @property bool|int $is_defunct
@@ -35,7 +33,6 @@ class Organisation extends MiscModel
     use HasCampaign;
     use HasFactory;
     use HasFilters;
-    use HasLocations;
     use HasRecursiveRelationships;
     use Nested;
     use Sanitizable;
@@ -55,6 +52,7 @@ class Organisation extends MiscModel
         'type',
         'parent.name',
         'is_defunct',
+        'locations',
     ];
 
     protected int $allMembersCount;
@@ -64,6 +62,7 @@ class Organisation extends MiscModel
      */
     protected array $sortableColumns = [
         'is_defunct',
+        'locations',
     ];
 
     /**
@@ -71,7 +70,6 @@ class Organisation extends MiscModel
      */
     protected array $foreignExport = [
         'members',
-        'pivotLocations',
     ];
 
     protected array $exportFields = [
@@ -80,10 +78,6 @@ class Organisation extends MiscModel
     ];
 
     protected array $exploreGridFields = ['is_defunct'];
-
-    protected string $locationPivot = 'organisation_location';
-
-    protected string $locationPivotKey = 'organisation_id';
 
     /**
      * Nullable values (foreign keys)
@@ -106,8 +100,8 @@ class Organisation extends MiscModel
     public function scopePreparedWith(Builder $query): Builder
     {
         return parent::scopePreparedWith($query->with([
-            'locations' => function ($sub) {
-                $sub->select('id', 'name');
+            'entity.locations' => function ($sub) {
+                $sub->select('locations.id', 'locations.name');
             },
         ]))
             ->withCount('members');
@@ -185,14 +179,6 @@ class Organisation extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\OrganisationLocation, $this>
-     */
-    public function pivotLocations(): HasMany
-    {
-        return $this->hasMany('App\Models\OrganisationLocation');
-    }
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\OrganisationMember, $this>
      */
     public function members(): HasMany
@@ -243,7 +229,7 @@ class Organisation extends MiscModel
     {
         // Pivot tables can be deleted directly
         $this->members()->delete();
-        $this->locations()->detach();
+        $this->entity->locations()->detach();
     }
 
     /**
@@ -259,7 +245,7 @@ class Organisation extends MiscModel
      */
     public function showProfileInfo(): bool
     {
-        if ($this->entity->elapsedEvents->isNotEmpty() || $this->locations->isNotEmpty()) {
+        if ($this->entity->elapsedEvents->isNotEmpty() || $this->entity->locations->isNotEmpty()) {
             return true;
         }
 
@@ -282,10 +268,11 @@ class Organisation extends MiscModel
     public function filterableColumns(): array
     {
         return [
-            'location_id',
+            'locations',
             'organisation_id',
             'is_defunct',
             'member_id',
+            'locations',
         ];
     }
 }
