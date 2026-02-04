@@ -24,13 +24,16 @@ return [
         'file_size'         => ':size File size uploads',
         'import'            => 'Campaign importer',
         'map_size'          => ':size Map size uploads',
+        'modules'           => ':count custom modules',
         'nice_image'        => 'Nicer default entity thumbnail',
         'no_ads'            => 'Remove all ads',
         'pagination'        => 'Up to :amount elements visible per page',
+        'premium'           => 'Each includes: :storage GiB storage, :modules custom modules',
         'roadmap'           => 'Upvote ideas in the roadmap',
-        'modules' => ':count custom modules',
-        'storage' => ':count GiB storage',
-        'premium' => 'Each includes: :storage GiB storage, :modules custom modules'
+        'storage'           => ':count GiB storage',
+    ],
+    'helpers'   => [
+        'premium'   => 'These bonuses apply to premium campaigns you unlock.',
     ],
     'periods'   => [
         'billed_monthly'    => 'billed monthly',
@@ -41,14 +44,11 @@ return [
         'best-value'    => 'Recommended for GMs',
         'current'       => 'Current subscription',
     ],
-    'helpers' => [
-        'premium' => 'These bonuses apply to premium campaigns you unlock.',
-    ],
     'target'    => [
         'elemental' => 'For worldbuilding pros managing multiple epic settings and expansive campaigns',
         'owlbear'   => 'Perfect for solo worldbuilders who want to supercharge their main campaign',
         'wyvern'    => 'Ideal for game masters running multiple adventures or collaborative storytellers',
     ],
-    'why' => 'Kanka is built by a :tiny of passionate worldbuilders. Subscriptions fund the people, servers, and time needed to keep improving the platform sustainably. There are no dark patterns, no investor pressure, and no infinite growth chasing. Development is steady and guided by our community.',
-    'tiny' => 'tiny team',
+    'tiny'      => 'tiny team',
+    'why'       => 'Kanka is built by a :tiny of passionate worldbuilders. Subscriptions fund the people, servers, and time needed to keep improving the platform sustainably. There are no dark patterns, no investor pressure, and no infinite growth chasing. Development is steady and guided by our community.',
 ];

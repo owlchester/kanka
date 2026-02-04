@@ -9,9 +9,8 @@ return [
     ],
     'dashboards'    => [
         'actions'       => [
-            'edit'      => 'Modifier',
-            'new'       => 'Nouveau',
-            'switch'    => 'Basculer vers',
+            'edit'  => 'Modifier',
+            'new'   => 'Nouveau',
         ],
         'create'        => [
             'helper'    => 'Crée un nouveau tableau de bord pour :name, et attribue les rôles qui peuvent le voir ou l\'avoir comme tableau de bord par défaut.',

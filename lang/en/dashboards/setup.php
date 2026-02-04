@@ -1,14 +1,14 @@
 <?php
 
 return [
-    'actions' => [
-        'add' => 'Add widget',
+    'actions'   => [
+        'add'   => 'Add widget',
     ],
-    'tooltips' => [
-        'add' => 'Click to add a new widget to the dashboard.',
-        'switch' => 'Click to switch to another dashboard.',
+    'sections'  => [
+        'switch'    => 'Switch to...',
     ],
-    'sections' => [
-        'switch' => 'Switch to...',
+    'tooltips'  => [
+        'add'       => 'Click to add a new widget to the dashboard.',
+        'switch'    => 'Click to switch to another dashboard.',
     ],
 ];

@@ -18,6 +18,9 @@ return [
         'toggle'    => 'Changement d\'état.',
         'unset'     => 'Retirer des modèles',
     ],
+    'tooltips'          => [
+        'edit'  => 'Modifier cette entité',
+    ],
     'transfer'          => 'Transférer de campagne',
     'unarchive'         => [
         'success'   => ':name n\'est plus archivé.',

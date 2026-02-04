@@ -9,8 +9,8 @@ return [
     ],
     'dashboards'    => [
         'actions'       => [
-            'edit'      => 'Edit name & permissions',
-            'new'       => 'New Dashboard',
+            'edit'  => 'Edit name & permissions',
+            'new'   => 'New Dashboard',
         ],
         'create'        => [
             'helper'    => 'Create a new dashboard for :name, and assign which roles can see it or have it as their default dashboard.',

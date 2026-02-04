@@ -15,17 +15,17 @@ return [
     'remaining'         => [
         'generic'   => 'More and the next level will be unlocked.',
     ],
-    'spotlight' => [
-        'active' => [
-            'cta' => 'View spotlight',
+    'spotlight'         => [
+        'active'    => [
+            'cta'   => 'View spotlight',
         ],
-        'public' => [
-            'helper' => 'Selected campaigns are featured on the Kanka Showcase and blog.',
-            'cta' => 'Learn how spotlight works',
+        'private'   => [
+            'cta'       => 'Review public settings',
+            'helper'    => 'Make your campaign public to be eligible for the Spotlight.',
         ],
-        'private' => [
-            'helper' => 'Make your campaign public to be eligible for the Spotlight.',
-            'cta' => 'Review public settings',
+        'public'    => [
+            'cta'       => 'Learn how spotlight works',
+            'helper'    => 'Selected campaigns are featured on the Kanka Showcase and blog.',
         ],
     ],
     'spotlighted'       => '{0} Not spotlighted yet|[1,*] Spotlighted',

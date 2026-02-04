@@ -103,8 +103,8 @@ return [
         'number'    => 'Number',
         'random'    => 'Random',
         'section'   => 'Section',
-        'text'      => 'Paragraph',
         'templates' => 'Templates',
+        'text'      => 'Paragraph',
     ],
     'update'        => [
         'success'   => 'Attributes for :entity updated.',
