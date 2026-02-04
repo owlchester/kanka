@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Facades\Domain;
 use App\Observers\Concerns\SaveLocations;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,7 +12,7 @@ class LocationsObserver
 
     public function crudSaved(Model $model)
     {
-        if (! request()->has('save_locations') && ! request()->has('locations')) {
+        if ((! request()->has('save_locations') && ! request()->has('locations')) || (Domain::isApi() && !request()->has('locations'))) {
             return;
         }
         $this->saveLocations($model);
