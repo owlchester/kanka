@@ -12,7 +12,7 @@ class LocationsObserver
 
     public function crudSaved(Model $model)
     {
-        if ((! request()->has('save_locations') && ! request()->has('locations')) || (Domain::isApi() && !request()->has('locations'))) {
+        if ((! request()->has('save_locations') && ! request()->has('locations')) || (Domain::isApi() && ! request()->has('locations'))) {
             return;
         }
         $this->saveLocations($model);
