@@ -22,6 +22,7 @@ class French extends Command
     protected $description = 'Export french translations.';
 
     protected string $prompt;
+
     /**
      * Execute the console command.
      */
@@ -32,11 +33,11 @@ class French extends Command
         $translations = DB::select("select * from ltm_translations where locale = 'en' and not exists(select fr.* from ltm_translations as fr where fr.locale = 'fr' and fr.group = ltm_translations.group and fr.key = ltm_translations.key) order by ltm_translations.group ASC, ltm_translations.key ASC");
         $groups = [];
         foreach ($translations as $translation) {
-            if (!isset($groups[$translation->group])) {
+            if (! isset($groups[$translation->group])) {
                 $groups[$translation->group] = [];
                 $this->prompt .= "\n#" . $translation->group . "\n";
             }
-            $this->prompt .= " - " . $translation->value . "\n";
+            $this->prompt .= ' - ' . $translation->value . "\n";
         }
         $this->info($this->prompt);
     }
