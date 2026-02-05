@@ -103,7 +103,9 @@ class Location extends MiscModel
     public function scopePreparedWith(Builder $query): Builder
     {
         return parent::scopePreparedWith($query)
-            ->withCount('characters');
+            ->withCount(['entities as characters_count' => function ($sub) {
+                $sub->where('type_id', config('entities.ids.character'));
+            }]);
     }
 
     /**
