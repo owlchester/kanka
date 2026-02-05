@@ -113,6 +113,7 @@ class Ability extends MiscModel
     public function entityAbilities(): HasMany
     {
         return $this->hasMany(EntityAbility::class, 'ability_id')
+            ->with('entity')
             ->has('entity');
     }
 
