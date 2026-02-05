@@ -8,6 +8,7 @@ use App\Notifications\Header;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use SplFileObject;
 use RuntimeException;
@@ -83,6 +84,13 @@ class CsvValidatorService
     }
 
 
+    protected function cleanup(): self
+    {
+        File::delete($this->filePath);
+
+        return $this;
+    }
+
     protected function getHeader(): array
     {
         $csv = new SplFileObject($this->filePath);
@@ -97,10 +105,10 @@ class CsvValidatorService
             if ($row === [null]) {
                 continue;
             }
-
+            $this->cleanup();
             return $row;
         }
-
+        $this->cleanup();
         return [];
     }
 
@@ -133,7 +141,7 @@ class CsvValidatorService
 
         // Reset pointer for later use
         $csv->rewind();
-
+        $this->cleanup();
         return $result;
     }
 
@@ -196,6 +204,7 @@ class CsvValidatorService
         $validHeaders = $this->getFullyFilledColumnHeaders($csv);
 
         if (empty($validHeaders)) {
+            $this->cleanup();
             throw new RuntimeException(
                 __('campaigns/import.csv.validation_error')
             );
@@ -213,7 +222,7 @@ class CsvValidatorService
                 'campaign' => $this->campaign->name,
                 'link' => route('campaign.import.csv', ['campaign' => $this->campaign, 'campaign_import' => $this->job]),
             ]));
-
+        $this->cleanup();
         return;
     }
 }

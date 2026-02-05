@@ -25,6 +25,7 @@ use App\Traits\UserAware;
 use Exception;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -374,7 +375,7 @@ class CsvImportService
         foreach ($files as $file) {
             Storage::disk('export')->delete($file);
         }
-        Storage::disk('local')->delete($this->filePath);
+        File::delete($this->filePath);
         
         return $this;
     }
