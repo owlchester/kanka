@@ -35,9 +35,9 @@ class MemberController extends Controller
             ->{$relation}()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with([
-                'location', 'location.entity',
                 'characterFamilies',
                 'entity', 'entity.tags', 'entity.image', 'entity.entityType',
+                'entity.entityLocations'
             ])
             ->has('entity')
             ->paginate();
