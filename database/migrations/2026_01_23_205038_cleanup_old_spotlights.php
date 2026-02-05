@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('campaigns', function (Blueprint $table) {
-            $table->dropIndex('campaigns_idx');
+            //$table->dropIndex('campaigns_idx');
             $table->index(['visibility_id', 'visible_entity_count', 'is_hidden'], 'campaigns_idx');
             $table->dropColumn('is_featured');
             $table->dropColumn('featured_until');
