@@ -171,6 +171,10 @@ class DatagridRenderer
                 $class .= ' ' . $this->hidden;
                 $label = Arr::get($column, 'label', Module::singular(config('entities.ids.location'), __('entities.location')));
                 $html = $this->route('location.name', $label);
+            } elseif ($type == 'entityLocations') {
+                $class .= ' ' . $this->hidden;
+                $label = Arr::get($column, 'label', Module::plural(config('entities.ids.location'), __('entities.locations')));
+                $html = $this->route('locations', $label);
             } elseif ($type == 'organisation') {
                 $class .= ' ' . $this->hidden;
                 $label = Arr::get($column, 'label', Module::singular(config('entities.ids.organisation'), __('entities.organisation')));
@@ -445,6 +449,15 @@ class DatagridRenderer
                 if (method_exists($model, 'location') && $model->location && $model->location->entity) {
                     $content = $this->entityLink($model->location->entity);
                 }
+            } elseif ($type == 'entityLocations') {
+                $class = $this->hidden;
+                $locations = [];
+                if ($model->entity->locations->isNotEmpty()) {
+                    foreach ($model->entity->locations as $location) {
+                        $locations[] = $this->entityLink($location->entity);
+                    }
+                }
+                $content = implode(', ', $locations);
             } elseif ($type == 'character') {
                 $class = $this->hidden;
                 // @phpstan-ignore-next-line

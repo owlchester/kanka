@@ -45,9 +45,6 @@ use Illuminate\Support\Collection;
  * @property int $visible_entity_count
  * @property array $ui_settings
  * @property bool|int $is_open
- * @property bool|int $is_featured
- * @property Carbon $featured_until
- * @property string $featured_reason
  * @property array|null $default_images
  * @property array|null $settings
  * @property Carbon $created_at
@@ -99,7 +96,6 @@ class Campaign extends Model
         'ui_settings' => 'array',
         'default_images' => 'array',
         'settings' => 'array',
-        'featured_until' => 'date',
         'export_date' => 'date',
         'visibility_id' => CampaignVisibility::class,
     ];
@@ -284,7 +280,7 @@ class Campaign extends Model
     /**
      * Prepare the default entity images
      */
-    public function defaultImages(): array
+    public function defaultImages($withKey = false): array
     {
         if (empty($this->default_images)) {
             return [];
@@ -300,12 +296,19 @@ class Campaign extends Model
             if (empty($image) || in_array($type, ['relations', 'bookmarks', 'menu_links'])) {
                 continue;
             }
-
-            $data[] = [
-                'type' => $type,
-                'uuid' => $uuid,
-                'path' => $image->path,
-            ];
+            if ($withKey) {
+                $data[$type] = [
+                    'type' => $type,
+                    'uuid' => $uuid,
+                    'path' => $image->path,
+                ];
+            } else {
+                $data[] = [
+                    'type' => $type,
+                    'uuid' => $uuid,
+                    'path' => $image->path,
+                ];
+            }
         }
 
         return $data;

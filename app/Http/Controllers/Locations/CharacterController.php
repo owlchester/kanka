@@ -31,7 +31,7 @@ class CharacterController extends Controller
             ->route('locations.characters', $options);
 
         $this->rows = $location
-            ->allCharacters()
+            ->allCharacters($this->filterToDirect())
             ->filter($filters)
             ->filteredCharacters()
             ->paginate(config('limits.pagination'));

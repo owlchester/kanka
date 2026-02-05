@@ -3,7 +3,7 @@ $old = old('entry');
 ?>
 <div class="field-entry md:col-span-2 entry flex flex-col gap-1">
     <div class="flex gap-2 items-center">
-        <label class="grow m-0">
+        <label class="grow m-0 text-xs font-medium opacity-80">
             {{ __('crud.fields.entry') }}
         </label>
 

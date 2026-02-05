@@ -12,6 +12,7 @@ return [
         '2' => 'By zacząć tworzyć, kliknij na wielki przycisk :new-entity (albo naciśnij :letter na klawiaturze) i wybierz :character, by powołać do życia pierwszą postać. To nic trudnego! Wszystkie postacie, miejsce i inne :entities znajdziesz w menu po lewej stronie ekranu.',
         '3' => 'Oto pięć rad, jak używać Kanki',
     ],
+    'name'          => 'Witaj',
     'title'         => 'Witaj w :kanka! 🎉',
     'tricks'        => [
         '1'         => 'Tworząc opis, nie wpisuj ręcznie nazw innych elementów kampanii. Zamiast tego wpisz :code i trzy pierwsze litery nazwy by :mention dany element. Wszystkie wzmianki automatycznie się zaktualizują, jeżeli zmienisz nazwę elementu.',

@@ -31,7 +31,6 @@ class CampaignObserver
 
     public function creating(Campaign $campaign)
     {
-        // $campaign->is_featured = false;
         $campaign->entity_visibility = false;
         $campaign->entity_personality_visibility = false;
         $campaign->follower = 0;

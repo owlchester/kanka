@@ -34,6 +34,7 @@ class PreviewService
         $this->data['is_dead'] = false;
         $this->data['tags'] = $this->tags();
         $this->data['location'] = $this->location();
+        $this->data['locations'] = $this->locations();
         $this->data['attributes'] = $this->attributes();
         $this->data['profile'] = $this->profile();
         $this->data['connections'] = $this->connections();
@@ -146,6 +147,23 @@ class PreviewService
             'name' => $loc->name,
             'link' => $loc->getLink(),
         ];
+    }
+
+    protected function locations(): ?array
+    {
+        if ($this->entity->locations->isEmpty()) {
+            return null;
+        }
+
+        $locations = [];
+        foreach ($this->entity->locations as $location) {
+            $locations[] = [
+                'name' => $location->name,
+                'link' => $location->getLink(),
+            ];
+        }
+
+        return $locations;
     }
 
     protected function connections(): array

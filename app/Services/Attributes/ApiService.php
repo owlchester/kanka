@@ -69,6 +69,7 @@ class ApiService
                 'section' => __('entities/attributes.types.section'),
                 'checkbox' => __('entities/attributes.types.checkbox'),
                 'random' => __('entities/attributes.types.random'),
+                'templates' => __('entities/attributes.types.templates'),
             ],
             'filters' => [
                 'show_hidden' => __('entities/attributes.actions.show_hidden'),

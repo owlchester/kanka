@@ -8,7 +8,8 @@ return [
         'title'     => 'Nowy komentarz',
     ],
     'fields'        => [
-        'name'  => 'Tytuł',
+        'layout'    => 'Układ komentarza',
+        'name'      => 'Tytuł',
     ],
     'helpers'       => [
         'new'           => 'Dodaj nowy komentarz do tego elementu.',

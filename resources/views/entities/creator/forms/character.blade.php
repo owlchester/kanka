@@ -7,7 +7,7 @@
 
     @include('cruds.fields.races', ['dynamicNew' => auth()->user()->can('create', [$campaign->getEntityTypes()->where('id', config('entities.ids.race'))->first(), $campaign])])
 
-    @include('cruds.fields.location', ['dynamicNew' => auth()->user()->can('create', [$campaign->getEntityTypes()->where('id', config('entities.ids.location'))->first(), $campaign])])
+    @include('cruds.fields.locations', ['dynamicNew' => auth()->user()->can('create', [$campaign->getEntityTypes()->where('id', config('entities.ids.location'))->first(), $campaign])])
 
     @include('cruds.fields.sex', ['base' => \App\Models\Character::class, 'trans' => 'characters'])
 

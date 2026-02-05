@@ -13,7 +13,5 @@ return [
     'placeholders'  => [
         'type'  => 'Ideas, relaciones, estructura de la historia',
     ],
-    'update'        => [
-        'success'   => ':name guardado',
-    ],
+    'update'        => [],
 ];

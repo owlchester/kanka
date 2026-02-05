@@ -9,9 +9,8 @@ return [
     'campaigns'     => [],
     'dashboards'    => [
         'actions'       => [
-            'edit'      => 'Uredi',
-            'new'       => 'Nova naslovna ploča',
-            'switch'    => 'Prebaci na naslovnu ploču',
+            'edit'  => 'Uredi',
+            'new'   => 'Nova naslovna ploča',
         ],
         'create'        => [
             'success'   => 'Kreirana nova naslovna ploča :name.',

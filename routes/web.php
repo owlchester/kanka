@@ -29,7 +29,14 @@ Route::get('roadmap/{feature}', [App\Http\Controllers\Roadmap\FeatureController:
 Route::post('roadmap/{feature}/upvote', [App\Http\Controllers\Roadmap\FeatureController::class, 'upvote'])->name('roadmap.upvote');
 Route::post('roadmap/submit', [App\Http\Controllers\Roadmap\FeatureController::class, 'store'])->name('roadmap.store');
 
+Route::get('spotlights', [\App\Http\Controllers\Spotlights\ApplicationController::class, 'index'])->name('spotlights.application');
+Route::get('spotlights/{campaign}', [\App\Http\Controllers\Spotlights\ApplicationController::class, 'form'])->name('spotlights.form');
+Route::post('spotlights/{campaign}/save', [\App\Http\Controllers\Spotlights\ApplicationController::class, 'save'])->name('spotlights.save');
+Route::post('spotlights/retract/{campaign}', [\App\Http\Controllers\Spotlights\ApplicationController::class, 'retract'])->name('spotlights.retract');
+
 Route::get('/validation/{userValidation}', [App\Http\Controllers\User\EmailValidationController::class, 'validateEmail'])->name('validation.email');
 
 // Game System Search
 Route::get('/search/systems', [App\Http\Controllers\Search\GameSystemSearchController::class, 'index'])->name('search.systems');
+
+Route::get('/r/{referral}', [App\Http\Controllers\ReferralController::class, 'index'])->name('referrals');

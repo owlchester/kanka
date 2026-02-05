@@ -50,6 +50,7 @@ onUpdated(() => {
     // Add the ajax tooltip listener when the dom is updated (for example when displaying
     // children abilities)
     window.ajaxTooltip();
+    window.initTooltips();
 })
 
 </script>

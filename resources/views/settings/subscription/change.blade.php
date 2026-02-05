@@ -28,11 +28,19 @@
                 'date' => $user->subscription('kanka')->ends_at->isoFormat('MMMM D, Y')
             ]) !!}
         @else
-            {!! __('settings.subscription.change.text.upgrade_' . ($period->isYearly() ? 'yearly' : 'monthly'), [
-                'upgrade' => "<strong>$currency<span id='pricing-now'>" . number_format($upgrade, 2) . "</span></strong>",
-                'tier' => "<strong>$tier->name</strong>",
-                'amount' => "<strong>$currency$amount</strong>"
-            ]) !!}
+            @if ($isDowngrading)
+                {!! __('settings.subscription.change.text.downgrade_' . ($period->isYearly() ? 'yearly' : 'monthly'), [
+                    'downgrade' => "<strong>$currency<span id='pricing-now'>" . number_format($upgrade, 2) . "</span></strong>",
+                    'tier' => "<strong>$tier->name</strong>",
+                    'amount' => "<strong>$currency$amount</strong>"
+                ]) !!}
+            @else
+                {!! __('settings.subscription.change.text.upgrade_' . ($period->isYearly() ? 'yearly' : 'monthly'), [
+                    'upgrade' => "<strong>$currency<span id='pricing-now'>" . number_format($upgrade, 2) . "</span></strong>",
+                    'tier' => "<strong>$tier->name</strong>",
+                    'amount' => "<strong>$currency$amount</strong>"
+                ]) !!}
+            @endif
         @endif
             </div>
             @if (!$isDowngrading)

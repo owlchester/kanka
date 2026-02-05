@@ -8,7 +8,7 @@
 @section('content')
     <div id="whiteboard">
         <whiteboard
-            save="{{ route('whiteboards.save-draw', [$campaign, $whiteboard]) }}"
+            save="{{ route('whiteboards.shapes.store', [$campaign, $whiteboard]) }}"
             load="{{ route('whiteboards.api', [$campaign, $whiteboard]) }}"
             gallery="{{ route('gallery.browse', $campaign) }}"
             search="{{ route('search.live', $campaign) }}"

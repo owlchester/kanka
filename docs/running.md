@@ -27,7 +27,7 @@ Kanka is set up to run with Docker and [Laravel Sail](https://laravel.com/docs/1
 * Laravel Sail for running the Kanka PHP application
 * [Mariadb](https://mariadb.org/) for the database
 * [Redis](https://redis.com/) for the cache
-* [Minio](https://min.io/) for file storage
+* [minIO](https://min.io/) for file storage
 * [Thumbor](https://www.thumbor.org/) for image thumbnails
 * [Mailpit](https://mailpit.axllent.org/) for email testing
 
@@ -95,6 +95,8 @@ sail up -d
 ```
 
 ### 5. Bucket setup
+
+> Warning, we use an older version of minIO, despite minIO being abandoned and having multiple vulnerabilities. RustFS will eventually replace minIO, but it's still in Alpha and doesn't have a migration tool.
 
 Image uploading in the app is stored on a *minio* service. This mimics the amazon S3 storage, and makes it easier to handle images rather than hosting them directly in the docker responsible for PHP.
 

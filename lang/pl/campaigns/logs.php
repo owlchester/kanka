@@ -10,4 +10,5 @@ return [
     'premium'   => [
         'helper'    => 'Rejestr starszy niż :amount dni można wyświetlić tylko w kampanii premium.',
     ],
+    'title'     => 'Dziennik audytu',
 ];

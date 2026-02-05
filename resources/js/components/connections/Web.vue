@@ -7,10 +7,16 @@
             </a>
 
             <div v-if="props.creator" class="relative flex gap-2">
-                <a v-if="props.creator" href="#" @click="openQQ()"  class="quick-creator-button btn2 btn-primary btn-sm" tabindex="0">
+                <a
+                    v-if="props.creator"
+                    href="#"
+                    @click="openQQ()"
+                    class="quick-creator-button btn2 btn-outline btn-sm"
+                    data-toggle="tooltip"
+                    :data-title="trans('qq-keyboard-shortcut')"
+                    tabindex="0">
                     <i class="flex-none fa-regular fa-plus" aria-hidden="true"></i>
                     <span class="grow hidden sm:inline-block" v-html="trans('create')"></span>
-                    <span class="flex-none keyboard-shortcut" id="qq-kb-shortcut" data-toggle="tooltip" :data-title="trans('qq-keyboard-shortcut')" data-html="true" data-placement="bottom" >N</span>
                 </a>
 
                 <a href="#" @click="print()" class="btn2 btn-sm btn-outline">
@@ -77,6 +83,7 @@ onMounted(async () => {
     // Attach listener for *capturing* submit events
     document.addEventListener('submit', handleDialogFormSubmit, true)
 
+    window.initTooltips();
 
     if (!props.premium) {
         window.openDialog('web-premium')

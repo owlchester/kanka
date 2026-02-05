@@ -1,9 +1,8 @@
 <?php /** @var \App\Models\Campaign $campaign */
-$boxClass = 'rounded p-5 text-center bg-box shadow-xs flex items-center justify-center gap-3 flex-col w-40 wrap-break-word';
 ?>
 
 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-    <x-box class="flex items-center gap-5 rounded-xl shadow-xs">
+    <x-box class="flex items-center gap-5 rounded-xl ">
         @if ($campaign->boosted())
             @php
                 $booster = $campaign->boosts()->first();
@@ -17,7 +16,7 @@ $boxClass = 'rounded p-5 text-center bg-box shadow-xs flex items-center justify-
         <div class="rounded {{ $campaign->boosted() ? 'bg-green-200' : 'bg-red-200' }} w-12 h-12 flex items-center justify-center text-xl flex-none">
             <x-icon class="fa-regular {{ $campaign->boosted() ? 'fa-gem text-green-600' : 'fa-times text-red-500' }}" />
         </div>
-        <div class="flex flex-col gap-0 grow">
+        <div class="flex flex-col gap-1 grow">
             <span>{!! __('campaigns.status.title') !!}</span>
             @if ($campaign->premium())
                 <span class="text-green-600">

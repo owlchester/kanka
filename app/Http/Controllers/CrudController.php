@@ -532,6 +532,8 @@ class CrudController extends Controller
         $override = $this->view . '.forms.edit';
         if (view()->exists($override)) {
             $view = $override;
+        } else {
+            dd('Missing form override for ' . $this->view);
         }
 
         return view($view, $params);

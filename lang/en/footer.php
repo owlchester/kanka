@@ -28,6 +28,7 @@ return [
     'roadmap'           => 'Roadmap',
     'security'          => 'Security',
     'server-time'       => 'This is our server (:server)\'s time',
+    'showcase'          => 'Showcase',
     'status'            => 'Service status',
     'terms'             => 'Terms',
     'thanks'            => 'Only possible thanks to our subscribers.',

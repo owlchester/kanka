@@ -2,12 +2,12 @@
 ?>
 
 
-@if (!$campaign->enabled('locations') || empty($entity->child->location))
+@if (!$campaign->enabled('locations') || $entity->locations->isEmpty())
     <?php return ?>
 @endif
 
 <div class="entity-header-sub entity-header-line">
-    @include('entities.headers.__location')
+    @include('entities.headers.__entity-locations')
 </div>
 
 

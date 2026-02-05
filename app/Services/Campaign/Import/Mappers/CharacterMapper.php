@@ -6,6 +6,7 @@ use App\Facades\ImportIdMapper;
 use App\Models\Character;
 use App\Models\CharacterOrganisation;
 use App\Models\CharacterTrait;
+use Illuminate\Support\Arr;
 
 class CharacterMapper extends MiscMapper
 {
@@ -27,11 +28,11 @@ class CharacterMapper extends MiscMapper
         // @phpstan-ignore-next-line
         $this
             ->loadModel()
-            ->foreign('locations', 'location_id')
             ->pivot('characterFamilies', 'families', 'family_id')
             ->pivot('characterRaces', 'races', 'race_id')
             ->saveModel()
             ->traits()
+            ->characterLocations()
             ->memberships()
             ->entitySecond();
     }
@@ -75,6 +76,34 @@ class CharacterMapper extends MiscMapper
             $member->save();
 
             $parents[$data['id']] = $member->id;
+        }
+
+        return $this;
+    }
+
+    protected function characterLocations(): self
+    {
+        // Support old format
+        if (! empty($this->data['location_id'])) {
+            $locationID = ImportIdMapper::get('locations', $this->data['location_id']);
+            if (! empty($locationID)) {
+                $this->entity->locations()->attach($locationID);
+            }
+        }
+
+        if (! Arr::has($this->data, 'entity.entityLocations')) {
+            return $this;
+        }
+        // New 3.8 format
+        foreach ($this->data['entity']['entityLocations'] as $location) {
+            if (empty($location['location_id'])) {
+                continue;
+            }
+            $locationID = ImportIdMapper::get('locations', $location['location_id']);
+            if (empty($locationID)) {
+                continue;
+            }
+            $this->entity->locations()->attach($locationID);
         }
 
         return $this;

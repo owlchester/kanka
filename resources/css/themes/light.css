@@ -65,7 +65,7 @@
         --sic: 0 0% 90%;
 
         /* Border radius for buttons */
-        --rounded-btn: .5rem;
+        --rounded-btn: .65rem;
         /* Border radius for badges (tags) */
         --rounded-badge: .25rem;
         /* Animation duration when a button is focused */

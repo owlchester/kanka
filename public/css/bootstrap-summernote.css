@@ -13,7 +13,7 @@
 
 .panel, .panel-default > .panel-heading {
     background-color: unset;
-    border-color: hsl(var(--b1)/1);
+    border-color: hsl(var(--b1)/.1);
 }
 .btn-default {
     background-color: hsl(var(--b2)/1);

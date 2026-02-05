@@ -5,7 +5,7 @@
     @if (isset($label) && !empty($label))
         <div class="flex items-center justify-between @if (isset($required) && $required) required @endif">
             <label class="" @if (isset($id)) for="{{ $id }}" @endif>
-                {!! $label !!}
+                <span class="text-xs font-medium opacity-80">{!! $label !!}</span>
                 @if ($tooltip && isset($helper))
                     @if (isset($link))
                         <a href="{{ $link }}" class="text-link">

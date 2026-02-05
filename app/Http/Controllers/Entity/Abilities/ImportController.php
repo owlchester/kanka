@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Entity\Abilities;
 
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
+use App\Models\Character;
 use App\Models\Entity;
 use App\Services\Abilities\ImportService;
 use Exception;
@@ -28,7 +29,13 @@ class ImportController extends Controller
 
         $races = [];
 
-        foreach ($entity->child->characterRaces()->with('race', 'race.entity', 'race.entity.abilities')->get() as $race) {
+        /** @var Character $character */
+        $character = $entity->child;
+        $characterRaces = $character
+            ->characterRaces()
+            ->with('race', 'race.entity', 'race.entity.abilities')
+            ->get();
+        foreach ($characterRaces as $race) {
             // Exclude races with no abilities from the list.
             if ($race->race->entity->abilities->count() > 0) {
                 $races[$race->race->name] = $race->race->entity->abilities->count();

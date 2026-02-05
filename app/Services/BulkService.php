@@ -382,9 +382,9 @@ class BulkService
 
             $locationsAction = Arr::get($fields, 'bulk-locations', 'add');
             if ($locationsAction === 'remove') {
-                $entity->locations()->detach($locationIds);
+                $entity->entity->locations()->detach($locationIds);
             } elseif (! empty($locationIds)) {
-                $this->saveLocations($entity, $locationIds);
+                $this->saveLocations($entity->entity, $locationIds);
             }
 
             // No tags? We're done

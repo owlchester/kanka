@@ -3,7 +3,7 @@
     @include('cruds.fields.type', ['base' => \App\Models\Character::class, 'trans' => 'characters'])
     @include('cruds.fields.title')
     @include('cruds.fields.families', ['quickCreator' => true])
-    @include('cruds.fields.location')
+    @include('cruds.fields.locations', ['from' => $entity ?? null, 'quickCreator' => true, 'model' => $entity ?? $source ?? null])
     @include('cruds.fields.races', ['quickCreator' => true])
     @include('cruds.fields.entry2')
     @php

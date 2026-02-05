@@ -15,10 +15,5 @@ return [
         'description'           => 'Zeigen Sie ein Hintergrundbild in der Kopfzeile des Objekts an. Verwenden Sie für beste Ergebnisse ein sehr großes Bild.',
         'title'                 => 'Kopfzeilenbild',
     ],
-    'tooltip'           => [
-        'boosted-description'   => 'Ersetzen Sie den automatisch generierte Kurzinfo des Objekts durch eine :boosted-campaign.',
-        'description'           => 'Ersetzen Sie die automatisch generierte Kurzinfo  des Objekts durch den folgenden Text.',
-        'helper'                => 'Die folgenden HTML-Elemente sind in Tooltips erlaubt: :tags',
-        'name'                  => 'Kurzinfo',
-    ],
+    'tooltip'           => [],
 ];

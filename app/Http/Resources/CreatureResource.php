@@ -16,13 +16,13 @@ class CreatureResource extends EntityResource
     {
         /** @var Creature $model */
         $model = $this->resource;
-        $locationIDs = $model->locations()->pluck('locations.id');
+        $locationIds = $model->entity->locations->pluck('id');
 
         return $this->entity([
             'creature_id' => $model->creature_id,
             'is_extinct' => $model->isExtinct(),
             'is_dead' => $model->isDead(),
-            'locations' => $locationIDs,
+            'locations' => $locationIds,
         ]);
     }
 }

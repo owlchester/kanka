@@ -10,9 +10,8 @@ return [
     'campaigns'     => [],
     'dashboards'    => [
         'actions'       => [
-            'edit'      => 'Editar',
-            'new'       => 'Nuevo tablero',
-            'switch'    => 'Cambiar a otro tablero',
+            'edit'  => 'Editar',
+            'new'   => 'Nuevo tablero',
         ],
         'create'        => [
             'helper'    => 'Crea un nuevo panel para :name y asigna qué roles pueden verlo o tenerlo como su panel predeterminado.',

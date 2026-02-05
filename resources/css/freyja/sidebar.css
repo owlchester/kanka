@@ -109,7 +109,7 @@ body.sidebar-collapse .sidebar-toggle [data-sidebar="expand"] {
     }
     .sidebar-collapse .content-wrapper, .sidebar-collapse .right-side, .sidebar-collapse .main-footer {
         margin-left: 0 !important;
-        z-index: 840;
+        /*z-index: 840;*/
     }
 
     .sidebar-toggle [data-sidebar="collapse"] {

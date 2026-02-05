@@ -47,7 +47,7 @@ class CampaignUser extends Layout
                     $roleLinks = [];
                     foreach ($roles as $role) {
                         if (auth()->user()->isAdmin()) {
-                            $roleLinks[] = '<a href="' . route('campaign_roles.show', [$this->campaign, $role->id]) . '">' . $role->name . '</a>';
+                            $roleLinks[] = '<a href="' . route('campaign_roles.show', [$this->campaign, $role->id]) . '" class="text-link">' . $role->name . '</a>';
                         } else {
                             $roleLinks[] = $role->name;
                         }

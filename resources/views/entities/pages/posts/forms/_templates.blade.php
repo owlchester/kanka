@@ -3,14 +3,12 @@
         <x-helper>
             <p>{{ __('posts.create.template.helper') }}</p>
         </x-helper>
-        <ul>
+        <div class="flex flex-wrap items-center gap-2">
             @foreach ($templates as $id => $name)
-                <li>
-                    <a href="{{ route('entities.posts.create', [$campaign, $entity, 'template' => $id]) }}">
-                        <span>{{$name}}</span>
-                    </a>
-                </li>
+                <a href="{{ route('entities.posts.create', [$campaign, $entity, 'template' => $id]) }}" class="px-4 py-2 border border-base-200 hover:bg-base-200 bg-base-100 rounded-xl">
+                    <span>{{$name}}</span>
+                </a>
             @endforeach
-        </ul>
+        </div>
     </x-grid>
 </div>

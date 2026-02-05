@@ -2,7 +2,8 @@
 
 return [
     'actions'       => [
-        'copy'  => 'Kopiuj',
+        'copy'      => 'Kopiuj',
+        'transfer'  => 'Przenieś',
     ],
     'errors'        => [
         'permission'        => 'Nie możesz tworzyć elementów tego typu w kampanii docelowej.',

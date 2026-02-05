@@ -72,8 +72,8 @@ $old = isset($entity) && !empty($entity->image_path) || isset($model) && !empty(
     }
 @endphp
 
-<div class="field field-image">
-    <label>{{ __($label) }}</label>
+<div class="field field-image flex flex-col gap-1">
+    <label class="text-xs font-medium opacity-80">{{ __($label) }}</label>
     <div class="gallery-selection col-span-2">
         <gallery-selection
             file="{{ route('gallery.upload.file', [$campaign, $from]) }}"

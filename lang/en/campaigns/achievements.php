@@ -15,6 +15,20 @@ return [
     'remaining'         => [
         'generic'   => 'More and the next level will be unlocked.',
     ],
+    'spotlight'         => [
+        'active'    => [
+            'cta'   => 'View spotlight',
+        ],
+        'private'   => [
+            'cta'       => 'Review public settings',
+            'helper'    => 'Make your campaign public to be eligible for the Spotlight.',
+        ],
+        'public'    => [
+            'cta'       => 'Learn how spotlight works',
+            'helper'    => 'Selected campaigns are featured on the Kanka Showcase and blog.',
+        ],
+    ],
+    'spotlighted'       => '{0} Not spotlighted yet|[1,*] Spotlighted',
     'tagged'            => '{0} No entities tagged|{1} One entity tagged|[2,*] :amount entities tagged',
     'titles'            => [
         'calendars'     => 'Time keeper',
@@ -29,6 +43,7 @@ return [
         'organisations' => 'Mergers and acquisitions',
         'plugins'       => 'Plugin connoisseur',
         'quests'        => 'Mastermind',
+        'spotlighted'   => 'Spotlighted',
         'tags'          => 'Under control',
         'themes'        => 'Painter',
     ],
