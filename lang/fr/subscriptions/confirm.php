@@ -4,6 +4,7 @@ return [
     'actions'   => [
         'pay'       => 'Payer :currency:amount maintenant',
         'paypal'    => 'Payer :currency:amount avec PayPal',
+        'subscribe' => 'S’abonner pour :currency:amount',
     ],
     'helpers'   => [
         'auto-renew'    => [
@@ -13,6 +14,7 @@ return [
         ],
         'paypal'        => 'Tu seras redirigé vers PayPal pour effectuer cette transaction.',
         'refund'        => 'Nous offrons une politique de remboursement de 14 jours pour tous les abonnements annuels. Il te suffit de nous envoyer un courriel à l\'adresse :email pour entamer une procédure de remboursement.',
+        'tiny'          => 'Merci de soutenir une petite équipe de worldbuilders passionnés.',
     ],
     'title'     => 'Abonnement :name',
 ];

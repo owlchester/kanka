@@ -15,10 +15,5 @@ return [
         'description'           => 'Zobraziť obrázok pozadia v záhlaví objektu. Pre lepší výsledok použi naozaj veľký obrázok.',
         'title'                 => 'Obrázok záhlavia',
     ],
-    'tooltip'           => [
-        'boosted-description'   => 'Nahradiť automaticky generovanú bublinu objektu pomocou :boosted-campaign.',
-        'description'           => 'Nahradiť automaticky generovanú bublinu objektu nasledujúcim textom.',
-        'helper'                => 'Nasledujúce HTML prvky sú povolené v bublinách: :tags',
-        'name'                  => 'Bublina',
-    ],
+    'tooltip'           => [],
 ];

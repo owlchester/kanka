@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
-use App\Models\Concerns\HasLocations;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
@@ -33,7 +32,6 @@ class Race extends MiscModel
     use HasCampaign;
     use HasFactory;
     use HasFilters;
-    use HasLocations;
     use HasRecursiveRelationships;
     use Nested;
     use Sanitizable;
@@ -79,17 +77,11 @@ class Race extends MiscModel
     /**
      * Foreign relations to add to export
      */
-    protected array $foreignExport = [
-        'pivotLocations',
-    ];
+    protected array $foreignExport = [];
 
     protected array $sanitizable = [
         'name',
     ];
-
-    protected string $locationPivot = 'race_location';
-
-    protected string $locationPivotKey = 'race_id';
 
     /**
      * @return string
@@ -105,7 +97,7 @@ class Race extends MiscModel
     public function scopePreparedWith(Builder $query): Builder
     {
         return parent::scopePreparedWith($query->with([
-            'locations' => function ($sub) {
+            'entity.locations' => function ($sub) {
                 $sub->select('locations.id', 'locations.name');
             },
         ]))->withCount(['characters']);
@@ -198,18 +190,10 @@ class Race extends MiscModel
     {
         return [
             'race_id',
-            'location_id',
+            'locations',
             'parent',
             'is_extinct',
         ];
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\RaceLocation, $this>
-     */
-    public function pivotLocations(): HasMany
-    {
-        return $this->hasMany('App\Models\RaceLocation');
     }
 
     /**
@@ -217,7 +201,7 @@ class Race extends MiscModel
      */
     public function showProfileInfo(): bool
     {
-        if ($this->locations->isNotEmpty()) {
+        if ($this->entity->locations->isNotEmpty()) {
             return true;
         }
 
@@ -239,6 +223,6 @@ class Race extends MiscModel
     {
         // Pivot tables can be deleted directly
         $this->characters()->detach();
-        $this->locations()->detach();
+        $this->entity->locations()->detach();
     }
 }

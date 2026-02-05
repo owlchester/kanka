@@ -33,7 +33,7 @@ class CreateCampaign extends Migration
             $table->string('export_path')->nullable();
             $table->date('export_date')->nullable();
 
-            $table->unsignedTinyInteger('visibility_id')->default(App\Models\Campaign::VISIBILITY_PRIVATE);
+            $table->unsignedTinyInteger('visibility_id')->default(\App\Enums\CampaignVisibility::private);
             $table->boolean('is_featured')->default(false);
             $table->boolean('entity_visibility')->default(false);
             $table->unsignedInteger('visible_entity_count')->default(0);

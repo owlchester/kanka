@@ -15,10 +15,5 @@ return [
         'description'           => 'Wyświetlaj obraz w tle nagłowka elementu. Dla osiągnięcia najlepszego efektu użyj bardzo dużego obrazu.',
         'title'                 => 'Nagłówek',
     ],
-    'tooltip'           => [
-        'boosted-description'   => 'Zastępuj dymek z poradą generowaną automatycznie własną zawartością w :boosted-campaign.',
-        'description'           => 'Zastąp dymek z poradą generowaną automatycznie następującą zawartością.',
-        'helper'                => 'W dymkach pojawić się mogą następujące elementy HTML: :tags',
-        'name'                  => 'Dymek',
-    ],
+    'tooltip'           => [],
 ];

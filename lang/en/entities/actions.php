@@ -18,12 +18,12 @@ return [
         'toggle'    => 'Toggled template status.',
         'unset'     => 'Remove as template',
     ],
+    'tooltips'          => [
+        'edit'  => 'Edit this entity',
+    ],
     'transfer'          => 'Transfer to campaign',
     'unarchive'         => [
         'success'   => ':name is no longer archived.',
         'title'     => 'Unarchive',
-    ],
-    'tooltips' => [
-        'edit' => 'Edit this entity',
     ],
 ];

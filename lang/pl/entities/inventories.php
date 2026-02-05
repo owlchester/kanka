@@ -2,8 +2,10 @@
 
 return [
     'actions'           => [
+        'copy_from_entity'  => 'Kopiuj z innego elementu',
         'copy_inventory'    => 'Kopiuj wyposażenie',
         'generate'          => 'Generuj',
+        'multiple'          => 'Dodaj przedmioty',
     ],
     'copy'              => [
         'helper'    => 'Kopiuje całe wyposażenie elementu do :name.',
@@ -50,14 +52,30 @@ return [
         'position'      => 'Pod ręką, w plecaku, w skrzyni, w banku',
     ],
     'show'              => [
-        'helper'    => 'Elementom można przypisywać przedmioty, tworząc ich ekwipunek.',
-        'title'     => 'Ekwipunek elementu :name',
+        'helper'    => 'Elementom można przypisywać przedmioty, tworząc ich wyposażenie.',
+        'title'     => 'Wyposażenie elementu :name',
         'unsorted'  => 'Nieposortowanie',
+    ],
+    'togglers'          => [
+        'hide'  => [
+            'price'     => 'Ukryj cenę',
+            'quantity'  => 'Ukryj ilość',
+            'size'      => 'Ukryj rozmiar',
+            'weight'    => 'Ukryj wagę',
+        ],
+        'show'  => [
+            'price'     => 'Pokaż cenę',
+            'quantity'  => 'Pokaż ilość',
+            'size'      => 'Pokaż rozmiar',
+            'weight'    => 'Pokaż wagę',
+        ],
     ],
     'tooltips'          => [
         'equipped'  => 'Przedmiot jest w użyciu.',
     ],
-    'tutorials'         => [],
+    'tutorials'         => [
+        'all'   => 'Śledzi, co :name posiada, przechowuje albo sprzedaje, dodając to do jego wyposażenia.',
+    ],
     'update'            => [
         'success'   => 'Zaktualizowano przedmiot :item elementu :entity',
         'title'     => 'Zaktualizowano przedmiot u :name',

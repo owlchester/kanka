@@ -19,7 +19,7 @@ return [
         'no-results'    => 'No results to display. Try with other filters, or come back after making changes to the campaign\'s entities.',
     ],
     'helpers'   => [
-        'base'      => 'This interface contains recent changes to entities of the campaign for up to :amount months, showing the most recent changes first.',
+        'base'      => 'This interface contains recent changes to entities of the campaign for up to :amount days, showing the most recent changes first.',
         'changes'   => 'The following fields previously had these values.',
     ],
     'log'       => [

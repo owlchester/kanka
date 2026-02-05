@@ -51,9 +51,6 @@ return [
         'link'      => 'Read the API documentation',
         'title'     => 'API',
     ],
-    'referrals' => [
-        'title' => 'Referrals',
-    ],
     'apps'          => [
         'actions'   => [
             'connect'   => 'Connect',
@@ -133,6 +130,9 @@ return [
         'avatar'    => 'Profile Picture',
         'success'   => 'Profile updated.',
         'title'     => 'Public Profile',
+    ],
+    'referrals'     => [
+        'title' => 'Referrals',
     ],
     'subscription'  => [
         'actions'               => [

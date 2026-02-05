@@ -111,20 +111,21 @@ To create a creature, use the following endpoint.
 
 ### Body
 
-| Parameter | Type | Detail |
-| :- |   :-   |  :-  |
-| `name` | `string` (Required) | Name of the creature |
-| `entry` | `string` | The html description of the creature |
-| `type` | `string` | The creature's type |
-| `creature_id` | `string` | Parent creature of the creature |
-| `tags` | `array` | Array of tag ids |
-| `locations` | `array` | Array of location ids |
-| `is_extinct` | `boolean` | If the creature is extinct |
-| `is_dead` | `boolean` | If the creature is dead |
-| `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
+| Parameter | Type | Detail                                                              |
+| :- |   :-   |:--------------------------------------------------------------------|
+| `name` | `string` (Required) | Name of the creature                                                |
+| `entry` | `string` | The html description of the creature                                |
+| `type` | `string` | The creature's type                                                 |
+| `creature_id` | `string` | Parent creature of the creature                                     |
+| `tags` | `array` | Array of tag ids                                                    |
+| `locations` | `array` | Array of location ids                                               |
+| `is_extinct` | `boolean` | If the creature is extinct                                          |
+| `is_dead` | `boolean` | If the creature is dead                                             |
+| `entity_image_uuid` | `string` | Gallery image UUID for the entity image                             |
 | `entity_header_uuid` | `string` | Gallery image UUID for the entity header (premium campaign feature) |
 | `tooltip`            | `string` | The creature's tooltip (premium campaign feature)                   |
-| `is_private` | `boolean` | If the creature is only visible to `admin` members of the campaign |
+| `is_private` | `boolean` | If the creature is only visible to `admin` members of the campaign  |
+| `locations` | `array` | Array of locations.ids to attach to the creature.                   |
 
 ### Results
 

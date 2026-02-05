@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
-use App\Models\Concerns\HasLocations;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
@@ -13,7 +12,6 @@ use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
@@ -32,7 +30,6 @@ class Creature extends MiscModel
     use HasCampaign;
     use HasFactory;
     use HasFilters;
-    use HasLocations;
     use HasRecursiveRelationships;
     use Nested;
     use Sanitizable;
@@ -51,11 +48,8 @@ class Creature extends MiscModel
     protected array $sortableColumns = [
         'is_extinct',
         'is_dead',
+        'locations',
     ];
-
-    protected string $locationPivot = 'creature_location';
-
-    protected string $locationPivotKey = 'creature_id';
 
     protected array $sortable = [
         'name',
@@ -77,9 +71,7 @@ class Creature extends MiscModel
     /**
      * Foreign relations to add to export
      */
-    protected array $foreignExport = [
-        'pivotLocations',
-    ];
+    protected array $foreignExport = [];
 
     protected array $exportFields = [
         'base',
@@ -107,8 +99,8 @@ class Creature extends MiscModel
     public function scopePreparedWith(Builder $query): Builder
     {
         return parent::scopePreparedWith($query->with([
-            'locations' => function ($sub) {
-                $sub->select('id');
+            'entity.locations' => function ($sub) {
+                $sub->select('locations.id', 'locations.name');
             },
         ]));
     }
@@ -138,18 +130,10 @@ class Creature extends MiscModel
     {
         return [
             'creature_id',
-            'location_id',
+            'locations',
             'is_extinct',
             'is_dead',
         ];
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CreatureLocation, $this>
-     */
-    public function pivotLocations(): HasMany
-    {
-        return $this->hasMany('App\Models\CreatureLocation');
     }
 
     /**
@@ -157,7 +141,7 @@ class Creature extends MiscModel
      */
     public function showProfileInfo(): bool
     {
-        if ($this->locations->isNotEmpty()) {
+        if ($this->entity->locations->isNotEmpty()) {
             return true;
         }
 
@@ -186,6 +170,6 @@ class Creature extends MiscModel
     public function detach(): void
     {
         // Pivot tables can be deleted directly
-        $this->locations()->detach();
+        $this->entity->locations()->detach();
     }
 }

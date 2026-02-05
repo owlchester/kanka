@@ -15,10 +15,5 @@ return [
         'description'           => 'Exiba uma imagem de fundo no cabeçalho da entidade. Para melhores resultados, use uma imagem muito grande.',
         'title'                 => 'Imagem de Cabeçalho',
     ],
-    'tooltip'           => [
-        'boosted-description'   => 'Substitua a dica de contexto gerada automaticamente da entidade com uma :boosted-campaign.',
-        'description'           => 'Substitua a dica de contexto gerada automaticamente da entidade pelo texto a seguir.',
-        'helper'                => 'Os seguintes elementos HTML são permitidos nas dicas de contextos: :tags',
-        'name'                  => 'Dica de Contexto',
-    ],
+    'tooltip'           => [],
 ];

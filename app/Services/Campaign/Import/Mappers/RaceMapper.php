@@ -22,7 +22,7 @@ class RaceMapper extends MiscMapper
     public function second(): void
     {
         $this->loadModel()
-            ->pivot('pivotLocations', 'locations', 'location_id')
+            ->entityLocations()
             ->saveModel()
             ->entitySecond();
     }

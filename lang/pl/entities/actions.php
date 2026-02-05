@@ -1,11 +1,15 @@
 <?php
 
 return [
-    'archive'   => [
+    'archive'           => [
         'success'   => 'Zarchiwizowano :name.',
         'title'     => 'Archiwizuj',
     ],
-    'templates' => [
+    'convert'           => 'Zmień moduł',
+    'copy-campaign'     => 'Kopiuj do kampanii',
+    'json-export'       => 'Eksport JSON',
+    'markdown-export'   => 'Eksport Markdown',
+    'templates'         => [
         'set'       => 'Ustaw jako szablon',
         'success'   => [
             'set'   => 'Element :name ustawiono jako szablon.',
@@ -14,7 +18,8 @@ return [
         'toggle'    => 'Przełączono status szablonu.',
         'unset'     => 'Usuń jako szablon',
     ],
-    'unarchive' => [
+    'transfer'          => 'Przenieś do kampanii',
+    'unarchive'         => [
         'success'   => 'Przywrócono :name z archiwum.',
         'title'     => 'Przywróć',
     ],

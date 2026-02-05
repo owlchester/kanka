@@ -10,9 +10,8 @@ return [
     'campaigns'     => [],
     'dashboards'    => [
         'actions'       => [
-            'edit'      => 'Editieren',
-            'new'       => 'neues Dashboard',
-            'switch'    => 'zum Dashboard wechseln',
+            'edit'  => 'Editieren',
+            'new'   => 'neues Dashboard',
         ],
         'create'        => [
             'success'   => 'Neues Kampagnen Dashboard :name erstellt',

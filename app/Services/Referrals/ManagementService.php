@@ -17,8 +17,8 @@ class ManagementService
 
     public function referral(): Referral
     {
-        $code = Referral::where('user_id', $this->user->id)->firstOrNew();
-        if (! $code->exists()) {
+        $code = Referral::where('user_id', $this->user->id)->first();
+        if (! $code) {
             return $this->createReferral();
         }
 

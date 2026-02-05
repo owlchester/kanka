@@ -50,7 +50,7 @@ class MemberController extends Controller
                 'character.entity.entityType' => function ($sub) {
                     $sub->select('id', 'code');
                 },
-                'character.location', 'character.location.entity'])
+                'character.entity.locations'])
             ->has('character')
             ->has('character.entity')
             ->leftJoin('characters as c', 'c.id', 'organisation_member.character_id')

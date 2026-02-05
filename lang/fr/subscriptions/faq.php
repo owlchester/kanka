@@ -25,6 +25,10 @@ return [
         'answer'    => 'Si un paiement échoue, nous t\'enverrons immédiatement un email et tenterons automatiquement de débiter ta carte jusqu\'à trois fois supplémentaires. Si ces tentatives échouent, ton abonnement sera mis en pause. Tu pourras facilement résoudre ce problème en mettant à jour tes informations de :billing avec une méthode valide.',
         'question'  => 'Que se passe-t-il si mon paiement échoue?',
     ],
+    'help'          => [
+        'answer'    => 'Ton abonnement finance notre temps, nos serveurs et la liberté de garder Kanka durable sans courir après la croissance à tout prix. Il nous permet de corriger les bugs plus vite, de créer des fonctionnalités auxquelles nous croyons vraiment et de rester à l’écoute de la communauté plutôt que des investisseurs. En clair:il permet à Kanka de rester vivant et de s’améliorer.',
+        'question'  => 'Comment mon abonnement aide-t-il Kanka?',
+    ],
     'methods'       => [
         'answer'    => 'Nous acceptons les paiements par carte bancaire et PayPal en USD, EUR et BRL. La sécurité de ton paiement est essentielle pour nous ; toutes les transactions par carte bancaire sont traitées de manière sécurisée par notre prestataire de paiement de confiance, :stripe.',
         'question'  => 'Quels sont les moyens de paiement acceptés?',
@@ -53,5 +57,9 @@ return [
     'update'        => [
         'answer'    => 'Mettre à jour tes informations de facturation est simple : rends-toi sur la page :billing dans les paramètres de ton compte. Là, tu peux modifier tes méthodes de paiement, mettre à jour ta carte bancaire ou changer ton adresse de facturation si nécessaire.',
         'question'  => 'Comment mettre à jour mes informations de facturation?',
+    ],
+    'why'           => [
+        'answer'    => 'Kanka est créé et maintenu par une petite équipe indépendante. Les abonnements nous permettent d’y travailler sur le long terme, de l’améliorer régulièrement et d’éviter les dark patterns. Tu ne paies pas une entreprise, tu finances directement les personnes qui conçoivent, développent et soutiennent la plateforme.',
+        'question'  => 'Pourquoi Kanka facture-t-il des abonnements?',
     ],
 ];
