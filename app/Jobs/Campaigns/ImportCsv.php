@@ -5,9 +5,7 @@ namespace App\Jobs\Campaigns;
 use App\Enums\CampaignImportStatus;
 use App\Models\CampaignImport;
 use App\Models\EntityType;
-use App\Services\Campaign\Import\ImportService;
 use App\Services\CsvImportService;
-use App\Services\CsvValidatorService;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -103,8 +101,8 @@ class ImportCsv implements ShouldQueue
             return 0;
         }
 
-        /** @var ImportService $service */
-        $service = app()->make(ImportService::class);
+        /** @var CsvImportService $service */
+        $service = app()->make(CsvImportService::class);
         $service
             ->job($job)
             ->fail($exception);

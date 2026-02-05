@@ -133,8 +133,6 @@ class CsvImport extends Component
         } catch (\Exception $e) {
             return 'Invalid_field_translation';
         }
-
-        return __($this->type->pluralCode() . '.fields.' . $field);
     }
 
     public function updatedColumnMap($value, $key)

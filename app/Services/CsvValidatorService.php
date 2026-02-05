@@ -197,7 +197,7 @@ class CsvValidatorService
 
         if (empty($validHeaders)) {
             throw new RuntimeException(
-                "At least 1 columns must be fully populated."
+                __('campaigns/import.csv.validation_error')
             );
         }
 

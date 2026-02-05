@@ -63,7 +63,7 @@
                                 {{ __('campaigns/import.progress.uploading') }} <span class="progress-percent">0</span>%
                             </p>
                             <p class="progress-validating hidden">
-                                {{ __('campaigns/import.progress.validating') }}
+                                {{ __('campaigns/import.status.validating') }}
                             </p>
                         </div>
                         <div class="h-0.5 bg-aqua" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">

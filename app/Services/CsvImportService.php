@@ -323,7 +323,7 @@ class CsvImportService
         return Validator::make(
             $data,
             $rules,
-        );
+        )->validate();
     }
 
     /**
