@@ -9,9 +9,8 @@ return [
     'campaigns'     => [],
     'dashboards'    => [
         'actions'       => [
-            'edit'      => 'Modifica nome & autorizzazioni',
-            'new'       => 'Nuova Pagina Principale',
-            'switch'    => 'Vai alla Pagina Principale',
+            'edit'  => 'Modifica nome & autorizzazioni',
+            'new'   => 'Nuova Pagina Principale',
         ],
         'create'        => [
             'success'   => 'Nuova Pagina Principale della campagna :name creata.',

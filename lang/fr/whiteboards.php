@@ -17,7 +17,5 @@ return [
     'placeholders'  => [
         'type'  => 'Idée, relations, structure d\'histoire',
     ],
-    'update'        => [
-        'success'   => ':name enregistré',
-    ],
+    'update'        => [],
 ];

@@ -10,9 +10,8 @@ return [
     'campaigns'     => [],
     'dashboards'    => [
         'actions'       => [
-            'edit'      => 'Upraviť názov a oprávnenia',
-            'new'       => 'Nová nástenka',
-            'switch'    => 'Prepnúť na nástenku',
+            'edit'  => 'Upraviť názov a oprávnenia',
+            'new'   => 'Nová nástenka',
         ],
         'create'        => [
             'success'   => 'Nová nástenka :name kampane vytvorená.',

@@ -15,10 +15,5 @@ return [
         'description'           => 'Visualizza un\'immagine di sfondo nell\'intestazione dell\'entità. Per ottenere risultati migliori, utilizza un\'immagine molto grande.',
         'title'                 => 'Immagine di Intestazione',
     ],
-    'tooltip'           => [
-        'boosted-description'   => 'Sostituisci il tooltip generato automaticamente dell\'entità con una :boosted-campaign.',
-        'description'           => 'Sostituisci il tooltip generato automaticamente dell\'entità con il testo seguente.',
-        'helper'                => 'Nei tooltip sono ammessi i seguenti elementi HTML: :tags',
-        'name'                  => 'Tooltip',
-    ],
+    'tooltip'           => [],
 ];

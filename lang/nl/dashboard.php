@@ -9,9 +9,8 @@ return [
     'campaigns'     => [],
     'dashboards'    => [
         'actions'       => [
-            'edit'      => 'Wijzig',
-            'new'       => 'Nieuw Dashboard',
-            'switch'    => 'Wissel naar dashboard',
+            'edit'  => 'Wijzig',
+            'new'   => 'Nieuw Dashboard',
         ],
         'create'        => [
             'success'   => 'Nieuw campaign dashboard :name gemaakt.',
