@@ -37,10 +37,21 @@
 
 .content-header {
     .breadcrumb {
-        background: transparent;
-
-        > li + li:before {
-            content: ">";
+        overflow-x: auto;
+        max-width: 100%;
+        padding-block: 0.5rem;
+        > li + ::before {
+            content: "";
+            opacity: .4;
+            background-color: #0000;
+            border-top: 1px solid;
+            border-right: 1px solid;
+            width: .375rem;
+            height: .375rem;
+            margin-left: .5rem;
+            margin-right: .75rem;
+            display: block;
+            rotate: 45deg;
         }
     }
 }
@@ -49,7 +60,7 @@
 /** required form fields **/
 div.required label:after {
     content: " *";
-    color: var(--input-required-text, red);
+    color: var(--input-required-text, var(--error, 'red'));
 }
 
 .tab-content, .box-body {
