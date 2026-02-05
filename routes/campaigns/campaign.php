@@ -180,6 +180,8 @@ Route::patch('/w/{campaign}/modules/{entity_type}/update', [ModuleController::cl
 Route::delete('/w/{campaign}/modules/reset', [ModuleController::class, 'reset'])->name('modules.reset');
 
 Route::get('/w/{campaign}/campaign-applications', 'Campaign\ApplicationController@toggle')->name('campaign-applications');
+Route::get('/w/{campaign}/campaign-applications/setup', 'Campaign\ApplicationController@setup')->name('campaign-applications.setup');
+Route::post('/w/{campaign}/campaign-applications/setup', 'Campaign\ApplicationController@saveSetup')->name('campaign-applications.setup.save');
 Route::post('/w/{campaign}/campaign-applications', 'Campaign\ApplicationController@toggleSave')->name('campaign-applications.save');
 
 // Campaign sidebar setup

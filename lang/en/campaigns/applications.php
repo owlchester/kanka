@@ -19,6 +19,12 @@ return [
     'fields'        => [
         'application'   => 'Application',
         'reason'        => 'Approval / Rejection reason',
+        'timezone' => 'Timezone',
+        'schedule' => 'Schedule',
+        'schedule-placeholder' => 'Every Friday at 7 PM',
+        'player_count' => 'Number of Players',
+        'playstyle_tags' => 'Play-styles',
+        'intro' => 'Campaign Introduction',
     ],
     'helpers'       => [
         'modal'                 => 'A campaign which is open to applications and public can have users apply to join the campaign.',
@@ -26,6 +32,7 @@ return [
         'no_applications_title' => 'No pending requests',
         'reason'                => 'If provided, the applicant will be notified with this reason.',
         'role'                  => 'If approving, the role the applicant gets added to.',
+        'fill_setup'            => 'Please fill the public campaign setup form to be able to open your campaign to the public.',
     ],
     'open'          => [
         'closed'    => 'Campaign is closed',
@@ -33,13 +40,22 @@ return [
         'title'     => 'Open campaign',
     ],
     'placeholders'  => [
-        'note'      => 'Write down your application to join the campaign',
-        'reason'    => 'Your reason',
+        'note'          => 'Write down your application to join the campaign',
+        'reason'        => 'Your reason',
+        'player_count'  => '4-6 players',
+        'intro'         => 'A brief explanation of what your campaign is all about, shown on top of the application form.'
     ],
     'public'        => [
         'private'   => 'Campaign is private.',
         'public'    => 'Campaign is public.',
         'title'     => 'Public campaign',
+    ],
+    'setup'         => [
+        'title'     => 'Public campaign setup',
+        'tutorial'  => 'Please fill the following fields to submit your campaign into our public campaign list.',
+        'success'   => 'Public campaign settings updated.',
+        'done'      => 'Public campaign settings filled.',
+        'setup'     => 'Set up public campaign settings to open campaign to the public.',
     ],
     'title'         => 'Join requests',
     'toggle'        => [
@@ -50,6 +66,7 @@ return [
         'title'     => 'Application status',
     ],
     'tutorial'      => 'Campaign applications let people request access to this campaign. Applicants submit a short form, and campaign admins can review, accept, or decline each request. Approved users are added to the campaign with the role you assign during review.',
+    'timezone'      => 'Timezone and Language',
     'update'        => [
         'approve'   => 'Select the role the user will be added as in the campaign.',
         'approved'  => 'Application approved.',

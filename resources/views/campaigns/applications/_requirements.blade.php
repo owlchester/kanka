@@ -7,6 +7,23 @@
             <x-icon class="fa-solid {{ $campaign->isOpen() ? 'fa-check text-green-600' : 'fa-times text-red-600' }}" />
         </div>
         <div class="flex flex-col gap-0 grow">
+            <span>{!! __('campaigns/applications.setup.title') !!}</span>
+            @if($campaign->flags->contains('flag', \App\Enums\CampaignFlags::CanOpen->value))
+                <span class="text-green-600">{!! __('campaigns/applications.setup.done') !!}</span>
+            @else
+                <span class="text-red-600">{!! __('campaigns/applications.setup.setup') !!}</span>
+            @endif
+        </div>
+        <a href="{{ route('campaign-applications.setup', $campaign) }}" 
+        class="rounded-full border border-base-300 h-12 w-12 flex items-center justify-center cursor-pointer hover:bg-base-200">
+            <x-icon class="fa-solid fa-angle-right" />
+        </a>
+    </x-box>
+    <x-box class="flex items-center gap-5 rounded-xl">
+        <div class="rounded {{ $campaign->isOpen() ? 'bg-green-200' : 'bg-red-200' }} w-12 h-12 flex items-center justify-center">
+            <x-icon class="fa-solid {{ $campaign->isOpen() ? 'fa-check text-green-600' : 'fa-times text-red-600' }}" />
+        </div>
+        <div class="flex flex-col gap-0 grow">
             <span>{!! __('campaigns/applications.open.title') !!}</span>
             @if ($campaign->isOpen())
                 <span class="text-green-600">{!! __('campaigns/applications.open.open') !!}</span>
