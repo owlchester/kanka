@@ -35,6 +35,7 @@ return [
         'here'          => 'z naszego bloga',
         'is_enabled'    => 'Użyj tego motywu na każdej stronie',
         'main'          => 'Możesz tworzyć własne style CSS w doładowanych kampaniach. Będą ładowane po załadowaniu stylów pobranych z targowiska. Więcej o tworzeniu stylów dowiesz się :here.',
+        'tutorial'      => 'Kontroluje estetykę kampanii. Pozwala wybrać kolory, preferencje układu treści i inne elementy wizualne. Modyfikacje dotyczą tylko tej kampanii i można je w każdej chwili zmienić.',
     ],
     'pitch'         => 'Twórz własne style CSS by nadać kampanii indywidualny charakter.',
     'placeholders'  => [

@@ -28,7 +28,7 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'inventories'   => 'Ekwipunki',
+            'inventories'   => 'W posiadaniu',
         ],
     ],
 ];

@@ -10,9 +10,8 @@ return [
     'campaigns'     => [],
     'dashboards'    => [
         'actions'       => [
-            'edit'      => 'Edytuj',
-            'new'       => 'Nowy pulpit',
-            'switch'    => 'Przełącz na pulpit',
+            'edit'  => 'Edytuj',
+            'new'   => 'Nowy pulpit',
         ],
         'create'        => [
             'helper'    => 'Tworzy nowy pulpit dla :name, i pozwala określić które role mogą go zobaczyć albo dla których jest pulpitem domyślnym',

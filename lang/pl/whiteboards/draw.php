@@ -26,6 +26,10 @@ return [
         'large-stroke'  => 'Gruba linia',
         'thin-stroke'   => 'Cienka linia',
     ],
+    'reset'         => [
+        'helper'    => 'Czy na pewno chcesz wymazać tablicę? Tej akcji nie można cofnąć.',
+        'title'     => 'Wymaż tablicę',
+    ],
     'toast'         => [
         'copy'  => [
             'success'   => 'Skopiowano elementy do schowka.',
