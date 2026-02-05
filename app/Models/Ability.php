@@ -12,6 +12,8 @@ use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
@@ -90,7 +92,7 @@ class Ability extends MiscModel
     public function scopePreparedWith(Builder $query): Builder
     {
         return parent::scopePreparedWith($query)
-            ->withCount('entities');
+            ->withCount('entityAbilities');
     }
 
     /**
@@ -106,6 +108,12 @@ class Ability extends MiscModel
         return $this
             ->belongsToMany(Entity::class, 'entity_abilities')
             ->withPivot(['visibility_id', 'id']);
+    }
+
+    public function entityAbilities(): HasMany
+    {
+        return $this->hasMany(EntityAbility::class, 'ability_id')
+            ->has('entity');
     }
 
     /**
