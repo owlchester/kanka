@@ -19,6 +19,7 @@
     import GalleryDialog from './extensions/gallery/GalleryDialog.vue'
     import { GalleryImage } from './extensions/gallery/GalleryImage'
     import { Iframe } from './extensions/Iframe'
+    import { Details, DetailsContent, DetailsSummary } from '@tiptap/extension-details'
     import { TextStyle } from '@tiptap/extension-text-style'
     import { Color } from '@tiptap/extension-color'
     import Highlight from '@tiptap/extension-highlight'
@@ -112,6 +113,14 @@
             allowBase64: false,
         }),
         Iframe,
+        Details.configure({
+            persist: true,
+            HTMLAttributes: {
+                class: 'details',
+            },
+        }),
+        DetailsSummary,
+        DetailsContent,
         TextStyle,
         Color,
         Highlight.configure({
@@ -421,5 +430,12 @@
 :deep(.iframe-wrapper iframe) {
     max-width: 100%;
     border: 0;
+}
+
+:deep(.details) {
+    flex-direction: row;
+    summary {
+        display: inline;
+    }
 }
 </style>

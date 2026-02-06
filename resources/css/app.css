@@ -27,6 +27,7 @@
 @import "./html/table.css";
 @import "./html/dialog.css";
 @import "./html/dl.css";
+@import "./html/summary.css";
 @import './freyja/freyja.css';
 @import 'cookieconsent/build/cookieconsent.min.css';
 @import '@fontsource-variable/roboto/wdth.css';

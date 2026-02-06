@@ -22,8 +22,11 @@ const getImageWidth = () => {
     return props.editor.getAttributes('image').width || null
 }
 
-const getImageFloat = () => {
-    return props.editor.getAttributes('image').float || null
+const getImageFloat = (): 'left' | 'right' | null => {
+    const classes = props.editor.getAttributes('image').class || ''
+    if (classes.includes('float-left') || classes.includes('note-float-left')) return 'left'
+    if (classes.includes('float-right') || classes.includes('note-float-right')) return 'right'
+    return null
 }
 </script>
 
@@ -57,7 +60,7 @@ const getImageFloat = () => {
                 :class="buttonClass(getImageWidth() === null)"
                 title="Reset width"
             >
-                <i class="fa-regular fa-undo" aria-hidden="true" />
+                <i class="fa-regular fa-undo" aria-hdasidden="true" />
             </button>
         </div>
         <!-- Float controls -->

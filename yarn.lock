@@ -1400,6 +1400,11 @@
   resolved "https://registry.yarnpkg.com/@tiptap/extension-color/-/extension-color-3.19.0.tgz#663978ecf05fd0390463fb3f162c3fd35f9cf8b6"
   integrity sha512-SemOrEEnmbKshhbTeKIvffwMlgqDAUDuOYyizfKqYM2dd5fRjohp+oszExO7scVhDtHtvtP/l3UmkBGBYfl4Tg==
 
+"@tiptap/extension-details@^3.19.0":
+  version "3.19.0"
+  resolved "https://registry.yarnpkg.com/@tiptap/extension-details/-/extension-details-3.19.0.tgz#a854505d7946dd3790c1dd7e80e1c123b3db14ab"
+  integrity sha512-BUc9N8UVl/orzXoDSh9YCB+G1csNDAKm4EeKAQpGotbgv32nnTPKv50BvPx+a5pZfVQHaiJlb98Xmi7dMZs1Ug==
+
 "@tiptap/extension-document@^3.19.0":
   version "3.19.0"
   resolved "https://registry.yarnpkg.com/@tiptap/extension-document/-/extension-document-3.19.0.tgz#dfa6889cff748d489e0bc1028918bf4571372ba5"

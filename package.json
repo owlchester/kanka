@@ -28,6 +28,7 @@
         "@tailwindcss/vite": "^4.1.17",
         "@tiptap/cli": "^3.11.1",
         "@tiptap/extension-color": "^3.18.0",
+        "@tiptap/extension-details": "^3.19.0",
         "@tiptap/extension-highlight": "^3.18.0",
         "@tiptap/extension-image": "^3.18.0",
         "@tiptap/extension-mention": "^3.18.0",

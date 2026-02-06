@@ -1,5 +1,6 @@
-
 import { Image } from '@tiptap/extension-image'
+import { VueNodeViewRenderer } from '@tiptap/vue-3'
+import ImageWrapper from './ImageWrapper.vue'
 
 export interface GalleryImageOptions {
     inline: boolean
@@ -14,6 +15,16 @@ declare module '@tiptap/core' {
             setImageFloat: (float: 'left' | 'right' | null) => ReturnType
         }
     }
+}
+
+const floatClasses = ['note-float-left', 'note-float-right']
+
+const updateClassWithFloat = (currentClass: string | null, float: 'left' | 'right' | null): string | null => {
+    const classes = (currentClass || '').split(' ').filter(c => c && !floatClasses.includes(c))
+    if (float) {
+        classes.push(`note-float-${float}`)
+    }
+    return classes.length > 0 ? classes.join(' ') : null
 }
 
 export const GalleryImage = Image.extend<GalleryImageOptions>({
@@ -32,28 +43,44 @@ export const GalleryImage = Image.extend<GalleryImageOptions>({
                     return { 'data-uuid': attributes['data-uuid'] }
                 },
             },
+            'data-gallery-id': {
+                default: null,
+                parseHTML: element => element.getAttribute('data-gallery-id'),
+                renderHTML: attributes => {
+                    if (!attributes['data-gallery-id']) {
+                        return {}
+                    }
+                    return { 'data-gallery-id': attributes['data-gallery-id'] }
+                },
+            },
+            class: {
+                default: null,
+                parseHTML: element => element.getAttribute('class'),
+                renderHTML: attributes => {
+                    if (!attributes.class) {
+                        return {}
+                    }
+                    return { class: attributes.class }
+                },
+            },
+            style: {
+                default: null,
+                parseHTML: element => element.getAttribute('style'),
+                renderHTML: attributes => {
+                    if (!attributes.style) {
+                        return {}
+                    }
+                    return { style: attributes.style }
+                },
+            },
             width: {
                 default: null,
-                parseHTML: element => element.getAttribute('width') || element.style.width || null,
+                parseHTML: element => element.getAttribute('width'),
                 renderHTML: attributes => {
                     if (!attributes.width) {
                         return {}
                     }
                     return { width: attributes.width }
-                },
-            },
-            float: {
-                default: null,
-                parseHTML: element => {
-                    if (element.classList.contains('float-left')) return 'left'
-                    if (element.classList.contains('float-right')) return 'right'
-                    return null
-                },
-                renderHTML: attributes => {
-                    if (!attributes.float) {
-                        return {}
-                    }
-                    return { class: `float-${attributes.float}` }
                 },
             },
         }
@@ -65,9 +92,31 @@ export const GalleryImage = Image.extend<GalleryImageOptions>({
             setImageWidth: (width: string | null) => ({ commands }) => {
                 return commands.updateAttributes('image', { width })
             },
-            setImageFloat: (float: 'left' | 'right' | null) => ({ commands }) => {
-                return commands.updateAttributes('image', { float })
+            setImageFloat: (float: 'left' | 'right' | null) => ({ tr, state, dispatch }) => {
+                const { selection } = state
+                const node = state.doc.nodeAt(selection.from)
+
+                if (node?.type.name !== 'image') {
+                    return false
+                }
+
+                const currentClass = node.attrs.class
+                const newClass = updateClassWithFloat(currentClass, float)
+
+                if (dispatch) {
+                    tr.setNodeMarkup(selection.from, undefined, {
+                        ...node.attrs,
+                        class: newClass,
+                    })
+                    dispatch(tr)
+                }
+
+                return true
             },
         }
+    },
+
+    addNodeView() {
+        return VueNodeViewRenderer(ImageWrapper)
     },
 })
