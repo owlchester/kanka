@@ -13,6 +13,9 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if (!Schema::hasTable('organisation_location')) {
+            return;
+        }
         // Migrate organisation locations
         $organisations = DB::table('organisations')
             ->join('entities', function ($join) {
