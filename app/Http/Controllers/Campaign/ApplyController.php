@@ -7,6 +7,7 @@ use App\Http\Requests\Campaigns\StoreCampaignApplication;
 use App\Models\Application;
 use App\Models\Campaign;
 use App\Services\Campaign\ApplicationService;
+use DateTimeZone;
 
 class ApplyController extends Controller
 {
@@ -21,8 +22,20 @@ class ApplyController extends Controller
 
         $application = auth()->user()->applications()->first();
 
+        $identifiers = DateTimeZone::listIdentifiers();
+        $timezones = [];
+    
+        for ($i = -12; $i <= 14; $i++) {
+            $prefix = ($i >= 0) ? '+' : '-';
+            // Formats to "UTC +05:00" or "UTC -11:00"
+            $utcString = "UTC " . $prefix . str_pad(abs($i), 2, '0', STR_PAD_LEFT) . ":00";
+            
+            $timezones[$utcString] = $utcString;
+        }
+
         return view('campaigns.applications.apply')
             ->with('application', $application)
+            ->with('timezones', $timezones)
             ->with('campaign', $campaign);
     }
 
@@ -33,13 +46,13 @@ class ApplyController extends Controller
         /** @var ?Application $application */
         $application = auth()->user()->applications()->first();
         if (! empty($application)) {
-            $application->update(['text' => $request->get('application')]);
+            $application->update($request->all());
             $success = __('campaigns/applications.apply.success.update');
         } else {
             $this->service
                 ->user(auth()->user())
                 ->campaign($campaign)
-                ->apply($request->get('application'));
+                ->apply($request);
 
             $success = __('campaigns/applications.apply.success.apply');
         }

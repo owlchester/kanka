@@ -16,7 +16,20 @@ return [
         ],
         'title'         => 'Join :name',
     ],
-    'fields'        => [
+    'headers' => [
+        'availability' => 'Availability & Schedule',
+        'preferences'  => 'Playstyle Preferences',
+    ],
+    'fields' => [
+        'character_concept' => 'Character Concept',
+        'experience_level'  => 'Experience Level',
+        'availability_days' => 'Days Available',
+        'time_start'        => 'From',
+        'time_end'          => 'To',
+        'pref_rp_combat'    => 'Focus Balance',
+        'pref_tone'         => 'Tone Preference',
+        'external_link'     => 'Character Sheet / Link',
+        'additional_notes'  => 'Anything else',
         'application'   => 'Application',
         'reason'        => 'Approval / Rejection reason',
         'timezone' => 'Timezone',
@@ -33,6 +46,9 @@ return [
         'reason'                => 'If provided, the applicant will be notified with this reason.',
         'role'                  => 'If approving, the role the applicant gets added to.',
         'fill_setup'            => 'Please fill the public campaign setup form to be able to open your campaign to the public.',
+        'availability_days' => 'Select the days you are generally available to play.',
+        'external_link'     => 'Link to D&D Beyond, Google Docs, or other external character sheets.',
+        'experience_level' => 'How familiar are you with this specific game system?',
     ],
     'open'          => [
         'closed'    => 'Campaign is closed',
@@ -43,7 +59,9 @@ return [
         'note'          => 'Write down your application to join the campaign',
         'reason'        => 'Your reason',
         'player_count'  => '4-6 players',
-        'intro'         => 'A brief explanation of what your campaign is all about, shown on top of the application form.'
+        'additional_notes' => 'Triggers, hard limits, or specific questions.',
+        'character_concept' => 'Briefly describe who you want to play, their backstory, and how they fit into the world.',
+        'intro'         => 'A brief explanation of what your campaign is all about, shown on top of the application form.',
     ],
     'public'        => [
         'private'   => 'Campaign is private.',
@@ -72,5 +90,25 @@ return [
         'approved'  => 'Application approved.',
         'reject'    => 'Write an optional message to the user as to why you are rejecting their application.',
         'rejected'  => 'Application rejected',
+    ],
+    'labels' => [
+        'rp_heavy'       => 'RP Heavy',
+        'combat_focused' => 'Combat Focused',
+        'serious'        => 'Serious / Immersive',
+        'casual'         => 'Casual / Beer & Pretzels',
+    ],
+    'weekdays' => [
+        'mon' => 'Mon',
+        'tue' => 'Tue',
+        'wed' => 'Wed',
+        'thu' => 'Thu',
+        'fri' => 'Fri',
+        'sat' => 'Sat',
+        'sun' => 'Sun',
+    ],
+    'experience' => [
+        'new'          => 'Newbie (First time)',
+        'intermediate' => 'Intermediate (Played a few times)',
+        'veteran'      => 'Veteran (Years of experience)',
     ],
 ];

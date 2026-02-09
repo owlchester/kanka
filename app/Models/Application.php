@@ -18,11 +18,17 @@ class Application extends Model
     use HasUser;
     use Sanitizable;
 
-    public $fillable = [
-        'text',
+    protected array $sanitizable = [
+        'text', 'character_concept', 'additional_notes'
     ];
 
-    protected array $sanitizable = [
-        'text',
+    protected $fillable = [
+        'campaign_id', 'user_id', 'character_concept', 'experience', 
+        'availability_days', 'time_start', 'time_end', 'timezone', 
+        'pref_rp_combat', 'pref_tone', 'external_link', 'additional_notes'
+    ];
+
+    protected $casts = [
+        'availability_days' => 'array',
     ];
 }
