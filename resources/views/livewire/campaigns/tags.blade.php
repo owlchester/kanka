@@ -7,7 +7,7 @@
                 <button
                     type="button"
                     wire:click="remove('{{ $tag['id'] }}')"
-                    class="font-bold"
+                    class="font-bold cursor-pointer"
                 >
                     ✕
                 </button>

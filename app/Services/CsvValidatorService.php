@@ -9,6 +9,7 @@ use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use SplFileObject;
 use RuntimeException;
@@ -70,6 +71,7 @@ class CsvValidatorService
     {
         $files = $this->job->config['files'];
         $path = '/campaigns/' . $this->campaign->id . '/imports/';
+
         foreach ($files as $file) {
             // Log::info('Want to download ' . $file);
             $s3 = Storage::disk('export')->get($file);
@@ -211,13 +213,13 @@ class CsvValidatorService
         }
 
         $config = $this->job->config;
-        $config['filled_columns'] = $validHeaders; 
+        $config['filled_columns'] = $validHeaders;
 
         $this->job->status_id = CampaignImportStatus::READY;
         $this->job->config = $config;
         $this->job->save();
 
-        $this->user->notify(new Header('campaign.import.csv_ready', 'upload', 'info', 
+        $this->user->notify(new Header('campaign.import.csv_ready', 'upload', 'info',
             [
                 'campaign' => $this->campaign->name,
                 'link' => route('campaign.import.csv', ['campaign' => $this->campaign, 'campaign_import' => $this->job]),

@@ -50,9 +50,9 @@ class CampaignImport extends Layout
                     } elseif ($model->status_id == CampaignImportStatus::FINISHED) {
                         return '<span class="text-success"><i class="fa-regular fa-check-circle" aria-hidden="true"></i> ' . __('campaigns/import.status.finished') . '</span>';
                     } elseif ($model->status_id == CampaignImportStatus::READY) {
-                        return '<span class="text-success"> <a href="' . route('campaign.import.csv', [$model->campaign, $model]) . '" class="text-link text-decoration-none"> <i class="fa-regular fa-check-circle" aria-hidden="true"></i> ' . __('campaigns/import.status.ready') . '</a> </span>';
+                        return '<a href="' . route('campaign.import.csv', [$model->campaign, $model]) . '" class="btn2 btn-outline btn-sm"> <i class="fa-regular fa-check-circle" aria-hidden="true"></i> ' . __('campaigns/import.status.ready') . '</a>';
                     } elseif ($model->status_id == CampaignImportStatus::VALIDATING) {
-                        return '<span class="text-success"><i class="fa-regular fa-check-circle" aria-hidden="true"></i> ' . __('campaigns/import.status.validating') . '</span>';
+                        return '<span class="text-info"><i class="fa-regular fa-microscope" aria-hidden="true"></i> ' . __('campaigns/import.status.validating') . '</span>';
                     }
 
                     return '<span class="text-neutral-content"><i class="fa-regular fa-spinner fa-spin" aria-hidden="true"></i> ' . __('campaigns/import.status.running') . '</span>';

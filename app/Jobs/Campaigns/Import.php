@@ -63,10 +63,12 @@ class Import implements ShouldQueue
         $job->update(['status_id' => CampaignImportStatus::RUNNING]);
 
         if ($job->isCsv()) {
+            Log::info('Campaign import', ['csv', 'id' => $this->jobID]);
             $service = app()->make(CsvValidatorService::class)
                 ->job($job)
                 ->run();
-        } else { 
+        } else {
+            Log::info('Campaign import', ['backup import', 'id' => $this->jobID]);
             /** @var ImportService $service */
             $service = app()->make(ImportService::class);
             $service
