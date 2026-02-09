@@ -33,6 +33,17 @@ class CustomDefinitions implements Definition
         $def->addAttribute('div', 'role', 'Text');
         $def->addAttribute('a', 'role', 'Text');
 
+        // Task lists
+        $def->addAttribute('ul', 'data-type', 'Text');
+        $def->addAttribute('li', 'data-type', 'Text');
+        $def->addAttribute('li', 'data-checked', 'Text');
+        $def->addElement('label', 'Inline', 'Inline', 'Common');
+        $def->addElement('input', 'Inline', 'Empty', 'Common', [
+            'type' => new \HTMLPurifier_AttrDef_Enum(['checkbox']),
+            'checked' => new \HTMLPurifier_AttrDef_HTML_Bool(true),
+            'disabled' => new \HTMLPurifier_AttrDef_HTML_Bool(true),
+        ]);
+
         $def->addElement(
             'details',
             'Block',

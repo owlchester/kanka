@@ -8,6 +8,7 @@ export interface SlashCommandItem {
     title: string
     description: string
     icon: string
+    searchTerms?: string[]
     command: (editor: Editor) => void
 }
 
@@ -61,6 +62,7 @@ const commands: SlashCommandItem[] = [
         title: 'Gallery',
         description: 'Insert an image from gallery',
         icon: 'fa-regular fa-images',
+        searchTerms: ['image', 'photo', 'picture', 'media'],
         command: (editor: Editor) => {
             editor.commands.openGallery()
         },
@@ -69,6 +71,7 @@ const commands: SlashCommandItem[] = [
         title: 'Insert Media',
         description: 'Upload an image from your device',
         icon: 'fa-regular fa-upload',
+        searchTerms: ['image', 'photo', 'picture', 'media', 'upload', 'file'],
         command: (editor: Editor) => {
             editor.commands.uploadMedia()
         },
@@ -106,7 +109,7 @@ const commands: SlashCommandItem[] = [
         description: 'Medium heading',
         icon: 'fa-regular fa-heading',
         command: (editor: Editor) => {
-            editor.chain().focus().toggleHeading({ level: 2 }).run()
+            editor.chain().focus().toggleHeading({ level: 3 }).run()
         },
     },
     {
@@ -123,6 +126,15 @@ const commands: SlashCommandItem[] = [
         icon: 'fa-regular fa-list-ol',
         command: (editor: Editor) => {
             editor.chain().focus().toggleOrderedList().run()
+        },
+    },
+    {
+        title: 'Task List',
+        description: 'Create a checklist',
+        icon: 'fa-regular fa-square-check',
+        searchTerms: ['checkbox', 'checklist', 'todo', 'task'],
+        command: (editor: Editor) => {
+            editor.chain().focus().toggleTaskList().run()
         },
     },
     {
@@ -154,8 +166,10 @@ const commands: SlashCommandItem[] = [
 export default () => {
     return {
         items: ({ query }: { query: string }): SlashCommandItem[] => {
+            const q = query.toLowerCase()
             return commands.filter(item =>
-                item.title.toLowerCase().includes(query.toLowerCase())
+                item.title.toLowerCase().includes(q)
+                || item.searchTerms?.some(term => term.includes(q))
             )
         },
 

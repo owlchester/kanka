@@ -75,10 +75,14 @@ return [
                 . 'code[class|style|id],'
 
                 /** Lists **/
-                . 'ul[class|style|id|role],'
+                . 'ul[class|style|id|role|data-type],'
                 . 'ol[class|style|id|role|start|type],'
-                . 'li[class|style|id|role|value],'
+                . 'li[class|style|id|role|value|data-type|data-checked],'
                 . 'dl[class|style|id],dt[class|style|id],dd[class|style|id],'
+
+                /** Task lists */
+                . 'label[class|style],'
+                . 'input[type|checked|disabled],'
 
                 /** Misc elements */
                 . 'mark[class|style],'

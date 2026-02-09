@@ -8,6 +8,7 @@
     import TableCell from '@tiptap/extension-table-cell'
     import TableHeader from '@tiptap/extension-table-header'
     import { TableWithControls } from './extensions/table/TableWithControls'
+    import { ListKit } from '@tiptap/extension-list'
     import { TableKit } from "@tiptap/extension-table";
     import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
     import { Mention } from './extensions/mentions/Mention'
@@ -81,6 +82,10 @@
     const extensions = [
         StarterKit.configure({
             link: false,
+            bulletList: false,
+            orderedList: false,
+            listItem: false,
+            listItemKeymap: false,
         }),
         Placeholder.configure({
             placeholder: 'Start writing...',
@@ -92,7 +97,11 @@
                 class: 'text-link',
             },
         }),
-
+        ListKit.configure({
+            taskItem: {
+                nested: true,
+            },
+        }),
         TableWithControls.configure({
             resizable: true,
         }),
@@ -536,5 +545,6 @@
         outline: 2px solid hsl(var(--p)/1);
         border-radius: 0.125rem;
     }
+
 }
 </style>
