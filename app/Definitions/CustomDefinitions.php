@@ -25,6 +25,7 @@ class CustomDefinitions implements Definition
 
         // Gallery
         $def->addAttribute('img', 'data-gallery-id', 'Text');
+        $def->addAttribute('img', 'data-uuid', 'Text');
 
         $def->addAttribute('ul', 'role', 'Text');
         $def->addAttribute('ol', 'role', 'Text');
@@ -62,5 +63,15 @@ class CustomDefinitions implements Definition
         );
 
         $def->addElement('summary', 'Inline', 'Inline', 'Common');
+        $def->addElement('mark', 'Inline', 'Inline', 'Common');
+
+        // Ordered list attributes
+        $def->addAttribute('ol', 'start', 'Number');
+        $def->addAttribute('ol', 'type', 'Text');
+        $def->addAttribute('li', 'value', 'Number');
+
+        // Table cell vertical alignment
+        $def->addAttribute('td', 'valign', 'Text');
+        $def->addAttribute('th', 'valign', 'Text');
     }
 }

@@ -65,21 +65,25 @@ return [
                 . 'span[class|style|id|dir],'
                 . 'a[href|class|style|target|rel|title|id|role|data-toggle|data-html|data-dropdown|data-pulse|data-animate|data-tooltip|data-title|data-entity-type],'
                 . 'br[class|style],'
-                . 'i[class],u[class],'
-                . 'img[src|style|alt|width|height|class|title|id|data-gallery-id],'
+                . 'i[class|style],u[class|style],'
+                . 'img[src|style|alt|width|height|class|title|id|data-gallery-id|data-uuid],'
                 . 'hr[class|style|id|title],'
 
                 /** Text blocks */
-                . 'pre[class|title|id],'
+                . 'pre[class|style|title|id],'
                 . 'blockquote[cite|class|style|id],'
                 . 'code[class|style|id],'
 
                 /** Lists **/
                 . 'ul[class|style|id|role],'
-                . 'ol[class|style|id|role],'
-                . 'li[class|style|id|role],'
+                . 'ol[class|style|id|role|start|type],'
+                . 'li[class|style|id|role|value],'
+                . 'dl[class|style|id],dt[class|style|id],dd[class|style|id],'
 
                 /** Misc elements */
+                . 'mark[class|style],'
+                . 'cite[class|style],'
+                . 'q[cite|class|style],'
                 . 'caption[class|style|id|title],'
                 . 'acronym[title|class|style],'
                 . 'abbr[title|class|style],'
@@ -91,11 +95,11 @@ return [
                 /** Iframe, combined with the domain whitelist */
                 . 'iframe[src|width|height|style|class|scrolling|id],'
 
-                /** Old school HTML formatting */
-                . 'ins,del,'
-                . 'sup,sub,'
+                /** Formatting */
+                . 'ins[class|style],del[class|style],'
+                . 'sup[class|style],sub[class|style],'
                 . 'big,small,'
-                . 'strong,em,b,strike,'
+                . 's[class|style],strong[class|style],em[class|style],b[class|style],strike,'
 
                 /** Tables */
                 . 'table[class|style|summary|border|cellpadding|cellspacing|id|width],'
@@ -103,10 +107,10 @@ return [
                 . 'thead[class|style|id],'
                 . 'tfoot[class|style|id],'
                 . 'colgroup,'
-                . 'col[style],'
+                . 'col[style|class],'
                 . 'tr[class|style|id],'
-                . 'td[class|style|abbr|colspan|rowspan|title|align],'
-                . 'th[class|style|abbr|colspan|rowspan|title|align],',
+                . 'td[class|style|abbr|colspan|rowspan|title|align|valign],'
+                . 'th[class|style|abbr|colspan|rowspan|title|align|valign],',
 
             /*
             |--------------------------------------------------------------------------
@@ -137,14 +141,23 @@ return [
             |
             */
 
-            'CSS.AllowedProperties' => 'font,font-size,font-weight,font-style,font-family,text-decoration,padding-left,' .
-                'color,background-color,text-align,width,height,border,border-collapse,max-width,max-height,' .
-                'border-style,border-color,margin-left,margin-right,margin,padding,' .
-                // 'background-image,background-repeat,' .
-
-                // Image stuff
-                'float,' .
-                'list-style-type',
+            'CSS.AllowedProperties' => ''
+                /** Typography */
+                . 'font,font-size,font-weight,font-style,font-family,'
+                . 'text-decoration,text-align,text-indent,text-transform,'
+                . 'line-height,letter-spacing,word-spacing,white-space,'
+                . 'vertical-align,color,'
+                /** Backgrounds */
+                . 'background-color,'
+                /** Box model */
+                . 'width,height,min-width,min-height,max-width,max-height,'
+                . 'margin,margin-top,margin-right,margin-bottom,margin-left,'
+                . 'padding,padding-top,padding-right,padding-bottom,padding-left,'
+                /** Borders */
+                . 'border,border-collapse,border-style,border-color,border-width,'
+                . 'border-top,border-right,border-bottom,border-left,'
+                /** Layout */
+                . 'float,list-style-type',
 
             /*
             |--------------------------------------------------------------------------
@@ -248,6 +261,8 @@ return [
     */
 
     'definitions' => App\Definitions\CustomDefinitions::class,
+
+    'css-definitions' => App\Definitions\CustomCssDefinitions::class,
 
     /*
     |--------------------------------------------------------------------------
