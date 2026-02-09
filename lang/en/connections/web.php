@@ -3,7 +3,9 @@
 return [
     'actions'   => [
         'back'      => 'Back to connections',
-        'download'  => 'Download PNG',
+        'download'  => 'Download',
+        'download-png' => 'Download PNG',
+        'download-pdf' => 'Download PDF',
         'view'      => 'View web',
     ],
     'cta'       => [

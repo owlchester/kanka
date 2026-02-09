@@ -19,10 +19,28 @@
                     <span class="grow hidden sm:inline-block" v-html="trans('create')"></span>
                 </a>
 
-                <a href="#" @click="print()" class="btn2 btn-sm btn-outline">
-                    <i class="fa-regular fa-download" aria-hidden="true"></i>
-                    <span v-html="trans('download')"></span>
-                </a>
+                <div class="relative">
+                    <a href="#" @click.prevent="downloadDropdown = !downloadDropdown" class="btn2 btn-sm btn-outline">
+                        <i class="fa-regular fa-download" aria-hidden="true"></i>
+                        <span v-html="trans('download')"></span>
+                        <i class="fa-solid fa-caret-down" aria-hidden="true"></i>
+                    </a>
+                    <div
+                        v-if="downloadDropdown"
+                        v-click-outside="() => downloadDropdown = false"
+                        class="dropdown-menu absolute mt-2 flex flex-col gap-1 bg-base-200 shadow-sm p-2 rounded z-10"
+                        role="menu"
+                    >
+                        <button @click="downloadPng()" class="dropdown-item flex items-center gap-2 px-2 py-1 rounded hover:bg-base-300 whitespace-nowrap text-left">
+                            <i class="fa-regular fa-image w-6" aria-hidden="true"></i>
+                            <span v-html="trans('download-png')"></span>
+                        </button>
+                        <button @click="downloadPdf()" class="dropdown-item flex items-center gap-2 px-2 py-1 rounded hover:bg-base-300 whitespace-nowrap text-left">
+                            <i class="fa-regular fa-file-pdf w-6" aria-hidden="true"></i>
+                            <span v-html="trans('download-pdf')"></span>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -71,6 +89,7 @@ const relation = ref(null)
 const cyContainer = ref()
 const entityTooltips = ref(Array)
 let nodeTippy: Instance | null = null
+const downloadDropdown = ref(false)
 const i18n = ref(null)
 const urls = ref(null)
 
@@ -489,7 +508,8 @@ const trans = (key: string) => {
     return i18n.value[key] || key
 }
 
-const print = () => {
+const downloadPng = () => {
+    downloadDropdown.value = false
     if (!cy.value) {
         return
     }
@@ -505,6 +525,34 @@ const print = () => {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+}
+
+const downloadPdf = async () => {
+    downloadDropdown.value = false
+    if (!cy.value) {
+        return
+    }
+
+    const { jsPDF } = await import('jspdf')
+
+    const base64 = cy.value.png({
+        full: true,
+        bg: cssVariable('--b1'),
+    });
+
+    const img = new Image();
+    img.src = base64;
+    await new Promise((resolve) => { img.onload = resolve; });
+
+    const landscape = img.width > img.height;
+    const doc = new jsPDF({
+        orientation: landscape ? 'landscape' : 'portrait',
+        unit: 'px',
+        format: [img.width, img.height],
+    });
+
+    doc.addImage(base64, 'PNG', 0, 0, img.width, img.height);
+    doc.save(`${trans('campaign')}-web-${Date.now()}.pdf`);
 }
 
 </script>
