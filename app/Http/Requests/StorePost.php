@@ -26,9 +26,8 @@ class StorePost extends FormRequest
      */
     public function rules()
     {
-
         $rules = [
-            'name' => ['required', 'max:191', new \App\Rules\Lessless],
+            'name' => ['required', 'string', 'max:191', new \App\Rules\Lessless],
             'visibility_id' => 'nullable|exists:visibilities,id',
             'location_id' => 'nullable|exists:locations,id',
             'is_pinned' => 'boolean',

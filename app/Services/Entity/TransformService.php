@@ -169,8 +169,8 @@ class TransformService
         }
 
         if (
-            ! in_array($this->child->entityTypeId(), [$raceID, $creatureID, $organisationID]) ||
-            ! in_array($this->new->entityTypeId(), [$raceID, $creatureID, $organisationID])
+            ! in_array($this->child->entityTypeId(), $entityLocations) ||
+            ! in_array($this->new->entityTypeId(), $entityLocations)
         ) {
             if (property_exists($this->child, 'locations')) {
                 // @phpstan-ignore-next-line
