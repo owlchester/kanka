@@ -44,7 +44,14 @@
             :dashboard="$dashboard"
             icon="fa-dice-d20"
         ></x-dashboards.widgets.selection>
-
+        @if($campaign->isOpen())
+            <x-dashboards.widgets.selection
+                :widget="Widget::Join"
+                :campaign="$campaign"
+                :dashboard="$dashboard"
+                icon="fa-door-open"
+            ></x-dashboards.widgets.selection>
+        @endif
         @if(!empty($dashboard))
             <x-dashboards.widgets.selection
                 :widget="Widget::Campaign"

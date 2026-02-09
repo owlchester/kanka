@@ -8,10 +8,10 @@
         :label="__('campaigns/applications.fields.character_concept')">
         <textarea 
             name="character_concept" 
-            class="w-full" 
+            class="w-full p-2 border rounded" 
             rows="5" 
             placeholder="{{ __('campaigns/applications.placeholders.character_concept') }}"
-        >{!! old('character_concept', $application->text ?? null) !!}</textarea>
+        >{{ old('character_concept', $application->character_concept ?? '') }}</textarea>
     </x-forms.field>
 
     <x-forms.field
@@ -28,11 +28,11 @@
                 1 => __('campaigns/applications.experience.intermediate'),
                 2 => __('campaigns/applications.experience.veteran'),
             ]" 
-            :selected="0" 
+            :selected="old('experience', $application->experience ?? 0)" 
         />
     </x-forms.field>
 
-    <div class="col-span-full space-y-4">
+    <div class="col-span-full space-y-4 mt-4">
         <h3 class="text-lg font-medium text-gray-900">{{ __('campaigns/applications.headers.availability') }}</h3>
         
         <x-forms.field 
@@ -43,13 +43,14 @@
             <div class="flex flex-wrap gap-4 mt-2">
                 @foreach(['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'] as $day)
                     <label class="inline-flex items-center">
-                    <x-checkbox :text="__('campaigns/applications.weekdays.' . $day)">
                         <input 
                             type="checkbox" 
                             name="availability_days[]" 
                             value="{{ $day }}"
+                            class="rounded border-gray-300 text-indigo-600 shadow-sm"
+                            @checked(in_array($day, old('availability_days', $application->availability_days ?? [])))
                         >
-                    </x-checkbox>
+                        <span class="ml-2 text-sm text-gray-600">{{ __('campaigns/applications.weekdays.' . $day) }}</span>
                     </label>
                 @endforeach
             </div>
@@ -61,7 +62,7 @@
                     type="time" 
                     name="time_start" 
                     class="w-full border-gray-300 rounded-md shadow-sm"
-                    value="{{ old('time_start', $application->time_start ?? '') }}" 
+                    value="{{ old('time_start', isset($application->time_start) ? \Carbon\Carbon::parse($application->time_start)->format('H:i') : '') }}" 
                 />
             </x-forms.field>
 
@@ -70,17 +71,16 @@
                     type="time" 
                     name="time_end" 
                     class="w-full border-gray-300 rounded-md shadow-sm"
-                    value="{{ old('time_end', $application->time_end ?? '') }}" 
+                    value="{{ old('time_end', isset($application->time_end) ? \Carbon\Carbon::parse($application->time_end)->format('H:i') : '') }}" 
                 />
             </x-forms.field>
-            <x-forms.field
-                field="timezone"
-                :label="__('campaigns/applications.fields.timezone')">
-                
+
+            {{-- Timezone (Usually kept as campaign default unless user overrides) --}}
+            <x-forms.field field="timezone" :label="__('campaigns/applications.fields.timezone')">
                 <x-forms.select 
                     name="timezone" 
                     :options="$timezones" 
-                    :selected="old('timezone', $campaign->getFilter(\App\Enums\CampaignFilterType::Timezone) ?? 'UTC +00:00')" 
+                    :selected="old('timezone', $application->timezone ?? $campaign->getFilter(\App\Enums\CampaignFilterType::Timezone))" 
                 />
             </x-forms.field>
         </div>
@@ -96,10 +96,8 @@
             <input 
                 type="range" 
                 name="pref_rp_combat" 
-                min="0" 
-                max="2" 
-                step="1" 
-                value="1"
+                min="0" max="2" step="1" 
+                value="{{ old('pref_rp_combat', $application->pref_rp_combat ?? 1) }}"
                 class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
             >
         </x-forms.field>
@@ -112,10 +110,8 @@
             <input 
                 type="range" 
                 name="pref_tone" 
-                min="0" 
-                max="2" 
-                step="1" 
-                value="1"
+                min="0" max="2" step="1" 
+                value="{{ old('pref_tone', $application->pref_tone ?? 1) }}"
                 class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
             >
         </x-forms.field>
