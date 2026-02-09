@@ -17,7 +17,7 @@
     import slashCommandSuggestion from './extensions/slashcommand/suggestion'
     import { Gallery } from './extensions/gallery/Gallery'
     import GalleryDialog from './extensions/gallery/GalleryDialog.vue'
-    import { Image } from '@tiptap/extension-image'
+    import { CustomImage } from './extensions/CustomImage'
     import { Iframe } from './extensions/Iframe'
     import { Details, DetailsContent, DetailsSummary } from '@tiptap/extension-details'
     import { TextStyle } from '@tiptap/extension-text-style'
@@ -108,7 +108,7 @@
         SlashCommand.configure({
             suggestion: slashCommandSuggestion(),
         }),
-        Image.configure({
+        CustomImage.configure({
             inline: true,
             allowBase64: false,
             resize: {
@@ -448,10 +448,8 @@
 </style>
 <style lang="scss">
 .tiptap-editor {
-    img {
-        &.ProseMirror-selectednode {
-            outline: 2px solid hsl(var(--p)/1);
-        }
+    .ProseMirror-selectednode img {
+        outline: 2px solid hsl(var(--p)/1);
     }
 
     [data-resize-handle] {

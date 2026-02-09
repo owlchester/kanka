@@ -183,7 +183,7 @@ const selectImage = (image: GalleryImage) => {
     editorRef.value?.chain().focus().setImage({
         src: image.src,
         alt: image.name,
-        'data-uuid': image.uuid,
+        'data-gallery-uuid': image.uuid,
     }).run()
     closeGallery()
 }

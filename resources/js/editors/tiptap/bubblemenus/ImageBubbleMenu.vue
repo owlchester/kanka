@@ -18,15 +18,12 @@ const deleteImage = () => {
     props.editor.chain().focus().deleteSelection().run()
 }
 
-const getImageWidth = () => {
-    return props.editor.getAttributes('image').width || null
+const getImageWidth = (): string | null => {
+    return props.editor.getAttributes('image').widthStyle || null
 }
 
 const getImageFloat = (): 'left' | 'right' | null => {
-    const classes = props.editor.getAttributes('image').class || ''
-    if (classes.includes('float-left') || classes.includes('note-float-left')) return 'left'
-    if (classes.includes('float-right') || classes.includes('note-float-right')) return 'right'
-    return null
+    return props.editor.getAttributes('image').floatStyle || null
 }
 </script>
 
@@ -60,7 +57,7 @@ const getImageFloat = (): 'left' | 'right' | null => {
                 :class="buttonClass(getImageWidth() === null)"
                 title="Reset width"
             >
-                <i class="fa-regular fa-undo" aria-hdasidden="true" />
+                <i class="fa-regular fa-undo" aria-hidden="true" />
             </button>
         </div>
         <!-- Float controls -->

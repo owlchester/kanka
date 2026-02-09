@@ -141,6 +141,9 @@ return [
                 'color,background-color,text-align,width,height,border,border-collapse,max-width,max-height,' .
                 'border-style,border-color,margin-left,margin-right,margin,padding,' .
                 // 'background-image,background-repeat,' .
+
+                // Image stuff
+                'float,' .
                 'list-style-type',
 
             /*

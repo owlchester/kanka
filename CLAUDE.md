@@ -55,7 +55,7 @@ This project has domain-specific skills available. You MUST activate the relevan
 
 ## Frontend Bundling
 
-- If the user doesn't see a frontend change reflected in the UI, it could mean they need to run `vendor/bin/sail yarn run build`, `vendor/bin/sail yarn run dev`, or `vendor/bin/sail composer run dev`. Ask them.
+- If the user doesn't see a frontend change reflected in the UI, it could mean they need to run `vendor/bin/sail yarn run build`, `vendor/bin/sail yarn run dev`, or `vendor/bin/sail composer run dev`. Never ask them to run these commands, but remind them to do it in your closing summary.
 
 ## Documentation Files
 
