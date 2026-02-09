@@ -17,7 +17,7 @@
     import slashCommandSuggestion from './extensions/slashcommand/suggestion'
     import { Gallery } from './extensions/gallery/Gallery'
     import GalleryDialog from './extensions/gallery/GalleryDialog.vue'
-    import { GalleryImage } from './extensions/gallery/GalleryImage'
+    import { Image } from '@tiptap/extension-image'
     import { Iframe } from './extensions/Iframe'
     import { Details, DetailsContent, DetailsSummary } from '@tiptap/extension-details'
     import { TextStyle } from '@tiptap/extension-text-style'
@@ -108,9 +108,15 @@
         SlashCommand.configure({
             suggestion: slashCommandSuggestion(),
         }),
-        GalleryImage.configure({
-            inline: false,
+        Image.configure({
+            inline: true,
             allowBase64: false,
+            resize: {
+                enabled: true,
+                minWidth: 20,
+                minHeight: 20,
+                alwaysPreserveAspectRatio: true,
+            }
         }),
         Iframe,
         Details.configure({
@@ -423,6 +429,7 @@
     }
 }
 
+
 :deep(.iframe-wrapper) {
     margin: 1rem 0;
 }
@@ -436,6 +443,100 @@
     flex-direction: row;
     summary {
         display: inline;
+    }
+}
+</style>
+<style lang="scss">
+.tiptap-editor {
+    img {
+        &.ProseMirror-selectednode {
+            outline: 2px solid hsl(var(--p)/1);
+        }
+    }
+
+    [data-resize-handle] {
+        position: absolute;
+        background: hsl(var(--pc)/1);
+        border: 1px solid hsl(var(--pc)/1);
+        border-radius: 2px;
+        z-index: 10;
+
+        &:hover {
+            background: hsl(var(--p)/1);
+        }
+
+        /* Corner handles */
+        &[data-resize-handle='top-left'],
+        &[data-resize-handle='top-right'],
+        &[data-resize-handle='bottom-left'],
+        &[data-resize-handle='bottom-right'] {
+            width: 8px;
+            height: 8px;
+        }
+
+        &[data-resize-handle='top-left'] {
+            top: -4px;
+            left: -4px;
+            cursor: nwse-resize;
+        }
+
+        &[data-resize-handle='top-right'] {
+            top: -4px;
+            right: -4px;
+            cursor: nesw-resize;
+        }
+
+        &[data-resize-handle='bottom-left'] {
+            bottom: -4px;
+            left: -4px;
+            cursor: nesw-resize;
+        }
+
+        &[data-resize-handle='bottom-right'] {
+            bottom: -4px;
+            right: -4px;
+            cursor: nwse-resize;
+        }
+
+        /* Edge handles */
+        &[data-resize-handle='top'],
+        &[data-resize-handle='bottom'] {
+            height: 6px;
+            left: 8px;
+            right: 8px;
+        }
+
+        &[data-resize-handle='top'] {
+            top: -3px;
+            cursor: ns-resize;
+        }
+
+        &[data-resize-handle='bottom'] {
+            bottom: -3px;
+            cursor: ns-resize;
+        }
+
+        &[data-resize-handle='left'],
+        &[data-resize-handle='right'] {
+            width: 6px;
+            top: 8px;
+            bottom: 8px;
+        }
+
+        &[data-resize-handle='left'] {
+            left: -3px;
+            cursor: ew-resize;
+        }
+
+        &[data-resize-handle='right'] {
+            right: -3px;
+            cursor: ew-resize;
+        }
+    }
+
+    [data-resize-state='true'] [data-resize-wrapper] {
+        outline: 2px solid hsl(var(--p)/1);
+        border-radius: 0.125rem;
     }
 }
 </style>
