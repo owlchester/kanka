@@ -40,12 +40,12 @@ class Kernel extends ConsoleKernel
         $schedule->command(EndFreeTrials::class)->onOneServer()->dailyAt('00:01');
         $schedule->command(RegenerateDiscordToken::class)->onOneServer()->dailyAt('00:15');
         $schedule->command(VisibileEntityCountCommand::class)->onOneServer()->dailyAt('01:00');
-        $schedule->command('backup:clean')->onOneServer()->dailyAt('01:00');
         $schedule->command(CleanupTrashed::class)->onOneServer()->dailyAt('01:15');
+        $schedule->command('backup:clean')->onOneServer()->dailyAt('01:20');
         $schedule->command(CleanupEntityLogs::class)->onOneServer()->dailyAt('01:30');
         $schedule->command(CleanupTrashedCampaigns::class)->onOneServer()->dailyAt('01:45');
         // $schedule->command(CleanupUsers::class)->onOneServer()->dailyAt('01:50');
-        $schedule->command('backup:run')->onOneServer()->twiceDaily();
+        $schedule->command('backup:run')->onOneServer()->twiceDaily(2,14);
 
         // $schedule->command('backup:monitor')->daily()->at('03:00');
         // $schedule->command(UpcomingYearlyCommand::class)->dailyAt('06:30');
