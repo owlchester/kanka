@@ -2,6 +2,7 @@
 
 return [
     'actions'   => [
+        'add'       => 'Add',
         'back'      => 'Back to connections',
         'download'  => 'Download',
         'download-png' => 'Download PNG',

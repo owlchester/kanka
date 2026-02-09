@@ -19,6 +19,11 @@
                     <span class="grow hidden sm:inline-block" v-html="trans('create')"></span>
                 </a>
 
+                <a href="#" @click.prevent="openCreate()" class="btn2 btn-outline btn-sm">
+                    <i class="fa-regular fa-link" aria-hidden="true"></i>
+                    <span class="hidden sm:inline-block" v-html="trans('add')"></span>
+                </a>
+
                 <div class="relative">
                     <a href="#" @click.prevent="downloadDropdown = !downloadDropdown" class="btn2 btn-sm btn-outline">
                         <i class="fa-regular fa-download" aria-hidden="true"></i>
@@ -440,17 +445,42 @@ const handleDialogFormSubmit = async (event: SubmitEvent) => {
             },
         })
 
-        // Handle success (see next section)
-        handleRelationUpdate(response.data)
+        if (response.data.created) {
+            handleRelationCreate(response.data)
+        } else {
+            handleRelationUpdate(response.data)
+        }
 
-        // Close the dialog (use whatever your project exposes)
         if (window.closeDialog) {
             window.closeDialog('primary-dialog')
         }
     } catch (error) {
-        // You can show errors inside the dialog instead of redirect
-        console.error(error)
+        if (error.response && error.response.status === 422 && error.response.data?.errors) {
+            showDialogErrors(form, error.response.data.errors)
+        } else {
+            console.error(error)
+        }
     }
+}
+
+const showDialogErrors = (form: HTMLFormElement, errors: Record<string, string[]>) => {
+    const article = form.closest('article')
+    if (!article) return
+
+    // Remove any previous error alert
+    article.querySelector('.alert.alert-error.js-web-errors')?.remove()
+
+    const messages = Object.values(errors).flat()
+    const alert = document.createElement('div')
+    alert.className = 'alert alert-error border-0 rounded-lg p-4 flex shadow-xs gap-2 items-center js-web-errors'
+    const list = document.createElement('ul')
+    messages.forEach((msg) => {
+        const li = document.createElement('li')
+        li.textContent = msg
+        list.appendChild(li)
+    })
+    alert.appendChild(list)
+    article.prepend(alert)
 }
 
 const handleRelationUpdate = async (data) => {
@@ -498,6 +528,65 @@ const handleRelationUpdate = async (data) => {
             attitude: width,
         })
     }
+}
+
+const handleRelationCreate = async (data) => {
+    if (!cy.value || !data) return
+
+    // Add both source and target entities (they may already exist)
+    addEntity(data.target);
+    if (data.source) {
+        const sourceNode = cy.value.getElementById(data.source);
+        if (sourceNode.length === 0) {
+            // Source entity not in graph yet, reload to get it
+            await reloadData();
+            return;
+        }
+    }
+    await finishDrawing();
+
+    const width = getWidthFromAttitude(data.attitude ?? 0)
+    const edge = {
+        group: 'edges',
+        data: {
+            id: data.id,
+            source: data.source,
+            target: data.target.id,
+            name: data.text,
+            colour: data.colour || '#777777',
+            attitude: width,
+            shape: data.shape || 'triangle',
+            url: data.url,
+        }
+    };
+    cy.value.add(edge);
+
+    // Show the target node if it was hidden as an orphan
+    const targetNode = cy.value.getElementById(data.target.id);
+    if (targetNode.length > 0 && targetNode.hidden()) {
+        targetNode.show();
+    }
+
+    runLayout();
+}
+
+const reloadData = async () => {
+    elements.value = [];
+    await loadData();
+    cy.value.elements().remove();
+    cy.value.add(elements.value);
+    cy.value.nodes().forEach(function(node) {
+        if (node.connectedEdges().length == 0) {
+            addEntityToOrphans(node);
+        }
+    });
+    runLayout();
+    addListeners();
+    await finishDrawing();
+}
+
+const openCreate = () => {
+    window.openDialog("primary-dialog", urls.value.create)
 }
 
 const openQQ = () => {

@@ -100,6 +100,7 @@ class WebService
     protected function i18n(): array
     {
         return [
+            'add' => __('connections/web.actions.add'),
             'create' => __('crud.create'),
             'print' => __('crud.actions.print'),
             'download' => __('connections/web.actions.download'),
@@ -114,6 +115,7 @@ class WebService
     protected function urls(): array
     {
         return [
+            'create' => route('relations.create', [$this->campaign, 'from' => 'web']),
             'creator' => route('entity-creator.selection', $this->campaign),
             'back' => route('relations.index', [$this->campaign]),
         ];

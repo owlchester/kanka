@@ -4,7 +4,7 @@
 
     @include('cruds.fields.relation')
 
-    @include('cruds.fields.colour_picker')
+    @include('cruds.fields.colour_picker', request()->ajax() ? ['dropdownParent' => '#primary-dialog'] : [])
     @include('cruds.fields.attitude', ['model' => $relation ?? null])
 
     @include('cruds.fields.visibility_id', ['model' => $relation ?? null])
