@@ -40,7 +40,7 @@ $entityTags = $post->visibleTags();
             @endif
         </div>
     </div>
-    <div class="bg-box rounded post entity-note">
+    <div class="bg-box rounded-lg post entity-note">
         <div class="entity-content overflow-hidden @if ($post->collapsed()) hidden @endif" id="post-body-{{ $post->id }}">
             <div class="flex flex-col gap-2 p-4">
                 <x-posts.tags :post="$post" :campaign="$campaign"></x-posts.tags>
