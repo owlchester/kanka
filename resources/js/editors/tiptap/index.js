@@ -1,6 +1,6 @@
-import { createApp, h } from 'vue'
-import Tiptap from "./Tiptap.vue"
+import { createApp, h, defineAsyncComponent } from 'vue'
 
+const TiptapComponent = defineAsyncComponent(() => import("./Tiptap.vue"))
 
 const loadWidget = () => {
 
@@ -32,7 +32,7 @@ const loadWidget = () => {
 
         const app = createApp({
             render() {
-                return h(Tiptap, props)
+                return h(TiptapComponent, props)
             }
         })
         app.mount(el)
@@ -44,4 +44,3 @@ loadWidget();
 window.onEvent(function() {
     loadWidget();
 });
-

@@ -10,14 +10,14 @@
     import { TableWithControls } from './extensions/table/TableWithControls'
     import { ListKit } from '@tiptap/extension-list'
     import { TableKit } from "@tiptap/extension-table";
-    import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+    import { ref, computed, onMounted, onBeforeUnmount, defineAsyncComponent } from 'vue'
     import { Mention } from './extensions/mentions/Mention'
     import suggestion from './extensions/mentions/suggestion'
     import { MentionParser } from './extensions/mentions/MentionParser'
     import { SlashCommand } from './extensions/slashcommand/SlashCommand'
     import slashCommandSuggestion from './extensions/slashcommand/suggestion'
     import { Gallery } from './extensions/gallery/Gallery'
-    import GalleryDialog from './extensions/gallery/GalleryDialog.vue'
+    const GalleryDialog = defineAsyncComponent(() => import('./extensions/gallery/GalleryDialog.vue'))
     import { CustomImage } from './extensions/CustomImage'
     import { Iframe } from './extensions/Iframe'
     import { Div } from './extensions/Div'
@@ -32,7 +32,7 @@
     import TableBubbleMenu from './bubblemenus/TableBubbleMenu.vue'
     import ImageBubbleMenu from './bubblemenus/ImageBubbleMenu.vue'
     import TextBubbleMenu from './bubblemenus/TextBubbleMenu.vue'
-    import SourceEditor from './SourceEditor.vue'
+    const SourceEditor = defineAsyncComponent(() => import('./SourceEditor.vue'))
 
     const props = withDefaults(defineProps<{
         modelValue?: string

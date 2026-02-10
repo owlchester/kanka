@@ -100,6 +100,17 @@ export default defineConfig({
         }),
         tailwindcss(),
     ],
+    build: {
+        rollupOptions: {
+            output: {
+                manualChunks(id) {
+                    if (id.includes('node_modules/@tiptap') || id.includes('node_modules/prosemirror') || id.includes('node_modules/@prosemirror')) {
+                        return 'vendor-tiptap'
+                    }
+                },
+            },
+        },
+    },
     resolve: {
         alias: {
             'vue': 'vue/dist/vue.esm-bundler',
