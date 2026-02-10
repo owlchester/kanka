@@ -457,7 +457,7 @@
     }
 }
 </style>
-<style lang="scss">
+<style>
 .tiptap-editor {
     .ProseMirror-selectednode img {
         outline: 2px solid hsl(var(--p)/1);

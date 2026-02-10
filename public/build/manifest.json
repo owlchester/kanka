@@ -459,7 +459,7 @@
     ]
   },
   "resources/js/editors/tiptap/Tiptap.vue": {
-    "file": "assets/Tiptap-DprLmpcd.js",
+    "file": "assets/Tiptap-CFObHAzb.js",
     "name": "Tiptap",
     "src": "resources/js/editors/tiptap/Tiptap.vue",
     "isDynamicEntry": true,
@@ -474,7 +474,7 @@
       "resources/js/editors/tiptap/SourceEditor.vue"
     ],
     "css": [
-      "assets/Tiptap-BxOWYJ3L.css"
+      "assets/Tiptap-Csh0ndRj.css"
     ]
   },
   "resources/js/editors/tiptap/extensions/gallery/GalleryDialog.vue": {
@@ -492,7 +492,7 @@
     ]
   },
   "resources/js/editors/tiptap/index.js": {
-    "file": "assets/index-DdsV6s6Z.js",
+    "file": "assets/index-CpWhlfD7.js",
     "name": "index",
     "src": "resources/js/editors/tiptap/index.js",
     "isEntry": true,
