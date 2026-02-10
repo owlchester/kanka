@@ -109,6 +109,8 @@ class WebService
             'qq-keyboard-shortcut' => __('header.qq.tooltip') . ' [ N ]',
             'back' => __('connections/web.actions.back'),
             'campaign' => $this->campaign->name,
+            'zoom-fit' => __('connections/web.actions.zoom-fit'),
+            'reset-layout' => __('connections/web.actions.reset-layout'),
         ];
     }
 

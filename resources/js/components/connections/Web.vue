@@ -1,51 +1,64 @@
 <template>
-    <div class="toolbar fixed w-full p-2 flex items-center justify-between gap-2 z-700" v-if="ready">
-        <div class="flex gap-4 items-center">
-            <a :href="urls.back" :title="trans('back')" class="flex items-center gap-1 text-link rounded bg-base-100 p-1" tabindex="0">
-                <i class="fa-regular fa-left-to-bracket" aria-hidden="true"></i>
-                <span v-html="trans('back')"></span>
-            </a>
+    <!-- Back button (top-left floating) -->
 
-            <div v-if="props.creator" class="relative flex gap-2">
-                <a
-                    v-if="props.creator"
-                    href="#"
-                    @click="openQQ()"
-                    class="quick-creator-button btn2 btn-outline btn-sm"
-                    data-toggle="tooltip"
-                    :data-title="trans('qq-keyboard-shortcut')"
-                    tabindex="0">
-                    <i class="flex-none fa-regular fa-plus" aria-hidden="true"></i>
-                    <span class="grow hidden sm:inline-block" v-html="trans('create')"></span>
+
+    <!-- Bottom toolbar -->
+    <div v-if="ready" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-700 flex items-center gap-1.5 bg-base-100/80 backdrop-blur rounded-xl shadow-lg px-2 py-1.5">
+        <a v-if="ready" :href="urls.back" :title="trans('back')" class="btn2 btn-ghost" tabindex="0">
+            <i class="fa-regular fa-home" aria-hidden="true"></i>
+        </a>
+
+        <!-- Zone 1: Plus FAB -->
+        <div v-if="props.creator" class="relative">
+            <button @click.prevent="fabDropdown = !fabDropdown" class="btn2 btn-primary" :title="trans('create')">
+                <i class="fa-regular fa-plus" aria-hidden="true"></i>
+            </button>
+            <div
+                v-if="fabDropdown"
+                v-click-outside="() => fabDropdown = false"
+                class="absolute bottom-full mb-2 left-0 flex flex-col gap-1 bg-base-100 shadow-lg p-2 rounded-lg z-10 min-w-max"
+                role="menu"
+            >
+                <a href="#" @click.prevent="fabDropdown = false; openQQ()" class="flex items-center gap-2 px-3 py-1.5 rounded hover:bg-base-200 cursor-pointer whitespace-nowrap">
+                    <i class="fa-regular fa-bolt w-5" aria-hidden="true"></i>
+                    <span v-html="trans('create')"></span>
                 </a>
-
-                <a href="#" @click.prevent="openCreate()" class="btn2 btn-outline btn-sm">
-                    <i class="fa-regular fa-link" aria-hidden="true"></i>
-                    <span class="hidden sm:inline-block" v-html="trans('add')"></span>
+                <a href="#" @click.prevent="fabDropdown = false; openCreate()" class="flex items-center gap-2 px-3 py-1.5 rounded hover:bg-base-200 cursor-pointer whitespace-nowrap">
+                    <i class="fa-regular fa-link w-5" aria-hidden="true"></i>
+                    <span v-html="trans('add')"></span>
                 </a>
+            </div>
+        </div>
 
-                <div class="relative">
-                    <a href="#" @click.prevent="downloadDropdown = !downloadDropdown" class="btn2 btn-sm btn-outline">
-                        <i class="fa-regular fa-download" aria-hidden="true"></i>
-                        <span v-html="trans('download')"></span>
-                        <i class="fa-solid fa-caret-down" aria-hidden="true"></i>
-                    </a>
-                    <div
-                        v-if="downloadDropdown"
-                        v-click-outside="() => downloadDropdown = false"
-                        class="dropdown-menu absolute mt-1 flex flex-col gap-1 bg-base-100 shadow-sm p-2 rounded z-10"
-                        role="menu"
-                    >
-                        <a @click.prevent="downloadPng()" class="dropdown-item flex items-center gap-2 px-2 py-1 rounded hover:bg-base-200 cursor-pointer whitespace-nowrap text-left">
-                            <i class="fa-regular fa-image w-6" aria-hidden="true"></i>
-                            <span v-html="trans('download-png')"></span>
-                        </a>
-                        <a @click.prevent="downloadPdf()" class="dropdown-item flex items-center gap-2 px-2 py-1 rounded hover:bg-base-200 cursor-pointer whitespace-nowrap text-left">
-                            <i class="fa-regular fa-file-pdf w-6" aria-hidden="true"></i>
-                            <span v-html="trans('download-pdf')"></span>
-                        </a>
-                    </div>
-                </div>
+        <!-- Zone 2: View controls -->
+        <button @click.prevent="zoomToFit()" class="btn2 btn-ghost rounded-lg" :title="trans('zoom-fit')">
+            <i class="fa-regular fa-arrows-maximize" aria-hidden="true"></i>
+        </button>
+        <button @click.prevent="resetLayout()" class="btn2 btn-ghost" :title="trans('reset-layout')">
+            <i class="fa-regular fa-grid-round" aria-hidden="true"></i>
+        </button>
+
+        <div class="w-px h-6 bg-base-content/20"></div>
+
+        <!-- Zone 3: Export -->
+        <div class="relative">
+            <button @click.prevent="downloadDropdown = !downloadDropdown" class="btn2 btn-ghost" :title="trans('download')">
+                <i class="fa-regular fa-download" aria-hidden="true"></i>
+            </button>
+            <div
+                v-if="downloadDropdown"
+                v-click-outside="() => downloadDropdown = false"
+                class="absolute bottom-full mb-2 right-0 flex flex-col gap-1 bg-base-100 shadow-lg p-2 rounded-2xl z-10 min-w-max"
+                role="menu"
+            >
+                <a @click.prevent="downloadPng()" class="flex items-center gap-2 px-3 py-1.5 rounded-xl hover:bg-base-200 cursor-pointer whitespace-nowrap">
+                    <i class="fa-regular fa-image w-5" aria-hidden="true"></i>
+                    <span v-html="trans('download-png')"></span>
+                </a>
+                <a @click.prevent="downloadPdf()" class="flex items-center gap-2 px-3 py-1.5 rounded-xl hover:bg-base-200 cursor-pointer whitespace-nowrap">
+                    <i class="fa-regular fa-file-pdf w-5" aria-hidden="true"></i>
+                    <span v-html="trans('download-pdf')"></span>
+                </a>
             </div>
         </div>
     </div>
@@ -95,6 +108,7 @@ const cyContainer = ref()
 const entityTooltips = ref(Array)
 let nodeTippy: Instance | null = null
 const downloadDropdown = ref(false)
+const fabDropdown = ref(false)
 const i18n = ref(null)
 const urls = ref(null)
 
@@ -591,6 +605,16 @@ const openCreate = () => {
 
 const openQQ = () => {
     window.openDialog("primary-dialog", urls.value.creator)
+}
+
+const zoomToFit = () => {
+    if (!cy.value) return
+    cy.value.fit(undefined, 30)
+}
+
+const resetLayout = () => {
+    if (!cy.value) return
+    runLayout()
 }
 
 const trans = (key: string) => {
