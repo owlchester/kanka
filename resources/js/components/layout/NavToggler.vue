@@ -40,7 +40,17 @@ const saveToCookie = (collapsed: boolean) => {
     document.cookie = "toggleState="+(collapsed ? 'collapsed' : 'open')+"; path=/; " + secure + "samesite=lax; " + expires;
 }
 
+
+const isMobile = (): boolean => {
+    return window.innerWidth < 768;
+}
+
 const loadFromCookie = () => {
+    if (isMobile()) {
+        document.body.classList.remove('sidebar-collapse');
+        return;
+    }
+
     let re = new RegExp('toggleState' + "=([^;]+)");
     let value = re.exec(document.cookie);
     let toggleState = (value != null) ? decodeURI(value[1]) : null;

@@ -133,7 +133,6 @@ class TransformService
         $entityLocations = [$raceID, $creatureID, $organisationID, $characterID];
 
         // If moving from a multi-location to single location
-        // @phpstan-ignore-next-line
         if (in_array($this->child->entityTypeId(), $entityLocations) && ! in_array($this->new->entityTypeId(), $entityLocations) && $this->entity->locations->isNotEmpty()) {
             if (in_array('location_id', $this->fillable)) {
                 // @phpstan-ignore-next-line
