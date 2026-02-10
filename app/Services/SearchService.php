@@ -439,6 +439,7 @@ class SearchService
     protected function formatForLookup(Entity $entity): array
     {
         $mention = '[' . $entity->entityType->code . ':' . $entity->id . ']';
+        // @phpstan-ignore-next-line
         if ($entity->alias_id) {
             $mention = '[' . $entity->entityType->code . ':' . $entity->id . '|alias:' . $entity->alias_id . ']';
         }

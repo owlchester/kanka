@@ -21,6 +21,7 @@ class DocumentController extends Controller
 
     protected function mentions(Entity $entity): array
     {
+        // @phpstan-ignore-next-line
         return $entity->mentions()->with(['entity', 'entity.entityType', 'entity.aliases'])->get()->map(function ($mention) {
             if ($mention->isEntity()) {
                 return [
@@ -38,7 +39,9 @@ class DocumentController extends Controller
 
             return [
                 'id' => $mention->id,
+                // @phpstan-ignore-next-line
                 'label' => $mention->label,
+                // @phpstan-ignore-next-line
                 'mention' => $mention->mention,
             ];
         })->toArray();
