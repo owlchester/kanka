@@ -20,16 +20,13 @@ class AppearanceController extends Controller
         $paginationOptions = $this->service->user(auth()->user())->options();
         $paginationDisabled = $this->service->disabled();
 
-        $editorOptions = null;
-        if (auth()->user()->created_at->isBefore('2023-01-09 12:00:00') || auth()->user()->hasRole('admin')) {
-            $editorOptions = [
-                '' => __('settings/appearance.editors.default', ['name' => 'Summernote']),
-                'legacy' => __('settings/appearance.editors.legacy', ['name' => 'TinyMCE 4']),
-            ];
-            if (auth()->user()->hasRole('admin')) {
-                $editorOptions['tiptap'] = __('settings/appearance.editors.tiptap');
-            }
+        $editorOptions = [
+            '' => __('settings/appearance.editors.default', ['name' => 'Summernote']),
+        ];
+        if (auth()->user()->created_at->isBefore('2023-01-09 12:00:00')) {
+            $editorOptions['legacy'] = __('settings/appearance.editors.legacy', ['name' => 'TinyMCE 4']);
         }
+        $editorOptions['tiptap'] = __('settings/appearance.editors.tiptap');
 
         return view('settings.appearance')
             ->with('paginationOptions', $paginationOptions)
