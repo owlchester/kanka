@@ -103,6 +103,6 @@ return [
     ],
     'update'            => [
         'success'   => 'Connection :target updated for :entity.',
-        'title'     => 'Update connections for :name',
+        'title'     => 'Update connections between :source and :target',
     ],
 ];

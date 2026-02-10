@@ -1,5 +1,9 @@
+<?php /** @var \App\Models\Relation $relation */?>
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => __($langKey . '.update.title', ['name' => $relation->relation]),
+    'title' => __($langKey . '.update.title', [
+        'source' => '<a href="' . $relation->owner->url() . '" class="text-link">' . $relation->owner->name . '</a>',
+        'target' => '<a href="' . $relation->target->url() . '" class="text-link">' . $relation->target->name . '</a>',
+        ]),
     'breadcrumbs' => [
         ['url' => Breadcrumb::campaign($campaign)->index($name), 'label' => __('entities.relations')],
         __('crud.update'),
