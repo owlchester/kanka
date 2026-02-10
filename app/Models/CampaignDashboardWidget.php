@@ -362,7 +362,7 @@ class CampaignDashboardWidget extends Model
                     ->inTypes($this->entityType->id)
                     ->with(['image', 'entityType', 'header', 'tags'])
                     // We cannot use inRandomOrder, because for some reason, when copled with livewire, it always returns RAND(0)
-                    ->orderByRaw("RAND()")
+                    ->orderByRaw('RAND()')
                     ->first();
             }
             $model = $this->entityType->getClass();
@@ -395,7 +395,7 @@ class CampaignDashboardWidget extends Model
             ->whereNotIn('entities.id', \App\Facades\Dashboard::excluding())
             ->inTypes($this->entityType?->id)
             ->with(['image', 'entityType', 'header', 'tags'])
-            ->orderByRaw("RAND()")
+            ->orderByRaw('RAND()')
             ->first();
     }
 
