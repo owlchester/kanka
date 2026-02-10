@@ -53,7 +53,7 @@ class Member extends Layout
                 'label' => Module::plural(config('entities.ids.location'), 'entities.locations'),
                 'class' => self::ONLY_DESKTOP,
                 'render' => Standard::ENTITY_LOCATIONS,
-                'with' => 'character.entity'
+                'with' => 'character.entity',
             ],
             'pinned' => [
                 'label' => '<i class="fa-regular fa-map-pin" data-title="' . __('organisations.members.fields.pinned') . '" data-toggle="tooltip"></i>',

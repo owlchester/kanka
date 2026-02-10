@@ -11,7 +11,7 @@
 ])
 
 @section('content')
-    <x-form :action="['entities.relations.update', $campaign, $entity->id, $relation]" method="PATCH" :direct="$from === 'web' ?? null">
+    <x-form :action="['entities.relations.update', $campaign, $entity->id, $relation]" method="PATCH" :direct="$from === 'web' ?? null" class="p-4">
         @include('partials.forms.form', [
             'title' => __('entities/relations.update.title', ['name' => '<a href="' .$entity->url() . '" class="text-link">' . $entity->name . '</a>']),
             'content' => 'entities.pages.relations._form',

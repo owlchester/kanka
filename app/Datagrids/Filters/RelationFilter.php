@@ -28,7 +28,12 @@ class RelationFilter extends DatagridFilter
                 'placeholder' => __('crud.placeholders.entity'),
                 'model' => Entity::class,
             ])
-            ->add('relation')
+            ->add([
+                'field' => 'relation',
+                'label' => __('entities/relations.fields.role'),
+                'type' => 'text',
+                'placeholder' => __('entities/relations.placeholders.role'),
+            ])
             ->add('attitude')
             ->add('is_pinned');
     }

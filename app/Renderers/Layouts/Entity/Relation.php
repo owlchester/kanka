@@ -17,7 +17,7 @@ class Relation extends Layout
         $columns = [
             'relation' => [
                 'key' => 'relation',
-                'label' => 'entities/relations.fields.relation',
+                'label' => 'entities/relations.fields.role',
                 'render' => function ($relation) {
                     $icon = '';
                     if ($relation->isPinned()) {

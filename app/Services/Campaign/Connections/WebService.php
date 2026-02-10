@@ -100,18 +100,24 @@ class WebService
     protected function i18n(): array
     {
         return [
+            'add' => __('connections/web.actions.add'),
             'create' => __('crud.create'),
             'print' => __('crud.actions.print'),
             'download' => __('connections/web.actions.download'),
+            'download-png' => __('connections/web.actions.download-png'),
+            'download-pdf' => __('connections/web.actions.download-pdf'),
             'qq-keyboard-shortcut' => __('header.qq.tooltip') . ' [ N ]',
             'back' => __('connections/web.actions.back'),
             'campaign' => $this->campaign->name,
+            'zoom-fit' => __('connections/web.actions.zoom-fit'),
+            'reset-layout' => __('connections/web.actions.reset-layout'),
         ];
     }
 
     protected function urls(): array
     {
         return [
+            'create' => route('relations.create', [$this->campaign, 'from' => 'web']),
             'creator' => route('entity-creator.selection', $this->campaign),
             'back' => route('relations.index', [$this->campaign]),
         ];

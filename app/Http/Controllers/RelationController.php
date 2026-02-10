@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Datagrids\Actions\RelationDatagridActions;
 use App\Datagrids\Filters\RelationFilter;
 use App\Http\Requests\StoreRelation;
+use App\Http\Resources\Web\EntityResource;
 use App\Models\Campaign;
 use App\Models\Relation;
 use App\Renderers\DatagridRenderer;
@@ -82,6 +83,29 @@ class RelationController extends CrudController
     public function store(StoreRelation $request, Campaign $campaign)
     {
         $this->authorize('relations', $campaign);
+
+        if ($request->get('from') === 'web') {
+            $this->relationService->campaign($campaign)->createRelations($request);
+            $new = $this->relationService->getNew();
+            $new->load('target', 'owner');
+
+            return response()->json([
+                'created' => true,
+                'id' => $new->id,
+                'source' => $new->owner_id,
+                'target' => (new EntityResource($new->target))->campaign($campaign),
+                'text' => $new->relation,
+                'colour' => $new->colour,
+                'attitude' => $new->attitude,
+                'shape' => $new->isMirrored() ? 'none' : 'triangle',
+                'url' => route('entities.relations.edit', [
+                    'campaign' => $campaign,
+                    'entity' => $new->owner_id,
+                    'relation' => $new,
+                    'from' => 'web',
+                ]),
+            ]);
+        }
 
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
         if (request()->ajax()) {
