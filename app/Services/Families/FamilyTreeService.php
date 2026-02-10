@@ -471,7 +471,7 @@ class FamilyTreeService
                     'confirm' => __('families/trees.modals.reset.confirm'),
                 ],
                 'fields' => [
-                    'relation' => __('entities/relations.fields.relation'),
+                    'relation' => __('entities/relations.fields.role'),
                     'character' => __('entities.character'),
                     'member' => __('families/trees.modals.entity.add.member'),
                     'css' => __('dashboard.widgets.fields.class'),

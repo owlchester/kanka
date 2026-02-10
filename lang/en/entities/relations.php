@@ -46,13 +46,15 @@ return [
         'attitude'          => 'Attitude',
         'connection'        => 'Connection',
         'is_pinned'         => 'Pinned',
-        'owner'             => 'Source',
-        'relation'          => 'Description',
-        'target'            => 'Target entity',
-        'target_relation'   => 'Target\'s description',
+        'owner'             => 'Origin',
+        'role'          => 'Role',
+        'target'            => 'Target',
+        'targets'            => 'Connection to...',
+        'mirror_relation' => 'Reciprocal role',
         'targets'           => 'Target entities',
-        'two_way'           => 'Mirror connection',
-        'unmirror'          => 'Unmirror this connection.',
+        'link'              => 'Reciprocal link',
+        'two_way'           => 'Reciprocal',
+        'unmirror'          => 'Untie this connection.',
     ],
     'filters'           => [
         'connection'    => 'Connection relation',
@@ -60,17 +62,20 @@ return [
     ],
     'helper'            => 'Set up connections between entities with attitudes and visibility. Connections can also be pinned to the entity\'s menu.',
     'helpers'           => [
+        'link' => 'Create a matching relation on the targets.',
+        'mirror_relation' => 'How the target sees this entity (leave blank to copy above).',
         'description'   => 'Detail the nature of the connection between the two entities.',
         'no_relations'  => 'This entity doesn\'t currently have any connection to other entities of the campaign.',
     ],
     'hints'             => [
         'attitude'          => 'This optional field can be used to define the default order connections appear in by descending order.',
-        'mirrored'          => [
-            'text'  => 'This connection is mirrored with :link.',
-            'title' => 'Mirrored',
-        ],
-        'target_relation'   => 'The connection description on the target. Leave blank to use this connection\'s text.',
-        'two_way'           => 'Create a mirrored connection on the target entity. Updating a mirrored connection doesn\'t update the original connection.',
+        'two_way'           => 'Create a mirrored connection on the targets. Updating a mirrored connection doesn\'t update the original connection.',
+    ],
+    'linked' => [
+        'label' => 'Linked connection',
+        'helper' => 'This relation is synced with :link',
+        'break' => 'Break link',
+        'unmirror-helper' => 'Converting this to a standalone relation will not delete anything.',
     ],
     'index'             => [
         'title' => 'Connections',
@@ -88,8 +93,6 @@ return [
     'placeholders'      => [
         'attitude'          => '-100 to 100, 100 being very positive',
         'relation'          => 'Rival, Best Friend, Sibling',
-        'target'            => 'Choose an entity',
-        'target_relation'   => 'Leave blank to use the description',
     ],
     'show'              => [
         'title' => ':name Connections',
