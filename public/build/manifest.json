@@ -180,7 +180,7 @@
     "src": "node_modules/rpg-awesome/fonts/rpgawesome-webfont.woff"
   },
   "resources/css/app.css": {
-    "file": "assets/app-DKOOKH2p.css",
+    "file": "assets/app-Bc3_aYHy.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -189,7 +189,7 @@
     ]
   },
   "resources/css/auth.css": {
-    "file": "assets/auth-Bih2fT-Z.css",
+    "file": "assets/auth-Bhy7sYZ1.css",
     "src": "resources/css/auth.css",
     "isEntry": true,
     "name": "auth",
@@ -216,7 +216,7 @@
     ]
   },
   "resources/css/front.css": {
-    "file": "assets/front-D6ihfgvg.css",
+    "file": "assets/front-CefIYqT4.css",
     "src": "resources/css/front.css",
     "isEntry": true,
     "name": "front",
@@ -314,7 +314,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-DcsdD3HU.js",
+    "file": "assets/app-7tTpp797.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -386,7 +386,7 @@
     ]
   },
   "resources/js/connections/web.js": {
-    "file": "assets/web-B_h8CVZh.js",
+    "file": "assets/web--RQWx7-d.js",
     "name": "web",
     "src": "resources/js/connections/web.js",
     "isEntry": true,

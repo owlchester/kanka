@@ -4,5 +4,9 @@
     :helper="__('entities/relations.hints.attitude')"
     tooltip>
 
-    <input type="number" name="attitude" class="w-full" value="{{ old('attitude', $model->attitude ?? null) }}" min="-100" max="100" placeholder="{{ __('entities/relations.placeholders.attitude') }}" />
+    <div x-data="{ value: {{ (int) old('attitude', $model->attitude ?? 0) }} }" class="flex items-center gap-3">
+        <input type="range" name="attitude" x-model="value" min="-100" max="100" step="1" class="w-full range-slider"
+            :style="`--range-fill: ${(+value + 100) / 200 * 100}%`" />
+        <span x-text="value" class="text-sm tabular-nums w-10 text-right shrink-0"></span>
+    </div>
 </x-forms.field>

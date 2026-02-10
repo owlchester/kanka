@@ -34,14 +34,7 @@ class RelationFilter extends DatagridFilter
                 'type' => 'text',
                 'placeholder' => __('entities/relations.placeholders.role'),
             ])
-            ->add([
-                'field' => 'attitude',
-                'type' => 'number',
-                'label' => __('entities/relations.fields.attitude'),
-                'placeholder' => __('entities/relations.placeholders.attitude'),
-                'min' => -100,
-                'max' => 100,
-            ])
+            ->add('attitude')
             ->add('is_pinned');
     }
 }

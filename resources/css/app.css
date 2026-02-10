@@ -20,6 +20,7 @@
 @import "./campaign.css";
 @import "./attributes/attributes.css";
 @import "./toggle.css";
+@import "./range.css";
 @import "./tabs.css";
 @import "./vendors/editor.css";
 @import "./vendors/adminlte.css";
