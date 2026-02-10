@@ -8,12 +8,7 @@
     </x-forms.field>
 
     <x-forms.field field="entry" css="col-span-2" :label="__('crud.fields.entry')">
-
-        <textarea name="entry"
-                  id="era-entry"
-                  class="html-editor"
-                  rows="3"
-        >{!! old('entry', $model->entryForEdition ?? null) !!}</textarea>
+        @include('cruds.fields.entry', ['model' => $model])
     </x-forms.field>
 
     <x-forms.field field="start" :label="__('timelines/eras.fields.start_year')">

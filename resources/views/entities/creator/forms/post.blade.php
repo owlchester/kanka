@@ -4,10 +4,11 @@
     </div>
 
     <x-forms.field field="entry" css="col-span-2" :label="__('crud.fields.entry')">
-            <textarea name="entry"
-                      class="resize-y"
-                      rows="5"
-            >{!! FormCopy::field('entry')->string() !!}</textarea>
+        <textarea
+            name="entry"
+            class="resize-y"
+            rows="5"
+        >{!! FormCopy::field('entry')->string() !!}</textarea>
     </x-forms.field>
 
     @include('cruds.fields.visibility_id')

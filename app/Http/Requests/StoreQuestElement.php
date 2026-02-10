@@ -29,7 +29,7 @@ class StoreQuestElement extends FormRequest
         $rules = [
             'entity_id' => 'nullable|required_without:name|exists:entities,id',
             'name' => 'nullable|string|required_without:entity_id',
-            'description' => 'string|nullable',
+            'entry' => 'string|nullable',
             'role' => 'nullable|string|max:191',
             'colour' => 'nullable|string|max:10',
             'visibility_id' => 'nullable|exists:visibilities,id',

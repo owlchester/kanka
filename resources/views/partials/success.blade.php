@@ -21,3 +21,12 @@
         @endif
     </x-alert>
 @endif
+
+@if (session('tiptap_survey'))
+    <x-tutorial code="tiptap_survey" type="info">
+        <span>
+        {!! __('tiptap.survey', [
+            'share' => '<a class="text-link" href="https://docs.google.com/forms/d/e/1FAIpQLSccG0m-Ka1uTNHunCqOeSyhHq84iVxQO8z2hzOT0ALsjUPdMw/viewform?usp=publish-editor">' . __('tiptap.share'). '</a>'
+        ]) !!}</span>
+    </x-tutorial>
+@endif

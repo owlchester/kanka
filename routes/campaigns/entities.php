@@ -353,3 +353,5 @@ Route::put('/w/{campaign}/whiteboards/{whiteboard}/api', [App\Http\Controllers\W
 Route::patch('/w/{campaign}/whiteboards/{whiteboard}/api/{whiteboard_shape}', [App\Http\Controllers\Whiteboards\ApiController::class, 'update'])->name('whiteboards.shapes.update');
 Route::delete('/w/{campaign}/whiteboards/{whiteboard}/api/{whiteboard_shape}', [App\Http\Controllers\Whiteboards\ApiController::class, 'destroy'])->name('whiteboards.shapes.delete');
 Route::post('/w/{campaign}/whiteboards/{whiteboard}/api/{whiteboard_shape}/stroke', [App\Http\Controllers\Whiteboards\ApiController::class, 'stroke'])->name('whiteboards.shapes.stroke');
+
+Route::get('/w/{campaign}/entities/{entity}/api/document', [\App\Http\Controllers\Entities\Apis\DocumentController::class, 'index'])->name('entities.api.document');

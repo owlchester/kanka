@@ -14,7 +14,7 @@
         <x-forms.field
             field="entry"
             :label="__('campaigns.fields.description')">
-            <textarea name="entry" id="entry" class="w-full html-editor">{!! old('entry', $campaign->entryForEdition ?? null) !!}</textarea>
+            @include('cruds.fields.entry', ['model' => $campaign ?? null])
         </x-forms.field>
 
         @include('cruds.fields.image-old', ['model' => $campaign ?? null, 'campaignImage' => true, 'imageLabel' => 'campaigns.fields.image', 'recommended' => '240x208'])

@@ -438,6 +438,12 @@ class SearchService
      */
     protected function formatForLookup(Entity $entity): array
     {
+        $mention = '[' . $entity->entityType->code . ':' . $entity->id . ']';
+        // @phpstan-ignore-next-line
+        if ($entity->alias_id) {
+            $mention = '[' . $entity->entityType->code . ':' . $entity->id . '|alias:' . $entity->alias_id . ']';
+        }
+
         return [
             'id' => $entity->id,
             'name' => $entity->name,
@@ -446,6 +452,11 @@ class SearchService
             'link' => $entity->url(),
             'type' => $entity->entityType->name(),
             'preview' => route('entities.preview', [$this->campaign, $entity]),
+            'mention' => $mention,
+            'aliases' => $entity->aliases->map(fn ($alias) => [
+                'id' => $alias->id,
+                'name' => $alias->name,
+            ])->toArray(),
         ];
     }
 

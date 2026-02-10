@@ -5,42 +5,38 @@ namespace App\Http\Controllers\Settings;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSettingsLayout;
 use App\Services\PaginationService;
-use Carbon\Carbon;
 
 class AppearanceController extends Controller
 {
-    protected PaginationService $service;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct(PaginationService $paginationService)
+    public function __construct(protected PaginationService $service)
     {
         $this->middleware(['auth', 'identity']);
-        $this->service = $paginationService;
     }
 
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function index()
     {
         $highlight = request()->get('highlight');
         $from = request()->get('from');
-        $date = Carbon::parse('2023-01-09 12:00:00');
-        $created = Carbon::parse(auth()->user()->created_at);
-        $textEditorSelect = $created->lessThan($date);
         $paginationOptions = $this->service->user(auth()->user())->options();
         $paginationDisabled = $this->service->disabled();
+
+        $editorOptions = null;
+        if (auth()->user()->created_at->isBefore('2023-01-09 12:00:00') || auth()->user()->hasRole('admin')) {
+            $editorOptions = [
+                '' => __('settings/appearance.editors.default', ['name' => 'Summernote']),
+                'legacy' => __('settings/appearance.editors.legacy', ['name' => 'TinyMCE 4']),
+            ];
+            if (auth()->user()->hasRole('admin')) {
+                $editorOptions['tiptap'] = __('settings/appearance.editors.tiptap');
+            }
+        }
 
         return view('settings.appearance')
             ->with('paginationOptions', $paginationOptions)
             ->with('paginationDisabled', $paginationDisabled)
             ->with('highlight', $highlight)
             ->with('from', $from)
-            ->with('textEditorSelect', $textEditorSelect);
+            ->with('editorOptions', $editorOptions);
     }
 
     public function update(StoreSettingsLayout $request)

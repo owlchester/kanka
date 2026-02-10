@@ -31,11 +31,7 @@
         css="col-span-2"
         :label="__('quests.elements.fields.description')">
 
-        <textarea name="description"
-                  id="element-entry"
-                  class="html-editor"
-                  rows="3"
-        >{!! old('description', $model->entryForEdition ?? null) !!}</textarea>
+        @include('cruds.fields.entry', ['model' => $model ?? null])
     </x-forms.field>
 
     @include('cruds.fields.colour')
