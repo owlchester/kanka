@@ -33,17 +33,17 @@
                     <div
                         v-if="downloadDropdown"
                         v-click-outside="() => downloadDropdown = false"
-                        class="dropdown-menu absolute mt-2 flex flex-col gap-1 bg-base-200 shadow-sm p-2 rounded z-10"
+                        class="dropdown-menu absolute mt-1 flex flex-col gap-1 bg-base-100 shadow-sm p-2 rounded z-10"
                         role="menu"
                     >
-                        <button @click="downloadPng()" class="dropdown-item flex items-center gap-2 px-2 py-1 rounded hover:bg-base-300 whitespace-nowrap text-left">
+                        <a @click.prevent="downloadPng()" class="dropdown-item flex items-center gap-2 px-2 py-1 rounded hover:bg-base-200 cursor-pointer whitespace-nowrap text-left">
                             <i class="fa-regular fa-image w-6" aria-hidden="true"></i>
                             <span v-html="trans('download-png')"></span>
-                        </button>
-                        <button @click="downloadPdf()" class="dropdown-item flex items-center gap-2 px-2 py-1 rounded hover:bg-base-300 whitespace-nowrap text-left">
+                        </a>
+                        <a @click.prevent="downloadPdf()" class="dropdown-item flex items-center gap-2 px-2 py-1 rounded hover:bg-base-200 cursor-pointer whitespace-nowrap text-left">
                             <i class="fa-regular fa-file-pdf w-6" aria-hidden="true"></i>
                             <span v-html="trans('download-pdf')"></span>
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
