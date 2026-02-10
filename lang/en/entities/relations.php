@@ -92,7 +92,7 @@ return [
     ],
     'placeholders'      => [
         'attitude'          => '-100 to 100, 100 being very positive',
-        'relation'          => 'Rival, Best Friend, Sibling',
+        'role'          => 'Rival, Best Friend, Sibling',
     ],
     'show'              => [
         'title' => ':name Connections',

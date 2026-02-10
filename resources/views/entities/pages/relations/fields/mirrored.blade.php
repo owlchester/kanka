@@ -26,7 +26,7 @@
             field="target-relation"
             :label="__('entities/relations.fields.mirror_relation')"
             :helper="__('entities/relations.helpers.mirror_relation')">
-            <input type="text" name="target_relation" value="{{ old('target_relation', $relation->target_relation ?? null) }}" maxlength="191" class="w-full" aria-label="{{ __('entities/relations.placeholders.relation') }}" placeholder="{{ __('entities/relations.placeholders.relation') }}" />
+            <input type="text" name="target_relation" value="{{ old('target_relation', $relation->target_relation ?? null) }}" maxlength="191" class="w-full" aria-label="{{ __('entities/relations.placeholders.role') }}" placeholder="{{ __('entities/relations.placeholders.role') }}" />
         </x-forms.field>
     </div>
 </div>

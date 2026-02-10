@@ -56,6 +56,10 @@
 
                         @if ($field['type'] === 'tag')
                             @include('cruds.datagrids.filters._tag', ['value' => $filterService->filterValue('tags')])
+                        @elseif ($field['type'] === 'text')
+                            <input type="text" class="w-full field-{{ $field['field'] }}" name="{{ $field['field'] }}" value="{{ $filterService->single($field['field']) }}" data-1p-ignore="true" placeholder="{{ $field['placeholder'] ?? null }}" />
+                        @elseif ($field['type'] === 'number')
+                            <input type="number" class="w-full field-{{ $field['field'] }}" name="{{ $field['field'] }}" value="{{ $filterService->single($field['field']) }}" data-1p-ignore="true" placeholder="{{ $field['placeholder'] ?? null }}" min="{{ $field['min'] ?? 0 }}" max="{{ $field['max'] ?? 100 }}" />
                         @elseif ($field['type'] === 'select')
                             @include('cruds.datagrids.filters._select')
                         @else
