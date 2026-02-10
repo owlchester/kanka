@@ -1,14 +1,19 @@
-.range-slider {
+input[type="range"] {
     --range-fill: 50%;
 
     -webkit-appearance: none;
+    accent-color: hsl(var(--p));
     appearance: none;
     height: 6px;
     border-radius: 3px;
-    background: linear-gradient(to right, hsl(var(--p)) var(--range-fill), hsl(var(--bc) / 0.15) var(--range-fill));
+    background: hsl(var(--bc) / 0.15);
     outline: none;
     cursor: pointer;
     padding: 0;
+
+    &:focus {
+        outline: none;
+    }
 
     &::-moz-range-progress {
         background: hsl(var(--p));
