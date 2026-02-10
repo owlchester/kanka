@@ -20,6 +20,7 @@
     import GalleryDialog from './extensions/gallery/GalleryDialog.vue'
     import { CustomImage } from './extensions/CustomImage'
     import { Iframe } from './extensions/Iframe'
+    import { Div } from './extensions/Div'
     import { Details, DetailsContent, DetailsSummary } from '@tiptap/extension-details'
     import { TextStyle } from '@tiptap/extension-text-style'
     import { Color } from '@tiptap/extension-color'
@@ -128,6 +129,7 @@
             }
         }),
         Iframe,
+        Div,
         Details.configure({
             persist: true,
             HTMLAttributes: {
