@@ -13,7 +13,7 @@ class CustomCssDefinitions implements CssDefinition
 {
     public static function apply(HTMLPurifier_CSSDefinition $definition): void
     {
-        $definition->info['opacity'] = new HTMLPurifier_AttrDef_CSS_AlphaValue();
+        $definition->info['opacity'] = new HTMLPurifier_AttrDef_CSS_AlphaValue;
 
         $borderRadius = new HTMLPurifier_AttrDef_CSS_Composite([
             new HTMLPurifier_AttrDef_CSS_Length('0'),

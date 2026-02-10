@@ -52,6 +52,7 @@ class EntryController extends Controller
                 session()->flash('tiptap_survey', true);
             }
         }
+
         return $return;
     }
 }

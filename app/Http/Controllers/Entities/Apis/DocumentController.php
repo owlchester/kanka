@@ -15,7 +15,7 @@ class DocumentController extends Controller
 
         return response()->json([
             'document' => $entity->entry,
-            'mentions' => $this->mentions($entity)
+            'mentions' => $this->mentions($entity),
         ]);
     }
 
@@ -35,6 +35,7 @@ class DocumentController extends Controller
                     ])->toArray(),
                 ];
             }
+
             return [
                 'id' => $mention->id,
                 'label' => $mention->label,

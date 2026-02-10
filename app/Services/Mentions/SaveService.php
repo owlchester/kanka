@@ -123,7 +123,6 @@ class SaveService
             contains(concat(" ", normalize-space(@class), " "), " attribute-mention ")
         ]');
 
-
         foreach ($nodes as $element) {
             if ($element instanceof DomElement) {
                 $this->parseMention($element);
@@ -163,9 +162,9 @@ class SaveService
         // If the name isn't the target name, transform it into an advanced mention
         $originalName = $mentionLink->getAttribute('data-name');
 
-        $params = new Collection();
+        $params = new Collection;
         // Tiptap sends config in a property to keep things clean
-        if (!empty($mentionLink->getAttribute('data-config'))) {
+        if (! empty($mentionLink->getAttribute('data-config'))) {
             $params = new Collection(explode('|', $mentionLink->getAttribute('data-config')));
         }
 

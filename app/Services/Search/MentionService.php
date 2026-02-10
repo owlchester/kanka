@@ -18,12 +18,13 @@ use Illuminate\Support\Str;
 
 class MentionService
 {
-    use UserAware;
     use CampaignAware;
-    use RequestAware;
     use EntityAware;
+    use RequestAware;
+    use UserAware;
 
     protected string $term;
+
     protected string $strippedTerm;
 
     protected array $data;
@@ -32,8 +33,7 @@ class MentionService
 
     public function __construct(
         protected EntityTypeService $entityTypeService,
-        protected NewService $newService)
-    { }
+        protected NewService $newService) {}
 
     public function search(): array
     {
@@ -53,7 +53,7 @@ class MentionService
         if ($this->request->filled('entities')) {
             $entities = Entity::with(['entityType', 'aliases'])->whereIn('id', $this->request->get('entities'))->get();
             foreach ($entities as $entity) {
-                if ($entity->entityType->isStandard() && !$entity->child) {
+                if ($entity->entityType->isStandard() && ! $entity->child) {
                     continue;
                 }
                 $results[] = $this->formatEntity($entity);
@@ -160,7 +160,7 @@ class MentionService
     protected function addEntity(Entity $entity): void
     {
         // Force having a child for "ghost" entities.
-        if ($entity->entityType->isStandard() && !$entity->child) {
+        if ($entity->entityType->isStandard() && ! $entity->child) {
             return;
         }
 
@@ -173,6 +173,7 @@ class MentionService
         if ($entity->alias_id) {
             $mention = '[' . $entity->entityType->code . ':' . $entity->id . '|alias:' . $entity->alias_id . ']';
         }
+
         return [
             'id' => $entity->id,
             'name' => $entity->name,
@@ -185,13 +186,13 @@ class MentionService
             'aliases' => $entity->aliases->map(fn ($alias) => [
                 'id' => $alias->id,
                 'name' => $alias->name,
-            ])->toArray()
+            ])->toArray(),
         ];
     }
 
     protected function attributes(): self
     {
-        if (!isset($this->entity)) {
+        if (! isset($this->entity)) {
             return $this;
         }
 
@@ -210,6 +211,7 @@ class MentionService
         foreach ($attributes as $attribute) {
             $this->addAttribute($attribute);
         }
+
         return $this;
     }
 
@@ -223,9 +225,10 @@ class MentionService
             'inject' => "{attribute:{$attribute->id}}",
         ];
     }
+
     protected function posts(): self
     {
-        if (!isset($this->entity)) {
+        if (! isset($this->entity)) {
             return $this;
         }
 
@@ -263,7 +266,7 @@ class MentionService
         $options = [];
         if (! isset($this->user)) {
             return $this;
-        };
+        }
         $available = $this->newService
             ->campaign($this->campaign)
             ->user($this->user)

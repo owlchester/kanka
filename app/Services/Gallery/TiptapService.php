@@ -2,7 +2,6 @@
 
 namespace App\Services\Gallery;
 
-use App\Http\Resources\ImageResource;
 use App\Models\Image;
 use App\Traits\CampaignAware;
 use App\Traits\RequestAware;
@@ -12,8 +11,8 @@ use Illuminate\Pagination\LengthAwarePaginator;
 class TiptapService
 {
     use CampaignAware;
-    use UserAware;
     use RequestAware;
+    use UserAware;
 
     public function images()
     {

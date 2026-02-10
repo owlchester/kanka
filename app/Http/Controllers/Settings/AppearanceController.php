@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Settings;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSettingsLayout;
 use App\Services\PaginationService;
-use Carbon\Carbon;
 
 class AppearanceController extends Controller
 {

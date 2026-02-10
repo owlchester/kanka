@@ -442,6 +442,7 @@ class SearchService
         if ($entity->alias_id) {
             $mention = '[' . $entity->entityType->code . ':' . $entity->id . '|alias:' . $entity->alias_id . ']';
         }
+
         return [
             'id' => $entity->id,
             'name' => $entity->name,
@@ -454,7 +455,7 @@ class SearchService
             'aliases' => $entity->aliases->map(fn ($alias) => [
                 'id' => $alias->id,
                 'name' => $alias->name,
-            ])->toArray()
+            ])->toArray(),
         ];
     }
 

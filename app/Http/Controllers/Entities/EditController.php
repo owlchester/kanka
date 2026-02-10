@@ -126,7 +126,6 @@ class EditController extends Controller
 
             session()->flash('success_raw', $success);
 
-
             if (auth()->user()->editor === 'tiptap') {
                 $count = session()->get('tiptap_survey_count', 0);
                 $count++;

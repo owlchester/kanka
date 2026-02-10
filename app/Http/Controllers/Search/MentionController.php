@@ -4,12 +4,7 @@ namespace App\Http\Controllers\Search;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Search\MentionRequest;
-use App\Models\Ability;
 use App\Models\Campaign;
-use App\Models\Entity;
-use App\Models\Organisation;
-use App\Models\OrganisationMember;
-use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class MentionController extends Controller
@@ -43,5 +38,4 @@ class MentionController extends Controller
             $this->service->load()
         );
     }
-
 }
