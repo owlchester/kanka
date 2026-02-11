@@ -31,7 +31,7 @@
                 <div class="flex gap-2 items-center justify-between sticky z-10 top-12 bg-base-100">
                     <div class="overflow-x-auto">
                         <ul class="nav-tabs flex items-stretch w-full" role="tablist">
-                            <x-tab.tab target="entry" :default="true" :title="__('fields.description.label')"></x-tab.tab>
+                            <x-tab.tab target="entry" :default="true" :title="__('entries/tabs.identity')"></x-tab.tab>
 
                             @includeIf($name . '.form._tabs', ['source' => null])
                             @if ($tabBoosted && config('services.stripe.enabled'))

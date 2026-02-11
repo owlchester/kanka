@@ -5,4 +5,5 @@ return [
     'properties' => 'Properties',
     'media' => 'Media',
     'relations' => 'Relations',
+    'identity' => 'Identity',
 ];
