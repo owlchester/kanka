@@ -46,7 +46,7 @@ class DeleteController extends Controller
             ->user($request->user())
             ->request($request)
             ->delete();
-        $key = 'crud.destroy_many.success';
+        $key = 'entries/bulk.success.delete';
 
         return redirect()
             ->back()

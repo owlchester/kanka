@@ -26,7 +26,7 @@ class AssetController extends Controller
     public function index(Campaign $campaign, Entity $entity)
     {
         $this->campaign($campaign)->authEntityView($entity);
-        if (! $campaign->enabled('assets')) {
+        if (! $campaign->enabled('media')) {
             return redirect()->route('entities.show', [$campaign, $entity])->with(
                 'error_raw',
                 __('campaigns.settings.errors.module-disabled', [

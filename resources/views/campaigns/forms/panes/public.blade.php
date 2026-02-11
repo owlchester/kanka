@@ -13,6 +13,7 @@
                 @if ($model->publicHasNoVisibility())
                     <x-alert type="warning">
                         {!! __('campaigns.helpers.public_no_visibility', [
+                    'public' => $campaign->publicRole->name,
         'fix' => '<a href="' . route('campaigns.campaign_roles.public', $campaign) . '" class="text-link">' . __('crud.fix-this-issue') . '</a>',
         ]) !!}
                     </x-alert>

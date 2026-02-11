@@ -52,6 +52,6 @@ class BatchController extends Controller
 
         return redirect()
             ->back()
-            ->with('success', trans_choice('crud.bulk.success.' . $key, $count, ['count' => $count, 'total' => $total]));
+            ->with('success', trans_choice('entries/bulk.success.' . $key, $count, ['count' => $count, 'total' => $total]));
     }
 }

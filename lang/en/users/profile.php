@@ -7,7 +7,7 @@ return [
     'fields'        => [
         'achievements'      => 'Achievements',
         'banned'            => 'This user has been banned',
-        'entities_created'  => 'Entities created :help :count',
+        'entities_created'  => 'Entries created :help :count',
         'member_since'      => 'Member since :date',
         'public_campaigns'  => 'Public campaigns',
         'subscriber_since'  => 'Subscriber since :date',

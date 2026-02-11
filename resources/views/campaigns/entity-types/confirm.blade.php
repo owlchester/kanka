@@ -1,7 +1,7 @@
 @extends('layouts.app', [
     'title' => __('campaigns/modules.delete.title') . ' - ' . $campaign->name,
     'breadcrumbs' => [
-        __('campaigns.show.tabs.modules')
+        __('campaigns/categories.tab')
     ],
     'canonical' => true,
     'mainTitle' => false,

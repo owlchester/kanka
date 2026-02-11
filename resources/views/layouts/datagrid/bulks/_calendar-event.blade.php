@@ -6,7 +6,7 @@
     <x-forms.foreign
         field="entity_id"
         :required="false"
-        label="crud.fields.entity"
+        label="fields.entry.label"
         :multiple="false"
         name="entity_id"
         id="entity_id"

@@ -30,12 +30,12 @@
             <div class="flex gap-2 items-center justify-between ">
                 <div class="overflow-x-auto">
                     <ul class="nav-tabs flex items-stretch w-full" role="tablist">
-                        <x-tab.tab target="entry" :default="true" :title="__('crud.fields.entry')"></x-tab.tab>
+                        <x-tab.tab target="entry" :default="true" :title="__('crud.tabs.overview')"></x-tab.tab>
 
                         @if (config('services.stripe.enabled'))
-                            <x-tab.tab target="premium" icon="premium" :title="auth()->check() && auth()->user()->hasBoosterNomenclature() ? __('crud.tabs.boost') : __('crud.tabs.premium')"></x-tab.tab>
+                            <x-tab.tab target="premium" icon="premium" :title="__('crud.tabs.premium')"></x-tab.tab>
                         @endif
-                        <x-tab.tab target="attributes" icon="attributes" :title="__('crud.tabs.attributes')"></x-tab.tab>
+                        <x-tab.tab target="attributes" icon="attributes" :title="__('entries/tabs.properties')"></x-tab.tab>
 
                         <x-tab.tab target="permissions" icon="permissions" :title="__('crud.tabs.permissions')"></x-tab.tab>
 

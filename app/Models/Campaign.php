@@ -20,6 +20,7 @@ use App\Models\Scopes\CampaignScopes;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Arr;
@@ -375,14 +376,16 @@ class Campaign extends Model
         return Visibility::All;
     }
 
+    public function publicRole(): HasOne
+    {
+        return $this->roles()->public()->one();
+    }
     /**
      * Checks if the campaign's public role has no read permissions
      */
     public function publicHasNoVisibility(): bool
     {
-        /** @var CampaignRole $publicRole */
-        $publicRole = $this->roles()->public()->first();
-        $permissionCount = $publicRole->permissions()
+        $permissionCount = $this->publicRole->permissions()
             ->where('action', Permission::View->value)
             ->where('access', 1)
             ->count();

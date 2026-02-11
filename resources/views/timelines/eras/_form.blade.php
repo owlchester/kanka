@@ -7,7 +7,7 @@
         <input type="text" name="abbreviation" value="{{ old('abbreviation', $source->abbreviation ?? $model->abbreviation ?? null) }}" placeholder="{{ __('timelines/eras.placeholders.abbreviation') }}" class="w-full" maxlength="191" />
     </x-forms.field>
 
-    <x-forms.field field="entry" css="col-span-2" :label="__('crud.fields.entry')">
+    <x-forms.field field="entry" css="col-span-2" :label="__('fields.description.label')">
         @include('cruds.fields.entry', ['model' => $model])
     </x-forms.field>
 

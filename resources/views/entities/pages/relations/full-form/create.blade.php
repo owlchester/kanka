@@ -19,7 +19,7 @@
             <div class="flex gap-2 items-center justify-between sticky z-10 bg-base-100 top-12">
                 <div class="overflow-x-auto">
                     <ul class="nav-tabs flex items-stretch w-full" role="tablist">
-                        <x-tab.tab target="entry" :default="true" :title="__('crud.fields.entry')"></x-tab.tab>
+                        <x-tab.tab target="entry" :default="true" :title="__('crud.tabs.overview')"></x-tab.tab>
                     </ul>
                 </div>
                 @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form'])

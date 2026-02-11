@@ -55,7 +55,7 @@ class ApiService
                 'filters' => __('bookmarks.fields.filters'),
             ],
             'columns' => [
-                'attribute' => __('entities/attributes.fields.attribute'),
+                'attribute' => __('entities/attributes.fields.property'),
                 'value' => __('entities/attributes.fields.value'),
                 'pinned' => __('entities/attributes.fields.is_star'),
                 'private' => __('crud.fields.is_private'),

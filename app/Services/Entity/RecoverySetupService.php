@@ -105,7 +105,7 @@ class RecoverySetupService
             $row['date'] = \Carbon\Carbon::createFromTimeStamp(strtotime($element->deleted_at))->diffForHumans();
             $row['position'] = $key;
             if ($element->type === 'post') {
-                $row['type_name'] = __('entities.post');
+                $row['type_name'] = __('entities.article');
             } else {
                 $row['type'] = 'entity';
                 $row['type_name'] = Arr::get($moduleNames, (int) $element->type_id, __('crud.history.unknown'));

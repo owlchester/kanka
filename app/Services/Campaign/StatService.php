@@ -81,9 +81,9 @@ class StatService
     {
         $this->stats['modules'] = [];
         // @phpstan-ignore-next-line
-        $this->stats['modules']['entity_attributes'] = Attribute::withPrivate()->leftJoin('entities', 'entities.id', 'attributes.entity_id')->where('entities.campaign_id', $this->campaign->id)->count();
+        $this->stats['modules']['properties'] = Attribute::withPrivate()->leftJoin('entities', 'entities.id', 'attributes.entity_id')->where('entities.campaign_id', $this->campaign->id)->count();
         // @phpstan-ignore-next-line
-        $this->stats['modules']['posts'] = Post::withInvisible()->leftJoin('entities', 'entities.id', 'posts.entity_id')->where('entities.campaign_id', $this->campaign->id)->count();
+        $this->stats['modules']['articles'] = Post::withInvisible()->leftJoin('entities', 'entities.id', 'posts.entity_id')->where('entities.campaign_id', $this->campaign->id)->count();
         // @phpstan-ignore-next-line
         $this->stats['modules']['abilities'] = EntityAbility::withPrivate()->leftJoin('entities', 'entities.id', 'entity_abilities.entity_id')->where('entities.campaign_id', $this->campaign->id)->count();
         // @phpstan-ignore-next-line

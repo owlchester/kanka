@@ -29,7 +29,7 @@ return [
         'traits'                    => 'Traits',
     ],
     'helpers'       => [
-        'age'                   => 'You can link this entity with a calendar of the campaign to automatically calculate their age instead. :more.',
+        'age'                   => 'You can link this character with a calendar to automatically calculate their age instead. :more.',
         'personality_visible'   => 'If selected, the personality traits of this character are visible to all. If not, only to members of the :admin role will be able to see these traits.',
     ],
     'hints'         => [

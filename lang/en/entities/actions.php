@@ -5,7 +5,7 @@ return [
         'success'   => ':name has been archived.',
         'title'     => 'Archive',
     ],
-    'convert'           => 'Convert module',
+    'convert'           => 'Convert category',
     'copy-campaign'     => 'Copy to campaign',
     'json-export'       => 'JSON export',
     'markdown-export'   => 'Markdown export',
@@ -19,7 +19,7 @@ return [
         'unset'     => 'Remove as template',
     ],
     'tooltips'          => [
-        'edit'  => 'Edit this entity',
+        'edit'  => 'Edit this entry',
     ],
     'transfer'          => 'Transfer to campaign',
     'unarchive'         => [

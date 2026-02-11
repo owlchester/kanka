@@ -20,12 +20,12 @@ class Entity extends Layout
             ],
             'name' => [
                 'key' => 'name',
-                'label' => 'crud.fields.entity',
+                'label' => 'fields.entry.label',
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [
                 'key' => 'type_id',
-                'label' => 'crud.fields.entity_type',
+                'label' => 'campaigns/categories.tab',
                 'render' => function ($model) {
                     return $model->entityType->name();
                 },

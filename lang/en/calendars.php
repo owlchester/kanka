@@ -36,7 +36,7 @@ return [
             'title'     => 'Updating :name\'s reminder',
         ],
         'errors'    => [
-            'invalid_entity'    => 'Invalid entity selection',
+            'invalid_entity'    => 'Invalid entry selection',
         ],
         'helpers'   => [
             'other_calendar'    => 'You are editing a reminder that was added on :calendar. Modifying this reminder will modify it in both places.',
@@ -91,7 +91,7 @@ return [
     ],
     'helpers'       => [
         'default_layout'    => 'Select which layout the calendar should use by default when viewed.',
-        'format'            => 'Add custom date formatting for calendar entities.',
+        'format'            => 'Add custom date formatting for calendar entries.',
         'month_type'        => 'Intercalary months don\'t use week days, but still influence moons and seasons.',
         'moon_offset'       => 'By default, the first fullmoon appears on the first day of year 0. Changing the offset will alter when the first full moon is displayed. This value can negative (up to the length of the first month) or positive (up to the length of the first month).',
         'start_offset'      => 'By default, the calendar starts on the first weekday of year 0. Changing this field influences where the calendar\'s first day is placed.',

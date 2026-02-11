@@ -21,7 +21,7 @@
 
 @if($entity->hasEntry())
 ---
-## {!! __('crud.fields.entry') !!}
+## {!! __('fields.description.label') !!}
 {!! $converter->convert((string) $entityData['entry']) !!}
 
 ---
@@ -38,13 +38,13 @@
 @endif
 
 @if (!empty($entityData['attributes']))
-## {!! __('crud.tabs.attributes') !!}
+## {!! __('entries/tabs.properties') !!}
 
 {!! $entityData['attributes'] !!}
 
 @endif
 @if (!empty($entityData['relations']))
-## {!! __('crud.tabs.connections') !!}
+## {!! __('entries/tabs.relations') !!}
 
 {!! $entityData['relations'] !!}
 

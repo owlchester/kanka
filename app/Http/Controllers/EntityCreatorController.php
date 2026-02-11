@@ -191,7 +191,7 @@ class EntityCreatorController extends Controller
             }
         } else {
             $newLabel = __('posts.create.title');
-            $singular = __('entities.post');
+            $singular = __('entities.article');
         }
 
         return view('entities.creator.' . $view, compact(
@@ -225,7 +225,7 @@ class EntityCreatorController extends Controller
             ->ordered();
 
         if (auth()->user()->can('recover', $this->campaign)) {
-            $types->add(__('entities.posts'));
+            $types->add(__('entities.articles'));
         }
 
         return $types;

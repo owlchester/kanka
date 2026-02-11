@@ -11,7 +11,9 @@
 @else
     @php $data = [
          'toggle' => 'entity-creator',
-         'url' => route('entity-creator.form', [$campaign, 'entity_type' => $dropdownEntityType, 'mode' => $mode ?? null]),
+         'url' => $dropdownEntityType instanceof \App\Models\EntityType ?
+            route('entity-creator.form', [$campaign, 'entity_type' =>  $dropdownEntityType, 'mode' => $mode ?? null]) :
+            route('entity-creator.post', [$campaign, 'mode' => $mode ?? null]),
          'entity-type' => 'entity',
          'type' => 'inline',
     ]; @endphp
@@ -22,7 +24,7 @@
         @if ($dropdownEntityType instanceof \App\Models\EntityType)
         {!! $dropdownEntityType->name() !!}
         @else
-        {{ __('entities.post') }}
+        {{ __('entities.article') }}
         @endif
     </x-dropdowns.item>
 @endif

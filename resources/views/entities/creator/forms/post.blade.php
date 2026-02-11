@@ -3,7 +3,7 @@
         @include('cruds.fields.entity', ['required' => true])
     </div>
 
-    <x-forms.field field="entry" css="col-span-2" :label="__('crud.fields.entry')">
+    <x-forms.field field="entry" css="col-span-2" :label="__('posts.fields.description')">
         <textarea
             name="entry"
             class="resize-y"

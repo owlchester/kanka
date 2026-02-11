@@ -2,8 +2,7 @@
     @include('cruds.fields.type', ['base' => \App\Models\Note::class, 'trans' => 'notes'])
     @include('cruds.fields.note', ['isParent' => true, 'dynamicNew' => true])
 
-    <x-forms.field field="entry" css="col-span-2" :label="__('crud.fields.entry')">
-
+    <x-forms.field field="entry" css="col-span-2" :label="__('fields.description.label')">
             <textarea name="entry"
                       class="resize-y"
                       rows="5"

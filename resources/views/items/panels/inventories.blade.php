@@ -3,7 +3,7 @@
     <table id="item-inventories" class="table table-hover">
         <tbody><tr>
             <th class="avatar w-12"><br /></th>
-            <th>{{ __('crud.fields.entity') }}</th>
+            <th>{{ __('fields.entry.label') }}</th>
             <th class="hidden md:block">{{ __('entities/inventories.fields.amount') }}</th>
             <th class="hidden md:block">{{ __('entities/inventories.fields.position') }}</th>
         </tr>

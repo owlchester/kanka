@@ -6,7 +6,7 @@ return [
         'title'         => 'API Filters',
     ],
     'attributes'        => [
-        'link'  => 'Attribute options',
+        'link'  => 'Property options',
     ],
     'calendar-widget'   => [
         'info'  => 'Why are these reminders being shown?',
@@ -19,7 +19,7 @@ return [
         'title' => 'How to use filters',
     ],
     'link'              => [
-        'description'   => 'You can easily link to other entities in the campaign using the following shorthands.',
+        'description'   => 'You can easily link to other entries in the campaign using the following shorthands.',
     ],
     'public'            => 'Watch a tutorial video on Youtube explaining public campaigns.',
     'troubleshooting'   => [
@@ -34,7 +34,7 @@ return [
         'title'             => 'Assistance',
     ],
     'widget-filters'    => [
-        'description'   => 'You can filter entities displayed on the recently modified widget by providing a list of fields of the entity and values. For example, you can use :example to filter on dead characters of the NPC type.',
+        'description'   => 'You can filter entries displayed on the recently modified widget by providing a list of fields of the entry and values. For example, you can use :example to filter on dead characters of the NPC type.',
         'link'          => 'widget filters',
         'title'         => 'Dashboard Widget Filters',
     ],
