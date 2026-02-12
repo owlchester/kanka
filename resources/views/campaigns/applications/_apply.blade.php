@@ -75,7 +75,6 @@
                 />
             </x-forms.field>
 
-            {{-- Timezone (Usually kept as campaign default unless user overrides) --}}
             <x-forms.field field="timezone" :label="__('campaigns/applications.fields.timezone')">
                 <x-forms.select 
                     name="timezone" 

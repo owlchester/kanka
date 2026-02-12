@@ -5,20 +5,7 @@
 <x-dialog.article>
     <x-form :action="['applications.update', $campaign, $application->id]" method="PATCH" class="entity-form w-full max-w-lg text-left" direct>
 
-        <div class="flex flex-col gap-4">
-            @if ($application->user->hasAvatar())
-                <x-users.avatar :user="$application->user" class="h-14 w-14" size="80" />
-            @endif
-
-            <div class="flex items-end gap-5">
-                <span class="text-xl">{!! $application->user->name !!}</span>
-                <span class="text-neutral-content" title="{{ $application->created_at }}">
-                    {{ $application->created_at->diffForHumans() }}
-                </span>
-            </div>
-
-            <p class="text-neutral-content">{!! $application->text !!}</p>
-
+        @include('campaigns.applications._view')
             <x-forms.field
                 field="reason"
                 :label="__('campaigns/applications.fields.reason')"
@@ -45,8 +32,6 @@
                     {{ __('campaigns/applications.actions.accept') }}
                 </button>
             </div>
-        </div>
-
     </x-form>
 </x-dialog.article>
 

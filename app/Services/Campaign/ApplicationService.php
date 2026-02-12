@@ -2,6 +2,7 @@
 
 namespace App\Services\Campaign;
 
+use App\Enums\ApplicationStatus;
 use App\Events\Campaigns\Applications\Accepted;
 use App\Events\Campaigns\Applications\Rejected;
 use App\Facades\CampaignCache;
@@ -86,11 +87,11 @@ class ApplicationService
                     ])
                 );
             Rejected::dispatch($this->application, $this->campaign, $this->user);
+            $this->application->update(['status' => ApplicationStatus::Rejected]);
         } else {
             $this->approve((int) Arr::get($data, 'role_id'), $this->purify(Arr::get($data, 'reason')));
+            $this->application->update(['status' => ApplicationStatus::Approved]);
         }
-
-        $this->application->delete();
 
         return $return;
     }

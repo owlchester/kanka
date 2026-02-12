@@ -41,7 +41,7 @@ return [
     ],
     'helpers'       => [
         'modal'                 => 'A campaign which is open to applications and public can have users apply to join the campaign.',
-        'no_applications'       => 'There are currently no pending requests to join the campaign. Users can apply to join the campaign by visiting it\'s dashboard and clicking on the :button button.',
+        'no_applications_v2'       => 'There are currently no pending requests to join the campaign, but you can help players find their next great adventure! Detailed campaign info and search filters make it much easier for users to discover and take interest in your story.',
         'no_applications_title' => 'No pending requests',
         'reason'                => 'If provided, the applicant will be notified with this reason.',
         'role'                  => 'If approving, the role the applicant gets added to.',
@@ -49,6 +49,8 @@ return [
         'availability_days' => 'Select the days you are generally available to play.',
         'external_link'     => 'Link to D&D Beyond, Google Docs, or other external character sheets.',
         'experience_level' => 'How familiar are you with this specific game system?',
+        'applications_closed' => 'Your campaign is public, but new players cannot submit applications until you set the status to "Open".',
+        'filters_incomplete'  => 'Your campaign is open for applications, but you haven\'t finished setting up filters (like system, timezone, or tags). Completing these will make it much easier for the right players to find you.',
     ],
     'open'          => [
         'closed'    => 'Campaign is closed',
@@ -110,5 +112,15 @@ return [
         'new'          => 'Newbie (First time)',
         'intermediate' => 'Intermediate (Played a few times)',
         'veteran'      => 'Veteran (Years of experience)',
+    ],
+    'filters' => [
+        'all'      => 'Show All',
+        'approved' => 'Show approved',
+        'rejected' => 'Show rejected',
+        'pending'  => 'Show pending',
+    ],
+    'warnings' => [
+        'applications_closed' => 'Applications are currently closed.',
+        'filters_incomplete'  => 'Campaign filters are incomplete.',
     ],
 ];

@@ -18,10 +18,12 @@ return new class extends Migration
             $table->time('time_start')->nullable();
             $table->time('time_end')->nullable();
             $table->string('timezone')->nullable();
-            $table->tinyInteger('pref_rp_combat')->default(1); // 0, 1, 2
-            $table->tinyInteger('pref_tone')->default(1);      // 0, 1, 2
+            $table->tinyInteger('pref_rp_combat')->default(1);
+            $table->tinyInteger('pref_tone')->default(1);
             $table->string('external_link')->nullable();
             $table->string('additional_notes')->nullable();
+            $table->tinyInteger('status')->default(0);
+            $table->index(['status']);
         });
     }
 

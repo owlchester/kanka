@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Campaign;
 
+use App\Enums\ApplicationStatus;
 use App\Enums\CampaignFilterType;
 use App\Enums\CampaignFlags;
 use App\Http\Controllers\Controller;
@@ -26,11 +27,20 @@ class ApplicationController extends Controller
     {
         $this->authorize('applications', $campaign);
 
-        $applications = $campaign->applications()->with('user')->paginate();
+        if (request()->get('filter') && request()->get('filter') == 'approved') {
+            $applications = $campaign->applications()->where('status', ApplicationStatus::Approved)->with('user')->paginate();
+        } elseif (request()->get('filter') && request()->get('filter') == 'rejected') {
+            $applications = $campaign->applications()->where('status', ApplicationStatus::Rejected)->with('user')->paginate();
+        } elseif (request()->get('filter') && request()->get('filter') == 'all') {
+            $applications = $campaign->applications()->with('user')->paginate();   
+        } else {
+            $applications = $campaign->applications()->where('status', ApplicationStatus::Pending)->with('user')->paginate();
+        }
 
         return view('campaigns.applications.index')
             ->with('applications', $applications)
-            ->with('campaign', $campaign);
+            ->with('campaign', $campaign)
+            ->with('filter', request()->get('filter'));
     }
 
     public function show(Campaign $campaign, Application $application)
@@ -44,7 +54,12 @@ class ApplicationController extends Controller
                 ->with('name', 'campaign_roles');
         }
 
-        return view('campaigns.applications.show')
+        if ($application->status == ApplicationStatus::Pending){
+            return view('campaigns.applications.show')
+                ->with('application', $application)
+                ->with('campaign', $campaign);
+        }
+        return view('campaigns.applications.view')
             ->with('application', $application)
             ->with('campaign', $campaign);
     }
