@@ -236,6 +236,14 @@ class FilterService
             $this->order = [];
         }
 
+        // Validate that the session's saved order field is still valid
+        if (! empty($this->order) && ! empty($availableFields)) {
+            $sessionField = array_key_first($this->order);
+            if (! in_array($sessionField, $availableFields)) {
+                $this->order = [];
+            }
+        }
+
         if (! empty($field) && is_string($field)) {
             $this->order = [
                 $field => empty($direction) ? 'ASC' : 'DESC',
