@@ -57,6 +57,11 @@ class RandomEntity extends Component
 
     public function render()
     {
+        request()->route()?->setParameter('campaign', $this->campaign);
+        UserCache::campaign($this->campaign);
+        Avatar::campaign($this->campaign);
+        CampaignCache::campaign($this->campaign);
+
         return view('livewire.widgets.random-entity');
     }
 }
