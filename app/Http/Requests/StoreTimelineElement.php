@@ -28,6 +28,7 @@ class StoreTimelineElement extends FormRequest
     public function rules()
     {
         $rules = [
+            'timeline_id' => 'prohibited',
             'entity_id' => 'required_without:name|exists:entities,id',
             'name' => 'nullable|string|max:191|required_without:entity_id',
             'era_id' => 'required|exists:timeline_eras,id',
