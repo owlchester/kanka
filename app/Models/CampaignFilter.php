@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Enums\CampaignFilterType;
+use Illuminate\Database\Eloquent\Model;
 
 class CampaignFilter extends Model
 {

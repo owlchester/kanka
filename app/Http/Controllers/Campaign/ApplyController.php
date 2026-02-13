@@ -24,12 +24,12 @@ class ApplyController extends Controller
 
         $identifiers = DateTimeZone::listIdentifiers();
         $timezones = [];
-    
+
         for ($i = -12; $i <= 14; $i++) {
             $prefix = ($i >= 0) ? '+' : '-';
             // Formats to "UTC +05:00" or "UTC -11:00"
-            $utcString = "UTC " . $prefix . str_pad(abs($i), 2, '0', STR_PAD_LEFT) . ":00";
-            
+            $utcString = 'UTC ' . $prefix . str_pad(abs($i), 2, '0', STR_PAD_LEFT) . ':00';
+
             $timezones[$utcString] = $utcString;
         }
 

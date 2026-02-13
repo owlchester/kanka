@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\Playstyle;
+use Illuminate\Database\Seeder;
 
 class PlaystyleSeeder extends Seeder
 {

@@ -37,7 +37,7 @@ class ApplicationService
     {
 
         $data = $request->validated();
-    
+
         // Attach relationship data
         $data['campaign_id'] = $this->campaign->id;
         $data['user_id'] = $this->user->id;

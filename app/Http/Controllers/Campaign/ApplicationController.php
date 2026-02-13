@@ -13,7 +13,6 @@ use App\Models\Application;
 use App\Models\Campaign;
 use App\Models\CampaignFilter;
 use App\Services\Campaign\ApplicationService;
-use DateTime;
 use DateTimeZone;
 
 class ApplicationController extends Controller
@@ -32,7 +31,7 @@ class ApplicationController extends Controller
         } elseif (request()->get('filter') && request()->get('filter') == 'rejected') {
             $applications = $campaign->applications()->where('status', ApplicationStatus::Rejected)->with('user')->paginate();
         } elseif (request()->get('filter') && request()->get('filter') == 'all') {
-            $applications = $campaign->applications()->with('user')->paginate();   
+            $applications = $campaign->applications()->with('user')->paginate();
         } else {
             $applications = $campaign->applications()->where('status', ApplicationStatus::Pending)->with('user')->paginate();
         }
@@ -54,11 +53,12 @@ class ApplicationController extends Controller
                 ->with('name', 'campaign_roles');
         }
 
-        if ($application->status == ApplicationStatus::Pending){
+        if ($application->status == ApplicationStatus::Pending) {
             return view('campaigns.applications.show')
                 ->with('application', $application)
                 ->with('campaign', $campaign);
         }
+
         return view('campaigns.applications.view')
             ->with('application', $application)
             ->with('campaign', $campaign);
@@ -138,12 +138,12 @@ class ApplicationController extends Controller
 
         $identifiers = DateTimeZone::listIdentifiers();
         $timezones = [];
-    
+
         for ($i = -12; $i <= 14; $i++) {
             $prefix = ($i >= 0) ? '+' : '-';
             // Formats to "UTC +05:00" or "UTC -11:00"
-            $utcString = "UTC " . $prefix . str_pad(abs($i), 2, '0', STR_PAD_LEFT) . ":00";
-            
+            $utcString = 'UTC ' . $prefix . str_pad(abs($i), 2, '0', STR_PAD_LEFT) . ':00';
+
             $timezones[$utcString] = $utcString;
         }
 
@@ -171,9 +171,9 @@ class ApplicationController extends Controller
 
         // Map request keys to Enum types
         $filters = [
-            'intro'        => CampaignFilterType::Intro,
-            'timezone'     => CampaignFilterType::Timezone,
-            'schedule'     => CampaignFilterType::Schedule,
+            'intro' => CampaignFilterType::Intro,
+            'timezone' => CampaignFilterType::Timezone,
+            'schedule' => CampaignFilterType::Schedule,
             'players' => CampaignFilterType::PlayerCount,
         ];
 
@@ -186,7 +186,7 @@ class ApplicationController extends Controller
                         'type' => $enumType,
                     ],
                     [
-                        'entry' => $request->input($inputKey)
+                        'entry' => $request->input($inputKey),
                     ]
                 );
             }
@@ -196,12 +196,12 @@ class ApplicationController extends Controller
         $requiredFields = ['intro', 'timezone', 'schedule', 'players', 'locale', 'systems', 'genres', 'playstyles'];
 
         // Check if all required fields have a value in the request
-        $allFilled = collect($requiredFields)->every(fn($field) => $request->filled($field));
+        $allFilled = collect($requiredFields)->every(fn ($field) => $request->filled($field));
         if ($allFilled) {
 
             // updateOrCreate prevents duplicate flags if the user updates the campaign
             $campaign->flags()->updateOrCreate([
-                'flag' => CampaignFlags::CanOpen->value
+                'flag' => CampaignFlags::CanOpen->value,
             ]);
         } else {
             // Optional: Remove the flag if the user clears a field later
@@ -211,5 +211,5 @@ class ApplicationController extends Controller
         return redirect()
             ->route('applications.index', $campaign)
             ->with('success', __('campaigns/applications.setup.success'));
-    } 
+    }
 }

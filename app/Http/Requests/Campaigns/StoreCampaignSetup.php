@@ -24,18 +24,18 @@ class StoreCampaignSetup extends FormRequest
     public function rules()
     {
         return [
-            'locale'         => 'required|string|max:10',
-            'systems'        => 'required|array|min:1',
-            'systems.*'      => 'exists:game_systems,id',
+            'locale' => 'required|string|max:10',
+            'systems' => 'required|array|min:1',
+            'systems.*' => 'exists:game_systems,id',
             'campaign_genre' => 'required|integer',
-            'genres'         => 'required|array|min:1',
-            'genres.*'       => 'exists:genres,id',
-            'intro'          => 'nullable|string|max:2000',
-            'timezone'       => 'nullable|string|max:45',
-            'schedule'       => 'nullable|string|max:45',
-            'players'        => 'nullable|string|max:45',
-            'playstyles'     => 'array',
-            'playstyles.*'   => 'exists:playstyles,id',
+            'genres' => 'required|array|min:1',
+            'genres.*' => 'exists:genres,id',
+            'intro' => 'nullable|string|max:2000',
+            'timezone' => 'nullable|string|max:45',
+            'schedule' => 'nullable|string|max:45',
+            'players' => 'nullable|string|max:45',
+            'playstyles' => 'array',
+            'playstyles.*' => 'exists:playstyles,id',
         ];
     }
 }
