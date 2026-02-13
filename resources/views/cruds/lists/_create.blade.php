@@ -15,7 +15,7 @@
                     @foreach ($templates as $entityTemplate)
                         <x-dropdowns.item
                             :link="route($route . '.create', [$campaign, 'copy' => $entityTemplate->id, 'template' => true])"
-                            css="new-entity-from-template" icon="fa-solid fa-star">
+                            css="new-entity-from-template" icon="fa-regular fa-star">
                             {{ $entityTemplate->name  }}
                         </x-dropdowns.item>
                     @endforeach
