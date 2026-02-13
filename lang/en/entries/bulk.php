@@ -8,7 +8,7 @@ return [
         'permissions'       => '{1} Permissions changed for :count entry.|[2,*] Permissions changed for :count entries.',
         'private'           => '{1} :count entry is now private.|[2,*] :count entries are now private.',
         'public'            => '{1} :count entry is now visible.|[2,*] :count entries are now visible.',
-        'templates'         => '{1} :count entry had a template applied.|[2,*] :count entries has a template applied.',
+        'templates'         => '{1} :count entry had a set applied.|[2,*] :count entries has a set applied.',
         'delete'   => '{1} Deleted :count entry.|[2,*]Deleted :count entries.',
     ],
 ];

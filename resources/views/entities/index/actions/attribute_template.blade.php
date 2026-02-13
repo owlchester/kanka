@@ -1,4 +1,4 @@
-<a href="//docs.kanka.io/en/latest/entities/attribute-templates.html" class="btn2">
+<a href="//docs.kanka.io/en/latest/entries/attribute-templates.html" class="btn2">
     <x-icon class="fa-regular fa-book"></x-icon>
     <span class="hidden lg:inline">
         {{ __('general.learn-more') }}

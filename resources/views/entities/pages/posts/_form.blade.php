@@ -13,7 +13,7 @@
                     <x-tab.tab target="permissions" :title="__('entities/notes.show.advanced')"></x-tab.tab>
                 @endcan
                 @if (auth()->user()->can('useTemplates', $campaign) && !empty($templates))
-                    <x-tab.tab target="templates" :title="__('entities/attributes.template.load.title')"></x-tab.tab>
+                    <x-tab.tab target="templates" :title="__('posts/templates.tab')"></x-tab.tab>
                 @endif
             </ul>
         </div>

@@ -70,9 +70,9 @@ $data = false;
             @can('setTemplates', $campaign)
                 <x-dropdowns.item :link="route('entities.template', [$campaign, $entity])" :icon="$entity->isTemplate() ? 'fa-regular fa-star' : 'fa-solid fa-star'">
                     @if($entity->isTemplate())
-                        {{ __('entities/actions.templates.unset') }}
+                        {{ __('entities/actions.archetype.unset') }}
                     @else
-                        {{ __('entities/actions.templates.set') }}
+                        {{ __('entities/actions.archetype.set') }}
                     @endif
                 </x-dropdowns.item>
             @endcan

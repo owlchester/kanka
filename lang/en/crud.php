@@ -42,7 +42,7 @@ return [
         'actions'       => [
             'edit'          => 'Edit & tagging',
             'permissions'   => 'Change permissions',
-            'templates'     => 'Apply attribute template',
+            'kits'      => 'Apply property kit',
         ],
         'age'           => [
             'helper'    => 'You can use + and - before the number to update the age by that amount.',
@@ -205,7 +205,7 @@ return [
     ],
     'hidden'            => 'Hidden',
     'hints'             => [
-        'attribute_template'    => 'The selected attribute template will be applied when saving the entry.',
+        'kit'    => 'The selected property kit will be applied when saving the entry.',
         'calendar_date'         => 'A calendar date allows easy filtering in lists, and also maintains a reminder in the selected calendar.',
         'image_dimension'       => 'Recommended dimensions: :dimension pixels.',
         'image_limitations'     => 'Supported formats: :formats. Max file size: :size.',

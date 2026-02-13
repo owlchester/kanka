@@ -12,9 +12,6 @@ return [
         'info'  => 'Why are these reminders being shown?',
         'title' => 'Calendar Widget',
     ],
-    'entity_templates'  => [
-        'link'  => 'How to set templates',
-    ],
     'filters'           => [
         'title' => 'How to use filters',
     ],

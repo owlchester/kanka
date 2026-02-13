@@ -126,7 +126,7 @@
                             </a>
                             <hr class="m-0" />
                             <a
-                                href="https://docs.kanka.io/en/latest/guides/templates.html"
+                                href="https://docs.kanka.io/en/latest/guides/archetypes.html"
                                 class="flex flex-no-wrap gap-2 px-2 py-1 items-center"
                             >
                                 <i class="fa-regular fa-external-link" aria-hidden="true"></i>

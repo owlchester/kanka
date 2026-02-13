@@ -19,7 +19,7 @@
             <x-icon class="fa-regular fa-sparkles" />
             {{ __('lists.actions.public') }}
         </a>
-        <a href="https://docs.kanka.io/en/latest/entities/{{ \Illuminate\Support\Str::replace('_', '-', $entityType->pluralCode()) }}.html" class="text-link">
+        <a href="https://docs.kanka.io/en/latest/entries/{{ \Illuminate\Support\Str::replace('_', '-', $entityType->pluralCode()) }}.html" class="text-link">
             <x-icon class="fa-regular fa-book" />
             {{ __('lists.actions.learn') }}
         </a>

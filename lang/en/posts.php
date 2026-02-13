@@ -2,9 +2,6 @@
 
 return [
     'create'        => [
-        'template'  => [
-            'helper'    => 'The following articles have been defined as templates that can be re-used.',
-        ],
         'title'     => 'New Article',
     ],
     'fields'        => [

@@ -2,7 +2,7 @@
 
 return [
     'actions'       => [
-        'apply_template'    => 'Apply an attribute template',
+        'apply_kit'     => 'Apply a property kit',
         'load'              => 'Load',
         'manage'            => 'Manage',
         'more'              => 'Others',
@@ -34,7 +34,7 @@ return [
     'helpers'       => [
         'delete_all'    => 'Are you sure you want to delete all of this entry\'s properties?',
         'is_private'    => 'Only allow members of the :admin-role role to see this entry\'s properties.',
-        'setup'         => 'You can represent elements like HP or intelligence of an entry with properties. Add properties manually by clicking on the :manage button, or apply those from an attribute template.',
+        'setup'         => 'You can represent elements like HP or intelligence of an entry with properties. Add properties manually by clicking on the :manage button, or apply those from a property kit.',
     ],
     'index'         => [
         'success'   => 'Properties for :entity updated.',
@@ -80,11 +80,11 @@ return [
     'template'      => [
         'load'      => [
             'success'   => 'Template loaded',
-            'title'     => 'Load from template',
+            'title'     => 'Load from kit',
         ],
-        'pitch'     => 'Load properties from an attribute template or plugins installed from the :plugin.',
-        'success'   => 'Attribute template :name applied to :entity',
-        'title'     => 'Apply an attribute template for :name',
+        'pitch'     => 'Load properties from a property kit or plugins installed from the :plugin.',
+        'success'   => 'Property kit :name applied to :entity',
+        'title'     => 'Apply a property kit on :name',
     ],
     'title'         => 'Properties',
     'toasts'        => [
@@ -103,7 +103,7 @@ return [
         'number'    => 'Number',
         'random'    => 'Random',
         'section'   => 'Section',
-        'templates' => 'Templates',
+        'kits' => 'Kits',
         'text'      => 'Paragraph',
     ],
     'update'        => [

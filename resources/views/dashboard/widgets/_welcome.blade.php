@@ -18,7 +18,7 @@
             </a>',
             'letter' => '<kbd>N</kbd>',
             'characters' => '<span class="badge border select-none flex items-center gap-2"><i class="fa-solid fa-user" aria-hidden="true"></i> ' . __('entities.character') . '</span>',
-            'entities' => '<a target="_blank" href="https://docs.kanka.io/en/latest/entities/overview.html" class="text-link">' . __('abilities.show.tabs.entities') . ' <i class="fa-regular fa-external-link" aria-hidden="true"></i></a>',
+            'entities' => '<a target="_blank" href="https://docs.kanka.io/en/latest/entries/overview.html" class="text-link">' . __('abilities.show.tabs.entities') . ' <i class="fa-regular fa-external-link" aria-hidden="true"></i></a>',
         ]) !!}
     </p>
     <p class="font-bold">

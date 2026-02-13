@@ -75,7 +75,7 @@ return [
     ],
     'title'         => 'Plugins - :name',
     'types'         => [
-        'attribute' => 'Attribute Template',
+        'attribute' => 'Character Sheet',
         'pack'      => 'Content Pack',
         'theme'     => 'Theme',
     ],
