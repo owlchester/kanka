@@ -180,12 +180,12 @@ class TransformService
             return $this;
         }
 
-        // @phpstan-ignore-next-line
-        foreach ($this->child->locations as $loc) {
-            $this->new->locations()->attach($loc->id);
+        if (property_exists($this->child, 'locations')) {
+            foreach ($this->child->locations as $loc) {
+                $this->new->locations()->attach($loc->id);
+            }
+            $this->child->locations()->sync([]);
         }
-        // @phpstan-ignore-next-line
-        $this->child->locations()->sync([]);
 
         return $this;
     }
