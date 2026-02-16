@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedInteger('created_by')->nullable();
             $table->string('event');
             $table->json('metadata')->nullable();
-            $table->timestamps();r
+            $table->timestamps();
 
             $table->foreign('campaign_id')->references('id')->on('campaigns')->cascadeOnDelete();
             $table->foreign('created_by')->references('id')->on('users')->cascadeOnDelete();
