@@ -7,6 +7,7 @@ use App\Facades\Dashboard;
 use App\Facades\DataLayer;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
+use App\Models\CampaignEvent;
 use App\Services\DashboardService;
 
 class DashboardController extends Controller
@@ -47,6 +48,11 @@ class DashboardController extends Controller
         if (session()->has('onboarding') || request()->filled('onboarding')) {
             $onboarding = true;
             session()->remove('onboarding');
+            CampaignEvent::create([
+                'campaign_id' => $campaign->id,
+                'created_by' => auth()->user()->id,
+                'event' => 'onboarding_shown'
+            ]);
         }
 
         $hasMap = $hasCampaignHeader = false;

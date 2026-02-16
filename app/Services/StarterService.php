@@ -11,6 +11,7 @@ use App\Facades\EntityPermission;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
+use App\Models\CampaignEvent;
 use App\Models\Character;
 use App\Models\Location;
 use App\Observers\CharacterObserver;
@@ -50,6 +51,11 @@ class StarterService
         $this->entities();
         $this->dashboard();
 
+        CampaignEvent::create([
+            'campaign_id' => $this->campaign->id,
+            'created_by' => $this->user->id,
+            'event' => 'campaign_created'
+        ]);
         session()->put('onboarding', 1);
 
         return $this->campaign;

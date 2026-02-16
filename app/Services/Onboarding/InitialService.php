@@ -5,6 +5,7 @@ namespace App\Services\Onboarding;
 use App\Enums\Widget;
 use App\Facades\CampaignCache;
 use App\Models\CampaignDashboardWidget;
+use App\Models\CampaignEvent;
 use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\Models\CampaignSetting;
@@ -28,8 +29,14 @@ class InitialService
             ->saveType();
     }
 
-    public function skip()
+    public function skip(string $reason)
     {
+        CampaignEvent::create([
+            'campaign_id' => $this->campaign->id,
+            'created_by' => $this->user->id,
+            'event' => 'onboarding_dismissed',
+            'metadata' => ['method' => $reason],
+        ]);
         $this->log('skip');
     }
 
@@ -75,6 +82,12 @@ class InitialService
         }
         $type = $this->request->get('type');
         $this->log($type);
+        CampaignEvent::create([
+            'campaign_id' => $this->campaign->id,
+            'created_by' => $this->user->id,
+            'event' => 'onboarding_completed',
+            'metadata' => ['choice' => $type],
+        ]);
 
         if ($type == 'worldbuilding') {
             $this->worldbuilding();
