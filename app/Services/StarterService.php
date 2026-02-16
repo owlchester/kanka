@@ -78,22 +78,28 @@ class StarterService
         // Generate locations
         $kingdom = new Location([
             'name' => __('starter.name', ['name' => 'Genory']),
-            'type' => __('starter.kingdom1.type'),
-            'entry' => '<p>' . __('starter.kingdom1.description') . '</p>',
             'campaign_id' => $this->campaign->id,
             'is_private' => false,
         ]);
         $kingdom->save();
+        $kingdom->entity->update([
+            'type' => __('starter.kingdom1.type'),
+            'entry' => '<p>' . __('starter.kingdom1.description') . '</p>',
+            'source' => 'onboarding'
+        ]);
 
         $city = new Location([
             'name' => __('starter.name', ['name' => 'Ulyss']),
-            'type' => __('starter.kingdom2.type'),
             'location_id' => $kingdom->id,
-            'entry' => '<p>' . __('starter.kingdom2.description') . '</p>',
             'campaign_id' => $this->campaign->id,
             'is_private' => false,
         ]);
         $city->save();
+        $city->entity->update([
+            'source' => 'onboarding',
+            'type' => __('starter.kingdom2.type'),
+            'entry' => '<p>' . __('starter.kingdom2.description') . '</p>',
+        ]);
 
         // Generate characters
         $james = new Character([
@@ -101,24 +107,30 @@ class StarterService
             'title' => __('starter.character1.title'),
             'age' => '43',
             'sex' => __('starter.character1.sex'),
-            'entry' => '<p>' . __('starter.character1.history') . '</p>',
-            'location_id' => $city->id,
             'campaign_id' => $this->campaign->id,
             'is_private' => false,
         ]);
         $james->save();
+        $james->entity->locations()->sync([$city->id]);
+        $james->entity->update([
+            'source' => 'onboarding',
+            'entry' => '<p>' . __('starter.character1.history') . '</p>',
+        ]);
 
         $irwie = new Character([
             'name' => __('starter.name', ['name' => 'Irwie Gemstone']),
             'title' => __('starter.character2.title'),
             'age' => '31',
             'sex' => __('starter.character2.sex'),
-            'entry' => '<p>' . __('starter.character2.history') . '</p>',
-            'location_id' => $city->id,
             'campaign_id' => $this->campaign->id,
             'is_private' => false,
         ]);
         $irwie->save();
+        $irwie->entity->locations()->sync([$city->id]);
+        $irwie->entity->update([
+            'source' => 'onboarding',
+            'entry' => '<p>' . __('starter.character2.history') . '</p>',
+        ]);
     }
 
     /**

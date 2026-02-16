@@ -138,10 +138,11 @@ class InitialService
             'access' => true,
         ]);
 
-        Family::create([
+        $family = Family::create([
             'name' => __('starter.name', ['name' => __('dashboards/onboarding.families.varren.title')]),
             'campaign_id' => $this->campaign->id,
         ]);
+        $family->entity->update(['source' => 'onboarding']);
     }
 
     protected function ttrpg(): void
@@ -156,6 +157,7 @@ class InitialService
             'name' => __('onboarding/tags.npcs'),
             'campaign_id' => $this->campaign->id,
         ]);
+        $tag->entity->update(['source' => 'onboarding']);
 
         // Give players some basic permissions to view/edit characters
         $playerRole = $this->playerRole();
@@ -205,10 +207,12 @@ class InitialService
             'entity_type_id' => config('entities.ids.quest'),
         ]);
 
-        Quest::create([
+        $quest = Quest::create([
             'name' => __('starter.name', ['name' => __('dashboards/onboarding.quests.crown.title')]),
             'campaign_id' => $this->campaign->id,
         ]);
+        $quest->entity->update(['source' => 'onboarding']);
+
     }
 
     protected function story(): void
