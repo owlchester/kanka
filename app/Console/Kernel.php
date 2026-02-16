@@ -9,6 +9,9 @@ use App\Console\Commands\Cleanup\CleanupTrashed;
 use App\Console\Commands\Cleanup\CleanupTrashedCampaigns;
 use App\Console\Commands\Cleanup\CleanupUsers;
 use App\Console\Commands\Entities\CalendarAdvancer;
+use App\Console\Commands\Report\Accounts;
+use App\Console\Commands\Report\Churn;
+use App\Console\Commands\Report\Onboarding;
 use App\Console\Commands\Subscriptions\EndFreeTrials;
 use App\Console\Commands\Subscriptions\EndSubscriptions;
 use App\Console\Commands\Subscriptions\ExpiringCardCommand;
@@ -45,7 +48,11 @@ class Kernel extends ConsoleKernel
         $schedule->command(CleanupEntityLogs::class)->onOneServer()->dailyAt('01:30');
         $schedule->command(CleanupTrashedCampaigns::class)->onOneServer()->dailyAt('01:45');
         // $schedule->command(CleanupUsers::class)->onOneServer()->dailyAt('01:50');
-        $schedule->command('backup:run')->onOneServer()->twiceDaily(2,14);
+        $schedule->command('backup:run')->onOneServer()->twiceDaily(2, 14);
+
+        $schedule->command(Onboarding::class)->onOneServer()->weekly();
+        $schedule->command(Churn::class)->onOneServer()->weekly();
+        $schedule->command(Accounts::class)->onOneServer()->weekly();
 
         // $schedule->command('backup:monitor')->daily()->at('03:00');
         // $schedule->command(UpcomingYearlyCommand::class)->dailyAt('06:30');
