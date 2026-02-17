@@ -25,7 +25,7 @@ class ManageRaces extends FormRequest
     {
         return [
             'character_race' => [
-                '*' => 'exists:races,id',
+                '*' => 'integer|exists:races,id',
             ],
         ];
     }

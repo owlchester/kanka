@@ -25,7 +25,7 @@ class ManageFamilies extends FormRequest
     {
         return [
             'character_family' => [
-                '*' => 'exists:families,id',
+                '*' => 'integer|exists:families,id',
             ],
         ];
     }

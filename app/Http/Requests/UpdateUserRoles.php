@@ -25,7 +25,7 @@ class UpdateUserRoles extends FormRequest
     {
         $rules = [
             'roles' => 'array',
-            'roles.*' => 'required|exists:campaign_roles,id',
+            'roles.*' => 'required|integer|exists:campaign_roles,id',
         ];
 
         return $rules;

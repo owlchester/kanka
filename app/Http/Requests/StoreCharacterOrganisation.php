@@ -25,10 +25,10 @@ class StoreCharacterOrganisation extends FormRequest
     public function rules(): array
     {
         return $this->clean([
-            'organisation_id' => 'required|exists:organisations,id',
+            'organisation_id' => 'required|integer|exists:organisations,id',
             'role' => 'nullable|string|max:191',
             'is_private' => 'nullable|boolean',
-            'parent_id' => 'nullable|exists:organisation_member,id',
+            'parent_id' => 'nullable|integer|exists:organisation_member,id',
         ]);
     }
 }

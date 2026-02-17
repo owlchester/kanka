@@ -32,7 +32,7 @@ class StoreQuestElement extends FormRequest
             'description' => 'string|nullable',
             'role' => 'nullable|string|max:191',
             'colour' => 'nullable|string|max:10',
-            'visibility_id' => 'nullable|exists:visibilities,id',
+            'visibility_id' => 'nullable|integer|exists:visibilities,id',
         ];
 
         return $this->clean($rules);

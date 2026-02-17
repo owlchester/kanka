@@ -25,7 +25,7 @@ class ReorderLayers extends FormRequest
     {
         return [
             'layers' => [
-                '*' => 'exists:map_layers,id',
+                '*' => 'integer|exists:map_layers,id',
             ],
         ];
     }

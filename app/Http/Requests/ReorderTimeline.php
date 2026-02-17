@@ -25,7 +25,7 @@ class ReorderTimeline extends FormRequest
     {
         return [
             'timeline_era' => [
-                '*' => 'exists:timeline_eras,id',
+                '*' => 'integer|exists:timeline_eras,id',
             ],
         ];
     }

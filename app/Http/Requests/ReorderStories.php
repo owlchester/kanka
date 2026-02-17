@@ -26,8 +26,8 @@ class ReorderStories extends FormRequest
         return [
             'posts' => [
                 '*' => [
-                    'id' => 'exists:posts,id',
-                    'visibility_id' => 'exists:visibilities,id',
+                    'id' => 'integer|exists:posts,id',
+                    'visibility_id' => 'integer|exists:visibilities,id',
                 ],
             ],
         ];

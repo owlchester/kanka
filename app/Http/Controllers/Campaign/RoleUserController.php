@@ -44,7 +44,9 @@ class RoleUserController extends Controller
             return response()->json(['success' => true]);
         }
 
-        $relation = CampaignRoleUser::create($request->all());
+        $data = $request->only(['user_id']);
+        $data['campaign_role_id'] = $campaignRole->id;
+        $relation = CampaignRoleUser::create($data);
 
         return redirect()->route('campaign_roles.show', [
             $campaign,
