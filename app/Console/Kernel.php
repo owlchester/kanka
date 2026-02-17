@@ -51,7 +51,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command(CleanupUsers::class)->onOneServer()->dailyAt('01:50');
         $schedule->command('backup:run')->onOneServer()->twiceDaily(2, 14);
 
-        // $schedule->command(Onboarding::class)->onOneServer()->weekly();
+        $schedule->command(Onboarding::class)->onOneServer()->weekly();
         $schedule->command(Churn::class)->onOneServer()->weekly();
         // $schedule->command(Accounts::class)->onOneServer()->weekly();
         $schedule->command(Weekly::class)->onOneServer()->weekly();
