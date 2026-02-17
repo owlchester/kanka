@@ -24,7 +24,7 @@ class TransformEntityRequest extends FormRequest
     public function rules()
     {
         return [
-            'target' => 'required|exists:entity_types,id',
+            'target' => 'required|integer|exists:entity_types,id',
             'confirm' => 'required|boolean',
         ];
     }

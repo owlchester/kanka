@@ -27,6 +27,11 @@ class InviteController extends Controller
         return redirect()->route('home');
     }
 
+    public function show(Campaign $campaign, CampaignInvite $campaignInvite)
+    {
+        return redirect()->route('home');
+    }
+
     /**
      * Create a new invitation link form
      *

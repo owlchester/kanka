@@ -79,6 +79,12 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
                         target="_blank">
                         {{ __('entities/image.actions.view') }}
                     </x-dropdowns.item>
+                    <x-dropdowns.item
+                        link="#"
+                        icon="fa-regular fa-copy"
+                        :data="['clipboard' => $imageUrl, 'toast' => __('entities/image.actions.copy_url_success')]">
+                        {{ __('entities/image.actions.copy_url') }}
+                    </x-dropdowns.item>
                     <x-dropdowns.divider />
                     <x-dropdowns.item
                         icon="fa-regular fa-shuffle"

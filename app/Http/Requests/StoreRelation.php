@@ -27,15 +27,16 @@ class StoreRelation extends FormRequest
     public function rules()
     {
         return $this->clean([
-            'owner_id' => 'required|exists:entities,id',
+            'owner_id' => 'required|integer|exists:entities,id',
             'targets' => 'required_without:target_id',
-            'target.*' => 'exists:entities,id',
-            'target_id' => 'required_without:targets|exists:entities,id|different:owner_id',
+            'targets.*' => 'integer|exists:entities,id',
+            'target_id' => 'required_without:targets|integer|exists:entities,id|different:owner_id',
             'relation' => 'required|max:255',
-            'visibility_id' => 'nullable|exists:visibilities,id',
+            'visibility_id' => 'nullable|integer|exists:visibilities,id',
             'attitude' => 'min:-100|max:100',
             'colour' => 'nullable|max:7',
             'is_pinned' => 'boolean',
+            'two_way' => 'boolean',
         ]);
     }
 }

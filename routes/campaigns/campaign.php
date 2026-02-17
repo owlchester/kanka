@@ -191,7 +191,7 @@ Route::post('/w/{campaign}/sidebar-setup', 'Campaign\SidebarController@save')->n
 Route::delete('/w/{campaign}/sidebar-setup/reset', 'Campaign\SidebarController@reset')->name('campaign-sidebar-reset');
 
 Route::get('/w/{campaign}/campaign-defaults', 'Campaign\DefaultsController@index')->name('campaign-defaults');
-Route::post('/w/{campaign}/sidebar-defaults', 'Campaign\DefaultsController@save')->name('campaign-defaults-save');
+Route::post('/w/{campaign}/campaign-defaults', 'Campaign\DefaultsController@save')->name('campaign-defaults-save');
 
 Route::get('/w/{campaign}/presets/type/{preset_type}/list', [App\Http\Controllers\PresetController::class, 'presets'])->name('presets.list');
 Route::get('/w/{campaign}/presets/type/{preset_type}/create', [App\Http\Controllers\PresetController::class, 'create'])->name('presets.create');

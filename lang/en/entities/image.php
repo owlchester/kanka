@@ -7,6 +7,8 @@ return [
         'replace_image'     => 'Replace image',
         'save-replace'      => 'Replace image',
         'save_focus'        => 'Save focus point',
+        'copy_url'          => 'Copy image URL',
+        'copy_url_success'  => 'Image URL copied to your clipboard.',
         'view'              => 'View image',
     ],
     'call-to-action'        => 'Click on the entry\'s image to set it\'s focus point instead of using the automated guess.',

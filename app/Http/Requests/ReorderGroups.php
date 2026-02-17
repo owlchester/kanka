@@ -24,9 +24,8 @@ class ReorderGroups extends FormRequest
     public function rules()
     {
         return [
-            'groups' => [
-                '*' => 'exists:map_groups,id',
-            ],
+            'groups' => 'array',
+            'groups.*' => 'integer|exists:map_groups,id',
         ];
     }
 }

@@ -28,14 +28,15 @@ class StoreTimelineElement extends FormRequest
     public function rules()
     {
         $rules = [
+            'timeline_id' => 'prohibited',
             'entity_id' => 'required_without:name|exists:entities,id',
             'name' => 'nullable|string|max:191|required_without:entity_id',
-            'era_id' => 'required|exists:timeline_eras,id',
+            'era_id' => 'required|integer|exists:timeline_eras,id',
             'entry' => 'nullable|string',
             'position' => 'nullable|integer',
             'colour' => 'nullable|string|max:12',
             'date' => 'nullable|string|max:45',
-            'visibility_id' => 'nullable|exists:visibilities,id',
+            'visibility_id' => 'nullable|integer|exists:visibilities,id',
             'icon' => ['nullable', 'string', new FontAwesomeIcon],
             'use_event_date' => 'boolean',
         ];

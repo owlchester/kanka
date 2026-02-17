@@ -24,7 +24,7 @@ class DefaultImageDestroy extends FormRequest
     public function rules()
     {
         $rules = [
-            'entity_type' => 'required|exists:entity_types,id',
+            'entity_type' => 'required|integer|exists:entity_types,id',
         ];
 
         return $rules;

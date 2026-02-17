@@ -24,9 +24,8 @@ class ReorderBookmarks extends FormRequest
     public function rules()
     {
         return [
-            'bookmark' => [
-                '*' => 'exists:bookmarks,id',
-            ],
+            'bookmark' => 'array',
+            'bookmark.*' => 'integer|exists:bookmarks,id',
         ];
     }
 }
