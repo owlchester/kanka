@@ -18,7 +18,7 @@ return [
     'helpers'       => [
         'primary'   => 'Setting one or several aliases on the entry will make it findable in the global search (top bar) and through :code mentions.',
     ],
-    'limit'         => 'The campaign has reached the limit of aliases available to it. To get unlimited aliases, unlock premium features.',
+    'limit'         => 'Alias limit reached for standard campaigns (:amount/:max). :upgrade for unlimited aliases on this campaign.',
     'pitch'         => 'Add aliases to this entry to make it easier to find in search and when using mentions. Perfect for nicknames, titles, or alternate spellings.',
     'placeholders'  => [
         'name'  => 'New alias',
