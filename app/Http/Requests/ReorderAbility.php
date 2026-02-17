@@ -24,9 +24,8 @@ class ReorderAbility extends FormRequest
     public function rules()
     {
         return [
-            'entity_ability' => [
-                '*' => 'integer|exists:entity_abilities,id',
-            ],
+            'entity_ability' => 'array',
+            'entity_ability.*' => 'integer|exists:entity_abilities,id',
         ];
     }
 }
