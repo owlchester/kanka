@@ -21,12 +21,13 @@ class ManageFamilies extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            'character_family' => [
-                '*' => 'exists:families,id',
-            ],
+            'character_family' => 'array',
+            'character_family.*' => 'integer|exists:families,id',
+            'family_privates' => 'array',
+            'family_privates.*' => 'boolean',
         ];
     }
 }

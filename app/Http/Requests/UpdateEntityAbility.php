@@ -25,7 +25,7 @@ class UpdateEntityAbility extends FormRequest
     {
         return [
             'note' => 'nullable|string',
-            'visibility_id' => 'nullable|exists:visibilities,id',
+            'visibility_id' => 'nullable|integer|exists:visibilities,id',
         ];
     }
 }

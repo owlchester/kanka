@@ -27,8 +27,8 @@ class StoreEntityPermission extends FormRequest
     public function rules()
     {
         return [
-            '*.campaign_role_id' => ['required_without:*.user_id', 'exists:campaign_roles,id'],
-            '*.user_id' => ['required_without:*.campaign_role_id', 'exists:users,id'],
+            '*.campaign_role_id' => ['required_without:*.user_id', 'integer', 'exists:campaign_roles,id'],
+            '*.user_id' => ['required_without:*.campaign_role_id', 'integer', 'exists:users,id'],
             '*.access' => ['required', 'boolean'],
             '*.action' => ['required', 'numeric'],
         ];

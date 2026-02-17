@@ -167,6 +167,7 @@ class ImporterService
 
             $entity = $model->entity;
             $entity->marketplace_uuid = $pluginEntity->uuid;
+            $entity->source = 'plugin';
             $entity->save();
 
             $this->miscIds[$pluginEntity->id] = $model->id;

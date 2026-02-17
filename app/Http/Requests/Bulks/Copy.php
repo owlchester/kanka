@@ -25,7 +25,7 @@ class Copy extends FormRequest
             'models' => 'required_without:entities|string',
             'entities' => 'required_without:models|array',
             'entities.*' => 'integer',
-            'campaign' => 'required|exists:campaigns,id',
+            'campaign' => 'required|integer|exists:campaigns,id',
         ];
     }
 }

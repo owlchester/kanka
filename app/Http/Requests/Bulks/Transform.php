@@ -14,7 +14,7 @@ class Transform extends FormRequest
     public function rules(): array
     {
         return [
-            'target' => 'required|exists:entity_types,id',
+            'target' => 'required|integer|exists:entity_types,id',
         ];
     }
 }

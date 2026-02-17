@@ -17,6 +17,5 @@
         'content' => 'campaigns.roles.users._form',
         'submit' => __('campaigns.roles.users.actions.add'),
     ])
-    <input type="hidden" name="campaign_role_id" value="{{ $role->id }}"/>
     </x-form>
 @endsection

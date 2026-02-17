@@ -36,7 +36,7 @@ class StoreFamily extends FormRequest
             'entry' => 'nullable|string',
             'type' => 'nullable|string|max:191',
             'location_id' => 'nullable|integer|exists:locations,id',
-            'family_id' => 'nullable|exists:families,id',
+            'family_id' => 'nullable|integer|exists:families,id',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
             'entity_image_uuid' => 'nullable|exists:images,id',
