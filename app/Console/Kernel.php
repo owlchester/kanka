@@ -12,6 +12,7 @@ use App\Console\Commands\Entities\CalendarAdvancer;
 use App\Console\Commands\Report\Accounts;
 use App\Console\Commands\Report\Churn;
 use App\Console\Commands\Report\Onboarding;
+use App\Console\Commands\Report\Weekly;
 use App\Console\Commands\Subscriptions\EndFreeTrials;
 use App\Console\Commands\Subscriptions\EndSubscriptions;
 use App\Console\Commands\Subscriptions\ExpiringCardCommand;
@@ -50,9 +51,10 @@ class Kernel extends ConsoleKernel
         // $schedule->command(CleanupUsers::class)->onOneServer()->dailyAt('01:50');
         $schedule->command('backup:run')->onOneServer()->twiceDaily(2, 14);
 
-        $schedule->command(Onboarding::class)->onOneServer()->weekly();
+        // $schedule->command(Onboarding::class)->onOneServer()->weekly();
         $schedule->command(Churn::class)->onOneServer()->weekly();
-        $schedule->command(Accounts::class)->onOneServer()->weekly();
+        // $schedule->command(Accounts::class)->onOneServer()->weekly();
+        $schedule->command(Weekly::class)->onOneServer()->weekly();
 
         // $schedule->command('backup:monitor')->daily()->at('03:00');
         // $schedule->command(UpcomingYearlyCommand::class)->dailyAt('06:30');
