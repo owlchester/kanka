@@ -64,7 +64,7 @@ class EntityCreatorController extends Controller
         if ($request->has('_target')) {
             return response()->json([
                 '_target' => $request->get('_target'),
-                '_id' => $first->id,
+                '_id' => $first->entityType->isCustom() ? $first->id : $first->child->id,
                 '_name' => $first->name,
                 '_multi' => $request->get('_multi'),
             ]);
