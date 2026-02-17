@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Campaigns;
 
+use App\Enums\CampaignImportStatus;
 use App\Facades\Avatar;
 use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
@@ -100,10 +101,10 @@ class CsvImport extends Component
     {
         $this->type = EntityType::where('id', $this->entityType)->first();
         $this->canAssign = true;
-        if ($this->type->isCustom()) {
-            $fields = app()->make(Entity::class)->getFillable();
-        } else {
-            $fields = $this->type->getMiscClass()->getFillable();
+        $fields = app()->make(Entity::class)->getFillable();
+        if (!$this->type->isCustom()) {
+            $modelFields = $this->type->getMiscClass()->getFillable();
+            $fields = array_unique(array_merge($fields, $modelFields));
         }
 
         //$this->fillableFields = array_values(array_diff($this->fillableFields, ['campaign_id', 'entity_id']));
@@ -150,7 +151,10 @@ class CsvImport extends Component
         foreach ($this->tags as $tag) {
             $tagIds[] = $tag['id'];
         }
+        $logs = $this->import->logs;
+        $logs[] = 'Mapping form submitted';
 
+        $this->import->update(['status_id' => CampaignImportStatus::PROCESSING, 'logs' => $logs]);
         ImportCsv::dispatch($this->import, auth()->user()->id, $this->entityType, $this->columnMap, $tagIds, $this->appearances, $this->personalities)->onQueue('heavy');
 
         return $this->redirectRoute(

@@ -11,4 +11,5 @@ enum CampaignImportStatus: int
     case FAILED = 5;
     case VALIDATING = 6;
     case READY = 7;
+    case PROCESSING = 8;
 }

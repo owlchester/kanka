@@ -46,6 +46,7 @@ return [
         'ready'         => 'Ready for mapping',
         'validating'    => 'Validating',
         'invalid'       => 'Invalid Data',
+        'processing'    => 'Processing',
     ],
     'title'         => 'Import',
 ];

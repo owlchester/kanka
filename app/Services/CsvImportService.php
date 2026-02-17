@@ -50,6 +50,8 @@ class CsvImportService
     protected array $appearances = [];
     protected array $personalities = [];
     protected array $headers = [];
+    protected array $logs = [];
+    protected int $entityCount = 0;
 
     public function job(CampaignImport $job)
     {
@@ -99,6 +101,8 @@ class CsvImportService
 
     protected function init(): self
     {
+        $this->logs[] = 'Starting Import';
+
         $this->job->status_id = CampaignImportStatus::RUNNING;
         $this->job->save();
 
@@ -120,6 +124,7 @@ class CsvImportService
             Storage::disk('local')->put($local, $s3);
 
             $this->filePath = storage_path('app/' . $local);
+            $this->logs[] = 'Downloaded csv to ' . $local;
         }
 
         return $this;
@@ -150,6 +155,7 @@ class CsvImportService
     public function processCsv(): self
     {
         //Open the CSV file
+        $this->logs[] = 'Processing CSV';
         $csv = new SplFileObject($this->filePath);
         $csv->setFlags(
             SplFileObject::READ_CSV |
@@ -192,6 +198,7 @@ class CsvImportService
                 $batch[] = $row;
 
                 if (count($batch) === $batchSize) {
+                    $this->logs[] = 'Processing batch';
                     $this->processBatch($batch);
                     $batch = []; // free memory immediately
                 }
@@ -218,6 +225,7 @@ class CsvImportService
                 'link' => route('dashboard', ['campaign' => $this->campaign]),
                 'count' => $count
             ]));
+        $this->logs[] = 'Finished processing CSV';
         $this->cleanup();
         return $this;
     }
@@ -240,6 +248,8 @@ class CsvImportService
 
             $mappedPersonalities = [];
             foreach ($this->personalities as $key) {
+                $this->logs[] = 'Has personalities';
+
                 if (isset($row[$key])) {
                     $mappedPersonalities[$this->headers[$key]] = $row[$key];
                 }
@@ -247,6 +257,8 @@ class CsvImportService
 
             $mappedAppearances = [];
             foreach ($this->appearances as $key) {
+                $this->logs[] = 'Has appearances';
+
                 if (isset($row[$key])) {
                     $mappedAppearances[$this->headers[$key]] = $row[$key];
                 }
@@ -263,17 +275,24 @@ class CsvImportService
     {
         // Remove target as we need that for something else
         if (! empty($this->data['entry'])) {
-            $this->data['entry'] = nl2br($this->data['entry']);
+            $this->data['entry'] = '<p>' . nl2br($this->data['entry'] . '</p>');
         } elseif ($this->entityType->id == config('entities.ids.note')) {
             $this->data['entry'] = '';
         }
 
+        if (empty($this->data['is_private'])) {
+            $this->data['is_private'] = $this->campaign->entity_visibility;
+        }
         
         $traits = $this->data['traits'];
         unset($this->data['traits']);
 
         if ($this->entityType->isCustom()) {
-            return $this->createEntity();
+            $entity = $this->createEntity();
+
+            $this->entityCount++;
+
+            return $entity;
         }
 
         // Prepare the validator
@@ -290,12 +309,17 @@ class CsvImportService
         $new->save();
         $new->createEntity();
         $entity = $new->entity;
+        $entity->entry = $this->data['entry'] ?? '';
+        $entity->type = $this->data['type'] ?? '';
+        $entity->is_private = $this->data['is_private'];
+        $entity->created_by = $this->user->id;
+        $entity->saveQuietly();
         $this->saveTags($entity);
 
         if ($this->entityType->isCharacter()) {
             $this->saveTraits($new, $traits);
         }
-
+        $this->entityCount++;
         return $new->entity;
     }
 
@@ -309,6 +333,10 @@ class CsvImportService
         $entity = new Entity($this->data);
         $entity->type_id = $this->entityType->id;
         $entity->campaign_id = $this->campaign->id;
+        $entity->entry = $this->data['entry'] ?? '';
+        $entity->type = $this->data['type'] ?? '';
+        $entity->is_private = $this->data['is_private'];
+        $entity->created_by = $this->user->id;
         $entity->save();
         $entity->crudSaved();
         $this->saveTags($entity);
@@ -372,6 +400,9 @@ class CsvImportService
     protected function cleanup(): self
     {
         $files = $this->job->config['files'];
+        $this->logs[] = 'Created ' . $this->entityCount . ' new entities';
+        $this->job->logs = $this->logs;
+        $this->job->save();
         foreach ($files as $file) {
             Storage::disk('export')->delete($file);
         }
@@ -407,7 +438,7 @@ class CsvImportService
         }
 
         Log::error('CSV Import', ['where' => 'fail', 'error' => $e->getMessage()]);
-
+        $this->logs[] = 'Processing Failed';
         return $this->cleanup();
     }
 }

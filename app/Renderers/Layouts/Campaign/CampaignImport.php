@@ -53,6 +53,8 @@ class CampaignImport extends Layout
                         return '<a href="' . route('campaign.import.csv', [$model->campaign, $model]) . '" class="btn2 btn-outline btn-sm"> <i class="fa-regular fa-check-circle" aria-hidden="true"></i> ' . __('campaigns/import.status.ready') . '</a>';
                     } elseif ($model->status_id == CampaignImportStatus::VALIDATING) {
                         return '<span class="text-info"><i class="fa-regular fa-microscope" aria-hidden="true"></i> ' . __('campaigns/import.status.validating') . '</span>';
+                    } elseif ($model->status_id == CampaignImportStatus::PROCESSING) {
+                        return '<span class="text-neutral-content"><i class="fa-regular fa-hourglass" aria-hidden="true"></i> ' . __('campaigns/import.status.processing') . '</span>';
                     }
 
                     return '<span class="text-neutral-content"><i class="fa-regular fa-spinner fa-spin" aria-hidden="true"></i> ' . __('campaigns/import.status.running') . '</span>';

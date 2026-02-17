@@ -64,20 +64,25 @@ class ImportCsv implements ShouldQueue
 
         $entityType = EntityType::inCampaign($job->campaign)->where('id', $this->entityTypeId)->first();
 
-        if (! $job || ! $entityType) {
+        $logs = $job->logs;
+        if (! $job) {
             Log::info('CSV campaign import', ['empty', 'id' => $this->jobID]);
 
             return 0;
         }
 
-        if (! $job->campaign || ! $job->user) {
+        if (! $job->campaign || ! $job->user || !$entityType) {
+            $logs[] = 'Missing campaign, user or entity type';
+
             Log::info('Campaign import', ['empty_campaign_or_user', 'id' => $this->jobID]);
+            $job->update(['status_id' => CampaignImportStatus::FAILED, 'logs' => $logs]);
 
             return 0;
         }
 
+        $logs[] = 'Running csv import';
         Log::info('CSV campaign import', ['running', 'id' => $this->jobID]);
-        $job->update(['status_id' => CampaignImportStatus::RUNNING]);
+        $job->update(['status_id' => CampaignImportStatus::RUNNING, 'logs' => $logs]);
 
         $service = app()->make(CsvImportService::class)
             ->job($job)
