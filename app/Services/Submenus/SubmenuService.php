@@ -2,7 +2,6 @@
 
 namespace App\Services\Submenus;
 
-use App\Enums\EntityAssetType;
 use App\Facades\Module;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;

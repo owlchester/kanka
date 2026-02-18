@@ -380,6 +380,7 @@ class Campaign extends Model
     {
         return $this->roles()->public()->one();
     }
+
     /**
      * Checks if the campaign's public role has no read permissions
      */
