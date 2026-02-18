@@ -324,6 +324,10 @@ Route::get('/w/{campaign}/entities/{entity}/html-export', 'Entity\ExportControll
 Route::get('/w/{campaign}/entities/{entity}.json', 'Entity\ExportController@json')->name('entities.json.export');
 Route::get('/w/{campaign}/entities/{entity}.md', 'Entity\ExportController@markdown')->name('entities.markdown.export');
 
+//Share
+Route::get('/w/{campaign}/entities/{entity}/share', 'Entity\ShareController@setup')->name('entities.share.setup');
+Route::post('/w/{campaign}/entities/{entity}/share', 'Entity\ShareController@save')->name('entities.share.save');
+
 Route::get('/w/{campaign}/entities/{entity}/template', 'Entity\TemplateController@update')->name('entities.template');
 Route::get('/w/{campaign}/posts/{post}/template', 'Entity\Posts\TemplateController@update')->name('posts.template');
 

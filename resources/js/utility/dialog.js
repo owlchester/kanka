@@ -1,3 +1,16 @@
+
+import { createApp } from 'vue'
+import EntityShareModal from "./EntityShareModal.vue";
+
+window.mountShareModal = function () {
+    const el = document.getElementById('entity-share-container');
+    if (el && !el.__vue_app__) {
+        const app = createApp({});
+        app.component('entity-share-modal', EntityShareModal);
+        app.mount(el);
+        console.log('Vue Share Modal Mounted');
+    }
+};
 /**
  * Heavily inspired by the amazing https://web.dev/building-a-dialog-component/
  */
@@ -87,19 +100,22 @@ const loadDialogContent = (url, target) => {
     } else {
         target.innerHTML = loadingContent;
     }
-
-    fetch(url, {headers: {'X-Requested-With': 'XMLHttpRequest'}})
-        .then(response => response.text())
-        .then(response => {
-            target.innerHTML = response;
+fetch(url, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+        .then(res => res.text()) // Get the string content
+        .then(html => {
+            target.innerHTML = html; // This is the HTML from setup.blade.php
             target.show();
-            if (typeof $ === 'function') {
-                window.triggerEvent();
+
+            // Run Vue mount
+            if (typeof window.mountShareModal === 'function') {
+                window.mountShareModal();
             } else {
-                document.dispatchEvent(dialogLoadedEvent);
+                console.error('mountShareModal is not defined. Is share.js loaded on the main page?');
             }
-            Alpine.initTree(target);
-            //console.log('alpine triggered on', target);
+        })
+        .catch(err => {
+            console.error(err);
+            target.innerHTML = 'Error loading content.';
         });
 };
 
