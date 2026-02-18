@@ -39,7 +39,7 @@
 @endif
 
 @if ($user->referral)
-- **Referral:** {{ $user->referrer->code }}
+- **Referred by:** [{{ $user->referrer->name }}](https://admin.kanka.io/users/{{ $user->referrer->id }}) ({{ $user->referrer->code }})
 @endif
 
 @if (!empty($user->settings['tracking']))
