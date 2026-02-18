@@ -276,6 +276,7 @@ return [
         'tag'           => 'Choose a tag',
         'template'      => 'Choose a template',
         'timeline'      => 'Choose a timeline',
+        'type'          => 'Type of the entry',
         'user'          => 'Choose a user',
     ],
     'remove'            => 'Remove',

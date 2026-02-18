@@ -44,7 +44,7 @@ trait HasVisibility
     {
         $icon = [];
 
-        if ($this->visibility_id === Visibility::All) {
+        if ($this->isVisibleAll()) {
             if ($this->skipAllIcon) {
                 $icon['skip'] = true;
 
@@ -52,7 +52,7 @@ trait HasVisibility
             }
             $icon['class'] = 'fa-regular fa-eye';
             $icon['key'] = __('visibilities.helpers.all');
-        } elseif ($this->visibility_id === Visibility::Admin) {
+        } elseif ($this->isVisibleAdmin()) {
             $icon['class'] = 'fa-regular fa-lock';
             $icon['key'] = __('visibilities.helpers.admin');
         } elseif ($this->visibility_id === Visibility::Self) {
@@ -73,13 +73,13 @@ trait HasVisibility
 
     public function visibilityName(): string
     {
-        if ($this->visibility_id === Visibility::All->value) {
+        if ($this->isVisibleAll()) {
             if ($this->skipAllIcon) {
                 return '';
             }
 
             return __('crud.visibilities.all');
-        } elseif ($this->visibility_id === Visibility::Admin->value) {
+        } elseif ($this->isVisibleAdmin()) {
             return __('crud.visibilities.admin');
         } elseif ($this->visibility_id === Visibility::Self->value) {
             return __('crud.visibilities.self');
@@ -130,5 +130,10 @@ trait HasVisibility
     public function isVisibleAll(): bool
     {
         return $this->visibility_id === Visibility::All;
+    }
+
+    public function isVisibleAdmin(): bool
+    {
+        return $this->visibility_id === Visibility::Admin;
     }
 }

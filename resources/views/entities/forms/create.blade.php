@@ -26,11 +26,11 @@
         <x-grid type="1/1">
         @include('cruds.forms._errors')
 
-        <div class="nav-tabs-custom bg-base-100 p-4 rounded-xl flex flex-col gap-6">
-            <div class="flex gap-2 items-center justify-between ">
+        <div class="nav-tabs-custom bg-base-100 p-4 rounded-xl flex flex-col gap-6 relative">
+            <div class="flex gap-2 items-center justify-between sticky z-10 top-12 bg-base-100">
                 <div class="overflow-x-auto">
                     <ul class="nav-tabs flex items-stretch w-full" role="tablist">
-                        <x-tab.tab target="entry" :default="true" :title="__('crud.tabs.overview')"></x-tab.tab>
+                        <x-tab.tab target="entry" :default="true" :title="__('entries/tabs.identity')"></x-tab.tab>
 
                         @if (config('services.stripe.enabled'))
                             <x-tab.tab target="premium" icon="premium" :title="__('crud.tabs.premium')"></x-tab.tab>

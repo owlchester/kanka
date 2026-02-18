@@ -2,6 +2,7 @@
 
 namespace App\Services\Submenus;
 
+use App\Enums\EntityAssetType;
 use App\Facades\Module;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
@@ -96,7 +97,7 @@ class SubmenuService
             $this->items['third']['assets'] = [
                 'name' => __('entries/tabs.media'),
                 'route' => 'entities.entity_assets.index',
-                'count' => $this->entity->assets()->count(),
+                'count' => $this->entity->assets()->withoutAliases()->count(),
                 'entity' => true,
                 'icon' => 'fa-regular fa-file',
             ];

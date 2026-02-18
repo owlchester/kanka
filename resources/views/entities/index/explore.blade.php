@@ -9,5 +9,5 @@
 
 @section('scripts')
     @parent
-    @vite(['resources/js/entries/explore.js'])
+    @vite(['resources/js/entities/explore.js'])
 @endsection
