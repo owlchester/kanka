@@ -1,10 +1,14 @@
 @if (session('success') or session('success_raw'))
-    <x-alert type="success" class="alert-header" :dismissible="true">
+    <x-alert type="success" class="alert-header" :dismissible="true"><span>
         @if (session('success_raw'))
-            <span>{!! session('success_raw') !!}</span>
+            {!! session('success_raw') !!}
         @else
-            <span>{{ session('success') }}</span>
+            {{ session('success') }}
         @endif
+        @if (session('success_docs'))
+            <x-learn-more :url="session('success_docs')"/>
+        @endif
+        </span>
     </x-alert>
 @endif
 @if (session('warning'))

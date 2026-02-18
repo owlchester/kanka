@@ -380,9 +380,7 @@ class Campaign extends Model
      */
     public function publicHasNoVisibility(): bool
     {
-        /** @var CampaignRole $publicRole */
-        $publicRole = $this->roles()->public()->first();
-        $permissionCount = $publicRole->permissions()
+        $permissionCount = $this->publicRole->permissions()
             ->where('action', Permission::View->value)
             ->where('access', 1)
             ->count();

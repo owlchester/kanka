@@ -183,7 +183,6 @@ class TransformService
             foreach ($this->child->locations as $loc) {
                 $this->new->locations()->attach($loc->id);
             }
-            $this->child->locations()->sync([]);
         }
 
         return $this;

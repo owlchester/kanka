@@ -60,6 +60,7 @@
             @if(!$campaign->isPrivate() && $campaign->publicHasNoVisibility())
                 <x-alert type="warning">
                     <p>{!! __('campaigns.helpers.public_no_visibility', [
+                    'public' => $campaign->publicRole->name,
 'fix' => '<a href="' . route('campaigns.campaign_roles.public', $campaign) . '">' . __('crud.fix-this-issue') . '</a>'
 ]) !!}</p>
                 </x-alert>

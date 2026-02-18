@@ -13,7 +13,7 @@
 
         <x-forms.field
             field="entry"
-            :label="__('campaigns.fields.description')">
+            :label="__('fields.description.label')">
             @include('cruds.fields.entry', ['model' => $campaign ?? null])
         </x-forms.field>
 

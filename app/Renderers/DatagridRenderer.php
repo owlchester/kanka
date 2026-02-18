@@ -190,7 +190,7 @@ class DatagridRenderer
                 $class .= ' ' . $this->hidden;
                 $html = $this->route(
                     'entity.name',
-                    ! empty($column['label']) ? $column['label'] : __('crud.fields.entity')
+                    ! empty($column['label']) ? $column['label'] : __('fields.entry.label')
                 );
             } elseif ($type == 'parent') {
                 $class .= ' ' . $this->hidden;

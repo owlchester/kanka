@@ -28,10 +28,14 @@ class TemplateController extends Controller
 
         $this->service->entity($entity)->toggle();
 
+        if ($entity->isTemplate()) {
+            session()->flash('success_docs', 'guides/archetypes');
+        }
+
         return redirect()->back()
             ->with(
-                'success',
-                __('entities/actions.templates.success.' . ($entity->isTemplate() ? 'set' : 'unset'), ['name' => $entity->name])
+                'success_raw',
+                __('entries/archetypes.success.' . ($entity->isTemplate() ? 'set' : 'unset'), ['name' => $entity->name])
             );
     }
 }

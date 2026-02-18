@@ -10,7 +10,7 @@ return [
         'read_all'  => 'View all',
     ],
     'qq'                => [
-        'tooltip'   => 'Create an entity or post',
+        'tooltip'   => 'Create an entry or post',
     ],
     'toggle_navigation' => 'Toggle navigation',
     'user'              => [

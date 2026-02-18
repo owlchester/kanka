@@ -54,7 +54,7 @@ class StarterService
         CampaignEvent::create([
             'campaign_id' => $this->campaign->id,
             'created_by' => $this->user->id,
-            'event' => 'campaign_created'
+            'event' => 'campaign_created',
         ]);
         session()->put('onboarding', 1);
 
@@ -85,7 +85,7 @@ class StarterService
         $kingdom->entity->update([
             'type' => __('starter.kingdom1.type'),
             'entry' => '<p>' . __('starter.kingdom1.description') . '</p>',
-            'source' => 'onboarding'
+            'source' => 'onboarding',
         ]);
 
         $city = new Location([

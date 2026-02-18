@@ -24,7 +24,7 @@ return [
         'deleted'           => ':campaign was deleted.',
         'export'            => 'An export for :campaign is available. The link is available for :time minutes.',
         'export_error'      => 'An error occurred while exporting :campaign. Please contact us if this problem persists.',
-        'hidden'            => 'The campaign :campaign is now hidden from the public campaigns page.',
+        'hidden'            => ':campaign is now hidden from the public campaigns page.',
         'import'            => [
             'failed'    => 'The import for :campaign failed.',
             'success'   => 'The import finished for :campaign.',

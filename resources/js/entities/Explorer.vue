@@ -19,7 +19,7 @@
             <div class="flex gap-1 items-center flex-wrap ">
                 <h1 class="grow text-2xl category-title truncate" v-html="props.module"></h1>
                 <div class="bg-base-200 flex items-stretch gap-1 rounded-xl" v-if="filters > 0">
-                    <div class="flex items-center rounded-2xl gap-2 hover:bg-base-300 px-2 py-2 cursor-pointer" v-bind:aria-label="i18n.filters" :title="i18n.filters" @click="openFilters">
+                    <div class="flex items-center rounded-xl gap-2 hover:bg-base-300 px-2 py-2 cursor-pointer" v-bind:aria-label="i18n.filters" :title="i18n.filters" @click="openFilters">
                         <i class="fa-regular fa-filter hover:bg-base-300" aria-label="Filter"></i>
                         <span class="rounded bg-primary text-primary-content px-2 text-sm">1</span>
                     </div>
@@ -100,6 +100,25 @@
                             <i class="fa-regular fa-caret-down" aria-hidden="true"></i>
                             <span class="sr-only" v-html="i18n.actions"></span>
                         </button>
+                        <div class="dropdown-menu absolute mt-2 flex flex-col gap-1 right-0 bg-base-200 shadow-sm p-2 rounded z-10" role="menu" id="templates-submenu" v-if="templating" v-click-outside="onClickOutside">
+                            <a
+                                v-for="template in templates"
+                                :href="template.url"
+                                :key="template.id"
+                                class="new-entity-from-template text-base-content flex items-center gap-2 px-2 py-1"
+                            >
+                                <i class="fa-regular fa-star" aria-hidden="true"></i>
+                                <span v-html="template.name"></span>
+                            </a>
+                            <hr class="m-0" />
+                            <a
+                                href="https://docs.kanka.io/en/latest/guides/archetypes.html"
+                                class="flex flex-no-wrap gap-2 px-2 py-1 items-center"
+                            >
+                                <i class="fa-regular fa-external-link" aria-hidden="true"></i>
+                                <span class="text-nowrap" v-html="i18n.templates"></span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

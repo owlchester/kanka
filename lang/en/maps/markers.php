@@ -29,7 +29,7 @@ return [
         'success'   => 'Marker :name deleted.',
     ],
     'details'       => [
-        'from-entity'   => 'From entity',
+        'from-entity'   => 'From entry',
     ],
     'edit'          => [
         'success'   => 'Marker :name updated.',
@@ -60,13 +60,13 @@ return [
     'helpers'       => [
         'base'                      => 'Add markers to the map by clicking on any spot.',
         'copy_elements'             => 'Copy groups, layers, and markers.',
-        'copy_elements_to_campaign' => 'Copy groups, layers, and markers of the maps. Markers linked to an entity will be converted to a standard marker.',
+        'copy_elements_to_campaign' => 'Copy groups, layers, and markers of the maps. Markers linked to an entry will be converted to a standard marker.',
         'css'                       => 'Define a custom CSS class added to the marker.',
         'custom_icon_v2'            => 'Use icons from :fontawesome, :rpgawesome, or a custom SVG icon. Find out how in the :docs.',
         'custom_radius'             => 'Select the custom size option from the dropdown to define a size.',
         'draggable'                 => 'This marker can be moved on the map\'s exploration page.',
         'is_popupless'              => 'Disable the marker\'s tooltip showing up on mouse hover.',
-        'label'                     => 'A label is displayed as a block of text on the map. The content will be the marker\'s name or the entity\'s name.',
+        'label'                     => 'A label is displayed as a block of text on the map. The content will be the marker\'s name or the entry\'s name.',
         'polygon'                   => [
             'edit'  => 'Edit the polygon by dragging its edges and nodes.',
         ],
@@ -76,7 +76,7 @@ return [
     ],
     'icons'         => [
         'custom'        => 'Custom icon',
-        'entity'        => 'Entity\'s picture',
+        'entity'        => 'Entry\'s picture',
         'exclamation'   => 'Exclamation icon',
         'marker'        => 'Marker icon',
         'question'      => 'Question icon',
@@ -90,7 +90,7 @@ return [
     'placeholders'  => [
         'custom_icon'   => 'Try :example1 or :example2',
         'custom_shape'  => '100,100 200,240 340,110',
-        'name'          => 'Required if no entity selected',
+        'name'          => 'Required if no entry selected',
     ],
     'presets'       => [
         'helper'    => 'Click on a preset to load it, or create a new one.',

@@ -13,18 +13,18 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CampaignEvent extends Model
 {
+    use Blameable;
     use HasCampaign;
     use HasTimestamps;
-    use Blameable;
 
     public $fillable = [
         'campaign_id',
         'created_by',
         'event',
-        'metadata'
+        'metadata',
     ];
 
     public $casts = [
-        'metadata' => 'array'
+        'metadata' => 'array',
     ];
 }

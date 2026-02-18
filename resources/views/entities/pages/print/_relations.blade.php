@@ -9,7 +9,7 @@ $rows = $entity
     ->withPath(route('entities.relations_table', [$campaign, $entity, 'mode' => 'table']));
 @endphp
 <div class="print-box-relations">
-    <h2>{{ __('crud.tabs.connections') }}</h2>
+    <h2>{{ __('entries/tabs.relations') }}</h2>
 
     <div id="datagrid-parent" class="table-responsive">
         @include('layouts.datagrid._table')

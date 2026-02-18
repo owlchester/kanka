@@ -10,7 +10,7 @@
         :label="__('entities.attribute_template')"
         tooltip
         entityT
-        :helper="__('crud.hints.attribute_template')"
+        :helper="__('crud.hints.kit')"
         :entityTypeID="config('entities.ids.attribute_template')">
         <x-forms.select name="template_id" :options="$attributeTemplates" id="template_id" placeholder="{{ __('entities/attributes.placeholders.template') }}" />
     </x-forms.field>

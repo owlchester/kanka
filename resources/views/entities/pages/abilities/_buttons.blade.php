@@ -36,7 +36,7 @@
 
             <x-dropdowns.divider />
 
-            <x-dropdowns.item :link="'https://docs.kanka.io/en/latest/entities/abilities.html#entity-abilities'" icon="fa-regular fa-book">
+            <x-dropdowns.item :link="'https://docs.kanka.io/en/latest/entries/abilities.html#entity-abilities'" icon="fa-regular fa-book">
                 <span class="grow">{{ __('general.learn-more') }}</span>
             </x-dropdowns.item>
         </div>

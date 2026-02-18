@@ -5,7 +5,6 @@
             @if ($asset->hiddenImage()) @continue @endif
             @includeWhen($asset->isFile(), 'entities.pages.assets._file')
             @includeWhen($asset->isLink(), 'entities.pages.assets._link')
-            @includeWhen($asset->isAlias(), 'entities.pages.assets._alias')
         @empty
         @endforelse
     </div>

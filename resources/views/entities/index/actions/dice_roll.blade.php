@@ -1,5 +1,5 @@
 
-<a href="//docs.kanka.io/en/latest/entities/dice-rolls.html" class="btn2">
+<a href="//docs.kanka.io/en/latest/entries/dice-rolls.html" class="btn2">
     <x-icon class="fa-regular fa-book"></x-icon>
     <span class="hidden lg:inline">
         {{ __('general.learn-more') }}

@@ -59,6 +59,7 @@ class OnboardingReportService extends BaseReportService
 
         $onboardingAbandoned = $onboardingShown - $completedOrDismissedCampaigns->count();
 
+        // @phpstan-ignore-next-line
         $choices = DB::table('campaign_events')
             ->whereIn('campaign_id', $campaignIds)
             ->where('event', 'onboarding_completed')

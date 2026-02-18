@@ -1,7 +1,7 @@
 @php $helper = __('maps/markers.helpers.custom_icon_v2', [
         'rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/" target="_blank">RPG Awesome</a>',
 'fontawesome' => '<a href="' . config('fontawesome.search') . '" target="_blank">Font Awesome</a>',
-'docs' => '<a href="https://docs.kanka.io/en/latest/entities/maps/markers.html#custom-icon" target="_blank">' . __('footer.documentation') . '</a>',
+'docs' => '<a href="https://docs.kanka.io/en/latest/entries/maps/markers.html#custom-icon" target="_blank">' . __('footer.documentation') . '</a>',
 ]);
  $fieldname = $fieldname ?? 'custom_icon';
  @endphp

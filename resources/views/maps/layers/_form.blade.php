@@ -25,7 +25,7 @@ $typeOptions = [
 
     <x-forms.field
         field="entry col-span-2"
-        :label="__('crud.fields.entry')">
+        :label="__('fields.description.label')">
             @include('cruds.fields.entry', ['model' => $model])
     </x-forms.field>
 

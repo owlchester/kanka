@@ -5,7 +5,7 @@
     'breadcrumbs' => [
         Breadcrumb::campaign($campaign)->entity($entity)->list(),
         Breadcrumb::show(),
-        __('crud.tabs.links')
+        __('entities/assets.actions.link')
     ],
     'mainTitle' => false,
     'centered' => true,
