@@ -184,7 +184,7 @@ abstract class MiscModel extends Model
      */
     public function showProfileInfo(): bool
     {
-        return ! empty($this->entity->type) && $this->entity->aliases->isNotEmpty();
+        return ! empty($this->entity->type) || $this->entity->aliases->isNotEmpty();
     }
 
     /**

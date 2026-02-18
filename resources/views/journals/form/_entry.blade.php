@@ -1,5 +1,5 @@
 <x-grid>
-    @include('cruds.fields.name', ['trans' => 'journals'])
+    @include('cruds.fields.entity-name')
     @include('cruds.fields.type', ['base' => \App\Models\Journal::class, 'trans' => 'journals'])
 
     @include('cruds.fields.journal', ['isParent' => true])

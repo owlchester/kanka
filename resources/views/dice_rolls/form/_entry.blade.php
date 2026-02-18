@@ -1,6 +1,6 @@
 
 <x-grid>
-    @include('cruds.fields.name', ['trans' => 'dice_rolls'])
+    @include('cruds.fields.entity-name')
     @include('cruds.fields.character', ['name' => 'character_id'])
     @include('cruds.fields.tags')
 
