@@ -9,7 +9,8 @@
     import TableHeader from '@tiptap/extension-table-header'
     import { TableWithControls } from './extensions/table/TableWithControls'
     import { ListKit } from '@tiptap/extension-list'
-    import { TableKit } from "@tiptap/extension-table";
+    import { TableKit } from "@tiptap/extension-table"
+    import { CellSelection } from '@tiptap/pm/tables'
     import { ref, computed, onMounted, onBeforeUnmount, defineAsyncComponent } from 'vue'
     import { Mention } from './extensions/mentions/Mention'
     import suggestion from './extensions/mentions/suggestion'
@@ -46,7 +47,6 @@
 
     const html = ref(props.content ?? props.modelValue ?? '')
     const mentions = ref([])
-    const showLinkBubble = ref(false)
     const isFocused = ref(false)
     const hasReceivedInput = ref(false)
     const sourceMode = ref(false)
@@ -71,7 +71,6 @@
 
     // Refs for bubble menu components
     const mentionBubbleRef = ref<InstanceType<typeof MentionBubbleMenu> | null>(null)
-    const linkBubbleRef = ref<InstanceType<typeof LinkBubbleMenu> | null>(null)
 
     const addEntityToMentions = (entity: any) => {
         const exists = mentions.value.find(e => e.id === entity.id)
@@ -86,7 +85,7 @@
             bulletList: false,
             orderedList: false,
             listItem: false,
-            listItemKeymap: false,
+            listKeymap: false,
         }),
         Placeholder.configure({
             placeholder: 'Start writing...',
@@ -217,10 +216,6 @@
             if (editor.isActive('mention')) {
                 mentionBubbleRef.value?.syncLabel()
             }
-            // Hide link bubble when selection changes away from link
-            if (!editor.isActive('link')) {
-                showLinkBubble.value = false
-            }
         },
         editorProps: {
             clipboardTextSerializer: (slice) => {
@@ -251,6 +246,16 @@
                     return true
                 }
 
+                return false
+            },
+            handleKeyDown: (view, event) => {
+                if ((event.ctrlKey || event.metaKey) && event.key === 'k') {
+                    if (!view.state.selection.empty) {
+                        event.preventDefault()
+                        openLinkBubble()
+                        return true
+                    }
+                }
                 return false
             },
         },
@@ -294,8 +299,14 @@
     }
 
     const openLinkBubble = () => {
-        showLinkBubble.value = true
-        linkBubbleRef.value?.openLinkInput()
+        if (!editor.value) return
+        const existingHref = editor.value.getAttributes('link').href || ''
+        const { to } = editor.value.state.selection
+        editor.value.chain()
+            .focus()
+            .setLink({ href: existingHref })
+            .setTextSelection(to)
+            .run()
     }
 
     const parseMentionsFromContent = (content: string) => {
@@ -360,36 +371,70 @@
     />
 
     <template v-else>
-        <div v-if="editor">
-            <bubble-menu :editor="editor">
+        <template v-if="editor">
+            <bubble-menu
+                :editor="editor"
+                plugin-key="mentionBubbleMenu"
+                :should-show="({ editor }) => editor.isActive('mention')"
+            >
                 <div class="bubble-menu bg-base-100 shadow rounded-2xl flex gap-0.5 items-center px-2 py-2">
                     <MentionBubbleMenu
-                        v-if="editor.isActive('mention')"
                         ref="mentionBubbleRef"
                         :editor="editor"
                         :mentions="mentions"
                     />
-                    <LinkBubbleMenu
-                        v-else-if="showLinkBubble || editor.isActive('link')"
-                        ref="linkBubbleRef"
-                        :editor="editor"
-                    />
-                    <TableBubbleMenu
-                        v-else-if="editor.isActive('table')"
-                        :editor="editor"
-                    />
-                    <ImageBubbleMenu
-                        v-else-if="editor.isActive('image')"
-                        :editor="editor"
-                    />
+                </div>
+            </bubble-menu>
+
+            <bubble-menu
+                :editor="editor"
+                plugin-key="linkBubbleMenu"
+                :should-show="({ editor }) => editor.isActive('link') && editor.state.selection.empty"
+            >
+                <div class="bubble-menu bg-base-100 shadow rounded-2xl flex gap-0.5 items-center px-2 py-2">
+                    <LinkBubbleMenu :editor="editor" />
+                </div>
+            </bubble-menu>
+
+            <bubble-menu
+                :editor="editor"
+                plugin-key="tableBubbleMenu"
+                :should-show="({ editor }) => editor.state.selection instanceof CellSelection"
+            >
+                <div class="bubble-menu bg-base-100 shadow rounded-2xl flex gap-0.5 items-center px-2 py-2">
+                    <TableBubbleMenu :editor="editor" />
+                </div>
+            </bubble-menu>
+
+            <bubble-menu
+                :editor="editor"
+                plugin-key="imageBubbleMenu"
+                :should-show="({ editor }) => editor.isActive('image')"
+            >
+                <div class="bubble-menu bg-base-100 shadow rounded-2xl flex gap-0.5 items-center px-2 py-2">
+                    <ImageBubbleMenu :editor="editor" />
+                </div>
+            </bubble-menu>
+
+            <bubble-menu
+                :editor="editor"
+                plugin-key="textBubbleMenu"
+                :should-show="({ editor }) => {
+                    if (editor.state.selection.empty) return false
+                    if (editor.isActive('mention')) return false
+                    if (editor.state.selection instanceof CellSelection) return false
+                    if (editor.isActive('image')) return false
+                    return true
+                }"
+            >
+                <div class="bubble-menu bg-base-100 shadow rounded-2xl flex gap-0.5 items-center px-2 py-2">
                     <TextBubbleMenu
-                        v-else
                         :editor="editor"
                         @open-link="openLinkBubble"
                     />
                 </div>
             </bubble-menu>
-        </div>
+        </template>
 
         <editor-content :editor="editor" />
 

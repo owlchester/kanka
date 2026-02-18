@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import type { Editor } from '@tiptap/core'
 
 const props = defineProps<{
@@ -9,20 +9,27 @@ const props = defineProps<{
 const linkInputRef = ref<HTMLInputElement | null>(null)
 const linkUrl = ref('')
 
-const openLinkInput = () => {
-    const previousUrl = props.editor.getAttributes('link').href || ''
-    linkUrl.value = previousUrl
+// Keep input in sync with the active link's href
+watch(
+    () => props.editor.getAttributes('link').href,
+    (href) => { linkUrl.value = href || '' },
+    { immediate: true }
+)
 
-    setTimeout(() => {
-        linkInputRef.value?.focus()
-    }, 10)
-}
-
-defineExpose({ openLinkInput })
+// Focus the input whenever the bubble becomes visible
+watch(
+    () => props.editor.isActive('link') && props.editor.state.selection.empty,
+    (visible) => {
+        if (visible) {
+            setTimeout(() => linkInputRef.value?.focus(), 10)
+        }
+    }
+)
 
 const setLink = () => {
     if (!linkUrl.value) {
-        closeLinkInput()
+        // Empty URL submitted — remove the link
+        props.editor.chain().focus().extendMarkRange('link').unsetLink().run()
         return
     }
 
@@ -37,24 +44,19 @@ const setLink = () => {
         .extendMarkRange('link')
         .setLink({ href: url })
         .run()
-
-    closeLinkInput()
 }
 
 const removeLink = () => {
-    props.editor
-        .chain()
-        .focus()
-        .extendMarkRange('link')
-        .unsetLink()
-        .run()
-
-    closeLinkInput()
+    props.editor.chain().focus().extendMarkRange('link').unsetLink().run()
 }
 
 const closeLinkInput = () => {
-    linkUrl.value = ''
-    props.editor.commands.focus()
+    if (!props.editor.getAttributes('link').href) {
+        // Link was never saved (empty href) — remove it so the bubble closes
+        props.editor.chain().focus().extendMarkRange('link').unsetLink().run()
+    } else {
+        props.editor.commands.focus()
+    }
 }
 
 const handleLinkKeydown = (event: KeyboardEvent) => {
@@ -72,7 +74,7 @@ const handleLinkKeydown = (event: KeyboardEvent) => {
     <div class="flex gap-2 items-center text-xs text-neutral-content px-2">
         <input
             ref="linkInputRef"
-            v-model="editor.getAttributes('link').href"
+            v-model="linkUrl"
             type="text"
             placeholder="Enter URL..."
             class="p-0 px-1 rounded text-xs outline-none focus:ring-1 focus:ring-primary min-w-[200px]"

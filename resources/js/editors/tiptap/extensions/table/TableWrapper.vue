@@ -160,8 +160,9 @@ const addRowAfter = () => {
             position: absolute;
             top: 0;
             bottom: 0;
-            right: -2px;
+            right: 0;
             width: 4px;
+            transform: translateX(50%);
             pointer-events: none;
             z-index: 10;
         }
