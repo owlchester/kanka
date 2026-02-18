@@ -56,6 +56,7 @@
 @includeWhen($entity->isCreature(), 'entities.markdown.creatures')
 @includeWhen($entity->isRace(), 'entities.markdown.races')
 @includeWhen($entity->isFamily(), 'entities.markdown.families')
+@includeWhen($entity->aliases->isNotEmpty(), 'entities.markdown.aliases')
 
 @if ($entity->hasPins())
 ## {!! __('entities/pins.title') !!}
@@ -66,9 +67,6 @@
 @foreach ($entity->pinnedFiles as $asset)
 | {!! $asset->name !!} | {!! $asset->url() !!} |
 @endforeach
-@endif
-@if(!$entity->pinnedAliases->isEmpty())
-| {!! __('entities/assets.actions.alias') !!} | {!! implode(', ', $entityData['pinnedAliases']) !!} |
 @endif
 @if($entity->hasChild() && method_exists($entity->child, 'pinnedMembers') && !$entity->child->pinnedMembers->isEmpty())
 @foreach ($entity->child->pinnedMembers as $member)
