@@ -80,7 +80,7 @@ class SubscriptionEndService
     {
         // Now do the same thing for manual subs which ended on the current day, as manual subs end at midnight server time
         $subscriptions = Subscription::with(['user', 'user.boosts', 'user.boosts.campaign'])
-            ->where('stripe_id', 'like', 'paypal_%')
+            ->where('stripe_price', 'like', 'paypal_%')
             ->where('stripe_status', 'canceled')
             ->whereDate('ends_at', '=', Carbon::today()->toDateString())
             ->get();
