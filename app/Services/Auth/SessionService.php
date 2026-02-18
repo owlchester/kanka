@@ -55,8 +55,6 @@ class SessionService
 
             return true;
         } catch (Exception $e) {
-            throw $e;
-
             // Log exception or handle it properly
             return false;
         }
