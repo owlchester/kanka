@@ -49,14 +49,5 @@
     ></entity-share-modal>
 </div>
 
-<script type="module">
-    // Since we are using Vite, we need to ensure the JS is loaded
-    // and then initialize the component
-    if (typeof window.initShareModal === 'function') {
-        window.initShareModal();
-    }
-</script>
-
-
 @endsection
 

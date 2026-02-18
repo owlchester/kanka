@@ -8,7 +8,6 @@ window.mountShareModal = function () {
         const app = createApp({});
         app.component('entity-share-modal', EntityShareModal);
         app.mount(el);
-        console.log('Vue Share Modal Mounted');
     }
 };
 /**
@@ -27,7 +26,6 @@ const initDialogs = () => {
     });
 };
 
-const dialogLoadedEvent = new Event('dialog.loaded');
 
 function openingDialog(e) {
     e.preventDefault();
@@ -46,7 +44,7 @@ const openDialog = (target, url, focus) => {
 
     backdrop.classList.remove('hidden');
     if (target.dataset.dismissible !== 'false') {
-        backdrop.addEventListener('click', function (event) {
+        backdrop.addEventListener('click', function () {
             target.close();
         });
     }
@@ -59,7 +57,7 @@ const openDialog = (target, url, focus) => {
             target.close();
         }
     });
-    target.addEventListener('close', function (event) {
+    target.addEventListener('close', function () {
         backdrop.classList.add('hidden');
         target.setAttribute('aria-hidden', true);
         document.removeEventListener('keydown', handleKeydown);
@@ -103,15 +101,9 @@ const loadDialogContent = (url, target) => {
 fetch(url, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
         .then(res => res.text()) // Get the string content
         .then(html => {
-            target.innerHTML = html; // This is the HTML from setup.blade.php
+            target.innerHTML = html;
             target.show();
-
-            // Run Vue mount
-            if (typeof window.mountShareModal === 'function') {
-                window.mountShareModal();
-            } else {
-                console.error('mountShareModal is not defined. Is share.js loaded on the main page?');
-            }
+            window.mountShareModal();
         })
         .catch(err => {
             console.error(err);

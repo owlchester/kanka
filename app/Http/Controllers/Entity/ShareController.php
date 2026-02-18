@@ -40,6 +40,10 @@ class ShareController extends Controller
         $visibilityMode = $request->input('visibility_mode');
         $campaignVisibility = $request->input('campaign_visibility');
 
+        if ($campaignVisibility === 'public') {
+            $this->authorize('update', $campaign);
+        }
+
         if ($visibilityMode) {
             $publicRole = $campaign->roles()->public()->first();
 

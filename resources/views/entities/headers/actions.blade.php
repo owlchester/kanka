@@ -146,7 +146,7 @@ $data = false;
                 {{ __('entities/actions.markdown-export') }}
             </x-dropdowns.item>
 
-            @can('update', $campaign)
+            @can('update', $entity)
                 <x-dropdowns.item link="{{ route('entities.share.setup', [$campaign, 'entity' => $entity]) }}" :dialog="route('entities.share.setup', [$campaign, 'entity' => $entity])" icon="fa-regular fa-share">
                     {{ __('entities/share.title') }}
                 </x-dropdowns.item>

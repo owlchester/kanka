@@ -14,6 +14,11 @@
                 <span>{{ errorMessage }}</span>
             </div>
 
+            <div v-if="justMadeCampaignPublic" class="p-3 bg-info/10 border border-info/20 rounded-xl text-xs text-neutral-content leading-relaxed">
+                <i class="fa-solid fa-circle-info mr-1 text-info"></i>
+                {{ trans.warning_entity_permissions }}
+            </div>
+
             <!-- Public campaign -->
             <div v-if="isCampaignPublic">
                 <!-- Entity not readable by public -->
@@ -122,6 +127,7 @@ export default {
         return {
             loading: false,
             errorMessage: null,
+            justMadeCampaignPublic: false,
             isCampaignPublic: this.initialCampaignPublic,
             isEntityPrivate: this.initialEntityPrivate,
             form: {
@@ -130,7 +136,7 @@ export default {
         };
     },
     mounted() {
-        window.triggerEvent();
+        window.triggerEvent?.();
     },
     computed: {
         isEntityPublic() {
@@ -171,6 +177,7 @@ export default {
                 } else {
                     this.isCampaignPublic = true;
                     this.isEntityPrivate = true;
+                    this.justMadeCampaignPublic = true;
                 }
 
                 window.showToast(this.trans.success_updated);
