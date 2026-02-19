@@ -1,8 +1,7 @@
 
 import { Table } from '@tiptap/extension-table'
 import { mergeAttributes } from '@tiptap/core'
-import { VueNodeViewRenderer } from '@tiptap/vue-3'
-import TableWrapper from './TableWrapper.vue'
+import { Plugin, PluginKey } from '@tiptap/pm/state'
 
 export const TableWithControls = Table.extend({
     addAttributes() {
@@ -37,9 +36,5 @@ export const TableWithControls = Table.extend({
             mergeAttributes(this.options.HTMLAttributes, HTMLAttributes),
             ['tbody', 0],
         ]
-    },
-
-    addNodeView() {
-        return VueNodeViewRenderer(TableWrapper)
     },
 })

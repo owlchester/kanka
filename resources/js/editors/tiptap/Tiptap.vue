@@ -503,6 +503,36 @@
 }
 </style>
 <style>
+.tiptap-editor .ProseMirror {
+    table {
+        td, th {
+            > p {
+                margin-bottom: 0 !important;
+            }
+        }
+
+        .selectedCell {
+            background-color: hsl(var(--p) / .2) !important;
+        }
+
+        .column-resize-handle {
+            background-color: hsl(var(--p) / 1);
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            width: 4px;
+            transform: translateX(50%);
+            pointer-events: none;
+            z-index: 10;
+        }
+    }
+
+    &.resize-cursor {
+        cursor: col-resize;
+    }
+}
+
 .tiptap-editor {
     .ProseMirror-selectednode img {
         outline: 2px solid hsl(var(--p)/1);

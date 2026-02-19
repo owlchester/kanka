@@ -56,9 +56,17 @@ table {
 .table-compact {
     width: auto;
 }
+.table-left {
+    width: auto;
+    float: left;
+    margin-right: 1rem;
+    margin-bottom: 0.5rem;
+}
 .table-right {
     width: auto;
     float: right;
+    margin-left: 1rem;
+    margin-bottom: 0.5rem;
 }
 .table-centered {
     margin-left: auto;
