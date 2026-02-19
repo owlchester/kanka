@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Enums\AttributeType;
 use App\Enums\Widget;
 use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
@@ -9,11 +10,15 @@ use App\Facades\CharacterCache;
 use App\Facades\EntityCache;
 use App\Facades\EntityPermission;
 use App\Facades\UserCache;
+use App\Models\Attribute;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 use App\Models\CampaignEvent;
 use App\Models\Character;
+use App\Models\CharacterTrait;
 use App\Models\Location;
+use App\Models\Post;
+use App\Models\Relation;
 use App\Observers\CharacterObserver;
 use App\Services\Campaign\CreateService;
 use App\Traits\CampaignAware;
@@ -77,19 +82,48 @@ class StarterService
 
         // Generate locations
         $kingdom = new Location([
-            'name' => __('starter.name', ['name' => 'Genory']),
+            'name' => __('starter.kingdom.name'),
             'campaign_id' => $this->campaign->id,
             'is_private' => false,
         ]);
         $kingdom->save();
         $kingdom->entity->update([
-            'type' => __('starter.kingdom1.type'),
-            'entry' => '<p>' . __('starter.kingdom1.description') . '</p>',
-            'source' => 'onboarding'
+            'type' => __('starter.kingdom.type'),
+            'entry' => '<p>' . __('starter.kingdom.description') . '</p>',
+            'source' => 'onboarding',
+        ]);
+        Post::create([
+            'entity_id' => $kingdom->entity->id,
+            'name' => __('starter.kingdom.recent.title'),
+            'entry' => '<ol>' .
+                '<li>' . __('starter.kingdom.recent.first') . '</li>' .
+                '<li>' . __('starter.kingdom.recent.second') . '</li>' .
+                '</ol>',
+        ]);
+        Attribute::create([
+            'entity_id' => $kingdom->entity->id,
+            'name' => __('starter.kingdom.features.pop.name'),
+            'value' => __('starter.kingdom.features.pop.value'),
+            'is_pinned' => true,
+            'type_id' => AttributeType::Standard,
+        ]);
+        Attribute::create([
+            'entity_id' => $kingdom->entity->id,
+            'name' => __('starter.kingdom.features.exp.name'),
+            'value' => __('starter.kingdom.features.exp.value'),
+            'is_pinned' => true,
+            'type_id' => AttributeType::Standard,
+        ]);
+        Attribute::create([
+            'entity_id' => $kingdom->entity->id,
+            'name' => __('starter.kingdom.features.gov.name'),
+            'value' => __('starter.kingdom.features.gov.value'),
+            'is_pinned' => true,
+            'type_id' => AttributeType::Standard,
         ]);
 
         $city = new Location([
-            'name' => __('starter.name', ['name' => 'Ulyss']),
+            'name' => __('starter.city.name'),
             'location_id' => $kingdom->id,
             'campaign_id' => $this->campaign->id,
             'is_private' => false,
@@ -97,39 +131,161 @@ class StarterService
         $city->save();
         $city->entity->update([
             'source' => 'onboarding',
-            'type' => __('starter.kingdom2.type'),
-            'entry' => '<p>' . __('starter.kingdom2.description') . '</p>',
+            'type' => __('starter.city.type'),
+            'entry' => '<p>' . __('starter.city.description') . '</p>',
+        ]);
+
+        Post::create([
+            'entity_id' => $city->entity->id,
+            'name' => __('starter.city.districts.title'),
+            'entry' => '<ol>' .
+                '<li>' . __('starter.city.districts.first') . '</li>' .
+                '<li>' . __('starter.city.districts.second') . '</li>' .
+                '<li>' . __('starter.city.districts.third') . '</li>' .
+                '<li>' . __('starter.city.districts.fourth') . '</li>' .
+                '</ol>',
+        ]);
+        Post::create([
+            'entity_id' => $city->entity->id,
+            'name' => __('starter.city.locations.title'),
+            'entry' => '<ol>' .
+                '<li>' . __('starter.city.locations.first') . '</li>' .
+                '<li>' . __('starter.city.locations.second') . '</li>' .
+                '<li>' . __('starter.city.locations.third') . '</li>' .
+                '</ol>',
+        ]);
+
+
+        Attribute::create([
+            'entity_id' => $kingdom->entity->id,
+            'name' => __('starter.kingdom.features.capital.name'),
+            'value' => '[entity:' . $city->entity->id . ']',
+            'is_pinned' => true,
+            'type_id' => AttributeType::Standard,
         ]);
 
         // Generate characters
         $james = new Character([
-            'name' => __('starter.name', ['name' => 'James Owlchester']),
-            'title' => __('starter.character1.title'),
-            'age' => '43',
-            'sex' => __('starter.character1.sex'),
+            'name' => __('starter.character1.name'),
+            'age' => __('starter.character1.age'),
             'campaign_id' => $this->campaign->id,
             'is_private' => false,
+            'is_appearance_pinned' => true,
+            'is_personality_pinned' => true,
         ]);
         $james->save();
         $james->entity->locations()->sync([$city->id]);
+        CharacterTrait::create([
+            'character_id' => $james->id,
+            'name' => __('starter.character1.physical.build.name'),
+            'entry' => __('starter.character1.physical.build.value'),
+            'section_id' => CharacterTrait::SECTION_APPEARANCE,
+        ]);
+        CharacterTrait::create([
+            'character_id' => $james->id,
+            'name' => __('starter.character1.physical.features.name'),
+            'entry' => __('starter.character1.physical.features.value'),
+            'section_id' => CharacterTrait::SECTION_APPEARANCE,
+        ]);
+        CharacterTrait::create([
+            'character_id' => $james->id,
+            'name' => __('starter.character1.personality.trait1.name'),
+            'entry' => __('starter.character1.personality.trait1.value'),
+            'section_id' => CharacterTrait::SECTION_PERSONALITY,
+        ]);
+        CharacterTrait::create([
+            'character_id' => $james->id,
+            'name' => __('starter.character1.personality.trait2.name'),
+            'entry' => __('starter.character1.personality.trait2.value'),
+            'section_id' => CharacterTrait::SECTION_PERSONALITY,
+        ]);
+        CharacterTrait::create([
+            'character_id' => $james->id,
+            'name' => __('starter.character1.personality.trait2.name'),
+            'entry' => __('starter.character1.personality.trait2.value'),
+            'section_id' => CharacterTrait::SECTION_PERSONALITY,
+        ]);
         $james->entity->update([
             'source' => 'onboarding',
-            'entry' => '<p>' . __('starter.character1.history') . '</p>',
+            'entry' =>
+                '<p>' . __('starter.character1.description.template') . '</p>' .
+                '<p>' . __('starter.character1.description.intro') . '</p>' .
+                '<p>' . __('starter.character1.description.tip') . '</p>',
         ]);
 
+        Post::create([
+            'entity_id' => $james->entity->id,
+            'name' => __('starter.character1.background.title'),
+            'entry' => '<ol>' .
+                '<li>' . __('starter.character1.background.loc') . '</li>' .
+                '<li>' . __('starter.character1.background.cur') . '</li>' .
+                '<li>' . __('starter.character1.background.seeking') . '</li>' .
+            '</ol>',
+        ]);
+
+
         $irwie = new Character([
-            'name' => __('starter.name', ['name' => 'Irwie Gemstone']),
-            'title' => __('starter.character2.title'),
-            'age' => '31',
-            'sex' => __('starter.character2.sex'),
+            'name' => __('starter.character2.name'),
+            'age' => __('starter.character1.age'),
             'campaign_id' => $this->campaign->id,
             'is_private' => false,
+            'is_appearance_pinned' => true,
+            'is_personality_pinned' => true,
         ]);
         $irwie->save();
         $irwie->entity->locations()->sync([$city->id]);
         $irwie->entity->update([
             'source' => 'onboarding',
-            'entry' => '<p>' . __('starter.character2.history') . '</p>',
+            'entry' => '<p>' . __('starter.character2.description.first', ['mention' => '[entity:' . $james->entity->id . ']']) . '</p>' .
+            '<p>' . __('starter.character2.description.second') . '</p>',
+        ]);
+
+        CharacterTrait::create([
+            'character_id' => $irwie->id,
+            'name' => __('starter.character1.physical.build.name'),
+            'entry' => __('starter.character1.physical.build.value'),
+            'section_id' => CharacterTrait::SECTION_APPEARANCE,
+        ]);
+        CharacterTrait::create([
+            'character_id' => $irwie->id,
+            'name' => __('starter.character1.physical.features.name'),
+            'entry' => __('starter.character1.physical.features.value'),
+            'section_id' => CharacterTrait::SECTION_APPEARANCE,
+        ]);
+        CharacterTrait::create([
+            'character_id' => $irwie->id,
+            'name' => __('starter.character1.personality.trait1.name'),
+            'entry' => __('starter.character1.personality.trait1.value'),
+            'section_id' => CharacterTrait::SECTION_PERSONALITY,
+        ]);
+        CharacterTrait::create([
+            'character_id' => $irwie->id,
+            'name' => __('starter.character1.personality.trait2.name'),
+            'entry' => __('starter.character1.personality.trait2.value'),
+            'section_id' => CharacterTrait::SECTION_PERSONALITY,
+        ]);
+        CharacterTrait::create([
+            'character_id' => $irwie->id,
+            'name' => __('starter.character1.personality.trait2.name'),
+            'entry' => __('starter.character1.personality.trait2.value'),
+            'section_id' => CharacterTrait::SECTION_PERSONALITY,
+        ]);
+
+        Post::create([
+            'entity_id' => $irwie->entity->id,
+            'name' => __('starter.character2.skills.title'),
+            'entry' => '<ol>' .
+                '<li>' . __('starter.character2.skills.first') . '</li>' .
+                '<li>' . __('starter.character2.skills.second') . '</li>' .
+                '<li>' . __('starter.character2.skills.third') . '</li>' .
+                '</ol>',
+        ]);
+
+        Relation::create([
+            'owner_id' => $irwie->entity->id,
+            'target_id' => $james->entity->id,
+            'relation' => __('starter.character2.relation'),
+            'campaign_id' => $this->campaign->id,
         ]);
     }
 
