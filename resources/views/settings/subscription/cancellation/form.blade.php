@@ -96,12 +96,12 @@
                 </x-forms.field>
 
                 <div x-show="reason === 'missing_features'" x-cloak>
-                    </br>
+                    <br/>
                     {!! __('subscriptions/cancellation.loss.roadmap', ['roadmap' => '<a href="' . route('roadmap') . '" class="text-link">' . __('footer.roadmap') . '</a>']) !!}
                 </div>
 
                 <div x-show="reason === 'financial' && canDowngrade" x-cloak>
-                    </br>
+                    <br/>
                     {{ __('subscriptions/cancellation.loss.downgrade') }}
                 </div>
             </div>

@@ -43,8 +43,7 @@ class ApplicationService
         $data['user_id'] = $this->user->id;
 
         // Create the record
-        $application = Application::create($data);
-        $application->save();
+        Application::create($data);
 
         CampaignCache::campaign($this->campaign)->clear();
 

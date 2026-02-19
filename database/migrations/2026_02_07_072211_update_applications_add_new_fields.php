@@ -30,10 +30,12 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('applications', function (Blueprint $table) {
+            $table->dropIndex(['status']);
             $table->dropColumn([
                 'character_concept', 'experience', 'availability_days',
                 'time_start', 'time_end', 'timezone',
                 'pref_rp_combat', 'pref_tone', 'external_link', 'additional_notes',
+                'status',
             ]);
         });
     }

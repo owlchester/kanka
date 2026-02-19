@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\Application $application */ ?>
 <x-dialog.header>
-
+    {{ __('campaigns/applications.fields.new_application') }}
 </x-dialog.header>
 <x-dialog.article>
     <x-form :action="['applications.update', $campaign, $application->id]" method="PATCH" class="entity-form w-full max-w-lg text-left" direct>

@@ -30,7 +30,6 @@ class PlaystyleSeeder extends Seeder
         foreach ($slugs as $slug) {
             Playstyle::firstOrCreate(
                 ['slug' => $slug],
-                ['campaign_count' => 0]
             );
         }
     }

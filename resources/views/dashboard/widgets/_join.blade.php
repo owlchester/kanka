@@ -18,7 +18,7 @@
             <p>Max players: {{ $campaign->getFilter(\App\Enums\CampaignFilterType::PlayerCount)}}</p>
         </span>
 
-        </br>
+        <br/>
         @can('apply', $campaign)
             <button id="campaign-apply" class="btn2 btn-block btn-primary" data-id="{{ $campaign->id }}"
                     data-url="{{ route('campaign.apply', $campaign) }}"

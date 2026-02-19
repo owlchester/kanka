@@ -21,7 +21,7 @@
             <p>{{ __('campaigns/applications.helpers.applications_closed') }}</p>
         </x-alert>
     @endif
-    @if($campaign->isOpen() && !$campaign->flags->contains('flag', \App\Enums\CampaignFlags::CanOpen->value))
+    @if($campaign->isOpen() && auth()->user()->cannot('canOpen', $campaign))
         <x-alert type="info" :dismissible="true">
             <strong>{{ __('campaigns/applications.warnings.filters_incomplete') }}</strong><br/>
             <p>{{ __('campaigns/applications.helpers.filters_incomplete') }}</p>

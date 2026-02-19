@@ -4,17 +4,19 @@ use App\Models\Playstyle;
 /**
  * We want to pre-load the data from the model, or what has been sent with the form.
  */
-$selectedOption = [];
+$selectedOptions = [];
 
 $model = Arr::get($options, 'model');
 $playstyles = Playstyle::get();
 
 // Try to load what was sent with the form first, in case there was a form validation error
-$previous = old('playstyles[]');
+$previous = old('playstyles');
 $fieldUniqIdentifier = 'playstyles_' . uniqid();
 
 if (!empty($previous)) {
-    //dd($previous);
+    foreach ($previous as $id) {
+        $selectedOptions[$id] = true;
+    }
 }
 // If we didn't get anything, and there is a model sent, use that
 elseif(!empty($model)) {

@@ -31,6 +31,7 @@ return [
         'external_link'     => 'Character Sheet / Link',
         'additional_notes'  => 'Anything else',
         'application'   => 'Application',
+        'new_application' => 'New player application',
         'reason'        => 'Approval / Rejection reason',
         'timezone' => 'Timezone',
         'schedule' => 'Schedule',

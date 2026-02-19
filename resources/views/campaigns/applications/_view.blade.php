@@ -57,7 +57,7 @@
                     <span class="text-sm opacity-60">Unspecified</span>
                 @endforelse
             </div>
-            </br>
+            <br/>
             <div class="text-sm">
                 <span class="opacity-70">Time:</span>
                 <span class="font-medium">

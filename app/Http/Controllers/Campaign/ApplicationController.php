@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Campaign;
 
 use App\Enums\ApplicationStatus;
 use App\Enums\CampaignFilterType;
-use App\Enums\CampaignFlags;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Campaigns\PatchCampaignApplication;
 use App\Http\Requests\Campaigns\StoreCampaignApplicationStatus;
@@ -14,6 +13,7 @@ use App\Models\Campaign;
 use App\Models\CampaignFilter;
 use App\Services\Campaign\ApplicationService;
 use DateTimeZone;
+use Stevebauman\Purify\Facades\Purify;
 
 class ApplicationController extends Controller
 {
@@ -161,9 +161,15 @@ class ApplicationController extends Controller
 
         $campaign->update([
             'locale' => $request->get('locale'),
-            'system' => $request->get('systems'),
-            'genres' => $request->get('genres'),
         ]);
+
+        if ($request->has('systems')) {
+            $campaign->systems()->sync($request->input('systems'));
+        }
+
+        if ($request->has('genres')) {
+            $campaign->genres()->sync($request->input('genres'));
+        }
 
         if ($request->has('playstyles')) {
             $campaign->playstyles()->sync($request->input('playstyles'));
@@ -186,26 +192,10 @@ class ApplicationController extends Controller
                         'type' => $enumType,
                     ],
                     [
-                        'entry' => $request->input($inputKey),
+                        'entry' => Purify::clean($request->input($inputKey)),
                     ]
                 );
             }
-        }
-
-        // Define the fields required to "Open" the campaign
-        $requiredFields = ['intro', 'timezone', 'schedule', 'players', 'locale', 'systems', 'genres', 'playstyles'];
-
-        // Check if all required fields have a value in the request
-        $allFilled = collect($requiredFields)->every(fn ($field) => $request->filled($field));
-        if ($allFilled) {
-
-            // updateOrCreate prevents duplicate flags if the user updates the campaign
-            $campaign->flags()->updateOrCreate([
-                'flag' => CampaignFlags::CanOpen->value,
-            ]);
-        } else {
-            // Optional: Remove the flag if the user clears a field later
-            $campaign->flags()->where('flag', CampaignFlags::CanOpen->value)->delete();
         }
 
         return redirect()

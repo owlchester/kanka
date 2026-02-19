@@ -1,5 +1,5 @@
 @php
-    $canOpen = $campaign->flags->contains('flag', \App\Enums\CampaignFlags::CanOpen->value);
+    $canOpen = auth()->user()->can('canOpen', $campaign);
     $statusOptions = [
         0 => __('campaigns/applications.toggle.closed')
     ];

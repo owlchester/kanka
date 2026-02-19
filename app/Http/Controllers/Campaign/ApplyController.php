@@ -22,7 +22,6 @@ class ApplyController extends Controller
 
         $application = auth()->user()->applications()->first();
 
-        $identifiers = DateTimeZone::listIdentifiers();
         $timezones = [];
 
         for ($i = -12; $i <= 14; $i++) {
@@ -46,7 +45,7 @@ class ApplyController extends Controller
         /** @var ?Application $application */
         $application = auth()->user()->applications()->first();
         if (! empty($application)) {
-            $application->update($request->all());
+            $application->update($request->validated());
             $success = __('campaigns/applications.apply.success.update');
         } else {
             $this->service
