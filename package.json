@@ -51,7 +51,7 @@
         "cytoscape-dblclick": "^0.3.1",
         "cytoscape-panzoom": "^2.5.3",
         "cytoscape-popper": "^4.0.1",
-        "jspdf": "^4.1.0",
+        "jspdf": "^4.2.0",
         "konva": "^10.0.2",
         "laravel-echo": "^2.3.0",
         "laravel-vue-pagination": "^4.1.3",
