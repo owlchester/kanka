@@ -178,6 +178,9 @@ Route::get('/w/{campaign}/campaign_plugin-{ts}.styles', 'Campaign\Plugins\CssCon
 Route::get('/w/{campaign}/campaign-visibility', 'Campaign\VisibilityController@edit')->name('campaign-visibility');
 Route::post('/w/{campaign}/campaign-visibility', 'Campaign\VisibilityController@save')->name('campaign-visibility.save');
 
+Route::get('/w/{campaign}/share', [App\Http\Controllers\Campaign\ShareController::class, 'setup'])->name('campaign.share.setup');
+Route::post('/w/{campaign}/share', [App\Http\Controllers\Campaign\ShareController::class, 'save'])->name('campaign.share.save');
+
 Route::get('/w/{campaign}/modules/{entity_type}/edit', [ModuleController::class, 'edit'])->name('modules.edit');
 Route::patch('/w/{campaign}/modules/{entity_type}/update', [ModuleController::class, 'update'])->name('modules.update');
 Route::delete('/w/{campaign}/modules/reset', [ModuleController::class, 'reset'])->name('modules.reset');

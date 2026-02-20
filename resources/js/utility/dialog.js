@@ -1,12 +1,22 @@
 
 import { createApp } from 'vue'
 import EntityShareModal from "./EntityShareModal.vue";
+import CampaignShareModal from "./CampaignShareModal.vue";
 
 window.mountShareModal = function () {
     const el = document.getElementById('entity-share-container');
     if (el && !el.__vue_app__) {
         const app = createApp({});
         app.component('entity-share-modal', EntityShareModal);
+        app.mount(el);
+    }
+};
+
+window.mountCampaignShareModal = function () {
+    const el = document.getElementById('campaign-share-container');
+    if (el && !el.__vue_app__) {
+        const app = createApp({});
+        app.component('campaign-share-modal', CampaignShareModal);
         app.mount(el);
     }
 };
@@ -104,6 +114,7 @@ fetch(url, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
             target.innerHTML = html;
             target.show();
             window.mountShareModal();
+            window.mountCampaignShareModal();
         })
         .catch(err => {
             console.error(err);
