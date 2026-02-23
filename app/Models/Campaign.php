@@ -46,6 +46,7 @@ use Illuminate\Support\Collection;
  * @property int $visible_entity_count
  * @property array $ui_settings
  * @property bool|int $is_open
+ * @property bool|int $is_prioritised
  * @property array|null $default_images
  * @property array|null $settings
  * @property Carbon $created_at
@@ -91,6 +92,7 @@ class Campaign extends Model
         'ui_settings',
         'settings',
         'is_open',
+        'is_prioritised',
     ];
 
     protected $casts = [

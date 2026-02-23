@@ -93,6 +93,52 @@
             />
         </x-forms.field>
 
+        <div class="flex flex-col gap-2">
+            <h4 class="m-0 text-lg">{{ __('campaigns/applications.setup.prioritise') }}</h4>
+
+            @if (!$isElemental)
+                <label class="flex items-start gap-3 opacity-50 cursor-not-allowed select-none">
+                    <input type="checkbox" disabled class="mt-1 shrink-0" />
+                    <span class="flex flex-col gap-1">
+                        <span class="font-medium">{{ __('campaigns/applications.setup.prioritise') }}</span>
+                        <span class="text-sm text-base-content/70">{{ __('campaigns/applications.setup.prioritise_help') }}</span>
+                        <span class="text-sm">
+                            {!! __('campaigns/applications.setup.prioritise_upgrade', [
+                                'link' => '<a href="' . route('settings.subscription') . '" class="text-link">Elemental</a>',
+                            ]) !!}
+                        </span>
+                    </span>
+                </label>
+            @elseif ($prioritisedCampaign)
+                <label class="flex items-start gap-3 opacity-50 cursor-not-allowed select-none">
+                    <input type="checkbox" disabled class="mt-1 shrink-0" />
+                    <span class="flex flex-col gap-1">
+                        <span class="font-medium">{{ __('campaigns/applications.setup.prioritise') }}</span>
+                        <span class="text-sm text-base-content/70">{{ __('campaigns/applications.setup.prioritise_help') }}</span>
+                        <span class="text-sm">
+                            {!! __('campaigns/applications.setup.prioritise_conflict', [
+                                'campaign' => '<a href="' . route('campaign-applications.setup', $prioritisedCampaign) . '" class="text-link">' . e($prioritisedCampaign->name) . '</a>',
+                            ]) !!}
+                        </span>
+                    </span>
+                </label>
+            @else
+                <label class="flex items-start gap-3 cursor-pointer">
+                    <input
+                        type="checkbox"
+                        name="is_prioritised"
+                        value="1"
+                        class="mt-1 shrink-0"
+                        {{ old('is_prioritised', $campaign->is_prioritised) ? 'checked' : '' }}
+                    />
+                    <span class="flex flex-col gap-1">
+                        <span class="font-medium">{{ __('campaigns/applications.setup.prioritise') }}</span>
+                        <span class="text-sm text-base-content/70">{{ __('campaigns/applications.setup.prioritise_help') }}</span>
+                    </span>
+                </label>
+            @endif
+        </div>
+
         <div class="sticky bottom-4 ml-auto z-50">
             <button type="submit" class="btn2 btn-primary">
                 <x-icon class="save" />

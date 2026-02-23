@@ -77,6 +77,11 @@ return [
         'success'   => 'Public campaign settings updated.',
         'done'      => 'Public campaign settings filled.',
         'setup'     => 'Set up public campaign settings to open campaign to the public.',
+        'prioritise' => 'Prioritise this campaign',
+        'prioritised' => 'Prioritised campaign',
+        'prioritise_help' => 'Prioritised campaigns appear at the top of the public campaign list, ahead of other open campaigns.',
+        'prioritise_upgrade' => 'This feature is exclusive to :link subscribers.',
+        'prioritise_conflict' => 'You can only prioritise one campaign at a time. Disable prioritisation on :campaign first.',
     ],
     'title'         => 'Join requests',
     'toggle'        => [

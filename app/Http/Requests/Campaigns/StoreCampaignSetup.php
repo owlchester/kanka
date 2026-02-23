@@ -36,6 +36,7 @@ class StoreCampaignSetup extends FormRequest
             'players' => 'nullable|string|max:45',
             'playstyles' => 'array',
             'playstyles.*' => 'exists:playstyles,id',
+            'is_prioritised' => 'nullable|boolean',
         ];
     }
 }

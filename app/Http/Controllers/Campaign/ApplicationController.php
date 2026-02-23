@@ -12,7 +12,6 @@ use App\Models\Application;
 use App\Models\Campaign;
 use App\Models\CampaignFilter;
 use App\Services\Campaign\ApplicationService;
-use DateTimeZone;
 use Stevebauman\Purify\Facades\Purify;
 
 class ApplicationController extends Controller
@@ -136,7 +135,6 @@ class ApplicationController extends Controller
     {
         $this->authorize('applications', $campaign);
 
-        $identifiers = DateTimeZone::listIdentifiers();
         $timezones = [];
 
         for ($i = -12; $i <= 14; $i++) {
@@ -147,9 +145,23 @@ class ApplicationController extends Controller
             $timezones[$utcString] = $utcString;
         }
 
+        $user = auth()->user();
+        $isElemental = $user->isElemental();
+        $prioritisedCampaign = null;
+
+        if ($isElemental) {
+            $adminCampaignIds = $user->campaignRoles()->where('is_admin', true)->pluck('campaign_id');
+            $prioritisedCampaign = Campaign::where('is_prioritised', true)
+                ->where('id', '!=', $campaign->id)
+                ->whereIn('id', $adminCampaignIds)
+                ->first();
+        }
+
         return view('campaigns.applications.setup')
             ->with('campaign', $campaign)
-            ->with('timezones', $timezones);
+            ->with('timezones', $timezones)
+            ->with('isElemental', $isElemental)
+            ->with('prioritisedCampaign', $prioritisedCampaign);
     }
 
     public function saveSetup(StoreCampaignSetup $request, Campaign $campaign)
@@ -159,8 +171,29 @@ class ApplicationController extends Controller
             return response()->json();
         }
 
+        $isPrioritised = false;
+        $user = auth()->user();
+
+        if ($user->isElemental() && $request->boolean('is_prioritised')) {
+            $adminCampaignIds = $user->campaignRoles()->where('is_admin', true)->pluck('campaign_id');
+            $conflicting = Campaign::where('is_prioritised', true)
+                ->where('id', '!=', $campaign->id)
+                ->whereIn('id', $adminCampaignIds)
+                ->first();
+
+            if ($conflicting) {
+                return redirect()->back()
+                    ->with('error', __('campaigns/applications.setup.prioritise_conflict', [
+                        'campaign' => '<a href="' . route('campaign-applications.setup', $conflicting) . '" class="text-link">' . e($conflicting->name) . '</a>',
+                    ]));
+            }
+
+            $isPrioritised = true;
+        }
+
         $campaign->update([
             'locale' => $request->get('locale'),
+            'is_prioritised' => $isPrioritised,
         ]);
 
         if ($request->has('systems')) {
