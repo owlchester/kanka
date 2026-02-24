@@ -41,11 +41,21 @@ class CampaignImport extends Layout
                 'label' => 'campaigns/plugins.fields.status',
                 'render' => function (\App\Models\CampaignImport $model) {
                     if ($model->status_id === CampaignImportStatus::FAILED) {
+                        if ($model->isCsv()) {
+                            return '<span class="text-error"><i class="fa-regular fa-xmark-circle" aria-hidden="true"></i> ' . __('campaigns/import.status.invalid') . '</span>';
+                        }
+
                         return '<span class="text-error"><i class="fa-regular fa-xmark-circle" aria-hidden="true"></i> ' . __('campaigns/import.status.failed') . '</span>';
                     } elseif ($model->status_id == CampaignImportStatus::QUEUED) {
                         return '<span class="text-neutral-content"><i class="fa-regular fa-hourglass" aria-hidden="true"></i> ' . __('campaigns/import.status.queued') . '</span>';
                     } elseif ($model->status_id == CampaignImportStatus::FINISHED) {
                         return '<span class="text-success"><i class="fa-regular fa-check-circle" aria-hidden="true"></i> ' . __('campaigns/import.status.finished') . '</span>';
+                    } elseif ($model->status_id == CampaignImportStatus::READY) {
+                        return '<a href="' . route('campaign.import.csv', [$model->campaign, $model]) . '" class="btn2 btn-outline btn-sm"> <i class="fa-regular fa-check-circle" aria-hidden="true"></i> ' . __('campaigns/import.status.ready') . '</a>';
+                    } elseif ($model->status_id == CampaignImportStatus::VALIDATING) {
+                        return '<span class="text-info"><i class="fa-regular fa-microscope" aria-hidden="true"></i> ' . __('campaigns/import.status.validating') . '</span>';
+                    } elseif ($model->status_id == CampaignImportStatus::PROCESSING) {
+                        return '<span class="text-neutral-content"><i class="fa-regular fa-hourglass" aria-hidden="true"></i> ' . __('campaigns/import.status.processing') . '</span>';
                     }
 
                     return '<span class="text-neutral-content"><i class="fa-regular fa-spinner fa-spin" aria-hidden="true"></i> ' . __('campaigns/import.status.running') . '</span>';

@@ -106,6 +106,7 @@ return [
     'fields'            => [
         'archived'          => 'Archived',
         'calendar_date'     => 'Calendar Date',
+        'category'          => 'Category',
         'child'             => 'Child',
         'closed'            => 'Closed',
         'colour'            => 'Colour',

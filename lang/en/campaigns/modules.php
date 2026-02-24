@@ -2,7 +2,7 @@
 
 return [
     'actions'       => [
-        'create'    => 'Create category',
+        'create'    => 'Create a category',
         'customise' => 'Customise',
     ],
     'create'        => [

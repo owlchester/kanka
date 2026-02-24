@@ -3,6 +3,7 @@
 namespace App\Services\Campaign\Import;
 
 use App\Enums\CampaignImportStatus;
+use App\Enums\UserAction;
 use App\Exceptions\Campaign\ImportException;
 use App\Facades\BookmarkCache;
 use App\Facades\CampaignCache;
@@ -16,6 +17,7 @@ use App\Facades\TimelineElementCache;
 use App\Models\Bookmark;
 use App\Models\CampaignImport;
 use App\Models\EntityType;
+use App\Models\UserLog;
 use App\Notifications\Header;
 use App\Services\Campaign\Import\Mappers\AbilityMapper;
 use App\Services\Campaign\Import\Mappers\CalendarMapper;
@@ -69,6 +71,8 @@ class ImportService
     protected array $logs = [];
 
     protected array $errors = [];
+
+    protected int $entityCount = 0;
 
     protected Exception $exception;
 
@@ -212,6 +216,17 @@ class ImportService
         if (! $this->job->isFailed()) {
             $key = 'success';
             $colour = 'success';
+
+            UserLog::create([
+                'user_id' => $this->user->id,
+                'type_id' => UserAction::zipImport,
+                'campaign_id' => $this->campaign->id,
+                'data' => [
+                    'module' => 'import',
+                    'action' => 'zip finished',
+                    'count' => $this->entityCount,
+                ],
+            ]);
         }
         $this->campaign->notifyAdmins(
             new Header(
@@ -395,6 +410,7 @@ class ImportService
                         unset($data);
                     }
                     $this->logs[] = $count;
+                    $this->entityCount += $count;
                     $mapper->tree()->clear();
                 }
             } else {
@@ -415,6 +431,7 @@ class ImportService
                     unset($data);
                 }
                 $this->logs[] = $count;
+                $this->entityCount += $count;
                 $mapper->tree()->clear();
             }
         }
