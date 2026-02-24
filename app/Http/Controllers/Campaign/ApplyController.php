@@ -7,7 +7,6 @@ use App\Http\Requests\Campaigns\StoreCampaignApplication;
 use App\Models\Application;
 use App\Models\Campaign;
 use App\Services\Campaign\ApplicationService;
-use DateTimeZone;
 
 class ApplyController extends Controller
 {

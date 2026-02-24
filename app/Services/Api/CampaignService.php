@@ -96,9 +96,9 @@ class CampaignService
     {
         $this->data['prioritised'] = Campaign::public(false)->where('is_prioritised', true)->get()
             ->map(fn ($campaign) => new CampaignResource($campaign));
+
         return $this;
     }
-
 
     /**
      * Build a list of public campaigns

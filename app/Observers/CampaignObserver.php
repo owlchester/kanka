@@ -35,6 +35,7 @@ class CampaignObserver
 
             if (! $user->isElemental()) {
                 $campaign->is_prioritised = false;
+
                 return;
             }
 
