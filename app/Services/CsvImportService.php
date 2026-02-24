@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Enums\CampaignImportStatus;
+use App\Enums\UserAction;
 use App\Facades\BookmarkCache;
 use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
@@ -15,6 +16,7 @@ use App\Facades\QuestCache;
 use App\Facades\TimelineElementCache;
 use App\Models\CampaignImport;
 use App\Models\Character;
+use App\Models\UserLog;
 use App\Models\CharacterTrait;
 use App\Models\Entity;
 use App\Models\EntityType;
@@ -219,7 +221,20 @@ class CsvImportService
 
         $this->job->status_id = CampaignImportStatus::FINISHED;
         $this->job->save();
-        $this->user->notify(new Header('campaign.import.csv_success', 'upload', 'info', 
+
+        UserLog::create([
+            'user_id' => $this->user->id,
+            'type_id' => UserAction::csvImport,
+            'campaign_id' => $this->campaign->id,
+            'data' => [
+                'module' => 'import',
+                'action' => 'CSV finished',
+                'count' => $this->entityCount,
+                'entity_type' => $this->entityType->code,
+            ],
+        ]);
+
+        $this->user->notify(new Header('campaign.import.csv_success', 'upload', 'info',
             [
                 'campaign' => $this->campaign->name,
                 'link' => route('dashboard', ['campaign' => $this->campaign]),
@@ -283,7 +298,7 @@ class CsvImportService
         if (empty($this->data['is_private'])) {
             $this->data['is_private'] = $this->campaign->entity_visibility;
         }
-        
+
         $traits = $this->data['traits'];
         unset($this->data['traits']);
 
@@ -375,7 +390,7 @@ class CsvImportService
      */
     protected function saveTraits(Character $character, array $traits): void
     {
-        
+
         foreach ($traits as $type => $entries) {
             $traitOrder = 0;
             foreach ($entries as $name => $entry) {
@@ -407,7 +422,7 @@ class CsvImportService
             Storage::disk('export')->delete($file);
         }
         File::delete($this->filePath);
-        
+
         return $this;
     }
 

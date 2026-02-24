@@ -1,12 +1,14 @@
 <x-box>
     @if (!$canAssign)
         <form wire:submit="selectEntity">
-            <div class="p-5 flex flex-col gap-5">
-                <h3>{{ __('campaigns/import.csv.select_type') }}</h3>
-                <p class="text-light">{{ __('campaigns/import.csv.type_helper') }}</p>
+            <div class="flex flex-col gap-4">
+                <h2 class="text-2xl">{{ __('campaigns/import.csv.select_module') }}</h2>
+                <x-helper>
+                    <p>{{ __('campaigns/import.csv.type_helper') }}</p>
+                </x-helper>
 
-                <div class="field field-type">
-                    <label>{{ __('campaigns/import.csv.select_type') }}</label>
+                <div class="field field-type flex flex-col gap-1">
+                    <label class="font-semibold text-xs opacity-80">{{ __('crud.fields.entity_type') }}</label>
                     <select wire:model="entityType" class="form-control w-full" required>
                         @foreach ($entityTypes as $value => $label)
                             <option value="{{ $value }}">
@@ -21,17 +23,20 @@
         </form>
     @else
         <form wire:submit.prevent="submit">
-            <div class="p-5 flex flex-col gap-5">
+            <div class="flex flex-col gap-4">
 
 
-                <h3>{{ __('campaigns/import.csv.set_fields') }}</h3>
-                <p class="text-light">
-                    {{ __('campaigns/import.csv.fields_helper') }}
-                </p>
+                <h2 class="text-2xl">{{ __('campaigns/import.csv.set_fields') }}</h2>
+
+                <x-helper>
+                    <p>
+                        {{ __('campaigns/import.csv.fields_helper') }}
+                    </p>
+                </x-helper>
 
                 @foreach ($fillableFields as $index => $field)
-                    <div class="field field-type">
-                        <label>
+                    <div class="field field-type flex flex-col gap-1">
+                        <label class="text-xs font-semibold opacity-80">
                             {{ $field }}
                         </label>
 
@@ -60,60 +65,67 @@
                 @endforeach
 
                 @if ($type->id == config('entities.ids.character'))
-                    <div class="mb-4">
-                        <label class="d-block">{{ __('campaigns/import.csv.personality') }}</label>
-                        
+                    <div class="flex flex-col gap-1">
+                        <div class="flex gap-2 justify-between">
+                            <label class="text-xs font-semibold opacity-80">
+                                {{ __('characters.sections.personality') }}
+                            </label>
+                            <button type="button" wire:click="addPersonality" class="btn2 btn-sm btn-outline">
+                                <x-icon class="plus" /> {{ __('characters.actions.add_personality') }}
+                            </button>
+                        </div>
+
                         @foreach($personalities as $index => $selection)
-                            <div class="d-flex gap-2 mb-2 align-items-center">
+                            <div class="flex gap-2 align-items-center">
                                 <select wire:model="personalities.{{ $index }}" class="form-control">
                                     <option value=""> {{ __('campaigns/import.csv.select_one') }} </option>
                                     @foreach($headers as $value => $label)
                                         <option value="{{ $value }}">{{ $label }}</option>
                                     @endforeach
                                 </select>
-                                
-                                <button type="button" 
-                                        wire:click="removePersonality({{ $index }})" 
-                                        class="btn btn-sm btn-outline-danger"
-                                        style="padding: 0.25rem 0.5rem;">
-                                    <x-icon class="fa-regular fa-trash-can" tooltip :title="__('generic.remove')" />
+
+                                <button type="button"
+                                        wire:click="removePersonality({{ $index }})"
+                                        class="btn btn-sm btn-error btn-outline">
+                                    <x-icon class="trash" tooltip :title="__('generic.remove')" />
                                 </button>
                             </div>
                         @endforeach
-
-                        <button type="button" wire:click="addPersonality" class="btn2 btn-sm">
-                            <x-icon class="fa-solid fa-plus" /> {{ __('campaigns/import.csv.add_personality') }}
-                        </button>
                     </div>
 
 
-                    <div class="mb-4">
-                        <label class="d-block">{{ __('campaigns/import.csv.appearance') }}</label>
-                        
+                    <div class="flex flex-col gap-1">
+                        <div class="flex gap-1 justify-between">
+                            <label class="text-xs font-semibold opacity-80">
+                                {{ __('characters.sections.appearance') }}
+                            </label>
+
+                            <button type="button" wire:click="addAppearance" class="btn2 btn-sm btn-outline">
+                                <x-icon class="plus" /> {{ __('characters.actions.add_appearance') }}
+                            </button>
+                        </div>
+
                         @foreach($appearances as $index => $selection)
-                            <div class="d-flex gap-2 mb-2 align-items-center">
+                            <div class="flex gap-2 align-items-center">
                                 <select wire:model="appearances.{{ $index }}" class="form-control">
                                     <option value=""> {{ __('campaigns/import.csv.select_one') }} </option>
                                     @foreach($headers as $value => $label)
                                         <option value="{{ $value }}">{{ $label }}</option>
                                     @endforeach
                                 </select>
-                                
-                                <button type="button" 
-                                        wire:click="removeAppearance({{ $index }})" 
-                                        class="btn btn-sm btn-outline-danger"
-                                        style="padding: 0.25rem 0.5rem;">
+
+
+                                <button type="button"
+                                        wire:click="removeAppearance({{ $index }})"
+                                        class="btn btn-sm btn-error btn-outline">
                                     <x-icon class="fa-regular fa-trash-can" tooltip :title="__('generic.remove')" />
                                 </button>
                             </div>
                         @endforeach
-
-                        <button type="button" wire:click="addAppearance" class="btn2 btn-sm">
-                            <x-icon class="fa-solid fa-plus" /> {{ __('campaigns/import.csv.add_appearance') }}
-                        </button>
                     </div>
                 @endif
-                <h2>{{ $tagLabel }}</h2>
+
+                <h2 class="text-xl">{{ $tagLabel }}</h2>
 
 
                 <livewire:campaigns.tags
@@ -123,7 +135,7 @@
 
                 <div class="overflow-x-auto">
                     @if (count($columnMap) != 0)
-                        <h3>{{ __('campaigns/import.csv.preview') }}</h3>
+                        <h2 class="text-2xl">{{ __('campaigns/import.csv.preview') }}</h2>
 
                         <table class="table-auto w-full border-collapse border">
                             <thead>
@@ -162,9 +174,9 @@
                             </tbody>
                         </table>
                     @else
-                        <p class="text-sm text-gray-500">
-                            {{ __('campaigns/import.csv.no_preview') }}
-                        </p>
+                        <x-helper>
+                            <p>{{ __('campaigns/import.csv.no_preview') }}</p>
+                        </x-helper>
                     @endif
                 </div>
 
