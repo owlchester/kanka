@@ -10,9 +10,8 @@ return [
     'campaigns'     => [],
     'dashboards'    => [
         'actions'       => [
-            'edit'      => 'Editar nome & permissões',
-            'new'       => 'Novo Dashboard',
-            'switch'    => 'Trocar para dashboard',
+            'edit'  => 'Editar nome & permissões',
+            'new'   => 'Novo Dashboard',
         ],
         'create'        => [
             'helper'    => 'Crie um novo dashboard para :name e atribua quais cargos podem vê-lo ou tê-lo como dashboard padrão.',

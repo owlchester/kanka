@@ -8,7 +8,7 @@ return [
     'benefits'  => [
         'boosted'       => 'Boosting a campaign with :one booster will unlock access to the :marketplace, theming options, larger uploads for all members, recovering deleted entities, and :more.',
         'more'          => 'more amazing features',
-        'superboosted'  => 'Superboosting a campaign with :amount boosters will unlock all the benefits of a boosted campaign, as well as a campaign gallery, full logs changes are made to entities, and :more.',
+        'superboosted'  => 'Superboosting a campaign with :amount boosters will unlock all the benefits of a boosted campaign, as well as a campaign gallery, full logs changes are made to entries, and :more.',
     ],
     'boost'     => [
         'actions'   => [
@@ -42,11 +42,11 @@ return [
     ],
     'pitch'     => [
         'benefits'      => [
-            'backup'        => 'Recover a previously deleted entity for up to :amount days',
+            'backup'        => 'Recover a previously deleted entry for up to :amount days',
             'customisable'  => 'Full customisation of the look of a campaign',
-            'entities'      => 'Better control over how entities behave and appear',
+            'entities'      => 'Better control over how entries behave and appear',
             'icons'         => 'Access to thousands of beautiful icons for maps and timelines',
-            'relations'     => 'Explore an entity\'s relations visually in a visual explorer',
+            'relations'     => 'Explore an entry\'s relations visually in a visual explorer',
             'title'         => 'Boosted campaigns get',
             'upload'        => 'Bigger upload size for all campaign members',
         ],

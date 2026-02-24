@@ -17,4 +17,12 @@ return [
     'empty'             => 'Żaden moduł nie ma obecnie domyślnej miniatury.',
     'helper'            => 'Używane dla wszystkich elementów tego moduły bez własnej ilustracji.',
     'index'             => [],
+    'reset'             => [
+        'helper'    => 'Czy na pewno usunąć domyślne ikony ze wszystkich modułów kampanii?',
+        'success'   => 'Usunięto domyślne ikony ze wszystkich modułów.',
+        'title'     => 'Przywracanie ikon domyślnych',
+        'warning'   => 'To działanie jest ostateczne i nie można go cofnąć.',
+    ],
+    'title'             => 'Domyślne ikony',
+    'tutorial'          => 'Dodaje domyślne ikony elementom nie posiadającym własnych ilustracji. Pojawiają się natychmiast w całej kampanii i zachowują spójność wizualną.',
 ];

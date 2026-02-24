@@ -2,8 +2,10 @@
 
 return [
     'actions'           => [
+        'copy_from_entity'  => 'Copier depuis une autre entité',
         'copy_inventory'    => 'Copier l\'inventaire',
         'generate'          => 'Générer',
+        'multiple'          => 'Ajouter des objets',
     ],
     'copy'              => [
         'helper'    => 'Copie l\'inventaire complet d\'une entité à :name.',

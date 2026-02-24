@@ -85,7 +85,7 @@ class BulkController extends Controller
             $entityObj = new $classes[$this->entity];
         }
 
-        $langFile = $this->entity === 'relations' ? 'entities/relations.bulk.success.' : 'crud.bulk.success.';
+        $langFile = $this->entity === 'relations' ? 'entities/relations.bulk.success.' : 'entries/bulk.success.';
         $models = $this->models();
 
         $count = $this

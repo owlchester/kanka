@@ -1,27 +1,63 @@
 <template>
-    <div class="toolbar fixed w-full p-2 flex items-center justify-between gap-2 z-700" v-if="ready">
-        <div class="flex gap-4 items-center">
-            <a :href="urls.back" :title="trans('back')" class="flex items-center gap-1 text-link rounded bg-base-100 p-1" tabindex="0">
-                <i class="fa-regular fa-left-to-bracket" aria-hidden="true"></i>
-                <span v-html="trans('back')"></span>
-            </a>
+    <!-- Back button (top-left floating) -->
 
-            <div v-if="props.creator" class="relative flex gap-2">
-                <a
-                    v-if="props.creator"
-                    href="#"
-                    @click="openQQ()"
-                    class="quick-creator-button btn2 btn-outline btn-sm"
-                    data-toggle="tooltip"
-                    :data-title="trans('qq-keyboard-shortcut')"
-                    tabindex="0">
-                    <i class="flex-none fa-regular fa-plus" aria-hidden="true"></i>
-                    <span class="grow hidden sm:inline-block" v-html="trans('create')"></span>
+
+    <!-- Bottom toolbar -->
+    <div v-if="ready" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-700 flex items-center gap-1.5 bg-base-100/80 backdrop-blur rounded-xl shadow-lg px-2 py-1.5">
+        <a v-if="ready" :href="urls.back" :title="trans('back')" class="btn2 btn-ghost" tabindex="0">
+            <i class="fa-regular fa-home" aria-hidden="true"></i>
+        </a>
+
+        <!-- Zone 1: Plus FAB -->
+        <div v-if="props.creator" class="relative">
+            <button @click.prevent="fabDropdown = !fabDropdown" class="btn2 btn-primary" :title="trans('create')">
+                <i class="fa-regular fa-plus" aria-hidden="true"></i>
+            </button>
+            <div
+                v-if="fabDropdown"
+                v-click-outside="() => fabDropdown = false"
+                class="absolute bottom-full mb-2 left-0 flex flex-col gap-1 bg-base-100 shadow-lg p-2 rounded-lg z-10 min-w-max"
+                role="menu"
+            >
+                <a href="#" @click.prevent="fabDropdown = false; openQQ()" class="flex items-center gap-2 px-3 py-1.5 rounded hover:bg-base-200 cursor-pointer whitespace-nowrap">
+                    <i class="fa-regular fa-bolt w-5" aria-hidden="true"></i>
+                    <span v-html="trans('create')"></span>
                 </a>
+                <a href="#" @click.prevent="fabDropdown = false; openCreate()" class="flex items-center gap-2 px-3 py-1.5 rounded hover:bg-base-200 cursor-pointer whitespace-nowrap">
+                    <i class="fa-regular fa-link w-5" aria-hidden="true"></i>
+                    <span v-html="trans('add')"></span>
+                </a>
+            </div>
+        </div>
 
-                <a href="#" @click="print()" class="btn2 btn-sm btn-outline">
-                    <i class="fa-regular fa-download" aria-hidden="true"></i>
-                    <span v-html="trans('download')"></span>
+        <!-- Zone 2: View controls -->
+        <button @click.prevent="zoomToFit()" class="btn2 btn-ghost rounded-lg" :title="trans('zoom-fit')">
+            <i class="fa-regular fa-arrows-maximize" aria-hidden="true"></i>
+        </button>
+        <button @click.prevent="resetLayout()" class="btn2 btn-ghost" :title="trans('reset-layout')">
+            <i class="fa-regular fa-grid-round" aria-hidden="true"></i>
+        </button>
+
+        <div class="w-px h-6 bg-base-content/20"></div>
+
+        <!-- Zone 3: Export -->
+        <div class="relative">
+            <button @click.prevent="downloadDropdown = !downloadDropdown" class="btn2 btn-ghost" :title="trans('download')">
+                <i class="fa-regular fa-download" aria-hidden="true"></i>
+            </button>
+            <div
+                v-if="downloadDropdown"
+                v-click-outside="() => downloadDropdown = false"
+                class="absolute bottom-full mb-2 right-0 flex flex-col gap-1 bg-base-100 shadow-lg p-2 rounded-2xl z-10 min-w-max"
+                role="menu"
+            >
+                <a @click.prevent="downloadPng()" class="flex items-center gap-2 px-3 py-1.5 rounded-xl hover:bg-base-200 cursor-pointer whitespace-nowrap">
+                    <i class="fa-regular fa-image w-5" aria-hidden="true"></i>
+                    <span v-html="trans('download-png')"></span>
+                </a>
+                <a @click.prevent="downloadPdf()" class="flex items-center gap-2 px-3 py-1.5 rounded-xl hover:bg-base-200 cursor-pointer whitespace-nowrap">
+                    <i class="fa-regular fa-file-pdf w-5" aria-hidden="true"></i>
+                    <span v-html="trans('download-pdf')"></span>
                 </a>
             </div>
         </div>
@@ -71,6 +107,8 @@ const relation = ref(null)
 const cyContainer = ref()
 const entityTooltips = ref(Array)
 let nodeTippy: Instance | null = null
+const downloadDropdown = ref(false)
+const fabDropdown = ref(false)
 const i18n = ref(null)
 const urls = ref(null)
 
@@ -421,17 +459,42 @@ const handleDialogFormSubmit = async (event: SubmitEvent) => {
             },
         })
 
-        // Handle success (see next section)
-        handleRelationUpdate(response.data)
+        if (response.data.created) {
+            handleRelationCreate(response.data)
+        } else {
+            handleRelationUpdate(response.data)
+        }
 
-        // Close the dialog (use whatever your project exposes)
         if (window.closeDialog) {
             window.closeDialog('primary-dialog')
         }
     } catch (error) {
-        // You can show errors inside the dialog instead of redirect
-        console.error(error)
+        if (error.response && error.response.status === 422 && error.response.data?.errors) {
+            showDialogErrors(form, error.response.data.errors)
+        } else {
+            console.error(error)
+        }
     }
+}
+
+const showDialogErrors = (form: HTMLFormElement, errors: Record<string, string[]>) => {
+    const article = form.closest('article')
+    if (!article) return
+
+    // Remove any previous error alert
+    article.querySelector('.alert.alert-error.js-web-errors')?.remove()
+
+    const messages = Object.values(errors).flat()
+    const alert = document.createElement('div')
+    alert.className = 'alert alert-error border-0 rounded-lg p-4 flex shadow-xs gap-2 items-center js-web-errors'
+    const list = document.createElement('ul')
+    messages.forEach((msg) => {
+        const li = document.createElement('li')
+        li.textContent = msg
+        list.appendChild(li)
+    })
+    alert.appendChild(list)
+    article.prepend(alert)
 }
 
 const handleRelationUpdate = async (data) => {
@@ -481,15 +544,85 @@ const handleRelationUpdate = async (data) => {
     }
 }
 
+const handleRelationCreate = async (data) => {
+    if (!cy.value || !data) return
+
+    // Add both source and target entities (they may already exist)
+    addEntity(data.target);
+    if (data.source) {
+        const sourceNode = cy.value.getElementById(data.source);
+        if (sourceNode.length === 0) {
+            // Source entity not in graph yet, reload to get it
+            await reloadData();
+            return;
+        }
+    }
+    await finishDrawing();
+
+    const width = getWidthFromAttitude(data.attitude ?? 0)
+    const edge = {
+        group: 'edges',
+        data: {
+            id: data.id,
+            source: data.source,
+            target: data.target.id,
+            name: data.text,
+            colour: data.colour || '#777777',
+            attitude: width,
+            shape: data.shape || 'triangle',
+            url: data.url,
+        }
+    };
+    cy.value.add(edge);
+
+    // Show the target node if it was hidden as an orphan
+    const targetNode = cy.value.getElementById(data.target.id);
+    if (targetNode.length > 0 && targetNode.hidden()) {
+        targetNode.show();
+    }
+
+    runLayout();
+}
+
+const reloadData = async () => {
+    elements.value = [];
+    await loadData();
+    cy.value.elements().remove();
+    cy.value.add(elements.value);
+    cy.value.nodes().forEach(function(node) {
+        if (node.connectedEdges().length == 0) {
+            addEntityToOrphans(node);
+        }
+    });
+    runLayout();
+    addListeners();
+    await finishDrawing();
+}
+
+const openCreate = () => {
+    window.openDialog("primary-dialog", urls.value.create)
+}
+
 const openQQ = () => {
     window.openDialog("primary-dialog", urls.value.creator)
+}
+
+const zoomToFit = () => {
+    if (!cy.value) return
+    cy.value.fit(undefined, 30)
+}
+
+const resetLayout = () => {
+    if (!cy.value) return
+    runLayout()
 }
 
 const trans = (key: string) => {
     return i18n.value[key] || key
 }
 
-const print = () => {
+const downloadPng = () => {
+    downloadDropdown.value = false
     if (!cy.value) {
         return
     }
@@ -505,6 +638,34 @@ const print = () => {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+}
+
+const downloadPdf = async () => {
+    downloadDropdown.value = false
+    if (!cy.value) {
+        return
+    }
+
+    const { jsPDF } = await import('jspdf')
+
+    const base64 = cy.value.png({
+        full: true,
+        bg: cssVariable('--b1'),
+    });
+
+    const img = new Image();
+    img.src = base64;
+    await new Promise((resolve) => { img.onload = resolve; });
+
+    const landscape = img.width > img.height;
+    const doc = new jsPDF({
+        orientation: landscape ? 'landscape' : 'portrait',
+        unit: 'px',
+        format: [img.width, img.height],
+    });
+
+    doc.addImage(base64, 'PNG', 0, 0, img.width, img.height);
+    doc.save(`${trans('campaign')}-web-${Date.now()}.pdf`);
 }
 
 </script>

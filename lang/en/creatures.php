@@ -6,6 +6,7 @@ return [
     ],
     'fields'        => [
         'is_extinct'    => 'Extinct',
+        'is_dead'       => 'Dead',
     ],
     'hints'         => [
         'is_dead'       => 'This creature is dead.',

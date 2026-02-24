@@ -1,15 +1,14 @@
 <?php
 
 $tabs = [
-        //'' => __('crud.tabs.story'),
         'notes' => __('entities.notes'),
         'calendars' => __('entities.calendars'),
-        'attribute' => __('crud.tabs.attributes'),
+        'attribute' => __('entries/tabs.properties'),
 ];
 $menus = [
         'abilities' => __('crud.tabs.abilities'),
-        'attributes' => __('crud.tabs.attributes'),
-        'assets' => __('crud.tabs.assets'),
+        'attributes' => __('entries/tabs.properties'),
+        'assets' => __('entries/tabs.media'),
         'reminders' => __('crud.tabs.reminders'),
         'organisations' => __('entities.organisations')  . ' (' . __('entities.characters') . ', ' . __('entities.organisations') . ')',
         __('entities.maps') => [
@@ -44,10 +43,10 @@ $menus = [
         ],
 
         'inventory' => __('crud.tabs.inventory'),
-        'relations' => __('crud.tabs.connections'),
+        'relations' => __('entries/tabs.relations'),
 ];
 asort($menus);
-$menus = array_merge(['' => __('crud.tabs.story')], $menus);
+$menus = array_merge(['' => __('crud.tabs.overview')], $menus);
 ?>
 <x-grid type="1/1">
     <x-helper>

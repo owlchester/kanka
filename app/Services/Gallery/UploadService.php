@@ -209,6 +209,7 @@ class UploadService
             'uuid' => $this->image->id,
             'path' => $this->image->path,
             'thumbnail' => $this->image->getUrl(192, 144),
+            'src' => $this->image->getUrl(),
         ];
     }
 }

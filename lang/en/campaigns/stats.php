@@ -12,11 +12,12 @@ return [
         ],
     ],
     'fields'        => [
+        'entries' => 'Total entries',
         'created'       => 'Created on',
         'creator'       => 'Created by',
         'from-elements' => 'From elements',
-        'from-entities' => 'From entities',
-        'from-posts'    => 'From posts',
+        'from-entities' => 'From entries',
+        'from-posts'    => 'From articles',
         'general'       => 'General',
         'words'         => 'Total words',
     ],
@@ -30,5 +31,5 @@ return [
         'quests'    => 'Mastermind level :level',
         'races'     => 'Breeder level :level',
     ],
-    'tutorial'      => 'Campaign statistics show entity counts and recent activity. Data updates every :amount hours. Use this to track growth and usage over time.',
+    'tutorial'      => 'Campaign statistics show entry counts and recent activity. Data updates every :amount hours. Use this to track growth and usage over time.',
 ];

@@ -25,12 +25,24 @@ class CustomDefinitions implements Definition
 
         // Gallery
         $def->addAttribute('img', 'data-gallery-id', 'Text');
+        $def->addAttribute('img', 'data-uuid', 'Text');
 
         $def->addAttribute('ul', 'role', 'Text');
         $def->addAttribute('ol', 'role', 'Text');
         $def->addAttribute('li', 'role', 'Text');
         $def->addAttribute('div', 'role', 'Text');
         $def->addAttribute('a', 'role', 'Text');
+
+        // Task lists
+        $def->addAttribute('ul', 'data-type', 'Text');
+        $def->addAttribute('li', 'data-type', 'Text');
+        $def->addAttribute('li', 'data-checked', 'Text');
+        $def->addElement('label', 'Inline', 'Inline', 'Common');
+        $def->addElement('input', 'Inline', 'Empty', 'Common', [
+            'type' => new \HTMLPurifier_AttrDef_Enum(['checkbox']),
+            'checked' => new \HTMLPurifier_AttrDef_HTML_Bool(true),
+            'disabled' => new \HTMLPurifier_AttrDef_HTML_Bool(true),
+        ]);
 
         $def->addElement(
             'details',
@@ -62,5 +74,15 @@ class CustomDefinitions implements Definition
         );
 
         $def->addElement('summary', 'Inline', 'Inline', 'Common');
+        $def->addElement('mark', 'Inline', 'Inline', 'Common');
+
+        // Ordered list attributes
+        $def->addAttribute('ol', 'start', 'Number');
+        $def->addAttribute('ol', 'type', 'Text');
+        $def->addAttribute('li', 'value', 'Number');
+
+        // Table cell vertical alignment
+        $def->addAttribute('td', 'valign', 'Text');
+        $def->addAttribute('th', 'valign', 'Text');
     }
 }

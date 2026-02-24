@@ -60,7 +60,7 @@ a:hover, a:active, a:focus {
         margin-top: 1.1rem;
         margin-bottom: 1.1rem;
         border-color: hsl(var(--bc)/var(--tw-bg-opacity));
-        --tw-bg-opacity: .2;
+        --tw-bg-opacity: .1;
     }
 
     h1 {

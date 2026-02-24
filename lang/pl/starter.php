@@ -25,5 +25,6 @@ return [
         'history'       => '(przykład) Ulis to stolica Genory. Założył ją na brzegu Uniry król Frazjan Irwen.',
         'type'          => 'Stolica',
     ],
+    'name'          => ':name (przykład)',
     'note1'         => [],
 ];

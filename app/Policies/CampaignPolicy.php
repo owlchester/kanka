@@ -323,6 +323,6 @@ class CampaignPolicy
             return true;
         }
 
-        return $campaign->premium() && $campaign->isWyvern();
+        return $campaign->premium() && ($campaign->isWyvern() || $campaign->isElemental());
     }
 }

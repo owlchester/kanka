@@ -28,6 +28,7 @@ class BulkRequest extends FormRequest
             'entity' => 'required',
             'model' => 'required_without:models',
             'models' => 'required_without:model',
+            'entity_type' => 'integer|exists:entity_types,id',
         ];
     }
 }

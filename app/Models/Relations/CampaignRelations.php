@@ -65,6 +65,7 @@ use Illuminate\Support\Collection;
  * @property Collection|User[] $users
  * @property Collection|User[] $followers
  * @property Collection|CampaignRole[] $roles
+ * @property CampaignRole $publicRole
  * @property Collection|EntityMention[] $mentions
  * @property Collection|CampaignSetting $setting
  * @property Collection|CampaignUser[] $members
@@ -169,6 +170,11 @@ trait CampaignRelations
     public function roles(): HasMany
     {
         return $this->hasMany(CampaignRole::class);
+    }
+
+    public function publicRole(): HasOne
+    {
+        return $this->roles()->public()->one();
     }
 
     /**

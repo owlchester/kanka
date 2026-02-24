@@ -15,7 +15,7 @@ class Lessless implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if (Str::contains(mb_strtolower($value), '<')) {
+        if (is_string($value) && Str::contains(mb_strtolower($value), '<')) {
             $fail(__('validation.forbidden_letter', ['attribute' => $attribute, 'letter' => '&lt;']));
         }
     }

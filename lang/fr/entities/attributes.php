@@ -104,6 +104,7 @@ return [
         'number'    => 'Nombre',
         'random'    => 'Aléatoire',
         'section'   => 'Section',
+        'templates' => 'Modèles',
         'text'      => 'Texte multiligne',
     ],
     'update'        => [

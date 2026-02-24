@@ -205,7 +205,7 @@ class MarkdownMentionsService
             $attribute = $this->attribute($id);
 
             // No entity found, the user might not be allowed to see it
-            if (empty($attribute)) {
+            if (empty($attribute) || ! $attribute->entity) {
                 return __('crud.history.unknown');
             }
 

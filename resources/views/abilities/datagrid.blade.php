@@ -14,7 +14,7 @@
         [
             'label' => '<i class="fa-regular fa-user" title="' . __('abilities.show.tabs.entities') . '"></i>',
             'render' => function($model) {
-                return number_format($model->entities_count);
+                return number_format($model->entity_abilities_count);
             },
             'disableSort' => true,
         ],

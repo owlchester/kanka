@@ -153,7 +153,7 @@ abstract class MiscModel extends Model
             $actions[] = [
                 'route' => route('entities.relations.index', [$campaign, $this->entity]),
                 'icon' => 'fa-regular fa-circle-nodes',
-                'label' => 'crud.tabs.connections',
+                'label' => 'entries/tabs.relations',
             ];
 
             if ($campaign->enabled('inventories')) {
@@ -184,7 +184,7 @@ abstract class MiscModel extends Model
      */
     public function showProfileInfo(): bool
     {
-        return ! empty($this->entity->type);
+        return ! empty($this->entity->type) || $this->entity->aliases->isNotEmpty();
     }
 
     /**

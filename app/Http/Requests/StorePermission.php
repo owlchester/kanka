@@ -24,7 +24,7 @@ class StorePermission extends FormRequest
     public function rules()
     {
         return [
-            'entity_id' => 'required|exists:entities,id',
+            'entity_id' => 'required|integer|exists:entities,id',
         ];
     }
 }

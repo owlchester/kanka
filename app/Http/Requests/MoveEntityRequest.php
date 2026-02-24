@@ -24,7 +24,7 @@ class MoveEntityRequest extends FormRequest
     public function rules()
     {
         return [
-            'campaign' => 'required|exists:campaigns,id',
+            'campaign' => 'required|integer|exists:campaigns,id',
             'copy' => 'nullable',
         ];
     }

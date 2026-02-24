@@ -10,7 +10,7 @@
     $seasonNames = old('season_name');
     $seasonMonths = old('season_month');
     $seasonDays = old('season_day');
-    if (!empty($seasonNames)) {
+    if (!empty($seasonNames) && is_array($seasonNames)) {
         $cpt = 0;
         foreach ($seasonNames as $name) {
             if (!empty($name) || !empty($seasonMonths[$cpt])) {

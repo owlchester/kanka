@@ -23,7 +23,7 @@ You can get a list of all the races of a campaign by using the following endpoin
 
 ### URL Parameters
 
-The list of returned entities can be filtered. The available filters are [available here](/api-docs/{{version}}/filters)
+The list of returned entities can be filtered. The available filters are [available here](/api-docs/{{version}}/misc/filters)
 
 ### Results
 ```json
@@ -121,6 +121,7 @@ To create a race, use the following endpoint.
 | `entity_header_uuid` | `string` | Gallery image UUID for the entity header (premium campaign feature) |
 | `tooltip`            | `string` | The race's tooltip (premium campaign feature)                   |
 | `is_private` | `boolean` | If the race is only visible to `admin` members of the campaign |
+| `locations` | `array` | Array of locations.ids to attach to the race. |
 
 ### Results
 

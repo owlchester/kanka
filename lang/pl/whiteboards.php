@@ -13,7 +13,5 @@ return [
     'placeholders'  => [
         'type'  => 'Pomysły, relacje, struktura narracji',
     ],
-    'update'        => [
-        'success'   => 'Zapisano :name',
-    ],
+    'update'        => [],
 ];

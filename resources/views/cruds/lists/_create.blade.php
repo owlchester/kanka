@@ -15,14 +15,14 @@
                     @foreach ($templates as $entityTemplate)
                         <x-dropdowns.item
                             :link="route($route . '.create', [$campaign, 'copy' => $entityTemplate->id, 'template' => true])"
-                            css="new-entity-from-template" icon="fa-solid fa-star">
+                            css="new-entity-from-template" icon="fa-regular fa-star">
                             {{ $entityTemplate->name  }}
                         </x-dropdowns.item>
                     @endforeach
                     <x-dropdowns.divider />
                 @endif
-                <x-dropdowns.item link="https://docs.kanka.io/en/latest/guides/templates.html" target="_blank" icon="link">
-                        {{ __('helpers.entity_templates.link') }}
+                <x-dropdowns.item link="https://docs.kanka.io/en/latest/guides/archetypes.html" target="_blank" icon="link">
+                        {{ __('entries/archetypes.helpers.how') }}
                 </x-dropdowns.item>
             </div>
         </div>

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 /**
  * @property int|bool $is_template
  *
- * @method static self|Builder template(Campaign $campaign, int $template, bool $template)
+ * @method static self|Builder template(bool $template = true)
  * @method static self|Builder postTemplates(Campaign $campaign, bool $template = true)
  */
 trait Templatable

@@ -8,6 +8,7 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\MiscModel;
 use App\Services\AttributeService;
+use App\Services\Entity\AliasService;
 use App\Services\MultiEditingService;
 use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
@@ -21,6 +22,7 @@ class EditController extends Controller
 
     public function __construct(
         protected AttributeService $attributeService,
+        protected AliasService $aliasService,
         protected MultiEditingService $multiEditingService
     ) {}
 
@@ -104,6 +106,8 @@ class EditController extends Controller
                 $entity->crudSaved();
             }
 
+            $this->aliasService->entity($entity)->request($request)->save();
+
             if (auth()->user()->can('attributes', $entity)) {
                 $this->attributeService
                     ->campaign($campaign)
@@ -125,6 +129,15 @@ class EditController extends Controller
                 ->finish();
 
             session()->flash('success_raw', $success);
+
+            if (auth()->user()->editor === 'tiptap') {
+                $count = session()->get('tiptap_survey_count', 0);
+                $count++;
+                session()->put('tiptap_survey_count', $count);
+                if ($count % 5 === 0) {
+                    session()->flash('tiptap_survey', true);
+                }
+            }
 
             $options = [];
             if (request()->has('redirect')) {

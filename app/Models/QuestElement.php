@@ -22,7 +22,7 @@ use Laravel\Scout\Searchable;
  * @property int $entity_id
  * @property string $name
  * @property int $quest_id
- * @property string $description
+ * @property string $entry
  * @property string $role
  * @property string $colour
  * @property Quest|null $quest
@@ -39,13 +39,11 @@ class QuestElement extends Model
     use Searchable;
     use SimpleSortableTrait;
 
-    protected string $entryField = 'description';
-
     protected $fillable = [
         'quest_id',
         'name',
         'entity_id',
-        'description',
+        'entry',
         'role',
         'colour',
         'visibility_id',
@@ -171,7 +169,7 @@ class QuestElement extends Model
             'entity_id' => $this->quest->entity->id,
             'name' => $this->name,
             'type' => 'quest_element',
-            'entry' => strip_tags($this->description),
+            'entry' => strip_tags($this->entry),
         ];
     }
 }

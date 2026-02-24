@@ -38,7 +38,7 @@ const clickWelcomePulse = (e) => {
 };
 
 function toggle(e) {
-    if (e.target.type !== 'checkbox') {
+    if (e.target.type !== 'checkbox' && e.target.closest('a') === null) {
         e.preventDefault();
     }
 

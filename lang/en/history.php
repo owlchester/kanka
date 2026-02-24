@@ -9,25 +9,25 @@ return [
     'fields'    => [
         'action'    => 'Action',
         'details'   => 'Details',
-        'module'    => 'Module',
+        'category'    => 'Category',
         'when'      => 'When',
         'who'       => 'Who',
     ],
     'filters'   => [
         'all-actions'   => 'All actions',
         'all-users'     => 'All members',
-        'no-results'    => 'No results to display. Try with other filters, or come back after making changes to the campaign\'s entities.',
+        'no-results'    => 'No results to display. Try with other filters, or come back after making changes to your entries.',
     ],
     'helpers'   => [
-        'base'      => 'This interface contains recent changes to entities of the campaign for up to :amount months, showing the most recent changes first.',
+        'base'      => 'This interface contains recent changes to entries of the campaign for up to :amount days, showing the most recent changes first.',
         'changes'   => 'The following fields previously had these values.',
     ],
     'log'       => [
         'create'        => ':user created :entity',
-        'create_post'   => ':user created a post on :entity',
+        'create_post'   => ':user created a article on :entity',
         'delete'        => ':user deleted :entity',
-        'delete_post'   => ':user deleted a post on :entity',
-        'reorder_post'  => ':user reordered the posts of :entity',
+        'delete_post'   => ':user deleted a article on :entity',
+        'reorder_post'  => ':user reordered the articles of :entity',
         'restore'       => ':user restored :entity',
         'update'        => ':user updated :entity',
         'update_post'   => ':user updated a post on :entity',
@@ -35,6 +35,6 @@ return [
     ],
     'title'     => 'History',
     'unknown'   => [
-        'entity'    => 'an unknown entity',
+        'entity'    => 'an unknown entry',
     ],
 ];

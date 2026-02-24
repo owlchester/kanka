@@ -31,7 +31,7 @@ class StoreMapGroup extends FormRequest
         $rules = [
             'name' => 'required|max:191',
             'position' => 'nullable|string|max:3',
-            'visibility_id' => 'nullable|exists:visibilities,id',
+            'visibility_id' => 'nullable|integer|exists:visibilities,id',
             'parent_id' => 'nullable|integer|exists:map_groups,id',
         ];
 

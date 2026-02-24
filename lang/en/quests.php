@@ -18,7 +18,7 @@ return [
         ],
         'fields'    => [
             'description'       => 'Description',
-            'entity_or_name'    => 'Either select either an entity of the campaign, or give a name for this element.',
+            'entity_or_name'    => 'Either select either an entry of the campaign, or give a name for this element.',
             'name'              => 'Name',
         ],
     ],
@@ -41,7 +41,7 @@ return [
         'date'      => 'Real world date for the quest',
         'entity'    => 'Name of an element from the quest',
         'location'  => 'The quest\'s starting location',
-        'role'      => 'This entity\'s role in the quest',
+        'role'      => 'This entry\'s role in the quest',
         'type'      => 'Character Arc, Sidequest, Main',
     ],
     'show'          => [

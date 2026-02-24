@@ -9,7 +9,7 @@
             :label="__('campaigns.fields.excerpt')"
             :helper="__('campaigns.helpers.excerpt')"
             >
-            <textarea name="excerpt" id="excerpt" class="w-full html-editor">{!! old('excerpt', $model->excerptForEdition ?? null) !!}</textarea>
+            @include('cruds.fields.entry', ['fieldName' => 'excerpt', 'model' => $campaign ?? null])
         </x-forms.field>
 
         <x-forms.field

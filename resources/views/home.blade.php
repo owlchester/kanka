@@ -24,7 +24,7 @@ use App\Enums\Widget;
 @endsection
 
 @section('content')
-    <div class="max-w-7xl 2xl:mx-auto flex flex-col gap-4">
+    <div class="max-w-7xl 2xl:mx-auto 2xl:min-w-7xl flex flex-col gap-4">
         @if (empty($dashboard))
             @include('dashboard.widgets._campaign')
         @endif

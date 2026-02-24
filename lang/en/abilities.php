@@ -3,15 +3,15 @@
 return [
     'children'      => [
         'actions'       => [
-            'attach'    => 'Attach to entities',
+            'attach'    => 'Attach to entries',
         ],
         'create'        => [
-            'attach_success'    => '{1} Attached the ability :name to :count entity.|[2,*] Attached the ability :name to :count entities.',
-            'helper'            => 'Attach :name to one or several entities.',
-            'title'             => 'Attach entities',
+            'attach_success'    => '{1} Attached the ability :name to :count entry.|[2,*] Attached the ability :name to :count entries.',
+            'helper'            => 'Attach :name to one or several entries.',
+            'title'             => 'Attach entries',
         ],
-        'description'   => 'Entities having the ability',
-        'title'         => 'Ability :name Entities',
+        'description'   => 'Entries having the ability',
+        'title'         => 'Ability :name Entries',
     ],
     'create'        => [
         'title' => 'New Ability',
@@ -23,7 +23,7 @@ return [
         'empty' => 'Add powers, spells, or talents. Many creators use this to model D&D classes.',
     ],
     'placeholders'  => [
-        'charges'   => 'Amount of charges. Reference attributes with {Level}*{CHA}',
+        'charges'   => 'Amount of charges. Reference properties with {Level}*{CHA}',
         'name'      => 'Fireball, Alert, Cunning Strike',
         'type'      => 'Spell, Feat, Attack',
     ],
@@ -34,7 +34,6 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'entities'  => 'Entities',
             'reorder'   => 'Reorder Abilities',
         ],
     ],

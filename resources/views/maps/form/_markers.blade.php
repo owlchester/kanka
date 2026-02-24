@@ -9,7 +9,7 @@
         <p>{{ __('maps.helpers.missing_image') }}</p>
     </x-alert>
 @else
-    <x-tutorial code="map_markers" doc="https://docs.kanka.io/en/latest/entities/maps/markers.html">
+    <x-tutorial code="map_markers" doc="https://docs.kanka.io/en/latest/entries/maps/markers.html">
         <p>{{ __('maps/markers.helpers.base') }}</p>
     </x-tutorial>
 

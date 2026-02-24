@@ -4,10 +4,6 @@
         <x-icon class="fa-regular fa-caret-down" />
     </div>
     <div class="dropdown-menu hidden" role="menu" id="assets-submenu">
-        <x-dropdowns.item link="#" icon="fa-regular fa-masks-theater" :dialog="route('entities.entity_assets.create', [$campaign, $entity, 'type' => \App\Enums\EntityAssetType::alias])">
-            {{ __('entities/assets.actions.alias') }}
-        </x-dropdowns.item>
-
         <x-dropdowns.item link="#" icon="fa-regular fa-upload" :dialog="route('entities.entity_assets.create', [$campaign, $entity, 'type' => \App\Enums\EntityAssetType::file])">
             {{ __('entities/assets.actions.file') }}
         </x-dropdowns.item>

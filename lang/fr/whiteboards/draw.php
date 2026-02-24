@@ -19,6 +19,13 @@ return [
         'placeholder'   => 'Écrire le nom ou l\'alias d\'une entité',
         'title'         => 'Recherche d\'entité',
     ],
+    'errors'        => [
+        'websockets'    => [
+            'disconnected'  => 'La connexion au websocket a été perdue. Réessaie.',
+            'error'         => 'Une erreur s’est produite lors de la connexion au serveur websocket.',
+            'unavailable'   => 'Le serveur websocket est indisponible. Réessaie plus tard.',
+        ],
+    ],
     'fields'        => [
         'color' => 'Couleure',
     ],
@@ -29,6 +36,10 @@ return [
     'reset'         => [
         'helper'    => 'Es-tu sûr de vouloir réinitialiser le tableau blanc? Cette action est irréversible.',
         'title'     => 'Réinitialiser le tableau blanc',
+    ],
+    'roles'         => [
+        'edit'  => 'Cet utilisateur peut modifier le tableau blanc',
+        'view'  => 'Cet utilisateur peut voir le tableau blanc',
     ],
     'toast'         => [
         'copy'  => [

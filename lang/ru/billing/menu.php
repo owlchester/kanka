@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'history'           => 'История счетов',
+    'history'           => 'История платежей',
     'overview'          => 'Основное',
     'payment-method'    => 'Способ оплаты',
 ];

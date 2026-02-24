@@ -44,11 +44,21 @@ class Organisation extends Layout
                     return $icon . $private . $model->role;
                 },
             ],
-            'location' => [
-                'key' => 'location.name',
-                'label' => Module::singular(config('entities.ids.location'), 'entities.location'),
-                'render' => Standard::LOCATION,
-                'with' => 'organisation',
+            'locations' => [
+                'key' => 'locations.name',
+                'label' => Module::plural(config('entities.ids.location'), 'entities.locations'),
+                'render' => function ($model) {
+                    $locations = [];
+                    if ($model->organisation?->entity?->locations?->isNotEmpty()) {
+                        foreach ($model->organisation->entity->locations as $location) {
+                            if ($location->entity) {
+                                $locations[] = '<a href="' . $location->entity->url() . '" data-toggle="tooltip-ajax" data-id="' . $location->entity->id . '" data-url="' . route('entities.tooltip', [$location->entity->campaign_id, $location->entity]) . '">' . e($location->name) . '</a>';
+                            }
+                        }
+                    }
+
+                    return implode(', ', $locations);
+                },
             ],
             'pinned' => [
                 'label' => '<i class="fa-regular fa-map-pin" data-title="' . __('organisations.members.fields.pinned') . '" data-toggle="tooltip"></i><span class="sr-only">' . __('organisations.members.fields.pinned') . '</span>',

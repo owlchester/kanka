@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Datagrids\Bulks\Bulk;
 use App\Exceptions\TranslatableException;
 use App\Models\Campaign;
-use App\Models\Character;
 use App\Models\Entity;
 use App\Models\EntityType;
 use App\Models\MiscModel;
@@ -383,13 +382,9 @@ class BulkService
 
             $locationsAction = Arr::get($fields, 'bulk-locations', 'add');
             if ($locationsAction === 'remove') {
-                if ($entity instanceof Character) {
-                    $entity->entity->locations()->detach($locationIds);
-                } else {
-                    $entity->locations()->detach($locationIds);
-                }
+                $entity->entity->locations()->detach($locationIds);
             } elseif (! empty($locationIds)) {
-                $this->saveLocations($entity, $locationIds);
+                $this->saveLocations($entity->entity, $locationIds);
             }
 
             // No tags? We're done

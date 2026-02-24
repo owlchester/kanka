@@ -1,4 +1,4 @@
-<x-tutorial code="map_groups" doc="https://docs.kanka.io/en/latest/entities/maps/groups.html">
+<x-tutorial code="map_groups" doc="https://docs.kanka.io/en/latest/entries/maps/groups.html">
     <p>
         {{ __('maps/groups.helper.amount_v3') }}
     </p>

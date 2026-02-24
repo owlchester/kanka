@@ -27,9 +27,9 @@ class UpdateRelation extends FormRequest
     public function rules()
     {
         return $this->clean([
-            'target_id' => 'exists:entities,id',
+            'target_id' => 'integer|exists:entities,id',
             'relation' => 'max:255',
-            'visibility_id' => 'exists:visibilities,id',
+            'visibility_id' => 'integer|exists:visibilities,id',
             'attitude' => 'min:-100|max:100',
             'colour' => 'max:7',
             'is_pinned' => 'boolean',

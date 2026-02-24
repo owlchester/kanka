@@ -7,12 +7,12 @@ return [
     ],
     'apply'         => [
         'apply'         => 'Apply',
-        'help'          => 'This campaign is open to new members. Apply to join is by filling out the form. You will be notified when the campaign admins review your application.',
+        'help'          => 'This campaign is open to new members. Apply to join is by filling out the form. You will be notified when the admins review your application.',
         'remove_text'   => 'your submission',
         'success'       => [
-            'apply' => 'Your application has been saved. You can still change it or cancel it at any time. You shall be notified when the campaign admins review it.',
+            'apply' => 'Your application has been saved. You can still change it or cancel it at any time. You shall be notified when the admins review it.',
             'remove'=> 'Your application has been removed.',
-            'update'=> 'Your application has been updated. You can still change it or cancel it at any time. You shall be notified when the campaign admins review it.',
+            'update'=> 'Your application has been updated. You can still change it or cancel it at any time. You shall be notified when the admins review it.',
         ],
         'title'         => 'Join :name',
     ],
@@ -91,7 +91,7 @@ return [
         'success'   => 'Campaign application status updated.',
         'title'     => 'Application status',
     ],
-    'tutorial'      => 'Campaign applications let people request access to this campaign. Applicants submit a short form, and campaign admins can review, accept, or decline each request. Approved users are added to the campaign with the role you assign during review.',
+    'tutorial'      => 'Campaign applications let people request access to this campaign. Applicants submit a short form, and admin can review, accept, or decline each request. Approved users are added to the campaign with the role you assign during review.',
     'timezone'      => 'Timezone and Language',
     'update'        => [
         'approve'   => 'Select the role the user will be added as in the campaign.',

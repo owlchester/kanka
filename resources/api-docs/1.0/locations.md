@@ -23,7 +23,7 @@ You can get a list of all the locations of a campaign by using the following end
 
 ### URL Parameters
 
-The list of returned entities can be filtered. The available filters are [available here](/api-docs/{{version}}/filters)
+The list of returned entities can be filtered. The available filters are [available here](/api-docs/{{version}}/misc/filters)
 
 ### Results
 ```json

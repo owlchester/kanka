@@ -438,6 +438,12 @@ class SearchService
      */
     protected function formatForLookup(Entity $entity): array
     {
+        $mention = '[' . $entity->entityType->code . ':' . $entity->id . ']';
+        // @phpstan-ignore-next-line
+        if ($entity->alias_id) {
+            $mention = '[' . $entity->entityType->code . ':' . $entity->id . '|alias:' . $entity->alias_id . ']';
+        }
+
         return [
             'id' => $entity->id,
             'name' => $entity->name,
@@ -446,6 +452,11 @@ class SearchService
             'link' => $entity->url(),
             'type' => $entity->entityType->name(),
             'preview' => route('entities.preview', [$this->campaign, $entity]),
+            'mention' => $mention,
+            'aliases' => $entity->aliases->map(fn ($alias) => [
+                'id' => $alias->id,
+                'name' => $alias->name,
+            ])->toArray(),
         ];
     }
 
@@ -467,6 +478,7 @@ class SearchService
                 ->addCampaignPage('campaigns.show.tabs.roles', 'campaign_roles.index', 'roles')
                 ->addCampaignPage('campaigns.show.tabs.applications', 'applications.index', 'applications')
                 ->addCampaignPage('campaigns.show.tabs.modules', 'campaign.modules')
+                ->addCampaignPage('campaigns/categories.tab', 'campaign.modules')
                 ->addCampaignPage('campaigns.show.tabs.recovery', 'recovery', 'update')
                 ->addCampaignPage('campaigns.show.tabs.styles', 'campaign_styles.index', 'update')
                 ->addCampaignPage('campaigns.show.tabs.export', 'campaign.export')

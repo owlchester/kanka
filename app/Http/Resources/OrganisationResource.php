@@ -16,13 +16,13 @@ class OrganisationResource extends EntityResource
     {
         /** @var Organisation $model */
         $model = $this->resource;
-        $locationIDs = $model->locations()->pluck('locations.id');
+        $locationIds = $model->entity->locations->pluck('id');
 
         return $this->entity([
             'organisation_id' => $model->organisation_id,
             'is_defunct' => $model->isDefunct(),
             'members' => OrganisationMemberResource::collection($model->members()->has('character')->with('character')->get()),
-            'locations' => $locationIDs,
+            'locations' => $locationIds,
         ]);
     }
 }

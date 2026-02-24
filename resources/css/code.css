@@ -1,34 +1,38 @@
-code, pre, kbd {
+code, kbd, samp, pre {
+    font-family: var(--default-mono-font-family,ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace);
+    font-feature-settings: var(--default-mono-font-feature-settings,normal);
+    font-variation-settings: var(--default-mono-font-variation-settings,normal);
+    font-size: 1em;
+}
+
+/* Inline code */
+code, samp, kbd {
     --tw-bg-opacity: 1;
     background-color: hsl(var(--n)/var(--tw-bg-opacity));
     --tw-text-opacity: 1;
     color: hsl(var(--nc)/var(--tw-text-opacity));
-    border: none;
-    margin-bottom: .5rem;
-    border-radius: .5rem;
+    padding: 0.2rem 0.4rem;
+    border-radius: var(--rounded-btn);
+    direction: ltr;
 }
-code {
-    --tw-bg-opacity: 1;
-    background-color: hsl(var(--b3)/var(--tw-bg-opacity));
-    --tw-text-opacity: 1;
-    color: hsl(var(--bc)/var(--tw-text-opacity));
-    font-size: 0.8rem;
-}
+
+/* Code blocks */
 pre {
-    --tw-bg-opacity: 1;
-    background-color: hsl(var(--b2)/var(--tw-bg-opacity));
-    --tw-text-opacity: 1;
-    color: hsl(var(--bc)/var(--tw-text-opacity));
     display: block;
-    word-break: break-all;
-    word-wrap: break-word;
     white-space: pre-wrap;
+    word-wrap: break-word;
     padding: .5rem;
-    overflow: auto;
+    overflow-x: auto;
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--n)/var(--tw-bg-opacity));
+    --tw-text-opacity: 1;
+    color: hsl(var(--nc)/var(--tw-text-opacity));
+    border-radius: var(--rounded-btn);
 }
-code, kbd {
-    font-family: monospace;
-}
-kbd, code {
-    padding: .1rem .25rem;
+
+/* Reset inline styles inside code blocks */
+pre code {
+    padding: 0;
+    background-color: transparent;
+    border-radius: 0;
 }

@@ -1,6 +1,6 @@
 <template>
     <div v-if="loading">
-        <i class="fa-solid fa-spin fa-spinner2" aria-label="Loading"></i>
+        <i class="fa-solid fa-spin fa-spinner" aria-label="Loading"></i>
     </div>
     <div v-else :class="backgroundClass()" :style="{'backgroundImage': backgroundImage()}">
         <div :class="buttonsClass()">

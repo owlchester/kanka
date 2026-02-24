@@ -3,17 +3,17 @@
 return [
     'actions'           => [
         'create'        => 'Created',
-        'create_post'   => 'Created post',
+        'create_post'   => 'Created article',
         'delete'        => 'Deleted',
-        'delete_post'   => 'Deleted post',
-        'reorder_post'  => 'Reordered posts',
+        'delete_post'   => 'Deleted article',
+        'reorder_post'  => 'Reordered articles',
         'restore'       => 'Restored',
         'reveal'        => 'Show details',
         'update'        => 'Updated',
-        'update_post'   => 'Updated post',
+        'update_post'   => 'Updated article',
         'view'          => 'View changes',
     ],
-    'call-to-action'    => 'Premium campaigns can view the full changes made to this entity for up to :amount day.',
+    'call-to-action'    => 'Premium campaigns can view the full changes made to this entry for up to :amount day.',
     'fields'            => [
         'action'    => 'Action',
         'date'      => 'Date',
@@ -27,6 +27,6 @@ return [
         'title' => ':name - Changes',
     ],
     'tooltips'          => [
-        'post'  => 'Go to the post',
+        'post'  => 'Go to the article',
     ],
 ];

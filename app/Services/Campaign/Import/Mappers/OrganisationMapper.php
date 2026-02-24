@@ -23,7 +23,7 @@ class OrganisationMapper extends MiscMapper
     {
         $this
             ->loadModel()
-            ->pivot('pivotLocations', 'locations', 'location_id')
+            ->entityLocations()
             ->saveModel()
             ->entitySecond();
     }

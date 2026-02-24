@@ -30,7 +30,7 @@ class Cdn extends Command
             //            'posts' => 'entry',
             //            'timeline_eras' => 'entry',
             //            'timeline_elements' => 'entry',
-            //            'quest_elements' => 'description',
+            //            'quest_elements' => 'entry',
             //            'attributes' => 'value',
             //            'campaigns' => 'entry',
             //            'entities' => 'entry',

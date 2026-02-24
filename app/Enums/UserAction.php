@@ -51,4 +51,6 @@ enum UserAction: int
     case campaign = 100;
     case entity = 101;
     case post = 102;
+    case csvImport = 103;
+    case zipImport = 104;
 }

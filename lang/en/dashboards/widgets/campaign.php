@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'description'   => 'Shows a preview of the campaign.',
-    'name'          => 'Campaign',
+    'description'   => 'Shows a billboard preview of the campaign.',
+    'name'          => 'Billboard',
 ];

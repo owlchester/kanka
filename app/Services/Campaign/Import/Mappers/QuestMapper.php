@@ -53,7 +53,7 @@ class QuestMapper extends MiscMapper
     protected function elements(): self
     {
         $fields = [
-            'role', 'description', 'visibility_id', 'colour', 'name',
+            'role', 'entry', 'visibility_id', 'colour', 'name',
         ];
         foreach ($this->data['elements'] as $data) {
             $el = new QuestElement;
@@ -67,7 +67,7 @@ class QuestMapper extends MiscMapper
             foreach ($fields as $field) {
                 $el->$field = $data[$field];
             }
-            $el->description = $this->mentions($el->description);
+            $el->entry = $this->mentions($el->entry);
             $el->save();
             ImportIdMapper::putQuestElement($data['id'], $el->id);
         }

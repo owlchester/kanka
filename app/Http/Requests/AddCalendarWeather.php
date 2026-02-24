@@ -33,7 +33,7 @@ class AddCalendarWeather extends FormRequest
             'month' => 'required',
             'year' => 'required',
             'name' => 'nullable|string|max:40',
-            'visibility_id' => 'nullable|exists:visibilities,id',
+            'visibility_id' => 'nullable|integer|exists:visibilities,id',
         ];
     }
 }

@@ -1,5 +1,9 @@
+<?php /** @var \App\Models\Relation $relation */?>
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => __($langKey . '.update.title', ['name' => $relation->relation]),
+    'title' => __($langKey . '.update.title', [
+        'source' => '<a href="' . $relation->owner->url() . '" class="text-link">' . $relation->owner->name . '</a>',
+        'target' => '<a href="' . $relation->target->url() . '" class="text-link">' . $relation->target->name . '</a>',
+        ]),
     'breadcrumbs' => [
         ['url' => Breadcrumb::campaign($campaign)->index($name), 'label' => __('entities.relations')],
         __('crud.update'),
@@ -14,7 +18,7 @@
             <div class="flex gap-2 items-center justify-between sticky z-10 bg-base-100 top-12">
                 <div class="overflow-x-auto">
                     <ul class="nav-tabs flex items-stretch w-full" role="tablist">
-                        <x-tab.tab target="entry" :default="true" :title="__('crud.fields.entry')"></x-tab.tab>
+                        <x-tab.tab target="entry" :default="true" :title="__('crud.tabs.overview')"></x-tab.tab>
                     </ul>
                 </div>
                 @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form'])

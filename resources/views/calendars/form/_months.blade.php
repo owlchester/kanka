@@ -15,7 +15,7 @@
     $lengths = old('month_length');
     $aliases = old('month_alias');
     $types = old('month_type');
-    if (!empty($names)) {
+    if (!empty($names) && is_array($names)) {
         $cpt = 0;
         foreach ($names as $name) {
             if (!empty($name) || !empty($lengths[$cpt])) {

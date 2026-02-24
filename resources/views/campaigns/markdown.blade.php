@@ -17,7 +17,7 @@
 
 @if($campaign->hasEntry())
 ---
-## {!! __('crud.fields.entry') !!}
+## {!! __('fields.description.label') !!}
 {!! $converter->convert((string) $campaign->entry) !!}
 
 ---
