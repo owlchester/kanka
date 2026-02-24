@@ -1,18 +1,21 @@
 <?php /** @var \App\Models\Campaign $model */?>
-<h4 class="m-0 text-lg">{{ __('campaigns.fields.public_campaign_filters') }}</h4>
+<h4 class="text-lg">{{ __('campaigns.fields.public_campaign_filters') }}</h4>
 
 <x-helper>
-    <p>{!! __('campaigns.sharing.filters', [
+    <p>
+        {!! __('campaigns.sharing.filters', [
 'public-campaigns' => '<a href="https://kanka.io/campaigns" target="_blank" class="text-link">' . __('footer.public-campaigns') . '</a>'
-]) !!}</p>
+]) !!}
+    </p>
 </x-helper>
 
 <x-grid>
     <x-forms.field
             field="locale"
+            required
             :label="__('campaigns.fields.locale')"
             :helper="__('campaigns.sharing.language')">
-        <x-forms.select name="locale" :options="$languages->getSupportedLanguagesList(true)" :selected="$campaign->locale ?? null" />
+        <x-forms.select name="locale" :options="$languages" :selected="$campaign->locale ?? null" />
     </x-forms.field>
     @php
         $selected = [];
@@ -23,12 +26,13 @@
         }
     @endphp
     <x-forms.foreign
-        field="systems[]"
+        field="systems"
         label="campaigns.fields.system"
+        required
         :multiple="true"
         :helper="__('campaigns.sharing.system')"
         name="systems[]"
-        id="system[]"
+        id="systems[]"
         :placeholder="__('campaigns.placeholders.system')"
         allowClear="true"
         :route="route('search.systems')"
@@ -38,6 +42,7 @@
 
     <x-forms.field
         field="genre"
+        required
         :label="__('campaigns.fields.genre')">
         <input type="hidden" name="campaign_genre" value="1">
         @include('components.form.genres', ['options' => [

@@ -12,11 +12,12 @@ use App\Models\Application;
 use App\Models\Campaign;
 use App\Models\CampaignFilter;
 use App\Services\Campaign\ApplicationService;
+use App\Services\LanguageService;
 use Stevebauman\Purify\Facades\Purify;
 
 class ApplicationController extends Controller
 {
-    public function __construct(protected ApplicationService $service)
+    public function __construct(protected ApplicationService $service, protected LanguageService $languageService)
     {
         $this->middleware('auth');
     }
@@ -157,9 +158,12 @@ class ApplicationController extends Controller
                 ->first();
         }
 
+        $languages = $this->languageService->getSupportedLanguagesList(true);
+
         return view('campaigns.applications.setup')
             ->with('campaign', $campaign)
             ->with('timezones', $timezones)
+            ->with('languages', $languages)
             ->with('isElemental', $isElemental)
             ->with('prioritisedCampaign', $prioritisedCampaign);
     }
