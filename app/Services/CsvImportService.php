@@ -16,16 +16,15 @@ use App\Facades\QuestCache;
 use App\Facades\TimelineElementCache;
 use App\Models\CampaignImport;
 use App\Models\Character;
-use App\Models\UserLog;
 use App\Models\CharacterTrait;
 use App\Models\Entity;
 use App\Models\EntityType;
+use App\Models\UserLog;
 use App\Notifications\Header;
 use App\Services\Entity\TagService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Exception;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
@@ -33,7 +32,6 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use SplFileObject;
-use RuntimeException;
 use Throwable;
 
 class CsvImportService
@@ -42,17 +40,29 @@ class CsvImportService
     use UserAware;
 
     protected int $expectedColumns = 1;
+
     protected int $requiredFullyFilledColumns = 1;
+
     protected CampaignImport $job;
+
     protected EntityType $entityType;
+
     protected string $filePath;
+
     protected array $tags = [];
+
     protected array $fieldMap = [];
+
     protected array $data = [];
+
     protected array $appearances = [];
+
     protected array $personalities = [];
+
     protected array $headers = [];
+
     protected array $logs = [];
+
     protected int $entityCount = 0;
 
     public function job(CampaignImport $job)
@@ -90,6 +100,7 @@ class CsvImportService
     {
         $this->appearances = $appearances;
         $this->personalities = $personalities;
+
         return $this;
     }
 
@@ -132,7 +143,6 @@ class CsvImportService
         return $this;
     }
 
-
     protected function getHeader(): array
     {
         $csv = new SplFileObject($this->filePath);
@@ -156,7 +166,7 @@ class CsvImportService
 
     public function processCsv(): self
     {
-        //Open the CSV file
+        // Open the CSV file
         $this->logs[] = 'Processing CSV';
         $csv = new SplFileObject($this->filePath);
         $csv->setFlags(
@@ -167,7 +177,7 @@ class CsvImportService
 
         DB::beginTransaction();
         try {
-            //We're in the queue after all
+            // We're in the queue after all
             CampaignLocalization::forceCampaign($this->campaign);
             CampaignCache::campaign($this->campaign)->clear();
             EntityCache::campaign($this->campaign);
@@ -180,7 +190,7 @@ class CsvImportService
             Limit::campaign($this->campaign);
             Limit::user($this->user);
 
-            //Batch size controls how many rows are loaded into memory at once.
+            // Batch size controls how many rows are loaded into memory at once.
             $batchSize = 50;
             $batch = [];
             $count = 0;
@@ -188,6 +198,7 @@ class CsvImportService
                 // Skip header if needed
                 if ($rowIndex === 0) {
                     $this->headers = $row;
+
                     continue;
                 }
 
@@ -238,10 +249,11 @@ class CsvImportService
             [
                 'campaign' => $this->campaign->name,
                 'link' => route('dashboard', ['campaign' => $this->campaign]),
-                'count' => $count
+                'count' => $count,
             ]));
         $this->logs[] = 'Finished processing CSV';
         $this->cleanup();
+
         return $this;
     }
 
@@ -283,7 +295,7 @@ class CsvImportService
             $this->data = $temp;
             $this->create();
         }
-        //Log::info('Example CSV Data', ['data' => $data]);
+        // Log::info('Example CSV Data', ['data' => $data]);
     }
 
     public function create(): Entity
@@ -335,6 +347,7 @@ class CsvImportService
             $this->saveTraits($new, $traits);
         }
         $this->entityCount++;
+
         return $new->entity;
     }
 
@@ -398,7 +411,7 @@ class CsvImportService
                     continue;
                 }
 
-                $model = new CharacterTrait();
+                $model = new CharacterTrait;
                 $model->character_id = $character->id;
                 $model->section_id = $type == 'personalities' ?
                     CharacterTrait::SECTION_PERSONALITY : CharacterTrait::SECTION_APPEARANCE;
@@ -454,6 +467,7 @@ class CsvImportService
 
         Log::error('CSV Import', ['where' => 'fail', 'error' => $e->getMessage()]);
         $this->logs[] = 'Processing Failed';
+
         return $this->cleanup();
     }
 }

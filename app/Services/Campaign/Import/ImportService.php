@@ -3,6 +3,7 @@
 namespace App\Services\Campaign\Import;
 
 use App\Enums\CampaignImportStatus;
+use App\Enums\UserAction;
 use App\Exceptions\Campaign\ImportException;
 use App\Facades\BookmarkCache;
 use App\Facades\CampaignCache;
@@ -13,7 +14,6 @@ use App\Facades\ImportIdMapper;
 use App\Facades\MapMarkerCache;
 use App\Facades\QuestCache;
 use App\Facades\TimelineElementCache;
-use App\Enums\UserAction;
 use App\Models\Bookmark;
 use App\Models\CampaignImport;
 use App\Models\EntityType;

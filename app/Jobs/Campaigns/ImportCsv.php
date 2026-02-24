@@ -30,11 +30,17 @@ class ImportCsv implements ShouldQueue
     public $tries = 1;
 
     protected int $jobID;
+
     protected int $userId;
+
     protected int $entityTypeId;
+
     protected array $columnMap;
+
     protected array $tagIds;
+
     protected array $appearances;
+
     protected array $personalities;
 
     /**
@@ -71,7 +77,7 @@ class ImportCsv implements ShouldQueue
             return 0;
         }
 
-        if (! $job->campaign || ! $job->user || !$entityType) {
+        if (! $job->campaign || ! $job->user || ! $entityType) {
             $logs[] = 'Missing campaign, user or entity type';
 
             Log::info('Campaign import', ['empty_campaign_or_user', 'id' => $this->jobID]);

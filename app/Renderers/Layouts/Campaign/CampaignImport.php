@@ -41,9 +41,10 @@ class CampaignImport extends Layout
                 'label' => 'campaigns/plugins.fields.status',
                 'render' => function (\App\Models\CampaignImport $model) {
                     if ($model->status_id === CampaignImportStatus::FAILED) {
-                        if ($model->isCsv()){
+                        if ($model->isCsv()) {
                             return '<span class="text-error"><i class="fa-regular fa-xmark-circle" aria-hidden="true"></i> ' . __('campaigns/import.status.invalid') . '</span>';
                         }
+
                         return '<span class="text-error"><i class="fa-regular fa-xmark-circle" aria-hidden="true"></i> ' . __('campaigns/import.status.failed') . '</span>';
                     } elseif ($model->status_id == CampaignImportStatus::QUEUED) {
                         return '<span class="text-neutral-content"><i class="fa-regular fa-hourglass" aria-hidden="true"></i> ' . __('campaigns/import.status.queued') . '</span>';

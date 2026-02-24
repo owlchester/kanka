@@ -24,24 +24,38 @@ class CsvImport extends Component
     use WithFileUploads;
 
     public Campaign $campaign;
+
     public CampaignImport $import;
+
     public EntityType $type;
 
     #[Validate('required|exists:entity_types,id')]
     public int $entityType = 0;
 
     public array $columnMap = [];
+
     public array $entityTypes = [];
+
     public array $headers = [];
+
     public array $fillableFields = [];
+
     public array $columns = [];
+
     public array $fullColumns = [];
+
     public array $preview = [];
+
     public bool $canAssign = false;
+
     public string $tagLabel = '';
+
     public array $tags = [];
+
     public bool $success = false;
+
     public $personalities = [];
+
     public $appearances = [];
 
     public function mount(Campaign $campaign, CampaignImport $campaignImport)
@@ -65,7 +79,7 @@ class CsvImport extends Component
             config('entities.ids.dice_roll'),
             config('entities.ids.attribute_template'),
             config('entities.ids.conversation'),
-            config('entities.ids.calendar')
+            config('entities.ids.calendar'),
         ];
         $this->entityTypes = $entityTypeService
             ->campaign($campaign)

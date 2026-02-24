@@ -7,12 +7,11 @@ use App\Models\CampaignImport;
 use App\Notifications\Header;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
-use SplFileObject;
 use RuntimeException;
+use SplFileObject;
 
 class CsvValidatorService
 {
@@ -20,8 +19,11 @@ class CsvValidatorService
     use UserAware;
 
     protected int $expectedColumns = 1;
+
     protected int $requiredFullyFilledColumns = 1;
+
     protected CampaignImport $job;
+
     protected string $filePath;
 
     public function job(CampaignImport $job)
@@ -44,14 +46,14 @@ class CsvValidatorService
 
     public function toSelect(): array
     {
-       return $this
+        return $this
             ->download()
             ->getHeader();
     }
 
     public function preview(): array
     {
-       return $this
+        return $this
             ->download()
             ->getHeaderAndFirstRows();
     }
@@ -85,7 +87,6 @@ class CsvValidatorService
         return $this;
     }
 
-
     protected function cleanup(): self
     {
         File::delete($this->filePath);
@@ -108,9 +109,11 @@ class CsvValidatorService
                 continue;
             }
             $this->cleanup();
+
             return $row;
         }
         $this->cleanup();
+
         return [];
     }
 
@@ -144,9 +147,9 @@ class CsvValidatorService
         // Reset pointer for later use
         $csv->rewind();
         $this->cleanup();
+
         return $result;
     }
-
 
     /**
      * Return headers for columns that have no empty values in any row
@@ -166,6 +169,7 @@ class CsvValidatorService
             if ($headers === null) {
                 $headers = $row;
                 $hasEmpty = array_fill(0, count($headers), false);
+
                 continue;
             }
 
@@ -225,6 +229,6 @@ class CsvValidatorService
                 'link' => route('campaign.import.csv', ['campaign' => $this->campaign, 'campaign_import' => $this->job]),
             ]));
         $this->cleanup();
-        return;
+
     }
 }

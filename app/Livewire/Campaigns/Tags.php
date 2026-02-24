@@ -2,23 +2,26 @@
 
 namespace App\Livewire\Campaigns;
 
-use Livewire\Component;
-use App\Models\Tag;
-use App\Models\Campaign;
-use App\Facades\UserCache;
 use App\Facades\Avatar;
 use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
+use App\Facades\UserCache;
+use App\Models\Campaign;
+use App\Models\Tag;
 use Livewire\Attributes\Modelable;
+use Livewire\Component;
 
 class Tags extends Component
 {
     public Campaign $campaign;
 
     public string $search = '';
+
     #[Modelable]
     public array $selected = [];
+
     public array $options = [];
+
     public bool $open = false;
 
     public function mount(Campaign $campaign, array $selected = [])
@@ -49,12 +52,14 @@ class Tags extends Component
         // If empty, revert to default list
         if ($this->search === '') {
             $this->loadDefaultTags();
+
             return;
         }
 
         // Do not search until 2+ chars
         if (strlen($this->search) < 2) {
             $this->options = [];
+
             return;
         }
 
@@ -96,7 +101,7 @@ class Tags extends Component
 
     public function select($id, $label): void
     {
-        if (!collect($this->selected)->pluck('id')->contains($id)) {
+        if (! collect($this->selected)->pluck('id')->contains($id)) {
             $this->selected[] = compact('id', 'label');
         }
 
