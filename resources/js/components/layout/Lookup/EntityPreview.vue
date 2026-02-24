@@ -31,6 +31,16 @@
             <i class="fa-duotone circle-location-arrow" aria-hidden="true" aria-label="Location"></i>
             {{ entity.location.name }}
         </a>
+        <div class="flex gap-1 items-center my-2" v-else-if="entity.locations">
+            <a class="cursor-pointer"
+               v-for="location in entity.locations"
+               v-bind:href="location.link"
+               :data-tag="location.id"
+            >
+                <i class="fa-duotone circle-location-arrow" aria-hidden="true" aria-label="Location"></i>
+                {{ location.name }}
+            </a>
+        </div>
         <a
             v-if="entity.image"
             v-bind:href="entity.link"

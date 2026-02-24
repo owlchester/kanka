@@ -167,6 +167,7 @@ class ImporterService
 
             $entity = $model->entity;
             $entity->marketplace_uuid = $pluginEntity->uuid;
+            $entity->source = 'plugin';
             $entity->save();
 
             $this->miscIds[$pluginEntity->id] = $model->id;
@@ -385,6 +386,7 @@ class ImporterService
 
         // Does it exist?
         try {
+            /** @var QuestElement $element */
             $element = QuestElement::where('quest_id', $questId)->where('entity_id', $target)->first();
             if (empty($element)) {
                 $element = new QuestElement;
@@ -392,7 +394,7 @@ class ImporterService
                 $element->entity_id = $target;
             }
             $element->role = Arr::get($data, 'role', null);
-            $element->description = $this->mentions(Arr::get($data, 'description', ''));
+            $element->entry = $this->mentions(Arr::get($data, 'description', ''));
             $element->visibility_id = Visibility::All;
             $element->save();
         } catch (Exception $e) {

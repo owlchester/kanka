@@ -16,7 +16,7 @@ $i = 0;
             @else
                 <a href="#" class="quick-creator-selection flex gap-2 items-center text-link" data-toggle="entity-creator" data-url="{{ route('entity-creator.post', [$campaign]) }}" data-entity-type="post">
                     <x-icon class="w-4 text-center fa-duotone fa-pen" />
-                    <span class="truncate block min-w-0">{!! __('entities.post') !!}</span>
+                    <span class="truncate block min-w-0">{!! __('entities.article') !!}</span>
                 </a>
             @endif
         </div>

@@ -10,10 +10,10 @@ return [
         'save'              => 'Save',
     ],
     'modal'     => [
-        'first-title'   => 'Select an entity',
-        'helper'        => 'Replace the entity with another from the campaign',
+        'first-title'   => 'Select an entry',
+        'helper'        => 'Replace the entry with another from the campaign',
         'relation'      => 'Relation',
-        'title'         => 'Replace entity',
+        'title'         => 'Replace entry',
     ],
     'modals'    => [
         'clear'     => [
@@ -39,7 +39,7 @@ return [
                 'title' => 'Add a new founder',
             ],
             'remove'    => [
-                'confirm'   => 'Are you sure you want to remove this entity from the family tree?',
+                'confirm'   => 'Are you sure you want to remove this entry from the family tree?',
                 'success'   => 'Entity removed.',
             ],
         ],

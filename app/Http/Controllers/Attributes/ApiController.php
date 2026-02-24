@@ -32,6 +32,7 @@ class ApiController extends Controller
 
         return response()->json(
             $this->apiService
+                ->user(auth()->user())
                 ->campaign($campaign)
                 ->entityType($entityType)
                 ->build()

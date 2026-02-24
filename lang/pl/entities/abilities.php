@@ -28,11 +28,14 @@ return [
         'sync'      => 'Importuje zdolności związane z rasą postaci.',
     ],
     'import'    => [
-        'errors'    => [
+        'errors'            => [
             'no_race'       => 'Ta postać nie ma rasy.',
             'not_character' => 'Ten element nie jest postacią.',
         ],
-        'success'   => 'Importowano {1} :count zdolność.|Importowano [2,*] :count zdolności.',
+        'helper'            => 'Dołącz zdolności następujących ras do których :name należy:',
+        'no_abilities'      => 'Obecnie nie ma możliwych do zaimportowania zdolności ras do których należy :name.',
+        'race_abilities'    => '{1} :name (:count ability)|[2,*] :name (:count abilities)',
+        'success'           => 'Importowano {1} :count zdolność.|Importowano [2,*] :count zdolności.',
     ],
     'recharge'  => [
         'success'   => 'Odświeżono wszystkie użycia.',

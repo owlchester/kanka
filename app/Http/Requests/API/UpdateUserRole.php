@@ -24,8 +24,8 @@ class UpdateUserRole extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required|exists:users,id',
-            'role_id' => 'required|exists:campaign_roles,id',
+            'user_id' => 'required|integer|exists:users,id',
+            'role_id' => 'required|integer|exists:campaign_roles,id',
         ];
     }
 }

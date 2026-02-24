@@ -2,30 +2,30 @@
 
 return [
     'actions'       => [
-        'convert'   => 'Convert to module',
+        'convert'   => 'Convert to category',
     ],
     'bulk'          => [
         'errors'    => [
-            'unknown_type'  => 'Unknown or invalid module.',
+            'unknown_type'  => 'Unknown or invalid category.',
         ],
-        'success'   => '{1} :count entity transformed to new module :type.|[2,*] :count entities transformed to new module :type.',
+        'success'   => '{1} :count entry transformed to new category :type.|[2,*] :count entries transformed to new category :type.',
     ],
     'confirm'       => [
-        'checkbox'  => 'I understand that by transforming :entity to another module, the following elements will be lost:',
+        'checkbox'  => 'I understand that by transforming :entity to another category, the following elements will be lost:',
         'label'     => 'Confirm data loss',
     ],
-    'documentation' => 'Documentation: Converting entity modules',
+    'documentation' => 'Documentation: Converting entry categories',
     'fields'        => [
-        'current'       => 'Current module',
-        'select_one'    => 'Select target module',
-        'target'        => 'New module',
+        'current'       => 'Current category',
+        'select_one'    => 'Select new category',
+        'target'        => 'New category',
     ],
     'panel'         => [
-        'bulk_description'  => 'Convert the module of multiple entities. Please be aware that some data might be lost due to the different fields between modules.',
-        'bulk_title'        => 'Bulk transform entities',
-        'title'             => 'You can convert this entity to another module.',
-        'warning'           => 'Some data may not carry over if the new module uses different fields.',
+        'bulk_description'  => 'Convert the category of multiple entries. Please be aware that some data might be lost due to the different fields between categories.',
+        'bulk_title'        => 'Bulk transform entries',
+        'title'             => 'You can convert this entry to another category.',
+        'warning'           => 'Some data may not carry over if the new category uses different fields.',
     ],
-    'success'       => 'Entity :name transformed.',
+    'success'       => 'Entry :name transformed.',
     'title'         => 'Convert :name',
 ];

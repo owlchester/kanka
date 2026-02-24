@@ -10,7 +10,7 @@ return [
         'entities_created'  => 'Создано объектов :help :count',
         'member_since'      => 'Подписка с :date',
         'public_campaigns'  => 'Публичные кампании',
-        'subscriber_since'  => 'На Kanka с :date',
+        'subscriber_since'  => 'Подписка с :date',
     ],
     'helpers'       => [
         'entities_created'  => 'Это число обновляется раз в сутки.',

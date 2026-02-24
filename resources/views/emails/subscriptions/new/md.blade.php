@@ -38,8 +38,8 @@
 - **Discord:** {{ $discord->settings['username'] }}
 @endif
 
-@if ($user->referral)
-- **Referral:** {{ $user->referrer->code }}
+@if ($user->referrer)
+- **Referred by:** [{{ $user->referrer->name }}](https://admin.kanka.io/users/{{ $user->referrer->id }})
 @endif
 
 @if (!empty($user->settings['tracking']))

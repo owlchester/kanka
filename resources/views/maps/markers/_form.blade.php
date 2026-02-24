@@ -188,8 +188,8 @@ $sizeOptions = [
             <a href="#" class="map-marker-entry-click">{{ __('maps/markers.actions.entry') }}</a>
         </div>
         <div class="md:col-span-2 map-marker-entry-entry {{ (!$model->hasEntry() ? 'hidden' : '') }}" style="">
-            <x-forms.field field="entry" :label=" __('crud.fields.entry')">
-                <textarea name="entry" class="w-full html-editor" id="marker-entry" rows="3">{!! \App\Facades\FormCopy::field('entry')->string() ?: old('entry', $model->entry ?? null) !!}</textarea>
+            <x-forms.field field="entry" :label=" __('fields.description.label')">
+                @include('cruds.fields.entry', ['model' => $model])
             </x-forms.field>
         </div>
         @endif

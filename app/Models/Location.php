@@ -103,7 +103,9 @@ class Location extends MiscModel
     public function scopePreparedWith(Builder $query): Builder
     {
         return parent::scopePreparedWith($query)
-            ->withCount('characters');
+            ->withCount(['entities as characters_count' => function ($sub) {
+                $sub->where('type_id', config('entities.ids.character'));
+            }]);
     }
 
     /**
@@ -112,14 +114,6 @@ class Location extends MiscModel
     public function datagridSelectFields(): array
     {
         return ['location_id', 'is_destroyed'];
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Character, $this>
-     */
-    public function characters(): HasMany
-    {
-        return $this->hasMany('App\Models\Character', 'location_id', 'id');
     }
 
     /**
@@ -194,18 +188,23 @@ class Location extends MiscModel
     /**
      * Get all characters in the location and descendants
      */
-    public function allCharacters(): Builder|Character
+    public function allCharacters(bool $direct = false): Builder|Character
     {
         $locationIds = [$this->id];
-        foreach ($this->descendants as $descendant) {
-            $locationIds[] = $descendant->id;
+        if ($direct) {
+            foreach ($this->descendants as $descendant) {
+                $locationIds[] = $descendant->id;
+            }
         }
 
-        $table = new Character;
-
-        return Character::whereIn($table->getTable() . '.location_id', $locationIds)
-            ->with('location')
-            ->has('entity');
+        return Character::distinct()
+            ->join('entities', function ($join) {
+                $join
+                    ->on('entities.entity_id', '=', 'characters.id')
+                    ->where('entities.type_id', config('entities.ids.character'));
+            })
+            ->join('entity_locations', 'entity_locations.entity_id', '=', 'entities.id')
+            ->whereIn('entity_locations.location_id', $locationIds);
     }
 
     /**
@@ -254,11 +253,6 @@ class Location extends MiscModel
      */
     public function detach(): void
     {
-        foreach ($this->characters as $child) {
-            $child->location_id = null;
-            $child->saveQuietly();
-        }
-
         foreach ($this->families as $child) {
             $child->location_id = null;
             $child->saveQuietly();
@@ -273,6 +267,7 @@ class Location extends MiscModel
         $this->races()->delete();
         $this->creatures()->delete();
         $this->organisations()->delete();
+        $this->entities()->delete();
     }
 
     /**

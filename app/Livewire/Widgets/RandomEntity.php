@@ -8,20 +8,27 @@ use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 use App\Models\Entity;
+use Livewire\Attributes\Locked;
 use Livewire\Component;
 
 class RandomEntity extends Component
 {
+    #[Locked]
     public CampaignDashboardWidget $widget;
 
+    #[Locked]
     public Entity $entity;
 
+    #[Locked]
     public Campaign $campaign;
 
+    #[Locked]
     public ?string $customName;
 
+    #[Locked]
     public string $specificPreview;
 
+    #[Locked]
     public bool $readyToLoad = false;
 
     public function mount(CampaignDashboardWidget $widget, Campaign $campaign)
@@ -34,6 +41,7 @@ class RandomEntity extends Component
     {
         $this->readyToLoad = true;
 
+        // We need this here for the "load more entities" button that loads more data
         request()->route()->setParameter('campaign', $this->campaign);
         UserCache::campaign($this->campaign);
         Avatar::campaign($this->campaign);
@@ -57,6 +65,12 @@ class RandomEntity extends Component
 
     public function render()
     {
+        // We need this here for when the widget gets re-rendered
+        request()->route()?->setParameter('campaign', $this->campaign);
+        UserCache::campaign($this->campaign);
+        Avatar::campaign($this->campaign);
+        CampaignCache::campaign($this->campaign);
+
         return view('livewire.widgets.random-entity');
     }
 }

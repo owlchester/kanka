@@ -7,13 +7,8 @@
         <input type="text" name="abbreviation" value="{{ old('abbreviation', $source->abbreviation ?? $model->abbreviation ?? null) }}" placeholder="{{ __('timelines/eras.placeholders.abbreviation') }}" class="w-full" maxlength="191" />
     </x-forms.field>
 
-    <x-forms.field field="entry" css="col-span-2" :label="__('crud.fields.entry')">
-
-        <textarea name="entry"
-                  id="era-entry"
-                  class="html-editor"
-                  rows="3"
-        >{!! old('entry', $model->entryForEdition ?? null) !!}</textarea>
+    <x-forms.field field="entry" css="col-span-2" :label="__('fields.description.label')">
+        @include('cruds.fields.entry', ['model' => $model])
     </x-forms.field>
 
     <x-forms.field field="start" :label="__('timelines/eras.fields.start_year')">

@@ -65,7 +65,7 @@
         $years = [];
         $numbers = old('year_number');
         $names = old('year_name');
-        if (!empty($numbers)) {
+        if (!empty($numbers) && is_array($numbers)) {
             $cpt = 0;
             foreach ($numbers as $number) {
                 if (!empty($number) || !empty($names[$cpt])) {

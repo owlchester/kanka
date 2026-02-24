@@ -188,7 +188,7 @@ class OrganisationMember extends Model
         return $query
             ->select('organisation_member.*')
             ->sort(request()->only(['o', 'k']), ['c.name' => 'asc'])
-            ->with(['character', 'character.entity', 'organisation', 'organisation.entity', 'organisation.locations', 'organisation.locations.entity'])
+            ->with(['character', 'character.entity', 'organisation', 'organisation.entity', 'organisation.entity.locations', 'organisation.entity.locations.entity'])
             ->has('organisation')
             ->has('organisation.entity')
             ->leftJoin('organisations as c', 'c.id', 'organisation_member.organisation_id');

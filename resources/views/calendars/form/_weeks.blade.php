@@ -13,7 +13,7 @@
         <?php
         $weekdays = [];
         $names = old('weekday');
-        if (!empty($names)) {
+        if (!empty($names) && is_array($names)) {
             foreach ($names as $name) {
                 if (!empty($name)) {
                     $weekdays[] = $name;
@@ -58,7 +58,7 @@
         $weeks = [];
         $numbers = old('week_number');
         $names = old('week_name');
-        if (!empty($numbers)) {
+        if (!empty($numbers) && is_array($numbers)) {
             $cpt = 0;
             foreach ($numbers as $number) {
                 if (!empty($number) || !empty($names[$cpt])) {

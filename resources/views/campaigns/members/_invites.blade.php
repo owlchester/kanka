@@ -31,6 +31,7 @@
                             <th>{{ __('campaigns.invites.fields.token') }}</th>
                             <th class="hidden md:table-cell">{{ __('campaigns.invites.fields.usage') }}</th>
                             <th>{{ __('campaigns.invites.fields.role') }}</th>
+                            <th class="hidden md:table-cell">{{ __('crud.fields.creator') }}</th>
                             <th class="hidden md:table-cell">{{ __('campaigns.invites.fields.created') }}</th>
                             <th class="text-right"></th>
                         </tr>
@@ -50,11 +51,28 @@
                             <td class="hidden md:table-cell">
                                 {{ $relation->validity !== null ? $relation->validity : __('campaigns.invites.unlimited_validity') }}
                             </td>
-                            <td>{{ $relation->role ? $relation->role->name : null }}</td>
+                            <td>
+                                @if ($relation->role)
+                                    @can('update', $relation->role)
+                                        <a href="{{ route('campaign.members.roles', [$campaign, $relation->role]) }}" class="text-link">
+                                            {!! $relation->role->name !!}
+                                        </a>
+                                    @else
+                                        {!! $relation->role->name !!}
+                                    @endif
+                                @endif
+                            </td>
+                            <td class="hidden md:table-cell">
+                                @if ($relation->creator)
+                                    <a href="{{ route('users.profile', $relation->creator) }}" class="text-link">
+                                        {!! $relation->creator?->name !!}
+                                    </a>
+                            @endif
                             <td class="hidden md:table-cell">
                                 <span data-title="{{ $relation->created_at }}+00:00" data-toggle="tooltip">
                                     {{ $relation->created_at->diffForHumans() }}
                                 </span>
+                            </td>
                             </td>
                             <td class="text-right">
                                 <x-buttons.confirm-delete :route="route('campaign_invites.destroy', [$campaign, $relation->id])" />

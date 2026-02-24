@@ -307,10 +307,10 @@ class CampaignPolicy
 
     public function whiteboards(User $user, Campaign $campaign): bool
     {
-        if (app()->hasDebugModeEnabled()) {
+        if (app()->hasDebugModeEnabled() || app()->environment('qa')) {
             return true;
         }
 
-        return $campaign->premium() && $campaign->isWyvern();
+        return $campaign->premium() && ($campaign->isWyvern() || $campaign->isElemental());
     }
 }

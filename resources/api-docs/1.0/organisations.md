@@ -24,7 +24,7 @@ You can get a list of all the organisations of a campaign by using the following
 
 ### URL Parameters
 
-The list of returned entities can be filtered. The available filters are [available here](/api-docs/{{version}}/filters)
+The list of returned entities can be filtered. The available filters are [available here](/api-docs/{{version}}/misc/filters)
 
 ### Results
 ```json
@@ -143,19 +143,20 @@ To create an organisation, use the following endpoint.
 
 ### Body
 
-| Parameter | Type | Detail |
-| :- |   :-   |  :-  |
-| `name` | `string` (Required) | Name of the organisation |
-| `entry` | `string` | The html description of the organisation |
-| `type` | `string` | Type of organisation |
-| `organisation_id` | `integer` | The parent organisation |
-| `locations` | `array` | Array of location ids |
-| `tags` | `array` | Array of tag ids |
-| `is_defunct` | `boolean` | If the organisation is defunct |
-| `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
-| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (premium campaign feature) |
-| `tooltip`            | `string` | The organisation's tooltip (premium campaign feature)                   |
+| Parameter | Type | Detail                                                                 |
+| :- |   :-   |:-----------------------------------------------------------------------|
+| `name` | `string` (Required) | Name of the organisation                                               |
+| `entry` | `string` | The html description of the organisation                               |
+| `type` | `string` | Type of organisation                                                   |
+| `organisation_id` | `integer` | The parent organisation                                                |
+| `locations` | `array` | Array of location ids                                                  |
+| `tags` | `array` | Array of tag ids                                                       |
+| `is_defunct` | `boolean` | If the organisation is defunct                                         |
+| `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (premium campaign feature)    |
+| `tooltip`            | `string` | The organisation's tooltip (premium campaign feature)                  |
 | `is_private` | `boolean` | If the organisation is only visible to `admin` members of the campaign |
+| `locations` | `array` | Array of locations.ids to attach to the organisation.                  |
 
 ### Results
 

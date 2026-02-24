@@ -30,10 +30,11 @@ const buildEntityForm = (event) => {
 
     axios.get(element.dataset.url)
         .then(res => {
-            loadingArticle.classList.add('hidden!');
-            selectionArticle.classList.add('hidden!');
-            formArticle.innerHTML = res.data;
-            formArticle.classList.remove('hidden!');
+            document.querySelector('#primary-dialog').innerHTML = res.data;
+            // loadingArticle.classList.add('hidden!');
+            // selectionArticle.classList.add('hidden!');
+            // formArticle.innerHTML = res.data;
+            // formArticle.classList.remove('hidden!');
 
             quickCreatorSubformHandler();
             quickCreatorToggles();
@@ -78,9 +79,9 @@ const quickCreatorDuplicateName = () => {
 };
 
 const quickCreatorLoadingModal = () => {
-    document.querySelector('#qq-modal-form').classList.add('hidden!');
-    document.querySelector('#qq-modal-selection').classList.add('hidden!');
-    document.querySelector('#qq-modal-loading').classList.remove('hidden!');
+    document.querySelector('#qq-modal-form')?.classList.add('hidden!');
+    document.querySelector('#qq-modal-selection')?.classList.add('hidden!');
+    document.querySelector('#qq-modal-loading')?.classList.remove('hidden!');
 };
 
 /**

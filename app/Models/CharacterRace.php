@@ -58,9 +58,4 @@ class CharacterRace extends Model
     {
         return $this->character->races;
     }
-
-    public function getCharacterLocationAttribute()
-    {
-        return $this->character->location;
-    }
 }

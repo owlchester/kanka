@@ -24,6 +24,7 @@ use App\Http\Controllers\Settings\NewsletterController;
 use App\Http\Controllers\Settings\PatreonController;
 use App\Http\Controllers\Settings\PremiumController;
 use App\Http\Controllers\Settings\ProfileController;
+use App\Http\Controllers\Settings\ReferralController;
 use App\Http\Controllers\Settings\ReleaseController;
 use App\Http\Controllers\Settings\Subscription\CancellationController;
 use App\Http\Controllers\Settings\Subscription\CancelledController;
@@ -186,3 +187,5 @@ Route::post('/notifications/read/{id}', [NotificationController::class, 'read'])
 Route::post('/notifications/clear-all', [NotificationController::class, 'clearAll'])->name('notifications.clear-all');
 
 Route::get('/layout/navigation', [NavigationController::class, 'index'])->name('layout.navigation');
+
+Route::get('/referrals', [ReferralController::class, 'index'])->name('settings.referrals');

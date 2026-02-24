@@ -55,7 +55,7 @@ class ApiService
                 'filters' => __('bookmarks.fields.filters'),
             ],
             'columns' => [
-                'attribute' => __('entities/attributes.fields.attribute'),
+                'attribute' => __('entities/attributes.fields.property'),
                 'value' => __('entities/attributes.fields.value'),
                 'pinned' => __('entities/attributes.fields.is_star'),
                 'private' => __('crud.fields.is_private'),
@@ -69,6 +69,7 @@ class ApiService
                 'section' => __('entities/attributes.types.section'),
                 'checkbox' => __('entities/attributes.types.checkbox'),
                 'random' => __('entities/attributes.types.random'),
+                'templates' => __('entities/attributes.types.kits'),
             ],
             'filters' => [
                 'show_hidden' => __('entities/attributes.actions.show_hidden'),
@@ -263,7 +264,7 @@ class ApiService
             ->enabled()
             ->orderBy('name', 'ASC')
             ->pluck('name', 'id');
-        $key = __('attributes/templates.list.campaign');
+        $key = __('entities.attribute_templates');
         foreach ($campaignTemplates as $id => $name) {
             $templates[$key][$id] = $name;
         }

@@ -23,14 +23,10 @@ class StorageService
         if (isset($this->used)) {
             return $this->used;
         }
-        $key = $this->cacheKey();
-        if (Cache::has($key)) {
-            return $this->used = Cache()->get($key);
-        }
-        $this->used = Image::sum('size');
-        Cache::put($key, $this->used, 24 * 3600);
 
-        return $this->used;
+        return $this->used = Cache::remember($this->cacheKey(), 24 * 3600, function () {
+            return Image::sum('size');
+        });
     }
 
     public function uncachedUsedSpace(): int

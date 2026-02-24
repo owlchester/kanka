@@ -24,9 +24,10 @@ class ManageRaces extends FormRequest
     public function rules()
     {
         return [
-            'character_race' => [
-                '*' => 'exists:races,id',
-            ],
+            'character_race' => 'array',
+            'character_race.*' => 'integer|exists:races,id',
+            'race_privates' => 'array',
+            'race_privates.*' => 'boolean',
         ];
     }
 }

@@ -3,13 +3,14 @@
 namespace App\Models\Scopes;
 
 use App\Enums\CampaignVisibility;
+use App\Enums\SpotlightStatus;
 use App\Facades\Identity;
 use App\Models\Campaign;
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Query\JoinClause;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Trait CampaignScopes
@@ -27,6 +28,7 @@ use Illuminate\Support\Arr;
  * @method static self|Builder slug(string|int $slug)
  * @method static self|Builder acl(string|int $slug)
  * @method static self|Builder userOrdered(User $user)
+ * @method static self|Builder showcased(?int $limit = 4)
  */
 trait CampaignScopes
 {
@@ -103,31 +105,42 @@ trait CampaignScopes
     /**
      * Featured Campaigns
      */
-    public function scopeFeatured(Builder $query, $featured = true): Builder
+    public function scopeShowcased(Builder $query, ?int $limit = 4): Builder
     {
-        if ($featured) {
-            return $query->where('is_featured', true)
-                ->where(function ($sub) {
-                    return $sub->whereNull('featured_until')
-                        ->orWhereDate('featured_until', '>=', Carbon::today()->toDateString());
-                });
+        $activeSpotlights = DB::table('spotlights')
+            ->selectRaw('campaign_id, MAX(featured_at) as featured_at')
+            ->where('status', SpotlightStatus::active)
+            ->groupBy('campaign_id');
+
+        $query
+            ->select($this->getTable() . '.*')
+            ->joinSub($activeSpotlights, 'active_spotlights', function ($join) {
+                $join->on('active_spotlights.campaign_id', '=', $this->getTable() . '.id');
+            })
+            ->orderByDesc('active_spotlights.featured_at');
+
+        if ($limit !== null) {
+            $query->limit($limit);
         }
 
-        // Not featured, or featured in the past
-        return $query->where('is_featured', $featured)
-            ->orWhere(function ($sub) {
-                return $sub->where('is_featured', true)
-                    ->whereDate('featured_until', '<', Carbon::today()->toDateString());
-            });
+        return $query;
     }
 
     /**
      * Public campaigns
      */
-    public function scopePublic(Builder $query): Builder
+    public function scopePublic(Builder $query, bool $withUnlisted = true): Builder
     {
         // @phpstan-ignore-next-line
-        return $query->visibility([\App\Enums\CampaignVisibility::public, CampaignVisibility::unlisted]);
+        $values = [
+            CampaignVisibility::public,
+        ];
+        if ($withUnlisted) {
+            $values[] = CampaignVisibility::unlisted;
+        }
+
+        // @phpstan-ignore-next-line
+        return $query->visibility($values);
     }
 
     /**
@@ -141,7 +154,7 @@ trait CampaignScopes
         }
         $defaultSort = $sort == 1 ? 'follower' : 'visible_entity_count';
         $query
-            ->with('systems')
+            ->with(['systems', 'spotlight'])
             ->where('is_hidden', 0)
             ->orderBy($defaultSort, 'desc')
             ->orderBy('name');

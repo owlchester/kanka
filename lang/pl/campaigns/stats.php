@@ -31,4 +31,5 @@ return [
         'quests'    => 'Intrygant poziom :level',
         'races'     => 'Hodowca poziom :level',
     ],
+    'tutorial'      => 'Statystyki kampanii pokazują liczbę elementów i ostatnią aktywność. Dane aktualizowane są co :amount godzin. Możesz dzięki temu obserwować rozwój kampanii i częstotliwość jej wykorzystania.',
 ];

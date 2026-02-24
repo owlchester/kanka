@@ -2,6 +2,7 @@
 
 namespace App\Renderers\Layouts\Ability;
 
+use App\Models\EntityAbility;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 
@@ -25,17 +26,18 @@ class Entity extends Layout
             ],
             'type' => [
                 'key' => 'type_id',
-                'label' => 'crud.fields.entity_type',
-                'render' => function ($model) {
-                    return $model->entityType->name();
+                'label' => 'campaigns/categories.tab',
+                'render' => function (EntityAbility $model) {
+                    return $model->entity->entityType->name();
                 },
             ],
             'visibility' => [
                 'label' => 'crud.fields.visibility',
-                'render' => Standard::VISIBILITY_PIVOT,
+                'render' => Standard::VISIBILITY,
             ],
             'tags' => [
                 'render' => Standard::TAGS,
+                'with' => 'entity',
             ],
         ];
     }

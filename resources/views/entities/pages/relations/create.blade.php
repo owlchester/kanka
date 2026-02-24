@@ -4,7 +4,7 @@
     'breadcrumbs' => [
         Breadcrumb::campaign($campaign)->entity($entity)->list(),
         Breadcrumb::show(),
-        ['url' => route('entities.relations.index', [$campaign, $entity->id]), 'label' => __('crud.tabs.relations')],
+        ['url' => route('entities.relations.index', [$campaign, $entity->id]), 'label' => __('entries/tabs.relations')],
         __('crud.actions.new')
     ],
     'centered' => true,

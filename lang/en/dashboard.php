@@ -9,9 +9,8 @@ return [
     ],
     'dashboards'    => [
         'actions'       => [
-            'edit'      => 'Edit name & permissions',
-            'new'       => 'New Dashboard',
-            'switch'    => 'Switch to dashboard',
+            'edit'  => 'Edit name & permissions',
+            'new'   => 'New Dashboard',
         ],
         'create'        => [
             'helper'    => 'Create a new dashboard for :name, and assign which roles can see it or have it as their default dashboard.',
@@ -36,7 +35,7 @@ return [
         'helpers'       => [
             'copy_widgets'  => 'Duplicate the widgets from the :name dashboard into this new one.',
         ],
-        'pitch'         => 'Create multiple dashboards with custom permissions for each role of the campaign.',
+        'pitch'         => 'Create multiple dashboards with custom permissions for each role.',
         'placeholders'  => [
             'name'  => 'Name of the dashboard',
         ],
@@ -51,7 +50,7 @@ return [
         ],
     ],
     'helpers'       => [
-        'follow'    => 'Following a campaign will make it appear in the campaign switcher below your campaigns.',
+        'follow'    => 'Following a campaign will make it appear in the campaign switcher below your own campaigns.',
         'join'      => 'This campaign is open to new members. Click to apply to join it.',
     ],
     'setup'         => [
@@ -83,7 +82,7 @@ return [
             'upcoming_events'   => 'Upcoming',
         ],
         'campaign'                  => [
-            'helper'    => 'This widget displays the campaign header. This widget is always shown on the default dashboard.',
+            'helper'    => 'This widget displays a billboard. This widget is always shown on the default dashboard.',
         ],
         'create'                    => [
             'helper'            => 'Select a widget type to add to the :name dashboard.',
@@ -98,7 +97,7 @@ return [
             'class'             => 'CSS class',
             'dashboard'         => 'Dashboard',
             'name'              => 'Custom widget name',
-            'optional-entity'   => 'Link to entity',
+            'optional-entity'   => 'Link to entry',
             'order'             => 'Ordering',
             'size'              => 'Size',
             'width'             => 'Width',
@@ -124,7 +123,7 @@ return [
         ],
         'random'                    => [
             'helpers'   => [
-                'name'  => 'You can reference the random entity\'s name with {name}',
+                'name'  => 'You can reference the random entry\'s name with {name}',
             ],
             'type'      => [
                 'all'   => 'All',
@@ -133,32 +132,32 @@ return [
         'recent'                    => [
             'advanced_filter'   => 'Advanced filter',
             'advanced_filters'  => [
-                'mentionless'   => 'Mentionless (entities that don\'t mention other entities)',
-                'unmentioned'   => 'Unmentioned (entities that aren\'t mentioned by other entities)',
+                'mentionless'   => 'Mentionless (entries that don\'t mention other entries)',
+                'unmentioned'   => 'Unmentioned (entries that aren\'t mentioned by other entries)',
             ],
-            'all-entities'      => 'All entities',
-            'entity-header'     => 'Use entity header as image',
+            'all-entities'      => 'All entries',
+            'entity-header'     => 'Use entry header as image',
             'filters'           => 'Filters',
-            'help'              => 'Only show the first entity as a preview instead of a list.',
+            'help'              => 'Only show the first entry as a preview instead of a list.',
             'helpers'           => [
-                'entity-header'     => 'If the entity has an entity header (premium campaign feature), set this widget to use that image instead of the entity\'s image.',
-                'show_attributes'   => 'Show the entity\'s pinned attributes below the entry.',
-                'show_members'      => 'If the entity is a family or organisation, show its members below the entry.',
-                'show_relations'    => 'Show the entity\'s pinned relations below the entry.',
+                'entity-header'     => 'If the entry has a header image (premium campaign feature), set this widget to use that image instead of the entry\'s image.',
+                'show_attributes'   => 'Show the entry\'s pinned properties below the entry.',
+                'show_members'      => 'If the entry is a family or organisation, show its members below the entry.',
+                'show_relations'    => 'Show the entry\'s pinned relations below the entry.',
             ],
-            'show_attributes'   => 'Show pinned attributes',
+            'show_attributes'   => 'Show pinned properties',
             'show_members'      => 'Show members',
             'show_relations'    => 'Show pinned relations',
             'singular'          => 'Preview',
-            'tags'              => 'Filter the list of entities on specified tags.',
-            'title'             => 'Entity list',
+            'tags'              => 'Filter the list of entries on specified tags.',
+            'title'             => 'Entry list',
         ],
         'tabs'                      => [
             'advanced'  => 'Advanced',
             'setup'     => 'Setup',
         ],
         'unmentioned'               => [
-            'title' => 'Unmentioned entities',
+            'title' => 'Unmentioned entries',
         ],
         'update'                    => [
             'success'   => 'Widget modified.',

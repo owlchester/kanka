@@ -1,6 +1,6 @@
 <div class="quick-creator-header pb-4 border-b border-base-300 ">
     <div class="flex gap-1">
-        <div class="grow flex flex-col gap-2">
+        <div class="grow flex flex-col gap-2 items-start">
             <div class="qq-mode text-sm text-uppercase sm:w-96">
                 @if ($mode === 'bulk')
                     {{ __('entities.creator.modes.bulk') }}
@@ -12,9 +12,9 @@
             </div>
             @if (empty($target))
                 <div class="dropdown">
-                    <div role="button" class="text-2xl" data-dropdown aria-expanded="false">
+                    <div role="button" class="text-2xl group" data-dropdown aria-expanded="false">
                         {!! $newLabel !!}
-                        <x-icon class="fa-regular fa-chevron-down" />
+                        <x-icon class="fa-regular fa-chevron-down group-hover:text-primary transition duration-150" />
                         <span class="sr-only">Change type</span>
                     </div>
                     <div class="dropdown-menu hidden" role="menu">
@@ -23,6 +23,7 @@
                             @include('entities.creator.header._dropdown')
                         @endforeach
                         <x-dropdowns.divider />
+
                         @php $data = ['toggle' => 'entity-creator', 'url' => route('entity-creator.selection', $campaign), 'entity-type' => 'return']; @endphp
                         <x-dropdowns.item link="#" icon="fa-regular fa-arrow-left" :data="$data">
                             {{ __('entities.creator.back') }}

@@ -17,6 +17,16 @@
             <p class="text-accent text-xl">
                 {{  __('campaigns/achievements.titles.' . $key) }}
             </p>
+
+            @if (!empty(Arr::get($stat, 'url')))
+                <p class="mt-2">
+                    <a href="{{ Arr::get($stat, 'url') }}"
+                       class="underline"
+                       rel="noopener noreferrer">
+                        {{ __('campaigns/achievements.spotlight.active.cta') }}
+                    </a>
+                </p>
+            @endif
         </div>
     </div>
 

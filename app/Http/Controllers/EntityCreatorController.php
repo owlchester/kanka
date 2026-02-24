@@ -64,7 +64,7 @@ class EntityCreatorController extends Controller
         if ($request->has('_target')) {
             return response()->json([
                 '_target' => $request->get('_target'),
-                '_id' => $first->id,
+                '_id' => $first->entityType->isCustom() ? $first->id : $first->child->id,
                 '_name' => $first->name,
                 '_multi' => $request->get('_multi'),
             ]);
@@ -191,7 +191,7 @@ class EntityCreatorController extends Controller
             }
         } else {
             $newLabel = __('posts.create.title');
-            $singular = __('entities.post');
+            $singular = __('entities.article');
         }
 
         return view('entities.creator.' . $view, compact(
@@ -225,7 +225,7 @@ class EntityCreatorController extends Controller
             ->ordered();
 
         if (auth()->user()->can('recover', $this->campaign)) {
-            $types->add(__('entities.posts'));
+            $types->add(__('entities.articles'));
         }
 
         return $types;

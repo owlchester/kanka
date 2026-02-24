@@ -78,7 +78,7 @@ return [
     ],
     'boost'         => [
         'exceptions'    => [
-            'already_boosted'       => 'Campaign :name is already being boosted.',
+            'already_boosted'       => ':name is already being boosted.',
             'exhausted_boosts'      => 'You are out of boosts to give. Remove your boost from a campaign before giving it to another.',
             'exhausted_superboosts' => 'You are out of boosts. You need 3 boosters to superboost a campaign.',
         ],
@@ -118,7 +118,7 @@ return [
         'remove'        => [
             'button'    => 'Unlink your Patreon account',
             'success'   => 'Your Patreon account has been unlinked.',
-            'text'      => 'Unlinking your Patreon account with Kanka will remove your bonuses, name on the hall of fame, campaign boosts, and other features linked to supporting Kanka. None of your boosted content will be lost (e.g. entity headers). By subscribing again, you will have access to all your previous data, including the ability to unlock your previously premium campaigns.',
+            'text'      => 'Unlinking your Patreon account with Kanka will remove your bonuses, name on the hall of fame, campaign boosts, and other features linked to supporting Kanka. None of your boosted content will be lost (e.g. entry headers). By subscribing again, you will have access to all your previous data, including the ability to unlock your previously premium campaigns.',
             'title'     => 'Unlink your Patreon account with Kanka',
         ],
         'title'         => 'Patreon',
@@ -130,6 +130,9 @@ return [
         'avatar'    => 'Profile Picture',
         'success'   => 'Profile updated.',
         'title'     => 'Public Profile',
+    ],
+    'referrals'     => [
+        'title' => 'Referrals',
     ],
     'subscription'  => [
         'actions'               => [

@@ -21,10 +21,10 @@ table {
         line-height: 1.5rem;
         padding: .5rem;
     }
-    thead th {
+    th {
         border-bottom-width: 1px;
     }
-    tbody tr:not(:last-of-type) {
+    tr:not(:last-of-type) {
         td {
             border-bottom-width: 1px;
         }
@@ -34,20 +34,18 @@ table {
 .table-bordered {
     --tw-border-opacity: .2;
     border-width: 1px;
+    border-color: hsl(var(--bc)/var(--tw-border-opacity));
     th, td {
+        border-color: hsl(var(--bc)/var(--tw-border-opacity));
         border-width: 1px;
     }
 }
 
-.table :is(thead, tbody, tfoot) tr :is(td, th) {
-    /*--tw-border-opacity: .2;
-    border-color: hsl(var(--b2)/var(--tw-border-opacity));*/
-}
-.table :is(thead, tbody, tfoot) tr.warning :is(td, th) {
+.table tr.warning :is(td, th) {
     background-color: hsl(var(--a)/1);
     color: hsl(var(--ac)/1);
 }
-.table :is(thead, tbody, tfoot) tr.warning:hover :is(td, th) {
+.table tr.warning:hover :is(td, th) {
     background-color: hsl(var(--af)/1);
     color: hsl(var(--ac)/1);
 }
@@ -58,9 +56,17 @@ table {
 .table-compact {
     width: auto;
 }
+.table-left {
+    width: auto;
+    float: left;
+    margin-right: 1rem;
+    margin-bottom: 0.5rem;
+}
 .table-right {
     width: auto;
     float: right;
+    margin-left: 1rem;
+    margin-bottom: 0.5rem;
 }
 .table-centered {
     margin-left: auto;

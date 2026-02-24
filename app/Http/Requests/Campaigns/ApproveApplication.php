@@ -24,7 +24,7 @@ class ApproveApplication extends FormRequest
     public function rules()
     {
         $rules = [
-            'role_id' => 'required|exists:campaign_roles,id',
+            'role_id' => 'required|integer|exists:campaign_roles,id',
             'reason' => 'nullable|string|max:191',
         ];
 

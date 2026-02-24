@@ -222,7 +222,7 @@ class AttributeService extends BaseAttributesService
             ->enabled()
             ->orderBy('name', 'ASC')
             ->pluck('name', 'id');
-        $key = __('attributes/templates.list.campaign');
+        $key = __('entities.attribute_templates');
         foreach ($campaignTemplates as $id => $name) {
             $templates[$key][$id] = $name;
         }

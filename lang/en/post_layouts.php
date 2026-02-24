@@ -1,15 +1,15 @@
 <?php
 
 return [
+    'connection_map'        => 'Relation map',
     'character_orgs'        => 'Character organisations',
-    'connection_map'        => 'Connection map',
-    'helper'                => 'This post is set up to display the :subpage subpage of :name.',
+    'helper'                => 'This article is set up to display the :subpage subpage of :name.',
     'location_characters'   => 'Location characters',
     'location_events'       => 'Location events',
     'location_quests'       => 'Location quests',
     'pitch'                 => [
-        'custom'    => 'Show content from this entity\'s subpages directly on the overview with post layouts. For example, show :entity\'s inventory.',
-        'title'     => 'Advanced post layouts',
+        'custom'    => 'Show content from this entry\'s subpages directly on the overview with article layouts. For example, show :entry\'s inventory.',
+        'title'     => 'Advanced article layouts',
     ],
     'premium'               => 'Some layout options are disabled because they required a premium campaign.',
     'quest_elements'        => 'Quest Elements',

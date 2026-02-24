@@ -131,6 +131,9 @@ return [
         'success'   => 'Mise à jour effectuée.',
         'title'     => 'Profil personnel',
     ],
+    'referrals'     => [
+        'title' => 'Parrainages',
+    ],
     'subscription'  => [
         'actions'               => [
             'cancel_sub'        => 'Annuler l\'abonnement',
@@ -162,6 +165,8 @@ return [
         'cancelled'             => 'L\'abonnement a été annulé. Un nouvel abonnement peut être fait dès que celui-ci arrive à terme le :date.',
         'change'                => [
             'text'  => [
+                'downgrade_monthly' => 'Tu rétrogrades vers l’offre :tier pour :downgrade, puis facturation mensuelle de :amount.',
+                'downgrade_yearly'  => 'Tu rétrogrades vers l’offre :tier pour :downgrade, puis facturation annuelle de :amount.',
                 'monthly'           => 'Abonnement au niveau :tier, facturé mensuellement pour :amount.',
                 'upgrade_monthly'   => 'Tu passes au niveau :tier pour :upgrade, ensuite facturé mensuellement pour :amount.',
                 'upgrade_paypal'    => 'Tu passes au niveau :tier pour :upgrade jusqu\'au :date.',

@@ -129,12 +129,14 @@ class TransformService
         $raceID = config('entities.ids.race');
         $creatureID = config('entities.ids.creature');
         $organisationID = config('entities.ids.organisation');
+        $characterID = config('entities.ids.character');
+        $entityLocations = [$raceID, $creatureID, $organisationID, $characterID];
 
-        // @phpstan-ignore-next-line
-        if (in_array($this->child->entityTypeId(), [$raceID, $creatureID, $organisationID]) && ! in_array($this->new->entityTypeId(), [$raceID, $creatureID, $organisationID]) && ! empty($this->child->locations()->first())) {
+        // If moving from a multi-location to single location
+        if (in_array($this->child->entityTypeId(), $entityLocations) && ! in_array($this->new->entityTypeId(), $entityLocations) && $this->entity->locations->isNotEmpty()) {
             if (in_array('location_id', $this->fillable)) {
                 // @phpstan-ignore-next-line
-                $this->new->location_id = $this->child->locations()->first()->id;
+                $this->new->location_id = $this->entity->locations->first()->id;
             } elseif (in_array('location_id', $this->fillable)) {
                 // @phpstan-ignore-next-line
                 $this->new->setParentId($this->child->locations()->first()->id);
@@ -152,21 +154,22 @@ class TransformService
         $raceID = config('entities.ids.race');
         $creatureID = config('entities.ids.creature');
         $organisationID = config('entities.ids.organisation');
+        $characterID = config('entities.ids.character');
+        $entityLocations = [$raceID, $creatureID, $organisationID, $characterID];
 
-        // If the entity is switched from one location to multiple locations
-        if (! in_array($this->child->entityTypeId(), [$raceID, $creatureID, $organisationID]) && in_array($this->new->entityTypeId(), [$raceID, $creatureID, $organisationID])) {
+        // If the entity is switched from one location to entity locations
+        if (! in_array($this->child->entityTypeId(), $entityLocations) && in_array($this->new->entityTypeId(), $entityLocations)) {
+            // If the
             if (in_array('location_id', $this->child->getFillable()) && ! empty($this->child->location_id)) {
-                $this->new->locations()->attach($this->child->location_id);
-            } elseif (in_array('location_id', $this->child->getFillable()) && ! empty($this->child->location_id)) {
-                $this->new->locations()->attach($this->child->location_id);
+                $this->entity->locations()->sync([$this->child->location_id]);
             }
 
             return $this;
         }
 
         if (
-            ! in_array($this->child->entityTypeId(), [$raceID, $creatureID, $organisationID]) ||
-            ! in_array($this->new->entityTypeId(), [$raceID, $creatureID, $organisationID])
+            ! in_array($this->child->entityTypeId(), $entityLocations) ||
+            ! in_array($this->new->entityTypeId(), $entityLocations)
         ) {
             if (property_exists($this->child, 'locations')) {
                 // @phpstan-ignore-next-line
@@ -176,12 +179,11 @@ class TransformService
             return $this;
         }
 
-        // @phpstan-ignore-next-line
-        foreach ($this->child->locations as $loc) {
-            $this->new->locations()->attach($loc->id);
+        if (property_exists($this->child, 'locations')) {
+            foreach ($this->child->locations as $loc) {
+                $this->new->locations()->attach($loc->id);
+            }
         }
-        // @phpstan-ignore-next-line
-        $this->child->locations()->sync([]);
 
         return $this;
     }
@@ -328,11 +330,15 @@ class TransformService
         }
         $this->new->saveQuietly();
 
-        // We need to get rid of the entity's locations, for now. In a future refactor, we can skip this part
+        // We need to get rid of the entity's locations, for now. In a future refactor, we can hopefully skip this part
         if (method_exists($this->new, 'locations')) {
             $this->new->locations()->sync($this->entity->locations()->get()->pluck('id'));
+        } elseif (method_exists($this->new, 'entityLocations')) {
+            // Characters use the entity.locations table so no mess needed.
+            // todo: races, orgs, families, creatures
+        } else {
+            $this->entity->locations()->sync([]);
         }
-        $this->entity->locations()->sync([]);
 
         $this->finish();
 
@@ -343,13 +349,10 @@ class TransformService
     {
         $this->child = $this->entity->child;
 
-        // Transfer over locations. Won't be needed in a new future, hopefully.
-        // todo: If you find this past 2025, ask Jay why this was forgotten.
+        // Transfer over location_id to entityLocations
         // @phpstan-ignore-next-line
         if ($this->child->isFillable('location_id') && $this->child->location_id) {
             $this->entity->locations()->sync([$this->child->location_id]);
-        } elseif (method_exists($this->child, 'locations')) {
-            $this->entity->locations()->sync($this->child->locations()->get()->pluck('id'));
         }
 
         $this->finish();

@@ -27,11 +27,11 @@ class StoreOrganisationMember extends FormRequest
     public function rules()
     {
         return $this->clean([
-            'organisation_id' => 'required|exists:organisations,id',
-            'character_id' => 'required|exists:characters,id',
+            'organisation_id' => 'required|integer|exists:organisations,id',
+            'character_id' => 'required|integer|exists:characters,id',
             'role' => 'nullable',
             'is_private' => 'nullable',
-            'parent_id' => 'nullable|exists:organisation_member,id',
+            'parent_id' => 'nullable|integer|exists:organisation_member,id',
         ]);
     }
 }

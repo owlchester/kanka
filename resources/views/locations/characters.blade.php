@@ -20,7 +20,7 @@
         @else
             <x-toggles.filter-button
                 route="{{ route('locations.characters', [$campaign, $model, 'm' => \App\Enums\Descendants::Direct]) }}"
-                :count="$model->characters()->count()"
+                :count="$model->allCharacters(true)->count()"
             />
         @endif
         @include('entities.headers.actions', ['edit' => false])

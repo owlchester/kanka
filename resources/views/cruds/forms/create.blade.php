@@ -47,19 +47,19 @@
         <x-grid type="1/1">
             @include('cruds.forms._errors')
 
-            <div class="nav-tabs-custom">
-                <div class="flex gap-2 items-center ">
-                    <div class="grow overflow-x-auto">
+            <div class="nav-tabs-custom bg-base-100 p-4 rounded-xl flex flex-col gap-6 relative">
+                <div class="flex gap-2 items-center justify-between sticky z-10 top-12 bg-base-100">
+                    <div class="overflow-x-auto">
                         <ul class="nav-tabs flex items-stretch w-full" role="tablist">
-                            <x-tab.tab target="entry" :default="true" :title="__('crud.fields.entry')"></x-tab.tab>
+                            <x-tab.tab target="entry" :default="true" :title="__('entries/tabs.identity')"></x-tab.tab>
 
                             @includeIf($name . '.form._tabs')
 
                             @if ($tabBoosted && config('services.stripe.enabled'))
-                                <x-tab.tab target="premium" icon="premium" :title="auth()->check() && auth()->user()->hasBoosterNomenclature() ? __('crud.tabs.boost') : __('crud.tabs.premium')"></x-tab.tab>
+                                <x-tab.tab target="premium" icon="premium" :title="__('crud.tabs.premium')"></x-tab.tab>
                             @endif
                             @if ($tabAttributes)
-                                <x-tab.tab target="attributes" icon="attributes" :title="__('crud.tabs.attributes')"></x-tab.tab>
+                                <x-tab.tab target="attributes" icon="attributes" :title="__('entries/tabs.properties')"></x-tab.tab>
                             @endif
                             @if ($tabPermissions)
                                 <x-tab.tab target="permissions" icon="permissions" :title="__('crud.tabs.permissions')"></x-tab.tab>
@@ -74,7 +74,7 @@
                     @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form'])
                 </div>
 
-                <div class="tab-content bg-base-100 p-4 rounded-bl rounded-br">
+                <div class="tab-content">
                     <div class="tab-pane pane-entry {{ (request()->get('tab') == null ? ' active' : '') }}" id="form-entry">
                         <x-grid type="1/1">
                             @include($name . '.form._entry')

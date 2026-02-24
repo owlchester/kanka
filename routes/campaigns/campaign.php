@@ -28,6 +28,9 @@ Route::post('/w/{campaign}/gallery/upload/files', [App\Http\Controllers\Gallery\
 Route::post('/w/{campaign}/gallery/upload/url', [App\Http\Controllers\Gallery\UploadController::class, 'url'])->name('gallery.upload.url');
 Route::get('/w/{campaign}/gallery/browse', [App\Http\Controllers\Gallery\BrowseController::class, 'index'])->name('gallery.browse');
 
+Route::get('/w/{campaign}/gallery/tiptap', [\App\Http\Controllers\Gallery\TiptapController::class, 'index'])->name('gallery.tiptap');
+Route::post('/w/{campaign}/gallery/tiptap', [\App\Http\Controllers\Gallery\UploadController::class, 'file'])->name('gallery.tiptap.save');
+
 Route::get('/w/{campaign}/gallery/setup', [App\Http\Controllers\Gallery\SetupController::class, 'index'])->name('gallery.setup');
 Route::get('/w/{campaign}/gallery/open/{image}', [App\Http\Controllers\Gallery\ImageController::class, 'show'])->name('gallery.show');
 Route::get('/w/{campaign}/gallery/search/{term?}', [App\Http\Controllers\Gallery\SearchController::class, 'index'])->name('gallery.search');
@@ -189,7 +192,7 @@ Route::post('/w/{campaign}/sidebar-setup', 'Campaign\SidebarController@save')->n
 Route::delete('/w/{campaign}/sidebar-setup/reset', 'Campaign\SidebarController@reset')->name('campaign-sidebar-reset');
 
 Route::get('/w/{campaign}/campaign-defaults', 'Campaign\DefaultsController@index')->name('campaign-defaults');
-Route::post('/w/{campaign}/sidebar-defaults', 'Campaign\DefaultsController@save')->name('campaign-defaults-save');
+Route::post('/w/{campaign}/campaign-defaults', 'Campaign\DefaultsController@save')->name('campaign-defaults-save');
 
 Route::get('/w/{campaign}/presets/type/{preset_type}/list', [App\Http\Controllers\PresetController::class, 'presets'])->name('presets.list');
 Route::get('/w/{campaign}/presets/type/{preset_type}/create', [App\Http\Controllers\PresetController::class, 'create'])->name('presets.create');

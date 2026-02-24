@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @method static self|Builder alias()
  * @method static self|Builder file()
  * @method static self|Builder link()
+ * @method static self|Builder withoutAliases()
  */
 trait EntityAssetScopes
 {
@@ -48,5 +49,11 @@ trait EntityAssetScopes
     {
         // @phpstan-ignore-next-line
         return $query->type(EntityAssetType::alias);
+    }
+
+    public function scopeWithoutAliases(Builder $query)
+    {
+        // @phpstan-ignore-next-line
+        return $query->whereNot('type_id', EntityAssetType::alias);
     }
 }

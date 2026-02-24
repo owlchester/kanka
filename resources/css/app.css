@@ -20,6 +20,7 @@
 @import "./campaign.css";
 @import "./attributes/attributes.css";
 @import "./toggle.css";
+@import "./range.css";
 @import "./tabs.css";
 @import "./vendors/editor.css";
 @import "./vendors/adminlte.css";
@@ -27,6 +28,7 @@
 @import "./html/table.css";
 @import "./html/dialog.css";
 @import "./html/dl.css";
+@import "./html/summary.css";
 @import './freyja/freyja.css';
 @import 'cookieconsent/build/cookieconsent.min.css';
 @import '@fontsource-variable/roboto/wdth.css';
@@ -37,10 +39,21 @@
 
 .content-header {
     .breadcrumb {
-        background: transparent;
-
-        > li + li:before {
-            content: ">";
+        overflow-x: auto;
+        max-width: 100%;
+        padding-block: 0.5rem;
+        > li + ::before {
+            content: "";
+            opacity: .4;
+            background-color: #0000;
+            border-top: 1px solid;
+            border-right: 1px solid;
+            width: .375rem;
+            height: .375rem;
+            margin-left: .5rem;
+            margin-right: .75rem;
+            display: block;
+            rotate: 45deg;
         }
     }
 }
@@ -49,7 +62,7 @@
 /** required form fields **/
 div.required label:after {
     content: " *";
-    color: var(--input-required-text, red);
+    color: var(--input-required-text, var(--error, 'red'));
 }
 
 .tab-content, .box-body {
@@ -82,7 +95,7 @@ tr.tr-hover {
 
 .field {
     > input, > select, > textarea {
-        padding: 0.5rem 0.5rem;
+        padding: 0.6rem 0.8rem;
         &:placeholder-shown {
             text-overflow: ellipsis;
         }

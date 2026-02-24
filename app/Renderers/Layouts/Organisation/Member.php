@@ -49,11 +49,11 @@ class Member extends Layout
                 'render' => Standard::ENTITYLINK,
                 'with' => 'superior',
             ],
-            'location' => [
-                'label' => Module::singular(config('entities.ids.location'), 'entities.location'),
+            'locations' => [
+                'label' => Module::plural(config('entities.ids.location'), 'entities.locations'),
                 'class' => self::ONLY_DESKTOP,
-                'render' => Standard::LOCATION,
-                'with' => 'character',
+                'render' => Standard::ENTITY_LOCATIONS,
+                'with' => 'character.entity',
             ],
             'pinned' => [
                 'label' => '<i class="fa-regular fa-map-pin" data-title="' . __('organisations.members.fields.pinned') . '" data-toggle="tooltip"></i>',

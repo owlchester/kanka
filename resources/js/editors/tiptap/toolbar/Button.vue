@@ -1,0 +1,3 @@
+<template>
+    <button
+        @click.prevent

@@ -16,4 +16,15 @@ return [
         'title'             => 'Uprawnienia',
         'viewable-by'       => 'Widoczny dla',
     ],
+    'toggle'    => [
+        'label'     => 'Tajność elementu',
+        'private'   => [
+            'description'   => 'Widoczny tylko dla posiadaczy roli :admin.',
+            'title'         => 'Tajny',
+        ],
+        'public'    => [
+            'description'   => 'Widoczny dla poniższych ról i uczestników',
+            'title'         => 'Jawny',
+        ],
+    ],
 ];

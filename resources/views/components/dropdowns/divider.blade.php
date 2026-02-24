@@ -1,1 +1,1 @@
-<hr class="my-1.5" />
+<hr class="my-1 mx-3" />

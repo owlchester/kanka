@@ -15,6 +15,20 @@ return [
     'remaining'         => [
         'generic'   => 'de plus pour débloquer le niveau suivant.',
     ],
+    'spotlight'         => [
+        'active'    => [
+            'cta'   => 'Voir la mise en avant',
+        ],
+        'private'   => [
+            'cta'       => 'Vérifier les paramètres publics',
+            'helper'    => 'Rend ta campagne publique pour être éligible à la mise en avant.',
+        ],
+        'public'    => [
+            'cta'       => 'Découvrir le fonctionnement de la mise en avant',
+            'helper'    => 'Les campagnes sélectionnées sont mises en avant sur la vitrine Kanka et le blog.',
+        ],
+    ],
+    'spotlighted'       => '{0} Pas encore sélectionné|[1,*] Mis en avant',
     'tagged'            => '{0} Aucune entité étiquetée|{1} Une entité étiquetée|[2,*] :amount entités étiquetées',
     'titles'            => [
         'calendars'     => 'Gardien du temps',
@@ -29,6 +43,7 @@ return [
         'organisations' => 'Fusions et acquisitions',
         'plugins'       => 'Connaisseur en plugins',
         'quests'        => 'Mastermind',
+        'spotlighted'   => 'Mis en avant',
         'tags'          => 'Sous contrôle',
         'themes'        => 'Peintre',
     ],

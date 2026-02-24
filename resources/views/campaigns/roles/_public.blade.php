@@ -37,7 +37,7 @@
     </div>
 
     <h2 class="text-xl">
-        {{ __('campaigns.show.tabs.modules') }}
+        {{ __('campaigns/categories.tab') }}
     </h2>
 
     <x-helper>
@@ -58,9 +58,9 @@
 
                 <div class="">{!! $entityType->plural() !!}</div>
                 @if (($entityType->isStandard() && !$campaign->enabled($entityType)) || ($entityType->isCustom() && !$entityType->isEnabled()))
-                    <div class="rounded bg-warning text-warning-content" data-toggle="tooltip" data-title="{{ __('campaigns.modules.permission-disabled') }}">
+                    <div class="rounded bg-warning text-warning-content" data-toggle="tooltip" data-title="{{ __('campaigns/categories.errors.permission-disabled') }}">
                         <x-icon class="fa-regular fa-exclamation-triangle" />
-                        <span class="md:hidden text-sm inline">{{ __('campaigns.modules.permission-disabled') }}</span>
+                        <span class="md:hidden text-sm inline">{{ __('campaigns/categories.errors.permission-disabled') }}</span>
                     </div>
                 @endif
             </div>

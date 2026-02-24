@@ -34,7 +34,7 @@ div.mce-fullscreen {
   max-width: 100%;
 }
 .note-editor.note-airframe, .note-editor.note-frame {
-  border: none;
+    border: none;
 }
 .note-editable {
     ul, ol {
@@ -69,9 +69,11 @@ div.mce-fullscreen {
 
 img.note-float-right {
     float: right;
+    padding-left: 0.5rem;
 }
 img.note-float-left {
     float: left;
+    padding-right: 0.5rem;
 }
 
 .note-btn i.fa, .note-btn i.fas, .note-btn i.fa-brands, .note-btn i.far, .note-btn i.fa-solid, .note-btn i.fa-sharp, .note-icon-code {
@@ -148,6 +150,14 @@ img.note-float-left {
 }
 .note-editor.fullscreen {
     background-color: hsl(var(--b1)/1);
+}
+.note-editor.panel {
+    margin-bottom: 0;
+    border-radius: var(--rounded-btn);
+}
+.note-editor.note-airframe,
+.note-editor.note-frame {
+    border:1px solid hsl(var(--bc)/.1) !important;
 }
 
 

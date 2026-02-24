@@ -70,11 +70,7 @@ $bragiName = $entity->isCharacter() ? $entity->name : null;
         @endif
 
         <x-forms.field field="entry" id="field-entry" :hidden="isset($layoutHelper)" x-show="!layout">
-            <textarea name="entry"
-                  id="entry"
-                  class="html-editor"
-                  rows="3"
-            >{!! old('entry', $model->entryForEdition ?? null) !!}</textarea>
+            @include('cruds.fields.entry', ['model' => $model ?? null])
         </x-forms.field>
 
         <x-grid>

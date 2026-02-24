@@ -3,9 +3,8 @@
 namespace App\Observers\Concerns;
 
 use App\Facades\EntityLogger;
-use App\Models\Creature;
+use App\Models\Entity;
 use App\Models\Location;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * We have this as a trait on the LocationsObserver, so that we can also call it from the bulk update service.
@@ -13,9 +12,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 trait SaveLocations
 {
-    protected function saveLocations(Model $model, array $locations = [])
+    protected function saveLocations(Entity $model, array $locations = [])
     {
-        /** @var Creature $model */
         $existing = $unique = $recreate = [];
         foreach ($model->locations as $location) {
             // If it already exists, we have an issue

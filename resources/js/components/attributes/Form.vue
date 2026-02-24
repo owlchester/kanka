@@ -1,51 +1,47 @@
 <template>
-    <div class="flex flex-wrap gap-2 md:gap-5 lg:gap-10 justify-center justify-items-stretch items-center
-     lg:border border-base-300 lg:rounded p-2 lg:p-5 text-xs md:text-sm m-0 lg:m-5 ">
-        <div v-if="showAddForm" role="button" @click="addAttribute($event, '')" class="flex flex-col gap-1 items-center hover:text-primary">
-            <i class="fa-regular fa-person text-xl md:text-2xl" aria-hidden="true" />
-            <span v-html="trans('types.attribute')" class="text-xs"></span>
+    <div class="flex gap-4 justify-between flex-wrap text-xs">
+        <div class="flex items-center flex-wrap  gap-4">
+            <button @click="addAttribute($event, '')" :class="btnClass()">
+                <i class="fa-regular fa-shield md:text-xl" aria-hidden="true" />
+                <span v-html="trans('types.attribute')"></span>
+            </button>
+
+            <button @click="addAttribute($event, 'multiline')" :class="btnClass()">
+                <i class="fa-regular fa-align-justify md:text-xl" aria-hidden="true" />
+                <span v-html="trans('types.multiline')"></span>
+            </button>
+
+            <button @click="addAttribute($event, 'number')" :class="btnClass()">
+                <i class="fa-regular fa-hashtag md:text-xl" aria-hidden="true" />
+                <span v-html="trans('types.number')"></span>
+            </button>
+
+            <button @click="addAttribute($event, 'section')" :class="btnClass()">
+                <i class="fa-regular fa-layer-group md:text-xl" aria-hidden="true" />
+                <span v-html="trans('types.section')"></span>
+            </button>
+
+            <button @click="addAttribute($event, 'checkbox')" :class="secondaryBtnClass()">
+                <i class="fa-regular fa-check-square md:text-xl" aria-hidden="true" />
+                <span v-html="trans('types.checkbox')"></span>
+            </button>
+
+            <button @click="addAttribute($event, 'random')" :class="secondaryBtnClass()">
+                <i class="fa-regular fa-question-circle md:text-xl" aria-hidden="true" />
+                <span v-html="trans('types.random')" class="text-xs truncate"></span>
+            </button>
         </div>
 
-        <div v-if="showAddForm" role="button" @click="addAttribute($event, 'multiline')" class="flex flex-col gap-1 items-center hover:text-primary">
-            <i class="fa-regular fa-align-justify text-xl md:text-2xl" aria-hidden="true" />
-            <span v-html="trans('types.multiline')" class="text-xs"></span>
-        </div>
-
-        <div v-if="showAddForm" role="button" @click="addAttribute($event, 'number')" class="flex flex-col gap-1 items-center hover:text-primary">
-            <i class="fa-regular fa-hashtag text-xl md:text-2xl" aria-hidden="true" />
-            <span v-html="trans('types.number')" class="text-xs"></span>
-        </div>
-
-        <div v-if="showAddForm" role="button" @click="toggleAddForm()" class="rounded-full w-12 lg:w-16 h-12 lg:h-16 bg-primary text-primary-content text-2xl flex items-center justify-center shadow-md flex-none">
-            <i class="fa-regular fa-times" aria-hidden="true" />
-            <span class="sr-only">Close new attribute form</span>
-        </div>
-
-        <div v-if="showAddForm" role="button" @click="addAttribute($event, 'section')" class="flex flex-col gap-1 items-center hover:text-primary">
-            <i class="fa-regular fa-layer-group text-xl md:text-2xl" aria-hidden="true" />
-            <span v-html="trans('types.section')" class="text-xs"></span>
-        </div>
-
-        <div v-if="showAddForm" role="button" @click="addAttribute($event, 'checkbox')" class="flex flex-col gap-1 items-center hover:text-primary">
-            <i class="fa-regular fa-check-square text-xl md:text-2xl" aria-hidden="true" />
-            <span v-html="trans('types.checkbox')" class="text-xs"></span>
-        </div>
-
-        <div v-if="showAddForm" role="button" @click="addAttribute($event, 'random')" class="flex flex-col gap-1 items-center hover:text-primary">
-            <i class="fa-regular fa-question-circle text-xl md:text-2xl" aria-hidden="true" />
-            <span v-html="trans('types.random')" class="text-xs truncate"></span>
-        </div>
-
-        <div v-if="!showAddForm" role="button" @click="toggleAddForm()" class="rounded-full w-12 lg:w-16 h-12 lg:h-16 bg-primary text-primary-content text-2xl flex items-center justify-center shadow-md">
-            <i class="fa-regular fa-plus" aria-hidden="true" />
-            <span class="sr-only">Open new attribute form</span>
-        </div>
+        <button @click="openTemplates($event)" :class="secondaryBtnClass()" data-tooltip :data-title="trans('actions.load')">
+            <i class="fa-regular fa-file-import md:text-xl" aria-hidden="true" />
+            <span v-html="trans('types.templates')" class="text-xs truncate"></span>
+        </button>
     </div>
 </template>
 
 <script setup lang="ts">
 
-import {ref} from "vue";
+import {ref, onMounted} from "vue";
 
 const props = defineProps<{
     attributes,
@@ -55,9 +51,11 @@ const props = defineProps<{
     max
 }>()
 
-const showAddForm = ref(false)
+const emit = defineEmits(['incrementNewAttributeID', 'openTemplates'])
 
-const emit = defineEmits(['incrementNewAttributeID'])
+onMounted(() => {
+    window.initTooltips();
+})
 
 const trans = (k) => {
     if (!k.includes('.')) {
@@ -68,6 +66,7 @@ const trans = (k) => {
 };
 
 const addAttribute = (event, type) => {
+    event.preventDefault()
     if (reachedMax(event)) {
         return;
     }
@@ -91,6 +90,18 @@ const addAttribute = (event, type) => {
 
     props.attributes.push(attribute)
     props.visibleAttributes.push(attribute)
+}
+
+const openTemplates = (event) => {
+    event.preventDefault()
+    emit('openTemplates')
+}
+
+const btnClass = () => {
+    return 'flex flex-col gap-1 items-center hover:bg-base-200 text-xs border border-base-200 rounded-xl px-4 py-3 cursor-pointer';
+}
+const secondaryBtnClass = (extra = '') => {
+    return 'flex flex-col gap-1 items-center hover:bg-base-200 text-xs border border-base-300 rounded-xl px-4 py-3 cursor-pointer text-neutral-content ' + extra  ;
 }
 
 /**
@@ -117,9 +128,6 @@ const reachedMax = (event) => {
     return false;
 }
 
-const toggleAddForm = () => {
-    showAddForm.value = !showAddForm.value
-}
 </script>
 
 

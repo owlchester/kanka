@@ -11,7 +11,7 @@ $isAdmin = auth()->user()->isAdmin();
     'breadcrumbs' => [
         Breadcrumb::campaign($campaign)->entity($entity)->list(),
         Breadcrumb::show(),
-        __('crud.tabs.attributes'),
+        __('entries/tabs.properties'),
     ],
     'mainTitle' => false,
     'centered' => true,
@@ -22,16 +22,27 @@ $isAdmin = auth()->user()->isAdmin();
         :action="['entities.attributes.save', $campaign, $entity]"
         :extra="['data-max-fields' => ini_get('max_input_vars'),]"
         unload
-        class="entity-form flex flex-col gap-5"
+        class="entity-form "
     >
 
-        <x-box :padding="false">
-            <div id="attributes-manager">
+        <x-box class="flex flex-col gap-4">
+            <div class="flex gap-2 items-center">
+                <a href="{{ url()->previous() }}" class="btn2 btn-outline">
+                    {{ __('crud.cancel') }}
+                </a>
+                <div class="grow text-right">
+                    <button class="btn2 btn-primary">
+                        {{ __('crud.save') }}
+                    </button>
+                </div>
+            </div>
+
+            <div id="attributes-manager" class="flex-1 min-h-0 h-full overflow-hidden">
                 <attributes-manager api="{{ route('attributes.api-entity', [$campaign, $entity]) }}" />
             </div>
 
             @if (auth()->user()->isAdmin() && $entity->is_attributes_private)
-                <div class="m-5 flex flex-col gap-2">
+                <div class="flex flex-col gap-2">
                     <hr />
                     <x-forms.field field="attributes-private"
                                    :label="__('entities/attributes.fields.is_private')">
@@ -48,17 +59,6 @@ $isAdmin = auth()->user()->isAdmin();
                 </x-alert>
             </div>
             @endif
-
-            <div class="flex gap-2 items-center p-4">
-                <a href="{{ url()->previous() }}" class="btn2 btn-ghost">
-                    {{ __('crud.cancel') }}
-                </a>
-                <div class="grow text-right">
-                    <button class="btn2 btn-primary">
-                        {{ __('crud.save') }}
-                    </button>
-                </div>
-            </div>
         </x-box>
     </x-form>
 @endsection

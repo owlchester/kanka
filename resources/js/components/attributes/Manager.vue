@@ -3,10 +3,21 @@
     <div class="text-center text-4xl p-4" v-if="loading">
         <i class="fa-solid fa-spinner fa-spin" aria-label="Loading" />
     </div>
-    <div class="flex flex-col gap-2 lg:gap-5 relative" v-else>
-        <div class="flex gap-2 lg:gap-2 justify-end px-4 pt-4">
-            <input type="text" v-bind:placeholder="trans('actions.search')" class="grow md:flex-none md:w-80" v-model="searchTerm" />
-            <div class="relative">
+    <div class="flex flex-col gap-2 lg:gap-5 relative h-full min-h-0 " v-else>
+        <!-- Toolbar -->
+        <div class="attributes-toolbar flex gap-2 lg:gap-2 items-center flex-wrap flex-none">
+            <a role="button" v-bind:class="deleteClass()" @click="deleteAll()" v-if="hasSelected()">
+                <i class="fa-regular fa-trash-can" aria-hidden="true" />
+                <span v-html="trans('columns.delete')"></span>
+                <span v-html="countSelected()" class="font-extrabold"></span>
+            </a>
+            <a role="button" @click="togglePrivate()" v-bind:class="togglePrivateClass()" v-if="isAdmin() && hasSelected()" >
+                <i class="fa-regular fa-lock-open" aria-hidden="true" />
+                <span v-html="trans('actions.toggle')"></span>
+                <span v-html="countSelected()" class="font-extrabold"></span>
+            </a>
+            <input type="text" v-bind:placeholder="trans('actions.search')" class="grow md:flex-none md:w-80" v-model="searchTerm" v-if="!hasSelected()" />
+            <div class="relative" v-if="!hasSelected()">
                 <a role="button" @click="toggleFilters()" class="btn2 btn-outline btn-sm">
                     <i class="fa-regular fa-bars-filter" aria-hidden="true" />
                     <span v-html="trans('actions.filters')"></span>
@@ -20,28 +31,15 @@
                     </div>
                 </div>
             </div>
-
-        </div>
-        <div class="flex gap-2 md:gap-5 flex-wrap px-4 pb-4">
-            <a role="button" v-bind:class="deleteClass()" @click="deleteAll()">
-                <i class="fa-regular fa-trash-can" aria-hidden="true" />
-                <span v-html="trans('columns.delete')"></span>
-            </a>
-            <a role="button" @click="togglePrivate()" v-bind:class="togglePrivateClass()" v-if="isAdmin()">
-                <i class="fa-regular fa-lock-open" aria-hidden="true" />
-                <span v-html="trans('actions.toggle')"></span>
-            </a>
-            <a role="button" class="btn2 btn-outline btn-sm md:ml-auto" @click="toggleTemplates()">
-                <i class="fa-regular fa-file-import" aria-hidden="true" />
-                <span v-html="trans('actions.load')"></span>
-            </a>
-            <a href="https://docs.kanka.io/en/latest/features/attributes.html" class="btn2 btn-ghost btn-sm">
+            <a href="https://docs.kanka.io/en/latest/features/properties.html" class="btn2 btn-ghost btn-sm" v-if="!hasSelected()">
                 <i class="fa-regular fa-question-circle" aria-hidden="true" />
                 <span v-html="trans('actions.help')"></span>
             </a>
         </div>
-        <div class="w-full flex flex-col gap-2">
-            <div class="flex gap-2 border-b border-base-300 text-neutral-content text-xs md:text-sm font-light px-4">
+
+        <!-- Middle -->
+        <div class="w-full flex flex-col gap-2 flex-1 min-h-0 overflow-hidden">
+            <div class="flex gap-2 border-b border-base-300 text-neutral-content items-center text-xs font-light px-4 flex-none">
                 <div class="w-6 md:w-8 flex-none"></div>
                 <div class="w-6 md:w-8 flex-none">
                     <input type="checkbox" @change="toggleAll()" v-model="checkedAll" />
@@ -60,32 +58,39 @@
                 <div class="lg:hidden flex-none text-center" v-html="trans('columns.preferences')">
                 </div>
             </div>
-            <draggable v-model="visibleAttributes" handle=".handle" class="w-full flex flex-col gap-2">
-                <attributes-manager-attribute
-                    v-for="attribute in visibleAttributes"
-                    :key="attribute.id"
-                    :attribute="attribute"
-                    :attributes="attributes"
-                    :isAdmin="isAdmin()"
-                    :showHidden="showHidden"
-                    :i18n="i18n"
-                    :search-term="searchTerm"
-                    :mention-api="meta.mentions"
-                    @remove="removeAttribute"
-                >
-                </attributes-manager-attribute>
-            </draggable>
+            <div class="flex-1 min-h-0 overflow-y-auto">
+                <draggable v-model="visibleAttributes" handle=".handle" class="w-full flex flex-col gap-2">
+                    <attributes-manager-attribute
+                        v-for="attribute in visibleAttributes"
+                        :key="attribute.id"
+                        :attribute="attribute"
+                        :attributes="attributes"
+                        :isAdmin="isAdmin()"
+                        :showHidden="showHidden"
+                        :i18n="i18n"
+                        :search-term="searchTerm"
+                        :mention-api="meta.mentions"
+                        @remove="removeAttribute"
+                    >
+                    </attributes-manager-attribute>
+                </draggable>
+            </div>
             <div v-if="visibleAttributes.length === 0" class="w-full px-5 italic" v-html="trans('filters.no_results')">
             </div>
         </div>
-        <attributes-manager-form
-            :attributes="attributes"
-            :visible-attributes="visibleAttributes"
-            :i18n="i18n"
-            :newAttributeID="newAttributeID"
-            :max="meta.max"
-            @incrementNewAttributeID="incrementNewAttributeID">
-        </attributes-manager-form>
+
+        <div class="flex-none">
+            <attributes-manager-form
+                :attributes="attributes"
+                :visible-attributes="visibleAttributes"
+                :i18n="i18n"
+                :newAttributeID="newAttributeID"
+                :max="meta.max"
+                @incrementNewAttributeID="incrementNewAttributeID"
+                @openTemplates="toggleTemplates"
+            >
+            </attributes-manager-form>
+        </div>
     </div>
 
     <dialog class="dialog rounded-top md:rounded-2xl bg-base-100 min-w-fit shadow-md text-base-content" id="templates-dialog" aria-modal="true" v-if="!loading">
@@ -218,8 +223,19 @@ const deleteClass = () => {
     return 'btn2 btn-error btn-outline  btn-sm'
 }
 
+const getSelected = () => {
+    return attributes.value.filter(attribute => attribute.is_checked == true);
+}
+const hasSelected = () => {
+    return getSelected().length > 0;
+}
+const countSelected = () => {
+    let selected = getSelected();
+    return selected.length;
+}
+
 const deleteAll = () => {
-    let selected = attributes.value.filter(attribute => attribute.is_checked);
+    let selected = getSelected();
     if (selected.length === 0) {
         return window.showToast(trans('toasts.no_attributes_selected'),
         'error');

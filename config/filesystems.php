@@ -66,6 +66,13 @@ return [
             'root' => env('APP_ENV'),
             'endpoint' => env('HETZNER_S3_ENDPOINT'),
             'use_path_style_endpoint' => true,
+            'options' => [
+                'MultipartThreshold' => 1024 * 1024 * 100, // 100MB
+            ],
+            'http' => [
+                'timeout' => 0,        // No timeout for the request
+                'connect_timeout' => 10, // Time to wait for a connection
+            ],
             'throw' => false,
             'visibility' => 'private',
         ],

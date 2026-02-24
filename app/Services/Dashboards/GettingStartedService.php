@@ -54,8 +54,9 @@ class GettingStartedService
     protected function character(): self
     {
         $completed = $this->campaign
-            ->characters()
-            ->where('created_at', '>', $this->campaign->created_at->addSeconds(10))
+            ->entities()
+            ->where('type_id', config('entities.ids.character'))
+            ->where('source', 'user')
             ->count() > 0;
         $this->track(
             'character',
@@ -69,8 +70,9 @@ class GettingStartedService
     protected function location(): self
     {
         $completed = $this->campaign
-            ->locations()
-            ->where('created_at', '>', $this->campaign->created_at->addSeconds(10))
+            ->entities()
+            ->where('type_id', config('entities.ids.location'))
+            ->where('source', 'user')
             ->count() > 0;
         $this->track(
             'location',

@@ -11,6 +11,7 @@ $child = $entity->child;
 @endif
 
 <x-sidebar.profile>
+    @includeWhen($entity->aliases->isNotEmpty(), 'entities.components.profile._aliases')
     @if (!empty($child->colour))
         <div class="element profile-colour">
             <div class="title text-uppercase text-xs">{{ __('crud.fields.colour') }}</div>

@@ -16,12 +16,12 @@ class RaceResource extends EntityResource
     {
         /** @var Race $model */
         $model = $this->resource;
-        $locationIDs = $model->locations()->pluck('locations.id');
+        $locationIds = $model->entity->locations->pluck('id');
 
         return $this->entity([
             'race_id' => $model->race_id,
             'is_extinct' => $model->isExtinct(),
-            'locations' => $locationIDs,
+            'locations' => $locationIds,
         ]);
     }
 }

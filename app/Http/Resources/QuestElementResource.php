@@ -20,8 +20,8 @@ class QuestElementResource extends ModelResource
         return $this->entity([
             'entity_id' => $model->entity_id,
             'name' => $model->name,
-            'description' => $model->description,
-            'description_parsed' => ! empty($model->description) ? $model->parsedEntry() : null,
+            'entry' => $model->entry,
+            'entry_parsed' => ! empty($model->entry) ? $model->parsedEntry() : null,
             'colour' => $model->colour,
             'role' => $model->role,
             'visibility_id' => $model->visibility_id,

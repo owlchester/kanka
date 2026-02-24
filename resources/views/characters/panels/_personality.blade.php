@@ -25,7 +25,7 @@ $traits = $entity->child->personality;
                 </div>
             @endif
         </div>
-        <div class="bg-box rounded" id="character-personality">
+        <div class="bg-box rounded-lg" id="character-personality">
             <div class="entity-content overflow-hidden" id="character-personality-body">
                 <div class="flex flex-col gap-3 md:grid md:grid-cols-2 xl:grid-cols-3 p-4">
                     @foreach ($traits as $trait)

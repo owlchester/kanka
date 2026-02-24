@@ -13,18 +13,18 @@ return [
         'unlimited' => ':amount of unlimited roles created.',
     ],
     'permissions'   => [
-        'campaign-features' => 'Campaign features',
-        'content-modules'   => 'Content modules',
+        'campaign-features' => 'Features',
+        'content-modules'   => 'Content categories',
         'toggle'            => [
             'action'    => 'Toggle all',
-            'tooltip'   => 'Toggle the :action permission for all modules.',
+            'tooltip'   => 'Toggle the :action permission for all categories.',
         ],
     ],
     'public'        => [
         'helpers'   => [
-            'click'     => 'Click any module to toggle public access to all entities within it.',
+            'click'     => 'Click any category to toggle public access to all entries within it.',
             'intro'     => 'Control what non-members can see in the campaign.',
-            'main'      => 'Select which modules are visible to anyone viewing the campaign, whether they\'re logged in or not. This includes both public visitors and Kanka users who aren\'t campaign members.',
+            'main'      => 'Select which categories are visible to anyone viewing the campaign, whether they\'re logged in or not. This includes both public visitors and Kanka users who aren\'t campaign members.',
             'preview'   => 'Preview as non-member',
         ],
     ],

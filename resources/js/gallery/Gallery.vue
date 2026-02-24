@@ -238,7 +238,7 @@
 
 <script setup lang="ts">
 
-import {onMounted, onUnmounted, onBeforeUnmount, ref} from "vue";
+import {onMounted, onUnmounted, onBeforeUnmount, ref, nextTick} from "vue";
 import Preview from "./Preview.vue";
 import File from "./File.vue";
 
@@ -347,19 +347,23 @@ onMounted(() => {
             total.value = res.data.space.total
             used.value = res.data.space.used
             upgradeLink.value = res.data.upgrade
+
+            // Set up infinite scroll observer after data is loaded
+            nextTick(() => {
+                observer = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            openNextPage()
+                        }
+                    })
+                })
+
+                if (infiniteScrollTrigger.value) {
+                    observer.observe(infiniteScrollTrigger.value)
+                }
+            })
         })
 
-    observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            openNextPage()
-        }
-        })
-    })
-
-    if (infiniteScrollTrigger.value) {
-        observer.observe(infiniteScrollTrigger.value)
-    }
     window.addEventListener('keydown', handleEscapeKey)
 })
 

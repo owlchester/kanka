@@ -9,4 +9,5 @@ return [
         'tab_name'  => 'Profile',
         'title'     => ':name Profile',
     ],
+    'aliases' => 'Aliases',
 ];

@@ -1,6 +1,9 @@
 
 @if (!empty($label))
-    <label>{{ \App\Facades\Module::plural(config('entities.ids.tag'), __('entities.tags')) }}
+    <label>
+        <span class="text-xs font-medium opacity-80">
+            {{ \App\Facades\Module::plural(config('entities.ids.tag'), __('entities.tags')) }}
+        </span>
         @if(!empty($helper))
             <x-helpers.tooltip :title="$helper" />
         @endif

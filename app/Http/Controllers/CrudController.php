@@ -17,6 +17,7 @@ use App\Models\MiscModel;
 use App\Renderers\DatagridRenderer;
 use App\Sanitizers\MiscSanitizer;
 use App\Services\AttributeService;
+use App\Services\Entity\AliasService;
 use App\Services\Entity\CopyService;
 use App\Services\FilterService;
 use App\Services\MultiEditingService;
@@ -428,6 +429,10 @@ class CrudController extends Controller
                             ->replaceMentions((int) $request->post('copy_source_id'));
                     }
                 }
+
+                /** @var AliasService $aliasService */
+                $aliasService = app()->make(AliasService::class);
+                $aliasService->entity($new->entity)->request($request)->save();
             }
 
             $link = '<a href="' . route(
@@ -440,6 +445,15 @@ class CrudController extends Controller
             ]);
 
             session()->flash('success_raw', $success);
+
+            if (auth()->user()->editor === 'tiptap') {
+                $count = session()->get('tiptap_survey_count', 0);
+                $count++;
+                session()->put('tiptap_survey_count', $count);
+                if ($count % 5 === 0) {
+                    session()->flash('tiptap_survey', true);
+                }
+            }
 
             if ($request->has('submit-new')) {
                 $route = route($this->route . '.create', $this->campaign);
@@ -532,6 +546,8 @@ class CrudController extends Controller
         $override = $this->view . '.forms.edit';
         if (view()->exists($override)) {
             $view = $override;
+        } else {
+            dd('Missing form override for ' . $this->view);
         }
 
         return view($view, $params);
@@ -585,6 +601,10 @@ class CrudController extends Controller
                         ->entity($model->entity)
                         ->save($request->get('attribute', []));
                 }
+
+                /** @var AliasService $aliasService */
+                $aliasService = app()->make(AliasService::class);
+                $aliasService->entity($model->entity)->request($request)->save();
             }
 
             $link = '<a href="' . route(

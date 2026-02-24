@@ -104,12 +104,12 @@
 
     <section class="lg:max-w-7xl lg:mx-auto flex flex-col gap-10 lg:gap-10 py-10 lg:py-12 px-4 xl:px-0 text-dark" id="profile">
 
-        <div class="flex gap-10 w-full">
-            <div class="grow">
+        <div class="flex gap-10 w-full justify-between">
+            <div class="flex flex-col gap-10">
                 @if (!$campaigns->isEmpty())
-                    <h1>{{ __('users/profile.fields.public_campaigns') }}</h1>
+                    <h2>{{ __('users/profile.fields.public_campaigns') }}</h2>
 
-                    <div class="flex gap-5 flex-wrap">
+                    <div class="flex gap-5 md:gap-10 flex-wrap">
                         @foreach ($campaigns as $campaign)
                             <div class="">
                                 @include('front._campaign', ['campaign' => $campaign, 'featured' => false])

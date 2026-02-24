@@ -32,6 +32,8 @@ class Handler extends ExceptionHandler
         \Symfony\Component\Mailer\Exception\HttpTransportException::class,
         \Symfony\Component\ErrorHandler\Error\FatalError::class,
         \Laravel\Passport\Exceptions\OAuthServerException::class,
+        \Livewire\Features\SupportLockedProperties\CannotUpdateLockedPropertyException::class,
+        \Illuminate\Broadcasting\BroadcastException::class,
         NotFoundHttpException::class,
     ];
 
