@@ -1,8 +1,10 @@
-<div class="relative" wire:click.away="$set('open', false)">
-    {{ __('campaigns/import.csv.selected_tags') }}
-    <div class="flex flex-wrap gap-2 mb-2">
+<div class="relative flex flex-col gap-1" wire:click.away="$set('open', false)">
+    <label class="text-xs font-semibold opacity-80">
+        {{ __('campaigns/import.csv.selected_tags') }}
+    </label>
+    <div class="flex flex-wrap gap-2 ">
         @foreach ($selected as $tag)
-            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded flex items-center gap-1">
+            <span class="bg-neutral text-neutral-content px-2 py-1 rounded-2xl text-xs flex items-center gap-1">
                 {{ $tag['label'] }}
                 <button
                     type="button"

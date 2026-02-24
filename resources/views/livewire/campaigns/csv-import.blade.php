@@ -8,7 +8,7 @@
                 </x-helper>
 
                 <div class="field field-type flex flex-col gap-1">
-                    <label class="font-semibold text-xs opacity-80">{{ __('crud.fields.entity_type') }}</label>
+                    <label class="font-semibold text-xs opacity-80">{{ __('crud.fields.category') }}</label>
                     <select wire:model="entityType" class="form-control w-full" required>
                         @foreach ($entityTypes as $value => $label)
                             <option value="{{ $value }}">
@@ -86,7 +86,7 @@
 
                                 <button type="button"
                                         wire:click="removePersonality({{ $index }})"
-                                        class="btn btn-sm btn-error btn-outline">
+                                        class="btn2 btn-sm btn-error btn-outline">
                                     <x-icon class="trash" tooltip :title="__('generic.remove')" />
                                 </button>
                             </div>
@@ -117,7 +117,7 @@
 
                                 <button type="button"
                                         wire:click="removeAppearance({{ $index }})"
-                                        class="btn btn-sm btn-error btn-outline">
+                                        class="btn2 btn-sm btn-error btn-outline">
                                     <x-icon class="fa-regular fa-trash-can" tooltip :title="__('generic.remove')" />
                                 </button>
                             </div>
@@ -127,13 +127,12 @@
 
                 <h2 class="text-xl">{{ $tagLabel }}</h2>
 
-
                 <livewire:campaigns.tags
                     :campaign="$campaign"
                     wire:model="tags"
                 />
 
-                <div class="overflow-x-auto">
+                <div class="overflow-x-auto flex flex-col gap-4 mt-6">
                     @if (count($columnMap) != 0)
                         <h2 class="text-2xl">{{ __('campaigns/import.csv.preview') }}</h2>
 

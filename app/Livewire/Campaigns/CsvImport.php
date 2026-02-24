@@ -47,7 +47,7 @@ class CsvImport extends Component
     public function mount(Campaign $campaign, CampaignImport $campaignImport)
     {
         $this->campaign = $campaign;
-        
+
         UserCache::campaign($this->campaign);
         Avatar::campaign($this->campaign);
         CampaignCache::campaign($this->campaign);
@@ -58,9 +58,18 @@ class CsvImport extends Component
         $this->import = $campaignImport;
         $entityTypeService = app(EntityTypeService::class);
 
+        $excluded = [
+            config('entities.ids.bookmark'),
+            config('entities.ids.whiteboard'),
+            config('entities.ids.bookmark'),
+            config('entities.ids.dice_roll'),
+            config('entities.ids.attribute_template'),
+            config('entities.ids.conversation'),
+            config('entities.ids.calendar')
+        ];
         $this->entityTypes = $entityTypeService
             ->campaign($campaign)
-            ->exclude([config('entities.ids.bookmark'), config('entities.ids.whiteboard'), config('entities.ids.bookmark'), config('entities.ids.dice_roll'), config('entities.ids.attribute_template'), config('entities.ids.conversation'), config('entities.ids.calendar')])
+            ->exclude($excluded)
             ->toSelect();
 
         $this->entityType = array_key_first($this->entityTypes);
@@ -101,39 +110,54 @@ class CsvImport extends Component
     {
         $this->type = EntityType::where('id', $this->entityType)->first();
         $this->canAssign = true;
+
         $fields = app()->make(Entity::class)->getFillable();
-        if (!$this->type->isCustom()) {
-            $modelFields = $this->type->getMiscClass()->getFillable();
-            $fields = array_unique(array_merge($fields, $modelFields));
+        if (! $this->type->isCustom()) {
+            $fields = array_unique(array_merge($fields, $this->type->getMiscClass()->getFillable()));
         }
 
-        //$this->fillableFields = array_values(array_diff($this->fillableFields, ['campaign_id', 'entity_id']));
+        $fields = array_values(array_filter($fields, fn ($field) => $this->isImportableField($field)));
 
-        $fields = array_values(array_filter(
-            $fields,
-            fn($field) => !str_ends_with($field, '_id') && !str_ends_with($field, 'uuid') && $field != 'is_template' && $field != 'is_template' && $field != 'slug' && $field != 'is_attributes_private'
-        ));
-        
         foreach ($fields as $field) {
             $this->fillableFields[$field] = $this->fieldName($field);
         }
-        //dd($this->fillableFields);
-        
+
         $this->fullColumns = $this->import->config['filled_columns'];
+    }
+
+    protected function isImportableField(string $field): bool
+    {
+        $excluded = [
+            'is_template',
+            'is_attributes_private',
+            'slug',
+            'source',
+            'header_image',
+        ];
+
+        if (str_ends_with($field, '_id') || str_ends_with($field, 'uuid')) {
+            return false;
+        }
+
+        return ! in_array($field, $excluded);
     }
 
     public function fieldName(string $field): string
     {
-        try {
-            $crudKey = 'crud.fields.' . $field;
-            $crudTrans = __($crudKey);
-            if ($crudTrans != $crudKey) {
-                return $crudTrans;
+        $keys = [
+            'crud.fields.' . $field,
+            'fields.' . $field . '.label',
+            $this->type->pluralCode() . '.fields.' . $field,
+        ];
+
+        foreach ($keys as $key) {
+            $translation = __($key);
+            if ($translation !== $key) {
+                return $translation;
             }
-            return __($this->type->pluralCode() . '.fields.' . $field);
-        } catch (\Exception $e) {
-            return 'Invalid_field_translation';
         }
+
+        return $field;
     }
 
     public function updatedColumnMap($value, $key)
@@ -145,7 +169,7 @@ class CsvImport extends Component
         }
     }
 
-    public function submit() 
+    public function submit()
     {
         $tagIds = [];
         foreach ($this->tags as $tag) {
