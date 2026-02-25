@@ -344,7 +344,6 @@ return [
         ],
         'tabs'      => [
             'achievements'      => 'Achievements',
-            'applications'      => 'Applications',
             'customisation'     => 'Customisation',
             'danger'            => 'Danger',
             'data'              => 'Data',
