@@ -9,6 +9,7 @@ use App\Models\Campaign;
 use App\Models\CampaignFilter;
 use App\Services\Campaign\ApplicationService;
 use App\Services\LanguageService;
+use Illuminate\Support\Str;
 use Stevebauman\Purify\Facades\Purify;
 
 class ApplicationSetupController extends Controller
@@ -27,7 +28,7 @@ class ApplicationSetupController extends Controller
         for ($i = -12; $i <= 14; $i++) {
             $prefix = ($i >= 0) ? '+' : '-';
             // Formats to "UTC +05:00" or "UTC -11:00"
-            $utcString = 'UTC ' . $prefix . str_pad(abs($i), 2, '0', STR_PAD_LEFT) . ':00';
+            $utcString = 'UTC ' . $prefix . Str::padLeft((string) abs($i), 2, '0') . ':00';
 
             $timezones[$utcString] = $utcString;
         }
