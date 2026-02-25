@@ -184,6 +184,10 @@ Route::patch('/w/{campaign}/modules/{entity_type}/update', [ModuleController::cl
 Route::delete('/w/{campaign}/modules/reset', [ModuleController::class, 'reset'])->name('modules.reset');
 
 Route::get('/w/{campaign}/campaign-applications', 'Campaign\ApplicationController@toggle')->name('campaign-applications');
+Route::get('/w/{campaign}/campaign-applications/setup', 'Campaign\ApplicationSetupController@setup')->name('campaign-applications.setup');
+Route::post('/w/{campaign}/campaign-applications/setup', 'Campaign\ApplicationSetupController@saveSetup')->name('campaign-applications.setup.save');
+Route::get('/w/{campaign}/campaign-applications/dashboard-widget', 'Campaign\ApplicationDashboardController@index')->name('campaign-applications.dashboard-widget');
+Route::post('/w/{campaign}/campaign-applications/dashboard-widget', 'Campaign\ApplicationDashboardController@store')->name('campaign-applications.dashboard-widget.store');
 Route::post('/w/{campaign}/campaign-applications', 'Campaign\ApplicationController@toggleSave')->name('campaign-applications.save');
 
 // Campaign sidebar setup

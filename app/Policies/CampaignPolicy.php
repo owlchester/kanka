@@ -181,6 +181,18 @@ class CampaignPolicy
     }
 
     /**
+     * Determine if the campaign setup is complete enough to be opened for applications
+     */
+    public function canOpen(User $user, Campaign $campaign): bool
+    {
+        return $campaign->filters->count() === count(\App\Enums\CampaignFilterType::cases())
+            && $campaign->systems->isNotEmpty()
+            && $campaign->genres->isNotEmpty()
+            && $campaign->playstyles->isNotEmpty()
+            && ! empty($campaign->locale);
+    }
+
+    /**
      * Determine if a user can apply to a campaign
      */
     public function apply(User $user, Campaign $campaign): bool

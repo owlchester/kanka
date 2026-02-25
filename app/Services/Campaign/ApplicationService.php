@@ -2,9 +2,11 @@
 
 namespace App\Services\Campaign;
 
+use App\Enums\ApplicationStatus;
 use App\Events\Campaigns\Applications\Accepted;
 use App\Events\Campaigns\Applications\Rejected;
 use App\Facades\CampaignCache;
+use App\Http\Requests\Campaigns\StoreCampaignApplication;
 use App\Jobs\Campaigns\NotifyAdmins;
 use App\Models\Application;
 use App\Models\CampaignRoleUser;
@@ -31,13 +33,17 @@ class ApplicationService
         return $this;
     }
 
-    public function apply(?string $reason = null): self
+    public function apply(StoreCampaignApplication $request): self
     {
-        $application = new Application;
-        $application->text = $reason;
-        $application->user_id = $this->user->id;
-        $application->campaign_id = $this->campaign->id;
-        $application->save();
+
+        $data = $request->validated();
+
+        // Attach relationship data
+        $data['campaign_id'] = $this->campaign->id;
+        $data['user_id'] = $this->user->id;
+
+        // Create the record
+        Application::create($data);
 
         CampaignCache::campaign($this->campaign)->clear();
 
@@ -80,11 +86,11 @@ class ApplicationService
                     ])
                 );
             Rejected::dispatch($this->application, $this->campaign, $this->user);
+            $this->application->update(['status' => ApplicationStatus::Rejected]);
         } else {
             $this->approve((int) Arr::get($data, 'role_id'), $this->purify(Arr::get($data, 'reason')));
+            $this->application->update(['status' => ApplicationStatus::Approved]);
         }
-
-        $this->application->delete();
 
         return $return;
     }

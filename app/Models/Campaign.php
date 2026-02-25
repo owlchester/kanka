@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\CampaignFilterType;
 use App\Enums\CampaignVisibility;
 use App\Enums\Descendants;
 use App\Enums\Permission;
@@ -45,6 +46,7 @@ use Illuminate\Support\Collection;
  * @property int $visible_entity_count
  * @property array $ui_settings
  * @property bool|int $is_open
+ * @property bool|int $is_prioritised
  * @property array|null $default_images
  * @property array|null $settings
  * @property Carbon $created_at
@@ -90,6 +92,7 @@ class Campaign extends Model
         'ui_settings',
         'settings',
         'is_open',
+        'is_prioritised',
     ];
 
     protected $casts = [
@@ -505,5 +508,15 @@ class Campaign extends Model
         $role = $this->adminRole();
 
         return Arr::get($role, 'name', __('campaigns.roles.admin_role'));
+    }
+
+    /**
+     * Helper to get a specific filter value by its Enum type
+     */
+    public function getFilter(CampaignFilterType $type): ?string
+    {
+        $filter = $this->filters->firstWhere('type', $type);
+
+        return $filter ? $filter->entry : null;
     }
 }

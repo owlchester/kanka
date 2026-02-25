@@ -12,7 +12,10 @@
             @endif
             <div class="grow flex flex-col gap-0.5 overflow-hidden">
                 <p class="truncate">{!! $application->user->name !!}</p>
-                <p class="text-neutral-content">{{ $application->created_at->diffForHumans() }}</p>
+                <p class="text-neutral-content text-sm">{{ $application->created_at->diffForHumans() }}</p>
+                @if ($application->character_concept)
+                    <p class="text-neutral-content text-sm truncate">{{ \Illuminate\Support\Str::limit($application->character_concept, 20) }}</p>
+                @endif
             </div>
 
             <div class="rounded-full border border-base-300 h-8 w-8 flex items-center justify-center flex-none cursor-pointer" data-toggle="dialog" data-url="{{  route('applications.show', [$campaign, $application])}}">

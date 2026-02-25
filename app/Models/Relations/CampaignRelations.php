@@ -12,6 +12,7 @@ use App\Models\Calendar;
 use App\Models\CampaignDashboard;
 use App\Models\CampaignDashboardWidget;
 use App\Models\CampaignExport;
+use App\Models\CampaignFilter;
 use App\Models\CampaignFlag;
 use App\Models\CampaignFollower;
 use App\Models\CampaignImport;
@@ -40,6 +41,7 @@ use App\Models\Location;
 use App\Models\Map;
 use App\Models\Note;
 use App\Models\Organisation;
+use App\Models\Playstyle;
 use App\Models\Plugin;
 use App\Models\Post;
 use App\Models\Quest;
@@ -538,5 +540,21 @@ trait CampaignRelations
     public function spotlight(): HasOne
     {
         return $this->hasOne(Spotlight::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Playstyle, $this>
+     */
+    public function playstyles(): BelongsToMany
+    {
+        return $this->belongsToMany(Playstyle::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CampaignFilter, $this>
+     */
+    public function filters(): HasMany
+    {
+        return $this->hasMany(CampaignFilter::class);
     }
 }
