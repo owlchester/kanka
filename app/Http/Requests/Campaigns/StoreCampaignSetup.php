@@ -24,11 +24,11 @@ class StoreCampaignSetup extends FormRequest
     public function rules()
     {
         return [
-            'locale' => 'required|string|max:10',
-            'systems' => 'required|array|min:1',
+            'locale' => 'nullable|string|max:10',
+            'systems' => 'nullable|array',
             'systems.*' => 'exists:game_systems,id',
-            'campaign_genre' => 'required|integer',
-            'genres' => 'required|array|min:1',
+            'campaign_genre' => 'nullable|integer',
+            'genres' => 'nullable|array',
             'genres.*' => 'exists:genres,id',
             'intro' => 'nullable|string|max:2000',
             'timezone' => 'nullable|string|max:45',

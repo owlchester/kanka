@@ -37,9 +37,15 @@
     </x-box>
 
     <x-box class="flex items-center gap-5 rounded-xl">
-        <div class="rounded {{ $campaign->isOpen() ? 'bg-green-200' : 'bg-red-200' }} w-12 h-12 flex items-center justify-center flex-none">
-            <x-icon class="fa-solid {{ $campaign->isOpen() ? 'fa-check text-green-600' : 'fa-times text-red-600' }}" />
-        </div>
+        @can('canOpen', $campaign)
+            <div class="rounded bg-green-200 w-12 h-12 flex items-center justify-center flex-none">
+                <x-icon class="fa-solid fa-check text-green-600" />
+            </div>
+        @else
+            <div class="rounded bg-red-200 w-12 h-12 flex items-center justify-center flex-none">
+                <x-icon class="fa-solid fa-times text-red-600" />
+            </div>
+        @endcan
         <div class="flex flex-col gap-0 grow">
             <span>{!! __('campaigns/applications.setup.title') !!}</span>
             @can('canOpen', $campaign)
@@ -53,4 +59,25 @@
             <x-icon class="fa-solid fa-angle-right" />
         </a>
     </x-box>
+
+    @if ($campaign->isOpen())
+        @php $hasJoinWidget = $campaign->widgets()->where('widget', \App\Enums\Widget::Join)->exists(); @endphp
+        <x-box class="flex items-center gap-5 rounded-xl">
+            <div class="rounded {{ $hasJoinWidget ? 'bg-green-200' : 'bg-red-200' }} w-12 h-12 flex items-center justify-center flex-none">
+                <x-icon class="fa-solid {{ $hasJoinWidget ? 'fa-check text-green-600' : 'fa-times text-red-600' }}" />
+            </div>
+            <div class="flex flex-col gap-0 grow">
+                <span>{!! __('campaigns/applications.dashboard_widget.title') !!}</span>
+                @if ($hasJoinWidget)
+                    <span class="text-green-600">{!! __('campaigns/applications.dashboard_widget.has_widget') !!}</span>
+                @else
+                    <span class="text-red-600">{!! __('campaigns/applications.dashboard_widget.no_widget') !!}</span>
+                @endif
+            </div>
+            <a href="{{ route('campaign-applications.dashboard-widget', $campaign) }}"
+            class="rounded-full border border-base-300 h-12 w-12 flex items-center justify-center cursor-pointer hover:bg-base-200 flex-none">
+                <x-icon class="fa-solid fa-angle-right" />
+            </a>
+        </x-box>
+    @endif
 </div>

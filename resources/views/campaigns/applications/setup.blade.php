@@ -34,18 +34,16 @@
 
             <x-forms.field
                 field="intro"
-                required
                 :label="__('campaigns/applications.fields.intro')">
                 <textarea
                     name="intro"
                     id="intro"
                     class="w-full"
-                    required
                     placeholder="{{ __('campaigns/applications.placeholders.intro') }}"
                 >{{ old('intro', $campaign->getFilter(\App\Enums\CampaignFilterType::Intro)) }}</textarea>
             </x-forms.field>
 
-            @include('campaigns.forms.panes._discovery', ['model' => $campaign])
+            @include('campaigns.forms.panes._discovery', ['model' => $campaign, 'hideLocale' => true, 'hideRequired' => true])
 
             <x-forms.field
                 field="tags"
@@ -58,6 +56,13 @@
             </x-forms.field>
 
             <h4 class="m-0 text-lg">{{ __('campaigns/applications.timezone') }}</h4>
+
+            <x-forms.field
+                field="locale"
+                :label="__('campaigns.fields.locale')"
+                :helper="__('campaigns.sharing.language')">
+                <x-forms.select name="locale" :options="$languages" :selected="old('locale', $campaign->locale)" />
+            </x-forms.field>
 
             <x-forms.field
                 field="timezone"

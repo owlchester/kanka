@@ -10,6 +10,7 @@
 </x-helper>
 
 <x-grid>
+    @unless(isset($hideLocale) && $hideLocale)
     <x-forms.field
             field="locale"
             required
@@ -17,6 +18,7 @@
             :helper="__('campaigns.sharing.language')">
         <x-forms.select name="locale" :options="$languages" :selected="$campaign->locale ?? null" />
     </x-forms.field>
+    @endunless
     @php
         $selected = [];
         if (isset($model)) {
@@ -28,7 +30,7 @@
     <x-forms.foreign
         field="systems"
         label="campaigns.fields.system"
-        required
+        :required="!(isset($hideRequired) && $hideRequired)"
         :multiple="true"
         :helper="__('campaigns.sharing.system')"
         name="systems[]"
@@ -42,7 +44,7 @@
 
     <x-forms.field
         field="genre"
-        required
+        :required="!(isset($hideRequired) && $hideRequired)"
         :label="__('campaigns.fields.genre')">
         <input type="hidden" name="campaign_genre" value="1">
         @include('components.form.genres', ['options' => [
