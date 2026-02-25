@@ -3,7 +3,7 @@
     'breadcrumbs' => [
         Breadcrumb::campaign($campaign)->entity($entity)->list(),
         Breadcrumb::show(),
-        __('crud.tabs.story'),
+        __('fields.description.label'),
         __('crud.edit')
     ],
     'mainTitle' => false,
