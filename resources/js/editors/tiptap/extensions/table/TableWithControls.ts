@@ -16,16 +16,6 @@ export const TableWithControls = Table.extend({
                     return { class: attributes.class }
                 },
             },
-            style: {
-                default: null,
-                parseHTML: element => element.getAttribute('style'),
-                renderHTML: attributes => {
-                    if (!attributes.style) {
-                        return {}
-                    }
-                    return { style: attributes.style }
-                },
-            },
         }
     },
 

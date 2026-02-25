@@ -113,6 +113,8 @@ return [
                 . 'colgroup,'
                 . 'col[style|class],'
                 . 'tr[class|style|id],'
+                . 'colgroup,'
+                . 'col[style|class],'
                 . 'td[class|style|abbr|colspan|rowspan|colwidth|title|align|valign],'
                 . 'th[class|style|abbr|colspan|rowspan|colwidth|title|align|valign],',
 

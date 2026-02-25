@@ -5,8 +5,8 @@
     import { BubbleMenu, FloatingMenu } from '@tiptap/vue-3/menus'
     import Link from '@tiptap/extension-link'
     import TableRow from '@tiptap/extension-table-row'
-    import TableCell from '@tiptap/extension-table-cell'
-    import TableHeader from '@tiptap/extension-table-header'
+    import { CustomTableCell } from './extensions/table/CustomTableCell'
+    import { CustomTableHeader } from './extensions/table/CustomTableHeader'
     import { TableWithControls } from './extensions/table/TableWithControls'
     import { ListKit } from '@tiptap/extension-list'
     import { TableKit } from "@tiptap/extension-table"
@@ -113,16 +113,13 @@
         }),
         TableWithControls.configure({
             resizable: true,
+            allowTableNodeSelection: true,
         }),
         TableRow,
-        TableCell.configure({
+        CustomTableCell.configure({
         }),
-        TableHeader.configure({
+        CustomTableHeader.configure({
         }),
-        // TableKit.configure({
-        //     table: {
-        //     },
-        // }),
         SlashCommand.configure({
             suggestion: slashCommandSuggestion(),
         }),
@@ -553,29 +550,16 @@
 <style>
 .tiptap-editor {
     table {
-        border-collapse: collapse;
-        border: 1px solid hsl(var(--bc)/.1);
-        overflow: hidden;
-        table-layout: fixed;
 
         td, th {
             box-sizing: border-box;
-            position: relative;
-            border: 1px solid hsl(var(--bc)/.1);
-            min-width: 1em;
-            vertical-align: top;
-
-            > * {
-                margin-bottom: 0;
-            }
-        }
-        & th, & td {
-            line-height: 1.5rem;
-            padding: .5rem;
         }
 
+        .selectedCell {
+            background: hsl(var(--p)/1);
+            color: hsl(var(--pc)/1);
+        }
         .selectedCell:after {
-            background: hsl(var(--pc)/1);
             content: '';
             left: 0;
             right: 0;

@@ -15,14 +15,27 @@ table {
     }
 }
 
-.table {
-    width: 100%;
-    th, td {
+table {
+    border-collapse: collapse;
+    border: 1px solid hsl(var(--bc)/.1);
+    overflow: hidden;
+    table-layout: fixed;
+
+    & th, & td {
         line-height: 1.5rem;
         padding: .5rem;
+        min-width: 1em;
+    }
+    th, td {
+        border: 1px solid hsl(var(--bc)/.1);
+        position: relative;
+
+        > * {
+            margin-bottom: 0;
+        }
     }
     th {
-        border-bottom-width: 1px;
+        vertical-align: top;
     }
     tr:not(:last-of-type) {
         td {
