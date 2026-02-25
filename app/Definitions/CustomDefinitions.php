@@ -23,6 +23,9 @@ class CustomDefinitions implements Definition
         $def->addAttribute('a', 'data-entity-type', 'Text');
         $def->addAttribute('a', 'target', 'Text');
 
+        $def->addAttribute('th', 'colwidth', 'Text');
+        $def->addAttribute('td', 'colwidth', 'Text');
+
         // Gallery
         $def->addAttribute('img', 'data-gallery-id', 'Text');
         $def->addAttribute('img', 'data-uuid', 'Text');

@@ -1,7 +1,6 @@
 
 import { Table } from '@tiptap/extension-table'
 import { mergeAttributes } from '@tiptap/core'
-import { Plugin, PluginKey } from '@tiptap/pm/state'
 
 export const TableWithControls = Table.extend({
     addAttributes() {

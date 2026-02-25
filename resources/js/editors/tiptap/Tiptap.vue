@@ -551,37 +551,62 @@
 }
 </style>
 <style>
-.tiptap-editor .ProseMirror {
+.tiptap-editor {
     table {
+        border-collapse: collapse;
+        border: 1px solid hsl(var(--bc)/.1);
+        overflow: hidden;
+        table-layout: fixed;
+
         td, th {
-            > p {
-                margin-bottom: 0 !important;
+            box-sizing: border-box;
+            position: relative;
+            border: 1px solid hsl(var(--bc)/.1);
+            min-width: 1em;
+            vertical-align: top;
+
+            > * {
+                margin-bottom: 0;
             }
         }
+        & th, & td {
+            line-height: 1.5rem;
+            padding: .5rem;
+        }
 
-        .selectedCell {
-            background-color: hsl(var(--p) / .2) !important;
+        .selectedCell:after {
+            background: hsl(var(--pc)/1);
+            content: '';
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            pointer-events: none;
+            position: absolute;
+            z-index: 2;
         }
 
         .column-resize-handle {
-            background-color: hsl(var(--p) / 1);
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            width: 4px;
-            transform: translateX(50%);
+            background: hsl(var(--p)/1);
+            bottom: -2px;
             pointer-events: none;
-            z-index: 10;
+            position: absolute;
+            right: -2px;
+            top: 0;
+            width: 4px;
         }
     }
 
+    .tableWrapper {
+        margin: 1.5rem 0;
+        overflow-x: auto;
+    }
+
     &.resize-cursor {
+        cursor: ew-resize;
         cursor: col-resize;
     }
-}
 
-.tiptap-editor {
     .ProseMirror-selectednode img {
         outline: 2px solid hsl(var(--p)/1);
     }
