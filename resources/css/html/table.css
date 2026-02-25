@@ -17,7 +17,7 @@ table {
 
 table {
     border-collapse: collapse;
-    border: 1px solid hsl(var(--bc)/.1);
+    border: 1px solid hsl(var(--bc)/var(--tw-border-opacity));
     overflow: hidden;
     table-layout: fixed;
 
@@ -27,7 +27,8 @@ table {
         min-width: 1em;
     }
     th, td {
-        border: 1px solid hsl(var(--bc)/.1);
+        --tw-border-opacity: 0.2;
+        border: 1px solid hsl(var(--bc)/var(--tw-border-opacity));
         position: relative;
 
         > * {
