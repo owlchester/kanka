@@ -573,6 +573,7 @@
         .column-resize-handle {
             background: hsl(var(--p)/1);
             bottom: -2px;
+            margin: 0;
             pointer-events: none;
             position: absolute;
             right: -2px;

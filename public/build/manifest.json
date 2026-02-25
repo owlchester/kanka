@@ -180,7 +180,7 @@
     "src": "node_modules/rpg-awesome/fonts/rpgawesome-webfont.woff"
   },
   "resources/css/app.css": {
-    "file": "assets/app-CxwCYupG.css",
+    "file": "assets/app-CEQ9wOdg.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -460,7 +460,7 @@
     ]
   },
   "resources/js/editors/tiptap/Tiptap.vue": {
-    "file": "assets/Tiptap-9gCoISKY.js",
+    "file": "assets/Tiptap-DkIAYJH_.js",
     "name": "Tiptap",
     "src": "resources/js/editors/tiptap/Tiptap.vue",
     "isDynamicEntry": true,
@@ -475,7 +475,7 @@
       "resources/js/editors/tiptap/SourceEditor.vue"
     ],
     "css": [
-      "assets/Tiptap-C0deJ6VN.css"
+      "assets/Tiptap-uUVU92MP.css"
     ]
   },
   "resources/js/editors/tiptap/extensions/gallery/GalleryDialog.vue": {
@@ -493,7 +493,7 @@
     ]
   },
   "resources/js/editors/tiptap/index.js": {
-    "file": "assets/index-Y7o3Nwbw.js",
+    "file": "assets/index-DOJVPkuT.js",
     "name": "index",
     "src": "resources/js/editors/tiptap/index.js",
     "isEntry": true,
