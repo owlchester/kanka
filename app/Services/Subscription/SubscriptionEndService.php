@@ -82,7 +82,7 @@ class SubscriptionEndService
         $subscriptions = Subscription::with(['user', 'user.boosts', 'user.boosts.campaign'])
             ->where('stripe_price', 'like', 'paypal_%')
             ->where('stripe_status', 'canceled')
-            ->whereDate('ends_at', '=', Carbon::today()->toDateString())
+            ->whereDate('ends_at', '<', Carbon::today()->toDateString())
             ->get();
         if ($subscriptions->count() === 0) {
             return;
