@@ -24,7 +24,7 @@ class StoreFaqTranslationRequest extends FormRequest
     public function rules()
     {
         return [
-            'category_id' => 'required|exists:faq_categories,id',
+            'category_id' => 'required|integer|exists:faq_categories,id',
             'locale' => 'required',
         ];
     }

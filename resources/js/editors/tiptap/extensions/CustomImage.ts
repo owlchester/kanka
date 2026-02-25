@@ -18,7 +18,7 @@ export const CustomImage = Image.extend({
             src: { default: null },
             alt: { default: null },
             title: { default: null },
-            'data-gallery-uuid': { default: null },
+            'data-gallery-id': { default: null },
             class: {
                 default: null,
                 parseHTML: (element: HTMLElement) => {

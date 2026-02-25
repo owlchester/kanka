@@ -10,6 +10,7 @@ declare global {
 
 export interface GalleryOptions {
     galleryUrl: string
+    galleryId: string
 }
 
 declare module '@tiptap/core' {
@@ -27,6 +28,7 @@ export const Gallery = Extension.create<GalleryOptions>({
     addOptions() {
         return {
             galleryUrl: '',
+            galleryId: '',
         }
     },
 
@@ -35,7 +37,7 @@ export const Gallery = Extension.create<GalleryOptions>({
             openGallery: () => ({ editor }) => {
                 // Dispatch custom event to open the gallery dialog
                 const event = new CustomEvent('tiptap:open-gallery', {
-                    detail: { editor, galleryUrl: this.options.galleryUrl }
+                    detail: { editor, galleryUrl: this.options.galleryUrl, galleryId: this.options.galleryId }
                 })
                 window.dispatchEvent(event)
                 return true

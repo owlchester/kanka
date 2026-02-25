@@ -7,6 +7,7 @@ return [
         'link'  => 'External link',
     ],
     'copy_alias'    => [
+        'title' => 'Click to copy alias mention to the clipboard.',
         'success'   => 'Alias mention copied to the clipboard.',
     ],
     'show'          => [

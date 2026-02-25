@@ -29,7 +29,7 @@ class Relation extends Layout
             ],
             'target' => [
                 'key' => 'target.name',
-                'label' => 'crud.fields.entity',
+                'label' => 'fields.entry.label',
                 'render' => Standard::ENTITYLINK,
                 'with' => 'target',
             ],

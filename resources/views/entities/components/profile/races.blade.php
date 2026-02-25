@@ -11,6 +11,7 @@ $child = $entity->child;
 @endif
 
 <x-sidebar.profile>
+    @includeWhen($entity->aliases->isNotEmpty(), 'entities.components.profile._aliases')
     @include('entities.components.profile._locations')
     @include('entities.components.profile._type')
 </x-sidebar.profile>

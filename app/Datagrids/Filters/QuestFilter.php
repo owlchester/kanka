@@ -22,7 +22,7 @@ class QuestFilter extends DatagridFilter
                 'label' => __('quests.fields.instigator'),
                 'type' => 'select2',
                 'route' => route('search.entities-with-relations', $this->campaign),
-                'placeholder' => __('crud.placeholders.entity'),
+                'placeholder' => __('search.placeholders.entry'),
                 'model' => Entity::class,
             ])
             ->location()
@@ -36,7 +36,7 @@ class QuestFilter extends DatagridFilter
             ])
             ->add([
                 'field' => 'quest_element_id',
-                'label' => __('crud.fields.entity'),
+                'label' => __('fields.entry.label'),
                 'type' => 'select2',
                 'route' => route('search.entities-with-relations', $this->campaign),
                 'placeholder' => __('quests.placeholders.entity'),

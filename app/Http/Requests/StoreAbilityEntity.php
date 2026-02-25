@@ -24,10 +24,10 @@ class StoreAbilityEntity extends FormRequest
     public function rules()
     {
         return [
-            'ability_id' => 'required|exists:entities,id',
-            'visibility_id' => 'required|exists:visibilities,id',
+            'ability_id' => 'required|integer|exists:entities,id',
+            'visibility_id' => 'required|integer|exists:visibilities,id',
             'entities' => 'array|required',
-            'entities.*' => ['different:ability_id|exists:entities,id'],
+            'entities.*' => ['different:ability_id|integer|exists:entities,id'],
         ];
     }
 }

@@ -24,7 +24,7 @@ class EditPostVisibility extends FormRequest
     public function rules()
     {
         return [
-            'visibility_id' => 'nullable|exists:visibilities,id',
+            'visibility_id' => 'nullable|integer|exists:visibilities,id',
         ];
     }
 }

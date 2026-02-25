@@ -9,6 +9,7 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityType;
 use App\Services\AttributeService;
+use App\Services\Entity\AliasService;
 use App\Services\Entity\CopyService;
 use Illuminate\Http\Request;
 use LogicException;
@@ -17,7 +18,8 @@ class CreateController extends Controller
 {
     public function __construct(
         protected CopyService $copyService,
-        protected AttributeService $attributeService
+        protected AttributeService $attributeService,
+        protected AliasService $aliasService
     ) {}
 
     public function index(Request $request, Campaign $campaign, EntityType $entityType)
@@ -69,6 +71,8 @@ class CreateController extends Controller
             $entity->type_id = $entityType->id;
             $entity->save();
             $entity->crudSaved();
+
+            $this->aliasService->entity($entity)->request($request)->save();
 
             // First copy stuff like posts, since we might replace attribute mentions next
             $this->copyService->entity($entity)->request($request)->fromId()->copy();

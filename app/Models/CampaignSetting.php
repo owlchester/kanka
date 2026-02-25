@@ -17,6 +17,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int|bool $items
  * @property int|bool $timelines
  * @property int|bool $races
+ * @property int|bool $aliases
+ * @property int|bool $assets
  */
 class CampaignSetting extends Model
 {
@@ -27,7 +29,7 @@ class CampaignSetting extends Model
 
     protected $fillable = [
         'abilities',
-        'assets',
+        'media',
         'campaign_id',
         'characters',
         'entity_attributes',
@@ -50,6 +52,7 @@ class CampaignSetting extends Model
         'inventories',
         'creatures',
         'whiteboards',
+        'aliases',
     ];
 
     /**

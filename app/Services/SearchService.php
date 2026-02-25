@@ -478,6 +478,7 @@ class SearchService
                 ->addCampaignPage('campaigns.show.tabs.roles', 'campaign_roles.index', 'roles')
                 ->addCampaignPage('campaigns.show.tabs.applications', 'applications.index', 'applications')
                 ->addCampaignPage('campaigns.show.tabs.modules', 'campaign.modules')
+                ->addCampaignPage('campaigns/categories.tab', 'campaign.modules')
                 ->addCampaignPage('campaigns.show.tabs.recovery', 'recovery', 'update')
                 ->addCampaignPage('campaigns.show.tabs.styles', 'campaign_styles.index', 'update')
                 ->addCampaignPage('campaigns.show.tabs.export', 'campaign.export')

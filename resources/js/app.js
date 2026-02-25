@@ -28,6 +28,7 @@ import './utility/colour-picker';
 // VueJS elements
 import './header';
 import './gallery/selection';
+import './forms/entity-name';
 import './utility/tippy';
 import './maintenance';
 

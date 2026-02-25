@@ -3,7 +3,7 @@
 return [
     'actions'   => [
         'add'       => 'Connect existing',
-        'back'      => 'Back to connections',
+        'back'      => 'Back to relations',
         'download'  => 'Download',
         'download-png' => 'Download image (.png)',
         'download-pdf' => 'Download PDF',
@@ -12,8 +12,8 @@ return [
         'reset-layout' => 'Reset layout',
     ],
     'cta'       => [
-        'text'  => 'This is a preview of the full campaign-wide connections web. Free campaigns can explore up to :amount nodes. Premium campaigns unlock the complete map with every connection and full navigation. Upgrade to see your entier world\'s structure at once.',
-        'title' => 'Preview limited to :amount connections',
+        'text'  => 'This is a preview of the full campaign-wide relations web. Free campaigns can explore up to :amount nodes. Premium campaigns unlock the complete map with every relation and full navigation. Upgrade to see your entier world\'s structure at once.',
+        'title' => 'Preview limited to :amount relations',
     ],
-    'title'     => 'Connections web',
+    'title'     => 'Relations web',
 ];

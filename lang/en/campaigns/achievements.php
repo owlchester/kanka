@@ -2,7 +2,7 @@
 
 return [
     'congratulations'   => 'Congratulations!',
-    'connections'       => '{0} No connections created|{1} One connection created|[2,*] :amount connections created',
+    'connections'       => '{0} No relation created|{1} One relation created|[2,*] :amount relations created',
     'created'           => '{0} No :plural created|{1} One :singular created|[2,*] :amount :plural created',
     'dead'              => '{0} No murder mysteries|{1} One muder mystery|[2,*] :amount murder mysteries',
     'goal'              => 'Goal :number',
@@ -29,7 +29,7 @@ return [
         ],
     ],
     'spotlighted'       => '{0} Not spotlighted yet|[1,*] Spotlighted',
-    'tagged'            => '{0} No entities tagged|{1} One entity tagged|[2,*] :amount entities tagged',
+    'tagged'            => '{0} No entries tagged|{1} One entry tagged|[2,*] :amount entries tagged',
     'titles'            => [
         'calendars'     => 'Time keeper',
         'characters'    => 'Name giver',
@@ -47,5 +47,5 @@ return [
         'tags'          => 'Under control',
         'themes'        => 'Painter',
     ],
-    'tutorial'          => 'Achievements track notable actions within this campaign such as creating entities or using key features. They are informational only and update automatically as you explore and build.',
+    'tutorial'          => 'Achievements track notable actions within this campaign such as creating entries or using key features. They are informational only and update automatically as you explore and build.',
 ];

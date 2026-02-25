@@ -20,6 +20,8 @@ interface PaginationLinks {
     next: string | null
 }
 
+const props = defineProps<{ galleryId: string }>()
+
 const dialogRef = ref<HTMLDialogElement | null>(null)
 const images = ref<GalleryImage[]>([])
 const loading = ref(false)
@@ -38,6 +40,8 @@ let abortController: AbortController | null = null
 let searchTimeout: ReturnType<typeof setTimeout> | null = null
 
 const openGallery = (event: CustomEvent) => {
+    if (event.detail.galleryId !== props.galleryId) return
+
     editorRef.value = event.detail.editor
     baseUrl.value = event.detail.galleryUrl
     currentUrl.value = `${event.detail.galleryUrl}?setup`
@@ -183,7 +187,7 @@ const selectImage = (image: GalleryImage) => {
     editorRef.value?.chain().focus().setImage({
         src: image.src,
         alt: image.name,
-        'data-gallery-uuid': image.uuid,
+        'data-gallery-id': image.uuid,
     }).run()
     closeGallery()
 }
@@ -263,7 +267,7 @@ onBeforeUnmount(() => {
             </div>
 
             <!-- Gallery Grid -->
-            <div class="gallery-content flex-1 overflow-y-auto p-4">
+            <div class="gallery-content flex-1 min-h-0 overflow-y-auto p-4">
                 <div v-if="loading" class="flex items-center justify-center py-12">
                     <i class="fa-solid fa-spinner fa-spin text-2xl" aria-hidden="true"></i>
                 </div>

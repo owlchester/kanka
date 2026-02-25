@@ -22,7 +22,7 @@ class UploadUrl extends FormRequest
     public function rules(): array
     {
         return [
-            'url' => 'nullable|url|active_url',
+            'url' => 'url|active_url',
         ];
     }
 }

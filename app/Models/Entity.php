@@ -58,6 +58,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property ?int $focus_x
  * @property ?int $focus_y
  * @property ?string $image_path
+ * @property string $source
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Carbon $deleted_at
@@ -102,6 +103,7 @@ class Entity extends Model
         'type',
         'entry',
         'parent_id',
+        'source',
     ];
 
     protected array $sanitizable = [

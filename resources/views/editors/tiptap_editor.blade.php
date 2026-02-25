@@ -14,6 +14,7 @@
             @endphp
         mentions="{{ route('search.mention', $mentionUrlParams) }}"
         gallery="{{ route('gallery.tiptap', [$campaign]) }}"
+        galleryUpload="{{ route('campaign.gallery.ajax-upload', $campaign) }}"
         @endif
     />
 </div>

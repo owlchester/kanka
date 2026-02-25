@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'description'   => 'Shows a random entity from the campaign.',
+    'description'   => 'Shows a random entry from the campaign.',
     'name'          => 'Random entity',
 ];

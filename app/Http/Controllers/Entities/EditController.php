@@ -8,6 +8,7 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\MiscModel;
 use App\Services\AttributeService;
+use App\Services\Entity\AliasService;
 use App\Services\MultiEditingService;
 use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
@@ -21,6 +22,7 @@ class EditController extends Controller
 
     public function __construct(
         protected AttributeService $attributeService,
+        protected AliasService $aliasService,
         protected MultiEditingService $multiEditingService
     ) {}
 
@@ -103,6 +105,8 @@ class EditController extends Controller
                 $entity->update($preparedData);
                 $entity->crudSaved();
             }
+
+            $this->aliasService->entity($entity)->request($request)->save();
 
             if (auth()->user()->can('attributes', $entity)) {
                 $this->attributeService

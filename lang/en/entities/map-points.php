@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'helper'    => 'This entity is pinned on the following maps.',
+    'helper'    => 'This entry is pinned on the following maps.',
     'title'     => ':name Map Points',
 ];

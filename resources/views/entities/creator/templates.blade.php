@@ -4,9 +4,9 @@
     <div class="quick-creator-body">
         @if ($templates->isEmpty())
             <p class="">
-                <a href="//docs.kanka.io/en/latest/guides/templates.html" target="_blank">
+                <a href="//docs.kanka.io/en/latest/guides/archetypes.html" target="_blank">
                     <x-icon class="link" />
-                    {{ __('helpers.entity_templates.link') }}
+                    {{ __('entries/archetypes.helpers.how') }}
                 </a>
             </p>
         @else

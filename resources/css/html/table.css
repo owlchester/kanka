@@ -15,14 +15,28 @@ table {
     }
 }
 
-.table {
-    width: 100%;
-    th, td {
+table {
+    border-collapse: collapse;
+    border: 1px solid hsl(var(--bc)/var(--tw-border-opacity));
+    overflow: hidden;
+    table-layout: fixed;
+
+    & th, & td {
         line-height: 1.5rem;
         padding: .5rem;
+        min-width: 1em;
+    }
+    th, td {
+        --tw-border-opacity: 0.2;
+        border: 1px solid hsl(var(--bc)/var(--tw-border-opacity));
+        position: relative;
+
+        > * {
+            margin-bottom: 0;
+        }
     }
     th {
-        border-bottom-width: 1px;
+        vertical-align: top;
     }
     tr:not(:last-of-type) {
         td {
@@ -56,9 +70,17 @@ table {
 .table-compact {
     width: auto;
 }
+.table-left {
+    width: auto;
+    float: left;
+    margin-right: 1rem;
+    margin-bottom: 0.5rem;
+}
 .table-right {
     width: auto;
     float: right;
+    margin-left: 1rem;
+    margin-bottom: 0.5rem;
 }
 .table-centered {
     margin-left: auto;

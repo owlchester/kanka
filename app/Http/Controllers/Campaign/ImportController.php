@@ -6,6 +6,7 @@ use App\Enums\CampaignImportStatus;
 use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
+use App\Models\CampaignImport;
 use App\Services\Campaign\Import\PrepareService;
 
 class ImportController extends Controller
@@ -53,5 +54,14 @@ class ImportController extends Controller
             ->with('campaign', $campaign)
             ->with('token', $token)
             ->with('rows', $rows);
+    }
+
+    public function csv(Campaign $campaign, CampaignImport $campaignImport)
+    {
+        $this->authorize('setting', $campaign);
+
+        return view('campaigns.import.process-csv')
+            ->with('campaign', $campaign)
+            ->with('import', $campaignImport);
     }
 }

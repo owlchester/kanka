@@ -14,7 +14,7 @@ $moonFullmoons = old('moon_fullmoon');
 $moonOffsets = old('moon_offset');
 $moonColours = old('moon_colour');
 $moonIds = old('moon_id');
-if (!empty($moonNames)) {
+if (!empty($moonNames) && is_array($moonNames)) {
     $cpt = 0;
     foreach ($moonNames as $name) {
         if (!empty($name) || !empty($moonFullmoons[$cpt])) {

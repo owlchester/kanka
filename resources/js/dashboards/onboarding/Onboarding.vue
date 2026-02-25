@@ -1,8 +1,9 @@
 <template>
     <dialog
         v-if="loaded"
-        class="dialog rounded-2xl bg-base-100 text-base-content" id="onboarding-dialog" ref="onboardingDialog" aria-modal="true" aria-labelledby="modal-card-label"    @click="onBackdropClick
-"
+        class="dialog rounded-2xl bg-base-100 text-base-content" id="onboarding-dialog" ref="onboardingDialog" aria-modal="true" aria-labelledby="modal-card-label"
+        @click="onBackdropClick"
+        @cancel.prevent="dismiss('esc')"
 >
         <header class="flex gap-6 items-center p-4 md:p-6 justify-between">
             <h4 v-html="trans('title')" class="text-lg font-normal"></h4>
@@ -114,19 +115,27 @@ const trans = (key) => {
 
 
 const close = () => {
+    dismiss('x');
+}
+const closeDialog = () => {
     window.closeDialog('onboarding-dialog')
 }
+
+const dismiss = (reason: string) => {
+    axios.post(props.skip, {reason: reason})
+    closeDialog()
+}
+
 const onBackdropClick = (event) => {
-    // Check if the click was directly on the dialog (backdrop), not on its children
     if (event.target === onboardingDialog.value) {
-        close();
+        dismiss('backdrop')
     }
 }
 
 
 const skip = () =>  {
-    axios.post(props.skip);
-    close()
+    dismiss('skip')
+    closeDialog()
 }
 
 const save = () => {
@@ -144,7 +153,7 @@ const save = () => {
             if (response.data.redirect) {
                 window.location.href = response.data.redirect;
             } else {
-                close();
+                closeDialog();
             }
         })
         .catch(error => {

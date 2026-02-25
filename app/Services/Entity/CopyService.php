@@ -292,7 +292,7 @@ class CopyService
 
     protected function check(string $field): bool
     {
-        return isset($this->request) && $this->request->has($field) && $this->request->filled($field);
+        return isset($this->request) && $this->request->boolean($field);
     }
 
     protected function isSameCampaign(): bool

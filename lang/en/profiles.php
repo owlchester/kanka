@@ -12,7 +12,7 @@ return [
         'bio'                       => 'Bio',
         'email'                     => 'Email',
         'hide_subscription'         => 'Hide my name from the :hall_of_fame.',
-        'last_login_share'          => 'Share with other campaign members when I last logged in.',
+        'last_login_share'          => 'Share with other members when I last logged in.',
         'link'                      => 'Social link',
         'login_sharing'             => 'Last login sharing',
         'name'                      => 'Name',
@@ -88,7 +88,7 @@ return [
     ],
     'title'         => 'Update your profile',
     'workflows'     => [
-        'created'   => 'View the newly created entity',
-        'default'   => 'View the list of entities',
+        'created'   => 'View the newly created entry',
+        'default'   => 'View the list of entries',
     ],
 ];

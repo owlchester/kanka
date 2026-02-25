@@ -24,7 +24,7 @@ return [
     ],
     'errors'        => [
         'max'           => 'Please only select up to :count files at a time.',
-        'permissions'   => 'Your campaign roles are missing the :permission permission to be allowed to upload images to the campaign gallery.',
+        'permissions'   => 'Your roles are missing the :permission permission to be allowed to upload images to the gallery.',
         'storage'       => 'There is not enough storage space to upload the selected image(s). Available storage space: :available.',
     ],
     'fields'        => [
@@ -33,8 +33,8 @@ return [
         'ext'                   => 'Ext',
         'file_type'             => 'File type',
         'folder'                => 'Folder',
-        'image_mentioned_in'    => '{0} This image isn\'t mentioned in any of the campaign\'s entities.|{1} Mentioned in one entry/post.|[2,*] mentioned in :count entries/posts.',
-        'image_used_in'         => '{0} This image isn\'t used in any of the campaign\'s entities.|{1} Used as the image of one entity.|[2,*] Used as the image of :count entities.',
+        'image_mentioned_in'    => '{0} This image isn\'t mentioned in any entry.|{1} Mentioned in one entry/article.|[2,*] mentioned in :count entries/articles.',
+        'image_used_in'         => '{0} This image isn\'t used in any entry.|{1} Used as the image of one entry.|[2,*] Used as the image of :count entries.',
         'link'                  => 'Link',
         'name'                  => 'Name',
         'size'                  => 'Size',
@@ -50,7 +50,7 @@ return [
         'title' => 'New folder',
     ],
     'no_folder'     => 'No folder',
-    'pitch'         => 'Upload images to the campaign\'s gallery directly from the text editor.',
+    'pitch'         => 'Upload images to the gallery directly from the text editor.',
     'placeholders'  => [
         'search'    => 'Search image name...',
     ],

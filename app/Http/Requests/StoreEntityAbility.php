@@ -29,7 +29,7 @@ class StoreEntityAbility extends FormRequest
             'abilities.*' => 'distinct|exists:abilities,id',
             'position' => 'nullable|integer|min:0|max:100',
             'note' => 'nullable|string',
-            'visibility_id' => 'nullable|exists:visibilities,id',
+            'visibility_id' => 'nullable|integer|exists:visibilities,id',
         ];
     }
 }

@@ -78,6 +78,6 @@ class RegisterController extends Controller
 
     protected function redirectTo(): string
     {
-        return route('home');
+        return session()->pull('login_redirect', route('home'));
     }
 }

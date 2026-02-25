@@ -24,7 +24,7 @@ class MovePostRequest extends FormRequest
     public function rules()
     {
         return [
-            'entity' => 'required|exists:entities,id',
+            'entity' => 'required|integer|exists:entities,id',
             'copy' => 'nullable',
         ];
     }

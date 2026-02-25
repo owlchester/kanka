@@ -5,12 +5,13 @@
     import { BubbleMenu, FloatingMenu } from '@tiptap/vue-3/menus'
     import Link from '@tiptap/extension-link'
     import TableRow from '@tiptap/extension-table-row'
-    import TableCell from '@tiptap/extension-table-cell'
-    import TableHeader from '@tiptap/extension-table-header'
+    import { CustomTableCell } from './extensions/table/CustomTableCell'
+    import { CustomTableHeader } from './extensions/table/CustomTableHeader'
     import { TableWithControls } from './extensions/table/TableWithControls'
     import { ListKit } from '@tiptap/extension-list'
-    import { TableKit } from "@tiptap/extension-table";
-    import { ref, computed, onMounted, onBeforeUnmount, defineAsyncComponent } from 'vue'
+    import { TableKit } from "@tiptap/extension-table"
+    import { CellSelection } from '@tiptap/pm/tables'
+    import { ref, computed, onMounted, onBeforeUnmount, defineAsyncComponent, getCurrentInstance } from 'vue'
     import { Mention } from './extensions/mentions/Mention'
     import suggestion from './extensions/mentions/suggestion'
     import { MentionParser } from './extensions/mentions/MentionParser'
@@ -39,14 +40,22 @@
         content?: string
         gallery?: string
         mentions?: string
+        galleryUpload?: string
         fieldName?: string
     }>(), {
         fieldName: 'entry'
     })
 
+    declare global {
+        interface Window {
+            showToast: (message: string, type?: string) => void
+        }
+    }
+
+    const galleryId = getCurrentInstance()!.uid.toString()
+
     const html = ref(props.content ?? props.modelValue ?? '')
     const mentions = ref([])
-    const showLinkBubble = ref(false)
     const isFocused = ref(false)
     const hasReceivedInput = ref(false)
     const sourceMode = ref(false)
@@ -71,7 +80,6 @@
 
     // Refs for bubble menu components
     const mentionBubbleRef = ref<InstanceType<typeof MentionBubbleMenu> | null>(null)
-    const linkBubbleRef = ref<InstanceType<typeof LinkBubbleMenu> | null>(null)
 
     const addEntityToMentions = (entity: any) => {
         const exists = mentions.value.find(e => e.id === entity.id)
@@ -86,7 +94,7 @@
             bulletList: false,
             orderedList: false,
             listItem: false,
-            listItemKeymap: false,
+            listKeymap: false,
         }),
         Placeholder.configure({
             placeholder: 'Start writing...',
@@ -105,16 +113,13 @@
         }),
         TableWithControls.configure({
             resizable: true,
+            allowTableNodeSelection: true,
         }),
         TableRow,
-        TableCell.configure({
+        CustomTableCell.configure({
         }),
-        TableHeader.configure({
+        CustomTableHeader.configure({
         }),
-        // TableKit.configure({
-        //     table: {
-        //     },
-        // }),
         SlashCommand.configure({
             suggestion: slashCommandSuggestion(),
         }),
@@ -149,6 +154,7 @@
         extensions.push(
             Gallery.configure({
                 galleryUrl: props.gallery as string,
+                galleryId,
             })
         )
     }
@@ -217,10 +223,6 @@
             if (editor.isActive('mention')) {
                 mentionBubbleRef.value?.syncLabel()
             }
-            // Hide link bubble when selection changes away from link
-            if (!editor.isActive('link')) {
-                showLinkBubble.value = false
-            }
         },
         editorProps: {
             clipboardTextSerializer: (slice) => {
@@ -231,6 +233,29 @@
                 return text
             },
             handlePaste: (view, event, slice) => {
+                if (props.galleryUpload) {
+                    const items = Array.from(event.clipboardData?.items || [])
+                    const imageItem = items.find(item => item.type.startsWith('image/'))
+                    if (imageItem) {
+                        const file = imageItem.getAsFile()
+                        if (file) {
+                            const formData = new FormData()
+                            formData.append('file[]', file)
+                            axios.post(props.galleryUpload, formData).then(response => {
+                                if (response.data?.url) {
+                                    editor.value?.chain().focus().setImage({
+                                        src: response.data.url,
+                                        'data-gallery-id': String(response.data.id),
+                                    }).run()
+                                }
+                            }).catch(() => {
+                                window.showToast('Image upload failed', 'error')
+                            })
+                            return true
+                        }
+                    }
+                }
+
                 const plainText = event.clipboardData?.getData('text/plain') || ''
                 const htmlText = event.clipboardData?.getData('text/html') || ''
 
@@ -245,12 +270,37 @@
                     return true
                 }
 
+                const trimmedText = plainText.trim()
+                const isPlainUrl = /^https?:\/\/\S+$/i.test(trimmedText)
+                if (isPlainUrl && !htmlText) {
+                    try {
+                        const url = new URL(trimmedText)
+                        const imageExtensions = /\.(jpe?g|png|gif|webp|svg|bmp|avif|tiff?)$/i
+                        if (imageExtensions.test(url.pathname)) {
+                            editor.value?.chain().focus().setImage({ src: trimmedText }).run()
+                            return true
+                        }
+                    } catch {
+                        // Not a valid URL, fall through
+                    }
+                }
+
                 const mentionPattern = /\[([a-zA-Z_]+):(\d+)(?:\|[^\]]+)?\]/
                 if (mentionPattern.test(plainText)) {
                     editor.value?.commands.insertContent(plainText)
                     return true
                 }
 
+                return false
+            },
+            handleKeyDown: (view, event) => {
+                if ((event.ctrlKey || event.metaKey) && event.key === 'k') {
+                    if (!view.state.selection.empty) {
+                        event.preventDefault()
+                        openLinkBubble()
+                        return true
+                    }
+                }
                 return false
             },
         },
@@ -294,8 +344,14 @@
     }
 
     const openLinkBubble = () => {
-        showLinkBubble.value = true
-        linkBubbleRef.value?.openLinkInput()
+        if (!editor.value) return
+        const existingHref = editor.value.getAttributes('link').href || ''
+        const { to } = editor.value.state.selection
+        editor.value.chain()
+            .focus()
+            .setLink({ href: existingHref })
+            .setTextSelection(to)
+            .run()
     }
 
     const parseMentionsFromContent = (content: string) => {
@@ -360,36 +416,70 @@
     />
 
     <template v-else>
-        <div v-if="editor">
-            <bubble-menu :editor="editor">
+        <template v-if="editor">
+            <bubble-menu
+                :editor="editor"
+                plugin-key="mentionBubbleMenu"
+                :should-show="({ editor }) => editor.isActive('mention')"
+            >
                 <div class="bubble-menu bg-base-100 shadow rounded-2xl flex gap-0.5 items-center px-2 py-2">
                     <MentionBubbleMenu
-                        v-if="editor.isActive('mention')"
                         ref="mentionBubbleRef"
                         :editor="editor"
                         :mentions="mentions"
                     />
-                    <LinkBubbleMenu
-                        v-else-if="showLinkBubble || editor.isActive('link')"
-                        ref="linkBubbleRef"
-                        :editor="editor"
-                    />
-                    <TableBubbleMenu
-                        v-else-if="editor.isActive('table')"
-                        :editor="editor"
-                    />
-                    <ImageBubbleMenu
-                        v-else-if="editor.isActive('image')"
-                        :editor="editor"
-                    />
+                </div>
+            </bubble-menu>
+
+            <bubble-menu
+                :editor="editor"
+                plugin-key="linkBubbleMenu"
+                :should-show="({ editor }) => editor.isActive('link') && editor.state.selection.empty"
+            >
+                <div class="bubble-menu bg-base-100 shadow rounded-2xl flex gap-0.5 items-center px-2 py-2">
+                    <LinkBubbleMenu :editor="editor" />
+                </div>
+            </bubble-menu>
+
+            <bubble-menu
+                :editor="editor"
+                plugin-key="tableBubbleMenu"
+                :should-show="({ editor }) => editor.state.selection instanceof CellSelection"
+            >
+                <div class="bubble-menu bg-base-100 shadow rounded-2xl flex gap-0.5 items-center px-2 py-2">
+                    <TableBubbleMenu :editor="editor" />
+                </div>
+            </bubble-menu>
+
+            <bubble-menu
+                :editor="editor"
+                plugin-key="imageBubbleMenu"
+                :should-show="({ editor }) => editor.isActive('image')"
+            >
+                <div class="bubble-menu bg-base-100 shadow rounded-2xl flex gap-0.5 items-center px-2 py-2">
+                    <ImageBubbleMenu :editor="editor" />
+                </div>
+            </bubble-menu>
+
+            <bubble-menu
+                :editor="editor"
+                plugin-key="textBubbleMenu"
+                :should-show="({ editor }) => {
+                    if (editor.state.selection.empty) return false
+                    if (editor.isActive('mention')) return false
+                    if (editor.state.selection instanceof CellSelection) return false
+                    if (editor.isActive('image')) return false
+                    return true
+                }"
+            >
+                <div class="bubble-menu bg-base-100 shadow rounded-2xl flex gap-0.5 items-center px-2 py-2">
                     <TextBubbleMenu
-                        v-else
                         :editor="editor"
                         @open-link="openLinkBubble"
                     />
                 </div>
             </bubble-menu>
-        </div>
+        </template>
 
         <editor-content :editor="editor" />
 
@@ -405,7 +495,7 @@
 
     <input type="hidden" :name="props.fieldName" :value="html" />
 
-    <GalleryDialog v-if="gallery" />
+    <GalleryDialog v-if="gallery" :gallery-id="galleryId" />
 </template>
 
 <style scoped>
@@ -459,6 +549,49 @@
 </style>
 <style>
 .tiptap-editor {
+    table {
+
+        td, th {
+            box-sizing: border-box;
+        }
+
+        .selectedCell {
+            background: hsl(var(--p)/1);
+            color: hsl(var(--pc)/1);
+        }
+        .selectedCell:after {
+            content: '';
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            pointer-events: none;
+            position: absolute;
+            z-index: 2;
+        }
+
+        .column-resize-handle {
+            background: hsl(var(--p)/1);
+            bottom: -2px;
+            margin: 0;
+            pointer-events: none;
+            position: absolute;
+            right: -2px;
+            top: 0;
+            width: 4px;
+        }
+    }
+
+    .tableWrapper {
+        margin: 1.5rem 0;
+        overflow-x: auto;
+    }
+
+    &.resize-cursor {
+        cursor: ew-resize;
+        cursor: col-resize;
+    }
+
     .ProseMirror-selectednode img {
         outline: 2px solid hsl(var(--p)/1);
     }

@@ -24,7 +24,7 @@ if (auth()->check() && auth()->user()->isAdmin()) {
              'data' => ['target' => 'primary-dialog', 'bulk-action' => 'ajax', 'toggle' => 'dialog', 'url' => route('bulk.templates', [$campaign, 'entity_type' => $entityType->id])],
             'class' => 'bulk-templates',
             'icon' => 'fa-regular fa-th-list',
-            'text' => __('crud.bulk.actions.templates')
+            'text' => __('crud.bulk.actions.kits')
         ];
     }
     if ($datagridActions->hasBulkTransform()) {

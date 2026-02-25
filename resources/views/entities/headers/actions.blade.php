@@ -25,6 +25,13 @@ $data = false;
         <x-icon class="fa-regular fa-ellipsis-h" />
     </div>
     <div class="dropdown-menu hidden" role="menu" id="entity-submenu">
+        @if (isset($edit) && $edit === false)
+            @can('update', $entity)
+                <x-dropdowns.item :link="$entity->url('edit')" icon="pencil" keyboard="edit">
+                    {{ __('crud.edit') }}
+                </x-dropdowns.item>
+            @endif
+        @endif
         <!-- Create & Link section -->
         @can('create', [$entity->entityType, $campaign])
             @php $create = true; @endphp
@@ -70,9 +77,9 @@ $data = false;
             @can('setTemplates', $campaign)
                 <x-dropdowns.item :link="route('entities.template', [$campaign, $entity])" :icon="$entity->isTemplate() ? 'fa-regular fa-star' : 'fa-solid fa-star'">
                     @if($entity->isTemplate())
-                        {{ __('entities/actions.templates.unset') }}
+                        {{ __('entities/actions.archetype.unset') }}
                     @else
-                        {{ __('entities/actions.templates.set') }}
+                        {{ __('entities/actions.archetype.set') }}
                     @endif
                 </x-dropdowns.item>
             @endcan

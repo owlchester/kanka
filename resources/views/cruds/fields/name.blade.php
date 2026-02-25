@@ -7,7 +7,7 @@ $fieldID = uniqid('name_');
     :label="__('crud.fields.name')"
     :required="$required"
     :id="$fieldID">
-    <input id="{{ $fieldID }}" type="text" name="name" placeholder="{{ __('crud.placeholders.name') }}" maxlength="191"
+    <input id="{{ $fieldID }}" type="text" name="name" placeholder="{{ __('entries/fields.name.placeholder') }}" maxlength="191"
            @if (isset($entityType)) data-live="{{ route('search-list', [$campaign, $entityType]) }}"
            data-duplicate=".duplicate-warning" data-1p-ignore="true"
            data-id="{{ $entity->id ?? null }}"

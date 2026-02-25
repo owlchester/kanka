@@ -18,7 +18,7 @@ $model = Arr::get($options, 'model', null);
 $fieldId = 'entity_type_id';
 ?>
 
-<label>{{ __($label ?? 'crud.fields.entity_type') }}</label>
+<label>{{ __($label ?? 'campaigns/categories.tab') }}</label>
 <select name="{{ $fieldId }}" class="w-full select2-local" style="width: 100%" data-language="{{ LaravelLocalization::getCurrentLocale() }}" data-placeholder="{{ __('colours.none') }}">
     <option value=""></option>
     @foreach ($entityTypes as $option)

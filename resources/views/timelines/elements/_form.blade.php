@@ -22,7 +22,7 @@ if (!empty($era)) {
 
     @include('cruds.fields.entity')
 
-    <x-forms.field field="entry" css="md:col-span-2" :label="__('crud.fields.entry')">
+    <x-forms.field field="entry" css="md:col-span-2" :label="__('fields.description.label')">
 
         @include('cruds.fields.entry', ['model' => $model])
         <input type="hidden" name="use_entity_entry" value="0" />

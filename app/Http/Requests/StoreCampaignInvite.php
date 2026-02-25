@@ -24,7 +24,7 @@ class StoreCampaignInvite extends FormRequest
     public function rules()
     {
         $rules = [
-            'role_id' => 'required|exists:campaign_roles,id',
+            'role_id' => 'required|integer|exists:campaign_roles,id',
             'validity' => 'nullable|integer',
         ];
 

@@ -16,7 +16,7 @@ return [
         'unlock'        => 'Unlock',
     ],
     'entity-search' => [
-        'placeholder'   => 'Type an entity\'s name or alias',
+        'placeholder'   => 'Type an entry\'s name or alias',
         'title'         => 'Entity search',
     ],
     'errors'        => [

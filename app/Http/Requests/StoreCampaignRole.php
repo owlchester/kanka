@@ -25,7 +25,7 @@ class StoreCampaignRole extends FormRequest
     {
         return [
             'name' => 'required',
-            'role_id' => 'exists:campaign_roles,id',
+            'role_id' => 'integer|exists:campaign_roles,id',
             'duplicate' => 'boolean',
         ];
     }

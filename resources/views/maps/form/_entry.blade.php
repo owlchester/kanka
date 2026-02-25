@@ -1,5 +1,5 @@
 <x-grid>
-    @include('cruds.fields.name', ['trans' => 'maps'])
+    @include('cruds.fields.entity-name')
 
     @include('cruds.fields.type', ['base' => \App\Models\Map::class, 'trans' => 'maps'])
 

@@ -13,7 +13,7 @@
                 } elseif ($model->isEntity()) {
                     return '<i class="fa-regular fa-star"></i> ' . __('entities.entity');
                 } elseif ($model->isList()) {
-                    return '<i class="fa-regular fa-th-list"></i> ' . __('crud.fields.entity_type');
+                    return '<i class="fa-regular fa-th-list"></i> ' . __('campaigns/categories.tab');
                 } elseif ($model->isRandom()) {
                     return '<i class="fa-regular fa-question"></i> ' . __('dashboards/widgets/random.name');
                 }

@@ -173,6 +173,7 @@ Route::get('/w/{campaign}/campaign-export', 'Campaign\ExportController@index')->
 Route::post('/w/{campaign}/campaign-export', 'Campaign\ExportController@export')->name('campaign.export-process');
 Route::get('/w/{campaign}/campaign-import', 'Campaign\ImportController@index')->name('campaign.import');
 Route::post('/w/{campaign}/campaign-import', 'Campaign\ImportController@store')->name('campaign.import-process');
+Route::get('/w/{campaign}/campaign-import/{campaign_import}/csv', 'Campaign\ImportController@csv')->name('campaign.import.csv');
 Route::get('/w/{campaign}/campaign-{ts}.styles', [CssController::class, 'index'])->name('campaign.css');
 Route::get('/w/{campaign}/campaign_plugin-{ts}.styles', 'Campaign\Plugins\CssController@index')->name('campaign_plugins.css');
 Route::get('/w/{campaign}/campaign-visibility', 'Campaign\VisibilityController@edit')->name('campaign-visibility');
@@ -186,6 +187,10 @@ Route::patch('/w/{campaign}/modules/{entity_type}/update', [ModuleController::cl
 Route::delete('/w/{campaign}/modules/reset', [ModuleController::class, 'reset'])->name('modules.reset');
 
 Route::get('/w/{campaign}/campaign-applications', 'Campaign\ApplicationController@toggle')->name('campaign-applications');
+Route::get('/w/{campaign}/campaign-applications/setup', 'Campaign\ApplicationSetupController@setup')->name('campaign-applications.setup');
+Route::post('/w/{campaign}/campaign-applications/setup', 'Campaign\ApplicationSetupController@saveSetup')->name('campaign-applications.setup.save');
+Route::get('/w/{campaign}/campaign-applications/dashboard-widget', 'Campaign\ApplicationDashboardController@index')->name('campaign-applications.dashboard-widget');
+Route::post('/w/{campaign}/campaign-applications/dashboard-widget', 'Campaign\ApplicationDashboardController@store')->name('campaign-applications.dashboard-widget.store');
 Route::post('/w/{campaign}/campaign-applications', 'Campaign\ApplicationController@toggleSave')->name('campaign-applications.save');
 
 // Campaign sidebar setup
@@ -194,7 +199,7 @@ Route::post('/w/{campaign}/sidebar-setup', 'Campaign\SidebarController@save')->n
 Route::delete('/w/{campaign}/sidebar-setup/reset', 'Campaign\SidebarController@reset')->name('campaign-sidebar-reset');
 
 Route::get('/w/{campaign}/campaign-defaults', 'Campaign\DefaultsController@index')->name('campaign-defaults');
-Route::post('/w/{campaign}/sidebar-defaults', 'Campaign\DefaultsController@save')->name('campaign-defaults-save');
+Route::post('/w/{campaign}/campaign-defaults', 'Campaign\DefaultsController@save')->name('campaign-defaults-save');
 
 Route::get('/w/{campaign}/presets/type/{preset_type}/list', [App\Http\Controllers\PresetController::class, 'presets'])->name('presets.list');
 Route::get('/w/{campaign}/presets/type/{preset_type}/create', [App\Http\Controllers\PresetController::class, 'create'])->name('presets.create');

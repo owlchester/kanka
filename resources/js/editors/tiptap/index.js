@@ -23,6 +23,7 @@ const loadWidget = () => {
             fieldName,
             mentions: tiptapEl?.getAttribute('mentions') || undefined,
             gallery: tiptapEl?.getAttribute('gallery') || undefined,
+            galleryUpload: tiptapEl?.getAttribute('galleryUpload') || undefined,
         }
 
         // Remove the placeholder tiptap element
