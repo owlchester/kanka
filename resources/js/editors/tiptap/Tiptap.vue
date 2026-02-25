@@ -11,7 +11,7 @@
     import { ListKit } from '@tiptap/extension-list'
     import { TableKit } from "@tiptap/extension-table"
     import { CellSelection } from '@tiptap/pm/tables'
-    import { ref, computed, onMounted, onBeforeUnmount, defineAsyncComponent } from 'vue'
+    import { ref, computed, onMounted, onBeforeUnmount, defineAsyncComponent, getCurrentInstance } from 'vue'
     import { Mention } from './extensions/mentions/Mention'
     import suggestion from './extensions/mentions/suggestion'
     import { MentionParser } from './extensions/mentions/MentionParser'
@@ -40,10 +40,19 @@
         content?: string
         gallery?: string
         mentions?: string
+        galleryUpload?: string
         fieldName?: string
     }>(), {
         fieldName: 'entry'
     })
+
+    declare global {
+        interface Window {
+            showToast: (message: string, type?: string) => void
+        }
+    }
+
+    const galleryId = getCurrentInstance()!.uid.toString()
 
     const html = ref(props.content ?? props.modelValue ?? '')
     const mentions = ref([])
@@ -148,6 +157,7 @@
         extensions.push(
             Gallery.configure({
                 galleryUrl: props.gallery as string,
+                galleryId,
             })
         )
     }
@@ -226,6 +236,29 @@
                 return text
             },
             handlePaste: (view, event, slice) => {
+                if (props.galleryUpload) {
+                    const items = Array.from(event.clipboardData?.items || [])
+                    const imageItem = items.find(item => item.type.startsWith('image/'))
+                    if (imageItem) {
+                        const file = imageItem.getAsFile()
+                        if (file) {
+                            const formData = new FormData()
+                            formData.append('file[]', file)
+                            axios.post(props.galleryUpload, formData).then(response => {
+                                if (response.data?.url) {
+                                    editor.value?.chain().focus().setImage({
+                                        src: response.data.url,
+                                        'data-gallery-id': String(response.data.id),
+                                    }).run()
+                                }
+                            }).catch(() => {
+                                window.showToast('Image upload failed', 'error')
+                            })
+                            return true
+                        }
+                    }
+                }
+
                 const plainText = event.clipboardData?.getData('text/plain') || ''
                 const htmlText = event.clipboardData?.getData('text/html') || ''
 
@@ -238,6 +271,21 @@
                         },
                     })
                     return true
+                }
+
+                const trimmedText = plainText.trim()
+                const isPlainUrl = /^https?:\/\/\S+$/i.test(trimmedText)
+                if (isPlainUrl && !htmlText) {
+                    try {
+                        const url = new URL(trimmedText)
+                        const imageExtensions = /\.(jpe?g|png|gif|webp|svg|bmp|avif|tiff?)$/i
+                        if (imageExtensions.test(url.pathname)) {
+                            editor.value?.chain().focus().setImage({ src: trimmedText }).run()
+                            return true
+                        }
+                    } catch {
+                        // Not a valid URL, fall through
+                    }
                 }
 
                 const mentionPattern = /\[([a-zA-Z_]+):(\d+)(?:\|[^\]]+)?\]/
@@ -450,7 +498,7 @@
 
     <input type="hidden" :name="props.fieldName" :value="html" />
 
-    <GalleryDialog v-if="gallery" />
+    <GalleryDialog v-if="gallery" :gallery-id="galleryId" />
 </template>
 
 <style scoped>

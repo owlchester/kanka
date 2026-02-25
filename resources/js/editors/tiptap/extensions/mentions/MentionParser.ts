@@ -125,7 +125,7 @@ export const MentionParser = Extension.create<MentionParserOptions>({
                                         const image = entity?.image || null
                                         const url = entity?.url || null
 
-                                        console.log('parsed', mention, defaultLabel, config)
+                                        //console.log('parsed', mention, defaultLabel, config)
                                         // Replace text with mention node
                                         const mentionNode = mentionType.create({
                                             id: id,
