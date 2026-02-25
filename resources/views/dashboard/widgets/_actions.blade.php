@@ -116,7 +116,7 @@
             </x-dropdowns.item>
 
             <x-dropdowns.item :link="route('campaign.modules', $campaign)" icon="fa-regular fa-floppy-disks">
-                {{ __('campaigns.show.tabs.modules') }}
+                {{ __('campaigns/categories.tab') }}
             </x-dropdowns.item>
         </div>
     </div>

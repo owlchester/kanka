@@ -198,10 +198,7 @@ return [
     'helpers'           => [
         'copy_options'  => 'Copy the following related elements from the source to the new entry.',
         'linking'       => 'Linking to other entries',
-        'pagination'    => [
-            'settings'  => 'appearance settings',
-            'text'      => 'More results per page can be shown by changing your :settings.',
-        ],
+        'per-page' => 'Results per page',
         'parent'        => 'Select a parent this entry will be a child to.',
     ],
     'hidden'            => 'Hidden',

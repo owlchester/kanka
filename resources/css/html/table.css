@@ -1,11 +1,24 @@
-
-table {
+.table {
+    width: 100%;
+    th, td {
+        line-height: 1.5rem;
+        padding: .5rem;
+    }
+    th {
+        border-bottom-width: 1px;
+    }
+    tr:not(:last-of-type) {
+        td {
+            border-bottom-width: 1px;
+        }
+    }
     tbody {
         td {
             border-color: hsl(var(--bc)/var(--tw-border-opacity));
             --tw-border-opacity: 0.2;
         }
     }
+
     thead {
         th {
             text-align: left;
@@ -15,7 +28,8 @@ table {
     }
 }
 
-table {
+.entity-content table, .tiptap-editor table {
+    width: inherit;
     border-collapse: collapse;
     border: 1px solid hsl(var(--bc)/var(--tw-border-opacity));
     overflow: hidden;
@@ -26,6 +40,7 @@ table {
         padding: .5rem;
         min-width: 1em;
     }
+
     th, td {
         --tw-border-opacity: 0.2;
         border: 1px solid hsl(var(--bc)/var(--tw-border-opacity));
@@ -35,15 +50,18 @@ table {
             margin-bottom: 0;
         }
     }
+
     th {
         vertical-align: top;
     }
+
     tr:not(:last-of-type) {
         td {
             border-bottom-width: 1px;
         }
     }
 }
+
 
 .table-bordered {
     --tw-border-opacity: .2;

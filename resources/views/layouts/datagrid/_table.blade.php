@@ -1,11 +1,12 @@
 @if (!empty($datagridUrl))
-        <table class="table table-hover" data-render="datagrid2-onload" data-url="{!! $datagridUrl !!}"></table>
-        <x-box class="text-center">
-            <x-icon class="load" />
-        </x-box>
+    <table class="table table-hover" data-render="datagrid2-onload" data-url="{!! $datagridUrl !!}"></table>
+    <x-box class="text-center">
+        <x-icon class="load" />
+    </x-box>
 <?php return; ?>
 @endif
 
+<div class="flex flex-col gap-4">
 <table class="table table-hover m-0 w-full shadow-xs bg-box rounded-xl" data-render="datagrid2">
     <thead>
         <tr>
@@ -42,8 +43,9 @@
 </table>
 
 @if ($rows->hasPages() || Datagrid::hasBulks() )
-    <div class="flex gap-2 w-full">
+    <div class="flex justify-between gap-2">
         @includeWhen(Datagrid::hasBulks(), 'layouts.datagrid.bulks')
-        {!! $rows->appends(Datagrid::paginationFilters())->links() !!}
+        {!! $rows->appends(Datagrid::paginationFilters())->onEachSide(0)->links() !!}
     </div>
 @endif
+</div>

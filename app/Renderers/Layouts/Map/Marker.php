@@ -23,7 +23,7 @@ class Marker extends Layout
                 },
             ],
             'entity_id' => [
-                'label' => 'entries/fields.entry',
+                'label' => 'fields.description.label',
                 'render' => Standard::ENTITYLINK,
             ],
             'groups' => [

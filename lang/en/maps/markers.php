@@ -2,7 +2,7 @@
 
 return [
     'actions'       => [
-        'entry'             => 'Write a custom entry field for this marker.',
+        'entry'             => 'Write a custom description for this marker.',
         'remove'            => 'Remove marker',
         'reset-polygon'     => 'Reset positions',
         'save_and_explore'  => 'Save and Explore',
@@ -72,7 +72,7 @@ return [
         ],
     ],
     'hints'         => [
-        'entry' => 'Edit the marker to write a custom entry for it.',
+        'entry' => 'Edit the marker to write a custom description for it.',
     ],
     'icons'         => [
         'custom'        => 'Custom icon',

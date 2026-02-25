@@ -1,3 +1,4 @@
+<?php /** @var \Illuminate\Pagination\LengthAwarePaginator $models */?>
 @if (isset($entityType) && $models->isEmpty() && !$filterService->hasFilters())
     <x-lists.empty-state :entityType="$entityType" :campaign="$campaign" />
 @else
@@ -10,18 +11,23 @@
 </div>
 @include('ads.inline')
 
-@includeWhen($models->hasPages() && auth()->check(), 'cruds.helpers.pagination', ['action' => 'index'])
+@includeWhen($models->hasPages() && !$models->onFirstPage() && auth()->check(), 'cruds.helpers.pagination', ['action' => 'index'])
 @includeWhen(isset($datagridActions) && auth()->check() && $filteredCount > 0, 'cruds.datagrids.bulks.actions')
 
 @if ($unfilteredCount != $filteredCount)
     <x-helper>
-        <p>{{ __('crud.filters.filtered', ['count' => $filteredCount, 'total' => $unfilteredCount, 'entity' => __('entities.' . $name)]) }}</p>
+        <p>
+            {{ __('crud.filters.filtered', ['count' => $filteredCount, 'total' => $unfilteredCount, 'entity' => __('entities.' . $name)]) }}
+        </p>
     </x-helper>
 @endif
 
 @if($models->hasPages())
-    <div class="">
-        {{ $models->appends(isset($filterService) ? $filterService->pagination() : null)->onEachSide(0)->links() }}
-    </div>
+        {{ $models
+            ->appends(isset($filterService) ? $filterService->pagination() : null)
+            ->onEachSide(0)
+            ->links(null, [
+                'settingsLink' => base64_encode(route($route . '.index', $campaign))
+]) }}
 @endif
 @endif
