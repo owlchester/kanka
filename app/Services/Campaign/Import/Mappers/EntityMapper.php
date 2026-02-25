@@ -186,7 +186,7 @@ trait EntityMapper
                 }
                 $foreignID = ImportIdMapper::get('locations', $pivot['location_id']);
                 // Avoid duplicates (e.g., if location_id was already handled above)
-                if (! $this->entity->locations()->where('entity_locations.location_id', $foreignID)->exists()) {
+                if (! $this->entity->locations()->wherePivot('location_id', $foreignID)->exists()) {
                     $this->entity->locations()->attach($foreignID);
                 }
             }
