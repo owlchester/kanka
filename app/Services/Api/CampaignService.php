@@ -35,6 +35,12 @@ class CampaignService
     protected function filters(): self
     {
         $this->data['filters'] = [
+            'is_open' => [
+                'title' => 'Looking for players',
+            ],
+            'is_boosted' => [
+                'title' => 'Premium campaigns',
+            ],
             'language' => [
                 'title' => 'Language',
                 'options' => [
@@ -52,18 +58,6 @@ class CampaignService
             'system[]' => [
                 'title' => 'System',
                 'options' => $this->systemsOptions(),
-            ],
-            'is_boosted' => [
-                'title' => 'Premium campaigns',
-                'options' => [
-                    '1' => 'Only premium campaigns',
-                ],
-            ],
-            'is_open' => [
-                'title' => 'Open campaigns',
-                'options' => [
-                    '1' => 'Only open campaigns',
-                ],
             ],
             'genre' => [
                 'title' => 'Genre',
