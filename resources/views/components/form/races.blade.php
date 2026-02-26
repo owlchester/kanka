@@ -6,7 +6,6 @@ use Illuminate\Support\Arr;
 $selectedOption = [];
 
 $model = Arr::get($options, 'model');
-$quickCreator = Arr::get($options, 'quickCreator', false);
 $dynamicNew = Arr::get($options, 'dynamicNew', false);
 
 // Try to load what was sent with the form first, in case there was a form validation error
@@ -23,10 +22,6 @@ elseif(!empty($model)) {
         $selectedOption[$race->race->id] = strip_tags($race->race->name);
     }
 }
-
-if ($quickCreator) {
-    $quickCreator = auth()->user()->can('create', [$campaign->getEntityTypes()->where('id', config('entities.ids.race'))->first(), $campaign]);
-}
 ?>
 <x-forms.field
     field="races"
@@ -41,7 +36,7 @@ if ($quickCreator) {
         style="width: 100%"
         data-url="{{ route('search-list', [$campaign, config('entities.ids.race')]) }}"
         data-allow-clear="true"
-        data-allow-new="{{ ($dynamicNew || $quickCreator) ? 'true' : 'false' }}"
+        data-allow-new="{{ $dynamicNew ? 'true' : 'false' }}"
         data-new-tag="{{ __('crud.actions.new') }}"
         data-placeholder="">
         @foreach ($selectedOption as $key => $val)
@@ -49,12 +44,4 @@ if ($quickCreator) {
         @endforeach
     </select>
 
-    @if ($quickCreator)
-        <x-slot name="action">
-            <a class="quick-creator-subform text-xs cursor-pointer text-link" data-url="{{ route('entity-creator.form', [$campaign, 'entity_type' => config('entities.ids.race'), 'origin' => 'entity-form', 'target' => $fieldUniqIdentifier, 'multi' => true]) }}" aria-label="Create a new race" tabindex="0">
-                <x-icon class="plus" />
-                {{ __('crud.actions.new') }}
-            </a>
-        </x-slot>
-    @endif
 </x-forms.field>

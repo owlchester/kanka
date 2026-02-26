@@ -5,7 +5,6 @@
     <input type="hidden" name="save_races" value="1">
     @include('components.form.races', ['options' => [
         'model' => $model ?? FormCopy::model(),
-        'quickCreator' => $quickCreator ?? false,
-        'dynamicNew' => $dynamicNew ?? false
+        'dynamicNew' => $dynamicNew ?? $quickCreator ?? false
     ]])
 </x-forms.field>
