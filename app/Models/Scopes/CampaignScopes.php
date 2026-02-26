@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\DB;
  *
  * @method static self|Builder visibility(int $visibility)
  * @method static self|Builder admin()
- * @method static self|Builder public()
+ * @method static self|Builder public($withUnlisted = true)
  * @method static self|Builder top()
  * @method static self|Builder front(?string $sort = null)
  * @method static self|Builder featured(bool $featured = true)
@@ -199,7 +199,11 @@ trait CampaignScopes
 
         $open = Arr::get($options, 'is_open');
         if ($open === '1') {
-            $query->open(); // @phpstan-ignore-line
+            $query->open() // @phpstan-ignore-line
+                ->reorder()
+                ->orderByDesc('is_prioritised')
+                ->orderByDesc('visible_entity_count')
+                ->orderBy('name');
         } elseif ($open === '0') {
             $query->open(false); // @phpstan-ignore-line
         }

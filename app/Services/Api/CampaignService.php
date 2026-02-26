@@ -23,7 +23,6 @@ class CampaignService
     {
         return $this->filters()
             ->showcased()
-            ->prioritised()
             ->data;
     }
 
@@ -84,17 +83,6 @@ class CampaignService
         $this->data['featured'] = Campaign::public(false)
             ->showcased()
             ->get()
-            ->map(fn ($campaign) => new CampaignResource($campaign));
-
-        return $this;
-    }
-
-    /**
-     * Build a list of prioritised campaigns
-     */
-    protected function prioritised(): self
-    {
-        $this->data['prioritised'] = Campaign::public(false)->where('is_prioritised', true)->get()
             ->map(fn ($campaign) => new CampaignResource($campaign));
 
         return $this;
