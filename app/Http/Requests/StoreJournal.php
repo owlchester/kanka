@@ -5,14 +5,17 @@ namespace App\Http\Requests;
 use App\Facades\Limit;
 use App\Models\Entity;
 use App\Models\Journal;
+use App\Models\Location;
 use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
+use App\Traits\ResolvesNewForeignEntities;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreJournal extends FormRequest
 {
     use ApiRequest;
+    use ResolvesNewForeignEntities;
 
     /**
      * Determine if the user is authorized to make this request.
@@ -68,5 +71,13 @@ class StoreJournal extends FormRequest
         }
 
         return $this->clean($rules);
+    }
+
+    protected function newEntityFields(): array
+    {
+        return [
+            'journal_id' => [Journal::class, config('entities.ids.journal')],
+            'location_id' => [Location::class, config('entities.ids.location')],
+        ];
     }
 }

@@ -14,7 +14,7 @@
             style="width: 100%"
             data-url="{{ $route }}"
             data-placeholder="{!! $placeholder ?? __('crud.placeholders.parent') !!}"
-            data-allow-new="{{ $dynamicNew ? 'true' : 'false' }}"
+            data-allow-new="{{ ($canNew || $dynamicNew) ? 'true' : 'false' }}"
             data-new-tag="{{ __('crud.actions.new') }}"
             data-language="{{ LaravelLocalization::getCurrentLocale() }}"
             data-allow-clear="{{ $allowClear ? 'true' : 'false' }}"

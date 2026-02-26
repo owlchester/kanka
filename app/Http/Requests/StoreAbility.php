@@ -8,11 +8,13 @@ use App\Models\Entity;
 use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
+use App\Traits\ResolvesNewForeignEntities;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreAbility extends FormRequest
 {
     use ApiRequest;
+    use ResolvesNewForeignEntities;
 
     /**
      * Determine if the user is authorized to make this request.
@@ -57,5 +59,12 @@ class StoreAbility extends FormRequest
         }
 
         return $this->clean($rules);
+    }
+
+    protected function newEntityFields(): array
+    {
+        return [
+            'ability_id' => [Ability::class, config('entities.ids.ability')],
+        ];
     }
 }

@@ -41,7 +41,7 @@ if ($quickCreator) {
         style="width: 100%"
         data-url="{{ route('search-list', [$campaign, config('entities.ids.race')]) }}"
         data-allow-clear="true"
-        data-allow-new="{{ $dynamicNew ? 'true' : false}}"
+        data-allow-new="{{ ($dynamicNew || $quickCreator) ? 'true' : 'false' }}"
         data-new-tag="{{ __('crud.actions.new') }}"
         data-placeholder="">
         @foreach ($selectedOption as $key => $val)

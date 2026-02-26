@@ -8,11 +8,13 @@ use App\Models\Note;
 use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
+use App\Traits\ResolvesNewForeignEntities;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreNote extends FormRequest
 {
     use ApiRequest;
+    use ResolvesNewForeignEntities;
 
     /**
      * Determine if the user is authorized to make this request.
@@ -56,5 +58,12 @@ class StoreNote extends FormRequest
         }
 
         return $this->clean($rules);
+    }
+
+    protected function newEntityFields(): array
+    {
+        return [
+            'note_id' => [Note::class, config('entities.ids.note')],
+        ];
     }
 }

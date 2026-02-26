@@ -11,11 +11,13 @@ use App\Models\Family;
 use App\Models\OrganisationMember;
 use App\Models\Race;
 use App\Observers\Concerns\HasMany;
+use App\Traits\ResolvesNewForeignEntities;
 use Illuminate\Support\Collection;
 
 class CharacterObserver extends MiscObserver
 {
     use HasMany;
+    use ResolvesNewForeignEntities;
 
     public function crudSaved(Character $character)
     {
@@ -169,7 +171,8 @@ class CharacterObserver extends MiscObserver
             return $this;
         }
 
-        $this->saveMany($character, 'races', request()->get('races', []), Race::class, 'characterRaces', 'race_id');
+        $races = $this->resolveNewModels(request()->get('races', []), Race::class, config('entities.ids.race'), $character->campaign_id);
+        $this->saveMany($character, 'races', $races, Race::class, 'characterRaces', 'race_id');
 
         return $this;
     }
@@ -179,8 +182,11 @@ class CharacterObserver extends MiscObserver
         if (! request()->has('save_families') && ! request()->has('families')) {
             return $this;
         }
-        $this->saveMany($character, 'families', request()->get('families', []), Family::class);
+
+        $families = $this->resolveNewModels(request()->get('families', []), Family::class, config('entities.ids.family'), $character->campaign_id);
+        $this->saveMany($character, 'families', $families, Family::class);
 
         return $this;
     }
+
 }

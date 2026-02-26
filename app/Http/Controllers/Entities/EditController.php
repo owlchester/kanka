@@ -65,10 +65,18 @@ class EditController extends Controller
             $validationClass = 'App\Http\Requests\Store' . Str::studly($entity->entityType->code);
             if (class_exists($validationClass)) {
                 $validator = app()->make($validationClass);
+                if (method_exists($validator, 'resolvedFields')) {
+                    $resolved = $validator->resolvedFields();
+                    if ($resolved) {
+                        $request->merge($resolved);
+                    }
+                }
                 $this->validate($request, $validator->rules());
             }
         } else {
             $validator = app()->make(StoreCustomEntity::class);
+            // Sync any parent_id resolved by prepareForValidation() into the original request.
+            $request->merge(['parent_id' => $validator->input('parent_id')]);
             $this->validate($request, $validator->rules());
         }
 

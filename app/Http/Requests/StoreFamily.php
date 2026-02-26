@@ -5,14 +5,17 @@ namespace App\Http\Requests;
 use App\Facades\Limit;
 use App\Models\Entity;
 use App\Models\Family;
+use App\Models\Location;
 use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
+use App\Traits\ResolvesNewForeignEntities;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreFamily extends FormRequest
 {
     use ApiRequest;
+    use ResolvesNewForeignEntities;
 
     /**
      * Determine if the user is authorized to make this request.
@@ -57,5 +60,13 @@ class StoreFamily extends FormRequest
         }
 
         return $this->clean($rules);
+    }
+
+    protected function newEntityFields(): array
+    {
+        return [
+            'family_id' => [Family::class, config('entities.ids.family')],
+            'location_id' => [Location::class, config('entities.ids.location')],
+        ];
     }
 }
