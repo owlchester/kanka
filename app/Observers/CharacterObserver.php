@@ -188,5 +188,4 @@ class CharacterObserver extends MiscObserver
 
         return $this;
     }
-
 }

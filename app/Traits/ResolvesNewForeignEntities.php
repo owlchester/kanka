@@ -72,7 +72,6 @@ trait ResolvesNewForeignEntities
      * Returns an array of model IDs ready for relationship syncing.
      *
      * @param  array<mixed>  $values
-     * @param  int  $campaignId
      * @return array<int>
      */
     public function resolveNewModels(array $values, string $classname, int $entityTypeId, int $campaignId): array
