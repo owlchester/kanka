@@ -57,6 +57,9 @@ class CalendarMapper extends MiscMapper
             $el = new CalendarWeather;
             $el->calendar_id = $this->model->id;
             foreach ($fields as $field) {
+                if (! array_key_exists($field, $data)) {
+                    continue;
+                }
                 $el->$field = $data[$field];
             }
             $el->created_by = $this->user->id;

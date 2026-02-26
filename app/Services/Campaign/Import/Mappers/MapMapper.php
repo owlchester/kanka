@@ -70,6 +70,9 @@ class MapMapper extends MiscMapper
             $el = new MapGroup;
             $el->map_id = $this->model->id;
             foreach ($fields as $field) {
+                if (! array_key_exists($field, $data)) {
+                    continue;
+                }
                 $el->$field = $data[$field];
             }
             $el->created_by = $this->user->id;
@@ -103,6 +106,9 @@ class MapMapper extends MiscMapper
             $el = new MapLayer;
             $el->map_id = $this->model->id;
             foreach ($fields as $field) {
+                if (! array_key_exists($field, $data)) {
+                    continue;
+                }
                 $el->$field = $data[$field];
             }
             $el->entry = $this->mentions($el->entry);

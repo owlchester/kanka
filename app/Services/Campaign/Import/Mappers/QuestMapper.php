@@ -65,6 +65,9 @@ class QuestMapper extends MiscMapper
                 $el->entity_id = ImportIdMapper::getEntity($data['entity_id']);
             }
             foreach ($fields as $field) {
+                if (! array_key_exists($field, $data)) {
+                    continue;
+                }
                 $el->$field = $data[$field];
             }
             $el->description = $this->mentions($el->description);

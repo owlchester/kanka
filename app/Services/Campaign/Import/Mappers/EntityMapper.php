@@ -29,9 +29,10 @@ trait EntityMapper
     {
         $this->model = app()->make($this->className);
         $this->model->campaign_id = $this->campaign->id;
+        $columns = $this->model->getConnection()->getSchemaBuilder()->getColumnListing($this->model->getTable());
         foreach ($this->data as $field => $value) {
             // @phpstan-ignore-next-line
-            if (is_array($value) || in_array($field, $this->ignore)) {
+            if (is_array($value) || in_array($field, $this->ignore) || ! in_array($field, $columns)) {
                 continue;
             }
             $this->model->$field = $value;
@@ -78,6 +79,9 @@ trait EntityMapper
             $this->entity->type_id = $this->model->entityTypeId();
         }
         foreach ($entityMapping as $field) {
+            if (! array_key_exists($field, $this->data['entity'] ?? [])) {
+                continue;
+            }
             $this->entity->$field = $this->data['entity'][$field];
         }
 
