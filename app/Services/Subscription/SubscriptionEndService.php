@@ -42,6 +42,7 @@ class SubscriptionEndService
     protected function endSoforts(): void
     {
         $subscriptions = Subscription::with(['user', 'user.boosts', 'user.boosts.campaign'])
+            ->has('user')
             ->where(function ($sub) {
                 $sub->where('stripe_id', 'like', 'sofort_%')
                     ->orWhere('stripe_id', 'like', 'giropay_%');
@@ -62,6 +63,7 @@ class SubscriptionEndService
     {
         // Now do the same thing for manual subs which ended on the current day, as manual subs end at midnight server time
         $subscriptions = Subscription::with(['user', 'user.boosts', 'user.boosts.campaign'])
+            ->has('user')
             ->where('stripe_id', 'like', 'manual_sub%')
             ->where('stripe_status', 'canceled')
             ->whereNotLike('stripe_price', 'trial_%')
@@ -80,6 +82,7 @@ class SubscriptionEndService
     {
         // Now do the same thing for manual subs which ended on the current day, as manual subs end at midnight server time
         $subscriptions = Subscription::with(['user', 'user.boosts', 'user.boosts.campaign'])
+            ->has('user')
             ->where('stripe_price', 'like', 'paypal_%')
             ->where('stripe_status', 'canceled')
             ->whereDate('ends_at', '<', Carbon::today()->toDateString())
