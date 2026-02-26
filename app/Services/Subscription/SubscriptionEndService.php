@@ -41,7 +41,7 @@ class SubscriptionEndService
 
     protected function endSoforts(): void
     {
-        $subscriptions = Subscription::with(['user', 'user.boosts', 'user.boosts.campaign'])
+        $subscriptions = Subscription::with(['user', 'user.boosts', 'user.boosts.campaign', 'user.subscriptions'])
             ->has('user')
             ->where(function ($sub) {
                 $sub->where('stripe_id', 'like', 'sofort_%')
@@ -62,7 +62,7 @@ class SubscriptionEndService
     protected function endManuals(): void
     {
         // Now do the same thing for manual subs which ended on the current day, as manual subs end at midnight server time
-        $subscriptions = Subscription::with(['user', 'user.boosts', 'user.boosts.campaign'])
+        $subscriptions = Subscription::with(['user', 'user.boosts', 'user.boosts.campaign', 'user.subscriptions'])
             ->has('user')
             ->where('stripe_id', 'like', 'manual_sub%')
             ->where('stripe_status', 'canceled')
@@ -81,7 +81,7 @@ class SubscriptionEndService
     protected function endPaypals(): void
     {
         // Now do the same thing for manual subs which ended on the current day, as manual subs end at midnight server time
-        $subscriptions = Subscription::with(['user', 'user.boosts', 'user.boosts.campaign'])
+        $subscriptions = Subscription::with(['user', 'user.boosts', 'user.boosts.campaign', 'user.subscriptions'])
             ->has('user')
             ->where('stripe_price', 'like', 'paypal_%')
             ->where('stripe_status', 'canceled')
@@ -100,6 +100,11 @@ class SubscriptionEndService
     {
         /** @var User $user */
         $user = $subscription->user;
+
+        if ($user->subscribed('kanka')) {
+            return;
+        }
+
         $this->logs[] = 'User ' . $user->name . ' (' . $user->id . '): ' . $subscription->ends_at;
         if ($this->dispatch) {
             SubscriptionEndJob::dispatch($user);
