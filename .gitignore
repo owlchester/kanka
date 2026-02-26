@@ -5,6 +5,7 @@
 /public/exports
 /public/info.php
 /public/robots.txt
+/public/ads.txt
 #/public/images/defaults/patreon
 /storage/*.key
 /storage
