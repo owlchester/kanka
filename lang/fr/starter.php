@@ -63,6 +63,52 @@ return [
         ],
         'title'         => 'Reine des Explosions',
     ],
+    'city'          => [
+        'description'   => 'Le cœur battant du royaume, où marchands, nobles et roturiers se côtoient dans des marchés animés et de grandes places. Les vieux murs de la ville tiennent toujours, bien que celle-ci les ait dépassés depuis longtemps.',
+        'districts'     => [
+            'first' => 'Quartier noble: Manoirs et jardins',
+            'fourth'=> 'Quais: Port fluvial, entrepôts',
+            'second'=> 'Quartier du marché: Commerce, artisanat, tavernes',
+            'third' => 'Vieille ville: Cité fortifiée d\'origine',
+            'title' => 'Quartiers',
+        ],
+        'locations'     => [
+            'first' => 'Le Palais Royal (centre du Quartier noble)',
+            'second'=> 'Le Grand Bazar (Quartier du marché)',
+            'third' => 'L’Auberge de l’Épée Rouillée (lieu populaire des aventuriers)',
+            'title' => 'Lieux notables',
+        ],
+        'name'          => '[Ta capitale]',
+        'type'          => 'Capitale',
+    ],
+    'kingdom'       => [
+        'description'   => 'Un royaume prospère, réputé pour ses terres fertiles et ses forêts séculaires. La famille royale règne depuis trois générations, préservant la paix par la diplomatie et le commerce.',
+        'features'      => [
+            'capital'   => [
+                'name'  => 'Capitale',
+            ],
+            'exp'       => [
+                'name'  => 'Export principal',
+                'value' => 'Céréales, bois de construction',
+            ],
+            'gov'       => [
+                'name'  => 'Gouvernement',
+                'value' => 'Monarchie héréditaire',
+            ],
+            'pop'       => [
+                'name'  => 'Population',
+                'value' => '~50,000',
+            ],
+            'title'     => 'Caractéristiques notables',
+        ],
+        'name'          => '[Nom de ton royaume]',
+        'recent'        => [
+            'first' => 'Recrudescence du banditisme sur les routes de l\'est',
+            'second'=> 'Mauvaises récoltes dans les provinces du sud',
+            'title' => 'Événements récents',
+        ],
+        'type'          => 'Royaume',
+    ],
     'kingdom1'      => [
         'description'   => 'Ceci est un exemple de localité.',
         'history'       => '(exemple) Le royaume de Genory fut fondé par la tribu des Genoriens durant le 5ème sciècle.',
