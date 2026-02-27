@@ -141,7 +141,7 @@ return [
             'member'    => 'Member',
             'owner'     => 'Admin',
             'player'    => 'Player',
-            'public'    => 'Public',
+            'public'    => 'Guest',
             'viewer'    => 'Viewer',
         ],
         'switch_back_success'   => 'Switched back to your account.',
