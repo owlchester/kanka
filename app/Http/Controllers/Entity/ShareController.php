@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Entity;
 
-use App\Enums\CampaignVisibility;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreShare;
 use App\Models\Campaign;
-use App\Models\CampaignPermission;
 use App\Models\Entity;
+use App\Services\Campaign\ShareService as CampaignShareService;
+use App\Services\Entity\ShareService;
 use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Http\JsonResponse;
@@ -16,6 +16,11 @@ class ShareController extends Controller
 {
     use CampaignAware;
     use GuestAuthTrait;
+
+    public function __construct(
+        protected ShareService $shareService,
+        protected CampaignShareService $campaignShareService,
+    ) {}
 
     /**
      * @throws \Illuminate\Auth\Access\AuthorizationException
@@ -45,49 +50,27 @@ class ShareController extends Controller
         }
 
         if ($visibilityMode) {
-            $publicRole = $campaign->roles()->public()->first();
+            $this->shareService
+                ->campaign($campaign)
+                ->entity($entity);
 
             if ($visibilityMode === 'entity') {
-                if ($entity->is_private) {
-                    $entity->update(['is_private' => false]);
-                }
-
-                CampaignPermission::updateOrCreate(
-                    [
-                        'campaign_id'      => $campaign->id,
-                        'campaign_role_id' => $publicRole->id,
-                        'entity_id'        => $entity->id,
-                        'action'           => CampaignPermission::ACTION_READ,
-                    ],
-                    [
-                        'entity_type_id' => $entity->type_id,
-                        'access'         => true,
-                    ]
-                );
+                $this->shareService->shareEntity();
             } elseif ($visibilityMode === 'global') {
-                CampaignPermission::updateOrCreate(
-                    [
-                        'campaign_id'      => $campaign->id,
-                        'campaign_role_id' => $publicRole->id,
-                        'entity_type_id'   => $entity->type_id,
-                        'entity_id'        => null,
-                        'action'           => CampaignPermission::ACTION_READ,
-                    ],
-                    [
-                        'access' => true,
-                    ]
-                );
+                $this->shareService->shareGlobal();
             }
 
             $entity->refresh();
         } elseif ($campaignVisibility === 'public') {
-            $campaign->update(['visibility_id' => CampaignVisibility::public->value]);
+            $this->campaignShareService
+                ->campaign($campaign)
+                ->makePublic();
         }
 
         return response()->json([
-            'success'         => true,
+            'success' => true,
             'campaign_public' => $campaign->isPublic(),
-            'entity_private'  => (bool) $entity->is_private,
+            'entity_private' => (bool) $entity->is_private,
         ]);
     }
 }

@@ -30,6 +30,7 @@ return [
         'reorder'           => 'Reorder',
         'reset'             => 'Reset',
         'save-changes'      => 'Save changes',
+        'share'             => 'Share',
         'transform'         => 'Transform',
     ],
     'add'               => 'Add',

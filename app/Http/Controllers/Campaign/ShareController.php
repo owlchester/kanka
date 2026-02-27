@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Campaign;
 
-use App\Enums\CampaignVisibility;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
+use App\Services\Campaign\ShareService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class ShareController extends Controller
 {
-    public function __construct()
+    public function __construct(protected ShareService $shareService)
     {
         $this->middleware('auth');
     }
@@ -37,7 +37,9 @@ class ShareController extends Controller
             'campaign_visibility' => ['required', 'string', 'in:public'],
         ]);
 
-        $campaign->update(['visibility_id' => CampaignVisibility::public->value]);
+        $this->shareService
+            ->campaign($campaign)
+            ->makePublic();
 
         return response()->json([
             'success' => true,

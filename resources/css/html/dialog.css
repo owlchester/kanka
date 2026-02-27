@@ -15,7 +15,6 @@ dialog {
         overscroll-behavior-y: contain;
         max-block-size: 100%; /* safari */
         display: grid;
-        justify-items: flex-start;
         gap: 0.75rem;
     }
     form, .formless {
@@ -29,11 +28,11 @@ dialog {
             }
         }
     }
-    > .container {
+    .container {
         display: grid;
-        grid-template-rows: auto 1fr auto;
-        align-items: start;
-        max-block-size: 70vh;
+        grid-template-rows: 1fr auto;
+        align-self: stretch;
+        min-block-size: 0;
     }
 }
 

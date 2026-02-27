@@ -12,12 +12,12 @@
         'warning_entity_permissions' => __('entities/share.helpers.entity_permissions_warning'),
 
         'field_visibility_mode'  => __('entities/share.fields.visibility_mode'),
-        'helper_visibility_mode' => __('entities/share.helpers.visibility_mode'),
         'option_entity_public'   => __('entities/share.options.make_entity_public', ['name' => $entity->name]),
         'option_global_public'   => __('entities/share.options.make_all_public', ['module' => $entity->entityType->plural()]),
 
         'field_campaign_access'  => __('entities/share.fields.campaign_access'),
         'helper_campaign_access' => __('entities/share.helpers.campaign_access'),
+        'helper_member_link' => __('entities/share.helpers.member-link'),
 
         'label_member_link'      => __('entities/share.labels.member_link'),
         'label_public_link'      => __('entities/share.labels.public_link'),
