@@ -39,6 +39,9 @@ return [
     'hints'         => [],
     'index'         => [],
     'items'         => [],
+    'lists'         => [
+        'empty' => 'Erstelle Quests, um Ziele, Handlungsstränge oder Charaktermotivationen festzuhalten.',
+    ],
     'locations'     => [],
     'organisations' => [],
     'placeholders'  => [

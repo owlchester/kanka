@@ -19,6 +19,13 @@ return [
         'placeholder'   => 'Wpisz nazwę albo alias elementu',
         'title'         => 'Wyszukiwanie elementów',
     ],
+    'errors'        => [
+        'websockets'    => [
+            'disconnected'  => 'Utracono połączenie z websocket. Spróbuj ponownie.',
+            'error'         => 'Wystąpił błąd połączenia z serwerem websocket.',
+            'unavailable'   => 'Serwer websocket jest niedostępny. Spróbuj później.',
+        ],
+    ],
     'fields'        => [
         'color' => 'Kolor',
     ],
@@ -29,6 +36,10 @@ return [
     'reset'         => [
         'helper'    => 'Czy na pewno chcesz wymazać tablicę? Tej akcji nie można cofnąć.',
         'title'     => 'Wymaż tablicę',
+    ],
+    'roles'         => [
+        'edit'  => 'Ten użytkownik może edytować tablicę',
+        'view'  => 'Ten użytkownik może wyświetlić tablicę',
     ],
     'toast'         => [
         'copy'  => [

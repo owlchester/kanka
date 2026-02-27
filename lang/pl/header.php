@@ -9,6 +9,9 @@ return [
         'no-unread' => 'Brak nieprzeczytanych wiadomości',
         'read_all'  => 'Przeczytaj wszystko',
     ],
+    'qq'                => [
+        'tooltip'   => 'Dodaj element albo komentarz',
+    ],
     'toggle_navigation' => 'Przełącz nawigację',
     'user'              => [
         'settings'      => 'Ustawienia',

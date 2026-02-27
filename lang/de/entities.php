@@ -88,4 +88,6 @@ return [
     'timeline'              => 'Zeitstrahl',
     'timeline_element'      => 'Zeitstrahl Element',
     'timelines'             => 'Zeitstrahlen',
+    'whiteboard'            => 'Whiteboard',
+    'whiteboards'           => 'Whiteboards',
 ];

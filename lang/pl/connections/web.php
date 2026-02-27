@@ -2,8 +2,9 @@
 
 return [
     'actions'   => [
-        'back'  => 'Powrót do powiązań',
-        'view'  => 'Widok sieci',
+        'back'      => 'Powrót do powiązań',
+        'download'  => 'Pobierz PNG',
+        'view'      => 'Widok sieci',
     ],
     'cta'       => [
         'text'  => 'To jest podgląd pełnej sieci powiązań kampanii. W kampaniach darmowych wyświetlane jest do :amount węzłów. Kampanie premium pozwalają zobaczyć i nawigować wśród wszystkich powiązań. Podnieś poziom kampanii i zobacz całą strukturę swojego świata na raz.',

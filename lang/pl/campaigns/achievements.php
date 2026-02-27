@@ -15,6 +15,20 @@ return [
     'remaining'         => [
         'generic'   => 'Do następnego poziomu.',
     ],
+    'spotlight'         => [
+        'active'    => [
+            'cta'   => 'Zobacz wyróżnione',
+        ],
+        'private'   => [
+            'cta'       => 'Sprawdź ustawienia publiczne',
+            'helper'    => 'By kampania mogła zostać wyróżnona, musi być publiczna.',
+        ],
+        'public'    => [
+            'cta'       => 'Dowiedz się, jak działa wyróżnienie',
+            'helper'    => 'Wybrane kampanie są prezentowane w Galerii oraz na blogu.',
+        ],
+    ],
+    'spotlighted'       => '{0} Jeszcze nie wyróżnione|[1,*] Wyróżnone',
     'tagged'            => '{0} Nie dodano etykiet|{1} Dodano jedną etykietę|[2,4] Dodano :amount etykiety|[5,] Dodano :amount etykiet',
     'titles'            => [
         'calendars'     => 'Czas to pieniądz',
@@ -29,6 +43,7 @@ return [
         'organisations' => 'Załóż firmę',
         'plugins'       => 'Na dodatek',
         'quests'        => 'Szczwany plan',
+        'spotlighted'   => 'W świetle reflektorów',
         'tags'          => 'Wszystko pod kontrolą',
         'themes'        => 'Pomaluj mój świat',
     ],

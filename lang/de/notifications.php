@@ -20,6 +20,7 @@ return [
             'remove'        => ':user boosted die :campaign  nicht mehr.',
             'superboost'    => 'Die Kampagne :campaigne wird von :user superboosted.',
         ],
+        'created'           => 'Du hast :campaign erstellt.',
         'deleted'           => 'Die Kampagne :campaign wurde gelöscht.',
         'export'            => 'Ein Export der Kampagne steht zur Verfügung. Der Link ist :time Minuten gültig.',
         'export_error'      => 'Beim Export deiner Kampagne ist ein Fehler aufgetreten. Bitte kontaktiere uns, wenn das Problem weiterhin besteht.',
@@ -77,6 +78,7 @@ return [
         'ended'         => 'Ihr Abonnement für Kanka ist beendet. Ihre Kampagnen-Boosts und Discord-Rollen wurden entfernt. Wir hoffen, Sie bald wieder zu sehen!',
         'failed'        => 'Ihr Abonnement für Kanka wurde nach zu vielen fehlgeschlagenen Versuchen, Ihre Zahlungsmethode zu belasten, gekündigt. Bitte gehen Sie zu Ihren Abonnementeinstellungen und versuchen Sie, Ihre Zahlungsdetails zu aktualisieren.',
         'started'       => 'Ihr Abonnement wurde gestartet',
+        'trial'         => 'Deine kostenlose Testversion von Kanka ist abgelaufen. Wir hoffen, dass es dir gefallen hat und freuen uns auf deinen nächsten Besuch!',
     ],
     'unread'            => 'Neue Benachrichtigung',
 ];

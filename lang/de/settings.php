@@ -133,6 +133,9 @@ return [
         'success'   => 'Profil aktualisiert.',
         'title'     => 'Persönliches Profil',
     ],
+    'referrals'     => [
+        'title' => 'Empfehlungen',
+    ],
     'subscription'  => [
         'actions'               => [
             'cancel_sub'        => 'Abonnement beenden',
@@ -164,6 +167,8 @@ return [
         'cancelled'             => 'Ihr Abonnement wurde gekündigt. Sie können ein Abonnement verlängern, sobald Ihr aktuelles Abonnement endet.',
         'change'                => [
             'text'  => [
+                'downgrade_monthly' => 'Du stufst dein Konto auf die Stufe :tier für :downgrade herunter, danach wird dir monatlich ein Betrag in Höhe von :amount in Rechnung gestellt.',
+                'downgrade_yearly'  => 'Du stufst dein Konto auf die Stufe :tier für :downgrade herunter, danach wird dir jährlich ein Betrag in Höhe von :amount in Rechnung gestellt.',
                 'monthly'           => 'Sie abonnieren die :tier Stufe , die monatlich in Rechnung gestellt wird für :amount.',
                 'upgrade_monthly'   => 'Führe für :upgrade ein Upgrade auf die :tier Stufe durch, danach wird dir monatlich :amount in Rechnung gestellt.',
                 'upgrade_paypal'    => 'Führe für :upgrade bis :date ein Upgrade auf die :tier Stufe durch.',

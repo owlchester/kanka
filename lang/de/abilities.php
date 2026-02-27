@@ -25,6 +25,9 @@ return [
     ],
     'helpers'       => [],
     'index'         => [],
+    'lists'         => [
+        'empty' => 'Füge Kräfte, Zaubersprüche oder Talente hinzu. Viele Entwickler nutzen dies, um D&D-Klassen zu modellieren.',
+    ],
     'placeholders'  => [
         'charges'   => 'Anzahl der Verwendungen. Attribute können mit mit {Level} * {CHA} referenziert werden.',
         'name'      => 'Feuerball, Alarm, listiger Schlag',

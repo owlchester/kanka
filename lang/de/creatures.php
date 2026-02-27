@@ -13,6 +13,9 @@ return [
         'is_dead'       => 'Diese Kreatur ist tot.',
         'is_extinct'    => 'Diese Kreatur ist ausgestorben.',
     ],
+    'lists'         => [
+        'empty' => 'Füge Tiere, Monster oder Fabelwesen hinzu, denen deine Helden begegnen oder mit denen sie sich anfreunden können.',
+    ],
     'placeholders'  => [
         'type'  => 'Pflanzenfresser, aquatisch, mythisch',
     ],

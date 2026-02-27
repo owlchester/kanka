@@ -133,6 +133,9 @@ return [
         'success'   => 'Perfil actualizado.',
         'title'     => 'Perfil personal',
     ],
+    'referrals'     => [
+        'title' => 'Referidos',
+    ],
     'subscription'  => [
         'actions'               => [
             'cancel_sub'        => 'Cancelar suscripción',
@@ -164,6 +167,8 @@ return [
         'cancelled'             => 'Se ha cancelado tu suscripción. Puedes renovarla una vez el período de la suscripción actual termine.',
         'change'                => [
             'text'  => [
+                'downgrade_monthly' => 'Estás cambiando al plan :tier por :downgrade; después se te facturará mensualmente por :amount.',
+                'downgrade_yearly'  => 'Estás cambiando al plan :tier por :downgrade; después se te facturará anualmente por :amount.',
                 'monthly'           => 'Estás suscribiéndote al nivel :tier, que cuesta :amount mensuales.',
                 'upgrade_monthly'   => 'Estás actualizando al nivel :tier por :upgrade, a partir de ahora se facturará mensualmente por :amount.',
                 'upgrade_paypal'    => 'Estás actualizando al nivel :tier por :upgrade hasta :date.',

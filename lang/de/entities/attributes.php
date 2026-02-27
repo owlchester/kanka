@@ -15,6 +15,7 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'errors'        => [
+        'api'                   => 'Ungültige Daten',
         'loop'                  => 'Diese Attributberechnung enthält eine Endlosschleife!',
         'no_attribute_selected' => 'Wähle zunächst ein oder mehrere Eigenschaften aus.',
         'too_many_v2'           => 'Maximale Felder erreicht (:count/:max). Lösche zuerst einige Eigenschaften, bevor du weitere hinzufügen kannst.',
@@ -105,6 +106,7 @@ return [
         'number'    => 'Nummer',
         'random'    => 'Zufällig',
         'section'   => 'Abteilung',
+        'templates' => 'Vorlagen',
         'text'      => 'Mehrzeiliger Text',
     ],
     'update'        => [

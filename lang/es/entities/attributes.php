@@ -103,6 +103,7 @@ return [
         'number'    => 'Número',
         'random'    => 'Aleatorio',
         'section'   => 'Sección',
+        'templates' => 'Plantillas',
         'text'      => 'Texto multilínea',
     ],
     'update'        => [

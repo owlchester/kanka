@@ -15,6 +15,20 @@ return [
     'remaining'         => [
         'generic'   => 'Más y se desbloqueará el siguiente nivel.',
     ],
+    'spotlight'         => [
+        'active'    => [
+            'cta'   => 'Ver destacado',
+        ],
+        'private'   => [
+            'cta'       => 'Revisar configuración pública',
+            'helper'    => 'Haz pública tu campaña para que pueda ser seleccionada como campaña destacada.',
+        ],
+        'public'    => [
+            'cta'       => 'Aprende cómo funciona la campaña destacada',
+            'helper'    => 'Las campañas seleccionadas aparecen como campañas destacadas en Kanka y en el blog.',
+        ],
+    ],
+    'spotlighted'       => '{0} Aún no es campaña destacada |[1,*] Campaña destacada',
     'tagged'            => '{0} Ninguna entidad etiquetada|{1} Una entidad etiquetada|[2,*] :amount entidades etiquetadas',
     'titles'            => [
         'calendars'     => 'Guardián del tiempo',
@@ -29,6 +43,7 @@ return [
         'organisations' => 'Fusiones y adquisiciones',
         'plugins'       => 'Conocedor de los plugins',
         'quests'        => 'Mente maestra',
+        'spotlighted'   => 'Destacada',
         'tags'          => 'Bajo control',
         'themes'        => 'Pintor',
     ],

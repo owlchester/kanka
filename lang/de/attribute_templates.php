@@ -20,6 +20,9 @@ return [
         'parent_attribute_template' => 'Diese Attributvorlage kann eine übergeordnete Attributvorlage haben. Wenn man diese Vorlage anwendet, werden sie und alle übergeordneten Vorlagen angewendet.',
     ],
     'index'                 => [],
+    'lists'                 => [
+        'empty' => 'Erstelle Vorlagen, um gemeinsame Attribute für mehrere Objekte wiederzuverwenden.',
+    ],
     'placeholders'          => [
         'name'  => 'Name der Attributvorlage',
     ],

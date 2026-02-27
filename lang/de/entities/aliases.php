@@ -18,6 +18,7 @@ return [
     'helpers'       => [
         'primary'   => 'Das Festlegen eines oder mehrerer Aliase für das Objekt macht sie in der globalen Suche (obere Leiste) und durch Erwähnungen auffindbar.',
     ],
+    'limit'         => 'Die Kampagne hat die Grenze der verfügbaren Aliase erreicht. Um unbegrenzt Aliase zu erhalten, schalte Premium-Funktionen frei.',
     'pitch'         => 'Erstelle Aliase für dieses Objekt, um es einfach über die Suche und Erwähnungen zu finden.',
     'placeholders'  => [
         'name'  => 'Neuer Alias',

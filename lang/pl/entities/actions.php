@@ -10,6 +10,9 @@ return [
     'json-export'       => 'Eksport JSON',
     'markdown-export'   => 'Eksport Markdown',
     'templates'         => [],
+    'tooltips'          => [
+        'edit'  => 'Pozwala modyfikować element',
+    ],
     'transfer'          => 'Przenieś do kampanii',
     'unarchive'         => [
         'success'   => 'Przywrócono :name z archiwum.',

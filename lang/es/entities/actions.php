@@ -10,6 +10,9 @@ return [
     'json-export'       => 'Exportar a JSON',
     'markdown-export'   => 'Exportar a Markdown',
     'templates'         => [],
+    'tooltips'          => [
+        'edit'  => 'Editar esta entidad',
+    ],
     'transfer'          => 'Transferir a campaña',
     'unarchive'         => [
         'success'   => ':name ya no está archivado.',

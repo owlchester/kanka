@@ -22,6 +22,9 @@ return [
             'results'   => 'Ergebnisse',
         ],
     ],
+    'lists'         => [
+        'empty' => 'Erstelle und speicher Würfelwürfe für die Kampagne, um die Ergebnisse direkt in Kanka zu verfolgen.',
+    ],
     'placeholders'  => [
         'name'          => 'Name des Würfelwurfs',
         'parameters'    => '4d6+3',

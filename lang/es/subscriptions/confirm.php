@@ -4,6 +4,7 @@ return [
     'actions'   => [
         'pay'       => 'Paga :currency:amount ahora',
         'paypal'    => 'Paga :currency:amount con PayPal',
+        'subscribe' => 'Suscribirse por :currency:amount',
     ],
     'helpers'   => [
         'auto-renew'    => [
@@ -13,6 +14,7 @@ return [
         ],
         'paypal'        => 'Serás redirigido a PayPal para completar esta transacción.',
         'refund'        => 'Ofrecemos una política de reembolso sin preguntas durante 14 días en todas las suscripciones anuales. Simplemente envíanos un correo a :email para iniciar el proceso de reembolso.',
+        'tiny'          => 'Gracias por apoyar a un pequeño equipo de apasionados creadores de mundos.',
     ],
     'title'     => 'Suscripción de :name',
 ];

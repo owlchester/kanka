@@ -21,6 +21,9 @@ return [
     'index'         => [],
     'items'         => [],
     'journals'      => [],
+    'lists'         => [
+        'empty' => 'Füge deine erste Stadt, Taverne oder versteckte Ruine hinzu, um deine Welt zu verankern.',
+    ],
     'locations'     => [],
     'map'           => [],
     'maps'          => [],

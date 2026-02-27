@@ -16,6 +16,9 @@ return [
         'participants'  => 'Bitte füge Teilnehmer zu deiner Unterhaltung hinzu, indem du das :icon Symbol oben rechts drückst.',
     ],
     'index'         => [],
+    'lists'         => [
+        'empty' => 'Zeichne Dialoge, Briefe oder den Austausch zwischen Charakteren und Fraktionen auf.',
+    ],
     'messages'      => [
         'destroy'       => [
             'success'   => 'Nachricht gelöscht.',

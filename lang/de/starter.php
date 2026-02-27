@@ -9,5 +9,6 @@ return [
     'item1'         => [],
     'kingdom1'      => [],
     'kingdom2'      => [],
+    'name'          => ':name (Beispiel)',
     'note1'         => [],
 ];

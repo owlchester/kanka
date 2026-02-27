@@ -42,6 +42,7 @@ return [
         'title'     => 'öffentliche Kampagne',
     ],
     'statuses'      => [],
+    'title'         => 'Beitrittsanfragen',
     'toggle'        => [
         'closed'    => 'Anwendung geschlossen',
         'label'     => 'Status',
@@ -49,6 +50,7 @@ return [
         'success'   => 'Anwendungsstatus der Kampagne aktualisiert.',
         'title'     => 'Anwendungsstatus',
     ],
+    'tutorial'      => 'Über Kampagnenanmeldungen können Personen Zugang zu dieser Kampagne beantragen. Die Antragsteller füllen ein kurzes Formular aus, und die Kampagnenadministratoren können jede Anfrage prüfen, annehmen oder ablehnen. Genehmigte Benutzer werden der Kampagne mit der Rolle hinzugefügt, die du ihnen bei der Prüfung zuweist.',
     'update'        => [
         'approve'   => 'Wählen Sie die Rolle aus, die dem Benutzer in Ihrer Kampagne hinzugefügt werden soll.',
         'approved'  => 'Bewerbung genehmigt',

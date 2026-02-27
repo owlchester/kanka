@@ -103,6 +103,7 @@ return [
         'number'    => 'Liczba',
         'random'    => 'Losowy',
         'section'   => 'Sekcja',
+        'templates' => 'Szablony',
         'text'      => 'Kilka wierszy',
     ],
     'update'        => [

@@ -61,6 +61,7 @@ return [
         'base'                      => 'Fügen Sie der Karte Markierungen hinzu, indem Sie auf eine beliebige Stelle klicken.',
         'copy_elements'             => 'kopiere Gruppen, Layers, und Marker',
         'copy_elements_to_campaign' => 'Kopiere Gruppen, Ebenen und Markierungen der Karten. Mit einem Objekt verknüpfte Marker werden in einen Standardmarker konvertiert.',
+        'css'                       => 'Definiere eine benutzerdefinierte CSS-Klasse, die der Markierung hinzugefügt wird.',
         'custom_icon_v2'            => 'Verwende Symbole von :fontawesome, :rpgawesome oder ein benutzerdefiniertes SVG-Symbol. Wie das geht, erfährst du in den :docs.',
         'custom_radius'             => 'Wählen Sie die benutzerdefinierte Größenoption aus der Dropdown-Liste aus, um eine Größe zu definieren.',
         'draggable'                 => 'Aktivieren Sie diese Option, um das Verschieben eines Markers im Erkundungsmodus zu ermöglichen.',

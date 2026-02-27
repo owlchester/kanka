@@ -15,6 +15,9 @@ return [
         'is_defunct'    => 'Diese Organisation ist aufgelöst.',
     ],
     'index'         => [],
+    'lists'         => [
+        'empty' => 'Gründe Gilden, Fraktionen oder Geheimgesellschaften, um die Machtstruktur deiner Welt zu gestalten.',
+    ],
     'members'       => [
         'actions'       => [
             'add_multiple'  => 'Mitglied hinzufügen',
@@ -27,7 +30,8 @@ return [
             'success'   => 'Mitglied aus Organisation entfernt.',
         ],
         'edit'          => [
-            'title' => 'Aktualisiere Mitglied für :name',
+            'helper'    => 'Ändere den Mitgliedsstatus für :name.',
+            'title'     => 'Aktualisiere Mitglied für :name',
         ],
         'fields'        => [
             'parent'    => 'Vorgesetzter',

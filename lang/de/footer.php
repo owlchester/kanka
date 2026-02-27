@@ -28,6 +28,7 @@ return [
     'roadmap'           => 'Fahrplan',
     'security'          => 'Sicherheit',
     'server-time'       => 'Dies ist die Uhrzeit unseres Servers (:server)',
+    'showcase'          => 'Schaufenster',
     'status'            => 'Service Status',
     'terms'             => 'Bedingungen',
     'thanks'            => 'Nur möglich dank unserer Abonnenten.',

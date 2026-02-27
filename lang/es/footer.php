@@ -28,6 +28,7 @@ return [
     'roadmap'           => 'Hoja de ruta',
     'security'          => 'Seguridad',
     'server-time'       => 'Esta es la hora de nuestro servidor (:server)',
+    'showcase'          => 'Destacados',
     'status'            => 'Estado del servicio',
     'terms'             => 'Términos',
     'thanks'            => 'Sólo posible gracias a nuestros suscriptores.',

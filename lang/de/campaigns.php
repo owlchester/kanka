@@ -164,6 +164,7 @@ TEXT
     ],
     'panels'                            => [
         'dashboard' => 'Dashboard',
+        'privacy'   => 'Datenschutz-Standardeinstellungen',
         'setup'     => 'erstellen',
         'sharing'   => 'Teilen',
         'systems'   => 'Systeme',
@@ -339,6 +340,7 @@ TEXT
             'races'             => 'Wenn deine Kampagne mehr als eine Spezies hat, hier kannst du den Überblick behalten.',
             'tags'              => 'Jedes Objekt kann eine Kategorie habe. Kategorien können zu anderen Kategorien gehören und Objekte können nach Kategorie gefiltert werden.',
             'timelines'         => 'Stellen Sie die Geschichte Ihrer Welt mit Zeitstrahlen dar.',
+            'whiteboards'       => 'Zeichne und schreibe auf Whiteboards, um deine Welt und deine Ziele visuell zu planen.',
         ],
     ],
     'sharing'                           => [
@@ -356,6 +358,7 @@ TEXT
             'danger'            => 'Gefahr',
             'data'              => 'Daten',
             'default-images'    => 'Standardbilder',
+            'defaults'          => 'Standardwerte',
             'deletion'          => 'Löschung',
             'export'            => 'Export',
             'import'            => 'Importieren',
@@ -406,6 +409,7 @@ TEXT
     'visibilities'                      => [
         'private'   => 'Privat',
         'public'    => 'Öffentlich',
+        'unlisted'  => 'öffentlich (nicht gelistet)',
     ],
     'warning'                           => [],
 ];
