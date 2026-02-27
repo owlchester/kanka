@@ -12,7 +12,7 @@ class Missing extends Command
      *
      * @var string
      */
-    protected $signature = 'translate:missing {locale : The target locale to find missing translations for}';
+    protected $signature = 'translations:missing {locale : The target locale to find missing translations for}';
 
     /**
      * The console command description.

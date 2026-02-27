@@ -7,12 +7,12 @@ Example: /translate fr French
 
 ## Steps
 
-1. Run `php artisan translations:missing $ARGUMENTS` and capture the output
+1. Run `php artisan translations:missing $ARG1` and capture the output
 2. For each missing key/string:
     - Translate the English string to the target language naturally (not literally)
     - Preserve `:variable` placeholders, `<html>` tags, and pluralization syntax exactly
     - Match tone/formality of existing translations (check a few rows in ltm_translations first)
-3. Insert each translation into `ltm_translations`
+3. Insert each translation into `ltm_translations`. Don't fill the saved_value field (so that we can check in the UI what has been changed)
 4. Confirm count of translations added
 
 ## Rules
