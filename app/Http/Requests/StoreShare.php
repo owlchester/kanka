@@ -14,7 +14,7 @@ class StoreShare extends FormRequest
     public function rules(): array
     {
         return [
-            'visibility_mode'    => ['nullable', 'string', 'in:entity,global'],
+            'visibility_mode' => ['nullable', 'string', 'in:entity,global'],
             'campaign_visibility' => ['nullable', 'string', 'in:public'],
         ];
     }
