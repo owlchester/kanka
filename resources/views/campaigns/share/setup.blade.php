@@ -3,8 +3,10 @@
         'title'                  => __('campaigns/share.title'),
         'status_private'         => __('campaigns/share.status.private'),
         'status_public'          => __('campaigns/share.status.public'),
+        'status_unlisted'        => __('campaigns.visibilities.titles.unlisted'),
         'helper_private'         => __('campaigns/share.helpers.private_explanation'),
         'helper_public'          => __('campaigns/share.helpers.public_explanation'),
+        'helper_unlisted'        => __('campaigns/share.helpers.unlisted_explanation'),
         'label_member_link'      => __('campaigns/share.labels.member_link'),
         'label_public_link'      => __('campaigns/share.labels.public_link'),
         'btn_make_public'        => __('campaigns/share.buttons.make_public'),
@@ -24,9 +26,9 @@
 
 @section('content')
 
-<div id="campaign-share-container" class="p-1">
+<div id="campaign-share-container">
     <campaign-share-modal
-        :initial-campaign-public="{{ $campaign->isPublic() ? 'true' : 'false' }}"
+        initial-visibility="{{ $campaign->visibility_id->name }}"
         url="{{ route('dashboard', $campaign) }}"
         save-endpoint="{{ route('campaign.share.save', $campaign) }}"
         settings-url="{{ route('campaign-visibility', $campaign) }}"
