@@ -5,32 +5,38 @@ namespace App\Console\Commands\Translations;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
-class French extends Command
+class Missing extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'translate:french';
+    protected $signature = 'translate:missing {locale : The target locale to find missing translations for}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Export french translations.';
+    protected $description = 'Export missing translations for a given locale.';
 
     protected string $prompt;
 
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): void
     {
-        $this->prompt = "Task: translate the following laravel translation keys from english to swiss french. Keep laravel's translation variables (:name) as in the original format. Keep laravel's trans_choice format. Always use \"tu\". Don't translate grouping names.\n";
+        $locale = $this->argument('locale');
 
-        $translations = DB::select("select * from ltm_translations where locale = 'en' and not exists(select fr.* from ltm_translations as fr where fr.locale = 'fr' and fr.group = ltm_translations.group and fr.key = ltm_translations.key) order by ltm_translations.group ASC, ltm_translations.key ASC");
+        $this->prompt = '';
+
+        $translations = DB::select(
+            "select * from ltm_translations where locale = 'en' and not exists(select t.* from ltm_translations as t where t.locale = ? and t.group = ltm_translations.group and t.key = ltm_translations.key) order by ltm_translations.group ASC, ltm_translations.key ASC",
+            [$locale]
+        );
+
         $groups = [];
         foreach ($translations as $translation) {
             if (! isset($groups[$translation->group])) {
