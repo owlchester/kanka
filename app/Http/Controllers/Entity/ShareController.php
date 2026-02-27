@@ -77,14 +77,6 @@ class ShareController extends Controller
                         'access' => true,
                     ]
                 );
-
-                //Line below makes all the corresponding entities to the module public if they're set to private
-                //Is this inside the ticket's scope, or just creting the campaignpermmission above is enough? 
-                Entity::query()
-                    ->where('campaign_id', $campaign->id)
-                    ->where('type_id', $entity->type_id)
-                    ->where('is_private', true)
-                    ->update(['is_private' => false]);
             }
 
             $entity->refresh();

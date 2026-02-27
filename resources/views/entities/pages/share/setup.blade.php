@@ -21,7 +21,7 @@
 
         'label_member_link'      => __('entities/share.labels.member_link'),
         'label_public_link'      => __('entities/share.labels.public_link'),
-        'btn_save'               => __('entities/share.buttons.save'),
+        'btn_save'               => __('crud.actions.save-changes'),
         'btn_make_public'        => __('entities/share.buttons.make_public'),
         'btn_copy'               => __('entities/share.buttons.copy'),
         'btn_close'              => __('crud.actions.close'),

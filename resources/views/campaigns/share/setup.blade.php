@@ -3,7 +3,7 @@
         'title'                  => __('campaigns/share.title'),
         'status_private'         => __('campaigns/share.status.private'),
         'status_public'          => __('campaigns/share.status.public'),
-        'status_unlisted'        => __('campaigns/share.status.unlisted'),
+        'status_unlisted'        => __('campaigns.visibilities.titles.unlisted'),
         'helper_private'         => __('campaigns/share.helpers.private_explanation'),
         'helper_public'          => __('campaigns/share.helpers.public_explanation'),
         'helper_unlisted'        => __('campaigns/share.helpers.unlisted_explanation'),

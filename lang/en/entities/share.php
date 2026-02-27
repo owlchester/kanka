@@ -16,7 +16,7 @@ return [
         'private_explanation'         => 'Only invited members can view this entry because the campaign is private.',
         'visibility_mode'           => 'Choose how you want to expose this entry to the public.',
         'campaign_access'           => 'To share this with the public, the campaign itself must be made public first.',
-        'entity_permissions_warning' => 'Making this campaign public allows anyone to browse it. Individual entry permissions still apply — entries marked as private will remain hidden.',
+        'entity_permissions_warning' => 'Making this campaign public allows anyone to browse it. Individual entry permissions still apply, entries marked as private will remain hidden.',
     ],
     'fields' => [
         'visibility_mode' => 'Public access settings',
@@ -34,7 +34,6 @@ return [
         'public_link'  => 'Public link',
     ],
     'buttons' => [
-        'save'        => 'Save changes',
         'make_public' => 'Make campaign public',
         'copy'        => 'Copy link',
     ],
