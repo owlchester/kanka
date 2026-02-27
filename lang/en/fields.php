@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'entry' => [
-        'label' => 'Entry',
-    ],
-    'description' => [
+    'description'       => [
         'label' => 'Description',
+    ],
+    'entry'             => [
+        'label' => 'Entry',
     ],
     'gallery'           => [
         'placeholder'   => 'Choose an image from the gallery',

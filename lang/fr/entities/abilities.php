@@ -23,14 +23,14 @@ return [
         'unorganised'   => 'Inorganisé',
     ],
     'helpers'   => [
-        'note'      => 'Ce champ peut référencer des entités en utilisant les mentions avancées (ex :code) et les attributs d\'une entité (ex :attr).',
+        'note'      => 'Ce champ peut référencer des entrées en utilisant les mentions avancées (ex :code) et les propriétés d\'une entrée (ex :attr).',
         'recharge'  => 'Réinitialiser toutes les charges des pouvoirs qui ont été utilisées.',
         'sync'      => 'Importer les pouvoirs définis sur les races du personnage.',
     ],
     'import'    => [
         'errors'            => [
             'no_race'       => 'Ce personnage n\'as pas de race.',
-            'not_character' => 'Cette entité n\'est pas un personnage.',
+            'not_character' => 'Cette entrée n\'est pas un personnage.',
         ],
         'helper'            => 'Attacher des pouvoir des races auxquelles :name appartient:',
         'no_abilities'      => 'Actuellement, il n\'existe aucune possibilité d\'importer des pouvoirs provenant des races auxquelles :name appartient.',
@@ -45,7 +45,7 @@ return [
         'success'       => 'Pouvoirs réordonnés.',
     ],
     'show'      => [
-        'helper'    => 'Attache des pouvoirs à cette entité. Il est toujours possible de modifier ou de supprimer un pouvoir. Les pouvoirs qui appartiennent au même parent sont groupés ensemble et agissent comme filtres.',
+        'helper'    => 'Attache des pouvoirs à cette entrée. Il est toujours possible de modifier ou de supprimer un pouvoir. Les pouvoirs qui appartiennent au même parent sont groupés ensemble et agissent comme filtres.',
         'reorder'   => 'Réordonner',
         'title'     => 'Pouvoirs de:name',
     ],
@@ -53,7 +53,7 @@ return [
         'unorganised'   => 'Les pouvoirs sont regroupés en fonction de leur parent, ou se retrouvent ici.',
     ],
     'update'    => [
-        'success'   => 'Pouvoir d\'entité :ability mis à jour.',
+        'success'   => 'Pouvoir d\'entrée :ability mis à jour.',
         'title'     => 'Pouvoirs de :name',
     ],
 ];

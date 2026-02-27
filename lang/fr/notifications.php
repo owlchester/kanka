@@ -26,8 +26,10 @@ return [
         'export_error'      => 'Une erreur est survenue lors de l\'export de la campagne. Prière de nous contacter si ce problème persiste.',
         'hidden'            => 'La campagne :campaign est maintenant cachée de la page des campagnes publiques.',
         'import'            => [
-            'failed'    => 'L\'import de la campagne :campaign a échoué.',
-            'success'   => 'L\'import de la campagne :campaign est terminé.',
+            'csv_ready'     => 'L\'import CSV pour :campaign est prêt.',
+            'csv_success'   => ':count entrées importées avec succès via import CSV dans :campaign.',
+            'failed'        => 'L\'import de la campagne :campaign a échoué.',
+            'success'       => 'L\'import de la campagne :campaign est terminé.',
         ],
         'join'              => ':user a rejoint la campagne :campaign.',
         'leave'             => ':user a quitté la campagne :campaign.',

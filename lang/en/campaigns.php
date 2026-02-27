@@ -24,10 +24,10 @@ return [
         'boosted'                   => 'Boosted by',
         'entity_count'              => 'Number of entries',
         'entry'                     => 'Description of the world',
+        'excerpt'                   => 'Excerpt',
         'followers'                 => 'Followers',
         'genre'                     => 'Genres',
         'header_image'              => 'Billboard widget background image',
-        'excerpt'                   => 'Excerpt',
         'image'                     => 'Sidebar image',
         'locale'                    => 'Content language',
         'name'                      => 'Name',
@@ -229,10 +229,10 @@ return [
         'permissions'   => [
             'actions'   => [
                 'add'           => 'Create',
+                'articles'      => 'Articles',
                 'dashboard'     => 'Dashboard',
                 'delete'        => 'Delete',
                 'edit'          => 'Edit',
-                'articles' => 'Articles',
                 'gallery'       => [
                     'browse'    => 'Browse',
                     'manage'    => 'Full control',
@@ -246,10 +246,10 @@ return [
             ],
             'helpers'   => [
                 'add'           => 'Allow creating entries of this category. They will automatically be allowed to view and edit entries they create if they don\'t have the view or edit permission.',
+                'articles'      => 'Allows adding, editing, and deleting articles even if the member can\'t edit the entry.',
                 'dashboard'     => 'Allow editing the dashboards and dashboard widgets.',
                 'delete'        => 'Allow removing all entries of this category.',
                 'edit'          => 'Allow editing all entries of this category.',
-                'articles'   => 'Allows adding, editing, and deleting articles even if the member can\'t edit the entry.',
                 'gallery'       => [
                     'browse'    => 'Allow viewing the gallery, and setting an entry\'s image from the gallery.',
                     'manage'    => 'Allow everything on the gallery as an admin can, including editing and deleting images.',
@@ -316,7 +316,7 @@ return [
             'conversations'     => 'Fictional conversations between characters or between members.',
             'creatures'         => 'Build your world\'s creatures, animals, and monsters with the creatures category.',
             'dice_rolls'        => 'For those who use Kanka for RPG games, a way to handle dice rolls.',
-            'entity_attributes'           => 'Keep track of properties on entries of the world, for example HP or SPEED.',
+            'entity_attributes' => 'Keep track of properties on entries of the world, for example HP or SPEED.',
             'events'            => 'Holidays, festivals, disasters, birthdays, wars.',
             'families'          => 'Clans or families, their relations and their members.',
             'inventories'       => 'Manage inventories on your entries.',

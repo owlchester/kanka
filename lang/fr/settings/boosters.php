@@ -6,9 +6,9 @@ return [
     ],
     'available' => 'Boosters disponibles :amount/:total',
     'benefits'  => [
-        'boosted'       => 'Booster une campagne avec :one booster débloque l\'accès au :marketplace, les options de thèmages, des téléchargements plus grand pour tous les membres de la campagne, récupérer des entités supprimées, et :more.',
+        'boosted'       => 'Booster une campagne avec :one booster débloque l\'accès au :marketplace, les options de thèmages, des téléchargements plus grand pour tous les membres de la campagne, récupérer des entrées supprimées, et :more.',
         'more'          => 'd\'autres fonctionnalités incroyables.',
-        'superboosted'  => 'Superbooster une campagne avec :amount boosters débloque tous les bénéfices d\'une campagne boostée, en plus de la galerie de campagne, des logs complètes de changements aux entités, et :more.',
+        'superboosted'  => 'Superbooster une campagne avec :amount boosters débloque tous les bénéfices d\'une campagne boostée, en plus de la galerie de campagne, des logs complètes de changements aux entrées, et :more.',
     ],
     'boost'     => [
         'actions'   => [
@@ -42,11 +42,11 @@ return [
     ],
     'pitch'     => [
         'benefits'      => [
-            'backup'        => 'Récupérer des entités supprimées pendant :amount jours',
+            'backup'        => 'Récupérer des entrées supprimées pendant :amount jours',
             'customisable'  => 'Contrôle créatif complet de la campagne',
-            'entities'      => 'Meilleur contrôle de comment les entités se comportent et s\'affichent',
+            'entities'      => 'Meilleur contrôle de comment les entrées se comportent et s\'affichent',
             'icons'         => 'Accès à des milliers d\'icônes pour les cartes et chronologies.',
-            'relations'     => 'Explorer les relations d\'une entité visuellement',
+            'relations'     => 'Explorer les relations d\'une entrée visuellement',
             'title'         => 'Les campagnes boostées ont',
             'upload'        => 'Taille de fichier plus grand pour tous les membres de la campagne',
         ],

@@ -5,7 +5,7 @@ return [
         'title' => 'Nouvel Evénement',
     ],
     'events'        => [
-        'helper'    => 'Les événements qui ont cette entité comme événement parent sont affichés ici.',
+        'helper'    => 'Les événements qui ont cette entrée comme événement parent sont affichés ici.',
     ],
     'fields'        => [
         'date'  => 'Date',

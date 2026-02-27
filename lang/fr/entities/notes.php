@@ -39,18 +39,18 @@ return [
     ],
     'hint'          => 'Les informations qui n\'entrent pas vraiment dans les champs pré-définis ou qui doivent être privées peuvent être ajoutées en tant qu\'article.',
     'hints'         => [
-        'reorder'   => 'Les articles peuvent être réarrangée en cliquant sur l\'icône :icon à côté de Histoire dans le menu de l\'entité.',
+        'reorder'   => 'Les articles peuvent être réarrangée en cliquant sur l\'icône :icon à côté de Histoire dans le menu de l\'entrée.',
     ],
     'index'         => [
         'title' => 'Articles pour :name',
     ],
     'move'          => [
-        'copy'          => 'Créer une copie sur l\'entité cible',
+        'copy'          => 'Créer une copie sur l\'entrée cible',
         'copy_success'  => 'L\'article :name a été copiée vers :entity avec succès.',
         'copy_title'    => 'Guarder une copie',
-        'description'   => 'Sélectionnes une entité vers laquelle l\'article doit être déplacé ou copié.',
-        'entity'        => 'Entité cible',
-        'move'          => 'Déplacer ou copier vers une autre entité',
+        'description'   => 'Sélectionnes une entrée vers laquelle l\'article doit être déplacé ou copié.',
+        'entity'        => 'Entrée cible',
+        'move'          => 'Déplacer ou copier vers une autre entrée',
         'move_success'  => 'L\'article :name a été déplacé vers :entity avec succès.',
     ],
     'placeholders'  => [

@@ -10,7 +10,7 @@ return [
         'read_all'  => 'Tout lire',
     ],
     'qq'                => [
-        'tooltip'   => 'Créer une entité ou un article',
+        'tooltip'   => 'Créer une entrée ou un article',
     ],
     'toggle_navigation' => 'Basculer la navigation',
     'user'              => [

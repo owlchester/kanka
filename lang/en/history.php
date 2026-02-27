@@ -8,8 +8,8 @@ return [
     'empty'     => 'No value',
     'fields'    => [
         'action'    => 'Action',
+        'category'  => 'Category',
         'details'   => 'Details',
-        'category'    => 'Category',
         'when'      => 'When',
         'who'       => 'Who',
     ],

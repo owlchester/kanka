@@ -11,12 +11,12 @@ return [
     ],
     'no_results'    => 'No results.',
     'placeholder'   => 'SEARCH',
+    'placeholders'  => [
+        'entry' => 'Search for an entry',
+    ],
     'preview'       => [
         'links'             => 'Links',
         'no-connections'    => 'No pinned relations to display',
     ],
     'title'         => 'Search',
-    'placeholders' => [
-        'entry' => 'Search for an entry',
-    ],
 ];

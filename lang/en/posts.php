@@ -2,12 +2,12 @@
 
 return [
     'create'        => [
-        'title'     => 'New Article',
+        'title' => 'New Article',
     ],
     'fields'        => [
-        'layout'    => 'Article layout',
-        'name'      => 'Article name',
-        'description' => 'Description',
+        'description'   => 'Description',
+        'layout'        => 'Article layout',
+        'name'          => 'Article name',
     ],
     'helpers'       => [
         'new'           => 'Add a new article to this entry.',

@@ -32,14 +32,14 @@ return [
         'enabled'           => 'Activé',
         'event'             => 'Événement',
         'events'            => [
-            'deleted'   => 'Entité supprimée',
-            'edited'    => 'Entité modifiée',
-            'new'       => 'Nouvelle entité',
+            'deleted'   => 'Entrée supprimée',
+            'edited'    => 'Entrée modifiée',
+            'new'       => 'Nouvelle entrée',
         ],
         'message'           => 'Message',
         'private_entities'  => [
-            'helper'    => 'Ne pas déclencher le webhook lors de la mise à jour d\'entités privées.',
-            'skip'      => 'Ignorer les entités privées',
+            'helper'    => 'Ne pas déclencher le webhook lors de la mise à jour d\'entrées privées.',
+            'skip'      => 'Ignorer les entrées privées',
         ],
         'type'              => 'Type',
         'types'             => [
@@ -52,9 +52,9 @@ return [
         'active'    => 'Si le webhook est actuellement activé',
         'message'   => 'Ajouter un message personnalisé avec prise en charge des paramètres',
         'status'    => 'Basculer l\'état actif du webhook',
-        'tutorial'  => 'Utilise des webhooks pour envoyer des mises à jour en temps réel de la campagne vers des outils externes. Les événements se déclenchent automatiquement quand des entités sont créées, modifiées ou supprimées. Tu peux ajouter plusieurs webhooks et les tester depuis cette page',
+        'tutorial'  => 'Utilise des webhooks pour envoyer des mises à jour en temps réel de la campagne vers des outils externes. Les événements se déclenchent automatiquement quand des entrées sont créées, modifiées ou supprimées. Tu peux ajouter plusieurs webhooks et les tester depuis cette page',
     ],
-    'pitch'         => 'Créer des webhooks personnalisés pour recevoir des mises à jour personnalisées chaque fois qu\'une entité de la campagne est mise à jour.',
+    'pitch'         => 'Créer des webhooks personnalisés pour recevoir des mises à jour personnalisées chaque fois qu\'une entrée de la campagne est mise à jour.',
     'placeholders'  => [
         'message'   => '{who} a apporté des modifications à {name}, consulter le site {url}',
         'url'       => 'URL du webhook cible',

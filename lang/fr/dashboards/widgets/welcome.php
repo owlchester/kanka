@@ -15,9 +15,9 @@ return [
     'name'          => 'Bienvenue',
     'title'         => 'Bienvenue à :kanka! 🎉',
     'tricks'        => [
-        '1'         => 'Lors de la rédaction de description, n\'écris pas les noms des éléments. Au lieu de cela, tappes :code et trois lettres pour créer des :mention vers d\'autres entités. Ces mentions seront automatiquement mises à jour lorsque tu changeras leurs noms.',
+        '1'         => 'Lors de la rédaction de description, n\'écris pas les noms des éléments. Au lieu de cela, tappes :code et trois lettres pour créer des :mention vers d\'autres entrées. Ces mentions seront automatiquement mises à jour lorsque tu changeras leurs noms.',
         '2'         => 'Pour modifier le nom, le thème ou l\'image de la campagne, cliques sur :world dans la barre latérale, puis sur le bouton :edit.',
-        '3'         => 'Écris les informations secrètes sur les entités avec les :posts au lieu de la description principale.',
+        '3'         => 'Écris les informations secrètes sur les entrées avec les :posts au lieu de la description principale.',
         '4'         => 'Invites tes amis en cliquant sur :world et :members. Là-bas, tu peux créer des liens d\'invitation.',
         '5'         => 'Tu peux supprimer ce message de bienvenue et afficher d\'autres informations sur cette page (appelée tableau de bord). Fais défiler la page vers le bas et cliques sur le bouton :button.',
         'mention'   => 'mentions',

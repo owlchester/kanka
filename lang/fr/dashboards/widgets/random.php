@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'description'   => 'Affiche une entité aléatoire de la campagne.',
-    'name'          => 'Entité aléatoire',
+    'description'   => 'Affiche une entrée aléatoire de la campagne.',
+    'name'          => 'Entrée aléatoire',
 ];

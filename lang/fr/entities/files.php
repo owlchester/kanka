@@ -4,10 +4,10 @@ return [
     'call-to-action'    => [
         'max'       => [
             'helper'    => 'Tu ne peux pas joindre plus de fichiers à moins d\'en supprimer un existant.',
-            'limit'     => 'Cette entité a atteint le nombre maximum de fichiers',
+            'limit'     => 'Cette entrée a atteint le nombre maximum de fichiers',
         ],
         'upgrade'   => [
-            'limit'     => 'Tu as atteint la limite de :limit fichiers pour cette entité.',
+            'limit'     => 'Tu as atteint la limite de :limit fichiers pour cette entrée.',
             'premium'   => 'Passer à une campagne premium pour joindre un nombre illimité de fichiers et bénéficier d\'une flexibilité créative encore plus grande.',
             'upgrade'   => 'Passe à une campagne premium pour pouvoir joindre jusqu\'à :limit fichiers et débloquer encore plus de flexibilité créative.',
         ],

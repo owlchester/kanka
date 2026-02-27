@@ -97,7 +97,7 @@ return [
             'class'             => 'Classe CSS',
             'dashboard'         => 'Tableau de bord',
             'name'              => 'Nom de widget personnalisé',
-            'optional-entity'   => 'Liens vers une entité',
+            'optional-entity'   => 'Liens vers une entrée',
             'order'             => 'Ordre d\'affichage',
             'size'              => 'Taille',
             'width'             => 'Largeur',
@@ -123,7 +123,7 @@ return [
         ],
         'random'                    => [
             'helpers'   => [
-                'name'  => 'Le nom de l\'entité au hasard peut être référencé avec {name}',
+                'name'  => 'Le nom de l\'entrée au hasard peut être référencé avec {name}',
             ],
             'type'      => [
                 'all'   => 'Tous',
@@ -132,24 +132,24 @@ return [
         'recent'                    => [
             'advanced_filter'   => 'Filtre avancé',
             'advanced_filters'  => [
-                'mentionless'   => 'Sans mention (entités qui ne mentionnent pas d\'autres entités)',
-                'unmentioned'   => 'Non mentionné (entités qui ne sont pas mentionnées par d\'autres entités)',
+                'mentionless'   => 'Sans mention (entrées qui ne mentionnent pas d\'autres entrées)',
+                'unmentioned'   => 'Non mentionné (entrées qui ne sont pas mentionnées par d\'autres entrées)',
             ],
-            'all-entities'      => 'Toutes les entités',
-            'entity-header'     => 'Utiliser l\'image d\'en-tête de l\'entité',
+            'all-entities'      => 'Toutes les entrées',
+            'entity-header'     => 'Utiliser l\'image d\'en-tête de l\'entrée',
             'filters'           => 'Filtres',
-            'help'              => 'Afficher seulement la dernière entité modifiée avec un aperçu de celle-ci.',
+            'help'              => 'Afficher seulement la dernière entrée modifiée avec un aperçu de celle-ci.',
             'helpers'           => [
-                'entity-header'     => 'Si l\'entité à une image d\'en-tête (limité aux campagnes boostées), le widget utilisera cette image au lieu de l\'image principale de l\'entité.',
-                'show_attributes'   => 'Afficher les attributs épinglés de l\'entité.',
-                'show_members'      => 'Si l\'entité est une famille ou organisation, afficher les membres sous l\'entrée.',
-                'show_relations'    => 'Afficher les relations épinglées de l\'entité.',
+                'entity-header'     => 'Si l\'entrée à une image d\'en-tête (limité aux campagnes boostées), le widget utilisera cette image au lieu de l\'image principale de l\'entrée.',
+                'show_attributes'   => 'Afficher les propriétés épinglées de l\'entrée.',
+                'show_members'      => 'Si l\'entrée est une famille ou organisation, afficher les membres sous l\'entrée.',
+                'show_relations'    => 'Afficher les relations épinglées de l\'entrée.',
             ],
-            'show_attributes'   => 'Afficher les attributs épinglés',
+            'show_attributes'   => 'Afficher les propriétés épinglées',
             'show_members'      => 'Afficher les membres',
             'show_relations'    => 'Afficher les relations épinglées',
             'singular'          => 'Singulier',
-            'tags'              => 'Filtrer la liste des entités récemment modifiées sur une ou plusieurs étiquettes.',
+            'tags'              => 'Filtrer la liste des entrées récemment modifiées sur une ou plusieurs étiquettes.',
             'title'             => 'Récemment modifié',
         ],
         'tabs'                      => [
@@ -157,7 +157,7 @@ return [
             'setup'     => 'Général',
         ],
         'unmentioned'               => [
-            'title' => 'Entité non mentionnées',
+            'title' => 'Entrée non mentionnées',
         ],
         'update'                    => [
             'success'   => 'Widget modifié.',

@@ -3,7 +3,7 @@
 return [
     'actions'   => [
         'subscription'  => 'View premium plans',
-        'upgrade' => 'Upgrade to premium',
+        'upgrade'       => 'Upgrade to premium',
     ],
     'booster'   => [
         'actions'       => [

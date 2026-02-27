@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'searching' => 'Recherche du terme :term dans les entités, les articles, les attributs, et autres.',
+    'searching' => 'Recherche du terme :term dans les entrées, les articles, les propriétés, et autres.',
     'title'     => 'Recherche complète',
 ];

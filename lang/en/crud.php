@@ -42,8 +42,8 @@ return [
     'bulk'              => [
         'actions'       => [
             'edit'          => 'Edit & tagging',
+            'kits'          => 'Apply property kit',
             'permissions'   => 'Change permissions',
-            'kits'      => 'Apply property kit',
         ],
         'age'           => [
             'helper'    => 'You can use + and - before the number to update the age by that amount.',
@@ -73,7 +73,6 @@ return [
             ],
             'title'     => 'Change permissions for several entries',
         ],
-
     ],
     'bulk_templates'    => [
         'bulk_title'    => 'Apply a template to multiple entries',
@@ -199,17 +198,17 @@ return [
     'helpers'           => [
         'copy_options'  => 'Copy the following related elements from the source to the new entry.',
         'linking'       => 'Linking to other entries',
-        'per-page' => 'Results per page',
         'parent'        => 'Select a parent this entry will be a child to.',
+        'per-page'      => 'Results per page',
     ],
     'hidden'            => 'Hidden',
     'hints'             => [
-        'kit'    => 'The selected property kit will be applied when saving the entry.',
         'calendar_date'         => 'A calendar date allows easy filtering in lists, and also maintains a reminder in the selected calendar.',
         'image_dimension'       => 'Recommended dimensions: :dimension pixels.',
         'image_limitations'     => 'Supported formats: :formats. Max file size: :size.',
         'image_recommendation'  => 'Recommended dimensions: :width by :height pixels.',
         'is_star'               => 'Pinned elements will appear on the overview page.',
+        'kit'                   => 'The selected property kit will be applied when saving the entry.',
         'tooltip'               => 'Replace the automatically generated tooltip with the following contents. Any HTML code will be stripped, but you can still mention other entries using advanced mentions.',
     ],
     'history'           => [

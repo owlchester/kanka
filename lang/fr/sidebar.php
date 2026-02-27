@@ -19,7 +19,7 @@ return [
     'gallery'           => 'Galerie',
     'game'              => 'Jeu',
     'manage_links'      => 'Gérer les liens',
-    'new-entity'        => 'Nouvelle entité',
+    'new-entity'        => 'Nouvelle entrée',
     'other'             => 'Autre',
     'presets'           => 'Préréglages',
     'recent'            => 'Changements récents',

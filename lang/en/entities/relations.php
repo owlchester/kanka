@@ -45,12 +45,12 @@ return [
     'fields'            => [
         'attitude'          => 'Attitude',
         'is_pinned'         => 'Pinned',
+        'link'              => 'Reciprocal link',
+        'mirror_relation'   => 'Reciprocal role',
         'owner'             => 'Origin',
         'role'              => 'Role',
         'target'            => 'Target',
-        'targets'            => 'Connection to...',
-        'mirror_relation' => 'Reciprocal role',
-        'link'              => 'Reciprocal link',
+        'targets'           => 'Connection to...',
         'two_way'           => 'Reciprocal',
         'unmirror'          => 'Untie this relation.',
     ],
@@ -60,23 +60,23 @@ return [
     ],
     'helper'            => 'Set up relations between entries with attitudes and visibility. Relations can also be pinned to the entry\'s menu.',
     'helpers'           => [
-        'link' => 'Create a matching relation on the targets.',
-        'mirror_relation' => 'How the target sees this entry (leave blank to copy above).',
-        'description'   => 'Detail the nature of the relation between the two entries.',
-        'no_relations'  => 'This entry doesn\'t currently have any relations to other entries of the campaign.',
+        'description'       => 'Detail the nature of the relation between the two entries.',
+        'link'              => 'Create a matching relation on the targets.',
+        'mirror_relation'   => 'How the target sees this entry (leave blank to copy above).',
+        'no_relations'      => 'This entry doesn\'t currently have any relations to other entries of the campaign.',
     ],
     'hints'             => [
-        'attitude'          => 'This optional field can be used to define the default order relations appear in by descending order.',
-        'two_way'           => 'Create a mirrored relation on the targets. Updating a mirrored relation doesn\'t update the original relation.',
-    ],
-    'linked' => [
-        'label' => 'Linked relation',
-        'helper' => 'This relation is synced with :link',
-        'break' => 'Break link',
-        'unmirror-helper' => 'Converting this to a standalone relation will not delete anything.',
+        'attitude'  => 'This optional field can be used to define the default order relations appear in by descending order.',
+        'two_way'   => 'Create a mirrored relation on the targets. Updating a mirrored relation doesn\'t update the original relation.',
     ],
     'index'             => [
         'title' => 'Relations',
+    ],
+    'linked'            => [
+        'break'             => 'Break link',
+        'helper'            => 'This relation is synced with :link',
+        'label'             => 'Linked relation',
+        'unmirror-helper'   => 'Converting this to a standalone relation will not delete anything.',
     ],
     'options'           => [
         'mentions'          => 'Default + related + mentions',
@@ -89,8 +89,8 @@ return [
         'related'   => 'Related',
     ],
     'placeholders'      => [
-        'attitude'          => '-100 to 100, 100 being very positive',
-        'role'          => 'Rival, Best Friend, Sibling',
+        'attitude'  => '-100 to 100, 100 being very positive',
+        'role'      => 'Rival, Best Friend, Sibling',
     ],
     'show'              => [
         'title' => ':name relations',

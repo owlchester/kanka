@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'description'   => 'Affiche une entité spécifique.',
-    'name'          => 'Entité sélectionnée',
+    'description'   => 'Affiche une entrée spécifique.',
+    'name'          => 'Entrée sélectionnée',
 ];

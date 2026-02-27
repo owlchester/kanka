@@ -2,13 +2,13 @@
 
 return [
     'actions'           => [
-        'copy_from_entity'  => 'Copier depuis une autre entité',
+        'copy_from_entity'  => 'Copier depuis une autre entrée',
         'copy_inventory'    => 'Copier l\'inventaire',
         'generate'          => 'Générer',
         'multiple'          => 'Ajouter des objets',
     ],
     'copy'              => [
-        'helper'    => 'Copie l\'inventaire complet d\'une entité à :name.',
+        'helper'    => 'Copie l\'inventaire complet d\'une entrée à :name.',
     ],
     'create'            => [
         'helper'        => 'Ajouter un objet à l\'inventaire de :name. Il peut éventuellement être lié à un objet existant de la campagne.',
@@ -52,7 +52,7 @@ return [
         'position'      => 'Equipé, Sac-à-dos, Entrepôt, Banque',
     ],
     'show'              => [
-        'helper'    => 'Les entités peuvent avoir des objets attachés pour créer un inventaire.',
+        'helper'    => 'Les entrées peuvent avoir des objets attachés pour créer un inventaire.',
         'title'     => 'Inventaire de :name',
         'unsorted'  => 'Autre',
     ],

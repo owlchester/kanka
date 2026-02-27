@@ -8,6 +8,7 @@ return [
     'empty'     => 'Aucune valeure',
     'fields'    => [
         'action'    => 'Action',
+        'category'  => 'Catégorie',
         'details'   => 'Détails',
         'module'    => 'Module',
         'when'      => 'Quand',
@@ -16,10 +17,10 @@ return [
     'filters'   => [
         'all-actions'   => 'Toutes les actions',
         'all-users'     => 'Tous les membres',
-        'no-results'    => 'Aucun résultat à afficher. Essayes avec d\'autres filtres ou reviens après avoir fait des modifications aux entités de la campagne.',
+        'no-results'    => 'Aucun résultat à afficher. Essayes avec d\'autres filtres ou reviens après avoir fait des modifications aux entrées de la campagne.',
     ],
     'helpers'   => [
-        'base'      => 'Cette interface contient les modifications récentes apportées aux entités de la campagne jusqu\'à :amount mois, en affichant les modifications les plus récentes en premier.',
+        'base'      => 'Cette interface contient les modifications récentes apportées aux entrées de la campagne jusqu\'à :amount mois, en affichant les modifications les plus récentes en premier.',
         'changes'   => 'Les champs suivants avaient précédemment ces valeurs.',
     ],
     'log'       => [
@@ -35,6 +36,6 @@ return [
     ],
     'title'     => 'Historique',
     'unknown'   => [
-        'entity'    => 'une entité inconnue',
+        'entity'    => 'une entrée inconnue',
     ],
 ];

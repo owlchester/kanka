@@ -9,7 +9,7 @@ return [
     ],
     'bookmark'  => [
         'helper'    => 'Créer un nouveau signet pour cette vue en utilisant les filtres actuels.',
-        'name'      => ':module (filtré)',
+        'name'      => ':module (filtrée)',
         'premium'   => 'Pour ajouter plus des favoris, il faut activer les fonctionalités premium.',
         'success'   => 'Favori créé.',
     ],

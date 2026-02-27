@@ -4,7 +4,7 @@ return [
     'actions'           => [
         'add'   => 'Ajouter un lien',
     ],
-    'call-to-action'    => 'Ajoutes des liens vers des ressources externes sur cette entité, comme DnDBeyond, et ils s\'afficheront directement sur la vue d\'ensemble de l\'entité.',
+    'call-to-action'    => 'Ajoutes des liens vers des ressources externes sur cette entrée, comme DnDBeyond, et ils s\'afficheront directement sur la vue d\'ensemble de l\'entrée.',
     'create'            => [
         'helper'    => 'Ajouter un lien externe vers :name, par exemple vers sa page DnDBeyond.',
         'success'   => 'Lien :name ajouté à :entity.',
@@ -36,7 +36,7 @@ return [
         'url'   => 'https://dndbeyond.com/character-url',
     ],
     'show'              => [
-        'helper'    => 'Les campagnes boostées peuvent définir des liens sur les entités.',
+        'helper'    => 'Les campagnes boostées peuvent définir des liens sur les entrées.',
         'title'     => 'Liens pour :name',
     ],
     'unboosted'         => [],

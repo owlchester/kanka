@@ -14,8 +14,9 @@ return [
     'fields'        => [
         'created'       => 'Créé le',
         'creator'       => 'Créé par',
+        'entries'       => 'Total d\'entrées',
         'from-elements' => 'Des éléments',
-        'from-entities' => 'Des entités',
+        'from-entities' => 'Des entrées',
         'from-posts'    => 'Des articles',
         'general'       => 'Général',
         'words'         => 'Nombre total de mots',
@@ -30,5 +31,5 @@ return [
         'quests'    => 'Maître/esse d\'oeuvre niveau :level',
         'races'     => 'Éleveur/euse niveau :level',
     ],
-    'tutorial'      => 'Les statistiques de la campagne affichent le nombre d\'entités et l\'activité récente. Les données se mettent à jour toutes les :amount heures. Utilise ça pour suivre l\'évolution et l\'usage au fil du temps.',
+    'tutorial'      => 'Les statistiques de la campagne affichent le nombre d\'entrée et l\'activité récente. Les données se mettent à jour toutes les :amount heures. Utilise ça pour suivre l\'évolution et l\'usage au fil du temps.',
 ];

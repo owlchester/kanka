@@ -88,7 +88,7 @@ return [
     ],
     'title'         => 'Profil',
     'workflows'     => [
-        'created'   => 'Afficher l\'entité créée',
-        'default'   => 'Liste des entités',
+        'created'   => 'Afficher l\'entrée créée',
+        'default'   => 'Liste des entrées',
     ],
 ];

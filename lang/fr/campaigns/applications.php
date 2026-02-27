@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'actions'       => [
+    'actions'           => [
         'accept'    => 'Accepter',
         'reject'    => 'Décliner',
     ],
-    'apply'         => [
+    'apply'             => [
         'apply'         => 'Appliquer',
         'help'          => 'Cette campagne est ouverte à de nouveaux membre. Postules pour la rejoindre en remplissant ce formulaire. Une notification sera envoyée lorsque les administrateurs de la campagne examine ta candidature.',
         'remove_text'   => 'ta candidature',
@@ -16,44 +16,130 @@ return [
         ],
         'title'         => 'Rejoindre :name',
     ],
-    'fields'        => [
-        'application'   => 'Application',
-        'reason'        => 'Motif d\'approbation / de rejet',
+    'dashboard_widget'  => [
+        'add'               => 'Ajouter un widget',
+        'has_widget'        => 'Le widget de candidature est sur le tableau de bord.',
+        'has_widget_help'   => 'Le tableau de bord de ta campagne présente le widget de candidature aux joueurs potentiels.',
+        'no_widget'         => 'Pas de widget de candidature sur le tableau de bord.',
+        'no_widget_help'    => 'Ta campagne est ouverte mais ne le montre pas sur le tableau de bord. Ajoute un widget pour que les joueurs puissent la découvrir et postuler.',
+        'success'           => 'Widget de candidature ajouté au tableau de bord.',
+        'title'             => 'Widget du tableau de bord',
     ],
-    'helpers'       => [
+    'experience'        => [
+        'intermediate'  => 'Intermédiaire (Quelques parties)',
+        'new'           => 'Débutant (Première fois)',
+        'veteran'       => 'Vétéran (Années d\'expérience)',
+    ],
+    'fields'            => [
+        'additional_notes'      => 'Autre chose',
+        'application'           => 'Application',
+        'availability_days'     => 'Jours disponibles',
+        'character_concept'     => 'Concept de personnage',
+        'experience_level'      => 'Niveau d\'expérience',
+        'external_link'         => 'Fiche de personnage / Lien',
+        'intro'                 => 'Introduction de la campagne',
+        'new_application'       => 'Nouvelle candidature de joueur',
+        'player_count'          => 'Nombre de joueurs',
+        'playstyle_tags'        => 'Styles de jeu',
+        'pref_rp_combat'        => 'Équilibre',
+        'pref_tone'             => 'Préférence de ton',
+        'reason'                => 'Motif d\'approbation / de rejet',
+        'schedule'              => 'Planning',
+        'schedule-placeholder'  => 'Chaque vendredi à 19h',
+        'time_end'              => 'À',
+        'time_start'            => 'De',
+        'timezone'              => 'Fuseau horaire',
+    ],
+    'filters'           => [
+        'all'       => 'Tout afficher',
+        'approved'  => 'Afficher les approuvées',
+        'pending'   => 'Afficher les en attente',
+        'rejected'  => 'Afficher les refusées',
+        'title'     => 'Filtres',
+    ],
+    'headers'           => [
+        'availability'  => 'Disponibilité et planning',
+        'preferences'   => 'Préférences de style de jeu',
+    ],
+    'helpers'           => [
+        'applications_closed'   => 'Ta campagne est publique, mais les nouveaux joueurs ne peuvent pas postuler tant que le statut n\'est pas sur "Ouvert".',
+        'availability_days'     => 'Sélectionne les jours où tu es généralement disponible pour jouer.',
+        'experience_level'      => 'Quel est ton niveau de familiarité avec ce système de jeu?',
+        'external_link'         => 'Lien vers D&D Beyond, Google Docs ou autres fiches de personnage externes.',
+        'fill_setup'            => 'Remplis le formulaire de configuration publique pour pouvoir ouvrir ta campagne au public.',
+        'filters_incomplete'    => 'Ta campagne est ouverte aux candidatures, mais tu n\'as pas terminé la configuration des filtres (système, fuseau horaire ou tags). Les compléter facilitera la recherche pour les bons joueurs.',
         'modal'                 => 'Une campagne qui est ouverte aux candidatures et qui est publique peut avoir des utilisateurs demander de joindre la campagne.',
         'no_applications'       => 'Il n\'y a actuellement aucune candidature en attente pour rejoindre la campagne. Les utilisateurs peuvent demander à rejoindre la campagne en visitant son tableau de bord et en cliquant sur le bouton :bouton.',
         'no_applications_title' => 'Aucune application trouvée',
+        'no_applications_v2'    => 'Il n\'y a actuellement aucune demande en attente pour rejoindre la campagne, mais tu peux aider les joueurs à trouver leur prochaine aventure! Des informations détaillées et des filtres de recherche facilitent la découverte de ton histoire.',
         'reason'                => 'Si une raison est fournie, le/la demandeur en sera informé.',
         'role'                  => 'En cas d\'approbation, le rôle auquel le candidat est ajouté.',
     ],
-    'open'          => [
+    'labels'            => [
+        'casual'            => 'Casual / Détente',
+        'combat_focused'    => 'Axé combat',
+        'rp_heavy'          => 'RP intensif',
+        'serious'           => 'Sérieux / Immersif',
+    ],
+    'open'              => [
         'closed'    => 'La campagne est fermée',
         'open'      => 'La campagne est ouverte',
         'title'     => 'Campagne ouverte',
     ],
-    'placeholders'  => [
-        'note'      => 'Ecris ta candidature pour rejoindre la campagne.',
-        'reason'    => 'Ta raison',
+    'placeholders'      => [
+        'additional_notes'  => 'Déclencheurs, limites strictes ou questions spécifiques.',
+        'character_concept' => 'Décris brièvement qui tu veux jouer, son histoire et comment il s\'intègre dans le monde.',
+        'intro'             => 'Une brève explication de ta campagne, affichée en haut du formulaire de candidature.',
+        'note'              => 'Ecris ta candidature pour rejoindre la campagne.',
+        'player_count'      => '4-6 joueurs',
+        'reason'            => 'Ta raison',
     ],
-    'public'        => [
+    'public'            => [
         'private'   => 'La campagne est privée',
         'public'    => 'La campagne est publique',
         'title'     => 'Campaign publique',
     ],
-    'title'         => 'Candidatures',
-    'toggle'        => [
-        'closed'    => 'Fermé aux candidatures',
-        'label'     => 'Status',
-        'open'      => 'Ouvert aux candidatures',
-        'success'   => 'Le status de candidature de la campagne a été modifié.',
-        'title'     => 'Status des candidatures',
+    'setup'             => [
+        'done'                  => 'Paramètres de campagne publique remplis.',
+        'prioritise'            => 'Prioriser cette campagne',
+        'prioritise_conflict'   => 'Tu ne peux prioriser qu\'une campagne à la fois. Désactive la priorisation sur :campaign d\'abord.',
+        'prioritise_help'       => 'Les campagnes priorisées apparaissent en haut de la liste des campagnes publiques, devant les autres campagnes ouvertes.',
+        'prioritise_upgrade'    => 'Cette fonctionnalité est réservée aux abonnés :link.',
+        'prioritised'           => 'Campagne priorisée',
+        'setup'                 => 'Configure les paramètres de campagne publique pour ouvrir ta campagne au public.',
+        'success'               => 'Configuration sauvegardée. Une fois tous les champs remplis, la campagne pourra être ouverte au public.',
+        'success_complete'      => 'La campagne peut être ouverte au public!',
+        'title'                 => 'Configuration de campagne publique',
+        'tutorial'              => 'La campagne ne pourra être ouverte au public que lorsque tous ces champs seront remplis.',
     ],
-    'tutorial'      => 'Les candidatures permettent aux gens de demander l\'accès à cette campagne. Les candidats remplissent un court formulaire, et les admins peuvent examiner, accepter ou refuser chaque demande. Les utilisateurs approuvés sont ajoutés à la campagne avec le rôle que tu leur attribues pendant la revue',
-    'update'        => [
+    'timezone'          => 'Fuseau horaire et langue',
+    'title'             => 'Candidatures',
+    'toggle'            => [
+        'closed'        => 'Fermé aux candidatures',
+        'label'         => 'Status',
+        'open'          => 'Ouvert aux candidatures',
+        'success'       => 'Le status de candidature de la campagne a été modifié.',
+        'success_open'  => 'La campagne est maintenant publique et les utilisateurs peuvent postuler.',
+        'title'         => 'Status des candidatures',
+    ],
+    'tutorial'          => 'Les candidatures permettent aux gens de demander l\'accès à cette campagne. Les candidats remplissent un court formulaire, et les admins peuvent examiner, accepter ou refuser chaque demande. Les utilisateurs approuvés sont ajoutés à la campagne avec le rôle que tu leur attribues pendant la revue',
+    'update'            => [
         'approve'   => 'Sélectionner le rôle auquel l\'utilisateur sera ajouté à la campagne.',
         'approved'  => 'Candidatures approuvée.',
         'reject'    => 'Ecrire une raison optionnelle pourquoi la candidature est rejetée.',
         'rejected'  => 'Candidature déclinée.',
+    ],
+    'warnings'          => [
+        'applications_closed'   => 'Les candidatures sont actuellement fermées.',
+        'filters_incomplete'    => 'Les filtres de la campagne sont incomplets.',
+    ],
+    'weekdays'          => [
+        'fri'   => 'Ven',
+        'mon'   => 'Lun',
+        'sat'   => 'Sam',
+        'sun'   => 'Dim',
+        'thu'   => 'Jeu',
+        'tue'   => 'Mar',
+        'wed'   => 'Mer',
     ],
 ];

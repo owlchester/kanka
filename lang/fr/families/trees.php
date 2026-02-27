@@ -10,10 +10,10 @@ return [
         'save'              => 'Enregister',
     ],
     'modal'     => [
-        'first-title'   => 'Sélectionner une entité',
-        'helper'        => 'Remplacer l\'entité avec une autre de la campagne',
+        'first-title'   => 'Sélectionner une entrée',
+        'helper'        => 'Remplacer l\'entrée avec une autre de la campagne',
         'relation'      => 'Relation',
-        'title'         => 'Remplacer l\'entité',
+        'title'         => 'Remplacer l\'entrée',
     ],
     'modals'    => [
         'clear'     => [
@@ -23,8 +23,8 @@ return [
             'add'       => [
                 'founder'   => 'Fondateur/trice',
                 'member'    => 'Membre',
-                'success'   => 'Entité ajoutée.',
-                'title'     => 'Ajouter une entité',
+                'success'   => 'Entrée ajoutée.',
+                'title'     => 'Ajouter une entrée',
             ],
             'child'     => [
                 'success'   => 'Enfant ajouté.',
@@ -32,15 +32,15 @@ return [
             ],
             'edit'      => [
                 'helper'    => 'Sélectionner des options si la relation est inconnue. Un personnage peut être ajouté plus tard.',
-                'success'   => 'Entité modifiée.',
-                'title'     => 'Modifier une entité',
+                'success'   => 'Entrée modifiée.',
+                'title'     => 'Modifier une entrée',
             ],
             'founder'   => [
                 'title' => 'Ajouter un nouveau fondateur',
             ],
             'remove'    => [
-                'confirm'   => 'Es-tu sûr de vouloir retirer cette entité de l\'arbre de famille?',
-                'success'   => 'Entité retirée.',
+                'confirm'   => 'Es-tu sûr de vouloir retirer cette entrée de l\'arbre de famille?',
+                'success'   => 'Entrée retirée.',
             ],
         ],
         'relations' => [

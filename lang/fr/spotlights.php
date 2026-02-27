@@ -23,7 +23,7 @@ return [
             'a' => [
                 'end'           => 'Pas le nombre d’abonnés. Pas la popularité. Pas le statut de membre',
                 'lead'          => 'Nous sélectionnons 1–3 campagnes par mois.',
-                'req1'          => 'Une identité et des thèmes clairs',
+                'req1'          => 'Une identrée et des thèmes clairs',
                 'req2'          => 'Un worldbuilding réfléchi',
                 'req3'          => 'Des histoires ou des approches intéressantes',
                 'requirements'  => 'La sélection est éditoriale, pas compétitive. Nous recherchons:',

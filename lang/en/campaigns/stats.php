@@ -12,9 +12,9 @@ return [
         ],
     ],
     'fields'        => [
-        'entries' => 'Total entries',
         'created'       => 'Created on',
         'creator'       => 'Created by',
+        'entries'       => 'Total entries',
         'from-elements' => 'From elements',
         'from-entities' => 'From entries',
         'from-posts'    => 'From articles',

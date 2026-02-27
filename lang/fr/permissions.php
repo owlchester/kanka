@@ -10,6 +10,6 @@ return [
         'inherited' => ':membre peut déjà faire ça en étant membre du rôle :role.',
     ],
     'roles'     => [
-        'inherited' => 'Le rôle :role peut déjà faire ça pour le module :name.',
+        'inherited' => 'Le rôle :role peut déjà faire ça pour la catégorie :name.',
     ],
 ];
