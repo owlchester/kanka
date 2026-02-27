@@ -5,8 +5,9 @@ return [
         'title' => 'Nuevo post',
     ],
     'fields'        => [
-        'layout'    => 'Diseño de publicación',
-        'name'      => 'Nombre',
+        'description'   => 'Descripción',
+        'layout'        => 'Diseño de publicación',
+        'name'          => 'Nombre',
     ],
     'helpers'       => [
         'new'           => 'Añadir un nuevo post a esta entidad.',

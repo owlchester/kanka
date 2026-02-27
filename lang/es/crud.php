@@ -30,6 +30,7 @@ return [
         'reorder'           => 'Reordenar',
         'reset'             => 'Restablecer',
         'save-changes'      => 'Guardar cambios',
+        'share'             => 'Compartir',
         'transform'         => 'Transformar',
     ],
     'add'               => 'Añadir',
@@ -41,6 +42,7 @@ return [
     'bulk'              => [
         'actions'       => [
             'edit'          => 'Editar y etiquetar en lote',
+            'kits'          => 'Aplicar kit de propiedades',
             'permissions'   => 'Cambiar permisos',
         ],
         'age'           => [
@@ -107,6 +109,7 @@ return [
     'fields'            => [
         'archived'          => 'Archivado',
         'calendar_date'     => 'Fecha del calendario',
+        'category'          => 'Categoría',
         'child'             => 'Hijo',
         'closed'            => 'Cerrado',
         'colour'            => 'Color',
@@ -199,6 +202,7 @@ return [
         'copy_options'  => 'Copia los siguientes elementos relacionados del origen a la nueva entidad.',
         'linking'       => 'Vinculando con otras entidades',
         'parent'        => 'Selecciona un padre del que la entidad será hijo.',
+        'per-page'      => 'Resultados por página',
     ],
     'hidden'            => 'Oculto',
     'hints'             => [
@@ -207,6 +211,7 @@ return [
         'image_limitations'     => 'Formatos soportados: :formats. Tamaño máximo del archivo: :size.',
         'image_recommendation'  => 'Dimensiones recomendadas: :width por :height px.',
         'is_star'               => 'Los elementos fijados aparecerán en el menú principal de la entidad.',
+        'kit'                   => 'El kit de propiedades seleccionado se aplicará al guardar la entrada.',
         'tooltip'               => 'Reemplaza la descripción emergente automática con el siguiente contenido.',
     ],
     'history'           => [

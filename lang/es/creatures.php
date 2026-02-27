@@ -5,6 +5,7 @@ return [
         'title' => 'Nueva criatura',
     ],
     'fields'        => [
+        'is_dead'       => 'Muerto',
         'is_extinct'    => 'Extinta',
     ],
     'helpers'       => [],

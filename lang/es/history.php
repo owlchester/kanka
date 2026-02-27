@@ -8,6 +8,7 @@ return [
     'empty'     => 'Sin valor',
     'fields'    => [
         'action'    => 'Acción',
+        'category'  => 'Categoría',
         'details'   => 'Detalles',
         'when'      => 'Cuándo',
         'who'       => 'Quién',

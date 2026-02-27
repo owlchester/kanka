@@ -1,6 +1,12 @@
 <?php
 
 return [
+    'description'       => [
+        'label' => 'Descripción',
+    ],
+    'entry'             => [
+        'label' => 'Entrada',
+    ],
     'gallery'           => [
         'placeholder'   => 'Elige una imagen de la galería',
     ],

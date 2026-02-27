@@ -3,6 +3,7 @@
 return [
     'actions'   => [
         'subscription'  => 'Aprende más sobre las suscripciones',
+        'upgrade'       => 'Mejorar a premium',
     ],
     'booster'   => [
         'actions'       => [

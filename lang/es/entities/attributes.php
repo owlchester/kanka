@@ -2,6 +2,7 @@
 
 return [
     'actions'       => [
+        'apply_kit'     => 'Aplicar un kit de propiedades',
         'load'          => 'Cargar',
         'manage'        => 'Administrar',
         'more'          => 'Más opciones',
@@ -22,6 +23,7 @@ return [
         'is_private'            => 'Atributos privados',
         'is_star'               => 'Fijado',
         'preferences'           => 'Preferencias',
+        'property'              => 'Propiedad',
         'template'              => 'Plantilla',
         'value'                 => 'Valor',
     ],
@@ -100,6 +102,7 @@ return [
         'block'     => 'Bloque',
         'checkbox'  => 'Casilla',
         'icon'      => 'Icono',
+        'kits'      => 'Kits',
         'number'    => 'Número',
         'random'    => 'Aleatorio',
         'section'   => 'Sección',

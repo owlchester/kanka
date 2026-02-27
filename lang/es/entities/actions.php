@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'archetype'         => [
+        'set'       => 'Establecer como arquetipo',
+        'toggle'    => 'Estado de plantilla alternado.',
+        'unset'     => 'Quitar como plantilla',
+    ],
     'archive'           => [
         'success'   => ':name ha sido archivado.',
         'title'     => 'Archivar',
