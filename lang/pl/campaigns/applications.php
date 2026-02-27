@@ -23,7 +23,6 @@ return [
     ],
     'helpers'       => [
         'modal'                 => 'Do kampanii publicznej, którą otwarto na zgłoszenia, mogą się zgłaszać nowi uczestnicy.',
-        'no_applications'       => 'W tej kampanii nie ma oczekujących zgłoszeń. Nowi uczestnicy mogą zgłaszać się, wchodząc na pulpit kampanii i klikając na :button.',
         'no_applications_title' => 'Brak zgłoszeń',
         'reason'                => 'Jeśli podasz, kandydat otrzyma tę informację.',
         'role'                  => 'Jeśli przyjmiesz kandydata, otrzyma tę rolę.',

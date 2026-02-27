@@ -2,15 +2,14 @@
 
 return [
     'actions'       => [
-        'apply_template'    => 'Aplicar plantilla de atributos',
-        'load'              => 'Cargar',
-        'manage'            => 'Administrar',
-        'more'              => 'Más opciones',
-        'remove_all'        => 'Eliminar todos',
-        'save_and_edit'     => 'Aplicar y editar',
-        'save_and_story'    => 'Aplicar y ver',
-        'show_hidden'       => 'Mostrar atributos ocultos',
-        'toggle_privacy'    => 'Privado/Público',
+        'load'          => 'Cargar',
+        'manage'        => 'Administrar',
+        'more'          => 'Más opciones',
+        'remove_all'    => 'Eliminar todos',
+        'save_and_edit' => 'Aplicar y editar',
+        'save_and_story'=> 'Aplicar y ver',
+        'show_hidden'   => 'Mostrar atributos ocultos',
+        'toggle_privacy'=> 'Privado/Público',
     ],
     'errors'        => [
         'api'                   => 'Datos no válidos',
@@ -19,7 +18,6 @@ return [
         'too_many_v2'           => 'Se ha alcanzado el máximo de campos (:count/:max). Elimina algunos atributos primero antes de poder añadir más.',
     ],
     'fields'        => [
-        'attribute'             => 'Atributo',
         'community_templates'   => 'Plantillas de la comunidad',
         'is_private'            => 'Atributos privados',
         'is_star'               => 'Fijado',

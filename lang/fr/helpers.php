@@ -12,9 +12,7 @@ return [
         'info'  => 'Pour quoi ces événements sont-ils affichés?',
         'title' => 'Widget de calendrier',
     ],
-    'entity_templates'  => [
-        'link'  => 'Comment définir des modèles',
-    ],
+    'entity_templates'  => [],
     'filters'           => [
         'title' => 'Comment utiliser les filtres',
     ],

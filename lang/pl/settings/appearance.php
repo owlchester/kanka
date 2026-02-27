@@ -38,7 +38,6 @@ return [
         'advanced-mentions'     => 'W czasie wpisywania tekstu wzmianki mogą być wyświetlane w postaci nazw elementów lub wzmianek zaawansowanych.',
         'campaign-order'        => 'Określ kolejność wyświetlania kampanii w menu ich wyboru.',
         'date-format'           => 'Określ format wyświetlania dat z rzeczywistego kalendarza (gdy to możliwe).',
-        'editor'                => 'Starszy edytor tekstu (TinyMCE) nie wspiera wzmianek na urządzeniach mobilnych, galerii kampanii i innych funkcji zaawansowanych.',
         'entity-explore'        => 'Określ sposób wyświetlania elementów kampanii.',
         'new-entity-workflow'   => 'Wskaż, jaki interface ma się wyświetlić po stworzeniu nowego elementu.',
         'overridable'           => 'Indywidualne ustawienia kampanii mają pierwszeństwo.',

@@ -4,9 +4,7 @@ return [
     'age'               => [],
     'attributes'        => [],
     'dice'              => [],
-    'entity_templates'  => [
-        'link'  => 'Kako postaviti predloške',
-    ],
+    'entity_templates'  => [],
     'filters'           => [
         'title' => 'Kako koristiti filtre',
     ],

@@ -14,9 +14,7 @@ return [
         'title' => 'Виджет календаря',
     ],
     'dice'              => [],
-    'entity_templates'  => [
-        'link'  => 'Как создавать шаблоны',
-    ],
+    'entity_templates'  => [],
     'filters'           => [
         'title' => 'Как использовать фильтры',
     ],

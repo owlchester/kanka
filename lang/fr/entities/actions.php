@@ -14,15 +14,7 @@ return [
     'copy-campaign'     => 'Copier vers la campagne',
     'json-export'       => 'Export JSON',
     'markdown-export'   => 'Export Markdown',
-    'templates'         => [
-        'set'       => 'Définir comme modèle',
-        'success'   => [
-            'set'   => 'L\'entrée :name définie comme modèle.',
-            'unset' => 'L\'entrée :name retirée des modèles.',
-        ],
-        'toggle'    => 'Changement d\'état.',
-        'unset'     => 'Retirer des modèles',
-    ],
+    'templates'         => [],
     'tooltips'          => [
         'edit'  => 'Modifier cette entrée',
     ],

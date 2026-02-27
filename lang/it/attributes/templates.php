@@ -8,8 +8,6 @@ return [
         ],
     ],
     'helpers'   => [],
-    'list'      => [
-        'campaign'  => 'Template della campagna',
-    ],
+    'list'      => [],
     'pitch'     => 'Trova e aggiungi schede del personaggio dal :marketplace in una :boosted-campaign',
 ];

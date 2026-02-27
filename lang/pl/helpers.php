@@ -14,9 +14,7 @@ return [
         'title' => 'Widżet kalendarza',
     ],
     'dice'              => [],
-    'entity_templates'  => [
-        'link'  => 'Jak stworzyć szablon',
-    ],
+    'entity_templates'  => [],
     'filters'           => [
         'title' => 'Jak używać filtrów',
     ],

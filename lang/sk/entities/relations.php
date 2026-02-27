@@ -42,15 +42,12 @@ return [
         'success'   => 'Vzťah pre :name odstránený',
     ],
     'fields'            => [
-        'attitude'          => 'Postoj',
-        'connection'        => 'Prepojenie',
-        'is_pinned'         => 'Pripnuté',
-        'owner'             => 'Zdroj',
-        'relation'          => 'Vzťah',
-        'target'            => 'Cieľ',
-        'target_relation'   => 'Vzťah cieľa',
-        'two_way'           => 'Vytvoriť zrkadlenie vzťahu',
-        'unmirror'          => 'Zrušiť zrkadlenie tohto vzťahu.',
+        'attitude'  => 'Postoj',
+        'is_pinned' => 'Pripnuté',
+        'owner'     => 'Zdroj',
+        'target'    => 'Cieľ',
+        'two_way'   => 'Vytvoriť zrkadlenie vzťahu',
+        'unmirror'  => 'Zrušiť zrkadlenie tohto vzťahu.',
     ],
     'filters'           => [
         'connection'    => 'Vzťah prepojenia',
@@ -61,13 +58,8 @@ return [
         'no_relations'  => 'Tento objekt nemá aktuálne žiadne vzťahy s inými objektami v kampani.',
     ],
     'hints'             => [
-        'attitude'          => 'Toto nepovinné pole môže usporiadať poradie vzťahov štandardne podľa hodnoty vzťahu.',
-        'mirrored'          => [
-            'text'  => 'Tento vzťah je zrkadlený s :link.',
-            'title' => 'Zrkadlený',
-        ],
-        'target_relation'   => 'Popis vzťahu u cieľa. Ponechaj prázdne, ak sa má použiť text tohto vzťahu.',
-        'two_way'           => 'Keď vytvoríš zrkadlenie vzťahu, vytvorí sa rovnaký vzťah aj u cieľového objektu. Ak bude neskôr upravovaný, zrkadlený vzťah nebude zmenami dotknutý.',
+        'attitude'  => 'Toto nepovinné pole môže usporiadať poradie vzťahov štandardne podľa hodnoty vzťahu.',
+        'two_way'   => 'Keď vytvoríš zrkadlenie vzťahu, vytvorí sa rovnaký vzťah aj u cieľového objektu. Ak bude neskôr upravovaný, zrkadlený vzťah nebude zmenami dotknutý.',
     ],
     'index'             => [
         'title' => 'Vzťahy',
@@ -83,10 +75,7 @@ return [
         'related'   => 'Prepojené',
     ],
     'placeholders'      => [
-        'attitude'          => '-100 až 100, kde 100 je max. pozitívny',
-        'relation'          => 'Typ vzťahu',
-        'target'            => 'Vybrať objekt',
-        'target_relation'   => 'Ponechaj prázdne, ak chceš použiť popis',
+        'attitude'  => '-100 až 100, kde 100 je max. pozitívny',
     ],
     'show'              => [
         'title' => 'Vzťahy pre :name',

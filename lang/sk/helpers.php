@@ -14,9 +14,7 @@ return [
         'title' => 'Kalendárový widget',
     ],
     'dice'              => [],
-    'entity_templates'  => [
-        'link'  => 'Ako nastaviť šablóny',
-    ],
+    'entity_templates'  => [],
     'filters'           => [
         'title' => 'Ako používať filtre',
     ],

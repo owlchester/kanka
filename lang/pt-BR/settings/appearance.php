@@ -38,7 +38,6 @@ return [
         'advanced-mentions'     => 'Ao editar textos, controle se as menções são renderizadas como o nome da entidade ou como menção avançada.',
         'campaign-order'        => 'Altere a ordem em que as campanhas são listadas no alternador de campanha.',
         'date-format'           => 'Quando disponível, controle o formato no qual exibir as datas do mundo real.',
-        'editor'                => 'O uso do editor de texto herdado (TinyMCE) não oferece suporte a menções em dispositivos móveis, galerias de campanha ou outros recursos avançados.',
         'entity-explore'        => 'Controle a maneira como as listas de entidades são exibidas nas campanhas.',
         'new-entity-workflow'   => 'Controle para qual interface você será levado depois de criar uma nova entidade.',
         'overridable'           => 'Campanhas individuais podem substituir essa preferência.',

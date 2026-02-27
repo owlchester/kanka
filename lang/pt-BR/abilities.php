@@ -37,7 +37,6 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'entities'  => 'Entidades',
             'reorder'   => 'Reordenar Habilidades',
         ],
     ],

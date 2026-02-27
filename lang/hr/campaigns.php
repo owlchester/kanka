@@ -23,8 +23,6 @@ return [
     'export'                            => [],
     'fields'                            => [
         'boosted'                   => 'Pojačali',
-        'css'                       => 'CSS',
-        'description'               => 'Opis',
         'entity_count'              => 'Broj entiteta',
         'entry'                     => 'Opis kampanje',
         'excerpt'                   => 'Isječak',
@@ -169,19 +167,15 @@ return [
         'members'       => 'Članovi',
         'permissions'   => [
             'actions'   => [
-                'add'           => 'Kreiraj',
-                'dashboard'     => 'Naslovna ploča',
-                'delete'        => 'Obriši',
-                'edit'          => 'Uredi',
-                'entity-note'   => 'Bilješka entiteta',
-                'manage'        => 'Upravljanje',
-                'members'       => 'Članovi',
-                'permission'    => 'Ovlasti',
-                'read'          => 'Pregled',
-                'toggle'        => 'Promijeni za sve',
-            ],
-            'helpers'   => [
-                'entity_note'   => 'Ovo omogućava korisnicima koji nemaju dopuštenja uređivanja entiteta da dodaju Bilješke entiteta.',
+                'add'       => 'Kreiraj',
+                'dashboard' => 'Naslovna ploča',
+                'delete'    => 'Obriši',
+                'edit'      => 'Uredi',
+                'manage'    => 'Upravljanje',
+                'members'   => 'Članovi',
+                'permission'=> 'Ovlasti',
+                'read'      => 'Pregled',
+                'toggle'    => 'Promijeni za sve',
             ],
         ],
         'placeholders'  => [
@@ -242,7 +236,6 @@ return [
         ],
         'tabs'      => [
             'achievements'      => 'Postignuća',
-            'applications'      => 'Prijave',
             'default-images'    => 'Zadane slike',
             'export'            => 'Izvoz',
             'members'           => 'Članovi',

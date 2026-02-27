@@ -2,10 +2,7 @@
 
 return [
     'create'        => [
-        'template'  => [
-            'helper'    => 'Los administradores de la campaña han definido los siguientes posts como plantillas que pueden reutilizarse.',
-        ],
-        'title'     => 'Nuevo post',
+        'title' => 'Nuevo post',
     ],
     'fields'        => [
         'layout'    => 'Diseño de publicación',

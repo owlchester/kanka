@@ -8,7 +8,5 @@ return [
         ],
     ],
     'helpers'   => [],
-    'list'      => [
-        'campaign'  => 'Predlošci kampanje',
-    ],
+    'list'      => [],
 ];

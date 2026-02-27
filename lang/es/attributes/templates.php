@@ -9,7 +9,6 @@ return [
     ],
     'helpers'   => [],
     'list'      => [
-        'campaign'  => 'Plantillas de campaña',
         'sheets'    => 'Hojas de personaje',
     ],
     'pitch'     => 'Encuentra y añade hojas de personaje del :marketplace a una :boosted-campaign.',

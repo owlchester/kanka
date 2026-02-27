@@ -43,16 +43,13 @@ return [
         'success'   => 'Beziehung für :name entfernt',
     ],
     'fields'            => [
-        'attitude'          => 'Einstellung',
-        'connection'        => 'Verbindungen',
-        'is_pinned'         => 'Angeheftet',
-        'owner'             => 'Quelle',
-        'relation'          => 'Beziehung',
-        'target'            => 'Ziel',
-        'target_relation'   => 'Zielbeziehung',
-        'targets'           => 'Zielobjekt',
-        'two_way'           => 'Gespiegelte Beziehung erstellen',
-        'unmirror'          => 'Hebe die Spiegelung dieser Beziehung auf.',
+        'attitude'  => 'Einstellung',
+        'is_pinned' => 'Angeheftet',
+        'owner'     => 'Quelle',
+        'target'    => 'Ziel',
+        'targets'   => 'Zielobjekt',
+        'two_way'   => 'Gespiegelte Beziehung erstellen',
+        'unmirror'  => 'Hebe die Spiegelung dieser Beziehung auf.',
     ],
     'filters'           => [
         'connection'    => 'Verbindung Beziehung',
@@ -64,13 +61,8 @@ return [
         'no_relations'  => 'Dieses Objekt hat derzeit keine Beziehungen zu anderen Objekten der Kampagne.',
     ],
     'hints'             => [
-        'attitude'          => 'In diesem optionalen Feld können Sie die Standardordnungsbeziehungen definieren, sie wird in absteigender Reihenfolge angezeigt.',
-        'mirrored'          => [
-            'text'  => 'Diese Beziehung ist gespiegelt mit :link.',
-            'title' => 'Gespiegelt',
-        ],
-        'target_relation'   => 'Die Beziehungsbeschreibung des Ziels. Lassen Sie das Feld leer, um den Text dieser Beziehung zu verwenden.',
-        'two_way'           => 'Wenn du eine gespiegelte Beziehung erstellst, wird die gleiche Beziehung auch auf dem Ziel erstellt. Wenn du diese später editierst, wird die gespiegelte Beziehung nicht aktualisiert.',
+        'attitude'  => 'In diesem optionalen Feld können Sie die Standardordnungsbeziehungen definieren, sie wird in absteigender Reihenfolge angezeigt.',
+        'two_way'   => 'Wenn du eine gespiegelte Beziehung erstellst, wird die gleiche Beziehung auch auf dem Ziel erstellt. Wenn du diese später editierst, wird die gespiegelte Beziehung nicht aktualisiert.',
     ],
     'index'             => [
         'title' => 'Beziehungen',
@@ -86,10 +78,7 @@ return [
         'related'   => 'verbunden',
     ],
     'placeholders'      => [
-        'attitude'          => '-100 bis 100, 100 ist maximal positiv.',
-        'relation'          => 'Art der Beziehung',
-        'target'            => 'Wähle ein Objekt',
-        'target_relation'   => 'Lasse das Feld leer, um die Beschreibung zu verwenden',
+        'attitude'  => '-100 bis 100, 100 ist maximal positiv.',
     ],
     'show'              => [
         'title' => 'Beziehungen für :name',

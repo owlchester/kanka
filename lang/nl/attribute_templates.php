@@ -7,9 +7,7 @@ return [
     ],
     'destroy'               => [],
     'edit'                  => [],
-    'fields'                => [
-        'attributes'    => 'Attributen',
-    ],
+    'fields'                => [],
     'hints'                 => [
         'automatic'                 => 'Attributen worden automatisch toegepast vanuit de :link Attribuutsjabloon',
         'entity_type'               => 'Indien ingesteld, zal bij het maken van een nieuwe entiteit van dit type automatisch deze attribuutsjabloon worden toegepast.',
@@ -19,9 +17,5 @@ return [
     'placeholders'          => [
         'name'  => 'Naam van de attribuutsjabloon',
     ],
-    'show'                  => [
-        'tabs'  => [
-            'attributes'    => 'Attributen',
-        ],
-    ],
+    'show'                  => [],
 ];

@@ -7,9 +7,7 @@ return [
     ],
     'destroy'               => [],
     'edit'                  => [],
-    'fields'                => [
-        'attributes'    => 'Svojstva',
-    ],
+    'fields'                => [],
     'hints'                 => [
         'automatic'                 => 'Svojstva automatski pridjeljena iz :link predloška svojstva.',
         'entity_type'               => 'Ako je uključeno, kreiranje novog entiteta ovog tipa će automatski primjeniti ovaj predložak svojstva na njega.',
@@ -19,9 +17,5 @@ return [
     'placeholders'          => [
         'name'  => 'Naziv predloška svojstva',
     ],
-    'show'                  => [
-        'tabs'  => [
-            'attributes'    => 'Svojstva',
-        ],
-    ],
+    'show'                  => [],
 ];

@@ -8,7 +8,6 @@ return [
     'destroy'               => [],
     'edit'                  => [],
     'fields'                => [
-        'attributes'    => 'Attribute',
         'auto_apply'    => 'automatisch übernehmen',
         'is_enabled'    => 'Aktiviert',
     ],
@@ -24,9 +23,5 @@ return [
     'placeholders'          => [
         'name'  => 'Name der Attributvorlage',
     ],
-    'show'                  => [
-        'tabs'  => [
-            'attributes'    => 'Attribute',
-        ],
-    ],
+    'show'                  => [],
 ];

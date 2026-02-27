@@ -38,7 +38,6 @@ return [
         'advanced-mentions'     => 'Keď sa edituje text, môžeš zvoliť, či sa referencie budú zobrazovať ako názov alebo rozšírená referencia.',
         'campaign-order'        => 'Zmeň poradie, v ktorom sa zobrazujú kampane pri ich výbere.',
         'date-format'           => 'V miestach, kde sa zobrazujú, môžeš zvoliť formát dátumu skutočného sveta.',
-        'editor'                => 'Starý textový editor (TinyMCE) nepodporuje zadávanie referencií na mobilných zariadeniach, galérie kampane a ďalšie rozšírené funkcionality.',
         'entity-explore'        => 'Zvoľ spôsob, akým sú zoznamy objektov zobrazované v kampaniach.',
         'new-entity-workflow'   => 'Zvoľ, kam sa automaticky dostaneš po vytvorení nového objektu.',
         'overridable'           => 'Jednotlivé kampane môžu toto nastavenie prepísať.',

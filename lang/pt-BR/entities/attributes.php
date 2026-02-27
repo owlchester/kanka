@@ -2,15 +2,14 @@
 
 return [
     'actions'       => [
-        'apply_template'    => 'Aplicar um modelo de atributo',
-        'load'              => 'Carregar',
-        'manage'            => 'Gerenciar',
-        'more'              => 'Mais opções',
-        'remove_all'        => 'Remover Tudo',
-        'save_and_edit'     => 'Aplicar e Editar',
-        'save_and_story'    => 'Aplicar e Visualizar',
-        'show_hidden'       => 'Mostrar atributos ocultos',
-        'toggle_privacy'    => 'Privado/Público',
+        'load'          => 'Carregar',
+        'manage'        => 'Gerenciar',
+        'more'          => 'Mais opções',
+        'remove_all'    => 'Remover Tudo',
+        'save_and_edit' => 'Aplicar e Editar',
+        'save_and_story'=> 'Aplicar e Visualizar',
+        'show_hidden'   => 'Mostrar atributos ocultos',
+        'toggle_privacy'=> 'Privado/Público',
     ],
     'errors'        => [
         'loop'                  => 'Existe um loop infinito no cálculo desse atributo!',
@@ -18,7 +17,6 @@ return [
         'too_many_v2'           => 'Campos máximos atingidos (:count/:max). Exclua alguns atributos primeiro antes de poder adicionar mais.',
     ],
     'fields'        => [
-        'attribute'             => 'Atributo',
         'community_templates'   => 'Modelos da Comunidade',
         'is_private'            => 'Atributos Privados',
         'is_star'               => 'Fixado',

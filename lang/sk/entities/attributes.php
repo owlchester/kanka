@@ -2,15 +2,14 @@
 
 return [
     'actions'       => [
-        'apply_template'    => 'Použiť šablónu atribútov',
-        'load'              => 'Nahrať',
-        'manage'            => 'Spravovať',
-        'more'              => 'Ďalšie možnosti',
-        'remove_all'        => 'Odstrániť všetko',
-        'save_and_edit'     => 'Použiť a Upraviť',
-        'save_and_story'    => 'Použiť a Zobraziť',
-        'show_hidden'       => 'Zobraziť skryté atribúty',
-        'toggle_privacy'    => 'Súkromný/Verejný',
+        'load'          => 'Nahrať',
+        'manage'        => 'Spravovať',
+        'more'          => 'Ďalšie možnosti',
+        'remove_all'    => 'Odstrániť všetko',
+        'save_and_edit' => 'Použiť a Upraviť',
+        'save_and_story'=> 'Použiť a Zobraziť',
+        'show_hidden'   => 'Zobraziť skryté atribúty',
+        'toggle_privacy'=> 'Súkromný/Verejný',
     ],
     'errors'        => [
         'loop'                  => 'Vo výpočte atribútu sa vyskytuje nekonečná slučka!',
@@ -18,7 +17,6 @@ return [
         'too_many_v2'           => 'Dosiahnuté max. počet polí (:count/:max). Zmaž najprv niektoré z atribútov pred pridaním nových.',
     ],
     'fields'        => [
-        'attribute'             => 'Atribút',
         'community_templates'   => 'Komunitné šablóny',
         'is_private'            => 'Súkromné atribúty',
         'is_star'               => 'Pripnutý',

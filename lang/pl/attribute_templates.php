@@ -8,7 +8,6 @@ return [
     'destroy'               => [],
     'edit'                  => [],
     'fields'                => [
-        'attributes'    => 'Cechy',
         'auto_apply'    => 'Stosuj automatycznie',
         'is_enabled'    => 'Aktywny',
     ],
@@ -27,9 +26,5 @@ return [
     'placeholders'          => [
         'name'  => 'Nazwa szablonu cech',
     ],
-    'show'                  => [
-        'tabs'  => [
-            'attributes'    => 'Cechy',
-        ],
-    ],
+    'show'                  => [],
 ];

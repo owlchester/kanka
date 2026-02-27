@@ -10,7 +10,6 @@ return [
         'action'    => 'Action',
         'category'  => 'Catégorie',
         'details'   => 'Détails',
-        'module'    => 'Module',
         'when'      => 'Quand',
         'who'       => 'Qui',
     ],

@@ -29,7 +29,6 @@ return [
     'fields'        => [
         'creator'   => 'Créé par',
         'display'   => 'Affichage',
-        'entry'     => 'Entrée',
         'name'      => 'Nom',
         'position'  => 'Position',
     ],
@@ -41,9 +40,7 @@ return [
     'hints'         => [
         'reorder'   => 'Les articles peuvent être réarrangée en cliquant sur l\'icône :icon à côté de Histoire dans le menu de l\'entrée.',
     ],
-    'index'         => [
-        'title' => 'Articles pour :name',
-    ],
+    'index'         => [],
     'move'          => [
         'copy'          => 'Créer une copie sur l\'entrée cible',
         'copy_success'  => 'L\'article :name a été copiée vers :entity avec succès.',

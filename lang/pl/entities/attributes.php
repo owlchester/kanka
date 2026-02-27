@@ -2,15 +2,14 @@
 
 return [
     'actions'       => [
-        'apply_template'    => 'Zastosuj szablon cech',
-        'load'              => 'Wczytaj',
-        'manage'            => 'Zarządzaj',
-        'more'              => 'Więcej opcji',
-        'remove_all'        => 'Usuń wszystko',
-        'save_and_edit'     => 'Zastosuj i edytuj',
-        'save_and_story'    => 'Zastosuj i zobacz',
-        'show_hidden'       => 'Pokaż ukryte cechy',
-        'toggle_privacy'    => 'Prywatne/Publiczne',
+        'load'          => 'Wczytaj',
+        'manage'        => 'Zarządzaj',
+        'more'          => 'Więcej opcji',
+        'remove_all'    => 'Usuń wszystko',
+        'save_and_edit' => 'Zastosuj i edytuj',
+        'save_and_story'=> 'Zastosuj i zobacz',
+        'show_hidden'   => 'Pokaż ukryte cechy',
+        'toggle_privacy'=> 'Prywatne/Publiczne',
     ],
     'errors'        => [
         'api'                   => 'Niewłaściwe dane',
@@ -19,7 +18,6 @@ return [
         'too_many_v2'           => 'Maksymalna liczba pól (:count/max). Skasuj jakieś cechy przed dodaniem nowych.',
     ],
     'fields'        => [
-        'attribute'             => 'Cecha',
         'community_templates'   => 'Szablony społeczności',
         'is_private'            => 'Szablony Tajne',
         'is_star'               => 'Przypięte',

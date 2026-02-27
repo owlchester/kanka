@@ -43,16 +43,13 @@ return [
         'success'   => 'Relación :target eliminada de :entity.',
     ],
     'fields'            => [
-        'attitude'          => 'Actitud',
-        'connection'        => 'Conexión',
-        'is_pinned'         => 'Fijado',
-        'owner'             => 'Fuente',
-        'relation'          => 'Relación',
-        'target'            => 'Objetivo',
-        'target_relation'   => 'Relación objetivo',
-        'targets'           => 'Entidades objetivo',
-        'two_way'           => 'Reflejar relación',
-        'unmirror'          => 'Desenlaza esta conexión.',
+        'attitude'  => 'Actitud',
+        'is_pinned' => 'Fijado',
+        'owner'     => 'Fuente',
+        'target'    => 'Objetivo',
+        'targets'   => 'Entidades objetivo',
+        'two_way'   => 'Reflejar relación',
+        'unmirror'  => 'Desenlaza esta conexión.',
     ],
     'filters'           => [
         'connection'    => 'Relación de conexión',
@@ -64,13 +61,8 @@ return [
         'no_relations'  => 'Esta entidad no tiene actualmente ninguna conexión con otras entidades de la campaña.',
     ],
     'hints'             => [
-        'attitude'          => 'Aquí se puede definir opcionalmente el orden en el que las relaciones aparecen por defecto de forma descendiente.',
-        'mirrored'          => [
-            'text'  => 'Esta relación está reflejada en :link.',
-            'title' => 'Reflejada',
-        ],
-        'target_relation'   => 'La descripción de la relación en el objetivo. Déjalo en blanco para usar el texto de esta relación.',
-        'two_way'           => 'Al reflejar una relación, ésta se copiará en el objetivo seleccionado. Sin embargo, si editas una, la otra no se verá afectada.',
+        'attitude'  => 'Aquí se puede definir opcionalmente el orden en el que las relaciones aparecen por defecto de forma descendiente.',
+        'two_way'   => 'Al reflejar una relación, ésta se copiará en el objetivo seleccionado. Sin embargo, si editas una, la otra no se verá afectada.',
     ],
     'index'             => [
         'title' => 'Relaciones',
@@ -86,10 +78,7 @@ return [
         'related'   => 'Eliminar',
     ],
     'placeholders'      => [
-        'attitude'          => 'Desde -100 hasta 100, siendo 100 muy positiva.',
-        'relation'          => 'Rival, mejor amiga, hermano...',
-        'target'            => 'Elige una entidad',
-        'target_relation'   => 'Dejar en blanco para utilizar la descripción',
+        'attitude'  => 'Desde -100 hasta 100, siendo 100 muy positiva.',
     ],
     'show'              => [
         'title' => 'Relaciones de :name',

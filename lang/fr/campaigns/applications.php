@@ -69,7 +69,6 @@ return [
         'fill_setup'            => 'Remplis le formulaire de configuration publique pour pouvoir ouvrir ta campagne au public.',
         'filters_incomplete'    => 'Ta campagne est ouverte aux candidatures, mais tu n\'as pas terminé la configuration des filtres (système, fuseau horaire ou tags). Les compléter facilitera la recherche pour les bons joueurs.',
         'modal'                 => 'Une campagne qui est ouverte aux candidatures et qui est publique peut avoir des utilisateurs demander de joindre la campagne.',
-        'no_applications'       => 'Il n\'y a actuellement aucune candidature en attente pour rejoindre la campagne. Les utilisateurs peuvent demander à rejoindre la campagne en visitant son tableau de bord et en cliquant sur le bouton :bouton.',
         'no_applications_title' => 'Aucune application trouvée',
         'no_applications_v2'    => 'Il n\'y a actuellement aucune demande en attente pour rejoindre la campagne, mais tu peux aider les joueurs à trouver leur prochaine aventure! Des informations détaillées et des filtres de recherche facilitent la découverte de ton histoire.',
         'reason'                => 'Si une raison est fournie, le/la demandeur en sera informé.',

@@ -22,9 +22,5 @@ return [
         'name'      => 'Vatrena kugla, Upozorenje, Lukavi udarac',
         'type'      => 'Čarolija, podvig, napad',
     ],
-    'show'          => [
-        'tabs'  => [
-            'entities'  => 'Entiteti',
-        ],
-    ],
+    'show'          => [],
 ];

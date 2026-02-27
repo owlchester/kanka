@@ -43,16 +43,13 @@ return [
         'success'   => 'Conexão de :target removida para :entity.',
     ],
     'fields'            => [
-        'attitude'          => 'Atitude',
-        'connection'        => 'Conexão',
-        'is_pinned'         => 'Fixado',
-        'owner'             => 'Fonte',
-        'relation'          => 'Descrição',
-        'target'            => 'Entidade alvo',
-        'target_relation'   => 'Descrição do alvo',
-        'targets'           => 'Entidades alvo',
-        'two_way'           => 'Conexão espelhada',
-        'unmirror'          => 'Desespelhe esta conexão.',
+        'attitude'  => 'Atitude',
+        'is_pinned' => 'Fixado',
+        'owner'     => 'Fonte',
+        'target'    => 'Entidade alvo',
+        'targets'   => 'Entidades alvo',
+        'two_way'   => 'Conexão espelhada',
+        'unmirror'  => 'Desespelhe esta conexão.',
     ],
     'filters'           => [
         'connection'    => 'Relação da conexão',
@@ -64,13 +61,8 @@ return [
         'no_relations'  => 'Essa entidade atualmente não tem quaisquer outras conexões com outras entidades da campanha.',
     ],
     'hints'             => [
-        'attitude'          => 'Este campo opcional pode ser usado para definir a ordem padrão em que as conexões aparecem em ordem decrescente.',
-        'mirrored'          => [
-            'text'  => 'Esta conexão é espelhada com :link.',
-            'title' => 'Espelhada',
-        ],
-        'target_relation'   => 'A descrição da conexão no alvo. Deixe em branco para usar o texto desta conexão.',
-        'two_way'           => 'Crie uma conexão no alvo selecionado e espelhe-os. Atualizar uma relação espelhada não atualiza a conexão original.',
+        'attitude'  => 'Este campo opcional pode ser usado para definir a ordem padrão em que as conexões aparecem em ordem decrescente.',
+        'two_way'   => 'Crie uma conexão no alvo selecionado e espelhe-os. Atualizar uma relação espelhada não atualiza a conexão original.',
     ],
     'index'             => [
         'title' => 'Conexões',
@@ -86,10 +78,7 @@ return [
         'related'   => 'Relacionados',
     ],
     'placeholders'      => [
-        'attitude'          => '-100 a 100, 100 sendo muito positiva',
-        'relation'          => 'Rival, Melhor Amigo, Irmão',
-        'target'            => 'Escolha uma entidade',
-        'target_relation'   => 'Deixe em branco para usar a descrição',
+        'attitude'  => '-100 a 100, 100 sendo muito positiva',
     ],
     'show'              => [
         'title' => 'Conexões de :name',

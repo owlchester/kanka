@@ -38,7 +38,6 @@ return [
         'advanced-mentions'     => 'Al editar textos, controla si las menciones se muestran como el nombre de la entidad o como la mención avanzada.',
         'campaign-order'        => 'Cambia el orden en el que aparecen las campañas en el selector de campañas.',
         'date-format'           => 'Cuando esté disponible, controla el formato en el que se mostrarán las fechas del mundo real.',
-        'editor'                => 'El uso del editor de texto de legado (TinyMCE) no admite menciones en dispositivos móviles, galerías de campañas ni otras funciones avanzadas.',
         'entity-explore'        => 'Controla la forma en que se muestran las listas de entidades en las campañas.',
         'new-entity-workflow'   => 'Controla la interfaz a la que se te dirige tras crear una nueva entidad.',
         'overridable'           => 'Cada campaña puede anular esta preferencia.',

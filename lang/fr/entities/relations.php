@@ -44,15 +44,12 @@ return [
     ],
     'fields'            => [
         'attitude'          => 'Attitude',
-        'connection'        => 'Connexion',
         'is_pinned'         => 'Épinglé',
         'link'              => 'Lien réciproque',
         'mirror_relation'   => 'Rôle réciproque',
         'owner'             => 'Source',
-        'relation'          => 'Relation',
         'role'              => 'Rôle',
         'target'            => 'Cible',
-        'target_relation'   => 'Relation de la cible',
         'targets'           => 'Cibles',
         'two_way'           => 'Créer une relation miroir',
         'unmirror'          => 'Délier cette relation de la relation miroir.',
@@ -69,13 +66,8 @@ return [
         'no_relations'      => 'Cette entrée n\'a actuellement aucune relation vers d\'autres entrées de la campagne.',
     ],
     'hints'             => [
-        'attitude'          => 'Ce champ optionnel peut être utilisé pour définir l\'ordre ascendant dans lequel s\'affichent les relations.',
-        'mirrored'          => [
-            'text'  => 'Cette relation est liée avec :link.',
-            'title' => 'Lié',
-        ],
-        'target_relation'   => 'La description de la relation sur la cible. Laisser vide pour utiliser la même relation pour la cible.',
-        'two_way'           => 'Sélectionne pour créer une copie de la relation sur la cible.',
+        'attitude'  => 'Ce champ optionnel peut être utilisé pour définir l\'ordre ascendant dans lequel s\'affichent les relations.',
+        'two_way'   => 'Sélectionne pour créer une copie de la relation sur la cible.',
     ],
     'index'             => [
         'title' => 'Relations',
@@ -97,11 +89,8 @@ return [
         'related'   => 'Éléments liés',
     ],
     'placeholders'      => [
-        'attitude'          => 'de -100 à 100, 100 étant très positif.',
-        'relation'          => 'Meilleur ami, rival, lieu d\'origine',
-        'role'              => 'Rival, Meilleur ami, Frère/Sœur',
-        'target'            => 'Choix d\'un élément',
-        'target_relation'   => 'Laisser vide pour utiliser la description',
+        'attitude'  => 'de -100 à 100, 100 étant très positif.',
+        'role'      => 'Rival, Meilleur ami, Frère/Sœur',
     ],
     'show'              => [
         'title' => 'Relations de :name',

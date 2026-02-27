@@ -40,7 +40,6 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'entities'  => 'Elementy',
             'reorder'   => 'Zmień kolejność',
         ],
     ],

@@ -29,7 +29,6 @@ return [
     'fields'        => [
         'creator'   => 'Autor/ka',
         'display'   => 'Displej',
-        'entry'     => 'Hodnota',
         'name'      => 'Názov',
         'position'  => 'Pozícia',
     ],
@@ -41,9 +40,7 @@ return [
     'hints'         => [
         'reorder'   => 'Môžeš zmeniť poradie poznámok daného objektu kliknutím na ikonku :icon vedľa Prehľadu v menu objektu.',
     ],
-    'index'         => [
-        'title' => 'Poznámky pre :name',
-    ],
+    'index'         => [],
     'move'          => [
         'copy'          => 'Vytvoriť kópiu v cieľovom objekte',
         'copy_success'  => 'Komentár :name úspešne skopírovaný do :entity.',

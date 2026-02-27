@@ -22,8 +22,6 @@ return [
     'export'                            => [],
     'fields'                            => [
         'boosted'                   => 'Boosté par',
-        'css'                       => 'CSS',
-        'description'               => 'Description',
         'entity_count'              => 'Nombre d\'entrées',
         'entry'                     => 'Description de la campagne',
         'excerpt'                   => 'Description de la campagne sur le tableau de bord',
@@ -150,9 +148,7 @@ return [
         'switch_back_success'   => 'Tu es de retour à ton compte.',
     ],
     'mentions'                          => [],
-    'modules'                           => [
-        'permission-disabled'   => 'Cette catégorie est désactivée.',
-    ],
+    'modules'                           => [],
     'open_campaign'                     => [],
     'options'                           => [],
     'overview'                          => [
@@ -242,7 +238,6 @@ return [
                 'dashboard'     => 'Tableau de bord',
                 'delete'        => 'Supprimer',
                 'edit'          => 'Modifier',
-                'entity-note'   => 'Note d\'entrée',
                 'gallery'       => [
                     'browse'    => 'Parcourir',
                     'manage'    => 'Accès complet',
@@ -260,7 +255,6 @@ return [
                 'dashboard'     => 'Permettre de modifier les tableaux de bords et les widgets du tableau de bord.',
                 'delete'        => 'Permettre la suppression des entrées de cette catégorie.',
                 'edit'          => 'Permettre la modifications des entrées de cette catégorie.',
-                'entity_note'   => 'Ceci permet aux utilisateurs qui n\'ont pas la permission de modifier une entrée de pouvoir ajouter des articles sur celle-ci.',
                 'gallery'       => [
                     'browse'    => 'Permettre de parcourir la galerie, et définir l\'image d\'entrée depuis la galerie.',
                     'manage'    => 'Permettre l\'accès complet à la galerie, avec la possibilité de modifier et supprimer des images.',
@@ -355,7 +349,6 @@ return [
         ],
         'tabs'      => [
             'achievements'      => 'Succès',
-            'applications'      => 'Applications',
             'customisation'     => 'Personnalisation',
             'danger'            => 'Danger',
             'data'              => 'Données',

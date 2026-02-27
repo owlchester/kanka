@@ -5,7 +5,6 @@ return [
         'title' => 'Créer un nouveau kit de propriétés',
     ],
     'fields'        => [
-        'attributes'    => 'Propriétés',
         'auto_apply'    => 'Auto-appliquer',
         'is_enabled'    => 'Activé',
     ],
@@ -23,9 +22,5 @@ return [
     'placeholders'  => [
         'name'  => 'Nom du kit de propriétés',
     ],
-    'show'          => [
-        'tabs'  => [
-            'attributes'    => 'Propriétés',
-        ],
-    ],
+    'show'          => [],
 ];

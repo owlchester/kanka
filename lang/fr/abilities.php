@@ -34,7 +34,6 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'entities'  => 'Entrées',
             'reorder'   => 'Réorganiser les pouvoirs',
         ],
     ],

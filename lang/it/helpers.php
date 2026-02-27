@@ -13,9 +13,7 @@ return [
         'title' => 'Widget del Calendario',
     ],
     'dice'              => [],
-    'entity_templates'  => [
-        'link'  => 'Come impostare i modelli',
-    ],
+    'entity_templates'  => [],
     'filters'           => [
         'title' => 'Come usare i filtri',
     ],

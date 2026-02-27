@@ -2,10 +2,7 @@
 
 return [
     'create'        => [
-        'template'  => [
-            'helper'    => 'Les administrateurs de la campagne ont défini les articles suivants comme des modèles pouvant être réutilisés.',
-        ],
-        'title'     => 'Nouvel article',
+        'title' => 'Nouvel article',
     ],
     'fields'        => [
         'description'   => 'Description',

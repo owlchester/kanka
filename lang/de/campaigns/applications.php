@@ -23,7 +23,6 @@ return [
     ],
     'helpers'       => [
         'modal'                 => 'Bei einer Kampagne, die für Bewerbungen offen und öffentlich ist, können sich Benutzer für die Teilnahme an der Kampagne bewerben.',
-        'no_applications'       => 'Derzeit gibt es keine ausstehenden Bewerbungen zur Teilnahme an Ihrer Kampagne. Benutzer können sich für die Teilnahme an Ihrer Kampagne bewerben, indem sie das Dashboard besuchen und auf die Schaltfläche :button klicken.',
         'no_applications_title' => 'Keine Anwendungen gefunden',
         'reason'                => 'Wenn dies der Fall ist, wird der Bewerber mit dieser Begründung benachrichtigt.',
         'role'                  => 'Bei Genehmigung die Rolle, welcher der Bewerber hinzugefügt wird.',

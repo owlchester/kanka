@@ -38,7 +38,6 @@ return [
         'advanced-mentions'     => 'Quando modifichi i testi, puoi controllare se le menzioni vengono rese come nome dell\'entità o come menzione avanzata.',
         'campaign-order'        => 'Modificare l\'ordine in cui le campagne sono elencate nel selettore di campagne.',
         'date-format'           => 'Se disponibile, controlla il formato in cui vengono visualizzate le date del mondo reale.',
-        'editor'                => 'L\'uso dell\'editor di testo tradizionale (TinyMCE) non supporta le menzioni sui dispositivi mobili, le gallerie di campagne o altre funzioni avanzate.',
         'entity-explore'        => 'Controlla il modo in cui gli elenchi di entità vengono visualizzati nelle campagne.',
         'new-entity-workflow'   => 'Controlla l\'interfaccia a cui si accede dopo la creazione di una nuova entità.',
         'overridable'           => 'Le singole campagne possono ignorare questa preferenza.',

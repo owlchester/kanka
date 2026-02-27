@@ -2,13 +2,11 @@
 
 return [
     'actions'       => [
-        'apply_template'    => 'Pas een Attribuutsjabloon toe',
-        'manage'            => 'Beheer',
-        'more'              => 'Meer opties',
-        'remove_all'        => 'Verwijder Alles',
+        'manage'        => 'Beheer',
+        'more'          => 'Meer opties',
+        'remove_all'    => 'Verwijder Alles',
     ],
     'fields'        => [
-        'attribute'             => 'Attribuut',
         'community_templates'   => 'Community Sjablonen',
         'is_private'            => 'Privé Attributen',
         'is_star'               => 'Vastgemaakt',

@@ -44,7 +44,6 @@ return [
         'advanced-mentions'     => 'Lors de l\'édition de textes, contrôler si les mentions sont affichées en tant que nom de l\'entrée ou en tant que mention avancée.',
         'campaign-order'        => 'Changer l\'ordre dans lequel les campagnes sont affichées dans l\'interface.',
         'date-format'           => 'Contrôler le format dans lequel afficher les dates ancrées dans notre calendrier.',
-        'editor'                => 'L\'utilisation de l\'ancien éditeur de texte (TinyMCE) ne prend pas en charge les mentions sur les appareils mobiles, les galeries de campagnes ou d\'autres fonctionnalités avancées.',
         'editors'               => 'Choisis l\'éditeur de texte à utiliser pour les grands champs de texte.',
         'entity-explore'        => 'Contrôler la manière dont s\'affiche les listes d\'entrées des campagnes.',
         'new-entity-workflow'   => 'Contrôler l\'interface vers laquelle tu es redirigé après avoir créé une nouvelle entrée.',

@@ -2,16 +2,15 @@
 
 return [
     'actions'       => [
-        'apply_kit'         => 'Appliquer un kit de propriétés',
-        'apply_template'    => 'Appliquer un kit de propriétés',
-        'load'              => 'Charger',
-        'manage'            => 'Gérer',
-        'more'              => 'Plus d\'options',
-        'remove_all'        => 'Tout supprimer',
-        'save_and_edit'     => 'Appliquer et modifier',
-        'save_and_story'    => 'Appliquer et voir',
-        'show_hidden'       => 'Afficher les propriétés cachées',
-        'toggle_privacy'    => 'Privé/Public',
+        'apply_kit'     => 'Appliquer un kit de propriétés',
+        'load'          => 'Charger',
+        'manage'        => 'Gérer',
+        'more'          => 'Plus d\'options',
+        'remove_all'    => 'Tout supprimer',
+        'save_and_edit' => 'Appliquer et modifier',
+        'save_and_story'=> 'Appliquer et voir',
+        'show_hidden'   => 'Afficher les propriétés cachées',
+        'toggle_privacy'=> 'Privé/Public',
     ],
     'errors'        => [
         'api'                   => 'Données invalides',
@@ -20,7 +19,6 @@ return [
         'too_many_v2'           => 'Le nombre maximum de champs est atteint (:count/:max). Supprimer d\'abord certaines propriétés avant de pouvoir en ajouter d\'autres.',
     ],
     'fields'        => [
-        'attribute'             => 'Propriété',
         'community_templates'   => 'Modèles Communautaires',
         'is_private'            => 'Propriétés privées',
         'is_star'               => 'Épinglé',
@@ -107,7 +105,6 @@ return [
         'number'    => 'Nombre',
         'random'    => 'Aléatoire',
         'section'   => 'Section',
-        'templates' => 'Kits',
         'text'      => 'Texte multiligne',
     ],
     'update'        => [

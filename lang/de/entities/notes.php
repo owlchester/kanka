@@ -29,7 +29,6 @@ return [
     'fields'        => [
         'creator'   => 'Ersteller',
         'display'   => 'Anzeige',
-        'entry'     => 'Eintrag',
         'name'      => 'Name',
         'position'  => 'Position',
     ],
@@ -41,9 +40,7 @@ return [
     'hints'         => [
         'reorder'   => 'Sie können Objektnotizen eines Objekts neu anordnen, indem Sie im Menü des Objekts auf das :icon-Symbol neben der Story klicken.',
     ],
-    'index'         => [
-        'title' => 'Notizen für :name',
-    ],
+    'index'         => [],
     'move'          => [
         'copy'          => 'Erstelle eine Kopie auf Grundlage des Zielobjektes',
         'copy_success'  => 'Beitrag :name erfolgreich nach :entity kopiert.',

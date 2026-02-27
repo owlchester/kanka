@@ -18,16 +18,13 @@ return [
     ],
     'fields'        => [
         'creator'   => 'Tvorac',
-        'entry'     => 'Unos',
         'name'      => 'Naziv',
     ],
     'hint'          => 'Informacije koje se ne uklapaju u standardna polja entiteta ili koje bi trebale biti privatne mogu se dodati kao bilješke entiteta.',
     'hints'         => [
         'reorder'   => 'Možeš promijeniti redoslijed bilješki entiteta klikom na ikonu :icon pored priče u izborniku entiteta.',
     ],
-    'index'         => [
-        'title' => 'Bilješke entiteta za :name',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'name'  => 'Naziv bilješke entiteta, opažanja ili primjedbe.',
     ],

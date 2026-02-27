@@ -14,9 +14,7 @@ return [
         'title' => 'Kalender-Widget',
     ],
     'dice'              => [],
-    'entity_templates'  => [
-        'link'  => 'So legen Sie Vorlagen fest',
-    ],
+    'entity_templates'  => [],
     'filters'           => [
         'title' => 'Verwendung von Filtern',
     ],
