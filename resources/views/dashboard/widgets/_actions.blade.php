@@ -81,6 +81,18 @@
                 {{ __('dashboard.actions.customise') }}
             </x-dropdowns.item>
 
+            @if(auth()->user()->isAdmin())
+                <x-dropdowns.section>
+                    {{ __('campaigns.panels.sharing') }}
+                </x-dropdowns.section>
+                <x-dropdowns.item
+                    link="{{ route('campaign.share.setup', $campaign) }}"
+                    :dialog="route('campaign.share.setup', $campaign)"
+                    icon="fa-regular fa-share-nodes"
+                >
+                    {{ __('campaigns/share.title') }}
+                </x-dropdowns.item>
+            @endif
             @if (!empty($dashboard) || !empty($dashboards))
             <x-dropdowns.section>
                 {{ __('dashboards/setup.sections.switch') }}
@@ -99,16 +111,6 @@
                     {!! $dash->name !!}
                 </x-dropdowns.item>
             @endforeach
-
-            @if(auth()->user()->isAdmin())
-                <x-dropdowns.item
-                    link="{{ route('campaign.share.setup', $campaign) }}"
-                    :dialog="route('campaign.share.setup', $campaign)"
-                    icon="fa-regular fa-share-nodes"
-                >
-                    {{ __('campaigns/share.title') }}
-                </x-dropdowns.item>
-            @endif
             <x-dropdowns.section>
                 {{ __('campaigns.show.tabs.management') }}
             </x-dropdowns.section>

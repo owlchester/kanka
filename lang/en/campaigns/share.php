@@ -1,14 +1,16 @@
 <?php
 
 return [
-    'title' => 'Share Campaign',
+    'title' => 'Share campaign',
     'status' => [
-        'private' => 'Private campaign',
-        'public' => 'Anyone with the link can view this campaign',
+        'private'   => 'Private campaign',
+        'public'    => 'Anyone with the link can view this campaign',
+        'unlisted'  => 'Unlisted campaign',
     ],
     'helpers' => [
-        'private_explanation' => 'Only members can access private campaigns.',
-        'public_explanation' => 'This campaign is public. Anyone with the link can browse it.',
+        'private_explanation'  => 'Only members can access private campaigns.',
+        'public_explanation'   => 'This campaign is public. Anyone with the link can browse it.',
+        'unlisted_explanation' => 'Anyone with the link can browse this campaign, but it doesn\'t appear in public directories.',
     ],
     'labels' => [
         'member_link' => 'Only members can open this',

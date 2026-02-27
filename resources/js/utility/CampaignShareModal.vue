@@ -1,29 +1,28 @@
 <template>
-    <div class="dialog rounded-2xl text-center bg-base-100 text-base-content overflow-hidden">
-        <header class="flex gap-6 items-center p-4 md:p-6 justify-between border-b border-base-300">
+    <div>
+        <header class="flex gap-6 items-center p-4 md:p-6 justify-between">
             <h4 class="text-lg font-normal">{{ trans.title }}</h4>
-            <button type="button" class="text-base-content opacity-50 hover:opacity-100" :title="trans.btn_close" @click="closeModal">
-                <i class="fa-regular fa-circle-xmark" aria-hidden="true"></i>
-                <span class="sr-only">{{ trans.btn_close }}</span>
+            <button type="button" class="text-2xl opacity-60 hover:opacity-100 hover:bg-base-200 focus:bg-base-200 cursor-pointer w-8 h-8 flex items-center justify-center rounded-lg" :title="trans.btn_close" @click="closeModal" aria-label="Close dialog">
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"></path>
+                </svg>
             </button>
         </header>
 
-        <article class="max-w-4xl flex flex-col gap-4 text-left p-4 md:px-6">
-            <div v-if="errorMessage" class="alert alert-error text-sm rounded-xl">
-                <i class="fa-solid fa-circle-exclamation"></i>
+        <article class="max-w-2xl flex flex-col gap-4 py-4 px-4 md:px-6">
+            <div v-if="errorMessage" class="alert alert-error p-4 flex gap-2 rounded-2xl">
+                <i class="fa-solid fa-circle-exclamation shrink-0"></i>
                 <span>{{ errorMessage }}</span>
             </div>
 
             <!-- Private campaign -->
             <div v-if="!isCampaignPublic" class="flex flex-col gap-4">
-                <div class="p-3 bg-base-300/30 border border-base-300 rounded-xl">
-                    <div class="text-sm text-neutral-content font-bold mb-1 flex items-center">
-                        <i class="fa-solid fa-lock mr-2"></i>
-                        {{ trans.status_private }}
+                <div class="alert alert-info p-4 flex gap-2 rounded-2xl">
+                    <i class="fa-solid fa-lock shrink-0 mt-0.5"></i>
+                    <div class="flex flex-col gap-1">
+                        <span class="text-sm font-bold">{{ trans.status_private }}</span>
+                        <p class="text-xs">{{ trans.helper_private }}</p>
                     </div>
-                    <p class="text-xs text-neutral-content">
-                        {{ trans.helper_private }}
-                    </p>
                 </div>
 
                 <!-- Member link -->
@@ -48,19 +47,26 @@
                 </div>
             </div>
 
-            <!-- Public campaign -->
+            <!-- Unlisted or public campaign -->
             <div v-else class="flex flex-col gap-4">
-                <div class="p-4 bg-success/10 border border-success/20 rounded-xl">
-                    <div class="text-sm text-success font-bold mb-1 flex items-center">
-                        <i class="fa-solid fa-globe mr-2"></i>
-                        {{ trans.status_public }}
+                <!-- Unlisted status -->
+                <div v-if="isCampaignUnlisted" class="alert alert-success p-4 flex gap-2 rounded-2xl">
+                    <i class="fa-solid fa-link shrink-0 mt-0.5"></i>
+                    <div class="flex flex-col gap-1">
+                        <span class="text-sm font-bold">{{ trans.status_unlisted }}</span>
+                        <p class="text-xs">{{ trans.helper_unlisted }}</p>
                     </div>
-                    <p class="text-xs text-neutral-content">
-                        {{ trans.helper_public }}
-                    </p>
+                </div>
+                <!-- Public status -->
+                <div v-else class="alert alert-success p-4 flex gap-2 rounded-2xl">
+                    <i class="fa-solid fa-globe shrink-0 mt-0.5"></i>
+                    <div class="flex flex-col gap-1">
+                        <span class="text-sm font-bold">{{ trans.status_public }}</span>
+                        <p class="text-xs">{{ trans.helper_public }}</p>
+                    </div>
                 </div>
 
-                <!-- Public link -->
+                <!-- Public/unlisted link -->
                 <div class="flex flex-col gap-1">
                     <label class="font-normal text-sm">{{ trans.label_public_link }}</label>
                     <div class="flex items-center gap-2">
@@ -83,7 +89,7 @@
             </div>
         </article>
 
-        <footer class="p-4 md:px-6 border-t border-base-300 mt-2">
+        <footer class="p-4 md:px-6">
             <menu class="flex justify-end gap-3">
                 <button
                     v-if="isCampaignPublic"
@@ -123,7 +129,7 @@ import axios from 'axios';
 
 export default {
     props: {
-        initialCampaignPublic: { type: Boolean, required: true },
+        initialVisibility: { type: String, required: true }, // 'private', 'public', 'unlisted'
         url: { type: String, required: true },
         saveEndpoint: { type: String, required: true },
         settingsUrl: { type: String, required: true },
@@ -133,8 +139,16 @@ export default {
         return {
             loading: false,
             errorMessage: null,
-            isCampaignPublic: this.initialCampaignPublic,
+            visibility: this.initialVisibility,
         };
+    },
+    computed: {
+        isCampaignPublic() {
+            return this.visibility === 'public' || this.visibility === 'unlisted';
+        },
+        isCampaignUnlisted() {
+            return this.visibility === 'unlisted';
+        },
     },
     mounted() {
         window.triggerEvent?.();
@@ -147,7 +161,7 @@ export default {
             try {
                 await axios.post(this.saveEndpoint, { campaign_visibility: 'public' });
 
-                this.isCampaignPublic = true;
+                this.visibility = 'public';
 
                 // Copy the link to clipboard and show toast
                 if (navigator.clipboard) {

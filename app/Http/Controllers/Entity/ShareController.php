@@ -65,25 +65,26 @@ class ShareController extends Controller
                     ]
                 );
             } elseif ($visibilityMode === 'global') {
-                foreach (array_values(config('entities.ids')) as $typeId) {
-                    CampaignPermission::updateOrCreate(
-                        [
-                            'campaign_id'      => $campaign->id,
-                            'campaign_role_id' => $publicRole->id,
-                            'entity_type_id'   => $typeId,
-                            'entity_id'        => null,
-                            'action'           => CampaignPermission::ACTION_READ,
-                        ],
-                        [
-                            'access' => true,
-                        ]
-                    );
-                }
+                CampaignPermission::updateOrCreate(
+                    [
+                        'campaign_id'      => $campaign->id,
+                        'campaign_role_id' => $publicRole->id,
+                        'entity_type_id'   => $entity->type_id,
+                        'entity_id'        => null,
+                        'action'           => CampaignPermission::ACTION_READ,
+                    ],
+                    [
+                        'access' => true,
+                    ]
+                );
 
-                // Also make this entity visible if it was private
-                if ($entity->is_private) {
-                    $entity->update(['is_private' => false]);
-                }
+                //Line below makes all the corresponding entities to the module public if they're set to private
+                //Is this inside the ticket's scope, or just creting the campaignpermmission above is enough? 
+                Entity::query()
+                    ->where('campaign_id', $campaign->id)
+                    ->where('type_id', $entity->type_id)
+                    ->where('is_private', true)
+                    ->update(['is_private' => false]);
             }
 
             $entity->refresh();
