@@ -12,7 +12,7 @@ Example: /translate fr French
     - Translate the English string to the target language naturally (not literally)
     - Preserve `:variable` placeholders, `<html>` tags, and pluralization syntax exactly
     - Match tone/formality of existing translations (check a few rows in ltm_translations first)
-3. Insert each translation into `ltm_translations`. Don't fill the saved_value field (so that we can check in the UI what has been changed)
+3. Insert each translation into `ltm_translations`. status field = 1. saved_value = null.
 4. Confirm count of translations added
 
 ## Rules
