@@ -9,8 +9,7 @@
     @include('components.form.locations', ['options' => [
         'model' => $model->entity ?? $source ?? null,
         'source' => $source ?? null,
-        'quickCreator' => $quickCreator ?? false,
-        'dynamicNew' => $dynamicNew ?? false
+        'dynamicNew' => $dynamicNew ?? $quickCreator ?? false
     ]])
 </x-forms.field>
 

@@ -10,11 +10,13 @@ use App\Rules\CalendarMoonOffset;
 use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
+use App\Traits\ResolvesNewForeignEntities;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreCalendar extends FormRequest
 {
     use ApiRequest;
+    use ResolvesNewForeignEntities;
 
     /**
      * Determine if the user is authorized to make this request.
@@ -83,5 +85,12 @@ class StoreCalendar extends FormRequest
         }
 
         return $this->clean($rules);
+    }
+
+    protected function newEntityFields(): array
+    {
+        return [
+            'calendar_id' => [Calendar::class, config('entities.ids.calendar')],
+        ];
     }
 }

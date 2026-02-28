@@ -14,7 +14,7 @@
             style="width: 100%"
             data-url="{{ $route }}"
             data-placeholder="{!! $placeholder ?? __('crud.placeholders.parent') !!}"
-            data-allow-new="{{ $dynamicNew ? 'true' : 'false' }}"
+            data-allow-new="{{ ($canNew || $dynamicNew) ? 'true' : 'false' }}"
             data-new-tag="{{ __('crud.actions.new') }}"
             data-language="{{ LaravelLocalization::getCurrentLocale() }}"
             data-allow-clear="{{ $allowClear ? 'true' : 'false' }}"
@@ -26,12 +26,4 @@
         @endforeach
     </select>
 
-    @if ($canNew && !$dynamicNew)
-        <x-slot name="action">
-            <a class="quick-creator-subform text-xs cursor-pointer text-link" data-url="{{ route('entity-creator.form', [$campaign, 'entity_type' => $entityTypeID, 'origin' => 'entity-form', 'target' => $id]) }}" aria-label="Create a new element" tabindex="0">
-                <x-icon class="plus" />
-                {{ __('crud.actions.new') }}
-            </a>
-        </x-slot>
-    @endif
 </x-forms.field>

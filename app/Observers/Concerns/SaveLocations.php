@@ -2,9 +2,12 @@
 
 namespace App\Observers\Concerns;
 
+use App\Facades\CampaignLocalization;
 use App\Facades\EntityLogger;
 use App\Models\Entity;
+use App\Models\EntityType;
 use App\Models\Location;
+use Stevebauman\Purify\Facades\Purify;
 
 /**
  * We have this as a trait on the LocationsObserver, so that we can also call it from the bulk update service.
@@ -35,6 +38,7 @@ trait SaveLocations
             $detach = true;
         }
         $newLocations = [];
+        $canCreate = null;
         foreach ($locations as $id) {
             // Existing location, do nothing
             if (! empty($existing[$id])) {
@@ -44,6 +48,32 @@ trait SaveLocations
             }
             // If already managed, again, ignore
             if (! empty($unique[$id])) {
+                continue;
+            }
+
+            if (! is_numeric($id)) {
+                $name = mb_trim(Purify::clean($id));
+                if (empty($name)) {
+                    continue;
+                }
+                if ($canCreate === null) {
+                    $campaign = CampaignLocalization::getCampaign();
+                    $entityType = EntityType::find(config('entities.ids.location'));
+                    $canCreate = auth()->user()->can('create', [$entityType, $campaign]);
+                }
+                if (! $canCreate) {
+                    continue;
+                }
+                $location = new Location([
+                    'name' => $name,
+                    'campaign_id' => $model->campaign_id,
+                    'is_private' => false,
+                ]);
+                $location->saveQuietly();
+                $location->createEntity();
+                $newLocations[] = $location->id;
+                EntityLogger::dirty('locations', null);
+
                 continue;
             }
 

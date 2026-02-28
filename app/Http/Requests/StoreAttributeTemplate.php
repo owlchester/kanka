@@ -5,10 +5,13 @@ namespace App\Http\Requests;
 use App\Models\AttributeTemplate;
 use App\Models\Entity;
 use App\Rules\Nested;
+use App\Traits\ResolvesNewForeignEntities;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreAttributeTemplate extends FormRequest
 {
+    use ResolvesNewForeignEntities;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -45,5 +48,12 @@ class StoreAttributeTemplate extends FormRequest
         }
 
         return $rules;
+    }
+
+    protected function newEntityFields(): array
+    {
+        return [
+            'attribute_template_id' => [AttributeTemplate::class, config('entities.ids.attribute_template')],
+        ];
     }
 }
