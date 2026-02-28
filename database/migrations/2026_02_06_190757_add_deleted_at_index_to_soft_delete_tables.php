@@ -40,6 +40,9 @@ return new class extends Migration
     public function up(): void
     {
         foreach ($this->tables as $tableName) {
+            if (! Schema::hasTable($tableName)) {
+                continue;
+            }
             Schema::table($tableName, function (Blueprint $table) {
                 $table->index('deleted_at');
             });
@@ -52,6 +55,9 @@ return new class extends Migration
     public function down(): void
     {
         foreach ($this->tables as $tableName) {
+            if (! Schema::hasTable($tableName)) {
+                continue;
+            }
             Schema::table($tableName, function (Blueprint $table) {
                 $table->dropIndex(['deleted_at']);
             });
