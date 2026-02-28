@@ -81,6 +81,7 @@ const initDropdowns = () => {
             content: '<div class="dd-menu flex flex-col max-w-2xl">' + dropdown.innerHTML + '</div>',
             theme: 'kanka-dropdown',
             placement: e.dataset.direction ?? 'bottom',
+            appendTo: e.dataset.append ?? document.body,
             zIndex: 890,
             allowHTML: true,
             arrow: true,
