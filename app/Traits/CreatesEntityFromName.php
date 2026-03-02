@@ -7,6 +7,7 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityType;
 use App\Models\MiscModel;
+use Illuminate\Support\Facades\DB;
 use Stevebauman\Purify\Facades\Purify;
 
 trait CreatesEntityFromName
@@ -34,10 +35,13 @@ trait CreatesEntityFromName
             'campaign_id' => $campaign->id,
             'is_private' => false,
         ]);
-        $model->saveQuietly();
-        $model->createEntity();
 
-        return $model->id;
+        return DB::transaction(function () use ($model): int {
+            $model->saveQuietly();
+            $model->createEntity();
+
+            return $model->id;
+        });
     }
 
     /**

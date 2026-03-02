@@ -11,13 +11,13 @@ use App\Models\Family;
 use App\Models\OrganisationMember;
 use App\Models\Race;
 use App\Observers\Concerns\HasMany;
-use App\Traits\ResolvesNewForeignEntities;
+use App\Traits\CreatesEntityFromName;
 use Illuminate\Support\Collection;
 
 class CharacterObserver extends MiscObserver
 {
+    use CreatesEntityFromName;
     use HasMany;
-    use ResolvesNewForeignEntities;
 
     public function crudSaved(Character $character)
     {

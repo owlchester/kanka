@@ -14,6 +14,8 @@ class StoreCustomEntity extends FormRequest
     use ApiRequest;
     use CreatesEntityFromName;
 
+    private bool $parentIdResolved = false;
+
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -48,6 +50,10 @@ class StoreCustomEntity extends FormRequest
      */
     public function resolvedFields(): array
     {
+        if (! $this->parentIdResolved) {
+            return [];
+        }
+
         return ['parent_id' => $this->input('parent_id')];
     }
 
@@ -77,6 +83,7 @@ class StoreCustomEntity extends FormRequest
         $campaign = CampaignLocalization::getCampaign();
         $id = $this->createEntityFromName($value, $entityType, $campaign);
 
+        $this->parentIdResolved = true;
         $this->merge(['parent_id' => $id]);
     }
 }
