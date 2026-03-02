@@ -62,5 +62,4 @@ class StoreAbility extends FormRequest
 
         return $this->clean($rules);
     }
-
 }
