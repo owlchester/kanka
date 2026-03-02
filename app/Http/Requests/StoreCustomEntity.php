@@ -3,16 +3,16 @@
 namespace App\Http\Requests;
 
 use App\Facades\CampaignLocalization;
-use App\Models\Entity;
 use App\Models\EntityType;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
+use App\Traits\CreatesEntityFromName;
 use Illuminate\Foundation\Http\FormRequest;
-use Stevebauman\Purify\Facades\Purify;
 
 class StoreCustomEntity extends FormRequest
 {
     use ApiRequest;
+    use CreatesEntityFromName;
 
     /**
      * Determine if the user is authorized to make this request.
@@ -41,6 +41,16 @@ class StoreCustomEntity extends FormRequest
         return $this->clean($rules);
     }
 
+    /**
+     * Return the resolved parent_id so EditController can sync it back into the original request.
+     *
+     * @return array<string, mixed>
+     */
+    public function resolvedFields(): array
+    {
+        return ['parent_id' => $this->input('parent_id')];
+    }
+
     protected function prepareForValidation(): void
     {
         $value = $this->input('parent_id');
@@ -56,13 +66,6 @@ class StoreCustomEntity extends FormRequest
             return;
         }
 
-        $name = mb_trim(Purify::clean($value));
-        if (empty($name)) {
-            $this->merge(['parent_id' => null]);
-
-            return;
-        }
-
         // Resolve entity type from route: creation uses {entity_type}, editing uses {entity}.
         $entityType = request()->route('entity_type') ?? request()->route('entity')?->entityType;
         if (! $entityType instanceof EntityType) {
@@ -72,20 +75,8 @@ class StoreCustomEntity extends FormRequest
         }
 
         $campaign = CampaignLocalization::getCampaign();
-        if (! auth()->user()->can('create', [$entityType, $campaign])) {
-            $this->merge(['parent_id' => null]);
+        $id = $this->createEntityFromName($value, $entityType, $campaign);
 
-            return;
-        }
-
-        $entity = new Entity([
-            'name' => $name,
-            'campaign_id' => $campaign->id,
-            'is_private' => false,
-        ]);
-        $entity->type_id = $entityType->id;
-        $entity->save();
-
-        $this->merge(['parent_id' => $entity->id]);
+        $this->merge(['parent_id' => $id]);
     }
 }

@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
-use App\Models\Timeline;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
 use App\Traits\ResolvesNewForeignEntities;
@@ -13,6 +12,8 @@ class StoreTimeline extends FormRequest
 {
     use ApiRequest;
     use ResolvesNewForeignEntities;
+
+    protected array $foreignEntityFields = ['timeline_id'];
 
     /**
      * Determine if the user is authorized to make this request.
@@ -47,12 +48,5 @@ class StoreTimeline extends FormRequest
         ];
 
         return $this->clean($rules);
-    }
-
-    protected function newEntityFields(): array
-    {
-        return [
-            'timeline_id' => [Timeline::class, config('entities.ids.timeline')],
-        ];
     }
 }

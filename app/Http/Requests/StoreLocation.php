@@ -16,6 +16,8 @@ class StoreLocation extends FormRequest
     use ApiRequest;
     use ResolvesNewForeignEntities;
 
+    protected array $foreignEntityFields = ['location_id'];
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -67,12 +69,5 @@ class StoreLocation extends FormRequest
         }
 
         return $this->clean($rules);
-    }
-
-    protected function newEntityFields(): array
-    {
-        return [
-            'location_id' => [Location::class, config('entities.ids.location')],
-        ];
     }
 }

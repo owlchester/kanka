@@ -17,6 +17,8 @@ class StoreRace extends FormRequest
     use ApiRequest;
     use ResolvesNewForeignEntities;
 
+    protected array $foreignEntityFields = ['race_id'];
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -60,12 +62,5 @@ class StoreRace extends FormRequest
         }
 
         return $this->clean($rules);
-    }
-
-    protected function newEntityFields(): array
-    {
-        return [
-            'race_id' => [Race::class, config('entities.ids.race')],
-        ];
     }
 }

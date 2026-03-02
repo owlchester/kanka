@@ -16,6 +16,8 @@ class StoreNote extends FormRequest
     use ApiRequest;
     use ResolvesNewForeignEntities;
 
+    protected array $foreignEntityFields = ['note_id'];
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -58,12 +60,5 @@ class StoreNote extends FormRequest
         }
 
         return $this->clean($rules);
-    }
-
-    protected function newEntityFields(): array
-    {
-        return [
-            'note_id' => [Note::class, config('entities.ids.note')],
-        ];
     }
 }

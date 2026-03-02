@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
-use App\Models\Location;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
 use App\Traits\ResolvesNewForeignEntities;
@@ -13,6 +12,8 @@ class StoreEvent extends FormRequest
 {
     use ApiRequest;
     use ResolvesNewForeignEntities;
+
+    protected array $foreignEntityFields = ['location_id'];
 
     /**
      * Determine if the user is authorized to make this request.
@@ -45,12 +46,5 @@ class StoreEvent extends FormRequest
             'template_id' => 'nullable',
             'attribute' => ['array', new UniqueAttributeNames],
         ]);
-    }
-
-    protected function newEntityFields(): array
-    {
-        return [
-            'location_id' => [Location::class, config('entities.ids.location')],
-        ];
     }
 }

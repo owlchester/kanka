@@ -171,7 +171,7 @@ class CharacterObserver extends MiscObserver
             return $this;
         }
 
-        $races = $this->resolveNewModels(request()->get('races', []), Race::class, config('entities.ids.race'), $character->campaign_id);
+        $races = $this->resolveNewModels(request()->get('races', []), Race::class, config('entities.ids.race'));
         $this->saveMany($character, 'races', $races, Race::class, 'characterRaces', 'race_id');
 
         return $this;
@@ -183,7 +183,7 @@ class CharacterObserver extends MiscObserver
             return $this;
         }
 
-        $families = $this->resolveNewModels(request()->get('families', []), Family::class, config('entities.ids.family'), $character->campaign_id);
+        $families = $this->resolveNewModels(request()->get('families', []), Family::class, config('entities.ids.family'));
         $this->saveMany($character, 'families', $families, Family::class);
 
         return $this;

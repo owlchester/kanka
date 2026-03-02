@@ -17,6 +17,8 @@ class StoreCreature extends FormRequest
     use ApiRequest;
     use ResolvesNewForeignEntities;
 
+    protected array $foreignEntityFields = ['creature_id'];
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -60,12 +62,5 @@ class StoreCreature extends FormRequest
         }
 
         return $this->clean($rules);
-    }
-
-    protected function newEntityFields(): array
-    {
-        return [
-            'creature_id' => [Creature::class, config('entities.ids.creature')],
-        ];
     }
 }

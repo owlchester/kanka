@@ -3,21 +3,29 @@
 namespace App\Traits;
 
 use App\Facades\CampaignLocalization;
-use App\Models\MiscModel;
 use Illuminate\Http\Request;
-use Stevebauman\Purify\Facades\Purify;
+use Illuminate\Support\Str;
 
 trait ResolvesNewForeignEntities
 {
+    use CreatesEntityFromName;
+
     /**
      * Declare which FK fields may receive a new entity name as their value.
      * Return an array of field_name => [ModelClass, entityTypeId].
+     * Override this method directly for fields that don't follow the {snake}_id convention.
      *
      * @return array<string, array{string, int}>
      */
     protected function newEntityFields(): array
     {
-        return [];
+        $fields = [];
+        foreach ($this->foreignEntityFields ?? [] as $field) {
+            $key = str_replace('_id', '', $field);
+            $fields[$field] = ['App\\Models\\' . Str::studly($key), config("entities.ids.{$key}")];
+        }
+
+        return $fields;
     }
 
     protected function prepareForValidation(): void
@@ -39,7 +47,7 @@ trait ResolvesNewForeignEntities
 
             // Always replace the string — with the new ID on success, or null so
             // the nullable rule can pass cleanly rather than failing on "integer".
-            $resolved = $this->createNewForeignEntity(mb_trim(Purify::clean($value)), $classname, $entityTypeId);
+            $resolved = $this->createNewForeignEntity($value, $classname, $entityTypeId);
             $request->merge([$field => $resolved]);
         }
     }
@@ -55,63 +63,16 @@ trait ResolvesNewForeignEntities
         return array_intersect_key($this->all(), $this->newEntityFields());
     }
 
-    protected function createNewForeignEntity(string $name, string $classname, int $entityTypeId): ?int
+    protected function createNewForeignEntity(string $value, string $classname, int $entityTypeId): ?int
     {
         // AJAX calls are validation-only pre-flight requests; skip creation to avoid duplicates.
-        if (empty($name) || request()->ajax()) {
+        if (empty($value) || request()->ajax()) {
             return null;
         }
 
-        $ids = $this->resolveNewModels([$name], $classname, $entityTypeId, CampaignLocalization::getCampaign()->id);
+        $campaign = CampaignLocalization::getCampaign();
+        $entityType = $campaign->getEntityTypes()->firstWhere('id', $entityTypeId);
 
-        return $ids[0] ?? null;
-    }
-
-    /**
-     * For each value in the array, if it is a non-numeric string, create a new entity with that name.
-     * Returns an array of model IDs ready for relationship syncing.
-     *
-     * @param  array<mixed>  $values
-     * @return array<int>
-     */
-    public function resolveNewModels(array $values, string $classname, int $entityTypeId, int $campaignId): array
-    {
-        $canCreate = null;
-        $resolved = [];
-
-        foreach ($values as $value) {
-            if (is_numeric($value)) {
-                $resolved[] = (int) $value;
-
-                continue;
-            }
-
-            $name = mb_trim(Purify::clean($value));
-            if (empty($name)) {
-                continue;
-            }
-
-            if ($canCreate === null) {
-                $campaign = CampaignLocalization::getCampaign();
-                $entityType = $campaign->getEntityTypes()->firstWhere('id', $entityTypeId);
-                $canCreate = auth()->user()->can('create', [$entityType, $campaign]);
-            }
-
-            if (! $canCreate) {
-                continue;
-            }
-
-            /** @var MiscModel $model */
-            $model = new $classname([
-                'name' => $name,
-                'campaign_id' => $campaignId,
-                'is_private' => false,
-            ]);
-            $model->saveQuietly();
-            $model->createEntity();
-            $resolved[] = $model->id;
-        }
-
-        return $resolved;
+        return $this->createModelFromName($value, $classname, $entityType, $campaign);
     }
 }

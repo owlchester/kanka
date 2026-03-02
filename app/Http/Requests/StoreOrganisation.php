@@ -17,6 +17,8 @@ class StoreOrganisation extends FormRequest
     use ApiRequest;
     use ResolvesNewForeignEntities;
 
+    protected array $foreignEntityFields = ['organisation_id'];
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -60,12 +62,5 @@ class StoreOrganisation extends FormRequest
         }
 
         return $this->clean($rules);
-    }
-
-    protected function newEntityFields(): array
-    {
-        return [
-            'organisation_id' => [Organisation::class, config('entities.ids.organisation')],
-        ];
     }
 }

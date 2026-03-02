@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use App\Facades\Limit;
 use App\Models\Entity;
-use App\Models\Location;
 use App\Models\Quest;
 use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
@@ -16,6 +15,8 @@ class StoreQuest extends FormRequest
 {
     use ApiRequest;
     use ResolvesNewForeignEntities;
+
+    protected array $foreignEntityFields = ['quest_id', 'location_id'];
 
     /**
      * Determine if the user is authorized to make this request.
@@ -71,13 +72,5 @@ class StoreQuest extends FormRequest
         }
 
         return $this->clean($rules);
-    }
-
-    protected function newEntityFields(): array
-    {
-        return [
-            'quest_id' => [Quest::class, config('entities.ids.quest')],
-            'location_id' => [Location::class, config('entities.ids.location')],
-        ];
     }
 }

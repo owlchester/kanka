@@ -18,6 +18,8 @@ class StoreCalendar extends FormRequest
     use ApiRequest;
     use ResolvesNewForeignEntities;
 
+    protected array $foreignEntityFields = ['calendar_id'];
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -85,12 +87,5 @@ class StoreCalendar extends FormRequest
         }
 
         return $this->clean($rules);
-    }
-
-    protected function newEntityFields(): array
-    {
-        return [
-            'calendar_id' => [Calendar::class, config('entities.ids.calendar')],
-        ];
     }
 }

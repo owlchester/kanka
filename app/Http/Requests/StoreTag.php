@@ -17,6 +17,8 @@ class StoreTag extends FormRequest
     use ApiRequest;
     use ResolvesNewForeignEntities;
 
+    protected array $foreignEntityFields = ['tag_id'];
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -64,12 +66,5 @@ class StoreTag extends FormRequest
         }
 
         return $this->clean($rules);
-    }
-
-    protected function newEntityFields(): array
-    {
-        return [
-            'tag_id' => [Tag::class, config('entities.ids.tag')],
-        ];
     }
 }

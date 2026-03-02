@@ -16,6 +16,8 @@ class StoreAbility extends FormRequest
     use ApiRequest;
     use ResolvesNewForeignEntities;
 
+    protected array $foreignEntityFields = ['ability_id'];
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -61,10 +63,4 @@ class StoreAbility extends FormRequest
         return $this->clean($rules);
     }
 
-    protected function newEntityFields(): array
-    {
-        return [
-            'ability_id' => [Ability::class, config('entities.ids.ability')],
-        ];
-    }
 }

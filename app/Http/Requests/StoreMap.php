@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use App\Facades\Limit;
 use App\Models\Entity;
-use App\Models\Location;
 use App\Models\Map;
 use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
@@ -16,6 +15,8 @@ class StoreMap extends FormRequest
 {
     use ApiRequest;
     use ResolvesNewForeignEntities;
+
+    protected array $foreignEntityFields = ['map_id', 'location_id'];
 
     /**
      * Determine if the user is authorized to make this request.
@@ -65,13 +66,5 @@ class StoreMap extends FormRequest
         }
 
         return $this->clean($rules);
-    }
-
-    protected function newEntityFields(): array
-    {
-        return [
-            'map_id' => [Map::class, config('entities.ids.map')],
-            'location_id' => [Location::class, config('entities.ids.location')],
-        ];
     }
 }

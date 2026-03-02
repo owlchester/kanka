@@ -30,7 +30,7 @@ class EntityField implements ValidationRule
         foreach ($value as $id) {
             if (is_numeric($id)) {
                 if ($this->modelClass::find($id)) {
-                    return;
+                    continue;
                 }
                 $fail(__('crud.dynamic.unknown', ['module' => $module->name()]));
 
@@ -38,7 +38,7 @@ class EntityField implements ValidationRule
             }
 
             if (empty(mb_trim($id))) {
-                return;
+                continue;
             }
 
             $campaign = CampaignLocalization::getCampaign();
