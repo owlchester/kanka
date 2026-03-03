@@ -29,7 +29,19 @@ elseif(!empty($model)) {
     :label="\App\Facades\Module::plural(config('entities.ids.family'), __('entities.families'))">
 
 
-<select multiple="multiple" name="families[]" class="w-full select2 join-item" data-tags="true" style="width: 100%" data-url="{{ route('search-list', [$campaign, config('entities.ids.family')]) }}" data-new-tag="{{ __('crud.actions.new') }}" data-allow-clear="true" data-allow-new="{{ $dynamicNew ? 'true' : 'false' }}" data-placeholder="" id="{{ $fieldUniqIdentifier }}">
+<select
+    multiple="multiple"
+    name="families[]"
+    class="w-full select2 join-item"
+    data-tags="true"
+    style="width: 100%"
+    data-url="{{ route('search-list', [$campaign, config('entities.ids.family')]) }}"
+    data-new-tag="{{ __('crud.actions.new') }}"
+    data-allow-clear="true"
+    data-placeholder="{{ __('crud.placeholders.search') }}"
+    data-allow-new="{{ $dynamicNew ? 'true' : 'false' }}"
+    data-placeholder=""
+    id="{{ $fieldUniqIdentifier }}">
     @foreach ($selectedOption as $key => $val)
         <option value="{{ $key }}" selected="selected">{{ $val }}</option>
     @endforeach

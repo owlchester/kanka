@@ -15,7 +15,7 @@
         style="width: 100%"
         data-url="{{ $model instanceof App\Models\Tag ? route('search-list', [$campaign, config('entities.ids.tag'), 'exclude' => $model->id] ) : route('search-list', [$campaign, config('entities.ids.tag')]) }}"
         data-allow-new="{{ $allowNew ? 'true' : 'false' }}"
-        data-placeholder="{{ __('crud.placeholders.multiple') }}"
+        data-placeholder="{{ __('crud.placeholders.search') }}"
         @if ($allowClear) data-allow-clear="true" @endif
         data-new-tag="{{ __('tags.create.title') }}"
         @if (!empty($dropdownParent)) data-dropdown-parent="{{ $dropdownParent }}" @endif

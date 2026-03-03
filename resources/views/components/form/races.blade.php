@@ -35,6 +35,7 @@ elseif(!empty($model)) {
         data-tags="true"
         style="width: 100%"
         data-url="{{ route('search-list', [$campaign, config('entities.ids.race')]) }}"
+        data-placeholder="{{ __('crud.placeholders.search') }}"
         data-allow-clear="true"
         data-allow-new="{{ $dynamicNew ? 'true' : 'false' }}"
         data-new-tag="{{ __('crud.actions.new') }}"
