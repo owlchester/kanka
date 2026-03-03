@@ -389,7 +389,7 @@ class Calendar extends MiscModel
         $date = mb_ltrim($this->date, '-');
         $this->cachedCurrentDate = explode('-', $date);
 
-        if (str_starts_with($this->date, '-')) {
+        if (Str::startsWith($this->date, '-')) {
             $this->cachedCurrentDate[0] = '-' . $this->cachedCurrentDate[0];
         }
 

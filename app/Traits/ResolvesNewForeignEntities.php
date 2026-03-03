@@ -45,9 +45,11 @@ trait ResolvesNewForeignEntities
                 continue;
             }
 
+            $name = Str::startsWith($value, 'new:') ? Str::substr($value, 4) : $value;
+
             // Always replace the string — with the new ID on success, or null so
             // the nullable rule can pass cleanly rather than failing on "integer".
-            $resolved = $this->createNewForeignEntity($value, $classname, $entityTypeId);
+            $resolved = $this->createNewForeignEntity($name, $classname, $entityTypeId);
             $request->merge([$field => $resolved]);
         }
     }

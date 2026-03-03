@@ -8,6 +8,7 @@ use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
 use App\Traits\CreatesEntityFromName;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class StoreCustomEntity extends FormRequest
 {
@@ -80,8 +81,9 @@ class StoreCustomEntity extends FormRequest
             return;
         }
 
+        $name = Str::startsWith($value, 'new:') ? Str::substr($value, 4) : $value;
         $campaign = CampaignLocalization::getCampaign();
-        $id = $this->createEntityFromName($value, $entityType, $campaign);
+        $id = $this->createEntityFromName($name, $entityType, $campaign);
 
         $this->parentIdResolved = true;
         $this->merge(['parent_id' => $id]);

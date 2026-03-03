@@ -8,6 +8,7 @@ use App\Models\Entity;
 use App\Models\EntityType;
 use App\Models\MiscModel;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Stevebauman\Purify\Facades\Purify;
 
 trait CreatesEntityFromName
@@ -69,7 +70,8 @@ trait CreatesEntityFromName
                 $entityType = $campaign->getEntityTypes()->firstWhere('id', $entityTypeId);
             }
 
-            $id = $this->createModelFromName($value, $classname, $entityType, $campaign);
+            $name = Str::startsWith($value, 'new:') ? Str::substr($value, 4) : $value;
+            $id = $this->createModelFromName($name, $classname, $entityType, $campaign);
             if ($id !== null) {
                 $resolved[] = $id;
             }

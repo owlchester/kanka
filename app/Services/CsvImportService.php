@@ -266,7 +266,7 @@ class CsvImportService
             }
             $temp = [];
             foreach ($this->fieldMap as $field => $index) {
-                if (str_starts_with($field, 'is_')) {
+                if (Str::startsWith($field, 'is_')) {
                     // Correctly handles "true", "false", "1", "0", "on", "off"
                     $temp[$field] = filter_var($row[$index], FILTER_VALIDATE_BOOL);
                 } else {

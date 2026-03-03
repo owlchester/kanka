@@ -6,6 +6,7 @@ use App\Facades\CampaignLocalization;
 use App\Models\EntityType;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
+use Illuminate\Support\Str;
 
 class EntityField implements ValidationRule
 {
@@ -37,7 +38,8 @@ class EntityField implements ValidationRule
                 return;
             }
 
-            if (empty(mb_trim($id))) {
+            $name = Str::startsWith($id, 'new:') ? Str::substr($id, 4) : $id;
+            if (empty(mb_trim($name))) {
                 continue;
             }
 

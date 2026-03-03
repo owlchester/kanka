@@ -87,7 +87,7 @@ window.initForeignSelect = function () {
                 }
 
                 return {
-                    id: term,
+                    id: 'new:' + term,
                     text: term + ' (' + field.dataset.newTag + ')',
                     newTag: true // add additional parameters
                 };
