@@ -24,7 +24,7 @@ return [
         'is_star'               => 'Pinned',
         'preferences'           => 'Preferences',
         'property'              => 'Property',
-        'template'              => 'Template',
+        'kit'              => 'Kit',
         'value'                 => 'Value',
     ],
     'filters'       => [
@@ -64,7 +64,7 @@ return [
             'value' => '1-100 or list of values separated by a comma',
         ],
         'section'   => 'Section name',
-        'template'  => 'Select a template',
+        'kit'  => 'Select a kit',
         'value'     => 'Value of the properties',
     ],
     'ranges'        => [
@@ -79,7 +79,7 @@ return [
     ],
     'template'      => [
         'load'      => [
-            'success'   => 'Template loaded',
+            'success'   => 'Kit loaded',
             'title'     => 'Load from kit',
         ],
         'pitch'     => 'Load properties from a property kit or plugins installed from the :plugin.',

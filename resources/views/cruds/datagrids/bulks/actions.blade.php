@@ -45,11 +45,11 @@ if (auth()->check() && auth()->user()->isAdmin()) {
     }
 }
 if ($datagridActions->hasBulkPrint()) {
-        $dropdownActions[] = [
-            'class' => 'bulk-print',
-            'icon' => 'fa-regular fa-print',
-            'text' => __('crud.actions.print')
-        ];
+    $dropdownActions[] = [
+        'class' => 'bulk-print',
+        'icon' => 'fa-regular fa-print',
+        'text' => __('crud.actions.print'),
+    ];
 }
 if ($model instanceof \App\Models\Relation && auth()->user()->can('delete', $model)) {
     $dropdownActions[] = 'divider';
@@ -74,22 +74,30 @@ if ($model instanceof \App\Models\Relation && auth()->user()->can('delete', $mod
 
 @if (!empty($dropdownActions))
 <div class="datagrid-bulk-actions inline-block">
-    <div class="dropdown">
-        <a role="button" tabindex="0" class="btn2" data-dropdown aria-expanded="false" aria-haspopup="menu" aria-controls="batch-actions-submenu" aria-label="Batch actions">
+    <div class="dropdown"  id="batch-actions-dropdown">
+        <a role="button" tabindex="0" class="btn2" data-dropdown aria-expanded="false" aria-haspopup="menu" aria-controls="batch-actions-submenu" aria-label="Batch actions" data-append="#batch-actions-dropdown">
             <x-icon class="fa-solid fa-caret-down" />
             {{ __('crud.bulk.buttons.label') }}
         </a>
-        <div class="dropdown-menu hidden" role="menu" id="batch-actions-submenu">
+        <div class="dropdown-menu hidden" role="menu" id="batch-actions-submenu" data-tippy-root>
             @foreach ($dropdownActions as $dropdownAction)
                 @if ($dropdownAction === 'divider')
                     <x-dropdowns.divider />
                     @continue
                 @elseif (!is_array($dropdownAction))
                     @continue
-                @endif
+                @elseif ($dropdownAction['class'] === 'bulk-print')
+                    <button type="submit" name="action" value="print" class="px-2 py-2 hover:bg-base-200 rounded-xl flex items-center gap-1.5 text-sm transition-all duration-150 cursor-pointer">
+                        <span class="shrink-0 w-4 text-center flex-none">
+                            <x-icon :class="$dropdownAction['icon']" />
+                        </span>
+                        {!! $dropdownAction['text'] !!}
+                    </button>
+                @else
                     <x-dropdowns.item link="#" :css="$dropdownAction['class']" :data="$dropdownAction['data'] ?? []" :icon="$dropdownAction['icon']">
                         {!! $dropdownAction['text'] !!}
                     </x-dropdowns.item>
+                @endif
             @endforeach
         </div>
     </div>

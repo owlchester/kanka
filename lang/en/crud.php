@@ -75,7 +75,7 @@ return [
         ],
     ],
     'bulk_templates'    => [
-        'bulk_title'    => 'Apply a template to multiple entries',
+        'bulk_title'    => 'Apply a kit to multiple entries',
     ],
     'cancel'            => 'Cancel',
     'copy_to_campaign'  => [
@@ -119,6 +119,7 @@ return [
         'creator'           => 'Creator',
         'date_range'        => 'Date range',
         'excerpt'           => 'Excerpt',
+        'has_attributes'    => 'Has attributes',
         'has_entity_files'  => 'Has media',
         'has_entry'         => 'Has description',
         'has_image'         => 'Has an image',

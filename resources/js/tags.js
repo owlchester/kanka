@@ -1,7 +1,7 @@
 import TomSelect from 'tom-select';
 
 window.initTags = function () {
-    document.querySelectorAll('.form-tags')?.forEach(function (ele) {
+    document.querySelectorAll('select.form-tags')?.forEach(function (ele) {
         if (ele.tomselect) {
             return;
         }
@@ -62,7 +62,7 @@ window.initTags = function () {
         });
     });
 
-    document.querySelectorAll('.position-dropdown')?.forEach(function (ele) {
+    document.querySelectorAll('select.position-dropdown')?.forEach(function (ele) {
         if (ele.tomselect) {
             return;
         }

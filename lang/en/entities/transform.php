@@ -22,7 +22,7 @@ return [
     ],
     'panel'         => [
         'bulk_description'  => 'Convert the category of multiple entries. Please be aware that some data might be lost due to the different fields between categories.',
-        'bulk_title'        => 'Bulk transform entries',
+        'bulk_title'        => 'Change categories of multiple entries',
         'title'             => 'You can convert this entry to another category.',
         'warning'           => 'Some data may not carry over if the new category uses different fields.',
     ],

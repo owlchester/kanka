@@ -14,7 +14,7 @@
         $resetRoute = route($route, [$campaign, 'reset-filter' => 'true']);
     }
 @endphp
-<x-form :action="$formRoute" method="GET" id="crud-filters-form" class="block">
+<x-form :action="$formRoute" method="GET" id="crud-filters-form-za2" class="block">
 <x-dialog.header>
     {{ __('crud.filters.title') }}
 </x-dialog.header>
@@ -36,7 +36,7 @@
                 @endif
                 <div class="field flex flex-col gap-1 field-{{ $field['field'] ?? 'unknown' }}">
                     @if (is_array($field))
-                        <label>{!! Arr::get($field, 'label', __('crud.fields.' . $field['field'])) !!}</label>
+                        <label class="text-xs font-medium opacity-80">{!! Arr::get($field, 'label', __('crud.fields.' . $field['field'])) !!}</label>
                             <?php
                             $model = $models = null;
                             $value = $filterService->single($field['field']);
@@ -66,7 +66,7 @@
                             @include('cruds.datagrids.filters._array')
                         @endif
                     @else
-                        <label>
+                        <label class="text-xs font-medium opacity-80">
                             {{ __($field === 'is_dead' ? 'characters.fields.' . $field : ((in_array($field, ['name', 'type', 'is_private', 'has_image', 'has_attributes', 'has_entity_files', 'has_entry', 'has_posts', 'date_range', 'template', 'archived']) ? 'crud.fields.' : $langKey . '.fields.') . $field)) }}
                         </label>
                         @if ($filterService->isCheckbox($field))
