@@ -64,7 +64,6 @@ window.initForeignSelect = function () {
         const baseOptions = {
             plugins,
             placeholder,
-            dropdownParent,
             allowEmptyOption: true,
             valueField: 'id',
             labelField: 'text',

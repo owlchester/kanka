@@ -171,37 +171,6 @@ const quickCreatorSubformHandler = () => {
 };
 
 const quickCreatorToggles = () => {
-    document.querySelectorAll('.qq-mode-toggle').forEach(element => {
-        element.addEventListener('click', function (e) {
-            e.preventDefault();
-
-            if (this.classList.contains('active')) {
-                return;
-            }
-
-            document.querySelector('.qq-mode-toggle').classList.remove('active');
-            this.classList.add('active');
-
-            document.querySelector('.quick-creator-body').classList.add('hidden');
-            document.querySelector('.quick-creator-footer')?.classList.add('hidden');
-            document.querySelector('.quick-creator-loading').classList.remove('hidden!');
-
-            axios.get(this.dataset.url)
-                .then(res => {
-                    formArticle.innerHTML = res.data;
-                    formArticle.classList.remove('hidden!');
-                    quickCreatorHandleEvents();
-                    window.triggerEvent();
-                })
-            ;
-        });
-    });
-
-    document.querySelector('.qq-action-more')?.addEventListener('click', function (e) {
-        e.preventDefault();
-        this.classList.add('hidden');
-        document.querySelector('.qq-more-fields').classList.remove('hidden');
-    });
 
     quickCreatorUI();
 };

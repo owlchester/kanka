@@ -17,7 +17,7 @@
             @if (!isset($origin))
                 @include('entities.creator.header.header')
             @endif
-            <div class="quick-creator-body flex flex-col gap-5">
+            <div class="quick-creator-body flex flex-col gap-5" x-data="{ showMore: {{ isset($entityType) ? 'false' : 'true' }} }">
 
                 @includeWhen(!empty($success), 'entities.creator._created')
 
@@ -62,15 +62,13 @@
                     </x-alert>
                 </x-forms.field>
 
-                @if ($mode === 'bulk')
-                    @include('.entities.creator.forms.template')
-                @endif
+                @includeWhen($mode === 'bulk', '.entities.creator.forms.template')
 
-                <span role="button" class="qq-action-more text-uppercase cursor-pointer text-sm border-dotted border-base-300 border-b {{ !isset($entityType) ? 'hidden' : null }}">
+                <span role="button" class="qq-action-more text-uppercase cursor-pointer text-sm border-dotted border-base-300 border-b" x-show="!showMore" @click.prevent="showMore = true">
                     <x-icon class="fa-regular fa-caret-down" />
                     {{ __('entities.creator.actions.more') }}
                 </span>
-                <div class="qq-more-fields flex flex-col gap-5 {{ isset($entityType) ? 'hidden' : null }}">
+                <div class="qq-more-fields flex flex-col gap-5" x-show="showMore">
                     @php $allowNew = false; $dropdownParent = '#primary-dialog';@endphp
                     @if (isset($entityType))
                         @if ($entityType->isCustom())
@@ -83,7 +81,7 @@
                     @endif
 
                     @if (!isset($entityType) || !in_array($entityType->id, [config('entities.ids.attribute_template')]))
-                        <div id="quick-creator-tags-field">
+                        <div id="quick-creator-tags-field" class="relative">
                             @include('cruds.fields.tags', ['dropdownParent' => '#quick-creator-tags-field'])
                         </div>
                     @endif

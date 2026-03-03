@@ -20,6 +20,7 @@ window.initTags = function () {
             valueField: 'id',
             labelField: 'text',
             searchField: 'text',
+            placeholder: ele.dataset.placeholder || '',
             create: allowNew ? function (input, callback) {
                 const term = input.trim();
                 if (!term) { return; }
