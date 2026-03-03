@@ -351,8 +351,8 @@ export default {
             this.isUnknown = undefined;
 
             window.closeDialog(this.modal);
-            $(this.entityField).val(null).trigger('change');
-            $(this.founderField).val(null).trigger('change');
+            document.querySelector(this.entityField)?.tomselect?.clear();
+            document.querySelector(this.founderField)?.tomselect?.clear();
         },
         showDialog() {
             window.openDialog(this.modal);
@@ -378,8 +378,8 @@ export default {
             this.entity = undefined;
 
             window.closeDialog(this.modal);
-            $(this.founderField).val(null).trigger('change');
-            $(this.entityField).val(null).trigger('change');
+            document.querySelector(this.founderField)?.tomselect?.clear();
+            document.querySelector(this.entityField)?.tomselect?.clear();
         },
         saveSuggestion: function(character) {
             this.emitter.emit('saveModal', [character]);
@@ -453,7 +453,7 @@ export default {
             this.closeModal();
         },
         addRelation() {
-            let entity_id = $(this.entityField).val();
+            let entity_id = document.querySelector(this.entityField)?.tomselect?.getValue();
             if (this.isUnknown) {
                 this.insertUnknownRelation();
                 this.isDirty = true;
@@ -534,7 +534,7 @@ export default {
         },
         addChild() {
             //console.log('child');
-            let entity_id = $(this.entityField).val();
+            let entity_id = document.querySelector(this.entityField)?.tomselect?.getValue();
             if (!entity_id) {
                 // Nothing, ignore
                 this.closeModal();
@@ -583,7 +583,7 @@ export default {
             return this.nodes = this.nodes.reduce(getRelationNodes, []);
         },
         editEntity(character = null) {
-            let entity_id = $(this.entityField).val();
+            let entity_id = document.querySelector(this.entityField)?.tomselect?.getValue();
             if (character) {
                 entity_id = character;
             }
@@ -615,8 +615,8 @@ export default {
         },
 
         addFounder() {
-            let founder_id = $(this.founderField).val();
-            let entity_id = $(this.entityField).val();
+            let founder_id = document.querySelector(this.founderField)?.tomselect?.getValue();
+            let entity_id = document.querySelector(this.entityField)?.tomselect?.getValue();
 
             if (!founder_id) {
                 // Nothing, ignore
@@ -768,8 +768,11 @@ export default {
             this.isUnknown = data.relation.isUnknown,
             this.isEditingEntity = true;
             if (this.entity) {
-                let newOption = new Option(this.entities[this.entity].name, this.entity, true, true);
-                $(this.entityField).append(newOption).trigger('change');
+                const ts = document.querySelector(this.entityField)?.tomselect;
+                if (ts) {
+                    ts.addOption({ id: this.entity, text: this.entities[this.entity].name });
+                    ts.setValue(this.entity);
+                }
             }
             this.showDialog();
         });

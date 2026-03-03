@@ -268,6 +268,7 @@ return [
         'journal'       => 'Choose a journal',
         'location'      => 'Choose a location',
         'multiple'      => 'Choose one or several',
+        'search'        => 'Type to search',
         'name'          => 'Name of the entry',
         'organisation'  => 'Choose an organisation',
         'parent'        => 'Choose a parent',

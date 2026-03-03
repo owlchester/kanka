@@ -1,4 +1,4 @@
-@import "select2/dist/css/select2.css";
+@import "tom-select/dist/css/tom-select.css";
 @import "rpg-awesome/css/rpg-awesome.min.css";
 @import 'tippy.js/animations/scale.css';
 @import 'tippy.js/dist/tippy.css';
@@ -70,124 +70,163 @@
 
 
 /**
- * Select 2 changes
+ * Tom Select theme
  */
-.select2 {
-    .select2-selection {
-        .select2-selection__rendered {
-            color: inherit;
-        }
-    }
-
-    /* Tags */
-    .select2-container--default .select2-selection--single {
-        --tw-bg-opacity: 1;
-        background-color: hsl(var(--b1)/var(--tw-bg-opacity));
-    }
+.ts-wrapper {
+    color: inherit;
+    min-width: 80px;
 }
-.select2-container .select2-selection--single {
-    height: unset;
-    padding: 0.25rem 0.4rem;
-}
-.select2-dropdown {
+.ts-wrapper.single .ts-control {
     --tw-bg-opacity: 1;
     background-color: hsl(var(--b1)/var(--tw-bg-opacity));
+    padding: 0.6rem 0.8rem;
+    min-height: 2.1rem;
+    cursor: pointer;
 }
-.select2-container--default .select2-selection--multiple {
+.ts-wrapper.multi .ts-control {
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--b1)/var(--tw-bg-opacity));
     --tw-border-opacity: .1;
-    border-color: hsl(var(--bc)/var(--tw-border-opacity))  !important;
-    --tw-bg-opacity: 1;
-    background-color: hsl(var(--b1)/var(--tw-bg-opacity));
+    border-color: hsl(var(--bc)/var(--tw-border-opacity));
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 0.2rem;
+    padding: 0.6rem 0.8rem;
+    min-height: 2.1rem;
 }
-.select2-container--default .select2-results__option[aria-selected="true"] {
+.ts-wrapper .ts-control {
+    border-width: 1px;
+    border-color: hsl(var(--bc)/0.1);
+    border-radius: var(--rounded-btn, 0.5rem);
+    background-color: hsl(var(--b1)/1);
+    box-shadow: none;
+    color: inherit;
+    padding-right: 2rem !important;
+}
+.ts-wrapper:not(.has-items) .ts-control::after {
+    content: '';
+    position: absolute;
+    right: 0.7rem;
+    top: 50%;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: translateY(-70%) rotate(45deg);
+    pointer-events: none;
+    opacity: 0.5;
+    transition: transform 0.15s ease;
+}
+.ts-wrapper.dropdown-active:not(.has-items) .ts-control::after {
+    transform: translateY(-30%) rotate(225deg);
+}
+.ts-wrapper.focus .ts-control {
+    outline-style: solid;
+    outline-width: 2px;
+    outline-offset: 2px;
+    outline-color: hsl(var(--p)/0.3);
+    border-color: transparent;
+    box-shadow: none;
+}
+.plugin-dropdown_input.focus.dropdown-active .ts-control {
+    border-color: transparent;
+}
+.ts-dropdown {
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--b1)/var(--tw-bg-opacity));
+    border-width: 1px;
+    border-color: hsl(var(--bc)/0.1);
+    border-radius: var(--rounded-btn, 0.5rem);
+    box-shadow: none;
+    z-index: 9961;
+    overflow: hidden;
+    min-width: 220px;
+}
+.ts-dropdown .ts-dropdown-content {
+    padding: 0.25rem 0;
+}
+.ts-dropdown .option {
+    padding: 0.4rem 0.6rem;
+    color: inherit;
+}
+.ts-dropdown .option.selected {
     --tw-bg-opacity: 1;
     background-color: hsl(var(--p)/var(--tw-bg-opacity));
-    color: hsl(var(--pc))
+    color: hsl(var(--pc));
 }
-.select2-container--default .select2-results__option--highlighted[aria-selected] {
+.ts-dropdown .option.active {
     --tw-bg-opacity: 1;
     background-color: hsl(var(--p)/var(--tw-bg-opacity));
-    color: hsl(var(--pc))
+    color: hsl(var(--pc));
 }
-.select2-container--default .select2-selection--multiple .select2-selection__choice {
+.ts-dropdown .option:disabled,
+.ts-dropdown .option.disabled {
+    color: hsl(var(--bc)/0.4);
+}
+.ts-wrapper.multi .ts-control .item {
     --tw-bg-opacity: 1;
     background-color: hsl(var(--n)/var(--tw-bg-opacity));
-    --tw-border-opacity: 1;
     border-radius: var(--rounded-btn, 0.5rem);
-    border-color: hsl(var(--n)/var(--tw-border-opacity));
     --tw-text-opacity: 1;
     color: hsl(var(--bc)/var(--tw-text-opacity));
     line-height: 1.2rem;
-    border-width: 0px !important;
+    border-width: 0;
     padding: 0.3rem 0.6rem;
-}
-.select2-container--default .select2-selection--multiple .select2-selection__choice {
     margin: 0;
 }
-.select2-container--default .select2-selection--multiple .select2-selection__clear {
-    order: 9999;
-    margin: 0 0 0 auto;
-}
-.select2-container--default .select2-search--dropdown .select2-search__field {
-    --tw-border-opacity: 1;
-    border-color: hsl(var(--n)/var(--tw-border-opacity)) !important;
-}
-.select2-container--default .select2-results__option[aria-disabled="true"] {
-    color: hsl(var(--bc)/0.4) !important;
-}
-.select2-container .select2-search--inline .select2-search__field {
-    margin-top: 0;
-}
-.select2-container--default .select2-selection--multiple .select2-selection__choice {
-    --tw-text-opacity: 1;
-    color: hsl(var(--bc)/var(--tw-text-opacity));
-}
-.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+.ts-wrapper.multi .ts-control .item .remove {
     --tw-text-opacity: 1;
     color: hsl(var(--nc)/var(--tw-text-opacity));
+    border-left: none;
+    padding-left: 0.3rem;
 }
-.select2-container--default .badge {
+.ts-wrapper.single .ts-control .item {
+    background: none;
+    padding: 0;
+    border-radius: 0;
+}
+.ts-dropdown input,
+.ts-dropdown .dropdown-input {
+    background-color: hsl(var(--b1)/1);
+    color: inherit;
+    border-color: hsl(var(--bc)/0.1) !important;
+    border-width: 1px;
+    padding: 0.5rem 0.6rem;
+    width: 100%;
+    box-sizing: border-box;
+    &:focus {
+        outline: none;
+    }
+}
+.ts-dropdown .dropdown-input-wrap {
+    padding: 0.4rem;
+}
+.ts-wrapper .ts-control input::placeholder {
+    --tw-text-opacity: .4;
+    color: hsl(var(--bc)/var(--tw-text-opacity));
+}
+.ts-wrapper .ts-control .clear-button {
+    color: hsl(var(--bc)/0.6);
+}
+.ts-wrapper .badge {
     display: inline-block;
     width: 16px;
     height: 16px;
     margin-right: 6px;
     border-radius: 2px;
 }
+.ts-dropdown,
+.ts-control,
+.ts-control input {
+    font-size: 14px;
+}
+.ts-wrapper .no-results {
+    color: hsl(var(--nc)/.6);
+}
 
-/* Need the select2 container above popovers and tooltips */
-.select2-container--open {
-  z-index: 9961;
-}
-.select2-selection__rendered .color-white {
-    color: #000 !important;
-}
-.select2-container--default.select2-container--focus,
-.select2-selection.select2-container--focus,
-.select2-container--default:focus,
-.select2-selection:focus,
-.select2-container--default:active,
-.select2-selection:active,
-.select2-dropdown .select2-search__field:focus,
-.select2-search--inline .select2-search__field:focus {
-    outline: none;
-}
-.select2-container .select2-selection--multiple .select2-selection__rendered {
-    display: flex;
-    align-items: center;
-    gap: 0.2rem;
-    flex-wrap: wrap;
-}
-.select2-container--default .select2-selection--multiple .select2-selection__rendered {
-    padding: 0.25rem 0.6rem;
-}
-.select2-container--default .select2-selection--single .select2-selection__placeholder {
-    --tw-text-opacity: .4;
-    color: hsl(var(--bc)/var(--tw-text-opacity));
-}
-.select2-container--default .select2-search--inline .select2-search__field {
-    padding: 0.35rem 0.23rem;
+.ts-wrapper.loading:before {
+    display: none;
 }
 
 @media (max-width: 767px) {

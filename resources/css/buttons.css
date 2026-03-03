@@ -15,7 +15,7 @@
         border-top-left-radius: 0;
     }
 
-    .select2-container .select2-selection {
+    .ts-wrapper .ts-control {
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
         border-right: none;

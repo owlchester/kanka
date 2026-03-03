@@ -108,19 +108,6 @@ function registerUnsavedChanges() {
         input.addEventListener('change', function () {
             window.entityFormHasUnsavedChanges = true;
         });
-        // For select2 fields, we need to listen to onchange directly, because jquery won't trigger the change event
-        if (input.classList.contains('select2')) {
-            if (typeof $ !== 'undefined') {
-                $(input).on('change', () => {
-                    window.entityFormHasUnsavedChanges = true;
-                });
-            } else {
-                // Fallback if jQuery isn't global, but use addEventListener, not .onchange
-                input.addEventListener('change', () => {
-                    window.entityFormHasUnsavedChanges = true;
-                });
-            }
-        }
     });
 
     if (!save) {

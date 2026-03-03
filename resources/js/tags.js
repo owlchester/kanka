@@ -1,119 +1,79 @@
-window.initTags = function() {
-    document.querySelectorAll('.form-tags')?.forEach(function (ele)  {
-        if (ele.classList.contains("select2-hidden-accessible")) {
+import TomSelect from 'tom-select';
+
+window.initTags = function () {
+    document.querySelectorAll('.form-tags')?.forEach(function (ele) {
+        if (ele.tomselect) {
             return;
         }
-        if (ele.dataset.loaded === 1) {
-            return;
+
+        const allowNew = ele.dataset.allowNew === 'true';
+        const plugins = ['dropdown_input', 'remove_button'];
+        if (ele.dataset.allowClear === 'true') {
+            plugins.push('clear_button');
         }
-        ele.dataset.loaded = 1;
 
-        $(ele).select2({
-            tags: ele.dataset.allowNew === 'true',
-            allowClear: ele.dataset.allowClear === 'true',
-            dropdownParent: ele.dataset.dropdownParent || '',
-            minimumInputLength: 0,
-            ajax: {
-                quietMillis: 500,
-                delay: 500,
-                url: ele.dataset.url,
-                dataType: 'json',
-                data: function (params) {
-                    return {
-                        q: params.term?.trim()
-                    };
+        const ts = new TomSelect(ele, {
+            plugins,
+            allowEmptyOption: true,
+            preload: 'focus',
+            loadThrottle: 500,
+            valueField: 'id',
+            labelField: 'text',
+            searchField: 'text',
+            create: allowNew ? function (input, callback) {
+                const term = input.trim();
+                if (!term) { return; }
+                callback({ id: term, text: term, newTag: true });
+            } : false,
+            dropdownParent: ele.dataset.dropdownParent || null,
+            load: function (query, callback) {
+                fetch(ele.dataset.url + '?q=' + encodeURIComponent(query.trim()), {
+                    headers: { 'X-Requested-With': 'XMLHttpRequest' }
+                })
+                    .then(r => r.json())
+                    .then(data => callback(data))
+                    .catch(() => callback());
+            },
+            render: {
+                option: function (data, escape) {
+                    if (data.colour) {
+                        return '<div class="flex gap-2 items-center text-left">'
+                            + '<span class="rounded-full flex-none w-6 h-6 ' + escape(data.colour) + '"></span>'
+                            + '<span class="grow">' + escape(data.text) + '</span>'
+                            + '</div>';
+                    }
+                    return '<div class="block grow text-left">' + escape(data.text) + '</div>';
                 },
-                processResults: function (data) {
-                    return {
-                        results: data
-                    };
+                item: function (data, escape) {
+                    const div = document.createElement('div');
+                    if (data.newTag) {
+                        div.title = ele.dataset.newTag || '';
+                        div.innerHTML = escape(data.text) + ' <i class="fa-solid fa-flag" aria-hidden="true"></i>';
+                    } else {
+                        div.innerHTML = escape(data.text);
+                    }
+                    const colours = (data.colour || '').trim().split(' ').filter(c => c);
+                    colours.forEach(c => div.classList.add(c));
+                    div.classList.add('text-left');
+                    return div;
                 },
-                cache: true
-            },
-            escapeMarkup: function (markup) {
-                return markup; // Disable escaping for HTML markup
-            },
-            createTag: function (params) {
-                const term = params.term?.trim();
-
-                if (term === '') {
-                    return null;
-                }
-
-                return {
-                    id: term,
-                    text: term,
-                    newTag: true // add additional parameters
-                };
-            },
-            templateResult: function (item) {
-                const temp = document.createElement('span');
-                temp.classList.add('block', 'grow', 'text-left');
-                temp.innerHTML = item.text;
-                if (item.colour) {
-                    temp.classList.add('flex', 'gap-2', 'items-center', 'text-left');
-                    temp.innerHTML =
-                        "<span class='rounded-full flex-none w-6 h-6 " + item.colour + "' /></span>" +
-                        "<span class='grow'>" + item.text + "</span>"
-                    ;
-                }
-                return temp;
-            },
-            templateSelection : function (state, container) {
-                if (state.newTag) {
-                    const span = document.createElement('span');
-                    span.classList.add('new-tag');
-                    span.title = ele.dataset.newTag;
-                    span.innerHTML = state.text + ' <i class="fa-solid fa-flag" aria-hidden="true"></i>';
-                    return span;
-                }
-
-                let el = state.element;
-                let colours = [];
-                if (state.colour) {
-                    colours = state.colour.trim().split(' ');
-                } else if(el.dataset.colour) {
-                    colours = el.dataset.colour.trim().split(' ');
-                }
-                if (colours.length > 0) {
-                    colours.forEach(colour => {
-                        if (colour.trim().length === 0) {
-                            return;
-                        }
-                        container[0].classList.add(colour);
-                    });
-                }
-                container[0].classList.add('text-left');
-                return state.text;
             },
         });
     });
 
     document.querySelectorAll('.position-dropdown')?.forEach(function (ele) {
-        if (ele.classList.contains("select2-hidden-accessible")) {
+        if (ele.tomselect) {
             return;
         }
-        if (ele.dataset.loaded === 1) {
-            return;
-        }
-        ele.dataset.loaded = 1;
-        $(ele).select2({
-            tags: true,
-            allowClear: true,
-            dropdownParent: ele.dataset.dropdownParent || '',
-            placeholder: ele.dataset.placeholder,
-            minimumInputLength: 0,
-            createTag: function (params) {
-                const term = params.term?.trim();
-
-                if (term === '') {
-                    return null;
-                }
-                return {
-                    id: term,
-                    text: term,
-                    newTag: true // add additional parameters
-                };
+        new TomSelect(ele, {
+            plugins: ['remove_button', 'clear_button'],
+            placeholder: ele.dataset.placeholder || '',
+            allowEmptyOption: true,
+            dropdownParent: ele.dataset.dropdownParent || null,
+            create: function (input, callback) {
+                const term = input.trim();
+                if (!term) { return; }
+                callback({ value: term, text: term });
             },
         });
     });

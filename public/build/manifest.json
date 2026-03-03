@@ -185,7 +185,7 @@
     "src": "node_modules/rpg-awesome/fonts/rpgawesome-webfont.woff"
   },
   "resources/css/app.css": {
-    "file": "assets/app-D3Lt0gEC.css",
+    "file": "assets/app-CwrGJywh.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -284,7 +284,7 @@
     ]
   },
   "resources/css/vendor.css": {
-    "file": "assets/vendor-BlFc2DJG.css",
+    "file": "assets/vendor-fHFS8OUB.css",
     "src": "resources/css/vendor.css",
     "isEntry": true,
     "name": "vendor",
@@ -319,7 +319,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app--SOjGKdY.js",
+    "file": "assets/app-BrarSRCf.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -522,7 +522,7 @@
     ]
   },
   "resources/js/family-tree-vue.js": {
-    "file": "assets/family-tree-vue-ZiXdoblt.js",
+    "file": "assets/family-tree-vue-FqxW_UbR.js",
     "name": "family-tree-vue",
     "src": "resources/js/family-tree-vue.js",
     "isEntry": true,
