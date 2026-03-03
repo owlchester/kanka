@@ -1,7 +1,7 @@
-// Exports the "mobile" theme for usage with module loaders
+// Exports the "modern" theme for usage with module loaders
 // Usage:
 //   CommonJS:
-//     require('tinymce/themes/mobile')
+//     require('tinymce/themes/modern')
 //   ES2015:
-//     import 'tinymce/themes/mobile'
+//     import 'tinymce/themes/modern'
 require('./theme.js');
