@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'connection_map'        => 'Relation map',
     'character_orgs'        => 'Character organisations',
+    'connection_map'        => 'Relation map',
     'helper'                => 'This article is set up to display the :subpage subpage of :name.',
     'location_characters'   => 'Location characters',
     'location_events'       => 'Location events',

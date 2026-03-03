@@ -29,7 +29,7 @@ return [
         ],
     ],
     'spotlighted'       => '{0} Pas encore sélectionné|[1,*] Mis en avant',
-    'tagged'            => '{0} Aucune entité étiquetée|{1} Une entité étiquetée|[2,*] :amount entités étiquetées',
+    'tagged'            => '{0} Aucune entrée étiquetée|{1} Une entrée étiquetée|[2,*] :amount entrées étiquetées',
     'titles'            => [
         'calendars'     => 'Gardien du temps',
         'characters'    => 'Donneur de nom',
@@ -47,5 +47,5 @@ return [
         'tags'          => 'Sous contrôle',
         'themes'        => 'Peintre',
     ],
-    'tutorial'          => 'Les succès suivent les actions importantes dans cette campagne, comme créer des entités ou utiliser des fonctionnalités clés. Ils sont uniquement informatifs et se mettent à jour automatiquement pendant que tu explores et construis',
+    'tutorial'          => 'Les succès suivent les actions importantes dans cette campagne, comme créer des entrées ou utiliser des fonctionnalités clés. Ils sont uniquement informatifs et se mettent à jour automatiquement pendant que tu explores et construis',
 ];

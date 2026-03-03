@@ -23,8 +23,6 @@ return [
     'export'                            => [],
     'fields'                            => [
         'boosted'                   => 'Boosted door',
-        'css'                       => 'CSS',
-        'description'               => 'Omschrijving',
         'entity_count'              => 'Entiteit Telling',
         'entry'                     => 'Campaign beschrijving',
         'excerpt'                   => 'Excerpt',
@@ -165,19 +163,15 @@ return [
         'members'       => 'Leden',
         'permissions'   => [
             'actions'   => [
-                'add'           => 'Maak',
-                'dashboard'     => 'Dashboard',
-                'delete'        => 'Verwijder',
-                'edit'          => 'Wijzig',
-                'entity-note'   => 'Entiteit Notitie',
-                'manage'        => 'Beheer',
-                'members'       => 'Leden',
-                'permission'    => 'Permissies',
-                'read'          => 'Bekijk',
-                'toggle'        => 'Verander voor alle',
-            ],
-            'helpers'   => [
-                'entity_note'   => 'Hierdoor kunnen gebruikers die geen Wijzig rechten voor een Entiteit hebben, er Entiteit Notities aan toevoegen.',
+                'add'       => 'Maak',
+                'dashboard' => 'Dashboard',
+                'delete'    => 'Verwijder',
+                'edit'      => 'Wijzig',
+                'manage'    => 'Beheer',
+                'members'   => 'Leden',
+                'permission'=> 'Permissies',
+                'read'      => 'Bekijk',
+                'toggle'    => 'Verander voor alle',
             ],
         ],
         'placeholders'  => [
@@ -236,7 +230,6 @@ return [
         ],
         'tabs'      => [
             'achievements'      => 'Prestaties',
-            'applications'      => 'Sollicitaties',
             'default-images'    => 'Standaard Afbeeldingen',
             'export'            => 'Exporteer',
             'members'           => 'Leden',

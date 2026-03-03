@@ -148,6 +148,7 @@
         Highlight.configure({
             multicolor: true,
         }),
+        window.tiptapCustomExtensions ?? [],
     ];
 
     if (props.gallery) {

@@ -22,6 +22,9 @@ return [
         'reverse_order' => 'Aktivieren Sie diese Option, um Epochen in umgekehrter chronologischer Reihenfolge anzuzeigen (ältere Epoche zuerst).',
     ],
     'index'         => [],
+    'lists'         => [
+        'empty' => 'Erstelle eine visuelle Zeitleiste, um wichtige Ereignisse festzuhalten und zu verfolgen, wie sich deine Welt entwickelt hat.',
+    ],
     'placeholders'  => [
         'type'  => 'Grundschule, Weltchronik, Königreichserbe',
     ],

@@ -80,8 +80,9 @@ class GalleryMapper
 
     protected function importFields(): void
     {
+        $columns = $this->image->getConnection()->getSchemaBuilder()->getColumnListing($this->image->getTable());
         foreach ($this->data as $field => $value) {
-            if (in_array($field, $this->reset)) {
+            if (in_array($field, $this->reset) || is_array($value) || ! in_array($field, $columns)) {
                 continue;
             }
             $this->image->$field = $value;
@@ -92,7 +93,10 @@ class GalleryMapper
 
     protected function importImage(): void
     {
-        if ($this->data['is_folder'] === 1) {
+        if (($this->data['is_folder'] ?? 0) === 1) {
+            return;
+        }
+        if (empty($this->data['id']) || empty($this->data['ext'])) {
             return;
         }
         // An image needs the image saved locally

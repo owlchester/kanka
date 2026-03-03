@@ -15,6 +15,9 @@ return [
         'is_extinct'    => 'Diese Rasse ist ausgestorben.',
     ],
     'index'         => [],
+    'lists'         => [
+        'empty' => 'Definiere die Arten, Kulturen oder Völker, die deine Welt bevölkern.',
+    ],
     'members'       => [
         'create'    => [
             'helper'    => 'Füge ein oder mehrere Charaktere zu :name hinzu.',

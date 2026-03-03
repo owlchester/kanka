@@ -4,6 +4,8 @@ return [
     'actions'               => [
         'change_focus'      => 'Cambiar encuadre',
         'change_visibility' => 'Cambiar visibilidad',
+        'copy_url'          => 'Copiar URL de imagen',
+        'copy_url_success'  => 'URL de imagen copiada al portapapeles.',
         'replace_image'     => 'Reemplazar imagen',
         'save-replace'      => 'Reemplazar imagen',
         'save_focus'        => 'Guardar encuadre',

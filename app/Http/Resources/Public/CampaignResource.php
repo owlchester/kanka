@@ -23,6 +23,7 @@ class CampaignResource extends JsonResource
             'locale' => $campaign->locale,
             'system' => $campaign->getSystems(),
             'is_open' => $campaign->isOpen(),
+            'is_prioritised' => (bool) $campaign->is_prioritised
         ];
     }
 }

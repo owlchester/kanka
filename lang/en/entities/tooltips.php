@@ -6,4 +6,6 @@ return [
     'label'         => 'Teaser',
     'placeholder'   => 'Briefly describe this entry in a sentence or two.',
     'premium'       => 'Unlock the ability to customise the hover teaser with a :boosted-campaign.',
+    'empty'         => ':name has no content yet.',
+    'fix'           => 'Add a description',
 ];

@@ -25,6 +25,10 @@ return [
         'answer'    => 'Si un pago no se procesa, te notificaremos por correo electrónico de inmediato e intentaremos cobrar tu tarjeta hasta tres veces más automáticamente. Si estos intentos no tienen éxito, tu suscripción se pausará. Puedes resolver esto fácilmente actualizando tu información de :billing con un método de pago válido.',
         'question'  => '¿Qué pasa si mi pago falla?',
     ],
+    'help'          => [
+        'answer'    => 'Tu suscripción paga por nuestro tiempo, nuestros servidores y la libertad de mantener Kanka sostenible sin perseguir el crecimiento a cualquier costo. Nos permite corregir errores más rápido, desarrollar funciones en las que realmente creemos y mantenernos atentos a la comunidad en lugar de a los inversores. En pocas palabras: mantiene a Kanka vivo y mejorando.',
+        'question'  => '¿Cómo ayuda mi suscripción a Kanka?',
+    ],
     'methods'       => [
         'answer'    => 'Aceptamos pagos con tarjeta de crédito y PayPal en USD, EUR y BRL. La seguridad de tu pago es importante para nosotros; todo el procesamiento de tarjetas de crédito se realiza de forma segura a través de nuestro proveedor de pagos de confianza, :stripe.',
         'question'  => '¿Qué métodos de pago aceptan?',
@@ -53,5 +57,9 @@ return [
     'update'        => [
         'answer'    => 'Actualizar tus datos de facturación es sencillo, solo visita tu página de :billing en la configuración de tu cuenta. Allí puedes modificar los métodos de pago, actualizar la información de la tarjeta o cambiar las direcciones de facturación según sea necesario.',
         'question'  => '¿Cómo actualizo mi información de facturación?',
+    ],
+    'why'           => [
+        'answer'    => 'Kanka es creado y mantenido por un pequeño equipo independiente. Las suscripciones son lo que nos permite trabajar en él a largo plazo, mejorarlo de forma constante y mantenerlo libre de prácticas engañosas. No estás pagando a una corporación; estás financiando directamente a las personas que diseñan, desarrollan y dan soporte a la plataforma.',
+        'question'  => '¿Por qué Kanka cobra suscripciones?',
     ],
 ];

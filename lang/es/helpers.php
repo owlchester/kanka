@@ -14,9 +14,7 @@ return [
         'title' => 'Widget de calendario',
     ],
     'dice'              => [],
-    'entity_templates'  => [
-        'link'  => 'Cómo definir plantillas',
-    ],
+    'entity_templates'  => [],
     'filters'           => [
         'title' => 'Cómo usar los filtros',
     ],

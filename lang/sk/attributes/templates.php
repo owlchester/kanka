@@ -8,8 +8,6 @@ return [
         ],
     ],
     'helpers'   => [],
-    'list'      => [
-        'campaign'  => 'Šablóny v kampaniach',
-    ],
+    'list'      => [],
     'pitch'     => 'Nájdi a pridaj denníky postáv z :marketplace k :boosted-campaign.',
 ];

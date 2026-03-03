@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'description'   => 'Affiche une liste des entités modifiées récemment.',
-    'name'          => 'Entités modifiées récemment',
+    'description'   => 'Affiche une liste des entrées modifiées récemment.',
+    'name'          => 'Entrées modifiées récemment',
 ];

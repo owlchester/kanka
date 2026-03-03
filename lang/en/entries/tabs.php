@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'aliases' => 'Aliases',
-    'properties' => 'Properties',
-    'media' => 'Media',
-    'relations' => 'Relations',
-    'identity' => 'Identity',
+    'aliases'       => 'Aliases',
+    'identity'      => 'Identity',
+    'media'         => 'Media',
+    'properties'    => 'Properties',
+    'relations'     => 'Relations',
 ];

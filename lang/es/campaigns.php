@@ -25,8 +25,6 @@ return [
     'export'                            => [],
     'fields'                            => [
         'boosted'                   => 'Mejorada por',
-        'css'                       => 'CSS',
-        'description'               => 'Descripción',
         'entity_count'              => 'Número de entidades',
         'entry'                     => 'Descripción de la campaña',
         'excerpt'                   => 'Extracto',
@@ -153,9 +151,7 @@ return [
         'switch_back_success'   => 'Has vuelto a tu usuario.',
     ],
     'mentions'                          => [],
-    'modules'                           => [
-        'permission-disabled'   => 'Este módulo está deshabilitado.',
-    ],
+    'modules'                           => [],
     'open_campaign'                     => [],
     'options'                           => [],
     'overview'                          => [
@@ -241,10 +237,10 @@ return [
         'permissions'   => [
             'actions'   => [
                 'add'           => 'Crear',
+                'articles'      => 'Artículos',
                 'dashboard'     => 'Tablero',
                 'delete'        => 'Eliminar',
                 'edit'          => 'Editar',
-                'entity-note'   => 'Notas de entidad',
                 'gallery'       => [
                     'browse'    => 'Navegar',
                     'manage'    => 'Control absoluto',
@@ -258,10 +254,10 @@ return [
             ],
             'helpers'   => [
                 'add'           => 'Permite crear entidades de este tipo. Podrán ver y editar las entidades que creen aunque no tengan el permiso de ver o editar.',
+                'articles'      => 'Permite agregar, editar y eliminar artículos incluso si el miembro no puede editar la entrada.',
                 'dashboard'     => 'Permite editar los tableros y sus widgets.',
                 'delete'        => 'Permite eliminar todas las entidades de este tipo.',
                 'edit'          => 'Permite editar todas las entidades de este tipo.',
-                'entity_note'   => 'Esto permite que los usuarios que no tengan permisos para editar una entidad puedan añadirle notas.',
                 'gallery'       => [
                     'browse'    => 'Permite ver la galería y establecer la imagen de una entidad desde la galería.',
                     'manage'    => 'Permite todo en la galería como un administrador puede, incluyendo la edición y eliminación de imágenes.',
@@ -356,7 +352,6 @@ return [
         ],
         'tabs'      => [
             'achievements'      => 'Logros',
-            'applications'      => 'Solicitudes',
             'customisation'     => 'Personalización',
             'danger'            => 'Peligro',
             'data'              => 'Datos',
@@ -368,7 +363,6 @@ return [
             'logs'              => 'Registros',
             'management'        => 'Gestión',
             'members'           => 'Miembros',
-            'modules'           => 'Módulos',
             'plugins'           => 'Plugins',
             'recovery'          => 'Recuperación',
             'roles'             => 'Roles',

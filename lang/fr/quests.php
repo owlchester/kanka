@@ -6,7 +6,7 @@ return [
     ],
     'elements'      => [
         'create'    => [
-            'success'   => 'L\'entité :entity ajoutée à la quête.',
+            'success'   => 'L\'entrée :entity ajoutée à la quête.',
             'title'     => 'Nouvel élément pour :name',
         ],
         'destroy'   => [
@@ -18,7 +18,7 @@ return [
         ],
         'fields'    => [
             'description'       => 'Description',
-            'entity_or_name'    => 'Sélection soit d\'une entité de la campagne, soit d\'un nom pour cet élément.',
+            'entity_or_name'    => 'Sélection soit d\'une entrée de la campagne, soit d\'un nom pour cet élément.',
             'name'              => 'Nom',
         ],
     ],
@@ -42,7 +42,7 @@ return [
         'date'      => 'Date réelle de la quête',
         'entity'    => 'Nom d\'un élément dans la quête',
         'location'  => 'Le lieu de départ de la quête',
-        'role'      => 'Le rôle de l\'entité dans la quête.',
+        'role'      => 'Le rôle de l\'entrée dans la quête.',
         'type'      => 'Principale, side quest, personnage',
     ],
     'show'          => [

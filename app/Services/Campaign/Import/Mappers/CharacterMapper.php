@@ -42,14 +42,16 @@ class CharacterMapper extends MiscMapper
         if (empty($this->data['characterTraits'])) {
             return $this;
         }
+        $fields = ['name', 'entry', 'is_private', 'section_id', 'default_order'];
         foreach ($this->data['characterTraits'] as $data) {
             $trait = new CharacterTrait;
             $trait->character_id = $this->model->id;
-            $trait->name = $data['name'];
-            $trait->entry = $data['entry'];
-            $trait->is_private = $data['is_private'];
-            $trait->section_id = $data['section_id'];
-            $trait->default_order = $data['default_order'];
+            foreach ($fields as $field) {
+                if (! array_key_exists($field, $data)) {
+                    continue;
+                }
+                $trait->$field = $data[$field];
+            }
             $trait->save();
         }
 
@@ -66,10 +68,10 @@ class CharacterMapper extends MiscMapper
             $member = new CharacterOrganisation;
             $member->character_id = $this->model->id;
             $member->organisation_id = ImportIdMapper::get('organisations', $data['organisation_id']);
-            $member->role = $data['role'];
-            $member->is_private = $data['is_private'];
-            $member->pin_id = $data['pin_id'];
-            $member->status_id = $data['status_id'];
+            $member->role = $data['role'] ?? null;
+            $member->is_private = $data['is_private'] ?? false;
+            $member->pin_id = $data['pin_id'] ?? null;
+            $member->status_id = $data['status_id'] ?? null;
             if (! empty($data['parent_id']) && isset($parents[$data['parent_id']])) {
                 $member->parent_id = $parents[$data['parent_id']];
             }

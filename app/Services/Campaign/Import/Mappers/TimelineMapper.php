@@ -61,6 +61,9 @@ class TimelineMapper extends MiscMapper
             $er = new TimelineEra;
             $er->timeline_id = $this->model->id;
             foreach ($fields as $field) {
+                if (! array_key_exists($field, $data)) {
+                    continue;
+                }
                 $er->$field = $data[$field];
             }
             $er->entry = $this->mentions($er->entry);
@@ -87,6 +90,9 @@ class TimelineMapper extends MiscMapper
                 $el->entity_id = ImportIdMapper::getEntity($data['entity_id']);
             }
             foreach ($fields as $field) {
+                if (! array_key_exists($field, $data)) {
+                    continue;
+                }
                 $el->$field = $data[$field];
             }
             $el->entry = $this->mentions($el->entry);

@@ -23,7 +23,6 @@ class CampaignService
     {
         return $this->filters()
             ->showcased()
-            ->prioritised()
             ->data;
     }
 
@@ -36,6 +35,12 @@ class CampaignService
     protected function filters(): self
     {
         $this->data['filters'] = [
+            'is_open' => [
+                'title' => 'Looking for players',
+            ],
+            'is_boosted' => [
+                'title' => 'Premium campaigns',
+            ],
             'language' => [
                 'title' => 'Language',
                 'options' => [
@@ -53,18 +58,6 @@ class CampaignService
             'system[]' => [
                 'title' => 'System',
                 'options' => $this->systemsOptions(),
-            ],
-            'is_boosted' => [
-                'title' => 'Premium campaigns',
-                'options' => [
-                    '1' => 'Only premium campaigns',
-                ],
-            ],
-            'is_open' => [
-                'title' => 'Open campaigns',
-                'options' => [
-                    '1' => 'Only open campaigns',
-                ],
             ],
             'genre' => [
                 'title' => 'Genre',
@@ -84,17 +77,6 @@ class CampaignService
         $this->data['featured'] = Campaign::public(false)
             ->showcased()
             ->get()
-            ->map(fn ($campaign) => new CampaignResource($campaign));
-
-        return $this;
-    }
-
-    /**
-     * Build a list of prioritised campaigns
-     */
-    protected function prioritised(): self
-    {
-        $this->data['prioritised'] = Campaign::public(false)->where('is_prioritised', true)->get()
             ->map(fn ($campaign) => new CampaignResource($campaign));
 
         return $this;

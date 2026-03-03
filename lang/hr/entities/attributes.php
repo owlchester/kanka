@@ -2,16 +2,14 @@
 
 return [
     'actions'       => [
-        'apply_template'    => 'Primjeni predložak atributa',
-        'manage'            => 'Upravljanje',
-        'more'              => 'Više opcija',
-        'remove_all'        => 'Izbriši sve',
+        'manage'        => 'Upravljanje',
+        'more'          => 'Više opcija',
+        'remove_all'    => 'Izbriši sve',
     ],
     'errors'        => [
         'loop'  => 'U ovom izračunu atributa postoji beskonačna petlja!',
     ],
     'fields'        => [
-        'attribute'             => 'Atribut',
         'community_templates'   => 'Predlošci zajednice',
         'is_private'            => 'Privatni atributi',
         'is_star'               => 'Prikvačeno',

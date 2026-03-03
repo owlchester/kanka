@@ -8,7 +8,6 @@ return [
     'destroy'               => [],
     'edit'                  => [],
     'fields'                => [
-        'attributes'    => 'Atributos',
         'auto_apply'    => 'Auto-aplicar',
         'is_enabled'    => 'Habilitado',
     ],
@@ -24,9 +23,5 @@ return [
     'placeholders'          => [
         'name'  => 'Nome do Modelo de Atributo',
     ],
-    'show'                  => [
-        'tabs'  => [
-            'attributes'    => 'Atributos',
-        ],
-    ],
+    'show'                  => [],
 ];

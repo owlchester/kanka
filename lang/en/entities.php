@@ -73,7 +73,7 @@ return [
     'locations'             => 'Locations',
     'map'                   => 'Map',
     'maps'                  => 'Maps',
-    'media'                => 'Media',
+    'media'                 => 'Media',
     'note'                  => 'Note',
     'notes'                 => 'Notes',
     'organisation'          => 'Organisation',

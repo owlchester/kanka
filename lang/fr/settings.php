@@ -21,7 +21,7 @@ return [
                 'qrcode'    => 'Scanne le code QR suivant avec ton application d\'authentification pour générer un mot de passe à usage unique',
             ],
             'generate_qr'           => 'Générer un code QR',
-            'helper'                => 'L\'authentification à deux facteurs renforce la sécurité d\'accès en exigeant deux méthodes (également appelées facteurs) pour vérifier ton identité à chaque connexion.',
+            'helper'                => 'L\'authentification à deux facteurs renforce la sécurité d\'accès en exigeant deux méthodes (également appelées facteurs) pour vérifier ton identrée à chaque connexion.',
             'learn_more'            => 'En savoir plus sur l\'authentification à deux facteurs.',
             'social'                => 'L\'authentification à deux facteurs Kanka n\'est activée que pour les utilisateurs qui se connectent à l\'aide de leur adresse e-mail et de leur mot de passe. Modifie ta méthode de connexion dans les paramètres de ton compte avant de pouvoir activer cette option.',
             'success_disable'       => 'L\'authentification à deux facteurs est désactivée.',
@@ -118,7 +118,7 @@ return [
         'remove'        => [
             'button'    => 'Délier le compte Patreon',
             'success'   => 'Ton compte Patreon a été délié.',
-            'text'      => 'Délier le compte Patreon de Kanka supprime les bonus, le nom du Hall of Fame, les boosters de campagne et d\'autres fonctionnalités liées au supporter de Kanka. Aucun contenu boosté ne sera perdu (par exemple les en-têtes d\'entité). Lors du réabonnement, toutes les données seront à nouveau visibles, y compris la possibilité de booster des campagnes précédemment boostées.',
+            'text'      => 'Délier le compte Patreon de Kanka supprime les bonus, le nom du Hall of Fame, les boosters de campagne et d\'autres fonctionnalités liées au supporter de Kanka. Aucun contenu boosté ne sera perdu (par exemple les en-têtes d\'entrée). Lors du réabonnement, toutes les données seront à nouveau visibles, y compris la possibilité de booster des campagnes précédemment boostées.',
             'title'     => 'Délier le compte Patreon de Kanka',
         ],
         'title'         => 'Patreon',

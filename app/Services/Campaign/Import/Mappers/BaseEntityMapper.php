@@ -55,6 +55,9 @@ trait BaseEntityMapper
             $post = new Post;
             $post->entity_id = $this->entity->id;
             foreach ($import as $field) {
+                if (! array_key_exists($field, $data)) {
+                    continue;
+                }
                 $post->$field = $data[$field];
             }
             if (! empty($data['location_id']) && ImportIdMapper::has('locations', $data['location_id'])) {
@@ -109,6 +112,9 @@ trait BaseEntityMapper
             $asset->entity_id = $this->entity->id;
 
             foreach ($import as $field) {
+                if (! array_key_exists($field, $data)) {
+                    continue;
+                }
                 $asset->$field = $data[$field];
             }
             if (! empty($data['metadata'])) {
@@ -157,6 +163,9 @@ trait BaseEntityMapper
             $attr->entity_id = $this->entity->id;
 
             foreach ($import as $field) {
+                if (! array_key_exists($field, $data)) {
+                    continue;
+                }
                 $attr->$field = $data[$field];
             }
             $attr->value = $this->mentions($attr->value);
@@ -214,6 +223,9 @@ trait BaseEntityMapper
             $rem->remindable_type = Entity::class;
             $rem->calendar_id = ImportIdMapper::get('calendars', $data['calendar_id']);
             foreach ($fields as $field) {
+                if (! array_key_exists($field, $data)) {
+                    continue;
+                }
                 $rem->$field = $data[$field];
             }
             $rem->created_by = $this->user->id;
@@ -243,6 +255,9 @@ trait BaseEntityMapper
             $rel->campaign_id = $this->campaign->id;
             $rel->created_by = $this->user->id;
             foreach ($fields as $field) {
+                if (! array_key_exists($field, $data)) {
+                    continue;
+                }
                 $rel->$field = $data[$field];
             }
             $rel->save();
@@ -274,6 +289,9 @@ trait BaseEntityMapper
             $ab->ability_id = $abilityID;
             $ab->created_by = $this->user->id;
             foreach ($fields as $field) {
+                if (! array_key_exists($field, $data)) {
+                    continue;
+                }
                 $ab->$field = $data[$field];
             }
             $ab->save();
@@ -311,6 +329,9 @@ trait BaseEntityMapper
             }
             $inv->created_by = $this->user->id;
             foreach ($fields as $field) {
+                if (! array_key_exists($field, $data)) {
+                    continue;
+                }
                 $inv->$field = $data[$field];
             }
             $inv->save();

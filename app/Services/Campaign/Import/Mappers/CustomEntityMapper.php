@@ -59,6 +59,9 @@ trait CustomEntityMapper
 
         $this->entity->type_id = ImportIdMapper::getCustomEntityType($this->data['entity']['type_id']);
         foreach ($entityMapping as $field) {
+            if (! array_key_exists($field, $this->data['entity'] ?? [])) {
+                continue;
+            }
             $this->entity->$field = $this->data['entity'][$field];
         }
 

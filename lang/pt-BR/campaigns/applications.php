@@ -23,7 +23,6 @@ return [
     ],
     'helpers'       => [
         'modal'                 => 'Uma campanha aberta a solicitações e ao público pode fazer com que os usuários se inscrevam para participar da campanha.',
-        'no_applications'       => 'No momento, não há solicitações pendentes para participar de sua campanha. Os usuários podem solicitar para participar de sua campanha visitando seu painel e clicando no botão :button.',
         'no_applications_title' => 'Nenhuma solicitação encontrada',
         'reason'                => 'Se fornecido, o solicitante será notificado sobre esse motivo.',
         'role'                  => 'Se aprovado, o cargo ào qual o solicitante será adicionado.',

@@ -39,6 +39,7 @@ return [
     ],
     'filters'   => [
         'only_unused'   => 'Nur ungenutzte Dateien anzeigen',
+        'sort'          => 'Sortieren nach',
     ],
     'move'      => [
         'success'   => '[0] 0 Elemente verschoben|[1] Ein Element verschoben|{2,*} Bewegte :count Elemente',

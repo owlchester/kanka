@@ -18,14 +18,11 @@ return [
     ],
     'fields'        => [
         'creator'   => 'Maker',
-        'entry'     => 'Invoer',
         'name'      => 'Naam',
     ],
     'hint'          => 'Informatie die niet helemaal in de standaardvelden van een entiteit past of die privé moet worden gehouden, kan worden toegevoegd als Entiteit Notitie.',
     'hints'         => [],
-    'index'         => [
-        'title' => 'Entiteit Notities voor :name',
-    ],
+    'index'         => [],
     'placeholders'  => [
         'name'  => 'Naam van de entiteit notitie, observatie of opmerking',
     ],

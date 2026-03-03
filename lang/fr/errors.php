@@ -30,7 +30,7 @@ return [
     'back-to-campaigns' => 'Revenir à une de tes campagnes',
     'footer'            => 'Si tu as besoin d\'aide, contacte-nous a hello@kanka.io ou sur le :discord.',
     'log-in'            => 'La connexion à ton compte pourrait te permettre de trouver ce que tu cherches.',
-    'post_layout'       => 'Mise en page de post invalide.',
+    'post_layout'       => 'Mise en page d\'article invalide.',
     'private-campaign'  => [
         'auth'  => [
             'helper'    => 'Tu n\'as pas accès à cette campagne.',

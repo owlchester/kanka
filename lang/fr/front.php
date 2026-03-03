@@ -20,7 +20,7 @@ return [
         'patreon'   => [
             'api_calls'         => 'Limite de requête API (90)',
             'boosts'            => 'Boosters de campagne',
-            'default_image'     => 'Images par défaut pour les entités',
+            'default_image'     => 'Images par défaut pour les entrées',
             'discord'           => 'Canal :discord privé',
             'free'              => 'Gratuit',
             'hall_of_fame'      => 'Nom dans la :link',

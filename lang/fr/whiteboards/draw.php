@@ -3,7 +3,7 @@
 return [
     'actions'       => [
         'add-circle'    => 'Ajouter un cercle',
-        'add-entity'    => 'Ajouter une entité',
+        'add-entity'    => 'Ajouter une entrée',
         'add-image'     => 'Ajouter une image',
         'add-square'    => 'Ajouter un carré',
         'add-text'      => 'Ajouter du texte',
@@ -16,8 +16,8 @@ return [
         'unlock'        => 'Déverouiller',
     ],
     'entity-search' => [
-        'placeholder'   => 'Écrire le nom ou l\'alias d\'une entité',
-        'title'         => 'Recherche d\'entité',
+        'placeholder'   => 'Écrire le nom ou l\'alias d\'une entrée',
+        'title'         => 'Recherche d\'entrée',
     ],
     'errors'        => [
         'websockets'    => [

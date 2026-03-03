@@ -24,4 +24,5 @@ return [
     'success_v2'=> '{1} :count Element wurde wiedergefunden.|[2,*] :count Elmente wurden wiedergefunden.',
     'title'     => 'Objektwiederherstellung  für :campaign',
     'toggle'    => [],
+    'tutorial'  => 'Zeige kürzlich gelöschte Elemente aus der Kampagne an und stelle sie wieder her. Objekte, Beiträge und andere unterstützende Daten können für eine bestimmte Anzahl von Tagen wiederhergestellt werden, bevor sie endgültig gelöscht werden. Bei der Wiederherstellung eines Elements werden alle Daten vollständig wiederhergestellt.',
 ];

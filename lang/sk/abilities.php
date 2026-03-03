@@ -35,7 +35,6 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'entities'  => 'Objekty',
             'reorder'   => 'Usporiadať schopnosti',
         ],
     ],

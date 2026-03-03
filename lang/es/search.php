@@ -11,6 +11,9 @@ return [
     ],
     'no_results'    => 'Sin resultados.',
     'placeholder'   => 'BUSCAR',
+    'placeholders'  => [
+        'entry' => 'Buscar una entrada',
+    ],
     'preview'       => [
         'links'             => 'Enlaces',
         'no-connections'    => 'No hay relaciones ancladas que mostrar',

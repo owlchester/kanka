@@ -28,11 +28,14 @@ return [
         'sync'      => 'Importiere Fähigkeiten, die in der Rasse des Charakters definiert sind.',
     ],
     'import'    => [
-        'errors'    => [
+        'errors'            => [
             'no_race'       => 'Der Charakter hat keine Spezies',
             'not_character' => 'Das Objekt ist kein Charakter',
         ],
-        'success'   => '{1} :count Fähigkeit importiert. | [2, *] :count Fähigkeiten importieren.',
+        'helper'            => 'Fähigkeiten der folgenden Rassen hinzufügen :name gehört zu:',
+        'no_abilities'      => 'Derzeit gibt es keine Möglichkeiten, aus den Rassen zu importieren :name gehört zu.',
+        'race_abilities'    => '{1} :name (:count ability)|[2,*] :name (:count abilities)',
+        'success'           => '{1} :count Fähigkeit importiert. | [2, *] :count Fähigkeiten importieren.',
     ],
     'recharge'  => [
         'success'   => 'Alle Ladungen wurden zurückgesetzt.',

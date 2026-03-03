@@ -14,6 +14,7 @@ return [
             'new'   => 'neues Dashboard',
         ],
         'create'        => [
+            'helper'    => 'Erstelle ein neues Dashboard für :name und weise es zu, welche Rollen es sehen oder als Standard-Dashboard verwenden können.',
             'success'   => 'Neues Kampagnen Dashboard :name erstellt',
             'title'     => 'Neues Kampagnen Dashboard',
         ],
@@ -89,8 +90,10 @@ return [
             'helper'    => 'Dieses Widget zeigte den Kampagnenkopf an. Dieses Widget wird immer im Standard-Dashboard angezeigt.',
         ],
         'create'                    => [
-            'success'   => 'Widget zum Dashboard hinzugefügt.',
-            'title'     => 'Neues Widget',
+            'helper'            => 'Wähle einen Widget-Typ aus, den du zum Dashboard :name hinzufügen möchtest.',
+            'helper-default'    => 'Wähle einen Widget-Typ aus, den du zum Standard-Dashboard hinzufügen möchtest.',
+            'success'           => 'Widget zum Dashboard hinzugefügt.',
+            'title'             => 'Neues Widget',
         ],
         'delete'                    => [
             'success'   => 'Widget vom Dashboard entfernt.',

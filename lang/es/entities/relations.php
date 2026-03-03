@@ -44,12 +44,12 @@ return [
     ],
     'fields'            => [
         'attitude'          => 'Actitud',
-        'connection'        => 'Conexión',
         'is_pinned'         => 'Fijado',
+        'link'              => 'Enlace recíproco',
+        'mirror_relation'   => 'Rol recíproco',
         'owner'             => 'Fuente',
-        'relation'          => 'Relación',
+        'role'              => 'Rol',
         'target'            => 'Objetivo',
-        'target_relation'   => 'Relación objetivo',
         'targets'           => 'Entidades objetivo',
         'two_way'           => 'Reflejar relación',
         'unmirror'          => 'Desenlaza esta conexión.',
@@ -60,20 +60,23 @@ return [
     ],
     'helper'            => 'Crea relaciones entre entidades y configura su actitud y visibilidad. Las relaciones también se pueden fijar al menú de la entidad.',
     'helpers'           => [
-        'description'   => 'Detalla la naturaleza de la conexión entre las dos entidades.',
-        'no_relations'  => 'Esta entidad no tiene actualmente ninguna conexión con otras entidades de la campaña.',
+        'description'       => 'Detalla la naturaleza de la conexión entre las dos entidades.',
+        'link'              => 'Crear una relación coincidente en los objetivos.',
+        'mirror_relation'   => 'Cómo ve el objetivo esta entrada (dejar en blanco para copiar lo anterior).',
+        'no_relations'      => 'Esta entidad no tiene actualmente ninguna conexión con otras entidades de la campaña.',
     ],
     'hints'             => [
-        'attitude'          => 'Aquí se puede definir opcionalmente el orden en el que las relaciones aparecen por defecto de forma descendiente.',
-        'mirrored'          => [
-            'text'  => 'Esta relación está reflejada en :link.',
-            'title' => 'Reflejada',
-        ],
-        'target_relation'   => 'La descripción de la relación en el objetivo. Déjalo en blanco para usar el texto de esta relación.',
-        'two_way'           => 'Al reflejar una relación, ésta se copiará en el objetivo seleccionado. Sin embargo, si editas una, la otra no se verá afectada.',
+        'attitude'  => 'Aquí se puede definir opcionalmente el orden en el que las relaciones aparecen por defecto de forma descendiente.',
+        'two_way'   => 'Al reflejar una relación, ésta se copiará en el objetivo seleccionado. Sin embargo, si editas una, la otra no se verá afectada.',
     ],
     'index'             => [
         'title' => 'Relaciones',
+    ],
+    'linked'            => [
+        'break'             => 'Romper enlace',
+        'helper'            => 'Esta relación está sincronizada con :link',
+        'label'             => 'Relación vinculada',
+        'unmirror-helper'   => 'Convertir esto en una relación independiente no eliminará nada.',
     ],
     'options'           => [
         'mentions'          => 'Relaciones + relacionadas + menciones',
@@ -86,10 +89,8 @@ return [
         'related'   => 'Eliminar',
     ],
     'placeholders'      => [
-        'attitude'          => 'Desde -100 hasta 100, siendo 100 muy positiva.',
-        'relation'          => 'Rival, mejor amiga, hermano...',
-        'target'            => 'Elige una entidad',
-        'target_relation'   => 'Dejar en blanco para utilizar la descripción',
+        'attitude'  => 'Desde -100 hasta 100, siendo 100 muy positiva.',
+        'role'      => 'Rival, Mejor amigo, Hermano',
     ],
     'show'              => [
         'title' => 'Relaciones de :name',
