@@ -61,7 +61,6 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
     @endif
 
     @includeWhen(!empty($campaign), 'layouts._theme')
-    <link rel="preload" href="/fonts/roboto/Roboto-VariableFont_wdth,wght.ttf" as="font" crossorigin />
     @livewireStyles
 </head>
 {{-- Hide the sidebar if the there is no current campaign --}}
