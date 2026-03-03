@@ -16,6 +16,7 @@ use App\Traits\CampaignAware;
 use App\Traits\RequestAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 class CalendarRenderer
 {
@@ -960,7 +961,7 @@ class CalendarRenderer
     protected function splitDate(string $date): array
     {
         $segments = explode('-', mb_ltrim($date, '-'));
-        if (str_starts_with($date, '-')) {
+        if (Str::startsWith($date, '-')) {
             $segments[0] = '-' . $segments[0];
         }
 

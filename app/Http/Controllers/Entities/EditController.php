@@ -61,14 +61,18 @@ class EditController extends Controller
     public function save(Request $request, Campaign $campaign, Entity $entity)
     {
         // We need to validate the request
-        if ($entity->entityType->isStandard()) {
-            $validationClass = 'App\Http\Requests\Store' . Str::studly($entity->entityType->code);
-            if (class_exists($validationClass)) {
-                $validator = app()->make($validationClass);
-                $this->validate($request, $validator->rules());
+        $validationClass = $entity->entityType->isStandard()
+            ? 'App\Http\Requests\Store' . Str::studly($entity->entityType->code)
+            : StoreCustomEntity::class;
+
+        if (class_exists($validationClass)) {
+            $validator = app()->make($validationClass);
+            if (method_exists($validator, 'resolvedFields')) {
+                $resolved = $validator->resolvedFields();
+                if ($resolved) {
+                    $request->merge($resolved);
+                }
             }
-        } else {
-            $validator = app()->make(StoreCustomEntity::class);
             $this->validate($request, $validator->rules());
         }
 

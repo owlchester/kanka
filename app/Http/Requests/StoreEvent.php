@@ -5,11 +5,15 @@ namespace App\Http\Requests;
 use App\Facades\Limit;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
+use App\Traits\ResolvesNewForeignEntities;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreEvent extends FormRequest
 {
     use ApiRequest;
+    use ResolvesNewForeignEntities;
+
+    protected array $foreignEntityFields = ['location_id'];
 
     /**
      * Determine if the user is authorized to make this request.

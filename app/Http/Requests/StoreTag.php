@@ -8,12 +8,16 @@ use App\Models\Tag;
 use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
+use App\Traits\ResolvesNewForeignEntities;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
 class StoreTag extends FormRequest
 {
     use ApiRequest;
+    use ResolvesNewForeignEntities;
+
+    protected array $foreignEntityFields = ['tag_id'];
 
     /**
      * Determine if the user is authorized to make this request.

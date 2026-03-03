@@ -6,7 +6,6 @@
     <input type="hidden" name="save_families" value="1">
     @include('components.form.families', ['options' => [
         'model' => $model ?? FormCopy::model(),
-        'quickCreator' => $quickCreator ?? false,
-        'dynamicNew' => $dynamicNew ?? false
+        'dynamicNew' => $dynamicNew ?? $quickCreator ?? false
     ]])
 </div>

@@ -212,17 +212,7 @@ const quickCreatorHandleEvents = () => {
     quickCreatorSubformHandler();
 };
 
-const initQuickCreatorFromField = () => {
-    const btns = document.querySelectorAll('.quick-creator-subform');
-    btns.forEach(btn => {
-        btn.addEventListener('click',  e => {
-            window.openDialog('primary-dialog', btn.dataset.url);
-        });
-    });
-};
-
 window.onEvent(function() {
     quickCreatorUI();
     quickCreatorSubformHandler();
 });
-initQuickCreatorFromField();

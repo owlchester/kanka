@@ -8,6 +8,7 @@ use App\Models\Calendar;
 use App\Models\CalendarWeather;
 use App\Models\Campaign;
 use App\Services\CalendarService;
+use Illuminate\Support\Str;
 
 class CalendarWeatherController extends Controller
 {
@@ -29,7 +30,7 @@ class CalendarWeatherController extends Controller
 
         $date = request()->get('date');
         [$year, $month, $day] = explode('-', $date);
-        if (str_starts_with($date, '-')) {
+        if (Str::startsWith($date, '-')) {
             [$year, $month, $day] = explode('-', mb_trim($date, '-'));
             $year = '-' . $year;
         }

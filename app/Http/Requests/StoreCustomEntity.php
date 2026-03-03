@@ -2,13 +2,20 @@
 
 namespace App\Http\Requests;
 
+use App\Facades\CampaignLocalization;
+use App\Models\EntityType;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
+use App\Traits\CreatesEntityFromName;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class StoreCustomEntity extends FormRequest
 {
     use ApiRequest;
+    use CreatesEntityFromName;
+
+    private bool $parentIdResolved = false;
 
     /**
      * Determine if the user is authorized to make this request.
@@ -35,5 +42,50 @@ class StoreCustomEntity extends FormRequest
         ];
 
         return $this->clean($rules);
+    }
+
+    /**
+     * Return the resolved parent_id so EditController can sync it back into the original request.
+     *
+     * @return array<string, mixed>
+     */
+    public function resolvedFields(): array
+    {
+        if (! $this->parentIdResolved) {
+            return [];
+        }
+
+        return ['parent_id' => $this->input('parent_id')];
+    }
+
+    protected function prepareForValidation(): void
+    {
+        $value = $this->input('parent_id');
+        if (empty($value) || is_numeric($value)) {
+            return;
+        }
+
+        // AJAX calls are validation-only pre-flight requests; replace the string with null
+        // so the 'nullable' rule passes without creating an entity.
+        if (request()->ajax()) {
+            $this->merge(['parent_id' => null]);
+
+            return;
+        }
+
+        // Resolve entity type from route: creation uses {entity_type}, editing uses {entity}.
+        $entityType = request()->route('entity_type') ?? request()->route('entity')?->entityType;
+        if (! $entityType instanceof EntityType) {
+            $this->merge(['parent_id' => null]);
+
+            return;
+        }
+
+        $name = Str::startsWith($value, 'new:') ? Str::substr($value, 4) : $value;
+        $campaign = CampaignLocalization::getCampaign();
+        $id = $this->createEntityFromName($name, $entityType, $campaign);
+
+        $this->parentIdResolved = true;
+        $this->merge(['parent_id' => $id]);
     }
 }

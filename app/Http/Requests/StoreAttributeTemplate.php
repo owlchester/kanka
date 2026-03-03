@@ -5,10 +5,15 @@ namespace App\Http\Requests;
 use App\Models\AttributeTemplate;
 use App\Models\Entity;
 use App\Rules\Nested;
+use App\Traits\ResolvesNewForeignEntities;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreAttributeTemplate extends FormRequest
 {
+    use ResolvesNewForeignEntities;
+
+    protected array $foreignEntityFields = ['attribute_template_id'];
+
     /**
      * Determine if the user is authorized to make this request.
      *

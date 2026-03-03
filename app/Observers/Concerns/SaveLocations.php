@@ -5,6 +5,7 @@ namespace App\Observers\Concerns;
 use App\Facades\EntityLogger;
 use App\Models\Entity;
 use App\Models\Location;
+use App\Traits\CreatesEntityFromName;
 
 /**
  * We have this as a trait on the LocationsObserver, so that we can also call it from the bulk update service.
@@ -12,6 +13,8 @@ use App\Models\Location;
  */
 trait SaveLocations
 {
+    use CreatesEntityFromName;
+
     protected function saveLocations(Entity $model, array $locations = [])
     {
         $existing = $unique = $recreate = [];
@@ -35,6 +38,7 @@ trait SaveLocations
             $detach = true;
         }
         $newLocations = [];
+        $newNames = [];
         foreach ($locations as $id) {
             // Existing location, do nothing
             if (! empty($existing[$id])) {
@@ -47,11 +51,22 @@ trait SaveLocations
                 continue;
             }
 
+            if (! is_numeric($id)) {
+                $newNames[] = $id;
+
+                continue;
+            }
+
             $location = Location::find($id);
             if (empty($location)) {
                 continue;
             }
             $newLocations[] = $location->id;
+            EntityLogger::dirty('locations', null);
+        }
+
+        foreach ($this->resolveNewModels($newNames, Location::class, config('entities.ids.location')) as $newId) {
+            $newLocations[] = $newId;
             EntityLogger::dirty('locations', null);
         }
         $model->locations()->attach($newLocations);
