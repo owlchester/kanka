@@ -20,7 +20,7 @@ $addTagsUrl = route('entity.tags-add', [$campaign, $entity]);
 $entityTags = $entity->visibleTags();
 
 $buttonsClass = 1;
-if ($entity->isCharacter() && $entity->child->is_dead) {
+if ($entity->isCharacter() && $entity->child->is_dead > 0) {
     $buttonsClass++;
 }
 if ($entity->isQuest() && $entity->child->is_completed) {
@@ -146,6 +146,11 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
                 <span class="entity-name-icon entity-char-dead md:text-2xl" data-toggle="tooltip" data-title="{{ __('characters.hints.is_dead') }}">
                     <x-icon class="fa-regular fa-skull entity-icons" />
                     <span class="sr-only">{{ __('characters.hints.is_dead') }}</span>
+                </span>
+            @elseif ($entity->isCharacter() && $entity->child->isMissing())
+                <span class="entity-name-icon entity-char-missing md:text-2xl" data-toggle="tooltip" data-title="{{ __('characters.hints.is_missing') }}">
+                    <x-icon class="fa-regular fa-question entity-icons" />
+                    <span class="sr-only">{{ __('characters.hints.is_missing') }}</span>
                 </span>
             @endif
             @if ($entity->isQuest() && $entity->child->isCompleted())

@@ -17,17 +17,14 @@
         <input id="{{ $fieldID }}" type="text" name="age" value="{{ old('age', FormCopy::field('age')->child()->string() ?: $model->age ?? null) }}" maxlength="25" class="w-full"  autocomplete="off" placeholder="{{ __('characters.placeholders.age') }}" />
     </x-forms.field>
 
-    @php
-        $fieldID = uniqid('dead_');
-    @endphp
     <x-forms.field
-        field="dead"
-        :label="__('characters.fields.is_dead')"
-        :id="$fieldID">
-        <input type="hidden" name="is_dead" value="0" />
-        <x-checkbox :text="__('characters.hints.is_dead')">
-            <input id="{{ $fieldID }}" type="checkbox" name="is_dead" value="1" @if (old('is_dead', $source->child->is_dead ?? $model->is_dead ?? false)) checked="checked" @endif />
-        </x-checkbox>
+        field="is_dead"
+        :label="__('characters.fields.is_dead')">
+        <select name="is_dead" class="w-full">
+            <option value="0" @selected(old('is_dead', $source->child->is_dead ?? $model->is_dead ?? 0) == 0)>{{ __('characters.status.alive') }}</option>
+            <option value="1" @selected(old('is_dead', $source->child->is_dead ?? $model->is_dead ?? 0) == 1)>{{ __('characters.status.dead') }}</option>
+            <option value="2" @selected(old('is_dead', $source->child->is_dead ?? $model->is_dead ?? 0) == 2)>{{ __('characters.status.missing') }}</option>
+        </select>
     </x-forms.field>
 
     @include('cruds.fields.sex')

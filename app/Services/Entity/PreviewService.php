@@ -214,7 +214,7 @@ class PreviewService
             $this->addProfile('characters.fields.pronouns', 'pronouns', $child->pronouns);
         }
 
-        if ($child->is_dead) {
+        if ($child->isDead() || $child->isMissing()) {
             $this->data['is_dead'] = true;
         }
     }

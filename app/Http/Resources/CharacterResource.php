@@ -36,7 +36,7 @@ class CharacterResource extends EntityResource
 
             'locations' => $locationIds,
 
-            'is_dead' => (bool) $model->is_dead,
+            'is_dead' => (int) $model->is_dead,
             'traits' => CharacterTraitResource::collection($model->characterTraits),
             'is_personality_visible' => (bool) $model->is_personality_visible,
             'is_personality_pinned' => (bool) $model->is_personality_pinned,
