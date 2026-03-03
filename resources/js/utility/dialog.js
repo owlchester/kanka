@@ -26,6 +26,8 @@ window.mountCampaignShareModal = function () {
 const backdrop = document.getElementById('dialog-backdrop');
 let loadingContent;
 
+const dialogLoadedEvent = new Event('dialog.loaded');
+
 const initDialogs = () => {
     document.querySelectorAll('[data-toggle="dialog"]').forEach(el => {
         el.addEventListener('click', openingDialog);
@@ -115,6 +117,9 @@ fetch(url, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
             target.show();
             window.mountShareModal();
             window.mountCampaignShareModal();
+            window.triggerEvent();
+            document.dispatchEvent(dialogLoadedEvent);
+            Alpine.initTree(target);
         })
         .catch(err => {
             console.error(err);
