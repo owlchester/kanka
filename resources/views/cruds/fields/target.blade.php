@@ -11,7 +11,7 @@ $preset = $target ?? null;
         name="targets[]"
         id="targets[]"
         :campaign="$campaign"
-        :placeholder="__('crud.placeholders.multiple')"
+        :placeholder="__('crud.placeholders.search')"
         :route="route('search.entities-with-relations', [$campaign])"
     >
     </x-forms.foreign>
@@ -19,7 +19,7 @@ $preset = $target ?? null;
     @include('cruds.fields.entity', [
         'name' => 'target_id',
         'label' => __('entities/relations.fields.targets'),
-        'placeholder' => __('crud.placeholders.multiple'),
+        'placeholder' => __('crud.placeholders.search'),
         'allowClear' => false,
         'route' => null,
     ])
