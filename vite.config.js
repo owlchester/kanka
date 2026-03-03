@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
 import tailwindcss from '@tailwindcss/vite';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
 
 
 export default defineConfig({
@@ -99,6 +100,22 @@ export default defineConfig({
             },
         }),
         tailwindcss(),
+        viteStaticCopy({
+            targets: [
+                {
+                    src: 'node_modules/tinymce/**/*',
+                    dest: 'js/tinymce',
+                },
+                {
+                    src: 'resources/vendor/tinymce/plugins/mention',
+                    dest: 'js/tinymce/plugins',
+                },
+                {
+                    src: 'resources/vendor/tinymce/langs/*',
+                    dest: 'js/tinymce/langs',
+                },
+            ],
+        }),
     ],
     build: {
         rollupOptions: {
