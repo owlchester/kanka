@@ -24,6 +24,7 @@ import './utility/sortable';
 import './utility/formError';
 import './utility/dialog';
 import './utility/colour-picker';
+import './share';
 
 // VueJS elements
 import './header';
