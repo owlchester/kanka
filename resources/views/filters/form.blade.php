@@ -69,7 +69,11 @@
                         <label class="text-xs font-medium opacity-80">
                             {{ __($field === 'is_dead' ? 'characters.fields.' . $field : ((in_array($field, ['name', 'type', 'is_private', 'has_image', 'has_attributes', 'has_entity_files', 'has_entry', 'has_posts', 'date_range', 'template', 'archived']) ? 'crud.fields.' : $langKey . '.fields.') . $field)) }}
                         </label>
-                        @if ($filterService->isCheckbox($field))
+                        @if ($field === 'is_dead')
+                            @include('cruds.datagrids.filters._is_dead_status')
+                        @elseif ($field === 'is_completed')
+                            @include('cruds.datagrids.filters._is_completed_status')
+                        @elseif ($filterService->isCheckbox($field))
                             @include('cruds.datagrids.filters._choice')
                         @elseif ($field === 'type' && !empty($entityModel))
                             @include('cruds.datagrids.filters._type')

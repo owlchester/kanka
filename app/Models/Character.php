@@ -26,7 +26,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $age
  * @property string $sex
  * @property string $pronouns
- * @property bool|int $is_dead
+ * @property int $is_dead
  * @property bool|int $is_personality_visible
  * @property bool|int $is_appearance_pinned
  * @property bool|int $is_personality_pinned
@@ -446,11 +446,14 @@ class Character extends MiscModel
     public function rowClasses(): string
     {
         $classes = parent::rowClasses();
-        if (! $this->isDead()) {
-            return $classes;
+        if ($this->isDead()) {
+            return $classes . ' character-dead';
+        }
+        if ($this->isMissing()) {
+            return $classes . ' character-missing';
         }
 
-        return $classes . ' character-dead';
+        return $classes;
     }
 
     /**
@@ -499,11 +502,19 @@ class Character extends MiscModel
     }
 
     /**
-     * Get the value of the is_dead variable
+     * Determine if the character is dead (is_dead = 1)
      */
     public function isDead(): bool
     {
-        return (bool) $this->is_dead;
+        return $this->is_dead === 1;
+    }
+
+    /**
+     * Determine if the character is missing (is_dead = 2)
+     */
+    public function isMissing(): bool
+    {
+        return $this->is_dead === 2;
     }
 
     public function scopeFilteredCharacters(Builder $query): Builder

@@ -17,6 +17,9 @@
                     <span class="self-end" v-show="entity.is_dead">
                         <i class="fa-regular fa-skull" v-bind:title="tooltip('is_dead')" aria-hidden="true"></i>
                     </span>
+                    <span class="self-end" v-show="entity.is_missing">
+                        <i class="fa-regular fa-question" v-bind:title="tooltip('is_missing')" aria-hidden="true"></i>
+                    </span>
                 </a>
                 <span v-bind:class="cssClasses()" v-if="node.isUnknown">
                     <i>{{ fields('unknown') }}</i>
@@ -82,6 +85,9 @@ export default {
                 if (this.entity.is_dead) {
                     css += ' character-dead';
                 }
+                if (this.entity.is_missing) {
+                    css += ' character-missing';
+                }
                 this.entity.tags.forEach(function (tag) {
                     css += ' ' + tag;
                 });
@@ -117,7 +123,7 @@ export default {
         },
         cssClasses() {
             let classes = '';
-            if (this.entity && this.entity.is_dead) {
+            if (this.entity && (this.entity.is_dead || this.entity.is_missing)) {
                 classes += 'flex grid-cols-2 items-center'
             } else {
                 classes += 'block'

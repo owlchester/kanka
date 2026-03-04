@@ -45,7 +45,7 @@ class StoreCharacter extends FormRequest
             'sex' => 'nullable|max:45',
             'pronouns' => 'nullable|max:45',
             'title' => 'nullable|max:191',
-            'is_dead' => 'boolean',
+            'is_dead' => 'nullable|integer|in:0,1,2',
             'template_id' => 'nullable',
             'families' => ['nullable', 'array', new EntityField(config('entities.ids.family'), Family::class)],
             'races' => ['nullable', 'array', new EntityField(config('entities.ids.race'), Race::class)],

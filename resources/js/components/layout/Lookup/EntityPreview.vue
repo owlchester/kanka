@@ -6,6 +6,7 @@
             </a>
 
             <i class="fa-regular fa-skull mx-2" aria-hidden="true" v-if="entity.is_dead"></i>
+            <i class="fa-regular fa-question mx-2" aria-hidden="true" v-if="entity.is_missing"></i>
 
             <a class="ml-2 text-xs" target="_blank" v-bind:href="entity.link">
                 <i class="fa-regular fa-external-link" aria-hidden="true" aria-label="Open in a new window"></i>

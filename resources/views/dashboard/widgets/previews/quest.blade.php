@@ -6,8 +6,12 @@
  */
 ?>
 <x-widgets.previews.head :widget="$widget" :campaign="$campaign" :entity="$entity">
-    @if ($entity->child?->is_completed)
-        <x-icon class="fa-solid fa-check-circle" :title="__('quests.fields.is_completed')" tooltip />
+    @if ($entity->child?->isOngoing())
+        <x-icon class="fa-solid fa-hourglass" :title="__('quests.status.ongoing')" tooltip />
+    @elseif ($entity->child?->isCompleted())
+        <x-icon class="fa-solid fa-check-circle" :title="__('quests.status.completed')" tooltip />
+    @elseif ($entity->child?->isAbandoned())
+        <x-icon class="fa-solid fa-ban" :title="__('quests.status.abandoned')" tooltip />
     @endif
 </x-widgets.previews.head>
 <x-widgets.previews.body  :widget="$widget" :campaign="$campaign" :entity="$entity">

@@ -27,12 +27,23 @@ return [
         'date'          => 'Date',
         'element_role'  => 'Role',
         'instigator'    => 'Instigator',
-        'is_completed'  => 'Completed',
+        'is_completed'  => 'Status',
         'location'      => 'Starting location',
         'role'          => 'Role',
     ],
     'helpers'       => [
-        'is_completed'  => 'The quest is considered as completed.',
+        'is_completed'  => 'The quest\'s current status.',
+    ],
+    'hints'         => [
+        'is_completed'  => 'This quest is completed.',
+        'is_ongoing'    => 'This quest is ongoing.',
+        'is_abandoned'  => 'This quest has been abandoned.',
+    ],
+    'status'        => [
+        'not_started'   => 'Not Started',
+        'ongoing'       => 'Ongoing',
+        'completed'     => 'Completed',
+        'abandoned'     => 'Abandoned',
     ],
     'lists'         => [
         'empty' => 'Create quests to record objectives, storylines, or character motivations.',

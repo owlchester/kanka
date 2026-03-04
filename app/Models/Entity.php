@@ -485,8 +485,14 @@ class Entity extends Model
         if ($this->isCharacter() && $this->child->is_dead) {
             $classes[] = 'character-dead';
             // @phpstan-ignore-next-line
-        } elseif ($this->isQuest() && $this->child->is_completed) {
-            $classes[] = 'quest-completed';
+        } elseif ($this->isQuest() && $this->child->is_completed > 0) {
+            if ($this->child->isCompleted()) {
+                $classes[] = 'quest-completed';
+            } elseif ($this->child->isOngoing()) {
+                $classes[] = 'quest-ongoing';
+            } elseif ($this->child->isAbandoned()) {
+                $classes[] = 'quest-abandoned';
+            }
         }
 
         if ($this->is_private) {

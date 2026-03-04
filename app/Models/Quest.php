@@ -25,7 +25,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property ?int $quest_id
  * @property ?int $instigator_id
  * @property ?int $location_id
- * @property bool|int $is_completed
+ * @property int $is_completed
  * @property string $date
  * @property ?Location $location
  * @property ?Entity $instigator
@@ -308,11 +308,35 @@ class Quest extends MiscModel
     }
 
     /**
-     * Get the value of the is_complete variable
+     * Check if the quest has not been started
+     */
+    public function isNotStarted(): bool
+    {
+        return $this->is_completed === 0;
+    }
+
+    /**
+     * Check if the quest is ongoing
+     */
+    public function isOngoing(): bool
+    {
+        return $this->is_completed === 1;
+    }
+
+    /**
+     * Check if the quest is completed
      */
     public function isCompleted(): bool
     {
-        return (bool) $this->is_completed;
+        return $this->is_completed === 2;
+    }
+
+    /**
+     * Check if the quest is abandoned
+     */
+    public function isAbandoned(): bool
+    {
+        return $this->is_completed === 3;
     }
 
     /**
