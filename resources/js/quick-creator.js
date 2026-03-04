@@ -152,9 +152,10 @@ const quickCreatorSubformHandler = () => {
                     return;
                 }
 
-                let target = document.getElementById('qq-modal-form');
+                let target = document.getElementById('primary-dialog');
                 target.innerHTML = res.data;
                 window.triggerEvent();
+                Alpine.initTree(target);
 
                 quickCreatorUI();
                 quickCreatorHandleEvents();
