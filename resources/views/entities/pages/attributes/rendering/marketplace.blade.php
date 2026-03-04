@@ -86,6 +86,9 @@ if (!isset($entity)) {
         is_defunct: {{ $entity->child->isDefunct() ? 'true' : 'false' }},
 @elseif ($entity->isQuest() && $entity->child)
         is_completed: {{ $entity->child->isCompleted() ? 'true' : 'false' }},
+        is_ongoing: {{ $entity->child->isOngoing() ? 'true' : 'false' }},
+        is_abandoned: {{ $entity->child->isAbandoned() ? 'true' : 'false' }},
+        status: {{ $entity->child->is_completed }},
 @elseif ($entity->isCreature() && $entity->child)
         is_dead: {{ $entity->child->isDead() ? 'true' : 'false' }},
         is_extinct: {{ $entity->child->isExtinct() ? 'true' : 'false' }},

@@ -71,6 +71,8 @@
                         </label>
                         @if ($field === 'is_dead')
                             @include('cruds.datagrids.filters._is_dead_status')
+                        @elseif ($field === 'is_completed')
+                            @include('cruds.datagrids.filters._is_completed_status')
                         @elseif ($filterService->isCheckbox($field))
                             @include('cruds.datagrids.filters._choice')
                         @elseif ($field === 'type' && !empty($entityModel))

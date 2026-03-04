@@ -23,7 +23,7 @@ $buttonsClass = 1;
 if ($entity->isCharacter() && $entity->child->is_dead > 0) {
     $buttonsClass++;
 }
-if ($entity->isQuest() && $entity->child->is_completed) {
+if ($entity->isQuest() && $entity->child->is_completed > 0) {
     $buttonsClass++;
 }
 if (auth()->check() && auth()->user()->isAdmin()) {
@@ -153,10 +153,20 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
                     <span class="sr-only">{{ __('characters.hints.is_missing') }}</span>
                 </span>
             @endif
-            @if ($entity->isQuest() && $entity->child->isCompleted())
-                <span class="entity-name-icon entity-quest-complete md:text-2xl" data-toggle="tooltip" data-title="{{ __('quests.fields.is_completed') }}">
+            @if ($entity->isQuest() && $entity->child->isOngoing())
+                <span class="entity-name-icon entity-quest-ongoing md:text-2xl" data-toggle="tooltip" data-title="{{ __('quests.hints.is_ongoing') }}">
+                    <x-icon class="fa-regular fa-hourglass entity-icons" />
+                    <span class="sr-only">{{ __('quests.hints.is_ongoing') }}</span>
+                </span>
+            @elseif ($entity->isQuest() && $entity->child->isCompleted())
+                <span class="entity-name-icon entity-quest-complete md:text-2xl" data-toggle="tooltip" data-title="{{ __('quests.hints.is_completed') }}">
                     <x-icon class="fa-regular fa-check-circle entity-icons" />
-                    <span class="sr-only">{{ __('quests.fields.is_completed') }}</span>
+                    <span class="sr-only">{{ __('quests.hints.is_completed') }}</span>
+                </span>
+            @elseif ($entity->isQuest() && $entity->child->isAbandoned())
+                <span class="entity-name-icon entity-quest-abandoned md:text-2xl" data-toggle="tooltip" data-title="{{ __('quests.hints.is_abandoned') }}">
+                    <x-icon class="fa-regular fa-ban entity-icons" />
+                    <span class="sr-only">{{ __('quests.hints.is_abandoned') }}</span>
                 </span>
             @endif
             @if ($entity->isOrganisation() && $entity->child->isDefunct())

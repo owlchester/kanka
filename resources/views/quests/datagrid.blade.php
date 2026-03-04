@@ -38,7 +38,14 @@
         [
             'label' => '<i class="fa-regular fa-check-circle" title="' . __('quests.fields.is_completed') . '"></i>',
             'render' => function ($model) {
-                return $model->is_completed ? '<i class="fa-regular fa-check-circle" title="' . __('quests.fields.is_completed') . '"></i>' : null;
+                if ($model->isOngoing()) {
+                    return '<i class="fa-regular fa-hourglass" title="' . __('quests.status.ongoing') . '"></i>';
+                } elseif ($model->isCompleted()) {
+                    return '<i class="fa-regular fa-check-circle" title="' . __('quests.status.completed') . '"></i>';
+                } elseif ($model->isAbandoned()) {
+                    return '<i class="fa-regular fa-ban" title="' . __('quests.status.abandoned') . '"></i>';
+                }
+                return null;
             },
             'field' => 'is_completed',
         ],
