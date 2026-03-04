@@ -59,7 +59,7 @@ class StarterService
         CampaignEvent::create([
             'campaign_id' => $this->campaign->id,
             'created_by' => $this->user->id,
-            'event' => 'campaign_created'
+            'event' => 'campaign_created',
         ]);
         session()->put('onboarding', 1);
 
@@ -155,7 +155,6 @@ class StarterService
                 '</ol>',
         ]);
 
-
         Attribute::create([
             'entity_id' => $kingdom->entity->id,
             'name' => __('starter.kingdom.features.capital.name'),
@@ -207,8 +206,7 @@ class StarterService
         ]);
         $james->entity->update([
             'source' => 'onboarding',
-            'entry' =>
-                '<p>' . __('starter.character1.description.template') . '</p>' .
+            'entry' => '<p>' . __('starter.character1.description.template') . '</p>' .
                 '<p>' . __('starter.character1.description.intro') . '</p>' .
                 '<p>' . __('starter.character1.description.tip') . '</p>',
         ]);
@@ -222,7 +220,6 @@ class StarterService
                 '<li>' . __('starter.character1.background.seeking') . '</li>' .
             '</ol>',
         ]);
-
 
         $irwie = new Character([
             'name' => __('starter.character2.name'),
