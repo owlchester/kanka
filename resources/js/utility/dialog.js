@@ -1,32 +1,8 @@
-
-import { createApp } from 'vue'
-import EntityShareModal from "./EntityShareModal.vue";
-import CampaignShareModal from "./CampaignShareModal.vue";
-
-window.mountShareModal = function () {
-    const el = document.getElementById('entity-share-container');
-    if (el && !el.__vue_app__) {
-        const app = createApp({});
-        app.component('entity-share-modal', EntityShareModal);
-        app.mount(el);
-    }
-};
-
-window.mountCampaignShareModal = function () {
-    const el = document.getElementById('campaign-share-container');
-    if (el && !el.__vue_app__) {
-        const app = createApp({});
-        app.component('campaign-share-modal', CampaignShareModal);
-        app.mount(el);
-    }
-};
 /**
  * Heavily inspired by the amazing https://web.dev/building-a-dialog-component/
  */
 const backdrop = document.getElementById('dialog-backdrop');
 let loadingContent;
-
-const dialogLoadedEvent = new Event('dialog.loaded');
 
 const initDialogs = () => {
     document.querySelectorAll('[data-toggle="dialog"]').forEach(el => {
@@ -38,6 +14,7 @@ const initDialogs = () => {
     });
 };
 
+const dialogLoadedEvent = new Event('dialog.loaded');
 
 function openingDialog(e) {
     e.preventDefault();
@@ -56,7 +33,7 @@ const openDialog = (target, url, focus) => {
 
     backdrop.classList.remove('hidden');
     if (target.dataset.dismissible !== 'false') {
-        backdrop.addEventListener('click', function () {
+        backdrop.addEventListener('click', function (event) {
             target.close();
         });
     }
@@ -69,7 +46,7 @@ const openDialog = (target, url, focus) => {
             target.close();
         }
     });
-    target.addEventListener('close', function () {
+    target.addEventListener('close', function (event) {
         backdrop.classList.add('hidden');
         target.setAttribute('aria-hidden', true);
         document.removeEventListener('keydown', handleKeydown);
@@ -110,20 +87,16 @@ const loadDialogContent = (url, target) => {
     } else {
         target.innerHTML = loadingContent;
     }
-fetch(url, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
-        .then(res => res.text()) // Get the string content
-        .then(html => {
-            target.innerHTML = html;
+
+    fetch(url, {headers: {'X-Requested-With': 'XMLHttpRequest'}})
+        .then(response => response.text())
+        .then(response => {
+            target.innerHTML = response;
             target.show();
-            window.mountShareModal();
-            window.mountCampaignShareModal();
             window.triggerEvent();
             document.dispatchEvent(dialogLoadedEvent);
             Alpine.initTree(target);
-        })
-        .catch(err => {
-            console.error(err);
-            target.innerHTML = 'Error loading content.';
+            //console.log('alpine triggered on', target);
         });
 };
 
