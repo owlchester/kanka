@@ -101,19 +101,19 @@
             <menu class="flex gap-4">
 
                 @if ($mode !== 'bulk')
-                    <button type="submit" class="btn2 btn-sm btn-outline quick-creator-submit" data-entity-type="{{ $entityType->code ?? 'post' }}" title="{{ __('entities.creator.tooltips.edit') }}" name="next" value="edit">
+                    <button type="submit" class="btn2 btn-outline quick-creator-submit" data-entity-type="{{ $entityType->code ?? 'post' }}" title="{{ __('entities.creator.tooltips.edit') }}" name="next" value="edit">
                     <span>
                         {{ __('crud.edit') }}
                     </span>
                     </button>
                 @endif
                 <div class="join">
-                    <button type="submit" class="join-item btn2 btn-primary btn-sm quick-creator-submit" data-entity-type="{{ $entityType->code ?? 'post'}}" title="{{ __('entities.creator.tooltips.create') }}" name="next">
+                    <button type="submit" class="join-item btn2 btn-primary quick-creator-submit" data-entity-type="{{ $entityType->code ?? 'post'}}" title="{{ __('entities.creator.tooltips.create') }}" name="next">
                         <span>
                             {!! __('entities.creator.actions.create', ['type' => isset($entityType) ? $entityType->name() : $singular]) !!}
                         </span>
                     </button>
-                    <button type="submit" class="join-item btn2 btn-primary btn-sm quick-creator-submit" name="next" data-entity-type="{{ $entityType->code ?? 'post' }}" value="more" title="{{ __('entities.creator.tooltips.create_more') }}">
+                    <button type="submit" class="join-item btn2 btn-primary quick-creator-submit" name="next" data-entity-type="{{ $entityType->code ?? 'post' }}" value="more" title="{{ __('entities.creator.tooltips.create_more') }}">
                         <span>
                             <x-icon class="fa-regular fa-plus-square" />
                         </span>

@@ -17,7 +17,7 @@ dialog {
         display: grid;
         gap: 0.75rem;
     }
-    form, .formless {
+    form, .formless, .container {
         display: grid;
         grid-template-rows: auto 1fr auto;
         align-items: start;
@@ -27,12 +27,6 @@ dialog {
                 margin-inline-start: auto;
             }
         }
-    }
-    .container {
-        display: grid;
-        grid-template-rows: 1fr auto;
-        align-self: stretch;
-        min-block-size: 0;
     }
 }
 
