@@ -55,6 +55,7 @@ if (!isset($entity)) {
             gender: `{{ $entity->child->sex }}`,
             pronouns: `{{ $entity->child->pronouns }}`,
             is_dead: {{ $entity->child->isDead() ? 'true' : 'false' }},
+            is_missing: {{ $entity->child->isMissing() ? 'true' : 'false' }},
             title: `{{ $entity->child->title }}`,
             age: `{{ $entity->child->age }}`,
             traits: [@foreach ($entity->child->characterTraits as $trait)
