@@ -20,7 +20,7 @@ return [
         'is_appearance_pinned'      => 'Pinned appearance',
         'is_dead'                   => 'Dead',
         'is_personality_pinned'     => 'Pinned personality',
-        'is_personality_visible'    => 'Personality visible',
+        'is_personality_visible'    => 'Personality visibility',
         'life'                      => 'Life',
         'physical'                  => 'Physical',
         'pronouns'                  => 'Pronouns',
@@ -30,7 +30,6 @@ return [
     ],
     'helpers'       => [
         'age'                   => 'You can link this character with a calendar to automatically calculate their age instead. :more.',
-        'personality_visible'   => 'If selected, the personality traits of this character are visible to all. If not, only to members of the :admin role will be able to see these traits.',
     ],
     'hints'         => [
         'is_appearance_pinned'      => 'Display the appearance traits on the overview page.',
@@ -99,6 +98,10 @@ return [
     'sections'      => [
         'appearance'    => 'Appearance',
         'personality'   => 'Personality',
+    ],
+    'personality_visibility' => [
+        'all' => 'Everyone can see',
+        'admin' => 'Only :admin members can see',
     ],
     'warnings'      => [
         'personality_hidden'    => ':name\'s personality traits have been locked down.',
