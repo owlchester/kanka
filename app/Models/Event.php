@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
-use App\Models\Concerns\HasLocation;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
@@ -29,7 +28,6 @@ class Event extends MiscModel
     use HasCampaign;
     use HasFactory;
     use HasFilters;
-    use HasLocation;
     use HasRecursiveRelationships;
     use Nested;
     use Sanitizable;
@@ -41,7 +39,6 @@ class Event extends MiscModel
         'name',
         'date',
         'is_private',
-        'location_id',
         'event_id',
     ];
 
@@ -57,7 +54,6 @@ class Event extends MiscModel
      */
     protected array $sortableColumns = [
         'date',
-        'location.name',
     ];
 
     /**
@@ -66,14 +62,12 @@ class Event extends MiscModel
      * @var string[]
      */
     public array $nullableForeignKeys = [
-        'location_id',
         'event_id',
     ];
 
     protected array $exportFields = [
         'base',
         'date',
-        'location_id',
     ];
 
     protected array $sanitizable = [
@@ -87,11 +81,8 @@ class Event extends MiscModel
     public function scopePreparedWith(Builder $query): Builder
     {
         return parent::scopePreparedWith($query->with([
-            'location' => function ($sub) {
-                $sub->select('id', 'name');
-            },
-            'location.entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id');
+            'entity.locations' => function ($sub) {
+                $sub->select('locations.id', 'locations.name');
             },
             'entity.calendarDateEvents',
         ]));
@@ -102,17 +93,17 @@ class Event extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['location_id', 'event_id', 'date'];
+        return ['event_id', 'date'];
     }
 
     public function scopeFilteredEvents(Builder $query): Builder
     {
         // @phpstan-ignore-next-line
         return $query
-            ->select(['id', 'name', 'date', 'location_id', 'is_private'])
+            ->select(['id', 'name', 'date', 'is_private'])
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with([
-                'location', 'location.entity',
+                'entity.locations', 'entity.locations.entity',
                 'parent', 'parent.entity',
                 'entity', 'entity.tags', 'entity.tags.entity', 'entity.image'])
             ->has('entity');
@@ -140,7 +131,7 @@ class Event extends MiscModel
             return true;
         }
 
-        if ($this->location || ! empty($this->entity->calendarReminder())) {
+        if ($this->entity->locations->isNotEmpty() || ! empty($this->entity->calendarReminder())) {
             return true;
         }
 
@@ -156,7 +147,7 @@ class Event extends MiscModel
     {
         return [
             'date',
-            'location_id',
+            'locations',
             'event_id',
         ];
     }

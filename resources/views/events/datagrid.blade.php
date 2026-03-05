@@ -14,7 +14,7 @@
         ],
         'date',
         [
-            'type' => 'location',
+            'type' => 'entityLocations',
             'visible' => $campaign->enabled('locations'),
         ],
         [

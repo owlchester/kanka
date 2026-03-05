@@ -13,7 +13,7 @@ class StoreEvent extends FormRequest
     use ApiRequest;
     use ResolvesNewForeignEntities;
 
-    protected array $foreignEntityFields = ['location_id'];
+    protected array $foreignEntityFields = [];
 
     /**
      * Determine if the user is authorized to make this request.
@@ -36,7 +36,6 @@ class StoreEvent extends FormRequest
             'name' => 'required|max:191',
             'entry' => 'nullable|string',
             'type' => 'nullable|string|max:191',
-            'location_id' => 'nullable|integer|exists:locations,id',
             'event_id' => 'nullable|integer|exists:events,id',
             'date' => 'nullable|max:191',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
