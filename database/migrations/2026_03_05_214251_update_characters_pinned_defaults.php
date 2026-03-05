@@ -6,19 +6,19 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        //
+        Schema::table('characters', function (Blueprint $table) {
+            $table->boolean('is_appearance_pinned')->default(1)->change();
+            $table->boolean('is_personality_pinned')->default(1)->change();
+        });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        //
+        Schema::table('characters', function (Blueprint $table) {
+            $table->boolean('is_appearance_pinned')->default(0)->change();
+            $table->boolean('is_personality_pinned')->default(0)->change();
+        });
     }
 };
