@@ -22,6 +22,7 @@ class EventResource extends EntityResource
         return $this->entity([
             'event_id' => $model->event_id,
             'date' => $model->date,
+            'location_id' => $locationIds->last(),
             'locations' => $locationIds,
             'calendar_id' => $model->entity->calendarDate?->calendar_id,
             'calendar_year' => $model->entity->calendarDate?->year,
