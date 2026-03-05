@@ -92,7 +92,10 @@
             </button>
             @else
                 <x-alert type="warning">
-                    {{ __('characters.warnings.personality_hidden') }}
+                    <p>
+                        <x-icon class="lock" />
+                        {!! __('characters.warnings.personality_hidden', ['name' => $entity->name]) !!}
+                    </p>
                 </x-alert>
             @endif
         </x-forms.field>
@@ -125,7 +128,7 @@
                     <input type="checkbox" name="is_personality_visible" value="1" @if (old('is_personality_visible', $source->child->is_personality_visible ?? $model->is_personality_visible ?? false)) checked="checked" @endif/>
                 </x-checkbox>
             </x-forms.field>
-        @else
+        @elseif (!isset($model))
             <input type="hidden" name="is_personality_visible" value="1" />
         @endif
     </x-grid>

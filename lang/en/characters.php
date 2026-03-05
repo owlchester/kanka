@@ -101,6 +101,6 @@ return [
         'personality'   => 'Personality',
     ],
     'warnings'      => [
-        'personality_hidden'    => 'You aren\'t allowed to edit personality traits on this character.',
+        'personality_hidden'    => ':name\'s personality traits have been locked down.',
     ],
 ];
