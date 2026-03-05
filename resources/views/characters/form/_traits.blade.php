@@ -47,7 +47,7 @@
             <input type="hidden" name="is_appearance_pinned" value="0" />
 
             <x-checkbox :text="__('characters.hints.is_appearance_pinned')">
-                <input type="checkbox" name="is_appearance_pinned" value="1" @if (old('is_appearance_pinned', $source->child->is_appearance_pinned ?? $model->is_appearance_pinned ?? false)) checked="checked" @endif/>
+                <input type="checkbox" name="is_appearance_pinned" value="1" @if (old('is_appearance_pinned', $source->child->is_appearance_pinned ?? $model->is_appearance_pinned ?? true)) checked="checked" @endif/>
             </x-checkbox>
         </x-forms.field>
     </x-grid>
@@ -106,9 +106,9 @@
                 field="personality-pinned"
                 :label="__('characters.fields.is_personality_pinned')"
             >
-                <input type="hidden" name="is_personality_pinned" value="0" />
+                <input type="hidden" name="is_personality_pinned" value="1" />
                 <x-checkbox :text="__('characters.hints.is_personality_pinned')">
-                    <input type="checkbox" name="is_personality_pinned" value="1" @if (old('is_personality_pinned', $source->child->is_personality_pinned ?? $model->is_personality_pinned ?? false)) checked="checked" @endif/>
+                    <input type="checkbox" name="is_personality_pinned" value="0" @if (old('is_personality_pinned', $source->child->is_personality_pinned ?? $model->is_personality_pinned ?? true)) checked="checked" @endif/>
                 </x-checkbox>
             </x-forms.field>
         @endif
@@ -125,7 +125,7 @@
                     radio
                     :selected="old('is_personality_visible', $source->child->is_personality_visible ?? $model->is_personality_visible ?? 1)"
                     :options="[
-                        1 => '<i class=\'fa-regular fa-eye\' aria-hidden=\'true\'></i> ' . __('characters.personality_visibility.all'),
+                        1 => '' . __('characters.personality_visibility.all'),
                         0 => '<i class=\'fa-regular fa-lock\' aria-hidden=\'true\'></i> ' . __('characters.personality_visibility.admin', ['admin' => '<a href=\'' . route('campaigns.campaign_roles.admin', $campaign) . '\' class=\'text-link\'>' . $campaign->adminRoleName() . '</a>']),
     ]">
                 </x-forms.select>
