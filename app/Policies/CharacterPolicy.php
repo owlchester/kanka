@@ -12,8 +12,8 @@ class CharacterPolicy extends MiscPolicy
         return config('entities.ids.character');
     }
 
-    public function personality(User $user, Character $entity): bool
+    public function personality(User $user, Character $character): bool
     {
-        return $entity->is_personality_visible || $user->isAdmin();
+        return $character->is_personality_visible || $user->isAdmin();
     }
 }

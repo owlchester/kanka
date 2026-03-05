@@ -132,15 +132,6 @@ class Character extends MiscModel
     public array $apiWith = ['characterTraits', 'characterRaces', 'characterFamilies'];
 
     /**
-     * Nullable values (foreign keys)
-     *
-     * @var string[]
-     */
-    public array $nullableForeignKeys = [
-        'is_personality_visible', // checkbox
-    ];
-
-    /**
      * Performance with for old table view of all the campaign characters
      */
     public function scopePreparedWith(Builder $query): Builder
