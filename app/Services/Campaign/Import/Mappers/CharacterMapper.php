@@ -19,8 +19,22 @@ class CharacterMapper extends MiscMapper
     public function first(): void
     {
         $this
+            ->migrateIsDead()
             ->prepareModel()
             ->trackMappings('character_id');
+    }
+
+    /**
+     * Backward compatibility: map old is_dead field to new status field.
+     */
+    protected function migrateIsDead(): self
+    {
+        if (array_key_exists('is_dead', $this->data) && ! array_key_exists('status', $this->data)) {
+            $this->data['status'] = (int) $this->data['is_dead'];
+            unset($this->data['is_dead']);
+        }
+
+        return $this;
     }
 
     public function second(): void

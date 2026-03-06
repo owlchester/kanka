@@ -2,6 +2,7 @@
 
 namespace App\Services\Campaign\Import\Mappers;
 
+use App\Enums\QuestStatus;
 use App\Facades\ImportIdMapper;
 use App\Models\Quest;
 use App\Models\QuestElement;
@@ -17,8 +18,23 @@ class QuestMapper extends MiscMapper
     public function first(): void
     {
         $this
+            ->migrateIsCompleted()
             ->prepareModel()
             ->trackMappings('quest_id');
+    }
+
+    /**
+     * Backward compatibility: map old is_completed field to new status field.
+     * Old is_completed=1 maps to QuestStatus::completed (2).
+     */
+    protected function migrateIsCompleted(): self
+    {
+        if (array_key_exists('is_completed', $this->data) && ! array_key_exists('status', $this->data)) {
+            $this->data['status'] = $this->data['is_completed'] ? QuestStatus::completed->value : QuestStatus::notStarted->value;
+            unset($this->data['is_completed']);
+        }
+
+        return $this;
     }
 
     public function second(): void
