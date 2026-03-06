@@ -19,6 +19,7 @@ return [
         'age'                       => 'Age',
         'is_appearance_pinned'      => 'Pinned appearance',
         'is_dead'                   => 'Dead',
+        'status'                    => 'Status',
         'is_personality_pinned'     => 'Pinned personality',
         'is_personality_visible'    => 'Personality visible',
         'life'                      => 'Life',

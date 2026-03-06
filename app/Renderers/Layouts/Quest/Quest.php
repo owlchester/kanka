@@ -37,8 +37,8 @@ class Quest extends Layout
                 'render' => Standard::DATE,
             ],
             'completed' => [
-                'key' => 'is_completed',
-                'label' => 'quests.fields.is_completed',
+                'key' => 'status',
+                'label' => 'quests.fields.status',
                 'render' => function (\App\Models\Quest $model) {
                     if ($model->isOngoing()) {
                         return '<i class="fa-regular fa-hourglass" data-title="' . __('quests.status.ongoing') . '" aria-hidden="true"></i>';

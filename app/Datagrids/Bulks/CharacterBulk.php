@@ -22,7 +22,7 @@ class CharacterBulk extends Bulk
     ];
 
     protected array $booleans = [
-        'is_dead',
+        'status',
     ];
 
     protected array $maths = [

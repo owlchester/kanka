@@ -67,11 +67,11 @@
                         @endif
                     @else
                         <label class="text-xs font-medium opacity-80">
-                            {{ __($field === 'is_dead' ? 'characters.fields.' . $field : ((in_array($field, ['name', 'type', 'is_private', 'has_image', 'has_attributes', 'has_entity_files', 'has_entry', 'has_posts', 'date_range', 'template', 'archived']) ? 'crud.fields.' : $langKey . '.fields.') . $field)) }}
+                            {{ __((in_array($field, ['name', 'type', 'is_private', 'has_image', 'has_attributes', 'has_entity_files', 'has_entry', 'has_posts', 'date_range', 'template', 'archived']) ? 'crud.fields.' : $langKey . '.fields.') . $field) }}
                         </label>
-                        @if ($field === 'is_dead')
+                        @if ($field === 'status' && isset($entityType) && $entityType->isCharacter())
                             @include('cruds.datagrids.filters._is_dead_status')
-                        @elseif ($field === 'is_completed')
+                        @elseif ($field === 'status' && isset($entityType) && $entityType->id == config('entities.ids.quest'))
                             @include('cruds.datagrids.filters._is_completed_status')
                         @elseif ($filterService->isCheckbox($field))
                             @include('cruds.datagrids.filters._choice')

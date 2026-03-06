@@ -140,7 +140,7 @@ class FamilyTreeService
         $entities = Entity::inTypes([config('entities.ids.character')])
             ->with([
                 'character' => function ($sub) {
-                    return $sub->select('id', 'is_dead');
+                    return $sub->select('id', 'status');
                 },
                 'entityType',
                 'tags',

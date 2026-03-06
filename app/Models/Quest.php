@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\FilterOption;
+use App\Enums\QuestStatus;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
@@ -25,7 +26,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property ?int $quest_id
  * @property ?int $instigator_id
  * @property ?int $location_id
- * @property int $is_completed
+ * @property QuestStatus $status
  * @property string $date
  * @property ?Location $location
  * @property ?Entity $instigator
@@ -52,14 +53,14 @@ class Quest extends MiscModel
         'is_private',
         'instigator_id',
         'location_id',
-        'is_completed',
+        'status',
         'date',
     ];
 
     protected array $sortable = [
         'name',
         'date',
-        'is_completed',
+        'status',
         'type',
         'parent.name',
     ];
@@ -75,7 +76,7 @@ class Quest extends MiscModel
     protected array $sortableColumns = [
         'date',
         'instigator.name',
-        'is_completed',
+        'status',
         'calendar_date',
         'location.name',
     ];
@@ -107,11 +108,15 @@ class Quest extends MiscModel
         'base',
         'instigator_id',
         'location_id',
-        'is_completed',
+        'status',
         'date',
     ];
 
-    protected array $exploreGridFields = ['is_completed'];
+    protected array $exploreGridFields = ['status'];
+
+    public $casts = [
+        'status' => QuestStatus::class,
+    ];
 
     /**
      * Performance with for datagrids
@@ -139,7 +144,7 @@ class Quest extends MiscModel
     {
         // @phpstan-ignore-next-line
         return $query
-            ->select(['id', 'name', 'location_id', 'is_completed', 'is_private'])
+            ->select(['id', 'name', 'location_id', 'status', 'is_private'])
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with([
                 'location', 'location.entity',
@@ -204,7 +209,7 @@ class Quest extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['quest_id', 'instigator_id', 'location_id', 'is_completed'];
+        return ['quest_id', 'instigator_id', 'location_id', 'status'];
     }
 
     public function shortDescription()
@@ -298,7 +303,7 @@ class Quest extends MiscModel
             'date',
             'quest_id',
             'instigator_id',
-            'is_completed',
+            'status',
             'date_start',
             'location_id',
             'date_end',
@@ -312,7 +317,7 @@ class Quest extends MiscModel
      */
     public function isNotStarted(): bool
     {
-        return $this->is_completed === 0;
+        return $this->status === QuestStatus::notStarted;
     }
 
     /**
@@ -320,7 +325,7 @@ class Quest extends MiscModel
      */
     public function isOngoing(): bool
     {
-        return $this->is_completed === 1;
+        return $this->status === QuestStatus::ongoing;
     }
 
     /**
@@ -328,7 +333,7 @@ class Quest extends MiscModel
      */
     public function isCompleted(): bool
     {
-        return $this->is_completed === 2;
+        return $this->status === QuestStatus::completed;
     }
 
     /**
@@ -336,7 +341,7 @@ class Quest extends MiscModel
      */
     public function isAbandoned(): bool
     {
-        return $this->is_completed === 3;
+        return $this->status === QuestStatus::abandoned;
     }
 
     /**
@@ -347,7 +352,7 @@ class Quest extends MiscModel
         $columns = [
             'name' => __('crud.fields.name'),
             'type' => __('crud.fields.type'),
-            'is_completed' => __('quests.fields.is_completed'),
+            'status' => __('quests.fields.status'),
             'calendar_date' => __('crud.fields.calendar_date'),
         ];
 

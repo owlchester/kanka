@@ -27,12 +27,14 @@ return [
         'date'          => 'Date',
         'element_role'  => 'Role',
         'instigator'    => 'Instigator',
-        'is_completed'  => 'Status',
+        'is_completed'  => 'Completed',
+        'status'        => 'Status',
         'location'      => 'Starting location',
         'role'          => 'Role',
     ],
     'helpers'       => [
-        'is_completed'  => 'The quest\'s current status.',
+        'is_completed'  => 'The quest is considered as completed.',
+        'status'        => 'The quest\'s current status.',
     ],
     'hints'         => [
         'is_completed'  => 'This quest is completed.',

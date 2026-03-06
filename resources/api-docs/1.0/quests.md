@@ -164,7 +164,8 @@ To create a quest, use the following endpoint.
 | `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
 | `entity_header_uuid` | `string` | Gallery image UUID for the entity header (premium campaign feature) |
 | `tooltip`            | `string` | The quest's tooltip (premium campaign feature)                   |
-| `is_completed` | `integer` | The quest's status: `0` Not Started, `1` Ongoing, `2` Completed, `3` Abandoned |
+| `is_completed` | `boolean` | If the quest is completed (deprecated, use `status`) |
+| `status` | `integer` | The quest's status: `0` Not Started, `1` Ongoing, `2` Completed, `3` Abandoned |
 | `is_private` | `boolean` | If the quest is only visible to `admin` members of the campaign |
 
 ### Results

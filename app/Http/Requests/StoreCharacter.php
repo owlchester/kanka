@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\CharacterStatus;
 use App\Facades\Limit;
 use App\Models\Family;
 use App\Models\Race;
@@ -10,6 +11,7 @@ use App\Rules\EntityLocations;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Enum;
 
 class StoreCharacter extends FormRequest
 {
@@ -45,7 +47,7 @@ class StoreCharacter extends FormRequest
             'sex' => 'nullable|max:45',
             'pronouns' => 'nullable|max:45',
             'title' => 'nullable|max:191',
-            'is_dead' => 'nullable|integer|in:0,1,2',
+            'status' => ['nullable', new Enum(CharacterStatus::class)],
             'template_id' => 'nullable',
             'families' => ['nullable', 'array', new EntityField(config('entities.ids.family'), Family::class)],
             'races' => ['nullable', 'array', new EntityField(config('entities.ids.race'), Race::class)],

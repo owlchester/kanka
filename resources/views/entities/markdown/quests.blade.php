@@ -1,5 +1,5 @@
-@if ($entity->child->is_completed > 0)
+@if ($entity->child->status !== \App\Enums\QuestStatus::notStarted)
 ## {!! __('crud.tabs.profile') !!}
 
-* {{ __('quests.fields.is_completed') }}: {{ __('quests.status.' . ['not_started', 'ongoing', 'completed', 'abandoned'][$entity->child->is_completed]) }}
+* {{ __('quests.fields.status') }}: {{ __('quests.status.' . ['not_started', 'ongoing', 'completed', 'abandoned'][$entity->child->status->value]) }}
 @endif

@@ -20,7 +20,7 @@ class CharacterFilter extends DatagridFilter
             ->add('age')
             ->add('sex')
             ->add('pronouns')
-            ->add('is_dead')
+            ->add('status')
             ->isPrivate()
             ->template()
             ->archived()

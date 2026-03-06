@@ -9,8 +9,8 @@
         'title',
         'type',
         [
-            'label' => '<i class="fa-regular fa-skull" title="' . __('characters.fields.is_dead') . '" aria-hidden="true"></i> <span class="sr-only">' . __('characters.fields.is_dead') . '</span>',
-            'field' => 'is_dead',
+            'label' => '<i class="fa-regular fa-skull" title="' . __('characters.fields.status') . '" aria-hidden="true"></i> <span class="sr-only">' . __('characters.fields.status') . '</span>',
+            'field' => 'status',
             'render' => function($model) {
                 if ($model->isDead()) {
                     return '<i class="fa-regular fa-skull" data-toggle="tooltip" data-title="' . __('characters.hints.is_dead') . '" aria-hidden="true"></i> <span class="sr-only">' . __('characters.status.dead') . '</span>';

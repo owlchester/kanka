@@ -36,7 +36,7 @@
             'disableSort' => true,
         ],
         [
-            'label' => '<i class="fa-regular fa-check-circle" title="' . __('quests.fields.is_completed') . '"></i>',
+            'label' => '<i class="fa-regular fa-check-circle" title="' . __('quests.fields.status') . '"></i>',
             'render' => function ($model) {
                 if ($model->isOngoing()) {
                     return '<i class="fa-regular fa-hourglass" title="' . __('quests.status.ongoing') . '"></i>';
@@ -47,7 +47,7 @@
                 }
                 return null;
             },
-            'field' => 'is_completed',
+            'field' => 'status',
         ],
         [
             'type' => 'reminder',

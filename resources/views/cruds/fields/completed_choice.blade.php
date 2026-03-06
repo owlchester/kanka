@@ -1,7 +1,7 @@
 
 <div class="completed">
-    <label for="is_completed">{{ trans('quests.fields.is_completed') }}</label>
-    <select name="is_completed" class="w-full">
+    <label for="status">{{ trans('quests.fields.status') }}</label>
+    <select name="status" class="w-full">
         <option value=""></option>
         <option value="0">{{ trans('quests.status.not_started') }}</option>
         <option value="1">{{ trans('quests.status.ongoing') }}</option>

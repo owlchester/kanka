@@ -410,15 +410,7 @@ class DatagridRenderer
             } else {
                 // Handle boolean values (has, is)
                 if ($this->isBoolean($column)) {
-                    if ($column === 'is_dead' && method_exists($model, 'isMissing') && $model->isMissing()) {
-                        $content = '<i class="fa-regular fa-question" aria-hidden="true"></i>';
-                    } elseif ($column === 'is_dead' && method_exists($model, 'isDead') && $model->isDead()) {
-                        $content = '<i class="fa-regular fa-skull" aria-hidden="true"></i>';
-                    } elseif ($column !== 'is_dead') {
-                        $content = $model->{$column} ? '<i class="fa-regular fa-check-circle" aria-hidden="true"></i>' : '';
-                    } else {
-                        $content = '';
-                    }
+                    $content = $model->{$column} ? '<i class="fa-regular fa-check-circle" aria-hidden="true"></i>' : '';
                 } else {
                     $content = ($model->{$column});
                 }

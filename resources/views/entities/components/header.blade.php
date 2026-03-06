@@ -20,10 +20,10 @@ $addTagsUrl = route('entity.tags-add', [$campaign, $entity]);
 $entityTags = $entity->visibleTags();
 
 $buttonsClass = 1;
-if ($entity->isCharacter() && $entity->child->is_dead > 0) {
+if ($entity->isCharacter() && $entity->child->status !== \App\Enums\CharacterStatus::alive) {
     $buttonsClass++;
 }
-if ($entity->isQuest() && $entity->child->is_completed > 0) {
+if ($entity->isQuest() && $entity->child->status !== \App\Enums\QuestStatus::notStarted) {
     $buttonsClass++;
 }
 if (auth()->check() && auth()->user()->isAdmin()) {

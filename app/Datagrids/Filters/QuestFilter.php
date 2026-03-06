@@ -16,7 +16,7 @@ class QuestFilter extends DatagridFilter
             ->add('name')
             ->add('type')
             ->dateRange()
-            ->add('is_completed')
+            ->add('status')
             ->add([
                 'field' => 'instigator_id',
                 'label' => __('quests.fields.instigator'),
