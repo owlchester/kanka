@@ -176,8 +176,8 @@ class Location extends MiscModel
                     ->on('entities.entity_id', '=', 'events.id')
                     ->where('entities.type_id', config('entities.ids.event'));
             })
-            ->join('entity_locations', 'entity_locations.entity_id', '=', 'entities.id')
-            ->whereIn('entity_locations.location_id', $locationIds);
+            ->join('entity_locations as all_el', 'all_el.entity_id', '=', 'entities.id')
+            ->whereIn('all_el.location_id', $locationIds);
     }
 
     /**
