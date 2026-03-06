@@ -15,6 +15,7 @@ class EventFilter extends DatagridFilter
             ->add('name')
             ->add('type')
             ->add('date')
+            ->locations()
             ->add([
                 'field' => 'event_id',
                 'label' => __('crud.fields.parent'),

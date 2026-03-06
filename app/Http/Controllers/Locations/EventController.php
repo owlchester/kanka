@@ -25,7 +25,7 @@ class EventController extends Controller
         $options = ['campaign' => $campaign, 'location' => $location, 'm' => $this->descendantsMode()];
         $filters = [];
         if ($this->filterToDirect()) {
-            $filters['location_id'] = $location->id;
+            $filters['locations'] = [$location->id];
         }
         Datagrid::layout(\App\Renderers\Layouts\Location\Event::class)
             ->route('locations.events', $options);

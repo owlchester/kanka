@@ -161,14 +161,6 @@ class Location extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Event, $this>
-     */
-    public function events(): HasMany
-    {
-        return $this->hasMany('App\Models\Event', 'location_id', 'id');
-    }
-
-    /**
      * Get all events in the location and descendants
      */
     public function allEvents(): Builder|Event
@@ -178,11 +170,14 @@ class Location extends MiscModel
             $locationIds[] = $descendant->id;
         }
 
-        $table = new Event;
-
-        return Event::whereIn($table->getTable() . '.location_id', $locationIds)
-            ->with('location')
-            ->has('entity');
+        return Event::distinct()
+            ->join('entities', function ($join) {
+                $join
+                    ->on('entities.entity_id', '=', 'events.id')
+                    ->where('entities.type_id', config('entities.ids.event'));
+            })
+            ->join('entity_locations as all_el', 'all_el.entity_id', '=', 'entities.id')
+            ->whereIn('all_el.location_id', $locationIds);
     }
 
     /**
