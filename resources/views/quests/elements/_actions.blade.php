@@ -7,6 +7,6 @@
 @php
     $url = route('confirm-delete', [$campaign, 'route' => route('quests.quest_elements.destroy', [$campaign, $model, $element]), 'name' => $element->name()]);
 @endphp
-<x-dropdowns.item link="#" css="text-error hover:bg-error hover:text-error-content" :data="['toggle' => 'dialog', 'target' => 'primary-dialog', 'url' => $url]" icon="trash">
+<x-dropdowns.item link="#" css="text-error-content hover:bg-error" :data="['toggle' => 'dialog', 'target' => 'primary-dialog', 'url' => $url]" icon="trash">
     {{ __('posts.remove.title') }}
 </x-dropdowns.item>

@@ -87,7 +87,7 @@ const getImageFloat = (): 'left' | 'right' | null => {
         <!-- Delete -->
         <button
             @click.prevent="deleteImage"
-            class="hover:text-error px-2 py-1"
+            class="hover:text-error-content px-2 py-1"
             title="Delete image"
         >
             <i class="fa-regular fa-trash" aria-hidden="true" />

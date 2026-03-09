@@ -93,7 +93,7 @@
             <a v-if="props.isAdmin && !attribute.is_hidden" role="button" @click="privateToggle(attribute)" class="w-6 lg:w-16 inline-block text-center cursor-pointer text-base-content hover:text-accent" >
                 <i v-bind:class="privateClass(attribute)" v-bind:aria-label="privateLabel(attribute)" />
             </a>
-            <a role="button" class="w-6 lg:w-16 inline-block text-center flex-none cursor-pointer hover:text-error text-base-content" @click="$emit('remove', attribute)" v-if="!attribute.is_hidden">
+            <a role="button" class="w-6 lg:w-16 inline-block text-center flex-none cursor-pointer hover:text-error-content text-base-content" @click="$emit('remove', attribute)" v-if="!attribute.is_hidden">
                 <i class="fa-regular fa-trash-can" v-bind:aria-label="trans('columns.delete')" v-bind:title="trans('columns.delete')" />
             </a>
         </div>

@@ -30,7 +30,7 @@
                 @elseif ($action === \App\Renderers\Layouts\Layout::ACTION_DELETE)
                 <x-dropdowns.item
                     link="#"
-                    css="text-error hover:bg-error hover:text-error-content"
+                    css="text-error-content hover:bg-error"
                     :dialog="route('confirm-delete', [$campaign, 'route' => route($model->url('destroy'), method_exists($model, 'routeParams') ? $model->routeParams(['campaign' => $campaign] + $params) : [$campaign, $model]), 'name' => (method_exists($model, 'deleteName') ? $model->deleteName() : $model->name), 'permanent' => true] + (method_exists($model, 'actionDeleteConfirmOptions') ? $model->actionDeleteConfirmOptions() : []))"
                     icon="trash">
                     {{ __('crud.remove') }}

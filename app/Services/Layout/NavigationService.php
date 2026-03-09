@@ -36,6 +36,7 @@ class NavigationService
     {
         $data = [
             'name' => $this->user->name,
+            'email' => $this->user->email,
             'created' => __('users/profile.fields.member_since', ['date' => $this->user->created_at->format('M d, Y')]),
             'is_impersonating' => false,
             'your_profile' => __('header.user.your-profile'),
@@ -201,31 +202,8 @@ class NavigationService
 
     protected function marketplace(): array
     {
-        if (! config('marketplace.enabled')) {
-            return [];
-        }
-        $counts = MarketplaceCache::counts();
         $data = [
-            'themes' => [
-                'title' => __('Themes'),
-                'url' => config('marketplace.url') . '/themes',
-                'number' => number_format($counts[1]),
-            ],
-            'sheets' => [
-                'title' => __('Sheets'),
-                'url' => config('marketplace.url') . '/character-sheets',
-                'number' => number_format($counts[2]),
-            ],
-            'content' => [
-                'title' => __('Content'),
-                'url' => config('marketplace.url') . '/content-packs',
-                'number' => number_format($counts[3]),
-            ],
             'title' => __('footer.plugins'),
-            'explore' => [
-                'url' => config('marketplace.url'),
-                'text' => __('maps.actions.explore'),
-            ],
         ];
 
         return $data;

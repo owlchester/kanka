@@ -26,7 +26,7 @@
             :helper="__('calendars.hints.event_length')"
             tooltip>
         <input type="number" name="length" class="w-full" value="{{ old('length', $model->length ?? 1) }}" placeholder="{{ __('calendars.placeholders.length') }}" aria-label="{{ __('calendars.placeholders.length') }}" data-url="{{ route('calendars.event-length', [$campaign, 'calendar' => $calendar ?? 0]) }}" />
-            <p class="length-warning hidden text-error">
+            <p class="length-warning hidden text-error-content">
                 {!!  __('calendars.warnings.event_length', ['documentation' => '<a target="_blank" href="https://docs.kanka.io/en/latest/entries/calendars.html#long-lasting-reminders"><i class="fa-regular fa-external-link" aria-hidden="true"></i> ' . __('footer.documentation') . '</a>'])!!}
             </p>
     </x-forms.field>

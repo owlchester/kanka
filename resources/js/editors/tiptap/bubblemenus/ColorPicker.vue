@@ -169,7 +169,7 @@ onBeforeUnmount(() => {
             <!-- Clear button -->
             <button
                 @mousedown.prevent="clearColor"
-                class="w-full text-xs text-neutral-content hover:text-error py-1 flex items-center justify-center gap-1 cursor-pointer"
+                class="w-full text-xs text-neutral-content hover:text-error-content py-1 flex items-center justify-center gap-1 cursor-pointer"
             >
                 <i class="fa-regular fa-eraser" aria-hidden="true"></i>
                 Remove color

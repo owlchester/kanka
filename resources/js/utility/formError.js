@@ -5,7 +5,7 @@ window.formErrorHandler = function(err, form) {
     existingErrors.forEach(field => {
         field.classList.remove('input-error');
     });
-    const textError = document.querySelector('.text-error');
+    const textError = document.querySelector('.text-error-content');
     if (textError) {
         textError.remove();
     }
@@ -46,7 +46,7 @@ window.formErrorHandler = function(err, form) {
         if (errorSelector) {
             errorSelector.classList.add('input-error');
             const errorElement = document.createElement('div');
-            errorElement.classList.add('text-error');
+            errorElement.classList.add('text-error-content');
             errorElement.innerHTML = errors[i][0];
             errorSelector.parentNode.append(errorElement);
         } else {

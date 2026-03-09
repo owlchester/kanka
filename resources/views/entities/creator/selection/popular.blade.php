@@ -1,4 +1,4 @@
-<div class="text-uppercase text-sm font-bold mb-4">
+<div class="text-xs uppercase font-semibold text-neutral-content mb-4">
     {{ __('entities.creator.titles.quick-access') }}
 </div>
 <div class="selection flex flex-col gap-4 pr-4">

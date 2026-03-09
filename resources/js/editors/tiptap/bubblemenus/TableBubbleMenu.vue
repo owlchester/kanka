@@ -180,7 +180,7 @@ const toggleHeaderRow = () => {
 
         <button
             @click.prevent="deleteTable"
-            class="hover:text-error px-2 py-1"
+            class="hover:text-error-content px-2 py-1"
             title="Delete table"
         >
             <i class="fa-regular fa-trash" aria-hidden="true" />

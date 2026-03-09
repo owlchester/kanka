@@ -192,7 +192,7 @@ blockquote {
 
 .table-striped tbody > tr:nth-of-type(odd) {
     --tw-bg-opacity: 1;
-    background-color: hsl(var(--b3)/var(--tw-bg-opacity));
+    background-color: hsl(var(--b2)/var(--tw-bg-opacity));
 }
 .table-hover {
     tbody {

@@ -49,7 +49,7 @@
                                 </x-dropdowns.item>
                                 <x-dropdowns.item
                                     link="#"
-                                    css="text-error hover:bg-error hover:text-error-content"
+                                    css="text-error-content hover:bg-error"
                                     :dialog="route('confirm-delete', [$campaign, 'route' => route('timelines.timeline_elements.destroy', [$campaign, $timeline, $element, 'from' => 'view']), 'name' => $element->elementName(), 'permanent' => true])"
                                     icon="trash">{{ __('crud.remove') }}
                                 </x-dropdowns.item>

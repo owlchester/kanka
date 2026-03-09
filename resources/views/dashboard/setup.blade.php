@@ -84,7 +84,7 @@ $hasDashboards = !$dashboards->isEmpty() || !empty($dashboard);
 
                         @php $data = route('confirm-delete', [$campaign, 'route' => route('campaign_dashboards.destroy', [$campaign, $dashboard]), 'name' => $dashboard->name, 'permanent' => true]); @endphp
                         <x-dropdowns.divider />
-                        <x-dropdowns.item link="#" css="text-error hover:bg-error hover:text-error-content" :dialog="$data" icon="trash">
+                        <x-dropdowns.item link="#" css="text-error-content hover:bg-error" :dialog="$data" icon="trash">
                             {{ __('crud.remove') }}
                         </x-dropdowns.item>
                     </div>

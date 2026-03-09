@@ -63,7 +63,7 @@ $statuses = [
                     </div>
                 @endif
                 <div class="flex items-center">
-                    <div class="member-delete cursor-pointer hover:text-error text-base-content text-lg" title="{{ __('crud.remove') }}" role="button" tabindex="0" data-target=".member-row">
+                    <div class="member-delete cursor-pointer hover:text-error-content text-base-content text-lg" title="{{ __('crud.remove') }}" role="button" tabindex="0" data-target=".member-row">
                         <x-icon class="trash" />
                         <span class="sr-only">{{ __('crud.remove') }}</span>
                     </div>
@@ -112,7 +112,7 @@ $statuses = [
                 </div>
             @endif
             <div class="text-lg">
-                <span class="member-delete cursor-pointer hover:text-error text-base-content" title="{{ __('crud.remove') }}" role="button" tabindex="0" data-target=".parent-row">
+                <span class="member-delete cursor-pointer hover:text-error-content text-base-content" title="{{ __('crud.remove') }}" role="button" tabindex="0" data-target=".parent-row">
                     <x-icon class="trash" />
                     <span class="sr-only">{{ __('crud.remove') }}</span>
                 </span>

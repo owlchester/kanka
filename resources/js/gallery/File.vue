@@ -106,7 +106,7 @@
 
             <div class="flex gap-2 items-center justify-between">
                 <i
-                    class="fa-solid fa-spinner fa-spin text-error"
+                    class="fa-solid fa-spinner fa-spin text-error-content"
                     v-if="deleting"
                     aria-label="Deleting"
                 ></i>
@@ -157,7 +157,7 @@
                         @click="resetFocus"
                     >
                         <i
-                            class="fa-duotone fa-arrow-up-left-from-circle hover:text-error"
+                            class="fa-duotone fa-arrow-up-left-from-circle hover:text-error-content"
                             aria-label="Focus point"
                         />
                     </div>

@@ -278,7 +278,7 @@
                 <button
                     v-if="permissions?.delete"
                     @click="bulkDelete()"
-                    class="flex items-center gap-2 px-2 py-1 cursor-pointer text-error hover:bg-error hover:text-error-content rounded"
+                    class="flex items-center gap-2 px-2 py-1 cursor-pointer text-error-content hover:bg-error rounded"
                 >
                     <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
                     <span v-html="i18n.bulkDelete"></span>

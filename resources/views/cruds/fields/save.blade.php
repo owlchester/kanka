@@ -6,12 +6,12 @@
 @else
     <input id="submit-mode" type="hidden" value="true"/>
     <div class="join">
-        <button class="btn2 join-item btn-primary btn-sm btn-{{ !isset($model) ? 'save' : 'edit' }}-{{ isset($entityType) ? 'entity' : 'other' }}" id="form-submit-main" @if (isset($entityType))data-entity-type="{{ $entityType }}"@endif data-target="{{ isset($target) ? $target : null }}">
+        <button class="btn2 join-item btn-primary btn-{{ !isset($model) ? 'save' : 'edit' }}-{{ isset($entityType) ? 'entity' : 'other' }}" id="form-submit-main" @if (isset($entityType))data-entity-type="{{ $entityType }}"@endif data-target="{{ isset($target) ? $target : null }}">
             <span>{{ __('crud.save') }}</span>
             <i class="fa-solid fa-spinner fa-spin spinner" aria-hidden="true" style="display: none"></i>
         </button>
         <div class="dropdown">
-            <button type="button" class="btn2 btn-sm join-item btn-primary" data-dropdown aria-expanded="false">
+            <button type="button" class="btn2 join-item btn-primary" data-dropdown aria-expanded="false">
                 <x-icon class="fa-regular fa-caret-down" />
                 <span class="sr-only">{{ __('crud.actions.actions') }}</span>
             </button>

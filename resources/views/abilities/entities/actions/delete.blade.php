@@ -1,7 +1,7 @@
 @can('update', $model->entity)
 <x-dropdowns.item
     link="#"
-    css="text-error hover:bg-error hover:text-error-content"
+    css="text-error-content hover:bg-error"
     :dialog="route('confirm-delete', [$campaign, 'route' => route('entities.entity_abilities.destroy', [
     $campaign,
     'entity' => $model->entity,

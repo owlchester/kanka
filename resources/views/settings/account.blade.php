@@ -59,7 +59,7 @@
 
     <x-box class="border-error border rounded-2xl">
         <x-slot name="title">
-            <span class="text-error">{{ __('profiles.sections.dangerzone') }}</span>
+            <span class="text-error-content">{{ __('profiles.sections.dangerzone') }}</span>
         </x-slot>
 
         <div class="flex flex-col md:flex-row gap-4 md:justify-between">

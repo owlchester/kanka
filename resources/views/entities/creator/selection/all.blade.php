@@ -2,7 +2,7 @@
 $half = ceil(count($entityTypes)  / 2);
 $i = 0;
 @endphp
-<div class="text-uppercase text-sm font-bold mb-4">
+<div class="text-xs uppercase font-semibold text-neutral-content mb-4">
     {{ __('entities.creator.titles.everything') }}
 </div>
 <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 selection">

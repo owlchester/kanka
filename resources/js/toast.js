@@ -26,7 +26,7 @@ window.showToast = function(message, css) {
         css = 'bg-error text-error-content';
     }
     const container = document.createElement('div');
-    container.classList.add('opacity-100', 'duration-150', 'transition-opacity', 'rounded');
+    container.classList.add('opacity-100', 'duration-150', 'transition-opacity', 'rounded-lg', 'px-1');
     if (css) {
         const classes = css.split(' ');
         classes.forEach(cssClass => {

@@ -1,8 +1,6 @@
 <?php /**
  * @var \App\Models\Campaign $model
- * @var \App\Services\LanguageService $languages
  */ ?>
-@inject('languages', 'App\Services\LanguageService')
 <div class="nav-tabs-custom bg-base-100 p-4 rounded-xl flex flex-col gap-6">
     @include('campaigns.forms._tabs')
 

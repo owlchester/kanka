@@ -92,7 +92,7 @@ const handleLinkKeydown = (event: KeyboardEvent) => {
         <button
             v-if="editor.isActive('link')"
             @click.prevent="removeLink"
-            class="hover:text-error"
+            class="hover:text-error-content"
             title="Remove link"
         >
             <i class="fa-regular fa-unlink" aria-label="Removal icon" />

@@ -125,6 +125,20 @@ const registerBulk = (datagrid) => {
         registerBulkSubmit(datagrid, submit);
     });
 
+    // Register elements inside tippy popups created from this datagrid's bulk actions.
+    // Tippy copies dropdown innerHTML as a string, creating new DOM elements without event
+    // listeners, appended outside the datagrid parent (typically document.body).
+    parent.querySelectorAll('.datagrid-bulk-actions [data-dropdown]')?.forEach(trigger => {
+        if (trigger._tippy?.popper) {
+            trigger._tippy.popper.querySelectorAll('.datagrid-bulk')?.forEach(bulk => {
+                registerBulkClick(datagrid, bulk);
+            });
+            trigger._tippy.popper.querySelectorAll('.datagrid-submit')?.forEach(submit => {
+                registerBulkSubmit(datagrid, submit);
+            });
+        }
+    });
+
     document.querySelector('#datagrid-action-confirm')?.addEventListener('click', function () {
         window.closeDialog('datagrid-bulk-delete');
         form.submit();
@@ -142,7 +156,7 @@ const registerBulkSubmit = (datagrid, submit) => {
     console.log('register bulk submit', submit, submit.parentNode);
     submit.addEventListener('click', function (e) {
         e.preventDefault();
-        form = submit.closest('form');
+        form = submit.closest('form') || datagrid.closest('form');
 
         const action = form.querySelector('input[name="action"]');
         action.value = submit.dataset.action;
@@ -172,6 +186,7 @@ const registerBulkClick = (datagrid, element) => {
     element.dataset.loaded = '1';
 
     element.addEventListener('click', function (e) {
+        console.log('real click');
         e.preventDefault();
         form = datagrid.closest('form');
 

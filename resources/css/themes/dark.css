@@ -23,14 +23,13 @@
         --body-background: hsl(var(--base)/1);
         --sf: 316 70% 43%;
         --af: 175 70% 34%;
-        --su: 144 31% 36%;
+        --su: 144 31% 76%;
         --wa: 23 92% 75%;
         --er: 343 81% 75%;
-        --in: 199 76% 69%;
-        --inc: var(--text);
-        --suc: var(--text);
-        --wac: var(--text);
-        --erc: var(--text);
+        --inc: 199 76% 89%;
+        --in: 223 61.8% 20.8%;
+        --suc: 163 88.1% 15.8%;
+        --wac: 26 90.5% 17.1%;
         --p: 287 84% 81%;
         --pc: 287 78% 1%;
         --pf: 287 88% 62%;
@@ -53,5 +52,5 @@
 }
 .alert {
     border: 1px solid var(--alert-bg);
-    --alert-bg: hsl(var(--b1)/1);
+    /*--alert-bg: hsl(var(--b1)/1);*/
 }

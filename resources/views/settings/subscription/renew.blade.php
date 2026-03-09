@@ -10,7 +10,7 @@
     <x-grid type="1/1">
         <x-helper>
             <p class="text-left">
-                {!! __('settings.subscription.cancel.grace.text', ['date' => '<span class="text-error">' . $endDate . '</span>'])!!}
+                {!! __('settings.subscription.cancel.grace.text', ['date' => '<span class="text-error-content">' . $endDate . '</span>'])!!}
             </p>
         </x-helper>
         <x-helper>
