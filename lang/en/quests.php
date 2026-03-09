@@ -17,9 +17,13 @@ return [
             'title'     => 'Update element for :name',
         ],
         'fields'    => [
+            'copy_entity_entry' => 'Use entity entry',
             'description'       => 'Description',
             'entity_or_name'    => 'Either select either an entry of the campaign, or give a name for this element.',
             'name'              => 'Name',
+        ],
+        'helpers'   => [
+            'copy_entity_entry' => 'Display the linked entity\'s entry instead of the custom description.',
         ],
     ],
     'fields'        => [

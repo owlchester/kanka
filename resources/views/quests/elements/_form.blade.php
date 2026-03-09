@@ -34,6 +34,13 @@
         @include('cruds.fields.entry', ['model' => $model ?? null])
     </x-forms.field>
 
+    <x-forms.field field="copy" css="col-span-2" :label="__('quests.elements.fields.copy_entity_entry')">
+        <input type="hidden" name="copy_entity_entry" value="0" />
+        <x-checkbox :text="__('quests.elements.helpers.copy_entity_entry')">
+            <input type="checkbox" name="copy_entity_entry" value="1" @if (old('copy_entity_entry', $model->copy_entity_entry ?? false)) checked="checked" @endif />
+        </x-checkbox>
+    </x-forms.field>
+
     @include('cruds.fields.colour')
     @include('cruds.fields.visibility_id')
 </x-grid>
