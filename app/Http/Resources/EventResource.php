@@ -17,13 +17,10 @@ class EventResource extends EntityResource
         /** @var Event $model */
         $model = $this->resource;
 
-        $locationIds = $model->entity->locations->pluck('id');
-
         return $this->entity([
             'event_id' => $model->event_id,
             'date' => $model->date,
-            'location_id' => $locationIds->last(),
-            'locations' => $locationIds,
+            'locations' => $model->entity->locations->pluck('id'),
             'calendar_id' => $model->entity->calendarDate?->calendar_id,
             'calendar_year' => $model->entity->calendarDate?->year,
             'calendar_month' => $model->entity->calendarDate?->month,

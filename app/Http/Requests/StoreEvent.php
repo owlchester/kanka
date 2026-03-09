@@ -14,8 +14,6 @@ class StoreEvent extends FormRequest
     use ApiRequest;
     use ResolvesNewForeignEntities;
 
-    protected array $foreignEntityFields = [];
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -24,19 +22,6 @@ class StoreEvent extends FormRequest
     public function authorize()
     {
         return true;
-    }
-
-    /**
-     * Handle backwards compatibility for location_id -> locations
-     */
-    protected function prepareForValidation(): void
-    {
-        if ($this->has('location_id') && ! $this->has('locations')) {
-            $locationId = $this->input('location_id');
-            $this->merge([
-                'locations' => ! empty($locationId) ? [$locationId] : [],
-            ]);
-        }
     }
 
     /**
