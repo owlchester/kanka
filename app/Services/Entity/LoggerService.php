@@ -284,6 +284,11 @@ class LoggerService
                 ));
             }
 
+            // Enum fields that aren't foreign keys
+            if ($attribute === 'status_id') {
+                return $original instanceof \BackedEnum ? (string) $original->value : (string) $original;
+            }
+
             // Let's try based off of the attribute name
             $relationName = Str::before($attribute, '_id');
             $relationName = Str::camel($relationName);

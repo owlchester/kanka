@@ -18,12 +18,12 @@
     </x-forms.field>
 
     <x-forms.field
-        field="status"
+        field="status_id"
         :label="__('characters.fields.status')">
-        <select name="status" class="w-full">
-            <option value="0" @selected(old('status', $source->child->status?->value ?? $model->status?->value ?? 0) == 0)>{{ __('characters.status.alive') }}</option>
-            <option value="1" @selected(old('status', $source->child->status?->value ?? $model->status?->value ?? 0) == 1)>{{ __('characters.status.dead') }}</option>
-            <option value="2" @selected(old('status', $source->child->status?->value ?? $model->status?->value ?? 0) == 2)>{{ __('characters.status.missing') }}</option>
+        <select name="status_id" class="w-full">
+            <option value="0" @selected(old('status_id', $source->child->status_id?->value ?? $model->status_id?->value ?? 0) == 0)>{{ __('characters.status.alive') }}</option>
+            <option value="1" @selected(old('status_id', $source->child->status_id?->value ?? $model->status_id?->value ?? 0) == 1)>{{ __('characters.status.dead') }}</option>
+            <option value="2" @selected(old('status_id', $source->child->status_id?->value ?? $model->status_id?->value ?? 0) == 2)>{{ __('characters.status.missing') }}</option>
         </select>
     </x-forms.field>
 

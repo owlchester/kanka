@@ -232,7 +232,7 @@ class BulkService
         foreach ($fillableFields as $field => $value) {
             if (is_array($value) && ! empty($value)) {
                 $filledFields[$field] = $value;
-            } elseif (! empty($value)) {
+            } elseif (! empty($value) || ($value === '0' && Str::endsWith($field, '_id'))) {
                 $filledFields[$field] = mb_trim($value);
             }
         }

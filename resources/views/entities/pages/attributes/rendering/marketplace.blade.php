@@ -88,7 +88,7 @@ if (!isset($entity)) {
         is_completed: {{ $entity->child->isCompleted() ? 'true' : 'false' }},
         is_ongoing: {{ $entity->child->isOngoing() ? 'true' : 'false' }},
         is_abandoned: {{ $entity->child->isAbandoned() ? 'true' : 'false' }},
-        status: {{ $entity->child->status->value }},
+        status: {{ $entity->child->status_id->value }},
 @elseif ($entity->isCreature() && $entity->child)
         is_dead: {{ $entity->child->isDead() ? 'true' : 'false' }},
         is_extinct: {{ $entity->child->isExtinct() ? 'true' : 'false' }},

@@ -25,12 +25,18 @@ class CharacterMapper extends MiscMapper
     }
 
     /**
-     * Backward compatibility: map old is_dead field to new status field.
+     * Backward compatibility: map old is_dead field to new status_id field.
      */
     protected function migrateIsDead(): self
     {
-        if (array_key_exists('is_dead', $this->data) && ! array_key_exists('status', $this->data)) {
-            $this->data['status'] = (int) $this->data['is_dead'];
+        if (array_key_exists('is_dead', $this->data) && ! array_key_exists('status_id', $this->data)) {
+            $this->data['status_id'] = (int) $this->data['is_dead'];
+            unset($this->data['is_dead']);
+        }
+
+        // Handle exports that used 'status' before the rename to 'status_id'
+        if (array_key_exists('is_dead', $this->data) && ! array_key_exists('status_id', $this->data)) {
+            $this->data['status_id'] = $this->data['is_dead'];
             unset($this->data['is_dead']);
         }
 

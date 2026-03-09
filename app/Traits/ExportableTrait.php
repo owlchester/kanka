@@ -40,7 +40,8 @@ trait ExportableTrait
         ];
         foreach ($this->exportFields as $field) {
             if ($field !== 'base') {
-                $this->exportData[$field] = $this->$field;
+                $value = $this->$field;
+                $this->exportData[$field] = $value instanceof \BackedEnum ? $value->value : $value;
 
                 continue;
             }

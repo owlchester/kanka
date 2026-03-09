@@ -24,13 +24,19 @@ class QuestMapper extends MiscMapper
     }
 
     /**
-     * Backward compatibility: map old is_completed field to new status field.
+     * Backward compatibility: map old is_completed field to new status_id field.
      * Old is_completed=1 maps to QuestStatus::completed (2).
      */
     protected function migrateIsCompleted(): self
     {
-        if (array_key_exists('is_completed', $this->data) && ! array_key_exists('status', $this->data)) {
-            $this->data['status'] = $this->data['is_completed'] ? QuestStatus::completed->value : QuestStatus::notStarted->value;
+        if (array_key_exists('is_completed', $this->data) && ! array_key_exists('status_id', $this->data)) {
+            $this->data['status_id'] = $this->data['is_completed'] ? QuestStatus::completed->value : QuestStatus::notStarted->value;
+            unset($this->data['is_completed']);
+        }
+
+        // Handle exports that used 'is_completed' before the rename to 'status_id'
+        if (array_key_exists('is_completed', $this->data) && ! array_key_exists('status_id', $this->data)) {
+            $this->data['status_id'] = $this->data['is_completed'];
             unset($this->data['is_completed']);
         }
 

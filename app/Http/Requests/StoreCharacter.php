@@ -47,7 +47,7 @@ class StoreCharacter extends FormRequest
             'sex' => 'nullable|max:45',
             'pronouns' => 'nullable|max:45',
             'title' => 'nullable|max:191',
-            'status' => ['nullable', new Enum(CharacterStatus::class)],
+            'status_id' => ['nullable', new Enum(CharacterStatus::class)],
             'template_id' => 'nullable',
             'families' => ['nullable', 'array', new EntityField(config('entities.ids.family'), Family::class)],
             'races' => ['nullable', 'array', new EntityField(config('entities.ids.race'), Race::class)],

@@ -10,14 +10,11 @@ class QuestBulk extends Bulk
         'quest_id',
         'instigator_id',
         'location_id',
-        'completed_choice',
+        'status_id',
         'tags',
         'private_choice',
         'entity_image',
         'entity_header',
     ];
 
-    protected array $booleans = [
-        'status',
-    ];
 }

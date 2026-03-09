@@ -27,7 +27,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $age
  * @property string $sex
  * @property string $pronouns
- * @property CharacterStatus $status
+ * @property CharacterStatus $status_id
  * @property bool|int $is_personality_visible
  * @property bool|int $is_appearance_pinned
  * @property bool|int $is_personality_pinned
@@ -62,7 +62,7 @@ class Character extends MiscModel
         'sex',
         'pronouns',
         'is_private',
-        'status',
+        'status_id',
         'is_personality_visible',
         'is_appearance_pinned',
         'is_personality_pinned',
@@ -75,20 +75,20 @@ class Character extends MiscModel
         'title',
         'age',
         'sex',
-        'status',
+        'status_id',
         'locations',
     ];
 
     protected array $sortable = [
         'name',
         'type',
-        'status',
+        'status_id',
     ];
 
-    protected array $exploreGridFields = ['status'];
+    protected array $exploreGridFields = ['status_id'];
 
     public $casts = [
-        'status' => CharacterStatus::class,
+        'status_id' => CharacterStatus::class,
     ];
 
     /**
@@ -218,7 +218,7 @@ class Character extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['title', 'sex', 'status'];
+        return ['title', 'sex', 'status_id'];
     }
 
     /**
@@ -477,7 +477,7 @@ class Character extends MiscModel
             'organisations',
             'races',
             'families',
-            'status',
+            'status_id',
             'member_id',
             'race_id',
             'family_id',
@@ -495,7 +495,7 @@ class Character extends MiscModel
             'type' => __('crud.fields.type'),
             'title' => __('characters.fields.title'),
             'sex' => __('characters.fields.sex'),
-            'status' => __('characters.fields.status'),
+            'status_id' => __('characters.fields.status'),
             'locations.name' => __('entities.locations'),
         ];
 
@@ -511,7 +511,7 @@ class Character extends MiscModel
      */
     public function isDead(): bool
     {
-        return $this->status === CharacterStatus::dead;
+        return $this->status_id === CharacterStatus::dead;
     }
 
     /**
@@ -519,14 +519,14 @@ class Character extends MiscModel
      */
     public function isMissing(): bool
     {
-        return $this->status === CharacterStatus::missing;
+        return $this->status_id === CharacterStatus::missing;
     }
 
     public function scopeFilteredCharacters(Builder $query): Builder
     {
         // @phpstan-ignore-next-line
         return $query
-            ->select([$this->getTable() . '.id', 'title', 'status', $this->getTable() . '.is_private'])
+            ->select([$this->getTable() . '.id', 'title', 'status_id', $this->getTable() . '.is_private'])
             ->sort(request()->only(['o', 'k']), ['entities.name' => 'asc'])
             ->with([
                 'characterRaces',
