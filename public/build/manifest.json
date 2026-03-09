@@ -180,7 +180,7 @@
     "src": "node_modules/rpg-awesome/fonts/rpgawesome-webfont.woff"
   },
   "resources/css/app.css": {
-    "file": "assets/app-Dzo_Ws4G.css",
+    "file": "assets/app-rdhg9wTn.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -189,7 +189,7 @@
     ]
   },
   "resources/css/auth.css": {
-    "file": "assets/auth-3OWFipCY.css",
+    "file": "assets/auth--f0IKb8z.css",
     "src": "resources/css/auth.css",
     "isEntry": true,
     "name": "auth",
@@ -216,7 +216,7 @@
     ]
   },
   "resources/css/front.css": {
-    "file": "assets/front-Cv95A0Lf.css",
+    "file": "assets/front-CUaRp8n-.css",
     "src": "resources/css/front.css",
     "isEntry": true,
     "name": "front",
@@ -261,7 +261,7 @@
     ]
   },
   "resources/css/themes/dark.css": {
-    "file": "assets/dark-QBh9jMKf.css",
+    "file": "assets/dark-CWTTiniF.css",
     "src": "resources/css/themes/dark.css",
     "isEntry": true,
     "name": "dark",
@@ -314,7 +314,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-KHBXWavS.js",
+    "file": "assets/app-CCFgbrzb.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -336,7 +336,7 @@
     ]
   },
   "resources/js/attributes-manager.js": {
-    "file": "assets/attributes-manager-DoBBdThV.js",
+    "file": "assets/attributes-manager-fQS3K6Q-.js",
     "name": "attributes-manager",
     "src": "resources/js/attributes-manager.js",
     "isEntry": true,
@@ -429,7 +429,7 @@
     "isEntry": true
   },
   "resources/js/dashboard.js": {
-    "file": "assets/dashboard-CrjWvWZq.js",
+    "file": "assets/dashboard-COG_fFS0.js",
     "name": "dashboard",
     "src": "resources/js/dashboard.js",
     "isEntry": true,
@@ -461,7 +461,7 @@
     ]
   },
   "resources/js/editors/tiptap/Tiptap.vue": {
-    "file": "assets/Tiptap-zHlF8zzZ.js",
+    "file": "assets/Tiptap-GmAhNwm4.js",
     "name": "Tiptap",
     "src": "resources/js/editors/tiptap/Tiptap.vue",
     "isDynamicEntry": true,
@@ -494,7 +494,7 @@
     ]
   },
   "resources/js/editors/tiptap/index.js": {
-    "file": "assets/index-LHjHz6xP.js",
+    "file": "assets/index-Ci0cei8p.js",
     "name": "index",
     "src": "resources/js/editors/tiptap/index.js",
     "isEntry": true,
@@ -507,7 +507,7 @@
     ]
   },
   "resources/js/entities/explore.js": {
-    "file": "assets/explore-BpTbDcbI.js",
+    "file": "assets/explore-CQ8xDCMs.js",
     "name": "explore",
     "src": "resources/js/entities/explore.js",
     "isEntry": true,
@@ -550,7 +550,7 @@
     ]
   },
   "resources/js/gallery/gallery.js": {
-    "file": "assets/gallery-Cp8UzGwj.js",
+    "file": "assets/gallery-CYvJihwb.js",
     "name": "gallery",
     "src": "resources/js/gallery/gallery.js",
     "isEntry": true,
@@ -629,7 +629,7 @@
     "isEntry": true
   },
   "resources/js/whiteboards.js": {
-    "file": "assets/whiteboards-DfML7cVU.js",
+    "file": "assets/whiteboards-BErxHptA.js",
     "name": "whiteboards",
     "src": "resources/js/whiteboards.js",
     "isEntry": true,
