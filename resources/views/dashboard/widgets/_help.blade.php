@@ -1,5 +1,5 @@
 <x-box class="widget-help" id="dashboard-widget-{{ $widget->id }}">
-    <span class="widget-title block text-lg mb-3">
+    <span class="widget-title block text-lg mb-4">
         {{ __('dashboards/widgets/help.title') }}
     </span>
     <div class="">

@@ -44,16 +44,16 @@ $currentMoons = $moonService->get($calendar->currentDay());
 ?>
 <div class="flex flex-col gap-2">
 
-    <div class="current-date text-center text-xl flex items-center justify-center gap-2" id="widget-date-{{ $widget->id }}">
+    <div class="current-date text-center text-lg flex items-center justify-center gap-2" id="widget-date-{{ $widget->id }}">
         @can('update', $entity)
             <a href="#" class="widget-calendar-switch text-link" data-url="{{ route('dashboard.calendar.sub', [$campaign, $widget]) }}" data-widget="{{ $widget->id }}"  data-toggle="tooltip" data-title="{{ __('dashboard.widgets.calendar.actions.previous') }}" role="button">
-                <x-icon class="fa-solid fa-chevron-circle-left" />
+                <x-icon class="fa-regular fa-chevron-circle-left" />
                 <span class="sr-only">{{ __('dashboard.widgets.calendar.actions.previous') }}</span>
             </a>
             <span>{{ $calendar->niceDate() }}</span>
 
             <a href="#" class="widget-calendar-switch text-link" data-url="{{ route('dashboard.calendar.add', [$campaign, $widget]) }}" data-widget="{{ $widget->id }}"  data-toggle="tooltip" data-title="{{ __('dashboard.widgets.calendar.actions.next') }}" role="button">
-                <x-icon class="fa-solid fa-chevron-circle-right" />
+                <x-icon class="fa-regular fa-chevron-circle-right" />
                 <span class="sr-only">{{ __('dashboard.widgets.calendar.actions.next') }}</span>
             </a>
         @else

@@ -135,7 +135,7 @@ $hasDashboards = !$dashboards->isEmpty() || !empty($dashboard);
                 @endforeach
 
                 <div class="col-span-4 widget rounded-xl h-28 hover:border-primary text-primary transition-all duration-150 cursor-pointer border-dashed border-2 py-6" data-toggle="dialog" data-url="{{ route('campaign_dashboard_widgets.index', [$campaign, 'dashboard' => $dashboard]) }}" data-tooltip data-title="{{ __('dashboards/setup.tooltips.add') }}">
-                    <div class="text-lg flex gap-2 items-center justify-center p-2 align-middle h-full">
+                    <div class="text-md xl:text-xl flex gap-2 items-center justify-center p-2 align-middle h-full">
                         <x-icon class="plus" />
                         <span class="uppercase">{{ __('dashboards/setup.actions.add') }}</span>
                     </div>

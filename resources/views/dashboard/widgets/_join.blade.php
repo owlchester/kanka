@@ -1,5 +1,5 @@
 <x-box class="widget-join" id="dashboard-widget-{{ $widget->id }}">
-    <span class="widget-title block text-lg mb-3">
+    <span class="widget-title block text-lg mb-4">
         {{ __('dashboards/widgets/join.title') }}
     </span>
     <div class="entity-content" id="players-wanted">
@@ -11,7 +11,7 @@
             <h4 class="m-0 text-lg">{{ __('campaigns/applications.fields.schedule') }}</h4>
             {!! $campaign->getFilter(\App\Enums\CampaignFilterType::Schedule) !!}, {!! $campaign->getFilter(\App\Enums\CampaignFilterType::Timezone) !!}
         </span>
-        
+
         <span>
             <h4 class="m-0 text-lg">{{ __('campaigns/applications.fields.player_count') }}</h4>
             <p>Current players: {{$campaign->users()->count() }}</p>
