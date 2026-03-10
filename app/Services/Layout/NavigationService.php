@@ -5,7 +5,6 @@ namespace App\Services\Layout;
 use App\Facades\Domain;
 use App\Facades\Identity;
 use App\Facades\Img;
-use App\Facades\MarketplaceCache;
 use App\Facades\ReleaseCache;
 use App\Facades\UserCache;
 use App\Models\AppRelease;
