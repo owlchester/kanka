@@ -55,6 +55,7 @@ if (!isset($entity)) {
             gender: `{{ $entity->child->sex }}`,
             pronouns: `{{ $entity->child->pronouns }}`,
             is_dead: {{ $entity->child->isDead() ? 'true' : 'false' }},
+            is_missing: {{ $entity->child->isMissing() ? 'true' : 'false' }},
             title: `{{ $entity->child->title }}`,
             age: `{{ $entity->child->age }}`,
             traits: [@foreach ($entity->child->characterTraits as $trait)
@@ -85,6 +86,9 @@ if (!isset($entity)) {
         is_defunct: {{ $entity->child->isDefunct() ? 'true' : 'false' }},
 @elseif ($entity->isQuest() && $entity->child)
         is_completed: {{ $entity->child->isCompleted() ? 'true' : 'false' }},
+        is_ongoing: {{ $entity->child->isOngoing() ? 'true' : 'false' }},
+        is_abandoned: {{ $entity->child->isAbandoned() ? 'true' : 'false' }},
+        status: {{ $entity->child->status_id->value }},
 @elseif ($entity->isCreature() && $entity->child)
         is_dead: {{ $entity->child->isDead() ? 'true' : 'false' }},
         is_extinct: {{ $entity->child->isExtinct() ? 'true' : 'false' }},

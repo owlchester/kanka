@@ -23,6 +23,8 @@
                 </a>
                 @if ($entity->isCharacter() && $entity->character->isDead())
                     <x-icon class="fa-regular fa-skull" tooltip :title="__('characters.hints.is_dead')" />
+                @elseif ($entity->isCharacter() && $entity->character->isMissing())
+                    <x-icon class="fa-regular fa-question" tooltip :title="__('characters.hints.is_missing')" />
                 @endif
             </div>
 

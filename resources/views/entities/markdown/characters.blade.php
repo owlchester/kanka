@@ -1,4 +1,4 @@
-@if ($entity->child->isDead() || !empty($entity->child->title) || !empty($entity->child->age) || !empty($entity->child->sex) || !empty($entity->child->pronouns))
+@if ($entity->child->isDead() || $entity->child->isMissing() || !empty($entity->child->title) || !empty($entity->child->age) || !empty($entity->child->sex) || !empty($entity->child->pronouns))
 ## {!! __('crud.tabs.profile') !!}
 @endif
 
@@ -16,6 +16,9 @@
 @endif
 @if ($entity->child->isDead())
 * {!! __('characters.hints.is_dead') !!}
+
+@elseif ($entity->child->isMissing())
+* {!! __('characters.hints.is_missing') !!}
 
 @endif
 @if ($entity->child->characterTraits->count() > 0)

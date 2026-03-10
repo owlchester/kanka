@@ -17,9 +17,14 @@ return [
             'title'     => 'Update element for :name',
         ],
         'fields'    => [
-            'description'       => 'Description',
+            'copy_entity_entry' => 'Use entry description',
             'entity_or_name'    => 'Either select either an entry of the campaign, or give a name for this element.',
-            'name'              => 'Name',
+        ],
+        'placeholders' => [
+            'name' => 'Element name',
+        ],
+        'helpers'   => [
+            'copy_entity_entry' => 'Display the linked entry\'s description instead of the custom description.',
         ],
     ],
     'fields'        => [
@@ -28,11 +33,24 @@ return [
         'element_role'  => 'Role',
         'instigator'    => 'Instigator',
         'is_completed'  => 'Completed',
+        'status'        => 'Status',
         'location'      => 'Starting location',
         'role'          => 'Role',
     ],
     'helpers'       => [
         'is_completed'  => 'The quest is considered as completed.',
+        'status'        => 'The quest\'s current status.',
+    ],
+    'hints'         => [
+        'is_completed'  => 'This quest is completed.',
+        'is_ongoing'    => 'This quest is ongoing.',
+        'is_abandoned'  => 'This quest has been abandoned.',
+    ],
+    'status'        => [
+        'not_started'   => 'Not Started',
+        'ongoing'       => 'Ongoing',
+        'completed'     => 'Completed',
+        'abandoned'     => 'Abandoned',
     ],
     'lists'         => [
         'empty' => 'Create quests to record objectives, storylines, or character motivations.',

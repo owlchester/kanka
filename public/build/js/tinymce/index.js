@@ -1,7 +1,7 @@
-// Exports the "modern" theme for usage with module loaders
+// Exports the "visualchars" plugin for usage with module loaders
 // Usage:
 //   CommonJS:
-//     require('tinymce/themes/modern')
+//     require('tinymce/plugins/visualchars')
 //   ES2015:
-//     import 'tinymce/themes/modern'
-require('./theme.js');
+//     import 'tinymce/plugins/visualchars'
+require('./plugin.js');

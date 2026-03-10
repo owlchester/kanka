@@ -21,6 +21,7 @@ return [
         'is_dead'                   => 'Dead',
         'is_personality_pinned'     => 'Personality overview',
         'is_personality_visible'    => 'Personality access',
+        'status'                    => 'Status',
         'life'                      => 'Life',
         'physical'                  => 'Physical',
         'pronouns'                  => 'Pronouns',
@@ -34,10 +35,16 @@ return [
     'hints'         => [
         'is_appearance_pinned'      => 'Show on overview.',
         'is_dead'                   => 'This character is dead.',
-        'is_personality_pinned'     => 'Show on overview.',
+        'is_missing'                => 'This character is missing.',
+        'is_personality_pinned'     => 'Display the personality traits on the overview page.',
         'is_personality_visible'    => 'The personality traits are visible to all, not only to members of the :admin role.',
         'personality_not_visible'   => 'Personality traits of this character are currently only visible to Admin users.',
         'personality_visible'       => 'Everyone can view this character\'s personality.',
+    ],
+    'status'        => [
+        'alive'   => 'Alive',
+        'dead'    => 'Dead',
+        'missing' => 'Missing',
     ],
     'labels'        => [
         'appearance'    => [

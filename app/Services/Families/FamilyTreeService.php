@@ -140,7 +140,7 @@ class FamilyTreeService
         $entities = Entity::inTypes([config('entities.ids.character')])
             ->with([
                 'character' => function ($sub) {
-                    return $sub->select('id', 'is_dead');
+                    return $sub->select('id', 'status_id');
                 },
                 'entityType',
                 'tags',
@@ -193,7 +193,8 @@ class FamilyTreeService
             'name' => $entity->name,
             'url' => $entity->url(),
             'thumb' => Avatar::entity($entity)->size(40)->fallback()->thumbnail(),
-            'is_dead' => (bool) $entity->character->is_dead,
+            'is_dead' => $entity->character->isDead(),
+            'is_missing' => $entity->character->isMissing(),
             'death' => $death,
             'birth' => $birth,
             'tags' => $tags,
@@ -503,6 +504,7 @@ class FamilyTreeService
             ],
             'tooltips' => [
                 'is_dead' => __('characters.hints.is_dead'),
+                'is_missing' => __('characters.hints.is_missing'),
             ],
             'unknown' => __('families/trees.unknown'),
         ];

@@ -12,11 +12,13 @@
         @include('cruds.forms._calendar', ['source' => $source])
     </div>
 
-    <x-forms.field field="completed" :label="__('quests.fields.is_completed')">
-        <input type="hidden" name="is_completed" value="0" />
-        <x-checkbox :text="__('quests.helpers.is_completed')">
-            <input type="checkbox" name="is_completed" value="1" @if (old('is_completed', $source->child->is_completed ?? $model->is_completed ?? false)) checked="checked" @endif />
-        </x-checkbox>
+    <x-forms.field field="status_id" :label="__('quests.fields.status')">
+        <select name="status_id" class="w-full">
+            <option value="0" @selected(old('status_id', $source->child->status_id?->value ?? $model->status_id?->value ?? 0) == 0)>{{ __('quests.status.not_started') }}</option>
+            <option value="1" @selected(old('status_id', $source->child->status_id?->value ?? $model->status_id?->value ?? 0) == 1)>{{ __('quests.status.ongoing') }}</option>
+            <option value="2" @selected(old('status_id', $source->child->status_id?->value ?? $model->status_id?->value ?? 0) == 2)>{{ __('quests.status.completed') }}</option>
+            <option value="3" @selected(old('status_id', $source->child->status_id?->value ?? $model->status_id?->value ?? 0) == 3)>{{ __('quests.status.abandoned') }}</option>
+        </select>
     </x-forms.field>
 
     @include('cruds.fields.entry2')
