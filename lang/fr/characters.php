@@ -1,21 +1,21 @@
 <?php
 
 return [
-    'actions'       => [
+    'actions'                   => [
         'add_appearance'    => 'Ajouter une apparence',
         'add_personality'   => 'Ajouter un trait de personnalité',
     ],
-    'create'        => [
+    'create'                    => [
         'title' => 'Créer une nouvelle personne',
     ],
-    'families'      => [
+    'families'                  => [
         'helper'    => 'Réorganise et contrôle quelles familles de :name sont visibles ou cachées aux non-admins.',
         'reorder'   => [
             'success'   => 'Les familles du personage ont été mises à jour avec succès.',
         ],
         'title2'    => 'Gérer les familles',
     ],
-    'fields'        => [
+    'fields'                    => [
         'age'                       => 'Age',
         'is_appearance_pinned'      => 'Physique épinglé',
         'is_dead'                   => 'Mort',
@@ -28,11 +28,11 @@ return [
         'title'                     => 'Titre',
         'traits'                    => 'Traits',
     ],
-    'helpers'       => [
+    'helpers'                   => [
         'age'                   => 'Il est possible de lier cette entrée avec un calendrier de la campagne pour automatiquement calculer l\'âge. :more.',
         'personality_visible'   => 'Si coché, les traits de personnalités seront visibles pour tous. Sinon, seuls les membres du rôle :admin de la campagne pourront voir les traits de personnalité de ce personnage.',
     ],
-    'hints'         => [
+    'hints'                     => [
         'is_appearance_pinned'      => 'Si sélectionné, le physique du personnage sera visible sur la page vue d\'ensemble sous l\'entrée.',
         'is_dead'                   => 'Ce personnage est mort.',
         'is_personality_pinned'     => 'Si sélectionné, la personnalité du personnage sera visible sur la page vue d\'ensemble sous l\'entrée.',
@@ -40,7 +40,7 @@ return [
         'personality_not_visible'   => 'Les traits de personnalités de ce personnage sont actuellement seulement visibles pour les admin de la campagne.',
         'personality_visible'       => 'Les traits de personnalités sont visibles pour tous.',
     ],
-    'labels'        => [
+    'labels'                    => [
         'appearance'    => [
             'entry' => 'Description de l\'apparance',
             'name'  => 'Nom de l\'apparance',
@@ -50,10 +50,10 @@ return [
             'name'  => 'Nom du trait de personnalité',
         ],
     ],
-    'lists'         => [
+    'lists'                     => [
         'empty' => 'Créé ton premier héros, méchant ou acolyte pour donner vie à ton univers.',
     ],
-    'organisations' => [
+    'organisations'             => [
         'create'    => [
             'success'   => 'Personne ajoutée à l\'organisation.',
             'title'     => 'Nouvelle Organisation pour :name',
@@ -69,7 +69,11 @@ return [
             'role'  => 'Rôle',
         ],
     ],
-    'placeholders'  => [
+    'personality_visibility'    => [
+        'admin' => 'Membres du rôle :admin seulement',
+        'all'   => 'Tout le monde peut voir',
+    ],
+    'placeholders'              => [
         'age'               => 'Âge',
         'appearance_entry'  => 'Description',
         'appearance_name'   => 'Cheveux, Yeux, Peau, Taille',
@@ -83,24 +87,24 @@ return [
         'traits'            => 'Traits',
         'type'              => 'PNJ, Joueurs, Autre',
     ],
-    'quests'        => [
+    'quests'                    => [
         'helpers'   => [
             'quest_giver'   => 'Quêtes dont le personnage est l\'auteur.',
             'quest_member'  => 'Quêtes dont le personnage est membre.',
         ],
     ],
-    'races'         => [
+    'races'                     => [
         'helper'    => 'Réorganise et contrôle quelles races de :name sont visibles ou cachées aux non-admins.',
         'reorder'   => [
             'success'   => 'Mise à jour réussie des races de personnage.',
         ],
         'title2'    => 'Gérer les races',
     ],
-    'sections'      => [
+    'sections'                  => [
         'appearance'    => 'Physique',
         'personality'   => 'Personnalité',
     ],
-    'warnings'      => [
+    'warnings'                  => [
         'personality_hidden'    => 'Tu n\'as pas le droit de modifier les traits de personnalité de ce personnage.',
     ],
 ];

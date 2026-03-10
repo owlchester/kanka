@@ -1,21 +1,21 @@
 <?php
 
 return [
-    'actions'       => [
+    'actions'                   => [
         'add_appearance'    => 'Add an appearance',
         'add_personality'   => 'Add a personality',
     ],
-    'create'        => [
+    'create'                    => [
         'title' => 'New Character',
     ],
-    'families'      => [
+    'families'                  => [
         'helper'    => 'Reorder and control which families of :name are visible or hidden from non-admins.',
         'reorder'   => [
             'success'   => 'Character families updated successfully.',
         ],
         'title2'    => 'Manage families',
     ],
-    'fields'        => [
+    'fields'                    => [
         'age'                       => 'Age',
         'is_appearance_pinned'      => 'Appearance overview',
         'is_dead'                   => 'Dead',
@@ -28,10 +28,10 @@ return [
         'title'                     => 'Title',
         'traits'                    => 'Traits',
     ],
-    'helpers'       => [
-        'age'                   => 'You can link this character with a calendar to automatically calculate their age instead. :more.',
+    'helpers'                   => [
+        'age'   => 'You can link this character with a calendar to automatically calculate their age instead. :more.',
     ],
-    'hints'         => [
+    'hints'                     => [
         'is_appearance_pinned'      => 'Show on overview.',
         'is_dead'                   => 'This character is dead.',
         'is_personality_pinned'     => 'Show on overview.',
@@ -39,7 +39,7 @@ return [
         'personality_not_visible'   => 'Personality traits of this character are currently only visible to Admin users.',
         'personality_visible'       => 'Everyone can view this character\'s personality.',
     ],
-    'labels'        => [
+    'labels'                    => [
         'appearance'    => [
             'entry' => 'Appearance description',
             'name'  => 'Appearance name',
@@ -49,10 +49,10 @@ return [
             'name'  => 'Personality trait name',
         ],
     ],
-    'lists'         => [
+    'lists'                     => [
         'empty' => 'Create your first hero, villain, or sidekick to bring your world to life.',
     ],
-    'organisations' => [
+    'organisations'             => [
         'create'    => [
             'success'   => ':character added to :organisation.',
             'title'     => 'Membership',
@@ -68,7 +68,11 @@ return [
             'role'  => 'Role',
         ],
     ],
-    'placeholders'  => [
+    'personality_visibility'    => [
+        'admin' => 'Members of :admin role only',
+        'all'   => 'Everyone can see',
+    ],
+    'placeholders'              => [
         'age'               => 'Age',
         'appearance_entry'  => 'Description',
         'appearance_name'   => 'Hair, Eyes, Skin, Height',
@@ -82,28 +86,24 @@ return [
         'traits'            => 'Traits',
         'type'              => 'NPC, Player Character, Deity',
     ],
-    'quests'        => [
+    'quests'                    => [
         'helpers'   => [
             'quest_giver'   => 'Quests that the character is a quest giver of.',
             'quest_member'  => 'Quests that the character is a member of.',
         ],
     ],
-    'races'         => [
+    'races'                     => [
         'helper'    => 'Reorder and control which races of :name are visible or hidden from non-admins.',
         'reorder'   => [
             'success'   => 'Character races updated successfully',
         ],
         'title2'    => 'Manage races',
     ],
-    'sections'      => [
+    'sections'                  => [
         'appearance'    => 'Appearance',
         'personality'   => 'Personality',
     ],
-    'personality_visibility' => [
-        'all' => 'Everyone can see',
-        'admin' => 'Members of :admin role only',
-    ],
-    'warnings'      => [
+    'warnings'                  => [
         'personality_hidden'    => ':name\'s personality traits have been locked down.',
     ],
 ];
