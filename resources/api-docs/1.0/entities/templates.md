@@ -1,14 +1,14 @@
-# Templates
+# Archetypes
 
 ---
 
-- [All Templates](#all-templates)
-- [Switch a template](#switch-template)
+- [All archetypes](#all-templates)
+- [Toggle a archetypes](#switch-template)
 
 <a name="all-templates"></a>
-## All Templates
+## All archetypes
 
-You can get a list of entities marked as templates by calling the following API endpoint.
+You can get a list of entities marked as archetypes by calling the following API endpoint.
 
 > {warning} Remember that all endpoints documented here need to be prefixed with `{{version}}/campaigns/{campaign.id}/`.
 
@@ -45,9 +45,9 @@ You can get a list of entities marked as templates by calling the following API 
 
 
 <a name="switch-template"></a>
-## Switch Template
+## Toggle archetype
 
-To change the template status of an entity, use the following endpoint.
+To change the archetype status of an entity, use the following endpoint.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |

@@ -15,7 +15,7 @@
   - [Campaign Styles](/api-docs/{{version}}/campaigns/styles)
   - [Dashboard Widgets](/api-docs/{{version}}/campaigns/dashboard-widgets)
   - [Gallery](/api-docs/{{version}}/campaigns/images)
-  - [Modules](/api-docs/{{version}}/campaigns/modules)
+  - [Categories](/api-docs/{{version}}/campaigns/modules)
 
 - ## Core Objects
   - [Entities](/api-docs/{{version}}/entities)
@@ -24,7 +24,7 @@
   - [Families](/api-docs/{{version}}/families)
   - [Organisations](/api-docs/{{version}}/organisations)
       - [Members](/api-docs/{{version}}/organisation-members)
-  - [Items](/api-docs/{{version}}/items)
+  - [Objects](/api-docs/{{version}}/items)
   - [Notes](/api-docs/{{version}}/notes)
   - [Events](/api-docs/{{version}}/events)
   - [Calendars](/api-docs/{{version}}/calendars)
@@ -41,11 +41,11 @@
   - [Tags](/api-docs/{{version}}/tags)
   - [Conversations](/api-docs/{{version}}/conversations)
   - [Dice Rolls](/api-docs/{{version}}/dice-rolls)
-  - [Attribute Templates](/api-docs/{{version}}/attribute-templates)
+  - [Property Kits](/api-docs/{{version}}/attribute-templates)
 
 - ## Entities
   - [Abilities](/api-docs/{{version}}/entities/entity-abilities)
-  - [Attributes](/api-docs/{{version}}/entities/attributes)
+  - [Properties](/api-docs/{{version}}/entities/attributes)
   - [Assets](/api-docs/{{version}}/entities/entity-assets)
   - [Image](/api-docs/{{version}}/entities/entity-image)
   - [Inventory](/api-docs/{{version}}/entities/entity-inventory)
@@ -55,7 +55,7 @@
   - [Connections](/api-docs/{{version}}/entities/connections)
   - [Reminders](/api-docs/{{version}}/entities/reminders)
   - [Tags](/api-docs/{{version}}/entities/entity-tags)
-  - [Templates](/api-docs/{{version}}/entities/templates)
+  - [Archetypes](/api-docs/{{version}}/entities/templates)
 
 - ## Search
   - [Search](/api-docs/{{version}}/search)
