@@ -220,6 +220,7 @@
 .ts-control,
 .ts-control input {
     font-size: 14px;
+    color: hsl(var(--bc)/1);
 }
 .ts-wrapper .no-results {
     color: hsl(var(--nc)/.6);
