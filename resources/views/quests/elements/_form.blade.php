@@ -6,8 +6,8 @@
         <input type="hidden" name="entity_id" value="" />
         @include('cruds.fields.entity')
     </x-forms.field>
-    <x-forms.field field="name" required :label="__('quests.elements.fields.name')">
-        <input type="text" name="name" maxlength="100" spellcheck="true" placeholder="{{ __('quests.elements.fields.name') }}" value="{!! htmlspecialchars(old('name', $model->name ?? null)) !!}" />
+    <x-forms.field field="name" required :label="__('crud.fields.name')">
+        <input type="text" name="name" maxlength="100" spellcheck="true" placeholder="{{ __('quests.elements.placeholders.name') }}" value="{!! htmlspecialchars(old('name', $model->name ?? null)) !!}" />
     </x-forms.field>
 
     <hr class="col-span-2" />
@@ -29,7 +29,7 @@
     <x-forms.field
         field="description"
         css="col-span-2"
-        :label="__('quests.elements.fields.description')">
+        :label="__('fields.description.label')">
 
         @include('cruds.fields.entry', ['model' => $model ?? null])
     </x-forms.field>
