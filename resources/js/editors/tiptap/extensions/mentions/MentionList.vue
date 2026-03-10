@@ -37,9 +37,9 @@ watch(() => props.items, () => {
 })
 
 const sectionConfig: Record<SectionType, { label: string; icon: string }> = {
-    entities: { label: 'Entities', icon: 'fa-regular fa-bookmark' },
-    posts: { label: 'Posts', icon: 'fa-regular fa-newspaper' },
-    attributes: { label: 'Attributes', icon: 'fa-regular fa-heart' },
+    entities: { label: 'Entries', icon: 'fa-regular fa-bookmark' },
+    posts: { label: 'Articles', icon: 'fa-regular fa-newspaper' },
+    attributes: { label: 'Properties', icon: 'fa-regular fa-heart' },
     new: { label: 'Create New', icon: 'fa-regular fa-plus' },
 }
 
