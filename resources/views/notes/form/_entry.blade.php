@@ -1,5 +1,5 @@
 <x-grid>
-    @include('cruds.fields.name', ['trans' => 'notes'])
+    @include('cruds.fields.entity-name')
     @include('cruds.fields.type', ['base' => \App\Models\Note::class, 'trans' => 'notes'])
 
     @include('cruds.fields.note', ['isParent' => true])

@@ -5,12 +5,11 @@ return [
         'element'   => 'Element',
         'type'      => 'Type',
     ],
-    'helper'            => 'This entity is mentioned in the following other entities, posts, or campaign description.',
-    'mentioned_in'      => 'Mentioned in :count Entities.',
-    'mentioned_in_v2'   => 'This entity is mentioned in :count elements. :more.',
+    'helper'            => 'This entry is mentioned in the following other entries, articles, or campaign description.',
+    'mentioned_in_v2'   => 'This entry is mentioned in :count elements. :more.',
     'see_more'          => 'View details',
     'show'              => [
-        'title' => 'Entity :name Mentions',
+        'title' => 'Entry :name Mentions',
     ],
-    'title'             => 'Mentioned entity',
+    'title'             => 'Mentioned entry',
 ];

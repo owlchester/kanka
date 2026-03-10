@@ -35,7 +35,7 @@ class MemberController extends Controller
                 'organisation.entity.tags',
             ])
             ->rows()
-            ->paginate();
+            ->paginate(config('limits.pagination'));
 
         if (request()->ajax()) {
             return $this->campaign($campaign)->datagridAjax();

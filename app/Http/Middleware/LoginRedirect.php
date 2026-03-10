@@ -10,11 +10,11 @@ class LoginRedirect
 {
     public function handle(Request $request, Closure $next): Response
     {
-        $whitelist = ['roadmap'];
+        $whitelist = ['roadmap', 'dashboard'];
 
         // If to check where the request is coming from and set the variable if its a valid route.
         if ($request->has('next') && in_array($request->get('next'), $whitelist)) {
-            session(['login_redirect' => route($request->get('next'))]);
+            session(['login_redirect' => route($request->get('next'), $request->except('next'))]);
         }
 
         return $next($request);

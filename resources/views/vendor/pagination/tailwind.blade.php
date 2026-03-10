@@ -22,20 +22,31 @@
             @endif
         </div>
 
-        <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between gap-2 my-2">
-            <p class="help-block italic m-0 text-sm">
-                {!! __('pagination.showing') !!}
-                @if ($paginator->firstItem())
-                    <span class="font-medium">{{ $paginator->firstItem() }}</span>
-                    {!! __('pagination.to') !!}
-                    <span class="font-medium">{{ $paginator->lastItem() }}</span>
-                @else
-                    {{ $paginator->count() }}
+        <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between gap-2">
+            <div class="flex gap-2">
+                <x-helper>
+                    <p>
+                        {!! __('pagination.showing') !!}
+                        @if ($paginator->firstItem())
+                            <span class="font-medium">{{ $paginator->firstItem() }}</span>
+                            {!! __('pagination.to') !!}
+                            <span class="font-medium">{{ $paginator->lastItem() }}</span>
+                        @else
+                            {{ $paginator->count() }}
+                        @endif
+                        {!! __('pagination.of') !!}
+                        <span class="font-medium">{{ $paginator->total() }}</span>
+                        {!! __('pagination.results') !!}
+                    </p>
+                </x-helper>
+
+                @if (isset($settingsLink))
+                    &dash; <a href="{{ route('settings.appearance', ['highlight' => 'pagination', 'from' => $settingsLink]) }}" class="link text-link">
+                        {!! __('crud.helpers.per-page') !!}
+                    </a>
                 @endif
-                {!! __('pagination.of') !!}
-                <span class="font-medium">{{ $paginator->total() }}</span>
-                {!! __('pagination.results') !!}
-            </p>
+            </div>
+
 
             <div>
                 <span class="relative z-0 inline-flex shadow-sm rounded-md join">

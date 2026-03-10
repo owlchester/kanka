@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'description'   => 'Shows a list of recently modified entities.',
-    'name'          => 'Recently modified entities',
+    'description'   => 'Shows a list of recently modified entries.',
+    'name'          => 'Recently modified entries',
 ];

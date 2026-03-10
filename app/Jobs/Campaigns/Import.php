@@ -5,6 +5,7 @@ namespace App\Jobs\Campaigns;
 use App\Enums\CampaignImportStatus;
 use App\Models\CampaignImport;
 use App\Services\Campaign\Import\ImportService;
+use App\Services\CsvValidatorService;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -61,11 +62,19 @@ class Import implements ShouldQueue
         Log::info('Campaign import', ['running', 'id' => $this->jobID]);
         $job->update(['status_id' => CampaignImportStatus::RUNNING]);
 
-        /** @var ImportService $service */
-        $service = app()->make(ImportService::class);
-        $service
-            ->job($job)
-            ->run();
+        if ($job->isCsv()) {
+            Log::info('Campaign import', ['csv', 'id' => $this->jobID]);
+            $service = app()->make(CsvValidatorService::class)
+                ->job($job)
+                ->run();
+        } else {
+            Log::info('Campaign import', ['backup import', 'id' => $this->jobID]);
+            /** @var ImportService $service */
+            $service = app()->make(ImportService::class);
+            $service
+                ->job($job)
+                ->run();
+        }
 
         return 1;
     }

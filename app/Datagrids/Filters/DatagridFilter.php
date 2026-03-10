@@ -75,7 +75,7 @@ abstract class DatagridFilter
     protected function locations(): self
     {
         $name = Module::plural(config('entities.ids.location'));
-        $placeholder = __('crud.placeholders.multiple');
+        $placeholder = __('crud.placeholders.search');
         if (! empty($name)) {
             $placeholder = __('crud.placeholders.fallback', ['module' => $name]);
         }
@@ -99,9 +99,9 @@ abstract class DatagridFilter
     protected function races(): self
     {
         $name = Module::plural(config('entities.ids.race'));
-        $placeholder = __('crud.placeholders.multiple');
+        $placeholder = __('crud.placeholders.search');
         if (! empty($name)) {
-            $placeholder = __('crud.placeholders.multiple', ['module' => $name]);
+            $placeholder = __('crud.placeholders.fallback', ['module' => $name]);
         }
         $this->filters[] = [
             'field' => 'races',
@@ -123,7 +123,7 @@ abstract class DatagridFilter
     protected function organisations(): self
     {
         $name = Module::plural(config('entities.ids.organisation'));
-        $placeholder = __('crud.placeholders.multiple');
+        $placeholder = __('crud.placeholders.search');
         if (! empty($name)) {
             $placeholder = __('crud.placeholders.fallback', ['module' => $name]);
         }
@@ -147,7 +147,7 @@ abstract class DatagridFilter
     protected function families(): self
     {
         $name = Module::plural(config('entities.ids.family'));
-        $placeholder = __('crud.placeholders.multiple');
+        $placeholder = __('crud.placeholders.search');
         if (! empty($name)) {
             $placeholder = __('crud.placeholders.fallback', ['module' => $name]);
         }

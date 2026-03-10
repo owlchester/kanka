@@ -87,7 +87,7 @@
                             <x-sidebar.element
                                 :url="route('campaign.modules', [$campaign])"
                                 icon="fa-duotone fa-floppy-disks"
-                                :text="__('campaigns.show.tabs.modules')"
+                                :text="__('campaigns/categories.tab')"
                             ></x-sidebar.element>
                         </li>
                     @endcan

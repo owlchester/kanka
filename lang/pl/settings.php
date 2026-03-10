@@ -133,6 +133,9 @@ return [
         'success'   => 'Zmieniono profil.',
         'title'     => 'Profil osobisty',
     ],
+    'referrals'     => [
+        'title' => 'Skierowania',
+    ],
     'subscription'  => [
         'actions'               => [
             'cancel_sub'        => 'Usuń subskrypcję',
@@ -164,6 +167,8 @@ return [
         'cancelled'             => 'Anulowano subskrypcję. Możesz ją odnowić, gdy tylko ta wygaśnie.',
         'change'                => [
             'text'  => [
+                'downgrade_monthly' => 'Zmniejszasz poziom subskrybcji do :tier, więc miesięczy rachunek wynosić będzie od tej pory :amount.',
+                'downgrade_yearly'  => 'Zmniejszasz poziom subskrybcji do :tier, więc roczny rachunek wynosić będzie od tej pory :amount.',
                 'monthly'           => 'Subskrybujesz na poziomie :tier, płacąc miesięcznie :amount.',
                 'upgrade_monthly'   => 'Zwiększasz subskrypcję do wersji :tier za :upgrade, więc miesięczny rachunek wyniesie :amount',
                 'upgrade_paypal'    => 'Zwiększasz subskrypcję do :tier za :upgrage do :date.',

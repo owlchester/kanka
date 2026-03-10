@@ -6,13 +6,26 @@
 ])
 
 @section('content')
-    <x-form :action="['campaign.apply.save', $campaign]" class="max-w-xl">
-    @include('partials.forms._dialog', [
-        'title' => __('campaigns/applications.apply.title', ['name' => $campaign->name]),
-        'content' => 'campaigns.applications._apply',
-        'save' => empty($application) ? __('campaigns/applications.apply.apply') : __('crud.update'),
-        'deleteID' =>  $application ? '#delete-application' : null,
-    ])
+    <x-dialog.header>
+        {{ __('campaigns/applications.apply.title', ['name' => $campaign->name]) }}
+    </x-dialog.header>
+    <x-form :action="['campaign.apply.save', $campaign]">
+        <x-dialog.article>
+            @include('partials.errors')
+            @include('campaigns.applications._apply')
+        </x-dialog.article>
+
+        <x-dialog.footer>
+            @if($application)
+                <x-slot:cancel>
+                    <x-button.delete-confirm target="#delete-application" />
+                </x-slot:cancel>
+            @endif
+
+            <button type="submit" class="btn2 btn-primary">
+                {{ empty($application) ? __('campaigns/applications.apply.apply') : __('crud.update') }}
+            </button>
+        </x-dialog.footer>
     </x-form>
 
     @if($application)

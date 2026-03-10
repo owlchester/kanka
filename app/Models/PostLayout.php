@@ -47,8 +47,12 @@ class PostLayout extends Model
 
     public function name(): string
     {
-        if (in_array($this->code, ['abilities', 'attributes', 'assets', 'inventory', 'reminders'])) {
+        if (in_array($this->code, ['abilities', 'inventory', 'reminders'])) {
             return __('crud.tabs.' . $this->code);
+        } elseif ($this->code === 'attributes') {
+            return __('entries/tabs.properties');
+        } elseif ($this->code === 'assets') {
+            return __('entries/tabs.media');
         } elseif ($this->code === 'entry') {
             return __('crud.fields.' . $this->code);
         } elseif ($this->code === 'children') {

@@ -27,6 +27,28 @@ class CampaignObserver
                     ->save()
             );
         }
+
+        // Safety net: ensure only one admin campaign per user can be prioritised at a time.
+        // This guards against two-tab exploits where the controller check passes twice.
+        if ($campaign->isDirty('is_prioritised') && $campaign->is_prioritised && auth()->check()) {
+            $user = auth()->user();
+
+            if (! $user->isElemental()) {
+                $campaign->is_prioritised = false;
+
+                return;
+            }
+
+            $adminCampaignIds = $user->campaignRoles()->where('is_admin', true)->pluck('campaign_id');
+            $alreadyPrioritised = Campaign::where('is_prioritised', true)
+                ->where('id', '!=', $campaign->id)
+                ->whereIn('id', $adminCampaignIds)
+                ->exists();
+
+            if ($alreadyPrioritised) {
+                $campaign->is_prioritised = false;
+            }
+        }
     }
 
     public function creating(Campaign $campaign)

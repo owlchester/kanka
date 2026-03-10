@@ -43,7 +43,7 @@ class WordCount extends Command
         $this->process(Post::class);
         $this->process(TimelineElement::class);
         $this->process(TimelineEra::class);
-        $this->process(QuestElement::class, 'description');
+        $this->process(QuestElement::class);
         $this->process(MapMarker::class);
         $this->process(MapLayer::class);
         $this->process(CharacterTrait::class);

@@ -10,10 +10,10 @@ return [
         'save'              => 'Save',
     ],
     'modal'     => [
-        'first-title'   => 'Select an entity',
-        'helper'        => 'Replace the entity with another from the campaign',
+        'first-title'   => 'Select an entry',
+        'helper'        => 'Replace the entry with another from the campaign',
         'relation'      => 'Relation',
-        'title'         => 'Replace entity',
+        'title'         => 'Replace entry',
     ],
     'modals'    => [
         'clear'     => [
@@ -23,8 +23,8 @@ return [
             'add'       => [
                 'founder'   => 'Founder',
                 'member'    => 'Member',
-                'success'   => 'Entity added.',
-                'title'     => 'Add an entity',
+                'success'   => 'Entry added.',
+                'title'     => 'Add an entry',
             ],
             'child'     => [
                 'success'   => 'Child added.',
@@ -32,15 +32,15 @@ return [
             ],
             'edit'      => [
                 'helper'    => 'Check this option if the relation is unknown. A character can be added later.',
-                'success'   => 'Entity updated.',
-                'title'     => 'Update an entity',
+                'success'   => 'Entry updated.',
+                'title'     => 'Update an entry',
             ],
             'founder'   => [
                 'title' => 'Add a new founder',
             ],
             'remove'    => [
-                'confirm'   => 'Are you sure you want to remove this entity from the family tree?',
-                'success'   => 'Entity removed.',
+                'confirm'   => 'Are you sure you want to remove this entry from the family tree?',
+                'success'   => 'Entry removed.',
             ],
         ],
         'relations' => [

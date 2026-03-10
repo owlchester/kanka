@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable('race_location')) {
+        if (! Schema::hasTable('race_location')) {
             return;
         }
         // Migrate race locations

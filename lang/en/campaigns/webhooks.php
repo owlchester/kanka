@@ -32,14 +32,14 @@ return [
         'enabled'           => 'Enabled',
         'event'             => 'Event',
         'events'            => [
-            'deleted'   => 'Deleted entity',
-            'edited'    => 'Edited entity',
-            'new'       => 'New entity',
+            'deleted'   => 'Deleted entry',
+            'edited'    => 'Edited entry',
+            'new'       => 'New entry',
         ],
         'message'           => 'Message',
         'private_entities'  => [
-            'helper'    => 'Don\'t trigger the webhook when updating private entities.',
-            'skip'      => 'Skip private entities',
+            'helper'    => 'Don\'t trigger the webhook when updating private entries.',
+            'skip'      => 'Skip private entries',
         ],
         'type'              => 'Type',
         'types'             => [
@@ -52,9 +52,9 @@ return [
         'active'    => 'The webhook is active and will trigger on the selected event.',
         'message'   => 'Add a custom message with support for mappings',
         'status'    => 'Toggle the active status of the webhook',
-        'tutorial'  => 'Use webhooks to send real-time updates from the campaign to external tools. Events trigger automatically when entities are created, updated, or deleted. You can add multiple webhooks and test them from this page.',
+        'tutorial'  => 'Use webhooks to send real-time updates from the campaign to external tools. Events trigger automatically when entries are created, updated, or deleted. You can add multiple webhooks and test them from this page.',
     ],
-    'pitch'         => 'Create custom webhooks to receive custom updates whenever an entity from the campaign is updated.',
+    'pitch'         => 'Create custom webhooks to receive custom updates whenever an entry from the campaign is updated.',
     'placeholders'  => [
         'message'   => '{who} made changes to {name}, check it out at {url}',
         'url'       => 'Target webhook\'s url',

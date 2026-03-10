@@ -20,7 +20,7 @@ const initExport = () => {
         let data = new FormData();
         let files = document.getElementById('export-files');
         Array.from(files.files).forEach(file => {
-            if (file.name.endsWith('.zip')) {
+            if (file.name.endsWith('.zip') || file.name.endsWith('.csv')) {
                 count++;
                 data.append('files[]', file);
             }

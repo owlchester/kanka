@@ -17,7 +17,7 @@ class HistoryFilter extends DatagridFilter
                 'label' => __('crud.fields.entity'),
                 'type' => 'select2',
                 'route' => route('search.entities-with-relations', $this->campaign),
-                'placeholder' => __('crud.placeholders.entity'),
+                'placeholder' => __('search.placeholders.entry'),
                 'model' => Entity::class,
             ])
             ->add([

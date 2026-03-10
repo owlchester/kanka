@@ -16,7 +16,7 @@ return [
     'next'      => 'Your support helps us grow and keep improving Kanka for everyone. Here is what you can do next to unclock all the benefits from your subscription:',
     'premium'   => [
         'action'    => 'Unlock',
-        'helper'    => 'Unlock premium features like custom modules, access to the :plugins, and more!',
+        'helper'    => 'Unlock premium features like custom categories, access to the :plugins, and more!',
         'title'     => 'Enable premium features on a campaign',
     ],
     'roadmap'   => [

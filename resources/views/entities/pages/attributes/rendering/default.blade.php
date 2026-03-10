@@ -10,7 +10,7 @@ $uid = 1;
 
 <div class="box-entity-attributes flex flex-col gap-5 max-w-7xl">
 @foreach ($sections as $section)
-    <div class="rounded p-2 flex flex-col gap-2 bg-base-100">
+    <div class="rounded-2xl p-2 flex flex-col gap-2 bg-base-100">
         <div class="flex items-center gap-5 text-lg cursor-pointer p-2" data-animate="collapse" data-target="#attribute-section-body-{{ $section['id'] }}">
             <div class="section-name grow">
                 @if (!empty($section['id']))

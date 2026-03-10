@@ -8,11 +8,15 @@ use App\Models\Family;
 use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
+use App\Traits\ResolvesNewForeignEntities;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreFamily extends FormRequest
 {
     use ApiRequest;
+    use ResolvesNewForeignEntities;
+
+    protected array $foreignEntityFields = ['family_id', 'location_id'];
 
     /**
      * Determine if the user is authorized to make this request.

@@ -64,7 +64,7 @@ class EntityLog extends Model
     protected array $custom = [
         'header_uuid' => 'fields.header-image.title',
         'image_uuid' => 'crud.fields.image',
-        'is_template' => 'entities/actions.templates.toggle',
+        'is_template' => 'entities/actions.archetype.toggle',
         'is_attributes_private' => 'entities/attributes.fields.is_private',
     ];
 

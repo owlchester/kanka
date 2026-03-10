@@ -60,6 +60,9 @@ return [
         'missing_image'         => 'Speichern Sie die Karte mit einem Bild, bevor Sie Ebenen und Markierungen hinzufügen können.',
     ],
     'index'         => [],
+    'lists'         => [
+        'empty' => 'Lade eine Karte hoch, um Orte zu visualisieren und die Geografie deiner Welt darzustellen.',
+    ],
     'maps'          => [],
     'panels'        => [
         'groups'    => 'Gruppen',

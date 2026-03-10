@@ -9,7 +9,6 @@ return [
     'fields'    => [
         'action'    => 'Aktion',
         'details'   => 'Details',
-        'module'    => 'Modul',
         'when'      => 'Wann',
         'who'       => 'Wer',
     ],
@@ -31,6 +30,7 @@ return [
         'restore'       => ':user wiederhergestellt :entity',
         'update'        => ':user aktualisiert :entity',
         'update_post'   => ':user aktualisierte den Beitrag ":post" zu :entity',
+        'update_tree'   => ':user hat den Stammbaum von :entity aktualisiert.',
     ],
     'title'     => 'Historie',
     'unknown'   => [

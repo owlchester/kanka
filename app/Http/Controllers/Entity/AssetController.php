@@ -26,7 +26,7 @@ class AssetController extends Controller
     public function index(Campaign $campaign, Entity $entity)
     {
         $this->campaign($campaign)->authEntityView($entity);
-        if (! $campaign->enabled('assets')) {
+        if (! $campaign->enabled('media')) {
             return redirect()->route('entities.show', [$campaign, $entity])->with(
                 'error_raw',
                 __('campaigns.settings.errors.module-disabled', [
@@ -35,7 +35,10 @@ class AssetController extends Controller
             );
         }
 
-        $assets = $entity->assets()->with('image')->get();
+        $assets = $entity->assets()
+            ->withoutAliases()
+            ->with('image')
+            ->get();
 
         return view('entities.pages.assets.index', compact(
             'campaign',
@@ -59,8 +62,6 @@ class AssetController extends Controller
             return $this->createFile($campaign, $entity);
         } elseif ($typeID === EntityAssetType::link->value) {
             return $this->createLink($campaign, $entity);
-        } elseif ($typeID === EntityAssetType::alias->value) {
-            return $this->createAlias($campaign, $entity);
         }
         abort(404);
     }
@@ -81,10 +82,6 @@ class AssetController extends Controller
             $data = $request->only(['name', 'position', 'visibility_id', 'metadata']);
             $type = 'links';
             $typeId = EntityAssetType::link;
-        } elseif (request()->get('type_id') == EntityAssetType::alias->value) {
-            $typeId = EntityAssetType::alias;
-            $data = $request->only(['name', 'visibility_id', 'is_pinned']);
-            $type = 'aliases';
         }
         $data['entity_id'] = $entity->id;
         $data['type_id'] = $typeId;
@@ -132,8 +129,6 @@ class AssetController extends Controller
         $file = 'files';
         if ($entityAsset->isLink()) {
             $file = 'links';
-        } elseif ($entityAsset->isAlias()) {
-            $file = 'aliases';
         }
 
         return view('entities.pages.' . $file . '.update')
@@ -150,11 +145,7 @@ class AssetController extends Controller
         }
 
         $type = 'files';
-        if ($entityAsset->isAlias()) {
-            $data = $request->only(['name', 'visibility_id', 'is_pinned']);
-            $entityAsset->update($data);
-            $type = 'aliases';
-        } elseif ($entityAsset->isLink()) {
+        if ($entityAsset->isLink()) {
             $data = $request->only(['name', 'metadata.url', 'metadata.icon', 'visibility_id']);
             $entityAsset->update($data);
             $type = 'links';
@@ -184,8 +175,6 @@ class AssetController extends Controller
         $type = 'files';
         if ($entityAsset->isLink()) {
             $type = 'links';
-        } elseif ($entityAsset->isAlias()) {
-            $type = 'aliases';
         }
 
         if (request()->ajax()) {
@@ -230,24 +219,6 @@ class AssetController extends Controller
         }
 
         return view('entities.pages.links.create', compact(
-            'campaign',
-            'entity'
-        ));
-    }
-
-    /**
-     * Create a new alias
-     *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
-    protected function createAlias(Campaign $campaign, Entity $entity)
-    {
-        if (! $campaign->boosted() && $campaign->entityAliases->count() > 2) {
-            return view('entities.pages.aliases.not-premium')
-                ->with('campaign', $campaign);
-        }
-
-        return view('entities.pages.aliases.create', compact(
             'campaign',
             'entity'
         ));

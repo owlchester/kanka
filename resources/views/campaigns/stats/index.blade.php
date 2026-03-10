@@ -28,11 +28,11 @@
         <x-grid>
 
             <div class="flex flex-col gap-5 stats-entities">
-                <h3 class="text-xl">{{ __('campaigns.show.tabs.modules') }}</h3>
+                <h3 class="text-xl">{{ __('campaigns/categories.tab') }}</h3>
                 <x-box>
                     <div class="grid grid-cols-2 gap-2 items-center">
                         <div class="entity-total font-bold">
-                            {{ __('entities.entities') }}
+                            {{ __('campaigns/stats.fields.entries') }}
                         </div>
                         <div class="entity-count font-bold">
                             {{ number_format($stats['entities']) }}

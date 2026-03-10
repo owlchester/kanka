@@ -2,7 +2,8 @@
 
 return [
     'actions'       => [
-        'copy'  => 'Kopiere',
+        'copy'      => 'Kopiere',
+        'transfer'  => 'Übertragung',
     ],
     'errors'        => [
         'permission'        => 'Sie dürfen keine Objekte dieses Typs in der Zielkampagne erstellen.',

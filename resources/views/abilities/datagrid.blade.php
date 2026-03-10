@@ -12,7 +12,7 @@
             'type' => 'parent',
         ],
         [
-            'label' => '<i class="fa-regular fa-user" title="' . __('abilities.show.tabs.entities') . '"></i>',
+            'label' => '<i class="fa-regular fa-user" title="' . __('entities.entries') . '"></i>',
             'render' => function($model) {
                 return number_format($model->entity_abilities_count);
             },

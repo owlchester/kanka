@@ -2,7 +2,7 @@
 
 return [
     'edit'  => [
-        'success'   => 'Campaign dashboard header updated.',
-        'title'     => 'Campaign dashboard header update',
+        'success'   => 'Billboard updated.',
+        'title'     => 'Update billboard',
     ],
 ];

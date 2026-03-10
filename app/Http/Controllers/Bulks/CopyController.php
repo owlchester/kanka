@@ -57,6 +57,6 @@ class CopyController extends Controller
 
         return redirect()
             ->back()
-            ->with('success_raw', trans_choice('crud.bulk.success.copy_to_campaign', $count, ['count' => $count, 'campaign' => $link]));
+            ->with('success_raw', trans_choice('entries/bulk.success.copy_to_campaign', $count, ['count' => $count, 'campaign' => $link]));
     }
 }

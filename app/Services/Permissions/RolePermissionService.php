@@ -62,7 +62,7 @@ class RolePermissionService
             ],
             CampaignPermission::ACTION_POSTS => [
                 'fa-regular fa-file',
-                'entity-note',
+                'articles',
             ],
             CampaignPermission::ACTION_PERMS => [
                 'fa-regular fa-cog',

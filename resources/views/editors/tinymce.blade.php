@@ -99,6 +99,20 @@
                 }
             },
             @endif
+            setup: function (editor) {
+                editor.on('init', function () {
+                    var style = getComputedStyle(document.documentElement);
+                    var vars = ['--mention-background', '--mention-text', '--p', '--pc'];
+                    var declarations = vars
+                        .map(function (v) { return { name: v, value: style.getPropertyValue(v).trim() }; })
+                        .filter(function (entry) { return entry.value !== ''; })
+                        .map(function (entry) { return entry.name + ': ' + entry.value; })
+                        .join('; ');
+                    if (declarations) {
+                        editor.dom.addStyle(':root { ' + declarations + ' }');
+                    }
+                });
+            },
             save_onsavecallback: function () {
                 // Set the global dirty check off
                 window.entityFormHasUnsavedChanges = false;

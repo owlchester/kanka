@@ -30,7 +30,7 @@ return [
     'back-to-campaigns' => 'Go back to one of your campaigns',
     'footer'            => 'If you need further assistance, please contact us at :email or on the :discord',
     'log-in'            => 'Logging in to your account might reveal what you are looking for.',
-    'post_layout'       => 'Invalid post layout.',
+    'post_layout'       => 'Invalid article layout.',
     'private-campaign'  => [
         'auth'  => [
             'helper'    => 'You don\'t have access to this campaign.',

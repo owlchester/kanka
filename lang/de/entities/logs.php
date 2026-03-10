@@ -26,4 +26,7 @@ return [
     'show'              => [
         'title' => 'Objektprotokoll: :name',
     ],
+    'tooltips'          => [
+        'post'  => 'Zum Beitrag gehen',
+    ],
 ];

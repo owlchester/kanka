@@ -32,9 +32,9 @@ $first = true;
                 {!! $permissions['entityType']->plural() !!}
             </div>
             @if (($permissions['entityType']->isCustom() && !$permissions['entityType']->isEnabled()) || ($permissions['entityType']->isStandard() && !$campaign->enabled($permissions['entityType']->pluralCode())))
-                <div class="inline" data-toggle="tooltip" data-title="{{ __('campaigns.modules.permission-disabled') }}">
+                <div class="inline" data-toggle="tooltip" data-title="{{ __('campaigns/categories.errors.permission-disabled') }}">
                     <x-icon class="fa-regular fa-exclamation-triangle" />
-                    <span class="inline sm:hidden text-sm">{{ __('campaigns.modules.permission-disabled') }}</span>
+                    <span class="inline sm:hidden text-sm">{{ __('campaigns/categories.errors.permission-disabled') }}</span>
                 </div>
             @endif
         </div>
@@ -76,7 +76,7 @@ $first = true;
                     <div class="hidden sm:flex text-center tooltip-wide gap-2 justify-center">
                         <label>
                 <span class="hidden sm:inline">{{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}@if($perm['action'] == \App\Enums\Permission::Posts->value)
-                        <i class="fa-regular fa-question-circle" data-placement="bottom" data-toggle="tooltip" data-title="{{ __('campaigns.roles.permissions.helpers.entity_note') }}"></i>
+                        <i class="fa-regular fa-question-circle" data-placement="bottom" data-toggle="tooltip" data-title="{{ __('campaigns.roles.permissions.helpers.articles') }}"></i>
                     @endif<br /></span>
                             <input type="checkbox" class="permission-toggle" data-action="{{ $perm['action'] }}" title="{{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}" />
 

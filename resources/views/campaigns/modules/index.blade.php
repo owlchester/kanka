@@ -1,7 +1,7 @@
 @extends('layouts.app', [
-    'title' => __('campaigns.show.tabs.modules') . ' - ' . $campaign->name,
+    'title' => __('campaigns/categories.tab') . ' - ' . $campaign->name,
     'breadcrumbs' => [
-        __('campaigns.show.tabs.modules')
+        __('campaigns/categories.tab')
     ],
     'canonical' => true,
     'mainTitle' => false,
@@ -16,7 +16,7 @@
 
         <div class="flex gap-2 items-center justify-between">
             <h1 class="inline-block text-2xl">
-                {{ __('campaigns.show.tabs.modules') }}
+                {{ __('campaigns/categories.tab') }}
             </h1>
             <div class="flex gap-1">
                 <x-learn-more url="features/campaigns/modules.html" />

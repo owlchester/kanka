@@ -7,13 +7,18 @@
 ?>
 <div class="tooltip-content flex flex-col gap-2 {{ implode(' ', $tagClasses) }}" >
     <div
-        class="flex gap-4 items-end tooltip-header @if ($hasImage) px-4 h-32 w-full @else px-4 pt-2 @endif"
+        class="flex gap-4 items-end tooltip-header @if ($hasImage) px-4 h-32 w-full @else px-4 pt-4 @endif"
         @if ($hasImage)
             style="--tooltip-background: url('{{ Avatar::entity($entity)->size(378, 256)->thumbnail() }}')"
         @endif>
         <div class="grow entity-names flex flex-col gap-0.5 overflow-hidden">
             <div class="flex gap-1 overflow-hidden items-center text-xl ">
                 <a href="{{ $entity->url() }}" class="entity-name truncate text-link">
+                    @if (!$hasImage)
+                        <span class="entity-icon" title="{{ $entity->entityType->name() }}">
+                            <i class="{{ $entity->entityType->icon() }}" aria-hidden="true"></i>
+                        </span>
+                    @endif
                     {!! $entity->name !!}
                 </a>
                 @if ($entity->isCharacter() && $entity->character->isDead())
@@ -39,7 +44,18 @@
         <iframe src="{{ route('entities.attributes-dashboard', [$campaign, $entity]) }}" class="tooltip-render w-full h-44"></iframe>
     @else
     <div class="tooltip-text flex flex-col gap-2 px-4 pb-4 overflow-auto">
-        {!! $tooltip !!}
+        @if ($entity->hasEntry())
+            {!! $tooltip !!}
+        @else
+            <span class="text-neutral-content">
+                {!! __('entities/tooltips.empty', ['name' => $entity->name]) !!}
+            </span>
+            @if (auth()->check() and auth()->user()->can('update', $entity))
+            <a href="{{ route('entities.entry.edit', [$campaign, $entity]) }}" class="text-link">
+                {{ __('entities/tooltips.fix') }}
+            </a>
+            @endif
+        @endif
     </div>
     @endif
 </div>

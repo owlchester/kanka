@@ -5,13 +5,13 @@
     'breadcrumbs' => [
         Breadcrumb::campaign($campaign)->entity($entity)->list(),
         Breadcrumb::show(),
-        ['url' => route('entities.relations.index', [$campaign, $entity->id]), 'label' => __('crud.tabs.relations')],
+        ['url' => route('entities.relations.index', [$campaign, $entity->id]), 'label' => __('entries/tabs.relations')],
     ],
     'centered' => true,
 ])
 
 @section('content')
-    <x-form :action="['entities.relations.update', $campaign, $entity->id, $relation]" method="PATCH" :direct="$from === 'web' ?? null">
+    <x-form :action="['entities.relations.update', $campaign, $entity->id, $relation]" method="PATCH" :direct="$from === 'web' ?? null" class="p-4">
         @include('partials.forms.form', [
             'title' => __('entities/relations.update.title', ['name' => '<a href="' .$entity->url() . '" class="text-link">' . $entity->name . '</a>']),
             'content' => 'entities.pages.relations._form',

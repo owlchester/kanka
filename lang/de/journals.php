@@ -13,6 +13,9 @@ return [
     'helpers'       => [],
     'index'         => [],
     'journals'      => [],
+    'lists'         => [
+        'empty' => 'Erstelle Tagebucheinträge, um Abenteuer, Gedanken der Charaktere oder Zusammenfassungen und Vorbereitungen für Spielsitzungen festzuhalten.',
+    ],
     'placeholders'  => [
         'author'    => 'Wer hat das Logbuch geschrieben',
         'date'      => 'Datum des Logbuchs',

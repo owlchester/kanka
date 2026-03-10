@@ -3,7 +3,7 @@
 return [
     'actions'       => [
         'add-circle'    => 'Add circle',
-        'add-entity'    => 'Add entity',
+        'add-entity'    => 'Add entry',
         'add-image'     => 'Add image',
         'add-square'    => 'Add square',
         'add-text'      => 'Add text',
@@ -16,8 +16,8 @@ return [
         'unlock'        => 'Unlock',
     ],
     'entity-search' => [
-        'placeholder'   => 'Type an entity\'s name or alias',
-        'title'         => 'Entity search',
+        'placeholder'   => 'Type an entry\'s name or alias',
+        'title'         => 'Entry search',
     ],
     'errors'        => [
         'websockets'    => [

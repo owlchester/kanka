@@ -8,6 +8,7 @@ return [
     ],
     'copy_alias'    => [
         'success'   => 'Alias mention copied to the clipboard.',
+        'title'     => 'Click to copy alias mention to the clipboard.',
     ],
     'show'          => [
         'title' => ':name Assets',

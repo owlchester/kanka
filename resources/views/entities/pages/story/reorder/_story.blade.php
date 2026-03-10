@@ -4,6 +4,6 @@
         <x-icon class="fa-regular fa-sort" />
     </div>
     <div class="overflow-hidden">
-        <span class="truncate">{{ __('crud.fields.entry') }}</span>
+        <span class="truncate">{{ __('fields.description.label') }}</span>
     </div>
 </x-reorder.child>

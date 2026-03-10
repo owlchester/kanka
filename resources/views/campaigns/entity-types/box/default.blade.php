@@ -10,9 +10,9 @@ $enabled = $campaign->enabled($entityType);
     <div class="flex justify-between items-center gap-2">
         <div class="flex gap-1 items-center text-lg">
             @if ($enabled)
-                <x-icon class="fa-regular fa-check-circle text-green-500" tooltip title="{{ __('campaigns/modules.states.enabled') }}" ></x-icon>
+                <x-icon class="fa-regular fa-check-circle text-success-content" tooltip title="{{ __('campaigns/modules.states.enabled') }}" ></x-icon>
             @else
-                <x-icon class="fa-regular fa-times text-red-500" tooltip title="{{ __('campaigns/modules.states.disabled') }}" ></x-icon>
+                <x-icon class="fa-regular fa-times text-error-content" tooltip title="{{ __('campaigns/modules.states.disabled') }}" ></x-icon>
             @endif
             <span class="break-all">
                 {!! $entityType->plural() !!}

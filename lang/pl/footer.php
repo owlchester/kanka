@@ -28,6 +28,7 @@ return [
     'roadmap'           => 'W przygotowaniu',
     'security'          => 'Bezpieczeństwo',
     'server-time'       => 'To czas naszego serwera (:server).',
+    'showcase'          => 'Galeria',
     'status'            => 'Status usługi',
     'terms'             => 'Warunki',
     'thanks'            => 'Ogromne wyrazy wdzięczności dla wszystkich subskrybujących.',

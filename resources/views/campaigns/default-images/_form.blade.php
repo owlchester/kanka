@@ -5,7 +5,7 @@
     <x-forms.field
         field="entity-type"
         required
-        :label="__('crud.fields.entity_type')">
+        :label="__('campaigns/categories.tab')">
 
         <x-forms.select name="entity_type" :options="$entityTypes" class="w-full" />
     </x-forms.field>

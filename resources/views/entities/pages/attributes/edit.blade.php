@@ -11,7 +11,7 @@ $isAdmin = auth()->user()->isAdmin();
     'breadcrumbs' => [
         Breadcrumb::campaign($campaign)->entity($entity)->list(),
         Breadcrumb::show(),
-        __('crud.tabs.attributes'),
+        __('entries/tabs.properties'),
     ],
     'mainTitle' => false,
     'centered' => true,

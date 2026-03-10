@@ -2,7 +2,7 @@
     $displayOptions = [
         0 => __('dashboard.widgets.preview.displays.expand'),
         1 => __('dashboard.widgets.preview.displays.full'),
-        2 => __('crud.tabs.attributes'),
+        2 => __('entries/tabs.properties'),
     ];
 @endphp
 <x-forms.field

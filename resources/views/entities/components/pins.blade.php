@@ -25,7 +25,7 @@ if (auth()->check() && auth()->user()->can('update', $entity)) {
             </div>
             <div class="sidebar-elements grid overflow-hidden" id="sidebar-pinned-elements">
                 <div class="pins flex flex-col gap-2">
-                    @includeWhen(!$entity->pinnedFiles->isEmpty() || !$entity->pinnedAliases->isEmpty(), 'entities.components.assets')
+                    @includeWhen(!$entity->pinnedFiles->isEmpty(), 'entities.components.assets')
                     @include('entities.components.relations')
                     @includeWhen($entity->entityType->isStandard() && method_exists($entity->child, 'pinnedMembers') && !$entity->child->pinnedMembers->isEmpty(), 'entities.components.members')
                     @can('view-attributes', [$entity, $campaign])

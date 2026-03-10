@@ -7,6 +7,7 @@ use App\Facades\ImportIdMapper;
 use App\Models\Entity;
 use App\Services\EntityMappingService;
 use Carbon\Carbon;
+use Illuminate\Support\Arr;
 
 trait EntityMapper
 {
@@ -190,6 +191,22 @@ trait EntityMapper
                 }
                 $foreignID = ImportIdMapper::get('locations', $pivot['location_id']);
                 // Avoid duplicates (e.g., if location_id was already handled above)
+                if (! $this->entity->locations()->wherePivot('location_id', $foreignID)->exists()) {
+                    $this->entity->locations()->attach($foreignID);
+                }
+            }
+        }
+
+        // Handle entityLocations nested in entity data
+        if (Arr::has($this->data, 'entity.entityLocations')) {
+            foreach ($this->data['entity']['entityLocations'] as $location) {
+                if (empty($location['location_id'])) {
+                    continue;
+                }
+                if (! ImportIdMapper::has('locations', $location['location_id'])) {
+                    continue;
+                }
+                $foreignID = ImportIdMapper::get('locations', $location['location_id']);
                 if (! $this->entity->locations()->wherePivot('location_id', $foreignID)->exists()) {
                     $this->entity->locations()->attach($foreignID);
                 }

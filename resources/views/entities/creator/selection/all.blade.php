@@ -2,7 +2,7 @@
 $half = ceil(count($entityTypes)  / 2);
 $i = 0;
 @endphp
-<div class="text-uppercase text-sm font-bold mb-4">
+<div class="text-xs uppercase font-semibold text-neutral-content mb-4">
     {{ __('entities.creator.titles.everything') }}
 </div>
 <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 selection">
@@ -16,7 +16,7 @@ $i = 0;
             @else
                 <a href="#" class="quick-creator-selection flex gap-2 items-center text-link" data-toggle="entity-creator" data-url="{{ route('entity-creator.post', [$campaign]) }}" data-entity-type="post">
                     <x-icon class="w-4 text-center fa-duotone fa-pen" />
-                    <span class="truncate block min-w-0">{!! __('entities.post') !!}</span>
+                    <span class="truncate block min-w-0">{!! __('entities.article') !!}</span>
                 </a>
             @endif
         </div>

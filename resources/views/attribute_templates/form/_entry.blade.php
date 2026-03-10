@@ -1,5 +1,5 @@
 <x-grid>
-    @include('cruds.fields.name', ['trans' => 'attribute_templates'])
+    @include('cruds.fields.entity-name')
 
     @include('cruds.fields.parent_attribute_template', ['isParent' => true])
 

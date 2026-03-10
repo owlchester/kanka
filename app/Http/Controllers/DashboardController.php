@@ -51,7 +51,7 @@ class DashboardController extends Controller
             CampaignEvent::create([
                 'campaign_id' => $campaign->id,
                 'created_by' => auth()->user()->id,
-                'event' => 'onboarding_shown'
+                'event' => 'onboarding_shown',
             ]);
         }
 

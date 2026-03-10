@@ -75,7 +75,7 @@
                                     <span class="hidden md:flex text-neutral-content text-xs">
                                         ( {{ $child['label'] ?? __($child['label_key']) }}
                                         @if (\Illuminate\Support\Arr::get($child, 'disabled') === true)
-                                            <i class="fa-regular fa-exclamation-triangle" aria-hidden="true" data-toggle="tooltip" data-title="{{ __('campaigns.modules.permission-disabled') }}"></i>
+                                            <i class="fa-regular fa-exclamation-triangle" aria-hidden="true" data-toggle="tooltip" data-title="{{ __('campaigns/categories.errors.permission-disabled') }}"></i>
                                         @endif
                                         )
                                     </span>

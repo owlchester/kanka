@@ -8,7 +8,6 @@ return [
     'destroy'               => [],
     'edit'                  => [],
     'fields'                => [
-        'attributes'    => 'Atribúty',
         'auto_apply'    => 'Autom. prevziať',
     ],
     'hints'                 => [
@@ -21,9 +20,5 @@ return [
     'placeholders'          => [
         'name'  => 'Názov šablóny atribútov',
     ],
-    'show'                  => [
-        'tabs'  => [
-            'attributes'    => 'Atribúty',
-        ],
-    ],
+    'show'                  => [],
 ];

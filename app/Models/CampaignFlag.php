@@ -15,6 +15,10 @@ class CampaignFlag extends Model
     use HasCampaign;
     use HasFactory;
 
+    protected $fillable = [
+        'flag',
+    ];
+
     public $casts = [
         'flag' => \App\Enums\CampaignFlags::class,
     ];

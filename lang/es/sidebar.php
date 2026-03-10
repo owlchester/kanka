@@ -1,7 +1,6 @@
 <?php
 
 return [
-    'campaign'          => 'Campaña',
     'campaign_switcher' => [
         'count'             => 'Miembro de :member',
         'created_campaigns' => 'Tus campañas',
@@ -12,19 +11,13 @@ return [
         'reorder'           => 'Reordenar',
         'updated'           => 'Actualizada',
     ],
-    'campaigns'         => 'Campañas',
-    'custom_links'      => 'Acceso rápido',
     'dashboard'         => 'Tablero',
     'entity-creator'    => 'Creador rápido',
     'gallery'           => 'Galería',
     'game'              => 'Juego',
-    'manage_links'      => 'Administrar enlaces',
-    'new-entity'        => 'Crear nueva entidad',
     'other'             => 'Otros',
-    'presets'           => 'Predeterminados',
     'recent'            => 'Cambios recientes',
     'relations'         => 'Relaciones',
-    'search'            => 'Buscar...',
     'settings'          => 'Configuración',
     'time'              => 'Tiempo',
     'world'             => 'Mundo',

@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable('organisation_location')) {
+        if (! Schema::hasTable('organisation_location')) {
             return;
         }
         // Migrate organisation locations

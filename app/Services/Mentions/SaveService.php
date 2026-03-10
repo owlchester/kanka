@@ -9,6 +9,7 @@ use App\Traits\UserAware;
 use DOMDocument;
 use DomElement;
 use DOMXPath;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 class SaveService
@@ -160,11 +161,26 @@ class SaveService
 
         // If the name isn't the target name, transform it into an advanced mention
         $originalName = $mentionLink->getAttribute('data-name');
-        if (! empty($originalName) && $originalName != Str::replace('&quot;', '"', $mentionName)) {
-            $mention = Str::replace(']', '|' . $mentionName . ']', $advancedMention);
+
+        $params = new Collection;
+        // Tiptap sends config in a property to keep things clean
+        if (! empty($mentionLink->getAttribute('data-config'))) {
+            $params = new Collection(explode('|', $mentionLink->getAttribute('data-config')));
+        }
+
+        // Tiptap will send the custom name in the config, so we can skip this garbage
+        if ($params->isNotEmpty() && ! empty($originalName) && $originalName != Str::replace('&quot;', '"', $mentionName)) {
+            // Merge custom name with params (page:abc|anchor:#post-1 etc)
+            $params->prepend($mentionName);
+            $mention = Str::replace(']', '|' . $params->implode('|') . ']', $advancedMention);
             $this->replace($mention, $mentionLink);
 
             return;
+        }
+
+        // Add params to the mention link
+        if ($params->isNotEmpty()) {
+            $advancedMention = Str::replaceLast(']', '|' . $params->implode('|') . ']', $advancedMention);
         }
 
         $this->replace($advancedMention, $mentionLink);

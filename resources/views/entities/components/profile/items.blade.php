@@ -10,6 +10,7 @@ $child = $entity->child;
 @endif
 
 <x-sidebar.profile>
+    @includeWhen($entity->aliases->isNotEmpty(), 'entities.components.profile._aliases')
     @if ($child->price)
         <div class="element profile-price">
             <div class="title text-uppercase text-xs">{{ __('items.fields.price') }}</div>

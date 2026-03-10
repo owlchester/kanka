@@ -84,7 +84,7 @@ $hasDashboards = !$dashboards->isEmpty() || !empty($dashboard);
 
                         @php $data = route('confirm-delete', [$campaign, 'route' => route('campaign_dashboards.destroy', [$campaign, $dashboard]), 'name' => $dashboard->name, 'permanent' => true]); @endphp
                         <x-dropdowns.divider />
-                        <x-dropdowns.item link="#" css="text-error hover:bg-error hover:text-error-content" :dialog="$data" icon="trash">
+                        <x-dropdowns.item link="#" css="text-error-content hover:bg-error" :dialog="$data" icon="trash">
                             {{ __('crud.remove') }}
                         </x-dropdowns.item>
                     </div>
@@ -135,7 +135,7 @@ $hasDashboards = !$dashboards->isEmpty() || !empty($dashboard);
                 @endforeach
 
                 <div class="col-span-4 widget rounded-xl h-28 hover:border-primary text-primary transition-all duration-150 cursor-pointer border-dashed border-2 py-6" data-toggle="dialog" data-url="{{ route('campaign_dashboard_widgets.index', [$campaign, 'dashboard' => $dashboard]) }}" data-tooltip data-title="{{ __('dashboards/setup.tooltips.add') }}">
-                    <div class="text-lg flex gap-2 items-center justify-center p-2 align-middle h-full">
+                    <div class="text-md xl:text-xl flex gap-2 items-center justify-center p-2 align-middle h-full">
                         <x-icon class="plus" />
                         <span class="uppercase">{{ __('dashboards/setup.actions.add') }}</span>
                     </div>

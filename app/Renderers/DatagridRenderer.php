@@ -190,7 +190,7 @@ class DatagridRenderer
                 $class .= ' ' . $this->hidden;
                 $html = $this->route(
                     'entity.name',
-                    ! empty($column['label']) ? $column['label'] : __('crud.fields.entity')
+                    ! empty($column['label']) ? $column['label'] : __('fields.entry.label')
                 );
             } elseif ($type == 'parent') {
                 $class .= ' ' . $this->hidden;
@@ -619,6 +619,6 @@ class DatagridRenderer
         }
 
         // @phpstan-ignore-next-line
-        return '<a href="' . $model->getLink() . '" class="text-link">' . $model->name . '</a>';
+        return '<a href="' . $model->getLink() . '" class="text-link font-medium">' . $model->name . '</a>';
     }
 }

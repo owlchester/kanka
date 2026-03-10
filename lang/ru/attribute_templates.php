@@ -8,7 +8,6 @@ return [
     'destroy'               => [],
     'edit'                  => [],
     'fields'                => [
-        'attributes'    => 'Атрибуты',
         'auto_apply'    => 'Автоприменение',
         'is_enabled'    => 'Включен',
     ],
@@ -27,9 +26,5 @@ return [
     'placeholders'          => [
         'name'  => 'Название шаблона атрибутов',
     ],
-    'show'                  => [
-        'tabs'  => [
-            'attributes'    => 'Атрибуты',
-        ],
-    ],
+    'show'                  => [],
 ];

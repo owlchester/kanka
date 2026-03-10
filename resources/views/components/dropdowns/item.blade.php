@@ -12,7 +12,7 @@
     @endif
 >
     @if (isset($icon))
-        <span class="shrink-0 w-4 text-center flex-none">
+        <span class="shrink-0 w-5 text-neutral-content text-center flex-none">
             <x-icon :class="$icon" />
         </span>
     @endif

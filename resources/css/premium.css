@@ -116,3 +116,43 @@ body.entity-with-banner .content-wrapper > .content {
         margin-bottom: -0.5rem;
     }
 }
+
+
+/* Task list specific styles */
+ul[data-type='taskList'] {
+    list-style: none;
+    margin-left: 0;
+    padding: 0;
+
+    li {
+        align-items: flex-start;
+        display: flex;
+        p {
+            margin-bottom: unset;
+        }
+
+        > label {
+            flex: 0 0 auto;
+            margin-right: 0.5rem;
+            user-select: none;
+        }
+
+        > div {
+            flex: 1 1 auto;
+        }
+    }
+
+    input[type='checkbox'] {
+        cursor: pointer;
+        position: relative;
+        padding: 0.5rem;
+        &:checked::after {
+            left: 0.1rem;
+            font-size: 1.2rem;
+        }
+    }
+
+    ul[data-type='taskList'] {
+        margin: 0;
+    }
+}

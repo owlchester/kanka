@@ -41,6 +41,7 @@ return [
             'standard' => 7,
             'premium' => 180,
         ],
+        'aliases' => 2,
         'web' => 10,
     ],
 

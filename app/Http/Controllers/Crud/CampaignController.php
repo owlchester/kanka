@@ -7,7 +7,9 @@ use App\Http\Requests\UpdateCampaign;
 use App\Models\Campaign;
 use App\Services\Campaign\GenreService;
 use App\Services\Campaign\SystemService;
+use App\Services\LanguageService;
 use App\Services\MultiEditingService;
+use Illuminate\Support\Str;
 
 class CampaignController extends Controller
 {
@@ -17,6 +19,7 @@ class CampaignController extends Controller
         protected MultiEditingService $editingService,
         protected GenreService $genreService,
         protected SystemService $systemService,
+        protected LanguageService $languageService
     ) {
         $this->middleware('auth', ['except' => ['index', 'show', 'css']]);
     }
@@ -42,12 +45,24 @@ class CampaignController extends Controller
                 $this->editingService->edit();
             }
         }
+        $languages = $this->languageService->getSupportedLanguagesList(true);
+        $timezones = [];
+
+        for ($i = -12; $i <= 14; $i++) {
+            $prefix = ($i >= 0) ? '+' : '-';
+            // Formats to "UTC +05:00" or "UTC -11:00"
+            $utcString = 'UTC ' . $prefix . Str::padLeft((string) abs($i), 2, '0') . ':00';
+
+            $timezones[$utcString] = $utcString;
+        }
 
         return view($this->view . '.forms.edit', [
             'campaign' => $campaign,
             'model' => $campaign,
             'start' => false,
             'editingUsers' => $editingUsers,
+            'languages' => $languages,
+            'timezones' => $timezones,
         ]);
     }
 

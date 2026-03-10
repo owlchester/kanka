@@ -13,8 +13,8 @@
 
         <x-forms.field
             field="entry"
-            :label="__('campaigns.fields.description')">
-            <textarea name="entry" id="entry" class="w-full html-editor">{!! old('entry', $campaign->entryForEdition ?? null) !!}</textarea>
+            :label="__('fields.description.label')">
+            @include('cruds.fields.entry', ['model' => $campaign ?? null])
         </x-forms.field>
 
         @include('cruds.fields.image-old', ['model' => $campaign ?? null, 'campaignImage' => true, 'imageLabel' => 'campaigns.fields.image', 'recommended' => '240x208'])
@@ -42,7 +42,7 @@
                 <p class="hidden" id="vanity-loading">
                     <x-icon class="loading" />
                 </p>
-                <p class="text-error hidden" id="vanity-error"></p>
+                <p class="text-error-content hidden" id="vanity-error"></p>
                 <div class="alert alert-success my-1 rounded px-2 py-1 hidden" id="vanity-success">
                     <p>{!! __('campaigns/vanity.available', ['vanity' => '<code></code>']) !!}</p>
                 </div>

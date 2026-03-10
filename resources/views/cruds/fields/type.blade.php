@@ -7,7 +7,7 @@
     :id="$fieldID">
 
     <input id="{{ $fieldID }}" type="text" name="type"
-           placeholder="{{ __($trans . '.placeholders.type') }}" maxlength="45" list="entity-type-list-{{ $trans }}"
+           placeholder="{{ $placeholder ?? __($trans . '.placeholders.type') }}" maxlength="45" list="entity-type-list-{{ $trans }}"
            spellcheck="true" autocomplete="off"
            value="{!! htmlspecialchars(str_replace('&amp;', '&', old('type', $source->type ?? $entity->type ?? ''))) !!}"/>
     <div class="hidden">

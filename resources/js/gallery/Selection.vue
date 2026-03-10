@@ -1,6 +1,6 @@
 <template>
     <div v-if="loading">
-        <i class="fa-solid fa-spin fa-spinner2" aria-label="Loading"></i>
+        <i class="fa-solid fa-spin fa-spinner" aria-label="Loading"></i>
     </div>
     <div v-else :class="backgroundClass()" :style="{'backgroundImage': backgroundImage()}">
         <div :class="buttonsClass()">
@@ -14,7 +14,7 @@
                 <i class="fa-solid fa-spin fa-spinner" v-if="downloading" aria-label="Downloading" />
             </div>
             <div class="flex items-center gap-1" v-if="!hasImage()">
-                <span role="button" class="btn2 btn-default btn-sm" @click="openGallery()" v-html="trans.gallery"></span>
+                <span role="button" class="btn2 btn-outline btn-sm" @click="openGallery()" v-html="trans.gallery"></span>
             </div>
         </div>
         <div v-if="uploading" class="flex gap-2 flex-col w-full">

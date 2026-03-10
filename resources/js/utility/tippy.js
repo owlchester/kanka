@@ -6,6 +6,9 @@ const entityTooltips = Array();
  * For ajax tooltips, we cache the result (typical for dashboards)
  */
 const initAjaxTooltips = () => {
+    if (window.innerWidth < 768) {
+        return;
+    }
     const elementsAjax = document.querySelectorAll('[data-toggle="tooltip-ajax"]');
     elementsAjax.forEach(e => {
         if (e._tippy) {
@@ -64,7 +67,7 @@ const initTooltip = (e) => {
         delay: 250,
         placement: e.dataset.direction ?? 'bottom',
         allowHTML: e.dataset.html ?? false,
-        appendTo: e.dataset.append ?? document.body,
+        appendTo: e.dataset.append ? document.querySelector(e.dataset.append) : document.body,
         arrow: true,
     });
 };
@@ -81,7 +84,7 @@ const initDropdowns = () => {
             content: '<div class="dd-menu flex flex-col max-w-2xl">' + dropdown.innerHTML + '</div>',
             theme: 'kanka-dropdown',
             placement: e.dataset.direction ?? 'bottom',
-            appendTo: e.dataset.append ?? document.body,
+            appendTo: e.dataset.append ? document.querySelector(e.dataset.append) : document.body,
             zIndex: 890,
             allowHTML: true,
             arrow: true,

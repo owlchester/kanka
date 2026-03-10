@@ -16,6 +16,9 @@ return [
         'date'  => 'Dieses Feld kann alles enthalten und ist nicht mit den Kalendern der Kampagne verknüpft. Um dieses Ereignis mit einem Kalender zu verknüpfen, fügen Sie es im Kalender oder auf der Registerkarte Erinnerungen dieses Ereignisses hinzu.',
     ],
     'index'         => [],
+    'lists'         => [
+        'empty' => 'Füge bedeutende Momente wie Schlachten, Krönungen oder Entdeckungen zur Geschichte deiner Welt hinzu.',
+    ],
     'placeholders'  => [
         'date'  => 'Ein Datum für dein Ereginis',
         'type'  => 'Zeremonie, Fest, Katastrophe, Schlacht, Geburt',

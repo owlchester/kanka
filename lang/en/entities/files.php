@@ -4,7 +4,7 @@ return [
     'call-to-action'    => [
         'max'       => [
             'helper'    => 'You can\'t attach any more files unless you remove an existing one.',
-            'limit'     => 'This entity has reached its file limit',
+            'limit'     => 'This entry has reached its file limit',
         ],
         'upgrade'   => [
             'limit'     => 'You\'ve reached the limit of :limit files for this entity',

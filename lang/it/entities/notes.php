@@ -29,7 +29,6 @@ return [
     'fields'        => [
         'creator'   => 'Creatore',
         'display'   => 'Visualizza',
-        'entry'     => 'Voce',
         'name'      => 'Nome',
         'position'  => 'Posizione',
     ],
@@ -41,9 +40,7 @@ return [
     'hints'         => [
         'reorder'   => 'Puoi riordinare i post di un\'entità cliccando sull\'icona :icon nell\'intestazione dell\'entità.',
     ],
-    'index'         => [
-        'title' => 'Post per :name',
-    ],
+    'index'         => [],
     'move'          => [
         'copy'          => 'Crea una copia sull\'entità di destinazione',
         'copy_success'  => 'Post :name copiato in :entity con successo.',

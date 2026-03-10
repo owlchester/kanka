@@ -11,19 +11,19 @@
 >
     @if (!empty($images['wide_xl']))
         <a href="{{ $entity->url() }}"
-            class="widget-image cover-background bg-center aspect-video rounded-t "
+            class="widget-image cover-background bg-center aspect-video "
             >
             <picture class="entity-image-wide">
                 <source srcset="{{ $images['wide_xl'] }}" media="(min-width: 768px)" />
-                <img src="{{ $images['wide_sm'] }}" class="w-full entity-picture-wide" alt="{{ $entity->name }}" />
+                <img src="{{ $images['wide_sm'] }}" class="w-full entity-picture-wide rounded-t-lg" alt="{{ $entity->name }}" />
             </picture>
             <picture class="entity-image-square hidden">
                 <source srcset="{{ $images['square_xl'] }}" media="(min-width: 768px)" />
-                <img src="{{ $images['square_sm'] }}" class="w-full entity-picture-square" alt="{{ $entity->name }}" />
+                <img src="{{ $images['square_sm'] }}" class="w-full entity-picture-square rounded-t-lg" alt="{{ $entity->name }}" />
             </picture>
         </a>
     @endif
-    <a href="{{ $entity->url() }}" class="flex gap-1 text-xl p-4 pb-0 text-link">
+    <a href="{{ $entity->url() }}" class="flex gap-1 text-lg p-4 pb-0 text-link">
         @if ($entity->is_private)
             <x-icon class="lock" :title="__('crud.is_private')" tooltip />
         @endif

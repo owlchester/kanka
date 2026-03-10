@@ -33,7 +33,7 @@ class Recovery extends Layout
             ],
             'type' => [
                 'key' => 'type_id',
-                'label' => 'crud.fields.entity_type',
+                'label' => 'campaigns/categories.tab',
                 'render' => function ($entity) {
                     return $entity->entityType->singular();
                 },

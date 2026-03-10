@@ -2,9 +2,14 @@
 
 return [
     'actions'   => [
-        'back'      => 'Retour aux connections',
-        'download'  => 'Télécharger le PNG',
-        'view'      => 'Voir le réseau',
+        'add'           => 'Connecter un existant',
+        'back'          => 'Retour aux connections',
+        'download'      => 'Télécharger le PNG',
+        'download-pdf'  => 'Télécharger en PDF',
+        'download-png'  => 'Télécharger l\'image (.png)',
+        'reset-layout'  => 'Réinitialiser le rendu',
+        'view'          => 'Voir le réseau',
+        'zoom-fit'      => 'Ajuster le zoom',
     ],
     'cta'       => [
         'text'  => 'Voici un aperçu du réseau complet des connexions de la campagne. Les campagnes standard permettent afficher jusqu\'à :amount nœuds. Les campagnes premium débloquent le réseau complet avec toutes les connexions et une navigation totale. Débloque les options premium pour visualiser l\'intégralité de la structure de ton monde en un coup d\'œil.',

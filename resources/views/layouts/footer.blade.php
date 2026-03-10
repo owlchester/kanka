@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="flex flex-col gap-3 text-sm">
-                    <span class="block text-nav uppercase">{{ __('footer.platform') }}</span>
+                    <span class="block text-nav uppercase text-xs text-neutral-content font-semibold">{{ __('footer.platform') }}</span>
                     <a href="{{ Domain::toFront('features') }}" class="text-link">{{ __('footer.features') }}</a>
                     <a href="{{ Domain::toFront('premium') }}" class="text-link">{{ __('footer.premium') }}</a>
                     <a href="{{ Domain::toFront('pricing') }}" class="text-link">{{ __('footer.pricing') }}</a>
@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="flex flex-col gap-3 text-sm">
-                    <span class="block text-nav uppercase">{{ __('footer.resources') }}</span>
+                    <span class="block text-nav uppercase text-xs text-neutral-content font-semibold">{{ __('footer.resources') }}</span>
                     <a href="{{ Domain::toFront('kb') }}" class="text-link">{{ __('footer.kb') }}</a>
                     <a href="https://docs.kanka.io/en/latest/index.html" target="_blank" class="text-link">{{ __('footer.documentation') }}</a>
                     <a href="{{ route('larecipe.index') }}" target="_blank" class="text-link">{{ __('front.features.api.link') }}</a>
@@ -55,7 +55,7 @@
                 </div>
 
                 <div class="flex flex-col gap-3 text-sm">
-                    <span class="block text-nav uppercase">{{ __('footer.community') }}</span>
+                    <span class="block text-nav uppercase text-xs text-neutral-content font-semibold">{{ __('footer.community') }}</span>
                     <a href="https://blog.kanka.io/category/news/" class="text-link" target="_blank">{{ __('footer.whats-new') }}</a>
                     <a href="{{ Domain::toFront('campaigns') }}" class="text-link">{{ __('footer.public-campaigns') }}</a>
                     <a href="{{ route('roadmap') }}" class="text-link">{{ __('footer.roadmap') }}</a>
@@ -63,7 +63,7 @@
                 </div>
 
                 <div class="flex flex-col gap-3 text-sm">
-                    <span class="block text-nav uppercase">{{ __('footer.company') }}</span>
+                    <span class="block text-nav uppercase text-xs text-neutral-content font-semibold">{{ __('footer.company') }}</span>
                     <a href="{{ Domain::toFront('about') }}" class="text-link">{{ __('footer.about') }}</a>
                     <a href="{{ Domain::toFront('contact') }}" class="text-link">{{ __('footer.contact') }}</a>
                     <a href="{{ Domain::toFront('privacy-policy') }}" class="text-link">{{ __('footer.privacy') }}</a>

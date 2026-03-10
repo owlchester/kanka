@@ -4,6 +4,7 @@ return [
     'actions'   => [
         'pay'       => 'Zapłać teraz :amount :currency',
         'paypal'    => 'Zapłać :amount :currency PayPalem',
+        'subscribe' => 'Subskrybujesz za :currency:amount',
     ],
     'helpers'   => [
         'auto-renew'    => [
@@ -13,6 +14,7 @@ return [
         ],
         'paypal'        => 'Przeniesiesz się na stronę PayPal by dokończyć płatność.',
         'refund'        => 'Oferujemy 14-dniowy okres rezygnacji z każdej subskrypcji rocznej. Nie musisz się tłumaczyć, wystarczy napisać maila na adres :email, by wszcząć procedurę zwrotu kosztów.',
+        'tiny'          => 'Dziękujemy za wsparcie malutkiej grupki zapalonych światotwórców.',
     ],
     'title'     => 'Subskrybcja :name',
 ];

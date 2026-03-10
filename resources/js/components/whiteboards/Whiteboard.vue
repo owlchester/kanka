@@ -5,7 +5,7 @@
             <i class="fa-solid fa-spinner fa-spin" aria-hidden="true" />
             <span>Joining the whiteboard</span>
         </div>
-        <div class="flex flex-col gap-2 text-error" v-else-if="error">
+        <div class="flex flex-col gap-2 text-error-content" v-else-if="error">
             <i class="fa-reguar fa-circle-exclamation" aria-hidden="true" />
             <span v-html="error"></span>
             <button class="btn2 btn-default btn-sm" @click="reload()">
@@ -408,7 +408,7 @@
                 </button>
             </div>
             <button
-                class="btn2 btn-sm text-error"
+                class="btn2 btn-sm text-error-content"
                 :title="trans('delete')"
                 @click.stop="deleteSelected"
             >

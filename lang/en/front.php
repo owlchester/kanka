@@ -20,7 +20,7 @@ return [
         'patreon'   => [
             'api_calls'         => 'Increased API calls (90 per minute)',
             'boosts'            => 'Campaign Boosters',
-            'default_image'     => 'Nicer default images for entities in lists',
+            'default_image'     => 'Nicer default images for entries in lists',
             'discord'           => 'Private :discord channel',
             'free'              => 'Free',
             'hall_of_fame'      => 'Name in the :link',

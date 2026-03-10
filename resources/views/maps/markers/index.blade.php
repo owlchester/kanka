@@ -10,7 +10,7 @@
 @section('entity-header-actions')
     <div class="header-buttons flex gap-2 items-center justify-end flex-wrap">
         @can('update', $entity)
-            <a href="https://docs.kanka.io/en/latest/entities/maps/markers.html" class="btn2 btn-sm" target="_blank">
+            <a href="https://docs.kanka.io/en/latest/entries/maps/markers.html" class="btn2 btn-sm" target="_blank">
                 <x-icon class="question" />
                 <span class="hidden xl:inline">{{ __('crud.actions.help') }}</span>
             </a>

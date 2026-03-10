@@ -42,15 +42,12 @@ return [
         'success'   => 'Legame :target rimosso per :name.',
     ],
     'fields'            => [
-        'attitude'          => 'Attitudine',
-        'connection'        => 'Legame',
-        'is_pinned'         => 'Fissato',
-        'owner'             => 'Fonte',
-        'relation'          => 'Legame',
-        'target'            => 'Entità Bersaglio',
-        'target_relation'   => 'Descrizione dell\'Entità Bersaglio',
-        'two_way'           => 'Crea anche il legame speculare',
-        'unmirror'          => 'Togli l\'impostazione speculare di questo legame.',
+        'attitude'  => 'Attitudine',
+        'is_pinned' => 'Fissato',
+        'owner'     => 'Fonte',
+        'target'    => 'Entità Bersaglio',
+        'two_way'   => 'Crea anche il legame speculare',
+        'unmirror'  => 'Togli l\'impostazione speculare di questo legame.',
     ],
     'filters'           => [
         'connection'    => 'Relazione del legame',
@@ -61,13 +58,8 @@ return [
         'no_relations'  => 'Questa entità non ha attualmente nessun legame ad altre entità nella campagna.',
     ],
     'hints'             => [
-        'attitude'          => 'Questo campo opzionale può essere utilizzato per definire l\'ordine predefinito di visualizzazione dei legami in ordine decrescente.',
-        'mirrored'          => [
-            'text'  => 'Questo legame è speculare con :link.',
-            'title' => 'Speculare',
-        ],
-        'target_relation'   => 'La descrizione del legame nell\'entità bersaglio. Lascia vuoto per usare il testo di questo legame.',
-        'two_way'           => 'Se scegli di creare un legame speculare, il medesimo legame sarà creato per l\'entità bersaglio: se ne modificherai uno, tuttavia, l\'altro non verrà aggiornato.',
+        'attitude'  => 'Questo campo opzionale può essere utilizzato per definire l\'ordine predefinito di visualizzazione dei legami in ordine decrescente.',
+        'two_way'   => 'Se scegli di creare un legame speculare, il medesimo legame sarà creato per l\'entità bersaglio: se ne modificherai uno, tuttavia, l\'altro non verrà aggiornato.',
     ],
     'index'             => [
         'title' => 'Legami',
@@ -83,10 +75,7 @@ return [
         'related'   => 'Correlato',
     ],
     'placeholders'      => [
-        'attitude'          => '-100 fino a 100, in cui 100 rappresenta un attitudine molto positiva',
-        'relation'          => 'Rivale, Miglior Amico, Fratello o Sorella',
-        'target'            => 'Scegli un entità',
-        'target_relation'   => 'Lascia vuoto per usare la descrizione',
+        'attitude'  => '-100 fino a 100, in cui 100 rappresenta un attitudine molto positiva',
     ],
     'show'              => [
         'title' => 'Legami per :name',

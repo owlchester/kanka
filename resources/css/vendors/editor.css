@@ -69,9 +69,11 @@ div.mce-fullscreen {
 
 img.note-float-right {
     float: right;
+    padding-left: 0.5rem;
 }
 img.note-float-left {
     float: left;
+    padding-right: 0.5rem;
 }
 
 .note-btn i.fa, .note-btn i.fas, .note-btn i.fa-brands, .note-btn i.far, .note-btn i.fa-solid, .note-btn i.fa-sharp, .note-icon-code {

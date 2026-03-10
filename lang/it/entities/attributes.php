@@ -2,15 +2,14 @@
 
 return [
     'actions'       => [
-        'apply_template'    => 'Applica un Modello per gli Attributi',
-        'load'              => 'Carica',
-        'manage'            => 'Gestisci',
-        'more'              => 'Altro',
-        'remove_all'        => 'Elimina tutto',
-        'save_and_edit'     => 'Applica e Modifica',
-        'save_and_story'    => 'Applica e Visualizza',
-        'show_hidden'       => 'Mostra attributi nascosti',
-        'toggle_privacy'    => 'Privato/Pubblico',
+        'load'          => 'Carica',
+        'manage'        => 'Gestisci',
+        'more'          => 'Altro',
+        'remove_all'    => 'Elimina tutto',
+        'save_and_edit' => 'Applica e Modifica',
+        'save_and_story'=> 'Applica e Visualizza',
+        'show_hidden'   => 'Mostra attributi nascosti',
+        'toggle_privacy'=> 'Privato/Pubblico',
     ],
     'errors'        => [
         'loop'                  => 'Il calcolo di questo attributo è un ciclo infinito!',
@@ -18,7 +17,6 @@ return [
         'too_many_v2'           => 'Campi massimi raggiunti (:count/:max). Elimina alcuni attributi prima di poterne aggiungere altri.',
     ],
     'fields'        => [
-        'attribute'             => 'Attributo',
         'community_templates'   => 'Modelli della Comunità',
         'is_private'            => 'Attributi Privati',
         'is_star'               => 'Fissato',

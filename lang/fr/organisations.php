@@ -38,7 +38,7 @@ return [
         'helpers'       => [
             'all_members'   => 'Tous les personnages qui sont membres de cette organisation et des sous-organisations.',
             'members'       => 'Tous les personnages directement membres de cette organisation.',
-            'pinned'        => 'Définir sur le membre doit être affiché dans les épingles des entités associées.',
+            'pinned'        => 'Définir sur le membre doit être affiché dans les épingles des entrées associées.',
         ],
         'pinned'        => [
             'both'  => 'Les deux',

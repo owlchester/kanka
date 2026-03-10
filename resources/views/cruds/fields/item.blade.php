@@ -22,7 +22,7 @@
     :dynamicNew="$dynamicNew ?? false"
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? false"
-    :placeholder="isset($multiple) && $multiple ? __('crud.placeholders.multiple') : null"
+    :placeholder="isset($multiple) && $multiple ? __('crud.placeholders.search') : null"
     :route="route('search-list', [$campaign, config('entities.ids.item')] + (isset($entity) ? ['exclude' => $entity->id] : []))"
     :selected="$preset"
     :helper="$helper ?? null"

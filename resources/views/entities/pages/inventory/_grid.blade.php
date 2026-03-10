@@ -62,7 +62,7 @@
                         </a>
                         <a
                             href="#"
-                            class="btn2 btn-default btn-sm text-error"
+                            class="btn2 btn-default btn-sm text-error-content"
                             role="button"
                             data-toggle="dialog"
                             data-url="{{ route('confirm-delete', [$campaign, 'route' => route('entities.inventory.delete.section', [$campaign, $entity, $items['0']]), 'name' => $position, 'permanent' => true]) }}"

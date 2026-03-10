@@ -82,7 +82,7 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  * @property Image|null $header
  * @property User[]|Collection $users
  * @property CampaignPermission[]|Collection $permissions
- * @property EntityAlias[]|Collection $aliases
+ * @property EntityAsset[]|Collection $aliases
  * @property EntityAsset[]|Collection $assets
  * @property Entity $parent
  */
@@ -387,8 +387,13 @@ trait EntityRelations
 
     public function pinnedAliases(): HasMany
     {
+        return $this->aliases()
+            ->where('is_pinned', 1);
+    }
+
+    public function aliases(): HasMany
+    {
         return $this->assets()
-            ->where('is_pinned', 1)
             ->where('type_id', 3);
     }
 

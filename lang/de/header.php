@@ -9,6 +9,9 @@ return [
         'no-unread' => 'Keine ungelesenen Benachrichtigungen',
         'read_all'  => 'Alles lesen',
     ],
+    'qq'                => [
+        'tooltip'   => 'Ein Objekt erstellen oder einen Beitrag veröffentlichen',
+    ],
     'toggle_navigation' => 'Navigation umschalten',
     'user'              => [
         'settings'      => 'Einstellungen',

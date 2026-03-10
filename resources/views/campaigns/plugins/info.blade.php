@@ -25,7 +25,7 @@
         <x-helper>
             <p>{!! __('campaigns/plugins.info.description', ['plugin' => $plugin->name]) !!}</p>
         </x-helper>
-        <div class="formless flex flex-col gap-4 w-full">
+        <div class="flex flex-col gap-4 w-full">
             <div class="plugin-summary grow">
                 @if (!empty($plugin->summary))
                     {!! $plugin->summary !!}
@@ -78,12 +78,6 @@
                 </div>
                 @php $first = false; @endphp
             @endforeach
-
-            @if ($versions->hasPages())
-            <div class="">
-                {!! $versions->onEachSide(0)->links() !!}
-            </div>
-            @endif
         </div>
     </article>
 @endsection

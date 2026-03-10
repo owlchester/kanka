@@ -1,7 +1,7 @@
 <div class="entity-attributes flex flex-col gap-2">
     <h3 class="text-xl">
         <x-icon class="fa-regular fa-th-list" />
-        {{ __('crud.tabs.attributes') }}
+        {{ __('entries/tabs.properties') }}
     </h3>
     <x-box>
         @include('entities.pages.attributes.render')

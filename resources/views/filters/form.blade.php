@@ -14,7 +14,7 @@
         $resetRoute = route($route, [$campaign, 'reset-filter' => 'true']);
     }
 @endphp
-<x-form :action="$formRoute" method="GET" id="crud-filters-form" class="block">
+<x-form :action="$formRoute" method="GET" id="crud-filters-form-za2" class="block">
 <x-dialog.header>
     {{ __('crud.filters.title') }}
 </x-dialog.header>
@@ -36,7 +36,7 @@
                 @endif
                 <div class="field flex flex-col gap-1 field-{{ $field['field'] ?? 'unknown' }}">
                     @if (is_array($field))
-                        <label>{!! Arr::get($field, 'label', __('crud.fields.' . $field['field'])) !!}</label>
+                        <label class="text-xs font-medium opacity-80">{!! Arr::get($field, 'label', __('crud.fields.' . $field['field'])) !!}</label>
                             <?php
                             $model = $models = null;
                             $value = $filterService->single($field['field']);
@@ -56,13 +56,17 @@
 
                         @if ($field['type'] === 'tag')
                             @include('cruds.datagrids.filters._tag', ['value' => $filterService->filterValue('tags')])
+                        @elseif ($field['type'] === 'text')
+                            <input type="text" class="w-full field-{{ $field['field'] }}" name="{{ $field['field'] }}" value="{{ $filterService->single($field['field']) }}" data-1p-ignore="true" placeholder="{{ $field['placeholder'] ?? null }}" />
+                        @elseif ($field['type'] === 'number')
+                            <input type="number" class="w-full field-{{ $field['field'] }}" name="{{ $field['field'] }}" value="{{ $filterService->single($field['field']) }}" data-1p-ignore="true" placeholder="{{ $field['placeholder'] ?? null }}" min="{{ $field['min'] ?? 0 }}" max="{{ $field['max'] ?? 100 }}" />
                         @elseif ($field['type'] === 'select')
                             @include('cruds.datagrids.filters._select')
                         @else
                             @include('cruds.datagrids.filters._array')
                         @endif
                     @else
-                        <label>
+                        <label class="text-xs font-medium opacity-80">
                             {{ __($field === 'is_dead' ? 'characters.fields.' . $field : ((in_array($field, ['name', 'type', 'is_private', 'has_image', 'has_attributes', 'has_entity_files', 'has_entry', 'has_posts', 'date_range', 'template', 'archived']) ? 'crud.fields.' : $langKey . '.fields.') . $field)) }}
                         </label>
                         @if ($filterService->isCheckbox($field))

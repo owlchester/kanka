@@ -23,14 +23,14 @@ return [
         'unorganised'   => 'Unorganised',
     ],
     'helpers'   => [
-        'note'      => 'You can reference entities using advanced mentions (ex :code) and attributes of the entity (ex :attr) in this field.',
+        'note'      => 'You can reference entries using advanced mentions (ex :code) and properties of the entry (ex :attr) in this field.',
         'recharge'  => 'Reset all charges for abilities that have been used.',
         'sync'      => 'Import abilities that are defined on the character\'s races.',
     ],
     'import'    => [
         'errors'            => [
             'no_race'       => 'The character has no race.',
-            'not_character' => 'The entity isn\'t a character.',
+            'not_character' => 'The entry isn\'t a character.',
         ],
         'helper'            => 'Attach abilities from the following races :name belongs to:',
         'no_abilities'      => 'Currently there are no abilities to import from the races :name belongs to.',
@@ -53,7 +53,7 @@ return [
         'unorganised'   => 'Abilities are grouped by their parent field, and fallback to being here.',
     ],
     'update'    => [
-        'success'   => 'Entity ability :ability updated.',
-        'title'     => 'Entity Ability for :name',
+        'success'   => 'Entry ability :ability updated.',
+        'title'     => 'Entry Ability for :name',
     ],
 ];

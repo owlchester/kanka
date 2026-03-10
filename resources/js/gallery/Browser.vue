@@ -1,7 +1,4 @@
 <template>
-    <div v-if="loading">
-        <i class="fa-solid fa-spin fa-spinner2" aria-label="Loading"></i>
-    </div>
 
     <dialog class="dialog rounded-2xl text-center bg-base-100 text-base-content" id="gallery-dialog" ref="galleryDialog" aria-modal="true" aria-labelledby="modal-card-label">
         <header class="flex gap-6 items-center p-4 md:p-6 justify-between">
@@ -12,7 +9,6 @@
             </button>
         </header>
         <article class="max-w-4xl p-4">
-
             <div class="flex gap-1 w-full" v-if="!loading && !error">
                 <div class="grow">
                     <input type="text" class="w-full" :placeholder="trans.browse.search.placeholder" @input="handleInput" />

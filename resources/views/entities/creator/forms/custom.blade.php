@@ -1,2 +1,2 @@
-@include('cruds.fields.type', ['trans' => 'crud'])
+@include('cruds.fields.type', ['trans' => 'entries', 'placeholder' => __('entries/fields.type.placeholder')])
 

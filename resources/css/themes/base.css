@@ -10,7 +10,7 @@ body {
 
 hr {
     border-color: hsl(var(--bc)/var(--tw-border-opacity));
-    --tw-border-opacity: 0.2;
+    --tw-border-opacity: 0.1;
 }
 .entity-content a, .text-link {
     --tw-text-opacity: 1;
@@ -46,7 +46,7 @@ h1, h2, h3, h4, h5, h6, h1 > small, .panel-title {
 }
 
 
-input, textarea, .select2, select, .form-control {
+input, textarea, .ts-wrapper, select, .form-control {
     border-width: 1px;
     border-color: hsl(var(--bc)/var(--tw-border-opacity));
     --tw-border-opacity: 0.1;
@@ -107,24 +107,9 @@ input[type="checkbox"]:checked:after {
     --tw-border-opacity: 0.2;
     border-color: hsl(var(--bc)/var(--tw-border-opacity));
 }*/
-.select2 {
+.ts-wrapper {
     border: none;
-}
-/*.select2-container {
-    min-height: 3rem;
-}
-.select2-search__field {
-    min-height: inherit;
-}
-*/
-.select2-container--default .select2-selection--single, .select2-dropdown, .select2-container--default .select2-selection--multiple {
-    border-width: 1px;
-    border-color: hsl(var(--bc)/var(--tw-border-opacity));
-    --tw-border-opacity: 0.1;
-    --tw-bg-opacity: 1;
-    background-color: hsl(var(--b1)/var(--tw-bg-opacity));
-    border-radius: var(--rounded-btn, .5rem);
-    box-shadow: none;
+    padding: 0;
 }
 
 .modal-content {
@@ -205,9 +190,9 @@ blockquote {
 
 /** Tables */
 
-.table-striped > tbody > tr:nth-of-type(odd) {
+.table-striped tbody > tr:nth-of-type(odd) {
     --tw-bg-opacity: 1;
-    background-color: hsl(var(--b3)/var(--tw-bg-opacity));
+    background-color: hsl(var(--b2)/var(--tw-bg-opacity));
 }
 .table-hover {
     tbody {

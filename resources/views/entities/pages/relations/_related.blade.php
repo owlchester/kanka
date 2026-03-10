@@ -13,7 +13,7 @@
             <tr>
                 <th colspan="2">
                     @if(request()->get('order') == 'name' || !request()->has('order'))
-                        {{ __('crud.fields.entity') }}
+                        {{ __('fields.entry.label') }}
                         <x-icon class="fa-regular fa-arrow-down" />
                     @else
                         <a href="{{ route('entities.relations.index', [$campaign, $entity, 'mode' => 'table', '#entity-related', 'order' => 'name']) }}" class="text-link">
@@ -23,11 +23,11 @@
                 </th>
                 <th>
                     @if(request()->get('order') == 'type_id')
-                        {{ __('crud.fields.entity_type') }}
+                        {{ __('campaigns/categories.tab') }}
                         <x-icon class="fa-regular fa-arrow-down" />
                     @else
                         <a href="{{ route('entities.relations.index', [$campaign, $entity, 'mode' => 'table', '#entity-related', 'order' => 'type_id']) }}" class="text-link">
-                            {{ __('crud.fields.entity_type') }}
+                            {{ __('campaigns/categories.tab') }}
                         </a>
                     @endif
                 </th>

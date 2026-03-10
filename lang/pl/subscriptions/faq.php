@@ -25,6 +25,10 @@ return [
         'answer'    => 'Jeżeli nie uda się pobrać płatności, zostaniesz powiadomiony mailem i podejmiemy jeszcze trzy próby obciążenia karty kredytowej. Jeżeli również zakończą się niepowodzeniem, subskrypcja zostanie zawieszona. Problem można zwykle łatwo rozwiązać, aktualizując informacje dotyczące :billing za pomocą poprawnych danych.',
         'question'  => 'Co, jeśli płatność się nie uda?',
     ],
+    'help'          => [
+        'answer'    => 'Dzięki subskrypcji opłacasz nasz czas, serwery i możliwość utrzymywania Kanki bez konieczności wzrostu za wszelką cenę. Szybciej eliminujemy błędy, tworzymy funkcje w które naprawdę wierzymy i działamy w interesie społeczności, a nie inwestorów. Czyli: Kanka dzięki temu żyje i się rozwija.',
+        'question'  => 'Jak moja subskrypcja wspiera Kankę?',
+    ],
     'methods'       => [
         'answer'    => 'Przyjmujemy karty kredytowe oraz płatność przez PayPal w dolarach, euro i realach brazylijskich. Traktujemy bezpieczeństwo danych z najwyższą powagą, więc wszystkie dane kart kredytowych przechowuje nasz zaufany partner obsługujący płatności, :stripe.',
         'question'  => 'Jakie przyjmujecie metody płatności?',
@@ -53,5 +57,9 @@ return [
     'update'        => [
         'answer'    => 'Aktualizacja danych do płatności jest prosta: wejdź na stronę :billing w ustawieniach konta. Tam możesz zmienić metodę płatności, zaktualizować dane karty albo zmienić adres rozliczenia.',
         'question'  => 'Jak zaktualizować dane do płatności?',
+    ],
+    'why'           => [
+        'answer'    => 'Kankę stworzył i rozwija mały, niezależny zespół. Dzięki subskrybcji możemy realizować długoterminowe cele, usprawniać Kankę i unikać ciemnych wzorców. Nie płacisz korporacji: utrzymujesz bezpośrednio ludzi, którzy tworzyli, postawili i rozwijają platformę.',
+        'question'  => 'Dlaczego Kanka ma płatną subskrybcję?',
     ],
 ];

@@ -12,7 +12,7 @@
 
 @section('entity-header-actions')
     <div class="header-buttons flex flex-wrap gap-2 items-center justify-end">
-        <x-learn-more url="features/attributes.html" />
+        <x-learn-more url="features/properties.html" />
         @can('attributes', [$entity])
             @include('entities.pages.attributes._buttons')
         @endcan

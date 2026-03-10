@@ -2,13 +2,13 @@
 
 return [
     'actions'           => [
-        'copy_from_entity'  => 'Copy from another entity',
+        'copy_from_entity'  => 'Copy from another entry',
         'copy_inventory'    => 'Copy inventory',
         'generate'          => 'Generate',
         'multiple'          => 'Add items',
     ],
     'copy'              => [
-        'helper'    => 'Copy the whole inventory of an entity to :name.',
+        'helper'    => 'Copy the whole inventory of an entry to :name.',
     ],
     'create'            => [
         'helper'        => 'Add an item to :name\'s inventory. It can optionally be linked to an existing object from the campaign.',
@@ -52,7 +52,7 @@ return [
         'position'      => 'Select or create a position',
     ],
     'show'              => [
-        'helper'    => 'To create this entity\'s inventory, start by adding an item to it.',
+        'helper'    => 'To create this entry\'s inventory, start by adding an item to it.',
         'title'     => ':name Inventory',
         'unsorted'  => 'Unsorted',
     ],

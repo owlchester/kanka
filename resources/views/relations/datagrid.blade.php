@@ -24,7 +24,7 @@
         ],
         [
             'field' => 'relation',
-            'label' => __('entities/relations.fields.relation'),
+            'label' => __('entities/relations.fields.role'),
             'render' => function(\App\Models\Relation $model) {
                 if (empty($model->colour)) {
                     return $model->relation;

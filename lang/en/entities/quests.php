@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'helper'    => 'This entity is part of the following quests.',
+    'helper'    => 'This entry is part of the following quests.',
     'title'     => ':name Quests',
 ];

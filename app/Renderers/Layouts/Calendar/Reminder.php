@@ -21,12 +21,12 @@ class Reminder extends Layout
             ],
             'entity' => [
                 'key' => 'entity.name',
-                'label' => 'crud.fields.entity',
+                'label' => 'fields.entry.label',
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [
                 'key' => 'type_id',
-                'label' => 'crud.fields.entity_type',
+                'label' => 'campaigns/categories.tab',
                 'render' => function ($model) {
                     return $model->remindable instanceof Post ? __('entities.post') . ' (' . $model->remindable->entity->entityType->name() . ')' : $model->remindable->entityType->name();
                 },

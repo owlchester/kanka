@@ -9,7 +9,7 @@
 @endphp
 
 <x-grid>
-    <x-forms.field field="entity-type" required :label="__('crud.fields.entity_type')">
+    <x-forms.field field="entity-type" required :label="__('campaigns/categories.tab')">
         <x-forms.select name="entity_type_id" :options="$entityTypes" :selected="$model->entityType->id ?? null" class="w-full recent-entity-type" :extra="['data-animate' => 'reveal', 'data-target' => '.field-recent-filters']" />
     </x-forms.field>
 

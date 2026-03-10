@@ -11,7 +11,7 @@
     <thead>
     <tr>
         <th>{{ __('history.fields.who') }}</th>
-        <th>{{ __('history.fields.module') }}</th>
+        <th>{{ __('campaigns/categories.tab') }}</th>
         <th>{{ __('history.fields.action') }}</th>
         <th>{{ __('history.fields.details') }}</th>
         <th>{{ __('history.fields.when') }}</th>

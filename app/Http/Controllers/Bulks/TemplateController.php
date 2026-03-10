@@ -50,6 +50,6 @@ class TemplateController extends Controller
 
         return redirect()
             ->back()
-            ->with('success', trans_choice('crud.bulk.success.templates', $count, ['count' => $count]));
+            ->with('success', trans_choice('entries/bulk.success.templates', $count, ['count' => $count]));
     }
 }

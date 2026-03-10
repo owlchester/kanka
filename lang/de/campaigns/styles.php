@@ -35,6 +35,7 @@ return [
         'here'          => 'auf unserem Blog',
         'is_enabled'    => 'Aktiviere dieses Thema auf jeder Seite.',
         'main'          => 'Sie können das CSS Design für Ihre geboostete Kampagne anpassen. Falls Sie Themes aus dem Marktplatz in Ihrer Kampagne verwenden, dann wird Ihr angepasstes Design nach diesen Themes geladen. Mehr über das Erstellen eigener Designs für Ihre Kampagne finden Sie :here.',
+        'tutorial'      => 'Steuer den visuellen Stil der Kampagne. Wähle Farben, Layout-Einstellungen und andere Darstellungsoptionen. Diese Änderungen wirken sich nur auf diese Kampagne aus und können jederzeit aktualisiert werden.',
     ],
     'pitch'         => 'Erstelle ein benutzerdefiniertes CSS-Design, um das Erscheinungsbild der Kampagne vollständig anzupassen.',
     'placeholders'  => [

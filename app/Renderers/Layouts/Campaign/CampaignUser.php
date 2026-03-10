@@ -106,7 +106,7 @@ class CampaignUser extends Layout
                 'can' => 'delete',
                 'type' => 'dialog-ajax',
                 'route' => 'campaign_users.delete',
-                'css' => 'text-error hover:bg-error hover:text-error-content',
+                'css' => 'text-error-content hover:bg-error',
             ],
         ];
     }

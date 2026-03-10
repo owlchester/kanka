@@ -25,5 +25,6 @@ class DatabaseSeeder extends Seeder
         $this->call(FeatureCategorySeeder::class);
         $this->call(FeatureStatusSeeder::class);
         $this->call(TierSeeder::class);
+        $this->call(PlaystyleSeeder::class);
     }
 }

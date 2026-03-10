@@ -8,7 +8,6 @@ return [
     'destroy'               => [],
     'edit'                  => [],
     'fields'                => [
-        'attributes'    => 'Attributi',
         'auto_apply'    => 'Applica automaticamente',
     ],
     'hints'                 => [
@@ -21,9 +20,5 @@ return [
     'placeholders'          => [
         'name'  => 'Nome di un Modello di Attributo',
     ],
-    'show'                  => [
-        'tabs'  => [
-            'attributes'    => 'Attributi',
-        ],
-    ],
+    'show'                  => [],
 ];

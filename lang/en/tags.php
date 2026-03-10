@@ -4,14 +4,14 @@ return [
     'children'      => [
         'actions'   => [
             'add'           => 'Add to tag',
-            'add_entity'    => 'Add to entity',
+            'add_entity'    => 'Add to entry',
         ],
         'create'    => [
-            'attach_success'        => '{1} Tagged :count entity .|[2,*] Tagged :count entities.',
+            'attach_success'        => '{1} Tagged :count entry.|[2,*] Tagged :count entries.',
             'attach_success_entity' => 'Successfully updated tags for :name.',
             'entity'                => 'Add tags to :name',
-            'helper'                => 'Tag one or several entities with :name',
-            'title'                 => 'Tag entities',
+            'helper'                => 'Tag one or several entries with :name',
+            'title'                 => 'Tag entries',
         ],
     ],
     'create'        => [
@@ -19,21 +19,21 @@ return [
     ],
     'fields'        => [
         'children'          => 'Children',
-        'is_auto_applied'   => 'Automatically apply to new entities',
+        'is_auto_applied'   => 'Automatically apply to new entries',
         'is_hidden'         => 'Hidden from header and tooltip',
     ],
     'helpers'       => [
-        'no_children'   => 'There are currently no entities tagged with this tag.',
-        'no_posts'      => 'There are currently no posts tagged with this tag.',
+        'no_children'   => 'There are currently no entries tagged with this tag.',
+        'no_posts'      => 'There are currently no articles tagged with this tag.',
     ],
     'hints'         => [
-        'children'          => 'This list contains all the entities that are assigned to this tag or the tag\'s children.',
-        'is_auto_applied'   => 'Automatically apply this tag to newly created entities.',
-        'is_hidden'         => 'Don\'t display this tag in an entity\'s header or tooltip.',
+        'children'          => 'This list contains all the entries that are assigned to this tag or the tag\'s children.',
+        'is_auto_applied'   => 'Automatically apply this tag to newly created entries.',
+        'is_hidden'         => 'Don\'t display this tag in an entry\'s header or tooltip.',
         'tag'               => 'This list contains all the tags are children of this tag or its children tags.',
     ],
     'lists'         => [
-        'empty' => 'Use tags to group and filter entities across your world for easier navigation.',
+        'empty' => 'Use tags to group and filter entries across your world for easier navigation.',
     ],
     'placeholders'  => [
         'type'  => 'Lore, Wars, History, Religion, Vexillology',
@@ -45,17 +45,17 @@ return [
     ],
     'transfer'      => [
         'entities'      => [
-            'helper'    => 'Transfer entities tagged with :name to another tag.',
-            'title'     => 'Transfer entities',
+            'helper'    => 'Transfer entries tagged with :name to another tag.',
+            'title'     => 'Transfer entries',
         ],
-        'fail'          => 'Failed to transfer entities from :tag to :newTag',
-        'fail_post'     => 'Failed to transfer posts from :tag to :newTag',
+        'fail'          => 'Failed to transfer entries from :tag to :newTag',
+        'fail_post'     => 'Failed to transfer articles from :tag to :newTag',
         'posts'         => [
-            'helper'    => 'Transfer posts tagged with :name to another tag.',
-            'title'     => 'Transfer posts',
+            'helper'    => 'Transfer articles tagged with :name to another tag.',
+            'title'     => 'Transfer articles',
         ],
-        'success'       => 'Successfully transferred entities from :tag to :newTag',
-        'success_post'  => 'Successfully transferred posts from :tag to :newTag',
+        'success'       => 'Successfully transferred entries from :tag to :newTag',
+        'success_post'  => 'Successfully transferred articles from :tag to :newTag',
         'transfer'      => 'Transfer',
     ],
 ];

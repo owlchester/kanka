@@ -9,7 +9,6 @@ return [
     'fields'    => [
         'action'    => 'Ação',
         'details'   => 'Detalhes',
-        'module'    => 'Módulo',
         'when'      => 'Quando',
         'who'       => 'Quem',
     ],

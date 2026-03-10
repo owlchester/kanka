@@ -7,7 +7,8 @@ use App\Services\Referrals\ManagementService;
 
 class ReferralController extends Controller
 {
-    public function __construct(protected ManagementService $service) {
+    public function __construct(protected ManagementService $service)
+    {
         $this->middleware('auth');
     }
 

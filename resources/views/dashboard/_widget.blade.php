@@ -16,7 +16,7 @@ use App\Enums\Widget;
          style="background-image: url('{{ Img::crop(1200, 400)->url($campaign->header_image) }}')"
     @endif
     >
-        <div class="rounded-xl bg-box flex gap-2 flex-col p-4 h-full">
+        <div class="rounded-xl bg-box flex gap-2 flex-col p-4 h-full overflow-y-auto">
             <div class="flex gap-4 items-center w-full ">
                 <div class="grow truncate">
                     <x-icon :class="$widget->widgetIcon()" tooltip title="{{ __('dashboards/widgets/' . $widget->widget->value . '.name') }}" />
@@ -26,8 +26,8 @@ use App\Enums\Widget;
                         {{ __('dashboards/widgets/' . $widget->widget->value . '.name') }}
                     @endif
                 </div>
-                <div class="flex-none handle cursor-move text-neutral-content" data-toggle="tooltip" data-title="{{ __('dashboard.setup.reorder.helper') }}">
-                    <x-icon class="fa-solid fa-arrows" />
+                <div class="hidden md:block flex-none handle cursor-move text-neutral-content" data-toggle="tooltip" data-title="{{ __('dashboard.setup.reorder.helper') }}">
+                    <x-icon class="fa-regular fa-arrows" />
                 </div>
             </div>
 
@@ -43,7 +43,7 @@ use App\Enums\Widget;
             @endif
             @if (in_array($widget->widget, [Widget::Recent, Widget::Random]))
                 <p class="text-neutral-content text-sm">
-                    <x-icon class="fa-solid fa-search" />
+                    <x-icon class="fa-regular fa-search" />
                 @if ($widget->entityType)
                     {!! $widget->entityType->plural() !!}
                 @elseif (!empty($widget->conf('singular')))
@@ -52,7 +52,7 @@ use App\Enums\Widget;
                     {{ __('dashboard.widgets.recent.all-entities') }}
                 @endif
                     @if (!empty($widget->conf('filters')))
-                        <x-icon class="fa-solid fa-filter" tooltip title="{{ $widget->conf('filters') }}" />
+                        <x-icon class="fa-regular fa-filter" tooltip title="{{ $widget->conf('filters') }}" />
                     @endif
                 </p>
             @endif

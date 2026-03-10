@@ -1,51 +1,48 @@
+import TomSelect from 'tom-select';
 
-window.onEvent(function() {
+window.onEvent(function () {
     initFormMembersSelect();
 });
 
 const initFormMembersSelect = () => {
-    const formMembers = document.querySelectorAll('.form-members');
-    formMembers.forEach((form) => {
-        if (form.dataset.loaded === 1) {
+    document.querySelectorAll('.form-members').forEach((form) => {
+        if (form.tomselect) {
             return;
         }
-        form.dataset.loaded = 1;
-        let allowClear = form.dataset.allowClear;
 
-        $(form).select2({
-            tags: true,
-            allowClear: allowClear || true,
-            minimumInputLength: 2,
-            placeholder: form.dataset.placeholder,
-            ajax: {
-                quietMillis: 500,
-                delay: 500,
-                url: form.dataset.url,
-                dataType: 'json',
-                data: function (params) {
-                    return {
-                        q: params.term?.trim()
-                    };
+        const plugins = ['remove_button'];
+        if (form.dataset.allowClear === 'true') {
+            plugins.push('clear_button');
+        }
+
+        new TomSelect(form, {
+            plugins,
+            placeholder: form.dataset.placeholder || '',
+            allowEmptyOption: true,
+            loadThrottle: 500,
+            shouldLoad: function (query) {
+                return query.length >= 2;
+            },
+            valueField: 'id',
+            labelField: 'text',
+            searchField: 'text',
+            create: false,
+            load: function (query, callback) {
+                if (query.length < 2) { callback(); return; }
+                fetch(form.dataset.url + '?q=' + encodeURIComponent(query.trim()), {
+                    headers: { 'X-Requested-With': 'XMLHttpRequest' }
+                })
+                    .then(r => r.json())
+                    .then(data => callback(data))
+                    .catch(() => callback());
+            },
+            render: {
+                item: function (data, escape) {
+                    return '<div>' + escape(data.text) + '</div>';
                 },
-                processResults: function (data) {
-                    return {
-                        results: data
-                    };
-                },
-                cache: true
             },
-            createTag: function() {
-                return undefined;
-            },
-            escapeMarkup: function (markup) {
-                return markup; // Disable escaping for HTML markup
-            },
-            templateSelection: function (item) {
-                // Render HTML for the selected option
-                return item.text ? `<span>${item.text}</span>` : item.text;
-            }
         });
     });
-}
+};
 
 initFormMembersSelect();

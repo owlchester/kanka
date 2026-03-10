@@ -43,16 +43,13 @@ return [
         'success'   => 'Usunięto relację :target elementu :entity.',
     ],
     'fields'            => [
-        'attitude'          => 'Nastawienie',
-        'connection'        => 'Powiązanie',
-        'is_pinned'         => 'Przypięta',
-        'owner'             => 'Źródło',
-        'relation'          => 'Relacja',
-        'target'            => 'Obiekt',
-        'target_relation'   => 'Relacje obiektu',
-        'targets'           => 'Elementy obiektu',
-        'two_way'           => 'Stwórz relację obustronną',
-        'unmirror'          => 'Zmień w relację jednostronną',
+        'attitude'  => 'Nastawienie',
+        'is_pinned' => 'Przypięta',
+        'owner'     => 'Źródło',
+        'target'    => 'Obiekt',
+        'targets'   => 'Elementy obiektu',
+        'two_way'   => 'Stwórz relację obustronną',
+        'unmirror'  => 'Zmień w relację jednostronną',
     ],
     'filters'           => [
         'connection'    => 'Rodzaj relacji',
@@ -64,13 +61,8 @@ return [
         'no_relations'  => 'Element nie jest obecnie związany z żadnym innym elementem tej kampanii.',
     ],
     'hints'             => [
-        'attitude'          => 'Pole opcjonalne, pozwalająca określić kolejność wyświetlania relacji, w porządku malejącym.',
-        'mirrored'          => [
-            'text'  => 'To obustronna relacja z :link.',
-            'title' => 'Obustronna',
-        ],
-        'target_relation'   => 'Opis relacji dla jej obiektu. Jeżeli ma być taki sam, zostaw to pole puste.',
-        'two_way'           => 'Jeżeli wybierzesz relację obustronną, taka sama relacja zostanie stworzona dla obiektu. Jeżeli potem zmodyfikujesz relację dla jednej strony, druga nie zostanie zaktualizowana.',
+        'attitude'  => 'Pole opcjonalne, pozwalająca określić kolejność wyświetlania relacji, w porządku malejącym.',
+        'two_way'   => 'Jeżeli wybierzesz relację obustronną, taka sama relacja zostanie stworzona dla obiektu. Jeżeli potem zmodyfikujesz relację dla jednej strony, druga nie zostanie zaktualizowana.',
     ],
     'index'             => [
         'title' => 'Relacje',
@@ -86,10 +78,7 @@ return [
         'related'   => 'Związki',
     ],
     'placeholders'      => [
-        'attitude'          => '-100 do 100, gdzie 100 to bardzo pozytywny stosunek',
-        'relation'          => 'Rywal, Przyjaciółka od serca, Rodzeństwo',
-        'target'            => 'Wybierz element',
-        'target_relation'   => 'Nie wypełniaj, by użyć opisu',
+        'attitude'  => '-100 do 100, gdzie 100 to bardzo pozytywny stosunek',
     ],
     'show'              => [
         'title' => 'Relacje elementu :name',

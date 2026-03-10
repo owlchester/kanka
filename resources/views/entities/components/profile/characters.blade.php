@@ -17,6 +17,7 @@ $child = $entity->child;
 @endphp
 
 <x-sidebar.profile>
+    @includeWhen($entity->aliases->isNotEmpty(), 'entities.components.profile._aliases')
     @if ($campaign->enabled('families') && !$child->characterFamilies->isEmpty())
         <div class="element profile-family">
             <div class="title text-uppercase text-xs">

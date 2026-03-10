@@ -16,10 +16,10 @@ return [
         'name'  => 'Nom',
     ],
     'helpers'       => [
-        'primary'   => 'Définir un ou plusieurs alias sur l\'entité la rentra trouvable avec la recherche global (tout en haut) et à travers les mentions.',
+        'primary'   => 'Définir un ou plusieurs alias sur l\'entrée la rentra trouvable avec la recherche global (tout en haut) et à travers les mentions.',
     ],
     'limit'         => 'Cette campagne a atteint sa limite d\'alias. Pour obtenir un nombre illimité d\'alias, débloques les fonctionnalités premium.',
-    'pitch'         => 'Créés des alias vers cette entité pour facilement la trouver dans la recherche et les mentions.',
+    'pitch'         => 'Créés des alias vers cette entrée pour facilement la trouver dans la recherche et les mentions.',
     'placeholders'  => [
         'name'  => 'Nouvel alias',
     ],

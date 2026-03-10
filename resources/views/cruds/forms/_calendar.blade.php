@@ -36,7 +36,7 @@ $opened = (isset($model) && $model->hasCalendar()) || !empty($oldCalendarID);
 @endif
 <div class="field-calendar-date flex flex-col gap-4" x-data="{ opened: {{ $opened ? 'true' : 'false' }} }">
     <div class="flex flex-col gap-1 items-start" >
-        <label>{{ __('crud.fields.calendar_date') }}</label>
+        <label class="text-xs font-medium opacity-80">{{ __('crud.fields.calendar_date') }}</label>
         <span role="button" id="entity-calendar-form-add" class="btn2 btn-sm btn-outline <?=(!empty($model) && $model->hasCalendar() || !empty($oldCalendarID) ? "hidden" : null)?>" data-default-calendar="{{ ($onlyOneCalendar ? $calendars->first()->id : null) }}" @click="opened = !opened" x-show="!opened">
         @php $calendarModule = \App\Models\EntityType::default()->where('code', 'calendar')->first(); @endphp
             <x-icon :class="$calendarModule->icon()" />

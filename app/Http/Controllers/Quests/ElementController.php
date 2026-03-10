@@ -64,7 +64,7 @@ class ElementController extends Controller
         }
 
         $data = $request->only([
-            'entity_id', 'name', 'role', 'description', 'colour', 'visibility_id',
+            'entity_id', 'name', 'role', 'entry', 'colour', 'visibility_id',
         ]);
         $data['quest_id'] = $quest->id;
 
@@ -130,7 +130,7 @@ class ElementController extends Controller
             return response()->json(['success' => true]);
         }
 
-        $data = $request->only(['entity_id', 'name', 'role', 'description', 'colour', 'visibility_id']);
+        $data = $request->only(['entity_id', 'name', 'role', 'entry', 'colour', 'visibility_id']);
 
         $questElement->update($data);
         $questElement->refresh();

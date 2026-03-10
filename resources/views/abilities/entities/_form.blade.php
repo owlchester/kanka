@@ -8,7 +8,7 @@
     <x-forms.foreign
         field="entities"
         required
-        label="entities.entities"
+        label="entities.entries"
         multiple="multiple"
         name="entities[]"
         id="entities[]"

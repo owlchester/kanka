@@ -2,7 +2,7 @@
 
 return [
     'actions'   => [
-        'learn' => 'Learn about this module',
+        'learn' => 'Learn about this category',
         'public'=> 'See how others do it',
     ],
     'empty'     => [

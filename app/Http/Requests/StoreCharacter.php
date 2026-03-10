@@ -3,6 +3,9 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
+use App\Models\Family;
+use App\Models\Race;
+use App\Rules\EntityField;
 use App\Rules\EntityLocations;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
@@ -44,10 +47,8 @@ class StoreCharacter extends FormRequest
             'title' => 'nullable|max:191',
             'is_dead' => 'boolean',
             'template_id' => 'nullable',
-            'families' => 'array',
-            'families.*' => 'distinct|exists:families,id',
-            'races' => 'array',
-            'races.*' => 'distinct|exists:races,id',
+            'families' => ['nullable', 'array', new EntityField(config('entities.ids.family'), Family::class)],
+            'races' => ['nullable', 'array', new EntityField(config('entities.ids.race'), Race::class)],
             'attribute' => ['array', new UniqueAttributeNames],
         ];
 

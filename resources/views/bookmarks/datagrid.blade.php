@@ -11,9 +11,9 @@
                 if ($model->isDashboard()) {
                     return '<i class="fa-regular fa-th-large"></i> ' . __('bookmarks.fields.dashboard');
                 } elseif ($model->isEntity()) {
-                    return '<i class="fa-regular fa-star"></i> ' . __('entities.entity');
+                    return '<i class="fa-regular fa-star"></i> ' . __('entities.entry');
                 } elseif ($model->isList()) {
-                    return '<i class="fa-regular fa-th-list"></i> ' . __('crud.fields.entity_type');
+                    return '<i class="fa-regular fa-th-list"></i> ' . __('crud.fields.category');
                 } elseif ($model->isRandom()) {
                     return '<i class="fa-regular fa-question"></i> ' . __('dashboards/widgets/random.name');
                 }

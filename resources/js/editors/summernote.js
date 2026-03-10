@@ -309,7 +309,7 @@ function hintPostTemplate(item) {
         return hintTemplate(item);
     }
 
-    return '<div class="post flex items-center gap-1"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i>' + item.fullname + '</div>';
+    return '<div class="post flex items-center gap-1"><i class="fa-regular fa-chevron-right" aria-hidden="true"></i>' + item.fullname + '</div>';
 }
 
 /**

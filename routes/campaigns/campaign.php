@@ -28,6 +28,9 @@ Route::post('/w/{campaign}/gallery/upload/files', [App\Http\Controllers\Gallery\
 Route::post('/w/{campaign}/gallery/upload/url', [App\Http\Controllers\Gallery\UploadController::class, 'url'])->name('gallery.upload.url');
 Route::get('/w/{campaign}/gallery/browse', [App\Http\Controllers\Gallery\BrowseController::class, 'index'])->name('gallery.browse');
 
+Route::get('/w/{campaign}/gallery/tiptap', [\App\Http\Controllers\Gallery\TiptapController::class, 'index'])->name('gallery.tiptap');
+Route::post('/w/{campaign}/gallery/tiptap', [\App\Http\Controllers\Gallery\UploadController::class, 'file'])->name('gallery.tiptap.save');
+
 Route::get('/w/{campaign}/gallery/setup', [App\Http\Controllers\Gallery\SetupController::class, 'index'])->name('gallery.setup');
 Route::get('/w/{campaign}/gallery/open/{image}', [App\Http\Controllers\Gallery\ImageController::class, 'show'])->name('gallery.show');
 Route::get('/w/{campaign}/gallery/search/{term?}', [App\Http\Controllers\Gallery\SearchController::class, 'index'])->name('gallery.search');
@@ -170,16 +173,24 @@ Route::get('/w/{campaign}/campaign-export', 'Campaign\ExportController@index')->
 Route::post('/w/{campaign}/campaign-export', 'Campaign\ExportController@export')->name('campaign.export-process');
 Route::get('/w/{campaign}/campaign-import', 'Campaign\ImportController@index')->name('campaign.import');
 Route::post('/w/{campaign}/campaign-import', 'Campaign\ImportController@store')->name('campaign.import-process');
+Route::get('/w/{campaign}/campaign-import/{campaign_import}/csv', 'Campaign\ImportController@csv')->name('campaign.import.csv');
 Route::get('/w/{campaign}/campaign-{ts}.styles', [CssController::class, 'index'])->name('campaign.css');
 Route::get('/w/{campaign}/campaign_plugin-{ts}.styles', 'Campaign\Plugins\CssController@index')->name('campaign_plugins.css');
 Route::get('/w/{campaign}/campaign-visibility', 'Campaign\VisibilityController@edit')->name('campaign-visibility');
 Route::post('/w/{campaign}/campaign-visibility', 'Campaign\VisibilityController@save')->name('campaign-visibility.save');
+
+Route::get('/w/{campaign}/share', [App\Http\Controllers\Campaign\ShareController::class, 'setup'])->name('campaign.share.setup');
+Route::post('/w/{campaign}/share', [App\Http\Controllers\Campaign\ShareController::class, 'save'])->name('campaign.share.save');
 
 Route::get('/w/{campaign}/modules/{entity_type}/edit', [ModuleController::class, 'edit'])->name('modules.edit');
 Route::patch('/w/{campaign}/modules/{entity_type}/update', [ModuleController::class, 'update'])->name('modules.update');
 Route::delete('/w/{campaign}/modules/reset', [ModuleController::class, 'reset'])->name('modules.reset');
 
 Route::get('/w/{campaign}/campaign-applications', 'Campaign\ApplicationController@toggle')->name('campaign-applications');
+Route::get('/w/{campaign}/campaign-applications/setup', 'Campaign\ApplicationSetupController@setup')->name('campaign-applications.setup');
+Route::post('/w/{campaign}/campaign-applications/setup', 'Campaign\ApplicationSetupController@saveSetup')->name('campaign-applications.setup.save');
+Route::get('/w/{campaign}/campaign-applications/dashboard-widget', 'Campaign\ApplicationDashboardController@index')->name('campaign-applications.dashboard-widget');
+Route::post('/w/{campaign}/campaign-applications/dashboard-widget', 'Campaign\ApplicationDashboardController@store')->name('campaign-applications.dashboard-widget.store');
 Route::post('/w/{campaign}/campaign-applications', 'Campaign\ApplicationController@toggleSave')->name('campaign-applications.save');
 
 // Campaign sidebar setup

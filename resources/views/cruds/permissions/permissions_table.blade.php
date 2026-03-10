@@ -46,8 +46,8 @@ $moduleName = isset($entityType) ? $entityType->name() : $entity->entityType->na
                 <span class="hidden md:inline font-medium">{{ __('crud.permissions.actions.delete') }}</span>
                 <x-icon class="fa-regular fa-trash-can md:hidden" />
             </div>
-            <div class="" data-title="{{ __('campaigns.roles.permissions.helpers.entity_note') }}" data-tooltip>
-                <span class="hidden md:inline font-medium">{{ __('entities.posts') }}</span>
+            <div class="" data-title="{{ __('campaigns.roles.permissions.helpers.articles') }}" data-tooltip>
+                <span class="hidden md:inline font-medium">{{ __('entities.articles') }}</span>
                 <x-icon class="fa-regular fa-note-sticky md:hidden" />
             </div>
             @if ($hasActionCol)
@@ -168,8 +168,8 @@ $moduleName = isset($entityType) ? $entityType->name() : $entity->entityType->na
                     <span class="hidden md:inline font-medium">{{ __('crud.permissions.actions.delete') }}</span>
                     <x-icon class="fa-regular fa-trash-can md:hidden"  />
                 </div>
-                <div class="" data-title="{{ __('campaigns.roles.permissions.helpers.entity_note') }}" data-tooltip>
-                    <span class="hidden md:inline font-medium">{{ __('entities.posts') }}</span>
+                <div class="" data-title="{{ __('campaigns.roles.permissions.helpers.articles') }}" data-tooltip>
+                    <span class="hidden md:inline font-medium">{{ __('entities.articles') }}</span>
                     <x-icon class="fa-regular fa-sticky-note md:hidden" />
                 </div>
                 @if ($hasActionCol)

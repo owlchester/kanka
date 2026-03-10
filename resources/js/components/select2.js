@@ -1,97 +1,108 @@
-window.initForeignSelect = function () {
-    const fields = document.querySelectorAll('select.select2');
-    if (fields.length === 0) {
-        return;
+import TomSelect from 'tom-select';
+
+const tsCache = {};
+const tsPending = {};
+
+const fetchWithCache = (url, query) => {
+    const key = url + '?q=' + query;
+    if (tsCache[key] !== undefined) {
+        return Promise.resolve(tsCache[key]);
     }
-    fields.forEach(field => {
-        if (field.classList.contains('select2-hidden-accessible')) {
+    if (tsPending[key]) {
+        return tsPending[key];
+    }
+    const promise = fetch(key, {
+        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+    }).then(r => {
+        if (!r.ok) {
+            if (r.status === 503) {
+                r.json().then(data => window.showToast(data.message, 'error'));
+            }
+            return [];
+        }
+        return r.json();
+    }).then(data => {
+        tsCache[key] = data;
+        delete tsPending[key];
+        return data;
+    }).catch(() => {
+        delete tsPending[key];
+        return [];
+    });
+    tsPending[key] = promise;
+    return promise;
+};
+
+window.initForeignSelect = function () {
+    document.querySelectorAll('select.select2').forEach(field => {
+        if (field.tomselect) {
             return;
         }
+
         if (field.classList.contains('campaign-genres')) {
-            $(field).select2({
-                tags: false,
-                allowClear: true,
-                dropdownParent: '',
-                width: '100%',
-                maximumSelectionLength: 3,
+            new TomSelect(field, {
+                maxItems: 3,
+                plugins: ['remove_button'],
             });
             return;
         }
 
         const url = field.dataset.url;
-        const allowClear = field.dataset.allowClear;
-        const dropdownParent = field.dataset.dropdownParent || '';
-        const placeholder = field.dataset.placeholder;
+        const allowClear = field.dataset.allowClear === 'true';
+        const placeholder = field.dataset.placeholder || '';
+        const allowNew = field.dataset.allowNew === 'true';
+        const dropdownParent = field.dataset.dropdownParent || null;
+        const plugins = ['dropdown_input'];
+
+        if (field.multiple) {
+            plugins.push('remove_button');
+        }
+        if (allowClear) {
+            plugins.push('clear_button');
+        }
+
+        const baseOptions = {
+            plugins,
+            placeholder,
+            allowEmptyOption: true,
+            valueField: 'id',
+            labelField: 'text',
+            searchField: 'text',
+        };
 
         if (!url) {
-            $(field).select2({
-                tags: false,
-                placeholder: placeholder,
-                allowClear: allowClear ?? false,
-                language: field.dataset.language,
-                minimumInputLength: 0,
-                dropdownParent: dropdownParent,
-                width: '100%',
-            });
+            new TomSelect(field, { ...baseOptions });
             return;
         }
 
-        // Check it isn't the select2-icon
-        // console.log('select2', field.name, field.dataset.allowNew === 'true');
-        $(field).select2({
-            tags: field.dataset.allowNew === 'true',
-            placeholder: placeholder,
-            allowClear: allowClear || true,
-            language: field.dataset.language,
-            minimumInputLength: 0,
-            dropdownParent: dropdownParent,
-            width: '100%',
-
-            ajax: {
-                delay: 500,
-                quietMillis: 500,
-                url: url,
-                dataType: 'json',
-                data: function (params) {
-                    return {
-                        q: params.term?.trim()
-                    };
-                },
-                processResults: function (data) {
-                    return {
-                        results: data
-                    };
-                },
-                error: function(response) {
-                    //console.log('error', response);
-                    if (response.status === 503) {
-                        window.showToast(response.responseJSON.message, 'error');
+        new TomSelect(field, {
+            ...baseOptions,
+            preload: 'focus',
+            loadThrottle: 500,
+            create: allowNew ? function (input, callback) {
+                const term = input.trim();
+                if (!term) { return; }
+                callback({ id: 'new:' + term, text: term + ' (' + (field.dataset.newTag || '') + ')' });
+            } : false,
+            load: function (query, callback) {
+                fetchWithCache(url, query.trim())
+                    .then(data => callback(data))
+                    .catch(() => callback());
+            },
+            render: {
+                option: function (data, escape) {
+                    if (data.image) {
+                        return '<div class="flex gap-2 items-center text-left">'
+                            + '<img src="' + escape(data.image) + '" class="rounded-full flex-none w-6 h-6"/>'
+                            + '<span class="grow">' + escape(data.text) + '</span>'
+                            + '</div>';
                     }
-                    return { results: [] }; // Return dataset to load after error
+                    return '<div>' + escape(data.text) + '</div>';
                 },
-                cache: true
+                item: function (data, escape) {
+                    return '<div>' + escape(data.text) + '</div>';
+                },
             },
-            templateResult: formatResultList,
-            templateSelection: formatResult,
-            escapeMarkup: function (markup) {
-                return markup; // Disable escaping for HTML markup
-            },
-            createTag: function (data) {
-                if (field.dataset.allowNew !== 'true') {
-                    return null;
-                }
-                let term = data.term?.trim();
-
-                if (term === '') {
-                    return null;
-                }
-
-                return {
-                    id: term,
-                    text: term + ' (' + field.dataset.newTag + ')',
-                    newTag: true // add additional parameters
-                };
-            }
         });
     });
 
@@ -99,77 +110,41 @@ window.initForeignSelect = function () {
     initColourSelects();
 };
 
-const formatResultList = (item) => {
-    const element = document.createElement('span');
-    if (item.image) {
-        element.classList.add('flex', 'gap-2', 'items-center', 'text-left');
-        element.innerHTML =  "<img src='" + item.image + "' class='rounded-full flex-none w-6 h-6'/>" +
-            "<span class='grow'>" + item.text + "</span>";
-    } else {
-        element.innerHTML = item.text;
-    }
-    return element;
-};
-
-const formatResult = (item) => {
-    if (!item.id) {
-        return item.text;
-    }
-    const ele = document.createElement('span');
-    ele.innerHTML = item.text;
-    return ele;
-};
-
 const initLocalSelects = () => {
-    // Select2 with local search
-    const fields = document.querySelectorAll('select.select2-local');
-    if (fields.length === 0) {
-        return;
-    }
-    fields.forEach(field => {
-        $(field).select2({
-            placeholder: field.dataset.placeholder,
-            language: field.dataset.language,
-            allowClear: true
+    document.querySelectorAll('select.select2-local').forEach(field => {
+        if (field.tomselect) {
+            return;
+        }
+        new TomSelect(field, {
+            placeholder: field.dataset.placeholder || '',
+            allowEmptyOption: true,
+            plugins: ['clear_button'],
         });
     });
 };
 
 const initColourSelects = () => {
-    // Select2 with local search
-    const fields = document.querySelectorAll('select.select2-colour');
-    if (fields.length === 0) {
-        return;
-    }
-    fields.forEach(field => {
-        $(field).select2({
-            placeholder: field.dataset.placeholder,
-            language: field.dataset.language,
-            allowClear: false,
-            templateResult: select2ColourState,
-            templateSelection: select2ColourState,
+    document.querySelectorAll('select.select2-colour').forEach(field => {
+        if (field.tomselect) {
+            return;
+        }
+        new TomSelect(field, {
+            placeholder: field.dataset.placeholder || '',
+            allowEmptyOption: true,
+            render: {
+                option: function (data, escape) {
+                    if (data.value === 'none' || !data.value) {
+                        return '<div>' + escape(data.text) + '</div>';
+                    }
+                    return '<div class="flex items-center gap-2"><span class="badge label bg-' + escape(data.value) + ' inline-block w-4 h-4 rounded-sm mr-1"> </span>' + escape(data.text) + '</div>';
+                },
+                item: function (data, escape) {
+                    if (data.value === 'none' || !data.value) {
+                        return '<div>' + escape(data.text) + '</div>';
+                    }
+                    return '<div class="flex items-center gap-2"><span class="badge label bg-' + escape(data.value) + ' inline-block w-4 h-4 rounded-sm mr-1"> </span>' + escape(data.text) + '</div>';
+                },
+            },
         });
     });
 };
-
-const select2ColourState = (state) => {
-    if (state.id === 'none') {
-        return state.text;
-    }
-
-    const span = document.createElement('span');
-    span.innerHTML = '<div class="badge label bg-' + state.id + '"> </div>' + state.text;
-    return span;
-};
-
-// Load the translations into memory
-import "select2/dist/js/i18n/de.js";
-import "select2/dist/js/i18n/en.js";
-import "select2/dist/js/i18n/es.js";
-import "select2/dist/js/i18n/fr.js";
-import "select2/dist/js/i18n/it.js";
-import "select2/dist/js/i18n/nl.js";
-import "select2/dist/js/i18n/pl.js";
-import "select2/dist/js/i18n/pt-BR.js";
-import "select2/dist/js/i18n/ru.js";
-import "select2/dist/js/i18n/sk.js";

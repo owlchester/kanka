@@ -28,7 +28,7 @@ class SubmenuService
     protected function default(): self
     {
         $this->items['first']['story'] = [
-            'name' => __('crud.tabs.story'),
+            'name' => __('crud.tabs.overview'),
             'route' => 'entities.show',
             'entity' => true,
             'button' => isset($this->user) && $this->user->can('update', $this->entity) ? [
@@ -41,7 +41,7 @@ class SubmenuService
         // Each entity can have relations
         //        if (!isset($this->model->hasRelations) || $this->model->hasRelations === true) {
         $this->items['first']['relations'] = [
-            'name' => __('crud.tabs.connections'),
+            'name' => __('entries/tabs.relations'),
             'route' => 'entities.relations.index',
             'count' => $this->entity->relationships()->has('target')->count(),
             'entity' => true,
@@ -72,7 +72,7 @@ class SubmenuService
 
         if ($this->campaign->enabled('entity_attributes')) {
             $this->items['third']['attributes'] = [
-                'name' => __('crud.tabs.attributes'),
+                'name' => __('entries/tabs.properties'),
                 'route' => 'entities.attributes',
                 'entity' => true,
                 'icon' => '',
@@ -92,11 +92,11 @@ class SubmenuService
         }
 
         // Each entity can have assets
-        if ($this->campaign->enabled('assets') && $this->entity->hasFiles()) {
+        if ($this->campaign->enabled('media') && $this->entity->hasFiles()) {
             $this->items['third']['assets'] = [
-                'name' => __('crud.tabs.assets'),
+                'name' => __('entries/tabs.media'),
                 'route' => 'entities.entity_assets.index',
-                'count' => $this->entity->assets()->count(),
+                'count' => $this->entity->assets()->withoutAliases()->count(),
                 'entity' => true,
                 'icon' => 'fa-regular fa-file',
             ];

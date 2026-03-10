@@ -29,7 +29,6 @@ return [
     'fields'        => [
         'creator'   => 'Twórca',
         'display'   => 'Wyświetlanie',
-        'entry'     => 'Szczegóły',
         'name'      => 'Nazwa',
         'position'  => 'Ustawienie',
     ],
@@ -41,9 +40,7 @@ return [
     'hints'         => [
         'reorder'   => 'Możesz zmieniać kolejność komentarzy po kliknięciu na ikonę :icon obok pozycji "historia" w menu elementu',
     ],
-    'index'         => [
-        'title' => 'Komentarze do elementu :name',
-    ],
+    'index'         => [],
     'move'          => [
         'copy'          => 'Skopiuj do wskazanego elementu',
         'copy_success'  => 'Skopiowano komentarz :name do elementu :entity.',

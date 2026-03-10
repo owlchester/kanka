@@ -11,6 +11,7 @@ $child = $entity->child;
 @endif
 
 <x-sidebar.profile>
+    @includeWhen($entity->aliases->isNotEmpty(), 'entities.components.profile._aliases')
     @include('entities.components.profile._location')
     @if ($child->date)
         <div class="element profile-date">

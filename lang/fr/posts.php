@@ -2,24 +2,22 @@
 
 return [
     'create'        => [
-        'template'  => [
-            'helper'    => 'Les administrateurs de la campagne ont défini les articles suivants comme des modèles pouvant être réutilisés.',
-        ],
-        'title'     => 'Nouvel article',
+        'title' => 'Nouvel article',
     ],
     'fields'        => [
-        'layout'    => 'Mise en page',
-        'name'      => 'Nom',
+        'description'   => 'Description',
+        'layout'        => 'Mise en page',
+        'name'          => 'Nom',
     ],
     'helpers'       => [
-        'new'           => 'Ajouter un nouvel article à cette entité.',
+        'new'           => 'Ajouter un nouvel article à cette entrée.',
         'visibility'    => 'Modifier la visibilité de l\'article :name.',
     ],
     'move'          => [
         'copy'      => [
             'helper'    => 'Garder une copie de l\'article sur :name.',
         ],
-        'helper'    => 'Déplacer ou copier l\'article :name vers une autre entité.',
+        'helper'    => 'Déplacer ou copier l\'article :name vers une autre entrée.',
         'title'     => 'Déplacer l\'article',
     ],
     'permissions'   => [

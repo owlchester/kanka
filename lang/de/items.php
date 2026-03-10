@@ -17,6 +17,9 @@ return [
     'hints'         => [],
     'index'         => [],
     'inventories'   => [],
+    'lists'         => [
+        'empty' => 'Füge Waffen, Artefakte oder wichtige Gegenstände zu deiner Welt hinzu.',
+    ],
     'placeholders'  => [
         'price' => 'Preis des Gegenstandes',
         'size'  => 'Größe, Gewicht, Maße',

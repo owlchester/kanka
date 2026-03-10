@@ -11,6 +11,6 @@ return [
         'table'     => 'Switch to the table view',
     ],
     'tooltips'  => [
-        'nested'    => 'This entity has children. Click on the image to view them.',
+        'nested'    => 'This entry has children. Click on the image to view them.',
     ],
 ];

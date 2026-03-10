@@ -52,7 +52,9 @@ a:hover, a:active, a:focus {
     p {
         margin-bottom: 0.75rem;
     }
-    p:last-child {
+    p:last-child,
+    td > p:last-of-type,
+    th > p:last-of-type {
         margin-bottom: 0;
     }
 
@@ -60,7 +62,7 @@ a:hover, a:active, a:focus {
         margin-top: 1.1rem;
         margin-bottom: 1.1rem;
         border-color: hsl(var(--bc)/var(--tw-bg-opacity));
-        --tw-bg-opacity: .2;
+        --tw-bg-opacity: .1;
     }
 
     h1 {

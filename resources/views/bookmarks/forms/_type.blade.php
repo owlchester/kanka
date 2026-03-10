@@ -15,7 +15,7 @@ $entityTypes = $entityTypeService->campaign($campaign)->exclude([config('entitie
     </x-helper>
 
     <x-grid>
-        <x-forms.field field="entity_type_id" :label="__('crud.fields.entity_type')">
+        <x-forms.field field="entity_type_id" :label="__('campaigns/categories.tab')">
             <x-forms.select name="entity_type_id" :options="$entityTypes" :selected="$source->entity_type_id ?? $model->entity_type_id ?? null" />
         </x-forms.field>
 

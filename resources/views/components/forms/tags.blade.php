@@ -10,15 +10,17 @@
     </label>
 @endif
 
-<select multiple="multiple" name="tags[]" id="{{ $id }}"
-        class="form-tags"
-        style="width: 100%"
-        data-url="{{ $model instanceof App\Models\Tag ? route('search-list', [$campaign, config('entities.ids.tag'), 'exclude' => $model->id] ) : route('search-list', [$campaign, config('entities.ids.tag')]) }}"
-        data-allow-new="{{ $allowNew ? 'true' : 'false' }}"
-        data-placeholder="{{ __('crud.placeholders.multiple') }}"
-        @if ($allowClear) data-allow-clear="true" @endif
-        data-new-tag="{{ __('tags.create.title') }}"
-        @if (!empty($dropdownParent)) data-dropdown-parent="{{ $dropdownParent }}" @endif
+<select
+    multiple="multiple"
+    name="tags[]"
+    id="{{ $id }}"
+    class="form-tags"
+    data-url="{{ $model instanceof App\Models\Tag ? route('search-list', [$campaign, config('entities.ids.tag'), 'exclude' => $model->id] ) : route('search-list', [$campaign, config('entities.ids.tag')]) }}"
+    data-allow-new="{{ $allowNew ? 'true' : 'false' }}"
+    data-placeholder="{{ __('crud.placeholders.search') }}"
+@if ($allowClear)   data-allow-clear="true" @endif
+    data-new-tag="{{ __('tags.create.title') }}"
+@if (!empty($dropdownParent))   data-dropdown-parent="{{ $dropdownParent }}" @endif
 >
     <?php /** @var \App\Models\Tag $tag */?>
     @foreach ($tags as $key => $tag)

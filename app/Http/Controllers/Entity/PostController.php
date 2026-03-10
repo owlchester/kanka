@@ -44,7 +44,7 @@ class PostController extends Controller
 
         /** @var PostLayout[] $layouts */
         $layouts = PostLayout::entity($entity->entityType)->get();
-        $layoutDefault = ['' => __('crud.fields.entry')];
+        $layoutDefault = ['' => __('fields.description.label')];
         $layoutOptions = $disabledLayoutOptions = [];
 
         foreach ($layouts as $layout) {

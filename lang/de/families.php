@@ -14,8 +14,12 @@ return [
         'members'       => 'Mitglieder einer Familie werden hier gelistet. Ein Charakter kann einer Familie hinzugefügt werden, in dem bei dem gewünschten Charakter das Familiendropdown genutzt wird.',
     ],
     'index'         => [],
+    'lists'         => [
+        'empty' => 'Verfolge Abstammungslinien, Clans oder Adelshäuser, die deine Charaktere miteinander verbinden.',
+    ],
     'members'       => [
         'create'    => [
+            'helper'    => 'Füge ein oder mehrere Mitglieder zu :name hinzu.',
             'success'   => '{0} Kein Mitglied wurde hinzugefügt.|{1} 1 Mitglied wurde hinzugefügt.|[2,*] :count Mitglieder wurden hinzugefügt.',
             'title'     => 'Neue Mitglieder',
         ],

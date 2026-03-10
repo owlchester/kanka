@@ -9,6 +9,7 @@ use App\Http\Controllers\Search\ListController;
 use App\Http\Controllers\Search\LiveController;
 use App\Http\Controllers\Search\MapGroupController;
 use App\Http\Controllers\Search\MarkerController;
+use App\Http\Controllers\Search\MentionController;
 use App\Http\Controllers\Search\RecentController;
 use App\Http\Controllers\Search\TemplateController;
 use App\Http\Controllers\SearchController;
@@ -43,3 +44,6 @@ Route::get('/w/{campaign}/search/live', [LiveController::class, 'index'])->name(
 Route::get('/w/{campaign}/search/recent', [RecentController::class, 'index'])->name('search.recent');
 
 Route::get('/w/{campaign}/search/fulltext', [FullTextController::class, 'index'])->name('search.fulltext');
+
+Route::get('/w/{campaign}/search/mention', [MentionController::class, 'index'])->name('search.mention');
+Route::post('/w/{campaign}/search/mention', [MentionController::class, 'load'])->name('search.mention.load');

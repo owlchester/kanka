@@ -14,6 +14,7 @@ return [
     'fields'        => [
         'created'       => 'Creado el',
         'creator'       => 'Creado por',
+        'entries'       => 'Total de entradas',
         'from-elements' => 'De los elementos',
         'from-entities' => 'De las entidades',
         'from-posts'    => 'De las publicaciones',

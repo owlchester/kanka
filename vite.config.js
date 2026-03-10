@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
 import tailwindcss from '@tailwindcss/vite';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
 
 
 export default defineConfig({
@@ -54,7 +55,7 @@ export default defineConfig({
                 'resources/js/whiteboards.js',
                 'resources/js/connections/web.js',
                 'resources/js/editors/summernote.js',
-                //'resources/js/editors/tiptap.js',
+                'resources/js/editors/tiptap/index.js',
                 'resources/js/family-tree-vue.js',
                 'resources/js/entities/explore.js',
                 'resources/js/attributes-manager.js',
@@ -99,7 +100,34 @@ export default defineConfig({
             },
         }),
         tailwindcss(),
+        viteStaticCopy({
+            targets: [
+                {
+                    src: 'node_modules/tinymce/**/*',
+                    dest: 'js/tinymce',
+                },
+                {
+                    src: 'resources/vendor/tinymce/plugins/mention',
+                    dest: 'js/tinymce/plugins',
+                },
+                {
+                    src: 'resources/vendor/tinymce/langs/*',
+                    dest: 'js/tinymce/langs',
+                },
+            ],
+        }),
     ],
+    build: {
+        rollupOptions: {
+            output: {
+                manualChunks(id) {
+                    if (id.includes('node_modules/@tiptap') || id.includes('node_modules/prosemirror') || id.includes('node_modules/@prosemirror')) {
+                        return 'vendor-tiptap'
+                    }
+                },
+            },
+        },
+    },
     resolve: {
         alias: {
             'vue': 'vue/dist/vue.esm-bundler',

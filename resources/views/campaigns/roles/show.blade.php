@@ -80,8 +80,8 @@
                 {{ __('campaigns.roles.permissions.helpers.delete') }}
             </li>
             <li>
-                <code>{{ __('entities.posts') }}</code>
-                {{ __('campaigns.roles.permissions.helpers.entity_note') }}
+                <code>{{ __('entities.articles') }}</code>
+                {{ __('campaigns.roles.permissions.helpers.articles') }}
             </li>
             <li>
                 <code>{{ __('campaigns.roles.permissions.actions.permission') }}</code>

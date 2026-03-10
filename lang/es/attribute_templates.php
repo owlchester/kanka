@@ -8,7 +8,6 @@ return [
     'destroy'               => [],
     'edit'                  => [],
     'fields'                => [
-        'attributes'    => 'Atributos',
         'auto_apply'    => 'Aplicar automáticamente',
         'is_enabled'    => 'Habilitado',
     ],
@@ -27,9 +26,5 @@ return [
     'placeholders'          => [
         'name'  => 'Nombre de la plantilla de atributos',
     ],
-    'show'                  => [
-        'tabs'  => [
-            'attributes'    => 'Atributos',
-        ],
-    ],
+    'show'                  => [],
 ];

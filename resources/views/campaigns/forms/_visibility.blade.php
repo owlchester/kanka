@@ -39,7 +39,7 @@ use App\Enums\CampaignVisibility;
 
         @if ($campaign && $campaign->premium())
             <div class="rounded-xl border border-base-300 p-2 flex gap-2 items-start cursor-pointer hover:shadow-sm">
-                <input type="radio" name="visibility_id" id="visibility-unlisted" value="{{ CampaignVisibility::unlisted->value }}" class="mt-1" @if ($campaign->isUnlisted()) checked="checked" @endif">
+                <input type="radio" name="visibility_id" id="visibility-unlisted" value="{{ CampaignVisibility::unlisted->value }}" class="mt-1" @if ($campaign->isUnlisted()) checked="checked" @endif>
                 <div class="flex flex-col gap-0 w-full">
                     <label for="visibility-unlisted" class="w-full cursor-pointer">
                         {{ __('campaigns/visibilities.titles.unlisted') }}

@@ -24,10 +24,12 @@ import './utility/sortable';
 import './utility/formError';
 import './utility/dialog';
 import './utility/colour-picker';
+import './share';
 
 // VueJS elements
 import './header';
 import './gallery/selection';
+import './forms/entity-name';
 import './utility/tippy';
 import './maintenance';
 

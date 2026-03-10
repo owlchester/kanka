@@ -32,9 +32,9 @@
 @can('setPostTemplates', $campaign)
     <x-dropdowns.item :link="route('posts.template', [$campaign, 'post' => $post])" :icon="($post->isTemplate() ? 'fa-regular' : 'fa-solid') . ' fa-star'">
         @if ($post->isTemplate())
-            {{ __('entities/actions.templates.unset') }}
+            {{ __('posts/templates.actions.unset') }}
         @else
-            {{ __('entities/actions.templates.set') }}
+            {{ __('posts/templates.actions.set') }}
         @endif
     </x-dropdowns.item>
 @endcan
@@ -53,7 +53,7 @@
     @php
         $url = route('confirm-delete', [$campaign, 'route' => route('entities.posts.destroy', [$campaign, $entity, $post]), 'name' => $post->name]);
     @endphp
-    <x-dropdowns.item link="#" css="text-error hover:bg-error hover:text-error-content" :data="['toggle' => 'dialog', 'target' => 'primary-dialog', 'url' => $url]" icon="trash">
+    <x-dropdowns.item link="#" css="text-error-content hover:bg-error" :data="['toggle' => 'dialog', 'target' => 'primary-dialog', 'url' => $url]" icon="trash">
         {{ __('posts.remove.title') }}
     </x-dropdowns.item>
 @endcan

@@ -29,7 +29,6 @@ return [
     'fields'        => [
         'creator'   => 'Criador',
         'display'   => 'Exibir',
-        'entry'     => 'Introdução',
         'name'      => 'Nome',
         'position'  => 'Posição',
     ],
@@ -41,9 +40,7 @@ return [
     'hints'         => [
         'reorder'   => 'Você pode reordenar os posts de uma entidade clicando no ícone :icon ao lado da visão geral no menu da entidade.',
     ],
-    'index'         => [
-        'title' => 'Posts de :name',
-    ],
+    'index'         => [],
     'move'          => [
         'copy'          => 'Criar uma cópia na entidade de destino',
         'copy_success'  => 'Post :name copiado com sucesso para :entity.',

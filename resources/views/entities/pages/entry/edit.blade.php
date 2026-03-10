@@ -3,7 +3,7 @@
     'breadcrumbs' => [
         Breadcrumb::campaign($campaign)->entity($entity)->list(),
         Breadcrumb::show(),
-        __('crud.tabs.story'),
+        __('fields.description.label'),
         __('crud.edit')
     ],
     'mainTitle' => false,
@@ -17,11 +17,7 @@
         @include('partials.errors')
         <x-box>
             <x-forms.field field="entry">
-                <textarea name="entry"
-                          id="entry"
-                          class="html-editor"
-                          rows="3"
-                >{!! $entity->entryForEdition !!}</textarea>
+                @include('cruds.fields.entry', ['model' => $entity ?? null])
             </x-forms.field>
 
             <div class="flex gap-2 items-center">

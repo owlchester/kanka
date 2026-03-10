@@ -1,5 +1,5 @@
 <x-grid>
-    @include('cruds.fields.name', ['trans' => 'quests'])
+    @include('cruds.fields.entity-name')
     @include('cruds.fields.type', ['base' => \App\Models\Quest::class, 'trans' => 'quests'])
 
     @include('cruds.fields.quest', ['isParent' => true])

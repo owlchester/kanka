@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>tinyMCE-mention</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+    <link rel="stylesheet" href="../bower_components/qunit/qunit/qunit.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../css/autocomplete.css" type="text/css" media="screen">
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../bower_components/qunit/qunit/qunit.js"></script>
+    <script src="../bower_components/tinymce-dist/tinymce.min.js"></script>
+    <script type="text/javascript" src="test_mention.js"></script>
+    <script type="text/javascript" src="../mention/plugin.js"></script>
+    <script type="text/javascript">
+
+        tinyMCE.init({
+            mode : "exact",
+            elements : "rte",
+            plugins : 'mention',
+            mentions: {
+                source: [
+                    { name: 'Jammie Marbury'},
+                    { name: 'Jenniffer Caffey'},
+                    { name: 'Paul Hollen'},
+                    { name: 'Isabel Lenzi'},
+                    { name: 'Rebecka Kennell'},
+                    { name: 'Collette Janis'},
+                    { name: 'Bryon Kawamoto'},
+                    { name: 'Jerald Mozingo'},
+                    { name: 'Carlena Bachelor'},
+                    { name: 'Jacinta Diver'},
+                    { name: 'Cameron Libbey'},
+                    { name: 'Romana Matsunaga'},
+                    { name: 'Laurette Ernst'},
+                    { name: 'Gilma Groom'},
+                    { name: 'Lewis Gillis'},
+                    { name: 'Weston Defoor'},
+                    { name: 'Alejandrina Simmer'},
+                    { name: 'Alejandra Helbing'},
+                    { name: 'Yvette Fielding'},
+                    { name: 'Shirely Besaw'},
+                    { name: 'Laurel Dafoe'},
+                    { name: 'Shantel Calley'},
+                    { name: 'Aleta Bolyard'},
+                    { name: 'Tuyet Ybarbo'},
+                    { name: 'Christy Voris'},
+                    { name: 'Hilda Hamlett'},
+                    { name: 'Ying Tefft'},
+                    { name: 'Lilliana Fulford'},
+                    { name: 'Jama Brough'},
+                    { name: 'Minerva Bixby'},
+                    { name: 'Jacquelin Lauber'},
+                    { name: 'Lanette Hoke'},
+                    { name: 'Virgil Roehr'},
+                    { name: 'Melodi Rathburn'},
+                    { name: 'Tressa Cade'},
+                    { name: 'Florentina Seigel'},
+                    { name: 'Santina Maust'},
+                    { name: 'Sean Spidle'},
+                    { name: 'Henrietta Murtagh'},
+                    { name: 'Matilde Tynan'},
+                    { name: 'Claude Putman'},
+                    { name: 'Ardell Castiglia'},
+                    { name: 'Alona Mally'},
+                    { name: 'Elizabet Gebhart'},
+                    { name: 'Maye Wilken'},
+                    { name: 'Xenia Gin'},
+                    { name: 'Edith Schebler'},
+                    { name: 'Brianna Repka'},
+                    { name: 'Marcella Thronson'},
+                    { name: 'Theresia Provenzano'}
+                ]
+            },
+            init_instance_callback : function(ed) {
+                QUnit.start();
+            }
+        });
+
+    </script>
+</head>
+<body>
+
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+
+    <textarea id="rte" style="width: 100%;"></textarea>
+
+</body>
+</html>

@@ -21,8 +21,7 @@ return [
         'application'   => 'Candidatura',
     ],
     'helpers'       => [
-        'modal'             => 'Una campagna aperta alle candidature e al pubblico può avere utenti che chiedono di unirsi alla campagna.',
-        'no_applications'   => 'Al momento non ci sono candidature alla campagna in corso. Gli utenti possono richiedere di aderire alla campagna visitando la sua Pagina Principale e facendo clic sul pulsante :button.',
+        'modal' => 'Una campagna aperta alle candidature e al pubblico può avere utenti che chiedono di unirsi alla campagna.',
     ],
     'placeholders'  => [
         'note'  => 'Scrivi qui la tua candidatura per unirti alla campagna',

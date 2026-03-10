@@ -1,8 +1,8 @@
+<input id="submit-mode" type="hidden" value="true"/>
 <div class="join">
-    <input id="submit-mode" type="hidden" value="true"/>
-    <button class="btn2 btn-sm btn-primary join-item" id="form-submit-main" data-target="{{ isset($target) ? $target : null }}">{{ __('crud.save') }}</button>
+    <button class="btn2 btn-primary join-item" id="form-submit-main" data-target="{{ isset($target) ? $target : null }}">{{ __('crud.save') }}</button>
     <div class="dropdown">
-        <button type="button" class="btn2 btn-sm btn-primary join-item" data-dropdown aria-expanded="false">
+        <button type="button" class="btn2 btn-primary join-item" data-dropdown aria-expanded="false">
             <x-icon class="fa-regular fa-caret-down" />
             <span class="sr-only">{{ __('crud.actions.actions') }}</span>
         </button>
