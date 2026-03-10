@@ -43,7 +43,7 @@
                         <div class="dropdown-menu hidden" role="menu">
                             <x-dropdowns.item
                                 link="#"
-                                css="text-error hover:bg-error hover:text-error-content"
+                                css="text-error-content hover:bg-error"
                                 :dialog="route('campaign.leave', $campaign)"
                                 icon="fa-regular fa-person-walking ">
                                 {{ __('campaigns.leave.action') }}

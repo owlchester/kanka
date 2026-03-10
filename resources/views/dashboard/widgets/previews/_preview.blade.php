@@ -14,8 +14,8 @@
     </div>
     <span role="button" class="inline-block w-full text-center"
        id="widget-preview-switch-{{ $widget->id }}" data-widget="{{ $widget->id }}" data-toggle="tooltip" data-title="{{ __('Click to toggle') }}" @click="open = !open">
-        <x-icon class="fa-solid fa-chevron-down" show="!open" x-cloak   />
-        <x-icon class="fa-solid fa-chevron-up" show="open" x-cloak />
+        <x-icon class="fa-regular fa-chevron-down" show="!open" x-cloak   />
+        <x-icon class="fa-regular fa-chevron-up" show="open" x-cloak />
         <span class="sr-only">{{ __('Click to toggle') }}</span>
     </span>
 </div>

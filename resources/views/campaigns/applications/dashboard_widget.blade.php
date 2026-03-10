@@ -23,7 +23,7 @@
         @if ($hasJoinWidget)
             <div class="flex items-center gap-4">
                 <div class="rounded bg-green-200 w-12 h-12 flex items-center justify-center flex-none">
-                    <x-icon class="fa-solid fa-check text-green-600" />
+                    <x-icon class="fa-solid fa-check text-success-content" />
                 </div>
                 <div class="flex flex-col gap-1">
                     <span class="font-medium">{{ __('campaigns/applications.dashboard_widget.has_widget') }}</span>
@@ -32,8 +32,8 @@
             </div>
         @else
             <div class="flex items-center gap-4">
-                <div class="rounded bg-red-200 w-12 h-12 flex items-center justify-center flex-none">
-                    <x-icon class="fa-solid fa-times text-red-600" />
+                <div class="rounded bg-error w-12 h-12 flex items-center justify-center flex-none">
+                    <x-icon class="fa-solid fa-times text-error-content" />
                 </div>
                 <div class="flex flex-col gap-1">
                     <span class="font-medium">{{ __('campaigns/applications.dashboard_widget.no_widget') }}</span>

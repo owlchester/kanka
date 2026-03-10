@@ -13,17 +13,17 @@
                 }
             @endphp
         @endif
-        <div class="rounded {{ $campaign->boosted() ? 'bg-green-200' : 'bg-red-200' }} w-12 h-12 flex items-center justify-center text-xl flex-none">
-            <x-icon class="fa-regular {{ $campaign->boosted() ? 'fa-gem text-green-600' : 'fa-times text-red-500' }}" />
+        <div class="rounded {{ $campaign->boosted() ? 'bg-green-200' : 'bg-error' }} w-12 h-12 flex items-center justify-center text-xl flex-none">
+            <x-icon class="fa-regular {{ $campaign->boosted() ? 'fa-gem text-success-content' : 'fa-times text-error-content' }}" />
         </div>
         <div class="flex flex-col gap-1 grow">
             <span>{!! __('campaigns.status.title') !!}</span>
             @if ($campaign->premium())
-                <span class="text-green-600">
+                <span class="text-success-content">
                     {!! __('campaigns.status.premium', ['name' => $link]) !!}
                 </span>
             @elseif ($campaign->boosted())
-                <span class="text-green-600">
+                <span class="text-success-content">
                     {{ __('campaigns.fields.' . ($campaign->superboosted() ? 'superboosted' : 'boosted')) }}
                     {!! $link !!}
                 </span>
@@ -51,10 +51,10 @@
 
     <x-infoBox
         title="{{ __('crud.fields.visibility') }}"
-        icon="{{ $campaign->isUnlisted() ? 'fa-regular fa-user-secret text-neutral-content' : ($campaign->isPublic() ? 'fa-regular fa-check text-green-600' : 'fa-regular fa-lock text-neutral-content') }}"
+        icon="{{ $campaign->isUnlisted() ? 'fa-regular fa-user-secret text-neutral-content' : ($campaign->isPublic() ? 'fa-regular fa-check text-success-content' : 'fa-regular fa-lock text-neutral-content') }}"
         subtitle="{{ $campaign->isUnlisted() ? __('campaigns/visibilities.titles.unlisted') : ($campaign->isPublic() ? __('campaigns/visibilities.titles.public') : __('campaigns/visibilities.titles.private')) }}"
         background="{{ $campaign->isPublic() ? 'bg-green-200' : 'bg-neutral' }}"
-        subtitleColour="{{ $campaign->isPublic() ? 'text-green-600' : 'text-neutral-content' }}"
+        subtitleColour="{{ $campaign->isPublic() ? 'text-success-content' : 'text-neutral-content' }}"
         :campaign="$campaign"
         :url="auth()->check() && auth()->user()->can('update', $campaign) ? route('campaign-visibility', [$campaign, 'from' => 'overview']) : null"
         :urlTooltip="__('campaigns/public.title')"
@@ -69,7 +69,7 @@
             :campaign="$campaign"
             :url="route('campaign.leave', $campaign)"
             :urlTooltip="__('campaigns.leave.action')"
-            urlIcon="fa-regular fa-person-walking text-error"
+            urlIcon="fa-regular fa-person-walking text-error-content"
             urlButton="border-error"
             ajax
         ></x-infoBox>

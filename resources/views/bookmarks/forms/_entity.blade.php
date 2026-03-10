@@ -60,7 +60,7 @@ $menus = array_merge(['' => __('crud.tabs.overview')], $menus);
             'name' => 'entity_id',
             'required' => true,
             'preset' => !empty($model) && $model->target ? $model->target : null,
-            'label' => __('entities.entity'),
+            'label' => __('entities.entry'),
         ])
 
         <x-forms.field field="menu" :label="__('bookmarks.fields.menu')">

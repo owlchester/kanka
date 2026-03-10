@@ -59,7 +59,7 @@
                     Action 2
                 </x-dropdowns.item>
                 <x-dropdowns.divider />
-                <x-dropdowns.item link="#" css="text-error hover:bg-error hover:text-error-content">
+                <x-dropdowns.item link="#" css="text-error-content hover:bg-error">
                     Action 3
                 </x-dropdowns.item>
             </div>
@@ -149,7 +149,7 @@
     </div>
 
     <div class="col-span-4">
-        <pre><strong>Pre</strong> Vel ac commodo placerat enim lacus facilisis nisl tincidunt quisque accumsan portaest nunc aliquam tortor nunc gravida bibendum placerat tristique metus proin phasellus rutrum eget.
+        <pre><code><strong>Pre</strong> Vel ac commodo placerat enim lacus facilisis nisl tincidunt quisque accumsan portaest nunc aliquam tortor nunc gravida bibendum placerat tristique metus proin phasellus rutrum eget.</code>
         </pre>
     </div>
     <div class="col-span-4 bg-box p-2 rounded">

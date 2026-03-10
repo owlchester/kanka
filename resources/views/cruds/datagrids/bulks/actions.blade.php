@@ -55,7 +55,7 @@ if ($model instanceof \App\Models\Relation && auth()->user()->can('delete', $mod
     $dropdownActions[] = 'divider';
     $dropdownActions[] = [
         'data' => ['target' => 'primary-dialog', 'bulk-action' => 'ajax', 'toggle' => 'dialog', 'url' => route('bulk.delete-relations', [$campaign])],
-        'class' => 'text-error hover:bg-error hover:text-error-content',
+        'class' => 'text-error-content hover:bg-error',
         'icon' => 'trash',
         'text' => __('crud.remove')
     ];
@@ -63,7 +63,7 @@ if ($model instanceof \App\Models\Relation && auth()->user()->can('delete', $mod
     $dropdownActions[] = 'divider';
     $dropdownActions[] = [
         'data' => ['target' => 'primary-dialog', 'bulk-action' => 'ajax', 'toggle' => 'dialog', 'url' => route('bulk.delete', [$campaign, 'entity_type' => $entityType->id])],
-        'class' => 'text-error hover:bg-error hover:text-error-content',
+        'class' => 'text-error-content hover:bg-error',
         'icon' => 'trash',
         'text' => __('crud.remove')
     ];
@@ -88,7 +88,7 @@ if ($model instanceof \App\Models\Relation && auth()->user()->can('delete', $mod
                     @continue
                 @elseif ($dropdownAction['class'] === 'bulk-print')
                     <button type="submit" name="action" value="print" class="px-2 py-2 hover:bg-base-200 rounded-xl flex items-center gap-1.5 text-sm transition-all duration-150 cursor-pointer">
-                        <span class="shrink-0 w-4 text-center flex-none">
+                        <span class="shrink-0 w-5 text-center text-neutral-content flex-none">
                             <x-icon :class="$dropdownAction['icon']" />
                         </span>
                         {!! $dropdownAction['text'] !!}

@@ -6,6 +6,9 @@ const entityTooltips = Array();
  * For ajax tooltips, we cache the result (typical for dashboards)
  */
 const initAjaxTooltips = () => {
+    if (window.innerWidth < 768) {
+        return;
+    }
     const elementsAjax = document.querySelectorAll('[data-toggle="tooltip-ajax"]');
     elementsAjax.forEach(e => {
         if (e._tippy) {

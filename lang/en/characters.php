@@ -17,11 +17,11 @@ return [
     ],
     'fields'        => [
         'age'                       => 'Age',
-        'is_appearance_pinned'      => 'Pinned appearance',
+        'is_appearance_pinned'      => 'Appearance overview',
         'is_dead'                   => 'Dead',
+        'is_personality_pinned'     => 'Personality overview',
+        'is_personality_visible'    => 'Personality access',
         'status'                    => 'Status',
-        'is_personality_pinned'     => 'Pinned personality',
-        'is_personality_visible'    => 'Personality visible',
         'life'                      => 'Life',
         'physical'                  => 'Physical',
         'pronouns'                  => 'Pronouns',
@@ -31,10 +31,9 @@ return [
     ],
     'helpers'       => [
         'age'                   => 'You can link this character with a calendar to automatically calculate their age instead. :more.',
-        'personality_visible'   => 'If selected, the personality traits of this character are visible to all. If not, only to members of the :admin role will be able to see these traits.',
     ],
     'hints'         => [
-        'is_appearance_pinned'      => 'Display the appearance traits on the overview page.',
+        'is_appearance_pinned'      => 'Show on overview.',
         'is_dead'                   => 'This character is dead.',
         'is_missing'                => 'This character is missing.',
         'is_personality_pinned'     => 'Display the personality traits on the overview page.',
@@ -107,7 +106,11 @@ return [
         'appearance'    => 'Appearance',
         'personality'   => 'Personality',
     ],
+    'personality_visibility' => [
+        'all' => 'Everyone can see',
+        'admin' => 'Members of :admin role only',
+    ],
     'warnings'      => [
-        'personality_hidden'    => 'You aren\'t allowed to edit personality traits on this character.',
+        'personality_hidden'    => ':name\'s personality traits have been locked down.',
     ],
 ];

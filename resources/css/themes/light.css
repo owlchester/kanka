@@ -9,18 +9,18 @@
         --boosted: 338 78% 48%;
 
         /* Primary colour, used for buttons and links */
-        --p: 202 52% 49%;
+        --p: 223 73% 24%;
         /* Primary colour when focused */
-        --pf: 202 52% 34%;
+        --pf: 213 100% 24.9%;
         /* Foreground content colour to use on primary colour */
-        --pc: 243 100% 96%;
+        --pc: 255 0% 100%;
 
         /* Secondary colour, currently unused */
-        --s: 215 26% 59%;
+        --s: 210 50% 96.1%;
         /* Secondary colour when focused */
-        --sf: 215 26% 52%;
+        --sf: 210 52.2% 91%;
         /* Foreground content colour to use on secondary colour */
-        --sc: 216 13% 13%;
+        --sc: 223 61.8% 30.8%;
 
         /* Accent colour, used for some important buttons like "new post" */
         --a: 41 74% 53%;
@@ -34,7 +34,7 @@
         /* Neutral colour when focused */
         --nf: 227 12% 71%;
         /* Text colour for elements with the neutral colour background */
-        --nc: 223 13% 41%;
+        --nc: 218 14.6% 54.9%;
 
         /* Base background colours, used for boxes, panels, modals */
         --b1: 0 0% 100%;
@@ -44,20 +44,20 @@
         --bc: 233 27% 13%;
 
         /* Info messages background and foreground */
-        --in: 198 93% 80%;
-        --inc: 198 100% 12%;
+        --in: 210 50% 93.1%;
+        --inc: 223 61.8% 30.8%;
 
         /* Warning messages */
-        --wa: 43 96% 76%;
-        --wac: 43 100% 11%;
+        --wa: 48 96.5% 88.8%;
+        --wac: 26 90.5% 37.1%;
 
         /* Error messages */
-        --er: 0 91% 71%;
-        --erc: 0 100% 14%;
+        --er: 352.65 96.08% 90%;
+        --erc: 350 89.2% 60.2%;
 
         /* Success messages */
-        --su: 158 64% 52%;
-        --suc: 158 100% 10%;
+        --su: 152 81% 95.9%;
+        --suc: 163 88.1% 19.8%;
 
         /* Sidebar */
         --si: 0 0% 20%;

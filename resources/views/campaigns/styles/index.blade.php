@@ -44,7 +44,7 @@ use App\Facades\Datagrid ?>
 
             <x-infoBox
                 :title="__('campaigns/styles.theme.override')"
-                :icon="!empty($theme) ? 'fa-solid fa-check text-green-600' : 'fa-solid fa-user text-neutral-content'"
+                :icon="!empty($theme) ? 'fa-solid fa-check text-success-content' : 'fa-solid fa-user text-neutral-content'"
                 :subtitle="!empty($theme) ? $theme->__toString() : __('campaigns/styles.theme.none')"
                 background="{{ !empty($theme) ? 'bg-green-200' : 'bg-neutral' }}"
                 :campaign="$campaign"

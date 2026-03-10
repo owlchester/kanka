@@ -22,9 +22,9 @@ return [
         'community_templates'   => 'Community Templates',
         'is_private'            => 'Private properties',
         'is_star'               => 'Pinned',
+        'kit'                   => 'Kit',
         'preferences'           => 'Preferences',
         'property'              => 'Property',
-        'kit'              => 'Kit',
         'value'                 => 'Value',
     ],
     'filters'       => [
@@ -58,13 +58,13 @@ return [
             'class' => 'FontAwesome or RPG Awesome class: fas fa-users',
             'name'  => 'Icon name',
         ],
+        'kit'       => 'Select a kit',
         'number'    => 'Number value',
         'random'    => [
             'name'  => 'Property name',
             'value' => '1-100 or list of values separated by a comma',
         ],
         'section'   => 'Section name',
-        'kit'  => 'Select a kit',
         'value'     => 'Value of the properties',
     ],
     'ranges'        => [

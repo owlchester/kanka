@@ -6,7 +6,7 @@
             {!! $title !!}
         @endif
     </x-dialog.header>
-    @if (!empty($form)) {!! $form !!} @else <div class="formless"> @endif
+    @if (!empty($form)) {!! $form !!} @endif
         <article class="py-4 px-4 md:px-6 @if (!$full) max-w-2xl @endif">
             @if ($loading)
                 <div class="my-8 text-center text-lg w-40">
@@ -20,5 +20,5 @@
                 @includeIf($footer)
             </x-dialog.footer>
         @endif
-    @if (!empty($form)) </form> @else </div> @endif
+    @if (!empty($form)) </form> @endif
 </dialog>

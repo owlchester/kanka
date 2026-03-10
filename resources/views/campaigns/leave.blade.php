@@ -1,30 +1,23 @@
-<x-dialog.header>
-    {{ __('campaigns.leave.title') }}
-</x-dialog.header>
 
-<article class="max-w-xl p-4 md:px-6">
-    @can('leave', $campaign)
-        <x-helper>
-            <p>
-                {!! __('campaigns.leave.confirm', ['name' => '<strong>' . $campaign->name . '</strong>']) !!}
-            </p>
-        </x-helper>
-        <div class="grid grid-cols-2 gap-2 w-full">
-            <x-buttons.confirm type="ghost" full="true" dismiss="dialog">
-                {{ __('crud.cancel') }}
-            </x-buttons.confirm>
-            <x-form :action="['campaign.leave-process', $campaign, $campaign->id]">
-                <x-buttons.confirm type="danger" outline="true" full="true">
-                    <x-icon class="fa-regular fa-sign-out-alt" />
-                    {{ __('campaigns.leave.confirm-button') }}
-                </x-buttons.confirm>
-            </x-form>
-        </div>
-    @else
+@can('leave', $campaign)
+    <x-form :action="['campaign.leave-process', $campaign, $campaign->id]">
+        @include('partials.forms._dialog', [
+            'mode' => 'edit',
+            'title' => __('campaigns.leave.title'),
+            'content' => 'campaigns.leave._body',
+            'actions' => 'campaigns.leave._actions'
+        ])
+    </x-form>
+@else
+    <x-dialog.header>
+        {{ __('campaigns.leave.title') }}
+    </x-dialog.header>
+
+    <article class="max-w-xl p-4 md:px-6">
         <p class="">{{ __('campaigns.leave.no-admin-left') }}</p>
         <a href="{{ route('campaign_users.index', $campaign) }}" class="btn2 btn-outline">
             <x-icon class="arrow" />
             {{ __('campaigns.leave.fix') }}
         </a>
-    @endif
-</article>
+    </article>
+@endcan

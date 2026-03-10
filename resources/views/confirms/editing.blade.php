@@ -22,9 +22,9 @@
             </ul>
         </x-grid>
     </x-dialog.article>
-    <footer class="bg-base-200 flex flex-wrap gap-3 justify-between items-start p-3 md:rounded-b">
+    <footer class="flex flex-wrap gap-3 justify-between items-start p-3 md:rounded-b">
         <menu class="flex flex-wrap gap-3 ps-0 ms-0">
-            <a class="btn2" id="entity-edit-warning-back" href="{{ $show }}">
+            <a class="btn2 btn-outline" id="entity-edit-warning-back" href="{{ $show }}">
                 {{ __('confirm/editing.back') }}
             </a>
         </menu>

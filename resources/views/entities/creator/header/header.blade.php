@@ -43,7 +43,7 @@
             <div class="qq-toggles flex text-right items-center content-center justify-end gap-2">
                 @if (isset($entityType))
                     <div
-                        class="qq-mode-toggle btn2 btn-sm self-end @if (empty($mode)) btn-outline  @endif"
+                        class="qq-mode-toggle btn2 self-end @if (empty($mode)) btn-outline  @endif"
                         data-mode="single"
                         data-url="{{ route('entity-creator.form', [$campaign, 'entity_type' => $entityType]) }}"
                         aria-label="{{ __('entities.creator.modes.default') }}"
@@ -53,7 +53,7 @@
                         <x-icon class="fa-regular fa-user" />
                     </div>
                     <div
-                        class="qq-mode-toggle btn2 btn-sm self-end @if ($mode == 'bulk') btn-outline  @endif"
+                        class="qq-mode-toggle btn2 self-end @if ($mode == 'bulk') btn-outline  @endif"
                         data-mode="bulk"
                         data-url="{{ route('entity-creator.form', [$campaign, 'entity_type' => $entityType, 'mode' => 'bulk']) }}"
                         aria-label="{{ __('entities.creator.modes.bulk') }}"
@@ -63,7 +63,7 @@
                         <x-icon class="fa-regular fa-users" />
                     </div>
                     <div
-                        class="qq-mode-toggle btn2 btn-sm self-end @if ($mode == 'templates') btn-outline  @endif"
+                        class="qq-mode-toggle btn2 self-end @if ($mode == 'templates') btn-outline  @endif"
                         data-mode="templates"
                         data-url="{{ route('entity-creator.form', [$campaign, 'entity_type' => $entityType, 'mode' => 'templates']) }}"
                         aria-label="{{ __('entities.creator.modes.archetypes') }}"
@@ -74,7 +74,7 @@
                     </div>
                 @else
 
-                    <div class="qq-mode-toggle btn2 btn-sm self-end @if (empty($mode)) btn-outline  @endif" data-mode="single" data-url="{{ route('entity-creator.post', [$campaign]) }}" aria-label="{{ __('entities.creator.modes.default') }}" data-title="{{ __('entities.creator.modes.default') }}" data-toggle="tooltip">
+                    <div class="qq-mode-toggle btn2 self-end @if (empty($mode)) btn-outline  @endif" data-mode="single" data-url="{{ route('entity-creator.post', [$campaign]) }}" aria-label="{{ __('entities.creator.modes.default') }}" data-title="{{ __('entities.creator.modes.default') }}" data-toggle="tooltip">
                         <x-icon class="fa-regular fa-user" />
                     </div>
                 @endif

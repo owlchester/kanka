@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'empty'         => ':name n\'a pas encore de contenu.',
+    'fix'           => 'Ajouter une déscription',
     'formatting'    => 'HTML pris en charge:text (:text), structure (:layout), listes/tableaux et images.',
     'helper'        => 'Remplacer le texte d’aperçu généré automatiquement par défaut affiché au survol des liens vers cette entrée.',
     'label'         => 'Teaser',

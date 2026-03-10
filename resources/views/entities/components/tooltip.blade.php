@@ -7,7 +7,7 @@
 ?>
 <div class="tooltip-content flex flex-col gap-2 {{ implode(' ', $tagClasses) }}" >
     <div
-        class="flex gap-4 items-end tooltip-header @if ($hasImage) px-4 h-32 w-full @else px-4 pt-2 @endif"
+        class="flex gap-4 items-end tooltip-header @if ($hasImage) px-4 h-32 w-full @else px-4 pt-4 @endif"
         @if ($hasImage)
             style="--tooltip-background: url('{{ Avatar::entity($entity)->size(378, 256)->thumbnail() }}')"
         @endif>

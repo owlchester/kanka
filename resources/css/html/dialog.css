@@ -1,5 +1,6 @@
 dialog {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     max-inline-size: min(90vw, var(--size-content-3));
     max-block-size: min(80vh, 100%);
     padding: 0;
@@ -10,29 +11,31 @@ dialog {
     border: 0;
     transition: opacity .5s ease-in-out;
 
+    > form {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-block-size: 0;
+        overflow: hidden;
+    }
+
+    header {
+        flex-shrink: 0;
+    }
+
     article {
+        flex: 1;
         overflow-y: auto;
         overscroll-behavior-y: contain;
-        max-block-size: 100%; /* safari */
-        display: grid;
-        gap: 0.75rem;
-    }
-    form, .formless {
-        display: grid;
-        grid-template-rows: auto 1fr auto;
-        align-items: start;
-        max-block-size: 70vh;
-        footer {
-            menu:only-child {
-                margin-inline-start: auto;
-            }
-        }
-    }
-    .container {
-        display: grid;
-        grid-template-rows: 1fr auto;
-        align-self: stretch;
         min-block-size: 0;
+    }
+
+    footer {
+        flex-shrink: 0;
+
+        menu:only-child {
+            margin-inline-start: auto;
+        }
     }
 }
 

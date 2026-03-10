@@ -117,7 +117,7 @@ const quickCreatorSubformHandler = () => {
         e.preventDefault();
         quickCreatorSubmitBtns.forEach(btn => btn.classList.add('btn-disabled', 'loading'));
 
-        const errors = document.querySelectorAll('div.text-error');
+        const errors = document.querySelectorAll('div.text-error-content');
         errors.forEach(error => error.remove());
 
         const data = new FormData(form);
@@ -152,9 +152,10 @@ const quickCreatorSubformHandler = () => {
                     return;
                 }
 
-                let target = document.getElementById('qq-modal-form');
+                let target = document.getElementById('primary-dialog');
                 target.innerHTML = res.data;
                 window.triggerEvent();
+                Alpine.initTree(target);
 
                 quickCreatorUI();
                 quickCreatorHandleEvents();

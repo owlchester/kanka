@@ -193,7 +193,7 @@ const handleMentionConfigKeydown = (event: KeyboardEvent) => {
             </button>
             <button
                 @click.prevent="deleteMention"
-                class="hover:text-error"
+                class="hover:text-error-content"
                 title="Remove mention"
             >
                 <i class="fa-regular fa-trash" aria-hidden="true" />

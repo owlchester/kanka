@@ -118,6 +118,14 @@ class EntityAsset extends Model
     }
 
     /**
+     * Determine if the file is audio
+     */
+    public function isAudio(): bool
+    {
+        return $this->isFile() && Str::startsWith($this->metadata['type'], 'audio/');
+    }
+
+    /**
      * Get the image's url
      */
     public function imageUrl(): string

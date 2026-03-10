@@ -14,6 +14,7 @@
     @endif
 </x-form>
 
-<x-form method="DELETE" :action="['campaign_dashboard_widgets.destroy', $campaign, $model]" id="delete-form-widget-{{ $model->id }}" />
+<x-form method="DELETE" :action="['campaign_dashboard_widgets.destroy', $campaign, $model]"
+        id="delete-form-widget-{{ $model->id }}"/>
 
 

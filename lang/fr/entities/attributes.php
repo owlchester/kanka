@@ -22,6 +22,7 @@ return [
         'community_templates'   => 'Modèles Communautaires',
         'is_private'            => 'Propriétés privées',
         'is_star'               => 'Épinglé',
+        'kit'                   => 'Kit',
         'preferences'           => 'Préférences',
         'property'              => 'Propriété',
         'template'              => 'Kit',
@@ -58,6 +59,7 @@ return [
             'class' => 'Classes FontAwesome ou RPG Awesome: fas fa-users',
             'name'  => 'Nom de l\'icône',
         ],
+        'kit'       => 'Sélectionner un kit',
         'number'    => 'Nom du chiffre',
         'random'    => [
             'name'  => 'Nom de la propriété',

@@ -29,7 +29,7 @@
                         data-1p-ignore="true"
                     />
                         <p class="text-xs text-neutral-content" v-html="trans('placeholder')"></p>
-                    <p v-if="errorMessage" v-html="errorMessage" class="text-error"></p>
+                    <p v-if="errorMessage" v-html="errorMessage" class="text-error-content"></p>
                 </div>
 
                 <div class="flex flex-col gap-2">

@@ -30,13 +30,13 @@ return [
         'duplicate'                 => 'Heads up! There are other entries in this category with a similar name.',
         'helper_v2'                 => 'Quickly create the foundation of a new entry without interrupting your current flow.',
         'helpers'                   => [
-            'archetype'  => 'Select an archetype the new entries will be copies of',
+            'archetype' => 'Select an archetype the new entries will be copies of',
         ],
         'missing_v2'                => 'Only categories that are enabled and that you have permission to create are available in this interface. :learn-more.',
         'modes'                     => [
-            'bulk'      => 'Bulk add',
-            'default'   => 'Quick add',
-            'archetypes' => 'Archetype selection',
+            'archetypes'    => 'Archetype selection',
+            'bulk'          => 'Bulk add',
+            'default'       => 'Quick add',
         ],
         'name'                      => [
             'new'       => 'New name',

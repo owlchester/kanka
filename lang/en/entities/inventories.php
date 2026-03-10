@@ -2,7 +2,7 @@
 
 return [
     'actions'           => [
-        'copy_from_entity'  => 'Copy from another entity',
+        'copy_from_entity'  => 'Copy from another entry',
         'copy_inventory'    => 'Copy inventory',
         'generate'          => 'Generate',
         'multiple'          => 'Add items',

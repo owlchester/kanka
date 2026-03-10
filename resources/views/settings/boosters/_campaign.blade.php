@@ -76,7 +76,7 @@ $boost = isset($boost) ? $boost : $campaign->boosts->first();?>
                     @else
                         <x-dropdowns.item
                             link="#"
-                            css="text-error hover:bg-error hover:text-error-content"
+                            css="text-error-content hover:bg-error"
                             :dialog="route('campaign_boost.confirm-destroy', $boost)">
                             {!! __('settings/boosters.superboost.actions.remove', ['campaign' => \Illuminate\Support\Str::limit($campaign->name, 25)]) !!}
                         </x-dropdowns.item>

@@ -1,7 +1,6 @@
 <?php
     /** @var \App\Models\Inventory $inventory */
 ?>
-<div class="formless">
     <x-dialog.header>
         {!! $inventory->itemName() !!}
     </x-dialog.header>
@@ -139,4 +138,3 @@
             </a>
         @endcan
     </x-dialog.footer>
-</div>

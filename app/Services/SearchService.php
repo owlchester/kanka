@@ -475,6 +475,7 @@ class SearchService
         if (isset($this->user)) {
             $this
                 ->addCampaignPage('campaigns.show.tabs.members', 'campaign_users.index', 'members')
+                ->addCampaignPage('campaigns.show.tabs.defaults', 'campaign-defaults', 'update')
                 ->addCampaignPage('campaigns.show.tabs.roles', 'campaign_roles.index', 'roles')
                 ->addCampaignPage('campaigns/applications.title', 'applications.index', 'applications')
                 ->addCampaignPage('campaigns.show.tabs.modules', 'campaign.modules')

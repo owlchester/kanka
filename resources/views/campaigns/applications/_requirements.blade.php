@@ -3,15 +3,15 @@
 @endphp
 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
     <x-box class="flex items-center gap-5 rounded-xl">
-        <div class="rounded {{ !$campaign->isPrivate() ? 'bg-green-200' : 'bg-red-200' }} w-12 h-12 flex items-center justify-center flex-none">
-            <x-icon class="fa-solid {{ !$campaign->isPrivate() ? 'fa-check text-green-600' : 'fa-times text-red-600' }}" />
+        <div class="rounded {{ !$campaign->isPrivate() ? 'bg-green-200' : 'bg-error' }} w-12 h-12 flex items-center justify-center flex-none">
+            <x-icon class="fa-solid {{ !$campaign->isPrivate() ? 'fa-check text-success-content' : 'fa-times text-error-content' }}" />
         </div>
         <div class="flex flex-col gap-0 grow">
             <span>{!! __('campaigns/applications.public.title') !!}</span>
             @if (!$campaign->isPrivate())
-                <span class="text-green-600">{!! __('campaigns/applications.public.public') !!}</span>
+                <span class="text-success-content">{!! __('campaigns/applications.public.public') !!}</span>
             @else
-                <span class="text-red-600">{!! __('campaigns/applications.public.private') !!}</span>
+                <span class="text-error-content">{!! __('campaigns/applications.public.private') !!}</span>
             @endif
         </div>
         <div class="rounded-full border border-base-300 h-12 w-12 flex items-center justify-center cursor-pointer hover:bg-base-200 flex-none" data-url="{{ route('campaign-visibility', $campaign) }}" data-toggle="dialog">
@@ -20,15 +20,15 @@
     </x-box>
 
     <x-box class="flex items-center gap-5 rounded-xl">
-        <div class="rounded {{ $campaign->isOpen() ? 'bg-green-200' : 'bg-red-200' }} w-12 h-12 flex items-center justify-center flex-none">
-            <x-icon class="fa-solid {{ $campaign->isOpen() ? 'fa-check text-green-600' : 'fa-times text-red-600' }}" />
+        <div class="rounded {{ $campaign->isOpen() ? 'bg-green-200' : 'bg-error' }} w-12 h-12 flex items-center justify-center flex-none">
+            <x-icon class="fa-solid {{ $campaign->isOpen() ? 'fa-check text-success-content' : 'fa-times text-error-content' }}" />
         </div>
         <div class="flex flex-col gap-0 grow">
             <span>{!! __('campaigns/applications.open.title') !!}</span>
             @if ($campaign->isOpen())
-                <span class="text-green-600">{!! __('campaigns/applications.open.open') !!}</span>
+                <span class="text-success-content">{!! __('campaigns/applications.open.open') !!}</span>
             @else
-                <span class="text-red-600">{!! __('campaigns/applications.open.closed') !!}</span>
+                <span class="text-error-content">{!! __('campaigns/applications.open.closed') !!}</span>
             @endif
         </div>
         <div class="rounded-full border border-base-300 h-12 w-12 flex items-center justify-center cursor-pointer hover:bg-base-200 flex-none" data-url="{{ route('campaign-applications', $campaign) }}" data-target="application-dialog" data-toggle="dialog">
@@ -39,19 +39,19 @@
     <x-box class="flex items-center gap-5 rounded-xl">
         @can('canOpen', $campaign)
             <div class="rounded bg-green-200 w-12 h-12 flex items-center justify-center flex-none">
-                <x-icon class="fa-solid fa-check text-green-600" />
+                <x-icon class="fa-solid fa-check text-success-content" />
             </div>
         @else
-            <div class="rounded bg-red-200 w-12 h-12 flex items-center justify-center flex-none">
-                <x-icon class="fa-solid fa-times text-red-600" />
+            <div class="rounded bg-error w-12 h-12 flex items-center justify-center flex-none">
+                <x-icon class="fa-solid fa-times text-error-content" />
             </div>
         @endcan
         <div class="flex flex-col gap-0 grow">
             <span>{!! __('campaigns/applications.setup.title') !!}</span>
             @can('canOpen', $campaign)
-                <span class="text-green-600">{!! __('campaigns/applications.setup.done') !!}</span>
+                <span class="text-success-content">{!! __('campaigns/applications.setup.done') !!}</span>
             @else
-                <span class="text-red-600">{!! __('campaigns/applications.setup.setup') !!}</span>
+                <span class="text-error-content">{!! __('campaigns/applications.setup.setup') !!}</span>
             @endcan
         </div>
         <a href="{{ route('campaign-applications.setup', $campaign) }}"
@@ -63,15 +63,15 @@
     @if ($campaign->isOpen())
         @php $hasJoinWidget = $campaign->widgets()->where('widget', \App\Enums\Widget::Join)->exists(); @endphp
         <x-box class="flex items-center gap-5 rounded-xl">
-            <div class="rounded {{ $hasJoinWidget ? 'bg-green-200' : 'bg-red-200' }} w-12 h-12 flex items-center justify-center flex-none">
-                <x-icon class="fa-solid {{ $hasJoinWidget ? 'fa-check text-green-600' : 'fa-times text-red-600' }}" />
+            <div class="rounded {{ $hasJoinWidget ? 'bg-green-200' : 'bg-error' }} w-12 h-12 flex items-center justify-center flex-none">
+                <x-icon class="fa-solid {{ $hasJoinWidget ? 'fa-check text-success-content' : 'fa-times text-error-content' }}" />
             </div>
             <div class="flex flex-col gap-0 grow">
                 <span>{!! __('campaigns/applications.dashboard_widget.title') !!}</span>
                 @if ($hasJoinWidget)
-                    <span class="text-green-600">{!! __('campaigns/applications.dashboard_widget.has_widget') !!}</span>
+                    <span class="text-success-content">{!! __('campaigns/applications.dashboard_widget.has_widget') !!}</span>
                 @else
-                    <span class="text-red-600">{!! __('campaigns/applications.dashboard_widget.no_widget') !!}</span>
+                    <span class="text-error-content">{!! __('campaigns/applications.dashboard_widget.no_widget') !!}</span>
                 @endif
             </div>
             <a href="{{ route('campaign-applications.dashboard-widget', $campaign) }}"

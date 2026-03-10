@@ -27,7 +27,7 @@
                                 <label class="sr-only">{{ __('characters.labels.appearance.entry') }}</label>
                                 <input type="text" name="appearance_entry[{{ $trait->id }}]" value="{{ $trait->entry }}" class="w-full" placeholder="{{ __('characters.placeholders.appearance_entry') }}" spellcheck="true" aria-label="{{ __('characters.labels.appearance.entry') }}"  maxlength="191" />
                             </div>
-                            <div class="dynamic-row-delete cursor-pointer hover:text-error text-base-content text-lg" title="{{ __('crud.remove') }}" role="button" tabindex="0">
+                            <div class="dynamic-row-delete cursor-pointer hover:text-error-content text-base-content text-lg" title="{{ __('crud.remove') }}" role="button" tabindex="0">
                                 <x-icon class="trash" />
                                 <span class="sr-only">{{ __('crud.remove') }}</span>
                             </div>
@@ -47,7 +47,7 @@
             <input type="hidden" name="is_appearance_pinned" value="0" />
 
             <x-checkbox :text="__('characters.hints.is_appearance_pinned')">
-                <input type="checkbox" name="is_appearance_pinned" value="1" @if (old('is_appearance_pinned', $source->child->is_appearance_pinned ?? $model->is_appearance_pinned ?? false)) checked="checked" @endif/>
+                <input type="checkbox" name="is_appearance_pinned" value="1" @if (old('is_appearance_pinned', $source->child->is_appearance_pinned ?? $model->is_appearance_pinned ?? true)) checked="checked" @endif/>
             </x-checkbox>
         </x-forms.field>
     </x-grid>
@@ -74,7 +74,7 @@
                                 <label class="sr-only">{{ __('characters.labels.personality.name') }}</label>
                                 <input type="text" name="personality_name[{{ $trait->id }}]" value="{{ $trait->name }}" class="w-full" placeholder="{{ __('characters.placeholders.personality_name') }}" spellcheck="true" aria-label="{{ __('characters.labels.personality.name') }}" maxlength="191" />
                             </div>
-                            <div class="dynamic-row-delete cursor-pointer hover:text-error text-base-content text-lg" role="button" tabindex="0" >
+                            <div class="dynamic-row-delete cursor-pointer hover:text-error-content text-base-content text-lg" role="button" tabindex="0" >
                                 <x-icon class="trash" />
                                 <span class="sr-only">{{ __('crud.remove') }}</span>
                             </div>
@@ -92,7 +92,10 @@
             </button>
             @else
                 <x-alert type="warning">
-                    {{ __('characters.warnings.personality_hidden') }}
+                    <p>
+                        <x-icon class="lock" />
+                        {!! __('characters.warnings.personality_hidden', ['name' => $entity->name]) !!}
+                    </p>
                 </x-alert>
             @endif
         </x-forms.field>
@@ -103,9 +106,9 @@
                 field="personality-pinned"
                 :label="__('characters.fields.is_personality_pinned')"
             >
-                <input type="hidden" name="is_personality_pinned" value="0" />
+                <input type="hidden" name="is_personality_pinned" value="1" />
                 <x-checkbox :text="__('characters.hints.is_personality_pinned')">
-                    <input type="checkbox" name="is_personality_pinned" value="1" @if (old('is_personality_pinned', $source->child->is_personality_pinned ?? $model->is_personality_pinned ?? false)) checked="checked" @endif/>
+                    <input type="checkbox" name="is_personality_pinned" value="0" @if (old('is_personality_pinned', $source->child->is_personality_pinned ?? $model->is_personality_pinned ?? true)) checked="checked" @endif/>
                 </x-checkbox>
             </x-forms.field>
         @endif
@@ -116,16 +119,18 @@
             <x-forms.field
                 field="personality-visible"
                 :label="__('characters.fields.is_personality_visible')"
-                :helper="__('characters.helpers.personality_visible', [
-                'admin' => '<a href=\'' . route('campaigns.campaign_roles.admin', $campaign) . '\' class=\'text-link\'>' . $campaign->adminRoleName() . '</a>'])"
             >
-                <x-checkbox :text="__('characters.hints.is_personality_visible', [
-        'admin' => '<a href=\'' . route('campaigns.campaign_roles.admin', $campaign) . '\' class=\'text-link\'>' . $campaign->adminRoleName() . '</a>'
-])">
-                    <input type="checkbox" name="is_personality_visible" value="1" @if (old('is_personality_visible', $source->child->is_personality_visible ?? $model->is_personality_visible ?? false)) checked="checked" @endif/>
-                </x-checkbox>
+                <x-forms.select
+                    name="is_personality_visible"
+                    radio
+                    :selected="old('is_personality_visible', $source->child->is_personality_visible ?? $model->is_personality_visible ?? 1)"
+                    :options="[
+                        1 => '' . __('characters.personality_visibility.all'),
+                        0 => '<i class=\'fa-regular fa-lock\' aria-hidden=\'true\'></i> ' . __('characters.personality_visibility.admin', ['admin' => '<a href=\'' . route('campaigns.campaign_roles.admin', $campaign) . '\' class=\'text-link\'>' . $campaign->adminRoleName() . '</a>']),
+    ]">
+                </x-forms.select>
             </x-forms.field>
-        @else
+        @elseif (!isset($model))
             <input type="hidden" name="is_personality_visible" value="1" />
         @endif
     </x-grid>
@@ -150,7 +155,7 @@
                     <label class="sr-only">{{ __('characters.labels.appearance.entry') }}</label>
                     <input type="text" name="appearance_entry[]" class="w-full" placeholder="{{ __('characters.placeholders.appearance_entry') }}" spellcheck="true" aria-label="{{ __('characters.labels.appearance.entry') }}" maxlength="191" />
                 </div>
-                <div class="dynamic-row-delete cursor-pointer hover:text-error text-base-content text-lg" role="button" tabindex="0">
+                <div class="dynamic-row-delete cursor-pointer hover:text-error-content text-base-content text-lg" role="button" tabindex="0">
                     <x-icon class="trash" />
                     <span class="sr-only">{{ __('crud.remove') }}</span>
                 </div>
@@ -169,7 +174,7 @@
                     <label class="sr-only">{{ __('characters.labels.personality.name') }}</label>
                     <input type="text" name="personality_name[]" class="w-full" placeholder="{{ __('characters.placeholders.personality_name') }}" spellcheck="true" aria-label="{{ __('characters.labels.personality.name') }}" maxlength="191" />
                 </div>
-                <div class="dynamic-row-delete cursor-pointer hover:text-error text-base-content text-lg" title="{{ __('crud.remove') }}" role="button" tabindex="0">
+                <div class="dynamic-row-delete cursor-pointer hover:text-error-content text-base-content text-lg" title="{{ __('crud.remove') }}" role="button" tabindex="0">
                     <x-icon class="trash" />
                     <span class="sr-only">{{ __('crud.remove') }}</span>
                 </div>

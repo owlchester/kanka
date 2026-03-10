@@ -16,7 +16,7 @@
                 <x-icon class="{{ $urlIcon }}"/>
             </div>
         @else
-            <a class="rounded-full border h-12 w-12 flex items-center justify-center cursor-pointer hover:bg-base-200 flex-none" href="{{ $route }}" @if ($urlTooltip) data-tooltip data-title="{{ $urlTooltip }}" @endif >
+            <a class="roundeappd-full border h-12 w-12 flex items-center justify-center cursor-pointer hover:bg-base-200 flex-none" href="{{ $route }}" @if ($urlTooltip) data-tooltip data-title="{{ $urlTooltip }}" @endif >
                 <x-icon class="{{ $urlIcon }}" />
             </a>
         @endif

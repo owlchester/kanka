@@ -47,10 +47,10 @@
 
                             <input type="password" wire:model="otp" name="otp" maxlength="12" class="input rounded text-dark  w-full p-2" />
                             <div>
-                                @error('otp') <span class="text-error">{{ $message }}</span> @enderror
+                                @error('otp') <span class="text-error-content">{{ $message }}</span> @enderror
                             </div>
                             @if (session()->has('otp-error'))
-                                <span class="text-error">
+                                <span class="text-error-content">
                                     {{ session('otp-error') }}
                                 </span>
                             @endif

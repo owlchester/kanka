@@ -415,7 +415,7 @@ class ExportService
             if ($model instanceof Entity) {
                 $exportData = json_encode(['entity' => $exportData]);
             }
-            $this->archive->addFromString($module . '/' . Str::slug($model->name) . '.json', $exportData);
+            $this->archive->addFromString($module . '/' . Str::slug($model->name) . '_' . $entity->id . '.json', $exportData);
         }
 
         $this->files++;
