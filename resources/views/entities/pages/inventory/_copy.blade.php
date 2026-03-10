@@ -6,6 +6,6 @@
     @include('cruds.fields.entity', [
         'name' => 'entity_id',
         'required' => true,
-        'label' => __('entities.entity'),
+        'label' => __('entities.entry'),
     ])
 </x-grid>

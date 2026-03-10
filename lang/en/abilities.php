@@ -3,7 +3,7 @@
 return [
     'children'      => [
         'actions'       => [
-            'attach'    => 'Attach to entries',
+            'attach'    => 'Attach entries',
         ],
         'create'        => [
             'attach_success'    => '{1} Attached the ability :name to :count entry.|[2,*] Attached the ability :name to :count entries.',

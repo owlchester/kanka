@@ -26,7 +26,7 @@ class Entity extends Layout
             ],
             'type' => [
                 'key' => 'type_id',
-                'label' => 'campaigns/categories.tab',
+                'label' => 'crud.fields.category',
                 'render' => function (EntityAbility $model) {
                     return $model->entity->entityType->name();
                 },

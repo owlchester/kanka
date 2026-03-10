@@ -24,7 +24,7 @@ return [
         'use_event_date'    => 'Use linked event\'s date.',
     ],
     'helpers'       => [
-        'date'              => 'If the element is linked to an event entity, display the event\'s date.',
+        'date'              => 'If the element is linked to an event, display the event\'s date.',
         'entity_is_private' => 'The element\'s entry is private.',
         'icon'              => 'Copy the CSS class of an icon from :fontawesome or :rpgawesome.',
         'is_collapsed'      => 'The element displays collapsed by default.',

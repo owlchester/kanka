@@ -6,7 +6,7 @@
     <x-forms.foreign
         field="entities"
         required
-        label="abilities.show.tabs.entities"
+        label="entities.entries"
         :multiple="true"
         name="entities[]"
         id="entities[]"
