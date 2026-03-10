@@ -7,9 +7,9 @@
         :entity="$model->entity"
         :campaign="$campaign" />
     @if ($model->isDead())
-        <x-icon class="fa-solid fa-skull" title="{{ __('characters.hints.is_dead') }}" tooltip></x-icon>
+        <x-icon class="fa-regular fa-skull" title="{{ __('characters.hints.is_dead') }}" tooltip></x-icon>
     @elseif ($model->isMissing())
-        <x-icon class="fa-solid fa-question" title="{{ __('characters.hints.is_missing') }}" tooltip></x-icon>
+        <x-icon class="fa-regular fa-question" title="{{ __('characters.hints.is_missing') }}" tooltip></x-icon>
     @endif
     <br />
     <span class="italic character-title text-xs">{!! $model->title !!}</span>
