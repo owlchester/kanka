@@ -23,7 +23,7 @@ class EntityTypeResource extends JsonResource
             'singular' => $entityType->name(),
             'plural' => $entityType->plural(),
             'icon' => $entityType->icon,
-            'is_special' => $entityType->isCustom(),
+            'is_custom' => $entityType->isCustom(),
             'is_enabled' => $entityType->isEnabled(),
             'is_nested' => $entityType->isNested(),
             'has_table' => $entityType->hasTable(),

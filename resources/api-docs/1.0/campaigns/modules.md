@@ -1,19 +1,19 @@
-- [All Campaign modules](#all-modules)
-- [Create a Module](#create-module)
-- [Update a Module](#update-module)
-- [Delete a Module](#delete-module)
+- [All Categories](#all-categories)
+- [Create a Category](#create-category)
+- [Update a Category](#update-category)
+- [Delete a Category](#delete-category)
+- [Category entries](#category-entries)
 
-# Entity Types
+# Categories
 
-Entity types, also called `Modules`, are how data is stored in Kanka. Characters are a module. Locations are a module. Gods are a custom module.
+Categories, previously known as Modules or Entity Types, are how data is stored in Kanka. Characters is a category. Locations is a category. Gods is a custom categoriy.
 
 
 
-<a name="all-modules"></a>
-## Campaign modules
+<a name="all-categories"></a>
+## Campaign categories
 
-Since campaigns have their own configuration, enabling/disabling modules, renaming them, and adding custom modules, you need to pass the campaign ID in the URL.
-
+Since campaigns have their own configuration, enabling/disabling categories, renaming them, and adding custom categories, you need to pass the campaign ID in the URL.
 
 | Method | URI                                    | Headers |
 | :- |:---------------------------------------|  :-  |
@@ -30,7 +30,7 @@ Since campaigns have their own configuration, enabling/disabling modules, renami
             "singular": "Character",
             "plural": "Characters",
             "icon": "",
-            "is_special": false,
+            "is_custom": false,
             "is_enabled": true,
             "is_nested": false,
             "has_table": false
@@ -41,7 +41,7 @@ Since campaigns have their own configuration, enabling/disabling modules, renami
             "singular": "God",
             "plural": "Gods",
             "icon": "fa-duotone fa-user-beard-bolt",
-            "is_special": true,
+            "is_custom": true,
             "is_enabled": true,
             "is_nested": true,
             "has_table": true
@@ -50,16 +50,16 @@ Since campaigns have their own configuration, enabling/disabling modules, renami
 }
 ```
 
-If the campaign has given a module a custom name, it will appear in the Singular and Plural fields. Same for a custom icon (`""` if none is set).
+If the campaign has given a category a custom name, it will appear in the Singular and Plural fields. Same for a custom icon (`""` if none is set).
 
-The `is_special` field is used to determine if the module is a custom module.
+The `is_custom` field is used to determine if the category is a custom module.
 
-The `is_nested` field is used to determine if entities in the module have a `parent` nesting concept.
+The `is_nested` field is used to determine if entries in the category have a `parent` nesting concept.
 
-<a name="create-module"></a>
-## Create a Module
+<a name="create-category"></a>
+## Create a Category
 
-To create a module, use the following endpoint.
+To create a category, use the following endpoint.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
@@ -76,13 +76,13 @@ To create a module, use the following endpoint.
 
 ### Results
 
-> {success} Code 200 with JSON body of the new module.
+> {success} Code 200 with JSON body of the new category.
 
 
-<a name="update-module"></a>
-## Update a Module
+<a name="update-category"></a>
+## Update a category
 
-To update a module, use the following endpoint.
+To update a category, use the following endpoint.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
@@ -90,17 +90,17 @@ To update a module, use the following endpoint.
 
 ### Body
 
-The same body parameters are available as for when creating a module.
+The same body parameters are available as for when creating a category.
 
 ### Results
 
-> {success} Code 200 with JSON body of the updated module.
+> {success} Code 200 with JSON body of the updated category.
 
 
-<a name="delete-module"></a>
-## Delete a Module
+<a name="delete-category"></a>
+## Delete a category
 
-To delete a module, use the following endpoint.
+To delete a category, use the following endpoint.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
@@ -109,3 +109,15 @@ To delete a module, use the following endpoint.
 ### Results
 
 > {success} Code 200 with JSON.
+
+
+
+<a name="category-entries"></a>
+## Category entries
+
+To get a list of entries belongs to the category, call the entities endpoint with the [correct filtering](/api-docs/{{version}}/entities#filtering).
+
+| Method | URI                                   | Headers |
+| :- |:--------------------------------------|  :-  |
+| DELETE | `entities?type_id[]={entity_type.id}` | Default |
+
