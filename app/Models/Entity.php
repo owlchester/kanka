@@ -483,20 +483,26 @@ class Entity extends Model
         // Specific entity flags
         // @phpstan-ignore-next-line
         if ($this->isCharacter() && $this->child->status_id !== \App\Enums\CharacterStatus::alive) {
-            if ($this->child->isDead()) {
+            /** @var Character $character */
+            $character = $this->child;
+            if ($character->isDead()) {
                 $classes[] = 'character-dead';
-            } elseif ($this->child->isMissing()) {
+            } elseif ($character->isMissing()) {
                 $classes[] = 'character-missing';
             }
+            unset($character);
             // @phpstan-ignore-next-line
         } elseif ($this->isQuest() && $this->child->status_id !== \App\Enums\QuestStatus::notStarted) {
-            if ($this->child->isCompleted()) {
+            /** @var Quest $quest */
+            $quest = $this->child;
+            if ($quest->isCompleted()) {
                 $classes[] = 'quest-completed';
-            } elseif ($this->child->isOngoing()) {
+            } elseif ($quest->isOngoing()) {
                 $classes[] = 'quest-ongoing';
-            } elseif ($this->child->isAbandoned()) {
+            } elseif ($quest->isAbandoned()) {
                 $classes[] = 'quest-abandoned';
             }
+            unset($quest);
         }
 
         if ($this->is_private) {
