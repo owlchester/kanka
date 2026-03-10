@@ -11,7 +11,9 @@
     </x-forms.field>
 
     <x-grid type="2/2">
+        <div id="generate-tags">
         @include('cruds.fields.tags')
+        </div>
 
         <x-forms.field field="match_all" :label="__('entities/inventories.fields.match_all')">
             <select name="match_all" class="w-full">
