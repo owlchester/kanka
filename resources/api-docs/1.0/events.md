@@ -44,7 +44,7 @@ The list of returned entities can be filtered. The available filters are [availa
             "created_by": 1,
             "updated_at":  "2019-08-29T13:48:54.000000Z",
             "updated_by": 1,
-            "location_id": "4",
+            "locations": [4, 12],
             "date": "44-3-16",
             "type": "Battle",
             "calendar_id": 2,
@@ -75,7 +75,7 @@ To get the details of a single event, use the following endpoint.
         "image": "{path}",
         "image_full": "{url}",
         "image_thumb": "{url}",
-            "has_custom_image": false,
+        "has_custom_image": false,
         "is_private": true,
         "entity_id": 7,
         "tags": [],
@@ -83,7 +83,8 @@ To get the details of a single event, use the following endpoint.
         "created_by": 1,
         "updated_at":  "2019-08-29T13:48:54.000000Z",
         "updated_by": 1,
-        "location_id": "4",
+        "location_id": 4,
+        "locations": [4, 12],
         "date": "44-3-16",
         "type": "Battle",
         "calendar_id": 2,
@@ -113,7 +114,7 @@ To create a event, use the following endpoint.
 | `entry` | `string` | The html description of the event |
 | `type` | `string` | The event's type |
 | `date` | `string` | Fictional date at which the event took place |
-| `location_id` | `string` | Location of the event |
+| `locations` | `array` | Array of location ids |
 | `tags` | `array` | Array of tag ids |
 | `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
 | `entity_header_uuid` | `string` | Gallery image UUID for the entity header (premium campaign feature) |

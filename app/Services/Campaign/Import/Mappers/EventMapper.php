@@ -6,7 +6,7 @@ use App\Models\Event;
 
 class EventMapper extends MiscMapper
 {
-    protected array $ignore = ['id', 'entry', 'type', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'event_id', 'created_at', 'updated_at'];
+    protected array $ignore = ['id', 'entry', 'type', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'event_id', 'location_id', 'created_at', 'updated_at'];
 
     protected string $className = Event::class;
 
@@ -23,7 +23,7 @@ class EventMapper extends MiscMapper
     {
         $this
             ->loadModel()
-            ->foreign('locations', 'location_id')
+            ->entityLocations()
             ->saveModel()
             ->entitySecond();
     }

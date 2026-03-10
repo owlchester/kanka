@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
+use App\Rules\EntityLocations;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
 use App\Traits\ResolvesNewForeignEntities;
@@ -12,8 +13,6 @@ class StoreEvent extends FormRequest
 {
     use ApiRequest;
     use ResolvesNewForeignEntities;
-
-    protected array $foreignEntityFields = ['location_id'];
 
     /**
      * Determine if the user is authorized to make this request.
@@ -36,9 +35,9 @@ class StoreEvent extends FormRequest
             'name' => 'required|max:191',
             'entry' => 'nullable|string',
             'type' => 'nullable|string|max:191',
-            'location_id' => 'nullable|integer|exists:locations,id',
             'event_id' => 'nullable|integer|exists:events,id',
             'date' => 'nullable|max:191',
+            'locations' => ['nullable', 'array', new EntityLocations],
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
             'entity_image_uuid' => 'nullable|exists:images,id',

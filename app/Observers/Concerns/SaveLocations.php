@@ -31,7 +31,7 @@ trait SaveLocations
         }
 
         if (! empty($recreate)) {
-            $model->locations()->attach($recreate);
+            $model->locations()->attach($recreate, ['created_by' => auth()->user()?->id]);
         }
         if (! $locations) {
             $locations = request()->get('locations', []);
@@ -69,7 +69,7 @@ trait SaveLocations
             $newLocations[] = $newId;
             EntityLogger::dirty('locations', null);
         }
-        $model->locations()->attach($newLocations);
+        $model->locations()->attach($newLocations, ['created_by' => auth()->user()?->id]);
 
         // Detach the remaining
         if (! empty($existing) && isset($detach)) {
