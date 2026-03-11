@@ -32,7 +32,7 @@ The component is built as a reusable Blade + Alpine component (`x-forms.visibili
 | `$selected` | `int` | Current visibility_id value |
 | `$url` | `string` | POST endpoint to update visibility |
 | `$options` | `array` | Available visibility options (pre-filtered by user permissions) |
-| `$postId` | `int` | The post ID (for updating the trigger icon element ID) |
+| `$id` | `string\|null` | Optional DOM ID for the wrapper element. Defaults to a generated unique ID via `uniqid('visibility-')`. |
 
 ### Options Array Shape
 
@@ -59,7 +59,7 @@ Helper text comes from translation keys `visibilities.picker.*` (see Translation
 The component renders both the trigger button and the dropdown content within a single Alpine scope:
 
 ```html
-<span id="visibility-icon-{postId}" x-data="visibilityPicker({...})" x-init="initTippy()">
+<span :id="$id" x-data="visibilityPicker({...})" x-init="initTippy()">
     <!-- Trigger: the visibility icon button -->
     <button x-ref="trigger">
         <i :class="currentIcon"></i>
