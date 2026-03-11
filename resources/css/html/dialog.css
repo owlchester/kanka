@@ -60,8 +60,7 @@ html:has(dialog[open]) {
         border-end-start-radius: 0;
 
         article {
-            min-block-size: auto;
-            max-block-size: 70dvh;
+            min-height: 100px;
         }
     }
 }

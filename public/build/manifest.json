@@ -180,7 +180,7 @@
     "src": "node_modules/rpg-awesome/fonts/rpgawesome-webfont.woff"
   },
   "resources/css/app.css": {
-    "file": "assets/app-GKv1EqUR.css",
+    "file": "assets/app-KuTxeDSG.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -216,7 +216,7 @@
     ]
   },
   "resources/css/front.css": {
-    "file": "assets/front-BwsnoPDu.css",
+    "file": "assets/front-CnZarFDe.css",
     "src": "resources/css/front.css",
     "isEntry": true,
     "name": "front",
