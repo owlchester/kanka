@@ -2,7 +2,8 @@ dialog {
     display: flex;
     flex-direction: column;
     max-inline-size: min(90vw, var(--size-content-3));
-    max-block-size: min(80vh, 100%);
+    height: fit-content;
+    max-block-size: min(80dvh, 100%);
     padding: 0;
     position: fixed;
     margin: auto;
