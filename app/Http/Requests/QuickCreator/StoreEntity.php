@@ -25,6 +25,7 @@ class StoreEntity extends FormRequest
         return [
             'name' => 'required|string',
             'template_id' => [
+                'nullable',
                 'integer',
                 Rule::exists('entities', 'id')->where(function ($query) {
                     return $query->where('is_template', true);

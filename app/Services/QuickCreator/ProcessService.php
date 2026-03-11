@@ -359,6 +359,10 @@ class ProcessService
         }
 
         $value = $this->request->get($entityType->code . '_id', null);
+        if ($value === null) {
+            return $this;
+        }
+
         // Handle parent.
         if (! is_numeric($value)) {
             /** @var MiscModel $new */

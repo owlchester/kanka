@@ -168,11 +168,18 @@ class SaveService
             $params = new Collection(explode('|', $mentionLink->getAttribute('data-config')));
         }
 
-        // Tiptap will send the custom name in the config, so we can skip this garbage
-        if ($params->isNotEmpty() && ! empty($originalName) && $originalName != Str::replace('&quot;', '"', $mentionName)) {
-            // Merge custom name with params (page:abc|anchor:#post-1 etc)
-            $params->prepend($mentionName);
-            $mention = Str::replace(']', '|' . $params->implode('|') . ']', $advancedMention);
+        // Check if the mention name was customised by the user
+        $hasCustomName = ! empty($originalName) && $originalName != Str::replace('&quot;', '"', $mentionName);
+
+        if ($hasCustomName) {
+            if ($params->isNotEmpty()) {
+                // Tiptap: merge custom name with params (page:abc|anchor:#post-1 etc)
+                $params->prepend($mentionName);
+                $mention = Str::replace(']', '|' . $params->implode('|') . ']', $advancedMention);
+            } else {
+                // Other editors: just attach the custom name
+                $mention = Str::replace(']', '|' . $mentionName . ']', $advancedMention);
+            }
             $this->replace($mention, $mentionLink);
 
             return;

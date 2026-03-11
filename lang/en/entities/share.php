@@ -11,7 +11,7 @@ return [
     ],
     'helpers'   => [
         'campaign_access'               => 'To share this with the public, the campaign itself must be made public first.',
-        'entity_permissions_warning'    => 'Making this campaign public lets anyone view it. Entries makes as private stay hidden.',
+        'entity_permissions_warning'    => 'Making this campaign public lets anyone view it. Entries marked as private stay hidden.',
         'hidden_explanation'            => 'The campaign is public, but this entry is currently hidden from non-members.',
         'hidden_unlisted_explanation'   => 'The campaign is unlisted, only people with the link can find it.',
         'member-link'                   => 'Share this with members only',

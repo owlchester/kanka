@@ -3,7 +3,7 @@
         <p>{{ __('entities/abilities.create.helper', ['name' => $entity->name]) }}</p>
     </x-helper>
     <x-forms.field field="abilities" required >
-        @include('components.form.abilities', ['options' => ['exclude-entity' => $entity->id], 'dropdownParent' => '#abilities-dialog'])
+        @include('components.form.abilities', ['options' => ['exclude-entity' => $entity->id]])
     </x-forms.field>
 
     @include('cruds.fields.visibility_id')

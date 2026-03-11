@@ -26,9 +26,8 @@ window.initTags = function () {
                 if (!term) { return; }
                 callback({ id: term, text: term, newTag: true });
             } : false,
-            dropdownParent: ele.dataset.dropdownParent || null,
             load: function (query, callback) {
-                fetch(ele.dataset.url + '?q=' + encodeURIComponent(query.trim()), {
+                fetch(ele.dataset.url + (ele.dataset.url.includes('?') ? '&' : '?') + 'q=' + encodeURIComponent(query.trim()), {
                     headers: { 'X-Requested-With': 'XMLHttpRequest' }
                 })
                     .then(r => r.json())
