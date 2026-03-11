@@ -21,8 +21,8 @@
 </article>
 <x-dialog.footer>
     <x-slot name="cancel">
-    <p class="m-4 text-neutral-content text-xs">{!! __('entities.creator.missing_v2', [
-    'learn-more' => '<a href="//docs.kanka.io/en/latest/features/quick-creator.html" class="text-link">' .
-        '<i class="fa-regular fa-external-link" aria-hidden="true"></i> ' . __('front/newsletter.actions.learn_more') . '</a>']) !!}</p>
+        <p class="text-neutral-content text-xs">{!! __('entities.creator.missing_v2', [
+        'learn-more' => '<a href="//docs.kanka.io/en/latest/features/quick-creator.html" class="text-link">' .
+            '<i class="fa-regular fa-external-link" aria-hidden="true"></i> ' . __('front/newsletter.actions.learn_more') . '</a>']) !!}</p>
     </x-slot>
 </x-dialog.footer>
