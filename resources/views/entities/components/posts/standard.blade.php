@@ -22,9 +22,13 @@ $entityTags = $post->visibleTags();
             @endif
             @can('post', [$entity, 'edit', $post])
                 @can('visibility', $post)
-                    <span id="visibility-icon-{{ $post->id }}" class="btn2 btn-ghost btn-sm" data-toggle="dialog" data-url="{{ route('posts.edit.visibility', [$campaign, $entity->id, $post->id]) }}">
-                        @include('icons.visibility', ['icon' => $post->visibilityIcon()])
-                    </span>
+                    <x-forms.visibility-picker
+                        :entity="$entity"
+                        :campaign="$campaign"
+                        :selected="$post->visibility_id instanceof \App\Enums\Visibility ? $post->visibility_id->value : (int) $post->visibility_id"
+                        :url="route('posts.update.visibility', [$campaign, $entity->id, $post->id])"
+                        :options="$post->visibilityOptions()"
+                    />
                 @else
                     @include('icons.visibility', ['icon' => $post->visibilityIcon()])
                 @endif

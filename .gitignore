@@ -16,6 +16,8 @@
 /.vagrant
 /.vscode
 /.sail
+/.superpowers
+/docs/superpowers
 Homestead.json
 Homestead.yaml
 npm-debug.log
