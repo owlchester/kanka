@@ -56,6 +56,15 @@ use App\Enums\Widget;
                     @endif
                 </p>
             @endif
+            @if ($widget->widget === Widget::Gallery && !empty($widget->conf('folder_id')))
+                @php $galleryFolder = \App\Models\Image::find($widget->conf('folder_id')); @endphp
+                @if ($galleryFolder)
+                    <p class="text-neutral-content text-sm">
+                        <x-icon class="fa-regular fa-folder" />
+                        {{ $galleryFolder->name }}
+                    </p>
+                @endif
+            @endif
 
             @if ($widget->tags->isNotEmpty())
                 <div class="flex flex-wrap gap-1 items-center tags">
