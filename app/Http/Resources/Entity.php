@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Facades\Avatar;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 class Entity extends EntityChild
@@ -10,7 +11,7 @@ class Entity extends EntityChild
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return array
      */
     public function toArray($request)

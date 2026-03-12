@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -18,8 +19,8 @@ return new class extends Migration
             $table->smallInteger('default_pagination')->nullable()->default(null)->change();
         });
 
-        Illuminate\Support\Facades\DB::statement('UPDATE users SET date_format = null WHERE date_format = \'Y-m-d\'');
-        Illuminate\Support\Facades\DB::statement('UPDATE users SET default_pagination = null WHERE default_pagination = 15');
+        DB::statement('UPDATE users SET date_format = null WHERE date_format = \'Y-m-d\'');
+        DB::statement('UPDATE users SET default_pagination = null WHERE default_pagination = 15');
     }
 
     /**

@@ -7,10 +7,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTagEntity;
 use App\Models\Campaign;
 use App\Models\Tag;
+use App\Renderers\Layouts\Tag\Entity;
 use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;
 use App\Traits\Controllers\HasSubview;
 use App\Traits\GuestAuthTrait;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\View\View;
 
 class ChildController extends Controller
 {
@@ -28,7 +32,7 @@ class ChildController extends Controller
         if ($this->filterToDirect()) {
             $base = 'entities';
         }
-        Datagrid::layout(\App\Renderers\Layouts\Tag\Entity::class)
+        Datagrid::layout(Entity::class)
             ->route('tags.children', $options);
 
         $this->rows = $tag
@@ -48,9 +52,9 @@ class ChildController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function create(Campaign $campaign, Tag $tag)
     {
@@ -68,7 +72,7 @@ class ChildController extends Controller
     }
 
     /**
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function store(StoreTagEntity $request, Campaign $campaign, Tag $tag)
     {

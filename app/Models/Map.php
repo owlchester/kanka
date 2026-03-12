@@ -189,7 +189,7 @@ class Map extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\MapLayer, $this>
+     * @return HasMany<MapLayer, $this>
      */
     public function layers(): HasMany
     {
@@ -198,7 +198,7 @@ class Map extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\MapGroup, $this>
+     * @return HasMany<MapGroup, $this>
      */
     public function groups(): HasMany
     {
@@ -206,7 +206,7 @@ class Map extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\MapMarker, $this>
+     * @return HasMany<MapMarker, $this>
      */
     public function markers(): HasMany
     {
@@ -215,7 +215,7 @@ class Map extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\MapMarker, $this>
+     * @return HasOne<MapMarker, $this>
      */
     public function centerMarker(): HasOne
     {

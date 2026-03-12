@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Carbon\Carbon;
 use Closure;
+use Illuminate\Http\Request;
 use Mcamara\LaravelLocalization\Middleware\LaravelLocalizationMiddlewareBase;
 
 class LocalizeDatetime extends LaravelLocalizationMiddlewareBase
@@ -11,7 +12,7 @@ class LocalizeDatetime extends LaravelLocalizationMiddlewareBase
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      */
     public function handle($request, Closure $next)
     {

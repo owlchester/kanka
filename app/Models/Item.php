@@ -166,7 +166,7 @@ class Item extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     * @return BelongsTo<Entity, $this>
      */
     public function creator(): BelongsTo
     {
@@ -174,7 +174,7 @@ class Item extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Inventory, $this>
+     * @return HasMany<Inventory, $this>
      */
     public function inventories(): HasMany
     {
@@ -182,7 +182,7 @@ class Item extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough<\App\Models\Entity, \App\Models\Inventory, $this>
+     * @return HasManyThrough<Entity, Inventory, $this>
      */
     public function entities(): HasManyThrough
     {

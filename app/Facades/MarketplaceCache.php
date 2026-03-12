@@ -2,14 +2,15 @@
 
 namespace App\Facades;
 
+use App\Services\Caches\MarketplaceCacheService;
 use Illuminate\Support\Facades\Facade;
 
 /**
  * Class MarketplaceCache
  *
- * @see \App\Services\Caches\MarketplaceCacheService
+ * @see MarketplaceCacheService
  *
- * @mixin \App\Services\Caches\MarketplaceCacheService
+ * @mixin MarketplaceCacheService
  */
 class MarketplaceCache extends Facade
 {

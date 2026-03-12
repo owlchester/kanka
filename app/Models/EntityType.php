@@ -77,7 +77,7 @@ class EntityType extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Entity, $this>
+     * @return HasMany<Entity, $this>
      */
     public function entities(): HasMany
     {
@@ -85,7 +85,7 @@ class EntityType extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\AttributeTemplate, $this>
+     * @return HasMany<AttributeTemplate, $this>
      */
     public function attributeTemplates(): HasMany
     {
@@ -93,7 +93,7 @@ class EntityType extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Bookmark, $this>
+     * @return HasMany<Bookmark, $this>
      */
     public function bookmarks(): HasMany
     {
@@ -101,7 +101,7 @@ class EntityType extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CampaignDashboardWidget, $this>
+     * @return HasMany<CampaignDashboardWidget, $this>
      */
     public function widgets(): HasMany
     {
@@ -189,7 +189,7 @@ class EntityType extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Campaign, $this>
+     * @return BelongsTo<Campaign, $this>
      */
     public function campaign(): BelongsTo
     {

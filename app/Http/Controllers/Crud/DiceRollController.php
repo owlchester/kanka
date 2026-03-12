@@ -11,7 +11,16 @@ use App\Models\DiceRoll;
 use App\Models\DiceRollResult;
 use App\Models\EntityType;
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 class DiceRollController extends CrudController
 {
@@ -30,9 +39,9 @@ class DiceRollController extends CrudController
     protected string $forceMode = 'table';
 
     /**
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     * @return JsonResponse|RedirectResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function store(Campaign $campaign, StoreDiceRoll $request)
     {
@@ -40,9 +49,9 @@ class DiceRollController extends CrudController
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function show(Campaign $campaign, DiceRoll $diceRoll)
     {
@@ -50,10 +59,10 @@ class DiceRollController extends CrudController
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws AuthorizationException
+     * @throws BindingResolutionException
      */
     public function edit(Campaign $campaign, DiceRoll $diceRoll)
     {
@@ -61,12 +70,12 @@ class DiceRollController extends CrudController
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     * @return JsonResponse|RedirectResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
+     * @throws AuthorizationException
+     * @throws BindingResolutionException
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
     public function update(StoreDiceRoll $request, Campaign $campaign, DiceRoll $diceRoll)
     {
@@ -74,9 +83,9 @@ class DiceRollController extends CrudController
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function destroy(Campaign $campaign, DiceRoll $diceRoll)
     {
@@ -84,9 +93,9 @@ class DiceRollController extends CrudController
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function roll(Campaign $campaign, DiceRoll $diceRoll)
     {
@@ -107,9 +116,9 @@ class DiceRollController extends CrudController
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function destroyRoll(Campaign $campaign, DiceRoll $diceRoll, DiceRollResult $diceRollResult)
     {

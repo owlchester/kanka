@@ -1,21 +1,49 @@
 <?php
 
+use App\Http\Controllers\Bookmarks\ReorderController;
+use App\Http\Controllers\Calendars\EventController;
+use App\Http\Controllers\Characters\MemberController;
+use App\Http\Controllers\DiceRolls\ResultsController;
+use App\Http\Controllers\Entities\Apis\DocumentController;
+use App\Http\Controllers\Entities\ChildrenController;
+use App\Http\Controllers\Entities\CreateController;
+use App\Http\Controllers\Entities\DeleteController;
+use App\Http\Controllers\Entities\EditController;
+use App\Http\Controllers\Entities\IndexController;
+use App\Http\Controllers\Entity\AttributeController;
+use App\Http\Controllers\Entity\Attributes\LiveApiController;
+use App\Http\Controllers\Entity\Attributes\LiveController;
+use App\Http\Controllers\Entity\EntryController;
+use App\Http\Controllers\Entity\ImageController;
+use App\Http\Controllers\Entity\Posts\LayoutController;
+use App\Http\Controllers\Entity\Posts\VisibilityController;
+use App\Http\Controllers\Entity\PrivacyController;
+use App\Http\Controllers\Entity\ShowController;
+use App\Http\Controllers\Entity\StoryController;
+use App\Http\Controllers\EntityCreatorController;
+use App\Http\Controllers\Families\TreeController;
+use App\Http\Controllers\Filters\FormController;
+use App\Http\Controllers\Filters\SaveController;
+use App\Http\Controllers\Timelines\TimelineReorderController;
+use App\Http\Controllers\Whiteboards\ApiController;
+use App\Http\Controllers\Whiteboards\DrawController;
+use App\Models\Attribute;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/w/{campaign}/entities/{entity}', [App\Http\Controllers\Entity\ShowController::class, 'index'])->name('entities.show')->where(['entity' => '[0-9]+']);
+Route::get('/w/{campaign}/entities/{entity}', [ShowController::class, 'index'])->name('entities.show')->where(['entity' => '[0-9]+']);
 
-Route::get('/w/{campaign}/entities/{entity}-{slug}', [App\Http\Controllers\Entity\ShowController::class, 'index'])->name('entities.show-slug');
+Route::get('/w/{campaign}/entities/{entity}-{slug}', [ShowController::class, 'index'])->name('entities.show-slug');
 
-Route::get('/w/{campaign}/t/{entityType}', [App\Http\Controllers\Entities\IndexController::class, 'index'])->name('entities.index');
-Route::get('/w/{campaign}/t/{entityType}/api', [App\Http\Controllers\Entities\IndexController::class, 'api'])->name('entities.index-api');
-Route::get('/w/{campaign}/t/{entityType}/create', [App\Http\Controllers\Entities\CreateController::class, 'index'])->name('entities.create');
-Route::post('/w/{campaign}/t/{entity_type}/create', [App\Http\Controllers\Entities\CreateController::class, 'store'])->name('entities.store');
+Route::get('/w/{campaign}/t/{entityType}', [IndexController::class, 'index'])->name('entities.index');
+Route::get('/w/{campaign}/t/{entityType}/api', [IndexController::class, 'api'])->name('entities.index-api');
+Route::get('/w/{campaign}/t/{entityType}/create', [CreateController::class, 'index'])->name('entities.create');
+Route::post('/w/{campaign}/t/{entity_type}/create', [CreateController::class, 'store'])->name('entities.store');
 
-Route::get('/w/{campaign}/entities/{entity}/edit', [App\Http\Controllers\Entities\EditController::class, 'index'])->name('entities.edit');
-Route::patch('/w/{campaign}/entities/{entity}/save', [App\Http\Controllers\Entities\EditController::class, 'save'])->name('entities.update');
-Route::delete('/w/{campaign}/entities/{entity}/delete', [App\Http\Controllers\Entities\DeleteController::class, 'index'])->name('entities.destroy');
+Route::get('/w/{campaign}/entities/{entity}/edit', [EditController::class, 'index'])->name('entities.edit');
+Route::patch('/w/{campaign}/entities/{entity}/save', [EditController::class, 'save'])->name('entities.update');
+Route::delete('/w/{campaign}/entities/{entity}/delete', [DeleteController::class, 'index'])->name('entities.destroy');
 
-Route::get('/w/{campaign}/entities/{entity}/children', [App\Http\Controllers\Entities\ChildrenController::class, 'index'])->name('entities.children');
+Route::get('/w/{campaign}/entities/{entity}/children', [ChildrenController::class, 'index'])->name('entities.children');
 
 // Abilities
 Route::get('/w/{campaign}/abilities/{ability}/abilities', 'Abilities\AbilityController@index')->name('abilities.abilities');
@@ -48,7 +76,7 @@ Route::post('/w/{campaign}/maps/{map}/layers/{map_layer}/migrate', 'Maps\Layers\
 Route::post('/w/{campaign}/maps/{map}/markers/bulk', 'Maps\Bulks\MarkerController@index')->name('maps.markers.bulk');
 
 // Character
-Route::get('/w/{campaign}/characters/{character}/organisations', [\App\Http\Controllers\Characters\MemberController::class, 'index'])->name('characters.organisations');
+Route::get('/w/{campaign}/characters/{character}/organisations', [MemberController::class, 'index'])->name('characters.organisations');
 Route::get('/w/{campaign}/characters/{character}/races/management', 'Characters\Races\ManagementController@index')->name('characters.races.management');
 Route::post('/w/{campaign}/characters/{character}/races/save', 'Characters\Races\ManagementController@save')->name('characters.races.save');
 Route::get('/w/{campaign}/characters/{character}/families/management', 'Characters\Families\ManagementController@index')->name('characters.families.management');
@@ -56,7 +84,7 @@ Route::post('/w/{campaign}/characters/{character}/families/save', 'Characters\Fa
 
 Route::get('/w/{campaign}/dice_rolls/{dice_roll}/roll', 'Crud\DiceRollController@roll')->name('dice_rolls.roll');
 Route::delete('/w/{campaign}/dice_rolls/{dice_roll}/roll/{dice_roll_result}/destroy', 'Crud\DiceRollController@destroyRoll')->name('dice_rolls.destroy_roll');
-Route::get('/w/{campaign}/dice_rolls/results', [App\Http\Controllers\DiceRolls\ResultsController::class, 'index'])->name('dice_rolls.results');
+Route::get('/w/{campaign}/dice_rolls/results', [ResultsController::class, 'index'])->name('dice_rolls.results');
 
 // Locations
 Route::get('/w/{campaign}/locations/{location}/characters', 'Locations\CharacterController@index')->name('locations.characters');
@@ -71,7 +99,7 @@ Route::get('/w/{campaign}/organisations/{organisation}/organisations', 'Organisa
 // Families menu
 Route::get('/w/{campaign}/families/{family}/members', 'Families\MemberController@index')->name('families.members');
 Route::get('/w/{campaign}/families/{family}/families', 'Families\FamilyController@index')->name('families.families');
-Route::get('/w/{campaign}/families/{family}/tree', [App\Http\Controllers\Families\TreeController::class, 'index'])->name('families.family-tree');
+Route::get('/w/{campaign}/families/{family}/tree', [TreeController::class, 'index'])->name('families.family-tree');
 Route::get('/w/{campaign}/families/{family}/tree/api', [App\Http\Controllers\Families\Trees\ApiController::class, 'index'])->name('families.family-tree.api');
 Route::get('/w/{campaign}/families/{entity}/tree/entity-api', [App\Http\Controllers\Families\Trees\ApiController::class, 'entity'])->name('families.family-tree.entity-api');
 Route::post('/w/{campaign}/families/{family}/tree/api', [App\Http\Controllers\Families\Trees\ApiController::class, 'save'])->name('families.family-tree.api-save');
@@ -131,7 +159,7 @@ Route::post('/w/{campaign}/calendars/{calendar}/event', 'Calendars\EventControll
 Route::get('/w/{campaign}/calendars/{calendar}/month-list', 'Crud\CalendarController@monthList')->name('calendars.month-list');
 Route::get('/w/{campaign}/calendars/{calendar}/events', 'Calendars\EventController@index')->name('calendars.events');
 Route::get('/w/{campaign}/calendars/{calendar}/today', 'Crud\CalendarController@today')->name('calendars.today');
-Route::get('/w/{campaign}/calendars/{calendar}/validate-length', [App\Http\Controllers\Calendars\EventController::class, 'eventLength'])->name('calendars.event-length');
+Route::get('/w/{campaign}/calendars/{calendar}/validate-length', [EventController::class, 'eventLength'])->name('calendars.event-length');
 
 Route::post('/w/{campaign}/calendars/{calendar}/calendar-events/bulk', 'Calendars\Bulks\EntityEventController@index')->name('calendars.entity-events.bulk');
 
@@ -139,47 +167,47 @@ Route::post('/w/{campaign}/calendars/{calendar}/calendar-events/bulk', 'Calendar
 //        Route::post('/w/{campaign}/calendars/{calendar}/weather', 'Calendar\CalendarWeatherController@store')->name('calendars.weather.store');
 
 // Attribute multi-save
-Route::get('/w/{campaign}/entities/{entity}/attributes', [App\Http\Controllers\Entity\AttributeController::class, 'index'])->name('entities.attributes');
-Route::get('/w/{campaign}/entities/{entity}/attributes-dashboard', [App\Http\Controllers\Entity\AttributeController::class, 'dashboard'])->name('entities.attributes-dashboard');
-Route::get('/w/{campaign}/entities/{entity}/attributes/edit', [App\Http\Controllers\Entity\AttributeController::class, 'edit'])->name('entities.attributes.edit');
-Route::post('/w/{campaign}/entities/{entity}/attributes/save', [App\Http\Controllers\Entity\AttributeController::class, 'save'])->name('entities.attributes.save');
-Route::get('/w/{campaign}/entities/{entity}/attributes/live-edit/', [App\Http\Controllers\Entity\AttributeController::class, 'liveEdit'])
+Route::get('/w/{campaign}/entities/{entity}/attributes', [AttributeController::class, 'index'])->name('entities.attributes');
+Route::get('/w/{campaign}/entities/{entity}/attributes-dashboard', [AttributeController::class, 'dashboard'])->name('entities.attributes-dashboard');
+Route::get('/w/{campaign}/entities/{entity}/attributes/edit', [AttributeController::class, 'edit'])->name('entities.attributes.edit');
+Route::post('/w/{campaign}/entities/{entity}/attributes/save', [AttributeController::class, 'save'])->name('entities.attributes.save');
+Route::get('/w/{campaign}/entities/{entity}/attributes/live-edit/', [AttributeController::class, 'liveEdit'])
     ->name('entities.attributes.live.edit');
-Route::get('/w/{campaign}/entities/{entity}/attributes/live-edit/{attribute}', [App\Http\Controllers\Entity\Attributes\LiveController::class, 'index'])
+Route::get('/w/{campaign}/entities/{entity}/attributes/live-edit/{attribute}', [LiveController::class, 'index'])
     ->name('entities.attributes.live.edit2');
-Route::post('/w/{campaign}/entities/{entity}/attributes/live-edit/{attribute}/save', [App\Http\Controllers\Entity\Attributes\LiveController::class, 'save'])
+Route::post('/w/{campaign}/entities/{entity}/attributes/live-edit/{attribute}/save', [LiveController::class, 'save'])
     ->name('entities.attributes.live.save');
 
-Route::get('/w/{campaign}/entities/{entity}/attributes/live-api', [App\Http\Controllers\Entity\Attributes\LiveApiController::class, 'index'])
+Route::get('/w/{campaign}/entities/{entity}/attributes/live-api', [LiveApiController::class, 'index'])
     ->name('entities.attributes.live-api.index');
-Route::post('/w/{campaign}/entities/{entity}/attributes/live-api', [App\Http\Controllers\Entity\Attributes\LiveApiController::class, 'store'])
+Route::post('/w/{campaign}/entities/{entity}/attributes/live-api', [LiveApiController::class, 'store'])
     ->name('entities.attributes.live-api.create');
-Route::post('/w/{campaign}/entities/{entity}/attributes/live-api/{attribute}', [App\Http\Controllers\Entity\Attributes\LiveApiController::class, 'update'])
+Route::post('/w/{campaign}/entities/{entity}/attributes/live-api/{attribute}', [LiveApiController::class, 'update'])
     ->name('entities.attributes.live-api.update');
-Route::post('/w/{campaign}/entities/{entity}/attributes/live-api/{attribute}/delete', [App\Http\Controllers\Entity\Attributes\LiveApiController::class, 'destroy'])
+Route::post('/w/{campaign}/entities/{entity}/attributes/live-api/{attribute}/delete', [LiveApiController::class, 'destroy'])
     ->name('entities.attributes.live-api.delete');
 
-Route::model('attribute', App\Models\Attribute::class);
+Route::model('attribute', Attribute::class);
 
-Route::get('/w/{campaign}/entities/{entity}/story-reorder', [App\Http\Controllers\Entity\StoryController::class, 'edit'])->name('entities.story.reorder');
-Route::post('/w/{campaign}/entities/{entity}/story-reorder', [App\Http\Controllers\Entity\StoryController::class, 'save'])->name('entities.story.reorder-save');
-Route::get('/w/{campaign}/entities/{entity}/story-more', [App\Http\Controllers\Entity\StoryController::class, 'more'])->name('entities.story.load-more');
+Route::get('/w/{campaign}/entities/{entity}/story-reorder', [StoryController::class, 'edit'])->name('entities.story.reorder');
+Route::post('/w/{campaign}/entities/{entity}/story-reorder', [StoryController::class, 'save'])->name('entities.story.reorder-save');
+Route::get('/w/{campaign}/entities/{entity}/story-more', [StoryController::class, 'more'])->name('entities.story.load-more');
 
 // Image of entities
-Route::get('/w/{campaign}/entities/{entity}/image-focus', [App\Http\Controllers\Entity\ImageController::class, 'focus'])->name('entities.image.focus');
-Route::post('/w/{campaign}/entities/{entity}/image-focus', [App\Http\Controllers\Entity\ImageController::class, 'saveFocus'])->name('entities.image.save-focus');
+Route::get('/w/{campaign}/entities/{entity}/image-focus', [ImageController::class, 'focus'])->name('entities.image.focus');
+Route::post('/w/{campaign}/entities/{entity}/image-focus', [ImageController::class, 'saveFocus'])->name('entities.image.save-focus');
 
-Route::get('/w/{campaign}/entities/{entity}/image-replace', [App\Http\Controllers\Entity\ImageController::class, 'replace'])->name('entities.image.replace');
-Route::post('/w/{campaign}/entities/{entity}/image-replace', [App\Http\Controllers\Entity\ImageController::class, 'update'])->name('entities.image.replace.save');
+Route::get('/w/{campaign}/entities/{entity}/image-replace', [ImageController::class, 'replace'])->name('entities.image.replace');
+Route::post('/w/{campaign}/entities/{entity}/image-replace', [ImageController::class, 'update'])->name('entities.image.replace.save');
 
 // Quick privacy toggle
-Route::get('/w/{campaign}/entities/{entity}/privacy', [App\Http\Controllers\Entity\PrivacyController::class, 'index'])->name('entities.quick-privacy');
-Route::post('/w/{campaign}/entities/{entity}/privacy', [App\Http\Controllers\Entity\PrivacyController::class, 'toggle'])->name('entities.quick-privacy.toggle');
+Route::get('/w/{campaign}/entities/{entity}/privacy', [PrivacyController::class, 'index'])->name('entities.quick-privacy');
+Route::post('/w/{campaign}/entities/{entity}/privacy', [PrivacyController::class, 'toggle'])->name('entities.quick-privacy.toggle');
 // Route::post('/w/{campaign}/entities/{entity}/toggle-privacy', [\App\Http\Controllers\Entity\PrivacyController::class, 'toggle'])->name('entities.privacy.toggle');
 
 // Entity update entry
-Route::get('/w/{campaign}/entities/{entity}/entry', [App\Http\Controllers\Entity\EntryController::class, 'edit'])->name('entities.entry.edit');
-Route::patch('w/{campaign}/entities/{entity}/entry', [App\Http\Controllers\Entity\EntryController::class, 'update'])->name('entities.entry.update');
+Route::get('/w/{campaign}/entities/{entity}/entry', [EntryController::class, 'edit'])->name('entities.entry.edit');
+Route::patch('w/{campaign}/entities/{entity}/entry', [EntryController::class, 'update'])->name('entities.entry.update');
 
 Route::get('/w/{campaign}/entities/{entity}/connection/map', 'Entity\Connections\MapController@index')->name('entities.relations_map');
 Route::get('/w/{campaign}/entities/{entity}/connection/table', 'Entity\Connections\TableController@index')->name('entities.relations_table');
@@ -191,8 +219,8 @@ Route::post('/w/{campaign}/entities/{entity}/keep-alive', 'EditingController@kee
 // Posts
 Route::post('/w/{campaign}/editing/posts/{entity}/{post}/confirm-editing', 'EditingController@confirmPost')->name('posts.confirm-editing');
 Route::post('/w/{campaign}/editing/posts/{entity}/{post}/keep-alive', 'EditingController@keepAlivePost')->name('posts.keep-alive');
-Route::get('/w/{campaign}/posts/{entity}/{post}/visibility', [App\Http\Controllers\Entity\Posts\VisibilityController::class, 'index'])->name('posts.edit.visibility');
-Route::post('/w/{campaign}/posts/{entity}/{post}/visibility/update', [App\Http\Controllers\Entity\Posts\VisibilityController::class, 'update'])->name('posts.update.visibility');
+Route::get('/w/{campaign}/posts/{entity}/{post}/visibility', [VisibilityController::class, 'index'])->name('posts.edit.visibility');
+Route::post('/w/{campaign}/posts/{entity}/{post}/visibility/update', [VisibilityController::class, 'update'])->name('posts.update.visibility');
 
 // Quest Elements
 Route::post('/w/{campaign}/editing/quest-elements/{quest_element}/confirm-editing', 'EditingController@confirmQuestElement')->name('quest-elements.confirm-editing');
@@ -206,17 +234,17 @@ Route::get('/w/{campaign}/timeline/{timeline}/era/{timeline_era}/list', 'Timelin
 Route::get('/w/{campaign}/bookmarks/{bookmark}/random', 'Bookmarks\RandomController@index')
     ->name('bookmarks.random');
 
-Route::get('/w/{campaign}/timelines/{timeline}/reorder', [App\Http\Controllers\Timelines\TimelineReorderController::class, 'index'])
+Route::get('/w/{campaign}/timelines/{timeline}/reorder', [TimelineReorderController::class, 'index'])
     ->name('timelines.reorder');
-Route::post('/w/{campaign}/timelines/{timeline}/reorder', [App\Http\Controllers\Timelines\TimelineReorderController::class, 'save'])
+Route::post('/w/{campaign}/timelines/{timeline}/reorder', [TimelineReorderController::class, 'save'])
     ->name('timelines.reorder-save');
 Route::post('/w/{campaign}/timelines/{timeline}/eras/bulk', 'Timelines\TimelineEraController@bulk')->name('timelines.eras.bulk');
 
-Route::get('/w/{campaign}/bookmarks/reorder', [App\Http\Controllers\Bookmarks\ReorderController::class, 'index'])
+Route::get('/w/{campaign}/bookmarks/reorder', [ReorderController::class, 'index'])
     ->name('bookmarks.reorder');
-Route::post('/w/{campaign}/bookmarks/reorder', [App\Http\Controllers\Bookmarks\ReorderController::class, 'save'])
+Route::post('/w/{campaign}/bookmarks/reorder', [ReorderController::class, 'save'])
     ->name('bookmarks.reorder-save');
-Route::get('/w/{campaign}/entity_types/{entity_type}/bookmark-form', [App\Http\Controllers\Filters\SaveController::class, 'render'])->name('filters.modal_form');
+Route::get('/w/{campaign}/entity_types/{entity_type}/bookmark-form', [SaveController::class, 'render'])->name('filters.modal_form');
 
 // Entity Abilities API
 Route::get('/w/{campaign}/entities/{entity}/abilities', 'Entity\AbilityController@index')->name('entities.abilities');
@@ -231,10 +259,10 @@ Route::get('/w/{campaign}/entities/{entity}/entity_assets/{entity_asset}/go', 'E
 Route::get('/w/{campaign}/entities/{entity}/profile', 'Entity\ProfileController@index')
     ->name('entities.profile');
 
-Route::get('/w/{campaign}/entity_types/{entity_type}/filter-form', [App\Http\Controllers\Filters\FormController::class, 'index'])->name('filters.form');
-Route::get('/w/{campaign}/connection/filter-form', [App\Http\Controllers\Filters\FormController::class, 'connection'])->name('filters.form-connection');
+Route::get('/w/{campaign}/entity_types/{entity_type}/filter-form', [FormController::class, 'index'])->name('filters.form');
+Route::get('/w/{campaign}/connection/filter-form', [FormController::class, 'connection'])->name('filters.form-connection');
 
-Route::get('/w/{campaign}/filters/{entity_type}/save', [App\Http\Controllers\Filters\SaveController::class, 'save'])->name('save-filters');
+Route::get('/w/{campaign}/filters/{entity_type}/save', [SaveController::class, 'save'])->name('save-filters');
 
 // Route::get('/w/{campaign}/my-campaigns', 'CampaignController@index')->name('campaign');
 Route::resources([
@@ -290,7 +318,7 @@ Route::get('/w/{campaign}/entities/{entity}/move', 'Entity\MoveController@index'
 Route::post('/w/{campaign}/entities/{entity}/move', 'Entity\MoveController@move')->name('entities.move-process');
 Route::get('/w/{campaign}/entities/{entity}/posts/{post}/move', 'Entity\Posts\MoveController@index')->name('posts.move');
 Route::post('/w/{campaign}/entities/{entity}/posts/{post}/move', 'Entity\Posts\MoveController@move')->name('posts.move-process');
-Route::get('/w/{campaign}/entities/{entity}/post-layouts', [\App\Http\Controllers\Entity\Posts\LayoutController::class, 'index'])->name('posts.layouts');
+Route::get('/w/{campaign}/entities/{entity}/post-layouts', [LayoutController::class, 'index'])->name('posts.layouts');
 
 // Transform
 Route::get('/w/{campaign}/entities/{entity}/transform', 'Entity\TransformController@index')->name('entities.transform');
@@ -344,18 +372,18 @@ Route::post('/w/{campaign}/entities/{entity}/permissions', 'Entity\PermissionCon
 Route::get('/w/{campaign}/entities/{entity}/preview', 'Entity\PreviewController@index')->name('entities.preview');
 
 // Entity quick creator
-Route::get('/w/{campaign}/entity-creator', [App\Http\Controllers\EntityCreatorController::class, 'selection'])->name('entity-creator.selection');
-Route::get('/w/{campaign}/entity-creator/{entity_type}', [App\Http\Controllers\EntityCreatorController::class, 'form'])->name('entity-creator.form');
-Route::get('/w/{campaign}/entity-creator-post', [App\Http\Controllers\EntityCreatorController::class, 'post'])->name('entity-creator.post');
-Route::post('/w/{campaign}/entity-creator/{entity_type}', [App\Http\Controllers\EntityCreatorController::class, 'store'])->name('entity-creator.store');
-Route::post('/w/{campaign}/entity-creator-post', [App\Http\Controllers\EntityCreatorController::class, 'storePost'])->name('entity-creator.store-post');
+Route::get('/w/{campaign}/entity-creator', [EntityCreatorController::class, 'selection'])->name('entity-creator.selection');
+Route::get('/w/{campaign}/entity-creator/{entity_type}', [EntityCreatorController::class, 'form'])->name('entity-creator.form');
+Route::get('/w/{campaign}/entity-creator-post', [EntityCreatorController::class, 'post'])->name('entity-creator.post');
+Route::post('/w/{campaign}/entity-creator/{entity_type}', [EntityCreatorController::class, 'store'])->name('entity-creator.store');
+Route::post('/w/{campaign}/entity-creator-post', [EntityCreatorController::class, 'storePost'])->name('entity-creator.store-post');
 
 // Whiteboards
-Route::get('/w/{campaign}/whiteboards/{whiteboard}/draw', [App\Http\Controllers\Whiteboards\DrawController::class, 'show'])->name('whiteboards.draw');
-Route::get('/w/{campaign}/whiteboards/{whiteboard}/api', [App\Http\Controllers\Whiteboards\ApiController::class, 'index'])->name('whiteboards.api');
-Route::put('/w/{campaign}/whiteboards/{whiteboard}/api', [App\Http\Controllers\Whiteboards\ApiController::class, 'store'])->name('whiteboards.shapes.store');
-Route::patch('/w/{campaign}/whiteboards/{whiteboard}/api/{whiteboard_shape}', [App\Http\Controllers\Whiteboards\ApiController::class, 'update'])->name('whiteboards.shapes.update');
-Route::delete('/w/{campaign}/whiteboards/{whiteboard}/api/{whiteboard_shape}', [App\Http\Controllers\Whiteboards\ApiController::class, 'destroy'])->name('whiteboards.shapes.delete');
-Route::post('/w/{campaign}/whiteboards/{whiteboard}/api/{whiteboard_shape}/stroke', [App\Http\Controllers\Whiteboards\ApiController::class, 'stroke'])->name('whiteboards.shapes.stroke');
+Route::get('/w/{campaign}/whiteboards/{whiteboard}/draw', [DrawController::class, 'show'])->name('whiteboards.draw');
+Route::get('/w/{campaign}/whiteboards/{whiteboard}/api', [ApiController::class, 'index'])->name('whiteboards.api');
+Route::put('/w/{campaign}/whiteboards/{whiteboard}/api', [ApiController::class, 'store'])->name('whiteboards.shapes.store');
+Route::patch('/w/{campaign}/whiteboards/{whiteboard}/api/{whiteboard_shape}', [ApiController::class, 'update'])->name('whiteboards.shapes.update');
+Route::delete('/w/{campaign}/whiteboards/{whiteboard}/api/{whiteboard_shape}', [ApiController::class, 'destroy'])->name('whiteboards.shapes.delete');
+Route::post('/w/{campaign}/whiteboards/{whiteboard}/api/{whiteboard_shape}/stroke', [ApiController::class, 'stroke'])->name('whiteboards.shapes.stroke');
 
-Route::get('/w/{campaign}/entities/{entity}/api/document', [\App\Http\Controllers\Entities\Apis\DocumentController::class, 'index'])->name('entities.api.document');
+Route::get('/w/{campaign}/entities/{entity}/api/document', [DocumentController::class, 'index'])->name('entities.api.document');

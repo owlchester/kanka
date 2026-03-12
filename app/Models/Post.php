@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\EntityEventTypes;
+use App\Enums\Visibility;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasEntry;
@@ -38,7 +39,7 @@ use Laravel\Scout\Searchable;
  * @property string $name
  * @property string $value
  * @property string $entry
- * @property \App\Enums\Visibility $visibility_id
+ * @property Visibility $visibility_id
  * @property ?int $layout_id
  * @property ?string $marketplace_uuid
  * @property int $deleted_by
@@ -96,7 +97,7 @@ class Post extends Model
     /** @var array<string, string> */
     public $casts = [
         'settings' => 'array',
-        'visibility_id' => \App\Enums\Visibility::class,
+        'visibility_id' => Visibility::class,
     ];
 
     protected array $sanitizable = [
@@ -104,7 +105,7 @@ class Post extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     * @return BelongsTo<Entity, $this>
      */
     public function entity(): BelongsTo
     {
@@ -112,7 +113,7 @@ class Post extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\PostLayout, $this>
+     * @return BelongsTo<PostLayout, $this>
      */
     public function layout(): BelongsTo
     {
@@ -120,7 +121,7 @@ class Post extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\PostPermission, $this>
+     * @return HasMany<PostPermission, $this>
      */
     public function permissions(): HasMany
     {
@@ -130,7 +131,7 @@ class Post extends Model
     /**
      * List of entities that mention this entity
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\EntityMention, $this>
+     * @return HasMany<EntityMention, $this>
      */
     public function mentions(): HasMany
     {
@@ -140,7 +141,7 @@ class Post extends Model
     /**
      * List of images that mention this entity
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\ImageMention, $this>
+     * @return HasMany<ImageMention, $this>
      */
     public function imageMentions(): HasMany
     {
@@ -184,7 +185,7 @@ class Post extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\PostTag, $this>
+     * @return HasMany<PostTag, $this>
      */
     public function postTags(): HasMany
     {
@@ -216,10 +217,10 @@ class Post extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<
-     *     \App\Models\User,
+     * @return BelongsToMany<
+     *     User,
      *     $this,
-     *     \App\Models\EntityUser
+     *     EntityUser
      * >
      */
     public function editingUsers(): BelongsToMany
@@ -270,7 +271,7 @@ class Post extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany<\App\Models\Reminder, $this>
+     * @return MorphMany<Reminder, $this>
      */
     public function reminders(): MorphMany
     {
@@ -278,7 +279,7 @@ class Post extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany<\App\Models\EntityLog, $this>
+     * @return MorphMany<EntityLog, $this>
      */
     public function logs(): MorphMany
     {
@@ -297,7 +298,7 @@ class Post extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphOne<\App\Models\Reminder, $this>
+     * @return MorphOne<Reminder, $this>
      */
     public function calendarDate(): MorphOne
     {

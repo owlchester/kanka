@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\EntityType;
 use Illuminate\Database\Seeder;
 
 class EntityTypesTableSeeder extends Seeder
@@ -39,7 +40,7 @@ class EntityTypesTableSeeder extends Seeder
         $position = 1;
         $created = 0;
         foreach ($types as $code => $icon) {
-            $type = \App\Models\EntityType::default()->firstOrNew([
+            $type = EntityType::default()->firstOrNew([
                 'code' => $code,
             ]);
             //            if (! $type->exists) {

@@ -6,6 +6,7 @@ use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Tag;
+use App\Renderers\Layouts\Tag\Post;
 use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;
 use App\Traits\Controllers\HasSubview;
@@ -24,7 +25,7 @@ class PostController extends Controller
 
         $options = ['campaign' => $campaign, 'tag' => $tag];
 
-        Datagrid::layout(\App\Renderers\Layouts\Tag\Post::class)
+        Datagrid::layout(Post::class)
             ->route('tags.posts', $options);
 
         $this->rows = $tag

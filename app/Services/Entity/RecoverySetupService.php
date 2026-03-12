@@ -7,6 +7,7 @@ use App\Models\EntityType;
 use App\Services\Gallery\StorageService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
+use Carbon\Carbon;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -102,7 +103,7 @@ class RecoverySetupService
                 'type_id' => $element->type_id,
             ];
             $row['deleted_name'] = $users[$element->deleted_by] ?? 'Unknown';
-            $row['date'] = \Carbon\Carbon::createFromTimeStamp(strtotime($element->deleted_at))->diffForHumans();
+            $row['date'] = Carbon::createFromTimeStamp(strtotime($element->deleted_at))->diffForHumans();
             $row['position'] = $key;
             if ($element->type === 'post') {
                 $row['type_name'] = __('entities.article');

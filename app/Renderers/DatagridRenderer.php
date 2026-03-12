@@ -14,6 +14,7 @@ use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
 use App\Traits\RequestAware;
 use App\Traits\UserAware;
+use App\View\Components\EntityLink;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -609,11 +610,11 @@ class DatagridRenderer
     {
         if ($model instanceof Entity) {
             return Blade::renderComponent(
-                new \App\View\Components\EntityLink($model, $this->campaign)
+                new EntityLink($model, $this->campaign)
             );
         } elseif ($model->entity) {// @phpstan-ignore-line
             return Blade::renderComponent(
-                new \App\View\Components\EntityLink($model->entity, $this->campaign)
+                new EntityLink($model->entity, $this->campaign)
             );
         }
 

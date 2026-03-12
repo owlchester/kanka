@@ -7,13 +7,16 @@ use App\Http\Resources\MapLayerResource as Resource;
 use App\Models\Campaign;
 use App\Models\Map;
 use App\Models\MapLayer;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class MapLayerApiController extends ApiController
 {
     /**
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Campaign $campaign, Map $map)
     {
@@ -52,7 +55,7 @@ class MapLayerApiController extends ApiController
     /**
      * @return resource
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function update(
         Request $request,
@@ -68,9 +71,9 @@ class MapLayerApiController extends ApiController
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function destroy(
         \Illuminate\Http\Request $request,

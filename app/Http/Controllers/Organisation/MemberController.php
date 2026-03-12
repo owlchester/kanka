@@ -9,6 +9,7 @@ use App\Http\Requests\StoreOrganisationMembers;
 use App\Models\Campaign;
 use App\Models\Organisation;
 use App\Models\OrganisationMember;
+use App\Renderers\Layouts\Organisation\Member;
 use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;
 use App\Traits\Controllers\HasSubview;
@@ -33,7 +34,7 @@ class MemberController extends Controller
             $options['all'] = true;
             $base = 'allMembers';
         }
-        Datagrid::layout(\App\Renderers\Layouts\Organisation\Member::class)
+        Datagrid::layout(Member::class)
             ->route('organisations.members', $options)
             ->actionParams(['from' => 'org']);
 

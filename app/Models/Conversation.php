@@ -43,7 +43,7 @@ class Conversation extends MiscModel
     ];
 
     public $casts = [
-        'target_id' => \App\Enums\ConversationTarget::class,
+        'target_id' => ConversationTarget::class,
     ];
 
     /**
@@ -74,7 +74,7 @@ class Conversation extends MiscModel
     public array $apiWith = ['messages', 'participants'];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\ConversationMessage, $this>
+     * @return HasMany<ConversationMessage, $this>
      */
     public function messages(): HasMany
     {
@@ -82,7 +82,7 @@ class Conversation extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\ConversationParticipant, $this>
+     * @return HasMany<ConversationParticipant, $this>
      */
     public function participants(): HasMany
     {

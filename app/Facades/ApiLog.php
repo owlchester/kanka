@@ -2,14 +2,15 @@
 
 namespace App\Facades;
 
+use App\Services\Logs\ApiLogService;
 use Illuminate\Support\Facades\Facade;
 
 /**
  * Class ApiLog
  *
- * @see \App\Services\Logs\ApiLogService
+ * @see ApiLogService
  *
- * @mixin \App\Services\Logs\ApiLogService
+ * @mixin ApiLogService
  */
 class ApiLog extends Facade
 {

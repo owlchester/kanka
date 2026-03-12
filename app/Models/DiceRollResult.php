@@ -59,7 +59,7 @@ class DiceRollResult extends Model
     protected bool $hasRelations = false;
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\DiceRoll, $this>
+     * @return BelongsTo<DiceRoll, $this>
      */
     public function diceRoll(): BelongsTo
     {

@@ -60,7 +60,7 @@ class AttributeTemplate extends MiscModel
     public bool $hasRelations = false;
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\EntityType, $this>
+     * @return BelongsTo<EntityType, $this>
      */
     public function entityType(): BelongsTo
     {

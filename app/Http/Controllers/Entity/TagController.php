@@ -9,6 +9,9 @@ use App\Models\Entity;
 use App\Services\Entity\TagService;
 use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\View\View;
 
 class TagController extends Controller
 {
@@ -23,9 +26,9 @@ class TagController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function create(Campaign $campaign, Entity $entity)
     {
@@ -40,7 +43,7 @@ class TagController extends Controller
     }
 
     /**
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function store(UpdateEntityTags $request, Campaign $campaign, Entity $entity)
     {

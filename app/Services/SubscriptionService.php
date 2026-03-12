@@ -20,7 +20,9 @@ use App\Traits\UserAware;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Laravel\Cashier\Exceptions\IncompletePayment;
 use Laravel\Cashier\PaymentMethod;
+use Laravel\Cashier\Subscription;
 use Stripe\Card;
 use Stripe\Stripe;
 
@@ -159,7 +161,7 @@ class SubscriptionService
     }
 
     /**
-     * @throws \Laravel\Cashier\Exceptions\IncompletePayment
+     * @throws IncompletePayment
      */
     public function subscribe(string $paymentID): self
     {
@@ -357,8 +359,8 @@ class SubscriptionService
         }
 
         // Check if the user's active sub is from before the current date
-        /** @var ?\Laravel\Cashier\Subscription $sub */
-        $sub = \Laravel\Cashier\Subscription::where('user_id', $this->user->id)->where('stripe_status', 'active')->first();
+        /** @var ?Subscription $sub */
+        $sub = Subscription::where('user_id', $this->user->id)->where('stripe_status', 'active')->first();
         if ($sub === null) {
             return false;
         }

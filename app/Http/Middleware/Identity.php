@@ -4,13 +4,14 @@ namespace App\Http\Middleware;
 
 use App\Facades\Identity as IdentityFacade;
 use Closure;
+use Illuminate\Http\Request;
 
 class Identity
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      */
     public function handle($request, Closure $next)
     {

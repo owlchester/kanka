@@ -8,6 +8,13 @@ use App\Models\Campaign;
 use App\Models\Character;
 use App\Models\CharacterOrganisation;
 use App\Models\OrganisationMember;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 class MembershipController extends Controller
 {
@@ -24,7 +31,7 @@ class MembershipController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function index(Campaign $campaign, Character $character)
     {
@@ -32,9 +39,9 @@ class MembershipController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function create(Campaign $campaign, Character $character)
     {
@@ -44,7 +51,7 @@ class MembershipController extends Controller
     }
 
     /**
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function store(StoreCharacterOrganisation $request, Campaign $campaign, Character $character)
     {
@@ -65,7 +72,7 @@ class MembershipController extends Controller
     /**
      * @return void
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function show(Campaign $campaign, Character $character, OrganisationMember $organisationMember)
     {
@@ -74,9 +81,9 @@ class MembershipController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function edit(Campaign $campaign, Character $character, CharacterOrganisation $characterOrganisation)
     {
@@ -112,11 +119,11 @@ class MembershipController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
+     * @throws AuthorizationException
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
     public function destroy(Campaign $campaign, Character $character, CharacterOrganisation $characterOrganisation)
     {

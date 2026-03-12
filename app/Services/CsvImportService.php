@@ -15,6 +15,7 @@ use App\Facades\MapMarkerCache;
 use App\Facades\QuestCache;
 use App\Facades\TimelineElementCache;
 use App\Http\Requests\StoreCharacter;
+use App\Http\Requests\StoreCustomEntity;
 use App\Models\CampaignImport;
 use App\Models\Character;
 use App\Models\CharacterTrait;
@@ -354,7 +355,7 @@ class CsvImportService
 
     protected function createEntity(): Entity
     {
-        $requestValidator = \App\Http\Requests\StoreCustomEntity::class;
+        $requestValidator = StoreCustomEntity::class;
         $validator = new $requestValidator;
         $this->validateEntity($this->data, $validator->rules());
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Campaign;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\UserLog;
+use Carbon\Carbon;
 
 class LogController extends Controller
 {
@@ -21,7 +22,7 @@ class LogController extends Controller
         $premium = config('limits.campaigns.logs.premium');
         $logs = UserLog::with(['user', 'impersonator'])
             ->where('campaign_id', $campaign->id)
-            ->whereDate('created_at', '>=', \Carbon\Carbon::today()->subDays($premium)->format('Y-m-d'))
+            ->whereDate('created_at', '>=', Carbon::today()->subDays($premium)->format('Y-m-d'))
             ->latest()
             ->paginate();
 

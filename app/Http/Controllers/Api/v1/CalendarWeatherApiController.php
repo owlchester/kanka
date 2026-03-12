@@ -7,13 +7,16 @@ use App\Http\Resources\CalendarWeatherResource as Resource;
 use App\Models\Calendar;
 use App\Models\CalendarWeather;
 use App\Models\Campaign;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class CalendarWeatherApiController extends ApiController
 {
     /**
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Campaign $campaign, Calendar $calendar)
     {
@@ -27,7 +30,7 @@ class CalendarWeatherApiController extends ApiController
     /**
      * @return resource
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function show(Campaign $campaign, Calendar $calendar, CalendarWeather $calendarWeather)
     {
@@ -40,7 +43,7 @@ class CalendarWeatherApiController extends ApiController
     /**
      * @return resource
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function store(Request $request, Campaign $campaign, Calendar $calendar)
     {
@@ -56,7 +59,7 @@ class CalendarWeatherApiController extends ApiController
     /**
      * @return resource
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function update(Request $request, Campaign $campaign, Calendar $calendar, CalendarWeather $calendarWeather)
     {
@@ -68,9 +71,9 @@ class CalendarWeatherApiController extends ApiController
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function destroy(Campaign $campaign, Calendar $calendar, CalendarWeather $calendarWeather)
     {

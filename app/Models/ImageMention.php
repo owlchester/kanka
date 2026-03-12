@@ -35,7 +35,7 @@ class ImageMention extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     * @return BelongsTo<Entity, $this>
      */
     public function entity(): BelongsTo
     {
@@ -43,7 +43,7 @@ class ImageMention extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Post, $this>
+     * @return BelongsTo<Post, $this>
      */
     public function post(): BelongsTo
     {

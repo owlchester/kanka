@@ -1,5 +1,108 @@
 <?php
 
+use App\Facades\AdCache;
+use App\Facades\ApiLog;
+use App\Facades\Attributes;
+use App\Facades\Avatar;
+use App\Facades\Breadcrumb;
+use App\Facades\CampaignCache;
+use App\Facades\CampaignLocalization;
+use App\Facades\Datagrid;
+use App\Facades\Domain;
+use App\Facades\EntityCache;
+use App\Facades\EntityPermission;
+use App\Facades\EntitySetup;
+use App\Facades\FormCopy;
+use App\Facades\Img;
+use App\Facades\ImportIdMapper;
+use App\Facades\Limit;
+use App\Facades\Mentions;
+use App\Facades\UserCache;
+use App\Providers\AppServiceProvider;
+use App\Providers\AttributesServiceProvider;
+use App\Providers\AvatarServiceProvider;
+use App\Providers\BreadcrumbServiceProvider;
+use App\Providers\CampaignLocalizationServiceProvider;
+use App\Providers\DashboardServiceProvider;
+use App\Providers\DatagridRendererProvider;
+use App\Providers\DatalayerServiceProvider;
+use App\Providers\DomainServiceProvider;
+use App\Providers\EntitySetupServiceProvider;
+use App\Providers\EventServiceProvider;
+use App\Providers\ImgServiceProvider;
+use App\Providers\ImporterServiceProvider;
+use App\Providers\LimitServiceProvider;
+use App\Providers\Logs\ApiLogServiceProvider;
+use App\Providers\MentionsServiceProvider;
+use App\Providers\ModuleServiceProvider;
+use App\Providers\PermissionsServiceProvider;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Auth\AuthServiceProvider;
+use Illuminate\Auth\Passwords\PasswordResetServiceProvider;
+use Illuminate\Broadcasting\BroadcastServiceProvider;
+use Illuminate\Bus\BusServiceProvider;
+use Illuminate\Cache\CacheServiceProvider;
+use Illuminate\Cookie\CookieServiceProvider;
+use Illuminate\Database\DatabaseServiceProvider;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Encryption\EncryptionServiceProvider;
+use Illuminate\Filesystem\FilesystemServiceProvider;
+use Illuminate\Foundation\Providers\ConsoleSupportServiceProvider;
+use Illuminate\Foundation\Providers\FoundationServiceProvider;
+use Illuminate\Hashing\HashServiceProvider;
+use Illuminate\Mail\MailServiceProvider;
+use Illuminate\Notifications\NotificationServiceProvider;
+use Illuminate\Pagination\PaginationServiceProvider;
+use Illuminate\Pipeline\PipelineServiceProvider;
+use Illuminate\Queue\QueueServiceProvider;
+use Illuminate\Redis\RedisServiceProvider;
+use Illuminate\Session\SessionServiceProvider;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Broadcast;
+use Illuminate\Support\Facades\Bus;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Queue;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Vite;
+use Illuminate\Validation\ValidationServiceProvider;
+use Illuminate\View\ViewServiceProvider;
+use Intervention\Image\Facades\Image;
+use Laravel\Passport\PassportServiceProvider;
+use Laravel\Socialite\Facades\Socialite;
+use Laravel\Socialite\SocialiteServiceProvider;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use PragmaRX\Google2FALaravel\Facade;
+use PragmaRX\Google2FALaravel\ServiceProvider;
+use Stevebauman\Purify\Facades\Purify;
+use Stevebauman\Purify\PurifyServiceProvider;
+use Vsch\TranslationManager\ManagerServiceProvider;
+use Vsch\TranslationManager\TranslationServiceProvider;
+
 return [
 
     /*
@@ -185,68 +288,68 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
-        Illuminate\Auth\AuthServiceProvider::class,
-        Illuminate\Broadcasting\BroadcastServiceProvider::class,
-        Illuminate\Bus\BusServiceProvider::class,
-        Illuminate\Cache\CacheServiceProvider::class,
-        Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class,
-        Illuminate\Cookie\CookieServiceProvider::class,
-        Illuminate\Database\DatabaseServiceProvider::class,
-        Illuminate\Encryption\EncryptionServiceProvider::class,
-        Illuminate\Filesystem\FilesystemServiceProvider::class,
-        Illuminate\Foundation\Providers\FoundationServiceProvider::class,
-        Illuminate\Hashing\HashServiceProvider::class,
-        Illuminate\Mail\MailServiceProvider::class,
-        Illuminate\Notifications\NotificationServiceProvider::class,
-        Illuminate\Pagination\PaginationServiceProvider::class,
-        Illuminate\Pipeline\PipelineServiceProvider::class,
-        Illuminate\Queue\QueueServiceProvider::class,
-        Illuminate\Redis\RedisServiceProvider::class,
-        Illuminate\Auth\Passwords\PasswordResetServiceProvider::class,
-        Illuminate\Session\SessionServiceProvider::class,
+        AuthServiceProvider::class,
+        BroadcastServiceProvider::class,
+        BusServiceProvider::class,
+        CacheServiceProvider::class,
+        ConsoleSupportServiceProvider::class,
+        CookieServiceProvider::class,
+        DatabaseServiceProvider::class,
+        EncryptionServiceProvider::class,
+        FilesystemServiceProvider::class,
+        FoundationServiceProvider::class,
+        HashServiceProvider::class,
+        MailServiceProvider::class,
+        NotificationServiceProvider::class,
+        PaginationServiceProvider::class,
+        PipelineServiceProvider::class,
+        QueueServiceProvider::class,
+        RedisServiceProvider::class,
+        PasswordResetServiceProvider::class,
+        SessionServiceProvider::class,
         // Illuminate\Translation\TranslationServiceProvider::class,
-        Illuminate\Validation\ValidationServiceProvider::class,
-        Illuminate\View\ViewServiceProvider::class,
-        Laravel\Passport\PassportServiceProvider::class,
+        ValidationServiceProvider::class,
+        ViewServiceProvider::class,
+        PassportServiceProvider::class,
 
         /*
          * Package Service Providers...
          */
-        Stevebauman\Purify\PurifyServiceProvider::class,
-        Laravel\Socialite\SocialiteServiceProvider::class,
+        PurifyServiceProvider::class,
+        SocialiteServiceProvider::class,
 
-        Vsch\TranslationManager\ManagerServiceProvider::class,
-        Vsch\TranslationManager\TranslationServiceProvider::class,
+        ManagerServiceProvider::class,
+        TranslationServiceProvider::class,
         // Illuminate\Translation\TranslationServiceProvider::class,
 
         // RichanFongdasen\EloquentBlameable\ServiceProvider::class,
-        PragmaRX\Google2FALaravel\ServiceProvider::class,
+        ServiceProvider::class,
 
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
+        AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        App\Providers\AvatarServiceProvider::class,
+        AvatarServiceProvider::class,
         App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
-        App\Providers\CampaignLocalizationServiceProvider::class,
-        App\Providers\MentionsServiceProvider::class,
-        App\Providers\BreadcrumbServiceProvider::class,
+        EventServiceProvider::class,
+        RouteServiceProvider::class,
+        CampaignLocalizationServiceProvider::class,
+        MentionsServiceProvider::class,
+        BreadcrumbServiceProvider::class,
         App\Providers\CacheServiceProvider::class,
-        App\Providers\ImgServiceProvider::class,
-        App\Providers\AttributesServiceProvider::class,
-        App\Providers\DashboardServiceProvider::class,
-        App\Providers\DatalayerServiceProvider::class,
-        App\Providers\DatagridRendererProvider::class,
-        App\Providers\PermissionsServiceProvider::class,
-        App\Providers\EntitySetupServiceProvider::class,
-        App\Providers\ModuleServiceProvider::class,
-        App\Providers\Logs\ApiLogServiceProvider::class,
-        App\Providers\DomainServiceProvider::class,
-        App\Providers\LimitServiceProvider::class,
-        App\Providers\ImporterServiceProvider::class,
+        ImgServiceProvider::class,
+        AttributesServiceProvider::class,
+        DashboardServiceProvider::class,
+        DatalayerServiceProvider::class,
+        DatagridRendererProvider::class,
+        PermissionsServiceProvider::class,
+        EntitySetupServiceProvider::class,
+        ModuleServiceProvider::class,
+        ApiLogServiceProvider::class,
+        DomainServiceProvider::class,
+        LimitServiceProvider::class,
+        ImporterServiceProvider::class,
 
     ],
 
@@ -264,66 +367,66 @@ return [
     'aliases' => [
 
         'App' => Illuminate\Support\Facades\App::class,
-        'Artisan' => Illuminate\Support\Facades\Artisan::class,
-        'Auth' => Illuminate\Support\Facades\Auth::class,
-        'Blade' => Illuminate\Support\Facades\Blade::class,
-        'Broadcast' => Illuminate\Support\Facades\Broadcast::class,
-        'Bus' => Illuminate\Support\Facades\Bus::class,
-        'Cache' => Illuminate\Support\Facades\Cache::class,
-        'Config' => Illuminate\Support\Facades\Config::class,
-        'Cookie' => Illuminate\Support\Facades\Cookie::class,
-        'Crypt' => Illuminate\Support\Facades\Crypt::class,
-        'DB' => Illuminate\Support\Facades\DB::class,
-        'Eloquent' => Illuminate\Database\Eloquent\Model::class,
-        'Event' => Illuminate\Support\Facades\Event::class,
-        'File' => Illuminate\Support\Facades\File::class,
-        'Gate' => Illuminate\Support\Facades\Gate::class,
-        'Hash' => Illuminate\Support\Facades\Hash::class,
-        'Lang' => Illuminate\Support\Facades\Lang::class,
-        'Log' => Illuminate\Support\Facades\Log::class,
-        'Mail' => Illuminate\Support\Facades\Mail::class,
-        'Notification' => Illuminate\Support\Facades\Notification::class,
-        'Password' => Illuminate\Support\Facades\Password::class,
-        'Queue' => Illuminate\Support\Facades\Queue::class,
-        'Redirect' => Illuminate\Support\Facades\Redirect::class,
-        'Redis' => Illuminate\Support\Facades\Redis::class,
-        'Request' => Illuminate\Support\Facades\Request::class,
-        'Response' => Illuminate\Support\Facades\Response::class,
-        'Route' => Illuminate\Support\Facades\Route::class,
-        'Schema' => Illuminate\Support\Facades\Schema::class,
-        'Session' => Illuminate\Support\Facades\Session::class,
-        'Storage' => Illuminate\Support\Facades\Storage::class,
-        'URL' => Illuminate\Support\Facades\URL::class,
-        'Validator' => Illuminate\Support\Facades\Validator::class,
-        'View' => Illuminate\Support\Facades\View::class,
-        'Vite' => Illuminate\Support\Facades\Vite::class,
+        'Artisan' => Artisan::class,
+        'Auth' => Auth::class,
+        'Blade' => Blade::class,
+        'Broadcast' => Broadcast::class,
+        'Bus' => Bus::class,
+        'Cache' => Cache::class,
+        'Config' => Config::class,
+        'Cookie' => Cookie::class,
+        'Crypt' => Crypt::class,
+        'DB' => DB::class,
+        'Eloquent' => Model::class,
+        'Event' => Event::class,
+        'File' => File::class,
+        'Gate' => Gate::class,
+        'Hash' => Hash::class,
+        'Lang' => Lang::class,
+        'Log' => Log::class,
+        'Mail' => Mail::class,
+        'Notification' => Notification::class,
+        'Password' => Password::class,
+        'Queue' => Queue::class,
+        'Redirect' => Redirect::class,
+        'Redis' => Redis::class,
+        'Request' => Request::class,
+        'Response' => Response::class,
+        'Route' => Route::class,
+        'Schema' => Schema::class,
+        'Session' => Session::class,
+        'Storage' => Storage::class,
+        'URL' => URL::class,
+        'Validator' => Validator::class,
+        'View' => View::class,
+        'Vite' => Vite::class,
 
         // Third party
-        'Purify' => Stevebauman\Purify\Facades\Purify::class,
-        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-        'Image' => Intervention\Image\Facades\Image::class,
-        'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
+        'Purify' => Purify::class,
+        'Socialite' => Socialite::class,
+        'Image' => Image::class,
+        'LaravelLocalization' => LaravelLocalization::class,
 
         // Kanka
-        'Avatar' => App\Facades\Avatar::class,
-        'CampaignLocalization' => App\Facades\CampaignLocalization::class,
-        'EntityPermission' => App\Facades\EntityPermission::class,
-        'Mentions' => App\Facades\Mentions::class,
-        'Breadcrumb' => App\Facades\Breadcrumb::class,
-        'FormCopy' => App\Facades\FormCopy::class,
-        'EntityCache' => App\Facades\EntityCache::class,
-        'CampaignCache' => App\Facades\CampaignCache::class,
-        'AdCache' => App\Facades\AdCache::class,
-        'UserCache' => App\Facades\UserCache::class,
-        'Img' => App\Facades\Img::class,
-        'Attributes' => App\Facades\Attributes::class,
-        'Datagrid' => App\Facades\Datagrid::class,
-        'EntitySetup' => App\Facades\EntitySetup::class,
-        'Google2FA' => PragmaRX\Google2FALaravel\Facade::class,
-        'ApiLog' => App\Facades\ApiLog::class,
-        'Domain' => App\Facades\Domain::class,
-        'Limit' => App\Facades\Limit::class,
-        'ImportIdMapper' => App\Facades\ImportIdMapper::class,
+        'Avatar' => Avatar::class,
+        'CampaignLocalization' => CampaignLocalization::class,
+        'EntityPermission' => EntityPermission::class,
+        'Mentions' => Mentions::class,
+        'Breadcrumb' => Breadcrumb::class,
+        'FormCopy' => FormCopy::class,
+        'EntityCache' => EntityCache::class,
+        'CampaignCache' => CampaignCache::class,
+        'AdCache' => AdCache::class,
+        'UserCache' => UserCache::class,
+        'Img' => Img::class,
+        'Attributes' => Attributes::class,
+        'Datagrid' => Datagrid::class,
+        'EntitySetup' => EntitySetup::class,
+        'Google2FA' => Facade::class,
+        'ApiLog' => ApiLog::class,
+        'Domain' => Domain::class,
+        'Limit' => Limit::class,
+        'ImportIdMapper' => ImportIdMapper::class,
     ],
 
 ];

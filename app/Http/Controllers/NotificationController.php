@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Services\Layout\NavigationService;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\View\View;
 
 class NotificationController extends Controller
 {
@@ -21,7 +23,7 @@ class NotificationController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function index()
     {

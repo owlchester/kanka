@@ -2,6 +2,7 @@
 
 namespace App\Models\Scopes;
 
+use App\Enums\EntityAssetType;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use Illuminate\Database\Eloquent\Builder;
@@ -237,7 +238,7 @@ trait EntityScopes
     {
         $query
             ->leftJoin('entity_assets', 'entity_assets.entity_id', '=', 'entities.id')
-            ->where('entity_assets.type_id', \App\Enums\EntityAssetType::file);
+            ->where('entity_assets.type_id', EntityAssetType::file);
 
         if ($value) {
             $query->whereNotNull('entity_assets.id');

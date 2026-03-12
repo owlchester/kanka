@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\MapMarkerShape;
+use App\Enums\Visibility;
 use App\Facades\CampaignLocalization;
 use App\Facades\MapMarkerCache;
 use App\Facades\Mentions;
@@ -97,7 +98,7 @@ class MapMarker extends Model
 
     public $casts = [
         'polygon_style' => 'array',
-        'visibility_id' => \App\Enums\Visibility::class,
+        'visibility_id' => Visibility::class,
         'shape_id' => MapMarkerShape::class,
     ];
 
@@ -123,7 +124,7 @@ class MapMarker extends Model
     protected int $sizeMultiplier = 1;
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Map, $this>
+     * @return BelongsTo<Map, $this>
      */
     public function map(): BelongsTo
     {
@@ -131,7 +132,7 @@ class MapMarker extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     * @return BelongsTo<Entity, $this>
      */
     public function entity(): BelongsTo
     {
@@ -139,7 +140,7 @@ class MapMarker extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\MapGroup, $this>
+     * @return BelongsTo<MapGroup, $this>
      */
     public function group(): BelongsTo
     {

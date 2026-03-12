@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCharacterFamily;
 use App\Models\Campaign;
 use App\Models\Family;
+use App\Renderers\Layouts\Family\Character;
 use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;
 use App\Traits\Controllers\HasSubview;
@@ -28,7 +29,7 @@ class MemberController extends Controller
         if ($this->filterToDirect()) {
             $relation = 'members';
         }
-        Datagrid::layout(\App\Renderers\Layouts\Family\Character::class)
+        Datagrid::layout(Character::class)
             ->route('families.members', $options);
 
         $this->rows = $family

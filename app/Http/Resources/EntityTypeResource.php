@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources;
 
+use App\Models\EntityType;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class EntityTypeResource extends JsonResource
@@ -9,12 +11,12 @@ class EntityTypeResource extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return array
      */
     public function toArray($request)
     {
-        /** @var \App\Models\EntityType $entityType */
+        /** @var EntityType $entityType */
         $entityType = $this->resource;
 
         return [

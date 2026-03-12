@@ -16,5 +16,4 @@ class QuestBulk extends Bulk
         'entity_image',
         'entity_header',
     ];
-
 }

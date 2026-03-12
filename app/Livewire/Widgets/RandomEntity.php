@@ -4,6 +4,7 @@ namespace App\Livewire\Widgets;
 
 use App\Facades\Avatar;
 use App\Facades\CampaignCache;
+use App\Facades\Dashboard;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
@@ -52,7 +53,7 @@ class RandomEntity extends Component
             return;
         }
         $this->entity = $entity;
-        \App\Facades\Dashboard::add($this->entity);
+        Dashboard::add($this->entity);
         $this->widget->setEntity($this->entity);
 
         $this->specificPreview = 'dashboard.widgets.previews.' . $this->entity->entityType->code;

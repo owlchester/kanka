@@ -2,6 +2,7 @@
 
 namespace App\Services\Families;
 
+use App\Enums\Visibility;
 use App\Facades\Avatar;
 use App\Models\Entity;
 use App\Models\Family;
@@ -251,9 +252,9 @@ class FamilyTreeService
     {
         return (bool) (
             ! isset($relation['visibility']) ||
-            $relation['visibility'] == \App\Enums\Visibility::All->value ||
-            ($relation['visibility'] == \App\Enums\Visibility::Admin->value && isset($this->user) && $this->user->isAdmin()) ||
-            ($relation['visibility'] == \App\Enums\Visibility::Member->value && isset($this->user) && $this->user->can('member', $this->campaign))
+            $relation['visibility'] == Visibility::All->value ||
+            ($relation['visibility'] == Visibility::Admin->value && isset($this->user) && $this->user->isAdmin()) ||
+            ($relation['visibility'] == Visibility::Member->value && isset($this->user) && $this->user->can('member', $this->campaign))
         );
     }
 

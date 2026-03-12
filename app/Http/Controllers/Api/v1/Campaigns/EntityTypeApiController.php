@@ -9,7 +9,9 @@ use App\Http\Resources\EntityTypeResource as Resource;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Services\EntityTypeService;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class EntityTypeApiController extends ApiController
 {
@@ -20,9 +22,9 @@ class EntityTypeApiController extends ApiController
     }
 
     /**
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Campaign $campaign)
     {

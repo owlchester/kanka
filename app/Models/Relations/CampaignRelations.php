@@ -16,6 +16,7 @@ use App\Models\CampaignFilter;
 use App\Models\CampaignFlag;
 use App\Models\CampaignFollower;
 use App\Models\CampaignImport;
+use App\Models\CampaignInvite;
 use App\Models\CampaignPlugin;
 use App\Models\CampaignRole;
 use App\Models\CampaignSetting;
@@ -46,6 +47,7 @@ use App\Models\Plugin;
 use App\Models\Post;
 use App\Models\Quest;
 use App\Models\Race;
+use App\Models\Relation;
 use App\Models\Spotlight;
 use App\Models\Tag;
 use App\Models\Theme;
@@ -94,10 +96,10 @@ trait CampaignRelations
     protected Collection $nonAdmins;
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<
-     *     \App\Models\User,
+     * @return BelongsToMany<
+     *     User,
      *     $this,
-     *     \App\Models\CampaignUser
+     *     CampaignUser
      * >
      */
     public function users(): BelongsToMany
@@ -106,10 +108,10 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<
-     *     \App\Models\User,
+     * @return BelongsToMany<
+     *     User,
      *     $this,
-     *     \App\Models\CampaignFollower
+     *     CampaignFollower
      * >
      */
     public function followers(): BelongsToMany
@@ -120,7 +122,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\CampaignSetting, $this>
+     * @return BelongsTo<CampaignSetting, $this>
      */
     public function setting(): BelongsTo
     {
@@ -128,7 +130,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CampaignUser, $this>
+     * @return HasMany<CampaignUser, $this>
      */
     public function members(): HasMany
     {
@@ -165,7 +167,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CampaignRole, $this>
+     * @return HasMany<CampaignRole, $this>
      */
     public function roles(): HasMany
     {
@@ -178,7 +180,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Webhook, $this>
+     * @return HasMany<Webhook, $this>
      */
     public function webhooks(): HasMany
     {
@@ -186,7 +188,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Character, $this>
+     * @return HasMany<Character, $this>
      */
     public function characters(): HasMany
     {
@@ -194,7 +196,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Location, $this>
+     * @return HasMany<Location, $this>
      */
     public function locations(): HasMany
     {
@@ -202,7 +204,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Calendar, $this>
+     * @return HasMany<Calendar, $this>
      */
     public function calendars(): HasMany
     {
@@ -210,7 +212,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Event, $this>
+     * @return HasMany<Event, $this>
      */
     public function events(): HasMany
     {
@@ -218,7 +220,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Family, $this>
+     * @return HasMany<Family, $this>
      */
     public function families(): HasMany
     {
@@ -226,7 +228,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Item, $this>
+     * @return HasMany<Item, $this>
      */
     public function items(): HasMany
     {
@@ -234,7 +236,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Journal, $this>
+     * @return HasMany<Journal, $this>
      */
     public function journals(): HasMany
     {
@@ -242,7 +244,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Map, $this>
+     * @return HasMany<Map, $this>
      */
     public function maps(): HasMany
     {
@@ -250,7 +252,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Note, $this>
+     * @return HasMany<Note, $this>
      */
     public function notes(): HasMany
     {
@@ -258,7 +260,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Organisation, $this>
+     * @return HasMany<Organisation, $this>
      */
     public function organisations(): HasMany
     {
@@ -266,7 +268,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Quest, $this>
+     * @return HasMany<Quest, $this>
      */
     public function quests(): HasMany
     {
@@ -274,7 +276,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Ability, $this>
+     * @return HasMany<Ability, $this>
      */
     public function abilities(): HasMany
     {
@@ -282,7 +284,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\AttributeTemplate, $this>
+     * @return HasMany<AttributeTemplate, $this>
      */
     public function attributeTemplates(): HasMany
     {
@@ -290,7 +292,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Tag, $this>
+     * @return HasMany<Tag, $this>
      */
     public function tags(): HasMany
     {
@@ -298,7 +300,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Timeline, $this>
+     * @return HasMany<Timeline, $this>
      */
     public function timelines(): HasMany
     {
@@ -306,7 +308,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Bookmark, $this>
+     * @return HasMany<Bookmark, $this>
      */
     public function bookmarks(): HasMany
     {
@@ -315,7 +317,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\DiceRoll, $this>
+     * @return HasMany<DiceRoll, $this>
      */
     public function diceRolls(): HasMany
     {
@@ -323,7 +325,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Conversation, $this>
+     * @return HasMany<Conversation, $this>
      */
     public function conversations(): HasMany
     {
@@ -331,7 +333,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Race, $this>
+     * @return HasMany<Race, $this>
      */
     public function races(): HasMany
     {
@@ -339,7 +341,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Creature, $this>
+     * @return HasMany<Creature, $this>
      */
     public function creatures(): HasMany
     {
@@ -355,7 +357,7 @@ trait CampaignRelations
     /**
      * List of entities that are mentioned in the campaign's description
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\EntityMention, $this>
+     * @return HasMany<EntityMention, $this>
      */
     public function mentions(): HasMany
     {
@@ -363,7 +365,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Entity, $this>
+     * @return HasMany<Entity, $this>
      */
     public function entities(): HasMany
     {
@@ -371,7 +373,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Theme, $this>
+     * @return BelongsTo<Theme, $this>
      */
     public function theme(): BelongsTo
     {
@@ -379,7 +381,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Application, $this>
+     * @return HasMany<Application, $this>
      */
     public function applications(): HasMany
     {
@@ -387,7 +389,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Relation, $this>
+     * @return HasMany<Relation, $this>
      */
     public function entityRelations(): HasMany
     {
@@ -395,7 +397,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough<\App\Models\Post, \App\Models\Entity, $this>
+     * @return HasManyThrough<Post, Entity, $this>
      */
     public function posts(): HasManyThrough
     {
@@ -403,7 +405,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough<\App\Models\EntityAsset, \App\Models\Entity, $this>
+     * @return HasManyThrough<EntityAsset, Entity, $this>
      */
     public function entityAliases(): HasManyThrough
     {
@@ -411,7 +413,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Plugin, $this>
+     * @return BelongsToMany<Plugin, $this>
      */
     public function plugins(): BelongsToMany
     {
@@ -422,7 +424,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CampaignPlugin, $this>
+     * @return HasMany<CampaignPlugin, $this>
      */
     public function campaignPlugins(): HasMany
     {
@@ -430,7 +432,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CampaignDashboardWidget, $this>
+     * @return HasMany<CampaignDashboardWidget, $this>
      */
     public function widgets(): HasMany
     {
@@ -438,7 +440,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CampaignDashboard, $this>
+     * @return HasMany<CampaignDashboard, $this>
      */
     public function dashboards(): HasMany
     {
@@ -446,7 +448,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CampaignExport, $this>
+     * @return HasMany<CampaignExport, $this>
      */
     public function campaignExports(): HasMany
     {
@@ -463,7 +465,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CampaignImport, $this>
+     * @return HasMany<CampaignImport, $this>
      */
     public function campaignImports(): HasMany
     {
@@ -471,7 +473,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CampaignStyle, $this>
+     * @return HasMany<CampaignStyle, $this>
      */
     public function styles(): HasMany
     {
@@ -479,10 +481,10 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<
-     *     \App\Models\User,
+     * @return BelongsToMany<
+     *     User,
      *     $this,
-     *     \App\Models\EntityUser
+     *     EntityUser
      * >
      */
     public function editingUsers(): BelongsToMany
@@ -493,7 +495,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CampaignInvite, $this>
+     * @return HasMany<CampaignInvite, $this>
      */
     public function invites(): HasMany
     {
@@ -501,7 +503,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Genre, $this>
+     * @return BelongsToMany<Genre, $this>
      */
     public function genres(): BelongsToMany
     {
@@ -509,7 +511,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\GameSystem, $this>
+     * @return BelongsToMany<GameSystem, $this>
      */
     public function systems(): BelongsToMany
     {
@@ -517,7 +519,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\EntityType, $this>
+     * @return HasMany<EntityType, $this>
      */
     public function entityTypes(): HasMany
     {
@@ -527,7 +529,7 @@ trait CampaignRelations
     /**
      * List of the campaign's flags
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CampaignFlag, $this>
+     * @return HasMany<CampaignFlag, $this>
      */
     public function flags(): HasMany
     {
@@ -535,7 +537,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\Spotlight, $this>
+     * @return HasOne<Spotlight, $this>
      */
     public function spotlight(): HasOne
     {
@@ -543,7 +545,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Playstyle, $this>
+     * @return BelongsToMany<Playstyle, $this>
      */
     public function playstyles(): BelongsToMany
     {
@@ -551,7 +553,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CampaignFilter, $this>
+     * @return HasMany<CampaignFilter, $this>
      */
     public function filters(): HasMany
     {

@@ -5,6 +5,8 @@ namespace App\Renderers\Layouts\Journal;
 use App\Facades\Module;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
+use App\View\Components\Date;
+use Illuminate\Support\Facades\Blade;
 
 class Journal extends Layout
 {
@@ -35,8 +37,8 @@ class Journal extends Layout
                 'key' => 'date',
                 'label' => 'journals.fields.date',
                 'render' => function ($model) {
-                    return \Illuminate\Support\Facades\Blade::renderComponent(
-                        new \App\View\Components\Date(date: $model->date)
+                    return Blade::renderComponent(
+                        new Date(date: $model->date)
                     );
                 },
             ],

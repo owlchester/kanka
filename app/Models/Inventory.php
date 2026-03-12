@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Visibility;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\Sanitizable;
@@ -50,7 +51,7 @@ class Inventory extends Model
     ];
 
     public $casts = [
-        'visibility_id' => \App\Enums\Visibility::class,
+        'visibility_id' => Visibility::class,
     ];
 
     protected array $sanitizable = [
@@ -60,7 +61,7 @@ class Inventory extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     * @return BelongsTo<Entity, $this>
      */
     public function entity(): BelongsTo
     {
@@ -68,7 +69,7 @@ class Inventory extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Item, $this>
+     * @return BelongsTo<Item, $this>
      */
     public function item(): BelongsTo
     {
@@ -76,7 +77,7 @@ class Inventory extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\Image, $this>
+     * @return HasOne<Image, $this>
      */
     public function image(): HasOne
     {

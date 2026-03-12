@@ -3,6 +3,7 @@
 namespace App\Services\Users;
 
 use App\Models\UserLog;
+use Carbon\Carbon;
 
 class UserLogService
 {
@@ -16,7 +17,7 @@ class UserLogService
     public function anonymize(): self
     {
         $cutoff = config('logging.anonymize');
-        $this->count = UserLog::whereDate('created_at', \Carbon\Carbon::today()->subDays($cutoff)->format('Y-m-d'))
+        $this->count = UserLog::whereDate('created_at', Carbon::today()->subDays($cutoff)->format('Y-m-d'))
             ->update(['ip' => null, 'country' => null]);
 
         return $this;

@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\CampaignUser;
 use App\Models\Entity;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\RedirectResponse;
 
 class MemberController extends Controller
 {
@@ -23,9 +25,9 @@ class MemberController extends Controller
     /**
      * Switch to another member
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function switch(Campaign $campaign, CampaignUser $campaignUser, ?Entity $entity = null)
     {
@@ -48,7 +50,7 @@ class MemberController extends Controller
     /**
      * Switch back to the original user
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function back(Campaign $campaign)
     {

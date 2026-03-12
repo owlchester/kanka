@@ -5,6 +5,8 @@ namespace App\Renderers\Layouts\Campaign;
 use App\Models\CampaignRole;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
+use App\View\Components\Since;
+use Illuminate\Support\Facades\Blade;
 
 class CampaignUser extends Layout
 {
@@ -74,8 +76,8 @@ class CampaignUser extends Layout
                 'render' => function (\App\Models\CampaignUser $model) {
 
                     if ($model->user->has_last_login_sharing && ! empty($model->user->last_login_at)) {
-                        return \Illuminate\Support\Facades\Blade::renderComponent(
-                            new \App\View\Components\Since(date: $model->user->last_login_at, withTime: false)
+                        return Blade::renderComponent(
+                            new Since(date: $model->user->last_login_at, withTime: false)
                         );
                     }
 

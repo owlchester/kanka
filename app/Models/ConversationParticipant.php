@@ -7,6 +7,7 @@ use App\Models\Concerns\HasUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * @property int $id
@@ -30,7 +31,7 @@ class ConversationParticipant extends Model
     /**
      * Who created this entry
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\User, $this>
+     * @return BelongsTo<User, $this>
      */
     public function creator(): BelongsTo
     {
@@ -38,7 +39,7 @@ class ConversationParticipant extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Character, $this>
+     * @return BelongsTo<Character, $this>
      */
     public function character(): BelongsTo
     {
@@ -46,7 +47,7 @@ class ConversationParticipant extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Conversation, $this>
+     * @return BelongsTo<Conversation, $this>
      */
     public function conversation(): BelongsTo
     {
@@ -77,7 +78,7 @@ class ConversationParticipant extends Model
     }
 
     /**
-     * @return Character|User|bool|\Illuminate\Database\Eloquent\Relations\HasOne|mixed
+     * @return Character|User|bool|HasOne|mixed
      */
     public function entity()
     {

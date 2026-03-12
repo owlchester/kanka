@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property \App\Enums\UserFlags $flag
+ * @property UserFlags $flag
  *
  * @method static|self|Builder freeTrial()
  */
@@ -19,7 +19,7 @@ class UserFlag extends Model
     use HasUser;
 
     public $casts = [
-        'flag' => \App\Enums\UserFlags::class,
+        'flag' => UserFlags::class,
     ];
 
     public function scopeFreeTrial(Builder $query): Builder

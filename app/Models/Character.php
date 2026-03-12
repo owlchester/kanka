@@ -68,7 +68,6 @@ class Character extends MiscModel
         'is_personality_pinned',
     ];
 
-
     /**
      * Fields that can be sorted on
      */
@@ -214,7 +213,7 @@ class Character extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Family, $this>
+     * @return BelongsToMany<Family, $this>
      */
     public function families(): BelongsToMany
     {
@@ -228,7 +227,7 @@ class Character extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CharacterFamily, $this>
+     * @return HasMany<CharacterFamily, $this>
      */
     public function characterFamilies(): HasMany
     {
@@ -247,7 +246,7 @@ class Character extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CharacterRace, $this>
+     * @return HasMany<CharacterRace, $this>
      */
     public function characterRaces(): HasMany
     {
@@ -266,7 +265,7 @@ class Character extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Race, $this>
+     * @return BelongsToMany<Race, $this>
      */
     public function races(): BelongsToMany
     {
@@ -280,7 +279,7 @@ class Character extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\OrganisationMember, $this>
+     * @return HasMany<OrganisationMember, $this>
      */
     public function organisationMemberships(): HasMany
     {
@@ -288,7 +287,7 @@ class Character extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Organisation, $this>
+     * @return BelongsToMany<Organisation, $this>
      */
     public function organisations(): BelongsToMany
     {
@@ -302,7 +301,7 @@ class Character extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Item, $this>
+     * @return HasMany<Item, $this>
      */
     public function items(): HasMany
     {
@@ -310,7 +309,7 @@ class Character extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\DiceRoll, $this>
+     * @return HasMany<DiceRoll, $this>
      */
     public function diceRolls(): HasMany
     {
@@ -318,7 +317,7 @@ class Character extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough<\App\Models\Conversation, \App\Models\ConversationParticipant, $this>
+     * @return HasManyThrough<Conversation, ConversationParticipant, $this>
      */
     public function conversations(): HasManyThrough
     {
@@ -333,7 +332,7 @@ class Character extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\ConversationParticipant, $this>
+     * @return HasMany<ConversationParticipant, $this>
      */
     public function conversationParticipants(): HasMany
     {
@@ -341,7 +340,7 @@ class Character extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CharacterTrait, $this>
+     * @return HasMany<CharacterTrait, $this>
      */
     public function characterTraits(): HasMany
     {

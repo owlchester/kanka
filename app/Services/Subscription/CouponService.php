@@ -3,6 +3,7 @@
 namespace App\Services\Subscription;
 
 use App\Enums\PricingPeriod;
+use App\Models\Tier;
 use App\Traits\UserAware;
 use Exception;
 use Stripe\PromotionCode;
@@ -14,7 +15,7 @@ class CouponService
 
     protected string $code;
 
-    protected \App\Models\Tier $tier;
+    protected Tier $tier;
 
     public function code(string $code): self
     {
@@ -23,7 +24,7 @@ class CouponService
         return $this;
     }
 
-    public function tier(\App\Models\Tier $tier): self
+    public function tier(Tier $tier): self
     {
         $this->tier = $tier;
 

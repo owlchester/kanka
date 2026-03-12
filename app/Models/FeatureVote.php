@@ -21,7 +21,7 @@ class FeatureVote extends Model
     public $table = 'feature_upvotes';
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Feature, $this>
+     * @return BelongsTo<Feature, $this>
      */
     public function feature(): BelongsTo
     {

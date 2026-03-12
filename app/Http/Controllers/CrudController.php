@@ -14,6 +14,7 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityType;
 use App\Models\MiscModel;
+use App\Models\Relation;
 use App\Renderers\DatagridRenderer;
 use App\Sanitizers\MiscSanitizer;
 use App\Services\AttributeService;
@@ -27,13 +28,21 @@ use App\Traits\Controllers\HasDatagrid;
 use App\Traits\Controllers\HasNested;
 use App\Traits\Controllers\HasSubview;
 use App\Traits\GuestAuthTrait;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 use LogicException;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 class CrudController extends Controller
 {
@@ -198,10 +207,10 @@ class CrudController extends Controller
             // left join on the entities table)
             $filteredCount = $models->total();
         } else {
-            if (! $model instanceof \App\Models\Bookmark) {
+            if (! $model instanceof Bookmark) {
                 $relation = 'entity';
                 // If $model is a Relation, theres no entity, we have to handle it differently
-                if ($model instanceof \App\Models\Relation) {
+                if ($model instanceof Relation) {
                     $relation = 'owner';
                     $base = $base->whereHas('target', function ($query) {
                         $query->whereNull('archived_at');
@@ -249,7 +258,7 @@ class CrudController extends Controller
             $data['templates'] = $this->loadTemplates($data['entityType']);
             $this->datagrid->entityType($data['entityType']);
         } else {
-            $data['singular'] = __('entities.' . \Illuminate\Support\Str::singular($route));
+            $data['singular'] = __('entities.' . Str::singular($route));
         }
 
         if (method_exists($this, 'titleKey')) {
@@ -297,7 +306,7 @@ class CrudController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create(Campaign $campaign)
     {
@@ -554,12 +563,12 @@ class CrudController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     * @return JsonResponse|RedirectResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
+     * @throws AuthorizationException
+     * @throws BindingResolutionException
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
     public function crudUpdate(Request $request, Model|MiscModel $model)
     {
@@ -661,7 +670,7 @@ class CrudController extends Controller
     }
 
     /**
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function crudDestroy(Model|MiscModel $model)
     {

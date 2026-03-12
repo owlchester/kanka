@@ -13,6 +13,7 @@ use App\Models\Pledge;
 use App\Notifications\Header;
 use App\Traits\UserAware;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 class NavigationService
 {
@@ -178,7 +179,7 @@ class NavigationService
             $data = $not->data;
             if (Arr::has($data['params'], 'link')) {
                 $url = $data['params']['link'];
-                if (! \Illuminate\Support\Str::startsWith($url, 'http')) {
+                if (! Str::startsWith($url, 'http')) {
                     $url = url(app()->getLocale() . '/' . $url);
                 }
             } elseif (Arr::has($data['params'], 'route')) {

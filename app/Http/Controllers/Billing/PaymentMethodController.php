@@ -6,7 +6,9 @@ use App\Enums\UserAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\UserBillingStore;
 use App\Services\Users\CurrencyService;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class PaymentMethodController extends Controller
 {
@@ -22,7 +24,7 @@ class PaymentMethodController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function index()
     {

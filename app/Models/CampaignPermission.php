@@ -80,7 +80,7 @@ class CampaignPermission extends Model
     /**
      * Optional campaign role
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\CampaignRole, $this>
+     * @return BelongsTo<CampaignRole, $this>
      */
     public function campaignRole(): BelongsTo
     {
@@ -90,7 +90,7 @@ class CampaignPermission extends Model
     /**
      * Optional entity
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     * @return BelongsTo<Entity, $this>
      */
     public function entity(): BelongsTo
     {

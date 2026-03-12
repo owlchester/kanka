@@ -1,5 +1,18 @@
 <?php
 
+use App\Http\Controllers\CookieConsentController;
+use App\Http\Controllers\FrontendPrepareController;
+use App\Http\Controllers\HealthController;
+use App\Http\Controllers\ReferralController;
+use App\Http\Controllers\Roadmap\FeatureController;
+use App\Http\Controllers\Roadmap\RoadmapController;
+use App\Http\Controllers\Search\GameSystemSearchController;
+use App\Http\Controllers\Settings\SubscriptionApiController;
+use App\Http\Controllers\SetupController;
+use App\Http\Controllers\Spotlights\ApplicationController;
+use App\Http\Controllers\User\EmailValidationController;
+use App\Http\Controllers\User\ProfileController;
+use App\Models\Feature;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback')->name('auth.provider.callback');
@@ -9,34 +22,34 @@ Route::group(['prefix' => 'subscription-api'], function () {
     Route::post('payments', 'Settings\SubscriptionApiController@paymentMethods');
     Route::get('payment-methods', 'Settings\SubscriptionApiController@getPaymentMethods');
     Route::post('remove-payment', 'Settings\SubscriptionApiController@removePaymentMethod');
-    Route::get('check-coupon/{tier}', [App\Http\Controllers\Settings\SubscriptionApiController::class, 'checkCoupon'])
+    Route::get('check-coupon/{tier}', [SubscriptionApiController::class, 'checkCoupon'])
         ->name('subscription.check-coupon');
 });
 
-Route::get('users/{user}', [App\Http\Controllers\User\ProfileController::class, 'show'])->name('users.profile');
+Route::get('users/{user}', [ProfileController::class, 'show'])->name('users.profile');
 
-Route::get('/_ccapi/country', [App\Http\Controllers\CookieConsentController::class, 'index'])
+Route::get('/_ccapi/country', [CookieConsentController::class, 'index'])
     ->name('cookieconsent.country');
 
-Route::get('/frontend-prepare', [App\Http\Controllers\FrontendPrepareController::class, 'index']);
+Route::get('/frontend-prepare', [FrontendPrepareController::class, 'index']);
 
-Route::get('/_setup', [App\Http\Controllers\SetupController::class, 'index']);
-Route::get('/up', [App\Http\Controllers\HealthController::class, 'index']);
+Route::get('/_setup', [SetupController::class, 'index']);
+Route::get('/up', [HealthController::class, 'index']);
 
-Route::model('feature', App\Models\Feature::class);
-Route::get('roadmap', [App\Http\Controllers\Roadmap\RoadmapController::class, 'index'])->name('roadmap');
-Route::get('roadmap/{feature}', [App\Http\Controllers\Roadmap\FeatureController::class, 'show'])->name('roadmap.feature.show');
-Route::post('roadmap/{feature}/upvote', [App\Http\Controllers\Roadmap\FeatureController::class, 'upvote'])->name('roadmap.upvote');
-Route::post('roadmap/submit', [App\Http\Controllers\Roadmap\FeatureController::class, 'store'])->name('roadmap.store');
+Route::model('feature', Feature::class);
+Route::get('roadmap', [RoadmapController::class, 'index'])->name('roadmap');
+Route::get('roadmap/{feature}', [FeatureController::class, 'show'])->name('roadmap.feature.show');
+Route::post('roadmap/{feature}/upvote', [FeatureController::class, 'upvote'])->name('roadmap.upvote');
+Route::post('roadmap/submit', [FeatureController::class, 'store'])->name('roadmap.store');
 
-Route::get('spotlights', [\App\Http\Controllers\Spotlights\ApplicationController::class, 'index'])->name('spotlights.application');
-Route::get('spotlights/{campaign}', [\App\Http\Controllers\Spotlights\ApplicationController::class, 'form'])->name('spotlights.form');
-Route::post('spotlights/{campaign}/save', [\App\Http\Controllers\Spotlights\ApplicationController::class, 'save'])->name('spotlights.save');
-Route::post('spotlights/retract/{campaign}', [\App\Http\Controllers\Spotlights\ApplicationController::class, 'retract'])->name('spotlights.retract');
+Route::get('spotlights', [ApplicationController::class, 'index'])->name('spotlights.application');
+Route::get('spotlights/{campaign}', [ApplicationController::class, 'form'])->name('spotlights.form');
+Route::post('spotlights/{campaign}/save', [ApplicationController::class, 'save'])->name('spotlights.save');
+Route::post('spotlights/retract/{campaign}', [ApplicationController::class, 'retract'])->name('spotlights.retract');
 
-Route::get('/validation/{userValidation}', [App\Http\Controllers\User\EmailValidationController::class, 'validateEmail'])->name('validation.email');
+Route::get('/validation/{userValidation}', [EmailValidationController::class, 'validateEmail'])->name('validation.email');
 
 // Game System Search
-Route::get('/search/systems', [App\Http\Controllers\Search\GameSystemSearchController::class, 'index'])->name('search.systems');
+Route::get('/search/systems', [GameSystemSearchController::class, 'index'])->name('search.systems');
 
-Route::get('/r/{referral}', [App\Http\Controllers\ReferralController::class, 'index'])->name('referrals');
+Route::get('/r/{referral}', [ReferralController::class, 'index'])->name('referrals');

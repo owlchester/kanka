@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Visibility;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
@@ -139,7 +140,7 @@ class Ability extends MiscModel
     {
         $entityIds = Arr::get($request, 'entities');
         $count = 0;
-        $visibility = Arr::get($request, 'visibility_id', \App\Enums\Visibility::All);
+        $visibility = Arr::get($request, 'visibility_id', Visibility::All);
         $sync = [];
 
         foreach ($entityIds as $entity) {

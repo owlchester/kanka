@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Facade;
  *
  * @see FormCopyService
  *
- * @mixin \App\Services\FormCopyService
+ * @mixin FormCopyService
  */
 class FormCopy extends Facade
 {

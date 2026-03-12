@@ -61,6 +61,8 @@ use App\Models\TimelineEra;
 use App\Models\User;
 use App\Services\Permissions\RolePermissionService;
 use Carbon\Carbon;
+use Database\Seeders\EntityTypesTableSeeder;
+use Database\Seeders\VisibilitiesTableSeeder;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Support\Facades\Storage;
@@ -83,7 +85,7 @@ abstract class TestCase extends BaseTestCase
 
     public function asUser(bool $subscribed = false): self
     {
-        $user = \App\Models\User::factory()->create();
+        $user = User::factory()->create();
         Passport::actingAs(
             $user,
             ['*']
@@ -112,7 +114,7 @@ abstract class TestCase extends BaseTestCase
 
     public function asPlayer(): self
     {
-        $user2 = \App\Models\User::factory()->create();
+        $user2 = User::factory()->create();
         Passport::actingAs(
             $user2,
             ['*']
@@ -134,7 +136,7 @@ abstract class TestCase extends BaseTestCase
 
     public function withMember(): self
     {
-        $user3 = \App\Models\User::factory()->create();
+        $user3 = User::factory()->create();
 
         CampaignUser::create([
             'campaign_id' => 1,
@@ -151,8 +153,8 @@ abstract class TestCase extends BaseTestCase
 
     public function withCampaign(array $extra = []): self
     {
-        $this->seed(\Database\Seeders\VisibilitiesTableSeeder::class);
-        $this->seed(\Database\Seeders\EntityTypesTableSeeder::class);
+        $this->seed(VisibilitiesTableSeeder::class);
+        $this->seed(EntityTypesTableSeeder::class);
         Storage::fake('s3');
 
         $campaign = Campaign::factory()->create($extra + ['slug' => 'test-campaign']);
