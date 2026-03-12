@@ -68,6 +68,7 @@ class Character extends MiscModel
         'is_personality_pinned',
     ];
 
+
     /**
      * Fields that can be sorted on
      */
