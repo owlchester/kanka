@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Location;
 use App\Models\MiscModel;
 use App\Traits\EntityTypeAware;
+use Illuminate\Contracts\Translation\Translator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -286,7 +287,7 @@ class FilterService
 
     /**
      * @param  string|array  $key
-     * @return array|\Illuminate\Contracts\Translation\Translator|mixed|string|null
+     * @return array|Translator|mixed|string|null
      *
      * @throws \Exception
      */

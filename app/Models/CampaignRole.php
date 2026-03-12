@@ -65,7 +65,7 @@ class CampaignRole extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Campaign, $this>
+     * @return BelongsTo<Campaign, $this>
      */
     public function campaign(): BelongsTo
     {
@@ -73,7 +73,7 @@ class CampaignRole extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CampaignRoleUser, $this>
+     * @return HasMany<CampaignRoleUser, $this>
      */
     public function users(): HasMany
     {
@@ -81,7 +81,7 @@ class CampaignRole extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CampaignDashboardRole, $this>
+     * @return HasMany<CampaignDashboardRole, $this>
      */
     public function dashboardRoles(): HasMany
     {
@@ -114,7 +114,7 @@ class CampaignRole extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CampaignPermission, $this>
+     * @return HasMany<CampaignPermission, $this>
      */
     public function permissions(): HasMany
     {

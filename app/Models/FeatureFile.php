@@ -19,7 +19,7 @@ class FeatureFile extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Feature, $this>
+     * @return BelongsTo<Feature, $this>
      */
     public function feature(): BelongsTo
     {

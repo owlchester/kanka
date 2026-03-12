@@ -28,11 +28,11 @@ class AppRelease extends Model
     public $casts = [
         'published_at' => 'date',
         'end_at' => 'date',
-        'category_id' => \App\Enums\AppReleaseCategory::class,
+        'category_id' => AppReleaseCategory::class,
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\User, $this>
+     * @return BelongsTo<User, $this>
      */
     public function author(): BelongsTo
     {

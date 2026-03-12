@@ -2,14 +2,15 @@
 
 namespace App\Facades;
 
+use App\Services\Caches\QuestCacheService;
 use Illuminate\Support\Facades\Facade;
 
 /**
  * Class QuestCache
  *
- * @see \App\Services\Caches\QuestCacheService
+ * @see QuestCacheService
  *
- * @mixin \App\Services\Caches\QuestCacheService
+ * @mixin QuestCacheService
  */
 class QuestCache extends Facade
 {

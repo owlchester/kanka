@@ -127,7 +127,7 @@ class Location extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Race, $this>
+     * @return BelongsToMany<Race, $this>
      */
     public function races(): BelongsToMany
     {
@@ -135,7 +135,7 @@ class Location extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Creature, $this>
+     * @return BelongsToMany<Creature, $this>
      */
     public function creatures(): BelongsToMany
     {
@@ -143,7 +143,7 @@ class Location extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Entity, $this>
+     * @return BelongsToMany<Entity, $this>
      */
     public function entities(): BelongsToMany
     {
@@ -151,7 +151,7 @@ class Location extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Item, $this>
+     * @return HasMany<Item, $this>
      */
     public function items(): HasMany
     {
@@ -159,7 +159,7 @@ class Location extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Map, $this>
+     * @return HasMany<Map, $this>
      */
     public function maps(): HasMany
     {
@@ -230,7 +230,7 @@ class Location extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Family, $this>
+     * @return HasMany<Family, $this>
      */
     public function families(): HasMany
     {
@@ -238,7 +238,7 @@ class Location extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Journal, $this>
+     * @return HasMany<Journal, $this>
      */
     public function journals(): HasMany
     {
@@ -246,7 +246,7 @@ class Location extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Organisation, $this>
+     * @return BelongsToMany<Organisation, $this>
      */
     public function organisations(): BelongsToMany
     {

@@ -3,8 +3,10 @@
 namespace App\Http\Resources;
 
 use App\Facades\Avatar;
+use App\Models\Entity;
 use App\Models\Item;
 use App\Models\MiscModel;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Route;
 
@@ -36,12 +38,12 @@ class EntityResource extends JsonResource
     }
 
     /**
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return array
      */
     public function toArray($request)
     {
-        /** @var \App\Models\Entity $entity */
+        /** @var Entity $entity */
         $entity = $this->resource;
         $url = $entity->url();
         if ($entity->entityType->isCustom()) {

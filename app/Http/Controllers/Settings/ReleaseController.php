@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Settings;
 use App\Http\Controllers\Controller;
 use App\Models\AppRelease;
 use App\Services\TutorialService;
+use Illuminate\Http\JsonResponse;
 
 class ReleaseController extends Controller
 {
@@ -19,7 +20,7 @@ class ReleaseController extends Controller
     /**
      * Update the user's last viewed release
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function read(AppRelease $appRelease)
     {

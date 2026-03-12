@@ -10,6 +10,15 @@ use App\Http\Requests\StoreCampaignStyle;
 use App\Http\Requests\StoreCampaignTheme;
 use App\Models\Campaign;
 use App\Models\CampaignStyle;
+use App\Models\Theme;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 class StyleController extends Controller
 {
@@ -27,9 +36,9 @@ class StyleController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\JsonResponse
+     * @return Application|Factory|View|JsonResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Campaign $campaign)
     {
@@ -151,7 +160,7 @@ class StyleController extends Controller
         $this->authorize('update', $campaign);
 
         $themes = [null => __('campaigns.themes.none')];
-        foreach (\App\Models\Theme::all() as $theme) {
+        foreach (Theme::all() as $theme) {
             $themes[$theme->id] = $theme->__toString();
         }
 
@@ -172,10 +181,10 @@ class StyleController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      *
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
     public function bulk(Campaign $campaign)
     {
@@ -235,9 +244,9 @@ class StyleController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function toggle(Campaign $campaign, CampaignStyle $campaignStyle)
     {

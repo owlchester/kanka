@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Visibility;
 use App\Facades\Img;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasCampaign;
@@ -75,7 +76,7 @@ class Image extends Model
     ];
 
     public $casts = [
-        'visibility_id' => \App\Enums\Visibility::class,
+        'visibility_id' => Visibility::class,
     ];
 
     protected string $userField = 'created_by';
@@ -85,7 +86,7 @@ class Image extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Image, $this>
+     * @return BelongsTo<Image, $this>
      */
     public function imageFolder(): BelongsTo
     {
@@ -93,7 +94,7 @@ class Image extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Image, $this>
+     * @return HasMany<Image, $this>
      */
     public function images(): HasMany
     {
@@ -101,7 +102,7 @@ class Image extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Image, $this>
+     * @return HasMany<Image, $this>
      */
     public function folders(): HasMany
     {
@@ -110,7 +111,7 @@ class Image extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Entity, $this>
+     * @return HasMany<Entity, $this>
      */
     public function entities(): HasMany
     {
@@ -118,7 +119,7 @@ class Image extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\MapLayer, $this>
+     * @return HasMany<MapLayer, $this>
      */
     public function mapLayers(): HasMany
     {
@@ -126,7 +127,7 @@ class Image extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Inventory, $this>
+     * @return HasMany<Inventory, $this>
      */
     public function inventories(): HasMany
     {
@@ -134,7 +135,7 @@ class Image extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\EntityAsset, $this>
+     * @return HasMany<EntityAsset, $this>
      */
     public function entityAssets(): HasMany
     {
@@ -144,7 +145,7 @@ class Image extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Entity, $this>
+     * @return HasMany<Entity, $this>
      */
     public function headers(): HasMany
     {
@@ -152,7 +153,7 @@ class Image extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\ImageMention, $this>
+     * @return HasMany<ImageMention, $this>
      */
     public function mentions(): HasMany
     {

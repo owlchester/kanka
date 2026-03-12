@@ -11,6 +11,7 @@ use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;
 use App\Traits\Controllers\HasSubview;
 use App\Traits\GuestAuthTrait;
+use Illuminate\Auth\Access\AuthorizationException;
 
 class ManagementController extends Controller
 {
@@ -38,7 +39,7 @@ class ManagementController extends Controller
     }
 
     /**
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function save(Campaign $campaign, Character $character, ManageRaces $request)
     {

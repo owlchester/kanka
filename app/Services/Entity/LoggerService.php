@@ -8,6 +8,7 @@ use App\Models\Conversation;
 use App\Models\Entity;
 use App\Models\EntityLog;
 use App\Models\Location;
+use App\Models\MapMarker;
 use App\Models\MiscModel;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
@@ -256,7 +257,7 @@ class LoggerService
                 return '';
             } elseif ($attribute == 'center_marker_id') {
                 // Maps can have a "centered marker" which gets tricky
-                $originalMarker = \App\Models\MapMarker::where('id', $original)->first();
+                $originalMarker = MapMarker::where('id', $original)->first();
                 if (! empty($originalMarker)) {
                     return (string) $originalMarker->name;
                 }

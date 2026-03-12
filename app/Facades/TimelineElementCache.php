@@ -2,14 +2,15 @@
 
 namespace App\Facades;
 
+use App\Services\Caches\TimelineElementCacheService;
 use Illuminate\Support\Facades\Facade;
 
 /**
  * Class TimelineElementCache
  *
- * @see \App\Services\Caches\TimelineElementCacheService
+ * @see TimelineElementCacheService
  *
- * @mixin \App\Services\Caches\TimelineElementCacheService
+ * @mixin TimelineElementCacheService
  */
 class TimelineElementCache extends Facade
 {

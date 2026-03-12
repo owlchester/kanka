@@ -7,13 +7,16 @@ use App\Http\Resources\OrganisationMemberResource as Resource;
 use App\Models\Campaign;
 use App\Models\Organisation;
 use App\Models\OrganisationMember;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class OrganisationMemberApiController extends ApiController
 {
     /**
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Campaign $campaign, Organisation $organisation)
     {
@@ -37,7 +40,7 @@ class OrganisationMemberApiController extends ApiController
     /**
      * @return resource
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function store(Request $request, Campaign $campaign, Organisation $organisation)
     {
@@ -51,7 +54,7 @@ class OrganisationMemberApiController extends ApiController
     /**
      * @return resource
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function update(
         Request $request,
@@ -67,9 +70,9 @@ class OrganisationMemberApiController extends ApiController
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function destroy(
         \Illuminate\Http\Request $request,

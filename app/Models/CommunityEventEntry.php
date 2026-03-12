@@ -28,7 +28,7 @@ class CommunityEventEntry extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\CommunityEvent, $this>
+     * @return BelongsTo<CommunityEvent, $this>
      */
     public function event(): BelongsTo
     {

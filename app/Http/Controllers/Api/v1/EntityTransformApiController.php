@@ -7,6 +7,7 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityType;
 use App\Services\Entity\TransformService;
+use Illuminate\Auth\Access\AuthorizationException;
 
 class EntityTransformApiController extends ApiController
 {
@@ -20,7 +21,7 @@ class EntityTransformApiController extends ApiController
     }
 
     /**
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function transform(Request $request, Campaign $campaign)
     {

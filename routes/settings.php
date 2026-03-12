@@ -31,6 +31,7 @@ use App\Http\Controllers\Settings\Subscription\CancelledController;
 use App\Http\Controllers\Settings\Subscription\FinishController;
 use App\Http\Controllers\Settings\Subscription\FreeTrialController;
 use App\Http\Controllers\Settings\SubscriptionController;
+use App\Http\Controllers\Settings\TutorialController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProfileController::class, 'index'])->name('settings');
@@ -131,8 +132,8 @@ Route::post('/marketplace', 'Settings\MarketplaceController@save')
 //    ->name('settings.tutorial.disable');
 // Route::get('/tutorial/reset', 'Settings\TutorialController@reset')
 //    ->name('settings.tutorial.reset');
-Route::post('/tutorials/{code}/dismiss', [App\Http\Controllers\Settings\TutorialController::class, 'dismiss'])->name('tutorials.dismiss');
-Route::patch('/tutorials/reset', [App\Http\Controllers\Settings\TutorialController::class, 'reset'])->name('tutorials.reset');
+Route::post('/tutorials/{code}/dismiss', [TutorialController::class, 'dismiss'])->name('tutorials.dismiss');
+Route::patch('/tutorials/reset', [TutorialController::class, 'reset'])->name('tutorials.reset');
 
 // Campaign boosters
 Route::resources([

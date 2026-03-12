@@ -4,15 +4,17 @@ namespace App\Rules;
 
 use App\Facades\CampaignLocalization;
 use App\Models\EntityType;
+use App\Models\Location;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
+use Illuminate\Translation\PotentiallyTranslatedString;
 
 class EntityLocations implements ValidationRule
 {
     /**
      * Run the validation rule.
      *
-     * @param  Closure(string, ?string=): \Illuminate\Translation\PotentiallyTranslatedString  $fail
+     * @param  Closure(string, ?string=): PotentiallyTranslatedString  $fail
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
@@ -24,7 +26,7 @@ class EntityLocations implements ValidationRule
         }
         foreach ($value as $id) {
             if (is_numeric($id)) {
-                if (\App\Models\Location::find($id)) {
+                if (Location::find($id)) {
                     return;
                 }
                 $fail(__('crud.dynamic.unknown', ['module' => $module->name()]));

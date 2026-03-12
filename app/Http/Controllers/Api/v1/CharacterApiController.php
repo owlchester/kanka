@@ -7,13 +7,16 @@ use App\Http\Resources\CharacterResource;
 use App\Models\Campaign;
 use App\Models\Character;
 use App\Models\EntityType;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class CharacterApiController extends ApiController
 {
     /**
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Campaign $campaign)
     {
@@ -30,7 +33,7 @@ class CharacterApiController extends ApiController
     /**
      * @return CharacterResource
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function show(Campaign $campaign, Character $character)
     {
@@ -43,7 +46,7 @@ class CharacterApiController extends ApiController
     /**
      * @return CharacterResource
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function store(Request $request, Campaign $campaign)
     {
@@ -62,7 +65,7 @@ class CharacterApiController extends ApiController
     /**
      * @return CharacterResource
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function update(Request $request, Campaign $campaign, Character $character)
     {
@@ -75,9 +78,9 @@ class CharacterApiController extends ApiController
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function destroy(Campaign $campaign, Character $character)
     {

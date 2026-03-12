@@ -5,7 +5,9 @@ namespace App\Renderers\Layouts;
 use App\Models\Entity;
 use App\Models\MiscModel;
 use App\Traits\CampaignAware;
+use App\View\Components\EntityLink;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Blade;
 
 abstract class Layout
 {
@@ -65,8 +67,8 @@ abstract class Layout
     protected function entityLink(Model|MiscModel|Entity $model): string
     {
         if ($model instanceof Entity) {
-            return \Illuminate\Support\Facades\Blade::renderComponent(
-                new \App\View\Components\EntityLink($model, $this->campaign)
+            return Blade::renderComponent(
+                new EntityLink($model, $this->campaign)
             );
         }
 

@@ -21,7 +21,7 @@ class FamilyTree extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Family, $this>
+     * @return BelongsTo<Family, $this>
      */
     public function family(): BelongsTo
     {

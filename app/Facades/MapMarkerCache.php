@@ -2,14 +2,15 @@
 
 namespace App\Facades;
 
+use App\Services\Caches\MapMarkerCacheService;
 use Illuminate\Support\Facades\Facade;
 
 /**
  * Class MapMarkerCache
  *
- * @see \App\Services\Caches\MapMarkerCacheService
+ * @see MapMarkerCacheService
  *
- * @mixin \App\Services\Caches\MapMarkerCacheService
+ * @mixin MapMarkerCacheService
  */
 class MapMarkerCache extends Facade
 {

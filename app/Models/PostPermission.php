@@ -27,7 +27,7 @@ class PostPermission extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\CampaignRole, $this>
+     * @return BelongsTo<CampaignRole, $this>
      */
     public function role(): BelongsTo
     {
@@ -35,7 +35,7 @@ class PostPermission extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Post, $this>
+     * @return BelongsTo<Post, $this>
      */
     public function post(): BelongsTo
     {

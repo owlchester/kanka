@@ -6,6 +6,7 @@ use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Entity;
+use App\Renderers\Layouts\Mention\Mention;
 use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;
 use App\Traits\GuestAuthTrait;
@@ -22,7 +23,7 @@ class MentionController extends Controller
 
         $options = ['campaign' => $campaign, 'entity' => $entity];
 
-        Datagrid::layout(\App\Renderers\Layouts\Mention\Mention::class)
+        Datagrid::layout(Mention::class)
             ->route('entities.mentions', $options);
         $this->rows = $entity
             ->targetMentions()

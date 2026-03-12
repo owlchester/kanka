@@ -6,6 +6,7 @@ use App\Mail\Subscription\User\ValidationEmail;
 use App\Models\User;
 use App\Models\UserValidation;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -30,7 +31,7 @@ class EmailValidationJob implements ShouldQueue
     }
 
     /**
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws BindingResolutionException
      */
     public function handle()
     {

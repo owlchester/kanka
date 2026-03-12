@@ -6,13 +6,14 @@ use App\Facades\ApiLog;
 use App\Models\Campaign;
 use Closure;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class ApiLogMiddleware
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      */
     public function handle($request, Closure $next)
     {

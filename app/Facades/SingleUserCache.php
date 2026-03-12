@@ -2,14 +2,15 @@
 
 namespace App\Facades;
 
+use App\Services\Caches\UserCacheService;
 use Illuminate\Support\Facades\Facade;
 
 /**
  * Class UserCache
  *
- * @see \App\Services\Caches\UserCacheService
+ * @see UserCacheService
  *
- * @mixin \App\Services\Caches\UserCacheService
+ * @mixin UserCacheService
  */
 class SingleUserCache extends Facade
 {

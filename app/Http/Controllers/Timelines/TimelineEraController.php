@@ -9,9 +9,14 @@ use App\Http\Requests\StoreTimelineEra;
 use App\Models\Campaign;
 use App\Models\Timeline;
 use App\Models\TimelineEra;
+use App\Renderers\Layouts\Timeline\Era;
 use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class TimelineEraController extends Controller
 {
@@ -35,7 +40,7 @@ class TimelineEraController extends Controller
 
         $options = ['campaign' => $campaign, 'timeline' => $timeline->id];
 
-        Datagrid::layout(\App\Renderers\Layouts\Timeline\Era::class)
+        Datagrid::layout(Era::class)
             ->route('timelines.timeline_eras.index', $options);
         $this->rows = $timeline
             ->eras()
@@ -59,9 +64,9 @@ class TimelineEraController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function create(Campaign $campaign, Timeline $timeline)
     {
@@ -75,7 +80,7 @@ class TimelineEraController extends Controller
     }
 
     /**
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function store(Campaign $campaign, Timeline $timeline, StoreTimelineEra $request)
     {
@@ -103,9 +108,9 @@ class TimelineEraController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function edit(Campaign $campaign, Timeline $timeline, TimelineEra $timelineEra)
     {
@@ -121,7 +126,7 @@ class TimelineEraController extends Controller
     }
 
     /**
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function update(StoreTimelineEra $request, Campaign $campaign, Timeline $timeline, TimelineEra $timelineEra)
     {

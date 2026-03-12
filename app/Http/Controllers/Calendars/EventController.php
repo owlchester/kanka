@@ -11,6 +11,7 @@ use App\Models\Calendar;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Post;
+use App\Renderers\Layouts\Calendar\Reminder;
 use App\Services\CalendarService;
 use App\Services\LengthValidatorService;
 use App\Traits\CampaignAware;
@@ -18,6 +19,8 @@ use App\Traits\Controllers\HasDatagrid;
 use App\Traits\Controllers\HasSubview;
 use App\Traits\GuestAuthTrait;
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Str;
 
 class EventController extends Controller
@@ -50,7 +53,7 @@ class EventController extends Controller
             $options['after_id'] = 1;
             $after = true;
         }
-        Datagrid::layout(\App\Renderers\Layouts\Calendar\Reminder::class)
+        Datagrid::layout(Reminder::class)
             ->route('calendars.events', $options)
             ->permissions(! (auth()->check() && auth()->user()->can('update', $calendar)));
 
@@ -138,9 +141,9 @@ class EventController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function eventLength(Campaign $campaign, Calendar $calendar, ValidateReminderLength $request)
     {

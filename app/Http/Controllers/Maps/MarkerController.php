@@ -9,11 +9,17 @@ use App\Http\Requests\StoreMapMarker;
 use App\Models\Campaign;
 use App\Models\Map;
 use App\Models\MapMarker;
+use App\Renderers\Layouts\Map\Marker;
 use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;
 use App\Traits\Controllers\HasSubview;
 use App\Traits\GuestAuthTrait;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class MarkerController extends Controller
 {
@@ -44,7 +50,7 @@ class MarkerController extends Controller
 
         $options = ['campaign' => $campaign, 'map' => $map->id];
 
-        Datagrid::layout(\App\Renderers\Layouts\Map\Marker::class)
+        Datagrid::layout(Marker::class)
             ->route('maps.map_markers.index', $options);
         $this->rows = $map
             ->markers()
@@ -67,9 +73,9 @@ class MarkerController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function create(Request $request, Campaign $campaign, Map $map)
     {
@@ -93,7 +99,7 @@ class MarkerController extends Controller
     }
 
     /**
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function store(Campaign $campaign, Map $map, StoreMapMarker $request)
     {
@@ -128,9 +134,9 @@ class MarkerController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function edit(Campaign $campaign, Map $map, MapMarker $mapMarker, string $from = '')
     {
@@ -151,7 +157,7 @@ class MarkerController extends Controller
     }
 
     /**
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function update(StoreMapMarker $request, Campaign $campaign, Map $map, MapMarker $mapMarker)
     {
@@ -190,9 +196,9 @@ class MarkerController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function destroy(Campaign $campaign, Map $map, MapMarker $mapMarker)
     {

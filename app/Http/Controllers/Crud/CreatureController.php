@@ -8,6 +8,7 @@ use App\Http\Requests\StoreCreature;
 use App\Models\Campaign;
 use App\Models\Creature;
 use App\Models\EntityType;
+use Illuminate\Http\RedirectResponse;
 
 class CreatureController extends CrudController
 {
@@ -22,7 +23,7 @@ class CreatureController extends CrudController
     protected string $filter = CreatureFilter::class;
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function store(Campaign $campaign, StoreCreature $request)
     {

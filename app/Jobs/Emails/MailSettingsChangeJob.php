@@ -5,6 +5,7 @@ namespace App\Jobs\Emails;
 use App\Models\User;
 use App\Services\NewsletterService;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -34,7 +35,7 @@ class MailSettingsChangeJob implements ShouldQueue
     }
 
     /**
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws BindingResolutionException
      */
     public function handle()
     {

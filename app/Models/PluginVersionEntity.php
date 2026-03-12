@@ -30,7 +30,7 @@ class PluginVersionEntity extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\PluginVersion, $this>
+     * @return BelongsTo<PluginVersion, $this>
      */
     public function version(): BelongsTo
     {
@@ -38,7 +38,7 @@ class PluginVersionEntity extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\EntityType, $this>
+     * @return BelongsTo<EntityType, $this>
      */
     public function type(): BelongsTo
     {

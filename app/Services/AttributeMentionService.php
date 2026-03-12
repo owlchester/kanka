@@ -4,6 +4,8 @@ namespace App\Services;
 
 use App\Models\Attribute;
 use App\Models\Entity;
+use ChrisKonnertz\StringCalc\Exceptions\ContainerException;
+use ChrisKonnertz\StringCalc\Exceptions\NotFoundException;
 use ChrisKonnertz\StringCalc\StringCalc;
 use Exception;
 use Illuminate\Support\Collection;
@@ -20,8 +22,8 @@ class AttributeMentionService
     /**
      * Replace references in an attribute name with attribute values for ranges
      *
-     * @throws \ChrisKonnertz\StringCalc\Exceptions\ContainerException
-     * @throws \ChrisKonnertz\StringCalc\Exceptions\NotFoundException
+     * @throws ContainerException
+     * @throws NotFoundException
      */
     public function map(Attribute $attribute, string $field = 'name'): string
     {
@@ -138,8 +140,8 @@ class AttributeMentionService
     /**
      * Replace any attribute mentions in a string and result any math calculations in the resulting string
      *
-     * @throws \ChrisKonnertz\StringCalc\Exceptions\ContainerException
-     * @throws \ChrisKonnertz\StringCalc\Exceptions\NotFoundException
+     * @throws ContainerException
+     * @throws NotFoundException
      */
     protected function calculateAttributeValue(array $data, array $from = []): string
     {

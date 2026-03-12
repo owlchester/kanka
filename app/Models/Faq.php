@@ -75,7 +75,7 @@ class Faq extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\FaqCategory, $this>
+     * @return BelongsTo<FaqCategory, $this>
      */
     public function category(): BelongsTo
     {
@@ -83,7 +83,7 @@ class Faq extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\FaqTranslation, $this>
+     * @return HasMany<FaqTranslation, $this>
      */
     public function translations(): HasMany
     {

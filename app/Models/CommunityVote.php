@@ -47,7 +47,7 @@ class CommunityVote extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CommunityVoteBallot, $this>
+     * @return HasMany<CommunityVoteBallot, $this>
      */
     public function ballots(): HasMany
     {

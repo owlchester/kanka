@@ -10,7 +10,11 @@ use App\Models\TimelineElement;
 use App\Models\TimelineEra;
 use App\Services\MultiEditingService;
 use App\Services\TimelineService;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class TimelineElementController extends Controller
 {
@@ -51,9 +55,9 @@ class TimelineElementController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function create(Request $request, Campaign $campaign, Timeline $timeline)
     {
@@ -70,7 +74,7 @@ class TimelineElementController extends Controller
     }
 
     /**
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function store(Campaign $campaign, Timeline $timeline, StoreTimelineElement $request)
     {
@@ -93,9 +97,9 @@ class TimelineElementController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function edit(Campaign $campaign, Timeline $timeline, TimelineElement $timelineElement)
     {
@@ -121,7 +125,7 @@ class TimelineElementController extends Controller
     }
 
     /**
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function update(StoreTimelineElement $request, Campaign $campaign, Timeline $timeline, TimelineElement $timelineElement)
     {
@@ -158,7 +162,7 @@ class TimelineElementController extends Controller
     }
 
     /**
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function destroy(Campaign $campaign, Timeline $timeline, TimelineElement $timelineElement)
     {

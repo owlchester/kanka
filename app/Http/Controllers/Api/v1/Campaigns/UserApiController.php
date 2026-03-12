@@ -8,6 +8,7 @@ use App\Http\Resources\UserResource;
 use App\Models\Campaign;
 use App\Models\User;
 use App\Services\Campaign\MemberService;
+use Illuminate\Http\JsonResponse;
 
 class UserApiController extends ApiController
 {
@@ -41,7 +42,7 @@ class UserApiController extends ApiController
     /**
      * Add a single user to a role
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function add(UpdateUserRole $request, Campaign $campaign)
     {
@@ -62,7 +63,7 @@ class UserApiController extends ApiController
     /**
      * Remove a role from a user
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function remove(UpdateUserRole $request, Campaign $campaign)
     {
