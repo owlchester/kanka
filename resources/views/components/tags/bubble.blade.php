@@ -7,5 +7,5 @@
     data-tag-id="{{ $tag->id }}"
     data-tag-slug="{{ $tag->slug }}"
     data-entity-id="{{ $tag->entity->id }}">
-    {{ $tag->shortName() }}
+    {!! $tag->shortName() !!}
 </a>

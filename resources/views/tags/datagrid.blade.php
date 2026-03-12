@@ -24,6 +24,18 @@
             }
         ],
         [
+            'label' => __('tags.fields.icon'),
+            'field' => 'icon',
+            'render' => function ($model) {
+                /** @var \App\Models\Tag $model */
+                if (!$model->hasIcon()) {
+                    return '';
+                }
+                return '<i class="' . e($model->icon) . '" aria-hidden="true"></i>';
+            },
+            'class' => 'icon'
+        ],
+        [
             'label' => __('tags.fields.children'),
             'render' => function($model) {
                 return number_format($model->entities_count);

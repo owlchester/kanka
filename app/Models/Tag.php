@@ -25,6 +25,8 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property string $name
  * @property string $type
  * @property string $colour
+ * @property ?string $icon
+ * @property bool|int $icon_in_label
  * @property ?int $tag_id
  * @property bool|int $is_auto_applied
  * @property bool|int $is_hidden
@@ -69,6 +71,8 @@ class Tag extends MiscModel
         'name',
         'slug',
         'colour',
+        'icon',
+        'icon_in_label',
         'tag_id',
         'campaign_id',
         'is_private',
@@ -79,6 +83,7 @@ class Tag extends MiscModel
     protected array $sanitizable = [
         'name',
         'colour',
+        'icon',
     ];
 
     /**
@@ -93,6 +98,8 @@ class Tag extends MiscModel
     protected array $exportFields = [
         'base',
         'colour',
+        'icon',
+        'icon_in_label',
         'is_auto_applied',
         'is_hidden',
     ];
@@ -113,7 +120,7 @@ class Tag extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['tag_id', 'colour', 'is_auto_applied', 'is_hidden'];
+        return ['tag_id', 'colour', 'icon', 'icon_in_label', 'is_auto_applied', 'is_hidden'];
     }
 
     /**
@@ -243,7 +250,7 @@ class Tag extends MiscModel
      */
     public function showProfileInfo(): bool
     {
-        if (! empty($this->colour)) {
+        if (! empty($this->colour) || $this->hasIcon()) {
             return true;
         }
 
@@ -282,6 +289,15 @@ class Tag extends MiscModel
 
     public function shortname(): string
     {
+        if ($this->hasIcon()) {
+            return '<i class="' . e($this->icon) . '" aria-hidden="true"></i>';
+        }
+
         return grapheme_extract($this->name, 1);
+    }
+
+    public function hasIcon(): bool
+    {
+        return ! empty($this->icon);
     }
 }
