@@ -21,7 +21,6 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * Class Location
  *
  * @property string $name
- * @property ?string $title
  * @property string $type
  * @property string $image
  * @property ?string $map
@@ -55,7 +54,6 @@ class Location extends MiscModel
 
     protected $fillable = [
         'name',
-        'title',
         'location_id',
         'campaign_id',
         'is_private',
@@ -64,7 +62,6 @@ class Location extends MiscModel
 
     protected array $sortable = [
         'name',
-        'title',
         'type',
         'parent.name',
         'is_destroyed',
@@ -74,7 +71,6 @@ class Location extends MiscModel
      * Fields that can be sorted on
      */
     protected array $sortableColumns = [
-        'title',
         'is_destroyed',
     ];
 
@@ -87,19 +83,14 @@ class Location extends MiscModel
 
     protected array $exportFields = [
         'base',
+        'title',
         'is_destroyed',
     ];
 
     protected array $exploreGridFields = ['is_destroyed'];
 
-    /**
-     * Searchable fields
-     */
-    protected array $searchableColumns = ['name', 'title'];
-
     protected array $sanitizable = [
         'name',
-        'title',
     ];
 
     public function getParentKeyName()
@@ -123,11 +114,11 @@ class Location extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['title', 'location_id', 'is_destroyed'];
+        return ['location_id', 'is_destroyed'];
     }
 
     /**
-     * @return BelongsToMany<Race, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Race, $this>
      */
     public function races(): BelongsToMany
     {
@@ -135,7 +126,7 @@ class Location extends MiscModel
     }
 
     /**
-     * @return BelongsToMany<Creature, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Creature, $this>
      */
     public function creatures(): BelongsToMany
     {
@@ -143,7 +134,7 @@ class Location extends MiscModel
     }
 
     /**
-     * @return BelongsToMany<Entity, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Entity, $this>
      */
     public function entities(): BelongsToMany
     {
@@ -151,7 +142,7 @@ class Location extends MiscModel
     }
 
     /**
-     * @return HasMany<Item, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Item, $this>
      */
     public function items(): HasMany
     {
@@ -159,7 +150,7 @@ class Location extends MiscModel
     }
 
     /**
-     * @return HasMany<Map, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Map, $this>
      */
     public function maps(): HasMany
     {
@@ -230,7 +221,7 @@ class Location extends MiscModel
     }
 
     /**
-     * @return HasMany<Family, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Family, $this>
      */
     public function families(): HasMany
     {
@@ -238,7 +229,7 @@ class Location extends MiscModel
     }
 
     /**
-     * @return HasMany<Journal, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Journal, $this>
      */
     public function journals(): HasMany
     {
@@ -246,7 +237,7 @@ class Location extends MiscModel
     }
 
     /**
-     * @return BelongsToMany<Organisation, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Organisation, $this>
      */
     public function organisations(): BelongsToMany
     {
@@ -311,39 +302,8 @@ class Location extends MiscModel
     public function filterableColumns(): array
     {
         return [
-            'title',
             'location_id',
             'is_destroyed',
         ];
-    }
-
-    /**
-     * Available sorting on the grid view
-     */
-    public function datagridSortableColumns(): array
-    {
-        $columns = [
-            'name' => __('crud.fields.name'),
-            'type' => __('crud.fields.type'),
-            'title' => __('locations.fields.title'),
-        ];
-
-        if (auth()->check() && auth()->user()->isAdmin()) {
-            $columns['is_private'] = __('crud.fields.is_private');
-        }
-
-        return $columns;
-    }
-
-    /**
-     * Tooltip subtitle
-     */
-    public function tooltipSubtitle(): string
-    {
-        if (empty($this->title)) {
-            return '';
-        }
-
-        return strip_tags($this->title);
     }
 }
