@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -21,10 +22,10 @@ return new class extends Migration
             $table->renameColumn('menu_link_id', 'bookmark_id');
         });
 
-        Illuminate\Support\Facades\DB::update("UPDATE bookmarks SET parent = 'bookmarks' WHERE parent = 'menu_links'");
-        Illuminate\Support\Facades\DB::update("UPDATE bookmarks SET type = 'bookmark' WHERE type = 'menu_link'");
-        Illuminate\Support\Facades\DB::update("UPDATE bookmarks SET menu = 'bookmark' WHERE menu = 'menu_link'");
-        Illuminate\Support\Facades\DB::update("UPDATE bookmarks SET random_entity_type = 'bookmark' WHERE random_entity_type = 'menu_link'");
+        DB::update("UPDATE bookmarks SET parent = 'bookmarks' WHERE parent = 'menu_links'");
+        DB::update("UPDATE bookmarks SET type = 'bookmark' WHERE type = 'menu_link'");
+        DB::update("UPDATE bookmarks SET menu = 'bookmark' WHERE menu = 'menu_link'");
+        DB::update("UPDATE bookmarks SET random_entity_type = 'bookmark' WHERE random_entity_type = 'menu_link'");
     }
 
     /**

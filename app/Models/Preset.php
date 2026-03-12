@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Visibility;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasVisibility;
@@ -35,7 +36,7 @@ class Preset extends Model
 
     public $casts = [
         'config' => 'array',
-        'visibility_id' => \App\Enums\Visibility::class,
+        'visibility_id' => Visibility::class,
     ];
 
     protected array $sanitizable = [
@@ -43,7 +44,7 @@ class Preset extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\PresetType, $this>
+     * @return BelongsTo<PresetType, $this>
      */
     public function type(): BelongsTo
     {

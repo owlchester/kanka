@@ -71,7 +71,7 @@ class DiceRoll extends MiscModel
     /**
      * Who created this entry
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Character, $this>
+     * @return BelongsTo<Character, $this>
      */
     public function character(): BelongsTo
     {
@@ -79,7 +79,7 @@ class DiceRoll extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\DiceRollResult, $this>
+     * @return HasMany<DiceRollResult, $this>
      */
     public function diceRollResults(): HasMany
     {

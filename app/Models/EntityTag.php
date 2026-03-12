@@ -24,7 +24,7 @@ class EntityTag extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Tag, $this>
+     * @return BelongsTo<Tag, $this>
      */
     public function tag(): BelongsTo
     {
@@ -32,7 +32,7 @@ class EntityTag extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     * @return BelongsTo<Entity, $this>
      */
     public function entity(): BelongsTo
     {

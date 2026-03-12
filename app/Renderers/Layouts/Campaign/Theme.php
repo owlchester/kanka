@@ -2,6 +2,7 @@
 
 namespace App\Renderers\Layouts\Campaign;
 
+use App\Models\CampaignStyle;
 use App\Renderers\Layouts\Layout;
 
 class Theme extends Layout
@@ -45,7 +46,7 @@ class Theme extends Layout
             'enabled' => [
                 'key' => 'is_enabled',
                 'label' => 'campaigns/styles.fields.is_enabled',
-                'render' => function (\App\Models\CampaignStyle $model) {
+                'render' => function (CampaignStyle $model) {
                     return $model->is_enabled ? '<i class="fa-regular fa-check-circle" aria-hidden="true"></i><span class="sr-only">' . __('campaigns/styles.fields.is_enabled') . '</span>' : null;
                 },
             ],

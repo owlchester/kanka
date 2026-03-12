@@ -7,13 +7,16 @@ use App\Http\Resources\InventoryResource as Resource;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Inventory;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class EntityInventoryApiController extends ApiController
 {
     /**
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Campaign $campaign, Entity $entity)
     {
@@ -37,7 +40,7 @@ class EntityInventoryApiController extends ApiController
     /**
      * @return resource
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function store(Request $request, Campaign $campaign, Entity $entity)
     {
@@ -64,9 +67,9 @@ class EntityInventoryApiController extends ApiController
 
     /**
      * @param  Request  $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function destroy(
         \Illuminate\Http\Request $request,

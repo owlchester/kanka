@@ -230,7 +230,7 @@ class Quest extends MiscModel
     /**
      * The Quest Giver
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     * @return BelongsTo<Entity, $this>
      */
     public function instigator(): BelongsTo
     {
@@ -240,7 +240,7 @@ class Quest extends MiscModel
     /**
      * The Starting location
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Location, $this>
+     * @return BelongsTo<Location, $this>
      */
     public function location(): BelongsTo
     {
@@ -250,7 +250,7 @@ class Quest extends MiscModel
     /**
      * Elements of the quest
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\QuestElement, $this>
+     * @return HasMany<QuestElement, $this>
      */
     public function elements(): HasMany
     {

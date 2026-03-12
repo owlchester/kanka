@@ -28,7 +28,7 @@ class FaqTranslation extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Faq, $this>
+     * @return BelongsTo<Faq, $this>
      */
     public function faq(): BelongsTo
     {

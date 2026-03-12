@@ -47,7 +47,7 @@ class Feature extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\FeatureCategory, $this>
+     * @return BelongsTo<FeatureCategory, $this>
      */
     public function category(): BelongsTo
     {
@@ -55,7 +55,7 @@ class Feature extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\FeatureStatus, $this>
+     * @return BelongsTo<FeatureStatus, $this>
      */
     public function status(): BelongsTo
     {
@@ -63,7 +63,7 @@ class Feature extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\FeatureVote, $this>
+     * @return HasOne<FeatureVote, $this>
      */
     public function uservote(): HasOne
     {
@@ -72,7 +72,7 @@ class Feature extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\FeatureFile, $this>
+     * @return HasMany<FeatureFile, $this>
      */
     public function featureFiles(): HasMany
     {

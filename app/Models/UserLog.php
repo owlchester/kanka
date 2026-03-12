@@ -61,7 +61,7 @@ class UserLog extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\User, $this>
+     * @return BelongsTo<User, $this>
      */
     public function impersonator(): BelongsTo
     {
@@ -71,7 +71,7 @@ class UserLog extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\User, $this>
+     * @return BelongsTo<User, $this>
      */
     public function user(): BelongsTo
     {

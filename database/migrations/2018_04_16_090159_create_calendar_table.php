@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Entity;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -82,7 +83,7 @@ class CreateCalendarTable extends Migration
             $table->dropColumn('calendars');
         });
 
-        $entities = App\Models\Entity::where(['type' => 'calendar'])->get();
+        $entities = Entity::where(['type' => 'calendar'])->get();
         foreach ($entities as $entity) {
             $entity->delete();
         }

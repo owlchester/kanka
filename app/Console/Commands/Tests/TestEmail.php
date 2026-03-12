@@ -15,6 +15,7 @@ use App\Jobs\Emails\WelcomeEmailJob;
 use App\Jobs\Users\NewPassword;
 use App\Models\Feature;
 use App\Models\Tier;
+use App\Models\User;
 use Illuminate\Console\Command;
 
 class TestEmail extends Command
@@ -41,7 +42,7 @@ class TestEmail extends Command
     public function handle()
     {
         $userId = $this->argument('user');
-        $user = \App\Models\User::findOrFail($userId);
+        $user = User::findOrFail($userId);
 
         $template = $this->argument('template');
         if ($template === 'welcome') {

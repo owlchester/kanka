@@ -6,6 +6,7 @@ use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Location;
+use App\Renderers\Layouts\Location\Event;
 use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;
 use App\Traits\Controllers\HasSubview;
@@ -27,7 +28,7 @@ class EventController extends Controller
         if ($this->filterToDirect()) {
             $filters['locations'] = [$location->id];
         }
-        Datagrid::layout(\App\Renderers\Layouts\Location\Event::class)
+        Datagrid::layout(Event::class)
             ->route('locations.events', $options);
 
         $this->rows = $location

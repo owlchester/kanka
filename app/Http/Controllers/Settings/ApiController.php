@@ -4,8 +4,12 @@ namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\StoreApiToken;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
+use Illuminate\View\View;
 use Laravel\Passport\Client;
 use Laravel\Passport\Token;
 
@@ -22,7 +26,7 @@ class ApiController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function index(Request $request)
     {
@@ -56,9 +60,9 @@ class ApiController extends Controller
     /**
      * Create a new api token form
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|\Illuminate\Contracts\View\View
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function create()
     {

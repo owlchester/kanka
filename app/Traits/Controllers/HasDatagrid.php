@@ -4,13 +4,14 @@ namespace App\Traits\Controllers;
 
 use App\Facades\Datagrid;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Http\JsonResponse;
 
 trait HasDatagrid
 {
     protected LengthAwarePaginator $rows;
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     protected function datagridAjax()
     {

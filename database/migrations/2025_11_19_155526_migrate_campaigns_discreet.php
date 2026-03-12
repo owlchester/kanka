@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\CampaignVisibility;
 use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
@@ -9,7 +10,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $statement = "UPDATE campaigns SET visibility_id = '" . \App\Enums\CampaignVisibility::unlisted->value . "' WHERE visibility_id = '" . \App\Enums\CampaignVisibility::public->value . "' and is_discreet = 1";
+        $statement = "UPDATE campaigns SET visibility_id = '" . CampaignVisibility::unlisted->value . "' WHERE visibility_id = '" . CampaignVisibility::public->value . "' and is_discreet = 1";
         DB::statement($statement);
     }
 

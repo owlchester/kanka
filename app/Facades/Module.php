@@ -2,14 +2,15 @@
 
 namespace App\Facades;
 
+use App\Services\Campaign\ModuleService;
 use Illuminate\Support\Facades\Facade;
 
 /**
  * Class Module
  *
- * @see \App\Services\Campaign\ModuleService
+ * @see ModuleService
  *
- * @mixin \App\Services\Campaign\ModuleService
+ * @mixin ModuleService
  */
 class Module extends Facade
 {

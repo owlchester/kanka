@@ -26,7 +26,7 @@ class CampaignDashboardRole extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\CampaignRole, $this>
+     * @return BelongsTo<CampaignRole, $this>
      */
     public function role(): BelongsTo
     {
@@ -34,7 +34,7 @@ class CampaignDashboardRole extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\CampaignDashboard, $this>
+     * @return BelongsTo<CampaignDashboard, $this>
      */
     public function dashboard(): BelongsTo
     {

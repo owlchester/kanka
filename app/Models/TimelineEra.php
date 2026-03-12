@@ -66,7 +66,7 @@ class TimelineEra extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Timeline, $this>
+     * @return BelongsTo<Timeline, $this>
      */
     public function timeline(): BelongsTo
     {
@@ -74,7 +74,7 @@ class TimelineEra extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\TimelineElement, $this>
+     * @return HasMany<TimelineElement, $this>
      */
     public function elements(): HasMany
     {

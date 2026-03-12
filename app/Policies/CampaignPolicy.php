@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Enums\CampaignFilterType;
 use App\Facades\CampaignCache;
 use App\Facades\EntityPermission;
 use App\Facades\Identity;
@@ -185,7 +186,7 @@ class CampaignPolicy
      */
     public function canOpen(User $user, Campaign $campaign): bool
     {
-        return $campaign->filters->count() === count(\App\Enums\CampaignFilterType::cases())
+        return $campaign->filters->count() === count(CampaignFilterType::cases())
             && $campaign->systems->isNotEmpty()
             && $campaign->genres->isNotEmpty()
             && $campaign->playstyles->isNotEmpty()

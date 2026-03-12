@@ -185,7 +185,7 @@ class Bookmark extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     * @return BelongsTo<Entity, $this>
      */
     public function target(): BelongsTo
     {
@@ -193,7 +193,7 @@ class Bookmark extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     * @return BelongsTo<Entity, $this>
      */
     public function entity(): BelongsTo
     {
@@ -201,7 +201,7 @@ class Bookmark extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\CampaignDashboard, $this>
+     * @return BelongsTo<CampaignDashboard, $this>
      */
     public function dashboard(): BelongsTo
     {
@@ -209,7 +209,7 @@ class Bookmark extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\EntityType, $this>
+     * @return BelongsTo<EntityType, $this>
      */
     public function entityType(): BelongsTo
     {
@@ -217,7 +217,7 @@ class Bookmark extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\EntityType, $this>
+     * @return BelongsTo<EntityType, $this>
      */
     public function randomEntityType(): BelongsTo
     {

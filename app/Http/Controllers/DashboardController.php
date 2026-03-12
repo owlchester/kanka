@@ -8,6 +8,7 @@ use App\Facades\DataLayer;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 use App\Models\CampaignEvent;
+use App\Models\Entity;
 use App\Services\DashboardService;
 
 class DashboardController extends Controller
@@ -115,7 +116,7 @@ class DashboardController extends Controller
             ]);
         }
 
-        $entities = \App\Models\Entity::unmentioned()
+        $entities = Entity::unmentioned()
             ->inTags($widget->tags->pluck('id')->toArray())
             ->inTypes($widget->conf('entity'))
             ->with(['updater'])

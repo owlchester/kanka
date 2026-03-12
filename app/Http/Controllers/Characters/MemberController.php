@@ -6,6 +6,7 @@ use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Character;
+use App\Renderers\Layouts\Character\Organisation;
 use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;
 use App\Traits\Controllers\HasSubview;
@@ -22,7 +23,7 @@ class MemberController extends Controller
     {
         $this->campaign($campaign)->authEntityView($character->entity);
 
-        Datagrid::layout(\App\Renderers\Layouts\Character\Organisation::class)
+        Datagrid::layout(Organisation::class)
             ->route('characters.organisations', [$character]);
 
         $this->rows = $character

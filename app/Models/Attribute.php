@@ -85,7 +85,7 @@ class Attribute extends Model
     protected string $mappedName;
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     * @return BelongsTo<Entity, $this>
      */
     public function entity(): BelongsTo
     {
@@ -93,7 +93,7 @@ class Attribute extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Attribute, $this>
+     * @return BelongsTo<Attribute, $this>
      */
     public function origin(): BelongsTo
     {

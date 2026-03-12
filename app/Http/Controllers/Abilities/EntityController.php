@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAbilityEntity;
 use App\Models\Ability;
 use App\Models\Campaign;
+use App\Renderers\Layouts\Ability\Entity;
 use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;
 use App\Traits\Controllers\HasSubview;
@@ -24,7 +25,7 @@ class EntityController extends Controller
         $this->campaign($campaign)->authEntityView($ability->entity);
 
         $options = ['campaign' => $campaign, 'ability' => $ability];
-        Datagrid::layout(\App\Renderers\Layouts\Ability\Entity::class)
+        Datagrid::layout(Entity::class)
             ->route('abilities.entities', $options);
 
         $this->rows = $ability

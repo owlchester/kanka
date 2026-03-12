@@ -3,13 +3,14 @@
 namespace App\Http\Resources;
 
 use App\Models\Map;
+use Illuminate\Http\Request;
 
 class MapResource extends EntityResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return array
      */
     public function toArray($request)

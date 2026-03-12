@@ -6,6 +6,7 @@ use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Location;
+use App\Renderers\Layouts\Location\Quest;
 use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;
 use App\Traits\Controllers\HasSubview;
@@ -27,7 +28,7 @@ class QuestController extends Controller
         if ($this->filterToDirect()) {
             $filters['location_id'] = $location->id;
         }
-        Datagrid::layout(\App\Renderers\Layouts\Location\Quest::class)
+        Datagrid::layout(Quest::class)
             ->route('locations.quests', $options);
 
         $this->rows = $location

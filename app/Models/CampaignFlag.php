@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Enums\CampaignFlags;
 use App\Models\Concerns\HasCampaign;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property \App\Enums\CampaignFlags $flag
+ * @property CampaignFlags $flag
  * @property string $value
  */
 class CampaignFlag extends Model
@@ -20,6 +21,6 @@ class CampaignFlag extends Model
     ];
 
     public $casts = [
-        'flag' => \App\Enums\CampaignFlags::class,
+        'flag' => CampaignFlags::class,
     ];
 }

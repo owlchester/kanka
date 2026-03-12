@@ -81,7 +81,7 @@ class Plugin extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\PluginVersion, $this>
+     * @return HasMany<PluginVersion, $this>
      */
     public function versions(): HasMany
     {

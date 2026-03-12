@@ -10,6 +10,8 @@ use App\Services\Campaign\ShareService as CampaignShareService;
 use App\Services\Entity\ShareService;
 use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 
 class ShareController extends Controller
@@ -23,9 +25,9 @@ class ShareController extends Controller
     ) {}
 
     /**
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
-    public function setup(Campaign $campaign, Entity $entity): \Illuminate\Contracts\View\View
+    public function setup(Campaign $campaign, Entity $entity): View
     {
         $this->authorize('update', $entity);
 
@@ -36,7 +38,7 @@ class ShareController extends Controller
     }
 
     /**
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function save(StoreShare $request, Campaign $campaign, Entity $entity): JsonResponse
     {

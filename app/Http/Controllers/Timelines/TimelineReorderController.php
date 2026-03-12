@@ -7,6 +7,9 @@ use App\Http\Requests\ReorderTimeline;
 use App\Models\Campaign;
 use App\Models\Timeline;
 use App\Services\TimelineService;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\View\View;
 
 class TimelineReorderController extends Controller
 {
@@ -18,9 +21,9 @@ class TimelineReorderController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Campaign $campaign, Timeline $timeline)
     {
@@ -40,7 +43,7 @@ class TimelineReorderController extends Controller
     }
 
     /**
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function save(Campaign $campaign, Timeline $timeline, ReorderTimeline $request)
     {

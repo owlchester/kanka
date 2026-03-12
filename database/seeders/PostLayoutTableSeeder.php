@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\PostLayout;
 use Illuminate\Database\Seeder;
 
 // use App\Models\PostLayout;
@@ -24,7 +25,7 @@ class PostLayoutTableSeeder extends Seeder
                 $entity_type = config('entities.ids.location');
             }
 
-            $layout = \App\Models\PostLayout::firstOrNew([
+            $layout = PostLayout::firstOrNew([
                 'code' => $code,
             ]);
             if (! $layout->exists) {

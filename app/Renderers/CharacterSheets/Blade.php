@@ -4,6 +4,8 @@ namespace App\Renderers\CharacterSheets;
 
 use Exception;
 use Illuminate\Support\Str;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 class Blade extends Renderer
 {
@@ -118,8 +120,8 @@ class Blade extends Renderer
     /**
      * Build a html list of all variables
      *
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
     protected function debug(mixed $data): string
     {

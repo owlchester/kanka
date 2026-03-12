@@ -2,14 +2,15 @@
 
 namespace App\Facades;
 
+use App\Services\MentionsService;
 use Illuminate\Support\Facades\Facade;
 
 /**
  * Class Mentions
  *
- * @see \App\Services\MentionsService
+ * @see MentionsService
  *
- * @mixin \App\Services\MentionsService
+ * @mixin MentionsService
  */
 class Mentions extends Facade
 {

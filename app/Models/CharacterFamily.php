@@ -29,7 +29,7 @@ class CharacterFamily extends Model
     public $table = 'character_family';
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Character, $this>
+     * @return BelongsTo<Character, $this>
      */
     public function character(): BelongsTo
     {
@@ -37,7 +37,7 @@ class CharacterFamily extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Family, $this>
+     * @return BelongsTo<Family, $this>
      */
     public function family(): BelongsTo
     {

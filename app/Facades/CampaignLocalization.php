@@ -2,14 +2,15 @@
 
 namespace App\Facades;
 
+use App\Services\Campaign\LocalisationService;
 use Illuminate\Support\Facades\Facade;
 
 /**
  * Class CampaignLocalization
  *
- * @mixin \App\Services\Campaign\LocalisationService
+ * @mixin LocalisationService
  *
- * @see \App\Services\Campaign\LocalisationService
+ * @see LocalisationService
  */
 class CampaignLocalization extends Facade
 {

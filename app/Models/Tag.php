@@ -153,7 +153,7 @@ class Tag extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Entity, $this>
+     * @return BelongsToMany<Entity, $this>
      */
     public function entities(): BelongsToMany
     {
@@ -168,7 +168,7 @@ class Tag extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\EntityTag, $this>
+     * @return HasMany<EntityTag, $this>
      */
     public function entityTags(): HasMany
     {
@@ -176,7 +176,7 @@ class Tag extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Post, $this>
+     * @return BelongsToMany<Post, $this>
      */
     public function posts(): BelongsToMany
     {
@@ -191,7 +191,7 @@ class Tag extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\PostTag, $this>
+     * @return HasMany<PostTag, $this>
      */
     public function postTags(): HasMany
     {

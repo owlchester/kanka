@@ -7,13 +7,16 @@ use App\Http\Resources\QuestResource as Resource;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Models\Quest;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class QuestApiController extends ApiController
 {
     /**
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Campaign $campaign)
     {
@@ -41,7 +44,7 @@ class QuestApiController extends ApiController
     /**
      * @return resource
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function store(Request $request, Campaign $campaign)
     {
@@ -71,9 +74,9 @@ class QuestApiController extends ApiController
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function destroy(Campaign $campaign, Quest $quest)
     {

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Visibility;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
@@ -88,7 +89,7 @@ class Relation extends Model
     public string $defaultOrderField = 'relation';
 
     public $casts = [
-        'visibility_id' => \App\Enums\Visibility::class,
+        'visibility_id' => Visibility::class,
     ];
 
     protected array $sanitizable = [
@@ -103,7 +104,7 @@ class Relation extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     * @return BelongsTo<Entity, $this>
      */
     public function owner(): BelongsTo
     {
@@ -111,7 +112,7 @@ class Relation extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     * @return BelongsTo<Entity, $this>
      */
     public function target(): BelongsTo
     {
@@ -119,7 +120,7 @@ class Relation extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Relation, $this>
+     * @return BelongsTo<Relation, $this>
      */
     public function mirror(): BelongsTo
     {

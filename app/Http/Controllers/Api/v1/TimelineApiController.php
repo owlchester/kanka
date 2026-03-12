@@ -7,13 +7,16 @@ use App\Http\Resources\TimelineResource as Resource;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Models\Timeline;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class TimelineApiController extends ApiController
 {
     /**
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Campaign $campaign)
     {
@@ -41,7 +44,7 @@ class TimelineApiController extends ApiController
     /**
      * @return resource
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function store(Request $request, Campaign $campaign)
     {
@@ -70,9 +73,9 @@ class TimelineApiController extends ApiController
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function destroy(Campaign $campaign, Timeline $timeline)
     {

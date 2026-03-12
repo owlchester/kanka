@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class CampaignPlugin extends Model
 {
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Plugin, $this>
+     * @return BelongsTo<Plugin, $this>
      */
     public function plugin(): BelongsTo
     {
@@ -32,7 +32,7 @@ class CampaignPlugin extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Campaign, $this>
+     * @return BelongsTo<Campaign, $this>
      */
     public function campaign(): BelongsTo
     {
@@ -40,7 +40,7 @@ class CampaignPlugin extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\PluginVersion, $this>
+     * @return BelongsTo<PluginVersion, $this>
      */
     public function version(): BelongsTo
     {

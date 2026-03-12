@@ -1,8 +1,10 @@
 <?php
 
+use App\Enums\CampaignVisibility;
+
 it('setup GET')
     ->asUser()
-    ->withCampaign(['visibility_id' => \App\Enums\CampaignVisibility::public->value, 'is_featured' => true])
+    ->withCampaign(['visibility_id' => CampaignVisibility::public->value, 'is_featured' => true])
     ->get('/api/public/campaigns-setup')
     ->assertStatus(200)
     ->assertJsonStructure([
@@ -29,7 +31,7 @@ it('setup GET')
 
 it('public campaigns GET')
     ->asUser()
-    ->withCampaign(['visibility_id' => \App\Enums\CampaignVisibility::public])
+    ->withCampaign(['visibility_id' => CampaignVisibility::public])
     ->get('/api/public/campaigns')
     ->assertStatus(200)
     ->assertJsonStructure([
@@ -49,14 +51,14 @@ it('public campaigns GET')
 
 it('filtering GET 0 results')
     ->asUser()
-    ->withCampaign(['visibility_id' => \App\Enums\CampaignVisibility::public, 'is_featured' => true, 'boost_count' => 0])
+    ->withCampaign(['visibility_id' => CampaignVisibility::public, 'is_featured' => true, 'boost_count' => 0])
     ->get('/api/public/campaigns?is_boosted=1')
     ->assertStatus(200)
     ->assertJsonCount(0, 'campaigns');
 
 it('filtering premium GET')
     ->asUser()
-    ->withCampaign(['visibility_id' => \App\Enums\CampaignVisibility::public, 'boost_count' => 3])
+    ->withCampaign(['visibility_id' => CampaignVisibility::public, 'boost_count' => 3])
     ->get('/api/public/campaigns?is_boosted=1')
     ->assertStatus(200)
     ->assertJsonStructure([
@@ -75,7 +77,7 @@ it('filtering premium GET')
     ]);
 it('filtering locale GET')
     ->asUser()
-    ->withCampaign(['visibility_id' => \App\Enums\CampaignVisibility::public, 'boost_count' => 3, 'locale' => 'fr'])
+    ->withCampaign(['visibility_id' => CampaignVisibility::public, 'boost_count' => 3, 'locale' => 'fr'])
     ->get('/api/public/campaigns?language=fr')
     ->assertStatus(200)
     ->assertJsonCount(1, 'campaigns');

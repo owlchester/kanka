@@ -6,13 +6,18 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateCampaignHeader;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class DashboardHeaderController extends Controller
 {
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function edit(Campaign $campaign, ?CampaignDashboardWidget $campaignDashboardWidget)
     {
@@ -32,9 +37,9 @@ class DashboardHeaderController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function update(UpdateCampaignHeader $request, Campaign $campaign, ?CampaignDashboardWidget $campaignDashboardWidget)
     {

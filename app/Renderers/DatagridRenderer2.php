@@ -11,10 +11,14 @@ use App\Renderers\Layouts\Header;
 use App\Renderers\Layouts\Layout;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
+use App\View\Components\EntityLink;
 use Closure;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use UnitEnum;
 
 class DatagridRenderer2
@@ -211,8 +215,8 @@ class DatagridRenderer2
     }
 
     /**
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
     public function paginationFilters(): array
     {
@@ -241,8 +245,8 @@ class DatagridRenderer2
     /**
      * Allow the ajax init to have custom ordering
      *
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
     public function initOptions(array $config): array
     {
@@ -288,8 +292,8 @@ class DatagridRenderer2
     protected function entityLink(Model $model): string
     {
         if ($model instanceof Entity) {
-            return \Illuminate\Support\Facades\Blade::renderComponent(
-                new \App\View\Components\EntityLink($model, $this->campaign)
+            return Blade::renderComponent(
+                new EntityLink($model, $this->campaign)
             );
         }
 

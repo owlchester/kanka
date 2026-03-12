@@ -3,6 +3,7 @@
 namespace App\Services\QuickCreator;
 
 use App\Http\Requests\StoreCharacter;
+use App\Http\Requests\StoreCustomEntity;
 use App\Http\Requests\StorePost;
 use App\Models\Entity;
 use App\Models\EntityType;
@@ -59,7 +60,7 @@ class ProcessService
         // Prepare the validator
         $requestValidator = '\App\Http\Requests\Store' . ucfirst(Str::camel($this->entityType->code));
         if ($this->entityType->isCustom()) {
-            $requestValidator = \App\Http\Requests\StoreCustomEntity::class;
+            $requestValidator = StoreCustomEntity::class;
         }
 
         /** @var StoreCharacter $validator */

@@ -6,6 +6,7 @@ use App\Facades\Attributes;
 use App\Facades\CampaignLocalization;
 use App\Facades\Domain;
 use App\Models\Attribute;
+use App\Models\Calendar;
 use App\Models\Character;
 use App\Models\Entity;
 use App\Models\EntityAsset;
@@ -21,6 +22,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use TOC\MarkupFixer;
+use TOC\TocGenerator;
 
 class MentionsService
 {
@@ -407,7 +409,7 @@ class MentionsService
                         } elseif (is_string($foreign)) {
                             $data['text'] = $foreign;
                         }
-                        if ($field == 'date' && $entity->child instanceof \App\Models\Calendar) {
+                        if ($field == 'date' && $entity->child instanceof Calendar) {
                             $data['text'] = $entity->child->niceDate();
                         }
                     } elseif (isset($entity->$field) && is_string($entity->$field)) {
@@ -834,7 +836,7 @@ class MentionsService
             $this->markupFixer = new MarkupFixer(null, new TocSlugify);
         }
         // $markupFixer = new MarkupFixer(null, new TocSlugify());
-        $tocGenerator = new \TOC\TocGenerator;
+        $tocGenerator = new TocGenerator;
         $this->text = $this->markupFixer->fix($this->text);
 
         if (! Str::contains($this->text, '{table-of-contents}')) {

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\EntityType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\DB;
 
@@ -10,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        foreach (App\Models\EntityType::default()->get() as $entityType) {
+        foreach (EntityType::default()->get() as $entityType) {
             DB::statement('UPDATE campaign_dashboard_widgets
 SET entity_type_id = ' . $entityType->id . "
 WHERE config like '%\"entity\":\"" . $entityType->code . "\"%'");

@@ -13,6 +13,7 @@ use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
+use Illuminate\View\Factory;
 
 abstract class Renderer
 {
@@ -80,7 +81,7 @@ abstract class Renderer
         }
 
         // We need this for some blade directives like foreach
-        $data['__env'] = app(\Illuminate\View\Factory::class);
+        $data['__env'] = app(Factory::class);
         $data['attributes'] = $allAttributes;
         $data['_abilities'] = $this->abilities();
 

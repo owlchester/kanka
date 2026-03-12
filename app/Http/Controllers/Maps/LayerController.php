@@ -8,10 +8,15 @@ use App\Http\Requests\StoreMapLayer;
 use App\Models\Campaign;
 use App\Models\Map;
 use App\Models\MapLayer;
+use App\Renderers\Layouts\Map\Layer;
 use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;
 use App\Traits\Controllers\HasSubview;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Arr;
+use Illuminate\View\View;
 
 class LayerController extends Controller
 {
@@ -25,7 +30,7 @@ class LayerController extends Controller
 
         $options = ['campaign' => $campaign, 'map' => $map->id];
 
-        Datagrid::layout(\App\Renderers\Layouts\Map\Layer::class)
+        Datagrid::layout(Layer::class)
             ->route('maps.map_layers.index', $options);
         $this->rows = $map
             ->layers()
@@ -64,9 +69,9 @@ class LayerController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function create(Campaign $campaign, Map $map)
     {
@@ -86,7 +91,7 @@ class LayerController extends Controller
     }
 
     /**
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function store(Campaign $campaign, Map $map, StoreMapLayer $request)
     {
@@ -132,9 +137,9 @@ class LayerController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function edit(Campaign $campaign, Map $map, MapLayer $mapLayer)
     {
@@ -158,7 +163,7 @@ class LayerController extends Controller
     }
 
     /**
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function update(StoreMapLayer $request, Campaign $campaign, Map $map, MapLayer $mapLayer)
     {
@@ -191,7 +196,7 @@ class LayerController extends Controller
     }
 
     /**
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function destroy(Campaign $campaign, Map $map, MapLayer $mapLayer)
     {

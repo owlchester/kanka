@@ -4,6 +4,7 @@ namespace App\Http\Resources\Conversation;
 
 use App\Models\Conversation;
 use App\Models\ConversationMessage;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Collection;
 
@@ -12,7 +13,7 @@ class ConversationResource extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return array
      */
     public function toArray($request)

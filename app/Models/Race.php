@@ -125,7 +125,7 @@ class Race extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CharacterRace, $this>
+     * @return HasMany<CharacterRace, $this>
      */
     public function characterRaces(): HasMany
     {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Campaign;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Services\Campaign\Exports\QueueService;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 
 class ExportController extends Controller
@@ -24,7 +25,7 @@ class ExportController extends Controller
     /**
      * Dispatch the campaign export jobs and have the user wait for a bit
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function export(Request $request, Campaign $campaign)
     {

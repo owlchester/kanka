@@ -2,13 +2,14 @@
 
 namespace App\Http\Resources\Api;
 
+use App\Models\EntityType;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class DefaultEntityTypeResource extends JsonResource
 {
     public function toArray($request)
     {
-        /** @var \App\Models\EntityType $entityType */
+        /** @var EntityType $entityType */
         $entityType = $this->resource;
 
         return [

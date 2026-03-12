@@ -1,6 +1,8 @@
 <?php
 
+use App\Facades\EntityPermission;
 use App\Models\User;
+use App\Models\Whiteboard;
 use Illuminate\Support\Facades\Broadcast;
 
 // Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
@@ -8,10 +10,10 @@ use Illuminate\Support\Facades\Broadcast;
 // });
 
 Broadcast::channel('whiteboard.{id}', function (User $user, $id) {
-    $whiteboard = \App\Models\Whiteboard::withInvisible()->findOrFail($id);
+    $whiteboard = Whiteboard::withInvisible()->findOrFail($id);
     $entity = $whiteboard->entity()->withInvisible()->firstOrFail();
 
-    \App\Facades\EntityPermission::campaign($entity->campaign);
+    EntityPermission::campaign($entity->campaign);
     if ($user->can('member', $entity->campaign) && $user->can('view', $entity)) {
         return [
             'id' => $user->id,

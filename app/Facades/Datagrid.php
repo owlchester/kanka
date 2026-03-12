@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Facade;
  *
  * @see DatagridRenderer2
  *
- * @mixin \App\Renderers\DatagridRenderer2
+ * @mixin DatagridRenderer2
  */
 class Datagrid extends Facade
 {

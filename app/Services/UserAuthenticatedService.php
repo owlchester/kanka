@@ -3,11 +3,12 @@
 namespace App\Services;
 
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 
 class UserAuthenticatedService
 {
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function authenticated(User $user)
     {

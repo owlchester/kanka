@@ -8,6 +8,7 @@ use App\Http\Requests\StoreRace;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Models\Race;
+use Illuminate\Http\RedirectResponse;
 
 class RaceController extends CrudController
 {
@@ -22,7 +23,7 @@ class RaceController extends CrudController
     protected string $filter = RaceFilter::class;
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function store(StoreRace $request, Campaign $campaign)
     {

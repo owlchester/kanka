@@ -2,14 +2,15 @@
 
 namespace App\Facades;
 
+use App\Services\Caches\EntityCacheService;
 use Illuminate\Support\Facades\Facade;
 
 /**
  * Class EntityCache
  *
- * @see \App\Services\Caches\EntityCacheService
+ * @see EntityCacheService
  *
- * @mixin \App\Services\Caches\EntityCacheService
+ * @mixin EntityCacheService
  */
 class EntityCache extends Facade
 {

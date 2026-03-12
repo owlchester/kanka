@@ -64,7 +64,7 @@ class FaqCategory extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Faq, $this>
+     * @return HasMany<Faq, $this>
      */
     public function faqs(): HasMany
     {
