@@ -13,7 +13,6 @@ return [
         'panel_title'   => 'Reorder articles',
         'save'          => 'Save new order',
         'success'       => 'Articles reordered.',
-        'title'         => 'Entry :name article reordering',
     ],
     'update'    => [
         'title' => 'Update :entity entry',

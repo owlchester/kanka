@@ -5,7 +5,7 @@
  */
 ?>
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => __('entities/story.reorder.title', ['name' => $entity->name]),
+    'title' => __('entities/story.reorder.panel_title') . " - {$entity->name} - {$campaign->name}",
     'description' => '',
     'breadcrumbs' => false,
     'mainTitle' => false,

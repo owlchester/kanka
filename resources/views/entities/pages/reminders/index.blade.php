@@ -3,7 +3,7 @@
 /** @var \App\Models\EntityEvent $relation */
 ?>
 @extends('layouts.app', [
-    'title' => __('entities/events.show.title', ['name' => $entity->name]),
+    'title' =>  __('crud.tabs.reminders') . " - {$entity->name} - {$campaign->name}",
     'breadcrumbs' => false,
     'mainTitle' => false,
     'bodyClass' => 'entity-reminders'

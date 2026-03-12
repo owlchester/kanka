@@ -1,7 +1,7 @@
 <?php /** @var \App\Models\Entity $entity
  * @var \App\Models\Inventory $item */?>
 @extends('layouts.' . (request()->ajax() || request()->filled('dashboard') ? 'ajax' : 'app'), [
-    'title' => __('entities/attributes.show.title', ['name' => $entity->name]),
+    'title' =>  __('entries/tabs.properties') . " - {$entity->name} - {$campaign->name}",
     'description' => '',
     'breadcrumbs' => false,
     'mainTitle' => false,

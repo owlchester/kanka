@@ -4,7 +4,7 @@ $headerImage = true;
 @endphp
 
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => $entity->name . ' - ' . $entity->entityType->plural(),
+    'title' => $entity->name . ' - ' . $campaign->name,
     'breadcrumbs' => false,
     'canonical' => true,
     'mainTitle' => false,

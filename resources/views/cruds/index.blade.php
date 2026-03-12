@@ -1,6 +1,6 @@
 @extends('layouts.app', [
     'title' => $titleKey ?? __('entities.' . $langKey),
-    'seoTitle' => $titleKey ?? __('entities.' . $langKey) . ' - ' . $campaign->name,
+    'seoTitle' => ($titleKey ?? __('entities.' . $langKey)) . ' - ' . $campaign->name,
 
     'breadcrumbs' => false,
     'canonical' => true,
