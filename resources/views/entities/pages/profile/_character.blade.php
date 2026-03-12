@@ -79,7 +79,7 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
             </ul>
         </x-box>
 
-        @if ($model->is_appearance_pinned && count($appearances) > 0)
+        @if (count($appearances) > 0)
             <div class="character-appearances flex flex-col gap-4 md:gap-6">
                 <h4 class="text-lg">{{ __('characters.sections.appearance') }}</h4>
                 <x-box class="character-appearances grid grid-cols-2 gap-5">
@@ -93,7 +93,7 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
             </div>
         @endif
 
-        @if ($model->is_personality_pinned && ((auth()->check() && auth()->user()->can('personality', $model)) || $model->is_personality_visible) && count($traits) > 0)
+        @if (auth()->check() && auth()->user()->can('personality', $model) && count($traits) > 0)
 
             <div class="character-personalities flex flex-col gap-4 md:gap-6">
                 <div class="flex items-center justify-between gap-2">

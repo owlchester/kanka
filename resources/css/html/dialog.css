@@ -23,7 +23,6 @@ dialog {
     }
 
     article {
-        flex: 1;
         overflow-y: auto;
         overscroll-behavior-y: contain;
         min-block-size: 0;
