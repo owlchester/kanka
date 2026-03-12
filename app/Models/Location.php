@@ -21,6 +21,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * Class Location
  *
  * @property string $name
+ * @property ?string $title
  * @property string $type
  * @property string $image
  * @property ?string $map
@@ -54,6 +55,7 @@ class Location extends MiscModel
 
     protected $fillable = [
         'name',
+        'title',
         'location_id',
         'campaign_id',
         'is_private',
@@ -62,6 +64,7 @@ class Location extends MiscModel
 
     protected array $sortable = [
         'name',
+        'title',
         'type',
         'parent.name',
         'is_destroyed',
@@ -71,6 +74,7 @@ class Location extends MiscModel
      * Fields that can be sorted on
      */
     protected array $sortableColumns = [
+        'title',
         'is_destroyed',
     ];
 
@@ -88,8 +92,14 @@ class Location extends MiscModel
 
     protected array $exploreGridFields = ['is_destroyed'];
 
+    /**
+     * Searchable fields
+     */
+    protected array $searchableColumns = ['name', 'title'];
+
     protected array $sanitizable = [
         'name',
+        'title',
     ];
 
     public function getParentKeyName()
@@ -113,7 +123,7 @@ class Location extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['location_id', 'is_destroyed'];
+        return ['title', 'location_id', 'is_destroyed'];
     }
 
     /**
@@ -301,8 +311,39 @@ class Location extends MiscModel
     public function filterableColumns(): array
     {
         return [
+            'title',
             'location_id',
             'is_destroyed',
         ];
+    }
+
+    /**
+     * Available sorting on the grid view
+     */
+    public function datagridSortableColumns(): array
+    {
+        $columns = [
+            'name' => __('crud.fields.name'),
+            'type' => __('crud.fields.type'),
+            'title' => __('locations.fields.title'),
+        ];
+
+        if (auth()->check() && auth()->user()->isAdmin()) {
+            $columns['is_private'] = __('crud.fields.is_private');
+        }
+
+        return $columns;
+    }
+
+    /**
+     * Tooltip subtitle
+     */
+    public function tooltipSubtitle(): string
+    {
+        if (empty($this->title)) {
+            return '';
+        }
+
+        return strip_tags($this->title);
     }
 }

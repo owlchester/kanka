@@ -37,6 +37,7 @@ class StoreLocation extends FormRequest
     {
         $rules = [
             'name' => 'required|max:191',
+            'title' => 'nullable|string|max:191',
             'entry' => 'nullable|string',
             'type' => 'nullable|string|max:191',
             'location_id' => 'nullable|integer|exists:locations,id',
