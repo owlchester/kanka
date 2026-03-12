@@ -214,7 +214,7 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
             @endif
         </div>
 
-        @if ($entity->isCharacter()&& !empty($entity->child->title))
+        @if (($entity->isCharacter() || $entity->isLocation()) && !empty($entity->child->title))
             <div class="entity-title entity-header-line">
                 {!! $entity->child->title !!}
             </div>

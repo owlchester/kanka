@@ -32,6 +32,7 @@ The list of returned entities can be filtered. The available filters are [availa
         {
             "id": 1,
             "name": "Mordor",
+            "title": "The Dark Land",
             "entry": "\n<p>Lorem Ipsum.</p>\n",
             "image": "{path}",
             "image_full": "{url}",
@@ -69,6 +70,7 @@ To get the details of a single location, use the following endpoint.
     "data": {
         "id": 1,
         "name": "Mordor",
+        "title": "The Dark Land",
         "entry": "\n<p>Lorem Ipsum.</p>\n",
         "image": "{path}",
         "image_full": "{url}",
@@ -105,6 +107,7 @@ To create a location, use the following endpoint.
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
 | `name` | `string` (Required) | Name of the location |
+| `title` | `string` | Title of the location |
 | `entry` | `string` | The html description of the location |
 | `type` | `string` | Type of location |
 | `location_id` | `integer` | The parent location id (where this location is located)|
