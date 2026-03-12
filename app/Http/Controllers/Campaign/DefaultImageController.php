@@ -10,6 +10,10 @@ use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Services\Campaign\DefaultImageService;
 use App\Services\EntityTypeService;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class DefaultImageController extends Controller
 {
@@ -21,9 +25,9 @@ class DefaultImageController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Campaign $campaign)
     {
@@ -42,9 +46,9 @@ class DefaultImageController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function create(Campaign $campaign)
     {
@@ -90,9 +94,9 @@ class DefaultImageController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function destroy(DefaultImageDestroy $request, Campaign $campaign)
     {
@@ -114,9 +118,9 @@ class DefaultImageController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function reset(Campaign $campaign)
     {

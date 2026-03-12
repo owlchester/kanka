@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Contracts\Routing\UrlGenerator;
+use Illuminate\Http\Request;
 
 class PasswordConfirm
 {
@@ -45,7 +46,7 @@ class PasswordConfirm
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @param  string|null  $redirectToRoute
      */
     public function handle($request, Closure $next, $redirectToRoute = null)
@@ -72,7 +73,7 @@ class PasswordConfirm
     /**
      * Determine if the confirmation timeout has expired.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return bool
      */
     protected function shouldConfirmPassword($request)

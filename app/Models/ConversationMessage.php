@@ -54,7 +54,7 @@ class ConversationMessage extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Character, $this>
+     * @return BelongsTo<Character, $this>
      */
     public function character(): BelongsTo
     {
@@ -62,7 +62,7 @@ class ConversationMessage extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Conversation, $this>
+     * @return BelongsTo<Conversation, $this>
      */
     public function conversation(): BelongsTo
     {

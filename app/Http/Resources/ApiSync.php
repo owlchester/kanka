@@ -5,6 +5,7 @@ namespace App\Http\Resources;
 use App\Services\Api\ApiService;
 use Carbon\Carbon;
 use Exception;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Str;
 
@@ -13,7 +14,7 @@ trait ApiSync
     /**
      * Create new anonymous resource collection.
      *
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      */
     public static function collection($resource)
     {

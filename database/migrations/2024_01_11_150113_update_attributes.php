@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -16,7 +17,7 @@ return new class extends Migration
             // $table->tinyInteger('is_hidden')->default(0)->change();
         });
 
-        Illuminate\Support\Facades\DB::raw('ALTER TABLE `attributes` MODIFY `is_hidden` tinyint(1) DEFAULT 0 NOT NULL;');
+        DB::raw('ALTER TABLE `attributes` MODIFY `is_hidden` tinyint(1) DEFAULT 0 NOT NULL;');
     }
 
     /**

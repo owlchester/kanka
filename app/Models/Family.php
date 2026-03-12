@@ -176,7 +176,7 @@ class Family extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\FamilyTree, $this>
+     * @return HasOne<FamilyTree, $this>
      */
     public function familyTree(): HasOne
     {
@@ -194,7 +194,7 @@ class Family extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CharacterFamily, $this>
+     * @return HasMany<CharacterFamily, $this>
      */
     public function pivotMembers(): HasMany
     {

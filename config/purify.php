@@ -1,5 +1,9 @@
 <?php
 
+use App\Definitions\CustomCssDefinitions;
+use App\Definitions\CustomDefinitions;
+use Stevebauman\Purify\Cache\FilesystemDefinitionCache;
+
 return [
 
     /*
@@ -266,9 +270,9 @@ return [
     |
     */
 
-    'definitions' => App\Definitions\CustomDefinitions::class,
+    'definitions' => CustomDefinitions::class,
 
-    'css-definitions' => App\Definitions\CustomCssDefinitions::class,
+    'css-definitions' => CustomCssDefinitions::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -284,7 +288,7 @@ return [
     'serializer' => [
         'disk' => env('FILESYSTEM_DRIVER', 'local'),
         'path' => 'purify',
-        'cache' => Stevebauman\Purify\Cache\FilesystemDefinitionCache::class,
+        'cache' => FilesystemDefinitionCache::class,
     ],
 
     // 'serializer' => [

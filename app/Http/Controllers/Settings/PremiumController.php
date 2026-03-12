@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\User;
 use App\Services\Campaign\BoostService;
+use Illuminate\Http\RedirectResponse;
 
 class PremiumController extends Controller
 {
@@ -66,7 +67,7 @@ class PremiumController extends Controller
     /**
      * Migrate a user to the new system
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function migrate()
     {
@@ -87,7 +88,7 @@ class PremiumController extends Controller
     /**
      * For local debugging
      *
-     * @return \Illuminate\Http\RedirectResponse|void
+     * @return RedirectResponse|void
      */
     public function back()
     {

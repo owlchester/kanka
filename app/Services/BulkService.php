@@ -19,6 +19,7 @@ use App\Traits\EntityTypeAware;
 use App\Traits\RequestAware;
 use App\Traits\UserAware;
 use Exception;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Stevebauman\Purify\Facades\Purify;
@@ -415,7 +416,7 @@ class BulkService
      *
      * @param  string  $template
      *
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws BindingResolutionException
      */
     public function templates(string|int $template): int
     {

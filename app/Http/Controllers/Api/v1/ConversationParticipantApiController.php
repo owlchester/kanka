@@ -7,13 +7,17 @@ use App\Http\Resources\ConversationParticipantResource as Resource;
 use App\Models\Campaign;
 use App\Models\Conversation;
 use App\Models\ConversationParticipant;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class ConversationParticipantApiController extends ApiController
 {
     /**
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Campaign $campaign, Conversation $conversation)
     {
@@ -40,7 +44,7 @@ class ConversationParticipantApiController extends ApiController
     /**
      * @return resource
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function store(RequestParticipant $requestParticipant, Campaign $campaign, Conversation $conversation)
     {
@@ -68,12 +72,12 @@ class ConversationParticipantApiController extends ApiController
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function destroy(
-        \Illuminate\Http\Request $request,
+        Request $request,
         Campaign $campaign,
         Conversation $conversation,
         ConversationParticipant $conversationParticipant

@@ -5,13 +5,14 @@ namespace App\Http\Middleware\Campaigns;
 use App\Facades\Domain;
 use App\Models\Campaign;
 use Closure;
+use Illuminate\Http\Request;
 
 class Superboosted
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      */
     public function handle($request, Closure $next)
     {

@@ -7,15 +7,27 @@ use App\Facades\Domain;
 use App\Models\Campaign;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Broadcasting\BroadcastException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Exceptions\ThrottleRequestsException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Session\TokenMismatchException;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use Laravel\Passport\Exceptions\OAuthServerException;
+use Livewire\Features\SupportLockedProperties\CannotUpdateLockedPropertyException;
 use Sentry\Laravel\Integration;
+use Symfony\Component\Console\Exception\CommandNotFoundException;
+use Symfony\Component\Console\Exception\NamespaceNotFoundException;
+use Symfony\Component\ErrorHandler\Error\FatalError;
 use Symfony\Component\HttpKernel\Exception\HttpException as SymHttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Mailer\Exception\HttpTransportException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -27,13 +39,13 @@ class Handler extends ExceptionHandler
      */
     protected $dontReport = [
         \League\OAuth2\Server\Exception\OAuthServerException::class,
-        \Symfony\Component\Console\Exception\NamespaceNotFoundException::class,
-        \Symfony\Component\Console\Exception\CommandNotFoundException::class,
-        \Symfony\Component\Mailer\Exception\HttpTransportException::class,
-        \Symfony\Component\ErrorHandler\Error\FatalError::class,
-        \Laravel\Passport\Exceptions\OAuthServerException::class,
-        \Livewire\Features\SupportLockedProperties\CannotUpdateLockedPropertyException::class,
-        \Illuminate\Broadcasting\BroadcastException::class,
+        NamespaceNotFoundException::class,
+        CommandNotFoundException::class,
+        HttpTransportException::class,
+        FatalError::class,
+        OAuthServerException::class,
+        CannotUpdateLockedPropertyException::class,
+        BroadcastException::class,
         NotFoundHttpException::class,
     ];
 
@@ -47,14 +59,14 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Symfony\Component\HttpFoundation\Response
+     * @param  Request  $request
+     * @return JsonResponse|RedirectResponse|Response|\Symfony\Component\HttpFoundation\Response
      *
      * @throws Throwable
      */
     public function render($request, Throwable $exception)
     {
-        if ($exception instanceof \Illuminate\Session\TokenMismatchException) {
+        if ($exception instanceof TokenMismatchException) {
             return redirect()
                 ->back()
                 ->withInput($request->all())
@@ -102,8 +114,8 @@ class Handler extends ExceptionHandler
     /**
      * Unauthenticated exception handler
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @param  Request  $request
+     * @return JsonResponse|RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     protected function unauthenticated($request, AuthenticationException $exception)
     {
@@ -118,7 +130,7 @@ class Handler extends ExceptionHandler
     /**
      * Handle all errors that happen in the API
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     protected function handleApiErrors(Throwable $exception)
     {

@@ -8,6 +8,7 @@ use App\Http\Requests\StoreMapGroup;
 use App\Models\Campaign;
 use App\Models\Map;
 use App\Models\MapGroup;
+use App\Renderers\Layouts\Map\Group;
 use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;
 use App\Traits\Controllers\HasSubview;
@@ -28,7 +29,7 @@ class GroupController extends Controller
 
         $options = ['map' => $map->id];
 
-        Datagrid::layout(\App\Renderers\Layouts\Map\Group::class)
+        Datagrid::layout(Group::class)
             ->route('maps.map_groups.index', $options);
         $this->rows = $map
             ->groups()

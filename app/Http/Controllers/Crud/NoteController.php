@@ -8,6 +8,7 @@ use App\Http\Requests\StoreNote;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Models\Note;
+use Illuminate\Http\RedirectResponse;
 
 class NoteController extends CrudController
 {
@@ -22,7 +23,7 @@ class NoteController extends CrudController
     protected string $filter = NoteFilter::class;
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function store(StoreNote $request, Campaign $campaign)
     {

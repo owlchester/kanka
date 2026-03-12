@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCharacterRace;
 use App\Models\Campaign;
 use App\Models\Race;
+use App\Renderers\Layouts\Race\Character;
 use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;
 use App\Traits\Controllers\HasSubview;
@@ -28,7 +29,7 @@ class MemberController extends Controller
         if ($this->filterToDirect()) {
             $relation = 'characters';
         }
-        Datagrid::layout(\App\Renderers\Layouts\Race\Character::class)
+        Datagrid::layout(Character::class)
             ->route('races.characters', $options);
         $this->rows = $race
             ->{$relation}()

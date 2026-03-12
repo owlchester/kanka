@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use App\Enums\Widget;
+use App\Facades\Dashboard;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Taggable;
 use App\Services\FilterService;
 use Exception;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -65,7 +67,7 @@ class CampaignDashboardWidget extends Model
     protected LengthAwarePaginator $cachedEntities;
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     * @return BelongsTo<Entity, $this>
      */
     public function entity(): BelongsTo
     {
@@ -73,7 +75,7 @@ class CampaignDashboardWidget extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\EntityType, $this>
+     * @return BelongsTo<EntityType, $this>
      */
     public function entityType(): BelongsTo
     {
@@ -81,7 +83,7 @@ class CampaignDashboardWidget extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\CampaignDashboard, $this>
+     * @return BelongsTo<CampaignDashboard, $this>
      */
     public function dashboard(): BelongsTo
     {
@@ -89,10 +91,10 @@ class CampaignDashboardWidget extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<
-     *     \App\Models\Tag,
+     * @return BelongsToMany<
+     *     Tag,
      *     $this,
-     *     \App\Models\CampaignDashboardWidgetTag
+     *     CampaignDashboardWidgetTag
      * >
      */
     public function tags(): BelongsToMany
@@ -108,7 +110,7 @@ class CampaignDashboardWidget extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CampaignDashboardWidgetTag, $this>
+     * @return HasMany<CampaignDashboardWidgetTag, $this>
      */
     public function dashboardWidgetTags(): HasMany
     {
@@ -347,7 +349,7 @@ class CampaignDashboardWidget extends Model
      * Get a random entity
      * Todo: refactor this code with the code from the quick link?
      *
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws BindingResolutionException
      */
     public function randomEntity()
     {
@@ -358,7 +360,7 @@ class CampaignDashboardWidget extends Model
                 return $base
                     ->filter($this->filterOptions())
                     ->inTags($this->tags->pluck('id')->toArray())
-                    ->whereNotIn('entities.id', \App\Facades\Dashboard::excluding())
+                    ->whereNotIn('entities.id', Dashboard::excluding())
                     ->inTypes($this->entityType->id)
                     ->with(['image', 'entityType', 'header', 'tags'])
                     // We cannot use inRandomOrder, because for some reason, when copled with livewire, it always returns RAND(0)
@@ -392,7 +394,7 @@ class CampaignDashboardWidget extends Model
         return $base
             ->inTags($this->tags->pluck('id')->toArray())
             ->whereNotIn('type_id', [config('entities.ids.attribute_template'), config('entities.ids.conversation'), config('entities.ids.tag')])
-            ->whereNotIn('entities.id', \App\Facades\Dashboard::excluding())
+            ->whereNotIn('entities.id', Dashboard::excluding())
             ->inTypes($this->entityType?->id)
             ->with(['image', 'entityType', 'header', 'tags'])
             ->orderByRaw('RAND()')

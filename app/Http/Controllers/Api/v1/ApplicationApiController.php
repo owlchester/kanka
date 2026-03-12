@@ -8,6 +8,9 @@ use App\Http\Resources\ApplicationResource as Resource;
 use App\Models\Application;
 use App\Models\Campaign;
 use App\Services\Campaign\ApplicationService;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class ApplicationApiController extends ApiController
 {
@@ -17,9 +20,9 @@ class ApplicationApiController extends ApiController
     }
 
     /**
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Campaign $campaign)
     {
@@ -41,7 +44,7 @@ class ApplicationApiController extends ApiController
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function reject(RejectApplication $request, Campaign $campaign, Application $application)
     {
@@ -59,7 +62,7 @@ class ApplicationApiController extends ApiController
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function approve(ApproveApplication $request, Campaign $campaign, Application $application)
     {

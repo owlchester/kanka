@@ -13,6 +13,9 @@ use App\Services\Entity\Connections\RelatedService;
 use App\Services\Entity\RelationService;
 use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\View\View;
 
 class RelationController extends Controller
 {
@@ -95,9 +98,9 @@ class RelationController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function create(Campaign $campaign, Entity $entity)
     {

@@ -8,6 +8,9 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\Entity\InventoryService;
 use App\Traits\GuestAuthTrait;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\View\View;
 
 class GenerateInventoryController extends Controller
 {
@@ -16,9 +19,9 @@ class GenerateInventoryController extends Controller
     public function __construct(protected InventoryService $service) {}
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Campaign $campaign, Entity $entity)
     {

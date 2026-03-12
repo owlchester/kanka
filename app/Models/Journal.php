@@ -148,7 +148,7 @@ class Journal extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Character, $this>
+     * @return BelongsTo<Character, $this>
      */
     public function character(): BelongsTo
     {
@@ -156,7 +156,7 @@ class Journal extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     * @return BelongsTo<Entity, $this>
      */
     public function author(): BelongsTo
     {

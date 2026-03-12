@@ -7,6 +7,11 @@ use App\Http\Requests\ReorderBookmarks;
 use App\Models\Bookmark;
 use App\Models\Campaign;
 use App\Services\BookmarkService;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class ReorderController extends Controller
 {
@@ -18,9 +23,9 @@ class ReorderController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Campaign $campaign)
     {
@@ -35,9 +40,9 @@ class ReorderController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function save(ReorderBookmarks $request, Campaign $campaign)
     {

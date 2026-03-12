@@ -20,7 +20,7 @@ class CampaignDashboardWidgetTag extends Pivot
     public $table = 'campaign_dashboard_widget_tags';
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Tag, $this>
+     * @return BelongsTo<Tag, $this>
      */
     public function tag(): BelongsTo
     {
@@ -28,7 +28,7 @@ class CampaignDashboardWidgetTag extends Pivot
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\CampaignDashboardWidget, $this>
+     * @return BelongsTo<CampaignDashboardWidget, $this>
      */
     public function widget(): BelongsTo
     {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Entity;
 use App\Models\Item;
 use App\Models\MiscModel;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -17,7 +18,7 @@ class ModelResource extends JsonResource
      */
     public function entity(array $prepared = [])
     {
-        /** @var MiscModel|\App\Models\Entity|Item $model */
+        /** @var MiscModel|Entity|Item $model */
         $model = $this->resource;
         $merged = [
             'id' => $model->id,

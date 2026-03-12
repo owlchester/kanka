@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Campaign\Plugins;
 use App\Facades\CampaignCache;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
+use Illuminate\Support\Facades\Response;
 
 class CssController extends Controller
 {
@@ -15,7 +16,7 @@ class CssController extends Controller
             $css = CampaignCache::campaign($campaign)->themes();
         }
 
-        $response = \Illuminate\Support\Facades\Response::make($css);
+        $response = Response::make($css);
         $response->header('Content-Type', 'text/css');
         // $response->header('Expires', Carbon::now()->addMonth()->toDateTimeString());
         $month = 31536000;

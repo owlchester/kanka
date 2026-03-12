@@ -28,7 +28,7 @@ class TierPrice extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Tier, $this>
+     * @return BelongsTo<Tier, $this>
      */
     public function tier(): BelongsTo
     {

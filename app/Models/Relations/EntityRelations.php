@@ -4,13 +4,17 @@ namespace App\Models\Relations;
 
 use App\Enums\EntityAssetType;
 use App\Enums\EntityEventTypes;
+use App\Models\Ability;
 use App\Models\Attribute;
+use App\Models\AttributeTemplate;
+use App\Models\Calendar;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 use App\Models\CampaignPermission;
 use App\Models\Character;
 use App\Models\Conversation;
 use App\Models\Creature;
+use App\Models\DiceRoll;
 use App\Models\Entity;
 use App\Models\EntityAbility;
 use App\Models\EntityAsset;
@@ -19,20 +23,29 @@ use App\Models\EntityLog;
 use App\Models\EntityTag;
 use App\Models\EntityType;
 use App\Models\EntityUser;
+use App\Models\Event;
+use App\Models\Family;
 use App\Models\Image;
 use App\Models\Inventory;
+use App\Models\Item;
 use App\Models\Journal;
+use App\Models\Location;
 use App\Models\Map;
+use App\Models\MapMarker;
 use App\Models\MiscModel;
+use App\Models\Note;
 use App\Models\Organisation;
 use App\Models\Post;
 use App\Models\Quest;
+use App\Models\QuestElement;
 use App\Models\Race;
 use App\Models\Relation;
 use App\Models\Reminder;
 use App\Models\Tag;
 use App\Models\Timeline;
+use App\Models\TimelineElement;
 use App\Models\User;
+use App\Models\Whiteboard;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -89,7 +102,7 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
 trait EntityRelations
 {
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\EntityType, $this>
+     * @return BelongsTo<EntityType, $this>
      */
     public function entityType(): BelongsTo
     {
@@ -97,7 +110,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Attribute, $this>
+     * @return HasMany<Attribute, $this>
      */
     public function attributes(): HasMany
     {
@@ -122,7 +135,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\EntityLocation, $this>
+     * @return HasMany<EntityLocation, $this>
      */
     public function entityLocations(): HasMany
     {
@@ -130,7 +143,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\AttributeTemplate, $this>
+     * @return HasOne<AttributeTemplate, $this>
      */
     public function attributeTemplate(): HasOne
     {
@@ -138,7 +151,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\Ability, $this>
+     * @return HasOne<Ability, $this>
      */
     public function ability(): HasOne
     {
@@ -146,7 +159,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\Character, $this>
+     * @return HasOne<Character, $this>
      */
     public function character(): HasOne
     {
@@ -154,7 +167,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\DiceRoll, $this>
+     * @return HasOne<DiceRoll, $this>
      */
     public function diceRoll(): HasOne
     {
@@ -162,7 +175,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\Event, $this>
+     * @return HasOne<Event, $this>
      */
     public function event(): HasOne
     {
@@ -170,7 +183,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\Family, $this>
+     * @return HasOne<Family, $this>
      */
     public function family(): HasOne
     {
@@ -178,7 +191,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\Item, $this>
+     * @return HasOne<Item, $this>
      */
     public function item(): HasOne
     {
@@ -186,7 +199,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\Journal, $this>
+     * @return HasOne<Journal, $this>
      */
     public function journal(): HasOne
     {
@@ -194,7 +207,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\Location, $this>
+     * @return HasOne<Location, $this>
      */
     public function location(): HasOne
     {
@@ -202,7 +215,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\Map, $this>
+     * @return HasOne<Map, $this>
      */
     public function map(): HasOne
     {
@@ -210,7 +223,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\Note, $this>
+     * @return HasOne<Note, $this>
      */
     public function note(): HasOne
     {
@@ -218,7 +231,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\Organisation, $this>
+     * @return HasOne<Organisation, $this>
      */
     public function organisation(): HasOne
     {
@@ -226,7 +239,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\Quest, $this>
+     * @return HasOne<Quest, $this>
      */
     public function quest(): HasOne
     {
@@ -234,7 +247,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\Calendar, $this>
+     * @return HasOne<Calendar, $this>
      */
     public function calendar(): HasOne
     {
@@ -242,7 +255,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\Tag, $this>
+     * @return HasOne<Tag, $this>
      */
     public function tag(): HasOne
     {
@@ -250,7 +263,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\Timeline, $this>
+     * @return HasOne<Timeline, $this>
      */
     public function timeline(): HasOne
     {
@@ -258,7 +271,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\Whiteboard, $this>
+     * @return HasOne<Whiteboard, $this>
      */
     public function whiteboard(): HasOne
     {
@@ -266,7 +279,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\EntityTag, $this>
+     * @return HasMany<EntityTag, $this>
      */
     public function entityTags(): HasMany
     {
@@ -274,7 +287,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Inventory, $this>
+     * @return HasMany<Inventory, $this>
      */
     public function inventories(): HasMany
     {
@@ -282,7 +295,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\TimelineElement, $this>
+     * @return HasMany<TimelineElement, $this>
      */
     public function timelines(): HasMany
     {
@@ -290,7 +303,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\EntityAbility, $this>
+     * @return HasMany<EntityAbility, $this>
      */
     public function abilities(): HasMany
     {
@@ -298,7 +311,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\QuestElement, $this>
+     * @return HasMany<QuestElement, $this>
      */
     public function quests(): HasMany
     {
@@ -306,7 +319,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\Conversation, $this>
+     * @return HasOne<Conversation, $this>
      */
     public function conversation(): HasOne
     {
@@ -314,7 +327,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\Race, $this>
+     * @return HasOne<Race, $this>
      */
     public function race(): HasOne
     {
@@ -322,7 +335,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\Creature, $this>
+     * @return HasOne<Creature, $this>
      */
     public function creature(): HasOne
     {
@@ -330,7 +343,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CampaignDashboardWidget, $this>
+     * @return HasMany<CampaignDashboardWidget, $this>
      */
     public function widgets(): HasMany
     {
@@ -338,7 +351,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Relation, $this>
+     * @return HasMany<Relation, $this>
      */
     public function relationships(): HasMany
     {
@@ -357,7 +370,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Relation, $this>
+     * @return HasMany<Relation, $this>
      */
     public function targetRelationships(): HasMany
     {
@@ -365,7 +378,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Post, $this>
+     * @return HasMany<Post, $this>
      */
     public function posts(): HasMany
     {
@@ -398,7 +411,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany<\App\Models\Reminder, $this>
+     * @return MorphMany<Reminder, $this>
      */
     public function reminders(): MorphMany
     {
@@ -417,7 +430,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphOne<\App\Models\Reminder, $this>
+     * @return MorphOne<Reminder, $this>
      */
     public function calendarDate(): MorphOne
     {
@@ -433,7 +446,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany<\App\Models\EntityLog, $this>
+     * @return MorphMany<EntityLog, $this>
      */
     public function logs(): MorphMany
     {
@@ -441,7 +454,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CampaignPermission, $this>
+     * @return HasMany<CampaignPermission, $this>
      */
     public function permissions(): HasMany
     {
@@ -449,7 +462,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\MapMarker, $this>
+     * @return HasMany<MapMarker, $this>
      */
     public function mapMarkers(): HasMany
     {
@@ -457,7 +470,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Journal, $this>
+     * @return HasMany<Journal, $this>
      */
     public function authoredJournals(): HasMany
     {
@@ -467,7 +480,7 @@ trait EntityRelations
     /**
      * Entity image stored in the gallery
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\Image, $this>
+     * @return HasOne<Image, $this>
      */
     public function image(): HasOne
     {
@@ -477,7 +490,7 @@ trait EntityRelations
     /**
      * Header image stored in the gallery
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\Image, $this>
+     * @return HasOne<Image, $this>
      */
     public function header(): HasOne
     {
@@ -494,7 +507,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\EntityAsset, $this>
+     * @return HasMany<EntityAsset, $this>
      */
     public function assets(): HasMany
     {
@@ -517,10 +530,10 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<
-     *     \App\Models\User,
+     * @return BelongsToMany<
+     *     User,
      *     $this,
-     *     \App\Models\EntityUser
+     *     EntityUser
      * >
      */
     public function editingUsers(): BelongsToMany

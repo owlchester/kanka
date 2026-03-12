@@ -12,6 +12,13 @@ use App\Renderers\DatagridRenderer;
 use App\Services\AttributeService;
 use App\Services\Entity\RelationService;
 use App\Services\FilterService;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class RelationController extends CrudController
 {
@@ -57,9 +64,9 @@ class RelationController extends CrudController
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     * @return Application|Factory|\Illuminate\Contracts\View\View|Response
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function create(Campaign $campaign)
     {
@@ -76,9 +83,9 @@ class RelationController extends CrudController
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     * @return JsonResponse|RedirectResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function store(StoreRelation $request, Campaign $campaign)
     {
@@ -159,7 +166,7 @@ class RelationController extends CrudController
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function show(Campaign $campaign, Relation $relation)
     {
@@ -168,9 +175,9 @@ class RelationController extends CrudController
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function edit(Campaign $campaign, Relation $relation)
     {
@@ -189,9 +196,9 @@ class RelationController extends CrudController
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     * @return JsonResponse|RedirectResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function update(StoreRelation $request, Campaign $campaign, Relation $relation)
     {

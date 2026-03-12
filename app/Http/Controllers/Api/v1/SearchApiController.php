@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api\v1;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\EntityTypeService;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class SearchApiController extends ApiController
 {
@@ -17,9 +19,9 @@ class SearchApiController extends ApiController
     public function __construct(protected EntityTypeService $entityTypeService) {}
 
     /**
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Request $request, Campaign $campaign, ?string $search = null)
     {

@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 trait HasLocation
 {
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Location, $this>
+     * @return BelongsTo<Location, $this>
      */
     public function location(): BelongsTo
     {

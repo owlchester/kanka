@@ -2,14 +2,15 @@
 
 namespace App\Facades;
 
+use App\Services\Caches\BookmarkCacheService;
 use Illuminate\Support\Facades\Facade;
 
 /**
  * Class BookmarkCache
  *
- * @see \App\Services\Caches\BookmarkCacheService
+ * @see BookmarkCacheService
  *
- * @mixin \App\Services\Caches\BookmarkCacheService
+ * @mixin BookmarkCacheService
  */
 class BookmarkCache extends Facade
 {

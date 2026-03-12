@@ -67,12 +67,12 @@ class OrganisationMember extends Model
     ];
 
     public $casts = [
-        'status_id' => \App\Enums\OrganisationMemberStatus::class,
-        'pin_id' => \App\Enums\OrganisationMemberPin::class,
+        'status_id' => OrganisationMemberStatus::class,
+        'pin_id' => OrganisationMemberPin::class,
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Character, $this>
+     * @return BelongsTo<Character, $this>
      */
     public function character(): BelongsTo
     {
@@ -80,7 +80,7 @@ class OrganisationMember extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Organisation, $this>
+     * @return BelongsTo<Organisation, $this>
      */
     public function organisation(): BelongsTo
     {
@@ -88,7 +88,7 @@ class OrganisationMember extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\OrganisationMember, $this>
+     * @return BelongsTo<OrganisationMember, $this>
      */
     public function parent(): BelongsTo
     {

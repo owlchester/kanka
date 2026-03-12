@@ -34,7 +34,7 @@ class CampaignUser extends Pivot
     protected $fillable = ['user_id', 'campaign_id'];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Campaign, $this>
+     * @return BelongsTo<Campaign, $this>
      */
     public function campaign(): BelongsTo
     {
@@ -44,7 +44,7 @@ class CampaignUser extends Pivot
     /**
      * Get the user's roles
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough<\App\Models\CampaignRole, \App\Models\CampaignRoleUser, $this>
+     * @return HasManyThrough<CampaignRole, CampaignRoleUser, $this>
      */
     public function roles(): HasManyThrough
     {

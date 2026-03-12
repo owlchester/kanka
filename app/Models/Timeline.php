@@ -101,7 +101,7 @@ class Timeline extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Calendar, $this>
+     * @return BelongsTo<Calendar, $this>
      */
     public function calendar(): BelongsTo
     {
@@ -109,7 +109,7 @@ class Timeline extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\TimelineEra, $this>
+     * @return HasMany<TimelineEra, $this>
      */
     public function eras(): HasMany
     {
@@ -117,7 +117,7 @@ class Timeline extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\TimelineElement, $this>
+     * @return HasMany<TimelineElement, $this>
      */
     public function elements(): HasMany
     {

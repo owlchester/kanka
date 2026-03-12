@@ -8,6 +8,8 @@ use App\Http\Resources\FamilyTreeResource as Resource;
 use App\Models\Campaign;
 use App\Models\Family;
 use App\Services\Families\FamilyTreeService;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
 
 class FamilyTreeApiController extends ApiController
 {
@@ -31,9 +33,9 @@ class FamilyTreeApiController extends ApiController
     }
 
     /**
-     * @return resource | \Illuminate\Http\JsonResponse
+     * @return resource | JsonResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function store(Request $request, Campaign $campaign, Family $family)
     {
@@ -57,9 +59,9 @@ class FamilyTreeApiController extends ApiController
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function destroy(Campaign $campaign, Family $family)
     {

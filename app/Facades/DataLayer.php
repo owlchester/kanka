@@ -2,14 +2,15 @@
 
 namespace App\Facades;
 
+use App\Services\Tracking\DatalayerService;
 use Illuminate\Support\Facades\Facade;
 
 /**
  * Class DataLayer
  *
- * @see \App\Services\Tracking\DatalayerService
+ * @see DatalayerService
  *
- * @mixin \App\Services\Tracking\DatalayerService
+ * @mixin DatalayerService
  */
 class DataLayer extends Facade
 {

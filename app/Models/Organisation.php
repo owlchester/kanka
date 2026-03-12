@@ -179,7 +179,7 @@ class Organisation extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\OrganisationMember, $this>
+     * @return HasMany<OrganisationMember, $this>
      */
     public function members(): HasMany
     {

@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 
 return new class extends Migration
 {
@@ -22,7 +23,7 @@ return new class extends Migration
             Schema::table($tablename, function (Blueprint $table) use ($extra, $tablename) {
                 if (Schema::getConnection()->getDriverName() !== 'sqlite') {
                     foreach ($extra as $column) {
-                        if (\Illuminate\Support\Str::endsWith($column, '_id')) {
+                        if (Str::endsWith($column, '_id')) {
                             $table->dropForeign($tablename . '_' . $column . '_foreign');
                         }
                         $table->dropColumn($column);

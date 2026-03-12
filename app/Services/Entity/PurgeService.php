@@ -2,6 +2,7 @@
 
 namespace App\Services\Entity;
 
+use App\Facades\CampaignLocalization;
 use App\Facades\CharacterCache;
 use App\Facades\EntityCache;
 use App\Facades\Images;
@@ -62,7 +63,7 @@ class PurgeService
         // Set the campaign scope to avoid hitting entities of other campaigns (this can happen with
         // nested modules)
         // This probably is no longer the case since.
-        \App\Facades\CampaignLocalization::setConsoleCampaign($entity->campaign_id);
+        CampaignLocalization::setConsoleCampaign($entity->campaign_id);
 
         // Update the parent_id / tree before
         if (method_exists($child, 'getParentKeyName')) {
@@ -108,7 +109,7 @@ class PurgeService
         $child->forceDelete();
 
         // Unset the campaign id limitation again
-        \App\Facades\CampaignLocalization::setConsoleCampaign(0);
+        CampaignLocalization::setConsoleCampaign(0);
 
         return true;
     }

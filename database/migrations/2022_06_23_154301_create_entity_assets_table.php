@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\EntityAssetType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -23,7 +24,7 @@ class CreateEntityAssetsTable extends Migration
             $table->index(['type_id', 'is_pinned']);
         });
 
-        DB::update('update entity_aliases set type_id = ' . \App\Enums\EntityAssetType::alias->value);
+        DB::update('update entity_aliases set type_id = ' . EntityAssetType::alias->value);
 
         Schema::rename('entity_aliases', 'entity_assets');
     }

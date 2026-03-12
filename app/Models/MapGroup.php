@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Visibility;
 use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasVisibility;
@@ -57,7 +58,7 @@ class MapGroup extends Model
     ];
 
     public $casts = [
-        'visibility_id' => \App\Enums\Visibility::class,
+        'visibility_id' => Visibility::class,
     ];
 
     protected array $sanitizable = [
@@ -65,7 +66,7 @@ class MapGroup extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Map, $this>
+     * @return BelongsTo<Map, $this>
      */
     public function map(): BelongsTo
     {
@@ -73,7 +74,7 @@ class MapGroup extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\MapGroup, $this>
+     * @return BelongsTo<MapGroup, $this>
      */
     public function parent(): BelongsTo
     {
@@ -81,7 +82,7 @@ class MapGroup extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\MapGroup, $this>
+     * @return HasMany<MapGroup, $this>
      */
     public function children(): HasMany
     {
@@ -111,7 +112,7 @@ class MapGroup extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\MapMarker, $this>
+     * @return HasMany<MapMarker, $this>
      */
     public function markers(): HasMany
     {

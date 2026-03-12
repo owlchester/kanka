@@ -3,13 +3,14 @@
 namespace App\Http\Resources;
 
 use App\Models\Family;
+use Illuminate\Http\Request;
 
 class FamilyResource extends EntityResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return array
      */
     public function toArray($request)

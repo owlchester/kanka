@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\EntityAssetType;
+use App\Enums\Visibility;
 use App\Facades\EntityAssetCache;
 use App\Facades\Img;
 use App\Models\Concerns\Blameable;
@@ -55,8 +56,8 @@ class EntityAsset extends Model
 
     public $casts = [
         'metadata' => 'array',
-        'visibility_id' => \App\Enums\Visibility::class,
-        'type_id' => \App\Enums\EntityAssetType::class,
+        'visibility_id' => Visibility::class,
+        'type_id' => EntityAssetType::class,
     ];
 
     protected array $sanitizable = [
@@ -70,7 +71,7 @@ class EntityAsset extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     * @return BelongsTo<Entity, $this>
      */
     public function entity(): BelongsTo
     {
@@ -78,7 +79,7 @@ class EntityAsset extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\Image, $this>
+     * @return HasOne<Image, $this>
      */
     public function image(): HasOne
     {

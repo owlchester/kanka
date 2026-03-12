@@ -5,6 +5,7 @@ namespace App\Console\Commands\Entities;
 use App\Jobs\ChunkMapJob;
 use App\Models\Map;
 use Illuminate\Console\Command;
+use Illuminate\Foundation\Bus\PendingDispatch;
 
 class MapChunk extends Command
 {
@@ -52,7 +53,7 @@ class MapChunk extends Command
     }
 
     /**
-     * @return \Illuminate\Foundation\Bus\PendingDispatch
+     * @return PendingDispatch
      */
     protected function dispatch(int $mapID)
     {

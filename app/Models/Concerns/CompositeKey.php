@@ -2,13 +2,15 @@
 
 namespace App\Models\Concerns;
 
+use Illuminate\Database\Eloquent\Builder;
+
 trait CompositeKey
 {
     /**
      * Set the keys for a save update query.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param  Builder  $query
+     * @return Builder
      */
     protected function setKeysForSaveQuery($query)
     {

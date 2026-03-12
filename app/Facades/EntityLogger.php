@@ -2,14 +2,15 @@
 
 namespace App\Facades;
 
+use App\Services\Entity\LoggerService;
 use Illuminate\Support\Facades\Facade;
 
 /**
  * Class EntityLogger
  *
- * @see \App\Services\Entity\LoggerService
+ * @see LoggerService
  *
- * @mixin \App\Services\Entity\LoggerService
+ * @mixin LoggerService
  */
 class EntityLogger extends Facade
 {

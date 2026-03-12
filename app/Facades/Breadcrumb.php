@@ -2,14 +2,15 @@
 
 namespace App\Facades;
 
+use App\Services\BreadcrumbService;
 use Illuminate\Support\Facades\Facade;
 
 /**
  * Class Breadcrumb
  *
- * @see \App\Services\BreadcrumbService
+ * @see BreadcrumbService
  *
- * @mixin \App\Services\BreadcrumbService
+ * @mixin BreadcrumbService
  */
 class Breadcrumb extends Facade
 {

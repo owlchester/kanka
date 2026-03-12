@@ -66,7 +66,7 @@ class CommunityEvent extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CommunityEventEntry, $this>
+     * @return HasMany<CommunityEventEntry, $this>
      */
     public function entries(): HasMany
     {
@@ -109,7 +109,7 @@ class CommunityEvent extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\User, $this>
+     * @return BelongsTo<User, $this>
      */
     public function jury(): BelongsTo
     {

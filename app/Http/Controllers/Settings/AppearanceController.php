@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Settings;
 
+use App\Facades\UserCache;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSettingsLayout;
+use App\Models\User;
 use App\Services\PaginationService;
 
 class AppearanceController extends Controller
@@ -41,7 +43,7 @@ class AppearanceController extends Controller
         if ($request->ajax()) {
             return response()->json();
         }
-        /** @var \App\Models\User $user */
+        /** @var User $user */
         $user = $request->user();
         $settingFields = $request->only([
             'editor', 'advanced_mentions', 'new_entity_workflow',
@@ -54,7 +56,7 @@ class AppearanceController extends Controller
 
         // refresh user campaigns in cache if order by has changed
         if ($request->has('campaign_switcher_order_by')) {
-            \App\Facades\UserCache::clear();
+            UserCache::clear();
         }
 
         if ($request->filled('from')) {

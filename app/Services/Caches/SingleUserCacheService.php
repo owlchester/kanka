@@ -2,13 +2,14 @@
 
 namespace App\Services\Caches;
 
+use App\Models\User;
 use App\Traits\UserAware;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 /**
- * @property \App\Models\User $user
+ * @property User $user
  */
 class SingleUserCacheService
 {

@@ -7,6 +7,11 @@ use App\Facades\CampaignCache;
 use App\Models\Campaign;
 use App\Models\CampaignBoost;
 use App\Services\Campaign\BoostService;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 
 class CampaignBoostController extends Controller
 {
@@ -40,9 +45,9 @@ class CampaignBoostController extends Controller
     }
 
     /**
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
-    public function store(\Illuminate\Http\Request $request)
+    public function store(Request $request)
     {
         $campaignId = $request->get('campaign_id');
         /** @var Campaign $campaign */
@@ -116,9 +121,9 @@ class CampaignBoostController extends Controller
     }
 
     /**
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
-    public function update(\Illuminate\Http\Request $request, CampaignBoost $campaignBoost)
+    public function update(Request $request, CampaignBoost $campaignBoost)
     {
         if (! auth()->user()->hasBoosterNomenclature()) {
             return redirect()->route('settings.premium');
@@ -151,9 +156,9 @@ class CampaignBoostController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function confirm(CampaignBoost $campaignBoost)
     {
@@ -171,7 +176,7 @@ class CampaignBoostController extends Controller
     }
 
     /**
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function destroy(CampaignBoost $campaignBoost)
     {

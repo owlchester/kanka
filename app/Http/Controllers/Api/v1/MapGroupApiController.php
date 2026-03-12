@@ -7,13 +7,16 @@ use App\Http\Resources\MapGroupResource as Resource;
 use App\Models\Campaign;
 use App\Models\Map;
 use App\Models\MapGroup;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class MapGroupApiController extends ApiController
 {
     /**
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Campaign $campaign, Map $map)
     {
@@ -61,9 +64,9 @@ class MapGroupApiController extends ApiController
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function destroy(
         \Illuminate\Http\Request $request,

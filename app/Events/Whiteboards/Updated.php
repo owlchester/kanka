@@ -5,6 +5,7 @@ namespace App\Events\Whiteboards;
 use App\Http\Resources\Whiteboards\ShapeResource;
 use App\Models\Whiteboard;
 use App\Models\WhiteboardShape;
+use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithBroadcasting;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -32,7 +33,7 @@ class Updated implements ShouldBroadcastNow
     /**
      * Get the channels the event should broadcast on.
      *
-     * @return array<int, \Illuminate\Broadcasting\Channel>
+     * @return array<int, Channel>
      */
     public function broadcastOn(): array
     {

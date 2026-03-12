@@ -2,6 +2,7 @@
 
 namespace App\Models\Concerns;
 
+use App\Enums\EntityAssetType;
 use App\Enums\FilterOption;
 use App\Models\Character;
 use App\Models\Family;
@@ -360,7 +361,7 @@ trait HasFilters
         $query
             ->joinEntity()
             ->leftJoin('entity_assets', 'entity_assets.entity_id', '=', 'e.id')
-            ->where('entity_assets.type_id', \App\Enums\EntityAssetType::file);
+            ->where('entity_assets.type_id', EntityAssetType::file);
 
         if ($value) {
             $query->whereNotNull('entity_assets.id');

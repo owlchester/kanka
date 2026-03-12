@@ -1,8 +1,20 @@
 <?php
 
+use Facade\Ignition\SolutionProviders\MissingPackageSolutionProvider;
+use Spatie\Backtrace\Arguments\Reducers\ArrayArgumentReducer;
+use Spatie\Backtrace\Arguments\Reducers\BaseTypeArgumentReducer;
+use Spatie\Backtrace\Arguments\Reducers\ClosureArgumentReducer;
+use Spatie\Backtrace\Arguments\Reducers\DateTimeArgumentReducer;
+use Spatie\Backtrace\Arguments\Reducers\DateTimeZoneArgumentReducer;
+use Spatie\Backtrace\Arguments\Reducers\EnumArgumentReducer;
+use Spatie\Backtrace\Arguments\Reducers\StdClassArgumentReducer;
+use Spatie\Backtrace\Arguments\Reducers\StringableArgumentReducer;
+use Spatie\Backtrace\Arguments\Reducers\SymphonyRequestArgumentReducer;
 use Spatie\Ignition\Solutions\SolutionProviders\BadMethodCallSolutionProvider;
 use Spatie\Ignition\Solutions\SolutionProviders\MergeConflictSolutionProvider;
 use Spatie\Ignition\Solutions\SolutionProviders\UndefinedPropertySolutionProvider;
+use Spatie\LaravelIgnition\ArgumentReducers\CollectionArgumentReducer;
+use Spatie\LaravelIgnition\ArgumentReducers\ModelArgumentReducer;
 use Spatie\LaravelIgnition\Recorders\DumpRecorder\DumpRecorder;
 use Spatie\LaravelIgnition\Recorders\JobRecorder\JobRecorder;
 use Spatie\LaravelIgnition\Recorders\LogRecorder\LogRecorder;
@@ -135,7 +147,7 @@ return [
     */
 
     'ignored_solution_providers' => [
-        Facade\Ignition\SolutionProviders\MissingPackageSolutionProvider::class,
+        MissingPackageSolutionProvider::class,
     ],
 
     /*
@@ -260,16 +272,16 @@ return [
     */
 
     'argument_reducers' => [
-        \Spatie\Backtrace\Arguments\Reducers\BaseTypeArgumentReducer::class,
-        \Spatie\Backtrace\Arguments\Reducers\ArrayArgumentReducer::class,
-        \Spatie\Backtrace\Arguments\Reducers\StdClassArgumentReducer::class,
-        \Spatie\Backtrace\Arguments\Reducers\EnumArgumentReducer::class,
-        \Spatie\Backtrace\Arguments\Reducers\ClosureArgumentReducer::class,
-        \Spatie\Backtrace\Arguments\Reducers\DateTimeArgumentReducer::class,
-        \Spatie\Backtrace\Arguments\Reducers\DateTimeZoneArgumentReducer::class,
-        \Spatie\Backtrace\Arguments\Reducers\SymphonyRequestArgumentReducer::class,
-        \Spatie\LaravelIgnition\ArgumentReducers\ModelArgumentReducer::class,
-        \Spatie\LaravelIgnition\ArgumentReducers\CollectionArgumentReducer::class,
-        \Spatie\Backtrace\Arguments\Reducers\StringableArgumentReducer::class,
+        BaseTypeArgumentReducer::class,
+        ArrayArgumentReducer::class,
+        StdClassArgumentReducer::class,
+        EnumArgumentReducer::class,
+        ClosureArgumentReducer::class,
+        DateTimeArgumentReducer::class,
+        DateTimeZoneArgumentReducer::class,
+        SymphonyRequestArgumentReducer::class,
+        ModelArgumentReducer::class,
+        CollectionArgumentReducer::class,
+        StringableArgumentReducer::class,
     ],
 ];

@@ -3,13 +3,14 @@
 namespace App\Http\Resources;
 
 use App\Models\MapLayer;
+use Illuminate\Http\Request;
 
 class MapLayerResource extends ModelResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return array
      */
     public function toArray($request)

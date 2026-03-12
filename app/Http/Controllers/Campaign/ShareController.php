@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Campaign;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Services\Campaign\ShareService;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class ShareController extends Controller
     }
 
     /**
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function setup(Campaign $campaign): View
     {
@@ -27,7 +28,7 @@ class ShareController extends Controller
     }
 
     /**
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function save(Request $request, Campaign $campaign): JsonResponse
     {

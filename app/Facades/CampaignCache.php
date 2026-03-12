@@ -2,14 +2,15 @@
 
 namespace App\Facades;
 
+use App\Services\Caches\CampaignCacheService;
 use Illuminate\Support\Facades\Facade;
 
 /**
  * Class CampaignLocalization
  *
- * @see \App\Services\Caches\CampaignCacheService
+ * @see CampaignCacheService
  *
- * @mixin \App\Services\Caches\CampaignCacheService
+ * @mixin CampaignCacheService
  */
 class CampaignCache extends Facade
 {

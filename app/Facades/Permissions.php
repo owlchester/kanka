@@ -2,15 +2,16 @@
 
 namespace App\Facades;
 
+use App\Services\Permissions\PermissionService;
 use Illuminate\Support\Facades\Facade;
 
 /**
  * Class Permissions
  * Used for the Entity object
  *
- * @see \App\Services\Permissions\PermissionService
+ * @see PermissionService
  *
- * @mixin \App\Services\Permissions\PermissionService
+ * @mixin PermissionService
  */
 class Permissions extends Facade
 {

@@ -8,6 +8,7 @@ use App\Http\Requests\StoreCampaignDashboard;
 use App\Models\Campaign;
 use App\Models\CampaignDashboard;
 use App\Services\DashboardService;
+use Illuminate\Http\RedirectResponse;
 
 class DashboardController extends Controller
 {
@@ -18,7 +19,7 @@ class DashboardController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function index()
     {

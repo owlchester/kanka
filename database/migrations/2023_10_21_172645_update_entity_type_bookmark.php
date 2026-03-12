@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\EntityType;
 use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
@@ -9,7 +10,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $type = App\Models\EntityType::find(config('entities.ids.bookmark'));
+        $type = EntityType::find(config('entities.ids.bookmark'));
         if (! $type) {
             return;
         }

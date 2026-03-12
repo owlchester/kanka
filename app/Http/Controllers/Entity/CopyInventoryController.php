@@ -7,15 +7,18 @@ use App\Http\Requests\CopyInventory;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Traits\GuestAuthTrait;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\View\View;
 
 class CopyInventoryController extends Controller
 {
     use GuestAuthTrait;
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Campaign $campaign, Entity $entity)
     {

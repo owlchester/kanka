@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Visibility;
 use App\Facades\TimelineElementCache;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasEntry;
@@ -64,7 +65,7 @@ class TimelineElement extends Model
     ];
 
     public $casts = [
-        'visibility_id' => \App\Enums\Visibility::class,
+        'visibility_id' => Visibility::class,
     ];
 
     protected array $suggestions = [
@@ -78,7 +79,7 @@ class TimelineElement extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Timeline, $this>
+     * @return BelongsTo<Timeline, $this>
      */
     public function timeline(): BelongsTo
     {
@@ -86,7 +87,7 @@ class TimelineElement extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\TimelineEra, $this>
+     * @return BelongsTo<TimelineEra, $this>
      */
     public function era(): BelongsTo
     {
@@ -94,7 +95,7 @@ class TimelineElement extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     * @return BelongsTo<Entity, $this>
      */
     public function entity(): BelongsTo
     {
@@ -153,10 +154,10 @@ class TimelineElement extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<
-     *     \App\Models\User,
+     * @return BelongsToMany<
+     *     User,
      *     $this,
-     *     \App\Models\EntityUser
+     *     EntityUser
      * >
      */
     public function editingUsers(): BelongsToMany
@@ -169,7 +170,7 @@ class TimelineElement extends Model
     /**
      * List of entities that mention this entity
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\EntityMention, $this>
+     * @return HasMany<EntityMention, $this>
      */
     public function mentions(): HasMany
     {

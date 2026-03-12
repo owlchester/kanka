@@ -2,14 +2,15 @@
 
 namespace App\Facades;
 
+use App\Services\Caches\CharacterCacheService;
 use Illuminate\Support\Facades\Facade;
 
 /**
  * Class CharacterCache
  *
- * @see \App\Services\Caches\CharacterCacheService
+ * @see CharacterCacheService
  *
- * @mixin \App\Services\Caches\CharacterCacheService
+ * @mixin CharacterCacheService
  */
 class CharacterCache extends Facade
 {

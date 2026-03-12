@@ -7,6 +7,8 @@ use App\Http\Requests\StoreImageFocus;
 use App\Http\Requests\UpdateEntityImage;
 use App\Models\Campaign;
 use App\Models\Entity;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\RedirectResponse;
 
 class ImageController extends Controller
 {
@@ -16,7 +18,7 @@ class ImageController extends Controller
     }
 
     /**
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function focus(Campaign $campaign, Entity $entity)
     {
@@ -28,9 +30,9 @@ class ImageController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function saveFocus(StoreImageFocus $request, Campaign $campaign, Entity $entity)
     {
@@ -49,7 +51,7 @@ class ImageController extends Controller
     }
 
     /**
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function replace(Campaign $campaign, Entity $entity)
     {

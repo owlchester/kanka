@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Settings;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\NewsletterStore;
 use App\Jobs\Emails\MailSettingsChangeJob;
+use Illuminate\Http\JsonResponse;
 
 class NewsletterApiController extends Controller
 {
@@ -19,7 +20,7 @@ class NewsletterApiController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function update(NewsletterStore $request)
     {
