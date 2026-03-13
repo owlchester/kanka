@@ -317,6 +317,22 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
 @endsection
 
 
+@if ($entity->archived_at)
+    <x-alert type="warning">
+        <div class="flex items-center justify-between gap-4">
+            <span>
+                <x-icon class="fa-regular fa-archive" />
+                {{ __('entries/archive.banner') }}
+            </span>
+            @can('update', $entity)
+                <a href="{{ route('entities.archive', [$campaign, $entity]) }}" class="btn2 btn-sm btn-warning">
+                    {{ __('entities/actions.unarchive.title') }}
+                </a>
+            @endcan
+        </div>
+    </x-alert>
+@endif
+
 @section('styles')
     @parent
     <style>

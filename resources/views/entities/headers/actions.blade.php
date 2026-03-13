@@ -6,6 +6,7 @@ $create = false;
 $manage = false;
 $system = false;
 $data = false;
+$delete = false;
 
 ?>
 
@@ -162,10 +163,13 @@ $data = false;
                     {{ __('entities/actions.archive.title') }}
                 @endif
             </x-dropdowns.item>
+            @php $delete = true; @endphp
         @endcan
 
         @can('delete', $entity)
+            @if (!$delete)
             <x-dropdowns.divider />
+            @endif
             @php
                 $url = route('confirm-delete', [$campaign, 'route' => route('entities.destroy', [$campaign, $entity]), 'name' => $entity->name]);
             @endphp
