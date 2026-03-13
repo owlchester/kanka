@@ -37,6 +37,7 @@ class EntryObserver
                 ->save()
         );
 
+
         //        dd($model->{$model->entryFieldName()});
 
         // Word count

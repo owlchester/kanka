@@ -1,7 +1,7 @@
 <?php /** @var \App\Models\Entity $entity
  */?>
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => __('entities/relations.show.title', ['name' => $entity->name]),
+    'title' =>  __('entries/tabs.relations') . " - {$entity->name} - {$campaign->name}",
     'breadcrumbs' => false,
     'canonical' => true,
     'mainTitle' => false,

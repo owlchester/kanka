@@ -162,6 +162,11 @@ class SaveService
         // If the name isn't the target name, transform it into an advanced mention
         $originalName = $mentionLink->getAttribute('data-name');
 
+        // Normalize data-mention to just [type:id] in case it contains extra params
+        if (preg_match('/\[?([a-zA-Z_]+:\d+)/', $advancedMention, $mentionParts)) {
+            $advancedMention = '[' . $mentionParts[1] . ']';
+        }
+
         $params = new Collection;
         // Tiptap sends config in a property to keep things clean
         if (! empty($mentionLink->getAttribute('data-config'))) {
