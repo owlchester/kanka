@@ -25,7 +25,7 @@
         <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between gap-2">
             <div class="flex gap-2">
                 <x-helper>
-                    <p>
+                    <p class="text-xs">
                         {!! __('pagination.showing') !!}
                         @if ($paginator->firstItem())
                             <span class="font-medium">{{ $paginator->firstItem() }}</span>

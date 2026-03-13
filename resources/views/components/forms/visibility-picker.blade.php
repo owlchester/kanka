@@ -23,7 +23,7 @@ $visibilityKeys = [
 $adminLink = '<a href="' . e($adminUrl) . '" class="text-link">' . e($adminName) . '</a>';
 ?>
 <span id="{{ $id }}" class="visibility-picker" data-selected="{{ $selected }}" data-url="{{ $url }}">
-    <button class="btn2 btn-ghost btn-sm visibility-picker-trigger" type="button">
+    <button class="btn2 btn-sm visibility-picker-trigger" type="button">
         <i class="{{ $iconMap[$selected] ?? 'fa-regular fa-eye' }}" aria-hidden="true"></i>
         <span class="sr-only">{{ __('visibilities.title') }}</span>
     </button>
