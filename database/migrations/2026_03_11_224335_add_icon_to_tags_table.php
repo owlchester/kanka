@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::table('tags', function (Blueprint $table) {
             $table->string('icon', 100)->nullable()->after('colour');
-            $table->boolean('icon_in_label')->default(false)->after('icon');
         });
     }
 
@@ -23,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('tags', function (Blueprint $table) {
-            $table->dropColumn(['icon', 'icon_in_label']);
+            $table->dropColumn('icon');
         });
     }
 };

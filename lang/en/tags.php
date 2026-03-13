@@ -20,18 +20,16 @@ return [
     'fields'        => [
         'children'          => 'Children',
         'icon'              => 'Icon',
-        'icon_in_label'     => 'Show icon in label',
         'is_auto_applied'   => 'Automatically apply to new entries',
         'is_hidden'         => 'Hidden from header and tooltip',
     ],
     'helpers'       => [
-        'icon'          => 'Use icons from :fontawesome or :rpgawesome.',
+        'icon'          => 'Use icons from :fontawesome or :rpgawesome. The icon will be shown instead of the tag name in lists.',
         'no_children'   => 'There are currently no entries tagged with this tag.',
         'no_posts'      => 'There are currently no articles tagged with this tag.',
     ],
     'hints'         => [
         'children'          => 'This list contains all the entries that are assigned to this tag or the tag\'s children.',
-        'icon_in_label'     => 'Replace the tag name with the icon in entry headers.',
         'is_auto_applied'   => 'Automatically apply this tag to newly created entries.',
         'is_hidden'         => 'Don\'t display this tag in an entry\'s header or tooltip.',
         'tag'               => 'This list contains all the tags are children of this tag or its children tags.',

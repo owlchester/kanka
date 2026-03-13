@@ -26,7 +26,6 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property string $type
  * @property string $colour
  * @property ?string $icon
- * @property bool|int $icon_in_label
  * @property ?int $tag_id
  * @property bool|int $is_auto_applied
  * @property bool|int $is_hidden
@@ -72,7 +71,6 @@ class Tag extends MiscModel
         'slug',
         'colour',
         'icon',
-        'icon_in_label',
         'tag_id',
         'campaign_id',
         'is_private',
@@ -99,7 +97,6 @@ class Tag extends MiscModel
         'base',
         'colour',
         'icon',
-        'icon_in_label',
         'is_auto_applied',
         'is_hidden',
     ];
@@ -120,7 +117,7 @@ class Tag extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['tag_id', 'colour', 'icon', 'icon_in_label', 'is_auto_applied', 'is_hidden'];
+        return ['tag_id', 'colour', 'icon', 'is_auto_applied', 'is_hidden'];
     }
 
     /**
@@ -289,10 +286,6 @@ class Tag extends MiscModel
 
     public function shortname(): string
     {
-        if ($this->hasIcon()) {
-            return '<i class="' . e($this->icon) . '" aria-hidden="true"></i>';
-        }
-
         return grapheme_extract($this->name, 1);
     }
 

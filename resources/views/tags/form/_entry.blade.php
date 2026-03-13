@@ -24,13 +24,6 @@
         @endif
     </x-forms.field>
 
-    <x-forms.field field="icon-in-label" :label="__('tags.fields.icon_in_label')">
-        <input type="hidden" name="icon_in_label" value="0" />
-        <x-checkbox :text="__('tags.hints.icon_in_label')">
-            <input type="checkbox" name="icon_in_label" value="1" @if (old('icon_in_label', $source->child->icon_in_label ?? $model->icon_in_label ?? false)) checked="checked" @endif @if (!$campaign->boosted()) disabled="disabled" @endif />
-        </x-checkbox>
-    </x-forms.field>
-
     @include('cruds.fields.entry2')
 
     <x-forms.field field="auto-apply" :label="__('tags.fields.is_auto_applied')">
