@@ -44,7 +44,7 @@
             :dashboard="$dashboard"
             icon="fa-dice-d20"
         ></x-dashboards.widgets.selection>
-        @if($campaign->boosted())
+        @if($campaign->premium())
             <x-dashboards.widgets.selection
                 :widget="Widget::Gallery"
                 :campaign="$campaign"

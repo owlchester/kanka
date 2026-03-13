@@ -47,8 +47,8 @@ class CampaignDashboardWidgetApiController extends ApiController
     public function store(Request $request, Campaign $campaign)
     {
         $this->authorize('update', $campaign);
-        if ($request->input('widget') === Widget::Gallery->value && ! $campaign->boosted()) {
-            abort(403);
+        if ($request->input('widget') === Widget::Gallery->value) {
+            $this->authorize('galleryWidget', $campaign);
         }
 
         $data = array_merge(['campaign_id' => $campaign->id], $request->all());
@@ -63,8 +63,8 @@ class CampaignDashboardWidgetApiController extends ApiController
     public function update(Request $request, Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
     {
         $this->authorize('update', $campaign);
-        if ($campaignDashboardWidget->widget === Widget::Gallery && ! $campaign->boosted()) {
-            abort(403);
+        if ($campaignDashboardWidget->widget === Widget::Gallery) {
+            $this->authorize('galleryWidget', $campaign);
         }
         $campaignDashboardWidget->update($request->all());
 

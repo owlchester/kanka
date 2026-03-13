@@ -1,7 +1,7 @@
 @inject('imageModel', 'App\Models\Image')
 
 @php
-    $boosted = $campaign->boosted();
+    $boosted = $campaign->premium();
 
     $folders = $imageModel::where('campaign_id', $campaign->id)
         ->where('is_folder', true)
