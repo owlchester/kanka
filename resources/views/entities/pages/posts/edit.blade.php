@@ -34,9 +34,10 @@
     @endif
     </x-form>
 
-    <div>
-        <x-buttons.confirm-delete :route="route('entities.posts.destroy', [$campaign, 'entity' => $entity, 'post' => $model])" />
-    </div>
+    <form id="delete-post-form" method="POST" action="{{ route('entities.posts.destroy', [$campaign, 'entity' => $entity, 'post' => $model]) }}" class="hidden">
+        @csrf
+        @method('DELETE')
+    </form>
 @endsection
 
 @include('editors.editor', $entity->isCharacter() ? ['name' => 'characters'] : [])

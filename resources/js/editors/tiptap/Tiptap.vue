@@ -482,7 +482,7 @@
             </bubble-menu>
         </template>
 
-        <editor-content :editor="editor" />
+        <editor-content :editor="editor" class="" />
 
         <p v-if="showHelperText" class="text-neutral-content text-xs mt-2 flex items-center gap-5">
             <span>
@@ -511,6 +511,7 @@
     overflow-y: auto;
     border: 1px solid hsl(var(--bc)/.1);
     border-radius: var(--rounded-btn);
+    background-color: hsl(var(--b1)/1);
     padding: 0.6rem 0.8rem;
     margin-bottom: 1rem;
     &:focus {

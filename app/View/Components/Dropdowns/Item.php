@@ -4,6 +4,7 @@ namespace App\View\Components\Dropdowns;
 
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Str;
 use Illuminate\View\Component;
 
 class Item extends Component
@@ -20,11 +21,20 @@ class Item extends Component
         public ?string $dialog = null,
         public ?string $popup = null,
         public ?string $keyboard = null,
+        public ?string $shortcut = null,
         array $data = [],
         public ?string $icon = null,
         public bool $active = false,
     ) {
         $this->dataProperties = $data;
+
+        if ($this->shortcut !== null) {
+            $userAgent = request()->header('User-Agent', '');
+            if (Str::contains($userAgent, 'Macintosh') || Str::contains($userAgent, 'Mac OS')) {
+                $this->shortcut = str_ireplace('ctrl', '⌘', $this->shortcut);
+            }
+        }
+        $this->shortcut = Str::replace('Shift', '<i class="fa-regular fa-up" aria-hidden="true"></i>', $this->shortcut);
     }
 
     /**

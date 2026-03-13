@@ -27,7 +27,12 @@ $data = false;
     <div class="dropdown-menu hidden" role="menu" id="entity-submenu">
         @if (isset($edit) && $edit === false)
             @can('update', $entity)
-                <x-dropdowns.item :link="$entity->url('edit')" icon="pencil" keyboard="edit">
+                <x-dropdowns.item
+                    :link="$entity->url('edit')"
+                    icon="pencil"
+                    keyboard="edit"
+                    shortcut="E"
+                >
                     {{ __('crud.edit') }}
                 </x-dropdowns.item>
             @endif
@@ -166,8 +171,16 @@ $data = false;
             @php
                 $url = route('confirm-delete', [$campaign, 'route' => route('entities.destroy', [$campaign, $entity]), 'name' => $entity->name]);
             @endphp
-            <x-dropdowns.item link="#" css="text-error-content hover:bg-error" :data="['toggle' => 'dialog', 'target' => 'primary-dialog', 'url' => $url]" icon="trash">
-                {{ __('crud.remove') }}
+            <x-dropdowns.item
+                link="#"
+                css="hover:bg-error"
+                :data="['toggle' => 'dialog', 'target' => 'primary-dialog', 'url' => $url]"
+                icon="trash"
+                shortcut="DEL"
+            >
+                <span class="text-error-content">
+                    {{ __('crud.remove') }}
+                </span>
             </x-dropdowns.item>
         @endcan
     </div>
