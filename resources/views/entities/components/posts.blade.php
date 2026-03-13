@@ -17,7 +17,7 @@ if (!isset($posts)) {
             'location',
             'location',
             'layout',
-            'tags' => function ($sub) { $sub->select('tags.id', 'tags.name', 'tags.slug', 'tags.colour', 'tags.is_hidden'); }
+            'tags' => function ($sub) { $sub->select('tags.id', 'tags.name', 'tags.slug', 'tags.colour', 'tags.icon', 'tags.is_hidden'); }
         ])->ordered()->paginate($pagination);
     $wrapper = true;
 }

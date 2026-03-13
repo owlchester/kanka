@@ -117,6 +117,7 @@ class PreviewService
             $tags[] = [
                 'id' => $tag->id,
                 'name' => $tag->name,
+                'icon' => $tag->icon,
                 'colour' => $tag->colour,
                 'link' => $tag->getLink(),
                 'slug' => $tag->slug,

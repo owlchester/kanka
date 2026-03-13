@@ -19,9 +19,9 @@
                 v-bind:href="tag.link"
                :data-tag-id="tag.id"
                :data-tag-slug="tag.slug"
-
-               v-html="tag.name"
                 >
+                <i v-if="tag.icon" :class="tag.icon" aria-hidden="true"></i>
+                <template v-else>{{ tag.name }}</template>
             </a>
         </div>
         <a class="block w-full cursor-pointer my-2"
