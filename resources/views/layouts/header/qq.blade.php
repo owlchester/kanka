@@ -4,6 +4,7 @@
         data-url="{{ route('entity-creator.selection', $campaign) }}"
         data-toggle="dialog"
         class="quick-creator-button btn2 btn-default btn-sm"
+        data-shortcut="n"
         data-title="{{ __('header.qq.tooltip') }} [ N ]"
         data-tooltip
         tabindex="0">

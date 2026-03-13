@@ -20,7 +20,6 @@ class Item extends Component
         public ?string $css = null,
         public ?string $dialog = null,
         public ?string $popup = null,
-        public ?string $keyboard = null,
         public ?string $shortcut = null,
         array $data = [],
         public ?string $icon = null,
