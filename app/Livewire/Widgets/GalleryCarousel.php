@@ -52,6 +52,7 @@ class GalleryCarousel extends Component
             ->where('is_folder', false)
             ->acl(true)
             ->orderBy('name', 'asc')
+            ->limit(30)
             ->get();
 
         $this->images = $images

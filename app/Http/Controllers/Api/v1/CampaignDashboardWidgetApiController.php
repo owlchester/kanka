@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Enums\Widget;
 use App\Http\Requests\StoreCampaignDashboardWidget as Request;
 use App\Http\Resources\CampaignDashboardWidgetResource as Resource;
 use App\Models\Campaign;
@@ -46,6 +47,9 @@ class CampaignDashboardWidgetApiController extends ApiController
     public function store(Request $request, Campaign $campaign)
     {
         $this->authorize('update', $campaign);
+        if ($request->input('widget') === Widget::Gallery->value && ! $campaign->boosted()) {
+            abort(403);
+        }
 
         $data = array_merge(['campaign_id' => $campaign->id], $request->all());
         $model = CampaignDashboardWidget::create($data);
@@ -59,6 +63,9 @@ class CampaignDashboardWidgetApiController extends ApiController
     public function update(Request $request, Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
     {
         $this->authorize('update', $campaign);
+        if ($campaignDashboardWidget->widget === Widget::Gallery && ! $campaign->boosted()) {
+            abort(403);
+        }
         $campaignDashboardWidget->update($request->all());
 
         return new Resource($campaignDashboardWidget);

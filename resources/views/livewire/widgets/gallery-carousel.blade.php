@@ -25,7 +25,7 @@
                     init() { if (this.total > 1) this.startTimer() }
                 }"
                 @mouseenter="clearInterval(timer)"
-                @mouseleave="startTimer()"
+                @mouseleave="resetTimer()"
                 class="relative overflow-hidden rounded-lg aspect-4/3"
             >
                 <template x-for="(image, index) in images" :key="index">
