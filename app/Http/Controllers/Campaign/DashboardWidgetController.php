@@ -70,6 +70,9 @@ class DashboardWidgetController extends Controller
     public function store(StoreCampaignDashboardWidget $request, Campaign $campaign)
     {
         $this->authorize('dashboard', $campaign);
+        if ($request->input('widget') === Widget::Gallery->value && ! $campaign->boosted()) {
+            abort(403);
+        }
         if ($request->ajax()) {
             return response()->json(['success' => true]);
         }
@@ -116,6 +119,9 @@ class DashboardWidgetController extends Controller
     public function update(StoreCampaignDashboardWidget $request, Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
     {
         $this->authorize('dashboard', $campaign);
+        if ($campaignDashboardWidget->widget === Widget::Gallery && ! $campaign->boosted()) {
+            abort(403);
+        }
         if ($request->ajax()) {
             return response()->json(['success' => true]);
         }

@@ -15,6 +15,7 @@ enum Widget: string
     case Help = 'help';
     case Onboarding = 'onboarding';
     case Join = 'join';
+    case Gallery = 'gallery';
 
     public function isHeader(): bool
     {
