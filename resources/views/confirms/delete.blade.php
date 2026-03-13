@@ -28,7 +28,7 @@
         </div>
         @endif
 
-            @includeWhen(!$permanent, 'layouts.callouts.recoverable')
+        @includeWhen(!$permanent, 'layouts.callouts.recoverable')
 
         </x-grid>
     </x-dialog.article>

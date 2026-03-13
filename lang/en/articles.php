@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'actions' => [
+        'move' => 'Move to entry',
+    ],
     'tabs' => [
         'layout' => 'Layout',
         'main' => 'Main',
