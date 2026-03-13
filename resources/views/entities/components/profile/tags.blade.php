@@ -18,6 +18,12 @@ $child = $entity->child;
             {{ $child->colour }}
         </div>
     @endif
+    @if ($child->hasIcon())
+        <div class="element profile-icon">
+            <div class="title text-uppercase text-xs">{{ __('tags.fields.icon') }}</div>
+            <i class="{{ $child->icon }}" aria-hidden="true"></i> {{ $child->icon }}
+        </div>
+    @endif
 
     @include('entities.components.profile._type')
 </x-sidebar.profile>
