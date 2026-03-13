@@ -22,7 +22,7 @@ $all = $model->posts()->count();
 ?>
 <div class="flex flex-col xl:flex-row gap-2 items-center justify-between">
     <h3 class="text-xl">
-        {{ __('entities.posts') }}
+        {{ __('entities.articles') }}
     </h3>
     <div class="gap-2 flex-wrap overflow-auto">
         <button data-url="{{ route('tags.transfer.posts', [$campaign, $model->id]) }}" data-toggle="dialog" class="btn2 btn-sm">
