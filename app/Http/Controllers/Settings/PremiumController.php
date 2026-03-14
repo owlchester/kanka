@@ -40,8 +40,8 @@ class PremiumController extends Controller
         $premiums = $user->boosts()
             ->with(['campaign', 'campaign.boosts', 'campaign.boosts.user'])
             ->has('campaign')
-            ->groupBy('campaign_id')
-            ->get();
+            ->get()
+            ->unique('campaign_id');
         $userCampaigns = $user->campaigns()->with(['boosts', 'boosts.user'])->unboosted()->whereNotIn('campaigns.id', $premiums->pluck('campaign_id'))->get();
 
         if (! empty($campaignId)) {
