@@ -171,9 +171,14 @@ const toggleExpand = async () => {
     loadingChildren.value = true
     try {
         const response = await fetch(props.entity.urls.children_api)
+        if (!response.ok) {
+            return
+        }
         const data = await response.json()
-        children.value = data.entities.data
+        children.value = data.entities?.data ?? []
         expanded.value = true
+    } catch {
+        // Network error — silently fail, user can retry
     } finally {
         loadingChildren.value = false
     }

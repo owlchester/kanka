@@ -49,6 +49,28 @@ class ColumnDefinitionService
         return array_unique($map);
     }
 
+    /**
+     * @return array<string, string> Column key => child relation name for withCount
+     */
+    public function countMap(EntityType $entityType, Campaign $campaign): array
+    {
+        $countRelations = [
+            'members_count' => $entityType->code . '.members',
+            'elements_count' => $entityType->code . '.elements',
+            'eras_count' => $entityType->code . '.eras',
+            'entities_count' => $entityType->code . '.entities',
+        ];
+
+        $map = [];
+        foreach ($this->columns($entityType, $campaign) as $col) {
+            if (isset($countRelations[$col['key']])) {
+                $map[$col['key']] = $countRelations[$col['key']];
+            }
+        }
+
+        return $map;
+    }
+
     protected function typeRelations(): array
     {
         return [

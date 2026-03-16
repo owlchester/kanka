@@ -1,4 +1,4 @@
-import { ref, type Ref } from 'vue'
+import { ref } from 'vue'
 
 interface NestingOptions {
     api: string
@@ -11,8 +11,6 @@ interface NestingOptions {
 export function useNesting(options: NestingOptions) {
     const nested = ref(true)
     const nesting = ref(false)
-    const expandedEntities: Ref<Record<number, any[]>> = ref({})
-    const loadingChildren: Ref<Record<number, boolean>> = ref({})
 
     const setNested = (value: boolean) => {
         nested.value = value
@@ -45,43 +43,10 @@ export function useNesting(options: NestingOptions) {
         }
     }
 
-    const loadChildren = async (entityId: number, childrenApiUrl: string) => {
-        if (expandedEntities.value[entityId]) {
-            // Toggle collapse
-            delete expandedEntities.value[entityId]
-            return
-        }
-
-        loadingChildren.value[entityId] = true
-        try {
-            const response = await fetch(childrenApiUrl)
-            const data = await response.json()
-            expandedEntities.value[entityId] = data.entities.data
-        } finally {
-            delete loadingChildren.value[entityId]
-        }
-    }
-
-    const isExpanded = (entityId: number): boolean => {
-        return !!expandedEntities.value[entityId]
-    }
-
-    const isLoadingChildren = (entityId: number): boolean => {
-        return !!loadingChildren.value[entityId]
-    }
-
-    const getChildren = (entityId: number): any[] => {
-        return expandedEntities.value[entityId] ?? []
-    }
-
     return {
         nested,
         nesting,
         setNested,
         switchMode,
-        loadChildren,
-        isExpanded,
-        isLoadingChildren,
-        getChildren,
     }
 }

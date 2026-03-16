@@ -53,7 +53,7 @@
 
                 <!-- Column visibility dropdown -->
                 <div v-if="!layoutComposable.isGrid()">
-                    <button ref="columnsBtn" class="btn2" title="Columns">
+                    <button ref="columnsBtn" class="btn2" :title="i18n.columns">
                         <i class="fa-regular fa-gear" aria-hidden="true"></i>
                     </button>
                 </div>
@@ -224,7 +224,7 @@
                 <hr class="m-0" />
                 <button @click="columnsComposable.resetToDefaults()" class="px-2 py-1.5 hover:bg-base-200 rounded-xl flex items-center gap-2 text-sm text-base-content">
                     <i class="fa-regular fa-rotate-left" aria-hidden="true"></i>
-                    <span>Reset to defaults</span>
+                    <span v-html="i18n.resetDefaults"></span>
                 </button>
             </div>
         </div>
@@ -283,35 +283,39 @@ const printForm = ref()
 const entityApi = useEntityApi({ api: props.api })
 const bulkActions = useBulkActions(entityApi.entities)
 
-// These composables need values from the API response, so we initialize with defaults
-// and update after the initial fetch
-const orderingComposable = useOrdering({
-    api: props.api,
-    fetchEntities: (url: string) => entityApi.fetchEntities(url),
-    addToUrl: entityApi.addToUrl,
-})
-
-const layoutComposable = useLayout({
+// Options objects are kept as references so their properties can be mutated
+// after the API response provides the preferences URL and CSRF token
+const layoutOptions = {
     initialMode: props.mode,
     api: props.api,
     preferencesUrl: '',
     csrf: '',
     fetchEntities: (url: string) => entityApi.fetchEntities(url),
     addToUrl: entityApi.addToUrl,
-})
+}
 
-const nestingComposable = useNesting({
+const nestingOptions = {
     api: props.api,
     preferencesUrl: '',
     csrf: '',
     fetchEntities: (url: string) => entityApi.fetchEntities(url),
     addToUrl: entityApi.addToUrl,
-})
+}
 
-const columnsComposable = useColumns({
+const columnsOptions = {
     preferencesUrl: '',
     csrf: '',
+}
+
+const orderingComposable = useOrdering({
+    api: props.api,
+    fetchEntities: (url: string) => entityApi.fetchEntities(url),
+    addToUrl: entityApi.addToUrl,
 })
+
+const layoutComposable = useLayout(layoutOptions)
+const nestingComposable = useNesting(nestingOptions)
+const columnsComposable = useColumns(columnsOptions)
 
 // Computed
 const sortableColumns = computed(() => {
@@ -355,27 +359,28 @@ const handleGridNavigate = (entityId: number, childrenUrl: string) => {
 }
 
 const handleGridBack = () => {
-    // Go back to parent level
     const parent = entityApi.parent.value
-    if (parent?.urls?.parent) {
-        const url = new URL(parent.urls.parent)
-        // Extract parent_id from the parent URL if any
-        const parentApiUrl = entityApi.addToUrl(props.api, 'parent_id', '')
-        // Fetch parent level
-        entityApi.fetchEntities(parent.urls.parent.replace(window.location.origin, '') + '/api' + window.location.search).then((response: any) => {
+    if (parent?.urls?.parent_api) {
+        entityApi.fetchEntities(parent.urls.parent_api).then((response: any) => {
             entityApi.parent.value = response.parent
         })
+
+        const currentUrl = new URL(window.location.href)
+        if (parent.parent_id) {
+            currentUrl.searchParams.set('parent_id', String(parent.parent_id))
+        } else {
+            currentUrl.searchParams.delete('parent_id')
+        }
+        window.history.pushState({}, '', currentUrl)
     } else {
-        // Back to root
         entityApi.loadInitial().then((response: any) => {
             entityApi.parent.value = response.parent
         })
-    }
 
-    // Update browser URL
-    const currentUrl = new URL(window.location.href)
-    currentUrl.searchParams.delete('parent_id')
-    window.history.pushState({}, '', currentUrl)
+        const currentUrl = new URL(window.location.href)
+        currentUrl.searchParams.delete('parent_id')
+        window.history.pushState({}, '', currentUrl)
+    }
 }
 
 // Tippy dropdowns
@@ -434,12 +439,14 @@ onMounted(() => {
         orderingComposable.setOrder(response.order)
         columnsComposable.setColumns(response.columns ?? [], response.columnPreferences ?? [])
 
-        // Update composable options that depend on API response
+        // Update composable options with preference URLs from API response
         if (response.urls?.preferences) {
-            // The composables use the options passed at creation, so we update their internal refs
-            // For layout/nesting/columns, the preferencesUrl and csrf need to be available
-            // Since composables capture options by reference, we can't change them after creation
-            // Instead, we use the response directly for preference persistence
+            layoutOptions.preferencesUrl = response.urls.preferences
+            layoutOptions.csrf = response.csrf
+            nestingOptions.preferencesUrl = response.urls.preferences
+            nestingOptions.csrf = response.csrf
+            columnsOptions.preferencesUrl = response.urls.preferences
+            columnsOptions.csrf = response.csrf
         }
 
         loading.value = false

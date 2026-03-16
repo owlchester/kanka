@@ -38,16 +38,9 @@ export function useLayout(options: LayoutOptions) {
         }
     }
 
-    const gridLayoutClass = (): string => {
-        return isGrid()
-            ? 'entities-grid flex flex-wrap gap-3 lg:gap-5 w-full'
-            : 'entities-grid flex flex-col gap-1 w-full'
-    }
-
     return {
         layout,
         isGrid,
         switchLayout,
-        gridLayoutClass,
     }
 }

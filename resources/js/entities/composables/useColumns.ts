@@ -1,6 +1,6 @@
 import { ref, computed, type Ref } from 'vue'
 
-interface ColumnsOptions {
+export interface ColumnsOptions {
     preferencesUrl: string
     csrf: string
 }
@@ -18,11 +18,10 @@ interface ColumnDefinition {
     tooltip?: string | null
 }
 
-let debounceTimer: ReturnType<typeof setTimeout> | null = null
-
 export function useColumns(options: ColumnsOptions) {
     const availableColumns: Ref<ColumnDefinition[]> = ref([])
     const visibleColumnKeys: Ref<string[]> = ref([])
+    let debounceTimer: ReturnType<typeof setTimeout> | null = null
 
     const setColumns = (columns: ColumnDefinition[], preferences: string[]) => {
         availableColumns.value = columns
@@ -64,7 +63,6 @@ export function useColumns(options: ColumnsOptions) {
                 'X-CSRF-TOKEN': options.csrf,
             },
         }).then(() => {
-            // Reload to get fresh defaults
             window.location.reload()
         })
     }
@@ -72,7 +70,6 @@ export function useColumns(options: ColumnsOptions) {
     const persistPreferences = () => {
         if (!options.preferencesUrl) return
 
-        // Debounce 500ms
         if (debounceTimer) clearTimeout(debounceTimer)
         debounceTimer = setTimeout(() => {
             fetch(options.preferencesUrl, {

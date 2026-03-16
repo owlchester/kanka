@@ -30,6 +30,8 @@ class IndexController extends Controller
 
     protected Request $request;
 
+    protected ?EntityListingPreference $preference = null;
+
     public function __construct(
         protected FilterService $filterService,
         protected ColumnDefinitionService $columnDefinitionService,
@@ -123,16 +125,18 @@ class IndexController extends Controller
         // Column definitions
         $columns = $this->columnDefinitionService->columns($entityType, $campaign);
         $relations = $this->columnDefinitionService->relationMap($entityType, $campaign);
+        $countRelations = $this->columnDefinitionService->countMap($entityType, $campaign);
 
-        // User preferences
-        $preference = null;
+        // User preferences (query once, reuse in isNested/layoutMode)
+        $this->preference = null;
         if (auth()->check()) {
-            $preference = EntityListingPreference::query()->where([
+            $this->preference = EntityListingPreference::query()->where([
                 'user_id' => auth()->id(),
                 'campaign_id' => $campaign->id,
                 'type_id' => $entityType->id,
             ])->first();
         }
+        $preference = $this->preference;
         $columnPreferences = $preference?->visible_columns
             ?? $this->columnDefinitionService->defaultVisibleColumns($entityType, $campaign);
 
@@ -155,8 +159,13 @@ class IndexController extends Controller
                 'entities.image_uuid', 'entities.focus_x', 'entities.focus_y', 'entities.image_path',
             ])
             ->with($with)
-            ->withCount('children')
-            ->search($this->filterService->search())
+            ->withCount('children');
+
+        foreach ($countRelations as $relation) {
+            $base->withCount($relation);
+        }
+
+        $base = $base->search($this->filterService->search())
             ->order($this->filterService->order())
             ->distinct();
 
@@ -212,6 +221,8 @@ class IndexController extends Controller
             'bulkCopy' => __('crud.actions.copy_to_campaign'),
             'bulkPrint' => __('crud.actions.print'),
             'bulkDelete' => __('crud.remove'),
+            'columns' => __('datagrids.columns.title'),
+            'resetDefaults' => __('datagrids.columns.reset'),
         ];
 
         $bookmarkable = $this->filterService->activeFiltersCount() > 0 && auth()->check() && auth()->user()->can('create', Bookmark::class) && ! $request->has('bookmark');
@@ -304,16 +315,8 @@ class IndexController extends Controller
         }
 
         // Check preferences table
-        if (auth()->check()) {
-            $preference = EntityListingPreference::query()->where([
-                'user_id' => auth()->id(),
-                'campaign_id' => $this->campaign->id,
-                'type_id' => $this->entityType->id,
-            ])->first();
-
-            if ($preference && $preference->nested !== null) {
-                return $preference->nested;
-            }
+        if ($this->preference && $this->preference->nested !== null) {
+            return $this->preference->nested;
         }
 
         // Fallback to session for guests
@@ -354,16 +357,8 @@ class IndexController extends Controller
         }
 
         // Check preferences table
-        if (auth()->check()) {
-            $preference = EntityListingPreference::query()->where([
-                'user_id' => auth()->id(),
-                'campaign_id' => $this->campaign->id,
-                'type_id' => $this->entityType->id,
-            ])->first();
-
-            if ($preference && $preference->layout !== null) {
-                return $preference->layout;
-            }
+        if ($this->preference && $this->preference->layout !== null) {
+            return $this->preference->layout;
         }
 
         if (auth()->guest()) {

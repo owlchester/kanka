@@ -74,6 +74,7 @@ class ExploreResource extends JsonResource
                 'full' => Avatar::entity($entity)->original(),
             ],
             'is_private' => $entity->is_private,
+            'parent_id' => $entity->parent_id,
             'entityType' => new EntityTypeResource($entity->entityType),
             'urls' => [
                 'tooltip' => route('entities.tooltip', [$campaign, $entity]),
@@ -81,6 +82,9 @@ class ExploreResource extends JsonResource
                 'children' => route('entities.index', [$campaign, $entity->entityType, 'parent_id' => $entity->id]),
                 'children_api' => route('entities.index-api', [$campaign, $entity->entityType, 'parent_id' => $entity->id, 'children' => true]),
                 'parent' => $routeBack,
+                'parent_api' => $entity->parent_id
+                    ? route('entities.index-api', array_merge($routeParams, ['parent_id' => $entity->parent_id]))
+                    : route('entities.index-api', $routeParams),
             ],
             'tags' => $this->tags(),
             'links' => $links,
@@ -89,41 +93,41 @@ class ExploreResource extends JsonResource
         // Column-driven entity-type-specific data
         $child = $entity->child;
         if ($child) {
-            if ($this->hasColumn('title') && property_exists($child, 'title')) {
+            if ($this->hasColumn('title') && isset($child->title)) {
                 $data['title'] = $child->title;
             }
-            if ($this->hasColumn('date') && property_exists($child, 'date')) {
+            if ($this->hasColumn('date') && isset($child->date)) {
                 $data['date'] = $child->date;
             }
-            if ($this->hasColumn('price') && property_exists($child, 'price')) {
+            if ($this->hasColumn('price') && isset($child->price)) {
                 $data['price'] = $child->price;
             }
-            if ($this->hasColumn('size') && property_exists($child, 'size')) {
+            if ($this->hasColumn('size') && isset($child->size)) {
                 $data['size'] = $child->size;
             }
-            if ($this->hasColumn('colour') && property_exists($child, 'colour')) {
+            if ($this->hasColumn('colour') && isset($child->colour)) {
                 $data['colour'] = $child->colour;
             }
             if ($this->hasColumn('status')) {
                 $data['status'] = method_exists($child, 'isDead') ? $child->isDead() :
                                  (method_exists($child, 'isDefunct') ? $child->isDefunct() : false);
             }
-            if ($this->hasColumn('is_destroyed') && property_exists($child, 'is_destroyed')) {
+            if ($this->hasColumn('is_destroyed') && isset($child->is_destroyed)) {
                 $data['is_destroyed'] = (bool) $child->is_destroyed;
             }
-            if ($this->hasColumn('is_defunct') && property_exists($child, 'is_defunct')) {
+            if ($this->hasColumn('is_defunct') && isset($child->is_defunct)) {
                 $data['is_defunct'] = (bool) $child->is_defunct;
             }
-            if ($this->hasColumn('is_extinct') && property_exists($child, 'is_extinct')) {
+            if ($this->hasColumn('is_extinct') && isset($child->is_extinct)) {
                 $data['is_extinct'] = (bool) $child->is_extinct;
             }
-            if ($this->hasColumn('is_dead') && property_exists($child, 'is_dead')) {
+            if ($this->hasColumn('is_dead') && isset($child->is_dead)) {
                 $data['is_dead'] = (bool) $child->is_dead;
             }
-            if ($this->hasColumn('is_auto_applied') && property_exists($child, 'is_auto_applied')) {
+            if ($this->hasColumn('is_auto_applied') && isset($child->is_auto_applied)) {
                 $data['is_auto_applied'] = (bool) $child->is_auto_applied;
             }
-            if ($this->hasColumn('is_hidden') && property_exists($child, 'is_hidden')) {
+            if ($this->hasColumn('is_hidden') && isset($child->is_hidden)) {
                 $data['is_hidden'] = (bool) $child->is_hidden;
             }
             if ($this->hasColumn('location')) {
@@ -142,16 +146,16 @@ class ExploreResource extends JsonResource
                 $data['races'] = $this->formatRelatedEntities($child, 'characterRaces', 'race');
             }
             // Count columns
-            if ($this->hasColumn('members_count')) {
-                $data['members_count'] = $entity->children_count;
+            if ($this->hasColumn('members_count') && isset($child->members_count)) {
+                $data['members_count'] = $child->members_count ?? 0;
             }
-            if ($this->hasColumn('elements_count') && property_exists($child, 'elements_count')) {
+            if ($this->hasColumn('elements_count') && isset($child->elements_count)) {
                 $data['elements_count'] = $child->elements_count ?? 0;
             }
-            if ($this->hasColumn('eras_count') && property_exists($child, 'eras_count')) {
+            if ($this->hasColumn('eras_count') && isset($child->eras_count)) {
                 $data['eras_count'] = $child->eras_count ?? 0;
             }
-            if ($this->hasColumn('entities_count') && property_exists($child, 'entities_count')) {
+            if ($this->hasColumn('entities_count') && isset($child->entities_count)) {
                 $data['entities_count'] = $child->entities_count ?? 0;
             }
         }
@@ -181,18 +185,6 @@ class ExploreResource extends JsonResource
         }
 
         return $data;
-    }
-
-    protected function css(): ?string
-    {
-        /** @var Entity $entity */
-        $entity = $this->resource;
-
-        if ($entity->isCharacter() && $entity->character->isDead()) {
-            return 'dead';
-        }
-
-        return null;
     }
 
     protected function tags(): array
