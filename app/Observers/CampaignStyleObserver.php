@@ -11,7 +11,8 @@ class CampaignStyleObserver
 {
     public function saving(CampaignStyle $campaignStyle)
     {
-        $campaignStyle->content = str_replace(['&gt;', '{{', '}}'], ['>', '', ''], strip_tags($campaignStyle->content));
+        $content = preg_replace('/<\/style\s*>/i', '', $campaignStyle->content);
+        $campaignStyle->content = str_replace(['&gt;', '{{', '}}'], ['>', '', ''], $content);
     }
 
     public function creating(CampaignStyle $campaignStyle)

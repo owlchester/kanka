@@ -25,8 +25,8 @@ class StoreConversationMessage extends FormRequest
     {
         $rules = [
             'message' => 'required|string',
-            'character_id' => 'integer|exists:characters,id',
-            'user_id' => 'integer|exists:users,id',
+            'character_id' => 'nullable|integer|exists:characters,id',
+            'user_id' => 'nullable|integer|exists:users,id',
         ];
 
         return $rules;

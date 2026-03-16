@@ -24,8 +24,8 @@ class StoreConversationParticipant extends FormRequest
     public function rules()
     {
         $rules = [
-            'character_id' => 'integer|exists:characters,id|required_without_all:user_id',
-            'user_id' => 'integer|exists:users,id|required_without_all:character_id',
+            'character_id' => 'nullable|integer|exists:characters,id|required_without_all:user_id',
+            'user_id' => 'nullable|integer|exists:users,id|required_without_all:character_id',
         ];
 
         return $rules;

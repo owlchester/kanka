@@ -142,7 +142,7 @@ $first = true;
 
 <div class="grid grid-cols-3 md:grid-cols-4 gap-2">
     <div class="col-span-3 md:col-span-1">
-        <strong>{{ __('entities.templates') }}</strong>
+        <strong>{{ __('entities.archetypes') }} / {{ __('entities.templates') }}</strong>
     </div>
     @foreach ($permissionService->templatePermissions() as $entity => $permissions)
         @foreach ($permissions as $perm)

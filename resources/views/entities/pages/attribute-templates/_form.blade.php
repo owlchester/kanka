@@ -1,7 +1,7 @@
 <x-grid type="1/1">
     <x-forms.field
         field="template"
-        :label="__('entities/attributes.fields.template')"
+        :label="__('entities/attributes.fields.kit')"
         required>
         <x-forms.select name="template_id" :options="$templates" :placeholder="__('entities/attributes.placeholders.template')" class="w-full" required />
         <x-slot name="helper">
