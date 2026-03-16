@@ -43,16 +43,17 @@ class CancellationService
         if ($this->webhook) {
             return;
         }
-        SubscriptionCancellation::create([
+        $cancellation = SubscriptionCancellation::create([
             'user_id' => $this->user->id,
             'reason' => $this->request->reason,
+            'secondary' => $this->request->reason_secondary,
             'custom' => $this->request->reason_custom,
             'tier' => $this->user->pledge ?? 'Owlbear',
             'duration' => $this->user->subscription('kanka')->created_at->diffInDays(Carbon::now()),
         ]);
 
         // Anything that can fail, send to a queue
-        SubscriptionCancelEmailJob::dispatch($this->user, $this->request->reason, $this->request->reason_custom);
+        SubscriptionCancelEmailJob::dispatch($cancellation);
 
         // Dispatch the job when the subscription actually ends
         SubscriptionEndJob::dispatch($this->user)

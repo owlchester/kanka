@@ -24,6 +24,7 @@ class SubscriptionCancel extends FormRequest
     {
         return [
             'reason' => 'nullable',
+            'reason_secondary' => 'nullable',
             'reason_custom' => 'nullable',
         ];
     }

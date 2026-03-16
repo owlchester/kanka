@@ -9,7 +9,7 @@
 - **Username:** [{{ $user->name }}](https://admin.kanka.io/users/{{ $user->id }})
 - **Email:** {{ $user->email }}
 - **Account age:** {{ $user->created_at->diffForHumans() }} ({{ $user->created_at->format('d.m.Y') }})
-- **Subscription tier:** {{ $user->tier ?? 'N/A' }}
+- **Subscription tier:** {{ $user->pledge ?? 'N/A' }}
 - **Subscription currency:** {{ $user->currencySymbol() }}
 - **User country:** {{ $country ?? 'N/A' }}
 

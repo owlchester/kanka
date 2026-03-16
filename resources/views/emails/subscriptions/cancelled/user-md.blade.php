@@ -7,7 +7,7 @@ We're sorry to see you go, {{ $user->name }}. You’re always welcome to rejoin 
 - Increased upload size
 - [And way more](https:{{ \App\Facades\Domain::toFront('pricing')  }})
 
-This email serves as confirmation that you have cancelled the renewal of your **{{ $user->pledge }}** subscription on Kanka. You will continue to have access to your subscription bonuses until **{{ $user->subscription('kanka')?->ends_at?->isoFormat('MMMM D, Y') }}**.
+This email serves as confirmation that you have cancelled the renewal of your **{{ $cancellation->tier }}** subscription on Kanka. You will continue to have access to your subscription bonuses until **{{ $user->subscription('kanka')?->ends_at?->isoFormat('MMMM D, Y') }}**.
 
 Thank you for being part of our community!
 

@@ -11,7 +11,8 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property int $id
  * @property string $reason
- * @property string $custom
+ * @property string? $secondary
+ * @property string? $custom
  * @property string $tier
  * @property string $duration
  * @property Carbon $created_at
@@ -28,6 +29,7 @@ class SubscriptionCancellation extends Model
     protected $fillable = [
         'user_id',
         'reason',
+        'secondary',
         'custom',
         'tier',
         'duration',
