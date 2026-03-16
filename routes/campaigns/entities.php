@@ -10,6 +10,7 @@ use App\Http\Controllers\Entities\CreateController;
 use App\Http\Controllers\Entities\DeleteController;
 use App\Http\Controllers\Entities\EditController;
 use App\Http\Controllers\Entities\IndexController;
+use App\Http\Controllers\Entities\ListingPreferenceController;
 use App\Http\Controllers\Entity\AttributeController;
 use App\Http\Controllers\Entity\Attributes\LiveApiController;
 use App\Http\Controllers\Entity\Attributes\LiveController;
@@ -36,6 +37,10 @@ Route::get('/w/{campaign}/entities/{entity}-{slug}', [ShowController::class, 'in
 
 Route::get('/w/{campaign}/t/{entityType}', [IndexController::class, 'index'])->name('entities.index');
 Route::get('/w/{campaign}/t/{entityType}/api', [IndexController::class, 'api'])->name('entities.index-api');
+Route::patch('/w/{campaign}/t/{entityType}/preferences', [ListingPreferenceController::class, 'update'])
+    ->name('entities.listing-preferences.update');
+Route::delete('/w/{campaign}/t/{entityType}/preferences', [ListingPreferenceController::class, 'destroy'])
+    ->name('entities.listing-preferences.destroy');
 Route::get('/w/{campaign}/t/{entityType}/create', [CreateController::class, 'index'])->name('entities.create');
 Route::post('/w/{campaign}/t/{entity_type}/create', [CreateController::class, 'store'])->name('entities.store');
 
