@@ -29,6 +29,7 @@ use App\Http\Controllers\Timelines\TimelineReorderController;
 use App\Http\Controllers\Whiteboards\ApiController;
 use App\Http\Controllers\Whiteboards\DrawController;
 use App\Models\Attribute;
+use App\Models\Campaign;
 use App\Models\EntityType;
 use Illuminate\Support\Facades\Route;
 
@@ -278,7 +279,7 @@ $standardEntityTypes = [
 ];
 
 foreach ($standardEntityTypes as $entityTypeCode) {
-    Route::get("/w/{campaign}/{$entityTypeCode}", function (\App\Models\Campaign $campaign) use ($entityTypeCode) {
+    Route::get("/w/{campaign}/{$entityTypeCode}", function (Campaign $campaign) use ($entityTypeCode) {
         $entityType = EntityType::where('code', $entityTypeCode)->first();
         if ($entityType) {
             return redirect()->route('entities.index', array_merge(
