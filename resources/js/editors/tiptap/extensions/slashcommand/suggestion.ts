@@ -33,18 +33,18 @@ const tableHTML = `
   <table class="table table-striped table-bordered" style="width: 200px;">
     <thead>
         <tr>
-            <th></th>
-            <th></th>
+            <th><p></p></th>
+            <th><p></p></th>
         </tr>
     </thead>
     <tbody>
         <tr>
-          <td></td>
-          <td></td>
+          <td><p></p></td>
+          <td><p></p></td>
         </tr>
         <tr>
-          <td></td>
-          <td></td>
+          <td><p></p></td>
+          <td><p></p></td>
         </tr>
     </tbody>
   </table>`
