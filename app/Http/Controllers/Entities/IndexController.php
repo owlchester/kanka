@@ -10,7 +10,9 @@ use App\Http\Resources\EntityTypeResource;
 use App\Models\Bookmark;
 use App\Models\Campaign;
 use App\Models\Entity;
+use App\Models\EntityListingPreference;
 use App\Models\EntityType;
+use App\Services\Entity\ColumnDefinitionService;
 use App\Services\FilterService;
 use App\Traits\Controllers\HasNested;
 use Illuminate\Http\Request;
@@ -24,10 +26,13 @@ class IndexController extends Controller
 
     protected EntityType $entityType;
 
+    protected Campaign $campaign;
+
     protected Request $request;
 
     public function __construct(
-        protected FilterService $filterService
+        protected FilterService $filterService,
+        protected ColumnDefinitionService $columnDefinitionService,
     ) {
         $this->middleware([CachedResponse::class]);
     }
@@ -44,12 +49,8 @@ class IndexController extends Controller
             );
         }
 
-        // If not a special entity type, redirect to their "old" route
-        if ($entityType->isStandard()) {
-            return redirect()->route($entityType->pluralCode() . '.index', $campaign);
-        }
-
         $this->entityType = $entityType;
+        $this->campaign = $campaign;
         $this->request = $request;
 
         $this->filterService->request($request)->entityType($entityType)->build();
@@ -114,17 +115,39 @@ class IndexController extends Controller
     public function api(Request $request, Campaign $campaign, EntityType $entityType)
     {
         $this->entityType = $entityType;
+        $this->campaign = $campaign;
         $this->request = $request;
 
         $this->filterService->request($request)->entityType($entityType)->build();
 
+        // Column definitions
+        $columns = $this->columnDefinitionService->columns($entityType, $campaign);
+        $relations = $this->columnDefinitionService->relationMap($entityType, $campaign);
+
+        // User preferences
+        $preference = null;
+        if (auth()->check()) {
+            $preference = EntityListingPreference::query()->where([
+                'user_id' => auth()->id(),
+                'campaign_id' => $campaign->id,
+                'type_id' => $entityType->id,
+            ])->first();
+        }
+        $columnPreferences = $preference?->visible_columns
+            ?? $this->columnDefinitionService->defaultVisibleColumns($entityType, $campaign);
+
+        // Tell the resource which columns to serialize
+        ExploreResource::withColumns(array_map(fn ($c) => $c['key'], $columns));
+
         $nested = $this->isNested();
         $layout = $this->layoutMode();
 
-        $with = ['entityType', 'image', 'locations', 'parent', 'tags'];
+        $with = $relations;
         if ($this->entityType->isStandard()) {
             $with[] = $this->entityType->code;
         }
+        $with[] = 'children';
+
         $base = Entity::inTypes($entityType->id)
             ->select([
                 'entities.id', 'entities.name', 'entities.type', 'entities.is_private', 'entities.entity_id',
@@ -217,6 +240,8 @@ class IndexController extends Controller
                 'delete' => route('bulk.delete', [$campaign, $entityType]),
                 'print' => route('bulk.print', [$campaign, $entityType]),
                 'bookmark' => route('filters.modal_form', [$campaign, $entityType]),
+                'preferences' => route('entities.listing-preferences.update', [$campaign, $entityType]),
+                'preferencesReset' => route('entities.listing-preferences.destroy', [$campaign, $entityType]),
             ],
             'csrf' => csrf_token(),
             'filters' => [
@@ -228,7 +253,38 @@ class IndexController extends Controller
                 ],
             ],
             'order' => $this->filterService->order(),
+            'columns' => $columns,
+            'columnPreferences' => $columnPreferences,
+            'ads' => [
+                'enabled' => $this->showAds($campaign),
+                'frequency' => 7,
+            ],
+            'preferences' => $preference ? [
+                'layout' => $preference->layout,
+                'nested' => $preference->nested,
+            ] : null,
         ]);
+    }
+
+    protected function showAds(Campaign $campaign): bool
+    {
+        if (! config('ads.nitro.enabled')) {
+            return false;
+        }
+        if (request()->has('_showads')) {
+            return true;
+        }
+        if (auth()->check()) {
+            $user = auth()->user();
+            if ($user->isSubscriber()) {
+                return false;
+            }
+            if ($user->created_at->diffInHours(now()) < 24) {
+                return false;
+            }
+        }
+
+        return ! $campaign->boosted();
     }
 
     /**
@@ -236,17 +292,36 @@ class IndexController extends Controller
      */
     protected function isNested(): bool
     {
+        if (! $this->entityType->isNested()) {
+            return false;
+        }
+
         $key = $this->entityType->code . '_nested';
+
+        // URL override
         if ($this->request->has('n')) {
             return $this->saveNested($key);
         }
 
+        // Check preferences table
+        if (auth()->check()) {
+            $preference = EntityListingPreference::query()->where([
+                'user_id' => auth()->id(),
+                'campaign_id' => $this->campaign->id,
+                'type_id' => $this->entityType->id,
+            ])->first();
+
+            if ($preference && $preference->nested !== null) {
+                return $preference->nested;
+            }
+        }
+
+        // Fallback to session for guests
         if (auth()->guest()) {
             return (bool) Session::get($key, true);
         }
 
-        // Else use the user's preferred stacking for this entity type
-        return Arr::get(auth()->user()->settings, $key, true);
+        return true;
     }
 
     /**
@@ -255,6 +330,7 @@ class IndexController extends Controller
     protected function layoutMode(): string
     {
         $key = $this->entityType->code . '_layout';
+
         if ($this->request->has('m') && in_array($this->request->get('m'), ['grid', 'table'])) {
             $new = $this->request->get('m', 'grid');
 
@@ -277,11 +353,23 @@ class IndexController extends Controller
             return $new;
         }
 
+        // Check preferences table
+        if (auth()->check()) {
+            $preference = EntityListingPreference::query()->where([
+                'user_id' => auth()->id(),
+                'campaign_id' => $this->campaign->id,
+                'type_id' => $this->entityType->id,
+            ])->first();
+
+            if ($preference && $preference->layout !== null) {
+                return $preference->layout;
+            }
+        }
+
         if (auth()->guest()) {
             return Session::get($key, 'grid');
         }
 
-        // Else use the user's preferred stacking for this entity type
         return Arr::get(auth()->user()->settings, $key, 'grid');
     }
 }
