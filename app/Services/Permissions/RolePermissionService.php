@@ -222,10 +222,10 @@ class RolePermissionService
         ];
         $icons = [
             CampaignPermission::ACTION_TEMPLATES => [
-                'fa-regular fa-cog', 'entities',
+                'fa-regular fa-cog', 'entries',
             ],
             CampaignPermission::ACTION_POST_TEMPLATES => [
-                'fa-regular fa-cog', 'posts',
+                'fa-regular fa-cog', 'articles',
             ],
         ];
 
