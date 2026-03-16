@@ -12,6 +12,18 @@ use Illuminate\Support\Str;
 
 class ExploreResource extends JsonResource
 {
+    protected static array $columnKeys = [];
+
+    public static function withColumns(array $keys): void
+    {
+        static::$columnKeys = $keys;
+    }
+
+    protected function hasColumn(string $key): bool
+    {
+        return empty(static::$columnKeys) || in_array($key, static::$columnKeys);
+    }
+
     /**
      * Transform the resource into an array.
      *
@@ -52,7 +64,8 @@ class ExploreResource extends JsonResource
         $data = [
             'id' => $entity->id,
             'name' => $entity->name,
-            'type' => Str::slug($entity->type),
+            'type' => $entity->type,
+            'type_slug' => Str::slug($entity->type ?? ''),
             'attributes' => $attributes,
             'selected' => false,
             'children' => $entity->children_count,
@@ -72,6 +85,100 @@ class ExploreResource extends JsonResource
             'tags' => $this->tags(),
             'links' => $links,
         ];
+
+        // Column-driven entity-type-specific data
+        $child = $entity->child;
+        if ($child) {
+            if ($this->hasColumn('title') && property_exists($child, 'title')) {
+                $data['title'] = $child->title;
+            }
+            if ($this->hasColumn('date') && property_exists($child, 'date')) {
+                $data['date'] = $child->date;
+            }
+            if ($this->hasColumn('price') && property_exists($child, 'price')) {
+                $data['price'] = $child->price;
+            }
+            if ($this->hasColumn('size') && property_exists($child, 'size')) {
+                $data['size'] = $child->size;
+            }
+            if ($this->hasColumn('colour') && property_exists($child, 'colour')) {
+                $data['colour'] = $child->colour;
+            }
+            if ($this->hasColumn('status')) {
+                $data['status'] = method_exists($child, 'isDead') ? $child->isDead() :
+                                 (method_exists($child, 'isDefunct') ? $child->isDefunct() : false);
+            }
+            if ($this->hasColumn('is_destroyed') && property_exists($child, 'is_destroyed')) {
+                $data['is_destroyed'] = (bool) $child->is_destroyed;
+            }
+            if ($this->hasColumn('is_defunct') && property_exists($child, 'is_defunct')) {
+                $data['is_defunct'] = (bool) $child->is_defunct;
+            }
+            if ($this->hasColumn('is_extinct') && property_exists($child, 'is_extinct')) {
+                $data['is_extinct'] = (bool) $child->is_extinct;
+            }
+            if ($this->hasColumn('is_dead') && property_exists($child, 'is_dead')) {
+                $data['is_dead'] = (bool) $child->is_dead;
+            }
+            if ($this->hasColumn('is_auto_applied') && property_exists($child, 'is_auto_applied')) {
+                $data['is_auto_applied'] = (bool) $child->is_auto_applied;
+            }
+            if ($this->hasColumn('is_hidden') && property_exists($child, 'is_hidden')) {
+                $data['is_hidden'] = (bool) $child->is_hidden;
+            }
+            if ($this->hasColumn('location')) {
+                $data['location'] = $this->formatSingleEntity($child->location ?? null);
+            }
+            if ($this->hasColumn('author') && method_exists($child, 'author')) {
+                $data['author'] = $this->formatSingleEntity($child->author ?? null);
+            }
+            if ($this->hasColumn('instigator') && method_exists($child, 'instigator')) {
+                $data['instigator'] = $this->formatSingleEntity($child->instigator ?? null);
+            }
+            if ($this->hasColumn('families') && method_exists($child, 'characterFamilies')) {
+                $data['families'] = $this->formatRelatedEntities($child, 'characterFamilies', 'family');
+            }
+            if ($this->hasColumn('races') && method_exists($child, 'characterRaces')) {
+                $data['races'] = $this->formatRelatedEntities($child, 'characterRaces', 'race');
+            }
+            // Count columns
+            if ($this->hasColumn('members_count')) {
+                $data['members_count'] = $entity->children_count;
+            }
+            if ($this->hasColumn('elements_count') && property_exists($child, 'elements_count')) {
+                $data['elements_count'] = $child->elements_count ?? 0;
+            }
+            if ($this->hasColumn('eras_count') && property_exists($child, 'eras_count')) {
+                $data['eras_count'] = $child->eras_count ?? 0;
+            }
+            if ($this->hasColumn('entities_count') && property_exists($child, 'entities_count')) {
+                $data['entities_count'] = $child->entities_count ?? 0;
+            }
+        }
+
+        // Calendar date (lives on entity, not child)
+        if ($this->hasColumn('calendar_date')) {
+            $data['calendar_date'] = $this->formatCalendarDate($entity);
+        }
+
+        // Parent entity link
+        if ($this->hasColumn('parent') && $entity->parent) {
+            $data['parent_entity'] = $this->formatSingleEntity($entity->parent);
+        }
+
+        // Entity locations (many-to-many)
+        if ($this->hasColumn('locations') && $entity->relationLoaded('locations')) {
+            $data['locations'] = $this->formatEntityLocations($entity);
+        }
+
+        // Children preview for grid avatar bubbles
+        if ($entity->relationLoaded('children')) {
+            $data['children_preview'] = $entity->children->take(3)->map(fn ($child) => [
+                'id' => $child->id,
+                'name' => $child->name,
+                'image' => Avatar::entity($child)->fallback()->size(40, 40)->thumbnail(),
+            ])->toArray();
+        }
 
         return $data;
     }
@@ -108,5 +215,83 @@ class ExploreResource extends JsonResource
         }
 
         return $tags;
+    }
+
+    protected function formatRelatedEntities(mixed $child, string $pivotRelation, string $entityRelation): array
+    {
+        if (! method_exists($child, $pivotRelation)) {
+            return [];
+        }
+
+        $items = [];
+        $campaign = CampaignLocalization::getCampaign();
+        foreach ($child->{$pivotRelation} as $pivot) {
+            $related = $pivot->{$entityRelation};
+            if ($related && $related->entity) {
+                $items[] = [
+                    'id' => $related->entity->id,
+                    'name' => $related->entity->name,
+                    'url' => route('entities.show', [$campaign, $related->entity]),
+                ];
+            }
+        }
+
+        return $items;
+    }
+
+    protected function formatSingleEntity(mixed $model): ?array
+    {
+        if (! $model || ! $model->entity) {
+            return null;
+        }
+
+        $campaign = CampaignLocalization::getCampaign();
+
+        return [
+            'id' => $model->entity->id,
+            'name' => $model->entity->name,
+            'url' => route('entities.show', [$campaign, $model->entity]),
+        ];
+    }
+
+    protected function formatCalendarDate(Entity $entity): ?array
+    {
+        if (! $entity->relationLoaded('calendarDate') || ! $entity->calendarDate) {
+            return null;
+        }
+
+        $reminder = $entity->calendarDate;
+        if (! $reminder->calendar || ! $reminder->calendar->entity) {
+            return null;
+        }
+
+        $campaign = CampaignLocalization::getCampaign();
+
+        return [
+            'date' => $reminder->readableDate(),
+            'url' => route('entities.show', [
+                $campaign,
+                $reminder->calendar->entity,
+                'month' => $reminder->month,
+                'year' => $reminder->year,
+            ]),
+        ];
+    }
+
+    protected function formatEntityLocations(Entity $entity): array
+    {
+        $items = [];
+        $campaign = CampaignLocalization::getCampaign();
+        foreach ($entity->locations as $location) {
+            if ($location->entity) {
+                $items[] = [
+                    'id' => $location->entity->id,
+                    'name' => $location->entity->name,
+                    'url' => route('entities.show', [$campaign, $location->entity]),
+                ];
+            }
+        }
+
+        return $items;
     }
 }
