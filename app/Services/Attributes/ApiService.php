@@ -94,7 +94,7 @@ class ApiService
             ],
             'templates' => [
                 'title' => __('entities/attributes.template.load.title'),
-                'template' => __('entities/attributes.fields.template'),
+                'template' => __('entities/attributes.fields.kit'),
                 'load' => __('entities/attributes.actions.load'),
                 'helper' => __('entities/attributes.template.pitch', [
                     'plugin' => '<a href="' . config('marketplace.url') . '/character-sheets" class="text-link">' . __('footer.plugins') . '</a>',
