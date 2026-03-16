@@ -44,6 +44,11 @@ class ExploreResource extends JsonResource
         }
         $routeBack = route('entities.index', $routeParams);
 
+        $showParams = [$campaign, $entity];
+        if ($request->filled('bookmark')) {
+            $showParams['bookmark'] = $request->get('bookmark');
+        }
+
         $data = [
             'id' => $entity->id,
             'name' => $entity->name,
@@ -59,7 +64,7 @@ class ExploreResource extends JsonResource
             'entityType' => new EntityTypeResource($entity->entityType),
             'urls' => [
                 'tooltip' => route('entities.tooltip', [$campaign, $entity]),
-                'show' => route('entities.show', [$campaign, $entity]),
+                'show' => route('entities.show', $showParams),
                 'children' => route('entities.index', [$campaign, $entity->entityType, 'parent_id' => $entity->id]),
                 'children_api' => route('entities.index-api', [$campaign, $entity->entityType, 'parent_id' => $entity->id, 'children' => true]),
                 'parent' => $routeBack,

@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Entity;
 
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\CachedResponse;
+use App\Models\Bookmark;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
+use Illuminate\Http\Request;
 
 class ShowController extends Controller
 {
@@ -20,7 +22,7 @@ class ShowController extends Controller
         $this->middleware([CachedResponse::class]);
     }
 
-    public function index(Campaign $campaign, Entity $entity)
+    public function index(Request $request, Campaign $campaign, Entity $entity)
     {
         $this->campaign($campaign)->authEntityView($entity);
         /*if ($entity->slug !== $slug) {
@@ -32,9 +34,17 @@ class ShowController extends Controller
             $entity->child->setRelation('entity', $entity);
         }
 
+        $bookmark = null;
+        if ($request->filled('bookmark')) {
+            $bookmark = Bookmark::where('id', $request->get('bookmark'))
+                ->where('campaign_id', $campaign->id)
+                ->first();
+        }
+
         return view('cruds.show')
             ->with('campaign', $campaign)
             ->with('entity', $entity)
-            ->with('entityType', $entity->entityType);
+            ->with('entityType', $entity->entityType)
+            ->with('bookmark', $bookmark);
     }
 }

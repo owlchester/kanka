@@ -133,9 +133,15 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
     <div class="entity-header-text grow flex flex-col gap-1 md:gap-2  z-10">
         <ol class="entity-breadcrumb text-sm m-0 p-0">
             <li class="inline-block">
-                <a href="{{ $breadcrumb['url'] }}" class="" title="{{ $breadcrumb['label'] }}">
-                    {!! $breadcrumb['label'] !!}
-                </a>
+                @if (!empty($bookmark))
+                    <a href="{{ route('entities.index', [$campaign, $entity->entityType, 'bookmark' => $bookmark->id, '_from' => 'bookmark']) }}" class="" title="{{ $bookmark->name }}">
+                        {!! $bookmark->name !!}
+                    </a>
+                @else
+                    <a href="{{ $breadcrumb['url'] }}" class="" title="{{ $breadcrumb['label'] }}">
+                        {!! $breadcrumb['label'] !!}
+                    </a>
+                @endif
             </li>
         </ol>
         <div class="entity-name-header flex gap-3 items-center">
