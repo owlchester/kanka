@@ -120,6 +120,12 @@ class ExploreResource extends JsonResource
             if ($this->hasColumn('status') && isset($child->status_id)) {
                 $data['status'] = $child->status_id->value;
             }
+            if ($this->hasColumn('sex') && isset($child->sex)) {
+                $data['sex'] = $child->sex;
+            }
+            if ($this->hasColumn('pronouns') && isset($child->pronouns)) {
+                $data['pronouns'] = $child->pronouns;
+            }
             if ($this->hasColumn('is_destroyed') && isset($child->is_destroyed)) {
                 $data['is_destroyed'] = (bool) $child->is_destroyed;
             }

@@ -161,6 +161,7 @@ let actionsInstance: any = null
 
 onMounted(() => {
     if (actionsBtnRef.value && actionsMenuRef.value) {
+        actionsMenuRef.value.style.display = ''
         actionsInstance = tippy(actionsBtnRef.value, {
             content: actionsMenuRef.value,
             theme: 'kanka-dropdown',

@@ -468,6 +468,10 @@ watch(() => bulkActions.selecting.value, () => {
     nextTick(initAllDropdowns)
 })
 
+watch(() => layoutComposable.layout.value, () => {
+    nextTick(initAllDropdowns)
+})
+
 onBeforeUnmount(() => {
     destroyAllTippy()
 })

@@ -139,6 +139,8 @@ class ColumnDefinitionService
             ['key' => 'locations', 'type' => 'entities', 'label' => __('entities.locations'), 'sortable' => false, 'moduleGate' => 'locations'],
             ['key' => 'races', 'type' => 'entities', 'label' => __('entities.races'), 'sortable' => false, 'moduleGate' => 'races'],
             ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => false],
+            ['key' => 'sex', 'type' => 'text', 'label' => __('characters.fields.sex'), 'sortable' => true],
+            ['key' => 'pronouns', 'type' => 'text', 'label' => __('characters.fields.pronouns'), 'sortable' => true],
             ['key' => 'is_private', 'type' => 'private', 'label' => __('crud.fields.is_private'), 'sortable' => true, 'adminOnly' => true],
         ];
     }

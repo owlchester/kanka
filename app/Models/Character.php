@@ -75,6 +75,7 @@ class Character extends MiscModel
         'title',
         'age',
         'sex',
+        'pronouns',
         'status_id',
         'locations',
     ];
@@ -82,6 +83,8 @@ class Character extends MiscModel
     protected array $sortable = [
         'name',
         'type',
+        'sex',
+        'pronouns',
         'status_id',
     ];
 
