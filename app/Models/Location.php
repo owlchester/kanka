@@ -53,6 +53,7 @@ class Location extends MiscModel
         'campaign_id',
         'is_private',
         'is_destroyed',
+        'title',
     ];
 
     protected array $sortable = [

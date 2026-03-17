@@ -10,9 +10,12 @@ export function useBulkActions(entities: Ref<any[]>) {
         })
     }
 
+    const allSelected = (): boolean =>
+        entities.value.length > 0 && entities.value.every(e => e.selected)
+
     const toggleAll = () => {
         if (!entities.value.length) return
-        const shouldSelect = !entities.value[0].selected
+        const shouldSelect = !allSelected()
         entities.value.forEach(e => {
             e.selected = shouldSelect
         })
@@ -48,6 +51,7 @@ export function useBulkActions(entities: Ref<any[]>) {
         selecting,
         toggleSelecting,
         toggleAll,
+        allSelected,
         selectedEntityIds,
         bulkDialog,
         bulkPrint,

@@ -5,7 +5,7 @@
             <thead>
                 <tr>
                     <th v-if="selecting" class="w-8">
-                        <input type="checkbox" @change="$emit('toggleAll')" />
+                        <input type="checkbox" :checked="allSelected" @change="$emit('toggleAll')" />
                     </th>
                     <th v-if="nested && entityType?.is_nested" class="w-8"></th>
                     <th v-for="col in visibleColumns" :key="col.key"
@@ -53,6 +53,7 @@ const props = defineProps<{
     entities: any[]
     visibleColumns: any[]
     selecting: boolean
+    allSelected: boolean
     nested: boolean
     i18n: any
     entityType: any

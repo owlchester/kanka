@@ -134,6 +134,7 @@
                 :entities="entityApi.entities.value"
                 :visible-columns="columnsComposable.visibleColumns.value"
                 :selecting="bulkActions.selecting.value"
+                :all-selected="bulkActions.allSelected()"
                 :nested="nestingComposable.nested.value"
                 :i18n="i18n"
                 :entity-type="entityType"
