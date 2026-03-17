@@ -23,6 +23,7 @@ use Illuminate\Support\Collection;
  * @property string $name
  * @property string $type
  * @property string $colour
+ * @property ?string $icon
  * @property ?int $tag_id
  * @property bool|int $is_auto_applied
  * @property bool|int $is_hidden
@@ -46,6 +47,7 @@ class Tag extends MiscModel
     protected array $sortable = [
         'name',
         'colour',
+        'icon',
         'is_auto_applied',
         'is_hidden',
         'type',
@@ -58,12 +60,14 @@ class Tag extends MiscModel
         'colour',
         'is_auto_applied',
         'is_hidden',
+        'icon',
     ];
 
     protected $fillable = [
         'name',
         'slug',
         'colour',
+        'icon',
         'campaign_id',
         'is_private',
         'is_auto_applied',
@@ -73,6 +77,7 @@ class Tag extends MiscModel
     protected array $sanitizable = [
         'name',
         'colour',
+        'icon',
     ];
 
     /**
@@ -86,6 +91,7 @@ class Tag extends MiscModel
     protected array $exportFields = [
         'base',
         'colour',
+        'icon',
         'is_auto_applied',
         'is_hidden',
     ];
@@ -216,6 +222,11 @@ class Tag extends MiscModel
         return ! empty($this->colour);
     }
 
+    public function hasIcon(): bool
+    {
+        return ! empty($this->icon);
+    }
+
     /**
      * Attach entities to the tag
      */
@@ -231,7 +242,7 @@ class Tag extends MiscModel
      */
     public function showProfileInfo(): bool
     {
-        if (! empty($this->colour)) {
+        if ($this->hasColour() || $this->hasIcon()) {
             return true;
         }
 

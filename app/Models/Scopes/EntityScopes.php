@@ -3,11 +3,14 @@
 namespace App\Models\Scopes;
 
 use App\Enums\EntityAssetType;
+use App\Enums\EntityEventTypes;
 use App\Models\Campaign;
+use App\Models\Entity;
 use App\Models\EntityType;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 /**
@@ -186,6 +189,19 @@ trait EntityScopes
             if ($field === 'parent.name') {
                 $query->leftJoin('entities as parent_order', 'parent_order.id', '=', 'entities.parent_id')
                     ->orderBy('parent_order.name', $order);
+            } elseif ($field === 'calendar_date') {
+                $query->leftJoin('reminders as cd', function ($join) {
+                    $join->on('cd.remindable_id', '=', 'entities.id')
+                        ->on('cd.remindable_type', '=', DB::raw("'" . addslashes(Entity::class) . "'"))
+                        ->where('cd.type_id', EntityEventTypes::calendarDate);
+                })
+                    ->orderBy('cd.year', $order)
+                    ->orderBy('cd.month', $order)
+                    ->orderBy('cd.day', $order);
+            } elseif ($field === 'tags') {
+                $query->leftJoin('entity_tags as tags_order', 'tags_order.entity_id', '=', 'entities.id')
+                    ->leftJoin('tags as tag_order', 'tag_order.id', '=', 'tags_order.tag_id')
+                    ->orderBy('tag_order.name', $order);
             } elseif (! in_array($field, $entityFields) && $entityType?->isStandard()) {
                 // Field lives on the child model's table
                 $childModel = $entityType->getClass();

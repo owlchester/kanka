@@ -50,7 +50,7 @@ class ExploreResource extends JsonResource
 
         // Use the eager-loaded relation directly (not $entity->child which goes through EntityCache and loses withCount)
         $child = $entity->entityType->isStandard()
-            ? $entity->getRelationValue($entity->entityType->code)
+            ? $entity->getRelationValue(Str::camel($entity->entityType->code))
             : null;
         $parentEntity = $entity->parent;
 
@@ -114,6 +114,9 @@ class ExploreResource extends JsonResource
             if ($this->hasColumn('size') && isset($child->size)) {
                 $data['size'] = $child->size;
             }
+            if ($this->hasColumn('weight') && isset($child->weight)) {
+                $data['weight'] = $child->weight;
+            }
             if ($this->hasColumn('colour') && isset($child->colour)) {
                 $data['colour'] = $child->colour;
             }
@@ -144,6 +147,12 @@ class ExploreResource extends JsonResource
             if ($this->hasColumn('is_hidden') && isset($child->is_hidden)) {
                 $data['is_hidden'] = (bool) $child->is_hidden;
             }
+            if ($this->hasColumn('is_enabled') && isset($child->is_enabled)) {
+                $data['is_enabled'] = (bool) $child->is_enabled;
+            }
+            if ($this->hasColumn('entity_type_name')) {
+                $data['entity_type_name'] = $child->entityType?->name() ?? null;
+            }
             if ($this->hasColumn('location')) {
                 $data['location'] = $this->formatSingleEntity($child->location ?? null);
             }
@@ -171,6 +180,9 @@ class ExploreResource extends JsonResource
             }
             if ($this->hasColumn('entities_count') && isset($child->entities_count)) {
                 $data['entities_count'] = $child->entities_count ?? 0;
+            }
+            if ($this->hasColumn('attributes_count')) {
+                $data['attributes_count'] = $entity->attributes_count ?? 0;
             }
         }
 
@@ -253,11 +265,24 @@ class ExploreResource extends JsonResource
 
     protected function formatSingleEntity(mixed $model): ?array
     {
-        if (! $model || ! $model->entity) {
+        if (! $model) {
             return null;
         }
 
         $campaign = CampaignLocalization::getCampaign();
+
+        // Some relations (e.g. Journal::author, Quest::instigator) already return an Entity directly
+        if ($model instanceof Entity) {
+            return [
+                'id' => $model->id,
+                'name' => $model->name,
+                'url' => route('entities.show', [$campaign, $model]),
+            ];
+        }
+
+        if (! $model->entity) {
+            return null;
+        }
 
         return [
             'id' => $model->entity->id,

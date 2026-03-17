@@ -19,6 +19,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class IndexController extends Controller
 {
@@ -138,6 +139,7 @@ class IndexController extends Controller
         $columns = $this->columnDefinitionService->columns($entityType, $campaign);
         $relations = $this->columnDefinitionService->relationMap($entityType, $campaign);
         $childCountRelations = $this->columnDefinitionService->childCountRelations($entityType, $campaign);
+        $entityCountRelations = $this->columnDefinitionService->entityCountRelations($entityType, $campaign);
 
         // User preferences (query once, reuse in isNested/layoutMode)
         $this->preference = null;
@@ -161,7 +163,7 @@ class IndexController extends Controller
         $with = $relations;
         // Eager load child model with withCount for count columns (e.g. organisation.members)
         if ($entityType->isStandard()) {
-            $childRelation = $entityType->code;
+            $childRelation = Str::camel($entityType->code);
             $with[$childRelation] = function ($query) use ($childCountRelations) {
                 if (! empty($childCountRelations)) {
                     $query->withCount($childCountRelations);
@@ -178,7 +180,10 @@ class IndexController extends Controller
                 'entities.image_uuid', 'entities.focus_x', 'entities.focus_y', 'entities.image_path',
             ])
             ->with($with)
-            ->withCount(['children' => fn ($q) => $q->whereNull('archived_at')])
+            ->withCount(array_merge(
+                ['children' => fn ($q) => $q->whereNull('archived_at')],
+                $entityCountRelations,
+            ))
             ->search($this->filterService->search())
             ->order($this->filterService->order(), $entityType)
             ->distinct();

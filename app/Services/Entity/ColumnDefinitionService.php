@@ -84,6 +84,25 @@ class ColumnDefinitionService
         return $needed;
     }
 
+    /**
+     * @return string[] Entity relation names that need withCount (e.g. ['attributes'])
+     */
+    public function entityCountRelations(EntityType $entityType, Campaign $campaign): array
+    {
+        $countColumns = [
+            'attributes_count' => 'attributes',
+        ];
+
+        $needed = [];
+        foreach ($this->columns($entityType, $campaign) as $col) {
+            if (isset($countColumns[$col['key']])) {
+                $needed[] = $countColumns[$col['key']];
+            }
+        }
+
+        return $needed;
+    }
+
     protected function typeRelations(): array
     {
         return [
@@ -92,10 +111,11 @@ class ColumnDefinitionService
             'locations' => ['locations.entity'],
             'location' => ['location.entity'],
             'calendar_date' => ['calendarDate.calendar.entity'],
-            'author' => ['journal.author.entity'],
+            'author' => ['journal.author'],
             'organisation' => ['organisation.entity'],
             'character' => ['character.entity'],
-            'instigator' => ['quest.instigator.entity'],
+            'instigator' => ['quest.instigator'],
+            'entity_type_name' => ['attributeTemplate.entityType'],
         ];
     }
 
@@ -119,7 +139,7 @@ class ColumnDefinitionService
             ['key' => 'name', 'type' => 'name', 'label' => __('crud.fields.name'), 'sortable' => true, 'alwaysVisible' => true],
             ['key' => 'type', 'type' => 'text', 'label' => __('crud.fields.type'), 'sortable' => true],
             ['key' => 'parent', 'type' => 'entity', 'label' => __('crud.fields.parent'), 'sortable' => true, 'sortKey' => 'parent.name'],
-            ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => false],
+            ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => true],
             ['key' => 'is_private', 'type' => 'private', 'label' => __('crud.fields.is_private'), 'sortable' => true, 'adminOnly' => true],
         ];
     }
@@ -138,7 +158,7 @@ class ColumnDefinitionService
             ['key' => 'families', 'type' => 'entities', 'label' => __('entities.families'), 'sortable' => false, 'moduleGate' => 'families'],
             ['key' => 'locations', 'type' => 'entities', 'label' => __('entities.locations'), 'sortable' => false, 'moduleGate' => 'locations'],
             ['key' => 'races', 'type' => 'entities', 'label' => __('entities.races'), 'sortable' => false, 'moduleGate' => 'races'],
-            ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => false],
+            ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => true],
             ['key' => 'sex', 'type' => 'text', 'label' => __('characters.fields.sex'), 'sortable' => true],
             ['key' => 'pronouns', 'type' => 'text', 'label' => __('characters.fields.pronouns'), 'sortable' => true],
             ['key' => 'is_private', 'type' => 'private', 'label' => __('crud.fields.is_private'), 'sortable' => true, 'adminOnly' => true],
@@ -154,7 +174,7 @@ class ColumnDefinitionService
             ['key' => 'type', 'type' => 'text', 'label' => __('crud.fields.type'), 'sortable' => true],
             ['key' => 'parent', 'type' => 'entity', 'label' => __('crud.fields.parent'), 'sortable' => true, 'sortKey' => 'parent.name'],
             ['key' => 'is_destroyed', 'type' => 'icon', 'label' => __('locations.fields.is_destroyed'), 'sortable' => true, 'icon' => 'fa-regular fa-building-circle-xmark', 'tooltip' => __('locations.fields.is_destroyed')],
-            ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => false],
+            ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => true],
             ['key' => 'is_private', 'type' => 'private', 'label' => __('crud.fields.is_private'), 'sortable' => true, 'adminOnly' => true],
         ];
     }
@@ -169,7 +189,7 @@ class ColumnDefinitionService
             ['key' => 'locations', 'type' => 'entities', 'label' => __('entities.locations'), 'sortable' => false, 'moduleGate' => 'locations'],
             ['key' => 'members_count', 'type' => 'count', 'label' => __('organisations.fields.members'), 'sortable' => false, 'moduleGate' => 'characters'],
             ['key' => 'is_defunct', 'type' => 'icon', 'label' => __('organisations.fields.is_defunct'), 'sortable' => true, 'icon' => 'fa-regular fa-skull', 'tooltip' => __('organisations.fields.is_defunct')],
-            ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => false],
+            ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => true],
             ['key' => 'is_private', 'type' => 'private', 'label' => __('crud.fields.is_private'), 'sortable' => true, 'adminOnly' => true],
         ];
     }
@@ -184,7 +204,7 @@ class ColumnDefinitionService
             ['key' => 'location', 'type' => 'entity', 'label' => __('entities.location'), 'sortable' => true, 'sortKey' => 'location.name', 'moduleGate' => 'locations'],
             ['key' => 'members_count', 'type' => 'count', 'label' => __('organisations.fields.members'), 'sortable' => false],
             ['key' => 'is_extinct', 'type' => 'icon', 'label' => __('creatures.fields.is_extinct'), 'sortable' => true, 'icon' => 'fa-regular fa-skull', 'tooltip' => __('creatures.fields.is_extinct')],
-            ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => false],
+            ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => true],
             ['key' => 'is_private', 'type' => 'private', 'label' => __('crud.fields.is_private'), 'sortable' => true, 'adminOnly' => true],
         ];
     }
@@ -198,8 +218,8 @@ class ColumnDefinitionService
             ['key' => 'parent', 'type' => 'entity', 'label' => __('crud.fields.parent'), 'sortable' => true, 'sortKey' => 'parent.name'],
             ['key' => 'date', 'type' => 'text', 'label' => __('journals.fields.date'), 'sortable' => true],
             ['key' => 'calendar_date', 'type' => 'calendar_date', 'label' => __('crud.fields.calendar_date'), 'sortable' => true],
-            ['key' => 'author', 'type' => 'entity', 'label' => __('journals.fields.author'), 'sortable' => true, 'sortKey' => 'journal.author_id'],
-            ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => false],
+            ['key' => 'author', 'type' => 'entity', 'label' => __('journals.fields.author'), 'sortable' => true, 'sortKey' => 'author.name'],
+            ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => true],
             ['key' => 'is_private', 'type' => 'private', 'label' => __('crud.fields.is_private'), 'sortable' => true, 'adminOnly' => true],
         ];
     }
@@ -213,9 +233,9 @@ class ColumnDefinitionService
             ['key' => 'parent', 'type' => 'entity', 'label' => __('crud.fields.parent'), 'sortable' => true, 'sortKey' => 'parent.name'],
             ['key' => 'instigator', 'type' => 'entity', 'label' => __('quests.fields.instigator'), 'sortable' => false],
             ['key' => 'locations', 'type' => 'entities', 'label' => __('entities.locations'), 'sortable' => false, 'moduleGate' => 'locations'],
-            ['key' => 'elements_count', 'type' => 'count', 'label' => __('quests.fields.elements'), 'sortable' => false],
+            ['key' => 'elements_count', 'type' => 'count', 'label' => __('quests.show.tabs.elements'), 'sortable' => false],
             ['key' => 'calendar_date', 'type' => 'calendar_date', 'label' => __('crud.fields.calendar_date'), 'sortable' => true],
-            ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => false],
+            ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => true],
             ['key' => 'is_private', 'type' => 'private', 'label' => __('crud.fields.is_private'), 'sortable' => true, 'adminOnly' => true],
         ];
     }
@@ -227,7 +247,7 @@ class ColumnDefinitionService
             ['key' => 'name', 'type' => 'name', 'label' => __('crud.fields.name'), 'sortable' => true, 'alwaysVisible' => true],
             ['key' => 'type', 'type' => 'text', 'label' => __('crud.fields.type'), 'sortable' => true],
             ['key' => 'parent', 'type' => 'entity', 'label' => __('crud.fields.parent'), 'sortable' => true, 'sortKey' => 'parent.name'],
-            ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => false],
+            ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => true],
             ['key' => 'is_private', 'type' => 'private', 'label' => __('crud.fields.is_private'), 'sortable' => true, 'adminOnly' => true],
         ];
     }
@@ -240,7 +260,7 @@ class ColumnDefinitionService
             ['key' => 'type', 'type' => 'text', 'label' => __('crud.fields.type'), 'sortable' => true],
             ['key' => 'parent', 'type' => 'entity', 'label' => __('crud.fields.parent'), 'sortable' => true, 'sortKey' => 'parent.name'],
             ['key' => 'location', 'type' => 'entity', 'label' => __('entities.location'), 'sortable' => true, 'sortKey' => 'location.name', 'moduleGate' => 'locations'],
-            ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => false],
+            ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => true],
             ['key' => 'is_private', 'type' => 'private', 'label' => __('crud.fields.is_private'), 'sortable' => true, 'adminOnly' => true],
         ];
     }
@@ -253,7 +273,7 @@ class ColumnDefinitionService
             ['key' => 'type', 'type' => 'text', 'label' => __('crud.fields.type'), 'sortable' => true],
             ['key' => 'parent', 'type' => 'entity', 'label' => __('crud.fields.parent'), 'sortable' => true, 'sortKey' => 'parent.name'],
             ['key' => 'eras_count', 'type' => 'count', 'label' => __('timelines.fields.eras'), 'sortable' => false],
-            ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => false],
+            ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => true],
             ['key' => 'is_private', 'type' => 'private', 'label' => __('crud.fields.is_private'), 'sortable' => true, 'adminOnly' => true],
         ];
     }
@@ -266,7 +286,7 @@ class ColumnDefinitionService
             ['key' => 'type', 'type' => 'text', 'label' => __('crud.fields.type'), 'sortable' => true],
             ['key' => 'parent', 'type' => 'entity', 'label' => __('crud.fields.parent'), 'sortable' => true, 'sortKey' => 'parent.name'],
             ['key' => 'is_extinct', 'type' => 'icon', 'label' => __('creatures.fields.is_extinct'), 'sortable' => true, 'icon' => 'fa-regular fa-skull-cow', 'tooltip' => __('creatures.fields.is_extinct')],
-            ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => false],
+            ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => true],
             ['key' => 'is_private', 'type' => 'private', 'label' => __('crud.fields.is_private'), 'sortable' => true, 'adminOnly' => true],
         ];
     }
@@ -281,7 +301,7 @@ class ColumnDefinitionService
             ['key' => 'locations', 'type' => 'entities', 'label' => __('entities.locations'), 'sortable' => false, 'moduleGate' => 'locations'],
             ['key' => 'is_extinct', 'type' => 'icon', 'label' => __('creatures.fields.is_extinct'), 'sortable' => true, 'icon' => 'fa-regular fa-skull-cow', 'tooltip' => __('creatures.fields.is_extinct')],
             ['key' => 'is_dead', 'type' => 'icon', 'label' => __('characters.fields.is_dead'), 'sortable' => true, 'icon' => 'fa-regular fa-skull', 'tooltip' => __('characters.fields.is_dead')],
-            ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => false],
+            ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => true],
             ['key' => 'is_private', 'type' => 'private', 'label' => __('crud.fields.is_private'), 'sortable' => true, 'adminOnly' => true],
         ];
     }
@@ -295,8 +315,9 @@ class ColumnDefinitionService
             ['key' => 'parent', 'type' => 'entity', 'label' => __('crud.fields.parent'), 'sortable' => true, 'sortKey' => 'parent.name'],
             ['key' => 'price', 'type' => 'text', 'label' => __('items.fields.price'), 'sortable' => true],
             ['key' => 'size', 'type' => 'text', 'label' => __('items.fields.size'), 'sortable' => true],
+            ['key' => 'weight', 'type' => 'text', 'label' => __('items.fields.weight'), 'sortable' => true],
             ['key' => 'location', 'type' => 'entity', 'label' => __('entities.location'), 'sortable' => true, 'sortKey' => 'location.name', 'moduleGate' => 'locations'],
-            ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => false],
+            ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => true],
             ['key' => 'is_private', 'type' => 'private', 'label' => __('crud.fields.is_private'), 'sortable' => true, 'adminOnly' => true],
         ];
     }
@@ -310,7 +331,7 @@ class ColumnDefinitionService
             ['key' => 'parent', 'type' => 'entity', 'label' => __('crud.fields.parent'), 'sortable' => true, 'sortKey' => 'parent.name'],
             ['key' => 'date', 'type' => 'text', 'label' => __('events.fields.date'), 'sortable' => true],
             ['key' => 'locations', 'type' => 'entities', 'label' => __('entities.locations'), 'sortable' => false, 'moduleGate' => 'locations'],
-            ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => false],
+            ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => true],
             ['key' => 'is_private', 'type' => 'private', 'label' => __('crud.fields.is_private'), 'sortable' => true, 'adminOnly' => true],
         ];
     }
@@ -322,7 +343,7 @@ class ColumnDefinitionService
             ['key' => 'name', 'type' => 'name', 'label' => __('crud.fields.name'), 'sortable' => true, 'alwaysVisible' => true],
             ['key' => 'type', 'type' => 'text', 'label' => __('crud.fields.type'), 'sortable' => true],
             ['key' => 'parent', 'type' => 'entity', 'label' => __('crud.fields.parent'), 'sortable' => true, 'sortKey' => 'parent.name'],
-            ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => false],
+            ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => true],
             ['key' => 'is_private', 'type' => 'private', 'label' => __('crud.fields.is_private'), 'sortable' => true, 'adminOnly' => true],
         ];
     }
@@ -334,8 +355,21 @@ class ColumnDefinitionService
             ['key' => 'name', 'type' => 'name', 'label' => __('crud.fields.name'), 'sortable' => true, 'alwaysVisible' => true],
             ['key' => 'type', 'type' => 'text', 'label' => __('crud.fields.type'), 'sortable' => true],
             ['key' => 'parent', 'type' => 'entity', 'label' => __('crud.fields.parent'), 'sortable' => true, 'sortKey' => 'parent.name'],
-            ['key' => 'entities_count', 'type' => 'count', 'label' => __('abilities.fields.entities'), 'sortable' => false],
-            ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => false],
+            ['key' => 'entities_count', 'type' => 'count', 'label' => __('entities.entries'), 'sortable' => false],
+            ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => true],
+            ['key' => 'is_private', 'type' => 'private', 'label' => __('crud.fields.is_private'), 'sortable' => true, 'adminOnly' => true],
+        ];
+    }
+
+    protected function attributeTemplate(): array
+    {
+        return [
+            ['key' => 'avatar', 'type' => 'avatar', 'sortable' => false, 'alwaysVisible' => true],
+            ['key' => 'name', 'type' => 'name', 'label' => __('crud.fields.name'), 'sortable' => true, 'alwaysVisible' => true],
+            ['key' => 'entity_type_name', 'type' => 'text', 'label' => __('attribute_templates.fields.auto_apply'), 'sortable' => false],
+            ['key' => 'is_enabled', 'type' => 'icon', 'label' => __('attribute_templates.fields.is_enabled'), 'sortable' => true, 'icon' => 'fa-regular fa-wand-magic', 'tooltip' => __('attribute_templates.fields.is_enabled')],
+            ['key' => 'attributes_count', 'type' => 'count', 'label' => __('entities.properties'), 'sortable' => false],
+            ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => true],
             ['key' => 'is_private', 'type' => 'private', 'label' => __('crud.fields.is_private'), 'sortable' => true, 'adminOnly' => true],
         ];
     }
@@ -349,9 +383,9 @@ class ColumnDefinitionService
             ['key' => 'parent', 'type' => 'entity', 'label' => __('crud.fields.parent'), 'sortable' => true, 'sortKey' => 'parent.name'],
             ['key' => 'colour', 'type' => 'text', 'label' => __('crud.fields.colour'), 'sortable' => true],
             ['key' => 'entities_count', 'type' => 'count', 'label' => __('tags.fields.children'), 'sortable' => false],
-            ['key' => 'is_auto_applied', 'type' => 'icon', 'label' => __('tags.fields.is_auto_applied'), 'sortable' => true, 'icon' => 'fa-regular fa-wand-magic', 'tooltip' => __('tags.fields.is_auto_applied')],
-            ['key' => 'is_hidden', 'type' => 'icon', 'label' => __('tags.fields.is_hidden'), 'sortable' => true, 'icon' => 'fa-regular fa-eye-slash', 'tooltip' => __('tags.fields.is_hidden')],
-            ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => false],
+            ['key' => 'is_auto_applied', 'type' => 'icon', 'label' => __('attribute_templates.fields.auto_apply'), 'sortable' => true, 'icon' => 'fa-regular fa-wand-magic', 'tooltip' => __('tags.fields.is_auto_applied')],
+            ['key' => 'is_hidden', 'type' => 'icon', 'label' => __('campaigns.privacy.hidden'), 'sortable' => true, 'icon' => 'fa-regular fa-eye-slash', 'tooltip' => __('tags.fields.is_hidden')],
+            ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => true],
             ['key' => 'is_private', 'type' => 'private', 'label' => __('crud.fields.is_private'), 'sortable' => true, 'adminOnly' => true],
         ];
     }
