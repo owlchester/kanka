@@ -131,7 +131,10 @@ class ColumnDefinitionService
             ['key' => 'name', 'type' => 'name', 'label' => __('crud.fields.name'), 'sortable' => true, 'alwaysVisible' => true],
             ['key' => 'title', 'type' => 'text', 'label' => __('characters.fields.title'), 'sortable' => true],
             ['key' => 'type', 'type' => 'text', 'label' => __('crud.fields.type'), 'sortable' => true],
-            ['key' => 'status', 'type' => 'icon', 'label' => __('characters.fields.status'), 'sortable' => true, 'icon' => 'fa-regular fa-skull', 'tooltip' => __('characters.hints.is_dead')],
+            ['key' => 'status', 'type' => 'icon', 'label' => __('characters.fields.status'), 'sortable' => true, 'sortKey' => 'status_id', 'icons' => [
+                1 => ['icon' => 'fa-regular fa-skull', 'tooltip' => __('characters.hints.is_dead')],
+                2 => ['icon' => 'fa-regular fa-question', 'tooltip' => __('characters.hints.is_missing')],
+            ]],
             ['key' => 'families', 'type' => 'entities', 'label' => __('entities.families'), 'sortable' => false, 'moduleGate' => 'families'],
             ['key' => 'locations', 'type' => 'entities', 'label' => __('entities.locations'), 'sortable' => false, 'moduleGate' => 'locations'],
             ['key' => 'races', 'type' => 'entities', 'label' => __('entities.races'), 'sortable' => false, 'moduleGate' => 'races'],

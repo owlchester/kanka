@@ -39,9 +39,10 @@
                 <span class="truncate" v-html="entity[col.key]"></span>
             </template>
 
-            <!-- Icon (boolean status) -->
+            <!-- Icon (boolean or mapped status) -->
             <template v-else-if="col.type === 'icon'">
-                <i v-if="entity[col.key]" :class="col.icon" :title="col.tooltip" data-toggle="tooltip" aria-hidden="true"></i>
+                <i v-if="col.icons && col.icons[entity[col.key]]" :class="col.icons[entity[col.key]].icon" :title="col.icons[entity[col.key]].tooltip" data-toggle="tooltip" aria-hidden="true"></i>
+                <i v-else-if="!col.icons && entity[col.key]" :class="col.icon" :title="col.tooltip" data-toggle="tooltip" aria-hidden="true"></i>
             </template>
 
             <!-- Single entity link -->

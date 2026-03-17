@@ -17,7 +17,6 @@ return new class extends Migration
             'families' => 'family_id',
             'items' => 'item_id',
             'journals' => 'journal_id',
-            'locations' => 'location_id',
             'maps' => 'map_id',
             'notes' => 'note_id',
             'organisations' => 'organisation_id',
@@ -30,10 +29,16 @@ return new class extends Migration
         foreach ($columns as $table => $column) {
             if (Schema::hasColumn($table, $column)) {
                 Schema::table($table, function (Blueprint $table) use ($column) {
+                    $table->dropForeign($table->getTable() . '_' . $column . '_foreign');
                     $table->dropColumn($column);
                 });
             }
         }
+
+        Schema::table('locations', function (Blueprint $table) {
+            $table->dropForeign('locations_parent_id_foreign');
+            $table->dropColumn('parent_id');
+        });
     }
 
     public function down(): void

@@ -122,6 +122,7 @@ class Character extends MiscModel
      */
     protected array $explicitFilters = [
         'sex',
+        'status_id',
     ];
 
     /**

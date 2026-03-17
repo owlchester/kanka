@@ -117,9 +117,8 @@ class ExploreResource extends JsonResource
             if ($this->hasColumn('colour') && isset($child->colour)) {
                 $data['colour'] = $child->colour;
             }
-            if ($this->hasColumn('status')) {
-                $data['status'] = method_exists($child, 'isDead') ? $child->isDead() :
-                                 (method_exists($child, 'isDefunct') ? $child->isDefunct() : false);
+            if ($this->hasColumn('status') && isset($child->status_id)) {
+                $data['status'] = $child->status_id->value;
             }
             if ($this->hasColumn('is_destroyed') && isset($child->is_destroyed)) {
                 $data['is_destroyed'] = (bool) $child->is_destroyed;

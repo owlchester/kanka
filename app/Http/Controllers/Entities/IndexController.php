@@ -279,7 +279,7 @@ class IndexController extends Controller
                 'count' => $this->filterService->activeFiltersCount(),
                 'unfilteredCount' => $unfilteredCount,
                 'urls' => [
-                    'form' => route('filters.form', [$campaign, $entityType, 'm' => 'grid']),
+                    'form' => route('filters.form', [$campaign, $entityType, 'm' => $layout]),
                     'clear' => route('entities.index', [$campaign, $entityType, 'reset-filter' => true]),
                 ],
             ],
