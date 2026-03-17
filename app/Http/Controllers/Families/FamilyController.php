@@ -21,6 +21,7 @@ class FamilyController extends Controller
     public function index(Campaign $campaign, Family $family)
     {
         $this->campaign($campaign)->authEntityView($family->entity);
+        return redirect()->route('entities.children', [$campaign, $family->entity]);
 
         $options = ['campaign' => $campaign, 'family' => $family, 'm' => $this->descendantsMode()];
         $filters = [];

@@ -21,6 +21,7 @@ class ItemController extends Controller
     public function index(Campaign $campaign, Item $item)
     {
         $this->campaign($campaign)->authEntityView($item->entity);
+        return redirect()->route('entities.children', [$campaign, $item->entity]);
 
         $options = ['campaign' => $campaign, 'item' => $item, 'm' => $this->descendantsMode()];
         $filters = [];

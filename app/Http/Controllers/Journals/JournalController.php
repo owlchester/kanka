@@ -21,6 +21,7 @@ class JournalController extends Controller
     public function index(Campaign $campaign, Journal $journal)
     {
         $this->campaign($campaign)->authEntityView($journal->entity);
+        return redirect()->route('entities.children', [$campaign, $journal->entity]);
 
         $options = ['campaign' => $campaign, 'journal' => $journal, 'm' => $this->descendantsMode()];
         $filters = [];

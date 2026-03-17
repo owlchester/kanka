@@ -21,6 +21,7 @@ class TagController extends Controller
     public function index(Campaign $campaign, Tag $tag)
     {
         $this->campaign($campaign)->authEntityView($tag->entity);
+        return redirect()->route('entities.children', [$campaign, $tag->entity]);
 
         $options = ['campaign' => $campaign, 'tag' => $tag, 'm' => $this->descendantsMode()];
         $filters = [];

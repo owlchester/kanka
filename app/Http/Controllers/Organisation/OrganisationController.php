@@ -21,6 +21,7 @@ class OrganisationController extends Controller
     public function organisations(Campaign $campaign, Organisation $organisation)
     {
         $this->campaign($campaign)->authEntityView($organisation->entity);
+        return redirect()->route('entities.children', [$campaign, $organisation->entity]);
 
         $options = ['campaign' => $campaign, 'organisation' => $organisation, 'm' => $this->descendantsMode()];
         $filters = [];

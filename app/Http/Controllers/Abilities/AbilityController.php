@@ -21,6 +21,7 @@ class AbilityController extends Controller
     public function index(Campaign $campaign, Ability $ability)
     {
         $this->campaign($campaign)->authEntityView($ability->entity);
+        return redirect()->route('entities.children', [$campaign, $ability->entity]);
 
         $options = ['campaign' => $campaign, 'ability' => $ability, 'm' => $this->descendantsMode()];
         $filters = [];

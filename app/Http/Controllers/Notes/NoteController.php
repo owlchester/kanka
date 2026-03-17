@@ -21,6 +21,7 @@ class NoteController extends Controller
     public function index(Campaign $campaign, Note $note)
     {
         $this->campaign($campaign)->authEntityView($note->entity);
+        return redirect()->route('entities.children', [$campaign, $note->entity]);
 
         $options = ['campaign' => $campaign, 'note' => $note, 'm' => $this->descendantsMode()];
         $filters = [];

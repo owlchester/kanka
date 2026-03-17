@@ -21,6 +21,7 @@ class MapController extends Controller
     public function index(Campaign $campaign, Map $map)
     {
         $this->campaign($campaign)->authEntityView($map->entity);
+        return redirect()->route('entities.children', [$campaign, $map->entity]);
 
         $options = ['campaign' => $campaign, 'map' => $map, 'm' => $this->descendantsMode()];
         $base = 'descendants';
