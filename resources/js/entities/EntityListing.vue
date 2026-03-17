@@ -14,7 +14,7 @@
             </div>
         </div>
     </div>
-    <div class="flex flex-col gap-4 w-full" v-else>
+    <div class="flex flex-col gap-4 w-full" v-else ref="listingRef">
         <!-- Toolbar -->
         <div class="flex gap-2 justify-between items-center flex-wrap">
             <div class="flex gap-1 items-center flex-wrap">
@@ -271,6 +271,8 @@ const i18n = ref<any>({})
 const loading = ref(true)
 
 // Template refs
+const toolbarRef = ref<HTMLElement | null>(null)
+const listingRef = ref<HTMLElement | null>(null)
 const orderBtn = ref()
 const orderMenu = ref()
 const templateBtn = ref()
@@ -342,6 +344,7 @@ const bookmark = () => {
 
 const getEntities = async (page = 1) => {
     entityApi.loadPage(page)
+    listingRef.value?.scrollIntoView({ behavior: 'smooth', block: 'start' })
 }
 
 const handleOrderBy = (field: string, sortKey?: string | null) => {
@@ -458,7 +461,9 @@ onMounted(() => {
 })
 
 watch(loading, (val) => {
-    if (!val) nextTick(initAllDropdowns)
+    if (!val) nextTick(() => {
+        initAllDropdowns()
+    })
 })
 
 watch(() => orderingComposable.ordering.value, (val, oldVal) => {
