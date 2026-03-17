@@ -21,6 +21,7 @@ class EventController extends Controller
     public function index(Campaign $campaign, Event $event)
     {
         $this->campaign($campaign)->authEntityView($event->entity);
+
         return redirect()->route('entities.children', [$campaign, $event->entity]);
 
         $options = ['campaign' => $campaign, 'event' => $event, 'm' => $this->descendantsMode()];

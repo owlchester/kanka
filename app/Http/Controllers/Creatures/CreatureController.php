@@ -21,6 +21,7 @@ class CreatureController extends Controller
     public function index(Campaign $campaign, Creature $creature)
     {
         $this->campaign($campaign)->authEntityView($creature->entity);
+
         return redirect()->route('entities.children', [$campaign, $creature->entity]);
 
         $options = ['campaign' => $campaign, 'creature' => $creature, 'm' => $this->descendantsMode()];

@@ -21,6 +21,7 @@ class RaceController extends Controller
     public function index(Campaign $campaign, Race $race)
     {
         $this->campaign($campaign)->authEntityView($race->entity);
+
         return redirect()->route('entities.children', [$campaign, $race->entity]);
 
         $options = ['campaign' => $campaign, 'race' => $race, 'm' => $this->descendantsMode()];

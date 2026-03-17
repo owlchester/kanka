@@ -21,6 +21,7 @@ class QuestController extends Controller
     public function index(Campaign $campaign, Quest $quest)
     {
         $this->campaign($campaign)->authEntityView($quest->entity);
+
         return redirect()->route('entities.children', [$campaign, $quest->entity]);
 
         $options = ['campaign' => $campaign, 'quest' => $quest, 'm' => $this->descendantsMode()];

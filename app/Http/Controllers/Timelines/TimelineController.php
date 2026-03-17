@@ -21,6 +21,7 @@ class TimelineController extends Controller
     public function index(Campaign $campaign, Timeline $timeline)
     {
         $this->campaign($campaign)->authEntityView($timeline->entity);
+
         return redirect()->route('entities.children', [$campaign, $timeline->entity]);
 
         return redirect()->route('entities.children', [$campaign, $timeline->entity]);

@@ -21,6 +21,7 @@ class LocationController extends Controller
     public function index(Campaign $campaign, Location $location)
     {
         $this->campaign($campaign)->authEntityView($location->entity);
+
         return redirect()->route('entities.children', [$campaign, $location->entity]);
 
         $options = ['campaign' => $campaign, 'location' => $location, 'm' => $this->descendantsMode()];
