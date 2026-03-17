@@ -180,7 +180,7 @@
     "src": "node_modules/rpg-awesome/fonts/rpgawesome-webfont.woff"
   },
   "resources/css/app.css": {
-    "file": "assets/app-QlBE6bRE.css",
+    "file": "assets/app-Ct4Mj-0H.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -189,7 +189,7 @@
     ]
   },
   "resources/css/auth.css": {
-    "file": "assets/auth-tvd6l4JY.css",
+    "file": "assets/auth-DtOGt78M.css",
     "src": "resources/css/auth.css",
     "isEntry": true,
     "name": "auth",
@@ -216,7 +216,7 @@
     ]
   },
   "resources/css/front.css": {
-    "file": "assets/front-DwqTl1FI.css",
+    "file": "assets/front-B6t_rjfB.css",
     "src": "resources/css/front.css",
     "isEntry": true,
     "name": "front",
@@ -507,7 +507,7 @@
     ]
   },
   "resources/js/entities/explore.js": {
-    "file": "assets/explore-DMlCUyaQ.js",
+    "file": "assets/explore-CZeXMpXD.js",
     "name": "explore",
     "src": "resources/js/entities/explore.js",
     "isEntry": true,
