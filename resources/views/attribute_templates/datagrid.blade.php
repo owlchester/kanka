@@ -8,7 +8,7 @@
             'type' => 'parent',
         ],
         [
-            'label' => __('attribute_templates.fields.attributes'),
+            'label' => __('entries/tabs.properties'),
             'render' => function($model) {
                 return number_format($model->entity->attributes_count);
             },
