@@ -651,21 +651,16 @@ class MapService
      */
     protected function addParent(): self
     {
-        if (! method_exists($this->entity->child, 'parent')) {
+        if (! $this->entity->parent) {
             return $this;
         }
 
         $parent = $this->entity->parent;
-        if (empty($parent)) {
-            $this->addChildren();
-
-            return $this;
-        }
 
         $this->addEntity($parent);
         $this->relations[] = [
             'source' => $this->entity->id,
-            'target' => $parent->entity->id,
+            'target' => $parent->id,
             'text' => __('crud.fields.parent'),
             'colour' => '#ccc',
             'attitude' => null,
@@ -683,17 +678,16 @@ class MapService
      */
     protected function addChildren(): self
     {
-        if (! method_exists($this->entity->child, 'children')) {
+        if (! method_exists($this->entity, 'children')) {
             return $this;
         }
 
-        /** @var Location $child */
-        $child = $this->entity->child;
-        foreach ($child->children()->with(['entity', 'entity.image', 'entity.entityType'])->has('entity')->get() as $related) {
-            $this->addEntity($related->entity);
+        /** @var Entity $related */
+        foreach ($this->entity->children()->with(['image', 'entityType'])->get() as $related) {
+            $this->addEntity($related);
             $this->relations[] = [
                 'target' => $this->entity->id,
-                'source' => $related->entity->id,
+                'source' => $related->id,
                 'text' => __('crud.fields.child'),
                 'colour' => '#ccc',
                 'attitude' => null,

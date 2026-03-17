@@ -23,15 +23,15 @@
                 </th>
                 <th>
                     @if(request()->get('order') == 'type_id')
-                        {{ __('campaigns/categories.tab') }}
+                        {{ __('crud.fields.category') }}
                         <x-icon class="fa-regular fa-arrow-down" />
                     @else
                         <a href="{{ route('entities.relations.index', [$campaign, $entity, 'mode' => 'table', '#entity-related', 'order' => 'type_id']) }}" class="text-link">
-                            {{ __('campaigns/categories.tab') }}
+                            {{ __('crud.fields.category') }}
                         </a>
                     @endif
                 </th>
-                <th>{{ __('entities/relations.fields.connection') }}</th>
+                <th>{{ __('entities/relations.fields.role') }}</th>
             </tr>
             </thead>
             <tbody>

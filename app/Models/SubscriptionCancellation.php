@@ -11,8 +11,8 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property int $id
  * @property string $reason
- * @property string? $secondary
- * @property string? $custom
+ * @property ?string $secondary
+ * @property ?string $custom
  * @property string $tier
  * @property string $duration
  * @property Carbon $created_at

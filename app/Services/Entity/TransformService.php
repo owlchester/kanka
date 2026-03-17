@@ -118,6 +118,7 @@ class TransformService
     {
         // Copy location_id if the new model supports it
         if (in_array('location_id', $this->fillable) && empty($this->new->location_id) && ! empty($this->child->location_id)) {
+            // @phpstan-ignore-next-line
             $this->new->location_id = $this->child->location_id;
         }
 

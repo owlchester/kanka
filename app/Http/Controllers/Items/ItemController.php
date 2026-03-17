@@ -23,31 +23,5 @@ class ItemController extends Controller
         $this->campaign($campaign)->authEntityView($item->entity);
 
         return redirect()->route('entities.children', [$campaign, $item->entity]);
-
-        $options = ['campaign' => $campaign, 'item' => $item, 'm' => $this->descendantsMode()];
-        $filters = [];
-
-        if ($this->filterToDirect()) {
-            $filters['item_id'] = $item->id;
-        }
-
-        Datagrid::layout(\App\Renderers\Layouts\Item\Item::class)
-            ->route('items.items', $options);
-
-        $this->rows = $item
-            ->descendants()
-            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
-            ->filter($filters)
-            ->with(['entity', 'entity.image', 'entity.entityType',
-                'parent', 'parent.entity',
-            ])
-            ->paginate(config('limits.pagination'));
-
-        if (request()->ajax()) {
-            return $this->campaign($campaign)->datagridAjax();
-        }
-
-        return $this
-            ->subview('items.items', $item);
     }
 }

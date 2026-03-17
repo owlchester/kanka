@@ -63,7 +63,10 @@ class RelatedService
                 ->loadLocation()
                 ->loadTimelines()
                 ->loadQuests()
-                ->loadAuthoredJournals();
+                ->loadAuthoredJournals()
+                ->loadChildren()
+                ->loadParent()
+            ;
         }
     }
 
@@ -94,14 +97,16 @@ class RelatedService
             ->loadFamilies()
             ->loadTimelines()
             ->loadAuthoredJournals()
-            ->loadRaces();
+            ->loadRaces()
+            ->loadParent()
+            ->loadChildren();
     }
 
     protected function initMap()
     {
         $this->loadMapMarkers()
-            ->loadMaps()
-            ->loadParentMaps()
+            ->loadChildren()
+            ->loadParent()
             ->loadLocation()
             ->loadTimelines()
             ->loadAuthoredJournals()
@@ -111,7 +116,8 @@ class RelatedService
     protected function initRace()
     {
         $this
-            ->loadChildRaces()
+            ->loadChildren()
+            ->loadParent()
             ->loadLocations();
     }
 
@@ -122,7 +128,9 @@ class RelatedService
             ->loadLocations()
             ->loadTimelines()
             ->loadQuests()
-            ->loadAuthoredJournals();
+            ->loadAuthoredJournals()
+            ->loadChildren()
+            ->loadParent();
     }
 
     protected function loadQuests(): self
@@ -172,11 +180,11 @@ class RelatedService
 
     protected function loadMaps(): self
     {
-        /** @var Map $parent */
-        $parent = $this->entity->child;
-        $elements = $parent->children()->with(['entity'])->has('entity')->get();
-        foreach ($elements as $sub) {
-            $entity = $sub->entity;
+        /** @var Location $location */
+        $location = $this->entity->child;
+        $elements = $location->maps()->with(['entity'])->has('entity')->get();
+        /** @var Entity $entity */
+        foreach ($elements as $entity) {
             $this->ids[] = $entity->id;
             $this->reasons[$entity->id][] = __('entities.map');
         }
@@ -184,16 +192,14 @@ class RelatedService
         return $this;
     }
 
-    protected function loadParentMaps(): self
+    protected function loadParent(): self
     {
-        /** @var Map $parent */
-        $parent = $this->entity->child;
-        $elements = $parent->parent()->with(['entity'])->has('entity')->get();
-        foreach ($elements as $sub) {
-            $entity = $sub->entity;
-            $this->ids[] = $entity->id;
-            $this->reasons[$entity->id][] = __('maps.fields.map');
+        if (!$this->entity->parent) {
+            return $this;
         }
+
+        $this->ids[] = $this->entity->parent->id;
+        $this->reasons[$this->entity->parent->id][] = __('crud.fields.parent');
 
         return $this;
     }
@@ -229,11 +235,9 @@ class RelatedService
 
     protected function loadItems(): self
     {
-        /** @var Character|Location $parent */
-        $parent = $this->entity->child;
-        $elements = $parent->items()->with(['entity'])->has('entity')->get();
-        foreach ($elements as $sub) {
-            $entity = $sub->entity;
+        $elements = $this->entity->children()->get();
+        /** @var Entity $entity */
+        foreach ($elements as $entity) {
             $this->ids[] = $entity->id;
             $this->reasons[$entity->id][] = __('entities.item');
         }
@@ -243,11 +247,9 @@ class RelatedService
 
     protected function loadJournals(): self
     {
-        /** @var Journal $parent */
-        $parent = $this->entity->child;
-        $elements = $parent->children()->with(['entity'])->has('entity')->get();
-        foreach ($elements as $sub) {
-            $entity = $sub->entity;
+        $elements = $this->entity->children()->get();
+        /** @var Entity $entity */
+        foreach ($elements as $entity) {
             $this->ids[] = $entity->id;
             $this->reasons[$entity->id][] = __('entities.journal');
         }
@@ -283,11 +285,9 @@ class RelatedService
 
     protected function loadOrganisations(): self
     {
-        /** @var Organisation $parent */
-        $parent = $this->entity->child;
-        $elements = $parent->children()->with(['entity'])->has('entity')->get();
-        foreach ($elements as $sub) {
-            $entity = $sub->entity;
+        $elements = $this->entity->children()->get();
+        /** @var Entity $entity */
+        foreach ($elements as $entity) {
             $this->ids[] = $entity->id;
             $this->reasons[$entity->id][] = __('entities.organisation');
         }
@@ -297,11 +297,9 @@ class RelatedService
 
     protected function loadRaces(): self
     {
-        /** @var Race $parent */
-        $parent = $this->entity->child;
-        $elements = $parent->children()->with(['entity'])->has('entity')->get();
-        foreach ($elements as $sub) {
-            $entity = $sub->entity;
+        $elements = $this->entity->children()->get();
+        /** @var Entity $entity */
+        foreach ($elements as $entity) {
             $this->ids[] = $entity->id;
             $this->reasons[$entity->id][] = __('entities.race');
         }
@@ -309,15 +307,11 @@ class RelatedService
         return $this;
     }
 
-    protected function loadChildRaces(): self
+    protected function loadChildren(): self
     {
-        /** @var Race $parent */
-        $parent = $this->entity->child;
-        $elements = $parent->children()->with(['entity'])->has('entity')->get();
-        foreach ($elements as $sub) {
-            $entity = $sub->entity;
-            $this->ids[] = $entity->id;
-            $this->reasons[$entity->id][] = __('entities.race');
+        foreach ($this->entity->children as $sub) {
+            $this->ids[] = $sub->id;
+            $this->reasons[$sub->id][] = __('crud.fields.child');
         }
 
         return $this;
@@ -325,13 +319,11 @@ class RelatedService
 
     protected function loadLocations(): self
     {
-        /** @var Location $parent */
-        $parent = $this->entity->child;
-        $elements = $parent->children()->with(['entity'])->has('entity')->get();
-        foreach ($elements as $sub) {
-            $entity = $sub->entity;
-            $this->ids[] = $entity->id;
-            $this->reasons[$entity->id][] = __('entities.location');
+        $elements = $this->entity->locations;
+        /** @var Location $entity */
+        foreach ($elements as $entity) {
+            $this->ids[] = $entity->entity->id;
+            $this->reasons[$entity->entity->id][] = __('entities.location');
         }
 
         return $this;

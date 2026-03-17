@@ -23,32 +23,5 @@ class FamilyController extends Controller
         $this->campaign($campaign)->authEntityView($family->entity);
 
         return redirect()->route('entities.children', [$campaign, $family->entity]);
-
-        $options = ['campaign' => $campaign, 'family' => $family, 'm' => $this->descendantsMode()];
-        $filters = [];
-        if ($this->filterToDirect()) {
-            $filters['parent'] = $family->id;
-        }
-        Datagrid::layout(\App\Renderers\Layouts\Family\Family::class)
-            ->route('families.families', $options);
-
-        $this->rows = $family
-            ->descendants()
-            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
-            ->filter($filters)
-            ->with([
-                'location', 'location.entity',
-                'entity', 'entity.image', 'entity.entityType', 'entity.tags',
-                'parent', 'parent.entity',
-            ])
-            ->paginate(config('limits.pagination'));
-
-        if (request()->ajax()) {
-            return $this->campaign($campaign)->datagridAjax();
-        }
-
-        return $this
-            ->campaign($campaign)
-            ->subview('families.families', $family);
     }
 }

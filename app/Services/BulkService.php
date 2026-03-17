@@ -282,7 +282,7 @@ class BulkService
             return $this->updateRelations($filledFields, $mirrorOptions);
         }
 
-        $with = isset($this->entityType) && $this->entityType->hasEntity() ? ['tags'] : [];
+        $with = $this->entityType->hasEntity() ? ['tags'] : [];
         $models = $model->with($with)->whereIn('id', $this->ids)->get();
         foreach ($models as $entity) {
             $this->total++;
@@ -302,7 +302,7 @@ class BulkService
                     }
                 }
             }
-            if (isset($this->entityType) && $this->entityType->hasEntity()) {
+            if ($this->entityType->hasEntity()) {
                 $entity->child->update($entityFields);
             } else {
                 // Relations, bookmarks
@@ -338,7 +338,7 @@ class BulkService
                 $entity->parent_id = $entityFields['parent_id'];
             }
 
-            if (isset($this->entityType) && $this->entityType->hasEntity()) {
+            if ($this->entityType->hasEntity()) {
                 $entity->is_private = $entity->child->is_private;
                 $entity->name = $entity->child->name;
             }

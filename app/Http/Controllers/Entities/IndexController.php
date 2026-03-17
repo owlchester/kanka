@@ -53,8 +53,8 @@ class IndexController extends Controller
             return redirect()->route('dashboard', $campaign)->with(
                 'error_raw',
                 __('campaigns/modules.errors.disabled', [
-                    'name' => $entityType->plural(), // @phpstan-ignore-line
-                    'fix' => '<a href="' . route('campaign.modules', [$campaign, '#' . $entityType->code]) . '" class="text-link">' . __('crud.fix-this-issue') . '</a>', // @phpstan-ignore-line
+                    'name' => $entityType->plural(),
+                    'fix' => '<a href="' . route('campaign.modules', [$campaign, '#' . $entityType->code]) . '" class="text-link">' . __('crud.fix-this-issue') . '</a>',
                 ])
             );
         }
@@ -149,7 +149,7 @@ class IndexController extends Controller
             ])->first();
         }
         $preference = $this->preference;
-        $columnPreferences = $preference?->visible_columns
+        $columnPreferences = $preference->visible_columns
             ?? $this->columnDefinitionService->defaultVisibleColumns($entityType, $campaign);
 
         // Tell the resource which columns to serialize

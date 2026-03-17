@@ -42,7 +42,6 @@ class StoreMapGroup extends FormRequest
                 'nullable',
                 'integer',
                 'exists:map_groups,id',
-                new Nested(MapGroup::class, $self),
             ];
         }
 

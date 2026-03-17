@@ -23,31 +23,5 @@ class CreatureController extends Controller
         $this->campaign($campaign)->authEntityView($creature->entity);
 
         return redirect()->route('entities.children', [$campaign, $creature->entity]);
-
-        $options = ['campaign' => $campaign, 'creature' => $creature, 'm' => $this->descendantsMode()];
-        $filters = [];
-        if ($this->filterToDirect()) {
-            $filters['creature_id'] = $creature->id;
-        }
-        Datagrid::layout(\App\Renderers\Layouts\Creature\Creature::class)
-            ->route('creatures.creatures', $options);
-
-        $this->rows = $creature
-            ->descendants()
-            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
-            ->filter($filters)
-            ->with([
-                'entity', 'entity.image', 'entity.entityType', 'entity.tags',
-                'parent', 'parent.entity',
-            ])
-            ->paginate(config('limits.pagination'));
-
-        if (request()->ajax()) {
-            return $this->campaign($campaign)->datagridAjax();
-        }
-
-        return $this
-            ->campaign($campaign)
-            ->subview('creatures.creatures', $creature);
     }
 }

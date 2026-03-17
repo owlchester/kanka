@@ -21,7 +21,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  *
  * @property int $id
  * @property int $map_id
- * @property int $parent_id
+ * @property ?int $parent_id
  * @property string $name
  * @property int $position
  * @property bool|int $is_shown

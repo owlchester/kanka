@@ -23,33 +23,5 @@ class LocationController extends Controller
         $this->campaign($campaign)->authEntityView($location->entity);
 
         return redirect()->route('entities.children', [$campaign, $location->entity]);
-
-        $options = ['campaign' => $campaign, 'location' => $location, 'm' => $this->descendantsMode()];
-        $filters = [];
-        if ($this->filterToDirect()) {
-            $filters['location_id'] = $location->id;
-        }
-        Datagrid::layout(\App\Renderers\Layouts\Location\Location::class)
-            ->route('locations.locations', $options);
-
-        $this->rows = $location
-            ->descendants()
-            ->select(['id', 'name', 'location_id', 'is_private'])
-            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
-            ->filter($filters)
-            ->with([
-                'entity', 'entity.image', 'entity.entityType', 'entity.tags',
-                'parent', 'parent.entity',
-            ])
-            ->has('entity')
-            ->paginate(config('limits.pagination'));
-
-        if (request()->ajax()) {
-            return $this->campaign($campaign)->datagridAjax();
-        }
-
-        return $this
-            ->campaign($campaign)
-            ->subview('locations.locations', $location);
     }
 }
