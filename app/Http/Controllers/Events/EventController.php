@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Events;
 
-use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Event;

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Families;
 
-use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Family;

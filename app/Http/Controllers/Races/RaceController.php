@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Races;
 
-use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Race;

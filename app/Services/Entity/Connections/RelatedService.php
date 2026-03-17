@@ -5,11 +5,7 @@ namespace App\Services\Entity\Connections;
 use App\Models\Character;
 use App\Models\Conversation;
 use App\Models\Entity;
-use App\Models\Journal;
 use App\Models\Location;
-use App\Models\Map;
-use App\Models\Organisation;
-use App\Models\Race;
 use App\Traits\EntityAware;
 
 class RelatedService
@@ -65,8 +61,7 @@ class RelatedService
                 ->loadQuests()
                 ->loadAuthoredJournals()
                 ->loadChildren()
-                ->loadParent()
-            ;
+                ->loadParent();
         }
     }
 
@@ -194,7 +189,7 @@ class RelatedService
 
     protected function loadParent(): self
     {
-        if (!$this->entity->parent) {
+        if (! $this->entity->parent) {
             return $this;
         }
 

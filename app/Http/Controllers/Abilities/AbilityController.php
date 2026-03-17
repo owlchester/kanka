@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Abilities;
 
-use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Models\Ability;
 use App\Models\Campaign;
