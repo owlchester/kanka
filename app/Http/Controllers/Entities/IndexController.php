@@ -202,7 +202,7 @@ class IndexController extends Controller
         $unfilteredCount = 0;
         if ($this->filterService->hasFilters()) {
             $unfilteredCount = $base->count();
-            $base = $base->filter($this->filterService->filters());
+            $base = $base->filter($this->filterService->filters(), $entityType);
         } else {
             $base = $base->whereNull('entities.archived_at');
         }

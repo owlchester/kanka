@@ -215,8 +215,9 @@ trait EntityScopes
         return $query;
     }
 
-    public function scopeFilter(Builder $query, array $filters = []): Builder
+    public function scopeFilter(Builder $query, array $filters = [], ?EntityType $entityType = null): Builder
     {
+        $childFilterKeys = [];
         foreach ($filters as $name => $values) {
             if (! is_array($values) && $values === null) {
                 continue;
@@ -269,6 +270,18 @@ trait EntityScopes
                 }
             } elseif (in_array($name, ['created_by', 'updated_by'])) {
                 $query->where('entities.' . $name, (int) $values);
+            } elseif ($entityType?->isStandard() && ! Str::endsWith($name, '_option')) {
+                $childFilterKeys[$name] = $values;
+            }
+        }
+
+        // Entity-type-specific filters (e.g. status_id on characters)
+        if (! empty($childFilterKeys) && $entityType?->isStandard()) {
+            $childModel = $entityType->getClass();
+            $childTable = $childModel->getTable();
+            $query->leftJoin($childTable . ' as child_filter', 'child_filter.id', '=', 'entities.entity_id');
+            foreach ($childFilterKeys as $name => $values) {
+                $query->where('child_filter.' . $name, $values);
             }
         }
 

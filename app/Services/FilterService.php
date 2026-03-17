@@ -76,7 +76,7 @@ class FilterService
 
         $orderFields = array_unique(array_merge(['name', 'type', 'is_private'], $sortableColumns));
 
-        $this->prepareFilters([
+        $baseFilters = [
             'name',
             'type',
             'is_private',
@@ -93,7 +93,17 @@ class FilterService
             'attribute_name',
             'attribute_value',
             'archived',
-        ])
+        ];
+
+        // Merge entity-type-specific filterable columns
+        if ($this->entityType->isStandard()) {
+            $model = $this->entityType->getClass();
+            if (method_exists($model, 'getFilterableColumns')) {
+                $baseFilters = array_unique(array_merge($baseFilters, $model->getFilterableColumns()));
+            }
+        }
+
+        $this->prepareFilters($baseFilters)
             ->prepareOrder($orderFields)
             ->prepareSearch();
     }
