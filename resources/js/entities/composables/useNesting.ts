@@ -16,11 +16,20 @@ export function useNesting(options: NestingOptions) {
         nested.value = value
     }
 
+    const currentApiUrl = (): string => {
+        const apiUrl = new URL(options.api, window.location.origin)
+        const browserParams = new URLSearchParams(window.location.search)
+        browserParams.forEach((value, key) => {
+            apiUrl.searchParams.set(key, value)
+        })
+        return apiUrl.toString()
+    }
+
     const switchMode = () => {
         nesting.value = true
         nested.value = !nested.value
 
-        const url = options.addToUrl(options.api, 'n', nested.value ? '1' : '0')
+        const url = options.addToUrl(currentApiUrl(), 'n', nested.value ? '1' : '0')
         options.fetchEntities(url).then(() => {
             nesting.value = false
         })

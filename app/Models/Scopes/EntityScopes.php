@@ -177,10 +177,38 @@ trait EntityScopes
         return $query->whereIn($this->getTable() . '.type_id', $types);
     }
 
-    public function scopeOrder(Builder $query, array $config = []): Builder
+    public function scopeOrder(Builder $query, array $config = [], ?EntityType $entityType = null): Builder
     {
+        $entityFields = ['name', 'type', 'is_private'];
+
         foreach ($config as $field => $order) {
-            $query->orderBy($field, $order);
+            if ($field === 'parent.name') {
+                $query->leftJoin('entities as parent_order', 'parent_order.id', '=', 'entities.parent_id')
+                    ->orderBy('parent_order.name', $order);
+            } elseif (! in_array($field, $entityFields) && $entityType?->isStandard()) {
+                // Field lives on the child model's table
+                $childModel = $entityType->getClass();
+                $childTable = $childModel->getTable();
+                $query->leftJoin($childTable . ' as child_order', 'child_order.id', '=', 'entities.entity_id');
+
+                $segments = explode('.', $field);
+                if (count($segments) > 1) {
+                    // Dotted field like location.name — resolve the relationship on the child model
+                    $relationName = $segments[0];
+                    /** @var \Illuminate\Database\Eloquent\Relations\BelongsTo $relation */
+                    $relation = $childModel->{$relationName}();
+                    $relatedTable = $relation->getQuery()->getQuery()->from;
+                    $query->leftJoin(
+                        $relatedTable . ' as orderable_j',
+                        'orderable_j.id',
+                        'child_order.' . $relation->getForeignKeyName()
+                    )->orderBy(str_replace($relationName, 'orderable_j', $field), $order);
+                } else {
+                    $query->orderBy('child_order.' . $field, $order);
+                }
+            } else {
+                $query->orderBy('entities.' . $field, $order);
+            }
         }
 
         return $query;

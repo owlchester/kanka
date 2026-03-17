@@ -55,7 +55,9 @@ class IndexController extends Controller
         $this->campaign = $campaign;
         $this->request = $request;
 
-        $this->filterService->request($request)->entityType($entityType)->build();
+        $this->filterService->request($request)->entityType($entityType)->build(
+            $this->columnDefinitionService->sortableFields($entityType, $campaign)
+        );
 
         $nested = $this->isNested();
         $mode = $this->layoutMode();
@@ -65,7 +67,7 @@ class IndexController extends Controller
         if ($request->has('parent_id')) {
             $parent = Entity::select([
                 'entities.id', 'entities.name', 'entities.type', 'entities.is_private',
-                'entities.type_id', 'entities.parent_id',
+                'entities.type_id', 'entities.parent_id', 'entities.entity_id',
                 'entities.image_uuid', 'entities.focus_x', 'entities.focus_y',
             ])
                 ->inTypes([$entityType->id])->where('id', $request->get('parent_id'))->first();
@@ -120,12 +122,14 @@ class IndexController extends Controller
         $this->campaign = $campaign;
         $this->request = $request;
 
-        $this->filterService->request($request)->entityType($entityType)->build();
+        $this->filterService->request($request)->entityType($entityType)->build(
+            $this->columnDefinitionService->sortableFields($entityType, $campaign)
+        );
 
         // Column definitions
         $columns = $this->columnDefinitionService->columns($entityType, $campaign);
         $relations = $this->columnDefinitionService->relationMap($entityType, $campaign);
-        $countRelations = $this->columnDefinitionService->countMap($entityType, $campaign);
+        $childCountRelations = $this->columnDefinitionService->childCountRelations($entityType, $campaign);
 
         // User preferences (query once, reuse in isNested/layoutMode)
         $this->preference = null;
@@ -146,11 +150,33 @@ class IndexController extends Controller
         $nested = $this->isNested();
         $layout = $this->layoutMode();
 
+        $childModel = $entityType->isStandard() ? $entityType->getClass() : null;
+        $usesChildParent = $childModel && method_exists($childModel, 'getParentKeyName');
+
         $with = $relations;
-        if ($this->entityType->isStandard()) {
-            $with[] = $this->entityType->code;
+        // Eager load child model with withCount for count columns (e.g. organisation.members)
+        if ($entityType->isStandard()) {
+            $childRelation = $entityType->code;
+            // For standard types, children count comes from the child model (e.g. organisations.organisation_id),
+            // not from entities.parent_id. Also eager load parent.entity for nesting navigation.
+            $allChildCounts = $usesChildParent
+                ? array_merge($childCountRelations, ['children'])
+                : $childCountRelations;
+            $with[$childRelation] = function ($query) use ($allChildCounts, $usesChildParent) {
+                if (! empty($allChildCounts)) {
+                    $query->withCount($allChildCounts);
+                }
+                if ($usesChildParent) {
+                    $query->with([
+                        'parent.entity',
+                        'children' => fn ($q) => $q->limit(3)->with('entity'),
+                    ]);
+                }
+            };
+        } else {
+            // Custom types: nesting uses entities.parent_id
+            $with['children'] = fn ($q) => $q->whereNull('archived_at');
         }
-        $with[] = 'children';
 
         $base = Entity::inTypes($entityType->id)
             ->select([
@@ -159,30 +185,37 @@ class IndexController extends Controller
                 'entities.image_uuid', 'entities.focus_x', 'entities.focus_y', 'entities.image_path',
             ])
             ->with($with)
-            ->withCount('children');
-
-        foreach ($countRelations as $relation) {
-            $base->withCount($relation);
-        }
-
-        $base = $base->search($this->filterService->search())
-            ->order($this->filterService->order())
+            ->when(! $entityType->isStandard(), fn ($q) => $q->withCount(['children' => fn ($q) => $q->whereNull('archived_at')]))
+            ->search($this->filterService->search())
+            ->order($this->filterService->order(), $entityType)
             ->distinct();
 
         $parent = null;
         if ($request->has('parent_id')) {
             $parent = Entity::select([
                 'entities.id', 'entities.name', 'entities.type', 'entities.is_private',
-                'entities.type_id', 'entities.parent_id',
+                'entities.type_id', 'entities.parent_id', 'entities.entity_id',
                 'entities.image_uuid', 'entities.focus_x', 'entities.focus_y',
             ])
                 ->inTypes([$entityType->id])->where('id', $request->get('parent_id'))->first();
             if ($parent) {
-                $base->where('entities.parent_id', $request->get('parent_id'));
+                if ($usesChildParent) {
+                    $base->whereHas($entityType->code, function ($q) use ($childModel, $parent) {
+                        $q->where($childModel->getTable() . '.' . $childModel->getParentKeyName(), $parent->entity_id);
+                    });
+                } else {
+                    $base->where('entities.parent_id', $request->get('parent_id'));
+                }
             }
         }
         if (empty($parent) && $nested && $this->filterService->activeFiltersCount() === 0) {
-            $base->whereNull('entities.parent_id');
+            if ($usesChildParent) {
+                $base->whereHas($entityType->code, function ($q) use ($childModel) {
+                    $q->whereNull($childModel->getTable() . '.' . $childModel->getParentKeyName());
+                });
+            } else {
+                $base->whereNull('entities.parent_id');
+            }
         }
 
         $unfilteredCount = 0;
@@ -190,9 +223,9 @@ class IndexController extends Controller
             $unfilteredCount = $base->count();
             $base = $base->filter($this->filterService->filters());
         } else {
-            $base = $base->whereNull('archived_at');
+            $base = $base->whereNull('entities.archived_at');
         }
-        $models = $base->orderBy('name')->paginate();
+        $models = $base->orderBy('entities.name')->paginate();
 
         $i18n = [
             'fields' => [

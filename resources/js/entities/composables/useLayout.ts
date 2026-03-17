@@ -14,10 +14,19 @@ export function useLayout(options: LayoutOptions) {
 
     const isGrid = (): boolean => layout.value === 'grid'
 
+    const currentApiUrl = (): string => {
+        const apiUrl = new URL(options.api, window.location.origin)
+        const browserParams = new URLSearchParams(window.location.search)
+        browserParams.forEach((value, key) => {
+            apiUrl.searchParams.set(key, value)
+        })
+        return apiUrl.toString()
+    }
+
     const switchLayout = () => {
         layout.value = isGrid() ? 'table' : 'grid'
 
-        const url = options.addToUrl(options.api, 'm', layout.value)
+        const url = options.addToUrl(currentApiUrl(), 'm', layout.value)
         options.fetchEntities(url)
 
         // Sync browser URL

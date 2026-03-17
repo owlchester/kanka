@@ -265,6 +265,6 @@ class EntityType extends Model
 
     public function hasTable(): bool
     {
-        return $this->isCustom();
+        return true;
     }
 }

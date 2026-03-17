@@ -213,13 +213,13 @@ class CrudController extends Controller
                 if ($model instanceof Relation) {
                     $relation = 'owner';
                     $base = $base->whereHas('target', function ($query) {
-                        $query->whereNull('archived_at');
+                        $query->whereNull('entities.archived_at');
                     });
                 }
 
                 // Filter out archived entities
                 $base = $base->whereHas($relation, function ($query) {
-                    $query->whereNull('archived_at');
+                    $query->whereNull('entities.archived_at');
                 });
             }
 

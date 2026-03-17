@@ -24,6 +24,19 @@ class ColumnDefinitionService
         );
     }
 
+    /**
+     * @return string[] Sort keys for all sortable columns
+     */
+    public function sortableFields(EntityType $entityType, Campaign $campaign): array
+    {
+        $columns = $this->columns($entityType, $campaign);
+
+        return array_values(array_filter(array_map(
+            fn (array $col) => $col['sortable'] ? ($col['sortKey'] ?? $col['key']) : null,
+            $columns
+        )));
+    }
+
     public function defaultVisibleColumns(EntityType $entityType, Campaign $campaign): array
     {
         $columns = $this->columns($entityType, $campaign);
@@ -50,25 +63,25 @@ class ColumnDefinitionService
     }
 
     /**
-     * @return array<string, string> Column key => child relation name for withCount
+     * @return string[] Child model relation names that need withCount (e.g. ['members', 'elements'])
      */
-    public function countMap(EntityType $entityType, Campaign $campaign): array
+    public function childCountRelations(EntityType $entityType, Campaign $campaign): array
     {
-        $countRelations = [
-            'members_count' => $entityType->code . '.members',
-            'elements_count' => $entityType->code . '.elements',
-            'eras_count' => $entityType->code . '.eras',
-            'entities_count' => $entityType->code . '.entities',
+        $countColumns = [
+            'members_count' => 'members',
+            'elements_count' => 'elements',
+            'eras_count' => 'eras',
+            'entities_count' => 'entities',
         ];
 
-        $map = [];
+        $needed = [];
         foreach ($this->columns($entityType, $campaign) as $col) {
-            if (isset($countRelations[$col['key']])) {
-                $map[$col['key']] = $countRelations[$col['key']];
+            if (isset($countColumns[$col['key']])) {
+                $needed[] = $countColumns[$col['key']];
             }
         }
 
-        return $map;
+        return $needed;
     }
 
     protected function typeRelations(): array
@@ -82,7 +95,6 @@ class ColumnDefinitionService
             'author' => ['journal.author.entity'],
             'organisation' => ['organisation.entity'],
             'character' => ['character.entity'],
-            'parent' => ['parent.entity'],
             'instigator' => ['quest.instigator.entity'],
         ];
     }
@@ -112,7 +124,7 @@ class ColumnDefinitionService
         ];
     }
 
-    protected function characters(): array
+    protected function character(): array
     {
         return [
             ['key' => 'avatar', 'type' => 'avatar', 'sortable' => false, 'alwaysVisible' => true],
@@ -128,7 +140,7 @@ class ColumnDefinitionService
         ];
     }
 
-    protected function locations(): array
+    protected function location(): array
     {
         return [
             ['key' => 'avatar', 'type' => 'avatar', 'sortable' => false, 'alwaysVisible' => true],
@@ -142,7 +154,7 @@ class ColumnDefinitionService
         ];
     }
 
-    protected function organisations(): array
+    protected function organisation(): array
     {
         return [
             ['key' => 'avatar', 'type' => 'avatar', 'sortable' => false, 'alwaysVisible' => true],
@@ -157,7 +169,7 @@ class ColumnDefinitionService
         ];
     }
 
-    protected function families(): array
+    protected function family(): array
     {
         return [
             ['key' => 'avatar', 'type' => 'avatar', 'sortable' => false, 'alwaysVisible' => true],
@@ -172,7 +184,7 @@ class ColumnDefinitionService
         ];
     }
 
-    protected function journals(): array
+    protected function journal(): array
     {
         return [
             ['key' => 'avatar', 'type' => 'avatar', 'sortable' => false, 'alwaysVisible' => true],
@@ -187,7 +199,7 @@ class ColumnDefinitionService
         ];
     }
 
-    protected function quests(): array
+    protected function quest(): array
     {
         return [
             ['key' => 'avatar', 'type' => 'avatar', 'sortable' => false, 'alwaysVisible' => true],
@@ -203,7 +215,7 @@ class ColumnDefinitionService
         ];
     }
 
-    protected function calendars(): array
+    protected function calendar(): array
     {
         return [
             ['key' => 'avatar', 'type' => 'avatar', 'sortable' => false, 'alwaysVisible' => true],
@@ -215,7 +227,7 @@ class ColumnDefinitionService
         ];
     }
 
-    protected function maps(): array
+    protected function map(): array
     {
         return [
             ['key' => 'avatar', 'type' => 'avatar', 'sortable' => false, 'alwaysVisible' => true],
@@ -228,7 +240,7 @@ class ColumnDefinitionService
         ];
     }
 
-    protected function timelines(): array
+    protected function timeline(): array
     {
         return [
             ['key' => 'avatar', 'type' => 'avatar', 'sortable' => false, 'alwaysVisible' => true],
@@ -241,7 +253,7 @@ class ColumnDefinitionService
         ];
     }
 
-    protected function races(): array
+    protected function race(): array
     {
         return [
             ['key' => 'avatar', 'type' => 'avatar', 'sortable' => false, 'alwaysVisible' => true],
@@ -254,7 +266,7 @@ class ColumnDefinitionService
         ];
     }
 
-    protected function creatures(): array
+    protected function creature(): array
     {
         return [
             ['key' => 'avatar', 'type' => 'avatar', 'sortable' => false, 'alwaysVisible' => true],
@@ -269,7 +281,7 @@ class ColumnDefinitionService
         ];
     }
 
-    protected function items(): array
+    protected function item(): array
     {
         return [
             ['key' => 'avatar', 'type' => 'avatar', 'sortable' => false, 'alwaysVisible' => true],
@@ -284,7 +296,7 @@ class ColumnDefinitionService
         ];
     }
 
-    protected function events(): array
+    protected function event(): array
     {
         return [
             ['key' => 'avatar', 'type' => 'avatar', 'sortable' => false, 'alwaysVisible' => true],
@@ -298,7 +310,7 @@ class ColumnDefinitionService
         ];
     }
 
-    protected function notes(): array
+    protected function note(): array
     {
         return [
             ['key' => 'avatar', 'type' => 'avatar', 'sortable' => false, 'alwaysVisible' => true],
@@ -310,7 +322,7 @@ class ColumnDefinitionService
         ];
     }
 
-    protected function abilities(): array
+    protected function ability(): array
     {
         return [
             ['key' => 'avatar', 'type' => 'avatar', 'sortable' => false, 'alwaysVisible' => true],
@@ -323,7 +335,7 @@ class ColumnDefinitionService
         ];
     }
 
-    protected function tags(): array
+    protected function tag(): array
     {
         return [
             ['key' => 'avatar', 'type' => 'avatar', 'sortable' => false, 'alwaysVisible' => true],

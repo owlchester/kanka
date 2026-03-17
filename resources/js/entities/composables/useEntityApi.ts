@@ -40,9 +40,18 @@ export function useEntityApi(options: EntityApiOptions) {
         return fetchEntities(options.api)
     }
 
+    const currentApiUrl = (): string => {
+        const apiUrl = new URL(options.api, window.location.origin)
+        const browserParams = new URLSearchParams(window.location.search)
+        browserParams.forEach((value, key) => {
+            apiUrl.searchParams.set(key, value)
+        })
+        return apiUrl.toString()
+    }
+
     const loadPage = (page: number) => {
         paginating.value = true
-        const url = addToUrl(options.api, 'page', String(page))
+        const url = addToUrl(currentApiUrl(), 'page', String(page))
         return fetchEntities(url).then(() => {
             paginating.value = false
         })

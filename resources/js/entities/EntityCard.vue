@@ -13,13 +13,13 @@
                     <i v-if="entity.selected" class="fa-regular fa-check" aria-label="selected" />
                 </div>
                 <!-- Avatar bubbles for children -->
-                <div v-if="nested && entity.children_preview?.length" class="absolute bottom-[-10px] right-2 flex flex-row-reverse">
+                <div v-if="nested && entity.children_preview?.length" class="absolute bottom-2 right-2 flex flex-row-reverse">
                     <div v-if="entity.children > 3"
-                         class="w-7 h-7 rounded-full bg-primary border-2 border-box flex items-center justify-center text-[10px] text-primary-content font-bold ml-[-8px] z-0">
+                         class="w-7 h-7 rounded-full bg-primary border-1 border-box flex items-center justify-center text-primary-content font-bold ml-[-8px] z-0">
                         +{{ entity.children - 3 }}
                     </div>
                     <div v-for="(child, idx) in entity.children_preview.slice(0, 3)" :key="child.id"
-                         class="w-7 h-7 rounded-full border-2 border-box flex items-center justify-center text-[10px] ml-[-8px] cover-background"
+                         class="w-7 h-7 rounded-full border-1 border-box flex items-center justify-center ml-[-8px] cover-background"
                          :style="childStyle(child, idx)"
                          :class="child.image ? '' : 'bg-base-200 text-base-content'"
                          :title="child.name">

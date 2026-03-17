@@ -48,11 +48,24 @@ class ExploreResource extends JsonResource
             $attributes[] = 'completed';
         }
 
+        // Determine parent entity: standard types track parent on child model, custom types on entities.parent_id
+        // Use the eager-loaded relation directly (not $entity->child which goes through EntityCache and loses withCount)
+        $child = $entity->entityType->isStandard()
+            ? $entity->getRelationValue($entity->entityType->code)
+            : null;
+        $usesChildParent = $child && method_exists($child, 'getParentKeyName');
+        $parentEntity = null;
+        if ($usesChildParent && $child->parent && $child->parent->entity) {
+            $parentEntity = $child->parent->entity;
+        } elseif ($entity->parent) {
+            $parentEntity = $entity->parent;
+        }
+
         $routeParams = [$campaign, $entity->entityType];
         $links = ['back' => __('crud.actions.back')];
-        if ($entity->parent) {
-            $routeParams['parent_id'] = $entity->parent;
-            $links['back'] = __('datagrids.actions.back_to', ['name' => $entity->parent->name]);
+        if ($parentEntity) {
+            $routeParams['parent_id'] = $parentEntity;
+            $links['back'] = __('datagrids.actions.back_to', ['name' => $parentEntity->name]);
         }
         $routeBack = route('entities.index', $routeParams);
 
@@ -68,13 +81,15 @@ class ExploreResource extends JsonResource
             'type_slug' => Str::slug($entity->type ?? ''),
             'attributes' => $attributes,
             'selected' => false,
-            'children' => $entity->children_count,
+            'children' => $usesChildParent
+                ? ($child->children_count ?? 0)
+                : ($entity->children_count ?? 0),
             'images' => [
                 'thumb' => Avatar::entity($entity)->fallback()->size(192, 144)->thumbnail(),
                 'full' => Avatar::entity($entity)->original(),
             ],
             'is_private' => $entity->is_private,
-            'parent_id' => $entity->parent_id,
+            'parent_id' => $parentEntity?->id,
             'entityType' => new EntityTypeResource($entity->entityType),
             'urls' => [
                 'tooltip' => route('entities.tooltip', [$campaign, $entity]),
@@ -82,16 +97,15 @@ class ExploreResource extends JsonResource
                 'children' => route('entities.index', [$campaign, $entity->entityType, 'parent_id' => $entity->id]),
                 'children_api' => route('entities.index-api', [$campaign, $entity->entityType, 'parent_id' => $entity->id, 'children' => true]),
                 'parent' => $routeBack,
-                'parent_api' => $entity->parent_id
-                    ? route('entities.index-api', array_merge($routeParams, ['parent_id' => $entity->parent_id]))
-                    : route('entities.index-api', $routeParams),
+                'parent_api' => $parentEntity
+                    ? route('entities.index-api', [$campaign, $entity->entityType, 'parent_id' => $parentEntity->id])
+                    : route('entities.index-api', [$campaign, $entity->entityType]),
             ],
             'tags' => $this->tags(),
             'links' => $links,
         ];
 
-        // Column-driven entity-type-specific data
-        $child = $entity->child;
+        // Column-driven entity-type-specific data (standard types only — custom types have no child model)
         if ($child) {
             if ($this->hasColumn('title') && isset($child->title)) {
                 $data['title'] = $child->title;
@@ -166,8 +180,12 @@ class ExploreResource extends JsonResource
         }
 
         // Parent entity link
-        if ($this->hasColumn('parent') && $entity->parent) {
-            $data['parent_entity'] = $this->formatSingleEntity($entity->parent);
+        if ($this->hasColumn('parent') && $parentEntity) {
+            $data['parent_entity'] = [
+                'id' => $parentEntity->id,
+                'name' => $parentEntity->name,
+                'url' => route('entities.show', [$campaign, $parentEntity]),
+            ];
         }
 
         // Entity locations (many-to-many)
@@ -176,11 +194,21 @@ class ExploreResource extends JsonResource
         }
 
         // Children preview for grid avatar bubbles
-        if ($entity->relationLoaded('children')) {
-            $data['children_preview'] = $entity->children->take(3)->map(fn ($child) => [
-                'id' => $child->id,
-                'name' => $child->name,
-                'image' => Avatar::entity($child)->fallback()->size(40, 40)->thumbnail(),
+        if ($usesChildParent && $child && $child->relationLoaded('children')) {
+            // Standard types: children are on the child model, map through to their entities
+            $data['children_preview'] = $child->children->take(3)
+                ->filter(fn ($c) => $c->entity)
+                ->map(fn ($c) => [
+                    'id' => $c->entity->id,
+                    'name' => $c->entity->name,
+                    'image' => Avatar::entity($c->entity)->fallback()->size(40, 40)->thumbnail(),
+                ])->values()->toArray();
+        } elseif (! $entity->entityType->isStandard() && $entity->relationLoaded('children')) {
+            // Custom types: children are directly on the Entity via parent_id
+            $data['children_preview'] = $entity->children->take(3)->map(fn ($childEntity) => [
+                'id' => $childEntity->id,
+                'name' => $childEntity->name,
+                'image' => Avatar::entity($childEntity)->fallback()->size(40, 40)->thumbnail(),
             ])->toArray();
         }
 

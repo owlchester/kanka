@@ -14,30 +14,49 @@ export function useOrdering(options: OrderingOptions) {
         order.value = orderData
     }
 
+    const currentApiUrl = (): string => {
+        const apiUrl = new URL(options.api, window.location.origin)
+        const browserParams = new URLSearchParams(window.location.search)
+        browserParams.forEach((value, key) => {
+            apiUrl.searchParams.set(key, value)
+        })
+        return apiUrl.toString()
+    }
+
     const orderBy = (field: string, sortKey?: string | null) => {
         ordering.value = true
         const sortField = sortKey || field
 
-        const url = new URL(options.api, window.location.origin)
-        url.searchParams.set('order', sortField)
+        const url = new URL(currentApiUrl())
+        const currentUrl = new URL(window.location.href)
+
         if (isOrderingAscending(sortField)) {
+            // ASC → DESC
+            url.searchParams.set('order', sortField)
             url.searchParams.set('desc', '1')
-        } else {
+            currentUrl.searchParams.set('order', sortField)
+            currentUrl.searchParams.set('desc', '1')
+            order.value = { [sortField]: 'DESC' }
+        } else if (isOrdering(sortField)) {
+            // DESC → reset (clear sort)
+            url.searchParams.set('order', 'clear')
             url.searchParams.delete('desc')
+            currentUrl.searchParams.delete('order')
+            currentUrl.searchParams.delete('desc')
+            order.value = {}
+        } else {
+            // Not sorted → ASC
+            url.searchParams.set('order', sortField)
+            url.searchParams.delete('desc')
+            currentUrl.searchParams.set('order', sortField)
+            currentUrl.searchParams.delete('desc')
+            order.value = { [sortField]: 'ASC' }
         }
 
         options.fetchEntities(url.toString()).then(() => {
             ordering.value = false
         })
 
-        // Sync browser URL
-        const currentUrl = new URL(window.location.href)
-        currentUrl.searchParams.set('order', sortField)
-        if (isOrderingAscending(sortField)) {
-            currentUrl.searchParams.set('desc', '1')
-        } else {
-            currentUrl.searchParams.delete('desc')
-        }
         window.history.pushState({}, '', currentUrl)
     }
 
@@ -56,8 +75,8 @@ export function useOrdering(options: OrderingOptions) {
 
     const orderByIcon = (field: string): string => {
         return isOrderingAscending(field)
-            ? 'fa-regular fa-arrow-down-z-a'
-            : 'fa-regular fa-arrow-down-a-z'
+            ? 'fa-regular fa-arrow-down-a-z'
+            : 'fa-regular fa-arrow-down-z-a'
     }
 
     return {
