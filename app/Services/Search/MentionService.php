@@ -184,6 +184,8 @@ class MentionService
             'url' => $entity->url(),
             'preview' => route('entities.preview', [$this->campaign, $entity]),
             'mention' => $mention,
+            'alias_name' => $entity->alias_name ?? null,
+            'alias_id' => $entity->alias_id ?? null,
             'aliases' => $entity->aliases->map(fn ($alias) => [
                 'id' => $alias->id,
                 'name' => $alias->name,

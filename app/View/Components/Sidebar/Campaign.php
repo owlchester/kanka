@@ -162,6 +162,11 @@ class Campaign extends Component
             }
         }
 
+        $entityType = request()->route('entityType');
+        if ($entityType && $entityType->pluralCode() == $menu) {
+            return " {$class}";
+        }
+
         return null;
     }
 

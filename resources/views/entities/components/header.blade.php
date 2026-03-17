@@ -133,9 +133,15 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
     <div class="entity-header-text grow flex flex-col gap-1 md:gap-2  z-10">
         <ol class="entity-breadcrumb text-sm m-0 p-0">
             <li class="inline-block">
-                <a href="{{ $breadcrumb['url'] }}" class="" title="{{ $breadcrumb['label'] }}">
-                    {!! $breadcrumb['label'] !!}
-                </a>
+                @if (!empty($bookmark))
+                    <a href="{{ route('entities.index', [$campaign, $entity->entityType, 'bookmark' => $bookmark->id, '_from' => 'bookmark']) }}" class="" title="{{ $bookmark->name }}">
+                        {!! $bookmark->name !!}
+                    </a>
+                @else
+                    <a href="{{ $breadcrumb['url'] }}" class="" title="{{ $breadcrumb['label'] }}">
+                        {!! $breadcrumb['label'] !!}
+                    </a>
+                @endif
             </li>
         </ol>
         <div class="entity-name-header flex gap-3 items-center">
@@ -214,7 +220,7 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
             @endif
         </div>
 
-        @if ($entity->isCharacter()&& !empty($entity->child->title))
+        @if (($entity->isCharacter() || $entity->isLocation()) && !empty($entity->child->title))
             <div class="entity-title entity-header-line">
                 {!! $entity->child->title !!}
             </div>
@@ -316,6 +322,22 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
     </x-dialog>
 @endsection
 
+
+@if ($entity->archived_at)
+    <x-alert type="warning">
+        <div class="flex items-center justify-between gap-4">
+            <span>
+                <x-icon class="fa-regular fa-archive" />
+                {{ __('entries/archive.banner') }}
+            </span>
+            @can('update', $entity)
+                <a href="{{ route('entities.archive', [$campaign, $entity]) }}" class="btn2 btn-sm btn-warning">
+                    {{ __('entities/actions.unarchive.title') }}
+                </a>
+            @endcan
+        </div>
+    </x-alert>
+@endif
 
 @section('styles')
     @parent

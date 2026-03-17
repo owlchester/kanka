@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
-use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
@@ -13,7 +12,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Creature
@@ -30,8 +28,6 @@ class Creature extends MiscModel
     use HasCampaign;
     use HasFactory;
     use HasFilters;
-    use HasRecursiveRelationships;
-    use Nested;
     use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
@@ -40,7 +36,6 @@ class Creature extends MiscModel
         'name',
         'campaign_id',
         'is_private',
-        'creature_id',
         'is_extinct',
         'is_dead',
     ];
@@ -53,7 +48,6 @@ class Creature extends MiscModel
 
     protected array $sortable = [
         'name',
-        'parent.name',
         'is_extinct',
         'is_dead',
         'type',
@@ -65,7 +59,6 @@ class Creature extends MiscModel
      * @var string[]
      */
     public array $nullableForeignKeys = [
-        'creature_id',
     ];
 
     /**
@@ -84,14 +77,6 @@ class Creature extends MiscModel
     protected array $sanitizable = [
         'name',
     ];
-
-    /**
-     * @return string
-     */
-    public function getParentKeyName()
-    {
-        return 'creature_id';
-    }
 
     /**
      * Performance with for datagrids

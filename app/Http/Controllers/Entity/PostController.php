@@ -35,7 +35,7 @@ class PostController extends Controller
     {
         $this->authorize('post', [$entity, 'add']);
         $parentRoute = $entity->entityType->pluralCode();
-        $templates = Post::postTemplates($campaign)->orderBy('name')->pluck('name', 'id')->all();
+        $templates = Post::postTemplates($campaign)->orderBy('name')->get();
 
         $template = request()->input('template');
         if (! empty($template) && $this->authorize('useTemplates', $campaign)) {

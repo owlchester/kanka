@@ -19,7 +19,6 @@ class NoteResource extends EntityResource
         $model = $this->resource;
 
         return $this->entity([
-            'note_id' => $model->note_id,
         ]);
     }
 }

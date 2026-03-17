@@ -41,7 +41,7 @@
         </li>
         <li class="">
             {!! __('dashboards/widgets/welcome.tricks.3', [
-    'posts' => '<a target="_blank" href="https://docs.kanka.io/en/latest/features/posts.html" class="text-link">' . __('entities.posts') . ' <i class="fa-regular fa-external-link" aria-hidden="true"></i></a>']) !!}
+    'posts' => '<a target="_blank" href="https://docs.kanka.io/en/latest/features/articles.html" class="text-link">' . __('entities.articles') . ' <i class="fa-regular fa-external-link" aria-hidden="true"></i></a>']) !!}
         </li>
         <li class="">
             {!! __('dashboards/widgets/welcome.tricks.4', [

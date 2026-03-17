@@ -2,7 +2,7 @@
  * @var \App\Models\EntityAsset $asset */
 ?>
 @extends('layouts.app', [
-    'title' => __('entities/assets.show.title', ['name' => $entity->name]),
+    'title' =>  __('entries/tabs.media') . " - {$entity->name} - {$campaign->name}",
     'breadcrumbs' => false,
     'mainTitle' => false,
     'bodyClass' => 'entity-assets'

@@ -6,6 +6,7 @@
             'type' => 'avatar'
         ],
         'name',
+        'title',
         'type',
         [
             'type' => 'parent',

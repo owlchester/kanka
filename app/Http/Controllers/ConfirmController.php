@@ -13,6 +13,8 @@ class ConfirmController extends Controller
 
     public function index(Campaign $campaign)
     {
+        $this->authorize('access', $campaign);
+
         $route = request()->get('route');
         $name = request()->get('name');
         $permanent = request()->has('permanent');
@@ -22,6 +24,7 @@ class ConfirmController extends Controller
             ->with('route', $route)
             ->with('name', $name)
             ->with('mirrored', $mirrored)
+            ->with('campaign', $campaign)
             ->with('permanent', $permanent);
     }
 }

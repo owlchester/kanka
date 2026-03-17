@@ -10,6 +10,7 @@ use App\Http\Controllers\Entities\CreateController;
 use App\Http\Controllers\Entities\DeleteController;
 use App\Http\Controllers\Entities\EditController;
 use App\Http\Controllers\Entities\IndexController;
+use App\Http\Controllers\Entities\ListingPreferenceController;
 use App\Http\Controllers\Entity\AttributeController;
 use App\Http\Controllers\Entity\Attributes\LiveApiController;
 use App\Http\Controllers\Entity\Attributes\LiveController;
@@ -28,6 +29,8 @@ use App\Http\Controllers\Timelines\TimelineReorderController;
 use App\Http\Controllers\Whiteboards\ApiController;
 use App\Http\Controllers\Whiteboards\DrawController;
 use App\Models\Attribute;
+use App\Models\Campaign;
+use App\Models\EntityType;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/w/{campaign}/entities/{entity}', [ShowController::class, 'index'])->name('entities.show')->where(['entity' => '[0-9]+']);
@@ -36,6 +39,10 @@ Route::get('/w/{campaign}/entities/{entity}-{slug}', [ShowController::class, 'in
 
 Route::get('/w/{campaign}/t/{entityType}', [IndexController::class, 'index'])->name('entities.index');
 Route::get('/w/{campaign}/t/{entityType}/api', [IndexController::class, 'api'])->name('entities.index-api');
+Route::patch('/w/{campaign}/t/{entityType}/preferences', [ListingPreferenceController::class, 'update'])
+    ->name('entities.listing-preferences.update');
+Route::delete('/w/{campaign}/t/{entityType}/preferences', [ListingPreferenceController::class, 'destroy'])
+    ->name('entities.listing-preferences.destroy');
 Route::get('/w/{campaign}/t/{entityType}/create', [CreateController::class, 'index'])->name('entities.create');
 Route::post('/w/{campaign}/t/{entity_type}/create', [CreateController::class, 'store'])->name('entities.store');
 
@@ -263,6 +270,26 @@ Route::get('/w/{campaign}/entity_types/{entity_type}/filter-form', [FormControll
 Route::get('/w/{campaign}/connection/filter-form', [FormController::class, 'connection'])->name('filters.form-connection');
 
 Route::get('/w/{campaign}/filters/{entity_type}/save', [SaveController::class, 'save'])->name('save-filters');
+
+// Redirect standard entity type index routes to the unified listing
+$standardEntityTypes = [
+    'abilities', 'calendars', 'characters', 'creatures', 'events', 'families',
+    'items', 'journals', 'locations', 'maps', 'notes', 'organisations',
+    'quests', 'races', 'tags', 'timelines',
+];
+
+foreach ($standardEntityTypes as $entityTypeCode) {
+    Route::get("/w/{campaign}/{$entityTypeCode}", function (Campaign $campaign) use ($entityTypeCode) {
+        $entityType = EntityType::where('code', $entityTypeCode)->first();
+        if ($entityType) {
+            return redirect()->route('entities.index', array_merge(
+                [$campaign, $entityType],
+                request()->query()
+            ));
+        }
+        abort(404);
+    })->name("{$entityTypeCode}.index");
+}
 
 // Route::get('/w/{campaign}/my-campaigns', 'CampaignController@index')->name('campaign');
 Route::resources([

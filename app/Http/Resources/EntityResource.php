@@ -86,10 +86,11 @@ class EntityResource extends JsonResource
             ],
         ];
 
+        $data['parent_id'] = $entity->parent_id;
+
         if ($entity->entityType->isCustom()) {
             $data['entry'] = $entity->entry;
             $data['entry_parsed'] = $entity->parsedEntry();
-            $data['parent_id'] = $entity->parent_id;
             $data['locations'] = [];
             foreach ($entity->locations as $loc) {
                 $data['locations'][] = $loc->id;

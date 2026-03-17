@@ -1,16 +1,16 @@
-# Items
+# Objects
 
 ---
 
-- [All Items](#all-items)
+- [All Objects](#all-items)
 
-- [Single Item](#item)
-- [Create a Item](#create-item)
-- [Update a Item](#update-item)
-- [Delete a Item](#delete-item)
+- [Single object](#item)
+- [Create an object](#create-item)
+- [Update an object](#update-item)
+- [Delete an object](#delete-item)
 
 <a name="all-items"></a>
-## All Items
+## All objects
 
 You can get a list of all the items of a campaign by using the following endpoint.
 
@@ -57,7 +57,7 @@ The list of returned entities can be filtered. The available filters are [availa
 ```
 
 <a name="item"></a>
-## Item
+## Object
 
 To get the details of a single item, use the following endpoint.
 
@@ -97,7 +97,7 @@ To get the details of a single item, use the following endpoint.
 
 
 <a name="create-item"></a>
-## Create a Item
+## Create an object
 
 To create a item, use the following endpoint.
 
@@ -130,7 +130,7 @@ To create a item, use the following endpoint.
 
 
 <a name="update-item"></a>
-## Update a Item
+## Update an object
 
 To update a item, use the following endpoint.
 
@@ -148,7 +148,7 @@ The same body parameters are available as for when creating a item.
 
 
 <a name="delete-item"></a>
-## Delete a Item
+## Delete an object
 
 To delete a item, use the following endpoint.
 

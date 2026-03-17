@@ -6,7 +6,6 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\HasLocation;
-use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
@@ -18,7 +17,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Map
@@ -51,8 +49,6 @@ class Map extends MiscModel
     use HasFactory;
     use HasFilters;
     use HasLocation;
-    use HasRecursiveRelationships;
-    use Nested;
     use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
@@ -78,7 +74,6 @@ class Map extends MiscModel
     protected $fillable = [
         'campaign_id',
         'name',
-        'map_id',
         'location_id',
         'grid',
         'is_private',
@@ -101,7 +96,6 @@ class Map extends MiscModel
 
     protected array $sortable = [
         'name',
-        'parent.name',
         'type',
     ];
 
@@ -111,7 +105,6 @@ class Map extends MiscModel
      * @var string[]
      */
     public array $nullableForeignKeys = [
-        'map_id',
         'location_id',
         'center_marker_id',
     ];
@@ -154,16 +147,6 @@ class Map extends MiscModel
     public array $apiWith = ['groups', 'layers'];
 
     protected array $exploreGridFields = ['is_real'];
-
-    /**
-     * Parent ID used for the Node Trait
-     *
-     * @return string
-     */
-    public function getParentKeyName()
-    {
-        return 'map_id';
-    }
 
     /**
      * Performance with for datagrids

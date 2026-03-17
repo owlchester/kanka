@@ -32,7 +32,13 @@
                     @endif
                 @endif
                 <li class="px-2 {{ (!isset($element['route']) || $element['route'] !== false ? $active($name) : null) }} section-{{ $name }}">
-                    @if ($element['route'] !== false)
+                    @if (!isset($element['route']) && isset($element['type']))
+                        <x-sidebar.element
+                            :url="route('entities.index', [$campaign, config('entities.ids.' . $element['type'])])"
+                            :icon="$element['custom_icon'] ?? $element['icon'] ?? 'fa-solid fa-question'"
+                            :text="$element['custom_label'] ?? __($element['label_key']) ?? 'unknown'"
+                        ></x-sidebar.element>
+                    @elseif ($element['route'] !== false)
                         @php
                             $route = $element['route'];
                         @endphp
@@ -52,14 +58,19 @@
                         <ul class="sidebar-submenu list-none p-0 pl-3 m-0 flex flex-col gap-0.5">
                             @foreach($element['children'] as $childName => $child)
                                 <li class="p-0 m-0 {{ (!isset($child['route']) || $child['route'] !== false ? $active($childName) : null) }} subsection section-{{ $childName }}">
-                                    @php
-                                        $route = $child['route'];
-                                    @endphp
-                                    <x-sidebar.element
-                                        :url="route($route, $campaign)"
-                                        :icon="$child['custom_icon'] ?? $child['icon'] ?? 'fa-solid fa-question'"
-                                        :text="$child['custom_label'] ?? __($child['label_key']) ?? 'unknown'"
-                                    ></x-sidebar.element>
+                                    @if (!isset($child['route']) && isset($child['type']))
+                                        <x-sidebar.element
+                                            :url="route('entities.index', [$campaign, config('entities.ids.' . $child['type'])])"
+                                            :icon="$child['custom_icon'] ?? $child['icon'] ?? 'fa-solid fa-question'"
+                                            :text="$child['custom_label'] ?? __($child['label_key']) ?? 'unknown'"
+                                        ></x-sidebar.element>
+                                    @else
+                                        <x-sidebar.element
+                                            :url="route($child['route'], $campaign)"
+                                            :icon="$child['custom_icon'] ?? $child['icon'] ?? 'fa-solid fa-question'"
+                                            :text="$child['custom_label'] ?? __($child['label_key']) ?? 'unknown'"
+                                        ></x-sidebar.element>
+                                    @endif
                                 </li>
                                 @includeWhen($hasBookmarks($childName), 'layouts.sidebars.bookmarks', ['links' => $bookmarks($childName)])
                             @endforeach

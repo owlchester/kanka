@@ -13,6 +13,7 @@ class LocationFilter extends DatagridFilter
     {
         $this
             ->add('name')
+            ->add('title')
             ->add('type')
             ->add([
                 'field' => 'location_id',

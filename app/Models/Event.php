@@ -5,14 +5,12 @@ namespace App\Models;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
-use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Event
@@ -28,8 +26,6 @@ class Event extends MiscModel
     use HasCampaign;
     use HasFactory;
     use HasFilters;
-    use HasRecursiveRelationships;
-    use Nested;
     use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
@@ -39,13 +35,11 @@ class Event extends MiscModel
         'name',
         'date',
         'is_private',
-        'event_id',
     ];
 
     protected array $sortable = [
         'name',
         'date',
-        'parent.name',
         'type',
     ];
 
@@ -62,7 +56,6 @@ class Event extends MiscModel
      * @var string[]
      */
     public array $nullableForeignKeys = [
-        'event_id',
     ];
 
     protected array $exportFields = [
@@ -104,8 +97,7 @@ class Event extends MiscModel
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with([
                 'entity.locations', 'entity.locations.entity',
-                'parent', 'parent.entity',
-                'entity', 'entity.tags', 'entity.tags.entity', 'entity.image'])
+                'entity', 'entity.parent', 'entity.tags', 'entity.tags.entity', 'entity.image'])
             ->has('entity');
     }
 
@@ -115,11 +107,6 @@ class Event extends MiscModel
     public function entityTypeId(): int
     {
         return (int) config('entities.ids.event');
-    }
-
-    public function getParentKeyName()
-    {
-        return 'event_id';
     }
 
     /**

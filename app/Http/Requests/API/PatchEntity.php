@@ -42,7 +42,7 @@ class PatchEntity extends FormRequest
                 'nullable',
                 'integer',
                 'exists:entities,id',
-                new Nested(Entity::class, $self),
+                new Nested($self),
             ];
         }
 

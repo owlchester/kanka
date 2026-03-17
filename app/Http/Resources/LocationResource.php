@@ -19,7 +19,7 @@ class LocationResource extends EntityResource
         $model = $this->resource;
 
         return $this->entity([
-            'location_id' => $model->location_id,
+            'title' => $model->title,
             'is_destroyed' => $model->isDestroyed(),
         ]);
     }

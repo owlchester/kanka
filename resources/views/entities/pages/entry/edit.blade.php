@@ -15,19 +15,18 @@
 
     <x-form :action="['entities.entry.update', $campaign, $entity]" method="PATCH" class="entity-form entity-entry-form" unsaved>
         @include('partials.errors')
-        <x-box>
+        <div class="flex gap-2 items-center mb-4">
+            <div class="grow">
+                @include('partials.footer_cancel')
+            </div>
+            <button class="btn2 btn-primary" id="form-submit-main">{{ __('crud.update') }}</button>
+        </div>
+
             <x-forms.field field="entry">
                 @include('cruds.fields.entry', ['model' => $entity ?? null])
             </x-forms.field>
 
-            <div class="flex gap-2 items-center">
-                <div class="grow">
-                    @include('partials.footer_cancel')
-                </div>
-                <button class="btn2 btn-primary" id="form-submit-main">{{ __('crud.update') }}</button>
-            </div>
 
-        </x-box>
     </x-form>
 
     {{-- For bragi --}}

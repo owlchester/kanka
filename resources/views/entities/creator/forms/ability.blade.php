@@ -1,7 +1,7 @@
 <x-grid>
     @include('cruds.fields.type', ['base' => \App\Models\Ability::class, 'trans' => 'abilities'])
 
-    @include('cruds.fields.ability', ['isParent' => true, 'dynamicNew' => true])
+    @include('cruds.fields.parent')
 
     <x-forms.field
         field="charges"

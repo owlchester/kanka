@@ -129,6 +129,13 @@ class CrudController extends Controller
                 ])
             );
         }
+        if (method_exists($this, 'getEntityType')) {
+            /** @var EntityType $entityType */
+            $entityType = $this->getEntityType();
+            if ($entityType->hasEntity()) {
+                return redirect()->route('entities.index', [$this->campaign, $entityType]);
+            }
+        }
 
         /**
          * Prepare a lot of variables that will be shared over to the view
@@ -213,13 +220,13 @@ class CrudController extends Controller
                 if ($model instanceof Relation) {
                     $relation = 'owner';
                     $base = $base->whereHas('target', function ($query) {
-                        $query->whereNull('archived_at');
+                        $query->whereNull('entities.archived_at');
                     });
                 }
 
                 // Filter out archived entities
                 $base = $base->whereHas($relation, function ($query) {
-                    $query->whereNull('archived_at');
+                    $query->whereNull('entities.archived_at');
                 });
             }
 

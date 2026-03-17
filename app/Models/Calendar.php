@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
-use App\Models\Concerns\Nested;
 use App\Models\Relations\CalendarRelations;
 use App\Traits\ExportableTrait;
 use Exception;
@@ -14,7 +13,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Calendar
@@ -44,8 +42,6 @@ class Calendar extends MiscModel
     use HasCampaign;
     use HasFactory;
     use HasFilters;
-    use HasRecursiveRelationships;
-    use Nested;
     use SoftDeletes;
 
     protected $fillable = [
@@ -77,7 +73,6 @@ class Calendar extends MiscModel
         'leap_year_offset', // every X years
         'leap_year_start', // X year is a leap year
 
-        'calendar_id',
     ];
 
     /** @var array<string, string> */
@@ -116,11 +111,6 @@ class Calendar extends MiscModel
     public function datagridSelectFields(): array
     {
         return ['calendar_id', 'date'];
-    }
-
-    public function getParentKeyName(): string
-    {
-        return 'calendar_id';
     }
 
     /**

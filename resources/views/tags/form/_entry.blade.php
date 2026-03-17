@@ -2,7 +2,7 @@
     @include('cruds.fields.entity-name')
     @include('cruds.fields.type', ['base' => \App\Models\Tag::class, 'trans' => 'tags'])
 
-    @include('cruds.fields.tag', ['isParent' => true])
+    @include('cruds.fields.parent')
     @include('cruds.fields.colour')
 
     @php $iconHelper = __('tags.helpers.icon', [

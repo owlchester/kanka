@@ -8,7 +8,9 @@ use App\Models\Campaign;
 use App\Services\Campaign\CreateService;
 use App\Services\Campaign\GenreService;
 use App\Services\Campaign\SystemService;
+use App\Services\LanguageService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CreateController extends Controller
 {
@@ -16,6 +18,7 @@ class CreateController extends Controller
         protected CreateService $createService,
         protected GenreService $genreService,
         protected SystemService $systemService,
+        protected LanguageService $languageService
     ) {
         $this->middleware('auth');
     }
@@ -30,10 +33,22 @@ class CreateController extends Controller
             session()->remove('user_registered');
             $tracking = 'pa10CJTvrssBEOaOq7oC';
         }
+        $languages = $this->languageService->getSupportedLanguagesList(true);
+        $timezones = [];
+
+        for ($i = -12; $i <= 14; $i++) {
+            $prefix = ($i >= 0) ? '+' : '-';
+            // Formats to "UTC +05:00" or "UTC -11:00"
+            $utcString = 'UTC ' . $prefix . Str::padLeft((string) abs($i), 2, '0') . ':00';
+
+            $timezones[$utcString] = $utcString;
+        }
 
         return view('campaigns.forms.create', [
             'start' => auth()->user()->campaigns->count() === 0,
             'gaTrackingEvent' => $tracking,
+            'languages' => $languages,
+            'timezones' => $timezones,
         ]);
     }
 

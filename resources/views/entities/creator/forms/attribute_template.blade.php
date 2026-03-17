@@ -1,2 +1,2 @@
 
-@include('cruds.fields.parent_attribute_template')
+@include('cruds.fields.parent')

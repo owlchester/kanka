@@ -6,6 +6,7 @@ use App\Enums\EntityAssetType;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
@@ -177,22 +178,51 @@ trait EntityScopes
         return $query->whereIn($this->getTable() . '.type_id', $types);
     }
 
-    public function scopeOrder(Builder $query, array $config = []): Builder
+    public function scopeOrder(Builder $query, array $config = [], ?EntityType $entityType = null): Builder
     {
+        $entityFields = ['name', 'type', 'is_private'];
+
         foreach ($config as $field => $order) {
-            $query->orderBy($field, $order);
+            if ($field === 'parent.name') {
+                $query->leftJoin('entities as parent_order', 'parent_order.id', '=', 'entities.parent_id')
+                    ->orderBy('parent_order.name', $order);
+            } elseif (! in_array($field, $entityFields) && $entityType?->isStandard()) {
+                // Field lives on the child model's table
+                $childModel = $entityType->getClass();
+                $childTable = $childModel->getTable();
+                $query->leftJoin($childTable . ' as child_order', 'child_order.id', '=', 'entities.entity_id');
+
+                $segments = explode('.', $field);
+                if (count($segments) > 1) {
+                    // Dotted field like location.name — resolve the relationship on the child model
+                    $relationName = $segments[0];
+                    /** @var BelongsTo $relation */
+                    $relation = $childModel->{$relationName}();
+                    $relatedTable = $relation->getQuery()->getQuery()->from;
+                    $query->leftJoin(
+                        $relatedTable . ' as orderable_j',
+                        'orderable_j.id',
+                        'child_order.' . $relation->getForeignKeyName()
+                    )->orderBy(str_replace($relationName, 'orderable_j', $field), $order);
+                } else {
+                    $query->orderBy('child_order.' . $field, $order);
+                }
+            } else {
+                $query->orderBy('entities.' . $field, $order);
+            }
         }
 
         return $query;
     }
 
-    public function scopeFilter(Builder $query, array $filters = []): Builder
+    public function scopeFilter(Builder $query, array $filters = [], ?EntityType $entityType = null): Builder
     {
+        $childFilterKeys = [];
         foreach ($filters as $name => $values) {
             if (! is_array($values) && $values === null) {
                 continue;
             } elseif (in_array($name, ['is_private', 'parent_id'])) {
-                $query->where($name, $values);
+                $query->where('entities.' . $name, $values);
             } elseif (in_array($name, ['name', 'type'])) {
                 // @phpstan-ignore-next-line
                 $query->textFilter($name, $values);
@@ -220,6 +250,38 @@ trait EntityScopes
             } elseif ($name === 'has_entry') {
                 // @phpstan-ignore-next-line
                 $query->filterHasEntry($values);
+            } elseif ($name === 'has_attributes') {
+                // @phpstan-ignore-next-line
+                $query->filterHasAttributes($values);
+            } elseif (in_array($name, ['attribute_name', 'attribute_value'])) {
+                // attribute_value is handled together with attribute_name
+                if ($name === 'attribute_name') {
+                    // @phpstan-ignore-next-line
+                    $query->filterAttributes($values, Arr::get($filters, 'attribute_value'));
+                }
+            } elseif (in_array($name, ['connection_target', 'connection_name'])) {
+                // connection_name is handled together with connection_target
+                if ($name === 'connection_target' || ! isset($filters['connection_target'])) {
+                    // @phpstan-ignore-next-line
+                    $query->filterConnections(
+                        Arr::get($filters, 'connection_target'),
+                        Arr::get($filters, 'connection_name')
+                    );
+                }
+            } elseif (in_array($name, ['created_by', 'updated_by'])) {
+                $query->where('entities.' . $name, (int) $values);
+            } elseif ($entityType?->isStandard() && ! Str::endsWith($name, '_option')) {
+                $childFilterKeys[$name] = $values;
+            }
+        }
+
+        // Entity-type-specific filters (e.g. status_id on characters)
+        if (! empty($childFilterKeys) && $entityType?->isStandard()) {
+            $childModel = $entityType->getClass();
+            $childTable = $childModel->getTable();
+            $query->leftJoin($childTable . ' as child_filter', 'child_filter.id', '=', 'entities.entity_id');
+            foreach ($childFilterKeys as $name => $values) {
+                $query->where('child_filter.' . $name, $values);
             }
         }
 
@@ -324,13 +386,77 @@ trait EntityScopes
             $searchTerm = $text;
 
             $query->where(
-                $field,
+                'entities.' . $field,
                 $operator,
                 ($operator == '=' ? $text : "%{$searchTerm}%")
             );
         }
 
         return $query;
+    }
+
+    /**
+     * Filter on entities with attributes
+     */
+    protected function scopeFilterHasAttributes(Builder $query, bool $value = true): void
+    {
+        $query
+            ->leftJoin('attributes', 'attributes.entity_id', 'entities.id');
+
+        if ($value) {
+            $query->whereNotNull('attributes.id');
+        } else {
+            $query->whereNull('attributes.id');
+        }
+    }
+
+    /**
+     * Filter on entities by attribute name and optionally value
+     */
+    protected function scopeFilterAttributes(Builder $query, ?string $name = null, ?string $attributeValue = null): void
+    {
+        if ($name === null) {
+            return;
+        }
+
+        [$operator, $filterName] = $this->extractSearchOperator($name, 'attribute_name');
+
+        // No attribute with this name (exclude)
+        if ($operator === 'not like') {
+            $query
+                ->whereRaw('(select count(*) from attributes as att where att.entity_id = entities.id and att.name = ?) = 0', [$filterName]);
+
+            return;
+        }
+
+        $query
+            ->leftJoin('attributes as att', 'att.entity_id', '=', 'entities.id')
+            ->where('att.name', $filterName);
+
+        if ($attributeValue === '!') {
+            $query->whereRaw('att.value <> ""');
+        } elseif ($attributeValue !== '' && $attributeValue !== null) {
+            $query->where('att.value', $attributeValue);
+        }
+    }
+
+    /**
+     * Filter on entities by their connections
+     */
+    protected function scopeFilterConnections(Builder $query, ?string $targetId = null, ?string $connectionName = null): void
+    {
+        $query
+            ->leftJoin('relations as rel', 'rel.owner_id', '=', 'entities.id');
+
+        if ($targetId !== '' && $targetId !== null) {
+            $query->where('rel.target_id', $targetId);
+        }
+
+        if ($connectionName !== '' && $connectionName !== null) {
+            [$operator, $filterName] = $this->extractSearchOperator($connectionName, 'connection_name');
+            $searchValue = $operator === '=' ? $filterName : '%' . $filterName . '%';
+            $query->where('rel.relation', $operator, $searchValue);
+        }
     }
 
     /**

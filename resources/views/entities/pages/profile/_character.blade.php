@@ -93,7 +93,7 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
             </div>
         @endif
 
-        @if (((auth()->check() && auth()->user()->can('personality', $model)) || $model->is_personality_visible) && count($traits) > 0)
+        @if (auth()->check() && auth()->user()->can('personality', $model) && count($traits) > 0)
 
             <div class="character-personalities flex flex-col gap-4 md:gap-6">
                 <div class="flex items-center justify-between gap-2">

@@ -2,6 +2,7 @@
 
 namespace App\Mail\Subscription\Admin;
 
+use App\Models\SubscriptionCancellation;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
@@ -15,22 +16,14 @@ class CancelledSubscriptionMail extends Mailable
     use Queueable;
     use SerializesModels;
 
+    public SubscriptionCancellation $cancellation;
+
     public User $user;
 
-    public ?string $reason;
-
-    public ?string $custom;
-
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct(User $user, ?string $reason = null, ?string $custom = null)
+    public function __construct(SubscriptionCancellation $cancellation)
     {
-        $this->user = $user;
-        $this->reason = $reason;
-        $this->custom = $custom;
+        $this->cancellation = $cancellation;
+        $this->user = $cancellation->user;
     }
 
     /**
@@ -38,7 +31,6 @@ class CancelledSubscriptionMail extends Mailable
      */
     public function envelope(): Envelope
     {
-
         return new Envelope(
             subject: 'Sub: Cancelled ' . $this->user->pledge,
             tags: ['admin-cancelled'],
@@ -53,7 +45,7 @@ class CancelledSubscriptionMail extends Mailable
     {
         return new Content(
             markdown: 'emails.subscriptions.cancelled.md',
-            with: ['user' => $this->user, 'reason' => $this->reason, 'custom' => $this->custom],
+            with: ['cancellation' => $this->cancellation, 'user' => $this->user],
         );
     }
 }

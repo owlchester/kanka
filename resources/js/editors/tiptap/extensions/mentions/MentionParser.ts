@@ -10,7 +10,7 @@ import type { Ref } from 'vue'
 export const MentionParserPluginKey = new PluginKey('mentionParser')
 
 export interface MentionParserOptions {
-    entities?: Array<{ id: number; name: string; type: string; image?: string, url?: string, alias?: any }> | Ref<Array<{ id: number; name: string; type: string; image?: string, url?: string, alias?: any }>>
+    entities?: Array<{ id: number; name: string; type: string; image?: string, url?: string, aliases?: any[] }> | Ref<Array<{ id: number; name: string; type: string; image?: string, url?: string, aliases?: any[] }>>
 }
 
 export const MentionParser = Extension.create<MentionParserOptions>({
@@ -125,11 +125,22 @@ export const MentionParser = Extension.create<MentionParserOptions>({
                                         const image = entity?.image || null
                                         const url = entity?.url || null
 
-                                        //console.log('parsed', mention, defaultLabel, config)
+                                        // If config contains alias:X, use alias name as the display name
+                                        let nameToUse = entity ? entity.name : `${module}:${id}`
+                                        if (config && entity?.aliases) {
+                                            const aliasMatch = config.match(/alias:(\d+)/)
+                                            if (aliasMatch) {
+                                                const alias = entity.aliases.find(a => a.id === parseInt(aliasMatch[1]))
+                                                if (alias) {
+                                                    nameToUse = alias.name
+                                                }
+                                            }
+                                        }
+
                                         // Replace text with mention node
                                         const mentionNode = mentionType.create({
                                             id: id,
-                                            name: entity ? entity.name : `${module}:${id}`,
+                                            name: nameToUse,
                                             label: label,
                                             mention: mention,
                                             image: image,

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Events;
 
-use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Event;
@@ -22,31 +21,6 @@ class EventController extends Controller
     {
         $this->campaign($campaign)->authEntityView($event->entity);
 
-        $options = ['campaign' => $campaign, 'event' => $event, 'm' => $this->descendantsMode()];
-        $filters = [];
-        if ($this->filterToDirect()) {
-            $filters['event_id'] = $event->id;
-        }
-        Datagrid::layout(\App\Renderers\Layouts\Event\Event::class)
-            ->route('events.events', $options);
-
-        $this->rows = $event
-            ->descendants()
-            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
-            ->with([
-                'entity', 'entity.image', 'entity.entityType', 'entity.tags',
-                'parent', 'parent.entity',
-            ])
-            ->has('entity')
-            ->filter($filters)
-            ->paginate(config('limits.pagination'));
-
-        if (request()->ajax()) {
-            return $this->campaign($campaign)->datagridAjax();
-        }
-
-        return $this
-            ->campaign($campaign)
-            ->subview('events.events', $event);
+        return redirect()->route('entities.children', [$campaign, $event->entity]);
     }
 }

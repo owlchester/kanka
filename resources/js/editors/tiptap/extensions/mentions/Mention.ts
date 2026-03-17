@@ -122,28 +122,20 @@ export const Mention = Node.create<MentionOptions>({
 
             mention: {
                 default: null,
-                parseHTML: element => element.getAttribute('data-mention'),
+                parseHTML: element => {
+                    const val = element.getAttribute('data-mention')
+                    if (!val) return null
+                    // Extract just "type:id" from "[type:id]" or "[type:id|config...]"
+                    const match = val.match(/\[?([a-zA-Z_]+:\d+)/)
+                    return match ? match[1] : val
+                },
                 renderHTML: attributes => {
                     if (!attributes.mention) {
                         return {}
                     }
 
-                    const parts = [`${attributes.mention}`]
-
-                    if (attributes.label) {
-                        parts.push(attributes.label)
-                    }
-
-                    if (attributes.config) {
-                        parts.push(attributes.config)
-                    }
-
                     return {
-                        'data-mention': `[${parts.join('|')}]`
-                    }
-
-                    return {
-                        'data-mention': attributes.mention,
+                        'data-mention': `[${attributes.mention}]`
                     }
                 },
             },
@@ -233,24 +225,16 @@ export const Mention = Node.create<MentionOptions>({
 
         innerContent.push(label)
 
-        // If the node has a config with an "alias:id" property, show an icon and the alias ID
+        // If the node has a config with an "alias:id" property, show an alias icon
         if (node.attrs.config) {
-            const configParts = node.attrs.config.split('|')
-            const aliasPart = configParts.find((part: string) => part.startsWith('alias:'))
+            const aliasPart = node.attrs.config.split('|').find((part: string) => part.startsWith('alias:'))
             if (aliasPart) {
-                const aliasId = aliasPart.split(':')[1]
-
-                const alias = node.attrs.entity.aliases.find(a => a.id === parseInt(aliasId))
-                if (alias) {
-                    innerContent.push([
-                        'i',
-                        {
-                            class: 'fa-regular fa-masks-theater',
-                        }
-                    ])
-                    innerContent.push(`(${alias.name})`)
-                }
-
+                innerContent.push([
+                    'i',
+                    {
+                        class: 'fa-regular fa-masks-theater',
+                    }
+                ])
             }
         }
 

@@ -16,7 +16,7 @@
         @else
             <x-toggles.filter-button
                 route="{{ route('locations.locations', [$campaign, $model, 'm' => \App\Enums\Descendants::All]) }}"
-                :count="$model->children()->has('entity')->count()"
+                :count="$entity->children()->count()"
             />
         @endif
         @include('entities.headers.actions', ['edit' => false])

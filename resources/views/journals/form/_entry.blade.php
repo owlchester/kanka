@@ -2,7 +2,7 @@
     @include('cruds.fields.entity-name')
     @include('cruds.fields.type', ['base' => \App\Models\Journal::class, 'trans' => 'journals'])
 
-    @include('cruds.fields.journal', ['isParent' => true])
+    @include('cruds.fields.parent')
 
     @include('cruds.fields.author')
     @include('cruds.fields.location')

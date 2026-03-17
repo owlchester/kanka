@@ -4,7 +4,7 @@ const tsCache = {};
 const tsPending = {};
 
 const fetchWithCache = (url, query) => {
-    const key = url + '?q=' + query;
+    const key = url + (url.includes('?') ? '&' : '?') + 'q=' + query;
     if (tsCache[key] !== undefined) {
         return Promise.resolve(tsCache[key]);
     }

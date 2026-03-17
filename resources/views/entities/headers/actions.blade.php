@@ -6,12 +6,13 @@ $create = false;
 $manage = false;
 $system = false;
 $data = false;
+$delete = false;
 
 ?>
 
 @if (!isset($edit) || $edit !== false)
 @can('update', $entity)
-    <a href="{{ $entity->url('edit') }}" class="btn2 btn-sm" data-tooltip data-title="<div class='flex gap-3 items-center'><span>{{ __('entities/actions.tooltips.edit') }}</span><span class='inline-block rounded border-base-300 border px-1'>E</span></div>" data-html="true" data-keyboard="edit">
+    <a href="{{ $entity->url('edit') }}" class="btn2 btn-sm" data-tooltip data-title="<div class='flex gap-3 items-center'><span>{{ __('entities/actions.tooltips.edit') }}</span><span class='inline-block rounded border-base-300 border px-1'>E</span></div>" data-html="true" data-shortcut="e">
         <x-icon class="pencil" />
         {{ __('crud.edit') }}
     </a>
@@ -27,7 +28,11 @@ $data = false;
     <div class="dropdown-menu hidden" role="menu" id="entity-submenu">
         @if (isset($edit) && $edit === false)
             @can('update', $entity)
-                <x-dropdowns.item :link="$entity->url('edit')" icon="pencil" keyboard="edit">
+                <x-dropdowns.item
+                    :link="$entity->url('edit')"
+                    icon="pencil"
+                    shortcut="E"
+                >
                     {{ __('crud.edit') }}
                 </x-dropdowns.item>
             @endif
@@ -38,8 +43,8 @@ $data = false;
             <x-dropdowns.item :link="$entity->entityType->createRoute($campaign)" icon="fa-regular fa-plus">
                 {{ __('crud.actions.new') }}
             </x-dropdowns.item>
-            @if ($entity->entityType->isCustom() || ($entity->entityType->isStandard() && method_exists($entity->child, 'getParentKeyName')))
-                <x-dropdowns.item :link="$entity->entityType->createRoute($campaign, ['parent_id' => $entity->entityType->isCustom() ? $entity->id : $entity->child->id])" icon="fa-regular fa-plus">
+            @if ($entity->entityType->isNested())
+                <x-dropdowns.item :link="$entity->entityType->createRoute($campaign, ['parent_id' => $entity->id])" icon="fa-regular fa-plus">
                     {{ __('crud.actions.new_child') }}
                 </x-dropdowns.item>
             @endif
@@ -125,17 +130,6 @@ $data = false;
                     {{ __('entities/actions.convert') }}
                 </x-dropdowns.item>
             @endif
-
-            @can('update', $entity)
-                @php $system = true; @endphp
-                <x-dropdowns.item :link="route('entities.archive', [$campaign, $entity])" icon="fa-regular fa-archive">
-                    @if ($entity->archived_at)
-                        {{ __('entities/actions.unarchive.title') }}
-                    @else
-                        {{ __('entities/actions.archive.title') }}
-                    @endif
-                </x-dropdowns.item>
-            @endcan
         @endauth
 
         @if ($system) <x-dropdowns.divider /> @endif
@@ -160,14 +154,35 @@ $data = false;
             @endcan
         @endauth
 
+        @can('update', $entity)
+            <x-dropdowns.divider />
+            <x-dropdowns.item :link="route('entities.archive', [$campaign, $entity])" icon="fa-regular fa-archive">
+                @if ($entity->archived_at)
+                    {{ __('entities/actions.unarchive.title') }}
+                @else
+                    {{ __('entities/actions.archive.title') }}
+                @endif
+            </x-dropdowns.item>
+            @php $delete = true; @endphp
+        @endcan
 
         @can('delete', $entity)
+            @if (!$delete)
             <x-dropdowns.divider />
+            @endif
             @php
                 $url = route('confirm-delete', [$campaign, 'route' => route('entities.destroy', [$campaign, $entity]), 'name' => $entity->name]);
             @endphp
-            <x-dropdowns.item link="#" css="text-error-content hover:bg-error" :data="['toggle' => 'dialog', 'target' => 'primary-dialog', 'url' => $url]" icon="trash">
-                {{ __('crud.remove') }}
+            <x-dropdowns.item
+                link="#"
+                css="hover:bg-error"
+                :data="['toggle' => 'dialog', 'target' => 'primary-dialog', 'url' => $url, 'shortcut' => 'ctrl+delete']"
+                icon="trash"
+                shortcut="Ctrl Del"
+            >
+                <span class="text-error-content">
+                    {{ __('crud.remove') }}
+                </span>
             </x-dropdowns.item>
         @endcan
     </div>

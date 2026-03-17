@@ -5,14 +5,12 @@ namespace App\Models;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
-use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Note
@@ -26,8 +24,6 @@ class Note extends MiscModel
     use HasCampaign;
     use HasFactory;
     use HasFilters;
-    use HasRecursiveRelationships;
-    use Nested;
     use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
@@ -36,20 +32,17 @@ class Note extends MiscModel
         'campaign_id',
         'name',
         'is_private',
-        'note_id',
     ];
 
     protected array $sortable = [
         'name',
         'type',
-        'parent.name',
     ];
 
     /**
      * Fields that can be set to null (foreign keys)
      */
     public array $nullableForeignKeys = [
-        'note_id',
     ];
 
     protected array $exportFields = [
@@ -82,16 +75,6 @@ class Note extends MiscModel
     public function entityTypeId(): int
     {
         return (int) config('entities.ids.note');
-    }
-
-    /**
-     * Parent ID field for the Node trait
-     *
-     * @return string
-     */
-    public function getParentKeyName()
-    {
-        return 'note_id';
     }
 
     /**

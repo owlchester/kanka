@@ -6,6 +6,7 @@ return [
     ],
     'fields'        => [
         'is_destroyed'  => 'Destroyed',
+        'title'         => 'Title',
     ],
     'helpers'       => [
         'characters'    => 'View all characters in this location and its children locations, or just those directly located here.',
@@ -17,6 +18,7 @@ return [
         'empty' => 'Add your first city, tavern, or hidden ruin to anchor your world.',
     ],
     'placeholders'  => [
+        'title' => 'Title',
         'type'  => 'City, Kingdom, Ruin',
     ],
 ];

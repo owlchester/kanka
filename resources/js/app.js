@@ -25,6 +25,7 @@ import './utility/formError';
 import './utility/dialog';
 import './utility/colour-picker';
 import './share';
+import './visibility-picker';
 
 // VueJS elements
 import './header';

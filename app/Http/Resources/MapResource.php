@@ -21,7 +21,6 @@ class MapResource extends EntityResource
         return $this->entity([
             'height' => $model->height,
             'width' => $model->width,
-            'map_id' => $model->map_id,
             'grid' => $model->grid,
             'min_zoom' => $model->minZoom(),
             'max_zoom' => $model->maxZoom(),

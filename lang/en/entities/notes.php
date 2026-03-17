@@ -46,7 +46,6 @@ return [
         'copy_title'    => 'Keep a copy',
         'description'   => 'Select an entry to move this article to',
         'entity'        => 'Target entry',
-        'move'          => 'Move to another entry',
         'move_success'  => 'Article :name moved to :entity successfully.',
     ],
     'placeholders'  => [

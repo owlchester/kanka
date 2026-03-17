@@ -2,7 +2,7 @@
     @include('cruds.fields.entity-name')
     @include('cruds.fields.type', ['base' => \App\Models\Organisation::class, 'trans' => 'organisations'])
 
-    @include('cruds.fields.organisation', ['isParent' => true])
+    @include('cruds.fields.parent')
     @include('cruds.fields.locations', ['from' => $model ?? null, 'quickCreator' => true])
 
     @include('cruds.fields.entry2')

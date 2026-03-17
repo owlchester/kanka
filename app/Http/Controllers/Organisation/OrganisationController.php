@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Organisation;
 
-use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Organisation;
@@ -22,32 +21,6 @@ class OrganisationController extends Controller
     {
         $this->campaign($campaign)->authEntityView($organisation->entity);
 
-        $options = ['campaign' => $campaign, 'organisation' => $organisation, 'm' => $this->descendantsMode()];
-        $filters = [];
-        if ($this->filterToDirect()) {
-            $filters['organisation_id'] = $organisation->id;
-        }
-
-        Datagrid::layout(\App\Renderers\Layouts\Organisation\Organisation::class)
-            ->route('organisations.organisations', $options);
-
-        $this->rows = $organisation
-            ->descendants()
-            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
-            ->with([
-                'entity', 'entity.image', 'entity.entityType',
-                'entity.tags',
-                'parent', 'parent.entity',
-            ])
-            ->filter($filters)
-            ->paginate(config('limits.pagination'));
-
-        if (request()->ajax()) {
-            return $this->campaign($campaign)->datagridAjax();
-        }
-
-        return $this
-            ->campaign($campaign)
-            ->subview('organisations.organisations', $organisation);
+        return redirect()->route('entities.children', [$campaign, $organisation->entity]);
     }
 }
