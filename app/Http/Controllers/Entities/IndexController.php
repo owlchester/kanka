@@ -229,6 +229,9 @@ class IndexController extends Controller
             'bulkDelete' => __('crud.remove'),
             'columns' => __('datagrids.columns.title'),
             'resetDefaults' => __('datagrids.columns.reset'),
+            'relations' => __('entries/tabs.relations'),
+            'inventory' => __('crud.tabs.inventory'),
+            'edit' => __('crud.edit'),
         ];
 
         $bookmarkable = $this->filterService->activeFiltersCount() > 0 && auth()->check() && auth()->user()->can('create', Bookmark::class) && ! $request->has('bookmark');
@@ -247,6 +250,9 @@ class IndexController extends Controller
                 'template' => auth()->user()->can('useTemplates', $campaign),
                 'admin' => auth()->user()->isAdmin($campaign),
             ] : null,
+            'features' => [
+                'inventories' => $campaign->enabled('inventories'),
+            ],
             'urls' => [
                 'create' => $entityType->createRoute($campaign),
                 'batch' => route('bulk.batch', [$campaign, $entityType]),

@@ -137,6 +137,7 @@
                 :nested="nestingComposable.nested.value"
                 :i18n="i18n"
                 :entity-type="entityType"
+                :features="features"
                 :ads="entityApi.ads.value"
                 :is-ordering="orderingComposable.isOrdering"
                 :order-by-icon="orderingComposable.orderByIcon"
@@ -264,6 +265,7 @@ const templates = ref<any[]>([])
 const filters = ref(0)
 const filterUrls = ref<any>({})
 const bookmarkable = ref(false)
+const features = ref<any>({})
 const i18n = ref<any>({})
 const loading = ref(true)
 
@@ -431,6 +433,7 @@ onMounted(() => {
         templates.value = response.templates
         permissions.value = response.permissions
         bookmarkable.value = response.bookmarkable
+        features.value = response.features ?? {}
         urls.value = response.urls
         entityType.value = response.entityType
 

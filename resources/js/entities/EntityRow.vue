@@ -83,6 +83,34 @@
                 <a v-if="entity.calendar_date" :href="entity.calendar_date.url" class="text-link" v-html="entity.calendar_date.date"></a>
             </template>
         </td>
+
+        <!-- Row actions -->
+        <td class="w-10 text-center">
+            <div class="dropdown">
+                <button class="cursor-pointer rounded-full w-8 h-8 aspect-square hover:bg-base-200 flex items-center justify-center"
+                        :ref="el => actionsBtnRef = el"
+                        data-tree="escape">
+                    <i class="fa-regular fa-ellipsis-v" data-tree="escape" aria-hidden="true"></i>
+                </button>
+                <div ref="actionsMenuRef" class="flex flex-col gap-1" style="display: none">
+                    <a :href="entity.urls.relations" class="flex items-center gap-2 px-2 py-1.5 hover:bg-base-200 rounded-xl text-sm text-base-content">
+                        <i class="fa-regular fa-circle-nodes w-5 text-center text-neutral-content" aria-hidden="true"></i>
+                        <span v-html="i18n.relations"></span>
+                    </a>
+                    <a v-if="features?.inventories" :href="entity.urls.inventory" class="flex items-center gap-2 px-2 py-1.5 hover:bg-base-200 rounded-xl text-sm text-base-content">
+                        <i class="fa-regular fa-gem w-5 text-center text-neutral-content" aria-hidden="true"></i>
+                        <span v-html="i18n.inventory"></span>
+                    </a>
+                    <template v-if="entity.can_edit">
+                        <hr class="m-0" />
+                        <a :href="entity.urls.edit" class="flex items-center gap-2 px-2 py-1.5 hover:bg-base-200 rounded-xl text-sm text-base-content">
+                            <i class="fa-regular fa-pencil w-5 text-center text-neutral-content" aria-hidden="true"></i>
+                            <span v-html="i18n.edit"></span>
+                        </a>
+                    </template>
+                </div>
+            </div>
+        </td>
     </tr>
 
     <!-- Expanded children rows -->
@@ -95,6 +123,7 @@
             :selecting="selecting"
             :nested="nested"
             :i18n="i18n"
+            :features="features"
             :depth="depth + 1"
             :max-depth="maxDepth"
             :show-expand-column="showExpandColumn"
@@ -103,7 +132,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import tippy from 'tippy.js'
 
 const props = withDefaults(defineProps<{
     entity: any
@@ -111,6 +141,7 @@ const props = withDefaults(defineProps<{
     selecting: boolean
     nested: boolean
     i18n: any
+    features: any
     depth?: number
     maxDepth?: number
     showExpandColumn: boolean
@@ -122,6 +153,29 @@ const props = withDefaults(defineProps<{
 const expanded = ref(false)
 const children = ref<any[]>([])
 const loadingChildren = ref(false)
+
+const actionsBtnRef = ref<HTMLElement | null>(null)
+const actionsMenuRef = ref<HTMLElement | null>(null)
+let actionsInstance: any = null
+
+onMounted(() => {
+    if (actionsBtnRef.value && actionsMenuRef.value) {
+        actionsInstance = tippy(actionsBtnRef.value, {
+            content: actionsMenuRef.value,
+            theme: 'kanka-dropdown',
+            placement: 'bottom-end',
+            interactive: true,
+            trigger: 'click',
+            allowHTML: true,
+            arrow: true,
+            zIndex: 890,
+        })
+    }
+})
+
+onBeforeUnmount(() => {
+    actionsInstance?.destroy()
+})
 
 const dataAttributes = computed(() => {
     const attrs: Record<string, any> = {

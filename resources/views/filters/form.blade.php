@@ -6,7 +6,7 @@
  */
     use Illuminate\Support\Arr;
 
-    if (isset($entityType) && $entityType->isCustom()) {
+    if (isset($entityType) && $entityType->hasEntity()) {
         $formRoute = ['entities.index', $campaign, $entityType];
         $resetRoute = route('entities.index', [$campaign, $entityType, 'reset-filter' => 'true']);
     } else {

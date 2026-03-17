@@ -53,7 +53,7 @@ class TransformController extends Controller
             ->user($request->user())
             ->transform($newEntityType);
 
-        $link = '<a href="' . ($newEntityType->isCustom() ? route('entities.index', [$campaign, $newEntityType]) : route($newEntityType->pluralCode() . '.index', [$campaign])) . '" class="text-link">' . $newEntityType->name() . '</a>';
+        $link = '<a href="' . ($newEntityType->hasEntity() ? route('entities.index', [$campaign, $newEntityType]) : route($newEntityType->pluralCode() . '.index', [$campaign])) . '" class="text-link">' . $newEntityType->name() . '</a>';
 
         return redirect()
             ->back()

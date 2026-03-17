@@ -220,7 +220,7 @@ trait EntityScopes
             if (! is_array($values) && $values === null) {
                 continue;
             } elseif (in_array($name, ['is_private', 'parent_id'])) {
-                $query->where($name, $values);
+                $query->where('entities.' . $name, $values);
             } elseif (in_array($name, ['name', 'type'])) {
                 // @phpstan-ignore-next-line
                 $query->textFilter($name, $values);
@@ -248,6 +248,26 @@ trait EntityScopes
             } elseif ($name === 'has_entry') {
                 // @phpstan-ignore-next-line
                 $query->filterHasEntry($values);
+            } elseif ($name === 'has_attributes') {
+                // @phpstan-ignore-next-line
+                $query->filterHasAttributes($values);
+            } elseif (in_array($name, ['attribute_name', 'attribute_value'])) {
+                // attribute_value is handled together with attribute_name
+                if ($name === 'attribute_name') {
+                    // @phpstan-ignore-next-line
+                    $query->filterAttributes($values, Arr::get($filters, 'attribute_value'));
+                }
+            } elseif (in_array($name, ['connection_target', 'connection_name'])) {
+                // connection_name is handled together with connection_target
+                if ($name === 'connection_target' || ! isset($filters['connection_target'])) {
+                    // @phpstan-ignore-next-line
+                    $query->filterConnections(
+                        Arr::get($filters, 'connection_target'),
+                        Arr::get($filters, 'connection_name')
+                    );
+                }
+            } elseif (in_array($name, ['created_by', 'updated_by'])) {
+                $query->where('entities.' . $name, (int) $values);
             }
         }
 
@@ -352,13 +372,77 @@ trait EntityScopes
             $searchTerm = $text;
 
             $query->where(
-                $field,
+                'entities.' . $field,
                 $operator,
                 ($operator == '=' ? $text : "%{$searchTerm}%")
             );
         }
 
         return $query;
+    }
+
+    /**
+     * Filter on entities with attributes
+     */
+    protected function scopeFilterHasAttributes(Builder $query, bool $value = true): void
+    {
+        $query
+            ->leftJoin('attributes', 'attributes.entity_id', 'entities.id');
+
+        if ($value) {
+            $query->whereNotNull('attributes.id');
+        } else {
+            $query->whereNull('attributes.id');
+        }
+    }
+
+    /**
+     * Filter on entities by attribute name and optionally value
+     */
+    protected function scopeFilterAttributes(Builder $query, ?string $name = null, ?string $attributeValue = null): void
+    {
+        if ($name === null) {
+            return;
+        }
+
+        [$operator, $filterName] = $this->extractSearchOperator($name, 'attribute_name');
+
+        // No attribute with this name (exclude)
+        if ($operator === 'not like') {
+            $query
+                ->whereRaw('(select count(*) from attributes as att where att.entity_id = entities.id and att.name = ?) = 0', [$filterName]);
+
+            return;
+        }
+
+        $query
+            ->leftJoin('attributes as att', 'att.entity_id', '=', 'entities.id')
+            ->where('att.name', $filterName);
+
+        if ($attributeValue === '!') {
+            $query->whereRaw('att.value <> ""');
+        } elseif ($attributeValue !== '' && $attributeValue !== null) {
+            $query->where('att.value', $attributeValue);
+        }
+    }
+
+    /**
+     * Filter on entities by their connections
+     */
+    protected function scopeFilterConnections(Builder $query, ?string $targetId = null, ?string $connectionName = null): void
+    {
+        $query
+            ->leftJoin('relations as rel', 'rel.owner_id', '=', 'entities.id');
+
+        if ($targetId !== '' && $targetId !== null) {
+            $query->where('rel.target_id', $targetId);
+        }
+
+        if ($connectionName !== '' && $connectionName !== null) {
+            [$operator, $filterName] = $this->extractSearchOperator($connectionName, 'connection_name');
+            $searchValue = $operator === '=' ? $filterName : '%' . $filterName . '%';
+            $query->where('rel.relation', $operator, $searchValue);
+        }
     }
 
     /**

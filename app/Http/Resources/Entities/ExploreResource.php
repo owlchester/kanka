@@ -91,7 +91,11 @@ class ExploreResource extends JsonResource
                 'parent_api' => $parentEntity
                     ? route('entities.index-api', [$campaign, $entity->entityType, 'parent_id' => $parentEntity->id])
                     : route('entities.index-api', [$campaign, $entity->entityType]),
+                'edit' => route('entities.edit', [$campaign, $entity]),
+                'relations' => route('entities.relations.index', [$campaign, $entity]),
+                'inventory' => route('entities.inventory', [$campaign, $entity]),
             ],
+            'can_edit' => auth()->check() && auth()->user()->can('update', $entity),
             'tags' => $this->tags(),
             'links' => $links,
         ];

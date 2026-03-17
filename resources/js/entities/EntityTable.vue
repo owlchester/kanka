@@ -18,6 +18,7 @@
                         </button>
                         <span v-else v-html="col.label"></span>
                     </th>
+                    <th class="w-10"></th>
                 </tr>
             </thead>
             <tbody>
@@ -28,6 +29,7 @@
                         :selecting="selecting"
                         :nested="nested"
                         :i18n="i18n"
+                        :features="features"
                         :show-expand-column="nested && entityType?.is_nested"
                     />
                     <!-- Ad row -->
@@ -54,6 +56,7 @@ const props = defineProps<{
     nested: boolean
     i18n: any
     entityType: any
+    features: any
     ads: { enabled: boolean; frequency: number }
     isOrdering: (field: string) => boolean
     orderByIcon: (field: string) => string
@@ -66,7 +69,7 @@ defineEmits<{
 }>()
 
 const totalColumns = computed(() => {
-    let count = props.visibleColumns.length
+    let count = props.visibleColumns.length + 1 // +1 for actions column
     if (props.selecting) count++
     if (props.nested && props.entityType?.is_nested) count++
     return count
