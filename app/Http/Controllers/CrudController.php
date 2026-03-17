@@ -129,6 +129,13 @@ class CrudController extends Controller
                 ])
             );
         }
+        if (method_exists($this, 'getEntityType')) {
+            /** @var EntityType $entityType */
+            $entityType = $this->getEntityType();
+            if ($entityType->hasEntity()) {
+                return redirect()->route('entities.index', [$this->campaign, $entityType]);
+            }
+        }
 
         /**
          * Prepare a lot of variables that will be shared over to the view

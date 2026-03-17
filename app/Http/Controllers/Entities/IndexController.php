@@ -50,6 +50,15 @@ class IndexController extends Controller
                 ])
             );
         }
+        elseif ($entityType->isStandard() && !$campaign->enabled($entityType->pluralCode())) {
+            return redirect()->route('dashboard', $campaign)->with(
+                'error_raw',
+                __('campaigns/modules.errors.disabled', [
+                    'name' => $entityType->plural(), // @phpstan-ignore-line
+                    'fix' => '<a href="' . route('campaign.modules', [$campaign, '#' . $entityType->code]) . '" class="text-link">' . __('crud.fix-this-issue') . '</a>', // @phpstan-ignore-line
+                ])
+            );
+        }
 
         $this->entityType = $entityType;
         $this->campaign = $campaign;
