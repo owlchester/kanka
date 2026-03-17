@@ -93,18 +93,18 @@
                         data-tree="escape">
                     <i class="fa-regular fa-ellipsis-v" data-tree="escape" aria-hidden="true"></i>
                 </button>
-                <div ref="actionsMenuRef" class="flex flex-col gap-1" style="display: none">
-                    <a :href="entity.urls.relations" class="flex items-center gap-2 px-2 py-1.5 hover:bg-base-200 rounded-xl text-sm text-base-content">
+                <div ref="actionsMenuRef" class="flex flex-col gap-1" >
+                    <a :href="entity.urls.relations" class="flex items-center gap-2 px-2 py-1.5 hover:bg-base-200 rounded-xl text-xs text-base-content">
                         <i class="fa-regular fa-circle-nodes w-5 text-center text-neutral-content" aria-hidden="true"></i>
                         <span v-html="i18n.relations"></span>
                     </a>
-                    <a v-if="features?.inventories" :href="entity.urls.inventory" class="flex items-center gap-2 px-2 py-1.5 hover:bg-base-200 rounded-xl text-sm text-base-content">
+                    <a v-if="features?.inventories" :href="entity.urls.inventory" class="flex items-center gap-2 px-2 py-1.5 hover:bg-base-200 rounded-xl text-xs text-base-content">
                         <i class="fa-regular fa-gem w-5 text-center text-neutral-content" aria-hidden="true"></i>
                         <span v-html="i18n.inventory"></span>
                     </a>
                     <template v-if="entity.can_edit">
                         <hr class="m-0" />
-                        <a :href="entity.urls.edit" class="flex items-center gap-2 px-2 py-1.5 hover:bg-base-200 rounded-xl text-sm text-base-content">
+                        <a :href="entity.urls.edit" class="flex items-center gap-2 px-2 py-1.5 hover:bg-base-200 rounded-xl text-xs text-base-content">
                             <i class="fa-regular fa-pencil w-5 text-center text-neutral-content" aria-hidden="true"></i>
                             <span v-html="i18n.edit"></span>
                         </a>

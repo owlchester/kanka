@@ -22,7 +22,7 @@
                 <div class="bg-base-200 flex items-stretch gap-1 rounded-xl" v-if="filters > 0">
                     <div class="flex items-center rounded-xl gap-2 hover:bg-base-300 px-2 py-2 cursor-pointer" :aria-label="i18n.filters" :title="i18n.filters" @click="openFilters">
                         <i class="fa-regular fa-filter hover:bg-base-300" aria-label="Filter"></i>
-                        <span class="rounded bg-primary text-primary-content px-2 text-sm">1</span>
+                        <span class="rounded bg-primary text-primary-content px-2 text-xs">1</span>
                     </div>
                     <div class="flex items-center justify-center rounded-xl gap-2 hover:bg-base-300 px-3 py-2 cursor-pointer hover:text-primary" :title="i18n.bookmark" v-if="bookmarkable" @click="bookmark">
                         <i class="fa-regular fa-bookmark" :aria-label="i18n.bookmark"></i>
@@ -169,7 +169,7 @@
                 <button v-for="col in sortableColumns" :key="col.key"
                     @click="handleOrderBy(col.key, col.sortKey)"
                     :class="orderingComposable.orderByClass(col.sortKey || col.key)"
-                    class="px-2 py-2 hover:bg-base-200 rounded-xl flex items-center gap-1.5 text-sm transition-all duration-150 text-base-content">
+                    class="px-2 py-2 hover:bg-base-200 rounded-xl flex items-center gap-1.5 text-xs transition-all duration-150 text-base-content">
                     <i v-if="orderingComposable.isOrdering(col.sortKey || col.key)" :class="orderingComposable.orderByIcon(col.sortKey || col.key)"></i>
                     <span v-html="col.label"></span>
                 </button>
@@ -177,14 +177,14 @@
             <!-- Template menu -->
             <div ref="templateMenu" class="flex flex-col gap-1">
                 <a v-for="template in templates" :href="template.url" :key="template.id"
-                   class="px-2 py-2 hover:bg-base-200 rounded-xl flex items-center gap-1.5 text-sm transition-all duration-150 text-base-content">
-                    <i class="fa-regular fa-star" aria-hidden="true"></i>
+                   class="px-2 py-2 hover:bg-base-200 rounded-xl flex items-center gap-1.5 text-xs transition-all duration-150 text-base-content">
+                    <i class="fa-regular fa-star text-neutral-content w-5" aria-hidden="true"></i>
                     <span v-html="template.name"></span>
                 </a>
                 <hr class="m-0" v-if="templates.length > 0" />
                 <a href="https://docs.kanka.io/en/latest/guides/templates.html"
-                   class="px-2 py-2 hover:bg-base-200 rounded-xl flex items-center gap-1.5 transition-all duration-150 text-base-content text-sm">
-                    <i class="fa-regular fa-external-link" aria-hidden="true"></i>
+                   class="px-2 py-2 hover:bg-base-200 rounded-xl flex items-center gap-1.5 transition-all duration-150 text-base-content text-xs">
+                    <i class="fa-regular fa-external-link text-neutral-content w-5" aria-hidden="true"></i>
                     <span class="text-nowrap" v-html="i18n.templates"></span>
                 </a>
             </div>
@@ -218,13 +218,13 @@
             <!-- Column visibility menu -->
             <div ref="columnsMenu" class="flex flex-col gap-1 min-w-48">
                 <div v-for="col in toggleableColumns" :key="col.key"
-                     class="px-2 py-1.5 hover:bg-base-200 rounded-xl flex items-center gap-2 text-sm cursor-pointer text-base-content"
+                     class="px-2 py-1.5 hover:bg-base-200 rounded-xl flex items-center gap-2 text-xs cursor-pointer text-base-content"
                      @click="columnsComposable.toggleColumn(col.key)">
                     <i :class="columnsComposable.isColumnVisible(col.key) ? 'fa-regular fa-square-check text-primary' : 'fa-regular fa-square text-neutral-content'"></i>
                     <span v-html="col.label"></span>
                 </div>
                 <hr class="m-0" />
-                <button @click="columnsComposable.resetToDefaults()" class="px-2 py-1.5 hover:bg-base-200 rounded-xl flex items-center gap-2 text-sm text-base-content">
+                <button @click="columnsComposable.resetToDefaults()" class="px-2 py-1.5 hover:bg-base-200 rounded-xl flex items-center gap-2 text-xs text-base-content">
                     <i class="fa-regular fa-rotate-left" aria-hidden="true"></i>
                     <span v-html="i18n.resetDefaults"></span>
                 </button>
