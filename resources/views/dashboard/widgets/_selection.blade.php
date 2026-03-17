@@ -44,7 +44,7 @@
             :dashboard="$dashboard"
             icon="fa-dice-d20"
         ></x-dashboards.widgets.selection>
-        @if($campaign->premium())
+        @can('galleryWidget', $campaign)
             <x-dashboards.widgets.selection
                 :widget="Widget::Gallery"
                 :campaign="$campaign"
@@ -57,14 +57,14 @@
                 <div class="flex flex-col gap-0 flex-grow">
                     <p>{{ __('dashboards/widgets/gallery.name') }}</p>
                     <p class="text-neutral-content text-xs">
-                        {{ __('dashboards/widgets/gallery.description') }}
+                        {{ __('dashboards/widgets/gallery.helpers.premium') }}
                     </p>
                 </div>
                 <div class="text-boost">
                     <x-icon class="premium" />
                 </div>
             </a>
-        @endif
+        @endcan
         @if($campaign->isOpen())
             <x-dashboards.widgets.selection
                 :widget="Widget::Join"

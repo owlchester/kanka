@@ -8,6 +8,7 @@ return [
         'show_name' => 'Image names',
     ],
     'helpers' => [
+        'premium' => 'Display images from a gallery folder as a carousel. This feature is only available to premium campaigns.',
         'show_name' => 'Display the image name below each image.',
     ],
 ];

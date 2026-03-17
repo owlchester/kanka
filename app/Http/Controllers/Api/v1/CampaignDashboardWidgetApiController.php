@@ -63,9 +63,6 @@ class CampaignDashboardWidgetApiController extends ApiController
     public function update(Request $request, Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
     {
         $this->authorize('update', $campaign);
-        if ($campaignDashboardWidget->widget === Widget::Gallery) {
-            $this->authorize('galleryWidget', $campaign);
-        }
         $campaignDashboardWidget->update($request->all());
 
         return new Resource($campaignDashboardWidget);

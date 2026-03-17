@@ -119,9 +119,6 @@ class DashboardWidgetController extends Controller
     public function update(StoreCampaignDashboardWidget $request, Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
     {
         $this->authorize('dashboard', $campaign);
-        if ($campaignDashboardWidget->widget === Widget::Gallery) {
-            $this->authorize('galleryWidget', $campaign);
-        }
         if ($request->ajax()) {
             return response()->json(['success' => true]);
         }
