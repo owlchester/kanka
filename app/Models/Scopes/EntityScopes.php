@@ -6,6 +6,7 @@ use App\Enums\EntityAssetType;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
@@ -195,7 +196,7 @@ trait EntityScopes
                 if (count($segments) > 1) {
                     // Dotted field like location.name — resolve the relationship on the child model
                     $relationName = $segments[0];
-                    /** @var \Illuminate\Database\Eloquent\Relations\BelongsTo $relation */
+                    /** @var BelongsTo $relation */
                     $relation = $childModel->{$relationName}();
                     $relatedTable = $relation->getQuery()->getQuery()->from;
                     $query->leftJoin(

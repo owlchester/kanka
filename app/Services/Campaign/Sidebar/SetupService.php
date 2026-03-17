@@ -275,7 +275,7 @@ class SetupService
             $element = $this->customElement($name);
             // Add a route if it should have one
             if (! isset($element['route'])) {
-                if (!isset($element['type'])) {
+                if (! isset($element['type'])) {
                     $element['route'] = $name . '.index';
                 }
             }
@@ -312,7 +312,7 @@ class SetupService
                 }
 
                 // Add route when none is set
-                if (! isset($child['route']) && !isset($child['type'])) {
+                if (! isset($child['route']) && ! isset($child['type'])) {
                     $child['route'] = $childName . '.index';
                 }
 

@@ -8,7 +8,6 @@ use App\Models\Bookmark;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityType;
-use App\Models\MiscModel;
 use App\Models\Relation;
 use App\Observers\Concerns\SaveLocations;
 use App\Services\Entity\MoveService;
@@ -411,6 +410,7 @@ class BulkService
             if ($this->entityType->isBookmark()) {
                 return new Bookmark;
             }
+
             return new Entity;
         }
 
