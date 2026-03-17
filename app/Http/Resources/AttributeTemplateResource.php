@@ -20,7 +20,6 @@ class AttributeTemplateResource extends EntityResource
 
         return $this->entity([
             'entity_type_id' => $model->entity_type_id,
-            'attribute_template' => $model->attribute_template_id,
         ]);
     }
 }

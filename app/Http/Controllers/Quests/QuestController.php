@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Quests;
 
-use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Quest;
@@ -22,31 +21,6 @@ class QuestController extends Controller
     {
         $this->campaign($campaign)->authEntityView($quest->entity);
 
-        $options = ['campaign' => $campaign, 'quest' => $quest, 'm' => $this->descendantsMode()];
-        $filters = [];
-        if ($this->filterToDirect()) {
-            $filters['quest_id'] = $quest->id;
-        }
-
-        Datagrid::layout(\App\Renderers\Layouts\Quest\Quest::class)
-            ->route('quests.quests', $options);
-
-        $this->rows = $quest
-            ->descendants()
-            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
-            ->with([
-                'entity', 'entity.image', 'entity.entityType',
-                'entity.tags',
-                'parent', 'parent.entity',
-            ])
-            ->has('entity')
-            ->filter($filters)
-            ->paginate(config('limits.pagination'));
-
-        if (request()->ajax()) {
-            return $this->campaign($campaign)->datagridAjax();
-        }
-
-        return redirect()->to($quest->getLink());
+        return redirect()->route('entities.children', [$campaign, $quest->entity]);
     }
 }

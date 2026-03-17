@@ -13,4 +13,8 @@ return [
     'tooltips'  => [
         'nested'    => 'This entry has children. Click on the image to view them.',
     ],
+    'columns' => [
+        'title' => 'Control visible columns',
+        'reset' => 'Reset to default',
+    ]
 ];

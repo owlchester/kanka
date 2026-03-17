@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Models\AttributeTemplate;
 use App\Models\Entity;
 use App\Rules\Nested;
 use App\Traits\ResolvesNewForeignEntities;
@@ -12,7 +11,7 @@ class StoreAttributeTemplate extends FormRequest
 {
     use ResolvesNewForeignEntities;
 
-    protected array $foreignEntityFields = ['attribute_template_id'];
+    protected array $foreignEntityFields = [];
 
     /**
      * Determine if the user is authorized to make this request.
@@ -33,19 +32,18 @@ class StoreAttributeTemplate extends FormRequest
     {
         $rules = [
             'name' => 'required|max:191',
-            'attribute_template_id' => 'nullable|integer|exists:attribute_templates,id',
+            'parent_id' => 'nullable|integer|exists:entities,id',
             'entity_type_id' => 'nullable|integer|exists:entity_types,id',
         ];
 
-        // Editing an attribute template? Don't allow selecting oneself.
         /** @var Entity $self */
         $self = request()->route('entity');
-        if (! empty($self) && $self->isAttributeTemplate()) {
-            $rules['attribute_template_id'] = [
+        if (! empty($self)) {
+            $rules['parent_id'] = [
                 'nullable',
                 'integer',
-                'exists:attribute_templates,id',
-                new Nested(AttributeTemplate::class, $self->child),
+                'exists:entities,id',
+                new Nested($self),
             ];
         }
 

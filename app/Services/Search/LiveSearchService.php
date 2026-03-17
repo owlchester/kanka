@@ -43,6 +43,8 @@ class LiveSearchService
             ->limit(10)
             ->get();
 
+        $onlyEntity = $this->request->filled('entity');
+
         $list = [];
         $child = Str::camel($this->entityType->code);
         /** @var Entity $entity */
@@ -51,7 +53,7 @@ class LiveSearchService
                 continue;
             }
             $format = [
-                'id' => $this->entityType->isCustom() ? $entity->id : $entity->{$child}->id,
+                'id' => $this->entityType->isCustom() || $onlyEntity ? $entity->id : $entity->{$child}->id,
                 'entity_id' => $entity->id,
                 'name' => $entity->name,
                 'text' => $entity->name,

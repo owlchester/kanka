@@ -38,8 +38,17 @@ class SubmenuService
             ] : null,
         ];
 
+        $childCount = $this->entity->children()->count();
+        if ($childCount > 0) {
+            $this->items['second']['children'] = [
+                'name' => __('entities/children.title'),
+                'route' => 'entities.children',
+                'count' => $childCount,
+                'entity' => true,
+            ];
+        }
+
         // Each entity can have relations
-        //        if (!isset($this->model->hasRelations) || $this->model->hasRelations === true) {
         $this->items['first']['relations'] = [
             'name' => __('entries/tabs.relations'),
             'route' => 'entities.relations.index',
@@ -47,7 +56,6 @@ class SubmenuService
             'entity' => true,
             'icon' => 'fa-regular fa-users',
         ];
-        //        }
 
         // Each entity can have abilities
         if ($this->campaign->enabled('abilities') && ! $this->entity->isAbility()) {

@@ -255,16 +255,15 @@ class EntityType extends Model
 
     public function isNested(): bool
     {
-        if ($this->isCustom()) {
-            return true;
-        }
-        $model = $this->getClass();
-
-        return method_exists($model, 'getParentKeyName');
+        return ! in_array($this->id, [
+            config('entities.ids.character'),
+            config('entities.ids.conversation'),
+            config('entities.ids.dice_roll'),
+        ]);
     }
 
     public function hasTable(): bool
     {
-        return $this->isCustom();
+        return true;
     }
 }

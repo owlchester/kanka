@@ -10,7 +10,9 @@ use App\Http\Resources\EntityTypeResource;
 use App\Models\Bookmark;
 use App\Models\Campaign;
 use App\Models\Entity;
+use App\Models\EntityListingPreference;
 use App\Models\EntityType;
+use App\Services\Entity\ColumnDefinitionService;
 use App\Services\FilterService;
 use App\Traits\Controllers\HasNested;
 use Illuminate\Http\Request;
@@ -24,10 +26,15 @@ class IndexController extends Controller
 
     protected EntityType $entityType;
 
+    protected Campaign $campaign;
+
     protected Request $request;
 
+    protected ?EntityListingPreference $preference = null;
+
     public function __construct(
-        protected FilterService $filterService
+        protected FilterService $filterService,
+        protected ColumnDefinitionService $columnDefinitionService,
     ) {
         $this->middleware([CachedResponse::class]);
     }
@@ -42,17 +49,23 @@ class IndexController extends Controller
                     'fix' => '<a href="' . route('campaign.modules', [$campaign, '#' . $entityType->code]) . '" class="text-link">' . __('crud.fix-this-issue') . '</a>',
                 ])
             );
-        }
-
-        // If not a special entity type, redirect to their "old" route
-        if ($entityType->isStandard()) {
-            return redirect()->route($entityType->pluralCode() . '.index', $campaign);
+        } elseif ($entityType->isStandard() && ! $campaign->enabled($entityType->pluralCode())) {
+            return redirect()->route('dashboard', $campaign)->with(
+                'error_raw',
+                __('campaigns/modules.errors.disabled', [
+                    'name' => $entityType->plural(),
+                    'fix' => '<a href="' . route('campaign.modules', [$campaign, '#' . $entityType->code]) . '" class="text-link">' . __('crud.fix-this-issue') . '</a>',
+                ])
+            );
         }
 
         $this->entityType = $entityType;
+        $this->campaign = $campaign;
         $this->request = $request;
 
-        $this->filterService->request($request)->entityType($entityType)->build();
+        $this->filterService->request($request)->entityType($entityType)->build(
+            $this->columnDefinitionService->sortableFields($entityType, $campaign)
+        );
 
         $nested = $this->isNested();
         $mode = $this->layoutMode();
@@ -62,7 +75,7 @@ class IndexController extends Controller
         if ($request->has('parent_id')) {
             $parent = Entity::select([
                 'entities.id', 'entities.name', 'entities.type', 'entities.is_private',
-                'entities.type_id', 'entities.parent_id',
+                'entities.type_id', 'entities.parent_id', 'entities.entity_id',
                 'entities.image_uuid', 'entities.focus_x', 'entities.focus_y',
             ])
                 ->inTypes([$entityType->id])->where('id', $request->get('parent_id'))->first();
@@ -114,17 +127,50 @@ class IndexController extends Controller
     public function api(Request $request, Campaign $campaign, EntityType $entityType)
     {
         $this->entityType = $entityType;
+        $this->campaign = $campaign;
         $this->request = $request;
 
-        $this->filterService->request($request)->entityType($entityType)->build();
+        $this->filterService->request($request)->entityType($entityType)->build(
+            $this->columnDefinitionService->sortableFields($entityType, $campaign)
+        );
+
+        // Column definitions
+        $columns = $this->columnDefinitionService->columns($entityType, $campaign);
+        $relations = $this->columnDefinitionService->relationMap($entityType, $campaign);
+        $childCountRelations = $this->columnDefinitionService->childCountRelations($entityType, $campaign);
+
+        // User preferences (query once, reuse in isNested/layoutMode)
+        $this->preference = null;
+        if (auth()->check()) {
+            $this->preference = EntityListingPreference::query()->where([
+                'user_id' => auth()->id(),
+                'campaign_id' => $campaign->id,
+                'type_id' => $entityType->id,
+            ])->first();
+        }
+        $preference = $this->preference;
+        $columnPreferences = $preference->visible_columns
+            ?? $this->columnDefinitionService->defaultVisibleColumns($entityType, $campaign);
+
+        // Tell the resource which columns to serialize
+        ExploreResource::withColumns(array_map(fn ($c) => $c['key'], $columns));
 
         $nested = $this->isNested();
         $layout = $this->layoutMode();
 
-        $with = ['entityType', 'image', 'locations', 'parent', 'tags'];
-        if ($this->entityType->isStandard()) {
-            $with[] = $this->entityType->code;
+        $with = $relations;
+        // Eager load child model with withCount for count columns (e.g. organisation.members)
+        if ($entityType->isStandard()) {
+            $childRelation = $entityType->code;
+            $with[$childRelation] = function ($query) use ($childCountRelations) {
+                if (! empty($childCountRelations)) {
+                    $query->withCount($childCountRelations);
+                }
+            };
         }
+        // All entity types: nesting uses entities.parent_id
+        $with['children'] = fn ($q) => $q->whereNull('archived_at');
+
         $base = Entity::inTypes($entityType->id)
             ->select([
                 'entities.id', 'entities.name', 'entities.type', 'entities.is_private', 'entities.entity_id',
@@ -132,16 +178,16 @@ class IndexController extends Controller
                 'entities.image_uuid', 'entities.focus_x', 'entities.focus_y', 'entities.image_path',
             ])
             ->with($with)
-            ->withCount('children')
+            ->withCount(['children' => fn ($q) => $q->whereNull('archived_at')])
             ->search($this->filterService->search())
-            ->order($this->filterService->order())
+            ->order($this->filterService->order(), $entityType)
             ->distinct();
 
         $parent = null;
         if ($request->has('parent_id')) {
             $parent = Entity::select([
                 'entities.id', 'entities.name', 'entities.type', 'entities.is_private',
-                'entities.type_id', 'entities.parent_id',
+                'entities.type_id', 'entities.parent_id', 'entities.entity_id',
                 'entities.image_uuid', 'entities.focus_x', 'entities.focus_y',
             ])
                 ->inTypes([$entityType->id])->where('id', $request->get('parent_id'))->first();
@@ -158,9 +204,9 @@ class IndexController extends Controller
             $unfilteredCount = $base->count();
             $base = $base->filter($this->filterService->filters());
         } else {
-            $base = $base->whereNull('archived_at');
+            $base = $base->whereNull('entities.archived_at');
         }
-        $models = $base->orderBy('name')->paginate();
+        $models = $base->orderBy('entities.name')->paginate();
 
         $i18n = [
             'fields' => [
@@ -189,6 +235,11 @@ class IndexController extends Controller
             'bulkCopy' => __('crud.actions.copy_to_campaign'),
             'bulkPrint' => __('crud.actions.print'),
             'bulkDelete' => __('crud.remove'),
+            'columns' => __('datagrids.columns.title'),
+            'resetDefaults' => __('datagrids.columns.reset'),
+            'relations' => __('entries/tabs.relations'),
+            'inventory' => __('crud.tabs.inventory'),
+            'edit' => __('crud.edit'),
         ];
 
         $bookmarkable = $this->filterService->activeFiltersCount() > 0 && auth()->check() && auth()->user()->can('create', Bookmark::class) && ! $request->has('bookmark');
@@ -207,6 +258,9 @@ class IndexController extends Controller
                 'template' => auth()->user()->can('useTemplates', $campaign),
                 'admin' => auth()->user()->isAdmin($campaign),
             ] : null,
+            'features' => [
+                'inventories' => $campaign->enabled('inventories'),
+            ],
             'urls' => [
                 'create' => $entityType->createRoute($campaign),
                 'batch' => route('bulk.batch', [$campaign, $entityType]),
@@ -217,6 +271,8 @@ class IndexController extends Controller
                 'delete' => route('bulk.delete', [$campaign, $entityType]),
                 'print' => route('bulk.print', [$campaign, $entityType]),
                 'bookmark' => route('filters.modal_form', [$campaign, $entityType]),
+                'preferences' => route('entities.listing-preferences.update', [$campaign, $entityType]),
+                'preferencesReset' => route('entities.listing-preferences.destroy', [$campaign, $entityType]),
             ],
             'csrf' => csrf_token(),
             'filters' => [
@@ -228,7 +284,38 @@ class IndexController extends Controller
                 ],
             ],
             'order' => $this->filterService->order(),
+            'columns' => $columns,
+            'columnPreferences' => $columnPreferences,
+            'ads' => [
+                'enabled' => $this->showAds($campaign),
+                'frequency' => 7,
+            ],
+            'preferences' => $preference ? [
+                'layout' => $preference->layout,
+                'nested' => $preference->nested,
+            ] : null,
         ]);
+    }
+
+    protected function showAds(Campaign $campaign): bool
+    {
+        if (! config('ads.nitro.enabled')) {
+            return false;
+        }
+        if (request()->has('_showads')) {
+            return true;
+        }
+        if (auth()->check()) {
+            $user = auth()->user();
+            if ($user->isSubscriber()) {
+                return false;
+            }
+            if ($user->created_at->diffInHours(now()) < 24) {
+                return false;
+            }
+        }
+
+        return ! $campaign->boosted();
     }
 
     /**
@@ -236,17 +323,28 @@ class IndexController extends Controller
      */
     protected function isNested(): bool
     {
+        if (! $this->entityType->isNested()) {
+            return false;
+        }
+
         $key = $this->entityType->code . '_nested';
+
+        // URL override
         if ($this->request->has('n')) {
             return $this->saveNested($key);
         }
 
+        // Check preferences table
+        if ($this->preference && $this->preference->nested !== null) {
+            return $this->preference->nested;
+        }
+
+        // Fallback to session for guests
         if (auth()->guest()) {
             return (bool) Session::get($key, true);
         }
 
-        // Else use the user's preferred stacking for this entity type
-        return Arr::get(auth()->user()->settings, $key, true);
+        return true;
     }
 
     /**
@@ -255,6 +353,7 @@ class IndexController extends Controller
     protected function layoutMode(): string
     {
         $key = $this->entityType->code . '_layout';
+
         if ($this->request->has('m') && in_array($this->request->get('m'), ['grid', 'table'])) {
             $new = $this->request->get('m', 'grid');
 
@@ -277,11 +376,15 @@ class IndexController extends Controller
             return $new;
         }
 
+        // Check preferences table
+        if ($this->preference && $this->preference->layout !== null) {
+            return $this->preference->layout;
+        }
+
         if (auth()->guest()) {
             return Session::get($key, 'grid');
         }
 
-        // Else use the user's preferred stacking for this entity type
         return Arr::get(auth()->user()->settings, $key, 'grid');
     }
 }

@@ -4,10 +4,10 @@ namespace App\Services;
 
 use App\Datagrids\Bulks\Bulk;
 use App\Exceptions\TranslatableException;
+use App\Models\Bookmark;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityType;
-use App\Models\MiscModel;
 use App\Models\Relation;
 use App\Observers\Concerns\SaveLocations;
 use App\Services\Entity\MoveService;
@@ -21,6 +21,7 @@ use App\Traits\UserAware;
 use Exception;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Stevebauman\Purify\Facades\Purify;
 
@@ -69,14 +70,14 @@ class BulkService
      */
     public function delete(): int
     {
-        $model = $this->getEntity();
+        $model = $this->getModel();
         if (isset($this->entityType)) {
-            if ($this->entityType->isStandard() && ! $this->entityType->isBookmark()) {
-                $with = ['entity', 'entity.entityType', 'entity.campaign'];
+            if (! $this->entityType->isBookmark()) {
+                $with = ['entityType', 'campaign'];
                 if ($this->entityType->isNested()) {
                     $with[] = 'children';
                 }
-                $entities = $model->with($with)->has('entity')->whereIn('id', $this->ids)->get();
+                $entities = Entity::with($with)->whereIn('id', $this->ids)->get();
             } else {
                 $entities = $model->whereIn('id', $this->ids)->get();
             }
@@ -102,15 +103,9 @@ class BulkService
     /**
      * @throws Exception
      */
-    public function export(): array
+    public function export(): Collection
     {
-        $model = $this->getEntity();
-        $entities = [];
-        foreach ($this->ids as $id) {
-            $entities[] = $model->findOrFail($id);
-        }
-
-        return $entities;
+        return Entity::whereIn('id', $this->ids)->get();
     }
 
     /**
@@ -120,17 +115,8 @@ class BulkService
      */
     public function permissions(array $permissions = [], bool $override = true): int
     {
-        $model = $this->getEntity();
-
-        $with = [];
-        if ($this->entityType->isStandard()) {
-            $with = ['entity'];
-        }
-        $entities = $model->with($with)->whereIn('id', $this->ids)->get();
+        $entities = Entity::whereIn('id', $this->ids)->get();
         foreach ($entities as $entity) {
-            if (! $entity instanceof Entity) {
-                $entity = $entity->entity;
-            }
             if (! $this->can('update', $entity)) {
                 continue;
             }
@@ -149,8 +135,6 @@ class BulkService
      */
     public function copyToCampaign(Campaign $campaign): int
     {
-        $model = $this->getEntity();
-
         // First we make sure we have access to the new campaign.
         // todo: move this to the request validator
         $check = $this->user->campaigns()->where('campaign_id', $campaign->id)->first();
@@ -163,21 +147,12 @@ class BulkService
             ->copy(true)
             ->to($campaign);
 
-        $with = isset($this->entityType) && $this->entityType->isCustom() ? [
+        $with = [
             'entityType', 'image', 'inventories', 'attributes',
-        ] : [
-            'entity',
-            'entity.entityType',
-            'entity.image',
-            'entity.inventories',
-            'entity.attributes',
         ];
-        $entities = $model->with($with)->whereIn('id', $this->ids)->get();
+        $entities = Entity::with($with)->whereIn('id', $this->ids)->get();
 
         foreach ($entities as $entity) {
-            if (! $entity instanceof Entity) {
-                $entity = $entity->entity;
-            }
             if (! $this->can('update', $entity)) {
                 continue;
             }
@@ -189,29 +164,20 @@ class BulkService
         return $this->count;
     }
 
-    /**
-     * @throws TranslatableException
-     */
     public function transform(EntityType $entityType): int
     {
         $this->transformService
             ->entityType($entityType)
             ->campaign($this->campaign);
 
-        $model = $this->getEntity();
-        $with = $this->entityType->isStandard() ? ['entity'] : [];
+        $entities = Entity::whereIn('id', $this->ids)->get();
 
-        foreach ($this->ids as $id) {
-            $entity = $model->with($with)->findOrFail($id);
+        foreach ($entities as $entity) {
             if (! $this->can('update', $entity)) {
                 continue;
             }
 
-            if ($this->entityType->isCustom()) {
-                $this->transformService->entity($entity);
-            } else {
-                $this->transformService->child($entity);
-            }
+            $this->transformService->entity($entity);
             $this->transformService->transform();
             $this->count++;
         }
@@ -224,7 +190,7 @@ class BulkService
      */
     public function editing(array $fields, Bulk $bulk): int
     {
-        $model = $this->getEntity();
+        $model = $this->getModel();
 
         // Only get fields that can be bulk edited and with content
         $fillableFields = Arr::only($fields, $bulk->fields());
@@ -316,76 +282,75 @@ class BulkService
             return $this->updateRelations($filledFields, $mirrorOptions);
         }
 
-        $parent = method_exists($model, 'getParentKeyName') ? $model->getParentKeyName() : null;
-
-        // Todo: move model fetch above to actually use with()
-        foreach ($this->ids as $id) {
-            /** @var MiscModel|Entity $entity */
-            $with = $this->entityType->isStandard() ? ['entity', 'entity.tags'] : ['tags'];
-            $entity = $model->with($with)->findOrFail($id);
+        $with = $this->entityType->hasEntity() ? ['tags'] : [];
+        $models = $model->with($with)->whereIn('id', $this->ids)->get();
+        foreach ($models as $entity) {
             $this->total++;
             if (! $this->can('update', $entity)) {
                 continue;
             }
             $entityFields = $filledFields;
 
-            if (isset($entityFields[$parent]) && intval($entityFields[$parent]) == $entity->id) {
-                unset($entityFields[$parent]);
-            }
-
             // Handle math fields
             foreach ($maths as $math) {
                 $mathField = Arr::get($entityFields, $math, false);
                 if ($mathField !== false && Str::startsWith($mathField, ['+', '-']) && is_numeric($entity->{$math})) {
                     if (Str::startsWith($mathField, '+')) {
-                        $entityFields[$math] = $entity->{$math} + (int) Str::after($mathField, '+');
+                        $entityFields[$math] = $entity->child->{$math} + (int) Str::after($mathField, '+');
                     } else {
-                        $entityFields[$math] = $entity->{$math} - (int) Str::after($mathField, '-');
+                        $entityFields[$math] = $entity->child->{$math} - (int) Str::after($mathField, '-');
                     }
                 }
             }
-            $entity->update($entityFields);
+            if ($this->entityType->hasEntity()) {
+                $entity->child->update($entityFields);
+            } else {
+                // Relations, bookmarks
+                $entity->update($entityFields);
+            }
 
             // Foreign belongsTo loop
             foreach ($filledForeigns as $relation => $ids) {
-                $entity->{$relation}()->syncWithoutDetaching($ids);
+                if ($this->entityType->isStandard()) {
+                    $entity->child->{$relation}()->syncWithoutDetaching($ids);
+                } else {
+                    $entity->{$relation}()->syncWithoutDetaching($ids);
+                }
             }
 
             // We have to still update the entity object (except for bookmarks)
-            $realEntity = null;
-            if ($this->entityType->isCustom()) {
-                $realEntity = $entity;
-            } elseif ($this->entityType->isStandard() && ! empty($entity->entity)) {
-                $realEntity = $entity->entity;
+            if (isset($imageUuid)) {
+                $entity->image_uuid = $imageUuid;
+                // Changed the image, reset the focus
+                $entity->focus_x = null;
+                $entity->focus_y = null;
             }
-            // Todo: refactor into a trait or function
-            if ($realEntity instanceof Entity) {
-                if (isset($imageUuid)) {
-                    $realEntity->image_uuid = $imageUuid;
-                    // Changed the image, reset the focus
-                    $realEntity->focus_x = null;
-                    $realEntity->focus_y = null;
-                }
 
-                if (isset($headerUuid)) {
-                    $realEntity->header_uuid = $headerUuid;
-                }
-                if (isset($type)) {
-                    $realEntity->type = $type;
-                }
-
-                $realEntity->is_private = $entity->is_private;
-                $realEntity->name = $entity->name;
-                $realEntity->update();
+            if (isset($headerUuid)) {
+                $entity->header_uuid = $headerUuid;
             }
+            if (isset($type)) {
+                $entity->type = $type;
+            }
+
+            // Sync parent_id if provided, preventing self-referencing
+            if (isset($entityFields['parent_id']) && intval($entityFields['parent_id']) != $entity->id) {
+                $entity->parent_id = $entityFields['parent_id'];
+            }
+
+            if ($this->entityType->hasEntity()) {
+                $entity->is_private = $entity->child->is_private;
+                $entity->name = $entity->child->name;
+            }
+            $entity->update();
 
             $this->count++;
 
             $locationsAction = Arr::get($fields, 'bulk-locations', 'add');
             if ($locationsAction === 'remove') {
-                $entity->entity->locations()->detach($locationIds);
+                $entity->locations()->detach($locationIds);
             } elseif (! empty($locationIds)) {
-                $this->saveLocations($entity->entity, $locationIds);
+                $this->saveLocations($entity, $locationIds);
             }
 
             // No tags? We're done
@@ -395,16 +360,16 @@ class BulkService
 
             $tagAction = Arr::get($fields, 'bulk-tagging', 'add');
             if ($tagAction === 'remove') {
-                $realEntity->tags()->detach($tagIds);
+                $entity->tags()->detach($tagIds);
             } else {
                 /** @var TagService $tagService */
                 $tagService = app()->make(TagService::class);
                 $tagService
                     ->user($this->user)
-                    ->entity($realEntity)
+                    ->entity($entity)
                     ->withNew()
                     ->add($tagIds);
-                $realEntity->touch();
+                $entity->touch();
             }
         }
 
@@ -420,18 +385,12 @@ class BulkService
      */
     public function templates(string|int $template): int
     {
-        $model = $this->getEntity();
-
         /** @var AttributeService $service */
         $service = app()->make('App\Services\AttributeService');
 
-        $with = isset($this->entityType) && $this->entityType->isCustom() ? [] : ['entity', 'entity.campaign'];
-        $entities = $model->with($with)->whereIn('id', $this->ids)->get();
+        $entities = Entity::whereIn('id', $this->ids)->get();
 
         foreach ($entities as $entity) {
-            if (! $entity instanceof Entity) {
-                $entity = $entity->entity;
-            }
             if (! $this->can('update', $entity)) {
                 continue;
             }
@@ -445,14 +404,14 @@ class BulkService
     /**
      * @throws Exception
      */
-    protected function getEntity()
+    protected function getModel()
     {
         if (isset($this->entityType)) {
-            if ($this->entityType->isCustom()) {
-                return new Entity;
+            if ($this->entityType->isBookmark()) {
+                return new Bookmark;
             }
 
-            return $this->entityType->getClass();
+            return new Entity;
         }
 
         return new Relation;
@@ -506,6 +465,6 @@ class BulkService
             return $this->user->can($action, $entity);
         }
 
-        return $this->user->can($action, $entity->entity);
+        return $this->user->can($action, $entity);
     }
 }

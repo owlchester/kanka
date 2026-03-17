@@ -60,7 +60,7 @@ trait EntityMapper
         $this->mapping[$this->data['id']] = $this->model->id;
         ImportIdMapper::put($this->mappingName, $this->data['id'], $this->model->id);
         if ($parent && ! empty($this->data[$parent])) {
-            $this->parents[$this->data[$parent]][] = $this->model->id;
+            $this->parents[$this->data[$parent]][] = $this->entity->id;
         }
     }
 

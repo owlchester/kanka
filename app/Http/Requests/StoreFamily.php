@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use App\Facades\Limit;
 use App\Models\Entity;
-use App\Models\Family;
 use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
@@ -16,7 +15,7 @@ class StoreFamily extends FormRequest
     use ApiRequest;
     use ResolvesNewForeignEntities;
 
-    protected array $foreignEntityFields = ['family_id', 'location_id'];
+    protected array $foreignEntityFields = ['location_id'];
 
     /**
      * Determine if the user is authorized to make this request.
@@ -40,7 +39,7 @@ class StoreFamily extends FormRequest
             'entry' => 'nullable|string',
             'type' => 'nullable|string|max:191',
             'location_id' => 'nullable|integer|exists:locations,id',
-            'family_id' => 'nullable|integer|exists:families,id',
+            'parent_id' => 'nullable|integer|exists:entities,id',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
             'entity_image_uuid' => 'nullable|exists:images,id',
@@ -51,12 +50,12 @@ class StoreFamily extends FormRequest
 
         /** @var Entity $self */
         $self = request()->route('entity');
-        if (! empty($self) && $self->isFamily()) {
-            $rules['family_id'] = [
+        if (! empty($self)) {
+            $rules['parent_id'] = [
                 'nullable',
                 'integer',
-                'exists:families,id',
-                new Nested(Family::class, $self->child),
+                'exists:entities,id',
+                new Nested($self),
             ];
         }
 

@@ -6,7 +6,6 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\HasLocation;
-use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
@@ -14,7 +13,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Journal
@@ -36,8 +34,6 @@ class Journal extends MiscModel
     use HasFactory;
     use HasFilters;
     use HasLocation;
-    use HasRecursiveRelationships;
-    use Nested;
     use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
@@ -49,7 +45,6 @@ class Journal extends MiscModel
         'character_id',
         'location_id',
         'is_private',
-        'journal_id',
         'author_id',
     ];
 
@@ -66,7 +61,6 @@ class Journal extends MiscModel
         'name',
         'date',
         'character.name',
-        'parent.name',
         'type',
         // 'character.name',
     ];
@@ -80,7 +74,6 @@ class Journal extends MiscModel
         'location_id',
         // 'character_id',
         'calendar_id',
-        'journal_id',
         'author_id',
     ];
 
@@ -127,7 +120,7 @@ class Journal extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['journal_id', 'author_id', 'date'];
+        return ['author_id', 'date'];
     }
 
     /**
@@ -135,16 +128,14 @@ class Journal extends MiscModel
      */
     public function allJournals()
     {
-        $locationIds = [$this->id];
-        foreach ($this->descendants as $descendant) {
-            $locationIds[] = $descendant->id;
+        $entityIds = [$this->entity->id];
+        foreach ($this->entity->descendants as $descendant) {
+            $entityIds[] = $descendant->id;
         }
 
-        $table = new Journal;
-
-        return Journal::whereIn($table->getTable() . '.journal_id', $locationIds)
+        return Journal::whereHas('entity', fn ($q) => $q->whereIn('entities.parent_id', $entityIds))
             ->has('entity')
-            ->with('parent');
+            ->with('entity.parent');
     }
 
     /**
@@ -169,16 +160,6 @@ class Journal extends MiscModel
     public function entityTypeId(): int
     {
         return (int) config('entities.ids.journal');
-    }
-
-    /**
-     * Parent ID field for the Node trait
-     *
-     * @return string
-     */
-    public function getParentKeyName()
-    {
-        return 'journal_id';
     }
 
     /**

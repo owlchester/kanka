@@ -13,10 +13,10 @@ use Google\Analytics\Data\V1beta\FilterExpression;
 use Google\Analytics\Data\V1beta\FilterExpressionList;
 use Google\Analytics\Data\V1beta\Metric;
 use Google\Analytics\Data\V1beta\OrderBy;
-use Google\Analytics\Data\V1beta\RunReportRequest;
 use Google\Analytics\Data\V1beta\OrderBy\DimensionOrderBy;
 use Google\Analytics\Data\V1beta\OrderBy\DimensionOrderBy\OrderType;
 use Google\Analytics\Data\V1beta\OrderBy\MetricOrderBy;
+use Google\Analytics\Data\V1beta\RunReportRequest;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 
@@ -49,7 +49,7 @@ class MetricsGa4 extends Command
         $endDate = now()->format('Y-m-d');
 
         $sections = [
-            "# GA4 Metrics Report",
+            '# GA4 Metrics Report',
             "_Date range: {$startDate} — {$endDate} ({$days} days)_",
             $this->homepageSessions($client, $property, $dateRange),
             $this->registerPageSources($client, $property, $dateRange),

@@ -7,7 +7,7 @@
 
         <div class="entity-main-block grow flex flex-col gap-5 min-w-0">
             @include('entities.components.posts', ['withEntry' => true])
-            @includeWhen($entity->child->children()->has('parent')->count() > 0, 'items.panels.items')
+            @includeWhen($entity->children()->count() > 0, 'items.panels.items')
         </div>
 
         @include('entities.components.pins')

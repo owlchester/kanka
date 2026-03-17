@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use App\Facades\Limit;
 use App\Models\Entity;
-use App\Models\Note;
 use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
@@ -16,7 +15,7 @@ class StoreNote extends FormRequest
     use ApiRequest;
     use ResolvesNewForeignEntities;
 
-    protected array $foreignEntityFields = ['note_id'];
+    protected array $foreignEntityFields = [];
 
     /**
      * Determine if the user is authorized to make this request.
@@ -44,18 +43,18 @@ class StoreNote extends FormRequest
             'entity_image_uuid' => 'nullable|exists:images,id',
             'entity_header_uuid' => 'nullable|exists:images,id',
             'template_id' => 'nullable',
-            'note_id' => 'nullable|integer|exists:notes,id',
+            'parent_id' => 'nullable|integer|exists:entities,id',
             'attribute' => ['array', new UniqueAttributeNames],
         ];
 
         /** @var Entity $self */
         $self = request()->route('entity');
         if (! empty($self)) {
-            $rules['note_id'] = [
+            $rules['parent_id'] = [
                 'nullable',
                 'integer',
-                'exists:notes,id',
-                new Nested(Note::class, $self->child),
+                'exists:entities,id',
+                new Nested($self),
             ];
         }
 

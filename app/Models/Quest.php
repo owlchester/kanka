@@ -8,7 +8,6 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\HasLocation;
-use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
@@ -18,7 +17,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
-use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Quest
@@ -40,15 +38,12 @@ class Quest extends MiscModel
     use HasFactory;
     use HasFilters;
     use HasLocation;
-    use HasRecursiveRelationships;
-    use Nested;
     use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
 
     protected $fillable = [
         'campaign_id',
-        'quest_id',
         'name',
         'is_private',
         'instigator_id',
@@ -62,7 +57,6 @@ class Quest extends MiscModel
         'date',
         'status_id',
         'type',
-        'parent.name',
     ];
 
     protected array $sanitizable = [
@@ -89,7 +83,6 @@ class Quest extends MiscModel
     public array $nullableForeignKeys = [
         'instigator_id',
         'location_id',
-        'quest_id',
     ];
 
     /**
@@ -215,16 +208,6 @@ class Quest extends MiscModel
     public function shortDescription()
     {
         return $this->name;
-    }
-
-    /**
-     * Parent ID field for the Node trait
-     *
-     * @return string
-     */
-    public function getParentKeyName()
-    {
-        return 'quest_id';
     }
 
     /**

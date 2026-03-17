@@ -20,7 +20,6 @@ class RaceResource extends EntityResource
         $locationIds = $model->entity->locations->pluck('id');
 
         return $this->entity([
-            'race_id' => $model->race_id,
             'is_extinct' => $model->isExtinct(),
             'locations' => $locationIds,
         ]);

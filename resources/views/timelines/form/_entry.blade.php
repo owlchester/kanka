@@ -3,7 +3,7 @@
     @include('cruds.fields.entity-name')
     @include('cruds.fields.type', ['base' => \App\Models\Timeline::class, 'trans' => 'timelines'])
 
-    @include('cruds.fields.timeline', ['isParent' => true])
+    @include('cruds.fields.parent')
 
     @include('cruds.fields.entry2')
 

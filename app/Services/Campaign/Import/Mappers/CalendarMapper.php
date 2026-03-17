@@ -4,6 +4,7 @@ namespace App\Services\Campaign\Import\Mappers;
 
 use App\Models\Calendar;
 use App\Models\CalendarWeather;
+use App\Models\Entity;
 
 class CalendarMapper extends MiscMapper
 {
@@ -30,15 +31,20 @@ class CalendarMapper extends MiscMapper
 
     public function tree(): self
     {
-        foreach ($this->parents as $parent => $children) {
+        foreach ($this->parents as $parent => $entityIds) {
             if (! isset($this->mapping[$parent])) {
                 continue;
             }
-            // We need the nested trait to trigger for this so it's going to be inefficient
-            $models = Calendar::whereIn('id', $children)->get();
-            foreach ($models as $model) {
-                $model->calendar_id = $this->mapping[$parent];
-                $model->saveQuietly();
+            $parentEntity = Entity::where('entity_id', $this->mapping[$parent])
+                ->where('type_id', config('entities.ids.calendar'))
+                ->first();
+            if (! $parentEntity) {
+                continue;
+            }
+            $entities = Entity::whereIn('id', $entityIds)->get();
+            foreach ($entities as $entity) {
+                $entity->parent_id = $parentEntity->id;
+                $entity->saveQuietly();
             }
         }
 

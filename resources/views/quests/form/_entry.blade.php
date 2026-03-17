@@ -2,7 +2,7 @@
     @include('cruds.fields.entity-name')
     @include('cruds.fields.type', ['base' => \App\Models\Quest::class, 'trans' => 'quests'])
 
-    @include('cruds.fields.quest', ['isParent' => true])
+    @include('cruds.fields.parent')
     @include('cruds.fields.instigator')
     @include('cruds.fields.location')
 

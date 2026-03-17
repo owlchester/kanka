@@ -70,9 +70,11 @@ class FilterService
         return $this;
     }
 
-    public function build()
+    public function build(array $sortableColumns = [])
     {
         $this->crud = $this->entityType->code;
+
+        $orderFields = array_unique(array_merge(['name', 'type', 'is_private'], $sortableColumns));
 
         $this->prepareFilters([
             'name',
@@ -92,7 +94,7 @@ class FilterService
             'attribute_value',
             'archived',
         ])
-            ->prepareOrder(['name', 'type', 'is_private'])
+            ->prepareOrder($orderFields)
             ->prepareSearch();
     }
 
@@ -246,12 +248,17 @@ class FilterService
         }
 
         if (! empty($field) && is_string($field)) {
-            $this->order = [
-                $field => empty($direction) ? 'ASC' : 'DESC',
-            ];
-
-            if (! in_array($field, $availableFields)) {
+            if ($field === 'clear') {
+                // Explicit reset from the grid's third-click cycle
                 $this->order = [];
+            } else {
+                $this->order = [
+                    $field => empty($direction) ? 'ASC' : 'DESC',
+                ];
+
+                if (! in_array($field, $availableFields)) {
+                    $this->order = [];
+                }
             }
         }
 
