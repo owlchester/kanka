@@ -1,7 +1,7 @@
-// Exports the "wordcount" plugin for usage with module loaders
+// Exports the "modern" theme for usage with module loaders
 // Usage:
 //   CommonJS:
-//     require('tinymce/plugins/wordcount')
+//     require('tinymce/themes/modern')
 //   ES2015:
-//     import 'tinymce/plugins/wordcount'
-require('./plugin.js');
+//     import 'tinymce/themes/modern'
+require('./theme.js');
