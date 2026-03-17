@@ -19,9 +19,9 @@
                 v-bind:href="tag.link"
                :data-tag-id="tag.id"
                :data-tag-slug="tag.slug"
-
-               v-html="tag.name"
                 >
+                <i v-if="tag.icon" :class="tag.icon" aria-hidden="true"></i>
+                <span v-else v-html="tag.name"></span>
             </a>
         </div>
         <a class="block w-full cursor-pointer my-2"
@@ -30,7 +30,7 @@
            :data-tag="entity.id"
         >
             <i class="fa-duotone circle-location-arrow" aria-hidden="true" aria-label="Location"></i>
-            {{ entity.location.name }}
+            <span v-html="entity.location.name"></span>
         </a>
         <div class="flex gap-1 items-center my-2" v-else-if="entity.locations">
             <a class="cursor-pointer"
@@ -39,7 +39,7 @@
                :data-tag="location.id"
             >
                 <i class="fa-duotone circle-location-arrow" aria-hidden="true" aria-label="Location"></i>
-                {{ location.name }}
+                <span v-html="location.name"></span>
             </a>
         </div>
         <a

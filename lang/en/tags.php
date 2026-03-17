@@ -19,10 +19,12 @@ return [
     ],
     'fields'        => [
         'children'          => 'Children',
+        'icon'              => 'Icon',
         'is_auto_applied'   => 'Automatically apply to new entries',
         'is_hidden'         => 'Hidden from header and tooltip',
     ],
     'helpers'       => [
+        'icon'          => 'Use icons from :fontawesome or :rpgawesome. The icon will be shown instead of the tag name in lists.',
         'no_children'   => 'There are currently no entries tagged with this tag.',
         'no_posts'      => 'There are currently no articles tagged with this tag.',
     ],
@@ -36,6 +38,7 @@ return [
         'empty' => 'Use tags to group and filter entries across your world for easier navigation.',
     ],
     'placeholders'  => [
+        'icon'  => 'Try :example1 or :example2',
         'type'  => 'Lore, Wars, History, Religion, Vexillology',
     ],
     'show'          => [

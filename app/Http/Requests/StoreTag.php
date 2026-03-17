@@ -46,6 +46,7 @@ class StoreTag extends FormRequest
             'entity_image_uuid' => 'nullable|exists:images,id',
             'entity_header_uuid' => 'nullable|exists:images,id',
             'template_id' => 'nullable',
+            'icon' => ['nullable', 'string', 'max:100', 'regex:/^(fa-|ra )/'],
             'colour' => [
                 'nullable',
                 Rule::in($colours),
