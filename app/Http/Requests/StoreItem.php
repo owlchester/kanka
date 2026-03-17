@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use App\Facades\Limit;
 use App\Models\Entity;
-use App\Models\Item;
 use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
@@ -16,7 +15,7 @@ class StoreItem extends FormRequest
     use ApiRequest;
     use ResolvesNewForeignEntities;
 
-    protected array $foreignEntityFields = ['item_id', 'location_id'];
+    protected array $foreignEntityFields = ['location_id'];
 
     /**
      * Determine if the user is authorized to make this request.
@@ -41,7 +40,7 @@ class StoreItem extends FormRequest
             'type' => 'nullable|string|max:191',
             'location_id' => 'nullable|integer|exists:locations,id',
             'creator_id' => 'nullable|integer|exists:entities,id',
-            'item_id' => 'nullable|integer|exists:items,id',
+            'parent_id' => 'nullable|integer|exists:entities,id',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
             'entity_image_uuid' => 'nullable|exists:images,id',
@@ -56,11 +55,11 @@ class StoreItem extends FormRequest
         /** @var Entity $self */
         $self = request()->route('entity');
         if (! empty($self)) {
-            $rules['item_id'] = [
+            $rules['parent_id'] = [
                 'nullable',
                 'integer',
-                'exists:items,id',
-                new Nested(Item::class, $self->child),
+                'exists:entities,id',
+                new Nested($self),
             ];
         }
 

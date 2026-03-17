@@ -98,6 +98,9 @@ class EditController extends Controller
 
                 $entity->name = $entity->child->name;
                 $entity->is_private = $entity->child->is_private;
+
+                // Sync parent_id from the request for all entity types
+                $entity->parent_id = $request->has('parent_id') ? $request->get('parent_id') : null;
                 $entity->crudSaved();
 
                 // If the child was changed but nothing changed on the entity, we still want to trigger an update

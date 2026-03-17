@@ -48,18 +48,11 @@ class ExploreResource extends JsonResource
             $attributes[] = 'completed';
         }
 
-        // Determine parent entity: standard types track parent on child model, custom types on entities.parent_id
         // Use the eager-loaded relation directly (not $entity->child which goes through EntityCache and loses withCount)
         $child = $entity->entityType->isStandard()
             ? $entity->getRelationValue($entity->entityType->code)
             : null;
-        $usesChildParent = $child && method_exists($child, 'getParentKeyName');
-        $parentEntity = null;
-        if ($usesChildParent && $child->parent && $child->parent->entity) {
-            $parentEntity = $child->parent->entity;
-        } elseif ($entity->parent) {
-            $parentEntity = $entity->parent;
-        }
+        $parentEntity = $entity->parent;
 
         $routeParams = [$campaign, $entity->entityType];
         $links = ['back' => __('crud.actions.back')];
@@ -81,9 +74,7 @@ class ExploreResource extends JsonResource
             'type_slug' => Str::slug($entity->type ?? ''),
             'attributes' => $attributes,
             'selected' => false,
-            'children' => $usesChildParent
-                ? ($child->children_count ?? 0)
-                : ($entity->children_count ?? 0),
+            'children' => $entity->children_count ?? 0,
             'images' => [
                 'thumb' => Avatar::entity($entity)->fallback()->size(192, 144)->thumbnail(),
                 'full' => Avatar::entity($entity)->original(),
@@ -194,22 +185,12 @@ class ExploreResource extends JsonResource
         }
 
         // Children preview for grid avatar bubbles
-        if ($usesChildParent && $child && $child->relationLoaded('children')) {
-            // Standard types: children are on the child model, map through to their entities
-            $data['children_preview'] = $child->children->take(3)
-                ->filter(fn ($c) => $c->entity)
-                ->map(fn ($c) => [
-                    'id' => $c->entity->id,
-                    'name' => $c->entity->name,
-                    'image' => Avatar::entity($c->entity)->fallback()->size(40, 40)->thumbnail(),
-                ])->values()->toArray();
-        } elseif (! $entity->entityType->isStandard() && $entity->relationLoaded('children')) {
-            // Custom types: children are directly on the Entity via parent_id
+        if ($entity->relationLoaded('children')) {
             $data['children_preview'] = $entity->children->take(3)->map(fn ($childEntity) => [
                 'id' => $childEntity->id,
                 'name' => $childEntity->name,
                 'image' => Avatar::entity($childEntity)->fallback()->size(40, 40)->thumbnail(),
-            ])->toArray();
+            ])->values()->toArray();
         }
 
         return $data;

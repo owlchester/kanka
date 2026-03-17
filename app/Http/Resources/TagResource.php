@@ -19,7 +19,6 @@ class TagResource extends EntityResource
         $model = $this->resource;
 
         return $this->entity([
-            'tag_id' => $model->tag_id,
             'colour' => $model->colour,
             'entities' => $model->entities()->distinct()->pluck('entities.id')->toArray(),
             'is_auto_applied' => (bool) $model->is_auto_applied,

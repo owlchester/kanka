@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
-use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
@@ -15,7 +14,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Race
@@ -32,8 +30,6 @@ class Race extends MiscModel
     use HasCampaign;
     use HasFactory;
     use HasFilters;
-    use HasRecursiveRelationships;
-    use Nested;
     use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
@@ -43,13 +39,11 @@ class Race extends MiscModel
         'campaign_id',
         'is_private',
         'is_extinct',
-        'race_id',
     ];
 
     protected array $sortable = [
         'name',
         'type',
-        'parent.name',
         'is_extinct',
         'type',
     ];
@@ -64,7 +58,6 @@ class Race extends MiscModel
      * @var string[]
      */
     public array $nullableForeignKeys = [
-        'race_id',
     ];
 
     protected array $exportFields = [
@@ -82,14 +75,6 @@ class Race extends MiscModel
     protected array $sanitizable = [
         'name',
     ];
-
-    /**
-     * @return string
-     */
-    public function getParentKeyName()
-    {
-        return 'race_id';
-    }
 
     /**
      * Performance with for datagrids
@@ -139,8 +124,8 @@ class Race extends MiscModel
     public function allCharacters()
     {
         $raceIds = [$this->id];
-        foreach ($this->descendants as $descendant) {
-            $raceIds[] = $descendant->id;
+        foreach ($this->entity->descendants as $descendant) {
+            $raceIds[] = $descendant->entity_id;
         }
 
         $query = Character::select('characters.*')
@@ -163,8 +148,8 @@ class Race extends MiscModel
     public function allCharacterRaces()
     {
         $raceIds = [$this->id];
-        foreach ($this->descendants as $descendant) {
-            $raceIds[] = $descendant->id;
+        foreach ($this->entity->descendants as $descendant) {
+            $raceIds[] = $descendant->entity_id;
         }
         $model = new CharacterRace;
 

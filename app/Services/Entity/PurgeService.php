@@ -65,36 +65,24 @@ class PurgeService
         // This probably is no longer the case since.
         CampaignLocalization::setConsoleCampaign($entity->campaign_id);
 
-        // Update the parent_id / tree before
-        if (method_exists($child, 'getParentKeyName')) {
-            $parentField = $child->getParentKeyName();
-
-            // Detach children of this entity. Usually this is already done in the model observer, because
-            // if the parent is deleted in a node, the children aren't available.
-            /** @var MiscModel $subChild */
-            // @phpstan-ignore-next-line
-            foreach ($child->children as $subChild) {
-                // In console mode, we don't have the campaign_id restriction. We've had cases where this script
-                // found entities form other campaigns.
-                if ($subChild->campaign_id != $child->campaign_id) {
-                    throw new Exception(
-                        'Found a subchild that doesn\'t share the campaign id. '
-                        . $subChild->id . ' and ' . $child->id
-                    );
-                }
-                $subChild->$parentField = null;
-                $subChild->timestamps = false;
-                $subChild->saveQuietly();
-                dump('#' . $entity->id . ' child ' . $entity->entityType->code . ' #' . $child->id . ' untreed');
+        // Detach children of this entity via entities.parent_id
+        foreach ($entity->children as $childEntity) {
+            if ($childEntity->campaign_id != $entity->campaign_id) {
+                throw new Exception(
+                    'Found a child entity that doesn\'t share the campaign id. '
+                    . $childEntity->id . ' and ' . $entity->id
+                );
             }
-
-            // Clean up the parent and tree to avoid the nested plugin to delete every child
-            $child->$parentField = null;
-
-            $child->timestamps = false;
-            $child->saveQuietly();
-            $child->refresh();
+            $childEntity->parent_id = null;
+            $childEntity->timestamps = false;
+            $childEntity->saveQuietly();
+            dump('#' . $entity->id . ' child entity #' . $childEntity->id . ' untreed');
         }
+
+        // Clean up the parent to avoid cascading deletes
+        $entity->parent_id = null;
+        $entity->timestamps = false;
+        $entity->saveQuietly();
 
         $this->childIds[$entity->entityType->code][] = $child->id;
 

@@ -5,12 +5,10 @@ namespace App\Models;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
-use App\Models\Concerns\Nested;
 use App\Services\Attributes\RandomService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class AttributeTemplate
@@ -24,14 +22,11 @@ class AttributeTemplate extends MiscModel
     use Acl;
     use HasCampaign;
     use HasFilters;
-    use HasRecursiveRelationships;
-    use Nested;
     use SoftDeletes;
 
     protected $fillable = [
         'name',
         'campaign_id',
-        'attribute_template_id',
         'entity_type_id',
         'is_private',
         'is_enabled',
@@ -52,7 +47,6 @@ class AttributeTemplate extends MiscModel
      * @var string[]
      */
     public array $nullableForeignKeys = [
-        'attribute_template_id',
         'entity_type_id',
     ];
 
@@ -65,16 +59,6 @@ class AttributeTemplate extends MiscModel
     public function entityType(): BelongsTo
     {
         return $this->belongsTo('App\Models\EntityType', 'entity_type_id', 'id');
-    }
-
-    /**
-     * Parent ID field for the Node trait
-     *
-     * @return string
-     */
-    public function getParentKeyName()
-    {
-        return 'attribute_template_id';
     }
 
     /**
@@ -154,9 +138,9 @@ class AttributeTemplate extends MiscModel
         }
 
         // Loop through parents
-        /** @var Tag $children */
-        foreach ($this->ancestors()->with('entity')->get() as $children) {
-            foreach ($children->entity->attributes()->orderBy('default_order', 'ASC')->get() as $attribute) {
+        /** @var Entity $ancestor */
+        foreach ($this->entity->ancestors()->get() as $ancestor) {
+            foreach ($ancestor->attributes()->orderBy('default_order', 'ASC')->get() as $attribute) {
                 // Don't re-create existing attributes.
                 if (in_array($attribute->name, $existing)) {
                     continue;

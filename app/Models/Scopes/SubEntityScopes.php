@@ -25,7 +25,7 @@ trait SubEntityScopes
     {
         $with = [
             'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'type', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'type', 'image_path', 'image_uuid', 'focus_x', 'focus_y', 'parent_id');
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
@@ -33,19 +33,12 @@ trait SubEntityScopes
             'entity.entityType' => function ($sub) {
                 $sub->select('id', 'code');
             },
+            'entity.parent' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id');
+            },
         ];
-        if (! method_exists($this, 'getParentKeyName')) {
-            return $query->with($with)->has('entity');
-        }
 
-        $with['parent'] = function ($sub) {
-            $sub->select('id', 'name');
-        };
-        $with['parent.entity'] = function ($sub) {
-            $sub->select('id', 'name', 'entity_id', 'type_id');
-        };
-
-        return $query->with($with)->has('entity')->withCount('children');
+        return $query->with($with)->has('entity');
     }
 
     /**
@@ -95,11 +88,7 @@ trait SubEntityScopes
 
     protected function exploreGridWithCount(): array
     {
-        if (! method_exists($this, 'getParentKeyName')) {
-            return [];
-        }
-
-        return ['children'];
+        return [];
     }
 
     /**

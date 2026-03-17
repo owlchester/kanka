@@ -6,7 +6,6 @@ use App\Enums\Visibility;
 use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasVisibility;
-use App\Models\Concerns\Nested;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
@@ -37,7 +36,6 @@ class MapGroup extends Model
     use HasFactory;
     use HasRecursiveRelationships;
     use HasVisibility;
-    use Nested;
     use Paginatable;
     use Sanitizable;
     use SortableTrait;
@@ -64,6 +62,26 @@ class MapGroup extends Model
     protected array $sanitizable = [
         'name',
     ];
+
+    protected static function booted(): void
+    {
+        static::saving(function (MapGroup $model) {
+            if (! $model->parent) {
+                return;
+            }
+            $bloodline = $model->parent->ancestors()->pluck('id')->toArray();
+            if (in_array($model->id, $bloodline)) {
+                $model->parent_id = null;
+            }
+        });
+
+        static::deleting(function (MapGroup $model) {
+            foreach ($model->children as $child) {
+                $child->parent_id = null;
+                $child->saveQuietly();
+            }
+        });
+    }
 
     /**
      * @return BelongsTo<Map, $this>

@@ -1,6 +1,6 @@
 <x-grid>
     @include('cruds.fields.type', ['base' => \App\Models\Note::class, 'trans' => 'notes'])
-    @include('cruds.fields.note', ['isParent' => true, 'dynamicNew' => true])
+    @include('cruds.fields.parent')
 
     <x-forms.field field="entry" css="col-span-2" :label="__('fields.description.label')">
             <textarea name="entry"

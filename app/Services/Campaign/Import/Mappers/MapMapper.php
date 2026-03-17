@@ -3,6 +3,7 @@
 namespace App\Services\Campaign\Import\Mappers;
 
 use App\Facades\ImportIdMapper;
+use App\Models\Entity;
 use App\Models\Map;
 use App\Models\MapGroup;
 use App\Models\MapLayer;
@@ -44,16 +45,20 @@ class MapMapper extends MiscMapper
 
     public function tree(): self
     {
-        foreach ($this->parents as $parent => $children) {
+        foreach ($this->parents as $parent => $entityIds) {
             if (! isset($this->mapping[$parent])) {
                 continue;
             }
-            // We need the nested trait to trigger for this so it's going to be inefficient
-            $maps = Map::whereIn('id', $children)->get();
-            /** @var Map $model */
-            foreach ($maps as $model) {
-                $model->map_id = $this->mapping[$parent];
-                $model->saveQuietly();
+            $parentEntity = Entity::where('entity_id', $this->mapping[$parent])
+                ->where('type_id', config('entities.ids.map'))
+                ->first();
+            if (! $parentEntity) {
+                continue;
+            }
+            $entities = Entity::whereIn('id', $entityIds)->get();
+            foreach ($entities as $entity) {
+                $entity->parent_id = $parentEntity->id;
+                $entity->saveQuietly();
             }
         }
 

@@ -24,8 +24,8 @@ export function useBulkActions(entities: Ref<any[]>) {
             .map(e => e.id)
     }
 
-    const bulkDialog = (url: string, actionsBtn?: Ref<any>) => {
-        actionsBtn?.value?._tippy?.hide()
+    const bulkDialog = (url: string, actionsBtn?: HTMLElement) => {
+        (actionsBtn as any)?._tippy?.hide()
         const ids = selectedEntityIds()
         if (ids.length === 0) return
 
@@ -37,11 +37,11 @@ export function useBulkActions(entities: Ref<any[]>) {
         ;(window as any).openDialog('primary-dialog', parsedUrl.toString())
     }
 
-    const bulkPrint = (printForm: Ref<HTMLFormElement | null>, actionsBtn?: Ref<any>) => {
-        actionsBtn?.value?._tippy?.hide()
+    const bulkPrint = (printForm: HTMLFormElement | null, actionsBtn?: HTMLElement) => {
+        (actionsBtn as any)?._tippy?.hide()
         const ids = selectedEntityIds()
         if (ids.length === 0) return
-        printForm.value?.submit()
+        printForm?.submit()
     }
 
     return {

@@ -655,16 +655,14 @@ class MapService
             return $this;
         }
 
-        /** @var Location $child */
-        $child = $this->entity->child;
-        $parent = $child->parent;
-        if (empty($parent) || empty($parent->entity)) {
+        $parent = $this->entity->parent;
+        if (empty($parent)) {
             $this->addChildren();
 
             return $this;
         }
 
-        $this->addEntity($parent->entity);
+        $this->addEntity($parent);
         $this->relations[] = [
             'source' => $this->entity->id,
             'target' => $parent->entity->id,

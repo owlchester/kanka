@@ -116,14 +116,9 @@ class TransformService
 
     protected function location(): self
     {
-        // Special import for location location_id
+        // Copy location_id if the new model supports it
         if (in_array('location_id', $this->fillable) && empty($this->new->location_id) && ! empty($this->child->location_id)) {
-            // @phpstan-ignore-next-line
-            $this->new->location_id = $this->child->{$this->child->getParentKeyName()};
-        }
-        if (in_array('location_id', $this->fillable) && empty($this->new->location_id) && ! empty($this->child->location_id)) {
-            // @phpstan-ignore-next-line
-            $this->new->setParentId($this->child->location_id);
+            $this->new->location_id = $this->child->location_id;
         }
 
         $raceID = config('entities.ids.race');

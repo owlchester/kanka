@@ -6,7 +6,6 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\HasSlug;
-use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Models\Scopes\TagScopes;
@@ -17,7 +16,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
-use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Tag
@@ -37,9 +35,7 @@ class Tag extends MiscModel
     use HasCampaign;
     use HasFactory;
     use HasFilters;
-    use HasRecursiveRelationships;
     use HasSlug;
-    use Nested;
     use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
@@ -49,7 +45,6 @@ class Tag extends MiscModel
 
     protected array $sortable = [
         'name',
-        'parent.name',
         'colour',
         'is_auto_applied',
         'is_hidden',
@@ -69,7 +64,6 @@ class Tag extends MiscModel
         'name',
         'slug',
         'colour',
-        'tag_id',
         'campaign_id',
         'is_private',
         'is_auto_applied',
@@ -87,7 +81,6 @@ class Tag extends MiscModel
      * @var string[]
      */
     public array $nullableForeignKeys = [
-        'tag_id',
     ];
 
     protected array $exportFields = [
@@ -96,11 +89,6 @@ class Tag extends MiscModel
         'is_auto_applied',
         'is_hidden',
     ];
-
-    public function getParentKeyName(): string
-    {
-        return 'tag_id';
-    }
 
     public function scopePreparedWith(Builder $query): Builder
     {
@@ -136,7 +124,7 @@ class Tag extends MiscModel
      */
     public function allChildren(): Builder
     {
-        $descendantIds = $this->descendants()->pluck($this->getKeyName());
+        $descendantIds = $this->entity->descendants()->pluck('entity_id');
 
         return Entity::whereIn('id', function ($query) use ($descendantIds) {
             $query->select('entity_id')

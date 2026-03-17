@@ -150,33 +150,18 @@ class IndexController extends Controller
         $nested = $this->isNested();
         $layout = $this->layoutMode();
 
-        $childModel = $entityType->isStandard() ? $entityType->getClass() : null;
-        $usesChildParent = $childModel && method_exists($childModel, 'getParentKeyName');
-
         $with = $relations;
         // Eager load child model with withCount for count columns (e.g. organisation.members)
         if ($entityType->isStandard()) {
             $childRelation = $entityType->code;
-            // For standard types, children count comes from the child model (e.g. organisations.organisation_id),
-            // not from entities.parent_id. Also eager load parent.entity for nesting navigation.
-            $allChildCounts = $usesChildParent
-                ? array_merge($childCountRelations, ['children'])
-                : $childCountRelations;
-            $with[$childRelation] = function ($query) use ($allChildCounts, $usesChildParent) {
-                if (! empty($allChildCounts)) {
-                    $query->withCount($allChildCounts);
-                }
-                if ($usesChildParent) {
-                    $query->with([
-                        'parent.entity',
-                        'children' => fn ($q) => $q->limit(3)->with('entity'),
-                    ]);
+            $with[$childRelation] = function ($query) use ($childCountRelations) {
+                if (! empty($childCountRelations)) {
+                    $query->withCount($childCountRelations);
                 }
             };
-        } else {
-            // Custom types: nesting uses entities.parent_id
-            $with['children'] = fn ($q) => $q->whereNull('archived_at');
         }
+        // All entity types: nesting uses entities.parent_id
+        $with['children'] = fn ($q) => $q->whereNull('archived_at');
 
         $base = Entity::inTypes($entityType->id)
             ->select([
@@ -185,7 +170,7 @@ class IndexController extends Controller
                 'entities.image_uuid', 'entities.focus_x', 'entities.focus_y', 'entities.image_path',
             ])
             ->with($with)
-            ->when(! $entityType->isStandard(), fn ($q) => $q->withCount(['children' => fn ($q) => $q->whereNull('archived_at')]))
+            ->withCount(['children' => fn ($q) => $q->whereNull('archived_at')])
             ->search($this->filterService->search())
             ->order($this->filterService->order(), $entityType)
             ->distinct();
@@ -199,23 +184,11 @@ class IndexController extends Controller
             ])
                 ->inTypes([$entityType->id])->where('id', $request->get('parent_id'))->first();
             if ($parent) {
-                if ($usesChildParent) {
-                    $base->whereHas($entityType->code, function ($q) use ($childModel, $parent) {
-                        $q->where($childModel->getTable() . '.' . $childModel->getParentKeyName(), $parent->entity_id);
-                    });
-                } else {
-                    $base->where('entities.parent_id', $request->get('parent_id'));
-                }
+                $base->where('entities.parent_id', $request->get('parent_id'));
             }
         }
         if (empty($parent) && $nested && $this->filterService->activeFiltersCount() === 0) {
-            if ($usesChildParent) {
-                $base->whereHas($entityType->code, function ($q) use ($childModel) {
-                    $q->whereNull($childModel->getTable() . '.' . $childModel->getParentKeyName());
-                });
-            } else {
-                $base->whereNull('entities.parent_id');
-            }
+            $base->whereNull('entities.parent_id');
         }
 
         $unfilteredCount = 0;
