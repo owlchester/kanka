@@ -5,7 +5,7 @@ return [
         'title' => 'New Object',
     ],
     'fields'        => [
-        'character'     => 'Creator',
+        'creators'      => 'Creators',
         'is_equipped'   => 'Equipped',
         'price'         => 'Price',
         'size'          => 'Size',

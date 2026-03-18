@@ -33,12 +33,16 @@ $child = $entity->child;
 
     @include('entities.components.profile._location')
 
-    @if ($child->creator)
+    @if ($child->itemCreators->isNotEmpty())
         <div class="element profile-creator">
-            <div class="title text-uppercase text-xs">{{ __('items.fields.character') }}</div>
-            <x-entity-link
-                :entity="$child->creator"
-                :campaign="$campaign" />
+            <div class="title text-uppercase text-xs">{{ __('items.fields.creators') }}</div>
+            @foreach ($child->itemCreators as $itemCreator)
+                <span class="element">
+                    <x-entity-link
+                        :entity="$itemCreator->creator"
+                        :campaign="$campaign" />
+                </span>
+            @endforeach
         </div>
     @endif
 

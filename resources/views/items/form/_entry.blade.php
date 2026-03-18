@@ -9,7 +9,7 @@
 
     @include('cruds.fields.location')
 
-    @include('cruds.fields.creator')
+    @include('cruds.fields.creators')
 
     @include('cruds.fields.entry2')
 

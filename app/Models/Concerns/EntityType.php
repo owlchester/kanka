@@ -76,4 +76,9 @@ trait EntityType
     {
         return $this->type_id === config('entities.ids.tag');
     }
+
+    public function isItem(): bool
+    {
+        return $this->type_id === config('entities.ids.item');
+    }
 }

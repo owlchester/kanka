@@ -168,6 +168,9 @@ class ExploreResource extends JsonResource
             if ($this->hasColumn('races') && method_exists($child, 'characterRaces')) {
                 $data['races'] = $this->formatRelatedEntities($child, 'characterRaces', 'race');
             }
+            if ($this->hasColumn('creators') && method_exists($child, 'itemCreators')) {
+                $data['creators'] = $this->formatPivotEntities($child, 'itemCreators', 'creator');
+            }
             // Count columns
             if ($this->hasColumn('members_count') && isset($child->members_count)) {
                 $data['members_count'] = $child->members_count ?? 0;
@@ -276,6 +279,31 @@ class ExploreResource extends JsonResource
                     'id' => $related->entity->id,
                     'name' => $related->entity->name,
                     'url' => route('entities.show', [$campaign, $related->entity]),
+                ];
+            }
+        }
+
+        return $items;
+    }
+
+    /**
+     * Format pivot relations where the related model is an Entity directly (e.g. ItemCreator->creator)
+     */
+    protected function formatPivotEntities(mixed $child, string $pivotRelation, string $entityRelation): array
+    {
+        if (! method_exists($child, $pivotRelation)) {
+            return [];
+        }
+
+        $items = [];
+        $campaign = CampaignLocalization::getCampaign();
+        foreach ($child->{$pivotRelation} as $pivot) {
+            $entity = $pivot->{$entityRelation};
+            if ($entity) {
+                $items[] = [
+                    'id' => $entity->id,
+                    'name' => $entity->name,
+                    'url' => route('entities.show', [$campaign, $entity]),
                 ];
             }
         }

@@ -10,8 +10,9 @@ use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -24,8 +25,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $size
  * @property string $weight
  * @property ?int $item_id
- * @property ?int $creator_id
- * @property ?Entity $creator
+ * @property Collection|ItemCreator[] $itemCreators
+ * @property Collection|Entity[] $creators
  */
 class Item extends MiscModel
 {
@@ -47,7 +48,6 @@ class Item extends MiscModel
         'weight',
         'location_id',
         'is_private',
-        'creator_id',
     ];
 
     /**
@@ -58,7 +58,6 @@ class Item extends MiscModel
         'size',
         'weight',
         'location.name',
-        'creator.name',
     ];
 
     protected array $sanitizable = [
@@ -84,14 +83,13 @@ class Item extends MiscModel
      */
     public array $nullableForeignKeys = [
         'location_id',
-        'creator_id',
     ];
 
     /**
      * Foreign relations to add to export
      */
     protected array $foreignExport = [
-
+        'itemCreators',
     ];
 
     protected array $exportFields = [
@@ -101,8 +99,12 @@ class Item extends MiscModel
         'size',
         'weight',
         'location_id',
-        'character_id',
     ];
+
+    /**
+     * @var string[] Extra relations loaded for the API endpoint
+     */
+    public array $apiWith = ['itemCreators'];
 
     /**
      * Tooltip subtitle (item price/size)
@@ -140,7 +142,10 @@ class Item extends MiscModel
             'location.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
-            'creator' => function ($sub) {
+            'itemCreators' => function ($sub) {
+                $sub->has('creator');
+            },
+            'itemCreators.creator' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
         ]));
@@ -151,15 +156,25 @@ class Item extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['creator_id', 'location_id', 'price', 'size', 'item_id', 'weight'];
+        return ['location_id', 'price', 'size', 'item_id', 'weight'];
     }
 
     /**
-     * @return BelongsTo<Entity, $this>
+     * @return HasMany<ItemCreator, $this>
      */
-    public function creator(): BelongsTo
+    public function itemCreators(): HasMany
     {
-        return $this->belongsTo('App\Models\Entity', 'creator_id', 'id');
+        return $this->hasMany(ItemCreator::class, 'item_id')
+            ->orderBy('id');
+    }
+
+    /**
+     * @return BelongsToMany<Entity, $this>
+     */
+    public function creators(): BelongsToMany
+    {
+        return $this->belongsToMany(Entity::class, 'item_creator', 'item_id', 'creator_id')
+            ->orderBy('item_creator.id');
     }
 
     /**
@@ -201,7 +216,7 @@ class Item extends MiscModel
         if (! empty($this->price) || ! empty($this->size) || ! empty($this->weight)) {
             return true;
         }
-        if ($this->creator || $this->location) {
+        if ($this->itemCreators->isNotEmpty() || $this->location) {
             return true;
         }
 
@@ -217,7 +232,7 @@ class Item extends MiscModel
     {
         return [
             'location_id',
-            'creator_id',
+            'creators',
             'price',
             'size',
             'weight',
