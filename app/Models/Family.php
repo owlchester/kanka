@@ -21,11 +21,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Family
  *
- * @property ?int $family_id
  * @property bool|int $is_extinct
  * @property Collection|Character[] $members
  * @property ?FamilyTree $familyTree
- * @property Collection|Family[] $descendants
  * @property Collection|CharacterFamily[] $pitvotMembers
  */
 class Family extends MiscModel
@@ -72,7 +70,6 @@ class Family extends MiscModel
 
     protected array $exportFields = [
         'base',
-        'family_id',
         'location_id',
         'is_extinct',
     ];
@@ -155,7 +152,7 @@ class Family extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['family_id', 'location_id', 'is_extinct'];
+        return ['location_id', 'is_extinct'];
     }
 
     /**
@@ -278,10 +275,8 @@ class Family extends MiscModel
     {
         return [
             'location_id',
-            'family_id',
             'member_id',
             'is_extinct',
-            'parent',
         ];
     }
 }

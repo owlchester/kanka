@@ -19,9 +19,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Organisation
  *
- * @property ?int $organisation_id
  * @property Collection|OrganisationMember[] $members
- * @property Collection|Organisation[] $descendants
  * @property bool|int $is_defunct
  */
 class Organisation extends MiscModel
@@ -147,7 +145,7 @@ class Organisation extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['organisation_id', 'is_defunct'];
+        return ['is_defunct'];
     }
 
     public function pinnedMembers()
@@ -254,7 +252,6 @@ class Organisation extends MiscModel
     {
         return [
             'locations',
-            'organisation_id',
             'is_defunct',
             'member_id',
         ];

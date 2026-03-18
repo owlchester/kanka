@@ -20,11 +20,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $id
  * @property string $date
  * @property ?int $character_id
- * @property ?int $journal_id
  * @property ?int $author_id
  * @property ?Character $character
  * @property ?Entity $author
- * @property Journal[] $descendants
  */
 class Journal extends MiscModel
 {
@@ -192,7 +190,6 @@ class Journal extends MiscModel
             'date',
             'character_id',
             'location_id',
-            'journal_id',
             'author_id',
             'date_start',
             'date_end',

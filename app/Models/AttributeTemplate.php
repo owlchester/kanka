@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class AttributeTemplate
  *
- * @property ?int $attribute_template_id
  * @property ?int $entity_type_id
  * @property EntityType $entityType
  */
@@ -67,7 +66,7 @@ class AttributeTemplate extends MiscModel
     public function scopePreparedSelect(Builder $query): Builder
     {
         return $query
-            ->select([$this->getTable() . '.id', $this->getTable() . '.name', $this->getTable() . '.is_private', $this->getTable() . '.is_enabled', 'attribute_template_id', 'entity_type_id']);
+            ->select([$this->getTable() . '.id', $this->getTable() . '.name', $this->getTable() . '.is_private', $this->getTable() . '.is_enabled', 'entity_type_id']);
     }
 
     /**
@@ -211,7 +210,6 @@ class AttributeTemplate extends MiscModel
     public function filterableColumns(): array
     {
         return [
-            'attribute_template_id',
             'is_enabled',
         ];
     }

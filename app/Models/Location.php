@@ -25,10 +25,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property bool|int $is_private
  * @property bool|int $is_destroyed
  * @property bool|int $is_map_private
- * @property ?int $location_id
  * @property Map[]|Collection $maps
- * @property ?Location $parent
- * @property Location[]|Collection $descendants
  * @property Event[]|Collection $events
  * @property Character[]|Collection $characters
  * @property Organisation[]|Collection $organisations
@@ -103,7 +100,7 @@ class Location extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['location_id', 'is_destroyed'];
+        return ['is_destroyed'];
     }
 
     /**
@@ -291,7 +288,6 @@ class Location extends MiscModel
     public function filterableColumns(): array
     {
         return [
-            'location_id',
             'is_destroyed',
         ];
     }

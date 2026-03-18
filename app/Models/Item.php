@@ -24,7 +24,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $price
  * @property string $size
  * @property string $weight
- * @property ?int $item_id
  * @property Collection|ItemCreator[] $itemCreators
  * @property Collection|Entity[] $creators
  */
@@ -94,7 +93,6 @@ class Item extends MiscModel
 
     protected array $exportFields = [
         'base',
-        'item_id',
         'price',
         'size',
         'weight',
@@ -156,7 +154,7 @@ class Item extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['location_id', 'price', 'size', 'item_id', 'weight'];
+        return ['location_id', 'price', 'size', 'weight'];
     }
 
     /**
@@ -236,8 +234,6 @@ class Item extends MiscModel
             'price',
             'size',
             'weight',
-            'item_id',
-            'is_equipped',
         ];
     }
 

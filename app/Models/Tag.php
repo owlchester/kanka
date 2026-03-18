@@ -24,7 +24,6 @@ use Illuminate\Support\Collection;
  * @property string $type
  * @property string $colour
  * @property ?string $icon
- * @property ?int $tag_id
  * @property bool|int $is_auto_applied
  * @property bool|int $is_hidden
  * @property Entity[]|Collection $entities
@@ -41,8 +40,6 @@ class Tag extends MiscModel
     use SoftDeletes;
     use SortableTrait;
     use TagScopes;
-
-    protected array $explicitFilters = ['tag_id'];
 
     protected array $sortable = [
         'name',
@@ -107,7 +104,7 @@ class Tag extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['tag_id', 'colour', 'is_auto_applied', 'is_hidden'];
+        return ['colour', 'is_auto_applied', 'is_hidden'];
     }
 
     /**
@@ -118,10 +115,6 @@ class Tag extends MiscModel
         /** @var Entity $child */
         foreach ($this->allChildren()->get() as $child) {
             $child->tags()->detach($this->id);
-            //            if (!empty($child->child)) {
-            //                $child->child->tag_id = null;
-            //                $child->child->save();
-            //            }
         }
     }
 

@@ -19,9 +19,7 @@ use Illuminate\Support\Collection;
  * Class Timeline
  *
  * @property TimelineEra[]|Collection $eras
- * @property ?int $timeline_id
  * @property int|bool $revert_order
- * @property Timeline[]|Collection $descendants
  */
 class Timeline extends MiscModel
 {
@@ -86,14 +84,6 @@ class Timeline extends MiscModel
     }
 
     /**
-     * Only select used fields in datagrids
-     */
-    public function datagridSelectFields(): array
-    {
-        return ['timeline_id'];
-    }
-
-    /**
      * @return BelongsTo<Calendar, $this>
      */
     public function calendar(): BelongsTo
@@ -136,7 +126,6 @@ class Timeline extends MiscModel
     {
         return [
             'calendar_id',
-            'timeline_id',
         ];
     }
 }

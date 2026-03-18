@@ -16,8 +16,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Creature
  *
- * @property Creature[]|Collection $descendants
- * @property ?int $creature_id
  * @property bool|int $is_extinct
  * @property bool|int $is_dead
  */
@@ -95,7 +93,7 @@ class Creature extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['creature_id', 'is_extinct', 'is_dead'];
+        return ['is_extinct', 'is_dead'];
     }
 
     /**
@@ -114,7 +112,6 @@ class Creature extends MiscModel
     public function filterableColumns(): array
     {
         return [
-            'creature_id',
             'locations',
             'is_extinct',
             'is_dead',

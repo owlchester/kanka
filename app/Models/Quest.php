@@ -21,7 +21,6 @@ use Illuminate\Support\Collection;
 /**
  * Class Quest
  *
- * @property ?int $quest_id
  * @property ?int $instigator_id
  * @property ?int $location_id
  * @property QuestStatus $status_id
@@ -202,7 +201,7 @@ class Quest extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['quest_id', 'instigator_id', 'location_id', 'status_id'];
+        return ['instigator_id', 'location_id', 'status_id'];
     }
 
     public function shortDescription()
@@ -284,7 +283,6 @@ class Quest extends MiscModel
     {
         return [
             'date',
-            'quest_id',
             'instigator_id',
             'status_id',
             'date_start',

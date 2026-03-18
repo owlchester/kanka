@@ -14,8 +14,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Note
- *
- * @property ?int $note_id
  */
 class Note extends MiscModel
 {
@@ -62,30 +60,10 @@ class Note extends MiscModel
     }
 
     /**
-     * Only select used fields in datagrids
-     */
-    public function datagridSelectFields(): array
-    {
-        return ['note_id'];
-    }
-
-    /**
      * Get the entity_type id from the entity_types table
      */
     public function entityTypeId(): int
     {
         return (int) config('entities.ids.note');
-    }
-
-    /**
-     * Define the fields unique to this model that can be used on filters
-     *
-     * @return string[]
-     */
-    public function filterableColumns(): array
-    {
-        return [
-            'note_id',
-        ];
     }
 }

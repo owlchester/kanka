@@ -19,10 +19,8 @@ use Illuminate\Support\Arr;
 /**
  * Class Ability
  *
- * @property ?int $ability_id
  * @property mixed|null $charges
  * @property ?Ability $parent
- * @property Collection|Ability[] $descendants
  * @property Ability[] $orderedAbilities
  * @property Collection|Entity[] $entities
  *
@@ -76,14 +74,6 @@ class Ability extends MiscModel
     {
         return parent::scopePreparedWith($query)
             ->withCount('entityAbilities');
-    }
-
-    /**
-     * Only select used fields in datagrids
-     */
-    public function datagridSelectFields(): array
-    {
-        return ['ability_id'];
     }
 
     public function entities()
@@ -145,17 +135,5 @@ class Ability extends MiscModel
         }
 
         return parent::showProfileInfo();
-    }
-
-    /**
-     * Define the fields unique to this model that can be used on filters
-     *
-     * @return string[]
-     */
-    public function filterableColumns(): array
-    {
-        return [
-            'ability_id',
-        ];
     }
 }

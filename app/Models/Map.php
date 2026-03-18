@@ -21,7 +21,6 @@ use Illuminate\Support\Str;
 /**
  * Class Map
  *
- * @property ?int $map_id
  * @property ?int $width
  * @property ?int $height
  * @property int $grid
@@ -168,7 +167,7 @@ class Map extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['map_id', 'location_id'];
+        return ['location_id'];
     }
 
     /**
@@ -613,7 +612,6 @@ class Map extends MiscModel
     public function filterableColumns(): array
     {
         return [
-            'map_id',
             'location_id',
         ];
     }

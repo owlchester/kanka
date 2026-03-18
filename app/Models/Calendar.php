@@ -29,7 +29,6 @@ use Illuminate\Support\Str;
  * @property string $reset
  * @property string $format
  * @property string $suffix
- * @property int $calendar_id
  * @property array $parameters
  * @property bool|int $skip_year_zero
  * @property bool|int $show_birthdays
@@ -110,7 +109,7 @@ class Calendar extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['calendar_id', 'date'];
+        return ['date'];
     }
 
     /**
@@ -467,18 +466,6 @@ class Calendar extends MiscModel
     public function yearlyLayout(): bool
     {
         return Arr::get($this->parameters, 'layout') === 'yearly';
-    }
-
-    /**
-     * Define the fields unique to this model that can be used on filters
-     *
-     * @return string[]
-     */
-    public function filterableColumns(): array
-    {
-        return [
-            'calendar_id',
-        ];
     }
 
     /**

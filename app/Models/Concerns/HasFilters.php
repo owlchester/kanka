@@ -76,6 +76,7 @@ trait HasFilters
             'connection_target',
             'connection_name',
             'archived',
+            'parent_id',
         ];
     }
 
@@ -170,6 +171,8 @@ trait HasFilters
                 } elseif ($key == 'has_entity_files') {
                     $this->filterHasFiles($query, $value);
                 } elseif ($key == 'parent') {
+                    $this->filterParent($query);
+                } elseif ($key == 'parent_id') {
                     $this->filterParent($query);
                 } elseif (in_array($key, ['created_by', 'updated_by'])) {
                     $query

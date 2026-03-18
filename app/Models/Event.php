@@ -15,9 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Event
  *
- * @property ?int $event_id
  * @property string $date
- * @property Event[] $descendants
  */
 class Event extends MiscModel
 {
@@ -86,7 +84,7 @@ class Event extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['event_id', 'date'];
+        return ['date'];
     }
 
     public function scopeFilteredEvents(Builder $query): Builder
@@ -135,7 +133,6 @@ class Event extends MiscModel
         return [
             'date',
             'locations',
-            'event_id',
         ];
     }
 

@@ -176,7 +176,6 @@ class Race extends MiscModel
         return [
             'race_id',
             'locations',
-            'parent',
             'is_extinct',
         ];
     }
