@@ -115,7 +115,7 @@
                 </div>
 
                 <!-- Display dropdown button -->
-                <div v-if="!orderingComposable.ordering.value">
+                <div>
                     <button ref="displayBtn" class="btn2 btn-sm" :title="i18n.display">
                         <i class="fa-regular fa-gear" aria-hidden="true"></i>
                         <span class="hidden sm:inline" v-html="i18n.display"></span>
@@ -124,7 +124,7 @@
 
                 <!-- Select button (hidden on mobile) -->
                 <button
-                    v-if="hasPermissions() && !orderingComposable.ordering.value"
+                    v-if="hasPermissions()"
                     @click="bulkActions.toggleSelecting()"
                     class="btn2 hidden btn-sm sm:flex"
                 >
