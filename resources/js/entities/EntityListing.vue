@@ -612,9 +612,6 @@ watch(loading, (val) => {
     })
 })
 
-watch(() => orderingComposable.ordering.value, (val, oldVal) => {
-    if (oldVal && !val) nextTick(initAllDropdowns)
-})
 
 watch(() => bulkActions.selecting.value, () => {
     nextTick(initAllDropdowns)
