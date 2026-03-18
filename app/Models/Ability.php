@@ -6,7 +6,6 @@ use App\Enums\Visibility;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
-use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
@@ -16,7 +15,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
-use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Ability
@@ -37,8 +35,6 @@ class Ability extends MiscModel
     use HasCampaign;
     use HasFactory;
     use HasFilters;
-    use HasRecursiveRelationships;
-    use Nested;
     use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
@@ -46,7 +42,6 @@ class Ability extends MiscModel
     protected $fillable = [
         'campaign_id',
         'name',
-        'ability_id',
         'is_private',
         'charges',
     ];
@@ -54,7 +49,6 @@ class Ability extends MiscModel
     protected array $sortable = [
         'name',
         'type',
-        'parent.name',
     ];
 
     /**
@@ -63,7 +57,6 @@ class Ability extends MiscModel
      * @var string[]
      */
     public array $nullableForeignKeys = [
-        'ability_id',
     ];
 
     protected array $exportFields = [
@@ -75,16 +68,6 @@ class Ability extends MiscModel
         'name',
         'charges',
     ];
-
-    /**
-     * Parent ID used for the Node Trait
-     *
-     * @return string
-     */
-    public function getParentKeyName()
-    {
-        return 'ability_id';
-    }
 
     /**
      * Performance with for datagrids

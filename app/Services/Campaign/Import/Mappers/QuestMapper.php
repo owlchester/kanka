@@ -4,6 +4,7 @@ namespace App\Services\Campaign\Import\Mappers;
 
 use App\Enums\QuestStatus;
 use App\Facades\ImportIdMapper;
+use App\Models\Entity;
 use App\Models\Quest;
 use App\Models\QuestElement;
 
@@ -56,16 +57,20 @@ class QuestMapper extends MiscMapper
 
     public function tree(): self
     {
-        foreach ($this->parents as $parent => $children) {
+        foreach ($this->parents as $parent => $entityIds) {
             if (! isset($this->mapping[$parent])) {
                 continue;
             }
-            // We need the nested trait to trigger for this so it's going to be inefficient
-            $quests = Quest::whereIn('id', $children)->get();
-            /** @var Quest $model */
-            foreach ($quests as $model) {
-                $model->quest_id = $this->mapping[$parent];
-                $model->saveQuietly();
+            $parentEntity = Entity::where('entity_id', $this->mapping[$parent])
+                ->where('type_id', config('entities.ids.quest'))
+                ->first();
+            if (! $parentEntity) {
+                continue;
+            }
+            $entities = Entity::whereIn('id', $entityIds)->get();
+            foreach ($entities as $entity) {
+                $entity->parent_id = $parentEntity->id;
+                $entity->saveQuietly();
             }
         }
 

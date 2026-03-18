@@ -6,7 +6,6 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\HasLocation;
-use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
@@ -16,7 +15,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Item
@@ -37,8 +35,6 @@ class Item extends MiscModel
     use HasFactory;
     use HasFilters;
     use HasLocation;
-    use HasRecursiveRelationships;
-    use Nested;
     use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
@@ -49,7 +45,6 @@ class Item extends MiscModel
         'price',
         'size',
         'weight',
-        'item_id',
         'location_id',
         'is_private',
         'creator_id',
@@ -90,7 +85,6 @@ class Item extends MiscModel
     public array $nullableForeignKeys = [
         'location_id',
         'creator_id',
-        'item_id',
     ];
 
     /**
@@ -130,11 +124,6 @@ class Item extends MiscModel
         }
 
         return implode('<br />', $extra);
-    }
-
-    public function getParentKeyName(): string
-    {
-        return 'item_id';
     }
 
     /**

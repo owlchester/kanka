@@ -17,6 +17,7 @@
 /.vscode
 /.sail
 /.superpowers
+/.worktrees
 /docs/superpowers
 Homestead.json
 Homestead.yaml

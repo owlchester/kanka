@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use App\Facades\Limit;
 use App\Models\Entity;
-use App\Models\Location;
 use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
@@ -16,7 +15,7 @@ class StoreLocation extends FormRequest
     use ApiRequest;
     use ResolvesNewForeignEntities;
 
-    protected array $foreignEntityFields = ['location_id'];
+    protected array $foreignEntityFields = [];
 
     /**
      * Determine if the user is authorized to make this request.
@@ -40,7 +39,7 @@ class StoreLocation extends FormRequest
             'title' => 'nullable|string|max:191',
             'entry' => 'nullable|string',
             'type' => 'nullable|string|max:191',
-            'location_id' => 'nullable|integer|exists:locations,id',
+            'parent_id' => 'nullable|integer|exists:entities,id',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
             'entity_image_uuid' => 'nullable|exists:images,id',
@@ -51,21 +50,12 @@ class StoreLocation extends FormRequest
 
         /** @var Entity $self */
         $self = request()->route('entity');
-        if (! empty($self) && $self->isLocation()) {
-            $rules['location_id'] = [
+        if (! empty($self)) {
+            $rules['parent_id'] = [
                 'nullable',
                 'integer',
-                'exists:locations,id',
-                new Nested(Location::class, $self->child),
-            ];
-        }
-        $sub = request()->route('location');
-        if (empty($self) && ! empty($sub)) {
-            $rules['location_id'] = [
-                'nullable',
-                'integer',
-                'exists:locations,id',
-                new Nested(Location::class, $sub),
+                'exists:entities,id',
+                new Nested($self),
             ];
         }
 

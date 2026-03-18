@@ -11,11 +11,6 @@ class MapSubmenu extends BaseSubmenu implements EntitySubmenu
         $items = [];
         /** @var Map $map */
         $map = $this->entity->child;
-        $items['second']['maps'] = [
-            'name' => $this->entity->entityType->plural(),
-            'route' => 'maps.maps',
-            'count' => $map->descendants()->has('entity')->count(),
-        ];
         if (isset($this->user) && $this->user->can('update', $this->entity)) {
             $items['second']['layers'] = [
                 'name' => __('maps.panels.layers'),

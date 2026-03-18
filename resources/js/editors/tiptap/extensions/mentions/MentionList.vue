@@ -11,6 +11,8 @@ interface MentionItem {
     url?: string
     mention?: string
     type?: string
+    alias_name?: string
+    alias_id?: number
     inject?: string
     value?: string
     section: SectionType
@@ -153,7 +155,13 @@ defineExpose({
                             loading="lazy"
                             class="w-6 h-6 rounded-full object-cover"
                         />
-                        <span class="mention-name" v-html="item.name"></span>
+                        <span class="mention-name flex gap-1">
+                            <span v-html="item.name"></span>
+                            <template v-if="item.alias_name">
+                                <i class="fa-regular fa-masks-theater" aria-hidden="true"></i>
+                                ({{ item.alias_name }})
+                            </template>
+                        </span>
                     </div>
                     <span v-if="item.type" class="mention-type text-neutral-content" v-html="item.type"></span>
                     <span v-if="item.value" class="text-neutral-content" v-html="item.value"></span>

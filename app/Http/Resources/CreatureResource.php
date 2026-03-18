@@ -20,7 +20,6 @@ class CreatureResource extends EntityResource
         $locationIds = $model->entity->locations->pluck('id');
 
         return $this->entity([
-            'creature_id' => $model->creature_id,
             'is_extinct' => $model->isExtinct(),
             'is_dead' => $model->isDead(),
             'locations' => $locationIds,

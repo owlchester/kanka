@@ -86,8 +86,72 @@ const initVisibilityPickers = () => {
     });
 };
 
+const initVisibilityPickerFields = () => {
+    document.querySelectorAll('.visibility-picker-field').forEach((picker) => {
+        const trigger = picker.querySelector('.visibility-picker-field-trigger');
+        const dropdown = picker.querySelector('.visibility-picker-field-dropdown');
+        const hiddenInput = picker.querySelector('input[name="visibility_id"]');
+
+        if (!trigger || !dropdown || !hiddenInput || trigger._vPickerFieldInit) {
+            return;
+        }
+        trigger._vPickerFieldInit = true;
+
+        const instance = tippy(trigger, {
+            content: dropdown,
+            theme: 'kanka-dropdown',
+            placement: 'bottom',
+            allowHTML: true,
+            interactive: true,
+            trigger: 'click',
+            zIndex: 890,
+            appendTo: picker,
+            onShow: () => dropdown.classList.remove('hidden'),
+            onHide: () => dropdown.classList.add('hidden'),
+        });
+
+        dropdown.querySelectorAll('.visibility-picker-field-option').forEach((option) => {
+            option.addEventListener('click', () => {
+                const visibilityId = parseInt(option.dataset.value);
+                const currentSelected = parseInt(picker.dataset.selected);
+
+                if (visibilityId === currentSelected) {
+                    instance.hide();
+                    return;
+                }
+
+                // Update hidden input and state
+                hiddenInput.value = visibilityId;
+                picker.dataset.selected = visibilityId;
+
+                // Update trigger icon
+                const triggerIcon = trigger.querySelector('i');
+                triggerIcon.className = option.dataset.icon;
+
+                // Update aria + styling on all options
+                dropdown.querySelectorAll('.visibility-picker-field-option').forEach((opt) => {
+                    const isSelected = parseInt(opt.dataset.value) === visibilityId;
+                    opt.setAttribute('aria-checked', isSelected ? 'true' : 'false');
+                    opt.classList.toggle('bg-primary/5', isSelected);
+                    opt.classList.toggle('ring-1', isSelected);
+                    opt.classList.toggle('ring-primary/30', isSelected);
+
+                    const status = opt.querySelector('.visibility-picker-field-status');
+                    status.innerHTML = isSelected
+                        ? '<i class="fa-regular fa-check text-primary" aria-hidden="true"></i>'
+                        : '';
+                });
+
+                instance.hide();
+            });
+        });
+    });
+};
+
 initVisibilityPickers();
+initVisibilityPickerFields();
 
 window.onEvent(function () {
     initVisibilityPickers();
+    initVisibilityPickerFields();
 });

@@ -16,25 +16,16 @@
                 <span class="sr-only">{{ __('crud.actions.actions') }}</span>
             </button>
             <div class="dropdown-menu hidden" role="menu">
-                <x-dropdowns.item link="#" css="form-submit-actions">
+                <x-dropdowns.item link="#" css="form-submit-actions" shortcut="Ctrl S">
                     <span class="grow">{{ __('crud.save') }}</span>
-                    <span class="keyboard-shortcut" data-toggle="tooltip" data-title="{!! __('crud.keyboard-shortcut', ['code' => '<kbd>CTRL+S</kbd>']) !!}" data-html="true">
-                            CTRL+S
-                        </span>
                 </x-dropdowns.item>
 
-                <x-dropdowns.item link="#" css="form-submit-actions" :data="['action' => 'submit-new']">
+                <x-dropdowns.item link="#" css="form-submit-actions" :data="['action' => 'submit-new']" shortcut="Ctrl Alt S">
                     <span class="grow w-40">{{ __('crud.save_and_new') }}</span>
-                    <span class="keyboard-shortcut" data-toggle="tooltip" data-title="{!! __('crud.keyboard-shortcut', ['code' => '<kbd>CTRL+ALT+S</kbd>']) !!}" data-html="true">
-                        CTRL+ALT+S
-                    </span>
                 </x-dropdowns.item>
 
-                <x-dropdowns.item link="#" css="form-submit-actions" :data="['action' => 'submit-update']">
-                        <span class="grow">{{ __('crud.save_and_update') }}</span>
-                        <span class="keyboard-shortcut" data-toggle="tooltip" data-title="{!! __('crud.keyboard-shortcut', ['code' => '<kbd>CTRL+SHIFT+S</kbd>']) !!}" data-html="true">
-                            CTRL+SHIFT+S
-                        </span>
+                <x-dropdowns.item link="#" css="form-submit-actions" :data="['action' => 'submit-update']" shortcut="Ctrl Shift S">
+                    <span class="grow">{{ __('crud.save_and_update') }}</span>
                 </x-dropdowns.item>
                 @if(!isset($disableCopy))
                     @if (empty($model))
@@ -46,11 +37,8 @@
                             {{ __('crud.save_and_close') }}
                         </x-dropdowns.item>
 
-                        <x-dropdowns.item link="#" css="form-submit-actions" :data="['action' => 'submit-copy']">
+                        <x-dropdowns.item link="#" css="form-submit-actions" :data="['action' => 'submit-copy']" shortcut="Ctrl Alt C">
                             <span class="grow">{{ __('crud.save_and_copy') }}</span>
-                            <span class="keyboard-shortcut" data-toggle="tooltip" data-title="{!! __('crud.keyboard-shortcut', ['code' => '<kbd>CTRL+ALT+C</kbd>']) !!}" data-html="true">
-                                CTRL+ALT+C
-                            </span>
                         </x-dropdowns.item>
                     @endif
                 @endif

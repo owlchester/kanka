@@ -949,7 +949,7 @@ trait HasFilters
 
     protected function filterParent(Builder $query): void
     {
-        $query->where($this->getTable() . '.' . $this->getParentKeyName(), $this->filterValue);
+        $query->whereHas('entity', fn ($q) => $q->where('entities.parent_id', $this->filterValue));
     }
 
     protected function explicitFilters(): array

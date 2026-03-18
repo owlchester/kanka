@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Maps;
 
-use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Map;
@@ -22,30 +21,6 @@ class MapController extends Controller
     {
         $this->campaign($campaign)->authEntityView($map->entity);
 
-        $options = ['campaign' => $campaign, 'map' => $map, 'm' => $this->descendantsMode()];
-        $base = 'descendants';
-        if ($this->filterToDirect()) {
-            $base = 'children';
-        }
-
-        Datagrid::layout(\App\Renderers\Layouts\Map\Map::class)
-            ->route('maps.maps', $options);
-
-        $this->rows = $map
-            ->{$base}()
-            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
-            ->with([
-                'parent', 'parent.entity',
-                'entity', 'entity.image', 'entity.entityType', 'entity.tags',
-            ])
-            ->paginate();
-
-        if (request()->ajax()) {
-            return $this->campaign($campaign)->datagridAjax();
-        }
-
-        return $this
-            ->campaign($campaign)
-            ->subview('maps.maps', $map);
+        return redirect()->route('entities.children', [$campaign, $map->entity]);
     }
 }

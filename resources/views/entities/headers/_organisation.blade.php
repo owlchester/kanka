@@ -1,1 +1,1 @@
-@includeWhen($entity->child->parent, 'entities.headers.__parent', ['module' => 'organisation'])
+@includeWhen($entity->parent, 'entities.headers.__parent')

@@ -61,6 +61,7 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  * @property Conversation $conversation
  * @property Character $character
  * @property Creature $creature
+ * @property AttributeTemplate $attributeTemplate
  * @property Tag $tag
  * @property Tag[]|Collection $tags
  * @property EntityTag[]|Collection $entityTags
@@ -97,7 +98,7 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  * @property CampaignPermission[]|Collection $permissions
  * @property EntityAsset[]|Collection $aliases
  * @property EntityAsset[]|Collection $assets
- * @property Entity $parent
+ * @property ?Entity $parent
  */
 trait EntityRelations
 {

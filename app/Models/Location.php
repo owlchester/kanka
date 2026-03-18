@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
-use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
@@ -15,7 +14,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Location
@@ -46,24 +44,21 @@ class Location extends MiscModel
     use HasCampaign;
     use HasFactory;
     use HasFilters;
-    use HasRecursiveRelationships;
-    use Nested;
     use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
 
     protected $fillable = [
         'name',
-        'location_id',
         'campaign_id',
         'is_private',
         'is_destroyed',
+        'title',
     ];
 
     protected array $sortable = [
         'name',
         'type',
-        'parent.name',
         'is_destroyed',
     ];
 
@@ -78,7 +73,6 @@ class Location extends MiscModel
      * Nullable values (foreign keys)
      */
     public array $nullableForeignKeys = [
-        'location_id',
     ];
 
     protected array $exportFields = [
@@ -92,11 +86,6 @@ class Location extends MiscModel
     protected array $sanitizable = [
         'name',
     ];
-
-    public function getParentKeyName()
-    {
-        return 'location_id';
-    }
 
     /**
      * Performance with for datagrids
@@ -167,8 +156,8 @@ class Location extends MiscModel
     public function allEvents(): Builder|Event
     {
         $locationIds = [$this->id];
-        foreach ($this->descendants as $descendant) {
-            $locationIds[] = $descendant->id;
+        foreach ($this->entity->descendants as $descendant) {
+            $locationIds[] = $descendant->entity_id;
         }
 
         return Event::distinct()
@@ -188,8 +177,8 @@ class Location extends MiscModel
     {
         $locationIds = [$this->id];
         if ($direct) {
-            foreach ($this->descendants as $descendant) {
-                $locationIds[] = $descendant->id;
+            foreach ($this->entity->descendants as $descendant) {
+                $locationIds[] = $descendant->entity_id;
             }
         }
 
@@ -209,8 +198,8 @@ class Location extends MiscModel
     public function allQuests(): Builder|Quest
     {
         $locationIds = [$this->id];
-        foreach ($this->descendants as $descendant) {
-            $locationIds[] = $descendant->id;
+        foreach ($this->entity->descendants as $descendant) {
+            $locationIds[] = $descendant->entity_id;
         }
 
         $table = new Quest;

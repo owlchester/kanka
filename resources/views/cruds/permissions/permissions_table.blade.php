@@ -127,7 +127,7 @@ $moduleName = isset($entityType) ? $entityType->name() : $entity->entityType->na
                                 :options="$actions"
                                 :selected="$permissionService->action(\App\Enums\Permission::Posts)->selected('role')"
                                 class="join-item permission-control"
-                                :label="__('entities.posts')" />
+                                :label="__('entities.articles')" />
                             @if ($permissionService->inherited())
                                 <span class="join-item flex items-center bg-base-200 p-2 rounded" data-title="{{ __('permissions.roles.inherited', ['role' => $role->name, 'module' => $moduleName]) }}" data-toggle="tooltip" data-append="parent">
                                     <x-icon class="text-green-500 fa-solid fa-check-circle" />
@@ -270,7 +270,7 @@ $moduleName = isset($entityType) ? $entityType->name() : $entity->entityType->na
                                 :options="$actions"
                                 :selected="$permissionService->action(\App\Enums\Permission::Posts)->selected('user')"
                                 class="join-item permission-control"
-                                :label="__('entities.posts')" />
+                                :label="__('entities.articles')" />
                             @if ($permissionService->inherited())
                                 @php
                                     $inheritedHelper = __('permissions.members.inherited', [

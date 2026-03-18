@@ -70,11 +70,13 @@ class FilterService
         return $this;
     }
 
-    public function build()
+    public function build(array $sortableColumns = [])
     {
         $this->crud = $this->entityType->code;
 
-        $this->prepareFilters([
+        $orderFields = array_unique(array_merge(['name', 'type', 'is_private'], $sortableColumns));
+
+        $baseFilters = [
             'name',
             'type',
             'is_private',
@@ -91,8 +93,18 @@ class FilterService
             'attribute_name',
             'attribute_value',
             'archived',
-        ])
-            ->prepareOrder(['name', 'type', 'is_private'])
+        ];
+
+        // Merge entity-type-specific filterable columns
+        if ($this->entityType->isStandard()) {
+            $model = $this->entityType->getClass();
+            if (method_exists($model, 'getFilterableColumns')) {
+                $baseFilters = array_unique(array_merge($baseFilters, $model->getFilterableColumns()));
+            }
+        }
+
+        $this->prepareFilters($baseFilters)
+            ->prepareOrder($orderFields)
             ->prepareSearch();
     }
 
@@ -246,12 +258,17 @@ class FilterService
         }
 
         if (! empty($field) && is_string($field)) {
-            $this->order = [
-                $field => empty($direction) ? 'ASC' : 'DESC',
-            ];
-
-            if (! in_array($field, $availableFields)) {
+            if ($field === 'clear') {
+                // Explicit reset from the grid's third-click cycle
                 $this->order = [];
+            } else {
+                $this->order = [
+                    $field => empty($direction) ? 'ASC' : 'DESC',
+                ];
+
+                if (! in_array($field, $availableFields)) {
+                    $this->order = [];
+                }
             }
         }
 

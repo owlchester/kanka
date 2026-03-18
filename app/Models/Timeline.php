@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
-use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
@@ -15,7 +14,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
-use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Timeline
@@ -32,8 +30,6 @@ class Timeline extends MiscModel
     use HasCampaign;
     use HasFactory;
     use HasFilters;
-    use HasRecursiveRelationships;
-    use Nested;
     use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
@@ -43,12 +39,10 @@ class Timeline extends MiscModel
         'name',
         'calendar_id',
         'is_private',
-        'timeline_id',
     ];
 
     protected array $sortable = [
         'name',
-        'parent.name',
         'type',
     ];
 
@@ -59,7 +53,6 @@ class Timeline extends MiscModel
      */
     public array $nullableForeignKeys = [
         'calendar_id',
-        'timeline_id',
     ];
 
     /**
@@ -124,14 +117,6 @@ class Timeline extends MiscModel
         return $this->hasMany(
             'App\Models\TimelineElement',
         );
-    }
-
-    /**
-     * @return string
-     */
-    public function getParentKeyName()
-    {
-        return 'timeline_id';
     }
 
     /**

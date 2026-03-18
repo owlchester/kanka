@@ -11,6 +11,8 @@ interface MentionItem {
     mention?: string
     type?: string
     aliases?: any
+    alias_name?: string
+    alias_id?: number
     inject?: string
     value?: string
     section: 'entities' | 'posts' | 'new' | 'attributes'
@@ -76,6 +78,8 @@ export default (mentionsUrl: string, onEntityAdded?: (entity: any) => void) => {
                             image: item.image,
                             url: item.url,
                             aliases: item.aliases,
+                            alias_name: item.alias_name,
+                            alias_id: item.alias_id,
                             mention: item.mention,
                             type: item.type,
                             section: 'entities',

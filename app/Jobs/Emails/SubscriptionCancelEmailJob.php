@@ -5,7 +5,7 @@ namespace App\Jobs\Emails;
 use App\Enums\UserAction;
 use App\Mail\Subscription\Admin\CancelledSubscriptionMail;
 use App\Mail\Subscription\User\CancelledUserSubscriptionMail;
-use App\Models\User;
+use App\Models\SubscriptionCancellation;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -20,50 +20,36 @@ class SubscriptionCancelEmailJob implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    public int $userId;
-
-    /** @var string */
-    public $reason;
-
-    public $custom;
+    public int $cancellationId;
 
     /** @var int */
     public $tries = 3;
 
-    /**
-     * WelcomeEmailJob constructor.
-     */
-    public function __construct(User $user, ?string $reason = null, ?string $custom = null)
+    public function __construct(SubscriptionCancellation $cancellation)
     {
-        $this->userId = $user->id;
-        $this->reason = $reason;
-        $this->custom = $custom;
+        $this->cancellationId = $cancellation->id;
     }
 
-    public function handle()
+    public function handle(): void
     {
-        // User deleted their account already? Sure thing
-        $user = User::find($this->userId);
+        $cancellation = SubscriptionCancellation::find($this->cancellationId);
+        if (empty($cancellation)) {
+            return;
+        }
+
+        $user = $cancellation->user;
         if (empty($user)) {
             return;
         }
 
-        $reason = $this->reason;
-
-        if ($reason == 'custom') {
-            $reason = 'other';
-        }
         // Send an email to the admins
         Mail::to('hello@kanka.io')
-            ->send(
-                new CancelledSubscriptionMail($user, $reason, $this->custom)
-            );
+            ->send(new CancelledSubscriptionMail($cancellation));
 
         // Send an email to the user
         Mail::to($user->email)
-            ->send(
-                new CancelledUserSubscriptionMail($user)
-            );
+            ->send(new CancelledUserSubscriptionMail($cancellation));
+
         $user->log(UserAction::subCancelManual);
     }
 }

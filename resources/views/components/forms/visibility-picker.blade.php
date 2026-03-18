@@ -23,7 +23,7 @@ $visibilityKeys = [
 $adminLink = '<a href="' . e($adminUrl) . '" class="text-link">' . e($adminName) . '</a>';
 ?>
 <span id="{{ $id }}" class="visibility-picker" data-selected="{{ $selected }}" data-url="{{ $url }}">
-    <button class="btn2 btn-ghost btn-sm visibility-picker-trigger" type="button">
+    <button class="btn2 btn-sm visibility-picker-trigger" type="button">
         <i class="{{ $iconMap[$selected] ?? 'fa-regular fa-eye' }}" aria-hidden="true"></i>
         <span class="sr-only">{{ __('visibilities.title') }}</span>
     </button>
@@ -41,8 +41,8 @@ $adminLink = '<a href="' . e($adminUrl) . '" class="text-link">' . e($adminName)
                     @if(count($options) === 1) disabled @endif
                 >
                     <x-icon class="{{ $iconMap[$value] }} text-neutral-content mt-0.5 w-5 text-center shrink-0" />
-                    <div class="flex flex-col gap-0.5 flex-1 min-w-0">
-                        <span class="text-sm font-semibold">{{ $name }}</span>
+                    <div class="flex flex-col gap-1 flex-1 min-w-0">
+                        <span class="text-xs font-semibold">{{ $name }}</span>
                         <span class="text-xs text-neutral-content leading-relaxed">
                             {!! __('visibilities.picker.' . $visibilityKeys[$value], [
                                 'entity' => e($entityName),

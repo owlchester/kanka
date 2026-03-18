@@ -1,7 +1,7 @@
 <?php /** @var \App\Models\Entity $entity
  * @var \App\Models\Ability $ability */?>
 @extends('layouts.app', [
-    'title' => __('entities/abilities.show.title', ['name' => $entity->name]),
+    'title' =>  __('crud.tabs.abilities') . " - {$entity->name} - {$campaign->name}",
     'breadcrumbs' => false,
     'mainTitle' => false,
     'bodyClass' => 'entity-abilities'

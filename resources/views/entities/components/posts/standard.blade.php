@@ -33,10 +33,16 @@ $entityTags = $post->visibleTags();
                     @include('icons.visibility', ['icon' => $post->visibilityIcon()])
                 @endif
                 <div class="dropdown">
-                    <a role="button" class="btn2 btn-ghost btn-sm" data-dropdown aria-expanded="false" data-placement="right" data-tree="escape">
-                        <x-icon class="fa-regular fa-ellipsis-v" />
+                    <div
+                        role="button"
+                        tabindex="0"
+                        class="btn2 btn-sm"
+                        data-dropdown aria-expanded="false"
+                        data-placement="right"
+                        data-tree="escape">
+                        <x-icon class="fa-regular fa-ellipsis" />
                         <span class="sr-only">{{__('crud.actions.actions') }}</span>
-                    </a>
+                    </div>
                     <div class="dropdown-menu hidden" role="menu">
                         @include('entities.pages.posts._actions')
                     </div>

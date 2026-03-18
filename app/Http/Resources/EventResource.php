@@ -19,7 +19,6 @@ class EventResource extends EntityResource
         $model = $this->resource;
 
         return $this->entity([
-            'event_id' => $model->event_id,
             'date' => $model->date,
             'locations' => $model->entity->locations->pluck('id'),
             'calendar_id' => $model->entity->calendarDate?->calendar_id,

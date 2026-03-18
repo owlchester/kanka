@@ -26,7 +26,7 @@ class FormController extends Controller
     public function index(Campaign $campaign, EntityType $entityType)
     {
         $plural = Str::plural(Str::remove('-', $entityType->code));
-        $route = $plural . '.index';
+        $route = $entityType->hasEntity() ? 'entities.index' : $plural . '.index';
 
         if ($entityType->isCustom()) {
             $this->filterService->entityType($entityType)->build();
@@ -65,9 +65,16 @@ class FormController extends Controller
 
     protected function render(mixed $model, string $plural, string $route, ?EntityType $entityType = null, ?string $langKey = null)
     {
-        $this->filterService
-            ->model($model)
-            ->make($plural);
+        if ($entityType) {
+            $this->filterService
+                ->entityType($entityType)
+                ->model($model)
+                ->make($entityType->code);
+        } else {
+            $this->filterService
+                ->model($model)
+                ->make($plural);
+        }
         $mode = request()->get('m');
 
         $reflect = new ReflectionClass($model);

@@ -41,6 +41,9 @@ class EntityObserver
             // Dirty, force the entry to be saved to trigger the HasEntry observer
             $entity->save();
         }
+        if (request()->has('parent_id')) {
+            $entity->parent_id = request()->get('parent_id');
+        }
 
         if (request()->post('remove-image') == '1') {
             Images::model($entity)->field('image')->cleanup();

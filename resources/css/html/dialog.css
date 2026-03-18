@@ -14,7 +14,6 @@ dialog {
     > form {
         display: flex;
         flex-direction: column;
-        flex: 1;
         min-block-size: 0;
         overflow: hidden;
     }
@@ -24,7 +23,6 @@ dialog {
     }
 
     article {
-        flex: 1;
         overflow-y: auto;
         overscroll-behavior-y: contain;
         min-block-size: 0;

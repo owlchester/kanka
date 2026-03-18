@@ -41,23 +41,6 @@ $highlightClass = 'shadow-xs border-primary border-solid border-2';
                         :selected="auth()->user()->theme" class="self-end w-full border rounded p-2" />
                 </div>
 
-                <div class="{{ $boxClass }} {{ $highlight === 'pagination' ? $highlightClass : '' }}">
-                    <div class="flex gap-2 justify-between items-center mb-2">
-                        <div class="font-light text-xl flex items-center gap-2">
-                            <x-icon class="fa-regular fa-list" />
-                            {{ __('settings/appearance.fields.pagination') }}
-                        </div>
-                        <a href="https://docs.kanka.io/en/latest/account/appearance.html#results-per-page" target="_blank" class="text-link" data-tooltip data-title="{{ __('settings/appearance.actions.learn-more') }}">
-                            <x-icon class="fa-regular fa-arrow-up-right-from-square" /> {{ __('general.learn-more') }}
-                        </a>
-                    </div>
-                    <x-helper>
-                        <p>{{ __('settings/appearance.helpers.pagination')}}</p>
-                    </x-helper>
-                    <x-forms.select name="pagination" :options="$paginationOptions" :selected="auth()->user()->pagination" class="self-end w-full border rounded p-2" :optionAttributes="$paginationDisabled" />
-                </div>
-
-
                 <div class="{{ $boxClass }}">
                     <div class="flex gap-2 justify-between items-center mb-2">
                         <div class="font-light text-xl flex items-center gap-2">
@@ -140,32 +123,6 @@ $highlightClass = 'shadow-xs border-primary border-solid border-2';
                         </x-helper>
                     </div>
                 @endif
-
-                <div class="{{ $boxClass }} {{ $highlight === 'explore' ? $highlightClass : '' }}">
-                    <div class="flex gap-2 justify-between items-center mb-2">
-                        <div class="font-light text-xl flex items-center gap-2">
-                            <x-icon class="fa-regular fa-grid" />
-                            {{ __('settings/appearance.fields.entity-explore') }}
-                        </div>
-                        <a href="https://docs.kanka.io/en/latest/account/appearance.html#entity-explore" target="_blank" class="text-link" data-tooltip data-title="{{ __('settings/appearance.actions.learn-more') }}">
-                            <x-icon class="fa-regular fa-arrow-up-right-from-square" /> {{ __('general.learn-more') }}
-                        </a>
-                    </div>
-                    <x-helper>
-                        <p>{{ __('settings/appearance.helpers.entity-explore') }}</p>
-                    </x-helper>
-
-                    <x-forms.select
-                        name="entity_explore"
-                        radio
-                        :options="[
-                            0 => '<i class=\'fa-regular fa-grid\' aria-hidden=\'true\'></i> ' . __('settings/appearance.explore.grid'),
-                            1 => '<i class=\'fa-solid fa-list-ul\' aria-hidden=\'true\'></i> ' . __('settings/appearance.explore.table'),
-                        ]"
-                        :selected="auth()->user()->entity_explore"
-                        class="self-end w-full border rounded p-2"
-                    />
-                </div>
 
                 <div class="{{ $boxClass }}">
                     <div class="flex gap-2 justify-between items-center mb-2">

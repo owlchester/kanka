@@ -95,6 +95,22 @@ const closeListDropdown = () => {
     showListDropdown.value = false
 }
 
+const currentAlignIcon = computed(() => {
+    if (props.editor.isActive({ textAlign: 'center' })) return 'fa-regular fa-align-center'
+    if (props.editor.isActive({ textAlign: 'right' })) return 'fa-regular fa-align-right'
+    return 'fa-regular fa-align-left'
+})
+
+const cycleAlignment = () => {
+    if (props.editor.isActive({ textAlign: 'center' })) {
+        props.editor.chain().focus().setTextAlign('right').run()
+    } else if (props.editor.isActive({ textAlign: 'right' })) {
+        props.editor.chain().focus().setTextAlign('left').run()
+    } else {
+        props.editor.chain().focus().setTextAlign('center').run()
+    }
+}
+
 const clearFormatting = () => {
     props.editor.chain().focus().unsetAllMarks().clearNodes().run()
 }
@@ -223,6 +239,13 @@ const clearFormatting = () => {
             :class="buttonClass(editor.isActive('blockquote'))"
         >
             <i class="fa-regular fa-quote-right" aria-label="Quote" />
+        </button>
+        <button
+            @click.prevent="cycleAlignment"
+            :class="buttonClass(editor.isActive({ textAlign: 'center' }) || editor.isActive({ textAlign: 'right' }))"
+            title="Text alignment"
+        >
+            <i :class="currentAlignIcon" aria-label="Text alignment" />
         </button>
 
     <div class="relative">

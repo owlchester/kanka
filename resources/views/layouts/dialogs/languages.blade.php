@@ -43,7 +43,7 @@
             </li>
         </ul>
     </div>
-    <div class="text-left w-full">
+    <div class="text-left w-full my-4">
         {{ __('footer.language-switcher.other') }}
     </div>
     <div class="w-full">

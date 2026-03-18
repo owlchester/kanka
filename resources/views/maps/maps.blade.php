@@ -17,7 +17,7 @@
         @else
             <x-toggles.filter-button
                 route="{{ route('maps.maps', [$campaign, $model, 'm' => \App\Enums\Descendants::Direct]) }}"
-                :count="$model->children()->has('entity')->count()"
+                :count="$entity->children()->count()"
             />
         @endif
         @include('entities.headers.actions', ['edit' => false])

@@ -4,5 +4,5 @@
    data-url="{{ route('entities.tooltip', [$campaign, $entity->id]) }}"
    data-theme="entity-tooltip"
 @if ($bottom) data-placement="bottom" @endif
-   href="{{ $entity->url('show') }}{{ $post() }}">
+   href="{{ $entity->url('show', $bookmark ? ['bookmark' => $bookmark] : []) }}{{ $post() }}">
     @if(isset($slot) && $slot->isNotEmpty()) {!! $slot !!} @else {!! $entity->name !!} @endif</a>

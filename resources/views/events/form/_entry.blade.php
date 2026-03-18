@@ -2,7 +2,7 @@
     @include('cruds.fields.entity-name')
     @include('cruds.fields.type', ['base' => \App\Models\Event::class, 'trans' => 'events'])
 
-    @include('cruds.fields.event', ['isParent' => true])
+    @include('cruds.fields.parent')
     @include('cruds.fields.entity_locations')
 
     <x-forms.field field="date" :label="__('events.fields.date')" :helper="__('events.helpers.date')">

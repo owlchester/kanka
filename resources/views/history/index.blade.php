@@ -3,6 +3,7 @@
 ?>
 @extends('layouts.app', [
     'title' => __('history.title'),
+    'seoTitle' => __('history.title') . ' - ' . $campaign->name,
     'breadcrumbs' => [['url' => route('history.index', $campaign), 'label' => __('history.title')]],
     'bodyClass' => 'campaign-history',
     'mainTitle' => false,

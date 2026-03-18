@@ -47,7 +47,7 @@ const initCalendarEventModal = () => {
  * Register keyboard shortcuts for previous/next view
  */
 const registerKeyboardShortcuts = () => {
-    const hasNav = document.querySelector('[data-shortcut="previous"]') || document.querySelector('[data-shortcut="next"]');
+    const hasNav = document.querySelector('[data-calendar-nav="previous"]') || document.querySelector('[data-calendar-nav="next"]');
     if (!hasNav) {
         return;
     }
@@ -57,14 +57,14 @@ const registerKeyboardShortcuts = () => {
         if (e.ctrlKey || e.metaKey) {
             // Modern replacement for deprecated e.which
             if (e.key === 'ArrowLeft') {
-                const previous = document.querySelector('[data-shortcut="previous"]');
+                const previous = document.querySelector('[data-calendar-nav="previous"]');
                 // Safety check: element might not exist (e.g. first page)
                 if (previous) {
                     previous.classList.add('loading');
                     previous.click();
                 }
             } else if (e.key === 'ArrowRight') {
-                const next = document.querySelector('[data-shortcut="next"]');
+                const next = document.querySelector('[data-calendar-nav="next"]');
                 if (next) {
                     next.classList.add('loading');
                     next.click();

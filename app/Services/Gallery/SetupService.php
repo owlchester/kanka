@@ -134,8 +134,10 @@ class SetupService
                 ->select('images.*')
                 ->leftJoin('image_mentions as im', 'im.image_id', 'images.id')
                 ->leftJoin('entities as e', 'e.image_uuid', 'images.id')
+                ->leftJoin('entities as eh', 'eh.header_uuid', 'images.id')
                 ->whereNull('im.id')
                 ->whereNull('e.id')
+                ->whereNull('eh.id')
                 ->where('is_folder', false);
         }
 

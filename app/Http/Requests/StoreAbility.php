@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
-use App\Models\Ability;
 use App\Models\Entity;
 use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
@@ -16,7 +15,7 @@ class StoreAbility extends FormRequest
     use ApiRequest;
     use ResolvesNewForeignEntities;
 
-    protected array $foreignEntityFields = ['ability_id'];
+    protected array $foreignEntityFields = [];
 
     /**
      * Determine if the user is authorized to make this request.
@@ -39,7 +38,7 @@ class StoreAbility extends FormRequest
             'name' => 'required|max:191',
             'entry' => 'nullable|string',
             'type' => 'nullable|string|max:191',
-            'ability_id' => 'nullable|integer|exists:abilities,id',
+            'parent_id' => 'nullable|integer|exists:entities,id',
             'charges' => 'nullable|max:120',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
@@ -51,12 +50,12 @@ class StoreAbility extends FormRequest
 
         /** @var Entity $self */
         $self = request()->route('entity');
-        if (! empty($self) && $self->isAbility()) {
-            $rules['ability_id'] = [
+        if (! empty($self)) {
+            $rules['parent_id'] = [
                 'nullable',
                 'integer',
-                'exists:abilities,id',
-                new Nested(Ability::class, $self->child),
+                'exists:entities,id',
+                new Nested($self),
             ];
         }
 

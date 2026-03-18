@@ -405,7 +405,12 @@ class DatagridRenderer
         if (is_string($column)) {
             // Just for name, a link to the view
             if ($column == 'name') {
-                $content = $this->entityLink($model);
+                if (isset($this->bookmark)) {
+                    // Need to embed the _from=bookmark&bookmark=<id> in the url somehow
+                    $content = $this->entityLink($model);
+                } else {
+                    $content = $this->entityLink($model);
+                }
             } elseif ($column === 'type') {
                 $content = $model instanceof Entity ? $model->type : $model->entity->type;
             } else {
@@ -439,7 +444,10 @@ class DatagridRenderer
                 }
                 $class = ! empty($column['parent']) ? $this->hidden : $class;
                 if (! empty($who)) {
-                    $route = $who->getLink();
+                    $bookmarkId = isset($this->bookmark) ? $this->bookmark->id : null;
+                    $route = $who->entity
+                        ? $who->entity->url('show', $bookmarkId ? ['bookmark' => $bookmarkId] : [])
+                        : $who->getLink();
                     $content = '<a class="entity-image cover-background w-10 h-10" style="background-image: url(\'' . Avatar::size(40)->fallback()->thumbnail() .
                         '\');" title="' . e($who->name) . '" href="' . $route . '"></a>';
                 }
@@ -608,13 +616,14 @@ class DatagridRenderer
 
     protected function entityLink(Model $model): string
     {
+        $bookmarkId = isset($this->bookmark) ? $this->bookmark->id : null;
         if ($model instanceof Entity) {
             return Blade::renderComponent(
-                new EntityLink($model, $this->campaign)
+                new EntityLink($model, $this->campaign, bookmark: $bookmarkId)
             );
         } elseif ($model->entity) {// @phpstan-ignore-line
             return Blade::renderComponent(
-                new EntityLink($model->entity, $this->campaign)
+                new EntityLink($model->entity, $this->campaign, bookmark: $bookmarkId)
             );
         }
 

@@ -18,6 +18,7 @@ class EntityLink extends Component
         public Campaign $campaign,
         public ?string $post = null,
         public bool $bottom = false,
+        public ?int $bookmark = null,
     ) {}
 
     /**

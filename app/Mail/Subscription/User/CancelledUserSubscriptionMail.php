@@ -2,6 +2,7 @@
 
 namespace App\Mail\Subscription\User;
 
+use App\Models\SubscriptionCancellation;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
@@ -15,19 +16,14 @@ class CancelledUserSubscriptionMail extends Mailable
     use Queueable;
     use SerializesModels;
 
-    /**
-     * @var User
-     */
-    public $user;
+    public SubscriptionCancellation $cancellation;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct(User $user)
+    public User $user;
+
+    public function __construct(SubscriptionCancellation $cancellation)
     {
-        $this->user = $user;
+        $this->cancellation = $cancellation;
+        $this->user = $cancellation->user;
     }
 
     /**
@@ -37,7 +33,7 @@ class CancelledUserSubscriptionMail extends Mailable
     {
         return new Envelope(
             from: new Address(config('app.email'), 'Kanka Team'),
-            subject: 'Confirmation: ' . $this->user->pledge . ' subscription cancellation',
+            subject: 'Confirmation: ' . $this->cancellation->tier . ' subscription cancellation',
             tags: ['cancelled']
         );
     }
@@ -49,6 +45,7 @@ class CancelledUserSubscriptionMail extends Mailable
     {
         return new Content(
             markdown: 'emails.subscriptions.cancelled.user-md',
+            with: ['cancellation' => $this->cancellation, 'user' => $this->user],
         );
     }
 }
