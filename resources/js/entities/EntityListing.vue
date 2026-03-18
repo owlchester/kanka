@@ -35,7 +35,7 @@
 
                 <!-- Filter pill: active filters -->
                 <div
-                    v-if="!bulkActions.selecting.value && filters > 0"
+                    v-else-if="!bulkActions.selecting.value && filters > 0"
                     class="flex items-stretch rounded-lg border border-primary/30 bg-primary/10 overflow-hidden"
                 >
                     <button class="flex items-center gap-2 px-3 py-1.5 hover:bg-primary/20 text-primary text-sm" @click="openFilters">
@@ -87,7 +87,7 @@
                     class="flex items-center rounded-lg border border-base-300 bg-base-200 overflow-hidden p-0.5 gap-0.5"
                 >
                     <button
-                        @click="layoutComposable.isGrid() ? null : layoutComposable.switchLayout()"
+                        @click="!layoutComposable.isGrid() && layoutComposable.switchLayout()"
                         class="flex items-center justify-center rounded-md px-2 py-1.5 text-sm transition-all"
                         :class="layoutComposable.isGrid() ? 'bg-base-100 text-base-content shadow-xs' : 'text-base-content/50 hover:text-base-content'"
                         :title="i18n.layout_grid"
@@ -95,7 +95,7 @@
                         <i class="fa-regular fa-grid-2" aria-hidden="true"></i>
                     </button>
                     <button
-                        @click="layoutComposable.isGrid() ? layoutComposable.switchLayout() : null"
+                        @click="layoutComposable.isGrid() && layoutComposable.switchLayout()"
                         class="flex items-center justify-center rounded-md px-2 py-1.5 text-sm transition-all"
                         :class="!layoutComposable.isGrid() ? 'bg-base-100 text-base-content shadow-xs' : 'text-base-content/50 hover:text-base-content'"
                         :title="i18n.layout_table"
@@ -366,7 +366,6 @@ const i18n = ref<any>({})
 const loading = ref(true)
 
 // Template refs
-const toolbarRef = ref<HTMLElement | null>(null)
 const listingRef = ref<HTMLElement | null>(null)
 const displayBtn = ref()
 const displayMenu = ref()
@@ -446,6 +445,7 @@ const bookmark = () => {
     (window as any).openDialog('primary-dialog', urls.value.bookmark)
 }
 
+// Full page navigation: filterUrls.clear is a page URL, not a JSON API endpoint
 const clearFilters = () => {
     window.location.href = filterUrls.value.clear
 }
