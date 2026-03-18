@@ -2,6 +2,7 @@
 
 namespace App\Datagrids\Filters;
 
+use App\Models\Entity;
 use App\Models\Item;
 
 class ItemFilter extends DatagridFilter
@@ -33,7 +34,7 @@ class ItemFilter extends DatagridFilter
                 'type' => 'selectMultiple',
                 'route' => route('search.entities-with-relations', [$this->campaign]),
                 'placeholder' => __('crud.placeholders.search'),
-                'model' => \App\Models\Entity::class,
+                'model' => Entity::class,
                 'multiple' => true,
             ])
             ->isPrivate()
