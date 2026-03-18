@@ -77,6 +77,7 @@ export function usePerPage(options: PerPageOptions) {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Accept': 'application/json',
                     'X-CSRF-TOKEN': options.csrf,
                 },
                 body: JSON.stringify({ per_page: value }),

@@ -37,7 +37,7 @@ export function useEntityApi(options: EntityApiOptions) {
     }
 
     const loadInitial = () => {
-        return fetchEntities(options.api)
+        return fetchEntities(currentApiUrl())
     }
 
     const currentApiUrl = (): string => {

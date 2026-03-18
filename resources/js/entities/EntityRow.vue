@@ -273,6 +273,9 @@ const handleRowClick = (event: MouseEvent) => {
         return
     }
     if (props.selecting) {
+        if ((event.target as HTMLElement).closest('input[type="checkbox"]')) {
+            return
+        }
         event.preventDefault()
         event.stopPropagation()
         props.entity.selected = !props.entity.selected
