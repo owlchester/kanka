@@ -50,6 +50,13 @@ class DashboardWidgetController extends Controller
             abort(404);
         }
 
+        if ($widget === 'gallery' && ! $campaign->premium()) {
+            return view('components.premium-dialog', [
+                'campaign' => $campaign,
+                'pitch' => 'dashboards/widgets/gallery.helpers.premium',
+            ]);
+        }
+
         $entityTypes = $this->entityTypeService
             ->campaign($campaign)
             ->exclude([config('entities.ids.bookmark')])
@@ -70,6 +77,9 @@ class DashboardWidgetController extends Controller
     public function store(StoreCampaignDashboardWidget $request, Campaign $campaign)
     {
         $this->authorize('dashboard', $campaign);
+        if ($request->input('widget') === Widget::Gallery->value) {
+            $this->authorize('galleryWidget', $campaign);
+        }
         if ($request->ajax()) {
             return response()->json(['success' => true]);
         }

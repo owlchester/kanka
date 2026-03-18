@@ -318,6 +318,11 @@ class CampaignPolicy
         return empty($campaign->export_date) || ! $campaign->export_date->isToday() && $campaign->queuedCampaignExports->count() === 0;
     }
 
+    public function galleryWidget(?User $user, Campaign $campaign): bool
+    {
+        return $campaign->premium();
+    }
+
     public function whiteboards(User $user, Campaign $campaign): bool
     {
         if (app()->hasDebugModeEnabled() || app()->environment('qa')) {

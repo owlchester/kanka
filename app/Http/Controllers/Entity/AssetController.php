@@ -219,8 +219,10 @@ class AssetController extends Controller
     protected function createLink(Campaign $campaign, Entity $entity)
     {
         if (! $campaign->boosted()) {
-            return view('entities.pages.links.not-premium')
-                ->with('campaign', $campaign);
+            return view('components.premium-dialog', [
+                'campaign' => $campaign,
+                'pitch' => 'entities/links.call-to-action',
+            ]);
         }
 
         return view('entities.pages.links.create', compact(

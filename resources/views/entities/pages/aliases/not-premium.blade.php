@@ -1,10 +1,1 @@
-<x-dialog.header>
-    {{ __('concept.premium-feature') }}
-</x-dialog.header>
-<x-dialog.article class="max-w-3xl">
-    <x-helper>
-        <p>{{ __('entities/aliases.limit') }}</p>
-    </x-helper>
-    <x-premium-cta-footer :campaign="$campaign" />
-</x-dialog.article>
-
+<x-premium-dialog :campaign="$campaign" pitch="entities/aliases.limit" />

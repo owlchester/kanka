@@ -129,7 +129,7 @@ class CampaignDashboardWidget extends Model
             return $this->width;
         }
 
-        return ($this->widget == Widget::Preview || $this->widget == Widget::Random ||
+        return ($this->widget == Widget::Preview || $this->widget == Widget::Random || $this->widget == Widget::Gallery ||
             ($this->widget == Widget::Recent && $this->conf('singular')))
             ? 4 : 6;
     }
@@ -146,7 +146,7 @@ class CampaignDashboardWidget extends Model
             return max(6, $this->width);
         }
 
-        return ($this->widget == Widget::Preview || $this->widget == Widget::Random ||
+        return ($this->widget == Widget::Preview || $this->widget == Widget::Random || $this->widget == Widget::Gallery ||
             ($this->widget == Widget::Recent && $this->conf('singular')))
             ? 6 : 6;
     }
@@ -459,6 +459,8 @@ class CampaignDashboardWidget extends Model
             return 'fa-regular fa-party-horn';
         } elseif ($this->widget === Widget::Onboarding) {
             return 'fa-regular fa-calendar-check';
+        } elseif ($this->widget === Widget::Gallery) {
+            return 'fa-regular fa-images';
         }
 
         return 'fa-regular fa-question-circle';
