@@ -91,7 +91,7 @@ trait HasFilters
         foreach ($this->filterParams as $key => $value) {
             if (isset($value) && in_array($key, $fields)) {
                 // The requested field is an array, which we don't support for anything other than tags, and locations ("or" searches)
-                if (is_array($value) && ! in_array($key, ['tags', 'locations', 'organisations', 'races', 'families', 'creators'])) {
+                if (is_array($value) && ! in_array($key, ['tags', 'locations', 'organisations', 'races', 'families'])) {
                     continue;
                 }
                 $this->filterOption = ! empty($params[$key . '_option']) ? $params[$key . '_option'] : null;
@@ -128,8 +128,6 @@ trait HasFilters
                     $this->filterRaces($query, $value);
                 } elseif ($key == 'families') {
                     $this->filterFamilies($query, $value);
-                } elseif ($key == 'creators') {
-                    $this->filterCreators($query, $value);
                 } elseif (in_array($key, ['date_start', 'date_end'])) {
                     $this->filterDateRange($query, $key, $params);
                 } elseif ($key == 'races') {
@@ -205,7 +203,7 @@ trait HasFilters
     {
         $operator = 'like';
         $filterValue = $value;
-        if (! in_array($key, ['tags', 'locations', 'organisations', 'races', 'families', 'creators'])) {
+        if (! in_array($key, ['tags', 'locations', 'organisations', 'races', 'families'])) {
             if ($value == '!!') {
                 $operator = 'IS NULL';
                 $filterValue = null;
@@ -710,50 +708,6 @@ trait HasFilters
     }
 
     /**
-     * Filter items on creators through the item_creator pivot table
-     */
-    protected function filterCreators(Builder $query, null|string|array $value = null): void
-    {
-        if ($this->filterOption('none')) {
-            return;
-        }
-
-        if (! is_array($value)) {
-            $value = [$value];
-        }
-
-        $creatorIds = collect($value)->map(fn ($v) => (int) $v)->filter()->values()->toArray();
-
-        if (empty($creatorIds)) {
-            return;
-        }
-
-        $table = $this->getTable();
-
-        if ($this->filterOption('exclude')) {
-            foreach ($creatorIds as $creatorId) {
-                $query->whereNotExists(function ($sub) use ($table, $creatorId) {
-                    $sub->selectRaw(1)
-                        ->from('item_creator')
-                        ->whereColumn('item_creator.item_id', $table . '.id')
-                        ->where('item_creator.creator_id', $creatorId);
-                });
-            }
-
-            return;
-        }
-
-        foreach ($creatorIds as $creatorId) {
-            $query->whereExists(function ($sub) use ($table, $creatorId) {
-                $sub->selectRaw(1)
-                    ->from('item_creator')
-                    ->whereColumn('item_creator.item_id', $table . '.id')
-                    ->where('item_creator.creator_id', $creatorId);
-            });
-        }
-    }
-
-    /**
      * Filter characters on a single race
      */
     protected function filterRace(Builder $query, ?string $value = null): void
@@ -946,18 +900,11 @@ trait HasFilters
             $key = $names[$key];
         }
         // Validate the key is a filter
-        if (! in_array($key, $fields) && $key !== 'creators') {
+        if (! in_array($key, $fields)) {
             return;
         }
         // Left join shenanigans
-        if ($key === 'creators') {
-            $query
-                ->select($this->getTable() . '.*')
-                ->leftJoin('item_creator as ic_none', function ($join) {
-                    $join->on('ic_none.item_id', '=', $this->getTable() . '.id');
-                })
-                ->whereNull('ic_none.creator_id');
-        } elseif (! in_array($key, ['race_id', 'family_id', 'tags', 'quest_element_id', 'member_id'])) {
+        if (! in_array($key, ['race_id', 'family_id', 'tags', 'quest_element_id', 'member_id'])) {
             $query->whereNull($this->getTable() . '.' . $key);
         } elseif ($key === 'tags') {
             $query

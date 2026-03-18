@@ -12,14 +12,10 @@ class ItemBulk extends Bulk
         'weight',
         'item_id',
         'location_id',
-        'creators',
+        'creator_id',
         'tags',
         'private_choice',
         'entity_image',
         'entity_header',
-    ];
-
-    protected array $foreignRelations = [
-        'creators',
     ];
 }
