@@ -53,3 +53,5 @@ Route::get('/validation/{userValidation}', [EmailValidationController::class, 'v
 Route::get('/search/systems', [GameSystemSearchController::class, 'index'])->name('search.systems');
 
 Route::get('/r/{referral}', [ReferralController::class, 'index'])->name('referrals');
+
+Route::get('/datagrids/subscription', [\App\Http\Controllers\Datagrids\SubscriptionController::class, 'index'])->name('datagrids.subscription');

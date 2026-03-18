@@ -4,8 +4,8 @@
                :role="nested ? 'treegrid' : 'grid'">
             <thead>
                 <tr>
-                    <th v-if="selecting" class="w-8">
-                        <input type="checkbox" :checked="allSelected" @change="$emit('toggleAll')" />
+                    <th class="w-8" :class="selecting ? '' : 'hidden sm:table-cell'">
+                        <input v-if="selecting" type="checkbox" :checked="allSelected" @change="$emit('toggleAll')" />
                     </th>
                     <th v-if="nested && entityType?.is_nested" class="w-8"></th>
                     <th v-for="col in visibleColumns" :key="col.key"
@@ -31,6 +31,7 @@
                         :i18n="i18n"
                         :features="features"
                         :show-expand-column="nested && entityType?.is_nested"
+                        @start-selecting="(id: number) => $emit('startSelecting', id)"
                     />
                     <!-- Ad row -->
                     <tr v-if="ads.enabled && (idx + 1) % ads.frequency === 0" class="adrow">
@@ -67,11 +68,12 @@ const props = defineProps<{
 defineEmits<{
     orderBy: [field: string, sortKey?: string | null]
     toggleAll: []
+    startSelecting: [entityId: number]
 }>()
 
 const totalColumns = computed(() => {
     let count = props.visibleColumns.length + 1 // +1 for actions column
-    if (props.selecting) count++
+    count++ // checkbox column is always rendered (hidden on desktop when not selecting)
     if (props.nested && props.entityType?.is_nested) count++
     return count
 })
@@ -81,6 +83,8 @@ const headerClass = (col: any): string => {
     if (col.type === 'name') return 'dg-name'
     if (col.type === 'private') return 'w-10 text-center'
     if (col.type === 'icon') return 'w-10 text-center'
+    if (col.type === 'explore') return 'w-10 text-center'
+    if (col.type === 'draw') return 'w-10 text-center'
     return 'hidden lg:table-cell'
 }
 </script>

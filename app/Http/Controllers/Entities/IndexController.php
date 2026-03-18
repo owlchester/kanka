@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Entities;
 
+use App\Facades\Domain;
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\CachedResponse;
 use App\Http\Resources\Entities\ExploreResource;
@@ -14,6 +15,7 @@ use App\Models\EntityListingPreference;
 use App\Models\EntityType;
 use App\Services\Entity\ColumnDefinitionService;
 use App\Services\FilterService;
+use App\Services\PaginationService;
 use App\Traits\Controllers\HasNested;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -36,6 +38,7 @@ class IndexController extends Controller
     public function __construct(
         protected FilterService $filterService,
         protected ColumnDefinitionService $columnDefinitionService,
+        protected PaginationService $paginationService,
     ) {
         $this->middleware([CachedResponse::class]);
     }
@@ -211,7 +214,8 @@ class IndexController extends Controller
         } else {
             $base = $base->whereNull('entities.archived_at');
         }
-        $models = $base->orderBy('entities.name')->paginate();
+        $perPage = $this->perPageValue();
+        $models = $base->orderBy('entities.name')->paginate($perPage);
 
         $i18n = [
             'fields' => [
@@ -221,13 +225,18 @@ class IndexController extends Controller
             ],
             'is_private' => __('crud.is_private'),
             'select' => __('crud.select'),
+            'selected' => __('datagrids.bulks.selected'),
             'selectAll' => __('general.select_all'),
             'done' => __('general.done'),
-            'filters' => __('crud.filters.title'),
+            'filters' => __('datagrids.actions.filters'),
             'bookmark' => __('filters.actions.bookmark'),
             'noResults' => __('search.no_results'),
             'templates' => __('entries/archetypes.helpers.how'),
             'actions' => __('crud.actions.actions'),
+            'display' => __('datagrids.display.title'),
+            'perPage' => __('datagrids.display.per_page'),
+            'sortBy' => __('datagrids.display.sort_by'),
+            'clearFilters' => __('datagrids.filters.clear'),
             'flatten' => __('datagrids.modes.flatten'),
             'nest' => __('datagrids.modes.nested'),
             'layout_grid' => __('datagrids.modes.grid'),
@@ -298,12 +307,28 @@ class IndexController extends Controller
             'preferences' => $preference ? [
                 'layout' => $preference->layout,
                 'nested' => $preference->nested,
+                'per_page' => $perPage,
             ] : null,
+            'subscription' => [
+                'isSubscriber' => auth()->check() && auth()->user()->isSubscriber(),
+                'url' => route('datagrids.subscription'),
+            ],
+            'perPageOptions' => $this->paginationService->options(),
+            'subscriberPerPageOptions' => $this->paginationService->subscriberOnlyOptions(),
+            'emptyState' => [
+                'title' => __('lists.empty.title', ['plural' => strtolower($entityType->plural())]),
+                'helper' => __($entityType->pluralCode() . '.lists.empty'),
+                'docsUrl' => 'https://docs.kanka.io/en/latest/entries/' . Str::replace('_', '-', $entityType->isAttributeTemplate() ? 'property-kits' : $entityType->pluralCode()) . '.html',
+                'publicUrl' => Domain::toFront('campaigns'),
+                'learn' => __('lists.actions.learn'),
+                'public' => __('lists.actions.public'),
+            ],
         ]);
     }
 
     protected function showAds(Campaign $campaign): bool
     {
+        return true;
         if (! config('ads.nitro.enabled')) {
             return false;
         }
@@ -391,5 +416,36 @@ class IndexController extends Controller
         }
 
         return Arr::get(auth()->user()->settings, $key, 'grid');
+    }
+
+    protected function perPageValue(): int
+    {
+        $allowed = $this->paginationService->options();
+        $subscriberOnly = $this->paginationService->subscriberOnlyOptions();
+        $isSubscriber = auth()->user()?->isSubscriber() ?? false;
+        $default = 25;
+
+        $cap = function (int $value) use ($subscriberOnly, $isSubscriber, $default): int {
+            if (in_array($value, $subscriberOnly) && ! $isSubscriber) {
+                return $default;
+            }
+
+            return $value;
+        };
+
+        // URL override (e.g. from pagination links)
+        if ($this->request->has('pp')) {
+            $pp = (int) $this->request->get('pp');
+            if (in_array($pp, $allowed)) {
+                return $cap($pp);
+            }
+        }
+
+        // Preference
+        if ($this->preference && in_array($this->preference->per_page, $allowed)) {
+            return $cap($this->preference->per_page);
+        }
+
+        return $default;
     }
 }

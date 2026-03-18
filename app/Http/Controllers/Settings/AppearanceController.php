@@ -6,11 +6,10 @@ use App\Facades\UserCache;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSettingsLayout;
 use App\Models\User;
-use App\Services\PaginationService;
 
 class AppearanceController extends Controller
 {
-    public function __construct(protected PaginationService $service)
+    public function __construct()
     {
         $this->middleware(['auth', 'identity']);
     }
@@ -19,8 +18,6 @@ class AppearanceController extends Controller
     {
         $highlight = request()->get('highlight');
         $from = request()->get('from');
-        $paginationOptions = $this->service->user(auth()->user())->options();
-        $paginationDisabled = $this->service->disabled();
 
         $editorOptions = [
             '' => __('settings/appearance.editors.default', ['name' => 'Summernote']),
@@ -31,8 +28,6 @@ class AppearanceController extends Controller
         $editorOptions['tiptap'] = __('settings/appearance.editors.tiptap');
 
         return view('settings.appearance')
-            ->with('paginationOptions', $paginationOptions)
-            ->with('paginationDisabled', $paginationDisabled)
             ->with('highlight', $highlight)
             ->with('from', $from)
             ->with('editorOptions', $editorOptions);
@@ -47,8 +42,7 @@ class AppearanceController extends Controller
         $user = $request->user();
         $settingFields = $request->only([
             'editor', 'advanced_mentions', 'new_entity_workflow',
-            'campaign_switcher_order_by', 'pagination', 'date_format',
-            'entity_explore',
+            'campaign_switcher_order_by', 'date_format',
         ]);
         $user
             ->saveSettings($settingFields)

@@ -19,6 +19,7 @@
                 :nested="nested"
                 :i18n="i18n"
                 @navigate="(id, url) => $emit('navigate', id, url)"
+                @start-selecting="(id) => $emit('startSelecting', id)"
             />
             <!-- Ad slot placeholder (grid mode, future) -->
             <div v-if="ads.enabled && (idx + 1) % ads.frequency === 0"
@@ -45,5 +46,6 @@ defineProps<{
 defineEmits<{
     navigate: [entityId: number, childrenUrl: string]
     back: []
+    startSelecting: [entityId: number]
 }>()
 </script>

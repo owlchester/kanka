@@ -8,7 +8,15 @@ class UpdateListingPreferenceRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return auth()->check();
+        if (! auth()->check()) {
+            return false;
+        }
+
+        if ((int) $this->input('per_page') === 100 && ! auth()->user()->isSubscriber()) {
+            return false;
+        }
+
+        return true;
     }
 
     public function rules(): array
@@ -18,6 +26,7 @@ class UpdateListingPreferenceRequest extends FormRequest
             'columns.*' => ['string'],
             'layout' => ['sometimes', 'nullable', 'in:grid,table'],
             'nested' => ['sometimes', 'nullable', 'boolean'],
+            'per_page' => ['sometimes', 'nullable', 'integer', 'in:10,25,50,100'],
         ];
     }
 }
