@@ -18,7 +18,7 @@
         <!-- Toolbar -->
         <div class="flex gap-2 justify-between items-center flex-wrap">
             <!-- Left: title + filters -->
-            <div class="flex gap-2 items-center flex-wrap">
+            <div class="flex gap-2 items-center flex-wrap" v-if="!bulkActions.selecting.value">
                 <h1 class="text-2xl category-title truncate" v-html="props.module"></h1>
 
                 <!-- Filter button: no active filters -->
@@ -147,7 +147,7 @@
             </div>
 
             <!-- Bulk action bar (selecting mode) -->
-            <div class="flex gap-2 items-center flex-wrap" v-else>
+            <div class="flex gap-2 items-center flex-wrap w-full" v-else>
                 <span class="rounded-full bg-primary text-primary-content px-3 py-1 text-xs font-bold">
                     {{ bulkActions.selectedEntityIds().length }}
                     {{ i18n.selected }}
@@ -474,12 +474,10 @@ const getEntities = async (page = 1) => {
 }
 
 const handleOrderBy = (field: string, sortKey?: string | null) => {
-    displayBtn.value?._tippy?.hide()
     orderingComposable.orderBy(field, sortKey)
 }
 
 const handleSelectPerPage = (n: number) => {
-    displayBtn.value?._tippy?.hide()
     perPageComposable.selectPerPage(n)
 }
 
@@ -605,6 +603,7 @@ onMounted(() => {
 
         loading.value = false
     })
+    window.addEventListener('keydown', handleKeydown)
 })
 
 watch(loading, (val) => {
@@ -625,7 +624,14 @@ watch(() => layoutComposable.layout.value, () => {
     nextTick(initAllDropdowns)
 })
 
+const handleKeydown = (e: KeyboardEvent) => {
+    if (e.key === 'Escape' && bulkActions.selecting.value) {
+        bulkActions.toggleSelecting()
+    }
+}
+
 onBeforeUnmount(() => {
+    window.removeEventListener('keydown', handleKeydown)
     destroyAllTippy()
 })
 
