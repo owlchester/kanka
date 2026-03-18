@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Entities;
 
+use App\Facades\Domain;
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\CachedResponse;
 use App\Http\Resources\Entities\ExploreResource;
@@ -314,6 +315,14 @@ class IndexController extends Controller
             ],
             'perPageOptions' => $this->paginationService->options(),
             'subscriberPerPageOptions' => $this->paginationService->subscriberOnlyOptions(),
+            'emptyState' => [
+                'title' => __('lists.empty.title', ['plural' => strtolower($entityType->plural())]),
+                'helper' => __($entityType->pluralCode() . '.lists.empty'),
+                'docsUrl' => 'https://docs.kanka.io/en/latest/entries/' . Str::replace('_', '-', $entityType->isAttributeTemplate() ? 'property-kits' : $entityType->pluralCode()) . '.html',
+                'publicUrl' => Domain::toFront('campaigns'),
+                'learn' => __('lists.actions.learn'),
+                'public' => __('lists.actions.public'),
+            ],
         ]);
     }
 

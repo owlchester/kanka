@@ -219,7 +219,7 @@
         </div>
 
         <!-- Pagination -->
-        <div class="flex items-center justify-end gap-1 h-12">
+        <div v-if="(entityApi.entitiesData.value?.meta.last_page ?? 1) > 1" class="flex items-center justify-end gap-1 h-12">
             <TailwindPagination
                 v-if="!entityApi.paginating.value"
                 :data="entityApi.entitiesData.value"
@@ -231,7 +231,26 @@
                 <i class="fa-solid fa-spinner fa-spin" aria-label="Loading"></i>
             </div>
         </div>
-        <p v-if="entityApi.entities.value.length === 0" class="help-text italic" v-html="i18n.noResults"></p>
+        <!-- Empty state -->
+        <div v-if="entityApi.entities.value.length === 0 && emptyState" class="flex flex-col gap-4 items-center justify-center mx-auto text-center">
+            <h2 v-html="emptyState.title"></h2>
+            <p class="help-block max-w-sm" v-html="emptyState.helper"></p>
+            <a v-if="hasPermissions() && permissions.create" :href="urls.create" class="btn2 btn-primary mb-2">
+                <i class="fa-regular fa-plus" aria-hidden="true"></i>
+                <span v-html="entityType.singular"></span>
+            </a>
+            <div class="flex gap-4 items-center justify-center flex-wrap">
+                <a :href="emptyState.publicUrl" class="text-link flex gap-1 items-center">
+                    <i class="fa-regular fa-sparkles" aria-hidden="true"></i>
+                    <span v-html="emptyState.public"></span>
+                </a>
+                <a :href="emptyState.docsUrl" class="text-link flex gap-1 items-center" target="_blank">
+                    <i class="fa-regular fa-book" aria-hidden="true"></i>
+                    <span v-html="emptyState.learn"></span>
+                </a>
+            </div>
+        </div>
+        <p v-else-if="entityApi.entities.value.length === 0" class="help-text italic" v-html="i18n.noResults"></p>
 
         <!-- Hidden tippy menus -->
         <div ref="hiddenMenus" style="display: none">
@@ -382,6 +401,7 @@ const filterUrls = ref<any>({})
 const bookmarkable = ref(false)
 const features = ref<any>({})
 const i18n = ref<any>({})
+const emptyState = ref<any>(null)
 const loading = ref(true)
 
 // Template refs
@@ -577,6 +597,7 @@ onMounted(() => {
         features.value = response.features ?? {}
         urls.value = response.urls
         entityType.value = response.entityType
+        emptyState.value = response.emptyState ?? null
 
         // Initialize composables with API data
         nestingComposable.setNested(response.nested)
