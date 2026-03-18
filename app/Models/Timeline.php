@@ -76,14 +76,6 @@ class Timeline extends MiscModel
     ];
 
     /**
-     * Performance with for datagrids
-     */
-    public function scopePreparedWith(Builder $query): Builder
-    {
-        return parent::scopePreparedWith($query)->withCount('eras');
-    }
-
-    /**
      * @return BelongsTo<Calendar, $this>
      */
     public function calendar(): BelongsTo

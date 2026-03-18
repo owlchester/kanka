@@ -104,33 +104,9 @@ class Quest extends MiscModel
         'date',
     ];
 
-    protected array $exploreGridFields = ['status_id'];
-
     public $casts = [
         'status_id' => QuestStatus::class,
     ];
-
-    /**
-     * Performance with for datagrids
-     */
-    public function scopePreparedWith(Builder $query): Builder
-    {
-        return parent::scopePreparedWith($query->with([
-            'entity.calendarDate',
-            'entity.calendarDate.calendar',
-            'entity.calendarDate.calendar.entity',
-            'instigator' => function ($sub) {
-                $sub->select('id', 'name');
-            },
-            'location' => function ($sub) {
-                $sub->select('id', 'name');
-            },
-            'location.entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id');
-            },
-        ]))
-            ->withCount('elements');
-    }
 
     public function scopeFilteredQuests(Builder $query): Builder
     {
@@ -194,14 +170,6 @@ class Quest extends MiscModel
                 $join->on('qe.quest_id', '=', $this->getTable() . '.id');
             })
             ->where('qe.role', $value);
-    }
-
-    /**
-     * Only select used fields in datagrids
-     */
-    public function datagridSelectFields(): array
-    {
-        return ['instigator_id', 'location_id', 'status_id'];
     }
 
     public function shortDescription()

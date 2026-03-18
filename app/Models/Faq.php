@@ -47,14 +47,6 @@ class Faq extends Model
     /** @var null|string Cached slug */
     protected $cachedSlug = null;
 
-    /**
-     * This call should be adapted in each entity model to add required "with()" statements to the query for performance
-     * on the datagrids.
-     */
-    public function scopePreparedWith(Builder $query): Builder
-    {
-        return $query;
-    }
 
     public function scopeVisible(Builder $query, bool $visible = true): Builder
     {

@@ -63,11 +63,6 @@ class DiceRoll extends MiscModel
         'parameters',
     ];
 
-    public function datagridSelectFields(): array
-    {
-        return ['character_id', 'parameters'];
-    }
-
     /**
      * Who created this entry
      *
@@ -112,19 +107,5 @@ class DiceRoll extends MiscModel
         return [
             'character_id',
         ];
-    }
-
-    /**
-     * Performance with for datagrids
-     */
-    public function scopePreparedWith(Builder $query): Builder
-    {
-
-        return parent::scopePreparedWith($query->with([
-            'character' => function ($sub) {
-                $sub->select('id', 'name');
-            },
-            'character.entity',
-        ]));
     }
 }

@@ -93,20 +93,6 @@ class Tag extends MiscModel
         'is_hidden',
     ];
 
-    public function scopePreparedWith(Builder $query): Builder
-    {
-        return parent::scopePreparedWith($query)
-            ->withCount('entities');
-    }
-
-    /**
-     * Only select used fields in datagrids
-     */
-    public function datagridSelectFields(): array
-    {
-        return ['colour', 'is_auto_applied', 'is_hidden'];
-    }
-
     /**
      * Detach children when moving this entity from one campaign to another
      */

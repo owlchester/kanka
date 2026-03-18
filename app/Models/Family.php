@@ -74,8 +74,6 @@ class Family extends MiscModel
         'is_extinct',
     ];
 
-    protected array $exploreGridFields = ['is_extinct'];
-
     /**
      * Nullable values (foreign keys)
      *
@@ -88,21 +86,6 @@ class Family extends MiscModel
     protected array $sanitizable = [
         'name',
     ];
-
-    /**
-     * Performance with for datagrids
-     */
-    public function scopePreparedWith(Builder $query): Builder
-    {
-        return parent::scopePreparedWith($query->with([
-            'location' => function ($sub) {
-                $sub->select('id', 'name');
-            },
-            'location.entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id');
-            },
-        ]))->withCount('members');
-    }
 
     /**
      * Filter for family with specific member
@@ -145,14 +128,6 @@ class Family extends MiscModel
         }
 
         return $query->distinct();
-    }
-
-    /**
-     * Only select used fields in datagrids
-     */
-    public function datagridSelectFields(): array
-    {
-        return ['location_id', 'is_extinct'];
     }
 
     /**

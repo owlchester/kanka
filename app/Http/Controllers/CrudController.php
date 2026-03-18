@@ -171,20 +171,13 @@ class CrudController extends Controller
         }
         $nested = $this->isNested();
 
-        if ($mode === 'grid') {
-            $base = $model
-                ->preparedGrid();
-        } else {
-            // here
+        $base = $model
+            ->preparedSelect()
+            ->preparedWith();
+        //             dd(get_class($model), get_class($base));
 
-            $base = $model
-                ->preparedSelect()
-                ->preparedWith();
-            //             dd(get_class($model), get_class($base));
-
-            if ($nested) {
-                $this->datagrid->nested();
-            }
+        if ($nested) {
+            $this->datagrid->nested();
         }
 
         $base->search($this->filterService->search())

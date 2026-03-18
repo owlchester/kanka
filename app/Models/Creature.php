@@ -70,31 +70,9 @@ class Creature extends MiscModel
         'is_dead',
     ];
 
-    protected array $exploreGridFields = ['is_extinct', 'is_dead'];
-
     protected array $sanitizable = [
         'name',
     ];
-
-    /**
-     * Performance with for datagrids
-     */
-    public function scopePreparedWith(Builder $query): Builder
-    {
-        return parent::scopePreparedWith($query->with([
-            'entity.locations' => function ($sub) {
-                $sub->select('locations.id', 'locations.name');
-            },
-        ]));
-    }
-
-    /**
-     * Only select used fields in datagrids
-     */
-    public function datagridSelectFields(): array
-    {
-        return ['is_extinct', 'is_dead'];
-    }
 
     /**
      * Get the entity_type id from the entity_types table

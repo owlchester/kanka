@@ -145,11 +145,6 @@ class Conversation extends MiscModel
         return true;
     }
 
-    public function scopePreparedWith(Builder $query): Builder
-    {
-        return parent::scopePreparedWith($query->withCount(['participants', 'messages']));
-    }
-
     /**
      * Define the fields unique to this model that can be used on filters
      *

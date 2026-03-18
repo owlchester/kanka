@@ -66,27 +66,6 @@ class Event extends MiscModel
         'date',
     ];
 
-    /**
-     * Performance with for datagrids
-     */
-    public function scopePreparedWith(Builder $query): Builder
-    {
-        return parent::scopePreparedWith($query->with([
-            'entity.locations' => function ($sub) {
-                $sub->select('locations.id', 'locations.name');
-            },
-            'entity.calendarDateEvents',
-        ]));
-    }
-
-    /**
-     * Only select used fields in datagrids
-     */
-    public function datagridSelectFields(): array
-    {
-        return ['date'];
-    }
-
     public function scopeFilteredEvents(Builder $query): Builder
     {
         // @phpstan-ignore-next-line

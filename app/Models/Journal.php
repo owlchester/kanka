@@ -93,35 +93,6 @@ class Journal extends MiscModel
     ];
 
     /**
-     * Performance with for datagrids
-     */
-    public function scopePreparedWith(Builder $query): Builder
-    {
-        return parent::scopePreparedWith($query->with([
-            'entity.calendarDate',
-            'entity.calendarDate.calendar',
-            'entity.calendarDate.calendar.entity',
-            'location' => function ($sub) {
-                $sub->select('id', 'name');
-            },
-            'location.entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id');
-            },
-            'author' => function ($sub) {
-                $sub->select('id', 'name');
-            },
-        ]));
-    }
-
-    /**
-     * Only select used fields in datagrids
-     */
-    public function datagridSelectFields(): array
-    {
-        return ['author_id', 'date'];
-    }
-
-    /**
      * Get all journals in the journal and descendants
      */
     public function allJournals()

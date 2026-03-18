@@ -63,31 +63,6 @@ class AttributeTemplate extends MiscModel
     /**
      * Performance with for datagrids
      */
-    public function scopePreparedSelect(Builder $query): Builder
-    {
-        return $query
-            ->select([$this->getTable() . '.id', $this->getTable() . '.name', $this->getTable() . '.is_private', $this->getTable() . '.is_enabled', 'entity_type_id']);
-    }
-
-    /**
-     * Performance with for datagrids
-     */
-    public function scopePreparedWith(Builder $query): Builder
-    {
-        return parent::scopePreparedWith($query)
-            // Redefine the entity with to include an attributes count
-            ->with([
-                'entityType',
-                'entity' => function ($sub) {
-                    $sub->select('id', 'name', 'entity_id', 'type_id', 'type', 'image_path', 'image_uuid', 'focus_x', 'focus_y')
-                        ->withCount('attributes');
-                },
-            ]);
-    }
-
-    /**
-     * Performance with for datagrids
-     */
     public function scopeEnabled(Builder $query): Builder
     {
         return $query

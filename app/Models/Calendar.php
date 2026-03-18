@@ -99,19 +99,6 @@ class Calendar extends MiscModel
 
     protected array $cachedCurrentDate;
 
-    public function scopePreparedWith(Builder $query): Builder
-    {
-        return parent::scopePreparedWith($query)->withCount('calendarEvents');
-    }
-
-    /**
-     * Only select used fields in datagrids
-     */
-    public function datagridSelectFields(): array
-    {
-        return ['date'];
-    }
-
     /**
      * Get the months decoded from the json into a usable array
      */

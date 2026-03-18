@@ -156,6 +156,9 @@ class ExploreResource extends JsonResource
             if ($this->hasColumn('location')) {
                 $data['location'] = $this->formatSingleEntity($child->location ?? null);
             }
+            if ($this->hasColumn('character')) {
+                $data['character'] = $this->formatSingleEntity($child->character ?? null);
+            }
             if ($this->hasColumn('author') && method_exists($child, 'author')) {
                 $data['author'] = $this->formatSingleEntity($child->author ?? null);
             }

@@ -52,14 +52,6 @@ class Note extends MiscModel
     ];
 
     /**
-     * Performance with for datagrids
-     */
-    public function scopePreparedWith(Builder $query): Builder
-    {
-        return parent::scopePreparedWith($query);
-    }
-
-    /**
      * Get the entity_type id from the entity_types table
      */
     public function entityTypeId(): int

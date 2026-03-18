@@ -18,8 +18,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Race
  *
- * @property Race[]|Collection $descendants
- * @property ?int $race_id
  * @property bool|int $is_extinct
  * @property Collection|CharacterRace[] $characterRaces
  */
@@ -65,8 +63,6 @@ class Race extends MiscModel
         'is_extinct',
     ];
 
-    protected array $exploreGridFields = ['is_extinct'];
-
     /**
      * Foreign relations to add to export
      */
@@ -75,26 +71,6 @@ class Race extends MiscModel
     protected array $sanitizable = [
         'name',
     ];
-
-    /**
-     * Performance with for datagrids
-     */
-    public function scopePreparedWith(Builder $query): Builder
-    {
-        return parent::scopePreparedWith($query->with([
-            'entity.locations' => function ($sub) {
-                $sub->select('locations.id', 'locations.name');
-            },
-        ]))->withCount(['characters']);
-    }
-
-    /**
-     * Only select used fields in datagrids
-     */
-    public function datagridSelectFields(): array
-    {
-        return ['race_id', 'is_extinct'];
-    }
 
     /**
      * Characters belonging to this race
@@ -174,7 +150,6 @@ class Race extends MiscModel
     public function filterableColumns(): array
     {
         return [
-            'race_id',
             'locations',
             'is_extinct',
         ];

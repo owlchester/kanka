@@ -78,30 +78,9 @@ class Location extends MiscModel
         'is_destroyed',
     ];
 
-    protected array $exploreGridFields = ['is_destroyed'];
-
     protected array $sanitizable = [
         'name',
     ];
-
-    /**
-     * Performance with for datagrids
-     */
-    public function scopePreparedWith(Builder $query): Builder
-    {
-        return parent::scopePreparedWith($query)
-            ->withCount(['entities as characters_count' => function ($sub) {
-                $sub->where('type_id', config('entities.ids.character'));
-            }]);
-    }
-
-    /**
-     * Only select used fields in datagrids
-     */
-    public function datagridSelectFields(): array
-    {
-        return ['is_destroyed'];
-    }
 
     /**
      * @return BelongsToMany<Race, $this>

@@ -5,7 +5,7 @@
         <div class="entity overflow-hidden rounded shadow-xs hover:shadow-md aspect-square w-full flex flex-col bg-box" v-bind="dataAttributes">
             <a :href="entity.urls.show" :title="entity.name"
                class="block avatar grow relative cover-background overflow-hidden text-center text-link"
-               :style="entityImage" @click.prevent="handleClick">
+               :style="entityImage" @click.prevent="handleImageClick">
                 <div v-if="entity.is_private && !selecting"
                      class="bubble-private absolute left-1.5 top-1.5 text-xs shadow-xs flex justify-center items-center aspect-square rounded-full w-6 h-6 bg-box opacity-80 text-base-content"
                      :title="i18n.is_private">
@@ -31,7 +31,7 @@
             </a>
             <a :href="entity.urls.show" class="block text-center relative truncate h-12 p-4 text-link"
                data-toggle="tooltip-ajax" :data-id="entity.id" :data-url="entity.urls.tooltip"
-               v-html="entity.name" @click.prevent="handleClick" />
+               v-html="entity.name" @click="handleNameClick" />
         </div>
         <div v-for="s in Math.min(entity.children, 2)" :key="s"
              class="entity entity-stack bg-base-300 w-full overflow-hidden rounded aspect-square flex flex-col shadow-xs">
@@ -43,7 +43,7 @@
          @pointerdown="lpStart" @pointerup="lpCancel" @pointermove="lpMove" @pointercancel="lpCancel"
          @contextmenu.prevent>
         <a :href="entity.urls.show" class="block avatar grow relative cover-background" :style="entityImage"
-           :title="entity.name" @click.prevent="handleClick">
+           :title="entity.name" @click.prevent="handleImageClick">
             <div v-if="entity.is_private && !selecting"
                  class="bubble-private absolute left-1.5 top-1.5 text-xs shadow-xs flex justify-center items-center aspect-square rounded-full w-6 h-6 bg-box opacity-80 text-base-content"
                  :title="i18n.is_private">
@@ -55,7 +55,7 @@
         </a>
         <a :href="entity.urls.show" class="block text-center relative truncate h-12 p-4 text-link"
            data-toggle="tooltip-ajax" :data-id="entity.id" :data-url="entity.urls.tooltip"
-           v-html="entity.name" @click.prevent="handleClick" />
+           v-html="entity.name" @click="handleNameClick" />
     </div>
 </template>
 
@@ -125,18 +125,38 @@ const childStyle = (child: any, idx: number) => {
     return style
 }
 
-const handleClick = (event: Event) => {
+// Image area: navigates into children when nested and entity has children
+const handleImageClick = (event: Event) => {
     if (suppressNextClick) {
         event.preventDefault()
         suppressNextClick = false
         return
     }
     if (props.selecting) {
+        event.preventDefault()
         props.entity.selected = !props.entity.selected
-    } else if (props.nested && props.entity.children > 0) {
-        emit('navigate', props.entity.id, props.entity.urls.children_api)
-    } else if (event.target && (event.target as HTMLAnchorElement).href) {
-        window.location.href = (event.target as HTMLAnchorElement).href
+        return
     }
+    if (props.nested && props.entity.children > 0) {
+        event.preventDefault()
+        emit('navigate', props.entity.id, props.entity.urls.children_api)
+        return
+    }
+    // No children or not nested: follow the <a> href normally
+    window.location.href = (event.currentTarget as HTMLAnchorElement).href
+}
+
+// Name area: always navigates to the entity page, never into children
+const handleNameClick = (event: Event) => {
+    if (suppressNextClick) {
+        event.preventDefault()
+        suppressNextClick = false
+        return
+    }
+    if (props.selecting) {
+        event.preventDefault()
+        props.entity.selected = !props.entity.selected
+    }
+    // Otherwise: let the <a href> navigate normally
 }
 </script>

@@ -397,6 +397,20 @@ class ColumnDefinitionService
         ];
     }
 
+
+    protected function diceRoll(): array
+    {
+        return [
+            ['key' => 'avatar', 'type' => 'avatar', 'sortable' => false, 'alwaysVisible' => true],
+            ['key' => 'name', 'type' => 'name', 'label' => __('crud.fields.name'), 'sortable' => true, 'alwaysVisible' => true],
+            ['key' => 'type', 'type' => 'text', 'label' => __('crud.fields.type'), 'sortable' => true],
+            ['key' => 'character', 'type' => 'entity', 'label' => __('entities.character'), 'sortable' => true, 'sortKey' => 'character.name', 'moduleGate' => 'characters'],
+            ['key' => 'parent', 'type' => 'entity', 'label' => __('crud.fields.parent'), 'sortable' => true, 'sortKey' => 'parent.name'],
+            ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => true],
+            ['key' => 'is_private', 'type' => 'private', 'label' => __('crud.fields.is_private'), 'sortable' => true, 'adminOnly' => true],
+        ];
+    }
+
     protected function tag(): array
     {
         return [

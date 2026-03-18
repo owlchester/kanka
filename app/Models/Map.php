@@ -145,31 +145,6 @@ class Map extends MiscModel
      */
     public array $apiWith = ['groups', 'layers'];
 
-    protected array $exploreGridFields = ['is_real'];
-
-    /**
-     * Performance with for datagrids
-     */
-    public function scopePreparedWith(Builder $query): Builder
-    {
-        return parent::scopePreparedWith($query->with([
-            'location' => function ($sub) {
-                $sub->select('id', 'name');
-            },
-            'location.entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id');
-            },
-        ]));
-    }
-
-    /**
-     * Only select used fields in datagrids
-     */
-    public function datagridSelectFields(): array
-    {
-        return ['location_id'];
-    }
-
     /**
      * @return HasMany<MapLayer, $this>
      */

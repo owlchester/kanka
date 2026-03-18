@@ -88,8 +88,6 @@ class Character extends MiscModel
         'status_id',
     ];
 
-    protected array $exploreGridFields = ['status_id'];
-
     public $casts = [
         'status_id' => CharacterStatus::class,
     ];
@@ -141,24 +139,6 @@ class Character extends MiscModel
     public array $apiWith = ['characterTraits', 'characterRaces', 'characterFamilies'];
 
     /**
-     * Performance with for old table view of all the campaign characters
-     */
-    public function scopePreparedWith(Builder $query): Builder
-    {
-        return parent::scopePreparedWith($query->with([
-            'entity.locations' => function ($sub) {
-                $sub->select('locations.id', 'locations.name');
-            },
-            'characterFamilies' => function ($sub) {
-                $sub->select('character_family.id', 'character_family.family_id', 'character_family.character_id');
-            },
-            'characterRaces' => function ($sub) {
-                $sub->select('character_race.id', 'character_race.race_id', 'character_race.character_id');
-            },
-        ]));
-    }
-
-    /**
      * Filter for characters in a specific list of organisations
      */
     public function scopeMember(Builder $query, ?string $value, FilterOption $filter): Builder
@@ -206,14 +186,6 @@ class Character extends MiscModel
         }
 
         return $query->distinct();
-    }
-
-    /**
-     * Only select used fields in datagrids
-     */
-    public function datagridSelectFields(): array
-    {
-        return ['title', 'sex', 'status_id'];
     }
 
     /**

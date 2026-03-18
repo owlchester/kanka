@@ -67,15 +67,6 @@ class Ability extends MiscModel
         'charges',
     ];
 
-    /**
-     * Performance with for datagrids
-     */
-    public function scopePreparedWith(Builder $query): Builder
-    {
-        return parent::scopePreparedWith($query)
-            ->withCount('entityAbilities');
-    }
-
     public function entities()
     {
         return $this

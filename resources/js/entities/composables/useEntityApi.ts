@@ -77,5 +77,6 @@ export function useEntityApi(options: EntityApiOptions) {
         loadInitial,
         loadPage,
         addToUrl,
+        currentApiUrl,
     }
 }

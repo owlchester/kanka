@@ -69,8 +69,6 @@ class Organisation extends MiscModel
         'is_defunct',
     ];
 
-    protected array $exploreGridFields = ['is_defunct'];
-
     /**
      * Nullable values (foreign keys)
      *
@@ -84,19 +82,6 @@ class Organisation extends MiscModel
     ];
 
     protected array $organisationAndDescendantIds;
-
-    /**
-     * Performance with for datagrids
-     */
-    public function scopePreparedWith(Builder $query): Builder
-    {
-        return parent::scopePreparedWith($query->with([
-            'entity.locations' => function ($sub) {
-                $sub->select('locations.id', 'locations.name');
-            },
-        ]))
-            ->withCount('members');
-    }
 
     /**
      * Filter for organisations with specific member
@@ -138,14 +123,6 @@ class Organisation extends MiscModel
         }
 
         return $query->distinct();
-    }
-
-    /**
-     * Only select used fields in datagrids
-     */
-    public function datagridSelectFields(): array
-    {
-        return ['is_defunct'];
     }
 
     public function pinnedMembers()

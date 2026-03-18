@@ -127,37 +127,6 @@ class Item extends MiscModel
     }
 
     /**
-     * Performance with for datagrids
-     *
-     * @return Builder mixed
-     */
-    public function scopePreparedWith(Builder $query): Builder
-    {
-        return parent::scopePreparedWith($query->with([
-            'location' => function ($sub) {
-                $sub->select('id', 'name');
-            },
-            'location.entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id');
-            },
-            'itemCreators' => function ($sub) {
-                $sub->has('creator');
-            },
-            'itemCreators.creator' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id');
-            },
-        ]));
-    }
-
-    /**
-     * Only select used fields in datagrids
-     */
-    public function datagridSelectFields(): array
-    {
-        return ['location_id', 'price', 'size', 'weight'];
-    }
-
-    /**
      * @return HasMany<ItemCreator, $this>
      */
     public function itemCreators(): HasMany

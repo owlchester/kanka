@@ -524,27 +524,22 @@ const handleStartSelecting = (entityId: number) => {
 
 const handleGridBack = () => {
     const parent = entityApi.parent.value
-    if (parent?.urls?.parent_api) {
-        entityApi.fetchEntities(parent.urls.parent_api).then((response: any) => {
-            entityApi.parent.value = response.parent
-        })
+    if (!parent) return
 
-        const currentUrl = new URL(window.location.href)
-        if (parent.parent_id) {
-            currentUrl.searchParams.set('parent_id', String(parent.parent_id))
-        } else {
-            currentUrl.searchParams.delete('parent_id')
-        }
-        window.history.pushState({}, '', currentUrl)
+    // Update the browser URL immediately (before async fetch) so any
+    // subsequent currentApiUrl() calls in composables don't pick up the old parent_id
+    const currentUrl = new URL(window.location.href)
+    if (parent.parent_id) {
+        currentUrl.searchParams.set('parent_id', String(parent.parent_id))
     } else {
-        entityApi.loadInitial().then((response: any) => {
-            entityApi.parent.value = response.parent
-        })
-
-        const currentUrl = new URL(window.location.href)
         currentUrl.searchParams.delete('parent_id')
-        window.history.pushState({}, '', currentUrl)
     }
+    window.history.pushState({}, '', currentUrl)
+
+    // Build the fetch URL from the now-updated browser URL so sort/filters are preserved
+    entityApi.fetchEntities(entityApi.currentApiUrl()).then((response: any) => {
+        entityApi.parent.value = response.parent
+    })
 }
 
 // Tippy dropdowns
