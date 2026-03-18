@@ -36,23 +36,23 @@
                 <!-- Filter pill: active filters -->
                 <div
                     v-else-if="!bulkActions.selecting.value && filters > 0"
-                    class="flex items-stretch rounded-lg border border-primary/30 bg-primary/10 overflow-hidden"
+                    class="join"
                 >
-                    <button class="flex items-center gap-2 px-3 py-1.5 hover:bg-primary/20 text-primary text-sm" @click="openFilters">
+                    <button class="btn2 btn-sm join-item" @click="openFilters">
                         <i class="fa-regular fa-filter" aria-hidden="true"></i>
                         <span class="hidden sm:inline" v-html="i18n.filters"></span>
                         <span class="rounded-full bg-primary text-primary-content px-1.5 text-xs font-bold leading-5">{{ filters }}</span>
                     </button>
                     <button
                         v-if="bookmarkable"
-                        class="flex items-center px-2.5 py-1.5 border-l border-primary/20 hover:bg-primary/20 text-base-content hover:text-primary text-sm"
+                        class="btn2 btn-sm join-item"
                         :title="i18n.bookmark"
                         @click="bookmark"
                     >
                         <i class="fa-regular fa-bookmark" aria-hidden="true"></i>
                     </button>
                     <button
-                        class="flex items-center px-2.5 py-1.5 border-l border-primary/20 hover:bg-error/10 text-base-content hover:text-error text-sm"
+                        class="btn2 btn-sm join-item "
                         :title="i18n.clearFilters"
                         @click="clearFilters"
                     >
@@ -62,21 +62,31 @@
             </div>
 
             <!-- Right: view controls + create (not in bulk mode) -->
-            <div class="flex gap-2 items-center" v-if="!bulkActions.selecting.value">
+            <div class="flex gap-2 items-center flex-wrap" v-if="!bulkActions.selecting.value">
                 <!-- Loading spinner during ordering -->
                 <button class="btn2 btn-disabled" disabled v-if="orderingComposable.ordering.value">
                     <i class="fa-solid fa-spinner fa-spin" aria-label="Loading"></i>
                 </button>
 
                 <!-- Nesting toggle (unchanged behaviour) -->
-                <div v-if="entityType.is_nested && !orderingComposable.ordering.value">
-                    <button class="btn2" v-if="nestingComposable.nesting.value">
-                        <i class="fa-solid fa-spinner fa-spin" aria-label="Loading"></i>
-                    </button>
-                    <button @click="nestingComposable.switchMode()" class="btn2" v-else-if="nestingComposable.nested.value" :title="i18n.flatten">
+                <div
+                    v-if="entityType.is_nested && !orderingComposable.ordering.value"
+                    class="flex items-center rounded-xl bg-base-200 overflow-hidden p-0.5 gap-0.5"
+                >
+                    <button
+                        @click="nestingComposable.switchMode()"
+                        class="flex items-center justify-center rounded-lg px-2 py-2 text-sm transition-all"
+                        :class="nestingComposable.nested.value ? 'bg-base-100 text-base-content shadow-xs' : 'text-neutral-content cursor-pointer hover:text-base-content'"
+                        :title="i18n.flatten"
+                    >
                         <i class="fa-regular fa-boxes-stacked" aria-hidden="true"></i>
                     </button>
-                    <button @click="nestingComposable.switchMode()" class="btn2" v-else :title="i18n.nest">
+                    <button
+                        @click="nestingComposable.switchMode()"
+                        class="flex items-center justify-center rounded-lg px-2 py-2 text-sm transition-all"
+                        :class="!nestingComposable.nested.value ? 'bg-base-100 text-base-content shadow-xs' : 'text-neutral-content cursor-pointer hover:text-base-content'"
+                        :title="i18n.nest"
+                    >
                         <i class="fa-regular fa-layer-group" aria-hidden="true"></i>
                     </button>
                 </div>
@@ -84,20 +94,20 @@
                 <!-- Layout toggle (grid / table) — only when entity type has table -->
                 <div
                     v-if="entityType.has_table && !orderingComposable.ordering.value"
-                    class="flex items-center rounded-lg border border-base-300 bg-base-200 overflow-hidden p-0.5 gap-0.5"
+                    class="flex items-center rounded-xl bg-base-200 overflow-hidden p-0.5 gap-0.5"
                 >
                     <button
                         @click="!layoutComposable.isGrid() && layoutComposable.switchLayout()"
-                        class="flex items-center justify-center rounded-md px-2 py-1.5 text-sm transition-all"
-                        :class="layoutComposable.isGrid() ? 'bg-base-100 text-base-content shadow-xs' : 'text-base-content/50 hover:text-base-content'"
+                        class="flex items-center justify-center rounded-lg px-2 py-2 text-sm transition-all"
+                        :class="layoutComposable.isGrid() ? 'bg-base-100 text-base-content shadow-xs' : 'text-neutral-content cursor-pointer hover:text-base-content'"
                         :title="i18n.layout_grid"
                     >
                         <i class="fa-regular fa-grid-2" aria-hidden="true"></i>
                     </button>
                     <button
                         @click="layoutComposable.isGrid() && layoutComposable.switchLayout()"
-                        class="flex items-center justify-center rounded-md px-2 py-1.5 text-sm transition-all"
-                        :class="!layoutComposable.isGrid() ? 'bg-base-100 text-base-content shadow-xs' : 'text-base-content/50 hover:text-base-content'"
+                        class="flex items-center justify-center rounded-lg px-2 py-2 text-sm transition-all"
+                        :class="!layoutComposable.isGrid() ? 'bg-base-100 text-base-content shadow-xs' : 'text-neutral-content cursor-pointer hover:text-base-content'"
                         :title="i18n.layout_table"
                     >
                         <i class="fa-regular fa-list-ul" aria-hidden="true"></i>
@@ -106,7 +116,7 @@
 
                 <!-- Display dropdown button -->
                 <div v-if="!orderingComposable.ordering.value">
-                    <button ref="displayBtn" class="btn2" :title="i18n.display">
+                    <button ref="displayBtn" class="btn2 btn-sm" :title="i18n.display">
                         <i class="fa-regular fa-gear" aria-hidden="true"></i>
                         <span class="hidden sm:inline" v-html="i18n.display"></span>
                     </button>
@@ -116,18 +126,20 @@
                 <button
                     v-if="hasPermissions() && !orderingComposable.ordering.value"
                     @click="bulkActions.toggleSelecting()"
-                    class="btn2 hidden sm:flex"
-                    v-html="i18n.select"
-                ></button>
+                    class="btn2 hidden btn-sm sm:flex"
+                >
+                    <i class="fa-regular fa-check-square" aria-hidden="true"></i>
+                    <span class="hidden sm:inline" v-html="i18n.select"></span>
+                </button>
 
                 <!-- Create + template caret -->
                 <div class="join" v-if="hasPermissions() && permissions.create">
-                    <a :href="urls.create" class="btn2 btn-primary join-item btn-new-entity">
+                    <a :href="urls.create" class="btn2 btn-primary btn-sm join-item btn-new-entity">
                         <i class="fa-regular fa-plus" aria-hidden="true"></i>
                         <span class="hidden md:inline" v-html="entityType.singular"></span>
                     </a>
                     <div v-if="permissions.template">
-                        <button ref="templateBtn" type="button" class="btn2 btn-primary join-item" aria-expanded="false" aria-label="Create from template" aria-haspopup="menu">
+                        <button ref="templateBtn" type="button" class="btn2 btn-primary btn-sm join-item" aria-expanded="false" aria-label="Create from template" aria-haspopup="menu">
                             <i class="fa-regular fa-caret-down" aria-hidden="true"></i>
                         </button>
                     </div>
@@ -135,20 +147,21 @@
             </div>
 
             <!-- Bulk action bar (selecting mode) -->
-            <div class="flex gap-2 items-center" v-else>
+            <div class="flex gap-2 items-center flex-wrap" v-else>
                 <span class="rounded-full bg-primary text-primary-content px-3 py-1 text-xs font-bold">
                     {{ bulkActions.selectedEntityIds().length }}
+                    {{ i18n.selected }}
                 </span>
-                <button @click="bulkActions.toggleAll()" class="text-sm text-base-content/60 hover:text-base-content px-1" v-html="i18n.selectAll"></button>
+                <button @click="bulkActions.toggleAll()" class="btn2 btn-sm" v-html="i18n.selectAll"></button>
                 <div class="flex-1"></div>
                 <!-- Admin primary action: batch edit -->
                 <div class="join" v-if="permissions.admin">
-                    <button class="btn2 btn-primary join-item" @click="bulkActions.bulkDialog(urls.batch, actionsBtn)">
+                    <button class="btn2 btn-primary btn-sm join-item" @click="bulkActions.bulkDialog(urls.batch, actionsBtn)">
                         <i class="fa-regular fa-pencil" aria-hidden="true"></i>
                         <span class="hidden md:inline" v-html="i18n.bulkEdit"></span>
                     </button>
                     <div>
-                        <button ref="actionsBtn" type="button" class="btn2 btn-primary join-item" aria-expanded="false" aria-label="More bulk actions" aria-haspopup="menu">
+                        <button ref="actionsBtn" type="button" class="btn2 btn-primary btn-sm join-item" aria-expanded="false" aria-label="More bulk actions" aria-haspopup="menu">
                             <i class="fa-regular fa-caret-down" aria-hidden="true"></i>
                         </button>
                     </div>
@@ -165,7 +178,10 @@
                         </button>
                     </div>
                 </div>
-                <button @click="bulkActions.toggleSelecting()" class="btn2" v-html="i18n.done"></button>
+                <button @click="bulkActions.toggleSelecting()" class="btn2 btn-ghost btn-sm">
+                    <i class="fa-regular fa-times" aria-hidden="true"></i>
+                    <span v-html="i18n.done"></span>
+                </button>
             </div>
         </div>
 
@@ -222,13 +238,13 @@
             <div ref="displayMenu" class="flex flex-col gap-3 p-1 min-w-56">
                 <!-- Sort by -->
                 <div v-if="sortableColumns.length > 0">
-                    <div class="text-xs uppercase tracking-wide text-base-content/40 px-1 mb-1.5" v-html="i18n.sortBy"></div>
+                    <div class="text-xs uppercase tracking-wide text-neutral-content px-1 mb-1.5" v-html="i18n.sortBy"></div>
                     <div class="flex flex-wrap gap-1.5">
                         <button
                             v-for="col in sortableColumns"
                             :key="col.key"
                             @click="handleOrderBy(col.key, col.sortKey)"
-                            class="px-2.5 py-1 rounded-full text-xs border transition-all"
+                            class="px-2.5 py-1 rounded-full text-xs border transition-all cursor-pointer"
                             :class="orderingComposable.isOrdering(col.sortKey || col.key)
                                 ? 'bg-primary text-primary-content border-primary font-semibold'
                                 : 'bg-base-200 border-base-300 text-base-content hover:border-primary'"
@@ -241,7 +257,7 @@
 
                 <!-- Results per page -->
                 <div>
-                    <div class="text-xs uppercase tracking-wide text-base-content/40 px-1 mb-1.5" v-html="i18n.perPage"></div>
+                    <div class="text-xs uppercase tracking-wide text-neutral-content px-1 mb-1.5" v-html="i18n.perPage"></div>
                     <div class="flex gap-1.5">
                         <button
                             v-for="n in [10, 25, 50, 100]"
@@ -263,16 +279,17 @@
                 <!-- Visible columns (table mode only) -->
                 <div v-if="!layoutComposable.isGrid() && entityType.has_table && toggleableColumns.length > 0">
                     <hr class="border-base-300 -mx-1 mb-3" />
-                    <div class="text-xs uppercase tracking-wide text-base-content/40 px-1 mb-1.5" v-html="i18n.columns"></div>
+                    <div class="text-xs uppercase tracking-wide text-neutral-content px-1 mb-1.5" v-html="i18n.columns"></div>
                     <div class="flex flex-col gap-0.5">
                         <div
                             v-for="col in toggleableColumns"
                             :key="col.key"
-                            class="px-2 py-1.5 hover:bg-base-200 rounded-lg flex items-center gap-2 text-xs cursor-pointer text-base-content"
+                            class="px-2 py-1.5 hover:bg-base-200 rounded-lg flex items-center justify-between gap-2 text-xs cursor-pointer text-base-content"
+                            :class="columnsComposable.isColumnVisible(col.key) ? 'text-primary' : ''"
                             @click="columnsComposable.toggleColumn(col.key)"
                         >
-                            <i :class="columnsComposable.isColumnVisible(col.key) ? 'fa-regular fa-square-check text-primary' : 'fa-regular fa-square text-neutral-content'"></i>
                             <span v-html="col.label"></span>
+                            <i :class="columnsComposable.isColumnVisible(col.key) ? 'fa-regular fa-check text-primary' : 'fa-regular fa-circle text-neutral-content'"></i>
                         </div>
                     </div>
                     <button @click="columnsComposable.resetToDefaults()" class="mt-1.5 px-2 py-1.5 hover:bg-base-200 rounded-lg flex items-center gap-2 text-xs text-base-content w-full">

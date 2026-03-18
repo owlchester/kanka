@@ -3,6 +3,10 @@
 return [
     'actions'   => [
         'back_to'   => 'Back to :name',
+        'filters' => 'Filters',
+    ],
+    'bulks' => [
+        'selected' => 'selected',
     ],
     'modes'     => [
         'flatten'   => 'Switch to a flattened layout',
