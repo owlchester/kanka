@@ -51,13 +51,13 @@
                     >
                         <i class="fa-regular fa-bookmark" aria-hidden="true"></i>
                     </button>
-                    <a
+                    <button
                         class="flex items-center px-2.5 py-1.5 border-l border-primary/20 hover:bg-error/10 text-base-content hover:text-error text-sm"
-                        :href="filterUrls.clear"
                         :title="i18n.clearFilters"
+                        @click="clearFilters"
                     >
                         <i class="fa-regular fa-times" aria-hidden="true"></i>
-                    </a>
+                    </button>
                 </div>
             </div>
 
@@ -159,7 +159,7 @@
                         <i class="fa-regular fa-print" aria-hidden="true"></i>
                         <span class="hidden md:inline" v-html="i18n.bulkPrint"></span>
                     </button>
-                    <div v-if="hasPermissions()">
+                    <div>
                         <button ref="actionsBtn" type="button" class="btn2 btn-primary join-item" aria-expanded="false" aria-label="More bulk actions" aria-haspopup="menu">
                             <i class="fa-regular fa-caret-down" aria-hidden="true"></i>
                         </button>
@@ -444,6 +444,10 @@ const openFilters = () => {
 
 const bookmark = () => {
     (window as any).openDialog('primary-dialog', urls.value.bookmark)
+}
+
+const clearFilters = () => {
+    window.location.href = filterUrls.value.clear
 }
 
 const getEntities = async (page = 1) => {
