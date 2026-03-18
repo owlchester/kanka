@@ -10,12 +10,12 @@ interface PerPageOptions {
     isSubscriber: boolean
 }
 
-const ALLOWED = [10, 25, 45, 100]
-
 export function usePerPage(options: PerPageOptions) {
     const perPage: Ref<number> = ref(25)
     const isSubscriber: Ref<boolean> = ref(options.isSubscriber)
     const loading: Ref<boolean> = ref(false)
+    const perPageOptions: Ref<number[]> = ref([])
+    const subscriberPerPageOptions: Ref<number[]> = ref([])
 
     const setPerPage = (value: number) => {
         perPage.value = value
@@ -23,6 +23,15 @@ export function usePerPage(options: PerPageOptions) {
 
     const setSubscriber = (value: boolean) => {
         isSubscriber.value = value
+    }
+
+    const setOptions = (opts: number[], subscriberOpts: number[]) => {
+        perPageOptions.value = opts
+        subscriberPerPageOptions.value = subscriberOpts
+    }
+
+    const isSubscriberOnly = (value: number): boolean => {
+        return subscriberPerPageOptions.value.includes(value)
     }
 
     // Mirrors the currentApiUrl() pattern used in useNesting and useLayout:
@@ -37,9 +46,9 @@ export function usePerPage(options: PerPageOptions) {
     }
 
     const selectPerPage = (value: number) => {
-        if (!ALLOWED.includes(value)) return
+        if (!perPageOptions.value.includes(value)) return
 
-        if (value === 100 && !isSubscriber.value) {
+        if (isSubscriberOnly(value) && !isSubscriber.value) {
             ;(window as any).openDialog('primary-dialog', options.subscribeUrl)
             return
         }
@@ -79,8 +88,12 @@ export function usePerPage(options: PerPageOptions) {
         perPage,
         isSubscriber,
         loading,
+        perPageOptions,
+        subscriberPerPageOptions,
         setPerPage,
         setSubscriber,
+        setOptions,
+        isSubscriberOnly,
         selectPerPage,
     }
 }

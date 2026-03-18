@@ -14,6 +14,7 @@ use App\Models\EntityListingPreference;
 use App\Models\EntityType;
 use App\Services\Entity\ColumnDefinitionService;
 use App\Services\FilterService;
+use App\Services\PaginationService;
 use App\Traits\Controllers\HasNested;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -36,6 +37,7 @@ class IndexController extends Controller
     public function __construct(
         protected FilterService $filterService,
         protected ColumnDefinitionService $columnDefinitionService,
+        protected PaginationService $paginationService,
     ) {
         $this->middleware([CachedResponse::class]);
     }
@@ -308,8 +310,10 @@ class IndexController extends Controller
             ] : null,
             'subscription' => [
                 'isSubscriber' => auth()->check() && auth()->user()->isSubscriber(),
-                'url' => route('settings.subscription'),
+                'url' => route('datagrids.subscription'),
             ],
+            'perPageOptions' => $this->paginationService->options(),
+            'subscriberPerPageOptions' => $this->paginationService->subscriberOnlyOptions(),
         ]);
     }
 
@@ -407,31 +411,32 @@ class IndexController extends Controller
 
     protected function perPageValue(): int
     {
-        $allowed = [15, 25, 45, 100];
-        $subscriberAllowed = [100];
+        $allowed = $this->paginationService->options();
+        $subscriberOnly = $this->paginationService->subscriberOnlyOptions();
+        $isSubscriber = auth()->user()?->isSubscriber() ?? false;
+        $default = 25;
+
+        $cap = function (int $value) use ($subscriberOnly, $isSubscriber, $default): int {
+            if (in_array($value, $subscriberOnly) && ! $isSubscriber) {
+                return $default;
+            }
+
+            return $value;
+        };
 
         // URL override (e.g. from pagination links)
         if ($this->request->has('pp')) {
             $pp = (int) $this->request->get('pp');
             if (in_array($pp, $allowed)) {
-                // Silently cap 100 for non-subscribers
-                if (in_array($pp, $subscriberAllowed) && ! auth()->user()?->isSubscriber()) {
-                    return 25;
-                }
-
-                return $pp;
+                return $cap($pp);
             }
         }
 
         // Preference
         if ($this->preference && in_array($this->preference->per_page, $allowed)) {
-            if (in_array($this->preference->per_page, $subscriberAllowed) && ! auth()->user()?->isSubscriber()) {
-                return 25;
-            }
-
-            return $this->preference->per_page;
+            return $cap($this->preference->per_page);
         }
 
-        return 25;
+        return $default;
     }
 }

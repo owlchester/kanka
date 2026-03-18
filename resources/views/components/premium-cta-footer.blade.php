@@ -1,4 +1,5 @@
-<div class="flex flex-col gap-2 items-center">
+
+<div class="flex flex-col gap-2 items-center mt-4">
     <a href="{{ route('settings.subscription', ['f' => 'cta', 'w' => $campaign->id]) }}" class="btn2 btn-primary btn-sm">
         {{ __('callouts.actions.subscription') }}
     </a>
