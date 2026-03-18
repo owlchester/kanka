@@ -406,7 +406,7 @@ class IndexController extends Controller
 
     protected function perPageValue(): int
     {
-        $allowed = [10, 25, 50, 100];
+        $allowed = [15, 25, 45, 100];
         $subscriberAllowed = [100];
 
         // URL override (e.g. from pagination links)
