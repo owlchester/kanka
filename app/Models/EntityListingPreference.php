@@ -14,6 +14,7 @@ class EntityListingPreference extends Model
         'visible_columns',
         'layout',
         'nested',
+        'per_page',
     ];
 
     protected function casts(): array
@@ -21,6 +22,7 @@ class EntityListingPreference extends Model
         return [
             'visible_columns' => 'array',
             'nested' => 'boolean',
+            'per_page' => 'integer',
         ];
     }
 
