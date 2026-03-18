@@ -29,8 +29,10 @@ class DashboardController extends Controller
     public function create(Campaign $campaign)
     {
         if (! $campaign->boosted()) {
-            return view('dashboard.dashboards.premium')
-                ->with('campaign', $campaign);
+            return view('components.premium-dialog', [
+                'campaign' => $campaign,
+                'pitch' => 'dashboard.dashboards.pitch',
+            ]);
         }
 
         $this->authorize('dashboard', $campaign);
@@ -47,8 +49,10 @@ class DashboardController extends Controller
     public function store(StoreCampaignDashboard $request, Campaign $campaign)
     {
         if (! $campaign->boosted()) {
-            return view('dashboard.dashboards.premium')
-                ->with('campaign', $campaign);
+            return view('components.premium-dialog', [
+                'campaign' => $campaign,
+                'pitch' => 'dashboard.dashboards.pitch',
+            ]);
         }
 
         $this->authorize('dashboard', $campaign);

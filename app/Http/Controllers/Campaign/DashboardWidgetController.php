@@ -50,6 +50,13 @@ class DashboardWidgetController extends Controller
             abort(404);
         }
 
+        if ($widget === 'gallery' && ! $campaign->premium()) {
+            return view('components.premium-dialog', [
+                'campaign' => $campaign,
+                'pitch' => 'dashboards/widgets/gallery.helpers.premium',
+            ]);
+        }
+
         $entityTypes = $this->entityTypeService
             ->campaign($campaign)
             ->exclude([config('entities.ids.bookmark')])

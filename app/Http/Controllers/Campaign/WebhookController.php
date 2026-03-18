@@ -69,8 +69,10 @@ class WebhookController extends Controller
         $this->authorize('webhooks', $campaign);
 
         if (! $campaign->premium()) {
-            return view('campaigns.webhooks.not-premium')
-                ->with('campaign', $campaign);
+            return view('components.premium-dialog', [
+                'campaign' => $campaign,
+                'pitch' => 'campaigns/webhooks.pitch',
+            ]);
         }
 
         return view('campaigns.webhooks.create', ['campaign' => $campaign]);
