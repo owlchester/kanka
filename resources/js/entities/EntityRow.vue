@@ -1,8 +1,14 @@
 <template>
-    <tr :data-id="entity.id" v-bind="dataAttributes">
+    <tr :data-id="entity.id" v-bind="dataAttributes"
+        @pointerdown="lpStart" @pointerup="lpCancel" @pointermove="lpMove" @pointercancel="lpCancel"
+        @contextmenu.prevent @click.capture="handleRowClick">
         <!-- Checkbox -->
-        <td v-if="selecting" class="w-8">
-            <input type="checkbox" :checked="entity.selected" @change="entity.selected = !entity.selected" />
+        <td class="w-8" :class="selecting ? '' : 'hidden sm:table-cell'">
+            <input
+                type="checkbox"
+                :checked="entity.selected"
+                @change="handleCheckboxChange"
+            />
         </td>
 
         <!-- Expand/collapse arrow (nested mode only) -->
@@ -128,6 +134,7 @@
             :depth="depth + 1"
             :max-depth="maxDepth"
             :show-expand-column="showExpandColumn"
+            @start-selecting="emit('startSelecting', $event)"
         />
     </template>
 </template>
@@ -135,6 +142,11 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import tippy from 'tippy.js'
+import { useLongPress } from './composables/useLongPress'
+
+const emit = defineEmits<{
+    startSelecting: [entityId: number]
+}>()
 
 const props = withDefaults(defineProps<{
     entity: any
@@ -216,6 +228,37 @@ const entityFieldValue = (key: string) => {
         return props.entity.parent_entity || null
     }
     return props.entity[key] || null
+}
+
+const handleCheckboxChange = () => {
+    if (!props.selecting) {
+        emit('startSelecting', props.entity.id)
+        return
+    }
+    props.entity.selected = !props.entity.selected
+}
+
+let suppressNextClick = false
+
+const { start: lpStart, cancel: lpCancel, move: lpMove } = useLongPress(() => {
+    if (!props.selecting) {
+        suppressNextClick = true
+        emit('startSelecting', props.entity.id)
+    }
+})
+
+const handleRowClick = (event: MouseEvent) => {
+    if (suppressNextClick) {
+        event.preventDefault()
+        event.stopPropagation()
+        suppressNextClick = false
+        return
+    }
+    if (props.selecting) {
+        event.preventDefault()
+        event.stopPropagation()
+        props.entity.selected = !props.entity.selected
+    }
 }
 
 const toggleExpand = async () => {

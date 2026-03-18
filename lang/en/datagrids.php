@@ -3,6 +3,10 @@
 return [
     'actions'   => [
         'back_to'   => 'Back to :name',
+        'filters' => 'Filters',
+    ],
+    'bulks' => [
+        'selected' => 'selected',
     ],
     'modes'     => [
         'flatten'   => 'Switch to a flattened layout',
@@ -16,5 +20,13 @@ return [
     'columns' => [
         'title' => 'Control visible columns',
         'reset' => 'Reset to default',
-    ]
+    ],
+    'display' => [
+        'title'    => 'Display',
+        'per_page' => 'Results per page',
+        'sort_by'  => 'Sort by',
+    ],
+    'filters' => [
+        'clear' => 'Clear filters',
+    ],
 ];

@@ -26,6 +26,7 @@ class ListingPreferenceController extends Controller
                 'visible_columns' => $request->input('columns'),
                 'layout' => $request->has('layout') ? $request->input('layout') : null,
                 'nested' => $request->has('nested') ? $request->boolean('nested') : null,
+                'per_page' => $request->has('per_page') ? $request->integer('per_page') : null,
             ], fn ($value) => $value !== null)
         );
 

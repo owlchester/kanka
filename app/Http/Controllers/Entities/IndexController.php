@@ -211,7 +211,8 @@ class IndexController extends Controller
         } else {
             $base = $base->whereNull('entities.archived_at');
         }
-        $models = $base->orderBy('entities.name')->paginate();
+        $perPage = $this->perPageValue();
+        $models = $base->orderBy('entities.name')->paginate($perPage);
 
         $i18n = [
             'fields' => [
@@ -221,13 +222,18 @@ class IndexController extends Controller
             ],
             'is_private' => __('crud.is_private'),
             'select' => __('crud.select'),
+            'selected' => __('datagrids.bulks.selected'),
             'selectAll' => __('general.select_all'),
             'done' => __('general.done'),
-            'filters' => __('crud.filters.title'),
+            'filters' => __('datagrids.actions.filters'),
             'bookmark' => __('filters.actions.bookmark'),
             'noResults' => __('search.no_results'),
             'templates' => __('entries/archetypes.helpers.how'),
             'actions' => __('crud.actions.actions'),
+            'display' => __('datagrids.display.title'),
+            'perPage' => __('datagrids.display.per_page'),
+            'sortBy' => __('datagrids.display.sort_by'),
+            'clearFilters' => __('datagrids.filters.clear'),
             'flatten' => __('datagrids.modes.flatten'),
             'nest' => __('datagrids.modes.nested'),
             'layout_grid' => __('datagrids.modes.grid'),
@@ -298,7 +304,12 @@ class IndexController extends Controller
             'preferences' => $preference ? [
                 'layout' => $preference->layout,
                 'nested' => $preference->nested,
+                'per_page' => $perPage,
             ] : null,
+            'subscription' => [
+                'isSubscriber' => auth()->check() && auth()->user()->isSubscriber(),
+                'url' => route('settings.subscription'),
+            ],
         ]);
     }
 
@@ -391,5 +402,35 @@ class IndexController extends Controller
         }
 
         return Arr::get(auth()->user()->settings, $key, 'grid');
+    }
+
+    protected function perPageValue(): int
+    {
+        $allowed = [10, 25, 50, 100];
+        $subscriberAllowed = [100];
+
+        // URL override (e.g. from pagination links)
+        if ($this->request->has('pp')) {
+            $pp = (int) $this->request->get('pp');
+            if (in_array($pp, $allowed)) {
+                // Silently cap 100 for non-subscribers
+                if (in_array($pp, $subscriberAllowed) && ! auth()->user()?->isSubscriber()) {
+                    return 25;
+                }
+
+                return $pp;
+            }
+        }
+
+        // Preference
+        if ($this->preference && in_array($this->preference->per_page, $allowed)) {
+            if (in_array($this->preference->per_page, $subscriberAllowed) && ! auth()->user()?->isSubscriber()) {
+                return 25;
+            }
+
+            return $this->preference->per_page;
+        }
+
+        return 25;
     }
 }
