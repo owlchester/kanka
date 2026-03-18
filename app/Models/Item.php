@@ -10,6 +10,7 @@ use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -24,6 +25,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $size
  * @property string $weight
  * @property ?int $item_id
+ * @property Collection|ItemCreator[] $itemCreators
+ * @property Collection|Entity[] $creators
  */
 class Item extends MiscModel
 {

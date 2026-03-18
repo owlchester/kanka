@@ -169,7 +169,7 @@ class ExploreResource extends JsonResource
                 $data['races'] = $this->formatRelatedEntities($child, 'characterRaces', 'race');
             }
             if ($this->hasColumn('creators') && method_exists($child, 'itemCreators')) {
-                $data['creators'] = $this->formatRelatedEntities($child, 'itemCreators', 'creator', true);
+                $data['creators'] = $this->formatPivotEntities($child, 'itemCreators', 'creator');
             }
             // Count columns
             if ($this->hasColumn('members_count') && isset($child->members_count)) {
@@ -244,7 +244,7 @@ class ExploreResource extends JsonResource
         return $tags;
     }
 
-    protected function formatRelatedEntities(mixed $child, string $pivotRelation, string $entityRelation, bool $directEntity = false): array
+    protected function formatRelatedEntities(mixed $child, string $pivotRelation, string $entityRelation): array
     {
         if (! method_exists($child, $pivotRelation)) {
             return [];
@@ -253,9 +253,32 @@ class ExploreResource extends JsonResource
         $items = [];
         $campaign = CampaignLocalization::getCampaign();
         foreach ($child->{$pivotRelation} as $pivot) {
-            $entity = $directEntity
-                ? $pivot->{$entityRelation}
-                : $pivot->{$entityRelation}?->entity;
+            $related = $pivot->{$entityRelation};
+            if ($related && $related->entity) {
+                $items[] = [
+                    'id' => $related->entity->id,
+                    'name' => $related->entity->name,
+                    'url' => route('entities.show', [$campaign, $related->entity]),
+                ];
+            }
+        }
+
+        return $items;
+    }
+
+    /**
+     * Format pivot relations where the related model is an Entity directly (e.g. ItemCreator->creator)
+     */
+    protected function formatPivotEntities(mixed $child, string $pivotRelation, string $entityRelation): array
+    {
+        if (! method_exists($child, $pivotRelation)) {
+            return [];
+        }
+
+        $items = [];
+        $campaign = CampaignLocalization::getCampaign();
+        foreach ($child->{$pivotRelation} as $pivot) {
+            $entity = $pivot->{$entityRelation};
             if ($entity) {
                 $items[] = [
                     'id' => $entity->id,
