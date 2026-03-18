@@ -8,7 +8,15 @@ class UpdateListingPreferenceRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return auth()->check();
+        if (! auth()->check()) {
+            return false;
+        }
+
+        if ((int) $this->input('per_page') === 100 && ! auth()->user()->isSubscriber()) {
+            return false;
+        }
+
+        return true;
     }
 
     public function rules(): array
@@ -20,14 +28,5 @@ class UpdateListingPreferenceRequest extends FormRequest
             'nested' => ['sometimes', 'nullable', 'boolean'],
             'per_page' => ['sometimes', 'nullable', 'integer', 'in:10,25,50,100'],
         ];
-    }
-
-    public function withValidator(\Illuminate\Validation\Validator $validator): void
-    {
-        $validator->after(function (\Illuminate\Validation\Validator $v) {
-            if ((int) $this->input('per_page') === 100 && ! auth()->user()?->isSubscriber()) {
-                abort(403, 'Subscription required for 100 results per page.');
-            }
-        });
     }
 }
