@@ -31,7 +31,6 @@ if (!empty($previous)) {
     data-allow-clear="true"
     data-placeholder="{{ __('crud.placeholders.search') }}"
     data-allow-new="false"
-    data-placeholder=""
     id="{{ $fieldUniqIdentifier }}">
     @foreach ($selectedOption as $key => $val)
         <option value="{{ $key }}" selected="selected">{{ $val }}</option>

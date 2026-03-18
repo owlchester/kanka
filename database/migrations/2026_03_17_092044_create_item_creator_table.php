@@ -24,7 +24,7 @@ return new class extends Migration
             INSERT INTO item_creator (item_id, creator_id, created_at, updated_at)
             SELECT id, creator_id, NOW(), NOW()
             FROM items
-            WHERE creator_id IS NOT NULL AND deleted_at IS NULL
+            WHERE creator_id IS NOT NULL
         ');
 
         Schema::table('items', function (Blueprint $table) {
