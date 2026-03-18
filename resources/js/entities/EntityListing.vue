@@ -197,6 +197,7 @@
                 :order-by-icon="orderingComposable.orderByIcon"
                 @order-by="handleOrderBy"
                 @toggle-all="bulkActions.toggleAll()"
+                @start-selecting="handleStartSelecting"
             />
         </div>
 
@@ -475,6 +476,14 @@ const handleGridNavigate = (entityId: number, childrenUrl: string) => {
     const currentUrl = new URL(window.location.href)
     currentUrl.searchParams.set('parent_id', String(entityId))
     window.history.pushState({}, '', currentUrl)
+}
+
+const handleStartSelecting = (entityId: number) => {
+    bulkActions.toggleSelecting()
+    const entity = entityApi.entities.value.find((e: any) => e.id === entityId)
+    if (entity) {
+        entity.selected = true
+    }
 }
 
 const handleGridBack = () => {
