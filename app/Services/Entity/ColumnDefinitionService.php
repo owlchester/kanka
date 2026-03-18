@@ -2,6 +2,7 @@
 
 namespace App\Services\Entity;
 
+use App\Enums\QuestStatus;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use Illuminate\Support\Str;
@@ -231,6 +232,11 @@ class ColumnDefinitionService
             ['key' => 'avatar', 'type' => 'avatar', 'sortable' => false, 'alwaysVisible' => true],
             ['key' => 'name', 'type' => 'name', 'label' => __('crud.fields.name'), 'sortable' => true, 'alwaysVisible' => true],
             ['key' => 'type', 'type' => 'text', 'label' => __('crud.fields.type'), 'sortable' => true],
+            ['key' => 'status', 'type' => 'icon', 'label' => __('characters.fields.status'), 'sortable' => true, 'sortKey' => 'status_id', 'icons' => [
+                QuestStatus::ongoing->value => ['icon' => 'fa-regular fa-hourglass', 'tooltip' => __('quests.hints.is_ongoing')],
+                QuestStatus::abandoned->value => ['icon' => 'fa-regular fa-ban', 'tooltip' => __('quests.hints.is_abandoned')],
+                QuestStatus::completed->value => ['icon' => 'fa-regular fa-check-circle', 'tooltip' => __('quests.hints.is_completed')],
+            ]],
             ['key' => 'parent', 'type' => 'entity', 'label' => __('crud.fields.parent'), 'sortable' => true, 'sortKey' => 'parent.name'],
             ['key' => 'instigator', 'type' => 'entity', 'label' => __('quests.fields.instigator'), 'sortable' => false],
             ['key' => 'locations', 'type' => 'entities', 'label' => __('entities.locations'), 'sortable' => false, 'moduleGate' => 'locations'],
