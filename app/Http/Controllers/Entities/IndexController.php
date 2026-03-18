@@ -303,7 +303,7 @@ class IndexController extends Controller
             'preferences' => $preference ? [
                 'layout' => $preference->layout,
                 'nested' => $preference->nested,
-                'per_page' => $preference->per_page,
+                'per_page' => $perPage,
             ] : null,
             'subscription' => [
                 'isSubscriber' => auth()->check() && auth()->user()->isSubscriber(),
