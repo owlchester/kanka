@@ -1,5 +1,7 @@
 <template>
-    <tr :data-id="entity.id" v-bind="dataAttributes">
+    <tr :data-id="entity.id" v-bind="dataAttributes"
+        @pointerdown="lpStart" @pointerup="lpCancel" @pointermove="lpMove" @pointercancel="lpCancel"
+        @click.capture="handleRowClick">
         <!-- Checkbox -->
         <td class="w-8" :class="selecting ? '' : 'hidden sm:table-cell'">
             <input
@@ -140,6 +142,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import tippy from 'tippy.js'
+import { useLongPress } from './composables/useLongPress'
 
 const emit = defineEmits<{
     startSelecting: [entityId: number]
@@ -233,6 +236,29 @@ const handleCheckboxChange = () => {
         return
     }
     props.entity.selected = !props.entity.selected
+}
+
+let suppressNextClick = false
+
+const { start: lpStart, cancel: lpCancel, move: lpMove } = useLongPress(() => {
+    if (!props.selecting) {
+        suppressNextClick = true
+        emit('startSelecting', props.entity.id)
+    }
+})
+
+const handleRowClick = (event: MouseEvent) => {
+    if (suppressNextClick) {
+        event.preventDefault()
+        event.stopPropagation()
+        suppressNextClick = false
+        return
+    }
+    if (props.selecting) {
+        event.preventDefault()
+        event.stopPropagation()
+        props.entity.selected = !props.entity.selected
+    }
 }
 
 const toggleExpand = async () => {

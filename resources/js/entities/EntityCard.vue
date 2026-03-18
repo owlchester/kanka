@@ -1,5 +1,6 @@
 <template>
-    <div v-if="stacked" class="stack inline-grid items-center align-items-end w-[47%] xs:w-[25%] sm:w-48">
+    <div v-if="stacked" class="stack inline-grid items-center align-items-end w-[47%] xs:w-[25%] sm:w-48"
+         @pointerdown="lpStart" @pointerup="lpCancel" @pointermove="lpMove" @pointercancel="lpCancel">
         <div class="entity overflow-hidden rounded shadow-xs hover:shadow-md aspect-square w-full flex flex-col bg-box" v-bind="dataAttributes">
             <a :href="entity.urls.show" :title="entity.name"
                class="block avatar grow relative cover-background overflow-hidden text-center text-link"
@@ -37,7 +38,8 @@
             <div class="block h-12 p-4 bg-box"></div>
         </div>
     </div>
-    <div v-else :class="entityClass" v-bind="dataAttributes">
+    <div v-else :class="entityClass" v-bind="dataAttributes"
+         @pointerdown="lpStart" @pointerup="lpCancel" @pointermove="lpMove" @pointercancel="lpCancel">
         <a :href="entity.urls.show" class="block avatar grow relative cover-background" :style="entityImage"
            :title="entity.name" @click.prevent="handleClick">
             <div v-if="entity.is_private && !selecting"
@@ -57,6 +59,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useLongPress } from './composables/useLongPress'
 
 const props = defineProps<{
     entity: any
@@ -67,7 +70,17 @@ const props = defineProps<{
 
 const emit = defineEmits<{
     navigate: [entityId: number, childrenUrl: string]
+    startSelecting: [entityId: number]
 }>()
+
+let suppressNextClick = false
+
+const { start: lpStart, cancel: lpCancel, move: lpMove } = useLongPress(() => {
+    if (!props.selecting) {
+        suppressNextClick = true
+        emit('startSelecting', props.entity.id)
+    }
+})
 
 const stacked = computed(() => props.nested && props.entity.children > 0)
 
@@ -111,6 +124,11 @@ const childStyle = (child: any, idx: number) => {
 }
 
 const handleClick = (event: Event) => {
+    if (suppressNextClick) {
+        event.preventDefault()
+        suppressNextClick = false
+        return
+    }
     if (props.selecting) {
         props.entity.selected = !props.entity.selected
     } else if (props.nested && props.entity.children > 0) {

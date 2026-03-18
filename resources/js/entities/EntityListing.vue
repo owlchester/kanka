@@ -197,6 +197,7 @@
                 :ads="entityApi.ads.value"
                 @navigate="handleGridNavigate"
                 @back="handleGridBack"
+                @start-selecting="handleStartSelecting"
             />
             <EntityTable
                 v-else
