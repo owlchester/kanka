@@ -259,7 +259,21 @@ class ColumnDefinitionService
             ['key' => 'name', 'type' => 'name', 'label' => __('crud.fields.name'), 'sortable' => true, 'alwaysVisible' => true],
             ['key' => 'type', 'type' => 'text', 'label' => __('crud.fields.type'), 'sortable' => true],
             ['key' => 'parent', 'type' => 'entity', 'label' => __('crud.fields.parent'), 'sortable' => true, 'sortKey' => 'parent.name'],
+            ['key' => 'explore', 'type' => 'explore', 'label' => __('maps.actions.explore'), 'sortable' => false],
             ['key' => 'location', 'type' => 'entity', 'label' => __('entities.location'), 'sortable' => true, 'sortKey' => 'location.name', 'moduleGate' => 'locations'],
+            ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => true],
+            ['key' => 'is_private', 'type' => 'private', 'label' => __('crud.fields.is_private'), 'sortable' => true, 'adminOnly' => true],
+        ];
+    }
+
+    protected function whiteboard(): array
+    {
+        return [
+            ['key' => 'avatar', 'type' => 'avatar', 'sortable' => false, 'alwaysVisible' => true],
+            ['key' => 'name', 'type' => 'name', 'label' => __('crud.fields.name'), 'sortable' => true, 'alwaysVisible' => true],
+            ['key' => 'type', 'type' => 'text', 'label' => __('crud.fields.type'), 'sortable' => true],
+            ['key' => 'parent', 'type' => 'entity', 'label' => __('crud.fields.parent'), 'sortable' => true, 'sortKey' => 'parent.name'],
+            ['key' => 'draw', 'type' => 'draw', 'label' => __('whiteboards.actions.draw'), 'sortable' => false],
             ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => true],
             ['key' => 'is_private', 'type' => 'private', 'label' => __('crud.fields.is_private'), 'sortable' => true, 'adminOnly' => true],
         ];

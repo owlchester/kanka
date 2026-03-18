@@ -83,6 +83,8 @@ const headerClass = (col: any): string => {
     if (col.type === 'name') return 'dg-name'
     if (col.type === 'private') return 'w-10 text-center'
     if (col.type === 'icon') return 'w-10 text-center'
+    if (col.type === 'explore') return 'w-10 text-center'
+    if (col.type === 'draw') return 'w-10 text-center'
     return 'hidden lg:table-cell'
 }
 </script>

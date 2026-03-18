@@ -184,6 +184,26 @@ class ExploreResource extends JsonResource
             if ($this->hasColumn('attributes_count')) {
                 $data['attributes_count'] = $entity->attributes_count ?? 0;
             }
+
+            // Map explore link
+            if ($this->hasColumn('explore')) {
+                if ($child->isReal()) {
+                    $data['explore'] = ['url' => route('maps.explore', [$campaign, $child->id])];
+                } elseif (! $entity->hasImage()) {
+                    $data['explore'] = null;
+                } elseif ($child->isChunked() && $child->chunkingError()) {
+                    $data['explore'] = ['url' => null, 'status' => 'error'];
+                } elseif ($child->isChunked() && $child->chunkingRunning()) {
+                    $data['explore'] = ['url' => null, 'status' => 'running'];
+                } else {
+                    $data['explore'] = ['url' => route('maps.explore', [$campaign, $child->id])];
+                }
+            }
+
+            // Whiteboard draw link
+            if ($this->hasColumn('draw')) {
+                $data['draw'] = ['url' => route('whiteboards.draw', [$campaign, $child->id])];
+            }
         }
 
         // Calendar date (lives on entity, not child)

@@ -89,6 +89,22 @@
             <template v-else-if="col.type === 'calendar_date'">
                 <a v-if="entity.calendar_date" :href="entity.calendar_date.url" class="text-link" v-html="entity.calendar_date.date"></a>
             </template>
+
+            <!-- Map explore link -->
+            <template v-else-if="col.type === 'explore'">
+                <a v-if="entity.explore?.url" :href="entity.explore.url" target="_blank" class="text-link" :title="col.tooltip">
+                    <i class="fa-regular fa-map" aria-hidden="true"></i>
+                </a>
+                <i v-else-if="entity.explore?.status === 'error'" class="fa-regular fa-exclamation-triangle text-warning" :title="col.tooltip" aria-hidden="true"></i>
+                <i v-else-if="entity.explore?.status === 'running'" class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
+            </template>
+
+            <!-- Whiteboard draw link -->
+            <template v-else-if="col.type === 'draw'">
+                <a v-if="entity.draw?.url" :href="entity.draw.url" target="_blank" class="text-link" :title="col.tooltip">
+                    <i class="fa-regular fa-chalkboard" aria-hidden="true"></i>
+                </a>
+            </template>
         </td>
 
         <!-- Row actions -->
@@ -219,6 +235,8 @@ const cellClass = (col: any): string => {
     if (col.type === 'name') return 'truncate max-w-fit'
     if (col.type === 'private') return 'w-10 text-center'
     if (col.type === 'icon') return 'w-10 text-center'
+    if (col.type === 'explore') return 'w-10 text-center'
+    if (col.type === 'draw') return 'w-10 text-center'
     return 'hidden lg:table-cell truncate max-w-fit'
 }
 

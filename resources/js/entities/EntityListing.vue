@@ -261,7 +261,7 @@
                     <div class="text-xs uppercase tracking-wide text-neutral-content px-1 mb-1.5" v-html="i18n.perPage"></div>
                     <div class="flex gap-1.5">
                         <button
-                            v-for="n in [10, 25, 50, 100]"
+                            v-for="n in [10, 25, 45, 100]"
                             :key="n"
                             @click="handleSelectPerPage(n)"
                             class="px-3 py-1 rounded-md text-xs border transition-all"
@@ -272,7 +272,7 @@
                                 n === 100 && !perPageComposable.isSubscriber.value ? 'opacity-60' : ''
                             ]"
                         >
-                            {{ n }}<i v-if="n === 100 && !perPageComposable.isSubscriber.value" class="fa-regular fa-star ml-1 text-warning" aria-hidden="true"></i>
+                            {{ n }}<i v-if="n === 100 && !perPageComposable.isSubscriber.value" class="fa-regular fa-gem ml-1" aria-hidden="true"></i>
                         </button>
                     </div>
                 </div>

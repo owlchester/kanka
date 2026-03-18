@@ -315,6 +315,7 @@ class IndexController extends Controller
 
     protected function showAds(Campaign $campaign): bool
     {
+        return true;
         if (! config('ads.nitro.enabled')) {
             return false;
         }

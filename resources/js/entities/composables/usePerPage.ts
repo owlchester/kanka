@@ -10,7 +10,7 @@ interface PerPageOptions {
     isSubscriber: boolean
 }
 
-const ALLOWED = [10, 25, 50, 100]
+const ALLOWED = [10, 25, 45, 100]
 
 export function usePerPage(options: PerPageOptions) {
     const perPage: Ref<number> = ref(25)
