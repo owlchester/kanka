@@ -1,6 +1,7 @@
 <template>
     <div v-if="stacked" class="stack inline-grid items-center align-items-end w-[47%] xs:w-[25%] sm:w-48"
-         @pointerdown="lpStart" @pointerup="lpCancel" @pointermove="lpMove" @pointercancel="lpCancel">
+         @pointerdown="lpStart" @pointerup="lpCancel" @pointermove="lpMove" @pointercancel="lpCancel"
+         @contextmenu.prevent>
         <div class="entity overflow-hidden rounded shadow-xs hover:shadow-md aspect-square w-full flex flex-col bg-box" v-bind="dataAttributes">
             <a :href="entity.urls.show" :title="entity.name"
                class="block avatar grow relative cover-background overflow-hidden text-center text-link"
@@ -39,7 +40,8 @@
         </div>
     </div>
     <div v-else :class="entityClass" v-bind="dataAttributes"
-         @pointerdown="lpStart" @pointerup="lpCancel" @pointermove="lpMove" @pointercancel="lpCancel">
+         @pointerdown="lpStart" @pointerup="lpCancel" @pointermove="lpMove" @pointercancel="lpCancel"
+         @contextmenu.prevent>
         <a :href="entity.urls.show" class="block avatar grow relative cover-background" :style="entityImage"
            :title="entity.name" @click.prevent="handleClick">
             <div v-if="entity.is_private && !selecting"

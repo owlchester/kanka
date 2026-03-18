@@ -1,7 +1,7 @@
 <template>
     <tr :data-id="entity.id" v-bind="dataAttributes"
         @pointerdown="lpStart" @pointerup="lpCancel" @pointermove="lpMove" @pointercancel="lpCancel"
-        @click.capture="handleRowClick">
+        @contextmenu.prevent @click.capture="handleRowClick">
         <!-- Checkbox -->
         <td class="w-8" :class="selecting ? '' : 'hidden sm:table-cell'">
             <input
