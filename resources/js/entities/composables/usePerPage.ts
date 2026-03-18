@@ -15,6 +15,7 @@ const ALLOWED = [10, 25, 50, 100]
 export function usePerPage(options: PerPageOptions) {
     const perPage: Ref<number> = ref(25)
     const isSubscriber: Ref<boolean> = ref(options.isSubscriber)
+    const loading: Ref<boolean> = ref(false)
 
     const setPerPage = (value: number) => {
         perPage.value = value
@@ -50,7 +51,10 @@ export function usePerPage(options: PerPageOptions) {
             options.addToUrl(currentApiUrl(), 'pp', String(value)),
             'page', '1'
         )
-        options.fetchEntities(fetchUrl)
+        loading.value = true
+        options.fetchEntities(fetchUrl).finally(() => {
+            loading.value = false
+        })
 
         // Sync browser URL
         const currentUrl = new URL(window.location.href)
@@ -74,6 +78,7 @@ export function usePerPage(options: PerPageOptions) {
     return {
         perPage,
         isSubscriber,
+        loading,
         setPerPage,
         setSubscriber,
         selectPerPage,

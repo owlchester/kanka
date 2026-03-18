@@ -63,8 +63,8 @@
 
             <!-- Right: view controls + create (not in bulk mode) -->
             <div class="flex gap-2 items-center flex-wrap" v-if="!bulkActions.selecting.value">
-                <!-- Loading spinner during ordering -->
-                <button class="btn2 btn-disabled" disabled v-if="orderingComposable.ordering.value">
+                <!-- Loading spinner during ordering or per-page change -->
+                <button class="btn2 btn-disabled" disabled v-if="orderingComposable.ordering.value || perPageComposable.loading.value">
                     <i class="fa-solid fa-spinner fa-spin" aria-label="Loading"></i>
                 </button>
 
