@@ -139,7 +139,7 @@ class FilterService
             $this->filters = [];
         }
 
-        foreach (['tags', 'locations', 'organisations', 'races', 'families'] as $key) {
+        foreach (['tags', 'locations', 'organisations', 'races', 'families', 'creators'] as $key) {
             $this->checkFilterData($key, $availableFilters);
         }
 

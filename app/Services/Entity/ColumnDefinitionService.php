@@ -115,6 +115,7 @@ class ColumnDefinitionService
             'organisation' => ['organisation.entity'],
             'character' => ['character.entity'],
             'instigator' => ['quest.instigator'],
+            'creators' => ['item.itemCreators.creator'],
             'entity_type_name' => ['attributeTemplate.entityType'],
         ];
     }
@@ -317,6 +318,7 @@ class ColumnDefinitionService
             ['key' => 'size', 'type' => 'text', 'label' => __('items.fields.size'), 'sortable' => true],
             ['key' => 'weight', 'type' => 'text', 'label' => __('items.fields.weight'), 'sortable' => true],
             ['key' => 'location', 'type' => 'entity', 'label' => __('entities.location'), 'sortable' => true, 'sortKey' => 'location.name', 'moduleGate' => 'locations'],
+            ['key' => 'creators', 'type' => 'entities', 'label' => __('items.fields.creators'), 'sortable' => false],
             ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => true],
             ['key' => 'is_private', 'type' => 'private', 'label' => __('crud.fields.is_private'), 'sortable' => true, 'adminOnly' => true],
         ];

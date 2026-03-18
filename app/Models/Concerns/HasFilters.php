@@ -91,7 +91,7 @@ trait HasFilters
         foreach ($this->filterParams as $key => $value) {
             if (isset($value) && in_array($key, $fields)) {
                 // The requested field is an array, which we don't support for anything other than tags, and locations ("or" searches)
-                if (is_array($value) && ! in_array($key, ['tags', 'locations', 'organisations', 'races', 'families'])) {
+                if (is_array($value) && ! in_array($key, ['tags', 'locations', 'organisations', 'races', 'families', 'creators'])) {
                     continue;
                 }
                 $this->filterOption = ! empty($params[$key . '_option']) ? $params[$key . '_option'] : null;
@@ -128,6 +128,8 @@ trait HasFilters
                     $this->filterRaces($query, $value);
                 } elseif ($key == 'families') {
                     $this->filterFamilies($query, $value);
+                } elseif ($key == 'creators') {
+                    $this->filterCreators($query, $value);
                 } elseif (in_array($key, ['date_start', 'date_end'])) {
                     $this->filterDateRange($query, $key, $params);
                 } elseif ($key == 'races') {
@@ -203,7 +205,7 @@ trait HasFilters
     {
         $operator = 'like';
         $filterValue = $value;
-        if (! in_array($key, ['tags', 'locations', 'organisations', 'races', 'families'])) {
+        if (! in_array($key, ['tags', 'locations', 'organisations', 'races', 'families', 'creators'])) {
             if ($value == '!!') {
                 $operator = 'IS NULL';
                 $filterValue = null;
@@ -705,6 +707,44 @@ trait HasFilters
         $query
             ->leftJoin('character_family as cf', 'cf.character_id', '=', $this->getTable() . '.id')
             ->whereIn('cf.family_id', $values);
+    }
+
+    /**
+     * Filter items on creators through the item_creator pivot table
+     */
+    protected function filterCreators(Builder $query, null|string|array $value = null): void
+    {
+        if ($this->filterOption('none')) {
+            return;
+        }
+
+        if (! is_array($value)) {
+            $value = [$value];
+        }
+
+        $creatorIds = collect($value)->map(fn ($v) => (int) $v)->filter()->values()->toArray();
+
+        if (empty($creatorIds)) {
+            return;
+        }
+
+        $table = $this->getTable();
+
+        if ($this->filterOption('exclude')) {
+            $query->whereRaw('(select count(*) from item_creator as ic where ic.item_id = ' .
+                $table . '.id and ic.creator_id in (' . implode(', ', $creatorIds) . ')) = 0');
+
+            return;
+        }
+
+        foreach ($creatorIds as $creatorId) {
+            $query->whereExists(function ($sub) use ($table, $creatorId) {
+                $sub->selectRaw(1)
+                    ->from('item_creator')
+                    ->whereColumn('item_creator.item_id', $table . '.id')
+                    ->where('item_creator.creator_id', $creatorId);
+            });
+        }
     }
 
     /**

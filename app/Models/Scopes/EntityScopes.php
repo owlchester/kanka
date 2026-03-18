@@ -235,7 +235,10 @@ trait EntityScopes
     {
         $childFilterKeys = [];
         foreach ($filters as $name => $values) {
-            if (! is_array($values) && $values === null) {
+            // Skip null or empty-string values (empty form fields)
+            if ($values === null || $values === '') {
+                continue;
+            } elseif (is_array($values) && empty(array_filter($values, fn ($v) => $v !== '' && $v !== null))) {
                 continue;
             } elseif (in_array($name, ['is_private', 'parent_id'])) {
                 $query->where('entities.' . $name, $values);
@@ -286,6 +289,9 @@ trait EntityScopes
                 }
             } elseif (in_array($name, ['created_by', 'updated_by'])) {
                 $query->where('entities.' . $name, (int) $values);
+            } elseif ($name === 'creators') {
+                // Handled after the loop (like tags) so that creators_option works even with an empty array
+                continue;
             } elseif ($entityType?->isStandard() && ! Str::endsWith($name, '_option')) {
                 $childFilterKeys[$name] = $values;
             }
@@ -304,6 +310,42 @@ trait EntityScopes
         if (Arr::hasAny($filters, ['tags', 'tags_option'])) {
             // @phpstan-ignore-next-line
             $query->filterTags(Arr::get($filters, 'tags', []), Arr::get($filters, 'tags_option'));
+        }
+
+        // Creators filter (handled outside loop so creators_option works even with empty array)
+        if (Arr::hasAny($filters, ['creators', 'creators_option'])) {
+            $creatorsOption = Arr::get($filters, 'creators_option');
+            if ($creatorsOption === 'none') {
+                $query->whereNotExists(function ($sub) {
+                    $sub->selectRaw(1)
+                        ->from('item_creator')
+                        ->whereColumn('item_creator.item_id', 'entities.entity_id');
+                });
+            } else {
+                $creatorValues = Arr::get($filters, 'creators', []);
+                $creatorIds = array_values(array_filter(array_map('intval', is_array($creatorValues) ? $creatorValues : [$creatorValues])));
+                if (! empty($creatorIds)) {
+                    if ($creatorsOption === 'exclude') {
+                        foreach ($creatorIds as $creatorId) {
+                            $query->whereNotExists(function ($sub) use ($creatorId) {
+                                $sub->selectRaw(1)
+                                    ->from('item_creator')
+                                    ->whereColumn('item_creator.item_id', 'entities.entity_id')
+                                    ->where('item_creator.creator_id', $creatorId);
+                            });
+                        }
+                    } else {
+                        foreach ($creatorIds as $creatorId) {
+                            $query->whereExists(function ($sub) use ($creatorId) {
+                                $sub->selectRaw(1)
+                                    ->from('item_creator')
+                                    ->whereColumn('item_creator.item_id', 'entities.entity_id')
+                                    ->where('item_creator.creator_id', $creatorId);
+                            });
+                        }
+                    }
+                }
+            }
         }
 
         return $query;

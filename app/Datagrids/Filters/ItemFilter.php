@@ -27,7 +27,15 @@ class ItemFilter extends DatagridFilter
                 'model' => Item::class,
             ])
             ->location()
-            ->character()
+            ->add([
+                'field' => 'creators',
+                'label' => __('items.fields.creators'),
+                'type' => 'selectMultiple',
+                'route' => route('search.entities-with-relations', [$this->campaign]),
+                'placeholder' => __('crud.placeholders.search'),
+                'model' => \App\Models\Entity::class,
+                'multiple' => true,
+            ])
             ->isPrivate()
             ->template()
             ->archived()

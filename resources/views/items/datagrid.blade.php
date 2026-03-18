@@ -36,15 +36,19 @@
             'visible' => $campaign->enabled('locations'),
         ],
         [
-            'label' =>  __('items.fields.character'),
-            'field' => 'creator.name',
+            'label' =>  __('items.fields.creators'),
+            'disableSort' => true,
             'render' => function($model) use ($campaign) {
-                if (!$model->creator) {
+                if ($model->itemCreators->isEmpty()) {
                     return '';
                 }
-                return \Illuminate\Support\Facades\Blade::renderComponent(
-                    new \App\View\Components\EntityLink($model->creator, $campaign)
-                );
+                $links = [];
+                foreach ($model->itemCreators as $itemCreator) {
+                    $links[] = \Illuminate\Support\Facades\Blade::renderComponent(
+                        new \App\View\Components\EntityLink($itemCreator->creator, $campaign)
+                    );
+                }
+                return implode(', ', $links);
             },
         ],
         [
