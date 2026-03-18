@@ -27,6 +27,7 @@ class ItemMapper extends MiscMapper
         $this
             ->loadModel()
             ->foreign('locations', 'location_id')
+            // @phpstan-ignore method.notFound
             ->importCreators()
             ->saveModel()
             ->legacyCreator()
