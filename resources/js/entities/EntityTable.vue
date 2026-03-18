@@ -73,7 +73,7 @@ defineEmits<{
 
 const totalColumns = computed(() => {
     let count = props.visibleColumns.length + 1 // +1 for actions column
-    if (props.selecting) count++
+    count++ // checkbox column is always rendered (hidden on desktop when not selecting)
     if (props.nested && props.entityType?.is_nested) count++
     return count
 })

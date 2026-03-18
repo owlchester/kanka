@@ -132,6 +132,7 @@
             :depth="depth + 1"
             :max-depth="maxDepth"
             :show-expand-column="showExpandColumn"
+            @start-selecting="emit('startSelecting', $event)"
         />
     </template>
 </template>
