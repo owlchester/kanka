@@ -24,7 +24,13 @@ class Relation extends Layout
                         $icon = '<i class="fa-regular fa-star" data-title="' . __('crud.fields.is_star') . '" data-toggle="tooltip"></i> ';
                     }
 
-                    return $icon . $relation->relation;
+                    $text = e($relation->relation);
+                    if (auth()->check() && auth()->user()->can('update', $relation)) {
+                        $url = route($relation->url('edit'), $relation->routeParams(['campaign' => $relation->campaign_id]));
+                        $text = '<a href="' . $url . '" class="text-link" data-toggle="dialog" data-url="' . $url . '">' . $text . '</a>';
+                    }
+
+                    return $icon . $text;
                 },
             ],
             'target' => [
