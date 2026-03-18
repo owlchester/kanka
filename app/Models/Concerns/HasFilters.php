@@ -731,8 +731,14 @@ trait HasFilters
         $table = $this->getTable();
 
         if ($this->filterOption('exclude')) {
-            $query->whereRaw('(select count(*) from item_creator as ic where ic.item_id = ' .
-                $table . '.id and ic.creator_id in (' . implode(', ', $creatorIds) . ')) = 0');
+            foreach ($creatorIds as $creatorId) {
+                $query->whereNotExists(function ($sub) use ($table, $creatorId) {
+                    $sub->selectRaw(1)
+                        ->from('item_creator')
+                        ->whereColumn('item_creator.item_id', $table . '.id')
+                        ->where('item_creator.creator_id', $creatorId);
+                });
+            }
 
             return;
         }
@@ -940,11 +946,18 @@ trait HasFilters
             $key = $names[$key];
         }
         // Validate the key is a filter
-        if (! in_array($key, $fields)) {
+        if (! in_array($key, $fields) && $key !== 'creators') {
             return;
         }
         // Left join shenanigans
-        if (! in_array($key, ['race_id', 'family_id', 'tags', 'quest_element_id', 'member_id'])) {
+        if ($key === 'creators') {
+            $query
+                ->select($this->getTable() . '.*')
+                ->leftJoin('item_creator as ic_none', function ($join) {
+                    $join->on('ic_none.item_id', '=', $this->getTable() . '.id');
+                })
+                ->whereNull('ic_none.creator_id');
+        } elseif (! in_array($key, ['race_id', 'family_id', 'tags', 'quest_element_id', 'member_id'])) {
             $query->whereNull($this->getTable() . '.' . $key);
         } elseif ($key === 'tags') {
             $query

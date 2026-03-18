@@ -1,6 +1,4 @@
 <?php
-use Illuminate\Support\Arr;
-
 $selectedOption = [];
 $model = $model ?? FormCopy::model();
 $fieldUniqIdentifier = 'creators_' . uniqid();
@@ -9,7 +7,7 @@ $previous = old('creators[]');
 
 if (!empty($previous)) {
     // Form validation error, reload previous
-} elseif(!empty($model)) {
+} elseif (!empty($model)) {
     foreach ($model->itemCreators as $itemCreator) {
         $selectedOption[$itemCreator->creator->id] = strip_tags($itemCreator->creator->name);
     }

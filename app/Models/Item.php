@@ -11,6 +11,7 @@ use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -138,6 +139,9 @@ class Item extends MiscModel
             'location.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
+            'itemCreators' => function ($sub) {
+                $sub->has('creator');
+            },
             'itemCreators.creator' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
@@ -158,13 +162,16 @@ class Item extends MiscModel
     public function itemCreators(): HasMany
     {
         return $this->hasMany(ItemCreator::class, 'item_id')
-            ->orderBy('id')
-            ->has('creator')
-            ->with([
-                'creator' => function ($sub) {
-                    $sub->select('id', 'name', 'entity_id', 'type_id');
-                },
-            ]);
+            ->orderBy('id');
+    }
+
+    /**
+     * @return BelongsToMany<Entity, $this>
+     */
+    public function creators(): BelongsToMany
+    {
+        return $this->belongsToMany(Entity::class, 'item_creator', 'item_id', 'creator_id')
+            ->orderBy('item_creator.id');
     }
 
     /**
