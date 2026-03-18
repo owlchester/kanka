@@ -24,7 +24,7 @@
                 <!-- Filter button: no active filters -->
                 <button
                     v-if="!bulkActions.selecting.value && filters === 0"
-                    class="btn2"
+                    class="btn2 btn-sm"
                     :aria-label="i18n.filters"
                     :title="i18n.filters"
                     @click="openFilters"
