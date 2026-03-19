@@ -56,7 +56,7 @@ use App\Facades\Datagrid ?>
         @if ($styles->count() === 0)
             <x-box>
                 <x-helper>
-                    <p>{!! __('campaigns/styles.helpers.main', ['here' => '<a href="https://blog.kanka.io/category/tutorials" target="_blank">' . __('campaigns/styles.helpers.here') . '</a>']) !!}</p>
+                    <p>{!! __('campaigns/styles.helpers.main', ['here' => '<a href="https://blog.kanka.io/category/tutorials" target="_blank" class="text text-link">' . __('campaigns/styles.helpers.here') . '</a>']) !!}</p>
                 </x-helper>
             </x-box>
         @else

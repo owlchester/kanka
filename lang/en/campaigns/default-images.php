@@ -4,7 +4,7 @@ return [
     'actions'           => [
         'add'   => 'New placeholder',
     ],
-    'call-to-action'    => 'Upload a custom thumbnail for all the characters, locations, or other entries of the campaign. These images are then shown on various lists.',
+    'call-to-action'    => 'Give every character, location, or other category a default thumbnail, so your lists never look empty.',
     'create'            => [
         'error'     => 'Error saving the new placeholder image. Is :type already set?',
         'helper'    => 'Upload an image that will be used as the placeholder image for entries of the selected category.',

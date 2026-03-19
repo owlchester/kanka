@@ -109,15 +109,15 @@ Route::get('/w/{campaign}/achievements', 'Campaign\AchievementController@index')
 Route::get('/w/{campaign}/users/search', 'Campaign\UserController@search')->name('users.find');
 Route::get('/w/{campaign}/roles/search', 'Campaign\RoleController@search')->name('roles.find');
 
-Route::get('/w/{campaign}/default-images', 'Campaign\DefaultImageController@index')
+Route::get('/w/{campaign}/placeholder-images', 'Campaign\DefaultImageController@index')
     ->name('campaign.default-images');
-Route::get('/w/{campaign}/default-images/create', 'Campaign\DefaultImageController@create')
+Route::get('/w/{campaign}/placeholder-images/create', 'Campaign\DefaultImageController@create')
     ->name('campaign.default-images.create');
-Route::post('/w/{campaign}/default-images/create', 'Campaign\DefaultImageController@store')
+Route::post('/w/{campaign}/placeholder-images/create', 'Campaign\DefaultImageController@store')
     ->name('campaign.default-images.store');
-Route::delete('/w/{campaign}/default-images', 'Campaign\DefaultImageController@destroy')
+Route::delete('/w/{campaign}/placeholder-images', 'Campaign\DefaultImageController@destroy')
     ->name('campaign.default-images.delete');
-Route::delete('/w/{campaign}/default-images/reset', 'Campaign\DefaultImageController@reset')
+Route::delete('/w/{campaign}/placeholder-images/reset', 'Campaign\DefaultImageController@reset')
     ->name('campaign.default-images.reset');
 
 Route::resources([

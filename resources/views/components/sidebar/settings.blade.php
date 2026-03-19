@@ -101,7 +101,7 @@
                             ></x-sidebar.element>
                         </li>
                     @endif
-                    <li class="px-2 section-placeholders {{ $active('default-images') }}">
+                    <li class="px-2 section-placeholders {{ $active('placeholder-images') }}">
                         <x-sidebar.element
                             :url="route('campaign.default-images', [$campaign])"
                             icon="fa-duotone fa-image"

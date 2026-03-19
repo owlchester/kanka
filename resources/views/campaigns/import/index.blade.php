@@ -77,9 +77,16 @@
                 </div>
             @endif
         @else
-        <x-box>
-            <p class="text-2xl">Limited access</p>
-            <p class="">To access this feature, upgrade to a <a href="{{ route('settings.subscription') }}" class="text-link">Wyvern or Elemental subscription</a>.</p>
+        <x-box class="mx-auto max-w-xl flex flex-col gap-4">
+            <p class="text-2xl">
+                {{ __('callouts.premium.title') }}
+            </p>
+            <p class="">
+                {!! __('campaigns/import.subscription.pitch', ['wyvern' => 'Wyvern', 'elemental' =>  'Elemental']) !!}
+            </p>
+            <a href="{{ route('settings.subscription', ['f' => 'cta', 'w' => $campaign->id]) }}" class="btn2 btn-primary btn-block">
+                {{ __('callouts.actions.subscription') }}
+            </a>
         </x-box>
         @endif
     </div>

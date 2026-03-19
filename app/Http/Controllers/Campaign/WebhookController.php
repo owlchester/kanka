@@ -71,7 +71,9 @@ class WebhookController extends Controller
         if (! $campaign->premium()) {
             return view('components.premium-dialog', [
                 'campaign' => $campaign,
-                'pitch' => 'campaigns/webhooks.pitch',
+                'title' => __('campaigns/webhooks.title'),
+                'pitch' => __('campaigns/webhooks.premium'),
+                'doc' => 'features/campaigns/webhooks.html',
             ]);
         }
 

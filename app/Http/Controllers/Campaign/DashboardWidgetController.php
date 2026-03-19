@@ -52,8 +52,10 @@ class DashboardWidgetController extends Controller
 
         if ($widget === 'gallery' && ! $campaign->premium()) {
             return view('components.premium-dialog', [
+                'title' => __('dashboards/widgets/gallery.name'),
                 'campaign' => $campaign,
-                'pitch' => 'dashboards/widgets/gallery.helpers.premium',
+                'doc' => 'guides/dashboard.html#gallery',
+                'pitch' => __('dashboards/widgets/gallery.helpers.premium'),
             ]);
         }
 
