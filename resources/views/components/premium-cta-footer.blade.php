@@ -4,7 +4,7 @@
     </a>
 
     <div class="text-center">
-        <a href="https://kanka.io/premium" class="text-neutral-content hover:text-link text-xs">
+        <a href="https://kanka.io/premium" class="text-neutral-content hover:text-primary text-xs">
             {!! __('callouts.premium.learn-more') !!}
         </a>
     </div>
