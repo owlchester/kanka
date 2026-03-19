@@ -264,11 +264,6 @@ class BulkService
         unset($filledFields['creators']);
         $creatorIds = Arr::get($fields, 'creators', []);
 
-        // Handle entity_type_id removal
-        if (Arr::get($fields, 'bulk-entity-type') === 'remove') {
-            $filledFields['entity_type_id'] = null;
-        }
-
         // Handle images differently
         if (isset($filledFields['entity_image'])) {
             $imageUuid = $filledFields['entity_image'];
@@ -369,6 +364,11 @@ class BulkService
                 } elseif (! empty($creatorIds)) {
                     $entity->child->creators()->syncWithoutDetaching($creatorIds);
                 }
+            }
+
+            // Handle entity_type_id removal (attribute templates only)
+            if ($this->entityType->hasEntity() && Arr::get($fields, 'bulk-entity-type') === 'remove' && in_array('entity_type_id', $entity->child->getFillable())) {
+                $entity->child->update(['entity_type_id' => null]);
             }
 
             // No tags? We're done

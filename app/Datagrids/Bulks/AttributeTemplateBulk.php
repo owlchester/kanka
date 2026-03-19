@@ -15,7 +15,7 @@ class AttributeTemplateBulk extends Bulk
         'entity_header',
     ];
 
-    protected $booleans = [
+    protected array $booleans = [
         'is_enabled',
     ];
 }
