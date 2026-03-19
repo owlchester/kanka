@@ -77,17 +77,17 @@
                         @click="nestingComposable.switchMode()"
                         class="flex items-center justify-center rounded-lg px-2 py-2 text-sm transition-all"
                         :class="nestingComposable.nested.value ? 'bg-base-100 text-base-content shadow-xs' : 'text-neutral-content cursor-pointer hover:text-base-content'"
-                        :title="i18n.flatten"
+                        :title="i18n.nest"
                     >
-                        <i class="fa-regular fa-boxes-stacked" aria-hidden="true"></i>
+                        <i class="fa-regular fa-layer-group" aria-hidden="true"></i>
                     </button>
                     <button
                         @click="nestingComposable.switchMode()"
                         class="flex items-center justify-center rounded-lg px-2 py-2 text-sm transition-all"
                         :class="!nestingComposable.nested.value ? 'bg-base-100 text-base-content shadow-xs' : 'text-neutral-content cursor-pointer hover:text-base-content'"
-                        :title="i18n.nest"
+                        :title="i18n.flatten"
                     >
-                        <i class="fa-regular fa-layer-group" aria-hidden="true"></i>
+                        <i class="fa-regular fa-boxes-stacked" aria-hidden="true"></i>
                     </button>
                 </div>
 

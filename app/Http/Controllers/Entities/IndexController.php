@@ -174,7 +174,7 @@ class IndexController extends Controller
             };
         }
         // All entity types: nesting uses entities.parent_id
-        $with['children'] = fn ($q) => $q->whereNull('archived_at');
+        $with['children'] = fn ($q) => $q->whereNull('archived_at')->with('image');
 
         $base = Entity::inTypes($entityType->id)
             ->select([
@@ -216,6 +216,11 @@ class IndexController extends Controller
         }
         $perPage = $this->perPageValue();
         $models = $base->orderBy('entities.name')->paginate($perPage);
+
+        // All children share the same entity type — set it without an extra DB query
+        $models->each(function (Entity $entity) use ($entityType): void {
+            $entity->children->each(fn (Entity $child) => $child->setRelation('entityType', $entityType));
+        });
 
         $i18n = [
             'fields' => [
