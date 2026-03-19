@@ -11,7 +11,7 @@ return [
         ],
         'confirm'   => 'How exciting! You\'re about to unlock premium features for :campaign. This will use one of your available premium campaigns.',
         'duration'  => 'Premium campaigns stay that way until you manually remove them, or your subscription ends.',
-        'pitch'     => 'Become a subscriber to unlock premium campaigns.',
+        'pitch_2026'     => 'Get unlimited roles, members, custom themes, plugins, and more for your campaigns.',
         'success'   => 'The :campaign campaign is now premium. Enjoy all the new awesome features!',
     ],
     'exceptions'    => [
