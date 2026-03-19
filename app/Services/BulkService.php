@@ -260,6 +260,15 @@ class BulkService
         unset($filledFields['locations']);
         $locationIds = Arr::get($fields, 'locations', []);
 
+        // Handle creators differently
+        unset($filledFields['creators']);
+        $creatorIds = Arr::get($fields, 'creators', []);
+
+        // Handle entity_type_id removal
+        if (Arr::get($fields, 'bulk-entity-type') === 'remove') {
+            $filledFields['entity_type_id'] = null;
+        }
+
         // Handle images differently
         if (isset($filledFields['entity_image'])) {
             $imageUuid = $filledFields['entity_image'];
@@ -351,6 +360,15 @@ class BulkService
                 $entity->locations()->detach($locationIds);
             } elseif (! empty($locationIds)) {
                 $this->saveLocations($entity, $locationIds);
+            }
+
+            // Handle creators (items only)
+            if ($this->entityType->hasEntity() && method_exists($entity->child, 'creators')) {
+                if (Arr::get($fields, 'bulk-creators') === 'remove') {
+                    $entity->child->creators()->detach();
+                } elseif (! empty($creatorIds)) {
+                    $entity->child->creators()->syncWithoutDetaching($creatorIds);
+                }
             }
 
             // No tags? We're done

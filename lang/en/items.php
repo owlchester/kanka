@@ -11,6 +11,12 @@ return [
         'size'          => 'Size',
         'weight'        => 'Weight',
     ],
+    'bulk'          => [
+        'creators'  => [
+            'action'    => 'Action for creators',
+            'remove'    => 'Remove all creators',
+        ],
+    ],
     'lists'         => [
         'empty' => 'Add weapons, artifacts, or items of importance to your world.',
     ],
