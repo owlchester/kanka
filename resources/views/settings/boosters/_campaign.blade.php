@@ -15,7 +15,7 @@ $boost = isset($boost) ? $boost : $campaign->boosts->first();?>
                 {!! \Illuminate\Support\Str::limit($campaign->name, 28) !!}
             </a>
 
-            <p class="mb-0">
+            <p class="mb-0 text-neutral-content">
                 @if ($campaign->premium())
                     <x-icon class="premium" />
                     {!! __('settings/boosters.campaign.premium', [

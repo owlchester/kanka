@@ -31,61 +31,63 @@
                 <h3 class="text-xl">{{ __('settings/boosters.pitch.title') }}</h3>
                 <p class="">{{ __('settings/premium.pitch.description') }}</p>
 
-                <h4 class="text-lg">{{ __('settings/premium.pitch.title') }}</h4>
-                <div class="grid grid-cols-2 lg:grid-cols-3 gap-1 mb-3">
-                    <div class="flex items-center">
-                        <div class="p-1 w-12 flex-none">
-                            <x-icon class="fa-solid fa-palette fa-2x" />
+                <div class="flex flex-col gap-2">
+                    <h4 class="text-lg">{{ __('settings/premium.pitch.title') }}</h4>
+                    <div class="grid grid-cols-2 lg:grid-cols-3 gap-1 mb-3">
+                        <div class="flex items-center">
+                            <div class="p-1 w-12 flex-none text-center">
+                                <x-icon class="fa-regular fa-palette fa-2x text-neutral-content" />
+                            </div>
+                            <div class="p-1">
+                                {{ __('settings/boosters.pitch.benefits.customisable') }}
+                            </div>
                         </div>
-                        <div class="p-1">
-                            {{ __('settings/boosters.pitch.benefits.customisable') }}
+                        <div class="flex items-center">
+                            <div class="p-1 w-12 flex-none text-center">
+                                <x-icon class="fa-regular fa-puzzle-piece fa-2x text-neutral-content" />
+                            </div>
+                            <div class="p-1">
+                                {{ __('settings/boosters.pitch.benefits.plugins') }}
+                            </div>
                         </div>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="p-1 w-12 flex-none">
-                            <x-icon class="fa-solid fa-image-portrait fa-2x" />
+                        <div class="flex items-center">
+                            <div class="p-1 w-12 flex-none text-center">
+                                <x-icon class="fa-regular fa-hourglass-half fa-2x text-neutral-content" />
+                            </div>
+                            <div class="p-1">
+                                {{ __('settings/boosters.pitch.benefits.backup', ['amount' => config('entities.hard_delete')]) }}
+                            </div>
                         </div>
-                        <div class="p-1">
-                            {{ __('settings/boosters.pitch.benefits.entities') }}
+                        <div class="flex items-center">
+                            <div class="p-1 w-12 flex-none text-center">
+                                <x-icon class="fa-regular fa-horse-head fa-2x text-neutral-content" />
+                            </div>
+                            <div class="p-1">
+                                {{ __('settings/boosters.pitch.benefits.icons') }}
+                            </div>
                         </div>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="p-1 w-12 flex-none">
-                            <x-icon class="fa-solid fa-hourglass-half fa-2x" />
+                        <div class="flex items-center">
+                            <div class="p-1 w-12 flex-none text-center">
+                                <x-icon class="fa-regular fa-camera fa-2x text-neutral-content" />
+                            </div>
+                            <div class="p-1">
+                                {{ __('settings/boosters.pitch.benefits.upload') }}
+                            </div>
                         </div>
-                        <div class="p-1">
-                            {{ __('settings/boosters.pitch.benefits.backup', ['amount' => config('entities.hard_delete')]) }}
-                        </div>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="p-1 w-12 flex-none">
-                            <x-icon class="fa-solid fa-horse-head fa-2x" />
-                        </div>
-                        <div class="p-1">
-                            {{ __('settings/boosters.pitch.benefits.icons') }}
-                        </div>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="p-1 w-12 flex-none">
-                            <x-icon class="fa-solid fa-camera fa-2x" />
-                        </div>
-                        <div class="p-1">
-                            {{ __('settings/boosters.pitch.benefits.upload') }}
-                        </div>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="p-1 w-12 flex-none">
-                            <x-icon class="fa-solid fa-user-group fa-2x" />
-                        </div>
-                        <div class="p-1">
-                            {{ __('settings/boosters.pitch.benefits.relations') }}
+                        <div class="flex items-center">
+                            <div class="p-1 w-12 flex-none text-center">
+                                <x-icon class="fa-regular fa-circle-nodes fa-2x text-neutral-content" />
+                            </div>
+                            <div class="p-1">
+                                {{ __('settings/boosters.pitch.benefits.visual') }}
+                            </div>
                         </div>
                     </div>
                 </div>
                 <p>
-                    {!! __('settings/premium.pitch.more', [
-    'premium' => '<a href="https://kanka.io/premium?utm_source=premium&utm_medium=referral&utm_campaign=findoutmore" class="text-link">' . __('concept.premium-campaigns') . '</a>'
-    ]) !!}
+                    <a href="https://kanka.io/premium?utm_source=premium" class="text-link">
+                        {!! __('callouts.premium.learn-more') !!}
+                    </a>
                 </p>
             </x-grid>
         </x-box>

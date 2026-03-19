@@ -19,13 +19,12 @@ return [
         'out-of-stock'  => 'You don\'t have enough premium campaigns available to unlock this campaign. Either remove the premium status from another campaign, or :upgrade.',
     ],
     'pitch'         => [
-        'description'   => 'Go premium on campaigns and help unlock amazing features for everyone involved.',
-        'more'          => 'Check out the full list of perks on our :premium page.',
+        'description'   => 'Premium features apply to the whole campaign, including all of its members.',
         'title'         => 'Premium campaigns get',
     ],
     'ready'         => [
         'available'         => 'Your available premium campaigns.',
-        'pricing'           => 'All of our subscription levels include at least one premium campaign and start :amount per month.',
+        'pricing'           => 'All of our subscription levels include at least one premium campaign and start at :amount per month.',
         'pricing-amount'    => ':currency:amount',
         'title'             => 'Go premium',
     ],
