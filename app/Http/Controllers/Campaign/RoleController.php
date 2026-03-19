@@ -80,7 +80,8 @@ class RoleController extends Controller
         $this->authorize('create', CampaignRole::class);
         if (! $campaign->canHaveMoreRoles()) {
             return view('cruds.forms.limit')
-                ->with('key', 'roles')
+                ->with('limit', config('limits.campaigns.roles'))
+                ->with('thing', __('campaigns.show.tabs.roles'))
                 ->with('campaign', $campaign)
                 ->with('name', 'campaign_roles');
         }
@@ -98,7 +99,8 @@ class RoleController extends Controller
         $this->authorize('create', CampaignRole::class);
         if (! $campaign->canHaveMoreRoles()) {
             return view('cruds.forms.limit')
-                ->with('key', 'roles')
+                ->with('limit', config('limits.campaigns.roles'))
+                ->with('thing', __('campaigns.show.tabs.roles'))
                 ->with('campaign', $campaign)
                 ->with('name', 'campaign_roles');
         }
@@ -113,10 +115,7 @@ class RoleController extends Controller
             return response()->json();
         }
         if (! $campaign->canHaveMoreRoles()) {
-            return view('cruds.forms.limit')
-                ->with('key', 'roles')
-                ->with('campaign', $campaign)
-                ->with('name', 'campaign_roles');
+            return redirect()->back();
         }
         $data = $request->all() + ['campaign_id' => $campaign->id];
         $role = CampaignRole::create($data);

@@ -14,11 +14,20 @@
             {{ __('callouts.premium.title') }}
         @endif
     </h2>
-    <div class="">
+    <x-grid type="1/1">
         <x-helper>
             {!! $slot !!}
         </x-helper>
-    </div>
+        @if (isset($doc))
+            <p>
+                <a
+                    href="https://docs.kanka.io/en/latest/{{ $doc }}" class="link text-link">
+                    <x-icon class="fa-regular fa-book" />
+                    {{ __('general.documentation') }}
+                </a>
+            </p>
+        @endif
+    </x-grid>
 
 
     <x-premium-cta-footer :campaign="$campaign" />

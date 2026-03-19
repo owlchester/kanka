@@ -51,7 +51,8 @@ class InviteController extends Controller
         if (! $campaign->canHaveMoreMembers()) {
             return view('cruds.forms.limit')
                 ->with('campaign', $campaign)
-                ->with('key', 'members')
+                ->with('limit', config('limits.campaigns.members'))
+                ->with('thing', __('campaigns.show.tabs.members'))
                 ->with('name', 'campaign_roles');
         }
 
@@ -69,10 +70,7 @@ class InviteController extends Controller
         }
 
         if (! $campaign->canHaveMoreMembers()) {
-            return view('cruds.forms.limit')
-                ->with('campaign', $campaign)
-                ->with('key', 'members')
-                ->with('name', 'campaign_roles');
+            return redirect()->back();
         }
 
         $data = $request->only('role_id', 'validity');

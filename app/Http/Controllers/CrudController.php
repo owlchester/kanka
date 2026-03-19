@@ -325,7 +325,9 @@ class CrudController extends Controller
 
                 return view('cruds.forms.limit')
                     ->with('campaign', $this->campaign)
-                    ->with('key', $key)
+                    ->with('limit', config('limits.campaigns.' . $key))
+                    ->with('thing', __('entities.bookmarks'))
+                    ->with('doc', '/advanced/bookmarks.html')
                     ->with('name', $this->view);
             }
         }
