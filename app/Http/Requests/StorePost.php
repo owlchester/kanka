@@ -39,12 +39,9 @@ class StorePost extends FormRequest
         ];
 
         $layoutId = $this->input('layout_id');
-        if ($layoutId) {
-            $layout = PostLayout::find($layoutId);
-            if ($layout && $layout->code === 'gallery') {
-                $rules['settings.folder_id'] = 'required|exists:images,id';
-                $rules['settings.show_name'] = 'nullable|boolean';
-            }
+        if ($layoutId && PostLayout::where('id', $layoutId)->where('code', 'gallery')->exists()) {
+            $rules['settings.folder_id'] = 'required|exists:images,id';
+            $rules['settings.show_name'] = 'nullable|boolean';
         }
 
         if (request()->has('calendar_id') && request()->post('calendar_id') !== null && ! request()->has('calendar_skip')) {

@@ -67,7 +67,7 @@ class PostController extends Controller
                 break;
             }
         }
-        if ($galleryLayoutId) {
+        if ($campaign->superboosted() && $galleryLayoutId) {
             $galleryFolders = Image::where('campaign_id', $campaign->id)
                 ->where('is_folder', true)
                 ->orderBy('name', 'asc')

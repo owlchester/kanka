@@ -160,6 +160,12 @@ class Post extends Model
         $new = $this->replicate($without);
         $new->entity_id = $target->id;
         $new->created_by = auth()->user()->id;
+
+        if (! $sameCampaign && $this->layout_id && $this->layout?->code === 'gallery') {
+            $settings = $new->settings ?? [];
+            unset($settings['folder_id']);
+            $new->settings = $settings;
+        }
         /** @var MentionsService $mentionsService */
         $mentionsService = app()->make(MentionsService::class);
 
