@@ -46,8 +46,8 @@
     "file": "assets/index-D5GkNzM3.js",
     "name": "index"
   },
-  "_jspdf.es.min-CKgnzWYT.js": {
-    "file": "assets/jspdf.es.min-CKgnzWYT.js",
+  "_jspdf.es.min-BFMzglXp.js": {
+    "file": "assets/jspdf.es.min-BFMzglXp.js",
     "name": "jspdf.es.min",
     "isDynamicEntry": true,
     "imports": [
@@ -126,13 +126,13 @@
     "src": "node_modules/@fontsource-variable/roboto/files/roboto-vietnamese-wdth-normal.woff2"
   },
   "node_modules/canvg/lib/index.es.js": {
-    "file": "assets/index.es-B2JwXWYx.js",
+    "file": "assets/index.es-zldFpFEG.js",
     "name": "index.es",
     "src": "node_modules/canvg/lib/index.es.js",
     "isDynamicEntry": true,
     "imports": [
       "__commonjsHelpers-Cpj98o6Y.js",
-      "_jspdf.es.min-CKgnzWYT.js",
+      "_jspdf.es.min-BFMzglXp.js",
       "_preload-helper-I4rgV-VL.js"
     ]
   },
@@ -152,7 +152,7 @@
     "isDynamicEntry": true
   },
   "node_modules/dompurify/dist/purify.es.mjs": {
-    "file": "assets/purify.es-Bzr520pe.js",
+    "file": "assets/purify.es-C0_7NiBM.js",
     "name": "purify.es",
     "src": "node_modules/dompurify/dist/purify.es.mjs",
     "isDynamicEntry": true
@@ -180,7 +180,7 @@
     "src": "node_modules/rpg-awesome/fonts/rpgawesome-webfont.woff"
   },
   "resources/css/app.css": {
-    "file": "assets/app-jKbV3NNR.css",
+    "file": "assets/app-CcekkIPy.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -189,7 +189,7 @@
     ]
   },
   "resources/css/auth.css": {
-    "file": "assets/auth-Bve6MBR0.css",
+    "file": "assets/auth-Bh9mDens.css",
     "src": "resources/css/auth.css",
     "isEntry": true,
     "name": "auth",
@@ -216,7 +216,7 @@
     ]
   },
   "resources/css/front.css": {
-    "file": "assets/front-KFGKTLGc.css",
+    "file": "assets/front-_p0zFhI7.css",
     "src": "resources/css/front.css",
     "isEntry": true,
     "name": "front",
@@ -388,7 +388,7 @@
     ]
   },
   "resources/js/connections/web.js": {
-    "file": "assets/web-1a8cWsBr.js",
+    "file": "assets/web-JQjnLGEu.js",
     "name": "web",
     "src": "resources/js/connections/web.js",
     "isEntry": true,
@@ -404,7 +404,7 @@
       "node_modules/cytoscape/dist/cytoscape.esm.mjs",
       "_cytoscape-cose-bilkent-DRrwnnKV.js",
       "_cytoscape-panzoom-Del_Rz3u.js",
-      "_jspdf.es.min-CKgnzWYT.js"
+      "_jspdf.es.min-BFMzglXp.js"
     ],
     "css": [
       "assets/web-C9wt4HvN.css"
@@ -507,7 +507,7 @@
     ]
   },
   "resources/js/entities/explore.js": {
-    "file": "assets/explore-CG9bhM68.js",
+    "file": "assets/explore-BrXUfFHW.js",
     "name": "explore",
     "src": "resources/js/entities/explore.js",
     "isEntry": true,
@@ -629,7 +629,7 @@
     "isEntry": true
   },
   "resources/js/whiteboards.js": {
-    "file": "assets/whiteboards-kRrOIkUd.js",
+    "file": "assets/whiteboards-fruQDK0H.js",
     "name": "whiteboards",
     "src": "resources/js/whiteboards.js",
     "isEntry": true,
