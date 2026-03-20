@@ -10,7 +10,7 @@
 
     <x-form method="POST" action="auth.verify-2fa">
         <div class="mb-3 {{ $errors->has('one_time_password') ? ' has-error' : '' }}">
-            <input id="one_time_password" type="password" class="rounded border p-4 w-full dark:bg-slate-800" name="one_time_password" required autofocus>
+            <input id="one_time_password" type="text" inputmode="numeric" autocomplete="one-time-code" class="rounded border p-4 w-full dark:bg-slate-800" name="one_time_password" required autofocus>
 
             @if ($errors->has('password'))
                 <span class="text-sm text-red-500">
