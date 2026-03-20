@@ -66,6 +66,11 @@ trait BaseEntityMapper
                     $post->location_id = $locationID;
                 }
             }
+            if (! empty($data['settings']['folder_id']) && ImportIdMapper::hasGallery($data['settings']['folder_id'])) {
+                $settings = $post->settings ?? [];
+                $settings['folder_id'] = ImportIdMapper::getGallery($data['settings']['folder_id']);
+                $post->settings = $settings;
+            }
             if (empty($post->position)) {
                 $post->position = 0;
             }
