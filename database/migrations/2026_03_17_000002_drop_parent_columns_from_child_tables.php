@@ -37,7 +37,8 @@ return new class extends Migration
 
         Schema::table('locations', function (Blueprint $table) {
             $table->dropForeign('locations_parent_id_foreign');
-            $table->dropColumn('parent_id');
+            $table->dropForeign('locations_parent_location_id_foreign');
+            $table->dropColumn('location_id');
         });
     }
 
