@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CookieConsentController;
+use App\Http\Controllers\Datagrids\SubscriptionController;
 use App\Http\Controllers\FrontendPrepareController;
 use App\Http\Controllers\HealthController;
 use App\Http\Controllers\ReferralController;
@@ -54,4 +55,4 @@ Route::get('/search/systems', [GameSystemSearchController::class, 'index'])->nam
 
 Route::get('/r/{referral}', [ReferralController::class, 'index'])->name('referrals');
 
-Route::get('/datagrids/subscription', [\App\Http\Controllers\Datagrids\SubscriptionController::class, 'index'])->name('datagrids.subscription');
+Route::get('/datagrids/subscription', [SubscriptionController::class, 'index'])->name('datagrids.subscription');

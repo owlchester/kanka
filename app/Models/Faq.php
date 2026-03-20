@@ -47,7 +47,6 @@ class Faq extends Model
     /** @var null|string Cached slug */
     protected $cachedSlug = null;
 
-
     public function scopeVisible(Builder $query, bool $visible = true): Builder
     {
         return $query->where('is_visible', $visible);
