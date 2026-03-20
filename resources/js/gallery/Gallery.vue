@@ -142,7 +142,7 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="file" multiple accept="image/*, .gif, .webp, .woff2" class="hidden" @change="filesSelected" ref="fileField" />
+                        <input type="file" multiple accept="image/*, font/woff2" class="hidden" @change="filesSelected" ref="fileField" />
                     </div>
 
                     <Preview

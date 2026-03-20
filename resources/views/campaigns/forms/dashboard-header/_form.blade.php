@@ -18,7 +18,7 @@
             <div class="grid gap-2 grid-cols-4">
                 <div class="col-span-3 flex flex-col gap-2 ">
                     <div class="field field-header-image">
-                        <input type="file" name="header_image" class="image w-full" id="header_image" accept=".jpg, .jpeg, .png, .gif, .webp, .gif" />
+                        <input type="file" name="header_image" class="image w-full" id="header_image" accept="image/*" />
                     </div>
                     <div class="field field-header-url">
                         <input type="text" name="header_image_url" value="{{ old('header_image_url') }}" maxlength="255" class="w-full" placeholder="{{ __('crud.placeholders.image_url') }}" />
