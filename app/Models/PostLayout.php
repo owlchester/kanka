@@ -57,6 +57,8 @@ class PostLayout extends Model
             return __('crud.fields.' . $this->code);
         } elseif ($this->code === 'children') {
             return __('tags.fields.' . $this->code);
+        } elseif ($this->code === 'gallery') {
+            return __('dashboards/widgets/gallery.name');
         }
 
         return __('post_layouts.' . $this->code);

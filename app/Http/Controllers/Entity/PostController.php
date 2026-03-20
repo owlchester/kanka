@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePost;
 use App\Models\Campaign;
 use App\Models\Entity;
+use App\Models\Image;
 use App\Models\Post;
 use App\Models\PostLayout;
 use App\Services\MultiEditingService;
@@ -58,6 +59,23 @@ class PostController extends Controller
         $collator->asort($layoutOptions);
         $layoutOptions = $layoutDefault + $layoutOptions;
 
+        $galleryLayoutId = null;
+        $galleryFolders = [];
+        foreach ($layouts as $layout) {
+            if ($layout->code === 'gallery') {
+                $galleryLayoutId = $layout->id;
+                break;
+            }
+        }
+        if ($galleryLayoutId) {
+            $galleryFolders = Image::where('campaign_id', $campaign->id)
+                ->where('is_folder', true)
+                ->orderBy('name', 'asc')
+                ->pluck('name', 'id')
+                ->prepend(__('crud.select'), '')
+                ->toArray();
+        }
+
         return view('entities.pages.posts.create', compact(
             'campaign',
             'post',
@@ -67,6 +85,8 @@ class PostController extends Controller
             'parentRoute',
             'templates',
             'template',
+            'galleryLayoutId',
+            'galleryFolders',
         ));
     }
 
@@ -136,13 +156,27 @@ class PostController extends Controller
         $parentRoute = $entity->entityType->pluralCode();
         $from = request()->get('from');
 
+        $galleryLayoutId = null;
+        $galleryFolders = [];
+        if ($model->layout_id && $model->layout?->code === 'gallery') {
+            $galleryLayoutId = $model->layout_id;
+            $galleryFolders = Image::where('campaign_id', $campaign->id)
+                ->where('is_folder', true)
+                ->orderBy('name', 'asc')
+                ->pluck('name', 'id')
+                ->prepend(__('crud.select'), '')
+                ->toArray();
+        }
+
         return view('entities.pages.posts.edit', compact(
             'campaign',
             'entity',
             'model',
             'parentRoute',
             'from',
-            'editingUsers'
+            'editingUsers',
+            'galleryLayoutId',
+            'galleryFolders',
         ));
     }
 

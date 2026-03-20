@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\PostLayout;
 use App\Rules\Lessless;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
@@ -36,6 +37,15 @@ class StorePost extends FormRequest
             'entry' => 'nullable|string',
             'layout_id' => 'nullable|integer|exists:post_layouts,id',
         ];
+
+        $layoutId = $this->input('layout_id');
+        if ($layoutId) {
+            $layout = PostLayout::find($layoutId);
+            if ($layout && $layout->code === 'gallery') {
+                $rules['settings.folder_id'] = 'required|exists:images,id';
+                $rules['settings.show_name'] = 'nullable|boolean';
+            }
+        }
 
         if (request()->has('calendar_id') && request()->post('calendar_id') !== null && ! request()->has('calendar_skip')) {
             $rules['calendar_day'] = 'required_with:calendar_id|min:1';
