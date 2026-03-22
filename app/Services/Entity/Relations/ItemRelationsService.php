@@ -2,7 +2,6 @@
 
 namespace App\Services\Entity\Relations;
 
-use App\Facades\EntityLogger;
 use App\Models\Entity;
 use App\Models\Item;
 use App\Models\MiscModel;
