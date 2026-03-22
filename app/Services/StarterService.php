@@ -19,7 +19,6 @@ use App\Models\CharacterTrait;
 use App\Models\Location;
 use App\Models\Post;
 use App\Models\Relation;
-use App\Observers\CharacterObserver;
 use App\Services\Campaign\CreateService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
@@ -68,8 +67,6 @@ class StarterService
 
     public function bind(): self
     {
-        Character::observe(CharacterObserver::class);
-
         return $this;
     }
 
