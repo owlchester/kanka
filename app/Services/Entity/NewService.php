@@ -36,30 +36,33 @@ class NewService
         if (isset($this->available)) {
             return $this->available;
         }
-        $this->available = new Collection;
+        $this->available = new Collection();
 
-        if (! isset($this->user)) {
+        if (!isset($this->user)) {
             return $this->available;
         }
 
         $excludedTypes = [
-            config('entities.ids.bookmark'),
-            config('entities.ids.attribute_template'),
+            config("entities.ids.bookmark"),
+            config("entities.ids.attribute_template"),
         ];
 
         foreach ($this->campaign->getEntityTypes() as $entityType) {
             // Skip disabled modules
-            if ($entityType->isCustom() && ! $entityType->isEnabled()) {
+            if ($entityType->isCustom() && !$entityType->isEnabled()) {
                 continue;
             }
-            if ($entityType->isStandard() && ! $this->campaign->enabled($entityType)) {
+            if (
+                $entityType->isStandard() &&
+                !$this->campaign->enabled($entityType)
+            ) {
                 continue;
             }
             if (in_array($entityType->id, $excludedTypes)) {
                 continue;
             }
             // Check permission
-            if (! $this->user->can('create', [$entityType, $this->campaign])) {
+            if (!$this->user->can("create", [$entityType, $this->campaign])) {
                 continue;
             }
             $this->available->add($entityType);
@@ -70,9 +73,9 @@ class NewService
 
     public function create(string $name): Entity
     {
-        $name = Str::replace(['&lt;', '&gt;'], ['<', '>'], $name);
+        $name = Str::replace(["&lt;", "&gt;"], ["<", ">"], $name);
         if ($this->entityType->isCustom()) {
-            $this->entity = new Entity;
+            $this->entity = new Entity();
             $this->entity->campaign_id = $this->campaign->id;
             $this->entity->type_id = $this->entityType->id;
             $this->entity->name = $this->purify(mb_trim(strip_tags($name)));
@@ -86,7 +89,7 @@ class NewService
             $misc->is_private = $this->private();
             $misc->campaign_id = $this->campaign->id;
             $misc->save();
-            $this->entity = $misc->createEntity();
+            $this->entity = $misc->entity;
         }
 
         if ($this->entity->isTag()) {
@@ -101,7 +104,8 @@ class NewService
 
     protected function private(): bool
     {
-        return (bool) ($this->user->isAdmin() && $this->campaign->entity_visibility);
+        return (bool) ($this->user->isAdmin() &&
+            $this->campaign->entity_visibility);
     }
 
     public function autoTags(): array
@@ -110,7 +114,7 @@ class NewService
             return $this->tags;
         }
         $this->tags = [];
-        $tags = Tag::autoApplied()->has('entity')->get();
+        $tags = Tag::autoApplied()->has("entity")->get();
         foreach ($tags as $tag) {
             $this->tags[] = $tag->id;
         }
