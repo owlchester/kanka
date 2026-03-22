@@ -6,15 +6,21 @@ use App\Exceptions\TranslatableException;
 use App\Http\Requests\MoveEntity as Request;
 use App\Models\Campaign;
 use App\Models\Entity;
+use App\Services\Entity\EntitySaveService;
 use App\Services\Entity\MoveService;
+use App\Services\Entity\Relations\EntityRelationsServiceFactory;
 use Illuminate\Auth\Access\AuthorizationException;
 
 class EntityMoveApiController extends ApiController
 {
     protected MoveService $service;
 
-    public function __construct(MoveService $service)
-    {
+    public function __construct(
+        EntitySaveService $entitySaveService,
+        EntityRelationsServiceFactory $relationsFactory,
+        MoveService $service,
+    ) {
+        parent::__construct($entitySaveService, $relationsFactory);
         $this->middleware('auth');
 
         $this->service = $service;

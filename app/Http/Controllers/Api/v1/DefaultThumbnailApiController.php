@@ -9,14 +9,20 @@ use App\Http\Resources\EntityDefaultThumbnailResource as Resource;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Services\Campaign\DefaultImageService;
+use App\Services\Entity\EntitySaveService;
+use App\Services\Entity\Relations\EntityRelationsServiceFactory;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class DefaultThumbnailApiController extends ApiController
 {
-    public function __construct(protected DefaultImageService $defaultImageService)
-    {
+    public function __construct(
+        EntitySaveService $entitySaveService,
+        EntityRelationsServiceFactory $relationsFactory,
+        protected DefaultImageService $defaultImageService,
+    ) {
+        parent::__construct($entitySaveService, $relationsFactory);
         $this->middleware(Boosted::class)->except('index');
     }
 

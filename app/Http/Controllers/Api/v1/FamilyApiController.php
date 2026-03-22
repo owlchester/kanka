@@ -54,7 +54,7 @@ class FamilyApiController extends ApiController
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
         $model = Family::create($data);
-        $this->crudSave($model);
+        $this->crudSave($model, $request->validated());
 
         return new Resource($model);
     }
@@ -67,7 +67,7 @@ class FamilyApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $family->entity);
         $family->update($request->all());
-        $this->crudSave($family);
+        $this->crudSave($family, $request->validated());
 
         return new Resource($family);
     }

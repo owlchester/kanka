@@ -6,6 +6,8 @@ use App\Http\Resources\EntityResource as Resource;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\Entity\ArchiveService;
+use App\Services\Entity\EntitySaveService;
+use App\Services\Entity\Relations\EntityRelationsServiceFactory;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\DB;
@@ -14,8 +16,12 @@ class EntityArchiveApiController extends ApiController
 {
     protected ArchiveService $service;
 
-    public function __construct(ArchiveService $archiveService)
-    {
+    public function __construct(
+        EntitySaveService $entitySaveService,
+        EntityRelationsServiceFactory $relationsFactory,
+        ArchiveService $archiveService,
+    ) {
+        parent::__construct($entitySaveService, $relationsFactory);
         $this->service = $archiveService;
     }
 

@@ -6,6 +6,8 @@ use App\Http\Requests\TransformEntity as Request;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityType;
+use App\Services\Entity\EntitySaveService;
+use App\Services\Entity\Relations\EntityRelationsServiceFactory;
 use App\Services\Entity\TransformService;
 use Illuminate\Auth\Access\AuthorizationException;
 
@@ -13,8 +15,12 @@ class EntityTransformApiController extends ApiController
 {
     protected TransformService $service;
 
-    public function __construct(TransformService $service)
-    {
+    public function __construct(
+        EntitySaveService $entitySaveService,
+        EntityRelationsServiceFactory $relationsFactory,
+        TransformService $service,
+    ) {
+        parent::__construct($entitySaveService, $relationsFactory);
         $this->middleware('auth');
 
         $this->service = $service;

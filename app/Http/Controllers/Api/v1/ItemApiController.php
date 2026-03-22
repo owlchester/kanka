@@ -56,7 +56,7 @@ class ItemApiController extends ApiController
         $data['campaign_id'] = $campaign->id;
         /** @var Item $model */
         $model = Item::create($data);
-        $this->crudSave($model);
+        $this->crudSave($model, $request->validated());
 
         return new Resource($model);
     }
@@ -69,7 +69,7 @@ class ItemApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $item->entity);
         $item->update($request->all());
-        $this->crudSave($item);
+        $this->crudSave($item, $request->validated());
 
         return new Resource($item);
     }

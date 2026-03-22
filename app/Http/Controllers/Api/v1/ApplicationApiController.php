@@ -8,14 +8,20 @@ use App\Http\Resources\ApplicationResource as Resource;
 use App\Models\Application;
 use App\Models\Campaign;
 use App\Services\Campaign\ApplicationService;
+use App\Services\Entity\EntitySaveService;
+use App\Services\Entity\Relations\EntityRelationsServiceFactory;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class ApplicationApiController extends ApiController
 {
-    public function __construct(protected ApplicationService $service)
-    {
+    public function __construct(
+        EntitySaveService $entitySaveService,
+        EntityRelationsServiceFactory $relationsFactory,
+        protected ApplicationService $service,
+    ) {
+        parent::__construct($entitySaveService, $relationsFactory);
         $this->middleware('auth');
     }
 

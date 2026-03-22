@@ -54,7 +54,7 @@ class MapApiController extends ApiController
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
         $model = Map::create($data);
-        $this->crudSave($model);
+        $this->crudSave($model, $request->validated());
 
         return new Resource($model);
     }
@@ -67,7 +67,7 @@ class MapApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $map->entity);
         $map->update($request->all());
-        $this->crudSave($map);
+        $this->crudSave($map, $request->validated());
 
         return new Resource($map);
     }

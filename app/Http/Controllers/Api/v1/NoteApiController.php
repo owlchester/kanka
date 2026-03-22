@@ -54,7 +54,7 @@ class NoteApiController extends ApiController
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
         $model = Note::create($data);
-        $this->crudSave($model);
+        $this->crudSave($model, $request->validated());
 
         return new Resource($model);
     }
@@ -67,7 +67,7 @@ class NoteApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $note->entity);
         $note->update($request->all());
-        $this->crudSave($note);
+        $this->crudSave($note, $request->validated());
 
         return new Resource($note);
     }

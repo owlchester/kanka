@@ -54,7 +54,7 @@ class LocationApiController extends ApiController
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
         $model = Location::create($data);
-        $this->crudSave($model);
+        $this->crudSave($model, $request->validated());
 
         return new Resource($model);
     }
@@ -67,7 +67,7 @@ class LocationApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $location->entity);
         $location->update($request->all());
-        $this->crudSave($location);
+        $this->crudSave($location, $request->validated());
 
         return new Resource($location);
     }

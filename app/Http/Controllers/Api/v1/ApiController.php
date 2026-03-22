@@ -4,21 +4,25 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use App\Models\MiscModel;
+use App\Services\Entity\EntitySaveService;
+use App\Services\Entity\Relations\EntityRelationsServiceFactory;
 
 class ApiController extends Controller
 {
+    public function __construct(
+        protected EntitySaveService $entitySaveService,
+        protected EntityRelationsServiceFactory $relationsFactory,
+    ) {}
+
     /**
      * Hook for MiscModel and Entity objects
      */
-    protected function crudSave(MiscModel $model)
+    protected function crudSave(MiscModel $model, array $data): void
     {
-        // Fire an event for the Entity Observer.
-        $model->crudSaved();
+        $this->relationsFactory->for($model->entity)?->save($model, $data);
 
-        // Bookmarks have no entity attached to them.
         if (! empty($model->entity)) {
-            $model->entity->crudSaved();
-            // If the child was changed but nothing changed on the entity, we still want to trigger an update
+            $this->entitySaveService->save($model->entity, $data);
             if ($model->wasChanged() && ! $model->entity->wasChanged()) {
                 $model->entity->touch();
             }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Requests\RecoverPost as Request;
 use App\Http\Resources\PostResource as Resource;
 use App\Models\Campaign;
+use App\Services\Entity\EntitySaveService;
+use App\Services\Entity\Relations\EntityRelationsServiceFactory;
 use App\Services\Posts\RecoveryService;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -13,8 +15,12 @@ class PostRecoveryApiController extends ApiController
 {
     protected RecoveryService $service;
 
-    public function __construct(RecoveryService $service)
-    {
+    public function __construct(
+        EntitySaveService $entitySaveService,
+        EntityRelationsServiceFactory $relationsFactory,
+        RecoveryService $service,
+    ) {
+        parent::__construct($entitySaveService, $relationsFactory);
         $this->middleware('auth');
 
         $this->service = $service;

@@ -57,7 +57,7 @@ class CharacterApiController extends ApiController
         $data['campaign_id'] = $campaign->id;
         /** @var Character $model */
         $model = Character::create($data);
-        $this->crudSave($model);
+        $this->crudSave($model, $request->validated());
 
         return new CharacterResource($model);
     }
@@ -72,7 +72,7 @@ class CharacterApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $character->entity);
         $character->update($request->all());
-        $this->crudSave($character);
+        $this->crudSave($character, $request->validated());
 
         return new CharacterResource($character);
     }

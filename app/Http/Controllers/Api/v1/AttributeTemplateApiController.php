@@ -8,6 +8,8 @@ use App\Models\AttributeTemplate;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Services\AttributeService;
+use App\Services\Entity\EntitySaveService;
+use App\Services\Entity\Relations\EntityRelationsServiceFactory;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -16,8 +18,12 @@ class AttributeTemplateApiController extends ApiController
 {
     protected AttributeService $attributeService;
 
-    public function __construct(AttributeService $attributeService)
-    {
+    public function __construct(
+        EntitySaveService $entitySaveService,
+        EntityRelationsServiceFactory $relationsFactory,
+        AttributeService $attributeService,
+    ) {
+        parent::__construct($entitySaveService, $relationsFactory);
         $this->attributeService = $attributeService;
     }
 
@@ -62,7 +68,7 @@ class AttributeTemplateApiController extends ApiController
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
         $model = AttributeTemplate::create($data);
-        $this->crudSave($model);
+        $this->crudSave($model, $request->validated());
 
         return new Resource($model);
     }
@@ -75,7 +81,7 @@ class AttributeTemplateApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $attributeTemplate->entity);
         $attributeTemplate->update($request->all());
-        $this->crudSave($attributeTemplate);
+        $this->crudSave($attributeTemplate, $request->validated());
 
         return new Resource($attributeTemplate);
     }

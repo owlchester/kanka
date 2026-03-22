@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Resources\EntityResource as Resource;
 use App\Models\Campaign;
 use App\Models\Entity;
+use App\Services\Entity\EntitySaveService;
+use App\Services\Entity\Relations\EntityRelationsServiceFactory;
 use App\Services\Entity\TemplateService;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -14,8 +16,12 @@ class EntityTemplateApiController extends ApiController
 {
     protected TemplateService $service;
 
-    public function __construct(TemplateService $templateService)
-    {
+    public function __construct(
+        EntitySaveService $entitySaveService,
+        EntityRelationsServiceFactory $relationsFactory,
+        TemplateService $templateService,
+    ) {
+        parent::__construct($entitySaveService, $relationsFactory);
         $this->service = $templateService;
     }
 

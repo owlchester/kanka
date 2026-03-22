@@ -7,10 +7,19 @@ use App\Http\Resources\CampaignResource;
 use App\Models\Campaign;
 use App\Services\Campaign\CreateService;
 use App\Services\Campaign\DeletionService;
+use App\Services\Entity\EntitySaveService;
+use App\Services\Entity\Relations\EntityRelationsServiceFactory;
 
 class CampaignApiController extends ApiController
 {
-    public function __construct(protected CreateService $createService, protected DeletionService $deletionService) {}
+    public function __construct(
+        EntitySaveService $entitySaveService,
+        EntityRelationsServiceFactory $relationsFactory,
+        protected CreateService $createService,
+        protected DeletionService $deletionService,
+    ) {
+        parent::__construct($entitySaveService, $relationsFactory);
+    }
 
     public function index(\Illuminate\Http\Request $request)
     {

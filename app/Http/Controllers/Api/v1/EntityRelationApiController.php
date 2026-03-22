@@ -8,6 +8,8 @@ use App\Http\Resources\RelationResource as Resource;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Relation;
+use App\Services\Entity\EntitySaveService;
+use App\Services\Entity\Relations\EntityRelationsServiceFactory;
 use App\Services\Entity\RelationService;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
@@ -17,8 +19,12 @@ class EntityRelationApiController extends ApiController
 {
     protected RelationService $relationService;
 
-    public function __construct(RelationService $relationService)
-    {
+    public function __construct(
+        EntitySaveService $entitySaveService,
+        EntityRelationsServiceFactory $relationsFactory,
+        RelationService $relationService,
+    ) {
+        parent::__construct($entitySaveService, $relationsFactory);
         $this->relationService = $relationService;
     }
 

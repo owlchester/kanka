@@ -7,6 +7,8 @@ use App\Http\Requests\Campaigns\GalleryImageUpdate;
 use App\Http\Resources\ImageResource as Resource;
 use App\Models\Campaign;
 use App\Models\Image;
+use App\Services\Entity\EntitySaveService;
+use App\Services\Entity\Relations\EntityRelationsServiceFactory;
 use App\Services\Gallery\SummernoteService;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
@@ -15,8 +17,12 @@ class CampaignImageApiController extends ApiController
 {
     protected SummernoteService $service;
 
-    public function __construct(SummernoteService $summernoteService)
-    {
+    public function __construct(
+        EntitySaveService $entitySaveService,
+        EntityRelationsServiceFactory $relationsFactory,
+        SummernoteService $summernoteService,
+    ) {
+        parent::__construct($entitySaveService, $relationsFactory);
         $this->service = $summernoteService;
     }
 

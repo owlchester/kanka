@@ -54,7 +54,7 @@ class AbilityApiController extends ApiController
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
         $model = Ability::create($data);
-        $this->crudSave($model);
+        $this->crudSave($model, $request->validated());
 
         return new Resource($model);
     }
@@ -67,7 +67,7 @@ class AbilityApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $ability->entity);
         $ability->update($request->all());
-        $this->crudSave($ability);
+        $this->crudSave($ability, $request->validated());
 
         return new Resource($ability);
     }

@@ -54,7 +54,7 @@ class TagApiController extends ApiController
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
         $model = Tag::create($data);
-        $this->crudSave($model);
+        $this->crudSave($model, $request->validated());
 
         return new Resource($model);
     }
@@ -67,7 +67,7 @@ class TagApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $tag->entity);
         $tag->update($request->all());
-        $this->crudSave($tag);
+        $this->crudSave($tag, $request->validated());
 
         return new Resource($tag);
     }
