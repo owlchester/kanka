@@ -24,6 +24,5 @@ class ItemRelationsService implements RelationsServiceInterface
         $this->saveMany($model, 'creators', $creators ?? [], Entity::class, 'itemCreators', 'creator_id');
 
         // Note: EntityLogger::finish() is intentionally not called here.
-        // The original ItemObserver::crudSaved() did not call it either.
     }
 }

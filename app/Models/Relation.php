@@ -210,14 +210,6 @@ class Relation extends Model
         return '#' . $this->attributes['colour'];
     }
 
-    /**
-     * Faker event
-     */
-    public function crudSaved()
-    {
-        return $this;
-    }
-
     /** Fake entity type ID */
     public function entityTypeID(): int
     {

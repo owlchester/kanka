@@ -130,15 +130,6 @@ class Entity extends Model
     ];
 
     /**
-     * Array of our custom model events declared under model property $observables
-     *
-     * @var array
-     */
-    protected $observables = [
-        'crudSaved',
-    ];
-
-    /**
      * Get the child entity
      *
      * @return HasMany|HasOne|MiscModel
@@ -177,14 +168,6 @@ class Entity extends Model
         }
 
         return $this->load($this->entityType->code);
-    }
-
-    /**
-     * Fire an event to the observer to know that the entity was saved from the crud
-     */
-    public function crudSaved()
-    {
-        $this->fireModelEvent('crudSaved', false);
     }
 
     /**
