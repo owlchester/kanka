@@ -32,6 +32,7 @@ class CharacterRelationsService implements RelationsServiceInterface
         EntityLogger::model($model)->entity($model->entity)->finish();
     }
 
+    /** Save character traits for the given section (personality or appearance) */
     protected function saveTraits(Character $character, string $trait, array $data): self
     {
         if ($trait === 'personality' && ! auth()->user()->can('personality', $character)) {
@@ -63,7 +64,7 @@ class CharacterRelationsService implements RelationsServiceInterface
                 EntityLogger::dirty('traits', null);
             }
             $model->name = $name;
-            $model->entry = $traitEntry[$id] ?? '';
+            $model->entry = $traitEntry[$id] ?? ''; // Defensive: API callers may omit entry keys for a given trait
             $model->default_order = $traitOrder;
             $model->save();
             $traitOrder++;
@@ -77,6 +78,7 @@ class CharacterRelationsService implements RelationsServiceInterface
         return $this;
     }
 
+    /** Save organisation memberships for the given character */
     protected function saveOrganisations(Character $character, array $data): self
     {
         if (! array_key_exists('character_save_organisations', $data)) {
@@ -88,7 +90,6 @@ class CharacterRelationsService implements RelationsServiceInterface
             $existing[$org->id] = $org;
         }
 
-        $orgCount = 0;
         $organisations = (array) ($data['organisations'] ?? []);
         $roles = new Collection($data['organisation_roles'] ?? []);
         $statuses = new Collection($data['organisation_statuses'] ?? []);
@@ -145,9 +146,7 @@ class CharacterRelationsService implements RelationsServiceInterface
             } else {
                 $model->is_private = false;
             }
-            if ($model->save()) {
-                $orgCount++;
-            }
+            $model->save();
         }
 
         foreach ($existing as $id => $model) {
@@ -158,6 +157,7 @@ class CharacterRelationsService implements RelationsServiceInterface
         return $this;
     }
 
+    /** Save race associations for the given character */
     protected function saveRaces(Character $character, array $data): self
     {
         if (! array_key_exists('save_races', $data) && ! array_key_exists('races', $data)) {
@@ -170,6 +170,7 @@ class CharacterRelationsService implements RelationsServiceInterface
         return $this;
     }
 
+    /** Save family associations for the given character */
     protected function saveFamilies(Character $character, array $data): self
     {
         if (! array_key_exists('save_families', $data) && ! array_key_exists('families', $data)) {
