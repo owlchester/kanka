@@ -4,7 +4,7 @@ namespace App\Observers;
 
 use App\Models\Map;
 
-class MapObserver extends MiscObserver
+class MapObserver
 {
     public function saving(Map $map)
     {

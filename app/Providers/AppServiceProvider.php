@@ -172,9 +172,7 @@ class AppServiceProvider extends ServiceProvider
         }
 
         // Model observers. Lots of magic.
-        Ability::observe('App\Observers\AbilityObserver');
         AdminInvite::observe(AdminInviteObserver::class);
-        AttributeTemplate::observe('App\Observers\AttributeTemplateObserver');
         Calendar::observe(CalendarObserver::class);
         Campaign::observe(CampaignObserver::class);
         CampaignUser::observe(CampaignUserObserver::class);
@@ -190,18 +188,12 @@ class AppServiceProvider extends ServiceProvider
         CampaignStyle::observe('App\Observers\CampaignStyleObserver');
         Conversation::observe('App\Observers\ConversationObserver');
         ConversationMessage::observe('App\Observers\ConversationMessageObserver');
-        Creature::observe('App\Observers\CreatureObserver');
         DiceRoll::observe('App\Observers\DiceRollObserver');
         DiceRollResult::observe('App\Observers\DiceRollResultObserver');
-        Event::observe(EventObserver::class);
         Entity::observe('App\Observers\EntityObserver');
         EntityType::observe('App\Observers\EntityTypeObserver');
         EntityAbility::observe('App\Observers\EntityAbilityObserver');
         EntityAsset::observe('App\Observers\EntityAssetObserver');
-        Location::observe(LocationObserver::class);
-        Journal::observe(JournalObserver::class);
-        Note::observe(NoteObserver::class);
-        Tag::observe(TagObserver::class);
         Post::observe('App\Observers\PostObserver');
         Reminder::observe('App\Observers\ReminderObserver');
         FamilyTree::observe(FamilyTreeObserver::class);
@@ -214,16 +206,12 @@ class AppServiceProvider extends ServiceProvider
         Bookmark::observe('App\Observers\BookmarkObserver');
         OrganisationMember::observe(OrganisationMemberObserver::class);
         Preset::observe('App\Observers\PresetObserver');
-        Timeline::observe('App\Observers\TimelineObserver');
         TimelineEra::observe('App\Observers\TimelineEraObserver');
         TimelineElement::observe('App\Observers\TimelineElementObserver');
         User::observe(UserObserver::class);
         UserLog::observe('App\Observers\UserLogObserver');
         Webhook::observe('App\Observers\WebhookObserver');
-        Quest::observe('App\Observers\QuestObserver');
         QuestElement::observe('App\Observers\QuestElementObserver');
-        Race::observe('App\Observers\RaceObserver');
-        Whiteboard::observe('App\Observers\WhiteboardObserver');
 
         if (request()->has('_debug_perm') && config('app.debug')) {
             // Add in boot function

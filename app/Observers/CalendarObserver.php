@@ -6,12 +6,11 @@ use App\Jobs\CalendarsClearElapsed;
 use App\Models\Calendar;
 use App\Models\MiscModel;
 
-class CalendarObserver extends MiscObserver
+class CalendarObserver
 {
     public function saved(MiscModel $model)
     {
-        parent::saved($model);
-        if ($model->isDirty(['date'])) {
+        if ($model->isDirty(["date"])) {
             /** @var Calendar $model */
             CalendarsClearElapsed::dispatch($model);
         }

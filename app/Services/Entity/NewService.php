@@ -85,7 +85,7 @@ class NewService
             $misc->name = $this->purify(mb_trim(strip_tags($name)));
             $misc->is_private = $this->private();
             $misc->campaign_id = $this->campaign->id;
-            $misc->saveQuietly();
+            $misc->save();
             $this->entity = $misc->createEntity();
         }
 

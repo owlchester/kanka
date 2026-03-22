@@ -10,6 +10,7 @@ use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
 use App\Models\Concerns\TouchSilently;
+use App\Models\Concerns\HasEntity;
 use App\Models\Scopes\SubEntityScopes;
 use Carbon\Carbon;
 use Exception;
@@ -38,6 +39,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  */
 abstract class MiscModel extends Model
 {
+    use HasEntity;
     use Copiable;
     use LastSync;
     use Orderable;

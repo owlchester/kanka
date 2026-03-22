@@ -1,5 +1,6 @@
 {
     "$schema": "/phpactor.schema.json",
     "language_server_phpstan.enabled": true,
-    "php_code_sniffer.enabled": true
+    "php_code_sniffer.enabled": true,
+    "file_path_resolver.untracked_path_patterns": ["/vendor/"]
 }
