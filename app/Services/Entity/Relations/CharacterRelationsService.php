@@ -12,6 +12,7 @@ use App\Models\MiscModel;
 use App\Models\OrganisationMember;
 use App\Models\Race;
 use App\Observers\Concerns\HasMany;
+use App\Services\Entity\Relations\Concerns\SavesLocations;
 use App\Traits\CreatesEntityFromName;
 use Illuminate\Support\Collection;
 
@@ -19,10 +20,12 @@ class CharacterRelationsService implements RelationsServiceInterface
 {
     use CreatesEntityFromName;
     use HasMany;
+    use SavesLocations;
 
     public function save(MiscModel $model, array $data): void
     {
         /** @var Character $model */
+        $this->saveLocations($model, $data);
         $this->saveTraits($model, 'personality', $data)
             ->saveTraits($model, 'appearance', $data)
             ->saveOrganisations($model, $data)

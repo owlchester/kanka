@@ -6,16 +6,20 @@ use App\Models\Entity;
 use App\Models\Item;
 use App\Models\MiscModel;
 use App\Observers\Concerns\HasMany;
+use App\Services\Entity\Relations\Concerns\SavesLocations;
 use App\Traits\CreatesEntityFromName;
 
 class ItemRelationsService implements RelationsServiceInterface
 {
     use CreatesEntityFromName;
     use HasMany;
+    use SavesLocations;
 
     public function save(MiscModel $model, array $data): void
     {
         /** @var Item $model */
+        $this->saveLocations($model, $data);
+
         if (! array_key_exists('save_creators', $data) && ! array_key_exists('creators', $data)) {
             return;
         }

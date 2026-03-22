@@ -6,12 +6,16 @@ use App\Facades\EntityLogger;
 use App\Models\Character;
 use App\Models\Family;
 use App\Models\MiscModel;
+use App\Services\Entity\Relations\Concerns\SavesLocations;
 
 class FamilyRelationsService implements RelationsServiceInterface
 {
+    use SavesLocations;
+
     public function save(MiscModel $model, array $data): void
     {
         /** @var Family $model */
+        $this->saveLocations($model, $data);
         $this->saveMembers($model, $data);
         EntityLogger::model($model)->entity($model->entity)->finish();
     }

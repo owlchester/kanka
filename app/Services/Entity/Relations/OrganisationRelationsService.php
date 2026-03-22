@@ -7,12 +7,16 @@ use App\Models\Character;
 use App\Models\MiscModel;
 use App\Models\Organisation;
 use App\Models\OrganisationMember;
+use App\Services\Entity\Relations\Concerns\SavesLocations;
 
 class OrganisationRelationsService implements RelationsServiceInterface
 {
+    use SavesLocations;
+
     public function save(MiscModel $model, array $data): void
     {
         /** @var Organisation $model */
+        $this->saveLocations($model, $data);
         $this->saveMembers($model, $data);
         EntityLogger::model($model)->entity($model->entity)->finish();
     }
