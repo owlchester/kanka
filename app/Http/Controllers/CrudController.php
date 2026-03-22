@@ -20,6 +20,7 @@ use App\Sanitizers\MiscSanitizer;
 use App\Services\AttributeService;
 use App\Services\Entity\AliasService;
 use App\Services\Entity\CopyService;
+use App\Services\Entity\EntitySaveService;
 use App\Services\FilterService;
 use App\Services\MultiEditingService;
 use App\Traits\BulkControllerTrait;
@@ -104,7 +105,7 @@ class CrudController extends Controller
 
     protected Request $request;
 
-    public function __construct(FilterService $filterService, DatagridRenderer $datagridRenderer, AttributeService $attributeService)
+    public function __construct(FilterService $filterService, DatagridRenderer $datagridRenderer, AttributeService $attributeService, protected EntitySaveService $entitySaveService)
     {
         $this->filterService = $filterService;
         $this->datagrid = $datagridRenderer;
@@ -112,6 +113,8 @@ class CrudController extends Controller
 
         $this->middleware([CachedResponse::class]);
     }
+
+    protected function afterModelSave(MiscModel $model, array $data): void {}
 
     public function index(Request $request, Campaign $campaign)
     {
@@ -411,13 +414,11 @@ class CrudController extends Controller
             $new = $model->create($data);
 
             // Fire an event for the Entity Observer.
-            if (method_exists($model, 'crudSaved')) {
-                $new->crudSaved();
-            }
+            $this->afterModelSave($new, $data);
 
             // Bookmarks have no entity attached to them.
             if (! ($new instanceof Bookmark) && $new->entity) {
-                $new->entity->crudSaved();
+                $this->entitySaveService->save($new->entity, $data);
                 // Weird hack for prod issues
                 if (! $new->entity->child) {
                     $new->entity->child = $new;
@@ -594,17 +595,13 @@ class CrudController extends Controller
             $model->update($data);
 
             // Fire an event for the Entity Observer
-            $model->crudSaved();
+            $this->afterModelSave($model, $data);
 
             // Bookmarks have no entity attached to them.
             if ($model->entity) {
                 $model->entity->name = $model->name;
                 $model->entity->is_private = $model->is_private;
-                $model->entity->crudSaved();
-                // If the child was changed but nothing changed on the entity, we still want to trigger an update
-                if ($model->wasChanged() && ! $model->entity->wasChanged()) {
-                    $model->entity->touch();
-                }
+                $this->entitySaveService->save($model->entity, $data);
 
                 if (auth()->user()->can('attributes', $model->entity)) {
                     $this->attributeService
