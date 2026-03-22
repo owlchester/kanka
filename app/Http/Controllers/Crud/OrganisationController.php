@@ -7,7 +7,9 @@ use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreOrganisation;
 use App\Models\Campaign;
 use App\Models\EntityType;
+use App\Models\MiscModel;
 use App\Models\Organisation;
+use App\Services\Entity\Relations\OrganisationRelationsService;
 
 class OrganisationController extends CrudController
 {
@@ -20,6 +22,8 @@ class OrganisationController extends CrudController
     protected string $model = Organisation::class;
 
     protected string $filter = OrganisationFilter::class;
+
+    public function __construct(protected OrganisationRelationsService $organisationRelationsService) {}
 
     /**
      * Store a newly created resource in storage.
@@ -59,6 +63,11 @@ class OrganisationController extends CrudController
     public function destroy(Campaign $campaign, Organisation $organisation)
     {
         return $this->campaign($campaign)->crudDestroy($organisation);
+    }
+
+    protected function afterModelSave(MiscModel $model, array $data): void
+    {
+        $this->organisationRelationsService->save($model, $data);
     }
 
     protected function getEntityType(): EntityType
