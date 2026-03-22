@@ -99,6 +99,7 @@ class ProcessService
                 $this->entity->campaign_id = $this->campaign->id;
                 $this->entity->type_id = $this->entityType->id;
                 $this->entity->save();
+                $this->entitySaveService->save($this->entity, $values);
                 $this->new[] = $this->entity;
                 $this->copyTemplateRelations();
             } else {
