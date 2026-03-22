@@ -14,6 +14,7 @@ use App\Models\Post;
 use App\Models\Race;
 use App\Models\Tag;
 use App\Services\Entity\CopyService;
+use App\Services\Entity\EntitySaveService;
 use App\Services\Entity\TagService;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
@@ -40,7 +41,10 @@ class ProcessService
 
     protected Entity $entity;
 
-    public function __construct(protected CopyService $copyService) {}
+    public function __construct(
+        protected CopyService $copyService,
+        protected EntitySaveService $entitySaveService,
+    ) {}
 
     public function entity()
     {
@@ -81,12 +85,6 @@ class ProcessService
         $this->loadTemplate();
 
         $values = $this->inputFields;
-        // To prevent observer from creating duplicate tags.
-        if (Arr::has($values, 'tags')) {
-            $this->request->merge(['tags' => $values['tags']]);
-            request()->merge(['tags' => $values['tags']]);
-            // The EntityObserver reads request() for saving tags because of dumb reasons.
-        }
 
         foreach ($names as $name) {
             if ($name == '') {
@@ -109,18 +107,7 @@ class ProcessService
                 $new->fill($values);
                 $new->campaign_id = $this->campaign->id;
                 $new->save();
-                $new->crudSaved();
-                $new->entity->crudSaved();
-
-                // Fill entity when using a template
-                if (isset($this->template)) {
-                    $new->entity->entry = Arr::get($values, 'entry');
-                    $new->entity->type = Arr::get($values, 'type');
-                    $new->entity->image_uuid = Arr::get($values, 'image_uuid');
-                    $new->entity->header_uuid = Arr::get($values, 'header_uuid');
-                    $new->entity->tooltip = Arr::get($values, 'tooltip');
-                    $new->entity->saveQuietly();
-                }
+                $this->entitySaveService->save($new->entity, $values);
 
                 $this->new[] = $new->entity;
                 $this->entity = $new->entity;
@@ -371,10 +358,6 @@ class ProcessService
             $new->name = $value;
             $new->campaign_id = $this->campaign->id;
             $new->save();
-            $new->crudSaved();
-            if ($new->entity) {
-                $new->entity->crudSaved();
-            }
             $this->inputFields[$entityType->code . '_id'] = $new->id;
         }
 

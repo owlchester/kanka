@@ -9,8 +9,8 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityType;
 use App\Models\Relation;
-use App\Observers\Concerns\SaveLocations;
 use App\Services\Entity\MoveService;
+use App\Services\Entity\Relations\LocationRelationsService;
 use App\Services\Entity\TagService;
 use App\Services\Entity\TransformService;
 use App\Services\Permissions\BulkPermissionService;
@@ -30,7 +30,6 @@ class BulkService
     use CampaignAware;
     use EntityTypeAware;
     use RequestAware;
-    use SaveLocations;
     use UserAware;
 
     /** Ids of entities */
@@ -45,7 +44,8 @@ class BulkService
     public function __construct(
         protected BulkPermissionService $permissionService,
         protected TransformService $transformService,
-        protected MoveService $moveService
+        protected MoveService $moveService,
+        protected LocationRelationsService $locationRelationsService,
     ) {}
 
     public function entities(array $ids = []): self
@@ -350,7 +350,7 @@ class BulkService
             if ($locationsAction === 'remove') {
                 $entity->locations()->detach($locationIds);
             } elseif (! empty($locationIds)) {
-                $this->saveLocations($entity, $locationIds);
+                $this->locationRelationsService->attach($entity, $locationIds);
             }
 
             // No tags? We're done
