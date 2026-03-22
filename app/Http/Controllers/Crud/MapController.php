@@ -74,7 +74,7 @@ class MapController extends CrudController
         /** @var Map $model */
         $model->height = null;
         $model->width = null;
-        $model->saveQuietly();
+        $model->save();
     }
 
     protected function getEntityType(): EntityType

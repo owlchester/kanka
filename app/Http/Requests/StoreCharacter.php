@@ -5,9 +5,9 @@ namespace App\Http\Requests;
 use App\Enums\CharacterStatus;
 use App\Facades\Limit;
 use App\Models\Family;
+use App\Models\Location;
 use App\Models\Race;
 use App\Rules\EntityField;
-use App\Rules\EntityLocations;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
@@ -35,23 +35,38 @@ class StoreCharacter extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required|max:191',
-            'entry' => 'nullable|string',
-            'type' => 'nullable|string|max:191',
-            'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
-            'image_url' => 'nullable|url|active_url',
-            'locations' => ['nullable', 'array', new EntityLocations],
-            'entity_image_uuid' => 'nullable|exists:images,id',
-            'entity_header_uuid' => 'nullable|exists:images,id',
-            'age' => 'nullable|max:25',
-            'sex' => 'nullable|max:45',
-            'pronouns' => 'nullable|max:45',
-            'title' => 'nullable|max:191',
-            'status_id' => ['nullable', new Enum(CharacterStatus::class)],
-            'template_id' => 'nullable',
-            'families' => ['nullable', 'array', new EntityField(config('entities.ids.family'), Family::class)],
-            'races' => ['nullable', 'array', new EntityField(config('entities.ids.race'), Race::class)],
-            'attribute' => ['array', new UniqueAttributeNames],
+            "name" => "required|max:191",
+            "entry" => "nullable|string",
+            "type" => "nullable|string|max:191",
+            "image" => "mimes:jpeg,png,jpg,gif,webp|max:" . Limit::upload(),
+            "image_url" => "nullable|url|active_url",
+            "locations" => [
+                "nullable",
+                "array",
+                new EntityField(
+                    config("entities.ids.location"),
+                    Location::class,
+                ),
+            ],
+            "entity_image_uuid" => "nullable|exists:images,id",
+            "entity_header_uuid" => "nullable|exists:images,id",
+            "age" => "nullable|max:25",
+            "sex" => "nullable|max:45",
+            "pronouns" => "nullable|max:45",
+            "title" => "nullable|max:191",
+            "status_id" => ["nullable", new Enum(CharacterStatus::class)],
+            "template_id" => "nullable",
+            "families" => [
+                "nullable",
+                "array",
+                new EntityField(config("entities.ids.family"), Family::class),
+            ],
+            "races" => [
+                "nullable",
+                "array",
+                new EntityField(config("entities.ids.race"), Race::class),
+            ],
+            "attribute" => ["array", new UniqueAttributeNames()],
         ];
 
         return $this->clean($rules);

@@ -324,7 +324,7 @@ class TransformService
             // @phpstan-ignore-next-line
             $this->new->location_id = $firstLocation->id;
         }
-        $this->new->saveQuietly();
+        $this->new->save();
 
         // We need to get rid of the entity's locations, for now. In a future refactor, we can hopefully skip this part
         if (method_exists($this->new, 'locations')) {
@@ -361,7 +361,7 @@ class TransformService
         /** @var Entity $child */
         foreach ($this->entity->children as $child) {
             $child->parent_id = null;
-            $child->saveQuietly();
+            $child->save();
         }
     }
 }

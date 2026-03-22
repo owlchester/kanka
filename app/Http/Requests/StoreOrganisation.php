@@ -4,7 +4,8 @@ namespace App\Http\Requests;
 
 use App\Facades\Limit;
 use App\Models\Entity;
-use App\Rules\EntityLocations;
+use App\Models\Location;
+use App\Rules\EntityField;
 use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
@@ -45,7 +46,7 @@ class StoreOrganisation extends FormRequest
             'entity_image_uuid' => 'nullable|exists:images,id',
             'entity_header_uuid' => 'nullable|exists:images,id',
             'template_id' => 'nullable',
-            'locations' => ['nullable', 'array', new EntityLocations],
+            'locations' => ['nullable', 'array', new EntityField(config('entities.ids.location'), Location::class)],
             'attribute' => ['array', new UniqueAttributeNames],
         ];
 
