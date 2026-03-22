@@ -94,6 +94,8 @@ class CrudController extends Controller
 
     protected AttributeService $attributeService;
 
+    protected EntitySaveService $entitySaveService;
+
     /** If the auth check was already performed on this controller */
     protected bool $alreadyAuthChecked = false;
 
@@ -105,11 +107,12 @@ class CrudController extends Controller
 
     protected Request $request;
 
-    public function __construct(FilterService $filterService, DatagridRenderer $datagridRenderer, AttributeService $attributeService, protected EntitySaveService $entitySaveService)
+    public function __construct(FilterService $filterService, DatagridRenderer $datagridRenderer, AttributeService $attributeService, EntitySaveService $entitySaveService)
     {
         $this->filterService = $filterService;
         $this->datagrid = $datagridRenderer;
         $this->attributeService = $attributeService;
+        $this->entitySaveService = $entitySaveService;
 
         $this->middleware([CachedResponse::class]);
     }
