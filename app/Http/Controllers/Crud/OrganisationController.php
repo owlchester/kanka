@@ -9,7 +9,11 @@ use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Models\MiscModel;
 use App\Models\Organisation;
+use App\Renderers\DatagridRenderer;
+use App\Services\AttributeService;
+use App\Services\Entity\EntitySaveService;
 use App\Services\Entity\Relations\OrganisationRelationsService;
+use App\Services\FilterService;
 
 class OrganisationController extends CrudController
 {
@@ -23,7 +27,15 @@ class OrganisationController extends CrudController
 
     protected string $filter = OrganisationFilter::class;
 
-    public function __construct(protected OrganisationRelationsService $organisationRelationsService) {}
+    public function __construct(
+        FilterService $filterService,
+        DatagridRenderer $datagridRenderer,
+        AttributeService $attributeService,
+        EntitySaveService $entitySaveService,
+        protected OrganisationRelationsService $organisationRelationsService,
+    ) {
+        parent::__construct($filterService, $datagridRenderer, $attributeService, $entitySaveService);
+    }
 
     /**
      * Store a newly created resource in storage.
