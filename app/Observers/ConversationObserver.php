@@ -10,7 +10,7 @@ class ConversationObserver
     public function updated(MiscModel $model)
     {
         // Changed the target? Remove participants.
-        if ($model->isDirty("target")) {
+        if ($model->isDirty('target')) {
             /** @var Conversation $model */
             $model->participants()->delete();
         }

@@ -2,9 +2,9 @@
 
 namespace App\Observers;
 
-use App\Models\MiscModel;
 use App\Facades\EntityLogger;
 use App\Facades\Images;
+use App\Models\MiscModel;
 
 class ChildEntityObserver
 {

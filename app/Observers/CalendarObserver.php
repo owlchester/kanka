@@ -10,7 +10,7 @@ class CalendarObserver
 {
     public function saved(MiscModel $model)
     {
-        if ($model->isDirty(["date"])) {
+        if ($model->isDirty(['date'])) {
             /** @var Calendar $model */
             CalendarsClearElapsed::dispatch($model);
         }

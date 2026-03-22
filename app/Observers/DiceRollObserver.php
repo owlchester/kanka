@@ -8,6 +8,6 @@ class DiceRollObserver
 {
     public function saving(DiceRoll $model)
     {
-        $model->system = "standard";
+        $model->system = 'standard';
     }
 }

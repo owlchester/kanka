@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Enums\EntityEventTypes;
 use App\Models\EntityEventType;
 use Illuminate\Database\Seeder;
-use App\Enums\EntityEventTypes;
 
 class EntityEventTypeSeeder extends Seeder
 {

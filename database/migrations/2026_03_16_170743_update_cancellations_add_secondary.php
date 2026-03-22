@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable('subscription_cancellations')) {
+        if (! Schema::hasTable('subscription_cancellations')) {
             return;
         }
         Schema::table('subscription_cancellations', function (Blueprint $table) {
