@@ -11,6 +11,7 @@ use App\Models\EntityType;
 use App\Services\AttributeService;
 use App\Services\Entity\AliasService;
 use App\Services\Entity\CopyService;
+use App\Services\Entity\EntitySaveService;
 use Illuminate\Http\Request;
 use LogicException;
 
@@ -19,7 +20,8 @@ class CreateController extends Controller
     public function __construct(
         protected CopyService $copyService,
         protected AttributeService $attributeService,
-        protected AliasService $aliasService
+        protected AliasService $aliasService,
+        protected EntitySaveService $entitySaveService
     ) {}
 
     public function index(Request $request, Campaign $campaign, EntityType $entityType)
@@ -70,7 +72,7 @@ class CreateController extends Controller
             $entity = new Entity($data);
             $entity->type_id = $entityType->id;
             $entity->save();
-            $entity->crudSaved();
+            $this->entitySaveService->save($entity, $data);
 
             $this->aliasService->entity($entity)->request($request)->save();
 

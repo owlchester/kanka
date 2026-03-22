@@ -9,6 +9,8 @@ use App\Models\Entity;
 use App\Models\MiscModel;
 use App\Services\AttributeService;
 use App\Services\Entity\AliasService;
+use App\Services\Entity\EntitySaveService;
+use App\Services\Entity\Relations\EntityRelationsServiceFactory;
 use App\Services\MultiEditingService;
 use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
@@ -23,7 +25,9 @@ class EditController extends Controller
     public function __construct(
         protected AttributeService $attributeService,
         protected AliasService $aliasService,
-        protected MultiEditingService $multiEditingService
+        protected MultiEditingService $multiEditingService,
+        protected EntitySaveService $entitySaveService,
+        protected EntityRelationsServiceFactory $relationsFactory
     ) {}
 
     public function index(Campaign $campaign, Entity $entity)
@@ -94,14 +98,14 @@ class EditController extends Controller
                 $entity->child->update($data);
 
                 // Fire an event for the Entity Observer
-                $entity->child->crudSaved();
+                $this->relationsFactory->for($entity)?->save($entity->child, $data);
 
                 $entity->name = $entity->child->name;
                 $entity->is_private = $entity->child->is_private;
 
                 // Sync parent_id from the request for all entity types
                 $entity->parent_id = $request->has('parent_id') ? $request->get('parent_id') : null;
-                $entity->crudSaved();
+                $this->entitySaveService->save($entity, $data);
 
                 // If the child was changed but nothing changed on the entity, we still want to trigger an update
                 if ($entity->child->wasChanged() && ! $entity->wasChanged()) {
@@ -110,7 +114,7 @@ class EditController extends Controller
             } else {
                 $preparedData = $this->fixRequestData($request, $entity);
                 $entity->update($preparedData);
-                $entity->crudSaved();
+                $this->entitySaveService->save($entity, $preparedData);
             }
 
             $this->aliasService->entity($entity)->request($request)->save();
