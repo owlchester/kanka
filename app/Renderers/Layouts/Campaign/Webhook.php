@@ -40,7 +40,7 @@ class Webhook extends Layout
                 },
             ],
             'url' => [
-                'label' =>__(   'campaigns/webhooks.fields.url'),
+                'label' => __('campaigns/webhooks.fields.url'),
                 'render' => function ($model) {
                     return '<div data-toggle="tooltip" data-title="' . $model->url . '">'
                         . $model->shortUrl()

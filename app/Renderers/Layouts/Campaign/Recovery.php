@@ -15,13 +15,13 @@ class Recovery extends Layout
     public function columns(): array
     {
         $columns = [
-            "image" => [
-                "class" => "avatar w-14",
-                "label" => "",
-                "render" => function ($entity) {
+            'image' => [
+                'class' => 'avatar w-14',
+                'label' => '',
+                'render' => function ($entity) {
                     $child = $entity->child()->withTrashed()->first();
                     if (empty($child)) {
-                        return "";
+                        return '';
                     }
 
                     return '<div style="background-image: url(' .
@@ -29,22 +29,22 @@ class Recovery extends Layout
                         ');" class="entity-image w-10 h-10"></div>';
                 },
             ],
-            "name" => [
-                "key" => "name",
-                "label" => __("crud.fields.name"),
+            'name' => [
+                'key' => 'name',
+                'label' => __('crud.fields.name'),
             ],
-            "type" => [
-                "key" => "type_id",
-                "label" => __("campaigns/categories.tab"),
-                "render" => function ($entity) {
+            'type' => [
+                'key' => 'type_id',
+                'label' => __('campaigns/categories.tab'),
+                'render' => function ($entity) {
                     return $entity->entityType->singular();
                 },
             ],
-            "deleted" => [
-                "key" => "deleted_at",
-                "label" => __("campaigns/recovery.fields.deleted"),
-                "class" => self::ONLY_DESKTOP,
-                "render" => function ($model) {
+            'deleted' => [
+                'key' => 'deleted_at',
+                'label' => __('campaigns/recovery.fields.deleted'),
+                'class' => self::ONLY_DESKTOP,
+                'render' => function ($model) {
                     return $model->deleted_at->diffForHumans();
                 },
             ],
@@ -60,10 +60,10 @@ class Recovery extends Layout
     {
         return [
             [
-                "action" => "recover",
-                "label" => "campaigns/recovery.actions.recover",
-                "icon" => "fa-regular fa-history",
-                "can" => "campaign:recover",
+                'action' => 'recover',
+                'label' => 'campaigns/recovery.actions.recover',
+                'icon' => 'fa-regular fa-history',
+                'can' => 'campaign:recover',
             ],
         ];
     }

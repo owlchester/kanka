@@ -30,7 +30,7 @@ class InstallCommand extends Command
         try {
             if (EntityType::find(1)) {
                 $this->error('Kanka has already been installed.');
-                $this->info('Check it out at ' . config('app.url') .':' . env('APP_PORT'));
+                $this->info('Check it out at ' . config('app.url') . ':' . env('APP_PORT'));
 
                 return;
             }
@@ -42,6 +42,6 @@ class InstallCommand extends Command
         $this->call('passport:install');
 
         $this->info('Kanka successfully installed.');
-        $this->info('Check it out at ' . config('app.url') .':' . env('APP_PORT'));
+        $this->info('Check it out at ' . config('app.url') . ':' . env('APP_PORT'));
     }
 }

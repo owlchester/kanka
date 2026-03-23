@@ -15,8 +15,7 @@ class PremiumDialog extends Component
     public function __construct(
         public Campaign $campaign,
         public string $pitch,
-    ) {
-    }
+    ) {}
 
     /**
      * Get the view / contents that represent the component.

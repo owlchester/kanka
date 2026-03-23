@@ -397,7 +397,6 @@ class ColumnDefinitionService
         ];
     }
 
-
     protected function diceRoll(): array
     {
         return [
