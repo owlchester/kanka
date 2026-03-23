@@ -50,7 +50,7 @@ class PostController extends Controller
 
         foreach ($layouts as $layout) {
             $layoutOptions[$layout->id] = $layout->name();
-            if (! $campaign->superboosted()) {
+            if (! $campaign->premium()) {
                 $disabledLayoutOptions[$layout->id] = true;
             }
         }
@@ -102,7 +102,7 @@ class PostController extends Controller
             return response()->json(['success' => true]);
         }
 
-        $data = $campaign->superboosted() ? $request->all() : $request->except(['layout_id']);
+        $data = $campaign->premium() ? $request->all() : $request->except(['layout_id']);
         $data['entity_id'] = $entity->id;
         $post = Post::create($data);
 
