@@ -7,10 +7,12 @@ use App\Models\Character;
 use App\Models\Family;
 use App\Models\MiscModel;
 use App\Services\Entity\Relations\Concerns\SavesLocations;
+use App\Services\Entity\Relations\Concerns\SupportsPatchMode;
 
 class FamilyRelationsService implements RelationsServiceInterface
 {
     use SavesLocations;
+    use SupportsPatchMode;
 
     public function save(MiscModel $model, array $data): void
     {

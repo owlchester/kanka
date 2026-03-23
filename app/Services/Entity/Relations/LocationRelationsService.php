@@ -7,11 +7,13 @@ use App\Facades\EntityLogger;
 use App\Models\Entity;
 use App\Models\Location;
 use App\Models\MiscModel;
+use App\Services\Entity\Relations\Concerns\SupportsPatchMode;
 use App\Traits\CreatesEntityFromName;
 
 class LocationRelationsService implements RelationsServiceInterface
 {
     use CreatesEntityFromName;
+    use SupportsPatchMode;
 
     public function save(MiscModel $model, array $data): void
     {

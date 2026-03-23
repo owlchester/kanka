@@ -8,10 +8,12 @@ use App\Models\MiscModel;
 use App\Models\Organisation;
 use App\Models\OrganisationMember;
 use App\Services\Entity\Relations\Concerns\SavesLocations;
+use App\Services\Entity\Relations\Concerns\SupportsPatchMode;
 
 class OrganisationRelationsService implements RelationsServiceInterface
 {
     use SavesLocations;
+    use SupportsPatchMode;
 
     public function save(MiscModel $model, array $data): void
     {

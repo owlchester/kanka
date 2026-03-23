@@ -7,4 +7,6 @@ use App\Models\MiscModel;
 interface RelationsServiceInterface
 {
     public function save(MiscModel $model, array $data): void;
+
+    public function patch(): static;
 }

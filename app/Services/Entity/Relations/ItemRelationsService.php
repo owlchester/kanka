@@ -7,6 +7,7 @@ use App\Models\Item;
 use App\Models\MiscModel;
 use App\Observers\Concerns\HasMany;
 use App\Services\Entity\Relations\Concerns\SavesLocations;
+use App\Services\Entity\Relations\Concerns\SupportsPatchMode;
 use App\Traits\CreatesEntityFromName;
 
 class ItemRelationsService implements RelationsServiceInterface
@@ -14,6 +15,7 @@ class ItemRelationsService implements RelationsServiceInterface
     use CreatesEntityFromName;
     use HasMany;
     use SavesLocations;
+    use SupportsPatchMode;
 
     public function save(MiscModel $model, array $data): void
     {

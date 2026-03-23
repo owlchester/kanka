@@ -15,7 +15,11 @@ class MiscApiController extends ApiController
 
     protected function crudSave(MiscModel $model, array $data): void
     {
-        $this->relationsFactory->for($model->entity)?->save($model, $data);
+        $service = $this->relationsFactory->for($model->entity);
+        if (request()->isMethod('patch')) {
+            $service?->patch();
+        }
+        $service?->save($model, $data);
 
         if (! empty($model->entity)) {
             $this->entitySaveService->save($model->entity, $data);
