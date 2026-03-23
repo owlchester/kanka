@@ -8,7 +8,7 @@
 
         {!! $fieldCount % 2 === 0 ? '' : null !!}
         @include('cruds.fields.' . $trimmed, [
-            'trans' => $isParent || $trimmed === 'type' ? 'crud' : 'entities',
+            'trans' => $isParent || $trimmed === 'type' ? 'crud' : $entityType->pluralCode(),
             'base' => $model ?? null,
             'bulk' => true,
             'parent' => false,

@@ -14,7 +14,10 @@ if (!empty($previous)) {
 }
 ?>
 
-<input type="hidden" name="save_creators" value="1">
+@if (isset($bulk) && $bulk)
+    <div class="grid gap-2 md:gap-4 grid-cols-2">
+@endif
+
 <x-forms.field
     field="creators"
     :label="__('items.fields.creators')">
@@ -36,3 +39,15 @@ if (!empty($previous)) {
 </select>
 
 </x-forms.field>
+
+@if (isset($bulk) && $bulk)
+    <x-forms.field field="bulk-creators" :label="__('items.bulk.creators.action')">
+        <label class="flex items-center gap-2">
+            <input type="checkbox" name="bulk-creators" value="remove" />
+            {{ __('items.bulk.creators.remove') }}
+        </label>
+    </x-forms.field>
+    </div>
+@else
+    <input type="hidden" name="save_creators" value="1">
+@endif

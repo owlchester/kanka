@@ -260,6 +260,10 @@ class BulkService
         unset($filledFields['locations']);
         $locationIds = Arr::get($fields, 'locations', []);
 
+        // Handle creators differently
+        unset($filledFields['creators']);
+        $creatorIds = Arr::get($fields, 'creators', []);
+
         // Handle images differently
         if (isset($filledFields['entity_image'])) {
             $imageUuid = $filledFields['entity_image'];
@@ -272,6 +276,13 @@ class BulkService
         if (isset($filledFields['type'])) {
             $type = $filledFields['type'];
             unset($filledFields['type']);
+        }
+
+        // Handle entity_type_id unset (value "0" means remove)
+        $unsetEntityType = false;
+        if (Arr::get($filledFields, 'entity_type_id') === '0') {
+            $unsetEntityType = true;
+            unset($filledFields['entity_type_id']);
         }
 
         if (! isset($this->entityType)) {
@@ -351,6 +362,20 @@ class BulkService
                 $entity->locations()->detach($locationIds);
             } elseif (! empty($locationIds)) {
                 $this->saveLocations($entity, $locationIds);
+            }
+
+            // Handle creators (items only)
+            if ($this->entityType->hasEntity() && method_exists($entity->child, 'creators')) {
+                if (Arr::get($fields, 'bulk-creators') === 'remove') {
+                    $entity->child->creators()->detach();
+                } elseif (! empty($creatorIds)) {
+                    $entity->child->creators()->syncWithoutDetaching($creatorIds);
+                }
+            }
+
+            // Handle entity_type_id unset (attribute templates only)
+            if ($unsetEntityType && $this->entityType->hasEntity() && in_array('entity_type_id', $entity->child->getFillable())) {
+                $entity->child->update(['entity_type_id' => null]);
             }
 
             // No tags? We're done
