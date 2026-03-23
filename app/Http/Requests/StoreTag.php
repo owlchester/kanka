@@ -9,7 +9,6 @@ use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
 use App\Traits\ResolvesNewForeignEntities;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class StoreTag extends FormRequest
 {
@@ -35,7 +34,6 @@ class StoreTag extends FormRequest
      */
     public function rules()
     {
-        $colours = config('colours.keys');
         $rules = [
             'name' => 'required|max:191',
             'entry' => 'nullable|string',
@@ -49,7 +47,7 @@ class StoreTag extends FormRequest
             'icon' => ['nullable', 'string', 'max:100', 'regex:/^(fa-|ra )/'],
             'colour' => [
                 'nullable',
-                Rule::in($colours),
+                'max:7',
             ],
             'attribute' => ['array', new UniqueAttributeNames],
         ];

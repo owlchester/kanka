@@ -1,7 +1,7 @@
-// Exports the "textcolor" plugin for usage with module loaders
+// Exports the "visualchars" plugin for usage with module loaders
 // Usage:
 //   CommonJS:
-//     require('tinymce/plugins/textcolor')
+//     require('tinymce/plugins/visualchars')
 //   ES2015:
-//     import 'tinymce/plugins/textcolor'
+//     import 'tinymce/plugins/visualchars'
 require('./plugin.js');

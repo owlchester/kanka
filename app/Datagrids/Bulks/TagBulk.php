@@ -7,7 +7,7 @@ class TagBulk extends Bulk
     protected array $fields = [
         'name',
         'type',
-        'colour',
+        'colour_picker',
         'tag_id',
         'private_choice',
         'auto_applied_choice',

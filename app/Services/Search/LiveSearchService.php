@@ -59,7 +59,8 @@ class LiveSearchService
                 'text' => $entity->name,
             ];
             if ($entity->isTag() && $entity->tag->hasColour()) {
-                $format['colour'] = $entity->tag->colourClass();
+                $format['colour'] = $entity->tag->colour;
+                $format['colour_style'] = $entity->tag->colourStyle();
             }
             $format['image'] = Avatar::entity($entity)->fallback()->size(40)->thumbnail();
             $format['url'] = $entity->url();

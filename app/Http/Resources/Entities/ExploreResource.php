@@ -258,6 +258,7 @@ class ExploreResource extends JsonResource
                 ],
                 'name' => $tag->name,
                 'colour' => $tag->colourClass(),
+                'colour_style' => $tag->colourStyle(),
                 'shortname' => $tag->hasIcon()
                     ? '<i class="' . e($tag->icon) . '" aria-hidden="true"></i>'
                     : $tag->shortname(),

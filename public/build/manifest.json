@@ -305,7 +305,7 @@
     "src": "resources/images/leaflet/icon.png"
   },
   "resources/js/abilities.js": {
-    "file": "assets/abilities-CE6F_8sK.js",
+    "file": "assets/abilities-7B6v7TZa.js",
     "name": "abilities",
     "src": "resources/js/abilities.js",
     "isEntry": true,
@@ -314,7 +314,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-AL3CmWtY.js",
+    "file": "assets/app-Cl5veSVb.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -507,7 +507,7 @@
     ]
   },
   "resources/js/entities/explore.js": {
-    "file": "assets/explore-BrXUfFHW.js",
+    "file": "assets/explore-C5hYeTjp.js",
     "name": "explore",
     "src": "resources/js/entities/explore.js",
     "isEntry": true,
@@ -629,7 +629,7 @@
     "isEntry": true
   },
   "resources/js/whiteboards.js": {
-    "file": "assets/whiteboards-kRrOIkUd.js",
+    "file": "assets/whiteboards-fruQDK0H.js",
     "name": "whiteboards",
     "src": "resources/js/whiteboards.js",
     "isEntry": true,

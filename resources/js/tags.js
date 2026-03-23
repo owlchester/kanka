@@ -37,8 +37,9 @@ window.initTags = function () {
             render: {
                 option: function (data, escape) {
                     if (data.colour) {
+                        const style = data.colour_style || ('background-color: ' + escape(data.colour) + '; color: #fff;');
                         return '<div class="flex gap-2 items-center text-left">'
-                            + '<span class="rounded-full flex-none w-6 h-6 ' + escape(data.colour) + '"></span>'
+                            + '<span class="rounded-full flex-none w-6 h-6" style="' + style + '"></span>'
                             + '<span class="grow">' + escape(data.text) + '</span>'
                             + '</div>';
                     }
@@ -52,8 +53,12 @@ window.initTags = function () {
                     } else {
                         div.innerHTML = escape(data.text);
                     }
-                    const colours = (data.colour || '').trim().split(' ').filter(c => c);
-                    colours.forEach(c => div.classList.add(c));
+                    if (data.colour_style) {
+                        div.setAttribute('style', data.colour_style);
+                    } else if (data.colour) {
+                        div.style.backgroundColor = data.colour;
+                        div.style.color = '#fff';
+                    }
                     div.classList.add('text-left');
                     return div;
                 },

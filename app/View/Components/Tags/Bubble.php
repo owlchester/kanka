@@ -24,7 +24,8 @@ class Bubble extends Component
     public function render(): View|Closure|string
     {
         return view('components.tags.bubble')
-            ->with('css', $this->css());
+            ->with('css', $this->css())
+            ->with('inlineStyle', $this->tag->colourStyle());
     }
 
     protected function css(): string

@@ -119,6 +119,7 @@ class PreviewService
                 'name' => $tag->name,
                 'icon' => $tag->icon,
                 'colour' => $tag->colour,
+                'style' => $tag->colourStyle(),
                 'link' => $tag->getLink(),
                 'slug' => $tag->slug,
             ];

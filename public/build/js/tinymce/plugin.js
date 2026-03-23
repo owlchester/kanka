@@ -1,346 +1,457 @@
 (function () {
-var textcolor = (function () {
+var visualchars = (function (domGlobals) {
     'use strict';
+
+    var Cell = function (initial) {
+      var value = initial;
+      var get = function () {
+        return value;
+      };
+      var set = function (v) {
+        value = v;
+      };
+      var clone = function () {
+        return Cell(get());
+      };
+      return {
+        get: get,
+        set: set,
+        clone: clone
+      };
+    };
 
     var global = tinymce.util.Tools.resolve('tinymce.PluginManager');
 
-    var getCurrentColor = function (editor, format) {
-      var color;
-      editor.dom.getParents(editor.selection.getStart(), function (elm) {
-        var value;
-        if (value = elm.style[format === 'forecolor' ? 'color' : 'background-color']) {
-          color = color ? color : value;
-        }
-      });
-      return color;
+    var get = function (toggleState) {
+      var isEnabled = function () {
+        return toggleState.get();
+      };
+      return { isEnabled: isEnabled };
     };
-    var mapColors = function (colorMap) {
-      var i;
-      var colors = [];
-      for (i = 0; i < colorMap.length; i += 2) {
-        colors.push({
-          text: colorMap[i + 1],
-          color: '#' + colorMap[i]
-        });
+    var Api = { get: get };
+
+    var fireVisualChars = function (editor, state) {
+      return editor.fire('VisualChars', { state: state });
+    };
+    var Events = { fireVisualChars: fireVisualChars };
+
+    var noop = function () {
+    };
+    var constant = function (value) {
+      return function () {
+        return value;
+      };
+    };
+    var never = constant(false);
+    var always = constant(true);
+
+    var none = function () {
+      return NONE;
+    };
+    var NONE = function () {
+      var eq = function (o) {
+        return o.isNone();
+      };
+      var call = function (thunk) {
+        return thunk();
+      };
+      var id = function (n) {
+        return n;
+      };
+      var me = {
+        fold: function (n, s) {
+          return n();
+        },
+        is: never,
+        isSome: never,
+        isNone: always,
+        getOr: id,
+        getOrThunk: call,
+        getOrDie: function (msg) {
+          throw new Error(msg || 'error: getOrDie called on none.');
+        },
+        getOrNull: constant(null),
+        getOrUndefined: constant(undefined),
+        or: id,
+        orThunk: call,
+        map: none,
+        each: noop,
+        bind: none,
+        exists: never,
+        forall: always,
+        filter: none,
+        equals: eq,
+        equals_: eq,
+        toArray: function () {
+          return [];
+        },
+        toString: constant('none()')
+      };
+      if (Object.freeze) {
+        Object.freeze(me);
       }
-      return colors;
+      return me;
+    }();
+    var some = function (a) {
+      var constant_a = constant(a);
+      var self = function () {
+        return me;
+      };
+      var bind = function (f) {
+        return f(a);
+      };
+      var me = {
+        fold: function (n, s) {
+          return s(a);
+        },
+        is: function (v) {
+          return a === v;
+        },
+        isSome: always,
+        isNone: never,
+        getOr: constant_a,
+        getOrThunk: constant_a,
+        getOrDie: constant_a,
+        getOrNull: constant_a,
+        getOrUndefined: constant_a,
+        or: self,
+        orThunk: self,
+        map: function (f) {
+          return some(f(a));
+        },
+        each: function (f) {
+          f(a);
+        },
+        bind: bind,
+        exists: bind,
+        forall: bind,
+        filter: function (f) {
+          return f(a) ? me : NONE;
+        },
+        toArray: function () {
+          return [a];
+        },
+        toString: function () {
+          return 'some(' + a + ')';
+        },
+        equals: function (o) {
+          return o.is(a);
+        },
+        equals_: function (o, elementEq) {
+          return o.fold(never, function (b) {
+            return elementEq(a, b);
+          });
+        }
+      };
+      return me;
     };
-    var applyFormat = function (editor, format, value) {
-      editor.undoManager.transact(function () {
-        editor.focus();
-        editor.formatter.apply(format, { value: value });
-        editor.nodeChanged();
-      });
+    var from = function (value) {
+      return value === null || value === undefined ? NONE : some(value);
     };
-    var removeFormat = function (editor, format) {
-      editor.undoManager.transact(function () {
-        editor.focus();
-        editor.formatter.remove(format, { value: null }, null, true);
-        editor.nodeChanged();
-      });
-    };
-    var TextColor = {
-      getCurrentColor: getCurrentColor,
-      mapColors: mapColors,
-      applyFormat: applyFormat,
-      removeFormat: removeFormat
+    var Option = {
+      some: some,
+      none: none,
+      from: from
     };
 
-    var register = function (editor) {
-      editor.addCommand('mceApplyTextcolor', function (format, value) {
-        TextColor.applyFormat(editor, format, value);
+    var typeOf = function (x) {
+      if (x === null) {
+        return 'null';
+      }
+      var t = typeof x;
+      if (t === 'object' && (Array.prototype.isPrototypeOf(x) || x.constructor && x.constructor.name === 'Array')) {
+        return 'array';
+      }
+      if (t === 'object' && (String.prototype.isPrototypeOf(x) || x.constructor && x.constructor.name === 'String')) {
+        return 'string';
+      }
+      return t;
+    };
+    var isType = function (type) {
+      return function (value) {
+        return typeOf(value) === type;
+      };
+    };
+    var isFunction = isType('function');
+
+    var nativeSlice = Array.prototype.slice;
+    var map = function (xs, f) {
+      var len = xs.length;
+      var r = new Array(len);
+      for (var i = 0; i < len; i++) {
+        var x = xs[i];
+        r[i] = f(x, i);
+      }
+      return r;
+    };
+    var each = function (xs, f) {
+      for (var i = 0, len = xs.length; i < len; i++) {
+        var x = xs[i];
+        f(x, i);
+      }
+    };
+    var from$1 = isFunction(Array.from) ? Array.from : function (x) {
+      return nativeSlice.call(x);
+    };
+
+    var fromHtml = function (html, scope) {
+      var doc = scope || domGlobals.document;
+      var div = doc.createElement('div');
+      div.innerHTML = html;
+      if (!div.hasChildNodes() || div.childNodes.length > 1) {
+        domGlobals.console.error('HTML does not have a single root node', html);
+        throw new Error('HTML must have a single root node');
+      }
+      return fromDom(div.childNodes[0]);
+    };
+    var fromTag = function (tag, scope) {
+      var doc = scope || domGlobals.document;
+      var node = doc.createElement(tag);
+      return fromDom(node);
+    };
+    var fromText = function (text, scope) {
+      var doc = scope || domGlobals.document;
+      var node = doc.createTextNode(text);
+      return fromDom(node);
+    };
+    var fromDom = function (node) {
+      if (node === null || node === undefined) {
+        throw new Error('Node cannot be null or undefined');
+      }
+      return { dom: constant(node) };
+    };
+    var fromPoint = function (docElm, x, y) {
+      var doc = docElm.dom();
+      return Option.from(doc.elementFromPoint(x, y)).map(fromDom);
+    };
+    var Element = {
+      fromHtml: fromHtml,
+      fromTag: fromTag,
+      fromText: fromText,
+      fromDom: fromDom,
+      fromPoint: fromPoint
+    };
+
+    var ATTRIBUTE = domGlobals.Node.ATTRIBUTE_NODE;
+    var CDATA_SECTION = domGlobals.Node.CDATA_SECTION_NODE;
+    var COMMENT = domGlobals.Node.COMMENT_NODE;
+    var DOCUMENT = domGlobals.Node.DOCUMENT_NODE;
+    var DOCUMENT_TYPE = domGlobals.Node.DOCUMENT_TYPE_NODE;
+    var DOCUMENT_FRAGMENT = domGlobals.Node.DOCUMENT_FRAGMENT_NODE;
+    var ELEMENT = domGlobals.Node.ELEMENT_NODE;
+    var TEXT = domGlobals.Node.TEXT_NODE;
+    var PROCESSING_INSTRUCTION = domGlobals.Node.PROCESSING_INSTRUCTION_NODE;
+    var ENTITY_REFERENCE = domGlobals.Node.ENTITY_REFERENCE_NODE;
+    var ENTITY = domGlobals.Node.ENTITY_NODE;
+    var NOTATION = domGlobals.Node.NOTATION_NODE;
+
+    var Global = typeof domGlobals.window !== 'undefined' ? domGlobals.window : Function('return this;')();
+
+    var type = function (element) {
+      return element.dom().nodeType;
+    };
+    var value = function (element) {
+      return element.dom().nodeValue;
+    };
+    var isType$1 = function (t) {
+      return function (element) {
+        return type(element) === t;
+      };
+    };
+    var isText = isType$1(TEXT);
+
+    var charMap = {
+      '\xA0': 'nbsp',
+      '\xAD': 'shy'
+    };
+    var charMapToRegExp = function (charMap, global) {
+      var key, regExp = '';
+      for (key in charMap) {
+        regExp += key;
+      }
+      return new RegExp('[' + regExp + ']', global ? 'g' : '');
+    };
+    var charMapToSelector = function (charMap) {
+      var key, selector = '';
+      for (key in charMap) {
+        if (selector) {
+          selector += ',';
+        }
+        selector += 'span.mce-' + charMap[key];
+      }
+      return selector;
+    };
+    var Data = {
+      charMap: charMap,
+      regExp: charMapToRegExp(charMap),
+      regExpGlobal: charMapToRegExp(charMap, true),
+      selector: charMapToSelector(charMap),
+      charMapToRegExp: charMapToRegExp,
+      charMapToSelector: charMapToSelector
+    };
+
+    var wrapCharWithSpan = function (value) {
+      return '<span data-mce-bogus="1" class="mce-' + Data.charMap[value] + '">' + value + '</span>';
+    };
+    var Html = { wrapCharWithSpan: wrapCharWithSpan };
+
+    var isMatch = function (n) {
+      var value$1 = value(n);
+      return isText(n) && value$1 !== undefined && Data.regExp.test(value$1);
+    };
+    var filterDescendants = function (scope, predicate) {
+      var result = [];
+      var dom = scope.dom();
+      var children = map(dom.childNodes, Element.fromDom);
+      each(children, function (x) {
+        if (predicate(x)) {
+          result = result.concat([x]);
+        }
+        result = result.concat(filterDescendants(x, predicate));
       });
-      editor.addCommand('mceRemoveTextcolor', function (format) {
-        TextColor.removeFormat(editor, format);
+      return result;
+    };
+    var findParentElm = function (elm, rootElm) {
+      while (elm.parentNode) {
+        if (elm.parentNode === rootElm) {
+          return elm;
+        }
+        elm = elm.parentNode;
+      }
+    };
+    var replaceWithSpans = function (text) {
+      return text.replace(Data.regExpGlobal, Html.wrapCharWithSpan);
+    };
+    var Nodes = {
+      isMatch: isMatch,
+      filterDescendants: filterDescendants,
+      findParentElm: findParentElm,
+      replaceWithSpans: replaceWithSpans
+    };
+
+    var show = function (editor, rootElm) {
+      var node, div;
+      var nodeList = Nodes.filterDescendants(Element.fromDom(rootElm), Nodes.isMatch);
+      each(nodeList, function (n) {
+        var withSpans = Nodes.replaceWithSpans(editor.dom.encode(value(n)));
+        div = editor.dom.create('div', null, withSpans);
+        while (node = div.lastChild) {
+          editor.dom.insertAfter(node, n.dom());
+        }
+        editor.dom.remove(n.dom());
+      });
+    };
+    var hide = function (editor, body) {
+      var nodeList = editor.dom.select(Data.selector, body);
+      each(nodeList, function (node) {
+        editor.dom.remove(node, 1);
+      });
+    };
+    var toggle = function (editor) {
+      var body = editor.getBody();
+      var bookmark = editor.selection.getBookmark();
+      var parentNode = Nodes.findParentElm(editor.selection.getNode(), body);
+      parentNode = parentNode !== undefined ? parentNode : body;
+      hide(editor, parentNode);
+      show(editor, parentNode);
+      editor.selection.moveToBookmark(bookmark);
+    };
+    var VisualChars = {
+      show: show,
+      hide: hide,
+      toggle: toggle
+    };
+
+    var toggleVisualChars = function (editor, toggleState) {
+      var body = editor.getBody();
+      var selection = editor.selection;
+      var bookmark;
+      toggleState.set(!toggleState.get());
+      Events.fireVisualChars(editor, toggleState.get());
+      bookmark = selection.getBookmark();
+      if (toggleState.get() === true) {
+        VisualChars.show(editor, body);
+      } else {
+        VisualChars.hide(editor, body);
+      }
+      selection.moveToBookmark(bookmark);
+    };
+    var Actions = { toggleVisualChars: toggleVisualChars };
+
+    var register = function (editor, toggleState) {
+      editor.addCommand('mceVisualChars', function () {
+        Actions.toggleVisualChars(editor, toggleState);
       });
     };
     var Commands = { register: register };
 
-    var global$1 = tinymce.util.Tools.resolve('tinymce.dom.DOMUtils');
+    var global$1 = tinymce.util.Tools.resolve('tinymce.util.Delay');
 
-    var global$2 = tinymce.util.Tools.resolve('tinymce.util.Tools');
-
-    var defaultColorMap = [
-      '000000',
-      'Black',
-      '993300',
-      'Burnt orange',
-      '333300',
-      'Dark olive',
-      '003300',
-      'Dark green',
-      '003366',
-      'Dark azure',
-      '000080',
-      'Navy Blue',
-      '333399',
-      'Indigo',
-      '333333',
-      'Very dark gray',
-      '800000',
-      'Maroon',
-      'FF6600',
-      'Orange',
-      '808000',
-      'Olive',
-      '008000',
-      'Green',
-      '008080',
-      'Teal',
-      '0000FF',
-      'Blue',
-      '666699',
-      'Grayish blue',
-      '808080',
-      'Gray',
-      'FF0000',
-      'Red',
-      'FF9900',
-      'Amber',
-      '99CC00',
-      'Yellow green',
-      '339966',
-      'Sea green',
-      '33CCCC',
-      'Turquoise',
-      '3366FF',
-      'Royal blue',
-      '800080',
-      'Purple',
-      '999999',
-      'Medium gray',
-      'FF00FF',
-      'Magenta',
-      'FFCC00',
-      'Gold',
-      'FFFF00',
-      'Yellow',
-      '00FF00',
-      'Lime',
-      '00FFFF',
-      'Aqua',
-      '00CCFF',
-      'Sky blue',
-      '993366',
-      'Red violet',
-      'FFFFFF',
-      'White',
-      'FF99CC',
-      'Pink',
-      'FFCC99',
-      'Peach',
-      'FFFF99',
-      'Light yellow',
-      'CCFFCC',
-      'Pale green',
-      'CCFFFF',
-      'Pale cyan',
-      '99CCFF',
-      'Light sky blue',
-      'CC99FF',
-      'Plum'
-    ];
-    var getTextColorMap = function (editor) {
-      return editor.getParam('textcolor_map', defaultColorMap);
-    };
-    var getForeColorMap = function (editor) {
-      return editor.getParam('forecolor_map', getTextColorMap(editor));
-    };
-    var getBackColorMap = function (editor) {
-      return editor.getParam('backcolor_map', getTextColorMap(editor));
-    };
-    var getTextColorRows = function (editor) {
-      return editor.getParam('textcolor_rows', 5);
-    };
-    var getTextColorCols = function (editor) {
-      return editor.getParam('textcolor_cols', 8);
-    };
-    var getForeColorRows = function (editor) {
-      return editor.getParam('forecolor_rows', getTextColorRows(editor));
-    };
-    var getBackColorRows = function (editor) {
-      return editor.getParam('backcolor_rows', getTextColorRows(editor));
-    };
-    var getForeColorCols = function (editor) {
-      return editor.getParam('forecolor_cols', getTextColorCols(editor));
-    };
-    var getBackColorCols = function (editor) {
-      return editor.getParam('backcolor_cols', getTextColorCols(editor));
-    };
-    var getColorPickerCallback = function (editor) {
-      return editor.getParam('color_picker_callback', null);
-    };
-    var hasColorPicker = function (editor) {
-      return typeof getColorPickerCallback(editor) === 'function';
-    };
-    var Settings = {
-      getForeColorMap: getForeColorMap,
-      getBackColorMap: getBackColorMap,
-      getForeColorRows: getForeColorRows,
-      getBackColorRows: getBackColorRows,
-      getForeColorCols: getForeColorCols,
-      getBackColorCols: getBackColorCols,
-      getColorPickerCallback: getColorPickerCallback,
-      hasColorPicker: hasColorPicker
-    };
-
-    var global$3 = tinymce.util.Tools.resolve('tinymce.util.I18n');
-
-    var getHtml = function (cols, rows, colorMap, hasColorPicker) {
-      var colors, color, html, last, x, y, i, count = 0;
-      var id = global$1.DOM.uniqueId('mcearia');
-      var getColorCellHtml = function (color, title) {
-        var isNoColor = color === 'transparent';
-        return '<td class="mce-grid-cell' + (isNoColor ? ' mce-colorbtn-trans' : '') + '">' + '<div id="' + id + '-' + count++ + '"' + ' data-mce-color="' + (color ? color : '') + '"' + ' role="option"' + ' tabIndex="-1"' + ' style="' + (color ? 'background-color: ' + color : '') + '"' + ' title="' + global$3.translate(title) + '">' + (isNoColor ? '&#215;' : '') + '</div>' + '</td>';
-      };
-      colors = TextColor.mapColors(colorMap);
-      colors.push({
-        text: global$3.translate('No color'),
-        color: 'transparent'
-      });
-      html = '<table class="mce-grid mce-grid-border mce-colorbutton-grid" role="list" cellspacing="0"><tbody>';
-      last = colors.length - 1;
-      for (y = 0; y < rows; y++) {
-        html += '<tr>';
-        for (x = 0; x < cols; x++) {
-          i = y * cols + x;
-          if (i > last) {
-            html += '<td></td>';
-          } else {
-            color = colors[i];
-            html += getColorCellHtml(color.color, color.text);
+    var setup = function (editor, toggleState) {
+      var debouncedToggle = global$1.debounce(function () {
+        VisualChars.toggle(editor);
+      }, 300);
+      if (editor.settings.forced_root_block !== false) {
+        editor.on('keydown', function (e) {
+          if (toggleState.get() === true) {
+            e.keyCode === 13 ? VisualChars.toggle(editor) : debouncedToggle();
           }
-        }
-        html += '</tr>';
+        });
       }
-      if (hasColorPicker) {
-        html += '<tr>' + '<td colspan="' + cols + '" class="mce-custom-color-btn">' + '<div id="' + id + '-c" class="mce-widget mce-btn mce-btn-small mce-btn-flat" ' + 'role="button" tabindex="-1" aria-labelledby="' + id + '-c" style="width: 100%">' + '<button type="button" role="presentation" tabindex="-1">' + global$3.translate('Custom...') + '</button>' + '</div>' + '</td>' + '</tr>';
-        html += '<tr>';
-        for (x = 0; x < cols; x++) {
-          html += getColorCellHtml('', 'Custom color');
-        }
-        html += '</tr>';
-      }
-      html += '</tbody></table>';
-      return html;
     };
-    var ColorPickerHtml = { getHtml: getHtml };
+    var Keyboard = { setup: setup };
 
-    var setDivColor = function setDivColor(div, value) {
-      div.style.background = value;
-      div.setAttribute('data-mce-color', value);
+    var isEnabledByDefault = function (editor) {
+      return editor.getParam('visualchars_default_state', false);
     };
-    var onButtonClick = function (editor) {
+    var Settings = { isEnabledByDefault: isEnabledByDefault };
+
+    var setup$1 = function (editor, toggleState) {
+      editor.on('init', function () {
+        var valueForToggling = !Settings.isEnabledByDefault(editor);
+        toggleState.set(valueForToggling);
+        Actions.toggleVisualChars(editor, toggleState);
+      });
+    };
+    var Bindings = { setup: setup$1 };
+
+    var toggleActiveState = function (editor) {
       return function (e) {
         var ctrl = e.control;
-        if (ctrl._color) {
-          editor.execCommand('mceApplyTextcolor', ctrl.settings.format, ctrl._color);
-        } else {
-          editor.execCommand('mceRemoveTextcolor', ctrl.settings.format);
-        }
-      };
-    };
-    var onPanelClick = function (editor, cols) {
-      return function (e) {
-        var buttonCtrl = this.parent();
-        var value;
-        var currentColor = TextColor.getCurrentColor(editor, buttonCtrl.settings.format);
-        var selectColor = function (value) {
-          editor.execCommand('mceApplyTextcolor', buttonCtrl.settings.format, value);
-          buttonCtrl.hidePanel();
-          buttonCtrl.color(value);
-        };
-        var resetColor = function () {
-          editor.execCommand('mceRemoveTextcolor', buttonCtrl.settings.format);
-          buttonCtrl.hidePanel();
-          buttonCtrl.resetColor();
-        };
-        if (global$1.DOM.getParent(e.target, '.mce-custom-color-btn')) {
-          buttonCtrl.hidePanel();
-          var colorPickerCallback = Settings.getColorPickerCallback(editor);
-          colorPickerCallback.call(editor, function (value) {
-            var tableElm = buttonCtrl.panel.getEl().getElementsByTagName('table')[0];
-            var customColorCells, div, i;
-            customColorCells = global$2.map(tableElm.rows[tableElm.rows.length - 1].childNodes, function (elm) {
-              return elm.firstChild;
-            });
-            for (i = 0; i < customColorCells.length; i++) {
-              div = customColorCells[i];
-              if (!div.getAttribute('data-mce-color')) {
-                break;
-              }
-            }
-            if (i === cols) {
-              for (i = 0; i < cols - 1; i++) {
-                setDivColor(customColorCells[i], customColorCells[i + 1].getAttribute('data-mce-color'));
-              }
-            }
-            setDivColor(div, value);
-            selectColor(value);
-          }, currentColor);
-        }
-        value = e.target.getAttribute('data-mce-color');
-        if (value) {
-          if (this.lastId) {
-            global$1.DOM.get(this.lastId).setAttribute('aria-selected', 'false');
-          }
-          e.target.setAttribute('aria-selected', true);
-          this.lastId = e.target.id;
-          if (value === 'transparent') {
-            resetColor();
-          } else {
-            selectColor(value);
-          }
-        } else if (value !== null) {
-          buttonCtrl.hidePanel();
-        }
-      };
-    };
-    var renderColorPicker = function (editor, foreColor) {
-      return function () {
-        var cols = foreColor ? Settings.getForeColorCols(editor) : Settings.getBackColorCols(editor);
-        var rows = foreColor ? Settings.getForeColorRows(editor) : Settings.getBackColorRows(editor);
-        var colorMap = foreColor ? Settings.getForeColorMap(editor) : Settings.getBackColorMap(editor);
-        var hasColorPicker = Settings.hasColorPicker(editor);
-        return ColorPickerHtml.getHtml(cols, rows, colorMap, hasColorPicker);
+        editor.on('VisualChars', function (e) {
+          ctrl.active(e.state);
+        });
       };
     };
     var register$1 = function (editor) {
-      editor.addButton('forecolor', {
-        type: 'colorbutton',
-        tooltip: 'Text color',
-        format: 'forecolor',
-        panel: {
-          role: 'application',
-          ariaRemember: true,
-          html: renderColorPicker(editor, true),
-          onclick: onPanelClick(editor, Settings.getForeColorCols(editor))
-        },
-        onclick: onButtonClick(editor)
+      editor.addButton('visualchars', {
+        active: false,
+        title: 'Show invisible characters',
+        cmd: 'mceVisualChars',
+        onPostRender: toggleActiveState(editor)
       });
-      editor.addButton('backcolor', {
-        type: 'colorbutton',
-        tooltip: 'Background color',
-        format: 'hilitecolor',
-        panel: {
-          role: 'application',
-          ariaRemember: true,
-          html: renderColorPicker(editor, false),
-          onclick: onPanelClick(editor, Settings.getBackColorCols(editor))
-        },
-        onclick: onButtonClick(editor)
+      editor.addMenuItem('visualchars', {
+        text: 'Show invisible characters',
+        cmd: 'mceVisualChars',
+        onPostRender: toggleActiveState(editor),
+        selectable: true,
+        context: 'view',
+        prependToContext: true
       });
     };
-    var Buttons = { register: register$1 };
 
-    global.add('textcolor', function (editor) {
-      Commands.register(editor);
-      Buttons.register(editor);
+    global.add('visualchars', function (editor) {
+      var toggleState = Cell(false);
+      Commands.register(editor, toggleState);
+      register$1(editor);
+      Keyboard.setup(editor, toggleState);
+      Bindings.setup(editor, toggleState);
+      return Api.get(toggleState);
     });
     function Plugin () {
     }
 
     return Plugin;
 
-}());
+}(window));
 })();

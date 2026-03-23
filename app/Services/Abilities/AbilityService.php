@@ -205,6 +205,7 @@ class AbilityService extends BaseAbilityService
                 'url' => $tag->getLink(),
                 'tooltip' => route('entities.tooltip', [$this->campaign, $tag->entity]),
                 'class' => $tag->colourClass(),
+                'style' => $tag->colourStyle(),
             ];
         }
 

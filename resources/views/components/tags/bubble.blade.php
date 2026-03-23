@@ -2,6 +2,7 @@
 <a
     href="{{ $tag->getLink() }}"
     class="{{ $css }}"
+    @if($inlineStyle) style="{{ $inlineStyle }}" @endif
     data-toggle="tooltip-ajax"
     data-url="{{ route('entities.tooltip', [$campaign, $tag->entity->id]) }}"
     data-tag-id="{{ $tag->id }}"
