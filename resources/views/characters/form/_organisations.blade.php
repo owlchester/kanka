@@ -33,7 +33,7 @@ $statuses = [
                 <div class="field">
                     <select name="organisations[{{ $organisation->id }}]" class="w-full select2" style="width: 100%"
                         data-url="{{ route('search-list', [$campaign, config('entities.ids.organisation')]) }}"
-                        data-placeholder="{{ __('crud.placeholders.organisation') }}"
+                        data-placeholder="{{ __('crud.placeholders.search') }}"
                         data-language="{{ LaravelLocalization::getCurrentLocale() }}"
                         data-allow-clear="false"
                     >
@@ -88,7 +88,7 @@ $statuses = [
             <div class="field">
                 <select name="organisations[]" class="w-full tmp-org" style="width: 100%"
                         data-url="{{ route('search-list', [$campaign, config('entities.ids.organisation')]) }}"
-                        data-placeholder="{{ __('crud.placeholders.organisation') }}"
+                        data-placeholder="{{ __('crud.placeholders.search') }}"
                         data-language="{{ LaravelLocalization::getCurrentLocale() }}"
                 >
                 </select>
