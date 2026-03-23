@@ -14,7 +14,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class AttributeTemplateApiController extends ApiController
+class AttributeTemplateApiController extends MiscApiController
 {
     protected AttributeService $attributeService;
 

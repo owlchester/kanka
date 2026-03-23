@@ -14,7 +14,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class CalendarApiController extends ApiController
+class CalendarApiController extends MiscApiController
 {
     protected CalendarSanitizer $sanitizer;
 

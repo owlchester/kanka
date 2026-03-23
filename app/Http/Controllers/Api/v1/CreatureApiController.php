@@ -11,7 +11,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class CreatureApiController extends ApiController
+class CreatureApiController extends MiscApiController
 {
     /**
      * @return AnonymousResourceCollection

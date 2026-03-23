@@ -10,19 +10,15 @@ use App\Models\Entity;
 use App\Models\EntityType;
 use App\Services\Api\BulkEntityCreatorService;
 use App\Services\Entity\EntitySaveService;
-use App\Services\Entity\Relations\EntityRelationsServiceFactory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class EntityApiController extends ApiController
 {
     public function __construct(
-        EntitySaveService $entitySaveService,
-        EntityRelationsServiceFactory $relationsFactory,
+        protected EntitySaveService $entitySaveService,
         protected BulkEntityCreatorService $bulkEntityCreatorService,
-    ) {
-        parent::__construct($entitySaveService, $relationsFactory);
-    }
+    ) {}
 
     public function index(Campaign $campaign)
     {
