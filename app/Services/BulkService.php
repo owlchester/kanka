@@ -278,6 +278,13 @@ class BulkService
             unset($filledFields['type']);
         }
 
+        // Handle entity_type_id unset (value "0" means remove)
+        $unsetEntityType = false;
+        if (Arr::get($filledFields, 'entity_type_id') === '0') {
+            $unsetEntityType = true;
+            unset($filledFields['entity_type_id']);
+        }
+
         if (! isset($this->entityType)) {
             $mirrorOptions = [];
             $mirrorOptions['unmirror'] = (bool) Arr::get($fields, 'unmirror', '0');
@@ -366,8 +373,8 @@ class BulkService
                 }
             }
 
-            // Handle entity_type_id removal (attribute templates only)
-            if ($this->entityType->hasEntity() && Arr::get($fields, 'bulk-entity-type') === 'remove' && in_array('entity_type_id', $entity->child->getFillable())) {
+            // Handle entity_type_id unset (attribute templates only)
+            if ($unsetEntityType && $this->entityType->hasEntity() && in_array('entity_type_id', $entity->child->getFillable())) {
                 $entity->child->update(['entity_type_id' => null]);
             }
 

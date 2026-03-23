@@ -10,8 +10,7 @@ return [
     ],
     'bulk'          => [
         'entity_type'   => [
-            'action'    => 'Action for auto-apply',
-            'remove'    => 'Remove auto-apply',
+            'unset'     => 'Unset',
         ],
     ],
     'hints'         => [
