@@ -196,21 +196,13 @@ class CopyService
             $newSub = $sub->replicate(['map_id']);
             $newSub->map_id = $this->entity->entity_id;
 
-            //            if (!empty($sub->image_path) && Storage::exists($sub->image_path)) {
-            //                $uniqid = uniqid();
-            //                $newPath = str_replace('.', $uniqid . '.', $sub->image_path);
-            //                $newSub->image_path = $newPath;
-            //                if (!Storage::exists($newPath)) {
-            //                    Storage::copy($sub->image_path, $newPath);
-            //                }
-            //            }
-            $newSub->saveQuietly();
+            $newSub->save();
         }
         // @phpstan-ignore-next-line
         foreach ($this->source->child->groups as $sub) {
             $newSub = $sub->replicate(['map_id']);
             $newSub->map_id = $this->entity->entity_id;
-            $newSub->saveQuietly();
+            $newSub->save();
             $groups[$sub->id] = $newSub->id;
         }
         // @phpstan-ignore-next-line
@@ -236,7 +228,7 @@ class CopyService
                     $newSub->name = $raw ? $raw->name : 'Copy of #' . $sub->id;
                 }
             }
-            $newSub->saveQuietly();
+            $newSub->save();
         }
 
         return $this;

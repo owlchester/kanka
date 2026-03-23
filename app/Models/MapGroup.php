@@ -78,7 +78,7 @@ class MapGroup extends Model
         static::deleting(function (MapGroup $model) {
             foreach ($model->children as $child) {
                 $child->parent_id = null;
-                $child->saveQuietly();
+                $child->save();
             }
         });
     }

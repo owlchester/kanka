@@ -11,9 +11,7 @@ use App\Services\Api\BulkAttributeService;
 
 class PutController extends ApiController
 {
-    public function __construct(
-        protected BulkAttributeService $service,
-    ) {}
+    public function __construct(protected BulkAttributeService $service) {}
 
     public function put(SaveAttributesApi $request, Campaign $campaign, Entity $entity)
     {

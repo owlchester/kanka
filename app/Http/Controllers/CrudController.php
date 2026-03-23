@@ -20,6 +20,7 @@ use App\Sanitizers\MiscSanitizer;
 use App\Services\AttributeService;
 use App\Services\Entity\AliasService;
 use App\Services\Entity\CopyService;
+use App\Services\Entity\EntitySaveService;
 use App\Services\FilterService;
 use App\Services\MultiEditingService;
 use App\Traits\BulkControllerTrait;
@@ -93,6 +94,8 @@ class CrudController extends Controller
 
     protected AttributeService $attributeService;
 
+    protected EntitySaveService $entitySaveService;
+
     /** If the auth check was already performed on this controller */
     protected bool $alreadyAuthChecked = false;
 
@@ -104,14 +107,21 @@ class CrudController extends Controller
 
     protected Request $request;
 
-    public function __construct(FilterService $filterService, DatagridRenderer $datagridRenderer, AttributeService $attributeService)
-    {
+    public function __construct(
+        FilterService $filterService,
+        DatagridRenderer $datagridRenderer,
+        AttributeService $attributeService,
+        EntitySaveService $entitySaveService,
+    ) {
         $this->filterService = $filterService;
         $this->datagrid = $datagridRenderer;
         $this->attributeService = $attributeService;
+        $this->entitySaveService = $entitySaveService;
 
         $this->middleware([CachedResponse::class]);
     }
+
+    protected function afterModelSave(MiscModel $model, array $data): void {}
 
     public function index(Request $request, Campaign $campaign)
     {
@@ -121,19 +131,31 @@ class CrudController extends Controller
     public function crudIndex(Request $request)
     {
         if (! $this->moduleEnabled()) {
-            return redirect()->route('dashboard', $this->campaign)->with(
-                'error_raw',
-                __('campaigns/modules.errors.disabled', [
-                    'name' => $this->getEntityType()->plural(), // @phpstan-ignore-line
-                    'fix' => '<a href="' . route('campaign.modules', [$this->campaign, '#' . $this->getEntityType()->code]) . '" class="text-link">' . __('crud.fix-this-issue') . '</a>', // @phpstan-ignore-line
-                ])
-            );
+            return redirect()
+                ->route('dashboard', $this->campaign)
+                ->with(
+                    'error_raw',
+                    __('campaigns/modules.errors.disabled', [
+                        'name' => $this->getEntityType()->plural(), // @phpstan-ignore-line
+                        'fix' => '<a href="' .
+                            route('campaign.modules', [
+                                $this->campaign,
+                                '#' . $this->getEntityType()->code,
+                            ]) .
+                            '" class="text-link">' .
+                            __('crud.fix-this-issue') .
+                            '</a>', // @phpstan-ignore-line
+                    ]),
+                );
         }
         if (method_exists($this, 'getEntityType')) {
             /** @var EntityType $entityType */
             $entityType = $this->getEntityType();
             if ($entityType->hasEntity()) {
-                return redirect()->route('entities.index', [$this->campaign, $entityType]);
+                return redirect()->route('entities.index', [
+                    $this->campaign,
+                    $entityType,
+                ]);
             }
         }
 
@@ -145,12 +167,9 @@ class CrudController extends Controller
         $model = new $this->model;
         $campaign = $this->campaign;
         $this->request = $request;
-        $this->filterService
-            ->request($request);
+        $this->filterService->request($request);
         if (method_exists($model, 'explicitFilters')) {
-            $this->filterService
-                ->model($model)
-                ->make($this->view);
+            $this->filterService->model($model)->make($this->view);
         }
         $name = $this->view;
         $langKey = $this->langKey ?? $name;
@@ -168,28 +187,36 @@ class CrudController extends Controller
         $forceMode = null;
         $nested = $this->isNested();
 
-        $base = $model
-            ->preparedSelect()
-            ->preparedWith();
+        $base = $model->preparedSelect()->preparedWith();
         //             dd(get_class($model), get_class($base));
 
         if ($nested) {
             $this->datagrid->nested();
         }
 
-        $base->search($this->filterService->search())
+        $base
+            ->search($this->filterService->search())
             ->order($this->filterService->order())
             ->distinct();
 
         $parent = null;
-        if (request()->has('parent_id') && method_exists($model, 'getParentKeyName')) {
+        if (
+            request()->has('parent_id') &&
+            method_exists($model, 'getParentKeyName')
+        ) {
             $parentKey = $model->getParentKeyName();
-            $base->where([$model->getTable() . '.' . $parentKey => request()->get('parent_id')]);
+            $base->where([
+                $model->getTable() . '.' . $parentKey => request()->get(
+                    'parent_id',
+                ),
+            ]);
 
             $parent = $model->where('id', request()->get('parent_id'))->first();
         } elseif ($nested && $this->filterService->activeFiltersCount() === 0) {
             // @phpstan-ignore-next-line
-            $base->whereNull($model->getTable() . '.' . $model->getParentKeyName());
+            $base->whereNull(
+                $model->getTable() . '.' . $model->getParentKeyName(),
+            );
         }
 
         // Do this to avoid an extra sql query when no filters are selected
@@ -262,13 +289,19 @@ class CrudController extends Controller
             $data['titleKey'] = $this->titleKey();
         } elseif ($this->campaign->boosted()) {
             // Custom sidebar link, with fallback on custom module plural name
-            $data['titleKey'] = Arr::get($campaign->ui_settings, 'sidebar.labels.' . $langKey);
+            $data['titleKey'] = Arr::get(
+                $campaign->ui_settings,
+                'sidebar.labels.' . $langKey,
+            );
             if (empty($data['titleKey']) && isset($data['entityType'])) {
                 $data['titleKey'] = $data['entityType']->plural();
             }
             // If its a bookmark, override everything else
             if ($request->has('bookmark')) {
-                $bookmark = Bookmark::where('id', $request->get('bookmark'))->first();
+                $bookmark = Bookmark::where(
+                    'id',
+                    $request->get('bookmark'),
+                )->first();
                 if ($bookmark) {
                     $this->datagrid->bookmark($bookmark);
                     $data['bookmark'] = $bookmark;
@@ -346,13 +379,17 @@ class CrudController extends Controller
         $model = new $this->model;
 
         $params['campaign'] = $this->campaign;
-        $params['tabAttributes'] = $this->tabAttributes && $this->campaign->enabled('entity_attributes');
+        $params['tabAttributes'] =
+            $this->tabAttributes &&
+            $this->campaign->enabled('entity_attributes');
         $params['tabPermissions'] = $this->tabPermissions;
         $params['tabCopy'] = $this->tabCopy;
         $params['tabBoosted'] = $this->tabBoosted;
         if (method_exists($this, 'getEntityType')) {
             $params['entityType'] = $this->getEntityType();
-            $params['tabPermissions'] = $this->tabPermissions && auth()->user()->can('permissions', $params['entityType']);
+            $params['tabPermissions'] =
+                $this->tabPermissions &&
+                auth()->user()->can('permissions', $params['entityType']);
         }
         $params['title'] = __($this->view . '.create.title');
 
@@ -408,13 +445,11 @@ class CrudController extends Controller
             $new = $model->create($data);
 
             // Fire an event for the Entity Observer.
-            if (method_exists($model, 'crudSaved')) {
-                $new->crudSaved();
-            }
+            $this->afterModelSave($new, $data);
 
             // Bookmarks have no entity attached to them.
             if (! ($new instanceof Bookmark) && $new->entity) {
-                $new->entity->crudSaved();
+                $this->entitySaveService->save($new->entity, $data);
                 // Weird hack for prod issues
                 if (! $new->entity->child) {
                     $new->entity->child = $new;
@@ -423,7 +458,11 @@ class CrudController extends Controller
                 /** @var CopyService $copyService */
                 $copyService = app()->make(CopyService::class);
                 // First copy stuff like posts, since we might replace attribute mentions next
-                $copyService->entity($new->entity)->request($request)->fromId()->copy();
+                $copyService
+                    ->entity($new->entity)
+                    ->request($request)
+                    ->fromId()
+                    ->copy();
 
                 if (auth()->user()->can('attributes', $new->entity)) {
                     $this->attributeService
@@ -432,9 +471,14 @@ class CrudController extends Controller
                         ->save($request->get('attribute', []));
 
                     // When copying an entity, the user probably wants to update all mentions of attributes to ones on the new entity.
-                    if ($request->has('replace_mentions') && $request->filled('replace_mentions') && $new->entity->isFillable('entry')) {
-                        $this->attributeService
-                            ->replaceMentions((int) $request->post('copy_source_id'));
+                    if (
+                        $request->has('replace_mentions') &&
+                        $request->filled('replace_mentions') &&
+                        $new->entity->isFillable('entry')
+                    ) {
+                        $this->attributeService->replaceMentions(
+                            (int) $request->post('copy_source_id'),
+                        );
                     }
                 }
 
@@ -443,11 +487,17 @@ class CrudController extends Controller
                 $aliasService->entity($new->entity)->request($request)->save();
             }
 
-            $link = '<a href="' . route(
-                $new->entity ? 'entities.show' : $this->view . '.show',
-                $new->entity ? [$this->campaign, $new->entity] : [$this->campaign, $new->id]
-            )
-                . '" class="text-link">' . $new->name . '</a>';
+            $link =
+                '<a href="' .
+                route(
+                    $new->entity ? 'entities.show' : $this->view . '.show',
+                    $new->entity
+                        ? [$this->campaign, $new->entity]
+                        : [$this->campaign, $new->id],
+                ) .
+                '" class="text-link">' .
+                $new->name .
+                '</a>';
             $success = __('general.success.created', [
                 'name' => $link,
             ]);
@@ -470,22 +520,34 @@ class CrudController extends Controller
             } elseif ($request->has('submit-update')) {
                 $route = route($this->route . '.edit', [$this->campaign, $new]);
                 if (! $new instanceof Bookmark) {
-                    $route = route('entities.edit', [$this->campaign, $new->entity]);
+                    $route = route('entities.edit', [
+                        $this->campaign,
+                        $new->entity,
+                    ]);
                 }
 
                 return response()->redirectTo($route);
             } elseif ($request->has('submit-view') && $new->entity) {
-                $route = route('entities.show', [$this->campaign, $new->entity]);
+                $route = route('entities.show', [
+                    $this->campaign,
+                    $new->entity,
+                ]);
 
                 return response()->redirectTo($route);
             } elseif ($request->has('submit-copy')) {
-                $route = route($this->route . '.create', [$this->campaign, 'copy' => $new->id]);
+                $route = route($this->route . '.create', [
+                    $this->campaign,
+                    'copy' => $new->id,
+                ]);
 
                 return response()->redirectTo($route);
             }
 
             if ($new->entity) {
-                $route = route('entities.show', [$this->campaign, $new->entity]);
+                $route = route('entities.show', [
+                    $this->campaign,
+                    $new->entity,
+                ]);
 
                 return response()->redirectTo($route);
             }
@@ -496,7 +558,11 @@ class CrudController extends Controller
             if (config('app.debug')) {
                 throw $exception;
             }
-            $error = str_replace(' ', '_', mb_strtolower($exception->getMessage()));
+            $error = str_replace(
+                ' ',
+                '_',
+                mb_strtolower($exception->getMessage()),
+            );
 
             return redirect()
                 ->back()
@@ -512,15 +578,24 @@ class CrudController extends Controller
             abort(404);
         }
 
-        return redirect()->route('entities.show', [$this->campaign, $model->entity]);
+        return redirect()->route('entities.show', [
+            $this->campaign,
+            $model->entity,
+        ]);
     }
 
     public function crudEdit(Model|MiscModel $model, array $params = [])
     {
-        $this->authorize('update', $model instanceof MiscModel ? $model->entity : $model);
+        $this->authorize(
+            'update',
+            $model instanceof MiscModel ? $model->entity : $model,
+        );
 
         if ($model instanceof MiscModel) {
-            return redirect()->route('entities.edit', [$this->campaign, $model->entity]);
+            return redirect()->route('entities.edit', [
+                $this->campaign,
+                $model->entity,
+            ]);
         }
 
         /** @var MiscModel $model */
@@ -529,7 +604,10 @@ class CrudController extends Controller
         if ($this->campaign->hasEditingWarning() && $model->entity) {
             /** @var MultiEditingService $editingService */
             $editingService = app()->make(MultiEditingService::class);
-            $editingUsers = $editingService->model($model->entity)->user(auth()->user())->users();
+            $editingUsers = $editingService
+                ->model($model->entity)
+                ->user(auth()->user())
+                ->users();
             // If no one is editing the entity, we are now editing it
             if (empty($editingUsers)) {
                 $editingService->edit();
@@ -540,8 +618,11 @@ class CrudController extends Controller
             'campaign' => $this->campaign,
             'model' => $model,
             'name' => $this->view,
-            'tabPermissions' => $this->tabPermissions && auth()->user()->can('permissions', $model),
-            'tabAttributes' => $this->tabAttributes && auth()->user()->can('attributes', $model->entity) && $this->campaign->enabled('entity_attributes'),
+            'tabPermissions' => $this->tabPermissions &&
+                auth()->user()->can('permissions', $model),
+            'tabAttributes' => $this->tabAttributes &&
+                auth()->user()->can('attributes', $model->entity) &&
+                $this->campaign->enabled('entity_attributes'),
             'tabBoosted' => $this->tabBoosted,
             'tabCopy' => $this->tabCopy,
             'editingUsers' => $editingUsers,
@@ -571,7 +652,10 @@ class CrudController extends Controller
      */
     public function crudUpdate(Request $request, Model|MiscModel $model)
     {
-        $this->authorize('update', $model instanceof MiscModel ? $model->entity : $model);
+        $this->authorize(
+            'update',
+            $model instanceof MiscModel ? $model->entity : $model,
+        );
 
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
         if (request()->ajax()) {
@@ -591,17 +675,13 @@ class CrudController extends Controller
             $model->update($data);
 
             // Fire an event for the Entity Observer
-            $model->crudSaved();
+            $this->afterModelSave($model, $data);
 
             // Bookmarks have no entity attached to them.
             if ($model->entity) {
                 $model->entity->name = $model->name;
                 $model->entity->is_private = $model->is_private;
-                $model->entity->crudSaved();
-                // If the child was changed but nothing changed on the entity, we still want to trigger an update
-                if ($model->wasChanged() && ! $model->entity->wasChanged()) {
-                    $model->entity->touch();
-                }
+                $this->entitySaveService->save($model->entity, $data);
 
                 if (auth()->user()->can('attributes', $model->entity)) {
                     $this->attributeService
@@ -612,14 +692,23 @@ class CrudController extends Controller
 
                 /** @var AliasService $aliasService */
                 $aliasService = app()->make(AliasService::class);
-                $aliasService->entity($model->entity)->request($request)->save();
+                $aliasService
+                    ->entity($model->entity)
+                    ->request($request)
+                    ->save();
             }
 
-            $link = '<a href="' . route(
-                $model->entity ? 'entities.show' : $this->view . '.show',
-                $model->entity ? [$this->campaign, $model->entity] : [$this->campaign, $model->id]
-            )
-                . '" class="text-link">' . $model->name . '</a>';
+            $link =
+                '<a href="' .
+                route(
+                    $model->entity ? 'entities.show' : $this->view . '.show',
+                    $model->entity
+                        ? [$this->campaign, $model->entity]
+                        : [$this->campaign, $model->id],
+                ) .
+                '" class="text-link">' .
+                $model->name .
+                '</a>';
             $success = __('general.success.updated', [
                 'name' => $link,
             ]);
@@ -627,7 +716,8 @@ class CrudController extends Controller
             if ($model->entity) {
                 /** @var MultiEditingService $editingService */
                 $editingService = app()->make(MultiEditingService::class);
-                $editingService->model($model->entity)
+                $editingService
+                    ->model($model->entity)
                     ->user($request->user())
                     ->finish();
             }
@@ -643,7 +733,10 @@ class CrudController extends Controller
                 }
             }
             if ($model->entity) {
-                $route = route('entities.show', $options + [$this->campaign, $model->entity]);
+                $route = route(
+                    'entities.show',
+                    $options + [$this->campaign, $model->entity],
+                );
             } else {
                 $options = [$this->campaign, $model] + $options;
                 $route = route($this->view . '.show', $options + [$model]);
@@ -651,20 +744,33 @@ class CrudController extends Controller
             if ($request->has('submit-new')) {
                 $route = route($this->route . '.create', $this->campaign);
             } elseif ($request->has('submit-update')) {
-                $route = route($this->route . '.edit', [$this->campaign, $model->id]);
+                $route = route($this->route . '.edit', [
+                    $this->campaign,
+                    $model->id,
+                ]);
             } elseif ($request->has('submit-close')) {
                 $route = route($this->route . '.index', [$this->campaign]);
             } elseif ($request->has('submit-copy')) {
-                $route = route($this->route . '.create', [$this->campaign, 'copy' => $model->id]);
+                $route = route($this->route . '.create', [
+                    $this->campaign,
+                    'copy' => $model->id,
+                ]);
 
                 return response()->redirectTo($route);
             }
 
             return response()->redirectTo($route);
         } catch (LogicException $exception) {
-            $error = str_replace(' ', '_', mb_strtolower(mb_rtrim($exception->getMessage(), '.')));
+            $error = str_replace(
+                ' ',
+                '_',
+                mb_strtolower(mb_rtrim($exception->getMessage(), '.')),
+            );
 
-            return redirect()->back()->withInput()->with('error', __('crud.errors.' . $error));
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('error', __('crud.errors.' . $error));
         }
     }
 
@@ -674,19 +780,30 @@ class CrudController extends Controller
     public function crudDestroy(Model|MiscModel $model)
     {
         /** @var MiscModel $model */
-        $this->authorize('delete', $model instanceof MiscModel ? $model->entity : $model);
+        $this->authorize(
+            'delete',
+            $model instanceof MiscModel ? $model->entity : $model,
+        );
         if (request()->ajax()) {
             return response()->json(['success' => true]);
         }
 
         $model->delete();
 
-        return redirect()->route($this->route . '.index', $this->campaign)
-            ->with('success_raw', __('general.success.deleted-cancel', [
-                'name' => $model->name,
-                // @phpstan-ignore-next-line
-                'cancel' => '<a href="' . route('recovery', $model->campaign) . '" class="text-link">' . __('crud.cancel') . '</a>',
-            ]));
+        return redirect()
+            ->route($this->route . '.index', $this->campaign)
+            ->with(
+                'success_raw',
+                __('general.success.deleted-cancel', [
+                    'name' => $model->name,
+                    // @phpstan-ignore-next-line
+                    'cancel' => '<a href="' .
+                        route('recovery', $model->campaign) .
+                        '" class="text-link">' .
+                        __('crud.cancel') .
+                        '</a>',
+                ]),
+            );
     }
 
     /**
@@ -741,7 +858,11 @@ class CrudController extends Controller
         // No valid user, or invalid entity type (ie relations)
         if (auth()->guest()) {
             return new Collection;
-        } elseif (! auth()->user()->can('create', [$entityType, $this->campaign])) {
+        } elseif (
+            ! auth()
+                ->user()
+                ->can('create', [$entityType, $this->campaign])
+        ) {
             return new Collection;
         }
 
@@ -800,7 +921,10 @@ class CrudController extends Controller
     protected function isNested(): bool
     {
         // Model isn't nested, not an option to start with
-        if (! isset($this->module) || ! method_exists($this->model, 'getParentKeyName')) {
+        if (
+            ! isset($this->module) ||
+            ! method_exists($this->model, 'getParentKeyName')
+        ) {
             return false;
         }
         $key = $this->module . '_nested';

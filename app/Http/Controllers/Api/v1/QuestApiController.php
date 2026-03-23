@@ -11,7 +11,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class QuestApiController extends ApiController
+class QuestApiController extends MiscApiController
 {
     /**
      * @return AnonymousResourceCollection
@@ -55,7 +55,7 @@ class QuestApiController extends ApiController
         $data['campaign_id'] = $campaign->id;
         /** @var Quest $model */
         $model = Quest::create($data);
-        $this->crudSave($model);
+        $this->crudSave($model, $request->validated());
 
         return new Resource($model);
     }
@@ -68,7 +68,7 @@ class QuestApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $quest->entity);
         $quest->update($request->all());
-        $this->crudSave($quest);
+        $this->crudSave($quest, $request->validated());
 
         return new Resource($quest);
     }

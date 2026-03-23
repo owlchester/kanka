@@ -11,7 +11,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class CreatureApiController extends ApiController
+class CreatureApiController extends MiscApiController
 {
     /**
      * @return AnonymousResourceCollection
@@ -55,7 +55,7 @@ class CreatureApiController extends ApiController
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
         $model = Creature::create($data);
-        $this->crudSave($model);
+        $this->crudSave($model, $request->validated());
 
         return new Resource($model);
     }
@@ -68,7 +68,7 @@ class CreatureApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $creature->entity);
         $creature->update($request->all());
-        $this->crudSave($creature);
+        $this->crudSave($creature, $request->validated());
 
         return new Resource($creature);
     }

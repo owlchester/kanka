@@ -8,6 +8,7 @@ use App\Http\Requests\StoreMap;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Models\Map;
+use App\Models\MiscModel;
 
 class MapController extends CrudController
 {
@@ -66,6 +67,14 @@ class MapController extends CrudController
     public function destroy(Campaign $campaign, Map $map)
     {
         return $this->campaign($campaign)->crudDestroy($map);
+    }
+
+    protected function afterModelSave(MiscModel $model, array $data): void
+    {
+        /** @var Map $model */
+        $model->height = null;
+        $model->width = null;
+        $model->save();
     }
 
     protected function getEntityType(): EntityType

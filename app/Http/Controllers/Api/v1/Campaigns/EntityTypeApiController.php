@@ -15,9 +15,8 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class EntityTypeApiController extends ApiController
 {
-    public function __construct(
-        protected EntityTypeService $entityTypeService
-    ) {
+    public function __construct(protected EntityTypeService $entityTypeService)
+    {
         $this->middleware(Premium::class, ['except' => ['index', 'show']]);
     }
 

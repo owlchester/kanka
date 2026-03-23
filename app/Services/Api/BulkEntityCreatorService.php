@@ -4,11 +4,10 @@ namespace App\Services\Api;
 
 use App\Models\Entity;
 use App\Models\MiscModel;
-use App\Services\Entity\TagService;
+use App\Services\Entity\EntitySaveService;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
 use App\Traits\UserAware;
-use Illuminate\Support\Arr;
 
 class BulkEntityCreatorService
 {
@@ -21,6 +20,8 @@ class BulkEntityCreatorService
     protected Entity $entity;
 
     protected array $data;
+
+    public function __construct(protected EntitySaveService $entitySaveService) {}
 
     public function data(array $data): self
     {
@@ -38,10 +39,8 @@ class BulkEntityCreatorService
         $this->new->fill($this->data);
         $this->new->campaign_id = $this->campaign->id;
         $this->new->save();
-        $this->new->crudSaved();
-        $this->new->entity->crudSaved();
         $this->entity = $this->new->entity;
-        $this->saveTags();
+        $this->entitySaveService->save($this->entity, $this->data);
 
         return $this->new->entity;
     }
@@ -52,24 +51,8 @@ class BulkEntityCreatorService
         $this->entity->type_id = $this->entityType->id;
         $this->entity->campaign_id = $this->campaign->id;
         $this->entity->save();
-        $this->entity->crudSaved();
-        $this->saveTags();
+        $this->entitySaveService->save($this->entity, $this->data);
 
         return $this->entity;
-    }
-
-    /**
-     * Save the tags
-     */
-    protected function saveTags(): void
-    {
-        if (! Arr::has($this->data, 'tags')) {
-            return;
-        }
-        /** @var TagService $tagService */
-        $tagService = app()->make(TagService::class);
-        $tagService->user($this->user)
-            ->entity($this->entity)
-            ->sync($this->data['tags']);
     }
 }

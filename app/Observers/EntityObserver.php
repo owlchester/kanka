@@ -5,128 +5,14 @@ namespace App\Observers;
 use App\Enums\Permission;
 use App\Enums\WebhookAction;
 use App\Events\Entities\EntityRestored;
-use App\Facades\Domain;
-use App\Facades\EntityLogger;
-use App\Facades\Images;
 use App\Facades\Permissions;
 use App\Jobs\EntityUpdatedJob;
 use App\Jobs\EntityWebhookJob;
 use App\Models\CampaignPermission;
 use App\Models\Entity;
-use App\Services\Entity\TagService;
-use App\Services\PermissionService;
 
 class EntityObserver
 {
-    use PurifiableTrait;
-
-    /**
-     * PermissionController constructor.
-     */
-    public function __construct(
-        protected PermissionService $permissionService,
-        protected TagService $tagService
-    ) {}
-
-    /**
-     * An entity has been saved from the crud
-     */
-    public function crudSaved(Entity $entity)
-    {
-        if (request()->has('type')) {
-            $entity->type = request()->get('type');
-        }
-        if (request()->has('entry')) {
-            $entity->entry = request()->get('entry');
-            // Dirty, force the entry to be saved to trigger the HasEntry observer
-            $entity->save();
-        }
-        if (request()->has('parent_id')) {
-            $entity->parent_id = request()->get('parent_id');
-        }
-
-        if (request()->post('remove-image') == '1') {
-            Images::model($entity)->field('image')->cleanup();
-        }
-        if (request()->post('remove-header_image') == '1') {
-            Images::model($entity)->field('header_image')->cleanup();
-        }
-        $this->saveTags($entity);
-        $this->savePermissions($entity);
-        $this->savePremium($entity);
-
-        if ($entity->isDirty()) {
-            // The entity was created, but now we're potentially updating it in the same request, so we need
-            // to check if it's really a new entity or not
-            if (EntityLogger::entity($entity)->created()) {
-                $entity->saveQuietly();
-            } else {
-                $entity->save();
-            }
-        } elseif ($this->tagService->isDirty()) {
-            // Same thing here, if adding tags to a newly created entity, don't make it complicated
-            if (EntityLogger::entity($entity)->created()) {
-                // It was just created, why to we need to touch it quietly?
-                $entity->touchQuietly();
-            } else {
-                $entity->touch();
-            }
-        }
-    }
-
-    /**
-     * Save the sections/categories
-     */
-    protected function saveTags(Entity $entity)
-    {
-        // HTML forms will have 'save-tags', while the api will have a tag array if they want to make changes.
-        if (! request()->has('tags') && ! request()->has('save-tags')) {
-            return;
-        }
-        $ids = request()->post('tags', []);
-        if (! is_array($ids)) { // People sent weird stuff through the API
-            $ids = [];
-        }
-        $this->tagService
-            ->user(auth()->user())
-            ->entity($entity)
-            ->withNew()
-            ->sync($ids);
-    }
-
-    /**
-     * Save permissions sent to the controller
-     */
-    public function savePermissions(Entity $entity)
-    {
-        if (! auth()->user()->can('permissions', $entity)) {
-            return;
-        } elseif (request()->has('copy_permissions') && request()->filled('copy_permissions')) {
-            return;
-        } elseif (request()->get('quick-creator') === '1') {
-            // If we're creating an entity from the quick creator, there is no form for permissions.
-            return;
-        }
-        $data = request()->only('role', 'user', 'is_attributes_private', 'permissions_too_many');
-
-        // If the user granted/assigned themselves read/write permissions on the entity, we need to make sure they
-        // still have them even if not checked in the UI.
-        if (Permissions::granted() && ! empty($data['user'])) {
-            $user = auth()->user()->id;
-            if (! in_array(Permission::Update->value, $data['user'][$user])) {
-                $data['user'][$user][Permission::Update->value] = 'allow';
-            }
-            if (! in_array(Permission::View->value, $data['user'][$user])) {
-                $data['user'][$user][Permission::View->value] = 'allow';
-            }
-        }
-
-        $this->permissionService
-            ->user(auth()->user())
-            ->entity($entity)
-            ->save($data);
-    }
-
     public function created(Entity $entity)
     {
         // If the user has created a new entity but doesn't have the permission to read or edit it,
@@ -172,31 +58,6 @@ class EntityObserver
 
         if ($entity->campaign->premium()) {
             EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::EDITED->value);
-        }
-    }
-
-    public function savePremium(Entity $entity): void
-    {
-        // Gallery is now available to all
-        if (request()->has('entity_image_uuid')) {
-            $entity->image_uuid = request()->get('entity_image_uuid');
-        } elseif (Domain::isApp()) {
-            $entity->image_uuid = null;
-        }
-        // No changed for non-boosted campaigns
-        if (! $entity->campaign->boosted()) {
-            return;
-        }
-
-        if (request()->has('tooltip')) {
-            $entity->tooltip = $this->purify(request()->get('tooltip'));
-        }
-
-        // Superboosted image gallery selection
-        if (request()->has('entity_header_uuid')) {
-            $entity->header_uuid = request()->get('entity_header_uuid');
-        } elseif (Domain::isApp()) {
-            $entity->header_uuid = null;
         }
     }
 

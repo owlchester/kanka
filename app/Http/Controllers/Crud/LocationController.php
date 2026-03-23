@@ -8,6 +8,12 @@ use App\Http\Requests\StoreLocation;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Models\Location;
+use App\Models\MiscModel;
+use App\Renderers\DatagridRenderer;
+use App\Services\AttributeService;
+use App\Services\Entity\EntitySaveService;
+use App\Services\Entity\Relations\LocationRelationsService;
+use App\Services\FilterService;
 
 class LocationController extends CrudController
 {
@@ -20,6 +26,16 @@ class LocationController extends CrudController
     protected string $model = Location::class;
 
     protected string $filter = LocationFilter::class;
+
+    public function __construct(
+        FilterService $filterService,
+        DatagridRenderer $datagridRenderer,
+        AttributeService $attributeService,
+        EntitySaveService $entitySaveService,
+        protected LocationRelationsService $locationRelationsService,
+    ) {
+        parent::__construct($filterService, $datagridRenderer, $attributeService, $entitySaveService);
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -59,6 +75,11 @@ class LocationController extends CrudController
     public function destroy(Campaign $campaign, Location $location)
     {
         return $this->campaign($campaign)->crudDestroy($location);
+    }
+
+    protected function afterModelSave(MiscModel $model, array $data): void
+    {
+        $this->locationRelationsService->save($model, $data);
     }
 
     protected function getEntityType(): EntityType
