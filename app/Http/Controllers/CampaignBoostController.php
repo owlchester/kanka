@@ -39,7 +39,7 @@ class CampaignBoostController extends Controller
                 ->with('user', $user);
         }
 
-        if (!$campaign->boosted() && $user->availableBoosts() < 1 && !auth()->user()->can('boost', $user)) {
+        if (! $campaign->boosted() && $user->availableBoosts() < 1 && ! auth()->user()->can('boost', $user)) {
             return view('layouts.dialogs.subscription', [
                 'title' => __('settings/premium.ready.title'),
                 'campaign' => $campaign,

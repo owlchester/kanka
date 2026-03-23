@@ -109,7 +109,7 @@ class DashboardController extends Controller
             'campaign' => $campaign,
             'title' => __('dashboards/premium.title'),
             'pitch' => __('dashboards/premium.pitch'),
-            'doc' => 'guides/dashboard.html#custom-dashboards'
+            'doc' => 'guides/dashboard.html#custom-dashboards',
         ]);
     }
 }
