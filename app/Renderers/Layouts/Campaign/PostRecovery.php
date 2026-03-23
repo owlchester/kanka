@@ -17,7 +17,6 @@ class PostRecovery extends Layout
             "name" => [
                 "key" => "name",
                 "label" => __("crud.fields.name"),
-                ,
             ],
             "deleted" => [
                 "key" => "deleted_at",

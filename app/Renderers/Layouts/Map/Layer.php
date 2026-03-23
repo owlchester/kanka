@@ -20,7 +20,7 @@ class Layer extends Layout
             ],
             'name' => [
                 'key' => 'name',
-                'label' => __('crud.fields.name'),,
+                'label' => __('crud.fields.name'),
                 'render' => function ($model) {
                     return '<a href="' . $model->getLink() . '" class="text-link">' . $model->name . '</a>';
                 },

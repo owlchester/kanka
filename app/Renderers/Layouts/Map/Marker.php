@@ -17,7 +17,7 @@ class Marker extends Layout
         $columns = [
             'name' => [
                 'key' => 'name',
-                'label' => __('crud.fields.name'),,
+                'label' => __('crud.fields.name'),
                 'render' => function ($model) {
                     return $model->markerLink();
                 },

@@ -32,7 +32,6 @@ class Recovery extends Layout
             "name" => [
                 "key" => "name",
                 "label" => __("crud.fields.name"),
-                ,
             ],
             "type" => [
                 "key" => "type_id",
