@@ -140,7 +140,7 @@ class CrudController extends Controller
         /**
          * Prepare a lot of variables that will be shared over to the view
          *
-         * @var MiscModel $model
+         * @var Bookmark|Relation $model
          */
         $model = new $this->model;
         $campaign = $this->campaign;
@@ -166,9 +166,6 @@ class CrudController extends Controller
         // Switch between the new explore/grid mode and the old table
         $mode = $this->mode();
         $forceMode = null;
-        if (property_exists($this, 'forceMode')) {
-            $mode = $forceMode = $this->forceMode;
-        }
         $nested = $this->isNested();
 
         $base = $model

@@ -16,52 +16,60 @@ class Reminder extends Layout
     public function columns(): array
     {
         $columns = [
-            'image' => [
-                'render' => Standard::IMAGE,
+            "image" => [
+                "render" => Standard::IMAGE,
             ],
-            'entity' => [
-                'key' => 'entity.name',
-                'label' => 'fields.entry.label',
-                'render' => Standard::ENTITYLINK,
+            "entity" => [
+                "key" => "entity.name",
+                "label" => __("fields.entry.label"),
+                "render" => Standard::ENTITYLINK,
             ],
-            'type' => [
-                'key' => 'type_id',
-                'label' => 'campaigns/categories.tab',
-                'render' => function ($model) {
-                    return $model->remindable instanceof Post ? __('entities.post') . ' (' . $model->remindable->entity->entityType->name() . ')' : $model->remindable->entityType->name();
+            "type" => [
+                "key" => "type_id",
+                "label" => __("campaigns/categories.tab"),
+                "render" => function ($model) {
+                    return $model->remindable instanceof Post
+                        ? __("entities.post") .
+                                " (" .
+                                $model->remindable->entity->entityType->name() .
+                                ")"
+                        : $model->remindable->entityType->name();
                 },
             ],
-            'date' => [
-                'key' => 'date',
-                'label' => 'events.fields.date',
-                'render' => 'readableDate()',
+            "date" => [
+                "key" => "date",
+                "label" => __("events.fields.date"),
+                "render" => "readableDate()",
             ],
-            'length' => [
-                'key' => 'length',
-                'label' => 'calendars.fields.length',
-                'render' => 'readableLength()',
+            "length" => [
+                "key" => "length",
+                "label" => __("calendars.fields.length"),
+                "render" => "readableLength()",
             ],
-            'comment' => [
-                'label' => '',
-                'render' => function ($model) {
+            "comment" => [
+                "label" => "",
+                "render" => function ($model) {
                     if (empty($model->comment)) {
-                        return '';
+                        return "";
                     }
 
-                    return '<i class="fa-regular fa-comment" data-title="' . $model->comment . '" data-toggle="tooltip"></i>';
+                    return '<i class="fa-regular fa-comment" data-title="' .
+                        $model->comment .
+                        '" data-toggle="tooltip"></i>';
                 },
             ],
-            'recurring' => [
-                'label' => '',
-                'render' => function ($model) {
+            "recurring" => [
+                "label" => "",
+                "render" => function ($model) {
                     if (empty($model->is_recurring)) {
-                        return '';
+                        return "";
                     }
 
-                    return '<i class="fa-regular fa-refresh" data-title="' . __('calendars.fields.is_recurring') . '" data-toggle="tooltip"></i>';
+                    return '<i class="fa-regular fa-refresh" data-title="' .
+                        __("calendars.fields.is_recurring") .
+                        '" data-toggle="tooltip"></i>';
                 },
             ],
-
         ];
 
         return $columns;
@@ -72,17 +80,11 @@ class Reminder extends Layout
      */
     public function actions(): array
     {
-        return [
-            self::ACTION_EDIT_DIALOG,
-            self::ACTION_DELETE,
-        ];
+        return [self::ACTION_EDIT_DIALOG, self::ACTION_DELETE];
     }
 
     public function bulks(): array
     {
-        return [
-            self::ACTION_EDIT,
-            self::ACTION_DELETE,
-        ];
+        return [self::ACTION_EDIT, self::ACTION_DELETE];
     }
 }

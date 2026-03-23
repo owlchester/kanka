@@ -21,19 +21,19 @@ class Location extends Layout
             ],
             'location_id' => [
                 'key' => 'name',
-                'label' => Module::singular(config('entities.ids.location'), 'entities.location'),
+                'label' => Module::singular(config('entities.ids.location'), __('entities.location')),
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [
                 'key' => 'type',
-                'label' => 'crud.fields.type',
+                'label' => __('crud.fields.type'),
                 'render' => function (\App\Models\Location $model) {
                     return $model->entity->type;
                 },
             ],
             'location' => [
                 'key' => 'parent.name',
-                'label' => 'crud.fields.parent',
+                'label' => __('crud.fields.parent'),
                 'render' => Standard::ParentLink,
                 'visible' => function () {
                     return ! request()->has('parent_id');

@@ -21,12 +21,12 @@ class Note extends Layout
             ],
             'name' => [
                 'key' => 'name',
-                'label' => Module::singular(config('entities.ids.note'), 'entities.note'),
+                'label' => Module::singular(config('entities.ids.note'), __('entities.note')),
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [
                 'key' => 'type',
-                'label' => 'crud.fields.type',
+                'label' => __('crud.fields.type'),
                 'render' => function (\App\Models\Note $model) {
                     return $model->entity->type;
                 },

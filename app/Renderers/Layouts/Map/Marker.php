@@ -17,7 +17,7 @@ class Marker extends Layout
         $columns = [
             'name' => [
                 'key' => 'name',
-                'label' => 'crud.fields.name',
+                'label' => __('crud.fields.name'),,
                 'render' => function ($model) {
                     return $model->markerLink();
                 },
@@ -33,7 +33,7 @@ class Marker extends Layout
                 },
             ],
             'type' => [
-                'label' => 'crud.fields.type',
+                'label' => __('crud.fields.type'),
                 'render' => function ($model) {
                     return $model->typeLabel();
                 },
@@ -45,7 +45,7 @@ class Marker extends Layout
                 },
             ],
             'visibility' => [
-                'label' => 'crud.fields.visibility',
+                'label' => __('crud.fields.visibility'),
                 'render' => Standard::VISIBILITY,
             ],
         ];

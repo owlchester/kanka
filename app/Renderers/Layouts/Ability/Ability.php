@@ -21,19 +21,19 @@ class Ability extends Layout
             ],
             'name' => [
                 'key' => 'name',
-                'label' => Module::singular(config('entities.ids.ability'), 'entities.ability'),
+                'label' => Module::singular(config('entities.ids.ability'), __('entities.ability')),
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [
                 'key' => 'type',
-                'label' => 'crud.fields.type',
+                'label' => __('crud.fields.type'),
                 'render' => function (\App\Models\Ability $model) {
                     return $model->entity->type;
                 },
             ],
             'ability' => [
                 'key' => 'parent.name',
-                'label' => 'crud.fields.parent',
+                'label' => __('crud.fields.parent'),
                 'render' => Standard::ParentLink,
                 'visible' => function () {
                     return ! request()->has('parent_id');

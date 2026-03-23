@@ -21,19 +21,19 @@ class Organisation extends Layout
             ],
             'name' => [
                 'key' => 'name',
-                'label' => Module::singular(config('entities.ids.organisation'), 'entities.organisation'),
+                'label' => Module::singular(config('entities.ids.organisation'), __('entities.organisation')),
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [
                 'key' => 'type',
-                'label' => 'crud.fields.type',
+                'label' => __('crud.fields.type'),
                 'render' => function (\App\Models\Organisation $model) {
                     return $model->entity->type;
                 },
             ],
             'organisation' => [
                 'key' => 'parent.name',
-                'label' => 'crud.fields.parent',
+                'label' => __('crud.fields.parent'),
                 'render' => Standard::ParentLink,
                 'visible' => function () {
                     return ! request()->has('parent_id');

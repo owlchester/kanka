@@ -14,15 +14,16 @@ class PostRecovery extends Layout
     public function columns(): array
     {
         $columns = [
-            'name' => [
-                'key' => 'name',
-                'label' => 'crud.fields.name',
+            "name" => [
+                "key" => "name",
+                "label" => __("crud.fields.name"),
+                ,
             ],
-            'deleted' => [
-                'key' => 'deleted_at',
-                'label' => 'campaigns/recovery.fields.deleted',
-                'class' => self::ONLY_DESKTOP,
-                'render' => function ($post) {
+            "deleted" => [
+                "key" => "deleted_at",
+                "label" => __("campaigns/recovery.fields.deleted"),
+                "class" => self::ONLY_DESKTOP,
+                "render" => function ($post) {
                     return $post->deleted_at->diffForHumans();
                 },
             ],
@@ -38,10 +39,10 @@ class PostRecovery extends Layout
     {
         return [
             [
-                'action' => 'recover',
-                'label' => 'campaigns/recovery.actions.recover',
-                'icon' => 'fa-regular fa-history',
-                'can' => 'campaign:recover',
+                "action" => "recover",
+                "label" => "campaigns/recovery.actions.recover",
+                "icon" => "fa-regular fa-history",
+                "can" => "campaign:recover",
             ],
         ];
     }

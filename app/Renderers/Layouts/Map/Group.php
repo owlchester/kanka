@@ -17,17 +17,17 @@ class Group extends Layout
         $columns = [
             'name' => [
                 'key' => 'name',
-                'label' => 'crud.fields.name',
+                'label' => __(__('crud.fields.name'),),
                 'render' => function ($model) {
                     return '<a href="' . $model->getLink() . '" data-target="primary-dialog" data-url="' . $model->getLink() . '" data-toggle="dialog" class="text-link">' . $model->name . '</a>';
                 },
             ],
             'position' => [
                 'key' => 'position',
-                'label' => 'maps/groups.fields.position',
+                'label' => __('maps/groups.fields.position'),
             ],
             'shown' => [
-                'label' => 'maps/groups.fields.is_shown',
+                'label' => __('maps/groups.fields.is_shown'),
                 'render' => function ($model) {
                     if ($model->is_shown) {
                         return '<i class="fa-regular fa-check" aria-hidden="true"></i>';
@@ -37,7 +37,7 @@ class Group extends Layout
                 },
             ],
             'parent' => [
-                'label' => 'maps/groups.fields.parent',
+                'label' => __('maps/groups.fields.parent'),
                 'key' => 'parent_id',
                 'render' => function ($model) {
                     if ($model->parent) {
@@ -48,7 +48,7 @@ class Group extends Layout
                 },
             ],
             'visibility' => [
-                'label' => 'crud.fields.visibility',
+                'label' => __('crud.fields.visibility'),
                 'render' => Standard::VISIBILITY,
             ],
         ];

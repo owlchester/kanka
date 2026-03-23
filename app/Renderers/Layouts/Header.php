@@ -27,31 +27,31 @@ class Header
     public function __toString(): string
     {
         if (empty($this->data)) {
-            return '';
+            return "";
         }
-        if (empty($this->data['label'])) {
-            if (Arr::get($this->data, 'render') === Standard::IMAGE) {
-                return '';
+        if (empty($this->data["label"])) {
+            if (Arr::get($this->data, "render") === Standard::IMAGE) {
+                return "";
             }
-            if (Arr::get($this->data, 'render') === Standard::TAGS) {
-                return __('entities.tags');
+            if (Arr::get($this->data, "render") === Standard::TAGS) {
+                return __("entities.tags");
             }
 
-            return ! isset($this->data['label']) ? '<i>no label</i>' : '';
+            return !isset($this->data["label"]) ? "<i>no label</i>" : "";
         }
 
-        if (! $this->sortable()) {
-            return __($this->data['label']);
+        if (!$this->sortable()) {
+            return $this->data["label"];
         }
 
         // Prepare some data
-        $this->orderField = request()->get('k');
-        $this->orderDir = request()->get('o');
+        $this->orderField = request()->get("k");
+        $this->orderDir = request()->get("o");
 
         // We have some HTML going on, let blade render it
         try {
-            return view('layouts.datagrid._head')
-                ->with('head', $this)
+            return view("layouts.datagrid._head")
+                ->with("head", $this)
                 ->render();
         } catch (Exception $e) {
             throw $e;
@@ -62,58 +62,60 @@ class Header
     public function css(): ?string
     {
         $default = null;
-        if (Arr::get($this->data, 'render') === Standard::IMAGE) {
-            $default = 'avatar w-14';
+        if (Arr::get($this->data, "render") === Standard::IMAGE) {
+            $default = "avatar w-14";
         }
-        if (empty($this->data['class'])) {
+        if (empty($this->data["class"])) {
             return $default;
         }
 
-        return $this->data['class'];
+        return $this->data["class"];
     }
 
     public function bulk(): bool
     {
-        return ! is_array($this->data) && $this->data === 'bulk';
+        return !is_array($this->data) && $this->data === "bulk";
     }
 
     public function sortable(): bool
     {
-        return ! empty($this->data['key']) && auth()->check() && ! empty(request()->route());
+        return !empty($this->data["key"]) &&
+            auth()->check() &&
+            !empty(request()->route());
     }
 
     public function icon(): ?string
     {
-        if ($this->orderField != $this->data['key']) {
-            return '';
+        if ($this->orderField != $this->data["key"]) {
+            return "";
         }
 
-        if ($this->orderDir == 'asc') {
-            return 'fa-regular fa-arrow-up-a-z';
+        if ($this->orderDir == "asc") {
+            return "fa-regular fa-arrow-up-a-z";
         }
 
-        return 'fa-regular fa-arrow-down-z-a';
+        return "fa-regular fa-arrow-down-z-a";
     }
 
     public function route(): string
     {
         $route = Datagrid::routeName();
         $options = [
-            'campaign' => $this->campaign,
-            'k' => $this->data['key'],
-            'o' => 'asc',
+            "campaign" => $this->campaign,
+            "k" => $this->data["key"],
+            "o" => "asc",
         ];
-        if ($this->orderField == $this->data['key']) {
+        if ($this->orderField == $this->data["key"]) {
             // Already desc? we want to reset
-            if ($this->orderDir == 'desc') {
-                $options = ['campaign' => $this->campaign];
+            if ($this->orderDir == "desc") {
+                $options = ["campaign" => $this->campaign];
             } else {
-                $options['o'] = 'desc';
+                $options["o"] = "desc";
             }
         }
         $options = array_merge($options, Datagrid::routeOptions());
-        if (request()->has('page')) {
-            $options['page'] = (int) request()->get('page');
+        if (request()->has("page")) {
+            $options["page"] = (int) request()->get("page");
         }
 
         try {
@@ -126,6 +128,6 @@ class Header
 
     public function label(): string
     {
-        return $this->data['label'];
+        return $this->data["label"];
     }
 }

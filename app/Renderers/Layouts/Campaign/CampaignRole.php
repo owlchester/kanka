@@ -15,40 +15,52 @@ class CampaignRole extends Layout
     public function columns(): array
     {
         $columns = [
-            'name' => [
-                'key' => 'name',
-                'label' => 'campaigns.roles.fields.name',
-                'render' => function ($model) {
+            "name" => [
+                "key" => "name",
+                "label" => __("campaigns.roles.fields.name"),
+                "render" => function ($model) {
                     /** @var \App\Models\CampaignRole $model */
-                    $html = '<a href="' . route('campaign_roles.show', [$this->campaign, 'campaign_role' => $model])
-                        . '" class="text-link">' . $model->name
-                        . '</a><br />';
+                    $html =
+                        '<a href="' .
+                        route("campaign_roles.show", [
+                            $this->campaign,
+                            "campaign_role" => $model,
+                        ]) .
+                        '" class="text-link">' .
+                        $model->name .
+                        "</a><br />";
 
                     return $html;
                 },
             ],
-            'users' => [
-                'label' => 'campaigns.roles.fields.users',
-                'render' => function ($model) {
+            "users" => [
+                "label" => __("campaigns.roles.fields.users"),
+                "render" => function ($model) {
                     return number_format($model->users_count);
                 },
             ],
-            'type' => [
-                'key' => 'is_admin',
-                'label' => 'campaigns.roles.fields.type',
-                'render' => function ($model) {
+            "type" => [
+                "key" => "is_admin",
+                "label" => __("campaigns.roles.fields.type"),
+                "render" => function ($model) {
                     /** @var \App\Models\CampaignRole $model */
-                    $html = __('campaigns.roles.types.' . ($model->isAdmin() ? 'owner' : ($model->isPublic() ? 'public' : 'standard')));
+                    $html = __(
+                        "campaigns.roles.types." .
+                            ($model->isAdmin()
+                                ? "owner"
+                                : ($model->isPublic()
+                                    ? "public"
+                                    : "standard")),
+                    );
 
                     return $html;
                 },
             ],
-            'permissions' => [
-                'label' => 'campaigns.roles.fields.permissions',
-                'render' => Standard::VIEW,
-                'with' => 'campaigns.roles.rows.permissions',
+            "permissions" => [
+                "label" => __("campaigns.roles.fields.permissions"),
+                "render" => Standard::VIEW,
+                "with" => "campaigns.roles.rows.permissions",
             ],
-
         ];
 
         return $columns;
@@ -60,24 +72,24 @@ class CampaignRole extends Layout
     public function actions(): array
     {
         return [
-            'update' => [
-                'label' => 'campaigns.roles.actions.rename',
-                'icon' => 'fa-regular fa-edit',
-                'can' => 'update',
-                'type' => 'dialog-ajax',
-                'route' => 'campaign_roles.edit',
+            "update" => [
+                "label" => "campaigns.roles.actions.rename",
+                "icon" => "fa-regular fa-edit",
+                "can" => "update",
+                "type" => "dialog-ajax",
+                "route" => "campaign_roles.edit",
             ],
-            'show' => [
-                'label' => 'campaigns.roles.actions.permissions',
-                'icon' => 'fa-regular fa-cog',
-                'route' => 'campaign_roles.show',
+            "show" => [
+                "label" => "campaigns.roles.actions.permissions",
+                "icon" => "fa-regular fa-cog",
+                "route" => "campaign_roles.show",
             ],
-            'duplicate' => [
-                'label' => 'campaigns.roles.actions.duplicate',
-                'icon' => 'fa-regular fa-copy',
-                'can' => 'update',
-                'type' => 'dialog-ajax',
-                'route' => 'campaign_roles.duplicate',
+            "duplicate" => [
+                "label" => "campaigns.roles.actions.duplicate",
+                "icon" => "fa-regular fa-copy",
+                "can" => "update",
+                "type" => "dialog-ajax",
+                "route" => "campaign_roles.duplicate",
             ],
             Layout::ACTION_DELETE,
         ];
@@ -85,8 +97,6 @@ class CampaignRole extends Layout
 
     public function bulks(): array
     {
-        return [
-            self::ACTION_DELETE,
-        ];
+        return [self::ACTION_DELETE];
     }
 }

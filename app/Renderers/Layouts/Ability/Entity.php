@@ -21,18 +21,18 @@ class Entity extends Layout
             ],
             'name' => [
                 'key' => 'name',
-                'label' => 'crud.fields.name',
+                'label' => __('crud.fields.name'),
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [
                 'key' => 'type_id',
-                'label' => 'crud.fields.category',
+                'label' => __('crud.fields.category'),
                 'render' => function (EntityAbility $model) {
                     return $model->entity->entityType->name();
                 },
             ],
             'visibility' => [
-                'label' => 'crud.fields.visibility',
+                'label' => __('crud.fields.visibility'),
                 'render' => Standard::VISIBILITY,
             ],
             'tags' => [

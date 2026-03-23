@@ -17,7 +17,7 @@ class Webhook extends Layout
         $columns = [
             'action' => [
                 'key' => 'action',
-                'label' => 'campaigns/webhooks.fields.event',
+                'label' => __('campaigns/webhooks.fields.event'),
                 'render' => function ($model) {
                     /** @var \App\Models\Webhook $model */
                     return $model->actionKey();
@@ -25,13 +25,13 @@ class Webhook extends Layout
             ],
             'type' => [
                 'key' => 'type',
-                'label' => 'campaigns/webhooks.fields.type',
+                'label' => __('campaigns/webhooks.fields.type'),
                 'render' => function ($model) {
                     return $model->typeKey();
                 },
             ],
             'message' => [
-                'label' => 'campaigns/webhooks.fields.message',
+                'label' => __('campaigns/webhooks.fields.message'),
                 'render' => function ($model) {
                     /** @var \App\Models\Webhook $model */
                     return '<div data-toggle="tooltip" data-title="' . nl2br($model->message) . '" data-html="1">'
@@ -40,7 +40,7 @@ class Webhook extends Layout
                 },
             ],
             'url' => [
-                'label' => 'campaigns/webhooks.fields.url',
+                'label' =>__(   'campaigns/webhooks.fields.url',
                 'render' => function ($model) {
                     return '<div data-toggle="tooltip" data-title="' . $model->url . '">'
                         . $model->shortUrl()
@@ -50,7 +50,7 @@ class Webhook extends Layout
 
             'status' => [
                 'key' => 'status',
-                'label' => 'campaigns/webhooks.fields.enabled',
+                'label' => __('campaigns/webhooks.fields.enabled'),
                 'render' => function (\App\Models\Webhook $model) {
                     if ($model->status) {
                         return '<i class="fa-regular fa-check-circle" aria-hidden="true"></i><span class="sr-only">' . __('campaigns/webhooks.fields.enabled') . '</span>';

@@ -21,24 +21,24 @@ class Quest extends Layout
             ],
             'name' => [
                 'key' => 'name',
-                'label' => Module::singular(config('entities.ids.quest'), 'entities.quest'),
+                'label' => Module::singular(config('entities.ids.quest'), __('entities.quest')),
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [
                 'key' => 'type',
-                'label' => 'crud.fields.type',
+                'label' => __('crud.fields.type'),
                 'render' => function (\App\Models\Quest $model) {
                     return $model->entity->type;
                 },
             ],
             'date' => [
                 'key' => 'date',
-                'label' => 'quests.fields.date',
+                'label' => __('quests.fields.date'),
                 'render' => Standard::DATE,
             ],
             'completed' => [
                 'key' => 'status',
-                'label' => 'quests.fields.status',
+                'label' => __('quests.fields.status'),
                 'render' => function (\App\Models\Quest $model) {
                     if ($model->isOngoing()) {
                         return '<i class="fa-regular fa-hourglass" data-title="' . __('quests.status.ongoing') . '" aria-hidden="true"></i>';
@@ -53,7 +53,7 @@ class Quest extends Layout
             ],
             'location' => [
                 'key' => 'location.name',
-                'label' => Module::singular(config('entities.ids.location'), 'entities.location'),
+                'label' => Module::singular(config('entities.ids.location'), __('entities.location')),
                 'render' => Standard::LOCATION,
                 'visible' => function () {
                     return ! request()->has('location_id');

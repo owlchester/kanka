@@ -17,30 +17,30 @@ class Era extends Layout
         $columns = [
             'name' => [
                 'key' => 'name',
-                'label' => 'crud.fields.name',
+                'label' => __('crud.fields.name'),,
                 'render' => function (TimelineEra $model) {
                     return '<a href="' . $model->getLink() . '" class="text-link">' . $model->name . '</a>';
                 },
             ],
             'abbreviation' => [
                 'key' => 'abbreviation',
-                'label' => 'timelines/eras.fields.abbreviation',
+                'label' => __('timelines/eras.fields.abbreviation'),
             ],
             'position' => [
                 'key' => 'position',
-                'label' => 'maps/groups.fields.position',
+                'label' => __('maps/groups.fields.position'),
             ],
             'start_year' => [
                 'key' => 'start_year',
-                'label' => 'timelines/eras.fields.start_year',
+                'label' => __('timelines/eras.fields.start_year'),
             ],
             'end_year' => [
                 'key' => 'end_year',
-                'label' => 'timelines/eras.fields.end_year',
+                'label' => __('timelines/eras.fields.end_year'),
             ],
             'is_collapsed' => [
                 'key' => 'is_collapsed',
-                'label' => 'timelines/eras.fields.is_collapsed',
+                'label' => __('timelines/eras.fields.is_collapsed'),
                 'render' => function (TimelineEra $model) {
                     if ($model->is_collapsed) {
                         return '<i class="fa-regular fa-check-circle" aria-hidden="true"></i>';

@@ -15,39 +15,49 @@ class Theme extends Layout
     public function columns(): array
     {
         $columns = [
-            'order' => [
-                'key' => 'order',
-                'label' => 'campaigns/styles.fields.order',
-                'render' => function ($model) {
-                    return $model->order ? '#' . $model->order : null;
+            "order" => [
+                "key" => "order",
+                "label" => __("campaigns/styles.fields.order"),
+                "render" => function ($model) {
+                    return $model->order ? "#" . $model->order : null;
                 },
             ],
-            'name' => [
-                'key' => 'name',
-                'label' => 'campaigns/styles.fields.name',
-                'render' => function ($model) {
-
-                    return '<a href="' . route('campaign_styles.edit', [$this->campaign, $model]) . '" class="text-link">' . $model->name . '</a>';
+            "name" => [
+                "key" => "name",
+                "label" => __("campaigns/styles.fields.name"),
+                "render" => function ($model) {
+                    return '<a href="' .
+                        route("campaign_styles.edit", [
+                            $this->campaign,
+                            $model,
+                        ]) .
+                        '" class="text-link">' .
+                        $model->name .
+                        "</a>";
                 },
             ],
-            'length' => [
-                'label' => 'campaigns/styles.fields.length',
-                'class' => self::ONLY_DESKTOP,
-                'render' => 'length()',
+            "length" => [
+                "label" => __("campaigns/styles.fields.length"),
+                "class" => self::ONLY_DESKTOP,
+                "render" => "length()",
             ],
-            'modified' => [
-                'key' => 'updated_at',
-                'label' => 'campaigns/styles.fields.modified',
-                'class' => self::ONLY_DESKTOP,
-                'render' => function ($model) {
+            "modified" => [
+                "key" => "updated_at",
+                "label" => __("campaigns/styles.fields.modified"),
+                "class" => self::ONLY_DESKTOP,
+                "render" => function ($model) {
                     return $model->updated_at->diffForHumans();
                 },
             ],
-            'enabled' => [
-                'key' => 'is_enabled',
-                'label' => 'campaigns/styles.fields.is_enabled',
-                'render' => function (CampaignStyle $model) {
-                    return $model->is_enabled ? '<i class="fa-regular fa-check-circle" aria-hidden="true"></i><span class="sr-only">' . __('campaigns/styles.fields.is_enabled') . '</span>' : null;
+            "enabled" => [
+                "key" => "is_enabled",
+                "label" => __("campaigns/styles.fields.is_enabled"),
+                "render" => function (CampaignStyle $model) {
+                    return $model->is_enabled
+                        ? '<i class="fa-regular fa-check-circle" aria-hidden="true"></i><span class="sr-only">' .
+                                __("campaigns/styles.fields.is_enabled") .
+                                "</span>"
+                        : null;
                 },
             ],
         ];
@@ -61,17 +71,17 @@ class Theme extends Layout
     public function actions(): array
     {
         return [
-            'disable' => [
-                'can' => 'disable',
-                'route' => 'campaign_styles.toggle',
-                'label' => 'campaigns/styles.actions.disable',
-                'icon' => 'fa-regular fa-ban',
+            "disable" => [
+                "can" => "disable",
+                "route" => "campaign_styles.toggle",
+                "label" => "campaigns/styles.actions.disable",
+                "icon" => "fa-regular fa-ban",
             ],
-            'enable' => [
-                'can' => 'enable',
-                'route' => 'campaign_styles.toggle',
-                'label' => 'campaigns/styles.actions.enable',
-                'icon' => 'fa-regular fa-check',
+            "enable" => [
+                "can" => "enable",
+                "route" => "campaign_styles.toggle",
+                "label" => "campaigns/styles.actions.enable",
+                "icon" => "fa-regular fa-check",
             ],
             self::ACTION_EDIT,
             self::ACTION_DELETE,
@@ -82,14 +92,14 @@ class Theme extends Layout
     {
         return [
             [
-                'action' => 'enable',
-                'label' => 'campaigns/styles.actions.enable',
-                'icon' => 'fa-regular fa-check',
+                "action" => "enable",
+                "label" => "campaigns/styles.actions.enable",
+                "icon" => "fa-regular fa-check",
             ],
             [
-                'action' => 'disable',
-                'label' => 'campaigns/styles.actions.disable',
-                'icon' => 'fa-regular fa-ban',
+                "action" => "disable",
+                "label" => "campaigns/styles.actions.disable",
+                "icon" => "fa-regular fa-ban",
             ],
             self::ACTION_DELETE,
         ];

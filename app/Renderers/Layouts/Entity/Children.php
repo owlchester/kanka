@@ -28,11 +28,11 @@ class Children extends Layout
             ],
             'type' => [
                 'key' => 'type',
-                'label' => 'crud.fields.type',
+                'label' => __('crud.fields.type'),
             ],
             'parent' => [
                 'key' => 'parent.name',
-                'label' => 'crud.fields.parent',
+                'label' => __('crud.fields.parent'),
                 'render' => Standard::ParentLink,
                 'visible' => function () {
                     return request()->get('m') != 0;
