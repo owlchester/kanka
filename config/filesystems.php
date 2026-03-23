@@ -67,10 +67,12 @@ return [
             "root" => env("APP_ENV"),
             "endpoint" => env("HETZNER_S3_ENDPOINT"),
             "use_path_style_endpoint" => true,
+            "retries" => [
+                "mode" => "adaptive", // handles backoff automatically
+                "max" => 10,
+            ],
             "options" => [
                 "part_size" => 1024 * 1024 * 250,
-                "retries" => 5,
-                "delay" => 1000,
             ],
             "http" => [
                 "timeout" => 0, // No timeout for the request
