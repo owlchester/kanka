@@ -46,7 +46,7 @@
 
                 <div class="field field-description">
                     <label>An image is worth a thousand words. Show us how you think the idea should look like.</label>
-                    <input type="file" wire:model="file" class="w-full bg-white rounded text-dark p-2" accept=".jpg, .jpeg, .png" id="upload-{{ $iteration }}">
+                    <input type="file" wire:model="file" class="w-full bg-white rounded text-dark p-2" accept="image/*" id="upload-{{ $iteration }}">
                     <div>
                         @error('file') <span class="text-red-300">{{ $message }}</span> @enderror
                     </div>

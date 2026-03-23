@@ -32,7 +32,7 @@ class StoreCampaignDashboardWidget extends FormRequest
             'dashboard_id' => 'nullable|exists:campaign_dashboards,id',
             'config.order' => 'nullable|in:name_asc,name_desc,oldest',
             'entity_type_id' => 'nullable|exists:entity_types,id',
-            'config.folder_id' => ['required', Rule::exists('images', 'id')->where('is_folder', true)],
+            'config.folder_id' => ['required_if:widget,gallery', Rule::exists('images', 'id')->where('is_folder', true)],
         ];
     }
 }

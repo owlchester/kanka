@@ -8,7 +8,7 @@
         field="files[]"
         required
         :label="__('entities/files.fields.files')">
-        <input type="file" multiple accept="image/*, .pdf, .gif, .webp, .pdf, .xls, .xlsx, .csv, .mp3, .ogg, .json" name="files[]" class="image w-full" id="file_{{ rand() }}" />
+        <input type="file" multiple accept="image/*, .pdf, .pdf, .xls, .xlsx, .csv, .mp3, .ogg, .json" name="files[]" class="image w-full" id="file_{{ rand() }}" />
 
         <x-slot name="helper">
             {{ __('crud.files.hints.limitations', ['formats' => 'jpg, jpeg, png, gif, webp, pdf, xls(x), csv, mp3, ogg, json', 'size' => Limit::readable()->upload()]) }}

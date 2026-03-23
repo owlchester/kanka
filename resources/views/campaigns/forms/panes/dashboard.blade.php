@@ -21,7 +21,7 @@
                 <div class="basis-3/4 flex flex-col gap-2">
                     <x-forms.field
                         field="header-image">
-                        <input type="file" name="header_image" class="image w-full" id="header_image" accept=".jpg, .jpeg, .png, .gif, .webp, .gif" />
+                        <input type="file" name="header_image" class="image w-full" id="header_image" accept="image/*" />
                     </x-forms.field>
                     <x-forms.field
                         field="image-url">

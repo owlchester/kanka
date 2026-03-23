@@ -70,7 +70,7 @@
                     @endif
                 </div>
                 <x-forms.field field="avatar" :label="__('settings.profile.avatar')">
-                    <input type="file" name="avatar" class="image w-full" id="header_image" accept=".jpg, .jpeg, .png, .gif, .webp, .gif" />
+                    <input type="file" name="avatar" class="image w-full" id="header_image" accept="image/*" />
 
                     @if (!empty(auth()->user()->avatar) && auth()->user()->hasAvatar())
                         <div class="rounded-full">

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\EntityEventType;
 use Illuminate\Database\Seeder;
+use App\Enums\EntityEventTypes;
 
 class EntityEventTypeSeeder extends Seeder
 {
@@ -14,7 +15,7 @@ class EntityEventTypeSeeder extends Seeder
      */
     public function run()
     {
-        $types = ['primary', 'birth', 'death', 'calendar_date', 'founded'];
+        $types = [EntityEventTypes::birth, EntityEventTypes::death, EntityEventTypes::calendarDate, EntityEventTypes::founded];
         $created = 0;
         foreach ($types as $name) {
             $type = EntityEventType::firstOrNew([

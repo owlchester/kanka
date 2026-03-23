@@ -85,6 +85,7 @@ services:
             timeout: 5s
     thumbor:
         image: 'beeyev/thumbor-s3:7.1-slim-alpine'
+        platform: linux/amd64
         tty: true
         ports:
             - '${FORWARD_THUMBOR_PORT:-8888}:8888'
