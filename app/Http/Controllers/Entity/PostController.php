@@ -150,13 +150,7 @@ class PostController extends Controller
         $galleryFolder = null;
         if ($model->layout_id && $model->layout?->code === 'gallery') {
             $galleryLayoutId = $model->layout_id;
-            $folderId = $model->settings['folder_id'] ?? null;
-            if ($folderId) {
-                $galleryFolder = Image::where('id', $folderId)
-                    ->where('campaign_id', $campaign->id)
-                    ->where('is_folder', true)
-                    ->first();
-            }
+            $galleryFolder = Image::find($model->settings['folder_id'] ?? null);
         }
 
         return view('entities.pages.posts.edit', compact(
