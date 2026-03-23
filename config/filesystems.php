@@ -67,7 +67,8 @@ return [
             'endpoint' => env('HETZNER_S3_ENDPOINT'),
             'use_path_style_endpoint' => true,
             'options' => [
-                'MultipartThreshold' => 1024 * 1024 * 100, // 100MB
+                'multipart_upload_size' => 1024 * 1024 * 100,
+                'retries' => 5,
             ],
             'http' => [
                 'timeout' => 0,        // No timeout for the request
