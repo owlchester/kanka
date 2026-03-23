@@ -8,6 +8,8 @@ use App\Http\Requests\StoreEvent;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Models\Event;
+use App\Models\MiscModel;
+use App\Services\Entity\Relations\EntityRelationsServiceFactory;
 
 class EventController extends CrudController
 {
@@ -44,6 +46,11 @@ class EventController extends CrudController
     public function destroy(Campaign $campaign, Event $event)
     {
         return $this->campaign($campaign)->crudDestroy($event);
+    }
+
+    protected function afterModelSave(MiscModel $model, array $data): void
+    {
+        app(EntityRelationsServiceFactory::class)->for($model->entity)?->save($model, $data);
     }
 
     protected function getEntityType(): EntityType
