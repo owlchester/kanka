@@ -68,7 +68,7 @@ return [
             "endpoint" => env("HETZNER_S3_ENDPOINT"),
             "use_path_style_endpoint" => true,
             "options" => [
-                "part_size" => 1024 * 1024 * 50,
+                "part_size" => 1024 * 1024 * 200,
                 "retries" => 5,
             ],
             "http" => [
