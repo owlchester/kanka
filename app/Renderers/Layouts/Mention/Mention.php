@@ -16,35 +16,35 @@ class Mention extends Layout
     public function columns(): array
     {
         $columns = [
-            "name" => [
-                "key" => "name",
-                "label" => __("entities/mentions.fields.element"),
-                "render" => Standard::MENTION_LINK,
+            'name' => [
+                'key' => 'name',
+                'label' => __('entities/mentions.fields.element'),
+                'render' => Standard::MENTION_LINK,
             ],
-            "type" => [
-                "key" => "type",
-                "label" => __("crud.fields.type"),
-                "render" => function (EntityMention $model) {
+            'type' => [
+                'key' => 'type',
+                'label' => __('crud.fields.type'),
+                'render' => function (EntityMention $model) {
                     if ($model->isCampaign()) {
-                        return __("entities.campaign");
+                        return __('entities.campaign');
                     }
-                    $base = __("crud.hidden");
+                    $base = __('crud.hidden');
                     if ($model->entity) {
                         $base = $model->entity->entityType->name();
                     }
 
                     if ($model->isTimelineElement()) {
                         return $base .
-                            " (" .
-                            __("entities.timeline_element") .
-                            ")";
+                            ' (' .
+                            __('entities.timeline_element') .
+                            ')';
                     } elseif ($model->isQuestElement()) {
                         return $base .
-                            " (" .
-                            __("entities.quest_element") .
-                            ")";
+                            ' (' .
+                            __('entities.quest_element') .
+                            ')';
                     } elseif ($model->isPost()) {
-                        return $base . " (" . __("entities.post") . ")";
+                        return $base . ' (' . __('entities.post') . ')';
                     }
 
                     return $base;

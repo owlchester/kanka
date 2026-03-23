@@ -15,27 +15,27 @@ class Relation extends Layout
     public function columns(): array
     {
         $columns = [
-            "relation" => [
-                "key" => "relation",
-                "label" => __("entities/relations.fields.role"),
-                "render" => function ($relation) {
-                    $icon = "";
+            'relation' => [
+                'key' => 'relation',
+                'label' => __('entities/relations.fields.role'),
+                'render' => function ($relation) {
+                    $icon = '';
                     if ($relation->isPinned()) {
                         $icon =
                             '<i class="fa-regular fa-star" data-title="' .
-                            __("crud.fields.is_star") .
+                            __('crud.fields.is_star') .
                             '" data-toggle="tooltip"></i> ';
                     }
 
                     $text = e($relation->relation);
                     if (
                         auth()->check() &&
-                        auth()->user()->can("update", $relation)
+                        auth()->user()->can('update', $relation)
                     ) {
                         $url = route(
-                            $relation->url("edit"),
+                            $relation->url('edit'),
                             $relation->routeParams([
-                                "campaign" => $relation->campaign_id,
+                                'campaign' => $relation->campaign_id,
                             ]),
                         );
                         $text =
@@ -45,30 +45,30 @@ class Relation extends Layout
                             $url .
                             '">' .
                             $text .
-                            "</a>";
+                            '</a>';
                     }
 
                     return $icon . $text;
                 },
             ],
-            "target" => [
-                "key" => "target.name",
-                "label" => __("fields.entry.label"),
-                "render" => Standard::ENTITYLINK,
-                "with" => "target",
+            'target' => [
+                'key' => 'target.name',
+                'label' => __('fields.entry.label'),
+                'render' => Standard::ENTITYLINK,
+                'with' => 'target',
             ],
-            "location" => [
-                "label" => __("entities.location"),
-                "render" => Standard::LOCATION,
-                "with" => "target",
+            'location' => [
+                'label' => __('entities.location'),
+                'render' => Standard::LOCATION,
+                'with' => 'target',
             ],
-            "attitude" => [
-                "key" => "attitude",
-                "label" => __("entities/relations.fields.attitude"),
-                "class" => "hidden-xs hidden-sm",
-                "render" => function ($relation) {
+            'attitude' => [
+                'key' => 'attitude',
+                'label' => __('entities/relations.fields.attitude'),
+                'class' => 'hidden-xs hidden-sm',
+                'render' => function ($relation) {
                     /** @var \App\Models\Relation $relation */
-                    $icon = "";
+                    $icon = '';
                     if (empty($relation->colour)) {
                         return $relation->attitude;
                     }
@@ -82,12 +82,12 @@ class Relation extends Layout
                         $icon .
                         '<div class="grow">' .
                         $relation->attitude .
-                        "</div></div>";
+                        '</div></div>';
                 },
             ],
-            "visibility" => [
-                "label" => "",
-                "render" => Standard::VISIBILITY,
+            'visibility' => [
+                'label' => '',
+                'render' => Standard::VISIBILITY,
             ],
         ];
 

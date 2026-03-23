@@ -26,10 +26,10 @@ class FilterService
     protected array $data = [];
 
     /** @var string The index crud for session keys */
-    protected string $crud = "";
+    protected string $crud = '';
 
     /** @var string Search option */
-    protected string $search = "";
+    protected string $search = '';
 
     /** @var bool If the filters are stored in the session */
     protected bool $session = true;
@@ -63,9 +63,9 @@ class FilterService
      */
     public function model(Model $model): self
     {
-        if (!method_exists($model, "getFilterableColumns")) {
+        if (! method_exists($model, 'getFilterableColumns')) {
             throw new \Exception(
-                "Model " . $model . ' doesn\'t implement the Filterable trait.',
+                'Model ' . $model . ' doesn\'t implement the Filterable trait.',
             );
         }
         $this->model = $model;
@@ -75,35 +75,35 @@ class FilterService
 
     public function build(array $sortableColumns = [])
     {
-        $this->crud = $this->entityType->id . "-" . $this->campaign->id;
+        $this->crud = $this->entityType->id . '-' . $this->campaign->id;
 
         $orderFields = array_unique(
-            array_merge(["name", "type", "is_private"], $sortableColumns),
+            array_merge(['name', 'type', 'is_private'], $sortableColumns),
         );
 
         $baseFilters = [
-            "name",
-            "type",
-            "is_private",
-            "template",
-            "tag_id",
-            "tags",
-            "has_image",
-            "has_posts",
-            "has_entry",
-            "has_entity_files",
-            "has_attributes",
-            "created_by",
-            "updated_by",
-            "attribute_name",
-            "attribute_value",
-            "archived",
+            'name',
+            'type',
+            'is_private',
+            'template',
+            'tag_id',
+            'tags',
+            'has_image',
+            'has_posts',
+            'has_entry',
+            'has_entity_files',
+            'has_attributes',
+            'created_by',
+            'updated_by',
+            'attribute_name',
+            'attribute_value',
+            'archived',
         ];
 
         // Merge entity-type-specific filterable columns
         if ($this->entityType->isStandard()) {
             $model = $this->entityType->getClass();
-            if (method_exists($model, "getFilterableColumns")) {
+            if (method_exists($model, 'getFilterableColumns')) {
                 $baseFilters = array_unique(
                     array_merge($baseFilters, $model->getFilterableColumns()),
                 );
@@ -118,7 +118,7 @@ class FilterService
     public function make(string $crud)
     {
         $this->crud = isset($this->campaign)
-            ? $crud . "-" . $this->campaign->id
+            ? $crud . '-' . $this->campaign->id
             : $crud;
 
         $this->prepareFilters($this->model->getFilterableColumns()) // @phpstan-ignore-line
@@ -137,96 +137,95 @@ class FilterService
         }
 
         // Load the filters from the session if we're revisiting a page
-        $sessionKey = "filterService-filter-" . $this->crud;
+        $sessionKey = 'filterService-filter-' . $this->crud;
         if (
             $this->hasRequest &&
-            $this->request->get("_from", false) == "bookmark"
+            $this->request->get('_from', false) == 'bookmark'
         ) {
-            $sessionKey .= "-bookmark";
+            $sessionKey .= '-bookmark';
         }
         $this->filters = $this->sessionLoad($sessionKey);
 
         // If the request has _clean, we only want filters that are set in the url
-        if ($this->hasRequest && $this->request->get("_clean", false)) {
+        if ($this->hasRequest && $this->request->get('_clean', false)) {
             $this->filters = [];
         }
 
         foreach (
             [
-                "tags",
-                "locations",
-                "organisations",
-                "races",
-                "families",
-                "creators",
-            ]
-            as $key
+                'tags',
+                'locations',
+                'organisations',
+                'races',
+                'families',
+                'creators',
+            ] as $key
         ) {
             $this->checkFilterData($key, $availableFilters);
         }
 
         // If we have data but no "tags" array, it's empty
         if (
-            !empty($this->data) &&
-            in_array("tags", $availableFilters) &&
-            !isset($this->data["tags"])
+            ! empty($this->data) &&
+            in_array('tags', $availableFilters) &&
+            ! isset($this->data['tags'])
         ) {
             // Not calling from a page or order result, we can junk the filters
-            if (empty($this->data["page"]) && empty($this->data["order"])) {
-                unset($this->data["tags"]);
+            if (empty($this->data['page']) && empty($this->data['order'])) {
+                unset($this->data['tags']);
             }
         }
         // If we have data but no "locations" array, it's empty
         if (
-            !empty($this->data) &&
-            in_array("locations", $availableFilters) &&
-            !isset($this->data["locations"])
+            ! empty($this->data) &&
+            in_array('locations', $availableFilters) &&
+            ! isset($this->data['locations'])
         ) {
             // Not calling from a page or order result, we can junk the filters
-            if (empty($this->data["page"]) && empty($this->data["order"])) {
-                unset($this->data["locations"]);
+            if (empty($this->data['page']) && empty($this->data['order'])) {
+                unset($this->data['locations']);
             }
         }
 
         // If we have data but no "organisations" array, it's empty
         if (
-            !empty($this->data) &&
-            in_array("organisations", $availableFilters) &&
-            !isset($this->data["organisations"])
+            ! empty($this->data) &&
+            in_array('organisations', $availableFilters) &&
+            ! isset($this->data['organisations'])
         ) {
             // Not calling from a page or order result, we can junk the filters
-            if (empty($this->data["page"]) && empty($this->data["order"])) {
-                unset($this->data["organisations"]);
+            if (empty($this->data['page']) && empty($this->data['order'])) {
+                unset($this->data['organisations']);
             }
         }
 
         // If we have data but no "races" array, it's empty
         if (
-            !empty($this->data) &&
-            in_array("races", $availableFilters) &&
-            !isset($this->data["races"])
+            ! empty($this->data) &&
+            in_array('races', $availableFilters) &&
+            ! isset($this->data['races'])
         ) {
             // Not calling from a page or order result, we can junk the filters
-            if (empty($this->data["page"]) && empty($this->data["order"])) {
-                unset($this->data["races"]);
+            if (empty($this->data['page']) && empty($this->data['order'])) {
+                unset($this->data['races']);
             }
         }
 
         // If we have data but no "families" array, it's empty
         if (
-            !empty($this->data) &&
-            in_array("families", $availableFilters) &&
-            !isset($this->data["families"])
+            ! empty($this->data) &&
+            in_array('families', $availableFilters) &&
+            ! isset($this->data['families'])
         ) {
             // Not calling from a page or order result, we can junk the filters
-            if (empty($this->data["page"]) && empty($this->data["order"])) {
-                unset($this->data["families"]);
+            if (empty($this->data['page']) && empty($this->data['order'])) {
+                unset($this->data['families']);
             }
         }
 
         // Don't support the old tags, force using tags[]
-        if (isset($this->data["tags"]) && !is_array($this->data["tags"])) {
-            unset($this->data["tags"]);
+        if (isset($this->data['tags']) && ! is_array($this->data['tags'])) {
+            unset($this->data['tags']);
         }
 
         foreach ($this->data as $key => $value) {
@@ -242,8 +241,8 @@ class FilterService
             }
 
             // Of if it's the _option of a filter
-            if (Str::endsWith($key, "_option")) {
-                $stripedKey = Str::before($key, "_option");
+            if (Str::endsWith($key, '_option')) {
+                $stripedKey = Str::before($key, '_option');
                 if (in_array($stripedKey, $availableFilters)) {
                     // Update the value we have in the session.
                     $this->filters[$key] = $value;
@@ -255,17 +254,17 @@ class FilterService
 
         // Foreign keys that are not set might have been cleared. If so, remove them from the filters.
         // However, only do this if not ordering or changing pages, and not doing a clean reset.
-        $isClean = $this->hasRequest && $this->request->get("_clean", false);
+        $isClean = $this->hasRequest && $this->request->get('_clean', false);
         if (
-            !$isClean &&
-            !empty($this->data) &&
-            !array_key_exists("order", $this->data) &&
-            !array_key_exists("page", $this->data)
+            ! $isClean &&
+            ! empty($this->data) &&
+            ! array_key_exists('order', $this->data) &&
+            ! array_key_exists('page', $this->data)
         ) {
             foreach ($availableFilters as $filter) {
                 if (
-                    !isset($this->data[$filter]) &&
-                    Str::endsWith($filter, "_id")
+                    ! isset($this->data[$filter]) &&
+                    Str::endsWith($filter, '_id')
                 ) {
                     $this->filters[$filter] = null;
                 }
@@ -273,7 +272,7 @@ class FilterService
         }
 
         // Reset the filters if requested, before saving it to the session.
-        if (Arr::has($this->data, "reset-filter")) {
+        if (Arr::has($this->data, 'reset-filter')) {
             $this->filters = [];
         }
 
@@ -291,40 +290,40 @@ class FilterService
     protected function prepareOrder(array $availableFields = []): self
     {
         // Get all the posted data. We need to see if any of it is part of a filter.
-        $field = Arr::get($this->data, "order");
-        $direction = Arr::get($this->data, "desc");
+        $field = Arr::get($this->data, 'order');
+        $direction = Arr::get($this->data, 'desc');
 
-        $sessionKey = "filterService-order-" . $this->crud;
+        $sessionKey = 'filterService-order-' . $this->crud;
         $this->order = session()->get($sessionKey, []);
         if ($this->order === null) {
             $this->order = [];
         }
 
         // Validate that the session's saved order field is still valid
-        if (!empty($this->order) && !empty($availableFields)) {
+        if (! empty($this->order) && ! empty($availableFields)) {
             $sessionField = array_key_first($this->order);
-            if (!in_array($sessionField, $availableFields)) {
+            if (! in_array($sessionField, $availableFields)) {
                 $this->order = [];
             }
         }
 
-        if (!empty($field) && is_string($field)) {
-            if ($field === "clear") {
+        if (! empty($field) && is_string($field)) {
+            if ($field === 'clear') {
                 // Explicit reset from the grid's third-click cycle
                 $this->order = [];
             } else {
                 $this->order = [
-                    $field => empty($direction) ? "ASC" : "DESC",
+                    $field => empty($direction) ? 'ASC' : 'DESC',
                 ];
 
-                if (!in_array($field, $availableFields)) {
+                if (! in_array($field, $availableFields)) {
                     $this->order = [];
                 }
             }
         }
 
         // Reset the filters if requested, before saving it to the session.
-        if (Arr::has($this->data, "reset-filter")) {
+        if (Arr::has($this->data, 'reset-filter')) {
             $this->order = [];
         }
 
@@ -338,12 +337,12 @@ class FilterService
     {
         // If we have data but no array, it's empty
         if (
-            !empty($this->data) &&
+            ! empty($this->data) &&
             in_array($key, $availableFilters) &&
-            !isset($this->data[$key])
+            ! isset($this->data[$key])
         ) {
             // Not calling from a page or order result, we can junk the filters
-            if (empty($this->data["page"]) && empty($this->data["order"])) {
+            if (empty($this->data['page']) && empty($this->data['order'])) {
                 unset($this->data[$key]);
             }
         }
@@ -351,8 +350,8 @@ class FilterService
 
     private function prepareSearch(): self
     {
-        $search = Arr::get($this->data, "search");
-        $this->search = $search ? strip_tags($search) : "";
+        $search = Arr::get($this->data, 'search');
+        $this->search = $search ? strip_tags($search) : '';
 
         return $this;
     }
@@ -368,11 +367,11 @@ class FilterService
         if (is_array($key)) {
             throw new \Exception('Key for FilterService can\'t be an array');
         }
-        if (!empty($this->filters) && isset($this->filters[$key])) {
+        if (! empty($this->filters) && isset($this->filters[$key])) {
             if ($this->isCheckbox($key)) {
-                return $this->filters[$key] == "1"
-                    ? __("general.yes")
-                    : __("general.no");
+                return $this->filters[$key] == '1'
+                    ? __('general.yes')
+                    : __('general.no');
             }
             $result = $this->filters[$key];
 
@@ -392,7 +391,7 @@ class FilterService
         if (is_array($key)) {
             throw new \Exception('Key for FilterService can\'t be an array');
         }
-        if (!empty($this->filters) && isset($this->filters[$key])) {
+        if (! empty($this->filters) && isset($this->filters[$key])) {
             return $this->filters[$key];
         }
 
@@ -428,7 +427,7 @@ class FilterService
      */
     public function isCheckbox(string $field): bool
     {
-        return Str::startsWith($field, ["is_", "has_"]);
+        return Str::startsWith($field, ['is_', 'has_']);
     }
 
     /**
@@ -469,24 +468,24 @@ class FilterService
     public function pagination(): array
     {
         $options = [];
-        if (!empty($this->search)) {
-            $options["search"] = $this->search;
+        if (! empty($this->search)) {
+            $options['search'] = $this->search;
         }
 
-        if (!$this->hasRequest) {
+        if (! $this->hasRequest) {
             return $options;
         }
 
-        if ($this->request->get("_from", false) == "bookmark") {
-            $options["_from"] = "bookmark";
+        if ($this->request->get('_from', false) == 'bookmark') {
+            $options['_from'] = 'bookmark';
         }
 
-        if ($bookmarkId = $this->request->get("bookmark")) {
-            $options["bookmark"] = (int) $bookmarkId;
+        if ($bookmarkId = $this->request->get('bookmark')) {
+            $options['bookmark'] = (int) $bookmarkId;
         }
 
-        if ($this->request->filled("parent_id")) {
-            $options["parent_id"] = (int) $this->request->get("parent_id");
+        if ($this->request->filled('parent_id')) {
+            $options['parent_id'] = (int) $this->request->get('parent_id');
         }
 
         return $options;
@@ -507,11 +506,11 @@ class FilterService
      */
     protected function sessionLoad(string $key): array
     {
-        if (!$this->session) {
+        if (! $this->session) {
             return [];
         }
 
-        if (!session()->has($key)) {
+        if (! session()->has($key)) {
             return [];
         }
 
@@ -523,7 +522,7 @@ class FilterService
      */
     protected function sessionSave(string $key, $data): self
     {
-        if (!$this->session) {
+        if (! $this->session) {
             return $this;
         }
 
@@ -540,8 +539,8 @@ class FilterService
         $filters = [];
         foreach ($this->filters as $key => $val) {
             if ($val !== null) {
-                if (!is_array($val)) {
-                    $filters[] = $key . "=" . $val;
+                if (! is_array($val)) {
+                    $filters[] = $key . '=' . $val;
 
                     continue;
                 }
@@ -552,11 +551,11 @@ class FilterService
                     if (is_array($arrValue)) {
                         continue;
                     }
-                    $filters[] = $key . "[]=" . $arrValue;
+                    $filters[] = $key . '[]=' . $arrValue;
                 }
             }
         }
 
-        return (string) implode("&", $filters);
+        return (string) implode('&', $filters);
     }
 }

@@ -16,30 +16,30 @@ class Event extends Layout
     public function columns(): array
     {
         $columns = [
-            "image" => [
-                "render" => Standard::IMAGE,
+            'image' => [
+                'render' => Standard::IMAGE,
             ],
-            "name" => [
-                "key" => "name",
-                "label" => Module::singular(
-                    config("entities.ids.event"),
+            'name' => [
+                'key' => 'name',
+                'label' => Module::singular(
+                    config('entities.ids.event'),
                     __('entities.event')
                 ),
-                "render" => Standard::ENTITYLINK,
+                'render' => Standard::ENTITYLINK,
             ],
-            "type" => [
-                "key" => "type",
-                "label" => __("crud.fields.type"),
-                "render" => function (\App\Models\Event $model) {
+            'type' => [
+                'key' => 'type',
+                'label' => __('crud.fields.type'),
+                'render' => function (\App\Models\Event $model) {
                     return $model->entity->type;
                 },
             ],
-            "date" => [
-                "key" => "date",
-                "label" => __("events.fields.date"),
+            'date' => [
+                'key' => 'date',
+                'label' => __('events.fields.date'),
             ],
-            "tags" => [
-                "render" => Standard::TAGS,
+            'tags' => [
+                'render' => Standard::TAGS,
             ],
         ];
 
