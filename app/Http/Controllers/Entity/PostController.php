@@ -60,20 +60,11 @@ class PostController extends Controller
         $layoutOptions = $layoutDefault + $layoutOptions;
 
         $galleryLayoutId = null;
-        $galleryFolders = [];
         foreach ($layouts as $layout) {
             if ($layout->code === 'gallery') {
                 $galleryLayoutId = $layout->id;
                 break;
             }
-        }
-        if ($campaign->superboosted() && $galleryLayoutId) {
-            $galleryFolders = Image::where('campaign_id', $campaign->id)
-                ->where('is_folder', true)
-                ->orderBy('name', 'asc')
-                ->pluck('name', 'id')
-                ->prepend(__('crud.select'), '')
-                ->toArray();
         }
 
         return view('entities.pages.posts.create', compact(
@@ -86,7 +77,6 @@ class PostController extends Controller
             'templates',
             'template',
             'galleryLayoutId',
-            'galleryFolders',
         ));
     }
 
@@ -157,15 +147,16 @@ class PostController extends Controller
         $from = request()->get('from');
 
         $galleryLayoutId = null;
-        $galleryFolders = [];
+        $galleryFolder = null;
         if ($model->layout_id && $model->layout?->code === 'gallery') {
             $galleryLayoutId = $model->layout_id;
-            $galleryFolders = Image::where('campaign_id', $campaign->id)
-                ->where('is_folder', true)
-                ->orderBy('name', 'asc')
-                ->pluck('name', 'id')
-                ->prepend(__('crud.select'), '')
-                ->toArray();
+            $folderId = $model->settings['folder_id'] ?? null;
+            if ($folderId) {
+                $galleryFolder = Image::where('id', $folderId)
+                    ->where('campaign_id', $campaign->id)
+                    ->where('is_folder', true)
+                    ->first();
+            }
         }
 
         return view('entities.pages.posts.edit', compact(
@@ -176,7 +167,7 @@ class PostController extends Controller
             'from',
             'editingUsers',
             'galleryLayoutId',
-            'galleryFolders',
+            'galleryFolder',
         ));
     }
 

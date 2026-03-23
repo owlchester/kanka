@@ -118,9 +118,8 @@ class MoveService
             if ($this->entity->hasChild()) {
                 $newModel = $this->entity->child->replicate(['campaign_id']);
                 // Remove any foreign keys that wouldn't make any sense in the new campaign
-                $keepFields = ['campaign_id', 'status_id', 'visibility_id'];
                 foreach ($newModel->getAttributes() as $attribute => $value) {
-                    if (str_contains($attribute, '_id') && ! in_array($attribute, $keepFields)) {
+                    if (str_contains($attribute, '_id')) {
                         $newModel->$attribute = null;
                     }
                 }

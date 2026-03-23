@@ -49,9 +49,16 @@ $bragiName = $entity->isCharacter() ? $entity->name : null;
             </x-forms.field>
 
             @if (!empty($galleryLayoutId))
-                <x-forms.field field="gallery-folder" :label="__('dashboards/widgets/gallery.fields.folder')" x-show="layout == '{{ $galleryLayoutId }}'" x-cloak>
-                    <x-forms.select name="settings[folder_id]" :options="$galleryFolders" :selected="old('settings.folder_id', $model->settings['folder_id'] ?? null)" class="w-full" />
-                </x-forms.field>
+                <div x-show="layout == '{{ $galleryLayoutId }}'" x-cloak>
+                    <x-forms.foreign
+                        :campaign="$campaign"
+                        name="settings[folder_id]"
+                        :label="__('dashboards/widgets/gallery.fields.folder')"
+                        :placeholder="__('crud.select')"
+                        :route="route('folders.find', [$campaign])"
+                        :allowClear="true"
+                    />
+                </div>
 
                 <x-forms.field field="gallery-show-name" :label="__('dashboards/widgets/gallery.fields.show_name')" x-show="layout == '{{ $galleryLayoutId }}'" x-cloak>
                     <x-checkbox :text="__('dashboards/widgets/gallery.helpers.show_name')">
@@ -72,9 +79,15 @@ $bragiName = $entity->isCharacter() ? $entity->name : null;
             </x-forms.field>
 
             @if (!empty($galleryLayoutId) && ($model->layout_id ?? null) == $galleryLayoutId)
-                <x-forms.field field="gallery-folder" :label="__('dashboards/widgets/gallery.fields.folder')">
-                    <x-forms.select name="settings[folder_id]" :options="$galleryFolders" :selected="old('settings.folder_id', $model->settings['folder_id'] ?? null)" class="w-full" />
-                </x-forms.field>
+                <x-forms.foreign
+                    :campaign="$campaign"
+                    name="settings[folder_id]"
+                    :label="__('dashboards/widgets/gallery.fields.folder')"
+                    :placeholder="__('crud.select')"
+                    :route="route('folders.find', [$campaign])"
+                    :allowClear="true"
+                    :selected="$galleryFolder"
+                />
 
                 <x-forms.field field="gallery-show-name" :label="__('dashboards/widgets/gallery.fields.show_name')">
                     <x-checkbox :text="__('dashboards/widgets/gallery.helpers.show_name')">
