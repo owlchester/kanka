@@ -35,38 +35,38 @@ class StoreCharacter extends FormRequest
     public function rules()
     {
         $rules = [
-            "name" => "required|max:191",
-            "entry" => "nullable|string",
-            "type" => "nullable|string|max:191",
-            "image" => "mimes:jpeg,png,jpg,gif,webp|max:" . Limit::upload(),
-            "image_url" => "nullable|url|active_url",
-            "locations" => [
-                "nullable",
-                "array",
+            'name' => 'required|max:191',
+            'entry' => 'nullable|string',
+            'type' => 'nullable|string|max:191',
+            'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
+            'image_url' => 'nullable|url|active_url',
+            'locations' => [
+                'nullable',
+                'array',
                 new EntityField(
-                    config("entities.ids.location"),
+                    config('entities.ids.location'),
                     Location::class,
                 ),
             ],
-            "entity_image_uuid" => "nullable|exists:images,id",
-            "entity_header_uuid" => "nullable|exists:images,id",
-            "age" => "nullable|max:25",
-            "sex" => "nullable|max:45",
-            "pronouns" => "nullable|max:45",
-            "title" => "nullable|max:191",
-            "status_id" => ["nullable", new Enum(CharacterStatus::class)],
-            "template_id" => "nullable",
-            "families" => [
-                "nullable",
-                "array",
-                new EntityField(config("entities.ids.family"), Family::class),
+            'entity_image_uuid' => 'nullable|exists:images,id',
+            'entity_header_uuid' => 'nullable|exists:images,id',
+            'age' => 'nullable|max:25',
+            'sex' => 'nullable|max:45',
+            'pronouns' => 'nullable|max:45',
+            'title' => 'nullable|max:191',
+            'status_id' => ['nullable', new Enum(CharacterStatus::class)],
+            'template_id' => 'nullable',
+            'families' => [
+                'nullable',
+                'array',
+                new EntityField(config('entities.ids.family'), Family::class),
             ],
-            "races" => [
-                "nullable",
-                "array",
-                new EntityField(config("entities.ids.race"), Race::class),
+            'races' => [
+                'nullable',
+                'array',
+                new EntityField(config('entities.ids.race'), Race::class),
             ],
-            "attribute" => ["array", new UniqueAttributeNames()],
+            'attribute' => ['array', new UniqueAttributeNames],
         ];
 
         return $this->clean($rules);
