@@ -15,8 +15,10 @@ use App\Models\Race;
 use App\Models\Tag;
 use App\Services\Entity\CopyService;
 use App\Services\Entity\EntitySaveService;
+use App\Services\Entity\Relations\EntityRelationsServiceFactory;
 use App\Services\Entity\TagService;
 use App\Traits\CampaignAware;
+use App\Traits\CreatesEntityFromName;
 use App\Traits\EntityTypeAware;
 use App\Traits\RequestAware;
 use App\Traits\UserAware;
@@ -27,6 +29,7 @@ use Illuminate\Support\Str;
 class ProcessService
 {
     use CampaignAware;
+    use CreatesEntityFromName;
     use EntityTypeAware;
     use RequestAware;
     use UserAware;
@@ -44,6 +47,7 @@ class ProcessService
     public function __construct(
         protected CopyService $copyService,
         protected EntitySaveService $entitySaveService,
+        protected EntityRelationsServiceFactory $relationsFactory,
     ) {}
 
     public function entity()
@@ -109,6 +113,7 @@ class ProcessService
                 $new->campaign_id = $this->campaign->id;
                 $new->save();
                 $this->entitySaveService->save($new->entity, $values);
+                $this->relationsFactory->for($new->entity)?->save($new, $values);
 
                 $this->new[] = $new->entity;
                 $this->entity = $new->entity;
@@ -214,19 +219,14 @@ class ProcessService
         if (! $this->request->has('location_id')) {
             return $this;
         }
-        $canCreate = $this->user->can('create', [$this->campaign->getEntityTypes()->where('id', config('entities.ids.location'))->first(), $this->campaign]);
 
-        $location = $this->request->get('location_id');
-        if (is_numeric($location)) {
-            $location = (int) $location;
-        } elseif (! is_numeric($location) && ! empty(mb_trim($location)) && $canCreate) {
-            $model = Location::create(['name' => $location, 'campaign_id' => $this->campaign->id]);
-            $location = (int) $model->id;
-        } else {
-            $location = null;
-        }
+        $resolved = $this->resolveNewModels(
+            [$this->request->get('location_id')],
+            Location::class,
+            config('entities.ids.location'),
+        );
 
-        $this->inputFields['location_id'] = $location;
+        $this->inputFields['location_id'] = Arr::first($resolved);
 
         return $this;
     }
@@ -236,29 +236,12 @@ class ProcessService
         if (! $this->request->has('tags') && ! $this->request->has('save-tags')) {
             return $this;
         }
-        $canCreateTags = $this->user->can('create', [$this->campaign->getEntityTypes()->where('id', config('entities.ids.tag'))->first(), $this->campaign]);
 
-        /** @var TagService $tagService */
-        $tagService = app()->make(TagService::class);
-        $tagService
-            ->user($this->user)
-            ->campaign($this->campaign);
-
-        // Exclude existing tags to avoid adding a tag several times
-        $tags = $this->request->get('tags', []);
-        foreach ($tags as $number => $id) {
-            /** @var ?Tag $tag */
-            $tag = Tag::find($id);
-            // Create the tag if the user has permission to do so
-            if (empty($tag) && $tagService->isAllowed()) {
-                $tag = $tagService->create($id);
-                $tags[$number] = (int) $tag->id;
-            } elseif (empty($tag) && ! $canCreateTags) {
-                unset($tags[$number]);
-            }
-        }
-
-        $this->inputFields['tags'] = $tags;
+        $this->inputFields['tags'] = $this->resolveNewModels(
+            $this->request->get('tags', []),
+            Tag::class,
+            config('entities.ids.tag'),
+        );
 
         return $this;
     }
@@ -268,23 +251,12 @@ class ProcessService
         if (! $this->request->has('locations') && ! $this->request->has('save_locations')) {
             return $this;
         }
-        $canCreate = $this->user->can('create', [$this->campaign->getEntityTypes()->where('id', config('entities.ids.location'))->first(), $this->campaign]);
 
-        // Exclude existing locations to avoid adding a location several times
-        $locations = $this->request->get('locations', []);
-        foreach ($locations as $number => $id) {
-            // Create the location if the user has permission to do so
-            if (! is_numeric($id) && ! empty(mb_trim($id))) {
-                if ($canCreate) {
-                    $model = Location::create(['name' => $id, 'campaign_id' => $this->campaign->id]);
-                    $location = (int) $model->id;
-                    $locations[$number] = $location;
-                } else {
-                    unset($locations[$number]);
-                }
-            }
-        }
-        $this->inputFields['locations'] = $locations;
+        $this->inputFields['locations'] = $this->resolveNewModels(
+            $this->request->get('locations', []),
+            Location::class,
+            config('entities.ids.location'),
+        );
 
         return $this;
     }
@@ -294,23 +266,12 @@ class ProcessService
         if (! $this->request->has('races') && ! $this->request->has('save_races')) {
             return $this;
         }
-        $canCreate = $this->user->can('create', [$this->campaign->getEntityTypes()->where('id', config('entities.ids.race'))->first(), $this->campaign]);
 
-        // Exclude existing races to avoid adding a race several times
-        $races = $this->request->get('races', []);
-        foreach ($races as $number => $id) {
-            // Create the race if the user has permission to do so
-            if (! is_numeric($id) && ! empty(mb_trim($id))) {
-                if ($canCreate) {
-                    $model = Race::create(['name' => $id, 'campaign_id' => $this->campaign->id]);
-                    $race = (string) $model->id;
-                    $races[$number] = $race;
-                } else {
-                    unset($races[$number]);
-                }
-            }
-        }
-        $this->inputFields['races'] = $races;
+        $this->inputFields['races'] = $this->resolveNewModels(
+            $this->request->get('races', []),
+            Race::class,
+            config('entities.ids.race'),
+        );
 
         return $this;
     }
@@ -320,23 +281,12 @@ class ProcessService
         if (! $this->request->has('families') && ! $this->request->has('save_families')) {
             return $this;
         }
-        $canCreate = $this->user->can('create', [$this->campaign->getEntityTypes()->where('id', config('entities.ids.family'))->first(), $this->campaign]);
 
-        // Exclude existing families to avoid adding a family several times
-        $families = $this->request->get('families', []);
-        foreach ($families as $number => $id) {
-            // Create the family if the user has permission to do so
-            if (! is_numeric($id) && ! empty(mb_trim($id))) {
-                if ($canCreate) {
-                    $model = Family::create(['name' => $id, 'campaign_id' => $this->campaign->id]);
-                    $family = (string) $model->id;
-                    $families[$number] = $family;
-                } else {
-                    unset($families[$number]);
-                }
-            }
-        }
-        $this->inputFields['families'] = $families;
+        $this->inputFields['families'] = $this->resolveNewModels(
+            $this->request->get('families', []),
+            Family::class,
+            config('entities.ids.family'),
+        );
 
         return $this;
     }
@@ -348,18 +298,13 @@ class ProcessService
         }
 
         $value = $this->request->get($entityType->code . '_id', null);
-        if ($value === null) {
+        if ($value === null || is_numeric($value)) {
             return $this;
         }
 
-        // Handle parent.
-        if (! is_numeric($value)) {
-            /** @var MiscModel $new */
-            $new = $entityType->getClass();
-            $new->name = $value;
-            $new->campaign_id = $this->campaign->id;
-            $new->save();
-            $this->inputFields[$entityType->code . '_id'] = $new->id;
+        $id = $this->createModelFromName($value, get_class($entityType->getClass()), $entityType, $this->campaign);
+        if ($id !== null) {
+            $this->inputFields[$entityType->code . '_id'] = $id;
         }
 
         return $this;
