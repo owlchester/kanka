@@ -72,7 +72,9 @@ return [
                 "max" => 10,
             ],
             "options" => [
-                "part_size" => 1024 * 1024 * 250,
+                "part_size" => 1024 * 1024 * 100,
+                "delay" => 1000,
+                "retries" => 5,
             ],
             "http" => [
                 "timeout" => 0, // No timeout for the request
