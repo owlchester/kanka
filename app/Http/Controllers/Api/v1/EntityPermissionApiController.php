@@ -9,8 +9,6 @@ use App\Models\Campaign;
 use App\Models\CampaignPermission;
 use App\Models\Entity;
 use App\Services\Api\ApiPermissionService;
-use App\Services\Entity\EntitySaveService;
-use App\Services\Entity\Relations\EntityRelationsServiceFactory;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -22,12 +20,8 @@ class EntityPermissionApiController extends ApiController
     /**
      * Create a new controller instance.
      */
-    public function __construct(
-        EntitySaveService $entitySaveService,
-        EntityRelationsServiceFactory $relationsFactory,
-        ApiPermissionService $apiPermissionService,
-    ) {
-        parent::__construct($entitySaveService, $relationsFactory);
+    public function __construct(ApiPermissionService $apiPermissionService)
+    {
         $this->apiPermissionService = $apiPermissionService;
     }
 

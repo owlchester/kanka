@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Services\Entity\EntitySaveService;
-use App\Services\Entity\Relations\EntityRelationsServiceFactory;
 use App\Services\Search\EntitySearchService;
 use Illuminate\Auth\Access\AuthorizationException;
 
@@ -13,12 +11,8 @@ class FullTextSearchApiController extends ApiController
 {
     protected EntitySearchService $service;
 
-    public function __construct(
-        EntitySaveService $entitySaveService,
-        EntityRelationsServiceFactory $relationsFactory,
-        EntitySearchService $service,
-    ) {
-        parent::__construct($entitySaveService, $relationsFactory);
+    public function __construct(EntitySearchService $service)
+    {
         $this->service = $service;
     }
 

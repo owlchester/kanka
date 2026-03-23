@@ -7,8 +7,6 @@ use App\Http\Requests\StoreFamilyTree as Request;
 use App\Http\Resources\FamilyTreeResource as Resource;
 use App\Models\Campaign;
 use App\Models\Family;
-use App\Services\Entity\EntitySaveService;
-use App\Services\Entity\Relations\EntityRelationsServiceFactory;
 use App\Services\Families\FamilyTreeService;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
@@ -17,12 +15,8 @@ class FamilyTreeApiController extends ApiController
 {
     protected FamilyTreeService $treeService;
 
-    public function __construct(
-        EntitySaveService $entitySaveService,
-        EntityRelationsServiceFactory $relationsFactory,
-        FamilyTreeService $treeService,
-    ) {
-        parent::__construct($entitySaveService, $relationsFactory);
+    public function __construct(FamilyTreeService $treeService)
+    {
         $this->treeService = $treeService;
         $this->middleware(Premium::class, ['except' => ['show']]);
     }

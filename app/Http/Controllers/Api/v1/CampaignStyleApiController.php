@@ -7,19 +7,14 @@ use App\Http\Requests\StoreCampaignStyle as Request;
 use App\Http\Resources\CampaignStyleResource as Resource;
 use App\Models\Campaign;
 use App\Models\CampaignStyle;
-use App\Services\Entity\EntitySaveService;
-use App\Services\Entity\Relations\EntityRelationsServiceFactory;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class CampaignStyleApiController extends ApiController
 {
-    public function __construct(
-        EntitySaveService $entitySaveService,
-        EntityRelationsServiceFactory $relationsFactory,
-    ) {
-        parent::__construct($entitySaveService, $relationsFactory);
+    public function __construct()
+    {
         $this->middleware(Boosted::class, ['except' => 'index']);
     }
 

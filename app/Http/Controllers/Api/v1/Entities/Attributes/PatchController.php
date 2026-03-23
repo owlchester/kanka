@@ -8,18 +8,10 @@ use App\Http\Resources\AttributeResource as Resource;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\Api\BulkAttributeService;
-use App\Services\Entity\EntitySaveService;
-use App\Services\Entity\Relations\EntityRelationsServiceFactory;
 
 class PatchController extends ApiController
 {
-    public function __construct(
-        EntitySaveService $entitySaveService,
-        EntityRelationsServiceFactory $relationsFactory,
-        protected BulkAttributeService $service,
-    ) {
-        parent::__construct($entitySaveService, $relationsFactory);
-    }
+    public function __construct(protected BulkAttributeService $service) {}
 
     public function patch(SaveAttributesApi $request, Campaign $campaign, Entity $entity)
     {

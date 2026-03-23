@@ -8,8 +8,6 @@ use App\Http\Requests\StoreEntityType;
 use App\Http\Resources\EntityTypeResource as Resource;
 use App\Models\Campaign;
 use App\Models\EntityType;
-use App\Services\Entity\EntitySaveService;
-use App\Services\Entity\Relations\EntityRelationsServiceFactory;
 use App\Services\EntityTypeService;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
@@ -17,12 +15,8 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class EntityTypeApiController extends ApiController
 {
-    public function __construct(
-        EntitySaveService $entitySaveService,
-        EntityRelationsServiceFactory $relationsFactory,
-        protected EntityTypeService $entityTypeService,
-    ) {
-        parent::__construct($entitySaveService, $relationsFactory);
+    public function __construct(protected EntityTypeService $entityTypeService)
+    {
         $this->middleware(Premium::class, ['except' => ['index', 'show']]);
     }
 

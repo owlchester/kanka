@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Services\Entity\EntitySaveService;
-use App\Services\Entity\Relations\EntityRelationsServiceFactory;
 use App\Services\EntityTypeService;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
@@ -13,16 +11,7 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class SearchApiController extends ApiController
 {
-    /**
-     * Create a new controller instance.
-     */
-    public function __construct(
-        EntitySaveService $entitySaveService,
-        EntityRelationsServiceFactory $relationsFactory,
-        protected EntityTypeService $entityTypeService,
-    ) {
-        parent::__construct($entitySaveService, $relationsFactory);
-    }
+    public function __construct(protected EntityTypeService $entityTypeService) {}
 
     /**
      * @return AnonymousResourceCollection

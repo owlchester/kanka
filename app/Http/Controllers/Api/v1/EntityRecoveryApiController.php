@@ -5,9 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Requests\RecoverEntity as Request;
 use App\Http\Resources\EntityResource as Resource;
 use App\Models\Campaign;
-use App\Services\Entity\EntitySaveService;
 use App\Services\Entity\RecoveryService;
-use App\Services\Entity\Relations\EntityRelationsServiceFactory;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
@@ -15,12 +13,8 @@ class EntityRecoveryApiController extends ApiController
 {
     protected RecoveryService $service;
 
-    public function __construct(
-        EntitySaveService $entitySaveService,
-        EntityRelationsServiceFactory $relationsFactory,
-        RecoveryService $service,
-    ) {
-        parent::__construct($entitySaveService, $relationsFactory);
+    public function __construct(RecoveryService $service)
+    {
         $this->middleware('auth');
 
         $this->service = $service;

@@ -8,20 +8,14 @@ use App\Http\Resources\UserResource;
 use App\Models\Campaign;
 use App\Models\User;
 use App\Services\Campaign\MemberService;
-use App\Services\Entity\EntitySaveService;
-use App\Services\Entity\Relations\EntityRelationsServiceFactory;
 use Illuminate\Http\JsonResponse;
 
 class UserApiController extends ApiController
 {
     protected MemberService $service;
 
-    public function __construct(
-        EntitySaveService $entitySaveService,
-        EntityRelationsServiceFactory $relationsFactory,
-        MemberService $memberService,
-    ) {
-        parent::__construct($entitySaveService, $relationsFactory);
+    public function __construct(MemberService $memberService)
+    {
         $this->service = $memberService;
     }
 
