@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Location;
 use App\Models\MiscModel;
+use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
 use Illuminate\Contracts\Translation\Translator;
 use Illuminate\Database\Eloquent\Model;
@@ -13,7 +14,7 @@ use Illuminate\Support\Str;
 
 class FilterService
 {
-    use EntityTypeAware;
+    use CampaignAware, EntityTypeAware;
 
     /** @var array The filters as saved in the session */
     protected array $filters = [];
@@ -72,7 +73,7 @@ class FilterService
 
     public function build(array $sortableColumns = [])
     {
-        $this->crud = $this->entityType->code;
+        $this->crud = $this->entityType->code . '-' . $this->campaign->id;
 
         $orderFields = array_unique(array_merge(['name', 'type', 'is_private'], $sortableColumns));
 
@@ -110,7 +111,7 @@ class FilterService
 
     public function make(string $crud)
     {
-        $this->crud = $crud;
+        $this->crud = isset($this->campaign) ? $crud . '-' . $this->campaign->id : $crud;
 
         $this->prepareFilters($this->model->getFilterableColumns()) // @phpstan-ignore-line
             ->prepareOrder($this->model->sortableColumns()) // @phpstan-ignore-line
