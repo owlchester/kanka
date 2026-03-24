@@ -27,7 +27,7 @@ class ItemRelationsService implements RelationsServiceInterface
         }
 
         $creators = $data['creators'] ?? [];
-        $this->saveMany($model, 'creators', $creators ?? [], Entity::class, 'itemCreators', 'creator_id');
+        $this->saveMany($model, 'creators', $creators, Entity::class, 'itemCreators', 'creator_id');
 
         // Note: EntityLogger::finish() is intentionally not called here.
     }

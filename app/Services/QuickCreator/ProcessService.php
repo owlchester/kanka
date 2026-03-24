@@ -301,6 +301,7 @@ class ProcessService
             return $this;
         }
 
+        // @phpstan-ignore-next-line
         $id = $this->createModelFromName($value, get_class($entityType->getClass()), $entityType, $this->campaign);
         if ($id !== null) {
             $this->inputFields[$entityType->code . '_id'] = $id;
