@@ -1,7 +1,7 @@
-// Exports the "textcolor" plugin for usage with module loaders
+// Exports the "modern" theme for usage with module loaders
 // Usage:
 //   CommonJS:
-//     require('tinymce/plugins/textcolor')
+//     require('tinymce/themes/modern')
 //   ES2015:
-//     import 'tinymce/plugins/textcolor'
-require('./plugin.js');
+//     import 'tinymce/themes/modern'
+require('./theme.js');
