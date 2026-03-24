@@ -31,7 +31,7 @@ class QuestFilter extends DatagridFilter
                 'label' => __('crud.fields.parent'),
                 'type' => 'select2',
                 'route' => route('search-list', [$this->campaign, config('entities.ids.quest')]),
-                'placeholder' => __('crud.placeholders.parent'),
+                'placeholder' => __('crud.placeholders.search'),
                 'model' => Quest::class,
             ])
             ->add([
