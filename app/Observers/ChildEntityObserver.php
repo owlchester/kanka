@@ -6,7 +6,7 @@ use App\Facades\EntityLogger;
 use App\Facades\Images;
 use App\Models\MiscModel;
 
-abstract class MiscObserver
+class ChildEntityObserver
 {
     public function created(MiscModel $model)
     {

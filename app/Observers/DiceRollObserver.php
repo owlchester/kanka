@@ -4,7 +4,7 @@ namespace App\Observers;
 
 use App\Models\DiceRoll;
 
-class DiceRollObserver extends MiscObserver
+class DiceRollObserver
 {
     public function saving(DiceRoll $model)
     {

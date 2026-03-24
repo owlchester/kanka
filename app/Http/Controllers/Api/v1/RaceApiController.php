@@ -11,7 +11,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class RaceApiController extends ApiController
+class RaceApiController extends MiscApiController
 {
     /**
      * @return AnonymousResourceCollection
@@ -55,7 +55,7 @@ class RaceApiController extends ApiController
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
         $model = Race::create($data);
-        $this->crudSave($model);
+        $this->crudSave($model, $request->validated());
 
         return new Resource($model);
     }
@@ -68,7 +68,7 @@ class RaceApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $race->entity);
         $race->update($request->all());
-        $this->crudSave($race);
+        $this->crudSave($race, $request->validated());
 
         return new Resource($race);
     }

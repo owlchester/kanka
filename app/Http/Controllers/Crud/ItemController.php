@@ -8,6 +8,12 @@ use App\Http\Requests\StoreItem;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Models\Item;
+use App\Models\MiscModel;
+use App\Renderers\DatagridRenderer;
+use App\Services\AttributeService;
+use App\Services\Entity\EntitySaveService;
+use App\Services\Entity\Relations\ItemRelationsService;
+use App\Services\FilterService;
 
 class ItemController extends CrudController
 {
@@ -20,6 +26,16 @@ class ItemController extends CrudController
     protected string $model = Item::class;
 
     protected string $filter = ItemFilter::class;
+
+    public function __construct(
+        FilterService $filterService,
+        DatagridRenderer $datagridRenderer,
+        AttributeService $attributeService,
+        EntitySaveService $entitySaveService,
+        protected ItemRelationsService $itemRelationsService,
+    ) {
+        parent::__construct($filterService, $datagridRenderer, $attributeService, $entitySaveService);
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -59,6 +75,11 @@ class ItemController extends CrudController
     public function destroy(Campaign $campaign, Item $item)
     {
         return $this->campaign($campaign)->crudDestroy($item);
+    }
+
+    protected function afterModelSave(MiscModel $model, array $data): void
+    {
+        $this->itemRelationsService->save($model, $data);
     }
 
     protected function getEntityType(): EntityType

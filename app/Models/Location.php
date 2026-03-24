@@ -216,12 +216,12 @@ class Location extends MiscModel
     {
         foreach ($this->families as $child) {
             $child->location_id = null;
-            $child->saveQuietly();
+            $child->save();
         }
 
         foreach ($this->items as $child) {
             $child->location_id = null;
-            $child->saveQuietly();
+            $child->save();
         }
 
         // Pivot tables can be deleted directly

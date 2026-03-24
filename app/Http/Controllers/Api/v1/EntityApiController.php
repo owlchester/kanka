@@ -9,12 +9,14 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityType;
 use App\Services\Api\BulkEntityCreatorService;
+use App\Services\Entity\EntitySaveService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class EntityApiController extends ApiController
 {
     public function __construct(
+        protected EntitySaveService $entitySaveService,
         protected BulkEntityCreatorService $bulkEntityCreatorService,
     ) {}
 
@@ -88,8 +90,7 @@ class EntityApiController extends ApiController
 
         $data = $request->only($keys);
 
-        $entity->update($data);
-        $entity->crudSaved();
+        $this->entitySaveService->save($entity->fill($data), $data);
 
         return new Resource($entity);
     }

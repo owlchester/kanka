@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Location;
 use App\Models\MiscModel;
+use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
 use Illuminate\Contracts\Translation\Translator;
 use Illuminate\Database\Eloquent\Model;
@@ -13,7 +14,7 @@ use Illuminate\Support\Str;
 
 class FilterService
 {
-    use EntityTypeAware;
+    use CampaignAware, EntityTypeAware;
 
     /** @var array The filters as saved in the session */
     protected array $filters = [];
@@ -63,7 +64,9 @@ class FilterService
     public function model(Model $model): self
     {
         if (! method_exists($model, 'getFilterableColumns')) {
-            throw new \Exception('Model ' . $model . ' doesn\'t implement the Filterable trait.');
+            throw new \Exception(
+                'Model ' . $model . ' doesn\'t implement the Filterable trait.',
+            );
         }
         $this->model = $model;
 
@@ -72,9 +75,11 @@ class FilterService
 
     public function build(array $sortableColumns = [])
     {
-        $this->crud = $this->entityType->code;
+        $this->crud = $this->entityType->id . '-' . $this->campaign->id;
 
-        $orderFields = array_unique(array_merge(['name', 'type', 'is_private'], $sortableColumns));
+        $orderFields = array_unique(
+            array_merge(['name', 'type', 'is_private'], $sortableColumns),
+        );
 
         $baseFilters = [
             'name',
@@ -99,7 +104,9 @@ class FilterService
         if ($this->entityType->isStandard()) {
             $model = $this->entityType->getClass();
             if (method_exists($model, 'getFilterableColumns')) {
-                $baseFilters = array_unique(array_merge($baseFilters, $model->getFilterableColumns()));
+                $baseFilters = array_unique(
+                    array_merge($baseFilters, $model->getFilterableColumns()),
+                );
             }
         }
 
@@ -110,7 +117,9 @@ class FilterService
 
     public function make(string $crud)
     {
-        $this->crud = $crud;
+        $this->crud = isset($this->campaign)
+            ? $crud . '-' . $this->campaign->id
+            : $crud;
 
         $this->prepareFilters($this->model->getFilterableColumns()) // @phpstan-ignore-line
             ->prepareOrder($this->model->sortableColumns()) // @phpstan-ignore-line
@@ -129,7 +138,10 @@ class FilterService
 
         // Load the filters from the session if we're revisiting a page
         $sessionKey = 'filterService-filter-' . $this->crud;
-        if ($this->hasRequest && $this->request->get('_from', false) == 'bookmark') {
+        if (
+            $this->hasRequest &&
+            $this->request->get('_from', false) == 'bookmark'
+        ) {
             $sessionKey .= '-bookmark';
         }
         $this->filters = $this->sessionLoad($sessionKey);
@@ -139,19 +151,36 @@ class FilterService
             $this->filters = [];
         }
 
-        foreach (['tags', 'locations', 'organisations', 'races', 'families', 'creators'] as $key) {
+        foreach (
+            [
+                'tags',
+                'locations',
+                'organisations',
+                'races',
+                'families',
+                'creators',
+            ] as $key
+        ) {
             $this->checkFilterData($key, $availableFilters);
         }
 
         // If we have data but no "tags" array, it's empty
-        if (! empty($this->data) && in_array('tags', $availableFilters) && ! isset($this->data['tags'])) {
+        if (
+            ! empty($this->data) &&
+            in_array('tags', $availableFilters) &&
+            ! isset($this->data['tags'])
+        ) {
             // Not calling from a page or order result, we can junk the filters
             if (empty($this->data['page']) && empty($this->data['order'])) {
                 unset($this->data['tags']);
             }
         }
         // If we have data but no "locations" array, it's empty
-        if (! empty($this->data) && in_array('locations', $availableFilters) && ! isset($this->data['locations'])) {
+        if (
+            ! empty($this->data) &&
+            in_array('locations', $availableFilters) &&
+            ! isset($this->data['locations'])
+        ) {
             // Not calling from a page or order result, we can junk the filters
             if (empty($this->data['page']) && empty($this->data['order'])) {
                 unset($this->data['locations']);
@@ -159,7 +188,11 @@ class FilterService
         }
 
         // If we have data but no "organisations" array, it's empty
-        if (! empty($this->data) && in_array('organisations', $availableFilters) && ! isset($this->data['organisations'])) {
+        if (
+            ! empty($this->data) &&
+            in_array('organisations', $availableFilters) &&
+            ! isset($this->data['organisations'])
+        ) {
             // Not calling from a page or order result, we can junk the filters
             if (empty($this->data['page']) && empty($this->data['order'])) {
                 unset($this->data['organisations']);
@@ -167,7 +200,11 @@ class FilterService
         }
 
         // If we have data but no "races" array, it's empty
-        if (! empty($this->data) && in_array('races', $availableFilters) && ! isset($this->data['races'])) {
+        if (
+            ! empty($this->data) &&
+            in_array('races', $availableFilters) &&
+            ! isset($this->data['races'])
+        ) {
             // Not calling from a page or order result, we can junk the filters
             if (empty($this->data['page']) && empty($this->data['order'])) {
                 unset($this->data['races']);
@@ -175,7 +212,11 @@ class FilterService
         }
 
         // If we have data but no "families" array, it's empty
-        if (! empty($this->data) && in_array('families', $availableFilters) && ! isset($this->data['families'])) {
+        if (
+            ! empty($this->data) &&
+            in_array('families', $availableFilters) &&
+            ! isset($this->data['families'])
+        ) {
             // Not calling from a page or order result, we can junk the filters
             if (empty($this->data['page']) && empty($this->data['order'])) {
                 unset($this->data['families']);
@@ -212,10 +253,19 @@ class FilterService
         }
 
         // Foreign keys that are not set might have been cleared. If so, remove them from the filters.
-        // However, only do this if not ordering or changing pages
-        if (! empty($this->data) && ! array_key_exists('order', $this->data) && ! array_key_exists('page', $this->data)) {
+        // However, only do this if not ordering or changing pages, and not doing a clean reset.
+        $isClean = $this->hasRequest && $this->request->get('_clean', false);
+        if (
+            ! $isClean &&
+            ! empty($this->data) &&
+            ! array_key_exists('order', $this->data) &&
+            ! array_key_exists('page', $this->data)
+        ) {
             foreach ($availableFilters as $filter) {
-                if (! isset($this->data[$filter]) && Str::endsWith($filter, '_id')) {
+                if (
+                    ! isset($this->data[$filter]) &&
+                    Str::endsWith($filter, '_id')
+                ) {
                     $this->filters[$filter] = null;
                 }
             }
@@ -286,7 +336,11 @@ class FilterService
     private function checkFilterData(string $key, array $availableFilters): void
     {
         // If we have data but no array, it's empty
-        if (! empty($this->data) && in_array($key, $availableFilters) && ! isset($this->data[$key])) {
+        if (
+            ! empty($this->data) &&
+            in_array($key, $availableFilters) &&
+            ! isset($this->data[$key])
+        ) {
             // Not calling from a page or order result, we can junk the filters
             if (empty($this->data['page']) && empty($this->data['order'])) {
                 unset($this->data[$key]);
@@ -315,7 +369,9 @@ class FilterService
         }
         if (! empty($this->filters) && isset($this->filters[$key])) {
             if ($this->isCheckbox($key)) {
-                return $this->filters[$key] == '1' ? __('general.yes') : __('general.no');
+                return $this->filters[$key] == '1'
+                    ? __('general.yes')
+                    : __('general.no');
             }
             $result = $this->filters[$key];
 

@@ -23,6 +23,7 @@ use App\Models\Entity;
 use App\Models\EntityType;
 use App\Models\UserLog;
 use App\Notifications\Header;
+use App\Services\Entity\EntitySaveService;
 use App\Services\Entity\TagService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
@@ -40,6 +41,8 @@ class CsvImportService
 {
     use CampaignAware;
     use UserAware;
+
+    public function __construct(protected EntitySaveService $entitySaveService) {}
 
     protected int $expectedColumns = 1;
 
@@ -367,8 +370,7 @@ class CsvImportService
         $entity->is_private = $this->data['is_private'];
         $entity->created_by = $this->user->id;
         $entity->save();
-        $entity->crudSaved();
-        $this->saveTags($entity);
+        $this->entitySaveService->save($entity, $this->data);
 
         return $entity;
     }

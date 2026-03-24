@@ -67,7 +67,7 @@ class IndexController extends Controller
         $this->campaign = $campaign;
         $this->request = $request;
 
-        $this->filterService->request($request)->entityType($entityType)->build(
+        $this->filterService->request($request)->entityType($entityType)->campaign($campaign)->build(
             $this->columnDefinitionService->sortableFields($entityType, $campaign)
         );
 
@@ -134,7 +134,7 @@ class IndexController extends Controller
         $this->campaign = $campaign;
         $this->request = $request;
 
-        $this->filterService->request($request)->entityType($entityType)->build(
+        $this->filterService->request($request)->entityType($entityType)->campaign($campaign)->build(
             $this->columnDefinitionService->sortableFields($entityType, $campaign)
         );
 
@@ -298,8 +298,14 @@ class IndexController extends Controller
                 'count' => $this->filterService->activeFiltersCount(),
                 'unfilteredCount' => $unfilteredCount,
                 'urls' => [
-                    'form' => route('filters.form', [$campaign, $entityType, 'm' => $layout]),
-                    'clear' => route('entities.index', [$campaign, $entityType, 'reset-filter' => true]),
+                    'form' => route('filters.form', array_merge(
+                        [$campaign, $entityType, 'm' => $layout],
+                        $request->get('_from') === 'bookmark' ? ['_from' => 'bookmark', 'bookmark' => $request->get('bookmark')] : [],
+                    )),
+                    'clear' => route('entities.index', array_merge(
+                        [$campaign, $entityType, 'reset-filter' => true],
+                        $request->get('_from') === 'bookmark' ? ['_from' => 'bookmark', 'bookmark' => $request->get('bookmark')] : [],
+                    )),
                 ],
             ],
             'order' => $this->filterService->order(),

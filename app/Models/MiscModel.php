@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Copiable;
+use App\Models\Concerns\HasEntity;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Paginatable;
@@ -39,6 +40,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 abstract class MiscModel extends Model
 {
     use Copiable;
+    use HasEntity;
     use LastSync;
     use Orderable;
     use Paginatable;
@@ -66,23 +68,6 @@ abstract class MiscModel extends Model
     protected string $defaultOrderField = 'name';
 
     protected string $defaultOrderDirection = 'asc';
-
-    /**
-     * Array of our custom model events declared under model property $observables
-     *
-     * @var array
-     */
-    protected $observables = [
-        'crudSaved',
-    ];
-
-    /**
-     * Fire an event to the observer to know that the sub entity was saved from the crud
-     */
-    public function crudSaved()
-    {
-        $this->fireModelEvent('crudSaved', false);
-    }
 
     /**
      * Every misc model has an attached entity

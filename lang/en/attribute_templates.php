@@ -8,6 +8,11 @@ return [
         'auto_apply'    => 'Auto-apply',
         'is_enabled'    => 'Enabled',
     ],
+    'bulk'          => [
+        'entity_type'   => [
+            'unset'     => 'Unset',
+        ],
+    ],
     'hints'         => [
         'automatic'                 => 'The following :count properties were automatically applied from :link.',
         'automatic_apply'           => '{1} The following :count property was automatically applied from :link | [2,] The following :count properties were automatically applied from :link.',

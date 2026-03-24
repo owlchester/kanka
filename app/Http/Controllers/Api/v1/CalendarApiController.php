@@ -8,16 +8,22 @@ use App\Models\Calendar;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Sanitizers\CalendarSanitizer;
+use App\Services\Entity\EntitySaveService;
+use App\Services\Entity\Relations\EntityRelationsServiceFactory;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class CalendarApiController extends ApiController
+class CalendarApiController extends MiscApiController
 {
     protected CalendarSanitizer $sanitizer;
 
-    public function __construct(CalendarSanitizer $sanitizer)
-    {
+    public function __construct(
+        EntitySaveService $entitySaveService,
+        EntityRelationsServiceFactory $relationsFactory,
+        CalendarSanitizer $sanitizer,
+    ) {
+        parent::__construct($entitySaveService, $relationsFactory);
         $this->sanitizer = $sanitizer;
     }
 
@@ -64,7 +70,7 @@ class CalendarApiController extends ApiController
         $data['campaign_id'] = $campaign->id;
         /** @var Calendar $model */
         $model = Calendar::create($data);
-        $this->crudSave($model);
+        $this->crudSave($model, $request->validated());
 
         return new Resource($model);
     }
@@ -78,7 +84,7 @@ class CalendarApiController extends ApiController
         $this->authorize('update', $calendar->entity);
         $request->merge($this->sanitizer->request($request)->sanitize());
         $calendar->update($request->all());
-        $this->crudSave($calendar);
+        $this->crudSave($calendar, $request->validated());
 
         return new Resource($calendar);
     }

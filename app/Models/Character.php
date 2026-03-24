@@ -353,11 +353,11 @@ class Character extends MiscModel
     {
         foreach ($this->items as $child) {
             $child->character_id = null;
-            $child->saveQuietly();
+            $child->save();
         }
         foreach ($this->diceRolls as $child) {
             $child->character_id = null;
-            $child->saveQuietly();
+            $child->save();
         }
 
         $this->organisations()->detach();

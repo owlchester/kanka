@@ -4,7 +4,8 @@ namespace App\Http\Requests;
 
 use App\Facades\Limit;
 use App\Models\Entity;
-use App\Rules\EntityLocations;
+use App\Models\Location;
+use App\Rules\EntityField;
 use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
@@ -39,7 +40,7 @@ class StoreEvent extends FormRequest
             'type' => 'nullable|string|max:191',
             'parent_id' => 'nullable|integer|exists:entities,id',
             'date' => 'nullable|max:191',
-            'locations' => ['nullable', 'array', new EntityLocations],
+            'locations' => ['nullable', 'array', new EntityField(config('entities.ids.location'), Location::class)],
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
             'entity_image_uuid' => 'nullable|exists:images,id',

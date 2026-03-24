@@ -11,6 +11,7 @@ use App\Models\Relation;
 use App\Services\FilterService;
 use App\Traits\CampaignAware;
 use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use ReflectionClass;
 
@@ -23,13 +24,17 @@ class FormController extends Controller
         $this->middleware(['auth']);
     }
 
-    public function index(Campaign $campaign, EntityType $entityType)
+    public function index(Request $request, Campaign $campaign, EntityType $entityType)
     {
         $plural = Str::plural(Str::remove('-', $entityType->code));
         $route = $entityType->hasEntity() ? 'entities.index' : $plural . '.index';
 
         if ($entityType->isCustom()) {
-            $this->filterService->entityType($entityType)->build();
+            $this->filterService
+                ->request($request)
+                ->entityType($entityType)
+                ->campaign($campaign)
+                ->build();
 
             /** @var CustomEntityFilter $filters */
             $filters = app()->make(CustomEntityFilter::class);
@@ -68,10 +73,12 @@ class FormController extends Controller
         if ($entityType) {
             $this->filterService
                 ->entityType($entityType)
+                ->campaign($this->campaign)
                 ->model($model)
                 ->make($entityType->code);
         } else {
             $this->filterService
+                ->campaign($this->campaign)
                 ->model($model)
                 ->make($plural);
         }

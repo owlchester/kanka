@@ -52,7 +52,10 @@ class NewService
             if ($entityType->isCustom() && ! $entityType->isEnabled()) {
                 continue;
             }
-            if ($entityType->isStandard() && ! $this->campaign->enabled($entityType)) {
+            if (
+                $entityType->isStandard() &&
+                ! $this->campaign->enabled($entityType)
+            ) {
                 continue;
             }
             if (in_array($entityType->id, $excludedTypes)) {
@@ -85,8 +88,8 @@ class NewService
             $misc->name = $this->purify(mb_trim(strip_tags($name)));
             $misc->is_private = $this->private();
             $misc->campaign_id = $this->campaign->id;
-            $misc->saveQuietly();
-            $this->entity = $misc->createEntity();
+            $misc->save();
+            $this->entity = $misc->entity;
         }
 
         if ($this->entity->isTag()) {
@@ -101,7 +104,8 @@ class NewService
 
     protected function private(): bool
     {
-        return (bool) ($this->user->isAdmin() && $this->campaign->entity_visibility);
+        return (bool) ($this->user->isAdmin() &&
+            $this->campaign->entity_visibility);
     }
 
     public function autoTags(): array

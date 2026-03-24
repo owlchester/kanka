@@ -11,7 +11,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class JournalApiController extends ApiController
+class JournalApiController extends MiscApiController
 {
     /**
      * @return AnonymousResourceCollection
@@ -54,7 +54,7 @@ class JournalApiController extends ApiController
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
         $model = Journal::create($data);
-        $this->crudSave($model);
+        $this->crudSave($model, $request->validated());
 
         return new Resource($model);
     }
@@ -67,7 +67,7 @@ class JournalApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $journal->entity);
         $journal->update($request->all());
-        $this->crudSave($journal);
+        $this->crudSave($journal, $request->validated());
 
         return new Resource($journal);
     }
