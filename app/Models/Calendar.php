@@ -80,6 +80,7 @@ class Calendar extends MiscModel
 
     protected array $foreignExport = [
         'calendarWeather',
+        'calendarEras',
     ];
 
     protected array $loadedMonths;
@@ -97,6 +98,10 @@ class Calendar extends MiscModel
     protected array $loadedMonthAliases;
 
     protected array $cachedCurrentDate;
+
+    /** @var CalendarEra[]|null */
+    protected ?array $cachedShowEras = null;
+
 
     /**
      * Get the months decoded from the json into a usable array
@@ -163,6 +168,31 @@ class Calendar extends MiscModel
         }
 
         return $this->loadedSeasons;
+    }
+
+    /**
+     * Find the active era with show_era_dates enabled for a given date.
+     * Loads eras once per calendar instance to avoid repeated queries.
+     */
+    public function findActiveShowEra(int $year, int $month, int $day): ?CalendarEra
+    {
+        if ($this->cachedShowEras === null) {
+            $this->cachedShowEras = $this->calendarEras()
+                ->where('show_era_dates', true)
+                ->orderBy('start_year')
+                ->orderBy('start_month')
+                ->orderBy('start_day')
+                ->get()
+                ->all();
+        }
+
+        foreach ($this->cachedShowEras as $era) {
+            if ($era->containsDate($year, $month, $day)) {
+                return $era;
+            }
+        }
+
+        return null;
     }
 
     /**
@@ -252,15 +282,53 @@ class Calendar extends MiscModel
         $years = $this->years();
 
         try {
-            $return = $day . ' ' .
-                (isset($months[$month - 1]) ? $months[$month - 1]['name'] : $month) . ', ' .
+            $monthName = isset($months[$month - 1]) ? $months[$month - 1]['name'] : $month;
+
+            // Check for era-based date formatting
+            $era = $this->findActiveShowEra((int) $year, (int) $month, (int) $day);
+            if ($era) {
+                $eraYear = __('calendars/eras.era_year', [
+                    'year' => $era->eraYear((int) $year),
+                    'era' => $era->name,
+                ]);
+
+                return $day . ' ' . $monthName . ', ' . $eraYear;
+            }
+
+            return $day . ' ' . $monthName . ', ' .
                 ($years[$year] ?? $year) . ' ' .
                 $this->suffix;
-
-            return $return;
         } catch (Exception $e) { // @phpstan-ignore-line
             return $this->date;
         }
+    }
+
+    /**
+     * Get the non-era formatted date, or null if no era is active.
+     */
+    public function rawNiceDate(?string $date = null): ?string
+    {
+        if (empty($date)) {
+            $date = $this->date;
+        }
+        if (empty($date)) {
+            return null;
+        }
+
+        [$year, $month, $day] = $this->dateArray($date);
+
+        $era = $this->findActiveShowEra((int) $year, (int) $month, (int) $day);
+        if (! $era) {
+            return null;
+        }
+
+        $months = $this->months();
+        $years = $this->years();
+        $monthName = isset($months[$month - 1]) ? $months[$month - 1]['name'] : $month;
+
+        return $day . ' ' . $monthName . ', ' .
+            ($years[$year] ?? $year) . ' ' .
+            $this->suffix;
     }
 
     /**
@@ -332,6 +400,9 @@ class Calendar extends MiscModel
     public function detach(): void
     {
         foreach ($this->calendarEvents as $child) {
+            $child->delete();
+        }
+        foreach ($this->calendarEras as $child) {
             $child->delete();
         }
     }

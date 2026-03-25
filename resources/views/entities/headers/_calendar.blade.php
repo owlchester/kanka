@@ -1,6 +1,6 @@
 @if ($entity->child->date)
     <div class="entity-header-sub-element">
-        <span data-title="{{ __('calendars.fields.date') }}" data-toggle="tooltip">
+        <span data-title="{{ $entity->child->rawNiceDate() ?? __('calendars.fields.date') }}" data-toggle="tooltip">
             <x-icon class="fa-regular fa-clock" />
             {!! $entity->child->niceDate() !!}
         </span>

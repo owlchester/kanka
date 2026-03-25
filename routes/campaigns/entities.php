@@ -296,6 +296,7 @@ Route::resources([
     '/w/{campaign}/abilities' => 'Crud\AbilityController',
     '/w/{campaign}/calendars' => 'Crud\CalendarController',
     '/w/{campaign}/calendars.calendar_weather' => 'Calendar\CalendarWeatherController',
+    '/w/{campaign}/calendars.calendar_eras' => 'Calendars\EraController',
     '/w/{campaign}/characters' => 'Crud\CharacterController',
     '/w/{campaign}/characters.character_organisations' => 'Characters\MembershipController',
     '/w/{campaign}/conversations' => 'Crud\ConversationController',

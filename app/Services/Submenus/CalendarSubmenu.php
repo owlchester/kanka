@@ -21,6 +21,13 @@ class CalendarSubmenu extends BaseSubmenu implements EntitySubmenu
             ];
         }
 
+        $eraCount = $calendar->calendarEras()->count();
+        $items['second']['eras'] = [
+            'name' => __('calendars/eras.title'),
+            'route' => 'calendars.calendar_eras.index',
+            'count' => $eraCount,
+        ];
+
         return $items;
     }
 }

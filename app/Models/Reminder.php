@@ -51,6 +51,8 @@ class Reminder extends Model
     /** @var string Cached readable date */
     protected string $readableDate;
 
+    protected ?string $rawReadableDate = null;
+
     protected $fillable = [
         'calendar_id',
         'length',
@@ -123,17 +125,32 @@ class Reminder extends Model
             $years = $this->calendar->years();
 
             try {
+                $monthName = isset($months[$this->month - 1]) ? $months[$this->month - 1]['name'] : $this->month;
+
+                // Compute the base (non-era) date
                 if ($this->calendar->format) {
-                    $this->readableDate = Str::replace(
+                    $baseDate = Str::replace(
                         ['d', 's', 'y', 'm', 'M'],
-                        [$this->day, $this->calendar->suffix, $years[$this->year] ?? $this->year, $this->month, isset($months[$this->month - 1]) ? $months[$this->month - 1]['name'] : $this->month],
+                        [$this->day, $this->calendar->suffix, $years[$this->year] ?? $this->year, $this->month, $monthName],
                         $this->calendar->format
                     );
                 } else {
-                    $this->readableDate = $this->day . ' ' .
-                        (isset($months[$this->month - 1]) ? $months[$this->month - 1]['name'] : $this->month) . ', ' .
+                    $baseDate = $this->day . ' ' . $monthName . ', ' .
                         ($years[$this->year] ?? $this->year) . ' ' .
                         $this->calendar->suffix;
+                }
+
+                // Check for era-based date formatting
+                $era = $this->calendar->findActiveShowEra($this->year, $this->month, $this->day);
+                if ($era) {
+                    $this->rawReadableDate = $baseDate;
+                    $eraYear = __('calendars/eras.era_year', [
+                        'year' => $era->eraYear($this->year),
+                        'era' => $era->name,
+                    ]);
+                    $this->readableDate = $this->day . ' ' . $monthName . ', ' . $eraYear;
+                } else {
+                    $this->readableDate = $baseDate;
                 }
             } catch (Exception $e) {
                 $this->readableDate = $this->date();
@@ -141,6 +158,16 @@ class Reminder extends Model
         }
 
         return $this->readableDate;
+    }
+
+    /**
+     * Get the non-era formatted date, or null if no era is active.
+     */
+    public function rawReadableDate(): ?string
+    {
+        $this->readableDate();
+
+        return $this->rawReadableDate;
     }
 
     /**

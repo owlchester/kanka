@@ -18,22 +18,28 @@ class Reminder extends Layout
         $columns = [
             'calendar' => [
                 'key' => 'calendar.name',
-                'label' => 'entities.calendar',
+                'label' => __('entities.calendar'),
                 'render' => Standard::ENTITYLINK,
                 'with' => 'calendar',
             ],
             'date' => [
                 'key' => 'date',
-                'label' => 'events.fields.date',
+                'label' => __('events.fields.date'),
                 'render' => function (Model $reminder) {
                     $params = '?year=' . $reminder->year . '&month=' . $reminder->month;
 
-                    return '<a href="' . $reminder->calendar->getLink() . $params . '" class="text-link">' . $reminder->readableDate() . '</a>';
+                    $date = $reminder->readableDate();
+                    $raw = $reminder->rawReadableDate();
+                    if ($raw) {
+                        $date = '<span data-title="' . e($raw) . '" data-toggle="tooltip">' . $date . '</span>';
+                    }
+
+                    return '<a href="' . $reminder->calendar->getLink() . $params . '" class="text-link">' . $date . '</a>';
                 },
             ],
             'length' => [
                 'key' => 'length',
-                'label' => 'calendars.fields.length',
+                'label' => __('calendars.fields.length'),
                 'render' => function (Model $reminder) {
                     return trans_choice('calendars.fields.length_days', $reminder->length, ['count' => $reminder->length]);
                 },

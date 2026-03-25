@@ -52,9 +52,9 @@ foreach ($elapsed as $event) {
         <div class="element profile-life">
             <div class="title text-uppercase text-xs">{{ __('characters.fields.life') }}</div>
             <a href="{{ $birth->calendar->getLink() }}?year={{ $birth->year }}&month={{ $birth->month }}" data-title="{{ $birth->calendar->name }}" data-toggle="tooltip" class="text-link">
-                {{ $birth->readableDate() }}
+                @if ($birth->rawReadableDate())<span data-title="{{ $birth->rawReadableDate() }}" data-toggle="tooltip">{{ $birth->readableDate() }}</span>@else{{ $birth->readableDate() }}@endif
             </a> &#10013; <a href="{{ $death->calendar->getLink() }}?year={{ $death->year }}&month={{ $death->month }}" data-title="{{ $death->calendar->name }}" data-toggle="tooltip" class="text-link">
-                {{ $death->readableDate() }}
+                @if ($death->rawReadableDate())<span data-title="{{ $death->rawReadableDate() }}" data-toggle="tooltip">{{ $death->readableDate() }}</span>@else{{ $death->readableDate() }}@endif
             </a> ({{ $birth->calcElapsed($death) }})
         </div>
 

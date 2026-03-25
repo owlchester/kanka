@@ -50,14 +50,14 @@ $currentMoons = $moonService->get($calendar->currentDay());
                 <x-icon class="fa-regular fa-chevron-circle-left" />
                 <span class="sr-only">{{ __('dashboard.widgets.calendar.actions.previous') }}</span>
             </a>
-            <span>{{ $calendar->niceDate() }}</span>
+            <span @if ($calendar->rawNiceDate()) data-title="{{ $calendar->rawNiceDate() }}" data-toggle="tooltip" @endif>{{ $calendar->niceDate() }}</span>
 
             <a href="#" class="widget-calendar-switch text-link" data-url="{{ route('dashboard.calendar.add', [$campaign, $widget]) }}" data-widget="{{ $widget->id }}"  data-toggle="tooltip" data-title="{{ __('dashboard.widgets.calendar.actions.next') }}" role="button">
                 <x-icon class="fa-regular fa-chevron-circle-right" />
                 <span class="sr-only">{{ __('dashboard.widgets.calendar.actions.next') }}</span>
             </a>
         @else
-            {{ $calendar->niceDate() }}
+            @if ($calendar->rawNiceDate())<span data-title="{{ $calendar->rawNiceDate() }}" data-toggle="tooltip">{{ $calendar->niceDate() }}</span>@else{{ $calendar->niceDate() }}@endif
         @endcan
 
         @if (!empty($currentMoons))

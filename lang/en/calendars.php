@@ -64,6 +64,7 @@ return [
         'date'              => 'Current Date',
         'day'               => 'Day',
         'default_layout'    => 'Default layout',
+        'eras'              => 'Eras',
         'format'            => 'Format',
         'is_incrementing'   => 'Advancing date',
         'is_recurring'      => 'Recurring',

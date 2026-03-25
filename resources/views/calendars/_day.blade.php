@@ -71,6 +71,18 @@
                     {{ $day['season'] }}
                 </div>
             @endif
+            @if (!empty($day['eraStart']))
+                <div class="badge calendar-era block w-full text-xs!" data-toggle="tooltip" data-title="{{ __('calendars/eras.era_start') }}" @if (!empty($day['eraStart']->colour)) style="background-color: {{ $day['eraStart']->colour }}; color: {{ $colours->contrastBW($day['eraStart']->colour) }}" @endif>
+                    <x-icon class="fa-regular fa-hourglass-start" />
+                    {{ $day['eraStart']->name }}
+                </div>
+            @endif
+            @if (!empty($day['eraEnd']))
+                <div class="badge calendar-era block w-full text-xs!" data-toggle="tooltip" data-title="{{ __('calendars/eras.era_end') }}" @if (!empty($day['eraEnd']->colour)) style="background-color: {{ $day['eraEnd']->colour }}; color: {{ $colours->contrastBW($day['eraEnd']->colour) }}" @endif>
+                    <x-icon class="fa-regular fa-hourglass-end" />
+                    {{ $day['eraEnd']->name }}
+                </div>
+            @endif
 
             @if (!empty($day['weather']))
                 <div class="weather weather-{{ $day['weather']->weather }}" data-html="true" data-toggle="tooltip" data-title="{!! $day['weather']->tooltip() !!}">

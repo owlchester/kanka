@@ -10,6 +10,7 @@ use App\Models\Reminder;
 use App\Services\Calendars\DaysService;
 use App\Services\Calendars\MoonService;
 use App\Services\Calendars\SeasonService;
+use App\Services\Calendars\EraService;
 use App\Services\Calendars\WeatherService;
 use App\Traits\CalendarAware;
 use App\Traits\CampaignAware;
@@ -87,7 +88,8 @@ class CalendarRenderer
         protected MoonService $moonService,
         protected SeasonService $seasonService,
         protected WeatherService $weatherService,
-        protected DaysService $daysService
+        protected DaysService $daysService,
+        protected EraService $eraService
     ) {}
 
     public function prepare(): self
@@ -396,6 +398,15 @@ class CalendarRenderer
                     $this->dayData['season'] = $this->seasonService->get($monthday);
                 }
 
+                $eraStart = $this->eraService->isEraStart($this->getYear(), $this->getMonth(), $day);
+                if ($eraStart) {
+                    $this->dayData['eraStart'] = $eraStart;
+                }
+                $eraEnd = $this->eraService->isEraEnd($this->getYear(), $this->getMonth(), $day);
+                if ($eraEnd) {
+                    $this->dayData['eraEnd'] = $eraEnd;
+                }
+
                 // Add recurring events that span multiple days from the previous call
                 $this->recurringReminders();
                 $this->addMoonReminders($day);
@@ -544,6 +555,16 @@ class CalendarRenderer
                 if ($this->seasonService->has($monthday)) {
                     $this->dayData['season'] = $this->seasonService->get($monthday);
                 }
+
+                $eraStart = $this->eraService->isEraStart($this->getYear(), $monthNumber, $day);
+                if ($eraStart) {
+                    $this->dayData['eraStart'] = $eraStart;
+                }
+                $eraEnd = $this->eraService->isEraEnd($this->getYear(), $monthNumber, $day);
+                if ($eraEnd) {
+                    $this->dayData['eraEnd'] = $eraEnd;
+                }
+
                 $data[] = $this->dayData;
 
                 $totalDay++;
@@ -667,6 +688,7 @@ class CalendarRenderer
 
         $this->buildFullmoons();
         $this->buildSeasons();
+        $this->buildEras();
         $this->buildWeeks();
         $this->buildWeather();
     }
@@ -1040,6 +1062,18 @@ class CalendarRenderer
         $this->seasonService
             ->calendar($this->calendar)
             ->build();
+    }
+
+    protected function buildEras(): void
+    {
+        $this->eraService
+            ->calendar($this->calendar)
+            ->build();
+    }
+
+    public function eraService(): EraService
+    {
+        return $this->eraService;
     }
 
     /**

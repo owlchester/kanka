@@ -60,9 +60,9 @@ foreach ($elapsed as $event) {
             <div class="grow font-bold">{{ __('characters.fields.life') }}</div>
             <div class="grow text-right">
                 <a href="{{ $birth->calendar->getLink() }}?year={{ $birth->year }}&month={{ $birth->month }}" data-title="{{ $birth->calendar->name }}" data-toggle="tooltip" class="text-link">
-                    {{ $birth->readableDate() }}
+                    @if ($birth->rawReadableDate())<span data-title="{{ $birth->rawReadableDate() }}" data-toggle="tooltip">{{ $birth->readableDate() }}</span>@else{{ $birth->readableDate() }}@endif
                 </a> &#10013; <a href="{{ $death->calendar->getLink() }}?year={{ $death->year }}&month={{ $death->month }}" data-title="{{ $death->calendar->name }}" data-toggle="tooltip" class="text-link">
-                    {{ $death->readableDate() }}
+                    @if ($death->rawReadableDate())<span data-title="{{ $death->rawReadableDate() }}" data-toggle="tooltip">{{ $death->readableDate() }}</span>@else{{ $death->readableDate() }}@endif
                 </a> ({{ $birth->calcElapsed($death) }})
             </div>
         </li>
@@ -71,7 +71,7 @@ foreach ($elapsed as $event) {
             <div class="grow font-bold">{{ __('entities/events.types.birth') }}</div>
             <div class="grow text-right">
                 <a href="{{ $birth->calendar->getLink() }}?year={{ $birth->year }}&month={{ $birth->month }}" data-title="{{ $birth->calendar->name }}" data-toggle="tooltip" class="text-link">
-                {{ $birth->readableDate() }}
+                @if ($birth->rawReadableDate())<span data-title="{{ $birth->rawReadableDate() }}" data-toggle="tooltip">{{ $birth->readableDate() }}</span>@else{{ $birth->readableDate() }}@endif
                 </a> ({{ $birth->calcElapsed() }})
             </div>
         </li>
@@ -80,7 +80,7 @@ foreach ($elapsed as $event) {
             <div class="grow font-bold">{{ __('entities/events.types.death') }}</div>
             <div class="grow text-right">
                 <a href="{{ $death->calendar->getLink() }}?year={{ $death->year }}&month={{ $death->month }}" data-title="{{ $death->calendar->name }}" data-toggle="tooltip" class="text-link">
-                {{ $death->readableDate() }}
+                @if ($death->rawReadableDate())<span data-title="{{ $death->rawReadableDate() }}" data-toggle="tooltip">{{ $death->readableDate() }}</span>@else{{ $death->readableDate() }}@endif
                 </a> ({{ $death->calcElapsed() }})
             </div>
         </li>
