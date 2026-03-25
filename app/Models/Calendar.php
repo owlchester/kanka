@@ -102,7 +102,6 @@ class Calendar extends MiscModel
     /** @var CalendarEra[]|null */
     protected ?array $cachedShowEras = null;
 
-
     /**
      * Get the months decoded from the json into a usable array
      */

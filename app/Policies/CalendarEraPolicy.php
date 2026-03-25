@@ -2,7 +2,6 @@
 
 namespace App\Policies;
 
-use App\Models\Entity;
 use App\Models\CalendarEra;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
