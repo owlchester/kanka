@@ -183,6 +183,15 @@ class Reminder extends Model
     }
 
     /**
+     * Get the tooltip title for this reminder's date.
+     * Returns the raw date when an era is active, or the calendar name otherwise.
+     */
+    public function tooltipTitle(): string
+    {
+        return $this->hasEra() ? $this->readableRawDate() : $this->calendar->name;
+    }
+
+    /**
      * Length of the event in a readable format (appends "days")
      */
     public function readableLength(): string

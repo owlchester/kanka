@@ -31,6 +31,6 @@ if ($reminder->remindable instanceof \App\Models\Post && !$reminder->remindable-
         @if ($reminder->is_recurring)
             <x-icon class="fa-regular fa-arrows-rotate" title="{{ __('calendars.fields.is_recurring') }}" tooltip />
         @endif
-        <x-icon class="fa-regular fa-calendar" title="{{ $reminder->readableDate() }}{{ $reminder->hasEra() ? ' (' . $reminder->readableRawDate() . ')' : '' }}" tooltip />
+        <x-icon class="fa-regular fa-calendar" title="{{ $reminder->readableDate() }}{{ $reminder->hasEra() ? ' (' . $reminder->tooltipTitle() . ')' : '' }}" tooltip />
     </div>
 </li>
