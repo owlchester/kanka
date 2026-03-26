@@ -15,7 +15,7 @@
         <div class="block w-full" v-if="hasTitle()" v-html="entity.title">
         </div>
         <div class="my-1 w-full flex flex-wrap gap-1" v-if="entity.tags.length > 0">
-            <a :class="tagClass(tag)" v-for="tag in entity.tags"
+            <a :class="tagClass(tag)" :style="tag.style || ''" v-for="tag in entity.tags"
                 v-bind:href="tag.link"
                :data-tag-id="tag.id"
                :data-tag-slug="tag.slug"
@@ -98,14 +98,7 @@ const hasTitle = () => {
     return props.entity.title;
 }
 const tagClass = (tag) => {
-    let cls = 'inline-block rounded-xl px-3 py-1 bg-base-100 text-base-content text-xs';
-    if (tag.colour) {
-        cls += ' bg-' + tag.colour;
-        if (tag.colour === 'black') {
-            cls += ' text-white';
-        }
-    }
-    return cls;
+    return 'inline-block rounded-xl px-3 py-1 bg-base-100 text-base-content text-xs';
 }
 
 const backgroundImage = () => {

@@ -35,11 +35,11 @@ class Tag extends Layout
                 'key' => 'colour',
                 'label' => __('crud.fields.colour'),
                 'render' => function (\App\Models\Tag $tag) {
-                    if (empty($tag->colour)) {
+                    if (! $tag->hasColour()) {
                         return '';
                     }
 
-                    return '<div class="rounded-full w-6 h-6 bg-base-200 ' . $tag->colourClass() . '"></div>';
+                    return '<div class="rounded-full w-6 h-6" style="' . e($tag->colourStyle()) . '"></div>';
                 },
             ],
             'tag' => [

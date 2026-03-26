@@ -12,10 +12,13 @@ $child = $entity->child;
 
 <x-sidebar.profile>
     @includeWhen($entity->aliases->isNotEmpty(), 'entities.components.profile._aliases')
-    @if (!empty($child->colour))
+    @if ($child->hasColour())
         <div class="element profile-colour">
             <div class="title text-uppercase text-xs">{{ __('crud.fields.colour') }}</div>
-            {{ $child->colour }}
+            <div class="flex items-center gap-2">
+                <span class="inline-block rounded-full w-4 h-4" style="{{ $child->colourStyle() }}"></span>
+                {{ $child->colour }}
+            </div>
         </div>
     @endif
     @if ($child->hasIcon())

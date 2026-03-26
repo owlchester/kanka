@@ -3,5 +3,5 @@
 
     @include('cruds.fields.parent')
 
-    @include('cruds.fields.colour')
+    @include('cruds.fields.colour_picker', ['dropdownParent' => '#primary-dialog'])
 </x-grid>

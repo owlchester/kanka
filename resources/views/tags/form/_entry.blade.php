@@ -3,7 +3,7 @@
     @include('cruds.fields.type', ['base' => \App\Models\Tag::class, 'trans' => 'tags'])
 
     @include('cruds.fields.parent')
-    @include('cruds.fields.colour')
+    @include('cruds.fields.colour_picker')
 
     @php $iconHelper = __('tags.helpers.icon', [
         'fontawesome' => '<a href="' . config('fontawesome.search') . '" target="_blank">Font Awesome</a>',

@@ -173,9 +173,27 @@ class Tag extends MiscModel
     }
 
     /**
-     * Get the tag's colour class
-     *
-     * @return string colour css class
+     * Strip '#' when setting colour
+     */
+    public function setColourAttribute(?string $colour): void
+    {
+        $this->attributes['colour'] = mb_ltrim($colour ?? '', '#');
+    }
+
+    /**
+     * Prepend '#' when getting colour
+     */
+    public function getColourAttribute(): string
+    {
+        if (empty($this->attributes['colour'])) {
+            return '';
+        }
+
+        return '#' . $this->attributes['colour'];
+    }
+
+    /**
+     * Get the tag's structural colour classes
      */
     public function colourClass(): string
     {
@@ -183,22 +201,47 @@ class Tag extends MiscModel
             return 'border-0!';
         }
 
-        $mappings = config('colours.mappings');
-        $colour = $this->colour;
-        if (isset($mappings[$this->colour])) {
-            $colour = $mappings[$this->colour];
-        }
-        $text = null;
-        if (in_array($colour, ['navy', 'black'])) {
-            $text = 'text-white';
+        return 'color-palette color-tag border-0!';
+    }
+
+    /**
+     * Get inline CSS style for the tag's colour
+     */
+    public function colourStyle(): string
+    {
+        if (! $this->hasColour()) {
+            return '';
         }
 
-        return 'bg-' . $colour . ' color-palette color-tag border-0! ' . $text . ' ';
+        $hex = $this->colour;
+        $textColour = $this->isLightColour($hex) ? '#000' : '#fff';
+
+        return 'background-color: ' . e($hex) . '; color: ' . $textColour . ';';
+    }
+
+    /**
+     * Determine if a hex colour is light based on luminance
+     */
+    protected function isLightColour(string $hex): bool
+    {
+        $hex = ltrim($hex, '#');
+        if (strlen($hex) !== 6) {
+            return false;
+        }
+
+        $r = hexdec(substr($hex, 0, 2));
+        $g = hexdec(substr($hex, 2, 2));
+        $b = hexdec(substr($hex, 4, 2));
+
+        // Relative luminance formula
+        $luminance = (0.299 * $r + 0.587 * $g + 0.114 * $b) / 255;
+
+        return $luminance > 0.5;
     }
 
     public function hasColour(): bool
     {
-        return ! empty($this->colour);
+        return ! empty($this->attributes['colour']);
     }
 
     public function hasIcon(): bool

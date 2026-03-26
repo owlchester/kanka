@@ -40,6 +40,7 @@
                 <div class="flex gap-2 items-center ability-tags" v-if="ability.tags">
                     <a v-for="tag in ability.tags"
                        v-bind:class="tagClass(tag)"
+                       v-bind:style="tag.style || ''"
                        v-bind:href="tag.url"
                        data-toggle="tooltip-ajax"
                        v-bind:data-url="tag.tooltip"

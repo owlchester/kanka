@@ -71,6 +71,7 @@
                 <div class="flex items-center gap-1 flex-wrap">
                     <a v-for="tag in entity.tags" :key="tag.id" :href="tag.urls.show"
                        :class="'tag rounded-full text-xs badge cursor-pointer hover:shadow-xs ' + tag.colour"
+                       :style="tag.colour_style || ''"
                        v-html="tag.shortname" :title="tag.name" />
                 </div>
             </template>
