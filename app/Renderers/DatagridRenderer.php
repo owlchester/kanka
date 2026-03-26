@@ -506,7 +506,8 @@ class DatagridRenderer
                 /** @var Journal $model */
                 if ($model->entity->calendarDate && $model->entity->calendarDate->calendar && $model->entity->calendarDate->calendar->entity) {
                     $reminder = $model->entity->calendarDate;
-                    $content = '<a href="' . route('entities.show', [$this->campaign, $reminder->calendar->entity, 'month' => $reminder->month, 'year' => $reminder->year]) . '" class="text-link">' . $reminder->readableDate() . '</a>';
+                    $tooltip = $reminder->hasEra() ? ' data-toggle="tooltip" data-title="' . e($reminder->readableRawDate()) . '"' : '';
+                    $content = '<a href="' . route('entities.show', [$this->campaign, $reminder->calendar->entity, 'month' => $reminder->month, 'year' => $reminder->year]) . '" class="text-link"' . $tooltip . '>' . $reminder->readableDate() . '</a>';
                 }
             } else {
                 // Exception

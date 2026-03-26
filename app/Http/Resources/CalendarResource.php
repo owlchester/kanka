@@ -25,6 +25,7 @@ class CalendarResource extends EntityResource
             'weekdays' => json_decode($calendar->weekdays),
             'years' => json_decode($calendar->years),
             'seasons' => json_decode($calendar->seasons),
+            'eras' => json_decode($calendar->eras),
             'moons' => json_decode($calendar->moons),
             'start_offset' => $calendar->start_offset, // X year is a leap year
             'suffix' => $calendar->suffix,

@@ -71,6 +71,16 @@
                     {{ $day['season'] }}
                 </div>
             @endif
+            @if (!empty($day['era_boundary']['start']))
+                <div class="badge calendar-era bg-info block w-full text-xs!" data-toggle="tooltip" data-title="{{ __('calendars.parameters.eras.start') }}">
+                    {{ $day['era_boundary']['start']['name'] }}
+                </div>
+            @endif
+            @if (!empty($day['era_boundary']['end']))
+                <div class="badge calendar-era bg-warning block w-full text-xs!" data-toggle="tooltip" data-title="{{ __('calendars.parameters.eras.end') }}">
+                    {{ $day['era_boundary']['end']['name'] }}
+                </div>
+            @endif
 
             @if (!empty($day['weather']))
                 <div class="weather weather-{{ $day['weather']->weather }}" data-html="true" data-toggle="tooltip" data-title="{!! $day['weather']->tooltip() !!}">
