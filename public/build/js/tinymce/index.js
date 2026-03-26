@@ -1,17 +1,7 @@
-<<<<<<< HEAD
-// Exports the "visualchars" plugin for usage with module loaders
+// Exports the "inlite" theme for usage with module loaders
 // Usage:
 //   CommonJS:
-//     require('tinymce/plugins/visualchars')
+//     require('tinymce/themes/inlite')
 //   ES2015:
-//     import 'tinymce/plugins/visualchars'
-require('./plugin.js');
-=======
-// Exports the "modern" theme for usage with module loaders
-// Usage:
-//   CommonJS:
-//     require('tinymce/themes/modern')
-//   ES2015:
-//     import 'tinymce/themes/modern'
+//     import 'tinymce/themes/inlite'
 require('./theme.js');
->>>>>>> develop
