@@ -18,13 +18,13 @@ class Reminder extends Layout
         $columns = [
             'calendar' => [
                 'key' => 'calendar.name',
-                'label' => 'entities.calendar',
+                'label' => __('entities.calendar'),
                 'render' => Standard::ENTITYLINK,
                 'with' => 'calendar',
             ],
             'date' => [
                 'key' => 'date',
-                'label' => 'events.fields.date',
+                'label' => __('events.fields.date'),
                 'render' => function (Model $reminder) {
                     $params = '?year=' . $reminder->year . '&month=' . $reminder->month;
                     $tooltip = $reminder->hasEra() ? ' data-toggle="tooltip" data-title="' . e($reminder->readableRawDate()) . '"' : '';
@@ -34,7 +34,7 @@ class Reminder extends Layout
             ],
             'length' => [
                 'key' => 'length',
-                'label' => 'calendars.fields.length',
+                'label' => __('calendars.fields.length'),
                 'render' => function (Model $reminder) {
                     return trans_choice('calendars.fields.length_days', $reminder->length, ['count' => $reminder->length]);
                 },
