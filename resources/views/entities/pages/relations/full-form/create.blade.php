@@ -9,9 +9,8 @@
 
 
 @section('content')
-
     @include('cruds.forms._errors')
-    <x-form files :action="['relations.store', $campaign]" class="entity-form max-w-2xl" id="entity-form" unload :direct="request()->get('from') === 'web'">
+    <x-form files :action="['relations.store', $campaign]" class="entity-form " id="entity-form" unload :direct="request()->get('from') === 'web'">
         @if(request()->get('from'))
             <input type="hidden" name="from" value="{{ request()->get('from') }}" />
         @endif
@@ -35,4 +34,3 @@
 @endsection
 
 @include('editors.editor')
-

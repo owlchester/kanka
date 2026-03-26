@@ -1,11 +1,12 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => __('entities/notes.create.title', ['name' => $entity->name]),
-    'description' => '',
+    'seoTitle' => __('posts.create.title') . ' - ' . $entity->name . ' - ' . $campaign->name,
     'breadcrumbs' => [
         Breadcrumb::campaign($campaign)->entity($entity)->list(),
         Breadcrumb::show(),
-        __('entities/notes.actions.add')
+        __('entities.articles'),
+        __('posts.create.title')
     ],
+    'mainTitle' => false,
     'centered' => true,
     'entity' => null,
 ])

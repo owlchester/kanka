@@ -2,6 +2,8 @@
 /**
  * @var \App\Services\PermissionService $permissionService
  * @var \App\Models\CampaignUser $member
+ * @var \App\Models\EntityType? $entityType
+ * @var \App\Models\Entity? $entityType
  * @var \App\Models\CampaignRole $role
  * @var \App\Models\Campaign $campaign
  */
@@ -145,7 +147,7 @@ $moduleName = isset($entityType) ? $entityType->name() : $entity->entityType->na
         @endforeach
     </div>
 
-    @if (isset($skipUsers) && $skipUsers && $campaign->nonAdmins()->count() > config('limits.campaigns.members'))
+    @if (isset($skipUsers) && $skipUsers && $campaign->nonAdminMembers->count() > config('limits.campaigns.members'))
         <x-helper>
             <p>{{ __('crud.permissions.too_many_members', ['number' => config('limits.campaigns.members')]) }}</p>
         </x-helper>
@@ -178,7 +180,7 @@ $moduleName = isset($entityType) ? $entityType->name() : $entity->entityType->na
                     </div>
                 @endif
             </div>
-            @foreach ($campaign->nonAdmins() as $member)
+            @foreach ($campaign->nonAdminMembers as $member)
                 @php
                     $permissionService->reset()->user($member->user);
                 @endphp

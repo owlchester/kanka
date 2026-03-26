@@ -220,4 +220,18 @@ class RelationController extends CrudController
                 'entity' => $relation->owner->name,
             ]));
     }
+
+    public function destroy(Campaign $campaign, Relation $relation)
+    {
+        $this->authorize('update', $relation->owner);
+
+        $relation->delete();
+
+        return redirect()
+            ->route('relations.index', $campaign)
+            ->with('success', __('entities/relations.destroy.success', [
+                'target' => $relation->target->name,
+                'entity' => $relation->owner->name,
+            ]));
+    }
 }

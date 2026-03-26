@@ -19,7 +19,7 @@ class EntityRelationsServiceFactory
 
     public function for(Entity $entity): ?RelationsServiceInterface
     {
-        return match ($entity->entityType?->code) {
+        return match ($entity->entityType->code) {
             'character' => $this->characterRelationsService,
             'creature' => $this->creatureRelationsService,
             'event' => $this->eventRelationsService,

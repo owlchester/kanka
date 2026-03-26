@@ -136,15 +136,15 @@ class CrudController extends Controller
                 ->with(
                     'error_raw',
                     __('campaigns/modules.errors.disabled', [
-                        'name' => $this->getEntityType()->plural(), // @phpstan-ignore-line
+                        'name' => $this->module,
                         'fix' => '<a href="' .
                             route('campaign.modules', [
                                 $this->campaign,
-                                '#' . $this->getEntityType()->code,
+                                '#' . $this->module,
                             ]) .
                             '" class="text-link">' .
                             __('crud.fix-this-issue') .
-                            '</a>', // @phpstan-ignore-line
+                            '</a>',
                     ]),
                 );
         }
@@ -200,29 +200,10 @@ class CrudController extends Controller
             ->distinct();
 
         $parent = null;
-        if (
-            request()->has('parent_id') &&
-            method_exists($model, 'getParentKeyName')
-        ) {
-            $parentKey = $model->getParentKeyName();
-            $base->where([
-                $model->getTable() . '.' . $parentKey => request()->get(
-                    'parent_id',
-                ),
-            ]);
-
-            $parent = $model->where('id', request()->get('parent_id'))->first();
-        } elseif ($nested && $this->filterService->activeFiltersCount() === 0) {
-            // @phpstan-ignore-next-line
-            $base->whereNull(
-                $model->getTable() . '.' . $model->getParentKeyName(),
-            );
-        }
 
         // Do this to avoid an extra sql query when no filters are selected
         if ($this->filterService->hasFilters()) {
             $unfilteredCount = $base->count();
-            // @phpstan-ignore-next-line
             $base = $base->filter($this->filterService->filters());
 
             $models = $base->paginate();
@@ -779,31 +760,7 @@ class CrudController extends Controller
      */
     public function crudDestroy(Model|MiscModel $model)
     {
-        /** @var MiscModel $model */
-        $this->authorize(
-            'delete',
-            $model instanceof MiscModel ? $model->entity : $model,
-        );
-        if (request()->ajax()) {
-            return response()->json(['success' => true]);
-        }
-
-        $model->delete();
-
-        return redirect()
-            ->route($this->route . '.index', $this->campaign)
-            ->with(
-                'success_raw',
-                __('general.success.deleted-cancel', [
-                    'name' => $model->name,
-                    // @phpstan-ignore-next-line
-                    'cancel' => '<a href="' .
-                        route('recovery', $model->campaign) .
-                        '" class="text-link">' .
-                        __('crud.cancel') .
-                        '</a>',
-                ]),
-            );
+        return abort(404);
     }
 
     /**

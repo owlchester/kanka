@@ -1,8 +1,8 @@
 <?php /** @var \App\Models\Relation $relation */?>
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __($langKey . '.update.title', [
-        'source' => '<a href="' . $relation->owner->url() . '" class="text-link">' . $relation->owner->name . '</a>',
-        'target' => '<a href="' . $relation->target->url() . '" class="text-link">' . $relation->target->name . '</a>',
+        'source' => $relation->owner->name,
+        'target' => $relation->target->name,
         ]),
     'breadcrumbs' => [
         ['url' => Breadcrumb::campaign($campaign)->index($name), 'label' => __('entities.relations')],
@@ -21,7 +21,12 @@
                         <x-tab.tab target="entry" :default="true" :title="__('crud.tabs.overview')"></x-tab.tab>
                     </ul>
                 </div>
-                @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form'])
+                <div class="flex gap-2 items-center">
+                    @if(!empty($model) && $model->exists)
+                        <x-button.delete-confirm target="#delete-relation-form" />
+                    @endif
+                    @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form'])
+                </div>
             </div>
             <div class="tab-content">
                 <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="form-entry">
@@ -30,8 +35,11 @@
             </div>
         </div>
     </x-form>
+
+    <form id="delete-relation-form" method="POST" action="{{ route('relations.destroy', [$campaign, $relation]) }}" class="hidden">
+        @csrf
+        @method('DELETE')
+    </form>
 @endsection
 
 @include('editors.editor')
-
-

@@ -22,6 +22,8 @@ class GalleryController extends Controller
 
     public function index(Campaign $campaign)
     {
+        $this->authorize('access', $campaign);
+
         $start = request()->get('page', 0);
         $name = request()->get('name');
         $perPage = 20;

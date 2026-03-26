@@ -171,7 +171,7 @@ class Character extends MiscModel
             /** @var ?Organisation $model */
             $model = Organisation::find($value);
             if (! empty($model)) {
-                $ids = [...$model->descendants->pluck('id')->toArray(), $model->id];
+                $ids = [...$model->entity->descendants->pluck('id')->toArray(), $model->id];
             }
         }
         $query
