@@ -1,11 +1,13 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => __('entities/notes.edit.title', ['name' => $entity->name]),
+    'title' => __('posts.edit.title') . ' - ' . $model->name . ' - ' . $entity->name . ' - ' . $campaign->name,
     'description' => '',
     'breadcrumbs' => [
         Breadcrumb::campaign($campaign)->entity($entity)->list(),
         Breadcrumb::show(),
+        __('entities.articles'),
         __('crud.update'),
     ],
+    'mainTitle' => false,
     'centered' => true,
     'entity' => null,
 ])

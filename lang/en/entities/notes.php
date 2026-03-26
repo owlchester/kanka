@@ -17,14 +17,12 @@ return [
     ],
     'create'        => [
         'success'   => 'Article \':name\' added to :entity.',
-        'title'     => 'New article for :name',
     ],
     'destroy'       => [
         'success'   => 'Article :name removed from :entity.',
     ],
     'edit'          => [
         'success'   => 'Article :name for :entity updated.',
-        'title'     => 'Update article for :name',
     ],
     'fields'        => [
         'creator'   => 'Creator',
