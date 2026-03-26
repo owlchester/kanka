@@ -191,11 +191,7 @@ class CalendarSanitizer extends MiscSanitizer
         $eraCount = 0;
         $eraNames = (array) $this->request->post('era_name', []);
         $eraStartYears = (array) $this->request->post('era_start_year', []);
-        $eraStartMonths = (array) $this->request->post('era_start_month', []);
-        $eraStartDays = (array) $this->request->post('era_start_day', []);
         $eraEndYears = (array) $this->request->post('era_end_year', []);
-        $eraEndMonths = (array) $this->request->post('era_end_month', []);
-        $eraEndDays = (array) $this->request->post('era_end_day', []);
         $eraFormatDates = (array) $this->request->post('era_format_dates', []);
 
         foreach ($eraNames as $name) {
@@ -206,35 +202,19 @@ class CalendarSanitizer extends MiscSanitizer
             }
 
             $startYear = (int) ($eraStartYears[$eraCount] ?? 0);
-            $startMonth = (int) ($eraStartMonths[$eraCount] ?? 1);
-            $startDay = (int) ($eraStartDays[$eraCount] ?? 1);
 
-            $endYear = ! empty($eraEndYears[$eraCount]) ? (int) $eraEndYears[$eraCount] : null;
-            $endMonth = ! empty($eraEndMonths[$eraCount]) ? (int) $eraEndMonths[$eraCount] : null;
-            $endDay = ! empty($eraEndDays[$eraCount]) ? (int) $eraEndDays[$eraCount] : null;
+            $endYear = isset($eraEndYears[$eraCount]) && $eraEndYears[$eraCount] !== '' ? (int) $eraEndYears[$eraCount] : null;
 
-            // Clear end date if it's before the start date
-            if ($endYear !== null) {
-                $eMonth = $endMonth ?? 1;
-                $eDay = $endDay ?? 1;
-                if ($endYear < $startYear
-                    || ($endYear === $startYear && $eMonth < $startMonth)
-                    || ($endYear === $startYear && $eMonth === $startMonth && $eDay < $startDay)) {
-                    $endYear = null;
-                    $endMonth = null;
-                    $endDay = null;
-                }
+            // Clear end year if it's before the start year
+            if ($endYear !== null && $endYear < $startYear) {
+                $endYear = null;
             }
 
             $eras[] = [
                 'name' => $this->purify($name),
                 'start_year' => $startYear,
-                'start_month' => $startMonth,
-                'start_day' => $startDay,
                 'end_year' => $endYear,
-                'end_month' => $endMonth,
-                'end_day' => $endDay,
-                'format_dates' => ! empty($eraFormatDates[$eraCount]),
+                'format_dates' => ($eraFormatDates[$eraCount] ?? '0') === '1',
             ];
             $eraCount++;
         }

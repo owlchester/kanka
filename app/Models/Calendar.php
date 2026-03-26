@@ -193,25 +193,13 @@ class Calendar extends MiscModel
             }
 
             $startYear = (int) $era['start_year'];
-            $startMonth = (int) $era['start_month'];
-            $startDay = (int) $era['start_day'];
-
-            // Check if date is before the era start
-            if ($year < $startYear
-                || ($year === $startYear && $month < $startMonth)
-                || ($year === $startYear && $month === $startMonth && $day < $startDay)) {
+            if ($year < $startYear) {
                 continue;
             }
 
-            // Check if era has an end date and if the date is after it
-            if (! empty($era['end_year'])) {
+            if (isset($era['end_year']) && $era['end_year'] !== '' && $era['end_year'] !== null) {
                 $endYear = (int) $era['end_year'];
-                $endMonth = (int) ($era['end_month'] ?? 1);
-                $endDay = (int) ($era['end_day'] ?? 1);
-
-                if ($year > $endYear
-                    || ($year === $endYear && $month > $endMonth)
-                    || ($year === $endYear && $month === $endMonth && $day > $endDay)) {
+                if ($year > $endYear) {
                     continue;
                 }
             }
@@ -297,21 +285,21 @@ class Calendar extends MiscModel
      */
     public function getEraBoundary(int|string $year, int $month, int $day): ?array
     {
+        if ($month !== 1 || $day !== 1) {
+            return null;
+        }
+
         $year = (int) $year;
         $result = null;
 
         foreach ($this->eras() as $era) {
-            if ((int) $era['start_year'] === $year
-                && (int) $era['start_month'] === $month
-                && (int) $era['start_day'] === $day) {
+            if ((int) $era['start_year'] === $year) {
                 $result ??= [];
                 $result['start'] = $era;
             }
 
-            if (! empty($era['end_year'])
-                && (int) $era['end_year'] === $year
-                && (int) ($era['end_month'] ?? 1) === $month
-                && (int) ($era['end_day'] ?? 1) === $day) {
+            if (isset($era['end_year']) && $era['end_year'] !== '' && $era['end_year'] !== null
+                && (int) $era['end_year'] === $year) {
                 $result ??= [];
                 $result['end'] = $era;
             }

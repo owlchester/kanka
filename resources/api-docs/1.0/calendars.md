@@ -92,21 +92,13 @@ The list of returned entities can be filtered. The available filters are [availa
               {
                   "name": "The Age of Fire",
                   "start_year": 1,
-                  "start_month": 1,
-                  "start_day": 1,
                   "end_year": 299,
-                  "end_month": 12,
-                  "end_day": 30,
                   "format_dates": true
               },
               {
                   "name": "The Age of Ice",
                   "start_year": 300,
-                  "start_month": 1,
-                  "start_day": 1,
                   "end_year": null,
-                  "end_month": null,
-                  "end_day": null,
                   "format_dates": false
               }
             ],
@@ -303,12 +295,8 @@ To create a calendar, use the following endpoint.
 | `season_month` | `array` | Array of seasons month start |
 | `season_day` | `array` | Array of seasons day start |
 | `era_name` | `array` | Array of era names |
-| `era_start_year` | `array` | Array of era start years |
-| `era_start_month` | `array` | Array of era start months |
-| `era_start_day` | `array` | Array of era start days |
-| `era_end_year` | `array` | Array of era end years (nullable for open-ended eras) |
-| `era_end_month` | `array` | Array of era end months (nullable for open-ended eras) |
-| `era_end_day` | `array` | Array of era end days (nullable for open-ended eras) |
+| `era_start_year` | `array` | Array of era start years (supports negative values and zero) |
+| `era_end_year` | `array` | Array of era end years (nullable for open-ended eras, supports negative values and zero) |
 | `era_format_dates` | `array` | Array of booleans to toggle era date formatting |
 | `format` | `string` | The rendering format for the calendar dates |
 | `has_leap_year` | `boolean` | Whether the calendar has leap years |
