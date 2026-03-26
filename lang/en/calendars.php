@@ -179,8 +179,6 @@ return [
             'end'           => 'Era ends',
             'end_year'      => 'End Year',
             'format_dates'  => 'Format Dates',
-            'format_no'     => 'No',
-            'format_yes'    => 'Yes',
             'name'          => 'Era Name',
             'start'         => 'Era begins',
             'start_year'    => 'Start Year',

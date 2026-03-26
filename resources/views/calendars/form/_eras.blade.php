@@ -11,7 +11,7 @@
     $eraStartYears = old('era_start_year');
     $eraEndYears = old('era_end_year');
     $eraFormatDates = old('era_format_dates');
-    $formatDateOptions = ['0' => __('calendars.parameters.eras.format_no'), '1' => __('calendars.parameters.eras.format_yes')];
+    $formatDateOptions = ['0' => __('general.no'), '1' => __('general.yes')];
     if (!empty($eraNames) && is_array($eraNames)) {
         $cpt = 0;
         foreach ($eraNames as $name) {
