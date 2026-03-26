@@ -8,6 +8,7 @@ use App\Models\CampaignRole;
 use App\Models\Entity;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
+use App\Traits\EntityTypeAware;
 use App\Traits\RoleAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Arr;
@@ -19,6 +20,7 @@ class PermissionService
 {
     use CampaignAware;
     use EntityAware;
+    use EntityTypeAware;
     use RoleAware;
     use UserAware;
 
@@ -33,16 +35,6 @@ class PermissionService
     private array $basePermissions;
 
     protected array $cachedPermissions;
-
-    /**
-     * Set the entity type
-     */
-    public function type(int $type): self
-    {
-        $this->type = $type;
-
-        return $this;
-    }
 
     public function action(Permission $action): self
     {
@@ -188,7 +180,7 @@ class PermissionService
 
     public function inherited(): bool
     {
-        if (empty($this->type)) {
+        if (!isset($this->entityType)) {
             return false;
         }
 
@@ -202,7 +194,8 @@ class PermissionService
             foreach ($this->campaign->roles()->with(['users', 'permissions'])->get() as $campaignRole) {
                 $campaignPermissions = $campaignRole->permissions
                     ->whereNull('entity_id')
-                    ->whereNull('user_id');
+                    ->whereNull('user_id')
+                    ->where('entity_type_id', $this->entityType->id);
                 $users = $campaignRole->users->pluck('user_id');
                 /** @var CampaignPermission $campaignPermission */
                 foreach ($campaignPermissions as $campaignPermission) {
@@ -218,7 +211,7 @@ class PermissionService
             }
         }
 
-        $key = $this->type . '_' . $this->action;
+        $key = $this->entityType->id . '_' . $this->action;
         if (isset($this->role)) {
             return Arr::has($this->basePermissions, "roles.{$this->role->id}.{$key}");
         }
@@ -228,14 +221,14 @@ class PermissionService
 
     public function inheritedRoleName(): string
     {
-        $key = $this->type . '_' . $this->action;
+        $key = $this->entityType->id . '_' . $this->action;
 
         return $this->basePermissions['users'][$this->user->id][$key]['role'];
     }
 
     public function inheritedRoleAccess(): bool
     {
-        $key = $this->type . '_' . $this->action;
+        $key = $this->entityType->id . '_' . $this->action;
 
         return $this->basePermissions['users'][$this->user->id][$key]['access'];
     }

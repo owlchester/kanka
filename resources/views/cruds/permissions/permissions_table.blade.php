@@ -2,6 +2,8 @@
 /**
  * @var \App\Services\PermissionService $permissionService
  * @var \App\Models\CampaignUser $member
+ * @var \App\Models\EntityType? $entityType
+ * @var \App\Models\Entity? $entityType
  * @var \App\Models\CampaignRole $role
  * @var \App\Models\Campaign $campaign
  */

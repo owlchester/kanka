@@ -12,9 +12,9 @@ if (isset($source)) {
 }
 if (isset($entity)) {
     $permissionService->entityPermissions($entity);
-    $permissionService->type($entity->type_id);
+    $permissionService->entityType($entity->entityType);
 } else {
-    $permissionService->type($entityType->id);
+    $permissionService->entityType($entityType);
 }
 $actions = [
     'allow' => __('crud.permissions.actions.bulk_entity.allow'),
