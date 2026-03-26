@@ -37,21 +37,19 @@
     } elseif (isset($source)) {
         $eras = $source->child->eras();
     }?>
+    <div class="flex gap-2 text-sm font-bold">
+        <div class="w-8"></div>
+        <div class="grow">{{ __('calendars.parameters.eras.name') }}</div>
+        <div class="w-20">{{ __('calendars.parameters.eras.start_year') }}</div>
+        <div class="w-16">{{ __('calendars.parameters.eras.start_month') }}</div>
+        <div class="w-16">{{ __('calendars.parameters.eras.start_day') }}</div>
+        <div class="w-20">{{ __('calendars.parameters.eras.end_year') }}</div>
+        <div class="w-16">{{ __('calendars.parameters.eras.end_month') }}</div>
+        <div class="w-16">{{ __('calendars.parameters.eras.end_day') }}</div>
+        <div class="w-24">{{ __('calendars.parameters.eras.format_dates') }}</div>
+        <div class="w-10"></div>
+    </div>
     <div class="calendar-eras sortable-elements flex flex-col gap-2" data-handle=".sortable-handler">
-        <x-grid type="1/1">
-            <div class="flex gap-2 text-sm font-bold">
-                <div class="w-8"></div>
-                <div class="grow">{{ __('calendars.parameters.eras.name') }}</div>
-                <div class="w-20">{{ __('calendars.parameters.eras.start_year') }}</div>
-                <div class="w-16">{{ __('calendars.parameters.eras.start_month') }}</div>
-                <div class="w-16">{{ __('calendars.parameters.eras.start_day') }}</div>
-                <div class="w-20">{{ __('calendars.parameters.eras.end_year') }}</div>
-                <div class="w-16">{{ __('calendars.parameters.eras.end_month') }}</div>
-                <div class="w-16">{{ __('calendars.parameters.eras.end_day') }}</div>
-                <div class="w-24">{{ __('calendars.parameters.eras.format_dates') }}</div>
-                <div class="w-10"></div>
-            </div>
-        </x-grid>
         @foreach ($eras as $era)
             <div class="parent-delete-row">
                 <div class="flex gap-2 items-center">
