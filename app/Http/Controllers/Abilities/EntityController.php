@@ -45,7 +45,7 @@ class EntityController extends Controller
 
     public function create(Campaign $campaign, Ability $ability)
     {
-        $this->viewupdate', $ability->entity);
+        $this->authorize('update', $ability->entity);
         $formOptions = ['abilities.entity-add.save', $campaign, 'ability' => $ability];
         if (request()->has('from-children')) {
             $formOptions['from-children'] = true;
