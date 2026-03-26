@@ -447,7 +447,7 @@ class SetupService
 
     protected function loadModules(): void
     {
-        $modules = $this->campaign->getEntityTypes()->where('is_default', 1);
+        $modules = $this->campaign->getEntityTypes();
         /** @var EntityType $module */
         foreach ($modules as $module) {
             $this->modules[$module->code] = $module;
