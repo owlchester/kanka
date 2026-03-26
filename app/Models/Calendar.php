@@ -299,7 +299,7 @@ class Calendar extends MiscModel
             }
 
             if (isset($era['end_year']) && $era['end_year'] !== '' && $era['end_year'] !== null
-                && (int) $era['end_year'] === $year) {
+                && (int) $era['end_year'] + 1 === $year) {
                 $result ??= [];
                 $result['end'] = $era;
             }
@@ -361,6 +361,14 @@ class Calendar extends MiscModel
         $years = $this->years();
 
         try {
+            if ($this->format) {
+                return Str::replace(
+                    ['d', 's', 'y', 'm', 'M'],
+                    [$day, $this->suffix, $years[$year] ?? $year, $month, isset($months[$month - 1]) ? $months[$month - 1]['name'] : $month],
+                    $this->format
+                );
+            }
+
             return $day . ' ' .
                 (isset($months[$month - 1]) ? $months[$month - 1]['name'] : $month) . ', ' .
                 ($years[$year] ?? $year) . ' ' .

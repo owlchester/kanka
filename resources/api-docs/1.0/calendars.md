@@ -216,21 +216,13 @@ To get the details of a single calendar, use the following endpoint.
           {
               "name": "The Age of Fire",
               "start_year": 1,
-              "start_month": 1,
-              "start_day": 1,
               "end_year": 299,
-              "end_month": 12,
-              "end_day": 30,
               "format_dates": true
           },
           {
               "name": "The Age of Ice",
               "start_year": 300,
-              "start_month": 1,
-              "start_day": 1,
               "end_year": null,
-              "end_month": null,
-              "end_day": null,
               "format_dates": false
           }
         ],
