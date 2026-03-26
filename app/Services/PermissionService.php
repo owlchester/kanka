@@ -180,7 +180,7 @@ class PermissionService
 
     public function inherited(): bool
     {
-        if (!isset($this->entityType)) {
+        if (! isset($this->entityType)) {
             return false;
         }
 
@@ -191,11 +191,8 @@ class PermissionService
             ];
 
             /** @var CampaignRole $campaignRole */
-            foreach ($this->campaign->roles()->with(['users', 'permissions'])->get() as $campaignRole) {
-                $campaignPermissions = $campaignRole->permissions
-                    ->whereNull('entity_id')
-                    ->whereNull('user_id')
-                    ->where('entity_type_id', $this->entityType->id);
+            foreach ($this->campaign->roles()->with(['users', 'permissions' => fn ($q) => $q->whereNull('entity_id')->whereNull('user_id')->where('entity_type_id', $this->entityType->id)])->get() as $campaignRole) {
+                $campaignPermissions = $campaignRole->permissions;
                 $users = $campaignRole->users->pluck('user_id');
                 /** @var CampaignPermission $campaignPermission */
                 foreach ($campaignPermissions as $campaignPermission) {
