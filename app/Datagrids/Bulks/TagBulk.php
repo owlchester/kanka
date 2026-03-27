@@ -18,6 +18,7 @@ class TagBulk extends Bulk
     ];
 
     protected array $booleans = [
+        'colour',
         'is_auto_applied',
         'is_hidden',
     ];
