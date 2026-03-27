@@ -4,7 +4,6 @@ namespace App\Observers;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-use Stevebauman\Purify\Facades\Purify;
 
 class SanitizedObserver
 {
@@ -35,6 +34,6 @@ class SanitizedObserver
 
     protected function purify(?string $text): ?string
     {
-        return mb_trim(Purify::clean(strip_tags($text)) ?? '');
+        return mb_trim(strip_tags($text ?? ''));
     }
 }

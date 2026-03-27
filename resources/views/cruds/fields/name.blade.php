@@ -13,7 +13,7 @@ $fieldID = uniqid('name_');
            data-id="{{ $entity->id ?? null }}"
            @endif
            @if ($required) required="required" @endif
-    value="{!! htmlspecialchars(old('name', str_replace('&amp;', '&', $model->name ?? ''))) !!}" />
+    value="{{ old('name', html_entity_decode($model->name ?? '', ENT_QUOTES | ENT_HTML5, 'UTF-8')) }}" />
 
     <div class="text-warning-content duplicate-warning flex flex-col gap-1 hidden">
         <span>{{ __('entities.creator.duplicate') }}</span>
