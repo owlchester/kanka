@@ -660,8 +660,6 @@ class CrudController extends Controller
 
             // Bookmarks have no entity attached to them.
             if ($model->entity) {
-                $model->entity->name = $model->name;
-                $model->entity->is_private = $model->is_private;
                 $this->entitySaveService->save($model->entity, $data);
 
                 if (auth()->user()->can('attributes', $model->entity)) {

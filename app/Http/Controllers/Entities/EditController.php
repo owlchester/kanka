@@ -100,11 +100,8 @@ class EditController extends Controller
                 // Fire an event for the Entity Observer
                 $this->relationsFactory->for($entity)?->save($entity->child, $data);
 
-                $entity->name = $entity->child->name;
-                $entity->is_private = $entity->child->is_private;
-
                 // Sync parent_id from the request for all entity types
-                $entity->parent_id = $request->has('parent_id') ? $request->get('parent_id') : null;
+                //$entity->parent_id = $request->has('parent_id') ? $request->get('parent_id') : null;
                 $this->entitySaveService->save($entity, $data);
 
                 // If the child was changed but nothing changed on the entity, we still want to trigger an update
