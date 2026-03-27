@@ -211,7 +211,7 @@ class EntityResource extends JsonResource
 
         $merged = [
             'id' => $misc->id,
-            'name' => $misc->name,
+            'name' => $misc->entity->name,
             'entry' => $misc->entity->hasEntry() ? $misc->entity->entry : null,
             'entry_parsed' => $misc->entity->hasEntry()
                 ? $misc->entity->parsedEntry()
@@ -237,7 +237,7 @@ class EntityResource extends JsonResource
                 : null,
             'has_custom_header' => $misc->entity->hasHeaderImage(),
 
-            'is_private' => (bool) $misc->is_private,
+            'is_private' => (bool) $misc->entity->is_private,
             'is_template' => (bool) $misc->entity->isTemplate(),
 
             'is_attributes_private' => (bool) $misc->entity->is_attributes_private,
@@ -252,9 +252,9 @@ class EntityResource extends JsonResource
             //            ],
             'tags' => $misc->entity->tags()->pluck('tags.id')->toArray(),
 
-            'created_at' => $misc->created_at,
+            'created_at' => $misc->entity->created_at,
             'created_by' => $misc->entity->created_by,
-            'updated_at' => $misc->updated_at,
+            'updated_at' => $misc->entity->updated_at,
             'updated_by' => $misc->entity->updated_by,
 
             'urls' => [
