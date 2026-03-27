@@ -107,7 +107,7 @@
         <menu class="flex flex-wrap gap-3 ps-0">
             <span role="button" class="flex-none btn2 btn-sm flex gap-2 items-center {{ $filterService->activeFiltersCount() === 0 ? 'btn-disabled' : null }} "
                @if ($filterService->activeFiltersCount() > 0) data-clipboard="{{ $filterService->clipboardFilters() }}" data-toast="{{ __('filters.alerts.copy') }}" onclick="return false"  @endif data-toggle="tooltip" data-title="{{ __('crud.filters.copy_helper') }}">
-                <x-icon class="fa-solid fa-clipboard" />
+                <x-icon class="fa-regular fa-clipboard" />
                 <span class="max-sm:hidden">{{ __('crud.filters.copy_to_clipboard') }}</span>
                 <span class="visible md:hidden">{{ __('crud.filters.mobile.copy') }}</span>
             </span>
@@ -125,13 +125,13 @@
         </menu>
         <menu class="flex flex-wrap gap-3 ps-0">
             <button type="submit" class="btn2 btn-primary btn-sm">
-                <x-icon class="fa-solid fa-filter" />
+                <x-icon class="fa-regular fa-filter" />
                 {{ __('crud.filter') }}
             </button>
         </menu>
     </footer>
 @endif
-    @if (isset($entityType) && $entityType->isStandard())
+    @if (isset($entityType))
 <input type="hidden" name="m" value="{{ $mode }}" />
     @endif
 </x-form>
