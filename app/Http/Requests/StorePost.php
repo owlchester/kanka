@@ -37,6 +37,9 @@ class StorePost extends FormRequest
             'layout_id' => 'nullable|integer|exists:post_layouts,id',
         ];
 
+        $rules['settings.folder_id'] = 'required_if:layout_id,13|nullable|exists:images,id';
+        $rules['settings.show_name'] = 'nullable|boolean';
+
         if (request()->has('calendar_id') && request()->post('calendar_id') !== null && ! request()->has('calendar_skip')) {
             $rules['calendar_day'] = 'required_with:calendar_id|min:1';
             $rules['calendar_year'] = 'required_with:calendar_id';

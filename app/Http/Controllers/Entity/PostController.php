@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePost;
 use App\Models\Campaign;
 use App\Models\Entity;
+use App\Models\Image;
 use App\Models\Post;
 use App\Models\PostLayout;
 use App\Services\MultiEditingService;
@@ -49,7 +50,7 @@ class PostController extends Controller
 
         foreach ($layouts as $layout) {
             $layoutOptions[$layout->id] = $layout->name();
-            if (! $campaign->superboosted()) {
+            if (! $campaign->premium()) {
                 $disabledLayoutOptions[$layout->id] = true;
             }
         }
@@ -57,6 +58,14 @@ class PostController extends Controller
         $collator = new Collator(app()->getLocale());
         $collator->asort($layoutOptions);
         $layoutOptions = $layoutDefault + $layoutOptions;
+
+        $galleryLayoutId = null;
+        foreach ($layouts as $layout) {
+            if ($layout->code === 'gallery') {
+                $galleryLayoutId = $layout->id;
+                break;
+            }
+        }
 
         return view('entities.pages.posts.create', compact(
             'campaign',
@@ -67,6 +76,7 @@ class PostController extends Controller
             'parentRoute',
             'templates',
             'template',
+            'galleryLayoutId',
         ));
     }
 
@@ -92,7 +102,7 @@ class PostController extends Controller
             return response()->json(['success' => true]);
         }
 
-        $data = $campaign->superboosted() ? $request->all() : $request->except(['layout_id']);
+        $data = $campaign->premium() ? $request->all() : $request->except(['layout_id']);
         $data['entity_id'] = $entity->id;
         $post = Post::create($data);
 
@@ -136,13 +146,22 @@ class PostController extends Controller
         $parentRoute = $entity->entityType->pluralCode();
         $from = request()->get('from');
 
+        $galleryLayoutId = null;
+        $galleryFolder = null;
+        if ($model->layout_id && $model->layout?->code === 'gallery') {
+            $galleryLayoutId = $model->layout_id;
+            $galleryFolder = Image::find($model->settings['folder_id'] ?? null);
+        }
+
         return view('entities.pages.posts.edit', compact(
             'campaign',
             'entity',
             'model',
             'parentRoute',
             'from',
-            'editingUsers'
+            'editingUsers',
+            'galleryLayoutId',
+            'galleryFolder',
         ));
     }
 

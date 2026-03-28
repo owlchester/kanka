@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Search;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Image;
+use Illuminate\Http\JsonResponse;
 
 class ImageController extends Controller
 {
@@ -32,6 +33,30 @@ class ImageController extends Controller
             ];
 
             $formatted[] = $format;
+        }
+
+        return response()->json($formatted);
+    }
+
+    public function folders(Campaign $campaign): JsonResponse
+    {
+        $this->authorize('gallery', $campaign);
+
+        /** @var Image[] $folders */
+        $folders = Image::where('campaign_id', $campaign->id)
+            ->where('is_folder', true)
+            ->where('name', 'like', '%' . request()->get('q') . '%')
+            ->orderBy('name', 'asc')
+            ->limit(20)
+            ->get();
+
+        $formatted = [];
+
+        foreach ($folders as $folder) {
+            $formatted[] = [
+                'id' => $folder->id,
+                'text' => $folder->name,
+            ];
         }
 
         return response()->json($formatted);

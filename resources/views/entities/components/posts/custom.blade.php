@@ -69,5 +69,7 @@ $entityTags = $post->visibleTags();
         @include('locations.panels.quests', ['init' => true])
     @elseif ($post->layout?->code == 'reminders')
         @include('entities.pages.reminders._post')
+    @elseif ($post->layout?->code == 'gallery')
+        <livewire:posts.gallery-carousel :post="$post" :campaign="$campaign" />
     @endif
 </article>

@@ -47,6 +47,26 @@ $bragiName = $entity->isCharacter() ? $entity->name : null;
                     </x-helper>
                 @endif
             </x-forms.field>
+
+            @if (!empty($galleryLayoutId))
+                <div x-show="layout == '{{ $galleryLayoutId }}'" x-cloak>
+                    <x-forms.foreign
+                        :campaign="$campaign"
+                        name="settings[folder_id]"
+                        :label="__('dashboards/widgets/gallery.fields.folder')"
+                        :placeholder="__('crud.select')"
+                        :route="route('folders.find', [$campaign])"
+                        :allowClear="true"
+                    />
+                </div>
+
+                <x-forms.field field="gallery-show-name" :label="__('dashboards/widgets/gallery.fields.show_name')" x-show="layout == '{{ $galleryLayoutId }}'" x-cloak>
+                    <x-checkbox :text="__('dashboards/widgets/gallery.helpers.show_name')">
+                        <input type="checkbox" name="settings[show_name]" value="1"
+                            @if (old('settings.show_name', $model->settings['show_name'] ?? false)) checked="checked" @endif />
+                    </x-checkbox>
+                </x-forms.field>
+            @endif
         @endif
 
         @if (isset($layoutHelper))
@@ -57,6 +77,25 @@ $bragiName = $entity->isCharacter() ? $entity->name : null;
             <x-forms.field field="layout" label="{{ __('posts.fields.layout') }}" :helper="$helper">
 
             </x-forms.field>
+
+            @if (!empty($galleryLayoutId) && ($model->layout_id ?? null) == $galleryLayoutId)
+                <x-forms.foreign
+                    :campaign="$campaign"
+                    name="settings[folder_id]"
+                    :label="__('dashboards/widgets/gallery.fields.folder')"
+                    :placeholder="__('crud.select')"
+                    :route="route('folders.find', [$campaign])"
+                    :allowClear="true"
+                    :selected="$galleryFolder"
+                />
+
+                <x-forms.field field="gallery-show-name" :label="__('dashboards/widgets/gallery.fields.show_name')">
+                    <x-checkbox :text="__('dashboards/widgets/gallery.helpers.show_name')">
+                        <input type="checkbox" name="settings[show_name]" value="1"
+                            @if (old('settings.show_name', $model->settings['show_name'] ?? false)) checked="checked" @endif />
+                    </x-checkbox>
+                </x-forms.field>
+            @endif
         @endif
 
         <x-forms.field field="entry" id="field-entry" :hidden="isset($layoutHelper)" x-show="!layout" :label="__('fields.description.label')">
