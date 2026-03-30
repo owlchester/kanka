@@ -4,7 +4,7 @@
  * @var \App\Models\CampaignRoleUser[]|\Illuminate\Pagination\LengthAwarePaginator $members
  */
 ?>
-<h2 class="text-xl">
+<h2 class="text-xl font-light">
     {{ __('campaigns.roles.members') }} ({{ $members->count() }})
 </h2>
 

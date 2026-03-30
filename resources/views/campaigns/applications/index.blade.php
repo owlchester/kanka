@@ -78,7 +78,7 @@
         @includeWhen(!$applications->isEmpty(), 'campaigns.applications._list')
         @if($applications->isEmpty())
             <div class="flex flex-col gap-2 justify-center items-center">
-                <div class="text-xl">
+                <div class="text-xl font-light">
                     {{ __('campaigns/applications.helpers.no_applications_title') }}
                 </div>
                 <div class="text-sm text-neutral-content text-center max-w-md">

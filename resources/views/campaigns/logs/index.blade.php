@@ -27,7 +27,7 @@
         @includeWhen(!$logs->isEmpty(), 'campaigns.logs._list')
         @if($logs->isEmpty())
             <div class="flex flex-col gap-2 justify-center items-center">
-                <div class="text-xl">
+                <div class="text-xl font-light">
                     {{ __('campaigns/logs.helpers.title') }}
                 </div>
                 <div class="text-sm text-neutral-content text-center max-w-md flex flex-col gap-4">
