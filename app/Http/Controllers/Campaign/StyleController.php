@@ -82,9 +82,7 @@ class StyleController extends Controller
                 ->with('error', __('campaigns/styles.errors.max_reached', ['max' => self::MAX_THEMES]));
         }
 
-        $theme = CampaignStyle::theme()->first();
-
-        return view('campaigns.styles.create', compact('campaign', 'theme'));
+        return view('campaigns.styles.create', compact('campaign'));
     }
 
     public function store(StoreCampaignStyle $request, Campaign $campaign)

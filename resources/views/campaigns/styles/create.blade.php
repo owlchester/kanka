@@ -13,15 +13,6 @@
         <x-grid type="1/1">
             @include('partials.errors')
 
-            @if (!$theme)
-            <x-alert type="info">
-                <p>{!! __('campaigns/builder.pitch') !!}</p>
-                <a href="{{ route('campaign_styles.builder', $campaign) }}" class="btn2 btn-primary">
-                    {{ __('campaigns/builder.pitch-go') }}
-                </a>
-            </x-alert>
-            @endif
-
             <x-alert type="error" id="max-content-error" class="hidden">
                 {{ __('campaigns/styles.errors.max_content', ['amount' => number_format(\App\Http\Requests\StoreCampaignStyle::MAX)]) }}
             </x-alert>
