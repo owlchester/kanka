@@ -10,6 +10,7 @@ use App\Models\Location;
 use App\Models\MiscModel;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
+use Illuminate\Support\Facades\DB;
 
 class PreviewService
 {
@@ -31,8 +32,7 @@ class PreviewService
             'image' => $this->image(),
         ];
 
-        $this->data['is_dead'] = false;
-        $this->data['is_missing'] = false;
+        $this->data['status'] = $this->status();
         $this->data['tags'] = $this->tags();
         $this->data['location'] = $this->location();
         $this->data['locations'] = $this->locations();
@@ -217,12 +217,23 @@ class PreviewService
             $this->addProfile('characters.fields.pronouns', 'pronouns', $child->pronouns);
         }
 
-        if ($child->isDead()) {
-            $this->data['is_dead'] = true;
+    }
+
+    protected function status(): ?array
+    {
+        if (! $this->entity->status_id) {
+            return null;
         }
-        if ($child->isMissing()) {
-            $this->data['is_missing'] = true;
+
+        $status = DB::table('category_statuses')->find($this->entity->status_id);
+        if (! $status || ! $status->icon) {
+            return null;
         }
+
+        return [
+            'icon' => 'fa-regular ' . $status->icon,
+            'tooltip' => __('entities/statuses.' . $this->entity->entityType->code . '.' . $status->key),
+        ];
     }
 
     protected function addProfile(string $key, string $slug, mixed $value = null): void

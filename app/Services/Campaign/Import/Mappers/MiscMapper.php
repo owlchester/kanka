@@ -5,6 +5,7 @@ namespace App\Services\Campaign\Import\Mappers;
 use App\Services\Campaign\Import\ImportMentions;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
+use Illuminate\Support\Facades\DB;
 
 abstract class MiscMapper
 {
@@ -41,5 +42,26 @@ abstract class MiscMapper
     public function tree(): self
     {
         return $this;
+    }
+
+    /**
+     * Resolve an old child-level status field to a category_statuses.id
+     * and inject it into $this->data['entity']['status_id'] for the EntityMapper.
+     */
+    protected function resolveOldStatusToEntity(string $entityTypeCode, string $statusKey): void
+    {
+        if (array_key_exists('status_id', $this->data['entity'] ?? [])) {
+            return;
+        }
+
+        $entityTypeId = config('entities.ids.' . $entityTypeCode);
+        $status = DB::table('category_statuses')
+            ->where('category_id', $entityTypeId)
+            ->where('key', $statusKey)
+            ->first();
+
+        if ($status) {
+            $this->data['entity']['status_id'] = $status->id;
+        }
     }
 }

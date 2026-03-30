@@ -26,7 +26,7 @@ class OrganisationFilter extends DatagridFilter
                 'model' => Organisation::class,
             ])
             ->character('member_id')
-            ->add('is_defunct')
+            ->add('status_id')
             ->isPrivate()
             ->template()
             ->archived()

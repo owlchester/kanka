@@ -177,11 +177,17 @@ abstract class MiscModel extends Model
      */
     public function rowClasses(): string
     {
-        if (! $this->is_private) {
-            return '';
+        $classes = [];
+        if ($this->is_private) {
+            $classes[] = 'entity-private';
         }
 
-        return 'entity-private';
+        $statusClass = $this->entity->statusClass();
+        if ($statusClass !== '') {
+            $classes[] = $statusClass;
+        }
+
+        return implode(' ', $classes);
     }
 
     /**

@@ -150,7 +150,6 @@ class Race extends MiscModel
     {
         return [
             'locations',
-            'is_extinct',
         ];
     }
 

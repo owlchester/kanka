@@ -46,8 +46,7 @@ The list of returned entities can be filtered. The available filters are [availa
             "updated_by": 1,
             "creature_id": null,
             "type": "Bird",
-            "is_extinct": true,
-            "is_dead": true,
+            "status_id": 1,
             "locations": [
                 67,
                 66,
@@ -87,8 +86,7 @@ To get the details of a single creature, use the following endpoint.
         "updated_by": 1,
         "creature_id": null,
         "type": "Bird",
-        "is_extinct": true,
-        "is_dead": true,
+        "status_id": 1,
         "locations": [
             67,
             66,
@@ -119,8 +117,7 @@ To create a creature, use the following endpoint.
 | `creature_id` | `string` | Parent creature of the creature                                     |
 | `tags` | `array` | Array of tag ids                                                    |
 | `locations` | `array` | Array of location ids                                               |
-| `is_extinct` | `boolean` | If the creature is extinct                                          |
-| `is_dead` | `boolean` | If the creature is dead                                             |
+| `status_id` | `integer` | The id of the entity's status from `category_statuses`              |
 | `entity_image_uuid` | `string` | Gallery image UUID for the entity image                             |
 | `entity_header_uuid` | `string` | Gallery image UUID for the entity header (premium campaign feature) |
 | `tooltip`            | `string` | The creature's tooltip (premium campaign feature)                   |

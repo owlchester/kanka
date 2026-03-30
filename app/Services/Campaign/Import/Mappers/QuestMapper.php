@@ -2,7 +2,6 @@
 
 namespace App\Services\Campaign\Import\Mappers;
 
-use App\Enums\QuestStatus;
 use App\Facades\ImportIdMapper;
 use App\Models\Entity;
 use App\Models\Quest;
@@ -19,26 +18,35 @@ class QuestMapper extends MiscMapper
     public function first(): void
     {
         $this
-            ->migrateIsCompleted()
+            ->migrateOldStatus()
             ->prepareModel()
             ->trackMappings('quest_id');
     }
 
     /**
-     * Backward compatibility: map old is_completed field to new status_id field.
-     * Old is_completed=1 maps to QuestStatus::completed (2).
+     * Backward compatibility: resolve old quest status fields to entities.status_id.
+     * Old is_completed boolean or child status_id enum (0=not_started, 1=ongoing, 2=completed, 3=abandoned).
      */
-    protected function migrateIsCompleted(): self
+    protected function migrateOldStatus(): self
     {
+        if (array_key_exists('status_id', $this->data['entity'] ?? [])) {
+            return $this;
+        }
+
+        $map = [0 => 'not_started', 1 => 'ongoing', 2 => 'completed', 3 => 'abandoned'];
+
+        // Old is_completed boolean → enum value
         if (array_key_exists('is_completed', $this->data) && ! array_key_exists('status_id', $this->data)) {
-            $this->data['status_id'] = $this->data['is_completed'] ? QuestStatus::completed->value : QuestStatus::notStarted->value;
+            $this->data['status_id'] = $this->data['is_completed'] ? 2 : 0;
             unset($this->data['is_completed']);
         }
 
-        // Handle exports that used 'is_completed' before the rename to 'status_id'
-        if (array_key_exists('is_completed', $this->data) && ! array_key_exists('status_id', $this->data)) {
-            $this->data['status_id'] = $this->data['is_completed'];
-            unset($this->data['is_completed']);
+        // Child-level status_id enum → resolve to category_statuses
+        if (array_key_exists('status_id', $this->data)) {
+            $oldValue = (int) $this->data['status_id'];
+            if (isset($map[$oldValue])) {
+                $this->resolveOldStatusToEntity('quest', $map[$oldValue]);
+            }
         }
 
         return $this;

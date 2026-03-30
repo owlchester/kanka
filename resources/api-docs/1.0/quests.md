@@ -47,8 +47,7 @@ The list of returned entities can be filtered. The available filters are [availa
             "updated_by": 1,
             "date": "2020-04-20",
             "type": "Main",
-            "is_completed": false,
-            "status": 0,
+            "status_id": null,
             "quest_id": null,
             "elements": [],
             "calendar_id": 102,
@@ -92,8 +91,7 @@ To get the details of a single quest, use the following endpoint.
         "updated_by": 1,
         "type": "Main",
         "date": "2020-04-20",
-        "is_completed": false,
-        "status": 0,
+        "status_id": null,
         "quest_id": null,
         "elements": [],
         "calendar_id": 102,
@@ -164,8 +162,7 @@ To create a quest, use the following endpoint.
 | `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
 | `entity_header_uuid` | `string` | Gallery image UUID for the entity header (premium campaign feature) |
 | `tooltip`            | `string` | The quest's tooltip (premium campaign feature)                   |
-| `is_completed` | `boolean` | If the quest is completed (deprecated, use `status`) |
-| `status` | `integer` | The quest's status: `0` Not Started, `1` Ongoing, `2` Completed, `3` Abandoned |
+| `status_id` | `integer` | The id of the entity's status from `category_statuses` |
 | `is_private` | `boolean` | If the quest is only visible to `admin` members of the campaign |
 
 ### Results

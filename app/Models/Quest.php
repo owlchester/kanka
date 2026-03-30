@@ -252,7 +252,6 @@ class Quest extends MiscModel
         return [
             'date',
             'instigator_id',
-            'status_id',
             'date_start',
             'location_id',
             'date_end',

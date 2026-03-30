@@ -23,7 +23,7 @@ class LocationFilter extends DatagridFilter
                 'placeholder' => __('crud.placeholders.search'),
                 'model' => Location::class,
             ])
-            ->add('is_destroyed')
+            ->add('status_id')
             ->isPrivate()
             ->template()
             ->archived()

@@ -413,22 +413,6 @@ class Character extends MiscModel
     }
 
     /**
-     * Row classes for entities
-     */
-    public function rowClasses(): string
-    {
-        $classes = parent::rowClasses();
-        if ($this->isDead()) {
-            return $classes . ' character-dead';
-        }
-        if ($this->isMissing()) {
-            return $classes . ' character-missing';
-        }
-
-        return $classes;
-    }
-
-    /**
      * Define the fields unique to this model that can be used on filters
      *
      * @return string[]
@@ -444,7 +428,6 @@ class Character extends MiscModel
             'organisations',
             'races',
             'families',
-            'status_id',
             'member_id',
             'race_id',
             'family_id',

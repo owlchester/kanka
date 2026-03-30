@@ -314,9 +314,6 @@ class CampaignDashboardWidget extends Model
         if ($this->entityType && ! empty($this->config['filters']) && $this->entityType->isStandard()) {
             /** @var Character|mixed $model */
             $model = $this->entityType->getClass();
-            if ($this->entityType->id === config('entities.ids.quest')) {
-                $relations[] = 'quest:id,status';
-            }
 
             /** @var FilterService $filterService */
             $filterService = app()->make('App\Services\FilterService');

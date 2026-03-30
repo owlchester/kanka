@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use App\Enums\CharacterStatus;
-use App\Enums\QuestStatus;
 use App\Facades\CampaignLocalization;
 use App\Facades\EntityCache;
 use App\Facades\Img;
@@ -35,6 +33,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable as Scout;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
@@ -107,6 +106,7 @@ class Entity extends Model
         'type',
         'entry',
         'parent_id',
+        'status_id',
         'source',
     ];
 
@@ -367,6 +367,7 @@ class Entity extends Model
             'header_image',
             'header_uuid',
             'marketplace_uuid',
+            'status_id',
         ];
         $data = [];
         foreach ($fields as $field) {
@@ -447,6 +448,30 @@ class Entity extends Model
     }
 
     /**
+     * Get the status key from category_statuses
+     */
+    public function statusKey(): ?string
+    {
+        if (! $this->status_id) {
+            return null;
+        }
+
+        $status = DB::table('category_statuses')->find($this->status_id);
+
+        return $status?->key;
+    }
+
+    /**
+     * Get the CSS class for the entity's current status
+     */
+    public function statusClass(): string
+    {
+        $key = $this->statusKey();
+
+        return $key !== null ? $this->entityType->code . '-' . $key : '';
+    }
+
+    /**
      * Generate the entity's body css classes
      */
     public function bodyClasses(): string
@@ -467,29 +492,10 @@ class Entity extends Model
             }
         }
 
-        // Specific entity flags
-        // @phpstan-ignore-next-line
-        if ($this->isCharacter() && $this->child->status_id !== CharacterStatus::alive) {
-            /** @var Character $character */
-            $character = $this->child;
-            if ($character->isDead()) {
-                $classes[] = 'character-dead';
-            } elseif ($character->isMissing()) {
-                $classes[] = 'character-missing';
-            }
-            unset($character);
-            // @phpstan-ignore-next-line
-        } elseif ($this->isQuest() && $this->child->status_id !== QuestStatus::notStarted) {
-            /** @var Quest $quest */
-            $quest = $this->child;
-            if ($quest->isCompleted()) {
-                $classes[] = 'quest-completed';
-            } elseif ($quest->isOngoing()) {
-                $classes[] = 'quest-ongoing';
-            } elseif ($quest->isAbandoned()) {
-                $classes[] = 'quest-abandoned';
-            }
-            unset($quest);
+        // Entity status flag
+        $statusClass = $this->statusClass();
+        if ($statusClass !== '') {
+            $classes[] = $statusClass;
         }
 
         if ($this->is_private) {

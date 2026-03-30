@@ -70,6 +70,7 @@ class EntityResource extends JsonResource
             'is_template' => $entity->isTemplate(),
             'campaign_id' => $entity->campaign_id,
             'is_attributes_private' => (bool) $entity->is_attributes_private,
+            'status_id' => $entity->status_id,
             'tooltip' => $entity->tooltip,
             'header_image' => $entity->header_image,
             'header_uuid' => $entity->header_uuid,
@@ -241,6 +242,7 @@ class EntityResource extends JsonResource
             'is_template' => (bool) $misc->entity->isTemplate(),
 
             'is_attributes_private' => (bool) $misc->entity->is_attributes_private,
+            'status_id' => $misc->entity->status_id,
 
             'entity_id' => $misc->entity->id,
 

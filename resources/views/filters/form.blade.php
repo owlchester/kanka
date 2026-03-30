@@ -68,12 +68,14 @@
                     @else
                         @php $labelField = $field === 'status_id' ? 'status' : $field; @endphp
                         <label class="text-xs font-medium opacity-80">
-                            {{ __((in_array($labelField, ['name', 'type', 'is_private', 'has_image', 'has_attributes', 'has_entity_files', 'has_entry', 'has_posts', 'date_range', 'template', 'archived']) ? 'crud.fields.' : $langKey . '.fields.') . $labelField) }}
+                            @if ($field === 'status_id')
+                                {{ __('entities.status') }}
+                            @else
+                                {{ __((in_array($labelField, ['name', 'type', 'is_private', 'has_image', 'has_attributes', 'has_entity_files', 'has_entry', 'has_posts', 'date_range', 'template', 'archived']) ? 'crud.fields.' : $langKey . '.fields.') . $labelField) }}
+                            @endif
                         </label>
-                        @if ($field === 'status_id' && isset($entityType) && $entityType->isCharacter())
-                            @include('cruds.datagrids.filters._is_dead_status')
-                        @elseif ($field === 'status_id' && isset($entityType) && $entityType->id == config('entities.ids.quest'))
-                            @include('cruds.datagrids.filters._is_completed_status')
+                        @if ($field === 'status_id' && isset($entityType))
+                            @include('cruds.datagrids.filters._status')
                         @elseif ($filterService->isCheckbox($field))
                             @include('cruds.datagrids.filters._choice')
                         @elseif ($field === 'type' && !empty($entityModel))

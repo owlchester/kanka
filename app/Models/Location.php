@@ -266,8 +266,6 @@ class Location extends MiscModel
      */
     public function filterableColumns(): array
     {
-        return [
-            'is_destroyed',
-        ];
+        return [];
     }
 }

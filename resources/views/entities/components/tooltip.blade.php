@@ -21,10 +21,13 @@
                     @endif
                     {!! $entity->name !!}
                 </a>
-                @if ($entity->isCharacter() && $entity->character->isDead())
-                    <x-icon class="fa-regular fa-skull" tooltip :title="__('characters.hints.is_dead')" />
-                @elseif ($entity->isCharacter() && $entity->character->isMissing())
-                    <x-icon class="fa-regular fa-question" tooltip :title="__('characters.hints.is_missing')" />
+                @if ($entity->status_id)
+                    @php
+                        $tooltipStatus = \Illuminate\Support\Facades\DB::table('category_statuses')->find($entity->status_id);
+                    @endphp
+                    @if ($tooltipStatus && $tooltipStatus->icon)
+                        <x-icon class="fa-regular {{ $tooltipStatus->icon }}" tooltip :title="__('entities/statuses.' . $entity->entityType->code . '.' . $tooltipStatus->key)" />
+                    @endif
                 @endif
             </div>
 

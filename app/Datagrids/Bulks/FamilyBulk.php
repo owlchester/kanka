@@ -9,14 +9,10 @@ class FamilyBulk extends Bulk
         'type',
         'family_id',
         'location_id',
+        'status_id',
         'tags',
         'private_choice',
-        'extinct_choice',
         'entity_image',
         'entity_header',
-    ];
-
-    protected array $booleans = [
-        'is_extinct',
     ];
 }

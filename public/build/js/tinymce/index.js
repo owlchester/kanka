@@ -1,7 +1,7 @@
-// Exports the "inlite" theme for usage with module loaders
+// Exports the "modern" theme for usage with module loaders
 // Usage:
 //   CommonJS:
-//     require('tinymce/themes/inlite')
+//     require('tinymce/themes/modern')
 //   ES2015:
-//     import 'tinymce/themes/inlite'
+//     import 'tinymce/themes/modern'
 require('./theme.js');

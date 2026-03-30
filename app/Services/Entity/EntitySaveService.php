@@ -30,6 +30,9 @@ class EntitySaveService
         if (array_key_exists('parent_id', $data)) {
             $entity->parent_id = $data['parent_id'];
         }
+        if (array_key_exists('status_id', $data)) {
+            $entity->status_id = $data['status_id'] ?: null;
+        }
 
         $this->applyGalleryFields($entity, $data);
 

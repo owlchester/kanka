@@ -6,9 +6,6 @@
  */
 ?>
 <x-widgets.previews.head :widget="$widget" :campaign="$campaign" :entity="$entity">
-    @if ($entity->child?->is_completed)
-        <x-icon class="fa-regular fa-check-circle" :title="__('quests.fields.is_completed')" tooltip />
-    @endif
 </x-widgets.previews.head>
 <x-widgets.previews.body  :widget="$widget" :campaign="$campaign" :entity="$entity">
     @if (!empty($entity->child?->instigator))

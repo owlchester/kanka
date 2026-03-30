@@ -120,26 +120,11 @@ class ExploreResource extends JsonResource
             if ($this->hasColumn('colour') && isset($child->colour)) {
                 $data['colour'] = $child->colour;
             }
-            if ($this->hasColumn('status') && isset($child->status_id)) {
-                $data['status'] = $child->status_id->value;
-            }
             if ($this->hasColumn('sex') && isset($child->sex)) {
                 $data['sex'] = $child->sex;
             }
             if ($this->hasColumn('pronouns') && isset($child->pronouns)) {
                 $data['pronouns'] = $child->pronouns;
-            }
-            if ($this->hasColumn('is_destroyed') && isset($child->is_destroyed)) {
-                $data['is_destroyed'] = (bool) $child->is_destroyed;
-            }
-            if ($this->hasColumn('is_defunct') && isset($child->is_defunct)) {
-                $data['is_defunct'] = (bool) $child->is_defunct;
-            }
-            if ($this->hasColumn('is_extinct') && isset($child->is_extinct)) {
-                $data['is_extinct'] = (bool) $child->is_extinct;
-            }
-            if ($this->hasColumn('is_dead') && isset($child->is_dead)) {
-                $data['is_dead'] = (bool) $child->is_dead;
             }
             if ($this->hasColumn('is_auto_applied') && isset($child->is_auto_applied)) {
                 $data['is_auto_applied'] = (bool) $child->is_auto_applied;
@@ -215,6 +200,11 @@ class ExploreResource extends JsonResource
         // Calendar date (lives on entity, not child)
         if ($this->hasColumn('calendar_date')) {
             $data['calendar_date'] = $this->formatCalendarDate($entity);
+        }
+
+        // Status (lives on entity, not child)
+        if ($this->hasColumn('status')) {
+            $data['status'] = $entity->status_id;
         }
 
         // Parent entity link

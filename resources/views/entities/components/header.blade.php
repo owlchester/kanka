@@ -20,10 +20,10 @@ $addTagsUrl = route('entity.tags-add', [$campaign, $entity]);
 $entityTags = $entity->visibleTags();
 
 $buttonsClass = 1;
-if ($entity->isCharacter() && $entity->child->status_id !== \App\Enums\CharacterStatus::alive) {
-    $buttonsClass++;
-}
-if ($entity->isQuest() && $entity->child->status_id !== \App\Enums\QuestStatus::notStarted) {
+$headerStatus = $entity->status_id
+    ? \Illuminate\Support\Facades\DB::table('category_statuses')->find($entity->status_id)
+    : null;
+if ($headerStatus && $headerStatus->icon) {
     $buttonsClass++;
 }
 if (auth()->check() && auth()->user()->isAdmin()) {
@@ -148,67 +148,10 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
             <h1 class="entity-name text-lg md:text-4xl break-all">
                 {!! $entity->name !!}
             </h1>
-            @if ($entity->isCharacter() && $entity->child->isDead())
-                <span class="entity-name-icon entity-char-dead md:text-2xl" data-toggle="tooltip" data-title="{{ __('characters.hints.is_dead') }}">
-                    <x-icon class="fa-regular fa-skull entity-icons" />
-                    <span class="sr-only">{{ __('characters.hints.is_dead') }}</span>
-                </span>
-            @elseif ($entity->isCharacter() && $entity->child->isMissing())
-                <span class="entity-name-icon entity-char-missing md:text-2xl" data-toggle="tooltip" data-title="{{ __('characters.hints.is_missing') }}">
-                    <x-icon class="fa-regular fa-question entity-icons" />
-                    <span class="sr-only">{{ __('characters.hints.is_missing') }}</span>
-                </span>
-            @endif
-            @if ($entity->isQuest() && $entity->child->isOngoing())
-                <span class="entity-name-icon entity-quest-ongoing md:text-2xl" data-toggle="tooltip" data-title="{{ __('quests.hints.is_ongoing') }}">
-                    <x-icon class="fa-regular fa-hourglass entity-icons" />
-                    <span class="sr-only">{{ __('quests.hints.is_ongoing') }}</span>
-                </span>
-            @elseif ($entity->isQuest() && $entity->child->isCompleted())
-                <span class="entity-name-icon entity-quest-complete md:text-2xl" data-toggle="tooltip" data-title="{{ __('quests.hints.is_completed') }}">
-                    <x-icon class="fa-regular fa-check-circle entity-icons" />
-                    <span class="sr-only">{{ __('quests.hints.is_completed') }}</span>
-                </span>
-            @elseif ($entity->isQuest() && $entity->child->isAbandoned())
-                <span class="entity-name-icon entity-quest-abandoned md:text-2xl" data-toggle="tooltip" data-title="{{ __('quests.hints.is_abandoned') }}">
-                    <x-icon class="fa-regular fa-ban entity-icons" />
-                    <span class="sr-only">{{ __('quests.hints.is_abandoned') }}</span>
-                </span>
-            @endif
-            @if ($entity->isOrganisation() && $entity->child->isDefunct())
-                <span class="entity-name-icon entity-org-defunct md:text-2xl" data-toggle="tooltip" data-title="{{ __('organisations.hints.is_defunct') }}">
-                    <x-icon class="fa-regular fa-shop-slash entity-icons " />
-                    <span class="sr-only">{{ __('organisations.hints.is_defunct') }}</span>
-                </span>
-            @endif
-            @if ($entity->isLocation() && $entity->child->isDestroyed())
-                <span class="entity-name-icon entity-loc-destroyed md:text-2xl" data-toggle="tooltip" data-title="{{ __('locations.hints.is_destroyed') }}">
-                    <x-icon class="fa-regular fa-building-circle-xmark " />
-                    <span class="sr-only">{{ __('locations.hints.is_destroyed') }}</span>
-                </span>
-            @endif
-            @if ($entity->isRace() && $entity->child->isExtinct())
-                <span class="entity-name-icon entity-rac-extinct md:text-2xl" data-toggle="tooltip" data-title="{{ __('races.hints.is_extinct') }}">
-                    <x-icon class="fa-regular fa-skull-cow entity-icons " />
-                    <span class="sr-only">{{ __('races.hints.is_extinct') }}</span>
-                </span>
-            @endif
-            @if ($entity->isCreature() && $entity->child->isExtinct())
-                <span class="entity-name-icon entity-cre-extinct md:text-2xl" data-toggle="tooltip" data-title="{{ __('creatures.hints.is_extinct') }}">
-                    <x-icon class="fa-regular fa-skull-cow entity-icons " />
-                    <span class="sr-only">{{ __('creatures.hints.is_extinct') }}</span>
-                </span>
-            @endif
-            @if ($entity->isCreature() && $entity->child->isDead())
-                <span class="entity-name-icon entity-cre-dead md:text-2xl" data-toggle="tooltip" data-title="{{ __('creatures.hints.is_dead') }}">
-                    <x-icon class="fa-regular fa-skull entity-icons " />
-                    <span class="sr-only">{{ __('creatures.hints.is_dead') }}</span>
-                </span>
-            @endif
-            @if ($entity->isFamily() && $entity->child->isExtinct())
-                <span class="entity-name-icon entity-fam-extinct md:text-2xl" data-toggle="tooltip" data-title="{{ __('families.hints.is_extinct') }}">
-                    <x-icon class="fa-regular fa-skull entity-icons " />
-                    <span class="sr-only">{{ __('families.hints.is_extinct') }}</span>
+            @if ($headerStatus && $headerStatus->icon)
+                <span class="entity-name-icon md:text-2xl" data-toggle="tooltip" data-title="{{ __('entities/statuses.' . $entity->entityType->code . '.' . $headerStatus->key) }}">
+                    <x-icon class="fa-regular {{ $headerStatus->icon }} entity-icons" />
+                    <span class="sr-only">{{ __('entities/statuses.' . $entity->entityType->code . '.' . $headerStatus->key) }}</span>
                 </span>
             @endif
             @can('admin', $campaign)

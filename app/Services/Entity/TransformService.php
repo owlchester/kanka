@@ -13,6 +13,7 @@ use App\Traits\EntityAware;
 use App\Traits\EntityTypeAware;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class TransformService
@@ -77,6 +78,7 @@ class TransformService
             $this->orphanChildren();
             $this->entity->type_id = $this->entityType->id;
             $this->entity->parent_id = null;
+            $this->entity->status_id = $this->defaultStatusId();
             $this->entity->save();
 
             return $this->entity;
@@ -289,6 +291,8 @@ class TransformService
         $this->entity->type_id = $this->entityType->id;
         // Clean up the parent
         $this->entity->parent_id = null;
+        // Reset status to the target category's default
+        $this->entity->status_id = $this->defaultStatusId();
         // If attached to a misc model, save the entity_id
         if (isset($this->new)) {
             $this->entity->entity_id = $this->new->id;
@@ -354,6 +358,16 @@ class TransformService
         $this->finish();
 
         return $this->entity;
+    }
+
+    protected function defaultStatusId(): ?int
+    {
+        $default = DB::table('category_statuses')
+            ->where('category_id', $this->entityType->id)
+            ->where('is_default', true)
+            ->first();
+
+        return $default?->id;
     }
 
     protected function orphanChildren(): void

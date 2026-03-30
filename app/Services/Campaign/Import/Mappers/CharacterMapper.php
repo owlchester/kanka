@@ -19,25 +19,35 @@ class CharacterMapper extends MiscMapper
     public function first(): void
     {
         $this
-            ->migrateIsDead()
+            ->migrateOldStatus()
             ->prepareModel()
             ->trackMappings('character_id');
     }
 
     /**
-     * Backward compatibility: map old is_dead field to new status_id field.
+     * Backward compatibility: resolve old character status fields to entities.status_id.
+     * Old is_dead boolean or child status_id enum (0=alive, 1=dead, 2=missing).
      */
-    protected function migrateIsDead(): self
+    protected function migrateOldStatus(): self
     {
+        if (array_key_exists('status_id', $this->data['entity'] ?? [])) {
+            return $this;
+        }
+
+        $map = [0 => 'alive', 1 => 'dead', 2 => 'missing'];
+
+        // Old is_dead boolean → enum value
         if (array_key_exists('is_dead', $this->data) && ! array_key_exists('status_id', $this->data)) {
             $this->data['status_id'] = (int) $this->data['is_dead'];
             unset($this->data['is_dead']);
         }
 
-        // Handle exports that used 'status' before the rename to 'status_id'
-        if (array_key_exists('is_dead', $this->data) && ! array_key_exists('status_id', $this->data)) {
-            $this->data['status_id'] = $this->data['is_dead'];
-            unset($this->data['is_dead']);
+        // Child-level status_id enum → resolve to category_statuses
+        if (array_key_exists('status_id', $this->data)) {
+            $oldValue = (int) $this->data['status_id'];
+            if (isset($map[$oldValue])) {
+                $this->resolveOldStatusToEntity('character', $map[$oldValue]);
+            }
         }
 
         return $this;

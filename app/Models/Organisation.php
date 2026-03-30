@@ -229,7 +229,6 @@ class Organisation extends MiscModel
     {
         return [
             'locations',
-            'is_defunct',
             'member_id',
         ];
     }

@@ -13,6 +13,7 @@ class ItemBulk extends Bulk
         'item_id',
         'location_id',
         'creators',
+        'status_id',
         'tags',
         'private_choice',
         'entity_image',

@@ -23,8 +23,7 @@ class CreatureFilter extends DatagridFilter
                 'model' => Creature::class,
             ])
             ->locations()
-            ->add('is_extinct')
-            ->add('is_dead')
+            ->add('status_id')
             ->isPrivate()
             ->template()
             ->archived()

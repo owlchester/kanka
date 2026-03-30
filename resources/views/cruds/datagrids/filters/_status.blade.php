@@ -1,0 +1,15 @@
+@php
+    $categoryStatuses = \Illuminate\Support\Facades\DB::table('category_statuses')
+        ->where('category_id', $entityType->id)
+        ->orderBy('sort_order')
+        ->get();
+    $currentValue = $filterService->filterValue($field);
+@endphp
+<select class="filter-select w-full entity-list-filter" id="{{ $field }}" name="{{ $field }}">
+    <option value=""></option>
+    @foreach ($categoryStatuses as $catStatus)
+        <option value="{{ $catStatus->id }}" @if ((string) $catStatus->id === $currentValue) selected="selected" @endif>
+            {{ __('entities/statuses.' . $entityType->code . '.' . $catStatus->key) }}
+        </option>
+    @endforeach
+</select>

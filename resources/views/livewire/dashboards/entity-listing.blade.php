@@ -17,13 +17,12 @@
                     :entity="$entity"
                     :campaign="$campaign" />
 
-                @if ($widget->entityType?->id === config('entities.ids.quest'))
-                    @if ($entity->quest->isOngoing())
-                        <x-icon class="fa-regular fa-hourglass" tooltip :title="__('quests.status.ongoing')" />
-                    @elseif ($entity->quest->isCompleted())
-                        <x-icon class="fa-regular fa-check-circle" tooltip :title="__('quests.status.completed')" />
-                    @elseif ($entity->quest->isAbandoned())
-                        <x-icon class="fa-regular fa-ban" tooltip :title="__('quests.status.abandoned')" />
+                @if ($entity->status_id)
+                    @php
+                        $listingStatus = \Illuminate\Support\Facades\DB::table('category_statuses')->find($entity->status_id);
+                    @endphp
+                    @if ($listingStatus && $listingStatus->icon)
+                        <x-icon class="fa-regular {{ $listingStatus->icon }}" tooltip :title="__('entities/statuses.' . $entity->entityType->code . '.' . $listingStatus->key)" />
                     @endif
                 @endif
                 @if ($entity->is_private)

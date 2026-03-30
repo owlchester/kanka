@@ -47,7 +47,7 @@ The list of returned entities can be filtered. The available filters are [availa
             "updated_by": 1,
             "organisation_id": 4,
             "type": "Kingdom",
-            "is_defunct": true,
+            "status_id": 1,
             "members": [],
             "locations": [
                 67,
@@ -88,7 +88,7 @@ To get the details of a single organisation, use the following endpoint.
         "updated_by": 1,
         "organisation_id": 4,
         "type": "Kingdom",
-        "is_defunct": true,
+        "status_id": 1,
         "members": [],
         "locations": [
                 67,
@@ -151,7 +151,7 @@ To create an organisation, use the following endpoint.
 | `organisation_id` | `integer` | The parent organisation                                                |
 | `locations` | `array` | Array of location ids                                                  |
 | `tags` | `array` | Array of tag ids                                                       |
-| `is_defunct` | `boolean` | If the organisation is defunct                                         |
+| `status_id` | `integer` | The id of the entity's status from `category_statuses`                 |
 | `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                |
 | `entity_header_uuid` | `string` | Gallery image UUID for the entity header (premium campaign feature)    |
 | `tooltip`            | `string` | The organisation's tooltip (premium campaign feature)                  |

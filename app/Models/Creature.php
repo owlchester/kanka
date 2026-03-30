@@ -89,8 +89,6 @@ class Creature extends MiscModel
     {
         return [
             'locations',
-            'is_extinct',
-            'is_dead',
         ];
     }
 
