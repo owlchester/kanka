@@ -77,10 +77,7 @@ use App\Facades\Datagrid ?>
             @endif
         @endif
 
-        @if ($campaign->boosted())
-            @includeWhen(!$reorderStyles->isEmpty(), 'campaigns.styles._reorder')
-        @endif
-
+        @includeWhen($campaign->boosted() && $reorderStyles->count() > 1, 'campaigns.styles._reorder')
     </div>
 @endsection
 
