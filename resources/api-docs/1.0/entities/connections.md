@@ -8,9 +8,6 @@
 - [Delete a relation](#delete-relation)
 - [All Campaign Relations](#all-campaign-relations)
 
-> {info} In the Kanka website, the term `Connection` is used. But the API models are called `Relations`.
-
-
 <a name="all-relations"></a>
 ## All Relations
 

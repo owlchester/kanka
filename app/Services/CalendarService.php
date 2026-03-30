@@ -13,6 +13,7 @@ use App\Models\Reminder;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Stevebauman\Purify\Facades\Purify;
 
 class CalendarService
@@ -118,7 +119,7 @@ class CalendarService
             }
             // Create an event
             $event = new Event;
-            $event->name = $data['name'];
+            $event->name = Str::after($data['name'], 'new:');
             $event->date = $data['year'] . '-' . $data['month'] . '-' . $data['day'];
             $event->campaign_id = $this->campaign->id;
             if ($event->save()) {
