@@ -330,7 +330,7 @@ class Calendar extends MiscModel
                     ? (int) $era['start_year']
                     : (int) $era['end_year'];
                 $relativeYear = abs((int) $year - $anchor) + 1;
-                if (! $this->hasYearZero() && ((int) $year < 0 && $anchor > 0 || (int) $year > 0 && $anchor < 0)) {
+                if (! $this->hasYearZero() && ((int) $year < 0 && $anchor > 0 || (int) $year > 0 && $anchor < 0 || $anchor === 0)) {
                     $relativeYear--;
                 }
 

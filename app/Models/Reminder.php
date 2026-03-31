@@ -130,7 +130,7 @@ class Reminder extends Model
                         ? (int) $era['start_year']
                         : (int) $era['end_year'];
                     $relativeYear = abs((int) $this->year - $anchor) + 1;
-                    if (! $this->calendar->hasYearZero() && ((int) $this->year < 0 && $anchor > 0 || (int) $this->year > 0 && $anchor < 0)) {
+                    if (! $this->calendar->hasYearZero() && ((int) $this->year < 0 && $anchor > 0 || (int) $this->year > 0 && $anchor < 0 || $anchor === 0)) {
                         $relativeYear--;
                     }
                     $this->readableDate = $this->day . ' ' . $monthName . ', ' . $relativeYear . ' ' . $era['name'];
