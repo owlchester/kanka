@@ -3,8 +3,8 @@
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5">
             <div class="flex-col gap-8 hidden lg:flex col-span-2 ">
                 <div class="flex">
-                    <a href="{{ route('home') }}" class="">
-                        <svg class="h-28 w-28"  alt="Kanka Logo" >
+                    <a href="{{ route('home') }}" class="text-white">
+                        <svg class="h-28 w-28"  alt="Kanka Logo" class="text-white" >
                             <use href="/images/svgs/sprites.svg#kanka-logo"></use>
                         </svg>
                     </a>

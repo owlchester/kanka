@@ -169,60 +169,61 @@ nav.text-nav a {
     color: var(--purple);
 }
 
-
-h1, .text-xl {
-    font-weight: 700;
-    font-size: 2.1875rem;
-    line-height: 2.89875rem;
-}
-h2, .text-lg {
-    font-weight: 700;
-    font-size: 1.8125rem;
-    line-height: 2.71875rem;
-}
-h3, .text-md {
-    font-weight: 800;
-    font-size: 1.375rem;
-    line-height: 1.664375rem;
-}
-h4, .text-sm {
-    font-weight: 600;
-    font-size: 1.175rem;
-    line-height: 1.464375rem;
-}
-p, li {
-    font-weight: 400;
-    font-size: 0.875rem;
-    line-height: 1.413125rem;
-}
-
-.text-nav {
-    font-weight: 500;
-    font-size: 1.25rem;
-    line-height: 1.875rem;
-}
-
-@media (min-width: 768px) {
+@layer base {
     h1, .text-xl {
         font-weight: 700;
-        font-size: 3.125rem;
-        line-height: 4.6875rem;
+        font-size: 2.1875rem;
+        line-height: 2.89875rem;
     }
     h2, .text-lg {
         font-weight: 700;
-        font-size: 2.8125rem;
-        line-height: 4.21875rem;
+        font-size: 1.8125rem;
+        line-height: 2.71875rem;
     }
     h3, .text-md {
         font-weight: 800;
-        font-size: 1.5625rem;
-        line-height: 1.89125rem;
+        font-size: 1.375rem;
+        line-height: 1.664375rem;
     }
-
+    h4, .text-sm {
+        font-weight: 600;
+        font-size: 1.175rem;
+        line-height: 1.464375rem;
+    }
     p, li {
         font-weight: 400;
-        font-size: 1rem;
-        line-height: 1.615rem;
+        font-size: 0.875rem;
+        line-height: 1.413125rem;
+    }
+
+    .text-nav {
+        font-weight: 500;
+        font-size: 1.25rem;
+        line-height: 1.875rem;
+    }
+
+    @media (min-width: 768px) {
+        h1, .text-xl {
+            font-weight: 700;
+            font-size: 3.125rem;
+            line-height: 4.6875rem;
+        }
+        h2, .text-lg {
+            font-weight: 700;
+            font-size: 2.8125rem;
+            line-height: 4.21875rem;
+        }
+        h3, .text-md {
+            font-weight: 800;
+            font-size: 1.5625rem;
+            line-height: 1.89125rem;
+        }
+
+        p, li {
+            font-weight: 400;
+            font-size: 1rem;
+            line-height: 1.615rem;
+        }
     }
 }
 
