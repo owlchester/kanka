@@ -50,7 +50,7 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
       }
     </script>@endif
 
-    <title>{{ $title ?? __('front.meta.title', ['kanka' => config('app.name')]) }}</title>
+    <title>{{ $title }} - {{ config('app.name') }}</title>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
