@@ -204,7 +204,11 @@ class ExploreResource extends JsonResource
 
         // Status (lives on entity, not child)
         if ($this->hasColumn('status')) {
-            $data['status'] = $entity->status_id;
+            $status = $entity->categoryStatus;
+            $data['status'] = ($status && $status->icon) ? [
+                'icon' => 'fa-regular ' . $status->icon,
+                'tooltip' => __('entities/statuses.' . $entity->entityType->code . '.' . $status->key),
+            ] : null;
         }
 
         // Parent entity link

@@ -21,13 +21,8 @@
                     @endif
                     {!! $entity->name !!}
                 </a>
-                @if ($entity->status_id)
-                    @php
-                        $tooltipStatus = \Illuminate\Support\Facades\DB::table('category_statuses')->find($entity->status_id);
-                    @endphp
-                    @if ($tooltipStatus && $tooltipStatus->icon)
-                        <x-icon class="fa-regular {{ $tooltipStatus->icon }}" tooltip :title="__('entities/statuses.' . $entity->entityType->code . '.' . $tooltipStatus->key)" />
-                    @endif
+                @if ($entity->categoryStatus?->icon)
+                    <x-icon class="fa-regular {{ $entity->categoryStatus->icon }}" tooltip :title="__('entities/statuses.' . $entity->entityType->code . '.' . $entity->categoryStatus->key)" />
                 @endif
             </div>
 

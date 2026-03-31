@@ -3,12 +3,15 @@
 namespace App\Services\Entity;
 
 use App\Models\Campaign;
+use App\Models\CategoryStatus;
 use App\Models\EntityType;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class ColumnDefinitionService
 {
+    /** @var array<int, array<int, CategoryStatus>> */
+    protected array $statusCache = [];
+
     public function columns(EntityType $entityType, Campaign $campaign): array
     {
         $method = Str::camel($entityType->code);
@@ -57,7 +60,7 @@ class ColumnDefinitionService
 
     public function relationMap(EntityType $entityType, Campaign $campaign): array
     {
-        $map = ['entityType', 'image', 'tags', 'parent'];
+        $map = ['entityType', 'image', 'tags', 'parent', 'categoryStatus'];
 
         $typeRelations = $this->typeRelations();
 
@@ -130,12 +133,16 @@ class ColumnDefinitionService
 
     protected function statusColumn(EntityType $entityType): ?array
     {
-        $statuses = DB::table('category_statuses')
-            ->where('category_id', $entityType->id)
-            ->orderBy('sort_order')
-            ->get();
+        if (! isset($this->statusCache[$entityType->id])) {
+            $this->statusCache[$entityType->id] = CategoryStatus::where('category_id', $entityType->id)
+                ->orderBy('sort_order')
+                ->get()
+                ->all();
+        }
 
-        if ($statuses->isEmpty()) {
+        $statuses = $this->statusCache[$entityType->id];
+
+        if (empty($statuses)) {
             return null;
         }
 

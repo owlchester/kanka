@@ -10,7 +10,6 @@ use App\Models\Location;
 use App\Models\MiscModel;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
-use Illuminate\Support\Facades\DB;
 
 class PreviewService
 {
@@ -221,12 +220,8 @@ class PreviewService
 
     protected function status(): ?array
     {
-        if (! $this->entity->status_id) {
-            return null;
-        }
-
-        $status = DB::table('category_statuses')->find($this->entity->status_id);
-        if (! $status || ! $status->icon) {
+        $status = $this->entity->categoryStatus;
+        if (! $status?->icon) {
             return null;
         }
 

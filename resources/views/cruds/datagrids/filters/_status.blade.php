@@ -1,6 +1,5 @@
 @php
-    $categoryStatuses = \Illuminate\Support\Facades\DB::table('category_statuses')
-        ->where('category_id', $entityType->id)
+    $categoryStatuses = \App\Models\CategoryStatus::where('category_id', $entityType->id)
         ->orderBy('sort_order')
         ->get();
     $currentValue = $filterService->filterValue($field);

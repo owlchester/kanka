@@ -3,6 +3,7 @@
 namespace App\Services\Entity;
 
 use App\Facades\EntityLogger;
+use App\Models\CategoryStatus;
 use App\Models\Character;
 use App\Models\Entity;
 use App\Models\MiscModel;
@@ -13,7 +14,6 @@ use App\Traits\EntityAware;
 use App\Traits\EntityTypeAware;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class TransformService
@@ -362,12 +362,9 @@ class TransformService
 
     protected function defaultStatusId(): ?int
     {
-        $default = DB::table('category_statuses')
-            ->where('category_id', $this->entityType->id)
+        return CategoryStatus::where('category_id', $this->entityType->id)
             ->where('is_default', true)
-            ->first();
-
-        return $default?->id;
+            ->value('id');
     }
 
     protected function orphanChildren(): void

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->boolean('is_default')->default(false);
 
             $table->foreign('category_id')->references('id')->on('entity_types')->cascadeOnDelete();
+            $table->unique(['category_id', 'key']);
             $table->index('sort_order');
             $table->index('is_default');
         });

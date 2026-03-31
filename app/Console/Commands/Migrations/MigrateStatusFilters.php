@@ -170,15 +170,7 @@ class MigrateStatusFilters extends Command
      */
     protected function parseFilterString(string $filters): array
     {
-        $params = [];
-        $segments = explode('&', $filters);
-        foreach ($segments as $segment) {
-            if (empty($segment)) {
-                continue;
-            }
-            $parts = explode('=', $segment, 2);
-            $params[$parts[0]] = $parts[1] ?? '';
-        }
+        parse_str($filters, $params);
 
         return $params;
     }
@@ -188,11 +180,6 @@ class MigrateStatusFilters extends Command
      */
     protected function buildFilterString(array $params): string
     {
-        $segments = [];
-        foreach ($params as $key => $value) {
-            $segments[] = $key . '=' . $value;
-        }
-
-        return implode('&', $segments);
+        return http_build_query($params);
     }
 }

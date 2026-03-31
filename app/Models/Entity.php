@@ -29,11 +29,11 @@ use Carbon\Carbon;
 use Collator;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable as Scout;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
@@ -448,17 +448,19 @@ class Entity extends Model
     }
 
     /**
+     * @return BelongsTo<CategoryStatus, $this>
+     */
+    public function categoryStatus(): BelongsTo
+    {
+        return $this->belongsTo(CategoryStatus::class, 'status_id');
+    }
+
+    /**
      * Get the status key from category_statuses
      */
     public function statusKey(): ?string
     {
-        if (! $this->status_id) {
-            return null;
-        }
-
-        $status = DB::table('category_statuses')->find($this->status_id);
-
-        return $status?->key;
+        return $this->categoryStatus?->key;
     }
 
     /**
@@ -466,9 +468,9 @@ class Entity extends Model
      */
     public function statusClass(): string
     {
-        $key = $this->statusKey();
+        $status = $this->categoryStatus;
 
-        return $key !== null ? $this->entityType->code . '-' . $key : '';
+        return $status !== null ? $this->entityType->code . '-' . $status->key : '';
     }
 
     /**

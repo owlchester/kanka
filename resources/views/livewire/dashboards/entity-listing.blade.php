@@ -17,13 +17,8 @@
                     :entity="$entity"
                     :campaign="$campaign" />
 
-                @if ($entity->status_id)
-                    @php
-                        $listingStatus = \Illuminate\Support\Facades\DB::table('category_statuses')->find($entity->status_id);
-                    @endphp
-                    @if ($listingStatus && $listingStatus->icon)
-                        <x-icon class="fa-regular {{ $listingStatus->icon }}" tooltip :title="__('entities/statuses.' . $entity->entityType->code . '.' . $listingStatus->key)" />
-                    @endif
+                @if ($entity->categoryStatus?->icon)
+                    <x-icon class="fa-regular {{ $entity->categoryStatus->icon }}" tooltip :title="__('entities/statuses.' . $entity->entityType->code . '.' . $entity->categoryStatus->key)" />
                 @endif
                 @if ($entity->is_private)
                     <x-icon class="lock" tooltip title="{{ __('crud.is_private') }}" />

@@ -20,9 +20,7 @@ $addTagsUrl = route('entity.tags-add', [$campaign, $entity]);
 $entityTags = $entity->visibleTags();
 
 $buttonsClass = 1;
-$headerStatus = $entity->status_id
-    ? \Illuminate\Support\Facades\DB::table('category_statuses')->find($entity->status_id)
-    : null;
+$headerStatus = $entity->categoryStatus;
 if ($headerStatus && $headerStatus->icon) {
     $buttonsClass++;
 }

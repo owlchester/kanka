@@ -42,9 +42,11 @@ class CharacterMapper extends MiscMapper
             unset($this->data['is_dead']);
         }
 
-        // Child-level status_id enum → resolve to category_statuses
+        // Child-level status_id enum → resolve to category_statuses, then remove
+        // so it doesn't get written back to the characters table's old enum column
         if (array_key_exists('status_id', $this->data)) {
             $oldValue = (int) $this->data['status_id'];
+            unset($this->data['status_id']);
             if (isset($map[$oldValue])) {
                 $this->resolveOldStatusToEntity('character', $map[$oldValue]);
             }

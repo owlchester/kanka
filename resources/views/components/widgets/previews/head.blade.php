@@ -37,13 +37,8 @@
         @endif
         </span>
 
-        @if ($entity->status_id)
-            @php
-                $widgetStatus = \Illuminate\Support\Facades\DB::table('category_statuses')->find($entity->status_id);
-            @endphp
-            @if ($widgetStatus && $widgetStatus->icon)
-                <x-icon class="fa-regular {{ $widgetStatus->icon }}" tooltip :title="__('entities/statuses.' . $entity->entityType->code . '.' . $widgetStatus->key)" />
-            @endif
+        @if ($entity->categoryStatus?->icon)
+            <x-icon class="fa-regular {{ $entity->categoryStatus->icon }}" tooltip :title="__('entities/statuses.' . $entity->entityType->code . '.' . $entity->categoryStatus->key)" />
         @endif
         {!! $slot !!}
     </a>

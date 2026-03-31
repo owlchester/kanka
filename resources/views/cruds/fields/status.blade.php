@@ -1,9 +1,8 @@
 @php
     $statusEntityType = $entityType ?? $entity->entityType ?? null;
-    $categoryStatuses = $statusEntityType ? \Illuminate\Support\Facades\DB::table('category_statuses')
-        ->where('category_id', $statusEntityType->id)
-        ->orderBy('sort_order')
-        ->get() : collect();
+    $categoryStatuses = $statusEntityType
+        ? \App\Models\CategoryStatus::where('category_id', $statusEntityType->id)->orderBy('sort_order')->get()
+        : collect();
     $isBulk = $bulk ?? false;
 @endphp
 @if ($categoryStatuses->isNotEmpty())
