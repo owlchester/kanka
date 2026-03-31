@@ -10,8 +10,6 @@
     $eraNames = old('era_name');
     $eraStartYears = old('era_start_year');
     $eraEndYears = old('era_end_year');
-    $eraFormatDates = old('era_format_dates');
-    $formatDateOptions = ['0' => __('general.no'), '1' => __('general.yes')];
     if (!empty($eraNames) && is_array($eraNames)) {
         $cpt = 0;
         foreach ($eraNames as $name) {
@@ -20,7 +18,6 @@
                     'name' => $name,
                     'start_year' => $eraStartYears[$cpt] ?? '',
                     'end_year' => $eraEndYears[$cpt] ?? '',
-                    'format_dates' => !empty($eraFormatDates[$cpt]),
                 ];
             }
             $cpt++;
@@ -35,7 +32,6 @@
         <div class="grow">{{ __('calendars.parameters.eras.name') }}</div>
         <div class="w-24">{{ __('calendars.parameters.eras.start_year') }}</div>
         <div class="w-24">{{ __('calendars.parameters.eras.end_year') }}</div>
-        <div class="w-24">{{ __('calendars.parameters.eras.format_dates') }}</div>
         <div class="w-10"></div>
     </div>
     <div class="calendar-eras sortable-elements flex flex-col gap-2" data-handle=".sortable-handler">
@@ -47,19 +43,15 @@
                     </div>
                     <div class="grow field">
                         <label class="sr-only">{{ __('calendars.parameters.eras.name') }}</label>
-                        <input type="text" name="era_name[]" value="{{ $era['name'] }}" maxlength="191" class="w-full" />
+                        <input type="text" name="era_name[]" value="{{ $era['name'] }}" maxlength="191" class="w-full" data-error-name-required="{{ __('calendars.parameters.eras.name_required') }}" />
                     </div>
                     <div class="w-24 field">
                         <label class="sr-only">{{ __('calendars.parameters.eras.start_year') }}</label>
-                        <input type="number" name="era_start_year[]" class="w-full" value="{{ $era['start_year'] }}" />
+                        <input type="number" name="era_start_year[]" class="w-full" value="{{ $era['start_year'] }}" data-error-year-required="{{ __('calendars.parameters.eras.year_required') }}" />
                     </div>
                     <div class="w-24 field">
                         <label class="sr-only">{{ __('calendars.parameters.eras.end_year') }}</label>
-                        <input type="number" name="era_end_year[]" class="w-full" value="{{ $era['end_year'] }}" />
-                    </div>
-                    <div class="w-24 field">
-                        <label class="sr-only">{{ __('calendars.parameters.eras.format_dates') }}</label>
-                        <x-forms.select name="era_format_dates[]" :options="$formatDateOptions" :selected="!empty($era['format_dates']) ? '1' : '0'" class="w-full" :label="__('calendars.parameters.eras.format_dates')" />
+                        <input type="number" name="era_end_year[]" class="w-full" value="{{ $era['end_year'] }}" data-error-year-order="{{ __('calendars.parameters.eras.end_year_order') }}" />
                     </div>
                     <div class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" title="{{ __('crud.remove') }}">
                         <x-icon class="trash" />
@@ -81,19 +73,15 @@
             </div>
             <div class="grow field">
                 <label class="sr-only">{{ __('calendars.parameters.eras.name') }}</label>
-                <input type="text" name="era_name[]" value="" placeholder="{{ __('calendars.parameters.eras.name') }}" aria-label="{{ __('calendars.parameters.eras.name') }}" maxlength="191" class="w-full" />
+                <input type="text" name="era_name[]" value="" placeholder="{{ __('calendars.parameters.eras.name') }}" aria-label="{{ __('calendars.parameters.eras.name') }}" maxlength="191" class="w-full" data-error-name-required="{{ __('calendars.parameters.eras.name_required') }}" />
             </div>
             <div class="w-24 field">
                 <label class="sr-only">{{ __('calendars.parameters.eras.start_year') }}</label>
-                <input type="number" name="era_start_year[]" class="w-full" value="" placeholder="{{ __('calendars.parameters.eras.start_year') }}" />
+                <input type="number" name="era_start_year[]" class="w-full" value="" placeholder="{{ __('calendars.parameters.eras.start_year') }}" data-error-year-required="{{ __('calendars.parameters.eras.year_required') }}" />
             </div>
             <div class="w-24 field">
                 <label class="sr-only">{{ __('calendars.parameters.eras.end_year') }}</label>
-                <input type="number" name="era_end_year[]" class="w-full" value="" placeholder="{{ __('calendars.parameters.eras.end_year') }}" />
-            </div>
-            <div class="w-24 field">
-                <label class="sr-only">{{ __('calendars.parameters.eras.format_dates') }}</label>
-                <x-forms.select name="era_format_dates[]" :options="$formatDateOptions" selected="0" class="w-full" :label="__('calendars.parameters.eras.format_dates')" />
+                <input type="number" name="era_end_year[]" class="w-full" value="" placeholder="{{ __('calendars.parameters.eras.end_year') }}" data-error-year-order="{{ __('calendars.parameters.eras.end_year_order') }}" />
             </div>
             <div class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" title="{{ __('crud.remove') }}">
                 <x-icon class="trash" />

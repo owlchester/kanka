@@ -289,7 +289,6 @@ To create a calendar, use the following endpoint.
 | `era_name` | `array` | Array of era names |
 | `era_start_year` | `array` | Array of era start years (supports negative values and zero) |
 | `era_end_year` | `array` | Array of era end years (nullable for open-ended eras, supports negative values and zero) |
-| `era_format_dates` | `array` | Array of booleans to toggle era date formatting |
 | `format` | `string` | The rendering format for the calendar dates |
 | `has_leap_year` | `boolean` | Whether the calendar has leap years |
 | `leap_year_amount` | `integer` | The amount of leap days |

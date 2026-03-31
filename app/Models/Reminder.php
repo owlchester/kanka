@@ -126,7 +126,10 @@ class Reminder extends Model
                 $era = $this->calendar->getEraForDate($this->year, $this->month, $this->day);
                 if ($era) {
                     $monthName = isset($months[$this->month - 1]) ? $months[$this->month - 1]['name'] : $this->month;
-                    $relativeYear = abs((int) $this->year - (int) $era['start_year']) + 1;
+                    $anchor = isset($era['start_year']) && $era['start_year'] !== '' && $era['start_year'] !== null
+                        ? (int) $era['start_year']
+                        : (int) $era['end_year'];
+                    $relativeYear = abs((int) $this->year - $anchor) + 1;
                     $this->readableDate = $this->day . ' ' . $monthName . ', ' . $relativeYear . ' ' . $era['name'];
                 } elseif ($this->calendar->format) {
                     $this->readableDate = Str::replace(

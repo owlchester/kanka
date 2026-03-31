@@ -182,26 +182,21 @@ class Calendar extends MiscModel
     }
 
     /**
-     * Find the active era for a given date that has format_dates enabled
+     * Find the active era for a given date
      */
     public function getEraForDate(int|string $year, int $month, int $day): ?array
     {
         $year = (int) $year;
         foreach ($this->eras() as $era) {
-            if (empty($era['format_dates'])) {
+            $hasStartYear = isset($era['start_year']) && $era['start_year'] !== '' && $era['start_year'] !== null;
+            $hasEndYear = isset($era['end_year']) && $era['end_year'] !== '' && $era['end_year'] !== null;
+
+            if ($hasStartYear && $year < (int) $era['start_year']) {
                 continue;
             }
 
-            $startYear = (int) $era['start_year'];
-            if ($year < $startYear) {
+            if ($hasEndYear && $year > (int) $era['end_year']) {
                 continue;
-            }
-
-            if (isset($era['end_year']) && $era['end_year'] !== '' && $era['end_year'] !== null) {
-                $endYear = (int) $era['end_year'];
-                if ($year > $endYear) {
-                    continue;
-                }
             }
 
             return $era;
@@ -293,7 +288,8 @@ class Calendar extends MiscModel
         $result = null;
 
         foreach ($this->eras() as $era) {
-            if ((int) $era['start_year'] === $year) {
+            if (isset($era['start_year']) && $era['start_year'] !== '' && $era['start_year'] !== null
+                && (int) $era['start_year'] === $year) {
                 $result ??= [];
                 $result['start'] = $era;
             }
@@ -330,7 +326,10 @@ class Calendar extends MiscModel
 
             $era = $this->getEraForDate($year, $month, $day);
             if ($era) {
-                $relativeYear = abs((int) $year - (int) $era['start_year']) + 1;
+                $anchor = isset($era['start_year']) && $era['start_year'] !== '' && $era['start_year'] !== null
+                    ? (int) $era['start_year']
+                    : (int) $era['end_year'];
+                $relativeYear = abs((int) $year - $anchor) + 1;
 
                 return $day . ' ' . $monthName . ', ' . $relativeYear . ' ' . $era['name'];
             }

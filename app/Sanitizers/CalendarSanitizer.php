@@ -192,7 +192,6 @@ class CalendarSanitizer extends MiscSanitizer
         $eraNames = (array) $this->request->post('era_name', []);
         $eraStartYears = (array) $this->request->post('era_start_year', []);
         $eraEndYears = (array) $this->request->post('era_end_year', []);
-        $eraFormatDates = (array) $this->request->post('era_format_dates', []);
 
         foreach ($eraNames as $name) {
             if (empty($name)) {
@@ -201,12 +200,12 @@ class CalendarSanitizer extends MiscSanitizer
                 continue;
             }
 
-            $startYear = (int) ($eraStartYears[$eraCount] ?? 0);
+            $startYear = isset($eraStartYears[$eraCount]) && $eraStartYears[$eraCount] !== '' ? (int) $eraStartYears[$eraCount] : null;
 
             $endYear = isset($eraEndYears[$eraCount]) && $eraEndYears[$eraCount] !== '' ? (int) $eraEndYears[$eraCount] : null;
 
-            // Clear end year if it's before the start year
-            if ($endYear !== null && $endYear < $startYear) {
+            // Clear end year if it's before the start year (only when both are set)
+            if ($startYear !== null && $endYear !== null && $endYear < $startYear) {
                 $endYear = null;
             }
 
@@ -214,7 +213,6 @@ class CalendarSanitizer extends MiscSanitizer
                 'name' => $this->purify($name),
                 'start_year' => $startYear,
                 'end_year' => $endYear,
-                'format_dates' => ($eraFormatDates[$eraCount] ?? '0') === '1',
             ];
             $eraCount++;
         }
