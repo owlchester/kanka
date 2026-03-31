@@ -20,8 +20,8 @@ class AttributeResource extends EntityChild
 
         return $this->onEntity([
             'name' => $attribute->name,
-            'value' => $attribute->value,
-            'parsed' => $attribute->isCheckbox() ? (bool) $attribute->value : $attribute->mappedValue(),
+            'value' => $attribute->isCheckbox() ? (bool) $attribute->value : $attribute->value,
+            'parsed' => $attribute->mappedValue(),
             'default_order' => $attribute->default_order,
             'is_star' => (bool) $attribute->isPinned(),
             'is_pinned' => (bool) $attribute->isPinned(),
