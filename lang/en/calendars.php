@@ -106,7 +106,7 @@ return [
         'moons'             => 'Adding moons will make them show up in the calendar on every full and new moon. If the full moon period is bigger than 10 days, first and third quarter moons will also be displayed.',
         'parent_calendar'   => 'Giving the calendar a parent calendar will include the reminders and weather effects of the parent calendar.',
         'reset'             => 'Always start the beginning of the month or year on the first week day.',
-        'eras'              => 'Define eras for the calendar with start and end years. Enable date formatting on an era to display dates within it using the era name instead of the standard format.',
+        'eras'              => 'Define eras for the calendar with start and end years. Dates within an era will be displayed using the era name and a relative year instead of the standard format.',
         'seasons'           => 'Create seasons for the calendar by providing when each of them start. Kanka will take care of the rest.',
         'show_birthdays'    => 'Show the yearly birthdays of characters that have a birthday reminder on this calendar up to their death date.',
         'skip_year_zero'    => 'By default, the calendar\'s first year is year zero. Enable this option to skip year zero.',

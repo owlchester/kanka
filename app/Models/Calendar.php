@@ -295,7 +295,7 @@ class Calendar extends MiscModel
             }
 
             if (isset($era['end_year']) && $era['end_year'] !== '' && $era['end_year'] !== null
-                && (int) $era['end_year'] + 1 === $year) {
+                && (int) $era['end_year'] === $year) {
                 $result ??= [];
                 $result['end'] = $era;
             }
