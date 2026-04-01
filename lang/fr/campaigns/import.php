@@ -40,5 +40,8 @@ return [
         'running'       => 'En cours',
         'validating'    => 'Validation en cours',
     ],
+    'subscription'      => [
+        'pitch' => 'Restaure une sauvegarde de campagne ou importe depuis une autre campagne. Disponible avec les abonnements :wyvern ou :elemental.',
+    ],
     'title'             => 'Import',
 ];

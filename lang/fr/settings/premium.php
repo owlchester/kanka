@@ -6,13 +6,14 @@ return [
         'unlock'    => 'Débloquer Premium',
     ],
     'create'        => [
-        'actions'   => [
+        'actions'       => [
             'confirm'   => 'Débloquer Premium!',
         ],
-        'confirm'   => 'Waouw! Tu es sur le point de débloquer des fonctionnalités premium pour :campaign. Cette campagne utilisera l\'une de tes campagnes Premium disponibles.',
-        'duration'  => 'Les campagnes Premium le restent jusqu\'à ce qu\'elles soient supprimées manuellement ou que ton abonnement prenne fin.',
-        'pitch'     => 'Abonne-toi pour débloquer des campagnes Premium.',
-        'success'   => 'La campagne :campaign est maintenant Premium. Éclate-toi avec les chouettes fonctionnalités!',
+        'confirm'       => 'Waouw! Tu es sur le point de débloquer des fonctionnalités premium pour :campaign. Cette campagne utilisera l\'une de tes campagnes Premium disponibles.',
+        'duration'      => 'Les campagnes Premium le restent jusqu\'à ce qu\'elles soient supprimées manuellement ou que ton abonnement prenne fin.',
+        'pitch'         => 'Abonne-toi pour débloquer des campagnes Premium.',
+        'pitch_2026'    => 'Bénéficie de rôles, membres, thèmes personnalisés, plugins illimités, et bien plus pour tes campagnes.',
+        'success'       => 'La campagne :campaign est maintenant Premium. Éclate-toi avec les chouettes fonctionnalités!',
     ],
     'exceptions'    => [
         'already'       => 'Les fonctionnalités Premium ont déjà été débloquées pour cette campagne.',

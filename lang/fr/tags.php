@@ -19,10 +19,12 @@ return [
     ],
     'fields'        => [
         'children'          => 'Enfants',
+        'icon'              => 'Icône',
         'is_auto_applied'   => 'Appliquer automatiquement aux nouvelles entrées',
         'is_hidden'         => 'Caché de l\'entête et des infobulles',
     ],
     'helpers'       => [
+        'icon'          => 'Utilise des icônes de :fontawesome ou :rpgawesome. L\'icône sera affichée à la place du nom du tag dans les listes.',
         'no_children'   => 'Il n\'y a actuellement aucune entrée avec cette étiquette.',
         'no_posts'      => 'Il n\'y a actuellement aucun article avec cette étiquette.',
     ],
@@ -36,6 +38,7 @@ return [
         'empty' => 'Utilise des balises pour regrouper et filtrer les entrées dans ton univers afin de faciliter la navigation.',
     ],
     'placeholders'  => [
+        'icon'  => 'Essaie :example1 ou :example2',
         'type'  => 'Légende, Guerres, Histoire, Religion',
     ],
     'show'          => [

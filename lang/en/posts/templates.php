@@ -7,7 +7,7 @@ return [
     ],
     'helper'    => 'The following articles have been defined as templates that can be re-used.',
     'tab'       => 'Load from templates',
-    'tooltips' => [
+    'tooltips'  => [
         'click-to-edit' => 'Edit this template article',
-    ]
+    ],
 ];

@@ -54,11 +54,11 @@ return [
         'status'    => 'Toggle the active status of the webhook',
         'tutorial'  => 'Use webhooks to send real-time updates from the campaign to external tools. Events trigger automatically when entries are created, updated, or deleted. You can add multiple webhooks and test them from this page.',
     ],
-    'premium'         => 'Get notified in Discord or other apps when your campaign changes, for new entries, updates, and more.',
     'placeholders'  => [
         'message'   => '{who} made changes to {name}, check it out at {url}',
         'url'       => 'Target webhook\'s url',
     ],
+    'premium'       => 'Get notified in Discord or other apps when your campaign changes, for new entries, updates, and more.',
     'test'          => [
         'success'   => 'Test request sent.',
     ],

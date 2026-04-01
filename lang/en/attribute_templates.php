@@ -1,17 +1,17 @@
 <?php
 
 return [
+    'bulk'          => [
+        'entity_type'   => [
+            'unset' => 'Unset',
+        ],
+    ],
     'create'        => [
         'title' => 'New Property Kit',
     ],
     'fields'        => [
         'auto_apply'    => 'Auto-apply',
         'is_enabled'    => 'Enabled',
-    ],
-    'bulk'          => [
-        'entity_type'   => [
-            'unset'     => 'Unset',
-        ],
     ],
     'hints'         => [
         'automatic'                 => 'The following :count properties were automatically applied from :link.',

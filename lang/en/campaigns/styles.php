@@ -2,11 +2,11 @@
 
 return [
     'actions'       => [
+        'builder'   => 'Theme Builder',
         'current'   => 'Current theme: :theme',
         'disable'   => 'Disable',
         'enable'    => 'Enable',
         'new'       => 'New style',
-        'builder'   => 'Theme Builder',
     ],
     'bulks'         => [
         'delete'    => '{1} Removed :count style.|[2,*] Removed :count styles.',
