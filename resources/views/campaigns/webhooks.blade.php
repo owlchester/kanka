@@ -1,5 +1,5 @@
 @extends('layouts.app', [
-    'title' => trans('campaigns/webhooks.title', ['name' => $campaign->name]),
+    'title' => __('campaigns/webhooks.title') . ' - ' . $campaign->name,
     'breadcrumbs' => [
         trans('campaigns.show.tabs.webhooks')
     ],

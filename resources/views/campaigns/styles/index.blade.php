@@ -1,7 +1,7 @@
 <?php /** @var \App\Models\CampaignStyle $style */
 use App\Facades\Datagrid ?>
 @extends('layouts.app', [
-    'title' => __('campaigns/styles.title', ['campaign' => $campaign->name]),
+    'title' => __('campaigns/styles.title') . ' - ' . $campaign->name,
     'breadcrumbs' => [
         __('campaigns.show.tabs.styles')
     ],
