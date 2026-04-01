@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\Character $model */?>
 @if ($model instanceof \App\Models\Character)
-    @if ($model->is_private)
+    @if ($model->entity->is_private)
         <x-icon class="lock" title="{{ __('crud.is_private') }}" tooltip></x-icon>
     @endif
     <x-entity-link
@@ -16,7 +16,7 @@
     <?php return ?>
 @endif
 
-@if ($model->character->is_private)
+@if ($model->character->entity->is_private)
     <x-icon class="lock" title="{{ __('crud.is_private') }}" tooltip></x-icon>
 @endif
 <x-entity-link
