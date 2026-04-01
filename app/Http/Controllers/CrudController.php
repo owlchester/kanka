@@ -429,7 +429,7 @@ class CrudController extends Controller
             if (! ($new instanceof Bookmark) && $new->entity) {
                 // Fire an event for the Entity Observer.
                 $this->afterModelSave($new, $data);
-                            
+
                 $this->entitySaveService->save($new->entity, $data);
                 // Weird hack for prod issues
                 if (! $new->entity->child) {
@@ -655,12 +655,11 @@ class CrudController extends Controller
             $data = $this->prepareData($request, $model);
             $model->update($data);
 
-
             // Bookmarks have no entity attached to them.
             if (! ($model instanceof Bookmark) && $model->entity) {
                 // Fire an event for the Entity Observer
                 $this->afterModelSave($model, $data);
-                
+
                 $this->entitySaveService->save($model->entity, $data);
 
                 if (auth()->user()->can('attributes', $model->entity)) {
