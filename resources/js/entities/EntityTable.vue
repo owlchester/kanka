@@ -1,6 +1,6 @@
 <template>
     <div class="w-full overflow-x-auto">
-        <table class="table table-striped table-entities mb-0 w-full"
+        <table class="table table-striped table-entities mb-0 w-full bg-base-100 rounded-2xl"
                :role="nested ? 'treegrid' : 'grid'">
             <thead>
                 <tr>
