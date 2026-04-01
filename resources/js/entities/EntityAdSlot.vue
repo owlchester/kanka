@@ -20,7 +20,7 @@ onMounted(() => {
     if (!(window as any)['nitroAds']) {
         return
     }
-    ;(window as any)['nitroAds'].createAd('grid-slot-' + adId.value, {
+    ;(window as any)['nitroAds'].createAd(adId.value, {
         sizes: [['180', '150']],
         report: {
             enabled: true,
