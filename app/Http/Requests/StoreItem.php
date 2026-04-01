@@ -51,6 +51,7 @@ class StoreItem extends FormRequest
             'size' => 'nullable|string|max:191',
             'weight' => 'nullable|string|max:191',
             'attribute' => ['array', new UniqueAttributeNames],
+            'is_private' => 'nullable|boolean',
         ];
 
         /** @var Entity $self */

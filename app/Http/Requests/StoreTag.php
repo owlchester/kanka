@@ -50,6 +50,7 @@ class StoreTag extends FormRequest
                 'max:7',
             ],
             'attribute' => ['array', new UniqueAttributeNames],
+            'is_private' => 'nullable|boolean',
         ];
 
         /** @var Entity $self */

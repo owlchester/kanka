@@ -52,6 +52,7 @@ class StoreMap extends FormRequest
             'min_zoom' => 'nullable|numeric|min:' . Map::MIN_ZOOM . '|max:' . Map::MAX_ZOOM_REAL,
             'initial_zoom' => 'nullable|numeric|min:' . Map::MIN_ZOOM . '|max:' . Map::MAX_ZOOM_REAL,
             'attribute' => ['array', new UniqueAttributeNames],
+            'is_private' => 'nullable|boolean',
         ];
 
         /** @var Entity $self */

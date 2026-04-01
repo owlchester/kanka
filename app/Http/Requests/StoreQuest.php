@@ -50,6 +50,7 @@ class StoreQuest extends FormRequest
             'location_id' => 'nullable|integer|exists:locations,id',
             'template_id' => 'nullable',
             'attribute' => ['array', new UniqueAttributeNames],
+            'is_private' => 'nullable|boolean',
         ];
 
         // If the calendar is present and not null, but we aren't "skipping" it (editing but without permission)

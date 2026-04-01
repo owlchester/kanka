@@ -48,6 +48,7 @@ class StoreCreature extends FormRequest
             'template_id' => 'nullable',
             'locations' => ['nullable', 'array', new EntityField(config('entities.ids.location'), Location::class)],
             'attribute' => ['array', new UniqueAttributeNames],
+            'is_private' => 'nullable|boolean',
         ];
 
         /** @var Entity $self */
