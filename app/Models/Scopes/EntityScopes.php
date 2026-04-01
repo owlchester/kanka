@@ -292,6 +292,9 @@ trait EntityScopes
             } elseif ($name === 'creators') {
                 // Handled after the loop (like tags) so that creators_option works even with an empty array
                 continue;
+            } elseif ($name === 'tags') {
+                // Handled after the loop so that tags_option works even with an empty array
+                continue;
             } elseif ($entityType?->isStandard() && ! Str::endsWith($name, '_option')) {
                 $childFilterKeys[$name] = $values;
             }
