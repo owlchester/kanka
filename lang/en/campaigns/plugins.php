@@ -14,7 +14,7 @@ return [
         'import'            => 'Import',
         'update'            => 'Update plugin',
         'update-to'         => 'Update to version :version',
-        'update_available'  => 'Update available!',
+        'update_available'  => 'Update available',
     ],
     'bulks'         => [
         'delete'    => '{1} Removed :count plugin.|[2,*] Removed :count plugins.',

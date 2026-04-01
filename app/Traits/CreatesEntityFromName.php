@@ -59,6 +59,9 @@ trait CreatesEntityFromName
         $resolved = [];
 
         foreach ($values as $value) {
+            if ($value === null) {
+                continue;
+            }
             if (is_numeric($value)) {
                 $resolved[] = (int) $value;
 
