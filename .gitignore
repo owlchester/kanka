@@ -1,6 +1,8 @@
 /node_modules
 /public/hot
-/public/build/
+/public/build/manifest.json
+/public/build/assets
+/public/build/js
 /public/js/tinymce
 /public/storage
 /public/.htaccess
