@@ -223,6 +223,15 @@ class FilterService
             }
         }
 
+        // Convert legacy tag_id to tags[] so it is treated like a normal tag filter
+        if (isset($this->data['tag_id']) && in_array('tags', $availableFilters)) {
+            $this->data['tags'] = array_merge(
+                is_array($this->data['tags'] ?? null) ? $this->data['tags'] : [],
+                [(int) $this->data['tag_id']],
+            );
+            unset($this->data['tag_id']);
+        }
+
         // Don't support the old tags, force using tags[]
         if (isset($this->data['tags']) && ! is_array($this->data['tags'])) {
             unset($this->data['tags']);
