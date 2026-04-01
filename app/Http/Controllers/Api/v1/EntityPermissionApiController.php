@@ -9,6 +9,9 @@ use App\Models\Campaign;
 use App\Models\CampaignPermission;
 use App\Models\Entity;
 use App\Services\Api\ApiPermissionService;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class EntityPermissionApiController extends ApiController
 {
@@ -16,8 +19,6 @@ class EntityPermissionApiController extends ApiController
 
     /**
      * Create a new controller instance.
-     *
-     * @return void
      */
     public function __construct(ApiPermissionService $apiPermissionService)
     {
@@ -25,9 +26,9 @@ class EntityPermissionApiController extends ApiController
     }
 
     /**
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Campaign $campaign, Entity $entity)
     {
@@ -49,9 +50,9 @@ class EntityPermissionApiController extends ApiController
     }
 
     /**
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function store(Request $request, Campaign $campaign, Entity $entity)
     {
@@ -76,9 +77,9 @@ class EntityPermissionApiController extends ApiController
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function destroy(Campaign $campaign, Entity $entity, CampaignPermission $permission)
     {
@@ -90,7 +91,7 @@ class EntityPermissionApiController extends ApiController
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function test(PermissionTestRequest $request, Campaign $campaign)
     {

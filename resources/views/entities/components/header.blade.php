@@ -20,10 +20,10 @@ $addTagsUrl = route('entity.tags-add', [$campaign, $entity]);
 $entityTags = $entity->visibleTags();
 
 $buttonsClass = 1;
-if ($entity->isCharacter() && $entity->child->is_dead) {
+if ($entity->isCharacter() && $entity->child->status_id !== \App\Enums\CharacterStatus::alive) {
     $buttonsClass++;
 }
-if ($entity->isQuest() && $entity->child->is_completed) {
+if ($entity->isQuest() && $entity->child->status_id !== \App\Enums\QuestStatus::notStarted) {
     $buttonsClass++;
 }
 if (auth()->check() && auth()->user()->isAdmin()) {
@@ -133,9 +133,15 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
     <div class="entity-header-text grow flex flex-col gap-1 md:gap-2  z-10">
         <ol class="entity-breadcrumb text-sm m-0 p-0">
             <li class="inline-block">
-                <a href="{{ $breadcrumb['url'] }}" class="" title="{{ $breadcrumb['label'] }}">
-                    {!! $breadcrumb['label'] !!}
-                </a>
+                @if (!empty($bookmark))
+                    <a href="{{ route('entities.index', [$campaign, $entity->entityType, 'bookmark' => $bookmark->id, '_from' => 'bookmark']) }}" class="" title="{{ $bookmark->name }}">
+                        {!! $bookmark->name !!}
+                    </a>
+                @else
+                    <a href="{{ $breadcrumb['url'] }}" class="" title="{{ $breadcrumb['label'] }}">
+                        {!! $breadcrumb['label'] !!}
+                    </a>
+                @endif
             </li>
         </ol>
         <div class="entity-name-header flex gap-3 items-center">
@@ -147,11 +153,26 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
                     <x-icon class="fa-regular fa-skull entity-icons" />
                     <span class="sr-only">{{ __('characters.hints.is_dead') }}</span>
                 </span>
+            @elseif ($entity->isCharacter() && $entity->child->isMissing())
+                <span class="entity-name-icon entity-char-missing md:text-2xl" data-toggle="tooltip" data-title="{{ __('characters.hints.is_missing') }}">
+                    <x-icon class="fa-regular fa-question entity-icons" />
+                    <span class="sr-only">{{ __('characters.hints.is_missing') }}</span>
+                </span>
             @endif
-            @if ($entity->isQuest() && $entity->child->isCompleted())
-                <span class="entity-name-icon entity-quest-complete md:text-2xl" data-toggle="tooltip" data-title="{{ __('quests.fields.is_completed') }}">
+            @if ($entity->isQuest() && $entity->child->isOngoing())
+                <span class="entity-name-icon entity-quest-ongoing md:text-2xl" data-toggle="tooltip" data-title="{{ __('quests.hints.is_ongoing') }}">
+                    <x-icon class="fa-regular fa-hourglass entity-icons" />
+                    <span class="sr-only">{{ __('quests.hints.is_ongoing') }}</span>
+                </span>
+            @elseif ($entity->isQuest() && $entity->child->isCompleted())
+                <span class="entity-name-icon entity-quest-complete md:text-2xl" data-toggle="tooltip" data-title="{{ __('quests.hints.is_completed') }}">
                     <x-icon class="fa-regular fa-check-circle entity-icons" />
-                    <span class="sr-only">{{ __('quests.fields.is_completed') }}</span>
+                    <span class="sr-only">{{ __('quests.hints.is_completed') }}</span>
+                </span>
+            @elseif ($entity->isQuest() && $entity->child->isAbandoned())
+                <span class="entity-name-icon entity-quest-abandoned md:text-2xl" data-toggle="tooltip" data-title="{{ __('quests.hints.is_abandoned') }}">
+                    <x-icon class="fa-regular fa-ban entity-icons" />
+                    <span class="sr-only">{{ __('quests.hints.is_abandoned') }}</span>
                 </span>
             @endif
             @if ($entity->isOrganisation() && $entity->child->isDefunct())
@@ -199,7 +220,7 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
             @endif
         </div>
 
-        @if ($entity->isCharacter()&& !empty($entity->child->title))
+        @if (($entity->isCharacter() || $entity->isLocation()) && !empty($entity->child->title))
             <div class="entity-title entity-header-line">
                 {!! $entity->child->title !!}
             </div>
@@ -301,6 +322,22 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
     </x-dialog>
 @endsection
 
+
+@if ($entity->archived_at)
+    <x-alert type="warning">
+        <div class="flex items-center justify-between gap-4">
+            <span>
+                <x-icon class="fa-regular fa-archive" />
+                {{ __('entries/archive.banner') }}
+            </span>
+            @can('update', $entity)
+                <a href="{{ route('entities.archive', [$campaign, $entity]) }}" class="btn2 btn-sm btn-warning">
+                    {{ __('entities/actions.unarchive.title') }}
+                </a>
+            @endcan
+        </div>
+    </x-alert>
+@endif
 
 @section('styles')
     @parent

@@ -15,6 +15,7 @@ use App\Facades\MapMarkerCache;
 use App\Facades\QuestCache;
 use App\Facades\TimelineElementCache;
 use App\Http\Requests\StoreCharacter;
+use App\Http\Requests\StoreCustomEntity;
 use App\Models\CampaignImport;
 use App\Models\Character;
 use App\Models\CharacterTrait;
@@ -22,6 +23,7 @@ use App\Models\Entity;
 use App\Models\EntityType;
 use App\Models\UserLog;
 use App\Notifications\Header;
+use App\Services\Entity\EntitySaveService;
 use App\Services\Entity\TagService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
@@ -39,6 +41,8 @@ class CsvImportService
 {
     use CampaignAware;
     use UserAware;
+
+    public function __construct(protected EntitySaveService $entitySaveService) {}
 
     protected int $expectedColumns = 1;
 
@@ -354,7 +358,7 @@ class CsvImportService
 
     protected function createEntity(): Entity
     {
-        $requestValidator = \App\Http\Requests\StoreCustomEntity::class;
+        $requestValidator = StoreCustomEntity::class;
         $validator = new $requestValidator;
         $this->validateEntity($this->data, $validator->rules());
 
@@ -366,8 +370,7 @@ class CsvImportService
         $entity->is_private = $this->data['is_private'];
         $entity->created_by = $this->user->id;
         $entity->save();
-        $entity->crudSaved();
-        $this->saveTags($entity);
+        $this->entitySaveService->save($entity, $this->data);
 
         return $entity;
     }

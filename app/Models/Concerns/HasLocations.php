@@ -4,7 +4,6 @@ namespace App\Models\Concerns;
 
 use App\Enums\FilterOption;
 use App\Models\Location;
-use App\Observers\LocationsObserver;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -17,15 +16,10 @@ trait HasLocations
     //    protected string $locationPivot = '';
     //    protected string $locationPivotKey = '';
 
-    public static function bootHasLocations(): void
-    {
-        static::observe(LocationsObserver::class);
-    }
-
     /**
      * Model have multiple locations through a pivot table
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Location, $this>
+     * @return BelongsToMany<Location, $this>
      */
     public function locations(): BelongsToMany
     {

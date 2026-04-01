@@ -6,6 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCampaignInvite;
 use App\Models\Campaign;
 use App\Models\CampaignInvite;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class InviteController extends Controller
 {
@@ -20,7 +25,7 @@ class InviteController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function index()
     {
@@ -35,9 +40,9 @@ class InviteController extends Controller
     /**
      * Create a new invitation link form
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function create(Campaign $campaign)
     {
@@ -46,7 +51,8 @@ class InviteController extends Controller
         if (! $campaign->canHaveMoreMembers()) {
             return view('cruds.forms.limit')
                 ->with('campaign', $campaign)
-                ->with('key', 'members')
+                ->with('limit', config('limits.campaigns.members'))
+                ->with('thing', __('campaigns.show.tabs.members'))
                 ->with('name', 'campaign_roles');
         }
 
@@ -64,10 +70,7 @@ class InviteController extends Controller
         }
 
         if (! $campaign->canHaveMoreMembers()) {
-            return view('cruds.forms.limit')
-                ->with('campaign', $campaign)
-                ->with('key', 'members')
-                ->with('name', 'campaign_roles');
+            return redirect()->back();
         }
 
         $data = $request->only('role_id', 'validity');

@@ -3,12 +3,12 @@
 </h3>
 <x-box>
     <div class="grid grid-cols-2 gap-5 md:grid-cols-2 xl:grid-cols-5">
-        @foreach ($entity->child->children->sortBy('name') as $subNote)
+        @foreach ($entity->children->sortBy('name') as $childEntity)
             <span>
                 <x-entity-link
-                    :entity="$subNote->entity"
+                    :entity="$childEntity"
                     :campaign="$campaign" />
-                @if($subNote->is_private) <x-icon class="lock" /> @endif
+                @if($childEntity->is_private) <x-icon class="lock" /> @endif
             </span>
         @endforeach
     </div>

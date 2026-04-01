@@ -5,21 +5,26 @@ return [
         'title' => 'New Quest',
     ],
     'elements'      => [
-        'create'    => [
+        'create'        => [
             'success'   => 'Element :entity added to the quest.',
             'title'     => 'New element for :name',
         ],
-        'destroy'   => [
+        'destroy'       => [
             'success'   => 'Element :entity removed.',
         ],
-        'edit'      => [
+        'edit'          => [
             'success'   => 'Element :entity updated.',
             'title'     => 'Update element for :name',
         ],
-        'fields'    => [
-            'description'       => 'Description',
+        'fields'        => [
+            'copy_entity_entry' => 'Use entry description',
             'entity_or_name'    => 'Either select either an entry of the campaign, or give a name for this element.',
-            'name'              => 'Name',
+        ],
+        'helpers'       => [
+            'copy_entity_entry' => 'Display the linked entry\'s description instead of the custom description.',
+        ],
+        'placeholders'  => [
+            'name'  => 'Element name',
         ],
     ],
     'fields'        => [
@@ -30,9 +35,16 @@ return [
         'is_completed'  => 'Completed',
         'location'      => 'Starting location',
         'role'          => 'Role',
+        'status'        => 'Status',
     ],
     'helpers'       => [
         'is_completed'  => 'The quest is considered as completed.',
+        'status'        => 'The quest\'s current status.',
+    ],
+    'hints'         => [
+        'is_abandoned'  => 'This quest has been abandoned.',
+        'is_completed'  => 'This quest is completed.',
+        'is_ongoing'    => 'This quest is ongoing.',
     ],
     'lists'         => [
         'empty' => 'Create quests to record objectives, storylines, or character motivations.',
@@ -51,5 +63,11 @@ return [
         'tabs'      => [
             'elements'  => 'Elements',
         ],
+    ],
+    'status'        => [
+        'abandoned'     => 'Abandoned',
+        'completed'     => 'Completed',
+        'not_started'   => 'Not Started',
+        'ongoing'       => 'Ongoing',
     ],
 ];

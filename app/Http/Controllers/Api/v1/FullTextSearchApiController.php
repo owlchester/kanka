@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\Search\EntitySearchService;
+use Illuminate\Auth\Access\AuthorizationException;
 
 class FullTextSearchApiController extends ApiController
 {
@@ -18,7 +19,7 @@ class FullTextSearchApiController extends ApiController
     /**
      * return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Campaign $campaign)
     {

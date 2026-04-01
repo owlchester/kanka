@@ -2,7 +2,7 @@
 
 return [
     'actions'   => [
-        'bookmark'  => 'Bookmark',
+        'bookmark'  => 'Bookmark this view',
     ],
     'alerts'    => [
         'copy'  => 'The filters have been copied to your clipboard.',

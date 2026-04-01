@@ -10,6 +10,7 @@ use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
 use App\Traits\UserAware;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Arr;
 
 class DefaultImageService
@@ -28,7 +29,7 @@ class DefaultImageService
         if (Arr::has($images, $this->entityType->pluralCode())) {
             return false;
         }
-        /** @var \Illuminate\Http\UploadedFile $source */
+        /** @var UploadedFile $source */
         $source = $request->file('default_entity_image');
 
         $image = new Image;

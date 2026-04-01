@@ -2,21 +2,22 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\QuestStatus;
 use App\Facades\Limit;
 use App\Models\Entity;
-use App\Models\Quest;
 use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
 use App\Traits\ResolvesNewForeignEntities;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Enum;
 
 class StoreQuest extends FormRequest
 {
     use ApiRequest;
     use ResolvesNewForeignEntities;
 
-    protected array $foreignEntityFields = ['quest_id', 'location_id'];
+    protected array $foreignEntityFields = ['location_id'];
 
     /**
      * Determine if the user is authorized to make this request.
@@ -39,11 +40,12 @@ class StoreQuest extends FormRequest
             'name' => 'required|max:191',
             'entry' => 'nullable|string',
             'type' => 'nullable|string|max:191',
+            'status_id' => ['nullable', new Enum(QuestStatus::class)],
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
             'entity_image_uuid' => 'nullable|exists:images,id',
             'entity_header_uuid' => 'nullable|exists:images,id',
-            'quest_id' => ['nullable', 'integer', 'exists:quests,id'],
+            'parent_id' => 'nullable|integer|exists:entities,id',
             'character_id' => 'nullable|integer|exists:characters,id',
             'location_id' => 'nullable|integer|exists:locations,id',
             'template_id' => 'nullable',
@@ -62,12 +64,12 @@ class StoreQuest extends FormRequest
 
         /** @var Entity $self */
         $self = request()->route('entity');
-        if (! empty($self) && $self->isQuest()) {
-            $rules['quest_id'] = [
+        if (! empty($self)) {
+            $rules['parent_id'] = [
                 'nullable',
                 'integer',
-                'exists:quests,id',
-                new Nested(Quest::class, $self->child),
+                'exists:entities,id',
+                new Nested($self),
             ];
         }
 

@@ -24,23 +24,25 @@ class Recovery extends Layout
                         return '';
                     }
 
-                    return '<div style="background-image: url(' . Avatar::entity($entity)->size(40)->thumbnail() . ');" class="entity-image w-10 h-10"></div>';
+                    return '<div style="background-image: url(' .
+                        Avatar::entity($entity)->size(40)->thumbnail() .
+                        ');" class="entity-image w-10 h-10"></div>';
                 },
             ],
             'name' => [
                 'key' => 'name',
-                'label' => 'crud.fields.name',
+                'label' => __('crud.fields.name'),
             ],
             'type' => [
                 'key' => 'type_id',
-                'label' => 'campaigns/categories.tab',
+                'label' => __('campaigns/categories.tab'),
                 'render' => function ($entity) {
                     return $entity->entityType->singular();
                 },
             ],
             'deleted' => [
                 'key' => 'deleted_at',
-                'label' => 'campaigns/recovery.fields.deleted',
+                'label' => __('campaigns/recovery.fields.deleted'),
                 'class' => self::ONLY_DESKTOP,
                 'render' => function ($model) {
                     return $model->deleted_at->diffForHumans();

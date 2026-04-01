@@ -10,26 +10,36 @@ use App\Models\EntityType;
 use App\Models\Relation;
 use App\Services\FilterService;
 use App\Traits\CampaignAware;
+use App\Traits\EntityTypeAware;
 use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use ReflectionClass;
 
 class FormController extends Controller
 {
     use CampaignAware;
+    use EntityTypeAware;
 
     public function __construct(protected FilterService $filterService)
     {
         $this->middleware(['auth']);
     }
 
-    public function index(Campaign $campaign, EntityType $entityType)
+    public function index(Request $request, Campaign $campaign, EntityType $entityType)
     {
+        $this->authorize('access', $campaign);
+
         $plural = Str::plural(Str::remove('-', $entityType->code));
-        $route = $plural . '.index';
+        $route = $entityType->hasEntity() ? 'entities.index' : $plural . '.index';
+        $this->entityType($entityType);
 
         if ($entityType->isCustom()) {
-            $this->filterService->entityType($entityType)->build();
+            $this->filterService
+                ->request($request)
+                ->entityType($entityType)
+                ->campaign($campaign)
+                ->build();
 
             /** @var CustomEntityFilter $filters */
             $filters = app()->make(CustomEntityFilter::class);
@@ -44,30 +54,42 @@ class FormController extends Controller
         $model = $entityType->getClass();
 
         try {
-            return $this->campaign($campaign)->render($model, $plural, $route, $entityType);
+            return $this->campaign($campaign)->render($model, $plural, $route);
         } catch (Exception $e) {
+            throw $e;
+
             return redirect()->route('dashboard', $campaign);
         }
     }
 
     public function connection(Campaign $campaign)
     {
+        $this->authorize('access', $campaign);
+
         $route = 'relations.index';
         $model = new Relation;
         $plural = 'relations';
 
         try {
-            return $this->campaign($campaign)->render($model, $plural, $route, null, 'entities/relations');
+            return $this->campaign($campaign)->render($model, $plural, $route, 'entities/relations');
         } catch (Exception $e) {
             return redirect()->route('dashboard', $campaign);
         }
     }
 
-    protected function render(mixed $model, string $plural, string $route, ?EntityType $entityType = null, ?string $langKey = null)
+    protected function render(mixed $model, string $plural, string $route, ?string $langKey = null)
     {
-        $this->filterService
-            ->model($model)
-            ->make($plural);
+        if (isset($this->entityType)) {
+            $this->filterService
+                ->entityType($this->entityType)
+                ->campaign($this->campaign)
+                ->build();
+        } else {
+            $this->filterService
+                ->campaign($this->campaign)
+                ->model($model)
+                ->make($plural);
+        }
         $mode = request()->get('m');
 
         $reflect = new ReflectionClass($model);
@@ -84,7 +106,7 @@ class FormController extends Controller
             ->with('filterService', $this->filterService)
             ->with('route', $route)
             ->with('entityModel', $model)
-            ->with('entityType', $entityType)
+            ->with('entityType', $this->entityType ?? null)
             ->with('count', 0)
             ->with('langKey', $langKey ?? $plural)
             ->with('hasAttributeFilters', false)

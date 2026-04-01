@@ -41,7 +41,7 @@ class Header
         }
 
         if (! $this->sortable()) {
-            return __($this->data['label']);
+            return $this->data['label'];
         }
 
         // Prepare some data
@@ -79,7 +79,9 @@ class Header
 
     public function sortable(): bool
     {
-        return ! empty($this->data['key']) && auth()->check() && ! empty(request()->route());
+        return ! empty($this->data['key']) &&
+            auth()->check() &&
+            ! empty(request()->route());
     }
 
     public function icon(): ?string

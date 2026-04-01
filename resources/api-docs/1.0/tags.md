@@ -46,7 +46,7 @@ The list of returned entities can be filtered. The available filters are [availa
             "updated_by": 1,
             "type": "Lore",
             "tag_id": null,
-            "colour": "green",
+            "colour": "#058943",
             "entities": [
               352,
               440
@@ -87,7 +87,7 @@ To get the details of a single tag, use the following endpoint.
         "updated_at":  "2019-08-29T13:48:54.000000Z",
         "updated_by": 1,
         "type": "Lore",
-        "colour": "green",
+        "colour": "#058943",
         "tag_id": null,
         "entities": [
           352, 440
@@ -117,7 +117,7 @@ To create a tag, use the following endpoint.
 | `name` | `string` (Required) | Name of the tag |
 | `entry` | `string` | The html description of the tag |
 | `type` | `string` | The tag's type |
-| `colour` | `string` | The tag's colour |
+| `colour` | `string` | The tag's hex colour (e.g. `#058943`) |
 | `tag_id` | `integer` | The parent tag |
 | `tags` | `array` | Array of tag ids |
 | `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |

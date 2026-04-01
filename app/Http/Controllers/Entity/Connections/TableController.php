@@ -6,6 +6,7 @@ use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Entity;
+use App\Renderers\Layouts\Entity\Relation;
 use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;
 use App\Traits\GuestAuthTrait;
@@ -20,7 +21,7 @@ class TableController extends Controller
     {
         $this->campaign($campaign)->authEntityView($entity);
 
-        Datagrid::layout(\App\Renderers\Layouts\Entity\Relation::class)
+        Datagrid::layout(Relation::class)
             ->route('entities.relations_table', ['campaign' => $campaign, 'entity' => $entity, 'mode' => 'table']);
 
         $this->rows = $entity

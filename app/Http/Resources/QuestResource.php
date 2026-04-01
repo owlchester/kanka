@@ -3,13 +3,14 @@
 namespace App\Http\Resources;
 
 use App\Models\Quest;
+use Illuminate\Http\Request;
 
 class QuestResource extends EntityResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return array
      */
     public function toArray($request)
@@ -20,7 +21,7 @@ class QuestResource extends EntityResource
         return $this->entity([
             'date' => $model->date,
             'is_completed' => $model->isCompleted(),
-            'quest_id' => $model->quest_id,
+            'status' => $model->status_id->value,
             'instigator_id' => $model->instigator_id,
             'location_id' => $model->location_id,
             'calendar_id' => $model->entity->calendarDate?->calendar_id,

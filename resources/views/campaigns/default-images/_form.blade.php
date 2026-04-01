@@ -14,6 +14,6 @@
         field="file"
         required
         :label="__('entities/files.fields.file')">
-        <input type="file" name="default_entity_image" class="image w-full" accept=".jpg, .jpeg, .png, .gif, .webp" />
+        <input type="file" name="default_entity_image" class="image w-full" accept="image/*" />
     </x-forms.field>
 </x-grid>

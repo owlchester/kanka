@@ -5,6 +5,8 @@ namespace App\Renderers\Layouts\Journal;
 use App\Facades\Module;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
+use App\View\Components\Date;
+use Illuminate\Support\Facades\Blade;
 
 class Journal extends Layout
 {
@@ -21,12 +23,12 @@ class Journal extends Layout
             ],
             'journal' => [
                 'key' => 'name',
-                'label' => Module::singular(config('entities.ids.journal'), 'entities.journal'),
+                'label' => Module::singular(config('entities.ids.journal'), __('entities.journal')),
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [
                 'key' => 'type',
-                'label' => 'crud.fields.type',
+                'label' => __('crud.fields.type'),
                 'render' => function (\App\Models\Journal $model) {
                     return $model->entity->type;
                 },
@@ -35,8 +37,8 @@ class Journal extends Layout
                 'key' => 'date',
                 'label' => 'journals.fields.date',
                 'render' => function ($model) {
-                    return \Illuminate\Support\Facades\Blade::renderComponent(
-                        new \App\View\Components\Date(date: $model->date)
+                    return Blade::renderComponent(
+                        new Date(date: $model->date)
                     );
                 },
             ],
@@ -48,7 +50,7 @@ class Journal extends Layout
             ],
             'parent' => [
                 'key' => 'parent.name',
-                'label' => 'crud.fields.parent',
+                'label' => __('crud.fields.parent'),
                 'render' => Standard::ParentLink,
                 'visible' => function () {
                     return ! request()->has('parent_id');

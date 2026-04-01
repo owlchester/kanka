@@ -5,25 +5,20 @@ namespace App\Models;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
-use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
-use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Timeline
  *
  * @property TimelineEra[]|Collection $eras
- * @property ?int $timeline_id
  * @property int|bool $revert_order
- * @property Timeline[]|Collection $descendants
  */
 class Timeline extends MiscModel
 {
@@ -32,8 +27,6 @@ class Timeline extends MiscModel
     use HasCampaign;
     use HasFactory;
     use HasFilters;
-    use HasRecursiveRelationships;
-    use Nested;
     use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
@@ -43,12 +36,10 @@ class Timeline extends MiscModel
         'name',
         'calendar_id',
         'is_private',
-        'timeline_id',
     ];
 
     protected array $sortable = [
         'name',
-        'parent.name',
         'type',
     ];
 
@@ -59,7 +50,6 @@ class Timeline extends MiscModel
      */
     public array $nullableForeignKeys = [
         'calendar_id',
-        'timeline_id',
     ];
 
     /**
@@ -85,23 +75,7 @@ class Timeline extends MiscModel
     ];
 
     /**
-     * Performance with for datagrids
-     */
-    public function scopePreparedWith(Builder $query): Builder
-    {
-        return parent::scopePreparedWith($query)->withCount('eras');
-    }
-
-    /**
-     * Only select used fields in datagrids
-     */
-    public function datagridSelectFields(): array
-    {
-        return ['timeline_id'];
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Calendar, $this>
+     * @return BelongsTo<Calendar, $this>
      */
     public function calendar(): BelongsTo
     {
@@ -109,7 +83,7 @@ class Timeline extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\TimelineEra, $this>
+     * @return HasMany<TimelineEra, $this>
      */
     public function eras(): HasMany
     {
@@ -117,21 +91,13 @@ class Timeline extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\TimelineElement, $this>
+     * @return HasMany<TimelineElement, $this>
      */
     public function elements(): HasMany
     {
         return $this->hasMany(
             'App\Models\TimelineElement',
         );
-    }
-
-    /**
-     * @return string
-     */
-    public function getParentKeyName()
-    {
-        return 'timeline_id';
     }
 
     /**
@@ -151,7 +117,6 @@ class Timeline extends MiscModel
     {
         return [
             'calendar_id',
-            'timeline_id',
         ];
     }
 }

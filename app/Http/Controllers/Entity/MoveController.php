@@ -11,7 +11,10 @@ use App\Services\Entity\MoveService;
 use App\Services\EntityTypeService;
 use App\Services\Users\CampaignService;
 use App\Traits\GuestAuthTrait;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class MoveController extends Controller
 {
@@ -29,9 +32,9 @@ class MoveController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Campaign $campaign, Entity $entity)
     {
@@ -50,7 +53,7 @@ class MoveController extends Controller
     }
 
     /**
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function move(MoveEntityRequest $request, Campaign $campaign, Entity $entity)
     {
@@ -71,7 +74,7 @@ class MoveController extends Controller
                 ->process();
 
             return redirect()
-                ->route($entity->entityType->isCustom() ? 'entities.index' : $entity->entityType->pluralCode() . '.index', [$campaign, $entity->entityType])
+                ->route($entity->entityType->hasEntity() ? 'entities.index' : $entity->entityType->pluralCode() . '.index', [$campaign, $entity->entityType])
                 ->with('success_raw', __('entities/move.success' . ($copied ? '_copy' : null), ['name' => $entity->name, 'campaign' => '<a href=\'' . route('dashboard', $this->service->target()) . '\' class="text-link">' . $this->service->target()->name . '</a>']));
         } catch (TranslatableException $ex) {
             return redirect()

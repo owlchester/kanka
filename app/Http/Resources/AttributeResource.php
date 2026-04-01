@@ -3,13 +3,14 @@
 namespace App\Http\Resources;
 
 use App\Models\Attribute;
+use Illuminate\Http\Request;
 
 class AttributeResource extends EntityChild
 {
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return array
      */
     public function toArray($request)
@@ -19,7 +20,7 @@ class AttributeResource extends EntityChild
 
         return $this->onEntity([
             'name' => $attribute->name,
-            'value' => $attribute->value,
+            'value' => $attribute->isCheckbox() ? (bool) $attribute->value : $attribute->value,
             'parsed' => $attribute->mappedValue(),
             'default_order' => $attribute->default_order,
             'is_star' => (bool) $attribute->isPinned(),

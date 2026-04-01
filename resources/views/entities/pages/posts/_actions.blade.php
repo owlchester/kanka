@@ -26,7 +26,7 @@
         :link="route('posts.move', [$campaign, 'entity' => $entity, 'post' => $post, 'from' => 'main'])"
         :dialog="route('posts.move', [$campaign, 'entity' => $entity, 'post' => $post, 'from' => 'main'])"
         icon="fa-regular fa-arrows-left-right">
-        {{ __('entities/notes.move.move') }}
+        {{ __('articles.actions.move') }}
     </x-dropdowns.item>
 @endif
 @can('setPostTemplates', $campaign)
@@ -43,10 +43,6 @@
         {{ __('crud.history.view') }}
     </x-dropdowns.item>
 @endcan
-<x-dropdowns.divider />
-<x-dropdowns.item :link="route('entities.story.reorder', [$campaign, 'entity' => $entity])" icon="fa-regular fa-arrow-up-arrow-down">
-    {{ __('entities/story.reorder.icon_tooltip') }}
-</x-dropdowns.item>
 
 @can('delete', $entity)
     <x-dropdowns.divider />

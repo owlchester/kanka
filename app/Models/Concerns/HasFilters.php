@@ -2,6 +2,7 @@
 
 namespace App\Models\Concerns;
 
+use App\Enums\EntityAssetType;
 use App\Enums\FilterOption;
 use App\Models\Character;
 use App\Models\Family;
@@ -75,6 +76,7 @@ trait HasFilters
             'connection_target',
             'connection_name',
             'archived',
+            'parent_id',
         ];
     }
 
@@ -169,6 +171,8 @@ trait HasFilters
                 } elseif ($key == 'has_entity_files') {
                     $this->filterHasFiles($query, $value);
                 } elseif ($key == 'parent') {
+                    $this->filterParent($query);
+                } elseif ($key == 'parent_id') {
                     $this->filterParent($query);
                 } elseif (in_array($key, ['created_by', 'updated_by'])) {
                     $query
@@ -360,7 +364,7 @@ trait HasFilters
         $query
             ->joinEntity()
             ->leftJoin('entity_assets', 'entity_assets.entity_id', '=', 'e.id')
-            ->where('entity_assets.type_id', \App\Enums\EntityAssetType::file);
+            ->where('entity_assets.type_id', EntityAssetType::file);
 
         if ($value) {
             $query->whereNotNull('entity_assets.id');
@@ -948,7 +952,7 @@ trait HasFilters
 
     protected function filterParent(Builder $query): void
     {
-        $query->where($this->getTable() . '.' . $this->getParentKeyName(), $this->filterValue);
+        $query->whereHas('entity', fn ($q) => $q->where('entities.parent_id', $this->filterValue));
     }
 
     protected function explicitFilters(): array

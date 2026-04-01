@@ -39,7 +39,7 @@ class CharacterRace extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Character, $this>
+     * @return BelongsTo<Character, $this>
      */
     public function character(): BelongsTo
     {
@@ -47,7 +47,7 @@ class CharacterRace extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Race, $this>
+     * @return BelongsTo<Race, $this>
      */
     public function race(): BelongsTo
     {

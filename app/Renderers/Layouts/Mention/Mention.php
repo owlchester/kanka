@@ -18,12 +18,12 @@ class Mention extends Layout
         $columns = [
             'name' => [
                 'key' => 'name',
-                'label' => 'entities/mentions.fields.element',
+                'label' => __('entities/mentions.fields.element'),
                 'render' => Standard::MENTION_LINK,
             ],
             'type' => [
                 'key' => 'type',
-                'label' => 'crud.fields.type',
+                'label' => __('crud.fields.type'),
                 'render' => function (EntityMention $model) {
                     if ($model->isCampaign()) {
                         return __('entities.campaign');
@@ -34,9 +34,15 @@ class Mention extends Layout
                     }
 
                     if ($model->isTimelineElement()) {
-                        return $base . ' (' . __('entities.timeline_element') . ')';
+                        return $base .
+                            ' (' .
+                            __('entities.timeline_element') .
+                            ')';
                     } elseif ($model->isQuestElement()) {
-                        return $base . ' (' . __('entities.quest_element') . ')';
+                        return $base .
+                            ' (' .
+                            __('entities.quest_element') .
+                            ')';
                     } elseif ($model->isPost()) {
                         return $base . ' (' . __('entities.post') . ')';
                     }

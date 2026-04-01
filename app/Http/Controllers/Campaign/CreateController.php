@@ -48,7 +48,7 @@ class CreateController extends Controller
             'start' => auth()->user()->campaigns->count() === 0,
             'gaTrackingEvent' => $tracking,
             'languages' => $languages,
-            'timezones' => $timezones
+            'timezones' => $timezones,
         ]);
     }
 

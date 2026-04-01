@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
-use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
@@ -15,7 +14,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Location
@@ -27,10 +25,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property bool|int $is_private
  * @property bool|int $is_destroyed
  * @property bool|int $is_map_private
- * @property ?int $location_id
  * @property Map[]|Collection $maps
- * @property ?Location $parent
- * @property Location[]|Collection $descendants
  * @property Event[]|Collection $events
  * @property Character[]|Collection $characters
  * @property Organisation[]|Collection $organisations
@@ -46,24 +41,21 @@ class Location extends MiscModel
     use HasCampaign;
     use HasFactory;
     use HasFilters;
-    use HasRecursiveRelationships;
-    use Nested;
     use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
 
     protected $fillable = [
         'name',
-        'location_id',
         'campaign_id',
         'is_private',
         'is_destroyed',
+        'title',
     ];
 
     protected array $sortable = [
         'name',
         'type',
-        'parent.name',
         'is_destroyed',
     ];
 
@@ -78,46 +70,20 @@ class Location extends MiscModel
      * Nullable values (foreign keys)
      */
     public array $nullableForeignKeys = [
-        'location_id',
     ];
 
     protected array $exportFields = [
         'base',
+        'title',
         'is_destroyed',
     ];
-
-    protected array $exploreGridFields = ['is_destroyed'];
 
     protected array $sanitizable = [
         'name',
     ];
 
-    public function getParentKeyName()
-    {
-        return 'location_id';
-    }
-
     /**
-     * Performance with for datagrids
-     */
-    public function scopePreparedWith(Builder $query): Builder
-    {
-        return parent::scopePreparedWith($query)
-            ->withCount(['entities as characters_count' => function ($sub) {
-                $sub->where('type_id', config('entities.ids.character'));
-            }]);
-    }
-
-    /**
-     * Only select used fields in datagrids
-     */
-    public function datagridSelectFields(): array
-    {
-        return ['location_id', 'is_destroyed'];
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Race, $this>
+     * @return BelongsToMany<Race, $this>
      */
     public function races(): BelongsToMany
     {
@@ -125,7 +91,7 @@ class Location extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Creature, $this>
+     * @return BelongsToMany<Creature, $this>
      */
     public function creatures(): BelongsToMany
     {
@@ -133,7 +99,7 @@ class Location extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Entity, $this>
+     * @return BelongsToMany<Entity, $this>
      */
     public function entities(): BelongsToMany
     {
@@ -141,7 +107,7 @@ class Location extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Item, $this>
+     * @return HasMany<Item, $this>
      */
     public function items(): HasMany
     {
@@ -149,7 +115,7 @@ class Location extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Map, $this>
+     * @return HasMany<Map, $this>
      */
     public function maps(): HasMany
     {
@@ -161,28 +127,23 @@ class Location extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Event, $this>
-     */
-    public function events(): HasMany
-    {
-        return $this->hasMany('App\Models\Event', 'location_id', 'id');
-    }
-
-    /**
      * Get all events in the location and descendants
      */
     public function allEvents(): Builder|Event
     {
         $locationIds = [$this->id];
-        foreach ($this->descendants as $descendant) {
-            $locationIds[] = $descendant->id;
+        foreach ($this->entity->descendants as $descendant) {
+            $locationIds[] = $descendant->entity_id;
         }
 
-        $table = new Event;
-
-        return Event::whereIn($table->getTable() . '.location_id', $locationIds)
-            ->with('location')
-            ->has('entity');
+        return Event::distinct()
+            ->join('entities', function ($join) {
+                $join
+                    ->on('entities.entity_id', '=', 'events.id')
+                    ->where('entities.type_id', config('entities.ids.event'));
+            })
+            ->join('entity_locations as all_el', 'all_el.entity_id', '=', 'entities.id')
+            ->whereIn('all_el.location_id', $locationIds);
     }
 
     /**
@@ -192,8 +153,8 @@ class Location extends MiscModel
     {
         $locationIds = [$this->id];
         if ($direct) {
-            foreach ($this->descendants as $descendant) {
-                $locationIds[] = $descendant->id;
+            foreach ($this->entity->descendants as $descendant) {
+                $locationIds[] = $descendant->entity_id;
             }
         }
 
@@ -213,8 +174,8 @@ class Location extends MiscModel
     public function allQuests(): Builder|Quest
     {
         $locationIds = [$this->id];
-        foreach ($this->descendants as $descendant) {
-            $locationIds[] = $descendant->id;
+        foreach ($this->entity->descendants as $descendant) {
+            $locationIds[] = $descendant->entity_id;
         }
 
         $table = new Quest;
@@ -225,7 +186,7 @@ class Location extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Family, $this>
+     * @return HasMany<Family, $this>
      */
     public function families(): HasMany
     {
@@ -233,7 +194,7 @@ class Location extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Journal, $this>
+     * @return HasMany<Journal, $this>
      */
     public function journals(): HasMany
     {
@@ -241,7 +202,7 @@ class Location extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Organisation, $this>
+     * @return BelongsToMany<Organisation, $this>
      */
     public function organisations(): BelongsToMany
     {
@@ -255,12 +216,12 @@ class Location extends MiscModel
     {
         foreach ($this->families as $child) {
             $child->location_id = null;
-            $child->saveQuietly();
+            $child->save();
         }
 
         foreach ($this->items as $child) {
             $child->location_id = null;
-            $child->saveQuietly();
+            $child->save();
         }
 
         // Pivot tables can be deleted directly
@@ -306,7 +267,6 @@ class Location extends MiscModel
     public function filterableColumns(): array
     {
         return [
-            'location_id',
             'is_destroyed',
         ];
     }

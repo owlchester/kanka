@@ -4,20 +4,18 @@ namespace App\Http\Requests;
 
 use App\Facades\Limit;
 use App\Models\Entity;
-use App\Models\Tag;
 use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
 use App\Traits\ResolvesNewForeignEntities;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class StoreTag extends FormRequest
 {
     use ApiRequest;
     use ResolvesNewForeignEntities;
 
-    protected array $foreignEntityFields = ['tag_id'];
+    protected array $foreignEntityFields = [];
 
     /**
      * Determine if the user is authorized to make this request.
@@ -36,32 +34,32 @@ class StoreTag extends FormRequest
      */
     public function rules()
     {
-        $colours = config('colours.keys');
         $rules = [
             'name' => 'required|max:191',
             'entry' => 'nullable|string',
             'type' => 'nullable|string|max:191',
-            'tag_id' => 'nullable|integer|exists:tags,id',
+            'parent_id' => 'nullable|integer|exists:entities,id',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
             'entity_image_uuid' => 'nullable|exists:images,id',
             'entity_header_uuid' => 'nullable|exists:images,id',
             'template_id' => 'nullable',
+            'icon' => ['nullable', 'string', 'max:100', 'regex:/^(fa-|ra )/'],
             'colour' => [
                 'nullable',
-                Rule::in($colours),
+                'max:7',
             ],
             'attribute' => ['array', new UniqueAttributeNames],
         ];
 
         /** @var Entity $self */
         $self = request()->route('entity');
-        if (! empty($self) && $self->isTag()) {
-            $rules['tag_id'] = [
+        if (! empty($self)) {
+            $rules['parent_id'] = [
                 'nullable',
                 'integer',
-                'exists:tags,id',
-                new Nested(Tag::class, $self->child),
+                'exists:entities,id',
+                new Nested($self),
             ];
         }
 

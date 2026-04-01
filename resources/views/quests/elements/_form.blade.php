@@ -6,8 +6,8 @@
         <input type="hidden" name="entity_id" value="" />
         @include('cruds.fields.entity')
     </x-forms.field>
-    <x-forms.field field="name" required :label="__('quests.elements.fields.name')">
-        <input type="text" name="name" maxlength="100" spellcheck="true" placeholder="{{ __('quests.elements.fields.name') }}" value="{!! htmlspecialchars(old('name', $model->name ?? null)) !!}" />
+    <x-forms.field field="name" required :label="__('crud.fields.name')">
+        <input type="text" name="name" maxlength="100" spellcheck="true" placeholder="{{ __('quests.elements.placeholders.name') }}" value="{!! htmlspecialchars(old('name', $model->name ?? null)) !!}" />
     </x-forms.field>
 
     <hr class="col-span-2" />
@@ -29,9 +29,16 @@
     <x-forms.field
         field="description"
         css="col-span-2"
-        :label="__('quests.elements.fields.description')">
+        :label="__('fields.description.label')">
 
         @include('cruds.fields.entry', ['model' => $model ?? null])
+    </x-forms.field>
+
+    <x-forms.field field="copy" css="col-span-2" :label="__('quests.elements.fields.copy_entity_entry')">
+        <input type="hidden" name="copy_entity_entry" value="0" />
+        <x-checkbox :text="__('quests.elements.helpers.copy_entity_entry')">
+            <input type="checkbox" name="copy_entity_entry" value="1" @if (old('copy_entity_entry', $model->copy_entity_entry ?? false)) checked="checked" @endif />
+        </x-checkbox>
     </x-forms.field>
 
     @include('cruds.fields.colour')

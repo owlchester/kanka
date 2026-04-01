@@ -1,11 +1,13 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => __('entities/notes.edit.title', ['name' => $entity->name]),
+    'title' => __('posts.edit.title') . ' - ' . $model->name . ' - ' . $entity->name . ' - ' . $campaign->name,
     'description' => '',
     'breadcrumbs' => [
         Breadcrumb::campaign($campaign)->entity($entity)->list(),
         Breadcrumb::show(),
+        __('entities.articles'),
         __('crud.update'),
     ],
+    'mainTitle' => false,
     'centered' => true,
     'entity' => null,
 ])
@@ -34,9 +36,10 @@
     @endif
     </x-form>
 
-    <div>
-        <x-buttons.confirm-delete :route="route('entities.posts.destroy', [$campaign, 'entity' => $entity, 'post' => $model])" />
-    </div>
+    <form id="delete-post-form" method="POST" action="{{ route('entities.posts.destroy', [$campaign, 'entity' => $entity, 'post' => $model]) }}" class="hidden">
+        @csrf
+        @method('DELETE')
+    </form>
 @endsection
 
 @include('editors.editor', $entity->isCharacter() ? ['name' => 'characters'] : [])

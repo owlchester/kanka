@@ -4,6 +4,8 @@
             <input type="text" class="leading-4 w-20 md:w-full" maxlength="25"
                 ref="searchField"
                 id="entity-lookup"
+                data-shortcut="k"
+                data-shortcut-action="focus"
                 v-model="term"
                 v-on:click="focus()"
                 @focus="focus()"

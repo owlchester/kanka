@@ -39,7 +39,11 @@
             @endcan
     </div>
     <div class="p-4 flex-1 entity-content">
-        {!! $element->parsedEntry() !!}
+        @if ($element->entity && $element->copy_entity_entry)
+            {!! $element->entity->parsedEntry() !!}
+        @else
+            {!! $element->parsedEntry() !!}
+        @endif
 
         <div class="flex justify-between">
 

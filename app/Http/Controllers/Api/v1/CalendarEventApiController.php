@@ -5,13 +5,15 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Resources\ReminderResource as Resource;
 use App\Models\Calendar;
 use App\Models\Campaign;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class CalendarEventApiController extends ApiController
 {
     /**
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Campaign $campaign, Calendar $calendar)
     {

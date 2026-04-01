@@ -7,6 +7,9 @@ use App\Http\Requests\EditPostVisibility;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Post;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\View\View;
 
 class VisibilityController extends Controller
 {
@@ -21,9 +24,9 @@ class VisibilityController extends Controller
     }
 
     /**
-     * @return \Illuminate\View\View
+     * @return View
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Campaign $campaign, Entity $entity, Post $post)
     {
@@ -38,9 +41,9 @@ class VisibilityController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function update(EditPostVisibility $request, Campaign $campaign, Entity $entity, Post $post)
     {

@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'bulk'          => [
+        'entity_type'   => [
+            'unset' => 'Unset',
+        ],
+    ],
     'create'        => [
         'title' => 'New Property Kit',
     ],

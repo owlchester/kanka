@@ -7,7 +7,6 @@ use App\Enums\OrganisationMemberPin;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
-use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
@@ -16,14 +15,11 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Organisation
  *
- * @property ?int $organisation_id
  * @property Collection|OrganisationMember[] $members
- * @property Collection|Organisation[] $descendants
  * @property bool|int $is_defunct
  */
 class Organisation extends MiscModel
@@ -33,8 +29,6 @@ class Organisation extends MiscModel
     use HasCampaign;
     use HasFactory;
     use HasFilters;
-    use HasRecursiveRelationships;
-    use Nested;
     use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
@@ -42,7 +36,6 @@ class Organisation extends MiscModel
     protected $fillable = [
         'campaign_id',
         'name',
-        'organisation_id',
         'is_private',
         'is_defunct',
     ];
@@ -50,7 +43,6 @@ class Organisation extends MiscModel
     protected array $sortable = [
         'name',
         'type',
-        'parent.name',
         'is_defunct',
         'locations',
     ];
@@ -77,15 +69,12 @@ class Organisation extends MiscModel
         'is_defunct',
     ];
 
-    protected array $exploreGridFields = ['is_defunct'];
-
     /**
      * Nullable values (foreign keys)
      *
      * @var string[]
      */
     public array $nullableForeignKeys = [
-        'organisation_id',
     ];
 
     protected array $sanitizable = [
@@ -93,19 +82,6 @@ class Organisation extends MiscModel
     ];
 
     protected array $organisationAndDescendantIds;
-
-    /**
-     * Performance with for datagrids
-     */
-    public function scopePreparedWith(Builder $query): Builder
-    {
-        return parent::scopePreparedWith($query->with([
-            'entity.locations' => function ($sub) {
-                $sub->select('locations.id', 'locations.name');
-            },
-        ]))
-            ->withCount('members');
-    }
 
     /**
      * Filter for organisations with specific member
@@ -149,14 +125,6 @@ class Organisation extends MiscModel
         return $query->distinct();
     }
 
-    /**
-     * Only select used fields in datagrids
-     */
-    public function datagridSelectFields(): array
-    {
-        return ['organisation_id', 'is_defunct'];
-    }
-
     public function pinnedMembers()
     {
         return $this
@@ -171,15 +139,7 @@ class Organisation extends MiscModel
     }
 
     /**
-     * @return string
-     */
-    public function getParentKeyName()
-    {
-        return 'organisation_id';
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\OrganisationMember, $this>
+     * @return HasMany<OrganisationMember, $this>
      */
     public function members(): HasMany
     {
@@ -214,8 +174,8 @@ class Organisation extends MiscModel
     {
         if (! isset($this->organisationAndDescendantIds)) {
             $this->organisationAndDescendantIds = [$this->id];
-            foreach ($this->descendants as $descendant) {
-                $this->organisationAndDescendantIds[] = $descendant->id;
+            foreach ($this->entity->descendants as $descendant) {
+                $this->organisationAndDescendantIds[] = $descendant->entity_id;
             }
         }
 
@@ -269,7 +229,6 @@ class Organisation extends MiscModel
     {
         return [
             'locations',
-            'organisation_id',
             'is_defunct',
             'member_id',
         ];

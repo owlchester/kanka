@@ -7,126 +7,12 @@ use Illuminate\Database\Eloquent\Builder;
 /**
  * Trait SubEntityScopes
  *
- * @method static self|Builder preparedWith()
- * @method static self|Builder preparedSelect()
- * @method static self|Builder preparedGrid()
  * @method static self|Builder recent()
  * @method static self|Builder withApi()
  */
 trait SubEntityScopes
 {
     protected bool $hasJoinedEntity = false;
-
-    /**
-     * This call should be adapted in each entity model to add required "with()" statements to the query for performance
-     * on the datagrids.
-     */
-    public function scopePreparedWith(Builder $query): Builder
-    {
-        $with = [
-            'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'type', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
-            },
-            'entity.image' => function ($sub) {
-                $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
-            },
-            'entity.entityType' => function ($sub) {
-                $sub->select('id', 'code');
-            },
-        ];
-        if (! method_exists($this, 'getParentKeyName')) {
-            return $query->with($with)->has('entity');
-        }
-
-        $with['parent'] = function ($sub) {
-            $sub->select('id', 'name');
-        };
-        $with['parent.entity'] = function ($sub) {
-            $sub->select('id', 'name', 'entity_id', 'type_id');
-        };
-
-        return $query->with($with)->has('entity')->withCount('children');
-    }
-
-    /**
-     * The grid view shows the same kind of info all the time so it can be simplified
-     */
-    public function scopePreparedGrid(Builder $query): Builder
-    {
-        return $query
-            ->select($this->exploreGridSelectFields())
-            ->with($this->exploreGridWith())
-            ->withCount($this->exploreGridWithCount())
-            ->has('entity');
-    }
-
-    protected function exploreGridSelectFields(): array
-    {
-        $extra = [];
-        if (property_exists($this, 'exploreGridFields')) {
-            $extra = $this->exploreGridFields;
-        }
-        $defaultFields = array_merge($extra, ['id', 'name', 'is_private']);
-        $tableName = $this->getTable();
-        $prefixedFields = [];
-        foreach ($defaultFields as $field) {
-            $prefixedFields[] = $tableName . '.' . $field;
-        }
-
-        return $prefixedFields;
-    }
-
-    protected function exploreGridWith(): array
-    {
-        $with = [
-            'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'type', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
-            },
-            'entity.image' => function ($sub) {
-                $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
-            },
-            'entity.entityType' => function ($sub) {
-                $sub->select('id', 'code');
-            },
-        ];
-
-        return $with;
-    }
-
-    protected function exploreGridWithCount(): array
-    {
-        if (! method_exists($this, 'getParentKeyName')) {
-            return [];
-        }
-
-        return ['children'];
-    }
-
-    /**
-     * Build the list of fields selected in the database for the datagrids.
-     * We do it this way to avoid loading `entry` and other fields that end up being
-     * useless for the datagrid, since we aren't displaying those fields. By not loading
-     * entry, we allow the db to send PHP a lot less data.
-     *
-     * This function builds a default list of fields available on all models, and each model
-     * can add extra fields in the datagridSelectFields() method declared on the models.
-     */
-    public function scopePreparedSelect(Builder $query): Builder
-    {
-        if (! method_exists($this, 'datagridSelectFields')) {
-            return $query;
-        }
-        $defaults = ['id', 'name', 'is_private'];
-        $fields = array_merge($defaults, $this->datagridSelectFields());
-
-        $tableName = $this->getTable();
-        $prefixedFields = [];
-        foreach ($fields as $field) {
-            $prefixedFields[] = $tableName . '.' . $field;
-        }
-
-        return $query->select($prefixedFields);
-    }
 
     public function scopeRecent(Builder $query): Builder
     {

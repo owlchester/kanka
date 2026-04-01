@@ -7,13 +7,16 @@ use App\Http\Resources\LocationResource as Resource;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Models\Location;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class LocationApiController extends ApiController
+class LocationApiController extends MiscApiController
 {
     /**
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Campaign $campaign)
     {
@@ -41,7 +44,7 @@ class LocationApiController extends ApiController
     /**
      * @return resource
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function store(Request $request, Campaign $campaign)
     {
@@ -51,7 +54,7 @@ class LocationApiController extends ApiController
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
         $model = Location::create($data);
-        $this->crudSave($model);
+        $this->crudSave($model, $request->validated());
 
         return new Resource($model);
     }
@@ -64,15 +67,15 @@ class LocationApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $location->entity);
         $location->update($request->all());
-        $this->crudSave($location);
+        $this->crudSave($location, $request->validated());
 
         return new Resource($location);
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function destroy(Campaign $campaign, Location $location)
     {

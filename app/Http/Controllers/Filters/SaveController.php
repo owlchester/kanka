@@ -44,18 +44,14 @@ class SaveController extends Controller
             return redirect()->back()->withErrors(__('filters.bookmark.premium'));
         }
 
-        $filters = '';
-        if ($entityType->isCustom()) {
-            $filters = $this->filterService->clipboardFilters();
-            $this->filterService
-                ->entityType($entityType)
-                ->build();
-        } else {
-            $this->filterService
-                ->model($entityType->getClass())
-                ->make($entityType->pluralCode());
-            $filters = 'm=' . request()->get('m') . '&' . $this->filterService->clipboardFilters();
-        }
+        $this->filterService
+            ->entityType($entityType)
+            ->campaign($campaign)
+            ->build();
+
+        $filters = $entityType->isCustom()
+            ? $this->filterService->clipboardFilters()
+            : 'm=' . request()->get('m') . '&' . $this->filterService->clipboardFilters();
 
         $bookmark = new Bookmark;
         $bookmark->campaign_id = $campaign->id;

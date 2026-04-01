@@ -10,6 +10,12 @@ use App\Models\CampaignRole;
 use App\Models\EntityType;
 use App\Services\EntityTypeService;
 use App\Services\Permissions\RolePermissionService;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
@@ -30,9 +36,9 @@ class RoleController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\JsonResponse
+     * @return Application|Factory|View|JsonResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Campaign $campaign)
     {
@@ -65,16 +71,17 @@ class RoleController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function create(Campaign $campaign)
     {
         $this->authorize('create', CampaignRole::class);
         if (! $campaign->canHaveMoreRoles()) {
             return view('cruds.forms.limit')
-                ->with('key', 'roles')
+                ->with('limit', config('limits.campaigns.roles'))
+                ->with('thing', __('campaigns.show.tabs.roles'))
                 ->with('campaign', $campaign)
                 ->with('name', 'campaign_roles');
         }
@@ -83,16 +90,17 @@ class RoleController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function duplicate(Campaign $campaign, CampaignRole $campaignRole)
     {
         $this->authorize('create', CampaignRole::class);
         if (! $campaign->canHaveMoreRoles()) {
             return view('cruds.forms.limit')
-                ->with('key', 'roles')
+                ->with('limit', config('limits.campaigns.roles'))
+                ->with('thing', __('campaigns.show.tabs.roles'))
                 ->with('campaign', $campaign)
                 ->with('name', 'campaign_roles');
         }
@@ -107,10 +115,7 @@ class RoleController extends Controller
             return response()->json();
         }
         if (! $campaign->canHaveMoreRoles()) {
-            return view('cruds.forms.limit')
-                ->with('key', 'roles')
-                ->with('campaign', $campaign)
-                ->with('name', 'campaign_roles');
+            return redirect()->back();
         }
         $data = $request->all() + ['campaign_id' => $campaign->id];
         $role = CampaignRole::create($data);
@@ -184,9 +189,9 @@ class RoleController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function savePermissions(Request $request, Campaign $campaign, CampaignRole $campaignRole)
     {
@@ -202,9 +207,9 @@ class RoleController extends Controller
     /**
      * campaign/<id>/campaign_roles/admin fast url
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function admin(Campaign $campaign)
     {
@@ -218,9 +223,9 @@ class RoleController extends Controller
     /**
      * campaign/<id>/campaign_roles/admin fast url
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function public(Campaign $campaign)
     {
@@ -232,9 +237,9 @@ class RoleController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function search(Request $request, Campaign $campaign)
     {
@@ -263,7 +268,7 @@ class RoleController extends Controller
     /**
      * Toggle a permission on a role
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function toggle(Campaign $campaign, CampaignRole $campaignRole, EntityType $entityType, int $action)
     {

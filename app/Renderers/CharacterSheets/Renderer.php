@@ -13,6 +13,7 @@ use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
+use Illuminate\View\Factory;
 
 abstract class Renderer
 {
@@ -80,7 +81,7 @@ abstract class Renderer
         }
 
         // We need this for some blade directives like foreach
-        $data['__env'] = app(\Illuminate\View\Factory::class);
+        $data['__env'] = app(Factory::class);
         $data['attributes'] = $allAttributes;
         $data['_abilities'] = $this->abilities();
 
@@ -152,7 +153,7 @@ abstract class Renderer
             ->abilities()
             ->has('ability')
             ->has('ability.entity')
-            ->with(['ability', 'ability.parent', 'ability.entity', 'ability.entity.image', 'ability.entity.tags'])
+            ->with(['ability', 'ability.entity', 'ability.entity.parent', 'ability.entity.image', 'ability.entity.tags'])
             ->get();
         $data = [];
         /** @var EntityAbility $abi */
@@ -163,10 +164,10 @@ abstract class Renderer
             }
 
             $parent = null;
-            if (! empty($abi->ability->parent)) {
+            if (! empty($abi->ability->entity->parent)) {
                 $parent = [
-                    'name' => $abi->ability->parent->name,
-                    'slug' => Str::slug($abi->ability->parent->name),
+                    'name' => $abi->ability->entity->parent->name,
+                    'slug' => Str::slug($abi->ability->entity->parent->name),
                 ];
             }
 

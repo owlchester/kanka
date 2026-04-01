@@ -3,11 +3,11 @@
 namespace App\Models;
 
 use App\Enums\FilterOption;
+use App\Enums\QuestStatus;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\HasLocation;
-use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
@@ -17,15 +17,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
-use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Quest
  *
- * @property ?int $quest_id
  * @property ?int $instigator_id
  * @property ?int $location_id
- * @property bool|int $is_completed
+ * @property QuestStatus $status_id
  * @property string $date
  * @property ?Location $location
  * @property ?Entity $instigator
@@ -39,29 +37,25 @@ class Quest extends MiscModel
     use HasFactory;
     use HasFilters;
     use HasLocation;
-    use HasRecursiveRelationships;
-    use Nested;
     use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
 
     protected $fillable = [
         'campaign_id',
-        'quest_id',
         'name',
         'is_private',
         'instigator_id',
         'location_id',
-        'is_completed',
+        'status_id',
         'date',
     ];
 
     protected array $sortable = [
         'name',
         'date',
-        'is_completed',
+        'status_id',
         'type',
-        'parent.name',
     ];
 
     protected array $sanitizable = [
@@ -75,7 +69,7 @@ class Quest extends MiscModel
     protected array $sortableColumns = [
         'date',
         'instigator.name',
-        'is_completed',
+        'status_id',
         'calendar_date',
         'location.name',
     ];
@@ -88,7 +82,6 @@ class Quest extends MiscModel
     public array $nullableForeignKeys = [
         'instigator_id',
         'location_id',
-        'quest_id',
     ];
 
     /**
@@ -107,39 +100,19 @@ class Quest extends MiscModel
         'base',
         'instigator_id',
         'location_id',
-        'is_completed',
+        'status_id',
         'date',
     ];
 
-    protected array $exploreGridFields = ['is_completed'];
-
-    /**
-     * Performance with for datagrids
-     */
-    public function scopePreparedWith(Builder $query): Builder
-    {
-        return parent::scopePreparedWith($query->with([
-            'entity.calendarDate',
-            'entity.calendarDate.calendar',
-            'entity.calendarDate.calendar.entity',
-            'instigator' => function ($sub) {
-                $sub->select('id', 'name');
-            },
-            'location' => function ($sub) {
-                $sub->select('id', 'name');
-            },
-            'location.entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id');
-            },
-        ]))
-            ->withCount('elements');
-    }
+    public $casts = [
+        'status_id' => QuestStatus::class,
+    ];
 
     public function scopeFilteredQuests(Builder $query): Builder
     {
         // @phpstan-ignore-next-line
         return $query
-            ->select(['id', 'name', 'location_id', 'is_completed', 'is_private'])
+            ->select(['id', 'name', 'location_id', 'status_id', 'is_private'])
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with([
                 'location', 'location.entity',
@@ -199,33 +172,15 @@ class Quest extends MiscModel
             ->where('qe.role', $value);
     }
 
-    /**
-     * Only select used fields in datagrids
-     */
-    public function datagridSelectFields(): array
-    {
-        return ['quest_id', 'instigator_id', 'location_id', 'is_completed'];
-    }
-
     public function shortDescription()
     {
         return $this->name;
     }
 
     /**
-     * Parent ID field for the Node trait
-     *
-     * @return string
-     */
-    public function getParentKeyName()
-    {
-        return 'quest_id';
-    }
-
-    /**
      * The Quest Giver
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     * @return BelongsTo<Entity, $this>
      */
     public function instigator(): BelongsTo
     {
@@ -235,7 +190,7 @@ class Quest extends MiscModel
     /**
      * The Starting location
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Location, $this>
+     * @return BelongsTo<Location, $this>
      */
     public function location(): BelongsTo
     {
@@ -245,7 +200,7 @@ class Quest extends MiscModel
     /**
      * Elements of the quest
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\QuestElement, $this>
+     * @return HasMany<QuestElement, $this>
      */
     public function elements(): HasMany
     {
@@ -296,9 +251,8 @@ class Quest extends MiscModel
     {
         return [
             'date',
-            'quest_id',
             'instigator_id',
-            'is_completed',
+            'status_id',
             'date_start',
             'location_id',
             'date_end',
@@ -308,11 +262,35 @@ class Quest extends MiscModel
     }
 
     /**
-     * Get the value of the is_complete variable
+     * Check if the quest has not been started
+     */
+    public function isNotStarted(): bool
+    {
+        return $this->status_id === QuestStatus::notStarted;
+    }
+
+    /**
+     * Check if the quest is ongoing
+     */
+    public function isOngoing(): bool
+    {
+        return $this->status_id === QuestStatus::ongoing;
+    }
+
+    /**
+     * Check if the quest is completed
      */
     public function isCompleted(): bool
     {
-        return (bool) $this->is_completed;
+        return $this->status_id === QuestStatus::completed;
+    }
+
+    /**
+     * Check if the quest is abandoned
+     */
+    public function isAbandoned(): bool
+    {
+        return $this->status_id === QuestStatus::abandoned;
     }
 
     /**
@@ -323,7 +301,7 @@ class Quest extends MiscModel
         $columns = [
             'name' => __('crud.fields.name'),
             'type' => __('crud.fields.type'),
-            'is_completed' => __('quests.fields.is_completed'),
+            'status_id' => __('quests.fields.status'),
             'calendar_date' => __('crud.fields.calendar_date'),
         ];
 

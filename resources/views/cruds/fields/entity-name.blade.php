@@ -63,7 +63,7 @@ $i18n = json_encode([
         placeholder="{{ $placeholder }}"
         end-point="{{ $endPoint }}"
         entity-id="{{ $entityId }}"
-        model-value="{{ $modelValue }}"
+        model-value="{!! $modelValue !!}"
         :required="{{ $required ? 'true' : 'false' }}"
         aliases="{{ json_encode($existingAliases) }}"
         @if ($aliasLimit !== null) :alias-limit="{{ $aliasLimit }}" @else :alias-limit="null" @endif

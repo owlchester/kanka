@@ -34,7 +34,7 @@ class CampaignUser extends Pivot
     protected $fillable = ['user_id', 'campaign_id'];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Campaign, $this>
+     * @return BelongsTo<Campaign, $this>
      */
     public function campaign(): BelongsTo
     {
@@ -44,7 +44,7 @@ class CampaignUser extends Pivot
     /**
      * Get the user's roles
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough<\App\Models\CampaignRole, \App\Models\CampaignRoleUser, $this>
+     * @return HasManyThrough<CampaignRole, CampaignRoleUser, $this>
      */
     public function roles(): HasManyThrough
     {
@@ -80,19 +80,13 @@ class CampaignUser extends Pivot
      */
     public function scopeWithoutAdmins(Builder $builder): Builder
     {
-        return $builder
-            ->distinct()
-            ->select($this->getTable() . '.*')
-            ->leftJoin('campaign_role_users as cru', 'cru.user_id', $this->getTable() . '.user_id')
-            ->leftJoin('campaign_roles as cr', function ($on) {
-                $on->on('cr.id', 'cru.campaign_role_id')
-                    ->whereRaw('cr.campaign_id = ' . $this->getTable() . '.campaign_id');
-            })
-            // ->whereRaw('cr.campaign_id = ' . $this->getTable() . '.campaign_id')
-            ->where(function ($sub) {
-                $sub->where('is_admin', false)
-                    ->orWhereNull('is_admin');
-            });
+        return $builder->whereNotExists(function ($query) {
+            $query->from('campaign_role_users as cru')
+                ->join('campaign_roles as cr', 'cr.id', 'cru.campaign_role_id')
+                ->whereColumn('cru.user_id', $this->getTable() . '.user_id')
+                ->whereColumn('cr.campaign_id', $this->getTable() . '.campaign_id')
+                ->where('cr.is_admin', true);
+        });
     }
 
     public function scopeCampaignUser(Builder $builder, int $campaignID, int $userID): Builder

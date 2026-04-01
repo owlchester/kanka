@@ -3,13 +3,14 @@
 namespace App\Http\Resources;
 
 use App\Models\Journal;
+use Illuminate\Http\Request;
 
 class JournalResource extends EntityResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return array
      */
     public function toArray($request)
@@ -18,7 +19,6 @@ class JournalResource extends EntityResource
         $model = $this->resource;
 
         return $this->entity([
-            'journal_id' => $model->journal_id,
             'date' => $model->date,
             'author' => $model->author,
             'author_id' => $model->author_id,

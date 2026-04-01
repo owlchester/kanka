@@ -3,8 +3,8 @@
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5">
             <div class="flex-col gap-8 hidden lg:flex col-span-2 ">
                 <div class="flex">
-                    <a href="{{ route('home') }}" class="">
-                        <svg class="h-28 w-28"  alt="Kanka Logo" >
+                    <a href="{{ route('home') }}" class="text-white">
+                        <svg class="h-28 w-28"  alt="Kanka Logo" class="text-white" >
                             <use href="/images/svgs/sprites.svg#kanka-logo"></use>
                         </svg>
                     </a>
@@ -39,15 +39,15 @@
                 <a href="{{ Domain::toFront('kb') }}">{{ __('footer.kb') }}</a>
                 <a href="https://docs.kanka.io/en/latest/index.html" target="_blank">{{ __('footer.documentation') }}</a>
                 <a href="{{ route('larecipe.index') }}" target="_blank">{{ __('front.features.api.link') }}</a>
-                <a href="https://blog.kanka.io/category/news/" target="_blank">{{ __('footer.whats-new') }}</a>
                 <a href="https://blog.kanka.io" target="_blank">{{ __('footer.blog') }}</a>
                 <a href="https://status.kanka.io" target="_blank">{{ __('footer.status') }}</a>
-                <a href="{{ Domain::toFront('newsletter') }}">{{ __('footer.newsletter') }}</a>
             </div>
 
             <div class="flex flex-col gap-3 text-sm">
                 <span class="block text-nav uppercase">{{ __('footer.community') }}</span>
+                <a href="https://blog.kanka.io/category/news">{{ __('footer.whats-new') }}</a>
                 <a href="{{ Domain::toFront('campaigns') }}">{{ __('footer.public-campaigns') }}</a>
+                <a href="{{ Domain::toFront('showcase') }}">{{ __('footer.showcase') }}</a>
                 <a href="{{ route('roadmap') }}">{{ __('footer.roadmap') }}</a>
                 <a href="{{ Domain::toFront('hall-of-fame') }}">{{ __('front/hall-of-fame.title') }}</a>
             </div>
@@ -56,10 +56,10 @@
                 <span class="block text-nav uppercase">{{ __('footer.company') }}</span>
                 <a href="{{ Domain::toFront('about') }}">{{ __('footer.about') }}</a>
                 <a href="{{ Domain::toFront('contact') }}">{{ __('footer.contact') }}</a>
-                <a href="{{ Domain::toFront('press-kit') }}">{{ __('footer.press-kit') }}</a>
-                <a href="{{ Domain::toFront('security') }}">{{ __('footer.security') }}</a>
                 <a href="{{ Domain::toFront('privacy-policy') }}">{{ __('footer.privacy') }}</a>
                 <a href="{{ Domain::toFront('terms-and-conditions') }}">{{ __('footer.terms') }}</a>
+                <a href="{{ Domain::toFront('security') }}">{{ __('footer.security') }}</a>
+                <a href="{{ Domain::toFront('press-kit') }}">{{ __('footer.press-kit') }}</a>
             </div>
         </div>
 

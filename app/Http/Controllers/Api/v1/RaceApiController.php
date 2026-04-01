@@ -7,13 +7,16 @@ use App\Http\Resources\RaceResource as Resource;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Models\Race;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class RaceApiController extends ApiController
+class RaceApiController extends MiscApiController
 {
     /**
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Campaign $campaign)
     {
@@ -42,7 +45,7 @@ class RaceApiController extends ApiController
     /**
      * @return resource
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function store(Request $request, Campaign $campaign)
     {
@@ -52,7 +55,7 @@ class RaceApiController extends ApiController
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
         $model = Race::create($data);
-        $this->crudSave($model);
+        $this->crudSave($model, $request->validated());
 
         return new Resource($model);
     }
@@ -65,15 +68,15 @@ class RaceApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $race->entity);
         $race->update($request->all());
-        $this->crudSave($race);
+        $this->crudSave($race, $request->validated());
 
         return new Resource($race);
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function destroy(Campaign $campaign, Race $race)
     {

@@ -59,6 +59,7 @@ return [
         'message'   => '{who} a apporté des modifications à {name}, consulter le site {url}',
         'url'       => 'URL du webhook cible',
     ],
+    'premium'       => 'Sois notifié sur Discord ou dans d\'autres applications lorsque ta campagne change, pour les nouvelles entrées, les mises à jour, et plus encore.',
     'test'          => [
         'success'   => 'Test envoyé',
     ],

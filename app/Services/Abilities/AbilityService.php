@@ -41,7 +41,7 @@ class AbilityService extends BaseAbilityService
                 'ability.entity', 'ability.entity.image', 'ability.entity.attributes', 'ability.entity.attributes.entity',
                 'ability.entity.tags',
                 // parent
-                'ability.parent', 'ability.parent.entity', 'ability.parent.entity.tags', 'ability.parent.entity.image',
+                'ability.entity.parent', 'ability.entity.parent.tags', 'ability.entity.parent.image',
             ])
             ->join('abilities as a', 'a.id', 'entity_abilities.ability_id')
             ->leftJoin('entities as ae', function (JoinClause $join) {
@@ -80,12 +80,12 @@ class AbilityService extends BaseAbilityService
     protected function add(EntityAbility $entityAbility): void
     {
         $ability = $entityAbility->ability;
-        $parent = $ability->parent;
+        $parent = $ability->entity->parent;
 
         $groupKey = $parent->id ?? 'unorganised';
 
         if (empty($this->groups[$groupKey])) {
-            if (empty($parent) || empty($parent->entity)) {
+            if (empty($parent) || empty($parent)) {
                 $this->groups[$groupKey] = [
                     'id' => 0,
                     'name' => __('entities/abilities.groups.unorganised'),
@@ -93,15 +93,15 @@ class AbilityService extends BaseAbilityService
                     'abilities' => [],
                 ];
             } else {
-                $type = empty($parent->entity->type) ? Str::limit(strip_tags($parent->entity->entry), 200) : $parent->entity->type;
+                $type = empty($parent->type) ? Str::limit(strip_tags($parent->entry), 200) : $parent->type;
                 $this->groups[$groupKey] = [
                     'id' => $parent->id,
                     'name' => $parent->name,
                     'type' => $type,
-                    'image' => Avatar::entity($parent->entity)->size(192)->thumbnail(),
-                    'has_image' => $parent->entity->hasImage(),
-                    'entry' => $parent->entity->parsedEntry(),
-                    'url' => $parent->getLink(),
+                    'image' => Avatar::entity($parent)->size(192)->thumbnail(),
+                    'has_image' => $parent->hasImage(),
+                    'entry' => $parent->parsedEntry(),
+                    'url' => $parent->url(),
                     'abilities' => [],
                 ];
             }
@@ -205,6 +205,7 @@ class AbilityService extends BaseAbilityService
                 'url' => $tag->getLink(),
                 'tooltip' => route('entities.tooltip', [$this->campaign, $tag->entity]),
                 'class' => $tag->colourClass(),
+                'style' => $tag->colourStyle(),
             ];
         }
 

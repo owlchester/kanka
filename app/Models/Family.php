@@ -7,7 +7,6 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\HasLocation;
-use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
@@ -18,16 +17,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Family
  *
- * @property ?int $family_id
  * @property bool|int $is_extinct
  * @property Collection|Character[] $members
  * @property ?FamilyTree $familyTree
- * @property Collection|Family[] $descendants
  * @property Collection|CharacterFamily[] $pitvotMembers
  */
 class Family extends MiscModel
@@ -38,8 +34,6 @@ class Family extends MiscModel
     use HasFactory;
     use HasFilters;
     use HasLocation;
-    use HasRecursiveRelationships;
-    use Nested;
     use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
@@ -48,7 +42,6 @@ class Family extends MiscModel
         'campaign_id',
         'name',
         'location_id',
-        'family_id',
         'is_private',
         'is_extinct',
     ];
@@ -64,7 +57,6 @@ class Family extends MiscModel
     protected array $sortable = [
         'name',
         'location.name',
-        'parent.name',
         'is_extinct',
         'type',
     ];
@@ -78,12 +70,9 @@ class Family extends MiscModel
 
     protected array $exportFields = [
         'base',
-        'family_id',
         'location_id',
         'is_extinct',
     ];
-
-    protected array $exploreGridFields = ['is_extinct'];
 
     /**
      * Nullable values (foreign keys)
@@ -92,37 +81,11 @@ class Family extends MiscModel
      */
     public array $nullableForeignKeys = [
         'location_id',
-        'family_id',
     ];
 
     protected array $sanitizable = [
         'name',
     ];
-
-    /**
-     * Parent ID used for the Node Trait
-     *
-     * @return string
-     */
-    public function getParentKeyName()
-    {
-        return 'family_id';
-    }
-
-    /**
-     * Performance with for datagrids
-     */
-    public function scopePreparedWith(Builder $query): Builder
-    {
-        return parent::scopePreparedWith($query->with([
-            'location' => function ($sub) {
-                $sub->select('id', 'name');
-            },
-            'location.entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id');
-            },
-        ]))->withCount('members');
-    }
 
     /**
      * Filter for family with specific member
@@ -168,15 +131,7 @@ class Family extends MiscModel
     }
 
     /**
-     * Only select used fields in datagrids
-     */
-    public function datagridSelectFields(): array
-    {
-        return ['family_id', 'location_id', 'is_extinct'];
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\FamilyTree, $this>
+     * @return HasOne<FamilyTree, $this>
      */
     public function familyTree(): HasOne
     {
@@ -194,7 +149,7 @@ class Family extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CharacterFamily, $this>
+     * @return HasMany<CharacterFamily, $this>
      */
     public function pivotMembers(): HasMany
     {
@@ -208,8 +163,8 @@ class Family extends MiscModel
     public function allMembers()
     {
         $familyId = [$this->id];
-        foreach ($this->descendants as $descendant) {
-            $familyId[] = $descendant->id;
+        foreach ($this->entity->descendants as $descendant) {
+            $familyId[] = $descendant->entity_id;
         }
 
         $query = Character::select('characters.*')
@@ -233,8 +188,8 @@ class Family extends MiscModel
     public function allCharacterFamilies()
     {
         $familyIDs = [$this->id];
-        foreach ($this->descendants as $descendant) {
-            $familyIDs[] = $descendant->id;
+        foreach ($this->entity->descendants as $descendant) {
+            $familyIDs[] = $descendant->entity_id;
         }
 
         return CharacterFamily::groupBy('character_id')
@@ -276,7 +231,7 @@ class Family extends MiscModel
         if (! empty($this->type)) {
             return true;
         }
-        if (! empty($this->parent)) {
+        if (! empty($this->entity->parent)) {
             return true;
         }
         if ($this->entity->elapsedEvents->isNotEmpty()) {
@@ -295,10 +250,8 @@ class Family extends MiscModel
     {
         return [
             'location_id',
-            'family_id',
             'member_id',
             'is_extinct',
-            'parent',
         ];
     }
 }

@@ -5,6 +5,8 @@ namespace App\Renderers\Layouts\Campaign;
 use App\Models\CampaignRole;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
+use App\View\Components\Since;
+use Illuminate\Support\Facades\Blade;
 
 class CampaignUser extends Layout
 {
@@ -20,19 +22,33 @@ class CampaignUser extends Layout
                 'label' => '',
                 'render' => function (\App\Models\CampaignUser $model) {
                     if ($model->user->hasAvatar()) {
-                        return '<div class="rounded-full h-8 w-8 cover-background" style="background-image: url(' . $model->user->getAvatarUrl() . ')" data-title="' . $model->user->name . '"></div>';
+                        return '<div class="rounded-full h-8 w-8 cover-background" style="background-image: url(' .
+                            $model->user->getAvatarUrl() .
+                            ')" data-title="' .
+                            $model->user->name .
+                            '"></div>';
                     }
 
-                    return '<div class="rounded-full h-8 w-8 flex items-center justify-center bg-neutral text-neutral-content uppercase">' . $model->user->initials() . '</div>';
+                    return '<div class="rounded-full h-8 w-8 flex items-center justify-center bg-neutral text-neutral-content uppercase">' .
+                        $model->user->initials() .
+                        '</div>';
                 },
             ],
             'name' => [
                 'key' => 'user.name',
-                'label' => 'campaigns.members.fields.name',
+                'label' => __('campaigns.members.fields.name'),
                 'render' => function (\App\Models\CampaignUser $model) {
-                    $html = '<a class="block break-all truncate text-link" href="' . route('users.profile', [$model->user]) . '" target="_blank">' . $model->user->name . '</a>';
+                    $html =
+                        '<a class="block break-all truncate text-link" href="' .
+                        route('users.profile', [$model->user]) .
+                        '" target="_blank">' .
+                        $model->user->name .
+                        '</a>';
                     if ($model->user->isBanned()) {
-                        $html .= '<i class="fa-regular fa-ban" aria-hidden="true" data-toggle="tooltip" data-title = "' . __('campaigns.members.fields.banned') . '"></i>';
+                        $html .=
+                            '<i class="fa-regular fa-ban" aria-hidden="true" data-toggle="tooltip" data-title = "' .
+                            __('campaigns.members.fields.banned') .
+                            '"></i>';
                     }
 
                     return $html;
@@ -40,14 +56,25 @@ class CampaignUser extends Layout
             ],
             'roles' => [
                 'key' => 'user.roles',
-                'label' => 'campaigns.members.fields.roles',
+                'label' => __('campaigns.members.fields.roles'),
                 'render' => function (\App\Models\CampaignUser $model) {
                     /** @var CampaignRole[] $roles */
-                    $roles = $model->user->campaignRoles->where('campaign_id', $this->campaign->id);
+                    $roles = $model->user->campaignRoles->where(
+                        'campaign_id',
+                        $this->campaign->id,
+                    );
                     $roleLinks = [];
                     foreach ($roles as $role) {
                         if (auth()->user()->isAdmin()) {
-                            $roleLinks[] = '<a href="' . route('campaign_roles.show', [$this->campaign, $role->id]) . '" class="text-link">' . $role->name . '</a>';
+                            $roleLinks[] =
+                                '<a href="' .
+                                route('campaign_roles.show', [
+                                    $this->campaign,
+                                    $role->id,
+                                ]) .
+                                '" class="text-link">' .
+                                $role->name .
+                                '</a>';
                         } else {
                             $roleLinks[] = $role->name;
                         }
@@ -55,8 +82,23 @@ class CampaignUser extends Layout
                     $html = (string) implode(', ', $roleLinks);
 
                     if (auth()->user()->can('update', $model)) {
-                        $html .= ' <i href="' . route('campaign.members.roles', [$this->campaign, $model->id]) . '" class="fa-regular fa-pencil cursor-pointer"
-                            data-toggle="dialog-ajax" data-target="new-invite" data-url="' . route('campaign.members.roles', [$this->campaign, $model->id]) . '" data-tooltip data-title="' . __('campaigns/members.roles.title') . '" aria-label="' . __('campaigns/members.roles.title') . '">
+                        $html .=
+                            ' <i href="' .
+                            route('campaign.members.roles', [
+                                $this->campaign,
+                                $model->id,
+                            ]) .
+                            '" class="fa-regular fa-pencil cursor-pointer"
+                            data-toggle="dialog-ajax" data-target="new-invite" data-url="' .
+                            route('campaign.members.roles', [
+                                $this->campaign,
+                                $model->id,
+                            ]) .
+                            '" data-tooltip data-title="' .
+                            __('campaigns/members.roles.title') .
+                            '" aria-label="' .
+                            __('campaigns/members.roles.title') .
+                            '">
                         </i>';
                     }
 
@@ -65,24 +107,28 @@ class CampaignUser extends Layout
             ],
             'created_at' => [
                 'key' => 'created_at',
-                'label' => 'campaigns.members.fields.joined',
+                'label' => __('campaigns.members.fields.joined'),
                 'render' => Standard::SINCE,
             ],
             'last_login' => [
                 'key' => 'user.last_login',
-                'label' => 'campaigns.members.fields.last_login',
+                'label' => __('campaigns.members.fields.last_login'),
                 'render' => function (\App\Models\CampaignUser $model) {
-
-                    if ($model->user->has_last_login_sharing && ! empty($model->user->last_login_at)) {
-                        return \Illuminate\Support\Facades\Blade::renderComponent(
-                            new \App\View\Components\Since(date: $model->user->last_login_at, withTime: false)
+                    if (
+                        $model->user->has_last_login_sharing &&
+                        ! empty($model->user->last_login_at)
+                    ) {
+                        return Blade::renderComponent(
+                            new Since(
+                                date: $model->user->last_login_at,
+                                withTime: false,
+                            ),
                         );
                     }
 
                     return '';
                 },
             ],
-
         ];
 
         return $columns;
@@ -113,7 +159,6 @@ class CampaignUser extends Layout
 
     public function bulks(): array
     {
-        return [
-        ];
+        return [];
     }
 }

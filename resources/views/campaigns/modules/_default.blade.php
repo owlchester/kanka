@@ -1,8 +1,8 @@
-<h3 id="default" class="text-xl">{{ __('campaigns/modules.sections.default')}}</h3>
+<h3 id="default" class="text-xl font-light">{{ __('campaigns/modules.sections.default')}}</h3>
 
 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2 md:gap-4">
     @foreach ($entityTypes as $entityType)
-        <div class="cell col-span-1 flex">
+        <div class="cell col-span-1 flex" id="{{ $entityType->code }}">
             <x-campaigns.module-box :campaign="$campaign" :entityType="$entityType" :thumbnail="$thumbnails[$entityType->pluralCode()]['path'] ?? ''"></x-campaigns.module-box>
         </div>
     @endforeach

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\Lessless;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -27,7 +28,7 @@ class StorePost extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => ['required', 'string', 'max:191', new \App\Rules\Lessless],
+            'name' => ['required', 'string', 'max:191', new Lessless],
             'visibility_id' => 'nullable|integer|exists:visibilities,id',
             'location_id' => 'nullable|exists:locations,id',
             'is_pinned' => 'boolean',

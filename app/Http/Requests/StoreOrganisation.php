@@ -4,8 +4,8 @@ namespace App\Http\Requests;
 
 use App\Facades\Limit;
 use App\Models\Entity;
-use App\Models\Organisation;
-use App\Rules\EntityLocations;
+use App\Models\Location;
+use App\Rules\EntityField;
 use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
@@ -17,7 +17,7 @@ class StoreOrganisation extends FormRequest
     use ApiRequest;
     use ResolvesNewForeignEntities;
 
-    protected array $foreignEntityFields = ['organisation_id'];
+    protected array $foreignEntityFields = [];
 
     /**
      * Determine if the user is authorized to make this request.
@@ -41,23 +41,23 @@ class StoreOrganisation extends FormRequest
             'entry' => 'nullable|string',
             'type' => 'nullable|string|max:191',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
-            'organisation_id' => 'nullable|exists:organisations,id',
+            'parent_id' => 'nullable|integer|exists:entities,id',
             'image_url' => 'nullable|url|active_url',
             'entity_image_uuid' => 'nullable|exists:images,id',
             'entity_header_uuid' => 'nullable|exists:images,id',
             'template_id' => 'nullable',
-            'locations' => ['nullable', 'array', new EntityLocations],
+            'locations' => ['nullable', 'array', new EntityField(config('entities.ids.location'), Location::class)],
             'attribute' => ['array', new UniqueAttributeNames],
         ];
 
         /** @var Entity $self */
         $self = request()->route('entity');
-        if (! empty($self) && $self->isOrganisation()) {
-            $rules['organisation_id'] = [
+        if (! empty($self)) {
+            $rules['parent_id'] = [
                 'nullable',
                 'integer',
-                'exists:organisations,id',
-                new Nested(Organisation::class, $self->child),
+                'exists:entities,id',
+                new Nested($self),
             ];
         }
 

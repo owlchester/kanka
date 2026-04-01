@@ -17,7 +17,7 @@ class CampaignImport extends Layout
         $columns = [
             'user_id' => [
                 'key' => 'user.name',
-                'label' => 'campaigns.members.fields.name',
+                'label' => __('campaigns.members.fields.name'),
                 'render' => function (\App\Models\CampaignImport $model) {
                     if (! $model->user_id) {
                         return '';
@@ -29,7 +29,7 @@ class CampaignImport extends Layout
             ],
             'updated_at' => [
                 'key' => 'updated_at',
-                'label' => 'campaigns/import.fields.updated',
+                'label' => __('campaigns/import.fields.updated'),
                 'render' => function (\App\Models\CampaignImport $model) {
                     $html = '<span data-title="' . $model->updated_at . 'UTC" data-toggle="tooltip">' . $model->updated_at->diffForHumans() . '</span>';
 
@@ -38,7 +38,7 @@ class CampaignImport extends Layout
             ],
             'status' => [
                 'key' => 'status_id',
-                'label' => 'campaigns/plugins.fields.status',
+                'label' => __('campaigns/plugins.fields.status'),
                 'render' => function (\App\Models\CampaignImport $model) {
                     if ($model->status_id === CampaignImportStatus::FAILED) {
                         if ($model->isCsv()) {

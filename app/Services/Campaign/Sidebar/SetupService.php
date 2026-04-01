@@ -86,38 +86,47 @@ class SetupService
             ],
             'characters' => [
                 'type' => 'character',
+                'category_id' => config('entities.ids.character'),
                 'mode' => true,
             ],
             'locations' => [
                 'type' => 'location',
+                'category_id' => config('entities.ids.location'),
                 'mode' => true,
             ],
             'maps' => [
                 'mode' => true,
+                'category_id' => config('entities.ids.map'),
                 'type' => 'map',
             ],
             'organisations' => [
                 'mode' => true,
+                'category_id' => config('entities.ids.organisation'),
                 'type' => 'organisation',
             ],
             'families' => [
                 'mode' => true,
+                'category_id' => config('entities.ids.family'),
                 'type' => 'family',
             ],
             'calendars' => [
                 'mode' => true,
+                'category_id' => config('entities.ids.calendar'),
                 'type' => 'calendar',
             ],
             'timelines' => [
                 'mode' => true,
+                'category_id' => config('entities.ids.timeline'),
                 'type' => 'timeline',
             ],
             'races' => [
                 'mode' => true,
+                'category_id' => config('entities.ids.race'),
                 'type' => 'race',
             ],
             'creatures' => [
                 'mode' => true,
+                'category_id' => config('entities.ids.creature'),
                 'type' => 'creature',
             ],
             'game' => [
@@ -128,22 +137,27 @@ class SetupService
             ],
             'quests' => [
                 'mode' => true,
+                'category_id' => config('entities.ids.quest'),
                 'type' => 'quest',
             ],
             'journals' => [
                 'mode' => true,
+                'category_id' => config('entities.ids.journal'),
                 'type' => 'journal',
             ],
             'items' => [
                 'mode' => true,
+                'category_id' => config('entities.ids.item'),
                 'type' => 'item',
             ],
             'events' => [
                 'mode' => true,
+                'category_id' => config('entities.ids.event'),
                 'type' => 'event',
             ],
             'abilities' => [
                 'mode' => true,
+                'category_id' => config('entities.ids.ability'),
                 'type' => 'ability',
             ],
             'notes' => [
@@ -261,7 +275,9 @@ class SetupService
             $element = $this->customElement($name);
             // Add a route if it should have one
             if (! isset($element['route'])) {
-                $element['route'] = $name . '.index';
+                if (! isset($element['type'])) {
+                    $element['route'] = $name . '.index';
+                }
             }
 
             // No children? Nothing more to do
@@ -296,7 +312,7 @@ class SetupService
                 }
 
                 // Add route when none is set
-                if (! isset($child['route'])) {
+                if (! isset($child['route']) && ! isset($child['type'])) {
                     $child['route'] = $childName . '.index';
                 }
 
@@ -431,7 +447,7 @@ class SetupService
 
     protected function loadModules(): void
     {
-        $modules = EntityType::default()->get();
+        $modules = $this->campaign->getEntityTypes();
         /** @var EntityType $module */
         foreach ($modules as $module) {
             $this->modules[$module->code] = $module;

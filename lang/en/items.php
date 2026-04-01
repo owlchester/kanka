@@ -1,11 +1,17 @@
 <?php
 
 return [
+    'bulk'          => [
+        'creators'  => [
+            'action'    => 'Action for creators',
+            'remove'    => 'Remove all creators',
+        ],
+    ],
     'create'        => [
         'title' => 'New Object',
     ],
     'fields'        => [
-        'character'     => 'Creator',
+        'creators'      => 'Creators',
         'is_equipped'   => 'Equipped',
         'price'         => 'Price',
         'size'          => 'Size',

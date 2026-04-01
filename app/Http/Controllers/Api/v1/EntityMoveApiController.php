@@ -7,6 +7,7 @@ use App\Http\Requests\MoveEntity as Request;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\Entity\MoveService;
+use Illuminate\Auth\Access\AuthorizationException;
 
 class EntityMoveApiController extends ApiController
 {
@@ -20,7 +21,7 @@ class EntityMoveApiController extends ApiController
     }
 
     /**
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function transfer(Request $request, Campaign $campaign)
     {

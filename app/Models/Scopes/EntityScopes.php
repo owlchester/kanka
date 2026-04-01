@@ -2,10 +2,15 @@
 
 namespace App\Models\Scopes;
 
+use App\Enums\EntityAssetType;
+use App\Enums\EntityEventTypes;
 use App\Models\Campaign;
+use App\Models\Entity;
 use App\Models\EntityType;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 /**
@@ -176,22 +181,67 @@ trait EntityScopes
         return $query->whereIn($this->getTable() . '.type_id', $types);
     }
 
-    public function scopeOrder(Builder $query, array $config = []): Builder
+    public function scopeOrder(Builder $query, array $config = [], ?EntityType $entityType = null): Builder
     {
+        $entityFields = ['name', 'type', 'is_private'];
+
         foreach ($config as $field => $order) {
-            $query->orderBy($field, $order);
+            if ($field === 'parent.name') {
+                $query->leftJoin('entities as parent_order', 'parent_order.id', '=', 'entities.parent_id')
+                    ->orderBy('parent_order.name', $order);
+            } elseif ($field === 'calendar_date') {
+                $query->leftJoin('reminders as cd', function ($join) {
+                    $join->on('cd.remindable_id', '=', 'entities.id')
+                        ->on('cd.remindable_type', '=', DB::raw("'" . addslashes(Entity::class) . "'"))
+                        ->where('cd.type_id', EntityEventTypes::calendarDate);
+                })
+                    ->orderBy('cd.year', $order)
+                    ->orderBy('cd.month', $order)
+                    ->orderBy('cd.day', $order);
+            } elseif ($field === 'tags') {
+                $query->leftJoin('entity_tags as tags_order', 'tags_order.entity_id', '=', 'entities.id')
+                    ->leftJoin('tags as tag_order', 'tag_order.id', '=', 'tags_order.tag_id')
+                    ->orderBy('tag_order.name', $order);
+            } elseif (! in_array($field, $entityFields) && $entityType?->isStandard()) {
+                // Field lives on the child model's table
+                $childModel = $entityType->getClass();
+                $childTable = $childModel->getTable();
+                $query->leftJoin($childTable . ' as child_order', 'child_order.id', '=', 'entities.entity_id');
+
+                $segments = explode('.', $field);
+                if (count($segments) > 1) {
+                    // Dotted field like location.name — resolve the relationship on the child model
+                    $relationName = $segments[0];
+                    /** @var BelongsTo $relation */
+                    $relation = $childModel->{$relationName}();
+                    $relatedTable = $relation->getQuery()->getQuery()->from;
+                    $query->leftJoin(
+                        $relatedTable . ' as orderable_j',
+                        'orderable_j.id',
+                        'child_order.' . $relation->getForeignKeyName()
+                    )->orderBy(str_replace($relationName, 'orderable_j', $field), $order);
+                } else {
+                    $query->orderBy('child_order.' . $field, $order);
+                }
+            } else {
+                $query->orderBy('entities.' . $field, $order);
+            }
         }
 
         return $query;
     }
 
-    public function scopeFilter(Builder $query, array $filters = []): Builder
+    public function scopeFilter(Builder $query, array $filters = [], ?EntityType $entityType = null): Builder
     {
+        $childFilterKeys = [];
         foreach ($filters as $name => $values) {
-            if (! is_array($values) && $values === null) {
+            // Skip null or empty-string values (empty form fields)
+            if ($values === null || $values === '') {
+                continue;
+            } elseif (is_array($values) && empty(array_filter($values, fn ($v) => $v !== '' && $v !== null))) {
                 continue;
             } elseif (in_array($name, ['is_private', 'parent_id'])) {
-                $query->where($name, $values);
+                $query->where('entities.' . $name, $values);
             } elseif (in_array($name, ['name', 'type'])) {
                 // @phpstan-ignore-next-line
                 $query->textFilter($name, $values);
@@ -219,12 +269,147 @@ trait EntityScopes
             } elseif ($name === 'has_entry') {
                 // @phpstan-ignore-next-line
                 $query->filterHasEntry($values);
+            } elseif ($name === 'has_attributes') {
+                // @phpstan-ignore-next-line
+                $query->filterHasAttributes($values);
+            } elseif (in_array($name, ['attribute_name', 'attribute_value'])) {
+                // attribute_value is handled together with attribute_name
+                if ($name === 'attribute_name') {
+                    // @phpstan-ignore-next-line
+                    $query->filterAttributes($values, Arr::get($filters, 'attribute_value'));
+                }
+            } elseif (in_array($name, ['connection_target', 'connection_name'])) {
+                // connection_name is handled together with connection_target
+                if ($name === 'connection_target' || ! isset($filters['connection_target'])) {
+                    // @phpstan-ignore-next-line
+                    $query->filterConnections(
+                        Arr::get($filters, 'connection_target'),
+                        Arr::get($filters, 'connection_name')
+                    );
+                }
+            } elseif (in_array($name, ['created_by', 'updated_by'])) {
+                $query->where('entities.' . $name, (int) $values);
+            } elseif ($name === 'creators') {
+                // Handled after the loop (like tags) so that creators_option works even with an empty array
+                continue;
+            } elseif ($entityType?->isStandard() && ! Str::endsWith($name, '_option')) {
+                $childFilterKeys[$name] = $values;
+            }
+        }
+
+        // Entity-type-specific filters (e.g. status_id on characters)
+        if (! empty($childFilterKeys) && $entityType?->isStandard()) {
+            $childModel = $entityType->getClass();
+            $childTable = $childModel->getTable();
+            $query->leftJoin($childTable . ' as child_filter', 'child_filter.id', '=', 'entities.entity_id');
+            foreach ($childFilterKeys as $name => $values) {
+                $ids = collect((array) $values)->map(fn ($v) => (int) $v)->toArray();
+                $option = Arr::get($filters, $name . '_option');
+                if ($name === 'families') {
+                    if ($option === 'children') {
+                        $ids = Entity::whereIn('entity_id', $ids)
+                            ->where('type_id', config('entities.ids.family'))
+                            ->with('descendants')
+                            ->get()
+                            ->flatMap(fn ($e) => [$e->entity_id, ...$e->descendants->pluck('entity_id')->toArray()])
+                            ->unique()
+                            ->toArray();
+                    }
+                    if ($option === 'exclude') {
+                        $query->whereRaw('(select count(*) from `character_family` where `character_family`.`character_id` = `child_filter`.`id` and `character_family`.`family_id` in (' . implode(', ', $ids) . ')) = 0');
+                    } else {
+                        $query->whereExists(fn ($q) => $q->select(DB::raw(1))->from('character_family')->whereColumn('character_family.character_id', 'child_filter.id')->whereIn('character_family.family_id', $ids));
+                    }
+                } elseif ($name === 'races') {
+                    if ($option === 'children') {
+                        $ids = Entity::whereIn('entity_id', $ids)
+                            ->where('type_id', config('entities.ids.race'))
+                            ->with('descendants')
+                            ->get()
+                            ->flatMap(fn ($e) => [$e->entity_id, ...$e->descendants->pluck('entity_id')->toArray()])
+                            ->unique()
+                            ->toArray();
+                    }
+                    if ($option === 'exclude') {
+                        $query->whereRaw('(select count(*) from `character_race` where `character_race`.`character_id` = `child_filter`.`id` and `character_race`.`race_id` in (' . implode(', ', $ids) . ')) = 0');
+                    } else {
+                        $query->whereExists(fn ($q) => $q->select(DB::raw(1))->from('character_race')->whereColumn('character_race.character_id', 'child_filter.id')->whereIn('character_race.race_id', $ids));
+                    }
+                } elseif ($name === 'organisations') {
+                    if ($option === 'children') {
+                        $ids = Entity::whereIn('entity_id', $ids)
+                            ->where('type_id', config('entities.ids.organisation'))
+                            ->with('descendants')
+                            ->get()
+                            ->flatMap(fn ($e) => [$e->entity_id, ...$e->descendants->pluck('entity_id')->toArray()])
+                            ->unique()
+                            ->toArray();
+                    }
+                    if ($option === 'exclude') {
+                        $query->whereRaw('(select count(*) from `organisation_member` where `organisation_member`.`character_id` = `child_filter`.`id` and `organisation_member`.`organisation_id` in (' . implode(', ', $ids) . ')) = 0');
+                    } else {
+                        $query->whereExists(fn ($q) => $q->select(DB::raw(1))->from('organisation_member')->whereColumn('organisation_member.character_id', 'child_filter.id')->whereIn('organisation_member.organisation_id', $ids));
+                    }
+                } elseif ($name === 'locations') {
+                    if ($option === 'children') {
+                        $ids = Entity::whereIn('entity_id', $ids)
+                            ->where('type_id', config('entities.ids.location'))
+                            ->with('descendants')
+                            ->get()
+                            ->flatMap(fn ($e) => [$e->entity_id, ...$e->descendants->pluck('entity_id')->toArray()])
+                            ->unique()
+                            ->toArray();
+                    }
+                    if ($option === 'exclude') {
+                        $query->whereRaw('(select count(*) from `entity_locations` where `entity_locations`.`entity_id` = `entities`.`id` and `entity_locations`.`location_id` in (' . implode(', ', $ids) . ')) = 0');
+                    } else {
+                        $query->whereExists(fn ($q) => $q->select(DB::raw(1))->from('entity_locations')->whereColumn('entity_locations.entity_id', 'entities.id')->whereIn('entity_locations.location_id', $ids));
+                    }
+                } else {
+                    $query->where('child_filter.' . $name, $values);
+                }
             }
         }
 
         if (Arr::hasAny($filters, ['tags', 'tags_option'])) {
             // @phpstan-ignore-next-line
             $query->filterTags(Arr::get($filters, 'tags', []), Arr::get($filters, 'tags_option'));
+        }
+
+        // Creators filter (handled outside loop so creators_option works even with empty array)
+        if (Arr::hasAny($filters, ['creators', 'creators_option'])) {
+            $creatorsOption = Arr::get($filters, 'creators_option');
+            if ($creatorsOption === 'none') {
+                $query->whereNotExists(function ($sub) {
+                    $sub->selectRaw(1)
+                        ->from('item_creator')
+                        ->whereColumn('item_creator.item_id', 'entities.entity_id');
+                });
+            } else {
+                $creatorValues = Arr::get($filters, 'creators', []);
+                $creatorIds = array_values(array_filter(array_map('intval', is_array($creatorValues) ? $creatorValues : [$creatorValues])));
+                if (! empty($creatorIds)) {
+                    if ($creatorsOption === 'exclude') {
+                        foreach ($creatorIds as $creatorId) {
+                            $query->whereNotExists(function ($sub) use ($creatorId) {
+                                $sub->selectRaw(1)
+                                    ->from('item_creator')
+                                    ->whereColumn('item_creator.item_id', 'entities.entity_id')
+                                    ->where('item_creator.creator_id', $creatorId);
+                            });
+                        }
+                    } else {
+                        foreach ($creatorIds as $creatorId) {
+                            $query->whereExists(function ($sub) use ($creatorId) {
+                                $sub->selectRaw(1)
+                                    ->from('item_creator')
+                                    ->whereColumn('item_creator.item_id', 'entities.entity_id')
+                                    ->where('item_creator.creator_id', $creatorId);
+                            });
+                        }
+                    }
+                }
+            }
         }
 
         return $query;
@@ -237,7 +422,7 @@ trait EntityScopes
     {
         $query
             ->leftJoin('entity_assets', 'entity_assets.entity_id', '=', 'entities.id')
-            ->where('entity_assets.type_id', \App\Enums\EntityAssetType::file);
+            ->where('entity_assets.type_id', EntityAssetType::file);
 
         if ($value) {
             $query->whereNotNull('entity_assets.id');
@@ -323,13 +508,77 @@ trait EntityScopes
             $searchTerm = $text;
 
             $query->where(
-                $field,
+                'entities.' . $field,
                 $operator,
                 ($operator == '=' ? $text : "%{$searchTerm}%")
             );
         }
 
         return $query;
+    }
+
+    /**
+     * Filter on entities with attributes
+     */
+    protected function scopeFilterHasAttributes(Builder $query, bool $value = true): void
+    {
+        $query
+            ->leftJoin('attributes', 'attributes.entity_id', 'entities.id');
+
+        if ($value) {
+            $query->whereNotNull('attributes.id');
+        } else {
+            $query->whereNull('attributes.id');
+        }
+    }
+
+    /**
+     * Filter on entities by attribute name and optionally value
+     */
+    protected function scopeFilterAttributes(Builder $query, ?string $name = null, ?string $attributeValue = null): void
+    {
+        if ($name === null) {
+            return;
+        }
+
+        [$operator, $filterName] = $this->extractSearchOperator($name, 'attribute_name');
+
+        // No attribute with this name (exclude)
+        if ($operator === 'not like') {
+            $query
+                ->whereRaw('(select count(*) from attributes as att where att.entity_id = entities.id and att.name = ?) = 0', [$filterName]);
+
+            return;
+        }
+
+        $query
+            ->leftJoin('attributes as att', 'att.entity_id', '=', 'entities.id')
+            ->where('att.name', $filterName);
+
+        if ($attributeValue === '!') {
+            $query->whereRaw('att.value <> ""');
+        } elseif ($attributeValue !== '' && $attributeValue !== null) {
+            $query->where('att.value', $attributeValue);
+        }
+    }
+
+    /**
+     * Filter on entities by their connections
+     */
+    protected function scopeFilterConnections(Builder $query, ?string $targetId = null, ?string $connectionName = null): void
+    {
+        $query
+            ->leftJoin('relations as rel', 'rel.owner_id', '=', 'entities.id');
+
+        if ($targetId !== '' && $targetId !== null) {
+            $query->where('rel.target_id', $targetId);
+        }
+
+        if ($connectionName !== '' && $connectionName !== null) {
+            [$operator, $filterName] = $this->extractSearchOperator($connectionName, 'connection_name');
+            $searchValue = $operator === '=' ? $filterName : '%' . $filterName . '%';
+            $query->where('rel.relation', $operator, $searchValue);
+        }
     }
 
     /**

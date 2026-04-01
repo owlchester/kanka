@@ -7,13 +7,16 @@ use App\Http\Resources\EventResource as Resource;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Models\Event;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class EventApiController extends ApiController
+class EventApiController extends MiscApiController
 {
     /**
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Campaign $campaign)
     {
@@ -41,7 +44,7 @@ class EventApiController extends ApiController
     /**
      * @return resource
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function store(Request $request, Campaign $campaign)
     {
@@ -51,7 +54,7 @@ class EventApiController extends ApiController
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
         $model = Event::create($data);
-        $this->crudSave($model);
+        $this->crudSave($model, $request->validated());
 
         return new Resource($model);
     }
@@ -64,15 +67,15 @@ class EventApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $event->entity);
         $event->update($request->all());
-        $this->crudSave($event);
+        $this->crudSave($event, $request->validated());
 
         return new Resource($event);
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function destroy(Campaign $campaign, Event $event)
     {

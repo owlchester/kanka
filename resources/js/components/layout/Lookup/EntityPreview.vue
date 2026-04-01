@@ -6,6 +6,7 @@
             </a>
 
             <i class="fa-regular fa-skull mx-2" aria-hidden="true" v-if="entity.is_dead"></i>
+            <i class="fa-regular fa-question mx-2" aria-hidden="true" v-if="entity.is_missing"></i>
 
             <a class="ml-2 text-xs" target="_blank" v-bind:href="entity.link">
                 <i class="fa-regular fa-external-link" aria-hidden="true" aria-label="Open in a new window"></i>
@@ -14,13 +15,13 @@
         <div class="block w-full" v-if="hasTitle()" v-html="entity.title">
         </div>
         <div class="my-1 w-full flex flex-wrap gap-1" v-if="entity.tags.length > 0">
-            <a :class="tagClass(tag)" v-for="tag in entity.tags"
+            <a :class="tagClass(tag)" :style="tag.style || ''" v-for="tag in entity.tags"
                 v-bind:href="tag.link"
                :data-tag-id="tag.id"
                :data-tag-slug="tag.slug"
-
-               v-html="tag.name"
                 >
+                <i v-if="tag.icon" :class="tag.icon" aria-hidden="true"></i>
+                <span v-else v-html="tag.name"></span>
             </a>
         </div>
         <a class="block w-full cursor-pointer my-2"
@@ -29,7 +30,7 @@
            :data-tag="entity.id"
         >
             <i class="fa-duotone circle-location-arrow" aria-hidden="true" aria-label="Location"></i>
-            {{ entity.location.name }}
+            <span v-html="entity.location.name"></span>
         </a>
         <div class="flex gap-1 items-center my-2" v-else-if="entity.locations">
             <a class="cursor-pointer"
@@ -38,7 +39,7 @@
                :data-tag="location.id"
             >
                 <i class="fa-duotone circle-location-arrow" aria-hidden="true" aria-label="Location"></i>
-                {{ location.name }}
+                <span v-html="location.name"></span>
             </a>
         </div>
         <a
@@ -97,14 +98,7 @@ const hasTitle = () => {
     return props.entity.title;
 }
 const tagClass = (tag) => {
-    let cls = 'inline-block rounded-xl px-3 py-1 bg-base-100 text-base-content text-xs';
-    if (tag.colour) {
-        cls += ' bg-' + tag.colour;
-        if (tag.colour === 'black') {
-            cls += ' text-white';
-        }
-    }
-    return cls;
+    return 'inline-block rounded-xl px-3 py-1 bg-base-100 text-base-content text-xs';
 }
 
 const backgroundImage = () => {

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Theme;
 use Illuminate\Database\Seeder;
 
 class ThemesTableSeeder extends Seeder
@@ -16,7 +17,7 @@ class ThemesTableSeeder extends Seeder
         $themes = ['default', 'dark', 'midnight'];
         $created = 0;
         foreach ($themes as $theme) {
-            $type = \App\Models\Theme::firstOrNew([
+            $type = Theme::firstOrNew([
                 'name' => $theme,
             ]);
             if (! $type->exists) {

@@ -15,8 +15,13 @@ use App\Services\EntityFileService;
 use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Str;
+use Illuminate\View\View;
 
 class AssetController extends Controller
 {
@@ -191,7 +196,7 @@ class AssetController extends Controller
     /**
      * Create a new file
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|\Illuminate\Contracts\View\View
      */
     protected function createFile(Campaign $campaign, Entity $entity)
     {
@@ -209,13 +214,15 @@ class AssetController extends Controller
     /**
      * Create a new link
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|\Illuminate\Contracts\View\View
      */
     protected function createLink(Campaign $campaign, Entity $entity)
     {
         if (! $campaign->boosted()) {
-            return view('entities.pages.links.not-premium')
-                ->with('campaign', $campaign);
+            return view('components.premium-dialog', [
+                'campaign' => $campaign,
+                'pitch' => 'entities/links.call-to-action',
+            ]);
         }
 
         return view('entities.pages.links.create', compact(
@@ -225,9 +232,9 @@ class AssetController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     * @return Application|Factory|RedirectResponse|View
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function go(Campaign $campaign, Entity $entity, EntityAsset $entityAsset)
     {

@@ -16,7 +16,7 @@ class Theme extends Model
     use SoftDeletes;
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Campaign, $this>
+     * @return HasMany<Campaign, $this>
      */
     public function campaigns(): HasMany
     {

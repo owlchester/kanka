@@ -22,17 +22,27 @@ $entityTags = $post->visibleTags();
             @endif
             @can('post', [$entity, 'edit', $post])
                 @can('visibility', $post)
-                    <span id="visibility-icon-{{ $post->id }}" class="btn2 btn-ghost btn-sm" data-toggle="dialog" data-url="{{ route('posts.edit.visibility', [$campaign, $entity->id, $post->id]) }}">
-                        @include('icons.visibility', ['icon' => $post->visibilityIcon()])
-                    </span>
+                    <x-forms.visibility-picker
+                        :entity="$entity"
+                        :campaign="$campaign"
+                        :selected="$post->visibility_id instanceof \App\Enums\Visibility ? $post->visibility_id->value : (int) $post->visibility_id"
+                        :url="route('posts.update.visibility', [$campaign, $entity->id, $post->id])"
+                        :options="$post->visibilityOptions()"
+                    />
                 @else
                     @include('icons.visibility', ['icon' => $post->visibilityIcon()])
                 @endif
                 <div class="dropdown">
-                    <a role="button" class="btn2 btn-ghost btn-sm" data-dropdown aria-expanded="false" data-placement="right" data-tree="escape">
-                        <x-icon class="fa-regular fa-ellipsis-v" />
+                    <div
+                        role="button"
+                        tabindex="0"
+                        class="btn2 btn-sm"
+                        data-dropdown aria-expanded="false"
+                        data-placement="right"
+                        data-tree="escape">
+                        <x-icon class="fa-regular fa-ellipsis" />
                         <span class="sr-only">{{__('crud.actions.actions') }}</span>
-                    </a>
+                    </div>
                     <div class="dropdown-menu hidden" role="menu">
                         @include('entities.pages.posts._actions')
                     </div>

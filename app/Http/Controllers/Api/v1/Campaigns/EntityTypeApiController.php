@@ -9,20 +9,21 @@ use App\Http\Resources\EntityTypeResource as Resource;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Services\EntityTypeService;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class EntityTypeApiController extends ApiController
 {
-    public function __construct(
-        protected EntityTypeService $entityTypeService
-    ) {
+    public function __construct(protected EntityTypeService $entityTypeService)
+    {
         $this->middleware(Premium::class, ['except' => ['index', 'show']]);
     }
 
     /**
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Campaign $campaign)
     {

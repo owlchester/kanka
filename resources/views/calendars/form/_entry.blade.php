@@ -4,6 +4,8 @@
 
     @include('cruds.fields.type', ['base' => \App\Models\Calendar::class, 'trans' => 'calendars'])
 
+    @include('cruds.fields.parent')
+
     <div class="current grid grid-cols-3 gap-2">
 
         <x-forms.field

@@ -90,7 +90,7 @@ class Reminder extends Model
     protected int $cachedNext;
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Calendar, $this>
+     * @return BelongsTo<Calendar, $this>
      */
     public function calendar(): BelongsTo
     {
@@ -98,7 +98,7 @@ class Reminder extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\EntityEventType, $this>
+     * @return BelongsTo<EntityEventType, $this>
      */
     public function type(): BelongsTo
     {
@@ -569,7 +569,7 @@ class Reminder extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphOne<\App\Models\Reminder, $this>
+     * @return MorphOne<Reminder, $this>
      */
     public function death(): MorphOne
     {

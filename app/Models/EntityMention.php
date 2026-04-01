@@ -45,7 +45,7 @@ class EntityMention extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     * @return BelongsTo<Entity, $this>
      */
     public function target(): BelongsTo
     {
@@ -53,7 +53,7 @@ class EntityMention extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     * @return BelongsTo<Entity, $this>
      */
     public function entity(): BelongsTo
     {
@@ -61,7 +61,7 @@ class EntityMention extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Post, $this>
+     * @return BelongsTo<Post, $this>
      */
     public function post(): BelongsTo
     {
@@ -69,7 +69,7 @@ class EntityMention extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\TimelineElement, $this>
+     * @return BelongsTo<TimelineElement, $this>
      */
     public function timelineElement(): BelongsTo
     {
@@ -77,7 +77,7 @@ class EntityMention extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\QuestElement, $this>
+     * @return BelongsTo<QuestElement, $this>
      */
     public function questElement(): BelongsTo
     {
@@ -85,7 +85,7 @@ class EntityMention extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Campaign, $this>
+     * @return BelongsTo<Campaign, $this>
      */
     public function campaign(): BelongsTo
     {

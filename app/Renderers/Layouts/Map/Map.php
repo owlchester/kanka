@@ -21,19 +21,19 @@ class Map extends Layout
             ],
             'name' => [
                 'key' => 'name',
-                'label' => Module::singular(config('entities.ids.map'), 'entities.map'),
+                'label' => Module::singular(config('entities.ids.map'), __('entities.map')),
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [
                 'key' => 'type',
-                'label' => 'crud.fields.type',
+                'label' => __('crud.fields.type'),
                 'render' => function (\App\Models\Map $model) {
                     return $model->entity->type;
                 },
             ],
             'map' => [
                 'key' => 'parent.name',
-                'label' => 'crud.fields.parent',
+                'label' => __('crud.fields.parent'),
                 'render' => Standard::ParentLink,
                 'visible' => function () {
                     return ! request()->has('map_id');

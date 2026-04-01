@@ -21,12 +21,12 @@ class Item extends Layout
             ],
             'name' => [
                 'key' => 'name',
-                'label' => Module::singular(config('entities.ids.item'), 'entities.item'),
+                'label' => Module::singular(config('entities.ids.item'), __('entities.item')),
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [
                 'key' => 'type',
-                'label' => 'crud.fields.type',
+                'label' => __('crud.fields.type'),
                 'render' => function (\App\Models\Item $model) {
                     return $model->entity->type;
                 },

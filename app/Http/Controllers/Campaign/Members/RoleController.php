@@ -8,6 +8,10 @@ use App\Http\Requests\UpdateUserRoles;
 use App\Models\Campaign;
 use App\Models\CampaignUser;
 use App\Services\Campaign\MemberService;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\View\View;
 
 class RoleController extends Controller
 {
@@ -23,9 +27,9 @@ class RoleController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Campaign $campaign, CampaignUser $campaignUser)
     {
@@ -41,7 +45,7 @@ class RoleController extends Controller
     }
 
     /**
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function save(UpdateUserRoles $request, Campaign $campaign, CampaignUser $campaignUser)
     {

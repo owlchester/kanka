@@ -21,19 +21,19 @@ class Timeline extends Layout
             ],
             'name' => [
                 'key' => 'name',
-                'label' => Module::singular(config('entities.ids.timeline'), 'entities.timeline'),
+                'label' => Module::singular(config('entities.ids.timeline'), __('entities.timeline')),
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [
                 'key' => 'type',
-                'label' => 'crud.fields.type',
+                'label' => __('crud.fields.type'),
                 'render' => function (\App\Models\Timeline $model) {
                     return $model->entity->type;
                 },
             ],
             'timeline' => [
                 'key' => 'parent.name',
-                'label' => 'crud.fields.parent',
+                'label' => __('crud.fields.parent'),
                 'render' => Standard::ParentLink,
                 'visible' => function () {
                     return ! request()->has('parent_id');

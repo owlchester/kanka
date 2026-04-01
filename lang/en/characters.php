@@ -25,6 +25,7 @@ return [
         'physical'                  => 'Physical',
         'pronouns'                  => 'Pronouns',
         'sex'                       => 'Gender',
+        'status'                    => 'Status',
         'title'                     => 'Title',
         'traits'                    => 'Traits',
     ],
@@ -34,7 +35,7 @@ return [
     'hints'                     => [
         'is_appearance_pinned'      => 'Show on overview.',
         'is_dead'                   => 'This character is dead.',
-        'is_personality_pinned'     => 'Show on overview.',
+        'is_missing'                => 'This character is missing.',
         'is_personality_visible'    => 'The personality traits are visible to all, not only to members of the :admin role.',
         'personality_not_visible'   => 'Personality traits of this character are currently only visible to Admin users.',
         'personality_visible'       => 'Everyone can view this character\'s personality.',
@@ -102,6 +103,11 @@ return [
     'sections'                  => [
         'appearance'    => 'Appearance',
         'personality'   => 'Personality',
+    ],
+    'status'                    => [
+        'alive'     => 'Alive',
+        'dead'      => 'Dead',
+        'missing'   => 'Missing',
     ],
     'warnings'                  => [
         'personality_hidden'    => ':name\'s personality traits have been locked down.',

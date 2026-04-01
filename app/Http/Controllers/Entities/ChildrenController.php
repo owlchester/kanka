@@ -24,10 +24,6 @@ class ChildrenController extends Controller
         $this->campaign($campaign)->authEntityView($entity);
 
         $options = ['campaign' => $campaign, 'entity' => $entity, 'm' => $this->descendantsMode()];
-        $filters = [];
-        if ($this->filterToDirect()) {
-            $filters['parent_id'] = $entity->id;
-        }
 
         /** @var Children $layout */
         $layout = app()->make(Children::class);
@@ -35,7 +31,7 @@ class ChildrenController extends Controller
         Datagrid::layout($layout)
             ->route('entities.children', $options);
 
-        $this->rows = $entity
+        $query = $entity
             ->descendants()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with([
@@ -43,9 +39,13 @@ class ChildrenController extends Controller
                 'tags',
                 'children',
                 'parent',
-            ])
-            ->filter($filters)
-            ->paginate(config('limits.pagination'));
+            ]);
+
+        if ($this->filterToDirect()) {
+            $query->where('parent_id', $entity->id);
+        }
+
+        $this->rows = $query->paginate(config('limits.pagination'));
 
         if (request()->ajax()) {
             return $this->campaign($campaign)->datagridAjax();

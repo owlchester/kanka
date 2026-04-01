@@ -12,10 +12,12 @@
         @endif
         {!! $slot !!}
         @if (!empty($doc))
-            <a href="{{ $doc }}" class="text-link">
-                <x-icon class="fa-regular fa-book" />
-                {{ __('general.documentation') }}
-            </a>
+            <p>
+                <a href="{{ $doc }}" class="text-link">
+                    <x-icon class="fa-regular fa-book" />
+                    {{ __('general.documentation') }}
+                </a>
+            </p>
         @endif
     </div>
 </div>

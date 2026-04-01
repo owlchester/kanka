@@ -6,6 +6,7 @@ class LocationBulk extends Bulk
 {
     protected array $fields = [
         'name',
+        'title',
         'type',
         'location_id',
         'tags',

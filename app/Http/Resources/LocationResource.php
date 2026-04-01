@@ -3,13 +3,14 @@
 namespace App\Http\Resources;
 
 use App\Models\Location;
+use Illuminate\Http\Request;
 
 class LocationResource extends EntityResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return array
      */
     public function toArray($request)
@@ -18,7 +19,7 @@ class LocationResource extends EntityResource
         $model = $this->resource;
 
         return $this->entity([
-            'location_id' => $model->location_id,
+            'title' => $model->title,
             'is_destroyed' => $model->isDestroyed(),
         ]);
     }

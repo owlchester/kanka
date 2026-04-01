@@ -7,6 +7,7 @@ use App\Mail\Purge\FirstWarning;
 use App\Models\User;
 use App\Services\Users\CampaignService;
 use Exception;
+use GuzzleHttp\Exception\ServerException;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -62,7 +63,7 @@ class FirstWarningJob implements ShouldQueue
                 ->send(
                     new FirstWarning($user, $campaigns)
                 );
-        } catch (\GuzzleHttp\Exception\ServerException $e) {
+        } catch (ServerException $e) {
             // Silence
         } catch (Exception $e) {
             // Something went wrong with mailgun, or the email is invalid. Silence these errors

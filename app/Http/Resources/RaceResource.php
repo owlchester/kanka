@@ -3,13 +3,14 @@
 namespace App\Http\Resources;
 
 use App\Models\Race;
+use Illuminate\Http\Request;
 
 class RaceResource extends EntityResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return array
      */
     public function toArray($request)
@@ -19,7 +20,6 @@ class RaceResource extends EntityResource
         $locationIds = $model->entity->locations->pluck('id');
 
         return $this->entity([
-            'race_id' => $model->race_id,
             'is_extinct' => $model->isExtinct(),
             'locations' => $locationIds,
         ]);

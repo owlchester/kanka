@@ -3,13 +3,14 @@
 namespace App\Http\Resources;
 
 use App\Models\Inventory;
+use Illuminate\Http\Request;
 
 class InventoryResource extends EntityChild
 {
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return array
      */
     public function toArray($request)

@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
-use App\Models\Creature;
 use App\Models\Entity;
-use App\Rules\EntityLocations;
+use App\Models\Location;
+use App\Rules\EntityField;
 use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
@@ -17,7 +17,7 @@ class StoreCreature extends FormRequest
     use ApiRequest;
     use ResolvesNewForeignEntities;
 
-    protected array $foreignEntityFields = ['creature_id'];
+    protected array $foreignEntityFields = [];
 
     /**
      * Determine if the user is authorized to make this request.
@@ -40,24 +40,24 @@ class StoreCreature extends FormRequest
             'name' => 'required|max:191',
             'entry' => 'nullable|string',
             'type' => 'nullable|string|max:191',
-            'creature_id' => 'nullable|integer|exists:creatures,id',
+            'parent_id' => 'nullable|integer|exists:entities,id',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
             'entity_image_uuid' => 'nullable|exists:images,id',
             'entity_header_uuid' => 'nullable|exists:images,id',
             'template_id' => 'nullable',
-            'locations' => ['nullable', 'array', new EntityLocations],
+            'locations' => ['nullable', 'array', new EntityField(config('entities.ids.location'), Location::class)],
             'attribute' => ['array', new UniqueAttributeNames],
         ];
 
         /** @var Entity $self */
         $self = request()->route('entity');
-        if (! empty($self) && $self->isCreature()) {
-            $rules['creature_id'] = [
+        if (! empty($self)) {
+            $rules['parent_id'] = [
                 'nullable',
                 'integer',
-                'exists:creatures,id',
-                new Nested(Creature::class, $self->child),
+                'exists:entities,id',
+                new Nested($self),
             ];
         }
 

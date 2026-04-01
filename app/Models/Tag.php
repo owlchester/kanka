@@ -6,7 +6,6 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\HasSlug;
-use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Models\Scopes\TagScopes;
@@ -17,7 +16,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
-use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Tag
@@ -25,7 +23,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property string $name
  * @property string $type
  * @property string $colour
- * @property ?int $tag_id
+ * @property ?string $icon
  * @property bool|int $is_auto_applied
  * @property bool|int $is_hidden
  * @property Entity[]|Collection $entities
@@ -37,20 +35,16 @@ class Tag extends MiscModel
     use HasCampaign;
     use HasFactory;
     use HasFilters;
-    use HasRecursiveRelationships;
     use HasSlug;
-    use Nested;
     use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
     use TagScopes;
 
-    protected array $explicitFilters = ['tag_id'];
-
     protected array $sortable = [
         'name',
-        'parent.name',
         'colour',
+        'icon',
         'is_auto_applied',
         'is_hidden',
         'type',
@@ -63,13 +57,14 @@ class Tag extends MiscModel
         'colour',
         'is_auto_applied',
         'is_hidden',
+        'icon',
     ];
 
     protected $fillable = [
         'name',
         'slug',
         'colour',
-        'tag_id',
+        'icon',
         'campaign_id',
         'is_private',
         'is_auto_applied',
@@ -79,6 +74,7 @@ class Tag extends MiscModel
     protected array $sanitizable = [
         'name',
         'colour',
+        'icon',
     ];
 
     /**
@@ -87,34 +83,15 @@ class Tag extends MiscModel
      * @var string[]
      */
     public array $nullableForeignKeys = [
-        'tag_id',
     ];
 
     protected array $exportFields = [
         'base',
         'colour',
+        'icon',
         'is_auto_applied',
         'is_hidden',
     ];
-
-    public function getParentKeyName(): string
-    {
-        return 'tag_id';
-    }
-
-    public function scopePreparedWith(Builder $query): Builder
-    {
-        return parent::scopePreparedWith($query)
-            ->withCount('entities');
-    }
-
-    /**
-     * Only select used fields in datagrids
-     */
-    public function datagridSelectFields(): array
-    {
-        return ['tag_id', 'colour', 'is_auto_applied', 'is_hidden'];
-    }
 
     /**
      * Detach children when moving this entity from one campaign to another
@@ -124,10 +101,6 @@ class Tag extends MiscModel
         /** @var Entity $child */
         foreach ($this->allChildren()->get() as $child) {
             $child->tags()->detach($this->id);
-            //            if (!empty($child->child)) {
-            //                $child->child->tag_id = null;
-            //                $child->child->save();
-            //            }
         }
     }
 
@@ -136,7 +109,7 @@ class Tag extends MiscModel
      */
     public function allChildren(): Builder
     {
-        $descendantIds = $this->descendants()->pluck($this->getKeyName());
+        $descendantIds = $this->entity->descendants()->pluck('entity_id');
 
         return Entity::whereIn('id', function ($query) use ($descendantIds) {
             $query->select('entity_id')
@@ -146,7 +119,7 @@ class Tag extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Entity, $this>
+     * @return BelongsToMany<Entity, $this>
      */
     public function entities(): BelongsToMany
     {
@@ -161,7 +134,7 @@ class Tag extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\EntityTag, $this>
+     * @return HasMany<EntityTag, $this>
      */
     public function entityTags(): HasMany
     {
@@ -169,7 +142,7 @@ class Tag extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Post, $this>
+     * @return BelongsToMany<Post, $this>
      */
     public function posts(): BelongsToMany
     {
@@ -184,7 +157,7 @@ class Tag extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\PostTag, $this>
+     * @return HasMany<PostTag, $this>
      */
     public function postTags(): HasMany
     {
@@ -200,9 +173,27 @@ class Tag extends MiscModel
     }
 
     /**
-     * Get the tag's colour class
-     *
-     * @return string colour css class
+     * Strip '#' when setting colour
+     */
+    public function setColourAttribute(?string $colour): void
+    {
+        $this->attributes['colour'] = mb_ltrim($colour ?? '', '#');
+    }
+
+    /**
+     * Prepend '#' when getting colour
+     */
+    public function getColourAttribute(): string
+    {
+        if (empty($this->attributes['colour'])) {
+            return '';
+        }
+
+        return '#' . $this->attributes['colour'];
+    }
+
+    /**
+     * Get the tag's structural colour classes
      */
     public function colourClass(): string
     {
@@ -210,22 +201,52 @@ class Tag extends MiscModel
             return 'border-0!';
         }
 
-        $mappings = config('colours.mappings');
-        $colour = $this->colour;
-        if (isset($mappings[$this->colour])) {
-            $colour = $mappings[$this->colour];
-        }
-        $text = null;
-        if (in_array($colour, ['navy', 'black'])) {
-            $text = 'text-white';
+        return 'color-palette color-tag border-0!';
+    }
+
+    /**
+     * Get inline CSS style for the tag's colour
+     */
+    public function colourStyle(): string
+    {
+        if (! $this->hasColour()) {
+            return '';
         }
 
-        return 'bg-' . $colour . ' color-palette color-tag border-0! ' . $text . ' ';
+        $hex = $this->colour;
+        $textColour = $this->isLightColour($hex) ? '#000' : '#fff';
+
+        return 'background-color: ' . e($hex) . '; color: ' . $textColour . ';';
+    }
+
+    /**
+     * Determine if a hex colour is light based on luminance
+     */
+    protected function isLightColour(string $hex): bool
+    {
+        $hex = ltrim($hex, '#');
+        if (strlen($hex) !== 6) {
+            return false;
+        }
+
+        $r = hexdec(substr($hex, 0, 2));
+        $g = hexdec(substr($hex, 2, 2));
+        $b = hexdec(substr($hex, 4, 2));
+
+        // Relative luminance formula
+        $luminance = (0.299 * $r + 0.587 * $g + 0.114 * $b) / 255;
+
+        return $luminance > 0.5;
     }
 
     public function hasColour(): bool
     {
-        return ! empty($this->colour);
+        return ! empty($this->attributes['colour']);
+    }
+
+    public function hasIcon(): bool
+    {
+        return ! empty($this->icon);
     }
 
     /**
@@ -243,7 +264,7 @@ class Tag extends MiscModel
      */
     public function showProfileInfo(): bool
     {
-        if (! empty($this->colour)) {
+        if ($this->hasColour() || $this->hasIcon()) {
             return true;
         }
 

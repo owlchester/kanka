@@ -2,6 +2,7 @@
 
 namespace App\Renderers\Layouts\Campaign;
 
+use App\Models\CampaignStyle;
 use App\Renderers\Layouts\Layout;
 
 class Theme extends Layout
@@ -16,27 +17,33 @@ class Theme extends Layout
         $columns = [
             'order' => [
                 'key' => 'order',
-                'label' => 'campaigns/styles.fields.order',
+                'label' => __('campaigns/styles.fields.order'),
                 'render' => function ($model) {
                     return $model->order ? '#' . $model->order : null;
                 },
             ],
             'name' => [
                 'key' => 'name',
-                'label' => 'campaigns/styles.fields.name',
+                'label' => __('campaigns/styles.fields.name'),
                 'render' => function ($model) {
-
-                    return '<a href="' . route('campaign_styles.edit', [$this->campaign, $model]) . '" class="text-link">' . $model->name . '</a>';
+                    return '<a href="' .
+                        route('campaign_styles.edit', [
+                            $this->campaign,
+                            $model,
+                        ]) .
+                        '" class="text-link">' .
+                        $model->name .
+                        '</a>';
                 },
             ],
             'length' => [
-                'label' => 'campaigns/styles.fields.length',
+                'label' => __('campaigns/styles.fields.length'),
                 'class' => self::ONLY_DESKTOP,
                 'render' => 'length()',
             ],
             'modified' => [
                 'key' => 'updated_at',
-                'label' => 'campaigns/styles.fields.modified',
+                'label' => __('campaigns/styles.fields.modified'),
                 'class' => self::ONLY_DESKTOP,
                 'render' => function ($model) {
                     return $model->updated_at->diffForHumans();
@@ -44,9 +51,13 @@ class Theme extends Layout
             ],
             'enabled' => [
                 'key' => 'is_enabled',
-                'label' => 'campaigns/styles.fields.is_enabled',
-                'render' => function (\App\Models\CampaignStyle $model) {
-                    return $model->is_enabled ? '<i class="fa-regular fa-check-circle" aria-hidden="true"></i><span class="sr-only">' . __('campaigns/styles.fields.is_enabled') . '</span>' : null;
+                'label' => __('campaigns/styles.fields.is_enabled'),
+                'render' => function (CampaignStyle $model) {
+                    return $model->is_enabled
+                        ? '<i class="fa-regular fa-check-circle" aria-hidden="true"></i><span class="sr-only">' .
+                                __('campaigns/styles.fields.is_enabled') .
+                                '</span>'
+                        : null;
                 },
             ],
         ];

@@ -7,13 +7,16 @@ use App\Http\Resources\QuestResource as Resource;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Models\Quest;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class QuestApiController extends ApiController
+class QuestApiController extends MiscApiController
 {
     /**
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Campaign $campaign)
     {
@@ -41,7 +44,7 @@ class QuestApiController extends ApiController
     /**
      * @return resource
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function store(Request $request, Campaign $campaign)
     {
@@ -52,7 +55,7 @@ class QuestApiController extends ApiController
         $data['campaign_id'] = $campaign->id;
         /** @var Quest $model */
         $model = Quest::create($data);
-        $this->crudSave($model);
+        $this->crudSave($model, $request->validated());
 
         return new Resource($model);
     }
@@ -65,15 +68,15 @@ class QuestApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $quest->entity);
         $quest->update($request->all());
-        $this->crudSave($quest);
+        $this->crudSave($quest, $request->validated());
 
         return new Resource($quest);
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function destroy(Campaign $campaign, Quest $quest)
     {

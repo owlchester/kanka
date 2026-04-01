@@ -9,7 +9,7 @@
 | {{ __('items.fields.weight') }} | {{ $model->weight }} |
 @endif
 @include('entities.components.profile._location')
-@if ($model->creator)
-| {{ __('items.fields.character') }} | {!! $model->creator->name !!} |
+@if ($model->itemCreators->isNotEmpty())
+| {{ __('items.fields.creators') }} | @foreach ($model->itemCreators as $itemCreator){!! $itemCreator->creator->name !!}@if (!$loop->last), @endif @endforeach |
 @endif
 @include('entities.pages.print.profile._type')

@@ -26,7 +26,7 @@ class PostTag extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Tag, $this>
+     * @return BelongsTo<Tag, $this>
      */
     public function tag(): BelongsTo
     {
@@ -34,7 +34,7 @@ class PostTag extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Post, $this>
+     * @return BelongsTo<Post, $this>
      */
     public function post(): BelongsTo
     {

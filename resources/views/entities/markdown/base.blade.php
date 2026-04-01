@@ -55,7 +55,9 @@
 @includeWhen($entity->isLocation(), 'entities.markdown.locations')
 @includeWhen($entity->isCreature(), 'entities.markdown.creatures')
 @includeWhen($entity->isRace(), 'entities.markdown.races')
+@includeWhen($entity->isEvent(), 'entities.markdown.events')
 @includeWhen($entity->isFamily(), 'entities.markdown.families')
+@includeWhen($entity->isItem(), 'entities.markdown.items')
 @includeWhen($entity->aliases->isNotEmpty(), 'entities.markdown.aliases')
 
 @if ($entity->hasPins())

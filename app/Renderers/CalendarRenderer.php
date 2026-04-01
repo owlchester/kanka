@@ -705,8 +705,8 @@ class CalendarRenderer
         $reminders = $this->getReminders($this->calendar);
         $this->parseReminders($reminders);
 
-        if ($this->calendar->calendar) {
-            $reminders = $this->getReminders($this->calendar->calendar);
+        if ($this->calendar->entity->parent) {
+            $reminders = $this->getReminders($this->calendar->entity->parent->calendar);
             $this->parseReminders($reminders);
         }
 

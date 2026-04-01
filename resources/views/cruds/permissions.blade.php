@@ -4,6 +4,7 @@
  * @var \App\Models\Entity $entity
  * @var \App\Models\CampaignRole $role
  * @var \App\Models\CampaignUser $member
+ * @var \App\Services\PermissionService $permissionService
  */
 ?>
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
@@ -19,8 +20,7 @@
 @section('content')
     @inject('permissionService', 'App\Services\PermissionService')
 @php
-/** @var \App\Services\PermissionService $permissionService */
-$permissions = $permissionService->type($entity->type_id)->entityPermissions($entity);
+$permissions = $permissionService->entityType($entity->entityType)->entityPermissions($entity);
 @endphp
     <x-form :action="['entities.permissions-process', $campaign, $entity->id]" direct>
         @include('partials.forms._dialog', [

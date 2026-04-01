@@ -70,12 +70,16 @@ class Foreign extends Component
                 }
             }
             if (empty($this->placeholder)) {
-                $this->placeholder = __('crud.placeholders.' . $this->key);
+                $key = 'crud.placeholders.' . $this->key;
+                $this->placeholder = __($key);
                 if (! empty($this->entityTypeID)) {
                     $mod = Module::singular($this->entityTypeID);
                     if (! empty($mod)) {
                         $this->placeholder = __('crud.placeholders.fallback', ['module' => Module::singular($this->entityTypeID, $this->label)]);
                     }
+                }
+                if ($this->placeholder === $key) {
+                    $this->placeholder = __('crud.placeholders.search');
                 }
             }
         } else {

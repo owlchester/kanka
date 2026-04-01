@@ -7,13 +7,16 @@ use App\Http\Resources\ConversationResource as Resource;
 use App\Models\Campaign;
 use App\Models\Conversation;
 use App\Models\EntityType;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class ConversationApiController extends ApiController
+class ConversationApiController extends MiscApiController
 {
     /**
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Campaign $campaign)
     {
@@ -41,7 +44,7 @@ class ConversationApiController extends ApiController
     /**
      * @return resource
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function store(Request $request, Campaign $campaign)
     {
@@ -52,7 +55,7 @@ class ConversationApiController extends ApiController
         $data['campaign_id'] = $campaign->id;
         /** @var Conversation $model */
         $model = Conversation::create($data);
-        $this->crudSave($model);
+        $this->crudSave($model, $request->validated());
 
         return new Resource($model);
     }
@@ -65,15 +68,15 @@ class ConversationApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $conversation->entity);
         $conversation->update($request->all());
-        $this->crudSave($conversation);
+        $this->crudSave($conversation, $request->validated());
 
         return new Resource($conversation);
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function destroy(Campaign $campaign, Conversation $conversation)
     {

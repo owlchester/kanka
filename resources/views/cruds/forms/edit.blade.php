@@ -2,7 +2,7 @@
 /** @var \App\Models\MiscModel $model */
 ?>
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => __('crud.titles.editing', ['name' => $entity->name])  . ' - ' . __('entities.' . $name),
+    'title' => __('crud.titles.editing', ['name' => $model->name])  . ' - ' . __('entities.' . $name),
     'breadcrumbs' => (isset($entity) ? [
         Breadcrumb::campaign($campaign)->entity($entity)->list(),
         Breadcrumb::show(),

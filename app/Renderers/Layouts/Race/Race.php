@@ -21,23 +21,23 @@ class Race extends Layout
             ],
             'race_id' => [
                 'key' => 'name',
-                'label' => Module::singular(config('entities.ids.race'), 'entities.race'),
+                'label' => Module::singular(config('entities.ids.race'), __('entities.race')),
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [
                 'key' => 'type',
-                'label' => 'crud.fields.type',
+                'label' => __('crud.fields.type'),
                 'render' => function (\App\Models\Race $model) {
                     return $model->entity->type;
                 },
             ],
             'race' => [
                 'key' => 'parent.name',
-                'label' => 'crud.fields.parent',
+                'label' => __('crud.fields.parent'),
                 'render' => Standard::ParentLink,
             ],
             'characters' => [
-                'label' => Module::plural(config('entities.ids.character'), 'entities.characters'),
+                'label' => Module::plural(config('entities.ids.character'), __('entities.characters')),
                 'render' => function ($model) {
                     return $model->characters->count();
                 },

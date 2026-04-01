@@ -8,6 +8,12 @@ use App\Http\Requests\StoreFamily;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Models\Family;
+use App\Models\MiscModel;
+use App\Renderers\DatagridRenderer;
+use App\Services\AttributeService;
+use App\Services\Entity\EntitySaveService;
+use App\Services\Entity\Relations\FamilyRelationsService;
+use App\Services\FilterService;
 
 class FamilyController extends CrudController
 {
@@ -20,6 +26,16 @@ class FamilyController extends CrudController
     protected string $model = Family::class;
 
     protected string $filter = FamilyFilter::class;
+
+    public function __construct(
+        FilterService $filterService,
+        DatagridRenderer $datagridRenderer,
+        AttributeService $attributeService,
+        EntitySaveService $entitySaveService,
+        protected FamilyRelationsService $familyRelationsService,
+    ) {
+        parent::__construct($filterService, $datagridRenderer, $attributeService, $entitySaveService);
+    }
 
     public function store(StoreFamily $request, Campaign $campaign)
     {
@@ -44,6 +60,11 @@ class FamilyController extends CrudController
     public function destroy(Campaign $campaign, Family $family)
     {
         return $this->campaign($campaign)->crudDestroy($family);
+    }
+
+    protected function afterModelSave(MiscModel $model, array $data): void
+    {
+        $this->familyRelationsService->save($model, $data);
     }
 
     protected function getEntityType(): EntityType

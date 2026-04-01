@@ -47,15 +47,6 @@ class Faq extends Model
     /** @var null|string Cached slug */
     protected $cachedSlug = null;
 
-    /**
-     * This call should be adapted in each entity model to add required "with()" statements to the query for performance
-     * on the datagrids.
-     */
-    public function scopePreparedWith(Builder $query): Builder
-    {
-        return $query;
-    }
-
     public function scopeVisible(Builder $query, bool $visible = true): Builder
     {
         return $query->where('is_visible', $visible);
@@ -75,7 +66,7 @@ class Faq extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\FaqCategory, $this>
+     * @return BelongsTo<FaqCategory, $this>
      */
     public function category(): BelongsTo
     {
@@ -83,7 +74,7 @@ class Faq extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\FaqTranslation, $this>
+     * @return HasMany<FaqTranslation, $this>
      */
     public function translations(): HasMany
     {

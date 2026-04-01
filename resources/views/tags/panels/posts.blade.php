@@ -20,16 +20,28 @@ if (!empty($onload)) {
 
 $all = $model->posts()->count();
 ?>
-<div class="flex flex-col xl:flex-row gap-2 items-center justify-between">
+<div class="flex gap-2 items-center justify-between">
     <h3 class="text-xl">
         {{ __('entities.articles') }}
     </h3>
-    <div class="gap-2 flex-wrap overflow-auto">
-        <button data-url="{{ route('tags.transfer.posts', [$campaign, $model->id]) }}" data-toggle="dialog" class="btn2 btn-sm">
-            <x-icon class="fa-solid fa-arrow-right"/>
-            <span class="hidden xl:inline">{{ __('tags.transfer.transfer') }}</span>
-        </button>
-    </div>
+    @if ($all > 0)
+        @can('update', $entity)
+            <div class="dropdown flex items-center">
+                <div role="button" tabindex="0" data-dropdown aria-expanded="false" aria-haspopup="menu" class="btn2 btn-sm">
+                    <x-icon class="fa-regular fa-ellipsis-h" />
+                </div>
+                <div class="dropdown-menu hidden" role="menu">
+
+                    <x-dropdowns.item
+                        :link="route('tags.transfer.posts', [$campaign, $model])"
+                        icon="fa-regular fa-arrow-right"
+                    >
+                        {{ __('tags.transfer.transfer') }}
+                    </x-dropdowns.item>
+                </div>
+            </div>
+        @endcan
+    @endif
 </div>
 @if ($all === 0)
 <div class="" id="tag-children">

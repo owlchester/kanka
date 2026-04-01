@@ -7,7 +7,7 @@
 ?>
 <div class="tooltip-content flex flex-col gap-2 {{ implode(' ', $tagClasses) }}" >
     <div
-        class="flex gap-4 items-end tooltip-header @if ($hasImage) px-4 h-32 w-full @else px-4 pt-4 @endif"
+        class="flex gap-4 items-end tooltip-header @if ($hasImage) px-4 h-32 w-full rounded-t-xl  @else px-4 pt-4 @endif"
         @if ($hasImage)
             style="--tooltip-background: url('{{ Avatar::entity($entity)->size(378, 256)->thumbnail() }}')"
         @endif>
@@ -23,6 +23,8 @@
                 </a>
                 @if ($entity->isCharacter() && $entity->character->isDead())
                     <x-icon class="fa-regular fa-skull" tooltip :title="__('characters.hints.is_dead')" />
+                @elseif ($entity->isCharacter() && $entity->character->isMissing())
+                    <x-icon class="fa-regular fa-question" tooltip :title="__('characters.hints.is_missing')" />
                 @endif
             </div>
 

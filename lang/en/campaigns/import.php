@@ -40,5 +40,8 @@ return [
         'running'       => 'Running',
         'validating'    => 'Validating',
     ],
+    'subscription'      => [
+        'pitch' => 'Restore a campaign backup or bring in an export from another campaign. Available on :wyvern or :elemental plans.',
+    ],
     'title'             => 'Import',
 ];

@@ -8,6 +8,12 @@ use App\Http\Requests\StoreCharacter;
 use App\Models\Campaign;
 use App\Models\Character;
 use App\Models\EntityType;
+use App\Models\MiscModel;
+use App\Renderers\DatagridRenderer;
+use App\Services\AttributeService;
+use App\Services\Entity\EntitySaveService;
+use App\Services\Entity\Relations\CharacterRelationsService;
+use App\Services\FilterService;
 
 class CharacterController extends CrudController
 {
@@ -20,6 +26,16 @@ class CharacterController extends CrudController
     protected string $model = Character::class;
 
     protected string $filter = CharacterFilter::class;
+
+    public function __construct(
+        FilterService $filterService,
+        DatagridRenderer $datagridRenderer,
+        AttributeService $attributeService,
+        EntitySaveService $entitySaveService,
+        protected CharacterRelationsService $characterRelationsService,
+    ) {
+        parent::__construct($filterService, $datagridRenderer, $attributeService, $entitySaveService);
+    }
 
     public function store(StoreCharacter $request, Campaign $campaign)
     {
@@ -44,6 +60,11 @@ class CharacterController extends CrudController
     public function destroy(Campaign $campaign, Character $character)
     {
         return $this->campaign($campaign)->crudDestroy($character);
+    }
+
+    protected function afterModelSave(MiscModel $model, array $data): void
+    {
+        $this->characterRelationsService->save($model, $data);
     }
 
     protected function getEntityType(): EntityType

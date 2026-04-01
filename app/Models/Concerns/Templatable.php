@@ -26,7 +26,12 @@ trait Templatable
 
     public function scopePostTemplates(Builder $query, Campaign $campaign, bool $template = true): Builder
     {
-        return $query->select($this->getTable() . '.*')
+        return $query->select([
+            $this->getTable() . '.id',
+            $this->getTable() . '.name',
+            $this->getTable() . '.entity_id',
+        ])
+            ->with('entity')
             ->leftJoin('entities as e', 'e.id', $this->getTable() . '.entity_id')
             ->where('e.campaign_id', $campaign->id)
             ->where($this->getTable() . '.is_template', $template);

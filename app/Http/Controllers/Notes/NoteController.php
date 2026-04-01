@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Notes;
 
-use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Note;
@@ -22,31 +21,6 @@ class NoteController extends Controller
     {
         $this->campaign($campaign)->authEntityView($note->entity);
 
-        $options = ['campaign' => $campaign, 'note' => $note, 'm' => $this->descendantsMode()];
-        $filters = [];
-        if ($this->filterToDirect()) {
-            $filters['note_id'] = $note->id;
-        }
-
-        Datagrid::layout(\App\Renderers\Layouts\Note\Note::class)
-            ->route('notes.notes', $options);
-
-        $this->rows = $note
-            ->descendants()
-            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
-            ->with([
-                'entity', 'entity.image', 'entity.entityType',
-                'entity.tags',
-                'parent', 'parent.entity',
-            ])
-            ->has('entity')
-            ->filter($filters)
-            ->paginate(config('limits.pagination'));
-
-        if (request()->ajax()) {
-            return $this->campaign($campaign)->datagridAjax();
-        }
-
-        return redirect()->to($note->getLink());
+        return redirect()->route('entities.children', [$campaign, $note->entity]);
     }
 }

@@ -6,6 +6,7 @@ use App\Models\Campaign;
 use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use Illuminate\Console\Command;
+use Illuminate\Database\Eloquent\Collection;
 
 class PermissionsSyncCommand extends Command
 {
@@ -38,7 +39,7 @@ class PermissionsSyncCommand extends Command
 
         $this->info("Campaign: {$campaign->name}");
 
-        /** @var \Illuminate\Database\Eloquent\Collection<int, CampaignRole> $roles */
+        /** @var Collection<int, CampaignRole> $roles */
         $roles = CampaignRole::where('campaign_id', $campaign->id)->get();
 
         if ($roles->count() < 2) {

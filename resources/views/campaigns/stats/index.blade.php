@@ -28,7 +28,7 @@
         <x-grid>
 
             <div class="flex flex-col gap-5 stats-entities">
-                <h3 class="text-xl">{{ __('campaigns/categories.tab') }}</h3>
+                <h3 class="text-xl font-light">{{ __('campaigns/categories.tab') }}</h3>
                 <x-box>
                     <div class="grid grid-cols-2 gap-2 items-center">
                         <div class="entity-total font-bold">
@@ -55,7 +55,7 @@
 
             <div class="flex flex-col gap-5">
                 <div class="flex flex-col gap-5 stats-modules">
-                    <h3 class="text-xl">{{ __('campaigns/modules.sections.features') }}</h3>
+                    <h3 class="text-xl font-light">{{ __('campaigns/modules.sections.features') }}</h3>
                     <x-box>
                         <div class="grid grid-cols-2 gap-2 items-center">
                             @foreach ($stats['modules'] as $module => $count)
@@ -71,7 +71,7 @@
                 </div>
 
                 <div class="flex flex-col gap-5 stats-permissions">
-                    <h3 class="text-xl">{{ __('campaigns/stats.fields.general') }}</h3>
+                    <h3 class="text-xl font-light">{{ __('campaigns/stats.fields.general') }}</h3>
                     <x-box>
                         <div class="grid grid-cols-2 gap-2 items-center">
                             @if ($campaign->creator)

@@ -21,24 +21,24 @@ class Family extends Layout
             ],
             'family_id' => [
                 'key' => 'name',
-                'label' => Module::singular(config('entities.ids.family'), 'entities.family'),
+                'label' => Module::singular(config('entities.ids.family'), __('entities.family')),
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [
                 'key' => 'type',
-                'label' => 'crud.fields.type',
+                'label' => __('crud.fields.type'),
                 'render' => function (\App\Models\Family $model) {
                     return $model->entity->type;
                 },
             ],
             'location' => [
                 'key' => 'location.name',
-                'label' => Module::singular(config('entities.ids.location'), 'entities.location'),
+                'label' => Module::singular(config('entities.ids.location'), __('entities.location')),
                 'render' => Standard::LOCATION,
             ],
             'family' => [
                 'key' => 'parent.name',
-                'label' => 'crud.fields.parent',
+                'label' => __('crud.fields.parent'),
                 'render' => Standard::ParentLink,
                 'visible' => function () {
                     return ! request()->has('parent_id');

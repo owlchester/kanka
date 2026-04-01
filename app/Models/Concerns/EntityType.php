@@ -57,6 +57,11 @@ trait EntityType
         return $this->type_id === config('entities.ids.creature');
     }
 
+    public function isEvent(): bool
+    {
+        return $this->type_id === config('entities.ids.event');
+    }
+
     public function isDiceRoll(): bool
     {
         return $this->type_id === config('entities.ids.dice_roll');
@@ -70,5 +75,10 @@ trait EntityType
     public function isTag(): bool
     {
         return $this->type_id === config('entities.ids.tag');
+    }
+
+    public function isItem(): bool
+    {
+        return $this->type_id === config('entities.ids.item');
     }
 }

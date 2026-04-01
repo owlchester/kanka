@@ -21,22 +21,22 @@ class Character extends Layout
             ],
             'character_id' => [
                 'key' => 'name',
-                'label' => Module::singular(config('entities.ids.character'), 'entities.character'),
+                'label' => Module::singular(config('entities.ids.character'), __('entities.character')),
                 'render' => Standard::CHARACTER,
             ],
             'type' => [
                 'key' => 'type',
-                'label' => 'crud.fields.type',
+                'label' => __('crud.fields.type'),
                 'render' => function (\App\Models\Character $model) {
                     return $model->entity->type;
                 },
             ],
             'locations' => [
-                'label' => Module::plural(config('entities.ids.location'), 'entities.locations'),
+                'label' => Module::plural(config('entities.ids.location'), __('entities.locations')),
                 'render' => Standard::ENTITY_LOCATIONS,
             ],
             'families' => [
-                'label' => Module::plural(config('entities.ids.family'), 'entities.families'),
+                'label' => Module::plural(config('entities.ids.family'), __('entities.families')),
                 'render' => Standard::ENTITYLIST,
                 'with' => ['characterFamilies', 'family'],
                 'visible' => function () {

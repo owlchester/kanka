@@ -20,6 +20,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Laravel\Cashier\Billable;
+use Laravel\Passport\Contracts\OAuthenticatable;
 use Laravel\Passport\HasApiTokens;
 
 /**
@@ -49,7 +50,7 @@ use Laravel\Passport\HasApiTokens;
  * @property Campaign $campaign
  * @property ?string $stripe_id
  */
-class User extends \Illuminate\Foundation\Auth\User implements \Laravel\Passport\Contracts\OAuthenticatable
+class User extends \Illuminate\Foundation\Auth\User implements OAuthenticatable
 {
     use Billable;
     use HasApiTokens;
@@ -349,7 +350,7 @@ class User extends \Illuminate\Foundation\Auth\User implements \Laravel\Passport
     /**
      * Check if user has 2FA.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\PasswordSecurity, $this>
+     * @return HasOne<PasswordSecurity, $this>
      */
     public function passwordSecurity(): HasOne
     {

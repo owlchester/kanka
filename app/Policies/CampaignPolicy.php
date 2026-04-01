@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Enums\CampaignFilterType;
 use App\Facades\CampaignCache;
 use App\Facades\EntityPermission;
 use App\Facades\Identity;
@@ -185,7 +186,7 @@ class CampaignPolicy
      */
     public function canOpen(User $user, Campaign $campaign): bool
     {
-        return $campaign->filters->count() === count(\App\Enums\CampaignFilterType::cases())
+        return $campaign->filters->count() === count(CampaignFilterType::cases())
             && $campaign->systems->isNotEmpty()
             && $campaign->genres->isNotEmpty()
             && $campaign->playstyles->isNotEmpty()
@@ -315,6 +316,11 @@ class CampaignPolicy
         }
 
         return empty($campaign->export_date) || ! $campaign->export_date->isToday() && $campaign->queuedCampaignExports->count() === 0;
+    }
+
+    public function galleryWidget(?User $user, Campaign $campaign): bool
+    {
+        return $campaign->premium();
     }
 
     public function whiteboards(User $user, Campaign $campaign): bool

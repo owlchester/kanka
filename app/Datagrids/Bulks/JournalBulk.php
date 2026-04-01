@@ -9,6 +9,7 @@ class JournalBulk extends Bulk
         'type',
         'journal_id',
         'author_id',
+        'date',
         'location_id',
         'tags',
         'private_choice',

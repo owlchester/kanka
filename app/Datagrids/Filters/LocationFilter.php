@@ -13,13 +13,14 @@ class LocationFilter extends DatagridFilter
     {
         $this
             ->add('name')
+            ->add('title')
             ->add('type')
             ->add([
                 'field' => 'location_id',
                 'label' => __('crud.fields.parent'),
                 'type' => 'select2',
                 'route' => route('search-list', [$this->campaign, config('entities.ids.location')]),
-                'placeholder' => __('crud.placeholders.parent'),
+                'placeholder' => __('crud.placeholders.search'),
                 'model' => Location::class,
             ])
             ->add('is_destroyed')

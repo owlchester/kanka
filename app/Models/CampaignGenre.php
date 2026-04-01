@@ -23,7 +23,7 @@ class CampaignGenre extends Pivot
     protected $fillable = ['campaign_id', 'genre_id'];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Campaign, $this>
+     * @return BelongsTo<Campaign, $this>
      */
     public function campaign(): BelongsTo
     {
@@ -31,7 +31,7 @@ class CampaignGenre extends Pivot
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Genre, $this>
+     * @return BelongsTo<Genre, $this>
      */
     public function genre(): BelongsTo
     {

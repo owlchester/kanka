@@ -21,6 +21,10 @@ use App\Facades\Datagrid ?>
             <div class="flex gap-2 flex-wrap items-center justify-end">
                 <x-learn-more url="features/campaigns/theming.html" />
                 @if ($campaign->boosted())
+                    <a href="{{ route('campaign_styles.builder', $campaign) }}" class="btn2 btn-primary btn-sm">
+                        <x-icon class="fa-regular fa-palette" />
+                        {{ __('campaigns/styles.actions.builder') }}
+                    </a>
                     <a href="{{ route('campaign_styles.create', $campaign) }}" class="btn2 btn-primary btn-sm">
                         <x-icon class="plus" />
                         {{ __('campaigns/styles.actions.new') }}
@@ -56,7 +60,7 @@ use App\Facades\Datagrid ?>
         @if ($styles->count() === 0)
             <x-box>
                 <x-helper>
-                    <p>{!! __('campaigns/styles.helpers.main', ['here' => '<a href="https://blog.kanka.io/category/tutorials" target="_blank">' . __('campaigns/styles.helpers.here') . '</a>']) !!}</p>
+                    <p>{!! __('campaigns/styles.helpers.main', ['here' => '<a href="https://blog.kanka.io/category/tutorials" target="_blank" class="text text-link">' . __('campaigns/styles.helpers.here') . '</a>']) !!}</p>
                 </x-helper>
             </x-box>
         @else
@@ -73,10 +77,7 @@ use App\Facades\Datagrid ?>
             @endif
         @endif
 
-        @if ($campaign->boosted())
-            @includeWhen(!$reorderStyles->isEmpty(), 'campaigns.styles._reorder')
-        @endif
-
+        @includeWhen($campaign->boosted() && $reorderStyles->count() > 1, 'campaigns.styles._reorder')
     </div>
 @endsection
 

@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
+use App\Models\Entity;
+use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
 use App\Traits\ResolvesNewForeignEntities;
@@ -13,7 +15,7 @@ class StoreTimeline extends FormRequest
     use ApiRequest;
     use ResolvesNewForeignEntities;
 
-    protected array $foreignEntityFields = ['timeline_id'];
+    protected array $foreignEntityFields = [];
 
     /**
      * Determine if the user is authorized to make this request.
@@ -36,7 +38,7 @@ class StoreTimeline extends FormRequest
             'name' => 'required|max:191',
             'entry' => 'nullable|string',
             'type' => 'nullable|string|max:191',
-            'timeline_id' => 'nullable|integer|exists:timelines,id',
+            'parent_id' => 'nullable|integer|exists:entities,id',
             'calendar_id' => 'nullable|integer|exists:calendars,id',
             'image' => 'mimes:jpeg,png,jpg,gif,webp,svg|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
@@ -46,6 +48,17 @@ class StoreTimeline extends FormRequest
             'revert_order' => 'nullable',
             'attribute' => ['array', new UniqueAttributeNames],
         ];
+
+        /** @var Entity $self */
+        $self = request()->route('entity');
+        if (! empty($self)) {
+            $rules['parent_id'] = [
+                'nullable',
+                'integer',
+                'exists:entities,id',
+                new Nested($self),
+            ];
+        }
 
         return $this->clean($rules);
     }

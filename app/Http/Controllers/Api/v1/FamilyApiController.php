@@ -7,13 +7,16 @@ use App\Http\Resources\FamilyResource as Resource;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Models\Family;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class FamilyApiController extends ApiController
+class FamilyApiController extends MiscApiController
 {
     /**
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Campaign $campaign)
     {
@@ -41,7 +44,7 @@ class FamilyApiController extends ApiController
     /**
      * @return resource
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function store(Request $request, Campaign $campaign)
     {
@@ -51,7 +54,7 @@ class FamilyApiController extends ApiController
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
         $model = Family::create($data);
-        $this->crudSave($model);
+        $this->crudSave($model, $request->validated());
 
         return new Resource($model);
     }
@@ -64,15 +67,15 @@ class FamilyApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $family->entity);
         $family->update($request->all());
-        $this->crudSave($family);
+        $this->crudSave($family, $request->validated());
 
         return new Resource($family);
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function destroy(Campaign $campaign, Family $family)
     {

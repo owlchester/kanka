@@ -6,17 +6,15 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\HasLocation;
-use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Item
@@ -25,9 +23,8 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property string $price
  * @property string $size
  * @property string $weight
- * @property ?int $item_id
- * @property ?int $creator_id
- * @property ?Entity $creator
+ * @property Collection|ItemCreator[] $itemCreators
+ * @property Collection|Entity[] $creators
  */
 class Item extends MiscModel
 {
@@ -37,8 +34,6 @@ class Item extends MiscModel
     use HasFactory;
     use HasFilters;
     use HasLocation;
-    use HasRecursiveRelationships;
-    use Nested;
     use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
@@ -49,10 +44,8 @@ class Item extends MiscModel
         'price',
         'size',
         'weight',
-        'item_id',
         'location_id',
         'is_private',
-        'creator_id',
     ];
 
     /**
@@ -63,7 +56,6 @@ class Item extends MiscModel
         'size',
         'weight',
         'location.name',
-        'creator.name',
     ];
 
     protected array $sanitizable = [
@@ -89,26 +81,27 @@ class Item extends MiscModel
      */
     public array $nullableForeignKeys = [
         'location_id',
-        'creator_id',
-        'item_id',
     ];
 
     /**
      * Foreign relations to add to export
      */
     protected array $foreignExport = [
-
+        'itemCreators',
     ];
 
     protected array $exportFields = [
         'base',
-        'item_id',
         'price',
         'size',
         'weight',
         'location_id',
-        'character_id',
     ];
+
+    /**
+     * @var string[] Extra relations loaded for the API endpoint
+     */
+    public array $apiWith = ['itemCreators'];
 
     /**
      * Tooltip subtitle (item price/size)
@@ -132,49 +125,26 @@ class Item extends MiscModel
         return implode('<br />', $extra);
     }
 
-    public function getParentKeyName(): string
-    {
-        return 'item_id';
-    }
-
     /**
-     * Performance with for datagrids
-     *
-     * @return Builder mixed
+     * @return HasMany<ItemCreator, $this>
      */
-    public function scopePreparedWith(Builder $query): Builder
+    public function itemCreators(): HasMany
     {
-        return parent::scopePreparedWith($query->with([
-            'location' => function ($sub) {
-                $sub->select('id', 'name');
-            },
-            'location.entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id');
-            },
-            'creator' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id');
-            },
-        ]));
+        return $this->hasMany(ItemCreator::class, 'item_id')
+            ->orderBy('id');
     }
 
     /**
-     * Only select used fields in datagrids
+     * @return BelongsToMany<Entity, $this>
      */
-    public function datagridSelectFields(): array
+    public function creators(): BelongsToMany
     {
-        return ['creator_id', 'location_id', 'price', 'size', 'item_id', 'weight'];
+        return $this->belongsToMany(Entity::class, 'item_creator', 'item_id', 'creator_id')
+            ->orderBy('item_creator.id');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
-     */
-    public function creator(): BelongsTo
-    {
-        return $this->belongsTo('App\Models\Entity', 'creator_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Inventory, $this>
+     * @return HasMany<Inventory, $this>
      */
     public function inventories(): HasMany
     {
@@ -182,7 +152,7 @@ class Item extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough<\App\Models\Entity, \App\Models\Inventory, $this>
+     * @return HasManyThrough<Entity, Inventory, $this>
      */
     public function entities(): HasManyThrough
     {
@@ -212,7 +182,7 @@ class Item extends MiscModel
         if (! empty($this->price) || ! empty($this->size) || ! empty($this->weight)) {
             return true;
         }
-        if ($this->creator || $this->location) {
+        if ($this->itemCreators->isNotEmpty() || $this->location) {
             return true;
         }
 
@@ -228,12 +198,10 @@ class Item extends MiscModel
     {
         return [
             'location_id',
-            'creator_id',
+            'creators',
             'price',
             'size',
             'weight',
-            'item_id',
-            'is_equipped',
         ];
     }
 

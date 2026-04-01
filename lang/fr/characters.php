@@ -25,6 +25,7 @@ return [
         'physical'                  => 'Physique',
         'pronouns'                  => 'Pronoms',
         'sex'                       => 'Sexe',
+        'status'                    => 'Statut',
         'title'                     => 'Titre',
         'traits'                    => 'Traits',
     ],
@@ -35,6 +36,7 @@ return [
     'hints'                     => [
         'is_appearance_pinned'      => 'Si sélectionné, le physique du personnage sera visible sur la page vue d\'ensemble sous l\'entrée.',
         'is_dead'                   => 'Ce personnage est mort.',
+        'is_missing'                => 'Ce personnage est porté disparu.',
         'is_personality_pinned'     => 'Si sélectionné, la personnalité du personnage sera visible sur la page vue d\'ensemble sous l\'entrée.',
         'is_personality_visible'    => 'Tout le monde peut voir les traits de personmalités de ce personnage.',
         'personality_not_visible'   => 'Les traits de personnalités de ce personnage sont actuellement seulement visibles pour les admin de la campagne.',
@@ -103,6 +105,11 @@ return [
     'sections'                  => [
         'appearance'    => 'Physique',
         'personality'   => 'Personnalité',
+    ],
+    'status'                    => [
+        'alive'     => 'En vie',
+        'dead'      => 'Mort',
+        'missing'   => 'Disparu',
     ],
     'warnings'                  => [
         'personality_hidden'    => 'Tu n\'as pas le droit de modifier les traits de personnalité de ce personnage.',

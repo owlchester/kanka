@@ -13,15 +13,6 @@ class LocationSubmenu extends BaseSubmenu implements EntitySubmenu
         /** @var Location $location */
         $location = $this->entity->child;
 
-        $count = $location->descendants()->has('parent')->count();
-        if ($count > 0) {
-            $items['second']['locations'] = [
-                'name' => $this->entity->entityType->plural(),
-                'route' => 'locations.locations',
-                'count' => $count,
-            ];
-        }
-
         $count = $location->allCharacters()->count();
         if ($this->campaign->enabled('characters') && $count > 0) {
             $items['second']['characters'] = [

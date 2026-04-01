@@ -2,6 +2,7 @@
 
 namespace App\Services\Families;
 
+use App\Enums\Visibility;
 use App\Facades\Avatar;
 use App\Models\Entity;
 use App\Models\Family;
@@ -140,7 +141,7 @@ class FamilyTreeService
         $entities = Entity::inTypes([config('entities.ids.character')])
             ->with([
                 'character' => function ($sub) {
-                    return $sub->select('id', 'is_dead');
+                    return $sub->select('id', 'status_id');
                 },
                 'entityType',
                 'tags',
@@ -193,7 +194,8 @@ class FamilyTreeService
             'name' => $entity->name,
             'url' => $entity->url(),
             'thumb' => Avatar::entity($entity)->size(40)->fallback()->thumbnail(),
-            'is_dead' => (bool) $entity->character->is_dead,
+            'is_dead' => $entity->character->isDead(),
+            'is_missing' => $entity->character->isMissing(),
             'death' => $death,
             'birth' => $birth,
             'tags' => $tags,
@@ -250,9 +252,9 @@ class FamilyTreeService
     {
         return (bool) (
             ! isset($relation['visibility']) ||
-            $relation['visibility'] == \App\Enums\Visibility::All->value ||
-            ($relation['visibility'] == \App\Enums\Visibility::Admin->value && isset($this->user) && $this->user->isAdmin()) ||
-            ($relation['visibility'] == \App\Enums\Visibility::Member->value && isset($this->user) && $this->user->can('member', $this->campaign))
+            $relation['visibility'] == Visibility::All->value ||
+            ($relation['visibility'] == Visibility::Admin->value && isset($this->user) && $this->user->isAdmin()) ||
+            ($relation['visibility'] == Visibility::Member->value && isset($this->user) && $this->user->can('member', $this->campaign))
         );
     }
 
@@ -503,6 +505,7 @@ class FamilyTreeService
             ],
             'tooltips' => [
                 'is_dead' => __('characters.hints.is_dead'),
+                'is_missing' => __('characters.hints.is_missing'),
             ],
             'unknown' => __('families/trees.unknown'),
         ];

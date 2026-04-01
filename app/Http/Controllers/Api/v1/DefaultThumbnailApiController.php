@@ -9,6 +9,9 @@ use App\Http\Resources\EntityDefaultThumbnailResource as Resource;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Services\Campaign\DefaultImageService;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class DefaultThumbnailApiController extends ApiController
 {
@@ -18,9 +21,9 @@ class DefaultThumbnailApiController extends ApiController
     }
 
     /**
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Campaign $campaign)
     {
@@ -30,9 +33,9 @@ class DefaultThumbnailApiController extends ApiController
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function upload(StoreDefaultThumbnail $request, Campaign $campaign)
     {
@@ -53,7 +56,7 @@ class DefaultThumbnailApiController extends ApiController
     }
 
     /**
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function delete(DestroyDefaultThumbnail $request, Campaign $campaign)
     {

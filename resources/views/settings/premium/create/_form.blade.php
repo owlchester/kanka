@@ -20,18 +20,7 @@
             </a>
         </div>
     @else
-        <p class="">
-            {{ __('settings/premium.create.pitch') }}
-        </p>
-
-        <div class="text-center">
-            <a href="{{ \App\Facades\Domain::toFront('premium')  }}" target="_blank" class="btn2 bg-boost text-white rounded-full px-8 mr-5">
-                {!! __('callouts.premium.learn-more') !!}
-            </a>
-            <a href="{{ route('settings.subscription') }}" class="btn2 bg-boost text-white rounded-full px-8">
-                {!! __('settings/boosters.boost.actions.subscribe') !!}
-            </a>
-        </div>
+        <p>error</p>
     @endif
 
 @else

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\PresetType;
 use Illuminate\Database\Seeder;
 
 class PresetTypeTableSeeder extends Seeder
@@ -16,7 +17,7 @@ class PresetTypeTableSeeder extends Seeder
         $types = ['marker'];
         $created = 0;
         foreach ($types as $name) {
-            $type = \App\Models\PresetType::firstOrNew([
+            $type = PresetType::firstOrNew([
                 'code' => $name,
             ]);
             if (! $type->exists) {

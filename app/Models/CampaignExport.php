@@ -45,7 +45,7 @@ class CampaignExport extends Model
     ];
 
     public $casts = [
-        'status' => \App\Enums\CampaignExportStatus::class,
+        'status' => CampaignExportStatus::class,
     ];
 
     protected string $userField = 'created_by';
@@ -59,7 +59,7 @@ class CampaignExport extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Campaign, $this>
+     * @return BelongsTo<Campaign, $this>
      */
     public function campaign(): BelongsTo
     {

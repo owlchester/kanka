@@ -3,6 +3,7 @@
 namespace App\Services\Permissions;
 
 use App\Enums\Permission;
+use App\Facades\RolePermission;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignPermission;
@@ -234,7 +235,7 @@ class EntityPermission
         }
         // dump('roles');
         if (! empty($campaignRoleIDs)) {
-            $permissions = \App\Facades\RolePermission::rolesPermissions($campaignRoleIDs);
+            $permissions = RolePermission::rolesPermissions($campaignRoleIDs);
 
             /** @var CampaignPermission $permission */
             foreach ($permissions as $permission) {

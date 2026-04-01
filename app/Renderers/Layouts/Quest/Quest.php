@@ -21,35 +21,39 @@ class Quest extends Layout
             ],
             'name' => [
                 'key' => 'name',
-                'label' => Module::singular(config('entities.ids.quest'), 'entities.quest'),
+                'label' => Module::singular(config('entities.ids.quest'), __('entities.quest')),
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [
                 'key' => 'type',
-                'label' => 'crud.fields.type',
+                'label' => __('crud.fields.type'),
                 'render' => function (\App\Models\Quest $model) {
                     return $model->entity->type;
                 },
             ],
             'date' => [
                 'key' => 'date',
-                'label' => 'quests.fields.date',
+                'label' => __('quests.fields.date'),
                 'render' => Standard::DATE,
             ],
             'completed' => [
-                'key' => 'is_completed',
-                'label' => 'quests.fields.is_completed',
+                'key' => 'status',
+                'label' => __('quests.fields.status'),
                 'render' => function (\App\Models\Quest $model) {
-                    if (! $model->isCompleted()) {
-                        return '';
+                    if ($model->isOngoing()) {
+                        return '<i class="fa-regular fa-hourglass" data-title="' . __('quests.status.ongoing') . '" aria-hidden="true"></i>';
+                    } elseif ($model->isCompleted()) {
+                        return '<i class="fa-regular fa-check-circle" data-title="' . __('quests.status.completed') . '" aria-hidden="true"></i>';
+                    } elseif ($model->isAbandoned()) {
+                        return '<i class="fa-regular fa-ban" data-title="' . __('quests.status.abandoned') . '" aria-hidden="true"></i>';
                     }
 
-                    return '<i class="fa-regular fa-check-circle" data-title="' . __('quests.fields.is_completed') . '" aria-hidden="true"></i>';
+                    return '';
                 },
             ],
             'location' => [
                 'key' => 'location.name',
-                'label' => Module::singular(config('entities.ids.location'), 'entities.location'),
+                'label' => Module::singular(config('entities.ids.location'), __('entities.location')),
                 'render' => Standard::LOCATION,
                 'visible' => function () {
                     return ! request()->has('location_id');

@@ -7,7 +7,6 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Sanitizable;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -43,7 +42,7 @@ class Conversation extends MiscModel
     ];
 
     public $casts = [
-        'target_id' => \App\Enums\ConversationTarget::class,
+        'target_id' => ConversationTarget::class,
     ];
 
     /**
@@ -74,7 +73,7 @@ class Conversation extends MiscModel
     public array $apiWith = ['messages', 'participants'];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\ConversationMessage, $this>
+     * @return HasMany<ConversationMessage, $this>
      */
     public function messages(): HasMany
     {
@@ -82,7 +81,7 @@ class Conversation extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\ConversationParticipant, $this>
+     * @return HasMany<ConversationParticipant, $this>
      */
     public function participants(): HasMany
     {
@@ -143,11 +142,6 @@ class Conversation extends MiscModel
     public function showProfileInfo(): bool
     {
         return true;
-    }
-
-    public function scopePreparedWith(Builder $query): Builder
-    {
-        return parent::scopePreparedWith($query->withCount(['participants', 'messages']));
     }
 
     /**

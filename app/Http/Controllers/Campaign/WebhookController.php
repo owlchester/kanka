@@ -10,6 +10,12 @@ use App\Jobs\TestWebhookJob;
 use App\Models\Campaign;
 use App\Models\Webhook;
 use App\Services\Campaign\Webhooks\SaveService;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 
 class WebhookController extends Controller
 {
@@ -21,9 +27,9 @@ class WebhookController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\JsonResponse
+     * @return Application|Factory|View|JsonResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Campaign $campaign)
     {
@@ -54,17 +60,21 @@ class WebhookController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function create(Campaign $campaign)
     {
         $this->authorize('webhooks', $campaign);
 
         if (! $campaign->premium()) {
-            return view('campaigns.webhooks.not-premium')
-                ->with('campaign', $campaign);
+            return view('components.premium-dialog', [
+                'campaign' => $campaign,
+                'title' => __('campaigns/webhooks.title'),
+                'pitch' => __('campaigns/webhooks.premium'),
+                'doc' => 'features/campaigns/webhooks.html',
+            ]);
         }
 
         return view('campaigns.webhooks.create', ['campaign' => $campaign]);
@@ -129,9 +139,9 @@ class WebhookController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function toggle(Campaign $campaign, Webhook $webhook)
     {
@@ -188,9 +198,9 @@ class WebhookController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function test(Campaign $campaign, Webhook $webhook)
     {

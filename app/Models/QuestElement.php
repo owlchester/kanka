@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Visibility;
 use App\Facades\QuestCache;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasEntry;
@@ -25,6 +26,7 @@ use Laravel\Scout\Searchable;
  * @property string $entry
  * @property string $role
  * @property string $colour
+ * @property bool|int $copy_entity_entry
  * @property Quest|null $quest
  * @property ?Entity $entity
  */
@@ -44,13 +46,14 @@ class QuestElement extends Model
         'name',
         'entity_id',
         'entry',
+        'copy_entity_entry',
         'role',
         'colour',
         'visibility_id',
     ];
 
     public $casts = [
-        'visibility_id' => \App\Enums\Visibility::class,
+        'visibility_id' => Visibility::class,
     ];
 
     protected array $sanitizable = [
@@ -64,7 +67,7 @@ class QuestElement extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Quest, $this>
+     * @return BelongsTo<Quest, $this>
      */
     public function quest(): BelongsTo
     {
@@ -72,7 +75,7 @@ class QuestElement extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     * @return BelongsTo<Entity, $this>
      */
     public function entity(): BelongsTo
     {
@@ -108,7 +111,7 @@ class QuestElement extends Model
     /**
      * List of entities that mention this entity
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\EntityMention, $this>
+     * @return HasMany<EntityMention, $this>
      */
     public function mentions(): HasMany
     {
@@ -116,10 +119,10 @@ class QuestElement extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<
-     *     \App\Models\User,
+     * @return BelongsToMany<
+     *     User,
      *     $this,
-     *     \App\Models\EntityUser
+     *     EntityUser
      * >
      */
     public function editingUsers(): BelongsToMany

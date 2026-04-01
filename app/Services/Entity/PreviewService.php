@@ -32,6 +32,7 @@ class PreviewService
         ];
 
         $this->data['is_dead'] = false;
+        $this->data['is_missing'] = false;
         $this->data['tags'] = $this->tags();
         $this->data['location'] = $this->location();
         $this->data['locations'] = $this->locations();
@@ -116,7 +117,9 @@ class PreviewService
             $tags[] = [
                 'id' => $tag->id,
                 'name' => $tag->name,
+                'icon' => $tag->icon,
                 'colour' => $tag->colour,
+                'style' => $tag->colourStyle(),
                 'link' => $tag->getLink(),
                 'slug' => $tag->slug,
             ];
@@ -214,8 +217,11 @@ class PreviewService
             $this->addProfile('characters.fields.pronouns', 'pronouns', $child->pronouns);
         }
 
-        if ($child->is_dead) {
+        if ($child->isDead()) {
             $this->data['is_dead'] = true;
+        }
+        if ($child->isMissing()) {
+            $this->data['is_missing'] = true;
         }
     }
 

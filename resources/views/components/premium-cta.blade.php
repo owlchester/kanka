@@ -1,4 +1,4 @@
-<div class="rounded-xl bg-box p-4 md:p-6 flex flex-col gap-4 shadow-xs">
+<div class="rounded-xl bg-box p-4 md:p-6 flex flex-col gap-4 shadow-xs mx-auto max-w-2xl">
     <h2 class="text-2xl">
         @isset ($title)
             {{ $title }}
@@ -11,15 +11,23 @@
                 {{ __('callouts.booster.titles.boosted') }}
             @endif
         @else
-            <x-icon class="premium" />
             {{ __('callouts.premium.title') }}
         @endif
     </h2>
-    <div class="max-w-2xl">
+    <x-grid type="1/1">
         <x-helper>
             {!! $slot !!}
         </x-helper>
-    </div>
+        @if (isset($doc))
+            <p>
+                <a
+                    href="https://docs.kanka.io/en/latest/{{ $doc }}" class="link text-link">
+                    <x-icon class="fa-regular fa-book" />
+                    {{ __('general.documentation') }}
+                </a>
+            </p>
+        @endif
+    </x-grid>
 
 
     <x-premium-cta-footer :campaign="$campaign" />

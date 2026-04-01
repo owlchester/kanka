@@ -3,7 +3,7 @@
 
     @include('cruds.fields.type', ['base' => \App\Models\Family::class, 'trans' => 'families'])
 
-    @include('cruds.fields.family', ['isParent' => true])
+    @include('cruds.fields.parent')
 
     @include('cruds.fields.location')
 

@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use App\Enums\Visibility;
 use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasVisibility;
-use App\Models\Concerns\Nested;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
@@ -21,7 +21,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  *
  * @property int $id
  * @property int $map_id
- * @property int $parent_id
+ * @property ?int $parent_id
  * @property string $name
  * @property int $position
  * @property bool|int $is_shown
@@ -36,7 +36,6 @@ class MapGroup extends Model
     use HasFactory;
     use HasRecursiveRelationships;
     use HasVisibility;
-    use Nested;
     use Paginatable;
     use Sanitizable;
     use SortableTrait;
@@ -57,15 +56,35 @@ class MapGroup extends Model
     ];
 
     public $casts = [
-        'visibility_id' => \App\Enums\Visibility::class,
+        'visibility_id' => Visibility::class,
     ];
 
     protected array $sanitizable = [
         'name',
     ];
 
+    protected static function booted(): void
+    {
+        static::saving(function (MapGroup $model) {
+            if (! $model->parent) {
+                return;
+            }
+            $bloodline = $model->parent->ancestors()->pluck('id')->toArray();
+            if (in_array($model->id, $bloodline)) {
+                $model->parent_id = null;
+            }
+        });
+
+        static::deleting(function (MapGroup $model) {
+            foreach ($model->children as $child) {
+                $child->parent_id = null;
+                $child->save();
+            }
+        });
+    }
+
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Map, $this>
+     * @return BelongsTo<Map, $this>
      */
     public function map(): BelongsTo
     {
@@ -73,7 +92,7 @@ class MapGroup extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\MapGroup, $this>
+     * @return BelongsTo<MapGroup, $this>
      */
     public function parent(): BelongsTo
     {
@@ -81,7 +100,7 @@ class MapGroup extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\MapGroup, $this>
+     * @return HasMany<MapGroup, $this>
      */
     public function children(): HasMany
     {
@@ -111,7 +130,7 @@ class MapGroup extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\MapMarker, $this>
+     * @return HasMany<MapMarker, $this>
      */
     public function markers(): HasMany
     {

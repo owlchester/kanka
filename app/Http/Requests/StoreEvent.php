@@ -3,6 +3,10 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
+use App\Models\Entity;
+use App\Models\Location;
+use App\Rules\EntityField;
+use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
 use App\Traits\ResolvesNewForeignEntities;
@@ -12,8 +16,6 @@ class StoreEvent extends FormRequest
 {
     use ApiRequest;
     use ResolvesNewForeignEntities;
-
-    protected array $foreignEntityFields = ['location_id'];
 
     /**
      * Determine if the user is authorized to make this request.
@@ -32,19 +34,32 @@ class StoreEvent extends FormRequest
      */
     public function rules()
     {
-        return $this->clean([
+        $rules = [
             'name' => 'required|max:191',
             'entry' => 'nullable|string',
             'type' => 'nullable|string|max:191',
-            'location_id' => 'nullable|integer|exists:locations,id',
-            'event_id' => 'nullable|integer|exists:events,id',
+            'parent_id' => 'nullable|integer|exists:entities,id',
             'date' => 'nullable|max:191',
+            'locations' => ['nullable', 'array', new EntityField(config('entities.ids.location'), Location::class)],
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
             'entity_image_uuid' => 'nullable|exists:images,id',
             'entity_header_uuid' => 'nullable|exists:images,id',
             'template_id' => 'nullable',
             'attribute' => ['array', new UniqueAttributeNames],
-        ]);
+        ];
+
+        /** @var Entity $self */
+        $self = request()->route('entity');
+        if (! empty($self)) {
+            $rules['parent_id'] = [
+                'nullable',
+                'integer',
+                'exists:entities,id',
+                new Nested($self),
+            ];
+        }
+
+        return $this->clean($rules);
     }
 }

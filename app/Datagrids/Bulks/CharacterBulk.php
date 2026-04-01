@@ -12,17 +12,13 @@ class CharacterBulk extends Bulk
         'races',
         'type',
         'sex',
-        'dead_choice',
+        'status_id',
         'age',
         'organisations',
         'tags',
         'private_choice',
         'entity_image',
         'entity_header',
-    ];
-
-    protected array $booleans = [
-        'is_dead',
     ];
 
     protected array $maths = [

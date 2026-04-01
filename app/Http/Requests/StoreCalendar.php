@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
-use App\Models\Calendar;
 use App\Models\Entity;
 use App\Rules\CalendarFormat;
 use App\Rules\CalendarMoonOffset;
@@ -18,7 +17,7 @@ class StoreCalendar extends FormRequest
     use ApiRequest;
     use ResolvesNewForeignEntities;
 
-    protected array $foreignEntityFields = ['calendar_id'];
+    protected array $foreignEntityFields = [];
 
     /**
      * Determine if the user is authorized to make this request.
@@ -41,7 +40,7 @@ class StoreCalendar extends FormRequest
             'name' => 'required|max:191',
             'entry' => 'nullable|string',
             'type' => 'nullable|max:191',
-            'calendar_id' => 'nullable|integer|exists:calendars,id',
+            'parent_id' => 'nullable|integer|exists:entities,id',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
             'entity_image_uuid' => 'nullable|exists:images,id',
@@ -66,7 +65,7 @@ class StoreCalendar extends FormRequest
             $rules = [
                 'name' => 'required|max:191',
                 'type' => 'nullable|max:191',
-                'calendar_id' => 'nullable|integer|exists:calendars,id',
+                'parent_id' => 'nullable|integer|exists:entities,id',
             ];
         }
 
@@ -78,11 +77,11 @@ class StoreCalendar extends FormRequest
         /** @var Entity $self */
         $self = request()->route('entity');
         if (! empty($self)) {
-            $rules['calendar_id'] = [
+            $rules['parent_id'] = [
                 'nullable',
                 'integer',
-                'exists:calendars,id',
-                new Nested(Calendar::class, $self->child),
+                'exists:entities,id',
+                new Nested($self),
             ];
         }
 

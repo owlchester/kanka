@@ -6,6 +6,7 @@ use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Item;
+use App\Renderers\Layouts\Item\Entity;
 use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;
 use App\Traits\Controllers\HasSubview;
@@ -24,7 +25,7 @@ class EntityController extends Controller
 
         $options = ['campaign' => $campaign, 'item' => $item];
 
-        Datagrid::layout(\App\Renderers\Layouts\Item\Entity::class)
+        Datagrid::layout(Entity::class)
             ->route('items.inventories', $options);
 
         $this->rows = $item

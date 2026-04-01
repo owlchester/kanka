@@ -31,4 +31,3 @@
 @section('modals')
     <x-dialog id="feature-dialog" :loading="true" />
 @endsection
-

@@ -95,6 +95,7 @@ class FormCopyService
         if ($this->valid()) {
             $this->fromChild = false;
 
+            // @phpstan-ignore-next-line
             if (auth()->user()->can('personality', $this->source->child)) {
                 // @phpstan-ignore-next-line
                 return $this->source->child->characterTraits()->personality()->get();

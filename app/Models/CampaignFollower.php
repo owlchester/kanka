@@ -26,7 +26,7 @@ class CampaignFollower extends Pivot
     protected $fillable = ['user_id', 'campaign_id'];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Campaign, $this>
+     * @return BelongsTo<Campaign, $this>
      */
     public function campaign(): BelongsTo
     {

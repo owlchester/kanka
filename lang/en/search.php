@@ -6,6 +6,7 @@ return [
         'empty'     => 'No results',
         'hint'      => 'Type at least 3 letters to search for entries in the campaign.',
         'keyboard'  => 'press :k to search, :esc to dismiss',
+        'lists'     => 'Lists',
         'recents'   => 'Recents',
         'results'   => 'Results',
     ],

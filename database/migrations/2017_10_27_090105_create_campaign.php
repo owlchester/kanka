@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\CampaignVisibility;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -33,7 +34,7 @@ class CreateCampaign extends Migration
             $table->string('export_path')->nullable();
             $table->date('export_date')->nullable();
 
-            $table->unsignedTinyInteger('visibility_id')->default(\App\Enums\CampaignVisibility::private);
+            $table->unsignedTinyInteger('visibility_id')->default(CampaignVisibility::private);
             $table->boolean('is_featured')->default(false);
             $table->boolean('entity_visibility')->default(false);
             $table->unsignedInteger('visible_entity_count')->default(0);

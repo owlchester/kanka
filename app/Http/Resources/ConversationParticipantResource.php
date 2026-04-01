@@ -3,13 +3,14 @@
 namespace App\Http\Resources;
 
 use App\Models\ConversationParticipant;
+use Illuminate\Http\Request;
 
 class ConversationParticipantResource extends ModelResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return array
      */
     public function toArray($request)

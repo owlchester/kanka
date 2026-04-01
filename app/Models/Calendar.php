@@ -5,16 +5,13 @@ namespace App\Models;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
-use App\Models\Concerns\Nested;
 use App\Models\Relations\CalendarRelations;
 use App\Traits\ExportableTrait;
 use Exception;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Calendar
@@ -31,7 +28,6 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property string $reset
  * @property string $format
  * @property string $suffix
- * @property int $calendar_id
  * @property array $parameters
  * @property bool|int $skip_year_zero
  * @property bool|int $show_birthdays
@@ -44,8 +40,6 @@ class Calendar extends MiscModel
     use HasCampaign;
     use HasFactory;
     use HasFilters;
-    use HasRecursiveRelationships;
-    use Nested;
     use SoftDeletes;
 
     protected $fillable = [
@@ -77,7 +71,6 @@ class Calendar extends MiscModel
         'leap_year_offset', // every X years
         'leap_year_start', // X year is a leap year
 
-        'calendar_id',
     ];
 
     /** @var array<string, string> */
@@ -104,24 +97,6 @@ class Calendar extends MiscModel
     protected array $loadedMonthAliases;
 
     protected array $cachedCurrentDate;
-
-    public function scopePreparedWith(Builder $query): Builder
-    {
-        return parent::scopePreparedWith($query)->withCount('calendarEvents');
-    }
-
-    /**
-     * Only select used fields in datagrids
-     */
-    public function datagridSelectFields(): array
-    {
-        return ['calendar_id', 'date'];
-    }
-
-    public function getParentKeyName(): string
-    {
-        return 'calendar_id';
-    }
 
     /**
      * Get the months decoded from the json into a usable array
@@ -477,18 +452,6 @@ class Calendar extends MiscModel
     public function yearlyLayout(): bool
     {
         return Arr::get($this->parameters, 'layout') === 'yearly';
-    }
-
-    /**
-     * Define the fields unique to this model that can be used on filters
-     *
-     * @return string[]
-     */
-    public function filterableColumns(): array
-    {
-        return [
-            'calendar_id',
-        ];
     }
 
     /**

@@ -9,7 +9,9 @@ use App\Models\User;
 use App\Services\Subscription\CouponService;
 use App\Services\SubscriptionService;
 use Carbon\Carbon;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Laravel\Cashier\Exceptions\CustomerAlreadyCreated;
 use Laravel\Cashier\PaymentMethod;
 use Stripe\Card;
 
@@ -43,9 +45,9 @@ class SubscriptionApiController extends Controller
     /**
      * Adds a payment method to the current user.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      *
-     * @throws \Laravel\Cashier\Exceptions\CustomerAlreadyCreated
+     * @throws CustomerAlreadyCreated
      */
     public function paymentMethods(Request $request)
     {

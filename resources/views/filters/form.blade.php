@@ -6,7 +6,7 @@
  */
     use Illuminate\Support\Arr;
 
-    if (isset($entityType) && $entityType->isCustom()) {
+    if (isset($entityType) && $entityType->hasEntity()) {
         $formRoute = ['entities.index', $campaign, $entityType];
         $resetRoute = route('entities.index', [$campaign, $entityType, 'reset-filter' => 'true']);
     } else {
@@ -66,10 +66,15 @@
                             @include('cruds.datagrids.filters._array')
                         @endif
                     @else
+                        @php $labelField = $field === 'status_id' ? 'status' : $field; @endphp
                         <label class="text-xs font-medium opacity-80">
-                            {{ __($field === 'is_dead' ? 'characters.fields.' . $field : ((in_array($field, ['name', 'type', 'is_private', 'has_image', 'has_attributes', 'has_entity_files', 'has_entry', 'has_posts', 'date_range', 'template', 'archived']) ? 'crud.fields.' : $langKey . '.fields.') . $field)) }}
+                            {{ __((in_array($labelField, ['name', 'type', 'is_private', 'has_image', 'has_attributes', 'has_entity_files', 'has_entry', 'has_posts', 'date_range', 'template', 'archived']) ? 'crud.fields.' : $langKey . '.fields.') . $labelField) }}
                         </label>
-                        @if ($filterService->isCheckbox($field))
+                        @if ($field === 'status_id' && isset($entityType) && $entityType->isCharacter())
+                            @include('cruds.datagrids.filters._is_dead_status')
+                        @elseif ($field === 'status_id' && isset($entityType) && $entityType->id == config('entities.ids.quest'))
+                            @include('cruds.datagrids.filters._is_completed_status')
+                        @elseif ($filterService->isCheckbox($field))
                             @include('cruds.datagrids.filters._choice')
                         @elseif ($field === 'type' && !empty($entityModel))
                             @include('cruds.datagrids.filters._type')
@@ -102,7 +107,7 @@
         <menu class="flex flex-wrap gap-3 ps-0">
             <span role="button" class="flex-none btn2 btn-sm flex gap-2 items-center {{ $filterService->activeFiltersCount() === 0 ? 'btn-disabled' : null }} "
                @if ($filterService->activeFiltersCount() > 0) data-clipboard="{{ $filterService->clipboardFilters() }}" data-toast="{{ __('filters.alerts.copy') }}" onclick="return false"  @endif data-toggle="tooltip" data-title="{{ __('crud.filters.copy_helper') }}">
-                <x-icon class="fa-solid fa-clipboard" />
+                <x-icon class="fa-regular fa-clipboard" />
                 <span class="max-sm:hidden">{{ __('crud.filters.copy_to_clipboard') }}</span>
                 <span class="visible md:hidden">{{ __('crud.filters.mobile.copy') }}</span>
             </span>
@@ -120,13 +125,13 @@
         </menu>
         <menu class="flex flex-wrap gap-3 ps-0">
             <button type="submit" class="btn2 btn-primary btn-sm">
-                <x-icon class="fa-solid fa-filter" />
+                <x-icon class="fa-regular fa-filter" />
                 {{ __('crud.filter') }}
             </button>
         </menu>
     </footer>
 @endif
-    @if (isset($entityType) && $entityType->isStandard())
+    @if (isset($entityType))
 <input type="hidden" name="m" value="{{ $mode }}" />
     @endif
 </x-form>

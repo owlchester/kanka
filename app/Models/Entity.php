@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\CharacterStatus;
+use App\Enums\QuestStatus;
 use App\Facades\CampaignLocalization;
 use App\Facades\EntityCache;
 use App\Facades\Img;
@@ -29,6 +31,8 @@ use Carbon\Carbon;
 use Collator;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -126,18 +130,9 @@ class Entity extends Model
     ];
 
     /**
-     * Array of our custom model events declared under model property $observables
-     *
-     * @var array
-     */
-    protected $observables = [
-        'crudSaved',
-    ];
-
-    /**
      * Get the child entity
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany|\Illuminate\Database\Eloquent\Relations\HasOne|MiscModel
+     * @return HasMany|HasOne|MiscModel
      */
     public function child()
     {
@@ -153,7 +148,7 @@ class Entity extends Model
     /**
      * Child attribute
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany|\Illuminate\Database\Eloquent\Relations\HasOne|MiscModel
+     * @return HasMany|HasOne|MiscModel
      */
     public function getChildAttribute()
     {
@@ -173,14 +168,6 @@ class Entity extends Model
         }
 
         return $this->load($this->entityType->code);
-    }
-
-    /**
-     * Fire an event to the observer to know that the entity was saved from the crud
-     */
-    public function crudSaved()
-    {
-        $this->fireModelEvent('crudSaved', false);
     }
 
     /**
@@ -482,11 +469,27 @@ class Entity extends Model
 
         // Specific entity flags
         // @phpstan-ignore-next-line
-        if ($this->isCharacter() && $this->child->is_dead) {
-            $classes[] = 'character-dead';
+        if ($this->isCharacter() && $this->child->status_id !== CharacterStatus::alive) {
+            /** @var Character $character */
+            $character = $this->child;
+            if ($character->isDead()) {
+                $classes[] = 'character-dead';
+            } elseif ($character->isMissing()) {
+                $classes[] = 'character-missing';
+            }
+            unset($character);
             // @phpstan-ignore-next-line
-        } elseif ($this->isQuest() && $this->child->is_completed) {
-            $classes[] = 'quest-completed';
+        } elseif ($this->isQuest() && $this->child->status_id !== QuestStatus::notStarted) {
+            /** @var Quest $quest */
+            $quest = $this->child;
+            if ($quest->isCompleted()) {
+                $classes[] = 'quest-completed';
+            } elseif ($quest->isOngoing()) {
+                $classes[] = 'quest-ongoing';
+            } elseif ($quest->isAbandoned()) {
+                $classes[] = 'quest-abandoned';
+            }
+            unset($quest);
         }
 
         if ($this->is_private) {

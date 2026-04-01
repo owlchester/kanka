@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\CharacterTrait;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -21,7 +22,7 @@ class CreateCharacterTraitsTable extends Migration
             $table->string('name');
             $table->text('entry')->nullable();
             $table->boolean('is_private')->default(0);
-            $table->unsignedTinyInteger('section_id')->default(App\Models\CharacterTrait::SECTION_APPEARANCE);
+            $table->unsignedTinyInteger('section_id')->default(CharacterTrait::SECTION_APPEARANCE);
             $table->unsignedSmallInteger('default_order')->nullable()->default('0');
             $table->timestamps();
 

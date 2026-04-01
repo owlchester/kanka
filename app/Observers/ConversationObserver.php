@@ -5,7 +5,7 @@ namespace App\Observers;
 use App\Models\Conversation;
 use App\Models\MiscModel;
 
-class ConversationObserver extends MiscObserver
+class ConversationObserver
 {
     public function updated(MiscModel $model)
     {

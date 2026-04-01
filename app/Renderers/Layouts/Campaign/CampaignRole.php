@@ -17,38 +17,50 @@ class CampaignRole extends Layout
         $columns = [
             'name' => [
                 'key' => 'name',
-                'label' => 'campaigns.roles.fields.name',
+                'label' => __('campaigns.roles.fields.name'),
                 'render' => function ($model) {
                     /** @var \App\Models\CampaignRole $model */
-                    $html = '<a href="' . route('campaign_roles.show', [$this->campaign, 'campaign_role' => $model])
-                        . '" class="text-link">' . $model->name
-                        . '</a><br />';
+                    $html =
+                        '<a href="' .
+                        route('campaign_roles.show', [
+                            $this->campaign,
+                            'campaign_role' => $model,
+                        ]) .
+                        '" class="text-link">' .
+                        $model->name .
+                        '</a><br />';
 
                     return $html;
                 },
             ],
             'users' => [
-                'label' => 'campaigns.roles.fields.users',
+                'label' => __('campaigns.roles.fields.users'),
                 'render' => function ($model) {
                     return number_format($model->users_count);
                 },
             ],
             'type' => [
                 'key' => 'is_admin',
-                'label' => 'campaigns.roles.fields.type',
+                'label' => __('campaigns.roles.fields.type'),
                 'render' => function ($model) {
                     /** @var \App\Models\CampaignRole $model */
-                    $html = __('campaigns.roles.types.' . ($model->isAdmin() ? 'owner' : ($model->isPublic() ? 'public' : 'standard')));
+                    $html = __(
+                        'campaigns.roles.types.' .
+                            ($model->isAdmin()
+                                ? 'owner'
+                                : ($model->isPublic()
+                                    ? 'public'
+                                    : 'standard')),
+                    );
 
                     return $html;
                 },
             ],
             'permissions' => [
-                'label' => 'campaigns.roles.fields.permissions',
+                'label' => __('campaigns.roles.fields.permissions'),
                 'render' => Standard::VIEW,
                 'with' => 'campaigns.roles.rows.permissions',
             ],
-
         ];
 
         return $columns;
@@ -85,8 +97,6 @@ class CampaignRole extends Layout
 
     public function bulks(): array
     {
-        return [
-            self::ACTION_DELETE,
-        ];
+        return [self::ACTION_DELETE];
     }
 }

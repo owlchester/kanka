@@ -6,7 +6,6 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Sanitizable;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -63,15 +62,10 @@ class DiceRoll extends MiscModel
         'parameters',
     ];
 
-    public function datagridSelectFields(): array
-    {
-        return ['character_id', 'parameters'];
-    }
-
     /**
      * Who created this entry
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Character, $this>
+     * @return BelongsTo<Character, $this>
      */
     public function character(): BelongsTo
     {
@@ -79,7 +73,7 @@ class DiceRoll extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\DiceRollResult, $this>
+     * @return HasMany<DiceRollResult, $this>
      */
     public function diceRollResults(): HasMany
     {
@@ -112,19 +106,5 @@ class DiceRoll extends MiscModel
         return [
             'character_id',
         ];
-    }
-
-    /**
-     * Performance with for datagrids
-     */
-    public function scopePreparedWith(Builder $query): Builder
-    {
-
-        return parent::scopePreparedWith($query->with([
-            'character' => function ($sub) {
-                $sub->select('id', 'name');
-            },
-            'character.entity',
-        ]));
     }
 }

@@ -8,6 +8,7 @@ use App\Models\Conversation;
 use App\Models\Entity;
 use App\Models\EntityLog;
 use App\Models\Location;
+use App\Models\MapMarker;
 use App\Models\MiscModel;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
@@ -256,7 +257,7 @@ class LoggerService
                 return '';
             } elseif ($attribute == 'center_marker_id') {
                 // Maps can have a "centered marker" which gets tricky
-                $originalMarker = \App\Models\MapMarker::where('id', $original)->first();
+                $originalMarker = MapMarker::where('id', $original)->first();
                 if (! empty($originalMarker)) {
                     return (string) $originalMarker->name;
                 }
@@ -270,11 +271,13 @@ class LoggerService
                 }
 
                 return '';
-            } elseif ($attribute === 'parent_id' && ! isset($this->model)) {
-                $originalAuthor = Entity::where('id', $original)->first();
-                if (! empty($originalAuthor)) {
-                    return (string) $originalAuthor->name;
+            } elseif ($attribute === 'parent_id') {
+                $originalParent = Entity::where('id', $original)->first();
+                if (! empty($originalParent)) {
+                    return (string) $originalParent->name;
                 }
+
+                return '';
             }
 
             // Silence
@@ -282,6 +285,11 @@ class LoggerService
                 return __('conversations.targets.' . (
                     $original == ConversationTarget::users ? 'members' : 'characters'
                 ));
+            }
+
+            // Enum fields that aren't foreign keys
+            if ($attribute === 'status_id') {
+                return $original instanceof \BackedEnum ? (string) $original->value : (string) $original;
             }
 
             // Let's try based off of the attribute name

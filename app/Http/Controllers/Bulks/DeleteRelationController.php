@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Bulks;
 
+use App\Datagrids\Actions\RelationDatagridActions;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Services\BulkService;
@@ -17,7 +18,7 @@ class DeleteRelationController extends Controller
 
     public function index(Campaign $campaign)
     {
-        $datagrid = new \App\Datagrids\Actions\RelationDatagridActions;
+        $datagrid = new RelationDatagridActions;
 
         return view('cruds.datagrids.bulks.modals.delete.relation')
             ->with('campaign', $campaign)

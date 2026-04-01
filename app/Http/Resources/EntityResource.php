@@ -3,8 +3,10 @@
 namespace App\Http\Resources;
 
 use App\Facades\Avatar;
+use App\Models\Entity;
 use App\Models\Item;
 use App\Models\MiscModel;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Route;
 
@@ -36,18 +38,19 @@ class EntityResource extends JsonResource
     }
 
     /**
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return array
      */
     public function toArray($request)
     {
-        /** @var \App\Models\Entity $entity */
+        /** @var Entity $entity */
         $entity = $this->resource;
         $url = $entity->url();
         if ($entity->entityType->isCustom()) {
             $apiViewUrl = 'campaigns.entities.show';
         } else {
-            $apiViewUrl = 'campaigns.' . $entity->entityType->pluralCode() . '.show';
+            $apiViewUrl =
+                'campaigns.' . $entity->entityType->pluralCode() . '.show';
         }
 
         $data = [
@@ -80,14 +83,20 @@ class EntityResource extends JsonResource
 
             'urls' => [
                 'view' => $url,
-                'api' => Route::has($apiViewUrl) ? route($apiViewUrl, [$entity->campaign_id, $entity->entity_id]) : null,
+                'api' => Route::has($apiViewUrl)
+                    ? route($apiViewUrl, [
+                        $entity->campaign_id,
+                        $entity->entity_id,
+                    ])
+                    : null,
             ],
         ];
+
+        $data['parent_id'] = $entity->parent_id;
 
         if ($entity->entityType->isCustom()) {
             $data['entry'] = $entity->entry;
             $data['entry_parsed'] = $entity->parsedEntry();
-            $data['parent_id'] = $entity->parent_id;
             $data['locations'] = [];
             foreach ($entity->locations as $loc) {
                 $data['locations'][] = $loc->id;
@@ -97,24 +106,61 @@ class EntityResource extends JsonResource
         }
 
         if (request()->get('related', false)) {
-            $data['attributes'] = AttributeResource::collection($entity->attributes);
+            $data['attributes'] = AttributeResource::collection(
+                $entity->attributes,
+            );
             $data['posts'] = PostResource::collection($entity->posts);
-            $data['entity_events'] = ReminderResource::collection($entity->reminders);
-            $data['reminders'] = ReminderResource::collection($entity->reminders);
-            $data['relations'] = RelationResource::collection($entity->relationships);
-            $data['inventory'] = InventoryResource::collection($entity->inventories);
-            $data['entity_abilities'] = EntityAbilityResource::collection($entity->abilities);
+            $data['entity_events'] = ReminderResource::collection(
+                $entity->reminders,
+            );
+            $data['reminders'] = ReminderResource::collection(
+                $entity->reminders,
+            );
+            $data['relations'] = RelationResource::collection(
+                $entity->relationships,
+            );
+            $data['inventory'] = InventoryResource::collection(
+                $entity->inventories,
+            );
+            $data['entity_abilities'] = EntityAbilityResource::collection(
+                $entity->abilities,
+            );
+
+            // Children and Parents
+            if ($entity->ancestors) {
+                $ancestors = [];
+                foreach ($entity->ancestors as $ancestor) {
+                    $ancestors[] = $ancestor->id;
+                }
+                $data['parents'] = $ancestors;
+            }
+            if ($entity->children) {
+                $descendants = [];
+                foreach ($entity->children as $descendant) {
+                    $descendants[] = $descendant->id;
+                }
+                $data['children'] = $descendants;
+            }
         }
 
-        if (request()->get('related', false) || request()->get('image', false)) {
+        if (
+            request()->get('related', false) ||
+            request()->get('image', false)
+        ) {
             if ($entity->isMissingChild()) {
-                $data['child'] = 'Invalid child, please contact us on Discord with the following: EntityResource for #' . $entity->id;
+                $data['child'] =
+                    'Invalid child, please contact us on Discord with the following: EntityResource for #' .
+                    $entity->id;
             } else {
                 $image = ! empty($entity->image);
                 $data['child'] = [
-                    'image' => $image ? $entity->image->path : $entity->image_path,
+                    'image' => $image
+                        ? $entity->image->path
+                        : $entity->image_path,
                     'image_full' => Avatar::entity($entity)->original(),
-                    'image_thumb' => Avatar::entity($entity)->size(40)->thumbnail(),
+                    'image_thumb' => Avatar::entity($entity)
+                        ->size(40)
+                        ->thumbnail(),
                     'has_custom_image' => $image || ! empty($entity->image_path),
                 ];
             }
@@ -122,8 +168,12 @@ class EntityResource extends JsonResource
 
         // Get the actual model
         if ($this->withMisc && $entity->entityType->isStandard()) {
-            $className = 'App\Http\Resources\\' . ucfirst($entity->entityType->code) . 'Resource';
+            $className =
+                "App\Http\Resources\\" .
+                ucfirst($entity->entityType->code) .
+                'Resource';
             if (class_exists($className)) {
+                $entity->child->setRelation('entity', $entity);
                 $obj = new $className($entity->child);
                 $data['child'] = $obj;
             } else {
@@ -156,13 +206,16 @@ class EntityResource extends JsonResource
 
         $galleryImage = $misc->entity->image;
         $url = $misc->getLink();
-        $apiViewUrl = 'campaigns.' . $misc->entity->entityType->pluralCode() . '.show';
+        $apiViewUrl =
+            'campaigns.' . $misc->entity->entityType->pluralCode() . '.show';
 
         $merged = [
             'id' => $misc->id,
-            'name' => $misc->name,
+            'name' => $misc->entity->name,
             'entry' => $misc->entity->hasEntry() ? $misc->entity->entry : null,
-            'entry_parsed' => $misc->entity->hasEntry() ? $misc->entity->parsedEntry() : null,
+            'entry_parsed' => $misc->entity->hasEntry()
+                ? $misc->entity->parsedEntry()
+                : null,
             'tooltip' => $misc->entity->tooltip ?: null,
             'type' => $misc->entity->type ?: null,
             'image' => $misc->entity->image_path,
@@ -173,14 +226,18 @@ class EntityResource extends JsonResource
             'image_full' => Avatar::entity($misc->entity)->original(),
             'image_thumb' => Avatar::size(40)->fallback()->thumbnail(),
             'has_custom_image' => ! empty($misc->entity->image_path) || ! empty($galleryImage),
-            'image_uuid' => $misc->entity->image ? $misc->entity->image->id : null,
+            'image_uuid' => $misc->entity->image
+                ? $misc->entity->image->id
+                : null,
 
             // Header
             'header_full' => $misc->entity->getHeaderUrl(),
-            'header_uuid' => $misc->entity->header ? $misc->entity->header->id : null,
+            'header_uuid' => $misc->entity->header
+                ? $misc->entity->header->id
+                : null,
             'has_custom_header' => $misc->entity->hasHeaderImage(),
 
-            'is_private' => (bool) $misc->is_private,
+            'is_private' => (bool) $misc->entity->is_private,
             'is_template' => (bool) $misc->entity->isTemplate(),
 
             'is_attributes_private' => (bool) $misc->entity->is_attributes_private,
@@ -195,14 +252,16 @@ class EntityResource extends JsonResource
             //            ],
             'tags' => $misc->entity->tags()->pluck('tags.id')->toArray(),
 
-            'created_at' => $misc->created_at,
+            'created_at' => $misc->entity->created_at,
             'created_by' => $misc->entity->created_by,
-            'updated_at' => $misc->updated_at,
+            'updated_at' => $misc->entity->updated_at,
             'updated_by' => $misc->entity->updated_by,
 
             'urls' => [
                 'view' => $url,
-                'api' => Route::has($apiViewUrl) ? route($apiViewUrl, [$misc->campaign_id, $misc->id]) : null,
+                'api' => Route::has($apiViewUrl)
+                    ? route($apiViewUrl, [$misc->campaign_id, $misc->id])
+                    : null,
             ],
         ];
 
@@ -216,26 +275,40 @@ class EntityResource extends JsonResource
         }
 
         if (request()->get('related', false) || $this->withRelated) {
-            $merged['attributes'] = AttributeResource::collection($misc->entity->attributes);
+            $merged['attributes'] = AttributeResource::collection(
+                $misc->entity->attributes,
+            );
             $merged['posts'] = PostResource::collection($misc->entity->posts);
-            $merged['entity_events'] = ReminderResource::collection($misc->entity->reminders);
-            $merged['reminders'] = ReminderResource::collection($misc->entity->reminders);
-            $merged['relations'] = RelationResource::collection($misc->entity->relationships);
-            $merged['inventory'] = InventoryResource::collection($misc->entity->inventories);
-            $merged['entity_abilities'] = EntityAbilityResource::collection($misc->entity->abilities);
-            $merged['entity_assets'] = EntityAssetResource::collection($misc->entity->assets);
+            $merged['entity_events'] = ReminderResource::collection(
+                $misc->entity->reminders,
+            );
+            $merged['reminders'] = ReminderResource::collection(
+                $misc->entity->reminders,
+            );
+            $merged['relations'] = RelationResource::collection(
+                $misc->entity->relationships,
+            );
+            $merged['inventory'] = InventoryResource::collection(
+                $misc->entity->inventories,
+            );
+            $merged['entity_abilities'] = EntityAbilityResource::collection(
+                $misc->entity->abilities,
+            );
+            $merged['entity_assets'] = EntityAssetResource::collection(
+                $misc->entity->assets,
+            );
 
-            if ($misc->ancestors) {
+            if ($misc->entity->ancestors) {
                 $ancestors = [];
-                foreach ($misc->ancestors as $ancestor) {
+                foreach ($misc->entity->ancestors as $ancestor) {
                     $ancestors[] = $ancestor->id;
                 }
                 $merged['parents'] = $ancestors;
             }
-            if ($misc->children) {
+            if ($misc->entity->children) {
                 $descendants = [];
-                foreach ($misc->children as $descendant) {
-                    $descendants[] = $descendant->id;
+                foreach ($misc->entity->children as $descendant) {
+                    $descendants[] = $descendant->entity_id;
                 }
                 $merged['children'] = $descendants;
             }

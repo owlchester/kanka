@@ -1,5 +1,34 @@
 <?php
 
+use App\Http\Controllers\Api\v1\ApplicationApiController;
+use App\Http\Controllers\Api\v1\CalendarEventApiController;
+use App\Http\Controllers\Api\v1\Calendars\AdvancerApiController;
+use App\Http\Controllers\Api\v1\Campaigns\UserApiController;
+use App\Http\Controllers\Api\v1\DefaultThumbnailApiController;
+use App\Http\Controllers\Api\v1\Entities\Attributes\PatchController;
+use App\Http\Controllers\Api\v1\Entities\Attributes\PutController;
+use App\Http\Controllers\Api\v1\EntityApiController;
+use App\Http\Controllers\Api\v1\EntityArchiveApiController;
+use App\Http\Controllers\Api\v1\EntityImageApiController;
+use App\Http\Controllers\Api\v1\EntityMentionApiController;
+use App\Http\Controllers\Api\v1\EntityMoveApiController;
+use App\Http\Controllers\Api\v1\EntityPermissionApiController;
+use App\Http\Controllers\Api\v1\EntityRecoveryApiController;
+use App\Http\Controllers\Api\v1\EntityTemplateApiController;
+use App\Http\Controllers\Api\v1\EntityTransformApiController;
+use App\Http\Controllers\Api\v1\EntityTypeApiController;
+use App\Http\Controllers\Api\v1\FamilyTreeApiController;
+use App\Http\Controllers\Api\v1\FilterApiController;
+use App\Http\Controllers\Api\v1\FullTextSearchApiController;
+use App\Http\Controllers\Api\v1\HealthController;
+use App\Http\Controllers\Api\v1\PostLayoutApiController;
+use App\Http\Controllers\Api\v1\PostRecoveryApiController;
+use App\Http\Controllers\Api\v1\ProfileApiController;
+use App\Http\Controllers\Api\v1\RecentEntityApiController;
+use App\Http\Controllers\Api\v1\RelationApiController;
+use App\Http\Controllers\Api\v1\SearchApiController;
+use App\Http\Controllers\Api\v1\VisibilityController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -64,84 +93,84 @@ Route::apiResources([
     'campaigns.entity_types' => 'Campaigns\EntityTypeApiController',
 ]);
 
-Route::get('campaigns/{campaign}/entities/{entity}/image', [App\Http\Controllers\Api\v1\EntityImageApiController::class, 'show']);
-Route::post('campaigns/{campaign}/entities/{entity}/image', [App\Http\Controllers\Api\v1\EntityImageApiController::class, 'put']);
-Route::delete('campaigns/{campaign}/entities/{entity}/image', [App\Http\Controllers\Api\v1\EntityImageApiController::class, 'destroy']);
+Route::get('campaigns/{campaign}/entities/{entity}/image', [EntityImageApiController::class, 'show']);
+Route::post('campaigns/{campaign}/entities/{entity}/image', [EntityImageApiController::class, 'put']);
+Route::delete('campaigns/{campaign}/entities/{entity}/image', [EntityImageApiController::class, 'destroy']);
 Route::get('campaigns/{campaign}/roles', 'CampaignRoleApiController@index');
 
-Route::get('campaigns/{campaign}/relations', [App\Http\Controllers\Api\v1\RelationApiController::class, 'index']);
-Route::get('campaigns/{campaign}/search/{query}', [App\Http\Controllers\Api\v1\SearchApiController::class, 'index']);
+Route::get('campaigns/{campaign}/relations', [RelationApiController::class, 'index']);
+Route::get('campaigns/{campaign}/search/{query}', [SearchApiController::class, 'index']);
 
-Route::get('campaigns/{campaign}/entities/templates', [App\Http\Controllers\Api\v1\EntityTemplateApiController::class, 'index']);
-Route::post('campaigns/{campaign}/entities/templates/{entity}/switch', [App\Http\Controllers\Api\v1\EntityTemplateApiController::class, 'switch']);
+Route::get('campaigns/{campaign}/entities/templates', [EntityTemplateApiController::class, 'index']);
+Route::post('campaigns/{campaign}/entities/templates/{entity}/switch', [EntityTemplateApiController::class, 'switch']);
 
-Route::get('campaigns/{campaign}/entities/archived', [App\Http\Controllers\Api\v1\EntityArchiveApiController::class, 'index']);
-Route::post('campaigns/{campaign}/entities/{entity}/archive', [App\Http\Controllers\Api\v1\EntityArchiveApiController::class, 'switch']);
+Route::get('campaigns/{campaign}/entities/archived', [EntityArchiveApiController::class, 'index']);
+Route::post('campaigns/{campaign}/entities/{entity}/archive', [EntityArchiveApiController::class, 'switch']);
 
-Route::get('campaigns/{campaign}/entities', [App\Http\Controllers\Api\v1\EntityApiController::class, 'index']);
-Route::get('campaigns/{campaign}/entities/recent', [App\Http\Controllers\Api\v1\RecentEntityApiController::class, 'index']);
-Route::post('campaigns/{campaign}/entities/{entity_type}', [App\Http\Controllers\Api\v1\EntityApiController::class, 'put']);
-Route::get('campaigns/{campaign}/entities/{entity}', [App\Http\Controllers\Api\v1\EntityApiController::class, 'show']);
-Route::put('campaigns/{campaign}/entities/{entity}', [App\Http\Controllers\Api\v1\EntityApiController::class, 'edit']);
-Route::patch('campaigns/{campaign}/entities/{entity}', [App\Http\Controllers\Api\v1\EntityApiController::class, 'patch']);
-Route::delete('campaigns/{campaign}/entities/{entity}', [App\Http\Controllers\Api\v1\EntityApiController::class, 'destroy']);
-Route::get('campaigns/{campaign}/entities/{entity}/mentions', [App\Http\Controllers\Api\v1\EntityMentionApiController::class, 'index']);
+Route::get('campaigns/{campaign}/entities', [EntityApiController::class, 'index']);
+Route::get('campaigns/{campaign}/entities/recent', [RecentEntityApiController::class, 'index']);
+Route::post('campaigns/{campaign}/entities/{entity_type}', [EntityApiController::class, 'put']);
+Route::get('campaigns/{campaign}/entities/{entity}', [EntityApiController::class, 'show']);
+Route::put('campaigns/{campaign}/entities/{entity}', [EntityApiController::class, 'edit']);
+Route::patch('campaigns/{campaign}/entities/{entity}', [EntityApiController::class, 'patch']);
+Route::delete('campaigns/{campaign}/entities/{entity}', [EntityApiController::class, 'destroy']);
+Route::get('campaigns/{campaign}/entities/{entity}/mentions', [EntityMentionApiController::class, 'index']);
 
 Route::get('campaigns/{campaign}/users', 'Campaigns\UserApiController@index');
 Route::get('campaigns/{campaign}/users/{user}', 'Campaigns\UserApiController@show');
 Route::post('campaigns/{campaign}/users', 'Campaigns\UserApiController@add');
 Route::delete('campaigns/{campaign}/users', 'Campaigns\UserApiController@remove');
 
-Route::get('campaigns/{campaign}/users', [App\Http\Controllers\Api\v1\Campaigns\UserApiController::class, 'index']);
-Route::get('campaigns/{campaign}/users/{user}', [App\Http\Controllers\Api\v1\Campaigns\UserApiController::class, 'show']);
-Route::post('campaigns/{campaign}/users', [App\Http\Controllers\Api\v1\Campaigns\UserApiController::class, 'add']);
-Route::delete('campaigns/{campaign}/users', [App\Http\Controllers\Api\v1\Campaigns\UserApiController::class, 'remove']);
+Route::get('campaigns/{campaign}/users', [UserApiController::class, 'index']);
+Route::get('campaigns/{campaign}/users/{user}', [UserApiController::class, 'show']);
+Route::post('campaigns/{campaign}/users', [UserApiController::class, 'add']);
+Route::delete('campaigns/{campaign}/users', [UserApiController::class, 'remove']);
 
-Route::post('campaigns/{campaign}/permissions/test', [App\Http\Controllers\Api\v1\EntityPermissionApiController::class, 'test']);
+Route::post('campaigns/{campaign}/permissions/test', [EntityPermissionApiController::class, 'test']);
 
-Route::get('campaigns/{campaign}/calendars/{calendar}/reminders', [App\Http\Controllers\Api\v1\CalendarEventApiController::class, 'index']);
-Route::post('campaigns/{campaign}/calendars/{calendar}/advance', [App\Http\Controllers\Api\v1\Calendars\AdvancerApiController::class, 'advance']);
-Route::post('campaigns/{campaign}/calendars/{calendar}/retreat', [App\Http\Controllers\Api\v1\Calendars\AdvancerApiController::class, 'retreat']);
+Route::get('campaigns/{campaign}/calendars/{calendar}/reminders', [CalendarEventApiController::class, 'index']);
+Route::post('campaigns/{campaign}/calendars/{calendar}/advance', [AdvancerApiController::class, 'advance']);
+Route::post('campaigns/{campaign}/calendars/{calendar}/retreat', [AdvancerApiController::class, 'retreat']);
 
-Route::get('visibilities', [App\Http\Controllers\Api\v1\VisibilityController::class, 'index']);
-Route::get('post-layouts', [App\Http\Controllers\Api\v1\PostLayoutApiController::class, 'index']);
+Route::get('visibilities', [VisibilityController::class, 'index']);
+Route::get('post-layouts', [PostLayoutApiController::class, 'index']);
 
-Route::get('campaigns/{campaign}/recovery', [App\Http\Controllers\Api\v1\EntityRecoveryApiController::class, 'index']);
-Route::post('campaigns/{campaign}/recover', [App\Http\Controllers\Api\v1\EntityRecoveryApiController::class, 'recover']);
+Route::get('campaigns/{campaign}/recovery', [EntityRecoveryApiController::class, 'index']);
+Route::post('campaigns/{campaign}/recover', [EntityRecoveryApiController::class, 'recover']);
 
-Route::get('campaigns/{campaign}/recovery/posts', [App\Http\Controllers\Api\v1\PostRecoveryApiController::class, 'index']);
-Route::post('campaigns/{campaign}/recover/posts', [App\Http\Controllers\Api\v1\PostRecoveryApiController::class, 'recover']);
+Route::get('campaigns/{campaign}/recovery/posts', [PostRecoveryApiController::class, 'index']);
+Route::post('campaigns/{campaign}/recover/posts', [PostRecoveryApiController::class, 'recover']);
 
-Route::post('campaigns/{campaign}/transform', [App\Http\Controllers\Api\v1\EntityTransformApiController::class, 'transform']);
+Route::post('campaigns/{campaign}/transform', [EntityTransformApiController::class, 'transform']);
 
-Route::post('campaigns/{campaign}/transfer', [App\Http\Controllers\Api\v1\EntityMoveApiController::class, 'transfer']);
+Route::post('campaigns/{campaign}/transfer', [EntityMoveApiController::class, 'transfer']);
 
-Route::get('campaigns/{campaign}/default-thumbnails', [App\Http\Controllers\Api\v1\DefaultThumbnailApiController::class, 'index']);
-Route::post('campaigns/{campaign}/default-thumbnails', [App\Http\Controllers\Api\v1\DefaultThumbnailApiController::class, 'upload']);
-Route::delete('campaigns/{campaign}/default-thumbnails', [App\Http\Controllers\Api\v1\DefaultThumbnailApiController::class, 'delete']);
+Route::get('campaigns/{campaign}/default-thumbnails', [DefaultThumbnailApiController::class, 'index']);
+Route::post('campaigns/{campaign}/default-thumbnails', [DefaultThumbnailApiController::class, 'upload']);
+Route::delete('campaigns/{campaign}/default-thumbnails', [DefaultThumbnailApiController::class, 'delete']);
 
-Route::get('campaigns/{campaign}/fulltext-search', [App\Http\Controllers\Api\v1\FullTextSearchApiController::class, 'index']);
+Route::get('campaigns/{campaign}/fulltext-search', [FullTextSearchApiController::class, 'index']);
 
-Route::get('campaigns/{campaign}/families/{family}/tree', [App\Http\Controllers\Api\v1\FamilyTreeApiController::class, 'show']);
-Route::post('campaigns/{campaign}/families/{family}/tree', [App\Http\Controllers\Api\v1\FamilyTreeApiController::class, 'store']);
-Route::put('campaigns/{campaign}/families/{family}/tree', [App\Http\Controllers\Api\v1\FamilyTreeApiController::class, 'store']);
-Route::delete('campaigns/{campaign}/families/{family}/tree', [App\Http\Controllers\Api\v1\FamilyTreeApiController::class, 'destroy']);
+Route::get('campaigns/{campaign}/families/{family}/tree', [FamilyTreeApiController::class, 'show']);
+Route::post('campaigns/{campaign}/families/{family}/tree', [FamilyTreeApiController::class, 'store']);
+Route::put('campaigns/{campaign}/families/{family}/tree', [FamilyTreeApiController::class, 'store']);
+Route::delete('campaigns/{campaign}/families/{family}/tree', [FamilyTreeApiController::class, 'destroy']);
 
-Route::get('profile', [App\Http\Controllers\Api\v1\ProfileApiController::class, 'index']);
+Route::get('profile', [ProfileApiController::class, 'index']);
 Route::get('version', function () {
     return config('app.version');
 });
 
-Route::get('health', [\App\Http\Controllers\Api\v1\HealthController::class, 'index']);
-Route::get('entity-types', [App\Http\Controllers\Api\v1\EntityTypeApiController::class, 'index']);
-Route::get('filters', [App\Http\Controllers\Api\v1\FilterApiController::class, 'index']);
-Route::get('filters/{entityType}', [App\Http\Controllers\Api\v1\FilterApiController::class, 'show']);
+Route::get('health', [HealthController::class, 'index']);
+Route::get('entity-types', [EntityTypeApiController::class, 'index']);
+Route::get('filters', [FilterApiController::class, 'index']);
+Route::get('filters/{entityType}', [FilterApiController::class, 'show']);
 
-Route::get('campaigns/{campaign}/applications', [App\Http\Controllers\Api\v1\ApplicationApiController::class, 'index']);
-Route::get('campaigns/{campaign}/applications/{application}', [App\Http\Controllers\Api\v1\ApplicationApiController::class, 'show']);
-Route::post('campaigns/{campaign}/applications/{application}/approve', [App\Http\Controllers\Api\v1\ApplicationApiController::class, 'approve']);
-Route::post('campaigns/{campaign}/applications/{application}/reject', [App\Http\Controllers\Api\v1\ApplicationApiController::class, 'reject']);
+Route::get('campaigns/{campaign}/applications', [ApplicationApiController::class, 'index']);
+Route::get('campaigns/{campaign}/applications/{application}', [ApplicationApiController::class, 'show']);
+Route::post('campaigns/{campaign}/applications/{application}/approve', [ApplicationApiController::class, 'approve']);
+Route::post('campaigns/{campaign}/applications/{application}/reject', [ApplicationApiController::class, 'reject']);
 
 // Bulk entity attributes
-Route::put('campaigns/{campaign}/entities/{entity}/attributes', [App\Http\Controllers\Api\v1\Entities\Attributes\PutController::class, 'put']);
-Route::patch('campaigns/{campaign}/entities/{entity}/attributes', [App\Http\Controllers\Api\v1\Entities\Attributes\PatchController::class, 'patch']);
+Route::put('campaigns/{campaign}/entities/{entity}/attributes', [PutController::class, 'put']);
+Route::patch('campaigns/{campaign}/entities/{entity}/attributes', [PatchController::class, 'patch']);

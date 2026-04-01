@@ -5,22 +5,17 @@ namespace App\Models;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
-use App\Models\Concerns\HasLocation;
-use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Event
  *
- * @property ?int $event_id
  * @property string $date
- * @property Event[] $descendants
  */
 class Event extends MiscModel
 {
@@ -29,9 +24,6 @@ class Event extends MiscModel
     use HasCampaign;
     use HasFactory;
     use HasFilters;
-    use HasLocation;
-    use HasRecursiveRelationships;
-    use Nested;
     use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
@@ -41,14 +33,11 @@ class Event extends MiscModel
         'name',
         'date',
         'is_private',
-        'location_id',
-        'event_id',
     ];
 
     protected array $sortable = [
         'name',
         'date',
-        'parent.name',
         'type',
     ];
 
@@ -57,7 +46,6 @@ class Event extends MiscModel
      */
     protected array $sortableColumns = [
         'date',
-        'location.name',
     ];
 
     /**
@@ -66,14 +54,11 @@ class Event extends MiscModel
      * @var string[]
      */
     public array $nullableForeignKeys = [
-        'location_id',
-        'event_id',
     ];
 
     protected array $exportFields = [
         'base',
         'date',
-        'location_id',
     ];
 
     protected array $sanitizable = [
@@ -81,40 +66,15 @@ class Event extends MiscModel
         'date',
     ];
 
-    /**
-     * Performance with for datagrids
-     */
-    public function scopePreparedWith(Builder $query): Builder
-    {
-        return parent::scopePreparedWith($query->with([
-            'location' => function ($sub) {
-                $sub->select('id', 'name');
-            },
-            'location.entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id');
-            },
-            'entity.calendarDateEvents',
-        ]));
-    }
-
-    /**
-     * Only select used fields in datagrids
-     */
-    public function datagridSelectFields(): array
-    {
-        return ['location_id', 'event_id', 'date'];
-    }
-
     public function scopeFilteredEvents(Builder $query): Builder
     {
         // @phpstan-ignore-next-line
         return $query
-            ->select(['id', 'name', 'date', 'location_id', 'is_private'])
+            ->select(['events.id', 'events.name', 'events.date', 'events.is_private'])
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with([
-                'location', 'location.entity',
-                'parent', 'parent.entity',
-                'entity', 'entity.tags', 'entity.tags.entity', 'entity.image'])
+                'entity.locations', 'entity.locations.entity',
+                'entity', 'entity.parent', 'entity.tags', 'entity.tags.entity', 'entity.image'])
             ->has('entity');
     }
 
@@ -126,11 +86,6 @@ class Event extends MiscModel
         return (int) config('entities.ids.event');
     }
 
-    public function getParentKeyName()
-    {
-        return 'event_id';
-    }
-
     /**
      * Determine if the model has profile data to be displayed
      */
@@ -140,7 +95,7 @@ class Event extends MiscModel
             return true;
         }
 
-        if ($this->location || ! empty($this->entity->calendarReminder())) {
+        if ($this->entity->locations->isNotEmpty() || ! empty($this->entity->calendarReminder())) {
             return true;
         }
 
@@ -156,8 +111,7 @@ class Event extends MiscModel
     {
         return [
             'date',
-            'location_id',
-            'event_id',
+            'locations',
         ];
     }
 

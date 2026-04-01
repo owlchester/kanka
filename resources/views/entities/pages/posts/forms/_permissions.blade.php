@@ -11,6 +11,13 @@ $permissions = [
 ];
 ?>
 <div class="tab-pane" id="form-permissions">
+    <x-helper class="mb-4">
+        <p>{!! __('articles.helpers.permissions', [
+            'visibility' => '<strong>' . __('crud.fields.visibility') . '</strong>'
+        ]) !!}
+        </p>
+        <x-slot name="docs">/features/articles.html#permissions</x-slot>
+    </x-helper>
     <div class="max-w-4xl flex flex-col gap-2">
         @if(!empty($model))
             @foreach ($model->permissions()->onlyRoles()->with('role')->get() as $perm)

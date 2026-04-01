@@ -7,4 +7,7 @@ return [
     ],
     'helper'    => 'Les articles suivants ont été définis comme modèles réutilisables.',
     'tab'       => 'Charger depuis les modèles',
+    'tooltips'  => [
+        'click-to-edit' => 'Modifier cet article modèle',
+    ],
 ];

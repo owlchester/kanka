@@ -16,7 +16,7 @@ class Plugin extends Layout
         $columns = [
             'name' => [
                 'key' => 'name',
-                'label' => 'campaigns/plugins.fields.name',
+                'label' => __('campaigns/plugins.fields.name'),
                 'render' => function (\App\Models\Plugin $model) {
                     return '<a href="' . $model->libraryUrl() . '" class="text-link">'
                              . $model->name
@@ -25,7 +25,7 @@ class Plugin extends Layout
             ],
             'update' => [
                 'key' => 'has_update',
-                'label' => 'Has update',
+                'label' => __('campaigns/plugins.fields.update'),
                 'render' => function ($model) {
                     $base = '';
                     if ($model->obsolete()) {
@@ -58,7 +58,7 @@ class Plugin extends Layout
             ],
             'status' => [
                 'key' => 'pivot_is_active',
-                'label' => 'campaigns/plugins.fields.status',
+                'label' => __('campaigns/plugins.fields.status'),
                 'render' => function ($model) {
                     if (! $model->isTheme()) {
                         return '<i class="fa-regular fa-infinity" data-title="' .

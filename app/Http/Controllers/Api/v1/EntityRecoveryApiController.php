@@ -6,6 +6,8 @@ use App\Http\Requests\RecoverEntity as Request;
 use App\Http\Resources\EntityResource as Resource;
 use App\Models\Campaign;
 use App\Services\Entity\RecoveryService;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class EntityRecoveryApiController extends ApiController
 {
@@ -19,9 +21,9 @@ class EntityRecoveryApiController extends ApiController
     }
 
     /**
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Campaign $campaign)
     {
@@ -33,7 +35,7 @@ class EntityRecoveryApiController extends ApiController
     }
 
     /**
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function recover(Request $request, Campaign $campaign)
     {

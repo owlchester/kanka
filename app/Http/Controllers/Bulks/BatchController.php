@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Bulks;
 
+use App\Datagrids\Bulks\Bulk;
 use App\Datagrids\Bulks\EntityBulk;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Services\BulkService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class BatchController extends Controller
 {
@@ -23,7 +25,7 @@ class BatchController extends Controller
 
         return view('cruds.datagrids.bulks.modals._batch')
             ->with('campaign', $campaign)
-            ->with('bulk', new EntityBulk)
+            ->with('bulk', $this->resolveBulk($entityType))
             ->with('entityType', $entityType)
             ->with('entities', $entities);
     }
@@ -41,7 +43,7 @@ class BatchController extends Controller
             ->user($request->user())
             ->campaign($campaign)
             ->entities($models)
-            ->editing($request->all(), new EntityBulk);
+            ->editing($request->all(), $this->resolveBulk($entityType));
 
         $total = $this->bulkService->total();
 
@@ -53,5 +55,16 @@ class BatchController extends Controller
         return redirect()
             ->back()
             ->with('success', trans_choice('entries/bulk.success.' . $key, $count, ['count' => $count, 'total' => $total]));
+    }
+
+    private function resolveBulk(EntityType $entityType): Bulk
+    {
+        $bulkClass = 'App\Datagrids\Bulks\\' . Str::studly($entityType->code) . 'Bulk';
+
+        if (class_exists($bulkClass)) {
+            return new $bulkClass;
+        }
+
+        return new EntityBulk;
     }
 }

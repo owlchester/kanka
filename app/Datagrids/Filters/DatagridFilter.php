@@ -171,7 +171,7 @@ abstract class DatagridFilter
     protected function character(string $field = 'character_id'): self
     {
         $name = Module::singular(config('entities.ids.character'));
-        $placeholder = __('crud.placeholders.character');
+        $placeholder = __('crud.placeholders.search');
         if (! empty($name)) {
             $placeholder = __('crud.placeholders.fallback', ['module' => $name]);
         }

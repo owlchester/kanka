@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Abilities;
 
-use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Models\Ability;
 use App\Models\Campaign;
@@ -22,31 +21,6 @@ class AbilityController extends Controller
     {
         $this->campaign($campaign)->authEntityView($ability->entity);
 
-        $options = ['campaign' => $campaign, 'ability' => $ability, 'm' => $this->descendantsMode()];
-        $filters = [];
-        if ($this->filterToDirect()) {
-            $filters['ability_id'] = $ability->id;
-        }
-        Datagrid::layout(\App\Renderers\Layouts\Ability\Ability::class)
-            ->route('abilities.abilities', $options);
-
-        $this->rows = $ability
-            ->descendants()
-            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
-            ->with([
-                'entity', 'entity.image', 'entity.entityType', 'entity.tags',
-                'parent', 'parent.entity',
-            ])
-            ->has('entity')
-            ->filter($filters)
-            ->paginate(config('limits.pagination'));
-
-        if (request()->ajax()) {
-            return $this->campaign($campaign)->datagridAjax();
-        }
-
-        return $this
-            ->campaign($campaign)
-            ->subview('abilities.abilities', $ability);
+        return redirect()->route('entities.children', [$campaign, $ability->entity]);
     }
 }

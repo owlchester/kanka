@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+
 return [
 
     /*
@@ -33,7 +35,7 @@ return [
 
     'stripe' => [
         'enabled' => ! empty(env('STRIPE_KEY')) ? true : false,
-        'model' => App\Models\User::class,
+        'model' => User::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],

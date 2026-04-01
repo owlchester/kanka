@@ -17,7 +17,7 @@ use Illuminate\Support\Collection;
 trait CalendarRelations
 {
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Reminder, $this>
+     * @return HasMany<Reminder, $this>
      */
     public function calendarEvents(): HasMany
     {
@@ -25,7 +25,7 @@ trait CalendarRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CalendarWeather, $this>
+     * @return HasMany<CalendarWeather, $this>
      */
     public function calendarWeather(): HasMany
     {
@@ -33,7 +33,7 @@ trait CalendarRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Calendar, $this>
+     * @return BelongsTo<Calendar, $this>
      */
     public function calendar(): BelongsTo
     {
@@ -41,7 +41,7 @@ trait CalendarRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Calendar, $this>
+     * @return HasMany<Calendar, $this>
      */
     public function calendars(): HasMany
     {

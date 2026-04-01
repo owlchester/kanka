@@ -21,19 +21,22 @@ class Event extends Layout
             ],
             'name' => [
                 'key' => 'name',
-                'label' => Module::singular(config('entities.ids.event'), 'entities.event'),
+                'label' => Module::singular(
+                    config('entities.ids.event'),
+                    __('entities.event')
+                ),
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [
                 'key' => 'type',
-                'label' => 'crud.fields.type',
+                'label' => __('crud.fields.type'),
                 'render' => function (\App\Models\Event $model) {
                     return $model->entity->type;
                 },
             ],
             'date' => [
                 'key' => 'date',
-                'label' => 'events.fields.date',
+                'label' => __('events.fields.date'),
             ],
             'tags' => [
                 'render' => Standard::TAGS,

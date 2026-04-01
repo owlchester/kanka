@@ -7,13 +7,16 @@ use App\Http\Resources\CreatureResource as Resource;
 use App\Models\Campaign;
 use App\Models\Creature;
 use App\Models\EntityType;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class CreatureApiController extends ApiController
+class CreatureApiController extends MiscApiController
 {
     /**
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Campaign $campaign)
     {
@@ -42,7 +45,7 @@ class CreatureApiController extends ApiController
     /**
      * @return resource
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function store(Request $request, Campaign $campaign)
     {
@@ -52,7 +55,7 @@ class CreatureApiController extends ApiController
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
         $model = Creature::create($data);
-        $this->crudSave($model);
+        $this->crudSave($model, $request->validated());
 
         return new Resource($model);
     }
@@ -65,15 +68,15 @@ class CreatureApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $creature->entity);
         $creature->update($request->all());
-        $this->crudSave($creature);
+        $this->crudSave($creature, $request->validated());
 
         return new Resource($creature);
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function destroy(Campaign $campaign, Creature $creature)
     {

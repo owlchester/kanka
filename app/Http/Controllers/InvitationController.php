@@ -5,20 +5,22 @@ namespace App\Http\Controllers;
 use App\Exceptions\RequireLoginException;
 use App\Models\User;
 use App\Services\InviteService;
+use App\Services\Users\CampaignService;
 use Exception;
+use Illuminate\Http\RedirectResponse;
 
 class InvitationController extends Controller
 {
     protected InviteService $inviteService;
 
-    protected \App\Services\Users\CampaignService $campaignService;
+    protected CampaignService $campaignService;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(InviteService $inviteService, \App\Services\Users\CampaignService $campaignService)
+    public function __construct(InviteService $inviteService, CampaignService $campaignService)
     {
         $this->inviteService = $inviteService;
         $this->campaignService = $campaignService;
@@ -26,7 +28,7 @@ class InvitationController extends Controller
 
     /**
      * @param  string  $token
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function join($token)
     {

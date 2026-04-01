@@ -37,7 +37,7 @@ $weekNumber = 1;
         <a
             href="{{ $renderer->previous() }}"
             class="btn2 join-item btn-sm"
-            data-shortcut="previous"
+            data-calendar-nav="previous"
             data-title="{{ $renderer->previous(true) }} (Ctrl <i class='fa-solid fa-arrow-left' aria-hidden='true'></i>)"
             data-html="true"
             data-toggle="tooltip"
@@ -50,7 +50,7 @@ $weekNumber = 1;
         <a
             href="{{ $renderer->next() }}"
             class="btn2 join-item btn-sm"
-            data-shortcut="next"
+            data-calendar-nav="next"
             data-title="{{ $renderer->next(true) }} (Ctrl <i class='fa-solid fa-arrow-right' aria-hidden='true'></i>)"
             data-html="true"
             data-toggle="tooltip"
@@ -63,7 +63,7 @@ $weekNumber = 1;
         <a
             href="{{ $renderer->linkToYear(false) }}"
             class="btn2 join-item btn-sm"
-            @if ($renderer->isYearlyLayout()) data-shortcut="previous" data-title="{{ $renderer->titleToYear(false) }} (Ctrl <i class='fa-solid fa-arrow-left' aria-hidden='true'></i>)"
+            @if ($renderer->isYearlyLayout()) data-calendar-nav="previous" data-title="{{ $renderer->titleToYear(false) }} (Ctrl <i class='fa-solid fa-arrow-left' aria-hidden='true'></i>)"
             data-html="true" @else data-title="{{ $renderer->titleToYear(false) }}" @endif
             data-toggle="tooltip"
             rel="nofollow">
@@ -76,7 +76,7 @@ $weekNumber = 1;
         <a
             href="{{ $renderer->linkToYear() }}"
             class="btn2 join-item btn-sm"
-            @if ($renderer->isYearlyLayout()) data-shortcut="next" data-title="{{ $renderer->titleToYear() }} (Ctrl <i class='fa-solid fa-arrow-right' aria-hidden='true'></i>)" data-html="true" @else data-title="{{ $renderer->titleToYear() }}" @endif
+            @if ($renderer->isYearlyLayout()) data-calendar-nav="next" data-title="{{ $renderer->titleToYear() }} (Ctrl <i class='fa-solid fa-arrow-right' aria-hidden='true'></i>)" data-html="true" @else data-title="{{ $renderer->titleToYear() }}" @endif
             data-toggle="tooltip"
             rel="nofollow">
             <x-icon class="fa-solid fa-chevron-right" />

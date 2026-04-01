@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Visibility;
 use App\Facades\CampaignLocalization;
 use App\Facades\Img;
 use App\Facades\Mentions;
@@ -60,7 +61,7 @@ class MapLayer extends Model
     ];
 
     public $casts = [
-        'visibility_id' => \App\Enums\Visibility::class,
+        'visibility_id' => Visibility::class,
     ];
 
     protected array $sanitizable = [
@@ -68,7 +69,7 @@ class MapLayer extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Map, $this>
+     * @return BelongsTo<Map, $this>
      */
     public function map(): BelongsTo
     {
@@ -76,7 +77,7 @@ class MapLayer extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Image, $this>
+     * @return BelongsTo<Image, $this>
      */
     public function image(): BelongsTo
     {

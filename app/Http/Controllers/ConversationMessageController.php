@@ -8,6 +8,9 @@ use App\Http\Resources\Conversation\ConversationResource;
 use App\Models\Campaign;
 use App\Models\Conversation;
 use App\Models\ConversationMessage;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 
 class ConversationMessageController extends Controller
@@ -25,7 +28,7 @@ class ConversationMessageController extends Controller
     /**
      * @return ConversationResource
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function store(StoreConversationMessage $request, Campaign $campaign, Conversation $conversation)
     {
@@ -58,9 +61,9 @@ class ConversationMessageController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     * @return JsonResponse|RedirectResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function destroy(Campaign $campaign, Conversation $conversation, ConversationMessage $conversationMessage)
     {

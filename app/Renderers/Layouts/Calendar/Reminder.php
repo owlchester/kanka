@@ -21,24 +21,29 @@ class Reminder extends Layout
             ],
             'entity' => [
                 'key' => 'entity.name',
-                'label' => 'fields.entry.label',
+                'label' => __('fields.entry.label'),
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [
                 'key' => 'type_id',
-                'label' => 'campaigns/categories.tab',
+                'label' => __('campaigns/categories.tab'),
                 'render' => function ($model) {
-                    return $model->remindable instanceof Post ? __('entities.post') . ' (' . $model->remindable->entity->entityType->name() . ')' : $model->remindable->entityType->name();
+                    return $model->remindable instanceof Post
+                        ? __('entities.post') .
+                                ' (' .
+                                $model->remindable->entity->entityType->name() .
+                                ')'
+                        : $model->remindable->entityType->name();
                 },
             ],
             'date' => [
                 'key' => 'date',
-                'label' => 'events.fields.date',
+                'label' => __('events.fields.date'),
                 'render' => 'readableDate()',
             ],
             'length' => [
                 'key' => 'length',
-                'label' => 'calendars.fields.length',
+                'label' => __('calendars.fields.length'),
                 'render' => 'readableLength()',
             ],
             'comment' => [
@@ -48,7 +53,9 @@ class Reminder extends Layout
                         return '';
                     }
 
-                    return '<i class="fa-regular fa-comment" data-title="' . $model->comment . '" data-toggle="tooltip"></i>';
+                    return '<i class="fa-regular fa-comment" data-title="' .
+                        $model->comment .
+                        '" data-toggle="tooltip"></i>';
                 },
             ],
             'recurring' => [
@@ -58,10 +65,11 @@ class Reminder extends Layout
                         return '';
                     }
 
-                    return '<i class="fa-regular fa-refresh" data-title="' . __('calendars.fields.is_recurring') . '" data-toggle="tooltip"></i>';
+                    return '<i class="fa-regular fa-refresh" data-title="' .
+                        __('calendars.fields.is_recurring') .
+                        '" data-toggle="tooltip"></i>';
                 },
             ],
-
         ];
 
         return $columns;
@@ -72,17 +80,11 @@ class Reminder extends Layout
      */
     public function actions(): array
     {
-        return [
-            self::ACTION_EDIT_DIALOG,
-            self::ACTION_DELETE,
-        ];
+        return [self::ACTION_EDIT_DIALOG, self::ACTION_DELETE];
     }
 
     public function bulks(): array
     {
-        return [
-            self::ACTION_EDIT,
-            self::ACTION_DELETE,
-        ];
+        return [self::ACTION_EDIT, self::ACTION_DELETE];
     }
 }

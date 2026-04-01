@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\FeatureStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -12,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class FeatureCategory extends Model
 {
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Feature, $this>
+     * @return HasMany<Feature, $this>
      */
     public function features(): HasMany
     {
@@ -23,28 +24,28 @@ class FeatureCategory extends Model
     {
         return $this->features()
             ->whereIn('features.status_id', [
-                \App\Enums\FeatureStatus::Later, \App\Enums\FeatureStatus::Next, \App\Enums\FeatureStatus::Now,
+                FeatureStatus::Later, FeatureStatus::Next, FeatureStatus::Now,
             ]);
     }
 
     public function done(): HasMany
     {
-        return $this->features()->where('status_id', \App\Enums\FeatureStatus::Done)->orderBy('updated_at', 'DESC');
+        return $this->features()->where('status_id', FeatureStatus::Done)->orderBy('updated_at', 'DESC');
     }
 
     public function now(): HasMany
     {
-        return $this->features()->where('status_id', \App\Enums\FeatureStatus::Now);
+        return $this->features()->where('status_id', FeatureStatus::Now);
     }
 
     public function next(): HasMany
     {
-        return $this->features()->where('status_id', \App\Enums\FeatureStatus::Next);
+        return $this->features()->where('status_id', FeatureStatus::Next);
     }
 
     public function later(): HasMany
     {
-        return $this->features()->where('status_id', \App\Enums\FeatureStatus::Later);
+        return $this->features()->where('status_id', FeatureStatus::Later);
     }
 
     public function nothingPlanned(): bool

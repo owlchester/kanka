@@ -3,13 +3,14 @@
 namespace App\Http\Resources;
 
 use App\Models\Map;
+use Illuminate\Http\Request;
 
 class MapResource extends EntityResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return array
      */
     public function toArray($request)
@@ -20,7 +21,6 @@ class MapResource extends EntityResource
         return $this->entity([
             'height' => $model->height,
             'width' => $model->width,
-            'map_id' => $model->map_id,
             'grid' => $model->grid,
             'min_zoom' => $model->minZoom(),
             'max_zoom' => $model->maxZoom(),

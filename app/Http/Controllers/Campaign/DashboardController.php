@@ -8,6 +8,7 @@ use App\Http\Requests\StoreCampaignDashboard;
 use App\Models\Campaign;
 use App\Models\CampaignDashboard;
 use App\Services\DashboardService;
+use Illuminate\Http\RedirectResponse;
 
 class DashboardController extends Controller
 {
@@ -18,7 +19,7 @@ class DashboardController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function index()
     {
@@ -28,8 +29,7 @@ class DashboardController extends Controller
     public function create(Campaign $campaign)
     {
         if (! $campaign->boosted()) {
-            return view('dashboard.dashboards.premium')
-                ->with('campaign', $campaign);
+            return $this->cta($campaign);
         }
 
         $this->authorize('dashboard', $campaign);
@@ -46,8 +46,7 @@ class DashboardController extends Controller
     public function store(StoreCampaignDashboard $request, Campaign $campaign)
     {
         if (! $campaign->boosted()) {
-            return view('dashboard.dashboards.premium')
-                ->with('campaign', $campaign);
+            return $this->cta($campaign);
         }
 
         $this->authorize('dashboard', $campaign);
@@ -102,5 +101,15 @@ class DashboardController extends Controller
 
         return redirect()->route('dashboard.setup', $campaign)
             ->with('success', __('dashboard.dashboards.delete.success', ['name' => $campaignDashboard->name]));
+    }
+
+    protected function cta(Campaign $campaign)
+    {
+        return view('components.premium-dialog', [
+            'campaign' => $campaign,
+            'title' => __('dashboards/premium.title'),
+            'pitch' => __('dashboards/premium.pitch'),
+            'doc' => 'guides/dashboard.html#custom-dashboards',
+        ]);
     }
 }

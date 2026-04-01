@@ -26,7 +26,7 @@ class PostLayout extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\EntityType, $this>
+     * @return BelongsTo<EntityType, $this>
      */
     public function entityType(): BelongsTo
     {

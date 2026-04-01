@@ -5,23 +5,18 @@ namespace App\Models;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
-use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Race
  *
- * @property Race[]|Collection $descendants
- * @property ?int $race_id
  * @property bool|int $is_extinct
  * @property Collection|CharacterRace[] $characterRaces
  */
@@ -32,8 +27,6 @@ class Race extends MiscModel
     use HasCampaign;
     use HasFactory;
     use HasFilters;
-    use HasRecursiveRelationships;
-    use Nested;
     use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
@@ -43,13 +36,11 @@ class Race extends MiscModel
         'campaign_id',
         'is_private',
         'is_extinct',
-        'race_id',
     ];
 
     protected array $sortable = [
         'name',
         'type',
-        'parent.name',
         'is_extinct',
         'type',
     ];
@@ -64,15 +55,12 @@ class Race extends MiscModel
      * @var string[]
      */
     public array $nullableForeignKeys = [
-        'race_id',
     ];
 
     protected array $exportFields = [
         'base',
         'is_extinct',
     ];
-
-    protected array $exploreGridFields = ['is_extinct'];
 
     /**
      * Foreign relations to add to export
@@ -82,34 +70,6 @@ class Race extends MiscModel
     protected array $sanitizable = [
         'name',
     ];
-
-    /**
-     * @return string
-     */
-    public function getParentKeyName()
-    {
-        return 'race_id';
-    }
-
-    /**
-     * Performance with for datagrids
-     */
-    public function scopePreparedWith(Builder $query): Builder
-    {
-        return parent::scopePreparedWith($query->with([
-            'entity.locations' => function ($sub) {
-                $sub->select('locations.id', 'locations.name');
-            },
-        ]))->withCount(['characters']);
-    }
-
-    /**
-     * Only select used fields in datagrids
-     */
-    public function datagridSelectFields(): array
-    {
-        return ['race_id', 'is_extinct'];
-    }
 
     /**
      * Characters belonging to this race
@@ -125,7 +85,7 @@ class Race extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CharacterRace, $this>
+     * @return HasMany<CharacterRace, $this>
      */
     public function characterRaces(): HasMany
     {
@@ -139,8 +99,8 @@ class Race extends MiscModel
     public function allCharacters()
     {
         $raceIds = [$this->id];
-        foreach ($this->descendants as $descendant) {
-            $raceIds[] = $descendant->id;
+        foreach ($this->entity->descendants as $descendant) {
+            $raceIds[] = $descendant->entity_id;
         }
 
         $query = Character::select('characters.*')
@@ -163,8 +123,8 @@ class Race extends MiscModel
     public function allCharacterRaces()
     {
         $raceIds = [$this->id];
-        foreach ($this->descendants as $descendant) {
-            $raceIds[] = $descendant->id;
+        foreach ($this->entity->descendants as $descendant) {
+            $raceIds[] = $descendant->entity_id;
         }
         $model = new CharacterRace;
 
@@ -189,9 +149,7 @@ class Race extends MiscModel
     public function filterableColumns(): array
     {
         return [
-            'race_id',
             'locations',
-            'parent',
             'is_extinct',
         ];
     }

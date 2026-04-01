@@ -3,13 +3,14 @@
 namespace App\Http\Resources;
 
 use App\Models\QuestElement;
+use Illuminate\Http\Request;
 
 class QuestElementResource extends ModelResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return array
      */
     public function toArray($request)
@@ -22,6 +23,7 @@ class QuestElementResource extends ModelResource
             'name' => $model->name,
             'entry' => $model->entry,
             'entry_parsed' => ! empty($model->entry) ? $model->parsedEntry() : null,
+            'copy_entity_entry' => (bool) $model->copy_entity_entry,
             'colour' => $model->colour,
             'role' => $model->role,
             'visibility_id' => $model->visibility_id,

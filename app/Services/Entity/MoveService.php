@@ -118,8 +118,9 @@ class MoveService
             if ($this->entity->hasChild()) {
                 $newModel = $this->entity->child->replicate(['campaign_id']);
                 // Remove any foreign keys that wouldn't make any sense in the new campaign
+                $keepFields = ['campaign_id', 'status_id', 'visibility_id'];
                 foreach ($newModel->getAttributes() as $attribute => $value) {
-                    if (str_contains($attribute, '_id')) {
+                    if (str_contains($attribute, '_id') && ! in_array($attribute, $keepFields)) {
                         $newModel->$attribute = null;
                     }
                 }
@@ -249,14 +250,14 @@ class MoveService
             }
         }
 
-        // If they have nested children, look for the direct children
-        if (method_exists($model, 'children') && method_exists($this, 'getParentKeyName')) {
-            // @phpstan-ignore-next-line
-            foreach ($model->children as $child) {
-                $parentField = $child->getParentKeyName();
-                $child->$parentField = null;
-                $child->saveQuietly();
+        // Detach children via entity parent_id
+        if (isset($model->entity)) {
+            foreach ($model->entity->children as $childEntity) {
+                $childEntity->parent_id = null;
+                $childEntity->saveQuietly();
             }
+            $model->entity->parent_id = null;
+            $model->entity->saveQuietly();
         }
 
         if (method_exists($model, 'detach')) {

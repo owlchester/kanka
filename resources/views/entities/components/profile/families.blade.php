@@ -12,13 +12,13 @@ $child = $entity->child;
 
 <x-sidebar.profile>
     @includeWhen($entity->aliases->isNotEmpty(), 'entities.components.profile._aliases')
-    @if (!empty($child->parent))
+    @if (!empty($entity->parent))
         <div class="element profile-family">
             <div class="title text-uppercase text-xs">
                 {!! \App\Facades\Module::singular(config('entities.ids.family'), __('entities.family')) !!}
             </div>
             <x-entity-link
-                :entity="$child->parent->entity"
+                :entity="$entity->parent"
                 :campaign="$campaign" />
         </div>
     @endif

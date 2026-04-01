@@ -2,6 +2,7 @@
 
 namespace App\Models\Concerns;
 
+use App\Models\CampaignBoost;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 trait Boosted
@@ -9,7 +10,7 @@ trait Boosted
     /**
      * List of boosts the campaign is receiving
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CampaignBoost, $this>
+     * @return HasMany<CampaignBoost, $this>
      */
     public function boosts(): HasMany
     {

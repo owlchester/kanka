@@ -7,13 +7,16 @@ use App\Http\Resources\ItemResource as Resource;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Models\Item;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class ItemApiController extends ApiController
+class ItemApiController extends MiscApiController
 {
     /**
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Campaign $campaign)
     {
@@ -42,7 +45,7 @@ class ItemApiController extends ApiController
     /**
      * @return resource
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function store(Request $request, Campaign $campaign)
     {
@@ -53,7 +56,7 @@ class ItemApiController extends ApiController
         $data['campaign_id'] = $campaign->id;
         /** @var Item $model */
         $model = Item::create($data);
-        $this->crudSave($model);
+        $this->crudSave($model, $request->validated());
 
         return new Resource($model);
     }
@@ -66,15 +69,15 @@ class ItemApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $item->entity);
         $item->update($request->all());
-        $this->crudSave($item);
+        $this->crudSave($item, $request->validated());
 
         return new Resource($item);
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function destroy(Campaign $campaign, Item $item)
     {

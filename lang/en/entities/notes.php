@@ -17,14 +17,12 @@ return [
     ],
     'create'        => [
         'success'   => 'Article \':name\' added to :entity.',
-        'title'     => 'New article for :name',
     ],
     'destroy'       => [
         'success'   => 'Article :name removed from :entity.',
     ],
     'edit'          => [
         'success'   => 'Article :name for :entity updated.',
-        'title'     => 'Update article for :name',
     ],
     'fields'        => [
         'creator'   => 'Creator',
@@ -46,7 +44,6 @@ return [
         'copy_title'    => 'Keep a copy',
         'description'   => 'Select an entry to move this article to',
         'entity'        => 'Target entry',
-        'move'          => 'Move to another entry',
         'move_success'  => 'Article :name moved to :entity successfully.',
     ],
     'placeholders'  => [

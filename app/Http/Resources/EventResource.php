@@ -3,13 +3,14 @@
 namespace App\Http\Resources;
 
 use App\Models\Event;
+use Illuminate\Http\Request;
 
 class EventResource extends EntityResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return array
      */
     public function toArray($request)
@@ -18,8 +19,8 @@ class EventResource extends EntityResource
         $model = $this->resource;
 
         return $this->entity([
-            'event_id' => $model->event_id,
             'date' => $model->date,
+            'locations' => $model->entity->locations->pluck('id'),
             'calendar_id' => $model->entity->calendarDate?->calendar_id,
             'calendar_year' => $model->entity->calendarDate?->year,
             'calendar_month' => $model->entity->calendarDate?->month,

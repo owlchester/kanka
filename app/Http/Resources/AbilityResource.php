@@ -3,13 +3,14 @@
 namespace App\Http\Resources;
 
 use App\Models\Ability;
+use Illuminate\Http\Request;
 
 class AbilityResource extends EntityResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return array
      */
     public function toArray($request)
@@ -18,9 +19,8 @@ class AbilityResource extends EntityResource
         $ability = $this->resource;
 
         return $this->entity([
-            'ability_id' => $ability->ability_id,
             'charges' => $ability->charges,
-            'abilities' => $ability->descendants()->pluck('id')->toArray(),
+            'abilities' => $ability->entity->descendants()->pluck('id')->toArray(),
         ]);
     }
 }

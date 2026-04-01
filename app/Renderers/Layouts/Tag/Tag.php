@@ -21,30 +21,30 @@ class Tag extends Layout
             ],
             'name' => [
                 'key' => 'name',
-                'label' => Module::singular(config('entities.ids.tag'), 'entities.tag'),
+                'label' => Module::singular(config('entities.ids.tag'), __('entities.tag')),
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [
                 'key' => 'type',
-                'label' => 'crud.fields.type',
+                'label' => __('crud.fields.type'),
                 'render' => function (\App\Models\Tag $model) {
                     return $model->entity->type;
                 },
             ],
             'colour' => [
                 'key' => 'colour',
-                'label' => 'crud.fields.colour',
+                'label' => __('crud.fields.colour'),
                 'render' => function (\App\Models\Tag $tag) {
-                    if (empty($tag->colour)) {
+                    if (! $tag->hasColour()) {
                         return '';
                     }
 
-                    return '<div class="rounded-full w-6 h-6 bg-base-200 ' . $tag->colourClass() . '"></div>';
+                    return '<div class="rounded-full w-6 h-6" style="' . e($tag->colourStyle()) . '"></div>';
                 },
             ],
             'tag' => [
                 'key' => 'parent.name',
-                'label' => 'crud.fields.parent',
+                'label' => __('crud.fields.parent'),
                 'render' => Standard::ParentLink,
                 'visible' => function () {
                     return ! request()->has('tag_id');

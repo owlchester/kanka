@@ -58,7 +58,8 @@ The list of returned entities can be filtered. The available filters are [availa
             "type": null,
             "families": [34],
             "private_families": [4, 14],
-            "is_dead": true,
+            "is_dead": 1,
+            "status": 1,
             "traits": [
                 {
                     "id": 33,
@@ -116,7 +117,8 @@ To get the details of a single character, use the following endpoint.
         "private_races": [2, 5],
         "type": null,
         "families": [34],
-        "is_dead": true,
+        "is_dead": 1,
+        "status": 1,
         "traits": [
             {
                 "id": 33,
@@ -160,7 +162,8 @@ To create a character, use the following endpoint.
 | `location_id` | `integer` | Location id |
 | `races` | `array` | Array of race ids |
 | `tags` | `array` | Array of tag ids |
-| `is_dead` | `boolean` | If the character is dead |
+| `is_dead` | `boolean` | If the character is dead (deprecated, use `status`) |
+| `status` | `integer` | Status of the character: `0` (alive), `1` (dead), `2` (missing) |
 | `is_private` | `boolean` | If the character is only visible to `admin` members of the campaign |
 | `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
 | `entity_header_uuid` | `string` | Gallery image UUID for the entity header (premium campaign feature) |

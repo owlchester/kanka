@@ -5,6 +5,8 @@ namespace App\Services\Abilities;
 use App\Models\Ability;
 use App\Models\Attribute;
 use App\Traits\EntityAware;
+use ChrisKonnertz\StringCalc\Exceptions\ContainerException;
+use ChrisKonnertz\StringCalc\Exceptions\NotFoundException;
 use ChrisKonnertz\StringCalc\StringCalc;
 use Exception;
 use Illuminate\Support\Collection;
@@ -50,8 +52,8 @@ abstract class BaseAbilityService
     /**
      * @return float|int|string|null
      *
-     * @throws \ChrisKonnertz\StringCalc\Exceptions\ContainerException
-     * @throws \ChrisKonnertz\StringCalc\Exceptions\NotFoundException
+     * @throws ContainerException
+     * @throws NotFoundException
      */
     protected function mapAttributes(string $haystack, bool $calc = true)
     {

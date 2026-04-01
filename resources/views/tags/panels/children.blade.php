@@ -22,45 +22,65 @@ if (!empty($onload)) {
 $all = $entity->child->allChildren()->count();
 $direct = $entity->child->entities()->count();
 ?>
-<div class="flex flex-col xl:flex-row gap-2 justify-between items-center">
+<div class="flex gap-2 justify-between items-center">
     <h3 class="text-xl">
         {{ __('tags.show.tabs.children') }}
     </h3>
-    <div class="gap-2 flex-wrap overflow-auto">
-        <button data-url="{{ route('tags.transfer', [$campaign, $entity->child]) }}" data-toggle="dialog" class="btn2 btn-sm">
-            <x-icon class="fa-regular fa-arrow-right"/>
-            <span class="hidden xl:inline">{{ __('tags.transfer.transfer') }}</span>
-        </button>
-
-        @if (!$allMembers)
-            <a href="{{ route('entities.show', [$campaign, $entity, 'm' => \App\Enums\Descendants::All, '#tag-children']) }}" class="btn2 btn-sm">
+    <div class="gap-2 flex-wrap overflow-auto flex">
+        <div class="dropdown flex items-center">
+            <div role="button" tabindex="0" data-dropdown aria-expanded="false" aria-haspopup="menu" class="btn2 btn-sm">
                 <x-icon class="filter" />
-                <span class="hidden xl:inline">
-                    {{ __('crud.filters.lists.desktop.all', ['count' => $all]) }}
-                </span>
-                <span class="xl:hidden">
-                    {{ $all }}
-                </span>
-            </a>
-        @else
-            <a href="{{ route('entities.show', [$campaign, $entity, 'm' => \App\Enums\Descendants::Direct, '#tag-children']) }}" class="btn2 btn-sm">
-                <x-icon class="filter" />
-                <span class="hidden xl:inline">
+                @if ($allMembers)
+                    <span class="hidden xl:inline">{{ __('crud.filters.lists.desktop.all', ['count' => $all]) }}</span>
+                    <span class="xl:hidden">{{ $all }}</span>
+                @else
+                    <span class="hidden xl:inline">{{ __('crud.filters.lists.desktop.filtered', ['count' => $direct]) }}</span>
+                    <span class="xl:hidden">{{ $direct }}</span>
+                @endif
+                <x-icon class="fa-solid fa-caret-down" />
+            </div>
+            <div class="dropdown-menu hidden" role="menu">
+                <x-dropdowns.item
+                    :link="route('entities.show', [$campaign, $entity, 'm' => \App\Enums\Descendants::Direct, '#tag-children'])"
+                    icon="fa-regular fa-filter"
+                    :active="!$allMembers"
+                >
                     {{ __('crud.filters.lists.desktop.filtered', ['count' => $direct]) }}
-                </span>
-                <span class="xl:hidden">
-                    {{ $direct  }}
-                </span>
-            </a>
-        @endif
+                </x-dropdowns.item>
+                <x-dropdowns.item
+                    :link="route('entities.show', [$campaign, $entity, 'm' => \App\Enums\Descendants::All, '#tag-children'])"
+                    icon="fa-regular fa-filter-list"
+                    :active="$allMembers"
+                >
+                    {{ __('crud.filters.lists.desktop.all', ['count' => $all]) }}
+                </x-dropdowns.item>
+            </div>
+        </div>
 
+        {{-- Actions dropdown --}}
         @if ($all > 0)
             @can('update', $entity)
-                <a href="{{ $addEntityUrl }}" class="btn2 btn-primary btn-sm"
-                   data-toggle="dialog" data-url="{{ $addEntityUrl }}">
-                    <x-icon class="plus" />
-                    <span class="hidden xl:inline">{{ __('tags.children.actions.add') }}</span>
-                </a>
+                <div class="dropdown flex items-center">
+                    <div role="button" tabindex="0" data-dropdown aria-expanded="false" aria-haspopup="menu" class="btn2 btn-sm">
+                        <x-icon class="fa-regular fa-ellipsis-h" />
+                    </div>
+                    <div class="dropdown-menu hidden" role="menu">
+                        <x-dropdowns.item
+                            :link="$addEntityUrl"
+                            :dialog="$addEntityUrl"
+                            icon="plus"
+                        >
+                            {{ __('tags.children.actions.add') }}
+                        </x-dropdowns.item>
+                        <x-dropdowns.item
+                            :link="route('tags.transfer', [$campaign, $entity->child])"
+                            :dialog="route('tags.transfer', [$campaign, $entity->child])"
+                            icon="fa-regular fa-arrow-right"
+                        >
+                            {{ __('tags.transfer.transfer') }}
+                        </x-dropdowns.item>
+                    </div>
+                </div>
             @endcan
         @endif
     </div>

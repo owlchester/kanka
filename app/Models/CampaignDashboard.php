@@ -36,7 +36,7 @@ class CampaignDashboard extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CampaignDashboardWidget, $this>
+     * @return HasMany<CampaignDashboardWidget, $this>
      */
     public function widgets(): HasMany
     {
@@ -44,7 +44,7 @@ class CampaignDashboard extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CampaignDashboardRole, $this>
+     * @return HasMany<CampaignDashboardRole, $this>
      */
     public function roles(): HasMany
     {

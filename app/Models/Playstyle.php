@@ -16,7 +16,7 @@ class Playstyle extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Campaign, $this>
+     * @return BelongsToMany<Campaign, $this>
      */
     public function campaigns(): BelongsToMany
     {

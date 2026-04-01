@@ -10,7 +10,10 @@ use App\Services\Campaign\DeletionService;
 
 class CampaignApiController extends ApiController
 {
-    public function __construct(protected CreateService $createService, protected DeletionService $deletionService) {}
+    public function __construct(
+        protected CreateService $createService,
+        protected DeletionService $deletionService,
+    ) {}
 
     public function index(\Illuminate\Http\Request $request)
     {

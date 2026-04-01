@@ -16,11 +16,11 @@ class PostRecovery extends Layout
         $columns = [
             'name' => [
                 'key' => 'name',
-                'label' => 'crud.fields.name',
+                'label' => __('crud.fields.name'),
             ],
             'deleted' => [
                 'key' => 'deleted_at',
-                'label' => 'campaigns/recovery.fields.deleted',
+                'label' => __('campaigns/recovery.fields.deleted'),
                 'class' => self::ONLY_DESKTOP,
                 'render' => function ($post) {
                     return $post->deleted_at->diffForHumans();

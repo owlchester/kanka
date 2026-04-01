@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Timelines;
 
-use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Timeline;
@@ -22,31 +21,6 @@ class TimelineController extends Controller
     {
         $this->campaign($campaign)->authEntityView($timeline->entity);
 
-        $options = ['campaign' => $campaign, 'timeline' => $timeline, 'm' => $this->descendantsMode()];
-        $filters = [];
-        if ($this->filterToDirect()) {
-            $filters['timeline_id'] = $timeline->id;
-        }
-
-        Datagrid::layout(\App\Renderers\Layouts\Timeline\Timeline::class)
-            ->route('timelines.timelines', $options);
-
-        $this->rows = $timeline
-            ->descendants()
-            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
-            ->with([
-                'entity', 'entity.image', 'entity.entityType', 'entity.tags',
-                'parent', 'parent.entity',
-            ])
-            ->filter($filters)
-            ->paginate(config('limits.pagination'));
-
-        if (request()->ajax()) {
-            return $this
-                ->datagridAjax();
-        }
-
-        return $this
-            ->subview('timelines.timelines', $timeline);
+        return redirect()->route('entities.children', [$campaign, $timeline->entity]);
     }
 }

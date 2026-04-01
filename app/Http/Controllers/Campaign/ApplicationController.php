@@ -66,7 +66,8 @@ class ApplicationController extends Controller
         if (! $campaign->canHaveMoreMembers()) {
             return view('cruds.forms.limit')
                 ->with('campaign', $campaign)
-                ->with('key', 'members')
+                ->with('limit', config('limits.campaigns.members'))
+                ->with('thing', __('campaigns.show.tabs.members'))
                 ->with('name', 'campaign_roles');
         }
 
@@ -86,8 +87,11 @@ class ApplicationController extends Controller
         $this->authorize('applications', $campaign);
 
         if (! $campaign->canHaveMoreMembers()) {
-            return redirect()->back()
-                ->with('error', __('Campaign is full, please boost it.'));
+            return view('cruds.forms.limit')
+                ->with('campaign', $campaign)
+                ->with('limit', config('limits.campaigns.members'))
+                ->with('thing', __('campaigns.show.tabs.members'))
+                ->with('name', 'campaign_roles');
         }
 
         if ($request->ajax()) {

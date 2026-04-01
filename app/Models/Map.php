@@ -6,11 +6,9 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\HasLocation;
-use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -18,12 +16,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Map
  *
- * @property ?int $map_id
  * @property ?int $width
  * @property ?int $height
  * @property int $grid
@@ -51,8 +47,6 @@ class Map extends MiscModel
     use HasFactory;
     use HasFilters;
     use HasLocation;
-    use HasRecursiveRelationships;
-    use Nested;
     use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
@@ -78,7 +72,6 @@ class Map extends MiscModel
     protected $fillable = [
         'campaign_id',
         'name',
-        'map_id',
         'location_id',
         'grid',
         'is_private',
@@ -101,7 +94,6 @@ class Map extends MiscModel
 
     protected array $sortable = [
         'name',
-        'parent.name',
         'type',
     ];
 
@@ -111,7 +103,6 @@ class Map extends MiscModel
      * @var string[]
      */
     public array $nullableForeignKeys = [
-        'map_id',
         'location_id',
         'center_marker_id',
     ];
@@ -153,43 +144,8 @@ class Map extends MiscModel
      */
     public array $apiWith = ['groups', 'layers'];
 
-    protected array $exploreGridFields = ['is_real'];
-
     /**
-     * Parent ID used for the Node Trait
-     *
-     * @return string
-     */
-    public function getParentKeyName()
-    {
-        return 'map_id';
-    }
-
-    /**
-     * Performance with for datagrids
-     */
-    public function scopePreparedWith(Builder $query): Builder
-    {
-        return parent::scopePreparedWith($query->with([
-            'location' => function ($sub) {
-                $sub->select('id', 'name');
-            },
-            'location.entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id');
-            },
-        ]));
-    }
-
-    /**
-     * Only select used fields in datagrids
-     */
-    public function datagridSelectFields(): array
-    {
-        return ['map_id', 'location_id'];
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\MapLayer, $this>
+     * @return HasMany<MapLayer, $this>
      */
     public function layers(): HasMany
     {
@@ -198,7 +154,7 @@ class Map extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\MapGroup, $this>
+     * @return HasMany<MapGroup, $this>
      */
     public function groups(): HasMany
     {
@@ -206,7 +162,7 @@ class Map extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\MapMarker, $this>
+     * @return HasMany<MapMarker, $this>
      */
     public function markers(): HasMany
     {
@@ -215,7 +171,7 @@ class Map extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\MapMarker, $this>
+     * @return HasOne<MapMarker, $this>
      */
     public function centerMarker(): HasOne
     {
@@ -630,7 +586,6 @@ class Map extends MiscModel
     public function filterableColumns(): array
     {
         return [
-            'map_id',
             'location_id',
         ];
     }

@@ -12,8 +12,10 @@ use App\Models\Post;
 use App\Services\Entity\PopularService;
 use App\Services\EntityTypeService;
 use App\Services\QuickCreator\ProcessService;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\View\View;
 
 class EntityCreatorController extends Controller
 {
@@ -28,7 +30,7 @@ class EntityCreatorController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function selection(Request $request, Campaign $campaign)
     {

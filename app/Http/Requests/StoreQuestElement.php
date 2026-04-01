@@ -19,6 +19,13 @@ class StoreQuestElement extends FormRequest
         return true;
     }
 
+    protected function prepareForValidation(): void
+    {
+        if ($this->input('copy_entity_entry') && empty($this->input('entity_id'))) {
+            $this->merge(['copy_entity_entry' => false]);
+        }
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -33,6 +40,7 @@ class StoreQuestElement extends FormRequest
             'role' => 'nullable|string|max:191',
             'colour' => 'nullable|string|max:10',
             'visibility_id' => 'nullable|integer|exists:visibilities,id',
+            'copy_entity_entry' => 'nullable|boolean',
         ];
 
         return $this->clean($rules);

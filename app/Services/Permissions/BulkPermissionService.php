@@ -3,19 +3,20 @@
 namespace App\Services\Permissions;
 
 use App\Models\CampaignPermission;
+use App\Services\PermissionService;
 use App\Traits\EntityAware;
 
 class BulkPermissionService
 {
     use EntityAware;
 
-    protected \App\Services\PermissionService $service;
+    protected PermissionService $service;
 
     protected array $permissions;
 
     protected bool $override;
 
-    public function __construct(\App\Services\PermissionService $permissionService)
+    public function __construct(PermissionService $permissionService)
     {
         $this->service = $permissionService;
     }

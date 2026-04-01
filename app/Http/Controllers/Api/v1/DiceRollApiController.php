@@ -7,13 +7,16 @@ use App\Http\Resources\DiceRollResource as Resource;
 use App\Models\Campaign;
 use App\Models\DiceRoll;
 use App\Models\EntityType;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class DiceRollApiController extends ApiController
+class DiceRollApiController extends MiscApiController
 {
     /**
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(Campaign $campaign)
     {
@@ -41,7 +44,7 @@ class DiceRollApiController extends ApiController
     /**
      * @return resource
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function store(Request $request, Campaign $campaign)
     {
@@ -51,7 +54,7 @@ class DiceRollApiController extends ApiController
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
         $model = DiceRoll::create($data);
-        $this->crudSave($model);
+        $this->crudSave($model, $request->validated());
 
         return new Resource($model);
     }
@@ -64,15 +67,15 @@ class DiceRollApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $diceRoll->entity);
         $diceRoll->update($request->all());
-        $this->crudSave($diceRoll);
+        $this->crudSave($diceRoll, $request->validated());
 
         return new Resource($diceRoll);
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function destroy(Campaign $campaign, DiceRoll $diceRoll)
     {

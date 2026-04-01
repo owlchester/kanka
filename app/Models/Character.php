@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\CharacterStatus;
 use App\Enums\FilterOption;
 use App\Enums\OrganisationMemberPin;
 use App\Facades\CharacterCache;
@@ -26,7 +27,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $age
  * @property string $sex
  * @property string $pronouns
- * @property bool|int $is_dead
+ * @property CharacterStatus $status_id
  * @property bool|int $is_personality_visible
  * @property bool|int $is_appearance_pinned
  * @property bool|int $is_personality_pinned
@@ -61,7 +62,7 @@ class Character extends MiscModel
         'sex',
         'pronouns',
         'is_private',
-        'is_dead',
+        'status_id',
         'is_personality_visible',
         'is_appearance_pinned',
         'is_personality_pinned',
@@ -74,17 +75,22 @@ class Character extends MiscModel
         'title',
         'age',
         'sex',
-        'is_dead',
+        'pronouns',
+        'status_id',
         'locations',
     ];
 
     protected array $sortable = [
         'name',
         'type',
-        'is_dead',
+        'sex',
+        'pronouns',
+        'status_id',
     ];
 
-    protected array $exploreGridFields = ['is_dead'];
+    public $casts = [
+        'status_id' => CharacterStatus::class,
+    ];
 
     /**
      * Searchable fields
@@ -117,6 +123,7 @@ class Character extends MiscModel
      */
     protected array $explicitFilters = [
         'sex',
+        'status_id',
     ];
 
     /**
@@ -130,24 +137,6 @@ class Character extends MiscModel
      * @var string[] Extra relations loaded for the API endpoint
      */
     public array $apiWith = ['characterTraits', 'characterRaces', 'characterFamilies'];
-
-    /**
-     * Performance with for old table view of all the campaign characters
-     */
-    public function scopePreparedWith(Builder $query): Builder
-    {
-        return parent::scopePreparedWith($query->with([
-            'entity.locations' => function ($sub) {
-                $sub->select('locations.id', 'locations.name');
-            },
-            'characterFamilies' => function ($sub) {
-                $sub->select('character_family.id', 'character_family.family_id', 'character_family.character_id');
-            },
-            'characterRaces' => function ($sub) {
-                $sub->select('character_race.id', 'character_race.race_id', 'character_race.character_id');
-            },
-        ]));
-    }
 
     /**
      * Filter for characters in a specific list of organisations
@@ -182,7 +171,7 @@ class Character extends MiscModel
             /** @var ?Organisation $model */
             $model = Organisation::find($value);
             if (! empty($model)) {
-                $ids = [...$model->descendants->pluck('id')->toArray(), $model->id];
+                $ids = [...$model->entity->descendants->pluck('id')->toArray(), $model->id];
             }
         }
         $query
@@ -200,15 +189,7 @@ class Character extends MiscModel
     }
 
     /**
-     * Only select used fields in datagrids
-     */
-    public function datagridSelectFields(): array
-    {
-        return ['title', 'sex', 'is_dead'];
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Family, $this>
+     * @return BelongsToMany<Family, $this>
      */
     public function families(): BelongsToMany
     {
@@ -222,7 +203,7 @@ class Character extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CharacterFamily, $this>
+     * @return HasMany<CharacterFamily, $this>
      */
     public function characterFamilies(): HasMany
     {
@@ -241,7 +222,7 @@ class Character extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CharacterRace, $this>
+     * @return HasMany<CharacterRace, $this>
      */
     public function characterRaces(): HasMany
     {
@@ -260,7 +241,7 @@ class Character extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Race, $this>
+     * @return BelongsToMany<Race, $this>
      */
     public function races(): BelongsToMany
     {
@@ -274,7 +255,7 @@ class Character extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\OrganisationMember, $this>
+     * @return HasMany<OrganisationMember, $this>
      */
     public function organisationMemberships(): HasMany
     {
@@ -282,7 +263,7 @@ class Character extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Organisation, $this>
+     * @return BelongsToMany<Organisation, $this>
      */
     public function organisations(): BelongsToMany
     {
@@ -296,7 +277,7 @@ class Character extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Item, $this>
+     * @return HasMany<Item, $this>
      */
     public function items(): HasMany
     {
@@ -304,7 +285,7 @@ class Character extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\DiceRoll, $this>
+     * @return HasMany<DiceRoll, $this>
      */
     public function diceRolls(): HasMany
     {
@@ -312,7 +293,7 @@ class Character extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough<\App\Models\Conversation, \App\Models\ConversationParticipant, $this>
+     * @return HasManyThrough<Conversation, ConversationParticipant, $this>
      */
     public function conversations(): HasManyThrough
     {
@@ -327,7 +308,7 @@ class Character extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\ConversationParticipant, $this>
+     * @return HasMany<ConversationParticipant, $this>
      */
     public function conversationParticipants(): HasMany
     {
@@ -335,7 +316,7 @@ class Character extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CharacterTrait, $this>
+     * @return HasMany<CharacterTrait, $this>
      */
     public function characterTraits(): HasMany
     {
@@ -372,11 +353,11 @@ class Character extends MiscModel
     {
         foreach ($this->items as $child) {
             $child->character_id = null;
-            $child->saveQuietly();
+            $child->save();
         }
         foreach ($this->diceRolls as $child) {
             $child->character_id = null;
-            $child->saveQuietly();
+            $child->save();
         }
 
         $this->organisations()->detach();
@@ -437,11 +418,14 @@ class Character extends MiscModel
     public function rowClasses(): string
     {
         $classes = parent::rowClasses();
-        if (! $this->isDead()) {
-            return $classes;
+        if ($this->isDead()) {
+            return $classes . ' character-dead';
+        }
+        if ($this->isMissing()) {
+            return $classes . ' character-missing';
         }
 
-        return $classes . ' character-dead';
+        return $classes;
     }
 
     /**
@@ -460,7 +444,7 @@ class Character extends MiscModel
             'organisations',
             'races',
             'families',
-            'is_dead',
+            'status_id',
             'member_id',
             'race_id',
             'family_id',
@@ -478,7 +462,7 @@ class Character extends MiscModel
             'type' => __('crud.fields.type'),
             'title' => __('characters.fields.title'),
             'sex' => __('characters.fields.sex'),
-            'is_dead' => __('characters.fields.is_dead'),
+            'status_id' => __('characters.fields.status'),
             'locations.name' => __('entities.locations'),
         ];
 
@@ -490,18 +474,26 @@ class Character extends MiscModel
     }
 
     /**
-     * Get the value of the is_dead variable
+     * Determine if the character is dead
      */
     public function isDead(): bool
     {
-        return (bool) $this->is_dead;
+        return $this->status_id === CharacterStatus::dead;
+    }
+
+    /**
+     * Determine if the character is missing
+     */
+    public function isMissing(): bool
+    {
+        return $this->status_id === CharacterStatus::missing;
     }
 
     public function scopeFilteredCharacters(Builder $query): Builder
     {
         // @phpstan-ignore-next-line
         return $query
-            ->select([$this->getTable() . '.id', 'title', 'is_dead', $this->getTable() . '.is_private'])
+            ->select([$this->getTable() . '.id', 'title', 'status_id', $this->getTable() . '.is_private'])
             ->sort(request()->only(['o', 'k']), ['entities.name' => 'asc'])
             ->with([
                 'characterRaces',

@@ -11,6 +11,7 @@ use App\Traits\BulkControllerTrait;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
 use Exception;
+use Illuminate\Http\RedirectResponse;
 
 class BulkController extends Controller
 {
@@ -71,7 +72,7 @@ class BulkController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      *
      * @throws Exception
      */
