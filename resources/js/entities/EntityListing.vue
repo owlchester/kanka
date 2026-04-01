@@ -363,6 +363,7 @@
             <TailwindPagination
                 v-if="!entityApi.paginating.value"
                 :data="entityApi.entitiesData.value"
+                :limit="2"
                 :itemClasses="[
                     'bg-base-200',
                     'text-base-content',
