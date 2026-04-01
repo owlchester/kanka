@@ -21,7 +21,7 @@ if (!empty($onload)) {
 ?>
 @if (!empty($onload))
     @php
-    $direct = $entity->child->descendants()->has('entity')->count();
+    $direct = $entity->descendants()->count();
     $all = $entity->children()->count();
     @endphp
 <div class="flex gap-2 items-center">
