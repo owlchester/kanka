@@ -60,7 +60,7 @@ class ColumnDefinitionService
 
     public function relationMap(EntityType $entityType, Campaign $campaign): array
     {
-        $map = ['entityType', 'image', 'tags', 'parent', 'categoryStatus'];
+        $map = ['entityType', 'image', 'tags', 'parent', 'status'];
 
         $typeRelations = $this->typeRelations();
 
@@ -153,7 +153,7 @@ class ColumnDefinitionService
             }
             $icons[$status->id] = [
                 'icon' => 'fa-regular ' . $status->icon,
-                'tooltip' => trans('entities/statuses.' . $entityType->code . '.' . $status->key),
+                'tooltip' => $status->setRelation('entityType', $entityType)->name(),
             ];
         }
 

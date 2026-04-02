@@ -448,19 +448,11 @@ class Entity extends Model
     }
 
     /**
-     * @return BelongsTo<CategoryStatus, $this>
-     */
-    public function categoryStatus(): BelongsTo
-    {
-        return $this->belongsTo(CategoryStatus::class, 'status_id');
-    }
-
-    /**
      * Get the status key from category_statuses
      */
     public function statusKey(): ?string
     {
-        return $this->categoryStatus?->key;
+        return $this->status?->key;
     }
 
     /**
@@ -468,7 +460,7 @@ class Entity extends Model
      */
     public function statusClass(): string
     {
-        $status = $this->categoryStatus;
+        $status = $this->status;
 
         return $status !== null ? $this->entityType->code . '-' . $status->key : '';
     }

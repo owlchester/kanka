@@ -243,6 +243,7 @@ class EntityResource extends JsonResource
 
             'is_attributes_private' => (bool) $misc->entity->is_attributes_private,
             'status_id' => $misc->entity->status_id,
+            'status' => CategoryStatusResource::make($misc->entity->status),
 
             'entity_id' => $misc->entity->id,
 

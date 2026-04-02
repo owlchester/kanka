@@ -47,6 +47,7 @@ class StoreFamily extends FormRequest
             'template_id' => 'nullable',
             'attribute' => ['array', new UniqueAttributeNames],
             'is_private' => 'nullable|boolean',
+            'status_id' => ['nullable', 'exists:category_statuses,id'],
         ];
 
         /** @var Entity $self */

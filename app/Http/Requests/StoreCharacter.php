@@ -54,7 +54,6 @@ class StoreCharacter extends FormRequest
             'sex' => 'nullable|max:45',
             'pronouns' => 'nullable|max:45',
             'title' => 'nullable|max:191',
-            'status_id' => ['nullable', new Enum(CharacterStatus::class)],
             'template_id' => 'nullable',
             'families' => [
                 'nullable',
@@ -72,6 +71,7 @@ class StoreCharacter extends FormRequest
             'appearance_entry' => 'nullable|array',
             'attribute' => ['array', new UniqueAttributeNames],
             'is_private' => 'nullable|boolean',
+            'status_id' => ['nullable', 'exists:category_statuses,id'],
         ];
 
         return $this->clean($rules);

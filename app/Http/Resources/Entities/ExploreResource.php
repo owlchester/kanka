@@ -38,14 +38,8 @@ class ExploreResource extends JsonResource
         if ($entity->is_private) {
             $attributes[] = 'private';
         }
-        if ($entity->isCharacter() && $entity->character->isDead()) {
-            $attributes[] = 'dead';
-        } elseif ($entity->isOrganisation() && $entity->organisation->isDefunct()) {
-            $attributes[] = 'defunct';
-        } elseif ($entity->isCreature() && $entity->creature->isExtinct()) {
-            $attributes[] = 'extinct';
-        } elseif ($entity->isQuest() && $entity->quest->isCompleted()) {
-            $attributes[] = 'completed';
+        if ($entity->status) {
+            $attributes[] = $entity->status->key;
         }
 
         // Use the eager-loaded relation directly (not $entity->child which goes through EntityCache and loses withCount)
@@ -204,7 +198,7 @@ class ExploreResource extends JsonResource
 
         // Status (lives on entity, not child)
         if ($this->hasColumn('status')) {
-            $status = $entity->categoryStatus;
+            $status = $entity->status;
             $data['status'] = ($status && $status->icon) ? [
                 'icon' => 'fa-regular ' . $status->icon,
                 'tooltip' => __('entities/statuses.' . $entity->entityType->code . '.' . $status->key),

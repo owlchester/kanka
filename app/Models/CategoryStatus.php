@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\EntityTypeAware;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -15,7 +16,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property EntityType $entityType
  */
 class CategoryStatus extends Model
-{
+{    
     public $timestamps = false;
 
     public $fillable = [
@@ -39,5 +40,15 @@ class CategoryStatus extends Model
     public function entityType(): BelongsTo
     {
         return $this->belongsTo(EntityType::class, 'category_id');
+    }
+
+    public function name(): string
+    {
+        return trans('entities/statuses.' . $this->entityType->code . '.' . $this->key);
+    }
+    
+    public function isCustom(): bool
+    {
+        return false;
     }
 }

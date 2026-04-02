@@ -105,22 +105,6 @@ class Creature extends MiscModel
     }
 
     /**
-     * Determine if the model is extinct.
-     */
-    public function isExtinct(): bool
-    {
-        return (bool) $this->is_extinct;
-    }
-
-    /**
-     * Determine if the model is dead.
-     */
-    public function isDead(): bool
-    {
-        return (bool) $this->is_dead;
-    }
-
-    /**
      * Detach children when moving this entity from one campaign to another
      */
     public function detach(): void

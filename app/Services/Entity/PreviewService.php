@@ -220,7 +220,7 @@ class PreviewService
 
     protected function status(): ?array
     {
-        $status = $this->entity->categoryStatus;
+        $status = $this->entity->status;
         if (! $status?->icon) {
             return null;
         }

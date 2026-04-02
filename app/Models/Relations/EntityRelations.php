@@ -11,6 +11,7 @@ use App\Models\Calendar;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 use App\Models\CampaignPermission;
+use App\Models\CategoryStatus;
 use App\Models\Character;
 use App\Models\Conversation;
 use App\Models\Creature;
@@ -99,6 +100,7 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  * @property EntityAsset[]|Collection $aliases
  * @property EntityAsset[]|Collection $assets
  * @property ?Entity $parent
+ * @property ?CategoryStatus $status
  */
 trait EntityRelations
 {
@@ -542,5 +544,14 @@ trait EntityRelations
         return $this->belongsToMany(User::class)
             ->using(EntityUser::class)
             ->withPivot('type_id');
+    }
+
+
+    /**
+     * @return BelongsTo<CategoryStatus, $this>
+     */
+    public function status(): BelongsTo
+    {
+        return $this->belongsTo(CategoryStatus::class, 'status_id');
     }
 }
