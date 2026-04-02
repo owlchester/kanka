@@ -33,7 +33,7 @@ class Event extends Layout
             ],
             'date' => [
                 'key' => 'date',
-                'label' => 'events.fields.date',
+                'label' => __('events.fields.date'),
             ],
             'event' => [
                 'key' => 'parent.name',

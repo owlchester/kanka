@@ -33,15 +33,15 @@ class Item extends Layout
             ],
             'price' => [
                 'key' => 'price',
-                'label' => 'items.fields.price',
+                'label' => __('items.fields.price'),
             ],
             'size' => [
                 'key' => 'size',
-                'label' => 'items.fields.size',
+                'label' => __('items.fields.size'),
             ],
             'weight' => [
                 'key' => 'weight',
-                'label' => 'items.fields.weight',
+                'label' => __('items.fields.weight'),
             ],
         ];
 
