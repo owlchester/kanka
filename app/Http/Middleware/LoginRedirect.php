@@ -13,8 +13,17 @@ class LoginRedirect
         $whitelist = ['roadmap', 'dashboard'];
 
         // If to check where the request is coming from and set the variable if its a valid route.
-        if ($request->has('next') && in_array($request->get('next'), $whitelist)) {
-            session(['login_redirect' => route($request->get('next'), $request->except('next'))]);
+        if ($request->has('next')) {
+            [$routeName, $campaignSlug] = array_pad(explode('.', $request->get('next'), 2), 2, null);
+
+            if (in_array($routeName, $whitelist)) {
+                try {
+                    $params = $campaignSlug ? ['campaign' => $campaignSlug] : $request->except('next');
+                    session(['login_redirect' => route($routeName, $params)]);
+                } catch (\Exception) {
+                    // Route generation failed, skip the redirect.
+                }
+            }
         }
 
         return $next($request);

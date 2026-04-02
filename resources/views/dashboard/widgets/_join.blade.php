@@ -20,7 +20,7 @@
 
         <br/>
         @guest
-            <a href="{{ route('register', ['next' => 'dashboard', 'campaign' => $campaign->slug]) }}" class="btn2 btn-block btn-primary">
+            <a href="{{ route('register', ['next' => 'dashboard.' . $campaign->slug]) }}" class="btn2 btn-block btn-primary">
                 <x-icon class="fa-regular fa-door-open" />
                 {{ __('dashboards/widgets/join.register') }}
             </a>
