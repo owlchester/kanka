@@ -36,7 +36,7 @@
                     <form id="campaign-import-form" class="p-4 rounded-xl bg-base-100" method="post" action="{{ \App\Facades\Domain::importer() }}">
                         {{ csrf_field() }}
                             <x-grid type="1/1">
-                                <h4 class="text-lg">{{ __('campaigns/import.form') }}</h4>
+                                <h2 class="text-lg font-light">{{ __('campaigns/import.form') }}</h4>
 
                                 <div class="field field-entities flex flex-col gap-1">
                                     <label>{{ __('campaigns/import.fields.file_v2') }}</label>

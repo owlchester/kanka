@@ -21,18 +21,17 @@
                 @navigate="(id, url) => $emit('navigate', id, url)"
                 @start-selecting="(id) => $emit('startSelecting', id)"
             />
-            <!-- Ad slot placeholder (grid mode, future) -->
-            <div v-if="ads.enabled && (idx + 1) % ads.frequency === 0"
-                 class="w-[47%] xs:w-[25%] sm:w-48 aspect-square flex items-center justify-center"
-                 :data-ad-slot="idx">
-                <!-- Future: ad content here -->
-            </div>
+            <EntityAdSlot
+                v-if="ads.enabled && (idx + 1) % ads.frequency === 0"
+                :idx="idx"
+            />
         </template>
     </div>
 </template>
 
 <script setup lang="ts">
 import EntityCard from './EntityCard.vue'
+import EntityAdSlot from './EntityAdSlot.vue'
 
 defineProps<{
     entities: any[]

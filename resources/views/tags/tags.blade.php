@@ -12,7 +12,7 @@
         @if ($mode === \App\Enums\Descendants::Direct)
             <x-toggles.filter-button
                 route="{{ route('tags.tags', [$campaign, $model, 'm' => \App\Enums\Descendants::All]) }}"
-                :count="$entity->child->descendants()->has('entity')->count()"
+                :count="$entity->descendants()->count()"
                 all
             />
         @else

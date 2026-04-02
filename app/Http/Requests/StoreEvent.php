@@ -47,6 +47,7 @@ class StoreEvent extends FormRequest
             'entity_header_uuid' => 'nullable|exists:images,id',
             'template_id' => 'nullable',
             'attribute' => ['array', new UniqueAttributeNames],
+            'is_private' => 'nullable|boolean',
         ];
 
         /** @var Entity $self */

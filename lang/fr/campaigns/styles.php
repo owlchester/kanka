@@ -2,6 +2,7 @@
 
 return [
     'actions'       => [
+        'builder'   => 'Constructeur de thème',
         'current'   => 'Thème actuel: theme',
         'disable'   => 'Désactiver',
         'enable'    => 'Activer',

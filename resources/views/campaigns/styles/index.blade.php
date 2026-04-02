@@ -1,7 +1,7 @@
 <?php /** @var \App\Models\CampaignStyle $style */
 use App\Facades\Datagrid ?>
 @extends('layouts.app', [
-    'title' => __('campaigns/styles.title', ['campaign' => $campaign->name]),
+    'title' => __('campaigns/styles.title') . ' - ' . $campaign->name,
     'breadcrumbs' => [
         __('campaigns.show.tabs.styles')
     ],
@@ -21,6 +21,10 @@ use App\Facades\Datagrid ?>
             <div class="flex gap-2 flex-wrap items-center justify-end">
                 <x-learn-more url="features/campaigns/theming.html" />
                 @if ($campaign->boosted())
+                    <a href="{{ route('campaign_styles.builder', $campaign) }}" class="btn2 btn-primary btn-sm">
+                        <x-icon class="fa-regular fa-palette" />
+                        {{ __('campaigns/styles.actions.builder') }}
+                    </a>
                     <a href="{{ route('campaign_styles.create', $campaign) }}" class="btn2 btn-primary btn-sm">
                         <x-icon class="plus" />
                         {{ __('campaigns/styles.actions.new') }}
@@ -73,10 +77,7 @@ use App\Facades\Datagrid ?>
             @endif
         @endif
 
-        @if ($campaign->boosted())
-            @includeWhen(!$reorderStyles->isEmpty(), 'campaigns.styles._reorder')
-        @endif
-
+        @includeWhen($campaign->boosted() && $reorderStyles->count() > 1, 'campaigns.styles._reorder')
     </div>
 @endsection
 

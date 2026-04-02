@@ -55,6 +55,7 @@ class StoreCalendar extends FormRequest
             'show_birthdays' => 'boolean',
             'template_id' => 'nullable',
             'attribute' => ['array', new UniqueAttributeNames],
+            'is_private' => 'nullable|boolean',
             'format' => ['nullable', new CalendarFormat, 'string', 'max:20'],
             //            'moon_offset' => [
             //                '*' => new CalendarMoonOffset()

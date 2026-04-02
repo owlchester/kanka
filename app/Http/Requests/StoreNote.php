@@ -45,6 +45,7 @@ class StoreNote extends FormRequest
             'template_id' => 'nullable',
             'parent_id' => 'nullable|integer|exists:entities,id',
             'attribute' => ['array', new UniqueAttributeNames],
+            'is_private' => 'nullable|boolean',
         ];
 
         /** @var Entity $self */

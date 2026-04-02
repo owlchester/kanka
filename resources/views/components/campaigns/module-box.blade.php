@@ -26,7 +26,7 @@
         <div class="flex gap-1 items-center">
             @can('update', $campaign)
                 <button
-                    class="btn2 btn-default btn-xs"
+                    class="btn2 btn-default btn-sm"
                     data-toggle="dialog"
                     @if ($entityType->isStandard())
                     data-url="{{ route('modules.edit', [$campaign, $entityType]) }}"

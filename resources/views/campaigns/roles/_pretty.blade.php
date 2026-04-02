@@ -6,7 +6,7 @@
 $first = true;
 ?>
 
-<h2 class="text-xl">{{ __('campaigns/roles.permissions.content-modules') }}</h2>
+<h2 class="text-xl font-light">{{ __('campaigns/roles.permissions.content-modules') }}</h2>
 <x-box class="overflow-y-auto">
     <div class="grid grid-cols-6 md:grid-cols-7 gap-2">
     @foreach ($permissionService->permissions() as $permissions)
@@ -63,7 +63,7 @@ $first = true;
     @php $first = true; @endphp
 </x-box>
 
-<h2 class="text-xl">{{ __('campaigns/roles.permissions.campaign-features') }}</h2>
+<h2 class="text-xl font-light">{{ __('campaigns/roles.permissions.campaign-features') }}</h2>
 
 <x-box class="flex flex-col gap-2 overflow-y-auto">
     <div class="grid grid-cols-3 md:grid-cols-4 gap-2">

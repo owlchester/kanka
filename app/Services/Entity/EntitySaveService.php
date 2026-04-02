@@ -21,6 +21,12 @@ class EntitySaveService
     public function save(Entity $entity, array $data): Entity
     {
         // Pre-save: scalar entity fields — must all be set before save() so HasEntry fires once
+        if (array_key_exists('name', $data)) {
+            $entity->name = $data['name'];
+        }
+        if (array_key_exists('is_private', $data)) {
+            $entity->is_private = $data['is_private'];
+        }
         if (array_key_exists('type', $data)) {
             $entity->type = $data['type'];
         }

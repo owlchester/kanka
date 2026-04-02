@@ -36,7 +36,7 @@
         </a>
     </div>
 
-    <h2 class="text-xl">
+    <h2 class="text-xl font-light">
         {{ __('campaigns/categories.tab') }}
     </h2>
 

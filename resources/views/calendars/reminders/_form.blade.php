@@ -1,3 +1,5 @@
+
+<x-grid type="1/1">
 @if (!empty($from))
     <x-alert type="warning" class="w-full">
         <p>{!! __('calendars.event.helpers.other_calendar', ['calendar' => '<a href="' . $from->entity?->url() . '" class="text-link">' . $from->name . '</a>']) !!}</p>
@@ -5,12 +7,10 @@
 @endif
 
 @if (!empty($reminder) && $reminder->isEntity())
-    <x-grid type="1/1">
-        @include('cruds.fields.entity', ['route' => null, 'preset' => $reminder->remindable, 'name' => 'entity_id', 'dropdownParent' => $dropdownParent ?? '#primary-dialog', 'allowClear' => false])
-    </x-grid>
+    @include('cruds.fields.entity', ['route' => null, 'preset' => $reminder->remindable, 'name' => 'entity_id', 'dropdownParent' => $dropdownParent ?? '#primary-dialog', 'allowClear' => false])
 @endif
 
-<div id="calendar-event-subform" class="flex flex-col gap-5">
+<div id="calendar-event-subform" class="flex flex-col gap-4 md:gap-6">
     @if (empty($reminder))
         <div class="flex gap-2 md:gap-4 items-center">
             <div class="grow calendar-existing-event-field">
@@ -26,3 +26,5 @@
     @endif
     @include('calendars.reminders._subform')
 </div>
+
+</x-grid>

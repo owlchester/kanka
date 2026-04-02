@@ -6,6 +6,7 @@ return [
         'empty'     => 'Aucun résultat',
         'hint'      => 'Écrire au minimum 3 lettres pour cherche les entrées de la campagne.',
         'keyboard'  => 'appuyer :k pour rechercher, :esc pour fermer',
+        'lists'     => 'Listes',
         'recents'   => 'Récents',
         'results'   => 'Résultats',
     ],

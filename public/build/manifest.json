@@ -216,7 +216,7 @@
     ]
   },
   "resources/css/front.css": {
-    "file": "assets/front-_p0zFhI7.css",
+    "file": "assets/front-CZW4xdyL.css",
     "src": "resources/css/front.css",
     "isEntry": true,
     "name": "front",
@@ -279,7 +279,7 @@
     ]
   },
   "resources/css/vendor.css": {
-    "file": "assets/vendor-EYM4BRgh.css",
+    "file": "assets/vendor-DEuctmxo.css",
     "src": "resources/css/vendor.css",
     "isEntry": true,
     "name": "vendor",
@@ -507,7 +507,7 @@
     ]
   },
   "resources/js/entities/explore.js": {
-    "file": "assets/explore-grc3oTbr.js",
+    "file": "assets/explore-WPQyXmPX.js",
     "name": "explore",
     "src": "resources/js/entities/explore.js",
     "isEntry": true,

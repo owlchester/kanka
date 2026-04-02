@@ -1,5 +1,5 @@
 <div class="flex gap-2 items-center justify-between">
-    <h3 id="custom" class="text-xl">{{ __('campaigns/modules.sections.custom')}}</h3>
+    <h3 id="custom" class="text-xl font-light">{{ __('campaigns/modules.sections.custom')}}</h3>
 
     <a
         class="btn2 btn-primary btn-sm"

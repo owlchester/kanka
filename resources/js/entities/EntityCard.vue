@@ -1,7 +1,7 @@
 <template>
     <div v-if="stacked" class="stack inline-grid items-center align-items-end w-[47%] xs:w-[25%] sm:w-48"
          @pointerdown="lpStart" @pointerup="lpCancel" @pointermove="lpMove" @pointercancel="lpCancel"
-         @contextmenu.prevent>
+         @contextmenu="handleContextMenu">
         <div class="entity overflow-hidden rounded shadow-xs hover:shadow-md aspect-square w-full flex flex-col bg-box" v-bind="dataAttributes">
             <a :href="entity.urls.show" :title="entity.name"
                class="block avatar grow relative cover-background overflow-hidden text-center text-link"
@@ -41,7 +41,7 @@
     </div>
     <div v-else :class="entityClass" v-bind="dataAttributes"
          @pointerdown="lpStart" @pointerup="lpCancel" @pointermove="lpMove" @pointercancel="lpCancel"
-         @contextmenu.prevent>
+         @contextmenu="handleContextMenu">
         <a :href="entity.urls.show" class="block avatar grow relative cover-background" :style="entityImage"
            :title="entity.name" @click.prevent="handleImageClick">
             <div v-if="entity.is_private && !selecting"
@@ -76,13 +76,26 @@ const emit = defineEmits<{
 }>()
 
 let suppressNextClick = false
+let lastPointerType = 'mouse'
 
-const { start: lpStart, cancel: lpCancel, move: lpMove } = useLongPress(() => {
+const handleContextMenu = (e: MouseEvent) => {
+    // Only suppress the context menu on touch/pen devices (long-press simulation)
+    if (lastPointerType !== 'mouse') {
+        e.preventDefault()
+    }
+}
+
+const { start: lpStartInner, cancel: lpCancel, move: lpMove } = useLongPress(() => {
     if (!props.selecting) {
         suppressNextClick = true
         emit('startSelecting', props.entity.id)
     }
 })
+
+const lpStart = (e: PointerEvent) => {
+    lastPointerType = e.pointerType
+    lpStartInner(e)
+}
 
 const stacked = computed(() => props.nested && props.entity.children > 0)
 

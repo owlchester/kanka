@@ -19,7 +19,7 @@
             <x-icon class="fa-regular fa-sparkles" />
             {{ __('lists.actions.public') }}
         </a>
-        @if ($enityType->isStandard())
+        @if (isset($enityType) && $enityType->isStandard())
             <a href="https://docs.kanka.io/en/latest/entries/{{ ($entityType->isAttributeTemplate() ? 'property-kits' : \Illuminate\Support\Str::replace('_', '-', $entityType->pluralCode())) }}.html" class="text-link">
                 <x-icon class="fa-regular fa-book" />
                 {{ __('lists.actions.learn') }}

@@ -48,6 +48,7 @@ class StoreJournal extends FormRequest
             'template_id' => 'nullable',
             'parent_id' => 'nullable|integer|exists:entities,id',
             'attribute' => ['array', new UniqueAttributeNames],
+            'is_private' => 'nullable|boolean',
         ];
 
         if (request()->has('calendar_id') && request()->post('calendar_id') !== null && ! request()->has('calendar_skip')) {

@@ -44,11 +44,11 @@ return [
         'benefits'      => [
             'backup'        => 'Recover deleted entries and posts for up to :amount days',
             'customisable'  => 'Custom themes and CSS',
-            'plugins'      => 'Extend your campaign with community-built plugins',
             'icons'         => 'Thousands of icons for maps and timelines',
-            'visual'        => 'Visualise family trees and relationships between entries',
+            'plugins'       => 'Extend your campaign with community-built plugins',
             'title'         => 'Boosted campaigns get',
             'upload'        => 'Larger uploads for all members',
+            'visual'        => 'Visualise family trees and relationships between entries',
         ],
         'description'   => 'Assign boosters to campaigns and help unlock amazing features for everyone involved. Not impressed by boosted campaigns? We\'ve got you covered with superboosted campaigns!',
         'more'          => 'Check out the full list of perks on our :boosters page.',

@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Default Filesystem Disk
@@ -29,7 +28,6 @@ return [
     */
 
     'disks' => [
-
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
@@ -54,7 +52,10 @@ return [
             // Url for including the assets in the browser
             'url' => env('AWS_URL_S3', env('AWS_URL')),
             'endpoint' => env('AWS_ENDPOINT'),
-            'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
+            'use_path_style_endpoint' => env(
+                'AWS_USE_PATH_STYLE_ENDPOINT',
+                false,
+            ),
         ],
 
         'backup' => [
@@ -66,11 +67,15 @@ return [
             'root' => env('APP_ENV'),
             'endpoint' => env('HETZNER_S3_ENDPOINT'),
             'use_path_style_endpoint' => true,
+            'retries' => [
+                'mode' => 'adaptive', // handles backoff automatically
+                'max' => 10,
+            ],
             'options' => [
-                'MultipartThreshold' => 1024 * 1024 * 100, // 100MB
+                'part_size' => 1024 * 1024 * 500,
             ],
             'http' => [
-                'timeout' => 0,        // No timeout for the request
+                'timeout' => 0, // No timeout for the request
                 'connect_timeout' => 10, // Time to wait for a connection
             ],
             'throw' => false,
@@ -97,7 +102,10 @@ return [
             'visibility' => 'public',
             'url' => env('AWS_URL_ASSETS', env('AWS_URL')),
             'endpoint' => env('AWS_ENDPOINT'),
-            'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
+            'use_path_style_endpoint' => env(
+                'AWS_USE_PATH_STYLE_ENDPOINT',
+                false,
+            ),
         ],
 
         's3-marketplace' => [
@@ -124,8 +132,10 @@ return [
             // Url for including the assets in the browser
             'url' => env('AWS_CLOUDFRONT'),
             'endpoint' => env('AWS_ENDPOINT'),
-            'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
+            'use_path_style_endpoint' => env(
+                'AWS_USE_PATH_STYLE_ENDPOINT',
+                false,
+            ),
         ],
     ],
-
 ];

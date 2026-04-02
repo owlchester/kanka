@@ -83,6 +83,13 @@
     min-height: 2.1rem;
     cursor: pointer;
 }
+.ts-control, .ts-wrapper.single.input-active .ts-control {
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--b1)/var(--tw-bg-opacity));
+}
+.ts-dropdown, .ts-control, .ts-control input {
+    color: hsl(var(--bc)/1);
+}
 .ts-wrapper.multi .ts-control {
     --tw-bg-opacity: 1;
     background-color: hsl(var(--b1)/var(--tw-bg-opacity));

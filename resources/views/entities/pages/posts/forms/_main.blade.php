@@ -13,11 +13,6 @@ if (isset($model)) {
 }
 
 $options = $entity->postPositionOptions(!empty($model->position) ? $model->position : null);
-if (isset($template)) {
-    $model = $template;
-    $model->name = '';
-    $model->position = null;
-}
 $last = array_key_last($options);
 
 $bragiName = $entity->isCharacter() ? $entity->name : null;

@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'bulk'          => [
+        'entity_type'   => [
+            'unset' => 'Réinitialiser',
+        ],
+    ],
     'create'        => [
         'title' => 'Créer un nouveau kit de propriétés',
     ],

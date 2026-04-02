@@ -71,6 +71,7 @@ class StoreCharacter extends FormRequest
             'appearance_name' => 'nullable|array',
             'appearance_entry' => 'nullable|array',
             'attribute' => ['array', new UniqueAttributeNames],
+            'is_private' => 'nullable|boolean',
         ];
 
         return $this->clean($rules);
