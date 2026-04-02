@@ -54,6 +54,7 @@ class MigrateEntityStatuses extends Command
         foreach ($mapping as $oldValue => $key) {
             if (! isset($statusIds[$key])) {
                 $this->warn("Category status '{$key}' not found for characters, skipping.");
+
                 continue;
             }
 
@@ -88,6 +89,7 @@ class MigrateEntityStatuses extends Command
         foreach ($mapping as $oldValue => $key) {
             if (! isset($statusIds[$key])) {
                 $this->warn("Category status '{$key}' not found for quests, skipping.");
+
                 continue;
             }
 
@@ -116,6 +118,7 @@ class MigrateEntityStatuses extends Command
         foreach ($columns as $column => $key) {
             if (! isset($statusIds[$key])) {
                 $this->warn("Category status '{$key}' not found for {$table}, skipping.");
+
                 continue;
             }
 

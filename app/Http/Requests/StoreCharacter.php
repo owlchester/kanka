@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Enums\CharacterStatus;
 use App\Facades\Limit;
 use App\Models\Family;
 use App\Models\Location;
@@ -11,7 +10,6 @@ use App\Rules\EntityField;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Enum;
 
 class StoreCharacter extends FormRequest
 {

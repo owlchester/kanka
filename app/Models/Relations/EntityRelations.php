@@ -546,7 +546,6 @@ trait EntityRelations
             ->withPivot('type_id');
     }
 
-
     /**
      * @return BelongsTo<CategoryStatus, $this>
      */

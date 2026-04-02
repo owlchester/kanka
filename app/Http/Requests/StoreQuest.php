@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Enums\QuestStatus;
 use App\Facades\Limit;
 use App\Models\Entity;
 use App\Rules\Nested;
@@ -10,7 +9,6 @@ use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
 use App\Traits\ResolvesNewForeignEntities;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Enum;
 
 class StoreQuest extends FormRequest
 {

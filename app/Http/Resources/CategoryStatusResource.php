@@ -17,11 +17,11 @@ class CategoryStatusResource extends JsonResource
     {
         /** @var CategoryStatus $model */
         $model = $this->resource;
-        
+
         return [
             'id' => $model->id,
             'key' => $model->key,
-            'is_custom' => $model->isCustom()
+            'is_custom' => $model->isCustom(),
         ];
     }
 }
