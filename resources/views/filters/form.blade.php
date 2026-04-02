@@ -10,7 +10,7 @@
         $formRoute = ['entities.index', $campaign, $entityType];
         $resetRoute = route('entities.index', [$campaign, $entityType, 'reset-filter' => 'true']);
     } else {
-        $formRoute = [$route, $campaign, 'm' => $mode];
+        $formRoute = [$route, $campaign];
         $resetRoute = route($route, [$campaign, 'reset-filter' => 'true']);
     }
 @endphp
@@ -131,7 +131,4 @@
         </menu>
     </footer>
 @endif
-    @if (isset($entityType))
-<input type="hidden" name="m" value="{{ $mode }}" />
-    @endif
 </x-form>
