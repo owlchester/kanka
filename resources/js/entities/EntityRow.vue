@@ -47,8 +47,9 @@
 
             <!-- Icon (boolean or mapped status) -->
             <template v-else-if="col.type === 'icon'">
-                <i v-if="col.icons && col.icons[entity[col.key]]" :class="col.icons[entity[col.key]].icon" :title="col.icons[entity[col.key]].tooltip" data-toggle="tooltip" aria-hidden="true"></i>
-                <i v-else-if="!col.icons && entity[col.key]" :class="col.icon" :title="col.tooltip" data-toggle="tooltip" aria-hidden="true"></i>
+                <i v-if="entity[col.key]?.icon" :class="entity[col.key].icon" v-tippy="entity[col.key].tooltip" aria-hidden="true"></i>
+                <i v-else-if="col.icons && col.icons[entity[col.key]]" :class="col.icons[entity[col.key]].icon" v-tippy="col.icons[entity[col.key]].tooltip" aria-hidden="true"></i>
+                <i v-else-if="!col.icons && entity[col.key]" :class="col.icon" v-tippy="col.tooltip" aria-hidden="true"></i>
             </template>
 
             <!-- Single entity link -->

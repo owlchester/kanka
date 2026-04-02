@@ -54,8 +54,6 @@ if (!isset($entity)) {
 @if ($entity->isCharacter() && $entity->child)
             gender: `{{ $entity->child->sex }}`,
             pronouns: `{{ $entity->child->pronouns }}`,
-            is_dead: {{ $entity->child->isDead() ? 'true' : 'false' }},
-            is_missing: {{ $entity->child->isMissing() ? 'true' : 'false' }},
             title: `{{ $entity->child->title }}`,
             age: `{{ $entity->child->age }}`,
             traits: [@foreach ($entity->child->characterTraits as $trait)
@@ -80,20 +78,9 @@ if (!isset($entity)) {
                 url: `{{ $family->family->getLink() }}`
             },
             @endforeach ],
-@elseif ($entity->isLocation() && $entity->child)
-        is_destroyed: {{ $entity->child->isDestroyed() ? 'true' : 'false' }},
-@elseif ($entity->isOrganisation() && $entity->child)
-        is_defunct: {{ $entity->child->isDefunct() ? 'true' : 'false' }},
-@elseif ($entity->isQuest() && $entity->child)
-        is_completed: {{ $entity->child->isCompleted() ? 'true' : 'false' }},
-        is_ongoing: {{ $entity->child->isOngoing() ? 'true' : 'false' }},
-        is_abandoned: {{ $entity->child->isAbandoned() ? 'true' : 'false' }},
-        status: {{ $entity->child->status_id->value }},
-@elseif ($entity->isCreature() && $entity->child)
-        is_dead: {{ $entity->child->isDead() ? 'true' : 'false' }},
-        is_extinct: {{ $entity->child->isExtinct() ? 'true' : 'false' }},
-@elseif (($entity->isRace() || $entity->isFamily()) && $entity->child)
-        is_extinct: {{ $entity->child->isExtinct() ? 'true' : 'false' }},
+@endif
+@if ($entity->status)
+            status: `{{ $entity->status->key }}`,
 @endif
 @if ($entity->hasChild() && $entity->child->location)
             location: {

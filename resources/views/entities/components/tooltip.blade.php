@@ -21,8 +21,8 @@
                     @endif
                     {!! $entity->name !!}
                 </a>
-                @if ($entity->categoryStatus?->icon)
-                    <x-icon class="fa-regular {{ $entity->categoryStatus->icon }}" tooltip :title="__('entities/statuses.' . $entity->entityType->code . '.' . $entity->categoryStatus->key)" />
+                @if ($entity->status?->icon)
+                    <x-icon class="fa-regular {{ $entity->status->icon }}" tooltip :title="__('entities/statuses.' . $entity->entityType->code . '.' . $entity->status->key)" />
                 @endif
             </div>
 

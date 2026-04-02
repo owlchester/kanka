@@ -1,5 +1,5 @@
-@if ($entity->child->isExtinct())
+@if ($entity->status)
 ## {!! __('crud.tabs.profile') !!}
 
-* {{ __('races.hints.is_extinct') }}
+* {{ $entity->status->setRelation('entityType', $entity->entityType)->name() }}
 @endif

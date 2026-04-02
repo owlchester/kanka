@@ -20,7 +20,7 @@ $addTagsUrl = route('entity.tags-add', [$campaign, $entity]);
 $entityTags = $entity->visibleTags();
 
 $buttonsClass = 1;
-$headerStatus = $entity->categoryStatus;
+$headerStatus = $entity->status;
 if ($headerStatus && $headerStatus->icon) {
     $buttonsClass++;
 }
