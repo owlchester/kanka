@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Str;
 
 /**
  * @property int $id
@@ -44,6 +45,11 @@ class CategoryStatus extends Model
     public function name(): string
     {
         return trans('entities/statuses.' . $this->entityType->code . '.' . $this->key);
+    }
+    
+    public function icon(): string
+    {
+        return 'fa-regular ' . ($this->icon ?? '');
     }
 
     public function isCustom(): bool

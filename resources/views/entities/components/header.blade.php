@@ -147,9 +147,9 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
                 {!! $entity->name !!}
             </h1>
             @if ($headerStatus && $headerStatus->icon)
-                <span class="entity-name-icon md:text-2xl" data-toggle="tooltip" data-title="{{ __('entities/statuses.' . $entity->entityType->code . '.' . $headerStatus->key) }}">
-                    <x-icon class="fa-regular {{ $headerStatus->icon }} entity-icons" />
-                    <span class="sr-only">{{ __('entities/statuses.' . $entity->entityType->code . '.' . $headerStatus->key) }}</span>
+                <span class="entity-name-icon md:text-2xl" data-toggle="tooltip" data-title="{{ $headerStatus->setRelation('entityType', $entity->entityType)->name() }}">
+                    <x-icon class="{{ $headerStatus->icon() }} entity-icons" />
+                    <span class="sr-only">{{ $headerStatus->name() }}</span>
                 </span>
             @endif
             @can('admin', $campaign)

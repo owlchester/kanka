@@ -76,6 +76,8 @@ class FamilyTreeService
             return ['error' => 'invalid-character'];
         }
 
+        $entity->loadMissing(['status', 'entityType', 'tags', 'image', 'elapsedEvents']);
+
         return $this->formatEntity($entity);
     }
 
@@ -140,9 +142,7 @@ class FamilyTreeService
         // Prepare entities
         $entities = Entity::inTypes([config('entities.ids.character')])
             ->with([
-                'character' => function ($sub) {
-                    return $sub->select('id', 'status_id');
-                },
+                'status',
                 'entityType',
                 'tags',
                 'image',
@@ -189,12 +189,22 @@ class FamilyTreeService
             }
         }
 
+        $status = null;
+        if ($entity->status !== null) {
+            $entity->status->setRelation('entityType', $entity->entityType);
+            $status = [
+                'key' => $entity->status->key,
+                'icon' => $entity->status->icon(),
+                'name' => $entity->status->name(),
+            ];
+        }
+
         return [
             'id' => $entity->id,
             'name' => $entity->name,
             'url' => $entity->url(),
             'thumb' => Avatar::entity($entity)->size(40)->fallback()->thumbnail(),
-            'status' => $entity->status?->pluck('key', 'icon'),
+            'status' => $status,
             'death' => $death,
             'birth' => $birth,
             'tags' => $tags,
@@ -501,10 +511,6 @@ class FamilyTreeService
                 'saved' => __('families/trees.success.saved'),
                 'cleared' => __('families/trees.success.cleared'),
                 'reseted' => __('families/trees.success.reseted'),
-            ],
-            'tooltips' => [
-                'is_dead' => __('characters.hints.is_dead'),
-                'is_missing' => __('characters.hints.is_missing'),
             ],
             'unknown' => __('families/trees.unknown'),
         ];

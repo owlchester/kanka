@@ -225,9 +225,10 @@ class PreviewService
             return null;
         }
 
+        $status->setRelation('entityType', $this->entity->entityType);
         return [
-            'icon' => 'fa-regular ' . $status->icon,
-            'tooltip' => __('entities/statuses.' . $this->entity->entityType->code . '.' . $status->key),
+            'icon' => $status->icon(),
+            'tooltip' => $status->name(),
         ];
     }
 

@@ -7,7 +7,7 @@
         :entity="$model->entity"
         :campaign="$campaign" />
     @if ($model->entity->status)
-        <x-icon class="fa-regular {{ $model->entity->status->icon }}" title="{{ $model->entity->status->setRelation('entityType', $model->entity->entityType)->name() }}"></x-icon>
+        <x-icon class="{{ $model->entity->status->icon() }}" title="{{ $model->entity->status->setRelation('entityType', $model->entity->entityType)->name() }}"></x-icon>
     @endif
     <br />
     <span class="italic character-title text-xs">{!! $model->title !!}</span>
@@ -21,7 +21,7 @@
     :entity="$model->character->entity"
     :campaign="$campaign" />
 @if ($model->status)
-    <x-icon class="fa-regular {{ $model->status->icon }}" title="{{ $model->status->setRelation('entityType', $model->entityType)->name() }}" tooltip></x-icon>
+    <x-icon class="{{ $model->status->icon() }}" title="{{ $model->status->setRelation('entityType', $model->entityType)->name() }}" tooltip></x-icon>
 @endif
 <br />
 <span class="italic character-title text-xs">{!! $model->character->title !!}</span>

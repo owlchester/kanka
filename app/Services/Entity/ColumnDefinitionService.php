@@ -152,7 +152,7 @@ class ColumnDefinitionService
                 continue;
             }
             $icons[$status->id] = [
-                'icon' => 'fa-regular ' . $status->icon,
+                'icon' => $status->icon(),
                 'tooltip' => $status->setRelation('entityType', $entityType)->name(),
             ];
         }
