@@ -100,6 +100,7 @@ class FilterService
             'name',
             'type',
             'is_private',
+            'status_id',
             'parent_id',
             'template',
             'tag_id',

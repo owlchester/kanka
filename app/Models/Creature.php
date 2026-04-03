@@ -89,8 +89,6 @@ class Creature extends MiscModel
     {
         return [
             'locations',
-            'is_extinct',
-            'is_dead',
         ];
     }
 
@@ -104,22 +102,6 @@ class Creature extends MiscModel
         }
 
         return parent::showProfileInfo();
-    }
-
-    /**
-     * Determine if the model is extinct.
-     */
-    public function isExtinct(): bool
-    {
-        return (bool) $this->is_extinct;
-    }
-
-    /**
-     * Determine if the model is dead.
-     */
-    public function isDead(): bool
-    {
-        return (bool) $this->is_dead;
     }
 
     /**

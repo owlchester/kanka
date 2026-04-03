@@ -46,7 +46,7 @@ The list of returned entities can be filtered. The available filters are [availa
             "updated_by": 1,
             "race_id": 3,
             "type": null,
-            "is_extinct": true,
+            "status_id": 1,
             "locations": [
                 67,
                 66,
@@ -86,7 +86,7 @@ To get the details of a single race, use the following endpoint.
         "updated_by": 1,
         "race_id": 3,
         "type": "Humanoid",
-        "is_extinct": true,
+        "status_id": 1,
         "locations": [
             67,
             66,
@@ -114,7 +114,7 @@ To create a race, use the following endpoint.
 | `name` | `string` (Required) | Name of the race |
 | `entry` | `string` | The html description of the race |
 | `type` | `string` | The race's type |
-| `is_extinct` | `boolean` | If the race is extinct |
+| `status_id` | `integer` | The id of the entity's status from `category_statuses` |
 | `race_id` | `string` | Parent race of the race |
 | `tags` | `array` | Array of tag ids |
 | `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |

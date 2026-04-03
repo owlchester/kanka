@@ -2,8 +2,6 @@
 
 namespace App\Datagrids\Filters;
 
-use App\Models\Ability;
-
 class AbilityFilter extends DatagridFilter
 {
     /**

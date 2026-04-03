@@ -14,7 +14,7 @@ class RaceFilter extends DatagridFilter
             ->add('type')
             ->parent(config('entities.ids.race'))
             ->locations()
-            ->add('is_extinct')
+            ->add('status_id')
             ->isPrivate()
             ->template()
             ->archived()

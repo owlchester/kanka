@@ -17,15 +17,7 @@
         <input id="{{ $fieldID }}" type="text" name="age" value="{{ old('age', FormCopy::field('age')->child()->string() ?: $model->age ?? null) }}" maxlength="25" class="w-full"  autocomplete="off" placeholder="{{ __('characters.placeholders.age') }}" />
     </x-forms.field>
 
-    <x-forms.field
-        field="status_id"
-        :label="__('characters.fields.status')">
-        <select name="status_id" class="w-full">
-            <option value="0" @selected(old('status_id', $source->child->status_id?->value ?? $model->status_id?->value ?? 0) == 0)>{{ __('characters.status.alive') }}</option>
-            <option value="1" @selected(old('status_id', $source->child->status_id?->value ?? $model->status_id?->value ?? 0) == 1)>{{ __('characters.status.dead') }}</option>
-            <option value="2" @selected(old('status_id', $source->child->status_id?->value ?? $model->status_id?->value ?? 0) == 2)>{{ __('characters.status.missing') }}</option>
-        </select>
-    </x-forms.field>
+    @include('cruds.fields.status')
 
     @include('cruds.fields.sex')
 

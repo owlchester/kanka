@@ -14,11 +14,8 @@
                     <span class="truncate">
                         {{ entity.name }}
                     </span>
-                    <span class="self-end" v-show="entity.is_dead">
-                        <i class="fa-regular fa-skull" v-bind:title="tooltip('is_dead')" aria-hidden="true"></i>
-                    </span>
-                    <span class="self-end" v-show="entity.is_missing">
-                        <i class="fa-regular fa-question" v-bind:title="tooltip('is_missing')" aria-hidden="true"></i>
+                    <span class="self-end" v-if="entity.status">
+                        <i v-bind:class="entity.status.icon" v-bind:title="entity.status.name" aria-hidden="true"></i>
                     </span>
                 </a>
                 <span v-bind:class="cssClasses()" v-if="node.isUnknown">
@@ -82,11 +79,8 @@ export default {
                 css += ' family-node-entity-founder';
             }
             if (this.entity) {
-                if (this.entity.is_dead) {
-                    css += ' character-dead';
-                }
-                if (this.entity.is_missing) {
-                    css += ' character-missing';
+                if (this.entity.status) {
+                    css += ' kanka-status-' + this.entity.status.key;
                 }
                 this.entity.tags.forEach(function (tag) {
                     css += ' ' + tag;
@@ -123,8 +117,8 @@ export default {
         },
         cssClasses() {
             let classes = '';
-            if (this.entity && (this.entity.is_dead || this.entity.is_missing)) {
-                classes += 'flex grid-cols-2 items-center'
+            if (this.entity && this.entity.status) {
+                classes += 'flex grid-cols-2 items-center gap-1'
             } else {
                 classes += 'block'
             }
@@ -141,9 +135,6 @@ export default {
         },
         fields(field) {
             return window.ftTexts.modals.fields[field]
-        },
-        tooltip(key) {
-            return window.ftTexts.tooltips[key]
         },
     },
 

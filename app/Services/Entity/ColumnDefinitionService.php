@@ -2,28 +2,37 @@
 
 namespace App\Services\Entity;
 
-use App\Enums\CharacterStatus;
-use App\Enums\QuestStatus;
 use App\Models\Campaign;
+use App\Models\CategoryStatus;
 use App\Models\EntityType;
 use Illuminate\Support\Str;
 
 class ColumnDefinitionService
 {
+    /** @var array<int, array<int, CategoryStatus>> */
+    protected array $statusCache = [];
+
     public function columns(EntityType $entityType, Campaign $campaign): array
     {
         $method = Str::camel($entityType->code);
         if (method_exists($this, $method)) {
-            return $this->filterByModules(
-                $this->{$method}(),
-                $campaign
-            );
+            $columns = $this->{$method}();
+        } else {
+            $columns = $this->defaultColumns();
         }
 
-        return $this->filterByModules(
-            $this->defaultColumns(),
-            $campaign
-        );
+        // Inject dynamic status column if the entity type has statuses
+        $statusColumn = $this->statusColumn($entityType);
+        if ($statusColumn) {
+            $tagsIndex = array_search('tags', array_column($columns, 'key'));
+            if ($tagsIndex !== false) {
+                array_splice($columns, $tagsIndex, 0, [$statusColumn]);
+            } else {
+                $columns[] = $statusColumn;
+            }
+        }
+
+        return $this->filterByModules($columns, $campaign);
     }
 
     /**
@@ -51,7 +60,7 @@ class ColumnDefinitionService
 
     public function relationMap(EntityType $entityType, Campaign $campaign): array
     {
-        $map = ['entityType', 'image', 'tags', 'parent'];
+        $map = ['entityType', 'image', 'tags', 'parent', 'status'];
 
         $typeRelations = $this->typeRelations();
 
@@ -122,6 +131,46 @@ class ColumnDefinitionService
         ];
     }
 
+    protected function statusColumn(EntityType $entityType): ?array
+    {
+        if (! isset($this->statusCache[$entityType->id])) {
+            $this->statusCache[$entityType->id] = CategoryStatus::where('category_id', $entityType->id)
+                ->orderBy('sort_order')
+                ->get()
+                ->all();
+        }
+
+        $statuses = $this->statusCache[$entityType->id];
+
+        if (empty($statuses)) {
+            return null;
+        }
+
+        $icons = [];
+        foreach ($statuses as $status) {
+            if (empty($status->icon)) {
+                continue;
+            }
+            $icons[$status->id] = [
+                'icon' => $status->icon(),
+                'tooltip' => $status->setRelation('entityType', $entityType)->name(),
+            ];
+        }
+
+        if (empty($icons)) {
+            return null;
+        }
+
+        return [
+            'key' => 'status',
+            'type' => 'icon',
+            'label' => __('entities.status'),
+            'sortable' => true,
+            'sortKey' => 'status_id',
+            'icons' => $icons,
+        ];
+    }
+
     protected function filterByModules(array $columns, Campaign $campaign): array
     {
         return array_values(array_filter($columns, function (array $col) use ($campaign) {
@@ -154,10 +203,6 @@ class ColumnDefinitionService
             ['key' => 'name', 'type' => 'name', 'label' => __('crud.fields.name'), 'sortable' => true, 'alwaysVisible' => true],
             ['key' => 'title', 'type' => 'text', 'label' => __('characters.fields.title'), 'sortable' => true],
             ['key' => 'type', 'type' => 'text', 'label' => __('crud.fields.type'), 'sortable' => true],
-            ['key' => 'status', 'type' => 'icon', 'label' => __('characters.fields.status'), 'sortable' => true, 'sortKey' => 'status_id', 'icons' => [
-                CharacterStatus::dead->value => ['icon' => 'fa-regular fa-skull', 'tooltip' => __('characters.hints.is_dead')],
-                CharacterStatus::missing->value => ['icon' => 'fa-regular fa-question', 'tooltip' => __('characters.hints.is_missing')],
-            ]],
             ['key' => 'families', 'type' => 'entities', 'label' => __('entities.families'), 'sortable' => false, 'moduleGate' => 'families'],
             ['key' => 'locations', 'type' => 'entities', 'label' => __('entities.locations'), 'sortable' => false, 'moduleGate' => 'locations'],
             ['key' => 'races', 'type' => 'entities', 'label' => __('entities.races'), 'sortable' => false, 'moduleGate' => 'races'],
@@ -176,7 +221,6 @@ class ColumnDefinitionService
             ['key' => 'title', 'type' => 'text', 'label' => __('locations.fields.title'), 'sortable' => true],
             ['key' => 'type', 'type' => 'text', 'label' => __('crud.fields.type'), 'sortable' => true],
             ['key' => 'parent', 'type' => 'entity', 'label' => __('crud.fields.parent'), 'sortable' => true, 'sortKey' => 'parent.name'],
-            ['key' => 'is_destroyed', 'type' => 'icon', 'label' => __('locations.fields.is_destroyed'), 'sortable' => true, 'icon' => 'fa-regular fa-building-circle-xmark', 'tooltip' => __('locations.fields.is_destroyed')],
             ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => true],
             ['key' => 'is_private', 'type' => 'private', 'label' => __('crud.fields.is_private'), 'sortable' => true, 'adminOnly' => true],
         ];
@@ -191,7 +235,6 @@ class ColumnDefinitionService
             ['key' => 'parent', 'type' => 'entity', 'label' => __('crud.fields.parent'), 'sortable' => true, 'sortKey' => 'parent.name'],
             ['key' => 'locations', 'type' => 'entities', 'label' => __('entities.locations'), 'sortable' => false, 'moduleGate' => 'locations'],
             ['key' => 'members_count', 'type' => 'count', 'label' => __('organisations.fields.members'), 'sortable' => false, 'moduleGate' => 'characters'],
-            ['key' => 'is_defunct', 'type' => 'icon', 'label' => __('organisations.fields.is_defunct'), 'sortable' => true, 'icon' => 'fa-regular fa-skull', 'tooltip' => __('organisations.fields.is_defunct')],
             ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => true],
             ['key' => 'is_private', 'type' => 'private', 'label' => __('crud.fields.is_private'), 'sortable' => true, 'adminOnly' => true],
         ];
@@ -206,7 +249,6 @@ class ColumnDefinitionService
             ['key' => 'parent', 'type' => 'entity', 'label' => __('crud.fields.parent'), 'sortable' => true, 'sortKey' => 'parent.name'],
             ['key' => 'location', 'type' => 'entity', 'label' => __('entities.location'), 'sortable' => true, 'sortKey' => 'location.name', 'moduleGate' => 'locations'],
             ['key' => 'members_count', 'type' => 'count', 'label' => __('organisations.fields.members'), 'sortable' => false],
-            ['key' => 'is_extinct', 'type' => 'icon', 'label' => __('creatures.fields.is_extinct'), 'sortable' => true, 'icon' => 'fa-regular fa-skull', 'tooltip' => __('creatures.fields.is_extinct')],
             ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => true],
             ['key' => 'is_private', 'type' => 'private', 'label' => __('crud.fields.is_private'), 'sortable' => true, 'adminOnly' => true],
         ];
@@ -233,11 +275,6 @@ class ColumnDefinitionService
             ['key' => 'avatar', 'type' => 'avatar', 'sortable' => false, 'alwaysVisible' => true],
             ['key' => 'name', 'type' => 'name', 'label' => __('crud.fields.name'), 'sortable' => true, 'alwaysVisible' => true],
             ['key' => 'type', 'type' => 'text', 'label' => __('crud.fields.type'), 'sortable' => true],
-            ['key' => 'status', 'type' => 'icon', 'label' => __('characters.fields.status'), 'sortable' => true, 'sortKey' => 'status_id', 'icons' => [
-                QuestStatus::ongoing->value => ['icon' => 'fa-regular fa-hourglass', 'tooltip' => __('quests.hints.is_ongoing')],
-                QuestStatus::abandoned->value => ['icon' => 'fa-regular fa-ban', 'tooltip' => __('quests.hints.is_abandoned')],
-                QuestStatus::completed->value => ['icon' => 'fa-regular fa-check-circle', 'tooltip' => __('quests.hints.is_completed')],
-            ]],
             ['key' => 'parent', 'type' => 'entity', 'label' => __('crud.fields.parent'), 'sortable' => true, 'sortKey' => 'parent.name'],
             ['key' => 'instigator', 'type' => 'entity', 'label' => __('quests.fields.instigator'), 'sortable' => false],
             ['key' => 'locations', 'type' => 'entities', 'label' => __('entities.locations'), 'sortable' => false, 'moduleGate' => 'locations'],
@@ -307,7 +344,6 @@ class ColumnDefinitionService
             ['key' => 'name', 'type' => 'name', 'label' => __('crud.fields.name'), 'sortable' => true, 'alwaysVisible' => true],
             ['key' => 'type', 'type' => 'text', 'label' => __('crud.fields.type'), 'sortable' => true],
             ['key' => 'parent', 'type' => 'entity', 'label' => __('crud.fields.parent'), 'sortable' => true, 'sortKey' => 'parent.name'],
-            ['key' => 'is_extinct', 'type' => 'icon', 'label' => __('creatures.fields.is_extinct'), 'sortable' => true, 'icon' => 'fa-regular fa-skull-cow', 'tooltip' => __('creatures.fields.is_extinct')],
             ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => true],
             ['key' => 'is_private', 'type' => 'private', 'label' => __('crud.fields.is_private'), 'sortable' => true, 'adminOnly' => true],
         ];
@@ -321,8 +357,6 @@ class ColumnDefinitionService
             ['key' => 'type', 'type' => 'text', 'label' => __('crud.fields.type'), 'sortable' => true],
             ['key' => 'parent', 'type' => 'entity', 'label' => __('crud.fields.parent'), 'sortable' => true, 'sortKey' => 'parent.name'],
             ['key' => 'locations', 'type' => 'entities', 'label' => __('entities.locations'), 'sortable' => false, 'moduleGate' => 'locations'],
-            ['key' => 'is_extinct', 'type' => 'icon', 'label' => __('creatures.fields.is_extinct'), 'sortable' => true, 'icon' => 'fa-regular fa-skull-cow', 'tooltip' => __('creatures.fields.is_extinct')],
-            ['key' => 'is_dead', 'type' => 'icon', 'label' => __('characters.fields.is_dead'), 'sortable' => true, 'icon' => 'fa-regular fa-skull', 'tooltip' => __('characters.fields.is_dead')],
             ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => true],
             ['key' => 'is_private', 'type' => 'private', 'label' => __('crud.fields.is_private'), 'sortable' => true, 'adminOnly' => true],
         ];

@@ -49,6 +49,7 @@ class StoreOrganisation extends FormRequest
             'locations' => ['nullable', 'array', new EntityField(config('entities.ids.location'), Location::class)],
             'attribute' => ['array', new UniqueAttributeNames],
             'is_private' => 'nullable|boolean',
+            'status_id' => ['nullable', 'exists:category_statuses,id'],
         ];
 
         /** @var Entity $self */

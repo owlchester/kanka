@@ -183,7 +183,7 @@ trait EntityScopes
 
     public function scopeOrder(Builder $query, array $config = [], ?EntityType $entityType = null): Builder
     {
-        $entityFields = ['name', 'type', 'is_private'];
+        $entityFields = ['name', 'type', 'is_private', 'status_id'];
 
         foreach ($config as $field => $order) {
             if ($field === 'parent.name') {
@@ -240,7 +240,7 @@ trait EntityScopes
                 continue;
             } elseif (is_array($values) && empty(array_filter($values, fn ($v) => $v !== '' && $v !== null))) {
                 continue;
-            } elseif (in_array($name, ['is_private', 'parent_id'])) {
+            } elseif (in_array($name, ['is_private', 'parent_id', 'status_id'])) {
                 $query->where('entities.' . $name, $values);
             } elseif (in_array($name, ['name', 'type'])) {
                 // @phpstan-ignore-next-line

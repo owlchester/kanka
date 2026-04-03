@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Enums\FilterOption;
-use App\Enums\QuestStatus;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
@@ -23,7 +22,6 @@ use Illuminate\Support\Collection;
  *
  * @property ?int $instigator_id
  * @property ?int $location_id
- * @property QuestStatus $status_id
  * @property string $date
  * @property ?Location $location
  * @property ?Entity $instigator
@@ -47,14 +45,12 @@ class Quest extends MiscModel
         'is_private',
         'instigator_id',
         'location_id',
-        'status_id',
         'date',
     ];
 
     protected array $sortable = [
         'name',
         'date',
-        'status_id',
         'type',
     ];
 
@@ -69,7 +65,6 @@ class Quest extends MiscModel
     protected array $sortableColumns = [
         'date',
         'instigator.name',
-        'status_id',
         'calendar_date',
         'location.name',
     ];
@@ -100,19 +95,14 @@ class Quest extends MiscModel
         'base',
         'instigator_id',
         'location_id',
-        'status_id',
         'date',
-    ];
-
-    public $casts = [
-        'status_id' => QuestStatus::class,
     ];
 
     public function scopeFilteredQuests(Builder $query): Builder
     {
         // @phpstan-ignore-next-line
         return $query
-            ->select(['id', 'name', 'location_id', 'status_id', 'is_private'])
+            ->select(['id', 'name', 'location_id', 'is_private'])
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with([
                 'location', 'location.entity',
@@ -252,45 +242,12 @@ class Quest extends MiscModel
         return [
             'date',
             'instigator_id',
-            'status_id',
             'date_start',
             'location_id',
             'date_end',
             'quest_element_id',
             'element_role',
         ];
-    }
-
-    /**
-     * Check if the quest has not been started
-     */
-    public function isNotStarted(): bool
-    {
-        return $this->status_id === QuestStatus::notStarted;
-    }
-
-    /**
-     * Check if the quest is ongoing
-     */
-    public function isOngoing(): bool
-    {
-        return $this->status_id === QuestStatus::ongoing;
-    }
-
-    /**
-     * Check if the quest is completed
-     */
-    public function isCompleted(): bool
-    {
-        return $this->status_id === QuestStatus::completed;
-    }
-
-    /**
-     * Check if the quest is abandoned
-     */
-    public function isAbandoned(): bool
-    {
-        return $this->status_id === QuestStatus::abandoned;
     }
 
     /**
@@ -301,7 +258,6 @@ class Quest extends MiscModel
         $columns = [
             'name' => __('crud.fields.name'),
             'type' => __('crud.fields.type'),
-            'status_id' => __('quests.fields.status'),
             'calendar_date' => __('crud.fields.calendar_date'),
         ];
 

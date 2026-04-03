@@ -15,7 +15,7 @@ class FamilyFilter extends DatagridFilter
             ->parent(config('entities.ids.family'))
             ->location()
             ->character('member_id')
-            ->add('is_extinct')
+            ->add('status_id')
             ->isPrivate()
             ->template()
             ->archived()

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Enums\CharacterStatus;
 use App\Enums\FilterOption;
 use App\Enums\OrganisationMemberPin;
 use App\Facades\CharacterCache;
@@ -27,7 +26,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $age
  * @property string $sex
  * @property string $pronouns
- * @property CharacterStatus $status_id
  * @property bool|int $is_personality_visible
  * @property bool|int $is_appearance_pinned
  * @property bool|int $is_personality_pinned
@@ -62,7 +60,6 @@ class Character extends MiscModel
         'sex',
         'pronouns',
         'is_private',
-        'status_id',
         'is_personality_visible',
         'is_appearance_pinned',
         'is_personality_pinned',
@@ -76,7 +73,6 @@ class Character extends MiscModel
         'age',
         'sex',
         'pronouns',
-        'status_id',
         'locations',
     ];
 
@@ -85,11 +81,6 @@ class Character extends MiscModel
         'type',
         'sex',
         'pronouns',
-        'status_id',
-    ];
-
-    public $casts = [
-        'status_id' => CharacterStatus::class,
     ];
 
     /**
@@ -123,7 +114,6 @@ class Character extends MiscModel
      */
     protected array $explicitFilters = [
         'sex',
-        'status_id',
     ];
 
     /**
@@ -413,22 +403,6 @@ class Character extends MiscModel
     }
 
     /**
-     * Row classes for entities
-     */
-    public function rowClasses(): string
-    {
-        $classes = parent::rowClasses();
-        if ($this->isDead()) {
-            return $classes . ' character-dead';
-        }
-        if ($this->isMissing()) {
-            return $classes . ' character-missing';
-        }
-
-        return $classes;
-    }
-
-    /**
      * Define the fields unique to this model that can be used on filters
      *
      * @return string[]
@@ -444,7 +418,6 @@ class Character extends MiscModel
             'organisations',
             'races',
             'families',
-            'status_id',
             'member_id',
             'race_id',
             'family_id',
@@ -473,32 +446,16 @@ class Character extends MiscModel
         return $columns;
     }
 
-    /**
-     * Determine if the character is dead
-     */
-    public function isDead(): bool
-    {
-        return $this->status_id === CharacterStatus::dead;
-    }
-
-    /**
-     * Determine if the character is missing
-     */
-    public function isMissing(): bool
-    {
-        return $this->status_id === CharacterStatus::missing;
-    }
-
     public function scopeFilteredCharacters(Builder $query): Builder
     {
         // @phpstan-ignore-next-line
         return $query
-            ->select([$this->getTable() . '.id', 'title', 'status_id', $this->getTable() . '.is_private'])
+            ->select([$this->getTable() . '.id', 'title', $this->getTable() . '.is_private'])
             ->sort(request()->only(['o', 'k']), ['entities.name' => 'asc'])
             ->with([
                 'characterRaces',
                 'characterFamilies',
-                'entity', 'entity.tags', 'entity.tags.entity', 'entity.image', 'entity.locations'])
+                'entity', 'entity.tags', 'entity.tags.entity', 'entity.image', 'entity.locations', 'entity.status'])
             ->has('entity');
     }
 }

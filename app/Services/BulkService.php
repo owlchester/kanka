@@ -285,6 +285,18 @@ class BulkService
             unset($filledFields['entity_type_id']);
         }
 
+        // Handle status_id (entity-level field, "0" means remove)
+        $unsetStatus = false;
+        $newStatusId = null;
+        if (Arr::has($filledFields, 'status_id')) {
+            if (Arr::get($filledFields, 'status_id') === 'remove') {
+                $unsetStatus = true;
+            } else {
+                $newStatusId = $filledFields['status_id'];
+            }
+            unset($filledFields['status_id']);
+        }
+
         if (! isset($this->entityType)) {
             $mirrorOptions = [];
             $mirrorOptions['unmirror'] = (bool) Arr::get($fields, 'unmirror', '0');
@@ -347,6 +359,12 @@ class BulkService
             // Sync parent_id if provided, preventing self-referencing
             if (isset($entityFields['parent_id']) && intval($entityFields['parent_id']) != $entity->id) {
                 $entity->parent_id = $entityFields['parent_id'];
+            }
+
+            if ($newStatusId !== null) {
+                $entity->status_id = $newStatusId;
+            } elseif ($unsetStatus) {
+                $entity->status_id = null;
             }
 
             if ($this->entityType->hasEntity()) {

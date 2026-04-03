@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Enums\QuestStatus;
 use App\Facades\Limit;
 use App\Models\Entity;
 use App\Rules\Nested;
@@ -10,7 +9,6 @@ use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
 use App\Traits\ResolvesNewForeignEntities;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Enum;
 
 class StoreQuest extends FormRequest
 {
@@ -40,7 +38,7 @@ class StoreQuest extends FormRequest
             'name' => 'required|max:191',
             'entry' => 'nullable|string',
             'type' => 'nullable|string|max:191',
-            'status_id' => ['nullable', new Enum(QuestStatus::class)],
+            'status_id' => ['nullable', 'exists:category_statuses,id'],
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
             'entity_image_uuid' => 'nullable|exists:images,id',

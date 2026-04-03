@@ -21,10 +21,8 @@
                     @endif
                     {!! $entity->name !!}
                 </a>
-                @if ($entity->isCharacter() && $entity->character->isDead())
-                    <x-icon class="fa-regular fa-skull" tooltip :title="__('characters.hints.is_dead')" />
-                @elseif ($entity->isCharacter() && $entity->character->isMissing())
-                    <x-icon class="fa-regular fa-question" tooltip :title="__('characters.hints.is_missing')" />
+                @if ($entity->status?->icon)
+                    <x-icon class="{{ $entity->status->icon() }}" tooltip :title="$entity->status->setRelation('entityType', $entity->entityType)->name()" />
                 @endif
             </div>
 

@@ -2,8 +2,6 @@
 
 namespace App\Datagrids\Filters;
 
-use App\Models\AttributeTemplate;
-
 class AttributeTemplateFilter extends DatagridFilter
 {
     /**

@@ -24,9 +24,6 @@ class PermissionService
     use RoleAware;
     use UserAware;
 
-    /** @var int */
-    private $type;
-
     protected int $action;
 
     /**

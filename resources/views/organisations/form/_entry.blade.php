@@ -17,12 +17,7 @@
     </x-forms.field>
 @endif
 
-    <x-forms.field field="defunct" :label="__('organisations.fields.is_defunct')">
-        <input type="hidden" name="is_defunct" value="0" />
-        <x-checkbox :text="__('organisations.hints.is_defunct')">
-            <input type="checkbox" name="is_defunct" value="1" @if (old('is_defunct', $source->child->is_defunct ?? $model->is_defunct ?? false)) checked="checked" @endif />
-        </x-checkbox>
-    </x-forms.field>
+    @include('cruds.fields.status')
 
     @include('cruds.fields.tags')
     @include('cruds.fields.image')
