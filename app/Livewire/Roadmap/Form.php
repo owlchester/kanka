@@ -6,6 +6,7 @@ use App\Enums\FeatureStatus;
 use App\Models\Feature;
 use App\Models\FeatureFile;
 use App\Models\FeatureVote;
+use Livewire\Attributes\Url;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -23,6 +24,9 @@ class Form extends Component
     #[Validate('required|min:5')]
     public string $description = '';
 
+    #[Url]
+    public string $from = '';
+
     public bool $success = false;
 
     public int $iteration = 0;
@@ -39,6 +43,9 @@ class Form extends Component
         $feat->name = $this->title;
         $feat->description = $this->description;
         $feat->status_id = FeatureStatus::Draft;
+        if (! empty($this->from)) {
+            $feat->meta = ['from' => $this->from];
+        }
         $feat->save();
 
         if (auth()->user()->can('vote', $feat)) {
