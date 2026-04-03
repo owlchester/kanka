@@ -226,6 +226,7 @@ class PreviewService
         }
 
         $status->setRelation('entityType', $this->entity->entityType);
+
         return [
             'icon' => $status->icon(),
             'tooltip' => $status->name(),
