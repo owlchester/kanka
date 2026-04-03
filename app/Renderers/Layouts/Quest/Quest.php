@@ -40,12 +40,8 @@ class Quest extends Layout
                 'key' => 'status',
                 'label' => __('quests.fields.status'),
                 'render' => function (\App\Models\Quest $model) {
-                    if ($model->isOngoing()) {
-                        return '<i class="fa-regular fa-hourglass" data-title="' . __('quests.status.ongoing') . '" aria-hidden="true"></i>';
-                    } elseif ($model->isCompleted()) {
-                        return '<i class="fa-regular fa-check-circle" data-title="' . __('quests.status.completed') . '" aria-hidden="true"></i>';
-                    } elseif ($model->isAbandoned()) {
-                        return '<i class="fa-regular fa-ban" data-title="' . __('quests.status.abandoned') . '" aria-hidden="true"></i>';
+                    if ($model->entity->status) {
+                        return '<i class="' . $model->entity->status->icon() . '" data-title="' . $model->entity->status->setRelation('entityType', $model->entity->type)->name() . '" aria-hidden="true"></i>';
                     }
 
                     return '';
