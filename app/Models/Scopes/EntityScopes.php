@@ -288,7 +288,15 @@ trait EntityScopes
                     );
                 }
             } elseif (in_array($name, ['created_by', 'updated_by'])) {
-                $query->where('entities.' . $name, (int) $values);
+                $option = Arr::get($filters, $name . '_option');
+                if ($option === 'exclude') {
+                    $query->where(function ($sub) use ($name, $values) {
+                        $sub->where('entities.' . $name, '!=', (int) $values)
+                            ->orWhereNull('entities.' . $name);
+                    });
+                } else {
+                    $query->where('entities.' . $name, (int) $values);
+                }
             } elseif ($name === 'creators') {
                 // Handled after the loop (like tags) so that creators_option works even with an empty array
                 continue;
@@ -368,10 +376,67 @@ trait EntityScopes
                     } else {
                         $query->whereExists(fn ($q) => $q->select(DB::raw(1))->from('entity_locations')->whereColumn('entity_locations.entity_id', 'entities.id')->whereIn('entity_locations.location_id', $ids));
                     }
+                } elseif ($name === 'location_id') {
+                    if ($option === 'exclude') {
+                        $query->where(function ($sub) use ($values) {
+                            $sub->where('child_filter.location_id', '!=', (int) $values)
+                                ->orWhereNull('child_filter.location_id');
+                        });
+                    } else {
+                        $query->where('child_filter.location_id', (int) $values);
+                    }
+                } elseif ($name === 'member_id') {
+                    $memberTable = $entityType?->id == config('entities.ids.family')
+                        ? ['table' => 'character_family', 'fk' => 'family_id']
+                        : ['table' => 'organisation_member', 'fk' => 'organisation_id'];
+                    if ($option === 'exclude') {
+                        $query->whereRaw('(select count(*) from `' . $memberTable['table'] . '` where `' . $memberTable['table'] . '`.`' . $memberTable['fk'] . '` = `child_filter`.`id` and `' . $memberTable['table'] . '`.`character_id` = ' . (int) $values . ') = 0');
+                    } else {
+                        $query->whereExists(fn ($q) => $q->selectRaw(1)->from($memberTable['table'])->whereColumn($memberTable['table'] . '.' . $memberTable['fk'], 'child_filter.id')->where($memberTable['table'] . '.character_id', (int) $values));
+                    }
                 } else {
                     $query->where('child_filter.' . $name, $values);
                 }
             }
+        }
+
+        foreach (['created_by', 'updated_by'] as $field) {
+            if (Arr::get($filters, $field . '_option') === 'none') {
+                $query->whereNull('entities.' . $field);
+            }
+        }
+
+        $noneJoinTables = [
+            'races' => ['table' => 'character_race', 'fk' => 'character_id', 'ref' => 'entities.entity_id'],
+            'families' => ['table' => 'character_family', 'fk' => 'character_id', 'ref' => 'entities.entity_id'],
+            'organisations' => ['table' => 'organisation_member', 'fk' => 'character_id', 'ref' => 'entities.entity_id'],
+            'locations' => ['table' => 'entity_locations', 'fk' => 'entity_id', 'ref' => 'entities.id'],
+        ];
+        foreach ($noneJoinTables as $field => $join) {
+            if (Arr::get($filters, $field . '_option') === 'none') {
+                $query->whereNotExists(
+                    fn ($q) => $q->selectRaw(1)->from($join['table'])->whereColumn($join['table'] . '.' . $join['fk'], $join['ref'])
+                );
+            }
+        }
+
+        if (Arr::get($filters, 'member_id_option') === 'none') {
+            $memberTable = $entityType?->id == config('entities.ids.family')
+                ? ['table' => 'character_family', 'fk' => 'family_id']
+                : ['table' => 'organisation_member', 'fk' => 'organisation_id'];
+            $query->whereNotExists(
+                fn ($q) => $q->selectRaw(1)->from($memberTable['table'])->whereColumn($memberTable['table'] . '.' . $memberTable['fk'], 'entities.entity_id')
+            );
+        }
+
+        if (Arr::get($filters, 'location_id_option') === 'none' && $entityType?->isStandard()) {
+            $childTable = $entityType->getClass()->getTable();
+            $query->whereExists(
+                fn ($q) => $q->selectRaw(1)
+                    ->from($childTable)
+                    ->whereColumn($childTable . '.id', 'entities.entity_id')
+                    ->whereNull($childTable . '.location_id')
+            );
         }
 
         if (Arr::hasAny($filters, ['tags', 'tags_option'])) {
