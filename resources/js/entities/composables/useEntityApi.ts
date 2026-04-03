@@ -42,6 +42,9 @@ export function useEntityApi(options: EntityApiOptions) {
 
     const currentApiUrl = (): string => {
         const apiUrl = new URL(options.api, window.location.origin)
+        // Use only browser URL params — do not carry over any params baked into options.api
+        // (e.g. parent_id from a bookmarked URL), so back-navigation correctly clears parent_id.
+        apiUrl.search = ''
         const browserParams = new URLSearchParams(window.location.search)
         browserParams.forEach((value, key) => {
             apiUrl.searchParams.set(key, value)
