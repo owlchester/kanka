@@ -12,6 +12,7 @@ class CustomEntityFilter extends DatagridFilter
         $this
             ->add('name')
             ->add('type')
+            ->parent($this->entityType->id)
             ->location()
             ->isPrivate()
             ->template()

@@ -2,8 +2,6 @@
 
 namespace App\Datagrids\Filters;
 
-use App\Models\Race;
-
 class RaceFilter extends DatagridFilter
 {
     /**
@@ -14,14 +12,7 @@ class RaceFilter extends DatagridFilter
         $this
             ->add('name')
             ->add('type')
-            ->add([
-                'field' => 'race_id',
-                'label' => __('crud.fields.parent'),
-                'type' => 'select2',
-                'route' => route('search-list', [$this->campaign, config('entities.ids.race')]),
-                'placeholder' => __('crud.placeholders.search'),
-                'model' => Race::class,
-            ])
+            ->parent(config('entities.ids.race'))
             ->locations()
             ->add('is_extinct')
             ->isPrivate()

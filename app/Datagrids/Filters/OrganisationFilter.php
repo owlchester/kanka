@@ -2,9 +2,6 @@
 
 namespace App\Datagrids\Filters;
 
-use App\Facades\Module;
-use App\Models\Organisation;
-
 class OrganisationFilter extends DatagridFilter
 {
     /**
@@ -12,19 +9,11 @@ class OrganisationFilter extends DatagridFilter
      */
     public function build()
     {
-        $name = Module::singular(config('entities.ids.timeline'));
         $this
             ->add('name')
             ->add('type')
             ->locations()
-            ->add([
-                'field' => 'organisation_id',
-                'label' => __('crud.fields.parent'),
-                'type' => 'select2',
-                'route' => route('search-list', [$this->campaign, config('entities.ids.organisation')]),
-                'placeholder' => __('crud.placeholders.search'),
-                'model' => Organisation::class,
-            ])
+            ->parent(config('entities.ids.organisation'))
             ->character('member_id')
             ->add('is_defunct')
             ->isPrivate()

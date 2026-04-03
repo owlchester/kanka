@@ -4,6 +4,7 @@ namespace App\Datagrids\Filters;
 
 use App\Facades\Module;
 use App\Models\Character;
+use App\Models\Entity;
 use App\Models\Family;
 use App\Models\Journal;
 use App\Models\Location;
@@ -11,6 +12,7 @@ use App\Models\Organisation;
 use App\Models\Race;
 use App\Models\Tag;
 use App\Traits\CampaignAware;
+use App\Traits\EntityTypeAware;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -22,6 +24,7 @@ use Illuminate\Support\Facades\Auth;
 abstract class DatagridFilter
 {
     use CampaignAware;
+    use EntityTypeAware;
 
     /** @var array Filters to be rendered */
     protected array $filters = [];
@@ -250,6 +253,23 @@ abstract class DatagridFilter
     protected function hasImage(): self
     {
         $this->filters[] = 'has_image';
+
+        return $this;
+    }
+
+    /**
+     * Add the entity parent filter as a select2 for the given entity type
+     */
+    protected function parent(int $entityTypeId): self
+    {
+        $this->filters[] = [
+            'field' => 'parent_id',
+            'label' => __('crud.fields.parent'),
+            'type' => 'select2',
+            'route' => route('search-list', [$this->campaign, $entityTypeId, 'entity' => true]),
+            'placeholder' => __('crud.placeholders.search'),
+            'model' => Entity::class,
+        ];
 
         return $this;
     }

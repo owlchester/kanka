@@ -13,14 +13,7 @@ class AttributeTemplateFilter extends DatagridFilter
     {
         $this
             ->add('name')
-            ->add([
-                'field' => 'attribute_template_id',
-                'label' => __('crud.fields.parent'),
-                'type' => 'select2',
-                'route' => route('search-list', [$this->campaign, config('entities.ids.attribute_template')]),
-                'placeholder' => __('crud.placeholders.search'),
-                'model' => AttributeTemplate::class,
-            ])
+            ->parent(config('entities.ids.attribute_template'))
             ->add('is_enabled')
             ->isPrivate()
             ->template()
