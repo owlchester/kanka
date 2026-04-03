@@ -16,7 +16,7 @@
             $statusOptions[''] = '';
         }
         foreach ($categoryStatuses as $catStatus) {
-            $statusOptions[$catStatus->id] = __('entities/statuses.' . $statusEntityType->code . '.' . $catStatus->key);
+            $statusOptions[$catStatus->id] = $catStatus->setRelation('entityType', $statusEntityType)->name();
         }
         $selectedStatus = $isBulk ? '' : old('status_id', $source->status_id ?? $entity->status_id ?? ($hasDefault ? $categoryStatuses->firstWhere('is_default', true)->id : ''));
     @endphp

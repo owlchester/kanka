@@ -199,7 +199,9 @@ class ExploreResource extends JsonResource
         // Status (lives on entity, not child)
         if ($this->hasColumn('status')) {
             $status = $entity->status;
-            $status->setRelation('entityType', $entity->entityType);
+            if ($status) {
+                $status->setRelation('entityType', $entity->entityType);
+            }
             $data['status'] = ($status && $status->icon) ? [
                 'icon' => $status->icon(),
                 'tooltip' => $status->name(),

@@ -8,7 +8,7 @@
     <option value=""></option>
     @foreach ($categoryStatuses as $catStatus)
         <option value="{{ $catStatus->id }}" @if ((string) $catStatus->id === $currentValue) selected="selected" @endif>
-            {{ __('entities/statuses.' . $entityType->code . '.' . $catStatus->key) }}
+            {{ $catStatus->setRelation('entityType', $entityType)->name() }}
         </option>
     @endforeach
 </select>
