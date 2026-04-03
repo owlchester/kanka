@@ -7,7 +7,7 @@ class NoteBulk extends Bulk
     protected array $fields = [
         'name',
         'type',
-        'note_id',
+        'parent_id',
         'tags',
         'private_choice',
         'entity_image',

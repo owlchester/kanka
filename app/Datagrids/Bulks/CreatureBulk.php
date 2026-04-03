@@ -7,7 +7,7 @@ class CreatureBulk extends Bulk
     protected array $fields = [
         'name',
         'type',
-        'creature_id',
+        'parent_id',
         'locations',
         'tags',
         'private_choice',

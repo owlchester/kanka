@@ -8,7 +8,7 @@ class LocationBulk extends Bulk
         'name',
         'title',
         'type',
-        'location_id',
+        'parent_id',
         'tags',
         'private_choice',
         'entity_image',
