@@ -36,8 +36,8 @@ class CampaignSearchService
         foreach ($members as $member) {
             $result[] = [
                 'id' => $member->user->id,
-                'name' => $member->user->name,
-                'avatar' => $member->user->hasAvatar() ? $member->user->getAvatarUrl() : null,
+                'text' => $member->user->name,
+                'image' => $member->user->hasAvatar() ? $member->user->getAvatarUrl() : null,
             ];
         }
 
