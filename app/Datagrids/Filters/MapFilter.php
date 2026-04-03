@@ -14,14 +14,7 @@ class MapFilter extends DatagridFilter
         $this
             ->add('name')
             ->add('type')
-            ->add([
-                'field' => 'map_id',
-                'label' => __('crud.fields.parent'),
-                'type' => 'select2',
-                'route' => route('search-list', [$this->campaign, config('entities.ids.map')]),
-                'placeholder' => __('crud.placeholders.parent'),
-                'model' => Map::class,
-            ])
+            ->parent(config('entities.ids.map'))
             ->location()
             ->isPrivate()
             ->template()

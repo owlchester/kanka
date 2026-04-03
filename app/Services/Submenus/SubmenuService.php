@@ -151,8 +151,9 @@ class SubmenuService
                 $object->user($this->user);
             }
 
-            // @phpstan-ignore-next-line
-            $this->items += $object->entity($this->entity)->campaign($this->campaign)->extra();
+            foreach ($object->entity($this->entity)->campaign($this->campaign)->extra() as $section => $sectionItems) {
+                $this->items[$section] = array_merge($this->items[$section] ?? [], $sectionItems);
+            }
         } catch (\Exception $e) {
             // Some modules like convos have no submenu
         }
@@ -164,8 +165,9 @@ class SubmenuService
     {
         /** @var CustomSubmenu $service */
         $service = app()->make(CustomSubmenu::class);
-        // @phpstan-ignore-next-line
-        $this->items += $service->entity($this->entity)->campaign($this->campaign)->extra();
+        foreach ($service->entity($this->entity)->campaign($this->campaign)->extra() as $section => $sectionItems) {
+            $this->items[$section] = array_merge($this->items[$section] ?? [], $sectionItems);
+        }
 
         return $this;
     }

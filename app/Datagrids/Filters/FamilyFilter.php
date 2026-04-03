@@ -2,8 +2,6 @@
 
 namespace App\Datagrids\Filters;
 
-use App\Models\Family;
-
 class FamilyFilter extends DatagridFilter
 {
     /**
@@ -14,14 +12,7 @@ class FamilyFilter extends DatagridFilter
         $this
             ->add('name')
             ->add('type')
-            ->add([
-                'field' => 'family_id',
-                'label' => __('crud.fields.parent'),
-                'type' => 'select2',
-                'route' => route('search-list', [$this->campaign, config('entities.ids.family')]),
-                'placeholder' => __('crud.placeholders.search'),
-                'model' => Family::class,
-            ])
+            ->parent(config('entities.ids.family'))
             ->location()
             ->character('member_id')
             ->add('status_id')

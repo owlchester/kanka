@@ -39,6 +39,9 @@ class FilterService
 
     protected bool $hasRequest = false;
 
+    /** @var array Keys excluded from filter persistence (navigation params) */
+    protected array $ignored = [];
+
     /** @var Model|MiscModel|Location The entity sub model */
     protected Model|MiscModel|Location $model;
 
@@ -54,6 +57,18 @@ class FilterService
     public function options(array $data): self
     {
         $this->data = $data;
+
+        return $this;
+    }
+
+    /**
+     * Mark keys as navigation-only so they are not persisted to the filter session.
+     *
+     * @param  string[]  $keys
+     */
+    public function ignoring(array $keys): self
+    {
+        $this->ignored = $keys;
 
         return $this;
     }
@@ -86,6 +101,7 @@ class FilterService
             'type',
             'is_private',
             'status_id',
+            'parent_id',
             'template',
             'tag_id',
             'tags',
@@ -239,6 +255,9 @@ class FilterService
         }
 
         foreach ($this->data as $key => $value) {
+            if (in_array($key, $this->ignored)) {
+                continue;
+            }
             if (in_array($key, $availableFilters)) {
                 // Update the value we have in the session.
                 // But skip empty arrays (typically when sending `families[]=`
@@ -272,6 +291,9 @@ class FilterService
             ! array_key_exists('page', $this->data)
         ) {
             foreach ($availableFilters as $filter) {
+                if (in_array($filter, $this->ignored)) {
+                    continue;
+                }
                 if (
                     ! isset($this->data[$filter]) &&
                     Str::endsWith($filter, '_id')

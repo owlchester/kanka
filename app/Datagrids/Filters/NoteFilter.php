@@ -14,14 +14,7 @@ class NoteFilter extends DatagridFilter
         $this
             ->add('name')
             ->add('type')
-            ->add([
-                'field' => 'note_id',
-                'label' => __('crud.fields.parent'),
-                'type' => 'select2',
-                'route' => route('search-list', [$this->campaign, config('entities.ids.note')]),
-                'placeholder' => __('crud.placeholders.search'),
-                'model' => Note::class,
-            ])
+            ->parent(config('entities.ids.note'))
             ->isPrivate()
             ->template()
             ->archived()

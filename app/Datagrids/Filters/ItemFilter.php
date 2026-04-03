@@ -18,14 +18,7 @@ class ItemFilter extends DatagridFilter
             ->add('size')
             ->add('weight')
             ->add('is_equipped')
-            ->add([
-                'field' => 'item_id',
-                'label' => __('crud.fields.parent'),
-                'type' => 'select2',
-                'route' => route('search-list', [$this->campaign, config('entities.ids.item')]),
-                'placeholder' => __('crud.placeholders.search'),
-                'model' => Item::class,
-            ])
+            ->parent(config('entities.ids.item'))
             ->location()
             ->character()
             ->isPrivate()

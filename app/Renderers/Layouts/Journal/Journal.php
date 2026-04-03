@@ -35,7 +35,7 @@ class Journal extends Layout
             ],
             'date' => [
                 'key' => 'date',
-                'label' => 'journals.fields.date',
+                'label' => __('journals.fields.date'),
                 'render' => function ($model) {
                     return Blade::renderComponent(
                         new Date(date: $model->date)
@@ -44,7 +44,7 @@ class Journal extends Layout
             ],
             'author' => [
                 'key' => 'author.name',
-                'label' => 'journals.fields.author',
+                'label' => __('journals.fields.author'),
                 'render' => Standard::ENTITYLINK,
                 'with' => 'author',
             ],

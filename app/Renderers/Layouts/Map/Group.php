@@ -17,7 +17,7 @@ class Group extends Layout
         $columns = [
             'name' => [
                 'key' => 'name',
-                'label' => __(__('crud.fields.name')),
+                'label' => __('crud.fields.name'),
                 'render' => function ($model) {
                     return '<a href="' . $model->getLink() . '" data-target="primary-dialog" data-url="' . $model->getLink() . '" data-toggle="dialog" class="text-link">' . $model->name . '</a>';
                 },

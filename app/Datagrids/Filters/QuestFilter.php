@@ -26,14 +26,7 @@ class QuestFilter extends DatagridFilter
                 'model' => Entity::class,
             ])
             ->location()
-            ->add([
-                'field' => 'quest_id',
-                'label' => __('crud.fields.parent'),
-                'type' => 'select2',
-                'route' => route('search-list', [$this->campaign, config('entities.ids.quest')]),
-                'placeholder' => __('crud.placeholders.search'),
-                'model' => Quest::class,
-            ])
+            ->parent(config('entities.ids.quest'))
             ->add([
                 'field' => 'quest_element_id',
                 'label' => __('fields.entry.label'),

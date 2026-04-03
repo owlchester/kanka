@@ -27,10 +27,10 @@ class Layer extends Layout
             ],
             'position' => [
                 'key' => 'position',
-                'label' => 'maps/layers.fields.position',
+                'label' => __('maps/layers.fields.position'),
             ],
             'type' => [
-                'label' => 'maps/layers.fields.type',
+                'label' => __('maps/layers.fields.type'),
                 'render' => function ($model) {
                     return __('maps/layers.short_types.' . $model->typeName());
                 },

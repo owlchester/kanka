@@ -16,14 +16,7 @@ class EventFilter extends DatagridFilter
             ->add('type')
             ->add('date')
             ->locations()
-            ->add([
-                'field' => 'event_id',
-                'label' => __('crud.fields.parent'),
-                'type' => 'select2',
-                'route' => route('search-list', [$this->campaign, config('entities.ids.event')]),
-                'placeholder' => __('crud.placeholders.search'),
-                'model' => Event::class,
-            ])
+            ->parent(config('entities.ids.event'))
             ->isPrivate()
             ->template()
             ->archived()

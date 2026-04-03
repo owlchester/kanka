@@ -23,11 +23,11 @@ class Marker extends Layout
                 },
             ],
             'entity_id' => [
-                'label' => 'fields.description.label',
+                'label' => __('fields.description.label'),
                 'render' => Standard::ENTITYLINK,
             ],
             'groups' => [
-                'label' => 'maps/markers.fields.group',
+                'label' => __('maps/markers.fields.group'),
                 'render' => function ($model) {
                     return $model->group?->name;
                 },
@@ -39,7 +39,7 @@ class Marker extends Layout
                 },
             ],
             'icon' => [
-                'label' => 'maps/markers.fields.icon',
+                'label' => __('maps/markers.fields.icon'),
                 'render' => function ($model) {
                     return $model->datagridMarkerIcon();
                 },

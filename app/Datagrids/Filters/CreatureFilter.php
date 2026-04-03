@@ -2,26 +2,17 @@
 
 namespace App\Datagrids\Filters;
 
-use App\Models\Creature;
-
 class CreatureFilter extends DatagridFilter
 {
     /**
-     * Filters available for races
+     * Filters available for creatures
      */
     public function build()
     {
         $this
             ->add('name')
             ->add('type')
-            ->add([
-                'field' => 'creature_id',
-                'label' => __('crud.fields.parent'),
-                'type' => 'select2',
-                'route' => route('search-list', [$this->campaign, config('entities.ids.creature')]),
-                'placeholder' => __('crud.placeholders.search'),
-                'model' => Creature::class,
-            ])
+            ->parent(config('entities.ids.creature'))
             ->locations()
             ->add('status_id')
             ->isPrivate()

@@ -134,9 +134,11 @@ class IndexController extends Controller
         $this->campaign = $campaign;
         $this->request = $request;
 
-        $this->filterService->request($request)->entityType($entityType)->campaign($campaign)->build(
-            $this->columnDefinitionService->sortableFields($entityType, $campaign)
-        );
+        $filterService = $this->filterService->request($request)->entityType($entityType)->campaign($campaign);
+        if ($request->boolean('children')) {
+            $filterService->ignoring(['parent_id']);
+        }
+        $filterService->build($this->columnDefinitionService->sortableFields($entityType, $campaign));
 
         // Column definitions
         $columns = $this->columnDefinitionService->columns($entityType, $campaign);
