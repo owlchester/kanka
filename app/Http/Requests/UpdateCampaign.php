@@ -28,7 +28,7 @@ class UpdateCampaign extends FormRequest
         $rules = [
             'name' => 'string|min:4',
             'vanity' => ['nullable', 'string', 'min:4', 'max:45', 'unique:campaigns,slug', new Vanity],
-            'entry' => 'nullable|string',
+            'description' => 'nullable|string',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'header_image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'locale' => 'nullable|string',

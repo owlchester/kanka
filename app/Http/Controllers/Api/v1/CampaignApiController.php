@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Requests\StoreCampaign as Request;
 use App\Http\Resources\CampaignResource;
 use App\Models\Campaign;
+use App\Models\CampaignDescription;
 use App\Services\Campaign\CreateService;
 use App\Services\Campaign\DeletionService;
 
@@ -20,7 +21,7 @@ class CampaignApiController extends ApiController
         $campaigns = $request
             ->user()
             ->campaigns()
-            ->with(['members', 'setting', 'roles', 'applications', 'members.user'])
+            ->with(['members', 'setting', 'roles', 'applications', 'members.user', 'description'])
             ->lastSync(request()->get('lastSync'))
             ->paginate();
 
@@ -30,6 +31,7 @@ class CampaignApiController extends ApiController
     public function show(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
+        $campaign->load('description');
         $resource = new CampaignResource($campaign);
 
         return $resource->withMentions();
@@ -52,7 +54,12 @@ class CampaignApiController extends ApiController
         $this->authorize('update', $campaign);
         $campaign->update($request->all());
 
-        return new CampaignResource($campaign);
+        $descriptionData = $request->only(['description', 'excerpt']);
+        if (! empty($descriptionData)) {
+            CampaignDescription::updateOrCreate(['campaign_id' => $campaign->id], $descriptionData);
+        }
+
+        return new CampaignResource($campaign->refresh());
     }
 
     public function destroy(Request $request, Campaign $campaign)

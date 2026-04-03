@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Crud;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateCampaign;
 use App\Models\Campaign;
+use App\Models\CampaignDescription;
 use App\Services\Campaign\GenreService;
 use App\Services\Campaign\SystemService;
 use App\Services\LanguageService;
@@ -96,6 +97,12 @@ class CampaignController extends Controller
         }
 
         $campaign->update($data);
+
+        CampaignDescription::updateOrCreate(
+            ['campaign_id' => $campaign->id],
+            ['description' => $request->post('description'), 'excerpt' => $request->post('excerpt')]
+        );
+
         $this->genreService->campaign($campaign)->save($request->post('genres', []));
         $this->systemService->campaign($campaign)->save($request->post('systems', []));
 

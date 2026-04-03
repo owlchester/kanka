@@ -40,7 +40,7 @@ class CampaignResource extends JsonResource
             'slug' => $campaign->slug,
             'name' => $campaign->name,
             'locale' => $campaign->locale,
-            'entry' => $campaign->entry,
+            'description_raw' => $campaign->description?->description,
             'image' => $campaign->image,
             'image_full' => $campaign->thumbnail(0),
             'image_thumb' => $campaign->thumbnail(),
@@ -71,7 +71,7 @@ class CampaignResource extends JsonResource
         }
 
         if ($this->withMentions) {
-            $data['entry_parsed'] = $campaign->parsedEntry();
+            $data['description'] = $campaign->parsedEntry();
         }
 
         // Hide stuff like sidebar
