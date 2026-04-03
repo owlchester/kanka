@@ -120,7 +120,7 @@
                                 ? 'bg-base-100 text-base-content shadow-xs'
                                 : 'text-neutral-content cursor-pointer hover:text-base-content'
                         "
-                        :title="i18n.nest"
+                        v-tippy="i18n.nest"
                     >
                         <i
                             class="fa-regular fa-layer-group"
@@ -135,7 +135,7 @@
                                 ? 'bg-base-100 text-base-content shadow-xs'
                                 : 'text-neutral-content cursor-pointer hover:text-base-content'
                         "
-                        :title="i18n.flatten"
+                        v-tippy="i18n.flatten"
                     >
                         <i
                             class="fa-regular fa-boxes-stacked"
@@ -163,7 +163,7 @@
                                 ? 'bg-base-100 text-base-content shadow-xs'
                                 : 'text-neutral-content cursor-pointer hover:text-base-content'
                         "
-                        :title="i18n.layout_grid"
+                        v-tippy="i18n.layout_grid"
                     >
                         <i class="fa-regular fa-grid-2" aria-hidden="true"></i>
                     </button>
@@ -178,7 +178,7 @@
                                 ? 'bg-base-100 text-base-content shadow-xs'
                                 : 'text-neutral-content cursor-pointer hover:text-base-content'
                         "
-                        :title="i18n.layout_table"
+                        v-tippy="i18n.layout_table"
                     >
                         <i class="fa-regular fa-list-ul" aria-hidden="true"></i>
                     </button>
