@@ -8,7 +8,8 @@
     $boosted = $campaign->boosted();
 @endphp
 
-<x-grid>
+@php $singularChecked = old('config[singular]', isset($model) ? $model->conf('singular') : false); @endphp
+<x-grid :xdata="'{ singular: ' . ($singularChecked ? 'true' : 'false') . ' }'">
     <x-forms.field field="entity-type" required :label="__('campaigns/categories.tab')">
         <x-forms.select name="entity_type_id" :options="$entityTypes" :selected="$model->entityType->id ?? null" class="w-full recent-entity-type" :extra="['data-animate' => 'reveal', 'data-target' => '.field-recent-filters']" />
     </x-forms.field>
@@ -31,14 +32,14 @@
 
     <x-forms.field field="singular" css="col-span-2" :label="__('dashboard.widgets.recent.singular')">
         <input type="hidden" name="config[singular]" value="0" />
-        <div class="checkbox" data-animate="collapse" data-target="#widget-advanced">
+        <div class="checkbox">
             <x-checkbox :text="__('dashboard.widgets.recent.help')">
-                <input type="checkbox" name="config[singular]" value="1" @if (old('config[singular]', isset($model) ? $model->conf('singular') : false)) checked="checked" @endif />
+                <input type="checkbox" name="config[singular]" value="1" x-model="singular" />
             </x-checkbox>
         </div>
     </x-forms.field>
 
-    <div class="col-span-2 hidden {{ isset($model) && $model->conf('singular') ? 'in' : null }}" id="widget-advanced">
+    <div class="col-span-2" x-show="singular" id="widget-advanced">
         @if($campaign->boosted())
             @include('dashboard.widgets.forms._header_select')
             @include('dashboard.widgets.forms._related')
