@@ -38,13 +38,13 @@ class ExploreResource extends JsonResource
         if ($entity->is_private) {
             $attributes[] = 'private';
         }
-        if ($entity->isCharacter() && $entity->character->isDead()) {
+        if ($entity->isCharacter() && $entity->character?->isDead()) {
             $attributes[] = 'dead';
-        } elseif ($entity->isOrganisation() && $entity->organisation->isDefunct()) {
+        } elseif ($entity->isOrganisation() && $entity->organisation?->isDefunct()) {
             $attributes[] = 'defunct';
-        } elseif ($entity->isCreature() && $entity->creature->isExtinct()) {
+        } elseif ($entity->isCreature() && $entity->creature?->isExtinct()) {
             $attributes[] = 'extinct';
-        } elseif ($entity->isQuest() && $entity->quest->isCompleted()) {
+        } elseif ($entity->isQuest() && $entity->quest?->isCompleted()) {
             $attributes[] = 'completed';
         }
 
