@@ -2,8 +2,6 @@
 
 namespace App\Datagrids\Filters;
 
-use App\Models\Item;
-
 class ItemFilter extends DatagridFilter
 {
     /**
