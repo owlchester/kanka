@@ -2,8 +2,6 @@
 
 namespace App\Datagrids\Filters;
 
-use App\Models\Item;
-
 class ItemFilter extends DatagridFilter
 {
     /**
@@ -14,11 +12,11 @@ class ItemFilter extends DatagridFilter
         $this
             ->add('name')
             ->add('type')
+            ->parent(config('entities.ids.item'))
             ->add('price')
             ->add('size')
             ->add('weight')
             ->add('is_equipped')
-            ->parent(config('entities.ids.item'))
             ->location()
             ->character()
             ->isPrivate()

@@ -2,8 +2,6 @@
 
 namespace App\Datagrids\Filters;
 
-use App\Facades\Module;
-
 class WhiteboardFilter extends DatagridFilter
 {
     /**
@@ -11,14 +9,10 @@ class WhiteboardFilter extends DatagridFilter
      */
     public function build()
     {
-        $name = Module::singular(config('entities.ids.whiteboard'));
-        $placeholder = __('crud.placeholders.whiteboard');
-        if (! empty($name)) {
-            $placeholder = __('crud.placeholders.fallback', ['module' => $name]);
-        }
         $this
             ->add('name')
             ->add('type')
+            ->parent(config('entities.ids.whiteboard'))
             ->isPrivate()
             ->template()
             ->hasImage()

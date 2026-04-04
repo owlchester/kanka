@@ -2,8 +2,6 @@
 
 namespace App\Datagrids\Filters;
 
-use App\Models\Event;
-
 class EventFilter extends DatagridFilter
 {
     /**
@@ -14,9 +12,9 @@ class EventFilter extends DatagridFilter
         $this
             ->add('name')
             ->add('type')
+            ->parent(config('entities.ids.event'))
             ->add('date')
             ->locations()
-            ->parent(config('entities.ids.event'))
             ->isPrivate()
             ->template()
             ->archived()
