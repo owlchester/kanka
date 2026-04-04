@@ -31,6 +31,7 @@
                         :i18n="i18n"
                         :features="features"
                         :show-expand-column="nested && entityType?.is_nested"
+                        :on-toggle-child="onToggleChild"
                         @start-selecting="(id: number) => $emit('startSelecting', id)"
                     />
                     <!-- Ad row -->
@@ -63,6 +64,7 @@ const props = defineProps<{
     isOrdering: (field: string) => boolean
     orderByIcon: (field: string) => string
     adContent?: string
+    onToggleChild?: (id: number) => void
 }>()
 
 defineEmits<{

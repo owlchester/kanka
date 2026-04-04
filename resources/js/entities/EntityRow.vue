@@ -151,13 +151,14 @@
             :depth="depth + 1"
             :max-depth="maxDepth"
             :show-expand-column="showExpandColumn"
+            :on-toggle-child="onToggleChild"
             @start-selecting="emit('startSelecting', $event)"
         />
     </template>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue'
 import tippy from 'tippy.js'
 import { useLongPress } from './composables/useLongPress'
 
@@ -175,6 +176,7 @@ const props = withDefaults(defineProps<{
     depth?: number
     maxDepth?: number
     showExpandColumn: boolean
+    onToggleChild?: (id: number) => void
 }>(), {
     depth: 0,
     maxDepth: 3,
@@ -251,11 +253,23 @@ const entityFieldValue = (key: string) => {
 
 const handleCheckboxChange = () => {
     if (!props.selecting) {
+        if (props.depth > 0) {
+            props.entity.selected = true
+        }
         emit('startSelecting', props.entity.id)
         return
     }
     props.entity.selected = !props.entity.selected
+    if (props.depth > 0) {
+        props.onToggleChild?.(props.entity.id)
+    }
 }
+
+watch(() => props.selecting, (newVal) => {
+    if (!newVal) {
+        children.value.forEach(c => { c.selected = false })
+    }
+})
 
 let suppressNextClick = false
 
@@ -280,6 +294,9 @@ const handleRowClick = (event: MouseEvent) => {
         event.preventDefault()
         event.stopPropagation()
         props.entity.selected = !props.entity.selected
+        if (props.depth > 0) {
+            props.onToggleChild?.(props.entity.id)
+        }
     }
 }
 

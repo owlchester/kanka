@@ -349,6 +349,7 @@
                 :ads="entityApi.ads.value"
                 :is-ordering="orderingComposable.isOrdering"
                 :order-by-icon="orderingComposable.orderByIcon"
+                :on-toggle-child="bulkActions.toggleChildId"
                 @order-by="handleOrderBy"
                 @toggle-all="bulkActions.toggleAll()"
                 @start-selecting="handleStartSelecting"
@@ -809,6 +810,8 @@ const handleStartSelecting = (entityId: number) => {
     const entity = entityApi.entities.value.find((e: any) => e.id === entityId);
     if (entity) {
         entity.selected = true;
+    } else {
+        bulkActions.toggleChildId(entityId);
     }
 };
 

@@ -2,12 +2,14 @@ import { ref, type Ref } from 'vue'
 
 export function useBulkActions(entities: Ref<any[]>) {
     const selecting = ref(false)
+    const childSelectedIds = ref<Set<number>>(new Set())
 
     const toggleSelecting = () => {
         selecting.value = !selecting.value
         entities.value.forEach(e => {
             e.selected = false
         })
+        childSelectedIds.value = new Set()
     }
 
     const allSelected = (): boolean =>
@@ -19,12 +21,24 @@ export function useBulkActions(entities: Ref<any[]>) {
         entities.value.forEach(e => {
             e.selected = shouldSelect
         })
+        if (!shouldSelect) {
+            childSelectedIds.value = new Set()
+        }
+    }
+
+    const toggleChildId = (id: number) => {
+        const ids = new Set(childSelectedIds.value)
+        if (ids.has(id)) {
+            ids.delete(id)
+        } else {
+            ids.add(id)
+        }
+        childSelectedIds.value = ids
     }
 
     const selectedEntityIds = (): number[] => {
-        return entities.value
-            .filter(e => e.selected)
-            .map(e => e.id)
+        const topLevel = entities.value.filter(e => e.selected).map(e => e.id)
+        return [...new Set([...topLevel, ...childSelectedIds.value])]
     }
 
     const bulkDialog = (url: string, actionsBtn?: HTMLElement) => {
@@ -53,6 +67,7 @@ export function useBulkActions(entities: Ref<any[]>) {
         toggleAll,
         allSelected,
         selectedEntityIds,
+        toggleChildId,
         bulkDialog,
         bulkPrint,
     }
