@@ -66,7 +66,7 @@
 @php
 $postLink = null;
 /** @var \App\Models\Entity $logEntity */
-$logEntity = $log->isPost() ? $log->parent->entity : $log->parent;
+$logEntity = $log->isPost() ? $log->parent?->entity : $log->parent;
 if (!$logEntity || $logEntity->trashed()) {
 $entityLink = '<a href="' . route('recovery', $campaign) . '" class="text-link">' . ($logEntity ? $logEntity->name : __('history.unknown.entity')) . '</a>';
 } else {
@@ -79,11 +79,11 @@ $entityLink = \Illuminate\Support\Facades\Blade::renderComponent(
                                 'user' => $log->userLink(),
                                 'entity' => $entityLink,
                             ]) !!}
-                            @if ($log->isPost()) -
-                                @if ($log->parent->trashed() || $logEntity->trashed())
+                            @if ($log->isPost() && $log->parent) -
+                                @if ($log->parent->trashed() || $logEntity?->trashed())
                                     {!! $log->parent->name !!}
                                 @else
-                                <a href="{{ route('entities.show', [$campaign, $logEntity, '#post-' . $log->parent->id]) }}"  class="text-link">
+                                <a href="{{ route('entities.show', [$campaign, $logEntity, '#post-' . $log->parent?->id]) }}"  class="text-link">
                                     {!! $log->parent->name !!}
                                 </a>
                                 @endif

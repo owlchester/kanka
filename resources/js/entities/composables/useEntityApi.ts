@@ -47,7 +47,7 @@ export function useEntityApi(options: EntityApiOptions) {
         apiUrl.search = ''
         const browserParams = new URLSearchParams(window.location.search)
         browserParams.forEach((value, key) => {
-            apiUrl.searchParams.set(key, value)
+            apiUrl.searchParams.append(key, value)
         })
         return apiUrl.toString()
     }

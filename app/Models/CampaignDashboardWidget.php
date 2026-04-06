@@ -285,6 +285,7 @@ class CampaignDashboardWidget extends Model
             'entities.type_id',
             'entities.entity_id',
             'entities.image_path',
+            'entities.created_by',
             'entities.updated_by',
             'entities.updated_at',
             'entities.image_uuid',

@@ -31,12 +31,10 @@ class HistoryController extends Controller
                     });
             })->orWhere(function ($query) use ($campaign) {
                 $query->where('parent_type', Post::class)
-                    ->whereIn('parent_id', function ($subquery) use ($campaign) {
-                        $subquery->select('posts.id')
-                            ->from('posts')
-                            ->join('entities', 'entities.id', '=', 'posts.entity_id')
-                            ->where('entities.campaign_id', $campaign->id);
-                    });
+                    ->whereIn('parent_id', Post::has('entity')
+                        ->join('entities', 'entities.id', '=', 'posts.entity_id')
+                        ->where('entities.campaign_id', $campaign->id)
+                        ->select('posts.id'));
             });
         })
             ->with([

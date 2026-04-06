@@ -4,11 +4,7 @@ namespace App\Models\Concerns;
 
 use App\Enums\EntityAssetType;
 use App\Enums\FilterOption;
-use App\Models\Character;
-use App\Models\Family;
-use App\Models\Location;
-use App\Models\Organisation;
-use App\Models\Race;
+use App\Models\Entity;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -532,14 +528,13 @@ trait HasFilters
         }
 
         if ($this->filterOption('children')) {
-            $ids = [];
-            $parents = Race::whereIn('id', $raceIds)->with('descendants')->get();
-            foreach ($parents as $parent) {
-                $childIds = $parent->descendants->pluck('id')->toArray();
-                array_push($childIds, $parent->id);
-                $ids = $childIds + $ids;
-            }
-            $value = $ids;
+            $value = Entity::whereIn('entity_id', $raceIds)
+                ->where('type_id', config('entities.ids.race'))
+                ->with('descendants')
+                ->get()
+                ->flatMap(fn ($e) => [$e->entity_id, ...$e->descendants->pluck('entity_id')->toArray()])
+                ->unique()
+                ->toArray();
         }
 
         $values = collect($value)->map(fn ($v) => (int) $v)->toArray(); // Ensure values are integers
@@ -559,13 +554,13 @@ trait HasFilters
             return;
         }
         if ($this->filterOption('children')) {
-            /** @var ?Location $location */
-            $location = Location::find($value);
-            if (empty($location)) {
-                return;
-            }
-            $locationIds = $location->descendants->pluck('id')->toArray();
-            array_unshift($locationIds, $location->id);
+            $locationIds = Entity::where('entity_id', $value)
+                ->where('type_id', config('entities.ids.location'))
+                ->with('descendants')
+                ->get()
+                ->flatMap(fn ($e) => [$e->entity_id, ...$e->descendants->pluck('entity_id')->toArray()])
+                ->unique()
+                ->toArray();
             $query->whereIn($this->getTable() . '.location_id', $locationIds)->distinct();
 
             return;
@@ -604,14 +599,13 @@ trait HasFilters
         }
 
         if ($this->filterOption('children')) {
-            $ids = [];
-            $parents = Location::whereIn('id', $locationIds)->with('descendants')->get();
-            foreach ($parents as $parent) {
-                $childIds = $parent->descendants->pluck('id')->toArray();
-                array_push($childIds, $parent->id);
-                $ids = $childIds + $ids;
-            }
-            $locationIds = $ids;
+            $locationIds = Entity::whereIn('entity_id', $locationIds)
+                ->where('type_id', config('entities.ids.location'))
+                ->with('descendants')
+                ->get()
+                ->flatMap(fn ($e) => [$e->entity_id, ...$e->descendants->pluck('entity_id')->toArray()])
+                ->unique()
+                ->toArray();
         }
 
         $query
@@ -648,14 +642,13 @@ trait HasFilters
         }
 
         if ($this->filterOption('children')) {
-            $ids = [];
-            $parents = Organisation::whereIn('id', $orgIds)->with('descendants')->get();
-            foreach ($parents as $parent) {
-                $childIds = $parent->descendants->pluck('id')->toArray();
-                array_push($childIds, $parent->id);
-                $ids = $childIds + $ids;
-            }
-            $value = $ids;
+            $value = Entity::whereIn('entity_id', $orgIds)
+                ->where('type_id', config('entities.ids.organisation'))
+                ->with('descendants')
+                ->get()
+                ->flatMap(fn ($e) => [$e->entity_id, ...$e->descendants->pluck('entity_id')->toArray()])
+                ->unique()
+                ->toArray();
         }
 
         $values = collect($value)->map(fn ($v) => (int) $v)->toArray(); // Ensure values are integers
@@ -694,14 +687,13 @@ trait HasFilters
         }
 
         if ($this->filterOption('children')) {
-            $ids = [];
-            $parents = Family::whereIn('id', $familyIds)->with('descendants')->get();
-            foreach ($parents as $parent) {
-                $childIds = $parent->descendants->pluck('id')->toArray();
-                array_push($childIds, $parent->id);
-                $ids = $childIds + $ids;
-            }
-            $value = $ids;
+            $value = Entity::whereIn('entity_id', $familyIds)
+                ->where('type_id', config('entities.ids.family'))
+                ->with('descendants')
+                ->get()
+                ->flatMap(fn ($e) => [$e->entity_id, ...$e->descendants->pluck('entity_id')->toArray()])
+                ->unique()
+                ->toArray();
         }
 
         $values = collect($value)->map(fn ($v) => (int) $v)->toArray(); // Ensure values are integers
@@ -727,13 +719,13 @@ trait HasFilters
 
             return;
         } elseif ($this->filterOption('children')) {
-            /** @var Race|null $race */
-            $race = Race::find($value);
-            if (! empty($race)) {
-                $raceIds = $race->descendants->pluck('id')->toArray();
-                array_push($raceIds, $race->id);
-                $ids = $raceIds;
-            }
+            $ids = Entity::where('entity_id', $value)
+                ->where('type_id', config('entities.ids.race'))
+                ->with('descendants')
+                ->get()
+                ->flatMap(fn ($e) => [$e->entity_id, ...$e->descendants->pluck('entity_id')->toArray()])
+                ->unique()
+                ->toArray();
         }
         $query
             ->select($this->getTable() . '.*')
@@ -760,13 +752,13 @@ trait HasFilters
 
             return;
         } elseif ($this->filterOption('children')) {
-            /** @var Family|null $family */
-            $family = Family::find($value);
-            if (! empty($family)) {
-                $familyIds = $family->descendants->pluck('id')->toArray();
-                array_push($familyIds, $family->id);
-                $ids = $familyIds;
-            }
+            $ids = Entity::where('entity_id', $value)
+                ->where('type_id', config('entities.ids.family'))
+                ->with('descendants')
+                ->get()
+                ->flatMap(fn ($e) => [$e->entity_id, ...$e->descendants->pluck('entity_id')->toArray()])
+                ->unique()
+                ->toArray();
         }
         $query
             ->select($this->getTable() . '.*')

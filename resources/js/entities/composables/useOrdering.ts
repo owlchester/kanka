@@ -30,6 +30,9 @@ export function useOrdering(options: OrderingOptions) {
         const url = new URL(currentApiUrl())
         const currentUrl = new URL(window.location.href)
 
+        url.searchParams.delete('reset-filter')
+        currentUrl.searchParams.delete('reset-filter')
+
         if (isOrderingAscending(sortField)) {
             // ASC → DESC
             url.searchParams.set('order', sortField)

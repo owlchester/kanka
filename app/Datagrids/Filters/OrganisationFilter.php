@@ -12,8 +12,8 @@ class OrganisationFilter extends DatagridFilter
         $this
             ->add('name')
             ->add('type')
-            ->locations()
             ->parent(config('entities.ids.organisation'))
+            ->locations()
             ->character('member_id')
             ->add('status_id')
             ->isPrivate()

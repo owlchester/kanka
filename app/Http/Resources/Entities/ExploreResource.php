@@ -38,6 +38,7 @@ class ExploreResource extends JsonResource
         if ($entity->is_private) {
             $attributes[] = 'private';
         }
+
         if ($entity->status) {
             $attributes[] = $entity->status->key;
         }

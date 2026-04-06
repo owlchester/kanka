@@ -7,7 +7,7 @@ class FamilyBulk extends Bulk
     protected array $fields = [
         'name',
         'type',
-        'family_id',
+        'parent_id',
         'location_id',
         'status_id',
         'tags',
