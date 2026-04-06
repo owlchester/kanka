@@ -191,6 +191,7 @@ class IndexController extends Controller
             ))
             ->search($this->filterService->search())
             ->order($this->filterService->order(), $entityType)
+            ->when($entityType->isStandard(), fn ($q) => $q->whereHas(Str::camel($entityType->code)))
             ->distinct();
 
         $parent = null;

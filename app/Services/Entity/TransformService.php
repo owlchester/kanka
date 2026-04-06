@@ -309,6 +309,7 @@ class TransformService
 
             // Force delete the old entity to avoid it creating weird issues in the db by being soft deleted.
             $this->child->forceDelete();
+            unset($this->child);
         }
 
         return $this;

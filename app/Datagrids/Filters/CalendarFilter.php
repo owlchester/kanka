@@ -12,6 +12,7 @@ class CalendarFilter extends DatagridFilter
         $this
             ->add('name')
             ->add('type')
+            ->parent(config('entities.ids.calendar'))
             ->isPrivate()
             ->template()
             ->archived()

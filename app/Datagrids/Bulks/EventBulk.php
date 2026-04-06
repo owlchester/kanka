@@ -7,8 +7,8 @@ class EventBulk extends Bulk
     protected array $fields = [
         'name',
         'type',
-        'event_id',
-        'location_id',
+        'parent_id',
+        'entity_locations',
         'tags',
         'private_choice',
         'entity_image',
