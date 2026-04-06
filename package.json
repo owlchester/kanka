@@ -14,7 +14,7 @@
         "postcss": "^8.5.1",
         "tailwindcss": "^4.1",
         "tinymce": "^4.9.11",
-        "vite": "^7.0.7",
+        "vite": "^7.3.2",
         "vite-plugin-static-copy": "^3.2.0",
         "vue": "^3.3"
     },
