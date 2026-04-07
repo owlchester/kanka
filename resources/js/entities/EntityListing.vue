@@ -324,8 +324,15 @@
 
         <!-- Content area -->
         <div class="flex gap-1 items-start">
+            <div
+                v-if="entityApi.apiError.value"
+                class="flex flex-col gap-2 items-center justify-center w-full py-12 text-center text-neutral-content"
+            >
+                <i class="fa-regular fa-triangle-exclamation text-2xl" aria-hidden="true"></i>
+                <p v-html="i18n.loadError || 'Something went wrong loading this list. Please try refreshing the page.'"></p>
+            </div>
             <EntityGrid
-                v-if="layoutComposable.isGrid()"
+                v-else-if="layoutComposable.isGrid()"
                 :entities="entityApi.entities.value"
                 :parent="entityApi.parent.value"
                 :selecting="bulkActions.selecting.value"
@@ -384,7 +391,7 @@
         </div>
         <!-- Empty state -->
         <div
-            v-if="entityApi.entities.value.length === 0 && emptyState"
+            v-if="entityApi.entities.value.length === 0 && emptyState && !entityApi.apiError.value"
             class="flex flex-col gap-4 items-center justify-center mx-auto text-center"
         >
             <h2 v-html="emptyState.title"></h2>
@@ -418,7 +425,7 @@
             </div>
         </div>
         <p
-            v-else-if="entityApi.entities.value.length === 0"
+            v-else-if="entityApi.entities.value.length === 0 && !entityApi.apiError.value"
             class="help-text italic"
             v-html="i18n.noResults"
         ></p>
@@ -874,9 +881,13 @@ const initAllDropdowns = () => {
 // Lifecycle
 onMounted(() => {
     entityApi.loadInitial().then((response: any) => {
+        if (!response) {
+            loading.value = false;
+            return;
+        }
         // Import state from API response
-        filters.value = response.filters.count;
-        filterUrls.value = response.filters.urls;
+        filters.value = response.filters?.count ?? 0;
+        filterUrls.value = response.filters?.urls ?? {};
         i18n.value = response.i18n;
         entityApi.parent.value = response.parent;
         templates.value = response.templates;

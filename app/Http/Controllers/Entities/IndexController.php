@@ -166,6 +166,7 @@ class IndexController extends Controller
 
         $nested = $this->isNested();
         $layout = $this->layoutMode();
+        $perPage = $this->perPageValue();
 
         $with = $relations;
         // Eager load child model with withCount for count columns (e.g. organisation.members)
@@ -212,20 +213,27 @@ class IndexController extends Controller
             $base->whereNull('entities.parent_id');
         }
 
+        $loadError = false;
+        $models = null;
         $unfilteredCount = 0;
-        if ($this->filterService->hasFilters()) {
-            $unfilteredCount = $base->count();
-            $base = $base->filter($this->filterService->filters(), $entityType);
-        } else {
-            $base = $base->whereNull('entities.archived_at');
-        }
-        $perPage = $this->perPageValue();
-        $models = $base->orderBy('entities.name')->paginate($perPage);
 
-        // All children share the same entity type — set it without an extra DB query
-        $models->each(function (Entity $entity) use ($entityType): void {
-            $entity->children->each(fn (Entity $child) => $child->setRelation('entityType', $entityType));
-        });
+        try {
+            if ($this->filterService->hasFilters()) {
+                $unfilteredCount = $base->count();
+                $base = $base->filter($this->filterService->filters(), $entityType);
+            } else {
+                $base = $base->whereNull('entities.archived_at');
+            }
+            $models = $base->orderBy('entities.name')->paginate($perPage);
+
+            // All children share the same entity type — set it without an extra DB query
+            $models->each(function (Entity $entity) use ($entityType): void {
+                $entity->children->each(fn (Entity $child) => $child->setRelation('entityType', $entityType));
+            });
+        } catch (\Throwable $e) {
+            report($e);
+            $loadError = true;
+        }
 
         $i18n = [
             'fields' => [
@@ -269,8 +277,9 @@ class IndexController extends Controller
         $bookmarkable = $this->filterService->activeFiltersCount() > 0 && auth()->check() && auth()->user()->can('create', Bookmark::class) && ! $request->has('bookmark');
 
         return response()->json([
+            'error' => $loadError,
             'parent' => $parent ? new ExploreResource($parent) : null,
-            'entities' => ExploreResource::collection($models)->response()->getData(true),
+            'entities' => $models ? ExploreResource::collection($models)->response()->getData(true) : null,
             'nested' => $nested,
             'i18n' => $i18n,
             'bookmarkable' => $bookmarkable,
