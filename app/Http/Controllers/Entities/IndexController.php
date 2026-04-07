@@ -235,6 +235,14 @@ class IndexController extends Controller
             $loadError = true;
         }
 
+        // Children requests only need the entity list — skip the heavy metadata
+        if ($request->boolean('children')) {
+            return response()->json([
+                'error' => $loadError,
+                'entities' => $models ? ExploreResource::collection($models)->response()->getData(true) : null,
+            ]);
+        }
+
         $i18n = [
             'fields' => [
                 'name' => __('crud.fields.name'),
@@ -272,6 +280,7 @@ class IndexController extends Controller
             'relations' => __('entries/tabs.relations'),
             'inventory' => __('crud.tabs.inventory'),
             'edit' => __('crud.edit'),
+            'loadMore' => __('entities/story.actions.load_more'),
         ];
 
         $bookmarkable = $this->filterService->activeFiltersCount() > 0 && auth()->check() && auth()->user()->can('create', Bookmark::class) && ! $request->has('bookmark');
