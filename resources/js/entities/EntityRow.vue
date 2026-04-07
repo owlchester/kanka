@@ -1,7 +1,7 @@
 <template>
     <tr :data-id="entity.id" v-bind="dataAttributes"
         @pointerdown="lpStart" @pointerup="lpCancel" @pointermove="lpMove" @pointercancel="lpCancel"
-        @contextmenu.prevent @click.capture="handleRowClick">
+        @contextmenu="handleContextMenu" @click.capture="handleRowClick">
         <!-- Checkbox -->
         <td class="w-8" :class="selecting ? '' : 'hidden sm:table-cell'">
             <input
@@ -272,13 +272,25 @@ watch(() => props.selecting, (newVal) => {
 })
 
 let suppressNextClick = false
+let lastPointerType = 'mouse'
 
-const { start: lpStart, cancel: lpCancel, move: lpMove } = useLongPress(() => {
+const handleContextMenu = (e: MouseEvent) => {
+    if (lastPointerType !== 'mouse') {
+        e.preventDefault()
+    }
+}
+
+const { start: lpStartInner, cancel: lpCancel, move: lpMove } = useLongPress(() => {
     if (!props.selecting) {
         suppressNextClick = true
         emit('startSelecting', props.entity.id)
     }
 })
+
+const lpStart = (e: PointerEvent) => {
+    lastPointerType = e.pointerType
+    lpStartInner(e)
+}
 
 const handleRowClick = (event: MouseEvent) => {
     if (suppressNextClick) {
