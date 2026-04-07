@@ -154,6 +154,18 @@
             :on-toggle-child="onToggleChild"
             @start-selecting="emit('startSelecting', $event)"
         />
+        <tr v-if="hasMoreChildren">
+            <td :colspan="loadMoreColspan" class="text-center py-1">
+                <button
+                    class="btn2 btn-sm btn-ghost text-xs"
+                    :disabled="loadingMoreChildren"
+                    @click="loadMoreChildren"
+                >
+                    <i v-if="loadingMoreChildren" class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
+                    <span v-html="i18n.loadMore || 'Load more'"></span>
+                </button>
+            </td>
+        </tr>
     </template>
 </template>
 
@@ -185,6 +197,8 @@ const props = withDefaults(defineProps<{
 const expanded = ref(false)
 const children = ref<any[]>([])
 const loadingChildren = ref(false)
+const loadingMoreChildren = ref(false)
+const childrenMeta = ref<{ current_page: number; last_page: number } | null>(null)
 
 const actionsBtnRef = ref<HTMLElement | null>(null)
 const actionsMenuRef = ref<HTMLElement | null>(null)
@@ -312,6 +326,19 @@ const handleRowClick = (event: MouseEvent) => {
     }
 }
 
+const hasMoreChildren = computed(() => {
+    return childrenMeta.value !== null && childrenMeta.value.current_page < childrenMeta.value.last_page
+})
+
+const loadMoreColspan = computed(() => {
+    let count = props.visibleColumns.length + 1 // +1 for actions column
+    count++ // checkbox column
+    if (props.showExpandColumn) {
+        count++
+    }
+    return count
+})
+
 const toggleExpand = async () => {
     if (expanded.value) {
         expanded.value = false
@@ -326,11 +353,34 @@ const toggleExpand = async () => {
         }
         const data = await response.json()
         children.value = data.entities?.data ?? []
+        childrenMeta.value = data.entities?.meta ?? null
         expanded.value = true
     } catch {
         // Network error — silently fail, user can retry
     } finally {
         loadingChildren.value = false
+    }
+}
+
+const loadMoreChildren = async () => {
+    if (!childrenMeta.value || loadingMoreChildren.value) {
+        return
+    }
+    loadingMoreChildren.value = true
+    try {
+        const url = new URL(props.entity.urls.children_api, window.location.origin)
+        url.searchParams.set('page', String(childrenMeta.value.current_page + 1))
+        const response = await fetch(url.toString())
+        if (!response.ok) {
+            return
+        }
+        const data = await response.json()
+        children.value = [...children.value, ...(data.entities?.data ?? [])]
+        childrenMeta.value = data.entities?.meta ?? null
+    } catch {
+        // Network error — silently fail, user can retry
+    } finally {
+        loadingMoreChildren.value = false
     }
 }
 </script>
