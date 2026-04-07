@@ -61,6 +61,8 @@ class IndexController extends Controller
                     'fix' => '<a href="' . route('campaign.modules', [$campaign, '#' . $entityType->code]) . '" class="text-link">' . __('crud.fix-this-issue') . '</a>',
                 ])
             );
+        } elseif ($entityType->isBookmark()) {
+            return redirect()->route('dashboard', $campaign);
         }
 
         $this->entityType = $entityType;
