@@ -11,11 +11,8 @@ use Illuminate\Database\Query\JoinClause;
 
 class ReorderController extends Controller
 {
-    protected ReorderService $reorderService;
-
-    public function __construct(ReorderService $reorderService)
+    public function __construct(protected ReorderService $reorderService)
     {
-        $this->reorderService = $reorderService;
     }
 
     public function index(Campaign $campaign, Entity $entity)
@@ -28,7 +25,7 @@ class ReorderController extends Controller
                 // entity
                 'ability.entity', 'ability.entity.image', 'ability.entity.attributes',
                 // parent
-                'ability.parent', 'ability.parent.entity',
+                'ability.entity.parent', 'ability.entity.parent',
             ])
             ->join('abilities as a', 'a.id', 'entity_abilities.ability_id')
             ->leftJoin('entities as ae', function (JoinClause $join) {
@@ -45,10 +42,10 @@ class ReorderController extends Controller
             if (empty($ability->ability)) {
                 continue;
             }
-            if (array_key_exists($ability->ability->ability_id, $parents)) {
-                $parents[$ability->ability->ability_id][] = $ability;
+            if (array_key_exists($ability->ability->entity->parent_id, $parents)) {
+                $parents[$ability->ability->entity->parent_id][] = $ability;
             } else {
-                $parents[$ability->ability->ability_id] = [$ability];
+                $parents[$ability->ability->entity->parent_id] = [$ability];
             }
         }
 
