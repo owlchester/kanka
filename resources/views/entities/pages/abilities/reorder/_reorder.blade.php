@@ -8,7 +8,7 @@
                     @if ($key === "")
                         {{ __('entities/abilities.reorder.parentless') }}
                     @else
-                        {{ $parent[0]->ability->parent?->name }}
+                        {!! $parent[0]->ability->entity->parent?->name !!}
                     @endif
                 </div>
                 <div class="children sortable-elements flex flex-col gap-1">
