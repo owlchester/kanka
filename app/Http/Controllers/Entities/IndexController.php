@@ -239,6 +239,7 @@ class IndexController extends Controller
         if ($request->boolean('children')) {
             return response()->json([
                 'error' => $loadError,
+                'parent' => $parent ? new ExploreResource($parent) : null,
                 'entities' => $models ? ExploreResource::collection($models)->response()->getData(true) : null,
             ]);
         }
