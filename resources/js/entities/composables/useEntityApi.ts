@@ -11,6 +11,7 @@ export function useEntityApi(options: EntityApiOptions) {
     const csrf: Ref<string> = ref('')
     const loading = ref(true)
     const paginating = ref(false)
+    const apiError = ref(false)
     const columns: Ref<any[]> = ref([])
     const columnPreferences: Ref<string[]> = ref([])
     const ads: Ref<{ enabled: boolean; frequency: number }> = ref({ enabled: false, frequency: 7 })
@@ -31,8 +32,16 @@ export function useEntityApi(options: EntityApiOptions) {
         return fetch(url)
             .then(response => response.json())
             .then(response => {
+                if (response.error) {
+                    apiError.value = true
+                    return response
+                }
+                apiError.value = false
                 importEntities(response)
                 return response
+            })
+            .catch(() => {
+                apiError.value = true
             })
     }
 
@@ -73,6 +82,7 @@ export function useEntityApi(options: EntityApiOptions) {
         csrf,
         loading,
         paginating,
+        apiError,
         columns,
         columnPreferences,
         ads,
