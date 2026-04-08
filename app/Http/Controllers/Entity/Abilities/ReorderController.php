@@ -11,9 +11,7 @@ use Illuminate\Database\Query\JoinClause;
 
 class ReorderController extends Controller
 {
-    public function __construct(protected ReorderService $reorderService)
-    {
-    }
+    public function __construct(protected ReorderService $reorderService) {}
 
     public function index(Campaign $campaign, Entity $entity)
     {
