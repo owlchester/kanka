@@ -12,12 +12,28 @@ class PaypalExpiringCommand extends Command
 {
     use HasJobLog;
 
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
     protected $signature = 'subscriptions:paypal-expiring';
 
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
     protected $description = 'Alert PayPal subscribers whose subscription expires in 14 days';
 
+    /** @var int Number of alerts sent */
     protected int $count = 0;
 
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
         parent::__construct();
@@ -29,11 +45,11 @@ class PaypalExpiringCommand extends Command
         $log = "Looking for PayPal subscriptions expiring on {$target}";
         $this->info($log);
 
-        User::whereHas('subscriptions', function ($query) use ($target): void {
+        User::whereHas('subscriptions', function (\Illuminate\Database\Eloquent\Builder $query) use ($target): void {
             $query->where('stripe_price', 'like', 'paypal_%')
                 ->whereDate('ends_at', $target);
         })
-            ->chunk(100, function ($users): void {
+            ->chunk(100, function (\Illuminate\Support\Collection $users): void {
                 foreach ($users as $user) {
                     $this->notify($user);
                 }
