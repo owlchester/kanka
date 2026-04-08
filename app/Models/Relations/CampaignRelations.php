@@ -11,6 +11,7 @@ use App\Models\Bookmark;
 use App\Models\Calendar;
 use App\Models\CampaignDashboard;
 use App\Models\CampaignDashboardWidget;
+use App\Models\CampaignDescription;
 use App\Models\CampaignExport;
 use App\Models\CampaignFilter;
 use App\Models\CampaignFlag;
@@ -90,6 +91,7 @@ use Illuminate\Support\Collection;
  * @property Collection|EntityType[] $entityTypes
  * @property Collection|CampaignFlag[] $flags
  * @property ?Spotlight $spotlight
+ * @property ?CampaignDescription $description
  */
 trait CampaignRelations
 {
@@ -538,5 +540,13 @@ trait CampaignRelations
     public function filters(): HasMany
     {
         return $this->hasMany(CampaignFilter::class);
+    }
+
+    /**
+     * @return HasOne<CampaignDescription, $this>
+     */
+    public function description(): HasOne
+    {
+        return $this->hasOne(CampaignDescription::class);
     }
 }

@@ -23,7 +23,7 @@ You can get a list of all the campaigns the user has access to using the followi
             "id": 1,
             "name": "Thaelia",
             "locale": "en",
-            "entry": "\r\n<p>Aenean sit amet vehicula.</p>\r\n",
+            "description_raw": "\r\n<p>Aenean sit amet vehicula.</p>\r\n",
             "image": "{path}",
             "image_full": "{url}",
             "image_thumb": "{url}",
@@ -74,7 +74,7 @@ Getting a single campaign is straightforward. `{id}` is to be replaced with the 
 | :- |   :-   |  :-  |
 | GET | `{{version}}/campaigns/{id}` | Default |
 
-This endpoint also includes the `entry_parsed` property, which transforms `[entity:123]` mentions into `<a href="">` link elements.
+This endpoint also includes the `description` property with `[entity:123]` mentions transformed into `<a href="">` link elements. The raw, unparsed content is available as `description_raw`.
 
 ### Results
 ```json
@@ -83,8 +83,8 @@ This endpoint also includes the `entry_parsed` property, which transforms `[enti
         "id": 1,
         "name": "Thaelia",
         "locale": "fr",
-        "entry": "<p>Aenean sit amet vehicula [entity:10].</p>",
-        "entry_parsed": "<p>Aenean sit amet vehicula <a href=\"...\">Lorem Ipsum</a>.</p>",
+        "description": "<p>Aenean sit amet vehicula <a href=\"...\">Lorem Ipsum</a>.</p>",
+        "description_raw": "<p>Aenean sit amet vehicula [entity:10].</p>",
         "image": "{path}",
         "image_full": "{url}",
         "image_thumb": "{url}",

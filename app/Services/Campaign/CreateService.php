@@ -5,6 +5,7 @@ namespace App\Services\Campaign;
 use App\Enums\UserAction;
 use App\Facades\UserCache;
 use App\Models\Campaign;
+use App\Models\CampaignDescription;
 use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\Models\CampaignRoleUser;
@@ -40,8 +41,8 @@ class CreateService
     public function create(): Campaign
     {
         $data = $this->data ?? $this->request->all();
-        $data['entry'] = Arr::get($data, 'entry');
-        $data['excerpt'] = Arr::get($data, 'excerpt');
+        $entry = Arr::get($data, 'description');
+        $excerpt = Arr::get($data, 'excerpt');
 
         DB::beginTransaction();
         try {
@@ -52,6 +53,7 @@ class CreateService
                 ->notify()
                 ->roles()
                 ->settings()
+                ->description($entry, $excerpt)
                 ->log();
 
             DB::commit();
@@ -143,6 +145,19 @@ class CreateService
             'conversations' => 0,
         ]);
         $setting->save();
+
+        return $this;
+    }
+
+    protected function description(?string $entry, ?string $excerpt): self
+    {
+        if ($entry !== null || $excerpt !== null) {
+            CampaignDescription::create([
+                'campaign_id' => $this->campaign->id,
+                'description' => $entry,
+                'excerpt' => $excerpt,
+            ]);
+        }
 
         return $this;
     }
