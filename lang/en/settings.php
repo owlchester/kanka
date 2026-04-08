@@ -216,6 +216,7 @@ return [
             'stripe'                => 'Your billing information is processed and stored safely through :stripe.',
         ],
         'manage_subscription'   => 'Manage subscription',
+        'paypal_expiring'       => 'Your PayPal subscription expires on :date. Renew now to avoid losing access.',
         'payment_method'        => [
             'actions'       => [
                 'add'               => 'Add',

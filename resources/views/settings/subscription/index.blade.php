@@ -26,6 +26,21 @@
 
         @include('partials.errors')
 
+        @can('renewPaypalSubscription', $user)
+            <x-alert type="warning">
+                <p class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                    <span>
+                        {!! __('settings.subscription.paypal_expiring', [
+                            'date' => '<strong>' . $user->subscription('kanka')->ends_at->isoFormat('MMMM D, Y') . '</strong>',
+                        ]) !!}
+                    </span>
+                    <a href="{{ route('paypal.renew') }}" class="btn2 btn-warning btn-sm whitespace-nowrap">
+                        {{ __('subscriptions/renew.actions.renew') }}
+                    </a>
+                </p>
+            </x-alert>
+        @endcan
+
         @include('settings.subscription._recap')
 
         <h2 class="text-xl m-0">
