@@ -29,16 +29,6 @@ class PaypalExpiringCommand extends Command
     /** @var int Number of alerts sent */
     protected int $count = 0;
 
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function handle(): int
     {
         $target = Carbon::now()->addDays(14)->toDateString();

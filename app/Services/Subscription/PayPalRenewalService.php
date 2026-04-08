@@ -53,9 +53,9 @@ class PayPalRenewalService
 
     public function renew(Tier $tier): void
     {
-        $sub = $this->user->subscriptions()->first();
+        $sub = $this->user->subscriptions()->where('stripe_price', 'like', 'paypal_%')->first();
         $sub->ends_at = $sub->ends_at->addYear();
-        $sub->stripe_price = 'paypal_' . $tier->code;
+        $sub->stripe_price = 'paypal_' . $tier->name;
         $sub->save();
 
         $this->user->pledge = $tier->name;
