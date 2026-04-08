@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Traits\HasJobLog;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Collection;
 
 class PaypalExpiringCommand extends Command
 {
@@ -45,11 +47,11 @@ class PaypalExpiringCommand extends Command
         $log = "Looking for PayPal subscriptions expiring on {$target}";
         $this->info($log);
 
-        User::whereHas('subscriptions', function (\Illuminate\Database\Eloquent\Builder $query) use ($target): void {
+        User::whereHas('subscriptions', function (Builder $query) use ($target): void {
             $query->where('stripe_price', 'like', 'paypal_%')
                 ->whereDate('ends_at', $target);
         })
-            ->chunk(100, function (\Illuminate\Support\Collection $users): void {
+            ->chunk(100, function (Collection $users): void {
                 foreach ($users as $user) {
                     $this->notify($user);
                 }
