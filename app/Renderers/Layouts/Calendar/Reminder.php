@@ -39,7 +39,14 @@ class Reminder extends Layout
             'date' => [
                 'key' => 'date',
                 'label' => __('events.fields.date'),
-                'render' => 'readableDate()',
+                'render' => function ($model) {
+                    $date = $model->readableDate();
+                    if ($model->hasEra()) {
+                        return '<span data-toggle="tooltip" data-title="' . e($model->readableRawDate()) . '">' . $date . '</span>';
+                    }
+
+                    return $date;
+                },
             ],
             'length' => [
                 'key' => 'length',

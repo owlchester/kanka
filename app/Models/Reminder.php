@@ -118,12 +118,23 @@ class Reminder extends Model
     public function readableDate(): string
     {
         if (! isset($this->readableDate)) {
-            // Replace month with real month, and year maybe
             $months = $this->calendar->months();
             $years = $this->calendar->years();
 
             try {
-                if ($this->calendar->format) {
+                // Check if this date falls within an era with date formatting
+                $era = $this->calendar->getEraForDate($this->year, $this->month, $this->day);
+                if ($era) {
+                    $monthName = isset($months[$this->month - 1]) ? $months[$this->month - 1]['name'] : $this->month;
+                    $anchor = isset($era['start_year']) && $era['start_year'] !== '' && $era['start_year'] !== null
+                        ? (int) $era['start_year']
+                        : (int) $era['end_year'];
+                    $relativeYear = abs((int) $this->year - $anchor) + 1;
+                    if (! $this->calendar->hasYearZero() && ((int) $this->year < 0 && $anchor > 0 || (int) $this->year > 0 && $anchor < 0 || $anchor === 0)) {
+                        $relativeYear--;
+                    }
+                    $this->readableDate = $this->day . ' ' . $monthName . ', ' . $relativeYear . ' ' . $era['name'];
+                } elseif ($this->calendar->format) {
                     $this->readableDate = Str::replace(
                         ['d', 's', 'y', 'm', 'M'],
                         [$this->day, $this->calendar->suffix, $years[$this->year] ?? $this->year, $this->month, isset($months[$this->month - 1]) ? $months[$this->month - 1]['name'] : $this->month],
@@ -141,6 +152,49 @@ class Reminder extends Model
         }
 
         return $this->readableDate;
+    }
+
+    /**
+     * Get the date in the standard format, ignoring eras (for tooltips)
+     */
+    public function readableRawDate(): string
+    {
+        $months = $this->calendar->months();
+        $years = $this->calendar->years();
+
+        try {
+            if ($this->calendar->format) {
+                return Str::replace(
+                    ['d', 's', 'y', 'm', 'M'],
+                    [$this->day, $this->calendar->suffix, $years[$this->year] ?? $this->year, $this->month, isset($months[$this->month - 1]) ? $months[$this->month - 1]['name'] : $this->month],
+                    $this->calendar->format
+                );
+            }
+
+            return $this->day . ' ' .
+                (isset($months[$this->month - 1]) ? $months[$this->month - 1]['name'] : $this->month) . ', ' .
+                ($years[$this->year] ?? $this->year) . ' ' .
+                $this->calendar->suffix;
+        } catch (Exception $e) {
+            return $this->date();
+        }
+    }
+
+    /**
+     * Check if this reminder's date falls within an era with date formatting
+     */
+    public function hasEra(): bool
+    {
+        return $this->calendar && $this->calendar->getEraForDate($this->year, $this->month, $this->day) !== null;
+    }
+
+    /**
+     * Get the tooltip title for this reminder's date.
+     * Returns the raw date when an era is active, or the calendar name otherwise.
+     */
+    public function tooltipTitle(): string
+    {
+        return $this->hasEra() ? $this->readableRawDate() : $this->calendar->name;
     }
 
     /**

@@ -27,8 +27,9 @@ class Reminder extends Layout
                 'label' => __('events.fields.date'),
                 'render' => function (Model $reminder) {
                     $params = '?year=' . $reminder->year . '&month=' . $reminder->month;
+                    $tooltip = $reminder->hasEra() ? ' data-toggle="tooltip" data-title="' . e($reminder->readableRawDate()) . '"' : '';
 
-                    return '<a href="' . $reminder->calendar->getLink() . $params . '" class="text-link">' . $reminder->readableDate() . '</a>';
+                    return '<a href="' . $reminder->calendar->getLink() . $params . '" class="text-link"' . $tooltip . '>' . $reminder->readableDate() . '</a>';
                 },
             ],
             'length' => [

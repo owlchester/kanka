@@ -13,3 +13,6 @@
 <div class="tab-pane pane-seasons {{ (request()->get('tab') == 'form-seasons' ? ' active' : '') }}" id="form-seasons">
     @include('calendars.form._seasons')
 </div>
+<div class="tab-pane pane-eras {{ (request()->get('tab') == 'form-eras' ? ' active' : '') }}" id="form-eras">
+    @include('calendars.form._eras')
+</div>

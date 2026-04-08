@@ -3,6 +3,7 @@
 return [
     'actions'       => [
         'add_epoch'         => 'Epoch',
+        'add_era'           => 'Era',
         'add_intercalary'   => 'Add intercalary days',
         'add_month'         => 'Month',
         'add_moon'          => 'Moon',
@@ -76,6 +77,7 @@ return [
         'length_days'       => ':count day|:count days',
         'month'             => 'Month',
         'months'            => 'Months',
+        'eras'              => 'Eras',
         'moons'             => 'Moons',
         'parameters'        => 'Parameters',
         'recurring_until'   => 'Recurring Until Year',
@@ -104,6 +106,7 @@ return [
         'moons'             => 'Adding moons will make them show up in the calendar on every full and new moon. If the full moon period is bigger than 10 days, first and third quarter moons will also be displayed.',
         'parent_calendar'   => 'Giving the calendar a parent calendar will include the reminders and weather effects of the parent calendar.',
         'reset'             => 'Always start the beginning of the month or year on the first week day.',
+        'eras'              => 'Define eras for the calendar with start and end years. Dates within an era will be displayed using the era name and a relative year instead of the standard format.',
         'seasons'           => 'Create seasons for the calendar by providing when each of them start. Kanka will take care of the rest.',
         'show_birthdays'    => 'Show the yearly birthdays of characters that have a birthday reminder on this calendar up to their death date.',
         'skip_year_zero'    => 'By default, the calendar\'s first year is year zero. Enable this option to skip year zero.',
@@ -171,6 +174,17 @@ return [
             'fullmoon'  => 'Full moon every (days)',
             'name'      => 'Moon Name',
             'offset'    => 'First full moon offset',
+        ],
+        'eras'          => [
+            'end'               => 'Era ends',
+            'end_year'          => 'End Year',
+            'end_year_order'    => 'End year must be greater than or equal to start year.',
+            'format_dates'      => 'Format Dates',
+            'name'              => 'Era Name',
+            'name_required'     => 'Era name is required.',
+            'start'             => 'Era begins',
+            'start_year'        => 'Start Year',
+            'year_required'     => 'At least one year field is required.',
         ],
         'seasons'       => [
             'day'   => 'Day start',

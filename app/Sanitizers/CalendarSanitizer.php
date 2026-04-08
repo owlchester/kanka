@@ -17,6 +17,7 @@ class CalendarSanitizer extends MiscSanitizer
             ->cleanWeekNames()
             ->cleanMoons()
             ->cleanSeasons()
+            ->cleanEras()
             ->cleanDate();
 
         // Leap year
@@ -180,6 +181,42 @@ class CalendarSanitizer extends MiscSanitizer
             $seasonCount++;
         }
         $this->data['seasons'] = json_encode($seasons);
+
+        return $this;
+    }
+
+    protected function cleanEras(): self
+    {
+        $eras = [];
+        $eraCount = 0;
+        $eraNames = (array) $this->request->post('era_name', []);
+        $eraStartYears = (array) $this->request->post('era_start_year', []);
+        $eraEndYears = (array) $this->request->post('era_end_year', []);
+
+        foreach ($eraNames as $name) {
+            if (empty($name)) {
+                $eraCount++;
+
+                continue;
+            }
+
+            $startYear = isset($eraStartYears[$eraCount]) && $eraStartYears[$eraCount] !== '' ? (int) $eraStartYears[$eraCount] : null;
+
+            $endYear = isset($eraEndYears[$eraCount]) && $eraEndYears[$eraCount] !== '' ? (int) $eraEndYears[$eraCount] : null;
+
+            // Clear end year if it's before the start year (only when both are set)
+            if ($startYear !== null && $endYear !== null && $endYear < $startYear) {
+                $endYear = null;
+            }
+
+            $eras[] = [
+                'name' => $this->purify($name),
+                'start_year' => $startYear,
+                'end_year' => $endYear,
+            ];
+            $eraCount++;
+        }
+        $this->data['eras'] = json_encode($eras);
 
         return $this;
     }

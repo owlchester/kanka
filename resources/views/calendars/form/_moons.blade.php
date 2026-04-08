@@ -33,16 +33,16 @@ if (!empty($moonNames) && is_array($moonNames)) {
 } elseif (isset($source)) {
     $moons = $source->child->moons();
 }?>
-<div class="flex flex-col gap-2 calendar-moons sortable-elements" data-handle=".sortable-handler">
-    <div class="grid gap-2 grid-cols-2 md:grid-cols-4 md:gap-4">
-        <div class="">{{ __('calendars.parameters.moon.name') }}</div>
-        <div class="">{{ __('calendars.parameters.moon.fullmoon') }}</div>
-        <div class="">{{ __('crud.fields.colour') }}</div>
-        <div class="">
-            {{ __('calendars.parameters.moon.offset') }}
-            <x-helpers.tooltip :title="__('calendars.helpers.moon_offset')" />
-        </div>
+<div class="grid gap-2 grid-cols-2 md:grid-cols-4 md:gap-4">
+    <div class="">{{ __('calendars.parameters.moon.name') }}</div>
+    <div class="">{{ __('calendars.parameters.moon.fullmoon') }}</div>
+    <div class="">{{ __('crud.fields.colour') }}</div>
+    <div class="">
+        {{ __('calendars.parameters.moon.offset') }}
+        <x-helpers.tooltip :title="__('calendars.helpers.moon_offset')" />
     </div>
+</div>
+<div class="flex flex-col gap-2 calendar-moons sortable-elements" data-handle=".sortable-handler">
     @foreach ($moons as $fullmoon)
         <div class="parent-delete-row">
             <x-grid>

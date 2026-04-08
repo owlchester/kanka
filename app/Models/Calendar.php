@@ -24,6 +24,7 @@ use Illuminate\Support\Str;
  * @property string $week_names
  * @property string $month_aliases
  * @property string $seasons
+ * @property string $eras
  * @property string $moons
  * @property string $reset
  * @property string $format
@@ -57,6 +58,7 @@ class Calendar extends MiscModel
         'suffix',
         'skip_year_zero',
         'epochs',
+        'eras',
         'month_aliases',
         'week_names',
         'reset',
@@ -89,6 +91,8 @@ class Calendar extends MiscModel
     protected array $loadedYears;
 
     protected array $loadedSeasons;
+
+    protected array $loadedEras;
 
     protected array $loadedMoons;
 
@@ -166,6 +170,42 @@ class Calendar extends MiscModel
     }
 
     /**
+     * Get the calendar's eras
+     */
+    public function eras(): array
+    {
+        if (! isset($this->loadedEras)) {
+            $this->loadedEras = json_decode(empty($this->eras) ? '[]' : strip_tags($this->eras), true);
+        }
+
+        return $this->loadedEras;
+    }
+
+    /**
+     * Find the active era for a given date
+     */
+    public function getEraForDate(int|string $year, int $month, int $day): ?array
+    {
+        $year = (int) $year;
+        foreach ($this->eras() as $era) {
+            $hasStartYear = isset($era['start_year']) && $era['start_year'] !== '' && $era['start_year'] !== null;
+            $hasEndYear = isset($era['end_year']) && $era['end_year'] !== '' && $era['end_year'] !== null;
+
+            if ($hasStartYear && $year < (int) $era['start_year']) {
+                continue;
+            }
+
+            if ($hasEndYear && $year > (int) $era['end_year']) {
+                continue;
+            }
+
+            return $era;
+        }
+
+        return null;
+    }
+
+    /**
      * Get the calendar's weeks
      */
     public function weeks(): array
@@ -234,7 +274,38 @@ class Calendar extends MiscModel
     }
 
     /**
-     * Get the calendar's nice date
+     * Find eras that start or end on a given date
+     *
+     * @return array{start: ?array, end: ?array}|null
+     */
+    public function getEraBoundary(int|string $year, int $month, int $day): ?array
+    {
+        if ($month !== 1 || $day !== 1) {
+            return null;
+        }
+
+        $year = (int) $year;
+        $result = null;
+
+        foreach ($this->eras() as $era) {
+            if (isset($era['start_year']) && $era['start_year'] !== '' && $era['start_year'] !== null
+                && (int) $era['start_year'] === $year) {
+                $result ??= [];
+                $result['start'] = $era;
+            }
+
+            if (isset($era['end_year']) && $era['end_year'] !== '' && $era['end_year'] !== null
+                && (int) $era['end_year'] === $year) {
+                $result ??= [];
+                $result['end'] = $era;
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * Get the calendar's nice date, formatted with era if applicable
      */
     public function niceDate(?string $date = null): string
     {
@@ -247,20 +318,83 @@ class Calendar extends MiscModel
 
         [$year, $month, $day] = $this->dateArray($date);
 
-        // Replace month with real month, and year maybe
         $months = $this->months();
         $years = $this->years();
 
         try {
-            $return = $day . ' ' .
-                (isset($months[$month - 1]) ? $months[$month - 1]['name'] : $month) . ', ' .
+            $monthName = isset($months[$month - 1]) ? $months[$month - 1]['name'] : $month;
+
+            $era = $this->getEraForDate($year, $month, $day);
+            if ($era) {
+                $anchor = isset($era['start_year']) && $era['start_year'] !== '' && $era['start_year'] !== null
+                    ? (int) $era['start_year']
+                    : (int) $era['end_year'];
+                $relativeYear = abs((int) $year - $anchor) + 1;
+                if (! $this->hasYearZero() && ((int) $year < 0 && $anchor > 0 || (int) $year > 0 && $anchor < 0 || $anchor === 0)) {
+                    $relativeYear--;
+                }
+
+                return $day . ' ' . $monthName . ', ' . $relativeYear . ' ' . $era['name'];
+            }
+
+            return $day . ' ' . $monthName . ', ' .
                 ($years[$year] ?? $year) . ' ' .
                 $this->suffix;
-
-            return $return;
         } catch (Exception $e) { // @phpstan-ignore-line
             return $this->date;
         }
+    }
+
+    /**
+     * Get the calendar's date in the standard format, ignoring eras
+     */
+    public function niceRawDate(?string $date = null): string
+    {
+        if (empty($date)) {
+            $date = $this->date;
+        }
+        if (empty($date)) {
+            return '';
+        }
+
+        [$year, $month, $day] = $this->dateArray($date);
+
+        $months = $this->months();
+        $years = $this->years();
+
+        try {
+            if ($this->format) {
+                return Str::replace(
+                    ['d', 's', 'y', 'm', 'M'],
+                    [$day, $this->suffix, $years[$year] ?? $year, $month, isset($months[$month - 1]) ? $months[$month - 1]['name'] : $month],
+                    $this->format
+                );
+            }
+
+            return $day . ' ' .
+                (isset($months[$month - 1]) ? $months[$month - 1]['name'] : $month) . ', ' .
+                ($years[$year] ?? $year) . ' ' .
+                $this->suffix;
+        } catch (Exception $e) { // @phpstan-ignore-line
+            return $this->date;
+        }
+    }
+
+    /**
+     * Check if the given date has an active era with date formatting
+     */
+    public function dateHasEra(?string $date = null): bool
+    {
+        if (empty($date)) {
+            $date = $this->date;
+        }
+        if (empty($date)) {
+            return false;
+        }
+
+        [$year, $month, $day] = $this->dateArray($date);
+
+        return $this->getEraForDate($year, $month, $day) !== null;
     }
 
     /**

@@ -88,6 +88,20 @@ The list of returned entities can be filtered. The available filters are [availa
                   "day": 1
               }
             ],
+            "eras": [
+              {
+                  "name": "The Age of Fire",
+                  "start_year": 1,
+                  "end_year": 299,
+                  "format_dates": true
+              },
+              {
+                  "name": "The Age of Ice",
+                  "start_year": 300,
+                  "end_year": null,
+                  "format_dates": false
+              }
+            ],
             "moons": [
               {
                   "name": "Zarantyr",
@@ -198,6 +212,20 @@ To get the details of a single calendar, use the following endpoint.
               "day": 1
           }
         ],
+        "eras": [
+          {
+              "name": "The Age of Fire",
+              "start_year": 1,
+              "end_year": 299,
+              "format_dates": true
+          },
+          {
+              "name": "The Age of Ice",
+              "start_year": 300,
+              "end_year": null,
+              "format_dates": false
+          }
+        ],
         "moons": [
           {
               "name": "Zarantyr",
@@ -258,6 +286,9 @@ To create a calendar, use the following endpoint.
 | `season_name` | `array` | Array of season names |
 | `season_month` | `array` | Array of seasons month start |
 | `season_day` | `array` | Array of seasons day start |
+| `era_name` | `array` | Array of era names |
+| `era_start_year` | `array` | Array of era start years (supports negative values and zero) |
+| `era_end_year` | `array` | Array of era end years (nullable for open-ended eras, supports negative values and zero) |
 | `format` | `string` | The rendering format for the calendar dates |
 | `has_leap_year` | `boolean` | Whether the calendar has leap years |
 | `leap_year_amount` | `integer` | The amount of leap days |

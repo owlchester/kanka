@@ -27,12 +27,12 @@
     } elseif (isset($source)) {
         $seasons = $source->child->seasons();
     }?>
+    <x-grid type="3/3">
+        <div class="">{{ __('calendars.parameters.seasons.name') }}</div>
+        <div class="">{{ __('calendars.parameters.seasons.month') }}</div>
+        <div class="">{{ __('calendars.parameters.seasons.day') }}</div>
+    </x-grid>
     <div class="calendar-seasons sortable-elements flex flex-col gap-2" data-handle=".sortable-handler">
-        <x-grid type="3/3">
-            <div class="">{{ __('calendars.parameters.seasons.name') }}</div>
-            <div class="">{{ __('calendars.parameters.seasons.month') }}</div>
-            <div class="">{{ __('calendars.parameters.seasons.day') }}</div>
-        </x-grid>
         @foreach ($seasons as $season)
             <div class="parent-delete-row">
                 <x-grid type="3/3">

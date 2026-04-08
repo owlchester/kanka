@@ -396,6 +396,11 @@ class CalendarRenderer
                     $this->dayData['season'] = $this->seasonService->get($monthday);
                 }
 
+                $eraBoundary = $this->calendar->getEraBoundary($this->getYear(), $this->getMonth(), $day);
+                if ($eraBoundary) {
+                    $this->dayData['era_boundary'] = $eraBoundary;
+                }
+
                 // Add recurring events that span multiple days from the previous call
                 $this->recurringReminders();
                 $this->addMoonReminders($day);
@@ -543,6 +548,11 @@ class CalendarRenderer
                 $monthday = $monthNumber . '-' . $day;
                 if ($this->seasonService->has($monthday)) {
                     $this->dayData['season'] = $this->seasonService->get($monthday);
+                }
+
+                $eraBoundary = $this->calendar->getEraBoundary($this->getYear(), $monthNumber, $day);
+                if ($eraBoundary) {
+                    $this->dayData['era_boundary'] = $eraBoundary;
                 }
                 $data[] = $this->dayData;
 

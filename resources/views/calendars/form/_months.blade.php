@@ -38,15 +38,15 @@
         'standard' => __('calendars.month_types.standard'),
     ];
     ?>
-    <div class="flex flex-col gap-2 calendar-months sortable-elements" data-handle=".sortable-handler">
-        <div class="grid gap-2 grid-cols-2 md:grid-cols-4 md:gap-4">
-            <div class="">{{ __('calendars.parameters.month.name') }}</div>
-            <div class="">{{ __('calendars.parameters.month.length') }}</div>
-            <div class="">{{ __('calendars.parameters.month.alias') }}</div>
-            <div class="">{{ __('calendars.parameters.month.type') }}
-                <x-icon class="question" tooltip title="{{ __('calendars.helpers.month_type') }}" />
-            </div>
+    <div class="grid gap-2 grid-cols-2 md:grid-cols-4 md:gap-4">
+        <div class="">{{ __('calendars.parameters.month.name') }}</div>
+        <div class="">{{ __('calendars.parameters.month.length') }}</div>
+        <div class="">{{ __('calendars.parameters.month.alias') }}</div>
+        <div class="">{{ __('calendars.parameters.month.type') }}
+            <x-icon class="question" tooltip title="{{ __('calendars.helpers.month_type') }}" />
         </div>
+    </div>
+    <div class="flex flex-col gap-2 calendar-months sortable-elements" data-handle=".sortable-handler">
         @foreach ($months as $month)
             <div class="parent-delete-row">
                 <div class="grid gap-2 grid-cols-2 md:grid-cols-4 md:gap-4">
