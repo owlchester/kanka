@@ -386,6 +386,7 @@ trait EntityScopes
                         $query->where('child_filter.location_id', (int) $values);
                     }
                 } elseif ($name === 'member_id') {
+                    // @phpstan-ignore-next-line
                     $memberTable = $entityType?->id == config('entities.ids.family')
                         ? ['table' => 'character_family', 'fk' => 'family_id']
                         : ['table' => 'organisation_member', 'fk' => 'organisation_id'];
