@@ -217,10 +217,12 @@ class BulkService
             }
             $value = Arr::get($fields, $field);
             // If the field is a boolean type is_ or has_ and the value is null, we skip updating it
+            // Also skip colour when empty/null
             if (Str::startsWith($field, ['is_', 'has_']) && $value === null) {
                 // Do nothing
+            } elseif ($field === 'colour' && empty($value)) {
+                // Do nothing
             } else {
-                // We don't skip it for example for the relationship colour
                 $filledFields[$field] = $value;
             }
         }
