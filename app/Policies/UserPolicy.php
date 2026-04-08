@@ -25,7 +25,7 @@ class UserPolicy
         return session()->get('kanka.freeTrial') && ! $user->isSubscriber();
     }
 
-    public function renewPaypalSubscription(User $_authUser, User $user): bool
+    public function renewPaypalSubscription(User $user): bool
     {
         if (! $user->hasPayPal()) {
             return false;
