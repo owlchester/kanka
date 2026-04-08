@@ -36,7 +36,7 @@ class PaypalExpiringMail extends Mailable
         $this->user = $user;
 
         $subscription = $user->subscription('kanka');
-        $this->expiryDate = $subscription->ends_at->isoFormat('MMMM D, Y');
+        $this->expiryDate = $subscription?->ends_at?->isoFormat('MMMM D, Y') ?? '';
         $this->renewUrl = route('paypal.renew');
 
         $this->discord = (bool) $user->discord();
