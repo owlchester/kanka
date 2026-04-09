@@ -5,7 +5,7 @@
 {{ __('emails/subscriptions/upcoming.primary', [
     'brand' => ucfirst($user->pm_type),
     'last' => $user->pm_last_four,
-    'date' => $date->isoFormat('MMMM D, Y')
+    'date' => now()->addDays(15)->isoFormat('MMMM D, Y')
 ]) }}
 
 {{ __('emails/subscriptions/upcoming.notice') }}
