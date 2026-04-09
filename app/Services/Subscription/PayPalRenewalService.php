@@ -63,7 +63,7 @@ class PayPalRenewalService
         $this->user->save();
 
         $this->user->log(UserAction::subPaypalRenew);
-        
+
         PaypalRenewedJob::dispatch($this->user->id);
     }
 }
