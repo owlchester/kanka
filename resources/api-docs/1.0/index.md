@@ -15,7 +15,8 @@
   - [Campaign Styles](/api-docs/{{version}}/campaigns/styles)
   - [Dashboard Widgets](/api-docs/{{version}}/campaigns/dashboard-widgets)
   - [Gallery](/api-docs/{{version}}/campaigns/images)
-  - [Categories](/api-docs/{{version}}/campaigns/modules)
+  - [Categories](/api-docs/{{version}}/campaigns/categories)
+  - [Statuses](/api-docs/{{version}}/campaigns/statuses)
 
 - ## Core Objects
   - [Entities](/api-docs/{{version}}/entities)
