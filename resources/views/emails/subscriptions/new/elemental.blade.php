@@ -14,6 +14,6 @@ Part of being an Elemental means that you get more say in how we shape community
 
 Good to have you among us {{ $user->name }},
 
-_Jay & Jon_
+__Jay & Jon__
 
 </x-mail::message>

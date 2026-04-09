@@ -92,7 +92,7 @@ class PayPalController extends Controller
                 ->first();
 
             return redirect()
-                ->route('settings.subscription', $routeOptions)
+                ->route('settings.subscription.finish', $routeOptions)
                 ->with('success', __('settings.subscription.success.subscribed'))
                 ->with('sub_tracking', $flash)
                 ->with('sub_id', $tierPrice?->id)

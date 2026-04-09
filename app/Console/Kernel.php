@@ -43,7 +43,7 @@ class Kernel extends ConsoleKernel
         $schedule->command(AnonymiseUserLogs::class)->onOneServer()->daily();
         $schedule->command(EndSubscriptions::class)->onOneServer()->dailyAt('00:05')->sentryMonitor();
         $schedule->command(EndFreeTrials::class)->onOneServer()->dailyAt('00:01');
-        $schedule->command(PaypalExpiringCommand::class)->onOneServer()->dailyAt('06:30')->sentryMonitor();
+        $schedule->command(PaypalExpiringCommand::class)->onOneServer()->dailyAt('06:30');
         $schedule->command(RegenerateDiscordToken::class)->onOneServer()->dailyAt('00:15');
         $schedule->command(VisibileEntityCountCommand::class)->onOneServer()->dailyAt('01:00');
         $schedule->command(CleanupTrashed::class)->onOneServer()->dailyAt('01:15');

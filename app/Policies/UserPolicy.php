@@ -36,6 +36,6 @@ class UserPolicy
             return false;
         }
 
-        return $subscription->ends_at->lte(now()->addDays(14));
+        return $subscription->ends_at->lte(now()->addDays(15));
     }
 }

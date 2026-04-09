@@ -26,6 +26,6 @@
 
 {{ __('emails/subscriptions/paypal-expiring.closing') }}
 
-__Jay & Jon_
+__Jay & Jon__
 
 </x-mail::message>

@@ -118,7 +118,7 @@
                     <div class="flex flex-col gap-2">
                         @includeIf('settings.subscription.tiers.benefits._' . $tier->code)
                     </div>
-                    @if (!$tier->isFree() && $tier->isCurrent($user) && $user->subscribed('kanka') && !$hasManual)
+                    @if (!$tier->isFree() && $tier->isCurrent($user) && $user->subscribed('kanka') && !$hasManual && !$user->hasPayPal())
                         <div class="self-bottom">
                             @if ($user->subscription('kanka')?->onGracePeriod())
                                 <a class="btn2 btn-block btn-sm btn-primary " data-toggle="dialog" data-target="subscribe-confirm" data-url="{{ route('settings.subscription.change', [$tier]) }}">
