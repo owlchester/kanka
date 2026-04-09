@@ -1,7 +1,8 @@
 @php
     $fieldName = $fieldName ?? 'entry';
     $contentModel = $source ?? $model ?? null;
-    $content = $contentModel?->{$fieldName} ?? '';
+    $contentFieldName = $contentFieldName ?? $fieldName;
+    $content = $contentModel?->{$contentFieldName} ?? '';
 @endphp
 <div class="tiptap-editor entity-content" data-content="{{ $content }}" data-field-name="{{ $fieldName }}">
     <tiptap
