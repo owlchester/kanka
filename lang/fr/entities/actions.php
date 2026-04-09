@@ -10,7 +10,7 @@ return [
         'success'   => ':name a été archivé.',
         'title'     => 'Archiver',
     ],
-    'convert'           => 'Convertir la catgéorie',
+    'convert'           => 'Convertir la catégorie',
     'copy-campaign'     => 'Copier vers la campagne',
     'json-export'       => 'Export JSON',
     'markdown-export'   => 'Export Markdown',

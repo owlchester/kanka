@@ -2,7 +2,7 @@
 
 return [
     'followers' => [
-        'title' => 'Suiveurs',
+        'title' => 'Abonnés',
     ],
     'member'    => [
         'title' => 'Adhésion',
