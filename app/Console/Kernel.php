@@ -59,7 +59,6 @@ class Kernel extends ConsoleKernel
         $schedule->command(Weekly::class)->onOneServer()->weekly();
 
         // $schedule->command('backup:monitor')->daily()->at('03:00');
-        // $schedule->command(UpcomingYearlyCommand::class)->dailyAt('06:30');
 
     }
 
