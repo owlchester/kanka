@@ -54,6 +54,7 @@ class PayPalRenewalService
 
     public function renew(Tier $tier): void
     {
+        /** @var \Laravel\Cashier\Subscription $sub */
         $sub = $this->user->subscriptions()->where('stripe_price', 'like', 'paypal_%')->first();
         $sub->ends_at = $sub->ends_at->addYear();
         $sub->stripe_price = 'paypal_' . $tier->name;

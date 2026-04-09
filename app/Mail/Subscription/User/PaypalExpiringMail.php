@@ -55,6 +55,7 @@ class PaypalExpiringMail extends Mailable
         $this->premiumCampaignName = $firstCampaign?->campaign?->name;
         $this->premiumCampaignCount = $premiumCampaigns->count();
 
+        /** @var Collection<int, int> $members */
         $members = new Collection;
         $this->plugins = 0;
 

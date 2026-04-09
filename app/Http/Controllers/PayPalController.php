@@ -37,7 +37,7 @@ class PayPalController extends Controller
             ->tier($tier)
             ->process();
 
-        if (isset($response['id']) && $response['id'] != null) {
+        if (isset($response['id'])) {
             foreach ($response['links'] as $links) {
                 if ($links['rel'] == 'approve') {
                     return redirect()->away($links['href']);
