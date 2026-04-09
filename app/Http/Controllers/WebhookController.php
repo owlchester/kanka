@@ -82,6 +82,7 @@ class WebhookController extends CashierController
             return $this->successMethod();
         }
 
+        /** @var User $user */
         $yearlyPlans = array_filter(array_merge(
             config('subscription.owlbear.yearly'),
             config('subscription.wyvern.yearly'),
