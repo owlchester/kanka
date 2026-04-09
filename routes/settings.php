@@ -32,6 +32,7 @@ use App\Http\Controllers\Settings\Subscription\FinishController;
 use App\Http\Controllers\Settings\Subscription\FreeTrialController;
 use App\Http\Controllers\Settings\SubscriptionController;
 use App\Http\Controllers\Settings\TutorialController;
+use App\Http\Controllers\Subscription\PayPal\RenewalController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProfileController::class, 'index'])->name('settings');
@@ -176,6 +177,21 @@ Route::get('paypal/success-transaction', [PayPalController::class, 'successTrans
     ->name('paypal.transaction-success');
 Route::get('paypal/cancel-transaction', [PayPalController::class, 'cancelTransaction'])
     ->name('paypal.cancel-transaction');
+
+/*
+--------------------------------------------------------------------------
+PayPal Renewal
+--------------------------------------------------------------------------
+*/
+
+Route::get('subscription/paypal/renew', [RenewalController::class, 'index'])
+    ->name('paypal.renew');
+Route::post('subscription/paypal/renew/{tier}', [RenewalController::class, 'process'])
+    ->name('paypal.renew-process');
+Route::get('subscription/paypal/renew/success', [RenewalController::class, 'success'])
+    ->name('paypal.renew-success');
+Route::get('subscription/paypal/renew/cancel', [RenewalController::class, 'cancel'])
+    ->name('paypal.renew-cancel');
 
 /*
 --------------------------------------------------------------------------

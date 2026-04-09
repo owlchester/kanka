@@ -26,6 +26,21 @@
 
         @include('partials.errors')
 
+        @can('renewPaypalSubscription', $user)
+            <x-alert type="warning">
+                <p class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                    <span>
+                        {!! __('settings.subscription.paypal_expiring', [
+                            'date' => '<strong>' . $user->subscription('kanka')->ends_at->isoFormat('MMMM D, Y') . '</strong>',
+                        ]) !!}
+                    </span>
+                    <a href="{{ route('paypal.renew') }}" class="btn2 btn-warning btn-sm whitespace-nowrap">
+                        {{ __('subscriptions/renew.actions.renew') }}
+                    </a>
+                </p>
+            </x-alert>
+        @endcan
+
         @include('settings.subscription._recap')
 
         <h2 class="text-xl m-0">
@@ -103,7 +118,7 @@
                     <div class="flex flex-col gap-2">
                         @includeIf('settings.subscription.tiers.benefits._' . $tier->code)
                     </div>
-                    @if (!$tier->isFree() && $tier->isCurrent($user) && $user->subscribed('kanka') && !$hasManual)
+                    @if (!$tier->isFree() && $tier->isCurrent($user) && $user->subscribed('kanka') && !$hasManual && !$user->hasPayPal())
                         <div class="self-bottom">
                             @if ($user->subscription('kanka')?->onGracePeriod())
                                 <a class="btn2 btn-block btn-sm btn-primary " data-toggle="dialog" data-target="subscribe-confirm" data-url="{{ route('settings.subscription.change', [$tier]) }}">

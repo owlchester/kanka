@@ -12,6 +12,6 @@ Unlock premium features
 
 Good to have you among us {{ $user->name }},
 
-_Jay & Jon_
+__Jay & Jon__
 
 </x-mail::message>

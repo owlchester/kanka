@@ -10,6 +10,6 @@ In the meantime, please verify your card details in your [billing information](h
 
 {{ __('emails/subscriptions/upcoming.closing') }}
 
-_Jay & Jon_
+__Jay & Jon__
 
 </x-mail::message>
