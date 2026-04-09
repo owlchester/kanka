@@ -20,10 +20,10 @@ class RenewalController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        if (!$user->can('renewPaypalSubscription', $user)) {
+        if (! $user->can('renewPaypalSubscription', $user)) {
             return redirect()
-            ->route('settings.subscription')
-            ->with('error', __('subscriptions/paypal-renew.errors.permission'));
+                ->route('settings.subscription')
+                ->with('error', __('subscriptions/paypal-renew.errors.permission'));
         }
 
         $tiers = Tier::ordered()->get()->reject(fn (Tier $tier) => $tier->isFree());
@@ -78,7 +78,7 @@ class RenewalController extends Controller
 
             return redirect()
                 ->route('settings.subscription')
-                ->with('success', __('subscriptions.renew.success', ['date' => $user->subscription('kanka')->ends_at->isoFormat('MMMM D, Y')]));
+                ->with('success', __('subscriptions.renew.success', ['date' => auth()->user()->subscription('kanka')->ends_at->isoFormat('MMMM D, Y')]));
         }
 
         Log::error('PayPal renewal capture error', $response);
