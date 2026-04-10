@@ -107,7 +107,7 @@
                 :label="__('characters.fields.is_personality_pinned')"
             >
                 <input type="hidden" name="is_personality_pinned" value="0" />
-                <x-checkbox :text="__('characters.hints.is_personality_pinned')">
+                <x-checkbox :text="__('characters.hints.is_appearance_pinned')">
                     <input type="checkbox" name="is_personality_pinned" value="1" @if (old('is_personality_pinned', $source->child->is_personality_pinned ?? $model->is_personality_pinned ?? true)) checked="checked" @endif/>
                 </x-checkbox>
             </x-forms.field>

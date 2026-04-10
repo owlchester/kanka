@@ -386,7 +386,7 @@ return [
             'member_list'       => 'Member list',
         ],
         'helpers'           => [
-            'entity-history'    => 'Control who can see view edit history for campaign entries.',
+            'entity-history'    => 'Control who can see view edit history for entries.',
             'member-list'       => 'Control who can view the member list.',
             'theme'             => 'Override individual member theme preferences, or let each member use their own preferred theme.',
         ],
