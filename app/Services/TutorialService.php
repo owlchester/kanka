@@ -27,6 +27,8 @@ class TutorialService
         'map_groups',
         'map_layers',
         'dashboard_setup',
+        'tiptap_survey',
+        'timeline'
     ];
 
     /**

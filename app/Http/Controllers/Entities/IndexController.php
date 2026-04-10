@@ -336,7 +336,7 @@ class IndexController extends Controller
             'columns' => $columns,
             'columnPreferences' => $columnPreferences,
             'ads' => [
-                'enabled' => $this->showAds($campaign),
+                'enabled' => false, //$this->showAds($campaign),
                 'frequency' => 7,
             ],
             'preferences' => $preference ? [

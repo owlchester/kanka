@@ -29,7 +29,7 @@ return [
         'running'   => 'Running',
         'scheduled' => 'Scheduled',
     ],
-    'success'   => 'The campaign export has been queued for processing. All members of the :admin role will be notified once the file is ready for downloading.',
+    'success'   => 'The export has been queued for processing. All members of the :admin role will be notified once the file is ready for downloading.',
     'title'     => 'Export',
     'type'      => 'Type',
     'types'     => [

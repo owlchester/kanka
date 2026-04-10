@@ -95,6 +95,7 @@ const change = (variable, value) => {
     //theme['tb-' + variable] = value;
     document.documentElement.style.setProperty('--' + variable, value);
    //document.documentElement.style.setProperty('--tb-' + variable, value);
+    fieldTheme.value = JSON.stringify(theme);
 };
 
 const contrast = (hsl, percentage = 0.8) => {

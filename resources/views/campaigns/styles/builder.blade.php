@@ -78,7 +78,7 @@
                             Main background colour
                         </div>
                         <div class="flex items-center gap-2">
-                            <input type="text" class="picker rounded flex-none h-6 w-6 cursor-pointer border !bg-sidebar" data-toggle="tooltip" data-title="Click me to change the colour" data-target="si" />
+                            <input type="text" class="picker rounded flex-none h-6 w-6 cursor-pointer border bg-sidebar" data-toggle="tooltip" data-title="Click me to change the colour" data-target="si" />
                             Campaign sidebar
                         </div>
                     </div>
