@@ -46,6 +46,6 @@
         <input type="text" name="icon" value="{{ old('icon', $icon) }}" maxlength="60" class="w-full @if (!$campaign->boosted()) form-control @endif" list="module-icon-list" placeholder="{{ $entityType->icon() }}" @if (!$campaign->boosted()) disabled="disabled" @endif />
     </x-forms.field>
 
-    @includeWhen(!$entityType->isBookmark(), 'cruds.fields.image-old', ['model' => $entityType ?? null, 'campaignImage' => true, 'imageLabel' => 'campaigns/modules.fields.image', 'isModule' => true, 'image' => isset($image) ? Img::crop(96, 96)->url($image['path']) : null])
+    @includeWhen(!$entityType->isBookmark() && $campaign->boosted(), 'cruds.fields.image-old', ['model' => $entityType ?? null, 'campaignImage' => true, 'imageLabel' => 'campaigns/modules.fields.image', 'isModule' => true, 'image' => isset($image) ? Img::crop(96, 96)->url($image['path']) : null])
 
 </x-grid>
