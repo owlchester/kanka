@@ -43,6 +43,7 @@ class CreateController extends Controller
             $options = [$campaign];
             if ($tabCopy) {
                 $options['copy'] = $source->id;
+                $options['template'] = true;
             }
 
             return redirect()->route($entityType->pluralCode() . '.create', $options);
