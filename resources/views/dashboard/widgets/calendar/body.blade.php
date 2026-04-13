@@ -41,6 +41,14 @@ $moonService->build(
     $calendar->daysInYear()
 );
 $currentMoons = $moonService->get($calendar->currentDay());
+
+$weekdays = $calendar->weekdays();
+$weekdayCount = count($weekdays);
+$currentWeekdayName = null;
+if ($weekdayCount > 0) {
+    $weekdayIndex = (($totalDays + $calendar->start_offset + $calendar->currentDay() - 1) % $weekdayCount + $weekdayCount) % $weekdayCount;
+    $currentWeekdayName = $weekdays[$weekdayIndex] ?? null;
+}
 ?>
 <div class="flex flex-col gap-2">
 
@@ -74,6 +82,12 @@ $currentMoons = $moonService->get($calendar->currentDay());
         @endif
 
     </div>
+
+    @if ($currentWeekdayName)
+        <div class="text-center text-muted">
+            {{ $currentWeekdayName }}
+        </div>
+    @endif
 
     @if ($weather)
         <div class="col-span-2 text-center">
