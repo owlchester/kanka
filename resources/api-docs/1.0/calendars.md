@@ -254,6 +254,9 @@ To create a calendar, use the following endpoint.
 | `year_number` | `array` | Array of year numbers |
 | `moon_name` | `array` | Array of moon names |
 | `moon_fullmoon` | `array` | Array of when (every how many days) a full moon occurs |
+| `moon_offset` | `array` | Array of days when the first full moon if offset |
+| `moon_colour` | `array` | Array of hex colours of each moon |
+| `moon_id` | `array` | Array of each moon's id |
 | `epoch_name` | `array` | Array of epoch names |
 | `season_name` | `array` | Array of season names |
 | `season_month` | `array` | Array of seasons month start |
