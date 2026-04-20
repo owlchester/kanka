@@ -185,7 +185,7 @@ $sizeOptions = [
             </div>
         @else
         <div class="md:col-span-2 {{ ($model->hasEntry() ? 'hidden' : '') }}">
-            <a href="#" class="map-marker-entry-click">{{ __('maps/markers.actions.entry') }}</a>
+            <a href="#" class="map-marker-entry-click text-link">{{ __('maps/markers.actions.entry') }}</a>
         </div>
         <div class="md:col-span-2 map-marker-entry-entry {{ (!$model->hasEntry() ? 'hidden' : '') }}" style="">
             <x-forms.field field="entry" :label=" __('fields.description.label')">
