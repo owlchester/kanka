@@ -1,7 +1,7 @@
-// Exports the "modern" theme for usage with module loaders
+// Exports the "visualblocks" plugin for usage with module loaders
 // Usage:
 //   CommonJS:
-//     require('tinymce/themes/modern')
+//     require('tinymce/plugins/visualblocks')
 //   ES2015:
-//     import 'tinymce/themes/modern'
-require('./theme.js');
+//     import 'tinymce/plugins/visualblocks'
+require('./plugin.js');
