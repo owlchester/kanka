@@ -30,7 +30,7 @@ class CampaignImageApiController extends ApiController
                 ->where('is_default', false)
                 ->defaultOrder()
                 ->lastSync(request()->get('lastSync'))
-                ->paginate()
+                ->paginate(auth()->user()->isSubscriber() ? 100 : 45)
         );
     }
 

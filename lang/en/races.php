@@ -6,6 +6,7 @@ return [
     ],
     'fields'        => [
         'members'   => 'Members',
+        'is_extinct' => 'Extinct',
     ],
     'hints'         => [
         'is_extinct'    => 'This race is extinct.',

@@ -114,7 +114,12 @@
         overflow: auto;
         max-height: calc(100vh);
         white-space: unset;
+        
+        a {
+            color: hsl(var(--pc)/1);
+        }
     }
+
 
     .search-drawer, nav {
         z-index: 1050;

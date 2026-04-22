@@ -22,7 +22,7 @@ class RandomEntityService
         $entityType = $this->bookmark->random_entity_type != 'any' ? $this->bookmark->random_entity_type : null;
         $entityTypeID = null;
         if (! empty($entityType)) {
-            $entityTypeID = config('entities.ids.' . $entityType);
+            $entityTypeID = (int) $entityType;
         }
 
         /** @var ?Entity $entity */
