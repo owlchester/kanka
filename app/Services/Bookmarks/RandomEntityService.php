@@ -29,8 +29,8 @@ class RandomEntityService
         $entity = Entity::inTags($this->bookmark->tags->pluck('id')->toArray())
             ->inTypes($entityTypeID)
             ->whereNotIn('entities.id', Dashboard::excluding())
-            //->inRandomOrder() Seems like in prod, inRandomOrder() is broken
-            ->orderByRaw('RAND()')
+            ->inRandomOrder()
+            ->remember(-1)
             ->first();
 
         if (empty($entity) || $entity->isMissingChild()) {
