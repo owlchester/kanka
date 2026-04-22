@@ -22,15 +22,14 @@ class RandomEntityService
         $entityType = $this->bookmark->random_entity_type != 'any' ? $this->bookmark->random_entity_type : null;
         $entityTypeID = null;
         if (! empty($entityType)) {
-            $entityTypeID = (int) $entityType;
+            $entityTypeID = config('entities.ids.' . $entityType);
         }
 
         /** @var ?Entity $entity */
         $entity = Entity::inTags($this->bookmark->tags->pluck('id')->toArray())
             ->inTypes($entityTypeID)
             ->whereNotIn('entities.id', Dashboard::excluding())
-            ->inRandomOrder()
-            ->remember(-1)
+            ->orderByRaw('RAND()')
             ->first();
 
         if (empty($entity) || $entity->isMissingChild()) {
