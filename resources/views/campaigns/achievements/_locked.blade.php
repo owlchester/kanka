@@ -63,11 +63,11 @@
                     {{ trans_choice('campaigns/achievements.' . Arr::get($stat, 'history', 'created'), Arr::get($stat, 'amount', 0), [
 'singular' => Arr::get($stat, 'module.singular', 'Forgot singular'),
 'plural' => Arr::get($stat, 'module.plural', 'Forgot plural'),
-'amount' => number_format(Arr::get($stat, 'amount', 0))
+'amount' => \Illuminate\Support\Number::format(Arr::get($stat, 'amount', 0))
 ]) }}
                 </div>
                 <div class="flex-none">
-                    {{  __('campaigns/achievements.goal', ['number' => number_format(Arr::get($stat, 'target', 0))]) }}
+                    {{  __('campaigns/achievements.goal', ['number' => \Illuminate\Support\Number::format(Arr::get($stat, 'target', 0))]) }}
                 </div>
             </div>
         </div>

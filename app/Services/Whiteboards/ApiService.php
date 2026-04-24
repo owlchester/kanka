@@ -13,6 +13,7 @@ use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Number;
 
 class ApiService
 {
@@ -137,7 +138,7 @@ class ApiService
             'cta_action' => __('gallery.cta.action'),
             'cta_helper' => __('gallery.cta.helper', [
                 'premium-campaign' => '<a href="https://kanka.io/premium" class="text-link">' . __('concept.premium-campaign') . '</a>',
-                'size' => number_format(config('limits.gallery.premium') / (1024 * 1024), 2),
+                'size' => Number::format(config('limits.gallery.premium') / (1024 * 1024), 2),
             ]),
             'qq-keyboard-shortcut' => __('crud.keyboard-shortcut', ['code' => '<code>N</code>']),
 

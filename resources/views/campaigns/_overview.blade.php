@@ -79,7 +79,7 @@
         <x-infoBox
             :title="__('campaigns/overview.followers.title')"
             icon="fa-regular fa-users text-neutral-content"
-            :subtitle="trans_choice('campaigns.overview.follower-count', $campaign->follower(), ['amount' => number_format($campaign->follower())])"
+            :subtitle="trans_choice('campaigns.overview.follower-count', $campaign->follower(), ['amount' => \Illuminate\Support\Number::format($campaign->follower())])"
         ></x-infoBox>
     @endif
 </div>

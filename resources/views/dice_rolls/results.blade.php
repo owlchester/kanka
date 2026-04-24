@@ -50,7 +50,7 @@
                                     {!! $model->user->name !!}
                                 </td>
                                 <td>
-                                    {!! number_format($model->results) !!}
+                                    {!! \Illuminate\Support\Number::format($model->results ?? 0) !!}
                                 </td>
                                 <td>
                                     <span title="{{ $model->updated_at }} UTC">

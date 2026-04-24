@@ -42,7 +42,7 @@
                             <div class="price price-yearly flex gap-2 w-full items-end">
                                 <div class="text-2xl">
                                     {{ $user->currencySymbol() }}
-                                    {{ number_format($tier->price($user->currency(), \App\Enums\PricingPeriod::Yearly), 2) }}
+                                    {{ \Illuminate\Support\Number::format($tier->price($user->currency(), \App\Enums\PricingPeriod::Yearly), 2) }}
                                 </div>
                                 <span class="text-sm text-neutral-content ">{{ __('tiers.periods.billed_yearly') }}</span>
                             </div>

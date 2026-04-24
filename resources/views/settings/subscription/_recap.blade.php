@@ -60,9 +60,9 @@ $box = 'rounded-2xl p-2 lg:p-3 bg-box shadow-xs hover:shadow-md flex flex-col it
             <div class="text-xl text-center">
                 @if (!empty($current))
                     @if ($current->isYearly())
-                        {{ __('settings.subscription.plans.cost_yearly', ['amount' => number_format($current->cost, 2), 'currency' => \Illuminate\Support\Str::upper($current->currency)]) }}
+                        {{ __('settings.subscription.plans.cost_yearly', ['amount' => \Illuminate\Support\Number::format($current->cost, 2), 'currency' => \Illuminate\Support\Str::upper($current->currency)]) }}
                     @else
-                        {{ __('settings.subscription.plans.cost_monthly', ['amount' => number_format($current->cost, 2), 'currency' => \Illuminate\Support\Str::upper($current->currency)]) }}
+                        {{ __('settings.subscription.plans.cost_monthly', ['amount' => \Illuminate\Support\Number::format($current->cost, 2), 'currency' => \Illuminate\Support\Str::upper($current->currency)]) }}
                     @endif
                 @else
                     {{ __('front.pricing.tier.free') }}

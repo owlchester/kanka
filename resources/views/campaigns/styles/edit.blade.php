@@ -13,7 +13,7 @@
                 @include('partials.errors')
 
                 <x-alert type="error" id="max-content-error" class="hidden">
-                    {{ __('campaigns/styles.errors.max_content', ['amount' => number_format(\App\Http\Requests\StoreCampaignStyle::MAX)]) }}
+                    {{ __('campaigns/styles.errors.max_content', ['amount' => \Illuminate\Support\Number::format(\App\Http\Requests\StoreCampaignStyle::MAX)]) }}
                 </x-alert>
 
                 @include('campaigns.styles._form')

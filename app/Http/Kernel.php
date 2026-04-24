@@ -55,6 +55,7 @@ class Kernel extends HttpKernel
             SubstituteBindings::class,
             // Middleware\HttpsProtocol::class, // Force https in prod
             Middleware\LocaleChange::class, // Save language changing
+            Middleware\LocalizeDatetime::class,
             Tracking::class,
             Middleware\CheckIfUserBanned::class,
             Middleware\OTP::class,

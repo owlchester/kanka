@@ -11,6 +11,7 @@ use App\Traits\EntityAware;
 use App\Traits\EntityTypeAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Number;
 use Illuminate\Support\Str;
 
 class ApiService
@@ -90,7 +91,7 @@ class ApiService
                 'toggled_privacy' => __('entities/attributes.toasts.bulk_privacy'),
                 'template' => __('entities/attributes.template.load.success'),
                 'max_reached' => __('entities/attributes.errors.too_many_v2', [
-                    'max' => number_format($this->maxFields()),
+                    'max' => Number::format($this->maxFields()),
                 ]),
             ],
             'templates' => [

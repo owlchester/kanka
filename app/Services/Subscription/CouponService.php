@@ -6,6 +6,7 @@ use App\Enums\PricingPeriod;
 use App\Models\Tier;
 use App\Traits\UserAware;
 use Exception;
+use Illuminate\Support\Number;
 use Stripe\PromotionCode;
 use Stripe\Stripe;
 
@@ -88,7 +89,7 @@ class CouponService
         $discount = round($price * ($promo->coupon->percent_off / 100), 2);
         $newPrice = $price - $discount;
 
-        return '<del>' . number_format($price, 2) . '</del> ' . number_format($newPrice, 2);
+        return '<del>' . Number::format($price, 2) . '</del> ' . Number::format($newPrice, 2);
     }
 
     protected function error(mixed $error): array

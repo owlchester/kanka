@@ -10,6 +10,7 @@ use App\Models\TimelineElement;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Number;
 use Meilisearch\Client;
 
 class SetupMeilisearch extends Command
@@ -62,7 +63,7 @@ class SetupMeilisearch extends Command
         foreach ($models as $model) {
             $time = Carbon::now();
             $object = new $model;
-            $this->info('Importing ' . number_format($object->count()) . ' [' . $model . '] at ' . date('H:i:s'));
+            $this->info('Importing ' . Number::format($object->count()) . ' [' . $model . '] at ' . date('H:i:s'));
             $object::makeAllSearchable($this->option('chunk'));
             $this->info('- Done in ' . round($time->diffInMinutes(), 4) . ' min');
             Log::info('Meilisearch', ['model' => $model]);

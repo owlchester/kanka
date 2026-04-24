@@ -17,8 +17,8 @@ if (request()->get('m') == \App\Enums\Descendants::All->value || (!request()->ha
     $datagridOptions['m'] = \App\Enums\Descendants::All;
 }
 $datagridOptions = Datagrid::initOptions($datagridOptions);
-$direct = number_format($model->members()->has('entity')->count());
-$all = number_format($model->allMembers()->count());
+$direct = \Illuminate\Support\Number::format($model->members()->has('entity')->count());
+$all = \Illuminate\Support\Number::format($model->allMembers()->count());
 ?>
 <div class="flex gap-2 items-center justify-between flex-wrap">
     <h3 class="members-title text-xl">

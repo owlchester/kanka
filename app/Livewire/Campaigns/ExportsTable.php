@@ -6,6 +6,7 @@ use App\Models\Campaign;
 use App\Models\CampaignExport;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Number;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -104,7 +105,7 @@ class ExportsTable extends Component
             return '<1 MB';
         }
 
-        return number_format($model->size) . ' MB';
+        return Number::format($model->size) . ' MB';
     }
 
     public function download(CampaignExport $model): string

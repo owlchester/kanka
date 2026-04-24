@@ -4,6 +4,7 @@ namespace App\Renderers\Layouts\Campaign;
 
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
+use Illuminate\Support\Number;
 
 class CampaignRole extends Layout
 {
@@ -36,7 +37,7 @@ class CampaignRole extends Layout
             'users' => [
                 'label' => __('campaigns.roles.fields.users'),
                 'render' => function ($model) {
-                    return number_format($model->users_count);
+                    return Number::format($model->users_count ?? 0);
                 },
             ],
             'type' => [

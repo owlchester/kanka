@@ -20,6 +20,7 @@ use App\Traits\UserAware;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Number;
 use Laravel\Cashier\Exceptions\IncompletePayment;
 use Laravel\Cashier\PaymentMethod;
 use Laravel\Cashier\Subscription;
@@ -280,7 +281,7 @@ class SubscriptionService
     {
         $amount = $this->tierPrice()->cost;
 
-        return number_format($amount, 2);
+        return Number::format($amount, 2);
     }
 
     /**

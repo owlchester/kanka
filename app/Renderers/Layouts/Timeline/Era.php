@@ -4,6 +4,7 @@ namespace App\Renderers\Layouts\Timeline;
 
 use App\Models\TimelineEra;
 use App\Renderers\Layouts\Layout;
+use Illuminate\Support\Number;
 
 class Era extends Layout
 {
@@ -33,10 +34,22 @@ class Era extends Layout
             'start_year' => [
                 'key' => 'start_year',
                 'label' => __('timelines/eras.fields.start_year'),
+                'render' => function (TimelineEra $era) {
+                    if (empty($era->start_year)) {
+                        return '';
+                    }
+                    return Number::format($era->start_year ?? 0);
+                },
             ],
             'end_year' => [
                 'key' => 'end_year',
                 'label' => __('timelines/eras.fields.end_year'),
+                'render' => function (TimelineEra $era) {
+                    if (empty($era->end_year)) {
+                        return '';
+                    }
+                    return Number::format($era->end_year);
+                },
             ],
             'is_collapsed' => [
                 'key' => 'is_collapsed',

@@ -21,8 +21,8 @@ $datagridCall = ['datagridUrl' => route('organisations.members', $datagridOption
 if (!empty($rows)) {
     $datagridCall = [];
 }
-$direct = number_format($model->members()->has('character')->count());
-$all = number_format($model->allMembersCount());
+$direct = \Illuminate\Support\Number::format($model->members()->has('character')->count());
+$all = \Illuminate\Support\Number::format($model->allMembersCount());
 ?>
 <div class="flex gap-2 items-center justify-between flex-wrap">
     <h3 class="members-title text-xl">

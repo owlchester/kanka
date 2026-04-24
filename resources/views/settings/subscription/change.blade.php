@@ -22,7 +22,7 @@
                     You currently have a manual subscription managed by our team. Please contact us at <a href="mailto:{{ config('app.email') }}" class="text-link">{{ config('app.email') }}</a> for assistance.
         @elseif ($user->hasPayPal())
             {!! __('settings.subscription.change.text.upgrade_paypal', [
-                'upgrade' => "<strong>$currency" . number_format($upgrade, 2) . "</strong>",
+                'upgrade' => "<strong>$currency" . \Illuminate\Support\Number::format($upgrade, 2) . "</strong>",
                 'tier' => "<strong>$tier->name</strong>",
                 'amount' => "<strong>$currency$amount</strong>",
                 'date' => $user->subscription('kanka')->ends_at->isoFormat('MMMM D, Y')
@@ -30,13 +30,13 @@
         @else
             @if ($isDowngrading)
                 {!! __('settings.subscription.change.text.downgrade_' . ($period->isYearly() ? 'yearly' : 'monthly'), [
-                    'downgrade' => "<strong>$currency<span id='pricing-now'>" . number_format($upgrade, 2) . "</span></strong>",
+                    'downgrade' => "<strong>$currency<span id='pricing-now'>" . \Illuminate\Support\Number::format($upgrade, 2) . "</span></strong>",
                     'tier' => "<strong>$tier->name</strong>",
                     'amount' => "<strong>$currency$amount</strong>"
                 ]) !!}
             @else
                 {!! __('settings.subscription.change.text.upgrade_' . ($period->isYearly() ? 'yearly' : 'monthly'), [
-                    'upgrade' => "<strong>$currency<span id='pricing-now'>" . number_format($upgrade, 2) . "</span></strong>",
+                    'upgrade' => "<strong>$currency<span id='pricing-now'>" . \Illuminate\Support\Number::format($upgrade, 2) . "</span></strong>",
                     'tier' => "<strong>$tier->name</strong>",
                     'amount' => "<strong>$currency$amount</strong>"
                 ]) !!}

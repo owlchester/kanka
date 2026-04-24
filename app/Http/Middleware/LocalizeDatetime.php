@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Carbon\Carbon;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Number;
 use Mcamara\LaravelLocalization\Middleware\LaravelLocalizationMiddlewareBase;
 
 class LocalizeDatetime extends LaravelLocalizationMiddlewareBase
@@ -20,7 +21,9 @@ class LocalizeDatetime extends LaravelLocalizationMiddlewareBase
         if ($this->shouldIgnore($request)) {
             return $next($request);
         }
-        Carbon::setLocale(app('laravellocalization')->getCurrentLocale());
+        $locale = app('laravellocalization')->getCurrentLocale();
+        Carbon::setLocale($locale);
+        Number::useLocale($locale);
 
         return $next($request);
     }

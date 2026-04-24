@@ -9,7 +9,7 @@
         @else
             <i class="fa-regular fa-heart" aria-hidden="true"></i>
         @endif
-        {{ number_format($count) }}
+        {{ \Illuminate\Support\Number::format($count) }}
     </div>
 
     @if ($isGuest)

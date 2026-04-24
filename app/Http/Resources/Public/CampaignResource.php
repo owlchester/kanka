@@ -4,6 +4,7 @@ namespace App\Http\Resources\Public;
 
 use App\Models\Campaign;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Number;
 
 class CampaignResource extends JsonResource
 {
@@ -18,8 +19,8 @@ class CampaignResource extends JsonResource
             'name' => $campaign->name,
             'justify' => $campaign->spotlight?->url,
             'link' => route('dashboard', $campaign),
-            'followers' => number_format($campaign->follower),
-            'entities' => number_format($campaign->visible_entity_count),
+            'followers' => Number::format($campaign->follower),
+            'entities' => Number::format($campaign->visible_entity_count),
             'locale' => $campaign->locale,
             'system' => $campaign->getSystems(),
             'is_open' => $campaign->isOpen(),

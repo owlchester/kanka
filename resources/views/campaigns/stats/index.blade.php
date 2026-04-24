@@ -35,7 +35,7 @@
                             {{ __('campaigns/stats.fields.entries') }}
                         </div>
                         <div class="entity-count font-bold">
-                            {{ number_format($stats['entities']) }}
+                            {{ \Illuminate\Support\Number::format($stats['entities']) }}
                         </div>
                         <hr class="col-span-2" />
                         @foreach ($stats['types'] as $type => $count)
@@ -46,7 +46,7 @@
                                 {{ $entityTypes[$type]->plural() }}
                             </div>
                             <div class="entity-count">
-                                {!! number_format($count) !!}
+                                {!! \Illuminate\Support\Number::format($count) !!}
                             </div>
                         @endforeach
                     </div>
@@ -63,7 +63,7 @@
                                     {{ __('entities.' . $module) }}
                                 </div>
                                 <div class="entity-count">
-                                    {!! number_format($count) !!}
+                                    {!! \Illuminate\Support\Number::format($count) !!}
                                 </div>
                             @endforeach
                         </div>
@@ -94,45 +94,45 @@
                                 {{ __('campaigns.fields.followers') }}
                             </div>
                             <div class="permission-count">
-                                {{ number_format($stats['permissions']['followers']) }}
+                                {{ \Illuminate\Support\Number::format($stats['permissions']['followers']) }}
                             </div>
                             <div class="permission-name">
                                 {{ __('campaigns.show.tabs.members') }}
                             </div>
                             <div class="permission-count">
-                                {{ number_format($stats['permissions']['users']) }}
+                                {{ \Illuminate\Support\Number::format($stats['permissions']['users']) }}
                             </div>
                             <div class="permission-name">
                                 {{ __('campaigns.show.tabs.roles') }}
                             </div>
                             <div class="permission-count">
-                                {{ number_format($stats['permissions']['roles']) }}
+                                {{ \Illuminate\Support\Number::format($stats['permissions']['roles']) }}
                             </div>
 
                             <div class="permission-name">
                                 {{ __('campaigns/stats.fields.words') }}
                             </div>
                             <div class="permission-count">
-                                {{ number_format(\Illuminate\Support\Arr::get($stats, 'words.total', 0)) }}
+                                {{ \Illuminate\Support\Number::format(\Illuminate\Support\Arr::get($stats, 'words.total', 0)) }}
                             </div>
 
                             <div class="permission-name">
                                 {{ __('campaigns/stats.fields.from-entities') }}
                             </div>
                             <div class="permission-count">
-                                {{ number_format(\Illuminate\Support\Arr::get($stats, 'words.entities', 0)) }}
+                                {{ \Illuminate\Support\Number::format(\Illuminate\Support\Arr::get($stats, 'words.entities', 0)) }}
                             </div>
                             <div class="permission-name">
                                 {{ __('campaigns/stats.fields.from-posts') }}
                             </div>
                             <div class="permission-count">
-                                {{ number_format(\Illuminate\Support\Arr::get($stats, 'words.posts', 0)) }}
+                                {{ \Illuminate\Support\Number::format(\Illuminate\Support\Arr::get($stats, 'words.posts', 0)) }}
                             </div>
                             <div class="permission-name">
                                 {{ __('campaigns/stats.fields.from-elements') }}
                             </div>
                             <div class="permission-count">
-                                {{ number_format(\Illuminate\Support\Arr::get($stats, 'words.elements', 0)) }}
+                                {{ \Illuminate\Support\Number::format(\Illuminate\Support\Arr::get($stats, 'words.elements', 0)) }}
                             </div>
                         </div>
                     </x-box>
