@@ -1,5 +1,5 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => __('posts.edit.title') . ' - ' . $model->name . ' - ' . $entity->name . ' - ' . $campaign->name,
+    'title' => __('crud.edit') . ' - ' . $model->name . ' - ' . $entity->name . ' - ' . $campaign->name,
     'description' => '',
     'breadcrumbs' => [
         Breadcrumb::campaign($campaign)->entity($entity)->list(),

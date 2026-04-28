@@ -14,7 +14,7 @@
         @include('partials.forms.form', [
             'title' => __('posts.move.title'),
             'content' => 'entities.pages.posts.move.form',
-            'submit' => auth()->check() && auth()->user()->can('update', $entity) ? __('entities/move.actions.move') : __('entities/move.actions.copy'),
+            'submit' => auth()->check() && auth()->user()->can('update', $entity) ? __('entities/move.actions.transfer') : __('entities/move.actions.copy'),
         ])
     </x-form>
 @endsection
