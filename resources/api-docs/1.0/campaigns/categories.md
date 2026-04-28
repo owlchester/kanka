@@ -52,7 +52,9 @@ Since campaigns have their own configuration, enabling/disabling categories, ren
 
 If the campaign has given a category a custom name, it will appear in the Singular and Plural fields. Same for a custom icon (`""` if none is set).
 
-The `is_custom` field is used to determine if the category is a custom module.
+The `is_custom` field is used to determine if the category is a custom category.
+
+The `is_enabled` field is a Kanka internal field, unrelated to if a category is enabled.
 
 The `is_nested` field is used to determine if entries in the category have a `parent` nesting concept.
 
@@ -69,10 +71,10 @@ To create a category, use the following endpoint.
 
 | Parameter            | Type                | Detail                                                                            |
 |:---------------------|:--------------------|:----------------------------------------------------------------------------------|
-| `singular`           | `string` (Required) | Singular name of entities in this module                                          |
-| `plural`             | `string` (Required) | Plural name of entities in this module                                            |
-| `icon`               | `string` (Required) | FontAwesome icon for entities in this module                                      |
-| `roles`              | `array`   | Pass a bunch of campaign role IDs that get read access to entities of this module |
+| `singular`           | `string` (Required) | Singular name of entities in this category                                          |
+| `plural`             | `string` (Required) | Plural name of entities in this category                                            |
+| `icon`               | `string` (Required) | FontAwesome icon for entities in this category                                      |
+| `roles`              | `array`   | Pass a bunch of campaign role IDs that get read access to entities of this category |
 
 ### Results
 
