@@ -3,19 +3,19 @@
 @endif
 
 @if (!empty($entity->child->title))
-* **{!! __('characters.fields.title') !!}** {!! $entity->child->title !!}
+- **{!! __('characters.fields.title') !!}** {!! $entity->child->title !!}
 @endif
 @if (!empty($entity->child->age))
-* **{!! __('characters.fields.age') !!}** {!! $entity->child->age !!}
+- **{!! __('characters.fields.age') !!}** {!! $entity->child->age !!}
 @endif
 @if (!empty($entity->child->sex))
-* **{!! __('characters.fields.sex') !!}** {!! $entity->child->sex !!}
+- **{!! __('characters.fields.sex') !!}** {!! $entity->child->sex !!}
 @endif
 @if (!empty($entity->child->pronouns))
-* **{!! __('characters.fields.pronouns') !!}** {!! $entity->child->pronouns !!}
+- **{!! __('characters.fields.pronouns') !!}** {!! $entity->child->pronouns !!}
 @endif
 @if ($entity->status)
-* {!! $entity->status->setRelation('entityType', $entity->entityType)->name() !!}
+- {!! $entity->status->setRelation('entityType', $entity->entityType)->name() !!}
 @endif
 @if ($entity->child->characterTraits->count() > 0)
 
@@ -23,7 +23,8 @@
 ### {!! $sectionId == App\Models\CharacterTrait::SECTION_APPEARANCE ? __('characters.sections.appearance') : __('characters.sections.personality') !!}
 
 @foreach ($traits as $trait)
-* {!! $trait->name !!}@if($sectionId == App\Models\CharacterTrait::SECTION_APPEARANCE): {!! $trait->entry !!}@endif
+- {!! $trait->name !!}@if($sectionId == App\Models\CharacterTrait::SECTION_APPEARANCE): {!! $trait->entry !!}@endif
+
 @endforeach
 
 @endforeach
