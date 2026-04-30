@@ -70,6 +70,8 @@ class StoreCharacter extends FormRequest
             'attribute' => ['array', new UniqueAttributeNames],
             'is_private' => 'nullable|boolean',
             'status_id' => ['nullable', 'exists:category_statuses,id'],
+            'tags' => 'nullable|array',
+            'tags.*' => 'distinct|exists:tags,id',
         ];
 
         return $this->clean($rules);
