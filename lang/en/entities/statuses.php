@@ -1,37 +1,37 @@
 <?php
 
 return [
-    'remove' => 'Remove',
-    'character' => [
-        'alive' => 'Alive',
-        'missing' => 'Missing',
-        'dead' => 'Dead',
+    'character'     => [
+        'alive'     => 'Alive',
+        'dead'      => 'Dead',
+        'missing'   => 'Missing',
     ],
-    'creature' => [
-        'dead' => 'Dead',
-        'extinct' => 'Extinct',
+    'creature'      => [
+        'dead'      => 'Dead',
+        'extinct'   => 'Extinct',
     ],
-    'location' => [
+    'family'        => [
+        'extinct'   => 'Extinct',
+    ],
+    'item'          => [
+        'destroyed' => 'Destroyed',
+        'lost'      => 'Lost',
+        'owned'     => 'Owned',
+    ],
+    'location'      => [
         'destroyed' => 'Destroyed',
     ],
-    'race' => [
-        'extinct' => 'Extinct',
+    'organisation'  => [
+        'defunct'   => 'Defunct',
     ],
-    'quest' => [
-        'not_started' => 'Not started',
-        'ongoing' => 'Ongoing',
-        'completed' => 'Completed',
-        'abandoned' => 'Abandoned',
+    'quest'         => [
+        'abandoned'     => 'Abandoned',
+        'completed'     => 'Completed',
+        'not_started'   => 'Not started',
+        'ongoing'       => 'Ongoing',
     ],
-    'family' => [
-        'extinct' => 'Extinct',
+    'race'          => [
+        'extinct'   => 'Extinct',
     ],
-    'organisation' => [
-        'defunct' => 'Defunct',
-    ],
-    'item' => [
-        'owned' => 'Owned',
-        'lost' => 'Lost',
-        'destroyed' => 'Destroyed',
-    ],
+    'remove'        => 'Remove',
 ];

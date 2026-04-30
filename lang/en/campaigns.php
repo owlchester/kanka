@@ -21,10 +21,10 @@ return [
     ],
     'exports'                           => [],
     'fields'                            => [
+        'billboard'                 => 'Billboard description',
         'boosted'                   => 'Boosted by',
         'entity_count'              => 'Number of entries',
         'entry'                     => 'Description of the world',
-        'billboard'                 => 'Billboard description',
         'followers'                 => 'Followers',
         'genre'                     => 'Genres',
         'header_image'              => 'Billboard background image',
