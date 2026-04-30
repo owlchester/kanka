@@ -5,7 +5,8 @@ return [
         'title' => 'Nouvelle Race',
     ],
     'fields'        => [
-        'members'   => 'Membres',
+        'is_extinct'    => 'Éteinte',
+        'members'       => 'Membres',
     ],
     'hints'         => [
         'is_extinct'    => 'Cette race est éteinte.',

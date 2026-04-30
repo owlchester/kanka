@@ -21,6 +21,7 @@ return [
     ],
     'export'                            => [],
     'fields'                            => [
+        'billboard'                 => 'Description du Billboard',
         'boosted'                   => 'Boosté par',
         'entity_count'              => 'Nombre d\'entrées',
         'entry'                     => 'Description de la campagne',

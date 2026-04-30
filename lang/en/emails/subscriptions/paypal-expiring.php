@@ -10,7 +10,7 @@ return [
         'campaign'  => 'Premium campaign **:campaign**|Premium campaigns **:campaign** and :count more',
         'discord'   => 'Your **:role** Discord role',
         'players'   => ':count player will lose access|:count players will lose access',
-        'plugins'   => ':count marketplace plugin|:count marketplace plugins',
+        'plugins'   => ':count plugin|:count plugins',
         'title'     => 'Here is what you will lose:',
     ],
     'title'     => 'Your Kanka subscription expires soon',

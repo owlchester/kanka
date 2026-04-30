@@ -90,6 +90,7 @@ return [
     'relation'              => 'Relation',
     'relations'             => 'Relations',
     'reminders'             => 'Rappels',
+    'status'                => 'Statut',
     'tag'                   => 'Etiquette',
     'tags'                  => 'Etiquettes',
     'templates'             => 'Modèles',
