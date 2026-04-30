@@ -133,6 +133,9 @@ return [
         'success'   => 'Profil aktualizovaný.',
         'title'     => 'Osobný profil',
     ],
+    'referrals'     => [
+        'title' => 'Odporúčania',
+    ],
     'subscription'  => [
         'actions'               => [
             'cancel_sub'        => 'Ukončiť predplatné',
@@ -156,6 +159,7 @@ return [
                 'not_playing'       => 'Už sa nehrá alebo je kampaň pozastavená.',
                 'not_using'         => 'Aktuálne Kanku nevyužívam',
                 'other'             => 'Iné',
+                'testing'           => 'Iba testujem Kanku',
             ],
             'text'      => 'Ľutujeme, že odchádzaš! Zrušením tvojho predplatného ostáva toto aktívne do ďalšieho platobného obdobia, po ktorom stratíš tvoje boosty kampaní a ostatné výhody vďaka podpore Kanky. Vyplnením následného formulára nám pomôžeš zistiť, čo by sme mali robiť lepšie, alebo čo ťa viedlo k tomuto rozhodnutiu.',
             'title'     => 'Zrušiť predplatné',
@@ -163,6 +167,8 @@ return [
         'cancelled'             => 'Tvoje predplatné bolo zrušené. Môžeš ho obnoviť, keď ti aktívne predplatné skončí.',
         'change'                => [
             'text'  => [
+                'downgrade_monthly' => 'Downgraduješ na úroveň :tier za :downgrade, takže mesačne bude splatných :amount.',
+                'downgrade_yearly'  => 'Downgraduješ na úroveň :tier za :downgrade, takže ročne bude splatných :amount.',
                 'monthly'           => 'Máš predplatenú úroveň :tier, splatnú mesačne vo výške :amount.',
                 'upgrade_monthly'   => 'Upgradeuješ na úroveň :tier za :upgrade, takže bude mesačne splatných :amount.',
                 'upgrade_paypal'    => 'Upgradeuješ na úroveň :tier za :upgrade do :date.',

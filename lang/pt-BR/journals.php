@@ -13,6 +13,9 @@ return [
     'helpers'       => [],
     'index'         => [],
     'journals'      => [],
+    'lists'         => [
+        'empty' => 'Crie entidades de diário para registrar aventuras, pensamentos dos personagens ou resumos e preparativos das sessões.',
+    ],
     'placeholders'  => [
         'author'    => 'Quem escreveu o diário',
         'date'      => 'Data do mundo real do diário',

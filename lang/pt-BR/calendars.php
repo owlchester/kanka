@@ -119,6 +119,9 @@ return [
         'year'      => 'Ano',
         'yearly'    => 'Anual por padrão',
     ],
+    'lists'         => [
+        'empty' => 'Crie um calendário para acompanhar datas, festivais ou eventos do jogo ao longo do tempo.',
+    ],
     'modals'        => [
         'switcher'  => [
             'title' => 'Seletor de Ano',

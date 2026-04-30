@@ -2,7 +2,7 @@
 
 return [
     'actions'       => [
-        'add_element'   => 'Adicionar elemento à era :era',
+        'add_element'   => 'Adicionar elemento à :era',
         'back'          => 'Voltar para :name',
         'save_order'    => 'Salvar nova ordem',
     ],
@@ -22,13 +22,16 @@ return [
         'reverse_order' => 'Habilite para exibir linhas do tempo em ordem cronológica reversa (eras antigas primeiro)',
     ],
     'index'         => [],
+    'lists'         => [
+        'empty' => 'Crie uma linha do tempo visual para registrar os principais eventos e acompanhar a evolução do seu mundo.',
+    ],
     'placeholders'  => [
         'type'  => 'Primária, Crônica Mundial, Legado do Reino',
     ],
     'reorder'       => [
         'empty'     => 'Adicione eras e elementos à linha do tempo para poder reordená-la.',
-        'success'   => 'Linha do tempo reordenada com sucesso.',
-        'title'     => 'Reordenar a linha do tempo',
+        'success'   => ':name reordenada com sucesso.',
+        'title'     => 'Reordenar :name',
     ],
     'show'          => [
         'tabs'  => [

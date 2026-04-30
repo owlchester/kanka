@@ -16,6 +16,7 @@ return [
         'email'                     => 'E-mail',
         'hide_subscription'         => 'Skryť moje meno zo :hall_of_fame.',
         'last_login_share'          => 'Zdieľaj s ostatnými členmi kampane tvoj posledný čas online.',
+        'link'                      => 'Sociálne siete',
         'login_sharing'             => 'Posledné zdieľanie prihlásenia',
         'name'                      => 'Meno',
         'new_password'              => 'Nové heslo (voliteľné)',
@@ -23,12 +24,18 @@ return [
         'newsletter'                => 'Prajem si, aby ste ma niekedy kontaktovali mailom.',
         'password'                  => 'Súčasné heslo',
         'profile-name'              => 'Profilové meno',
+        'pronouns'                  => 'Zámená',
         'settings'                  => 'Nastavenia',
         'subscription_hiding'       => 'Predplatné ukryté',
         'theme'                     => 'Téma',
     ],
     'helpers'                       => [
+        'link'          => 'Zmeň spôsob, akým sa sociálne siete zobrazujú na tvojom :profile a na :marketplace. Ak ponecháš prázdne, nebudú sa zobrazovať.',
         'profile-name'  => 'Zmeň, ako vyzerá tvoje meno na tvojom :profile a :marketplace. Ak ho ponecháš prázdne, bude sa používať meno tvojho konta.',
+        'pronouns'      => 'Zmeň spôsob, akým sa zobrazujú zámená na tvojom :profile a na :marketplace. Ak ponecháš prázdne, nebudú sa zobrazovať.',
+    ],
+    'link'                          => [
+        'button'    => 'Profil :name na sociálnych sieťach',
     ],
     'newsletter'                    => [
         'helpers'   => [

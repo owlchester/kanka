@@ -1,23 +1,25 @@
 <?php
 
 return [
-    'actions'       => [
+    'actions'                   => [
         'add_appearance'    => 'Pridať výzor',
         'add_personality'   => 'Pridať osobnosť',
     ],
-    'conversations' => [],
-    'create'        => [
+    'conversations'             => [],
+    'create'                    => [
         'title' => 'Nová postava',
     ],
-    'destroy'       => [],
-    'dice_rolls'    => [],
-    'edit'          => [],
-    'families'      => [
+    'destroy'                   => [],
+    'dice_rolls'                => [],
+    'edit'                      => [],
+    'families'                  => [
+        'helper'    => 'Zmeň poradie a kontroluj, ktoré rody :name sú viditeľné a skryté pre ne-administrátorov.',
         'reorder'   => [
             'success'   => 'Rody postavy úspešne aktualizované.',
         ],
+        'title2'    => 'Spravovať rody',
     ],
-    'fields'        => [
+    'fields'                    => [
         'age'                       => 'Vek',
         'is_appearance_pinned'      => 'Pripnutý výzor',
         'is_dead'                   => 'Po smrti',
@@ -27,24 +29,26 @@ return [
         'physical'                  => 'Telesné črty',
         'pronouns'                  => 'Zámená',
         'sex'                       => 'Pohlavie',
+        'status'                    => 'Stav',
         'title'                     => 'Titul',
         'traits'                    => 'Vlastnosti',
     ],
-    'helpers'       => [
+    'helpers'                   => [
         'age'   => 'Tento objekt môžeš referencovať v kalendári tvojej kampane a automaticky tak vypočítať vek. :more.',
     ],
-    'hints'         => [
+    'hints'                     => [
         'is_appearance_pinned'      => 'Ak aktívne, črty výzoru postavy sa zobrazia pod záznamom na stránke prehľadu.',
         'is_dead'                   => 'Táto postava je mŕtva.',
+        'is_missing'                => 'Táto postava sa stratila.',
         'is_personality_pinned'     => 'Ak aktívne, črty osobnosti postavy sa zobrazia pod záznamom na stránke prehľadu.',
         'is_personality_visible'    => 'Celú sekciu o osobnosti vieš skryť pred užívateľmi, ktorí nemajú rolu Admin.',
         'personality_not_visible'   => 'Osobnostné črty tejto postavy sú aktuálne viditeľné len pre užívateľov s rolou Admin.',
         'personality_visible'       => 'Osobnostné črty tejto postavy sú viditeľné pre všetkých.',
     ],
-    'index'         => [],
-    'items'         => [],
-    'journals'      => [],
-    'labels'        => [
+    'index'                     => [],
+    'items'                     => [],
+    'journals'                  => [],
+    'labels'                    => [
         'appearance'    => [
             'entry' => 'Opis výzoru',
             'name'  => 'Názov výzoru',
@@ -54,8 +58,11 @@ return [
             'name'  => 'Názov osobnostnej črty',
         ],
     ],
-    'maps'          => [],
-    'organisations' => [
+    'lists'                     => [
+        'empty' => 'Vytvor svojho prvého hrdinu, zloducha alebo pobočníka, aby tvoj svet ožil.',
+    ],
+    'maps'                      => [],
+    'organisations'             => [
         'create'    => [
             'success'   => 'Postava priradená organizácii.',
             'title'     => 'Nová organizácia pre :name',
@@ -71,7 +78,11 @@ return [
             'role'  => 'Rola',
         ],
     ],
-    'placeholders'  => [
+    'personality_visibility'    => [
+        'admin' => 'Členovia roly Admin',
+        'all'   => 'Viditeľné pre všetkých',
+    ],
+    'placeholders'              => [
         'age'               => 'Vek',
         'appearance_entry'  => 'Popis',
         'appearance_name'   => 'Vlasy, oči, pokožka, výška',
@@ -85,23 +96,30 @@ return [
         'traits'            => 'Vlastnosti',
         'type'              => 'NPC, hráčska postava, božstvo',
     ],
-    'quests'        => [
+    'quests'                    => [
         'helpers'   => [
             'quest_giver'   => 'Úlohy, ktorých zadávateľom je táto postava.',
             'quest_member'  => 'Úlohy, ktorých členom je táto postava.',
         ],
     ],
-    'races'         => [
+    'races'                     => [
+        'helper'    => 'Zmeň poradie a skontroluj, ktoré rasy :name sú viditeľné alebo skryté pre ne-administrátorov.',
         'reorder'   => [
             'success'   => 'Rasy postavy úspešne aktualizované.',
         ],
+        'title2'    => 'Spravovať rasy',
     ],
-    'sections'      => [
+    'sections'                  => [
         'appearance'    => 'Výzor',
         'personality'   => 'Osobnosť',
     ],
-    'show'          => [],
-    'warnings'      => [
+    'show'                      => [],
+    'status'                    => [
+        'alive'     => 'Nažive',
+        'dead'      => 'Mŕtva',
+        'missing'   => 'Stratená',
+    ],
+    'warnings'                  => [
         'personality_hidden'    => 'Nemáš povolené upravovať črty osobnosti tejto postavy.',
     ],
 ];

@@ -5,9 +5,9 @@ return [
         'add'   => 'Adicionar um pseudônimo',
     ],
     'create'        => [
-        'helper'    => 'Crie um alias para :name, que o tornará encontrável na pesquisa global e por meio de menções de :code.',
+        'helper'    => 'Crie um pseudônimo para :name, que o tornará encontrável na pesquisa global e por meio de menções de :code.',
         'success'   => 'Pseudônimo :name adicionado a :entity.',
-        'title'     => 'Adicionar um pseudônimo ao :name',
+        'title'     => 'Novo pseudônimo',
     ],
     'destroy'       => [
         'success'   => 'Pseudônimo :name removido.',
@@ -16,9 +16,10 @@ return [
         'name'  => 'Nome',
     ],
     'helpers'       => [
-        'primary'   => 'Definir um ou vários pseudônimos para a entidade fará com que ela seja encontrada mais facilmente na busca global (barra superior) e através de menções.',
+        'primary'   => 'Definir um ou mais pseudônimos na entidade fará com que ela seja encontrada na pesquisa global (barra superior) e por meio de menções :code.',
     ],
-    'pitch'         => 'Crie pseudônimos para esta entidade para encontrá-la facilmente através da busca e por meio de menções.',
+    'limit'         => 'Limite de aliases atingido para campanhas padrão (:amount/:max). :upgrade para aliases ilimitados nesta campanha.',
+    'pitch'         => 'Adicione pseudônimos a esta entidade para facilitar a localização em pesquisas e menções. Ideal para apelidos, títulos ou grafias alternativas.',
     'placeholders'  => [
         'name'  => 'Novo pseudônimo',
     ],

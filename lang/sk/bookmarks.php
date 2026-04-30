@@ -24,6 +24,7 @@ return [
     ],
     'helpers'           => [
         'active'            => 'Neaktívne rýchle linky sa v bočnom menu nezobrazia.',
+        'css'               => 'Pridaj CSS štýl, ktorý sa aplikuje na link záložiek v bočnom menu.',
         'dashboard'         => 'Cieľ s rýchlym linkom na jednu z vlastných násteniek kampane.',
         'default_dashboard' => 'Prelinkuj namiesto toho k štandardnej nástenke kampane. Ešte stále musíš ale zvoliť aj vlastnú nástenku.',
         'entity'            => 'Nastav tento menu link, aby smeroval priamo na daný objekt. Pole :tab kontroluje, ktorá z kariet objektu bude zobrazená automaticky. Pole :menu kontroluje, ktorá podstránka objektu bude zobrazená.',
@@ -33,6 +34,9 @@ return [
         'type'              => 'Nastav tento menu link, aby sa po kliknutí naň zobrazil zoznam objektov. Skopíruj časť URL na filtrovanom zozname objektov, ktorá sa nachádza po :? a vlož ju do poľa :filter.',
     ],
     'index'             => [],
+    'lists'             => [
+        'empty' => 'Ulož záložku k tvojim najpoužívanejším objektom alebo filtrovaných zoznamov pre rýchlejší prístup.',
+    ],
     'placeholders'      => [
         'filters'   => 'location_id=15&type=city',
         'menu'      => 'Podstránka (použi poslednú časť textu URL)',
@@ -47,6 +51,13 @@ return [
         'title'     => 'Usporiadanie liniek v menu',
     ],
     'show'              => [],
+    'targets'           => [
+        'dashboard' => 'Nástenka',
+        'entity'    => 'Jeden objekt',
+        'random'    => 'Náhodný objekt',
+        'select'    => 'Vyber jednu z možností',
+        'type'      => 'Objekty kategórie',
+    ],
     'visibilities'      => [
         'is_active' => 'Zobraziť rýchly link v bočnom paneli',
     ],

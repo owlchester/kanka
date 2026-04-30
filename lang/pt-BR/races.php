@@ -15,6 +15,9 @@ return [
         'is_extinct'    => 'Essa raça está extinta.',
     ],
     'index'         => [],
+    'lists'         => [
+        'empty' => 'Defina as espécies, culturas ou povos que habitam o seu mundo.',
+    ],
     'members'       => [
         'create'    => [
             'helper'    => 'Adicionar um ou vários personagens à :name',

@@ -22,6 +22,9 @@ return [
         'reverse_order' => 'Aktivovaním zobrazíš obdobia v spätnom chronologickom poradí (najstaršie obdobie ako prvé).',
     ],
     'index'         => [],
+    'lists'         => [
+        'empty' => 'Vytvor vizuálnu časovú os k zaznamenaniu nejdôležitejších udalostí a toho, ako sa mení tvoj svet.',
+    ],
     'placeholders'  => [
         'type'  => 'Primárna, Kronika sveta, Osud kráľovstva',
     ],

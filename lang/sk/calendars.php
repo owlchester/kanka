@@ -120,6 +120,9 @@ return [
         'year'      => 'Rok',
         'yearly'    => 'Štandardne ročné',
     ],
+    'lists'         => [
+        'empty' => 'Vytvor kalendár pre zaznamenávanie dátumov, festivalov a iných udalostí v čase.',
+    ],
     'modals'        => [
         'switcher'  => [
             'title' => 'Prepínač roku',

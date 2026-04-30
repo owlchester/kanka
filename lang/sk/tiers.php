@@ -33,7 +33,7 @@ return [
     ],
     'pricing'   => ':currency :amount / mesiac',
     'ribbons'   => [
-        'best-value'    => 'Top hodnota',
+        'best-value'    => 'Odporúčané pre GMs',
         'current'       => 'Aktuálne predplatné',
     ],
     'target'    => [

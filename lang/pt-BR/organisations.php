@@ -15,6 +15,9 @@ return [
         'is_defunct'    => 'Esta organização está extinta.',
     ],
     'index'         => [],
+    'lists'         => [
+        'empty' => 'Crie guildas, facções ou sociedades secretas para moldar a estrutura de poder do seu mundo.',
+    ],
     'members'       => [
         'actions'       => [
             'add_multiple'  => 'Adicionar membros',

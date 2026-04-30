@@ -15,6 +15,9 @@ return [
         'is_defunct'    => 'Táto organizácia už ukončila činnosť.',
     ],
     'index'         => [],
+    'lists'         => [
+        'empty' => 'Vytvor cechy, frakcie alebo tajné spolky, ktoré tvoria mocenské štruktúry tvojho sveta.',
+    ],
     'members'       => [
         'actions'       => [
             'add_multiple'  => 'Pridať členov',
@@ -27,7 +30,8 @@ return [
             'success'   => 'Člen odstránený z organizácie.',
         ],
         'edit'          => [
-            'title' => 'Upraviť člena organizácie :name',
+            'helper'    => 'Zmeň stav členstva pre :name.',
+            'title'     => 'Upraviť člena organizácie :name',
         ],
         'fields'        => [
             'parent'    => 'Nadriadená osoba',

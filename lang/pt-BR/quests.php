@@ -7,21 +7,28 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'elements'      => [
-        'create'    => [
+        'create'        => [
             'success'   => 'Elemento :entity adicionado à missão.',
             'title'     => 'Novo elemento para :name',
         ],
-        'destroy'   => [
+        'destroy'       => [
             'success'   => 'Elemento :entity removido.',
         ],
-        'edit'      => [
+        'edit'          => [
             'success'   => 'Elemento :entity atualizado.',
             'title'     => 'Atualizar elemento para :name',
         ],
-        'fields'    => [
+        'fields'        => [
+            'copy_entity_entry' => 'Usar a descrição da entidade',
             'description'       => 'Descrição',
             'entity_or_name'    => 'Selecione uma entidade da campanha ou dê um nome para este elemento.',
             'name'              => 'Nome',
+        ],
+        'helpers'       => [
+            'copy_entity_entry' => 'Exibir a descrição da entidade vinculada em vez da descrição personalizada.',
+        ],
+        'placeholders'  => [
+            'name'  => 'Nome do elemento',
         ],
     ],
     'fields'        => [
@@ -32,12 +39,21 @@ return [
         'is_completed'  => 'Concluída',
         'location'      => 'Local inicial',
         'role'          => 'Função',
+        'status'        => 'Status',
     ],
     'helpers'       => [
         'is_completed'  => 'A missão é considerada concluída.',
+        'status'        => 'O status atual da missão.',
     ],
-    'hints'         => [],
+    'hints'         => [
+        'is_abandoned'  => 'Esta missão foi abandonada.',
+        'is_completed'  => 'Esta missão está concluída.',
+        'is_ongoing'    => 'Essa missão está em andamento.',
+    ],
     'index'         => [],
+    'lists'         => [
+        'empty' => 'Crie missões para registrar objetivos, enredos ou motivações de personagens.',
+    ],
     'placeholders'  => [
         'date'      => 'Data do mundo real para a missão',
         'entity'    => 'Nome de um elemento da missão',
@@ -52,5 +68,11 @@ return [
         'tabs'      => [
             'elements'  => 'Elementos',
         ],
+    ],
+    'status'        => [
+        'abandoned'     => 'Abandonada',
+        'completed'     => 'Concluída',
+        'not_started'   => 'Não Iniciada',
+        'ongoing'       => 'Em Andamento',
     ],
 ];
