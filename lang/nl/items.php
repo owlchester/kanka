@@ -7,9 +7,8 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'character' => 'Personage',
-        'price'     => 'Prijs',
-        'size'      => 'Grootte',
+        'price' => 'Prijs',
+        'size'  => 'Grootte',
     ],
     'index'         => [],
     'inventories'   => [],

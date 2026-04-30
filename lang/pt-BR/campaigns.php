@@ -27,7 +27,6 @@ return [
         'boosted'                   => 'Impulsionada por',
         'entity_count'              => 'Número de Entidades',
         'entry'                     => 'Descrição da campanha',
-        'excerpt'                   => 'Texto do dashboard da campanha',
         'followers'                 => 'Seguidores',
         'genre'                     => 'Gênero(s)',
         'header_image'              => 'Background do dashboard da campanha',

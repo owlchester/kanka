@@ -13,7 +13,6 @@ return [
         'panel_title'   => 'Reordenar posts',
         'save'          => 'Salvar nova ordem',
         'success'       => 'Posts reordenados.',
-        'title'         => 'Reordenando post da entidade :name',
     ],
     'update'    => [
         'title' => 'Atualizar introdução da :entity',

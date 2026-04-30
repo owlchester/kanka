@@ -13,7 +13,6 @@ return [
         'panel_title'   => 'Reordenar notas',
         'save'          => 'Guardar nuevo orden',
         'success'       => 'Notas reordenadas.',
-        'title'         => 'Reordenar notas de :name',
     ],
     'update'    => [
         'title' => 'Actualizar entrada de :entity',

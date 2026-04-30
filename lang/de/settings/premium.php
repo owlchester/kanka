@@ -11,7 +11,6 @@ return [
         ],
         'confirm'   => 'Wie aufregend! Du bist dabei, Premium-Funktionen für :campaign freizuschalten. Dies wird eine deiner verfügbaren Premium-Kampagnen verwenden.',
         'duration'  => 'Premium-Kampagnen bleiben in diesem Zustand, bis Du sie manuell entfernst oder Ihr Abonnement endet.',
-        'pitch'     => 'Werde Abonnent, um Premium-Kampagnen freizuschalten.',
         'success'   => 'Die :campaign Kampagne ist jetzt Premium. Genieße all die neuen, fantastischen Funktionen!',
     ],
     'exceptions'    => [
@@ -20,7 +19,6 @@ return [
     ],
     'pitch'         => [
         'description'   => 'Erwerbe Premium-Kampagnen und hilf, erstaunliche Funktionen für alle Beteiligten freizuschalten.',
-        'more'          => 'Die vollständige Liste der Vergünstigungen findest du auf unserer :premium Seite.',
         'title'         => 'Premium-Kampagnen erhalten',
     ],
     'ready'         => [

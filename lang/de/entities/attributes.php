@@ -25,7 +25,6 @@ return [
         'is_private'            => 'Private Attribute',
         'is_star'               => 'Angepinnt',
         'preferences'           => 'Einstellungen',
-        'template'              => 'Vorlage',
         'value'                 => 'Wert',
     ],
     'filters'       => [
@@ -66,7 +65,6 @@ return [
             'value' => '1-100 oder Liste von Werten, die durch ein Komma getrennt sind',
         ],
         'section'   => 'Abteilungsname',
-        'template'  => 'Wähle eine Vorlage',
         'value'     => 'Wert des Attributs',
     ],
     'ranges'        => [
@@ -106,7 +104,6 @@ return [
         'number'    => 'Nummer',
         'random'    => 'Zufällig',
         'section'   => 'Abteilung',
-        'templates' => 'Vorlagen',
         'text'      => 'Mehrzeiliger Text',
     ],
     'update'        => [

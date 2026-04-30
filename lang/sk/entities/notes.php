@@ -17,14 +17,12 @@ return [
     ],
     'create'        => [
         'success'   => 'Poznámka :name pridaná k objektu :entity.',
-        'title'     => 'Nová Poznámka pre :name',
     ],
     'destroy'       => [
         'success'   => 'Poznámka :name odstránená z :entity.',
     ],
     'edit'          => [
         'success'   => 'Poznámka :name pre :entity upravená.',
-        'title'     => 'Upraviť poznámku pre :name',
     ],
     'fields'        => [
         'creator'   => 'Autor/ka',
@@ -47,7 +45,6 @@ return [
         'copy_title'    => 'Ponechať kópiu',
         'description'   => 'Zvoľ objekt, do ktorého chceš premiestniť alebo kopírovať tento komentár.',
         'entity'        => 'Cieľový objekt',
-        'move'          => 'Premiestniť alebo kopírovať do iného objektu',
         'move_success'  => 'Komentár :name úspešne premiestnený do :entity.',
     ],
     'placeholders'  => [

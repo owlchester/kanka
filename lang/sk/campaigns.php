@@ -27,7 +27,6 @@ return [
         'boosted'                   => 'Boost od',
         'entity_count'              => 'Počet objektov',
         'entry'                     => 'Popis kampane',
-        'excerpt'                   => 'Krátky popis',
         'followers'                 => 'Odberatelia',
         'genre'                     => 'Žáner',
         'header_image'              => 'Titulný obrázok',

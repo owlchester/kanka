@@ -44,9 +44,7 @@ return [
         'benefits'      => [
             'backup'        => 'Recupera una entidad previamente eliminada durante un máximo de :amount días',
             'customisable'  => 'Personalización total del aspecto de una campaña',
-            'entities'      => 'Mejor control sobre el comportamiento y la apariencia de las entidades',
             'icons'         => 'Acceso a miles de hermosos iconos para mapas y líneas de tiempo',
-            'relations'     => 'Explorar visualmente las relaciones de una entidad en el explorador visual',
             'title'         => 'Las campañas potenciadas obtienen',
             'upload'        => 'Mayor capacidad de carga de archivos para todos los miembros de la campaña',
         ],

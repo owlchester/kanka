@@ -10,7 +10,6 @@ return [
         'icon_tooltip'  => 'Promijeni redoslijed bilješki',
         'panel_title'   => 'Promijeni redoslijed bilješki',
         'success'       => 'Bilješke presložene.',
-        'title'         => 'Preslagivanje bilješki entiteta :name',
     ],
     'update'    => [
         'title' => 'Ažuriraj unos :entry',

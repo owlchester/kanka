@@ -17,14 +17,12 @@ return [
     ],
     'create'        => [
         'success'   => 'Notiz \':name\' zu :entity hinzugefügt.',
-        'title'     => 'Neue Notiz für :name',
     ],
     'destroy'       => [
         'success'   => 'Notiz \':name\' von :entity entfernt.',
     ],
     'edit'          => [
         'success'   => 'Notiz \':name\' für :entity aktualisiert.',
-        'title'     => 'Aktualisiere Notiz für :name',
     ],
     'fields'        => [
         'creator'   => 'Ersteller',
@@ -47,7 +45,6 @@ return [
         'copy_title'    => 'Behalte eine Kopie',
         'description'   => 'Wähle ein Objekt aus, das du verschieben möchtest, oder erstelle eine Kopie dieses Beitrags.',
         'entity'        => 'Zielobjekt',
-        'move'          => 'Verschiebe oder kopiere in eine anderes Objekt',
         'move_success'  => 'Beitrag :name erfolgreich nach :entity verschoben.',
     ],
     'placeholders'  => [

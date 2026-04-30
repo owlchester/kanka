@@ -7,9 +7,8 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'character' => 'Создатель',
-        'price'     => 'Цена',
-        'size'      => 'Размеры',
+        'price' => 'Цена',
+        'size'  => 'Размеры',
     ],
     'helpers'       => [],
     'hints'         => [],

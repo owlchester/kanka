@@ -11,7 +11,6 @@ return [
         'title' => 'Ajouter un objet',
     ],
     'fields'        => [
-        'character'     => 'Créateur(trice)',
         'creators'      => 'Créateurs',
         'is_equipped'   => 'Équipé',
         'price'         => 'Prix',

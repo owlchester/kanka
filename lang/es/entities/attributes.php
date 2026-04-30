@@ -24,7 +24,6 @@ return [
         'is_star'               => 'Fijado',
         'preferences'           => 'Preferencias',
         'property'              => 'Propiedad',
-        'template'              => 'Plantilla',
         'value'                 => 'Valor',
     ],
     'filters'       => [
@@ -65,7 +64,6 @@ return [
             'value' => '1-100 o una lista de valores separados por comas',
         ],
         'section'   => 'Nombre de la sección',
-        'template'  => 'Seleccionar plantilla',
         'value'     => 'Valor del atributo',
     ],
     'ranges'        => [
@@ -106,7 +104,6 @@ return [
         'number'    => 'Número',
         'random'    => 'Aleatorio',
         'section'   => 'Sección',
-        'templates' => 'Plantillas',
         'text'      => 'Texto multilínea',
     ],
     'update'        => [

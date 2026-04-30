@@ -10,7 +10,6 @@ return [
         'community_templates'   => 'Community Sjablonen',
         'is_private'            => 'Privé Attributen',
         'is_star'               => 'Vastgemaakt',
-        'template'              => 'Sjabloon',
         'value'                 => 'Waarde',
     ],
     'helpers'       => [
@@ -30,7 +29,6 @@ return [
             'name'  => 'Pictogram naam',
         ],
         'section'   => 'Sectie naam',
-        'template'  => 'Selecteer een sjabloon',
         'value'     => 'Waarde van het attribuut',
     ],
     'template'      => [

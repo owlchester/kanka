@@ -15,7 +15,6 @@ return [
         'discord'           => 'Ruoli e canali :discord unici',
         'feature_influence' => 'Dai la tua opinione sulle funzioni future',
         'file_size'         => ':size per i caricamenti di files',
-        'map_size'          => ':size per i caricamenti delle Mappe',
         'nice_image'        => 'Immagini predefinite per le entità',
         'no_ads'            => 'Nessun annuncio.',
         'pagination'        => ':amount risultati per pagina (massimo di entità mostrate per pagina)',

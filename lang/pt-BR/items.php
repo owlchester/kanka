@@ -13,7 +13,6 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'character'     => 'Criador',
         'creators'      => 'Criadores',
         'is_equipped'   => 'Equipado',
         'price'         => 'Preço',

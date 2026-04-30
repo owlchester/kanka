@@ -21,7 +21,6 @@ return [
         'feature_influence' => 'Vplyv na nové funkcie',
         'file_size'         => ':size Veľkosť nahrávaných súborov',
         'import'            => 'Import kampane',
-        'map_size'          => ':size Veľkosť nahrávaných máp',
         'nice_image'        => 'Štandardné obrázky objektov',
         'no_ads'            => 'Bez reklamy',
         'pagination'        => ':amount max. objektov v zoznamoch',

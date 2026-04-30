@@ -20,9 +20,7 @@ return [
         ],
         'fields'        => [
             'copy_entity_entry' => 'Použiť popis objektu',
-            'description'       => 'Popis',
             'entity_or_name'    => 'Zvoľ buď objekt kampane, alebo pomenuj tento prvok.',
-            'name'              => 'Názov',
         ],
         'helpers'       => [
             'copy_entity_entry' => 'Zobraziť prepojený text objektu namiesto vlastného popisu.',

@@ -15,7 +15,6 @@ return [
         'discord'           => 'Discord Rollen',
         'feature_influence' => 'Einfluss neuer Funktionen',
         'file_size'         => ':size Upload Dateigröße',
-        'map_size'          => ':size Upload Kartengröße',
         'nice_image'        => 'Standardobjektbilder',
         'no_ads'            => 'keine ads',
         'pagination'        => ':amount Max paginierte Ergebnisse',

@@ -33,13 +33,11 @@ return [
         'traits'                    => 'Opis',
     ],
     'helpers'       => [
-        'age'                   => 'Możesz też połączyć ten element z kalendarzem kampanii, by automatycznie obliczyć wiek. :more',
-        'personality_visible'   => 'Po zaznaczeniu cechy osobowości będą widoczne dla każdego. W przeciwnym razie widzieć je będą tylko posiadacze roli :admin.',
+        'age'   => 'Możesz też połączyć ten element z kalendarzem kampanii, by automatycznie obliczyć wiek. :more',
     ],
     'hints'         => [
         'is_appearance_pinned'      => 'Zaznacz, by cechy wyglądu postaci wyświetlane były w widoku podstawowym.',
         'is_dead'                   => 'Ta postać jest martwa',
-        'is_personality_pinned'     => 'Zaznacz, by cechy osobowości postaci wyświetlane były w widoku podstawowym.',
         'is_personality_visible'    => 'Odznacz by ukryć cały opis osobowości przed użytkownikami niebędących administratorami.',
         'personality_not_visible'   => 'Opis osobowości widoczny wyłącznie dla administratorów.',
         'personality_visible'       => 'Opis osobowości widoczny dla wszystkich.',

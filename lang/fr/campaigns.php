@@ -24,7 +24,6 @@ return [
         'boosted'                   => 'Boosté par',
         'entity_count'              => 'Nombre d\'entrées',
         'entry'                     => 'Description de la campagne',
-        'excerpt'                   => 'Description de la campagne sur le tableau de bord',
         'followers'                 => 'Followers',
         'genre'                     => 'Genre(s)',
         'header_image'              => 'Image de fond pour le tableau de bord',

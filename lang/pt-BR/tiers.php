@@ -21,7 +21,6 @@ return [
         'feature_influence' => 'Influência em novos recursos',
         'file_size'         => ':size Tamanho de upload de arquivo',
         'import'            => 'Importador de campanha',
-        'map_size'          => ':size Tamanho de upload de mapas',
         'nice_image'        => 'Imagens de entidade padrão',
         'no_ads'            => 'Sem anúncios',
         'pagination'        => ':amount Máximo de resultados paginados (entidades exibidas por página)',

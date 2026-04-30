@@ -19,9 +19,7 @@ return [
             'title'     => 'Actualizar elemento de la misión :name',
         ],
         'fields'    => [
-            'description'       => 'Descripción',
             'entity_or_name'    => 'Selecciona una entidad de la campaña o asigna un nombre a este elemento.',
-            'name'              => 'Nombre',
         ],
     ],
     'fields'        => [

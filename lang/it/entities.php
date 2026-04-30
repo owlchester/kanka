@@ -29,7 +29,6 @@ return [
         'modes'                     => [
             'bulk'      => 'Aggiungi in blocco',
             'default'   => 'Aggiungi veloce',
-            'templates' => 'Seleziona modello',
         ],
         'name'                      => [
             'new'       => 'Nuovo nome',

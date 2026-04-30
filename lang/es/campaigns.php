@@ -27,7 +27,6 @@ return [
         'boosted'                   => 'Mejorada por',
         'entity_count'              => 'Número de entidades',
         'entry'                     => 'Descripción de la campaña',
-        'excerpt'                   => 'Extracto',
         'followers'                 => 'Seguidores',
         'genre'                     => 'Género(s)',
         'header_image'              => 'Imagen de cabecera',

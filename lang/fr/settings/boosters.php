@@ -44,10 +44,8 @@ return [
         'benefits'      => [
             'backup'        => 'Récupérer des entrées supprimées pendant :amount jours',
             'customisable'  => 'Contrôle créatif complet de la campagne',
-            'entities'      => 'Meilleur contrôle de comment les entrées se comportent et s\'affichent',
             'icons'         => 'Accès à des milliers d\'icônes pour les cartes et chronologies.',
             'plugins'       => 'Étends ta campagne avec des plugins créés par la communauté',
-            'relations'     => 'Explorer les relations d\'une entrée visuellement',
             'title'         => 'Les campagnes boostées ont',
             'upload'        => 'Taille de fichier plus grand pour tous les membres de la campagne',
             'visual'        => 'Visualise des arbres généalogiques et les relations entre les entrées',

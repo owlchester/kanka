@@ -54,7 +54,6 @@ TEXT
         'message'   => 'Hinzufügen einer benutzerdefinierten Nachricht mit Unterstützung für Mappings',
         'status'    => 'Umschalten des aktiven Status des Webhooks',
     ],
-    'pitch'         => 'Erstelle benutzerdefinierte Webhooks, um benutzerdefinierte Aktualisierungen zu erhalten, wenn ein Objekt der Kampagne aktualisiert wird.',
     'placeholders'  => [
         'message'   => '{who} hat Änderungen an  {name}, vorgenommen, sieh sie dir hier {url} an.',
         'url'       => 'Url des Ziel-Webhooks',

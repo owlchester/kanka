@@ -13,7 +13,6 @@ return [
         'panel_title'   => 'Réordonner les éléments',
         'save'          => 'Enregistrer les changements',
         'success'       => 'Les éléments ont été réordonnés.',
-        'title'         => 'Réordonner l\'entrée :name',
     ],
     'update'    => [
         'title' => 'Modifier l\'entrée :entity',

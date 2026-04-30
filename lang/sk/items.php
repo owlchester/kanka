@@ -13,7 +13,6 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'character'     => 'Postava',
         'creators'      => 'Tvorcovia',
         'is_equipped'   => 'Vo vybavení',
         'price'         => 'Cena',

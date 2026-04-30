@@ -20,9 +20,7 @@ return [
         ],
         'fields'        => [
             'copy_entity_entry' => 'Usar a descrição da entidade',
-            'description'       => 'Descrição',
             'entity_or_name'    => 'Selecione uma entidade da campanha ou dê um nome para este elemento.',
-            'name'              => 'Nome',
         ],
         'helpers'       => [
             'copy_entity_entry' => 'Exibir a descrição da entidade vinculada em vez da descrição personalizada.',

@@ -31,14 +31,12 @@ return [
         'helper_v2'                 => 'Créé rapidement les fondations d\'une nouvelle entrée sans interrompre ton flow.',
         'helpers'                   => [
             'archetype' => 'Sélectionner un archétype sur lequel les nouvelles entrées seront basées',
-            'template'  => 'Sélectionne un modèle dont les nouvelles entrées seront une copie',
         ],
         'missing_v2'                => 'Seuls les catégories activées et auxquels tu as la permission de créer des entrées sont visibles dans cette interface. :learn-more.',
         'modes'                     => [
             'archetypes'    => 'Sélection d\'archétype',
             'bulk'          => 'Ajout en bloc',
             'default'       => 'Ajout rapide',
-            'templates'     => 'Choix de modèle',
         ],
         'name'                      => [
             'new'       => 'Nouveau nom',

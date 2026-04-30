@@ -44,9 +44,7 @@ return [
         'benefits'      => [
             'backup'        => 'Możliwość odzyskania usuniętych elementów do :days wstecz',
             'customisable'  => 'Pełną kontrolę nad wyglądem kampanii',
-            'entities'      => 'Większy wpływ na zachowanie i wygląd elementów',
             'icons'         => 'Dostęp do tysięcy ikon, które można umieszczać na mapie i w historii',
-            'relations'     => 'Narzędzie wizualizacji relacji między elementami',
             'title'         => 'W doładowanych kampaniach otrzymujesz',
             'upload'        => 'Możliwość dodawania większych plików (dla wszystkich)',
         ],

@@ -7,7 +7,6 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'character'     => 'Postać',
         'is_equipped'   => 'Na wyposażeniu',
         'price'         => 'Cena',
         'size'          => 'Rozmiar',

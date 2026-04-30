@@ -22,7 +22,6 @@ return [
         'is_private'            => 'Szablony Tajne',
         'is_star'               => 'Przypięte',
         'preferences'           => 'Ustawienia',
-        'template'              => 'Szablon',
         'value'                 => 'Wartość',
     ],
     'filters'       => [
@@ -63,7 +62,6 @@ return [
             'value' => '1-100 lub lista wartości rozdzielonych przecinkiem',
         ],
         'section'   => 'Nazwa sekcji',
-        'template'  => 'Wybierz szablon',
         'value'     => 'Wartość cechy',
     ],
     'ranges'        => [
@@ -103,7 +101,6 @@ return [
         'number'    => 'Liczba',
         'random'    => 'Losowy',
         'section'   => 'Sekcja',
-        'templates' => 'Szablony',
         'text'      => 'Kilka wierszy',
     ],
     'update'        => [

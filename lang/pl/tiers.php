@@ -23,7 +23,6 @@ return [
         'feature_influence' => 'Wpływ na nowe funkcje',
         'file_size'         => 'Dodawanie plików o rozmiarze :size',
         'import'            => 'Import kampanii',
-        'map_size'          => 'Dodawanie map o rozmiarze :size',
         'modules'           => ':count własnych modułów',
         'nice_image'        => 'Domyślne ikony elementów',
         'no_ads'            => 'Brak reklam',

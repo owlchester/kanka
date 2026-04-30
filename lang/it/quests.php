@@ -19,9 +19,7 @@ return [
             'title'     => 'Modifica elemento per :name',
         ],
         'fields'    => [
-            'description'       => 'Descrizione',
             'entity_or_name'    => 'Seleziona un\'entità della campagna o dai un nome a questo elemento.',
-            'name'              => 'Nome',
         ],
     ],
     'fields'        => [
