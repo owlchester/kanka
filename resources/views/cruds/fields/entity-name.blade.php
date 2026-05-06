@@ -27,7 +27,7 @@ $existingAliases = isset($entity) && $entity->id
 
 // Compute effective alias limit for this entity's component.
 // null = unlimited (boosted campaign), integer = remaining slots for this entity.
-if ($campaign->boosted()) {
+if ($campaign->boosted() || empty(config('limits.campaigns.aliases'))) {
     $aliasLimit = null;
 } else {
     $campaignAliasCount = $campaign->entityAliases()->count();
