@@ -208,6 +208,7 @@ return [
     'hints'             => [
         'calendar_date'         => 'A calendar date allows easy filtering in lists, and also maintains a reminder in the selected calendar.',
         'image_dimension'       => 'Recommended dimensions: :dimension pixels.',
+        'image_formats'         => 'Supported formats: :formats.',
         'image_limitations'     => 'Supported formats: :formats. Max file size: :size.',
         'image_recommendation'  => 'Recommended dimensions: :width by :height pixels.',
         'is_star'               => 'Pinned elements will appear on the overview page.',

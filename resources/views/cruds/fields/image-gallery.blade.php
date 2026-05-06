@@ -15,6 +15,7 @@ if (isset($size) && $size == 'map') {
     $max = 50;
     $from = 'map';
 }
+$isUnlimited = empty($from === 'map' ? config('limits.filesize.map') : config('limits.filesize.image.standard'));
 $label = $imageLabel ?? 'crud.fields.image';
 
 $previewThumbnail = null;
@@ -85,7 +86,7 @@ $old = isset($entity) && !empty($entity->image_path) || isset($model) && !empty(
             browse="{{ route('gallery.browse', [$campaign]) }}"
             old="{{ $old ? 'true' : 'false' }}"
             i18n="{{ $translations }}"
-            premium="{{ $campaign->boosted() ? 'true' : 'false' }}"
+            premium="{{ $campaign->boosted() || $isUnlimited ? 'true' : 'false' }}"
             cta="{{ route('settings.premium', ['campaign' => $campaign->id, $from]) }}"
         >
             <x-icon class="load" />
@@ -93,8 +94,15 @@ $old = isset($entity) && !empty($entity->image_path) || isset($model) && !empty(
     </div>
 
     <x-helper class="text-xs">
-        <p>{{ __('crud.hints.image_limitations', ['formats' => $formats, 'size' => (isset($size) ? Limit::readable()->map()->upload() : Limit::readable()->upload())]) }} @if (isset($recommended)) {{ __('crud.hints.image_dimension', ['dimension' => $recommended]) }} @endif
-        @includeWhen(config('services.stripe.enabled'), 'cruds.fields.helpers.share')</p>
+        <p>
+            @if ($isUnlimited)
+                {{ __('crud.hints.image_formats', ['formats' => $formats]) }}
+            @else
+                {{ __('crud.hints.image_limitations', ['formats' => $formats, 'size' => (isset($size) ? Limit::readable()->map()->upload() : Limit::readable()->upload())]) }}
+                @includeWhen(config('services.stripe.enabled'), 'cruds.fields.helpers.share')
+            @endif
+            @if (isset($recommended)) {{ __('crud.hints.image_dimension', ['dimension' => $recommended]) }} @endif
+        </p>
     </x-helper>
 </div>
 
