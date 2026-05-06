@@ -67,6 +67,7 @@ class UserController extends Controller
             'roles' => $roles,
             'invitations' => $invitations,
             'rows' => $this->rows,
+            'unlimited' => $campaign->boosted() || empty(config('limits.campaigns.members'))
         ]);
     }
 

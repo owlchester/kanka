@@ -41,7 +41,7 @@ return [
             'standard' => 7,
             'premium' => 180,
         ],
-        'aliases' => 2,
+        'aliases' => env('APP_ALIAS_LIMIT', 2),
         'web' => 10,
     ],
 
