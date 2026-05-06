@@ -42,6 +42,16 @@ class StorageService
         return $this->totalSpace() - $this->usedSpace();
     }
 
+    public function isUnlimited(): bool
+    {
+        $flags = CampaignCache::campaign($this->campaign)->flags();
+        if ($flags->has('gallery') || $this->campaign->boosted()) {
+            return false;
+        }
+
+        return empty(config('limits.gallery.standard'));
+    }
+
     /**
      * Total size in mb
      */
@@ -61,7 +71,12 @@ class StorageService
             return config('limits.gallery.premium');
         }
 
-        return config('limits.gallery.standard');
+        $standard = config('limits.gallery.standard');
+        if (empty($standard)) {
+            return PHP_INT_MAX;
+        }
+
+        return $standard;
     }
 
     protected function cacheKey(): string

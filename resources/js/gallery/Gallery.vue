@@ -969,6 +969,9 @@ const usedSpace = () => {
     return human(used.value)
 }
 const totalSpace = () => {
+    if (total.value === 0) {
+        return '∞'
+    }
     return human(total.value)
 }
 
@@ -996,6 +999,9 @@ const usedClasses = () => {
     return css + ' bg-red-500';
 }
 const usedPercentage = () => {
+    if (total.value === 0) {
+        return 0
+    }
     return Math.round((used.value / total.value) * 100)
 }
 

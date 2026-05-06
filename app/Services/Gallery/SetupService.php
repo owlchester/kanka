@@ -69,7 +69,7 @@ class SetupService
             'acl' => [
                 'manage' => $this->user->can('galleryManage', $this->campaign),
                 'upload' => $this->user->can('galleryUpload', $this->campaign),
-                'premium' => $this->campaign->boosted(),
+                'premium' => $this->campaign->boosted() || $this->storage->campaign($this->campaign)->isUnlimited(),
                 'elemental' => $this->campaign->isElemental(),
                 'wyvern' => $this->campaign->isWyvern(),
             ],
@@ -174,7 +174,9 @@ class SetupService
             'move' => __('crud.actions.move'),
             'home' => __('Home'),
             'load_more' => __('Load more'),
-            'upload_hint' => __('crud.files.hints.limitations', ['formats' => 'jpg, png, webp, gif, woff2', 'size' => Limit::readable()->upload()]),
+            'upload_hint' => empty(config('limits.filesize.image.standard'))
+                ? __('crud.hints.image_formats', ['formats' => 'jpg, png, webp, gif, woff2'])
+                : __('crud.files.hints.limitations', ['formats' => 'jpg, png, webp, gif, woff2', 'size' => Limit::readable()->upload()]),
 
             // Space
             'storage' => __('campaigns/gallery.storage.title'),
@@ -281,9 +283,11 @@ class SetupService
 
     protected function space(): array
     {
+        $storage = $this->storage->campaign($this->campaign);
+
         return [
-            'total' => $this->storage->campaign($this->campaign)->totalSpace(),
-            'used' => $this->storage->usedSpace(),
+            'total' => $storage->isUnlimited() ? 0 : $storage->totalSpace(),
+            'used' => $storage->usedSpace(),
         ];
     }
 
