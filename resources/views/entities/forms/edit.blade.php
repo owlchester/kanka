@@ -32,7 +32,7 @@
                         <x-tab.tab target="entry" :default="true" :title="__('entries/tabs.identity')"></x-tab.tab>
 
                         @includeIf($entity->entityType->pluralCode() . '.form._tabs', ['source' => null])
-                        @if (config('services.stripe.enabled'))
+                        @if (config('limits.campaigns.premium'))
                             <x-tab.tab target="premium" icon="premium" :title="__('crud.tabs.premium')"></x-tab.tab>
                         @endif
                         @if ($tabAttributes)
@@ -58,7 +58,7 @@
                     @endif
                 </div>
                 @includeIf($name . '.form._panes', ['source' => null])
-                @if (config('services.stripe.enabled'))
+                @if (config('limits.campaigns.premium'))
                     <div class="tab-pane flex flex-col gap-5 {{ (request()->get('tab') == 'premium' ? ' active' : '') }}" id="form-premium">
                         @include('cruds.forms._premium', ['source' => null])
                     </div>

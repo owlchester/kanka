@@ -54,6 +54,8 @@ $hasDashboards = !$dashboards->isEmpty() || !empty($dashboard);
                 @endif
                 </h4>
             @endif
+            
+            @if (config('limits.campaigns.premium'))
             <div class="flex items-center gap-2">
                 <div class="inline-block">
                     <a href="{{ route('dashboard', isset($dashboard) ? [$campaign, 'dashboard' => $dashboard->id] : [$campaign]) }}" class="btn2 btn-sm" title="{{ __('dashboard.setup.actions.back_to_dashboard') }}">
@@ -98,6 +100,7 @@ $hasDashboards = !$dashboards->isEmpty() || !empty($dashboard);
                     <span class="hidden sm:inline">{{ __('dashboard.dashboards.actions.new') }}</span>
                 </a>
             </div>
+            @endif
         </div>
 
         @empty($dashboard)

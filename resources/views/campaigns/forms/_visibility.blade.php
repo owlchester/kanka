@@ -50,7 +50,7 @@ use App\Enums\CampaignVisibility;
                     </label>
                 </div>
             </div>
-        @else
+        @elseif (config('limits.campaigns.premium'))
             <div class="rounded-xl border border-base-300 p-2 flex gap-2 items-start cursor-not-allowed hover:shadow-sm">
                 <input type="radio" name="visibility" id="visibility-unlisted" value="unlisted" class="mt-1" disabled="disabled" />
                 <div class="flex flex-col gap-0 w-full">

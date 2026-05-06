@@ -55,7 +55,7 @@
 
                             @includeIf($name . '.form._tabs')
 
-                            @if ($tabBoosted && config('services.stripe.enabled'))
+                            @if ($tabBoosted && config('limits.campaigns.premium'))
                                 <x-tab.tab target="premium" icon="premium" :title="__('crud.tabs.premium')"></x-tab.tab>
                             @endif
                             @if ($tabAttributes)
@@ -82,7 +82,7 @@
                     </div>
                     @includeIf($name . '.form._panes')
 
-                    @if ($tabBoosted && config('services.stripe.enabled'))
+                    @if ($tabBoosted && config('limits.campaigns.premium'))
                         <div class="tab-pane pane-premium {{ (request()->get('tab') == 'premium' ? ' active' : '') }}" id="form-premium">
                             <x-grid type="1/1">
                                 @include('cruds.forms._premium')

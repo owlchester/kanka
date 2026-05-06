@@ -2,6 +2,7 @@
 
 return [
     'campaigns' => [
+        'premium' => env('APP_PREMIUM', false),
         /**
          * Limits in place for standard campaigns. Premium campaigns are unlimited
          */

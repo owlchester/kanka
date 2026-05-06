@@ -2,6 +2,7 @@
 ?>
 
 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+    @if (config('limits.campaigns.premium'))
     <x-box class="flex items-center gap-5 rounded-xl ">
         @if ($campaign->boosted())
             @php
@@ -47,6 +48,7 @@
             </a>
         @endif
     </x-box>
+    @endif
 
 
     <x-infoBox
