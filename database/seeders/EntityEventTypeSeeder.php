@@ -17,14 +17,10 @@ class EntityEventTypeSeeder extends Seeder
     {
         $types = [EntityEventTypes::birth, EntityEventTypes::death, EntityEventTypes::calendarDate, EntityEventTypes::founded];
         $created = 0;
-        foreach ($types as $name) {
-            $type = EntityEventType::firstOrNew([
-                'name' => $name,
-            ]);
-            if (! $type->exists) {
-                $type->fill([
-                    'name' => $name,
-                ])->save();
+        foreach ($types as $type) {
+            $exists = EntityEventType::query()->where('id', $type->value)->exists();
+            if (! $exists) {
+                EntityEventType::query()->insert(['id' => $type->value, 'name' => $type->name]);
                 $created++;
             }
         }
