@@ -38,6 +38,7 @@ class Era extends Layout
                     if (empty($era->start_year)) {
                         return '';
                     }
+
                     return Number::format($era->start_year ?? 0);
                 },
             ],
@@ -48,6 +49,7 @@ class Era extends Layout
                     if (empty($era->end_year)) {
                         return '';
                     }
+
                     return Number::format($era->end_year);
                 },
             ],

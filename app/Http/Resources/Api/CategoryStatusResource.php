@@ -2,9 +2,7 @@
 
 namespace App\Http\Resources\Api;
 
-use App\Facades\Avatar;
 use App\Models\CategoryStatus;
-use App\Models\Entity;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 

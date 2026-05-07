@@ -2,6 +2,8 @@
 
 namespace App\Auth;
 
+use Illuminate\Contracts\Auth\Authenticatable;
+use Laravel\Passport\AccessToken;
 use Laravel\Passport\Guards\TokenGuard;
 use Laravel\Passport\Token;
 
@@ -14,7 +16,7 @@ use Laravel\Passport\Token;
  */
 class PassportTokenGuard extends TokenGuard
 {
-    protected function authenticateViaBearerToken(): ?\Illuminate\Contracts\Auth\Authenticatable
+    protected function authenticateViaBearerToken(): ?Authenticatable
     {
         if (! $psr = $this->getPsrRequestViaBearerToken()) {
             return null;
@@ -56,6 +58,6 @@ class PassportTokenGuard extends TokenGuard
             return null;
         }
 
-        return $user?->withAccessToken(\Laravel\Passport\AccessToken::fromPsrRequest($psr));
+        return $user?->withAccessToken(AccessToken::fromPsrRequest($psr));
     }
 }
