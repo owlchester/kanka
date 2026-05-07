@@ -43,6 +43,7 @@ return [
         'custom_shape'  => 'Polygon shape',
         'font_colour'   => 'Icon colour',
         'group'         => 'Marker group',
+        'has_tooltip'   => 'Has tooltip popup',
         'icon'          => 'Icon',
         'is_draggable'  => 'Draggable',
         'latitude'      => 'Latitude',
