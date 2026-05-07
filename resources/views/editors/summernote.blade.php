@@ -10,7 +10,6 @@
     <script src="{{ config('app.asset_url') }}/vendor/summernote/plugin/summernote-aroba-kanka/summernote-aroba.js" defer></script>
     <script src="{{ config('app.asset_url') }}/vendor/summernote/plugin/summernote-table-ext.js" defer></script>
     <script src="{{ config('app.asset_url') }}/vendor/summernote/plugin/summernote-image-attribute.js" defer></script>
-    <script src="{{ config('app.asset_url') }}/vendor/summernote/plugin/kanka/summernote-bragi.min.js" defer></script>
     <script src="{{ config('app.asset_url') }}/vendor/summernote/plugin/kanka/summernote-prettify-kanka.min.js" defer></script>
 
     @if (!in_array(app()->getLocale(), ['en-US', 'en']))
@@ -46,7 +45,6 @@
         data-filesize="{{ Limit::upload() }}"
         data-placeholder="{{ $editorPlaceholder ?? __('crud.placeholders.entry') }}"
         data-dialogs="{{ isset($dialogsInBody) ? '1' : '0' }}"
-@if (isset($name) && $name == 'characters')        data-bragi="{{ route('bragi', $campaign) }}"@endif
 @if(isset($campaign) && $campaign !== null)
         data-gallery="{{ route('campaign.gallery.summernote', $campaign) }}"
         data-gallery-upload="{{ route('campaign.gallery.ajax-upload', $campaign) }}"
