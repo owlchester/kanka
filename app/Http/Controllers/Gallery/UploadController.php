@@ -10,6 +10,7 @@ use App\Http\Requests\Gallery\UploadUrl;
 use App\Models\Campaign;
 use App\Services\Gallery\StorageService;
 use App\Services\Gallery\UploadService;
+use Intervention\Image\Exceptions\DecoderException;
 
 class UploadController extends Controller
 {
@@ -82,6 +83,11 @@ class UploadController extends Controller
             return response()->json(
                 ['error' => $e->getTranslatedMessage()],
                 421
+            );
+        } catch (DecoderException) {
+            return response()->json(
+                ['error' => __('gallery.download.errors.invalid_url')],
+                422
             );
         }
     }

@@ -18,6 +18,7 @@ use Illuminate\Http\Response;
 use Illuminate\Session\TokenMismatchException;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use Intervention\Image\Exceptions\DecoderException;
 use Laravel\Passport\Exceptions\OAuthServerException;
 use Livewire\Features\SupportLockedProperties\CannotUpdateLockedPropertyException;
 use Sentry\Laravel\Integration;
@@ -47,6 +48,7 @@ class Handler extends ExceptionHandler
         CannotUpdateLockedPropertyException::class,
         BroadcastException::class,
         NotFoundHttpException::class,
+        DecoderException::class,
     ];
 
     public function register(): void
