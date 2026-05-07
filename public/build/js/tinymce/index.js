@@ -1,7 +1,7 @@
-// Exports the "modern" theme for usage with module loaders
+// Exports the "emoticons" plugin for usage with module loaders
 // Usage:
 //   CommonJS:
-//     require('tinymce/themes/modern')
+//     require('tinymce/plugins/emoticons')
 //   ES2015:
-//     import 'tinymce/themes/modern'
-require('./theme.js');
+//     import 'tinymce/plugins/emoticons'
+require('./plugin.js');
