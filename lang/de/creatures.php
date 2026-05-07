@@ -6,6 +6,7 @@ return [
     ],
     'creatures'     => [],
     'fields'        => [
+        'is_dead'       => 'Tod',
         'is_extinct'    => 'Ausgestorben',
     ],
     'helpers'       => [],

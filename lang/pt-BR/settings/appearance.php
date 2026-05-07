@@ -18,7 +18,13 @@ return [
     ],
     'editors'           => [
         'default'   => 'Padrão (:name)',
+        'helpers'   => [
+            'feedback'  => 'Ajude-nos a melhorar, enviando seu feedback (2 min)',
+            'legacy'    => 'O editor de texto antigo (TinyMCE) não oferece suporte a menções em dispositivos móveis, galerias de campanhas ou outros recursos avançados.',
+            'tiptap'    => 'Este é o nosso novo editor de texto experimental, que está sendo ativamente desenvolvido e atualizado regularmente. Ele ainda não contém todos os recursos aos quais você pode estar acostumado.',
+        ],
         'legacy'    => 'Herdado (:name)',
+        'tiptap'    => 'Experimental 2026',
     ],
     'explore'           => [
         'grid'  => 'Grade (padrão)',
@@ -38,6 +44,7 @@ return [
         'advanced-mentions'     => 'Ao editar textos, controle se as menções são renderizadas como o nome da entidade ou como menção avançada.',
         'campaign-order'        => 'Altere a ordem em que as campanhas são listadas no alternador de campanha.',
         'date-format'           => 'Quando disponível, controle o formato no qual exibir as datas do mundo real.',
+        'editors'               => 'Alterne entre editores de texto ao criar ou editar campos de texto grandes.',
         'entity-explore'        => 'Controle a maneira como as listas de entidades são exibidas nas campanhas.',
         'new-entity-workflow'   => 'Controle para qual interface você será levado depois de criar uma nova entidade.',
         'overridable'           => 'Campanhas individuais podem substituir essa preferência.',

@@ -133,6 +133,9 @@ return [
         'success'   => 'Perfil atualizado.',
         'title'     => 'Perfil público',
     ],
+    'referrals'     => [
+        'title' => 'Referências',
+    ],
     'subscription'  => [
         'actions'               => [
             'cancel_sub'        => 'Cancelar assinatura',
@@ -164,6 +167,8 @@ return [
         'cancelled'             => 'Sua assinatura foi cancelada. Você pode renovar uma assinatura assim que sua assinatura atual terminar depois de :date.',
         'change'                => [
             'text'  => [
+                'downgrade_monthly' => 'Você está fazendo um downgrade para o nível :tier pelo valor de :downgrade, e a partir daí será cobrado mensalmente pelo valor de :amount.',
+                'downgrade_yearly'  => 'Você está fazendo um downgrade para o nível :tier pelo valor de :downgrade, e a partir daí será cobrado anualmente pelo valor de :amount.',
                 'monthly'           => 'Você está se inscrevendo no nível :tier, cobrado mensalmente em :amount.',
                 'upgrade_monthly'   => 'Você está atualizando para o nível :tier para :upgrade e, posteriormente, será cobrado mensalmente por :amount.',
                 'upgrade_paypal'    => 'Você está atualizando para o nível :tier para :upgrade até :date.',

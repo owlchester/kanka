@@ -10,4 +10,5 @@ return [
     'premium'   => [
         'helper'    => 'Logs com mais de :amount dias só podem ser visualizados com uma campanha premium.',
     ],
+    'title'     => 'Log de auditoria',
 ];

@@ -6,12 +6,13 @@ return [
         'unlock'    => 'Premium gehen',
     ],
     'create'        => [
-        'actions'   => [
+        'actions'       => [
             'confirm'   => 'Premium gehen!',
         ],
-        'confirm'   => 'Wie aufregend! Du bist dabei, Premium-Funktionen für :campaign freizuschalten. Dies wird eine deiner verfügbaren Premium-Kampagnen verwenden.',
-        'duration'  => 'Premium-Kampagnen bleiben in diesem Zustand, bis Du sie manuell entfernst oder Ihr Abonnement endet.',
-        'success'   => 'Die :campaign Kampagne ist jetzt Premium. Genieße all die neuen, fantastischen Funktionen!',
+        'confirm'       => 'Wie aufregend! Du bist dabei, Premium-Funktionen für :campaign freizuschalten. Dies wird eine deiner verfügbaren Premium-Kampagnen verwenden.',
+        'duration'      => 'Premium-Kampagnen bleiben in diesem Zustand, bis Du sie manuell entfernst oder Ihr Abonnement endet.',
+        'pitch_2026'    => 'Erhalte unbegrenzte Rollen, Mitglieder, benutzerdefinierte Designs, Plugins und vieles mehr für deine Kampagnen.',
+        'success'       => 'Die :campaign Kampagne ist jetzt Premium. Genieße all die neuen, fantastischen Funktionen!',
     ],
     'exceptions'    => [
         'already'       => 'Für diese Kampagne wurden bereits Premium-Funktionen freigeschaltet.',
