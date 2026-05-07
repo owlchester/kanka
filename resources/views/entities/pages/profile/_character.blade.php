@@ -1,4 +1,8 @@
 <?php /** @var \App\Models\Character $model */
+if ($model instanceof App\Models\Entity) {
+    $model = $model->character;
+}
+
 $appearances = $model->characterTraits()->appearance()->orderBy('default_order')->get();
 $traits = $model->characterTraits()->personality()->orderBy('default_order')->get();
 

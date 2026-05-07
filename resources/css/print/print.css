@@ -182,7 +182,7 @@ body, #app.wrapper, .wrapper, .content-wrapper, .box {
     display: none;
 }
 .btn-print {
-    z-index: 2;
+    z-index: 9999;
     display: unset;
 }
 
