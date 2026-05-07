@@ -26,7 +26,6 @@ return [
         'boosted'                   => 'Potenziata da',
         'entity_count'              => 'Numero di Entità',
         'entry'                     => 'Descrizione della Campagna',
-        'excerpt'                   => 'Testo della Pagina Principale',
         'followers'                 => 'Seguaci',
         'genre'                     => 'Genere(i)',
         'header_image'              => 'Immagine di copertina della Pagina Principale',

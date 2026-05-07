@@ -17,14 +17,8 @@
                     :entity="$entity"
                     :campaign="$campaign" />
 
-                @if ($widget->entityType?->id === config('entities.ids.quest'))
-                    @if ($entity->quest->isOngoing())
-                        <x-icon class="fa-regular fa-hourglass" tooltip :title="__('quests.status.ongoing')" />
-                    @elseif ($entity->quest->isCompleted())
-                        <x-icon class="fa-regular fa-check-circle" tooltip :title="__('quests.status.completed')" />
-                    @elseif ($entity->quest->isAbandoned())
-                        <x-icon class="fa-regular fa-ban" tooltip :title="__('quests.status.abandoned')" />
-                    @endif
+                @if ($entity->status?->icon)
+                    <x-icon class="{{ $entity->status->icon() }}" tooltip :title="$entity->status->setRelation('entityType', $entity->entityType)->name()" />
                 @endif
                 @if ($entity->is_private)
                     <x-icon class="lock" tooltip title="{{ __('crud.is_private') }}" />

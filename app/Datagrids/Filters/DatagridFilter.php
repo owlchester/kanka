@@ -11,6 +11,7 @@ use App\Models\Location;
 use App\Models\Organisation;
 use App\Models\Race;
 use App\Models\Tag;
+use App\Models\User;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
 use Illuminate\Support\Facades\Auth;
@@ -340,6 +341,40 @@ abstract class DatagridFilter
     protected function connections(): self
     {
         $this->filters[] = 'connections';
+
+        return $this;
+    }
+
+    /**
+     * Add the created by selector
+     */
+    protected function createdBy(): self
+    {
+        $this->filters[] = [
+            'field' => 'created_by',
+            'label' => __('crud.fields.created_by'),
+            'type' => 'select2',
+            'route' => route('find.members', [$this->campaign]),
+            'placeholder' => __('crud.placeholders.user'),
+            'model' => User::class,
+        ];
+
+        return $this;
+    }
+
+    /**
+     * Add the updated by selector
+     */
+    protected function updatedBy(): self
+    {
+        $this->filters[] = [
+            'field' => 'updated_by',
+            'label' => __('crud.fields.updated_by'),
+            'type' => 'select2',
+            'route' => route('find.members', [$this->campaign]),
+            'placeholder' => __('crud.placeholders.user'),
+            'model' => User::class,
+        ];
 
         return $this;
     }

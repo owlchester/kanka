@@ -38,6 +38,8 @@ enum UserAction: int
     case yearlyRenewWarning = 81;
     case subCancelManual = 82;
     case subCancelAuto = 83;
+    case subPaypalExpiringWarning = 84;
+    case subPaypalRenew = 85;
     case paymentEdit = 86;
     case paymentAuto = 87;
     case campaignBoost = 90;

@@ -64,7 +64,7 @@
                 </span>
             </td>
             <td>
-                {{ number_format($item->amount) }}
+                {{ \Illuminate\Support\Number::format($item->amount ?? 0) }}
             </td>
             @auth
                 <td>

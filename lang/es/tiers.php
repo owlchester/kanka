@@ -23,7 +23,6 @@ return [
         'feature_influence' => 'Influencia sobre nuevas funcionalidades',
         'file_size'         => 'Subir archivos de hasta :size',
         'import'            => 'Importador de campaña',
-        'map_size'          => 'Subir mapas de hasta :size',
         'modules'           => ':count módulos personalizados',
         'nice_image'        => 'Imágenes por defecto en las entidades',
         'no_ads'            => 'Sin anuncios',

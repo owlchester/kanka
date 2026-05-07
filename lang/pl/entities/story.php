@@ -13,7 +13,6 @@ return [
         'panel_title'   => 'Zmiana kolejności',
         'save'          => 'Zapisz nową kolejność',
         'success'       => 'Zmieniono kolejność.',
-        'title'         => 'Zmiana kolejności komentarzy do elementu :name',
     ],
     'update'    => [
         'title' => 'Aktualizacja elementu :entity',

@@ -78,8 +78,6 @@ class Campaign extends Model
         'name',
         'slug',
         'locale',
-        'entry',
-        'excerpt',
         'image',
         'export_date',
         'visibility_id',
@@ -236,7 +234,22 @@ class Campaign extends Model
         return $this->is_hidden;
     }
 
-    public function excerpt()
+    public function getEntryAttribute(): ?string
+    {
+        return $this->description?->description;
+    }
+
+    public function getDescriptionForEditionAttribute(): string
+    {
+        return Mentions::parseForEdit($this, 'entry');
+    }
+
+    public function getExcerptAttribute(): ?string
+    {
+        return $this->description?->excerpt;
+    }
+
+    public function excerpt(): string
     {
         return Mentions::mapAny($this, 'excerpt');
     }

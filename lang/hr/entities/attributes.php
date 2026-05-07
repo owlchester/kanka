@@ -13,7 +13,6 @@ return [
         'community_templates'   => 'Predlošci zajednice',
         'is_private'            => 'Privatni atributi',
         'is_star'               => 'Prikvačeno',
-        'template'              => 'Predložak',
         'value'                 => 'Vrijednost',
     ],
     'helpers'       => [
@@ -37,7 +36,6 @@ return [
             'value' => '1-100 ili popis vrijednosti odvojenih zarezom',
         ],
         'section'   => 'Naziv odjeljka',
-        'template'  => 'Odaberi predložak',
         'value'     => 'Vrijednost atributa',
     ],
     'show'          => [

@@ -2,6 +2,11 @@
 
 return [
     'attribute_templates'   => [],
+    'bulk'                  => [
+        'entity_type'   => [
+            'unset' => 'Não definido',
+        ],
+    ],
     'create'                => [
         'title' => 'Novo Modelo de Atributo',
     ],
@@ -20,6 +25,9 @@ return [
         'parent_attribute_template' => 'Este modelo de atributo pode ser secundário de outro modelo de atributo. Ao aplicar este modelo de atributo, ele e todos os seus modelos primários serão aplicados.',
     ],
     'index'                 => [],
+    'lists'                 => [
+        'empty' => 'Criar um conjunto de ferramentas para reutilizar propriedades comuns em várias entradas.',
+    ],
     'placeholders'          => [
         'name'  => 'Nome do Modelo de Atributo',
     ],

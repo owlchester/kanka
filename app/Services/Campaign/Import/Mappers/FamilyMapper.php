@@ -16,8 +16,25 @@ class FamilyMapper extends MiscMapper
     public function first(): void
     {
         $this
+            ->migrateOldStatus()
             ->prepareModel()
             ->trackMappings('family_id');
+    }
+
+    /**
+     * Backward compatibility: resolve old boolean status fields to entities.status_id.
+     */
+    protected function migrateOldStatus(): self
+    {
+        if (array_key_exists('status_id', $this->data['entity'] ?? [])) {
+            return $this;
+        }
+
+        if (! empty($this->data['is_extinct'])) {
+            $this->resolveOldStatusToEntity('family', 'extinct');
+        }
+
+        return $this;
     }
 
     public function second(): void

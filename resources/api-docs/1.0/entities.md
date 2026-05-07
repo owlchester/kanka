@@ -47,6 +47,7 @@ Most entities have the following attributes.
 | `is_private`            | `boolean` | Determines if the object is only visible by `admin` members of the campaign.<br /> If the user requesting the API isn't a member of the `admin` role, such objects won't be returned. |
 | `is_template`           | `boolean` | Determines if the object is a template.                                                                                                                                               |
 | `is_attributes_private` | `boolean` | Determines if the entity's attributes are only visible to members of the campaign's admin role.                                                                                       |
+| `status_id`             | `integer` | The id of the entity's status from `category_statuses`. `null` if no status is set.                                                                                                  |
 | `tags`                  | `array` | An array of tags that the object is related to.                                                                                                                                       |
 | `created_at`            | `object` | An object representing when the object was created (server time)                                                                                                                      |
 | `created_by`            | `integer` | The `users`.`id` who created the object.                                                                                                                                              
@@ -83,6 +84,7 @@ To get the details of a single entity, use the following endpoint.
         "is_private": false,
         "campaign_id": 1,
         "is_attributes_private": false,
+        "status_id": null,
         "tooltip": null,
         "header_image": null,
         "header_uuid": null,
@@ -197,7 +199,7 @@ With each request to an object (ie. `character`, `location`, etc), you can inclu
             "races": [],
             "type": null,
             "families": [],
-            "is_dead": false,
+            "status_id": null,
             "traits": [],
             "archived_at": null
         }

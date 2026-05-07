@@ -20,7 +20,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * Class Organisation
  *
  * @property Collection|OrganisationMember[] $members
- * @property bool|int $is_defunct
  */
 class Organisation extends MiscModel
 {
@@ -37,13 +36,11 @@ class Organisation extends MiscModel
         'campaign_id',
         'name',
         'is_private',
-        'is_defunct',
     ];
 
     protected array $sortable = [
         'name',
         'type',
-        'is_defunct',
         'locations',
     ];
 
@@ -53,7 +50,6 @@ class Organisation extends MiscModel
      * Fields that can be sorted on
      */
     protected array $sortableColumns = [
-        'is_defunct',
         'locations',
     ];
 
@@ -66,7 +62,6 @@ class Organisation extends MiscModel
 
     protected array $exportFields = [
         'base',
-        'is_defunct',
     ];
 
     /**
@@ -213,14 +208,6 @@ class Organisation extends MiscModel
     }
 
     /**
-     * Get the value of the is_defunct variable
-     */
-    public function isDefunct(): bool
-    {
-        return (bool) $this->is_defunct;
-    }
-
-    /**
      * Define the fields unique to this model that can be used on filters
      *
      * @return string[]
@@ -229,7 +216,6 @@ class Organisation extends MiscModel
     {
         return [
             'locations',
-            'is_defunct',
             'member_id',
         ];
     }

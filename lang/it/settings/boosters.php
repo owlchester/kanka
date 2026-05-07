@@ -44,9 +44,7 @@ return [
         'benefits'      => [
             'backup'        => 'Recupera un\'entità precedentemente cancellata per un periodo massimo di :amount giorni.',
             'customisable'  => 'Personalizzazione completa dell\'aspetto di una campagna',
-            'entities'      => 'Miglior controllo su come le entità appaiono e si comportano',
             'icons'         => 'Accedi a migliaia di bellissime icone per mappe e linee temporali',
-            'relations'     => 'Esplora i legami di un\'entità nell\'esploratore visuale',
             'title'         => 'Le campagne potenziate prendono',
             'upload'        => 'Dimensioni di caricamento maggiori per tutti i membri delle campagne',
         ],

@@ -34,6 +34,9 @@ return [
         'type'              => 'Configure este link rápido para ir diretamente para uma lista de entidades. Para filtrar os resultados, copie partes da url na lista de entidades filtradas após o sinal :? no campo de filtro :filter.',
     ],
     'index'             => [],
+    'lists'             => [
+        'empty' => 'Salve marcadores para suas entradas mais usadas ou listas filtradas para acesso mais rápido.',
+    ],
     'placeholders'      => [
         'filters'   => 'location_id=15&type=city',
         'menu'      => 'Subpágina do menu (use o último texto da url)',

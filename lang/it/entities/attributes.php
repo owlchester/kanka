@@ -21,7 +21,6 @@ return [
         'is_private'            => 'Attributi Privati',
         'is_star'               => 'Fissato',
         'preferences'           => 'Preferenze',
-        'template'              => 'Modello',
         'value'                 => 'Valore',
     ],
     'filters'       => [
@@ -62,7 +61,6 @@ return [
             'value' => '1-100 o lista di valori separati da una virgola',
         ],
         'section'   => 'Nome della sezione',
-        'template'  => 'Seleziona un modello',
         'value'     => 'Valore dell\'attributo',
     ],
     'ranges'        => [

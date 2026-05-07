@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\v1\ApplicationApiController;
 use App\Http\Controllers\Api\v1\CalendarEventApiController;
 use App\Http\Controllers\Api\v1\Calendars\AdvancerApiController;
+use App\Http\Controllers\Api\v1\Campaigns\CategoryStatusController;
 use App\Http\Controllers\Api\v1\Campaigns\UserApiController;
 use App\Http\Controllers\Api\v1\DefaultThumbnailApiController;
 use App\Http\Controllers\Api\v1\Entities\Attributes\PatchController;
@@ -97,6 +98,8 @@ Route::get('campaigns/{campaign}/entities/{entity}/image', [EntityImageApiContro
 Route::post('campaigns/{campaign}/entities/{entity}/image', [EntityImageApiController::class, 'put']);
 Route::delete('campaigns/{campaign}/entities/{entity}/image', [EntityImageApiController::class, 'destroy']);
 Route::get('campaigns/{campaign}/roles', 'CampaignRoleApiController@index');
+
+Route::get('campaigns/{campaign}/category_statuses', [CategoryStatusController::class, 'index']);
 
 Route::get('campaigns/{campaign}/relations', [RelationApiController::class, 'index']);
 Route::get('campaigns/{campaign}/search/{query}', [SearchApiController::class, 'index']);

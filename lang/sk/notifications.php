@@ -65,6 +65,7 @@ return [
         'ended'         => 'Tvoje predplatné Kanky bolo ukončené. Tvoje boosty kampaní a roly na Discorde boli odstránené. Dúfame, že sa čoskoro zasa uvidíme!',
         'failed'        => 'Tvoje predplatné Kanky bolo zrušené po prekročení limitu pokusov o spracovanie platby. Prosím, prejdi na Nastavenia predplatného a skús zmeniť tvoje detaily platby.',
         'started'       => 'Tvoje predplatné Kanky bolo spustené.',
+        'trial'         => 'Tvoja skúšobná doba Kanky vypršala. Dúfame, že sa ti páčila a veríme, že ťa uvidíme čoskoro opäť!',
     ],
     'unread'            => 'Nová notifikácia',
 ];

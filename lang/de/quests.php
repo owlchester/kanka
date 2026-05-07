@@ -19,9 +19,7 @@ return [
             'title'     => 'Questelement für aktualisieren :name',
         ],
         'fields'    => [
-            'description'       => 'Beschreibung',
             'entity_or_name'    => 'Wählen Sie entweder ein Objekt der Kampagne aus oder geben Sie diesem Element einen Namen.',
-            'name'              => 'Name',
         ],
     ],
     'fields'        => [

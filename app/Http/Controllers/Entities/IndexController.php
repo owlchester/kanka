@@ -184,7 +184,7 @@ class IndexController extends Controller
         $base = Entity::inTypes($entityType->id)
             ->select([
                 'entities.id', 'entities.name', 'entities.type', 'entities.is_private', 'entities.entity_id',
-                'entities.type_id', 'entities.parent_id',
+                'entities.type_id', 'entities.parent_id', 'entities.status_id',
                 'entities.image_uuid', 'entities.focus_x', 'entities.focus_y', 'entities.image_path',
             ])
             ->with($with)
@@ -336,7 +336,7 @@ class IndexController extends Controller
             'columns' => $columns,
             'columnPreferences' => $columnPreferences,
             'ads' => [
-                'enabled' => false, //$this->showAds($campaign),
+                'enabled' => false, // $this->showAds($campaign),
                 'frequency' => 7,
             ],
             'preferences' => $preference ? [

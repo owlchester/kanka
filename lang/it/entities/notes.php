@@ -17,14 +17,12 @@ return [
     ],
     'create'        => [
         'success'   => 'Post \':name\' aggiunto a :entity',
-        'title'     => 'Nuovo post per :name',
     ],
     'destroy'       => [
         'success'   => 'Post :name per :entity rimosso.',
     ],
     'edit'          => [
         'success'   => 'Post :name per :entity modificato.',
-        'title'     => 'Modifica post per :name',
     ],
     'fields'        => [
         'creator'   => 'Creatore',
@@ -47,7 +45,6 @@ return [
         'copy_title'    => 'Conserva una copia',
         'description'   => 'Seleziona un\'entità in cui desideri spostare o creare una copia di questo post.',
         'entity'        => 'Entità di destinazione',
-        'move'          => 'Muovi o copia su un\'altra entità',
         'move_success'  => 'Post :name mosso in :entity con successo.',
     ],
     'placeholders'  => [

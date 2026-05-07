@@ -25,7 +25,6 @@ return [
         'kit'                   => 'Kit',
         'preferences'           => 'Préférences',
         'property'              => 'Propriété',
-        'template'              => 'Kit',
         'value'                 => 'Valeur',
     ],
     'filters'       => [
@@ -66,7 +65,6 @@ return [
             'value' => '1-100 ou une liste de valeurs séparées par une virgule',
         ],
         'section'   => 'Nom de la section',
-        'template'  => 'Sélectionner un modèle',
         'value'     => 'Valeur de la propriété',
     ],
     'ranges'        => [

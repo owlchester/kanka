@@ -234,6 +234,7 @@ return [
             'new_card'      => 'Add a new payment method',
             'saved'         => ':brand **** :last4',
         ],
+        'paypal_expiring'       => 'Your PayPal subscription expires on :date. Renew now to avoid losing access.',
         'periods'               => [
             'monthly'   => 'Monthly',
             'yearly'    => 'Yearly',

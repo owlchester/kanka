@@ -44,9 +44,7 @@ return [
         'benefits'      => [
             'backup'        => 'Obnov predtým odstránený objekt spred :amount dní',
             'customisable'  => 'Úplná možnosť úpravy vizuálu kampane',
-            'entities'      => 'Lepšia kontrola nad tým, ako sa objekty správajú a vyzerajú',
             'icons'         => 'Prístup k tisíckam nádherných ikoniek pre mapy a časové osy',
-            'relations'     => 'Objav vzťahy objektu vizuálne v prehliadači vzťahov',
             'title'         => 'Boostnuté kampane získajú',
             'upload'        => 'Väčšie veľkosti nahrávaných súborov pred všetkých členov',
         ],

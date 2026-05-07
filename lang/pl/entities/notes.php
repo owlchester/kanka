@@ -17,14 +17,12 @@ return [
     ],
     'create'        => [
         'success'   => 'Dodano komentarz :name do elementu :entity.',
-        'title'     => 'Nowy komentarz do elementu :name.',
     ],
     'destroy'       => [
         'success'   => 'Usunięto komentarz :name do elementu :entity.',
     ],
     'edit'          => [
         'success'   => 'Zmieniono komentarz :name do elementu :entity.',
-        'title'     => 'Edycja komentarza do elementu :name',
     ],
     'fields'        => [
         'creator'   => 'Twórca',
@@ -47,7 +45,6 @@ return [
         'copy_title'    => 'Zachowaj kopię',
         'description'   => 'Wybierz element do którego chcesz przenieść albo skopiować ten komentarz.',
         'entity'        => 'Wskazany element',
-        'move'          => 'Przenieś lub skopiuj do innego elementu',
         'move_success'  => 'Przeniesiono komentarz :name do elementu :entity.',
     ],
     'placeholders'  => [

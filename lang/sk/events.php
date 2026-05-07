@@ -16,6 +16,9 @@ return [
         'date'  => 'Toto pole môže obsahovať čokoľvek a nie je prepojené s kalendármi kampane. Na zobrazenie tejto udalosti v kalendári je nutné ju pridať do kalendára alebo do karty Pripomienky tejto udalosti.',
     ],
     'index'         => [],
+    'lists'         => [
+        'empty' => 'Pridaj kritické momenty ako bitvy, korunovácie alebo objavy do histórie tvojho sveta.',
+    ],
     'placeholders'  => [
         'date'  => 'Dátum tvojej udalosti',
         'type'  => 'ceremónia, festival, katastrofa, bitva, narodenie',

@@ -53,7 +53,6 @@ return [
         'message'   => 'Adicione uma mensagem personalizada com suporte para mapeamentos',
         'status'    => 'Alternar o status ativo do webhook',
     ],
-    'pitch'         => 'Crie webhooks personalizados para receber atualizações personalizadas sempre que uma entidade da campanha for atualizada.',
     'placeholders'  => [
         'message'   => '{who} fez alterações em {name}, confira em {url}',
         'url'       => 'Url do webhook de destino',

@@ -10,7 +10,7 @@
     <a
         href="{{ route('campaign_roles.show', [$campaign, 'campaign_role' => $model]) }}"
         title="{{ __('campaigns.roles.actions.permissions') }}">
-        {{ number_format($model->role_permissions_count) }}
+        {{ \Illuminate\Support\Number::format($model->role_permissions_count) }}
     </a>
 @endif
 

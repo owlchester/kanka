@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Number;
 use Illuminate\Support\Str;
 
 /**
@@ -70,7 +71,7 @@ class CampaignStyle extends Model
 
     public function length(): string
     {
-        return (string) number_format(mb_strlen($this->content));
+        return (string) Number::format(mb_strlen($this->content));
     }
 
     public function url(string $sub): string

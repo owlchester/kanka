@@ -6,11 +6,6 @@
  */
 ?>
 <x-widgets.previews.head :widget="$widget" :campaign="$campaign" :entity="$entity">
-    @if ($entity->child->isDead())
-        <x-icon class="fa-regular fa-skull" :title="__('characters.hints.is_dead')" tooltip />
-    @elseif ($entity->child->isMissing())
-        <x-icon class="fa-regular fa-question" :title="__('characters.hints.is_missing')" tooltip />
-    @endif
 </x-widgets.previews.head>
 <x-widgets.previews.body  :widget="$widget" :campaign="$campaign" :entity="$entity">
 </x-widgets.previews.body>

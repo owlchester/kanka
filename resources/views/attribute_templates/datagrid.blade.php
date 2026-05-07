@@ -10,7 +10,7 @@
         [
             'label' => __('entries/tabs.properties'),
             'render' => function($model) {
-                return number_format($model->entity->attributes_count);
+                return \Illuminate\Support\Number::format($model->entity->attributes_count);
             },
             'disableSort' => true,
         ],
@@ -35,7 +35,7 @@
         [
             'label' => '<i class="' . $entityType->icon() . '" title="' . $entityType->plural() . '" aria-hidden="true"></i>',
             'render' => function($model) {
-                return number_format($model->children_count);
+                return \Illuminate\Support\Number::format($model->children_count);
             },
             'disableSort' => true,
         ],

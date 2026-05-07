@@ -25,7 +25,6 @@ return [
         'boosted'                   => 'Boosted door',
         'entity_count'              => 'Entiteit Telling',
         'entry'                     => 'Campaign beschrijving',
-        'excerpt'                   => 'Excerpt',
         'followers'                 => 'Volgers',
         'header_image'              => 'Header Afbeelding',
         'image'                     => 'Afbeelding',

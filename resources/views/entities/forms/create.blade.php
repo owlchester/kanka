@@ -32,7 +32,7 @@
                     <ul class="nav-tabs flex items-stretch w-full" role="tablist">
                         <x-tab.tab target="entry" :default="true" :title="__('entries/tabs.identity')"></x-tab.tab>
 
-                        @if (config('services.stripe.enabled'))
+                        @if (config('limits.campaigns.premium'))
                             <x-tab.tab target="premium" icon="premium" :title="__('crud.tabs.premium')"></x-tab.tab>
                         @endif
                         <x-tab.tab target="attributes" icon="attributes" :title="__('entries/tabs.properties')"></x-tab.tab>
@@ -55,7 +55,7 @@
                     </x-grid>
                 </div>
 
-                @if (config('services.stripe.enabled'))
+                @if (config('limits.campaigns.premium'))
                     <div class="tab-pane pane-premium {{ (request()->get('tab') == 'premium' ? ' active' : '') }}" id="form-premium">
                         <x-grid type="1/1">
                             @include('cruds.forms._premium')

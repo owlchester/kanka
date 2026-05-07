@@ -8,15 +8,11 @@ class LocationBulk extends Bulk
         'name',
         'title',
         'type',
+        'status_id',
         'parent_id',
         'tags',
         'private_choice',
         'entity_image',
         'entity_header',
-        'destroyed_choice',
-    ];
-
-    protected $booleans = [
-        'is_destroyed',
     ];
 }

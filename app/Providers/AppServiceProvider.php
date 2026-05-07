@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Auth\PassportTokenGuard;
 use App\Http\Validators\HashValidator;
 use App\Models\AdminInvite;
 use App\Models\Application;
@@ -11,6 +12,7 @@ use App\Models\Campaign;
 use App\Models\CampaignDashboard;
 use App\Models\CampaignDashboardRole;
 use App\Models\CampaignDashboardWidget;
+use App\Models\CampaignDescription;
 use App\Models\CampaignFollower;
 use App\Models\CampaignInvite;
 use App\Models\CampaignPlugin;
@@ -46,13 +48,16 @@ use App\Models\UserLog;
 use App\Models\Webhook;
 use App\Observers\AdminInviteObserver;
 use App\Observers\CalendarObserver;
+use App\Observers\CampaignDescriptionObserver;
 use App\Observers\CampaignObserver;
 use App\Observers\CampaignUserObserver;
 use App\Observers\FamilyTreeObserver;
 use App\Observers\OrganisationMemberObserver;
 use App\Observers\UserObserver;
 use Exception;
+use Illuminate\Contracts\Encryption\Encrypter;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Facades\Schema;
@@ -60,7 +65,10 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Cashier\Cashier;
+use Laravel\Passport\ClientRepository;
 use Laravel\Passport\Passport;
+use Laravel\Passport\PassportUserProvider;
+use League\OAuth2\Server\ResourceServer;
 use Symfony\Component\Console\Exception\InvalidOptionException;
 use Symfony\Component\Process\Process;
 
@@ -78,6 +86,21 @@ class AppServiceProvider extends ServiceProvider
 
         Passport::$clientUuids = false;
         Passport::authorizationView('vendor.passport.authorize');
+
+        // Override Passport's TokenGuard to fix a false positive in 13.7 where
+        // personal access tokens are rejected when user ID == client ID.
+        Auth::resolved(function ($auth): void {
+            $auth->extend('passport', fn ($app, $name, array $config) => tap(
+                new PassportTokenGuard(
+                    app(ResourceServer::class),
+                    new PassportUserProvider(Auth::createUserProvider($config['provider']), $config['provider']),
+                    app(ClientRepository::class),
+                    app(Encrypter::class),
+                    app('request'),
+                ),
+                fn ($guard) => app()->refresh('request', $guard, 'setRequest')
+            ));
+        });
 
         $this->registerDevelopWarning();
 
@@ -159,6 +182,7 @@ class AppServiceProvider extends ServiceProvider
         AdminInvite::observe(AdminInviteObserver::class);
         Calendar::observe(CalendarObserver::class);
         Campaign::observe(CampaignObserver::class);
+        CampaignDescription::observe(CampaignDescriptionObserver::class);
         CampaignUser::observe(CampaignUserObserver::class);
         CampaignRole::observe('App\Observers\CampaignRoleObserver');
         CampaignRoleUser::observe('App\Observers\CampaignRoleUserObserver');

@@ -2,8 +2,6 @@
 
 namespace App\Datagrids\Filters;
 
-use App\Models\Note;
-
 class NoteFilter extends DatagridFilter
 {
     /**

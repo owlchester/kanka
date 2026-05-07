@@ -12,7 +12,6 @@ return [
         'panel_title'   => 'Preskupiť príspevky',
         'save'          => 'Uložiť nové poradie',
         'success'       => 'Príspevky preskupené.',
-        'title'         => 'Preskupenie príspevkov objektu :name',
     ],
     'update'    => [
         'title' => 'Aktualizovať záznam :entity',

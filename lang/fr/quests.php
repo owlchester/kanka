@@ -18,9 +18,7 @@ return [
         ],
         'fields'        => [
             'copy_entity_entry' => 'Utiliser la description de l\'entrée',
-            'description'       => 'Description',
             'entity_or_name'    => 'Sélection soit d\'une entrée de la campagne, soit d\'un nom pour cet élément.',
-            'name'              => 'Nom',
         ],
         'helpers'       => [
             'copy_entity_entry' => 'Affiche la description de l\'entrée liée à la place de la description personnalisée.',

@@ -50,7 +50,6 @@ return [
         'message'   => 'Pridaj vlastnú správu s podporou pre mapovanie',
         'status'    => 'Zmeň aktívny stav webhooku',
     ],
-    'pitch'         => 'Vytvor vlastné webhooky na príjem cielených aktualizácií, keď je aktualizovaný objekt kampane.',
     'placeholders'  => [
         'message'   => '{who} urobil zmeny v {name}, zisti to na {url}',
         'url'       => 'Url cieľového webhooku',

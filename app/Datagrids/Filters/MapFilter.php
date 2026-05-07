@@ -2,8 +2,6 @@
 
 namespace App\Datagrids\Filters;
 
-use App\Models\Map;
-
 class MapFilter extends DatagridFilter
 {
     /**

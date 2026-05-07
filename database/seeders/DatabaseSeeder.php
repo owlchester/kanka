@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(EntityEventTypeSeeder::class);
         $this->call(EntityTypesTableSeeder::class);
+        $this->call(CategoryStatusSeeder::class);
         $this->call(PresetTypeTableSeeder::class);
         $this->call(GameSystemSeeder::class);
         $this->call(ThemesTableSeeder::class);

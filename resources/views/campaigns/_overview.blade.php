@@ -2,6 +2,7 @@
 ?>
 
 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+    @if (config('limits.campaigns.premium'))
     <x-box class="flex items-center gap-5 rounded-xl ">
         @if ($campaign->boosted())
             @php
@@ -47,6 +48,7 @@
             </a>
         @endif
     </x-box>
+    @endif
 
 
     <x-infoBox
@@ -79,7 +81,7 @@
         <x-infoBox
             :title="__('campaigns/overview.followers.title')"
             icon="fa-regular fa-users text-neutral-content"
-            :subtitle="trans_choice('campaigns.overview.follower-count', $campaign->follower(), ['amount' => number_format($campaign->follower())])"
+            :subtitle="trans_choice('campaigns.overview.follower-count', $campaign->follower(), ['amount' => \Illuminate\Support\Number::format($campaign->follower())])"
         ></x-infoBox>
     @endif
 </div>

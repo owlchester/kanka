@@ -3,6 +3,7 @@
 namespace App\Services\Report;
 
 use Carbon\Carbon;
+use Illuminate\Support\Number;
 
 abstract class BaseReportService
 {
@@ -41,12 +42,12 @@ abstract class BaseReportService
         $growthIndicator = $this->getGrowthIndicator($growth);
 
         if ($base) {
-            $percentOfBase = $base > 0 ? number_format(($current / $base) * 100, 1) : '0.0';
+            $percentOfBase = $base > 0 ? Number::format(($current / $base) * 100, 1) : '0.0';
 
-            return sprintf('%s: %s (%s%%) %s', $label, number_format($current), $percentOfBase, $growthIndicator);
+            return sprintf('%s: %s (%s%%) %s', $label, Number::format($current), $percentOfBase, $growthIndicator);
         }
 
-        return sprintf('%s: %s %s', $label, number_format($current), $growthIndicator);
+        return sprintf('%s: %s %s', $label, Number::format($current), $growthIndicator);
     }
 
     protected function formatMetricText(string $label, int $current, int $previous, ?int $base = null): string
@@ -55,11 +56,11 @@ abstract class BaseReportService
         $growthIndicator = strip_tags($this->getGrowthIndicator($growth));
 
         if ($base) {
-            $percentOfBase = $base > 0 ? number_format(($current / $base) * 100, 1) : '0.0';
+            $percentOfBase = $base > 0 ? Number::format(($current / $base) * 100, 1) : '0.0';
 
-            return sprintf('%s: %s (%s%%) %s', $label, number_format($current), $percentOfBase, $growthIndicator);
+            return sprintf('%s: %s (%s%%) %s', $label, Number::format($current), $percentOfBase, $growthIndicator);
         }
 
-        return sprintf('%s: %s %s', $label, number_format($current), $growthIndicator);
+        return sprintf('%s: %s %s', $label, Number::format($current), $growthIndicator);
     }
 }

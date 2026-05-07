@@ -47,13 +47,6 @@
 
 <div class="flex gap-1">
     <div class="w-8 shrink-0 text-center">
-        <x-icon class="fa-regular fa-grid" />
-    </div>
-    {{ __('tiers.features.pagination', ['amount' => 100]) }}
-</div>
-
-<div class="flex gap-1">
-    <div class="w-8 shrink-0 text-center">
         <x-icon class="fa-regular fa-webhook" />
     </div>
     <a href="{{ route('larecipe.index') }}" class="text-link">

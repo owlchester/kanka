@@ -5,8 +5,7 @@
             <a class="text-2xl font-extrabold entity-name" v-bind:href="entity.link" :title="entity.name" v-html="entity.name">
             </a>
 
-            <i class="fa-regular fa-skull mx-2" aria-hidden="true" v-if="entity.is_dead"></i>
-            <i class="fa-regular fa-question mx-2" aria-hidden="true" v-if="entity.is_missing"></i>
+            <i v-if="entity.status" :class="entity.status.icon + ' mx-2'" aria-hidden="true" :title="entity.status.tooltip"></i>
 
             <a class="ml-2 text-xs" target="_blank" v-bind:href="entity.link">
                 <i class="fa-regular fa-external-link" aria-hidden="true" aria-label="Open in a new window"></i>

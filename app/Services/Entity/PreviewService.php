@@ -31,8 +31,7 @@ class PreviewService
             'image' => $this->image(),
         ];
 
-        $this->data['is_dead'] = false;
-        $this->data['is_missing'] = false;
+        $this->data['status'] = $this->status();
         $this->data['tags'] = $this->tags();
         $this->data['location'] = $this->location();
         $this->data['locations'] = $this->locations();
@@ -217,12 +216,21 @@ class PreviewService
             $this->addProfile('characters.fields.pronouns', 'pronouns', $child->pronouns);
         }
 
-        if ($child->isDead()) {
-            $this->data['is_dead'] = true;
+    }
+
+    protected function status(): ?array
+    {
+        $status = $this->entity->status;
+        if (! $status?->icon) {
+            return null;
         }
-        if ($child->isMissing()) {
-            $this->data['is_missing'] = true;
-        }
+
+        $status->setRelation('entityType', $this->entity->entityType);
+
+        return [
+            'icon' => $status->icon(),
+            'tooltip' => $status->name(),
+        ];
     }
 
     protected function addProfile(string $key, string $slug, mixed $value = null): void

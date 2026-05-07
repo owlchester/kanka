@@ -54,7 +54,6 @@ return [
         'status'    => 'Aktywuje i wyłącza webhook',
         'tutorial'  => 'Dzięki webhookom możesz wysyłać aktualizacje kampanii w czasie rzeczywistym do narzędzi zewnętrznych, zawsze kiedy element jest tworzony, zmieniany albo usuwany. Możesz dodać wiele webhooków i testować je za pomocą tej strony.',
     ],
-    'pitch'         => 'Twórz własne webhooki i otrzymuj powiadomienia o zmianach elementów kampanii.',
     'placeholders'  => [
         'message'   => '{who} wprowadził/a zmiany w {name}, znajdziesz je tu: {url}',
         'url'       => 'Docelowy adres url webhooka',

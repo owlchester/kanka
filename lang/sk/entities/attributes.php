@@ -21,7 +21,6 @@ return [
         'is_private'            => 'Súkromné atribúty',
         'is_star'               => 'Pripnutý',
         'preferences'           => 'Preferencie',
-        'template'              => 'Šablóna',
         'value'                 => 'Hodnota',
     ],
     'filters'       => [
@@ -62,7 +61,6 @@ return [
             'value' => '1-100 alebo zoznam hodnôt oddelených čiarkou',
         ],
         'section'   => 'Názov sekcie',
-        'template'  => 'Vybrať šablónu',
         'value'     => 'Hodnota atribútu',
     ],
     'ranges'        => [

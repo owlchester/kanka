@@ -8,6 +8,7 @@ return [
     'empty'     => 'Vazio',
     'fields'    => [
         'action'    => 'Ação',
+        'category'  => 'Categoria',
         'details'   => 'Detalhes',
         'when'      => 'Quando',
         'who'       => 'Quem',
@@ -30,6 +31,7 @@ return [
         'restore'       => ':user restaurou :entity',
         'update'        => ':user atualizou :entity',
         'update_post'   => ':user atualizou o post ":post" em :entity',
+        'update_tree'   => ':user atualizou a árvore genealógica de :entity',
     ],
     'title'     => 'Histórico',
     'unknown'   => [

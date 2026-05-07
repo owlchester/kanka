@@ -3,6 +3,7 @@
 return [
     'actions'       => [],
     'create'        => [
+        'helper'    => 'Pridaj informácie o počasí, ktoré sa zobrazí v kalendári.',
         'success'   => 'Počasie pridané.',
         'title'     => 'Nový efekt počasia',
     ],

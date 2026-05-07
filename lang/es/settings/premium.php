@@ -11,7 +11,6 @@ return [
         ],
         'confirm'   => '¡Qué emocionante! Estás a punto de desbloquear funciones premium para :campaign. Esto utilizará una de tus campañas premium disponibles.',
         'duration'  => 'Las campañas Premium permanecen así hasta que lo retires manualmente, o cuando finalice tu suscripción.',
-        'pitch'     => 'Conviertete en suscriptor para desbloquear campañas premium.',
         'success'   => 'La campaña :campaign ahora es premium. ¡Disfruta de todas las nuevas e increíbles funciones!',
     ],
     'exceptions'    => [
@@ -20,7 +19,6 @@ return [
     ],
     'pitch'         => [
         'description'   => 'Hazte premium en las campañas y ayuda a desbloquear funciones increíbles para todos los participantes.',
-        'more'          => 'Consulta la lista completa de ventajas en nuestra página :premium.',
         'title'         => 'Las campañas premium obtienen',
     ],
     'ready'         => [

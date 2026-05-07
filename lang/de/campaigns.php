@@ -27,7 +27,6 @@ return [
         'boosted'                   => 'geboosted durch',
         'entity_count'              => 'Objekt Zähler',
         'entry'                     => 'Kampagnenbeschreibung',
-        'excerpt'                   => 'Zusammenfassung',
         'followers'                 => 'Abonnenten',
         'genre'                     => 'Genre(s)',
         'header_image'              => 'Header Bild',

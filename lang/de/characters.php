@@ -36,7 +36,6 @@ return [
     'hints'         => [
         'is_appearance_pinned'      => 'Wenn diese Option aktiviert ist, werden die Aussehensmerkmale des Charakters unter dem Eintrag auf der Übersichtsseite angezeigt.',
         'is_dead'                   => 'Dieser Charakter ist tot',
-        'is_personality_pinned'     => 'Wenn diese Option aktiviert ist, werden die PErsönlichkeitsmerkmale des Charakters unter dem Eintrag auf der Übersichtsseite angezeigt.',
         'is_personality_visible'    => 'Du kannst den kompletten Persönlichkeitsbereich vor deinen Zuschauern verstecken.',
         'personality_not_visible'   => 'Persönlichkeitsmerkmale dieses Charakters sind derzeit nur für Administratoren sichtbar.',
         'personality_visible'       => 'Persönlichkeitsmerkmale dieses Charakters sind für alle sichtbar.',

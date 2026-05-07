@@ -33,13 +33,11 @@ return [
         'traits'                    => 'Características',
     ],
     'helpers'       => [
-        'age'                   => 'Você pode vincular essa entidade a um calendário de sua campanha para calcular automaticamente sua idade. :more.',
-        'personality_visible'   => 'Se selecionado, os traços de personalidade deste personagem serão visíveis para todos. Caso contrário, apenas os membros do cargo :admin poderão vê-los.',
+        'age'   => 'Você pode vincular essa entidade a um calendário de sua campanha para calcular automaticamente sua idade. :more.',
     ],
     'hints'         => [
         'is_appearance_pinned'      => 'Exiba os traços de aparência na página de visão geral.',
         'is_dead'                   => 'Este personagem está morto.',
-        'is_personality_pinned'     => 'Exiba os traços de personalidade na página de visão geral.',
         'is_personality_visible'    => 'Os traços de personalidade são visíveis para todos, não apenas para os membros do cargo :admin.',
         'personality_not_visible'   => 'Traços de personalidade deste personagem estão atualmente visíveis apenas para usuários Admin.',
         'personality_visible'       => 'Traços de personalidade deste personagem estão visíveis para todos.',

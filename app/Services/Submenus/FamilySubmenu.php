@@ -12,7 +12,7 @@ class FamilySubmenu extends BaseSubmenu implements EntitySubmenu
         /** @var Family $family */
         $family = $this->entity->child;
 
-        if (config('services.stripe.enabled')) {
+        if (config('services.stripe.enabled') && config('limits.campaigns.premium')) {
             $items['second']['tree'] = [
                 'name' => __('families.show.tabs.tree'),
                 'route' => 'families.family-tree',

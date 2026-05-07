@@ -44,9 +44,7 @@ return [
         'benefits'      => [
             'backup'        => 'Stelle eine zuvor gelöschtest Objekt für bis zu :amount Tage wieder her',
             'customisable'  => 'Vollständige Anpassung des Aussehens einer Kampagne',
-            'entities'      => 'Bessere Kontrolle darüber, wie sich Objekte verhalten und erscheinen',
             'icons'         => 'Zugriff auf Tausende schöner Symbole für Karten und Zeileisten',
-            'relations'     => 'Untersuche die Beziehungen eines Objekts visuell in einem visuellen Explorer',
             'title'         => 'Geboostete Kampagnen erhalten',
             'upload'        => 'Größere Upload-Größe für alle Kampagnenmitglieder',
         ],

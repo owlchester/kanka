@@ -7,14 +7,12 @@ return [
     ],
     'create'        => [
         'success'   => 'Entiteit Notitie \':name\' toegevoegd aan :entity',
-        'title'     => 'Nieuwe Entiteit Notitie voor :name',
     ],
     'destroy'       => [
         'success'   => 'Entiteit Notitie \':name\' voor :entity verwijderd.',
     ],
     'edit'          => [
         'success'   => 'Entiteit Notitie \':name\' voor :entity bijgewerkt.',
-        'title'     => 'Werk entiteit notitie bij voor :name',
     ],
     'fields'        => [
         'creator'   => 'Maker',

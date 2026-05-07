@@ -37,9 +37,14 @@ class Feature extends Model
     public $fillable = [
         'name',
         'description',
+        'meta',
     ];
 
     protected string $userField = 'created_by';
+
+    protected $casts = [
+        'meta' => 'array',
+    ];
 
     protected array $sanitizable = [
         'name',

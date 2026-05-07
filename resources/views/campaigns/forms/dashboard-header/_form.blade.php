@@ -6,7 +6,7 @@
     <x-grid type="1/1">
         <x-forms.field
             field="excerpt"
-            :label="__('campaigns.fields.excerpt')"
+            :label="__('campaigns.fields.billboard')"
             tooltip
             :helper="__('campaigns.helpers.excerpt')"
         >

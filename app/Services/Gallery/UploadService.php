@@ -12,6 +12,7 @@ use enshrined\svgSanitize\Sanitizer;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Number;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Intervention\Image\Drivers\Gd\Driver;
@@ -137,8 +138,8 @@ class UploadService
         if ($copiedFileSize > $max) {
             unlink($tempImage);
             throw ValidationException::withMessages([__('gallery.download.errors.too_big', [
-                'size' => number_format($copiedFileSize / 1024, 2),
-                'max' => number_format($max / 1024, 2),
+                'size' => Number::format($copiedFileSize / 1024, 2),
+                'max' => Number::format($max / 1024, 2),
             ])]);
         }
         $available = $this->storage->campaign($this->campaign)->available();

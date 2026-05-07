@@ -19,9 +19,7 @@ return [
             'title'     => 'Zmień element zadania :name',
         ],
         'fields'    => [
-            'description'       => 'Szczegóły',
             'entity_or_name'    => 'Wybierz inny element kampanii albo nadaj nazwę temu elementowi.',
-            'name'              => 'Nazwa',
         ],
     ],
     'fields'        => [

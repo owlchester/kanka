@@ -11,7 +11,6 @@ return [
         ],
         'confirm'   => 'Vzrušujúce! Ideš odomknúť prémiové funkcionality pre :campaign. Bude na to použité jedno prémium.',
         'duration'  => 'Prémiové kampane ostávajú dokiaľ ich manuálne neodstrániš alebo kým neskončí tvoje predplatné.',
-        'pitch'     => 'Zaplať si predplatné a odomkni prémiové kampane.',
         'success'   => 'Kampaň :campaign je teraz prémiová. Užívaj jej nové úžasné funkcionality!',
     ],
     'exceptions'    => [
@@ -20,7 +19,6 @@ return [
     ],
     'pitch'         => [
         'description'   => 'Pridaj prémium kampaniam a pomôž odomknúť úžasné funkcionality pre každého v nich.',
-        'more'          => 'Spoznaj celý prehľad výhod na stránke :premium.',
         'title'         => 'Prémiové kampane získavajú',
     ],
     'ready'         => [

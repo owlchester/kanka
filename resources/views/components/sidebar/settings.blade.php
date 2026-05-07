@@ -28,6 +28,7 @@
                     ></x-sidebar.element>
                 </li>
             @endcan
+            @if (config('limits.campaigns.premium'))
             <li class="px-2 section-achievements {{ $active('achievements') }}">
                 <x-sidebar.element
                     :url="route('campaign.achievements', [$campaign])"
@@ -36,6 +37,7 @@
                     premium
                 ></x-sidebar.element>
             </li>
+            @endif
             <li class="px-2 section-stats {{ $active('stats') }}">
                 <x-sidebar.element
                     :url="route('campaign.stats', [$campaign])"
@@ -101,6 +103,7 @@
                             ></x-sidebar.element>
                         </li>
                     @endif
+                    @if (config('limits.campaigns.premium'))
                     <li class="px-2 section-placeholders {{ $active('placeholder-images') }}">
                         <x-sidebar.element
                             :url="route('campaign.default-images', [$campaign])"
@@ -142,6 +145,7 @@
                             ></x-sidebar.element>
                         </li>
                     @endif
+                    @endif
                 </ul>
             </li>
 
@@ -156,6 +160,7 @@
                                 :text="__('campaigns.show.tabs.export')"
                             ></x-sidebar.element>
                         </li>
+                        @if (config('limits.campaigns.premium'))
                         <li class="px-2 section-import {{ $active('campaign-import') }}">
                             <x-sidebar.element
                                 :url="route('campaign.import', [$campaign])"
@@ -181,6 +186,7 @@
                                     :text="__('campaigns/logs.title')"
                                 ></x-sidebar.element>
                             </li>
+                        @endif
                         @endif
                     </ul>
                 </li>

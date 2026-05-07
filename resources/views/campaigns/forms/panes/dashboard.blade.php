@@ -6,7 +6,7 @@
 
         <x-forms.field
             field="excerpt"
-            :label="__('campaigns.fields.excerpt')"
+            :label="__('campaigns.fields.billboard')"
             :helper="__('campaigns.helpers.excerpt')"
             >
             @include('cruds.fields.entry', ['fieldName' => 'excerpt', 'model' => $campaign ?? null])

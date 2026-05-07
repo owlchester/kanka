@@ -56,7 +56,9 @@ class FormController extends Controller
         try {
             return $this->campaign($campaign)->render($model, $plural, $route);
         } catch (Exception $e) {
-            throw $e;
+            if (app()->hasDebugModeEnabled()) {
+                throw $e;
+            }
 
             return redirect()->route('dashboard', $campaign);
         }

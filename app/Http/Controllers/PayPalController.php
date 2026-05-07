@@ -37,7 +37,7 @@ class PayPalController extends Controller
             ->tier($tier)
             ->process();
 
-        if (isset($response['id']) && $response['id'] != null) {
+        if (isset($response['id'])) {
             foreach ($response['links'] as $links) {
                 if ($links['rel'] == 'approve') {
                     return redirect()->away($links['href']);
@@ -92,7 +92,7 @@ class PayPalController extends Controller
                 ->first();
 
             return redirect()
-                ->route('settings.subscription', $routeOptions)
+                ->route('settings.subscription.finish', $routeOptions)
                 ->with('success', __('settings.subscription.success.subscribed'))
                 ->with('sub_tracking', $flash)
                 ->with('sub_id', $tierPrice?->id)

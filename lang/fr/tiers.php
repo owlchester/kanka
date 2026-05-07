@@ -23,7 +23,6 @@ return [
         'feature_influence' => 'Influence sur les nouvelles fonctionnalités',
         'file_size'         => ':size taille de fichier uploadé',
         'import'            => 'Import de campagne',
-        'map_size'          => ':size taille de carte uploadée',
         'modules'           => ':count catégories personnalisées',
         'nice_image'        => 'Images par défaut pour les entrées sans images',
         'no_ads'            => 'Sans publicité',

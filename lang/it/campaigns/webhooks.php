@@ -50,7 +50,6 @@ return [
         'message'   => 'Aggiungi un messaggio personalizzato con supporto',
         'status'    => 'Cambia lo stato attivo del webhook',
     ],
-    'pitch'         => 'Crea webhook personalizzati per ricevere aggiornamenti personalizzati ogni volta che un\'entità della campagna viene aggiornata.',
     'placeholders'  => [
         'message'   => '{chi} ha apportato delle modifiche a {nome}, controlla su {url}.',
         'url'       => 'Url del webhook di destinazione',

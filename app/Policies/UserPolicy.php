@@ -24,4 +24,18 @@ class UserPolicy
     {
         return session()->get('kanka.freeTrial') && ! $user->isSubscriber();
     }
+
+    public function renewPaypalSubscription(User $user): bool
+    {
+        if (! $user->hasPayPal()) {
+            return false;
+        }
+
+        $subscription = $user->subscription('kanka');
+        if (! $subscription) {
+            return false;
+        }
+
+        return $subscription->ends_at->lte(now()->addDays(15));
+    }
 }

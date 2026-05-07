@@ -32,10 +32,15 @@ class DiscordFeatureJob implements ShouldQueue
 
         /** @var NotificationService $service */
         $service = app()->make(NotificationService::class);
+        $isCancellation = ($this->feature->meta['from'] ?? null) === 'cancellation';
+        $content = $isCancellation
+            ? '❗ Cancellation - A new idea has been submitted and needs approval.'
+            : 'A new idea has been submitted and needs approval.';
+
         $service
             ->webhook($webhook)
             ->title($this->feature->name)
-            ->content('A new idea has been submitted and needs approval.')
+            ->content($content)
             ->user($this->feature->user)
             ->description($this->feature->description)
             ->url('https://admin.kanka.io/features/' . $this->feature->id)

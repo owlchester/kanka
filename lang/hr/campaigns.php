@@ -25,7 +25,6 @@ return [
         'boosted'                   => 'Pojačali',
         'entity_count'              => 'Broj entiteta',
         'entry'                     => 'Opis kampanje',
-        'excerpt'                   => 'Isječak',
         'followers'                 => 'Pratitelji',
         'header_image'              => 'Slika zaglavlja',
         'image'                     => 'Slika',

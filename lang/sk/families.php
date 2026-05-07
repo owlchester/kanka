@@ -14,8 +14,12 @@ return [
         'members'       => 'Zoznam členov a členiek daného rodu sa zobrazuje na tomto mieste. Úpravou danej postavy je možné ju pridať do daného rodu v poli Rod.',
     ],
     'index'         => [],
+    'lists'         => [
+        'empty' => 'Zaznamenávaj rodové línie, klany či šľachtické rody, ktoré sú prepojené s tvojimi postavami.',
+    ],
     'members'       => [
         'create'    => [
+            'helper'    => 'Pridaj jedného alebo viacerých členov k :name.',
             'success'   => '{0} Žiaden člen nebol pridaný.|{1} 1 člen bol pridaný.|[2,4] :count členovia boli pridaní.|[5,*] :count členov bolo pridaných.',
             'title'     => 'Noví členovia',
         ],

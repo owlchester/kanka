@@ -12,7 +12,7 @@
 @endphp
 
 @if ($editor === 'tiptap')
-    @include('editors.tiptap_editor', ['model' => $model, 'fieldName' => $fieldName])
+    @include('editors.tiptap_editor', ['model' => $model, 'fieldName' => $fieldName, 'contentFieldName' => $fieldNameForEdition])
 @else
     <textarea
         id="{{ $fieldName }}"

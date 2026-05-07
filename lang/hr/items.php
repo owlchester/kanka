@@ -7,9 +7,8 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'character' => 'Lik',
-        'price'     => 'Cijena',
-        'size'      => 'Veličina',
+        'price' => 'Cijena',
+        'size'  => 'Veličina',
     ],
     'index'         => [],
     'inventories'   => [],

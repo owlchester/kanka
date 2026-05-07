@@ -11,7 +11,6 @@ return [
         ],
         'confirm'   => 'Que legal! Você está prestes a desbloquear recursos premium para :campaign. Isso usará uma de suas campanhas premium disponíveis.',
         'duration'  => 'As campanhas remium permanecem assim até removê-las manualmente ou quando sua assinatura terminar.',
-        'pitch'     => 'Torne-se um assinante para desbloquear campanhas premium.',
         'success'   => 'A campanha :campaign agora é premium. Aproveite todos os novos recursos incríveis!',
     ],
     'exceptions'    => [
@@ -20,7 +19,6 @@ return [
     ],
     'pitch'         => [
         'description'   => 'Seja premium em campanhas e ajude a desbloquear recursos incríveis para todos os envolvidos.',
-        'more'          => 'Confira a lista completa de vantagens em nossa página :premium.',
         'title'         => 'Campanhas premium recebem',
     ],
     'ready'         => [

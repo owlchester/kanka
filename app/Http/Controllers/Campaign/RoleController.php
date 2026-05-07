@@ -66,8 +66,9 @@ class RoleController extends Controller
                 'deletes' => $deletes,
             ]);
         }
+        $unlimited = $campaign->boosted() || empty(config('limits.campaigns.roles'));
 
-        return view('campaigns.roles', compact('campaign', 'rows', 'roles'));
+        return view('campaigns.roles', compact('campaign', 'rows', 'roles', 'unlimited'));
     }
 
     /**

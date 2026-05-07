@@ -22,6 +22,7 @@ return [
     ],
     'fields'        => [
         'is_shown'  => 'Exibir marcadores do grupo',
+        'parent'    => 'Grupo Primário',
         'position'  => 'Posição',
     ],
     'helper'        => [

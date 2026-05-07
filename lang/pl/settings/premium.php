@@ -11,7 +11,6 @@ return [
         ],
         'confirm'   => 'Hurra! Zaraz odblokujesz wersję premium kampanii :campaign. Użyjesz w tym celu jednego z dostępnych rozszerzeń.',
         'duration'  => 'Kampanie premium zachowują status, póki go nie usuniesz ręcznie albo do zakończenia subskrypcji.',
-        'pitch'     => 'Subskrybuj, by odblokować wersję premium.',
         'success'   => 'Kampania :campaign ma teraz wersję premium. Korzystaj z wielu świetnych opcji!',
     ],
     'exceptions'    => [
@@ -20,7 +19,6 @@ return [
     ],
     'pitch'         => [
         'description'   => 'Używaj wersji premium kampanii, by odblokować wspaniałe opcje dla wszystkich uczestników.',
-        'more'          => 'Pełna lista korzyści znajduje się na stronie :premium.',
         'title'         => 'W kampaniach premium otrzymujesz',
     ],
     'ready'         => [

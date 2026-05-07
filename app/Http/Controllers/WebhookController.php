@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Enums\UserAction;
 use App\Jobs\Emails\MailSettingsChangeJob;
 use App\Jobs\Emails\SubscriptionDeletedEmailJob;
+use App\Jobs\Emails\Subscriptions\UpcomingYearlyAlert;
 use App\Jobs\SubscriptionEndJob;
 use App\Models\User;
 use App\Services\Subscription\PaymentMethodService;
@@ -12,6 +13,7 @@ use App\Services\SubscriptionService;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 use Laravel\Cashier\Http\Controllers\WebhookController as CashierController;
+use Symfony\Component\HttpFoundation\Response;
 
 class WebhookController extends CashierController
 {
@@ -66,6 +68,39 @@ class WebhookController extends CashierController
         }
 
         return $response;
+    }
+
+    /**
+     * Handle an upcoming invoice (yearly renewal warning).
+     */
+    public function handleInvoiceUpcoming(array $payload): Response
+    {
+        $data = $payload['data']['object'];
+        $user = $this->getUserByStripeId($data['customer'] ?? null);
+
+        if (! $user) {
+            return $this->successMethod();
+        }
+
+        /** @var User $user */
+        $yearlyPlans = array_filter(array_merge(
+            config('subscription.owlbear.yearly'),
+            config('subscription.wyvern.yearly'),
+            config('subscription.elemental.yearly'),
+        ));
+
+        $lines = $data['lines']['data'] ?? [];
+        $isYearly = collect($lines)->contains(
+            fn ($line) => in_array($line['price']['id'] ?? null, $yearlyPlans)
+        );
+
+        if (! $isYearly) {
+            return $this->successMethod();
+        }
+
+        UpcomingYearlyAlert::dispatch($user);
+
+        return $this->successMethod();
     }
 
     /**

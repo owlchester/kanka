@@ -3,7 +3,6 @@
 namespace App\Datagrids\Filters;
 
 use App\Models\Entity;
-use App\Models\Quest;
 
 class QuestFilter extends DatagridFilter
 {

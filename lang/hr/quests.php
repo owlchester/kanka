@@ -18,9 +18,6 @@ return [
             'success'   => 'Element zadatka :entity ažuriran.',
             'title'     => 'Ažuriran element zadatka za :name',
         ],
-        'fields'    => [
-            'description'   => 'Opis',
-        ],
     ],
     'fields'        => [
         'copy_elements' => 'Kopirajte elemente pridružene zadatku',

@@ -12,12 +12,12 @@
 # {!! html_entity_decode($entity->name, ENT_QUOTES, 'UTF-8') !!}
 
 @if ($entity->type)
-**{!! __('crud.fields.type') !!}:** {!! html_entity_decode($entity->type, ENT_QUOTES, 'UTF-8') !!}
+- **{!! __('crud.fields.type') !!}:** {!! html_entity_decode($entity->type, ENT_QUOTES, 'UTF-8') !!}
 @endif
 @if ($entity->tags->count() > 0)
-**{!! __('entities.tags') !!}:** {!! implode(', ', $entityData['tags']) !!}
+- **{!! __('entities.tags') !!}:** {!! implode(', ', $entityData['tags']) !!}
 @endif
-**{!! __('crud.fields.visibility') !!}:** {!! $entity->is_private ? __('campaigns/visibilities.titles.private') : __('campaigns/visibilities.titles.public') !!}
+- **{!! __('crud.fields.visibility') !!}:** {!! $entity->is_private ? __('campaigns/visibilities.titles.private') : __('campaigns/visibilities.titles.public') !!}
 
 @if($entity->hasEntry())
 ---
@@ -31,10 +31,10 @@
 ### {!! __('entities.notes') !!}
 @endif
 @if ($entity->is_template)
-* {!! __('crud.fields.template') !!}: Yes
+- {!! __('crud.fields.template') !!}: Yes
 @endif
 @if ($entity->archived_at)
-* {!! __('crud.fields.archived') !!}: Yes
+- {!! __('crud.fields.archived') !!}: Yes
 @endif
 
 @if (!empty($entityData['attributes']))

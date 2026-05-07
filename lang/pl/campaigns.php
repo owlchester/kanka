@@ -27,7 +27,6 @@ return [
         'boosted'                   => 'Doładowanie przez',
         'entity_count'              => 'Liczba elementów',
         'entry'                     => 'Opis kampanii',
-        'excerpt'                   => 'Podsumowanie',
         'followers'                 => 'Obserwujący',
         'genre'                     => 'Gatunek',
         'header_image'              => 'Ilustracja okładkowa',

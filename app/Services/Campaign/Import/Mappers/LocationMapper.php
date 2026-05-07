@@ -16,8 +16,25 @@ class LocationMapper extends MiscMapper
     public function first(): void
     {
         $this
+            ->migrateOldStatus()
             ->prepareModel()
             ->trackMappings('location_id');
+    }
+
+    /**
+     * Backward compatibility: resolve old boolean status fields to entities.status_id.
+     */
+    protected function migrateOldStatus(): self
+    {
+        if (array_key_exists('status_id', $this->data['entity'] ?? [])) {
+            return $this;
+        }
+
+        if (! empty($this->data['is_destroyed'])) {
+            $this->resolveOldStatusToEntity('location', 'destroyed');
+        }
+
+        return $this;
     }
 
     public function tree(): self

@@ -11,5 +11,5 @@ This email serves as confirmation that you have cancelled the renewal of your **
 
 Thank you for being part of our community!
 
-_Jay & Jon_
+__Jay & Jon__
 </x-mail::message>

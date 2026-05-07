@@ -15,7 +15,7 @@ class OrganisationFilter extends DatagridFilter
             ->parent(config('entities.ids.organisation'))
             ->locations()
             ->character('member_id')
-            ->add('is_defunct')
+            ->add('status_id')
             ->isPrivate()
             ->template()
             ->archived()

@@ -6,28 +6,11 @@ use App\Events\Campaigns\Deleted;
 use App\Events\Campaigns\Saved;
 use App\Events\Campaigns\Updated;
 use App\Models\Campaign;
-use App\Services\Mentions\SaveService;
 
 class CampaignObserver
 {
-    use PurifiableTrait;
-
-    public function __construct(protected SaveService $saveService) {}
-
     public function saving(Campaign $campaign)
     {
-        // Purity text
-        $attributes = $campaign->getAttributes();
-        if (array_key_exists('excerpt', $attributes)) {
-            $campaign->excerpt = $this->purify(
-                $this->saveService
-                    ->campaign($campaign)
-                    ->user(auth()->user())
-                    ->text($campaign->excerpt)
-                    ->save()
-            );
-        }
-
         // Safety net: ensure only one admin campaign per user can be prioritised at a time.
         // This guards against two-tab exploits where the controller check passes twice.
         if ($campaign->isDirty('is_prioritised') && $campaign->is_prioritised && auth()->check()) {

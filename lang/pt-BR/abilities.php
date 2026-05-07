@@ -25,6 +25,9 @@ return [
     ],
     'helpers'       => [],
     'index'         => [],
+    'lists'         => [
+        'empty' => 'Adicione poderes, magias ou talentos. Muitos criadores usam isso para modelar classes de D&D.',
+    ],
     'placeholders'  => [
         'charges'   => 'Quantidade de cargas. Atributos de referência com {Level} * {CHA}',
         'name'      => 'Bola de Fogo, Alerta, Ataque Astuto',

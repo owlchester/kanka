@@ -2,19 +2,20 @@
 
 return [
     'campaigns' => [
+        'premium' => env('APP_PREMIUM', false),
         /**
          * Limits in place for standard campaigns. Premium campaigns are unlimited
          */
-        'members' => 10,
-        'roles' => 3,
-        'bookmarks' => 3,
+        'members' => env('APP_MEMBER_LIMIT', 10),
+        'roles' => env('APP_ROLE_LIMIT', 3),
+        'bookmarks' => env('APP_BOOKMARK_LIMIT', 3),
 
         /**
          * Entities have a limited number of files (a type of entity_asset) available on each entity
          */
         'files' => [
-            'standard' => 3,
-            'premium' => 20,
+            'standard' => env('APP_FILE_LIMIT', 3),
+            'premium' => env('APP_PREMIUM_FILE_LIMIT', 20),
         ],
         /**
          * Number of custom modules allowed per subscription tier.
@@ -41,7 +42,7 @@ return [
             'standard' => 7,
             'premium' => 180,
         ],
-        'aliases' => 2,
+        'aliases' => env('APP_ALIAS_LIMIT', 2),
         'web' => 10,
     ],
 

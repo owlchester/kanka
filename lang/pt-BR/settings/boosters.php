@@ -44,9 +44,7 @@ return [
         'benefits'      => [
             'backup'        => 'Recupere uma entidade excluída anteriormente por até :amount dias',
             'customisable'  => 'Personalização total da aparência de uma campanha',
-            'entities'      => 'Melhor controle sobre como as entidades se comportam e aparecem',
             'icons'         => 'Acesso a milhares de belos ícones para mapas e linhas do tempo',
-            'relations'     => 'Explore as relações de uma entidade visualmente em um explorador visual',
             'title'         => 'As campanhas impulsionadas obtém',
             'upload'        => 'Maior tamanho de upload para todos os membros da campanha',
         ],

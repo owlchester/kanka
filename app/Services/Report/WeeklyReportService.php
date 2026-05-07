@@ -4,6 +4,7 @@ namespace App\Services\Report;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Number;
 
 class WeeklyReportService extends BaseReportService
 {
@@ -123,11 +124,11 @@ class WeeklyReportService extends BaseReportService
             '',
             sprintf(
                 'Note: %s creators = %s organic + %s referred',
-                number_format($current['campaign_creators']),
-                number_format($current['organic']),
-                number_format($current['referred'])
+                Number::format($current['campaign_creators']),
+                Number::format($current['organic']),
+                Number::format($current['referred'])
             ),
-            sprintf('      (Excludes %s invited-only users)', number_format($current['invited_only'])),
+            sprintf('      (Excludes %s invited-only users)', Number::format($current['invited_only'])),
             '',
             'vs Last Week:',
             $this->formatFunnelRow($previous),
@@ -151,11 +152,11 @@ class WeeklyReportService extends BaseReportService
             '',
             sprintf(
                 'Note: %s creators = %s organic + %s referred',
-                number_format($current['campaign_creators']),
-                number_format($current['organic']),
-                number_format($current['referred'])
+                Number::format($current['campaign_creators']),
+                Number::format($current['organic']),
+                Number::format($current['referred'])
             ),
-            sprintf('      (Excludes %s invited-only users)', number_format($current['invited_only'])),
+            sprintf('      (Excludes %s invited-only users)', Number::format($current['invited_only'])),
             '',
             'vs Last Week:',
             $this->formatFunnelRow($previous),
@@ -176,14 +177,14 @@ class WeeklyReportService extends BaseReportService
 
         return sprintf(
             '%s → %s (%s%%) → %s (%s%%) → %s (%s%%) → %s (%s%%)',
-            number_format($base),
-            number_format($stats['onboarding']),
+            Number::format($base),
+            Number::format($stats['onboarding']),
             $this->pct($stats['onboarding'], $base),
-            number_format($stats['entities_3plus']),
+            Number::format($stats['entities_3plus']),
             $this->pct($stats['entities_3plus'], $base),
-            number_format($stats['second_login']),
+            Number::format($stats['second_login']),
             $this->pct($stats['second_login'], $base),
-            number_format($stats['subscribed']),
+            Number::format($stats['subscribed']),
             $this->pct($stats['subscribed'], $base)
         );
     }
@@ -207,6 +208,6 @@ class WeeklyReportService extends BaseReportService
             return '0.0';
         }
 
-        return number_format(($value / $base) * 100, 1);
+        return Number::format(($value / $base) * 100, 1);
     }
 }

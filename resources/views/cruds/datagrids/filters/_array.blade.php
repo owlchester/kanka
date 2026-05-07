@@ -32,7 +32,8 @@
             :extra="[
                 'data-url' => $field['route'],
                 'data-placeholder' => $field['placeholder'],
-                'data-dropdown-parent' => '#datagrid-filters'
+                'data-dropdown-parent' => '#datagrid-filters',
+                'data-allow-clear' => $field['type'] == 'select2' ? 'true' : 'false',
             ]" />
     </div>
     <div class="col-span-1 field">

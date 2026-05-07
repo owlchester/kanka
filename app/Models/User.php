@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Number;
 use Illuminate\Support\Str;
 use Laravel\Cashier\Billable;
 use Laravel\Passport\Contracts\OAuthenticatable;
@@ -264,7 +265,7 @@ class User extends \Illuminate\Foundation\Auth\User implements OAuthenticatable
      */
     public function createdEntitiesCount(): string
     {
-        return (string) number_format(SingleUserCache::user($this)->entitiesCreatedCount());
+        return (string) Number::format(SingleUserCache::user($this)->entitiesCreatedCount());
     }
 
     /**

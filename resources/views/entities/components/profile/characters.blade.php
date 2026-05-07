@@ -52,7 +52,7 @@ $child = $entity->child;
         @elseif ($child->characterRaces->isEmpty() && $child->hasAge())
         <div class="element profile-age">
             <div class="title text-uppercase text-xs">{{ __('characters.fields.age') }}</div>
-            <span>{{ is_numeric($child->age) ? number_format($child->age) : $child->age }}</span>
+            <span>{{ is_numeric($child->age) ? \Illuminate\Support\Number::format($child->age) : $child->age }}</span>
         </div>
         @else
         <div class="element profile-race-age">
@@ -70,7 +70,7 @@ $child = $entity->child;
             <div class="comma-separated inline">
                 @include('entities.components.profile.character_races')
             </div>,
-            <span>{{ is_numeric($child->age) ? number_format($child->age) : $child->age }}</span>
+            <span>{{ is_numeric($child->age) ? \Illuminate\Support\Number::format($child->age) : $child->age }}</span>
         </div>
         @endif
     @endif

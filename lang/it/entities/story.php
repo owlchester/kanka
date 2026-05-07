@@ -12,7 +12,6 @@ return [
         'panel_title'   => 'Riordina posts',
         'save'          => 'Salva il nuovo ordine',
         'success'       => 'Posts riordinati.',
-        'title'         => 'Riordinamento del post dell\'entità :name',
     ],
     'update'    => [
         'title' => 'Aggiorna :entity inserimento',

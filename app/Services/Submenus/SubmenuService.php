@@ -150,8 +150,9 @@ class SubmenuService
             if (isset($this->user)) {
                 $object->user($this->user);
             }
+            $object->entity($this->entity)->campaign($this->campaign);
 
-            foreach ($object->entity($this->entity)->campaign($this->campaign)->extra() as $section => $sectionItems) {
+            foreach ($object->extra() as $section => $sectionItems) {
                 $this->items[$section] = array_merge($this->items[$section] ?? [], $sectionItems);
             }
         } catch (\Exception $e) {
@@ -165,7 +166,9 @@ class SubmenuService
     {
         /** @var CustomSubmenu $service */
         $service = app()->make(CustomSubmenu::class);
-        foreach ($service->entity($this->entity)->campaign($this->campaign)->extra() as $section => $sectionItems) {
+        $service->entity($this->entity)->campaign($this->campaign);
+
+        foreach ($service->extra() as $section => $sectionItems) {
             $this->items[$section] = array_merge($this->items[$section] ?? [], $sectionItems);
         }
 

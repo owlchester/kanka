@@ -1,20 +1,26 @@
-@if ($trans === 'characters')
-<x-forms.field field="status" :label="__('characters.fields.status')">
-    <select name="status_id" class="w-full">
-        <option value=""></option>
-        <option value="0">{{ __('characters.status.alive') }}</option>
-        <option value="1">{{ __('characters.status.dead') }}</option>
-        <option value="2">{{ __('characters.status.missing') }}</option>
-    </select>
-</x-forms.field>
-@elseif ($trans === 'quests')
-<x-forms.field field="status" :label="__('quests.fields.status')">
-    <select name="status_id" class="w-full">
-        <option value=""></option>
-        <option value="0">{{ __('quests.status.not_started') }}</option>
-        <option value="1">{{ __('quests.status.ongoing') }}</option>
-        <option value="2">{{ __('quests.status.completed') }}</option>
-        <option value="3">{{ __('quests.status.abandoned') }}</option>
-    </select>
-</x-forms.field>
+@php
+    $statusEntityType = $entityType ?? $entity->entityType ?? null;
+    $categoryStatuses = $statusEntityType
+        ? \App\Models\CategoryStatus::where('category_id', $statusEntityType->id)->orderBy('sort_order')->get()
+        : collect();
+    $isBulk = $bulk ?? false;
+@endphp
+@if ($categoryStatuses->isNotEmpty())
+    @php
+        $hasDefault = $categoryStatuses->contains('is_default', true);
+        $statusOptions = [];
+        if ($isBulk) {
+            $statusOptions[''] = '';
+            $statusOptions['remove'] = __('entities/statuses.remove');
+        } elseif (! $hasDefault) {
+            $statusOptions[''] = '';
+        }
+        foreach ($categoryStatuses as $catStatus) {
+            $statusOptions[$catStatus->id] = $catStatus->setRelation('entityType', $statusEntityType)->name();
+        }
+        $selectedStatus = $isBulk ? '' : old('status_id', $source->status_id ?? $entity->status_id ?? ($hasDefault ? $categoryStatuses->firstWhere('is_default', true)->id : ''));
+    @endphp
+    <x-forms.field field="status_id" :label="__('entities.status')">
+        <x-forms.select name="status_id" :options="$statusOptions" :selected="$selectedStatus" />
+    </x-forms.field>
 @endif

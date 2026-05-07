@@ -21,7 +21,7 @@ Route::get('/w/{campaign}/search', [SearchController::class, 'search'])->name('s
 Route::get('/w/{campaign}/search/markers', [MarkerController::class, 'index'])->name('markers.find');
 Route::get('/w/{campaign}/search/images', [ImageController::class, 'index'])->name('images.find');
 
-Route::get('/w/{campaign}/search/members', [CampaignController::class, 'members'])->name('find.campaign.members');
+Route::get('/w/{campaign}/search/members', [CampaignController::class, 'members'])->name('find.members');
 Route::get('/w/{campaign}/search/roles', [CampaignController::class, 'roles'])->name('find.campaign.roles');
 
 Route::get('/w/{campaign}/search/entity-calendars', [CalendarController::class, 'index'])->name('search.calendars');

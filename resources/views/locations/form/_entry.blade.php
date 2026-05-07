@@ -9,7 +9,7 @@
 
     @include('cruds.fields.entry2')
 
-    @include('cruds.fields.destroyed')
+    @include('cruds.fields.status')
 
     @include('cruds.fields.tags')
     @include('cruds.fields.image')

@@ -234,6 +234,7 @@ return [
             'new_card'      => 'Ajouter une méthode de paiement',
             'saved'         => ':brand se terminant par :last4',
         ],
+        'paypal_expiring'       => 'Ton abonnement PayPal expire le :date. Renouvelle-le maintenant pour éviter de perdre l\'accès.',
         'periods'               => [
             'monthly'   => 'Menuel',
             'yearly'    => 'Annuel',

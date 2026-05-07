@@ -17,14 +17,12 @@ return [
     ],
     'create'        => [
         'success'   => 'Article \':name\' ajouté à :entity.',
-        'title'     => 'Nouvel article pour :name',
     ],
     'destroy'       => [
         'success'   => 'L\'article :name a été retirée.',
     ],
     'edit'          => [
         'success'   => 'L\'article :name pour :entity a été modifié.',
-        'title'     => 'Modifier l\'article pour :name',
     ],
     'fields'        => [
         'creator'   => 'Créé par',
@@ -47,7 +45,6 @@ return [
         'copy_title'    => 'Guarder une copie',
         'description'   => 'Sélectionnes une entrée vers laquelle l\'article doit être déplacé ou copié.',
         'entity'        => 'Entrée cible',
-        'move'          => 'Déplacer ou copier vers une autre entrée',
         'move_success'  => 'L\'article :name a été déplacé vers :entity avec succès.',
     ],
     'placeholders'  => [

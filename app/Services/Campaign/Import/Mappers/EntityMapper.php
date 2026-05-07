@@ -67,7 +67,7 @@ trait EntityMapper
     protected function entity(): void
     {
         $mapping = ['name', 'is_private', 'campaign_id'];
-        $entityMapping = ['tooltip', 'is_template', 'is_attributes_private', 'focus_x', 'focus_y', 'entry', 'type', 'type_id'];
+        $entityMapping = ['tooltip', 'is_template', 'is_attributes_private', 'focus_x', 'focus_y', 'entry', 'type', 'type_id', 'status_id'];
         $this->entity = new Entity;
         $this->entity->entity_id = $this->model->id;
         $this->entity->created_by = $this->user->id;

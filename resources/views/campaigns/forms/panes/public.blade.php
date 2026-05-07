@@ -21,7 +21,7 @@
             @endif
             <hr />
 
-            @include('campaigns.forms.panes._discovery')
+            @includeWhen(config('limits.campaigns.premium'), 'campaigns.forms.panes._discovery')
 
         </x-grid>
     </x-grid>

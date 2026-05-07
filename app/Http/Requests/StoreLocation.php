@@ -47,6 +47,7 @@ class StoreLocation extends FormRequest
             'template_id' => 'nullable',
             'attribute' => ['array', new UniqueAttributeNames],
             'is_private' => 'nullable|boolean',
+            'status_id' => ['nullable', 'exists:category_statuses,id'],
         ];
 
         /** @var Entity $self */
@@ -59,6 +60,9 @@ class StoreLocation extends FormRequest
                 new Nested($self),
             ];
         }
+
+        $rules['tags'] = 'nullable|array';
+        $rules['tags.*'] = 'distinct|exists:tags,id';
 
         return $this->clean($rules);
     }

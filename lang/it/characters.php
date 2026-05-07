@@ -36,7 +36,6 @@ return [
     'hints'         => [
         'is_appearance_pinned'      => 'Se selezionati, i tratti fisici del personaggio appariranno sotto la voce principale della pagina.',
         'is_dead'                   => 'Questo personaggio è morto',
-        'is_personality_pinned'     => 'Se selezionati, i tratti caratteriali del personaggio appariranno sotto la voce principale della pagina.',
         'is_personality_visible'    => 'I tratti della personalità sono visibili a tutti, non solo ai membri del ruolo di :admin.',
         'personality_not_visible'   => 'Solo gli amministratori possono vedere i tratti caratteriali di questo personaggio.',
         'personality_visible'       => 'Tutti possono vedere i tratti carattieriali di questo personaggio.',

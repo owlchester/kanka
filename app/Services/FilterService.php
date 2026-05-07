@@ -100,6 +100,7 @@ class FilterService
             'name',
             'type',
             'is_private',
+            'status_id',
             'parent_id',
             'template',
             'tag_id',
@@ -295,7 +296,7 @@ class FilterService
                 }
                 if (
                     ! isset($this->data[$filter]) &&
-                    Str::endsWith($filter, '_id')
+                    (Str::endsWith($filter, '_id') || in_array($filter, ['created_by', 'updated_by']))
                 ) {
                     $this->filters[$filter] = null;
                 }

@@ -49,6 +49,7 @@ class StoreCreature extends FormRequest
             'locations' => ['nullable', 'array', new EntityField(config('entities.ids.location'), Location::class)],
             'attribute' => ['array', new UniqueAttributeNames],
             'is_private' => 'nullable|boolean',
+            'status_id' => ['nullable', 'exists:category_statuses,id'],
         ];
 
         /** @var Entity $self */
@@ -61,6 +62,9 @@ class StoreCreature extends FormRequest
                 new Nested($self),
             ];
         }
+
+        $rules['tags'] = 'nullable|array';
+        $rules['tags.*'] = 'distinct|exists:tags,id';
 
         return $this->clean($rules);
     }

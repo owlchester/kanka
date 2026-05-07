@@ -37,7 +37,7 @@
         {{ trans_choice('campaigns/achievements.' . Arr::get($stat, 'history', 'created'), Arr::get($stat, 'amount', 0), [
 'singular' => Arr::get($stat, 'module.singular', 'Forgot singular'),
 'plural' => Arr::get($stat, 'module.plural', 'Forgot plural'),
-'amount' => number_format(Arr::get($stat, 'amount', 0)) . ' / ' . number_format(Arr::get($stat, 'target', 0))
+'amount' => \Illuminate\Support\Number::format(Arr::get($stat, 'amount', 0)) . ' / ' . \Illuminate\Support\Number::format(Arr::get($stat, 'target', 0))
 ]) }}
     </div>
 </div>

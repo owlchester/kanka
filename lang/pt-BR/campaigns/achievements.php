@@ -15,6 +15,20 @@ return [
     'remaining'         => [
         'generic'   => 'Mais e o próximo nível será desbloqueado.',
     ],
+    'spotlight'         => [
+        'active'    => [
+            'cta'   => 'Veja os destaques',
+        ],
+        'private'   => [
+            'cta'       => 'Revisar configurações públicas',
+            'helper'    => 'Torne sua campanha pública para ser elegível ao Destaque.',
+        ],
+        'public'    => [
+            'cta'       => 'Aprenda como funciona o destaque',
+            'helper'    => 'As campanhas selecionadas são apresentadas no Kanka Showcase e no blog.',
+        ],
+    ],
+    'spotlighted'       => '{0} Ainda não destacado|[1,*] Em destaque',
     'tagged'            => '{0} Nenhuma entidade com tag|{1} Uma entidade com tag|[2,*] :amount de entidades com tag',
     'titles'            => [
         'calendars'     => 'Guardião do tempo',
@@ -29,7 +43,9 @@ return [
         'organisations' => 'Fusões e aquisições',
         'plugins'       => 'Conhecedor de plugins',
         'quests'        => 'Mente brilhante',
+        'spotlighted'   => 'Em destaque',
         'tags'          => 'Sob controle',
         'themes'        => 'Pintor',
     ],
+    'tutorial'          => 'As conquistas registram ações importantes nesta campanha, como criar entidades ou usar recursos essenciais. Elas são apenas informativas e são atualizadas automaticamente conforme você explora e constrói.',
 ];

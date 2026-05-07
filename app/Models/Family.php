@@ -251,7 +251,6 @@ class Family extends MiscModel
         return [
             'location_id',
             'member_id',
-            'is_extinct',
         ];
     }
 }

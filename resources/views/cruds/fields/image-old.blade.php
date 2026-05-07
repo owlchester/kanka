@@ -11,6 +11,7 @@ if (isset($size) && $size == 'map') {
     $inputFileTypes = '.jpg, .jpeg, .png, .gif, .webp, .svg';
     $max = 50;
 }
+$isUnlimited = empty(isset($size) && $size === 'map' ? config('limits.filesize.map') : config('limits.filesize.image.standard'));
 $label = $imageLabel ?? 'crud.fields.image';
 
 $previewThumbnail = null;
@@ -80,8 +81,14 @@ if (!empty($model->entity) && !empty($model->entity->image) && !$canBrowse) {
 
             <x-helper class="text-xs">
                 <p><x-icon class="fa-regular fa-question-circle" />
-                    {{ __('crud.hints.image_limitations', ['formats' => $formats, 'size' => (isset($size) ? Limit::readable()->map()->upload() : Limit::readable()->upload())]) }} @if (isset($recommended)) {{ __('crud.hints.image_dimension', ['dimension' => $recommended]) }} @endif
-                    @includeWhen(config('services.stripe.enabled'), 'cruds.fields.helpers.share')</p>
+                    @if ($isUnlimited)
+                        {{ __('crud.hints.image_formats', ['formats' => $formats]) }}
+                    @else
+                        {{ __('crud.hints.image_limitations', ['formats' => $formats, 'size' => (isset($size) ? Limit::readable()->map()->upload() : Limit::readable()->upload())]) }}
+                        @includeWhen(config('services.stripe.enabled'), 'cruds.fields.helpers.share')
+                    @endif
+                    @if (isset($recommended)) {{ __('crud.hints.image_dimension', ['dimension' => $recommended]) }} @endif
+                </p>
             </x-helper>
         </div>
         @if (!empty($previewThumbnail))

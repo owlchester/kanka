@@ -13,7 +13,6 @@ return [
         'panel_title'   => 'Beiträge neu anordnen',
         'save'          => 'Speichere neue Reihenfolge',
         'success'       => 'Beiträge neu geordnet.',
-        'title'         => 'Objekt :name nach Neuordnung',
     ],
     'update'    => [
         'title' => 'Aktualisieren :entity Eintrag',

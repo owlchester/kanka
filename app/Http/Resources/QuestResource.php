@@ -20,8 +20,6 @@ class QuestResource extends EntityResource
 
         return $this->entity([
             'date' => $model->date,
-            'is_completed' => $model->isCompleted(),
-            'status' => $model->status_id->value,
             'instigator_id' => $model->instigator_id,
             'location_id' => $model->location_id,
             'calendar_id' => $model->entity->calendarDate?->calendar_id,

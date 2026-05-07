@@ -8,15 +8,11 @@ class OrganisationBulk extends Bulk
         'name',
         'type',
         'locations',
+        'status_id',
         'parent_id',
         'tags',
         'private_choice',
-        'defunct_choice',
         'entity_image',
         'entity_header',
-    ];
-
-    protected array $booleans = [
-        'is_defunct',
     ];
 }

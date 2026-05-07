@@ -116,6 +116,7 @@ return [
         'copy_permissions'  => 'Copy Permissions (this will override values set in the permissions tab)',
         'copy_posts'        => 'Copy Articles (this includes the article permissions)',
         'copy_reminders'    => 'Copy Reminders',
+        'created_by'        => 'Created by',
         'creator'           => 'Creator',
         'date_range'        => 'Date range',
         'excerpt'           => 'Excerpt',
@@ -139,6 +140,7 @@ return [
         'template'          => 'Template',
         'tooltip'           => 'Tooltip',
         'type'              => 'Type',
+        'updated_by'        => 'Updated by',
         'visibility'        => 'Visibility',
         'word-count'        => 'Word count: :number',
     ],
@@ -206,6 +208,7 @@ return [
     'hints'             => [
         'calendar_date'         => 'A calendar date allows easy filtering in lists, and also maintains a reminder in the selected calendar.',
         'image_dimension'       => 'Recommended dimensions: :dimension pixels.',
+        'image_formats'         => 'Supported formats: :formats.',
         'image_limitations'     => 'Supported formats: :formats. Max file size: :size.',
         'image_recommendation'  => 'Recommended dimensions: :width by :height pixels.',
         'is_star'               => 'Pinned elements will appear on the overview page.',

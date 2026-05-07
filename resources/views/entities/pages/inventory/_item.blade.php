@@ -59,7 +59,7 @@ if ($item->item) {
             <div class="flex gap-2 items-center justify-center w-full">
                 @if ($item->amount > 1)
                     <div class="item-amount" x-cloak x-show="showQuantity">
-                        x{!! number_format($item->amount) !!}
+                        x{!! \Illuminate\Support\Number::format($item->amount) !!}
                     </div>
                 @endif
                 @if ($item->item)

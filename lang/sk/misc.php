@@ -2,8 +2,7 @@
 
 return [
     'ads'   => [
-        'premium'       => 'aktivovaním prémiových funkcií',
-        'remove_v4'     => 'Odstráň reklamy :subscribe Kanky alebo :premium za maličkú sumu :price :currency za mesiac.',
-        'subscribing'   => 'predplatením',
+        'member'    => 'Staň sa členom.',
+        'remove_v5' => 'Kanka staviame iba dvaja. Podpor naše úsilie a užívaj si aplikáciu bez reklám za menej ako stojí fajnová kávička.',
     ],
 ];

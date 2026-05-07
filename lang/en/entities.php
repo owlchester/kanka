@@ -89,6 +89,7 @@ return [
     'relation'              => 'Relation',
     'relations'             => 'Relations',
     'reminders'             => 'Reminders',
+    'status'                => 'Status',
     'tag'                   => 'Tag',
     'tags'                  => 'Tags',
     'templates'             => 'Templates',

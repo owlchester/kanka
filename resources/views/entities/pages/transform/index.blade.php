@@ -35,7 +35,7 @@
                             <x-slot name="extra">
                                 <ul>
                                     @foreach ($confirm as $label => $number)
-                                        <li>{{ __($label) }}: {{ number_format($number)  }}</li>
+                                        <li>{{ __($label) }}: {{ \Illuminate\Support\Number::format($number)  }}</li>
                                     @endforeach
                                 </ul>
                             </x-slot>

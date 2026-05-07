@@ -45,9 +45,15 @@ class LimitService
             $min = config('limits.filesize.image.wyvern');
         }
 
-        $size = ($min * 1024);
-
         $this->map = false;
+
+        if (empty($min)) {
+            $this->readable = false;
+
+            return PHP_INT_MAX;
+        }
+
+        $size = ($min * 1024);
 
         return $this->finalize($size);
     }
