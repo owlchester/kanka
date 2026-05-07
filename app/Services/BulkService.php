@@ -327,7 +327,7 @@ class BulkService
                     }
                 }
             }
-            if ($this->entityType->hasEntity()) {
+            if ($this->entityType->hasEntity() && $this->entityType->isStandard()) {
                 $entity->child->update($entityFields);
             } else {
                 // Relations, bookmarks
@@ -369,7 +369,7 @@ class BulkService
                 $entity->status_id = null;
             }
 
-            if ($this->entityType->hasEntity()) {
+            if ($this->entityType->hasEntity() && $this->entityType->isStandard()) {
                 $entity->is_private = $entity->child->is_private;
                 $entity->name = $entity->child->name;
             }
@@ -385,7 +385,7 @@ class BulkService
             }
 
             // Handle creators (items only)
-            if ($this->entityType->hasEntity() && method_exists($entity->child, 'creators')) {
+            if ($this->entityType->hasEntity() && $this->entityType->isStandard() && method_exists($entity->child, 'creators')) {
                 if (Arr::get($fields, 'bulk-creators') === 'remove') {
                     $entity->child->creators()->detach();
                 } elseif (! empty($creatorIds)) {
@@ -394,7 +394,7 @@ class BulkService
             }
 
             // Handle entity_type_id unset (attribute templates only)
-            if ($unsetEntityType && $this->entityType->hasEntity() && in_array('entity_type_id', $entity->child->getFillable())) {
+            if ($unsetEntityType && $this->entityType->hasEntity() && $this->entityType->isStandard() && in_array('entity_type_id', $entity->child->getFillable())) {
                 $entity->child->update(['entity_type_id' => null]);
             }
 
