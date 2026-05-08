@@ -13,6 +13,8 @@ class StoreAttributeTemplate extends FormRequest
 
     protected array $foreignEntityFields = [];
 
+    protected bool $foreignEntityParent = true;
+
     /**
      * Determine if the user is authorized to make this request.
      *
