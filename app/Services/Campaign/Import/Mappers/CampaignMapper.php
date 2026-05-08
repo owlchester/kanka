@@ -15,7 +15,7 @@ class CampaignMapper
     public function import(): Campaign
     {
         // Fields that are fillable but that we don't want to import automatically
-        $forbidden = ['slug', 'name', 'image', 'export_date', 'visibility_id'];
+        $forbidden = ['slug', 'name', 'image', 'visibility_id'];
         $fillable = $this->campaign->getFillable();
         foreach ($this->data as $property => $value) {
             if (in_array($property, $forbidden) && ! empty($this->campaign->$property)) {

@@ -17,9 +17,6 @@ class QueueService
 
     public function queue()
     {
-        $this->campaign->export_date = date('Y-m-d');
-        $this->campaign->saveQuietly();
-
         $entitiesExport = CampaignExport::create([
             'campaign_id' => $this->campaign->id,
             'created_by' => $this->user->id,

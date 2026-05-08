@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Enums\CampaignExportStatus;
 use App\Enums\CampaignFilterType;
 use App\Facades\CampaignCache;
 use App\Facades\EntityPermission;
@@ -315,7 +316,10 @@ class CampaignPolicy
             return true;
         }
 
-        return empty($campaign->export_date) || ! $campaign->export_date->isToday() && $campaign->queuedCampaignExports->count() === 0;
+        return $campaign->campaignExports()
+            ->whereDate('created_at', today())
+            ->where('status', '!=', CampaignExportStatus::failed)
+            ->doesntExist();
     }
 
     public function galleryWidget(?User $user, Campaign $campaign): bool

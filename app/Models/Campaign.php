@@ -33,7 +33,6 @@ use Illuminate\Support\Collection;
  * @property string $name
  * @property string $slug
  * @property string $locale
- * @property Carbon|string $export_date
  * @property CampaignVisibility $visibility_id
  * @property bool|int $entity_visibility
  * @property bool|int $entity_personality_visibility
@@ -77,7 +76,6 @@ class Campaign extends Model
         'slug',
         'locale',
         'image',
-        'export_date',
         'visibility_id',
         'entity_visibility',
         'entity_personality_visibility',
@@ -94,7 +92,6 @@ class Campaign extends Model
         'ui_settings' => 'array',
         'default_images' => 'array',
         'settings' => 'array',
-        'export_date' => 'date',
         'visibility_id' => CampaignVisibility::class,
     ];
 
