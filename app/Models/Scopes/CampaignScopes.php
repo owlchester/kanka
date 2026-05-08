@@ -152,9 +152,10 @@ trait CampaignScopes
             $query
                 ->where('visible_entity_count', '>', 0);
         }
-        $defaultSort = $sort == 1 ? 'follower' : 'visible_entity_count';
+        $defaultSort = $sort == 1 ? 'campaign_followers_count' : 'visible_entity_count';
         $query
             ->with(['systems', 'spotlight'])
+            ->withCount('followers')
             ->where('is_hidden', 0)
             ->orderBy($defaultSort, 'desc')
             ->orderBy('name');

@@ -14,8 +14,6 @@ use App\Events\Campaigns\EntityTypes\EntityTypeDeleted;
 use App\Events\Campaigns\EntityTypes\EntityTypeToggled;
 use App\Events\Campaigns\EntityTypes\EntityTypeUpdated;
 use App\Events\Campaigns\Exports\ExportCreated;
-use App\Events\Campaigns\Followers\FollowerCreated;
-use App\Events\Campaigns\Followers\FollowerRemoved;
 use App\Events\Campaigns\Invites\InviteCreated;
 use App\Events\Campaigns\Invites\InviteDeleted;
 use App\Events\Campaigns\Members\RoleUserAdded;
@@ -66,7 +64,6 @@ use App\Listeners\Campaigns\ClearCampaignUsersSaved;
 use App\Listeners\Campaigns\Dashboards\LogDashboard;
 use App\Listeners\Campaigns\EntityTypes\LogEntityType;
 use App\Listeners\Campaigns\Exports\LogExport;
-use App\Listeners\Campaigns\Followers\UpdateFollowerCount;
 use App\Listeners\Campaigns\Invites\LogInvite;
 use App\Listeners\Campaigns\Members\LogMember;
 use App\Listeners\Campaigns\Members\LogUserRoleChanged;
@@ -121,12 +118,7 @@ class EventServiceProvider extends ServiceProvider
             ClearUserCache::class,
             ClearCampaignCache::class,
         ],
-        FollowerCreated::class => [
-            UpdateFollowerCount::class,
-        ],
-        FollowerRemoved::class => [
-            UpdateFollowerCount::class,
-        ],
+
         InviteCreated::class => [
             LogInvite::class,
         ],

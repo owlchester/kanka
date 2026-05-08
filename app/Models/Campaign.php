@@ -51,7 +51,6 @@ use Illuminate\Support\Collection;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Carbon $deleted_at
- * @property int $follower
  * @property bool|int $is_hidden
  *
  * UI virtual Settings
@@ -425,16 +424,13 @@ class Campaign extends Model
         return $this;
     }
 
-    /**
-     * Get the value of the follower variable
-     */
     public function follower(): int
     {
         if (app()->hasDebugModeEnabled() && request()->has('_followers')) {
             return request()->get('_followers');
         }
 
-        return (int) $this->follower;
+        return (int) ($this->followers_count ?? $this->followers()->count());
     }
 
     public function hasModuleName(int $type, bool $plural = false): bool

@@ -19,7 +19,7 @@ class CampaignResource extends JsonResource
             'name' => $campaign->name,
             'justify' => $campaign->spotlight?->url,
             'link' => route('dashboard', $campaign),
-            'followers' => Number::format($campaign->follower),
+            'followers' => Number::format($campaign->follower()),
             'entities' => Number::format($campaign->visible_entity_count),
             'locale' => $campaign->locale,
             'system' => $campaign->getSystems(),
