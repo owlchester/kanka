@@ -19,7 +19,7 @@ trait CreatesEntityFromName
      *
      * @param  class-string<MiscModel>  $classname
      */
-    protected function createModelFromName(string $name, string $classname, EntityType $entityType, Campaign $campaign): ?int
+    protected function createModelFromName(string $name, string $classname, EntityType $entityType, Campaign $campaign, bool $returnEntityId = false): ?int
     {
         $name = mb_trim(Purify::clean($name));
         if (empty($name)) {
@@ -37,11 +37,11 @@ trait CreatesEntityFromName
             'is_private' => false,
         ]);
 
-        return DB::transaction(function () use ($model): int {
+        return DB::transaction(function () use ($model, $returnEntityId): int {
             $model->saveQuietly();
             $model->createEntity();
 
-            return $model->id;
+            return $returnEntityId ? $model->entity->id : $model->id;
         });
     }
 

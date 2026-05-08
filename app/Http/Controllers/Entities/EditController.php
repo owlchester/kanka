@@ -120,7 +120,8 @@ class EditController extends Controller
                 $this->attributeService
                     ->campaign($campaign)
                     ->entity($entity)
-                    ->save($request->get('attribute', []));
+                    ->save($request->get('attribute', []))
+                    ->touch();
             }
 
             $link = '<a href="' . route(

@@ -17,6 +17,8 @@ class StoreItem extends FormRequest
 
     protected array $foreignEntityFields = ['location_id'];
 
+    protected bool $foreignEntityParent = true;
+
     /**
      * Determine if the user is authorized to make this request.
      *

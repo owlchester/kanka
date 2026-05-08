@@ -73,6 +73,7 @@ trait HasFilters
             'connection_name',
             'archived',
             'parent_id',
+            'status_id',
         ];
     }
 
@@ -170,6 +171,8 @@ trait HasFilters
                     $this->filterParent($query);
                 } elseif ($key == 'parent_id') {
                     $this->filterParent($query);
+                } elseif ($key == 'status_id') {
+                    $this->filterStatus($query);
                 } elseif (in_array($key, ['created_by', 'updated_by'])) {
                     $query
                         ->joinEntity()
@@ -945,6 +948,11 @@ trait HasFilters
     protected function filterParent(Builder $query): void
     {
         $query->whereHas('entity', fn ($q) => $q->where('entities.parent_id', $this->filterValue));
+    }
+
+    protected function filterStatus(Builder $query): void
+    {
+        $query->whereHas('entity', fn ($q) => $q->where('entities.status_id', $this->filterValue));
     }
 
     protected function explicitFilters(): array

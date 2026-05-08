@@ -28,6 +28,30 @@ trait ResolvesNewForeignEntities
         return $fields;
     }
 
+    /**
+     * When true, parent_id accepts a new entity name and resolves to an entity ID
+     * of the same type as the form request (e.g. StoreLocation creates a Location).
+     *
+     * @return array<string, array{string, int}>
+     */
+    protected function newEntityParentFields(): array
+    {
+        if (! ($this->foreignEntityParent ?? false)) {
+            return [];
+        }
+
+        $typeCode = Str::snake(Str::after(class_basename($this), 'Store'));
+        $entityTypeId = config("entities.ids.{$typeCode}");
+
+        if (empty($entityTypeId)) {
+            return [];
+        }
+
+        return [
+            'parent_id' => ['App\\Models\\' . Str::studly($typeCode), $entityTypeId],
+        ];
+    }
+
     protected function prepareForValidation(): void
     {
         $this->resolveNewForeignEntities($this);
@@ -52,6 +76,18 @@ trait ResolvesNewForeignEntities
             $resolved = $this->createNewForeignEntity($name, $classname, $entityTypeId);
             $request->merge([$field => $resolved]);
         }
+
+        foreach ($this->newEntityParentFields() as $field => [$classname, $entityTypeId]) {
+            $value = $request->input($field);
+            if (empty($value) || is_numeric($value)) {
+                continue;
+            }
+
+            $name = Str::startsWith($value, 'new:') ? Str::substr($value, 4) : $value;
+
+            $resolved = $this->createNewForeignEntityAsEntityId($name, $classname, $entityTypeId);
+            $request->merge([$field => $resolved]);
+        }
     }
 
     /**
@@ -62,7 +98,7 @@ trait ResolvesNewForeignEntities
      */
     public function resolvedFields(): array
     {
-        return array_intersect_key($this->all(), $this->newEntityFields());
+        return array_intersect_key($this->all(), array_merge($this->newEntityFields(), $this->newEntityParentFields()));
     }
 
     protected function createNewForeignEntity(string $value, string $classname, int $entityTypeId): ?int
@@ -76,5 +112,18 @@ trait ResolvesNewForeignEntities
         $entityType = $campaign->getEntityTypes()->firstWhere('id', $entityTypeId);
 
         return $this->createModelFromName($value, $classname, $entityType, $campaign);
+    }
+
+    protected function createNewForeignEntityAsEntityId(string $value, string $classname, int $entityTypeId): ?int
+    {
+        // AJAX calls are validation-only pre-flight requests; skip creation to avoid duplicates.
+        if (empty($value) || request()->ajax()) {
+            return null;
+        }
+
+        $campaign = CampaignLocalization::getCampaign();
+        $entityType = $campaign->getEntityTypes()->firstWhere('id', $entityTypeId);
+
+        return $this->createModelFromName($value, $classname, $entityType, $campaign, true);
     }
 }
