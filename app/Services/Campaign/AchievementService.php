@@ -2,7 +2,6 @@
 
 namespace App\Services\Campaign;
 
-use App\Enums\CharacterStatus;
 use App\Enums\SpotlightStatus;
 use App\Models\CampaignPlugin;
 use App\Models\EntityTag;
@@ -50,7 +49,7 @@ class AchievementService
         // @phpstan-ignore-next-line
         $organisations = $this->campaign->organisations()->withInvisible()->count() + $this->random();
         // @phpstan-ignore-next-line
-        $dead = $this->campaign->characters()->withInvisible()->whereNot('status_id', CharacterStatus::alive)->count() + $this->random(10, 30);
+        $dead = $this->campaign->characters()->withInvisible()->whereHas('entity', fn ($q) => $q->where('entities.status_id', 3))->count() + $this->random(10, 30);
         // @phpstan-ignore-next-line
         $calendars = $this->campaign->calendars()->withInvisible()->count() + $this->random(5, 15);
         // @phpstan-ignore-next-line
@@ -224,7 +223,7 @@ class AchievementService
 
     public function achievements(): array
     {
-        $dead = $this->campaign->characters()->where('status', '!=', CharacterStatus::alive)->count();
+        $dead = $this->campaign->characters()->whereHas('entity', fn ($q) => $q->where('entities.status_id', 3))->count();
         $calendars = $this->campaign->calendars()->count();
 
         $achievements = [
