@@ -32,8 +32,6 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property string[] $nullableForeignKeys
  * @property Carbon $created_at
  * @property Carbon $updated_at
- * @property int $created_by
- * @property int $updated_by
  *
  * @method static self|Builder sort(array $filters, array $defaultOrder = [])
  */
