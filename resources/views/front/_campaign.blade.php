@@ -35,10 +35,10 @@
                     {{ $campaign->locale }}
                 </span>
             @endif
-            @if (!empty($campaign->system))
+            @if ($campaign->systems->isNotEmpty())
                 <span class="" title="{{ __('campaigns.fields.system') }}" data-toggle="tooltip">
                     <x-icon class="cog" />
-                    {{ $campaign->system }}
+                    {{ $campaign->getSystems() }}
                 </span>
             @endif
         </div>

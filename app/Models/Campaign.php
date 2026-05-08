@@ -38,7 +38,6 @@ use Illuminate\Support\Collection;
  * @property bool|int $entity_visibility
  * @property bool|int $entity_personality_visibility
  * @property string $header_image
- * @property string $system
  * @property string $excerpt
  * @property string $css
  * @property string $theme
@@ -84,7 +83,6 @@ class Campaign extends Model
         'entity_visibility',
         'entity_personality_visibility',
         'header_image',
-        'system',
         'theme_id',
         'css',
         'ui_settings',

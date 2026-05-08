@@ -82,9 +82,9 @@ it('filtering locale GET')
     ->assertStatus(200)
     ->assertJsonCount(1, 'campaigns');
 
-it('public campaigns GET buut no results due to is_discreet')
+it('public campaigns GET but no results due to unlisted visibility')
     ->asUser()
-    ->withCampaign(['is_discreet' => true])
+    ->withCampaign(['visibility_id' => CampaignVisibility::unlisted])
     ->get('/api/public/campaigns')
     ->assertStatus(200)
     ->assertJsonCount(0, 'campaigns');
