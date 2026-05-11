@@ -254,6 +254,14 @@ class ImporterService
             $this->importCharacterFamily($value);
 
             return;
+        } elseif ($field === Str::snake(class_basename($this->model)) . '_id') {
+            if (empty($value)) {
+                $this->model->entity->parent_id = null;
+            } elseif (isset($this->entityIds[$value])) {
+                $this->model->entity->parent_id = $this->entityIds[$value];
+            }
+
+            return;
         }
         if (empty($value)) {
             $this->model->$field = null;
