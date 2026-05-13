@@ -6,6 +6,7 @@ use App\Enums\Visibility;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\Sanitizable;
+use App\Models\Concerns\SortableTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -27,6 +28,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property ?Entity $entity
  *
  * @method static Builder|self defaultOrder()
+ * @method static Builder|self sort(array $filters, array $defaultOrder = [])
  */
 class EntityAbility extends Model
 {
@@ -34,6 +36,9 @@ class EntityAbility extends Model
     use HasFactory;
     use HasVisibility;
     use Sanitizable;
+    use SortableTrait;
+
+    protected array $sortable = ['type_id'];
 
     /**
      * Fillable fields
@@ -72,15 +77,23 @@ class EntityAbility extends Model
         return $this->belongsTo('App\Models\Ability');
     }
 
-    /**
-     * @return Builder
-     */
-    public function scopeDefaultOrder(Builder $query)
+    public function scopeDefaultOrder(Builder $query): Builder
     {
         return $query
+            ->select('entity_abilities.*')
+            ->leftJoin('entities as default_e', 'default_e.id', '=', 'entity_abilities.entity_id')
+            ->leftJoin('abilities as default_a', 'default_a.id', '=', 'entity_abilities.ability_id')
             ->orderBy('position')
-            ->orderBy('ae.type')
-            ->orderBy('a.name');
+            ->orderBy('default_e.type')
+            ->orderBy('default_a.name');
+    }
+
+    public function scopeCustomSortType_id(Builder $query, string $order): Builder
+    {
+        return $query
+            ->select('entity_abilities.*')
+            ->leftJoin('entities as sort_e', 'sort_e.id', '=', 'entity_abilities.entity_id')
+            ->orderBy('sort_e.type', $order);
     }
 
     /**

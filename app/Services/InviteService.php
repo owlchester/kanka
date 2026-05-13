@@ -65,6 +65,11 @@ class InviteService
 
     public function attribute(): self
     {
+        // Don't update a user who's been referred or that is inviting themselves
+        if ($this->user->referred_by !== null || $this->invite->created_by === $this->user->id) {
+            return $this;
+        }
+
         $this->user->referred_by = $this->invite->created_by;
         $this->user->save();
 
