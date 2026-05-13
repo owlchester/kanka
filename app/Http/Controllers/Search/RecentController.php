@@ -44,6 +44,9 @@ class RecentController extends Controller
                     'esc' => '<strong>esc</strong>',
                 ]),
                 'empty_results' => __('search.lookup.empty'),
+                'pages' => __('search.lookup.pages'),
+                'content_matches' => __('search.lookup.content_matches'),
+                'no_results' => __('search.lookup.empty'),
             ],
         ]);
     }
