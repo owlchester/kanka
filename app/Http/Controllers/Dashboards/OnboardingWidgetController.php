@@ -21,7 +21,6 @@ class OnboardingWidgetController extends Controller
             return response()->json($widgetState);
         }
 
-        // Migration: users who completed the old modal already have an intent
         $existingIntent = $settings['onboarding'] ?? null;
         $validIntents = ['worldbuilding', 'campaign', 'story'];
         $hasOldIntent = in_array($existingIntent, $validIntents);
@@ -59,11 +58,11 @@ class OnboardingWidgetController extends Controller
 
         $state['step'] = $validated['step'];
 
-        if (isset($validated['intent'])) {
+        if ($validated['intent'] !== null) {
             $state['intent'] = $validated['intent'];
         }
 
-        if (isset($validated['entity_id'])) {
+        if ($validated['entity_id'] !== null) {
             $state['entities'][] = $validated['entity_id'];
         }
 

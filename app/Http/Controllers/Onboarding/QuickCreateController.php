@@ -16,8 +16,8 @@ class QuickCreateController extends Controller
     {
         $this->authorize('update', $campaign);
 
-        $name = $request->get('name');
-        $type = $request->get('type');
+        $name = $request->validated('name');
+        $type = $request->validated('type');
 
         [$model, $routeName] = match ($type) {
             'character' => [
