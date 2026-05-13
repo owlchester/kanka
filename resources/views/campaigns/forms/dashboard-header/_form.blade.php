@@ -10,7 +10,7 @@
             tooltip
             :helper="__('campaigns.helpers.excerpt')"
         >
-            <textarea name="excerpt" id="excerpt" class="w-full html-editor">{!! old('excerpt', $campaign->excerptForEdition) !!}</textarea>
+            @include('cruds.fields.entry', ['fieldName' => 'excerpt', 'model' => $campaign ?? null])
         </x-forms.field>
 
         <x-forms.field field="header" :label="__('campaigns.fields.header_image')" tooltip :helper="__('campaigns.helpers.header_image')">
