@@ -500,6 +500,10 @@ class CampaignDashboardWidget extends Model
      */
     public function visible(): bool
     {
+        if ($this->widget === Widget::Onboarding && auth()->check() && auth()->user()->cant('update', $this->campaign)) {
+            return false;
+        }
+
         // Not linked to an entity, easy
         if (empty($this->entity_id)) {
             return true;

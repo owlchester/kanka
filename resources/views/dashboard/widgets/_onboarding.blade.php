@@ -50,7 +50,6 @@
         'organisation' => route('entities.index', [$campaign, config('entities.ids.organisation')]),
     ]);
 @endphp
-@can('update', $campaign)
 <x-box class="widget-welcome" id="dashboard-widget-{{ $widget->id }}">
     <div id="onboarding-widget">
         <onboarding-widget
@@ -66,4 +65,3 @@
         ></onboarding-widget>
     </div>
 </x-box>
-@endcan
