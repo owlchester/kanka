@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Services\Search\RecentService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Controller that loads recently searched entities and other information for the search popout
@@ -21,9 +22,9 @@ class RecentController extends Controller
     {
         $recent = [];
         $this->recentService->campaign($campaign);
-        if (auth()->check()) {
+        if (Auth::check()) {
             $recent = $this->recentService
-                ->user(auth()->user())
+                ->user(Auth::user())
                 ->recent();
         }
 
