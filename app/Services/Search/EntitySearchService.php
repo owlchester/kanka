@@ -2,6 +2,7 @@
 
 namespace App\Services\Search;
 
+use App\Facades\Avatar;
 use App\Models\Attribute;
 use App\Models\Entity;
 use App\Models\Post;
@@ -92,6 +93,69 @@ class EntitySearchService
         $this->pages = $results['results'][0]['totalPages'];
 
         return $this->process($entities)->fetch();
+    }
+
+    /**
+     * Search with Meilisearch snippets for the command center full-text mode.
+     * Returns up to 20 results with a highlighted excerpt from the entry field.
+     */
+    public function searchWithSnippets(string $term): array
+    {
+        $client = new Client(config('scout.meilisearch.host'), config('scout.meilisearch.key'));
+
+        $query = (new SearchQuery)
+            ->setIndexUid('entities')
+            ->setQuery($term)
+            ->setFilter(['campaign_id = ' . $this->campaign->id])
+            ->setAttributesToRetrieve(['id', 'entity_id', 'type', 'name'])
+            ->setAttributesToHighlight(['name', 'entry'])
+            ->setAttributesToCrop(['entry'])
+            ->setCropLength(20)
+            ->setHighlightPreTag('<mark>')
+            ->setHighlightPostTag('</mark>')
+            ->setLimit(20)
+            ->setHitsPerPage(20);
+
+        $results = $client->multiSearch([$query]);
+        $hits = $results['results'][0]['hits'] ?? [];
+
+        if (empty($hits)) {
+            return [];
+        }
+
+        $entityIds = array_unique(array_column($hits, 'entity_id'));
+        $entities = Entity::select(['id', 'name', 'is_private'])
+            ->with(['image', 'entityType'])
+            ->whereIn('id', $entityIds)
+            ->get()
+            ->keyBy('id');
+
+        $output = [];
+        foreach ($hits as $hit) {
+            $entity = $entities->get($hit['entity_id']);
+            if (! $entity) {
+                continue;
+            }
+
+            $rawSnippet = $hit['_formatted']['entry'] ?? '';
+            $snippet = strip_tags($rawSnippet, '<mark>');
+            if (! empty($snippet)) {
+                $snippet = '…' . trim($snippet) . '…';
+            }
+
+            $output[] = [
+                'id' => $entity->id,
+                'name' => $entity->name,
+                'is_private' => $entity->is_private,
+                'image' => Avatar::entity($entity)->fallback()->size(64)->thumbnail(),
+                'link' => $entity->url(),
+                'type' => $entity->entityType->name(),
+                'snippet' => $snippet,
+                'log_url' => route('search.log', [$this->campaign, $entity->id]),
+            ];
+        }
+
+        return $output;
     }
 
     /**
