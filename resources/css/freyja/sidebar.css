@@ -91,11 +91,7 @@ body.sidebar-collapse .sidebar-toggle [data-sidebar="expand"] {
         margin-left: 0;
     }
 
-
-    .sidebar-collapse .main-sidebar {
-        margin-left: 0;
-    }
-    .sidebar-collapse .content-wrapper, .sidebar-collapse .main-footer {
+    .sidebar-open .main-sidebar {
         margin-left: 0;
     }
 }
