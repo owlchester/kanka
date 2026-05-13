@@ -72,7 +72,7 @@ class OnboardingWidgetController extends Controller
 
         CampaignEvent::create([
             'campaign_id' => $campaign->id,
-            'created_by' => auth()->id(),
+            'created_by' => auth()->user()->id,
             'event' => 'onboarding_widget_step_' . $validated['step'],
         ]);
 
@@ -101,7 +101,7 @@ class OnboardingWidgetController extends Controller
 
         CampaignEvent::create([
             'campaign_id' => $campaign->id,
-            'created_by' => auth()->id(),
+            'created_by' => auth()->user()->id,
             'event' => 'onboarding_widget_dismissed',
             'metadata' => ['step' => $validated['step']],
         ]);
