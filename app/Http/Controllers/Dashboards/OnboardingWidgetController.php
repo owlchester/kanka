@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboards;
 
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
+use App\Models\CampaignDashboardWidget;
 use App\Models\CampaignEvent;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -84,6 +85,7 @@ class OnboardingWidgetController extends Controller
 
         $validated = $request->validate([
             'step' => 'required|integer|min:1|max:6',
+            'widget_id' => 'required|integer',
         ]);
 
         $settings = $campaign->settings ?? [];
@@ -104,6 +106,10 @@ class OnboardingWidgetController extends Controller
             'event' => 'onboarding_widget_dismissed',
             'metadata' => ['step' => $validated['step']],
         ]);
+
+        CampaignDashboardWidget::where('id', $validated['widget_id'])
+            ->where('campaign_id', $campaign->id)
+            ->delete();
 
         return response()->json(['success' => true]);
     }

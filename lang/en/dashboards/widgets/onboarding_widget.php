@@ -66,9 +66,4 @@ return [
         'idea_3' => 'Set up a campaign dashboard for your players',
     ],
 
-    'done' => [
-        'heading' => 'Welcome back',
-        'body' => 'Your getting started guide is complete.',
-        'remove' => 'Remove widget',
-    ],
 ];

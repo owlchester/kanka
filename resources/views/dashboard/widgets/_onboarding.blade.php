@@ -42,8 +42,6 @@
         'step6.heading' => __('dashboards/widgets/onboarding_widget.step6.heading'),
         'step6.body' => __('dashboards/widgets/onboarding_widget.step6.body'),
         'step6.dismiss' => __('dashboards/widgets/onboarding_widget.step6.dismiss'),
-        'done.heading' => __('dashboards/widgets/onboarding_widget.done.heading'),
-        'done.remove' => __('dashboards/widgets/onboarding_widget.done.remove'),
     ]);
 
     $entityUrls = json_encode([
@@ -55,6 +53,7 @@
 <x-box class="widget-welcome" id="dashboard-widget-{{ $widget->id }}">
     <div id="onboarding-widget">
         <onboarding-widget
+            widget-id="{{ $widget->id }}"
             state-api="{{ route('campaign.onboarding.widget.state', $campaign) }}"
             intent-api="{{ route('campaign.onboarding.initial', $campaign) }}"
             quick-create-api="{{ route('campaign.onboarding.quick-create', $campaign) }}"

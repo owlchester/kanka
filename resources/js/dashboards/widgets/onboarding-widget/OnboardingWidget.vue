@@ -3,15 +3,6 @@
         <i class="fa-solid fa-spinner fa-spin"></i>
     </div>
 
-    <div v-else-if="state.dismissed" class="flex items-center justify-between gap-4 py-2 text-sm text-neutral-content">
-        <span>{{ i18n['done.heading'] }}</span>
-        <button
-            class="btn2 btn-sm"
-            @click="dismiss">
-            {{ i18n['done.remove'] }}
-        </button>
-    </div>
-
     <div v-else class="flex flex-col gap-6">
         <div class="flex items-center justify-between">
             <span class="widget-title text-lg">{{ i18n['title'] }}</span>
@@ -115,6 +106,7 @@
 import { computed, onMounted, ref } from 'vue'
 
 const props = defineProps<{
+    widgetId: string
     stateApi: string
     intentApi: string
     quickCreateApi: string
@@ -289,7 +281,7 @@ async function advance(step: number, entityId?: number): Promise<void> {
 }
 
 async function dismiss(): Promise<void> {
-    await axios.post(props.dismissApi, { step: state.value.step })
-    state.value.dismissed = true
+    await axios.post(props.dismissApi, { step: state.value.step, widget_id: parseInt(props.widgetId) })
+    document.getElementById(`widget-col-${props.widgetId}`)?.remove()
 }
 </script>
