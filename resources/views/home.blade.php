@@ -31,14 +31,7 @@ use App\Enums\Widget;
 
         @include('ads.top')
 
-            @if (isset($onboarding) && $onboarding && auth()->check())
-                <p class="text-2xl py-2">
-                    {!! __('dashboards/onboarding.splash', ['name' => auth()->user()->name]) !!}
-                </p>
-
-            @endif
-
-        <div class="dashboard-widgets grid grid-cols-12 gap-4 md:gap-5 ">
+            <div class="dashboard-widgets grid grid-cols-12 gap-4 md:gap-5 ">
 
 {{--            <x-alert type="error" class="col-span-12">--}}
 {{--                <p>Dashboards are currently unavailable. We are working on bringing them back as soon as possible.</p>--}}
@@ -109,7 +102,5 @@ use App\Enums\Widget;
     @can('apply', $campaign)
     <x-dialog id="apply-dialog" title="Loading"></x-dialog>
     @endif
-
-    @includeWhen($onboarding, 'dashboard.dialogs.onboarding')
 
 @endsection

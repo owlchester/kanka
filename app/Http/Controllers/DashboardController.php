@@ -7,7 +7,6 @@ use App\Facades\Dashboard;
 use App\Facades\DataLayer;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
-use App\Models\CampaignEvent;
 use App\Models\Entity;
 use App\Services\DashboardService;
 
@@ -38,24 +37,13 @@ class DashboardController extends Controller
 
         // A user with campaigns doesn't need this process.
         $gaTrackingEvent = null;
-        $welcome = $onboarding = false;
+        $welcome = false;
         if (session()->has('user_registered')) {
             session()->remove('user_registered');
             $gaTrackingEvent = 'pa10CJTvrssBEOaOq7oC';
             DataLayer::newAccount();
             $welcome = true;
         }
-        // Onboarding
-        if (session()->has('onboarding') || request()->filled('onboarding')) {
-            $onboarding = true;
-            session()->remove('onboarding');
-            CampaignEvent::create([
-                'campaign_id' => $campaign->id,
-                'created_by' => auth()->user()->id,
-                'event' => 'onboarding_shown',
-            ]);
-        }
-
         $hasMap = $hasCampaignHeader = false;
         foreach ($widgets as $w) {
             if ($w->widget === Widget::Preview && $w->entity && $w->visible() && $w->entity->isMap()) {
@@ -74,7 +62,6 @@ class DashboardController extends Controller
             'dashboard',
             'dashboards',
             'welcome',
-            'onboarding',
             'gaTrackingEvent',
         ))
             ->with('hasMap', $hasMap)
