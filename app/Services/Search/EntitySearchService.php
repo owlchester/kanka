@@ -102,19 +102,19 @@ class EntitySearchService
     public function searchWithSnippets(string $term): array
     {
         $client = new Client(config('scout.meilisearch.host'), config('scout.meilisearch.key'));
+        $client->getKeys();
 
         $query = (new SearchQuery)
             ->setIndexUid('entities')
             ->setQuery($term)
             ->setFilter(['campaign_id = ' . $this->campaign->id])
-            ->setAttributesToRetrieve(['id', 'entity_id', 'type', 'name'])
+            ->setAttributesToRetrieve(['id', 'entity_id', 'type'])
             ->setAttributesToHighlight(['name', 'entry'])
             ->setAttributesToCrop(['entry'])
             ->setCropLength(20)
             ->setHighlightPreTag('<mark>')
             ->setHighlightPostTag('</mark>')
-            ->setLimit(20)
-            ->setHitsPerPage(20);
+            ->setLimit(20);
 
         $results = $client->multiSearch([$query]);
         $hits = $results['results'][0]['hits'] ?? [];
@@ -123,7 +123,7 @@ class EntitySearchService
             return [];
         }
 
-        $entityIds = array_unique(array_column($hits, 'entity_id'));
+        $entityIds = array_column($hits, 'entity_id');
         $entities = Entity::select(['id', 'name', 'is_private'])
             ->with(['image', 'entityType'])
             ->whereIn('id', $entityIds)
@@ -149,7 +149,7 @@ class EntitySearchService
                 'is_private' => $entity->is_private,
                 'image' => Avatar::entity($entity)->fallback()->size(64)->thumbnail(),
                 'link' => $entity->url(),
-                'type' => $entity->entityType->name(),
+                'type' => $entity->entityType?->name() ?? '',
                 'snippet' => $snippet,
                 'log_url' => route('search.log', [$this->campaign, $entity->id]),
             ];
