@@ -24,7 +24,7 @@
                 <button
                     v-for="intent in intents"
                     :key="intent.value"
-                    class="flex flex-col gap-1 rounded-lg border border-base-content/20 p-4 text-left transition-colors hover:border-primary hover:bg-base-200"
+                    class="flex flex-col gap-1 rounded-lg border border-base-content/20 p-4 text-left transition-colors hover:border-primary hover:bg-base-200 cursor-pointer"
                     :class="{ 'border-primary bg-base-200': selectedIntent === intent.value }"
                     :disabled="savingIntent"
                     @click="selectIntent(intent.value)">
@@ -55,8 +55,8 @@
                     {{ creating ? i18n['step2.creating'] : i18n['step2.button'] }}
                 </button>
             </div>
-            <p v-if="createdEntityUrl" class="text-xs">
-                <a :href="createdEntityUrl" class="text-link">{{ i18n['step2.details'] }}</a>
+            <p v-if="createdEntityUrl && createdEntityName" class="text-xs">
+                <a :href="createdEntityUrl" class="text-link">Go to {{ createdEntityName }} →</a>
             </p>
         </div>
 
@@ -78,8 +78,8 @@
                     {{ creating ? i18n['step3.creating'] : i18n['step3.button'] }}
                 </button>
             </div>
-            <p v-if="createdEntityUrl" class="text-xs">
-                <a :href="createdEntityUrl" class="text-link">{{ i18n['step3.details'] }}</a>
+            <p v-if="createdEntityUrl && createdEntityName" class="text-xs">
+                <a :href="createdEntityUrl" class="text-link">Go to {{ createdEntityName }} →</a>
             </p>
         </div>
 
@@ -134,6 +134,7 @@ const creating = ref(false)
 const selectedIntent = ref<string | null>(null)
 const entityName = ref('')
 const createdEntityUrl = ref<string | null>(null)
+const createdEntityName = ref<string | null>(null)
 
 interface WidgetState {
     step: number
@@ -264,11 +265,13 @@ async function createEntity(type: string, nextStep: number): Promise<void> {
 
     creating.value = true
     createdEntityUrl.value = null
+    createdEntityName.value = null
 
     try {
         const res = await axios.post(props.quickCreateApi, { type, name })
-        const { id, url } = res.data
+        const { id, url, name: entityCreatedName } = res.data
         createdEntityUrl.value = url
+        createdEntityName.value = entityCreatedName
         entityName.value = ''
         await advance(nextStep, id)
     } finally {

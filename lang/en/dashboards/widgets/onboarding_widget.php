@@ -24,7 +24,6 @@ return [
         'story_placeholder' => 'e.g. Elena, the protagonist',
         'button' => 'Create',
         'creating' => 'Creating…',
-        'details' => 'Add more details →',
     ],
 
     'step3' => [
@@ -36,7 +35,6 @@ return [
         'story_placeholder' => 'e.g. The Shattered City',
         'button' => 'Create',
         'creating' => 'Creating…',
-        'details' => 'Add more details →',
     ],
 
     'step4' => [
