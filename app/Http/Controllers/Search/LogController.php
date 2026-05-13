@@ -8,6 +8,7 @@ use App\Models\Entity;
 use App\Services\Search\RecentService;
 use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
+use Illuminate\Support\Facades\Auth;
 
 class LogController extends Controller
 {
@@ -20,10 +21,10 @@ class LogController extends Controller
     {
         $this->campaign($campaign)->authEntityView($entity);
 
-        if (auth()->check()) {
+        if (Auth::check()) {
             $this->recentService
                 ->campaign($campaign)
-                ->user(auth()->user())
+                ->user(Auth::user())
                 ->logView($entity);
         }
 

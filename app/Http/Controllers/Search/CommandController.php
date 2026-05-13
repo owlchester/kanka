@@ -7,6 +7,7 @@ use App\Models\Campaign;
 use App\Services\Search\CommandSearchService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommandController extends Controller
 {
@@ -21,7 +22,8 @@ class CommandController extends Controller
             return response()->json(['entities' => [], 'pages' => []]);
         }
 
-        $this->service->campaign($campaign)->user(auth()->user());
+        $this->service->campaign($campaign);
+        $this->service->user(Auth::user());
 
         $results = $mode === 'fulltext'
             ? $this->service->fulltext($term)
