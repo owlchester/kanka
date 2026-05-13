@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateCampaignHeader;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
+use App\Models\CampaignDescription;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -45,7 +46,10 @@ class DashboardHeaderController extends Controller
     {
         $this->authorize('update', $campaign);
 
-        $campaign->update($request->only('excerpt'));
+        CampaignDescription::updateOrCreate(
+            ['campaign_id' => $campaign->id],
+            ['excerpt' => $request->post('excerpt')]
+        );
 
         return redirect()
             ->route('dashboard.setup', $campaignDashboardWidget->dashboard_id ? [$campaign, 'dashboard' => $campaignDashboardWidget->dashboard_id] : [$campaign])
