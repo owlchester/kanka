@@ -3,7 +3,6 @@
 namespace App\Services\Search;
 
 use App\Traits\CampaignAware;
-use Illuminate\Support\Str;
 
 class AdminPageService
 {
@@ -21,9 +20,7 @@ class AdminPageService
         }
 
         return array_values(array_filter($pages, function (array $page) use ($query): bool {
-            return Str::containsAll(mb_strtolower($page['name']), [mb_strtolower($query)]) ||
-                stripos($page['name'], $query) !== false ||
-                stripos($page['group'], $query) !== false;
+            return stripos($page['name'], $query) !== false;
         }));
     }
 
