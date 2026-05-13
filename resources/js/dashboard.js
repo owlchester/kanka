@@ -224,7 +224,7 @@ class DashboardManager {
         app.use(vClickOutside);
         app.component('onboarding-widget', OnboardingWidget);
         app.mount('#onboarding-widget');
-    },
+    }
 }
 
 // Initialize the dashboard
