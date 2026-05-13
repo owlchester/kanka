@@ -122,7 +122,7 @@ class CampaignDashboardWidget extends Model
      */
     public function colSize(): int
     {
-        if ($this->widget == Widget::Campaign) {
+        if ($this->widget == Widget::Campaign || $this->widget == Widget::Onboarding) {
             return 12;
         }
         if (! empty($this->width)) {
@@ -139,7 +139,7 @@ class CampaignDashboardWidget extends Model
      */
     public function mdColSize(): int
     {
-        if ($this->widget == Widget::Campaign) {
+        if ($this->widget == Widget::Campaign || $this->widget == Widget::Onboarding) {
             return 12;
         }
         if (! empty($this->width)) {
