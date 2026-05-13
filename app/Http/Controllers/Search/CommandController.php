@@ -23,7 +23,9 @@ class CommandController extends Controller
         }
 
         $this->service->campaign($campaign);
-        $this->service->user(Auth::user());
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+        $this->service->user($user);
 
         $results = $mode === 'fulltext'
             ? $this->service->fulltext($term)
