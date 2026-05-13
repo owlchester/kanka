@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Enums\Widget;
-use App\Facades\Dashboard;
 use App\Facades\DataLayer;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
