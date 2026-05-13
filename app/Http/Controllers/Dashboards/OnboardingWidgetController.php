@@ -58,11 +58,11 @@ class OnboardingWidgetController extends Controller
 
         $state['step'] = $validated['step'];
 
-        if ($validated['intent'] !== null) {
+        if (($validated['intent'] ?? null) !== null) {
             $state['intent'] = $validated['intent'];
         }
 
-        if ($validated['entity_id'] !== null) {
+        if (($validated['entity_id'] ?? null) !== null) {
             $state['entities'][] = $validated['entity_id'];
         }
 
