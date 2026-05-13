@@ -3,10 +3,12 @@
 use App\Http\Controllers\Search\AttributeController;
 use App\Http\Controllers\Search\CalendarController;
 use App\Http\Controllers\Search\CampaignController;
+use App\Http\Controllers\Search\CommandController;
 use App\Http\Controllers\Search\FullTextController;
 use App\Http\Controllers\Search\ImageController;
 use App\Http\Controllers\Search\ListController;
 use App\Http\Controllers\Search\LiveController;
+use App\Http\Controllers\Search\LogController;
 use App\Http\Controllers\Search\MapGroupController;
 use App\Http\Controllers\Search\MarkerController;
 use App\Http\Controllers\Search\MentionController;
@@ -42,6 +44,8 @@ Route::get('/w/{campaign}/search/type/{entity_type}/templates', [TemplateControl
 
 Route::get('/w/{campaign}/search/live', [LiveController::class, 'index'])->name('search.live');
 Route::get('/w/{campaign}/search/recent', [RecentController::class, 'index'])->name('search.recent');
+Route::get('/w/{campaign}/search/command', [CommandController::class, 'index'])->name('search.command');
+Route::post('/w/{campaign}/search/log/{entity}', [LogController::class, 'store'])->name('search.log');
 
 Route::get('/w/{campaign}/search/fulltext', [FullTextController::class, 'index'])->name('search.fulltext');
 
