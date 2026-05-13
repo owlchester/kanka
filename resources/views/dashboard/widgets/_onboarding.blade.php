@@ -2,6 +2,7 @@
     $i18n = json_encode([
         'title' => __('dashboards/widgets/onboarding_widget.title'),
         'dismiss' => __('dashboards/widgets/onboarding_widget.dismiss'),
+        'go_to' => __('dashboards/widgets/onboarding_widget.go_to'),
         'step1.heading' => __('dashboards/widgets/onboarding_widget.step1.heading'),
         'step1.saving' => __('dashboards/widgets/onboarding_widget.step1.saving'),
         'step1.campaign' => __('dashboards/widgets/onboarding_widget.step1.campaign'),

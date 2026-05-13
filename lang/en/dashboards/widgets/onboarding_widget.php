@@ -3,6 +3,7 @@
 return [
     'title' => 'Getting Started',
     'dismiss' => 'Dismiss',
+    'go_to' => 'Go to :name →',
 
     'step1' => [
         'heading' => "What are you building?",

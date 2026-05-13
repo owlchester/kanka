@@ -56,7 +56,7 @@
                 </button>
             </div>
             <p v-if="createdEntityUrl && createdEntityName" class="text-xs">
-                <a :href="createdEntityUrl" class="text-link">Go to {{ createdEntityName }} →</a>
+                <a :href="createdEntityUrl" class="text-link">{{ i18n['go_to'].replace(':name', createdEntityName ?? '') }}</a>
             </p>
         </div>
 
@@ -79,7 +79,7 @@
                 </button>
             </div>
             <p v-if="createdEntityUrl && createdEntityName" class="text-xs">
-                <a :href="createdEntityUrl" class="text-link">Go to {{ createdEntityName }} →</a>
+                <a :href="createdEntityUrl" class="text-link">{{ i18n['go_to'].replace(':name', createdEntityName ?? '') }}</a>
             </p>
         </div>
 
