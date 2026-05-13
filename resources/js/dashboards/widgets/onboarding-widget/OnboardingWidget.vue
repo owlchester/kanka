@@ -9,7 +9,7 @@
             <span class="text-xs text-neutral-content">{{ state.step }} / 6</span>
         </div>
 
-        <div v-if="state.step === 1" class="flex flex-col gap-4">
+        <div v-if="state.step === 1" class="flex flex-col gap-2">
             <p class="text-base font-semibold">{{ i18n['step1.heading'] }}</p>
             <div class="grid grid-cols-1 gap-3 sm:grid-cols-3">
                 <button
@@ -28,7 +28,7 @@
             </p>
         </div>
 
-        <div v-else-if="state.step === 2" class="flex flex-col gap-4">
+        <div v-else-if="state.step === 2" class="flex flex-col gap-2">
             <p class="text-base font-semibold">{{ step2Config.heading }}</p>
             <div class="flex gap-2">
                 <input
@@ -51,7 +51,7 @@
             </p>
         </div>
 
-        <div v-else-if="state.step === 3" class="flex flex-col gap-4">
+        <div v-else-if="state.step === 3" class="flex flex-col gap-2">
             <p class="text-base font-semibold">{{ step3Config.heading }}</p>
             <div class="flex gap-2">
                 <input
@@ -74,7 +74,7 @@
             </p>
         </div>
 
-        <div v-else-if="state.step === 4" class="flex flex-col gap-4">
+        <div v-else-if="state.step === 4" class="flex flex-col gap-2">
             <p class="text-base font-semibold">{{ i18n['step4.heading'] }}</p>
             <p class="text-sm text-neutral-content">{{ i18n['step4.body'] }}</p>
             <div class="flex gap-3">
@@ -92,7 +92,7 @@
             </div>
         </div>
 
-        <div v-else-if="state.step === 6" class="flex flex-col gap-4">
+        <div v-else-if="state.step === 6" class="flex flex-col gap-2">
             <p class="text-base font-semibold">{{ i18n['step6.heading'] }}</p>
             <p class="text-sm text-neutral-content">{{ i18n['step6.body'] }}</p>
             <button class="btn2 self-start" @click="dismiss">

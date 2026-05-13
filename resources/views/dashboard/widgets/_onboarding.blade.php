@@ -45,9 +45,9 @@
     ]);
 
     $entityUrls = json_encode([
-        'character' => route('characters.index', $campaign),
-        'location' => route('locations.index', $campaign),
-        'organisation' => route('organisations.index', $campaign),
+        'character' => route('entities.index', [$campaign, config('entities.ids.character')]),
+        'location' => route('entities.index', [$campaign, config('entities.ids.location')]),
+        'organisation' => route('entities.index', [$campaign, config('entities.ids.organisation')]),
     ]);
 @endphp
 <x-box class="widget-welcome" id="dashboard-widget-{{ $widget->id }}">
