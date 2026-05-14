@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col gap-2" ref="resultsRef">
+    <div class="flex flex-col gap-2 px-4 py-2" ref="resultsRef">
         <!-- Rest state: no query -->
         <template v-if="!hasQuery">
             <div v-if="recent.length > 0" class="flex flex-col">
@@ -8,6 +8,7 @@
                     v-for="(item, i) in recent"
                     :key="'recent-' + item.id"
                     type="button"
+                    data-nav-item
                     class="cursor-pointer flex items-center gap-2 rounded-lg p-2 border border-base-100"
                     :class="{ 'border-base-300': focusedIndex === i }"
                     @click="openItem(item)"
@@ -28,6 +29,7 @@
                     v-for="(item, i) in bookmarks"
                     :key="'bookmark-' + i"
                     :href="item.url"
+                    data-nav-item
                     class="cursor-pointer flex items-center gap-2 rounded-lg p-2 border border-base-100"
                     :class="{ 'border-base-300 shadow-xs': focusedIndex === recent.length + i }"
                     @mouseenter="focusedIndex = recent.length + i"
@@ -43,6 +45,7 @@
                     v-for="(item, i) in indexes"
                     :key="'index-' + i"
                     :href="item.url"
+                    data-nav-item
                     class="cursor-pointer flex items-center gap-2 rounded-lg p-2 border border-base-100"
                     :class="{ 'border-base-300 shadow-xs': focusedIndex === recent.length + bookmarks.length + i }"
                     @mouseenter="focusedIndex = recent.length + bookmarks.length + i"
@@ -77,6 +80,7 @@
                         v-for="(item, i) in entities"
                         :key="'entity-' + item.id"
                         type="button"
+                        data-nav-item
                         class="cursor-pointer flex items-center gap-2 rounded-lg p-2 border border-base-100"
                         :class="{ 'border-base-300 shadow-xs': focusedIndex === i }"
                         @click="openItem(item)"
@@ -98,6 +102,7 @@
                         v-for="(item, i) in pages"
                         :key="'page-' + i"
                         :href="item.url"
+                        data-nav-item
                         class="cursor-pointer flex items-center gap-2 rounded-lg p-2 border border-base-100"
                         :class="{ 'border-base-300 shadow-xs': focusedIndex === entities.length + i }"
                         @mouseenter="focusedIndex = entities.length + i"
@@ -121,7 +126,7 @@
             <template v-else>
                 <div v-if="results.length > 0">
                     <div v-if="typeSummary.length > 0" class="flex flex-wrap gap-1.5 pb-2">
-                        <span class="uppercase text-neutral-content text-xs self-center mr-1">{{ texts.content_matches }}</span>
+                        <span class="uppercase text-neutral-content text-xs self-center mr-1">{{ texts.matches }}</span>
                         <span
                             v-for="group in typeSummary"
                             :key="group.type"
@@ -138,6 +143,7 @@
                             v-for="(item, i) in results"
                             :key="'result-' + item.id"
                             type="button"
+                            data-nav-item
                             class="cursor-pointer flex items-center gap-2 rounded-lg p-2 border border-base-100"
                             :class="{ 'border-base-300 shadow-xs': focusedIndex === i }"
                             @click="openItem(item)"
@@ -145,12 +151,12 @@
                         >
                             <img v-if="item.image" :src="item.image" class="rounded-full w-8 h-8" alt="" />
                             <span v-else class="cmd-avatar cmd-avatar-placeholder"></span>
-                            <span class="cmd-item-meta flex gap-1 flex-col">
+                            <span class="cmd-item-meta flex gap-1 flex-col min-w-0 flex-1 text-left">
                                 <div class="flex items-center gap-2">
                                     <span class="cmd-item-name normal">{{ item.name }}</span>
                                     <span class="cmd-item-type text-neutral-content text-xs uppercase">{{ item.type }}</span>
                                 </div>
-                                <span v-if="item.snippet" class="text-neutral-content text-xs" v-html="item.snippet"></span>
+                                <span v-if="item.snippet" class="block text-neutral-content text-xs truncate max-w-2xl" v-html="item.snippet"></span>
                             </span>
                         </button>
                     </div>
@@ -183,9 +189,9 @@ export default {
                 recents: 'Recent',
                 bookmarks: 'Bookmarks',
                 index: 'Quick jump',
-                results: 'Entities',
+                results: 'Entries',
                 pages: 'Pages',
-                content_matches: 'Results',
+                entries: 'Entries',
                 no_results: 'No results found',
             }),
         },
@@ -248,6 +254,10 @@ export default {
         navigate(direction) {
             const max = this.flatItems.length - 1;
             this.focusedIndex = Math.max(0, Math.min(max, this.focusedIndex + direction));
+            this.$nextTick(() => {
+                const items = this.$el.querySelectorAll('[data-nav-item]');
+                items[this.focusedIndex]?.scrollIntoView({ block: 'nearest' });
+            });
         },
 
         submit() {

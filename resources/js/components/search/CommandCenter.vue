@@ -1,7 +1,7 @@
 <template>
     <Teleport to="body">
         <dialog
-            class="dialog rounded-2xl bg-base-100 text-base-content w-full md:w-fit md:min-w-2xl"
+            class="dialog rounded-2xl bg-base-100 text-base-content w-full md:w-fit md:min-w-2xl overflow-hidden"
             ref="dialogRef"
             @cancel="close"
             aria-label="Command Center"
@@ -18,7 +18,7 @@
                     ref="inputRef"
                 />
             </header>
-            <article class="p-4">
+            <article class="flex-1 min-h-0">
                 <CommandResults
                     :mode="mode"
                     :query="query"
@@ -82,13 +82,12 @@ export default {
     },
 
     mounted() {
+        let backdropMousedown = false;
+        this.$refs.dialogRef.addEventListener('mousedown', (event) => {
+            backdropMousedown = event.target === this.$refs.dialogRef;
+        });
         this.$refs.dialogRef.addEventListener('click', (event) => {
-            const rect = this.$refs.dialogRef.getBoundingClientRect();
-            const isInDialog = (
-                rect.top <= event.clientY && event.clientY <= rect.top + rect.height &&
-                rect.left <= event.clientX && event.clientX <= rect.left + rect.width
-            );
-            if (!isInDialog) {
+            if (backdropMousedown && event.target === this.$refs.dialogRef) {
                 this.close();
             }
         });

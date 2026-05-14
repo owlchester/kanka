@@ -3,13 +3,13 @@
 return [
     'everywhere'    => 'Everywhere',
     'lookup'        => [
-        'content_matches' => 'Content matches',
         'empty'           => 'No results',
         'hint_name' => 'Search entries by name',
         'hint_fulltext' => 'Search inside entries, articles, and more...',
         'keyboard'        => 'press :k to search, :esc to dismiss',
         'lists'           => 'Lists',
         'pages'           => 'Pages',
+        'matches'         => 'Matches',
         'recents'         => 'Recents',
         'results'         => 'Results',
     ],

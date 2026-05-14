@@ -40,7 +40,8 @@ class RecentController extends Controller
                 'index' => __('search.lookup.lists'),
                 'hint_entries' => __('search.lookup.hint_name'),
                 'hint_fulltext' => __('search.lookup.hint_fulltext'),
-                'entities' => __('entities.entries'),
+                'entries' => __('entities.entries'),
+                'matches' => __('search.lookup.matches'),
                 'everywhere' => __('search.everywhere'),
                 'fulltext' => __('search.fulltext'),
                 'keyboard' => __('search.lookup.keyboard', [
@@ -48,7 +49,6 @@ class RecentController extends Controller
                     'esc' => '<strong>esc</strong>',
                 ]),
                 'pages' => __('search.lookup.pages'),
-                'content_matches' => __('search.lookup.content_matches'),
                 'no_results' => __('search.lookup.empty'),
             ],
         ]);
