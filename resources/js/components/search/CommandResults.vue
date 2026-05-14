@@ -1,19 +1,19 @@
 <template>
-    <div class="cmd-results" ref="resultsRef">
+    <div class="flex flex-col gap-2" ref="resultsRef">
         <!-- Rest state: no query -->
         <template v-if="!hasQuery">
-            <div v-if="recent.length > 0">
-                <div class="cmd-section-label">{{ texts.recents }}</div>
+            <div v-if="recent.length > 0" class="flex flex-col">
+                <div class="uppercase text-neutral-content text-xs py-2">{{ texts.recents }}</div>
                 <button
                     v-for="(item, i) in recent"
                     :key="'recent-' + item.id"
                     type="button"
-                    class="cmd-item"
-                    :class="{ focused: focusedIndex === i }"
+                    class="cursor-pointer flex items-center gap-2 rounded-lg p-2 border border-base-100"
+                    :class="{ 'border-base-300': focusedIndex === i }"
                     @click="openItem(item)"
                     @mouseenter="focusedIndex = i"
                 >
-                    <img v-if="item.image" :src="item.image" class="cmd-avatar" alt="" />
+                    <img v-if="item.image" :src="item.image" class="rounded-full w-8 h-8" alt="" />
                     <span v-else class="cmd-avatar cmd-avatar-placeholder"></span>
                     <span class="cmd-item-meta">
                         <span class="cmd-item-name">{{ item.name }}</span>
@@ -29,7 +29,7 @@
                     :key="'bookmark-' + i"
                     :href="item.url"
                     class="cmd-item"
-                    :class="{ focused: focusedIndex === recent.length + i }"
+                    :class="{ 'border-base-300 shadow-xs': focusedIndex === recent.length + i }"
                     @mouseenter="focusedIndex = recent.length + i"
                 >
                     <span class="cmd-item-icon"><i :class="item.icon"></i></span>
@@ -44,7 +44,7 @@
                     :key="'index-' + i"
                     :href="item.url"
                     class="cmd-item"
-                    :class="{ focused: focusedIndex === recent.length + bookmarks.length + i }"
+                    :class="{ 'border-base-300 shadow-xs': focusedIndex === recent.length + bookmarks.length + i }"
                     @mouseenter="focusedIndex = recent.length + bookmarks.length + i"
                 >
                     <span class="cmd-item-icon"><i :class="item.icon"></i></span>
@@ -59,23 +59,24 @@
                 <i class="fa-solid fa-spinner fa-spin"></i>
             </div>
             <template v-else>
-                <div v-if="entities.length > 0">
-                    <div class="cmd-section-label">{{ texts.results }}</div>
+                <div v-if="entities.length > 0" class="flex flex-col">
+                    <div class="uppercase text-neutral-content text-xs py-2">{{ texts.results }}</div>
                     <button
                         v-for="(item, i) in entities"
                         :key="'entity-' + item.id"
                         type="button"
-                        class="cmd-item"
-                        :class="{ focused: focusedIndex === i }"
+                        class="cursor-pointer flex items-center gap-2 rounded-lg p-2 border border-base-100"
+                        :class="{ 'border-base-300 shadow-xs': focusedIndex === i }"
                         @click="openItem(item)"
                         @mouseenter="focusedIndex = i"
                     >
-                        <img v-if="item.image" :src="item.image" class="cmd-avatar" alt="" />
+                        <img v-if="item.image" :src="item.image" class="rounded-full w-8 h-8" alt="" />
                         <span v-else class="cmd-avatar cmd-avatar-placeholder"></span>
-                        <span class="cmd-item-meta">
-                            <span class="cmd-item-name">{{ item.name }}</span>
-                            <span class="cmd-item-type">{{ item.type }}<i v-if="item.is_private" class="fa-solid fa-lock cmd-private-icon"></i></span>
-                        </span>
+
+                        <div class="cmd-item-meta flex gap-2 items-center">
+                            <span class="cmd-item-name font-normal">{{ item.name }}</span>
+                            <span class="cmd-item-type text-neutral-content text-xs uppercase">{{ item.type }}</span>
+                        </div>
                     </button>
                 </div>
 
@@ -85,8 +86,8 @@
                         v-for="(item, i) in pages"
                         :key="'page-' + i"
                         :href="item.url"
-                        class="cmd-item"
-                        :class="{ focused: focusedIndex === entities.length + i }"
+                        class="cursor-pointer flex items-center gap-2 rounded-lg p-2 border border-base-100"
+                        :class="{ 'border-base-300 shadow-xs': focusedIndex === entities.length + i }"
                         @mouseenter="focusedIndex = entities.length + i"
                     >
                         <span class="cmd-item-icon"><i :class="item.icon"></i></span>
@@ -94,7 +95,7 @@
                     </a>
                 </div>
 
-                <div v-if="entities.length === 0 && pages.length === 0" class="cmd-empty">
+                <div v-if="entities.length === 0 && pages.length === 0" class="text-neutral-content">
                     {{ texts.no_results }}
                 </div>
             </template>
@@ -107,26 +108,31 @@
             </div>
             <template v-else>
                 <div v-if="results.length > 0">
-                    <div class="cmd-section-label">{{ texts.content_matches }}</div>
-                    <button
-                        v-for="(item, i) in results"
-                        :key="'result-' + item.id"
-                        type="button"
-                        class="cmd-item cmd-item-snippet"
-                        :class="{ focused: focusedIndex === i }"
-                        @click="openItem(item)"
-                        @mouseenter="focusedIndex = i"
-                    >
-                        <img v-if="item.image" :src="item.image" class="cmd-avatar" alt="" />
-                        <span v-else class="cmd-avatar cmd-avatar-placeholder"></span>
-                        <span class="cmd-item-meta">
-                            <span class="cmd-item-name">{{ item.name }}</span>
-                            <span class="cmd-item-type">{{ item.type }}</span>
-                            <span v-if="item.snippet" class="cmd-item-snippet-text" v-html="item.snippet"></span>
-                        </span>
-                    </button>
+                    <div class="text-neutral-content text-xs uppercase">{{ texts.content_matches }}</div>
+
+                    <div class="flex flex-col">
+                        <button
+                            v-for="(item, i) in results"
+                            :key="'result-' + item.id"
+                            type="button"
+                            class="cursor-pointer flex items-center gap-2 rounded-lg p-2 border border-base-100"
+                            :class="{ 'border-base-300 shadow-xs': focusedIndex === i }"
+                            @click="openItem(item)"
+                            @mouseenter="focusedIndex = i"
+                        >
+                            <img v-if="item.image" :src="item.image" class="rounded-full w-8 h-8" alt="" />
+                            <span v-else class="cmd-avatar cmd-avatar-placeholder"></span>
+                            <span class="cmd-item-meta flex gap-1 flex-col">
+                                <div class="flex items-center gap-2">
+                                    <span class="cmd-item-name normal">{{ item.name }}</span>
+                                    <span class="cmd-item-type text-neutral-content text-xs uppercase">{{ item.type }}</span>
+                                </div>
+                                <span v-if="item.snippet" class="text-neutral-content text-xs" v-html="item.snippet"></span>
+                            </span>
+                        </button>
+                    </div>
                 </div>
-                <div v-else class="cmd-empty">
+                <div v-else class="text-neutral-content">
                     {{ texts.no_results }}
                 </div>
             </template>
@@ -156,7 +162,7 @@ export default {
                 index: 'Quick jump',
                 results: 'Entities',
                 pages: 'Pages',
-                content_matches: 'Content matches',
+                content_matches: 'Results',
                 no_results: 'No results found',
             }),
         },

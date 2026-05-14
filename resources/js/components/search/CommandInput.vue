@@ -1,26 +1,28 @@
 <template>
-    <div class="cmd-input-row">
-        <span class="cmd-icon" aria-hidden="true">
-            <i class="fa-solid fa-magnifying-glass"></i>
-        </span>
-        <input
-            ref="inputRef"
-            type="text"
-            class="cmd-input"
-            :placeholder="placeholder"
-            v-model="query"
-            @input="onInput"
-            @keydown.up.prevent="$emit('navigate', -1)"
-            @keydown.down.prevent="$emit('navigate', 1)"
-            @keydown.enter.prevent="$emit('submit')"
-            @keydown.ctrl.f.prevent="toggleMode"
-            autocomplete="off"
-            spellcheck="false"
-        />
+    <div class="flex gap-2 items-center justify-between">
+        <div class="flex gap-2 items-center">
+            <span class="cmd-icon" aria-hidden="true">
+                <i class="fa-regular fa-magnifying-glass"></i>
+            </span>
+            <input
+                ref="inputRef"
+                type="text"
+                class="cmd-input focus-none border-0! border-base-100"
+                :placeholder="placeholder"
+                v-model="query"
+                @input="onInput"
+                @keydown.up.prevent="$emit('navigate', -1)"
+                @keydown.down.prevent="$emit('navigate', 1)"
+                @keydown.enter.prevent="$emit('submit')"
+                @keydown.ctrl.f.prevent="toggleMode"
+                autocomplete="off"
+                spellcheck="false"
+            />
+        </div>
         <button
             type="button"
-            class="cmd-mode-toggle"
-            :class="{ active: mode === 'fulltext' }"
+            class="btn2"
+            :class="{ 'btn-primary': mode === 'fulltext' }"
             @click="toggleMode"
             :title="mode === 'fulltext' ? 'Switch to name search' : 'Switch to full-text search (Ctrl+F)'"
         >

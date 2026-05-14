@@ -124,7 +124,7 @@ class EntitySearchService
         }
 
         $entityIds = array_column($hits, 'entity_id');
-        $entities = Entity::select(['id', 'name', 'is_private'])
+        $entities = Entity::select(['id', 'name', 'is_private', 'type_id'])
             ->with(['image', 'entityType'])
             ->whereIn('id', $entityIds)
             ->get()
@@ -140,16 +140,16 @@ class EntitySearchService
             $rawSnippet = $hit['_formatted']['entry'] ?? '';
             $snippet = strip_tags($rawSnippet, '<mark>');
             if (! empty($snippet)) {
-                $snippet = '…' . trim($snippet) . '…';
+                $snippet = trim($snippet);
             }
 
             $output[] = [
                 'id' => $entity->id,
                 'name' => $entity->name,
                 'is_private' => $entity->is_private,
-                'image' => $entity->entityType ? Avatar::entity($entity)->fallback()->size(64)->thumbnail() : null,
+                'image' => Avatar::entity($entity)->fallback()->size(64)->thumbnail(),
                 'link' => $entity->url(),
-                'type' => $entity->entityType?->name() ?? '',
+                'type' => $entity->entityType->name() ?? '',
                 'snippet' => $snippet,
                 'log_url' => route('search.log', [$this->campaign, $entity->id]),
             ];

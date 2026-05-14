@@ -6,7 +6,7 @@
             @cancel="close"
             aria-label="Command Center"
         >
-            <header class="p-3 border-b border-base-300">
+            <header class="p-4">
                 <CommandInput
                     :placeholder="restData.texts.hint || placeholder"
                     :fulltext-label="restData.texts.fulltext || 'Full text'"
@@ -17,7 +17,7 @@
                     ref="inputRef"
                 />
             </header>
-            <article>
+            <article class="p-4">
                 <CommandResults
                     :mode="mode"
                     :query="query"
@@ -32,10 +32,12 @@
                     ref="resultsRef"
                 />
             </article>
-            <footer class="flex gap-4 px-3 py-2 text-xs text-base-content/50 border-t border-base-300">
-                <span><kbd>↑↓</kbd> navigate</span>
-                <span><kbd>↵</kbd> open</span>
-                <span><kbd>Ctrl+F</kbd> full text</span>
+            <footer class="flex gap-4 p-4 text-xs text-base-content/50 items-center justify-between">
+                <div class="flex gap-4 items-center">
+                    <span><kbd>↑↓</kbd> navigate</span>
+                    <span><kbd>↵</kbd> open</span>
+                    <span><kbd>Ctrl+F</kbd> full text</span>
+                </div>
                 <span><kbd>Esc</kbd> close</span>
             </footer>
         </dialog>
