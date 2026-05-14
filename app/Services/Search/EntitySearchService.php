@@ -99,14 +99,14 @@ class EntitySearchService
      * Search with Meilisearch snippets for the command center full-text mode.
      * Returns up to 20 results with a highlighted excerpt from the entry field.
      */
-    public function searchWithSnippets(string $term): array
+    public function searchWithSnippets(string $term, ?string $term2 = null): array
     {
         $client = new Client(config('scout.meilisearch.host'), config('scout.meilisearch.key'));
         $client->getKeys();
 
-        $query = (new SearchQuery)
+        $baseQuery = fn (string $q) => (new SearchQuery)
             ->setIndexUid('entities')
-            ->setQuery($term)
+            ->setQuery($q)
             ->setFilter(['campaign_id = ' . $this->campaign->id])
             ->setAttributesToRetrieve(['id', 'entity_id', 'type'])
             ->setAttributesToHighlight(['name', 'entry'])
@@ -116,8 +116,16 @@ class EntitySearchService
             ->setHighlightPostTag('</mark>')
             ->setLimit(20);
 
-        $results = $client->multiSearch([$query]);
+        $queries = [$baseQuery($term)];
+        if ($term2) {
+            $queries[] = $baseQuery($term2);
+        }
+
+        $results = $client->multiSearch($queries);
         $hits = $results['results'][0]['hits'] ?? [];
+        if ($term2) {
+            $hits = array_merge($hits, $results['results'][1]['hits'] ?? []);
+        }
 
         if (empty($hits)) {
             return [];

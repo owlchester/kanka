@@ -436,7 +436,7 @@ class SearchService
      * Format an entity for the lookup/search/recent dropdown
      * Todo: switch to a trait and share with SearchService
      */
-    protected function formatForLookup(Entity $entity): array
+    public function formatForLookup(Entity $entity): array
     {
         $mention = '[' . $entity->entityType->code . ':' . $entity->id . ']';
         // @phpstan-ignore-next-line
