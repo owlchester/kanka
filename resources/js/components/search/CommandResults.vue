@@ -22,13 +22,13 @@
                 </button>
             </div>
 
-            <div v-if="bookmarks.length > 0">
-                <div class="cmd-section-label">{{ texts.bookmarks }}</div>
+            <div v-if="bookmarks.length > 0" class="flex flex-col gap-0">
+                <div class="text-neutral-content text-xs uppercase">{{ texts.bookmarks }}</div>
                 <a
                     v-for="(item, i) in bookmarks"
                     :key="'bookmark-' + i"
                     :href="item.url"
-                    class="cmd-item"
+                    class="cursor-pointer flex items-center gap-2 rounded-lg p-2 border border-base-100"
                     :class="{ 'border-base-300 shadow-xs': focusedIndex === recent.length + i }"
                     @mouseenter="focusedIndex = recent.length + i"
                 >
@@ -37,13 +37,13 @@
                 </a>
             </div>
 
-            <div v-if="indexes.length > 0">
-                <div class="cmd-section-label">{{ texts.index }}</div>
+            <div v-if="indexes.length > 0" class="flex flex-col">
+                <div class="text-neutral-content text-xs uppercase">{{ texts.index }}</div>
                 <a
                     v-for="(item, i) in indexes"
                     :key="'index-' + i"
                     :href="item.url"
-                    class="cmd-item"
+                    class="cursor-pointer flex items-center gap-2 rounded-lg p-2 border border-base-100"
                     :class="{ 'border-base-300 shadow-xs': focusedIndex === recent.length + bookmarks.length + i }"
                     @mouseenter="focusedIndex = recent.length + bookmarks.length + i"
                 >
@@ -59,8 +59,20 @@
                 <i class="fa-solid fa-spinner fa-spin"></i>
             </div>
             <template v-else>
+                <div v-if="typeSummary.length > 0" class="flex flex-wrap gap-1.5 pb-2">
+                    <span class="uppercase text-neutral-content text-xs self-center mr-1">{{ texts.results }}</span>
+                    <span
+                        v-for="group in typeSummary"
+                        :key="group.type"
+                        class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-base-200 text-xs"
+                    >
+                        <i :class="group.icon" class="text-xs"></i>
+                        {{ group.type }}
+                        <span class="text-neutral-content">{{ group.count }}</span>
+                    </span>
+                </div>
+
                 <div v-if="entities.length > 0" class="flex flex-col">
-                    <div class="uppercase text-neutral-content text-xs py-2">{{ texts.results }}</div>
                     <button
                         v-for="(item, i) in entities"
                         :key="'entity-' + item.id"
@@ -108,7 +120,18 @@
             </div>
             <template v-else>
                 <div v-if="results.length > 0">
-                    <div class="text-neutral-content text-xs uppercase">{{ texts.content_matches }}</div>
+                    <div v-if="typeSummary.length > 0" class="flex flex-wrap gap-1.5 pb-2">
+                        <span class="uppercase text-neutral-content text-xs self-center mr-1">{{ texts.content_matches }}</span>
+                        <span
+                            v-for="group in typeSummary"
+                            :key="group.type"
+                            class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-base-200 text-xs"
+                        >
+                            <i :class="group.icon" class="text-xs"></i>
+                            {{ group.type }}
+                            <span class="text-neutral-content">{{ group.count }}</span>
+                        </span>
+                    </div>
 
                     <div class="flex flex-col">
                         <button
@@ -177,6 +200,21 @@ export default {
     computed: {
         hasQuery() {
             return this.query.length >= 2;
+        },
+
+        typeSummary() {
+            const items = this.mode === 'fulltext' ? this.results : this.entities;
+            const map = {};
+            for (const item of items) {
+                if (!item.type) {
+                    continue;
+                }
+                if (!map[item.type]) {
+                    map[item.type] = { type: item.type, icon: item.icon || '', count: 0 };
+                }
+                map[item.type].count++;
+            }
+            return Object.values(map);
         },
 
         flatItems() {

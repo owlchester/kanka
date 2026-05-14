@@ -150,6 +150,7 @@ class EntitySearchService
                 'image' => Avatar::entity($entity)->fallback()->size(64)->thumbnail(),
                 'link' => $entity->url(),
                 'type' => $entity->entityType->name() ?? '',
+                'icon' => $entity->entityType->icon() ?? '',
                 'snippet' => $snippet,
                 'log_url' => route('search.log', [$this->campaign, $entity->id]),
             ];

@@ -1,15 +1,16 @@
 <template>
     <Teleport to="body">
         <dialog
-            class="dialog rounded-2xl bg-base-100 text-base-content"
+            class="dialog rounded-2xl bg-base-100 text-base-content w-full md:w-fit md:min-w-2xl"
             ref="dialogRef"
             @cancel="close"
             aria-label="Command Center"
         >
             <header class="p-4">
                 <CommandInput
-                    :placeholder="restData.texts.hint || placeholder"
-                    :fulltext-label="restData.texts.fulltext || 'Full text'"
+                    :placeholder="mode === 'fulltext' ? restData.texts.hint_fulltext : restData.texts.hint_entries || placeholder"
+                    :entities-label="restData.texts.entities || 'Entries'"
+                    :everywhere-label="restData.texts.everywhere || 'Everywhere'"
                     @query-changed="onQueryChanged"
                     @mode-changed="onModeChanged"
                     @navigate="navigate"
@@ -36,7 +37,7 @@
                 <div class="flex gap-4 items-center">
                     <span><kbd>↑↓</kbd> navigate</span>
                     <span><kbd>↵</kbd> open</span>
-                    <span><kbd>Ctrl+F</kbd> full text</span>
+                    <span><kbd>{{ isMac ? '⌘' : 'Ctrl+' }}F</kbd> full text</span>
                 </div>
                 <span><kbd>Esc</kbd> close</span>
             </footer>
@@ -75,6 +76,8 @@ export default {
             pages: [],
             results: [],
             abortController: null,
+            isMac: /Mac/i.test(navigator.userAgent),
+            _fulltextKeyHandler: null,
         };
     },
 
@@ -96,9 +99,20 @@ export default {
             if (opened) {
                 this.$refs.dialogRef.showModal();
                 this.fetchRestData();
+                this._fulltextKeyHandler = (e) => {
+                    if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+                        e.preventDefault();
+                        this.$refs.inputRef?.toggleMode();
+                    }
+                };
+                document.addEventListener('keydown', this._fulltextKeyHandler, true);
             } else {
                 this.$refs.dialogRef.close();
                 this.reset();
+                if (this._fulltextKeyHandler) {
+                    document.removeEventListener('keydown', this._fulltextKeyHandler, true);
+                    this._fulltextKeyHandler = null;
+                }
             }
         },
     },

@@ -1,11 +1,12 @@
 <?php
 
 return [
-    'fulltext'      => 'Search everywhere',
+    'everywhere'    => 'Everywhere',
     'lookup'        => [
         'content_matches' => 'Content matches',
         'empty'           => 'No results',
-        'hint'            => 'Type at least 3 letters to search for entries in the campaign.',
+        'hint_name' => 'Search entries by name',
+        'hint_fulltext' => 'Search inside entries, articles, and more...',
         'keyboard'        => 'press :k to search, :esc to dismiss',
         'lists'           => 'Lists',
         'pages'           => 'Pages',

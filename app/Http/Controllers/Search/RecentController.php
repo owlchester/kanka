@@ -38,7 +38,10 @@ class RecentController extends Controller
                 'results' => __('search.lookup.results'),
                 'bookmarks' => __('entities.bookmarks'),
                 'index' => __('search.lookup.lists'),
-                'hint' => __('search.lookup.hint'),
+                'hint_entries' => __('search.lookup.hint_name'),
+                'hint_fulltext' => __('search.lookup.hint_fulltext'),
+                'entities' => __('entities.entries'),
+                'everywhere' => __('search.everywhere'),
                 'fulltext' => __('search.fulltext'),
                 'keyboard' => __('search.lookup.keyboard', [
                     'k' => '<strong>k</strong>',

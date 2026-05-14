@@ -451,6 +451,7 @@ class SearchService
             'image' => Avatar::entity($entity)->fallback()->size($this->thumbSize)->thumbnail(),
             'link' => $entity->url(),
             'type' => $entity->entityType->name(),
+            'icon' => $entity->entityType->icon(),
             'preview' => route('entities.preview', [$this->campaign, $entity]),
             'mention' => $mention,
             'aliases' => $entity->aliases->map(fn ($alias) => [
