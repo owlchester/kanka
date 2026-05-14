@@ -1,7 +1,12 @@
 <template>
     <Teleport to="body">
-        <div v-if="isOpen" class="cmd-overlay" @click.self="close">
-            <div class="cmd-dialog" role="dialog" aria-modal="true" aria-label="Command Center">
+        <dialog
+            class="dialog rounded-2xl bg-base-100 text-base-content"
+            ref="dialogRef"
+            @cancel="close"
+            aria-label="Command Center"
+        >
+            <header class="p-3 border-b border-base-300">
                 <CommandInput
                     :placeholder="restData.texts.hint || placeholder"
                     :fulltext-label="restData.texts.fulltext || 'Full text'"
@@ -11,7 +16,8 @@
                     @submit="submit"
                     ref="inputRef"
                 />
-                <div class="cmd-divider"></div>
+            </header>
+            <article>
                 <CommandResults
                     :mode="mode"
                     :query="query"
@@ -25,14 +31,14 @@
                     :texts="restData.texts"
                     ref="resultsRef"
                 />
-                <div class="cmd-footer">
-                    <span class="cmd-hint"><kbd>↑↓</kbd> navigate</span>
-                    <span class="cmd-hint"><kbd>↵</kbd> open</span>
-                    <span class="cmd-hint"><kbd>Ctrl+F</kbd> full text</span>
-                    <span class="cmd-hint"><kbd>Esc</kbd> close</span>
-                </div>
-            </div>
-        </div>
+            </article>
+            <footer class="flex gap-4 px-3 py-2 text-xs text-base-content/50 border-t border-base-300">
+                <span><kbd>↑↓</kbd> navigate</span>
+                <span><kbd>↵</kbd> open</span>
+                <span><kbd>Ctrl+F</kbd> full text</span>
+                <span><kbd>Esc</kbd> close</span>
+            </footer>
+        </dialog>
     </Teleport>
 </template>
 
@@ -47,8 +53,8 @@ export default {
     components: { CommandInput, CommandResults },
 
     props: {
-        apiCommand: { type: String, required: true },
-        apiRecent: { type: String, required: true },
+        api_command: { type: String, required: true },
+        api_recent: { type: String, required: true },
         placeholder: { type: String, default: 'Search…' },
     },
 
@@ -70,15 +76,26 @@ export default {
         };
     },
 
+    mounted() {
+        this.$refs.dialogRef.addEventListener('click', (event) => {
+            const rect = this.$refs.dialogRef.getBoundingClientRect();
+            const isInDialog = (
+                rect.top <= event.clientY && event.clientY <= rect.top + rect.height &&
+                rect.left <= event.clientX && event.clientX <= rect.left + rect.width
+            );
+            if (!isInDialog) {
+                this.close();
+            }
+        });
+    },
+
     watch: {
         isOpen(opened) {
             if (opened) {
+                this.$refs.dialogRef.showModal();
                 this.fetchRestData();
-                document.addEventListener('keydown', this.onKeydown);
-                document.body.style.overflow = 'hidden';
             } else {
-                document.removeEventListener('keydown', this.onKeydown);
-                document.body.style.overflow = '';
+                this.$refs.dialogRef.close();
                 this.reset();
             }
         },
@@ -87,7 +104,7 @@ export default {
     methods: {
         async fetchRestData() {
             try {
-                const response = await fetch(this.apiRecent);
+                const response = await fetch(this.api_recent);
                 const data = await response.json();
                 this.restData = {
                     recent: data.recent ?? [],
@@ -117,7 +134,7 @@ export default {
             this.loading = true;
 
             try {
-                const url = `${this.apiCommand}?q=${encodeURIComponent(q)}&mode=${this.mode}`;
+                const url = `${this.api_command}?q=${encodeURIComponent(q)}&mode=${this.mode}`;
                 const response = await fetch(url, { signal: this.abortController.signal });
                 const data = await response.json();
 
@@ -151,12 +168,6 @@ export default {
 
         submit() {
             this.$refs.resultsRef?.submit();
-        },
-
-        onKeydown(e) {
-            if (e.key === 'Escape') {
-                this.close();
-            }
         },
 
         reset() {
