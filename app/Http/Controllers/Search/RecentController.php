@@ -49,7 +49,7 @@ class RecentController extends Controller
                     'esc' => '<strong>esc</strong>',
                 ]),
                 'pages' => __('search.lookup.pages'),
-                'no_results' => __('search.lookup.empty'),
+                'no_results' => __('search.lookup.nothing'),
             ],
         ]);
     }

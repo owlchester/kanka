@@ -436,12 +436,20 @@ class SearchService
      * Format an entity for the lookup/search/recent dropdown
      * Todo: switch to a trait and share with SearchService
      */
-    public function formatForLookup(Entity $entity): array
+    protected function formatForLookup(Entity $entity): array
     {
         $mention = '[' . $entity->entityType->code . ':' . $entity->id . ']';
         // @phpstan-ignore-next-line
         if ($entity->alias_id) {
             $mention = '[' . $entity->entityType->code . ':' . $entity->id . '|alias:' . $entity->alias_id . ']';
+        }
+
+        $action = null;
+        if ($entity->isMap()) {
+            $action = [
+                'url' => route('maps.explore', [$this->campaign, $entity->entity_id]),
+                'name' => __('maps.actions.explore'),
+            ];
         }
 
         return [
@@ -454,6 +462,7 @@ class SearchService
             'icon' => $entity->entityType->icon(),
             'preview' => route('entities.preview', [$this->campaign, $entity]),
             'mention' => $mention,
+            'action' => $action,
             'aliases' => $entity->aliases->map(fn ($alias) => [
                 'id' => $alias->id,
                 'name' => $alias->name,

@@ -89,15 +89,19 @@
                         <img v-if="item.image" :src="item.image" class="rounded-full w-8 h-8" alt="" />
                         <span v-else class="cmd-avatar cmd-avatar-placeholder"></span>
 
-                        <div class="cmd-item-meta flex gap-2 items-center">
-                            <span class="cmd-item-name font-normal">{{ item.name }}</span>
-                            <span class="cmd-item-type text-neutral-content text-xs uppercase">{{ item.type }}</span>
+                        <div class="cmd-item-meta flex gap-2 items-center justify-between w-full">
+                            <div class="flex gap-2 items-center">
+                                <span class="cmd-item-name font-normal">{{ item.name }}</span>
+                                <span class="cmd-item-type text-neutral-content text-xs uppercase">{{ item.type }}</span>
+                            </div>
+
+                            <a v-if="item.action" :href="item.action.url" class="btn2 btn-sm">{{ item.action.name }}</a>
                         </div>
                     </button>
                 </div>
 
                 <div v-if="pages.length > 0">
-                    <div class="cmd-section-label">{{ texts.pages }}</div>
+                    <div class="text-neutral-content text-xs uppercase">{{ texts.pages }}</div>
                     <a
                         v-for="(item, i) in pages"
                         :key="'page-' + i"
@@ -112,9 +116,7 @@
                     </a>
                 </div>
 
-                <div v-if="entities.length === 0 && pages.length === 0" class="text-neutral-content">
-                    {{ texts.no_results }}
-                </div>
+                <div v-if="entities.length === 0 && pages.length === 0" class="text-neutral-content text-center" v-html="noResultsHtml"></div>
             </template>
         </template>
 
@@ -152,18 +154,20 @@
                             <img v-if="item.image" :src="item.image" class="rounded-full w-8 h-8" alt="" />
                             <span v-else class="cmd-avatar cmd-avatar-placeholder"></span>
                             <span class="cmd-item-meta flex gap-1 flex-col min-w-0 flex-1 text-left">
-                                <div class="flex items-center gap-2">
-                                    <span class="cmd-item-name normal">{{ item.name }}</span>
-                                    <span class="cmd-item-type text-neutral-content text-xs uppercase">{{ item.type }}</span>
+                                <div class="flex gap-2 items-center justify-between">   
+                                    <div class="flex gap-2 items-center">
+                                        <span class="cmd-item-name font-normal">{{ item.name }}</span>
+                                        <span class="cmd-item-type text-neutral-content text-xs uppercase">{{ item.type }}</span>
+                                    </div>
+        
+                                    <a v-if="item.action" :href="item.action.url" class="btn2 btn-sm">{{ item.action.name }}</a>
                                 </div>
                                 <span v-if="item.snippet" class="block text-neutral-content text-xs truncate max-w-2xl" v-html="item.snippet"></span>
                             </span>
                         </button>
                     </div>
                 </div>
-                <div v-else class="text-neutral-content">
-                    {{ texts.no_results }}
-                </div>
+                <div v-else class="text-neutral-content text-center" v-html="noResultsHtml"></div>
             </template>
         </template>
     </div>
@@ -206,6 +210,16 @@ export default {
     computed: {
         hasQuery() {
             return this.query.length >= 2;
+        },
+
+        noResultsHtml() {
+            const escaped = this.query
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;');
+            return (this.texts.no_results || 'No results for :term')
+                .replace(':term', `<span class="text-base-content font-semibold">"${escaped}"</span>`);
         },
 
         typeSummary() {

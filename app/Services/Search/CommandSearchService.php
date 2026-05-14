@@ -25,29 +25,24 @@ class CommandSearchService
      */
     public function name(string $term): array
     {
-        $meiliResults = $this->entitySearchService
+        $result = $this->searchService
             ->campaign($this->campaign)
-            ->limit(20)
-            ->search($term);
+            ->user($this->user)
+            ->term($term)
+            ->full()
+            ->v2()
+            ->limit(8)
+            ->find();
 
-        $meiliEntityIds = array_column(array_values($meiliResults), 'id');
-
-        $this->searchService
-            ->campaign($this->campaign)
-            ->user($this->user);
-
-        $formatted = Entity::with(['image', 'entityType'])
-            ->whereIn('id', $meiliEntityIds)
-            ->get()
-            ->map(fn (Entity $e) => array_merge(
-                $this->searchService->formatForLookup($e),
-                ['log_url' => route('search.log', [$this->campaign, $e->id])]
-            ))
+        $entities = collect($result['entities'] ?? [])
+            ->map(fn (array $entity) => array_merge($entity, [
+                'log_url' => route('search.log', [$this->campaign, $entity['id']]),
+            ]))
             ->values()
             ->toArray();
 
         return [
-            'entities' => $formatted,
+            'entities' => $entities,
             'pages' => $this->adminPageService->campaign($this->campaign)->match($term),
         ];
     }

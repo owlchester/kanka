@@ -4,6 +4,7 @@ return [
     'everywhere'    => 'Everywhere',
     'lookup'        => [
         'empty'           => 'No results',
+        'nothing' => 'No matches for :term.',
         'hint_name' => 'Search entries by name',
         'hint_fulltext' => 'Search inside entries, articles, and more...',
         'keyboard'        => 'press :k to search, :esc to dismiss',

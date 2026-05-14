@@ -1,6 +1,6 @@
 <template>
     <div class="flex gap-2 items-center justify-between">
-        <div class="flex gap-2 items-center w-full">
+        <div class="flex gap-1 items-center w-full">
             <span class="cmd-icon flex-0" aria-hidden="true">
                 <i class="fa-regular fa-magnifying-glass"></i>
             </span>
