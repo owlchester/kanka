@@ -35,11 +35,15 @@
             </article>
             <footer class="flex gap-4 p-4 text-xs text-base-content/50 items-center justify-between">
                 <div class="flex gap-4 items-center">
-                    <span><kbd>↑↓</kbd> navigate</span>
-                    <span><kbd>↵</kbd> open</span>
-                    <span><kbd>{{ isMac ? '⌘' : 'Ctrl+' }}F</kbd> full text</span>
+                    <div class="flex gap-1 items-center">
+                        <kbd class="w-8 inline-block text-center rounded bg-base-200">↑</kbd>
+                        <kbd class="w-8 inline-block text-center rounded bg-base-200">↓</kbd> 
+                        <span>navigate</span>
+                    </div>
+                    <span><kbd class="w-8 inline-block text-center rounded bg-base-200">↵</kbd> open</span>
+                    <span><kbd class="w-8 inline-block text-center rounded bg-base-200">{{ isMac ? '⌘' : 'Ctrl+' }}F</kbd> full text</span>
                 </div>
-                <span><kbd>Esc</kbd> close</span>
+                <span><kbd class="w-10 inline-block text-center rounded bg-base-200">Esc</kbd> close</span>
             </footer>
         </dialog>
     </Teleport>
