@@ -147,7 +147,7 @@ class EntitySearchService
                 'id' => $entity->id,
                 'name' => $entity->name,
                 'is_private' => $entity->is_private,
-                'image' => Avatar::entity($entity)->fallback()->size(64)->thumbnail(),
+                'image' => $entity->entityType ? Avatar::entity($entity)->fallback()->size(64)->thumbnail() : null,
                 'link' => $entity->url(),
                 'type' => $entity->entityType?->name() ?? '',
                 'snippet' => $snippet,
