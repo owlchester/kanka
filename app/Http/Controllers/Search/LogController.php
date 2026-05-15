@@ -8,6 +8,7 @@ use App\Models\Entity;
 use App\Services\Search\RecentService;
 use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class LogController extends Controller
@@ -17,7 +18,7 @@ class LogController extends Controller
 
     public function __construct(protected RecentService $recentService) {}
 
-    public function store(Campaign $campaign, Entity $entity): \Illuminate\Http\Response
+    public function store(Campaign $campaign, Entity $entity): Response
     {
         $this->campaign($campaign)->authEntityView($entity);
 

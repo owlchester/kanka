@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Search;
 
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
+use App\Models\User;
 use App\Services\Search\CommandSearchService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ class CommandController extends Controller
         }
 
         $this->service->campaign($campaign);
-        /** @var \App\Models\User $user */
+        /** @var User $user */
         $user = Auth::user();
         $this->service->user($user);
 
