@@ -145,6 +145,7 @@ class AdminPageService
                 'icon' => 'fa-brands fa-discord',
                 'url' => 'https://kanka.io/go/discord',
                 'group' => 'socials',
+                'keywords' => ['help'],
             ],
             [
                 'name' => __('Youtube'),
