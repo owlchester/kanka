@@ -29,7 +29,7 @@ class ReorderController extends Controller
      */
     public function index(Campaign $campaign)
     {
-        $this->authorize('create', Bookmark::class);
+        $this->authorize('create', [Bookmark::class, $campaign]);
 
         $links = Bookmark::ordered()->with(['target', 'entityType'])->get();
 
@@ -46,7 +46,7 @@ class ReorderController extends Controller
      */
     public function save(ReorderBookmarks $request, Campaign $campaign)
     {
-        $this->authorize('create', Bookmark::class);
+        $this->authorize('create', [Bookmark::class, $campaign]);
 
         $this->service
             ->reorder($request);

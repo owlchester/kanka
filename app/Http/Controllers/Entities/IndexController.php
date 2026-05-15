@@ -284,7 +284,7 @@ class IndexController extends Controller
             'loadMore' => __('entities/story.actions.load_more'),
         ];
 
-        $bookmarkable = $this->filterService->activeFiltersCount() > 0 && auth()->check() && auth()->user()->can('create', Bookmark::class) && ! $request->has('bookmark');
+        $bookmarkable = $this->filterService->activeFiltersCount() > 0 && auth()->check() && auth()->user()->can('create', [Bookmark::class, $campaign]) && ! $request->has('bookmark');
 
         return response()->json([
             'error' => $loadError,

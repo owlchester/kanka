@@ -14,7 +14,7 @@
                     @if ($campaign->enabled('bookmarks'))
                         <li class="px-2 {{ $active('bookmarks') }} sidebar-quick-links sidebar-bookmarks">
                             <x-sidebar.element
-                                :url="auth()->check() && auth()->user()->can('create', new App\Models\Bookmark()) ? route('bookmarks.index', $campaign) : null"
+                                :url="auth()->check() && auth()->user()->can('create', [App\Models\Bookmark::class, $campaign]) ? route('bookmarks.index', $campaign) : null"
                                 :icon="$element['custom_icon'] ?? $element['icon'] ?? 'fa-solid fa-question'"
                                 :text="$element['custom_label'] ?? $element['label'] ?? __($element['label_key']) ?? 'unknown'"
                             ></x-sidebar.element>

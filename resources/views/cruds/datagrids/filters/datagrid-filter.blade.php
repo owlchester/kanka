@@ -19,7 +19,7 @@ $activeFilters = $filterService->activeFiltersCount();
 
     @if ($activeFilters > 0)
         @if (empty($bookmark) && isset($entityType))
-        @can('create', \App\Models\Bookmark::class)
+        @can('create', [\App\Models\Bookmark::class, $campaign])
             <div class="inline-block cursor-pointer btn2 btn-sm btn-primary break-keep" role="button" aria-label="{{ __('filters.actions.bookmark') }}" data-toggle="dialog" data-target="datagrid-filters" data-url="{{ route('filters.modal_form', [$campaign, $entityType, 'm' => $mode]) }}">
                 <x-icon class="fa-regular fa-bookmark" />
                 <span class="hidden sm:inline">{{ __('filters.actions.bookmark') }}</span>
