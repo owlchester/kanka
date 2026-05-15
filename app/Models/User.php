@@ -129,14 +129,6 @@ class User extends \Illuminate\Foundation\Auth\User implements OAuthenticatable
         return $this->campaignRoles->where('id', $roleId)->count() > 0;
     }
 
-    public function isAdmin(Campaign $campaign): bool
-    {
-        return $this->campaignRoles
-            ->where('campaign_id', $campaign->id)
-            ->where('is_admin', 1)
-            ->isNotEmpty();
-    }
-
     /**
      * Determine if a user is a subscriber
      */
