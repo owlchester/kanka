@@ -32,13 +32,13 @@ class EntityPolicy
         return EntityPermission::entity($entity)->user($user)->can(Permission::Update);
     }
 
-    public function attributes(?User $user, Entity $entity): bool
+    public function attributes(?User $user, Entity $entity, ?Campaign $campaign = null): bool
     {
         if ($entity->exists === false) {
             return true;
         }
 
-        return ! $entity->is_attributes_private || $user && $user->isAdmin();
+        return ! $entity->is_attributes_private || ($user && $campaign && $user->can('admin', $campaign));
     }
 
     public function viewAttributes(?User $user, Entity $entity, Campaign $campaign): bool
@@ -51,17 +51,17 @@ class EntityPolicy
             return true;
         }
 
-        return $user && $user->isAdmin();
+        return $user && $user->can('admin', $campaign);
     }
 
-    public function privacy(User $user): bool
+    public function privacy(User $user, Entity $entity, Campaign $campaign): bool
     {
-        return $user->isAdmin();
+        return $user->can('admin', $campaign);
     }
 
     public function history(User $user, Entity $entity, Campaign $campaign): bool
     {
-        return $user->isAdmin() || ! ($campaign->boosted() && $campaign->hide_history);
+        return $user->can('admin', $campaign) || ! ($campaign->boosted() && $campaign->hide_history);
     }
 
     public function move(User $user, Entity $entity): bool

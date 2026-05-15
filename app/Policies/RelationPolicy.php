@@ -5,12 +5,10 @@ namespace App\Policies;
 use App\Facades\CampaignLocalization;
 use App\Models\Relation;
 use App\Models\User;
-use App\Traits\AdminPolicyTrait;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class RelationPolicy
 {
-    use AdminPolicyTrait;
     use HandlesAuthorization;
 
     /**

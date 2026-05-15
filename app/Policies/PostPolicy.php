@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Enums\Visibility;
+use App\Facades\CampaignLocalization;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -13,11 +14,13 @@ class PostPolicy
 
     public function visibility(User $user, Post $post): bool
     {
+        $campaign = CampaignLocalization::getCampaign();
+
         // If the post's visibility is set to admin, but the user is not an admin, don't allow changing
         // as it's a custom permission for the user to be able to edit this model.
         if (
             in_array($post->visibility_id, [Visibility::Admin, Visibility::AdminSelf])
-            && ! $user->isAdmin() && $post->created_by != $user->id
+            && ! $user->can('admin', $campaign) && $post->created_by != $user->id
         ) {
             return false;
         } elseif ($post->visibility_id === Visibility::AdminSelf && $post->created_by !== $user->id) {
