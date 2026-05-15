@@ -69,7 +69,7 @@ $fromOrg = request()->get('from') === 'org';
         <x-forms.select name="pin_id" :options="$options" :selected="$member->pin_id ?? null" />
     </x-forms.field>
 
-    @includeWhen(auth()->user()->can('admin', \App\Facades\CampaignLocalization::getCampaign()), 'cruds.fields.privacy_callout', ['model' => $member ?? null])
+    @includeWhen(auth()->user()->can('admin', $campaign), 'cruds.fields.privacy_callout', ['model' => $member ?? null])
 </x-grid>
 
 

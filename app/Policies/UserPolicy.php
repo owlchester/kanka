@@ -2,14 +2,14 @@
 
 namespace App\Policies;
 
-use App\Facades\CampaignLocalization;
+use App\Models\Campaign;
 use App\Models\User;
 
 class UserPolicy
 {
-    public function admin(User $user)
+    public function admin(User $user, Campaign $campaign): bool
     {
-        return $user->can('admin', CampaignLocalization::getCampaign());
+        return $user->can('admin', $campaign);
     }
 
     public function boost(?User $user)

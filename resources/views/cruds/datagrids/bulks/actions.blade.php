@@ -51,7 +51,7 @@ if ($datagridActions->hasBulkPrint()) {
         'text' => __('crud.actions.print'),
     ];
 }
-if ($model instanceof \App\Models\Relation && auth()->user()->can('delete', $model)) {
+if ($model instanceof \App\Models\Relation && auth()->user()->can('delete', [$model, $campaign])) {
     $dropdownActions[] = 'divider';
     $dropdownActions[] = [
         'data' => ['target' => 'primary-dialog', 'bulk-action' => 'ajax', 'toggle' => 'dialog', 'url' => route('bulk.delete-relations', [$campaign])],

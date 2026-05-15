@@ -53,7 +53,7 @@ $statuses = [
         <x-forms.select name="pin_id" :options="$options" :selected="$model->pin_id ?? null" />
     </x-forms.field>
 
-        @includeWhen(auth()->user()->can('admin', \App\Facades\CampaignLocalization::getCampaign()), 'cruds.fields.privacy_callout', ['model' => !empty($member) ? $member : null])
+        @includeWhen(auth()->user()->can('admin', $campaign), 'cruds.fields.privacy_callout', ['model' => !empty($member) ? $member : null])
 </x-grid>
 
 
