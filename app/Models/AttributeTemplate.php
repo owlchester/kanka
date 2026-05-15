@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
@@ -188,23 +187,6 @@ class AttributeTemplate extends MiscModel
         return [
             'is_enabled',
         ];
-    }
-
-    /**
-     * Grid mode sortable fields
-     */
-    public function datagridSortableColumns(): array
-    {
-        $columns = [
-            'name' => __('crud.fields.name'),
-        ];
-
-        $campaign = CampaignLocalization::getCampaign();
-        if (auth()->check() && auth()->user()->can('admin', $campaign)) {
-            $columns['is_private'] = __('crud.fields.is_private');
-        }
-
-        return $columns;
     }
 
     public function toSearchableArray()

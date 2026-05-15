@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
@@ -204,26 +203,5 @@ class Item extends MiscModel
             'size',
             'weight',
         ];
-    }
-
-    /**
-     * Grid mode sortable fields
-     */
-    public function datagridSortableColumns(): array
-    {
-        $columns = [
-            'name' => __('crud.fields.name'),
-            'type' => __('crud.fields.type'),
-            'price' => __('items.fields.price'),
-            'size' => __('items.fields.size'),
-            'weight' => __('items.fields.weight'),
-        ];
-
-        $campaign = CampaignLocalization::getCampaign();
-        if (auth()->check() && auth()->user()->can('admin', $campaign)) {
-            $columns['is_private'] = __('crud.fields.is_private');
-        }
-
-        return $columns;
     }
 }

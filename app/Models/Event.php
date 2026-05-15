@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
@@ -113,24 +112,5 @@ class Event extends MiscModel
             'date',
             'locations',
         ];
-    }
-
-    /**
-     * Grid mode sortable fields
-     */
-    public function datagridSortableColumns(): array
-    {
-        $columns = [
-            'name' => __('crud.fields.name'),
-            'type' => __('crud.fields.type'),
-            'date' => __('events.fields.date'),
-        ];
-
-        $campaign = CampaignLocalization::getCampaign();
-        if (auth()->check() && auth()->user()->can('admin', $campaign)) {
-            $columns['is_private'] = __('crud.fields.is_private');
-        }
-
-        return $columns;
     }
 }

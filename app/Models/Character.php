@@ -427,28 +427,6 @@ class Character extends MiscModel
         ];
     }
 
-    /**
-     * Available sorting on the grid view
-     */
-    public function datagridSortableColumns(): array
-    {
-        $columns = [
-            'name' => __('crud.fields.name'),
-            'type' => __('crud.fields.type'),
-            'title' => __('characters.fields.title'),
-            'sex' => __('characters.fields.sex'),
-            'status_id' => __('characters.fields.status'),
-            'locations.name' => __('entities.locations'),
-        ];
-
-        $campaign = CampaignLocalization::getCampaign();
-        if (auth()->check() && auth()->user()->can('admin', $campaign)) {
-            $columns['is_private'] = __('crud.fields.is_private');
-        }
-
-        return $columns;
-    }
-
     public function scopeFilteredCharacters(Builder $query): Builder
     {
         return $query

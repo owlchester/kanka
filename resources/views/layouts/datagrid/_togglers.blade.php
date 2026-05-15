@@ -5,7 +5,7 @@
             <span class="sr-only">Order by</span>
         </a>
         <div class="dropdown-menu hidden" role="menu" id="toggler-submenu">
-            @foreach ($model->datagridSortableColumns() as $field => $translation)
+            @foreach ($model->datagridSortableColumns(admin: auth()->check() && auth()->user()->can('admin', $campaign)) as $field => $translation)
                 @php
                     $options = [$campaign, 'order' => $field];
                     if (isset($bookmark)) {
