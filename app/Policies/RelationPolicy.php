@@ -24,7 +24,7 @@ class RelationPolicy
     /**
      * Determine whether the user can create items.
      */
-    public function create(User $user, Campaign $campaign): bool
+    public function create(User $user, Relation $relation, Campaign $campaign): bool
     {
         return $user->can('relations', $campaign);
     }
