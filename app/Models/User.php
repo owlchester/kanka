@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Enums\UserAction;
-use App\Facades\CampaignLocalization;
 use App\Facades\Identity;
 use App\Facades\ReleaseCache;
 use App\Facades\SingleUserCache;
@@ -108,8 +107,6 @@ class User extends \Illuminate\Foundation\Auth\User implements OAuthenticatable
 
     protected array $imageFields = ['avatar'];
 
-    protected bool $isAdmin;
-
     public function getAvatarUrl(int $size = 40): string
     {
         if ($this->hasAvatar()) {
@@ -132,26 +129,12 @@ class User extends \Illuminate\Foundation\Auth\User implements OAuthenticatable
         return $this->campaignRoles->where('id', $roleId)->count() > 0;
     }
 
-    /**
-     * Figure out if the user is an admin of the current campaign.
-     * $campaign can be provided, for example when listing a user's campaigns
-     */
-    public function isAdmin(?Campaign $campaign = null): bool
+    public function isAdmin(Campaign $campaign): bool
     {
-        if (isset($this->isAdmin)) {
-            return $this->isAdmin;
-        }
-        if (empty($campaign) && CampaignLocalization::hasCampaign()) {
-            $campaign = CampaignLocalization::getCampaign();
-        }
-        if (empty($campaign)) {
-            return false;
-        }
-
-        return $this->isAdmin = $this->campaignRoles
+        return $this->campaignRoles
             ->where('campaign_id', $campaign->id)
             ->where('is_admin', 1)
-            ->count() === 1;
+            ->isNotEmpty();
     }
 
     /**
