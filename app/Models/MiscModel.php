@@ -12,7 +12,6 @@ use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
 use App\Models\Concerns\TouchSilently;
 use App\Models\Scopes\SubEntityScopes;
-use CampaignLocalization as GlobalCampaignLocalization;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
