@@ -881,8 +881,8 @@ class MapService
      */
     protected function addEntities(): self
     {
-        // @phpstan-ignore-next-line
         $entities = $this->entity->child
+            // @phpstan-ignore-next-line
             ->entities()
             ->with(['image'])
             ->get();

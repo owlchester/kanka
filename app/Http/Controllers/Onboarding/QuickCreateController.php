@@ -17,7 +17,7 @@ class QuickCreateController extends Controller
         $this->authorize('update', $campaign);
 
         $name = $request->validated('name');
-        $type = $request->validated('type');
+        $type = (string) $request->validated('type');
 
         [$model, $routeName] = match ($type) {
             'character' => [
@@ -32,6 +32,7 @@ class QuickCreateController extends Controller
                 Organisation::create(['name' => $name, 'campaign_id' => $campaign->id]),
                 'organisations.show',
             ],
+            default => throw new \InvalidArgumentException("Unexpected type: {$type}"),
         };
 
         $model->entity->update(['source' => 'onboarding_widget']);

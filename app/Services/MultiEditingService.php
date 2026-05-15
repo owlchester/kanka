@@ -32,8 +32,8 @@ class MultiEditingService
     public function users(): array
     {
         $data = [];
-        // @phpstan-ignore-next-line
         $users = $this->model
+            // @phpstan-ignore-next-line
             ->editingUsers()
             ->where('type_id', EntityUser::TYPE_KEEPALIVE)
             ->where('entity_user.updated_at', '>=', Carbon::now()->subMinutes(10))

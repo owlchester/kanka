@@ -141,27 +141,23 @@ class EntityMention extends Model
         return $query->where(function ($sub) {
             return $sub
                 ->where(function ($subEnt) {
-                    // @phpstan-ignore-next-line
                     return $subEnt
-                        ->onEntity()
+                        ->onEntity()// @phpstan-ignore method.notFound
                         ->has('entity');
                 })
                 ->orWhere(function ($subPost) {
-                    // @phpstan-ignore-next-line
                     return $subPost
-                        ->onPost()
+                        ->onPost()// @phpstan-ignore method.notFound
                         ->has('post.entity');
                 })
                 ->orWhere(function ($subQuestElement) {
-                    // @phpstan-ignore-next-line
                     return $subQuestElement
-                        ->onQuestElement()
+                        ->onQuestElement()// @phpstan-ignore method.notFound
                         ->has('questElement.quest.entity');
                 })
                 ->orWhere(function ($subTimelineElement) {
-                    // @phpstan-ignore-next-line
                     return $subTimelineElement
-                        ->onTimelineElement()
+                        ->onTimelineElement()// @phpstan-ignore method.notFound
                         ->has('timelineElement.timeline.entity');
                 })
                 ->orWhere(function ($subCam) {

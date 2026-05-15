@@ -100,10 +100,9 @@ class Quest extends MiscModel
 
     public function scopeFilteredQuests(Builder $query): Builder
     {
-        // @phpstan-ignore-next-line
         return $query
             ->select(['id', 'name', 'location_id', 'is_private'])
-            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
+            ->sort(request()->only(['o', 'k']), ['name' => 'asc']) // @phpstan-ignore method.notFound
             ->with([
                 'location', 'location.entity',
                 'elements',

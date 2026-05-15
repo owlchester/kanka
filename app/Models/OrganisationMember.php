@@ -184,10 +184,9 @@ class OrganisationMember extends Model
 
     public function scopeRows(Builder $query): Builder
     {
-        // @phpstan-ignore-next-line
         return $query
             ->select('organisation_member.*')
-            ->sort(request()->only(['o', 'k']), ['c.name' => 'asc'])
+            ->sort(request()->only(['o', 'k']), ['c.name' => 'asc']) // @phpstan-ignore method.notFound
             ->with(['character', 'character.entity', 'organisation', 'organisation.entity', 'organisation.entity.locations', 'organisation.entity.locations.entity'])
             ->has('organisation')
             ->has('organisation.entity')

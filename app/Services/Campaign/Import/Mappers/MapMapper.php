@@ -33,10 +33,9 @@ class MapMapper extends MiscMapper
 
     public function second(): void
     {
-        // @phpstan-ignore-next-line
         $this->loadModel()
             ->foreign('locations', 'location_id')
-            ->groups()
+            ->groups() // @phpstan-ignore method.notFound
             ->groupsParents()
             ->layers()
             ->markers()
