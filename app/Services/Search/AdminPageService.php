@@ -20,7 +20,16 @@ class AdminPageService
         }
 
         return array_values(array_filter($pages, function (array $page) use ($query): bool {
-            return stripos($page['name'], $query) !== false;
+            if (stripos($page['name'], $query) !== false) {
+                return true;
+            }
+            foreach ($page['keywords'] ?? [] as $keyword) {
+                if (stripos($keyword, $query) !== false) {
+                    return true;
+                }
+            }
+
+            return false;
         }));
     }
 
@@ -34,18 +43,21 @@ class AdminPageService
                 'icon' => 'fa-regular fa-cog',
                 'url' => route('campaigns.edit', $campaign),
                 'group' => 'admin',
+                'keywords' => ['settings', 'config', 'configure', 'setup'],
             ],
             [
                 'name' => __('campaigns.show.tabs.members'),
                 'icon' => 'fa-regular fa-users',
                 'url' => route('campaign_users.index', $campaign),
                 'group' => 'admin',
+                'keywords' => ['users', 'players', 'invite', 'people'],
             ],
             [
                 'name' => __('campaigns.show.tabs.roles'),
                 'icon' => 'fa-regular fa-shield-halved',
                 'url' => route('campaign_roles.index', $campaign),
                 'group' => 'admin',
+                'keywords' => ['permissions', 'access', 'rights'],
             ],
             [
                 'name' => __('campaigns.show.tabs.webhooks'),
@@ -96,22 +108,19 @@ class AdminPageService
                 'group' => 'admin',
             ],
             [
-                'name' => __('assistance.title'),
-                'icon' => 'fa-regular fa-help-circle',
-                'url' => route('troubleshooting'),
-                'group' => 'admin',
-            ],
-            [
                 'name' => __('campaigns.show.tabs.styles'),
                 'icon' => 'fa-regular fa-palette',
                 'url' => route('campaign_styles.index', $campaign),
                 'group' => 'admin',
+                'keywords' => ['css', 'style', 'theme', 'design'],
             ],
+
             [
-                'name' => 'CSS',
-                'icon' => 'fa-regular fa-palette',
-                'url' => route('campaign_styles.index', $campaign),
+                'name' => __('bug-report.title'),
+                'icon' => 'fa-regular fa-bug',
+                'url' => route('bug-report'),
                 'group' => 'admin',
+                'keywords' => ['bug', 'report', 'issue', 'problem', 'error', 'broken'],
             ],
 
             // Documentation and external pages
@@ -120,12 +129,36 @@ class AdminPageService
                 'icon' => 'fa-regular fa-book',
                 'url' => 'https://docs.kanka.io',
                 'group' => 'docs',
+                'keywords' => ['help', 'docs', 'guide', 'manual', 'wiki', 'tutorial'],
             ],
             [
                 'name' => __('front.features.api.link'),
                 'icon' => 'fa-regular fa-code',
                 'url' => __('larecipe.index'),
                 'group' => 'docs',
+                'keywords' => ['help', 'api', 'developer', 'docs'],
+            ],
+
+            // Socials
+            [
+                'name' => __('Discord'),
+                'icon' => 'fa-brands fa-discord',
+                'url' => 'https://kanka.io/go/discord',
+                'group' => 'socials',
+            ],
+            [
+                'name' => __('Youtube'),
+                'icon' => 'fa-brands fa-youtube',
+                'url' => 'https://kanka.io/go/youtube',
+                'group' => 'socials',
+                'keywords' => ['tutorial', 'video'],
+            ],
+            [
+                'name' => __('Github'),
+                'icon' => 'fa-brands fa-github',
+                'url' => 'https://kanka.io/go/github',
+                'group' => 'socials',
+                'keywords' => ['code', 'source'],
             ],
         ];
     }
