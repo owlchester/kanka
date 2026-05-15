@@ -3,33 +3,32 @@
 namespace App\Policies;
 
 use App\Models\Campaign;
+use App\Models\CampaignRole;
 use App\Models\CampaignRoleUser;
 use App\Models\User;
-use App\Traits\AdminPolicyTrait;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CampaignRoleUserPolicy
 {
-    use AdminPolicyTrait;
     use HandlesAuthorization;
 
     public function view(User $user, CampaignRoleUser $campaignRoleUser, Campaign $campaign): bool
     {
-        return $campaignRoleUser->campaignRole->campaign_id === $campaign->id && $user->isAdmin();
+        return $campaignRoleUser->campaignRole->campaign_id === $campaign->id && $user->can('admin', $campaign);
     }
 
     public function create(User $user, Campaign $campaign): bool
     {
-        return $this->isAdmin($user);
+        return $user->can('admin', $campaign);
     }
 
     public function update(User $user, CampaignRoleUser $campaignRoleUser): bool
     {
-        return $this->isAdmin($user);
+        return $user->can('admin', $campaignRoleUser->campaignRole->campaign);
     }
 
-    public function delete(User $user): bool
+    public function delete(User $user, CampaignRoleUser $campaignRoleUser, CampaignRole $campaignRole): bool
     {
-        return $user->isAdmin();
+        return $user->can('admin', $campaignRole->campaign);
     }
 }
