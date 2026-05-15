@@ -12,7 +12,7 @@ if (isset($bulk)) {
 
 $options[Visibility::All->value] = __('crud.visibilities.all');
 
-if (auth()->user()->isAdmin()) {
+if (auth()->user()->can('admin', $campaign)) {
     $options[Visibility::Admin->value] = __('crud.visibilities.admin');
     $options[Visibility::Member->value] = __('crud.visibilities.members');
 }
@@ -32,7 +32,7 @@ if (isset($model)) {
     $locked = false;
     // Set to admin but not an admin? An admin created this element, and with custom permissions (like on a post)
     // is allowing a non-admin to edit the post, so we can't have them changing the visibility.
-    if ($model->visibility_id === Visibility::Admin && !auth()->user()->isAdmin()) {
+    if ($model->visibility_id === Visibility::Admin && !auth()->user()->can('admin', $campaign)) {
         $locked = true;
     }
     // If the visibility is set to self but the user didn't create it, don't allow changing it, as only the person

@@ -22,7 +22,7 @@ $visibilitySelected = (int) old('visibility_id', isset($model) && $model->exists
 // Locked: admin-only visibility edited by non-admin, or self/admin-self edited by non-creator
 if (isset($model) && $model->exists) {
     $locked = false;
-    if ($model->visibility_id === Visibility::Admin && !auth()->user()->isAdmin()) {
+    if ($model->visibility_id === Visibility::Admin && !auth()->user()->can('admin', $campaign)) {
         $locked = true;
     }
     if (in_array($model->visibility_id, [Visibility::Self, Visibility::AdminSelf]) && $model->created_by != auth()->user()->id) {
@@ -46,7 +46,7 @@ if (isset($model) && $model->exists) {
 } else {
     $visibilityOptions = [];
     $visibilityOptions[Visibility::All->value] = __('crud.visibilities.all');
-    if (auth()->user()->isAdmin()) {
+    if (auth()->user()->can('admin', $campaign)) {
         $visibilityOptions[Visibility::Admin->value] = __('crud.visibilities.admin');
         $visibilityOptions[Visibility::Member->value] = __('crud.visibilities.members');
     }

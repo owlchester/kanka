@@ -109,7 +109,7 @@ class ApiService
     {
         return [
             'has_hidden' => false,
-            'is_admin' => isset($this->user) && $this->user->isAdmin(),
+            'is_admin' => isset($this->user) && $this->user->can('admin', $this->campaign),
             'template' => route('templates.load-attributes', $this->campaign),
             'mentions' => route('search.live', $this->campaign),
             'max' => $this->maxFields(),

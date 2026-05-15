@@ -81,7 +81,7 @@ class DashboardService
         }
 
         // Admin?
-        if ($this->user->isAdmin()) {
+        if ($this->user->can('admin', $this->campaign)) {
             foreach ($available['admin'] as $role) {
                 $dashboards[] = $role->dashboard;
             }
@@ -266,7 +266,7 @@ class DashboardService
         }
 
         // Admin?
-        if ($this->user->isAdmin()) {
+        if ($this->user->can('admin', $this->campaign)) {
             foreach ($available['admin'] as $role) {
                 if ($role->is_default) {
                     return $role->dashboard;

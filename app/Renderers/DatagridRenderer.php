@@ -204,7 +204,7 @@ class DatagridRenderer
                 );
             } elseif ($type == 'is_private') {
                 // Viewers can't see private
-                if (! isset($this->user) || ! $this->user->isAdmin()) {
+                if (! isset($this->user) || ! $this->user->can('admin', $this->campaign)) {
                     return null;
                 }
                 $html = $this->route(
@@ -494,7 +494,7 @@ class DatagridRenderer
                 }
             } elseif ($type == 'is_private') {
                 // Viewer can't see private
-                if (! isset($this->user) || ! $this->user->isAdmin()) {
+                if (! isset($this->user) || ! $this->user->can('admin', $this->campaign)) {
                     return null;
                 }
                 $content = $model->is_private ?

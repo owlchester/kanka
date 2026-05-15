@@ -3,7 +3,7 @@
  * @var \App\Models\Attribute $attribute
  * @var \App\Models\Entity $entity
  */
-$isAdmin = auth()->user()->isAdmin();
+$isAdmin = auth()->user()->can('admin', $campaign);
 ?>
 @extends('layouts.app', [
     'title' => __('entities/attributes.index.title', ['name' => $entity->name]),
@@ -41,7 +41,7 @@ $isAdmin = auth()->user()->isAdmin();
                 <attributes-manager api="{{ route('attributes.api-entity', [$campaign, $entity]) }}" />
             </div>
 
-            @if (auth()->user()->isAdmin() && $entity->is_attributes_private)
+            @if (auth()->user()->can('admin', $campaign) && $entity->is_attributes_private)
                 <div class="flex flex-col gap-2">
                     <hr />
                     <x-forms.field field="attributes-private"

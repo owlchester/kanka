@@ -86,7 +86,7 @@
                         </div>
                     @endif
 
-                    @if (isset($entityType) && auth()->user()->isAdmin())
+                    @if (isset($entityType) && auth()->user()->can('admin', $campaign))
                         @include('cruds.fields.privacy_callout')
                     @endif
                 </div>

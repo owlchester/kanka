@@ -2,7 +2,7 @@
 
 @php
 $dropdownActions = [];
-if (auth()->check() && auth()->user()->isAdmin()) {
+if (auth()->check() && auth()->user()->can('admin', $campaign)) {
     if ($datagridActions->hasBulkEditing()) {
         $dropdownActions[] = [
             'data' => ['target' => 'bulk-edit', 'bulk-action' => 'batch', 'toggle' => 'dialog'],

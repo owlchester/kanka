@@ -14,7 +14,7 @@ $actions = [
     'inherit' => __('crud.permissions.actions.bulk_entity.inherit'),
 ];
 $permissionService->campaign($campaign);
-$hasActionCol = isset($showPermissionActions) && auth()->user()->isAdmin();
+$hasActionCol = isset($showPermissionActions) && auth()->user()->can('admin', $campaign);
 $cols = 'md:grid-cols-5';
 if ($hasActionCol) {
     $cols = 'md:grid-cols-6';

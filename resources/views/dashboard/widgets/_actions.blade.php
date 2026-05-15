@@ -81,7 +81,7 @@
                 {{ __('dashboard.actions.customise') }}
             </x-dropdowns.item>
 
-            @if(auth()->user()->isAdmin())
+            @if(auth()->user()->can('admin', $campaign))
                 <x-dropdowns.section>
                     {{ __('campaigns.panels.sharing') }}
                 </x-dropdowns.section>

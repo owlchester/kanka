@@ -14,7 +14,7 @@ $uid = 1;
         <div class="flex items-center gap-5 text-lg cursor-pointer p-2" data-animate="collapse" data-target="#attribute-section-body-{{ $section['id'] }}">
             <div class="section-name grow">
                 @if (!empty($section['id']))
-                    @if (auth()->check() && auth()->user()->isAdmin() && $section['is_private'] == true)
+                    @if (auth()->check() && auth()->user()->can('admin', $campaign) && $section['is_private'] == true)
                         <x-icon class="lock" tooltip :title="__('crud.is_private')"/>
                     @endif
                     {!! $section['name'] !!}
@@ -43,7 +43,7 @@ $uid = 1;
                             <div class="cursor-pointer inline-block" data-title="{attribute:{{ $attribute->id }}}" data-toggle="tooltip"
                             data-clipboard="{attribute:{{ $attribute->id }}}"
                             data-toast="{{ __('crud.alerts.copy_attribute') }}">
-                                @if (auth()->check() && auth()->user()->isAdmin() && $attribute->is_private)
+                                @if (auth()->check() && auth()->user()->can('admin', $campaign) && $attribute->is_private)
                                     <x-icon class="lock" tooltip :title="__('crud.is_private')" />
                                 @endif
                                 @if ($attribute->validConstraints())
