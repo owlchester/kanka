@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Enums\Visibility;
-use App\Facades\CampaignLocalization;
 use App\Facades\Img;
 use App\Facades\Mentions;
 use App\Models\Concerns\Blameable;

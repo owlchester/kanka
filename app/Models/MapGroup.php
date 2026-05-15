@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Enums\Visibility;
-use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\Paginatable;

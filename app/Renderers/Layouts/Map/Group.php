@@ -21,6 +21,7 @@ class Group extends Layout
                 'label' => __('crud.fields.name'),
                 'render' => function (MapGroup $model) {
                     $link = route('maps.map_groups.edit', [$this->campaign, 'map' => $model->map_id, $model->id]);
+
                     return '<a href="' . $link . '" data-target="primary-dialog" data-url="' . $link . '" data-toggle="dialog" class="text-link">' . $model->name . '</a>';
                 },
             ],
@@ -44,6 +45,7 @@ class Group extends Layout
                 'render' => function (MapGroup $model) {
                     if ($model->parent) {
                         $link = route('maps.map_groups.edit', [$this->campaign, 'map' => $model->parent->map_id, $model->parent->id]);
+
                         return '<a href="' . $link . '" data-target="primary-dialog" data-url="' . $link . '" data-toggle="dialog" class="text-link">' . $model->parent->name . '</a>';
                     }
 

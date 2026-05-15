@@ -21,6 +21,7 @@ class Era extends Layout
                 'label' => __('crud.fields.name'),
                 'render' => function (TimelineEra $model) {
                     $url = route('timelines.timeline_eras.edit', [$this->campaign, 'timeline' => $model->timeline_id, $model->id]);
+
                     return '<a href="' . $url . '" class="text-link">' . $model->name . '</a>';
                 },
             ],
