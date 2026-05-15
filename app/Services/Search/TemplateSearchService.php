@@ -36,9 +36,8 @@ class TemplateSearchService
         $this->query->with($with);
         $this->order($term);
 
-        
         $entities = $this->query
-            ->template() //@phpstan-ignore-line
+            ->template() // @phpstan-ignore-line
             ->limit(10)
             ->get();
 

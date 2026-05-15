@@ -478,7 +478,7 @@ class ImportService
                     $data = $this->open($filePath);
                     // Add the original campaign id for gallery image mapping
                     $data['campaign_id'] = $this->originalCampaignID;
-                $mapper
+                    $mapper
                         ->path($this->dataPath . '/')
                         ->data($data)
                         ->second();

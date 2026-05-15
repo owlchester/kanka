@@ -30,7 +30,7 @@ trait CommunityVoteScopes
     {
         return $builder
             ->where('published_at', '>=', Carbon::now())
-            ->visible();// @phpstan-ignore method.notFound
+            ->visible(); // @phpstan-ignore method.notFound
     }
 
     public function scopeRecent(Builder $builder): Builder
