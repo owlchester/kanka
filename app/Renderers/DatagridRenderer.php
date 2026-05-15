@@ -447,7 +447,7 @@ class DatagridRenderer
                     $bookmarkId = isset($this->bookmark) ? $this->bookmark->id : null;
                     $route = $who->entity
                         ? $who->entity->url('show', $bookmarkId ? ['bookmark' => $bookmarkId] : [])
-                        : $who->getLink();
+                        : $who->getLink($this->campaign);
                     $content = '<a class="entity-image cover-background w-10 h-10" style="background-image: url(\'' . Avatar::size(40)->fallback()->thumbnail() .
                         '\');" title="' . e($who->name) . '" href="' . $route . '"></a>';
                 }
@@ -628,6 +628,6 @@ class DatagridRenderer
         }
 
         // @phpstan-ignore-next-line
-        return '<a href="' . $model->getLink() . '" class="text-link font-medium">' . $model->name . '</a>';
+        return '<a href="' . $model->getLink($this->campaign) . '" class="text-link font-medium">' . $model->name . '</a>';
     }
 }

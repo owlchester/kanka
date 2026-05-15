@@ -141,16 +141,6 @@ class TimelineEra extends Model
         return $options + ['timeline' => $this->timeline_id, 'timeline_era' => $this->id];
     }
 
-    /**
-     * Override the get link
-     */
-    public function getLink(): string
-    {
-        $campaign = CampaignLocalization::getCampaign();
-
-        return route('timelines.timeline_eras.edit', [$campaign, 'timeline' => $this->timeline_id, $this->id]);
-    }
-
     public function getEntryForEditionAttribute()
     {
         $text = Mentions::parseForEdit($this);

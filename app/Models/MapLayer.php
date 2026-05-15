@@ -138,16 +138,6 @@ class MapLayer extends Model
         return $this->updateQuietly($data);
     }
 
-    /**
-     * Override the get link
-     */
-    public function getLink(): string
-    {
-        $campaign = CampaignLocalization::getCampaign();
-
-        return route('maps.map_layers.edit', [$campaign, 'map' => $this->map_id, $this->id]);
-    }
-
     public function hasImage(): bool
     {
         return $this->image || ! empty($this->image_path);

@@ -2,6 +2,7 @@
 
 namespace App\Renderers\Layouts\Map;
 
+use App\Models\MapGroup;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 
@@ -18,8 +19,9 @@ class Group extends Layout
             'name' => [
                 'key' => 'name',
                 'label' => __('crud.fields.name'),
-                'render' => function ($model) {
-                    return '<a href="' . $model->getLink() . '" data-target="primary-dialog" data-url="' . $model->getLink() . '" data-toggle="dialog" class="text-link">' . $model->name . '</a>';
+                'render' => function (MapGroup $model) {
+                    $link = route('maps.map_groups.edit', [$this->campaign, 'map' => $model->map_id, $model->id]);
+                    return '<a href="' . $link . '" data-target="primary-dialog" data-url="' . $link . '" data-toggle="dialog" class="text-link">' . $model->name . '</a>';
                 },
             ],
             'position' => [
@@ -39,9 +41,10 @@ class Group extends Layout
             'parent' => [
                 'label' => __('maps/groups.fields.parent'),
                 'key' => 'parent_id',
-                'render' => function ($model) {
+                'render' => function (MapGroup $model) {
                     if ($model->parent) {
-                        return '<a href="' . $model->parent->getLink() . '" data-target="primary-dialog" data-url="' . $model->parent->getLink() . '" data-toggle="dialog" class="text-link">' . $model->parent->name . '</a>';
+                        $link = route('maps.map_groups.edit', [$this->campaign, 'map' => $model->parent->map_id, $model->parent->id]);
+                        return '<a href="' . $link . '" data-target="primary-dialog" data-url="' . $link . '" data-toggle="dialog" class="text-link">' . $model->parent->name . '</a>';
                     }
 
                     return '';

@@ -60,7 +60,8 @@ class TimelineEraController extends Controller
 
     public function show(Campaign $campaign, Timeline $timeline, TimelineEra $timelineEra)
     {
-        return redirect()->to($timeline->getLink());
+        return redirect()
+            ->to(route('entities.show', [$campaign, $timeline->entity]));
     }
 
     /**

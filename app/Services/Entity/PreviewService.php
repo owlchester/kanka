@@ -119,7 +119,7 @@ class PreviewService
                 'icon' => $tag->icon,
                 'colour' => $tag->colour,
                 'style' => $tag->colourStyle(),
-                'link' => $tag->getLink(),
+                'link' => route('entities.show', [$this->campaign, $tag->entity]),
                 'slug' => $tag->slug,
             ];
         }
@@ -147,7 +147,7 @@ class PreviewService
 
         return [
             'name' => $loc->name,
-            'link' => $loc->getLink(),
+            'link' => route('locations.show', [$this->campaign, $loc->entity]),
         ];
     }
 
@@ -161,7 +161,7 @@ class PreviewService
         foreach ($this->entity->locations as $location) {
             $locations[] = [
                 'name' => $location->name,
-                'link' => $location->getLink(),
+                'link' => route('locations.show', [$this->campaign, $location->entity]),
             ];
         }
 

@@ -206,7 +206,7 @@ class EntityResource extends JsonResource
         }
 
         $galleryImage = $misc->entity->image;
-        $url = $misc->getLink();
+        $url = route('entities.show', [$misc->campaign_id, $misc->entity]);
         $apiViewUrl =
             'campaigns.' . $misc->entity->entityType->pluralCode() . '.show';
 

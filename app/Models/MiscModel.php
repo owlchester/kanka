@@ -87,23 +87,6 @@ abstract class MiscModel extends Model
         return method_exists($this, 'entityTypeID');
     }
 
-    public function getLink(string $action = 'show'): string
-    {
-        if (empty($this->entity)) {
-            return '#';
-        }
-        try {
-            $campaign = CampaignLocalization::getCampaign();
-            if (in_array($action, ['show', 'update'])) {
-                return route('entities.' . $action, [$campaign, $this->entity]);
-            }
-
-            return route($this->entity->entityType->pluralCode() . '.' . $action, [$campaign, $this->id]);
-        } catch (Exception $e) {
-            return '#';
-        }
-    }
-
     /**
      * Create the model's Entity
      */

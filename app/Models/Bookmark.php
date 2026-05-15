@@ -227,10 +227,8 @@ class Bookmark extends Model
     /**
      * Override the get link
      */
-    public function getLink(string $route = 'show'): string
+    public function getLink(Campaign $campaign, string $route = 'show'): string
     {
-        $campaign = CampaignLocalization::getCampaign();
-
         return route('bookmarks.' . $route, [$campaign, $this->id]);
     }
 

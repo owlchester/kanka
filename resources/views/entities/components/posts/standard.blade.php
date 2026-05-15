@@ -64,7 +64,7 @@ $entityTags = $post->visibleTags();
                     @endif
                     @if ($post->calendarReminder()?->calendar_id)
                         <span class="entity-note-detail-element entity-note-reminder post-detail-element post-reminder">
-                            <a href="{{ $post->calendarReminder()->calendar->getLink() . '?year=' . $post->calendarReminder()->year . '&month=' . $post->calendarReminder()->month }} " class="text-link"> {{ $post->calendarReminder()->readableDate() }} </a>
+                            <a href="{{ route('entities.show', [$campaign, $post->calendarReminder()->calendar->entity]) . '?year=' . $post->calendarReminder()->year . '&month=' . $post->calendarReminder()->month }} " class="text-link"> {{ $post->calendarReminder()->readableDate() }} </a>
                         </span>
                     @endif
                 </div>

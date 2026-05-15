@@ -217,23 +217,6 @@ class EntityMention extends Model
     }
 
     /**
-     * Todo: move this out of the model
-     */
-    public function getLink(): string
-    {
-        $campaign = CampaignLocalization::getCampaign();
-        if ($this->isQuestElement()) {
-            return route('quests.quest_elements.index', [$campaign, $this->entity->entity_id, '#quest-element-' . $this->quest_element_id]);
-        } elseif ($this->isTimelineElement()) {
-            return route('entities.show', [$campaign, $this->entity, '#timeline-element-' . $this->timeline_element_id]);
-        } elseif ($this->isPost()) {
-            return route('entities.show', [$campaign, $this->entity, '#post-' . $this->post_id]);
-        }
-
-        return '#';
-    }
-
-    /**
      * Determine if the mention is linked to an entity.
      * In theory, this is true for everything except a campaign mention, but in practice it's more complicated.
      */

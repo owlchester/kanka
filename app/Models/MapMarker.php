@@ -312,7 +312,7 @@ class MapMarker extends Model
             if (! empty($this->name)) { // Name is set, include link to the entity
                 $url = $this->entity->url();
                 if ($this->entity->isMap()) {
-                    $url = $this->entity->child->getLink('explore');
+                    $url = route('maps.explore', [$campaign, $this->entity->child]);
                 }
                 $body .= "<p><a href=\"{$url}\">" . str_replace('`', '\'', $this->entity->name) . '</a></p>';
             }
@@ -495,11 +495,12 @@ class MapMarker extends Model
      */
     public function markerTitle(bool $link = false): string
     {
+        $campaign = CampaignLocalization::getCampaign();
         if (empty($this->name) && ! empty($this->entity)) {
             if ($link) {
                 $url = $this->entity->url();
                 if ($this->entity->isMap()) {
-                    $url = $this->entity->child->getLink('explore');
+                    $url = route('maps.explore', [$campaign, $this->entity->child]);
                 }
 
                 return '<a href="' . $url . '">' . $this->entity->name . '</a>';
@@ -681,25 +682,5 @@ class MapMarker extends Model
         }
 
         return $this->updateQuietly($data);
-    }
-
-    /**
-     * Override the get link
-     */
-    public function getLink(): string
-    {
-        $campaign = CampaignLocalization::getCampaign();
-
-        return route('maps.map_markers.edit', [$campaign, 'map' => $this->map_id, $this->id]);
-    }
-
-    /**
-     * Generate link for the datagrid
-     */
-    public function markerLink(?string $displayName = null): string
-    {
-        return '<a href="' . $this->getLink() . '">' .
-            (! empty($displayName) ? $displayName : e($this->name)) .
-        '</a>';
     }
 }

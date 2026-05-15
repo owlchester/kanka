@@ -242,12 +242,12 @@ class ApiService
             $formatted['template'] = [
                 'id' => $template->id,
                 'name' => $template->name,
-                'url' => $template->getLink(),
+                'url' => route('entities.show', [$this->campaign, $template->entity]),
                 'text' => trans_choice(
                     'attribute_templates.hints.automatic',
                     $templateTotalAttributes,
                     [
-                        'link' => '<a href="' . $template->getLink() . '" class="text-link">' . $template->name . '</a>',
+                        'link' => '<a href="' . route('entities.show', [$this->campaign, $template->entity]) . '" class="text-link">' . $template->name . '</a>',
                         'count' => "<strong>{$templateTotalAttributes}</strong>",
                     ]
                 ),

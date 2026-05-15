@@ -202,7 +202,7 @@ class AbilityService extends BaseAbilityService
             $formatted[] = [
                 'id' => $tag->id,
                 'name' => $tag->name,
-                'url' => $tag->getLink(),
+                'url' => route('entities.show', [$this->campaign, $tag->entity]),
                 'tooltip' => route('entities.tooltip', [$this->campaign, $tag->entity]),
                 'class' => $tag->colourClass(),
                 'style' => $tag->colourStyle(),

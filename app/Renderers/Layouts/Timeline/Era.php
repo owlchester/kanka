@@ -20,7 +20,8 @@ class Era extends Layout
                 'key' => 'name',
                 'label' => __('crud.fields.name'),
                 'render' => function (TimelineEra $model) {
-                    return '<a href="' . $model->getLink() . '" class="text-link">' . $model->name . '</a>';
+                    $url = route('timelines.timeline_eras.edit', [$this->campaign, 'timeline' => $model->timeline_id, $model->id]);
+                    return '<a href="' . $url . '" class="text-link">' . $model->name . '</a>';
                 },
             ],
             'abbreviation' => [
