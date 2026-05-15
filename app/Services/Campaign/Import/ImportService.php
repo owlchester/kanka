@@ -32,6 +32,7 @@ use App\Services\Campaign\Import\Mappers\ItemMapper;
 use App\Services\Campaign\Import\Mappers\JournalMapper;
 use App\Services\Campaign\Import\Mappers\LocationMapper;
 use App\Services\Campaign\Import\Mappers\MapMapper;
+use App\Services\Campaign\Import\Mappers\MiscMapper;
 use App\Services\Campaign\Import\Mappers\NoteMapper;
 use App\Services\Campaign\Import\Mappers\OrganisationMapper;
 use App\Services\Campaign\Import\Mappers\QuestMapper;
@@ -66,6 +67,7 @@ class ImportService
 
     protected string $dataPath;
 
+    /** @var array<MiscMapper> */
     protected array $mappers;
 
     protected array $logs = [];
@@ -453,7 +455,6 @@ class ImportService
                         $data = $this->open($filePath);
                         // Add the original campaign id for gallery image mapping
                         $data['campaign_id'] = $this->originalCampaignID;
-                        // @phpstan-ignore-next-line
                         $mapper
                             ->path($this->dataPath . '/')
                             ->data($data)
@@ -477,7 +478,6 @@ class ImportService
                     $data = $this->open($filePath);
                     // Add the original campaign id for gallery image mapping
                     $data['campaign_id'] = $this->originalCampaignID;
-                    // @phpstan-ignore-next-line
                     $mapper
                         ->path($this->dataPath . '/')
                         ->data($data)
@@ -506,7 +506,6 @@ class ImportService
                         if (empty($data['entity']['mentions'])) {
                             continue;
                         }
-                        // @phpstan-ignore-next-line
                         $mapper
                             ->path($this->dataPath . '/')
                             ->data($data)
@@ -531,7 +530,6 @@ class ImportService
                     if (empty($data['entity']['mentions'])) {
                         continue;
                     }
-                    // @phpstan-ignore-next-line
                     $mapper
                         ->path($this->dataPath . '/')
                         ->data($data)

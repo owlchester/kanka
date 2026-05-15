@@ -68,10 +68,9 @@ class Event extends MiscModel
 
     public function scopeFilteredEvents(Builder $query): Builder
     {
-        // @phpstan-ignore-next-line
         return $query
             ->select(['events.id', 'events.name', 'events.date', 'events.is_private'])
-            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
+            ->sort(request()->only(['o', 'k']), ['name' => 'asc']) // @phpstan-ignore method.notFound
             ->with([
                 'entity.locations', 'entity.locations.entity',
                 'entity', 'entity.parent', 'entity.tags', 'entity.tags.entity', 'entity.image'])

@@ -1,7 +1,7 @@
-// Exports the "help" plugin for usage with module loaders
+// Exports the "wordcount" plugin for usage with module loaders
 // Usage:
 //   CommonJS:
-//     require('tinymce/plugins/help')
+//     require('tinymce/plugins/wordcount')
 //   ES2015:
-//     import 'tinymce/plugins/help'
+//     import 'tinymce/plugins/wordcount'
 require('./plugin.js');

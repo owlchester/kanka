@@ -23,9 +23,8 @@ class CalendarMapper extends MiscMapper
 
     public function second(): void
     {
-        // @phpstan-ignore-next-line
         $this->loadModel()
-            ->weather()
+            ->weather() // @phpstan-ignore method.notFound
             ->entitySecond();
     }
 

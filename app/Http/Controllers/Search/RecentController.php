@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Services\Search\RecentService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Controller that loads recently searched entities and other information for the search popout
@@ -21,9 +22,9 @@ class RecentController extends Controller
     {
         $recent = [];
         $this->recentService->campaign($campaign);
-        if (auth()->check()) {
+        if (Auth::check()) {
             $recent = $this->recentService
-                ->user(auth()->user())
+                ->user(Auth::user())
                 ->recent();
         }
 
@@ -37,13 +38,18 @@ class RecentController extends Controller
                 'results' => __('search.lookup.results'),
                 'bookmarks' => __('entities.bookmarks'),
                 'index' => __('search.lookup.lists'),
-                'hint' => __('search.lookup.hint'),
+                'hint_entries' => __('search.lookup.hint_name'),
+                'hint_fulltext' => __('search.lookup.hint_fulltext'),
+                'entries' => __('entities.entries'),
+                'matches' => __('search.lookup.matches'),
+                'everywhere' => __('search.everywhere'),
                 'fulltext' => __('search.fulltext'),
                 'keyboard' => __('search.lookup.keyboard', [
                     'k' => '<strong>k</strong>',
                     'esc' => '<strong>esc</strong>',
                 ]),
-                'empty_results' => __('search.lookup.empty'),
+                'pages' => __('search.lookup.pages'),
+                'no_results' => __('search.lookup.nothing'),
             ],
         ]);
     }

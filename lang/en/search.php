@@ -1,14 +1,18 @@
 <?php
 
 return [
-    'fulltext'      => 'Search everywhere',
+    'everywhere'    => 'Everywhere',
     'lookup'        => [
-        'empty'     => 'No results',
-        'hint'      => 'Type at least 3 letters to search for entries in the campaign.',
-        'keyboard'  => 'press :k to search, :esc to dismiss',
-        'lists'     => 'Lists',
-        'recents'   => 'Recents',
-        'results'   => 'Results',
+        'empty'           => 'No results',
+        'nothing' => 'No matches for :term.',
+        'hint_name' => 'Search entries by name',
+        'hint_fulltext' => 'Search inside entries, articles, and more...',
+        'keyboard'        => 'press :k to search, :esc to dismiss',
+        'lists'           => 'Lists',
+        'pages'           => 'Pages',
+        'matches'         => 'Matches',
+        'recents'         => 'Recents',
+        'results'         => 'Results',
     ],
     'no_results'    => 'No results.',
     'placeholder'   => 'SEARCH',

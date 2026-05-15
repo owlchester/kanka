@@ -137,6 +137,7 @@ return [
             'entities' => [
                 'filterableAttributes' => ['id', 'campaign_id'],
                 'sortableAttributes' => ['name', 'entry'],
+                'searchableAttributes' => ['name', 'entry'],
             ],
         ],
     ],

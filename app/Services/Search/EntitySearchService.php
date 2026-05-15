@@ -2,6 +2,7 @@
 
 namespace App\Services\Search;
 
+use App\Facades\Avatar;
 use App\Models\Attribute;
 use App\Models\Entity;
 use App\Models\Post;
@@ -92,6 +93,78 @@ class EntitySearchService
         $this->pages = $results['results'][0]['totalPages'];
 
         return $this->process($entities)->fetch();
+    }
+
+    /**
+     * Search with Meilisearch snippets for the command center full-text mode.
+     * Returns up to 20 results with a highlighted excerpt from the entry field.
+     */
+    public function searchWithSnippets(string $term, ?string $term2 = null): array
+    {
+        $client = new Client(config('scout.meilisearch.host'), config('scout.meilisearch.key'));
+        $client->getKeys();
+
+        $baseQuery = fn (string $q) => (new SearchQuery)
+            ->setIndexUid('entities')
+            ->setQuery($q)
+            ->setFilter(['campaign_id = ' . $this->campaign->id])
+            ->setAttributesToRetrieve(['id', 'entity_id', 'type'])
+            ->setAttributesToHighlight(['name', 'entry'])
+            ->setAttributesToCrop(['entry'])
+            ->setCropLength(20)
+            ->setHighlightPreTag('<mark>')
+            ->setHighlightPostTag('</mark>')
+            ->setLimit(20);
+
+        $queries = [$baseQuery($term)];
+        if ($term2) {
+            $queries[] = $baseQuery($term2);
+        }
+
+        $results = $client->multiSearch($queries);
+        $hits = $results['results'][0]['hits'] ?? [];
+        if ($term2) {
+            $hits = array_merge($hits, $results['results'][1]['hits'] ?? []);
+        }
+
+        if (empty($hits)) {
+            return [];
+        }
+
+        $entityIds = array_column($hits, 'entity_id');
+        $entities = Entity::select(['id', 'name', 'is_private', 'type_id'])
+            ->with(['image', 'entityType'])
+            ->whereIn('id', $entityIds)
+            ->get()
+            ->keyBy('id');
+
+        $output = [];
+        foreach ($hits as $hit) {
+            $entity = $entities->get($hit['entity_id']);
+            if (! $entity) {
+                continue;
+            }
+
+            $rawSnippet = $hit['_formatted']['entry'] ?? '';
+            $snippet = strip_tags($rawSnippet, '<mark>');
+            if (! empty($snippet)) {
+                $snippet = trim($snippet);
+            }
+
+            $output[] = [
+                'id' => $entity->id,
+                'name' => $entity->name,
+                'is_private' => $entity->is_private,
+                'image' => Avatar::entity($entity)->fallback()->size(64)->thumbnail(),
+                'link' => $entity->url(),
+                'type' => $entity->entityType->name() ?? '',
+                'icon' => $entity->entityType->icon() ?? '',
+                'snippet' => $snippet,
+                'log_url' => route('search.log', [$this->campaign, $entity->id]),
+            ];
+        }
+
+        return $output;
     }
 
     /**

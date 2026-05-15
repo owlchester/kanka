@@ -377,10 +377,9 @@ class CampaignDashboardWidget extends Model
                 ->model($model)
                 ->make('dashboard');
 
-            // @phpstan-ignore-next-line
             $models = $model
                 ->select($model->getTable() . '.id')
-                ->filter($filterService->filters())
+                ->filter($filterService->filters()) // @phpstan-ignore method.notFound
                 ->get();
 
             $entityIds = $models->pluck('id');

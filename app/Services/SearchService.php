@@ -444,6 +444,14 @@ class SearchService
             $mention = '[' . $entity->entityType->code . ':' . $entity->id . '|alias:' . $entity->alias_id . ']';
         }
 
+        $action = null;
+        if ($entity->isMap()) {
+            $action = [
+                'url' => route('maps.explore', [$this->campaign, $entity->entity_id]),
+                'name' => __('maps.actions.explore'),
+            ];
+        }
+
         return [
             'id' => $entity->id,
             'name' => $entity->name,
@@ -451,8 +459,10 @@ class SearchService
             'image' => Avatar::entity($entity)->fallback()->size($this->thumbSize)->thumbnail(),
             'link' => $entity->url(),
             'type' => $entity->entityType->name(),
+            'icon' => $entity->entityType->icon(),
             'preview' => route('entities.preview', [$this->campaign, $entity]),
             'mention' => $mention,
+            'action' => $action,
             'aliases' => $entity->aliases->map(fn ($alias) => [
                 'id' => $alias->id,
                 'name' => $alias->name,

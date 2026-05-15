@@ -67,15 +67,13 @@ class ImageMention extends Model
         return $query->where(function ($sub) {
             return $sub
                 ->where(function ($subEnt) {
-                    // @phpstan-ignore-next-line
                     return $subEnt
-                        ->entity()
+                        ->entity()// @phpstan-ignore method.notFound
                         ->has('entity');
                 })
                 ->orWhere(function ($subPost) {
-                    // @phpstan-ignore-next-line
                     return $subPost
-                        ->post()
+                        ->post()// @phpstan-ignore method.notFound
                         ->has('post.entity');
                 });
         });

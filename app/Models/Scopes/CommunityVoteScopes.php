@@ -28,17 +28,15 @@ trait CommunityVoteScopes
 
     public function scopeVoting(Builder $builder): Builder
     {
-        // @phpstan-ignore-next-line
         return $builder
             ->where('published_at', '>=', Carbon::now())
-            ->visible();
+            ->visible(); // @phpstan-ignore method.notFound
     }
 
     public function scopeRecent(Builder $builder): Builder
     {
-        // @phpstan-ignore-next-line
         return $builder
-            ->published()
+            ->published() // @phpstan-ignore method.notFound
             ->orderBy('published_at', 'DESC')
             ->take(5);
     }

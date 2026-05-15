@@ -15,11 +15,14 @@
 
         @if (!empty($campaign))
             <nav-search
-                api_lookup="{{ route('search.live', $campaign) }}"
-                api_recent="{{ route('search.recent', $campaign) }}"
                 placeholder="{{ __('search.placeholder') }}"
                 keyboard_tooltip="{!! __('crud.keyboard-shortcut', ['code' => '<code>K</code>']) !!}"
             ></nav-search>
+            <command-center
+                api_command="{{ route('search.command', $campaign) }}"
+                api_recent="{{ route('search.recent', $campaign) }}"
+                placeholder="{{ __('search.placeholder') }}"
+            ></command-center>
         @endif
         </div>
 

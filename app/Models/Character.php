@@ -448,10 +448,9 @@ class Character extends MiscModel
 
     public function scopeFilteredCharacters(Builder $query): Builder
     {
-        // @phpstan-ignore-next-line
         return $query
             ->select([$this->getTable() . '.id', 'title', $this->getTable() . '.is_private'])
-            ->sort(request()->only(['o', 'k']), ['entities.name' => 'asc'])
+            ->sort(request()->only(['o', 'k']), ['entities.name' => 'asc']) // @phpstan-ignore method.notFound
             ->with([
                 'characterRaces',
                 'characterFamilies',

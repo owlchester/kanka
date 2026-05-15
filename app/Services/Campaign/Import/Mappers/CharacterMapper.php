@@ -57,13 +57,12 @@ class CharacterMapper extends MiscMapper
 
     public function second(): void
     {
-        // @phpstan-ignore-next-line
         $this
             ->loadModel()
             ->pivot('characterFamilies', 'families', 'family_id')
             ->pivot('characterRaces', 'races', 'race_id')
             ->saveModel()
-            ->traits()
+            ->traits() // @phpstan-ignore method.notFound
             ->characterLocations()
             ->memberships()
             ->entitySecond();
