@@ -58,8 +58,8 @@ class VisibilityIDScope implements Scope
         }
 
         // Either mine (self && created_by = me) or (if admin: !self, else: all)
-        $builder->where(function ($sub) use ($model) {
-            $visibilities = auth()->user()->isAdmin()
+        $builder->where(function ($sub) use ($model, $campaign) {
+            $visibilities = auth()->user()->can('admin', $campaign)
                 ? [Visibility::All, Visibility::Admin,
                     Visibility::AdminSelf, Visibility::Member]
                 : [Visibility::All, Visibility::Member];

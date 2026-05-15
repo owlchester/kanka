@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\FilterOption;
+use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
@@ -260,7 +261,8 @@ class Quest extends MiscModel
             'calendar_date' => __('crud.fields.calendar_date'),
         ];
 
-        if (auth()->check() && auth()->user()->isAdmin()) {
+        $campaign = CampaignLocalization::getCampaign();
+        if (auth()->check() && auth()->user()->can('admin', $campaign)) {
             $columns['is_private'] = __('crud.fields.is_private');
         }
 

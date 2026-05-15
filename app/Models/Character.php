@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\FilterOption;
 use App\Enums\OrganisationMemberPin;
+use App\Facades\CampaignLocalization;
 use App\Facades\CharacterCache;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
@@ -133,6 +134,7 @@ class Character extends MiscModel
      */
     public function scopeMember(Builder $query, ?string $value, FilterOption $filter): Builder
     {
+        $campaign = CampaignLocalization::getCampaign();
         if ($filter === FilterOption::NONE) {
             // If called with a param, it's being called too early and will be called later in the process
             if (! empty($value)) {
@@ -145,7 +147,7 @@ class Character extends MiscModel
                 })
                 ->where('memb.organisation_id', null);
 
-            if (auth()->guest() || ! auth()->user()->isAdmin()) {
+            if (auth()->guest() || ! auth()->user()->can('admin', $campaign)) {
                 $query->where('memb.is_private', 0);
             }
 
@@ -171,7 +173,7 @@ class Character extends MiscModel
             })
             ->whereIn('memb.organisation_id', $ids);
 
-        if (auth()->guest() || ! auth()->user()->isAdmin()) {
+        if (auth()->guest() || ! auth()->user()->can('admin', $campaign)) {
             $query->where('memb.is_private', 0);
         }
 
@@ -439,7 +441,8 @@ class Character extends MiscModel
             'locations.name' => __('entities.locations'),
         ];
 
-        if (auth()->check() && auth()->user()->isAdmin()) {
+        $campaign = CampaignLocalization::getCampaign();
+        if (auth()->check() && auth()->user()->can('admin', $campaign)) {
             $columns['is_private'] = __('crud.fields.is_private');
         }
 

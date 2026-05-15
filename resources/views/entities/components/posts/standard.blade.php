@@ -21,7 +21,7 @@ $entityTags = $post->visibleTags();
                 <span class="text-xs text-neutral-content">({{ $post->position }})</span>
             @endif
             @can('post', [$entity, 'edit', $post])
-                @can('visibility', $post)
+                @can('visibility', [$post, $campaign])
                     <x-forms.visibility-picker
                         :entity="$entity"
                         :campaign="$campaign"

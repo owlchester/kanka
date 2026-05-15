@@ -17,7 +17,7 @@ $entityTags = $post->visibleTags();
                 <span class="text-xs text-neutral-content">({{ $post->position }})</span>
             @endif
             @auth
-                @can('visibility', $post)
+                @can('visibility', [$post, $campaign])
                     <x-forms.visibility-picker
                         :entity="$entity"
                         :campaign="$campaign"

@@ -299,7 +299,7 @@ class IndexController extends Controller
                 'create' => auth()->user()->can('create', [$entityType, $campaign]),
                 'delete' => auth()->user()->can('deleteEntities', [$entityType, $campaign]),
                 'template' => auth()->user()->can('useTemplates', $campaign),
-                'admin' => auth()->user()->isAdmin($campaign),
+                'admin' => auth()->user()->can('admin', $campaign),
             ] : null,
             'features' => [
                 'inventories' => $campaign->enabled('inventories'),

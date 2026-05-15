@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
@@ -218,7 +219,8 @@ class Item extends MiscModel
             'weight' => __('items.fields.weight'),
         ];
 
-        if (auth()->check() && auth()->user()->isAdmin()) {
+        $campaign = CampaignLocalization::getCampaign();
+        if (auth()->check() && auth()->user()->can('admin', $campaign)) {
             $columns['is_private'] = __('crud.fields.is_private');
         }
 
