@@ -19,7 +19,7 @@ class ImagePolicy
     public function browse(?User $user, Campaign $campaign): bool
     {
         return $user && (
-            $user->isAdmin() ||
+            $user->can('admin', $campaign) ||
                 $this->checkPermission(CampaignPermission::ACTION_GALLERY, $user, $campaign) ||
                 $this->checkPermission(CampaignPermission::ACTION_GALLERY_BROWSE, $user, $campaign)
         );
@@ -28,7 +28,7 @@ class ImagePolicy
     public function create(?User $user, Campaign $campaign): bool
     {
         return $user && (
-            $user->isAdmin() ||
+            $user->can('admin', $campaign) ||
                 $this->checkPermission(CampaignPermission::ACTION_GALLERY, $user, $campaign) ||
                 $this->checkPermission(CampaignPermission::ACTION_GALLERY_UPLOAD, $user, $campaign)
         );
@@ -37,7 +37,7 @@ class ImagePolicy
     public function view(?User $user, Image $image, Campaign $campaign): bool
     {
         return $user && (
-            $user->isAdmin() ||
+            $user->can('admin', $campaign) ||
                 $this->checkPermission(CampaignPermission::ACTION_GALLERY, $user, $campaign) ||
                 $this->checkPermission(CampaignPermission::ACTION_GALLERY_BROWSE, $user, $campaign) ||
                 ($this->checkPermission(CampaignPermission::ACTION_GALLERY_UPLOAD, $user, $campaign) && $image->created_by === $user->id)
@@ -47,7 +47,7 @@ class ImagePolicy
     public function edit(?User $user, Image $image, Campaign $campaign): bool
     {
         return $user && (
-            $user->isAdmin() ||
+            $user->can('admin', $campaign) ||
                 $this->checkPermission(CampaignPermission::ACTION_GALLERY, $user, $campaign) ||
                 ($this->checkPermission(CampaignPermission::ACTION_GALLERY_UPLOAD, $user, $campaign) && $image->created_by === $user->id)
         );
@@ -55,14 +55,15 @@ class ImagePolicy
 
     public function visibility(User $user, Image $image): bool
     {
+        $campaign = $image->campaign;
         if (
-            (in_array($image->visibility_id, [Visibility::Admin, Visibility::AdminSelf]) && ! auth()->user()->isAdmin())
+            (in_array($image->visibility_id, [Visibility::Admin, Visibility::AdminSelf]) && ! $user->can('admin', $campaign))
             &&
-            (in_array($image->visibility_id, [Visibility::Self, Visibility::AdminSelf]) && ! ($image->created_by == auth()->user()->id))
+            (in_array($image->visibility_id, [Visibility::Self, Visibility::AdminSelf]) && ! ($image->created_by == $user->id))
         ) {
             return false;
         }
-        if ($image->visibility_id === Visibility::AdminSelf && auth()->user()->isAdmin() && $image->created_by !== auth()->user()->id) {
+        if ($image->visibility_id === Visibility::AdminSelf && $user->can('admin', $campaign) && $image->created_by !== $user->id) {
             return false;
         }
 

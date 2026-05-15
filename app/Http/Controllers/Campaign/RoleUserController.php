@@ -39,7 +39,7 @@ class RoleUserController extends Controller
     public function store(StoreCampaignRoleUser $request, Campaign $campaign, CampaignRole $campaignRole)
     {
         $this->authorize('roles', $campaign);
-        $this->authorize('create', CampaignRole::class);
+        $this->authorize('create', [CampaignRole::class, $campaign]);
         if (request()->ajax()) {
             return response()->json(['success' => true]);
         }

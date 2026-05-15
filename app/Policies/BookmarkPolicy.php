@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Enums\Permission;
 use App\Facades\EntityPermission;
 use App\Models\Bookmark;
+use App\Models\Campaign;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -12,19 +13,19 @@ class BookmarkPolicy
 {
     use HandlesAuthorization;
 
-    public function browse(User $user, Bookmark $bookmark): bool
+    public function browse(User $user, Bookmark $bookmark, Campaign $campaign): bool
     {
-        return $user->isAdmin() || $this->checkPermission(Permission::Bookmarks->value, $user);
+        return $user->can('admin', $campaign) || $this->checkPermission(Permission::Bookmarks->value, $user);
     }
 
     public function view(User $user, Bookmark $bookmark): bool
     {
-        return $user->isAdmin() || $this->checkPermission(Permission::Bookmarks->value, $user);
+        return $user->can('admin', $bookmark->campaign) || $this->checkPermission(Permission::Bookmarks->value, $user);
     }
 
-    public function create(User $user): bool
+    public function create(User $user, Campaign $campaign): bool
     {
-        return $user->isAdmin() || EntityPermission::user($user)->hasPermission(0, Permission::Bookmarks->value);
+        return $user->can('admin', $campaign) || EntityPermission::user($user)->hasPermission(0, Permission::Bookmarks->value);
     }
 
     public function update(User $user, Bookmark $bookmark): bool

@@ -10,12 +10,10 @@ use App\Facades\Identity;
 use App\Models\Campaign;
 use App\Models\CampaignPermission;
 use App\Models\User;
-use App\Traits\AdminPolicyTrait;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CampaignPolicy
 {
-    use AdminPolicyTrait;
     use HandlesAuthorization;
 
     /**
@@ -43,7 +41,13 @@ class CampaignPolicy
 
     public function admin(User $user, Campaign $campaign): bool
     {
-        return $user->isAdmin($campaign);
+        static $cache = [];
+        $key = $user->id . '-' . $campaign->id;
+
+        return $cache[$key] ??= $user->campaignRoles
+            ->where('campaign_id', $campaign->id)
+            ->where('is_admin', 1)
+            ->isNotEmpty();
     }
 
     /**
@@ -61,7 +65,7 @@ class CampaignPolicy
     {
         return
             $this->member($user, $campaign) && (
-                $user->isAdmin() || $this->checkPermission(CampaignPermission::ACTION_MANAGE, $user, $campaign)
+                $user->can('admin', $campaign) || $this->checkPermission(CampaignPermission::ACTION_MANAGE, $user, $campaign)
             );
     }
 
@@ -72,7 +76,7 @@ class CampaignPolicy
     {
         return
             $this->member($user, $campaign) && (
-                $user->isAdmin()
+                $user->can('admin', $campaign)
             );
     }
 
@@ -99,25 +103,25 @@ class CampaignPolicy
     {
         return
             $this->member($user, $campaign) &&
-            $user->isAdmin() &&
+            $user->can('admin', $campaign) &&
             CampaignCache::campaign($campaign)->members()->count() == 1;
     }
 
     public function invite(User $user, Campaign $campaign): bool
     {
         return $this->member($user, $campaign) && (
-            $user->isAdmin() || $this->checkPermission(CampaignPermission::ACTION_MEMBERS, $user, $campaign)
+            $user->can('admin', $campaign) || $this->checkPermission(CampaignPermission::ACTION_MEMBERS, $user, $campaign)
         );
     }
 
     public function setting(User $user, Campaign $campaign): bool
     {
-        return $user->isAdmin();
+        return $user->can('admin', $campaign);
     }
 
     public function recover(User $user, Campaign $campaign): bool
     {
-        return $user->isAdmin($campaign);
+        return $user->can('admin', $campaign);
     }
 
     public function history(User $user, Campaign $campaign): bool
@@ -127,7 +131,7 @@ class CampaignPolicy
 
     public function dashboard(User $user, Campaign $campaign): bool
     {
-        return $user->isAdmin() || $this->checkPermission(CampaignPermission::ACTION_DASHBOARD, $user, $campaign);
+        return $user->can('admin', $campaign) || $this->checkPermission(CampaignPermission::ACTION_DASHBOARD, $user, $campaign);
     }
 
     public function stats(User $user, Campaign $campaign): bool
@@ -137,7 +141,7 @@ class CampaignPolicy
 
     public function search(User $user, Campaign $campaign): bool
     {
-        return $user->isAdmin();
+        return $user->can('admin', $campaign);
     }
 
     public function import(User $user, Campaign $campaign): bool
@@ -158,7 +162,7 @@ class CampaignPolicy
         }
 
         // If we are not the owner
-        if (! $user->isAdmin()) {
+        if (! $user->can('admin', $campaign)) {
             return true;
         }
 
@@ -211,35 +215,35 @@ class CampaignPolicy
      */
     public function members(User $user, Campaign $campaign): bool
     {
-        return ($user->isAdmin($campaign) || $this->checkPermission(CampaignPermission::ACTION_MEMBERS, $user, $campaign)) ||
+        return ($user->can('admin', $campaign) || $this->checkPermission(CampaignPermission::ACTION_MEMBERS, $user, $campaign)) ||
             ! ($campaign->boosted() && $campaign->hide_members);
     }
 
     /**
      * Permission to view the campaign applications
      */
-    public function applications(?User $user): bool
+    public function applications(?User $user, Campaign $campaign): bool
     {
-        return $user && $user->isAdmin();
+        return $user && $user->can('admin', $campaign);
     }
 
     public function gallery(?User $user, Campaign $campaign): bool
     {
         return $user && (
-            $user->isAdmin() ||
+            $user->can('admin', $campaign) ||
             $this->checkPermission(CampaignPermission::ACTION_GALLERY, $user, $campaign) ||
             $this->checkPermission(CampaignPermission::ACTION_GALLERY_BROWSE, $user, $campaign)
         );
     }
 
-    public function relations(?User $user): bool
+    public function relations(?User $user, Campaign $campaign): bool
     {
-        return $user && $user->isAdmin();
+        return $user && $user->can('admin', $campaign);
     }
 
-    public function mapPresets(?User $user): bool
+    public function mapPresets(?User $user, Campaign $campaign): bool
     {
-        return $user && $user->isAdmin();
+        return $user && $user->can('admin', $campaign);
     }
 
     /**
@@ -255,7 +259,7 @@ class CampaignPolicy
     public function galleryManage(?User $user, Campaign $campaign): bool
     {
         return $user && (
-            $user->isAdmin() ||
+            $user->can('admin', $campaign) ||
                 $this->checkPermission(CampaignPermission::ACTION_GALLERY, $user, $campaign)
         );
     }
@@ -263,7 +267,7 @@ class CampaignPolicy
     public function galleryBrowse(?User $user, Campaign $campaign): bool
     {
         return $user && (
-            $user->isAdmin() ||
+            $user->can('admin', $campaign) ||
                 $this->checkPermission(CampaignPermission::ACTION_GALLERY, $user, $campaign) ||
                 $this->checkPermission(CampaignPermission::ACTION_GALLERY_BROWSE, $user, $campaign)
         );
@@ -272,7 +276,7 @@ class CampaignPolicy
     public function galleryUpload(?User $user, Campaign $campaign): bool
     {
         return $user && (
-            $user->isAdmin() ||
+            $user->can('admin', $campaign) ||
                 $this->checkPermission(CampaignPermission::ACTION_GALLERY, $user, $campaign) ||
                 $this->checkPermission(CampaignPermission::ACTION_GALLERY_UPLOAD, $user, $campaign)
         );
@@ -296,7 +300,7 @@ class CampaignPolicy
      */
     public function setTemplates(?User $user, Campaign $campaign): bool
     {
-        return $this->isAdmin($user) || $this->checkPermission(CampaignPermission::ACTION_TEMPLATES, $user, $campaign);
+        return ($user && $user->can('admin', $campaign)) || $this->checkPermission(CampaignPermission::ACTION_TEMPLATES, $user, $campaign);
     }
 
     /**
@@ -304,7 +308,7 @@ class CampaignPolicy
      */
     public function setPostTemplates(?User $user, Campaign $campaign): bool
     {
-        return $this->isAdmin($user) || $this->checkPermission(CampaignPermission::ACTION_POST_TEMPLATES, $user, $campaign);
+        return ($user && $user->can('admin', $campaign)) || $this->checkPermission(CampaignPermission::ACTION_POST_TEMPLATES, $user, $campaign);
     }
 
     public function export(User $user, Campaign $campaign): bool

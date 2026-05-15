@@ -41,6 +41,6 @@ class QuestController extends Controller
             return $this->campaign($campaign)->datagridAjax();
         }
 
-        return redirect()->to($location->getLink());
+        return redirect()->to(route('entities.show', [$campaign, $location->entity]));
     }
 }

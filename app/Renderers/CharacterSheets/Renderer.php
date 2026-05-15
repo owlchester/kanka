@@ -182,8 +182,8 @@ abstract class Renderer
                 'note' => Mentions::mapAny($abi, 'note'),
                 'note_raw' => $abi->note,
                 'used_charges' => $abi->charges,
-                'thumb' => '<img src="' . Avatar::entity($abi->ability->entity)->child($abi->ability)->size(40)->thumbnail() . '" class="ability-thumb"></i>',
-                'link' => '<a href="' . $abi->ability->getLink() . '" class="ability-link">' . $abi->ability->name . '</a>',
+                'thumb' => '<img src="' . Avatar::entity($abi->ability->entity)->size(40)->thumbnail() . '" class="ability-thumb"></i>',
+                'link' => '<a href="' . route('entities.show', [$this->campaign, $abi->ability->entity]) . '" class="ability-link">' . $abi->ability->name . '</a>',
                 'tags' => $tags,
                 'parent' => $parent,
             ];

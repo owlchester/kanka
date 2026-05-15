@@ -154,7 +154,7 @@ class AttributeService extends BaseAttributesService
     public function updateVisibility(bool $privateAttributes): self
     {
         // Only admins can update this value
-        if (! $this->user->isAdmin()) {
+        if (! $this->user->can('admin', $this->campaign)) {
             return $this;
         }
         $this->entity->is_attributes_private = $privateAttributes ? 1 : 0;

@@ -71,7 +71,7 @@ class AbilityService extends BaseAbilityService
         $this->abilities['meta'] = [
             'add_url' => route('entities.entity_abilities.create', [$this->campaign, $this->entity]),
             'user_id' => $this->user->id ?? 0,
-            'is_admin' => isset($this->user) && $this->user->isAdmin(),
+            'is_admin' => isset($this->user) && $this->user->can('admin', $this->campaign),
         ];
 
         return $this->abilities;
@@ -202,7 +202,7 @@ class AbilityService extends BaseAbilityService
             $formatted[] = [
                 'id' => $tag->id,
                 'name' => $tag->name,
-                'url' => $tag->getLink(),
+                'url' => route('entities.show', [$this->campaign, $tag->entity]),
                 'tooltip' => route('entities.tooltip', [$this->campaign, $tag->entity]),
                 'class' => $tag->colourClass(),
                 'style' => $tag->colourStyle(),

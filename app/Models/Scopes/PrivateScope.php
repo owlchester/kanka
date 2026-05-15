@@ -2,6 +2,7 @@
 
 namespace App\Models\Scopes;
 
+use CampaignLocalization;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Scope;
@@ -43,7 +44,8 @@ class PrivateScope implements Scope
         }
 
         // If we aren't authenticated, just see what is set to all
-        if (auth()->guest() || ! auth()->user()->isAdmin()) {
+        $campaign = CampaignLocalization::getCampaign();
+        if (auth()->guest() || ! auth()->user()->can('admin', $campaign)) {
             $builder->where($model->getTable() . '.is_private', false);
         }
     }

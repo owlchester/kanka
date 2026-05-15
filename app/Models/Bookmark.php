@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Facades\BookmarkCache;
-use App\Facades\CampaignLocalization;
 use App\Facades\Dashboard;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasCampaign;
@@ -227,10 +226,8 @@ class Bookmark extends Model
     /**
      * Override the get link
      */
-    public function getLink(string $route = 'show'): string
+    public function getLink(Campaign $campaign, string $route = 'show'): string
     {
-        $campaign = CampaignLocalization::getCampaign();
-
         return route('bookmarks.' . $route, [$campaign, $this->id]);
     }
 

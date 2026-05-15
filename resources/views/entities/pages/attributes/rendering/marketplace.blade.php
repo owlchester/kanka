@@ -68,14 +68,14 @@ if (!isset($entity)) {
             {
                 id: {{ $race->race->id }},
                 name: `{{ $race->race->name }}`,
-                url: `{{ $race->race->getLink() }}`
+                url: `{{ route('entities.show', [$campaign, $race->race->entity]) }}`
             },
             @endforeach ],
             families: [@foreach ($entity->child->characterFamilies as $family)
             {
                 id: {{ $family->family->id }},
                 name: `{{ $family->family->name }}`,
-                url: `{{ $family->family->getLink() }}`
+                url: `{{ route('entities.show', [$campaign, $family->family->entity]) }}`
             },
             @endforeach ],
 @endif
@@ -86,7 +86,7 @@ if (!isset($entity)) {
             location: {
                 id: {{ $entity->child->location->id }},
                 name: `{{ $entity->child->location->name }}`,
-                url: `{{ $entity->child->location->getLink() }}`
+                url: `{{ route('entities.show', [$campaign, $entity->child->location->entity]) }}`
             },
 @endif
 
@@ -95,7 +95,7 @@ if (!isset($entity)) {
                 id: {{ $tag->id }},
                 name: `{{ $tag->name }}`,
                 slug: `{{ $tag->slug }}`,
-                url: `{{ $tag->getLink() }}`
+                url: `{{ route('entities.show', [$campaign, $tag->entity]) }}`
             },
             @endforeach ],
         }

@@ -262,7 +262,7 @@ class FamilyTreeService
         return (bool) (
             ! isset($relation['visibility']) ||
             $relation['visibility'] == Visibility::All->value ||
-            ($relation['visibility'] == Visibility::Admin->value && isset($this->user) && $this->user->isAdmin()) ||
+            ($relation['visibility'] == Visibility::Admin->value && isset($this->user) && $this->user->can('admin', $this->campaign)) ||
             ($relation['visibility'] == Visibility::Member->value && isset($this->user) && $this->user->can('member', $this->campaign))
         );
     }

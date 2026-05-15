@@ -4,19 +4,17 @@ namespace App\Policies;
 
 use App\Models\CampaignPlugin;
 use App\Models\User;
-use App\Traits\AdminPolicyTrait;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CampaignPluginPolicy
 {
-    use AdminPolicyTrait;
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can delete the campaignPermission.
+     * Determine whether the user can enable the campaignPlugin.
      */
-    public function enable(User $user, CampaignPlugin $campaignPlugin)
+    public function enable(User $user, CampaignPlugin $campaignPlugin): bool
     {
-        return $this->isAdmin($user);
+        return $user->can('admin', $campaignPlugin->campaign);
     }
 }

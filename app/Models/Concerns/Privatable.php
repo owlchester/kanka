@@ -2,6 +2,7 @@
 
 namespace App\Models\Concerns;
 
+use App\Facades\CampaignLocalization;
 use App\Models\Scopes\PrivateScope;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -26,7 +27,8 @@ trait Privatable
         }
 
         // Only admins have access to private models
-        if (auth()->guest() || ! auth()->user()->isAdmin()) {
+        $campaign = CampaignLocalization::getCampaign();
+        if (auth()->guest() || ! auth()->user()->can('admin', $campaign)) {
             $query->where($this->getTable() . '.is_private', false);
         }
 

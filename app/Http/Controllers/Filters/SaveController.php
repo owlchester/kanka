@@ -34,7 +34,7 @@ class SaveController extends Controller
 
     public function save(Campaign $campaign, EntityType $entityType)
     {
-        $this->authorize('create', Bookmark::class);
+        $this->authorize('create', [Bookmark::class, $campaign]);
         if (request()->ajax()) {
             return response()->json(['success' => true]);
         }

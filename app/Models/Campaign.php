@@ -353,7 +353,7 @@ class Campaign extends Model
     public function defaultVisibility(): Visibility
     {
         $visibility = $this->getDefaultVisibilityAttribute();
-        if ($visibility == 'admin' && auth()->user()->isAdmin()) {
+        if ($visibility == 'admin' && auth()->user()->can('admin', $this)) {
             return Visibility::Admin;
         } elseif ($visibility == 'admin-self') {
             return Visibility::AdminSelf;
@@ -372,7 +372,7 @@ class Campaign extends Model
     public function defaultGalleryVisibility(): Visibility
     {
         $visibility = $this->getDefaultGalleryVisibilityAttribute();
-        if ($visibility == 'admin' && auth()->user()->isAdmin()) {
+        if ($visibility == 'admin' && auth()->user()->can('admin', $this)) {
             return Visibility::Admin;
         } elseif ($visibility == 'admin-self') {
             return Visibility::AdminSelf;

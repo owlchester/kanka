@@ -104,7 +104,7 @@ class NewService
 
     protected function private(): bool
     {
-        return (bool) ($this->user->isAdmin() &&
+        return (bool) ($this->user->can('admin', $this->campaign) &&
             $this->campaign->entity_visibility);
     }
 

@@ -2,13 +2,14 @@
 
 namespace App\Policies;
 
+use App\Models\Campaign;
 use App\Models\User;
 
 class UserPolicy
 {
-    public function admin(User $user)
+    public function admin(User $user, Campaign $campaign): bool
     {
-        return $user->isAdmin();
+        return $user->can('admin', $campaign);
     }
 
     public function boost(?User $user)

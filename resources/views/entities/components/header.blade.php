@@ -24,7 +24,7 @@ $headerStatus = $entity->status;
 if ($headerStatus && $headerStatus->icon) {
     $buttonsClass++;
 }
-if (auth()->check() && auth()->user()->isAdmin()) {
+if (auth()->check() && auth()->user()->can('admin', $campaign)) {
     $buttonsClass ++;
 }
 

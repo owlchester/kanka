@@ -14,13 +14,12 @@
             @if($mode === 'table' && $parent)
                 @include('entities.index.actions.parent')
             @endif
-            @includeWhen(isset($route) && $route !== 'relations', 'layouts.datagrid._togglers', ['route' => $name . '.index'])
             @if (isset($entityType))
                 @includeIf('entities.index.actions.' . $entityType->code)
                 @includeWhen(isset($model) && auth()->check() && auth()->user()->can('create', [$entityType, $campaign]), 'cruds.lists._create')
             @else
                 @includeWhen(isset($route) && $route === 'relations', 'entities.index.actions.connection')
-                @includeWhen(isset($model) && auth()->check() && auth()->user()->can('create', $model), 'cruds.lists._create')
+                @includeWhen(isset($model) && auth()->check() && auth()->user()->can('create', [$model, $campaign]), 'cruds.lists._create')
             @endif
         </div>
     </div>
@@ -69,4 +68,3 @@
 @section('og')
     <meta property="og:description" content="{{ __('seo.entity-list', ['module' => ($titleKey ?? __('entities.' . $langKey)), 'campaign' => $campaign->name]) }}" />
 @endsection
-

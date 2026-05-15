@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\Entity $entity */ ?>
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => trans('entities/image.focus.title', ['name' => $entity->name]),
+    'title' => __('entities/image.focus.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
         Breadcrumb::campaign($campaign)->entity($entity)->list(),
@@ -62,7 +62,7 @@ $source = empty($entity->image_path) && !empty($entity->image_uuid) ? $entity->i
 ]) !!}
             </p>
         </x-alert>
-        <a href="{{ $model->getLink() }}" class="text-link">
+        <a href="{{ route('entities.show', [$campaign, $entity]) }}" class="text-link">
             <x-icon class="fa-regular fa-arrow-left" />
             {{ __('crud.actions.back') }}
         </a>

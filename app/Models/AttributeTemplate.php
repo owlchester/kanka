@@ -189,22 +189,6 @@ class AttributeTemplate extends MiscModel
         ];
     }
 
-    /**
-     * Grid mode sortable fields
-     */
-    public function datagridSortableColumns(): array
-    {
-        $columns = [
-            'name' => __('crud.fields.name'),
-        ];
-
-        if (auth()->check() && auth()->user()->isAdmin()) {
-            $columns['is_private'] = __('crud.fields.is_private');
-        }
-
-        return $columns;
-    }
-
     public function toSearchableArray()
     {
         if (! $this->entity) {

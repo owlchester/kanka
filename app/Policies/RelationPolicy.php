@@ -2,15 +2,13 @@
 
 namespace App\Policies;
 
-use App\Facades\CampaignLocalization;
+use App\Models\Campaign;
 use App\Models\Relation;
 use App\Models\User;
-use App\Traits\AdminPolicyTrait;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class RelationPolicy
 {
-    use AdminPolicyTrait;
     use HandlesAuthorization;
 
     /**
@@ -25,13 +23,9 @@ class RelationPolicy
 
     /**
      * Determine whether the user can create items.
-     *
-     * @return bool
      */
-    public function create(User $user)
+    public function create(User $user, Relation $relation, Campaign $campaign): bool
     {
-        $campaign = CampaignLocalization::getCampaign();
-
         return $user->can('relations', $campaign);
     }
 
@@ -51,16 +45,12 @@ class RelationPolicy
 
     /**
      * Determine whether the user can delete the relation.
-     *
-     * @return bool
      */
-    public function delete(User $user, ?Relation $relation)
+    public function delete(User $user, ?Relation $relation, ?Campaign $campaign = null): bool
     {
         // If the relation is empty, this call is coming from the bulk delete check
         if (empty($relation) || empty($relation->id)) {
-            $campaign = CampaignLocalization::getCampaign();
-
-            return $user->can('relations', $campaign);
+            return $campaign !== null && $user->can('relations', $campaign);
         }
         if (empty($relation->owner) || $relation->owner->isMissingChild()) {
             return false;

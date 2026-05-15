@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\Tag $tag */ ?>
 <a
-    href="{{ $tag->getLink() }}"
+    href="{{ route('entities.show', [$campaign, $tag->entity]) }}"
     class="{{ $css }}"
     @if($inlineStyle) style="{{ $inlineStyle }}" @endif
     data-toggle="tooltip-ajax"

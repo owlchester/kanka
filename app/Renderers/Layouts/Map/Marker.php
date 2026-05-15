@@ -2,6 +2,7 @@
 
 namespace App\Renderers\Layouts\Map;
 
+use App\Models\MapMarker;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 
@@ -18,8 +19,10 @@ class Marker extends Layout
             'name' => [
                 'key' => 'name',
                 'label' => __('crud.fields.name'),
-                'render' => function ($model) {
-                    return $model->markerLink();
+                'render' => function (MapMarker $model) {
+                    return '<a href="' . route('maps.map_markers.edit', [$this->campaign, 'map' => $model->map_id, $model->id]) . '">' .
+                        e($model->name) .
+                    '</a>';
                 },
             ],
             'entity_id' => [

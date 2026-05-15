@@ -2,7 +2,7 @@
 
 @php
 $dropdownActions = [];
-if (auth()->check() && auth()->user()->isAdmin()) {
+if (auth()->check() && auth()->user()->can('admin', $campaign)) {
     if ($datagridActions->hasBulkEditing()) {
         $dropdownActions[] = [
             'data' => ['target' => 'bulk-edit', 'bulk-action' => 'batch', 'toggle' => 'dialog'],
@@ -51,7 +51,7 @@ if ($datagridActions->hasBulkPrint()) {
         'text' => __('crud.actions.print'),
     ];
 }
-if ($model instanceof \App\Models\Relation && auth()->user()->can('delete', $model)) {
+if ($model instanceof \App\Models\Relation && auth()->user()->can('delete', [$model, $campaign])) {
     $dropdownActions[] = 'divider';
     $dropdownActions[] = [
         'data' => ['target' => 'primary-dialog', 'bulk-action' => 'ajax', 'toggle' => 'dialog', 'url' => route('bulk.delete-relations', [$campaign])],

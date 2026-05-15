@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Enums\Visibility;
-use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\Paginatable;
@@ -182,15 +181,5 @@ class MapGroup extends Model
     public function patch(array $data): bool
     {
         return $this->updateQuietly($data);
-    }
-
-    /**
-     * Override the get link
-     */
-    public function getLink(): string
-    {
-        $campaign = CampaignLocalization::getCampaign();
-
-        return route('maps.map_groups.edit', [$campaign, 'map' => $this->map_id, $this->id]);
     }
 }

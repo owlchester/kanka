@@ -3,6 +3,7 @@
 namespace App\Models\Concerns;
 
 use App\Enums\Visibility;
+use App\Facades\CampaignLocalization;
 use App\Models\Scopes\VisibilityIDScope;
 use App\Observers\VisibilityObserver;
 use Illuminate\Database\Eloquent\Builder;
@@ -100,7 +101,8 @@ trait HasVisibility
         $options = [];
         $options[Visibility::All->value] = __('crud.visibilities.all');
 
-        if (auth()->user()->isAdmin()) {
+        $campaign = CampaignLocalization::getCampaign();
+        if (auth()->user()->can('admin', $campaign)) {
             $options[Visibility::Admin->value] = __('crud.visibilities.admin');
             $options[Visibility::Member->value] = __('crud.visibilities.members');
         }

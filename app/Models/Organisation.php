@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\FilterOption;
 use App\Enums\OrganisationMemberPin;
+use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
@@ -83,6 +84,7 @@ class Organisation extends MiscModel
      */
     public function scopeMember(Builder $query, ?string $value, FilterOption $filter): Builder
     {
+        $campaign = CampaignLocalization::getCampaign();
         if ($filter === FilterOption::NONE) {
             // If called with a param, it's being called too early and will be called later in the process
             if (! empty($value)) {
@@ -94,7 +96,7 @@ class Organisation extends MiscModel
                     $join->on('memb.organisation_id', '=', $this->getTable() . '.id');
                 })
                 ->where('memb.character_id', null);
-            if (auth()->guest() || ! auth()->user()->isAdmin()) {
+            if (auth()->guest() || ! auth()->user()->can('admin', $campaign)) {
                 $query->where('memb.is_private', 0);
             }
 
@@ -113,7 +115,7 @@ class Organisation extends MiscModel
             })
             ->whereIn('memb.character_id', $ids);
 
-        if (auth()->guest() || ! auth()->user()->isAdmin()) {
+        if (auth()->guest() || ! auth()->user()->can('admin', $campaign)) {
             $query->where('memb.is_private', 0);
         }
 

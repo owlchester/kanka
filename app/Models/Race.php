@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
@@ -77,7 +78,8 @@ class Race extends MiscModel
     public function characters(): BelongsToMany
     {
         $query = $this->belongsToMany('App\Models\Character', 'character_race');
-        if (auth()->guest() || ! auth()->user()->isAdmin()) {
+        $campaign = CampaignLocalization::getCampaign();
+        if (auth()->guest() || ! auth()->user()->can('admin', $campaign)) {
             $query->wherePivot('is_private', false);
         }
 
@@ -110,7 +112,8 @@ class Race extends MiscModel
             })
             ->whereIn('cr.race_id', $raceIds);
 
-        if (auth()->guest() || ! auth()->user()->isAdmin()) {
+        $campaign = CampaignLocalization::getCampaign();
+        if (auth()->guest() || ! auth()->user()->can('admin', $campaign)) {
             $query->where('cr.is_private', false);
         }
 

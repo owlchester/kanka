@@ -109,7 +109,7 @@ class ApiService
     {
         return [
             'has_hidden' => false,
-            'is_admin' => isset($this->user) && $this->user->isAdmin(),
+            'is_admin' => isset($this->user) && $this->user->can('admin', $this->campaign),
             'template' => route('templates.load-attributes', $this->campaign),
             'mentions' => route('search.live', $this->campaign),
             'max' => $this->maxFields(),
@@ -242,12 +242,12 @@ class ApiService
             $formatted['template'] = [
                 'id' => $template->id,
                 'name' => $template->name,
-                'url' => $template->getLink(),
+                'url' => route('entities.show', [$this->campaign, $template->entity]),
                 'text' => trans_choice(
                     'attribute_templates.hints.automatic',
                     $templateTotalAttributes,
                     [
-                        'link' => '<a href="' . $template->getLink() . '" class="text-link">' . $template->name . '</a>',
+                        'link' => '<a href="' . route('entities.show', [$this->campaign, $template->entity]) . '" class="text-link">' . $template->name . '</a>',
                         'count' => "<strong>{$templateTotalAttributes}</strong>",
                     ]
                 ),

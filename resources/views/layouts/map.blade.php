@@ -43,7 +43,7 @@ $specificTheme = null;
     @includeWhen(!empty($campaign), 'layouts._theme')
 @yield('styles')
 </head>
-<body id="map-body" class="map-page sidebar-collapse @if(\App\Facades\DataLayer::groupB())ab-testing-second @else ab-testing-first @endif @if (!empty($campaign) && auth()->check() && auth()->user()->isAdmin()) is-admin @endif" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif @if(isset($noHeader)) style="margin-bottom: -30px;" @endif>
+<body id="map-body" class="map-page sidebar-collapse @if(\App\Facades\DataLayer::groupB())ab-testing-second @else ab-testing-first @endif @if (!empty($campaign) && auth()->check() && auth()->user()->can('admin', $campaign)) is-admin @endif" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif @if(isset($noHeader)) style="margin-bottom: -30px;" @endif>
 @if (!isset($noHeader))
     <div id="app" class="wrapper h-full relative overflow-x-hidden overflow-y-auto mt-12">
         <!-- Header -->
@@ -108,7 +108,7 @@ $specificTheme = null;
                         </div>
 
                         <div class="map-legend text-center">
-                            <a href="{{ $map->getLink() }}" class="btn2 btn-ghost btn-sm">{{ __('maps.actions.back', ['name' => $map->name]) }}</a>
+                            <a href="{{ route('entities.show', [$campaign, $map->entity]) }}" class="btn2 btn-ghost btn-sm">{{ __('maps.actions.back', ['name' => $map->name]) }}</a>
                         </div>
                     </div>
 

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\CampaignLocalization;
 use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -214,23 +213,6 @@ class EntityMention extends Model
 
         return $query
             ->orderBy('campaign_id');
-    }
-
-    /**
-     * Todo: move this out of the model
-     */
-    public function getLink(): string
-    {
-        $campaign = CampaignLocalization::getCampaign();
-        if ($this->isQuestElement()) {
-            return route('quests.quest_elements.index', [$campaign, $this->entity->entity_id, '#quest-element-' . $this->quest_element_id]);
-        } elseif ($this->isTimelineElement()) {
-            return route('entities.show', [$campaign, $this->entity, '#timeline-element-' . $this->timeline_element_id]);
-        } elseif ($this->isPost()) {
-            return route('entities.show', [$campaign, $this->entity, '#post-' . $this->post_id]);
-        }
-
-        return '#';
     }
 
     /**
