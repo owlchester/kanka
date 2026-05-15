@@ -41,7 +41,10 @@ class CampaignPolicy
 
     public function admin(User $user, Campaign $campaign): bool
     {
-        return $user->campaignRoles
+        static $cache = [];
+        $key = $user->id . '-' . $campaign->id;
+
+        return $cache[$key] ??= $user->campaignRoles
             ->where('campaign_id', $campaign->id)
             ->where('is_admin', 1)
             ->isNotEmpty();
