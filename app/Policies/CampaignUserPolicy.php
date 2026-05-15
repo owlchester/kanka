@@ -7,17 +7,15 @@ use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignUser;
 use App\Models\User;
-use App\Traits\AdminPolicyTrait;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CampaignUserPolicy
 {
-    use AdminPolicyTrait;
     use HandlesAuthorization;
 
     public function view(User $user, CampaignUser $campaignUser, Campaign $campaign): bool
     {
-        return $campaignUser->campaign_id === $campaign->id && $user->isAdmin();
+        return $campaignUser->campaign_id === $campaign->id && $user->can('admin', $campaign);
     }
 
     public function update(User $user, CampaignUser $campaignUser): bool
@@ -27,8 +25,10 @@ class CampaignUserPolicy
             return false;
         }
 
-        // If user isn't in admin
-        if (! $user->isAdmin()) {
+        $campaign = $campaignUser->campaign;
+
+        // If user isn't an admin
+        if (! $user->can('admin', $campaign)) {
             return false;
         }
 
@@ -37,7 +37,7 @@ class CampaignUserPolicy
         }
 
         // User isn't an admin, easy peasy
-        if (! $campaignUser->user->isAdmin()) {
+        if (! $campaignUser->user->can('admin', $campaign)) {
             return true;
         }
 
@@ -59,8 +59,10 @@ class CampaignUserPolicy
             return false;
         }
 
-        return $user->isAdmin()
-            && ! $campaignUser->user->isAdmin()
+        $campaign = $campaignUser->campaign;
+
+        return $user->can('admin', $campaign)
+            && ! $campaignUser->user->can('admin', $campaign)
             && ! $campaignUser->user->isBanned();
     }
 }
