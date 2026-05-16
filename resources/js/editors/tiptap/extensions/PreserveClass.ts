@@ -1,6 +1,8 @@
 import { Extension } from '@tiptap/core'
 
 export const PreserveClass = Extension.create({
+    name: 'preserveClass',
+
     addGlobalAttributes() {
         return [
             {

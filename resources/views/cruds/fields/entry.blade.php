@@ -11,8 +11,9 @@
     $fieldNameForEdition = $fieldName . 'ForEdition';
 @endphp
 
+
 @if ($editor === 'tiptap')
-    @include('editors.tiptap_editor', ['model' => $model, 'fieldName' => $fieldName, 'contentFieldName' => $fieldNameForEdition])
+    @include('editors.tiptap_editor', ['model' => $model, 'fieldName' => $fieldName])
 @else
     <textarea
         id="{{ $fieldName }}"

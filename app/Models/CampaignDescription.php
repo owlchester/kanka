@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\Mentions;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -26,5 +27,10 @@ class CampaignDescription extends Model
     public function campaign(): BelongsTo
     {
         return $this->belongsTo(Campaign::class);
+    }
+
+    public function getDescriptionForEditionAttribute(): string
+    {
+        return Mentions::parseForEdit($this, 'description');
     }
 }
