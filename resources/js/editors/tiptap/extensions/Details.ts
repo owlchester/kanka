@@ -20,26 +20,6 @@ export const Details = Node.create({
                     return { open: '' }
                 },
             },
-            class: {
-                default: null,
-                parseHTML: element => element.getAttribute('class'),
-                renderHTML: attributes => {
-                    if (!attributes.class) {
-                        return {}
-                    }
-                    return { class: attributes.class }
-                },
-            },
-            style: {
-                default: null,
-                parseHTML: element => element.getAttribute('style'),
-                renderHTML: attributes => {
-                    if (!attributes.style) {
-                        return {}
-                    }
-                    return { style: attributes.style }
-                },
-            },
         }
     },
 
@@ -61,31 +41,6 @@ export const DetailsSummary = Node.create({
     group: 'block',
     content: 'inline*',
     defining: true,
-
-    addAttributes() {
-        return {
-            class: {
-                default: null,
-                parseHTML: element => element.getAttribute('class'),
-                renderHTML: attributes => {
-                    if (!attributes.class) {
-                        return {}
-                    }
-                    return { class: attributes.class }
-                },
-            },
-            style: {
-                default: null,
-                parseHTML: element => element.getAttribute('style'),
-                renderHTML: attributes => {
-                    if (!attributes.style) {
-                        return {}
-                    }
-                    return { style: attributes.style }
-                },
-            },
-        }
-    },
 
     parseHTML() {
         return [{ tag: 'summary' }]

@@ -9,19 +9,6 @@ export const Div = Node.create({
 
     defining: true,
 
-    addAttributes() {
-        return {
-            class: {
-                default: null,
-                parseHTML: element => element.getAttribute('class'),
-            },
-            style: {
-                default: null,
-                parseHTML: element => element.getAttribute('style'),
-            },
-        }
-    },
-
     parseHTML() {
         return [
             {
