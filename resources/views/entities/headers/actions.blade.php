@@ -21,7 +21,7 @@ $delete = false;
 
 
 <div class="dropdown entity-actions-dropdown flex items-center">
-    <button type="button" data-dropdown aria-expanded="false" aria-haspopup="menu" class="btn2 btn-sm entity-actions-button">
+    <div role="button" data-dropdown aria-expanded="false" aria-haspopup="menu" class="btn2 btn-sm entity-actions-button">
         <span class="sr-only">{{ __('Open action menu') }}</span>
         <x-icon class="fa-regular fa-ellipsis-h" />
     </div>
