@@ -1,7 +1,7 @@
-// Exports the "emoticons" plugin for usage with module loaders
+// Exports the "visualblocks" plugin for usage with module loaders
 // Usage:
 //   CommonJS:
-//     require('tinymce/plugins/emoticons')
+//     require('tinymce/plugins/visualblocks')
 //   ES2015:
-//     import 'tinymce/plugins/emoticons'
+//     import 'tinymce/plugins/visualblocks'
 require('./plugin.js');

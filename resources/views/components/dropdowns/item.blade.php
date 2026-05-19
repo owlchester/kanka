@@ -1,5 +1,6 @@
 <a
     href="{{ $link }}"
+    role="menuitem"
     @if (isset($target)) target="_blank" @endif
     class="{{ $css }} group px-2 py-2 hover:bg-base-200 rounded-xl flex items-center gap-1.5 transition-all duration-150 text-xs @if ($active) pointer-events-none @else text-base-content @endif "
     @if (isset($dialog)) data-toggle="dialog" data-url="{{ $dialog }}" @endif
