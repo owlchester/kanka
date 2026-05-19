@@ -9,12 +9,10 @@
             <input type="text" name="name" placeholder="{{ __('campaigns.placeholders.name') }}" data-live-disabled="1" maxlength="191" required value="{!! old('name', $model->name ?? null) !!}" />
         </x-forms.field>
 
-
-
         <x-forms.field
             field="description"
             :label="__('fields.description.label')">
-            @include('cruds.fields.entry', ['fieldName' => 'description', 'model' => $campaign ?? null])
+            @include('cruds.fields.entry', ['fieldName' => 'description', 'model' => $campaign?->description ?? null, ''])
         </x-forms.field>
 
         @include('cruds.fields.image-old', ['model' => $campaign ?? null, 'campaignImage' => true, 'imageLabel' => 'campaigns.fields.image', 'recommended' => '240x208'])

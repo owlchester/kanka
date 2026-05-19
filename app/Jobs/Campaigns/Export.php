@@ -15,6 +15,8 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
+use Sentry\Laravel\Integration;
+use Sentry\State\Scope;
 use Throwable;
 
 class Export implements ShouldQueue
@@ -126,6 +128,13 @@ class Export implements ShouldQueue
             ->campaign($campaign)
             ->fail();
 
-        // Sentry will handle the rest
+        \Sentry\withScope(function (Scope $scope) use ($exception): void {
+            $scope->setContext('campaign_export', [
+                'campaign_id' => $this->campaignId,
+                'user_id' => $this->userId,
+                'export_id' => $this->campaignExportId,
+            ]);
+            Integration::captureUnhandledException($exception);
+        });
     }
 }

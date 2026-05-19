@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use App\Facades\Limit;
 use App\Models\Entity;
+use App\Models\Tag;
+use App\Rules\EntityField;
 use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
@@ -63,8 +65,11 @@ class StoreLocation extends FormRequest
             ];
         }
 
-        $rules['tags'] = 'nullable|array';
-        $rules['tags.*'] = 'distinct|exists:tags,id';
+        $rules['tags'] = [
+            'nullable',
+            'array',
+            new EntityField(config('entities.ids.tag'), Tag::class),
+        ];
 
         return $this->clean($rules);
     }

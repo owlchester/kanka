@@ -59,10 +59,6 @@ export const Iframe = Node.create<IframeOptions>({
                 default: null,
                 parseHTML: element => element.getAttribute('title'),
             },
-            style: {
-                default: null,
-                parseHTML: element => element.getAttribute('style'),
-            },
         }
     },
 

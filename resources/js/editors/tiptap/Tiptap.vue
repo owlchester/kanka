@@ -22,7 +22,8 @@
     import { CustomImage } from './extensions/CustomImage'
     import { Iframe } from './extensions/Iframe'
     import { Div } from './extensions/Div'
-    import { CustomHeading } from './extensions/CustomHeading'
+    import { PreserveClass } from './extensions/PreserveClass'
+    import { PreserveStyle } from './extensions/PreserveStyle'
     import { Details, DetailsContent, DetailsSummary } from '@tiptap/extension-details'
     import { TextStyle } from '@tiptap/extension-text-style'
     import { Color } from '@tiptap/extension-color'
@@ -97,9 +98,9 @@
             orderedList: false,
             listItem: false,
             listKeymap: false,
-            heading: false,
         }),
-        CustomHeading,
+        PreserveClass,
+        PreserveStyle,
         Placeholder.configure({
             placeholder: 'Start writing...',
         }),

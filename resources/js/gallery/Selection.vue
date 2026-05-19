@@ -40,7 +40,7 @@
         @closed="closedGallery"
     ></Browser>
 
-    <dialog ref="cta" class="dialog rounded-2xl text-center" v-if="!loading">
+    <dialog ref="cta" class="dialog rounded-2xl text-center" aria-modal="true" v-if="ctaOpen">
         <header class="flex gap-6 items-center p-4 md:p-6 justify-between">
             <h4 v-html="trans.cta_title" class="text-lg font-normal"></h4>
             <button type="button" class="text-base-content" @click="closeDialog(cta)" title="Close">
@@ -66,7 +66,7 @@
 </template>
 
 <script setup lang="ts">
-import {ref, onMounted, onBeforeUnmount} from 'vue'
+import {ref, onMounted, onBeforeUnmount, nextTick} from 'vue'
 import Browser from "./Browser.vue"
 
 const props = defineProps<{
@@ -102,6 +102,7 @@ const hasPremium = ref(false)
 const removedOld = ref(false)
 const trans = ref(null)
 const cta = ref()
+const ctaOpen = ref(false)
 const storageFull = ref()
 
 onMounted(() => {
@@ -298,14 +299,17 @@ const cancelUpload = (event) => {
     cancelTokenSource.value.cancel('Upload canceled by user.')
 }
 
-const openDialog = (dialog) => {
-    dialog.showModal()
-    dialog.addEventListener('click', clickOutside);
+const openDialog = async (dialog) => {
+    ctaOpen.value = true
+    await nextTick()
+    cta.value.showModal()
+    cta.value.addEventListener('click', clickOutside)
 }
 
 const closeDialog = (modal) => {
     modal.removeEventListener('click', clickOutside)
     modal.close()
+    ctaOpen.value = false
 }
 
 const clickOutside = (event) => {

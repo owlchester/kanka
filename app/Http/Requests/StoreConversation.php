@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use App\Enums\ConversationTarget;
 use App\Facades\Limit;
+use App\Models\Tag;
+use App\Rules\EntityField;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
@@ -42,8 +44,11 @@ class StoreConversation extends FormRequest
             'is_private' => 'nullable|boolean',
         ];
 
-        $rules['tags'] = 'nullable|array';
-        $rules['tags.*'] = 'distinct|exists:tags,id';
+        $rules['tags'] = [
+            'nullable',
+            'array',
+            new EntityField(config('entities.ids.tag'), Tag::class),
+        ];
 
         return $this->clean($rules);
     }

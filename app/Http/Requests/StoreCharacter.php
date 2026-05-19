@@ -6,6 +6,7 @@ use App\Facades\Limit;
 use App\Models\Family;
 use App\Models\Location;
 use App\Models\Race;
+use App\Models\Tag;
 use App\Rules\EntityField;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
@@ -70,8 +71,12 @@ class StoreCharacter extends FormRequest
             'attribute' => ['array', new UniqueAttributeNames],
             'is_private' => 'nullable|boolean',
             'status_id' => ['nullable', 'exists:category_statuses,id'],
-            'tags' => 'nullable|array',
-            'tags.*' => 'distinct|exists:tags,id',
+        ];
+
+        $rules['tags'] = [
+            'nullable',
+            'array',
+            new EntityField(config('entities.ids.tag'), Tag::class),
         ];
 
         return $this->clean($rules);
