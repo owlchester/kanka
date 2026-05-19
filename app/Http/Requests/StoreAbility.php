@@ -62,9 +62,6 @@ class StoreAbility extends FormRequest
             ];
         }
 
-        $rules['tags'] = 'nullable|array';
-        $rules['tags.*'] = 'distinct|exists:tags,id';
-
         return $this->clean($rules);
     }
 }

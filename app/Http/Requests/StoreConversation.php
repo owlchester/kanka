@@ -42,9 +42,6 @@ class StoreConversation extends FormRequest
             'is_private' => 'nullable|boolean',
         ];
 
-        $rules['tags'] = 'nullable|array';
-        $rules['tags.*'] = 'distinct|exists:tags,id';
-
         return $this->clean($rules);
     }
 }

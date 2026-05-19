@@ -41,9 +41,6 @@ class StoreDiceRoll extends FormRequest
             unset($rules['parameters']);
         }
 
-        $rules['tags'] = 'nullable|array';
-        $rules['tags.*'] = 'distinct|exists:tags,id';
-
         return $this->clean($rules);
     }
 }
