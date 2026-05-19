@@ -1,16 +1,7 @@
-<<<<<<< HEAD
-// Exports the "wordcount" plugin for usage with module loaders
+// Exports the "modern" theme for usage with module loaders
 // Usage:
 //   CommonJS:
-//     require('tinymce/plugins/wordcount')
+//     require('tinymce/themes/modern')
 //   ES2015:
-//     import 'tinymce/plugins/wordcount'
-=======
-// Exports the "visualblocks" plugin for usage with module loaders
-// Usage:
-//   CommonJS:
-//     require('tinymce/plugins/visualblocks')
-//   ES2015:
-//     import 'tinymce/plugins/visualblocks'
->>>>>>> main
-require('./plugin.js');
+//     import 'tinymce/themes/modern'
+require('./theme.js');
