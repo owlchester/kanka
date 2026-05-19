@@ -407,6 +407,10 @@ trait EntityScopes
             }
         }
 
+        if (Arr::get($filters, 'parent_id_option') === 'none') {
+            $query->whereNull('entities.parent_id');
+        }
+
         $noneJoinTables = [
             'races' => ['table' => 'character_race', 'fk' => 'character_id', 'ref' => 'entities.entity_id'],
             'families' => ['table' => 'character_family', 'fk' => 'character_id', 'ref' => 'entities.entity_id'],
