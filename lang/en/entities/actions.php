@@ -3,8 +3,8 @@
 return [
     'archetype'         => [
         'set'       => 'Set as archetype',
-        'toggle'    => 'Toggled template status.',
-        'unset'     => 'Remove as template',
+        'toggle'    => 'Toggled archetype status.',
+        'unset'     => 'Remove as archetype',
     ],
     'archive'           => [
         'success'   => ':name has been archived.',

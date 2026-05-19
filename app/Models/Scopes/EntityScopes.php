@@ -401,14 +401,10 @@ trait EntityScopes
             }
         }
 
-        foreach (['created_by', 'updated_by'] as $field) {
+        foreach (['created_by', 'updated_by', 'parent_id'] as $field) {
             if (Arr::get($filters, $field . '_option') === 'none') {
                 $query->whereNull('entities.' . $field);
             }
-        }
-
-        if (Arr::get($filters, 'parent_id_option') === 'none') {
-            $query->whereNull('entities.parent_id');
         }
 
         $noneJoinTables = [
