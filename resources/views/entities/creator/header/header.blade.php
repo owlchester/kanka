@@ -12,11 +12,11 @@
             </div>
             @if (empty($target))
                 <div class="dropdown">
-                    <div role="button" class="text-2xl group" data-dropdown aria-expanded="false"  data-append="#primary-dialog">
+                    <button type="button" class="text-2xl group" data-dropdown aria-expanded="false"  data-append="#primary-dialog">
                         {!! $newLabel !!}
                         <x-icon class="fa-regular fa-chevron-down group-hover:text-primary transition duration-150" />
                         <span class="sr-only">Change type</span>
-                    </div>
+                    </button>
                     <div class="dropdown-menu hidden" role="menu" data-tippy-root>
                         <div class="overflow-y-auto max-h-80">
                         @foreach ($orderedEntityTypes as $dropdownEntityType)

@@ -1,10 +1,10 @@
 <div class="dropdown">
-    <div role="button" class="btn2" data-dropdown aria-expanded="false">
+    <button type="button" class="btn2" data-dropdown aria-expanded="false">
         <x-icon class="fa-regular fa-cog" />
         <span class="hidden lg:inline">
             {{ __('Configure') }}
         </span>
-    </div>
+    </button>
     <div class="dropdown-menu hidden" role="menu">
         <div class="overflow-y-auto max-h-80">
             <x-dropdowns.item

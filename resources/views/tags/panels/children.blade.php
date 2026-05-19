@@ -28,7 +28,7 @@ $direct = $entity->child->entities()->count();
     </h3>
     <div class="gap-2 flex-wrap overflow-auto flex">
         <div class="dropdown flex items-center">
-            <div role="button" tabindex="0" data-dropdown aria-expanded="false" aria-haspopup="menu" class="btn2 btn-sm">
+            <button type="button" data-dropdown aria-expanded="false" aria-haspopup="menu" class="btn2 btn-sm">
                 <x-icon class="filter" />
                 @if ($allMembers)
                     <span class="hidden xl:inline">{{ __('crud.filters.lists.desktop.all', ['count' => $all]) }}</span>
@@ -38,7 +38,7 @@ $direct = $entity->child->entities()->count();
                     <span class="xl:hidden">{{ $direct }}</span>
                 @endif
                 <x-icon class="fa-solid fa-caret-down" />
-            </div>
+            </button>
             <div class="dropdown-menu hidden" role="menu">
                 <x-dropdowns.item
                     :link="route('entities.show', [$campaign, $entity, 'm' => \App\Enums\Descendants::Direct, '#tag-children'])"
@@ -61,9 +61,9 @@ $direct = $entity->child->entities()->count();
         @if ($all > 0)
             @can('update', $entity)
                 <div class="dropdown flex items-center">
-                    <div role="button" tabindex="0" data-dropdown aria-expanded="false" aria-haspopup="menu" class="btn2 btn-sm">
+                    <button role="button" data-dropdown aria-expanded="false" aria-haspopup="menu" class="btn2 btn-sm">
                         <x-icon class="fa-regular fa-ellipsis-h" />
-                    </div>
+                    </button>
                     <div class="dropdown-menu hidden" role="menu">
                         <x-dropdowns.item
                             :link="$addEntityUrl"
