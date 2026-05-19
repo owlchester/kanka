@@ -1,5 +1,6 @@
 /node_modules
-/public/build
+/public/build/assets
+/public/build/js
 /public/hot
 /public/build/js/tinymce
 /public/storage
