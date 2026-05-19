@@ -131,11 +131,13 @@ class TagService
 
     protected function fetch(mixed $id): ?Tag
     {
+        $name = Str::startsWith($id, 'new:') ? Str::substr($id, 4) : $id;
+
         /** @var ?Tag $tag */
-        $tag = Tag::select(['id', 'name'])->find($id);
-        // Create the tag if the user has permission to do so
+        $tag = is_numeric($id) ? Tag::select(['id', 'name'])->find($id) : null;
+
         if (empty($tag) && $this->withNew && $this->isAllowed()) {
-            $tag = $this->create($id);
+            $tag = $this->create($name);
         }
 
         return $tag;

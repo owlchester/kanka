@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
+use App\Models\Tag;
+use App\Rules\EntityField;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
@@ -40,6 +42,12 @@ class StoreDiceRoll extends FormRequest
         if (request()->has('quick-creator')) {
             unset($rules['parameters']);
         }
+
+        $rules['tags'] = [
+            'nullable',
+            'array',
+            new EntityField(config('entities.ids.tag'), Tag::class),
+        ];
 
         return $this->clean($rules);
     }
