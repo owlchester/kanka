@@ -1,7 +1,7 @@
 <footer class="bg-dark text-light py-12 px-6">
     <div class="mx-auto lg:max-w-7xl flex flex-col gap-10">
         @if(config('tracking.consent'))
-        <div x-data="footerCookieConsent()" x-show="showConsent" x-cloak class="rounded-lg border border-white/10 bg-white/5 p-4">
+        <div x-data="footerCookieConsent()" x-show="showConsent" x-cloak @show-cookie-consent.window="reset()" class="rounded-lg border border-white/10 bg-white/5 p-4">
             <div class="flex flex-col gap-3 text-sm sm:flex-row sm:items-center">
                 <p class="flex-1 text-white/70">
                     {{ __('cookieconsent.message') }}
@@ -74,6 +74,9 @@
                 <a href="{{ Domain::toFront('terms-and-conditions') }}">{{ __('footer.terms') }}</a>
                 <a href="{{ Domain::toFront('security') }}">{{ __('footer.security') }}</a>
                 <a href="{{ Domain::toFront('press-kit') }}">{{ __('footer.press-kit') }}</a>
+                @if(config('tracking.consent'))
+                <a href="#" x-data @click.prevent="$dispatch('show-cookie-consent')">{{ __('cookieconsent.preferences') }}</a>
+                @endif
             </div>
         </div>
 

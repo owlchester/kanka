@@ -7,5 +7,6 @@ return [
     'link'      => 'Ulteriori informazioni',
     'message'   => 'Kanka utilizza i cookie per garantire la migliore esperienza sul nostro sito web.',
     'policy'    => 'Informativa sui cookies',
-    'reject'    => 'Rifiuta',
+    'reject'      => 'Rifiuta',
+    'preferences' => 'Preferenze cookie',
 ];

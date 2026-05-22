@@ -85,6 +85,10 @@ window.footerCookieConsent = () => ({
         setCookie('cookieconsent_status', 'deny', 365);
         this.showConsent = false;
     },
+    reset() {
+        setCookie('cookieconsent_status', '', -1);
+        this.showConsent = true;
+    },
 });
 
 initOnLoad();
