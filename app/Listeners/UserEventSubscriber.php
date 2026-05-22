@@ -5,6 +5,7 @@ namespace App\Listeners;
 use App\Enums\UserAction;
 use App\Jobs\Emails\MailSettingsChangeJob;
 use App\Models\User;
+use App\Services\Auth\DeviceService;
 use App\Services\Auth\LoginService;
 use App\Services\Auth\SessionService;
 use Illuminate\Auth\Events\Login;
@@ -21,6 +22,7 @@ class UserEventSubscriber
     public function __construct(
         protected LoginService $loginService,
         protected SessionService $sessionService,
+        protected DeviceService $deviceService,
     ) {}
 
     /**
@@ -30,7 +32,7 @@ class UserEventSubscriber
     {
         /** @var User $user */
         $user = $event->user;
-        // Log the user's login
+
         if (! $user) {
             Log::error('Missing user in login event');
 
@@ -44,12 +46,12 @@ class UserEventSubscriber
             ->clearInactivityFlag()
             ->loadFlags();
 
-        // Update mailerlite for the login stuff
+        $this->deviceService->findOrCreate($user);
+
         if (! session()->has('first_login') && $user->hasNewsletter()) {
             MailSettingsChangeJob::dispatch($user);
         }
 
-        // Process invite token or first login
         $inviteResult = $this->sessionService->user($user)->handleInviteToken();
         if ($inviteResult !== null) {
             return $inviteResult;
@@ -66,9 +68,8 @@ class UserEventSubscriber
     /**
      * Handle user logout events.
      */
-    public function handleUserLogout(Logout $event)
+    public function handleUserLogout(Logout $event): void
     {
-        // Log the activity
         if (! $event->user) {
             return;
         }
@@ -77,9 +78,8 @@ class UserEventSubscriber
         }
     }
 
-    public function handleUserRegistered(Registered $event)
+    public function handleUserRegistered(Registered $event): void
     {
-        // If the user has an invite-token, we don't want to do anything else
         if (session()->has('invite_token')) {
             return;
         }
