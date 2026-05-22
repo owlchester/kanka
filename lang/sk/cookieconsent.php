@@ -7,5 +7,6 @@ return [
     'link'      => 'Dozvedieť sa viac',
     'message'   => 'Kanka používa cookies, aby ti umožnila čo najlepšie využívať našu webovú stránku.',
     'policy'    => 'Podmienky cookies',
-    'reject'    => 'Nesúhlasím',
+    'reject'      => 'Nesúhlasím',
+    'preferences' => 'Nastavenia cookies',
 ];
