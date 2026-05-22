@@ -1,5 +1,19 @@
 <footer class="bg-dark text-light py-12 px-6">
     <div class="mx-auto lg:max-w-7xl flex flex-col gap-10">
+        @if(config('tracking.consent'))
+        <div x-data="footerCookieConsent()" x-show="showConsent" x-cloak class="rounded-lg border border-white/10 bg-white/5 p-4">
+            <div class="flex flex-col gap-3 text-sm sm:flex-row sm:items-center">
+                <p class="flex-1 text-white/70">
+                    {{ __('cookieconsent.message') }}
+                    <a href="{{ Domain::toFront('privacy-policy') }}" target="_blank" class="text-blue-400 hover:underline">{{ __('cookieconsent.link') }}</a>
+                </p>
+                <div class="flex shrink-0 gap-2">
+                    <button @click="accept()" class="rounded bg-blue-600 px-3 py-1 text-xs font-medium text-white hover:bg-blue-700">{{ __('cookieconsent.allow') }}</button>
+                    <button @click="reject()" class="rounded border border-white/20 px-3 py-1 text-xs text-white/60 hover:border-white/40">{{ __('cookieconsent.reject') }}</button>
+                </div>
+            </div>
+        </div>
+        @endif
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5">
             <div class="flex-col gap-8 hidden lg:flex col-span-2 ">
                 <div class="flex">
