@@ -15,7 +15,7 @@ use Stevebauman\Purify\Facades\Purify;
 class EntitySaveService
 {
     use CampaignAware;
-    
+
     public function __construct(
         protected TagService $tagService,
         protected PermissionService $permissionService,
