@@ -1,7 +1,7 @@
 const COOKIE_LAW_COUNTRIES = [
     'AT', 'BE', 'BG', 'HR', 'CZ', 'CY', 'DK', 'EE', 'FI', 'FR',
-    'DE', 'EL', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL',
-    'PL', 'PT', 'SK', 'ES', 'SE', 'GB', 'UK', 'GR', 'EU',
+    'DE', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL',
+    'PL', 'PT', 'SK', 'ES', 'SE', 'GB', 'GR',
 ];
 
 const field = document.getElementById('cookieconsent');
@@ -14,7 +14,7 @@ const getCookie = (name) => {
 const setCookie = (name, value, days) => {
     const date = new Date();
     date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-    document.cookie = name + '=' + value + '; expires=' + date.toUTCString() + '; path=/; SameSite=Lax';
+    document.cookie = name + '=' + value + '; expires=' + date.toUTCString() + '; path=/; SameSite=Lax; Secure';
 };
 
 const initTracking = () => {
