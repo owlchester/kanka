@@ -56,7 +56,7 @@
             @if ($devices->filter(fn ($d) => !$d['is_current'])->isNotEmpty())
                 <div class="flex justify-end mt-4">
                     <x-form :action="route('settings.security.revoke-others')" method="DELETE">
-                        <x-buttons.confirm type="outline" size="sm">
+                        <x-buttons.confirm type="danger" outline size="sm">
                             {{ __('settings/security.devices.revoke_others') }}
                         </x-buttons.confirm>
                     </x-form>

@@ -6,7 +6,6 @@ return [
     'devices' => [
         'title' => 'Active Sessions',
         'current' => 'This device',
-        'revoke' => 'Revoke',
         'revoke_others' => 'Log out all other devices',
         'revoked' => 'Device has been logged out.',
         'revoked_others' => 'All other devices have been logged out.',
@@ -14,6 +13,6 @@ return [
         'unknown_browser' => 'Unknown browser',
         'last_active' => 'Last active',
         'ip_address' => 'IP address',
-        'empty' => 'No other active sessions found.',
+        'empty' => 'No active sessions found.',
     ],
 ];
