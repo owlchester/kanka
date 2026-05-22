@@ -7,14 +7,14 @@ const COOKIE_LAW_COUNTRIES = [
 const field = document.getElementById('cookieconsent');
 
 const getCookie = (name) => {
-    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    const match = document.cookie.match(new RegExp('(^| )' + name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '=([^;]+)'));
     return match ? match[2] : null;
 };
 
 const setCookie = (name, value, days) => {
     const date = new Date();
     date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-    document.cookie = name + '=' + value + '; expires=' + date.toUTCString() + '; path=/';
+    document.cookie = name + '=' + value + '; expires=' + date.toUTCString() + '; path=/; SameSite=Lax';
 };
 
 const initTracking = () => {
