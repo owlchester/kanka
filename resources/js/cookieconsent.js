@@ -66,31 +66,48 @@ const initOnLoad = () => {
     }
 };
 
-document.addEventListener('alpine:init', () => {
-    Alpine.data('footerCookieConsent', () => ({
-        showConsent: false,
-        init() {
-            if (!field) {
-                return;
-            }
-            const country = field.dataset.country;
-            const status = getCookie('cookieconsent_status');
-            this.showConsent = COOKIE_LAW_COUNTRIES.includes(country) && !status;
-        },
-        accept() {
-            setCookie('cookieconsent_status', 'allow', 365);
-            this.showConsent = false;
-            initTracking();
-        },
-        reject() {
-            setCookie('cookieconsent_status', 'deny', 365);
-            this.showConsent = false;
-        },
-        reset() {
-            setCookie('cookieconsent_status', '', -1);
-            this.showConsent = true;
-        },
-    }));
-});
+const setupConsentBar = () => {
+    if (!field) {
+        return;
+    }
 
-initOnLoad();
+    const country = field.dataset.country;
+    const status = getCookie('cookieconsent_status');
+
+    if (!COOKIE_LAW_COUNTRIES.includes(country)) {
+        initTracking();
+        return;
+    }
+
+    if (status === 'allow') {
+        initTracking();
+        return;
+    }
+
+    const bar = document.querySelector('[data-cookie-consent-bar]');
+    if (!bar) {
+        return;
+    }
+
+    if (!status) {
+        bar.style.display = '';
+    }
+
+    bar.querySelector('[data-accept]')?.addEventListener('click', () => {
+        setCookie('cookieconsent_status', 'allow', 365);
+        bar.style.display = 'none';
+        initTracking();
+    });
+
+    bar.querySelector('[data-reject]')?.addEventListener('click', () => {
+        setCookie('cookieconsent_status', 'deny', 365);
+        bar.style.display = 'none';
+    });
+
+    window.addEventListener('show-cookie-consent', () => {
+        setCookie('cookieconsent_status', '', -1);
+        bar.style.display = '';
+    });
+};
+
+setupConsentBar();

@@ -2,15 +2,15 @@
     <div class="lg:max-w-7xl lg:mx-auto">
         <div class="flex flex-col gap-10">
             @if(config('tracking.consent'))
-            <div x-data="footerCookieConsent()" x-show="showConsent" x-cloak @show-cookie-consent.window="reset()" class="rounded-xl bg-base-100 p-4">
+            <div data-cookie-consent-bar style="display: none;" class="rounded-xl bg-base-100 p-4">
                 <div class="flex flex-col gap-3 text-sm sm:flex-row sm:items-center">
                     <p class="flex-1 text-neutral-content">
                         {{ __('cookieconsent.message') }}
                         <a href="{{ Domain::toFront('privacy-policy') }}" target="_blank" class="text-link">{{ __('cookieconsent.link') }}</a>
                     </p>
                     <div class="flex shrink-0 gap-2">
-                        <button @click="accept()" class="btn2 btn-xs btn-primary">{{ __('cookieconsent.allow') }}</button>
-                        <button @click="reject()" class="btn2 btn-xs btn-ghost">{{ __('cookieconsent.reject') }}</button>
+                        <button data-accept class="btn2 btn-xs btn-primary">{{ __('cookieconsent.allow') }}</button>
+                        <button data-reject class="btn2 btn-xs btn-ghost">{{ __('cookieconsent.reject') }}</button>
                     </div>
                 </div>
             </div>
