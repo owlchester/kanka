@@ -86,6 +86,7 @@ class ProcessService
         }
 
         $this->loadTemplate();
+        $this->entitySaveService->campaign($this->campaign);
 
         $values = $this->inputFields;
 

@@ -111,7 +111,7 @@ class EntitySearchService
             ->setAttributesToRetrieve(['id', 'entity_id', 'type'])
             ->setAttributesToHighlight(['name', 'entry'])
             ->setAttributesToCrop(['entry'])
-            ->setCropLength(20)
+            ->setCropLength(15)
             ->setHighlightPreTag('<mark>')
             ->setHighlightPostTag('</mark>')
             ->setLimit(20);

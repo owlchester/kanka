@@ -430,7 +430,7 @@ class CrudController extends Controller
                 // Fire an event for the Entity Observer.
                 $this->afterModelSave($new, $data);
 
-                $this->entitySaveService->save($new->entity, $data);
+                $this->entitySaveService->campaign($this->campaign)->save($new->entity, $data);
                 // Weird hack for prod issues
                 if (! $new->entity->child) {
                     $new->entity->child = $new;
