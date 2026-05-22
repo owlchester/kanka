@@ -58,6 +58,8 @@ class Kernel extends HttpKernel
             Middleware\LocalizeDatetime::class,
             Tracking::class,
             Middleware\CheckIfUserBanned::class,
+            Middleware\UpdateLastLoginAt::class,
+            Middleware\UpdateDeviceActivity::class,
             Middleware\OTP::class,
             ReplicationSwitcher::class,
         ],
