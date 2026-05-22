@@ -27,7 +27,7 @@
             </span>
             <span class="" title="{{ __('campaigns.fields.followers') }}" data-toggle="tooltip">
                 <x-icon class="fa-regular fa-eye" />
-                {{ \Illuminate\Support\Number::format($campaign->followers_count) }}
+                {{ \Illuminate\Support\Number::format($campaign->follower()) }}
             </span>
             @if ($campaign->locale)
                 <span class="" title="{{ __('languages.codes.' . $campaign->locale) }}" data-toggle="tooltip">

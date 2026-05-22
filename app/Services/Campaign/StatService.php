@@ -70,7 +70,7 @@ class StatService
     {
         $this->stats['permissions'] = [];
         $this->stats['permissions']['users'] = $this->campaign->users()->count();
-        $this->stats['permissions']['followers'] = $this->campaign->followers()->count();
+        $this->stats['permissions']['followers'] = $this->campaign->follower();
         $this->stats['permissions']['roles'] = $this->campaign->roles()->count();
         arsort($this->stats['permissions']);
 
