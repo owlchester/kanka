@@ -24,6 +24,13 @@
                     :text="__('settings.menu.account')"
                 ></x-sidebar.element>
             </li>
+            <li class="px-2 {{ $active('security') }}">
+                <x-sidebar.element
+                    :url="route('settings.security')"
+                    icon="fa-regular fa-shield"
+                    :text="__('settings.menu.security')"
+                ></x-sidebar.element>
+            </li>
             <li class="px-2 {{ $active('appearance') }}">
                 <x-sidebar.element
                     :url="route('settings.appearance')"

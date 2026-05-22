@@ -26,6 +26,7 @@ use App\Http\Controllers\Settings\PremiumController;
 use App\Http\Controllers\Settings\ProfileController;
 use App\Http\Controllers\Settings\ReferralController;
 use App\Http\Controllers\Settings\ReleaseController;
+use App\Http\Controllers\Settings\SecurityController;
 use App\Http\Controllers\Settings\Subscription\CancellationController;
 use App\Http\Controllers\Settings\Subscription\CancelledController;
 use App\Http\Controllers\Settings\Subscription\FinishController;
@@ -83,6 +84,10 @@ Route::delete('/client/revoke/{client}', [ClientController::class, 'revoke'])->n
 
 Route::get('/appearance', [AppearanceController::class, 'index'])->name('settings.appearance');
 Route::patch('/appearance', [AppearanceController::class, 'update'])->name('settings.appearance.update');
+
+Route::get('/security', [SecurityController::class, 'index'])->name('settings.security');
+Route::delete('/security/devices/{device}', [SecurityController::class, 'revoke'])->name('settings.security.revoke');
+Route::delete('/security/devices', [SecurityController::class, 'revokeOthers'])->name('settings.security.revoke-others');
 
 Route::get('/newsletter', [NewsletterController::class, 'index'])->name('settings.newsletter');
 Route::patch('/newsletter', [NewsletterController::class, 'update'])->name('settings.newsletter.save');
