@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasUser;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int $id
@@ -20,7 +20,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class UserDevice extends Model
 {
-    protected $fillable = [
+    use HasUser;
+
+    public $fillable = [
         'user_id',
         'token',
         'session_id',
@@ -36,11 +38,6 @@ class UserDevice extends Model
             'two_factor_verified_at' => 'datetime',
             'last_active_at' => 'datetime',
         ];
-    }
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
     }
 
     public function isTwoFactorVerified(): bool
