@@ -31,7 +31,7 @@ class OTPAuthentication extends Authenticator
     {
         try {
             $secret = $this->getUser()->passwordSecurity->{$this->config('otp_secret_column')};
-        } catch (Exception $e) {
+        } catch (Exception) {
             $secret = $this->getUser()->passwordSecurity;
         }
 
