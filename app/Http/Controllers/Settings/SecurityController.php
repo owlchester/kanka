@@ -36,7 +36,7 @@ class SecurityController extends Controller
         return view('settings.security', compact('devices'));
     }
 
-    public function revoke(Request $request, UserDevice $device, DeviceService $deviceService): RedirectResponse
+    public function revoke(UserDevice $device, DeviceService $deviceService): RedirectResponse
     {
         abort_if($device->user_id !== auth()->id(), 403);
 
@@ -46,7 +46,7 @@ class SecurityController extends Controller
             ->with('success', __('settings/security.devices.revoked'));
     }
 
-    public function revokeOthers(Request $request, DeviceService $deviceService): RedirectResponse
+    public function revokeOthers(DeviceService $deviceService): RedirectResponse
     {
         $deviceService->revokeOthers(auth()->user());
 
