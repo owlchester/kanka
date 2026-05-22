@@ -76,6 +76,7 @@ class Otp extends Component
             // Update disabling OTP
             $user->passwordSecurity->google2fa_enable = 0;
             $user->passwordSecurity->save();
+            $user->devices()->update(['two_factor_verified_at' => null]);
             session()->flash('disable-success', __('settings.account.2fa.success_disable'));
         } else {
             $this->clickedBefore = true;

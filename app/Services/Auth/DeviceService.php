@@ -40,6 +40,8 @@ class DeviceService
                     'last_active_at' => now(),
                 ]);
 
+                $this->queueCookie($token);
+
                 return $device;
             }
         }
@@ -54,6 +56,13 @@ class DeviceService
             'last_active_at' => now(),
         ]);
 
+        $this->queueCookie($token);
+
+        return $device;
+    }
+
+    private function queueCookie(string $token): void
+    {
         Cookie::queue(
             self::COOKIE_NAME,
             $token,
@@ -65,8 +74,6 @@ class DeviceService
             false,
             'lax'
         );
-
-        return $device;
     }
 
     /**
