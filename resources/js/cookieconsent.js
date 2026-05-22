@@ -66,29 +66,31 @@ const initOnLoad = () => {
     }
 };
 
-window.footerCookieConsent = () => ({
-    showConsent: false,
-    init() {
-        if (!field) {
-            return;
-        }
-        const country = field.dataset.country;
-        const status = getCookie('cookieconsent_status');
-        this.showConsent = COOKIE_LAW_COUNTRIES.includes(country) && !status;
-    },
-    accept() {
-        setCookie('cookieconsent_status', 'allow', 365);
-        this.showConsent = false;
-        initTracking();
-    },
-    reject() {
-        setCookie('cookieconsent_status', 'deny', 365);
-        this.showConsent = false;
-    },
-    reset() {
-        setCookie('cookieconsent_status', '', -1);
-        this.showConsent = true;
-    },
+document.addEventListener('alpine:init', () => {
+    Alpine.data('footerCookieConsent', () => ({
+        showConsent: false,
+        init() {
+            if (!field) {
+                return;
+            }
+            const country = field.dataset.country;
+            const status = getCookie('cookieconsent_status');
+            this.showConsent = COOKIE_LAW_COUNTRIES.includes(country) && !status;
+        },
+        accept() {
+            setCookie('cookieconsent_status', 'allow', 365);
+            this.showConsent = false;
+            initTracking();
+        },
+        reject() {
+            setCookie('cookieconsent_status', 'deny', 365);
+            this.showConsent = false;
+        },
+        reset() {
+            setCookie('cookieconsent_status', '', -1);
+            this.showConsent = true;
+        },
+    }));
 });
 
 initOnLoad();

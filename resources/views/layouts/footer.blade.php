@@ -85,7 +85,7 @@
                     <a href="{{ Domain::toFront('security') }}" class="text-link">{{ __('footer.security') }}</a>
                     <a href="{{ Domain::toFront('press-kit') }}" class="text-link">{{ __('footer.press-kit') }}</a>
                     @if(config('tracking.consent'))
-                    <a href="#" x-data @click.prevent="$dispatch('show-cookie-consent')" class="text-link">{{ __('cookieconsent.preferences') }}</a>
+                    <a href="#" onclick="window.dispatchEvent(new CustomEvent('show-cookie-consent')); return false;" class="text-link">{{ __('cookieconsent.preferences') }}</a>
                     @endif
                 </div>
             </div>
