@@ -1,102 +1,43 @@
-import 'cookieconsent/build/cookieconsent.min.js';
+const COOKIE_LAW_COUNTRIES = [
+    'AT', 'BE', 'BG', 'HR', 'CZ', 'CY', 'DK', 'EE', 'FI', 'FR',
+    'DE', 'EL', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL',
+    'PL', 'PT', 'SK', 'ES', 'SE', 'GB', 'UK', 'GR', 'EU',
+];
+
 const field = document.getElementById('cookieconsent');
-let setup, api;
 
-const initCookieConsent = () => {
-    if (!field) {
-        return;
-    }
-    setup = field.dataset.setup;
-
-    api = field.dataset.api;
-
-    //console.log('init cookie consent');
-    window.cookieconsent.initialise({
-        type: 'opt-in',
-        layout: 'basic',
-        content: JSON.parse(setup),
-        // location: {
-        //     timeout: 5000,
-        //     services: ['kanka'],
-        //     serviceDefinitions: {
-        //         kanka: function () {
-        //             return {
-        //                 // This service responds with JSON, so we simply need to parse it and return the country code
-        //                 url: api,
-        //                 headers: ['Accept: application/json'],
-        //                 callback: function (done, response) {
-        //                     try {
-        //                         var json = JSON.parse(response);
-        //                         return json.error
-        //                             ? toError(json)
-        //                             : {
-        //                                 code: json.country
-        //                             };
-        //                     } catch (err) {
-        //                         return toError({error: 'Invalid response (' + err + ')'});
-        //                     }
-        //                 }
-        //             };
-        //         },
-        //     },
-        // },
-        law: {
-            countryCode: field.dataset.country
-        },
-        palette: {
-            "popup": { "background": "#08083c", "text": "#ffffff" },
-            "button": { "background": "#007bff", "text": "#ffffff" },
-        },
-        onPopupOpen: function () {
-            //console.log('<em>onPopupOpen()</em> called');
-        },
-        onPopupClose: function () {
-            //console.log('<em>onPopupClose()</em> called');
-        },
-        onInitialise: function (status) {
-            //console.log('<em>onInitialise()</em> called with status <em>' + status + '</em>');
-            if (status === 'allow') {
-                initTracking();
-            }
-        },
-        onStatusChange: function (status) {
-            //console.log('<em>onStatusChange()</em> called with status <em>' + status + '</em>');
-            if (status === 'allow') {
-                initTracking();
-            }
-        },
-        onRevokeChoice: function () {
-            //console.log('<em>onRevokeChoice()</em> called');
-        },
-        onNoCookieLaw: function () {
-            initTracking();
-        }
-    });
+const getCookie = (name) => {
+    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    return match ? match[2] : null;
 };
 
-const toError = (obj) => {
-    return new Error('Error [' + (obj.code || 'UNKNOWN') + ']: ' + obj.error);
+const setCookie = (name, value, days) => {
+    const date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    document.cookie = name + '=' + value + '; expires=' + date.toUTCString() + '; path=/';
 };
 
 const initTracking = () => {
-    // console.log('initTracking', field.dataset);
+    if (!field) {
+        return;
+    }
     if (field.dataset.gtag) {
-        // console.log('add gtag');
         allConsentGranted();
     }
     if (field.dataset.gtm) {
-        // console.log('add gtm');
-        initGTM(window,document,'script','dataLayer', field.dataset.gtm);
+        initGTM(window, document, 'script', 'dataLayer', field.dataset.gtm);
     }
 };
 
-const initGTM = (w,d,s,l,i) => {
-    w[l]=w[l]||[];
-    w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
-    var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
-    j.async=true;
-    j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
-    f.parentNode.insertBefore(j,f);
+const initGTM = (w, d, s, l, i) => {
+    w[l] = w[l] || [];
+    w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+    const f = d.getElementsByTagName(s)[0];
+    const j = d.createElement(s);
+    const dl = l !== 'dataLayer' ? '&l=' + l : '';
+    j.async = true;
+    j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+    f.parentNode.insertBefore(j, f);
 };
 
 const allConsentGranted = () => {
@@ -104,8 +45,46 @@ const allConsentGranted = () => {
         'ad_user_data': 'granted',
         'ad_personalization': 'granted',
         'ad_storage': 'granted',
-        'analytics_storage': 'granted'
+        'analytics_storage': 'granted',
     });
 };
 
-initCookieConsent();
+const initOnLoad = () => {
+    if (!field) {
+        return;
+    }
+    const country = field.dataset.country;
+    const status = getCookie('cookieconsent_status');
+
+    if (!COOKIE_LAW_COUNTRIES.includes(country)) {
+        initTracking();
+        return;
+    }
+
+    if (status === 'allow') {
+        initTracking();
+    }
+};
+
+window.footerCookieConsent = () => ({
+    showConsent: false,
+    init() {
+        if (!field) {
+            return;
+        }
+        const country = field.dataset.country;
+        const status = getCookie('cookieconsent_status');
+        this.showConsent = COOKIE_LAW_COUNTRIES.includes(country) && !status;
+    },
+    accept() {
+        setCookie('cookieconsent_status', 'allow', 365);
+        this.showConsent = false;
+        initTracking();
+    },
+    reject() {
+        setCookie('cookieconsent_status', 'deny', 365);
+        this.showConsent = false;
+    },
+});
+
+initOnLoad();
