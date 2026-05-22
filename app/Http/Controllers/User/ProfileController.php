@@ -9,7 +9,7 @@ class ProfileController extends Controller
 {
     public function show(User $user)
     {
-        $campaigns = $user->campaigns()->public()->front()->paginate();
+        $campaigns = $user->campaigns()->public()->front()->withCount('followers')->paginate();
 
         return view('users.profile')
             ->with('user', $user)
