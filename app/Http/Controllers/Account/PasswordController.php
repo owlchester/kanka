@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Account;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSettingsAccount;
 use App\Jobs\Users\NewPassword;
+use App\Services\Auth\DeviceService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -33,6 +34,7 @@ class PasswordController extends Controller
         NewPassword::dispatch(auth()->user());
 
         Auth::logoutOtherDevices($request->get('password_new'));
+        app(DeviceService::class)->revokeOthers(auth()->user());
 
         return redirect()
             ->route('settings.account')
