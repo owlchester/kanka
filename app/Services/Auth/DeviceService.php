@@ -4,7 +4,6 @@ namespace App\Services\Auth;
 
 use App\Models\User;
 use App\Models\UserDevice;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Session;
@@ -30,7 +29,7 @@ class DeviceService
         $token = $this->request->cookie(self::COOKIE_NAME);
 
         if ($token) {
-            $device = UserDevice::where('token', $token)
+            $device = UserDevice::query()->where('token', $token)
                 ->where('user_id', $user->id)
                 ->first();
 
@@ -80,7 +79,7 @@ class DeviceService
             return null;
         }
 
-        return UserDevice::where('token', $token)
+        return UserDevice::query()->where('token', $token)
             ->where('user_id', $user->id)
             ->first();
     }
@@ -90,7 +89,7 @@ class DeviceService
      */
     public function touchActivity(UserDevice $device): void
     {
-        if ($device->last_active_at->lt(Carbon::now()->subHour())) {
+        if ($device->last_active_at->lt(now()->subHour())) {
             $device->update([
                 'session_id' => Session::getId(),
                 'ip_address' => $this->ipResolver->resolve(),
@@ -120,7 +119,7 @@ class DeviceService
     {
         $currentToken = $this->request->cookie(self::COOKIE_NAME);
 
-        $others = UserDevice::where('user_id', $user->id)
+        $others = UserDevice::query()->where('user_id', $user->id)
             ->when($currentToken, fn ($q) => $q->where('token', '!=', $currentToken))
             ->get();
 

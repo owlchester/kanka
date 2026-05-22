@@ -46,7 +46,11 @@ class UserEventSubscriber
             ->clearInactivityFlag()
             ->loadFlags();
 
-        $this->deviceService->findOrCreate($user);
+        try {
+            $this->deviceService->findOrCreate($user);
+        } catch (\Exception $e) {
+            Log::error('Failed to create device record on login', ['user_id' => $user->id, 'error' => $e->getMessage()]);
+        }
 
         if (! session()->has('first_login') && $user->hasNewsletter()) {
             MailSettingsChangeJob::dispatch($user);
