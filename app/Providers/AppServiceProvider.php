@@ -174,7 +174,7 @@ class AppServiceProvider extends ServiceProvider
         }
 
         // In production, we want URLs to be HTTPS for pagination and redirects
-        if ($this->app->isProduction() || $this->app->environment('qa')) {
+        if (($this->app->isProduction() || $this->app->environment('qa')) && env('FORCE_HTTPS', false)) {
             \URL::forceScheme('https');
         }
 

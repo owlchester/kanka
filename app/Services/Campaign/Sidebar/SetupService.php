@@ -67,7 +67,7 @@ class SetupService
     {
         $this->elements = [
             'dashboard' => [
-                'icon' => 'fa-duotone fa-house',
+                'icon' => 'fa-solid fa-house',
                 'label' => 'sidebar.dashboard',
                 'module' => false,
                 'route' => 'dashboard',
@@ -78,7 +78,7 @@ class SetupService
                 'fixed' => true,
             ],
             'world' => [
-                'icon' => 'fa-duotone fa-mountains',
+                'icon' => 'fa-solid fa-mountains',
                 'label' => 'sidebar.world',
                 'module' => false,
                 'fixed' => true,
@@ -130,7 +130,7 @@ class SetupService
                 'type' => 'creature',
             ],
             'game' => [
-                'icon' => 'fa-duotone fa-book',
+                'icon' => 'fa-solid fa-book',
                 'label' => 'sidebar.game',
                 'route' => false,
                 'fixed' => true,
@@ -165,14 +165,14 @@ class SetupService
                 'type' => 'note',
             ],
             'other' => [
-                'icon' => 'fa-duotone fa-database',
+                'icon' => 'fa-solid fa-database',
                 'label' => 'sidebar.other',
                 'module' => false,
                 'route' => false,
                 'fixed' => true,
             ],
             'time' => [
-                'icon' => 'fa-duotone fa-hourglass',
+                'icon' => 'fa-solid fa-hourglass',
                 'label' => 'sidebar.time',
                 'module' => false,
                 'route' => false,
@@ -189,13 +189,13 @@ class SetupService
                 'type' => 'dice_roll',
             ],
             'relations' => [
-                'icon' => 'fa-duotone fa-circle-nodes',
+                'icon' => 'fa-solid fa-circle-nodes',
                 'label' => 'sidebar.relations',
                 'perm' => 'relations',
                 'module' => false,
             ],
             'gallery' => [
-                'icon' => 'fa-duotone fa-images',
+                'icon' => 'fa-solid fa-images',
                 'label' => 'sidebar.gallery',
                 'route' => 'gallery',
                 'perm' => 'gallery',
@@ -208,7 +208,7 @@ class SetupService
                 'type' => 'whiteboard',
             ],
             'settings' => [
-                'icon' => 'fa-duotone fa-cog',
+                'icon' => 'fa-solid fa-cog',
                 'label' => 'sidebar.settings',
                 'module' => false,
                 'fixed' => true,
@@ -221,7 +221,7 @@ class SetupService
             'route' => 'search',
         ],*/
             'history' => [
-                'icon' => 'fa-duotone fa-clock-rotate-left',
+                'icon' => 'fa-solid fa-clock-rotate-left',
                 'label' => 'sidebar.recent',
                 'perm' => 'recover',
                 'module' => false,

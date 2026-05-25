@@ -8,6 +8,7 @@ services:
     volumes:
       - ./deploy/nginx/kanka.conf:/etc/nginx/conf.d/default.conf:ro
       - kanka_storage:/var/www/html/storage:ro
+      - kanka_public:/var/www/html/public:ro
     depends_on:
       - app
     networks:
@@ -19,7 +20,8 @@ services:
     restart: unless-stopped
     volumes:
       - kanka_storage:/var/www/html/storage
-      - ./.env:/var/www/html/.env:ro
+      - kanka_public:/var/www/html/public
+      - ./.env:/var/www/html/.env
     depends_on:
       db:
         condition: service_healthy
@@ -73,7 +75,7 @@ services:
       - kanka
 
   thumbor:
-    image: minimalcompact/thumbor:latest
+    image: thumbororg/thumbor:latest
     restart: unless-stopped
     environment:
       THUMBOR_PORT: 8888
@@ -98,6 +100,7 @@ volumes:
   kanka_db:
   kanka_redis:
   kanka_meili:
+  kanka_public:
 
 networks:
   kanka:
