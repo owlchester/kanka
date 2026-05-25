@@ -108,6 +108,7 @@ return [
         'personal_settings'     => 'Paramètres Personnels',
         'premium'               => 'Campagnes Premium',
         'profile'               => 'Profil',
+        'security'              => 'Sécurité',
         'settings'              => 'Paramètres',
         'subscription'          => 'Abonnement',
         'subscription_status'   => 'Status d\'abonnement',

@@ -30,6 +30,7 @@ return [
             'gallery_full_free'     => 'L\'espace de stockage de la galerie est plein. Activer les fonctions premium pour obtenir plus d\'espace de stockage.',
             'gallery_full_premium'  => 'L\'espace de stockage de la galerie est plein. Supprimer d\'abord les fichiers inutilisés.',
             'invalid_format'        => 'Le fichier n\'est pas un format de fichier valide.',
+            'invalid_url'           => 'L\'URL fournie n\'a pas pû être décodée comme une image.',
             'too_big'               => 'Le fichier est trop lourd.',
             'unauthorized'          => 'Aucun de tes rôles n\'a l\'autorisation de "ajouter à la galerie".',
         ],

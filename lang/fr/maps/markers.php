@@ -43,6 +43,7 @@ return [
         'custom_shape'  => 'Forme personnalisée',
         'font_colour'   => 'Couleur d\'icône',
         'group'         => 'Groupe de marqueur',
+        'has_tooltip'   => 'Possède une infobulle',
         'icon'          => 'Icône',
         'is_draggable'  => 'Déplaçable',
         'latitude'      => 'Latitude',
