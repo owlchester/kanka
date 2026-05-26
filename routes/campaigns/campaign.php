@@ -23,6 +23,7 @@ use App\Http\Controllers\ConfirmController;
 use App\Http\Controllers\Crud\CampaignController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Dashboards\GettingStartedController;
+use App\Http\Controllers\Dashboards\OnboardingWidgetController;
 use App\Http\Controllers\EditingController;
 use App\Http\Controllers\Gallery\BrowseController;
 use App\Http\Controllers\Gallery\CreateController;
@@ -36,6 +37,7 @@ use App\Http\Controllers\Gallery\UploadController;
 use App\Http\Controllers\Gallery\VisibilityController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\Onboarding\InitialController;
+use App\Http\Controllers\Onboarding\QuickCreateController;
 use App\Http\Controllers\PresetController;
 use App\Http\Controllers\Templates\LoadController;
 use App\Http\Controllers\Widgets\CalendarWidgetController;
@@ -280,6 +282,22 @@ Route::post('/w/{campaign}/onboarding/initial-skip', [
 Route::get('/w/{campaign}/widgets/getting-started', [
     GettingStartedController::class, 'index',
 ])->name('campaign.widgets.getting-started');
+
+Route::get('/w/{campaign}/onboarding/widget', [
+    OnboardingWidgetController::class, 'state',
+])->name('campaign.onboarding.widget.state');
+
+Route::post('/w/{campaign}/onboarding/widget/progress', [
+    OnboardingWidgetController::class, 'progress',
+])->name('campaign.onboarding.widget.progress');
+
+Route::post('/w/{campaign}/onboarding/widget/dismiss', [
+    OnboardingWidgetController::class, 'dismiss',
+])->name('campaign.onboarding.widget.dismiss');
+
+Route::post('/w/{campaign}/onboarding/quick-create', [
+    QuickCreateController::class, 'store',
+])->name('campaign.onboarding.quick-create');
 
 Route::get('/w/{campaign}/connections/web', [WebController::class, 'index'])->name('connections.web');
 Route::get('/w/{campaign}/connections/web/api', [WebController::class, 'api'])->name('connections.web.api');

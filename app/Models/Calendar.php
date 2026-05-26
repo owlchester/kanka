@@ -258,7 +258,7 @@ class Calendar extends MiscModel
                 $this->suffix;
 
             return $return;
-        } catch (Exception $e) { // @phpstan-ignore-line
+        } catch (Exception $e) {
             return $this->date;
         }
     }

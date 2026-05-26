@@ -20,6 +20,7 @@ use App\Models\Role;
 use App\Models\SubscriptionCancellation;
 use App\Models\User;
 use App\Models\UserApp;
+use App\Models\UserDevice;
 use App\Models\UserFlag;
 use App\Models\UserLog;
 use App\Models\Users\Tutorial;
@@ -49,6 +50,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property PasswordSecurity|null $passwordSecurity
  * @property Collection|UserFlag[] $flags
  * @property Collection|Tutorial[] $tutorials
+ * @property Collection|UserDevice[] $devices
  */
 trait UserRelations
 {
@@ -268,5 +270,13 @@ trait UserRelations
     public function userValidation(): HasOne|UserValidation
     {
         return $this->hasOne(UserValidation::class, 'user_id', 'id');
+    }
+
+    /**
+     * @return HasMany<UserDevice, $this>
+     */
+    public function devices(): HasMany
+    {
+        return $this->hasMany(UserDevice::class);
     }
 }

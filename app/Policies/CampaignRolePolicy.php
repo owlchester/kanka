@@ -13,34 +13,34 @@ class CampaignRolePolicy
 
     public function view(User $user, CampaignRole $campaignRole, Campaign $campaign): bool
     {
-        return $campaignRole->campaign_id === $campaign->id && $user->isAdmin();
+        return $campaignRole->campaign_id === $campaign->id && $user->can('admin', $campaign);
     }
 
-    public function create(User $user)
+    public function create(User $user, Campaign $campaign): bool
     {
-        return $user->isAdmin();
+        return $user->can('admin', $campaign);
     }
 
-    public function update(User $user, CampaignRole $campaignRole)
+    public function update(User $user, CampaignRole $campaignRole): bool
     {
-        return $user->isAdmin();
+        return $user->can('admin', $campaignRole->campaign);
     }
 
-    public function delete(User $user, CampaignRole $campaignRole)
+    public function delete(User $user, CampaignRole $campaignRole): bool
     {
         return ! $campaignRole->isAdmin() && ! $campaignRole->isPublic()
-            && $user->isAdmin();
+            && $user->can('admin', $campaignRole->campaign);
     }
 
-    public function user(User $user, CampaignRole $campaignRole)
+    public function user(User $user, CampaignRole $campaignRole): bool
     {
-        return $user->isAdmin();
+        return $user->can('admin', $campaignRole->campaign);
     }
 
     /**
      * Only allow removing users from the admin role is there is more than one user in it
      */
-    public function removeUser(User $user, CampaignRole $campaignRole)
+    public function removeUser(User $user, CampaignRole $campaignRole): bool
     {
         if (! $this->user($user, $campaignRole)) {
             return false;
@@ -50,9 +50,9 @@ class CampaignRolePolicy
         return (bool) (! $campaignRole->isAdmin());
     }
 
-    public function permission(User $user, CampaignRole $campaignRole)
+    public function permission(User $user, CampaignRole $campaignRole): bool
     {
         return ! $campaignRole->isAdmin()
-            && $user->isAdmin();
+            && $user->can('admin', $campaignRole->campaign);
     }
 }

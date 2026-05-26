@@ -27,7 +27,7 @@
             </span>
             <span class="" title="{{ __('campaigns.fields.followers') }}" data-toggle="tooltip">
                 <x-icon class="fa-regular fa-eye" />
-                {{ \Illuminate\Support\Number::format($campaign->follower) }}
+                {{ \Illuminate\Support\Number::format($campaign->follower()) }}
             </span>
             @if ($campaign->locale)
                 <span class="" title="{{ __('languages.codes.' . $campaign->locale) }}" data-toggle="tooltip">
@@ -35,10 +35,10 @@
                     {{ $campaign->locale }}
                 </span>
             @endif
-            @if (!empty($campaign->system))
+            @if ($campaign->systems->isNotEmpty())
                 <span class="" title="{{ __('campaigns.fields.system') }}" data-toggle="tooltip">
                     <x-icon class="cog" />
-                    {{ $campaign->system }}
+                    {{ $campaign->getSystems() }}
                 </span>
             @endif
         </div>

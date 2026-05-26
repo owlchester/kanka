@@ -209,6 +209,7 @@ return [
     'hints'             => [
         'calendar_date'         => 'Une date de calendrier permet un triage plus facile dans les listes, et lie l\'entrée avec un calendrier à travers en rappel.',
         'image_dimension'       => 'Dimentions recommendées: :dimension pixels.',
+        'image_formats'         => 'Formats supportés: :formats.',
         'image_limitations'     => 'Formats supportés: :formats. Taille maximale: :size.',
         'image_recommendation'  => 'Dimensions recommandées: :width par :height px.',
         'is_star'               => 'Les éléments épinglés sont affichés sur le menu de l\'entrée.',

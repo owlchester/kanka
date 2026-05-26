@@ -100,10 +100,9 @@ class Quest extends MiscModel
 
     public function scopeFilteredQuests(Builder $query): Builder
     {
-        // @phpstan-ignore-next-line
         return $query
             ->select(['id', 'name', 'location_id', 'is_private'])
-            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
+            ->sort(request()->only(['o', 'k']), ['name' => 'asc']) // @phpstan-ignore method.notFound
             ->with([
                 'location', 'location.entity',
                 'elements',
@@ -248,23 +247,5 @@ class Quest extends MiscModel
             'quest_element_id',
             'element_role',
         ];
-    }
-
-    /**
-     * Grid mode sortable fields
-     */
-    public function datagridSortableColumns(): array
-    {
-        $columns = [
-            'name' => __('crud.fields.name'),
-            'type' => __('crud.fields.type'),
-            'calendar_date' => __('crud.fields.calendar_date'),
-        ];
-
-        if (auth()->check() && auth()->user()->isAdmin()) {
-            $columns['is_private'] = __('crud.fields.is_private');
-        }
-
-        return $columns;
     }
 }

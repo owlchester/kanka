@@ -29,16 +29,16 @@
                 @endif
             </a>
             <div class="flex items-center" data-toggle="tooltip-ajax"  data-id="{{ $model->entity->id }}" data-url="{{ route('entities.tooltip', [$campaign, $model->entity->id]) }}">
-                <a href="{{ $model->getLink() }}" class="block text-center relative truncate h-12 px-2 py-4 grow text-link">
+                <a href="{{ route('entities.show', [$campaign, $model->entity]) }}" class="block text-center relative truncate h-12 px-2 py-4 grow text-link">
                     {!! $model->name !!}
                 </a>
                 @if ($model instanceof \App\Models\Map && $model->explorable())
-                    <a href="{{ $model->getLink('explore') }}" class="block text-center h-12 p-4 text-link" target="_blank" title="{{ __('maps.actions.explore') }}">
+                    <a href="{{ route('maps.explore', [$campaign, $model]) }}" class="block text-center h-12 p-4 text-link" target="_blank" title="{{ __('maps.actions.explore') }}">
                         <x-icon class="fa-regular fa-map" />
                         <span class="sr-only">{{ __('maps.actions.explore') }}</span>
                     </a>
                 @elseif ($model instanceof \App\Models\Whiteboard)
-                    <a href="{{ $model->getLink('draw') }}" class="block text-center h-12 p-4 text-link" target="_blank" title="{{ __('whiteboards.actions.draw') }}">
+                    <a href="{{ route('whiteboards.draw', [$campaign, $model]) }}" class="block text-center h-12 p-4 text-link" target="_blank" title="{{ __('whiteboards.actions.draw') }}">
                         <x-icon class="fa-regular fa-chalkboard" />
                         <span class="sr-only">{{ __('whiteboards.actions.draw') }}</span>
                     </a>
@@ -54,7 +54,7 @@
     </div>
 @else
     <div class="entity overflow-hidden rounded shadow-xs hover:shadow-md w-[47%] xs:w-[25%] sm:w-48 aspect-square flex flex-col bg-box @if (isset($isParent)) shadow-lg stacking-parent font-bold @endif {{ $statusClass }}" title="{{ $model->name }}" @foreach ($dataAttributes as $att) data-{{ $att }}="true" @endforeach data-entity="{{ $model->entity->id }}" data-entity-type="{{ $model->entity->entityType->code }}" @if (!empty($model->entity->type)) data-type="{{ \Illuminate\Support\Str::slug($model->entity->type) }}" @endif>
-        <a href="{{ $model->getLink() }}" class="block avatar grow relative cover-background" style="background-image: url('{{ Avatar::entity($model->entity)->fallback()->size(192, 144)->thumbnail() }}')">
+        <a href="{{ route('entities.show', [$campaign, $model->entity]) }}" class="block avatar grow relative cover-background" style="background-image: url('{{ Avatar::entity($model->entity)->fallback()->size(192, 144)->thumbnail() }}')">
             @if ($model->is_private)
                 <div class="bubble-private absolute left-1.5 top-1.5 shadow-xs flex justify-center align-items-center items-center aspect-square rounded-full w-6 h-6 text-xs bg-box opacity-80 text-base-content">
                     <x-icon class="fa-regular fa-lock" :title="__('crud.is_private')" />
@@ -62,16 +62,16 @@
             @endif
         </a>
         <div class="flex items-center" data-toggle="tooltip-ajax"  data-id="{{ $model->entity->id }}" data-url="{{ route('entities.tooltip', [$campaign, $model->entity->id]) }}">
-            <a href="{{ $model->getLink() }}" class="block text-center relative truncate h-12 px-2 py-4 grow text-link" >
+            <a href="{{ route('entities.show', [$campaign, $model->entity]) }}" class="block text-center relative truncate h-12 px-2 py-4 grow text-link" >
                 {!! $model->name !!}
             </a>
             @if ($model instanceof \App\Models\Map && $model->explorable())
-                <a href="{{ $model->getLink('explore') }}" class="block text-center h-12 p-4 text-link" target="_blank" title="{{ __('maps.actions.explore') }}">
+                <a href="{{ route('maps.explore', [$campaign, $model]) }}" class="block text-center h-12 p-4 text-link" target="_blank" title="{{ __('maps.actions.explore') }}">
                     <x-icon class="fa-regular fa-map" />
                     <span class="sr-only">{{ __('maps.actions.explore') }}</span>
                 </a>
             @elseif ($model instanceof \App\Models\Whiteboard)
-                <a href="{{ $model->getLink('draw') }}" class="block text-center h-12 p-4 text-link" target="_blank" title="{{ __('whiteboards.actions.draw') }}">
+                <a href="{{ route('whiteboards.draw', [$campaign, $model]) }}" class="block text-center h-12 p-4 text-link" target="_blank" title="{{ __('whiteboards.actions.draw') }}">
                     <x-icon class="fa-regular fa-chalkboard" />
                     <span class="sr-only">{{ __('whiteboards.actions.draw') }}</span>
                 </a>

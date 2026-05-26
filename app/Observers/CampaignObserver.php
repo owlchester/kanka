@@ -38,7 +38,6 @@ class CampaignObserver
     {
         $campaign->entity_visibility = false;
         $campaign->entity_personality_visibility = false;
-        $campaign->follower = 0;
     }
 
     public function saved(Campaign $campaign)

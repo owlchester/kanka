@@ -6,7 +6,7 @@ This file is never loaded, but needed to trick tailwind to include some classes 
 <div class="lg:col-span-1 lg:col-span-2 lg:col-span-3 lg:col-span-4 lg:col-span-5 lg:col-span-6 lg:col-span-7 lg:col-span-8 lg:col-span-9 lg:col-span-10 lg:col-span-11 lg:col-span-12"></div>
 <div class="col-span-1 col-span-2 col-span-3 col-span-4 col-span-5 col-span-6 col-span-6 col-span-7 col-span-8 col-span-9 col-span-10 col-span-11 col-span-12"></div>
 
-<div class="border-red-500 "></div>
+<div class="border-red-500 border-base-100 border-base-200 border-base-300"></div>
 
 <div class="md:table-cell sm:table-cell lg:table-cell rounded-tl-2xl rounded-tr-2xl rounded-l-2xl rounded-r-2xl"></div>
 <div class="bg-green-500 bg-orange-400 bg-red-500 mix-blend-color-dodge"></div>

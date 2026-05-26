@@ -235,8 +235,7 @@ class ExportService
         // We don't want the whole model to be available to the export.
         // It would probably make more sense to have a resource for this.
         $hidden = [
-            'boost_count', 'export_date',
-            'visible_entity_count', 'system', 'follower', 'is_hidden',
+            'boost_count', 'visible_entity_count', 'is_hidden',
         ];
 
         if ($this->isMarkdown) {
@@ -524,9 +523,6 @@ class ExportService
      */
     public function fail(): self
     {
-        $this->campaign->updateQuietly([
-            'export_date' => null,
-        ]);
 
         // Notify the user that something went wrong
         $this->user->notify(new Header(

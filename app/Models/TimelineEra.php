@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\CampaignLocalization;
 use App\Facades\Mentions;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\Sanitizable;
@@ -139,16 +138,6 @@ class TimelineEra extends Model
     public function routeParams(array $options = []): array
     {
         return $options + ['timeline' => $this->timeline_id, 'timeline_era' => $this->id];
-    }
-
-    /**
-     * Override the get link
-     */
-    public function getLink(): string
-    {
-        $campaign = CampaignLocalization::getCampaign();
-
-        return route('timelines.timeline_eras.edit', [$campaign, 'timeline' => $this->timeline_id, $this->id]);
     }
 
     public function getEntryForEditionAttribute()

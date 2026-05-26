@@ -28,9 +28,9 @@ class EntityChild extends JsonResource
             'entity_id' => $model->entity->id,
 
             'created_at' => $model->created_at,
-            'created_by' => $model->created_by,
+            'created_by' => $model->entity->created_by,
             'updated_at' => $model->updated_at,
-            'updated_by' => $model->updated_by,
+            'updated_by' => $model->entity->updated_by,
         ];
 
         $final = array_merge($prepared, $merged);

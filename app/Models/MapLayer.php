@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Enums\Visibility;
-use App\Facades\CampaignLocalization;
 use App\Facades\Img;
 use App\Facades\Mentions;
 use App\Models\Concerns\Blameable;
@@ -136,16 +135,6 @@ class MapLayer extends Model
     public function patch(array $data): bool
     {
         return $this->updateQuietly($data);
-    }
-
-    /**
-     * Override the get link
-     */
-    public function getLink(): string
-    {
-        $campaign = CampaignLocalization::getCampaign();
-
-        return route('maps.map_layers.edit', [$campaign, 'map' => $this->map_id, $this->id]);
     }
 
     public function hasImage(): bool

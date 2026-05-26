@@ -44,13 +44,13 @@ class EditingController extends Controller
             $show = route('overview', $campaign);
         } elseif ($model instanceof TimelineElement) {
             $url = route('timeline-elements.confirm-editing', [$campaign, $model]);
-            $show = $model->timeline->getLink();
+            $show = route('entities.show', [$campaign, $model->timeline->entity]);
         } elseif ($model instanceof QuestElement) {
             $url = route('quest-elements.confirm-editing', [$campaign, $model]);
-            $show = $model->quest->getLink();
+            $show = route('entities.show', [$campaign, $model->quest->entity]);
         } else {
             $url = route('entities.confirm-editing', [$campaign, $model]);
-            $show = $model->url();
+            $show = route('entities.show', [$campaign, $model]);
         }
 
         return view('confirms.editing')

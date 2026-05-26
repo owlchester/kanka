@@ -68,10 +68,9 @@ class Event extends MiscModel
 
     public function scopeFilteredEvents(Builder $query): Builder
     {
-        // @phpstan-ignore-next-line
         return $query
             ->select(['events.id', 'events.name', 'events.date', 'events.is_private'])
-            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
+            ->sort(request()->only(['o', 'k']), ['name' => 'asc']) // @phpstan-ignore method.notFound
             ->with([
                 'entity.locations', 'entity.locations.entity',
                 'entity', 'entity.parent', 'entity.tags', 'entity.tags.entity', 'entity.image'])
@@ -113,23 +112,5 @@ class Event extends MiscModel
             'date',
             'locations',
         ];
-    }
-
-    /**
-     * Grid mode sortable fields
-     */
-    public function datagridSortableColumns(): array
-    {
-        $columns = [
-            'name' => __('crud.fields.name'),
-            'type' => __('crud.fields.type'),
-            'date' => __('events.fields.date'),
-        ];
-
-        if (auth()->check() && auth()->user()->isAdmin()) {
-            $columns['is_private'] = __('crud.fields.is_private');
-        }
-
-        return $columns;
     }
 }

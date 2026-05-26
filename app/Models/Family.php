@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\FilterOption;
+use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
@@ -92,6 +93,7 @@ class Family extends MiscModel
      */
     public function scopeMember(Builder $query, ?string $value, FilterOption $filter): Builder
     {
+        $campaign = CampaignLocalization::getCampaign();
         if ($filter === FilterOption::NONE) {
             // If called with a param, it's being called too early and will be called later in the process
             if (! empty($value)) {
@@ -104,7 +106,7 @@ class Family extends MiscModel
                 })
                 ->where('memb.character_id', null);
 
-            if (auth()->guest() || ! auth()->user()->isAdmin()) {
+            if (auth()->guest() || ! auth()->user()->can('admin', $campaign)) {
                 $query->where('memb.is_private', 0);
             }
 
@@ -123,7 +125,7 @@ class Family extends MiscModel
             })
             ->whereIn('memb.character_id', $ids);
 
-        if (auth()->guest() || ! auth()->user()->isAdmin()) {
+        if (auth()->guest() || ! auth()->user()->can('admin', $campaign)) {
             $query->where('memb.is_private', 0);
         }
 
@@ -141,7 +143,8 @@ class Family extends MiscModel
     public function members(): BelongsToMany
     {
         $query = $this->belongsToMany('App\Models\Character', 'character_family');
-        if (auth()->guest() || ! auth()->user()->isAdmin()) {
+        $campaign = CampaignLocalization::getCampaign();
+        if (auth()->guest() || ! auth()->user()->can('admin', $campaign)) {
             $query->wherePivot('is_private', false);
         }
 
@@ -175,7 +178,8 @@ class Family extends MiscModel
             ->has('entity')
             ->whereIn('cf.family_id', $familyId);
 
-        if (auth()->guest() || ! auth()->user()->isAdmin()) {
+        $campaign = CampaignLocalization::getCampaign();
+        if (auth()->guest() || ! auth()->user()->can('admin', $campaign)) {
             $query->where('cf.is_private', false);
         }
 

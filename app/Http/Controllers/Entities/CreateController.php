@@ -73,7 +73,7 @@ class CreateController extends Controller
             $entity = new Entity($data);
             $entity->type_id = $entityType->id;
             $entity->save();
-            $this->entitySaveService->save($entity, $data);
+            $this->entitySaveService->campaign($campaign)->save($entity, $data);
 
             $this->aliasService->entity($entity)->request($request)->save();
 

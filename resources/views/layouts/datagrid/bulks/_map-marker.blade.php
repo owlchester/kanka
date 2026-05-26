@@ -44,6 +44,8 @@ $groups[-1] = __('crud.filters.options.none');
     @include('maps.markers.fields.font_colour', ['dropdownParent' => '#primary-dialog'])
 
     @include('cruds.fields.draggable_choice')
+    
+    @include('cruds.fields.tooltip_choice')
 
     <x-forms.field field="opacity" :label="__('maps/markers.fields.opacity')">
         <input type="number" name="opacity" class="w-full" value="{{ $source->opacity ?? old('opacity', $model->opacity ?? null) }}" min="0" step="10" max="100" id="opacity" maxlength="3" />

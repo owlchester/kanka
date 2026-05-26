@@ -135,7 +135,7 @@ class DatagridRenderer2
 
     public function hasBulks(): bool
     {
-        return ! empty($this->layout->bulks()) && auth()->check() && auth()->user()->isAdmin();
+        return ! empty($this->layout->bulks()) && auth()->check() && auth()->user()->can('admin', $this->campaign);
     }
 
     public function bulks(): array
@@ -166,7 +166,7 @@ class DatagridRenderer2
                 }
                 // More specific use cases?
             } elseif ($bulk === Layout::ACTION_DELETE) {
-                if (auth()->check() && auth()->user()->isAdmin()) {
+                if (auth()->check() && auth()->user()->can('admin', $this->campaign)) {
                     $this->bulks[] = $bulk;
                 }
             } elseif ($bulk === Layout::ACTION_EDIT) {
@@ -297,7 +297,6 @@ class DatagridRenderer2
             );
         }
 
-        // @phpstan-ignore-next-line
-        return '<a href="' . $model->getLink() . '" class="text-link">' . $model->name . '</a>';
+        return '__unknown__';
     }
 }

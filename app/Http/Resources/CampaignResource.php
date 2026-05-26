@@ -51,7 +51,7 @@ class CampaignResource extends JsonResource
             'settings' => $campaign->settings,
             'ui_settings' => $campaign->ui_settings,
             'default_images' => $campaign->default_images,
-            'follower' => $campaign->follower,
+            'follower' => $campaign->follower(),
             'boosted' => $campaign->boosted(),
             'superboosted' => $campaign->superboosted(),
             'premium' => $campaign->premium(),

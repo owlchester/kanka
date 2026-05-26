@@ -78,7 +78,7 @@ class RoleController extends Controller
      */
     public function create(Campaign $campaign)
     {
-        $this->authorize('create', CampaignRole::class);
+        $this->authorize('create', [CampaignRole::class, $campaign]);
         if (! $campaign->canHaveMoreRoles()) {
             return view('cruds.forms.limit')
                 ->with('limit', config('limits.campaigns.roles'))
@@ -97,7 +97,7 @@ class RoleController extends Controller
      */
     public function duplicate(Campaign $campaign, CampaignRole $campaignRole)
     {
-        $this->authorize('create', CampaignRole::class);
+        $this->authorize('create', [CampaignRole::class, $campaign]);
         if (! $campaign->canHaveMoreRoles()) {
             return view('cruds.forms.limit')
                 ->with('limit', config('limits.campaigns.roles'))
@@ -111,7 +111,7 @@ class RoleController extends Controller
 
     public function store(StoreCampaignRole $request, Campaign $campaign)
     {
-        $this->authorize('create', CampaignRole::class);
+        $this->authorize('create', [CampaignRole::class, $campaign]);
         if ($request->ajax()) {
             return response()->json();
         }

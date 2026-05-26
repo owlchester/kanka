@@ -4,6 +4,7 @@ namespace App\Models\Concerns;
 
 use App\Enums\EntityAssetType;
 use App\Enums\FilterOption;
+use App\Facades\CampaignLocalization;
 use App\Models\Entity;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
@@ -710,9 +711,10 @@ trait HasFilters
      */
     protected function filterRace(Builder $query, ?string $value = null): void
     {
+        $campaign = CampaignLocalization::getCampaign();
         $ids = [$value];
         if ($this->filterOption('exclude')) {
-            if (auth()->check() && auth()->user()->isAdmin()) {
+            if (auth()->check() && auth()->user()->can('admin', $campaign)) {
                 $query->whereRaw('(select count(*) from character_race as cr where cr.character_id = ' .
                     $this->getTable() . '.id and cr.race_id = ' . ((int) $value) . ') = 0');
             } else {
@@ -736,7 +738,7 @@ trait HasFilters
                 $join->on('cr.character_id', '=', $this->getTable() . '.id');
             })->whereIn('cr.race_id', $ids);
 
-        if (auth()->guest() || ! auth()->user()->isAdmin()) {
+        if (auth()->guest() || ! auth()->user()->can('admin', $campaign)) {
             $query->where('cr.is_private', false);
         }
         $query->distinct();
@@ -967,7 +969,8 @@ trait HasFilters
     protected function subPrivacy(string $field): ?string
     {
         // Campaign admins don't have private data hidden from them
-        if (auth()->check() && auth()->user()->isAdmin()) {
+        $campaign = CampaignLocalization::getCampaign();
+        if (auth()->check() && auth()->user()->can('admin', $campaign)) {
             return null;
         }
 

@@ -9,10 +9,13 @@ use App\Facades\Images;
 use App\Facades\Permissions;
 use App\Models\Entity;
 use App\Services\PermissionService;
+use App\Traits\CampaignAware;
 use Stevebauman\Purify\Facades\Purify;
 
 class EntitySaveService
 {
+    use CampaignAware;
+
     public function __construct(
         protected TagService $tagService,
         protected PermissionService $permissionService,
@@ -139,6 +142,7 @@ class EntitySaveService
 
         $this->permissionService
             ->user(auth()->user())
+            ->campaign($this->campaign)
             ->entity($entity)
             ->save($permData);
     }

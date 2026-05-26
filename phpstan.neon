@@ -6,6 +6,9 @@ parameters:
         - identifier: unset.possiblyHookedProperty
         - identifier: function.alreadyNarrowedType
         - identifier: trait.unused
+        - identifier: isset.property
+        - identifier: isset.offset
+        - identifier: nullCoalesce.property
 
 
     paths:

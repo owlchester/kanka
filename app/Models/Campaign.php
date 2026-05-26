@@ -33,12 +33,10 @@ use Illuminate\Support\Collection;
  * @property string $name
  * @property string $slug
  * @property string $locale
- * @property Carbon|string $export_date
  * @property CampaignVisibility $visibility_id
  * @property bool|int $entity_visibility
  * @property bool|int $entity_personality_visibility
  * @property string $header_image
- * @property string $system
  * @property string $excerpt
  * @property string $css
  * @property string $theme
@@ -52,7 +50,6 @@ use Illuminate\Support\Collection;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Carbon $deleted_at
- * @property int $follower
  * @property bool|int $is_hidden
  *
  * UI virtual Settings
@@ -79,12 +76,10 @@ class Campaign extends Model
         'slug',
         'locale',
         'image',
-        'export_date',
         'visibility_id',
         'entity_visibility',
         'entity_personality_visibility',
         'header_image',
-        'system',
         'theme_id',
         'css',
         'ui_settings',
@@ -97,7 +92,6 @@ class Campaign extends Model
         'ui_settings' => 'array',
         'default_images' => 'array',
         'settings' => 'array',
-        'export_date' => 'date',
         'visibility_id' => CampaignVisibility::class,
     ];
 
@@ -359,7 +353,7 @@ class Campaign extends Model
     public function defaultVisibility(): Visibility
     {
         $visibility = $this->getDefaultVisibilityAttribute();
-        if ($visibility == 'admin' && auth()->user()->isAdmin()) {
+        if ($visibility == 'admin' && auth()->user()->can('admin', $this)) {
             return Visibility::Admin;
         } elseif ($visibility == 'admin-self') {
             return Visibility::AdminSelf;
@@ -378,7 +372,7 @@ class Campaign extends Model
     public function defaultGalleryVisibility(): Visibility
     {
         $visibility = $this->getDefaultGalleryVisibilityAttribute();
-        if ($visibility == 'admin' && auth()->user()->isAdmin()) {
+        if ($visibility == 'admin' && auth()->user()->can('admin', $this)) {
             return Visibility::Admin;
         } elseif ($visibility == 'admin-self') {
             return Visibility::AdminSelf;
@@ -427,16 +421,13 @@ class Campaign extends Model
         return $this;
     }
 
-    /**
-     * Get the value of the follower variable
-     */
     public function follower(): int
     {
         if (app()->hasDebugModeEnabled() && request()->has('_followers')) {
             return request()->get('_followers');
         }
 
-        return (int) $this->follower;
+        return (int) ($this->followers_count ?? $this->followers()->count());
     }
 
     public function hasModuleName(int $type, bool $plural = false): bool

@@ -30,7 +30,7 @@ class PrivacyController extends Controller
      */
     public function index(Campaign $campaign, Entity $entity)
     {
-        $this->authorize('privacy', $entity);
+        $this->authorize('privacy', [$entity, $campaign]);
 
         $visibility = $this->service->entity($entity)->visibilities();
 
@@ -45,7 +45,7 @@ class PrivacyController extends Controller
      */
     public function toggle(Campaign $campaign, Entity $entity)
     {
-        $this->authorize('privacy', $entity);
+        $this->authorize('privacy', [$entity, $campaign]);
 
         if ($entity->entityType->isCustom()) {
             $entity->update(['is_private' => ! $entity->is_private]);

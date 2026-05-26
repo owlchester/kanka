@@ -74,9 +74,8 @@ trait EntityScopes
      */
     public function scopeTemplates(Builder $query, int $entityTypeID): Builder
     {
-        // @phpstan-ignore-next-line
         return $query
-            ->template()
+            ->template() // @phpstan-ignore method.notFound
             ->where('type_id', $entityTypeID);
     }
 

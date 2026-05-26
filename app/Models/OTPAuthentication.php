@@ -2,38 +2,57 @@
 
 namespace App\Models;
 
+use App\Services\Auth\DeviceService;
 use Exception;
 use PragmaRX\Google2FALaravel\Support\Authenticator;
 
 class OTPAuthentication extends Authenticator
 {
-    // If User does not have Google2FA Setup yet
-    protected function canPassWithoutCheckingOTP()
+    protected function canPassWithoutCheckingOTP(): bool
     {
         if (! isset($this->getUser()->passwordSecurity)) {
             return true;
         }
 
-        return ! $this->getUser()->passwordSecurity->google2fa_enable || ! $this->isEnabled() || $this->noUserIsAuthenticated() || $this->twoFactorAuthStillValid();
+        return ! $this->getUser()->passwordSecurity->google2fa_enable
+            || ! $this->isEnabled()
+            || $this->noUserIsAuthenticated()
+            || $this->twoFactorAuthStillValid()
+            || $this->deviceIsVerified();
     }
 
-    protected function getGoogle2FaSecretkey()
+    public function login(): void
     {
-        // Get User secret column
+        parent::login();
+        $this->markDeviceVerified();
+    }
+
+    protected function getGoogle2FaSecretkey(): mixed
+    {
         try {
             $secret = $this->getUser()->passwordSecurity->{$this->config('otp_secret_column')};
-        } catch (Exception $e) {
-            // If User has not set up Google2FA
+        } catch (Exception) {
             $secret = $this->getUser()->passwordSecurity;
         }
 
-        // If User is not Authenticated through 2FA
         if (empty($secret)) {
-            // return Action
             return redirect()->action('PasswordSecurityController@generate2faSecretCode');
         }
 
-        // If user has Google2FA setup and is Authenticated
         return $secret;
+    }
+
+    private function deviceIsVerified(): bool
+    {
+        $device = app(DeviceService::class)->findForUser($this->getUser());
+
+        return $device !== null && $device->isTwoFactorVerified();
+    }
+
+    private function markDeviceVerified(): void
+    {
+        $device = app(DeviceService::class)->findForUser($this->getUser());
+
+        $device?->update(['two_factor_verified_at' => now()]);
     }
 }

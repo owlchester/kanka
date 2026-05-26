@@ -284,7 +284,7 @@ class IndexController extends Controller
             'loadMore' => __('entities/story.actions.load_more'),
         ];
 
-        $bookmarkable = $this->filterService->activeFiltersCount() > 0 && auth()->check() && auth()->user()->can('create', Bookmark::class) && ! $request->has('bookmark');
+        $bookmarkable = $this->filterService->activeFiltersCount() > 0 && auth()->check() && auth()->user()->can('create', [Bookmark::class, $campaign]) && ! $request->has('bookmark');
 
         return response()->json([
             'error' => $loadError,
@@ -299,7 +299,7 @@ class IndexController extends Controller
                 'create' => auth()->user()->can('create', [$entityType, $campaign]),
                 'delete' => auth()->user()->can('deleteEntities', [$entityType, $campaign]),
                 'template' => auth()->user()->can('useTemplates', $campaign),
-                'admin' => auth()->user()->isAdmin($campaign),
+                'admin' => auth()->user()->can('admin', $campaign),
             ] : null,
             'features' => [
                 'inventories' => $campaign->enabled('inventories'),

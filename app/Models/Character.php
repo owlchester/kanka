@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\FilterOption;
 use App\Enums\OrganisationMemberPin;
+use App\Facades\CampaignLocalization;
 use App\Facades\CharacterCache;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
@@ -133,6 +134,7 @@ class Character extends MiscModel
      */
     public function scopeMember(Builder $query, ?string $value, FilterOption $filter): Builder
     {
+        $campaign = CampaignLocalization::getCampaign();
         if ($filter === FilterOption::NONE) {
             // If called with a param, it's being called too early and will be called later in the process
             if (! empty($value)) {
@@ -145,7 +147,7 @@ class Character extends MiscModel
                 })
                 ->where('memb.organisation_id', null);
 
-            if (auth()->guest() || ! auth()->user()->isAdmin()) {
+            if (auth()->guest() || ! auth()->user()->can('admin', $campaign)) {
                 $query->where('memb.is_private', 0);
             }
 
@@ -171,7 +173,7 @@ class Character extends MiscModel
             })
             ->whereIn('memb.organisation_id', $ids);
 
-        if (auth()->guest() || ! auth()->user()->isAdmin()) {
+        if (auth()->guest() || ! auth()->user()->can('admin', $campaign)) {
             $query->where('memb.is_private', 0);
         }
 
@@ -425,33 +427,11 @@ class Character extends MiscModel
         ];
     }
 
-    /**
-     * Available sorting on the grid view
-     */
-    public function datagridSortableColumns(): array
-    {
-        $columns = [
-            'name' => __('crud.fields.name'),
-            'type' => __('crud.fields.type'),
-            'title' => __('characters.fields.title'),
-            'sex' => __('characters.fields.sex'),
-            'status_id' => __('characters.fields.status'),
-            'locations.name' => __('entities.locations'),
-        ];
-
-        if (auth()->check() && auth()->user()->isAdmin()) {
-            $columns['is_private'] = __('crud.fields.is_private');
-        }
-
-        return $columns;
-    }
-
     public function scopeFilteredCharacters(Builder $query): Builder
     {
-        // @phpstan-ignore-next-line
         return $query
             ->select([$this->getTable() . '.id', 'title', $this->getTable() . '.is_private'])
-            ->sort(request()->only(['o', 'k']), ['entities.name' => 'asc'])
+            ->sort(request()->only(['o', 'k']), ['entities.name' => 'asc']) // @phpstan-ignore method.notFound
             ->with([
                 'characterRaces',
                 'characterFamilies',

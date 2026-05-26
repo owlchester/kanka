@@ -14,6 +14,6 @@ class CharacterPolicy extends MiscPolicy
 
     public function personality(User $user, Character $character): bool
     {
-        return $character->is_personality_visible || $user->isAdmin();
+        return $character->is_personality_visible || $user->can('admin', $character->campaign);
     }
 }

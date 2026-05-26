@@ -25,7 +25,7 @@ class EntityTypePolicy
         }
 
         if ($entityType->code === 'bookmark') {
-            return auth()->user()->can('create', new Bookmark);
+            return auth()->user()->can('create', [Bookmark::class, $campaign]);
         }
 
         return EntityPermission::campaign($campaign)->user($user)->entityType($entityType)->can(Permission::Create);

@@ -681,20 +681,17 @@ class MentionsService
 
         // Remove those already cached in memory
         $ids = [];
-        // @phpstan-ignore-next-line
         foreach ($this->mentionedEntities as $id) {
             if (! Arr::has($this->entities, $id)) {
                 $ids[] = $id;
             }
         }
 
-        // @phpstan-ignore-next-line
         if (empty($ids)) {
             return;
         }
 
         // Directly get with the mentioned entity types (provided they are valid)
-        // @phpstan-ignore-next-line
         $entities = Entity::whereIn('id', $ids)->with(['tags:id,name,slug', 'entityType:id,code,is_special'])->get();
         // dump(count($ids));
         foreach ($entities as $entity) {

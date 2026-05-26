@@ -35,7 +35,7 @@
     @if ($tags->isNotEmpty())<div class="tooltip-tags flex flex-wrap gap-2 px-4">
         @foreach ($tags as $tag)
             @if (!$tag->entity) @continue @endif
-            <a href="{{ $tag->getLink() }}" class="tooltip-tag" data-id="{{ $tag->entity->id }}" data-tag-slug="{{ $tag->slug }}" title="{{ $tag->name }}">
+            <a href="{{ route('entities.show', [$campaign, $tag->entity]) }}" class="tooltip-tag" data-id="{{ $tag->entity->id }}" data-tag-slug="{{ $tag->slug }}" title="{{ $tag->name }}">
                 @include ('tags._badge')
             </a>
         @endforeach

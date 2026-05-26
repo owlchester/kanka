@@ -46,7 +46,7 @@ class BookmarkApiController extends ApiController
     public function store(Request $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('create', Bookmark::class);
+        $this->authorize('create', [Bookmark::class, $campaign]);
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;

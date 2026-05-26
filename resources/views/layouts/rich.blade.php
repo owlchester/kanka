@@ -40,7 +40,7 @@ $specificTheme = null;
     @includeWhen(!empty($campaign), 'layouts._theme')
     @yield('styles')
 </head>
-<body id="app" class="{{ $pageClass ?? 'rich-page' }} @if (!empty($campaign) && auth()->check() && auth()->user()->isAdmin()) is-admin @endif" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif>
+<body id="app" class="{{ $pageClass ?? 'rich-page' }} @if (!empty($campaign) && auth()->check() && auth()->user()->can('admin', $campaign)) is-admin @endif" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif>
 
 @yield('content')
 <x-dialog id="primary-dialog" :loading="true" />

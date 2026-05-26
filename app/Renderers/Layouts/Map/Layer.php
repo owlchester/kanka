@@ -2,6 +2,7 @@
 
 namespace App\Renderers\Layouts\Map;
 
+use App\Models\MapLayer;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 
@@ -21,8 +22,8 @@ class Layer extends Layout
             'name' => [
                 'key' => 'name',
                 'label' => __('crud.fields.name'),
-                'render' => function ($model) {
-                    return '<a href="' . $model->getLink() . '" class="text-link">' . $model->name . '</a>';
+                'render' => function (MapLayer $model) {
+                    return '<a href="' . route('maps.map_layers.edit', [$this->campaign, 'map' => $model->map_id, $model->id]) . '" class="text-link">' . $model->name . '</a>';
                 },
             ],
             'position' => [

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Copiable;
 use App\Models\Concerns\HasEntity;
 use App\Models\Concerns\LastSync;
@@ -32,8 +31,6 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property string[] $nullableForeignKeys
  * @property Carbon $created_at
  * @property Carbon $updated_at
- * @property int $created_by
- * @property int $updated_by
  *
  * @method static self|Builder sort(array $filters, array $defaultOrder = [])
  */
@@ -87,23 +84,6 @@ abstract class MiscModel extends Model
     public function hasEntity(): bool
     {
         return method_exists($this, 'entityTypeID');
-    }
-
-    public function getLink(string $action = 'show'): string
-    {
-        if (empty($this->entity)) {
-            return '#';
-        }
-        try {
-            $campaign = CampaignLocalization::getCampaign();
-            if (in_array($action, ['show', 'update'])) {
-                return route('entities.' . $action, [$campaign, $this->entity]);
-            }
-
-            return route($this->entity->entityType->pluralCode() . '.' . $action, [$campaign, $this->id]);
-        } catch (Exception $e) {
-            return '#';
-        }
     }
 
     /**
@@ -196,23 +176,6 @@ abstract class MiscModel extends Model
     public function entityTypeId(): int
     {
         return 0;
-    }
-
-    /**
-     * Boilerplate for sortable columns in the datagrid dropdowns
-     */
-    public function datagridSortableColumns(): array
-    {
-        $columns = [
-            'name' => __('crud.fields.name'),
-            'type' => __('crud.fields.type'),
-        ];
-
-        if (auth()->check() && auth()->user()->isAdmin()) {
-            $columns['is_private'] = __('crud.fields.is_private');
-        }
-
-        return $columns;
     }
 
     public function isPrivate(): bool

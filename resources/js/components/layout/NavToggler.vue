@@ -22,6 +22,10 @@ const props = defineProps<{
 
 const toggleSidebar = () => {
     const  body = document.querySelector('body');
+    if (isMobile()) {
+        body.classList.toggle('sidebar-open');
+        return;
+    }
     if (body.classList.contains('sidebar-collapse')) {
         body.classList.remove('sidebar-collapse');
         saveToCookie(false);
@@ -47,7 +51,6 @@ const isMobile = (): boolean => {
 
 const loadFromCookie = () => {
     if (isMobile()) {
-        document.body.classList.remove('sidebar-collapse');
         return;
     }
 

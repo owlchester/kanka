@@ -241,7 +241,7 @@ abstract class DatagridFilter
     protected function isPrivate(): self
     {
         // Add the is_private filter only for admins.
-        if (Auth::check() && Auth::user()->isAdmin()) {
+        if (Auth::check() && Auth::user()->can('admin', $this->campaign)) {
             $this->filters[] = 'is_private';
         }
 

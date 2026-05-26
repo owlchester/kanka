@@ -1,8 +1,7 @@
 import Sortable from "sortablejs"
 import { createApp } from 'vue'
 import VueTippy from 'vue-tippy'
-import Onboarding from "./dashboards/onboarding/Onboarding.vue"
-import GettingStarted from "./dashboards/widgets/getting-started/GettingStarted.vue"
+import OnboardingWidget from "./dashboards/widgets/onboarding-widget/OnboardingWidget.vue"
 import vClickOutside from "click-outside-vue3"
 
 class DashboardManager {
@@ -16,8 +15,7 @@ class DashboardManager {
         this.initPreviewExpander();    // Sets up delegation
         this.initDashboardAdminUI();
         this.initFollow();
-        this.initOnboarding();
-        this.initGettingStarted();
+        this.initOnboardingWidget();
 
         // Start observing widgets
         this.initLazyLoader();
@@ -216,25 +214,16 @@ class DashboardManager {
         });
     }
 
-    initOnboarding() {
-        const el = document.getElementById('onboarding');
-        if (!el) return;
-
+    initOnboardingWidget() {
+        const el = document.getElementById('onboarding-widget');
+        if (!el) {
+            return;
+        }
         const app = createApp({});
-        app.component('onboarding', Onboarding);
+        app.use(VueTippy);
         app.use(vClickOutside);
-        app.mount('#onboarding');
-    }
-
-    initGettingStarted() {
-        const el = document.getElementById('getting-started');
-        if (!el) return;
-
-        const app = createApp({});
-        app.component('getting-started', GettingStarted);
-        app.use(vClickOutside);
-        app.use(VueTippy, { theme: 'kanka' });
-        app.mount('#getting-started');
+        app.component('onboarding-widget', OnboardingWidget);
+        app.mount('#onboarding-widget');
     }
 }
 

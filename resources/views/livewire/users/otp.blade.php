@@ -45,7 +45,7 @@
                         <div class="field field-name">
                             <label>{{__('settings.account.2fa.fields.otp')}}</label>
 
-                            <input type="password" wire:model="otp" name="otp" maxlength="12" class="input rounded text-dark  w-full p-2" />
+                            <input type="text" wire:model="otp" name="otp" maxlength="12" inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code" class="input rounded text-dark  w-full p-2" />
                             <div>
                                 @error('otp') <span class="text-error-content">{{ $message }}</span> @enderror
                             </div>

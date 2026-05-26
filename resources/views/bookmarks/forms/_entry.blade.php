@@ -73,7 +73,7 @@ $premiumLink = '<a href="https://kanka.io/premium" class="text-link">' . __('con
         </x-forms.field>
     </x-grid>
 
-    @includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout')
+    @includeWhen(auth()->user()->can('admin', $campaign), 'cruds.fields.privacy_callout')
 </x-box>
 
 

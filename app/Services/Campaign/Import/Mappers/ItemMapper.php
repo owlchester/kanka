@@ -24,11 +24,10 @@ class ItemMapper extends MiscMapper
 
     public function second(): void
     {
-        // @phpstan-ignore method.notFound
         $this
             ->loadModel()
             ->foreign('locations', 'location_id')
-            ->importCreators()
+            ->importCreators() // @phpstan-ignore method.notFound
             ->saveModel()
             ->legacyCreator()
             ->entitySecond();

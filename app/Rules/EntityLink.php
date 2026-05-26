@@ -52,21 +52,19 @@ class EntityLink implements ValidationRule
         $entity = null;
         if ($segments[3] === 'entities') {
             /** @var ?Entity $entity */
-            // @phpstan-ignore-next-line
             $entity = Entity::where('id', (int) $segments[4])
                 ->where('campaign_id', $campaign->id)
                 ->allCampaigns()
-                ->withInvisible()
+                ->withInvisible() // @phpstan-ignore method.notFound
                 ->first();
         } else {
             $entityTypeID = config('entities.ids.' . Str::singular($segments[3]));
             if (empty($entityTypeID)) {
                 $fail(__('validation.entity_link'));
             }
-            // @phpstan-ignore-next-line
             $entity = Entity::where('entity_id', (int) $segments[4])
                 ->allCampaigns()
-                ->withInvisible()
+                ->withInvisible() // @phpstan-ignore method.notFound
                 ->where('type_id', $entityTypeID)
                 ->where('campaign_id', $campaign->id)
                 ->first();

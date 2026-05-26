@@ -108,6 +108,7 @@ return [
         'personal_settings'     => 'Personal Settings',
         'premium'               => 'Premium campaigns',
         'profile'               => 'Public profile',
+        'security'              => 'Security',
         'settings'              => 'Settings',
         'subscription'          => 'Subscription',
         'subscription_status'   => 'Subscription Status',

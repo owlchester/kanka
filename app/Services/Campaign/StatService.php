@@ -50,9 +50,9 @@ class StatService
     protected function types(): self
     {
         $stats = [];
-        // @phpstan-ignore-next-line
         $res = $this->campaign
             ->entities()
+            // @phpstan-ignore-next-line
             ->withInvisible()
             ->select(['type_id', DB::raw('count(*) as total')])
             ->groupBy('type_id')
@@ -70,7 +70,7 @@ class StatService
     {
         $this->stats['permissions'] = [];
         $this->stats['permissions']['users'] = $this->campaign->users()->count();
-        $this->stats['permissions']['followers'] = $this->campaign->followers()->count();
+        $this->stats['permissions']['followers'] = $this->campaign->follower();
         $this->stats['permissions']['roles'] = $this->campaign->roles()->count();
         arsort($this->stats['permissions']);
 
@@ -116,9 +116,9 @@ class StatService
         ];
 
         // Count the `words` field in the entities
-        // @phpstan-ignore-next-line
         $entityWords = $this->campaign
             ->entities()
+            // @phpstan-ignore-next-line
             ->withInvisible()
             ->sum('words');
         $this->stats['words']['entities'] = $entityWords;

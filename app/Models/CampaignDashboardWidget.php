@@ -122,7 +122,7 @@ class CampaignDashboardWidget extends Model
      */
     public function colSize(): int
     {
-        if ($this->widget == Widget::Campaign) {
+        if ($this->widget == Widget::Campaign || $this->widget == Widget::Onboarding) {
             return 12;
         }
         if (! empty($this->width)) {
@@ -139,7 +139,7 @@ class CampaignDashboardWidget extends Model
      */
     public function mdColSize(): int
     {
-        if ($this->widget == Widget::Campaign) {
+        if ($this->widget == Widget::Campaign || $this->widget == Widget::Onboarding) {
             return 12;
         }
         if (! empty($this->width)) {
@@ -377,10 +377,9 @@ class CampaignDashboardWidget extends Model
                 ->model($model)
                 ->make('dashboard');
 
-            // @phpstan-ignore-next-line
             $models = $model
                 ->select($model->getTable() . '.id')
-                ->filter($filterService->filters())
+                ->filter($filterService->filters()) // @phpstan-ignore method.notFound
                 ->get();
 
             $entityIds = $models->pluck('id');
@@ -500,6 +499,10 @@ class CampaignDashboardWidget extends Model
      */
     public function visible(): bool
     {
+        if ($this->widget === Widget::Onboarding && auth()->check() && auth()->user()->cant('update', $this->campaign)) {
+            return false;
+        }
+
         // Not linked to an entity, easy
         if (empty($this->entity_id)) {
             return true;

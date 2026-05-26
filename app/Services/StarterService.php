@@ -290,18 +290,16 @@ class StarterService
     {
         $position = 0;
 
-        // Recent widget
         $widget = new CampaignDashboardWidget([
             'campaign_id' => $this->campaign->id,
-            'widget' => Widget::Recent,
-            'width' => 4,
+            'widget' => Widget::Onboarding,
             'position' => $position++,
         ]);
         $widget->save();
 
         $widget = new CampaignDashboardWidget([
             'campaign_id' => $this->campaign->id,
-            'widget' => Widget::Onboarding,
+            'widget' => Widget::Recent,
             'width' => 4,
             'position' => $position++,
         ]);

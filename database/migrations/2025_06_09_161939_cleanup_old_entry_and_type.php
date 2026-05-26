@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         $tables = [
-            // 'characters',
+            'characters',
             'families',
             'locations',
             'organisations',

@@ -271,7 +271,7 @@ class SetupService
 
         $options[Visibility::All->value] = __('crud.visibilities.all');
 
-        if ($this->user->isAdmin()) {
+        if ($this->user->can('admin', $this->campaign)) {
             $options[Visibility::Admin->value] = __('crud.visibilities.admin');
             $options[Visibility::Member->value] = __('crud.visibilities.members');
         }
