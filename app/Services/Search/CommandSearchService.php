@@ -25,9 +25,11 @@ class CommandSearchService
      */
     public function name(string $term): array
     {
+        if (isset($this->user)) {
+            $this->searchService->user($this->user);
+        }
         $result = $this->searchService
             ->campaign($this->campaign)
-            ->user($this->user)
             ->term($term)
             ->full()
             ->v2()
