@@ -29,6 +29,7 @@ class PermissionController extends Controller
         $this->authorize('permissions', $entity);
 
         $this->permissionService
+            ->campaign($campaign)
             ->user($request->user())
             ->entity($entity)
             ->save($request->only('role', 'user'));
