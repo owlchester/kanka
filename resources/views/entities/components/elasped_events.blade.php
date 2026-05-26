@@ -13,7 +13,7 @@ $distinctCalendars = [];
 $birth = null;
 $death = null;
 foreach ($elapsed as $event) {
-    if (empty($event->calendar) || $event->isCalendarDate()) {
+    if (empty($event->calendar) || empty($event->calendar->entity) || $event->isCalendarDate()) {
         continue;
     }
     if ($event->isBirth()) {
