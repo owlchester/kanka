@@ -57,7 +57,7 @@ class EntityTypeApiController extends ApiController
         }
 
         if ($campaign->entityTypes->count() >= $limit) {
-            return response()->json(['error' => 'Max number of custom modules reached (:count/:max)' . $error, [
+            return response()->json(['error' => __('Max number of custom categories reached (:count/:max)', ['count' => $campaign->entityTypes->count(), 'max' => $limit]) . $error, [
                 'count' => $campaign->entityTypes->count(),
                 'max' => $limit,
             ]], 401);
