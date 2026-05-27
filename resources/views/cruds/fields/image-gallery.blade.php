@@ -28,9 +28,10 @@ if (!empty($entity) && $entity->hasImage()) {
 }
 
 // If the image is from the gallery and the user can't browse or upload, disable the field
-$canBrowse = isset($campaign) && (auth()->user()->can('browse', [\App\Models\Image::class, $campaign]) || auth()->user()->can('create', [\App\Models\Image::class, $campaign]));
+$canUpload = isset($campaign) && auth()->user()->can('create', [\App\Models\Image::class, $campaign]);
+$canBrowse = isset($campaign) && auth()->user()->can('browse', [\App\Models\Image::class, $campaign]);
 $fieldname = $fieldname ?? 'entity_image_uuid';
-if (!empty($entity) && !empty($entity->image) && !$canBrowse) {
+if (!empty($entity) && !empty($entity->image) && !$canUpload && !$canBrowse) {
     ?><input type="hidden" name="{{ $fieldname }}" value="{{ $entity->image_uuid }}" /><?php
     return;
 }
@@ -44,6 +45,13 @@ $old = isset($entity) && !empty($entity->image_path) || isset($model) && !empty(
         'remove' => __('crud.remove'),
         'url' => __('gallery.actions.url'),
         'gallery' => __('gallery.actions.gallery'),
+        'upload'    => __('gallery.actions.upload'),
+        'add_url'   => __('gallery.actions.add_url'),
+        'change'    => __('gallery.actions.change'),
+        'url_hint'  => __('gallery.actions.url_hint'),
+        'drag_hint' => __('gallery.drop.hint'),
+        'drop_hint' => __('gallery.drop.active'),
+        'formats'   => $formats . ' · max ' . $max . ' MB',
         'unauthorized' => __('gallery.download.errors.unauthorized'),
         'browse' => [
             'title' => __('gallery.browse.title'),
@@ -88,6 +96,8 @@ $old = isset($entity) && !empty($entity->image_path) || isset($model) && !empty(
             i18n="{{ $translations }}"
             premium="{{ $campaign->boosted() || $isUnlimited ? 'true' : 'false' }}"
             cta="{{ route('settings.premium', ['campaign' => $campaign->id, $from]) }}"
+            can-upload="{{ $canUpload ? 'true' : 'false' }}"
+            can-browse="{{ $canBrowse ? 'true' : 'false' }}"
         >
             <x-icon class="load" />
         </gallery-selection>
