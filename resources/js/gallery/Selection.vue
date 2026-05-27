@@ -2,7 +2,7 @@
     <div v-if="loading">
         <i class="fa-solid fa-spin fa-spinner" aria-label="Loading"></i>
     </div>
-    <div v-else class="relative" @click.stop>
+    <div v-else class="relative">
         <!-- Drop zone -->
         <div
             ref="zoneRef"
@@ -105,7 +105,7 @@
                         v-model="imageUrl"
                         @blur="download()"
                         @paste="pasteUrl"
-                        @keydown.esc.stop="urlExpanded = false"
+                        @keydown.esc.stop="imageUrl = null; urlExpanded = false"
                         :placeholder="trans.url"
                     />
                     <span class="text-xs text-base-content/40">{{ trans.url_hint }}</span>
@@ -307,6 +307,14 @@ const openGallery = () => {
     galleryOpened.value = true
 }
 
+const handleDropdownEscape = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') {
+        dropdownOpen.value = false
+        urlExpanded.value = false
+        document.removeEventListener('keydown', handleDropdownEscape)
+    }
+}
+
 const toggleDropdown = () => {
     if (uploading.value) {
         return
@@ -315,9 +323,11 @@ const toggleDropdown = () => {
     if (dropdownOpen.value) {
         nextTick(() => {
             document.addEventListener('click', closeDropdownOnOutside)
+            document.addEventListener('keydown', handleDropdownEscape)
         })
     } else {
         document.removeEventListener('click', closeDropdownOnOutside)
+        document.removeEventListener('keydown', handleDropdownEscape)
     }
 }
 
@@ -329,6 +339,7 @@ const closeDropdownOnOutside = (e: MouseEvent) => {
         dropdownOpen.value = false
         urlExpanded.value = false
         document.removeEventListener('click', closeDropdownOnOutside)
+        document.removeEventListener('keydown', handleDropdownEscape)
     }
 }
 
@@ -525,6 +536,7 @@ const clickOutside = (event) => {
 
 onBeforeUnmount(() => {
     document.removeEventListener('click', closeDropdownOnOutside)
+    document.removeEventListener('keydown', handleDropdownEscape)
     document.removeEventListener('keydown', handleEscape)
 })
 
