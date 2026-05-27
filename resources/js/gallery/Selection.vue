@@ -77,10 +77,12 @@ const props = defineProps<{
     thumbnail: string,
     browse: string,
     field: string,
-    old: string, // Using the old system
+    old: string,
     i18n: undefined,
     cta: string,
-    premium: string
+    premium: string,
+    canUpload: string,
+    canBrowse: string,
 }>()
 
 
@@ -104,6 +106,14 @@ const trans = ref(null)
 const cta = ref()
 const ctaOpen = ref(false)
 const storageFull = ref()
+const dragging = ref(false)
+const dragCounter = ref(0)
+const dropdownOpen = ref(false)
+const urlExpanded = ref(false)
+const zoneRef = ref<HTMLElement | null>(null)
+const dropdownRef = ref<HTMLElement | null>(null)
+const canUploadProp = ref(false)
+const canBrowseProp = ref(false)
 
 onMounted(() => {
     loading.value = false
@@ -115,23 +125,43 @@ onMounted(() => {
     if (props.premium === 'true') {
         hasPremium.value = true
     }
+    if (props.canUpload === 'true') {
+        canUploadProp.value = true
+    }
+    if (props.canBrowse === 'true') {
+        canBrowseProp.value = true
+    }
 
     trans.value = JSON.parse(props.i18n)
 });
 
-const backgroundClass = () => {
-    let css = 'relative flex items-end align-middle rounded overflow-hidden bg-no-repeat '
-
-    if (!hasPreview()) {
-        css += 'w-full'
+const zoneClass = () => {
+    const isUploading = uploading.value
+    const hasImg = hasImage()
+    // justify-end pushes content (progress bar, image overlay) to the bottom;
+    // justify-center vertically centers the empty/drag icon
+    let css = 'relative w-full min-h-[90px] rounded-xl overflow-hidden cursor-pointer flex flex-col items-center transition-all duration-150 '
+    css += (isUploading || hasImg) ? 'justify-end ' : 'justify-center '
+    if (isUploading) {
+        css += 'border-2 border-dashed border-base-300 '
+    } else if (hasImg) {
+        css += 'border border-base-300 '
+    } else if (dragging.value) {
+        css += 'border-2 border-dashed border-accent bg-accent/10 '
     } else {
-        css += ' cover-background preview-bg w-48 h-36 p-2 '
+        css += 'border-2 border-dashed border-base-300 bg-base-200/50 hover:bg-base-200 hover:border-base-content/30 '
     }
     return css
 }
 
-const buttonsClass = () => {
-    return uploading.value ? 'hidden' : 'flex gap-2 flex-col w-full'
+const zoneStyle = () => {
+    if (uploading.value && imagePreview.value) {
+        return { backgroundImage: backgroundImage(), backgroundSize: 'cover', backgroundPosition: 'center' }
+    }
+    if (hasImage() && !uploading.value) {
+        return { backgroundImage: backgroundImage(), backgroundSize: 'cover', backgroundPosition: 'center' }
+    }
+    return {}
 }
 
 const hasImage = () => {
@@ -172,6 +202,57 @@ const openGallery = () => {
     galleryOpened.value = true
 }
 
+const toggleDropdown = () => {
+    if (uploading.value) {
+        return
+    }
+    dropdownOpen.value = !dropdownOpen.value
+    if (dropdownOpen.value) {
+        nextTick(() => {
+            document.addEventListener('click', closeDropdownOnOutside)
+        })
+    }
+}
+
+const closeDropdownOnOutside = (e: MouseEvent) => {
+    if (
+        !zoneRef.value?.contains(e.target as Node) &&
+        !dropdownRef.value?.contains(e.target as Node)
+    ) {
+        dropdownOpen.value = false
+        urlExpanded.value = false
+        document.removeEventListener('click', closeDropdownOnOutside)
+    }
+}
+
+const onDragEnter = () => {
+    if (!canUploadProp.value) {
+        return
+    }
+    dragCounter.value++
+    dragging.value = true
+}
+
+const onDragLeave = () => {
+    dragCounter.value--
+    if (dragCounter.value === 0) {
+        dragging.value = false
+    }
+}
+
+const onDrop = (e: DragEvent) => {
+    dragCounter.value = 0
+    dragging.value = false
+    if (!canUploadProp.value) {
+        return
+    }
+    const file = e.dataTransfer?.files[0]
+    if (!file) {
+        return
+    }
+    uploadFile(file)
+}
+
 const pasteUrl = (event) => {
     imageUrl.value = event.clipboardData.getData('text')
     download()
@@ -203,22 +284,16 @@ const download = () => {
         })
 }
 
-const upload = async (event) => {
-    const file = event.target.files[0]
-    if (!file) {
-        uploading.value = false
-        return
-    }
+const uploadFile = async (file: File) => {
     const reader = new FileReader()
     reader.onload = (e) => {
-        imagePreview.value = e.target.result
+        imagePreview.value = e.target?.result as string
     }
     reader.readAsDataURL(file)
 
     uploading.value = true
     document.addEventListener('keydown', handleEscape)
     cancelTokenSource.value = axios.CancelToken.source()
-    fileField.value.disabled = true
 
     const formData = new FormData()
     formData.append('file', file)
@@ -234,25 +309,43 @@ const upload = async (event) => {
     })
         .then(res => {
             uploading.value = false
-            fileField.value.disabled = false
-            fileField.value = null
             currentThumbnail.value = res.data.thumbnail
             currentUuid.value = res.data.uuid
             imagePreview.value = null
             document.removeEventListener('keydown', handleEscape)
         })
-        .catch (err => {
+        .catch(err => {
             uploading.value = false
-            fileField.value.disabled = false
             imagePreview.value = null
             if (axios.isCancel(err)) {
                 // User cancelled
-                fileField.value = null
             } else {
                 showErrors(err)
             }
             document.removeEventListener('keydown', handleEscape)
         })
+}
+
+const upload = async (event: Event) => {
+    const target = event.target as HTMLInputElement
+    const file = target.files?.[0]
+    if (!file) {
+        uploading.value = false
+        return
+    }
+    await uploadFile(file)
+}
+
+const triggerFileInput = () => {
+    dropdownOpen.value = false
+    fileField.value?.click()
+}
+
+const toggleUrlExpanded = () => {
+    urlExpanded.value = !urlExpanded.value
+    if (urlExpanded.value) {
+        nextTick(() => urlField.value?.focus())
+    }
 }
 
 const showErrors = (err) => {
@@ -320,5 +413,10 @@ const clickOutside = (event) => {
         closeDialog(event.target)
     }
 }
+
+onBeforeUnmount(() => {
+    document.removeEventListener('click', closeDropdownOnOutside)
+    document.removeEventListener('keydown', handleEscape)
+})
 
 </script>
