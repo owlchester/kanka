@@ -2,8 +2,12 @@
 
 return [
     'actions'   => [
+        'add_url'   => 'Add from URL',
+        'change'    => 'Change',
         'gallery'   => 'From gallery',
+        'upload'    => 'Upload from device',
         'url'       => 'Upload an image from a URL',
+        'url_hint'  => 'Paste triggers download · Esc to cancel',
     ],
     'browse'    => [
         'layouts'       => [
@@ -23,6 +27,10 @@ return [
     ],
     'delete'    => [
         'success'   => '[0] Deleted 0 elements|[1] Deleted one element|{2,*} Deleted :count elements',
+    ],
+    'drop'      => [
+        'active'    => 'Drop to upload',
+        'hint'      => 'Click or drag image here',
     ],
     'download'  => [
         'errors'    => [
