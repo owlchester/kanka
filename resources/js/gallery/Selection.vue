@@ -2,40 +2,152 @@
     <div v-if="loading">
         <i class="fa-solid fa-spin fa-spinner" aria-label="Loading"></i>
     </div>
-    <div v-else :class="backgroundClass()" :style="{'backgroundImage': backgroundImage()}">
-        <div :class="buttonsClass()">
-            <div class="rounded p-2 cursor-pointer backdrop-blur-sm backdrop-opacity-30 bg-red-700/50 text-white hover:backdrop-opacity-100 transition" v-if="hasPreview()" @click="removeImage()" v-html="trans.remove">
-            </div>
-            <div class="flex items-center gap-1" v-if="!hasImage()">
-                <input type="file" v-bind:accept="props.accepts" class="w-full" @change="upload" ref="fileField" />
-            </div>
-            <div class="flex items-center gap-1" v-if="!hasImage()">
-                <input ref="urlField" type="text" class="w-full" v-model="imageUrl" @blur="download()" @paste="pasteUrl" :placeholder="trans.url" />
-                <i class="fa-solid fa-spin fa-spinner" v-if="downloading" aria-label="Downloading" />
-            </div>
-            <div class="flex items-center gap-1" v-if="!hasImage()">
-                <span role="button" class="btn2 btn-outline btn-sm" @click="openGallery()" v-html="trans.gallery"></span>
-            </div>
-        </div>
-        <div v-if="uploading" class="flex gap-2 flex-col w-full">
-            <div class="progress h-1 w-full">
-                <div class="h-1 bg-accent shadow-xs" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" :style="{'width': progressPercentage()}">
-                    <span class="sr-only"></span>
+    <div v-else class="relative" @click.stop>
+        <!-- Drop zone -->
+        <div
+            ref="zoneRef"
+            :class="zoneClass()"
+            :style="zoneStyle()"
+            @click="toggleDropdown"
+            @dragenter.prevent="onDragEnter"
+            @dragover.prevent
+            @dragleave="onDragLeave"
+            @drop.prevent="onDrop"
+        >
+            <!-- Empty / drag state -->
+            <template v-if="!hasImage() && !uploading">
+                <i class="fa-regular fa-camera text-3xl opacity-30" aria-hidden="true"></i>
+                <span class="text-xs text-base-content/40">
+                    {{ dragging ? trans.drop_hint : trans.drag_hint }}
+                </span>
+            </template>
+
+            <!-- Uploading dark overlay — must come before progress bar in DOM so z-10 on the bar renders above it -->
+            <div v-if="uploading && imagePreview" class="absolute inset-0 bg-black/50 rounded-xl"></div>
+
+            <!-- Upload progress -->
+            <div v-if="uploading" class="relative z-10 w-full flex flex-col gap-2 p-3">
+                <div class="h-1 w-full bg-base-300/80 rounded-full overflow-hidden">
+                    <div
+                        class="h-1 bg-accent rounded-full transition-all duration-300"
+                        role="progressbar"
+                        :aria-valuenow="progress"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                        :style="{'width': progressPercentage()}"
+                    >
+                        <span class="sr-only">{{ progressPercentage() }}</span>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center text-xs">
+                    <span class="text-white/70">{{ progressPercentage() }}</span>
+                    <button type="button" class="text-red-300 flex items-center gap-1" @click.stop="cancelUpload">
+                        <i class="fa-regular fa-xmark" aria-hidden="true"></i>
+                        {{ trans.cancel }}
+                    </button>
                 </div>
             </div>
-            <div class="rounded p-2 cursor-pointer backdrop-blur-sm backdrop-opacity-30 bg-red-700/50 text-white hover:backdrop-opacity-100 transition flex items-center gap-2" @click="cancelUpload()">
-                <span class="grow" v-html="trans.cancel"></span>
-                <span class="text-xs flex-none" v-html="progressPercentage()"></span>
+
+            <!-- Image change overlay -->
+            <div
+                v-if="hasImage() && !uploading"
+                class="absolute inset-x-0 bottom-0 bg-black/50 backdrop-blur-sm px-3 py-1.5 text-white/70 text-xs flex justify-end items-center gap-1"
+            >
+                {{ trans.change }}
+                <i class="fa-regular fa-chevron-down text-xs" aria-hidden="true"></i>
             </div>
         </div>
+
+        <!-- Dropdown -->
+        <div
+            v-if="dropdownOpen"
+            ref="dropdownRef"
+            class="absolute left-0 right-0 top-full z-50 mt-1 bg-base-100 border border-base-300 rounded-xl shadow-lg overflow-hidden flex flex-col"
+        >
+            <!-- Upload from device -->
+            <button
+                v-if="canUploadProp"
+                type="button"
+                class="text-left px-3 py-2.5 hover:bg-base-200 transition-colors duration-150 flex gap-3 items-start border-b border-base-200"
+                @click.stop="triggerFileInput"
+            >
+                <i class="fa-regular fa-upload mt-0.5 w-4 shrink-0 text-center" aria-hidden="true"></i>
+                <div class="flex flex-col gap-0.5">
+                    <span class="text-sm">{{ trans.upload }}</span>
+                    <span class="text-xs text-base-content/40">{{ trans.formats }}</span>
+                </div>
+            </button>
+
+            <!-- Add from URL -->
+            <div v-if="canUploadProp" class="border-b border-base-200">
+                <button
+                    type="button"
+                    class="w-full text-left px-3 py-2.5 hover:bg-base-200 transition-colors duration-150 flex gap-3 items-center"
+                    @click.stop="toggleUrlExpanded"
+                >
+                    <i
+                        class="w-4 shrink-0 text-center"
+                        :class="downloading ? 'fa-solid fa-spin fa-spinner' : 'fa-regular fa-link'"
+                        aria-hidden="true"
+                    ></i>
+                    <span class="text-sm grow">{{ trans.add_url }}</span>
+                    <i
+                        class="fa-regular fa-chevron-down text-xs transition-transform duration-150"
+                        :class="urlExpanded ? 'rotate-180' : ''"
+                        aria-hidden="true"
+                    ></i>
+                </button>
+                <div v-if="urlExpanded" class="px-3 pb-3 flex flex-col gap-1">
+                    <input
+                        ref="urlField"
+                        type="text"
+                        class="w-full"
+                        v-model="imageUrl"
+                        @blur="download()"
+                        @paste="pasteUrl"
+                        @keydown.esc.stop="urlExpanded = false"
+                        :placeholder="trans.url"
+                    />
+                    <span class="text-xs text-base-content/40">{{ trans.url_hint }}</span>
+                </div>
+            </div>
+
+            <!-- Choose from gallery -->
+            <button
+                v-if="canBrowseProp"
+                type="button"
+                class="text-left px-3 py-2.5 hover:bg-base-200 transition-colors duration-150 flex gap-3 items-center"
+                :class="hasImage() ? 'border-b border-base-200' : ''"
+                @click.stop="openGallery(); dropdownOpen = false"
+            >
+                <i class="fa-regular fa-images w-4 shrink-0 text-center" aria-hidden="true"></i>
+                <span class="text-sm">{{ trans.gallery }}</span>
+            </button>
+
+            <!-- Remove image -->
+            <button
+                v-if="hasImage()"
+                type="button"
+                class="text-left px-3 py-2.5 hover:bg-base-200 transition-colors duration-150 flex gap-3 items-center text-error"
+                @click.stop="removeImage(); dropdownOpen = false"
+            >
+                <i class="fa-regular fa-trash w-4 shrink-0 text-center" aria-hidden="true"></i>
+                <span class="text-sm">{{ trans.remove }}</span>
+            </button>
+        </div>
+
+        <!-- Hidden file input (triggered programmatically) -->
+        <input type="file" ref="fileField" :accept="props.accepts" @change="upload" class="hidden" />
     </div>
+
+    <!-- Hidden form inputs -->
     <input type="hidden" :name="props.field" v-model="currentUuid" />
     <input type="hidden" :name="'remove-image'" value="1" v-if="removedOld" />
 
     <Browser
         :api="props.browse"
         :opened="galleryOpened"
-        :i18n="i18n"
+        :i18n="props.i18n"
         @selected="selectImage"
         @closed="closedGallery"
     ></Browser>
