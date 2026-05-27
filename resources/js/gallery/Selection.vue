@@ -273,13 +273,6 @@ const hasImage = () => {
     return hasOld.value || currentUuid.value !== null && currentUuid.value !== ''
 }
 
-const hasPreview = () => {
-    if (imagePreview.value || hasOld.value) {
-        return true
-    }
-    return currentUuid.value !== null && currentUuid.value !== ''
-}
-
 const removeImage = () => {
     currentUuid.value = null
     currentThumbnail.value = null
@@ -405,6 +398,7 @@ const download = () => {
 }
 
 const uploadFile = async (file: File) => {
+    progress.value = 0
     const reader = new FileReader()
     reader.onload = (e) => {
         imagePreview.value = e.target?.result as string
@@ -432,11 +426,17 @@ const uploadFile = async (file: File) => {
             currentThumbnail.value = res.data.thumbnail
             currentUuid.value = res.data.uuid
             imagePreview.value = null
+            if (fileField.value) {
+                fileField.value.value = ''
+            }
             document.removeEventListener('keydown', handleEscape)
         })
         .catch(err => {
             uploading.value = false
             imagePreview.value = null
+            if (fileField.value) {
+                fileField.value.value = ''
+            }
             if (axios.isCancel(err)) {
                 // User cancelled
             } else {
