@@ -66,7 +66,7 @@
 </template>
 
 <script setup lang="ts">
-import {ref, onMounted, onBeforeUnmount, nextTick} from 'vue'
+import {ref, computed, onMounted, onBeforeUnmount, nextTick} from 'vue'
 import Browser from "./Browser.vue"
 
 const props = defineProps<{
@@ -112,8 +112,8 @@ const dropdownOpen = ref(false)
 const urlExpanded = ref(false)
 const zoneRef = ref<HTMLElement | null>(null)
 const dropdownRef = ref<HTMLElement | null>(null)
-const canUploadProp = ref(false)
-const canBrowseProp = ref(false)
+const canUploadProp = computed(() => props.canUpload === 'true')
+const canBrowseProp = computed(() => props.canBrowse === 'true')
 
 onMounted(() => {
     loading.value = false
@@ -125,13 +125,6 @@ onMounted(() => {
     if (props.premium === 'true') {
         hasPremium.value = true
     }
-    if (props.canUpload === 'true') {
-        canUploadProp.value = true
-    }
-    if (props.canBrowse === 'true') {
-        canBrowseProp.value = true
-    }
-
     trans.value = JSON.parse(props.i18n)
 });
 
@@ -211,6 +204,8 @@ const toggleDropdown = () => {
         nextTick(() => {
             document.addEventListener('click', closeDropdownOnOutside)
         })
+    } else {
+        document.removeEventListener('click', closeDropdownOnOutside)
     }
 }
 
@@ -234,7 +229,9 @@ const onDragEnter = () => {
 }
 
 const onDragLeave = () => {
-    dragCounter.value--
+    if (dragCounter.value > 0) {
+        dragCounter.value--
+    }
     if (dragCounter.value === 0) {
         dragging.value = false
     }
