@@ -17,12 +17,14 @@ return [
         'viewable-by'       => 'Viewable by',
     ],
     'toggle'    => [
+        'current'   => 'Current',
         'label'     => 'Entry privacy',
         'private'   => [
             'description'   => 'Only visible to members of :admin role.',
             'title'         => 'Private',
         ],
         'public'    => [
+            'helper'        => 'Anyone with access to this world can view this entry, subject to their role permissions.',
             'description'   => 'Visible to the following roles and members.',
             'title'         => 'Public',
         ],

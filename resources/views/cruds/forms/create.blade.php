@@ -47,6 +47,27 @@
         <x-grid type="1/1">
             @include('cruds.forms._errors')
 
+            
+            <div class="bg-base-100 entity-form flex flex-col rounded-xl">
+                <div class=entity-header">
+                    Header image stuff
+                </div>
+                <div class="flex gap-2 p-4">
+                    <div>
+                        image
+                    </div>
+                    <div class="grow">
+                        name and alias
+                    </div>
+                    <div>
+                        @includeWhen(auth()->user()->can('admin', $campaign), 'cruds.fields.entity-permission')
+                    </div>
+                    <div>
+                        @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form'])
+                    </div>
+                </div>
+            </div>
+
             <div class="nav-tabs-custom bg-base-100 p-4 rounded-xl flex flex-col gap-6 relative">
                 <div class="flex gap-2 items-center justify-between sticky z-10 top-12 bg-base-100">
                     <div class="overflow-x-auto">
@@ -70,8 +91,6 @@
                             @endif
                         </ul>
                     </div>
-
-                    @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form'])
                 </div>
 
                 <div class="tab-content">
