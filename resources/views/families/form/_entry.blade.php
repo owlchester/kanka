@@ -1,6 +1,4 @@
 <x-grid>
-    @include('cruds.fields.entity-name')
-
     @include('cruds.fields.type', ['base' => \App\Models\Family::class, 'trans' => 'families'])
 
     @include('cruds.fields.parent')

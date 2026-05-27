@@ -1,7 +1,5 @@
 <?php /** @var \App\Models\Calendar $model */ ?>
 <x-grid>
-    @include('cruds.fields.entity-name')
-
     @include('cruds.fields.type', ['base' => \App\Models\Calendar::class, 'trans' => 'calendars'])
 
     @include('cruds.fields.parent')

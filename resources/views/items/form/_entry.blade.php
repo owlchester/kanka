@@ -1,5 +1,4 @@
 <x-grid>
-    @include('cruds.fields.entity-name')
     @include('cruds.fields.type', ['base' => \App\Models\Item::class, 'trans' => 'items'])
 
     @include('cruds.fields.parent')

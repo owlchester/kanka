@@ -1,5 +1,4 @@
 <x-grid>
-    @include('cruds.fields.entity-name')
     @include('cruds.fields.type', ['base' => \App\Models\Character::class, 'trans' => 'characters'])
     @include('cruds.fields.title')
     @include('cruds.fields.families', ['quickCreator' => true])

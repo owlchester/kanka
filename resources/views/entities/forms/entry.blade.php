@@ -1,5 +1,4 @@
 <x-grid>
-    @include('cruds.fields.entity-name')
     @include('cruds.fields.type', ['trans' => 'crud'])
     @include('cruds.fields.parent', ['trans' => 'crud', 'is_parent' => true])
     @include('cruds.fields.locations', ['from' => $entity ?? null, 'quickCreator' => true, 'model' => $entity ?? $source ?? null])

@@ -6,7 +6,6 @@ $targets = [
 ?>
 
 <x-grid>
-    @include('cruds.fields.entity-name')
     @include('cruds.fields.type', ['base' => \App\Models\Conversation::class, 'trans' => 'conversations'])
 
     <x-forms.field

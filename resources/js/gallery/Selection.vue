@@ -7,54 +7,45 @@
         <div
             ref="zoneRef"
             :class="zoneClass()"
-            :style="zoneStyle()"
             @click="toggleDropdown"
             @dragenter.prevent="onDragEnter"
             @dragover.prevent
             @dragleave="onDragLeave"
             @drop.prevent="onDrop"
         >
+            <div 
+            :class="previewClass()"
+            :style="previewStyle()">
             <!-- Empty / drag state -->
-            <template v-if="!hasImage() && !uploading">
-                <i class="fa-regular fa-camera text-3xl opacity-30" aria-hidden="true"></i>
-                <span class="text-xs text-base-content/40">
-                    {{ dragging ? trans.drop_hint : trans.drag_hint }}
-                </span>
-            </template>
-
-            <!-- Uploading dark overlay — must come before progress bar in DOM so z-10 on the bar renders above it -->
-            <div v-if="uploading && imagePreview" class="absolute inset-0 bg-black/50 rounded-xl"></div>
-
-            <!-- Upload progress -->
-            <div v-if="uploading" class="relative z-10 w-full flex flex-col gap-2 p-3">
-                <div class="h-1 w-full bg-base-300/80 rounded-full overflow-hidden">
-                    <div
-                        class="h-1 bg-accent rounded-full transition-all duration-300"
-                        role="progressbar"
-                        :aria-valuenow="progress"
-                        aria-valuemin="0"
-                        aria-valuemax="100"
-                        :style="{'width': progressPercentage()}"
-                    >
-                        <span class="sr-only">{{ progressPercentage() }}</span>
+                <template v-if="!hasImage() && !uploading">
+                    <i class="fa-regular fa-camera text-xl text-neutral-content" aria-hidden="true"></i>
+                </template>
+    
+                <!-- Uploading dark overlay — must come before progress bar in DOM so z-10 on the bar renders above it -->
+                <div v-if="uploading && imagePreview" class="absolute inset-0 bg-black/50 rounded-xl"></div>
+    
+                <!-- Upload progress -->
+                <div v-if="uploading" class="relative z-10 w-full flex flex-col gap-2 p-3">
+                    <div class="h-1 w-full bg-base-200 rounded-full overflow-hidden">
+                        <div
+                            class="h-1 bg-accent rounded-full transition-all duration-300"
+                            role="progressbar"
+                            :aria-valuenow="progress"
+                            aria-valuemin="0"
+                            aria-valuemax="100"
+                            :style="{'width': progressPercentage()}"
+                        >
+                            <span class="sr-only">{{ progressPercentage() }}</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center text-xs">
+                        <span class="text-white/70">{{ progressPercentage() }}</span>
+                        <button type="button" class="text-red-300 flex items-center gap-1" @click.stop="cancelUpload">
+                            <i class="fa-regular fa-xmark" aria-hidden="true"></i>
+                            {{ trans.cancel }}
+                        </button>
                     </div>
                 </div>
-                <div class="flex justify-between items-center text-xs">
-                    <span class="text-white/70">{{ progressPercentage() }}</span>
-                    <button type="button" class="text-red-300 flex items-center gap-1" @click.stop="cancelUpload">
-                        <i class="fa-regular fa-xmark" aria-hidden="true"></i>
-                        {{ trans.cancel }}
-                    </button>
-                </div>
-            </div>
-
-            <!-- Image change overlay -->
-            <div
-                v-if="hasImage() && !uploading"
-                class="absolute inset-x-0 bottom-0 bg-black/50 backdrop-blur-sm px-3 py-1.5 text-white/70 text-xs flex justify-end items-center gap-1"
-            >
-                {{ trans.change }}
-                <i class="fa-regular fa-chevron-down text-xs" aria-hidden="true"></i>
             </div>
         </div>
 
@@ -62,35 +53,40 @@
         <div
             v-if="dropdownOpen"
             ref="dropdownRef"
-            class="absolute left-0 right-0 top-full z-50 mt-1 bg-base-100 border border-base-300 rounded-xl shadow-lg overflow-hidden flex flex-col"
+            class="absolute left-0 right-0 top-full z-50 mt-1 bg-base-100 rounded-xl shadow-xl overflow-hidden flex flex-col w-80"
         >
             <!-- Upload from device -->
             <button
                 v-if="canUploadProp"
                 type="button"
-                class="text-left px-3 py-2.5 hover:bg-base-200 transition-colors duration-150 flex gap-3 items-start border-b border-base-200"
+                class="text-left px-3 py-2.5 hover:bg-base-200 transition-colors duration-150 flex gap-3 items-start"
                 @click.stop="triggerFileInput"
             >
-                <i class="fa-regular fa-upload mt-0.5 w-4 shrink-0 text-center" aria-hidden="true"></i>
-                <div class="flex flex-col gap-0.5">
-                    <span class="text-sm">{{ trans.upload }}</span>
-                    <span class="text-xs text-base-content/40">{{ trans.formats }}</span>
+                <div class="flex items-center justify-center w-7 h-7 rounded text-xs shrink-0 bg-base-300">
+                    <i class="fa-regular fa-upload" aria-hidden="true"></i>
+                </div>
+                <div class="flex flex-col gap-0">
+                    <span class="text-sm font-medium">{{ trans.upload }}</span>
+                    <span class="text-xs text-neutral-content">{{ trans.formats }}</span>
                 </div>
             </button>
 
             <!-- Add from URL -->
-            <div v-if="canUploadProp" class="border-b border-base-200">
+            <div v-if="canUploadProp" class="">
                 <button
                     type="button"
                     class="w-full text-left px-3 py-2.5 hover:bg-base-200 transition-colors duration-150 flex gap-3 items-center"
                     @click.stop="toggleUrlExpanded"
                 >
-                    <i
-                        class="w-4 shrink-0 text-center"
-                        :class="downloading ? 'fa-solid fa-spin fa-spinner' : 'fa-regular fa-link'"
-                        aria-hidden="true"
-                    ></i>
-                    <span class="text-sm grow">{{ trans.add_url }}</span>
+                    <div class="flex items-center justify-center w-7 h-7 rounded text-xs shrink-0 bg-base-300">
+                        <i
+                            class=""
+                            :class="downloading ? 'fa-solid fa-spin fa-spinner' : 'fa-regular fa-link'"
+                            aria-hidden="true"
+                        ></i>
+                    </div>
+                    
+                    <span class="text-sm grow font-medium">{{ trans.add_url }}</span>
                     <i
                         class="fa-regular fa-chevron-down text-xs transition-transform duration-150"
                         :class="urlExpanded ? 'rotate-180' : ''"
@@ -117,18 +113,19 @@
                 v-if="canBrowseProp"
                 type="button"
                 class="text-left px-3 py-2.5 hover:bg-base-200 transition-colors duration-150 flex gap-3 items-center"
-                :class="hasImage() ? 'border-b border-base-200' : ''"
                 @click.stop="openGallery(); dropdownOpen = false"
             >
-                <i class="fa-regular fa-images w-4 shrink-0 text-center" aria-hidden="true"></i>
-                <span class="text-sm">{{ trans.gallery }}</span>
+                <div class="flex items-center justify-center w-7 h-7 rounded text-xs shrink-0 bg-base-300">
+                    <i class="fa-regular fa-images" aria-hidden="true"></i>
+                </div>
+                <span class="text-sm font-medium">{{ trans.gallery }}</span>
             </button>
 
             <!-- Remove image -->
             <button
                 v-if="hasImage()"
                 type="button"
-                class="text-left px-3 py-2.5 hover:bg-base-200 transition-colors duration-150 flex gap-3 items-center text-error"
+                class="text-left px-3 py-2.5 hover:bg-base-200 transition-colors duration-150 flex gap-3 items-center text-error-content cursor-pointer"
                 @click.stop="removeImage(); dropdownOpen = false"
             >
                 <i class="fa-regular fa-trash w-4 shrink-0 text-center" aria-hidden="true"></i>
@@ -245,32 +242,37 @@ const zoneClass = () => {
     const hasImg = hasImage()
     // justify-end pushes content (progress bar, image overlay) to the bottom;
     // justify-center vertically centers the empty/drag icon
-    let css = 'relative w-full min-h-[90px] rounded-xl overflow-hidden cursor-pointer flex flex-col items-center transition-all duration-150 '
+    let css = 'relative rounded-xl overflow-hidden cursor-pointer flex flex-col items-center transition-all duration-150 bg-base-100 shadow p-0.5 '
     css += (isUploading || hasImg) ? 'justify-end ' : 'justify-center '
-    if (isUploading) {
-        css += 'border-2 border-dashed border-base-300 '
-    } else if (hasImg) {
-        css += 'border border-base-300 '
-    } else if (dragging.value) {
-        css += 'border-2 border-dashed border-accent bg-accent/10 '
-    } else {
-        css += 'border-2 border-dashed border-base-300 bg-base-200/50 hover:bg-base-200 hover:border-base-content/30 '
+    if (dragging.value) {
+        css += 'border border-dashed border-accent'
     }
     return css
 }
 
-const zoneStyle = () => {
+const previewClass = () => {
+    return 'bg-cover bg-base-200 rounded-xl bg-center  w-20 h-20 flex items-center justify-center ';
+}
+
+const previewStyle = () => {
     if (uploading.value && imagePreview.value) {
-        return { backgroundImage: backgroundImage(), backgroundSize: 'cover', backgroundPosition: 'center' }
+        return { backgroundImage: backgroundImage()}
     }
     if (hasImage() && !uploading.value) {
-        return { backgroundImage: backgroundImage(), backgroundSize: 'cover', backgroundPosition: 'center' }
+        return { backgroundImage: backgroundImage() }
     }
     return {}
 }
 
 const hasImage = () => {
     return hasOld.value || currentUuid.value !== null && currentUuid.value !== ''
+}
+
+const hasPreview = () => {
+    if (imagePreview.value || hasOld.value) {
+        return true
+    }
+    return currentUuid.value !== null && currentUuid.value !== ''
 }
 
 const removeImage = () => {

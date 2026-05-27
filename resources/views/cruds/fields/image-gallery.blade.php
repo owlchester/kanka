@@ -82,7 +82,7 @@ $old = isset($entity) && !empty($entity->image_path) || isset($model) && !empty(
 @endphp
 
 <div class="field field-image flex flex-col gap-1">
-    <label class="text-xs font-medium opacity-80">{{ __($label) }}</label>
+    @if (!isset($new)) <label class="text-xs font-medium opacity-80">{{ __($label) }}</label> @endif
     <div class="gallery-selection col-span-2">
         <gallery-selection
             file="{{ route('gallery.upload.file', [$campaign, $from]) }}"
@@ -103,6 +103,7 @@ $old = isset($entity) && !empty($entity->image_path) || isset($model) && !empty(
         </gallery-selection>
     </div>
 
+    @if (!isset($new))
     <x-helper class="text-xs">
         <p>
             @if ($isUnlimited)
@@ -114,5 +115,6 @@ $old = isset($entity) && !empty($entity->image_path) || isset($model) && !empty(
             @if (isset($recommended)) {{ __('crud.hints.image_dimension', ['dimension' => $recommended]) }} @endif
         </p>
     </x-helper>
+    @endif
 </div>
 

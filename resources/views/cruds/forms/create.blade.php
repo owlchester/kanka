@@ -52,12 +52,12 @@
                 <div class=entity-header">
                     Header image stuff
                 </div>
-                <div class="flex gap-2 p-4">
+                <div class="flex gap-2 p-4 items-end">
                     <div>
-                        image
+                        @include('cruds.fields.image-gallery', ['new' => true])
                     </div>
                     <div class="grow">
-                        name and alias
+                        @include('cruds.fields.entity-name')
                     </div>
                     <div>
                         @includeWhen(auth()->user()->can('admin', $campaign), 'cruds.fields.entity-permission')
