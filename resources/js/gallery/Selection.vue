@@ -72,41 +72,25 @@
             </button>
 
             <!-- Add from URL -->
-            <div v-if="canUploadProp" class="">
-                <button
-                    type="button"
-                    class="w-full text-left px-3 py-2.5 hover:bg-base-200 transition-colors duration-150 flex gap-3 items-center"
-                    @click.stop="toggleUrlExpanded"
-                >
-                    <div class="flex items-center justify-center w-7 h-7 rounded text-xs shrink-0 bg-base-300">
-                        <i
-                            class=""
-                            :class="downloading ? 'fa-solid fa-spin fa-spinner' : 'fa-regular fa-link'"
-                            aria-hidden="true"
-                        ></i>
-                    </div>
-                    
-                    <span class="text-sm grow font-medium">{{ trans.add_url }}</span>
+            <button
+                v-if="canUploadProp"
+                type="button"
+                class="text-left px-3 py-2.5 transition-colors duration-150 flex gap-3 items-start"
+                :class="waitingForPaste ? 'bg-base-200' : 'hover:bg-base-200'"
+                @click.stop="activatePasteMode"
+            >
+                <div class="flex items-center justify-center w-7 h-7 rounded text-xs shrink-0 bg-base-300">
                     <i
-                        class="fa-regular fa-chevron-down text-xs transition-transform duration-150"
-                        :class="urlExpanded ? 'rotate-180' : ''"
+                        class=""
+                        :class="downloading ? 'fa-solid fa-spin fa-spinner' : 'fa-regular fa-link'"
                         aria-hidden="true"
                     ></i>
-                </button>
-                <div v-if="urlExpanded" class="px-3 pb-3 flex flex-col gap-1">
-                    <input
-                        ref="urlField"
-                        type="text"
-                        class="w-full"
-                        v-model="imageUrl"
-                        @blur="download()"
-                        @paste="pasteUrl"
-                        @keydown.esc.stop="imageUrl = null; urlExpanded = false"
-                        :placeholder="trans.url"
-                    />
-                    <span class="text-xs text-base-content/40">{{ trans.url_hint }}</span>
                 </div>
-            </div>
+                <div class="flex flex-col gap-0">
+                    <span class="text-sm font-medium">{{ trans.add_url }}</span>
+                    <span class="text-xs text-neutral-content">{{ trans.url_hint }}</span>
+                </div>
+            </button>
 
             <!-- Choose from gallery -->
             <button
@@ -199,7 +183,6 @@ const loading = ref(true)
 const downloading = ref(false)
 const uploading = ref(false)
 const imageUrl = ref()
-const urlField = ref()
 const fileField = ref()
 const currentThumbnail = ref()
 const currentUuid = ref()
@@ -218,7 +201,7 @@ const storageFull = ref()
 const dragging = ref(false)
 const dragCounter = ref(0)
 const dropdownOpen = ref(false)
-const urlExpanded = ref(false)
+const waitingForPaste = ref(false)
 const zoneRef = ref<HTMLElement | null>(null)
 const dropdownRef = ref<HTMLElement | null>(null)
 const canUploadProp = computed(() => props.canUpload === 'true')
@@ -305,7 +288,7 @@ const openGallery = () => {
 const handleDropdownEscape = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
         dropdownOpen.value = false
-        urlExpanded.value = false
+        deactivatePasteMode()
         document.removeEventListener('keydown', handleDropdownEscape)
     }
 }
@@ -332,7 +315,7 @@ const closeDropdownOnOutside = (e: MouseEvent) => {
         !dropdownRef.value?.contains(e.target as Node)
     ) {
         dropdownOpen.value = false
-        urlExpanded.value = false
+        deactivatePasteMode()
         document.removeEventListener('click', closeDropdownOnOutside)
         document.removeEventListener('keydown', handleDropdownEscape)
     }
@@ -368,8 +351,26 @@ const onDrop = (e: DragEvent) => {
     uploadFile(file)
 }
 
-const pasteUrl = (event) => {
-    imageUrl.value = event.clipboardData.getData('text')
+const activatePasteMode = () => {
+    waitingForPaste.value = true
+    document.addEventListener('paste', handleDocumentPaste)
+}
+
+const deactivatePasteMode = () => {
+    waitingForPaste.value = false
+    document.removeEventListener('paste', handleDocumentPaste)
+}
+
+const handleDocumentPaste = (e: ClipboardEvent) => {
+    const text = e.clipboardData?.getData('text')
+    if (!text) {
+        return
+    }
+    imageUrl.value = text
+    deactivatePasteMode()
+    dropdownOpen.value = false
+    document.removeEventListener('click', closeDropdownOnOutside)
+    document.removeEventListener('keydown', handleDropdownEscape)
     download()
 }
 
@@ -379,22 +380,16 @@ const download = () => {
     }
     lastImageUrl = imageUrl.value
     downloading.value = true
-    urlField.value.disabled = true
 
     axios.post(props.url, {url: imageUrl.value})
         .then(res => {
-            urlField.value.disabled = false
             downloading.value = false
             imageUrl.value = null
-
             currentThumbnail.value = res.data.thumbnail
             currentUuid.value = res.data.uuid
         })
         .catch(err => {
-            urlField.value.disabled = false
             downloading.value = false
-            urlField.value.focus()
-
             showErrors(err)
         })
 }
@@ -461,13 +456,6 @@ const upload = async (event: Event) => {
 const triggerFileInput = () => {
     dropdownOpen.value = false
     fileField.value?.click()
-}
-
-const toggleUrlExpanded = () => {
-    urlExpanded.value = !urlExpanded.value
-    if (urlExpanded.value) {
-        nextTick(() => urlField.value?.focus())
-    }
 }
 
 const showErrors = (err) => {
@@ -540,6 +528,7 @@ onBeforeUnmount(() => {
     document.removeEventListener('click', closeDropdownOnOutside)
     document.removeEventListener('keydown', handleDropdownEscape)
     document.removeEventListener('keydown', handleEscape)
+    document.removeEventListener('paste', handleDocumentPaste)
 })
 
 </script>

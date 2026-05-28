@@ -7,7 +7,7 @@ return [
         'gallery'   => 'From gallery',
         'upload'    => 'Upload from device',
         'url'       => 'Upload an image from a URL',
-        'url_hint'  => 'Paste triggers download · Esc to cancel',
+        'url_hint'  => 'Paste an image link',
     ],
     'browse'    => [
         'layouts'       => [
