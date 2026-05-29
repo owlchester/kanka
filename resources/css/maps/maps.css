@@ -219,7 +219,7 @@ body.map-drawing-mode {
 .leaflet-container {
     background: transparent !important;
 }
-.leaflet-container a {
+.leaflet-container .text-link, .leaflet-container .entity-mention {
     color: hsl(var(--p)/1) !important;
 }
 

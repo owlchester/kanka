@@ -314,7 +314,7 @@ class MapMarker extends Model
                 if ($this->entity->isMap()) {
                     $url = route('maps.explore', [$campaign, $this->entity->child]);
                 }
-                $body .= "<p><a href=\"{$url}\">" . str_replace('`', '\'', $this->entity->name) . '</a></p>';
+                $body .= "<p><a href=\"{$url}\" class=\"text-link\">" . str_replace('`', '\'', $this->entity->name) . '</a></p>';
             }
             // No entry field, include the entity tooltip
             if (! $this->isLabel()) {
@@ -503,7 +503,7 @@ class MapMarker extends Model
                     $url = route('maps.explore', [$campaign, $this->entity->child]);
                 }
 
-                return '<a href="' . $url . '">' . $this->entity->name . '</a>';
+                return '<a href="' . $url . '" class="text-link">' . $this->entity->name . '</a>';
             }
 
             return str_replace("'", "\'", $this->entity->name);
