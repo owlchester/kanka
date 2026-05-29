@@ -41,7 +41,7 @@
                         <span>navigate</span>
                     </div>
                     <span><kbd class="w-8 inline-block text-center rounded bg-base-200">↵</kbd> open</span>
-                    <span><kbd class="w-8 inline-block text-center rounded bg-base-200">{{ isMac ? '⌘' : 'Ctrl+' }}F</kbd> full text</span>
+                    <span><kbd class="min-w-8 inline-block text-center rounded bg-base-200">{{ isMac ? '⌘' : 'Ctrl+' }}F</kbd> full text</span>
                 </div>
                 <span><kbd class="w-10 inline-block text-center rounded bg-base-200">Esc</kbd> close</span>
             </footer>
