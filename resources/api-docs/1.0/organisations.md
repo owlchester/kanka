@@ -45,7 +45,6 @@ The list of returned entities can be filtered. The available filters are [availa
             "created_by": 1,
             "updated_at":  "2019-08-29T13:48:54.000000Z",
             "updated_by": 1,
-            "organisation_id": 4,
             "type": "Kingdom",
             "status_id": 1,
             "members": [],
@@ -86,7 +85,6 @@ To get the details of a single organisation, use the following endpoint.
         "created_by": 1,
         "updated_at":  "2019-08-29T13:48:54.000000Z",
         "updated_by": 1,
-        "organisation_id": 4,
         "type": "Kingdom",
         "status_id": 1,
         "members": [],
@@ -148,7 +146,7 @@ To create an organisation, use the following endpoint.
 | `name` | `string` (Required) | Name of the organisation                                               |
 | `entry` | `string` | The html description of the organisation                               |
 | `type` | `string` | Type of organisation                                                   |
-| `organisation_id` | `integer` | The parent organisation                                                |
+| `parent_id` | `integer` | The parent organisation's entity id                                                |
 | `locations` | `array` | Array of location ids                                                  |
 | `tags` | `array` | Array of tag ids                                                       |
 | `status_id` | `integer` | The id of the entity's status from `category_statuses`                 |

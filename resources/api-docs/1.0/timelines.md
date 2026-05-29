@@ -156,6 +156,7 @@ To create a timeline, use the following endpoint.
 | `name` | `string` (Required) | Name of the timeline |
 | `entry` | `string` | The html description of the timeline |
 | `type` | `string` | The timeline's type |
+| `parent_id` | `integer` | The parent timeline's entity id |
 | `tags` | `array` | Array of tag ids |
 | `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
 | `entity_header_uuid` | `string` | Gallery image UUID for the entity header (premium campaign feature) |

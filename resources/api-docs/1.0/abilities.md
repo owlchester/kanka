@@ -54,7 +54,6 @@ The list of returned entities can be filtered. The available filters are [availa
             "created_by": 1,
             "updated_at": "2020-05-15T08:35:56.000000Z",
             "updated_by": 1,
-            "ability_id": null,
             "charges": 3,
             "abilities": []
         }
@@ -92,7 +91,6 @@ To get the details of a single ability, use the following endpoint.
         "updated_at": "2020-05-15T08:35:56.000000Z",
         "updated_by": 1,
         "type": "3rd level",
-        "ability_id": null,
         "charges": 3,
         "abilities": []
     }
@@ -117,7 +115,7 @@ To create an ability, use the following endpoint.
 | `name`               | `string` (Required) | Name of the ability                                                 |
 | `entry`              | `string` | The html description of the ability                                 |
 | `type`               | `string` | The ability's type                                                  |
-| `ability_id`         | `integer` | The ability's parent ability                                        |
+| `parent_id`         | `integer` | The ability's parent entity id                                        |
 | `charges`            | `string` | How many charges the ability has                                    |
 | `tags`               | `array` | Array of tag ids                                                    |
 | `entity_image_uuid`  | `string` | Gallery image UUID for the entity image                             |

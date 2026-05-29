@@ -49,7 +49,6 @@ The list of returned entities can be filtered. The available filters are [availa
             "type": "Continent",
             "height": 1080,
             "width": 1920,
-            "map_id": null,
             "grid": 0,
             "min_zoom": -1,
             "max_zoom": 10,
@@ -98,7 +97,6 @@ To get the details of a single map, use the following endpoint.
         "type": "Continent",
         "height": 1080,
         "width": 1920,
-        "map_id": null,
         "grid": 0,
         "min_zoom": -1,
         "max_zoom": 10,
@@ -129,7 +127,7 @@ To create a map, use the following endpoint.
 | `name` | `string` (Required) | Name of the map |
 | `entry` | `string` | The html description of the map |
 | `type` | `string` | Type of map |
-| `map_id` | `integer` | The parent map |
+| `parent_id` | `integer` | The parent entity id |
 | `location_id` | `integer` | The related location id |
 | `center_marker_id` | `integer` | The map marker the map will center on page load |
 | `center_x` | `float` | The custom longitude on page load |

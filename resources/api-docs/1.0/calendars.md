@@ -242,6 +242,7 @@ To create a calendar, use the following endpoint.
 | `name` | `string` (Required) | Name of the calendar |
 | `entry` | `string` | The html description of the calendar |
 | `type` | `string` | The calendar's type |
+| `parent_id` | `integer` | The calendar's parent entity id |
 | `current_year` | `integer` | The current calendar year |
 | `current_month` | `integer` | The current calendar month |
 | `current_day` | `integer` | The current calendar day |

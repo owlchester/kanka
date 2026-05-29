@@ -39,7 +39,6 @@ The list of returned entities can be filtered. The available filters are [availa
             "has_custom_image": false,
             "is_private": true,
             "entity_id": 7,
-            "note_id": null,
             "tags": [],
             "created_at":  "2019-01-30T00:01:44.000000Z",
             "created_by": 1,
@@ -75,7 +74,6 @@ To get the details of a single note, use the following endpoint.
         "has_custom_image": false,
         "is_private": true,
         "entity_id": 7,
-        "note_id": null,
         "tags": [],
         "created_at":  "2019-01-30T00:01:44.000000Z",
         "created_by": 1,
@@ -105,7 +103,7 @@ To create a note, use the following endpoint.
 | `name` | `string` (Required) | Name of the note |
 | `entry` | `string` | The html description of the note |
 | `type` | `string` | The note's type |
-| `note_id` | `integer` | The parent note id |
+| `parent_id` | `integer` | The parent entity id |
 | `tags` | `array` | Array of tag ids |
 | `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
 | `entity_header_uuid` | `string` | Gallery image UUID for the entity header (premium campaign feature) |

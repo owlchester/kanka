@@ -115,6 +115,7 @@ To create a event, use the following endpoint.
 | `type` | `string` | The event's type |
 | `date` | `string` | Fictional date at which the event took place |
 | `locations` | `array` | Array of location ids |
+| `parent_id` | `integer` | Entity id of the parent event |
 | `tags` | `array` | Array of tag ids |
 | `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
 | `entity_header_uuid` | `string` | Gallery image UUID for the entity header (premium campaign feature) |
