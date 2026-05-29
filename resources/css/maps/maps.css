@@ -115,8 +115,8 @@
         max-height: calc(100vh);
         white-space: unset;
         
-        a {
-            color: hsl(var(--pc)/1);
+        .text-link {
+            color: light-dark(hsl(var(--pc)/1), hsl(var(--p)/1));
         }
     }
 
@@ -218,6 +218,9 @@ body.map-drawing-mode {
 
 .leaflet-container {
     background: transparent !important;
+}
+.leaflet-container a {
+    color: hsl(var(--p)/1) !important;
 }
 
 /** Used by the ruler plugin */
