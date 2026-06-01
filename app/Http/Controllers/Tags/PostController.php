@@ -39,8 +39,6 @@ class PostController extends Controller
             return $this->campaign($campaign)->datagridAjax();
         }
 
-        return $this
-            ->campaign($campaign)
-            ->subview('tags.children.posts', $tag);
+        return redirect()->route('entities.show', [$campaign, $tag->entity]);
     }
 }
