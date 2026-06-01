@@ -52,7 +52,7 @@ class CampaignApiController extends ApiController
     public function update(Request $request, Campaign $campaign)
     {
         $this->authorize('update', $campaign);
-        $campaign->update($request->all());
+        $campaign->update($request->only(['name', 'locale']));
 
         $descriptionData = $request->only(['description', 'excerpt']);
         if (! empty($descriptionData)) {
