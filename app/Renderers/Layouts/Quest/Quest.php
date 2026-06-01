@@ -41,7 +41,7 @@ class Quest extends Layout
                 'label' => __('quests.fields.status'),
                 'render' => function (\App\Models\Quest $model) {
                     if ($model->entity->status) {
-                        return '<i class="' . $model->entity->status->icon() . '" data-title="' . $model->entity->status->setRelation('entityType', $model->entity->type)->name() . '" aria-hidden="true"></i>';
+                        return '<i class="' . $model->entity->status->icon() . '" data-title="' . $model->entity->status->setRelation('entityType', $model->entity->entityType)->name() . '" aria-hidden="true"></i>';
                     }
 
                     return '';
