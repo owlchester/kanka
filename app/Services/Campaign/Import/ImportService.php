@@ -594,9 +594,10 @@ class ImportService
 
     protected function secondCampaign(): self
     {
-        $this->campaign->entry = $this->mentions($this->campaign->entry);
-        $this->campaign->excerpt = $this->mentions($this->campaign->excerpt);
-        $this->campaign->save();
+        // As of 3.11, exports no longer include the descriptions
+        // $this->campaign->description->description = $this->mentions($this->campaign->description->description);
+        // $this->campaign->description->exertpt = $this->mentions($this->campaign->description->exertpt);
+        // $this->campaign->save();
 
         $this->entityMappingService->silent()->with($this->campaign)->map();
 
