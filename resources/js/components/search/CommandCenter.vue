@@ -101,6 +101,7 @@ export default {
         isOpen(opened) {
             if (opened) {
                 this.$refs.dialogRef.showModal();
+                this.$nextTick(() => this.$refs.inputRef?.focus());
                 this.fetchRestData();
                 this._fulltextKeyHandler = (e) => {
                     if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
@@ -195,6 +196,7 @@ export default {
             this.pages = [];
             this.results = [];
             this.loading = false;
+            this.$refs.inputRef?.clear();
         },
     },
 };
