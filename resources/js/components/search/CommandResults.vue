@@ -16,10 +16,11 @@
                 >
                     <img v-if="item.image" :src="item.image" class="rounded-full w-8 h-8" alt="" />
                     <span v-else class="cmd-avatar cmd-avatar-placeholder"></span>
-                    <span class="cmd-item-meta">
-                        <span class="cmd-item-name">{{ item.name }}</span>
-                        <span class="cmd-item-type">{{ item.type }}<i v-if="item.is_private" class="fa-solid fa-lock cmd-private-icon"></i></span>
-                    </span>
+
+                    <div class="flex gap-2 items-center min-w-0">
+                        <span class="cmd-item-name font-normal">{{ item.name }}</span>
+                        <span class="cmd-item-type text-neutral-content text-xs uppercase">{{ item.type }}</span>
+                    </div>
                 </a>
             </div>
 
