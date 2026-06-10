@@ -26,6 +26,9 @@ hr {
         color: var(--link-focus, hsl(var(--pf)/var(--tw-text-opacity)));
     }
 }
+.entity-content a {
+    @apply underline underline-offset-[3px] hover:decoration-current;
+}
 a.neutral-link {
     --tw-text-opacity: 1;
     color: hsl(var(--nc)/var(--tw-text-opacity));
