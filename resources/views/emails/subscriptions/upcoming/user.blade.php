@@ -16,6 +16,6 @@
 
 {{ __('emails/subscriptions/upcoming.closing') }}
 
-__Jay & Jon_
+__Jay & Jon__
 
 </x-mail::message>
