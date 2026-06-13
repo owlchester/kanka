@@ -101,7 +101,7 @@ export default {
         isOpen(opened) {
             if (opened) {
                 this.$refs.dialogRef.showModal();
-                this.$nextTick(() => this.$refs.inputRef?.focus());
+                setTimeout(() => this.$refs.inputRef?.focus(), 50);
                 this.fetchRestData();
                 this._fulltextKeyHandler = (e) => {
                     if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
