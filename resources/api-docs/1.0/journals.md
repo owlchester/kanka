@@ -37,7 +37,6 @@ The list of returned entities can be filtered. The available filters are [availa
             "image_thumb": "{url}",
             "has_custom_image": false,
             "is_private": true,
-            "journal_id": null,
             "entity_id": 42,
             "tags": [],
             "created_at":  "2019-01-30T00:01:44.000000Z",
@@ -80,7 +79,6 @@ To get the details of a single journal, use the following endpoint.
         "has_custom_image": false,
         "is_private": true,
         "entity_id": 42,
-        "journal_id": null,
         "tags": [],
         "created_at":  "2019-01-30T00:01:44.000000Z",
         "created_by": null,
@@ -117,7 +115,7 @@ To create a journal, use the following endpoint.
 | `entry` | `string` | The html description of the journal                                     |
 | `type` | `string` | The journal's type                                                      |
 | `date` | `string` | The date of the session                                                 |
-| `journal_id` | `integer` | The ID of the journal's parent journal, if it has one                   |
+| `parent_id` | `integer` | The ID of the journal's parent journal entity, if it has one                   |
 | `author_id` | `integer` | The "author" of the journal (entity id)                                 |
 | `tags` | `array` | Array of tag ids                                                        |
 | `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |

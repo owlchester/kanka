@@ -35,6 +35,8 @@
 
         --si: var(--b2);
         --sif: var(--pf);
+        
+        --link-text: hsl(var(--p)/1);
     }
 }
 

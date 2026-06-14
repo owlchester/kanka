@@ -9,7 +9,7 @@ dialog {
     inset: 0;
     z-index: 1050;
     border: 0;
-    transition: opacity .5s ease-in-out;
+    transition: opacity .5s ease-in-out, visibility .5s;
 
     > form {
         display: flex;
@@ -40,6 +40,7 @@ dialog {
 dialog:not([open]) {
     pointer-events: none;
     opacity: 0;
+    visibility: hidden;
 }
 
 dialog::backdrop {

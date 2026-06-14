@@ -48,7 +48,6 @@ The list of returned entities can be filtered. The available filters are [availa
             "date": "2020-04-20",
             "type": "Main",
             "status_id": null,
-            "quest_id": null,
             "elements": [],
             "calendar_id": 102,
             "calendar_year": 2020,
@@ -92,7 +91,6 @@ To get the details of a single quest, use the following endpoint.
         "type": "Main",
         "date": "2020-04-20",
         "status_id": null,
-        "quest_id": null,
         "elements": [],
         "calendar_id": 102,
         "calendar_year": 2020,
@@ -155,7 +153,7 @@ To create a quest, use the following endpoint.
 | `name` | `string` (Required) | Name of the quest |
 | `entry` | `string` | The html description of the quest |
 | `type` | `string` | Type of quest |
-| `quest_id` | `integer` | The parent quest |
+| `parent_id` | `integer` | The parent quest's entity id |
 | `instigator_id` | `integer` | The quest's instigator (entity) |
 | `location_id` | `integer` | The quest's starting location (location) |
 | `tags` | `array` | Array of tag ids |

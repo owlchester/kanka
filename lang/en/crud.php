@@ -129,7 +129,7 @@ return [
         'image'             => 'Image',
         'is_closed'         => 'Conversation will be closed and will no longer accept new messages.',
         'is_private'        => 'Private',
-        'is_private_v3'     => 'Only show this to members of the :admin-role role. This overrides any other permission.',
+        'is_private_v3'     => 'Hidden from everyone except members of the :admin-role role. Overrides any other permission.',
         'is_star'           => 'Pinned',
         'locations'         => ':first in :second',
         'name'              => 'Name',

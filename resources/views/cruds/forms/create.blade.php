@@ -71,12 +71,29 @@
                         </ul>
                     </div>
 
-                    @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form'])
+                    <div class="flex gap-2 items-center">
+                        @includeWhen(auth()->user()->can('admin', $campaign), 'cruds.fields.entity-permission')
+
+                        @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form'])
+                    </div>
+
                 </div>
 
                 <div class="tab-content">
                     <div class="tab-pane pane-entry {{ (request()->get('tab') == null ? ' active' : '') }}" id="form-entry">
-                        <x-grid type="1/1">
+                        <x-grid>
+                            <div class="flex gap-2 items-end">
+                                <div>
+                                    @if (isset($entityType) && $entityType->isMap())
+                                        @php $size = 'map'; @endphp
+                                    @endif
+                                    @include('cruds.fields.image-gallery', ['new' => true])
+                                </div>
+                                <div class="grow">
+                                    @include('cruds.fields.entity-name')
+                                </div>
+                            </div>
+
                             @include($name . '.form._entry')
                         </x-grid>
                     </div>

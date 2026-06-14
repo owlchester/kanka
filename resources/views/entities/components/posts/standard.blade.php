@@ -62,7 +62,7 @@ $entityTags = $post->visibleTags();
                             <x-entity-link :entity="$post->location->entity" :campaign="$campaign" />
                         </span>
                     @endif
-                    @if ($post->calendarReminder()?->calendar_id)
+                    @if ($post->calendarReminder()?->calendar_id && $post->calendarReminder()?->calendar->entity)
                         <span class="entity-note-detail-element entity-note-reminder post-detail-element post-reminder">
                             <a href="{{ route('entities.show', [$campaign, $post->calendarReminder()->calendar->entity]) . '?year=' . $post->calendarReminder()->year . '&month=' . $post->calendarReminder()->month }} " class="text-link"> {{ $post->calendarReminder()->readableDate() }} </a>
                         </span>

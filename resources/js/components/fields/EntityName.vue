@@ -1,18 +1,8 @@
 <template>
-    <div class="flex flex-col gap-2">
+    <div class="flex flex-col gap-1">
         <!-- Label row with + Alias button -->
-        <div class="flex items-center justify-between" :class="{ required: required }">
+        <div :class="{ required: required }">
             <label :for="inputId" class="text-xs font-medium opacity-80">{{ label }}</label>
-            <button
-                v-if="aliasesEnabled"
-                type="button"
-                :disabled="isAliasLimitReached"
-                :class="addBtnClass"
-                @click="toggleAddForm"
-            >
-                <i class="fa-regular fa-plus" aria-hidden="true" />
-                {{ i18n.addAlias }}
-            </button>
         </div>
 
         <!-- Name input -->
@@ -24,7 +14,7 @@
             :placeholder="placeholder"
             :required="required"
             maxlength="191"
-            class="w-full"
+            class="w-full mb-1"
             data-1p-ignore="true"
             @input="onNameInput"
         />
@@ -76,7 +66,16 @@
         </div>
 
         <!-- Alias pills -->
-        <div v-if="aliasesList.length > 0" class="flex flex-wrap gap-1">
+        <div v-if="aliasesEnabled" class="flex flex-wrap gap-1 items-center">
+            <button
+            type="button"
+            :disabled="isAliasLimitReached"
+                :class="addBtnClass"
+                @click="toggleAddForm"
+            >
+                <i class="fa-regular fa-plus text-xs" aria-hidden="true" />
+                {{ i18n.addAlias }}
+            </button>
             <alias-pill
                 v-for="alias in aliasesList"
                 :key="alias.id"
@@ -194,7 +193,7 @@ const isAliasLimitReached = computed(() =>
 )
 
 const addBtnClass = computed(() => {
-    const base = 'text-link text-xs'
+    const base = 'text-link text-xs cursor-pointer px-3 py-1 rounded-full border border-dashed border-base-300'
     return isAliasLimitReached.value
         ? `${base} opacity-40 cursor-not-allowed`
         : base

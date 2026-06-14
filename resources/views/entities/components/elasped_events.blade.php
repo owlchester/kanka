@@ -1,9 +1,9 @@
 <?php
 /**
-* @var \App\Models\EntityEvent $event
-* @var \App\Models\EntityEvent|null $birth
-* @var \App\Models\EntityEvent|null $death
-* @var \App\Models\EntityEvent[] $elapsed
+* @var \App\Models\Reminder $event
+* @var ?\App\Models\Reminder $birth
+* @var ?\App\Models\Reminder $death
+* @var \App\Models\Reminder[] $elapsed
 * @var \App\Models\Entity $entity
 */
 $elapsed = $entity->elapsedEvents;
@@ -13,7 +13,7 @@ $distinctCalendars = [];
 $birth = null;
 $death = null;
 foreach ($elapsed as $event) {
-    if (empty($event->calendar) || $event->isCalendarDate()) {
+    if (empty($event->calendar) || empty($event->calendar->entity) || $event->isCalendarDate()) {
         continue;
     }
     if ($event->isBirth()) {

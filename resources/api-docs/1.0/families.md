@@ -51,7 +51,6 @@ The list of returned entities can be filtered. The available filters are [availa
             "location_id": 4,
             "status_id": 1,
             "type": "",
-            "family_id": 2,
             "members": [
               "3"
             ]
@@ -90,7 +89,6 @@ To get the details of a single family, use the following endpoint.
         "location_id": 1,
         "status_id": 1,
         "type": "",
-        "family_id": 2,
         "members": [
           "3"
         ]
@@ -120,7 +118,7 @@ To create a family, use the following endpoint.
 | `entry` | `string` | The html description of the family |
 | `type` | `string` | The type of family |
 | `location_id` | `integer` | The family's location id |
-| `family_id` | `integer` | The parent family id |
+| `parent_id` | `integer` | The parent family entityid |
 | `status_id` | `integer` | The id of the entity's status from `category_statuses` |
 | `tags` | `array` | Array of tag ids |
 | `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |

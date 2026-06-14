@@ -2,7 +2,19 @@
  * @var \App\Models\Campaign $campaign
  */
 $themeOverride = request()->get('_theme');
-$specificTheme = null;
+if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'base'])) {
+    $specificTheme = ($themeOverride === 'base') ? 'light' : $themeOverride;
+} elseif (!empty($campaign) && $campaign->boosted() && !empty($campaign->theme_id)) {
+    $specificTheme = match ($campaign->theme_id) {
+        2 => 'dark',
+        3 => 'midnight',
+        default => 'light',
+    };
+} elseif (auth()->check() && !empty(auth()->user()->theme)) {
+    $specificTheme = auth()->user()->theme;
+} else {
+    $specificTheme = 'light';
+}
 ?><!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
@@ -21,26 +33,11 @@ $specificTheme = null;
         'resources/css/app.css',
     ])
     @includeWhen(!config('fontawesome.kit'), 'layouts.styles.fontawesome')
-    @if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'base']))
-        @php $specificTheme = $themeOverride; @endphp
-        @if($themeOverride != 'base')
-            @vite('resources/css/themes/' . request()->get('_theme') . '.css')
-        @endif
-    @else
-        @if (!empty($campaign) && $campaign->boosted() && !empty($campaign->theme_id))
-            @if ($campaign->theme_id !== 1)
-                @vite('resources/css/themes/' . ($campaign->theme_id === 2 ? 'dark' : 'midnight') . '.css')
-                @php $specificTheme = ($campaign->theme_id === 2 ? 'dark' : 'midnight') @endphp
-            @endif
-        @elseif (auth()->check() && !empty(auth()->user()->theme))
-            @vite('resources/css/themes/' . auth()->user()->theme . '.css')
-            @php $specificTheme = auth()->user()->theme @endphp
-        @endif
-    @endif
+    @include('layouts._theme_css')
     @includeWhen(!empty($campaign), 'layouts._theme')
     @yield('styles')
 </head>
-<body id="app" class="{{ $pageClass ?? 'rich-page' }} @if (!empty($campaign) && auth()->check() && auth()->user()->can('admin', $campaign)) is-admin @endif" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif>
+<body id="app" class="{{ $pageClass ?? 'rich-page' }} @if (!empty($campaign) && auth()->check() && auth()->user()->can('admin', $campaign)) is-admin @endif" data-theme="{{ $specificTheme }}">
 
 @yield('content')
 <x-dialog id="primary-dialog" :loading="true" />

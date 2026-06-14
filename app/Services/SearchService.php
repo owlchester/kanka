@@ -198,35 +198,27 @@ class SearchService
         if (empty($this->term)) {
             $query->orderBy('updated_at', 'DESC');
         } else {
-            if ($this->campaign->boosted()) {
-                $query
-                    ->select(['entities.*', 'ea.id as alias_id', 'ea.name as alias_name'])
-                    ->distinct()
-                    ->leftJoin('entity_assets as ea', function ($join) use ($cleanTerm) {
-                        $join->on('ea.entity_id', '=', 'entities.id');
-                        if (Str::startsWith($this->term, '=')) {
-                            $join->where('ea.name', $cleanTerm);
-                        } else {
-                            $join->where('ea.name', 'like', '%' . $this->term . '%');
-                        }
-                        $join->where('ea.type_id', EntityAssetType::alias);
-                    })
-                    ->where(function ($sub) use ($cleanTerm) {
-                        if (Str::startsWith($this->term, '=')) {
-                            $sub->where('entities.name', $cleanTerm)
-                                ->orWhere('ea.name', $cleanTerm);
-                        } else {
-                            $sub->where('entities.name', 'like', '%' . $this->term . '%')
-                                ->orWhere('ea.name', 'like', '%' . $this->term . '%');
-                        }
-                    });
-            } else {
-                if (Str::startsWith($this->term, '=')) {
-                    $query->where('name', mb_ltrim($this->term, '='));
-                } else {
-                    $query->where('name', 'like', '%' . $this->term . '%');
-                }
-            }
+            $query
+                ->select(['entities.*', 'ea.id as alias_id', 'ea.name as alias_name'])
+                ->distinct()
+                ->leftJoin('entity_assets as ea', function ($join) use ($cleanTerm) {
+                    $join->on('ea.entity_id', '=', 'entities.id');
+                    if (Str::startsWith($this->term, '=')) {
+                        $join->where('ea.name', $cleanTerm);
+                    } else {
+                        $join->where('ea.name', 'like', '%' . $this->term . '%');
+                    }
+                    $join->where('ea.type_id', EntityAssetType::alias);
+                })
+                ->where(function ($sub) use ($cleanTerm) {
+                    if (Str::startsWith($this->term, '=')) {
+                        $sub->where('entities.name', $cleanTerm)
+                            ->orWhere('ea.name', $cleanTerm);
+                    } else {
+                        $sub->where('entities.name', 'like', '%' . $this->term . '%')
+                            ->orWhere('ea.name', 'like', '%' . $this->term . '%');
+                    }
+                });
 
             // Exact name match comes first
             // Only do this when the input string is utf8
@@ -234,19 +226,15 @@ class SearchService
             if (mb_strlen($cleanTerm, 'UTF-8') === mb_strlen($cleanTerm)) {
                 $escapedTerm = preg_replace('/&/', '\\&', preg_quote($cleanTerm));
                 $query->orderByRaw('FIELD(entities.name, ?) DESC', [$cleanTerm]);
-                if ($this->campaign->boosted()) {
-                    $query->orderByRaw('FIELD(ea.name, ?) DESC', [$cleanTerm]);
-                }
+                $query->orderByRaw('FIELD(ea.name, ?) DESC', [$cleanTerm]);
+
                 // Name word-start match, so when looking for 'Morley', entities named 'Momorley' appear at the end
                 $query->orderByRaw('entities.name RLIKE ? DESC', ["[[:<:]]{$escapedTerm}"]);
-                if ($this->campaign->boosted()) {
-                    $query->orderByRaw('ea.name RLIKE ? DESC', ["[[:<:]]{$escapedTerm}"]);
-                }
+                $query->orderByRaw('ea.name RLIKE ? DESC', ["[[:<:]]{$escapedTerm}"]);
+
                 // Partial name match
                 $query->orderByRaw('entities.name LIKE ? DESC', ["%{$cleanTerm}%"]);
-                if ($this->campaign->boosted()) {
-                    $query->orderByRaw('ea.name LIKE ? DESC', ["%{$cleanTerm}%"]);
-                }
+                $query->orderByRaw('ea.name LIKE ? DESC', ["%{$cleanTerm}%"]);
             }
         }
 

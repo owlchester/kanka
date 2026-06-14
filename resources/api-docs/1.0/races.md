@@ -44,7 +44,6 @@ The list of returned entities can be filtered. The available filters are [availa
             "created_by": 1,
             "updated_at":  "2019-08-29T13:48:54.000000Z",
             "updated_by": 1,
-            "race_id": 3,
             "type": null,
             "status_id": 1,
             "locations": [
@@ -84,7 +83,6 @@ To get the details of a single race, use the following endpoint.
         "created_by": 1,
         "updated_at":  "2019-08-29T13:48:54.000000Z",
         "updated_by": 1,
-        "race_id": 3,
         "type": "Humanoid",
         "status_id": 1,
         "locations": [
@@ -115,7 +113,7 @@ To create a race, use the following endpoint.
 | `entry` | `string` | The html description of the race |
 | `type` | `string` | The race's type |
 | `status_id` | `integer` | The id of the entity's status from `category_statuses` |
-| `race_id` | `string` | Parent race of the race |
+| `parent_id` | `integer` | Parent race of the race |
 | `tags` | `array` | Array of tag ids |
 | `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
 | `entity_header_uuid` | `string` | Gallery image UUID for the entity header (premium campaign feature) |

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Models\MiscModel;
 use App\Services\Entity\EntitySaveService;
 use App\Services\Entity\Relations\EntityRelationsServiceFactory;
+use CampaignLocalization;
 
 class MiscApiController extends ApiController
 {
@@ -22,7 +23,8 @@ class MiscApiController extends ApiController
         $service?->save($model, $data);
 
         if (! empty($model->entity)) {
-            $this->entitySaveService->save($model->entity, $data);
+            $campaign = CampaignLocalization::getCampaign();
+            $this->entitySaveService->campaign($campaign)->save($model->entity, $data);
             if ($model->wasChanged() && ! $model->entity->wasChanged()) {
                 $model->entity->touch();
             }

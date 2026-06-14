@@ -61,11 +61,12 @@ export default {
         };
     },
 
-    mounted() {
-        this.$nextTick(() => this.$refs.inputRef?.focus());
-    },
-
     methods: {
+        focus() {
+            this.$refs.inputRef?.focus();
+        },
+
+
         onInput() {
             clearTimeout(this.debounceTimer);
             this.debounceTimer = setTimeout(() => {

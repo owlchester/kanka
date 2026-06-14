@@ -14,5 +14,5 @@
     ></span>
 @elseif (!empty($with))
     @php $target = \Illuminate\Support\Arr::get($with, 'target', false); @endphp
-    <a class="entity-image w-10 h-10 cover-background" style="background-image: url('{{ \App\Facades\Avatar::entity($model->$target->entity)->size(40)->fallback()->thumbnail() }}');" title="{{ $model->$target->name }}" href="{{ route('entities.show', [$campaign, $model->$target]) }}"></a>
+    <a class="entity-image w-10 h-10 cover-background" style="background-image: url('{{ \App\Facades\Avatar::entity($model->$target->entity)->size(40)->fallback()->thumbnail() }}');" title="{{ $model->$target->name }}" href="{{ route('entities.show', [$campaign, $model->$target->entity]) }}"></a>
 @endif

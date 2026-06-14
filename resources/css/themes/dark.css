@@ -46,6 +46,8 @@
 
         --si: var(--mantle);
         --sif: var(--surface1);
+
+        --link-text: hsl(var(--p)/1);
     }
 
 }

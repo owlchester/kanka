@@ -40,14 +40,12 @@ The list of returned entities can be filtered. The available filters are [availa
             "has_custom_image": false,
             "status_id": 1,
             "is_private": true,
-            "location_id": null,
             "entity_id": 5,
             "tags": [],
             "created_at":  "2019-01-30T00:01:44.000000Z",
             "created_by": 1,
             "updated_at":  "2019-08-29T13:48:54.000000Z",
             "updated_by": 1,
-            "location_id": 4,
             "type": "Kingdom"
         }
     ]
@@ -78,14 +76,12 @@ To get the details of a single location, use the following endpoint.
         "has_custom_image": false,
         "status_id": 1,
         "is_private": true,
-        "location_id": null,
         "entity_id": 5,
         "tags": [],
         "created_at":  "2019-01-30T00:01:44.000000Z",
         "created_by": 1,
         "updated_at":  "2019-08-29T13:48:54.000000Z",
         "updated_by": 1,
-        "location_id": 4,
         "type": "Kingdom"
     }
 
@@ -110,7 +106,7 @@ To create a location, use the following endpoint.
 | `title` | `string` | Title of the location |
 | `entry` | `string` | The html description of the location |
 | `type` | `string` | Type of location |
-| `location_id` | `integer` | The parent location id (where this location is located)|
+| `parent_id` | `integer` | The parent location entity id (where this location is located)|
 | `tags` | `array` | Array of tag ids |
 | `status_id` | `integer` | The id of the entity's status from `category_statuses` |
 | `is_private` | `boolean` | If the location is only visible to `admin` members of the campaign |

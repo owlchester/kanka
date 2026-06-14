@@ -176,7 +176,7 @@ abstract class Renderer
                 'ability_id' => $abi->ability_id,
                 'name' => $abi->ability->name,
                 'slug' => Str::slug($abi->ability->name),
-                'type' => $abi->ability->type,
+                'type' => $abi->ability->entity->type,
                 'entry' => $abi->ability->entity->parsedEntry(),
                 'charges' => $abi->ability->charges,
                 'note' => Mentions::mapAny($abi, 'note'),
