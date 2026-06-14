@@ -30,7 +30,7 @@ class FeatureCategory extends Model
 
     public function done(): HasMany
     {
-        return $this->features()->where('status_id', FeatureStatus::Done)->orderBy('updated_at', 'DESC');
+        return $this->features()->where('status_id', FeatureStatus::Done)->orderBy('updated_at', 'desc');
     }
 
     public function now(): HasMany

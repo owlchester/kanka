@@ -37,7 +37,7 @@ trait CommunityVoteScopes
     {
         return $builder
             ->published() // @phpstan-ignore method.notFound
-            ->orderBy('published_at', 'DESC')
+            ->orderBy('published_at', 'desc')
             ->take(5);
     }
 }

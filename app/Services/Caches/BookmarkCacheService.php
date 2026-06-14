@@ -20,7 +20,7 @@ class BookmarkCacheService extends BaseCache
                 ->whereNotNull('icon')
                 ->select(DB::raw('icon, MAX(created_at) as cmat'))
                 ->groupBy('icon')
-                ->orderBy('cmat', 'DESC')
+                ->orderBy('cmat', 'desc')
                 ->take(10)
                 ->pluck('icon')
                 ->toArray();

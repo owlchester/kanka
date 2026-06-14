@@ -19,7 +19,7 @@ class CharacterCacheService extends BaseCache
             return Character::select(DB::raw('sex, MAX(created_at) as cmat'))
                 ->groupBy('sex')
                 ->whereNotNull('sex')
-                ->orderBy('cmat', 'DESC')
+                ->orderBy('cmat', 'desc')
                 ->take(10)
                 ->pluck('sex')
                 ->toArray();
@@ -34,7 +34,7 @@ class CharacterCacheService extends BaseCache
             return Character::select(DB::raw('pronouns, MAX(created_at) as cmat'))
                 ->groupBy('pronouns')
                 ->whereNotNull('pronouns')
-                ->orderBy('cmat', 'DESC')
+                ->orderBy('cmat', 'desc')
                 ->take(10)
                 ->pluck('pronouns')
                 ->toArray();

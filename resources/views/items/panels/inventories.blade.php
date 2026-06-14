@@ -1,5 +1,5 @@
 <x-box :padding="0">
-    <?php $r = $model->inventories()->orderBy('entity_id', 'ASC')->with(['entity'])->has('entity')->paginate(); ?>
+    <?php $r = $model->inventories()->orderBy('entity_id', 'asc')->with(['entity'])->has('entity')->paginate(); ?>
     <table id="item-inventories" class="table table-hover">
         <tbody><tr>
             <th class="avatar w-12"><br /></th>

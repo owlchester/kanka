@@ -40,7 +40,7 @@ class WebhookController extends Controller
         $rows = $campaign->webhooks()
             ->sort(request()->only(['o', 'k']))
             // ->with(['users', 'permissions', 'campaign'])
-            ->orderBy('updated_at', 'DESC')
+            ->orderBy('updated_at', 'desc')
             // ->orderBy('name')
             ->paginate();
 

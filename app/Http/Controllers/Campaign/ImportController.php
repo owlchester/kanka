@@ -29,7 +29,7 @@ class ImportController extends Controller
             ->sort(request()->only(['o', 'k']))
             ->where('status_id', '<>', CampaignImportStatus::PREPARED)
             ->with(['user'])
-            ->orderBy('updated_at', 'DESC')
+            ->orderBy('updated_at', 'desc')
             ->paginate();
 
         // Ajax Datagrid

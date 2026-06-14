@@ -196,7 +196,7 @@ class SearchService
         $cleanTerm = mb_ltrim(str_replace('_', ' ', $this->term), '=');
         $query = Entity::inTypes($availableEntityTypes)->whereNull('archived_at');
         if (empty($this->term)) {
-            $query->orderBy('updated_at', 'DESC');
+            $query->orderBy('updated_at', 'desc');
         } else {
             $query
                 ->select(['entities.*', 'ea.id as alias_id', 'ea.name as alias_name'])

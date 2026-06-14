@@ -42,7 +42,7 @@ class HallOfFameService
                     ->where('ur.role_id', $role->id);
             })
             ->whereNotNull('ur.role_id')
-            ->orderBy('users.name', 'ASC')
+            ->orderBy('users.name', 'asc')
             ->get();
         /** @var User $user */
         foreach ($users as $user) {

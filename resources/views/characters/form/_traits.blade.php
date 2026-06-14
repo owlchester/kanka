@@ -11,7 +11,7 @@
                 </button>
             </x-slot>
             <div class="flex flex-col gap-2 character-appearance sortable-elements" data-handle=".sortable-handler">
-                @foreach ((isset($model) ? $model->characterTraits()->appearance()->orderBy('default_order', 'ASC')->get() : FormCopy::characterAppearance()) as $trait)
+                @foreach ((isset($model) ? $model->characterTraits()->appearance()->orderBy('default_order', 'asc')->get() : FormCopy::characterAppearance()) as $trait)
                     <div class="grid grid-cols-3 w-full parent-delete-row gap-1">
                         <div class="flex gap-1 items-center">
                             <div class="sortable-handler px-1 cursor-move">
@@ -64,7 +64,7 @@
                     </button>
                 </x-slot>
             <div class="flex flex-col gap-2 character-personality sortable-elements" data-handle=".sortable-handler">
-                @foreach ((isset($model) ? $model->characterTraits()->personality()->orderBy('default_order', 'ASC')->get() : FormCopy::characterPersonality()) as $trait)
+                @foreach ((isset($model) ? $model->characterTraits()->personality()->orderBy('default_order', 'asc')->get() : FormCopy::characterPersonality()) as $trait)
                     <div class="flex flex-col gap-2 parent-delete-row">
                         <div class="flex gap-1 items-center">
                             <div class="sortable-handler px-1 cursor-move">

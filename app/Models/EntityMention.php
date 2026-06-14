@@ -199,7 +199,7 @@ class EntityMention extends Model
     public function scopeDatagridElements(Builder $query, array $options): Builder
     {
         $column = Arr::get($options, 'k', 'name');
-        $order = Arr::get($options, 'o', 'ASC');
+        $order = Arr::get($options, 'o', 'asc');
         $query->select('entity_mentions.*')
             ->leftJoin('entities as e', 'e.id', 'entity_mentions.entity_id');
 

@@ -28,7 +28,7 @@ class EntityCacheService extends BaseCache
                 ->groupBy('type')
                 ->whereNotNull('type')
                 ->where('type_id', $entityType->id)
-                ->orderBy('cmat', 'DESC')
+                ->orderBy('cmat', 'desc')
                 ->take(20)
                 ->pluck('type')
                 ->all();

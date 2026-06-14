@@ -58,7 +58,7 @@ class FaqCategory extends Model
      * @param  string  $order
      * @return Builder
      */
-    public function scopeOrdered(Builder $query, $order = 'ASC')
+    public function scopeOrdered(Builder $query, $order = 'asc')
     {
         return $query->orderBy('order', $order);
     }

@@ -53,7 +53,7 @@ export function useOrdering(options: OrderingOptions) {
             url.searchParams.delete('desc')
             currentUrl.searchParams.set('order', sortField)
             currentUrl.searchParams.delete('desc')
-            order.value = { [sortField]: 'ASC' }
+            order.value = { [sortField]: 'asc' }
         }
 
         options.fetchEntities(url.toString()).then(() => {
@@ -68,7 +68,7 @@ export function useOrdering(options: OrderingOptions) {
     }
 
     const isOrderingAscending = (field: string): boolean => {
-        return order.value[field] === 'ASC'
+        return order.value[field] === 'asc'
     }
 
     const orderByClass = (field: string): string => {

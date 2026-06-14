@@ -220,7 +220,7 @@ class AttributeService extends BaseAttributesService
         // Campaign templates
         $campaignTemplates = AttributeTemplate::has('entity')
             ->enabled()
-            ->orderBy('name', 'ASC')
+            ->orderBy('name', 'asc')
             ->pluck('name', 'id');
         $key = __('entities.attribute_templates');
         foreach ($campaignTemplates as $id => $name) {

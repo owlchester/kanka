@@ -32,7 +32,6 @@ class NotificationController extends Controller
         $user = auth()->user();
 
         $notifications = $user->notifications()->paginate();
-        // @phpstan-ignore-next-line
         $user->unreadNotifications->markAsRead();
 
         return view('notifications.index', compact('notifications'));

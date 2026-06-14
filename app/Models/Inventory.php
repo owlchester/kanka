@@ -93,7 +93,7 @@ class Inventory extends Model
             ->whereNotNull('position')
             ->leftJoin('entities as e', 'e.id', 'inventories.entity_id')
             ->where('e.campaign_id', $campaign->id)
-            ->orderBy('position', 'ASC')
+            ->orderBy('position', 'asc')
             ->limit(50);
     }
 

@@ -155,7 +155,7 @@ class EntityLog extends Model
      */
     public function scopeRecent(Builder $query)
     {
-        return $query->orderBy('created_at', 'DESC')->orderBy('id', 'DESC');
+        return $query->orderBy('created_at', 'desc')->orderBy('id', 'desc');
     }
 
     /**

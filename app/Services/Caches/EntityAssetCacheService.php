@@ -31,7 +31,7 @@ class EntityAssetCacheService extends BaseCache
                 ->groupBy('metadata')
                 ->whereNotNull('metadata->icon')
                 ->where('entity_assets.type_id', EntityAssetType::link)
-                ->orderBy('cmat', 'DESC')
+                ->orderBy('cmat', 'desc')
                 ->take(10)
                 ->pluck('icon')
                 ->all();

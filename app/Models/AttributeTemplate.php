@@ -91,7 +91,7 @@ class AttributeTemplate extends MiscModel
         $randomService = app()->make(RandomService::class);
 
         /** @var Attribute $attribute */
-        foreach ($this->entity->attributes()->orderBy('default_order', 'ASC')->get() as $attribute) {
+        foreach ($this->entity->attributes()->orderBy('default_order', 'asc')->get() as $attribute) {
             // Don't re-create existing attributes.
             if (in_array($attribute->name, $existing)) {
                 continue;
@@ -114,7 +114,7 @@ class AttributeTemplate extends MiscModel
         // Loop through parents
         /** @var Entity $ancestor */
         foreach ($this->entity->ancestors()->get() as $ancestor) {
-            foreach ($ancestor->attributes()->orderBy('default_order', 'ASC')->get() as $attribute) {
+            foreach ($ancestor->attributes()->orderBy('default_order', 'asc')->get() as $attribute) {
                 // Don't re-create existing attributes.
                 if (in_array($attribute->name, $existing)) {
                     continue;

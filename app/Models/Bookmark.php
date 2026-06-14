@@ -179,8 +179,8 @@ class Bookmark extends Model
     public function scopeOrdered(Builder $query): Builder
     {
         return $query
-            ->orderBy('position', 'ASC')
-            ->orderBy('name', 'ASC');
+            ->orderBy('position', 'asc')
+            ->orderBy('name', 'asc');
     }
 
     /**
