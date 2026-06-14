@@ -15,5 +15,4 @@
     @include('cruds.fields.status')
 
     @include('cruds.fields.tags')
-    @include('cruds.fields.image')
 </x-grid>

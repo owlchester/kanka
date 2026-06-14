@@ -17,7 +17,5 @@ $targets = [
 
     @include('cruds.fields.tags')
     @include('cruds.fields.closed')
-
-    @include('cruds.fields.image')
 </x-grid>
 

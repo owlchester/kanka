@@ -39,6 +39,5 @@
     </x-forms.field>
 
     @include('cruds.fields.tags')
-    @include('cruds.fields.image')
 
 </x-grid>

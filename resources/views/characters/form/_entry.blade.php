@@ -23,8 +23,6 @@
     @include('cruds.fields.pronouns')
 
     @include('cruds.fields.tags')
-
-    @include('cruds.fields.image')
 </x-grid>
 
 @section('scripts')
