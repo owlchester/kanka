@@ -28,13 +28,13 @@
         <x-grid type="1/1">
             @include('cruds.forms._errors')
             <div class="flex flex-col gap-6 relative rounded-xl">
-                
+
                 <div class="nav-tabs-custom bg-base-100 p-4 rounded-xl flex flex-col gap-6 relative">
                     <div class="flex gap-2 items-center justify-between sticky z-10 top-12 bg-base-100">
                         <div class="overflow-x-auto">
                             <ul class="nav-tabs flex items-stretch w-full" role="tablist">
                                 <x-tab.tab target="entry" :default="true" :title="__('entries/tabs.identity')"></x-tab.tab>
-    
+
                                 @includeIf($name . '.form._tabs', ['source' => null])
                                 @if ($tabBoosted && config('limits.campaigns.premium'))
                                     <x-tab.tab target="premium" icon="premium" :title="__('crud.tabs.premium')"></x-tab.tab>
@@ -47,12 +47,12 @@
                                 @endif
                             </ul>
                         </div>
-    
+
                         <div class="">
                             @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form'])
                         </div>
                     </div>
-    
+
                     <div class="tab-content">
                         <div class="tab-pane flex flex-col gap-5 {{ (request()->get('tab') == null ? ' active' : '') }}" id="form-entry">
                             @include($name . '.form._entry', ['source' => null])

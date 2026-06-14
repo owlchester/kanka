@@ -44,8 +44,12 @@
                             @endif
                         </ul>
                     </div>
-    
-                    @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form'])
+                    
+                    <div class="flex items-center gap-2">
+                        @includeWhen(auth()->user()->can('admin', $campaign), 'cruds.fields.entity-permission')
+                        
+                        @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form'])
+                    </div>
                 </div>
     
                 <div class="tab-content">

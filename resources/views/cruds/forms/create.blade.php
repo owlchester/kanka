@@ -47,23 +47,14 @@
         <x-grid type="1/1">
             @include('cruds.forms._errors')
 
-            
+
             <div class="bg-base-100 entity-form flex flex-col rounded-xl">
-                <div class=entity-header">
-                    Header image stuff
-                </div>
                 <div class="flex gap-2 p-4 items-end">
                     <div>
                         @include('cruds.fields.image-gallery', ['new' => true])
                     </div>
                     <div class="grow">
                         @include('cruds.fields.entity-name')
-                    </div>
-                    <div>
-                        @includeWhen(auth()->user()->can('admin', $campaign), 'cruds.fields.entity-permission')
-                    </div>
-                    <div>
-                        @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form'])
                     </div>
                 </div>
             </div>
@@ -91,6 +82,14 @@
                             @endif
                         </ul>
                     </div>
+
+                    <div>
+                        @includeWhen(auth()->user()->can('admin', $campaign), 'cruds.fields.entity-permission')
+                    </div>
+                    <div>
+                        @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form'])
+                    </div>
+                    
                 </div>
 
                 <div class="tab-content">

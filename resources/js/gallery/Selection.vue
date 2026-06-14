@@ -112,8 +112,12 @@
                 class="text-left px-3 py-2.5 hover:bg-base-200 transition-colors duration-150 flex gap-3 items-center text-error-content cursor-pointer"
                 @click.stop="removeImage(); dropdownOpen = false"
             >
-                <i class="fa-regular fa-trash w-4 shrink-0 text-center" aria-hidden="true"></i>
-                <span class="text-sm">{{ trans.remove }}</span>
+                <div class="flex items-center justify-center w-7 h-7 rounded text-xs shrink-0 bg-base-300">
+                    <i class="fa-regular fa-trash w-4 shrink-0 text-center" aria-hidden="true"></i>
+                </div>
+                <span class="text-sm font-medium">
+                    {{ trans.remove }}
+                </span>
             </button>
         </div>
 
