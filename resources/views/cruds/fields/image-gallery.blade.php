@@ -7,14 +7,16 @@ elseif (!isset($entity) && isset($source)) {
 }
 $formats = 'PNG, JPG, GIF, WebP';
 $inputFileTypes = '.jpg, .jpeg, .png, .gif, .webp';
-$max = 25;
+$max = Limit::user(auth()->user())->campaign($campaign)->readable();
 $from = null;
 if (isset($size) && $size == 'map') {
-    $formats = 'PNG, JPG, SVG, WebP';
+    $max->map();
+    $formats = 'PNG, JPG, GIF, SVG, WebP';
     $inputFileTypes = '.jpg, .jpeg, .png, .gif, .webp, .svg';
-    $max = 50;
     $from = 'map';
 }
+$max = $max->upload();
+
 $isUnlimited = empty($from === 'map' ? config('limits.filesize.map') : config('limits.filesize.image.standard'));
 $label = $imageLabel ?? 'crud.fields.image';
 
@@ -51,7 +53,7 @@ $old = isset($entity) && !empty($entity->image_path) || isset($model) && !empty(
         'url_hint'  => __('gallery.actions.url_hint'),
         'drag_hint' => __('gallery.drop.hint'),
         'drop_hint' => __('gallery.drop.active'),
-        'formats'   => $formats . ' · max ' . $max . ' MB',
+        'formats'   => $formats . ' · max ' . $max,
         'unauthorized' => __('gallery.download.errors.unauthorized'),
         'browse' => [
             'title' => __('gallery.browse.title'),
@@ -117,4 +119,3 @@ $old = isset($entity) && !empty($entity->image_path) || isset($model) && !empty(
     </x-helper>
     @endif
 </div>
-

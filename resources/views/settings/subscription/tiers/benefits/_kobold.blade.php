@@ -2,7 +2,7 @@
     <div class="w-8 shrink-0 text-center">
         <x-icon class="fa-regular fa-image" />
     </div>
-    {{ __('tiers.features.file_size', ['size' => '1 MiB']) }}
+    {{ __('tiers.features.file_size', ['size' => '3 MiB']) }}
 </div>
 
 <div class="flex gap-1">
