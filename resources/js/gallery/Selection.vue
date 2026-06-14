@@ -79,11 +79,11 @@
             <button
                 v-if="canUploadProp"
                 type="button"
-                class="text-left px-3 py-2.5 hover:bg-base-200 transition-colors duration-150 flex gap-3 items-start"
+                class="text-left px-3 py-2 hover:bg-base-200 transition-colors duration-150 flex gap-2 items-start"
                 @click.stop="triggerFileInput"
             >
                 <div
-                    class="flex items-center justify-center w-7 h-7 rounded text-xs shrink-0 bg-base-300"
+                    class="flex items-center justify-center w-6 h-6 rounded text-xs shrink-0 text-neutral-content"
                 >
                     <i class="fa-regular fa-upload" aria-hidden="true"></i>
                 </div>
@@ -99,12 +99,12 @@
             <button
                 v-if="canUploadProp"
                 type="button"
-                class="text-left px-3 py-2.5 transition-colors duration-150 flex gap-3 items-start"
+                class="text-left px-3 py-2 transition-colors duration-150 flex gap-2 items-start"
                 :class="waitingForPaste ? 'bg-base-200' : 'hover:bg-base-200'"
                 @click.stop="activatePasteMode"
             >
                 <div
-                    class="flex items-center justify-center w-7 h-7 rounded text-xs shrink-0 bg-base-300"
+                    class="flex items-center justify-center w-6 h-6 rounded text-xs shrink-0 text-neutral-content"
                 >
                     <i
                         class=""
@@ -128,14 +128,14 @@
             <button
                 v-if="canBrowseProp"
                 type="button"
-                class="text-left px-3 py-2.5 hover:bg-base-200 transition-colors duration-150 flex gap-3 items-center"
+                class="text-left px-3 py-2 hover:bg-base-200 transition-colors duration-150 flex gap-2 items-center"
                 @click.stop="
                     openGallery();
                     dropdownOpen = false;
                 "
             >
                 <div
-                    class="flex items-center justify-center w-7 h-7 rounded text-xs shrink-0 bg-base-300"
+                    class="flex items-center justify-center w-6 h-6 rounded text-xs shrink-0 text-neutral-content"
                 >
                     <i class="fa-regular fa-images" aria-hidden="true"></i>
                 </div>
@@ -146,14 +146,14 @@
             <button
                 v-if="hasImage()"
                 type="button"
-                class="text-left px-3 py-2.5 hover:bg-base-200 transition-colors duration-150 flex gap-3 items-center text-error-content cursor-pointer"
+                class="text-left px-3 py-2 hover:bg-base-200 transition-colors duration-150 flex gap-3 items-center text-error-content cursor-pointer"
                 @click.stop="
                     removeImage();
                     dropdownOpen = false;
                 "
             >
                 <div
-                    class="flex items-center justify-center w-7 h-7 rounded text-xs shrink-0 bg-base-300"
+                    class="flex items-center justify-center w-6 h-6 rounded text-xs shrink-0"
                 >
                     <i
                         class="fa-regular fa-trash w-4 shrink-0 text-center"

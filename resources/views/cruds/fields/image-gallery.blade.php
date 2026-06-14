@@ -7,7 +7,7 @@ elseif (!isset($entity) && isset($source)) {
 }
 $formats = 'PNG, JPG, GIF, WebP';
 $inputFileTypes = '.jpg, .jpeg, .png, .gif, .webp';
-$max = Limit::user(auth()->user())->campaign($campaign)->readable();
+$max = Limit::user(auth()->user())->campaign($campaign);
 $from = null;
 if (isset($size) && $size == 'map') {
     $max->map();
@@ -15,7 +15,7 @@ if (isset($size) && $size == 'map') {
     $inputFileTypes = '.jpg, .jpeg, .png, .gif, .webp, .svg';
     $from = 'map';
 }
-$max = $max->upload();
+$max = $max->readable()->upload();
 
 $isUnlimited = empty($from === 'map' ? config('limits.filesize.map') : config('limits.filesize.image.standard'));
 $label = $imageLabel ?? 'crud.fields.image';
