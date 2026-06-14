@@ -12,7 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->dropColumn('is_private');
+            if (Schema::hasIndex('posts', 'entity_notes_name_is_private_index')) {
+                $table->dropIndex('entity_notes_name_is_private_index');
+            }
+            if (Schema::hasColumn('posts', 'is_private')) {
+                $table->dropColumn('is_private');
+            }
         });
     }
 

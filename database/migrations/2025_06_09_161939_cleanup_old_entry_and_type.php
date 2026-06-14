@@ -31,39 +31,73 @@ return new class extends Migration
         ];
         foreach ($tables as $tablename) {
             if (! in_array($tablename, ['families', 'items', 'events', 'calendars', 'races', 'quests', 'journals', 'tags', 'creatures'])) {
-                Schema::table($tablename, function (Blueprint $table) {
-                    $table->dropIndex(['name_type']); // drops index that contains "type"
-                    $table->dropColumn('type');
-                    $table->dropColumn('entry');
+                Schema::table($tablename, function (Blueprint $table) use ($tablename) {
+                    if (Schema::hasIndex($tablename, $tablename . '_name_type_index')) {
+                        $table->dropIndex(['name_type']); // drops index that contains "type"
+                    }
+                    if (Schema::hasColumn($tablename, 'type')) {
+                        $table->dropColumn('type');
+                    }
+                    if (Schema::hasColumn($tablename, 'entry')) {
+                        $table->dropColumn('entry');
+                    }
                 });
             } elseif (in_array($tablename, ['items', 'races', 'creatures'])) {
-                Schema::table($tablename, function (Blueprint $table) {
-                    $table->dropIndex(['name_type_is_private']); // drops index that contains "type"
-                    $table->dropColumn('type');
-                    $table->dropColumn('entry');
+                Schema::table($tablename, function (Blueprint $table) use ($tablename) {
+                    if (Schema::hasIndex($tablename, $tablename . '_name_type_is_private_index')) {
+                        $table->dropIndex(['name_type_is_private']); // drops index that contains "type"
+                    }
+                    if (Schema::hasColumn($tablename, 'type')) {
+                        $table->dropColumn('type');
+                    }
+                    if (Schema::hasColumn($tablename, 'entry')) {
+                        $table->dropColumn('entry');
+                    }
                 });
             } elseif ($tablename == 'events') {
-                Schema::table($tablename, function (Blueprint $table) {
-                    $table->dropIndex(['name_type_date_is_private']); // drops index that contains "type"
-                    $table->dropColumn('type');
-                    $table->dropColumn('entry');
+                Schema::table($tablename, function (Blueprint $table) use ($tablename) {
+                    if (Schema::hasIndex($tablename, $tablename . '_name_type_date_is_private_index')) {
+                        $table->dropIndex(['name_type_date_is_private']); // drops index that contains "type"
+                    }
+                    if (Schema::hasColumn($tablename, 'type')) {
+                        $table->dropColumn('type');
+                    }
+                    if (Schema::hasColumn($tablename, 'entry')) {
+                        $table->dropColumn('entry');
+                    }
                 });
             } elseif ($tablename == 'journals') {
-                Schema::table($tablename, function (Blueprint $table) {
-                    $table->dropIndex(['name_type_date']); // drops index that contains "type"
-                    $table->dropColumn('type');
-                    $table->dropColumn('entry');
+                Schema::table($tablename, function (Blueprint $table) use ($tablename) {
+                    if (Schema::hasIndex($tablename, $tablename . '_name_type_date_index')) {
+                        $table->dropIndex(['name_type_date']); // drops index that contains "type"
+                    }
+                    if (Schema::hasColumn($tablename, 'type')) {
+                        $table->dropColumn('type');
+                    }
+                    if (Schema::hasColumn($tablename, 'entry')) {
+                        $table->dropColumn('entry');
+                    }
                 });
             } elseif ($tablename == 'tags') {
-                Schema::table($tablename, function (Blueprint $table) {
-                    $table->dropIndex(['name_type_is_private_is_hidden_is_auto_applied']); // drops index that contains "type"
-                    $table->dropColumn('type');
-                    $table->dropColumn('entry');
+                Schema::table($tablename, function (Blueprint $table) use ($tablename) {
+                    if (Schema::hasIndex($tablename, $tablename . '_name_type_is_private_is_hidden_is_auto_applied_index')) {
+                        $table->dropIndex(['name_type_is_private_is_hidden_is_auto_applied']); // drops index that contains "type"
+                    }
+                    if (Schema::hasColumn($tablename, 'type')) {
+                        $table->dropColumn('type');
+                    }
+                    if (Schema::hasColumn($tablename, 'entry')) {
+                        $table->dropColumn('entry');
+                    }
                 });
             } else {
-                Schema::table($tablename, function (Blueprint $table) {
-                    $table->dropColumn('type');
-                    $table->dropColumn('entry');
+                Schema::table($tablename, function (Blueprint $table) use ($tablename) {
+                    if (Schema::hasColumn($tablename, 'type')) {
+                        $table->dropColumn('type');
+                    }
+                    if (Schema::hasColumn($tablename, 'entry')) {
+                        $table->dropColumn('entry');
+                    }
                 });
             }
         }
