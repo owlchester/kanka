@@ -70,39 +70,23 @@ class DashboardService
         }
 
         $available = $this->availableDashboards();
-        $dashboards = [];
+        $ids = [];
 
         if (! isset($this->user) || ! $this->user->can('member', $this->campaign)) {
-            foreach ($available['public'] as $role) {
-                $dashboards[] = $role->dashboard;
-            }
-
-            return $dashboards;
-        }
-
-        // Admin?
-        if ($this->user->can('admin', $this->campaign)) {
-            foreach ($available['admin'] as $role) {
-                $dashboards[] = $role->dashboard;
-            }
-
-            return $dashboards;
-        }
-
-        // Member of the campaign, check dashboards for roles of them
-        $roles = UserCache::roles();
-        $dashboards = [];
-        foreach ($roles as $role) {
-            $key = 'role_' . $role['id'];
-            if (! isset($available[$key])) {
-                continue;
-            }
-            foreach ($available[$key] as $r) {
-                $dashboards[] = $r->dashboard;
+            $ids = array_column($available['public'], 'campaign_dashboard_id');
+        } elseif ($this->user->can('admin', $this->campaign)) {
+            $ids = array_column($available['admin'], 'campaign_dashboard_id');
+        } else {
+            $roles = UserCache::roles();
+            foreach ($roles as $role) {
+                $key = 'role_' . $role['id'];
+                if (isset($available[$key])) {
+                    $ids = array_merge($ids, array_column($available[$key], 'campaign_dashboard_id'));
+                }
             }
         }
 
-        return $dashboards;
+        return CampaignDashboard::whereIn('id', $ids)->get()->all();
     }
 
     public function add(Entity $entity): self
@@ -241,6 +225,28 @@ class DashboardService
         return $this->dashboard;
     }
 
+    protected function defaultIdFrom(array $entries): ?int
+    {
+        foreach ($entries as $entry) {
+            if ($entry['is_default']) {
+                return $entry['campaign_dashboard_id'];
+            }
+        }
+
+        return null;
+    }
+
+    protected function findIdIn(array $entries, int $dashboardId): ?int
+    {
+        foreach ($entries as $entry) {
+            if ($entry['campaign_dashboard_id'] === $dashboardId) {
+                return $dashboardId;
+            }
+        }
+
+        return null;
+    }
+
     /**
      * Get the default dashboards for the various roles
      */
@@ -254,43 +260,27 @@ class DashboardService
      */
     protected function defaultDashboard(array $available)
     {
+        $id = null;
+
         // Unlogged or not a member
         if (! isset($this->user) || ! $this->user->can('member', $this->campaign)) {
-            foreach ($available['public'] as $role) {
-                if ($role->is_default) {
-                    return $role->dashboard;
-                }
-            }
-
-            return null;
-        }
-
-        // Admin?
-        if ($this->user->can('admin', $this->campaign)) {
-            foreach ($available['admin'] as $role) {
-                if ($role->is_default) {
-                    return $role->dashboard;
-                }
-            }
-
-            return null;
-        }
-
-        // Member of the campaign, check dashboards for roles of them
-        $roles = UserCache::roles();
-        foreach ($roles as $role) {
-            $key = 'role_' . $role['id'];
-            if (! isset($available[$key])) {
-                continue;
-            }
-            foreach ($available[$key] as $r) {
-                if ($r->is_default) {
-                    return $r->dashboard;
+            $id = $this->defaultIdFrom($available['public']);
+        } elseif ($this->user->can('admin', $this->campaign)) {
+            $id = $this->defaultIdFrom($available['admin']);
+        } else {
+            $roles = UserCache::roles();
+            foreach ($roles as $role) {
+                $key = 'role_' . $role['id'];
+                if (isset($available[$key])) {
+                    $id = $this->defaultIdFrom($available[$key]);
+                    if ($id !== null) {
+                        break;
+                    }
                 }
             }
         }
 
-        return null;
+        return $id ? CampaignDashboard::find($id) : null;
     }
 
     /**
@@ -300,36 +290,27 @@ class DashboardService
      */
     protected function validateDashboard(array $available, int $dashboard)
     {
-        $filtered = false;
+        $id = null;
+
         if (! isset($this->user) || ! $this->user->can('member', $this->campaign)) {
-            $filtered = $available['public'];
+            $id = $this->findIdIn($available['public'], $dashboard);
         } elseif ($this->user) {
-            $filtered = $available['admin'];
+            $id = $this->findIdIn($available['admin'], $dashboard);
         }
 
-        if ($filtered !== false) {
-            foreach ($filtered as $role) {
-                if ($role->campaign_dashboard_id == $dashboard) {
-                    return $role->dashboard;
-                }
-            }
-
-            return null;
-        }
-
-        $roles = UserCache::roles();
-        foreach ($roles as $role) {
-            $key = 'role_' . $role['id'];
-            if (empty($available[$key])) {
-                continue;
-            }
-            foreach ($available[$key] as $r) {
-                if ($r->campaign_dashboard_id == $dashboard) {
-                    return $r->dashboard;
+        if ($id === null) {
+            $roles = UserCache::roles();
+            foreach ($roles as $role) {
+                $key = 'role_' . $role['id'];
+                if (! empty($available[$key])) {
+                    $id = $this->findIdIn($available[$key], $dashboard);
+                    if ($id !== null) {
+                        break;
+                    }
                 }
             }
         }
 
-        return null;
+        return $id ? CampaignDashboard::find($id) : null;
     }
 }
