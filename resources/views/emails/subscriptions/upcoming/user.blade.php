@@ -5,7 +5,7 @@
 {{ __('emails/subscriptions/upcoming.primary', [
     'brand' => ucfirst($user->pm_type),
     'last' => $user->pm_last_four,
-    'date' => now()->addDays(15)->isoFormat('MMMM D, Y')
+    'date' => now()->addDays(7)->isoFormat('MMMM D, Y')
 ]) }}
 
 {{ __('emails/subscriptions/upcoming.notice') }}
@@ -16,6 +16,6 @@
 
 {{ __('emails/subscriptions/upcoming.closing') }}
 
-__Jay & Jon_
+__Jay & Jon__
 
 </x-mail::message>

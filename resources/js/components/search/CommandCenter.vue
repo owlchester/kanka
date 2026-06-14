@@ -1,7 +1,7 @@
 <template>
     <Teleport to="body">
         <dialog
-            class="dialog rounded-2xl bg-base-100 text-base-content w-full md:w-fit md:min-w-2xl overflow-hidden"
+            class="dialog rounded-2xl bg-base-100 text-base-content w-full md:w-fit md:min-w-2xl overflow-hidden flex flex-col max-h-[80vh]"
             ref="dialogRef"
             @cancel="close"
             aria-label="Command Center"
@@ -18,7 +18,7 @@
                     ref="inputRef"
                 />
             </header>
-            <article class="flex-1 min-h-0">
+            <article class="min-h-0 overflow-y-auto">
                 <CommandResults
                     :mode="mode"
                     :query="query"
@@ -37,11 +37,11 @@
                 <div class="flex gap-4 items-center">
                     <div class="flex gap-1 items-center">
                         <kbd class="w-8 inline-block text-center rounded bg-base-200">↑</kbd>
-                        <kbd class="w-8 inline-block text-center rounded bg-base-200">↓</kbd> 
+                        <kbd class="w-8 inline-block text-center rounded bg-base-200">↓</kbd>
                         <span>navigate</span>
                     </div>
                     <span><kbd class="w-8 inline-block text-center rounded bg-base-200">↵</kbd> open</span>
-                    <span><kbd class="w-8 inline-block text-center rounded bg-base-200">{{ isMac ? '⌘' : 'Ctrl+' }}F</kbd> full text</span>
+                    <span><kbd class="min-w-8 inline-block text-center rounded bg-base-200">{{ isMac ? '⌘' : 'Ctrl+' }}F</kbd> full text</span>
                 </div>
                 <span><kbd class="w-10 inline-block text-center rounded bg-base-200">Esc</kbd> close</span>
             </footer>
@@ -101,6 +101,7 @@ export default {
         isOpen(opened) {
             if (opened) {
                 this.$refs.dialogRef.showModal();
+                setTimeout(() => this.$refs.inputRef?.focus(), 50);
                 this.fetchRestData();
                 this._fulltextKeyHandler = (e) => {
                     if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
@@ -195,6 +196,7 @@ export default {
             this.pages = [];
             this.results = [];
             this.loading = false;
+            this.$refs.inputRef?.clear();
         },
     },
 };

@@ -4,12 +4,21 @@
  * Key names are matched against event.key (case-insensitive for letters).
  */
 const parseShortcut = (shortcut) => {
-    const parts = shortcut.toLowerCase().split('+').map(p => p.trim());
+    const parts = shortcut
+        .toLowerCase()
+        .split("+")
+        .map((p) => p.trim());
     return {
-        ctrl: parts.includes('ctrl') || parts.includes('cmd') || parts.includes('meta'),
-        alt: parts.includes('alt'),
-        shift: parts.includes('shift'),
-        key: parts.filter(p => !['ctrl', 'cmd', 'meta', 'alt', 'shift'].includes(p))[0] || null,
+        ctrl:
+            parts.includes("ctrl") ||
+            parts.includes("cmd") ||
+            parts.includes("meta"),
+        alt: parts.includes("alt"),
+        shift: parts.includes("shift"),
+        key:
+            parts.filter(
+                (p) => !["ctrl", "cmd", "meta", "alt", "shift"].includes(p),
+            )[0] || null,
     };
 };
 
@@ -38,23 +47,23 @@ const matchesShortcut = (event, desc) => {
  *   data-shortcut="ctrl+alt+c"     → Ctrl+Alt+C
  */
 const initKeyboardShortcuts = () => {
-    document.addEventListener('keydown', function (event) {
+    document.addEventListener("keydown", function (event) {
         const target = event.target;
-        const entityModal = document.getElementById('primary-dialog');
+        const entityModal = document.getElementById("primary-dialog");
 
         // Escape to close quick creator selection modal
-        if (event.key === 'Escape') {
-            if (entityModal?.classList.contains('qq-modal-selection')) {
+        if (event.key === "Escape") {
+            if (entityModal?.classList.contains("qq-modal-selection")) {
                 window.closeDialog(entityModal);
             }
             return;
         }
 
         // Collect all shortcut elements currently in the DOM
-        const elements = document.querySelectorAll('[data-shortcut]');
+        const elements = document.querySelectorAll("[data-shortcut]");
         for (const el of elements) {
             // Skip form elements — they use initKeyboardSave instead
-            if (el.tagName.toLowerCase() === 'form') {
+            if (el.tagName.toLowerCase() === "form") {
                 continue;
             }
 
@@ -73,7 +82,7 @@ const initKeyboardShortcuts = () => {
             event.preventDefault();
 
             // Focus for inputs, click for everything else
-            if (el.dataset.shortcutAction === 'focus') {
+            if (el.dataset.shortcutAction === "focus") {
                 el.focus();
             } else {
                 el.click();
@@ -81,7 +90,6 @@ const initKeyboardShortcuts = () => {
             }
             return;
         }
-
     });
 };
 
@@ -89,21 +97,19 @@ const isInputField = (target) => {
     if (!target || target.length === 0) {
         return false;
     }
-    const tagNames = ['input', 'textarea', 'select'];
+    const tagNames = ["input", "textarea", "select"];
     if (tagNames.includes(target.tagName.toLowerCase())) {
         return true;
-    }
-    else if (target.getAttribute('contentEditable') === 'true') {
+    } else if (target.getAttribute("contentEditable") === "true") {
         return true;
-    }
-    else if (target.classList.contains('CodeMirror')) {
+    } else if (target.classList.contains("CodeMirror")) {
         return true;
     }
     return false;
 };
 
 const initKeyboardSave = () => {
-    let fields = document.querySelectorAll('form[data-shortcut]');
+    let fields = document.querySelectorAll("form[data-shortcut]");
     fields.forEach(function (e) {
         initSaveKeyboardShortcut(e);
     });
@@ -118,28 +124,28 @@ const initSaveKeyboardShortcut = (form) => {
         return;
     }
     form.dataset.shortcutInit = 1;
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener("keydown", function (e) {
         // Need to check on lowercase key, because shift will uppercase it
-        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "s") {
             e.preventDefault();
             if (form.dataset.unload) {
                 window.entityFormHasUnsavedChanges = false;
             }
 
             if (e.shiftKey) {
-                setFormAction('submit-update');
+                setFormAction("submit-update");
             } else if (e.altKey) {
-                setFormAction('submit-new');
+                setFormAction("submit-new");
             }
             form.requestSubmit();
             return false;
         }
         // Save & Copy
-        if ((e.ctrlKey || e.metaKey) && e.altKey && e.key === 'c') {
+        if ((e.ctrlKey || e.metaKey) && e.altKey && e.key === "c") {
             if (form.dataset.unload) {
                 window.entityFormHasUnsavedChanges = false;
             }
-            setFormAction('submit-copy');
+            setFormAction("submit-copy");
             form.submit();
             return false;
         }
@@ -151,13 +157,13 @@ const initSaveKeyboardShortcut = (form) => {
  * @param action
  */
 const setFormAction = (action) => {
-    const entityFormDefaultAction = document.getElementById('form-submit-main');
+    const entityFormDefaultAction = document.getElementById("form-submit-main");
     if (!entityFormDefaultAction) {
         return;
     }
 
     entityFormDefaultAction.name = action;
-    document.getElementById('submit-mode').name = action;
+    document.getElementById("submit-mode").name = action;
 };
 
 /**
@@ -167,20 +173,25 @@ const setFormAction = (action) => {
 const initPasting = () => {
     const fields = document.querySelectorAll('input[data-paste="fontawesome"]');
     fields.forEach(function (field) {
-        field.addEventListener('paste', function (e) {
+        field.addEventListener("paste", function (e) {
             e.preventDefault();
             // window.clipboardData is used for older browsers
-            const pasteData = (e.clipboardData || window.clipboardData).getData('text');
+            const pasteData = (e.clipboardData || window.clipboardData).getData(
+                "text",
+            );
 
-            if (pasteData.startsWith('<i class="fa') || pasteData.startsWith('<i class="ra')) {
+            if (
+                pasteData.startsWith('<i class="fa') ||
+                pasteData.startsWith('<i class="ra')
+            ) {
                 // Create a temporary container to parse the HTML
-                const tempDiv = document.createElement('div');
+                const tempDiv = document.createElement("div");
                 tempDiv.innerHTML = pasteData;
 
                 // Find the FontAwesome or RPGAwesome icon in the pasted HTML
-                const icon = tempDiv.querySelector('i');
+                const icon = tempDiv.querySelector("i");
 
-                let iconClass = icon.getAttribute('class');
+                let iconClass = icon.getAttribute("class");
                 if (iconClass) {
                     field.value = iconClass;
                     return;
@@ -195,7 +206,7 @@ initKeyboardSave();
 initKeyboardShortcuts();
 initPasting();
 
-window.onEvent(function() {
+window.onEvent(function () {
     initPasting();
     initKeyboardShortcuts();
     initKeyboardSave();

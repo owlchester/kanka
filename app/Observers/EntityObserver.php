@@ -49,6 +49,15 @@ class EntityObserver
         return $permission;
     }
 
+    public function updating(Entity $entity): void
+    {
+        if ($entity->isDirty('image_uuid') && $entity->isMap()) {
+            $entity->map->height = null;
+            $entity->map->width = null;
+            $entity->map->saveQuietly();
+        }
+    }
+
     /**
      * Queue a few jobs whenever an entity gets updated
      */

@@ -4,7 +4,7 @@ return [
     'errors'    => [
         'marketplace'   => [
             'hint'      => 'Error',
-            'rendering' => 'There was an error rendering the marketplace plugin. Please contact the plugin creator.',
+            'rendering' => 'There was an error rendering the character sheet. Please contact the plugin creator.',
         ],
     ],
     'list'      => [

@@ -44,7 +44,6 @@ The list of returned entities can be filtered. The available filters are [availa
             "created_by": 1,
             "updated_at":  "2019-08-29T13:48:54.000000Z",
             "updated_by": 1,
-            "creature_id": null,
             "type": "Bird",
             "status_id": 1,
             "locations": [
@@ -84,7 +83,6 @@ To get the details of a single creature, use the following endpoint.
         "created_by": 1,
         "updated_at":  "2019-08-29T13:48:54.000000Z",
         "updated_by": 1,
-        "creature_id": null,
         "type": "Bird",
         "status_id": 1,
         "locations": [
@@ -114,7 +112,7 @@ To create a creature, use the following endpoint.
 | `name` | `string` (Required) | Name of the creature                                                |
 | `entry` | `string` | The html description of the creature                                |
 | `type` | `string` | The creature's type                                                 |
-| `creature_id` | `string` | Parent creature of the creature                                     |
+| `parent_id` | `integer` | Parent creature entity id of the creature                                     |
 | `tags` | `array` | Array of tag ids                                                    |
 | `locations` | `array` | Array of location ids                                               |
 | `status_id` | `integer` | The id of the entity's status from `category_statuses`              |

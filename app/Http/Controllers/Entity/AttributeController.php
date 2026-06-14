@@ -117,6 +117,7 @@ class AttributeController extends Controller
         $attributes = $request->get('attribute', []);
         $this->service
             ->entity($entity)
+            ->campaign($campaign)
             ->user($request->user())
             ->updateVisibility(request()->get('is_attributes_private') === '1')
             ->save($attributes)

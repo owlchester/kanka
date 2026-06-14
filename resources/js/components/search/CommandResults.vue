@@ -4,10 +4,10 @@
         <template v-if="!hasQuery">
             <div v-if="recent.length > 0" class="flex flex-col">
                 <div class="uppercase text-neutral-content text-xs py-2">{{ texts.recents }}</div>
-                <button
+                <a
                     v-for="(item, i) in recent"
                     :key="'recent-' + item.id"
-                    type="button"
+                    :href="item.link || item.url"
                     data-nav-item
                     class="cursor-pointer flex items-center gap-2 rounded-lg p-2 border border-base-100"
                     :class="{ 'border-base-300': focusedIndex === i }"
@@ -16,11 +16,12 @@
                 >
                     <img v-if="item.image" :src="item.image" class="rounded-full w-8 h-8" alt="" />
                     <span v-else class="cmd-avatar cmd-avatar-placeholder"></span>
-                    <span class="cmd-item-meta">
-                        <span class="cmd-item-name">{{ item.name }}</span>
-                        <span class="cmd-item-type">{{ item.type }}<i v-if="item.is_private" class="fa-solid fa-lock cmd-private-icon"></i></span>
-                    </span>
-                </button>
+
+                    <div class="flex gap-2 items-center min-w-0">
+                        <span class="cmd-item-name font-normal">{{ item.name }}</span>
+                        <span class="cmd-item-type text-neutral-content text-xs uppercase">{{ item.type }}</span>
+                    </div>
+                </a>
             </div>
 
             <div v-if="bookmarks.length > 0" class="flex flex-col gap-0">
@@ -76,28 +77,28 @@
                 </div>
 
                 <div v-if="entities.length > 0" class="flex flex-col">
-                    <button
+                    <div
                         v-for="(item, i) in entities"
                         :key="'entity-' + item.id"
-                        type="button"
                         data-nav-item
-                        class="cursor-pointer flex items-center gap-2 rounded-lg p-2 border border-base-100"
+                        class="flex items-center rounded-lg border border-base-100"
                         :class="{ 'border-base-300 shadow-xs': focusedIndex === i }"
-                        @click="openItem(item)"
                         @mouseenter="focusedIndex = i"
                     >
-                        <img v-if="item.image" :src="item.image" class="rounded-full w-8 h-8" alt="" />
-                        <span v-else class="cmd-avatar cmd-avatar-placeholder"></span>
-
-                        <div class="cmd-item-meta flex gap-2 items-center justify-between w-full">
-                            <div class="flex gap-2 items-center">
+                        <a
+                            :href="item.link || item.url"
+                            class="cursor-pointer flex items-center gap-2 p-2 flex-1 min-w-0"
+                            @click="openItem(item)"
+                        >
+                            <img v-if="item.image" :src="item.image" class="rounded-full w-8 h-8" alt="" />
+                            <span v-else class="cmd-avatar cmd-avatar-placeholder"></span>
+                            <div class="flex gap-2 items-center min-w-0">
                                 <span class="cmd-item-name font-normal">{{ item.name }}</span>
                                 <span class="cmd-item-type text-neutral-content text-xs uppercase">{{ item.type }}</span>
                             </div>
-
-                            <a v-if="item.action" :href="item.action.url" class="btn2 btn-sm">{{ item.action.name }}</a>
-                        </div>
-                    </button>
+                        </a>
+                        <a v-if="item.action" :href="item.action.url" class="btn2 btn-sm mr-2 shrink-0">{{ item.action.name }}</a>
+                    </div>
                 </div>
 
                 <div v-if="pages.length > 0">
@@ -141,30 +142,31 @@
                     </div>
 
                     <div class="flex flex-col">
-                        <button
+                        <div
                             v-for="(item, i) in results"
                             :key="'result-' + item.id"
-                            type="button"
                             data-nav-item
-                            class="cursor-pointer flex items-center gap-2 rounded-lg p-2 border border-base-100"
+                            class="flex items-center rounded-lg border border-base-100"
                             :class="{ 'border-base-300 shadow-xs': focusedIndex === i }"
-                            @click="openItem(item)"
                             @mouseenter="focusedIndex = i"
                         >
-                            <img v-if="item.image" :src="item.image" class="rounded-full w-8 h-8" alt="" />
-                            <span v-else class="cmd-avatar cmd-avatar-placeholder"></span>
-                            <span class="cmd-item-meta flex gap-1 flex-col min-w-0 flex-1 text-left">
-                                <div class="flex gap-2 items-center justify-between">   
+                            <a
+                                :href="item.link || item.url"
+                                class="cursor-pointer flex items-center gap-2 p-2 flex-1 min-w-0"
+                                @click="openItem(item)"
+                            >
+                                <img v-if="item.image" :src="item.image" class="rounded-full w-8 h-8" alt="" />
+                                <span v-else class="cmd-avatar cmd-avatar-placeholder"></span>
+                                <span class="cmd-item-meta flex gap-1 flex-col min-w-0 flex-1 text-left">
                                     <div class="flex gap-2 items-center">
                                         <span class="cmd-item-name font-normal">{{ item.name }}</span>
                                         <span class="cmd-item-type text-neutral-content text-xs uppercase">{{ item.type }}</span>
                                     </div>
-        
-                                    <a v-if="item.action" :href="item.action.url" class="btn2 btn-sm">{{ item.action.name }}</a>
-                                </div>
-                                <span v-if="item.snippet" class="block text-neutral-content text-xs truncate max-w-2xl" v-html="item.snippet"></span>
-                            </span>
-                        </button>
+                                    <span v-if="item.snippet" class="block text-neutral-content text-xs truncate max-w-2xl" v-html="item.snippet"></span>
+                                </span>
+                            </a>
+                            <a v-if="item.action" :href="item.action.url" class="btn2 btn-sm mr-2 shrink-0">{{ item.action.name }}</a>
+                        </div>
                     </div>
                 </div>
                 <div v-else class="text-neutral-content text-center" v-html="noResultsHtml"></div>
@@ -276,16 +278,18 @@ export default {
 
         submit() {
             const item = this.flatItems[this.focusedIndex];
-            if (item) {
-                this.openItem(item);
+            if (!item) {
+                return;
             }
-        },
-
-        openItem(item) {
             const url = item.link || item.url;
             if (!url) {
                 return;
             }
+            this.openItem(item);
+            window.location.href = url;
+        },
+
+        openItem(item) {
             if (item.log_url) {
                 fetch(item.log_url, {
                     method: 'POST',
@@ -294,7 +298,6 @@ export default {
                     },
                 });
             }
-            window.location.href = url;
         },
     },
 };
