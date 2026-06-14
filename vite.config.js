@@ -72,6 +72,7 @@ export default defineConfig({
                 'resources/css/dashboard.css',
                 'resources/css/families/tree.css',
                 'resources/css/vendor.css',
+                'resources/css/themes/light.css',
                 'resources/css/themes/dark.css',
                 'resources/css/themes/midnight.css',
 

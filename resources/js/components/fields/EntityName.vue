@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col gap-2">
+    <div class="flex flex-col gap-1">
         <!-- Label row with + Alias button -->
         <div :class="{ required: required }">
             <label :for="inputId" class="text-xs font-medium opacity-80">{{ label }}</label>
@@ -14,7 +14,7 @@
             :placeholder="placeholder"
             :required="required"
             maxlength="191"
-            class="w-full"
+            class="w-full mb-2"
             data-1p-ignore="true"
             @input="onNameInput"
         />
