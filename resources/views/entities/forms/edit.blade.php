@@ -46,18 +46,31 @@
 
                 <div class="flex items-center gap-2">
                     @includeWhen(auth()->user()->can('admin', $campaign), 'cruds.fields.entity-permission')
-                    
+
                     @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form', 'model' => $entity])
                 </div>
             </div>
 
             <div class="tab-content">
                 <div class="tab-pane flex flex-col gap-5 {{ (request()->get('tab') == null ? ' active' : '') }}" id="form-entry">
-                    @if ($entity->entityType->isCustom())
-                        @include('entities.forms.entry', ['source' => null, 'model' => $entity])
-                    @else
-                        @include($entity->entityType->pluralCode() . '.form._entry', ['source' => null])
-                    @endif
+                    <x-grid>
+                        <div class="flex gap-2 items-end">
+                            @if (isset($entityType) && $entityType->isMap())
+                                @php $size = 'map'; @endphp
+                            @endif
+                            <div>
+                                @include('cruds.fields.image-gallery', ['new' => true])
+                            </div>
+                            <div class="grow">
+                                @include('cruds.fields.entity-name')
+                            </div>
+                        </div>
+                        @if ($entity->entityType->isCustom())
+                            @include('entities.forms.entry', ['source' => null, 'model' => $entity])
+                        @else
+                            @include($entity->entityType->pluralCode() . '.form._entry', ['source' => null])
+                        @endif
+                    </x-grid>
                 </div>
                 @includeIf($name . '.form._panes', ['source' => null])
                 @if (config('limits.campaigns.premium'))

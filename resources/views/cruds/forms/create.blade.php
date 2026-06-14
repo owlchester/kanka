@@ -47,18 +47,6 @@
         <x-grid type="1/1">
             @include('cruds.forms._errors')
 
-
-            <div class="bg-base-100 entity-form flex flex-col rounded-xl">
-                <div class="flex gap-2 p-4 items-end">
-                    <div>
-                        @include('cruds.fields.image-gallery', ['new' => true])
-                    </div>
-                    <div class="grow">
-                        @include('cruds.fields.entity-name')
-                    </div>
-                </div>
-            </div>
-
             <div class="nav-tabs-custom bg-base-100 p-4 rounded-xl flex flex-col gap-6 relative">
                 <div class="flex gap-2 items-center justify-between sticky z-10 top-12 bg-base-100">
                     <div class="overflow-x-auto">
@@ -83,18 +71,29 @@
                         </ul>
                     </div>
 
-                    <div>
+                    <div class="flex gap-2 items-center">
                         @includeWhen(auth()->user()->can('admin', $campaign), 'cruds.fields.entity-permission')
-                    </div>
-                    <div>
+
                         @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form'])
                     </div>
-                    
+
                 </div>
 
                 <div class="tab-content">
                     <div class="tab-pane pane-entry {{ (request()->get('tab') == null ? ' active' : '') }}" id="form-entry">
-                        <x-grid type="1/1">
+                        <x-grid>
+                            <div class="flex gap-2 items-end">
+                                <div>
+                                    @if (isset($entityType) && $entityType->isMap())
+                                        @php $size = 'map'; @endphp
+                                    @endif
+                                    @include('cruds.fields.image-gallery', ['new' => true])
+                                </div>
+                                <div class="grow">
+                                    @include('cruds.fields.entity-name')
+                                </div>
+                            </div>
+
                             @include($name . '.form._entry')
                         </x-grid>
                     </div>

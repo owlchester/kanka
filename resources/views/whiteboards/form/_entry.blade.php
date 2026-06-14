@@ -1,6 +1,4 @@
-<?php /** @var \App\Models\Timeline $model */ ?>
-<x-grid>
-    @include('cruds.fields.type', ['base' => \App\Models\Whiteboard::class, 'trans' => 'whiteboards'])
+<?php /** @var \App\Models\Whiteboard $model */ ?>
+@include('cruds.fields.type', ['base' => \App\Models\Whiteboard::class, 'trans' => 'whiteboards'])
 
-    @include('cruds.fields.tags')
-</x-grid>
+@include('cruds.fields.tags')

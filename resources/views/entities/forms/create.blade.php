@@ -25,40 +25,40 @@
 
         <x-grid type="1/1">
             @include('cruds.forms._errors')
-    
+
             <div class="nav-tabs-custom bg-base-100 p-4 rounded-xl flex flex-col gap-6 relative">
                 <div class="flex gap-2 items-center justify-between sticky z-10 top-12 bg-base-100">
                     <div class="overflow-x-auto">
                         <ul class="nav-tabs flex items-stretch w-full" role="tablist">
                             <x-tab.tab target="entry" :default="true" :title="__('entries/tabs.identity')"></x-tab.tab>
-    
+
                             @if (config('limits.campaigns.premium'))
                                 <x-tab.tab target="premium" icon="premium" :title="__('crud.tabs.premium')"></x-tab.tab>
                             @endif
                             <x-tab.tab target="attributes" icon="attributes" :title="__('entries/tabs.properties')"></x-tab.tab>
-    
+
                             <x-tab.tab target="permissions" icon="permissions" :title="__('crud.tabs.permissions')"></x-tab.tab>
-    
+
                             @if ((!empty($source) || !empty(old('copy_source_id'))) && $tabCopy)
                                 <x-tab.tab target="copy" :title="__('crud.forms.copy_options')"></x-tab.tab>
                             @endif
                         </ul>
                     </div>
-                    
+
                     <div class="flex items-center gap-2">
                         @includeWhen(auth()->user()->can('admin', $campaign), 'cruds.fields.entity-permission')
-                        
-                        @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form'])
+
+                        @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form',])
                     </div>
                 </div>
-    
+
                 <div class="tab-content">
                     <div class="tab-pane pane-entry {{ (request()->get('tab') == null ? ' active' : '') }}" id="form-entry">
-                        <x-grid type="1/1">
+                        <x-grid>
                             @include('entities.forms.entry')
                         </x-grid>
                     </div>
-    
+
                     @if (config('limits.campaigns.premium'))
                         <div class="tab-pane pane-premium {{ (request()->get('tab') == 'premium' ? ' active' : '') }}" id="form-premium">
                             <x-grid type="1/1">

@@ -1,16 +1,14 @@
-<x-grid>
-    @include('cruds.fields.type', ['base' => \App\Models\Event::class, 'trans' => 'events'])
+@include('cruds.fields.type', ['base' => \App\Models\Event::class, 'trans' => 'events'])
 
-    @include('cruds.fields.parent')
-    @include('cruds.fields.entity_locations')
+@include('cruds.fields.parent')
+@include('cruds.fields.entity_locations')
 
-    <x-forms.field field="date" :label="__('events.fields.date')" :helper="__('events.helpers.date')">
-        <input type="text" name="date" value="{{ old('date', $source->date ?? $model->date ?? null) }}" class="w-full" maxlength="191" placeholder="{{  __('events.placeholders.date') }}" />
-    </x-forms.field>
+<x-forms.field field="date" :label="__('events.fields.date')" :helper="__('events.helpers.date')">
+    <input type="text" name="date" value="{{ old('date', $source->date ?? $model->date ?? null) }}" class="w-full" maxlength="191" placeholder="{{  __('events.placeholders.date') }}" />
+</x-forms.field>
 
-    @include('cruds.fields.entry2')
+@include('cruds.fields.entry2')
 
-    @include('cruds.fields.tags')
+@include('cruds.fields.tags')
 
-</x-grid>
 @include('cruds.forms._calendar', ['source' => $source])

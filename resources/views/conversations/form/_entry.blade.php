@@ -5,17 +5,15 @@ $targets = [
 ];
 ?>
 
-<x-grid>
-    @include('cruds.fields.type', ['base' => \App\Models\Conversation::class, 'trans' => 'conversations'])
+@include('cruds.fields.type', ['base' => \App\Models\Conversation::class, 'trans' => 'conversations'])
 
-    <x-forms.field
-        field="participants"
-        required
-        :label="__('conversations.fields.participants')">
-        <x-forms.select name="target_id" :options="$targets" :selected="$source->target_id ?? $model->target_id ?? null" />
-    </x-forms.field>
+<x-forms.field
+    field="participants"
+    required
+    :label="__('conversations.fields.participants')">
+    <x-forms.select name="target_id" :options="$targets" :selected="$source->target_id ?? $model->target_id ?? null" />
+</x-forms.field>
 
-    @include('cruds.fields.tags')
-    @include('cruds.fields.closed')
-</x-grid>
+@include('cruds.fields.tags')
+@include('cruds.fields.closed')
 

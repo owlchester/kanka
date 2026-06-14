@@ -1,19 +1,17 @@
-<x-grid>
-    @include('cruds.fields.type', ['base' => \App\Models\Quest::class, 'trans' => 'quests'])
+@include('cruds.fields.type', ['base' => \App\Models\Quest::class, 'trans' => 'quests'])
 
-    @include('cruds.fields.parent')
-    @include('cruds.fields.instigator')
-    @include('cruds.fields.location')
+@include('cruds.fields.parent')
+@include('cruds.fields.instigator')
+@include('cruds.fields.location')
 
-    @include('cruds.fields.date')
+@include('cruds.fields.date')
 
-    <div class="col-span-2">
-        @include('cruds.forms._calendar', ['source' => $source])
-    </div>
+<div class="col-span-2">
+    @include('cruds.forms._calendar', ['source' => $source])
+</div>
 
-    @include('cruds.fields.status')
+@include('cruds.fields.status')
 
-    @include('cruds.fields.entry2')
+@include('cruds.fields.entry2')
 
-    @include('cruds.fields.tags')
-</x-grid>
+@include('cruds.fields.tags')

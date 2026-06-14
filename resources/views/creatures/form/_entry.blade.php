@@ -1,13 +1,10 @@
-<x-grid>
-    @include('cruds.fields.type', ['base' => \App\Models\Creature::class, 'trans' => 'creatures'])
+@include('cruds.fields.type', ['base' => \App\Models\Creature::class, 'trans' => 'creatures'])
 
-    @include('cruds.fields.parent')
-    @include('cruds.fields.locations', ['from' => $model ?? null, 'quickCreator' => true])
+@include('cruds.fields.parent')
+@include('cruds.fields.locations', ['from' => $model ?? null, 'quickCreator' => true])
 
-    @include('cruds.fields.entry2')
+@include('cruds.fields.entry2')
 
-    @include('cruds.fields.status')
+@include('cruds.fields.status')
 
-    @include('cruds.fields.tags')
-
-</x-grid>
+@include('cruds.fields.tags')

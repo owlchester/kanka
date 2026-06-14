@@ -1,12 +1,9 @@
-<x-grid>
-    @include('cruds.fields.type', ['base' => \App\Models\Map::class, 'trans' => 'maps'])
+@include('cruds.fields.type', ['base' => \App\Models\Map::class, 'trans' => 'maps'])
 
-    @include('cruds.fields.parent')
+@include('cruds.fields.parent')
 
-    @include('cruds.fields.location')
+@include('cruds.fields.location')
 
-    @include('cruds.fields.entry2')
+@include('cruds.fields.entry2')
 
-    @include('cruds.fields.tags')
-    @include('cruds.fields.image', ['size' => 'map'])
-</x-grid>
+@include('cruds.fields.tags')

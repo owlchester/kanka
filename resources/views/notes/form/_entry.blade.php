@@ -1,9 +1,7 @@
-<x-grid>
-    @include('cruds.fields.type', ['base' => \App\Models\Note::class, 'trans' => 'notes'])
+@include('cruds.fields.type', ['base' => \App\Models\Note::class, 'trans' => 'notes'])
 
-    @include('cruds.fields.parent')
+@include('cruds.fields.parent')
 
-    @include('cruds.fields.entry2')
+@include('cruds.fields.entry2')
 
-    @include('cruds.fields.tags')
-</x-grid>
+@include('cruds.fields.tags')

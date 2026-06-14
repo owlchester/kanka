@@ -14,7 +14,7 @@
             :placeholder="placeholder"
             :required="required"
             maxlength="191"
-            class="w-full mb-2"
+            class="w-full mb-1"
             data-1p-ignore="true"
             @input="onNameInput"
         />
