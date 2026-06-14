@@ -2,11 +2,16 @@
     "agents": [
         "claude_code"
     ],
+    "cloud": false,
     "guidelines": true,
-    "herd_mcp": false,
     "mcp": true,
+    "nightwatch": false,
     "sail": true,
     "skills": [
+        "laravel-best-practices",
+        "passport-development",
+        "scout-development",
+        "socialite-development",
         "livewire-development",
         "pest-testing",
         "tailwindcss-development"
