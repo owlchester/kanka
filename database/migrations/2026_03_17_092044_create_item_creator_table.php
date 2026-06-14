@@ -22,15 +22,17 @@ return new class extends Migration
         // Migrate existing creator_id data to the pivot table
         DB::statement('
             INSERT INTO item_creator (item_id, creator_id, created_at, updated_at)
-            SELECT id, creator_id, NOW(), NOW()
+            SELECT id, creator_id, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
             FROM items
             WHERE creator_id IS NOT NULL
         ');
 
-        Schema::table('items', function (Blueprint $table) {
-            $table->dropForeign(['creator_id']);
-            $table->dropColumn('creator_id');
-        });
+        if (DB::connection()->getDriverName() !== 'sqlite') {
+            Schema::table('items', function (Blueprint $table) {
+                $table->dropForeign(['creator_id']);
+                $table->dropColumn('creator_id');
+            });
+        }
     }
 
     public function down(): void

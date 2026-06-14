@@ -8,17 +8,19 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::table('creatures', function (Blueprint $table) {
-            $table->dropForeign('creatures_created_by_foreign');
-            $table->dropForeign('creatures_updated_by_foreign');
-            $table->dropColumn(['created_by', 'updated_by']);
-        });
+        if (Schema::getConnection()->getDriverName() !== 'sqlite') {
+            Schema::table('creatures', function (Blueprint $table) {
+                $table->dropForeign('creatures_created_by_foreign');
+                $table->dropForeign('creatures_updated_by_foreign');
+                $table->dropColumn(['created_by', 'updated_by']);
+            });
 
-        Schema::table('races', function (Blueprint $table) {
-            $table->dropForeign('races_created_by_foreign');
-            $table->dropForeign('races_updated_by_foreign');
-            $table->dropColumn(['created_by', 'updated_by']);
-        });
+            Schema::table('races', function (Blueprint $table) {
+                $table->dropForeign('races_created_by_foreign');
+                $table->dropForeign('races_updated_by_foreign');
+                $table->dropColumn(['created_by', 'updated_by']);
+            });
+        }
 
         Schema::table('whiteboards', function (Blueprint $table) {
             $table->dropColumn(['created_by', 'updated_by', 'deleted_by']);

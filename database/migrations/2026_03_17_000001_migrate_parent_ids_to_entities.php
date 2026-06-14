@@ -26,17 +26,19 @@ return new class extends Migration
             'timelines' => ['key' => 'timeline_id',           'type_id' => config('entities.ids.timeline')],
         ];
 
-        foreach ($models as $table => $config) {
-            DB::statement("
-                UPDATE entities e
-                JOIN {$table} c ON e.entity_id = c.id AND e.type_id = {$config['type_id']}
-                JOIN {$table} parent_child ON c.{$config['key']} = parent_child.id
-                JOIN entities parent_entity ON parent_entity.entity_id = parent_child.id
-                    AND parent_entity.type_id = {$config['type_id']}
-                SET e.parent_id = parent_entity.id
-                WHERE c.{$config['key']} IS NOT NULL
-                    AND e.parent_id IS NULL
-            ");
+        if (DB::connection()->getDriverName() !== 'sqlite') {
+            foreach ($models as $table => $config) {
+                DB::statement("
+                    UPDATE entities e
+                    JOIN {$table} c ON e.entity_id = c.id AND e.type_id = {$config['type_id']}
+                    JOIN {$table} parent_child ON c.{$config['key']} = parent_child.id
+                    JOIN entities parent_entity ON parent_entity.entity_id = parent_child.id
+                        AND parent_entity.type_id = {$config['type_id']}
+                    SET e.parent_id = parent_entity.id
+                    WHERE c.{$config['key']} IS NOT NULL
+                        AND e.parent_id IS NULL
+                ");
+            }
         }
     }
 
