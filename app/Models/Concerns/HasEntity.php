@@ -8,6 +8,10 @@ trait HasEntity
 {
     public static function bootHasEntity(): void
     {
-        static::observe(app(ChildEntityObserver::class));
+        $observer = app(ChildEntityObserver::class);
+
+        static::created([$observer, 'created']);
+        static::deleted([$observer, 'deleted']);
+        static::saved([$observer, 'saved']);
     }
 }

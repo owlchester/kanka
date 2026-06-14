@@ -28,7 +28,8 @@ trait HasVisibility
     public static function bootHasVisibility()
     {
         static::addGlobalScope(new VisibilityIDScope);
-        static::observe(app(VisibilityObserver::class));
+        $observer = app(VisibilityObserver::class);
+        static::saving([$observer, 'saving']);
     }
 
     public function skipAllIcon(): self

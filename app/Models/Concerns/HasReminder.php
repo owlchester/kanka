@@ -23,7 +23,8 @@ trait HasReminder
      */
     public static function bootHasReminder()
     {
-        static::observe(app(Remindable::class));
+        $observer = app(Remindable::class);
+        static::saved([$observer, 'saved']);
     }
 
     public function hasCalendar(): bool

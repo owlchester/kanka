@@ -14,7 +14,8 @@ trait Sanitizable
      */
     public static function bootSanitizable(): void
     {
-        static::observe(app(SanitizedObserver::class));
+        $observer = app(SanitizedObserver::class);
+        static::saving([$observer, 'saving']);
     }
 
     public function getSanitizable(): array

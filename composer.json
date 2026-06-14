@@ -23,10 +23,10 @@
         "dompdf/dompdf": "^3.0",
         "enshrined/svg-sanitize": "^0.22",
         "guzzlehttp/guzzle": "^7.0.1",
-        "ilestis/kanka-dnd5e-monster": "^5.0",
+        "ilestis/kanka-dnd5e-monster": "^6.0",
         "intervention/image": "^3.10",
         "laravel/cashier": "^15.0",
-        "laravel/framework": "^12.0",
+        "laravel/framework": "^13.10",
         "laravel/pail": "^1.1",
         "laravel/passport": "^13.0",
         "laravel/reverb": "^1.0",
@@ -40,13 +40,13 @@
         "mcamara/laravel-localization": "^2.0",
         "meilisearch/meilisearch-php": "^1.4",
         "orhanerday/open-ai": "^4.7",
-        "owlchester/laravel-translation-manager": "^12",
-        "pragmarx/google2fa-laravel": "^2.3",
+        "owlchester/laravel-translation-manager": "^13",
+        "pragmarx/google2fa-laravel": "^3.0",
         "predis/predis": "^2.0",
         "pusher/pusher-php-server": "^7.2",
         "sentry/sentry-laravel": "^4.0",
         "sergej-kurakin/diceroller": "^2.0",
-        "spatie/laravel-backup": "^9.0",
+        "spatie/laravel-backup": "^10.0",
         "srmklive/paypal": "^3.0",
         "staudenmeir/laravel-adjacency-list": "^1.0",
         "staudenmeir/laravel-cte": "^1.0",
@@ -56,7 +56,7 @@
         "symfony/mailgun-mailer": "^7.1"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.1",
+        "barryvdh/laravel-debugbar": "^4.0",
         "barryvdh/laravel-ide-helper": "^3.0",
         "fakerphp/faker": "^1.22",
         "google/analytics-data": "*",
@@ -67,8 +67,8 @@
         "laravel/tinker": "^3.0",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^8.1",
-        "pestphp/pest": "^3",
-        "pestphp/pest-plugin-laravel": "^3",
+        "pestphp/pest": "^4",
+        "pestphp/pest-plugin-laravel": "^4",
         "phpmd/phpmd": "^2.13",
         "spatie/laravel-ignition": "^2.9",
         "squizlabs/php_codesniffer": "^3.4"
@@ -120,6 +120,11 @@
         "allow-plugins": {
             "pestphp/pest-plugin": true,
             "php-http/discovery": true
+        },
+        "audit": {
+            "ignore": [
+                "PKSA-mdq4-51ck-6kdq"
+            ]
         }
     }
 }
