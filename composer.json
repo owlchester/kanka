@@ -26,7 +26,7 @@
         "ilestis/kanka-dnd5e-monster": "^5.0",
         "intervention/image": "^3.10",
         "laravel/cashier": "^15.0",
-        "laravel/framework": "^11.0",
+        "laravel/framework": "^12.0",
         "laravel/pail": "^1.1",
         "laravel/passport": "^13.0",
         "laravel/reverb": "^1.0",
