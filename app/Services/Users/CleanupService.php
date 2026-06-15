@@ -14,6 +14,7 @@ use App\Models\Feature;
 use App\Services\Campaign\SearchCleanupService;
 use App\Traits\UserAware;
 use Illuminate\Support\Facades\Log;
+use Stripe\Exception\InvalidRequestException;
 
 class CleanupService
 {
@@ -30,7 +31,8 @@ class CleanupService
             ->removeWorldbuilding()
             ->removeAvatar()
             ->cleanCache()
-            ->removeNewsletter();
+            ->removeNewsletter()
+            ->removeStripeCustomer();
 
         return $this;
     }
@@ -105,6 +107,33 @@ class CleanupService
         // If the user was subscribed to the newsletter, unsubscribe them
         if (app()->isProduction() && ! empty($this->user->hasNewsletter())) {
             UnsubscribeUser::dispatch($this->user->email);
+        }
+
+        return $this;
+    }
+
+    public function removeStripeCustomer(): self
+    {
+        if (! $this->user->hasStripeId()) {
+            return $this;
+        }
+
+        if ($this->user->subscriptions()->exists()) {
+            $this->user->updateStripeCustomer([
+                'name' => 'Deleted User',
+                'email' => 'deleted+' . $this->user->stripe_id . '@kanka.io',
+            ]);
+
+            return $this;
+        }
+
+        try {
+            $this->user->deleteStripeCustomer();
+        } catch (InvalidRequestException $e) {
+            if ($e->getStripeCode() === 'resource_missing') {
+                return $this;
+            }
+            throw $e;
         }
 
         return $this;
