@@ -63,6 +63,9 @@ $old = isset($entity) && !empty($entity->image_path) || isset($model) && !empty(
             ],
             'search' => [
                 'placeholder' => __('gallery.browse.search.placeholder'),
+                'results'     => __('gallery.browse.search.results'),
+                'no_results'  => __('gallery.browse.search.no_results'),
+                'try_again'   => __('gallery.browse.search.try_again'),
             ],
             'unauthorized' => __('gallery.browse.unauthorized'),
         ],

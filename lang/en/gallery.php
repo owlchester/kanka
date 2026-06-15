@@ -16,6 +16,9 @@ return [
         ],
         'search'        => [
             'placeholder'   => 'Search images and folders',
+            'results'       => 'Results for ":term"',
+            'no_results'    => 'No images match ":term"',
+            'try_again'     => 'Try a different term',
         ],
         'title'         => 'Gallery',
         'unauthorized'  => 'None of your roles have the "browse gallery" permission.',
