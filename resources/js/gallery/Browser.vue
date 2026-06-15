@@ -116,7 +116,8 @@ const lastTerm = ref('')
 const typingTimeout = ref(null)
 const error = ref(null)
 const debounceDelay = 300
-const mode = ref('large')
+const savedMode = localStorage.getItem('gallery-mode')
+const mode = ref(savedMode === 'small' || savedMode === 'large' ? savedMode : 'large')
 
 const open = () => {
     loading.value = true
@@ -215,5 +216,6 @@ const search = () => {
 
 const toggle = (layout) => {
     mode.value = layout
+    localStorage.setItem('gallery-mode', layout)
 }
 </script>
