@@ -31,23 +31,9 @@ const presetColors = [
     '#FFF5F4', '#FFF9F4', '#FFFFF5', '#F4FFF4', '#F4FFFF', '#F4F4FF', '#F9F4FF',
 ]
 
-const getCookies = () => {
-    return document.cookie.split(';').reduce((cookies: Record<string, string>, cookie) => {
-        const [key, value] = cookie.split('=').map(c => c.trim())
-        if (key && value) cookies[key] = decodeURIComponent(value)
-        return cookies
-    }, {})
-}
-
-const setCookie = (name: string, value: string, days = 30) => {
-    const date = new Date()
-    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000))
-    document.cookie = `${name}=${encodeURIComponent(value)}; expires=${date.toUTCString()}; path=/`
-}
-
 const loadRecentColors = () => {
-    const cookies = getCookies()
-    recentColors.value = cookies[RECENT_COLORS_KEY] ? JSON.parse(cookies[RECENT_COLORS_KEY]) : []
+    const stored = localStorage.getItem(RECENT_COLORS_KEY)
+    recentColors.value = stored ? JSON.parse(stored) : []
 }
 
 const saveRecentColor = (color: string) => {
@@ -55,7 +41,7 @@ const saveRecentColor = (color: string) => {
     if (recentColors.value.length > MAX_COLORS) {
         recentColors.value = recentColors.value.slice(0, MAX_COLORS)
     }
-    setCookie(RECENT_COLORS_KEY, JSON.stringify(recentColors.value))
+    localStorage.setItem(RECENT_COLORS_KEY, JSON.stringify(recentColors.value))
 }
 
 const selectColor = (color: string) => {
