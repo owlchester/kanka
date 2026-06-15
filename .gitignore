@@ -18,7 +18,6 @@
 /.vagrant
 /.vscode
 /.sail
-/.superpowers
 /.worktrees
 /docs/superpowers
 Homestead.json
