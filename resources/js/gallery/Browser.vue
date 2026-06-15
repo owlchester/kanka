@@ -1,6 +1,6 @@
 <template>
 
-    <dialog class="dialog rounded-2xl text-center bg-base-100 text-base-content" id="gallery-dialog" ref="galleryDialog" aria-modal="true" aria-labelledby="modal-card-label">
+    <dialog class="dialog rounded-2xl bg-base-100 text-base-content" id="gallery-dialog" ref="galleryDialog" aria-modal="true" aria-labelledby="modal-card-label">
         <header class="flex gap-6 items-center p-4 md:p-6 justify-between">
             <h4 v-html="trans.browse.title" class="text-lg font-normal"></h4>
             <button type="button" class="text-base-content" @click="closeBrowser()" title="Close">
@@ -43,9 +43,10 @@
             <template v-else>
                 <div class="alert alert-error p-2 rounded" v-if="error" v-html="error"></div>
 
-                <p class="text-sm text-left text-base-content/70" v-if="!error && term && images.length">{{ trans.browse.search.results?.replace(':term', term) }}</p>
+                <p class="text-sm text-left uppercase font-medium text-neutral-content" v-if="!error && term">{{ trans.browse.search.results?.replace(':term', term) }}</p>
 
                 <div class="text-center py-4" v-if="!error && term && !images.length">
+                    <i class="fa-regular fa-search text-neutral-content text-2xl mb-4" aria-hidden="true"></i>
                     <p>{{ trans.browse.search.no_results?.replace(':term', term) }}</p>
                     <p class="text-base-content/60 text-sm mt-1">{{ trans.browse.search.try_again }}</p>
                 </div>
