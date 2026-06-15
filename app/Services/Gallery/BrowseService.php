@@ -31,7 +31,7 @@ class BrowseService
 
     public function images(): array
     {
-        $results = [];
+        $results = ['images' => []];
 
         $canBrowse = $this->user->can('galleryBrowse', $this->campaign);
 
