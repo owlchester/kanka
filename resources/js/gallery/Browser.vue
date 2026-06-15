@@ -41,13 +41,14 @@
             </div>
 
             <div :class="gridClass()" v-else>
-                <div v-for="image in images" class="cursor-pointer shadow-sm rounded hover:shadow-lg overflow-hidden" @click="selectImage(image)">
+                <div v-for="image in images" class="cursor-pointer shadow-sm rounded hover:shadow-lg overflow-hidden relative group" @click="selectImage(image)">
                     <div :class="previewSize('cover-background')" :style="{'backgroundImage': 'url(\'' + image.thumbnail + '\')'}" v-if="!image.folder" />
                     <div :class="previewSize('flex items-center align-middle justify-center text-4xl')" v-else>
                         <i :class="image.icon" aria-label="Folder" />
                     </div>
-                    <div :class="widthSize('truncate px-2 py-1 ')" :title="image.name">
-                        <span v-html="image.name"></span>
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent text-white px-2 py-1 transition-opacity opacity-100 md:opacity-0 md:group-hover:opacity-100" :title="image.name">
+                        <div class="truncate text-sm">{{ image.name }}</div>
+                        <div class="truncate text-xs opacity-80" v-if="mode === 'large' && !image.folder">{{ image.ext }} · {{ image.size }}</div>
                     </div>
                 </div>
                 <div class="alert alert-error p-2 rounded" v-if="error" v-html="error"></div>
@@ -129,13 +130,6 @@ const previewSize = (extra) => {
     return 'w-20 h-16 ' + extra
 }
 
-const widthSize = (extra) => {
-    extra = extra ?? ''
-    if (mode.value === 'large') {
-        return 'w-40 md:w-48 ' + extra
-    }
-    return 'w-20 text-xs ' + extra
-}
 
 const gridClass = () => {
     if (mode.value === 'small') {
