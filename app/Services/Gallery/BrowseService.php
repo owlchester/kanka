@@ -42,12 +42,14 @@ class BrowseService
                 'folder' => true,
                 'icon' => 'fa-regular fa-arrow-left',
                 'url' => route('gallery.browse', [$this->campaign, 'folder' => $image->folder_id]),
+                'image_count' => null,
             ];
         }
 
         $images = Image::acl($canBrowse)
             ->search($this->folder, $this->term)
             ->where('is_default', false)
+            ->withCount(['images as images_count' => fn ($q) => $q->where('is_folder', false)->where('is_default', false)])
             ->orderBy('is_folder', 'desc')
             ->orderBy('updated_at', 'desc')
             ->offset(0)
@@ -65,6 +67,7 @@ class BrowseService
                 'thumbnail' => $image->getUrl(192, 144),
                 'ext' => $image->isFolder() ? null : strtoupper($image->ext),
                 'size' => $image->isFolder() ? null : $image->niceSize(),
+                'image_count' => $image->isFolder() ? $image->images_count : null,
             ];
         }
 
