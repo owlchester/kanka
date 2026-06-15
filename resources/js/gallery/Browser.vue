@@ -46,10 +46,11 @@
                     <div :class="previewSize('flex items-center align-middle justify-center text-4xl')" v-else>
                         <i :class="image.icon" aria-label="Folder" />
                     </div>
-                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent text-white px-2 py-1 transition-opacity opacity-100 md:opacity-0 md:group-hover:opacity-100" :title="image.name">
+                    <div v-if="!image.folder" class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent text-white px-2 py-1 transition-opacity opacity-100 md:opacity-0 md:group-hover:opacity-100" :title="image.name">
                         <div class="truncate text-sm">{{ image.name }}</div>
-                        <div class="truncate text-xs opacity-80" v-if="mode === 'large' && !image.folder">{{ image.ext }} · {{ image.size }}</div>
+                        <div class="truncate text-xs opacity-80" v-if="mode === 'large'">{{ image.ext }} · {{ image.size }}</div>
                     </div>
+                    <div v-else class="truncate px-2 py-1 text-sm" :title="image.name">{{ image.name }}</div>
                 </div>
                 <div class="alert alert-error p-2 rounded" v-if="error" v-html="error"></div>
             </div>
