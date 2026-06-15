@@ -11,7 +11,8 @@ it('skips stripe cleanup when user has no stripe id', function () {
     $mock->shouldNotReceive('deleteStripeCustomer');
     $mock->shouldNotReceive('updateStripeCustomer');
 
-    app(CleanupService::class)->user($mock)->removeStripeCustomer();
+    $service = app(CleanupService::class)->user($mock);
+    expect($service->removeStripeCustomer())->toBeInstanceOf(CleanupService::class);
 });
 
 it('deletes stripe customer when user has no subscription history', function () {
@@ -58,8 +59,8 @@ it('silently ignores resource_missing when deleting stripe customer', function (
     $mock->shouldReceive('subscriptions')->andReturn($subscriptionsMock);
     $mock->shouldReceive('deleteStripeCustomer')->andThrow($exception);
 
-    // Should not throw
-    app(CleanupService::class)->user($mock)->removeStripeCustomer();
+    $service = app(CleanupService::class)->user($mock);
+    expect($service->removeStripeCustomer())->toBeInstanceOf(CleanupService::class);
 });
 
 it('re-throws unexpected stripe exceptions', function () {
