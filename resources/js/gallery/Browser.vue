@@ -58,8 +58,8 @@
                         @click="selectImage(folder)"
                     >
                         <i :class="folder.icon + ' text-2xl'" aria-label="Folder" />
-                        <div :class="mode === 'large' ? 'truncate w-full text-sm' : 'truncate w-full text-xs'" :title="folder.name">{{ folder.name }}</div>
-                        <div class="text-xs text-base-content/60" v-if="folder.image_count !== null && folder.image_count !== undefined">{{ folder.image_count === 1 ? trans.browse.folder_count_one : trans.browse.folder_count?.replace(':count', String(folder.image_count)) }}</div>
+                        <div class="truncate w-full" :class="mode === 'large' ? 'text-sm' : 'text-xs'" :title="folder.name">{{ folder.name }}</div>
+                        <div class="text-xs text-base-content/60" v-if="folder.image_count !== null && folder.image_count !== undefined">{{ Number(folder.image_count) === 1 ? trans.browse.folder_count_one : trans.browse.folder_count?.replace(':count', String(folder.image_count)) }}</div>
                     </div>
                 </div>
 
