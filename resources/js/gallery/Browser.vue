@@ -40,8 +40,8 @@
                 <i class="fa-solid fa-spinner fa-spin" aria-label="Loading"></i>
             </div>
 
-            <template v-else>
-                <div class="alert alert-error p-2 rounded" v-if="error" v-html="error"></div>
+            <template v-else class="flex flex-col gap-4">
+                <div class="alert alert-error p-2 rounded-lg" v-if="error" v-html="error"></div>
 
                 <p class="text-sm text-left uppercase font-medium text-neutral-content" v-if="!error && term">{{ trans.browse.search.results?.replace(':term', term) }}</p>
 
@@ -54,19 +54,23 @@
                 <div v-if="!error && folders.length" :class="gridClass()">
                     <div
                         v-for="folder in folders"
-                        :class="previewSize('bg-base-200 rounded flex flex-col items-center justify-center gap-1 p-2 text-center cursor-pointer hover:shadow-lg')"
+                        class="border border-base-200 rounded-lg flex gap-3 p-3 cursor-pointer hover:shadow-lg w-40 md:w-48 items-center group hover:bg-base-200 justify-between"
+                        :title="folder.name"
                         @click="selectImage(folder)"
                     >
-                        <i :class="folder.icon + ' text-2xl'" aria-label="Folder" />
-                        <div class="truncate w-full" :class="mode === 'large' ? 'text-sm' : 'text-xs'" :title="folder.name">{{ folder.name }}</div>
-                        <div class="text-xs text-base-content/60" v-if="folder.image_count !== null && folder.image_count !== undefined">{{ Number(folder.image_count) === 1 ? trans.browse.folder_count_one : trans.browse.folder_count?.replace(':count', String(folder.image_count)) }}</div>
+                        <div class="rounded-lg flex items-center justify-center w-10 h-10 bg-base-200 group-hover:bg-base-300 flex-none">
+                            <i :class="folder.icon" aria-label="Folder" />
+                        </div>
+                        <div class="flex flex-col grow overflow-hidden">
+                            <div class="truncate w-full font-medium" :class="mode === 'large' ? 'text-sm' : 'text-xs'">{{ folder.name }}</div>
+                            <div class="text-xs text-neutral-content" v-if="folder.image_count !== null && folder.image_count !== undefined">{{ Number(folder.image_count) === 1 ? trans.browse.folder_count_one : trans.browse.folder_count?.replace(':count', String(folder.image_count)) }}</div>
+                        </div>
+                        <i class="fa-regular fa-chevron-right text-neutral-content" aria-label="Open folder" v-if="folder.image_count !== undefined && folder.image_count !== null" />
                     </div>
                 </div>
 
-                <hr class="border-base-200" v-if="!error && folders.length && imageItems.length" />
-
                 <div :class="gridClass()" v-if="!error && imageItems.length">
-                    <div v-for="image in imageItems" class="cursor-pointer shadow-sm rounded hover:shadow-lg overflow-hidden relative group" @click="selectImage(image)">
+                    <div v-for="image in imageItems" class="cursor-pointer shadow-sm rounded-lg hover:shadow-lg overflow-hidden relative group" @click="selectImage(image)">
                         <div :class="previewSize('cover-background')" :style="{'backgroundImage': 'url(\'' + image.thumbnail + '\')'}" />
                         <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent text-white px-2 py-1 transition-opacity opacity-100 md:opacity-0 md:group-hover:opacity-100" :title="image.name">
                             <div class="truncate text-sm">{{ image.name }}</div>
@@ -149,7 +153,7 @@ const closeBrowser = () => {
 const previewSize = (extra) => {
     extra = extra ?? ''
     if (mode.value === 'large') {
-        return 'w-40 h-28 md:w-48 md:h-36 ' + extra
+        return 'w-40 h-40 md:w-48 md:h-48 ' + extra
     }
     return 'w-24 h-24 ' + extra
 }
