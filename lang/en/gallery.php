@@ -10,7 +10,8 @@ return [
         'url_hint'  => 'Paste an image link',
     ],
     'browse'    => [
-        'folder_count'  => ':count images',
+        'folder_count'      => ':count images',
+        'folder_count_one'  => '1 image',
         'layouts'       => [
             'large' => 'Large',
             'small' => 'Small',
