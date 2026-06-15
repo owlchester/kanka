@@ -8,16 +8,31 @@
                 <span class="sr-only">Close</span>
             </button>
         </header>
-        <article class="max-w-4xl p-4">
-            <div class="flex gap-1 w-full" v-if="!loading && !error">
+        <article class="max-w-4xl p-4 flex flex-col gap-4 md:min-w-2xl">
+            <div class="flex gap-2 justify-between" v-if="!loading && !error">
                 <div class="grow">
                     <input type="text" class="w-full" :placeholder="trans.browse.search.placeholder" @input="handleInput" />
                 </div>
-                <div class="flex-none cursor-pointer btn2 btn-ghost btn-sm" v-if="mode !== 'large'" @click="toggle('large')" :title="trans.browse.layouts.large">
-                    <i class="fa-regular fa-grid-2" aria-label="Large previews"></i>
-                </div>
-                <div class="flex-none cursor-pointer btn2 btn-ghost btn-sm" v-if="mode !== 'small'" @click="toggle('small')" :title="trans.browse.layouts.small">
-                    <i class="fa-regular fa-grid-4" aria-label="Small previews"></i>
+
+                <div class="flex rounded-lg bg-base-200 p-0.5 text-xs gap-0.5 shrink-0">
+                    <button
+                        type="button"
+                        class="rounded px-2 py-1 transition-colors cursor-pointer flex gap-1 items-center"
+                        :class="mode === 'large' ? 'bg-base-100' : 'bg-transparent text-neutral-content'"
+                        @click="toggle('large')"
+                    >
+                        <i class="fa-regular fa-grid-2" aria-hidden="true"></i>
+                        {{ trans.browse.layouts.large }}
+                    </button>
+                    <button
+                        type="button"
+                        class="rounded px-2 py-1 transition-colors cursor-pointer flex gap-1 items-center"
+                        :class="mode === 'small' ? 'bg-base-100' : 'bg-transparent text-neutral-content'"
+                        @click="toggle('small')"
+                    >
+                        <i class="fa-regular fa-grid-4" aria-hidden="true"></i>
+                         {{ trans.browse.layouts.small }}
+                    </button>
                 </div>
             </div>
 
@@ -124,9 +139,9 @@ const widthSize = (extra) => {
 
 const gridClass = () => {
     if (mode.value === 'small') {
-        return 'flex flex-wrap justify-center gap-2 md:gap-3'
+        return 'flex flex-wrap gap-2 md:gap-2'
     }
-    return 'flex flex-wrap justify-center gap-2 md:gap-5'
+    return 'flex flex-wrap gap-2 md:gap-4'
 }
 
 const selectImage = (image) => {

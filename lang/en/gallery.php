@@ -11,11 +11,11 @@ return [
     ],
     'browse'    => [
         'layouts'       => [
-            'large' => 'Large previews',
-            'small' => 'Small previews',
+            'large' => 'Large',
+            'small' => 'Small',
         ],
         'search'        => [
-            'placeholder'   => 'Search for an image in the gallery',
+            'placeholder'   => 'Search images and folders',
         ],
         'title'         => 'Gallery',
         'unauthorized'  => 'None of your roles have the "browse gallery" permission.',
