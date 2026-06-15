@@ -51,7 +51,7 @@
                     <p class="text-base-content/60 text-sm mt-1">{{ trans.browse.search.try_again }}</p>
                 </div>
 
-                <div v-if="!error && folders.length" :class="gridClass()">
+                <div v-if="!error && folders.length" class="flex flex-wrap gap-2 md:gap-4">
                     <div
                         v-for="folder in folders"
                         class="border border-base-200 rounded-lg flex gap-3 p-3 cursor-pointer hover:shadow-lg w-40 md:w-48 items-center group hover:bg-base-200 justify-between"
@@ -153,9 +153,9 @@ const closeBrowser = () => {
 const previewSize = (extra) => {
     extra = extra ?? ''
     if (mode.value === 'large') {
-        return 'w-40 h-40 md:w-48 md:h-48 ' + extra
+        return 'w-40 h-28 md:w-48 md:h-36 ' + extra
     }
-    return 'w-24 h-24 ' + extra
+    return 'w-24 h-18 ' + extra
 }
 
 
