@@ -43,10 +43,10 @@
             <template v-else>
                 <div class="alert alert-error p-2 rounded" v-if="error" v-html="error"></div>
 
-                <p class="text-sm text-left text-base-content/70" v-if="!error && term && images.length">{{ trans.browse.search.results.replace(':term', term) }}</p>
+                <p class="text-sm text-left text-base-content/70" v-if="!error && term && images.length">{{ trans.browse.search.results?.replace(':term', term) }}</p>
 
                 <div class="text-center py-4" v-if="!error && term && !images.length">
-                    <p>{{ trans.browse.search.no_results.replace(':term', term) }}</p>
+                    <p>{{ trans.browse.search.no_results?.replace(':term', term) }}</p>
                     <p class="text-base-content/60 text-sm mt-1">{{ trans.browse.search.try_again }}</p>
                 </div>
 
@@ -74,7 +74,7 @@ import {ref, onMounted, watch, onBeforeMount} from 'vue'
 const props = defineProps<{
     api: string,
     opened: boolean,
-    i18n: undefined,
+    i18n: unknown,
 }>()
 
 const trans = ref(null)
@@ -190,6 +190,8 @@ const search = () => {
 
     axios.get(props.api + '?term=' + lastTerm.value).then(res => {
         images.value = res.data.images
+        searching.value = false
+    }).catch(() => {
         searching.value = false
     })
 }
