@@ -17,7 +17,8 @@
         'formats'   => $formats . ' · max ' . $max . ' MB',
         'unauthorized' => __('gallery.download.errors.unauthorized'),
         'browse' => [
-            'title' => __('gallery.browse.title'),
+            'title'        => __('gallery.browse.title'),
+            'folder_count' => __('gallery.browse.folder_count'),
             'layouts' => [
                 'small' => __('gallery.browse.layouts.small'),
                 'large' => __('gallery.browse.layouts.large'),
