@@ -128,7 +128,7 @@ class CleanupService
         }
 
         try {
-            $this->user->deleteStripeCustomer();
+            $this->user->asStripeCustomer()->delete();
         } catch (InvalidRequestException $e) {
             if ($e->getStripeCode() === 'resource_missing') {
                 return $this;

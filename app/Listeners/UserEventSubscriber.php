@@ -78,6 +78,7 @@ class UserEventSubscriber
         if (! $event->user) {
             return;
         }
+        // @phpstan-ignore-next-line
         if (! $event->user->isBanned()) {
             UserLogger::user($event->user)->log(UserAction::logout);
         }
