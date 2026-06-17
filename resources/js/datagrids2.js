@@ -186,11 +186,10 @@ const registerBulkClick = (datagrid, element) => {
     element.dataset.loaded = '1';
 
     element.addEventListener('click', function (e) {
-        console.log('real click');
         e.preventDefault();
+        datagrid.parentNode.querySelector('.datagrid-bulk-actions [data-dropdown]')?._tippy?.hide();
         form = datagrid.closest('form');
 
-        //console.log('models', models);
         axios.post(
             form.getAttribute('action') + '?action=edit',
             {model: checkedModels(datagrid)}

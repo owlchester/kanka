@@ -68,6 +68,13 @@ class OrganisationMember extends Model
 
     public function patch(array $data): bool
     {
+        // Empty string on enum-cast fields means "no change" — skip them to avoid cast failure
+        foreach (['status_id', 'pin_id'] as $field) {
+            if (($data[$field] ?? null) === '') {
+                unset($data[$field]);
+            }
+        }
+
         return $this->updateQuietly($data);
     }
 
