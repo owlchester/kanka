@@ -16,6 +16,9 @@ class UserLoggerService
         if (! config('logging.enabled')) {
             return;
         }
+        if (! isset($this->user)) {
+            return;
+        }
         $log = new UserLog(['user_id' => $this->user->id]);
         $log->type_id = $action;
         $log->data = ! empty($data) ? $data : null;
@@ -27,10 +30,13 @@ class UserLoggerService
         if (! config('logging.enabled')) {
             return;
         }
+        if (! isset($this->user)) {
+            return;
+        }
         $log = new UserLog(['user_id' => $this->user->id]);
         $log->type_id = UserAction::campaign;
         $log->campaign_id = $campaignId;
-        $log->data = array_merge(['module' => $module, 'action' => $action], $data);
+        $log->data = ['module' => $module, 'action' => $action] + $data;
         $log->impersonated_by = Identity::getImpersonatorId();
         $log->save();
     }
