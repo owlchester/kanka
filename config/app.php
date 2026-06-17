@@ -33,6 +33,7 @@ use App\Providers\ImgServiceProvider;
 use App\Providers\ImporterServiceProvider;
 use App\Providers\LimitServiceProvider;
 use App\Providers\Logs\ApiLogServiceProvider;
+use App\Providers\Logs\UserLoggerServiceProvider;
 use App\Providers\MentionsServiceProvider;
 use App\Providers\ModuleServiceProvider;
 use App\Providers\PermissionsServiceProvider;
@@ -347,6 +348,7 @@ return [
         EntitySetupServiceProvider::class,
         ModuleServiceProvider::class,
         ApiLogServiceProvider::class,
+        UserLoggerServiceProvider::class,
         DomainServiceProvider::class,
         LimitServiceProvider::class,
         ImporterServiceProvider::class,

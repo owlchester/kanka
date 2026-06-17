@@ -8,20 +8,10 @@ use App\Events\Subscriptions\Disable;
 use App\Events\Subscriptions\Premium;
 use App\Events\Subscriptions\SuperBoost;
 use App\Events\Subscriptions\Upgrade;
+use App\Facades\UserLogger;
 
 class LogPremium
 {
-    /**
-     * Create the event listener.
-     */
-    public function __construct()
-    {
-        //
-    }
-
-    /**
-     * Handle the event.
-     */
     public function handle(Boost|SuperBoost|Upgrade|Premium|AutoRemove|Disable $event): void
     {
         $action = match (true) {
@@ -33,7 +23,7 @@ class LogPremium
             $event instanceof Disable => 'disabled',
         };
 
-        $event->user->campaignLog(
+        UserLogger::user($event->user)->campaign(
             $event->campaign->id,
             'premium',
             $action

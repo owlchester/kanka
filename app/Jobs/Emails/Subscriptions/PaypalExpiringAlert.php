@@ -3,6 +3,7 @@
 namespace App\Jobs\Emails\Subscriptions;
 
 use App\Enums\UserAction;
+use App\Facades\UserLogger;
 use App\Mail\Subscription\User\PaypalExpiringMail;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
@@ -38,6 +39,6 @@ class PaypalExpiringAlert implements ShouldQueue
             ->locale($user->locale)
             ->send(new PaypalExpiringMail($user));
 
-        $user->log(UserAction::subPaypalExpiringWarning);
+        UserLogger::user($user)->log(UserAction::subPaypalExpiringWarning);
     }
 }

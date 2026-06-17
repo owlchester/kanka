@@ -260,46 +260,6 @@ class User extends \Illuminate\Foundation\Auth\User implements OAuthenticatable
     }
 
     /**
-     * Log an event on the user
-     */
-    public function log(UserAction $action, array $data = []): self
-    {
-        // todo: move to a facade
-        if (! config('logging.enabled')) {
-            return $this;
-        }
-        $log = new UserLog([
-            'user_id' => $this->id,
-        ]);
-        $log->type_id = $action;
-        $log->data = ! empty($data) ? $data : null;
-        $log->save();
-
-        return $this;
-    }
-
-    public function campaignLog(int $campaign, string $module, string $action, array $data = []): self
-    {
-        // todo: move to a facade
-        if (! config('logging.enabled')) {
-            return $this;
-        }
-        $log = new UserLog([
-            'user_id' => $this->id,
-        ]);
-        $log->type_id = UserAction::campaign;
-        $log->campaign_id = $campaign;
-        $first = [];
-        $first['module'] = $module;
-        $first['action'] = $action;
-        $log->data = $first + $data;
-        $log->impersonated_by = Identity::getImpersonatorId();
-        $log->save();
-
-        return $this;
-    }
-
-    /**
      * Determine if the user is banned
      */
     public function isBanned(): bool

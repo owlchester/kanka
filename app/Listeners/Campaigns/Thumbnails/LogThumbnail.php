@@ -4,20 +4,10 @@ namespace App\Listeners\Campaigns\Thumbnails;
 
 use App\Events\Campaigns\Thumbnails\ThumbnailCreated;
 use App\Events\Campaigns\Thumbnails\ThumbnailDeleted;
+use App\Facades\UserLogger;
 
 class LogThumbnail
 {
-    /**
-     * Create the event listener.
-     */
-    public function __construct()
-    {
-        //
-    }
-
-    /**
-     * Handle the event.
-     */
     public function handle(ThumbnailCreated|ThumbnailDeleted $event): void
     {
         $action = match (true) {
@@ -25,7 +15,7 @@ class LogThumbnail
             $event instanceof ThumbnailDeleted => 'deleted',
         };
 
-        $event->user->campaignLog(
+        UserLogger::user($event->user)->campaign(
             $event->campaign->id,
             'thumbnails',
             $action,

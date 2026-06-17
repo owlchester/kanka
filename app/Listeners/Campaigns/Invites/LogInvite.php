@@ -4,24 +4,15 @@ namespace App\Listeners\Campaigns\Invites;
 
 use App\Events\Campaigns\Invites\InviteCreated;
 use App\Events\Campaigns\Invites\InviteDeleted;
+use App\Facades\UserLogger;
 
 class LogInvite
 {
-    /**
-     * Create the event listener.
-     */
-    public function __construct()
-    {
-        //
-    }
-
-    /**
-     * Handle the event.
-     */
     public function handle(InviteCreated|InviteDeleted $event): void
     {
         $action = $event instanceof InviteCreated ? 'created' : 'deleted';
-        $event->user->campaignLog(
+
+        UserLogger::user($event->user)->campaign(
             $event->campaignInvite->campaign_id,
             'invites',
             $action,

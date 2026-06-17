@@ -3,23 +3,17 @@
 namespace App\Listeners\Entities;
 
 use App\Events\Entities\EntityRestored;
+use App\Facades\UserLogger;
 
 class LogEntity
 {
-    /**
-     * Create the event listener.
-     */
-    public function __construct()
-    {
-        //
-    }
-
-    /**
-     * Handle the event.
-     */
     public function handle(EntityRestored $event): void
     {
-        $event->user?->campaignLog(
+        if (! $event->user) {
+            return;
+        }
+
+        UserLogger::user($event->user)->campaign(
             $event->entity->campaign_id,
             'recovery',
             'entity',

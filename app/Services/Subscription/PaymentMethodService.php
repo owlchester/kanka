@@ -3,6 +3,7 @@
 namespace App\Services\Subscription;
 
 use App\Enums\UserAction;
+use App\Facades\UserLogger;
 use App\Models\User;
 use Carbon\Carbon;
 use Laravel\Cashier\PaymentMethod;
@@ -22,6 +23,6 @@ class PaymentMethodService
             $user->card_expires_at = null;
         }
         $user->saveQuietly();
-        $user->log($action);
+        UserLogger::user($user)->log($action);
     }
 }

@@ -5,20 +5,10 @@ namespace App\Listeners\Campaigns\Roles;
 use App\Events\Campaigns\Roles\RoleCreated;
 use App\Events\Campaigns\Roles\RoleDeleted;
 use App\Events\Campaigns\Roles\RoleUpdated;
+use App\Facades\UserLogger;
 
 class LogRole
 {
-    /**
-     * Create the event listener.
-     */
-    public function __construct()
-    {
-        //
-    }
-
-    /**
-     * Handle the event.
-     */
     public function handle(RoleCreated|RoleUpdated|RoleDeleted $event): void
     {
         $action = match (true) {
@@ -27,7 +17,7 @@ class LogRole
             $event instanceof RoleDeleted => 'deleted',
         };
 
-        $event->user->campaignLog(
+        UserLogger::user($event->user)->campaign(
             $event->campaignRole->campaign_id,
             'roles',
             $action,

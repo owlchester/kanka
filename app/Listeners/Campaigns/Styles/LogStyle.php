@@ -5,20 +5,10 @@ namespace App\Listeners\Campaigns\Styles;
 use App\Events\Campaigns\Styles\StyleCreated;
 use App\Events\Campaigns\Styles\StyleDeleted;
 use App\Events\Campaigns\Styles\StyleUpdated;
+use App\Facades\UserLogger;
 
 class LogStyle
 {
-    /**
-     * Create the event listener.
-     */
-    public function __construct()
-    {
-        //
-    }
-
-    /**
-     * Handle the event.
-     */
     public function handle(StyleCreated|StyleUpdated|StyleDeleted $event): void
     {
         $action = match (true) {
@@ -30,7 +20,7 @@ class LogStyle
             $action = $event->campaignStyle->is_enabled ? 'enabled' : 'disabled';
         }
 
-        $event->user->campaignLog(
+        UserLogger::user($event->user)->campaign(
             $event->campaignStyle->campaign_id,
             'styles',
             $action,
