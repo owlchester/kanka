@@ -32,7 +32,7 @@ it('bulk edit returns dialog view', function () {
         'action' => 'edit',
         'model' => [$this->member->id],
     ])->assertOk()
-      ->assertViewIs('layouts.datagrid.bulks.update');
+        ->assertViewIs('layouts.datagrid.bulks.update');
 });
 
 it('bulk patches organisation member role', function () {
