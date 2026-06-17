@@ -76,12 +76,6 @@ $entityTags = $post->visibleTags();
 
                 <div class="post-footer entity-note-footer text-right text-muted text-xs ">
 
-                @can('update', $entity)
-                <a href="{{ route('entities.posts.logs', [$campaign, $entity, $post]) }}" title="{{ __('crud.history.view') }}" class="print-none text-link">
-                    <x-icon class="fa-regular fa-history" />
-                </a>
-                @endcan
-
                     <span class="post-footer-element post-created entity-note-footer-element entity-note-created" data-title="{{ __('entities/notes.footer.created', [
         'user' => $post->created_by ? e(\App\Facades\UserCache::name($post->created_by)) : __('crud.users.unknown'),
         'date' => $post->created_at->isoFormat('MMMM Do Y, hh:mm a')]) }}" data-toggle="tooltip">
