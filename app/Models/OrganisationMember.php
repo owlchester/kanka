@@ -66,6 +66,11 @@ class OrganisationMember extends Model
         'role',
     ];
 
+    public function patch(array $data): bool
+    {
+        return $this->updateQuietly($data);
+    }
+
     public $casts = [
         'status_id' => OrganisationMemberStatus::class,
         'pin_id' => OrganisationMemberPin::class,
