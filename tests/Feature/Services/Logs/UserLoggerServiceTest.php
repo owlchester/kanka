@@ -17,7 +17,6 @@ it('does nothing when logging is disabled', function () {
     config(['logging.enabled' => false]);
     $user = User::factory()->create();
 
-    // Neither method should throw or attempt DB writes
     UserLogger::user($user)->log(UserAction::login);
     UserLogger::user($user)->campaign(1, 'members', 'joined');
 
