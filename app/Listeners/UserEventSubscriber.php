@@ -75,10 +75,9 @@ class UserEventSubscriber
      */
     public function handleUserLogout(Logout $event): void
     {
-        if (! $event->user) {
+        if (! $event->user instanceof User) {
             return;
         }
-        // @phpstan-ignore-next-line
         if (! $event->user->isBanned()) {
             UserLogger::user($event->user)->log(UserAction::logout);
         }
