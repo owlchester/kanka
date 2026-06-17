@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Enums\UserAction;
+use App\Facades\UserLogger;
 use App\Jobs\Emails\MailSettingsChangeJob;
 use App\Models\User;
 use App\Services\Auth\DeviceService;
@@ -78,7 +79,7 @@ class UserEventSubscriber
             return;
         }
         if (! $event->user->isBanned()) {
-            $event->user->log(UserAction::logout);
+            UserLogger::user($event->user)->log(UserAction::logout);
         }
     }
 
