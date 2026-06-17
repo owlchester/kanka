@@ -6,20 +6,10 @@ use App\Events\Campaigns\Webhooks\WebhookCreated;
 use App\Events\Campaigns\Webhooks\WebhookDeleted;
 use App\Events\Campaigns\Webhooks\WebhookTested;
 use App\Events\Campaigns\Webhooks\WebhookUpdated;
+use App\Facades\UserLogger;
 
 class LogWebhook
 {
-    /**
-     * Create the event listener.
-     */
-    public function __construct()
-    {
-        //
-    }
-
-    /**
-     * Handle the event.
-     */
     public function handle(WebhookCreated|WebhookUpdated|WebhookDeleted|WebhookTested $event): void
     {
         $action = match (true) {
@@ -33,7 +23,7 @@ class LogWebhook
             $action = $event->webhook->status ? 'enabled' : 'disabled';
         }
 
-        $event->user->campaignLog(
+        UserLogger::user($event->user)->campaign(
             $event->webhook->campaign_id,
             'webhooks',
             $action,

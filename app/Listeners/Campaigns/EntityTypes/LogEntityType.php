@@ -6,20 +6,10 @@ use App\Events\Campaigns\EntityTypes\EntityTypeCreated;
 use App\Events\Campaigns\EntityTypes\EntityTypeDeleted;
 use App\Events\Campaigns\EntityTypes\EntityTypeToggled;
 use App\Events\Campaigns\EntityTypes\EntityTypeUpdated;
+use App\Facades\UserLogger;
 
 class LogEntityType
 {
-    /**
-     * Create the event listener.
-     */
-    public function __construct()
-    {
-        //
-    }
-
-    /**
-     * Handle the event.
-     */
     public function handle(EntityTypeCreated|EntityTypeUpdated|EntityTypeDeleted|EntityTypeToggled $event): void
     {
         if (! isset($event->entityType->campaign_id) && ! isset($event->campaign)) {
@@ -39,7 +29,7 @@ class LogEntityType
             $action = $event->campaign->setting->{$event->entityType->pluralCode()} ? 'enabled' : 'disabled';
         }
 
-        $event->user->campaignLog(
+        UserLogger::user($event->user)->campaign(
             $event->entityType->campaign_id ?? $event->campaign->id,
             'modules',
             $action,
