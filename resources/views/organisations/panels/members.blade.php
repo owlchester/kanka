@@ -16,6 +16,7 @@ if (request()->get('m') == \App\Enums\Descendants::All->value || (!request()->ha
     $allMembers = true;
 }
 $datagridOptions = Datagrid::initOptions($datagridOptions);
+Datagrid::layout(App\Renderers\Layouts\Organisation\Member::class);
 
 $datagridCall = ['datagridUrl' => route('organisations.members', $datagridOptions)];
 if (!empty($rows)) {
