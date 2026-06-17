@@ -11,7 +11,7 @@ $hasOthers = false;
         @foreach (\App\Facades\Datagrid::bulks() as $bulk)
             @if ($bulk === \App\Renderers\Layouts\Layout::ACTION_EDIT)
                 <x-dropdowns.item link="#" css="datagrid-bulk" :data="['action' => 'edit']" icon="pencil">
-                    {{ __('crud.bulk.actions.edit') }}
+                    {{ __('crud.bulk.actions.modify') }}
                 </x-dropdowns.item>
             @elseif ($bulk === \App\Renderers\Layouts\Layout::ACTION_DELETE)
                 @if ($hasOthers) <x-dropdowns.divider /> @endif
