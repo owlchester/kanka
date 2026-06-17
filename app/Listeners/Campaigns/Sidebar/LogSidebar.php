@@ -4,20 +4,10 @@ namespace App\Listeners\Campaigns\Sidebar;
 
 use App\Events\Campaigns\Sidebar\SidebarReset;
 use App\Events\Campaigns\Sidebar\SidebarSaved;
+use App\Facades\UserLogger;
 
 class LogSidebar
 {
-    /**
-     * Create the event listener.
-     */
-    public function __construct()
-    {
-        //
-    }
-
-    /**
-     * Handle the event.
-     */
     public function handle(SidebarReset|SidebarSaved $event): void
     {
         if (! $event->campaign->wasChanged('ui_settings')) {
@@ -28,7 +18,7 @@ class LogSidebar
             $event instanceof SidebarSaved => 'updated',
         };
 
-        $event->user->campaignLog(
+        UserLogger::user($event->user)->campaign(
             $event->campaign->id,
             'sidebar',
             $action,

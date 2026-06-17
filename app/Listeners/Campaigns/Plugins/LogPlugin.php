@@ -5,20 +5,10 @@ namespace App\Listeners\Campaigns\Plugins;
 use App\Events\Campaigns\Plugins\PluginDeleted;
 use App\Events\Campaigns\Plugins\PluginImported;
 use App\Events\Campaigns\Plugins\PluginUpdated;
+use App\Facades\UserLogger;
 
 class LogPlugin
 {
-    /**
-     * Create the event listener.
-     */
-    public function __construct()
-    {
-        //
-    }
-
-    /**
-     * Handle the event.
-     */
     public function handle(PluginUpdated|PluginDeleted|PluginImported $event): void
     {
         $action = $event instanceof PluginUpdated ? 'updated' : 'deleted';
@@ -35,7 +25,7 @@ class LogPlugin
             $action = 'imported';
         }
 
-        $event->user->campaignLog(
+        UserLogger::user($event->user)->campaign(
             $event->campaignPlugin->campaign_id,
             'plugins',
             $action,
@@ -43,6 +33,7 @@ class LogPlugin
                 'name' => $event->campaignPlugin->plugin->name,
                 'id' => $event->campaignPlugin->id,
                 'plugin' => $event->campaignPlugin->plugin_id,
-            ]);
+            ]
+        );
     }
 }
