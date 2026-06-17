@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Enums\UserAction;
 use App\Facades\Identity as IdentityFacade;
+use App\Facades\UserLogger;
 use App\Models\User;
 use Closure;
 use Illuminate\Http\RedirectResponse;
@@ -75,7 +76,7 @@ class LocaleChange
         if (auth()->check()) {
             /** @var User $user */
             $user = auth()->user();
-            $user->log(UserAction::lang, ['from' => $user->locale, 'to' => $locale]);
+            UserLogger::user($user)->log(UserAction::lang, ['from' => $user->locale, 'to' => $locale]);
             $user->locale = $locale;
             $user->saveQuietly();
 
