@@ -3,6 +3,7 @@
 namespace App\Services\Campaign;
 
 use App\Enums\UserAction;
+use App\Facades\UserLogger;
 use App\Notifications\Header;
 use App\Services\Users\CampaignService;
 use App\Traits\CampaignAware;
@@ -21,7 +22,7 @@ class DeletionService
 
     public function delete(): void
     {
-        $this->user->log(UserAction::campaignDelete, ['campaign' => $this->campaign->id]);
+        UserLogger::user($this->user)->log(UserAction::campaignDelete, ['campaign' => $this->campaign->id]);
         $this->campaign->delete();
 
         // Todo: queue this maybe

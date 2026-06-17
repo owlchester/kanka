@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Settings;
 use App\Enums\PricingPeriod;
 use App\Enums\UserAction;
 use App\Exceptions\TranslatableException;
+use App\Facades\UserLogger;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\UserSubscribeStore;
 use App\Jobs\Users\AbandonedCart;
@@ -173,7 +174,7 @@ class SubscriptionController extends Controller
             $this->subscription
                 ->user($request->user())
                 ->renew();
-            $request->user()->log(UserAction::subRenew);
+            UserLogger::user($request->user())->log(UserAction::subRenew);
 
             $routeOptions = [];
 
