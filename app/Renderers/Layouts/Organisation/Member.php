@@ -103,4 +103,9 @@ class Member extends Layout
     {
         return [self::ACTION_EDIT_DIALOG, self::ACTION_DELETE];
     }
+
+    public function bulks(): array
+    {
+        return [self::ACTION_EDIT, self::ACTION_DELETE];
+    }
 }

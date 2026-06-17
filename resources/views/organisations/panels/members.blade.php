@@ -70,9 +70,17 @@ $all = \Illuminate\Support\Number::format($model->allMembersCount());
             </x-helper>
         </x-box>
     @else
-        <div id="datagrid-parent" class="table-responsive">
-            @include('layouts.datagrid._table', $datagridCall)
-        </div>
+        @if(Datagrid::hasBulks())
+            <x-form :action="['organisations.organisation_members.bulk', $campaign, 'organisation' => $model]" direct>
+                <div id="datagrid-parent" class="table-responsive">
+                    @include('layouts.datagrid._table', $datagridCall)
+                </div>
+            </x-form>
+        @else
+            <div id="datagrid-parent" class="table-responsive">
+                @include('layouts.datagrid._table', $datagridCall)
+            </div>
+        @endif
     @endif
 
 </div>

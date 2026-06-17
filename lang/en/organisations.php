@@ -53,6 +53,10 @@ return [
             'inactive'  => 'Inactive member',
             'unknown'   => 'Unknown status',
         ],
+        'bulks'         => [
+            'delete'    => '{1} Removed :count member.|[2,*] Removed :count members.',
+            'patch'     => '{1} Updated :count member.|[2,*] Updated :count members.',
+        ],
     ],
     'placeholders'  => [
         'type'  => 'Cult, Gang, Rebellion, Fandom',
