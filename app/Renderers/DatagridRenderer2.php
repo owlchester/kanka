@@ -135,6 +135,10 @@ class DatagridRenderer2
 
     public function hasBulks(): bool
     {
+        if (! isset($this->layout)) {
+            return false;
+        }
+
         return ! empty($this->layout->bulks()) && auth()->check() && auth()->user()->can('admin', $this->campaign);
     }
 
