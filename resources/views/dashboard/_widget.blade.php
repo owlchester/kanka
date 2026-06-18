@@ -4,7 +4,7 @@ use App\Enums\Widget;
 
 
 <div class="col-span-{{ $widget->colSize() }}">
-    <div class="{{ $widgetClass }} cursor-pointer widget-{{ $widget->widget->value }} cover-background handle rounded-xl"
+    <div class="{{ $widgetClass }} widget-{{ $widget->widget->value }} cover-background handle cursor-grab rounded-xl"
     @if($widget->widget == Widget::Campaign)
          data-toggle="dialog"
          data-url="{{ route('campaigns.dashboard-header.edit', ['campaign' => $campaign, 'campaignDashboardWidget' => $widget]) }}"

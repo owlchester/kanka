@@ -12,7 +12,6 @@
 
 
 <x-widgets.forms.advanced>
-    @includeWhen(!$boosted, 'dashboard.widgets.forms._boosted')
     @include('dashboard.widgets.forms._class')
 </x-widgets.forms.advanced>
 

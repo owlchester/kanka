@@ -8,7 +8,7 @@
 ])
 
 @php
-$widgetClass = 'widget rounded-xl shadow-xs hover:shadow-md cursor-pointer bg-box' ;
+$widgetClass = 'widget rounded-xl shadow-xs hover:shadow-md bg-box' ;
 $overlayClass = 'rounded-xl flex gap-2 flex-col p-2 items-center h-full';
 
 $hasDashboards = !$dashboards->isEmpty() || !empty($dashboard);

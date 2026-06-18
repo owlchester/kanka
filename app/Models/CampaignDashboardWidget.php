@@ -463,11 +463,8 @@ class CampaignDashboardWidget extends Model
         return 'fa-regular fa-question-circle';
     }
 
-    public function customClass(Campaign $campaign): string
+    public function customClass(): string
     {
-        if (! $campaign->boosted()) {
-            return '';
-        }
         if (empty($this->conf('class'))) {
             return '';
         }

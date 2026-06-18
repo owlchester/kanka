@@ -17,11 +17,12 @@
 
 
 <x-widgets.forms.advanced>
+    @include('dashboard.widgets.forms._class')
+    
     @includeWhen(!$boosted, 'dashboard.widgets.forms._boosted')
 
     <x-grid>
         @include('dashboard.widgets.forms._header_select')
         @include('dashboard.widgets.forms._related')
-        @include('dashboard.widgets.forms._class')
     </x-grid>
 </x-widgets.forms.advanced>

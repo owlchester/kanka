@@ -11,7 +11,7 @@
     @if (!$readyToLoad)
         <x-icon class="loading"></x-icon>
     @elseif (count($images) > 0)
-        <x-box padding="0" class="widget-gallery {{ $widget->customClass($campaign) }}" id="dashboard-widget-{{ $widget->id }}">
+        <x-box padding="0" class="widget-gallery {{ $widget->customClass() }}" id="dashboard-widget-{{ $widget->id }}">
             <div
                 x-data="{
                     current: 0,
@@ -74,7 +74,7 @@
             </div>
         </x-box>
     @else
-        <x-box class="widget-gallery {{ $widget->customClass($campaign) }}" id="dashboard-widget-{{ $widget->id }}">
+        <x-box class="widget-gallery {{ $widget->customClass() }}" id="dashboard-widget-{{ $widget->id }}">
             <p class="text-neutral-content text-center">{{ __('Nothing to show') }}</p>
         </x-box>
     @endif
