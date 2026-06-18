@@ -36,11 +36,6 @@ class DashboardService
      */
     public function getDashboard(?int $dashboard = null): ?CampaignDashboard
     {
-        // Only available for boosted campaigns
-        if (! $this->campaign->boosted()) {
-            return null;
-        }
-
         // If the campaign has no dashboards, just stop
         $available = $this->availableDashboards();
         if (empty($available)) {
@@ -64,11 +59,6 @@ class DashboardService
      */
     public function getDashboards(): array
     {
-        // Only available for boosted campaigns
-        if (! $this->campaign->boosted()) {
-            return [];
-        }
-
         $available = $this->availableDashboards();
         $ids = [];
 
