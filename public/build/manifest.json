@@ -1,6 +1,6 @@
 {
-  "_Browser.vue_vue_type_script_setup_true_lang-Biv80x6M.js": {
-    "file": "assets/Browser.vue_vue_type_script_setup_true_lang-Biv80x6M.js",
+  "_Browser.vue_vue_type_script_setup_true_lang-Biep_vNg.js": {
+    "file": "assets/Browser.vue_vue_type_script_setup_true_lang-Biep_vNg.js",
     "name": "Browser.vue_vue_type_script_setup_true_lang",
     "imports": [
       "_vendor-tiptap-K3MGeyak.js"
@@ -180,7 +180,7 @@
     "src": "node_modules/rpg-awesome/fonts/rpgawesome-webfont.woff"
   },
   "resources/css/app.css": {
-    "file": "assets/app-B8gmhjWR.css",
+    "file": "assets/app-DZBcNCLB.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -189,7 +189,7 @@
     ]
   },
   "resources/css/auth.css": {
-    "file": "assets/auth-DdemXgc8.css",
+    "file": "assets/auth-Dzb47paE.css",
     "src": "resources/css/auth.css",
     "isEntry": true,
     "name": "auth",
@@ -216,7 +216,7 @@
     ]
   },
   "resources/css/front.css": {
-    "file": "assets/front-BpDRzWc1.css",
+    "file": "assets/front-gkOd1Lem.css",
     "src": "resources/css/front.css",
     "isEntry": true,
     "name": "front",
@@ -323,7 +323,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-BA6HWVMd.js",
+    "file": "assets/app-m6OEXvAW.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -336,7 +336,7 @@
       "__plugin-vue_export-helper-DlAUqK2U.js",
       "_tippy.esm-CnBRltuW.js",
       "_v-click-outside.umd-Cl-Y_A58.js",
-      "_Browser.vue_vue_type_script_setup_true_lang-Biv80x6M.js",
+      "_Browser.vue_vue_type_script_setup_true_lang-Biep_vNg.js",
       "_vue-tippy.esm-browser-BFpu_1KU.js",
       "__commonjsHelpers-Cpj98o6Y.js"
     ],
@@ -470,7 +470,7 @@
     ]
   },
   "resources/js/editors/tiptap/Tiptap.vue": {
-    "file": "assets/Tiptap-13PuZIyE.js",
+    "file": "assets/Tiptap-ppKdu9eo.js",
     "name": "Tiptap",
     "src": "resources/js/editors/tiptap/Tiptap.vue",
     "isDynamicEntry": true,
@@ -503,7 +503,7 @@
     ]
   },
   "resources/js/editors/tiptap/index.js": {
-    "file": "assets/index-B4CACNQS.js",
+    "file": "assets/index-C_fPkTZA.js",
     "name": "index",
     "src": "resources/js/editors/tiptap/index.js",
     "isEntry": true,
@@ -516,7 +516,7 @@
     ]
   },
   "resources/js/entities/explore.js": {
-    "file": "assets/explore-CIhTBr7V.js",
+    "file": "assets/explore-C6SiScrr.js",
     "name": "explore",
     "src": "resources/js/entities/explore.js",
     "isEntry": true,
@@ -639,14 +639,14 @@
     "isEntry": true
   },
   "resources/js/whiteboards.js": {
-    "file": "assets/whiteboards-DZZ7YdvD.js",
+    "file": "assets/whiteboards-BSUZI8Iv.js",
     "name": "whiteboards",
     "src": "resources/js/whiteboards.js",
     "isEntry": true,
     "imports": [
       "_vendor-tiptap-K3MGeyak.js",
       "_colours-Dh8441-n.js",
-      "_Browser.vue_vue_type_script_setup_true_lang-Biv80x6M.js",
+      "_Browser.vue_vue_type_script_setup_true_lang-Biep_vNg.js",
       "_vue-tippy.esm-browser-BFpu_1KU.js"
     ]
   }
