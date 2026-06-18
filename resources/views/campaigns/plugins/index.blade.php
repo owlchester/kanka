@@ -10,24 +10,24 @@
     </a>
 </div>
 
-@if($campaign->boosted())
-    @if(Datagrid::hasBulks())
-        <x-form :action="['campaign_plugins.bulk', $campaign]" direct>
-            <div id="datagrid-parent" class="table-responsive">
-                @include('layouts.datagrid._table', ['empty' => __('campaigns/plugins.empty_list')])
-            </div>
-        </x-form>
-    @else
-        <div id="datagrid-parent" class="table-responsive">
-            @include('layouts.datagrid._table', ['empty' => __('campaigns/plugins.empty_list')])
-        </div>
-    @endif
-@else
+@if(!$campaign->boosted())
     <x-premium-cta :campaign="$campaign">
         <p>
             {!! __('campaigns/plugins.pitch', ['marketplace' => '<a href="' . config('marketplace.url') . '" class="text-link">' . __('footer.plugins'). '</a>']) !!}
         </p>
     </x-premium-cta>
+@endif
+
+@if(Datagrid::hasBulks())
+    <x-form :action="['campaign_plugins.bulk', $campaign]" direct>
+        <div id="datagrid-parent" class="table-responsive">
+            @include('layouts.datagrid._table', ['empty' => __('campaigns/plugins.empty_list')])
+        </div>
+    </x-form>
+@else
+    <div id="datagrid-parent" class="table-responsive">
+        @include('layouts.datagrid._table', ['empty' => __('campaigns/plugins.empty_list')])
+    </div>
 @endif
 
 
