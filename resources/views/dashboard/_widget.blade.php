@@ -4,7 +4,7 @@ use App\Enums\Widget;
 
 
 <div class="col-span-{{ $widget->colSize() }}">
-    <div class="{{ $widgetClass }} cursor-pointer widget-{{ $widget->widget->value }} cover-background has-[.handle:hover]:ring-2 has-[.handle:hover]:ring-primary rounded-xl"
+    <div class="{{ $widgetClass }} cursor-pointer widget-{{ $widget->widget->value }} cover-background handle rounded-xl"
     @if($widget->widget == Widget::Campaign)
          data-toggle="dialog"
          data-url="{{ route('campaigns.dashboard-header.edit', ['campaign' => $campaign, 'campaignDashboardWidget' => $widget]) }}"
@@ -12,12 +12,9 @@ use App\Enums\Widget;
          data-toggle="dialog"
          data-url="{{ route('campaign_dashboard_widgets.edit', [$campaign, $widget]) }}"
     @endif
-    @if ($widget->widget == Widget::Campaign && $campaign->header_image)
-         style="background-image: url('{{ Img::crop(1200, 400)->url($campaign->header_image) }}')"
-    @endif
     >
         <div class="rounded-xl bg-box flex items-center gap-3 justify-between p-4">
-            <div class="flex-none text-neutral-content handle cursor-move" data-toggle="tooltip" data-title="{{ __('dashboard.setup.reorder.helper') }}">
+            <div class="flex-none text-neutral-content" data-toggle="tooltip" data-title="{{ __('dashboard.setup.reorder.helper') }}">
                 <x-icon class="fa-solid fa-grip-vertical" />
             </div>
             <div class="flex-none">

@@ -1,13 +1,13 @@
 @php $boosted = $campaign->boosted() @endphp
 
-<x-grid type="1/1">
+<x-grid>
     @include('dashboard.widgets.forms._name')
-
-    @include('dashboard.widgets.forms._width')
 
     @include('dashboard.widgets.forms._size')
 
     @include('cruds.fields.entity', ['label' => __('dashboard.widgets.fields.optional-entity')])
+    
+    @include('dashboard.widgets.forms._width')
 </x-grid>
 
 
