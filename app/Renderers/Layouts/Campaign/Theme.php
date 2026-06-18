@@ -26,6 +26,10 @@ class Theme extends Layout
                 'key' => 'name',
                 'label' => __('campaigns/styles.fields.name'),
                 'render' => function ($model) {
+                    if (! $this->campaign->boosted()) {
+                        return $model->name;
+                    }
+
                     return '<a href="' .
                         route('campaign_styles.edit', [
                             $this->campaign,
@@ -70,7 +74,7 @@ class Theme extends Layout
      */
     public function actions(): array
     {
-        return [
+        $actions = [
             'disable' => [
                 'can' => 'disable',
                 'route' => 'campaign_styles.toggle',
@@ -83,9 +87,14 @@ class Theme extends Layout
                 'label' => 'campaigns/styles.actions.enable',
                 'icon' => 'fa-regular fa-check',
             ],
-            self::ACTION_EDIT,
             self::ACTION_DELETE,
         ];
+
+        if ($this->campaign->boosted()) {
+            $actions[] = self::ACTION_EDIT;
+        }
+
+        return $actions;
     }
 
     public function bulks(): array

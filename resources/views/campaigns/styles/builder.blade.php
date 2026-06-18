@@ -100,9 +100,11 @@
                             <x-button.delete-confirm target="#delete-reset" :text="__('crud.actions.reset')" />
                         @endif
                     </div>
-                    <button class="btn2 btn-primary join-item" id="form-submit-main">
-                        {{ __('crud.save') }}
-                    </button>
+                    @if ($campaign->boosted())
+                        <button class="btn2 btn-primary join-item" id="form-submit-main">
+                            {{ __('crud.save') }}
+                        </button>
+                    @endif
                 </div>
             </x-box>
 
