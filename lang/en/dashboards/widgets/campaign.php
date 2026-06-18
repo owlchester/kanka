@@ -1,6 +1,8 @@
 <?php
 
 return [
-    'description'   => 'Shows a billboard preview of the campaign.',
+    'description'   => 'A billboard preview of the campaign.',
     'name'          => 'Billboard',
+    'tag' => 'Billboard',
+    'tagline' => 'Campaign banner',
 ];

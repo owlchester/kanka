@@ -72,11 +72,6 @@ class EntityTypeController extends Controller
         $this->authorize('setting', $campaign);
         $this->authorize('update', [$entityType, $campaign]);
 
-        if (! $campaign->premium()) {
-            return view('campaigns.entity-types.not-premium')
-                ->with('campaign', $campaign);
-        }
-
         $image = null;
         $thumbnails = $campaign->defaultImages();
         foreach ($thumbnails as $thumbnail) {
@@ -96,10 +91,6 @@ class EntityTypeController extends Controller
         $this->authorize('setting', $campaign);
         $this->authorize('update', [$entityType, $campaign]);
 
-        if (! $campaign->premium()) {
-            return redirect()->route('campaign.modules', $campaign)
-                ->with('error', __('This feature is only available on premium campaigns'));
-        }
         if (request()->ajax()) {
             return response()->json(['success' => true]);
         }

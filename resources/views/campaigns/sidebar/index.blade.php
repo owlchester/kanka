@@ -28,10 +28,11 @@
                     {{ __('campaigns/sidebar.call-to-action') }}
                 </p>
             </x-premium-cta>
-        @else
-            <p>
-                {!! __('campaigns/sidebar.helpers.reordering')  !!} {!! __('campaigns/sidebar.helpers.bookmarks', ['position' => '<strong>' . __('bookmarks.fields.position') . '</strong>'])  !!}
-            </p>
+        @endif
+
+        <p>
+            {!! __('campaigns/sidebar.helpers.reordering')  !!} {!! __('campaigns/sidebar.helpers.bookmarks', ['position' => '<strong>' . __('bookmarks.fields.position') . '</strong>'])  !!}
+        </p>
 
         <x-form :action="['campaign-sidebar-save', $campaign]" class="sidebar-setup form-inline form-mobile-inline flex flex-col gap-4">
         <x-box>
@@ -46,9 +47,9 @@
                             <span class="bg-base-300 p-2 w-10 rounded dnd-handle cursor-move flex-none text-center">
                                 <x-icon class="inline-block {{ $setup['custom_icon'] ?? $setup['icon'] }}" />
                             </span>
-                            <input type="text" class="w-20 lg:w-40" name="{{ $name }}_icon" value="{{ $setup['custom_icon'] ?? null }}" placeholder="{{ $setup['icon'] }}" maxlength="50" data-paste="fontawesome" />
+                            <input type="text" class="w-20 lg:w-40" name="{{ $name }}_icon" value="{{ $setup['custom_icon'] ?? null }}" placeholder="{{ $setup['icon'] }}" maxlength="50" data-paste="fontawesome" @disabled(!$campaign->boosted()) />
                         </div>
-                        <input type="text" class="w-40 lg:w-80" name="{{ $name }}_label" value="{!! $setup['custom_label'] ?? null !!}" placeholder="{{ $setup['label'] ?? __($setup['label_key'])  }}" maxlength="90" />
+                        <input type="text" class="w-40 lg:w-80" name="{{ $name }}_label" value="{!! $setup['custom_label'] ?? null !!}" placeholder="{{ $setup['label'] ?? __($setup['label_key'])  }}" maxlength="90" @disabled(!$campaign->boosted()) />
                         <span class="text-neutral-content text-xs hidden md:inline!">( {{ $setup['label'] ?? __($setup['label_key']) }} )</span>
                         <input type="hidden" name="order[{{ $name }}]" value="1" />
                     </div>
@@ -69,9 +70,9 @@
                                         <span class="bg-base-300 p-2 w-10 text-center flex-none rounded dnd-handle cursor-move">
                                             <x-icon class="inline-block w-6 {{ $child['custom_icon'] ?? $child['icon'] ?? 'fa-regular fa-question-circle' }}" />
                                         </span>
-                                        <input type="text" class="w-20 lg:w-40" name="{{ $childName }}_icon" value="{{ $child['custom_icon'] ?? null }}" placeholder="{{ $child['icon'] ?? null }}" data-paste="fontawesome" maxlength="50" />
+                                        <input type="text" class="w-20 lg:w-40" name="{{ $childName }}_icon" value="{{ $child['custom_icon'] ?? null }}" placeholder="{{ $child['icon'] ?? null }}" data-paste="fontawesome" maxlength="50" @disabled(!$campaign->boosted()) />
                                     </div>
-                                    <input type="text" class="w-40 lg:w-80" name="{{ $childName }}_label" value="{!! $child['custom_label'] ?? null !!}" placeholder="{{ $child['label'] ?? __($child['label_key']) }}" maxlength="90" />
+                                    <input type="text" class="w-40 lg:w-80" name="{{ $childName }}_label" value="{!! $child['custom_label'] ?? null !!}" placeholder="{{ $child['label'] ?? __($child['label_key']) }}" maxlength="90" @disabled(!$campaign->boosted()) />
                                     <span class="hidden md:flex text-neutral-content text-xs">
                                         ( {{ $child['label'] ?? __($child['label_key']) }}
                                         @if (\Illuminate\Support\Arr::get($child, 'disabled') === true)
@@ -98,13 +99,14 @@
                     <x-icon class="trash" />
                     {{ __('campaigns/sidebar.actions.reset') }}
                 </a>
-                <button type="submit" class="btn2 btn-primary">
-                    <x-icon class="save" />
-                    {{ __('crud.save') }}
-                </button>
+                @if ($campaign->boosted())
+                    <button type="submit" class="btn2 btn-primary">
+                        <x-icon class="save" />
+                        {{ __('crud.save') }}
+                    </button>
+                @endif
             </div>
         </x-form>
-        @endif
     </div>
 
 @endsection

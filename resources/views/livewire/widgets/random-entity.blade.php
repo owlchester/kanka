@@ -9,7 +9,7 @@
     @if (!$readyToLoad)
         <x-icon class="loading"></x-icon>
     @elseif ($entity)
-        <x-box padding="0" class="widget-random {{ $widget->customClass($campaign) }}" id="dashboard-widget-{{ $widget->id }}">
+        <x-box padding="0" class="widget-random {{ $widget->customClass() }}" id="dashboard-widget-{{ $widget->id }}">
             @if(view()->exists($specificPreview))
                 @include($specificPreview, ['entity' => $entity, 'customName' => $customName])
             @else

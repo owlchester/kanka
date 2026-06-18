@@ -330,10 +330,6 @@ class SetupService
 
     protected function customLayout(): array
     {
-        // Only boosted campaigns can change the layout
-        if (! $this->campaign->boosted()) {
-            return $this->layout;
-        }
         $layout = Arr::get($this->campaign->ui_settings, 'sidebar.order');
         if (empty($layout)) {
             return $this->layout;
@@ -390,17 +386,13 @@ class SetupService
     }
 
     /**
-     * Load custom element setup for boosted campaigns
+     * Load custom element setup
      */
     protected function customElement(string $key): array
     {
         $element = $this->elements[$key];
         $element['label_key'] = $element['label'] ?? null;
         unset($element['label']);
-
-        if (! $this->campaign->boosted()) {
-            return $element;
-        }
 
         // Module custom name
         if (! empty($element['type']) && ! $this->withDisabled) {

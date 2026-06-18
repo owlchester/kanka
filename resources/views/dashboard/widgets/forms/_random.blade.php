@@ -12,6 +12,8 @@
 @endphp
 
 <x-grid>
+    @include('dashboard.widgets.forms._name', ['random' => true])
+    
     <x-forms.field field="random-type" required :label="__('bookmarks.fields.random_type')">
         <x-forms.select name="entity_type_id" :options="$entityTypes" :selected="$model->entityType->id ?? null" class="w-full recent-entity-type" />
     </x-forms.field>
@@ -25,7 +27,6 @@
         <input type="text" name="config[filters]" value="{{ old('config[filters]', $model?->config['filters'] ?? null) }}" maxlength="191" class="w-full" id="config[filters]" placeholder="" />
     </x-forms.field>
 
-    @include('dashboard.widgets.forms._name', ['random' => true])
     @include('dashboard.widgets.forms._display')
 
     @include('dashboard.widgets.forms._width')
@@ -36,10 +37,11 @@
 
 
 <x-widgets.forms.advanced>
+    @include('dashboard.widgets.forms._class')
+    
     @includeWhen(!$boosted, 'dashboard.widgets.forms._boosted')
     <x-grid>
         @include('dashboard.widgets.forms._header_select')
         @include('dashboard.widgets.forms._related')
-        @include('dashboard.widgets.forms._class')
     </x-grid>
 </x-widgets.forms.advanced>

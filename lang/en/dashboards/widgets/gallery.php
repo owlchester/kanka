@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'description'   => 'Display images from a gallery folder as a carousel.',
+    'description'   => 'Images from a gallery folder as a carousel.',
     'fields'        => [
         'folder'    => 'Gallery folder',
         'show_name' => 'Image names',
@@ -11,4 +11,5 @@ return [
         'show_name' => 'Display the image name below each image.',
     ],
     'name'          => 'Gallery',
+    'tag' => 'Gallery',
 ];

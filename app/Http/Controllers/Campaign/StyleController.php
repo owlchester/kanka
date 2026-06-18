@@ -32,7 +32,7 @@ class StyleController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware(Boosted::class, ['except' => 'index']);
+        $this->middleware(Boosted::class, ['only' => ['create', 'store', 'edit', 'update', 'reorder', 'theme', 'themeSave']]);
     }
 
     /**

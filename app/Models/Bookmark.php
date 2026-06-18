@@ -287,7 +287,7 @@ class Bookmark extends Model
         return Dashboard::campaign($this->campaign)->getDashboard($this->dashboard_id) !== null;
     }
 
-    public function customClass(Campaign $campaign): string
+    public function customClass(): string
     {
         $class = '';
         $request = request()->get('bookmark');
@@ -295,9 +295,6 @@ class Bookmark extends Model
             $class = 'active ';
         }
 
-        if (! $campaign->boosted()) {
-            return $class;
-        }
         if (empty($this->css)) {
             return $class;
         }

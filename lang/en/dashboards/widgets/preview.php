@@ -1,6 +1,7 @@
 <?php
 
 return [
-    'description'   => 'Shows a specific entry.',
+    'description'   => 'Pin one specific entry to the dashboard.',
     'name'          => 'Selected entry',
+    'tag' => 'Entry',
 ];

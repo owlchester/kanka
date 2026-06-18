@@ -129,7 +129,7 @@ class TemplateService
      */
     public function marketplaceTemplate(string $uuid): ?CampaignPlugin
     {
-        if (! $this->campaign->boosted() || ! config('marketplace.enabled')) {
+        if (! config('marketplace.enabled')) {
             return null;
         }
 

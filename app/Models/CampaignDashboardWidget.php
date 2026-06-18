@@ -447,7 +447,7 @@ class CampaignDashboardWidget extends Model
         } elseif ($this->widget === Widget::Preview) {
             return 'fa-regular fa-align-justify';
         } elseif ($this->widget === Widget::Calendar) {
-            return 'fa-regular fa-calendar';
+            return 'fa-regular fa-calendar-days';
         } elseif ($this->widget === Widget::Random) {
             return 'fa-regular fa-dice-d20';
         } elseif ($this->widget === Widget::Campaign) {
@@ -463,11 +463,8 @@ class CampaignDashboardWidget extends Model
         return 'fa-regular fa-question-circle';
     }
 
-    public function customClass(Campaign $campaign): string
+    public function customClass(): string
     {
-        if (! $campaign->boosted()) {
-            return '';
-        }
         if (empty($this->conf('class'))) {
             return '';
         }
@@ -527,5 +524,18 @@ class CampaignDashboardWidget extends Model
             Widget::Preview,
             Widget::Unmentioned,
         ]) && empty($this->entity);
+    }
+
+    public function setupClass(): string
+    {
+        return match ($this->widget) {
+            Widget::Calendar => 'bg-green-100 text-green-800',
+            Widget::Recent => 'bg-blue-100 text-blue-700',
+            Widget::Random => 'bg-amber-100 text-amber-700',
+            Widget::Preview => 'bg-violet-100 text-violet-800',
+            Widget::Campaign => 'bg-red-100 text-red-700',
+            Widget::Gallery => 'bg-fuchsia-100 text-fuchsia-800',
+            default => 'bg-base-200 text-neutral-content',
+        };
     }
 }
