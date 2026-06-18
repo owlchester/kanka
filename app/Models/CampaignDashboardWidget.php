@@ -528,7 +528,7 @@ class CampaignDashboardWidget extends Model
 
     public function setupClass(): string
     {
-        return match($this->widget) {
+        return match ($this->widget) {
             Widget::Calendar => 'bg-green-100 text-green-800',
             Widget::Recent => 'bg-blue-100 text-blue-700',
             Widget::Random => 'bg-amber-100 text-amber-700',

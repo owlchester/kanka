@@ -29,9 +29,10 @@ class Selection extends Component
      */
     public function render(): View|Closure|string
     {
-        $widget = new CampaignDashboardWidget();
+        $widget = new CampaignDashboardWidget;
         $widget->widget = $this->widget;
         $setupClass = $widget->setupClass();
+
         return view('components.dashboards.widgets.selection', compact('setupClass'));
     }
 }

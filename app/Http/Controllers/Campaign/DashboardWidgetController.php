@@ -68,7 +68,7 @@ class DashboardWidgetController extends Controller
         $dashboard = request()->has('dashboard') ?
             CampaignDashboard::where('id', request()->get('dashboard'))->first() : null;
 
-        $widgetClass = new CampaignDashboardWidget();
+        $widgetClass = new CampaignDashboardWidget;
         $widgetClass->widget = $widget;
 
         return view('dashboard.widgets.forms.create', [
