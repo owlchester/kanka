@@ -33,7 +33,7 @@ use App\Enums\Widget;
                             {{ __('dashboards/widgets/' . $widget->widget->value . '.name') }}
                         @endif
                     </div>
-                    <div class="rounded  px-2 py-0.5 {{ $widget->setupClass() }} text-xs font-medium uppercase">
+                    <div class="rounded  px-2 py-0.5 {{ $widget->setupClass() }} text-2xs font-medium uppercase">
                         {{ __('dashboards/widgets/' . $widget->widget->value . '.tag') }}
                     </div>
                 </div>
@@ -98,7 +98,7 @@ use App\Enums\Widget;
                     </p>
                 @endif
             </div>
-            <div class="rounded bg-base-200 px-2 py-0.5 text-neutral-content text-xs">
+            <div class="rounded bg-base-200 px-2 py-0.5 text-neutral-content text-2xs">
                 {{ __('dashboard.widgets.widths.' . $widget->colSize())}}
             </div>
         </div>
