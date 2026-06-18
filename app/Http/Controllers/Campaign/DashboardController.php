@@ -15,7 +15,7 @@ class DashboardController extends Controller
     public function __construct(protected DashboardService $service)
     {
         $this->middleware('auth');
-        $this->middleware(Boosted::class, ['except' => ['index', 'create']]);
+        $this->middleware(Boosted::class, ['only' => ['store']]);
     }
 
     /**
