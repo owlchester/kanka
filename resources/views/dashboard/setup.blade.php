@@ -8,7 +8,7 @@
 ])
 
 @php
-$widgetClass = 'widget rounded-xl h-28 shadow-xs hover:shadow-md cursor-pointer bg-box' ;
+$widgetClass = 'widget rounded-xl shadow-xs hover:shadow-md cursor-pointer bg-box' ;
 $overlayClass = 'rounded-xl flex gap-2 flex-col p-2 items-center h-full';
 
 $hasDashboards = !$dashboards->isEmpty() || !empty($dashboard);
@@ -137,11 +137,9 @@ $hasDashboards = !$dashboards->isEmpty() || !empty($dashboard);
                     @includeWhen($widget->visible(), '.dashboard._widget')
                 @endforeach
 
-                <div class="col-span-4 widget rounded-xl h-28 hover:border-primary text-primary transition-all duration-150 cursor-pointer border-dashed border-2 py-6" data-toggle="dialog" data-url="{{ route('campaign_dashboard_widgets.index', [$campaign, 'dashboard' => $dashboard]) }}" data-tooltip data-title="{{ __('dashboards/setup.tooltips.add') }}">
-                    <div class="text-md xl:text-xl flex gap-2 items-center justify-center p-2 align-middle h-full">
+                <div class="col-span-12 widget rounded-xl text-neutral-content border-base-300 hover:border-primary focus:border-primary hover:text-primary focus:text-primary transition-colors duration-150 cursor-pointer border-dashed border-2 py-4 font-medium text-center" data-toggle="dialog" data-url="{{ route('campaign_dashboard_widgets.index', [$campaign, 'dashboard' => $dashboard]) }}" data-tooltip data-title="{{ __('dashboards/setup.tooltips.add') }}">
                         <x-icon class="plus" />
-                        <span class="uppercase">{{ __('dashboards/setup.actions.add') }}</span>
-                    </div>
+                        {{ __('dashboards/setup.actions.add') }}
                 </div>
             </div>
         </div>

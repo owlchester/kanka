@@ -10,21 +10,25 @@
 
 @php $singularChecked = old('config[singular]', isset($model) ? $model->conf('singular') : false); @endphp
 <x-grid :xdata="'{ singular: ' . ($singularChecked ? 'true' : 'false') . ' }'">
-    <x-forms.field field="entity-type" required :label="__('campaigns/categories.tab')">
+    @include('dashboard.widgets.forms._name')
+    
+    <x-forms.field field="entity-type" required :label="__('crud.fields.category')">
         <x-forms.select name="entity_type_id" :options="$entityTypes" :selected="$model->entityType->id ?? null" class="w-full recent-entity-type" :extra="['data-animate' => 'reveal', 'data-target' => '.field-recent-filters']" />
     </x-forms.field>
+    
+    @include('dashboard.widgets.forms._tags')
 
     <x-forms.field
         field="recent-filters"
         :label="__('dashboard.widgets.recent.filters')"
         link="https://docs.kanka.io/en/latest/guides/dashboard.html"
+        css="col-span-full"
         tooltip
         :helper="__('dashboard.widgets.helpers.filters')"
         :hidden="empty($model) || empty($model->entityType)">
-        <input type="text" name="config[filters]" value="{{ old('config[filters]', $model->config['filters'] ?? null) }}" maxlength="191" class="w-full" id="config[filters]" placeholder="" />
+        <input type="text" name="config[filters]" value="{{ old('config[filters]', $model->config['filters'] ?? null) }}" maxlength="191" class="w-full" id="config[filters]" placeholder="{{ __('dashboards/widgets/recent.placeholders.filters') }}" />
     </x-forms.field>
 
-    @include('dashboard.widgets.forms._tags')
 
     <x-forms.field field="advanced-filters" :label="__('dashboard.widgets.recent.advanced_filter')">
         <x-forms.select name="config[adv_filter]" :options="$advancedFilters" :selected="$model?->conf('adv_filter') ?? null" />
@@ -50,7 +54,6 @@
             </x-helper>
         @endif
     </div>
-    @include('dashboard.widgets.forms._name')
     @include('dashboard.widgets.forms._width')
 
     <x-forms.field field="order" :label="__('dashboard.widgets.fields.order')">

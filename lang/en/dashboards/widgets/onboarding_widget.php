@@ -59,4 +59,5 @@ return [
         'ideas'     => 'Need ideas? Here are a few things to try:',
     ],
     'title'     => 'Getting Started',
+    'tag' => 'Getting started',
 ];

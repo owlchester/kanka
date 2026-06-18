@@ -1,12 +1,13 @@
 @php $boosted = $campaign->boosted() @endphp
 <x-grid>
+    
+    @include('dashboard.widgets.forms._name')
+        
     <div class="col-span-2">
         @include('cruds.fields.entity', ['required' => true])
     </div>
 
     @include('dashboard.widgets.forms._display')
-
-    @include('dashboard.widgets.forms._name')
 
     @include('dashboard.widgets.forms._width')
 

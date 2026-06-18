@@ -12,6 +12,7 @@ return [
         '3' => 'Here are our top 5 tricks for using Kanka',
     ],
     'name'          => 'Welcome',
+    'tag' => 'Welcome',
     'title'         => 'Welcome to :kanka! 🎉',
     'tricks'        => [
         '1'         => 'When writing descriptions, don\'t re-write names of elements of the campaign. Instead, type :code and three letters to :mention other entries of the campaign. These mentions will automatically update when you change names around.',
