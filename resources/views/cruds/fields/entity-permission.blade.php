@@ -12,12 +12,14 @@ $isPrivate = old('is_private', $source->is_private ?? $model->is_private ?? $cam
     <button type="button" class="btn2 btn-outline " @click="open = !open" :aria-expanded="open">
         <i class="fa-regular fa-lock" x-show="private" x-cloak aria-hidden="true"></i>
         <i class="fa-regular fa-eye" x-show="!private" aria-hidden="true"></i>
-        <span x-show="private" x-cloak>{{ __('entities/permissions.toggle.private.title') }}</span>
-        <span x-show="!private">{{ __('entities/permissions.toggle.public.title') }}</span>
-        <x-icon class="fa-regular fa-chevron-down text-xs" />
+        <span x-show="private" x-cloak class="hidden md:inline">{{ __('entities/permissions.toggle.private.title') }}</span>
+        <span x-show="!private" class="hidden md:inline">{{ __('entities/permissions.toggle.public.title') }}</span>
+        <span class="hidden md:inline">
+            <x-icon class="fa-regular fa-chevron-down text-xs " />
+        </span>
     </button>
 
-    <div x-show="open" x-cloak class="absolute right-0 z-50 mt-1 w-64 bg-base-100 border border-base-300 rounded-xl shadow-lg p-1 flex flex-col gap-0.5 min-w-sm">
+    <div x-show="open" x-cloak class="absolute right-0 z-50 mt-1 md:w-64 bg-base-100 border border-base-300 rounded-xl shadow-lg p-1 flex flex-col gap-0.5 md:min-w-sm">
         <button type="button"
             class="text-left px-2 py-2 hover:bg-base-200 rounded-xl transition-all duration-150 flex gap-2"
             :class="!private ? 'bg-base-200' : ''"

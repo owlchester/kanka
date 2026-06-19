@@ -31,5 +31,5 @@ if (!empty($source) && $source->is_private) {
 @endphp
 
 <x-grid type="1/1">
-    @include('cruds.permissions.permissions_table', ['skipUsers' => true, 'campaign'])
+    @include('entities.pages.permissions.table', ['skipUsers' => true, 'campaign'])
 </x-grid>
