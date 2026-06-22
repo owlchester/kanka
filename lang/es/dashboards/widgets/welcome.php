@@ -13,6 +13,7 @@ return [
         '3' => 'Éstos son nuestros 5 mejores trucos para utilizar Kanka',
     ],
     'name'          => 'Bienvenida',
+    'tag'           => 'Bienvenida',
     'title'         => '¡Bienvenid@ a :kanka! 🎉',
     'tricks'        => [
         '1'         => 'Cuando escribas descripciones, no reescribas los nombres de los elementos de la campaña. En su lugar, escribe :code y tres letras para :mention otras entidades de la campaña. Estas menciones se actualizarán automáticamente cuando cambies los nombres.',

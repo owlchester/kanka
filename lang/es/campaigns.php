@@ -24,6 +24,7 @@ return [
     ],
     'export'                            => [],
     'fields'                            => [
+        'billboard'                 => 'Descripción de la cartelera',
         'boosted'                   => 'Mejorada por',
         'entity_count'              => 'Número de entidades',
         'entry'                     => 'Descripción de la campaña',

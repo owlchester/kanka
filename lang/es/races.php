@@ -8,7 +8,8 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'members'   => 'Miembros',
+        'is_extinct'    => 'Extinta',
+        'members'       => 'Miembros',
     ],
     'helpers'       => [],
     'hints'         => [

@@ -1,13 +1,20 @@
 <?php
 
 return [
+    'everywhere'    => 'En todos lados',
     'fulltext'      => 'Buscar en todas partes',
     'lookup'        => [
-        'empty'     => 'No hay resultados',
-        'hint'      => 'Escriba al menos 3 letras para buscar entidades en la campaña.',
-        'keyboard'  => 'pulse :k para buscar, :esc para descartar',
-        'recents'   => 'Recientes',
-        'results'   => 'Resultados',
+        'empty'         => 'No hay resultados',
+        'hint'          => 'Escriba al menos 3 letras para buscar entidades en la campaña.',
+        'hint_fulltext' => 'Busca dentro de entradas, artículos y más...',
+        'hint_name'     => 'Busca entradas por nombre',
+        'keyboard'      => 'pulse :k para buscar, :esc para descartar',
+        'lists'         => 'Listas',
+        'matches'       => 'Coincidencias',
+        'nothing'       => 'Sin resultados para :term.',
+        'pages'         => 'Páginas',
+        'recents'       => 'Recientes',
+        'results'       => 'Resultados',
     ],
     'no_results'    => 'Sin resultados.',
     'placeholder'   => 'BUSCAR',

@@ -21,10 +21,12 @@ return [
     'edit'          => [],
     'fields'        => [
         'children'          => 'Entidades anidadas',
+        'icon'              => 'Ícono',
         'is_auto_applied'   => 'Aplicar automáticamente a nuevas entidades',
         'is_hidden'         => 'Oculto en la cabecera y en el tooltip',
     ],
     'helpers'       => [
+        'icon'          => 'Usa íconos de :fontawesome o :rpgawesome. El ícono se mostrará en lugar del nombre de la etiqueta en las listas.',
         'no_children'   => 'Actualmente no hay entidades etiquetadas con esta etiqueta.',
         'no_posts'      => 'Actualmente no hay entradas etiquetadas con esta etiqueta.',
     ],
@@ -39,6 +41,7 @@ return [
         'empty' => 'Usa etiquetas para agrupar y filtrar entidades en todo tu mundo para facilitar la navegación.',
     ],
     'placeholders'  => [
+        'icon'  => 'Prueba :example1 o :example2',
         'type'  => 'Tradiciones, guerras, historia, religión...',
     ],
     'show'          => [

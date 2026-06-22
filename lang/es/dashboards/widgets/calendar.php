@@ -3,4 +3,5 @@
 return [
     'description'   => 'Muestra los próximos recordatorios.',
     'name'          => 'Calendario',
+    'tag'           => 'Calendario',
 ];

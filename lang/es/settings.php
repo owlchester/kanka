@@ -110,6 +110,7 @@ return [
         'personal_settings'     => 'Ajustes personales',
         'premium'               => 'Campañas Premium',
         'profile'               => 'Perfil',
+        'security'              => 'Seguridad',
         'settings'              => 'Configuración',
         'subscription'          => 'Suscripción',
         'subscription_status'   => 'Estado de la suscripción',
@@ -236,6 +237,7 @@ return [
             'new_card'      => 'Añadir nuevo método de pago',
             'saved'         => ':brand que termina en :last4',
         ],
+        'paypal_expiring'       => 'Tu suscripción de PayPal vence el :date. Renueva ahora para no perder el acceso.',
         'periods'               => [
             'monthly'   => 'Mensual',
             'yearly'    => 'Anual',

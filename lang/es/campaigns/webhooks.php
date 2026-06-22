@@ -58,6 +58,7 @@ return [
         'message'   => '{who} ha hecho cambios en {name}, revísalos en {url}.',
         'url'       => 'URL del webhook',
     ],
+    'premium'       => 'Recibe notificaciones en Discord u otras aplicaciones cuando tu campaña cambie: nuevas entradas, actualizaciones y más.',
     'test'          => [
         'success'   => 'Solicitud de prueba enviada',
     ],

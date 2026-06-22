@@ -17,6 +17,7 @@ return [
         'viewable-by'       => 'Visible por',
     ],
     'toggle'    => [
+        'current'   => 'Actual',
         'label'     => 'Privacidad de la entidad',
         'private'   => [
             'description'   => 'Visible solo para los miembros con el rol :admin.',
@@ -24,6 +25,7 @@ return [
         ],
         'public'    => [
             'description'   => 'Visible para los siguientes roles y miembros.',
+            'helper'        => 'Cualquier persona con acceso a este mundo puede ver esta entrada, según los permisos de su rol.',
             'title'         => 'Público',
         ],
     ],

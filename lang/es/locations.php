@@ -11,6 +11,7 @@ return [
     'families'      => [],
     'fields'        => [
         'is_destroyed'  => 'Destruido',
+        'title'         => 'Título',
     ],
     'helpers'       => [
         'characters'    => 'Muestra todos los personajes en este lugar y sus lugares anidados, o solo los que están aquí.',
@@ -30,6 +31,7 @@ return [
     'organisations' => [],
     'panels'        => [],
     'placeholders'  => [
+        'title' => 'Título',
         'type'  => 'Ciudad, Reino, Ruinas',
     ],
     'quests'        => [],

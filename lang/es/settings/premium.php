@@ -6,12 +6,13 @@ return [
         'unlock'    => 'Convertirse en Premium',
     ],
     'create'        => [
-        'actions'   => [
+        'actions'       => [
             'confirm'   => '¡Convertirse en premium!',
         ],
-        'confirm'   => '¡Qué emocionante! Estás a punto de desbloquear funciones premium para :campaign. Esto utilizará una de tus campañas premium disponibles.',
-        'duration'  => 'Las campañas Premium permanecen así hasta que lo retires manualmente, o cuando finalice tu suscripción.',
-        'success'   => 'La campaña :campaign ahora es premium. ¡Disfruta de todas las nuevas e increíbles funciones!',
+        'confirm'       => '¡Qué emocionante! Estás a punto de desbloquear funciones premium para :campaign. Esto utilizará una de tus campañas premium disponibles.',
+        'duration'      => 'Las campañas Premium permanecen así hasta que lo retires manualmente, o cuando finalice tu suscripción.',
+        'pitch_2026'    => 'Obtén roles, miembros, temas personalizados, plugins y más ilimitados para tus campañas.',
+        'success'       => 'La campaña :campaign ahora es premium. ¡Disfruta de todas las nuevas e increíbles funciones!',
     ],
     'exceptions'    => [
         'already'       => 'Ya se han desbloqueado las funciones Premium para esta campaña.',

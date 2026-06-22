@@ -1,12 +1,19 @@
 <?php
 
 return [
+    'bulk'          => [
+        'creators'  => [
+            'action'    => 'Acción para creadores',
+            'remove'    => 'Eliminar todos los creadores',
+        ],
+    ],
     'create'        => [
         'title' => 'Nuevo objeto',
     ],
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
+        'creators'      => 'Creadores',
         'is_equipped'   => 'Equipado',
         'price'         => 'Precio',
         'size'          => 'Tamaño',

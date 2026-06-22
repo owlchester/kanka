@@ -40,5 +40,8 @@ return [
         'running'       => 'Ejecutándose',
         'validating'    => 'Validando',
     ],
+    'subscription'      => [
+        'pitch' => 'Restaura una copia de seguridad de campaña o importa un archivo exportado de otra campaña. Disponible en los planes :wyvern o :elemental.',
+    ],
     'title'             => 'Importar',
 ];

@@ -22,6 +22,10 @@ return [
         'actions'       => [
             'add_multiple'  => 'Agregar miembros',
         ],
+        'bulks'         => [
+            'delete'    => '{1} Se eliminó :count miembro.|[2,*] Se eliminaron :count miembros.',
+            'patch'     => '{1} Se actualizó :count miembro.|[2,*] Se actualizaron :count miembros.',
+        ],
         'create'        => [
             'helper'            => 'Agregar uno o varios miembros a :name.',
             'success_multiple'  => '{1} Se agregó :count miembro a :name.|[2,*] Se agregaron :count miembros a :name.',

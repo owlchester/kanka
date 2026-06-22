@@ -1,25 +1,25 @@
 <?php
 
 return [
-    'actions'       => [
+    'actions'                   => [
         'add_appearance'    => 'Añadir apariencia',
         'add_personality'   => 'Añadir personalidad',
     ],
-    'conversations' => [],
-    'create'        => [
+    'conversations'             => [],
+    'create'                    => [
         'title' => 'Nuevo Personaje',
     ],
-    'destroy'       => [],
-    'dice_rolls'    => [],
-    'edit'          => [],
-    'families'      => [
+    'destroy'                   => [],
+    'dice_rolls'                => [],
+    'edit'                      => [],
+    'families'                  => [
         'helper'    => 'Reordena y controla qué familias de :name son visibles o están ocultas para los usuarios que no son administradores.',
         'reorder'   => [
             'success'   => 'Las familias del personaje se han actualizado correctamente.',
         ],
         'title2'    => 'Gestionar familias',
     ],
-    'fields'        => [
+    'fields'                    => [
         'age'                       => 'Edad',
         'is_appearance_pinned'      => 'Apariencia fijada',
         'is_dead'                   => 'Muerto',
@@ -29,23 +29,25 @@ return [
         'physical'                  => 'Apariencia',
         'pronouns'                  => 'Pronombres',
         'sex'                       => 'Género',
+        'status'                    => 'Estado',
         'title'                     => 'Título',
         'traits'                    => 'Características',
     ],
-    'helpers'       => [
+    'helpers'                   => [
         'age'   => 'Puedes vincular esta entidad con un calendario de la campaña para calcular automáticamente su edad. :more',
     ],
-    'hints'         => [
+    'hints'                     => [
         'is_appearance_pinned'      => 'Si está seleccionado, la apariencia del personaje aparecerá bajo la entrada principal de la página.',
         'is_dead'                   => 'Este personaje está muerto',
+        'is_missing'                => 'Este personaje está desaparecido.',
         'is_personality_visible'    => 'Se puede ocultar la sección de personalidad a los usuarios no administradores.',
         'personality_not_visible'   => 'Los rasgos de personalidad de este personaje actualmente solo son visibles para los administradores.',
         'personality_visible'       => 'Los rasgos de personalidad de este personaje son visibles para todos.',
     ],
-    'index'         => [],
-    'items'         => [],
-    'journals'      => [],
-    'labels'        => [
+    'index'                     => [],
+    'items'                     => [],
+    'journals'                  => [],
+    'labels'                    => [
         'appearance'    => [
             'entry' => 'Descripción de la apariencia',
             'name'  => 'Nombre de la apariencia',
@@ -55,11 +57,11 @@ return [
             'name'  => 'Nombre del rasgo de personalidad',
         ],
     ],
-    'lists'         => [
+    'lists'                     => [
         'empty' => 'Crea tu primer héroe, villano o acompañante para dar vida a tu mundo.',
     ],
-    'maps'          => [],
-    'organisations' => [
+    'maps'                      => [],
+    'organisations'             => [
         'create'    => [
             'success'   => 'Personaje añadido a la organización.',
             'title'     => 'Nueva organización para :name',
@@ -75,7 +77,11 @@ return [
             'role'  => 'Rol',
         ],
     ],
-    'placeholders'  => [
+    'personality_visibility'    => [
+        'admin' => 'Solo miembros del rol :admin',
+        'all'   => 'Todos pueden ver',
+    ],
+    'placeholders'              => [
         'age'               => 'Edad',
         'appearance_entry'  => 'Descripción',
         'appearance_name'   => 'Cabello, ojos, piel, altura...',
@@ -89,25 +95,30 @@ return [
         'traits'            => 'Características',
         'type'              => 'PNJ, Personaje Jugador, divinidad...',
     ],
-    'quests'        => [
+    'quests'                    => [
         'helpers'   => [
             'quest_giver'   => 'Misiones que el personaje ha promovido.',
             'quest_member'  => 'Misiones de las que el personaje es miembro.',
         ],
     ],
-    'races'         => [
+    'races'                     => [
         'helper'    => 'Reordena y controla qué razas de :name son visibles u ocultas para los usuarios que no son administradores.',
         'reorder'   => [
             'success'   => 'Razas del personaje actualizadas correctamente',
         ],
         'title2'    => 'Gestionar razas',
     ],
-    'sections'      => [
+    'sections'                  => [
         'appearance'    => 'Apariencia',
         'personality'   => 'Personalidad',
     ],
-    'show'          => [],
-    'warnings'      => [
+    'show'                      => [],
+    'status'                    => [
+        'alive'     => 'Vivo',
+        'dead'      => 'Muerto',
+        'missing'   => 'Desaparecido',
+    ],
+    'warnings'                  => [
         'personality_hidden'    => 'No puedes editar los rasgos de personalidad de este personaje.',
     ],
 ];
