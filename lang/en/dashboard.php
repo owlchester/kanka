@@ -93,7 +93,7 @@ return [
         'delete'                    => [
             'success'   => 'Widget removed from the dashboard.',
         ],
-        'edit' => [
+        'edit'                      => [
             'title' => 'Edit widget',
         ],
         'fields'                    => [

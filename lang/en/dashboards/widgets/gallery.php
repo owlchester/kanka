@@ -11,5 +11,5 @@ return [
         'show_name' => 'Display the image name below each image.',
     ],
     'name'          => 'Gallery',
-    'tag' => 'Gallery',
+    'tag'           => 'Gallery',
 ];

@@ -41,9 +41,9 @@ return [
     ],
     'bulk'              => [
         'actions'       => [
-        'modify' => 'Modify',
             'edit'          => 'Edit & tagging',
             'kits'          => 'Apply property kit',
+            'modify'        => 'Modify',
             'permissions'   => 'Change permissions',
         ],
         'age'           => [
@@ -65,8 +65,8 @@ return [
             'admin'     => 'Only members of the Admin role can change the private status of entries.',
             'general'   => 'An error occurred processing your action. Please try again and contact us if the problem persists. Error message: :hint.',
         ],
-        'modify' => [
-            'title'     => 'Modify multiple elements',
+        'modify'        => [
+            'title' => 'Modify multiple elements',
         ],
         'permissions'   => [
             'fields'    => [

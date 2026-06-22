@@ -12,18 +12,18 @@ return [
     'browse'    => [
         'folder_count'      => ':count images',
         'folder_count_one'  => '1 image',
-        'layouts'       => [
+        'layouts'           => [
             'large' => 'Large',
             'small' => 'Small',
         ],
-        'search'        => [
+        'search'            => [
+            'no_results'    => 'No images match ":term"',
             'placeholder'   => 'Search images and folders',
             'results'       => 'Results for ":term"',
-            'no_results'    => 'No images match ":term"',
             'try_again'     => 'Try a different term',
         ],
-        'title'         => 'Gallery',
-        'unauthorized'  => 'None of your roles have the "browse gallery" permission.',
+        'title'             => 'Gallery',
+        'unauthorized'      => 'None of your roles have the "browse gallery" permission.',
     ],
     'cta'       => [
         'action'    => 'Unlock more storage space',
@@ -32,10 +32,6 @@ return [
     ],
     'delete'    => [
         'success'   => '[0] Deleted 0 elements|[1] Deleted one element|{2,*} Deleted :count elements',
-    ],
-    'drop'      => [
-        'active'    => 'Drop to upload',
-        'hint'      => 'Click or drag image here',
     ],
     'download'  => [
         'errors'    => [
@@ -47,6 +43,10 @@ return [
             'too_big'               => 'The file is too large (:size MiB vs :max MiB)',
             'unauthorized'          => 'None of your roles have the "upload to gallery" permission.',
         ],
+    ],
+    'drop'      => [
+        'active'    => 'Drop to upload',
+        'hint'      => 'Click or drag image here',
     ],
     'file'      => [
         'saved' => 'Saved',

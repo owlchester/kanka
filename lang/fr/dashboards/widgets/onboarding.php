@@ -3,6 +3,8 @@
 return [
     'description'   => 'Affiche une liste de tâches pour bien commencer ton worldbuilding',
     'name'          => 'Premiers pas',
+    'tag'           => 'Démarrage',
+    'tagline'       => 'Lancez votre construction de monde',
     'tasks'         => [
         'campaign'  => [
             'name'  => 'Ton premier monde est prêt',

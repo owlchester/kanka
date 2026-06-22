@@ -17,6 +17,7 @@ return [
         'viewable-by'       => 'Visible par',
     ],
     'toggle'    => [
+        'current'   => 'Actuel',
         'label'     => 'Confidentialité de l\'entrée',
         'private'   => [
             'description'   => 'Seulement visible aux membres du rôle :admin.',
@@ -24,6 +25,7 @@ return [
         ],
         'public'    => [
             'description'   => 'Visibles aux rôles et membres suivants.',
+            'helper'        => 'Toute personne ayant accès à ce monde peut consulter cette entrée, selon les permissions de son rôle.',
             'title'         => 'Publique',
         ],
     ],

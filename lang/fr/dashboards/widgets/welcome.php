@@ -13,6 +13,7 @@ return [
         '3' => 'Voici nos 5 meilleures astuces pour utiliser Kanka',
     ],
     'name'          => 'Bienvenue',
+    'tag'           => 'Bienvenue',
     'title'         => 'Bienvenue à :kanka! 🎉',
     'tricks'        => [
         '1'         => 'Lors de la rédaction de description, n\'écris pas les noms des éléments. Au lieu de cela, tappes :code et trois lettres pour créer des :mention vers d\'autres entrées. Ces mentions seront automatiquement mises à jour lorsque tu changeras leurs noms.',

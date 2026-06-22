@@ -3,5 +3,5 @@
 return [
     'description'   => 'Upcoming and past reminders.',
     'name'          => 'Calendar',
-    'tag' => 'Calendar',
+    'tag'           => 'Calendar',
 ];
