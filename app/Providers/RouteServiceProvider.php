@@ -12,6 +12,7 @@ use App\Models\Tier;
 use App\Models\UserValidation;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -38,7 +39,10 @@ class RouteServiceProvider extends ServiceProvider
 
         // This is important, ensures only campaigns the user has access get injected in the route model binding.
         Route::bind('campaign', function (string $value) {
-            return Campaign::acl($value)->firstOrFail();
+            $campaign = Campaign::acl($value)->firstOrFail();
+            URL::defaults(['campaign' => $campaign->getRouteKey()]);
+
+            return $campaign;
         });
         Route::model('entityType', EntityType::class);
         Route::model('userValidation', UserValidation::class);

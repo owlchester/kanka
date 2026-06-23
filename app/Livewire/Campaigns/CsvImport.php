@@ -3,11 +3,7 @@
 namespace App\Livewire\Campaigns;
 
 use App\Enums\CampaignImportStatus;
-use App\Facades\Avatar;
-use App\Facades\CampaignCache;
-use App\Facades\CampaignLocalization;
 use App\Facades\Module;
-use App\Facades\UserCache;
 use App\Jobs\Campaigns\ImportCsv;
 use App\Models\Campaign;
 use App\Models\CampaignImport;
@@ -15,6 +11,7 @@ use App\Models\Entity;
 use App\Models\EntityType;
 use App\Services\CsvValidatorService;
 use App\Services\EntityTypeService;
+use Livewire\Attributes\Locked;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -23,8 +20,10 @@ class CsvImport extends Component
 {
     use WithFileUploads;
 
+    #[Locked]
     public Campaign $campaign;
 
+    #[Locked]
     public CampaignImport $import;
 
     public EntityType $type;
@@ -61,11 +60,6 @@ class CsvImport extends Component
     public function mount(Campaign $campaign, CampaignImport $campaignImport)
     {
         $this->campaign = $campaign;
-
-        UserCache::campaign($this->campaign);
-        Avatar::campaign($this->campaign);
-        CampaignCache::campaign($this->campaign);
-        CampaignLocalization::forceCampaign($this->campaign);
 
         $this->tagLabel = Module::plural(config('entities.ids.tag'), __('entities.tags'));
 
