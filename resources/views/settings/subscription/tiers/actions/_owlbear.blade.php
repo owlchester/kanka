@@ -31,29 +31,29 @@
                 {{ __('tiers.actions.subscribe.choose', ['tier' => $tier->name]) }}
             @endif
         </a>
+    @endif
 
-        @if($user->subscribedToPrice($tier->yearlyPlans(), 'kanka'))
-            <a class="btn2 btn-block disabled price-yearly">
-                {{ __('tiers.current') }}
-            </a>
-        @else
-            <a
-                class="btn2 btn-block btn-primary price-yearly"
-                data-toggle="dialog"
-                data-target="subscribe-confirm"
-                data-url="{{ route('settings.subscription.change', ['tier' => $tier, 'period' => 'yearly']) }}"
-                data-id="{{ $tier->code . '-yearly' }}"
-                data-name="{{ $tier->name }} Yearly"
-                data-price="{{ $tier->price($user->currency(), \App\Enums\PricingPeriod::Yearly) }}"
-            >
-                @if (in_array($tier->id, $upgrades))
-                    {{ __('tiers.actions.subscribe.upgrade', ['tier' => $tier->name]) }}
-                @elseif (in_array($tier->id, $downgrades))
-                    {{ __('tiers.actions.subscribe.downgrade', ['tier' => $tier->name]) }}
-                @else
-                    {{ __('tiers.actions.subscribe.choose', ['tier' => $tier->name]) }}
-                @endif
-            </a>
-        @endif
+    @if($user->subscribedToPrice($tier->yearlyPlans(), 'kanka'))
+        <a class="btn2 btn-block disabled price-yearly">
+            {{ __('tiers.current') }}
+        </a>
+    @else
+        <a
+            class="btn2 btn-block btn-primary price-yearly"
+            data-toggle="dialog"
+            data-target="subscribe-confirm"
+            data-url="{{ route('settings.subscription.change', ['tier' => $tier, 'period' => 'yearly']) }}"
+            data-id="{{ $tier->code . '-yearly' }}"
+            data-name="{{ $tier->name }} Yearly"
+            data-price="{{ $tier->price($user->currency(), \App\Enums\PricingPeriod::Yearly) }}"
+        >
+            @if (in_array($tier->id, $upgrades))
+                {{ __('tiers.actions.subscribe.upgrade', ['tier' => $tier->name]) }}
+            @elseif (in_array($tier->id, $downgrades))
+                {{ __('tiers.actions.subscribe.downgrade', ['tier' => $tier->name]) }}
+            @else
+                {{ __('tiers.actions.subscribe.choose', ['tier' => $tier->name]) }}
+            @endif
+        </a>
     @endif
 @endif
