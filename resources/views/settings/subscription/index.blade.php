@@ -36,7 +36,7 @@
                 {!! __('tiers.why', ['tiny' => '<a href="' . \App\Facades\Domain::toFront('about') . '" class="text-link" >' . __('tiers.tiny') . '</a>']) !!}
             </p>
 
-        @if (!$isPayPal && !$hasManual)
+        @if (!$hasManual)
             <div class="flex justify-center">
                 <div class="grid grid-cols-2 gap-2 rounded-2xl bg-base-200 p-0.5 items-center justify-items-stretch font-bold w-full xl:w-auto">
                     <div class="rounded-2xl px-3 py-2 bg-base-100 flex items-center cursor-pointer justify-center transition-all duration-150" data-period="monthly" role="button">
@@ -50,7 +50,7 @@
             </div>
         @endif
 
-        <div class="grid grid-cols-1 @if ($user->isSubscriber()) lg:grid-cols-3 @else md:grid-cols-2 xl:grid-cols-4 @endif gap-4 @if ($isPayPal || $hasManual) period-year @else period-month @endif mx-auto lg:mx-0" id="pricing-overview">
+        <div class="grid grid-cols-1 @if ($user->isSubscriber()) lg:grid-cols-3 @else md:grid-cols-2 xl:grid-cols-4 @endif gap-4 @if ($hasManual) period-year @else period-month @endif mx-auto lg:mx-0" id="pricing-overview">
             @php /** @var \App\Models\Tier $tier **/ @endphp
             @foreach ($tiers as $tier)
                 @if ($tier->isFree() && $user->isSubscriber())

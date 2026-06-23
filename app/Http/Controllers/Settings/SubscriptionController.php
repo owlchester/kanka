@@ -60,7 +60,6 @@ class SubscriptionController extends Controller
         $current = $this->subscription->currentPlan();
         $currency = $user->currencySymbol();
         $tiers = Tier::with('prices')->ordered()->get();
-        $isPayPal = $user->hasPayPal();
         $hasManual = $user->hasManualSubscription();
         $tempTiers = [];
         $downgrades = [];
@@ -83,7 +82,6 @@ class SubscriptionController extends Controller
             'currency',
             'current',
             'tiers',
-            'isPayPal',
             'hasManual',
             'upgrades',
             'downgrades',

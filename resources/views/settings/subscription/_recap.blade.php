@@ -55,7 +55,6 @@ $box = 'rounded-2xl p-2 lg:p-3 bg-box shadow-xs hover:shadow-md flex flex-col it
                 {{ __('settings.subscription.fields.plan') }}
             </div>
         </div>
-        @if (!$user->hasPayPal())
         <div class="{{ $box }}">
             <div class="text-xl text-center">
                 @if (!empty($current))
@@ -72,7 +71,6 @@ $box = 'rounded-2xl p-2 lg:p-3 bg-box shadow-xs hover:shadow-md flex flex-col it
                 {{ __('settings.subscription.fields.billing') }}
             </div>
         </div>
-        @endif
         <a class="{{ $box }}" href="#" data-toggle="dialog"
            data-url="{{ route('billing.currency') }}">
             <div class="text-xl text-center">
