@@ -117,7 +117,7 @@ class SubscriptionController extends Controller
         if (empty($user->stripe_id)) {
             $user->createAsStripeCustomer();
         }
-        $intent = $user->createSetupIntent();
+        $intent = $user->createSetupIntent(['automatic_payment_methods' => ['enabled' => true]]);
         $isDowngrading = $this->subscription->downgrading();
         $isYearly = $period->isYearly();
         $hasPromo = true; // \Carbon\Carbon::create(2023, 11, 28)->isFuture();
@@ -263,9 +263,9 @@ class SubscriptionController extends Controller
 
     public function paymentReturn(Request $request, Tier $tier): RedirectResponse
     {
-        $clientSecret = $request->get('setup_intent_client_secret');
+        $setupIntentId = $request->get('setup_intent');
 
-        if (empty($clientSecret)) {
+        if (empty($setupIntentId)) {
             return redirect()
                 ->route('settings.subscription')
                 ->withError(__('settings.subscription.errors.failed', ['email' => config('app.email')]));
@@ -273,7 +273,7 @@ class SubscriptionController extends Controller
 
         try {
             /** @var SetupIntent $setupIntent */
-            $setupIntent = $request->user()->stripe()->setupIntents->retrieve($clientSecret);
+            $setupIntent = $request->user()->stripe()->setupIntents->retrieve($setupIntentId);
 
             if ($setupIntent->status !== 'succeeded') {
                 return redirect()
