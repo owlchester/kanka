@@ -9,6 +9,7 @@ use App\Models\Post;
 use App\Models\QuestElement;
 use App\Models\TimelineElement;
 use App\Traits\CampaignAware;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Meilisearch\Client;
 use Meilisearch\Contracts\SearchQuery;
@@ -138,11 +139,20 @@ class EntitySearchService
             ->get()
             ->keyBy('id');
 
+        $accessiblePostIds = $this->resolveAccessiblePostIds($hits);
+
         $output = [];
         foreach ($hits as $hit) {
             $entity = $entities->get($hit['entity_id']);
             if (! $entity) {
                 continue;
+            }
+
+            if (($hit['type'] ?? null) === 'post') {
+                $postId = (int) Str::afterLast($hit['id'], '_');
+                if (! $accessiblePostIds->contains($postId)) {
+                    continue;
+                }
             }
 
             $rawSnippet = $hit['_formatted']['entry'] ?? '';
@@ -165,6 +175,24 @@ class EntitySearchService
         }
 
         return $output;
+    }
+
+    /**
+     * Extract post IDs from hits and validate them through the ACL-aware Post model.
+     */
+    protected function resolveAccessiblePostIds(array $hits): Collection
+    {
+        $postIds = collect($hits)
+            ->filter(fn (array $hit) => ($hit['type'] ?? null) === 'post')
+            ->map(fn (array $hit) => (int) Str::afterLast($hit['id'], '_'))
+            ->filter()
+            ->values();
+
+        if ($postIds->isEmpty()) {
+            return collect();
+        }
+
+        return Post::whereIn('id', $postIds)->pluck('id');
     }
 
     /**
