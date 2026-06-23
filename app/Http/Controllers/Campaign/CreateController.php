@@ -27,12 +27,6 @@ class CreateController extends Controller
     {
         $this->authorize('create', new Campaign);
 
-        // A user with campaigns doesn't need this process.
-        $tracking = null;
-        if (session()->has('user_registered')) {
-            session()->remove('user_registered');
-            $tracking = 'pa10CJTvrssBEOaOq7oC';
-        }
         $languages = $this->languageService->getSupportedLanguagesList(true);
         $timezones = [];
 
@@ -46,7 +40,6 @@ class CreateController extends Controller
 
         return view('campaigns.forms.create', [
             'start' => auth()->user()->campaigns->count() === 0,
-            'gaTrackingEvent' => $tracking,
             'languages' => $languages,
             'timezones' => $timezones,
         ]);
