@@ -40,7 +40,7 @@
                 @if (count($images) > 1)
                     <button
                         @click="prev(); resetTimer()"
-                        class="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-base-100/70 hover:bg-base-100 rounded-full w-8 h-8 flex items-center justify-center transition-colors"
+                        class="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-base-100/70 hover:bg-base-100 rounded-full w-8 h-8 flex items-center justify-center transition-colors cursor-pointer"
                         type="button"
                     >
                         <x-icon class="fa-solid fa-chevron-left" />
@@ -48,7 +48,7 @@
 
                     <button
                         @click="next(); resetTimer()"
-                        class="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-base-100/70 hover:bg-base-100 rounded-full w-8 h-8 flex items-center justify-center transition-colors"
+                        class="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-base-100/70 hover:bg-base-100 rounded-full w-8 h-8 flex items-center justify-center transition-colors cursor-pointer"
                         type="button"
                     >
                         <x-icon class="fa-solid fa-chevron-right" />
