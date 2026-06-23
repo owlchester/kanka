@@ -21,44 +21,23 @@ const init = () => {
 // Initialize the stripe API
 const initStripe = () => {
     const token = document.getElementById('stripe-token');
+    if (!token) return;
     stripe = Stripe(token.value);
-
-    // Create an instance of Elements.
-    elements = stripe.elements();
+    // Elements are initialised in initConfirmListener once we have the client secret
 };
 
 // When the modal is opened and loaded, inject stripe if needed and the form validator
-const initConfirmListener = ()=> {
+const initConfirmListener = () => {
     formSubmitBtn = document.querySelector('.subscription-confirm-button');
 
-    let cardSelector = document.getElementById('card-element');
-    if (cardSelector) {
-        // First time opening the modal, initiate a new card
-        if (!card) {
-            // Custom styling can be passed to options when creating an Element.
-            // (Note that this demo uses a wider set of styles than the guide below.)
-            let style = {
-                base: {
-                    color: '#555555',
-                    fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-                    fontSmoothing: 'antialiased',
-                    fontSize: '14px',
-                    '::placeholder': {
-                        color: '#777777'
-                    }
-                },
-                invalid: {
-                    color: '#fa755a',
-                    iconColor: '#fa755a'
-                }
-            };
+    const intentInput = document.querySelector('input[name="subscription-intent-token"]');
+    const paymentElementContainer = document.getElementById('payment-element');
 
-            // Create an instance of the card Element.
-            card = elements.create('card', {hidePostalCode: true, style: style});
-        }
-
-        // Add an instance of the card Element into the `card-element` <div>.
-        card.mount('#card-element');
+    if (paymentElementContainer && intentInput && !elements) {
+        // Initialise PaymentElement with the SetupIntent client secret
+        elements = stripe.elements({ clientSecret: intentInput.value });
+        const paymentElement = elements.create('payment');
+        paymentElement.mount('#payment-element');
     }
 
     document.getElementById('subscription-confirm')?.addEventListener('submit', subscribe);
@@ -120,40 +99,42 @@ const subscribe = (event) => {
     event.preventDefault();
     disableSubmit(event);
 
-    const intentToken = document.querySelector('input[name="subscription-intent-token"]');
     const errorMessage = document.querySelector('.alert-error');
     errorMessage.classList.add('hidden');
 
-    // If the form already has a payment id, we don't need stripe to add the new one
+    // User already has a saved payment method — submit directly
     const cardID = document.querySelector('input[name="payment_id"]');
-    if (cardID.value) {
-        // Let the animation handler do its thing
+    if (cardID && cardID.value) {
         form.submit();
-        return false;
+        return;
     }
 
-    stripe.confirmCardSetup(
-        intentToken.value, {
-            payment_method: {
-                card: card,
-                billing_details: {
-                    name: document.querySelector('input[name="card-holder-name"]').value
-                }
-            }
-        }
-    ).then(function (result) {
+    const periodInput = document.querySelector('input[name="period"]');
+    const couponInput = document.getElementById('coupon');
+    const returnUrl = new URL(window.subscriptionReturnUrl || window.location.href);
+    if (periodInput) returnUrl.searchParams.set('period', periodInput.value);
+    if (couponInput && couponInput.value) returnUrl.searchParams.set('coupon', couponInput.value);
+
+    stripe.confirmSetup({
+        elements,
+        confirmParams: {
+            return_url: returnUrl.toString(),
+        },
+        redirect: 'if_required',
+    }).then((result) => {
         if (result.error) {
             formSubmitBtn.classList.remove('disabled', 'loading');
             formSubmitBtn.disabled = '';
             errorMessage.innerHTML = result.error.message;
             errorMessage.classList.remove('hidden');
-            return false;
-        } else {
+            return;
+        }
+
+        if (result.setupIntent && result.setupIntent.payment_method) {
             cardID.value = result.setupIntent.payment_method;
-            // Let the animation handler do its thing
             form.submit();
         }
-    }.bind(this));
+    });
 };
 
 const initPeriodToggle = () => {
