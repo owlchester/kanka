@@ -78,7 +78,6 @@ class PaymentMethodController extends Controller
             }
             $user->subscriptions()->delete();
 
-            $user->card_expires_at = null;
             $user->stripe_id = null;
             UserLogger::user($user)->log(UserAction::currencySwitch);
         }

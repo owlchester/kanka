@@ -8,12 +8,9 @@ use App\Models\Tier;
 use App\Models\User;
 use App\Services\Subscription\CouponService;
 use App\Services\SubscriptionService;
-use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Laravel\Cashier\Exceptions\CustomerAlreadyCreated;
-use Laravel\Cashier\PaymentMethod;
-use Stripe\Card;
 
 class SubscriptionApiController extends Controller
 {
@@ -67,16 +64,6 @@ class SubscriptionApiController extends Controller
         $user->addPaymentMethod($paymentMethodID);
         $user->updateDefaultPaymentMethod($paymentMethodID);
 
-        // Save the expiration date on the user for alerts about expiring cards
-        $payment = $user->defaultPaymentMethod();
-        if ($payment && $payment instanceof PaymentMethod) {
-            /** @var Card $card */
-            $card = $payment->asStripePaymentMethod()->card;
-            $expiresAt = Carbon::createFromDate($card->exp_year, $card->exp_month)->endOfMonth();
-            $user->card_expires_at = $expiresAt;
-            $user->save();
-        }
-
         return response()->json(null, 204);
     }
 
@@ -127,7 +114,6 @@ class SubscriptionApiController extends Controller
             }
         }
 
-        $user->card_expires_at = null;
         $user->saveQuietly();
 
         return response()->json(null, 204);

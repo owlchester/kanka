@@ -146,12 +146,9 @@ class SubscriptionService
         if ($payment instanceof PaymentMethod) {
             /** @var Card $card */
             $card = $payment->asStripePaymentMethod()->card;
-            $expiresAt = Carbon::createFromDate($card->exp_year, $card->exp_month)->endOfMonth();
-            $this->user->card_expires_at = $expiresAt;
-            $this->user->save();
 
             // Check that someone isn't using a VPN
-            if (app()->isProduction() && $this->user->currency() === 'brl' && $card->country !== 'BR') {
+            if (app()->isProduction() && $this->user->currency() === 'brl' && $card?->country !== 'BR') {
                 throw (new TranslatableException('subscription.errors.invalid_card_country.brl'))->setOptions(['email' => '<a href="mailto:' . config('app.email') . '" class="text-link">' . config('app.email') . '</a>']);
             }
         }
