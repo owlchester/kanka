@@ -17,10 +17,12 @@ use App\Services\Users\CurrencyService;
 use App\Services\Users\EmailValidationService;
 use Carbon\Carbon;
 use Exception;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Laravel\Cashier\Exceptions\IncompletePayment;
+use Stripe\SetupIntent;
 
 class SubscriptionController extends Controller
 {
@@ -258,6 +260,66 @@ class SubscriptionController extends Controller
                 'error' => true,
                 'message' => $e->getMessage(),
             ]);
+        }
+    }
+
+    public function paymentReturn(Request $request, Tier $tier): RedirectResponse
+    {
+        $clientSecret = $request->get('setup_intent_client_secret');
+
+        if (empty($clientSecret)) {
+            return redirect()
+                ->route('settings.subscription')
+                ->withError(__('settings.subscription.errors.failed', ['email' => config('app.email')]));
+        }
+
+        try {
+            /** @var SetupIntent $setupIntent */
+            $setupIntent = $request->user()->stripe()->setupIntents->retrieve($clientSecret);
+
+            if ($setupIntent->status !== 'succeeded') {
+                return redirect()
+                    ->route('settings.subscription')
+                    ->withError(__('settings.subscription.errors.callback'));
+            }
+
+            $paymentMethodId = is_string($setupIntent->payment_method)
+                ? $setupIntent->payment_method
+                : $setupIntent->payment_method->id;
+
+            $period = $request->get('period') === 'yearly' ? PricingPeriod::Yearly : PricingPeriod::Monthly;
+
+            $this->subscription->user($request->user())
+                ->tier($tier)
+                ->period($period)
+                ->coupon($request->get('coupon'))
+                ->request(['payment_id' => $paymentMethodId])
+                ->change()
+                ->finish();
+
+            return redirect()
+                ->route('settings.subscription.finish')
+                ->with('sub_tracking', 'subscribed')
+                ->with('sub_value', $this->subscription->subscriptionValue())
+                ->with('sub_coupon', $request->get('coupon'))
+                ->with('sub_id', $this->subscription->tierPrice()->id);
+
+        } catch (IncompletePayment $exception) {
+            session()->put('subscription_callback', $paymentMethodId ?? null);
+
+            return redirect()->route(
+                'cashier.payment',
+                // @phpstan-ignore-next-line
+                [$exception->payment->id, 'redirect' => route('settings.subscription.callback')]
+            );
+        } catch (TranslatableException $e) {
+            return redirect()
+                ->route('settings.subscription')
+                ->with('error_raw', $e->getTranslatedMessage());
+        } catch (Exception $e) {
+            return redirect()
+                ->route('settings.subscription')
+                ->withError(__('settings.subscription.errors.failed', ['email' => config('app.email')]));
         }
     }
 

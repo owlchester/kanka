@@ -97,6 +97,7 @@ Route::get('/subscription/change/{tier}', [SubscriptionController::class, 'chang
 Route::post('/subscription/renew', [SubscriptionController::class, 'renew'])->name('settings.subscription.renew');
 Route::get('/subscription/finish', [FinishController::class, 'index'])->name('settings.subscription.finish');
 Route::get('/subscription/callback', [SubscriptionController::class, 'callback'])->name('settings.subscription.callback');
+Route::get('subscription/payment-return/{tier}', [SubscriptionController::class, 'paymentReturn'])->name('settings.subscription.payment-return');
 Route::post('/subscription/change/{tier}', [SubscriptionController::class, 'subscribe'])->name('settings.subscription.subscribe');
 Route::get('/subscription/unsubscribe', [CancellationController::class, 'index'])->name('settings.subscription.unsubscribe');
 Route::post('/subscription/cancel', [CancellationController::class, 'save'])->name('settings.subscription.cancel');
