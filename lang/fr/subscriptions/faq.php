@@ -38,7 +38,7 @@ return [
         'question'  => 'Offrez-vous des remboursements?',
     ],
     'renewal'       => [
-        'answer'    => 'Oui, pour les abonnements par carte bancaire, nous renouvelons automatiquement ton abonnement au même tarif à la fin de ta période de facturation. Les abonnements PayPal font exception : ils nécessitent un renouvellement manuel, car PayPal ne permet pas le renouvellement automatique pour notre service.',
+        'answer'    => 'Oui, pour les abonnements par carte bancaire, nous renouvelons automatiquement ton abonnement au même tarif à la fin de ta période de facturation.',
         'question'  => 'Serai-je facturé automatiquement lors du renouvellement de mon abonnement?',
     ],
     'security'      => [

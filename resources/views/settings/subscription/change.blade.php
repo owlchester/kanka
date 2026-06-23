@@ -59,7 +59,7 @@
                     <div class="text-center">
                         <strong>{{ __('settings.subscription.fields.payment_method') }}</strong><br />
                         <x-icon class="fa-solid fa-credit-card" /> **** {{ $card->card->last4 }} {{ $card->card->exp_month }}/{{ $card->card->exp_year }}
-                        <p><a href="{{ route('billing.payment-method') }}" class="text-link">{{ __('settings.subscription.payment_method.actions.change') }}</a></p>
+                        <p><a href="{{ route('billing.portal') }}" class="text-link">{{ __('settings.subscription.payment_method.actions.change') }}</a></p>
                     </div>
                     @if ($isDowngrading)
 

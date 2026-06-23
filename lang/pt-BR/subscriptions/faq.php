@@ -2,7 +2,7 @@
 
 return [
     'cancellation'  => [
-        'answer'    => 'Com certeza! Você encontrará um botão de cancelamento nesta página se já estiver inscrito. Todos os benefícios da assinatura permanecem ativos até o final do seu período de cobrança. Observe que as assinaturas do PayPal são encerradas automaticamente ao final do período, pois não oferecem renovação automática.',
+        'answer'    => 'Com certeza! Você encontrará um botão de cancelamento nesta página se já estiver inscrito. Todos os benefícios da assinatura permanecem ativos até o final do seu período de cobrança.',
         'question'  => 'Posso cancelar minha assinatura a qualquer momento?',
     ],
     'cost'          => [
@@ -34,7 +34,7 @@ return [
         'question'  => 'Vocês oferecem reembolsos?',
     ],
     'renewal'       => [
-        'answer'    => 'Sim, para assinaturas com cartão de crédito, renovaremos automaticamente o seu plano com a mesma tarifa quando o período de cobrança terminar. As assinaturas do PayPal são a exceção, pois exigem renovação manual, pois o PayPal não oferece suporte à continuação automática da cobrança do nosso serviço.',
+        'answer'    => 'Sim, para assinaturas com cartão de crédito, renovaremos automaticamente o seu plano com a mesma tarifa quando o período de cobrança terminar.',
         'question'  => 'Serei cobrado automaticamente quando minha assinatura for renovada?',
     ],
     'security'      => [

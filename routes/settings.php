@@ -103,6 +103,7 @@ Route::get('/subscription/unsubscribe', [CancellationController::class, 'index']
 Route::post('/subscription/cancel', [CancellationController::class, 'save'])->name('settings.subscription.cancel');
 Route::get('/subscription/cancelled', [CancelledController::class, 'index'])->name('settings.subscription.cancelled');
 Route::get('/billing/payment-method', [PaymentMethodController::class, 'index'])->name('billing.payment-method');
+Route::get('/billing/portal', [PaymentMethodController::class, 'portal'])->name('billing.portal');
 Route::patch('/billing/payment-method', [PaymentMethodController::class, 'save'])->name('billing.payment-method.save');
 Route::get('/billing/currency', [PaymentMethodController::class, 'currency'])->name('billing.currency');
 

@@ -2,7 +2,7 @@
 
 return [
     'cancellation'  => [
-        'answer'    => 'Oczywiście! Stosowną opcję znajdziesz na stronie obecnej subskrypcji. Po anulowaniu zachowasz dostęp do wszystkich korzyści do rozpoczęcia nowego okresu rozliczeniowego. Pamiętaj, że subskrypcja przez PayPal ustaje automatycznie po opłaconym okresie, ponieważ firma nie pozwala na automatyczne odnowienie.',
+        'answer'    => 'Oczywiście! Stosowną opcję znajdziesz na stronie obecnej subskrypcji. Po anulowaniu zachowasz dostęp do wszystkich korzyści do rozpoczęcia nowego okresu rozliczeniowego.',
         'question'  => 'Czy mogę anulować subskrypcję w każdej chwili?',
     ],
     'cost'          => [
@@ -38,7 +38,7 @@ return [
         'question'  => 'Czy zwracacie pieniądze?',
     ],
     'renewal'       => [
-        'answer'    => 'Tak, jeśli używasz do subskrypcji karty kredytowej, po zakończeniu każdego okresu rozliczeniowego automatycznie obciążymy ją tą samą kwotą. Inaczej jest w wypadku subskrypcji przez PayPal: nie odnawia się automatycznie i po każdym okresie należy ją odnowić ręcznie.',
+        'answer'    => 'Tak, jeśli używasz do subskrypcji karty kredytowej, po zakończeniu każdego okresu rozliczeniowego automatycznie obciążymy ją tą samą kwotą.',
         'question'  => 'Czy podczas odnawiania subskrypcji płatność będzie automatyczna?',
     ],
     'security'      => [

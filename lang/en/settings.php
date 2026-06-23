@@ -217,21 +217,10 @@ return [
         'manage_subscription'   => 'Manage subscription',
         'payment_method'        => [
             'actions'       => [
-                'add'               => 'Add',
-                'add_new'           => 'Add a new payment method',
                 'change'            => 'Change payment method',
-                'save'              => 'Save payment method',
-                'show_alternatives' => 'Alternative payment options',
+                'manage'            => 'Manage on Stripe',
             ],
-            'add_one'       => 'You currently have no payment method saved.',
-            'alternatives'  => 'You can subscribe using these alternative payment options. This action will charge your account once and not auto-renew your subscription every month.',
-            'card'          => 'Card',
-            'card_name'     => 'Name on card',
-            'country'       => 'Country of residence',
-            'ending'        => 'Ending in',
-            'helper'        => 'This card will be used for all of your subscriptions.',
-            'new_card'      => 'Add a new payment method',
-            'saved'         => ':brand **** :last4',
+            'helper'        => 'Your payment methods are managed securely by Stripe. We do not store any card details.',
         ],
         'periods'               => [
             'monthly'   => 'Monthly',
