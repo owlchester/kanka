@@ -2,9 +2,6 @@
 
 namespace App\Livewire\Campaigns;
 
-use App\Facades\Avatar;
-use App\Facades\CampaignCache;
-use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\Tag;
 use Livewire\Attributes\Locked;

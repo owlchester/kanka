@@ -2,8 +2,6 @@
 
 namespace App\Livewire\Widgets;
 
-use App\Facades\CampaignCache;
-use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 use App\Models\Image;

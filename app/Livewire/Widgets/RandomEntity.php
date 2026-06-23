@@ -2,10 +2,7 @@
 
 namespace App\Livewire\Widgets;
 
-use App\Facades\Avatar;
-use App\Facades\CampaignCache;
 use App\Facades\Dashboard;
-use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 use App\Models\Entity;
