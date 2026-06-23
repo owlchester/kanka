@@ -16,6 +16,12 @@ use Laravel\Passport\Token;
  */
 class PassportTokenGuard extends TokenGuard
 {
+    // AuthenticateSession (web middleware) calls this; token-based auth has no "remember me".
+    public function viaRemember(): bool
+    {
+        return false;
+    }
+
     protected function authenticateViaBearerToken(): ?Authenticatable
     {
         if (! $psr = $this->getPsrRequestViaBearerToken()) {
