@@ -121,10 +121,6 @@ class SubscriptionController extends Controller
         $isDowngrading = $this->subscription->downgrading();
         $isYearly = $period->isYearly();
         $hasPromo = true; // \Carbon\Carbon::create(2023, 11, 28)->isFuture();
-        $limited = $this->subscription->isLimited();
-        if ($user->hasPayPal() || $user->hasManualSubscription()) {
-            $limited = true;
-        }
         $upgrade = $this->subscriptionUpgrade
             ->user($user)
             ->tier($tier)
@@ -159,7 +155,6 @@ class SubscriptionController extends Controller
             'upgrade',
             'isDowngrading',
             'hasPromo',
-            'limited',
             'isYearly',
             'nextBillingDate'
         ));

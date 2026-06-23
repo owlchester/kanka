@@ -5,7 +5,7 @@ let stripe, elements, card;
 let formSubmitBtn;
 
 // Coupon stuff
-let couponField, couponSuccess, couponError, couponId, couponValidating, paypalCoupon, cancelField;
+let couponField, couponSuccess, couponError, couponId, couponValidating, cancelField;
 
 const subscribeModal = document.getElementById('subscribe-confirm');
 
@@ -69,29 +69,10 @@ const initConfirmListener = ()=> {
         couponError = document.getElementById('coupon-invalid');
         couponId = document.getElementById('coupon');
         couponValidating = document.getElementById('coupon-validating');
-        paypalCoupon = document.querySelector('.paypal-coupon');
         couponField.addEventListener('change', checkCoupon);
         couponField.addEventListener('focusout', checkCoupon);
     }
-
-    const selectMethod = document.querySelector('select[name="select-method"]');
-    if (selectMethod) {
-        selectMethod.addEventListener('change', changeMethod);
-    }
 };
-
-const changeMethod = (event) => {
-    //console.log('changing method to', event.target.value);
-    const card = document.querySelector('#card-panel');
-    const paypal = document.querySelector('#paypal-panel');
-    if (event.target.value === 'paypal') {
-        card.classList.add('hidden');
-        paypal.classList.remove('hidden');
-    } else {
-        card.classList.remove('hidden');
-        paypal.classList.add('hidden');
-    }
-}
 
 const checkCoupon = (event) => {
     const element = event.target;
@@ -116,7 +97,6 @@ const checkCoupon = (event) => {
                 couponError.classList.remove('hidden');
                 couponId.value = '';
                 subscribeModal.classList.remove('valid-coupon');
-                paypalCoupon.classList.add('hidden');
                 return;
             }
 
@@ -126,14 +106,12 @@ const checkCoupon = (event) => {
             couponSuccess.classList.remove('hidden');
             couponId.value = result.coupon;
             subscribeModal.classList.add('valid-coupon');
-            paypalCoupon.classList.remove('hidden');
         }).catch((result) => {
             couponValidating.classList.add('hidden');
             if (result.responseJSON) {
                 couponError.innerHTML = result.responseJSON.message;
                 couponError.classList.remove('hidden');
             }
-            paypalCoupon.classList.add('hidden');
         });
 };
 

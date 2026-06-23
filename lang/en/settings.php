@@ -170,7 +170,6 @@ return [
                 'downgrade_yearly'  => 'You are downgrading to the :tier tier for :downgrade, thereafter billed annually for :amount.',
                 'monthly'           => 'You are subscribing at the :tier tier, billed monthly for :amount.',
                 'upgrade_monthly'   => 'You are upgrading to the :tier tier for :upgrade, thereafter billed monthly for :amount.',
-                'upgrade_paypal'    => 'You are upgrading to the :tier tier for :upgrade until :date.',
                 'upgrade_yearly'    => 'You are upgrading to the :tier tier for :upgrade, thereafter billed annually for :amount.',
                 'yearly'            => 'You are subscribing at the :tier tier, billed annually for :amount.',
             ],
@@ -213,7 +212,6 @@ return [
             'alternatives_yearly'   => 'We only accept yearly subscriptions when subscribing with :method',
             'currency_block'        => 'It is not possible to change currency while you have an active Kanka subscription, you can change your currency once your current subscription ends.',
             'currency_reset'        => 'Changing your currency of choice will delete your billing history and will require you to re-enter a payment method.',
-            'paypal_v3'             => 'Safely pay for your yearly subscription using PayPal.',
             'stripe'                => 'Your billing information is processed and stored safely through :stripe.',
         ],
         'manage_subscription'   => 'Manage subscription',
@@ -235,7 +233,6 @@ return [
             'new_card'      => 'Add a new payment method',
             'saved'         => ':brand **** :last4',
         ],
-        'paypal_expiring'       => 'Your PayPal subscription expires on :date. Renew now to avoid losing access.',
         'periods'               => [
             'monthly'   => 'Monthly',
             'yearly'    => 'Yearly',
