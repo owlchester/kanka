@@ -12,4 +12,5 @@ return [
     'roles'     => [
         'inherited' => 'The :role role can already do this on the whole :module category.',
     ],
+    'switch' => 'View the campaign as :name to test their permissions',
 ];

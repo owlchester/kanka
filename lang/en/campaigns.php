@@ -124,9 +124,6 @@ return [
             'role'          => 'Role',
             'roles'         => 'Roles',
         ],
-        'helpers'               => [
-            'switch'    => 'View the campaign as this member',
-        ],
         'impersonating'         => [
             'message'   => 'You are viewing and interacting with :campaign as :name. Some features have been disabled, but the rest acts exactly as they would see it.',
             'title'     => 'Impersonating :name',

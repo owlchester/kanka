@@ -194,7 +194,7 @@ $moduleName = isset($entityType) ? $entityType->name() : $entity->entityType->na
                         @if ($hasActionCol)
                             @can('switch', $member)
                                 <div class="flex items-center">
-                                    <a class="btn2 btn-outline btn-xs btn-view-as" href="{{ route('identity.switch-entity', [$campaign, $member, $entity]) }}" data-title="{{ __('campaigns.members.helpers.switch') }}" data-toggle="tooltip">
+                                    <a class="btn2 btn-outline btn-xs btn-view-as" href="{{ route('identity.switch-entity', [$campaign, $member, $entity]) }}" data-title="{{ __('permissions.switch', ['name' => $member->user->name]) }}" data-toggle="tooltip">
                                         <x-icon class="fa-solid fa-sign-in-alt" />
                                         {{ __('campaigns.members.actions.switch-entity') }}
                                     </a>
