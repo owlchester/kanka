@@ -13,7 +13,7 @@
 >
     <div class="flex gap-2 justify-between w-full">
         <div class="flex gap-1">
-            @if (isset($icon))
+            @if (isset($icon) && !empty($icon))
                 <span class="shrink-0 w-6 text-neutral-content text-center flex-none">
                     <x-icon :class="$icon" />
                 </span>
