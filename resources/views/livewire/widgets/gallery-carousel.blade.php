@@ -7,7 +7,7 @@
  * @var bool $readyToLoad
  */
 ?>
-<div wire:init="loadImages">
+<div wire:init="loadImages" class="aspect-4/3">
     @if (!$readyToLoad)
         <x-icon class="loading"></x-icon>
     @elseif (count($images) > 0)
