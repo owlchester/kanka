@@ -27,15 +27,15 @@ $adminLink = '<a href="' . e($adminUrl) . '" class="text-link">' . e($adminName)
                     type="button"
                     role="radio"
                     aria-checked="{{ $value === $selected ? 'true' : 'false' }}"
-                    class="visibility-picker-field-option flex items-start gap-2.5 p-2 px-3 rounded-lg cursor-pointer text-left transition-colors hover:bg-base-200/50 {{ $value === $selected ? 'bg-primary/5 ring-1 ring-primary/30' : '' }}"
+                    class="visibility-picker-field-option flex items-start gap-2.5 p-1.5 px-3 rounded-lg cursor-pointer text-left transition-colors hover:bg-base-200/50 {{ $value === $selected ? 'bg-primary/5 ring-1 ring-primary/30' : '' }}"
                     data-value="{{ $value }}"
                     data-icon="{{ $iconMap[$value] }}"
                     @if(count($options) === 1) disabled @endif
                 >
                     <x-icon class="{{ $iconMap[$value] }} text-neutral-content mt-0.5 w-5 text-center shrink-0" />
-                    <div class="flex flex-col gap-1 flex-1 min-w-0">
+                    <div class="flex flex-col gap-0 flex-1 min-w-0">
                         <span class="text-xs font-semibold">{{ $name }}</span>
-                        <span class="text-xs text-neutral-content leading-relaxed">
+                        <span class="text-xs text-neutral-content">
                             {!! __('visibilities.picker.' . $visibilityKeys[$value], [
                                 'entity' => e($entityName),
                                 'admin' => $adminLink,
