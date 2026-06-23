@@ -38,7 +38,6 @@ class GalleryCarousel extends Component
     {
         $this->readyToLoad = true;
 
-        request()->route()->setParameter('campaign', $this->campaign);
         UserCache::campaign($this->campaign);
         CampaignCache::campaign($this->campaign);
 
@@ -68,7 +67,6 @@ class GalleryCarousel extends Component
 
     public function render()
     {
-        request()->route()?->setParameter('campaign', $this->campaign);
         UserCache::campaign($this->campaign);
         CampaignCache::campaign($this->campaign);
 

@@ -5,7 +5,6 @@ namespace App\Livewire\Campaigns;
 use App\Enums\CampaignImportStatus;
 use App\Facades\Avatar;
 use App\Facades\CampaignCache;
-use App\Facades\CampaignLocalization;
 use App\Facades\Module;
 use App\Facades\UserCache;
 use App\Jobs\Campaigns\ImportCsv;
@@ -65,7 +64,6 @@ class CsvImport extends Component
         UserCache::campaign($this->campaign);
         Avatar::campaign($this->campaign);
         CampaignCache::campaign($this->campaign);
-        CampaignLocalization::forceCampaign($this->campaign);
 
         $this->tagLabel = Module::plural(config('entities.ids.tag'), __('entities.tags'));
 

@@ -4,7 +4,6 @@ namespace App\Livewire\Campaigns;
 
 use App\Facades\Avatar;
 use App\Facades\CampaignCache;
-use App\Facades\CampaignLocalization;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\Tag;
@@ -96,7 +95,6 @@ class Tags extends Component
         UserCache::campaign($this->campaign);
         Avatar::campaign($this->campaign);
         CampaignCache::campaign($this->campaign);
-        CampaignLocalization::forceCampaign($this->campaign);
     }
 
     public function select($id, $label): void
