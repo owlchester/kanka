@@ -26,7 +26,6 @@ use Laravel\Cashier\Exceptions\IncompletePayment;
 use Laravel\Cashier\PaymentMethod;
 use Laravel\Cashier\Subscription;
 use Stripe\Card;
-use Stripe\Stripe;
 
 class SubscriptionService
 {
