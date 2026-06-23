@@ -261,7 +261,7 @@ return [
             'role'      => 'Role',
         ],
         'helpers'           => [
-            'setup' => 'Control how roles and members can interact with this entry. :allow will allow a member or role to do this action. :deny will deny them that action. :inherit will use the role or member\'s role\'s permission. A member set to :allow is able to do the action, even if one of their roles is set to :deny.',
+            'setup' => 'Set role and member access for this entry. :allow grants access, :deny blocks it, :inherit follows the role\'s campaign-level setting. A member-level :allow always overrides a role-level :deny. :docs.',
         ],
         'success'           => 'Permissions saved.',
         'title'             => 'Permissions',
