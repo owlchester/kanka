@@ -111,7 +111,7 @@ const subscribe = (event) => {
 
     const periodInput = document.querySelector('input[name="period"]');
     const couponInput = document.getElementById('coupon');
-    const returnUrl = new URL(window.subscriptionReturnUrl);
+    const returnUrl = new URL(document.getElementById('payment-element').dataset.returnUrl);
     if (periodInput) returnUrl.searchParams.set('period', periodInput.value);
     if (couponInput && couponInput.value) returnUrl.searchParams.set('coupon', couponInput.value);
 

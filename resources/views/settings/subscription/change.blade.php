@@ -54,7 +54,7 @@
 
             <x-grid type="1/1" css="text-left">
                 @if (!$card)
-                    <div id="payment-element"></div>
+                    <div id="payment-element" data-return-url="{{ route('settings.subscription.payment-return', ['tier' => $tier]) }}"></div>
                 @else
                     <div class="text-center">
                         <strong>{{ __('settings.subscription.fields.payment_method') }}</strong><br />
@@ -129,11 +129,6 @@
             <input type="hidden" name="payment_id" value="{{ $card ? $card->id : null }}" />
             <input type="hidden" name="subscription-intent-token" value="{{ $intent->client_secret }}" />
             </x-form>
-        @if (!$card)
-        <script>
-            window.subscriptionReturnUrl = "{{ route('settings.subscription.payment-return', ['tier' => $tier]) }}";
-        </script>
-        @endif
         </div>
     </div>
     </x-grid>
