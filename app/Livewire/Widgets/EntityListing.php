@@ -1,10 +1,7 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Widgets;
 
-use App\Facades\Avatar;
-use App\Facades\CampaignCache;
-use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 use Illuminate\Support\Collection;
@@ -44,10 +41,6 @@ class EntityListing extends Component
 
     public function loadEntities()
     {
-        UserCache::campaign($this->campaign);
-        Avatar::campaign($this->campaign);
-        CampaignCache::campaign($this->campaign);
-
         $this->pageNumber += 1;
         $entities = $this->widget->entities($this->pageNumber);
 
@@ -58,10 +51,6 @@ class EntityListing extends Component
 
     public function render()
     {
-        UserCache::campaign($this->campaign);
-        Avatar::campaign($this->campaign);
-        CampaignCache::campaign($this->campaign);
-
         return view('livewire.dashboards.entity-listing');
     }
 }

@@ -42,10 +42,6 @@ class RandomEntity extends Component
     {
         $this->readyToLoad = true;
 
-        UserCache::campaign($this->campaign);
-        Avatar::campaign($this->campaign);
-        CampaignCache::campaign($this->campaign);
-
         $entity = $this->widget->randomEntity();
         if (! $entity) {
             return;
@@ -64,10 +60,6 @@ class RandomEntity extends Component
 
     public function render()
     {
-        UserCache::campaign($this->campaign);
-        Avatar::campaign($this->campaign);
-        CampaignCache::campaign($this->campaign);
-
         return view('livewire.widgets.random-entity');
     }
 }

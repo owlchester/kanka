@@ -38,9 +38,6 @@ class GalleryCarousel extends Component
     {
         $this->readyToLoad = true;
 
-        UserCache::campaign($this->campaign);
-        CampaignCache::campaign($this->campaign);
-
         $folderId = $this->widget->conf('folder_id');
         if (empty($folderId)) {
             return;
@@ -67,9 +64,6 @@ class GalleryCarousel extends Component
 
     public function render()
     {
-        UserCache::campaign($this->campaign);
-        CampaignCache::campaign($this->campaign);
-
         return view('livewire.widgets.gallery-carousel');
     }
 }

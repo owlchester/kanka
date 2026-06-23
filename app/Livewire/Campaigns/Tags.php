@@ -7,11 +7,13 @@ use App\Facades\CampaignCache;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\Tag;
+use Livewire\Attributes\Locked;
 use Livewire\Attributes\Modelable;
 use Livewire\Component;
 
 class Tags extends Component
 {
+    #[Locked]
     public Campaign $campaign;
 
     public string $search = '';
@@ -27,9 +29,6 @@ class Tags extends Component
     {
         $this->campaign = $campaign;
         $this->selected = $selected;
-
-        // Ensure campaign context is always set
-        $this->bootCampaignContext();
     }
 
     /**
@@ -62,8 +61,6 @@ class Tags extends Component
             return;
         }
 
-        $this->bootCampaignContext();
-
         $this->options = Tag::query()
             ->where('name', 'like', '%' . $this->search . '%')
             ->limit(10)
@@ -77,8 +74,6 @@ class Tags extends Component
 
     protected function loadDefaultTags(): void
     {
-        $this->bootCampaignContext();
-
         $this->options = Tag::query()
             ->orderBy('name') // or ->latest(), ->popular()
             ->limit(10)
@@ -88,13 +83,6 @@ class Tags extends Component
                 'label' => $tag->name,
             ])
             ->toArray();
-    }
-
-    protected function bootCampaignContext(): void
-    {
-        UserCache::campaign($this->campaign);
-        Avatar::campaign($this->campaign);
-        CampaignCache::campaign($this->campaign);
     }
 
     public function select($id, $label): void
