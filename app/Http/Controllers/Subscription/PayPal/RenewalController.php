@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ValidatePledge;
 use App\Models\Tier;
 use App\Services\Subscription\PayPalRenewalService;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
@@ -17,18 +18,11 @@ class RenewalController extends Controller
         $this->middleware(['auth', 'identity']);
     }
 
-    public function index(Request $request)
+    public function index(Request $request): RedirectResponse
     {
-        $user = $request->user();
-        if (! $user->can('renewPaypalSubscription', $user)) {
-            return redirect()
-                ->route('settings.subscription')
-                ->with('error', __('subscriptions/paypal-renew.errors.permission'));
-        }
-
-        $tiers = Tier::ordered()->get()->reject(fn (Tier $tier) => $tier->isFree());
-
-        return view('settings.subscription.paypal-renew', compact('user', 'tiers'));
+        return redirect()
+            ->route('settings.subscription')
+            ->with('info', __('subscriptions/paypal-renew.errors.deprecated'));
     }
 
     public function process(ValidatePledge $request, Tier $tier)
