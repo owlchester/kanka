@@ -129,9 +129,11 @@
             <input type="hidden" name="payment_id" value="{{ $card ? $card->id : null }}" />
             <input type="hidden" name="subscription-intent-token" value="{{ $intent->client_secret }}" />
             </x-form>
+        @if (!$card)
         <script>
             window.subscriptionReturnUrl = "{{ route('settings.subscription.payment-return', ['tier' => $tier]) }}";
         </script>
+        @endif
         </div>
     </div>
     </x-grid>
