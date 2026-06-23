@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests\Feature\Settings;
+
 use App\Models\Tier;
 use App\Models\User;
 
