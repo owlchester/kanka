@@ -2,7 +2,7 @@
 
 return [
     'actions'       => [
-        'entry'             => 'Escreva um campo de introdução personalizado para esse marcador.',
+        'entry'             => 'Escreva uma descrição personalizada para esse marcador.',
         'remove'            => 'Remover marcador',
         'reset-polygon'     => 'Redefinir posições',
         'save_and_explore'  => 'Salvar e Explorar',
@@ -43,6 +43,7 @@ return [
         'custom_shape'  => 'Forma personalizada',
         'font_colour'   => 'Cor do Ícone',
         'group'         => 'Grupo de Marcador',
+        'has_tooltip'   => 'Possui dica de ferramenta popup',
         'icon'          => 'Ícone',
         'is_draggable'  => 'Arrastável',
         'latitude'      => 'Latitude',

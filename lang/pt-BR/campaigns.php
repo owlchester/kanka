@@ -3,12 +3,12 @@
 return [
     'actions'                           => [],
     'create'                            => [
-        'success'   => 'Campanha criada.',
+        'success'   => ':name criado.',
         'title'     => 'Nova Campanha',
     ],
     'destroy'                           => [],
     'edit'                              => [
-        'success'   => 'Campanha atualizada.',
+        'success'   => ':name atualizado.',
     ],
     'entity_note_visibility'            => [],
     'entity_personality_visibilities'   => [
@@ -24,9 +24,10 @@ return [
     ],
     'export'                            => [],
     'fields'                            => [
+        'billboard'                 => 'Descrição da barra lateral',
         'boosted'                   => 'Impulsionada por',
-        'entity_count'              => 'Número de Entidades',
-        'entry'                     => 'Descrição da campanha',
+        'entity_count'              => 'Número de entidades',
+        'entry'                     => 'Descrição do mundo',
         'followers'                 => 'Seguidores',
         'genre'                     => 'Gênero(s)',
         'header_image'              => 'Background do dashboard da campanha',

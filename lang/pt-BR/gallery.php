@@ -30,6 +30,7 @@ return [
             'gallery_full_free'     => 'O espaço de armazenamento da galeria está cheio. Habilite recursos premium para mais armazenamento.',
             'gallery_full_premium'  => 'O espaço de armazenamento da galeria está cheio. Remova os arquivos não utilizados primeiro.',
             'invalid_format'        => 'O arquivo não está num formato válido.',
+            'invalid_url'           => 'A URL fornecida não pôde ser decodificado como uma imagem.',
             'too_big'               => 'O arquivo é muito grande.',
             'unauthorized'          => 'Nenhum dos seus cargos tem a permissão "carregar para a galeria".',
         ],

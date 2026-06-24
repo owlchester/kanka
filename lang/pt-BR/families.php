@@ -14,6 +14,9 @@ return [
         'members'       => 'Os membros de uma família estão listados aqui. Um personagem pode ser adicionado a uma família editando o personagem desejado e usando a lista suspensa "Família".',
     ],
     'index'         => [],
+    'lists'         => [
+        'empty' => 'Acompanhe as linhagens, clãs ou casas nobres que conectam seus personagens.',
+    ],
     'members'       => [
         'create'    => [
             'helper'    => 'Adicione um ou vários membros a :name.',

@@ -15,6 +15,7 @@ return [
         'created'   => 'Criado em',
         'creator'   => 'Criado por',
         'general'   => 'Geral',
+        'words'     => 'Total de palavras',
     ],
     'targets'       => [],
     'title2'        => 'Estatísticas',

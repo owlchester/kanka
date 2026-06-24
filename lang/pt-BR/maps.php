@@ -60,6 +60,9 @@ return [
         'missing_image'         => 'Você precisa salvar o mapa com uma imagem antes de poder adicionar camadas e marcadores.',
     ],
     'index'         => [],
+    'lists'         => [
+        'empty' => 'Faça o upload de um mapa para visualizar locais e revelar a geografia do seu mundo.',
+    ],
     'maps'          => [],
     'panels'        => [
         'groups'    => 'Grupos',

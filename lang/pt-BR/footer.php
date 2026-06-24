@@ -28,6 +28,7 @@ return [
     'roadmap'           => 'Roadmap',
     'security'          => 'Segurança',
     'server-time'       => 'Este é o horário do nosso servidor (:server)',
+    'showcase'          => 'Vitrine',
     'status'            => 'Status do serviço',
     'terms'             => 'Termos',
     'thanks'            => 'Só é possível graças aos nossos assinantes.',

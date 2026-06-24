@@ -216,11 +216,11 @@ return [
         ],
         'manage_subscription'   => 'Manage subscription',
         'payment_method'        => [
-            'actions'       => [
-                'change'            => 'Change payment method',
-                'manage'            => 'Manage on Stripe',
+            'actions'   => [
+                'change'    => 'Change payment method',
+                'manage'    => 'Manage on Stripe',
             ],
-            'helper'        => 'Your payment methods are managed securely by Stripe. We do not store any card details.',
+            'helper'    => 'Your payment methods are managed securely by Stripe. We do not store any card details.',
         ],
         'periods'               => [
             'monthly'   => 'Monthly',

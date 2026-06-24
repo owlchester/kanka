@@ -1,27 +1,27 @@
 <?php
 
 return [
-    'actions'       => [
+    'actions'                   => [
         'add_appearance'    => 'Adicionar uma aparência',
         'add_personality'   => 'Adicionar uma personalidade',
     ],
-    'conversations' => [],
-    'create'        => [
+    'conversations'             => [],
+    'create'                    => [
         'title' => 'Novo Personagem',
     ],
-    'destroy'       => [],
-    'dice_rolls'    => [],
-    'edit'          => [],
-    'families'      => [
+    'destroy'                   => [],
+    'dice_rolls'                => [],
+    'edit'                      => [],
+    'families'                  => [
         'helper'    => 'Reordene e controle quais famílias de :name são visíveis ou ocultas para não administradores.',
         'reorder'   => [
             'success'   => 'Famílias de personagens atualizadas com sucesso.',
         ],
         'title2'    => 'Gerenciar famílias',
     ],
-    'fields'        => [
+    'fields'                    => [
         'age'                       => 'Idade',
-        'is_appearance_pinned'      => 'Aparência fixada',
+        'is_appearance_pinned'      => 'Visão geral da aparência',
         'is_dead'                   => 'Morto',
         'is_personality_pinned'     => 'Personalidade fixada',
         'is_personality_visible'    => 'Personalidade visível',
@@ -29,23 +29,25 @@ return [
         'physical'                  => 'Físico',
         'pronouns'                  => 'Pronomes',
         'sex'                       => 'Gênero',
+        'status'                    => 'Status',
         'title'                     => 'Título',
         'traits'                    => 'Características',
     ],
-    'helpers'       => [
+    'helpers'                   => [
         'age'   => 'Você pode vincular essa entidade a um calendário de sua campanha para calcular automaticamente sua idade. :more.',
     ],
-    'hints'         => [
+    'hints'                     => [
         'is_appearance_pinned'      => 'Exiba os traços de aparência na página de visão geral.',
         'is_dead'                   => 'Este personagem está morto.',
+        'is_missing'                => 'Esse personagem está desaparecido.',
         'is_personality_visible'    => 'Os traços de personalidade são visíveis para todos, não apenas para os membros do cargo :admin.',
         'personality_not_visible'   => 'Traços de personalidade deste personagem estão atualmente visíveis apenas para usuários Admin.',
         'personality_visible'       => 'Traços de personalidade deste personagem estão visíveis para todos.',
     ],
-    'index'         => [],
-    'items'         => [],
-    'journals'      => [],
-    'labels'        => [
+    'index'                     => [],
+    'items'                     => [],
+    'journals'                  => [],
+    'labels'                    => [
         'appearance'    => [
             'entry' => 'Descrição da aparência',
             'name'  => 'Nome da aparência',
@@ -55,8 +57,11 @@ return [
             'name'  => 'Nome do traço de personalidade',
         ],
     ],
-    'maps'          => [],
-    'organisations' => [
+    'lists'                     => [
+        'empty' => 'Crie seu primeiro herói, vilão ou ajudante para dar vida ao seu mundo.',
+    ],
+    'maps'                      => [],
+    'organisations'             => [
         'create'    => [
             'success'   => ':character adicionado à :organisation.',
             'title'     => 'Filiação',
@@ -69,10 +74,14 @@ return [
             'title'     => 'Atualizar filiação de :name',
         ],
         'fields'    => [
-            'role'  => 'Função',
+            'role'  => 'Cargo',
         ],
     ],
-    'placeholders'  => [
+    'personality_visibility'    => [
+        'admin' => 'Apenas membros com o cargo :admin',
+        'all'   => 'Todos podem ver',
+    ],
+    'placeholders'              => [
         'age'               => 'Idade',
         'appearance_entry'  => 'Descrição',
         'appearance_name'   => 'Cabelo, Olhos, Pele, Altura',
@@ -86,25 +95,30 @@ return [
         'traits'            => 'Traços',
         'type'              => 'NPC, Personagem de Jogador, Divindade',
     ],
-    'quests'        => [
+    'quests'                    => [
         'helpers'   => [
             'quest_giver'   => 'Missões das quais o personagem delegou.',
             'quest_member'  => 'Missões das quais o personagem é membro.',
         ],
     ],
-    'races'         => [
+    'races'                     => [
         'helper'    => 'Reordene e controle quais raças de :name são visíveis ou ocultas para não administradores.',
         'reorder'   => [
             'success'   => 'Raças de personagens atualizadas com sucesso',
         ],
         'title2'    => 'Gerenciar raças',
     ],
-    'sections'      => [
+    'sections'                  => [
         'appearance'    => 'Aparência',
         'personality'   => 'Personalidade',
     ],
-    'show'          => [],
-    'warnings'      => [
-        'personality_hidden'    => 'Você não tem permissão para editar traços de personalidade deste personagem.',
+    'show'                      => [],
+    'status'                    => [
+        'alive'     => 'Vivo',
+        'dead'      => 'Morto',
+        'missing'   => 'Desaparecido',
+    ],
+    'warnings'                  => [
+        'personality_hidden'    => 'Os traços de personalidade de :name foram bloqueados.',
     ],
 ];

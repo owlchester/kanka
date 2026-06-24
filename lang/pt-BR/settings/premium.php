@@ -6,12 +6,13 @@ return [
         'unlock'    => 'Torne-se premium',
     ],
     'create'        => [
-        'actions'   => [
+        'actions'       => [
             'confirm'   => 'Torne-se premium!',
         ],
-        'confirm'   => 'Que legal! Você está prestes a desbloquear recursos premium para :campaign. Isso usará uma de suas campanhas premium disponíveis.',
-        'duration'  => 'As campanhas remium permanecem assim até removê-las manualmente ou quando sua assinatura terminar.',
-        'success'   => 'A campanha :campaign agora é premium. Aproveite todos os novos recursos incríveis!',
+        'confirm'       => 'Que legal! Você está prestes a desbloquear recursos premium para :campaign. Isso usará uma de suas campanhas premium disponíveis.',
+        'duration'      => 'As campanhas remium permanecem assim até removê-las manualmente ou quando sua assinatura terminar.',
+        'pitch_2026'    => 'Obtenha cargos ilimitados, membros ilimitados, temas personalizados, plugins e muito mais para suas campanhas.',
+        'success'       => 'A campanha :campaign agora é premium. Aproveite todos os novos recursos incríveis!',
     ],
     'exceptions'    => [
         'already'       => 'Os recursos premium já foram desbloqueados para esta campanha.',

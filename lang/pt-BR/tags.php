@@ -21,6 +21,7 @@ return [
     'edit'          => [],
     'fields'        => [
         'children'          => 'Filhos',
+        'icon'              => 'Ícone',
         'is_auto_applied'   => 'Aplicar automaticamente a novas entidades',
         'is_hidden'         => 'Ocultar do cabeçalho e da dica de contexto',
     ],
