@@ -46,6 +46,8 @@ class DashboardHeaderController extends Controller
     {
         $this->authorize('update', $campaign);
 
+        $campaign->save();
+
         CampaignDescription::updateOrCreate(
             ['campaign_id' => $campaign->id],
             ['excerpt' => $request->post('excerpt')]
