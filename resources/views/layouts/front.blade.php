@@ -30,9 +30,9 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
     @endif
     <script type="application/ld+json">
       {
-        "@id": "#product",
-        "@type": "WebApplication",
-        "@context": "http://schema.org/",
+        "@@id": "#product",
+        "@@type": "WebApplication",
+        "@@context": "http://schema.org/",
         "name": "{{ config('app.name') }}",
         "description": "{{ $metaDescription ?? __('front.home.seo.meta-description') }}",
         "url": "{{ config('app.url') }}",
@@ -41,11 +41,11 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
         "image": ["https://th.kanka.io/o-ZrT3jpQVW_Nd_1g5eBAGg7wpU=/1920x1024/smart/src/app/front/preview-background.png"],
         "screenshot": "https://th.kanka.io/T35QId2XP7bbGxy0c237Qr9woSs=/600x320/smart/src/app/front/preview-background.png",
         "creator": {
-          "@type": "Organization",
-          "@id": "#organization",
+          "@@type": "Organization",
+          "@@id": "#organization",
           "url": "{{ config('app.url') }}",
           "name": "{{ config('app.name') }}",
-          "logo": { "@type": "ImageObject", "url": "https://th.kanka.io/z4Y8iu74nWLlIPFWld-QY5jHQWM=/226x205/smart/src/app/logos/kanka-logo-large.png", "width": "226", "height": "205" }
+          "logo": { "@@type": "ImageObject", "url": "https://th.kanka.io/z4Y8iu74nWLlIPFWld-QY5jHQWM=/226x205/smart/src/app/logos/kanka-logo-large.png", "width": "226", "height": "205" }
         }
       }
     </script>@endif
