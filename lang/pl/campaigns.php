@@ -127,9 +127,6 @@ return [
             'role'          => 'Rola',
             'roles'         => 'Role',
         ],
-        'helpers'               => [
-            'switch'    => 'Przełącz uczestnika',
-        ],
         'impersonating'         => [
             'message'   => 'Oglądasz kampanię z perspektywy innego uczestnika. Niektóre funkcje mogą nie działać, ale reszta wygląda dokładnie tak, jak widzi ją ta osoba. By wrócić do własnego profilu użyj opcji Powrót do profilu, znajdującej się w miejscu opcji Wyloguj.',
             'title'     => 'Zalogowano jako :name',

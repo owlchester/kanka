@@ -127,9 +127,6 @@ return [
             'role'          => 'Rolle',
             'roles'         => 'Rollen',
         ],
-        'helpers'               => [
-            'switch'    => 'Zu diesem User wechseln',
-        ],
         'impersonating'         => [
             'message'   => <<<'TEXT'
 Du siehst die Kampagne jetzt als ein anderer User.

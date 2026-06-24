@@ -127,9 +127,6 @@ return [
             'role'          => 'Rola',
             'roles'         => 'Roly',
         ],
-        'helpers'               => [
-            'switch'    => 'Prepnúť na tohto užívateľa',
-        ],
         'impersonating'         => [
             'message'   => 'Kampaň teraz vidíš ako iný užívateľ. Niektoré funkcionality boli deaktivované, ale ostatok vyzerá rovnako, ako by to videl daný užívateľ. Aby si sa prepol/a späť na tvojho užívateľa, použi tlačidlo Prepnúť, ktoré sa nachádza na mieste, kde je bežne tlačidlo Logout.',
             'title'     => 'Náhľad ako :name',

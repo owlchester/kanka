@@ -1,10 +1,8 @@
 <?php
 
 return [
-    'fulltext'      => 'Überall suchen',
     'lookup'        => [
         'empty'     => 'keine Ergebnisse',
-        'hint'      => 'Gib mindestens 3 Buchstaben ein, um nach Objekten in der Kampagne zu suchen.',
         'keyboard'  => 'Drücke :k zum Suchen, :esc zum Verwerfen',
         'recents'   => 'Letzte',
         'results'   => 'Ergebnisse',

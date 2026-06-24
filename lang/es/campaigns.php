@@ -128,9 +128,6 @@ return [
             'role'          => 'Rol',
             'roles'         => 'Roles',
         ],
-        'helpers'               => [
-            'switch'    => 'Ver como este usuario',
-        ],
         'impersonating'         => [
             'message'   => 'Estás viendo la campaña como otro usuario. Algunas funcionalidades están deshabilitadas, pero el resto actúa exactamente como el usuario lo vería. Para volver a tu usuario, usa el botón "Volver a mi usuario" cerca del botón de Cerrar Sesión.',
             'title'     => 'Estás viendo como :name',

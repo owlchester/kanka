@@ -125,9 +125,6 @@ return [
             'role'          => 'Rôle',
             'roles'         => 'Rôles',
         ],
-        'helpers'               => [
-            'switch'    => 'Basculer vers ce membre',
-        ],
         'impersonating'         => [
             'message'   => 'Tu visualises la campagne en tant qu\'un autre membre. Certaines fonctionnalités ont été désactivées, mais le reste fonctionne exactement comme le verrait le membre.',
             'title'     => 'Se faisant passer pour :name',

@@ -94,9 +94,6 @@ return [
             'role'          => 'Rol',
             'roles'         => 'Rollen',
         ],
-        'helpers'               => [
-            'switch'    => 'Wissel naar deze gebruiker',
-        ],
         'impersonating'         => [
             'message'   => 'Je bekijkt de campaign als een andere gebruiker. Sommige functies zijn uitgeschakeld, maar de rest werkt precies zoals de gebruiker het zou zien. Om terug te schakelen naar jouw gebruiker, gebruik je de knop Wissel Terug op de plaats waar de knop Uitloggen zich gewoonlijk bevindt.',
             'title'     => ':name aan het imiteren',

@@ -143,21 +143,10 @@ return [
         ],
         'manage_subscription'   => 'Beheer abonnement',
         'payment_method'        => [
-            'actions'       => [
-                'add_new'           => 'Voeg een nieuwe betaalmethode toe',
-                'change'            => 'Verander de betaalmethode',
-                'save'              => 'Bewaar betaalmethode',
-                'show_alternatives' => 'Alternatieve betalingsmogelijkheden',
+            'actions'   => [
+                'change'    => 'Verander de betaalmethode',
             ],
-            'add_one'       => 'Je hebt momenteel geen betalingsmethode opgeslagen.',
-            'alternatives'  => 'Je kunt je abonneren met behulp van deze alternatieve betalingsopties. Met deze actie wordt je account eenmaal in rekening gebracht en wordt je abonnement niet elke maand automatisch verlengd.',
-            'card'          => 'Kaart',
-            'card_name'     => 'Naam op kaart',
-            'country'       => 'Land van verblijf',
-            'ending'        => 'Eindigend in',
-            'helper'        => 'Deze kaart wordt gebruikt voor al je abonnementen.',
-            'new_card'      => 'Voeg een nieuwe betaalmethode toe',
-            'saved'         => ':brand eindigend met :last4',
+            'helper'    => 'Deze kaart wordt gebruikt voor al je abonnementen.',
         ],
         'placeholders'          => [
             'reason'    => 'Vertel ons desgewenst waarom je Kanka niet langer steunt. Ontbreekt er een functie? Is je financiële situatie veranderd?',

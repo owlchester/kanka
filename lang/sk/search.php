@@ -1,10 +1,8 @@
 <?php
 
 return [
-    'fulltext'      => 'Prehľadať všetko',
     'lookup'        => [
         'empty'     => 'Bez výsledkov',
-        'hint'      => 'Napíš min. 3 písmená na hľadanie objektov v kampani.',
         'keyboard'  => 'stlač :k na hľadanie, :esc na zrušenie',
         'lists'     => 'Zoznamy',
         'recents'   => 'Nedávne',

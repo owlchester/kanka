@@ -12,4 +12,5 @@ return [
     'roles'     => [
         'inherited' => 'Le rôle :role peut déjà faire ça pour la catégorie :name.',
     ],
+    'switch'    => 'Voir la campagne en tant que :name pour tester leur permissions',
 ];

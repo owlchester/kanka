@@ -128,9 +128,6 @@ return [
             'role'          => 'Cargo',
             'roles'         => 'Cargos',
         ],
-        'helpers'               => [
-            'switch'    => 'Trocar para este usuário',
-        ],
         'impersonating'         => [
             'message'   => 'Você está vendo a campanha como outro usuário. Alguns recursos foram desabilitados, mas o resto age exatamente como o usuário veria. Para voltar ao seu usuário, use o botão Trocar de Volta localizado onde o botão Logout normalmente está localizado.',
             'title'     => 'Personificando :name',

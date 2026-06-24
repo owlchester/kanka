@@ -143,21 +143,10 @@ return [
         ],
         'manage_subscription'   => 'Upravljanje pretplatom',
         'payment_method'        => [
-            'actions'       => [
-                'add_new'           => 'Dodajte novi način plaćanja',
-                'change'            => 'Promjena načina plaćanja',
-                'save'              => 'Spremi način plaćanja',
-                'show_alternatives' => 'Alternativni načini plaćanja',
+            'actions'   => [
+                'change'    => 'Promjena načina plaćanja',
             ],
-            'add_one'       => 'Trenutno nema spremljenog načina plaćanja.',
-            'alternatives'  => 'Možeš se pretplatiti pomoću ovih alternativnih načina plaćanja. Ova radnja će teretiti tvoj račun jednom i neće automatski obnavljati pretplatu svaki mjesec.',
-            'card'          => 'Kartica',
-            'card_name'     => 'Ime na kartici',
-            'country'       => 'Zemlja prebivališta',
-            'ending'        => 'Završava za',
-            'helper'        => 'Ova će se kartica koristiti za sve tvoje pretplate.',
-            'new_card'      => 'Dodaj novi način plaćanja',
-            'saved'         => ':brand završava s :last4',
+            'helper'    => 'Ova će se kartica koristiti za sve tvoje pretplate.',
         ],
         'placeholders'          => [
             'reason'    => 'Po želji nam možeš reći zašto više ne podržavaš Kanku. Nedostajala je funkcionalnost? Je li se promijenila tvoja financijska situacija?',

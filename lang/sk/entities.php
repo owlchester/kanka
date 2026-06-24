@@ -31,7 +31,6 @@ return [
         'helper_v2'                 => 'Zrýchlene vytvor základ nového objektu bez prerušenia práce.',
         'helpers'                   => [
             'archetype' => 'Zvoľ archetyp, ktorého kópiou budú nové objekty',
-            'template'  => 'Zvoľ šablónu, ktorej kópiou budú nové objekty',
         ],
         'missing_v2'                => 'Jediné moduly, ktoré sú aktivované a ktoré máš povolenie vytvárať sú dostupné na tejto obrazovke. :learn-more',
         'modes'                     => [

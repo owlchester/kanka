@@ -157,7 +157,6 @@ return [
             'text'  => [
                 'monthly'           => 'Stai sottoscrivendo l\'abbonamento per il grado :tier, da pagare mensilmente in cifra pari a :amount.',
                 'upgrade_monthly'   => 'Passi al livello :tier per :upgrade, poi fatturi mensilmente per :amount.',
-                'upgrade_paypal'    => 'Passi al livello :tier per :upgrade fino a :date.',
                 'upgrade_yearly'    => 'Passi al livello :tier per :upgrade, poi fatturi annualmente per :amount.',
                 'yearly'            => 'Stai sottoscrivendo l\'abbonamento per il grado :tier, da pagare annualmente in cifra pari a :amount.',
             ],
@@ -200,27 +199,14 @@ return [
             'alternatives_yearly'   => 'Accettiamo abbonamenti annuali solo con :method',
             'currency_block'        => 'Non è possibile cambiare la valuta mentre si ha un abbonamento attivo a Kanka; è possibile cambiare la valuta una volta terminato l\'abbonamento attuale.',
             'currency_reset'        => 'La modifica della valuta scelta cancellerà la cronologia di fatturazione e richiederà di inserire nuovamente un metodo di pagamento.',
-            'paypal_v3'             => 'Paga in tutta sicurezza il tuo abbonamento annuale con PayPal.',
             'stripe'                => 'I dati di fatturazione vengono elaborati e conservati in modo sicuro tramite :stripe.',
         ],
         'manage_subscription'   => 'Gestisci abbonamento',
         'payment_method'        => [
-            'actions'       => [
-                'add'               => 'Aggiungi',
-                'add_new'           => 'Aggiungi nuovo metodo di pagamento',
-                'change'            => 'Cambia metodo di pagamento',
-                'save'              => 'Salva metodo di pagamento',
-                'show_alternatives' => 'Metodi di pagamento alternativi',
+            'actions'   => [
+                'change'    => 'Cambia metodo di pagamento',
             ],
-            'add_one'       => 'Non hai attualmente metodi di pagamento salvati.',
-            'alternatives'  => 'Puoi abbonarti utilizzando queste opzioni di pagamento alternative. Questa azione addebiterà il conto una volta sola e non rinnoverà automaticamente l\'abbonamento ogni mese.',
-            'card'          => 'Carta',
-            'card_name'     => 'Nome sulla carta',
-            'country'       => 'Nazione di residenza',
-            'ending'        => 'Che finisce con',
-            'helper'        => 'Questa carta verrà usata per tutti i tuoi abbonamenti.',
-            'new_card'      => 'Aggiungi un nuovo metodo di pagamento',
-            'saved'         => ':brand **** :last4',
+            'helper'    => 'Questa carta verrà usata per tutti i tuoi abbonamenti.',
         ],
         'periods'               => [
             'monthly'   => 'Mensilmente',

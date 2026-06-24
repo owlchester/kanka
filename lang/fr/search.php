@@ -2,10 +2,8 @@
 
 return [
     'everywhere'    => 'Partout',
-    'fulltext'      => 'Recherche complète',
     'lookup'        => [
         'empty'         => 'Aucun résultat',
-        'hint'          => 'Écrire au minimum 3 lettres pour cherche les entrées de la campagne.',
         'hint_fulltext' => 'Chercher dans les entrées, les articles, et autres',
         'hint_name'     => 'Chercher les entrées par leur nom',
         'keyboard'      => 'appuyer :k pour rechercher, :esc pour fermer',

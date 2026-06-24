@@ -121,9 +121,6 @@ return [
             'role'          => 'Ruolo',
             'roles'         => 'Ruoli',
         ],
-        'helpers'               => [
-            'switch'    => 'Passa a questo utente',
-        ],
         'impersonating'         => [
             'message'   => 'Stai visualizzando la campagna come un altro utente. Alcune caratteristiche sono state disabilitate, ma il resto viene mostrato esattamente come lo vedrebbe quell\'utente.',
             'title'     => 'Stai impersonando :name',
