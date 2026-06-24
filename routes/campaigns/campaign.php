@@ -154,8 +154,8 @@ Route::get('/w/{campaign}/theme-builder', [ThemeBuilderController::class, 'index
 Route::post('/w/{campaign}/theme-builder', [ThemeBuilderController::class, 'save'])->name('campaign_styles.builder-save');
 Route::delete('/w/{campaign}/theme-builder', [ThemeBuilderController::class, 'reset'])->name('campaign_styles.builder-reset');
 
-Route::get('/w/{campaign}/dashboard-header/{campaignDashboardWidget?}', 'Campaign\DashboardHeaderController@edit')->name('campaigns.dashboard-header.edit');
-Route::patch('/w/{campaign}/dashboard-header', 'Campaign\DashboardHeaderController@update')->name('campaigns.dashboard-header.update');
+Route::get('/w/{campaign}/dashboard/billboard/{campaignDashboardWidget?}', 'Campaign\DashboardHeaderController@edit')->name('campaigns.dashboard-header.edit');
+Route::patch('/w/{campaign}/dashboard/billboard/{campaignDashboardWidget?}', 'Campaign\DashboardHeaderController@update')->name('campaigns.dashboard-header.update');
 
 // Helper links
 Route::get('/w/{campaign}/campaign-roles/admin', 'Campaign\RoleController@admin')->name('campaigns.campaign_roles.admin');

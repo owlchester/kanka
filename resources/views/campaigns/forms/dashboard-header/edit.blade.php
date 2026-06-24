@@ -7,7 +7,7 @@
 
 @section('content')
 
-    <x-form :action="['campaigns.dashboard-header.update', $campaign, $campaign]" method="PATCH" files class="entity-form">
+    <x-form :action="['campaigns.dashboard-header.update', $campaign, $widget ?? null]" method="PATCH" files class="entity-form">
         @include('partials.forms._dialog', [
             'title' => __('campaigns/dashboard-header.edit.title'),
             'content' => 'campaigns.forms.dashboard-header._form',

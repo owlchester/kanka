@@ -52,7 +52,7 @@ class DashboardHeaderController extends Controller
         );
 
         return redirect()
-            ->route('dashboard.setup', $campaignDashboardWidget->dashboard_id ? [$campaign, 'dashboard' => $campaignDashboardWidget->dashboard_id] : [$campaign])
+            ->route('dashboard.setup', $campaignDashboardWidget?->dashboard_id ? [$campaign, 'dashboard' => $campaignDashboardWidget->dashboard_id] : [$campaign])
             ->with('success', __('campaigns/dashboard-header.edit.success'));
     }
 }

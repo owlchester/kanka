@@ -123,12 +123,35 @@ $hasDashboards = !$dashboards->isEmpty() || !empty($dashboard);
             <div class="grid grid-cols-12 gap-2 md:gap-5" id="widgets" data-url="{{ route('dashboard.reorder', $campaign) }}">
                 @if (empty($dashboard))
                 <div class="col-span-12">
-                    <div class="{{ $widgetClass }} border-dashboard widget-campaign cover-background h-auto p-4 " @if($campaign->header_image) style="background-image: url({{ Img::crop(1200, 400)->url($campaign->header_image) }})" @endif
-                        data-toggle="dialog"
+                    <div class="{{ $widgetClass }} widget-campaign cover-background handle cursor-grab rounded-xl"
+                         data-toggle="dialog"
                          data-url="{{ route('campaigns.dashboard-header.edit', $campaign) }}"
                     >
-                        <div class="{{ $overlayClass }} backdrop-blur-sm bg-box opacity-60">
-                            <span class="widget-type">{{ __('dashboards/widgets/campaign.name') }}</span>
+                        <div class="rounded-xl bg-box flex items-center gap-3 justify-between p-4">
+                            <div class="flex-none text-neutral-content" data-toggle="tooltip" data-title="{{ __('dashboard.setup.reorder.helper') }}">
+                                <x-icon class="fa-solid fa-grip-vertical" />
+                            </div>
+                            <div class="flex-none">
+                                <div class="rounded-lg flex items-center justify-center w-10 h-10 text-lg bg-red-100 text-red-700" tooltip title="{{ __('dashboards/widgets/campaign.name') }}">
+                                    <x-icon class="fa-regular fa-th-list" />
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-1 grow">
+                                <div class="flex gap-2 items-center w-full">
+                                    <div class="truncate font-medium">
+                                        {{ __('dashboards/widgets/campaign.name') }}
+                                    </div>
+                                    <div class="rounded px-2 py-0.5 bg-red-100 text-red-700 text-2xs font-medium uppercase">
+                                        {{ __('dashboards/widgets/campaign.tag') }}
+                                    </div>
+                                </div>
+                                <p class="text-neutral-content text-xs italic">
+                                    {{ __('dashboards/widgets/campaign.tagline') }}
+                                </p>
+                            </div>
+                            <div class="rounded bg-base-200 px-2 py-0.5 text-neutral-content text-2xs">
+                                {{ __('dashboard.widgets.widths.12') }}
+                            </div>
                         </div>
                     </div>
                 </div>
