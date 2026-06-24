@@ -53,12 +53,20 @@
             <x-form :action="['settings.subscription.subscribe', 'tier' => $tier]" id="subscription-confirm" direct>
 
             <x-grid type="1/1" css="text-left">
-                @if (!$card || empty($card->card))
+                @if (!$card)
                     <div id="payment-element" data-return-url="{{ route('settings.subscription.payment-return', ['tier' => $tier]) }}"></div>
                 @else
                     <div class="text-center">
                         <strong>{{ __('settings.subscription.fields.payment_method') }}</strong><br />
-                        <x-icon class="fa-solid fa-credit-card" /> **** {{ $card->card->last4 }} {{ $card->card->exp_month }}/{{ $card->card->exp_year }}
+                        @if ($card->card)
+                            <x-icon class="fa-solid fa-credit-card" /> **** {{ $card->card->last4 }} {{ $card->card->exp_month }}/{{ $card->card->exp_year }}
+                        @elseif ($card->sepa_debit)
+                            <x-icon class="fa-solid fa-building-columns" /> SEPA **** {{ $card->sepa_debit->last4 }}
+                        @elseif ($card->link)
+                            <x-icon class="fa-solid fa-link" /> Link ({{ $card->link->email }})
+                        @else
+                            <x-icon class="fa-solid fa-wallet" /> {{ ucfirst(str_replace('_', ' ', $card->type)) }}
+                        @endif
                         <p><a href="{{ route('billing.portal') }}" class="text-link">{{ __('settings.subscription.payment_method.actions.change') }}</a></p>
                     </div>
                     @if ($isDowngrading)
