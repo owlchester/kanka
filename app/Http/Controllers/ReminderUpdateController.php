@@ -31,12 +31,8 @@ class ReminderUpdateController extends Controller
 
     protected ?Post $post = null;
 
-    protected CalendarService $calendarService;
-
-    public function __construct(CalendarService $calendarService)
+    public function __construct(protected CalendarService $calendarService)
     {
-        // parent::__construct();
-        $this->calendarService = $calendarService;
     }
 
     public function index(Campaign $campaign)
