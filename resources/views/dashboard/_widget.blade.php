@@ -23,7 +23,7 @@ use App\Enums\Widget;
                 </div>
             </div>
 
-            <div class="flex flex-col gap-1 grow">
+            <div class="flex flex-col gap-1 grow w-full overflow-hidden">
                 <div class="flex gap-2 items-center w-full ">
                     <div class="truncate font-medium">
 
@@ -46,7 +46,7 @@ use App\Enums\Widget;
                     @endif
 
                     @if (in_array($widget->widget, [Widget::Recent, Widget::Random]))
-                        <div class="rounded bg-base-200 text-neutral-content px-2 py-1 text-xs">
+                        <div class="rounded bg-base-200 text-neutral-content px-2 py-1 text-xs truncate">
                             <x-icon class="fa-regular fa-search" />
                         @if ($widget->entityType)
                             {!! $widget->entityType->plural() !!}
