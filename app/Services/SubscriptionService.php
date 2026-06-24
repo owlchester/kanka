@@ -143,11 +143,11 @@ class SubscriptionService
         // Save the expiration date on the user for alerts about expiring cards
         $payment = $this->user->defaultPaymentMethod();
         if ($payment instanceof PaymentMethod) {
-            /** @var Card $card */
+            /** @var Card|null $card */
             $card = $payment->asStripePaymentMethod()->card;
 
-            // Check that someone isn't using a VPN
-            if (app()->isProduction() && $this->user->currency() === 'brl' && $card->country !== 'BR') {
+            // Check that someone isn't using a VPN — only applicable for card payments
+            if ($card && app()->isProduction() && $this->user->currency() === 'brl' && $card->country !== 'BR') {
                 throw (new TranslatableException('subscription.errors.invalid_card_country.brl'))->setOptions(['email' => '<a href="mailto:' . config('app.email') . '" class="text-link">' . config('app.email') . '</a>']);
             }
         }
