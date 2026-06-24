@@ -288,7 +288,7 @@ class DashboardService
             $id = $this->findIdIn($available['admin'], $dashboard);
         }
 
-        if ($id === null) {
+        if ($id === null && isset($this->user)) {
             $roles = UserCache::roles();
             foreach ($roles as $role) {
                 $key = 'role_' . $role['id'];
