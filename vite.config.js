@@ -40,7 +40,6 @@ export default defineConfig({
                 'resources/js/story.js',
                 'resources/js/conversation.js',
                 'resources/js/subscription.js',
-                'resources/js/billing.js',
                 'resources/js/forms/character.js',
                 'resources/js/forms/calendar.js',
                 'resources/js/dashboard.js',
