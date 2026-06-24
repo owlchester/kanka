@@ -22,7 +22,7 @@ class EndSubscriptions extends Command
      *
      * @var string
      */
-    protected $description = 'End custom subscriptions (sofort) that have expired';
+    protected $description = 'End subscriptions that have expired / didn\'t finish paying';
 
     public function __construct(protected SubscriptionEndService $service)
     {
