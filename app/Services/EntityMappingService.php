@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityMention;
-use App\Models\EntityType;
 use App\Models\Image;
 use App\Models\ImageMention;
 use App\Models\Post;
@@ -14,7 +13,6 @@ use App\Models\TimelineElement;
 use App\Traits\MentionTrait;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
 
 class EntityMappingService
 {
@@ -29,8 +27,6 @@ class EntityMappingService
     protected int $updatedImages = 0;
 
     protected int $deletedImages = 0;
-
-    protected array $entityTypes;
 
     /**
      * If exceptions should be thrown. Probably not.
@@ -223,14 +219,8 @@ class EntityMappingService
             }
             $target = null;
 
-            // Validate that it's either targeting a post, or a valid entity type
-            $entityType = $this->getEntityTypeID($singularType);
-            if (! $entityType && $singularType !== 'post') {
-                continue;
-            }
-
             /** @var ?Entity $target */
-            $target = $this->getTarget($id, $entityType);
+            $target = $this->getTarget($id, $singularType === 'post');
             if (! $target) {
                 continue;
             }
@@ -263,9 +253,9 @@ class EntityMappingService
         return $this;
     }
 
-    protected function getTarget(int $id, ?int $entityType): ?Entity
+    protected function getTarget(int $id, bool $isPost = false): ?Entity
     {
-        if (! isset($entityType)) {
+        if ($isPost) {
             $post = Post::with('entity')->where([
                 'id' => $id,
             ])->first();
@@ -277,7 +267,6 @@ class EntityMappingService
         }
 
         return Entity::where([
-            'type_id' => $entityType,
             'id' => $id,
             'campaign_id' => $this->campaignID(),
         ])->first();
@@ -339,23 +328,5 @@ class EntityMappingService
     {
         // @phpstan-ignore-next-line
         return $this->model;
-    }
-
-    protected function getEntityTypeID(string $code): ?int
-    {
-        $this->loadEntityTypes();
-
-        return Arr::get($this->entityTypes, $code);
-    }
-
-    protected function loadEntityTypes(): void
-    {
-        if (isset($this->entityTypes)) {
-            return;
-        }
-        $this->entityTypes = [];
-        foreach (EntityType::inCampaign($this->campaignID())->get() as $entityType) {
-            $this->entityTypes[$entityType->code] = $entityType->id;
-        }
     }
 }
