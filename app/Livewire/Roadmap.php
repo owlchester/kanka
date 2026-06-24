@@ -11,12 +11,12 @@ use Livewire\Component;
 class Roadmap extends Component
 {
     #[Url]
-    public string $status;
+    public string $status = '';
 
     #[Url]
-    public int $idea;
+    public int $idea = 0;
 
-    public Feature $feature;
+    public ?Feature $feature = null;
 
     public function mount()
     {
