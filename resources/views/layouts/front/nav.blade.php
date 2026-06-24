@@ -50,7 +50,7 @@
                     <a href="/" class="link text-nav">
                         {{ __('front.menu.dashboard') }}
                     </a>
-                @endif
+                @endauth
                 <a href="https://kanka.io/features" class="link text-nav">
                     {{ __('footer.features') }}
                 </a>
