@@ -39,6 +39,16 @@ class ReminderUpdateController extends Controller
         $this->calendarService = $calendarService;
     }
 
+    public function index(Campaign $campaign)
+    {
+        return redirect()->route('home');
+    }
+
+    public function show(Campaign $campaign, Reminder $reminder)
+    {
+        return redirect()->route('home');
+    }
+
     public function edit(Campaign $campaign, Reminder $reminder)
     {
         $this->checkPermissions($reminder);
