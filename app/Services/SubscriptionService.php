@@ -147,7 +147,7 @@ class SubscriptionService
             $card = $payment->asStripePaymentMethod()->card;
 
             // Check that someone isn't using a VPN
-            if (app()->isProduction() && $this->user->currency() === 'brl' && $card?->country !== 'BR') {
+            if (app()->isProduction() && $this->user->currency() === 'brl' && $card->country !== 'BR') {
                 throw (new TranslatableException('subscription.errors.invalid_card_country.brl'))->setOptions(['email' => '<a href="mailto:' . config('app.email') . '" class="text-link">' . config('app.email') . '</a>']);
             }
         }

@@ -97,14 +97,8 @@ class SubscriptionController extends Controller
         $user = $request->user();
         $period = $request->get('period') === 'yearly' ? PricingPeriod::Yearly : PricingPeriod::Monthly;
 
-        // Block legacy PayPal subscribers from changing tier until sub expires
-        if ($user->hasPayPal()) {
-            return view('settings.subscription.change_blocked')
-                ->with('user', $user);
-        }
-
         // If the user has a cancelled sub still ending
-        if ($user->subscribed('kanka') && $user->subscription('kanka')->onGracePeriod()) {
+        if ($user->subscribed('kanka') && $user->subscription('kanka')->onGracePeriod() && ! $user->hasPayPal()) {
             if ($tier->isCurrent($user)) {
                 return view('settings.subscription.renew')
                     ->with('user', $user);
