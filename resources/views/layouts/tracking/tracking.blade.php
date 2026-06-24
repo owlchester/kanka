@@ -21,9 +21,6 @@
         gtag('config', '{{ config('tracking.ga_convo') }}');
     @endif
     </script>
-    @if (isset($gaTrackingEvent) && !empty($gaTrackingEvent))
-    <script> gtag('event', 'conversion', {'send_to': '{{ config('tracking.ga_convo') }}/{{ $gaTrackingEvent }}'}); </script>
-    @endif
     @if (isset($gaPurchase) && !empty($gaPurchase))
     <script> gtag('event', 'purchase', {
         'value': {{ $gaPurchase['value'] }},

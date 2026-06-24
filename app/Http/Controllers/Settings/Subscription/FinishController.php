@@ -30,9 +30,8 @@ class FinishController extends Controller
         $tracking = session()->get('sub_tracking');
         $newSubPricingId = session()->get('sub_id');
         $isPayPal = $user->hasPayPal();
-        $gaTrackingEvent = $gaPurchase = null;
+        $gaPurchase = null;
         if (! empty($tracking)) {
-            $gaTrackingEvent = 'TJhYCMDErpYDEOaOq7oC';
             DataLayer::newSubscriber();
             DataLayer::add('userSubValue', session('sub_value'));
         }
@@ -40,6 +39,8 @@ class FinishController extends Controller
         if (! empty($newSubPricingId)) {
             /** @var TierPrice $pricing */
             $pricing = TierPrice::find($newSubPricingId);
+            DataLayer::add('userSubYearly', $pricing->isYearly() ? '1' : '0');
+            DataLayer::add('userSubMonthly', !$pricing->isYearly() ? '1' : '0');
             $gaPurchase = [
                 'value' => $pricing->cost,
                 'currency' => $pricing->currency,
@@ -60,7 +61,6 @@ class FinishController extends Controller
             'currency',
             'current',
             'tracking',
-            'gaTrackingEvent',
             'gaPurchase',
             'isPayPal',
             'isTrial',

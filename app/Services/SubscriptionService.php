@@ -310,9 +310,9 @@ class SubscriptionService
     /**
      * Get the subscription value
      */
-    public function subscriptionValue(): int
+    public function subscriptionValue(): float
     {
-        return (int) $this->subscriptionValue;
+        return (float) $this->subscriptionValue;
     }
 
     /**

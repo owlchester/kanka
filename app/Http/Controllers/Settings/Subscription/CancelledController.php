@@ -23,9 +23,7 @@ class CancelledController extends Controller
         }
         $tracking = session()->get('sub_tracking');
 
-        $gaTrackingEvent = null;
         if (! empty($tracking)) {
-            $gaTrackingEvent = 'TJhYCMDErpYDEOaOq7oC';
             if ($tracking === 'cancel') {
                 DataLayer::newCancelledSubscriber();
             }
@@ -35,7 +33,6 @@ class CancelledController extends Controller
 
         return view('settings.subscription.cancelled')
             ->with('user', $user)
-            ->with('endDate', $endDate)
-            ->with('gaTrackingEvent', $gaTrackingEvent);
+            ->with('endDate', $endDate);
     }
 }
