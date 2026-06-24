@@ -11,7 +11,7 @@ use Livewire\Component;
 class Roadmap extends Component
 {
     #[Url]
-    public string $status = '';
+    public string $status = 'in-progress';
 
     #[Url]
     public int $idea = 0;
@@ -60,7 +60,7 @@ class Roadmap extends Component
     public function close()
     {
         $this->idea = 0;
-        unset($this->feature);
+        $this->feature = null;
     }
 
     public function render()
