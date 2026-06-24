@@ -42,7 +42,6 @@ use Laravel\Passport\HasApiTokens;
  * @property ?string $timezone
  * @property ?string $currency
  * @property ?User $referred_by
- * @property ?Carbon $card_expires_at
  * @property ?Carbon $banned_until
  * @property ?Carbon $created_at
  * @property Collection|array $settings
@@ -88,7 +87,7 @@ class User extends \Illuminate\Foundation\Auth\User implements OAuthenticatable
      * The attributes that should be hidden for arrays.
      */
     protected $hidden = [
-        'password', 'remember_token', 'card_expires_at',
+        'password', 'remember_token',
     ];
 
     /**
@@ -99,7 +98,6 @@ class User extends \Illuminate\Foundation\Auth\User implements OAuthenticatable
     protected $casts = [
         'settings' => 'array',
         'profile' => 'array',
-        'card_expires_at' => 'datetime',
         'last_login_at' => 'date',
         'banned_until' => 'date',
         'trial_ends_at' => 'date',

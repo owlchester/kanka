@@ -5,7 +5,7 @@ let stripe, elements, card;
 let formSubmitBtn;
 
 // Coupon stuff
-let couponField, couponSuccess, couponError, couponId, couponValidating, paypalCoupon, cancelField;
+let couponField, couponSuccess, couponError, couponId, couponValidating, cancelField;
 
 const subscribeModal = document.getElementById('subscribe-confirm');
 
@@ -21,44 +21,23 @@ const init = () => {
 // Initialize the stripe API
 const initStripe = () => {
     const token = document.getElementById('stripe-token');
+    if (!token) return;
     stripe = Stripe(token.value);
-
-    // Create an instance of Elements.
-    elements = stripe.elements();
+    // Elements are initialised in initConfirmListener once we have the client secret
 };
 
 // When the modal is opened and loaded, inject stripe if needed and the form validator
-const initConfirmListener = ()=> {
+const initConfirmListener = () => {
     formSubmitBtn = document.querySelector('.subscription-confirm-button');
 
-    let cardSelector = document.getElementById('card-element');
-    if (cardSelector) {
-        // First time opening the modal, initiate a new card
-        if (!card) {
-            // Custom styling can be passed to options when creating an Element.
-            // (Note that this demo uses a wider set of styles than the guide below.)
-            let style = {
-                base: {
-                    color: '#555555',
-                    fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-                    fontSmoothing: 'antialiased',
-                    fontSize: '14px',
-                    '::placeholder': {
-                        color: '#777777'
-                    }
-                },
-                invalid: {
-                    color: '#fa755a',
-                    iconColor: '#fa755a'
-                }
-            };
+    const intentInput = document.querySelector('input[name="subscription-intent-token"]');
+    const paymentElementContainer = document.getElementById('payment-element');
 
-            // Create an instance of the card Element.
-            card = elements.create('card', {hidePostalCode: true, style: style});
-        }
-
-        // Add an instance of the card Element into the `card-element` <div>.
-        card.mount('#card-element');
+    if (paymentElementContainer && intentInput && !elements) {
+        // Initialise PaymentElement with the SetupIntent client secret
+        elements = stripe.elements({ clientSecret: intentInput.value });
+        const paymentElement = elements.create('payment');
+        paymentElement.mount('#payment-element');
     }
 
     document.getElementById('subscription-confirm')?.addEventListener('submit', subscribe);
@@ -69,29 +48,10 @@ const initConfirmListener = ()=> {
         couponError = document.getElementById('coupon-invalid');
         couponId = document.getElementById('coupon');
         couponValidating = document.getElementById('coupon-validating');
-        paypalCoupon = document.querySelector('.paypal-coupon');
         couponField.addEventListener('change', checkCoupon);
         couponField.addEventListener('focusout', checkCoupon);
     }
-
-    const selectMethod = document.querySelector('select[name="select-method"]');
-    if (selectMethod) {
-        selectMethod.addEventListener('change', changeMethod);
-    }
 };
-
-const changeMethod = (event) => {
-    //console.log('changing method to', event.target.value);
-    const card = document.querySelector('#card-panel');
-    const paypal = document.querySelector('#paypal-panel');
-    if (event.target.value === 'paypal') {
-        card.classList.add('hidden');
-        paypal.classList.remove('hidden');
-    } else {
-        card.classList.remove('hidden');
-        paypal.classList.add('hidden');
-    }
-}
 
 const checkCoupon = (event) => {
     const element = event.target;
@@ -116,7 +76,6 @@ const checkCoupon = (event) => {
                 couponError.classList.remove('hidden');
                 couponId.value = '';
                 subscribeModal.classList.remove('valid-coupon');
-                paypalCoupon.classList.add('hidden');
                 return;
             }
 
@@ -126,14 +85,12 @@ const checkCoupon = (event) => {
             couponSuccess.classList.remove('hidden');
             couponId.value = result.coupon;
             subscribeModal.classList.add('valid-coupon');
-            paypalCoupon.classList.remove('hidden');
         }).catch((result) => {
             couponValidating.classList.add('hidden');
             if (result.responseJSON) {
                 couponError.innerHTML = result.responseJSON.message;
                 couponError.classList.remove('hidden');
             }
-            paypalCoupon.classList.add('hidden');
         });
 };
 
@@ -142,40 +99,42 @@ const subscribe = (event) => {
     event.preventDefault();
     disableSubmit(event);
 
-    const intentToken = document.querySelector('input[name="subscription-intent-token"]');
     const errorMessage = document.querySelector('.alert-error');
     errorMessage.classList.add('hidden');
 
-    // If the form already has a payment id, we don't need stripe to add the new one
+    // User already has a saved payment method — submit directly
     const cardID = document.querySelector('input[name="payment_id"]');
-    if (cardID.value) {
-        // Let the animation handler do its thing
+    if (cardID && cardID.value) {
         form.submit();
-        return false;
+        return;
     }
 
-    stripe.confirmCardSetup(
-        intentToken.value, {
-            payment_method: {
-                card: card,
-                billing_details: {
-                    name: document.querySelector('input[name="card-holder-name"]').value
-                }
-            }
-        }
-    ).then(function (result) {
+    const periodInput = document.querySelector('input[name="period"]');
+    const couponInput = document.getElementById('coupon');
+    const returnUrl = new URL(document.getElementById('payment-element').dataset.returnUrl);
+    if (periodInput) returnUrl.searchParams.set('period', periodInput.value);
+    if (couponInput && couponInput.value) returnUrl.searchParams.set('coupon', couponInput.value);
+
+    stripe.confirmSetup({
+        elements,
+        confirmParams: {
+            return_url: returnUrl.toString(),
+        },
+        redirect: 'if_required',
+    }).then((result) => {
         if (result.error) {
             formSubmitBtn.classList.remove('disabled', 'loading');
             formSubmitBtn.disabled = '';
             errorMessage.innerHTML = result.error.message;
             errorMessage.classList.remove('hidden');
-            return false;
-        } else {
+            return;
+        }
+
+        if (result.setupIntent && result.setupIntent.payment_method) {
             cardID.value = result.setupIntent.payment_method;
-            // Let the animation handler do its thing
             form.submit();
         }
-    }.bind(this));
+    });
 };
 
 const initPeriodToggle = () => {

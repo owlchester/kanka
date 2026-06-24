@@ -97,11 +97,13 @@ Route::get('/subscription/change/{tier}', [SubscriptionController::class, 'chang
 Route::post('/subscription/renew', [SubscriptionController::class, 'renew'])->name('settings.subscription.renew');
 Route::get('/subscription/finish', [FinishController::class, 'index'])->name('settings.subscription.finish');
 Route::get('/subscription/callback', [SubscriptionController::class, 'callback'])->name('settings.subscription.callback');
+Route::get('/subscription/payment-return/{tier}', [SubscriptionController::class, 'paymentReturn'])->name('settings.subscription.payment-return');
 Route::post('/subscription/change/{tier}', [SubscriptionController::class, 'subscribe'])->name('settings.subscription.subscribe');
 Route::get('/subscription/unsubscribe', [CancellationController::class, 'index'])->name('settings.subscription.unsubscribe');
 Route::post('/subscription/cancel', [CancellationController::class, 'save'])->name('settings.subscription.cancel');
 Route::get('/subscription/cancelled', [CancelledController::class, 'index'])->name('settings.subscription.cancelled');
 Route::get('/billing/payment-method', [PaymentMethodController::class, 'index'])->name('billing.payment-method');
+Route::get('/billing/portal', [PaymentMethodController::class, 'portal'])->name('billing.portal');
 Route::patch('/billing/payment-method', [PaymentMethodController::class, 'save'])->name('billing.payment-method.save');
 Route::get('/billing/currency', [PaymentMethodController::class, 'currency'])->name('billing.currency');
 

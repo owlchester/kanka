@@ -1,9 +1,3 @@
-@php use Illuminate\Support\Arr; @endphp
-<?php /**
- * @var \App\Models\CampaignBoost $boost
- * @var \App\Models\Campaign $campaign
- */
-?>
 @extends('layouts.app', [
     'title' => __('billing/payment_methods.title'),
     'breadcrumbs' => false,
@@ -29,10 +23,14 @@
             {{ __('settings.subscription.billing.saved') }}
         </x-slot>
 
-        <billing-management
-                api_token="{{ $stripeApiToken }}"
-                trans="{{ $translations }}"
-        ></billing-management>
+        <div class="flex gap-2 justify-between items-center">
+            <x-helper>
+                <p>{{ __('settings.subscription.payment_method.helper') }}</p>
+            </x-helper>
+            <a href="{{ route('billing.portal') }}" class="btn2 btn-outline flex-none">
+                {{ __('settings.subscription.payment_method.actions.manage') }}
+            </a>
+        </div>
     </x-box>
 
     <x-box class="mb-12" id="currency">
@@ -98,7 +96,3 @@
 @endsection
 
 
-@section('scripts')
-    @parent
-    @vite('resources/js/billing.js')
-@endsection

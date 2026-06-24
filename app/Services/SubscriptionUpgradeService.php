@@ -43,35 +43,8 @@ class SubscriptionUpgradeService
             return $this->stripeUpgradePrice($price);
         }
 
-        // PayPal: manual proration since we can't call Stripe's API
-        $monthly = ! $this->onYearlyPlan();
-
-        $code = 'owlbear';
-        if ($this->user->isElemental()) {
-            $code = 'elemental';
-            if (! $monthly) {
-                return 0;
-            }
-        } elseif ($this->user->isWyvern()) {
-            $code = 'wyvern';
-        }
-        $currentTier = Tier::where('code', $code)->first();
-        $oldPrice = $currentTier->price(
-            $this->user->currency(),
-            $monthly ? PricingPeriod::Monthly : PricingPeriod::Yearly
-        );
-        $endPeriod = $this->endPeriod();
-
-        if ($this->period === PricingPeriod::Yearly) {
-            $duration = $monthly ? 31 : 365;
-            $price = round(($price - $oldPrice) * ($endPeriod->diffInDays(Carbon::now(), true) / $duration), 2);
-        } elseif ($monthly && $this->period === PricingPeriod::Monthly) {
-            $price = round(($price - $oldPrice) * ($endPeriod->diffInDays(Carbon::now(), true) / 31), 2);
-        } elseif ($this->period === PricingPeriod::Monthly) {
-            $price = round(($price - $oldPrice) * ($endPeriod->diffInDays(Carbon::now(), true) / 365), 2);
-        }
-
-        return max(0, $price);
+        // Paypal: no longer allow this system
+        return 1;
     }
 
     protected function stripeUpgradePrice(float $fullPrice): float

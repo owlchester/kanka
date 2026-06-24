@@ -3,7 +3,7 @@
 return [
     'cancellation'  => [
         'answer'    => <<<'TEXT'
-Absolutely! You'll find a cancel button right on this page if you're currently subscribed. All subscription benefits remain active until the end of your billing period. Please note that PayPal subscriptions automatically end at their conclusion as they don't support automatic renewal.
+Absolutely! You'll find a cancel button right on this page if you're currently subscribed. All subscription benefits remain active until the end of your billing period.
 
 TEXT
 ,
@@ -46,7 +46,7 @@ TEXT
         'question'  => 'Do you offer refunds?',
     ],
     'renewal'       => [
-        'answer'    => 'Yes, for credit card subscriptions, we\'ll automatically renew your plan at the same rate when your billing period ends. PayPal subscriptions are the exception, they require manual renewal as PayPal doesn\'t support automatic billing continuation for our service.',
+        'answer'    => 'Yes, for credit card subscriptions, we\'ll automatically renew your plan at the same rate when your billing period ends.',
         'question'  => 'Will I be charged automatically when my subscription renews?',
     ],
     'security'      => [

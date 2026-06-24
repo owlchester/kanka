@@ -2,7 +2,7 @@
 
 return [
     'cancellation'  => [
-        'answer'    => '¡Claro! Encontrarás un botón para cancelar justo en esta página si estás suscrito actualmente. Todos los beneficios de la suscripción permanecerán activos hasta el final de tu período de facturación. Ten en cuenta que las suscripciones por PayPal terminan automáticamente al concluir, ya que no soportan renovación automática.',
+        'answer'    => '¡Claro! Encontrarás un botón para cancelar justo en esta página si estás suscrito actualmente. Todos los beneficios de la suscripción permanecerán activos hasta el final de tu período de facturación.',
         'question'  => '¿Puedo cancelar mi suscripción en cualquier momento?',
     ],
     'cost'          => [
@@ -38,7 +38,7 @@ return [
         'question'  => '¿Ofrecen reembolsos?',
     ],
     'renewal'       => [
-        'answer'    => 'Sí, para suscripciones con tarjeta de crédito, renovaremos automáticamente tu plan al mismo precio cuando termine tu período de facturación. Las suscripciones por PayPal son la excepción; requieren renovación manual porque PayPal no admite la renovación automática para nuestro servicio.',
+        'answer'    => 'Sí, para suscripciones con tarjeta de crédito, renovaremos automáticamente tu plan al mismo precio cuando termine tu período de facturación.',
         'question'  => '¿Se me cobrará automáticamente cuando se renueve mi suscripción?',
     ],
     'security'      => [

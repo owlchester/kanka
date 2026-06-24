@@ -29,15 +29,12 @@ class PaypalExpiringMail extends Mailable
 
     public bool $discord;
 
-    public string $renewUrl;
-
     public function __construct(User $user)
     {
         $this->user = $user;
 
         $subscription = $user->subscription('kanka');
         $this->expiryDate = $subscription?->ends_at?->isoFormat('MMMM D, Y') ?? '';
-        $this->renewUrl = route('paypal.renew');
 
         $this->discord = (bool) $user->discord();
 

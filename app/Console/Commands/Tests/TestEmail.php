@@ -8,7 +8,6 @@ use App\Jobs\Emails\Purge\SecondWarningJob;
 use App\Jobs\Emails\SubscriptionCancelEmailJob;
 use App\Jobs\Emails\SubscriptionDowngradedEmailJob;
 use App\Jobs\Emails\SubscriptionFailedEmailJob;
-use App\Jobs\Emails\Subscriptions\ExpiringCardAlert;
 use App\Jobs\Emails\Subscriptions\UpcomingYearlyAlert;
 use App\Jobs\Emails\Subscriptions\WelcomeSubscriptionEmailJob;
 use App\Jobs\Emails\WelcomeEmailJob;
@@ -57,8 +56,6 @@ class TestEmail extends Command
             WelcomeSubscriptionEmailJob::dispatch($user, Tier::where('name', 'wyvern')->first());
         } elseif ($template === 'owlbear') {
             WelcomeSubscriptionEmailJob::dispatch($user, Tier::where('name', 'owlbear')->first());
-        } elseif ($template === 'expiring') {
-            ExpiringCardAlert::dispatch($user);
         } elseif ($template === 'failed') {
             SubscriptionFailedEmailJob::dispatch($user);
         } elseif ($template === 'upcoming') {

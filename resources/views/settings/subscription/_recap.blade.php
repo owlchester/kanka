@@ -55,7 +55,6 @@ $box = 'rounded-2xl p-2 lg:p-3 bg-box shadow-xs hover:shadow-md flex flex-col it
                 {{ __('settings.subscription.fields.plan') }}
             </div>
         </div>
-        @if (!$user->hasPayPal())
         <div class="{{ $box }}">
             <div class="text-xl text-center">
                 @if (!empty($current))
@@ -72,7 +71,6 @@ $box = 'rounded-2xl p-2 lg:p-3 bg-box shadow-xs hover:shadow-md flex flex-col it
                 {{ __('settings.subscription.fields.billing') }}
             </div>
         </div>
-        @endif
         <a class="{{ $box }}" href="#" data-toggle="dialog"
            data-url="{{ route('billing.currency') }}">
             <div class="text-xl text-center">
@@ -85,14 +83,14 @@ $box = 'rounded-2xl p-2 lg:p-3 bg-box shadow-xs hover:shadow-md flex flex-col it
             </div>
         </a>
         @if ($user->subscribed('kanka'))
-            <div class="{{ $box }}">
+            <a href="{{ route('billing.history') }}" class="{{ $box }}">
                 <div class="text-xl text-center">
                     {{ $user->subscription('kanka')->created_at->isoFormat('MMMM D, Y') }}
                 </div>
                 <div class="text-muted">
                     {{ __('settings.subscription.fields.active_since') }}
                 </div>
-            </div>
+            </a>
             @if ($status == \App\Services\SubscriptionService::STATUS_GRACE)
                 <div class="{{ $box }}">
                     <div class="text-xl text-center">
@@ -106,20 +104,10 @@ $box = 'rounded-2xl p-2 lg:p-3 bg-box shadow-xs hover:shadow-md flex flex-col it
         @endif
     @endif
 
-    @if ($user->hasDefaultPaymentMethod())
-        <div class="{{ $box }}">
-            <div class="text-xl text-center">
-                @php $method = $user->defaultPaymentMethod(); @endphp
-                {{ __('settings.subscription.payment_method.saved', ['brand' => ucfirst($method->card?->brand), 'last4' => $method->card?->last4]) }}
-            </div>
-            <div class="text-muted">
-                {{ __('settings.subscription.fields.payment_method') }}
-            </div>
-        </div>
-    @else
+    @if (!$user->hasDefaultPaymentMethod())
         <a href="{{ route('billing.payment-method') }}" class="{{ $box }}">
             <div class="text-xl text-center">
-                {{ __('settings.subscription.payment_method.actions.add' ) }}
+                {{ __('crud.add' ) }}
                 <x-icon class="fa-solid fa-credit-card" />
             </div>
 

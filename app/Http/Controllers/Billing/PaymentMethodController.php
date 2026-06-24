@@ -7,7 +7,8 @@ use App\Facades\UserLogger;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\UserBillingStore;
 use App\Services\Users\CurrencyService;
-use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
@@ -24,34 +25,17 @@ class PaymentMethodController extends Controller
         $this->currencyService = $currencyService;
     }
 
-    /**
-     * @return Factory|View
-     */
-    public function index()
+    public function index(): View
     {
-        $stripeApiToken = config('cashier.key', null);
         $user = Auth::user();
-
-        $translations = [
-            'ending' => __('settings.subscription.payment_method.ending'),
-            'add_one' => __('settings.subscription.payment_method.add_one'),
-            'new_card' => __('settings.subscription.payment_method.new_card'),
-            'card_name' => __('settings.subscription.payment_method.card_name'),
-            'card' => __('settings.subscription.payment_method.card'),
-            'helper' => __('settings.subscription.payment_method.helper'),
-            'actions.add_new' => __('settings.subscription.payment_method.actions.add_new'),
-            'actions.save' => __('settings.subscription.payment_method.actions.save'),
-        ];
-        $translations = json_encode($translations);
-
         $currencies = $this->currencyService->user($user)->availableCurrencies();
 
-        return view('billing.payment-method', compact(
-            'stripeApiToken',
-            'user',
-            'translations',
-            'currencies',
-        ));
+        return view('billing.payment-method', compact('user', 'currencies'));
+    }
+
+    public function portal(Request $request): RedirectResponse
+    {
+        return $request->user()->redirectToBillingPortal(route('settings.subscription'));
     }
 
     public function currency()
@@ -78,7 +62,6 @@ class PaymentMethodController extends Controller
             }
             $user->subscriptions()->delete();
 
-            $user->card_expires_at = null;
             $user->stripe_id = null;
             UserLogger::user($user)->log(UserAction::currencySwitch);
         }
