@@ -11,10 +11,11 @@ $themeOverride = request()->get('_theme');
 if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'base'])) {
     $specificTheme = ($themeOverride === 'base') ? 'light' : $themeOverride;
 } elseif (!empty($campaign) && $campaign->boosted() && !empty($campaign->theme_id)) {
+    // In prod, midnight is theme id 4, but on local machines it's 3
     $specificTheme = match ($campaign->theme_id) {
         2 => 'dark',
-        3 => 'midnight',
-        default => 'light',
+        1 => 'light',
+        default => 'midnight',
     };
 } elseif (auth()->check() && !empty(auth()->user()->theme)) {
     $specificTheme = auth()->user()->theme;
