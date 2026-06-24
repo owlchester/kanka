@@ -54,7 +54,7 @@ $hasDashboards = !$dashboards->isEmpty() || !empty($dashboard);
                 @endif
                 </h4>
             @endif
-            
+
             @if (config('limits.campaigns.premium'))
             <div class="flex items-center gap-2">
                 <div class="inline-block">
@@ -125,7 +125,7 @@ $hasDashboards = !$dashboards->isEmpty() || !empty($dashboard);
                 <div class="col-span-12">
                     <div class="{{ $widgetClass }} widget-campaign cover-background handle cursor-grab rounded-xl"
                          data-toggle="dialog"
-                         data-url="{{ route('campaigns.dashboard-header.edit', $campaign) }}"
+                         data-url="{{ route('campaigns.dashboard-header.edit', ['campaign' => $campaign]) }}"
                     >
                         <div class="rounded-xl bg-box flex items-center gap-3 justify-between p-4">
                             <div class="flex-none text-neutral-content" data-toggle="tooltip" data-title="{{ __('dashboard.setup.reorder.helper') }}">
