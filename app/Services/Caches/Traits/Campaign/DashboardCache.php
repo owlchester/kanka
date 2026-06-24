@@ -22,10 +22,9 @@ trait DashboardCache
         ];
 
         /** @var CampaignRole[] $roles */
-        $roles = $this->campaign->roles()->with(['dashboardRoles', 'dashboardRoles.dashboard'])->get();
+        $roles = $this->campaign->roles()->with('dashboardRoles')->get();
         foreach ($roles as $role) {
-            $dashboards = $role->dashboardRoles;
-            if ($dashboards->isEmpty()) {
+            if ($role->dashboardRoles->isEmpty()) {
                 continue;
             }
 
@@ -35,7 +34,13 @@ trait DashboardCache
             } elseif ($role->is_public) {
                 $key = 'public';
             }
-            $available[$key] = $dashboards;
+
+            foreach ($role->dashboardRoles as $dashboardRole) {
+                $available[$key][] = [
+                    'campaign_dashboard_id' => $dashboardRole->campaign_dashboard_id,
+                    'is_default' => (bool) $dashboardRole->is_default,
+                ];
+            }
         }
 
         return $available;

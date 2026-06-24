@@ -30,8 +30,5 @@
 </x-grid>
 
 <x-widgets.forms.advanced>
-    @includeWhen(!$boosted, 'dashboard.widgets.forms._boosted')
-    <x-grid>
-        @include('dashboard.widgets.forms._class')
-    </x-grid>
+    @include('dashboard.widgets.forms._class')
 </x-widgets.forms.advanced>

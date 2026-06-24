@@ -1,4 +1,3 @@
-@import "./light.css";
 @import "./colour.css";
 
 body {
@@ -25,6 +24,9 @@ hr {
         --tw-text-opacity: 1;
         color: var(--link-focus, hsl(var(--pf)/var(--tw-text-opacity)));
     }
+}
+.entity-content a {
+    @apply underline underline-offset-[3px] hover:decoration-current;
 }
 a.neutral-link {
     --tw-text-opacity: 1;

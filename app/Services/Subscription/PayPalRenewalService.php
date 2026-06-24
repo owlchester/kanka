@@ -3,6 +3,7 @@
 namespace App\Services\Subscription;
 
 use App\Enums\UserAction;
+use App\Facades\UserLogger;
 use App\Jobs\Emails\Subscriptions\Admin\PaypalRenewedJob;
 use App\Models\Tier;
 use App\Traits\UserAware;
@@ -64,7 +65,7 @@ class PayPalRenewalService
         $this->user->pledge = $tier->name;
         $this->user->save();
 
-        $this->user->log(UserAction::subPaypalRenew);
+        UserLogger::user($this->user)->log(UserAction::subPaypalRenew);
 
         PaypalRenewedJob::dispatch($this->user->id);
     }

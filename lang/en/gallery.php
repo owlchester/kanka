@@ -2,19 +2,28 @@
 
 return [
     'actions'   => [
+        'add_url'   => 'Add from URL',
+        'change'    => 'Change',
         'gallery'   => 'From gallery',
+        'upload'    => 'Upload from device',
         'url'       => 'Upload an image from a URL',
+        'url_hint'  => 'Paste an image link',
     ],
     'browse'    => [
-        'layouts'       => [
-            'large' => 'Large previews',
-            'small' => 'Small previews',
+        'folder_count'      => ':count images',
+        'folder_count_one'  => '1 image',
+        'layouts'           => [
+            'large' => 'Large',
+            'small' => 'Small',
         ],
-        'search'        => [
-            'placeholder'   => 'Search for an image in the gallery',
+        'search'            => [
+            'no_results'    => 'No images match ":term"',
+            'placeholder'   => 'Search images and folders',
+            'results'       => 'Results for ":term"',
+            'try_again'     => 'Try a different term',
         ],
-        'title'         => 'Gallery',
-        'unauthorized'  => 'None of your roles have the "browse gallery" permission.',
+        'title'             => 'Gallery',
+        'unauthorized'      => 'None of your roles have the "browse gallery" permission.',
     ],
     'cta'       => [
         'action'    => 'Unlock more storage space',
@@ -34,6 +43,10 @@ return [
             'too_big'               => 'The file is too large (:size MiB vs :max MiB)',
             'unauthorized'          => 'None of your roles have the "upload to gallery" permission.',
         ],
+    ],
+    'drop'      => [
+        'active'    => 'Drop to upload',
+        'hint'      => 'Click or drag image here',
     ],
     'file'      => [
         'saved' => 'Saved',

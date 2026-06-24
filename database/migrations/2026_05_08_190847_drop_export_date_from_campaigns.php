@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('campaigns', function (Blueprint $table) {
-            $table->dropColumn('export_date');
+            if (Schema::hasColumn('campaigns', 'export_date')) {
+                $table->dropColumn('export_date');
+            }
         });
     }
 

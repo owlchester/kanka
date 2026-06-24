@@ -14,7 +14,8 @@ trait Purifiable
         if (app()->runningInConsole() && ! app()->runningUnitTests()) {
             return;
         }
-        static::observe(app(PurifiableObserver::class));
+        $observer = app(PurifiableObserver::class);
+        static::saving([$observer, 'saving']);
     }
 
     public function getPurifiableFields(): array

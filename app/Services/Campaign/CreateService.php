@@ -4,6 +4,7 @@ namespace App\Services\Campaign;
 
 use App\Enums\UserAction;
 use App\Facades\UserCache;
+use App\Facades\UserLogger;
 use App\Models\Campaign;
 use App\Models\CampaignDescription;
 use App\Models\CampaignPermission;
@@ -170,7 +171,7 @@ class CreateService
             ->campaign($this->campaign)
             ->set();
 
-        $this->user->log(UserAction::campaignNew, ['campaign' => $this->campaign->id]);
+        UserLogger::user($this->user)->log(UserAction::campaignNew, ['campaign' => $this->campaign->id]);
         UserCache::clear();
 
         return $this;

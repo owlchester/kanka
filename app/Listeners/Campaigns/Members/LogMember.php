@@ -5,20 +5,10 @@ namespace App\Listeners\Campaigns\Members;
 use App\Events\Campaigns\Members\Switched;
 use App\Events\Campaigns\Members\UserJoined;
 use App\Events\Campaigns\Members\UserLeft;
+use App\Facades\UserLogger;
 
 class LogMember
 {
-    /**
-     * Create the event listener.
-     */
-    public function __construct()
-    {
-        //
-    }
-
-    /**
-     * Handle the event.
-     */
     public function handle(UserJoined|UserLeft|Switched $event): void
     {
         $action = 'joined';
@@ -31,7 +21,8 @@ class LogMember
         } elseif ($event instanceof UserJoined) {
             $params = ['invite' => $event->campaignInvite->id];
         }
-        $event->user->campaignLog(
+
+        UserLogger::user($event->user)->campaign(
             $event->campaign->id,
             'members',
             $action,

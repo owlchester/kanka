@@ -34,7 +34,7 @@ class TimelineElementCacheService extends BaseCache
                 ->select(DB::raw('icon, MAX(timeline_elements.created_at) as cmat'))
                 ->groupBy('icon')
                 ->whereNotNull('icon')
-                ->orderBy('cmat', 'DESC')
+                ->orderBy('cmat', 'desc')
                 ->take(10)
                 ->pluck('icon')
                 ->all();

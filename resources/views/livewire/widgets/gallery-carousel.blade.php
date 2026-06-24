@@ -7,11 +7,11 @@
  * @var bool $readyToLoad
  */
 ?>
-<div wire:init="loadImages">
+<div wire:init="loadImages" class="aspect-4/3">
     @if (!$readyToLoad)
         <x-icon class="loading"></x-icon>
     @elseif (count($images) > 0)
-        <x-box padding="0" class="widget-gallery {{ $widget->customClass($campaign) }}" id="dashboard-widget-{{ $widget->id }}">
+        <x-box padding="0" class="widget-gallery {{ $widget->customClass() }}" id="dashboard-widget-{{ $widget->id }}">
             <div
                 x-data="{
                     current: 0,
@@ -40,7 +40,7 @@
                 @if (count($images) > 1)
                     <button
                         @click="prev(); resetTimer()"
-                        class="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-base-100/70 hover:bg-base-100 rounded-full w-8 h-8 flex items-center justify-center transition-colors"
+                        class="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-base-100/70 hover:bg-base-100 rounded-full w-8 h-8 flex items-center justify-center transition-colors cursor-pointer"
                         type="button"
                     >
                         <x-icon class="fa-solid fa-chevron-left" />
@@ -48,7 +48,7 @@
 
                     <button
                         @click="next(); resetTimer()"
-                        class="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-base-100/70 hover:bg-base-100 rounded-full w-8 h-8 flex items-center justify-center transition-colors"
+                        class="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-base-100/70 hover:bg-base-100 rounded-full w-8 h-8 flex items-center justify-center transition-colors cursor-pointer"
                         type="button"
                     >
                         <x-icon class="fa-solid fa-chevron-right" />
@@ -74,7 +74,7 @@
             </div>
         </x-box>
     @else
-        <x-box class="widget-gallery {{ $widget->customClass($campaign) }}" id="dashboard-widget-{{ $widget->id }}">
+        <x-box class="widget-gallery {{ $widget->customClass() }}" id="dashboard-widget-{{ $widget->id }}">
             <p class="text-neutral-content text-center">{{ __('Nothing to show') }}</p>
         </x-box>
     @endif

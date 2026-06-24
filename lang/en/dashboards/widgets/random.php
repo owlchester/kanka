@@ -1,6 +1,7 @@
 <?php
 
 return [
-    'description'   => 'Shows a random entry from the campaign.',
+    'description'   => 'A surprise entry from the campaign.',
     'name'          => 'Random entry',
+    'tag'           => 'Random',
 ];

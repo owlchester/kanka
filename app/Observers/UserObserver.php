@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Enums\UserAction;
 use App\Events\Users\EmailChanged;
 use App\Facades\UserCache;
+use App\Facades\UserLogger;
 use App\Jobs\Emails\MailSettingsChangeJob;
 use App\Jobs\Emails\WelcomeEmailJob;
 use App\Jobs\Users\UnsubscribeUser;
@@ -57,11 +58,11 @@ class UserObserver
 
         // Todo: move to the controller
         if ($user->isDirty('email')) {
-            $user->log(UserAction::emailUpdate);
+            UserLogger::user($user)->log(UserAction::emailUpdate);
         } elseif ($user->isDirty('provider')) {
-            $user->log(UserAction::socialSwitch);
+            UserLogger::user($user)->log(UserAction::socialSwitch);
         } elseif ($user->isDirty('password')) {
-            $user->log(UserAction::passwordUpdate);
+            UserLogger::user($user)->log(UserAction::passwordUpdate);
         }
     }
 

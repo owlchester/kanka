@@ -25,7 +25,7 @@ return new class extends Migration
         // Copy existing entry and excerpt data into the new table
         DB::statement('
             INSERT INTO campaign_descriptions (campaign_id, description, excerpt, created_at, updated_at)
-            SELECT id, entry, excerpt, NOW(), NOW()
+            SELECT id, entry, excerpt, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
             FROM campaigns
             WHERE entry IS NOT NULL OR excerpt IS NOT NULL
         ');

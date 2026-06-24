@@ -28,7 +28,7 @@
         </div>
 
         <div id="datagrid-parent" class="table-responsive">
-            @livewire('campaigns.exports-table', ['campaign' => $campaign])
+            <livewire:campaigns.exports-table :campaign="$campaign" />
         </div>
     </div>
 @endsection

@@ -7,7 +7,7 @@ $entityId = $entity->id ?? null;
 $placeholder = __('entries/fields.name.placeholder');
 // Entity names can contain ", ', emojis, & and other special characters
 $modelValue = htmlspecialchars(old('name', str_replace('&amp;', '&', $model->name ?? '')));
-$label = __('crud.fields.name');
+$label = $entityType->name();
 
 // Existing aliases serialised for the Vue component (empty on create)
 $entityAliasCount = isset($entity) && $entity->id ? $entity->aliases()->count() : 0;

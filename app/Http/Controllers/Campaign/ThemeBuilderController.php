@@ -15,7 +15,7 @@ class ThemeBuilderController extends Controller
     public function __construct(protected ThemeBuilderService $themeBuilderService)
     {
         $this->middleware('auth');
-        $this->middleware(Boosted::class, ['except' => 'index']);
+        $this->middleware(Boosted::class, ['only' => ['save']]);
     }
 
     public function index(Campaign $campaign)

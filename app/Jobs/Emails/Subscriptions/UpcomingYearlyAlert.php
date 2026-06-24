@@ -3,6 +3,7 @@
 namespace App\Jobs\Emails\Subscriptions;
 
 use App\Enums\UserAction;
+use App\Facades\UserLogger;
 use App\Mail\Subscription\User\UpcomingYearlyEmail;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
@@ -46,6 +47,6 @@ class UpcomingYearlyAlert implements ShouldQueue
             ->send(
                 new UpcomingYearlyEmail($user)
             );
-        $user->log(UserAction::yearlyRenewWarning);
+        UserLogger::user($user)->log(UserAction::yearlyRenewWarning);
     }
 }

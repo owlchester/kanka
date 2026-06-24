@@ -24,7 +24,7 @@
         <p class="max-w-2xl">{{ __('campaigns/import.description_v2') }}</p>
 
         @can('import', $campaign)
-            @livewire('campaigns.csv-import', ['campaignImport' => $import, 'campaign' => $campaign])
+        <livewire:campaigns.csv-import :campaignImport="$import" :campaign="$campaign" />
         @endif
     </div>
 @endsection

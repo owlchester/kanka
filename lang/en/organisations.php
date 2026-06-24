@@ -18,6 +18,10 @@ return [
         'actions'       => [
             'add_multiple'  => 'Add members',
         ],
+        'bulks'         => [
+            'delete'    => '{1} Removed :count member.|[2,*] Removed :count members.',
+            'patch'     => '{1} Updated :count member.|[2,*] Updated :count members.',
+        ],
         'create'        => [
             'helper'            => 'Add one or several members to :name.',
             'success_multiple'  => '{1} Added :count member to :name.|[2,*] Added :count members to :name.',

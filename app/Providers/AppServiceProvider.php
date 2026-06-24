@@ -60,6 +60,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Queue;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
@@ -69,6 +70,7 @@ use Laravel\Passport\ClientRepository;
 use Laravel\Passport\Passport;
 use Laravel\Passport\PassportUserProvider;
 use League\OAuth2\Server\ResourceServer;
+use Livewire\Livewire;
 use Symfony\Component\Console\Exception\InvalidOptionException;
 use Symfony\Component\Process\Process;
 
@@ -113,6 +115,10 @@ class AppServiceProvider extends ServiceProvider
 
         Validator::resolver(function ($translator, $data, $rules, $messages) {
             return new HashValidator($translator, $data, $rules, $messages);
+        });
+
+        Livewire::setUpdateRoute(function ($handle) {
+            return Route::post('/livewire/update/{campaign?}', $handle)->middleware('web');
         });
     }
 

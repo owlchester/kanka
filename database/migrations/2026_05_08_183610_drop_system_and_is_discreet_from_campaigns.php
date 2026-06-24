@@ -12,7 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('campaigns', function (Blueprint $table) {
-            $table->dropColumn(['system', 'is_discreet']);
+            if (Schema::hasIndex('campaigns', 'campaigns_name_system_is_private_index')) {
+                $table->dropIndex('campaigns_name_system_is_private_index');
+            }
+            if (Schema::hasIndex('campaigns', 'campaigns_is_discreet_index')) {
+                $table->dropIndex('campaigns_is_discreet_index');
+            }
+            if (Schema::hasColumn('campaigns', 'system')) {
+                $table->dropColumn('system');
+            }
+            if (Schema::hasColumn('campaigns', 'is_discreet')) {
+                $table->dropColumn('is_discreet');
+            }
         });
     }
 

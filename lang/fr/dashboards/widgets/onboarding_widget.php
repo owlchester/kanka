@@ -58,5 +58,6 @@ return [
         'idea_3'    => 'Configurer un tableau de bord pour tes joueurs',
         'ideas'     => 'Besoin d\'idées? Voici quelques pistes:',
     ],
+    'tag'       => 'Démarrage',
     'title'     => 'Pour commencer',
 ];

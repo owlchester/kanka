@@ -16,6 +16,7 @@ if (request()->get('m') == \App\Enums\Descendants::All->value || (!request()->ha
     $allMembers = true;
 }
 $datagridOptions = Datagrid::initOptions($datagridOptions);
+Datagrid::layout(App\Renderers\Layouts\Organisation\Member::class);
 
 $datagridCall = ['datagridUrl' => route('organisations.members', $datagridOptions)];
 if (!empty($rows)) {
@@ -70,9 +71,17 @@ $all = \Illuminate\Support\Number::format($model->allMembersCount());
             </x-helper>
         </x-box>
     @else
-        <div id="datagrid-parent" class="table-responsive">
-            @include('layouts.datagrid._table', $datagridCall)
-        </div>
+        @if(Datagrid::hasBulks())
+            <x-form :action="['organisations.organisation_members.bulk', $campaign, 'organisation' => $model]" direct>
+                <div id="datagrid-parent" class="table-responsive">
+                    @include('layouts.datagrid._table', $datagridCall)
+                </div>
+            </x-form>
+        @else
+            <div id="datagrid-parent" class="table-responsive">
+                @include('layouts.datagrid._table', $datagridCall)
+            </div>
+        @endif
     @endif
 
 </div>

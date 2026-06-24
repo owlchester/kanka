@@ -7,19 +7,26 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'elements'      => [
-        'create'    => [
+        'create'        => [
             'success'   => 'Se ha añadido la entidad :entity a la misión.',
             'title'     => 'Nuevo elemento para :name',
         ],
-        'destroy'   => [
+        'destroy'       => [
             'success'   => 'Se ha quitado :entidad de la misión.',
         ],
-        'edit'      => [
+        'edit'          => [
             'success'   => 'Se ha actualizado :entity en la misión.',
             'title'     => 'Actualizar elemento de la misión :name',
         ],
-        'fields'    => [
+        'fields'        => [
+            'copy_entity_entry' => 'Usar descripción de entrada',
             'entity_or_name'    => 'Selecciona una entidad de la campaña o asigna un nombre a este elemento.',
+        ],
+        'helpers'       => [
+            'copy_entity_entry' => 'Muestra la descripción de la entrada vinculada en lugar de la descripción personalizada.',
+        ],
+        'placeholders'  => [
+            'name'  => 'Nombre del elemento',
         ],
     ],
     'fields'        => [
@@ -30,11 +37,17 @@ return [
         'is_completed'  => 'Completada',
         'location'      => 'Lugar de inicio',
         'role'          => 'Rol',
+        'status'        => 'Estado',
     ],
     'helpers'       => [
         'is_completed'  => 'Selecciona esto si la misión ya se ha completado.',
+        'status'        => 'El estado actual de la misión.',
     ],
-    'hints'         => [],
+    'hints'         => [
+        'is_abandoned'  => 'Esta misión ha sido abandonada.',
+        'is_completed'  => 'Esta misión está completada.',
+        'is_ongoing'    => 'Esta misión está en curso.',
+    ],
     'index'         => [],
     'lists'         => [
         'empty' => 'Crea misiones para registrar objetivos, tramas o motivaciones de los personajes.',
@@ -53,5 +66,11 @@ return [
         'tabs'      => [
             'elements'  => 'Elementos',
         ],
+    ],
+    'status'        => [
+        'abandoned'     => 'Abandonada',
+        'completed'     => 'Completada',
+        'not_started'   => 'No iniciada',
+        'ongoing'       => 'En curso',
     ],
 ];

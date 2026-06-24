@@ -43,6 +43,7 @@ return [
         'actions'       => [
             'edit'          => 'Editar y etiquetar en lote',
             'kits'          => 'Aplicar kit de propiedades',
+            'modify'        => 'Modificar',
             'permissions'   => 'Cambiar permisos',
         ],
         'age'           => [
@@ -63,6 +64,9 @@ return [
         'errors'        => [
             'admin'     => 'Solamente los administradores de la campaña pueden cambiar el estatus privado de las entidades.',
             'general'   => 'Ha habido un error al procesar la acción. Vuelve a intentarlo o contáctanos si el problema persiste. Mensaje de error: :hint.',
+        ],
+        'modify'        => [
+            'title' => 'Modificar varios elementos',
         ],
         'permissions'   => [
             'fields'    => [
@@ -119,9 +123,11 @@ return [
         'copy_permissions'  => 'Copiar permisos (esto anulará los valores que hayas configurado en la pestaña de permisos)',
         'copy_posts'        => 'Copiar publicaciones (esto incluye los permisos de cada publicación)',
         'copy_reminders'    => 'Copy Reminders',
+        'created_by'        => 'Creado por',
         'creator'           => 'Creador',
         'date_range'        => 'Rango de fechas',
         'excerpt'           => 'Extracto',
+        'has_attributes'    => 'Tiene propiedades',
         'has_entity_files'  => 'Tiene archivos',
         'has_entry'         => 'Tiene entrada',
         'has_image'         => 'Tiene imagen',
@@ -141,6 +147,7 @@ return [
         'template'          => 'Plantilla',
         'tooltip'           => 'Descripción emergente',
         'type'              => 'Tipo',
+        'updated_by'        => 'Actualizado por',
         'visibility'        => 'Visibilidad',
         'word-count'        => 'Número de palabras: :number',
     ],
@@ -208,6 +215,7 @@ return [
     'hints'             => [
         'calendar_date'         => 'Las fechas de calendario hacen que sea más fácil filtrar las listas, y también fijan los eventos al calendario seleccionado.',
         'image_dimension'       => 'Dimensiones recomendadas: :dimension píxeles.',
+        'image_formats'         => 'Formatos compatibles: :formats.',
         'image_limitations'     => 'Formatos soportados: :formats. Tamaño máximo del archivo: :size.',
         'image_recommendation'  => 'Dimensiones recomendadas: :width por :height px.',
         'is_star'               => 'Los elementos fijados aparecerán en el menú principal de la entidad.',
@@ -277,6 +285,7 @@ return [
         'name'          => 'Nombre de la entidad',
         'organisation'  => 'Elige una organización',
         'parent'        => 'Elija un padre',
+        'search'        => 'Escribe para buscar',
         'tag'           => 'Elige una etiqueta',
         'template'      => 'Elige una plantilla',
         'timeline'      => 'Elige una línea de tiempo',

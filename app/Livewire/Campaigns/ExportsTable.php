@@ -7,6 +7,7 @@ use App\Models\CampaignExport;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Number;
+use Livewire\Attributes\Locked;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -22,6 +23,7 @@ class ExportsTable extends Component
 
     protected $listeners = ['refreshTable' => '$refresh']; // Listen for table refresh event
 
+    #[Locked]
     public Campaign $campaign;
 
     public int $pageNumber = 1;

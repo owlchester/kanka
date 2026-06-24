@@ -1,6 +1,4 @@
 <x-grid>
-    @include('cruds.fields.entity-name')
-
     @include('cruds.fields.parent')
 
     <x-forms.field field="entity-type" :helper="__('attribute_templates.hints.entity_type')">

@@ -6,6 +6,7 @@ use App\Enums\PricingPeriod;
 use App\Enums\UserAction;
 use App\Enums\UserFlags;
 use App\Exceptions\TranslatableException;
+use App\Facades\UserLogger;
 use App\Jobs\DiscordRoleJob;
 use App\Jobs\Emails\MailSettingsChangeJob;
 use App\Jobs\Emails\SubscriptionCreatedEmailJob;
@@ -25,7 +26,6 @@ use Laravel\Cashier\Exceptions\IncompletePayment;
 use Laravel\Cashier\PaymentMethod;
 use Laravel\Cashier\Subscription;
 use Stripe\Card;
-use Stripe\Stripe;
 
 class SubscriptionService
 {
@@ -145,9 +145,6 @@ class SubscriptionService
         if ($payment instanceof PaymentMethod) {
             /** @var Card $card */
             $card = $payment->asStripePaymentMethod()->card;
-            $expiresAt = Carbon::createFromDate($card->exp_year, $card->exp_month)->endOfMonth();
-            $this->user->card_expires_at = $expiresAt;
-            $this->user->save();
 
             // Check that someone isn't using a VPN
             if (app()->isProduction() && $this->user->currency() === 'brl' && $card->country !== 'BR') {
@@ -172,7 +169,7 @@ class SubscriptionService
                 ->withCoupon($this->coupon ?? null)
                 ->create($paymentID);
 
-            $this->user->log(UserAction::subNew);
+            UserLogger::user($this->user)->log(UserAction::subNew);
 
             return $this;
         }
@@ -180,10 +177,10 @@ class SubscriptionService
         // If going down from elemental to owlbear, keep it as is until the current billing period
         if ($this->downgrading()) {
             $this->user->subscription('kanka')->swap($this->tierPrice()->stripe_id);
-            $this->user->log(UserAction::subDowngrade);
+            UserLogger::user($this->user)->log(UserAction::subDowngrade);
         } else {
             $this->user->subscription('kanka')->swapAndInvoice($this->tierPrice()->stripe_id);
-            $this->user->log(UserAction::subUpgrade);
+            UserLogger::user($this->user)->log(UserAction::subUpgrade);
         }
 
         return $this;
@@ -213,7 +210,7 @@ class SubscriptionService
                 Arr::get($this->request, 'reason'),
                 Arr::get($this->request, 'reason_custom')
             );
-            $this->user->log(UserAction::subDowngrade);
+            UserLogger::user($this->user)->log(UserAction::subDowngrade);
 
             return $this;
         }

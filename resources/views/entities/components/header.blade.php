@@ -29,7 +29,7 @@ if (auth()->check() && auth()->user()->can('admin', $campaign)) {
 }
 
 $hasBanner = false;
-if($campaign->boosted() && $entity->hasHeaderImage()) {
+if($entity->hasHeaderImage()) {
     $hasBanner = true;
     $headerImageUrl = $entity->getHeaderUrl();
     $headerImageSquare = $entity->getHeaderUrl(400, 400);
@@ -37,7 +37,6 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
     $headerImageM = $entity->getHeaderUrl(1200, 400);
     $headerImageL = $entity->getHeaderUrl(1800, 400);
     $headerImageXL = $entity->getHeaderUrl(2400, 400);
-
 }
 
 $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();

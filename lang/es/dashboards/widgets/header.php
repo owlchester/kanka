@@ -3,4 +3,6 @@
 return [
     'description'   => 'Muestra un encabezado de texto.',
     'name'          => 'Encabezado',
+    'tag'           => 'Encabezado',
+    'tagline'       => 'Divisor de sección',
 ];

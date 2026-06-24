@@ -28,15 +28,6 @@ class UserPolicy
 
     public function renewPaypalSubscription(User $user): bool
     {
-        if (! $user->hasPayPal()) {
-            return false;
-        }
-
-        $subscription = $user->subscription('kanka');
-        if (! $subscription) {
-            return false;
-        }
-
-        return $subscription->ends_at->lte(now()->addDays(15));
+        return false;
     }
 }

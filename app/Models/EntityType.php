@@ -231,6 +231,11 @@ class EntityType extends Model
         return $this->id == config('entities.ids.location');
     }
 
+    public function isMap(): bool
+    {
+        return $this->id == config('entities.ids.map');
+    }
+
     public function createRoute(Campaign $campaign, array $params = []): string
     {
         if ($this->isCustom()) {

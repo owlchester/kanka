@@ -29,6 +29,10 @@ trait EntityLogs
         if (app()->runningInConsole()) {
             return;
         }
-        static::observe(app(EntityLogObserver::class));
+        $observer = app(EntityLogObserver::class);
+        static::created([$observer, 'created']);
+        static::updated([$observer, 'updated']);
+        static::deleted([$observer, 'deleted']);
+        static::restored([$observer, 'restored']);
     }
 }

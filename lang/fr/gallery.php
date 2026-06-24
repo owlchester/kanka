@@ -2,19 +2,28 @@
 
 return [
     'actions'   => [
+        'add_url'   => 'Ajouter depuis une URL',
+        'change'    => 'Changer',
         'gallery'   => 'Depuis la galerie',
+        'upload'    => 'Télécharger depuis l\'appareil',
         'url'       => 'Télécharger une image à partir d\'une URL',
+        'url_hint'  => 'Coller un lien d\'image',
     ],
     'browse'    => [
-        'layouts'       => [
+        'folder_count'      => ':count images',
+        'folder_count_one'  => '1 image',
+        'layouts'           => [
             'large' => 'Grands aperçus',
             'small' => 'Petits aperçus',
         ],
-        'search'        => [
+        'search'            => [
+            'no_results'    => 'Aucune image ne correspond à ":term"',
             'placeholder'   => 'Recherche d\'une image dans la galerie',
+            'results'       => 'Résultats pour ":term"',
+            'try_again'     => 'Essayez un autre terme',
         ],
-        'title'         => 'Galerie',
-        'unauthorized'  => 'Aucun de tes rôles n\'a l\'autorisation de "parcourir la galerie".',
+        'title'             => 'Galerie',
+        'unauthorized'      => 'Aucun de tes rôles n\'a l\'autorisation de "parcourir la galerie".',
     ],
     'cta'       => [
         'action'    => 'Débloquer plus d\'espace de stockage',
@@ -34,6 +43,10 @@ return [
             'too_big'               => 'Le fichier est trop lourd.',
             'unauthorized'          => 'Aucun de tes rôles n\'a l\'autorisation de "ajouter à la galerie".',
         ],
+    ],
+    'drop'      => [
+        'active'    => 'Déposer pour télécharger',
+        'hint'      => 'Cliquer ou glisser une image ici',
     ],
     'file'      => [
         'saved' => 'Sauvegardé',

@@ -15,7 +15,6 @@ use App\Console\Commands\Report\Onboarding;
 use App\Console\Commands\Report\Weekly;
 use App\Console\Commands\Subscriptions\EndFreeTrials;
 use App\Console\Commands\Subscriptions\EndSubscriptions;
-use App\Console\Commands\Subscriptions\ExpiringCardCommand;
 use App\Console\Commands\Subscriptions\PaypalExpiringCommand;
 use App\Console\Commands\Users\RegenerateDiscordToken;
 use Illuminate\Console\Scheduling\Schedule;
@@ -37,7 +36,6 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command(ExpiringCardCommand::class)->onOneServer()->monthly();
         $schedule->command('model:prune')->onOneServer()->daily();
         $schedule->command(CalendarAdvancer::class)->onOneServer()->daily();
         $schedule->command(AnonymiseUserLogs::class)->onOneServer()->daily();

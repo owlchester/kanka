@@ -43,6 +43,7 @@ return [
         'actions'       => [
             'edit'          => 'Opération de masse',
             'kits'          => 'Appliquer un kit de propriétés',
+            'modify'        => 'Modifier',
             'permissions'   => 'Changer les permissions',
         ],
         'age'           => [
@@ -63,6 +64,9 @@ return [
         'errors'        => [
             'admin'     => 'Seulement les membres administrateur de la campagne peuvent changer le statut des entrées.',
             'general'   => 'Un problème est survenu lors de l\'exécution. Prière de ressayer de nouveau ou nous contacter en cas de problème persistant. Message d\'erreur: :hint.',
+        ],
+        'modify'        => [
+            'title' => 'Modifier plusieurs éléments',
         ],
         'permissions'   => [
             'fields'    => [

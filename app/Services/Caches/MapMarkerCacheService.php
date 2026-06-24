@@ -34,7 +34,7 @@ class MapMarkerCacheService extends BaseCache
                 ->select(DB::raw('custom_icon, MAX(map_markers.created_at) as cmat'))
                 ->groupBy('custom_icon')
                 ->whereNotNull('custom_icon')
-                ->orderBy('cmat', 'DESC')
+                ->orderBy('cmat', 'desc')
                 ->take(10)
                 ->pluck('custom_icon')
                 ->all();

@@ -3,10 +3,22 @@
  * @var \App\Models\Campaign $campaign
  * @var \App\Models\Entity $entity
  */
-$themeOverride = request()->get('_theme');
-$specificTheme = null;
 $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
 $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign);
+$themeOverride = request()->get('_theme');
+if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'base'])) {
+    $specificTheme = ($themeOverride === 'base') ? 'light' : $themeOverride;
+} elseif (!empty($campaign) && $campaign->boosted() && !empty($campaign->theme_id)) {
+    $specificTheme = match ($campaign->theme_id) {
+        2 => 'dark',
+        3 => 'midnight',
+        default => 'light',
+    };
+} elseif (auth()->check() && !empty(auth()->user()->theme)) {
+    $specificTheme = auth()->user()->theme;
+} else {
+    $specificTheme = 'light';
+}
 ?><!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}" class="scroll-pt-16 overflow-auto">
 <head>
@@ -22,27 +34,12 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
     ])
     @includeWhen(!config('fontawesome.kit'), 'layouts.styles.fontawesome')
     @yield('styles')
-    @if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'base']))
-        @php $specificTheme = $themeOverride; @endphp
-        @if($themeOverride != 'base')
-            @vite('resources/css/themes/' . request()->get('_theme') . '.css')
-        @endif
-    @else
-        @if (!empty($campaign) && $campaign->boosted() && !empty($campaign->theme_id))
-            @if ($campaign->theme_id !== 1)
-                @vite('resources/css/themes/' . ($campaign->theme_id === 2 ? 'dark' : 'midnight') . '.css')
-                @php $specificTheme = ($campaign->theme_id === 2 ? 'dark' : 'midnight') @endphp
-            @endif
-        @elseif (auth()->check() && !empty(auth()->user()->theme))
-            @vite('resources/css/themes/' . auth()->user()->theme . '.css')
-            @php $specificTheme = auth()->user()->theme @endphp
-        @endif
-    @endif
+    @include('layouts._theme_css')
     @includeWhen(!empty($campaign), 'layouts._theme')
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
 </head>
 {{-- Hide the sidebar if the there is no current campaign --}}
-<body class="@if(isset($entity)){{ $entity->bodyClasses() }}@endif @if(isset($bodyClass)){{ $bodyClass }}@endif @if (!empty($campaign) && auth()->check() && auth()->user()->can('admin', $campaign)) is-admin @endif @if(!app()->isProduction()) env-{{ app()->environment() }} @endif " @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif @if (!empty($campaign)) data-user-member="{{ auth()->check() && auth()->user()->can('member', $campaign) ? 1 : 0 }}" @endif>
+<body class="@if(isset($entity)){{ $entity->bodyClasses() }}@endif @if(isset($bodyClass)){{ $bodyClass }}@endif @if (!empty($campaign) && auth()->check() && auth()->user()->can('admin', $campaign)) is-admin @endif @if(!app()->isProduction()) env-{{ app()->environment() }} @endif " data-theme="{{ $specificTheme }}" @if (!empty($campaign)) data-user-member="{{ auth()->check() && auth()->user()->can('member', $campaign) ? 1 : 0 }}" @endif>
 
     <div id="app" class="wrapper ">
         <div class="content-wrapper">

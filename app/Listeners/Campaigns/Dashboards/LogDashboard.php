@@ -5,20 +5,10 @@ namespace App\Listeners\Campaigns\Dashboards;
 use App\Events\Campaigns\Dashboards\DashboardCreated;
 use App\Events\Campaigns\Dashboards\DashboardDeleted;
 use App\Events\Campaigns\Dashboards\DashboardUpdated;
+use App\Facades\UserLogger;
 
 class LogDashboard
 {
-    /**
-     * Create the event listener.
-     */
-    public function __construct()
-    {
-        //
-    }
-
-    /**
-     * Handle the event.
-     */
     public function handle(DashboardCreated|DashboardUpdated|DashboardDeleted $event): void
     {
         $action = match (true) {
@@ -27,7 +17,7 @@ class LogDashboard
             $event instanceof DashboardDeleted => 'deleted',
         };
 
-        $event->user->campaignLog(
+        UserLogger::user($event->user)->campaign(
             $event->campaignDashboard->campaign_id,
             'dashboards',
             $action,

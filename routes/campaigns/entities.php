@@ -101,6 +101,7 @@ Route::get('/w/{campaign}/locations/{location}/quests', 'Locations\QuestControll
 
 // Organisation menu
 Route::get('/w/{campaign}/organisations/{organisation}/members', 'Organisation\MemberController@index')->name('organisations.members');
+Route::post('/w/{campaign}/organisations/{organisation}/organisation-members/bulk', 'Organisation\Bulks\MemberController@index')->name('organisations.organisation_members.bulk');
 Route::get('/w/{campaign}/organisations/{organisation}/organisations', 'Organisation\OrganisationController@organisations')->name('organisations.organisations');
 
 // Families menu

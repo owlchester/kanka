@@ -20,13 +20,6 @@
             <div class="text-xl">
         @if ($user->hasManualSubscription())
                     You currently have a manual subscription managed by our team. Please contact us at <a href="mailto:{{ config('app.email') }}" class="text-link">{{ config('app.email') }}</a> for assistance.
-        @elseif ($user->hasPayPal())
-            {!! __('settings.subscription.change.text.upgrade_paypal', [
-                'upgrade' => "<strong>$currency" . \Illuminate\Support\Number::format($upgrade, 2) . "</strong>",
-                'tier' => "<strong>$tier->name</strong>",
-                'amount' => "<strong>$currency$amount</strong>",
-                'date' => $user->subscription('kanka')->ends_at->isoFormat('MMMM D, Y')
-            ]) !!}
         @else
             @if ($isDowngrading)
                 {!! __('settings.subscription.change.text.downgrade_' . ($period->isYearly() ? 'yearly' : 'monthly'), [
@@ -56,37 +49,17 @@
     @endif
     <x-alert type="error" :hidden="true"></x-alert>
 
-    <div class="flex flex-col gap-2">
-        <select name="select-method" class="select">
-            @if (! $limited)
-                <option value="card">
-                    {{ __('billing/payment_methods.types.card') }}
-                </option>
-            @endif
-            <option value="paypal">
-                PayPal
-            </option>
-        </select>
-    </div>
-
-        @if (! $limited)
         <div class="transition-all duration-150" id="card-panel">
             <x-form :action="['settings.subscription.subscribe', 'tier' => $tier]" id="subscription-confirm" direct>
 
             <x-grid type="1/1" css="text-left">
                 @if (!$card)
-                    <x-forms.field field="card-name" :label="__('settings.subscription.payment_method.card_name')">
-                        <input type="text" name="card-holder-name"  />
-                    </x-forms.field>
-
-                    <x-forms.field field="card-number" :label="__('settings.subscription.payment_method.card')">
-                        <div id="card-element" class=""></div>
-                    </x-forms.field>
+                    <div id="payment-element" data-return-url="{{ route('settings.subscription.payment-return', ['tier' => $tier]) }}"></div>
                 @else
                     <div class="text-center">
                         <strong>{{ __('settings.subscription.fields.payment_method') }}</strong><br />
                         <x-icon class="fa-solid fa-credit-card" /> **** {{ $card->card->last4 }} {{ $card->card->exp_month }}/{{ $card->card->exp_year }}
-                        <p><a href="{{ route('billing.payment-method') }}" class="text-link">{{ __('settings.subscription.payment_method.actions.change') }}</a></p>
+                        <p><a href="{{ route('billing.portal') }}" class="text-link">{{ __('settings.subscription.payment_method.actions.change') }}</a></p>
                     </div>
                     @if ($isDowngrading)
 
@@ -156,71 +129,6 @@
             <input type="hidden" name="payment_id" value="{{ $card ? $card->id : null }}" />
             <input type="hidden" name="subscription-intent-token" value="{{ $intent->client_secret }}" />
             </x-form>
-        </div>
-        @endif
-        <div class="transition-all duration-150 {{ $limited ? '' : 'hidden' }}" id="paypal-panel">
-
-            <x-grid type="1/1" css="text-left">
-            @if (!$period->isYearly())
-                <x-alert type="warning">
-                    {{ __('settings.subscription.helpers.alternatives_yearly', ['method' => 'PayPal']) }}
-                </x-alert>
-            @else
-                @if ($user->subscribed('kanka') && !$user->hasPayPal())
-                    <x-alert type="warning">
-                        {{ __('settings.subscription.helpers.alternatives_warning') }}
-                    </x-alert>
-                @else
-
-                @if ($hasPromo)
-                    <x-alert type="warning alert-coupon" hidden class="paypal-coupon">
-                        Promotional codes aren't available when subscribing through PayPal.
-                    </x-alert>
-                @endif
-
-                <x-form :action="['paypal.process-transaction', 'tier' => $tier]" class="subscription-form flex flex-row gap-5">
-                    <x-grid type="1/1">
-                        <x-helper>
-                            <p>{{ __('settings.subscription.helpers.paypal_v3') }}</p>
-                        </x-helper>
-
-                        <button class="btn2 btn-block btn-primary subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
-                            <x-icon class="fa-brands fa-paypal" />
-                            {!! __('subscriptions/confirm.actions.paypal', [
-'currency' => $currency,
-'amount' => $amount,
-]) !!}
-                        </button>
-
-                        <div class="text-neutral-content flex flex-col gap-2 text-left">
-                            <div class="flex gap-1">
-                                <x-icon class="fa-regular fa-question-circle w-5 flex-none" />
-                                <p class="text-xs">
-                                    {!! __('subscriptions/confirm.helpers.auto-renew.none', ['date' => $nextBillingDate->isoFormat('MMMM D, Y')]) !!}
-                                </p>
-                            </div>
-                            <div class="flex gap-1">
-                                <x-icon class="fa-regular fa-shield w-5 flex-none" />
-                                <p class="text-xs">{!! __('subscriptions/confirm.helpers.paypal') !!}</p>
-                            </div>
-                            @if($isYearly)
-                                <div class="flex gap-1">
-                                    <x-icon class="fa-regular fa-handshake w-5 flex-none" />
-                                    <p class="text-xs grow">
-                                        {!! __('subscriptions/confirm.helpers.refund', ['email' => '<a href="mailto' . config('app.email') . '" class="text-link">' . config('app.email') . '</a>']) !!}
-                                    </p>
-                                </div>
-                            @endif
-                        </div>
-                    </x-grid>
-                    <input type="hidden" name="coupon" id="coupon" value="" />
-                    <input type="hidden" name="period" value="{{ $period->isYearly() ? 'yearly' : 'monthly' }}" />
-                    <input type="hidden" name="payment_id" value="{{ $card ? $card->id : null }}" />
-                    <input type="hidden" name="subscription-intent-token" value="{{ $intent->client_secret }}" />
-                </x-form>
-                @endif
-            @endif
-            </x-grid>
         </div>
     </div>
     </x-grid>

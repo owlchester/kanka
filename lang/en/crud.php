@@ -43,6 +43,7 @@ return [
         'actions'       => [
             'edit'          => 'Edit & tagging',
             'kits'          => 'Apply property kit',
+            'modify'        => 'Modify',
             'permissions'   => 'Change permissions',
         ],
         'age'           => [
@@ -63,6 +64,9 @@ return [
         'errors'        => [
             'admin'     => 'Only members of the Admin role can change the private status of entries.',
             'general'   => 'An error occurred processing your action. Please try again and contact us if the problem persists. Error message: :hint.',
+        ],
+        'modify'        => [
+            'title' => 'Modify multiple elements',
         ],
         'permissions'   => [
             'fields'    => [
@@ -129,7 +133,7 @@ return [
         'image'             => 'Image',
         'is_closed'         => 'Conversation will be closed and will no longer accept new messages.',
         'is_private'        => 'Private',
-        'is_private_v3'     => 'Only show this to members of the :admin-role role. This overrides any other permission.',
+        'is_private_v3'     => 'Hidden from everyone except members of the :admin-role role. Overrides any other permission.',
         'is_star'           => 'Pinned',
         'locations'         => ':first in :second',
         'name'              => 'Name',
@@ -257,7 +261,7 @@ return [
             'role'      => 'Role',
         ],
         'helpers'           => [
-            'setup' => 'Control how roles and members can interact with this entry. :allow will allow a member or role to do this action. :deny will deny them that action. :inherit will use the role or member\'s role\'s permission. A member set to :allow is able to do the action, even if one of their roles is set to :deny.',
+            'setup' => 'Set role and member access for this entry. :allow grants access, :deny blocks it, :inherit follows the role\'s campaign-level setting. A member-level :allow always overrides a role-level :deny. :docs.',
         ],
         'success'           => 'Permissions saved.',
         'title'             => 'Permissions',

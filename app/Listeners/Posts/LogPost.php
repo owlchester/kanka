@@ -8,6 +8,7 @@ use App\Events\Posts\PostDeleted;
 use App\Events\Posts\PostRestored;
 use App\Events\Posts\PostUpdated;
 use App\Facades\Identity;
+use App\Facades\UserLogger;
 use App\Models\EntityLog;
 use App\Models\Post;
 use App\Services\Entity\PostLoggerService;
@@ -66,7 +67,7 @@ class LogPost
         //            );
         //        }
 
-        $event->user->log(
+        UserLogger::user($event->user)->log(
             UserAction::post,
             [
                 'action' => $action,

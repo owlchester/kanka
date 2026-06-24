@@ -43,9 +43,6 @@ $postCount = 0;
             @include('entities.components.entry')
             @php $entryShown = true @endphp
         @endif
-        @if ($post->layout_id && !$campaign->superboosted())
-            @continue
-        @endif
         @include('entities.pages.posts.show')
         @includeWhen($postCount > 0 && $postCount % 3 === 0, 'ads.inline', ['count' => $postCount])
         @php $postCount++; @endphp

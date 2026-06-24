@@ -60,7 +60,7 @@ class Faq extends Model
     /**
      * @param  string  $order
      */
-    public function scopeOrdered(Builder $query, $order = 'ASC'): Builder
+    public function scopeOrdered(Builder $query, $order = 'asc'): Builder
     {
         return $query->orderBy('order', $order);
     }

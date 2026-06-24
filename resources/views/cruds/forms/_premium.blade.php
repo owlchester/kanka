@@ -1,21 +1,43 @@
 <?php /** @var \App\Models\Entity $entity */?>
 
 @php
+    $formats = 'PNG, JPG, GIF, WebP';
+    $max = 25;
     $translations = json_encode([
-        'cancel' => __('crud.actions.cancel'),
+        'cancel' => __('crud.cancel'),
         'remove' => __('crud.remove'),
         'url' => __('gallery.actions.url'),
         'gallery' => __('gallery.actions.gallery'),
+        'upload'    => __('gallery.actions.upload'),
+        'add_url'   => __('gallery.actions.add_url'),
+        'change'    => __('gallery.actions.change'),
+        'url_hint'  => __('gallery.actions.url_hint'),
+        'drag_hint' => __('gallery.drop.hint'),
+        'drop_hint' => __('gallery.drop.active'),
+        'formats'   => $formats . ' · max ' . $max . ' MB',
+        'unauthorized' => __('gallery.download.errors.unauthorized'),
         'browse' => [
-            'title' => __('gallery.browse.title'),
+            'title'        => __('gallery.browse.title'),
+            'folder_count'     => __('gallery.browse.folder_count'),
+            'folder_count_one' => __('gallery.browse.folder_count_one'),
             'layouts' => [
                 'small' => __('gallery.browse.layouts.small'),
                 'large' => __('gallery.browse.layouts.large'),
             ],
             'search' => [
                 'placeholder' => __('gallery.browse.search.placeholder'),
+                'results'     => __('gallery.browse.search.results'),
+                'no_results'  => __('gallery.browse.search.no_results'),
+                'try_again'   => __('gallery.browse.search.try_again'),
             ],
+            'unauthorized' => __('gallery.browse.unauthorized'),
         ],
+        'cta_title' => __('gallery.cta.title'),
+        'cta_action' => __('gallery.cta.action'),
+        'cta_helper' => __('gallery.cta.helper', [
+            'premium-campaign' => '<a href="https://kanka.io/premium" class="text-link">' . __('concept.premium-campaign') . '</a>',
+            'size' => \Illuminate\Support\Number::format(config('limits.gallery.premium') / (1024 * 1024), 2)
+            ]),
     ]);
 @endphp
 
@@ -78,7 +100,12 @@
                     </div>
                 </div>
             @else
-                <div class="gallery-selection">
+                @php
+                    $canUpload = isset($campaign) && auth()->user()->can('create', [\App\Models\Image::class, $campaign]);
+                    $canBrowse = isset($campaign) && auth()->user()->can('browse', [\App\Models\Image::class, $campaign]);
+
+                @endphp
+                <div class="gallery-selection w-fit">
                     <gallery-selection
                         file="{{ route('gallery.upload.file', [$campaign]) }}"
                         url="{{ route('gallery.upload.url', [$campaign]) }}"
@@ -87,6 +114,8 @@
                         field="entity_header_uuid"
                         thumbnail="{{ $headerUrlPreset }}"
                         browse="{{ route('gallery.browse', [$campaign]) }}"
+                        can-upload="{{ $canUpload ? 'true' : 'false' }}"
+                        can-browse="{{ $canBrowse ? 'true' : 'false' }}"
                         old="false"
                         i18n="{{ $translations }}"
                         premium="true"

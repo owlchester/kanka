@@ -85,18 +85,21 @@ return [
             'helper'    => 'This widget displays a billboard. This widget is always shown on the default dashboard.',
         ],
         'create'                    => [
-            'helper'            => 'Select a widget type to add to the :name dashboard.',
+            'helper'            => 'Select a widget type to add to :name .',
             'helper-default'    => 'Select a widget type to add to the default dashboard.',
             'success'           => 'Widget added to the dashboard.',
-            'title'             => 'New widget',
+            'title'             => 'Add a widget',
         ],
         'delete'                    => [
             'success'   => 'Widget removed from the dashboard.',
         ],
+        'edit'                      => [
+            'title' => 'Edit widget',
+        ],
         'fields'                    => [
             'class'             => 'CSS class',
             'dashboard'         => 'Dashboard',
-            'name'              => 'Custom widget name',
+            'name'              => 'Widget name',
             'optional-entity'   => 'Link to entry',
             'order'             => 'Ordering',
             'size'              => 'Size',
@@ -138,7 +141,7 @@ return [
             'all-entities'      => 'All entries',
             'entity-header'     => 'Use entry header as image',
             'filters'           => 'Filters',
-            'help'              => 'Only show the first entry as a preview instead of a list.',
+            'help'              => 'Show only the first entry as a preview',
             'helpers'           => [
                 'entity-header'     => 'If the entry has a header image (premium campaign feature), set this widget to use that image instead of the entry\'s image.',
                 'show_attributes'   => 'Show the entry\'s pinned properties below the entry.',

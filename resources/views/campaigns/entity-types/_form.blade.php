@@ -16,11 +16,24 @@
     <x-forms.field
         field="status"
         :label="__('campaigns/modules.fields.status')"
-        :helper="__('campaigns/modules.helpers.status')">
-        <input type="hidden" name="is_enabled" value="0" />
-        <x-checkbox :text="__('campaigns/modules.status.enabled')">
-            <input type="checkbox" name="is_enabled" value="1" @if (old('enabled', $entityType?->isEnabled() ?? true)) checked="checked" @endif />
-        </x-checkbox>
+    >
+        <div class="flex flex-col gap-2">
+            <div class="rounded-xl border border-base-300 p-2 flex gap-2 items-start cursor-pointer hover:shadow-sm">
+                <input type="radio" name="is_enabled" id="status-enabled" value="1" class="mt-1" @if (old('is_enabled', $entityType?->isEnabled() ?? true)) checked="checked" @endif />
+                <label for="status-enabled" class="w-full cursor-pointer">
+                    {{ __('campaigns/modules.states.enabled') }}
+                </label>
+            </div>
+            <div class="rounded-xl border border-base-300 p-2 flex gap-2 items-start cursor-pointer hover:shadow-sm">
+                <input type="radio" name="is_enabled" id="status-disabled" value="0" class="mt-1" @if (!old('is_enabled', $entityType?->isEnabled() ?? true)) checked="checked" @endif />
+                <label for="status-disabled" class="w-full cursor-pointer">
+                    {{ __('campaigns/modules.states.disabled') }}
+                    <p class="text-xs text-neutral-content">
+                        {{ __('campaigns/modules.helpers.status') }}
+                    </p>
+                </label>
+            </div>
+        </div>
     </x-forms.field>
 
     <hr />

@@ -61,7 +61,7 @@
 /** required form fields **/
 div.required label:after {
     content: " *";
-    color: var(--input-required-text, var(--error, 'red'));
+    color: var(--input-required-text, var(--error, red));
 }
 
 .tab-content, .box-body {

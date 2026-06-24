@@ -1,25 +1,8 @@
 import "@melloware/coloris/dist/coloris.css";
 import Coloris from "@melloware/coloris";
 
-// Key to store colors in the cookie
 const RECENT_COLORS_KEY = 'recent_colors';
 const MAX_COLORS = 10;
-
-// Function to get cookies as an object
-function getCookies() {
-    return document.cookie.split(';').reduce((cookies, cookie) => {
-        const [key, value] = cookie.split('=').map(c => c.trim());
-        if (key && value) cookies[key] = decodeURIComponent(value);
-        return cookies;
-    }, {});
-}
-
-// Function to set a cookie
-function setCookie(name, value, days = 30) {
-    const date = new Date();
-    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-    document.cookie = `${name}=${encodeURIComponent(value)}; expires=${date.toUTCString()}; path=/`;
-}
 
 // Function to update the swatches in Coloris
 function updateSwatches(colors) {
@@ -33,9 +16,8 @@ function updateSwatches(colors) {
  * Initiate color for the various fields
  */
 function initColourPicker() {
-    // Load recent colors from cookie
-    const cookies = getCookies();
-    let recentColors = cookies[RECENT_COLORS_KEY] ? JSON.parse(cookies[RECENT_COLORS_KEY]) : [];
+    const stored = localStorage.getItem(RECENT_COLORS_KEY);
+    let recentColors = stored ? JSON.parse(stored) : [];
 
     // Set initial swatches
     //updateSwatches(recentColors);
@@ -72,8 +54,7 @@ function initColourPicker() {
                 recentColors = recentColors.slice(0, MAX_COLORS);
             }
 
-            // Save updated colors to the cookie
-            setCookie(RECENT_COLORS_KEY, JSON.stringify(recentColors));
+            localStorage.setItem(RECENT_COLORS_KEY, JSON.stringify(recentColors));
 
             // Update the swatches
             updateSwatches(recentColors);

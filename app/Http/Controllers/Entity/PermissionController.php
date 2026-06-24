@@ -21,7 +21,7 @@ class PermissionController extends Controller
     {
         $this->authorize('permissions', $entity);
 
-        return view('cruds.permissions', compact('entity', 'campaign'));
+        return view('entities.pages.permissions.index', compact('entity', 'campaign'));
     }
 
     public function store(StorePermission $request, Campaign $campaign, Entity $entity)

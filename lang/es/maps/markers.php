@@ -43,6 +43,7 @@ return [
         'custom_shape'  => 'Forma personalizada',
         'font_colour'   => 'Color del icono',
         'group'         => 'Grupo de marcadores',
+        'has_tooltip'   => 'Tiene ventana emergente',
         'icon'          => 'Ícono',
         'is_draggable'  => 'Arrastrable',
         'latitude'      => 'Latitud',

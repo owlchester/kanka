@@ -21,6 +21,7 @@ window.initTags = function () {
             labelField: 'text',
             searchField: 'text',
             placeholder: ele.dataset.placeholder || '',
+            ...(ele.closest('dialog') ? { dropdownParent: 'body' } : {}),
             create: allowNew ? function (input, callback) {
                 const term = input.trim();
                 if (!term) { return; }

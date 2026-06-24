@@ -3,6 +3,8 @@
 return [
     'description'   => 'Shows a todo list for getting started with worldbuilding.',
     'name'          => 'Getting Started',
+    'tag'           => 'Getting started',
+    'tagline'       => 'Kickstart your worldbuilding',
     'tasks'         => [
         'campaign'  => [
             'name'  => 'Your first world is ready.',

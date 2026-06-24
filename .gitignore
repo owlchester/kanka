@@ -16,11 +16,10 @@
 /.scannerwork
 /.idea
 /.vagrant
+/.superpowers
 /.vscode
 /.sail
-/.superpowers
 /.worktrees
-/docs/superpowers
 Homestead.json
 Homestead.yaml
 npm-debug.log

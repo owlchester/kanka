@@ -58,5 +58,6 @@ return [
         'idea_3'    => 'Set up a campaign dashboard for your players',
         'ideas'     => 'Need ideas? Here are a few things to try:',
     ],
+    'tag'       => 'Getting started',
     'title'     => 'Getting Started',
 ];

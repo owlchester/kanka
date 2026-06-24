@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'empty'         => ':name no tiene contenido todavía.',
+    'fix'           => 'Añadir una descripción',
     'formatting'    => 'HTML compatible: texto (:text), estructura (:layout), listas/tablas e imágenes.',
     'helper'        => 'Sobrescribe el texto de vista previa generado automáticamente que se muestra al pasar el cursor sobre los enlaces a esta entidad.',
     'label'         => 'Resumen',

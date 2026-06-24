@@ -1,15 +1,17 @@
 This file is never loaded, but needed to trick tailwind to include some classes which aren't clearly written in the code. For example `bg-{{ $colour }}` won't be detected. For this, we have this file.
 
-<div class="hover:bg-primary-focus hover:bg-primary-content bg-primary-content"></div>
+<div class="hover:bg-primary-focus hover:bg-primary-content bg-primary-content bg-primary-focus"></div>
 
 <div class="md:col-span-1 md:col-span-2 md:col-span-3 md:col-span-4 md:col-span-5 md:col-span-6 md:col-span-7 md:col-span-8 md:col-span-9 md:col-span-10 md:col-span-11 md:col-span-12"></div>
 <div class="lg:col-span-1 lg:col-span-2 lg:col-span-3 lg:col-span-4 lg:col-span-5 lg:col-span-6 lg:col-span-7 lg:col-span-8 lg:col-span-9 lg:col-span-10 lg:col-span-11 lg:col-span-12"></div>
 <div class="col-span-1 col-span-2 col-span-3 col-span-4 col-span-5 col-span-6 col-span-6 col-span-7 col-span-8 col-span-9 col-span-10 col-span-11 col-span-12"></div>
 
-<div class="border-red-500 border-base-100 border-base-200 border-base-300"></div>
+<div class="border-red-500 border-base-100 border-base-200 border-base-300 border-neutral-content"></div>
+<div class="shadow-xl"></div>
 
 <div class="md:table-cell sm:table-cell lg:table-cell rounded-tl-2xl rounded-tr-2xl rounded-l-2xl rounded-r-2xl"></div>
 <div class="bg-green-500 bg-orange-400 bg-red-500 mix-blend-color-dodge"></div>
+<div class="group-hover:bg-base-300"></div>
 
 <template id="moon-colours">
     <div class="text-white"></div>

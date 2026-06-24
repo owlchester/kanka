@@ -4,7 +4,7 @@ use App\Enums\CampaignVisibility;
 
 it('setup GET')
     ->asUser()
-    ->withCampaign(['visibility_id' => CampaignVisibility::public->value, 'is_featured' => true])
+    ->withCampaign(['visibility_id' => CampaignVisibility::public->value])
     ->get('/api/public/campaigns-setup')
     ->assertStatus(200)
     ->assertJsonStructure([
@@ -15,18 +15,7 @@ it('setup GET')
             'is_open',
             'genre',
         ],
-        'featured' => [
-            [
-                'id',
-                'name',
-                'link',
-                'thumb',
-                'entities',
-                'followers',
-                'locale',
-                'system',
-            ],
-        ],
+        'featured',
     ]);
 
 it('public campaigns GET')
@@ -51,7 +40,7 @@ it('public campaigns GET')
 
 it('filtering GET 0 results')
     ->asUser()
-    ->withCampaign(['visibility_id' => CampaignVisibility::public, 'is_featured' => true, 'boost_count' => 0])
+    ->withCampaign(['visibility_id' => CampaignVisibility::public, 'boost_count' => 0])
     ->get('/api/public/campaigns?is_boosted=1')
     ->assertStatus(200)
     ->assertJsonCount(0, 'campaigns');
@@ -82,9 +71,9 @@ it('filtering locale GET')
     ->assertStatus(200)
     ->assertJsonCount(1, 'campaigns');
 
-it('public campaigns GET but no results due to unlisted visibility')
+it('public campaigns GET but no results due to private visibility')
     ->asUser()
-    ->withCampaign(['visibility_id' => CampaignVisibility::unlisted])
+    ->withCampaign(['visibility_id' => CampaignVisibility::private])
     ->get('/api/public/campaigns')
     ->assertStatus(200)
     ->assertJsonCount(0, 'campaigns');

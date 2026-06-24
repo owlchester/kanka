@@ -4,6 +4,7 @@ namespace App\Services\Subscription;
 
 use App\Enums\UserAction;
 use App\Exceptions\TranslatableException;
+use App\Facades\UserLogger;
 use App\Http\Requests\SubscriptionCancel;
 use App\Jobs\Emails\SubscriptionCancelEmailJob;
 use App\Jobs\SubscriptionEndJob;
@@ -39,7 +40,7 @@ class CancellationService
             $this->user->subscription('kanka')->delete();
         }
 
-        $this->user->log(UserAction::subCancel);
+        UserLogger::user($this->user)->log(UserAction::subCancel);
         if ($this->webhook) {
             return;
         }

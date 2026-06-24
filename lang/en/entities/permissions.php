@@ -17,6 +17,7 @@ return [
         'viewable-by'       => 'Viewable by',
     ],
     'toggle'    => [
+        'current'   => 'Current',
         'label'     => 'Entry privacy',
         'private'   => [
             'description'   => 'Only visible to members of :admin role.',
@@ -24,6 +25,7 @@ return [
         ],
         'public'    => [
             'description'   => 'Visible to the following roles and members.',
+            'helper'        => 'Anyone with access to this world can view this entry, subject to their role permissions.',
             'title'         => 'Public',
         ],
     ],

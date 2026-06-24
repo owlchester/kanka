@@ -93,6 +93,9 @@ return [
         'delete'                    => [
             'success'   => 'Widget retiré du tableau de bord.',
         ],
+        'edit'                      => [
+            'title' => 'Modifier le widget',
+        ],
         'fields'                    => [
             'class'             => 'Classe CSS',
             'dashboard'         => 'Tableau de bord',

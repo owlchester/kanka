@@ -3,12 +3,19 @@
 <x-grid type="1/1">
     <x-helper>
         @if ($dashboard)
-            <p>{!! __('dashboard.widgets.create.helper', ['name' => $dashboard->name]) !!}</p>
+            <p>{!! __('dashboard.widgets.create.helper', ['name' => '<strong>' . $dashboard->name . '</strong>']) !!}</p>
         @else
             <p>{!! __('dashboard.widgets.create.helper-default') !!}</p>
         @endif
     </x-helper>
-    <div class="flex flex-col gap-2 xl:gap-4">
+    <div class="flex flex-col gap-2 md:gap-3 md:grid md:grid-cols-2">
+        <x-dashboards.widgets.selection
+            :widget="Widget::Header"
+            :campaign="$campaign"
+            :dashboard="$dashboard"
+            icon="fa-heading"
+        ></x-dashboards.widgets.selection>
+        
         <x-dashboards.widgets.selection
             :widget="Widget::Recent"
             :campaign="$campaign"
@@ -29,13 +36,6 @@
             :campaign="$campaign"
             :dashboard="$dashboard"
             icon="{{ $calendarModule->icon() }}"
-        ></x-dashboards.widgets.selection>
-
-        <x-dashboards.widgets.selection
-            :widget="Widget::Header"
-            :campaign="$campaign"
-            :dashboard="$dashboard"
-            icon="fa-heading"
         ></x-dashboards.widgets.selection>
 
         <x-dashboards.widgets.selection

@@ -3,23 +3,13 @@
 namespace App\Listeners\Campaigns\Exports;
 
 use App\Events\Campaigns\Exports\ExportCreated;
+use App\Facades\UserLogger;
 
 class LogExport
 {
-    /**
-     * Create the event listener.
-     */
-    public function __construct()
-    {
-        //
-    }
-
-    /**
-     * Handle the event.
-     */
     public function handle(ExportCreated $event): void
     {
-        $event->user->campaignLog(
+        UserLogger::user($event->user)->campaign(
             $event->campaignExport->campaign_id,
             'export',
             'queued'

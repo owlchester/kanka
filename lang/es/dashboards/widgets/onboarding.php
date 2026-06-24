@@ -3,6 +3,8 @@
 return [
     'description'   => 'Muestra una lista de tareas para empezar con la creación de mundos.',
     'name'          => 'Primeros pasos',
+    'tag'           => 'Primeros pasos',
+    'tagline'       => 'Comienza a construir tu mundo',
     'tasks'         => [
         'campaign'  => [
             'name'  => 'Tu primer mundo está listo.',

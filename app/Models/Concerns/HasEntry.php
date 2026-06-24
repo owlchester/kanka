@@ -16,7 +16,9 @@ trait HasEntry
         if (app()->runningInConsole() && ! app()->runningUnitTests()) {
             return;
         }
-        static::observe(app(EntryObserver::class));
+        $observer = app(EntryObserver::class);
+        static::saving([$observer, 'saving']);
+        static::saved([$observer, 'saved']);
     }
 
     public function entryFieldName(): string

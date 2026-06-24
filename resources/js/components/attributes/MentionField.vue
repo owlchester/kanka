@@ -31,21 +31,23 @@
             @keydown.esc="hideSuggestions"
             @blur="onBlur"
         ></textarea>
-        <ul class="absolute w-full left-0 bg-base-100 shadow-sm list-none p-2 m-0 z-1000" v-if="suggestions.length" v-click-outside="hideSuggestions">
-            <li
-                v-for="(suggestion, id) in suggestions"
-                :key="suggestion.id"
-                :class="suggestionClass(id)"
-                @click="selectSuggestion(suggestion)"
-                v-html="suggestion.name">
-            </li>
-        </ul>
+        <Teleport to="body">
+            <ul class="fixed bg-base-100 shadow-sm list-none p-2 m-0 z-1000 rounded-lg" v-if="suggestions.length" v-click-outside="hideSuggestions" :style="dropdownStyle">
+                <li
+                    v-for="(suggestion, id) in suggestions"
+                    :key="suggestion.id"
+                    :class="suggestionClass(id)"
+                    @click="selectSuggestion(suggestion)"
+                    v-html="suggestion.name">
+                </li>
+            </ul>
+        </Teleport>
     </div>
 </template>
 
 <script setup lang="ts">
 
-import { ref, nextTick } from 'vue';
+import { ref, watch, onBeforeUnmount, nextTick } from 'vue';
 
 const props = defineProps<{
     attribute: Object
@@ -59,6 +61,31 @@ const suggestions = ref([])
 const highlightedIndex = ref(-1)
 const mentionTargetField = ref(null)
 const textarea = ref(null)
+
+const dropdownStyle = ref({});
+
+const updateDropdownPosition = () => {
+    if (!textarea.value) return;
+    const rect = textarea.value.getBoundingClientRect();
+    dropdownStyle.value = {
+        top: `${rect.bottom}px`,
+        left: `${rect.left}px`,
+        width: `${rect.width}px`,
+    };
+};
+
+watch(() => suggestions.value.length, (len) => {
+    if (len > 0) {
+        nextTick(updateDropdownPosition);
+        window.addEventListener('scroll', updateDropdownPosition, true);
+    } else {
+        window.removeEventListener('scroll', updateDropdownPosition, true);
+    }
+});
+
+onBeforeUnmount(() => {
+    window.removeEventListener('scroll', updateDropdownPosition, true);
+});
 
 const emit = defineEmits(['update:modelValue', 'field-blur'])
 
@@ -121,9 +148,9 @@ const selectMention = () => {
 
 const suggestionClass = (index) => {
     if (index === highlightedIndex.value) {
-        return "p-1 bg-primary text-primary-content"
+        return "px-2 py-1 bg-primary text-primary-content rounded-lg"
     }
-    return 'p-1'
+    return 'px-2 py-1 rounded-lg'
 }
 
 const hideSuggestions = () => {

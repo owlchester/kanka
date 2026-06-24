@@ -8,7 +8,9 @@ trait HasSuggestions
 {
     public static function bootHasSuggestions()
     {
-        static::observe(new SuggestionObserver);
+        $observer = new SuggestionObserver;
+        static::saved([$observer, 'saved']);
+        static::deleted([$observer, 'deleted']);
     }
 
     public function getSuggestions(): array

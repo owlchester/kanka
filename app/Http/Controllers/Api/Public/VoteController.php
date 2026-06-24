@@ -19,7 +19,7 @@ class VoteController extends Controller
     public function index()
     {
         $votes = CommunityVote::published()
-            ->orderBy('visible_at', 'DESC')
+            ->orderBy('visible_at', 'desc')
             ->paginate();
 
         return VoteResource::collection($votes);

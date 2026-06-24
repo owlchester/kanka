@@ -18,7 +18,7 @@ trait OrderableTrait
         }
 
         $field = str_replace($this->orderTrigger, '', $data);
-        $direction = 'ASC';
+        $direction = 'asc';
 
         if (! empty($field) && ! Str::contains($field, '/')) {
             $segments = explode('.', $field);

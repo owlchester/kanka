@@ -20,6 +20,7 @@ const initFormMembersSelect = () => {
             placeholder: form.dataset.placeholder || '',
             allowEmptyOption: true,
             loadThrottle: 500,
+            ...(form.closest('dialog') ? { dropdownParent: 'body' } : {}),
             shouldLoad: function (query) {
                 return query.length >= 2;
             },

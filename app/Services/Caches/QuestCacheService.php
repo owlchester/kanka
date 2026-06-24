@@ -19,7 +19,7 @@ class QuestCacheService extends BaseCache
             return QuestElement::select(DB::raw('role, MAX(created_at) as cmat'))
                 ->groupBy('role')
                 ->whereNotNull('role')
-                ->orderBy('cmat', 'DESC')
+                ->orderBy('cmat', 'desc')
                 ->take(10)
                 ->pluck('role')
                 ->toArray();

@@ -1,4 +1,4 @@
-<?php $r = $entity->child->diceRollResults()->with('creator')->orderBy('created_at', 'DESC')->paginate(); ?>
+<?php $r = $entity->child->diceRollResults()->with('creator')->orderBy('created_at', 'desc')->paginate(); ?>
 
 <div class="flex gap-2 items-center justify-between">
     <h4 class="text-lg">{{ __('dice_rolls.index.actions.results') }}</h4>

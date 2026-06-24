@@ -2,6 +2,11 @@
 
 return [
     'attribute_templates'   => [],
+    'bulk'                  => [
+        'entity_type'   => [
+            'unset' => 'Sin definir',
+        ],
+    ],
     'create'                => [
         'title' => 'Nueva Plantilla de Atributos',
     ],

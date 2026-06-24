@@ -11,6 +11,7 @@ trait HasSlug
 {
     public static function bootHasSlug(): void
     {
-        static::observe(app(SlugObserver::class));
+        $observer = app(SlugObserver::class);
+        static::saving([$observer, 'saving']);
     }
 }

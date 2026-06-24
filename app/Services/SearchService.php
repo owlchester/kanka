@@ -196,7 +196,7 @@ class SearchService
         $cleanTerm = mb_ltrim(str_replace('_', ' ', $this->term), '=');
         $query = Entity::inTypes($availableEntityTypes)->whereNull('archived_at');
         if (empty($this->term)) {
-            $query->orderBy('updated_at', 'DESC');
+            $query->orderBy('updated_at', 'desc');
         } else {
             $query
                 ->select(['entities.*', 'ea.id as alias_id', 'ea.name as alias_name'])
@@ -219,7 +219,6 @@ class SearchService
                             ->orWhere('ea.name', 'like', '%' . $this->term . '%');
                     }
                 });
-            
 
             // Exact name match comes first
             // Only do this when the input string is utf8
@@ -228,11 +227,11 @@ class SearchService
                 $escapedTerm = preg_replace('/&/', '\\&', preg_quote($cleanTerm));
                 $query->orderByRaw('FIELD(entities.name, ?) DESC', [$cleanTerm]);
                 $query->orderByRaw('FIELD(ea.name, ?) DESC', [$cleanTerm]);
-                
+
                 // Name word-start match, so when looking for 'Morley', entities named 'Momorley' appear at the end
                 $query->orderByRaw('entities.name RLIKE ? DESC', ["[[:<:]]{$escapedTerm}"]);
                 $query->orderByRaw('ea.name RLIKE ? DESC', ["[[:<:]]{$escapedTerm}"]);
-                
+
                 // Partial name match
                 $query->orderByRaw('entities.name LIKE ? DESC', ["%{$cleanTerm}%"]);
                 $query->orderByRaw('ea.name LIKE ? DESC', ["%{$cleanTerm}%"]);

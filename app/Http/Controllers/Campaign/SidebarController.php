@@ -14,7 +14,7 @@ class SidebarController extends Controller
     public function __construct(protected SetupService $service, protected SaveService $saveService)
     {
         $this->middleware('auth');
-        $this->middleware(Boosted::class, ['except' => 'index']);
+        $this->middleware(Boosted::class, ['only' => ['save']]);
     }
 
     public function index(Campaign $campaign)

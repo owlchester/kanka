@@ -4,6 +4,7 @@ namespace App\Services\Campaign;
 
 use App\Events\Campaigns\EntityTypes\EntityTypeToggled;
 use App\Facades\CampaignCache;
+use App\Facades\UserLogger;
 use App\Http\Requests\UpdateModuleName;
 use App\Observers\PurifiableTrait;
 use App\Traits\CampaignAware;
@@ -97,7 +98,7 @@ class ModuleEditService
         CampaignCache::campaign($this->campaign)->clear();
         Cache::forget('campaign_' . $this->campaign->id . '_sidebar');
 
-        $this->user->campaignLog($this->campaign->id, 'modules', 'reset');
+        UserLogger::user($this->user)->campaign($this->campaign->id, 'modules', 'reset');
 
         return $this;
     }

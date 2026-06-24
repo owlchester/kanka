@@ -47,7 +47,7 @@
                 @can('dashboard', $campaign)
                     <x-dropdowns.divider />
 
-                    <x-dropdowns.item :link="route('dashboard.setup', !empty($dashboard) ? [$campaign, 'dashboard' => $dashboard->id] : [$campaign])" icon="cog">
+                    <x-dropdowns.item :link="route('dashboard.setup', !empty($dashboard) ? [$campaign, 'dashboard' => $dashboard->id] : [$campaign])" icon="fa-regular fa-cog">
                         {{ __('dashboard.actions.customise') }}
                     </x-dropdowns.item>
                 @endcan

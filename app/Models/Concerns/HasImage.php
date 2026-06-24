@@ -12,7 +12,9 @@ trait HasImage
 {
     public static function bootHasImage(): void
     {
-        static::observe(ImageableObserver::class);
+        $observer = app(ImageableObserver::class);
+        static::saved([$observer, 'saved']);
+        static::deleted([$observer, 'deleted']);
     }
 
     public function getImageFields(): array

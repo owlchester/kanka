@@ -3,6 +3,7 @@
 namespace App\Jobs\Emails\Purge;
 
 use App\Enums\UserAction;
+use App\Facades\UserLogger;
 use App\Mail\Purge\SecondWarning;
 use App\Models\User;
 use App\Services\Users\CampaignService;
@@ -51,7 +52,7 @@ class SecondWarningJob implements ShouldQueue
         $service = app()->make(CampaignService::class);
         $campaigns = $service->user($user)->flaggedCampaigns();
 
-        $user->log(UserAction::purgeWarningSecond);
+        UserLogger::user($user)->log(UserAction::purgeWarningSecond);
 
         $target = app()->isProduction() ? $user->email : config('mail.from.address');
         if (empty($target)) {

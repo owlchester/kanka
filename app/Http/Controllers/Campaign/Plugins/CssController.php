@@ -11,10 +11,7 @@ class CssController extends Controller
 {
     public function index(Campaign $campaign)
     {
-        $css = null;
-        if ($campaign->boosted()) {
-            $css = CampaignCache::campaign($campaign)->themes();
-        }
+        $css = CampaignCache::campaign($campaign)->themes() ?: null;
 
         $response = Response::make($css);
         $response->header('Content-Type', 'text/css');

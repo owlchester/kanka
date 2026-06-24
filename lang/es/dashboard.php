@@ -98,6 +98,9 @@ return [
         'delete'                    => [
             'success'   => 'Widget eliminado del tablero.',
         ],
+        'edit'                      => [
+            'title' => 'Editar widget',
+        ],
         'fields'                    => [
             'class'             => 'Clase CSS',
             'dashboard'         => 'Tablero',

@@ -87,7 +87,7 @@ class Feature extends Model
     public function scopeApproved(Builder $builder): Builder
     {
         return $builder->whereIn('status_id', [\App\Enums\FeatureStatus::Approved])
-            ->orderBy('upvote_count', 'DESC');
+            ->orderBy('upvote_count', 'desc');
     }
 
     public function scopeVisible(Builder $builder): Builder
@@ -101,7 +101,7 @@ class Feature extends Model
         ];
 
         return $builder->whereIn('status_id', $statuses)
-            ->orderBy('upvote_count', 'DESC');
+            ->orderBy('upvote_count', 'desc');
     }
 
     public function scopeSearch(Builder $builder, string $search): Builder

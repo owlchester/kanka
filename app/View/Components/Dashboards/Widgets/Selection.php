@@ -5,6 +5,7 @@ namespace App\View\Components\Dashboards\Widgets;
 use App\Enums\Widget;
 use App\Models\Campaign;
 use App\Models\CampaignDashboard;
+use App\Models\CampaignDashboardWidget;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -28,6 +29,10 @@ class Selection extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.dashboards.widgets.selection');
+        $widget = new CampaignDashboardWidget;
+        $widget->widget = $this->widget;
+        $setupClass = $widget->setupClass();
+
+        return view('components.dashboards.widgets.selection', compact('setupClass'));
     }
 }

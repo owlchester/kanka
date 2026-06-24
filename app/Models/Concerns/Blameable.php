@@ -26,7 +26,10 @@ trait Blameable
      */
     public static function bootBlameable(): void
     {
-        static::observe(app(BlameableObserver::class));
+        $observer = app(BlameableObserver::class);
+        static::creating([$observer, 'creating']);
+        static::updating([$observer, 'updating']);
+        static::deleted([$observer, 'deleted']);
     }
 
     /**

@@ -21,7 +21,8 @@ trait Taggable
         if (app()->runningInConsole()) {
             return;
         }
-        static::observe(app(TaggableObserver::class));
+        $observer = app(TaggableObserver::class);
+        static::saved([$observer, 'saved']);
     }
 
     /**

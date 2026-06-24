@@ -39,7 +39,6 @@ it('GETS all posts')
                 'id',
                 'entity_id',
                 'name',
-                'is_private',
             ],
         ],
     ]);
@@ -55,7 +54,6 @@ it('GETS a specific post')
         'data' => [
             'id',
             'name',
-            'is_private',
         ],
     ]);
 

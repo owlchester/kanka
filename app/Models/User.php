@@ -42,7 +42,6 @@ use Laravel\Passport\HasApiTokens;
  * @property ?string $timezone
  * @property ?string $currency
  * @property ?User $referred_by
- * @property ?Carbon $card_expires_at
  * @property ?Carbon $banned_until
  * @property ?Carbon $created_at
  * @property Collection|array $settings
@@ -88,7 +87,7 @@ class User extends \Illuminate\Foundation\Auth\User implements OAuthenticatable
      * The attributes that should be hidden for arrays.
      */
     protected $hidden = [
-        'password', 'remember_token', 'card_expires_at',
+        'password', 'remember_token',
     ];
 
     /**
@@ -99,7 +98,6 @@ class User extends \Illuminate\Foundation\Auth\User implements OAuthenticatable
     protected $casts = [
         'settings' => 'array',
         'profile' => 'array',
-        'card_expires_at' => 'datetime',
         'last_login_at' => 'date',
         'banned_until' => 'date',
         'trial_ends_at' => 'date',
@@ -257,46 +255,6 @@ class User extends \Illuminate\Foundation\Auth\User implements OAuthenticatable
     public function discord()
     {
         return $this->apps->where('app', 'discord')->first();
-    }
-
-    /**
-     * Log an event on the user
-     */
-    public function log(UserAction $action, array $data = []): self
-    {
-        // todo: move to a facade
-        if (! config('logging.enabled')) {
-            return $this;
-        }
-        $log = new UserLog([
-            'user_id' => $this->id,
-        ]);
-        $log->type_id = $action;
-        $log->data = ! empty($data) ? $data : null;
-        $log->save();
-
-        return $this;
-    }
-
-    public function campaignLog(int $campaign, string $module, string $action, array $data = []): self
-    {
-        // todo: move to a facade
-        if (! config('logging.enabled')) {
-            return $this;
-        }
-        $log = new UserLog([
-            'user_id' => $this->id,
-        ]);
-        $log->type_id = UserAction::campaign;
-        $log->campaign_id = $campaign;
-        $first = [];
-        $first['module'] = $module;
-        $first['action'] = $action;
-        $log->data = $first + $data;
-        $log->impersonated_by = Identity::getImpersonatorId();
-        $log->save();
-
-        return $this;
     }
 
     /**

@@ -345,7 +345,7 @@ class FilterService
                 $this->order = [];
             } else {
                 $this->order = [
-                    $field => empty($direction) ? 'ASC' : 'DESC',
+                    $field => empty($direction) ? 'asc' : 'desc',
                 ];
 
                 if (! in_array($field, $availableFields)) {

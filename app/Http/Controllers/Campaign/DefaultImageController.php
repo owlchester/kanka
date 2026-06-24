@@ -21,7 +21,7 @@ class DefaultImageController extends Controller
         protected EntityTypeService $entityTypeService,
         protected DefaultImageService $service
     ) {
-        $this->middleware(Boosted::class, ['except' => 'index']);
+        $this->middleware(Boosted::class, ['only' => ['create', 'store']]);
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Services\Onboarding;
 
 use App\Enums\Widget;
 use App\Facades\CampaignCache;
+use App\Facades\UserLogger;
 use App\Models\CampaignDashboardWidget;
 use App\Models\CampaignEvent;
 use App\Models\CampaignPermission;
@@ -45,7 +46,7 @@ class InitialService
         $ui = $this->campaign->settings;
         $ui['onboarding'] = $type;
         $this->campaign->update(['settings' => $ui]);
-        $this->user->campaignLog(
+        UserLogger::user($this->user)->campaign(
             $this->campaign->id,
             'onboarding',
             $type,
@@ -65,7 +66,7 @@ class InitialService
         if (! $this->campaign->wasChanged('name')) {
             return $this;
         }
-        $this->user->campaignLog(
+        UserLogger::user($this->user)->campaign(
             $this->campaign->id,
             'onboarding',
             'rename'

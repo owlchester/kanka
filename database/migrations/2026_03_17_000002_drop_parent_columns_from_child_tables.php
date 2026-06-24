@@ -26,20 +26,24 @@ return new class extends Migration
             'timelines' => 'timeline_id',
         ];
 
-        foreach ($columns as $table => $column) {
-            if (Schema::hasColumn($table, $column)) {
-                Schema::table($table, function (Blueprint $table) use ($column) {
-                    $table->dropForeign($table->getTable() . '_' . $column . '_foreign');
-                    $table->dropColumn($column);
+        if (Schema::getConnection()->getDriverName() !== 'sqlite') {
+            foreach ($columns as $table => $column) {
+                if (Schema::hasColumn($table, $column)) {
+                    Schema::table($table, function (Blueprint $table) use ($column) {
+                        $table->dropForeign($table->getTable() . '_' . $column . '_foreign');
+                        $table->dropColumn($column);
+                    });
+                }
+            }
+
+            if (Schema::hasColumn('locations', 'location_id')) {
+                Schema::table('locations', function (Blueprint $table) {
+                    $table->dropForeign('locations_location_id_foreign');
+                    $table->dropForeign('locations_parent_location_id_foreign');
+                    $table->dropColumn('location_id');
                 });
             }
         }
-
-        Schema::table('locations', function (Blueprint $table) {
-            $table->dropForeign('locations_location_id_foreign');
-            $table->dropForeign('locations_parent_location_id_foreign');
-            $table->dropColumn('location_id');
-        });
     }
 
     public function down(): void

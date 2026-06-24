@@ -1,6 +1,8 @@
 <?php
 
 return [
-    'description'   => 'Shows a text header.',
+    'description'   => 'A text header to break dashboards into sections.',
     'name'          => 'Header',
+    'tag'           => 'Header',
+    'tagline'       => 'Section divider',
 ];

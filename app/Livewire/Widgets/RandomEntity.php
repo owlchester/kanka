@@ -2,10 +2,7 @@
 
 namespace App\Livewire\Widgets;
 
-use App\Facades\Avatar;
-use App\Facades\CampaignCache;
 use App\Facades\Dashboard;
-use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 use App\Models\Entity;
@@ -42,12 +39,6 @@ class RandomEntity extends Component
     {
         $this->readyToLoad = true;
 
-        // We need this here for the "load more entities" button that loads more data
-        request()->route()->setParameter('campaign', $this->campaign);
-        UserCache::campaign($this->campaign);
-        Avatar::campaign($this->campaign);
-        CampaignCache::campaign($this->campaign);
-
         $entity = $this->widget->randomEntity();
         if (! $entity) {
             return;
@@ -66,12 +57,6 @@ class RandomEntity extends Component
 
     public function render()
     {
-        // We need this here for when the widget gets re-rendered
-        request()->route()?->setParameter('campaign', $this->campaign);
-        UserCache::campaign($this->campaign);
-        Avatar::campaign($this->campaign);
-        CampaignCache::campaign($this->campaign);
-
         return view('livewire.widgets.random-entity');
     }
 }

@@ -20,7 +20,9 @@
 - {{ __('emails/subscriptions/paypal-expiring.loss.discord', ['role' => $user->pledge]) }}
 @endif
 
-<x-mail::button :url="$renewUrl">
+{{ __('emails/subscriptions/paypal-expiring.resubscribe') }}
+
+<x-mail::button :url="route('settings.subscription')">
 {{ __('emails/subscriptions/paypal-expiring.cta') }}
 </x-mail::button>
 

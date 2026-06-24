@@ -2,8 +2,6 @@
 
 namespace App\Livewire\Widgets;
 
-use App\Facades\CampaignCache;
-use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 use App\Models\Image;
@@ -38,10 +36,6 @@ class GalleryCarousel extends Component
     {
         $this->readyToLoad = true;
 
-        request()->route()->setParameter('campaign', $this->campaign);
-        UserCache::campaign($this->campaign);
-        CampaignCache::campaign($this->campaign);
-
         $folderId = $this->widget->conf('folder_id');
         if (empty($folderId)) {
             return;
@@ -68,10 +62,6 @@ class GalleryCarousel extends Component
 
     public function render()
     {
-        request()->route()?->setParameter('campaign', $this->campaign);
-        UserCache::campaign($this->campaign);
-        CampaignCache::campaign($this->campaign);
-
         return view('livewire.widgets.gallery-carousel');
     }
 }

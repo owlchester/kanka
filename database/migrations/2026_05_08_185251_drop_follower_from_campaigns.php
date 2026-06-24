@@ -12,7 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('campaigns', function (Blueprint $table) {
-            $table->dropColumn('follower');
+            if (Schema::hasIndex('campaigns', 'campaigns_follower_index')) {
+                $table->dropIndex('campaigns_follower_index');
+            }
+            if (Schema::hasColumn('campaigns', 'follower')) {
+                $table->dropColumn('follower');
+            }
         });
     }
 

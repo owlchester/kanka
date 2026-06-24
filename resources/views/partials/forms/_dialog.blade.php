@@ -1,8 +1,11 @@
 <x-dialog.header>
-    @if (isset($titleIcon) && !empty($titleIcon))
-        <span>{!! $titleIcon !!}</span>
+    @if (isset($icon) && !empty($icon))
+        <x-slot name="icon">{!! $icon !!}</x-slot>
     @endif
     {!! $title !!}
+    @if (isset($subtitle) && !empty($subtitle))
+        <x-slot name="subtitle">{!! $subtitle !!}</x-slot>
+    @endif
 </x-dialog.header>
 <article class="max-w-2xl py-4 px-4 md:px-6 {{ $articleClass ?? null }}">
     @include('partials.errors')

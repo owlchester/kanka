@@ -7,14 +7,16 @@ elseif (!isset($entity) && isset($source)) {
 }
 $formats = 'PNG, JPG, GIF, WebP';
 $inputFileTypes = '.jpg, .jpeg, .png, .gif, .webp';
-$max = 25;
+$max = Limit::user(auth()->user())->campaign($campaign);
 $from = null;
 if (isset($size) && $size == 'map') {
-    $formats = 'PNG, JPG, SVG, WebP';
+    $max->map();
+    $formats = 'PNG, JPG, GIF, SVG, WebP';
     $inputFileTypes = '.jpg, .jpeg, .png, .gif, .webp, .svg';
-    $max = 50;
     $from = 'map';
 }
+$max = $max->readable()->upload();
+
 $isUnlimited = empty($from === 'map' ? config('limits.filesize.map') : config('limits.filesize.image.standard'));
 $label = $imageLabel ?? 'crud.fields.image';
 
@@ -28,9 +30,10 @@ if (!empty($entity) && $entity->hasImage()) {
 }
 
 // If the image is from the gallery and the user can't browse or upload, disable the field
-$canBrowse = isset($campaign) && (auth()->user()->can('browse', [\App\Models\Image::class, $campaign]) || auth()->user()->can('create', [\App\Models\Image::class, $campaign]));
+$canUpload = isset($campaign) && auth()->user()->can('create', [\App\Models\Image::class, $campaign]);
+$canBrowse = isset($campaign) && auth()->user()->can('browse', [\App\Models\Image::class, $campaign]);
 $fieldname = $fieldname ?? 'entity_image_uuid';
-if (!empty($entity) && !empty($entity->image) && !$canBrowse) {
+if (!empty($entity) && !empty($entity->image) && !$canUpload && !$canBrowse) {
     ?><input type="hidden" name="{{ $fieldname }}" value="{{ $entity->image_uuid }}" /><?php
     return;
 }
@@ -44,15 +47,27 @@ $old = isset($entity) && !empty($entity->image_path) || isset($model) && !empty(
         'remove' => __('crud.remove'),
         'url' => __('gallery.actions.url'),
         'gallery' => __('gallery.actions.gallery'),
+        'upload'    => __('gallery.actions.upload'),
+        'add_url'   => __('gallery.actions.add_url'),
+        'change'    => __('gallery.actions.change'),
+        'url_hint'  => __('gallery.actions.url_hint'),
+        'drag_hint' => __('gallery.drop.hint'),
+        'drop_hint' => __('gallery.drop.active'),
+        'formats'   => $formats . ' · max ' . $max,
         'unauthorized' => __('gallery.download.errors.unauthorized'),
         'browse' => [
-            'title' => __('gallery.browse.title'),
+            'title'        => __('gallery.browse.title'),
+            'folder_count'     => __('gallery.browse.folder_count'),
+            'folder_count_one' => __('gallery.browse.folder_count_one'),
             'layouts' => [
                 'small' => __('gallery.browse.layouts.small'),
                 'large' => __('gallery.browse.layouts.large'),
             ],
             'search' => [
                 'placeholder' => __('gallery.browse.search.placeholder'),
+                'results'     => __('gallery.browse.search.results'),
+                'no_results'  => __('gallery.browse.search.no_results'),
+                'try_again'   => __('gallery.browse.search.try_again'),
             ],
             'unauthorized' => __('gallery.browse.unauthorized'),
         ],
@@ -74,7 +89,7 @@ $old = isset($entity) && !empty($entity->image_path) || isset($model) && !empty(
 @endphp
 
 <div class="field field-image flex flex-col gap-1">
-    <label class="text-xs font-medium opacity-80">{{ __($label) }}</label>
+    @if (!isset($new)) <label class="text-xs font-medium opacity-80">{{ __($label) }}</label> @endif
     <div class="gallery-selection col-span-2">
         <gallery-selection
             file="{{ route('gallery.upload.file', [$campaign, $from]) }}"
@@ -88,11 +103,14 @@ $old = isset($entity) && !empty($entity->image_path) || isset($model) && !empty(
             i18n="{{ $translations }}"
             premium="{{ $campaign->boosted() || $isUnlimited ? 'true' : 'false' }}"
             cta="{{ route('settings.premium', ['campaign' => $campaign->id, $from]) }}"
+            can-upload="{{ $canUpload ? 'true' : 'false' }}"
+            can-browse="{{ $canBrowse ? 'true' : 'false' }}"
         >
             <x-icon class="load" />
         </gallery-selection>
     </div>
 
+    @if (!isset($new))
     <x-helper class="text-xs">
         <p>
             @if ($isUnlimited)
@@ -104,5 +122,5 @@ $old = isset($entity) && !empty($entity->image_path) || isset($model) && !empty(
             @if (isset($recommended)) {{ __('crud.hints.image_dimension', ['dimension' => $recommended]) }} @endif
         </p>
     </x-helper>
+    @endif
 </div>
-

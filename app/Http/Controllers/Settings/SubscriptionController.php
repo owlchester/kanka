@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Settings;
 use App\Enums\PricingPeriod;
 use App\Enums\UserAction;
 use App\Exceptions\TranslatableException;
+use App\Facades\UserLogger;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\UserSubscribeStore;
 use App\Jobs\Users\AbandonedCart;
@@ -16,10 +17,12 @@ use App\Services\Users\CurrencyService;
 use App\Services\Users\EmailValidationService;
 use Carbon\Carbon;
 use Exception;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Laravel\Cashier\Exceptions\IncompletePayment;
+use Stripe\SetupIntent;
 
 class SubscriptionController extends Controller
 {
@@ -57,7 +60,6 @@ class SubscriptionController extends Controller
         $current = $this->subscription->currentPlan();
         $currency = $user->currencySymbol();
         $tiers = Tier::with('prices')->ordered()->get();
-        $isPayPal = $user->hasPayPal();
         $hasManual = $user->hasManualSubscription();
         $tempTiers = [];
         $downgrades = [];
@@ -80,7 +82,6 @@ class SubscriptionController extends Controller
             'currency',
             'current',
             'tiers',
-            'isPayPal',
             'hasManual',
             'upgrades',
             'downgrades',
@@ -116,14 +117,10 @@ class SubscriptionController extends Controller
         if (empty($user->stripe_id)) {
             $user->createAsStripeCustomer();
         }
-        $intent = $user->createSetupIntent();
+        $intent = $user->createSetupIntent(['automatic_payment_methods' => ['enabled' => true]]);
         $isDowngrading = $this->subscription->downgrading();
         $isYearly = $period->isYearly();
         $hasPromo = true; // \Carbon\Carbon::create(2023, 11, 28)->isFuture();
-        $limited = $this->subscription->isLimited();
-        if ($user->hasPayPal() || $user->hasManualSubscription()) {
-            $limited = true;
-        }
         $upgrade = $this->subscriptionUpgrade
             ->user($user)
             ->tier($tier)
@@ -158,7 +155,6 @@ class SubscriptionController extends Controller
             'upgrade',
             'isDowngrading',
             'hasPromo',
-            'limited',
             'isYearly',
             'nextBillingDate'
         ));
@@ -173,7 +169,7 @@ class SubscriptionController extends Controller
             $this->subscription
                 ->user($request->user())
                 ->renew();
-            $request->user()->log(UserAction::subRenew);
+            UserLogger::user($request->user())->log(UserAction::subRenew);
 
             $routeOptions = [];
 
@@ -262,6 +258,66 @@ class SubscriptionController extends Controller
                 'error' => true,
                 'message' => $e->getMessage(),
             ]);
+        }
+    }
+
+    public function paymentReturn(Request $request, Tier $tier): RedirectResponse
+    {
+        $setupIntentId = $request->get('setup_intent');
+
+        if (empty($setupIntentId)) {
+            return redirect()
+                ->route('settings.subscription')
+                ->withError(__('settings.subscription.errors.failed', ['email' => config('app.email')]));
+        }
+
+        try {
+            /** @var SetupIntent $setupIntent */
+            $setupIntent = $request->user()->stripe()->setupIntents->retrieve($setupIntentId);
+
+            if ($setupIntent->status !== 'succeeded') {
+                return redirect()
+                    ->route('settings.subscription')
+                    ->withError(__('settings.subscription.errors.callback'));
+            }
+
+            $paymentMethodId = is_string($setupIntent->payment_method)
+                ? $setupIntent->payment_method
+                : $setupIntent->payment_method->id;
+
+            $period = $request->get('period') === 'yearly' ? PricingPeriod::Yearly : PricingPeriod::Monthly;
+
+            $this->subscription->user($request->user())
+                ->tier($tier)
+                ->period($period)
+                ->coupon($request->get('coupon'))
+                ->request(['payment_id' => $paymentMethodId])
+                ->change()
+                ->finish();
+
+            return redirect()
+                ->route('settings.subscription.finish')
+                ->with('sub_tracking', 'subscribed')
+                ->with('sub_value', $this->subscription->subscriptionValue())
+                ->with('sub_coupon', $request->get('coupon'))
+                ->with('sub_id', $this->subscription->tierPrice()->id);
+
+        } catch (IncompletePayment $exception) {
+            session()->put('subscription_callback', $paymentMethodId ?? null);
+
+            return redirect()->route(
+                'cashier.payment',
+                // @phpstan-ignore-next-line
+                [$exception->payment->id, 'redirect' => route('settings.subscription.callback')]
+            );
+        } catch (TranslatableException $e) {
+            return redirect()
+                ->route('settings.subscription')
+                ->with('error_raw', $e->getTranslatedMessage());
+        } catch (Exception $e) {
+            return redirect()
+                ->route('settings.subscription')
+                ->withError(__('settings.subscription.errors.failed', ['email' => config('app.email')]));
         }
     }
 

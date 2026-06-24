@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Campaign\Plugins;
 
 use App\Http\Controllers\Controller;
-use App\Http\Middleware\Campaigns\Boosted;
 use App\Models\Campaign;
 use App\Models\Plugin;
 use App\Services\Campaign\PluginService;
@@ -12,7 +11,7 @@ class ToggleController extends Controller
 {
     public function __construct(protected PluginService $service)
     {
-        $this->middleware(['auth', Boosted::class]);
+        $this->middleware(['auth']);
     }
 
     public function enable(Campaign $campaign, Plugin $plugin)

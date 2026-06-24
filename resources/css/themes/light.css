@@ -81,5 +81,7 @@
 
         /* Border thickness for tabs */
         --tab-border: 0px;
+
+        --link-text: #1a5fb4;
     }
 }

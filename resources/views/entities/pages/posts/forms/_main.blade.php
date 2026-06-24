@@ -34,6 +34,7 @@ $bragiName = $entity->isCharacter() ? $entity->name : null;
                             {{ __('post_layouts.premium') }}
                             <a
                                 href="#"
+                                class="text-link"
                                 data-toggle="dialog"
                                 data-url="{{ route('posts.layouts', [$campaign, $entity]) }}">
                                 {{ __('general.learn-more') }}
