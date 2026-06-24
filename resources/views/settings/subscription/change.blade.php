@@ -53,7 +53,7 @@
             <x-form :action="['settings.subscription.subscribe', 'tier' => $tier]" id="subscription-confirm" direct>
 
             <x-grid type="1/1" css="text-left">
-                @if (!$card)
+                @if (!$card || empty($card->card))
                     <div id="payment-element" data-return-url="{{ route('settings.subscription.payment-return', ['tier' => $tier]) }}"></div>
                 @else
                     <div class="text-center">
