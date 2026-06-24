@@ -15,7 +15,9 @@ class ApiController extends Controller
     use CampaignAware;
     use GuestAuthTrait;
 
-    public function __construct(protected ApiService $apiService) {}
+    public function __construct(protected ApiService $apiService) {
+        $this->middleware('auth');
+    }
 
     public function index(Campaign $campaign, EntityType $entityType)
     {
@@ -44,7 +46,7 @@ class ApiController extends Controller
         $this->campaign($campaign)->authEntityView($entity);
 
         // When copying an entity, the source might have private attributes, which blocks the attributes
-        if (auth()->check() && auth()->user()->can('view-attributes', [$entity, $campaign])) {
+        if (auth()->user()->can('view-attributes', [$entity, $campaign])) {
             $this->apiService
                 ->entity($entity);
         }
