@@ -7,6 +7,7 @@ use App\Jobs\Emails\MailSettingsChangeJob;
 use App\Jobs\Emails\SubscriptionDeletedEmailJob;
 use App\Jobs\Emails\Subscriptions\UpcomingYearlyAlert;
 use App\Jobs\SubscriptionEndJob;
+use App\Models\TierPrice;
 use App\Models\User;
 use App\Services\Subscription\PaymentMethodService;
 use App\Services\SubscriptionService;
@@ -44,8 +45,11 @@ class WebhookController extends CashierController
                 $previousStatus = Arr::get($payload, 'data.previous_attributes.status', null);
                 $isNewActivation = $previousStatus === 'incomplete' && $status === 'active';
 
+                // plan.id is deprecated; fall back to items for newer subscriptions
+                $planId = Arr::get($data, 'plan.id') ?? Arr::get($data, 'items.data.0.price.id');
+
                 $serviceCall = $service->user($user)
-                    ->plan($payload['data']['object']['plan']['id']);
+                    ->plan($planId);
 
                 if (! $isNewActivation) {
                     $serviceCall->webhook();
@@ -93,11 +97,7 @@ class WebhookController extends CashierController
         }
 
         /** @var User $user */
-        $yearlyPlans = array_filter(array_merge(
-            config('subscription.owlbear.yearly'),
-            config('subscription.wyvern.yearly'),
-            config('subscription.elemental.yearly'),
-        ));
+        $yearlyPlans = TierPrice::yearly()->pluck('stripe_id')->all();
 
         $lines = $data['lines']['data'] ?? [];
         $isYearly = collect($lines)->contains(
@@ -118,9 +118,8 @@ class WebhookController extends CashierController
      */
     protected function isCancelling(array $data): bool
     {
-        // Log::debug('data', $data);
-        $cancel = Arr::get($data, 'object.canceled_at', null);
-        $previousCancel = Arr::get($data, 'previous_attributes.canceled_at', null);
+        $cancel = Arr::get($data, 'data.object.canceled_at', null);
+        $previousCancel = Arr::get($data, 'data.previous_attributes.canceled_at', null);
 
         return ! empty($cancel) && empty($previousCancel);
     }

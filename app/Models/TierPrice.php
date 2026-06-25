@@ -40,6 +40,11 @@ class TierPrice extends Model
         return $this->period->isYearly();
     }
 
+    public function scopeYearly(Builder $query): Builder
+    {
+        return $query->where('period', PricingPeriod::Yearly);
+    }
+
     public function scopeStripe(Builder $query, string $id): Builder
     {
         return $query->where('stripe_id', $id);

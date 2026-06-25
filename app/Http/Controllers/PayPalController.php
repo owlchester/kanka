@@ -88,7 +88,7 @@ class PayPalController extends Controller
             /** @var ?TierPrice $tierPrice */
             $tierPrice = $tier->prices()
                 ->where('currency', $request->user()->currency())
-                ->where('period', PricingPeriod::Yearly)
+                ->yearly()
                 ->first();
 
             return redirect()
