@@ -11,6 +11,7 @@
 - **Account age:** {{ $user->created_at->diffForHumans() }} ({{ $user->created_at->format('d.m.Y') }})
 - **Subscription tier:** {{ $user->pledge ?? 'N/A' }}
 - **Subscription currency:** {{ $user->currencySymbol() }}
+- **Payment method:** {{ $paymentMethod ?? 'N/A' }}
 - **User country:** {{ $country ?? 'N/A' }}
 
 @if ($trial)

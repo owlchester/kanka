@@ -39,9 +39,19 @@ class WebhookController extends CashierController
             // Also if the user is cancelling, we've already handled that in Kanka, we don't need to handle it here, but
             // stripe will still tell us about it.
             if ($status != 'past_due' && ! $this->isCancelling($payload)) {
-                $service->user($user)->webhook()
-                    ->plan($payload['data']['object']['plan']['id'])
-                    ->finish();
+                // Don't skip emails when a subscription transitions from incomplete to active
+                // (e.g. PayPal or 3D Secure card flows where Stripe confirms asynchronously)
+                $previousStatus = Arr::get($payload, 'data.previous_attributes.status', null);
+                $isNewActivation = $previousStatus === 'incomplete' && $status === 'active';
+
+                $serviceCall = $service->user($user)
+                    ->plan($payload['data']['object']['plan']['id']);
+
+                if (! $isNewActivation) {
+                    $serviceCall->webhook();
+                }
+
+                $serviceCall->finish();
             }
         }
 

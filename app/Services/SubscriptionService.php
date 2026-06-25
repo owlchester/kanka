@@ -126,6 +126,7 @@ class SubscriptionService
         /** @var ?TierPrice $price */
         $price = TierPrice::where('stripe_id', $plan)->first();
         $this->tier = $price->tier;
+        $this->period = $price->period;
 
         return $this;
     }

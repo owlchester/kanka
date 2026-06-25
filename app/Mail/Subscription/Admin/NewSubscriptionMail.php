@@ -11,6 +11,7 @@ use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 use Laravel\Cashier\Subscription;
 
 class NewSubscriptionMail extends Mailable
@@ -59,6 +60,29 @@ class NewSubscriptionMail extends Mailable
         );
     }
 
+    private function resolvePaymentMethod(): ?string
+    {
+        try {
+            $pm = $this->user->defaultPaymentMethod();
+            if (! $pm) {
+                return null;
+            }
+            $stripePm = $pm->asStripePaymentMethod();
+            if ($stripePm->type === 'card' && $stripePm->card) {
+                return ucfirst($stripePm->card->brand);
+            }
+            if ($stripePm->type === 'paypal' && $stripePm->paypal) {
+                return 'PayPal (' . ($stripePm->paypal->payer_email ?? 'unknown') . ')';
+            }
+
+            return ucfirst($stripePm->type);
+        } catch (\Throwable $e) {
+            Log::warning('Failed to retrieve payment method for sub email, user ' . $this->user->id . ': ' . $e->getMessage());
+
+            return null;
+        }
+    }
+
     /**
      * Get the message content definition.
      */
@@ -69,9 +93,11 @@ class NewSubscriptionMail extends Mailable
         /** @var ?UserLog $log */
         $log = $this->user->logs()->whereNotNull('country')->latest()->first();
 
+        $paymentMethod = $this->resolvePaymentMethod();
+
         return new Content(
             markdown: 'emails.subscriptions.new.md',
-            with: ['lastCancel' => $lastCancel, 'user' => $this->user, 'period' => $this->period, 'trial' => false, 'country' => $log?->country],
+            with: ['lastCancel' => $lastCancel, 'user' => $this->user, 'period' => $this->period, 'trial' => false, 'country' => $log?->country, 'paymentMethod' => $paymentMethod],
         );
     }
 }
