@@ -9,9 +9,9 @@
         --boosted: 338 78% 48%;
 
         /* Primary colour, used for buttons and links */
-        --p: 223 73% 24%;
+        --p: 213 75% 37%;
         /* Primary colour when focused */
-        --pf: 213 100% 24.9%;
+        --pf: 213 75% 30%;
         /* Foreground content colour to use on primary colour */
         --pc: 255 0% 100%;
 
@@ -82,6 +82,5 @@
         /* Border thickness for tabs */
         --tab-border: 0px;
 
-        --link-text: #1a5fb4;
     }
 }
