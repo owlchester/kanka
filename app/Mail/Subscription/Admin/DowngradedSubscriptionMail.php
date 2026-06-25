@@ -2,6 +2,7 @@
 
 namespace App\Mail\Subscription\Admin;
 
+use App\Models\Tier;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
@@ -15,25 +16,23 @@ class DowngradedSubscriptionMail extends Mailable
     use Queueable;
     use SerializesModels;
 
-    /**
-     * @var User
-     */
-    public $user;
+    public User $user;
 
-    public $reason;
+    public ?string $reason;
 
-    public $custom;
+    public ?string $custom;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct(User $user, ?string $reason = null, ?string $custom = null)
+    public ?Tier $newTier;
+
+    public ?string $oldPledge;
+
+    public function __construct(User $user, ?string $reason = null, ?string $custom = null, ?Tier $newTier = null, ?string $oldPledge = null)
     {
         $this->user = $user;
         $this->reason = $reason;
         $this->custom = $custom;
+        $this->newTier = $newTier;
+        $this->oldPledge = $oldPledge;
     }
 
     /**
@@ -41,8 +40,13 @@ class DowngradedSubscriptionMail extends Mailable
      */
     public function envelope(): Envelope
     {
+        $subject = 'Subscription: Downgraded ' . ($this->oldPledge ?? $this->user->pledge);
+        if ($this->newTier) {
+            $subject .= ' → ' . $this->newTier->name;
+        }
+
         return new Envelope(
-            subject: 'Subscription: Downgraded ' . $this->user->pledge,
+            subject: $subject,
             tags: ['admin-downgrade'],
             from: new Address(config('app.email'), 'Kanka Admin'),
         );
@@ -55,7 +59,7 @@ class DowngradedSubscriptionMail extends Mailable
     {
         return new Content(
             markdown: 'emails.subscriptions.changed.md',
-            with: ['user' => $this->user, 'reason' => $this->reason, 'custom' => $this->custom],
+            with: ['user' => $this->user, 'reason' => $this->reason, 'custom' => $this->custom, 'newTier' => $this->newTier, 'oldPledge' => $this->oldPledge],
         );
     }
 }

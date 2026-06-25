@@ -6,6 +6,7 @@ use App\Enums\UserAction;
 use App\Jobs\Emails\MailSettingsChangeJob;
 use App\Jobs\Emails\SubscriptionDeletedEmailJob;
 use App\Jobs\Emails\Subscriptions\UpcomingYearlyAlert;
+use App\Jobs\Emails\Subscriptions\WelcomeSubscriptionEmailJob;
 use App\Jobs\SubscriptionEndJob;
 use App\Models\TierPrice;
 use App\Models\User;
@@ -19,44 +20,94 @@ use Symfony\Component\HttpFoundation\Response;
 class WebhookController extends CashierController
 {
     /**
-     * Handle an updated subscription (for example when managing 3d secure payments)
+     * Handle a newly created subscription. Sends emails for direct-to-active subscriptions
+     * (credit card without 3D Secure). PayPal and 3DS start as incomplete and are handled
+     * in handleCustomerSubscriptionUpdated once Stripe confirms them.
+     */
+    public function handleCustomerSubscriptionCreated(array $payload)
+    {
+        $response = parent::handleCustomerSubscriptionCreated($payload);
+
+        $data = $payload['data']['object'];
+        $status = Arr::get($data, 'status');
+
+        if ($status !== 'active') {
+            return $response;
+        }
+
+        if (! $user = $this->getUserByStripeId($data['customer'] ?? null)) {
+            return $response;
+        }
+
+        /** @var User $user */
+        $planId = Arr::get($data, 'plan.id') ?? Arr::get($data, 'items.data.0.price.id');
+        if (! $planId) {
+            return $response;
+        }
+
+        /** @var SubscriptionService $service */
+        $service = app()->make('App\Services\SubscriptionService');
+        $service->user($user)->plan($planId)->finish();
+
+        return $response;
+    }
+
+    /**
+     * Handle an updated subscription — PayPal/3DS activations and tier upgrades send emails;
+     * renewals, metadata changes, and downgrade confirmations suppress them.
      */
     public function handleCustomerSubscriptionUpdated(array $payload)
     {
         // Call parent handler method
         $response = parent::handleCustomerSubscriptionUpdated($payload);
 
-        if ($user = $this->getUserByStripeId($payload['data']['object']['customer'])) {
-            /** @var User $user */
-            /** @var SubscriptionService $service */
-            $service = app()->make('App\Services\SubscriptionService');
+        if (! $user = $this->getUserByStripeId($payload['data']['object']['customer'])) {
+            return $response;
+        }
 
-            $data = $payload['data']['object'];
-            $status = Arr::get($data, 'status', false);
+        /** @var User $user */
+        $data = $payload['data']['object'];
+        $status = Arr::get($data, 'status', false);
 
-            Log::debug('Customer Sub Updated Status ' . $status);
+        Log::debug('Customer Sub Updated Status ' . $status);
 
-            // If the status is past_due, we need to remind the user to update their credit card info.
-            // Also if the user is cancelling, we've already handled that in Kanka, we don't need to handle it here, but
-            // stripe will still tell us about it.
-            if ($status != 'past_due' && ! $this->isCancelling($payload)) {
-                // Don't skip emails when a subscription transitions from incomplete to active
-                // (e.g. PayPal or 3D Secure card flows where Stripe confirms asynchronously)
-                $previousStatus = Arr::get($payload, 'data.previous_attributes.status', null);
-                $isNewActivation = $previousStatus === 'incomplete' && $status === 'active';
+        if ($status === 'past_due' || $this->isCancelling($payload)) {
+            return $response;
+        }
 
-                // plan.id is deprecated; fall back to items for newer subscriptions
-                $planId = Arr::get($data, 'plan.id') ?? Arr::get($data, 'items.data.0.price.id');
+        Log::debug('Stripe payload', $payload);
 
-                $serviceCall = $service->user($user)
-                    ->plan($planId);
+        // PayPal / 3DS: subscription transitions from incomplete to active
+        $previousStatus = Arr::get($payload, 'data.previous_attributes.status', null);
+        $isNewActivation = $previousStatus === 'incomplete' && $status === 'active';
 
-                if (! $isNewActivation) {
-                    $serviceCall->webhook();
-                }
+        // Tier upgrade or downgrade: plan or items changed (previous_attributes only lists changed fields)
+        $isPlanChange = Arr::has($payload, 'data.previous_attributes.plan')
+            || Arr::has($payload, 'data.previous_attributes.items');
 
-                $serviceCall->finish();
+        // plan.id is deprecated; fall back to items for newer subscriptions
+        $planId = Arr::get($data, 'plan.id') ?? Arr::get($data, 'items.data.0.price.id');
+
+        /** @var SubscriptionService $service */
+        $service = app()->make('App\Services\SubscriptionService');
+        $serviceCall = $service->user($user)->plan($planId);
+
+        if ($isNewActivation) {
+            // PayPal/3DS: web controller didn't complete (IncompletePayment), so pledge
+            // is still the old value. finish() can correctly determine new vs upgrade via upgrading().
+            $serviceCall->finish();
+        } elseif ($isPlanChange && ! $serviceCall->downgrading()) {
+            // Tier upgrade confirmed by Stripe. The web controller already updated pledge
+            // to the new tier, so upgrading() is unreliable here. Suppress finish()'s email
+            // logic and dispatch only the user-facing welcome email (admin is not notified
+            // for upgrades, matching the original behaviour).
+            $serviceCall->webhook()->finish();
+            if ($tierPrice = TierPrice::where('stripe_id', $planId)->first()) {
+                WelcomeSubscriptionEmailJob::dispatch($user, $tierPrice->tier);
             }
+        } else {
+            // Renewal, downgrade confirmation, metadata change, etc.
+            $serviceCall->webhook()->finish();
         }
 
         return $response;

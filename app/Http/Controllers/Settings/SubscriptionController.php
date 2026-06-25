@@ -212,13 +212,20 @@ class SubscriptionController extends Controller
         }
         try {
             $period = $request->get('period') === 'yearly' ? PricingPeriod::Yearly : PricingPeriod::Monthly;
-            $this->subscription->user($request->user())
+            $sub = $this->subscription->user($request->user())
                 ->tier($tier)
                 ->period($period)
                 ->coupon($request->get('coupon'))
                 ->request($request->all())
-                ->change()
-                ->finish();
+                ->change();
+
+            // Emails are owned by the Stripe webhook. Suppress them here except for
+            // downgrades, which send an immediate notification on user request.
+            if (! $sub->downgrading()) {
+                $sub->webhook();
+            }
+
+            $sub->finish();
 
             return redirect()
                 ->route('settings.subscription.finish')
@@ -287,13 +294,18 @@ class SubscriptionController extends Controller
 
             $period = $request->get('period') === 'yearly' ? PricingPeriod::Yearly : PricingPeriod::Monthly;
 
-            $this->subscription->user($request->user())
+            $sub = $this->subscription->user($request->user())
                 ->tier($tier)
                 ->period($period)
                 ->coupon($request->get('coupon'))
                 ->request(['payment_id' => $paymentMethodId])
-                ->change()
-                ->finish();
+                ->change();
+
+            if (! $sub->downgrading()) {
+                $sub->webhook();
+            }
+
+            $sub->finish();
 
             return redirect()
                 ->route('settings.subscription.finish')

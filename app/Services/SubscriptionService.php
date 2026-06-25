@@ -209,7 +209,9 @@ class SubscriptionService
             SubscriptionDowngradedEmailJob::dispatch(
                 $this->user,
                 Arr::get($this->request, 'reason'),
-                Arr::get($this->request, 'reason_custom')
+                Arr::get($this->request, 'reason_custom'),
+                $this->tier,
+                $this->user->pledge
             );
             UserLogger::user($this->user)->log(UserAction::subDowngrade);
 

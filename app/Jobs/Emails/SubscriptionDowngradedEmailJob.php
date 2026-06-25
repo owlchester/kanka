@@ -3,6 +3,7 @@
 namespace App\Jobs\Emails;
 
 use App\Mail\Subscription\Admin\DowngradedSubscriptionMail;
+use App\Models\Tier;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -18,44 +19,38 @@ class SubscriptionDowngradedEmailJob implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    /** @var int user id */
-    public $userId;
+    public int $userId;
 
-    /** @var string */
-    public $reason;
+    public ?string $reason;
 
-    public $custom;
+    public ?string $custom;
 
-    /** @var int how many times the job can fail before quitting */
-    public $tries = 3;
+    public ?int $newTierId;
 
-    /**
-     * WelcomeEmailJob constructor.
-     */
-    public function __construct(User $user, ?string $reason = null, ?string $custom = null)
+    public ?string $oldPledge;
+
+    public int $tries = 3;
+
+    public function __construct(User $user, ?string $reason = null, ?string $custom = null, ?Tier $newTier = null, ?string $oldPledge = null)
     {
         $this->userId = $user->id;
         $this->reason = $reason;
         $this->custom = $custom;
+        $this->newTierId = $newTier?->id;
+        $this->oldPledge = $oldPledge;
     }
 
     public function handle()
     {
-        // User deleted their account already? Sure thing
         $user = User::find($this->userId);
         if (empty($user)) {
             return;
         }
-        $reason = $this->reason;
 
-        if ($reason == 'custom') {
-            $reason = 'other';
-        }
+        $reason = $this->reason === 'custom' ? 'other' : $this->reason;
+        $newTier = $this->newTierId ? Tier::find($this->newTierId) : null;
 
-        // Send an email to the admins
         Mail::to('hello@kanka.io')
-            ->send(
-                new DowngradedSubscriptionMail($user, $reason, $this->custom)
-            );
+            ->send(new DowngradedSubscriptionMail($user, $reason, $this->custom, $newTier, $this->oldPledge));
     }
 }

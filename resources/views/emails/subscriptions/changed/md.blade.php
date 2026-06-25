@@ -1,7 +1,7 @@
 <x-mail::message layout="admin">
 # Subscription change
 
-Changed subscription for {{ $user->pledge }} [{{ $user->name }}](https://admin.kanka.io/users/{{ $user->id }}) (#{{ $user->id }}) [{{ $user->email }}](mailto:{{ $user->email }})
+Downgraded [{{ $user->name }}](https://admin.kanka.io/users/{{ $user->id }}) (#{{ $user->id }}) [{{ $user->email }}](mailto:{{ $user->email }}) from **{{ $oldPledge ?? $user->pledge }}**@if (!empty($newTier)) → **{{ $newTier->name }}**@endif
 
 @if (!empty($custom))
 **Reason provided:**
