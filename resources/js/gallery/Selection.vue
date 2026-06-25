@@ -95,34 +95,51 @@
                 </div>
             </button>
 
-            <!-- Add from URL -->
+            <!-- Add from URL - button -->
             <button
-                v-if="canUploadProp"
+                v-if="canUploadProp && !urlMode"
                 type="button"
-                class="text-left px-3 py-2 transition-colors duration-150 flex gap-2 items-start"
-                :class="waitingForPaste ? 'bg-base-200' : 'hover:bg-base-200'"
-                @click.stop="activatePasteMode"
+                class="text-left px-3 py-2 hover:bg-base-200 transition-colors duration-150 flex gap-2 items-start"
+                @click.stop="activateUrlMode"
             >
                 <div
                     class="flex items-center justify-center w-6 h-6 rounded text-xs shrink-0 text-neutral-content"
                 >
-                    <i
-                        class=""
-                        :class="
-                            downloading
-                                ? 'fa-solid fa-spin fa-spinner'
-                                : 'fa-regular fa-link'
-                        "
-                        aria-hidden="true"
-                    ></i>
+                    <i class="fa-regular fa-link" aria-hidden="true"></i>
                 </div>
                 <div class="flex flex-col gap-0">
                     <span class="text-sm font-medium">{{ trans.add_url }}</span>
-                    <span class="text-xs text-neutral-content">{{
-                        trans.url_hint
-                    }}</span>
+                    <span class="text-xs text-neutral-content">{{ trans.url_hint }}</span>
                 </div>
             </button>
+
+            <!-- Add from URL - input -->
+            <div
+                v-if="canUploadProp && urlMode"
+                class="px-3 py-2 bg-base-200 flex gap-2 items-start"
+                @click.stop
+            >
+                <div
+                    class="flex items-center justify-center w-6 h-6 rounded text-xs shrink-0 text-neutral-content mt-0.5"
+                >
+                    <i
+                        :class="downloading ? 'fa-solid fa-spin fa-spinner' : 'fa-regular fa-link'"
+                        aria-hidden="true"
+                    ></i>
+                </div>
+                <div class="flex flex-col flex-1 gap-0.5">
+                    <input
+                        ref="urlInputRef"
+                        v-model="urlInputValue"
+                        type="text"
+                        class="bg-transparent text-sm outline-none w-full"
+                        :placeholder="trans.url_hint"
+                        @keydown="onUrlKeydown"
+                        @paste="onUrlPaste"
+                    />
+                    <span v-if="pasteError" class="text-xs text-error-content">{{ trans.paste_error }}</span>
+                </div>
+            </div>
 
             <!-- Choose from gallery -->
             <button
@@ -266,7 +283,10 @@ const storageFull = ref();
 const dragging = ref(false);
 const dragCounter = ref(0);
 const dropdownOpen = ref(false);
-const waitingForPaste = ref(false);
+const urlMode = ref(false);
+const urlInputRef = ref<HTMLInputElement | null>(null);
+const urlInputValue = ref("");
+const pasteError = ref(false);
 const zoneRef = ref<HTMLElement | null>(null);
 const dropdownRef = ref<HTMLElement | null>(null);
 const canUploadProp = computed(() => props.canUpload === "true");
@@ -356,7 +376,7 @@ const openGallery = () => {
 const handleDropdownEscape = (e: KeyboardEvent) => {
     if (e.key === "Escape") {
         dropdownOpen.value = false;
-        deactivatePasteMode();
+        deactivateUrlMode();
         document.removeEventListener("keydown", handleDropdownEscape);
     }
 };
@@ -372,6 +392,7 @@ const toggleDropdown = () => {
             document.addEventListener("keydown", handleDropdownEscape);
         });
     } else {
+        pasteError.value = false;
         document.removeEventListener("click", closeDropdownOnOutside);
         document.removeEventListener("keydown", handleDropdownEscape);
     }
@@ -383,7 +404,7 @@ const closeDropdownOnOutside = (e: MouseEvent) => {
         !dropdownRef.value?.contains(e.target as Node)
     ) {
         dropdownOpen.value = false;
-        deactivatePasteMode();
+        deactivateUrlMode();
         document.removeEventListener("click", closeDropdownOnOutside);
         document.removeEventListener("keydown", handleDropdownEscape);
     }
@@ -419,27 +440,59 @@ const onDrop = (e: DragEvent) => {
     uploadFile(file);
 };
 
-const activatePasteMode = () => {
-    waitingForPaste.value = true;
-    document.addEventListener("paste", handleDocumentPaste);
+const isValidUrl = (text: string): boolean => {
+    try {
+        const url = new URL(text.trim());
+        return url.protocol === "http:" || url.protocol === "https:";
+    } catch {
+        return false;
+    }
 };
 
-const deactivatePasteMode = () => {
-    waitingForPaste.value = false;
-    document.removeEventListener("paste", handleDocumentPaste);
+const activateUrlMode = () => {
+    pasteError.value = false;
+    urlMode.value = true;
+    nextTick(() => {
+        urlInputRef.value?.focus();
+    });
 };
 
-const handleDocumentPaste = (e: ClipboardEvent) => {
-    const text = e.clipboardData?.getData("text");
-    if (!text) {
+const deactivateUrlMode = () => {
+    urlMode.value = false;
+    urlInputValue.value = "";
+    pasteError.value = false;
+};
+
+const submitUrl = () => {
+    const text = urlInputValue.value.trim();
+    if (!text || !isValidUrl(text)) {
+        pasteError.value = true;
         return;
     }
+    pasteError.value = false;
     imageUrl.value = text;
-    deactivatePasteMode();
+    deactivateUrlMode();
     dropdownOpen.value = false;
     document.removeEventListener("click", closeDropdownOnOutside);
     document.removeEventListener("keydown", handleDropdownEscape);
     download();
+};
+
+const onUrlKeydown = (e: KeyboardEvent) => {
+    if (e.key === "Enter") {
+        e.preventDefault();
+        e.stopPropagation();
+        submitUrl();
+    } else if (e.key === "Escape") {
+        e.stopPropagation();
+        deactivateUrlMode();
+    }
+};
+
+const onUrlPaste = () => {
+    nextTick(() => {
+        submitUrl();
+    });
 };
 
 const download = () => {
@@ -610,6 +663,5 @@ onBeforeUnmount(() => {
     document.removeEventListener("click", closeDropdownOnOutside);
     document.removeEventListener("keydown", handleDropdownEscape);
     document.removeEventListener("keydown", handleEscape);
-    document.removeEventListener("paste", handleDocumentPaste);
 });
 </script>

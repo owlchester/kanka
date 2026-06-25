@@ -2,12 +2,13 @@
 
 return [
     'actions'   => [
-        'add_url'   => 'Add from URL',
-        'change'    => 'Change',
-        'gallery'   => 'From gallery',
-        'upload'    => 'Upload from device',
-        'url'       => 'Upload an image from a URL',
-        'url_hint'  => 'Paste an image link',
+        'add_url'       => 'Add from URL',
+        'change'        => 'Change',
+        'gallery'       => 'From gallery',
+        'paste_error'   => 'Invalid URL',
+        'upload'        => 'Upload from device',
+        'url'           => 'Upload an image from a URL',
+        'url_hint'      => 'Paste an image URL',
     ],
     'browse'    => [
         'folder_count'      => ':count images',

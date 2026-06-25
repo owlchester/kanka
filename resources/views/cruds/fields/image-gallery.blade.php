@@ -51,6 +51,7 @@ $old = isset($entity) && !empty($entity->image_path) || isset($model) && !empty(
         'add_url'   => __('gallery.actions.add_url'),
         'change'    => __('gallery.actions.change'),
         'url_hint'  => __('gallery.actions.url_hint'),
+        'paste_error' => __('gallery.actions.paste_error'),
         'drag_hint' => __('gallery.drop.hint'),
         'drop_hint' => __('gallery.drop.active'),
         'formats'   => $formats . ' · max ' . $max,
