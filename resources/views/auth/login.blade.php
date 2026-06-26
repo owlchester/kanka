@@ -113,4 +113,19 @@
     <a class="text-blue-500 hover:text-blue-800 transition-all duration-150" href="{{ route('password.request') }}">
         {{ __('auth.login.password_forgotten') }}
     </a>
+
+    @if(app()->hasDebugModeEnabled())
+    <div class="flex flex-col gap-2 border-t-2 border-dashed border-yellow-400 pt-4">
+        <p class="text-yellow-600 dark:text-yellow-400 text-xs text-center font-mono uppercase tracking-widest">Debug — Fake OAuth</p>
+        <a href="{{ route('debug.auth.provider', ['provider' => 'google']) }}" class="rounded border border-yellow-400 text-yellow-600 dark:text-yellow-400 hover:text-white hover:bg-yellow-400 px-6 py-2 transition-all duration-150 flex gap-3 items-center text-sm">
+            <x-icon class="fa-brands fa-google" /> Fake Google Login
+        </a>
+        <a href="{{ route('debug.auth.provider', ['provider' => 'facebook']) }}" class="rounded border border-yellow-400 text-yellow-600 dark:text-yellow-400 hover:text-white hover:bg-yellow-400 px-6 py-2 transition-all duration-150 flex gap-3 items-center text-sm">
+            <x-icon class="fa-brands fa-facebook-f" /> Fake Facebook Login
+        </a>
+        <a href="{{ route('debug.auth.provider', ['provider' => 'twitter']) }}" class="rounded border border-yellow-400 text-yellow-600 dark:text-yellow-400 hover:text-white hover:bg-yellow-400 px-6 py-2 transition-all duration-150 flex gap-3 items-center text-sm">
+            <x-icon class="fa-brands fa-x-twitter" /> Fake Twitter Login
+        </a>
+    </div>
+    @endif
 @endsection

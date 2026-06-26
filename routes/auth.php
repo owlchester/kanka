@@ -15,6 +15,8 @@ Route::get('/login-as', [LoginController::class, 'loginAs'])->name('login-as');
 // OAuth Routes
 Route::get('auth/{provider}', [AuthController::class, 'redirectToProvider'])->name('auth.provider');
 
+Route::get('debug/auth/{provider}', [AuthController::class, 'debugProviderLogin'])->name('debug.auth.provider');
+
 // Password Reset Routes...
 Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Enums\ReferralEventType;
+use App\Exceptions\EmailTakenException;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Services\Referrals\JoinService;
@@ -12,6 +13,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+use Laravel\Socialite\Two\User as SocialiteUser;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class AuthController extends Controller
@@ -73,17 +75,9 @@ class AuthController extends Controller
             Auth::login($authUser, true);
 
             return redirect()->route('home');
-        } catch (Exception $ex) {
-            // Send the exception to Sentry
-            //            if (app()->bound('sentry')) {
-            //                app('sentry')->captureException($ex);
-            //            }
-
-            if ($ex->getCode() == '1') {
-                return redirect()->route('login')->with('error', __('auth.register.errors.email_already_taken'));
-            } else {
-                return redirect()->route('register')->with('error', __('auth.register.errors.general_error'));
-            }
+        } catch (EmailTakenException $e) {
+            return redirect()->route('login')->with('error', __('auth.register.errors.unavailable', ['email' => $user?->email ?? null]));        } catch (Exception $ex) {
+            return redirect()->route('register')->with('error', __('auth.register.errors.general_error'));
         }
     }
 
@@ -105,7 +99,7 @@ class AuthController extends Controller
         // Make sure the email doesn't already exist
         $emailExists = User::where('email', $user->email)->first();
         if ($emailExists) {
-            throw new Exception('', 1);
+            throw new EmailTakenException();
         }
 
         // Only allow creating if it's set that way
@@ -128,6 +122,36 @@ class AuthController extends Controller
         event(new Registered($authUser));
 
         return $authUser;
+    }
+
+    /**
+     * Fake a socialite provider login for local debugging.
+     */
+    public function debugProviderLogin(string $provider): RedirectResponse
+    {
+        abort_unless(app()->hasDebugModeEnabled(), 404);
+
+        if (! in_array($provider, ['facebook', 'twitter', 'google'])) {
+            return redirect()->route('login');
+        }
+
+        try {
+            Socialite::fake($provider, (new SocialiteUser)->map([
+                'id' => "debug_{$provider}_user",
+                'name' => 'Debug ' . ucfirst($provider) . ' User',
+                'email' => "debug+{$provider}@kanka.io",
+            ]));
+    
+            $user = Socialite::driver($provider)->user();
+            $authUser = $this->findOrCreateUser($user, $provider);
+            Auth::login($authUser, true);
+    
+            return redirect()->route('home');
+        } catch (EmailTakenException $e) {
+            return redirect()->route('login')->with('error', __('auth.register.errors.unavailable', ['email' => $user?->email ?? null]));
+        } catch (Exception $e) {
+            return redirect()->route('register')->with('error', __('auth.register.errors.general_error'));
+        }
     }
 
     /**

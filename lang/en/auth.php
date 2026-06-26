@@ -48,7 +48,7 @@ return [
     'register'  => [
         'already'   => 'Already have an account? :login',
         'errors'    => [
-            'email_already_taken'   => 'An account with this email is already registered.',
+            'unavailable'   => 'An account for :email is already registered with another login method.',
             'general_error'         => 'An error occurred while registering your account. Please try again.',
         ],
         'fields'    => [
@@ -76,5 +76,5 @@ return [
         'title'     => 'Two-Factor Authentication',
     ],
     'throttle'  => 'Too many login attempts. Please try again in :seconds seconds.',
-    'x-twitter' => 'X formerly known as Twitter',
+    'x-twitter' => 'X',
 ];
