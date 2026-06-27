@@ -23,14 +23,12 @@
 $permissions = $permissionService->entityType($entity->entityType)->entityPermissions($entity);
 @endphp
     <x-form :action="['entities.permissions-process', $campaign, $entity->id]" direct>
-        <x-box>
         @include('partials.forms._dialog', [
             'title' => __('crud.permissions.title', ['name' => $entity->name]),
             'content' => 'entities.pages.permissions.table',
             'articleClass' => 'max-w-3xl',
             'showPermissionActions' => true
         ])
-        </x-box>
         <input type="hidden" name="entity_id" value="{{ $entity->id }}" />
     </x-form>
 @endsection
