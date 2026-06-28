@@ -26,8 +26,8 @@ it('presign — happy path returns URL and sets upload_key', function () {
 
     $mock = $this->mock(SignedUploadService::class);
     $mock->shouldReceive('campaign')->andReturnSelf();
-    $mock->shouldReceive('presign')->andReturnUsing(function (CampaignImport $t, string $ext) {
-        $key = 'campaigns/1/imports/test.' . $ext;
+    $mock->shouldReceive('presign')->andReturnUsing(function (CampaignImport $t, string $ext) use ($campaign) {
+        $key = "campaigns/{$campaign->id}/imports/test.{$ext}";
         $t->config = array_merge($t->config ?? [], ['upload_key' => $key]);
         $t->save();
 
@@ -43,6 +43,9 @@ it('presign — happy path returns URL and sets upload_key', function () {
 });
 
 it('presign — user without import permission gets 403', function () {
+    Storage::fake('export');
+    Bus::fake();
+
     $user = User::factory()->create(); // no pledge
     Auth::login($user);
     $this->withCampaign();
@@ -60,6 +63,9 @@ it('presign — user without import permission gets 403', function () {
 });
 
 it('presign — token belonging to different campaign gets 403', function () {
+    Storage::fake('export');
+    Bus::fake();
+
     $user = User::factory()->create(['pledge' => Pledge::ELEMENTAL]);
     Auth::login($user);
     $this->withCampaign();
@@ -78,6 +84,9 @@ it('presign — token belonging to different campaign gets 403', function () {
 });
 
 it('presign — token not in PREPARED status gets 422', function () {
+    Storage::fake('export');
+    Bus::fake();
+
     $user = User::factory()->create(['pledge' => Pledge::ELEMENTAL]);
     Auth::login($user);
     $this->withCampaign();
@@ -103,7 +112,7 @@ it('confirm — happy path queues import and dispatches job', function () {
     $this->withCampaign();
     $campaign = Campaign::first();
 
-    $key = 'campaigns/1/imports/test.zip';
+    $key = "campaigns/{$campaign->id}/imports/test.zip";
     Storage::disk('export')->put($key, 'fake file content');
 
     $token = new CampaignImport;
@@ -133,7 +142,7 @@ it('confirm — file missing on export disk returns 422', function () {
     $this->withCampaign();
     $campaign = Campaign::first();
 
-    $key = 'campaigns/1/imports/missing.zip';
+    $key = "campaigns/{$campaign->id}/imports/missing.zip";
     $token = new CampaignImport;
     $token->campaign_id = $campaign->id;
     $token->user_id = $user->id;
@@ -149,6 +158,7 @@ it('confirm — file missing on export disk returns 422', function () {
 });
 
 it('confirm — file too large returns 422', function () {
+    Storage::fake('export');
     Bus::fake();
 
     $user = User::factory()->create(['pledge' => Pledge::ELEMENTAL]);
@@ -156,7 +166,7 @@ it('confirm — file too large returns 422', function () {
     $this->withCampaign();
     $campaign = Campaign::first();
 
-    $key = 'campaigns/1/imports/large.zip';
+    $key = "campaigns/{$campaign->id}/imports/large.zip";
     $token = new CampaignImport;
     $token->campaign_id = $campaign->id;
     $token->user_id = $user->id;
@@ -195,7 +205,8 @@ it('confirm — missing upload_key in config returns 422', function () {
 
     $this->actingAs($user)
         ->postJson(route('campaign.import.confirm', [$campaign, $token]))
-        ->assertStatus(422);
+        ->assertStatus(422)
+        ->assertJsonFragment(['message' => 'No upload key found.']);
 
     Bus::assertNotDispatched(Import::class);
 });
