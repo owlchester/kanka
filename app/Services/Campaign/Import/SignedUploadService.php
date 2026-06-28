@@ -39,7 +39,10 @@ class SignedUploadService
      */
     public function confirm(CampaignImport $token): void
     {
-        $key = $token->config['upload_key'];
+        $key = $token->config['upload_key'] ?? null;
+        if (! $key) {
+            abort(422, 'No upload key found.');
+        }
 
         if (! Storage::disk('export')->exists($key)) {
             abort(422, 'File not found on storage.');
