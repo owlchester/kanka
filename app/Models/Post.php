@@ -266,7 +266,7 @@ class Post extends Model
             'entity_id' => $this->entity_id,
             'name' => $this->name,
             'type' => 'post',
-            'entry' => strip_tags($this->entry),
+            'entry' => mb_substr(strip_tags($this->entry), 0, 50000),
         ];
     }
 

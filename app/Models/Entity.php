@@ -529,7 +529,7 @@ class Entity extends Model
             'entity_id' => $this->id,
             'name' => $this->name,
             'type' => $this->type,
-            'entry' => strip_tags($this->entry),
+            'entry' => mb_substr(strip_tags($this->entry), 0, 50000),
         ];
     }
 
