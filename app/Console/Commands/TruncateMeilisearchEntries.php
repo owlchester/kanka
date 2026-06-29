@@ -37,7 +37,7 @@ class TruncateMeilisearchEntries extends Command
             $this->info("Re-indexing {$count} {$label}...");
 
             $model::whereRaw("CHAR_LENGTH({$column}) > {$limit}")
-                ->searchable();
+                ->chunkById(500, fn ($records) => $records->searchable());
 
             $this->info('Done.');
         }
