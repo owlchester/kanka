@@ -76,7 +76,8 @@ class AuthController extends Controller
 
             return redirect()->route('home');
         } catch (EmailTakenException $e) {
-            return redirect()->route('login')->with('error', __('auth.register.errors.unavailable', ['email' => $user?->email ?? null]));        } catch (Exception $ex) {
+            return redirect()->route('login')->with('error', __('auth.register.errors.unavailable', ['email' => $user?->email ?? null]));
+        } catch (Exception $ex) {
             return redirect()->route('register')->with('error', __('auth.register.errors.general_error'));
         }
     }
@@ -99,7 +100,7 @@ class AuthController extends Controller
         // Make sure the email doesn't already exist
         $emailExists = User::where('email', $user->email)->first();
         if ($emailExists) {
-            throw new EmailTakenException();
+            throw new EmailTakenException;
         }
 
         // Only allow creating if it's set that way
@@ -141,11 +142,11 @@ class AuthController extends Controller
                 'name' => 'Debug ' . ucfirst($provider) . ' User',
                 'email' => "debug+{$provider}@kanka.io",
             ]));
-    
+
             $user = Socialite::driver($provider)->user();
             $authUser = $this->findOrCreateUser($user, $provider);
             Auth::login($authUser, true);
-    
+
             return redirect()->route('home');
         } catch (EmailTakenException $e) {
             return redirect()->route('login')->with('error', __('auth.register.errors.unavailable', ['email' => $user?->email ?? null]));
