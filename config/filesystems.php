@@ -91,6 +91,7 @@ return [
             'root' => env('APP_ENV'),
             'endpoint' => env('HETZNER_S3_ENDPOINT'),
             'use_path_style_endpoint' => true,
+            'temporary_url' => env('S3_EXPORT_PUBLIC_URL'),
         ],
 
         's3-assets' => [

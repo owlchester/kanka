@@ -31,7 +31,19 @@ class SignedUploadService
         $token->config = array_merge($token->config ?? [], ['upload_key' => $key]);
         $token->save();
 
-        return Storage::disk('export')->temporaryUploadUrl($key, now()->addHour());
+        $result = Storage::disk('export')->temporaryUploadUrl($key, now()->addHour());
+
+        $publicUrl = config('filesystems.disks.export.temporary_url');
+        $internalEndpoint = config('filesystems.disks.export.endpoint');
+        if ($publicUrl && $internalEndpoint) {
+            $result['url'] = str_replace(
+                rtrim($internalEndpoint, '/'),
+                rtrim($publicUrl, '/'),
+                $result['url']
+            );
+        }
+
+        return $result;
     }
 
     /**
