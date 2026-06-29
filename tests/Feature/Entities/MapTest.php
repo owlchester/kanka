@@ -107,7 +107,9 @@ it('calculates bounds from a partial image stream without downloading the full f
     $path = 'entities/test-bounds.png';
     Storage::put($path, $pngBytes);
 
-    $map->entity->update(['image_path' => $path]);
+    $entity = $map->entity;
+    $entity->image_path = $path;
+    $entity->saveQuietly();
     $map->load('entity');
 
     expect($map->bounds())->toBe('[[0, 0], [40, 80]]');
