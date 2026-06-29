@@ -57,6 +57,6 @@ class SignedUploadService
         $token->status_id = CampaignImportStatus::QUEUED;
         $token->save();
 
-        Import::dispatch($token);
+        Import::dispatch($token)->onQueue('heavy');
     }
 }
