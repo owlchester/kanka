@@ -480,15 +480,21 @@ class Map extends MiscModel
             return;
         }
 
-        $contents = Storage::get($path);
         if (Str::endsWith($path, '.svg')) {
+            $contents = Storage::get($path);
             $xml = simplexml_load_string($contents);
             $width = $xml->attributes()->width;
             $height = $xml->attributes()->height;
         } else {
-            $image = imagecreatefromstring($contents);
-            $width = imagesx($image);
-            $height = imagesy($image);
+            // Read only the first 64KB to extract dimensions from the image header.
+            // Dimensions live in the first few dozen bytes for PNG/WebP/GIF, and within
+            // a few KB for JPEG — no need to download the entire file (could be 50MB+).
+            $stream = Storage::readStream($path);
+            $header = fread($stream, 65536);
+            fclose($stream);
+            $size = getimagesizefromstring($header);
+            $width = $size[0] ?? 0;
+            $height = $size[1] ?? 0;
         }
 
         $this->height = $height;

@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Map;
+use Illuminate\Support\Facades\Storage;
 
 it('POSTS an invalid map form')
     ->asUser()
@@ -90,6 +91,29 @@ it('can GET a map as a player')
     ->asPlayer()
     ->get('/api/1.0/campaigns/1/maps/1')
     ->assertStatus(200);
+
+it('calculates bounds from a partial image stream without downloading the full file', function () {
+    $this->asUser()->withCampaign();
+
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    // Build a real 80×40 PNG in memory so getimagesizefromstring() can parse it
+    $gd = imagecreatetruecolor(80, 40);
+    ob_start();
+    imagepng($gd);
+    $pngBytes = ob_get_clean();
+    imagedestroy($gd);
+
+    $path = 'entities/test-bounds.png';
+    Storage::put($path, $pngBytes);
+
+    $map->entity->update(['image_path' => $path]);
+    $map->load('entity');
+
+    expect($map->bounds())->toBe('[[0, 0], [40, 80]]');
+    expect($map->height)->toBe(40);
+    expect($map->width)->toBe(80);
+});
 
 /**
  * This example showcases building a custom function in the test to avoid polluting the TestCase file with lots of
