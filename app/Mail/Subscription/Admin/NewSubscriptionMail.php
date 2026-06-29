@@ -69,7 +69,7 @@ class NewSubscriptionMail extends Mailable
             }
             $stripePm = $pm->asStripePaymentMethod();
             if ($stripePm->type === 'card' && $stripePm->card) {
-                return ucfirst($stripePm->card->brand);
+                return ucfirst($stripePm->card->brand ?? 'unknown');
             }
             if ($stripePm->type === 'paypal' && $stripePm->paypal) {
                 return 'PayPal (' . ($stripePm->paypal->payer_email ?? 'unknown') . ')';

@@ -76,8 +76,12 @@ class AuthController extends Controller
 
             return redirect()->route('home');
         } catch (EmailTakenException $e) {
+<<<<<<< HEAD
             return redirect()->route('login')->with('error', __('auth.register.errors.unavailable', ['email' => $user?->email ?? null]));
         } catch (Exception $ex) {
+=======
+            return redirect()->route('login')->with('error', __('auth.register.errors.unavailable', ['email' => $user->email ?? null]));        } catch (Exception $ex) {
+>>>>>>> 7fd1548dc (phpstan)
             return redirect()->route('register')->with('error', __('auth.register.errors.general_error'));
         }
     }
@@ -136,6 +140,8 @@ class AuthController extends Controller
             return redirect()->route('login');
         }
 
+        $user = null;
+
         try {
             Socialite::fake($provider, (new SocialiteUser)->map([
                 'id' => "debug_{$provider}_user",
@@ -149,7 +155,7 @@ class AuthController extends Controller
 
             return redirect()->route('home');
         } catch (EmailTakenException $e) {
-            return redirect()->route('login')->with('error', __('auth.register.errors.unavailable', ['email' => $user?->email ?? null]));
+            return redirect()->route('login')->with('error', __('auth.register.errors.unavailable', ['email' => $user->email ?? null]));
         } catch (Exception $e) {
             return redirect()->route('register')->with('error', __('auth.register.errors.general_error'));
         }
