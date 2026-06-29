@@ -15,7 +15,8 @@ class ApiController extends Controller
     use CampaignAware;
     use GuestAuthTrait;
 
-    public function __construct(protected ApiService $apiService) {
+    public function __construct(protected ApiService $apiService)
+    {
         $this->middleware('auth');
     }
 

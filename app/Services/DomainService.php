@@ -47,11 +47,6 @@ class DomainService
         return config('domains.api');
     }
 
-    public function importer(): string
-    {
-        return config('domains.importer');
-    }
-
     public function toFront(string $page): string
     {
         return '//' . $this->front() . '/' . $page;

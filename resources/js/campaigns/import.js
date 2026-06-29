@@ -1,9 +1,6 @@
 import axios from "axios";
 
-
-const progressUploading = document.querySelector('.progress-uploading');
-const progressValidating = document.querySelector('.progress-validating');
-let fileProgress;
+const MAX_SIZE = 536870912;
 
 const initExport = () => {
     const form = document.getElementById('campaign-import-form');
@@ -11,99 +8,89 @@ const initExport = () => {
         return;
     }
 
-    fileProgress = document.querySelector('.progress');
+    const fileProgress = document.querySelector('.progress');
+    const progressBar = document.querySelector('[role="progressbar"]');
+    const progressPercent = document.querySelector('.progress-percent');
+    const progressUploading = document.querySelector('.progress-uploading');
+    const progressValidating = document.querySelector('.progress-validating');
 
-    form.onsubmit = (e) => {
+    const showError = (message) => {
+        form.classList.remove('hidden');
+        fileProgress.classList.add('hidden');
+        window.showToast(message, 'error');
+    };
+
+    form.onsubmit = async (e) => {
         e.preventDefault();
 
-        let count = 0;
-        let data = new FormData();
-        let files = document.getElementById('export-files');
-        Array.from(files.files).forEach(file => {
-            if (file.name.endsWith('.zip') || file.name.endsWith('.csv')) {
-                count++;
-                data.append('files[]', file);
-            }
-        });
-        let campaign =  document.querySelector('input[name="campaign"]');
-        data.append('campaign', campaign.value);
-        let token =  document.querySelector('input[name="token"]');
-        data.append('token', token.value);
+        const fileInput = document.getElementById('export-files');
+        const file = fileInput.files[0];
 
-        // Two files submitted? Do the thing
-        if (count > 0 && count < 2) {
-            startProcess(form, data);
-        } else {
-            alert('Please select the campaign export zip files.');
-            let loading = document.querySelector('.loading');
-            if (loading) {
-                loading.classList.remove('loading');
-            }
-            return false;
+        if (!file) {
+            showError('Please select a .zip or .csv file.');
+            return;
         }
-    };
-};
 
-const startProcess = (form, data) => {
-    form.classList.add('hidden');
-
-    // Now upload to the real endpoint
-    let config = {
-        headers: {
-            'Content-Type': 'multipart/form-data'
-        },
-        onUploadProgress: function (progressEvent) {
-            let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-            document.querySelector('[role="progressbar"]').style.width = percentCompleted + '%';
-
-            if (percentCompleted === 100) {
-                progressUploading.classList.add('hidden');
-                progressValidating.classList.remove('hidden');
-            }
-            const progress = document.querySelector('.progress-percent');
-            progress.classList.remove('hidden');
-            progress.innerHTML = percentCompleted;
+        const ext = file.name.toLowerCase().split('.').pop();
+        if (ext !== 'zip' && ext !== 'csv') {
+            showError('Please select a .zip or .csv file.');
+            return;
         }
-    };
 
-    fileProgress.classList.remove('hidden');
-    progressUploading.classList.remove('hidden');
-    progressValidating.classList.add('hidden');
+        if (file.size > MAX_SIZE) {
+            showError('File is too large. Maximum size is 512 MiB.');
+            return;
+        }
 
-    axios
-        .post(form.action, data, config)
-        .then(function (res) {
-            fileProgress.classList.add('hidden');
+        form.classList.add('hidden');
+        fileProgress.classList.remove('hidden');
+        progressUploading.classList.remove('hidden');
+        progressValidating.classList.add('hidden');
+        progressBar.style.width = '0%';
+        progressPercent.innerHTML = '0';
 
-            if (res.data.success) {
+        let presignData;
+        try {
+            const presignRes = await axios.post(form.dataset.presignUrl, { ext });
+            presignData = presignRes.data;
+        } catch {
+            showError('Failed to prepare upload. Please try again.');
+            return;
+        }
+
+        const s3Axios = axios.create();
+        delete s3Axios.defaults.headers.common['X-Requested-With'];
+        delete s3Axios.defaults.headers.common['X-XSRF-TOKEN'];
+        delete s3Axios.defaults.headers.common['Authorization'];
+
+        try {
+            await s3Axios.put(presignData.url, file, {
+                headers: { 'Content-Type': file.type, ...presignData.headers },
+                onUploadProgress: (progressEvent) => {
+                    const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+                    progressBar.style.width = percent + '%';
+                    progressPercent.innerHTML = percent;
+
+                    if (percent === 100) {
+                        progressUploading.classList.add('hidden');
+                        progressValidating.classList.remove('hidden');
+                    }
+                },
+            });
+        } catch {
+            showError('Failed to upload file to storage.');
+            return;
+        }
+
+        try {
+            const confirmRes = await axios.post(form.dataset.confirmUrl);
+            if (confirmRes.data.success) {
                 window.location.reload();
             }
-        })
-        .catch(function (err) {
-            form.classList.remove('hidden');
-            fileProgress.classList.add('hidden');
-
-            if (err.status === 413) {
-                window.showToast("File is too big for our servers to handle.", 'error');
-            }
-            else if (err.code == 'ERR_NETWORK') {
-                window.showToast("Network error, the upload server seems to be down.", 'error');
-            }
-            else if (err.response && err.response.data.errors) {
-                //fileError.text(err.response.data.message).fadeToggle();
-
-                let errors = err.response.data.errors;
-                let errorKeys = Object.keys(errors);
-                errorKeys.forEach(k => {
-                    window.showToast(errors[k], 'error');
-                });
-            }
-
-            let loading = document.querySelector('.loading');
-            if (loading) {
-                loading.classList.remove('loading');
-            }
-        });
+        } catch {
+            showError('Failed to confirm upload. Please try again.');
+        }
+    };
 };
 
 initExport();

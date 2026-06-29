@@ -609,6 +609,7 @@ class ImportService
         $files = $this->job->config['files'];
         foreach ($files as $file) {
             Storage::disk('local')->delete($file);
+            Storage::disk('export')->delete($file);
         }
 
         // Finished with our core loop, now throw any exception for sentry to catch them

@@ -1,0 +1,10 @@
+{
+    "CORSRules": [
+        {
+            "AllowedOrigins": ["https://app.kanka.io"],
+            "AllowedMethods": ["PUT"],
+            "AllowedHeaders": ["Content-Type", "Content-Length"],
+            "MaxAgeSeconds": 3600
+        }
+    ]
+}

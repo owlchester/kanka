@@ -33,7 +33,10 @@
                 </div>
             @else
                 @if($token->isPrepared())
-                    <form id="campaign-import-form" class="p-4 rounded-xl bg-base-100" method="post" action="{{ \App\Facades\Domain::importer() }}">
+                    <form id="campaign-import-form"
+                          class="p-4 rounded-xl bg-base-100"
+                          data-presign-url="{{ route('campaign.import.presign', [$campaign, $token]) }}"
+                          data-confirm-url="{{ route('campaign.import.confirm', [$campaign, $token]) }}">
                         {{ csrf_field() }}
                             <x-grid type="1/1">
                                 <h2 class="text-lg font-light">{{ __('campaigns/import.form') }}</h4>

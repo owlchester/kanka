@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\PricingPeriod;
 use App\Http\Requests\ValidatePledge;
 use App\Models\Tier;
 use App\Models\TierPrice;

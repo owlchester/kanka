@@ -40,7 +40,7 @@ class FinishController extends Controller
             /** @var TierPrice $pricing */
             $pricing = TierPrice::find($newSubPricingId);
             DataLayer::add('userSubYearly', $pricing->isYearly() ? '1' : '0');
-            DataLayer::add('userSubMonthly', !$pricing->isYearly() ? '1' : '0');
+            DataLayer::add('userSubMonthly', ! $pricing->isYearly() ? '1' : '0');
             DataLayer::add('userSubPeriod', $pricing->isYearly() ? 'yearly' : 'monthly');
             $gaPurchase = [
                 'value' => $pricing->cost,
