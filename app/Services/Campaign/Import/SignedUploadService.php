@@ -7,7 +7,6 @@ use App\Jobs\Campaigns\Import;
 use App\Models\CampaignImport;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
-use Aws\S3\S3Client;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -32,47 +31,7 @@ class SignedUploadService
         $token->config = array_merge($token->config ?? [], ['upload_key' => $key]);
         $token->save();
 
-        $publicUrl = config('filesystems.disks.export.temporary_url');
-
-        if ($publicUrl) {
-            return $this->presignWithPublicEndpoint($key, $publicUrl);
-        }
-
         return Storage::disk('export')->temporaryUploadUrl($key, now()->addHour());
-    }
-
-    /**
-     * Sign a PUT presigned URL using the public-facing endpoint so the browser
-     * can reach it directly (needed in Docker where the internal endpoint differs).
-     *
-     * @return array{url: string, headers: array<string, string>}
-     */
-    private function presignWithPublicEndpoint(string $key, string $publicUrl): array
-    {
-        $disk = config('filesystems.disks.export');
-        $root = trim($disk['root'] ?? '', '/');
-        $fullKey = $root !== '' ? $root . '/' . $key : $key;
-
-        $client = new S3Client([
-            'version' => 'latest',
-            'region' => $disk['region'],
-            'endpoint' => $publicUrl,
-            'use_path_style_endpoint' => true,
-            'credentials' => [
-                'key' => $disk['key'],
-                'secret' => $disk['secret'],
-            ],
-        ]);
-
-        $command = $client->getCommand('PutObject', [
-            'Bucket' => $disk['bucket'],
-            'Key' => $fullKey,
-        ]);
-
-        return [
-            'url' => (string) $client->createPresignedRequest($command, '+1 hour')->getUri(),
-            'headers' => [],
-        ];
     }
 
     /**
