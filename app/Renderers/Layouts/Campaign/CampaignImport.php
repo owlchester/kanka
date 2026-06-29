@@ -49,7 +49,7 @@ class CampaignImport extends Layout
                     } elseif ($model->status_id == CampaignImportStatus::QUEUED) {
                         return '<span class="text-neutral-content"><i class="fa-regular fa-hourglass" aria-hidden="true"></i> ' . __('campaigns/import.status.queued') . '</span>';
                     } elseif ($model->status_id == CampaignImportStatus::FINISHED) {
-                        return '<span class="text-success"><i class="fa-regular fa-check-circle" aria-hidden="true"></i> ' . __('campaigns/import.status.finished') . '</span>';
+                        return '<span class="text-success-content"><i class="fa-regular fa-check-circle" aria-hidden="true"></i> ' . __('campaigns/import.status.finished') . '</span>';
                     } elseif ($model->status_id == CampaignImportStatus::READY) {
                         return '<a href="' . route('campaign.import.csv', [$model->campaign, $model]) . '" class="btn2 btn-outline btn-sm"> <i class="fa-regular fa-check-circle" aria-hidden="true"></i> ' . __('campaigns/import.status.ready') . '</a>';
                     } elseif ($model->status_id == CampaignImportStatus::VALIDATING) {
