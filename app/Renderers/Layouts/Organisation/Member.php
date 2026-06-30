@@ -3,6 +3,7 @@
 namespace App\Renderers\Layouts\Organisation;
 
 use App\Facades\Module;
+use App\Models\OrganisationMember;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 
@@ -31,7 +32,7 @@ class Member extends Layout
             'role' => [
                 'key' => 'role',
                 'label' => __('organisations.members.fields.role'),
-                'render' => function ($model) {
+                'render' => function (OrganisationMember $model) {
                     $icon = '';
                     if ($model->inactive()) {
                         $icon =
@@ -72,7 +73,7 @@ class Member extends Layout
                 'label' => '<i class="fa-regular fa-map-pin" data-title="' .
                     __('organisations.members.fields.pinned') .
                     '" data-toggle="tooltip"></i>',
-                'render' => function ($model) {
+                'render' => function (OrganisationMember $model) {
                     if (! $model->pinned()) {
                         return '';
                     }

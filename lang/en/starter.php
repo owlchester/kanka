@@ -8,7 +8,7 @@ return [
         'age'           => '[20s/30s/40s]',
         'background'    => [
             'cur'       => 'Currently [occupation/role]',
-            'loc'       => 'Gew up in [hometown/region]',
+            'loc'       => 'Grew up in [hometown/region]',
             'seeking'   => 'Seeking [goal/motivation]',
             'title'     => 'Background',
         ],
