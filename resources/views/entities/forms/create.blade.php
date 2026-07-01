@@ -55,6 +55,17 @@
                 <div class="tab-content">
                     <div class="tab-pane pane-entry {{ (request()->get('tab') == null ? ' active' : '') }}" id="form-entry">
                         <x-grid>
+                            <div class="flex gap-2 items-end">
+                                @if (isset($entityType) && $entityType->isMap())
+                                    @php $size = 'map'; @endphp
+                                @endif
+                                <div>
+                                    @include('cruds.fields.image-gallery', ['new' => true])
+                                </div>
+                                <div class="grow">
+                                    @include('cruds.fields.entity-name')
+                                </div>
+                            </div>
                             @include('entities.forms.entry')
                         </x-grid>
                     </div>

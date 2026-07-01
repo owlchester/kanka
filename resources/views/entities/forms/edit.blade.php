@@ -62,7 +62,7 @@
                                 @include('cruds.fields.image-gallery', ['new' => true])
                             </div>
                             <div class="grow">
-                                @include('cruds.fields.entity-name')
+                                @include('cruds.fields.entity-name', ['model' => $entity])
                             </div>
                         </div>
                         @if ($entity->entityType->isCustom())
