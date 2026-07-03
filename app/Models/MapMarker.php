@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\MapMarkerShape;
 use App\Enums\Visibility;
+use App\Facades\Avatar;
 use App\Facades\CampaignLocalization;
 use App\Facades\MapMarkerCache;
 use App\Facades\Mentions;
@@ -222,6 +223,45 @@ class MapMarker extends Model
         }
 
         return $icon;
+    }
+
+    /**
+     * Resolve this marker's icon into a clean, JSON-safe shape for the Vue map explorer,
+     * mirroring the branching in markerIcon()/datagridMarkerIcon() without building JS strings.
+     */
+    public function exploreIcon(): array
+    {
+        if ($this->icon == 5 || $this->isLabel() || $this->isCircle() || $this->isPolygon()) {
+            return ['type' => 'none', 'value' => null];
+        }
+
+        $campaign = CampaignLocalization::getCampaign();
+        if (! empty($this->custom_icon) && $campaign->boosted()) {
+            if (Str::startsWith($this->custom_icon, '<i ')) {
+                return ['type' => 'html', 'value' => $this->custom_icon];
+            }
+            if (Str::startsWith($this->custom_icon, ['fa-', 'ra '])) {
+                return ['type' => 'fa', 'value' => $this->custom_icon];
+            }
+            if (Str::startsWith($this->custom_icon, '<?xml')) {
+                return ['type' => 'svg', 'value' => $this->resizedCustomIcon()];
+            }
+        }
+
+        if ($this->icon == 2) {
+            return ['type' => 'fa', 'value' => 'fa-solid fa-question'];
+        }
+        if ($this->icon == 3) {
+            return ['type' => 'fa', 'value' => 'fa-solid fa-exclamation'];
+        }
+        if ($this->icon == 4 && $this->entity) {
+            return [
+                'type' => 'avatar',
+                'value' => Avatar::entity($this->entity)->fallback()->size(276)->thumbnail(),
+            ];
+        }
+
+        return ['type' => 'fa', 'value' => 'fa-solid fa-map-pin'];
     }
 
     /**
