@@ -16,6 +16,7 @@ use App\Http\Controllers\Entity\Attributes\LiveApiController;
 use App\Http\Controllers\Entity\Attributes\LiveController;
 use App\Http\Controllers\Entity\EntryController;
 use App\Http\Controllers\Entity\ImageController;
+use App\Http\Controllers\Entity\Maps\ApiController as EntityMapApiController;
 use App\Http\Controllers\Entity\Posts\LayoutController;
 use App\Http\Controllers\Entity\Posts\VisibilityController;
 use App\Http\Controllers\Entity\PrivacyController;
@@ -51,6 +52,8 @@ Route::patch('/w/{campaign}/entities/{entity}/save', [EditController::class, 'sa
 Route::delete('/w/{campaign}/entities/{entity}/delete', [DeleteController::class, 'index'])->name('entities.destroy');
 
 Route::get('/w/{campaign}/entities/{entity}/children', [ChildrenController::class, 'index'])->name('entities.children');
+
+Route::get('/w/{campaign}/entities/{entity}/map-api', [EntityMapApiController::class, 'index'])->name('entities.map-api');
 
 // Abilities
 Route::get('/w/{campaign}/abilities/{ability}/abilities', 'Abilities\AbilityController@index')->name('abilities.abilities');
