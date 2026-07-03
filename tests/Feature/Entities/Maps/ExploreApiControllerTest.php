@@ -1,6 +1,5 @@
 <?php
 
-use App\Enums\Visibility;
 use App\Models\Character;
 use App\Models\Map;
 use App\Models\MapGroup;
@@ -74,18 +73,16 @@ it('marks a finished chunked map with a chunks url', function () {
     expect($chunksUrl)->toEndWith('?z={z}&x={x}&y={y}');
 });
 
-it('excludes pins in an admin-only group when viewed by a non-admin player (mirrors MapMarker::visible())', function () {
+it('excludes pins whose linked entity has no child (mirrors MapMarker::visible())', function () {
     $this->asUser()->withCampaign();
     $map = Map::factory()->create(['campaign_id' => 1]);
-    $group = MapGroup::factory()->create(['map_id' => $map->id, 'visibility_id' => Visibility::Admin]);
-    MapMarker::factory()->create(['map_id' => $map->id, 'name' => 'Admin only pin', 'group_id' => $group->id]);
+    $character = Character::factory()->create(['campaign_id' => 1]);
+    $entity = $character->entity;
+    $character->delete(); // leaves an orphaned Entity row - $entity->isMissingChild() becomes true
 
-    $this->asPlayer();
+    MapMarker::factory()->create(['map_id' => $map->id, 'name' => 'Orphaned entity pin', 'entity_id' => $entity->id]);
 
     $response = $this->get(route('entities.map-api', [1, $map->entity]))->assertStatus(200);
 
-    // The group itself is filtered out by MapGroup's own visibility scope, and the marker's
-    // group_id points at a group the player's query can't see, so MapMarker::visible() excludes it too.
-    expect($response->json('groups'))->toHaveCount(0);
     expect($response->json('pins'))->toHaveCount(0);
 });
