@@ -25,7 +25,7 @@ class MapResource extends JsonResource
             'name' => $map->name,
             'is_real' => $map->isReal(),
             'is_chunked' => $isChunked,
-            'has_clustering' => $map->isClustered(),
+            'has_clustering' => (bool) $map->isClustered(),
             'image' => $map->isReal() ? null : Avatar::entity($map->entity)->original(),
             'width' => (int) ($map->width ?: 1000),
             'height' => (int) ($map->height ?: 1000),

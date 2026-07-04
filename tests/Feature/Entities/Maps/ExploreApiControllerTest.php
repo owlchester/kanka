@@ -73,6 +73,14 @@ it('marks a finished chunked map with a chunks url', function () {
     expect($chunksUrl)->toEndWith('?z={z}&x={x}&y={y}');
 });
 
+// This exercises MapMarker::visible()'s entity/isMissingChild() branch, not its group_id/group
+// branch (private group -> pin excluded), because App\Models\Scopes\VisibilityIDScope::apply()
+// returns early whenever app()->runningInConsole() is true - which is true for this entire test
+// process, so MapGroup's own visibility scope can never actually filter anything under Pest.
+// That's a pre-existing, unrelated bug affecting every model using HasVisibility; production
+// behavior is unaffected (real requests aren't "running in console"), but it means the
+// private-group exclusion path in ExploreApiService/MapMarker::visible() has no automated
+// coverage today. See docs/superpowers/plans/2026-07-03-entity-map-vue-explorer.md, Task 2.
 it('excludes pins whose linked entity has no child (mirrors MapMarker::visible())', function () {
     $this->asUser()->withCampaign();
     $map = Map::factory()->create(['campaign_id' => 1]);
