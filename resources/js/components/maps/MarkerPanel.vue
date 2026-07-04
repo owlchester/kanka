@@ -28,13 +28,18 @@
         </div>
 
         <div class="p-4 mt-auto flex flex-col gap-2">
-            <button
-                class="btn2 btn-primary btn-block"
-                :disabled="saving || !name.trim()"
-                @click="save"
-            >
-                {{ i18n.save }}
-            </button>
+            <div class="flex gap-2">
+                <button class="btn2 btn-outline" :disabled="saving" @click="toggleMode">
+                    {{ mode === "full" ? i18n.less : i18n.details }}
+                </button>
+                <button
+                    class="btn2 btn-primary grow"
+                    :disabled="saving || !name.trim()"
+                    @click="save"
+                >
+                    {{ i18n.save }}
+                </button>
+            </div>
             <p v-if="error" class="text-sm text-error-content">{{ error }}</p>
         </div>
     </aside>
@@ -54,14 +59,20 @@ const emit = defineEmits(["close", "created"]);
 const name = ref("");
 const saving = ref(false);
 const error = ref(null);
+const mode = ref("light");
 
 watch(() => props.pin, (newPin, oldPin) => {
     if (newPin && !oldPin) {
         name.value = "";
         error.value = null;
         saving.value = false;
+        mode.value = "light";
     }
 });
+
+function toggleMode() {
+    mode.value = mode.value === "light" ? "full" : "light";
+}
 
 async function save() {
     saving.value = true;

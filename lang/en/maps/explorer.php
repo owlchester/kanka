@@ -21,6 +21,8 @@ return [
         'new_pin'           => 'New pin',
         'name_placeholder'  => 'Name this pin...',
         'save'              => 'Save',
+        'details'           => 'Details',
+        'less'              => 'Less',
     ],
     'markers_count' => [
         'one'   => '1 marker',

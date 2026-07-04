@@ -63,6 +63,8 @@ class ExploreApiService
             'new_pin' => __('maps/explorer.marker.new_pin'),
             'name_placeholder' => __('maps/explorer.marker.name_placeholder'),
             'save' => __('maps/explorer.marker.save'),
+            'details' => __('maps/explorer.marker.details'),
+            'less' => __('maps/explorer.marker.less'),
             'markers_count_one' => __('maps/explorer.markers_count.one'),
             'markers_count_other' => __('maps/explorer.markers_count.other'),
             'toolbar' => [
