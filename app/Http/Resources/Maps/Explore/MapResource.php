@@ -38,6 +38,7 @@ class MapResource extends JsonResource
                 ? route('maps.chunks', [$this->campaign->id, $map->id]) . '/?z={z}&x={x}&y={y}'
                 : null,
             'create_url' => route('entities.map-markers.store', [$this->campaign->id, $map->entity->id]),
+            'search_url' => route('search.entities-with-relations', $this->campaign->id),
         ];
     }
 }

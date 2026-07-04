@@ -2,6 +2,7 @@
 
 namespace App\Services\Maps;
 
+use App\Enums\Visibility;
 use App\Http\Resources\Maps\Explore\GroupResource;
 use App\Http\Resources\Maps\Explore\LayerResource;
 use App\Http\Resources\Maps\Explore\MapResource;
@@ -39,8 +40,32 @@ class ExploreApiService
                 ->values()
                 ->map(fn ($marker) => new PinResource($marker)->campaign($this->campaign)->mapEntity($mapEntity))
                 ->all(),
+            'visibilities' => $this->visibilityOptions(),
+            'default_visibility_id' => $this->campaign->defaultVisibility()->value,
             'i18n' => $this->translations(),
         ];
+    }
+
+    /**
+     * Visibility options available when creating a brand new marker. Mirrors the "new record"
+     * branch of resources/views/entities/pages/posts/forms/_visibility.blade.php: Self/AdminSelf
+     * are always offered (the current user will become the creator), Admin/Member only for admins.
+     */
+    protected function visibilityOptions(): array
+    {
+        $options = [
+            ['id' => Visibility::All->value, 'name' => __('crud.visibilities.all')],
+        ];
+
+        if (auth()->user()->can('admin', $this->campaign)) {
+            $options[] = ['id' => Visibility::Admin->value, 'name' => __('crud.visibilities.admin')];
+            $options[] = ['id' => Visibility::Member->value, 'name' => __('crud.visibilities.members')];
+        }
+
+        $options[] = ['id' => Visibility::Self->value, 'name' => __('crud.visibilities.self')];
+        $options[] = ['id' => Visibility::AdminSelf->value, 'name' => __('crud.visibilities.admin-self')];
+
+        return $options;
     }
 
     protected function translations(): array
@@ -65,6 +90,10 @@ class ExploreApiService
             'save' => __('maps/explorer.marker.save'),
             'details' => __('maps/explorer.marker.details'),
             'less' => __('maps/explorer.marker.less'),
+            'shape' => __('maps/explorer.marker.shape'),
+            'group' => __('maps/explorer.marker.group'),
+            'none' => __('maps/explorer.marker.none'),
+            'visibility' => __('maps/explorer.marker.visibility'),
             'premium_custom_icon' => __('maps/explorer.marker.premium_custom_icon'),
             'markers_count_one' => __('maps/explorer.markers_count.one'),
             'markers_count_other' => __('maps/explorer.markers_count.other'),

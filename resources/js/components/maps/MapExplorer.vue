@@ -64,9 +64,15 @@
             :i18n="data.i18n"
             :create-url="data.map.create_url"
             :boosted="boosted"
+            :groups="data.groups"
+            :search-url="data.map.search_url"
+            :visibilities="data.visibilities"
             @close="draftPin = null"
             @created="onPinCreated"
             @icon-change="handleIconChange"
+            @group-change="handleGroupChange"
+            @entity-change="handleEntityChange"
+            @visibility-change="handleVisibilityChange"
         />
 
         <Toolbar
@@ -96,7 +102,7 @@ const props = defineProps({
 
 const loading = ref(true);
 const error = ref(null);
-const data = ref({ map: {}, layers: [], groups: [], pins: [], i18n: {} });
+const data = ref({ map: {}, layers: [], groups: [], pins: [], visibilities: [], i18n: {} });
 const legendOpen = ref(false);
 const selectedPin = ref(null);
 const centerNonce = ref(0);
@@ -143,6 +149,10 @@ function handleMapClick({ lat, lng }) {
         icon: { type: "fa", value: "fa-solid fa-map-pin" },
         iconId: 1,
         customIcon: null,
+        groupId: null,
+        entityId: null,
+        entityName: null,
+        visibilityId: data.value.default_visibility_id,
         latitude: lat,
         longitude: lng,
     };
@@ -159,6 +169,30 @@ function handleIconChange(payload) {
         customIcon: payload.custom_icon,
         icon: payload.render,
     };
+}
+
+function handleGroupChange(groupId) {
+    if (!draftPin.value) {
+        return;
+    }
+
+    draftPin.value = { ...draftPin.value, groupId };
+}
+
+function handleEntityChange(payload) {
+    if (!draftPin.value) {
+        return;
+    }
+
+    draftPin.value = { ...draftPin.value, entityId: payload.id, entityName: payload.text };
+}
+
+function handleVisibilityChange(visibilityId) {
+    if (!draftPin.value) {
+        return;
+    }
+
+    draftPin.value = { ...draftPin.value, visibilityId };
 }
 
 function onPinCreated(pin) {

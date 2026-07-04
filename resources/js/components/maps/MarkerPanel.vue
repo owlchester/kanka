@@ -18,7 +18,7 @@
             </button>
         </div>
 
-        <div class="px-4 flex flex-col gap-2">
+        <div class="px-4 flex flex-col gap-2 grow min-h-0 overflow-y-auto">
             <input
                 v-model="name"
                 type="text"
@@ -32,6 +32,30 @@
                 :boosted="boosted"
                 :i18n="i18n"
                 @change="$emit('icon-change', $event)"
+            />
+
+            <GroupPicker
+                v-if="mode === 'full'"
+                :pin="pin"
+                :groups="groups"
+                :i18n="i18n"
+                @change="$emit('group-change', $event)"
+            />
+
+            <EntityLinkSelect
+                v-if="mode === 'full'"
+                :pin="pin"
+                :search-url="searchUrl"
+                :i18n="i18n"
+                @change="$emit('entity-change', $event)"
+            />
+
+            <VisibilitySelect
+                v-if="mode === 'full'"
+                :pin="pin"
+                :options="visibilities"
+                :i18n="i18n"
+                @change="$emit('visibility-change', $event)"
             />
         </div>
 
@@ -55,16 +79,22 @@
 
 <script setup>
 import { ref, watch } from "vue";
+import EntityLinkSelect from "./EntityLinkSelect.vue";
+import GroupPicker from "./GroupPicker.vue";
 import ShapePicker from "./ShapePicker.vue";
+import VisibilitySelect from "./VisibilitySelect.vue";
 
 const props = defineProps({
     pin: { type: Object, default: null },
     i18n: { type: Object, required: true },
     createUrl: { type: String, required: true },
     boosted: { type: Boolean, default: false },
+    groups: { type: Array, default: () => [] },
+    searchUrl: { type: String, required: true },
+    visibilities: { type: Array, default: () => [] },
 });
 
-const emit = defineEmits(["close", "created", "icon-change"]);
+const emit = defineEmits(["close", "created", "icon-change", "group-change", "entity-change", "visibility-change"]);
 
 const name = ref("");
 const saving = ref(false);
@@ -97,6 +127,9 @@ async function save() {
             shape_id: 1,
             icon: props.pin.iconId,
             custom_icon: props.pin.customIcon,
+            group_id: props.pin.groupId,
+            entity_id: props.pin.entityId,
+            visibility_id: props.pin.visibilityId,
         });
         emit("created", res.data);
     } catch (e) {

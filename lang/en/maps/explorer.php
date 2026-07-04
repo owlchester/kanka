@@ -23,6 +23,10 @@ return [
         'save'              => 'Save',
         'details'           => 'Details',
         'less'              => 'Less',
+        'shape'             => 'Shape',
+        'group'             => 'Group',
+        'none'              => 'None',
+        'visibility'        => 'Visibility',
         'premium_custom_icon' => 'Unlock custom pins with a premium campaign',
     ],
     'markers_count' => [
