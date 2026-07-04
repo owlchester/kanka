@@ -10,9 +10,9 @@
     </div>
 
     <template v-else>
-        <div class="fixed top-4 left-4 z-[1100] flex items-start gap-3">
+        <div class="fixed top-4 left-4 z-[1200] flex items-start gap-4">
             <button class="legend-toggle btn2 btn-default" @click="legendOpen = !legendOpen">
-                <i class="fa-solid fa-list" aria-hidden="true" />
+                <i class="fa-regular fa-list" aria-hidden="true" />
             </button>
             <div>
                 <h1 class="text-lg font-semibold leading-tight">{{ data.map.name }}</h1>
