@@ -19,9 +19,16 @@
 
         <LegendPanel :open="legendOpen" :groups="data.groups" :pins="data.pins" @select="selectPin" />
 
-        <LeafletCanvas :map="data.map" :layers="data.layers" :pins="data.pins" @pin-click="selectPin" />
+        <LeafletCanvas
+            :map="data.map"
+            :layers="data.layers"
+            :pins="data.pins"
+            :center-pin="selectedPin"
+            :center-nonce="centerNonce"
+            @pin-click="selectPin"
+        />
 
-        <DetailPanel :pin="selectedPin" @close="selectedPin = null" />
+        <DetailPanel :pin="selectedPin" @close="selectedPin = null" @center="centerNonce++" @deleted="removePin" />
     </template>
 </template>
 
@@ -40,9 +47,15 @@ const error = ref(null)
 const data = ref({ map: {}, layers: [], groups: [], pins: [] })
 const legendOpen = ref(false)
 const selectedPin = ref(null)
+const centerNonce = ref(0)
 
 function selectPin(pin) {
     selectedPin.value = pin
+}
+
+function removePin(pin) {
+    data.value.pins = data.value.pins.filter((p) => p.id !== pin.id)
+    selectedPin.value = null
 }
 
 onMounted(async () => {

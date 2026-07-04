@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import L from 'leaflet'
 import 'leaflet.markercluster'
 
@@ -11,6 +11,8 @@ const props = defineProps({
     map: { type: Object, required: true },
     layers: { type: Array, default: () => [] },
     pins: { type: Array, default: () => [] },
+    centerPin: { type: Object, default: null },
+    centerNonce: { type: Number, default: 0 },
 })
 
 const emit = defineEmits(['pin-click'])
@@ -104,6 +106,12 @@ function buildPins() {
 
     pinLayer.addTo(leafletMap)
 }
+
+watch(() => props.centerNonce, () => {
+    if (props.centerPin && leafletMap) {
+        leafletMap.setView([props.centerPin.latitude, props.centerPin.longitude])
+    }
+})
 
 onMounted(() => {
     const options = {
