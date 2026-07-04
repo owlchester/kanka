@@ -230,6 +230,14 @@ class MapMarker extends Model
             $icon = '<i class="fa-solid fa-question"></i>';
         } elseif ($this->icon == 3) {
             $icon = '<i class="fa-solid fa-exclamation"></i>';
+        } elseif ($this->icon == 6) {
+            $icon = '<i class="fa-solid fa-square"></i>';
+        } elseif ($this->icon == 7) {
+            $icon = '<i class="fa-solid fa-circle"></i>';
+        } elseif ($this->icon == 8) {
+            $icon = '<i class="fa-solid fa-diamond"></i>';
+        } elseif ($this->icon == 9) {
+            $icon = '<i class="fa-solid fa-caret-up"></i>';
         }
 
         return $icon;
@@ -263,6 +271,18 @@ class MapMarker extends Model
         }
         if ($this->icon == 3) {
             return ['type' => 'fa', 'value' => 'fa-solid fa-exclamation'];
+        }
+        if ($this->icon == 6) {
+            return ['type' => 'fa', 'value' => 'fa-solid fa-square'];
+        }
+        if ($this->icon == 7) {
+            return ['type' => 'fa', 'value' => 'fa-solid fa-circle'];
+        }
+        if ($this->icon == 8) {
+            return ['type' => 'fa', 'value' => 'fa-solid fa-diamond'];
+        }
+        if ($this->icon == 9) {
+            return ['type' => 'fa', 'value' => 'fa-solid fa-caret-up'];
         }
         if ($this->icon == 4 && $this->entity) {
             return [
@@ -517,6 +537,14 @@ class MapMarker extends Model
             $icon = '`' . $iconShape . '<i class="fa-solid fa-exclamation"></i>`';
         } elseif ($this->icon == 4) {
             $icon = '`' . $iconShape . '`';
+        } elseif ($this->icon == 6) {
+            $icon = '`' . $iconShape . '<i class="fa-solid fa-square"></i>`';
+        } elseif ($this->icon == 7) {
+            $icon = '`' . $iconShape . '<i class="fa-solid fa-circle"></i>`';
+        } elseif ($this->icon == 8) {
+            $icon = '`' . $iconShape . '<i class="fa-solid fa-diamond"></i>`';
+        } elseif ($this->icon == 9) {
+            $icon = '`' . $iconShape . '<i class="fa-solid fa-caret-up"></i>`';
         }
 
         // dd($this->pin_size ?: 40);

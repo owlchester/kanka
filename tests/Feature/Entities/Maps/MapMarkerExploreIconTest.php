@@ -57,6 +57,38 @@ it('ignores a custom icon when the campaign is not boosted', function () {
     expect($marker->exploreIcon())->toBe(['type' => 'fa', 'value' => 'fa-solid fa-map-pin']);
 });
 
+it('resolves the square icon', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create(['map_id' => $map->id, 'icon' => 6]);
+
+    expect($marker->exploreIcon())->toBe(['type' => 'fa', 'value' => 'fa-solid fa-square']);
+});
+
+it('resolves the circle icon', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create(['map_id' => $map->id, 'icon' => 7]);
+
+    expect($marker->exploreIcon())->toBe(['type' => 'fa', 'value' => 'fa-solid fa-circle']);
+});
+
+it('resolves the diamond icon', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create(['map_id' => $map->id, 'icon' => 8]);
+
+    expect($marker->exploreIcon())->toBe(['type' => 'fa', 'value' => 'fa-solid fa-diamond']);
+});
+
+it('resolves the triangle icon', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create(['map_id' => $map->id, 'icon' => 9]);
+
+    expect($marker->exploreIcon())->toBe(['type' => 'fa', 'value' => 'fa-solid fa-caret-up']);
+});
+
 it('returns none for non-marker shapes', function () {
     $this->asUser()->withCampaign();
     $map = Map::factory()->create(['campaign_id' => 1]);

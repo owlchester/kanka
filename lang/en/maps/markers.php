@@ -76,11 +76,15 @@ return [
         'entry' => 'Edit the marker to write a custom description for it.',
     ],
     'icons'         => [
+        'circle'        => 'Circle icon',
         'custom'        => 'Custom icon',
+        'diamond'       => 'Diamond icon',
         'entity'        => 'Entry\'s picture',
         'exclamation'   => 'Exclamation icon',
         'marker'        => 'Marker icon',
         'question'      => 'Question icon',
+        'square'        => 'Square icon',
+        'triangle'      => 'Triangle icon',
     ],
     'index'         => [
         'title' => 'Markers of :name',
