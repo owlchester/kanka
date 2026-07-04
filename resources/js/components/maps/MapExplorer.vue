@@ -10,12 +10,15 @@
     </div>
 
     <template v-else>
-        <button
-            class="legend-toggle fixed top-4 left-4 z-[1100] btn2 btn-default"
-            @click="legendOpen = !legendOpen"
-        >
-            <i class="fa-solid fa-list" aria-hidden="true" />
-        </button>
+        <div class="fixed top-4 left-4 z-[1100] flex items-start gap-3">
+            <button class="legend-toggle btn2 btn-default" @click="legendOpen = !legendOpen">
+                <i class="fa-solid fa-list" aria-hidden="true" />
+            </button>
+            <div>
+                <h1 class="text-lg font-semibold leading-tight">{{ data.map.name }}</h1>
+                <p class="text-sm opacity-75">{{ data.pins.length }} markers</p>
+            </div>
+        </div>
 
         <LegendPanel :open="legendOpen" :groups="data.groups" :pins="data.pins" @select="selectPin" />
 

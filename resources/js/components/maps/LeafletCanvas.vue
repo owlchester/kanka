@@ -131,6 +131,7 @@ onMounted(() => {
         maxZoom: props.map.max_zoom,
         center: props.map.center,
         attributionControl: false,
+        zoomControl: false,
     }
 
     if (! props.map.is_real) {
@@ -139,6 +140,8 @@ onMounted(() => {
     }
 
     leafletMap = L.map(mapEl.value, options)
+
+    L.control.zoom({ position: 'bottomleft' }).addTo(leafletMap)
 
     buildBaseLayer()
     buildLayers()
