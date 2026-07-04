@@ -13,7 +13,7 @@
                 </div>
                 <h2 class="text-sm font-semibold uppercase tracking-wide">{{ i18n.new_pin }}</h2>
             </div>
-            <button class="btn2 btn-default btn-sm flex-none" @click="$emit('close')">
+            <button class="btn2 btn-default btn-sm flex-none" :disabled="saving" @click="$emit('close')">
                 <i class="fa-solid fa-xmark" aria-hidden="true" />
             </button>
         </div>
@@ -59,6 +59,7 @@ watch(() => props.pin, (newPin, oldPin) => {
     if (newPin && !oldPin) {
         name.value = "";
         error.value = null;
+        saving.value = false;
     }
 });
 

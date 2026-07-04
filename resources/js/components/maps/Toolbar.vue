@@ -1,7 +1,7 @@
 <template>
     <div
         v-if="canEdit"
-        class="fixed bottom-4 left-1/2 -translate-x-1/2 z-[1200] flex flex-col items-center gap-2"
+        class="fixed bottom-4 left-1/2 -translate-x-1/2 z-[1100] flex flex-col items-center gap-2"
     >
         <div
             v-if="props.activeMode"
