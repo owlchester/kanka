@@ -19,6 +19,7 @@ class PinPreviewResource extends JsonResource
         $canEdit = auth()->check() && auth()->user()->can('update', $marker->map->entity);
 
         return [
+            'entity_name' => $entity?->name,
             'entity_url' => $entity?->url(),
             'entity_image' => $entity && $entity->hasImage() ? Avatar::entity($entity)->size(400, 200)->thumbnail() : null,
             'marker_entry' => $marker->hasEntry() ? $marker->parsedEntry() : null,

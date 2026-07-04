@@ -13,10 +13,7 @@
         >
             <div class="flex items-center justify-between gap-2">
                 <h2 class="text-lg font-semibold">
-                    <a v-if="preview?.entity_url" :href="preview.entity_url">{{
-                        pin.name
-                    }}</a>
-                    <template v-else>{{ pin.name }}</template>
+                    <template>{{ pin.name }}</template>
                 </h2>
                 <button
                     class="btn2 btn-default btn-sm flex-none"
@@ -35,8 +32,33 @@
         <div v-else-if="preview" class="flex flex-col grow min-h-0">
             <div class="p-4 flex flex-col gap-3 overflow-y-auto grow min-h-0">
                 <p class="text-xs text-neutral-content">
-                    {{ preview.type }} - {{ preview.group_name || i18n.ungrouped }}
+                    {{ preview.type }} -
+                    {{ preview.group_name || i18n.ungrouped }}
                 </p>
+
+                <a
+                    v-if="preview?.entity_url"
+                    :href="preview.entity_url"
+                    class="border border-neutral-content rounded-2xl flex gap-2 p-3 items-center"
+                >
+                    <div
+                        class="bg-primary text-primary-content flex-none rounded-lg p-1 w-8 h-8 flex items-center justify-center"
+                    >
+                        <i class="fa-regular fa-link" aria-hidden="true"></i>
+                    </div>
+                    <div class="flex flex-col gap-0 grow overflow-hidden">
+                        <span class="text-neutral-content text-2xs uppercase">
+                            {{ i18n.linked_entity }}
+                        </span>
+                        <span class="truncate">{{ preview.entity_name }}</span>
+                    </div>
+                    <div class="flex-none">
+                        <i
+                            class="fa-regular fa-arrow-up-right"
+                            aria-hidden="true"
+                        ></i>
+                    </div>
+                </a>
 
                 <div
                     class="marker-entry entity-content marker-custom-entry"
@@ -45,7 +67,10 @@
                 ></div>
 
                 <template v-if="preview.entity_entry">
-                    <p v-if="preview.marker_entry" class="text-sm font-semibold">
+                    <p
+                        v-if="preview.marker_entry"
+                        class="text-sm font-semibold"
+                    >
                         {{ i18n.from_entry }}
                     </p>
                     <div

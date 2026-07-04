@@ -27,8 +27,9 @@ it('returns a preview for a marker with an entity, group, and entries', function
 
     $response = $this->get(route('entities.map-markers.preview', [1, $map->entity, $marker]))
         ->assertStatus(200)
-        ->assertJsonStructure(['entity_url', 'entity_image', 'marker_entry', 'entity_entry', 'type', 'group_name', 'can_edit', 'edit_url']);
+        ->assertJsonStructure(['entity_name', 'entity_url', 'entity_image', 'marker_entry', 'entity_entry', 'type', 'group_name', 'can_edit', 'edit_url']);
 
+    expect($response->json('entity_name'))->toBe($entity->name);
     expect($response->json('entity_url'))->toBe($entity->url());
     expect($response->json('type'))->toBe('Marker');
     expect($response->json('group_name'))->toBe('Towns');
@@ -45,6 +46,7 @@ it('returns nulls for entity-specific fields when the marker has no linked entit
 
     $response = $this->get(route('entities.map-markers.preview', [1, $map->entity, $marker]))->assertStatus(200);
 
+    expect($response->json('entity_name'))->toBeNull();
     expect($response->json('entity_url'))->toBeNull();
     expect($response->json('entity_image'))->toBeNull();
     expect($response->json('entity_entry'))->toBeNull();
