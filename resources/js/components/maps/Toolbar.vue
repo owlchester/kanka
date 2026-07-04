@@ -1,10 +1,10 @@
 <template>
     <div
         v-if="canEdit"
-        class="fixed bottom-4 left-1/2 -translate-x-1/2 z-[1100] flex flex-col items-center gap-2"
+        class="fixed bottom-4 left-1/2 -translate-x-1/2 z-[1200] flex flex-col items-center gap-2"
     >
         <div
-            v-if="activeMode"
+            v-if="props.activeMode"
             class="bg-accent opacity-60 text-accent-content rounded-full px-3 py-1.5 text-xs whitespace-nowrap"
         >
             {{ helperText }}
@@ -37,7 +37,7 @@
                 type="button"
                 class="flex flex-col items-center gap-1 rounded-xl px-3 py-1.5 cursor-pointer"
                 :class="
-                    activeMode === mode.key
+                    props.activeMode === mode.key
                         ? 'bg-accent text-accent-content'
                         : ''
                 "
@@ -56,9 +56,11 @@ import { computed, ref } from "vue";
 const props = defineProps({
     i18n: { type: Object, required: true },
     canEdit: { type: Boolean, default: false },
+    activeMode: { type: String, default: null },
 });
 
-const activeMode = ref(null);
+const emit = defineEmits(["mode-change"]);
+
 const rapid = ref(false);
 
 const modes = computed(() => [
@@ -86,14 +88,14 @@ const modes = computed(() => [
 ]);
 
 const helperText = computed(() => {
-    if (!activeMode.value) {
+    if (!props.activeMode) {
         return "";
     }
 
-    return props.i18n.toolbar.helper[activeMode.value];
+    return props.i18n.toolbar.helper[props.activeMode];
 });
 
 function selectMode(key) {
-    activeMode.value = activeMode.value === key ? null : key;
+    emit("mode-change", props.activeMode === key ? null : key);
 }
 </script>

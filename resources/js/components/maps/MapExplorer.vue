@@ -56,7 +56,12 @@
             @deleted="removePin"
         />
 
-        <Toolbar :i18n="data.i18n" :can-edit="canEdit" />
+        <Toolbar
+            :i18n="data.i18n"
+            :can-edit="canEdit"
+            :active-mode="activeMode"
+            @mode-change="handleModeChange"
+        />
     </template>
 </template>
 
@@ -80,6 +85,7 @@ const data = ref({ map: {}, layers: [], groups: [], pins: [], i18n: {} });
 const legendOpen = ref(false);
 const selectedPin = ref(null);
 const centerNonce = ref(0);
+const activeMode = ref(null);
 
 const markersCountText = computed(() => {
     const count = data.value.pins.length;
@@ -94,6 +100,11 @@ function selectPin(pin) {
 
 function removePin(pin) {
     data.value.pins = data.value.pins.filter((p) => p.id !== pin.id);
+    selectedPin.value = null;
+}
+
+function handleModeChange(mode) {
+    activeMode.value = mode;
     selectedPin.value = null;
 }
 
