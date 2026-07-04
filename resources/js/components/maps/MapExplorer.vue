@@ -20,11 +20,14 @@
         <LegendPanel :open="legendOpen" :groups="data.groups" :pins="data.pins" @select="selectPin" />
 
         <LeafletCanvas :map="data.map" :layers="data.layers" :pins="data.pins" @pin-click="selectPin" />
+
+        <DetailPanel :pin="selectedPin" @close="selectedPin = null" />
     </template>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import DetailPanel from './DetailPanel.vue'
 import LeafletCanvas from './LeafletCanvas.vue'
 import LegendPanel from './LegendPanel.vue'
 
