@@ -181,16 +181,26 @@ class MapMarker extends Model
     }
 
     /**
+     * Determine if the marker is of the path type
+     */
+    public function isPath(): bool
+    {
+        return $this->shape_id === MapMarkerShape::path;
+    }
+
+    /**
      * Determine the type of the marker
      */
     public function typeLabel(): string
     {
         if ($this->isPolygon()) {
-            return __('maps/markers.tabs.polygon');
+            return __('maps/markers.tabs.area');
         } elseif ($this->isLabel()) {
             return __('maps/markers.tabs.label');
         } elseif ($this->isCircle()) {
             return __('maps/markers.tabs.circle');
+        } elseif ($this->isPath()) {
+            return __('maps/markers.tabs.path');
         }
 
         return __('maps/markers.tabs.marker');
@@ -231,7 +241,7 @@ class MapMarker extends Model
      */
     public function exploreIcon(): array
     {
-        if ($this->icon == 5 || $this->isLabel() || $this->isCircle() || $this->isPolygon()) {
+        if ($this->icon == 5 || $this->isLabel() || $this->isCircle() || $this->isPolygon() || $this->isPath()) {
             return ['type' => 'none', 'value' => null];
         }
 

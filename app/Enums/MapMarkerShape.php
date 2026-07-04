@@ -8,4 +8,5 @@ enum MapMarkerShape: int
     case label = 2;
     case circle = 3;
     case poly = 5;
+    case path = 6;
 }
