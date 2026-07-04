@@ -144,7 +144,7 @@ function handleMapClick({ lat, lng }) {
 }
 
 function onPinCreated(pin) {
-    data.value.pins.push(pin);
+    data.value.pins = [...data.value.pins, pin];
     draftPin.value = null;
     activeMode.value = null;
 }
