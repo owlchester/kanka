@@ -57,7 +57,9 @@ function pinIcon(pin) {
         inner = pin.icon.value
     } else if (pin.icon?.type === 'avatar') {
         inner = ''
-        style = `--pin-size: ${size}px; background-image: url('${pin.icon.value}'); background-size: cover;`
+        // The avatar image is painted on ::after (counter-rotated), not this div (rotated -45deg),
+        // so the image itself renders upright instead of tilted.
+        style = `--pin-size: ${size}px; --pin-avatar: url('${pin.icon.value}');`
     }
 
     return L.divIcon({
@@ -155,6 +157,7 @@ onBeforeUnmount(() => {
     margin: 2px 0 0 calc((var(--pin-size, 40px) - 4px) / -2);
     position: absolute;
     border-radius: 50%;
+    background-image: var(--pin-avatar, none);
     background-position: 50% 50%;
     background-size: cover;
     background-repeat: no-repeat;
