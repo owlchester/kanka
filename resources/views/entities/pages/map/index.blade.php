@@ -11,6 +11,7 @@
             api="{{ route('entities.map-api', [$campaign, $entity]) }}"
             loading-text="{{ __('maps/explorer.loading') }}"
             error-text="{{ __('maps/explorer.errors.load') }}"
+            :can-edit="@can('update', $entity) true @else false @endcan"
         ></map-explorer>
     </div>
 @endsection
