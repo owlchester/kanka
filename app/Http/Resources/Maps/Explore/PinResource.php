@@ -42,8 +42,34 @@ class PinResource extends JsonResource
             'pin_size' => $marker->pin_size,
             'circle_radius' => $marker->circle_radius,
             'opacity' => (float) ($marker->opacity ?: 100),
+            'custom_shape' => $this->polygonPoints($marker->custom_shape),
+            'polygon_style' => $marker->polygon_style ?? [],
             'preview_url' => route('entities.map-markers.preview', [$this->campaign->id, $this->mapEntity->id, $marker->id]),
             'destroy_url' => route('entities.map-markers.destroy', [$this->campaign->id, $this->mapEntity->id, $marker->id]),
         ];
+    }
+
+    /**
+     * Parse the raw "lat,lng lat,lng ..." custom_shape string (see MapMarker::marker()) into
+     * an array of [lat, lng] float pairs for the Vue map explorer.
+     *
+     * @return array<int, array{0: float, 1: float}>
+     */
+    private function polygonPoints(?string $customShape): array
+    {
+        if (empty($customShape)) {
+            return [];
+        }
+
+        $points = [];
+        $segments = explode(' ', str_replace("\r\n", ' ', trim($customShape)));
+        foreach ($segments as $segment) {
+            $coords = explode(',', $segment);
+            if (isset($coords[0], $coords[1]) && $coords[0] !== '' && $coords[1] !== '') {
+                $points[] = [(float) $coords[0], (float) $coords[1]];
+            }
+        }
+
+        return $points;
     }
 }

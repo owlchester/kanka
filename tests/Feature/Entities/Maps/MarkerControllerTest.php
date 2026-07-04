@@ -182,3 +182,46 @@ it('422s create when both name and entity_id are missing', function () {
         'icon' => 1,
     ])->assertStatus(422);
 });
+
+it('creates a polygon marker with custom_shape and polygon_style and returns them in PinResource shape', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $response = $this->postJson(route('entities.map-markers.store', [1, $map->entity]), [
+        'name' => 'New area',
+        'latitude' => 12.5,
+        'longitude' => 34.5,
+        'colour' => '#f2c14e',
+        'opacity' => 60,
+        'shape_id' => 5,
+        'icon' => 1,
+        'custom_shape' => '10.500,20.250 11.750,21.100 12.250,19.750',
+        'polygon_style' => ['stroke' => '#123456', 'stroke-width' => 3],
+    ])->assertStatus(201);
+
+    $marker = MapMarker::where('name', 'New area')->firstOrFail();
+
+    expect($response->json('shape'))->toBe('poly');
+    expect($response->json('custom_shape'))->toBe([
+        [10.5, 20.25],
+        [11.75, 21.1],
+        [12.25, 19.75],
+    ]);
+    expect($response->json('polygon_style'))->toBe(['stroke' => '#123456', 'stroke-width' => 3]);
+    expect($marker->custom_shape)->toBe('10.500,20.250 11.750,21.100 12.250,19.750');
+});
+
+it('422s create when polygon_style has an out-of-range stroke-width', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $this->postJson(route('entities.map-markers.store', [1, $map->entity]), [
+        'name' => 'New area',
+        'latitude' => 12.5,
+        'longitude' => 34.5,
+        'shape_id' => 5,
+        'icon' => 1,
+        'custom_shape' => '10.500,20.250 11.750,21.100 12.250,19.750',
+        'polygon_style' => ['stroke' => '#123456', 'stroke-width' => 999],
+    ])->assertStatus(422);
+});

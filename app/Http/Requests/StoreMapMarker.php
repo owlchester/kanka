@@ -40,6 +40,9 @@ class StoreMapMarker extends FormRequest
 
             'shape_id' => 'required|integer',
             'custom_shape' => 'nullable|string',
+            'polygon_style' => 'nullable|array',
+            'polygon_style.stroke' => 'nullable|string|max:7',
+            'polygon_style.stroke-width' => 'nullable|integer|min:1|max:20',
             'is_draggable' => 'boolean',
             'is_popupless' => 'boolean',
             'css' => 'nullable|string|max:45',
