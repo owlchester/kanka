@@ -35,10 +35,10 @@ $sizeOptions = [
             </a>
         </li>
         <li role="presentation" @if($activeTab == 5) class="active" @endif>
-            <a href="#marker-poly" data-nohash="true"  data-toggle="tooltip" class="text-center" data-title="{{ __('maps/markers.tabs.polygon') }}">
+            <a href="#marker-poly" data-nohash="true"  data-toggle="tooltip" class="text-center" data-title="{{ __('maps/markers.tabs.area') }}">
                 <x-icon class="fa-regular fa-2x fa-draw-polygon" />
                 <br />
-                {{ __('maps/markers.tabs.polygon') }}
+                {{ __('maps/markers.tabs.area') }}
             </a>
         </li>
         <li role="presentation">
