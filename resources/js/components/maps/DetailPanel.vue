@@ -21,7 +21,7 @@
         </div>
 
         <div v-else-if="preview" class="p-4 flex flex-col gap-3 grow">
-            <p class="text-sm opacity-75">{{ preview.type }} - {{ preview.group_name || 'Uncategorised' }}</p>
+            <p class="text-sm opacity-75">{{ preview.type }} - {{ preview.group_name || 'Ungrouped' }}</p>
 
             <div v-if="preview.marker_entry" v-html="preview.marker_entry"></div>
 

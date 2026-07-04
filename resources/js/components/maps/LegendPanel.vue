@@ -22,7 +22,7 @@
 
             <li v-if="filtered.uncategorised.length">
                 <p class="flex items-center justify-between font-semibold">
-                    <span>Uncategorised</span>
+                    <span>Ungrouped</span>
                     <span class="text-xs opacity-60">{{ filtered.uncategorised.length }}</span>
                 </p>
                 <ul class="pl-5 flex flex-col gap-1">
