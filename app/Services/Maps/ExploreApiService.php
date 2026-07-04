@@ -65,6 +65,7 @@ class ExploreApiService
             'save' => __('maps/explorer.marker.save'),
             'details' => __('maps/explorer.marker.details'),
             'less' => __('maps/explorer.marker.less'),
+            'premium_custom_icon' => __('maps/explorer.marker.premium_custom_icon'),
             'markers_count_one' => __('maps/explorer.markers_count.one'),
             'markers_count_other' => __('maps/explorer.markers_count.other'),
             'toolbar' => [

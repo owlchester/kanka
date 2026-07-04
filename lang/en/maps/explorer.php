@@ -23,6 +23,7 @@ return [
         'save'              => 'Save',
         'details'           => 'Details',
         'less'              => 'Less',
+        'premium_custom_icon' => 'Unlock custom pins with a premium campaign',
     ],
     'markers_count' => [
         'one'   => '1 marker',
