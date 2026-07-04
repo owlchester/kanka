@@ -1,11 +1,14 @@
 <template>
-    <aside v-if="open" class="fixed top-0 left-0 h-screen w-72 bg-base-100 shadow-lg z-[1100] overflow-y-auto p-4 flex flex-col gap-3">
-        <input
-            v-model="query"
-            type="text"
-            placeholder="Search markers"
-            class="input input-bordered w-full"
-        />
+    <aside v-if="open" class="fixed top-20 left-4 bottom-24 w-72 bg-base-100 rounded-2xl shadow-lg z-[1100] overflow-y-auto p-4 flex flex-col gap-3">
+        <div class="flex flex-col gap-1">
+            <p>Legend</p>
+            <input
+                v-model="query"
+                type="text"
+                placeholder="Search markers"
+                class="input input-bordered w-full"
+            />
+        </div>
 
         <ul class="flex flex-col gap-1">
             <LegendGroupNode
