@@ -90,6 +90,18 @@ function pinIcon(pin) {
 }
 
 function buildPin(pin) {
+    if (pin.shape === 'poly') {
+        const latlngs = pin.custom_shape || pin.customShape || []
+        const style = pin.polygon_style || pin.polygonStyle || {}
+
+        return L.polygon(latlngs, {
+            color: style.stroke || pin.colour || '#ccc',
+            weight: style['stroke-width'] || 1,
+            fillColor: pin.colour || '#ccc',
+            fillOpacity: (pin.opacity || 100) / 100,
+        })
+    }
+
     if (pin.shape === 'circle') {
         return L.circle([pin.latitude, pin.longitude], {
             radius: pin.circle_radius || 50,
@@ -133,8 +145,7 @@ function buildPins() {
 
     pinLayer = props.map.has_clustering ? L.markerClusterGroup() : L.layerGroup()
 
-    // Polygon pins are out of scope for v1 (see design doc) — skip rather than mis-render at the wrong spot
-    props.pins.filter((pin) => pin.shape !== 'poly').forEach((pin) => {
+    props.pins.forEach((pin) => {
         const marker = buildPin(pin)
         marker.on('click', (e) => {
             L.DomEvent.stopPropagation(e)
