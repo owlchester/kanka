@@ -10,3 +10,8 @@
         <map-explorer api="{{ route('entities.map-api', [$campaign, $entity]) }}"></map-explorer>
     </div>
 @endsection
+
+@section('scripts')
+    @parent
+    @vite('resources/js/maps/explore.js')
+@endsection
