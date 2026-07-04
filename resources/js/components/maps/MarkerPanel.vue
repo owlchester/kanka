@@ -26,6 +26,13 @@
                 :placeholder="i18n.name_placeholder"
             />
 
+            <ColourPicker
+                v-if="mode === 'full'"
+                :pin="pin"
+                :i18n="i18n"
+                @change="$emit('colour-change', $event)"
+            />
+
             <ShapePicker
                 v-if="mode === 'full'"
                 :pin="pin"
@@ -48,6 +55,13 @@
                 :search-url="searchUrl"
                 :i18n="i18n"
                 @change="$emit('entity-change', $event)"
+            />
+
+            <OpacityPicker
+                v-if="mode === 'full'"
+                :pin="pin"
+                :i18n="i18n"
+                @change="$emit('opacity-change', $event)"
             />
 
             <VisibilitySelect
@@ -79,8 +93,10 @@
 
 <script setup>
 import { ref, watch } from "vue";
+import ColourPicker from "./ColourPicker.vue";
 import EntityLinkSelect from "./EntityLinkSelect.vue";
 import GroupPicker from "./GroupPicker.vue";
+import OpacityPicker from "./OpacityPicker.vue";
 import ShapePicker from "./ShapePicker.vue";
 import VisibilitySelect from "./VisibilitySelect.vue";
 
@@ -94,7 +110,7 @@ const props = defineProps({
     visibilities: { type: Array, default: () => [] },
 });
 
-const emit = defineEmits(["close", "created", "icon-change", "group-change", "entity-change", "visibility-change"]);
+const emit = defineEmits(["close", "created", "icon-change", "group-change", "entity-change", "visibility-change", "colour-change", "opacity-change"]);
 
 const name = ref("");
 const saving = ref(false);
@@ -130,6 +146,7 @@ async function save() {
             group_id: props.pin.groupId,
             entity_id: props.pin.entityId,
             visibility_id: props.pin.visibilityId,
+            opacity: props.pin.opacity,
         });
         emit("created", res.data);
     } catch (e) {

@@ -27,6 +27,9 @@ return [
         'group'             => 'Group',
         'none'              => 'None',
         'visibility'        => 'Visibility',
+        'colour'            => 'Colour',
+        'opacity'           => 'Opacity',
+        'custom'            => 'Custom',
         'premium_custom_icon' => 'Unlock custom pins with a premium campaign',
     ],
     'markers_count' => [

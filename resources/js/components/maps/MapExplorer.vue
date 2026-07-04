@@ -73,6 +73,8 @@
             @group-change="handleGroupChange"
             @entity-change="handleEntityChange"
             @visibility-change="handleVisibilityChange"
+            @colour-change="handleColourChange"
+            @opacity-change="handleOpacityChange"
         />
 
         <Toolbar
@@ -131,6 +133,17 @@ function handleModeChange(mode) {
     draftPin.value = null;
 }
 
+function defaultColour() {
+    try {
+        const raw = localStorage.getItem("recent_colors");
+        const recents = raw ? JSON.parse(raw) : [];
+
+        return recents[0] || "#93c5fd";
+    } catch (e) {
+        return "#93c5fd";
+    }
+}
+
 function handleMapClick({ lat, lng }) {
     if (activeMode.value !== "pin") {
         return;
@@ -144,7 +157,7 @@ function handleMapClick({ lat, lng }) {
 
     draftPin.value = {
         name: "",
-        colour: "#f2c14e",
+        colour: defaultColour(),
         shape: "marker",
         icon: { type: "fa", value: "fa-solid fa-map-pin" },
         iconId: 1,
@@ -153,6 +166,7 @@ function handleMapClick({ lat, lng }) {
         entityId: null,
         entityName: null,
         visibilityId: data.value.default_visibility_id,
+        opacity: 100,
         latitude: lat,
         longitude: lng,
     };
@@ -193,6 +207,22 @@ function handleVisibilityChange(visibilityId) {
     }
 
     draftPin.value = { ...draftPin.value, visibilityId };
+}
+
+function handleColourChange(colour) {
+    if (!draftPin.value) {
+        return;
+    }
+
+    draftPin.value = { ...draftPin.value, colour };
+}
+
+function handleOpacityChange(opacity) {
+    if (!draftPin.value) {
+        return;
+    }
+
+    draftPin.value = { ...draftPin.value, opacity };
 }
 
 function onPinCreated(pin) {
