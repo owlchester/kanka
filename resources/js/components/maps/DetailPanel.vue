@@ -48,6 +48,7 @@
                 <button v-if="preview.can_edit" class="btn2 btn-danger" @click="handleDelete">
                     {{ confirming ? 'Click again to confirm' : 'Delete marker' }}
                 </button>
+                <p v-if="error" class="text-sm text-error-content">{{ error }}</p>
             </div>
         </div>
     </aside>
@@ -65,6 +66,7 @@ const emit = defineEmits(['close', 'center', 'deleted'])
 const loading = ref(false)
 const preview = ref(null)
 const confirming = ref(false)
+const error = ref(null)
 
 function duplicate() {
     // No-op for now.
@@ -73,18 +75,25 @@ function duplicate() {
 async function handleDelete() {
     if (! confirming.value) {
         confirming.value = true
+        error.value = null
 
         return
     }
 
-    const res = await axios.delete(props.pin.destroy_url)
-    if (res.status === 204) {
-        emit('deleted', props.pin)
+    try {
+        const res = await axios.delete(props.pin.destroy_url)
+        if (res.status === 204) {
+            emit('deleted', props.pin)
+        }
+    } catch (e) {
+        confirming.value = false
+        error.value = 'Unable to delete this marker.'
     }
 }
 
 async function load(pin) {
     confirming.value = false
+    error.value = null
     preview.value = null
 
     if (! pin) {

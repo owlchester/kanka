@@ -19,6 +19,7 @@ const emit = defineEmits(['pin-click'])
 
 const mapEl = ref(null)
 let leafletMap = null
+let pinLayer = null
 
 function bounds() {
     return [[0, 0], [props.map.height, props.map.width]]
@@ -95,7 +96,11 @@ function buildPin(pin) {
 }
 
 function buildPins() {
-    const pinLayer = props.map.has_clustering ? L.markerClusterGroup() : L.layerGroup()
+    if (pinLayer) {
+        leafletMap.removeLayer(pinLayer)
+    }
+
+    pinLayer = props.map.has_clustering ? L.markerClusterGroup() : L.layerGroup()
 
     // Polygon pins are out of scope for v1 (see design doc) — skip rather than mis-render at the wrong spot
     props.pins.filter((pin) => pin.shape !== 'poly').forEach((pin) => {
@@ -110,6 +115,12 @@ function buildPins() {
 watch(() => props.centerNonce, () => {
     if (props.centerPin && leafletMap) {
         leafletMap.setView([props.centerPin.latitude, props.centerPin.longitude])
+    }
+})
+
+watch(() => props.pins, () => {
+    if (leafletMap) {
+        buildPins()
     }
 })
 
