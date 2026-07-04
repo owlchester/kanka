@@ -1,5 +1,15 @@
 @import 'tailwindcss';
 
+/*
+ * Tailwind v4 doesn't read tailwind.config.js unless it's loaded via @config -
+ * and nothing does, so its `content` array (which already lists these paths)
+ * is dead. These @source lines are what actually make Vue components get
+ * scanned, instead of relying on v4's automatic (and apparently incomplete)
+ * content detection. This is why classes only ever used inside a .vue file
+ * kept needing to be duplicated into tw.blade.php by hand.
+ */
+@source "../js/**/*.vue";
+@source "../js/**/*.js";
 
 @import "./themes/base.css";
 @import "./typography.css";
