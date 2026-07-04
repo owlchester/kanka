@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Entity\Maps;
 
 use App\Facades\EntityPermission;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreMapMarker;
 use App\Http\Resources\Maps\Explore\PinPreviewResource;
+use App\Http\Resources\Maps\Explore\PinResource;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\MapMarker;
@@ -27,6 +29,21 @@ class MarkerController extends Controller
         EntityPermission::campaign($campaign);
 
         return response()->json(new PinPreviewResource($mapMarker));
+    }
+
+    public function store(StoreMapMarker $request, Campaign $campaign, Entity $entity)
+    {
+        $this->campaign($campaign)->authEntityView($entity);
+        if (! $entity->isMap()) {
+            abort(404);
+        }
+        // See the comment in preview() above.
+        EntityPermission::campaign($campaign);
+        $this->authorize('update', $entity);
+
+        $marker = MapMarker::create($request->validated() + ['map_id' => $entity->child->id]);
+
+        return response()->json(new PinResource($marker)->campaign($campaign)->mapEntity($entity), 201);
     }
 
     public function destroy(Campaign $campaign, Entity $entity, MapMarker $mapMarker)

@@ -4,6 +4,7 @@ return [
     'errors'    => [
         'delete'    => 'Unable to delete this marker.',
         'load'      => 'Unable to load this map.',
+        'save'      => 'Unable to save this marker.',
     ],
     'legend'    => [
         'search'    => 'Search markers',
@@ -17,6 +18,9 @@ return [
         'edit'              => 'Edit details',
         'from_entry'        => 'From entry',
         'linked_entry'     => 'Linked entry',
+        'new_pin'           => 'New pin',
+        'name_placeholder'  => 'Name this pin...',
+        'save'              => 'Save',
     ],
     'markers_count' => [
         'one'   => '1 marker',

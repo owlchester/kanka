@@ -116,3 +116,69 @@ it('404s delete for a marker belonging to a different map', function () {
 
     $this->delete(route('entities.map-markers.destroy', [1, $map->entity, $marker]))->assertStatus(404);
 });
+
+it('creates a marker and returns it in PinResource shape', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $response = $this->postJson(route('entities.map-markers.store', [1, $map->entity]), [
+        'name' => 'New pin',
+        'latitude' => 12.5,
+        'longitude' => 34.5,
+        'colour' => '#f2c14e',
+        'shape_id' => 1,
+        'icon' => 1,
+    ])->assertStatus(201);
+
+    $marker = MapMarker::where('name', 'New pin')->firstOrFail();
+
+    expect($response->json('id'))->toBe($marker->id);
+    expect($response->json('name'))->toBe('New pin');
+    expect($response->json('colour'))->toBe('#f2c14e');
+    expect($response->json('shape'))->toBe('marker');
+    expect($response->json('icon'))->toBe(['type' => 'fa', 'value' => 'fa-solid fa-map-pin']);
+    expect($response->json('preview_url'))->toBe(route('entities.map-markers.preview', [1, $map->entity->id, $marker->id]));
+    expect($marker->map_id)->toBe($map->id);
+});
+
+it('403s create for a player without update permission', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $this->asPlayer();
+
+    $this->postJson(route('entities.map-markers.store', [1, $map->entity]), [
+        'name' => 'New pin',
+        'latitude' => 12.5,
+        'longitude' => 34.5,
+        'shape_id' => 1,
+        'icon' => 1,
+    ])->assertStatus(403);
+
+    expect(MapMarker::where('name', 'New pin')->exists())->toBeFalse();
+});
+
+it('404s create for a non-map entity', function () {
+    $this->asUser()->withCampaign();
+    $entity = Character::factory()->create(['campaign_id' => 1])->entity;
+
+    $this->postJson(route('entities.map-markers.store', [1, $entity]), [
+        'name' => 'New pin',
+        'latitude' => 12.5,
+        'longitude' => 34.5,
+        'shape_id' => 1,
+        'icon' => 1,
+    ])->assertStatus(404);
+});
+
+it('422s create when both name and entity_id are missing', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $this->postJson(route('entities.map-markers.store', [1, $map->entity]), [
+        'latitude' => 12.5,
+        'longitude' => 34.5,
+        'shape_id' => 1,
+        'icon' => 1,
+    ])->assertStatus(422);
+});

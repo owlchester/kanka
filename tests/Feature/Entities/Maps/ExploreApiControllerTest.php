@@ -34,15 +34,16 @@ it('returns the full explore payload for a simple map', function () {
     $response = $this->get(route('entities.map-api', [1, $map->entity]))
         ->assertStatus(200)
         ->assertJsonStructure([
-            'map' => ['id', 'name', 'is_real', 'is_chunked', 'has_clustering', 'image', 'width', 'height', 'min_zoom', 'max_zoom', 'initial_zoom', 'center', 'tile_url', 'chunks_url'],
+            'map' => ['id', 'name', 'is_real', 'is_chunked', 'has_clustering', 'image', 'width', 'height', 'min_zoom', 'max_zoom', 'initial_zoom', 'center', 'tile_url', 'chunks_url', 'create_url'],
             'layers' => [['id', 'name', 'type_id', 'image', 'position']],
             'groups' => [['id', 'name', 'parent_id', 'position']],
             'pins' => [['id', 'name', 'group_id', 'latitude', 'longitude', 'shape', 'colour', 'font_colour', 'icon', 'size_id', 'pin_size', 'circle_radius', 'opacity', 'preview_url', 'destroy_url']],
-            'i18n' => ['legend_title', 'legend_search', 'ungrouped', 'loading', 'error_load', 'error_delete', 'from_entry', 'linked_entry', 'edit_details', 'center', 'duplicate', 'delete_marker', 'delete_confirm', 'markers_count_one', 'markers_count_other', 'toolbar' => ['rapid', 'pin', 'text', 'area', 'circle', 'path', 'helper' => ['pin', 'text', 'area', 'circle', 'path']]],
+            'i18n' => ['legend_title', 'legend_search', 'ungrouped', 'loading', 'error_load', 'error_delete', 'error_save', 'from_entry', 'linked_entry', 'edit_details', 'center', 'duplicate', 'delete_marker', 'delete_confirm', 'new_pin', 'name_placeholder', 'save', 'markers_count_one', 'markers_count_other', 'toolbar' => ['rapid', 'pin', 'text', 'area', 'circle', 'path', 'helper' => ['pin', 'text', 'area', 'circle', 'path']]],
         ]);
 
     $response->assertJsonFragment(['name' => $map->name, 'is_real' => false, 'has_clustering' => true]);
     $response->assertJsonFragment(['name' => 'Waterdeep', 'group_id' => $group->id]);
+    expect($response->json('map.create_url'))->toBe(route('entities.map-markers.store', [1, $map->entity->id]));
     // The hidden (type_id=1) overlay layer must not be included, only the shown-by-default one
     expect($response->json('layers'))->toHaveCount(1);
     expect($response->json('layers.0.name'))->toBe('Winter');

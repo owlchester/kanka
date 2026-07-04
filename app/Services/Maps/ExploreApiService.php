@@ -52,6 +52,7 @@ class ExploreApiService
             'loading' => __('maps/explorer.loading'),
             'error_load' => __('maps/explorer.errors.load'),
             'error_delete' => __('maps/explorer.errors.delete'),
+            'error_save' => __('maps/explorer.errors.save'),
             'from_entry' => __('maps/explorer.marker.from_entry'),
             'linked_entry' => __('maps/explorer.marker.linked_entry'),
             'edit_details' => __('maps/explorer.marker.edit'),
@@ -59,6 +60,9 @@ class ExploreApiService
             'duplicate' => __('maps/explorer.marker.duplicate'),
             'delete_marker' => __('maps/explorer.marker.delete'),
             'delete_confirm' => __('maps/explorer.marker.delete_confirm'),
+            'new_pin' => __('maps/explorer.marker.new_pin'),
+            'name_placeholder' => __('maps/explorer.marker.name_placeholder'),
+            'save' => __('maps/explorer.marker.save'),
             'markers_count_one' => __('maps/explorer.markers_count.one'),
             'markers_count_other' => __('maps/explorer.markers_count.other'),
             'toolbar' => [

@@ -37,6 +37,7 @@ class MapResource extends JsonResource
             'chunks_url' => $isChunked
                 ? route('maps.chunks', [$this->campaign->id, $map->id]) . '/?z={z}&x={x}&y={y}'
                 : null,
+            'create_url' => route('entities.map-markers.store', [$this->campaign->id, $map->entity->id]),
         ];
     }
 }
