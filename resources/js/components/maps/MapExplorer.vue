@@ -9,13 +9,18 @@
         </div>
     </div>
 
-    <div v-else class="p-4">
-        Map data loaded for {{ data.map.name }}
-    </div>
+    <LeafletCanvas
+        v-else
+        :map="data.map"
+        :layers="data.layers"
+        :pins="data.pins"
+        @pin-click="selectPin"
+    />
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import LeafletCanvas from './LeafletCanvas.vue'
 
 const props = defineProps({
     api: { type: String, required: true },

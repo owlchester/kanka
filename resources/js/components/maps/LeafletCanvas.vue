@@ -1,0 +1,130 @@
+<template>
+    <div ref="mapEl" class="w-full h-screen"></div>
+</template>
+
+<script setup>
+import { onBeforeUnmount, onMounted, ref } from 'vue'
+import L from 'leaflet'
+import 'leaflet.markercluster'
+
+const props = defineProps({
+    map: { type: Object, required: true },
+    layers: { type: Array, default: () => [] },
+    pins: { type: Array, default: () => [] },
+})
+
+const emit = defineEmits(['pin-click'])
+
+const mapEl = ref(null)
+let leafletMap = null
+
+function bounds() {
+    return [[0, 0], [props.map.height, props.map.width]]
+}
+
+function buildBaseLayer() {
+    if (props.map.is_real) {
+        L.tileLayer(props.map.tile_url, {
+            attribution: '&copy; OpenStreetMap contributors',
+        }).addTo(leafletMap)
+
+        return
+    }
+
+    if (props.map.is_chunked) {
+        L.tileLayer(props.map.chunks_url, { attribution: '&copy; Kanka' }).addTo(leafletMap)
+
+        return
+    }
+
+    L.imageOverlay(props.map.image, bounds()).addTo(leafletMap)
+}
+
+function buildLayers() {
+    props.layers.forEach((layer) => {
+        L.imageOverlay(layer.image, bounds()).addTo(leafletMap)
+    })
+}
+
+function pinIcon(pin) {
+    const size = pin.pin_size || 40
+    let inner = '<i class="fa-solid fa-map-pin"></i>'
+    let style = `background-color: ${pin.colour || '#ccc'};`
+
+    if (pin.icon?.type === 'fa') {
+        inner = `<i class="${pin.icon.value}" aria-hidden="true"></i>`
+    } else if (pin.icon?.type === 'html' || pin.icon?.type === 'svg') {
+        inner = pin.icon.value
+    } else if (pin.icon?.type === 'avatar') {
+        inner = ''
+        style = `background-image: url('${pin.icon.value}'); background-size: cover;`
+    }
+
+    return L.divIcon({
+        html: `<div class="marker-pin" style="${style}"></div>${inner}`,
+        iconSize: [size, size],
+        iconAnchor: [size / 2, size + size / 4],
+        popupAnchor: [0, -(size + size / 4)],
+        className: `marker marker-${pin.id}`,
+    })
+}
+
+function buildPin(pin) {
+    if (pin.shape === 'circle') {
+        return L.circle([pin.latitude, pin.longitude], {
+            radius: pin.circle_radius || 50,
+            fillColor: pin.colour || '#ccc',
+            stroke: false,
+            fillOpacity: (pin.opacity || 100) / 100,
+        })
+    }
+
+    if (pin.shape === 'label') {
+        return L.marker([pin.latitude, pin.longitude], { opacity: 0 })
+            .bindTooltip(pin.name, { permanent: true, direction: 'center', className: 'map-label' })
+    }
+
+    return L.marker([pin.latitude, pin.longitude], {
+        icon: pinIcon(pin),
+        opacity: (pin.opacity || 100) / 100,
+    })
+}
+
+function buildPins() {
+    const pinLayer = props.map.has_clustering ? L.markerClusterGroup() : L.layerGroup()
+
+    // Polygon pins are out of scope for v1 (see design doc) — skip rather than mis-render at the wrong spot
+    props.pins.filter((pin) => pin.shape !== 'poly').forEach((pin) => {
+        const marker = buildPin(pin)
+        marker.on('click', () => emit('pin-click', pin))
+        pinLayer.addLayer(marker)
+    })
+
+    pinLayer.addTo(leafletMap)
+}
+
+onMounted(() => {
+    const options = {
+        zoom: props.map.initial_zoom,
+        minZoom: props.map.min_zoom,
+        maxZoom: props.map.max_zoom,
+        center: props.map.center,
+        attributionControl: false,
+    }
+
+    if (! props.map.is_real) {
+        options.crs = L.CRS.Simple
+        options.maxBounds = bounds()
+    }
+
+    leafletMap = L.map(mapEl.value, options)
+
+    buildBaseLayer()
+    buildLayers()
+    buildPins()
+})
+
+onBeforeUnmount(() => {
+    leafletMap?.remove()
+})
+</script>
