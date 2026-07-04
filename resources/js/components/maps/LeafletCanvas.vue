@@ -108,7 +108,10 @@ function buildPins() {
     // Polygon pins are out of scope for v1 (see design doc) — skip rather than mis-render at the wrong spot
     props.pins.filter((pin) => pin.shape !== 'poly').forEach((pin) => {
         const marker = buildPin(pin)
-        marker.on('click', () => emit('pin-click', pin))
+        marker.on('click', (e) => {
+            L.DomEvent.stopPropagation(e)
+            emit('pin-click', pin)
+        })
         pinLayer.addLayer(marker)
     })
 
