@@ -44,8 +44,8 @@
 
             <ColourPicker
                 v-if="mode === 'full'"
-                :pin="pin"
-                :i18n="i18n"
+                :colour="pin.colour"
+                :label="i18n.colour"
                 @change="$emit('colour-change', $event)"
             />
 

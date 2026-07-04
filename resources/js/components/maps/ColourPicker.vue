@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col gap-2">
-        <label class="text-xs font-semibold uppercase tracking-wide text-neutral-content">{{ i18n.colour }}</label>
+        <label class="text-xs font-semibold uppercase tracking-wide text-neutral-content">{{ label }}</label>
 
         <div class="flex flex-wrap gap-1.5">
             <button
@@ -53,8 +53,8 @@ import Coloris from "@melloware/coloris";
 import "@melloware/coloris/dist/coloris.css";
 
 const props = defineProps({
-    pin: { type: Object, required: true },
-    i18n: { type: Object, required: true },
+    colour: { type: String, default: null },
+    label: { type: String, required: true },
 });
 
 const emit = defineEmits(["change"]);
@@ -106,7 +106,7 @@ const swatches = computed(() => {
 });
 
 function isSelected(swatch) {
-    return props.pin.colour?.toLowerCase() === swatch.toLowerCase();
+    return props.colour?.toLowerCase() === swatch.toLowerCase();
 }
 
 function swatchStyle(swatch) {
@@ -153,12 +153,12 @@ onMounted(() => {
         swatches: [],
     });
 
-    colorisInput.value.value = props.pin.colour || "";
+    colorisInput.value.value = props.colour || "";
     colorisInput.value.addEventListener("input", onColorisInput);
     colorisInput.value.addEventListener("change", onColorisCommit);
 });
 
-watch(() => props.pin.colour, (colour) => {
+watch(() => props.colour, (colour) => {
     if (colorisInput.value) {
         colorisInput.value.value = colour || "";
     }
