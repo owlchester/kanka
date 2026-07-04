@@ -49,6 +49,8 @@
             :draft-pin="draftPin"
             @pin-click="selectPin"
             @map-click="handleMapClick"
+            @polygon-change="handlePolygonChange"
+            @polygon-finish="handlePolygonFinish"
         />
 
         <DetailPanel
@@ -76,6 +78,8 @@
             @colour-change="handleColourChange"
             @opacity-change="handleOpacityChange"
             @name-change="handleNameChange"
+            @border-colour-change="handleBorderColourChange"
+            @stroke-width-change="handleStrokeWidthChange"
         />
 
         <Toolbar
@@ -89,6 +93,7 @@
 
 <script setup>
 import { ref, computed, onMounted } from "vue";
+import { centroid } from "../../maps/polygon.js";
 import DetailPanel from "./DetailPanel.vue";
 import LeafletCanvas from "./LeafletCanvas.vue";
 import LegendPanel from "./LegendPanel.vue";
@@ -235,6 +240,54 @@ function handleOpacityChange(opacity) {
     }
 
     draftPin.value = { ...draftPin.value, opacity };
+}
+
+const DEFAULT_STROKE_WIDTH = 1;
+
+function handlePolygonFinish(vertices) {
+    const [lat, lng] = centroid(vertices);
+
+    draftPin.value = {
+        name: "",
+        colour: defaultColour(),
+        shape: "poly",
+        shapeId: 5,
+        customShape: vertices,
+        polygonStyle: { stroke: defaultColour(), "stroke-width": DEFAULT_STROKE_WIDTH },
+        groupId: null,
+        entityId: null,
+        entityName: null,
+        visibilityId: data.value.default_visibility_id,
+        opacity: 100,
+        latitude: lat,
+        longitude: lng,
+    };
+}
+
+function handlePolygonChange(vertices) {
+    if (!draftPin.value || draftPin.value.shape !== "poly") {
+        return;
+    }
+
+    const [lat, lng] = centroid(vertices);
+
+    draftPin.value = { ...draftPin.value, customShape: vertices, latitude: lat, longitude: lng };
+}
+
+function handleBorderColourChange(colour) {
+    if (!draftPin.value) {
+        return;
+    }
+
+    draftPin.value = { ...draftPin.value, polygonStyle: { ...draftPin.value.polygonStyle, stroke: colour } };
+}
+
+function handleStrokeWidthChange(width) {
+    if (!draftPin.value) {
+        return;
+    }
+
+    draftPin.value = { ...draftPin.value, polygonStyle: { ...draftPin.value.polygonStyle, "stroke-width": width } };
 }
 
 function onPinCreated(pin) {
