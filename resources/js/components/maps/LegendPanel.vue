@@ -1,11 +1,11 @@
 <template>
     <aside v-if="open" class="fixed top-20 left-4 bottom-24 w-72 bg-base-100 rounded-2xl shadow-lg z-[1100] overflow-y-auto p-4 flex flex-col gap-3">
         <div class="flex flex-col gap-1">
-            <p>Legend</p>
+            <p>{{ i18n.legend_title }}</p>
             <input
                 v-model="query"
                 type="text"
-                placeholder="Search markers"
+                :placeholder="i18n.legend_search"
                 class="input input-bordered w-full"
             />
         </div>
@@ -22,7 +22,7 @@
 
             <li v-if="filtered.uncategorised.length">
                 <p class="flex items-center justify-between font-semibold">
-                    <span>Ungrouped</span>
+                    <span>{{ i18n.ungrouped }}</span>
                     <span class="text-xs opacity-60">{{ filtered.uncategorised.length }}</span>
                 </p>
                 <ul class="pl-5 flex flex-col gap-1">
@@ -47,6 +47,7 @@ const props = defineProps({
     open: { type: Boolean, default: false },
     groups: { type: Array, default: () => [] },
     pins: { type: Array, default: () => [] },
+    i18n: { type: Object, required: true },
 })
 
 const emit = defineEmits(['select'])

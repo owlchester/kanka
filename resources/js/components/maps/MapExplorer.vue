@@ -5,7 +5,7 @@
     >
         <div class="flex items-center gap-2" v-if="loading && !error">
             <i class="fa-solid fa-spinner fa-spin" aria-hidden="true" />
-            <span>loading....</span>
+            <span>{{ loadingText }}</span>
         </div>
         <div
             class="flex flex-col items-center gap-2 text-error-content"
@@ -27,7 +27,7 @@
                 <h1 class="text-lg font-semibold leading-tight">
                     {{ data.map.name }}
                 </h1>
-                <p class="text-sm opacity-75">{{ data.pins.length }} markers</p>
+                <p class="text-sm opacity-75">{{ markersCountText }}</p>
             </div>
         </div>
 
@@ -35,6 +35,7 @@
             :open="legendOpen"
             :groups="data.groups"
             :pins="data.pins"
+            :i18n="data.i18n"
             @select="selectPin"
         />
 
@@ -49,6 +50,7 @@
 
         <DetailPanel
             :pin="selectedPin"
+            :i18n="data.i18n"
             @close="selectedPin = null"
             @center="centerNonce++"
             @deleted="removePin"
@@ -57,21 +59,30 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, computed, onMounted } from "vue";
 import DetailPanel from "./DetailPanel.vue";
 import LeafletCanvas from "./LeafletCanvas.vue";
 import LegendPanel from "./LegendPanel.vue";
 
 const props = defineProps({
     api: { type: String, required: true },
+    loadingText: { type: String, required: true },
+    errorText: { type: String, required: true },
 });
 
 const loading = ref(true);
 const error = ref(null);
-const data = ref({ map: {}, layers: [], groups: [], pins: [] });
+const data = ref({ map: {}, layers: [], groups: [], pins: [], i18n: {} });
 const legendOpen = ref(false);
 const selectedPin = ref(null);
 const centerNonce = ref(0);
+
+const markersCountText = computed(() => {
+    const count = data.value.pins.length;
+    const template = count === 1 ? data.value.i18n.markers_count_one : data.value.i18n.markers_count_other;
+
+    return template.replace(':count', count);
+});
 
 function selectPin(pin) {
     selectedPin.value = pin;
@@ -87,7 +98,7 @@ onMounted(async () => {
         const res = await axios.get(props.api);
         data.value = res.data;
     } catch (e) {
-        error.value = "Unable to load this map.";
+        error.value = props.errorText;
     } finally {
         loading.value = false;
     }

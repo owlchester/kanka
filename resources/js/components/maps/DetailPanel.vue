@@ -1,15 +1,27 @@
 <template>
-    <aside v-if="pin" class="fixed top-0 right-0 h-screen w-80 bg-base-100 shadow-lg z-[1100] flex flex-col overflow-y-auto">
+    <aside
+        v-if="pin"
+        class="fixed top-4 right-4 bottom-4 w-80 bg-base-100 shadow-lg z-[1100] flex flex-col overflow-y-auto rounded-2xl"
+    >
         <div
             class="p-4 flex flex-col justify-end bg-cover bg-center"
-            :style="preview?.entity_image ? { backgroundImage: `url('${preview.entity_image}')` } : {}"
+            :style="
+                preview?.entity_image
+                    ? { backgroundImage: `url('${preview.entity_image}')` }
+                    : {}
+            "
         >
             <div class="flex items-center justify-between gap-2">
                 <h2 class="text-lg font-semibold">
-                    <a v-if="preview?.entity_url" :href="preview.entity_url">{{ pin.name }}</a>
+                    <a v-if="preview?.entity_url" :href="preview.entity_url">{{
+                        pin.name
+                    }}</a>
                     <template v-else>{{ pin.name }}</template>
                 </h2>
-                <button class="btn2 btn-default btn-sm flex-none" @click="$emit('close')">
+                <button
+                    class="btn2 btn-default btn-sm flex-none"
+                    @click="$emit('close')"
+                >
                     <i class="fa-solid fa-xmark" aria-hidden="true" />
                 </button>
             </div>
@@ -17,16 +29,23 @@
 
         <div v-if="loading" class="p-4 flex items-center gap-2">
             <i class="fa-solid fa-spinner fa-spin" aria-hidden="true" />
-            <span>loading....</span>
+            <span>{{ i18n.loading }}</span>
         </div>
 
         <div v-else-if="preview" class="p-4 flex flex-col gap-3 grow">
-            <p class="text-sm opacity-75">{{ preview.type }} - {{ preview.group_name || 'Ungrouped' }}</p>
+            <p class="text-sm opacity-75">
+                {{ preview.type }} - {{ preview.group_name || i18n.ungrouped }}
+            </p>
 
-            <div v-if="preview.marker_entry" v-html="preview.marker_entry"></div>
+            <div
+                v-if="preview.marker_entry"
+                v-html="preview.marker_entry"
+            ></div>
 
             <template v-if="preview.entity_entry">
-                <p v-if="preview.marker_entry" class="text-sm font-semibold">From entry</p>
+                <p v-if="preview.marker_entry" class="text-sm font-semibold">
+                    {{ i18n.from_entry }}
+                </p>
                 <div v-html="preview.entity_entry"></div>
             </template>
 
@@ -37,77 +56,95 @@
                     target="_blank"
                     class="btn2 btn-primary btn-block"
                 >
-                    Edit details
+                    {{ i18n.edit_details }}
                 </a>
 
                 <div class="flex gap-2">
-                    <button class="btn2 btn-default grow" @click="$emit('center')">Center</button>
-                    <button v-if="preview.can_edit" class="btn2 grow" @click="duplicate">Duplicate</button>
+                    <button
+                        class="btn2 btn-default grow"
+                        @click="$emit('center')"
+                    >
+                        {{ i18n.center }}
+                    </button>
+                    <button
+                        v-if="preview.can_edit"
+                        class="btn2 grow"
+                        @click="duplicate"
+                    >
+                        {{ i18n.duplicate }}
+                    </button>
                 </div>
 
-                <button v-if="preview.can_edit" class="btn2 btn-danger" @click="handleDelete">
-                    {{ confirming ? 'Click again to confirm' : 'Delete marker' }}
+                <button
+                    v-if="preview.can_edit"
+                    class="btn2 btn-danger"
+                    @click="handleDelete"
+                >
+                    {{ confirming ? i18n.delete_confirm : i18n.delete_marker }}
                 </button>
-                <p v-if="error" class="text-sm text-error-content">{{ error }}</p>
+                <p v-if="error" class="text-sm text-error-content">
+                    {{ error }}
+                </p>
             </div>
         </div>
     </aside>
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch } from "vue";
 
 const props = defineProps({
     pin: { type: Object, default: null },
-})
+    i18n: { type: Object, required: true },
+});
 
-const emit = defineEmits(['close', 'center', 'deleted'])
+const emit = defineEmits(["close", "center", "deleted"]);
 
-const loading = ref(false)
-const preview = ref(null)
-const confirming = ref(false)
-const error = ref(null)
+const loading = ref(false);
+const preview = ref(null);
+const confirming = ref(false);
+const error = ref(null);
 
 function duplicate() {
     // No-op for now.
 }
 
 async function handleDelete() {
-    if (! confirming.value) {
-        confirming.value = true
-        error.value = null
+    if (!confirming.value) {
+        confirming.value = true;
+        error.value = null;
 
-        return
+        return;
     }
 
     try {
-        const res = await axios.delete(props.pin.destroy_url)
+        const res = await axios.delete(props.pin.destroy_url);
         if (res.status === 204) {
-            emit('deleted', props.pin)
+            emit("deleted", props.pin);
         }
     } catch (e) {
-        confirming.value = false
-        error.value = 'Unable to delete this marker.'
+        confirming.value = false;
+        error.value = props.i18n.error_delete;
     }
 }
 
 async function load(pin) {
-    confirming.value = false
-    error.value = null
-    preview.value = null
+    confirming.value = false;
+    error.value = null;
+    preview.value = null;
 
-    if (! pin) {
-        return
+    if (!pin) {
+        return;
     }
 
-    loading.value = true
+    loading.value = true;
     try {
-        const res = await axios.get(pin.preview_url)
-        preview.value = res.data
+        const res = await axios.get(pin.preview_url);
+        preview.value = res.data;
     } finally {
-        loading.value = false
+        loading.value = false;
     }
 }
 
-watch(() => props.pin, load, { immediate: true })
+watch(() => props.pin, load, { immediate: true });
 </script>

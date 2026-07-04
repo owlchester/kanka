@@ -7,7 +7,11 @@
 
 @section('content')
     <div id="map-explorer">
-        <map-explorer api="{{ route('entities.map-api', [$campaign, $entity]) }}"></map-explorer>
+        <map-explorer
+            api="{{ route('entities.map-api', [$campaign, $entity]) }}"
+            loading-text="{{ __('maps/explorer.loading') }}"
+            error-text="{{ __('maps/explorer.errors.load') }}"
+        ></map-explorer>
     </div>
 @endsection
 

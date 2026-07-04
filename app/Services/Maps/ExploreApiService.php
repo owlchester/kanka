@@ -39,6 +39,27 @@ class ExploreApiService
                 ->values()
                 ->map(fn ($marker) => new PinResource($marker)->campaign($this->campaign)->mapEntity($mapEntity))
                 ->all(),
+            'i18n' => $this->translations(),
+        ];
+    }
+
+    protected function translations(): array
+    {
+        return [
+            'legend_title' => __('maps.panels.legend'),
+            'legend_search' => __('maps/explorer.legend.search'),
+            'ungrouped' => __('maps/explorer.ungrouped'),
+            'loading' => __('maps/explorer.loading'),
+            'error_load' => __('maps/explorer.errors.load'),
+            'error_delete' => __('maps/explorer.errors.delete'),
+            'from_entry' => __('maps/explorer.marker.from_entry'),
+            'edit_details' => __('maps/explorer.marker.edit'),
+            'center' => __('maps/explorer.marker.center'),
+            'duplicate' => __('maps/explorer.marker.duplicate'),
+            'delete_marker' => __('maps/explorer.marker.delete'),
+            'delete_confirm' => __('maps/explorer.marker.delete_confirm'),
+            'markers_count_one' => __('maps/explorer.markers_count.one'),
+            'markers_count_other' => __('maps/explorer.markers_count.other'),
         ];
     }
 }
