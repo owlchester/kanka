@@ -12,6 +12,7 @@
             loading-text="{{ __('maps/explorer.loading') }}"
             error-text="{{ __('maps/explorer.errors.load') }}"
             :can-edit="@can('update', $entity) true @else false @endcan"
+            :boosted="@if ($campaign->boosted()) true @else false @endif"
         ></map-explorer>
     </div>
 @endsection

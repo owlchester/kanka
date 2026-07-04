@@ -9,7 +9,7 @@
                     class="w-8 h-8 rounded-lg flex items-center justify-center flex-none"
                     :style="{ backgroundColor: pin.colour }"
                 >
-                    <i class="fa-solid fa-map-pin text-white" aria-hidden="true" />
+                    <i :class="pin.icon?.value || 'fa-solid fa-map-pin'" class="text-white" aria-hidden="true" />
                 </div>
                 <h2 class="text-sm font-semibold uppercase tracking-wide">{{ i18n.new_pin }}</h2>
             </div>
@@ -24,6 +24,14 @@
                 type="text"
                 class="input input-bordered w-full"
                 :placeholder="i18n.name_placeholder"
+            />
+
+            <ShapePicker
+                v-if="mode === 'full'"
+                :pin="pin"
+                :boosted="boosted"
+                :i18n="i18n"
+                @change="$emit('icon-change', $event)"
             />
         </div>
 
@@ -47,14 +55,16 @@
 
 <script setup>
 import { ref, watch } from "vue";
+import ShapePicker from "./ShapePicker.vue";
 
 const props = defineProps({
     pin: { type: Object, default: null },
     i18n: { type: Object, required: true },
     createUrl: { type: String, required: true },
+    boosted: { type: Boolean, default: false },
 });
 
-const emit = defineEmits(["close", "created"]);
+const emit = defineEmits(["close", "created", "icon-change"]);
 
 const name = ref("");
 const saving = ref(false);
@@ -85,7 +95,8 @@ async function save() {
             longitude: props.pin.longitude,
             colour: props.pin.colour,
             shape_id: 1,
-            icon: 1,
+            icon: props.pin.iconId,
+            custom_icon: props.pin.customIcon,
         });
         emit("created", res.data);
     } catch (e) {

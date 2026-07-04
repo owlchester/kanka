@@ -63,8 +63,10 @@
             :pin="draftPin"
             :i18n="data.i18n"
             :create-url="data.map.create_url"
+            :boosted="boosted"
             @close="draftPin = null"
             @created="onPinCreated"
+            @icon-change="handleIconChange"
         />
 
         <Toolbar
@@ -89,6 +91,7 @@ const props = defineProps({
     loadingText: { type: String, required: true },
     errorText: { type: String, required: true },
     canEdit: { type: Boolean, default: false },
+    boosted: { type: Boolean, default: false },
 });
 
 const loading = ref(true);
@@ -138,8 +141,23 @@ function handleMapClick({ lat, lng }) {
         colour: "#f2c14e",
         shape: "marker",
         icon: { type: "fa", value: "fa-solid fa-map-pin" },
+        iconId: 1,
+        customIcon: null,
         latitude: lat,
         longitude: lng,
+    };
+}
+
+function handleIconChange(payload) {
+    if (!draftPin.value) {
+        return;
+    }
+
+    draftPin.value = {
+        ...draftPin.value,
+        iconId: payload.icon,
+        customIcon: payload.custom_icon,
+        icon: payload.render,
     };
 }
 
