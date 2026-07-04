@@ -49,7 +49,7 @@ function buildLayers() {
 function pinIcon(pin) {
     const size = pin.pin_size || 40
     let inner = '<i class="fa-solid fa-map-pin"></i>'
-    let style = `background-color: ${pin.colour || '#ccc'};`
+    let style = `--pin-size: ${size}px; background-color: ${pin.colour || '#ccc'};`
 
     if (pin.icon?.type === 'fa') {
         inner = `<i class="${pin.icon.value}" aria-hidden="true"></i>`
@@ -57,7 +57,7 @@ function pinIcon(pin) {
         inner = pin.icon.value
     } else if (pin.icon?.type === 'avatar') {
         inner = ''
-        style = `background-image: url('${pin.icon.value}'); background-size: cover;`
+        style = `--pin-size: ${size}px; background-image: url('${pin.icon.value}'); background-size: cover;`
     }
 
     return L.divIcon({
@@ -128,3 +128,36 @@ onBeforeUnmount(() => {
     leafletMap?.remove()
 })
 </script>
+
+<style>
+.marker {
+    color: white;
+    background-color: unset;
+    text-align: center;
+}
+
+.marker-pin {
+    width: var(--pin-size, 40px);
+    height: var(--pin-size, 40px);
+    border-radius: 50% 50% 50% 0;
+    position: absolute;
+    transform: rotate(-45deg);
+    left: 50%;
+    top: 50%;
+    margin: calc(var(--pin-size, 40px) / -2) 0 0 calc(var(--pin-size, 40px) / -2);
+    box-shadow: 0 6px 6px rgba(50, 50, 93, 0.31), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.marker-pin::after {
+    content: '';
+    width: calc(var(--pin-size, 40px) - 4px);
+    height: calc(var(--pin-size, 40px) - 4px);
+    margin: 2px 0 0 calc((var(--pin-size, 40px) - 4px) / -2);
+    position: absolute;
+    border-radius: 50%;
+    background-position: 50% 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transform: rotate(45deg);
+}
+</style>
