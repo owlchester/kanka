@@ -27,7 +27,7 @@
                 <h1 class="text-lg font-semibold leading-tight">
                     {{ data.map.name }}
                 </h1>
-                <p class="text-sm opacity-75">{{ markersCountText }}</p>
+                <p class="text-sm text-neutral-content">{{ markersCountText }}</p>
             </div>
         </div>
 
@@ -75,6 +75,7 @@
             @visibility-change="handleVisibilityChange"
             @colour-change="handleColourChange"
             @opacity-change="handleOpacityChange"
+            @name-change="handleNameChange"
         />
 
         <Toolbar
@@ -145,7 +146,7 @@ function defaultColour() {
 }
 
 function handleMapClick({ lat, lng }) {
-    if (activeMode.value !== "pin") {
+    if (activeMode.value !== "pin" && activeMode.value !== "text") {
         return;
     }
 
@@ -155,10 +156,13 @@ function handleMapClick({ lat, lng }) {
         return;
     }
 
+    const isText = activeMode.value === "text";
+
     draftPin.value = {
         name: "",
         colour: defaultColour(),
-        shape: "marker",
+        shape: isText ? "label" : "marker",
+        shapeId: isText ? 2 : 1,
         icon: { type: "fa", value: "fa-solid fa-map-pin" },
         iconId: 1,
         customIcon: null,
@@ -170,6 +174,14 @@ function handleMapClick({ lat, lng }) {
         latitude: lat,
         longitude: lng,
     };
+}
+
+function handleNameChange(name) {
+    if (!draftPin.value) {
+        return;
+    }
+
+    draftPin.value = { ...draftPin.value, name };
 }
 
 function handleIconChange(payload) {

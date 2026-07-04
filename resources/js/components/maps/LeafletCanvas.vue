@@ -52,6 +52,18 @@ function buildLayers() {
     })
 }
 
+function relativeLuminance(hex) {
+    const value = hex.replace('#', '')
+    const channels = [0, 2, 4].map((i) => parseInt(value.substring(i, i + 2), 16) / 255)
+    const [r, g, b] = channels.map((c) => (c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4))
+
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b
+}
+
+function contrastTextColour(hex) {
+    return relativeLuminance(hex) > 0.179 ? '#000' : '#fff'
+}
+
 function pinIcon(pin) {
     const size = pin.pin_size || 40
     let inner = '<i class="fa-solid fa-map-pin"></i>'
@@ -88,8 +100,24 @@ function buildPin(pin) {
     }
 
     if (pin.shape === 'label') {
-        return L.marker([pin.latitude, pin.longitude], { opacity: 0 })
+        const marker = L.marker([pin.latitude, pin.longitude], { opacity: 0 })
             .bindTooltip(pin.name, { permanent: true, direction: 'center', className: 'map-label' })
+
+        marker.on('tooltipopen', () => {
+            const el = marker.getTooltip()?.getElement()
+            if (!el) {
+                return
+            }
+
+            el.style.opacity = (pin.opacity ?? 100) / 100
+
+            if (pin.colour) {
+                el.style.setProperty('--label-colour', pin.colour)
+                el.style.setProperty('--label-text-colour', contrastTextColour(pin.colour))
+            }
+        })
+
+        return marker
     }
 
     return L.marker([pin.latitude, pin.longitude], {
@@ -170,7 +198,7 @@ onMounted(() => {
     L.control.zoom({ position: 'bottomleft' }).addTo(leafletMap)
 
     leafletMap.on('click', (e) => {
-        if (props.activeMode === 'pin') {
+        if (props.activeMode === 'pin' || props.activeMode === 'text') {
             emit('map-click', { lat: e.latlng.lat, lng: e.latlng.lng })
         }
     })
@@ -226,6 +254,12 @@ onBeforeUnmount(() => {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.map-label {
+    background-color: var(--label-colour, #fff);
+    border-color: var(--label-colour, #fff);
+    color: var(--label-text-colour, #222);
 }
 
 .marker-draft .marker-pin {

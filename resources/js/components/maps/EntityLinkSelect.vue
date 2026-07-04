@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col gap-2">
-        <label class="text-xs font-semibold uppercase tracking-wide opacity-75">{{ i18n.linked_entry }}</label>
+        <label class="text-xs font-semibold uppercase tracking-wide text-neutral-content">{{ i18n.linked_entry }}</label>
         <select ref="selectEl" class="w-full"></select>
     </div>
 </template>

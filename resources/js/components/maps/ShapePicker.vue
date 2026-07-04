@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col gap-2">
-        <label class="text-xs font-semibold uppercase tracking-wide opacity-75">{{ i18n.shape }}</label>
+        <label class="text-xs font-semibold uppercase tracking-wide text-neutral-content">{{ i18n.shape }}</label>
 
         <input
             v-if="customMode"

@@ -9,16 +9,32 @@
                     class="w-8 h-8 rounded-lg flex items-center justify-center flex-none"
                     :style="{ backgroundColor: pin.colour }"
                 >
-                    <i :class="pin.icon?.value || 'fa-solid fa-map-pin'" class="text-white" aria-hidden="true" />
+                    <span
+                        v-if="pin.shape === 'label'"
+                        class="text-white font-semibold"
+                        >T</span
+                    >
+                    <i
+                        v-else
+                        :class="pin.icon?.value || 'fa-solid fa-map-pin'"
+                        class="text-white"
+                        aria-hidden="true"
+                    />
                 </div>
-                <h2 class="text-sm font-semibold uppercase tracking-wide">{{ i18n.new_pin }}</h2>
+                <h2 class="text-sm font-semibold uppercase tracking-wide">
+                    {{ i18n.new_pin }}
+                </h2>
             </div>
-            <button class="btn2 btn-default btn-sm flex-none" :disabled="saving" @click="$emit('close')">
+            <button
+                class="btn2 btn-default btn-sm flex-none"
+                :disabled="saving"
+                @click="$emit('close')"
+            >
                 <i class="fa-solid fa-xmark" aria-hidden="true" />
             </button>
         </div>
 
-        <div class="px-4 flex flex-col gap-2 grow min-h-0 overflow-y-auto">
+        <div class="px-4 flex flex-col gap-3 grow min-h-0 overflow-y-auto">
             <input
                 v-model="name"
                 type="text"
@@ -34,7 +50,7 @@
             />
 
             <ShapePicker
-                v-if="mode === 'full'"
+                v-if="mode === 'full' && pin.shape !== 'label'"
                 :pin="pin"
                 :boosted="boosted"
                 :i18n="i18n"
@@ -75,7 +91,11 @@
 
         <div class="p-4 mt-auto flex flex-col gap-2">
             <div class="flex gap-2">
-                <button class="btn2 btn-outline" :disabled="saving" @click="toggleMode">
+                <button
+                    class="btn2 btn-outline"
+                    :disabled="saving"
+                    @click="toggleMode"
+                >
                     {{ mode === "full" ? i18n.less : i18n.details }}
                 </button>
                 <button
@@ -110,20 +130,37 @@ const props = defineProps({
     visibilities: { type: Array, default: () => [] },
 });
 
-const emit = defineEmits(["close", "created", "icon-change", "group-change", "entity-change", "visibility-change", "colour-change", "opacity-change"]);
+const emit = defineEmits([
+    "close",
+    "created",
+    "icon-change",
+    "group-change",
+    "entity-change",
+    "visibility-change",
+    "colour-change",
+    "opacity-change",
+    "name-change",
+]);
 
 const name = ref("");
 const saving = ref(false);
 const error = ref(null);
 const mode = ref("light");
 
-watch(() => props.pin, (newPin, oldPin) => {
-    if (newPin && !oldPin) {
-        name.value = "";
-        error.value = null;
-        saving.value = false;
-        mode.value = "light";
-    }
+watch(
+    () => props.pin,
+    (newPin, oldPin) => {
+        if (newPin && !oldPin) {
+            name.value = "";
+            error.value = null;
+            saving.value = false;
+            mode.value = "light";
+        }
+    },
+);
+
+watch(name, (value) => {
+    emit("name-change", value);
 });
 
 function toggleMode() {
@@ -140,7 +177,7 @@ async function save() {
             latitude: props.pin.latitude,
             longitude: props.pin.longitude,
             colour: props.pin.colour,
-            shape_id: 1,
+            shape_id: props.pin.shapeId,
             icon: props.pin.iconId,
             custom_icon: props.pin.customIcon,
             group_id: props.pin.groupId,
