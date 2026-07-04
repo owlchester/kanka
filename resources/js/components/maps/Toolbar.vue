@@ -1,11 +1,11 @@
 <template>
     <div
         v-if="canEdit"
-        class="fixed bottom-4 left-1/2 -translate-x-1/2 z-[1200] flex flex-col items-center gap-2"
+        class="fixed bottom-4 left-1/2 -translate-x-1/2 z-[1100] flex flex-col items-center gap-2"
     >
         <div
             v-if="activeMode"
-            class="bg-accent text-accent-content rounded-full px-4 py-2 text-sm whitespace-nowrap"
+            class="bg-accent opacity-60 text-accent-content rounded-full px-3 py-1.5 text-xs whitespace-nowrap"
         >
             {{ helperText }}
         </div>
@@ -36,7 +36,11 @@
                 :key="mode.key"
                 type="button"
                 class="flex flex-col items-center gap-1 rounded-xl px-3 py-1.5 cursor-pointer"
-                :class="activeMode === mode.key ? 'bg-accent text-accent-content' : ''"
+                :class="
+                    activeMode === mode.key
+                        ? 'bg-accent text-accent-content'
+                        : ''
+                "
                 @click="selectMode(mode.key)"
             >
                 <i :class="mode.icon" aria-hidden="true" />
@@ -58,11 +62,27 @@ const activeMode = ref(null);
 const rapid = ref(false);
 
 const modes = computed(() => [
-    { key: "pin", icon: "fa-regular fa-location-dot", label: props.i18n.toolbar.pin },
+    {
+        key: "pin",
+        icon: "fa-regular fa-location-dot",
+        label: props.i18n.toolbar.pin,
+    },
     { key: "text", icon: "fa-regular fa-font", label: props.i18n.toolbar.text },
-    { key: "area", icon: "fa-regular fa-draw-polygon", label: props.i18n.toolbar.area },
-    { key: "circle", icon: "fa-regular fa-circle", label: props.i18n.toolbar.circle },
-    { key: "path", icon: "fa-regular fa-route", label: props.i18n.toolbar.path },
+    {
+        key: "area",
+        icon: "fa-regular fa-draw-polygon",
+        label: props.i18n.toolbar.area,
+    },
+    {
+        key: "circle",
+        icon: "fa-regular fa-circle",
+        label: props.i18n.toolbar.circle,
+    },
+    {
+        key: "path",
+        icon: "fa-regular fa-route",
+        label: props.i18n.toolbar.path,
+    },
 ]);
 
 const helperText = computed(() => {

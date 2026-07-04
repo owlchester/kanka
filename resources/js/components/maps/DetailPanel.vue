@@ -1,7 +1,7 @@
 <template>
     <aside
         v-if="pin"
-        class="fixed top-4 right-4 bottom-4 w-80 bg-base-100 shadow-lg z-[1100] flex flex-col rounded-2xl overflow-hidden"
+        class="fixed top-4 right-4 bottom-4 w-80 bg-base-100 shadow-lg z-[1150] flex flex-col rounded-2xl overflow-hidden"
     >
         <div
             class="flex justify-end p-4 bg-cover bg-center"
@@ -79,9 +79,15 @@
                     <span class="marker-type">{{ preview.type }}</span>
                     <span>-</span>
                     <span
-                        class="inline-block w-4 h-4 rounded-full flex-none"
-                        :class="!preview.group_colour ? 'bg-neutral-content' : ''"
-                        :style="preview.group_colour ? { backgroundColor: preview.group_colour } : {}"
+                        class="inline-block w-2.5 h-2.5 rounded-full flex-none"
+                        :class="
+                            !preview.group_colour ? 'bg-neutral-content' : ''
+                        "
+                        :style="
+                            preview.group_colour
+                                ? { backgroundColor: preview.group_colour }
+                                : {}
+                        "
                     />
                     <span class="marker-group">{{
                         preview.group_name || i18n.ungrouped
