@@ -1,7 +1,7 @@
 <template>
     <aside
         v-if="pin"
-        class="fixed top-4 right-4 bottom-4 w-80 bg-base-100 shadow-lg z-[1100] flex flex-col overflow-y-auto rounded-2xl"
+        class="fixed top-4 right-4 bottom-4 w-80 bg-base-100 shadow-lg z-[1100] flex flex-col rounded-2xl overflow-hidden"
     >
         <div
             class="p-4 flex flex-col justify-end bg-cover bg-center"
@@ -32,24 +32,30 @@
             <span>{{ i18n.loading }}</span>
         </div>
 
-        <div v-else-if="preview" class="p-4 flex flex-col gap-3 grow">
-            <p class="text-sm opacity-75">
-                {{ preview.type }} - {{ preview.group_name || i18n.ungrouped }}
-            </p>
-
-            <div
-                v-if="preview.marker_entry"
-                v-html="preview.marker_entry"
-            ></div>
-
-            <template v-if="preview.entity_entry">
-                <p v-if="preview.marker_entry" class="text-sm font-semibold">
-                    {{ i18n.from_entry }}
+        <div v-else-if="preview" class="flex flex-col grow min-h-0">
+            <div class="p-4 flex flex-col gap-3 overflow-y-auto grow min-h-0">
+                <p class="text-xs text-neutral-content">
+                    {{ preview.type }} - {{ preview.group_name || i18n.ungrouped }}
                 </p>
-                <div v-html="preview.entity_entry"></div>
-            </template>
 
-            <div class="mt-auto flex flex-col gap-2 pt-4">
+                <div
+                    class="marker-entry entity-content marker-custom-entry"
+                    v-if="preview.marker_entry"
+                    v-html="preview.marker_entry"
+                ></div>
+
+                <template v-if="preview.entity_entry">
+                    <p v-if="preview.marker_entry" class="text-sm font-semibold">
+                        {{ i18n.from_entry }}
+                    </p>
+                    <div
+                        v-html="preview.entity_entry"
+                        class="marker-entry entity-content"
+                    ></div>
+                </template>
+            </div>
+
+            <div class="p-4 flex flex-col gap-2 flex-none">
                 <a
                     v-if="preview.can_edit && preview.edit_url"
                     :href="preview.edit_url"
@@ -77,7 +83,7 @@
 
                 <button
                     v-if="preview.can_edit"
-                    class="btn2 btn-danger"
+                    class="btn2 btn-error btn-outline"
                     @click="handleDelete"
                 >
                     {{ confirming ? i18n.delete_confirm : i18n.delete_marker }}
