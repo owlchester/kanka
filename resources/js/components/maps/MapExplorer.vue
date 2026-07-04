@@ -59,6 +59,14 @@
             @deleted="removePin"
         />
 
+        <MarkerPanel
+            :pin="draftPin"
+            :i18n="data.i18n"
+            :create-url="data.map.create_url"
+            @close="draftPin = null"
+            @created="onPinCreated"
+        />
+
         <Toolbar
             :i18n="data.i18n"
             :can-edit="canEdit"
@@ -73,6 +81,7 @@ import { ref, computed, onMounted } from "vue";
 import DetailPanel from "./DetailPanel.vue";
 import LeafletCanvas from "./LeafletCanvas.vue";
 import LegendPanel from "./LegendPanel.vue";
+import MarkerPanel from "./MarkerPanel.vue";
 import Toolbar from "./Toolbar.vue";
 
 const props = defineProps({
@@ -132,6 +141,12 @@ function handleMapClick({ lat, lng }) {
         latitude: lat,
         longitude: lng,
     };
+}
+
+function onPinCreated(pin) {
+    data.value.pins.push(pin);
+    draftPin.value = null;
+    activeMode.value = null;
 }
 
 onMounted(async () => {
