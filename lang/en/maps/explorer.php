@@ -16,7 +16,7 @@ return [
         'duplicate'         => 'Duplicate',
         'edit'              => 'Edit details',
         'from_entry'        => 'From entry',
-        'linked_entity'     => 'Linked entity',
+        'linked_entry'     => 'Linked entry',
     ],
     'markers_count' => [
         'one'   => '1 marker',

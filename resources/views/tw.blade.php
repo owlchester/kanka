@@ -13,7 +13,7 @@ This file is never loaded, but needed to trick tailwind to include some classes 
 <div class="bg-green-500 bg-orange-400 bg-red-500 mix-blend-color-dodge"></div>
 <div class="group-hover:bg-base-300"></div>
 
-<div class="top-16 bottom-24"></div>
+<div class="top-16 bottom-24 pb-20"></div>
 
 <template id="moon-colours">
     <div class="text-white"></div>

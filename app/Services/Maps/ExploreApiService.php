@@ -53,7 +53,7 @@ class ExploreApiService
             'error_load' => __('maps/explorer.errors.load'),
             'error_delete' => __('maps/explorer.errors.delete'),
             'from_entry' => __('maps/explorer.marker.from_entry'),
-            'linked_entity' => __('maps/explorer.marker.linked_entity'),
+            'linked_entry' => __('maps/explorer.marker.linked_entry'),
             'edit_details' => __('maps/explorer.marker.edit'),
             'center' => __('maps/explorer.marker.center'),
             'duplicate' => __('maps/explorer.marker.duplicate'),

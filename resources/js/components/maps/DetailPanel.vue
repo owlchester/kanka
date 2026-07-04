@@ -4,24 +4,66 @@
         class="fixed top-4 right-4 bottom-4 w-80 bg-base-100 shadow-lg z-[1100] flex flex-col rounded-2xl overflow-hidden"
     >
         <div
-            class="p-4 flex flex-col justify-end bg-cover bg-center"
+            class="flex justify-end p-4 bg-cover bg-center"
+            :class="preview?.entity_image ? 'pb-20' : ''"
             :style="
                 preview?.entity_image
                     ? { backgroundImage: `url('${preview.entity_image}')` }
                     : {}
             "
         >
-            <div class="flex items-center justify-between gap-2">
-                <h2 class="text-lg font-semibold">
-                    <template>{{ pin.name }}</template>
-                </h2>
-                <button
-                    class="btn2 btn-default btn-sm flex-none"
-                    @click="$emit('close')"
+            <button
+                class="btn2 btn-default btn-sm flex-none"
+                @click="$emit('close')"
+            >
+                <i class="fa-solid fa-xmark" aria-hidden="true" />
+            </button>
+        </div>
+
+        <div
+            class="px-4 flex flex-col gap-2"
+            :class="preview?.entity_image ? '-mt-6' : ''"
+        >
+            <div
+                class="w-10 h-10 rounded-lg flex items-center justify-center flex-none overflow-hidden"
+                :class="
+                    markerIcon.kind !== 'avatar' && !pin.colour
+                        ? 'bg-neutral-content'
+                        : ''
+                "
+                :style="
+                    markerIcon.kind === 'avatar'
+                        ? {
+                              backgroundImage: `url('${markerIcon.value}')`,
+                              backgroundSize: 'cover',
+                              backgroundPosition: 'center',
+                          }
+                        : pin.colour
+                          ? { backgroundColor: pin.colour }
+                          : {}
+                "
+            >
+                <i
+                    v-if="markerIcon.kind === 'fa'"
+                    :class="markerIcon.value"
+                    class="text-white"
+                    aria-hidden="true"
+                ></i>
+                <span
+                    v-else-if="markerIcon.kind === 'text'"
+                    class="text-white font-semibold"
+                    >{{ markerIcon.value }}</span
                 >
-                    <i class="fa-solid fa-xmark" aria-hidden="true" />
-                </button>
+                <span
+                    v-else-if="markerIcon.kind === 'html'"
+                    class="text-white"
+                    v-html="markerIcon.value"
+                ></span>
             </div>
+            <h2
+                class="text-lg font-semibold marker-title"
+                v-html="pin.name"
+            ></h2>
         </div>
 
         <div v-if="loading" class="p-4 flex items-center gap-2">
@@ -30,10 +72,14 @@
         </div>
 
         <div v-else-if="preview" class="flex flex-col grow min-h-0">
-            <div class="p-4 flex flex-col gap-3 overflow-y-auto grow min-h-0">
+            <div
+                class="p-4 pt-0 flex flex-col gap-3 overflow-y-auto grow min-h-0"
+            >
                 <p class="text-xs text-neutral-content">
-                    {{ preview.type }} -
-                    {{ preview.group_name || i18n.ungrouped }}
+                    <span class="marker-type">{{ preview.type }}</span> -
+                    <span class="marker-group">{{
+                        preview.group_name || i18n.ungrouped
+                    }}</span>
                 </p>
 
                 <a
@@ -48,7 +94,7 @@
                     </div>
                     <div class="flex flex-col gap-0 grow overflow-hidden">
                         <span class="text-neutral-content text-2xs uppercase">
-                            {{ i18n.linked_entity }}
+                            {{ i18n.linked_entry }}
                         </span>
                         <span class="truncate">{{ preview.entity_name }}</span>
                     </div>
@@ -122,7 +168,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
+import { computed, ref, watch } from "vue";
 
 const props = defineProps({
     pin: { type: Object, default: null },
@@ -135,6 +181,30 @@ const loading = ref(false);
 const preview = ref(null);
 const confirming = ref(false);
 const error = ref(null);
+
+const markerIcon = computed(() => {
+    if (props.pin.shape === "label") {
+        return { kind: "text", value: "T" };
+    }
+
+    if (props.pin.shape === "poly") {
+        return { kind: "fa", value: "fa-regular fa-hexagon" };
+    }
+
+    if (props.pin.icon?.type === "fa") {
+        return { kind: "fa", value: props.pin.icon.value };
+    }
+
+    if (props.pin.icon?.type === "html" || props.pin.icon?.type === "svg") {
+        return { kind: "html", value: props.pin.icon.value };
+    }
+
+    if (props.pin.icon?.type === "avatar") {
+        return { kind: "avatar", value: props.pin.icon.value };
+    }
+
+    return { kind: "fa", value: "fa-solid fa-location-dot" };
+});
 
 function duplicate() {
     // No-op for now.

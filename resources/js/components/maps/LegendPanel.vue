@@ -1,6 +1,9 @@
 <template>
-    <aside v-if="open" class="fixed top-20 left-4 bottom-24 w-72 bg-base-100 rounded-2xl shadow-lg z-[1100] overflow-y-auto p-4 flex flex-col gap-3">
-        <div class="flex flex-col gap-1">
+    <aside
+        v-if="open"
+        class="fixed top-20 left-4 bottom-24 w-72 bg-base-100 rounded-2xl shadow-lg z-[1100] overflow-y-auto p-4 flex flex-col gap-3"
+    >
+        <div class="flex flex-col gap-2">
             <p>{{ i18n.legend_title }}</p>
             <input
                 v-model="query"
@@ -23,12 +26,22 @@
             <li v-if="filtered.uncategorised.length">
                 <p class="flex items-center justify-between font-semibold">
                     <span>{{ i18n.ungrouped }}</span>
-                    <span class="text-xs opacity-60">{{ filtered.uncategorised.length }}</span>
+                    <span class="text-xs opacity-60">{{
+                        filtered.uncategorised.length
+                    }}</span>
                 </p>
                 <ul class="pl-5 flex flex-col gap-1">
                     <li v-for="pin in filtered.uncategorised" :key="pin.id">
-                        <button class="flex items-center gap-2 text-left" @click="selectPin(pin)">
-                            <span class="inline-block w-2.5 h-2.5 rounded-full flex-none" :style="{ backgroundColor: pin.colour || '#ccc' }" />
+                        <button
+                            class="flex items-center gap-2 text-left"
+                            @click="selectPin(pin)"
+                        >
+                            <span
+                                class="inline-block w-2.5 h-2.5 rounded-full flex-none"
+                                :style="{
+                                    backgroundColor: pin.colour || '#ccc',
+                                }"
+                            />
                             <span>{{ pin.name }}</span>
                         </button>
                     </li>
@@ -39,41 +52,41 @@
 </template>
 
 <script setup>
-import { computed, reactive, ref } from 'vue'
-import { buildGroupTree, filterGroupTree } from '../../maps/groupTree.js'
-import LegendGroupNode from './LegendGroupNode.vue'
+import { computed, reactive, ref } from "vue";
+import { buildGroupTree, filterGroupTree } from "../../maps/groupTree.js";
+import LegendGroupNode from "./LegendGroupNode.vue";
 
 const props = defineProps({
     open: { type: Boolean, default: false },
     groups: { type: Array, default: () => [] },
     pins: { type: Array, default: () => [] },
     i18n: { type: Object, required: true },
-})
+});
 
-const emit = defineEmits(['select'])
+const emit = defineEmits(["select"]);
 
-const query = ref('')
-const tree = computed(() => buildGroupTree(props.groups, props.pins))
-const filtered = computed(() => filterGroupTree(tree.value, query.value))
-const openIds = reactive(new Set())
+const query = ref("");
+const tree = computed(() => buildGroupTree(props.groups, props.pins));
+const filtered = computed(() => filterGroupTree(tree.value, query.value));
+const openIds = reactive(new Set());
 
 function toggle(id) {
     if (openIds.has(id)) {
-        openIds.delete(id)
+        openIds.delete(id);
     } else {
-        openIds.add(id)
+        openIds.add(id);
     }
 }
 
 function isOpen(id) {
     if (query.value && filtered.value.matchedGroupIds.has(id)) {
-        return true
+        return true;
     }
 
-    return openIds.has(id)
+    return openIds.has(id);
 }
 
 function selectPin(pin) {
-    emit('select', pin)
+    emit("select", pin);
 }
 </script>
