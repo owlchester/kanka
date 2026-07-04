@@ -7,6 +7,7 @@
             class="input input-bordered w-full"
             autofocus
             @keydown.tab="commitCustom"
+            @keydown.enter="commitCustom"
             @blur="commitCustom"
         />
 
@@ -15,8 +16,8 @@
                 v-for="shape in shapes"
                 :key="shape.key"
                 type="button"
-                class="w-9 h-9 rounded-lg flex items-center justify-center cursor-pointer"
-                :class="isSelected(shape) ? 'bg-accent text-accent-content' : 'bg-base-200'"
+                class="w-9 h-9 rounded-lg flex items-center justify-center cursor-pointer border-2"
+                :class="isSelected(shape) ? 'bg-accent text-accent-content border-accent' : 'bg-base-200 border-transparent'"
                 @click="selectShape(shape)"
             >
                 <i :class="shape.fa" aria-hidden="true" />
@@ -24,8 +25,8 @@
 
             <button
                 type="button"
-                class="w-9 h-9 rounded-lg flex items-center justify-center cursor-pointer"
-                :class="pin.customIcon ? 'bg-accent text-accent-content' : 'bg-base-200'"
+                class="w-9 h-9 rounded-lg flex items-center justify-center cursor-pointer border-2"
+                :class="pin.customIcon ? 'bg-accent text-accent-content border-accent' : 'bg-base-200 border-transparent'"
                 @click="clickCustom"
             >
                 <i :class="pin.customIcon || 'fa-solid fa-ellipsis'" aria-hidden="true" />
