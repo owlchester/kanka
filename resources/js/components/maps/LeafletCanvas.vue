@@ -207,7 +207,7 @@ function startPolygonDraft() {
         emit('polygon-change', polygonLatLngs())
     })
 
-    draftPolygon.on('editable:drawing:end', () => {
+    draftPolygon.on('editable:drawing:commit', () => {
         polygonEditing = true
         emit('polygon-finish', polygonLatLngs())
     })
