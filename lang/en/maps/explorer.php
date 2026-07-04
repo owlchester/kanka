@@ -31,6 +31,11 @@ return [
         'opacity'           => 'Opacity',
         'custom'            => 'Custom',
         'premium_custom_icon' => 'Unlock custom pins with a premium campaign',
+        'border_colour'     => 'Border colour',
+        'stroke_width'      => 'Border width',
+        'stroke_thin'       => 'Thin',
+        'stroke_normal'     => 'Normal',
+        'stroke_bold'       => 'Bold',
     ],
     'markers_count' => [
         'one'   => '1 marker',

@@ -49,6 +49,20 @@
                 @change="$emit('colour-change', $event)"
             />
 
+            <ColourPicker
+                v-if="mode === 'full' && pin.shape === 'poly'"
+                :colour="pin.polygonStyle?.stroke"
+                :label="i18n.border_colour"
+                @change="$emit('border-colour-change', $event)"
+            />
+
+            <StrokeWidthPicker
+                v-if="mode === 'full' && pin.shape === 'poly'"
+                :width="pin.polygonStyle?.['stroke-width'] ?? 1"
+                :i18n="i18n"
+                @change="$emit('stroke-width-change', $event)"
+            />
+
             <ShapePicker
                 v-if="mode === 'full' && pin.shape !== 'label'"
                 :pin="pin"
@@ -113,11 +127,13 @@
 
 <script setup>
 import { ref, watch } from "vue";
+import { serializeVertices } from "../../maps/polygon.js";
 import ColourPicker from "./ColourPicker.vue";
 import EntityLinkSelect from "./EntityLinkSelect.vue";
 import GroupPicker from "./GroupPicker.vue";
 import OpacityPicker from "./OpacityPicker.vue";
 import ShapePicker from "./ShapePicker.vue";
+import StrokeWidthPicker from "./StrokeWidthPicker.vue";
 import VisibilitySelect from "./VisibilitySelect.vue";
 
 const props = defineProps({
@@ -140,6 +156,8 @@ const emit = defineEmits([
     "colour-change",
     "opacity-change",
     "name-change",
+    "border-colour-change",
+    "stroke-width-change",
 ]);
 
 const name = ref("");
@@ -172,6 +190,7 @@ async function save() {
     error.value = null;
 
     try {
+        const isPolygon = props.pin.shape === "poly";
         const res = await axios.post(props.createUrl, {
             name: name.value,
             latitude: props.pin.latitude,
@@ -184,6 +203,8 @@ async function save() {
             entity_id: props.pin.entityId,
             visibility_id: props.pin.visibilityId,
             opacity: props.pin.opacity,
+            custom_shape: isPolygon ? serializeVertices(props.pin.customShape) : undefined,
+            polygon_style: isPolygon ? props.pin.polygonStyle : undefined,
         });
         emit("created", res.data);
     } catch (e) {
