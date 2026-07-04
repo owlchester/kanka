@@ -24,6 +24,8 @@ class ExploreApiService
 
     public function load(): array
     {
+        $mapEntity = $this->map->entity;
+
         return [
             'map' => new MapResource($this->map)->campaign($this->campaign),
             'layers' => LayerResource::collection(
@@ -32,9 +34,11 @@ class ExploreApiService
                     ->values()
             ),
             'groups' => GroupResource::collection($this->map->groups),
-            'pins' => PinResource::collection(
-                $this->map->markers->filter(fn ($marker) => $marker->visible())->values()
-            ),
+            'pins' => $this->map->markers
+                ->filter(fn ($marker) => $marker->visible())
+                ->values()
+                ->map(fn ($marker) => new PinResource($marker)->campaign($this->campaign)->mapEntity($mapEntity))
+                ->all(),
         ];
     }
 }

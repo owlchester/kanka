@@ -28,7 +28,7 @@ it('returns the full explore payload for a simple map', function () {
     $shownLayer->image_path = 'maps/winter.png';
     $shownLayer->saveQuietly();
 
-    MapMarker::factory()->create(['map_id' => $map->id, 'group_id' => $group->id, 'name' => 'Waterdeep']);
+    $marker = MapMarker::factory()->create(['map_id' => $map->id, 'group_id' => $group->id, 'name' => 'Waterdeep']);
     MapMarker::factory()->create(['map_id' => $map->id, 'name' => 'Uncategorised pin']);
 
     $response = $this->get(route('entities.map-api', [1, $map->entity]))
@@ -37,7 +37,7 @@ it('returns the full explore payload for a simple map', function () {
             'map' => ['id', 'name', 'is_real', 'is_chunked', 'has_clustering', 'image', 'width', 'height', 'min_zoom', 'max_zoom', 'initial_zoom', 'center', 'tile_url', 'chunks_url'],
             'layers' => [['id', 'name', 'type_id', 'image', 'position']],
             'groups' => [['id', 'name', 'parent_id', 'position']],
-            'pins' => [['id', 'name', 'group_id', 'latitude', 'longitude', 'shape', 'colour', 'font_colour', 'icon', 'size_id', 'pin_size', 'circle_radius', 'opacity']],
+            'pins' => [['id', 'name', 'group_id', 'latitude', 'longitude', 'shape', 'colour', 'font_colour', 'icon', 'size_id', 'pin_size', 'circle_radius', 'opacity', 'preview_url', 'destroy_url']],
         ]);
 
     $response->assertJsonFragment(['name' => $map->name, 'is_real' => false, 'has_clustering' => true]);
@@ -45,6 +45,11 @@ it('returns the full explore payload for a simple map', function () {
     // The hidden (type_id=1) overlay layer must not be included, only the shown-by-default one
     expect($response->json('layers'))->toHaveCount(1);
     expect($response->json('layers.0.name'))->toBe('Winter');
+
+    $pins = collect($response->json('pins'));
+    $waterdeep = $pins->firstWhere('name', 'Waterdeep');
+    expect($waterdeep['preview_url'])->toBe(route('entities.map-markers.preview', [1, $map->entity->id, $marker->id]));
+    expect($waterdeep['destroy_url'])->toBe(route('entities.map-markers.destroy', [1, $map->entity->id, $marker->id]));
 });
 
 it('marks a real map with a tile url and no image', function () {
