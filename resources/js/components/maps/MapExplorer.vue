@@ -55,6 +55,8 @@
             @center="centerNonce++"
             @deleted="removePin"
         />
+
+        <Toolbar :i18n="data.i18n" :can-edit="canEdit" />
     </template>
 </template>
 
@@ -63,11 +65,13 @@ import { ref, computed, onMounted } from "vue";
 import DetailPanel from "./DetailPanel.vue";
 import LeafletCanvas from "./LeafletCanvas.vue";
 import LegendPanel from "./LegendPanel.vue";
+import Toolbar from "./Toolbar.vue";
 
 const props = defineProps({
     api: { type: String, required: true },
     loadingText: { type: String, required: true },
     errorText: { type: String, required: true },
+    canEdit: { type: Boolean, default: false },
 });
 
 const loading = ref(true);
