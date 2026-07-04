@@ -160,4 +160,13 @@ onBeforeUnmount(() => {
     background-repeat: no-repeat;
     transform: rotate(45deg);
 }
+
+.marker i {
+    font-size: 1.25rem;
+    margin: 0;
+    position: absolute !important;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 </style>
