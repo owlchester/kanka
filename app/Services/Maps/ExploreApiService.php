@@ -61,6 +61,21 @@ class ExploreApiService
             'delete_confirm' => __('maps/explorer.marker.delete_confirm'),
             'markers_count_one' => __('maps/explorer.markers_count.one'),
             'markers_count_other' => __('maps/explorer.markers_count.other'),
+            'toolbar' => [
+                'rapid' => __('maps/explorer.toolbar.rapid'),
+                'pin' => __('maps/explorer.toolbar.pin'),
+                'text' => __('maps/explorer.toolbar.text'),
+                'area' => __('maps/explorer.toolbar.area'),
+                'circle' => __('maps/explorer.toolbar.circle'),
+                'path' => __('maps/explorer.toolbar.path'),
+                'helper' => [
+                    'pin' => __('maps/explorer.toolbar.helper.pin'),
+                    'text' => __('maps/explorer.toolbar.helper.text'),
+                    'area' => __('maps/explorer.toolbar.helper.area'),
+                    'circle' => __('maps/explorer.toolbar.helper.circle'),
+                    'path' => __('maps/explorer.toolbar.helper.path'),
+                ],
+            ],
         ];
     }
 }

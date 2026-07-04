@@ -22,5 +22,20 @@ return [
         'one'   => '1 marker',
         'other' => ':count markers',
     ],
+    'toolbar'   => [
+        'rapid'     => 'Rapid',
+        'pin'       => 'Pin',
+        'text'      => 'Text',
+        'area'      => 'Area',
+        'circle'    => 'Circle',
+        'path'      => 'Path',
+        'helper'    => [
+            'pin'       => 'Click the map to drop a pin',
+            'text'      => 'Click to place a text label',
+            'area'      => 'Click to add points, double-click to close',
+            'circle'    => 'Click and drag to draw a circle',
+            'path'      => 'Click to add points along the path',
+        ],
+    ],
     'ungrouped' => 'Ungrouped',
 ];
