@@ -6,6 +6,7 @@
 import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import L from 'leaflet'
 import 'leaflet.markercluster'
+import 'leaflet-editable'
 
 const props = defineProps({
     map: { type: Object, required: true },
@@ -17,12 +18,14 @@ const props = defineProps({
     draftPin: { type: Object, default: null },
 })
 
-const emit = defineEmits(['pin-click', 'map-click'])
+const emit = defineEmits(['pin-click', 'map-click', 'polygon-change', 'polygon-finish'])
 
 const mapEl = ref(null)
 let leafletMap = null
 let pinLayer = null
 let draftMarker = null
+let draftPolygon = null
+let polygonEditing = false
 
 function bounds() {
     return [[0, 0], [props.map.height, props.map.width]]
@@ -163,12 +166,62 @@ function buildDraftMarker() {
         draftMarker = null
     }
 
-    if (! props.draftPin) {
+    if (! props.draftPin || props.draftPin.shape === 'poly') {
         return
     }
 
     draftMarker = buildPin({ ...props.draftPin, id: 'draft' })
     draftMarker.addTo(leafletMap)
+}
+
+function polygonLatLngs() {
+    if (! draftPolygon) {
+        return []
+    }
+
+    const rings = draftPolygon.getLatLngs()
+
+    return (rings[0] || []).map((point) => [point.lat, point.lng])
+}
+
+function styleDraftPolygon() {
+    if (! draftPolygon || ! props.draftPin) {
+        return
+    }
+
+    const style = props.draftPin.polygonStyle || {}
+
+    draftPolygon.setStyle({
+        color: style.stroke || props.draftPin.colour || '#ccc',
+        weight: style['stroke-width'] || 1,
+        fillColor: props.draftPin.colour || '#ccc',
+        fillOpacity: (props.draftPin.opacity ?? 100) / 100,
+    })
+}
+
+function startPolygonDraft() {
+    draftPolygon = leafletMap.editTools.startPolygon()
+    polygonEditing = false
+
+    draftPolygon.on('editable:vertex:new editable:vertex:dragend editable:dragend', () => {
+        emit('polygon-change', polygonLatLngs())
+    })
+
+    draftPolygon.on('editable:drawing:end', () => {
+        polygonEditing = true
+        emit('polygon-finish', polygonLatLngs())
+    })
+}
+
+function stopPolygonDraft() {
+    if (! draftPolygon) {
+        return
+    }
+
+    draftPolygon.disableEdit()
+    leafletMap.removeLayer(draftPolygon)
+    draftPolygon = null
+    polygonEditing = false
 }
 
 watch(() => props.centerNonce, () => {
@@ -183,9 +236,38 @@ watch(() => props.pins, () => {
     }
 })
 
-watch(() => props.draftPin, () => {
-    if (leafletMap) {
-        buildDraftMarker()
+watch(() => props.draftPin, (pin) => {
+    if (! leafletMap) {
+        return
+    }
+
+    buildDraftMarker()
+
+    if (pin?.shape === 'poly') {
+        styleDraftPolygon()
+    }
+})
+
+watch(() => [props.activeMode, props.draftPin], () => {
+    if (! leafletMap) {
+        return
+    }
+
+    if (props.activeMode !== 'area') {
+        stopPolygonDraft()
+
+        return
+    }
+
+    if (! props.draftPin && polygonEditing) {
+        stopPolygonDraft()
+        startPolygonDraft()
+
+        return
+    }
+
+    if (! draftPolygon) {
+        startPolygonDraft()
     }
 })
 
@@ -197,6 +279,7 @@ onMounted(() => {
         center: props.map.center,
         attributionControl: false,
         zoomControl: false,
+        editable: true,
     }
 
     if (! props.map.is_real) {
