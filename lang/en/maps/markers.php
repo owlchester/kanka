@@ -86,7 +86,7 @@ return [
         'title' => 'Markers of :name',
     ],
     'pitches'       => [
-        'poly'  => 'Use polygons to outline borders, territories, or uneven regions on the map. Available as part of premium campaign features.',
+        'poly'  => 'Use areas to outline borders, territories, or uneven regions on the map. Available as part of premium campaign features.',
     ],
     'placeholders'  => [
         'custom_icon'   => 'Try :example1 or :example2',
@@ -111,9 +111,10 @@ return [
     ],
     'tabs'          => [
         'circle'    => 'Circle',
-        'label'     => 'Label',
-        'marker'    => 'Marker',
-        'polygon'   => 'Polygon',
+        'label'     => 'Text',
+        'marker'    => 'Pin',
+        'area'   => 'Area',
+        'path'   => 'Path',
         'preset'    => 'Preset',
     ],
 ];

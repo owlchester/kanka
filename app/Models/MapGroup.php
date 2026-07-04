@@ -24,6 +24,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property string $name
  * @property int $position
  * @property bool|int $is_shown
+ * @property ?string $colour
  * @property ?MapGroup $parent
  * @property Map $map
  *
@@ -52,6 +53,7 @@ class MapGroup extends Model
         'position',
         'visibility_id',
         'is_shown',
+        'colour',
     ];
 
     public $casts = [

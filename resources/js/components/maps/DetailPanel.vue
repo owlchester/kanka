@@ -75,8 +75,14 @@
             <div
                 class="p-4 pt-0 flex flex-col gap-3 overflow-y-auto grow min-h-0"
             >
-                <p class="text-xs text-neutral-content">
-                    <span class="marker-type">{{ preview.type }}</span> -
+                <p class="text-xs text-neutral-content flex items-center gap-1">
+                    <span class="marker-type">{{ preview.type }}</span>
+                    <span>-</span>
+                    <span
+                        class="inline-block w-4 h-4 rounded-full flex-none"
+                        :class="!preview.group_colour ? 'bg-neutral-content' : ''"
+                        :style="preview.group_colour ? { backgroundColor: preview.group_colour } : {}"
+                    />
                     <span class="marker-group">{{
                         preview.group_name || i18n.ungrouped
                     }}</span>

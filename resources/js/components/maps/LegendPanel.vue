@@ -24,23 +24,26 @@
             />
 
             <li v-if="filtered.uncategorised.length">
-                <p class="flex items-center justify-between font-semibold">
-                    <span>{{ i18n.ungrouped }}</span>
-                    <span class="text-xs opacity-60">{{
+                <p class="flex items-center justify-between">
+                    <span class="font-semibold">{{ i18n.ungrouped }}</span>
+                    <span class="text-xs text-neutral-content">{{
                         filtered.uncategorised.length
                     }}</span>
                 </p>
-                <ul class="pl-5 flex flex-col gap-1">
+                <ul class="pl-3 flex flex-col gap-1 pt-1.5">
                     <li v-for="pin in filtered.uncategorised" :key="pin.id">
                         <button
-                            class="flex items-center gap-2 text-left"
+                            class="flex items-center gap-2 text-left cursor-pointer"
                             @click="selectPin(pin)"
                         >
                             <span
                                 class="inline-block w-2.5 h-2.5 rounded-full flex-none"
-                                :style="{
-                                    backgroundColor: pin.colour || '#ccc',
-                                }"
+                                :class="!pin.colour ? 'bg-neutral-content' : ''"
+                                :style="
+                                    pin.colour
+                                        ? { backgroundColor: pin.colour }
+                                        : {}
+                                "
                             />
                             <span>{{ pin.name }}</span>
                         </button>

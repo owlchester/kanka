@@ -18,6 +18,7 @@ class GroupResource extends JsonResource
             'name' => $this->resource->name,
             'parent_id' => $this->resource->parent_id,
             'position' => $this->resource->position,
+            'colour' => $this->resource->colour,
         ];
     }
 }
