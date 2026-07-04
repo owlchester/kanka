@@ -13,13 +13,16 @@ const props = defineProps({
     pins: { type: Array, default: () => [] },
     centerPin: { type: Object, default: null },
     centerNonce: { type: Number, default: 0 },
+    activeMode: { type: String, default: null },
+    draftPin: { type: Object, default: null },
 })
 
-const emit = defineEmits(['pin-click'])
+const emit = defineEmits(['pin-click', 'map-click'])
 
 const mapEl = ref(null)
 let leafletMap = null
 let pinLayer = null
+let draftMarker = null
 
 function bounds() {
     return [[0, 0], [props.map.height, props.map.width]]
@@ -112,6 +115,20 @@ function buildPins() {
     pinLayer.addTo(leafletMap)
 }
 
+function buildDraftMarker() {
+    if (draftMarker) {
+        leafletMap.removeLayer(draftMarker)
+        draftMarker = null
+    }
+
+    if (! props.draftPin) {
+        return
+    }
+
+    draftMarker = buildPin({ ...props.draftPin, id: 'draft' })
+    draftMarker.addTo(leafletMap)
+}
+
 watch(() => props.centerNonce, () => {
     if (props.centerPin && leafletMap) {
         leafletMap.setView([props.centerPin.latitude, props.centerPin.longitude])
@@ -121,6 +138,12 @@ watch(() => props.centerNonce, () => {
 watch(() => props.pins, () => {
     if (leafletMap) {
         buildPins()
+    }
+})
+
+watch(() => props.draftPin, () => {
+    if (leafletMap) {
+        buildDraftMarker()
     }
 })
 
@@ -143,9 +166,16 @@ onMounted(() => {
 
     L.control.zoom({ position: 'bottomleft' }).addTo(leafletMap)
 
+    leafletMap.on('click', (e) => {
+        if (props.activeMode === 'pin') {
+            emit('map-click', { lat: e.latlng.lat, lng: e.latlng.lng })
+        }
+    })
+
     buildBaseLayer()
     buildLayers()
     buildPins()
+    buildDraftMarker()
 })
 
 onBeforeUnmount(() => {
@@ -193,5 +223,10 @@ onBeforeUnmount(() => {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.marker-draft .marker-pin {
+    outline: 2px dashed white;
+    outline-offset: 2px;
 }
 </style>

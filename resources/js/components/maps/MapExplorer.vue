@@ -45,7 +45,10 @@
             :pins="data.pins"
             :center-pin="selectedPin"
             :center-nonce="centerNonce"
+            :active-mode="activeMode"
+            :draft-pin="draftPin"
             @pin-click="selectPin"
+            @map-click="handleMapClick"
         />
 
         <DetailPanel
@@ -86,6 +89,7 @@ const legendOpen = ref(false);
 const selectedPin = ref(null);
 const centerNonce = ref(0);
 const activeMode = ref(null);
+const draftPin = ref(null);
 
 const markersCountText = computed(() => {
     const count = data.value.pins.length;
@@ -106,6 +110,28 @@ function removePin(pin) {
 function handleModeChange(mode) {
     activeMode.value = mode;
     selectedPin.value = null;
+    draftPin.value = null;
+}
+
+function handleMapClick({ lat, lng }) {
+    if (activeMode.value !== "pin") {
+        return;
+    }
+
+    if (draftPin.value) {
+        draftPin.value = { ...draftPin.value, latitude: lat, longitude: lng };
+
+        return;
+    }
+
+    draftPin.value = {
+        name: "",
+        colour: "#f2c14e",
+        shape: "marker",
+        icon: { type: "fa", value: "fa-solid fa-map-pin" },
+        latitude: lat,
+        longitude: lng,
+    };
 }
 
 onMounted(async () => {
