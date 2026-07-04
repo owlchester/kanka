@@ -1,8 +1,15 @@
 <template>
-    <aside v-if="open" class="fixed top-0 left-0 h-screen w-72 bg-base-100 shadow-lg z-[1100] overflow-y-auto p-4">
+    <aside v-if="open" class="fixed top-0 left-0 h-screen w-72 bg-base-100 shadow-lg z-[1100] overflow-y-auto p-4 flex flex-col gap-3">
+        <input
+            v-model="query"
+            type="text"
+            placeholder="Search markers"
+            class="input input-bordered w-full"
+        />
+
         <ul class="flex flex-col gap-1">
             <LegendGroupNode
-                v-for="group in tree.groups"
+                v-for="group in filtered.groups"
                 :key="group.id"
                 :group="group"
                 :is-open="isOpen"
@@ -10,13 +17,10 @@
                 :select="selectPin"
             />
 
-            <li v-if="tree.uncategorised.length">
-                <button class="flex items-center gap-2 w-full text-left font-semibold" @click="toggle('uncategorised')">
-                    <i :class="isOpen('uncategorised') ? 'fa-solid fa-chevron-down' : 'fa-solid fa-chevron-right'" aria-hidden="true" />
-                    <span>Uncategorised</span>
-                </button>
-                <ul v-if="isOpen('uncategorised')" class="pl-5 flex flex-col gap-1">
-                    <li v-for="pin in tree.uncategorised" :key="pin.id">
+            <li v-if="filtered.uncategorised.length">
+                <p class="font-semibold">Uncategorised</p>
+                <ul class="pl-5 flex flex-col gap-1">
+                    <li v-for="pin in filtered.uncategorised" :key="pin.id">
                         <button class="text-left" @click="selectPin(pin)">{{ pin.name }}</button>
                     </li>
                 </ul>
@@ -26,8 +30,8 @@
 </template>
 
 <script setup>
-import { computed, reactive } from 'vue'
-import { buildGroupTree } from '../../maps/groupTree.js'
+import { computed, reactive, ref } from 'vue'
+import { buildGroupTree, filterGroupTree } from '../../maps/groupTree.js'
 import LegendGroupNode from './LegendGroupNode.vue'
 
 const props = defineProps({
@@ -38,7 +42,9 @@ const props = defineProps({
 
 const emit = defineEmits(['select'])
 
+const query = ref('')
 const tree = computed(() => buildGroupTree(props.groups, props.pins))
+const filtered = computed(() => filterGroupTree(tree.value, query.value))
 const openIds = reactive(new Set())
 
 function toggle(id) {
@@ -50,6 +56,10 @@ function toggle(id) {
 }
 
 function isOpen(id) {
+    if (query.value && filtered.value.matchedGroupIds.has(id)) {
+        return true
+    }
+
     return openIds.has(id)
 }
 
