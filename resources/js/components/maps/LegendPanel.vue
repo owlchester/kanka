@@ -1,5 +1,5 @@
 <template>
-    <aside v-if="open" class="fixed top-0 left-0 h-screen w-72 bg-base-100 shadow-lg z-30 overflow-y-auto p-4">
+    <aside v-if="open" class="fixed top-0 left-0 h-screen w-72 bg-base-100 shadow-lg z-[1100] overflow-y-auto p-4">
         <ul class="flex flex-col gap-1">
             <li v-for="group in tree.groups" :key="group.id">
                 <button class="flex items-center gap-2 w-full text-left font-semibold" @click="toggle(group.id)">

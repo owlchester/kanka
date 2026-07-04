@@ -11,7 +11,7 @@
 
     <template v-else>
         <button
-            class="legend-toggle fixed top-4 left-4 z-40 btn2 btn-default"
+            class="legend-toggle fixed top-4 left-4 z-[1100] btn2 btn-default"
             @click="legendOpen = !legendOpen"
         >
             <i class="fa-solid fa-list" aria-hidden="true" />
