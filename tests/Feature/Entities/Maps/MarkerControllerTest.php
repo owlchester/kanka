@@ -308,3 +308,30 @@ it('keeps circle_radius when the legacy edit form saves size_id 6 (custom)', fun
 
     expect($marker->fresh()->circle_radius)->toBe(900);
 });
+
+it('creates a path marker with custom_shape and returns it in PinResource shape', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $response = $this->postJson(route('entities.map-markers.store', [1, $map->entity]), [
+        'name' => 'New path',
+        'latitude' => 12.5,
+        'longitude' => 34.5,
+        'colour' => '#f2c14e',
+        'opacity' => 75,
+        'shape_id' => 6,
+        'icon' => 1,
+        'custom_shape' => '10.500,20.250 11.750,21.100 12.250,19.750',
+        'polygon_style' => ['stroke-width' => 4],
+    ])->assertStatus(201);
+
+    $marker = MapMarker::where('name', 'New path')->firstOrFail();
+
+    expect($response->json('shape'))->toBe('path');
+    expect($response->json('custom_shape'))->toBe([
+        [10.5, 20.25],
+        [11.75, 21.1],
+        [12.25, 19.75],
+    ]);
+    expect($marker->custom_shape)->toBe('10.500,20.250 11.750,21.100 12.250,19.750');
+});

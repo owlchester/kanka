@@ -181,11 +181,11 @@ class MapMarker extends Model
     }
 
     /**
-     * Determine if the marker is of the path type
+     * Determine if the marker is of the path type and has a custom shape
      */
     public function isPath(): bool
     {
-        return $this->shape_id === MapMarkerShape::path;
+        return $this->shape_id === MapMarkerShape::path && ! empty($this->custom_shape);
     }
 
     /**
@@ -304,16 +304,7 @@ class MapMarker extends Model
         } elseif ($this->isLabel()) {
             return $this->labelMarker();
         } elseif ($this->isPolygon()) {
-            $coords = [];
-            $segments = explode(' ', str_replace("\r\n", ' ', $this->custom_shape));
-            foreach ($segments as $segment) {
-                $coord = explode(',', $segment);
-                if (! empty($coord[0]) && ! empty($coord[1])) {
-                    $coords[] = '[' . $coord[0] . ', ' . Str::before($coord[1], ' ') . ']';
-                }
-            }
-
-            return 'L.polygon([' . implode(', ', $coords) . '], {
+            return 'L.polygon([' . implode(', ', $this->parsedShapeCoordinates()) . '], {
                 color: \'' . Arr::get($this->polygon_style, 'stroke', $this->colour) . '\',
                 weight: ' . max(1, Arr::get($this->polygon_style, 'stroke-width', 1)) . ',
                 opacity: ' . $this->strokeOpacity() . ',
@@ -324,6 +315,15 @@ class MapMarker extends Model
                 linejoin: \'round\',
             })' . $this->popup();
             // ' . ($this->editing ? 'draggable: true,' : null) . '
+        } elseif ($this->isPath()) {
+            return 'L.polyline([' . implode(', ', $this->parsedShapeCoordinates()) . '], {
+                color: \'' . e($this->colour) . '\',
+                weight: ' . max(1, Arr::get($this->polygon_style, 'stroke-width', 1)) . ',
+                opacity: ' . $this->floatOpacity() . ',
+                smoothFactor: 1,
+                linecap: \'round\',
+                linejoin: \'round\',
+            })' . $this->popup();
         }
 
         return 'L.marker([' . $this->latitude . ', ' . $this->longitude . '], {
@@ -332,6 +332,26 @@ class MapMarker extends Model
             . ($this->isDraggable() ? 'draggable: true,' : null) . '
             ' . $this->markerIcon() . '
         })' . $this->popup() . $this->draggable();
+    }
+
+    /**
+     * Parse the raw "lat,lng lat,lng ..." custom_shape string (shared by polygon and path
+     * markers) into an array of "[lat, lng]" JS coordinate literals.
+     *
+     * @return array<int, string>
+     */
+    private function parsedShapeCoordinates(): array
+    {
+        $coords = [];
+        $segments = explode(' ', str_replace("\r\n", ' ', $this->custom_shape));
+        foreach ($segments as $segment) {
+            $coord = explode(',', $segment);
+            if (! empty($coord[0]) && ! empty($coord[1])) {
+                $coords[] = '[' . $coord[0] . ', ' . Str::before($coord[1], ' ') . ']';
+            }
+        }
+
+        return $coords;
     }
 
     /**
