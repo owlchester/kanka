@@ -41,15 +41,6 @@ $sizeOptions = [
                 {{ __('maps/markers.tabs.area') }}
             </a>
         </li>
-        @if (isset($model) && $model->isPath())
-        <li role="presentation" @if($activeTab == 6) class="active" @endif>
-            <a href="#marker-path" data-nohash="true"  data-toggle="tooltip" class="text-center" data-title="{{ __('maps/markers.tabs.path') }}">
-                <x-icon class="fa-regular fa-2x fa-route" />
-                <br />
-                {{ __('maps/markers.tabs.path') }}
-            </a>
-        </li>
-        @endif
         <li role="presentation">
             <a href="#presets" data-nohash="true" class="text-center" data-presets="{{ route('preset_types.presets.index', [$campaign, 'preset_type' => \App\Models\PresetType::MARKER, 'from' => $from ?? null]) }}">
                 <x-icon class="fa-regular fa-2x fa-wand-magic-sparkles" />
@@ -100,42 +91,22 @@ $sizeOptions = [
         <div class="tab-pane @if($activeTab == 5) active @endif" id="marker-poly">
             <x-grid>
                 <div class="field field-shape flex flex-col gap-2 col-span-2">
-                    <div class="flex">
-                        <div class="grow field">
-                            <label>{{ __('maps/markers.fields.custom_shape') }}</label>
-                            @if ($campaign->boosted())
-                                @if(isset($model))
-                                    <x-helper>
-                                        <p>{{ __('maps/markers.helpers.polygon.edit') }}</p>
-                                    </x-helper>
-                                </div>
-
-                                <a href="#" id="reset-polygon" class="btn2 btn-error btn-outline btn-sm" style="">
-                                    <x-icon class="fa-regular fa-eraser" />
-                                    {{ __('maps/markers.actions.reset-polygon') }}
-                                </a>
-                            </div>
-                                @else
+                    @if ($campaign->boosted())
+                        <div>
+                            <a href="#" id="start-drawing-polygon" class="btn2 btn-primary btn-sm" data-toast="{{ __('maps/explore.notifications.start-drawing') }}">
+                                <x-icon class="pencil" />
+                                {{ __('maps/markers.actions.start-drawing') }}
+                            </a>
+                            <a href="#" id="reset-polygon" class="btn2 btn-error btn-outline btn-sm hidden">
+                                <x-icon class="fa-regular fa-eraser" />
+                                {{ __('maps/markers.actions.reset-polygon') }}
+                            </a>
                         </div>
-                    </div>
-                    <div>
-                        <a href="#" id="start-drawing-polygon" class="btn2 btn-primary btn-sm" data-toast="{{ __('maps/explore.notifications.start-drawing') }}">
-                            <x-icon class="pencil" />
-                            {{ __('maps/markers.actions.start-drawing') }}
-                        </a>
-                        <a href="#" id="reset-polygon" class="btn2 btn-error btn-outline btn-sm hidden">
-                            <x-icon class="fa-regular fa-eraser" />
-                            {{ __('maps/markers.actions.reset-polygon') }}
-                        </a>
-                    </div>
-                    @endif
                         <textarea name="custom_shape" class="w-full" rows="2" placeholder="{{ __('maps/markers.placeholders.custom_shape') }}">{!! \App\Facades\FormCopy::field('custom_shape')->string() ?: old('custom_shape', $model->custom_shape ?? null) !!}</textarea>
                     @else
                         <x-premium-cta :campaign="$campaign">
                             <p>{{ __('maps/markers.pitches.poly') }}</p>
                         </x-premium-cta>
-                        </div>
-                    </div>
                     @endif
                 </div>
 
@@ -155,32 +126,6 @@ $sizeOptions = [
                 </x-forms.field>
             </x-grid>
         </div>
-
-        @if (isset($model) && $model->isPath())
-        <div class="tab-pane @if($activeTab == 6) active @endif" id="marker-path">
-            <x-grid>
-                @if ($campaign->boosted())
-                    <div class="field field-shape flex flex-col gap-2 col-span-2">
-                        <label>{{ __('maps/markers.fields.custom_shape') }}</label>
-                        <x-helper>
-                            <p>{{ __('maps/markers.helpers.path.edit') }}</p>
-                        </x-helper>
-                        <textarea name="custom_shape" class="w-full" rows="2" placeholder="{{ __('maps/markers.placeholders.custom_shape') }}">{!! \App\Facades\FormCopy::field('custom_shape')->string() ?: old('custom_shape', $model->custom_shape ?? null) !!}</textarea>
-                    </div>
-
-                    <x-forms.field field="width" :label="__('maps/markers.fields.polygon_style.stroke-width')">
-                        <input type="number" name="polygon_style[stroke-width]" value="{{ $model->polygon_style['stroke-width'] ?? old('polygon_style[stroke-width]') }}" id="path-stroke-width" step="1" min="1" max="99" maxlength="2" />
-                    </x-forms.field>
-                @else
-                    <div class="field field-shape flex flex-col gap-2 col-span-2">
-                        <x-premium-cta :campaign="$campaign">
-                            <p>{{ __('maps/markers.pitches.path') }}</p>
-                        </x-premium-cta>
-                    </div>
-                @endif
-            </x-grid>
-        </div>
-        @endif
 
         <div class="tab-pane pane-presets" id="presets">
             <x-grid type="1/1">
@@ -210,4 +155,3 @@ $sizeOptions = [
 @if (isset($from))
     <input type="hidden" name="from" value="{{ $from }}" />
 @endif
-@includeWhen(isset($model), 'editors.editor')
