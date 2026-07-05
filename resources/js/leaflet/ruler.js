@@ -114,7 +114,6 @@ L.Control.Ruler = L.Control.extend({
             return
         }
 
-        L.DomEvent.off(this._container, 'click', this._toggleMeasure, this)
         this._movingLatLong = e.latlng
 
         if (this._tempLine) {

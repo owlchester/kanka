@@ -7,6 +7,7 @@ import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import L from 'leaflet'
 import 'leaflet.markercluster'
 import 'leaflet-editable'
+import '../../leaflet/ruler.js'
 
 const props = defineProps({
     map: { type: Object, required: true },
@@ -22,7 +23,7 @@ const props = defineProps({
     },
 })
 
-const emit = defineEmits(['pin-click', 'map-click', 'polygon-change', 'polygon-finish', 'circle-change', 'circle-finish', 'path-change', 'path-finish'])
+const emit = defineEmits(['pin-click', 'map-click', 'polygon-change', 'polygon-finish', 'circle-change', 'circle-finish', 'path-change', 'path-finish', 'measure-change'])
 
 const mapEl = ref(null)
 let leafletMap = null
@@ -34,6 +35,7 @@ let draftCircle = null
 let circleEditing = false
 let draftPath = null
 let pathEditing = false
+let rulerControl = null
 
 function bounds() {
     return [[0, 0], [props.map.height, props.map.width]]
@@ -482,6 +484,12 @@ watch(() => [props.activeMode, props.draftPin], () => {
     }
 })
 
+watch(() => props.activeMode, (mode) => {
+    if (mode && rulerControl) {
+        rulerControl.disable()
+    }
+})
+
 onMounted(() => {
     const options = {
         zoom: props.map.initial_zoom,
@@ -513,11 +521,29 @@ onMounted(() => {
     buildPins()
     buildDraftMarker()
 
+    if (props.map.has_distance_unit) {
+        rulerControl = L.control.ruler({
+            // Leaflet's control default is 'topright', which sits directly under
+            // DetailPanel/MarkerPanel (fixed top-4 right-4 bottom-4) and becomes
+            // fully hidden and unclickable whenever a pin is selected or a draft
+            // is open. 'bottomleft' keeps it reachable, stacked with the zoom
+            // control which was placed there for the same reason.
+            position: 'bottomleft',
+            lengthUnit: {
+                factor: props.map.distance_measure,
+                display: props.map.distance_name,
+                decimal: 2,
+            },
+            onToggle: (active) => emit('measure-change', active),
+        }).addTo(leafletMap)
+    }
+
     document.addEventListener('keydown', handlePolygonKeydown)
 })
 
 onBeforeUnmount(() => {
     document.removeEventListener('keydown', handlePolygonKeydown)
+    rulerControl = null
     leafletMap?.remove()
 })
 </script>
@@ -573,5 +599,45 @@ onBeforeUnmount(() => {
 .marker-draft .marker-pin {
     outline: 2px dashed white;
     outline-offset: 2px;
+}
+
+.leaflet-ruler {
+    height: 48px;
+    width: 48px;
+    background-image: url(/resources/images/leaflet/icon.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.leaflet-ruler:hover {
+    background-image: url(/resources/images/leaflet/icon-colored.png);
+}
+
+.leaflet-ruler-clicked {
+    height: 48px;
+    width: 48px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(/resources/images/leaflet/icon-colored.png);
+}
+
+.result-tooltip {
+    background-color: white;
+    border-width: medium;
+    border-color: #de0000;
+    font-size: smaller;
+}
+
+.moving-tooltip {
+    background-color: rgba(255, 255, 255, .7);
+    background-clip: padding-box;
+    opacity: 0.5;
+    border: dotted;
+    border-color: #de0000;
+    font-size: smaller;
+}
+
+.plus-length {
+    padding-left: 45px;
 }
 </style>

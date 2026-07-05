@@ -56,6 +56,7 @@
             @circle-finish="handleCircleFinish"
             @path-change="handlePathChange"
             @path-finish="handlePathFinish"
+            @measure-change="handleMeasureChange"
         />
 
         <DetailPanel
@@ -145,6 +146,13 @@ function handleModeChange(mode) {
     activeMode.value = mode;
     selectedPin.value = null;
     draftPin.value = null;
+}
+
+function handleMeasureChange(active) {
+    if (active) {
+        activeMode.value = null;
+        draftPin.value = null;
+    }
 }
 
 function defaultColour() {
