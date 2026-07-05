@@ -269,7 +269,7 @@ class UpdateMapSettings extends FormRequest
         $rules = [
             'grid' => 'nullable|integer|min:1',
             'min_zoom' => 'nullable|numeric|min:' . Map::MIN_ZOOM . '|max:' . Map::MAX_ZOOM_REAL,
-            'max_zoom' => 'nullable|numeric|min:1|max:' . Map::MAX_ZOOM_REAL,
+            'max_zoom' => 'nullable|numeric|min:1|max:' . Map::MAX_ZOOM,
             'initial_zoom' => 'nullable|numeric|min:' . Map::MIN_ZOOM . '|max:' . Map::MAX_ZOOM_REAL,
             'distance_measure' => 'nullable|numeric|min:0.001|max:100.99',
             'distance_name' => 'nullable|string|max:20',
@@ -338,10 +338,10 @@ class SettingsController extends Controller
         unset($data['distance_measure'], $data['distance_name']);
         $data['config'] = $config;
 
-        if (! empty($data['center_marker_id'])) {
+        if (array_key_exists('center_marker_id', $data) && ! empty($data['center_marker_id'])) {
             $data['center_x'] = null;
             $data['center_y'] = null;
-        } else {
+        } elseif (array_key_exists('center_x', $data) || array_key_exists('center_y', $data)) {
             $data['center_marker_id'] = null;
         }
 
