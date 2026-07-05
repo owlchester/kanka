@@ -120,6 +120,28 @@ class ExploreApiService
                     'path' => __('maps/explorer.toolbar.helper.path'),
                 ],
             ],
+            'header' => [
+                'overview' => __('maps/explorer.header.overview'),
+                'settings' => __('maps/explorer.header.settings'),
+                'edit' => __('maps/explorer.header.edit'),
+            ],
+            'settings' => [
+                'title' => __('maps/explorer.settings.title'),
+                'grid' => __('maps/explorer.settings.grid'),
+                'zoom_min' => __('maps/explorer.settings.zoom_min'),
+                'zoom_max' => __('maps/explorer.settings.zoom_max'),
+                'zoom_initial' => __('maps/explorer.settings.zoom_initial'),
+                'distance_name' => __('maps/explorer.settings.distance_name'),
+                'distance_measure' => __('maps/explorer.settings.distance_measure'),
+                'center' => __('maps/explorer.settings.center'),
+                'center_coordinates' => __('maps/explorer.settings.center_coordinates'),
+                'center_marker' => __('maps/explorer.settings.center_marker'),
+                'pick_on_map' => __('maps/explorer.settings.pick_on_map'),
+                'picking' => __('maps/explorer.settings.picking'),
+                'no_marker' => __('maps/explorer.settings.no_marker'),
+                'save' => __('maps/explorer.settings.save'),
+                'error_save' => __('maps/explorer.settings.error_save'),
+            ],
         ];
     }
 }
