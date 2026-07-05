@@ -721,7 +721,7 @@ class MapMarker extends Model
     public function visible(): bool
     {
         $campaign = CampaignLocalization::getCampaign();
-        if ($this->isPolygon() && ! $campaign->boosted()) {
+        if (($this->isPolygon() || $this->isPath()) && ! $campaign->boosted()) {
             return false;
         }
         // Part of a private group, don't show either
