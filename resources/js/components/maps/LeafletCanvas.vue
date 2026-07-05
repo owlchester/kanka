@@ -22,7 +22,7 @@ const props = defineProps({
     },
 })
 
-const emit = defineEmits(['pin-click', 'map-click', 'polygon-change', 'polygon-finish', 'circle-change', 'circle-finish'])
+const emit = defineEmits(['pin-click', 'map-click', 'polygon-change', 'polygon-finish', 'circle-change', 'circle-finish', 'path-change', 'path-finish'])
 
 const mapEl = ref(null)
 let leafletMap = null
@@ -32,6 +32,8 @@ let draftPolygon = null
 let polygonEditing = false
 let draftCircle = null
 let circleEditing = false
+let draftPath = null
+let pathEditing = false
 
 function bounds() {
     return [[0, 0], [props.map.height, props.map.width]]
@@ -111,6 +113,17 @@ function buildPin(pin) {
         })
     }
 
+    if (pin.shape === 'path') {
+        const latlngs = pin.custom_shape || pin.customShape || []
+        const style = pin.polygon_style || pin.polygonStyle || {}
+
+        return L.polyline(latlngs, {
+            color: pin.colour || '#ccc',
+            weight: style['stroke-width'] || 1,
+            opacity: (pin.opacity || 100) / 100,
+        })
+    }
+
     if (pin.shape === 'circle') {
         return L.circle([pin.latitude, pin.longitude], {
             radius: pin.circle_radius || 50,
@@ -172,7 +185,7 @@ function buildDraftMarker() {
         draftMarker = null
     }
 
-    if (! props.draftPin || props.draftPin.shape === 'poly' || props.draftPin.shape === 'circle') {
+    if (! props.draftPin || props.draftPin.shape === 'poly' || props.draftPin.shape === 'circle' || props.draftPin.shape === 'path') {
         return
     }
 
@@ -292,6 +305,62 @@ function stopCircleDraft() {
     circleEditing = false
 }
 
+function pathLatLngs() {
+    if (! draftPath) {
+        return []
+    }
+
+    return draftPath.getLatLngs().map((point) => [point.lat, point.lng])
+}
+
+function styleDraftPath() {
+    if (! draftPath || ! props.draftPin) {
+        return
+    }
+
+    const style = props.draftPin.polygonStyle || {}
+
+    draftPath.setStyle({
+        color: props.draftPin.colour || '#ccc',
+        weight: style['stroke-width'] || 1,
+        opacity: (props.draftPin.opacity ?? 100) / 100,
+    })
+}
+
+function startPathDraft() {
+    const style = props.defaultPolygonStyle
+
+    draftPath = leafletMap.editTools.startPolyline(undefined, {
+        color: style.stroke,
+        weight: style['stroke-width'],
+        opacity: style.opacity / 100,
+    })
+    pathEditing = false
+
+    leafletMap.doubleClickZoom.disable()
+
+    draftPath.on('editable:vertex:new editable:vertex:dragend editable:dragend editable:vertex:deleted', () => {
+        emit('path-change', pathLatLngs())
+    })
+
+    draftPath.on('editable:drawing:commit', () => {
+        pathEditing = true
+        emit('path-finish', pathLatLngs())
+    })
+}
+
+function stopPathDraft() {
+    if (! draftPath) {
+        return
+    }
+
+    draftPath.disableEdit()
+    leafletMap.removeLayer(draftPath)
+    draftPath = null
+    pathEditing = false
+    leafletMap.doubleClickZoom.enable()
+}
+
 function handlePolygonKeydown(e) {
     if (props.activeMode !== 'area' || ! draftPolygon || polygonEditing) {
         return
@@ -338,6 +407,10 @@ watch(() => props.draftPin, (pin) => {
     if (pin?.shape === 'circle') {
         styleDraftCircle()
     }
+
+    if (pin?.shape === 'path') {
+        styleDraftPath()
+    }
 })
 
 watch(() => [props.activeMode, props.draftPin], () => {
@@ -383,6 +456,29 @@ watch(() => [props.activeMode, props.draftPin], () => {
 
     if (! draftCircle) {
         startCircleDraft()
+    }
+})
+
+watch(() => [props.activeMode, props.draftPin], () => {
+    if (! leafletMap) {
+        return
+    }
+
+    if (props.activeMode !== 'path') {
+        stopPathDraft()
+
+        return
+    }
+
+    if (! props.draftPin && pathEditing) {
+        stopPathDraft()
+        startPathDraft()
+
+        return
+    }
+
+    if (! draftPath) {
+        startPathDraft()
     }
 })
 
