@@ -54,6 +54,8 @@
             @polygon-finish="handlePolygonFinish"
             @circle-change="handleCircleChange"
             @circle-finish="handleCircleFinish"
+            @path-change="handlePathChange"
+            @path-finish="handlePathFinish"
         />
 
         <DetailPanel
@@ -340,6 +342,40 @@ function handleCircleChange({ lat, lng, radius }) {
     }
 
     draftPin.value = { ...draftPin.value, circleRadius: radius, latitude: lat, longitude: lng };
+}
+
+function handlePathFinish(vertices) {
+    const [lat, lng] = centroid(vertices);
+    const style = defaultPolygonStyle();
+
+    draftPin.value = {
+        name: "",
+        colour: style.colour,
+        shape: "path",
+        shapeId: 6,
+        icon: { type: "fa", value: "fa-solid fa-map-pin" },
+        iconId: 1,
+        customIcon: null,
+        customShape: vertices,
+        polygonStyle: { "stroke-width": style["stroke-width"] },
+        groupId: null,
+        entityId: null,
+        entityName: null,
+        visibilityId: data.value.default_visibility_id,
+        opacity: style.opacity,
+        latitude: lat,
+        longitude: lng,
+    };
+}
+
+function handlePathChange(vertices) {
+    if (!draftPin.value || draftPin.value.shape !== "path") {
+        return;
+    }
+
+    const [lat, lng] = centroid(vertices);
+
+    draftPin.value = { ...draftPin.value, customShape: vertices, latitude: lat, longitude: lng };
 }
 
 function onPinCreated(pin) {

@@ -57,7 +57,7 @@
             />
 
             <StrokeWidthPicker
-                v-if="mode === 'full' && pin.shape === 'poly'"
+                v-if="mode === 'full' && (pin.shape === 'poly' || pin.shape === 'path')"
                 :width="pin.polygonStyle?.['stroke-width'] ?? 1"
                 :i18n="i18n"
                 @change="$emit('stroke-width-change', $event)"
@@ -191,7 +191,9 @@ async function save() {
 
     try {
         const isPolygon = props.pin.shape === "poly";
+        const isPath = props.pin.shape === "path";
         const isCircle = props.pin.shape === "circle";
+        const hasCustomShape = isPolygon || isPath;
         const res = await axios.post(props.createUrl, {
             name: name.value,
             latitude: props.pin.latitude,
@@ -204,8 +206,8 @@ async function save() {
             entity_id: props.pin.entityId,
             visibility_id: props.pin.visibilityId,
             opacity: props.pin.opacity,
-            custom_shape: isPolygon ? serializeVertices(props.pin.customShape) : undefined,
-            polygon_style: isPolygon ? props.pin.polygonStyle : undefined,
+            custom_shape: hasCustomShape ? serializeVertices(props.pin.customShape) : undefined,
+            polygon_style: hasCustomShape ? props.pin.polygonStyle : undefined,
             circle_radius: isCircle ? Math.round(props.pin.circleRadius) : undefined,
         });
         emit("created", res.data);
