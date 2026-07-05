@@ -14,6 +14,17 @@
     "file": "assets/_plugin-vue_export-helper-DlAUqK2U.js",
     "name": "_plugin-vue_export-helper"
   },
+  "_coloris-7Sr4fLAQ.css": {
+    "file": "assets/coloris-7Sr4fLAQ.css",
+    "src": "_coloris-7Sr4fLAQ.css"
+  },
+  "_coloris-CzWPJjQD.js": {
+    "file": "assets/coloris-CzWPJjQD.js",
+    "name": "coloris",
+    "css": [
+      "assets/coloris-7Sr4fLAQ.css"
+    ]
+  },
   "_coloris-DsKOFKq5.js": {
     "file": "assets/coloris-DsKOFKq5.js",
     "name": "coloris"
@@ -192,7 +203,7 @@
     "src": "node_modules/rpg-awesome/fonts/rpgawesome-webfont.woff"
   },
   "resources/css/app.css": {
-    "file": "assets/app-Di90KiI2.css",
+    "file": "assets/app-C0QAp7NW.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -201,7 +212,7 @@
     ]
   },
   "resources/css/auth.css": {
-    "file": "assets/auth-D25_7uBo.css",
+    "file": "assets/auth-BWwmqirv.css",
     "src": "resources/css/auth.css",
     "isEntry": true,
     "name": "auth",
@@ -228,7 +239,7 @@
     ]
   },
   "resources/css/front.css": {
-    "file": "assets/front-CHGS7rb5.css",
+    "file": "assets/front-DqFkDhvQ.css",
     "src": "resources/css/front.css",
     "isEntry": true,
     "name": "front",
@@ -335,11 +346,12 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-1yOJbAMB.js",
+    "file": "assets/app-DorwtDFm.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
     "imports": [
+      "_coloris-CzWPJjQD.js",
       "_sortable.esm-DdTU3J9A.js",
       "_dialog-DkrH_pRQ.js",
       "_coloris-DsKOFKq5.js",
@@ -351,9 +363,6 @@
       "_Browser.vue_vue_type_script_setup_true_lang-CFuHwHCi.js",
       "_vue-tippy.esm-browser-afKxO_G0.js",
       "__commonjsHelpers-Cpj98o6Y.js"
-    ],
-    "css": [
-      "assets/app-7Sr4fLAQ.css"
     ]
   },
   "resources/js/attributes-manager.js": {
@@ -585,16 +594,18 @@
     "isEntry": true
   },
   "resources/js/maps/explore.js": {
-    "file": "assets/explore-eXebGuFi.js",
+    "file": "assets/explore-RzYP91fT.js",
     "name": "explore",
     "src": "resources/js/maps/explore.js",
     "isEntry": true,
     "imports": [
       "_vendor-tiptap-CBVrZtA7.js",
-      "__commonjsHelpers-Cpj98o6Y.js"
+      "__commonjsHelpers-Cpj98o6Y.js",
+      "_coloris-DsKOFKq5.js",
+      "_coloris-CzWPJjQD.js"
     ],
     "css": [
-      "assets/explore-BaD_X8bN.css"
+      "assets/explore-D0cX_l8i.css"
     ],
     "assets": [
       "assets/layers-BWBAp2CZ.png",
