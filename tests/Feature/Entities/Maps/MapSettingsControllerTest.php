@@ -94,6 +94,30 @@ it('422s when distance_measure is out of range', function () {
     ])->assertStatus(422);
 });
 
+it('422s when max_zoom exceeds the legacy form\'s bound', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $this->patchJson(route('entities.map-settings.update', [1, $map->entity]), [
+        'max_zoom' => 12,
+    ])->assertStatus(422);
+});
+
+it('leaves an existing center_marker_id untouched on a partial update that never mentions centering', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create(['map_id' => $map->id]);
+    $map->update(['center_marker_id' => $marker->id]);
+
+    $this->patchJson(route('entities.map-settings.update', [1, $map->entity]), [
+        'grid' => 60,
+    ])->assertStatus(200);
+
+    $map->refresh();
+    expect($map->center_marker_id)->toBe($marker->id);
+    expect($map->grid)->toBe(60);
+});
+
 it('403s for a player without update permission', function () {
     $this->asUser()->withCampaign();
     $map = Map::factory()->create(['campaign_id' => 1]);

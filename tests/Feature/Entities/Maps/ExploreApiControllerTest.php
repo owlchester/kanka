@@ -178,3 +178,13 @@ it('returns null settings values for a map with none configured', function () {
         'center_marker_id' => null,
     ]);
 });
+
+it('reports a min_zoom or initial_zoom of 0 as 0, not null (round-trip fidelity for fantasy maps)', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1, 'min_zoom' => 0, 'initial_zoom' => 0]);
+
+    $response = $this->get(route('entities.map-api', [1, $map->entity]))->assertStatus(200);
+
+    expect($response->json('map.settings.min_zoom'))->toBe(0);
+    expect($response->json('map.settings.initial_zoom'))->toBe(0);
+});

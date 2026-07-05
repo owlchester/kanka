@@ -41,10 +41,10 @@ class SettingsController extends Controller
         unset($data['distance_measure'], $data['distance_name']);
         $data['config'] = $config;
 
-        if (! empty($data['center_marker_id'])) {
+        if (array_key_exists('center_marker_id', $data) && ! empty($data['center_marker_id'])) {
             $data['center_x'] = null;
             $data['center_y'] = null;
-        } else {
+        } elseif (array_key_exists('center_x', $data) || array_key_exists('center_y', $data)) {
             $data['center_marker_id'] = null;
         }
 

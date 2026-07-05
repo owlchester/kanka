@@ -31,7 +31,7 @@ class UpdateMapSettings extends FormRequest
         $rules = [
             'grid' => 'nullable|integer|min:1',
             'min_zoom' => 'nullable|numeric|min:' . Map::MIN_ZOOM . '|max:' . Map::MAX_ZOOM_REAL,
-            'max_zoom' => 'nullable|numeric|min:1|max:' . Map::MAX_ZOOM_REAL,
+            'max_zoom' => 'nullable|numeric|min:1|max:' . Map::MAX_ZOOM,
             'initial_zoom' => 'nullable|numeric|min:' . Map::MIN_ZOOM . '|max:' . Map::MAX_ZOOM_REAL,
             'distance_measure' => 'nullable|numeric|min:0.001|max:100.99',
             'distance_name' => 'nullable|string|max:20',

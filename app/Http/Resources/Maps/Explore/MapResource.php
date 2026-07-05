@@ -43,10 +43,12 @@ class MapResource extends JsonResource
             'distance_measure' => $map->config['distance_measure'] ?? null,
             'distance_name' => $map->config['distance_name'] ?? 'Km',
             'settings' => [
+                // grid is coerced to (int) on every save by MapObserver::saving(), so it can
+                // never actually be null once persisted; 0 is its "unset" sentinel value.
                 'grid' => $map->grid ? (int) $map->grid : null,
-                'min_zoom' => $map->min_zoom ? (int) $map->min_zoom : null,
-                'max_zoom' => $map->max_zoom ? (int) $map->max_zoom : null,
-                'initial_zoom' => $map->initial_zoom ? (int) $map->initial_zoom : null,
+                'min_zoom' => $map->min_zoom !== null ? (int) $map->min_zoom : null,
+                'max_zoom' => $map->max_zoom !== null ? (int) $map->max_zoom : null,
+                'initial_zoom' => $map->initial_zoom !== null ? (int) $map->initial_zoom : null,
                 'distance_measure' => $map->config['distance_measure'] ?? null,
                 'distance_name' => $map->config['distance_name'] ?? null,
                 'center_x' => $map->center_x !== null ? (float) $map->center_x : null,
