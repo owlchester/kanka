@@ -16,7 +16,12 @@ class MapMarkerObserver
         $mapMarker->opacity = round($mapMarker->opacity, 1);
         $mapMarker->custom_icon = $this->sanitizeCustomIcon($mapMarker);
 
-        if ($mapMarker->shape_id !== MapMarkerShape::circle && $mapMarker->size_id != 6) {
+        // v4 map explorer circles are created with shape_id = circle but no size_id at all; legacy
+        // circle markers (preset sizes 1-5, or the "custom" size 6) always set a size_id, so we only
+        // need to skip the clear when size_id is genuinely absent, not merely whenever it's a circle.
+        $isNewCircleWithoutSizeId = $mapMarker->shape_id === MapMarkerShape::circle && is_null($mapMarker->size_id);
+
+        if ($mapMarker->size_id != 6 && ! $isNewCircleWithoutSizeId) {
             $mapMarker->circle_radius = null;
         }
     }

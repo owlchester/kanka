@@ -260,3 +260,51 @@ it('422s create when circle_radius is zero or negative', function () {
         'circle_radius' => 0,
     ])->assertStatus(422);
 });
+
+it('clears a stale circle_radius when the legacy edit form saves a preset size_id', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create([
+        'map_id' => $map->id,
+        'shape_id' => 3,
+        'size_id' => 6,
+        'circle_radius' => 750,
+    ]);
+
+    // The legacy form always submits circle_radius, even though a preset size (1-5) is chosen,
+    // pre-filled from the marker's previous (now stale) custom radius.
+    $this->put(route('maps.map_markers.update', [1, $map, $marker]), [
+        'name' => $marker->name,
+        'latitude' => 12.5,
+        'longitude' => 34.5,
+        'shape_id' => 3,
+        'icon' => 1,
+        'size_id' => 2,
+        'circle_radius' => 750,
+    ])->assertRedirect();
+
+    expect($marker->fresh()->circle_radius)->toBeNull();
+});
+
+it('keeps circle_radius when the legacy edit form saves size_id 6 (custom)', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create([
+        'map_id' => $map->id,
+        'shape_id' => 3,
+        'size_id' => 6,
+        'circle_radius' => 750,
+    ]);
+
+    $this->put(route('maps.map_markers.update', [1, $map, $marker]), [
+        'name' => $marker->name,
+        'latitude' => 12.5,
+        'longitude' => 34.5,
+        'shape_id' => 3,
+        'icon' => 1,
+        'size_id' => 6,
+        'circle_radius' => 900,
+    ])->assertRedirect();
+
+    expect($marker->fresh()->circle_radius)->toBe(900);
+});
