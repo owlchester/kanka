@@ -31,7 +31,7 @@ it('returns a preview for a marker with an entity, group, and entries', function
 
     expect($response->json('entity_name'))->toBe($entity->name);
     expect($response->json('entity_url'))->toBe($entity->url());
-    expect($response->json('type'))->toBe('Marker');
+    expect($response->json('type'))->toBe('Pin');
     expect($response->json('group_name'))->toBe('Towns');
     expect($response->json('can_edit'))->toBeTrue();
     expect($response->json('edit_url'))->not->toBeNull();
