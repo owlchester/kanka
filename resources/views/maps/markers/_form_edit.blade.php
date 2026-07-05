@@ -32,7 +32,7 @@ $sizeOptions = [
             </x-forms.field>
         </x-grid>
     @elseif ($model->isPolygon())
-        <x-grid>
+        <x-grid id="marker-poly">
             <div class="field field-shape flex flex-col gap-2 col-span-2">
                 @if ($campaign->boosted())
                     <div class="flex">
@@ -70,7 +70,7 @@ $sizeOptions = [
             </x-forms.field>
         </x-grid>
     @elseif ($model->isPath())
-        <x-grid>
+        <x-grid id="marker-path">
             @if ($campaign->boosted())
                 <div class="field field-shape flex flex-col gap-2 col-span-2">
                     <label>{{ __('maps/markers.fields.custom_shape') }}</label>
@@ -112,6 +112,12 @@ $sizeOptions = [
 @include('maps.markers._form_common_fields')
 
 <input type="hidden" name="shape_id" value="{{ $model->shape_id }}" />
+@if ($model->isLabel() || $model->isCircle() || $model->isPolygon() || $model->isPath())
+    {{-- The icon field is only shown for pin markers above, but the update request
+    validates it as required for every shape, so carry the existing value through
+    for non-pin shapes to avoid breaking saves. --}}
+    <input type="hidden" name="icon" value="{{ $model->icon }}" />
+@endif
 @if (isset($from))
     <input type="hidden" name="from" value="{{ $from }}" />
 @endif
