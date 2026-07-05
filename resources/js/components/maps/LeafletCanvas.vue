@@ -22,7 +22,7 @@ const props = defineProps({
     },
 })
 
-const emit = defineEmits(['pin-click', 'map-click', 'polygon-change', 'polygon-finish'])
+const emit = defineEmits(['pin-click', 'map-click', 'polygon-change', 'polygon-finish', 'circle-change', 'circle-finish'])
 
 const mapEl = ref(null)
 let leafletMap = null
@@ -30,6 +30,8 @@ let pinLayer = null
 let draftMarker = null
 let draftPolygon = null
 let polygonEditing = false
+let draftCircle = null
+let circleEditing = false
 
 function bounds() {
     return [[0, 0], [props.map.height, props.map.width]]
@@ -170,7 +172,7 @@ function buildDraftMarker() {
         draftMarker = null
     }
 
-    if (! props.draftPin || props.draftPin.shape === 'poly') {
+    if (! props.draftPin || props.draftPin.shape === 'poly' || props.draftPin.shape === 'circle') {
         return
     }
 
@@ -238,6 +240,58 @@ function stopPolygonDraft() {
     leafletMap.doubleClickZoom.enable()
 }
 
+function circleLatLngRadius() {
+    if (! draftCircle) {
+        return null
+    }
+
+    const center = draftCircle.getLatLng()
+
+    return { lat: center.lat, lng: center.lng, radius: draftCircle.getRadius() }
+}
+
+function styleDraftCircle() {
+    if (! draftCircle || ! props.draftPin) {
+        return
+    }
+
+    draftCircle.setStyle({
+        fillColor: props.draftPin.colour || '#ccc',
+        fillOpacity: (props.draftPin.opacity ?? 100) / 100,
+    })
+}
+
+function startCircleDraft() {
+    const style = props.defaultPolygonStyle
+
+    draftCircle = leafletMap.editTools.startCircle(undefined, {
+        fillColor: style.colour,
+        fillOpacity: style.opacity / 100,
+        stroke: false,
+    })
+    circleEditing = false
+
+    draftCircle.on('editable:vertex:dragend', () => {
+        emit('circle-change', circleLatLngRadius())
+    })
+
+    draftCircle.on('editable:drawing:commit', () => {
+        circleEditing = true
+        emit('circle-finish', circleLatLngRadius())
+    })
+}
+
+function stopCircleDraft() {
+    if (! draftCircle) {
+        return
+    }
+
+    draftCircle.disableEdit()
+    leafletMap.removeLayer(draftCircle)
+    draftCircle = null
+    circleEditing = false
+}
+
 function handlePolygonKeydown(e) {
     if (props.activeMode !== 'area' || ! draftPolygon || polygonEditing) {
         return
@@ -280,6 +334,10 @@ watch(() => props.draftPin, (pin) => {
     if (pin?.shape === 'poly') {
         styleDraftPolygon()
     }
+
+    if (pin?.shape === 'circle') {
+        styleDraftCircle()
+    }
 })
 
 watch(() => [props.activeMode, props.draftPin], () => {
@@ -302,6 +360,29 @@ watch(() => [props.activeMode, props.draftPin], () => {
 
     if (! draftPolygon) {
         startPolygonDraft()
+    }
+})
+
+watch(() => [props.activeMode, props.draftPin], () => {
+    if (! leafletMap) {
+        return
+    }
+
+    if (props.activeMode !== 'circle') {
+        stopCircleDraft()
+
+        return
+    }
+
+    if (! props.draftPin && circleEditing) {
+        stopCircleDraft()
+        startCircleDraft()
+
+        return
+    }
+
+    if (! draftCircle) {
+        startCircleDraft()
     }
 })
 
