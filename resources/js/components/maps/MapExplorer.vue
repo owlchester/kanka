@@ -24,9 +24,38 @@
                 <i class="fa-regular fa-list" aria-hidden="true" />
             </button>
             <div>
-                <h1 class="text-lg font-semibold leading-tight">
+                <button
+                    class="text-lg font-semibold leading-tight cursor-pointer"
+                    :ref="el => (mapMenuBtnRef = el)"
+                >
                     {{ data.map.name }}
-                </h1>
+                </button>
+                <div ref="mapMenuRef" class="flex flex-col gap-1">
+                    <a
+                        :href="data.map.show_url"
+                        class="flex items-center gap-2 px-2 py-1.5 hover:bg-base-200 rounded-xl text-xs text-base-content"
+                    >
+                        <i class="fa-regular fa-arrow-right w-5 text-center text-neutral-content" aria-hidden="true" />
+                        <span>{{ data.i18n.header.overview }}</span>
+                    </a>
+                    <template v-if="canEdit">
+                        <button
+                            type="button"
+                            class="flex items-center gap-2 px-2 py-1.5 hover:bg-base-200 rounded-xl text-xs text-base-content text-left w-full"
+                            @click="openSettings"
+                        >
+                            <i class="fa-regular fa-gear w-5 text-center text-neutral-content" aria-hidden="true" />
+                            <span>{{ data.i18n.header.settings }}</span>
+                        </button>
+                        <a
+                            :href="data.map.edit_url"
+                            class="flex items-center gap-2 px-2 py-1.5 hover:bg-base-200 rounded-xl text-xs text-base-content"
+                        >
+                            <i class="fa-regular fa-pencil w-5 text-center text-neutral-content" aria-hidden="true" />
+                            <span>{{ data.i18n.header.edit }}</span>
+                        </a>
+                    </template>
+                </div>
                 <p class="text-sm text-neutral-content">{{ markersCountText }}</p>
             </div>
         </div>
@@ -100,7 +129,8 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, onMounted, onBeforeUnmount, nextTick } from "vue";
+import tippy from "tippy.js";
 import { centroid } from "../../maps/polygon.js";
 import DetailPanel from "./DetailPanel.vue";
 import LeafletCanvas from "./LeafletCanvas.vue";
@@ -125,6 +155,10 @@ const centerNonce = ref(0);
 const activeMode = ref(null);
 const draftPin = ref(null);
 const rapid = ref(false);
+const settingsOpen = ref(false);
+const mapMenuBtnRef = ref(null);
+const mapMenuRef = ref(null);
+let mapMenuInstance = null;
 
 const markersCountText = computed(() => {
     const count = data.value.pins.length;
@@ -132,6 +166,11 @@ const markersCountText = computed(() => {
 
     return template.replace(':count', count);
 });
+
+function openSettings() {
+    mapMenuInstance?.hide();
+    settingsOpen.value = true;
+}
 
 function selectPin(pin) {
     selectedPin.value = pin;
@@ -404,5 +443,24 @@ onMounted(async () => {
     } finally {
         loading.value = false;
     }
+
+    await nextTick();
+
+    if (mapMenuBtnRef.value && mapMenuRef.value) {
+        mapMenuInstance = tippy(mapMenuBtnRef.value, {
+            content: mapMenuRef.value,
+            theme: "kanka-dropdown",
+            placement: "bottom-start",
+            interactive: true,
+            trigger: "click",
+            allowHTML: true,
+            arrow: true,
+            zIndex: 890,
+        });
+    }
+});
+
+onBeforeUnmount(() => {
+    mapMenuInstance?.destroy();
 });
 </script>
