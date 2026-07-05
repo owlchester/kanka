@@ -16,6 +16,10 @@ const props = defineProps({
     centerNonce: { type: Number, default: 0 },
     activeMode: { type: String, default: null },
     draftPin: { type: Object, default: null },
+    defaultPolygonStyle: {
+        type: Object,
+        default: () => ({ colour: '#93c5fd', opacity: 50, stroke: '#93c5fd', 'stroke-width': 1 }),
+    },
 })
 
 const emit = defineEmits(['pin-click', 'map-click', 'polygon-change', 'polygon-finish'])
@@ -200,8 +204,17 @@ function styleDraftPolygon() {
 }
 
 function startPolygonDraft() {
-    draftPolygon = leafletMap.editTools.startPolygon()
+    const style = props.defaultPolygonStyle
+
+    draftPolygon = leafletMap.editTools.startPolygon(undefined, {
+        color: style.stroke,
+        weight: style['stroke-width'],
+        fillColor: style.colour,
+        fillOpacity: style.opacity / 100,
+    })
     polygonEditing = false
+
+    leafletMap.doubleClickZoom.disable()
 
     draftPolygon.on('editable:vertex:new editable:vertex:dragend editable:dragend', () => {
         emit('polygon-change', polygonLatLngs())
@@ -222,6 +235,7 @@ function stopPolygonDraft() {
     leafletMap.removeLayer(draftPolygon)
     draftPolygon = null
     polygonEditing = false
+    leafletMap.doubleClickZoom.enable()
 }
 
 watch(() => props.centerNonce, () => {

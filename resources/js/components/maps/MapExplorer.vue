@@ -47,6 +47,7 @@
             :center-nonce="centerNonce"
             :active-mode="activeMode"
             :draft-pin="draftPin"
+            :default-polygon-style="defaultPolygonStyle()"
             @pin-click="selectPin"
             @map-click="handleMapClick"
             @polygon-change="handlePolygonChange"
@@ -243,25 +244,38 @@ function handleOpacityChange(opacity) {
 }
 
 const DEFAULT_STROKE_WIDTH = 1;
+const DEFAULT_POLYGON_OPACITY = 50;
+
+function defaultPolygonStyle() {
+    const colour = defaultColour();
+
+    return {
+        colour,
+        opacity: DEFAULT_POLYGON_OPACITY,
+        stroke: colour,
+        "stroke-width": DEFAULT_STROKE_WIDTH,
+    };
+}
 
 function handlePolygonFinish(vertices) {
     const [lat, lng] = centroid(vertices);
+    const style = defaultPolygonStyle();
 
     draftPin.value = {
         name: "",
-        colour: defaultColour(),
+        colour: style.colour,
         shape: "poly",
         shapeId: 5,
         icon: { type: "fa", value: "fa-solid fa-map-pin" },
         iconId: 1,
         customIcon: null,
         customShape: vertices,
-        polygonStyle: { stroke: defaultColour(), "stroke-width": DEFAULT_STROKE_WIDTH },
+        polygonStyle: { stroke: style.stroke, "stroke-width": style["stroke-width"] },
         groupId: null,
         entityId: null,
         entityName: null,
         visibilityId: data.value.default_visibility_id,
-        opacity: 100,
+        opacity: style.opacity,
         latitude: lat,
         longitude: lng,
     };
