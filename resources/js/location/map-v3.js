@@ -317,7 +317,8 @@ window.startNewPolygon = function () {
 };
 
 window.setPolygonPosition = function (coords) {
-    let shape = document.querySelector('textarea[name="custom_shape"]');
+    const container = document.querySelector(isPath() ? '#marker-path' : '#marker-poly');
+    const shape = container.querySelector('textarea[name="custom_shape"]');
     shape.value = coords;
 };
 
