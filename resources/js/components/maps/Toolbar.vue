@@ -16,8 +16,8 @@
             <button
                 type="button"
                 class="flex items-center gap-2 rounded-full px-3 py-1.5 cursor-pointer"
-                :class="rapid ? 'bg-accent text-accent-content' : ''"
-                @click="rapid = !rapid"
+                :class="props.rapid ? 'bg-accent text-accent-content' : ''"
+                @click="emit('rapid-change', !props.rapid)"
             >
                 <span
                     class="inline-block w-2 h-2 rounded-full bg-current"
@@ -51,17 +51,16 @@
 </template>
 
 <script setup>
-import { computed, ref } from "vue";
+import { computed } from "vue";
 
 const props = defineProps({
     i18n: { type: Object, required: true },
     canEdit: { type: Boolean, default: false },
     activeMode: { type: String, default: null },
+    rapid: { type: Boolean, default: false },
 });
 
-const emit = defineEmits(["mode-change"]);
-
-const rapid = ref(false);
+const emit = defineEmits(["mode-change", "rapid-change"]);
 
 const modes = computed(() => [
     {

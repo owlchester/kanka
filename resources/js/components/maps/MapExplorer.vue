@@ -87,7 +87,9 @@
             :i18n="data.i18n"
             :can-edit="canEdit"
             :active-mode="activeMode"
+            :rapid="rapid"
             @mode-change="handleModeChange"
+            @rapid-change="rapid = $event"
         />
     </template>
 </template>
@@ -117,6 +119,7 @@ const selectedPin = ref(null);
 const centerNonce = ref(0);
 const activeMode = ref(null);
 const draftPin = ref(null);
+const rapid = ref(false);
 
 const markersCountText = computed(() => {
     const count = data.value.pins.length;
@@ -310,7 +313,10 @@ function handleStrokeWidthChange(width) {
 function onPinCreated(pin) {
     data.value.pins = [...data.value.pins, pin];
     draftPin.value = null;
-    activeMode.value = null;
+
+    if (! rapid.value) {
+        activeMode.value = null;
+    }
 }
 
 onMounted(async () => {
