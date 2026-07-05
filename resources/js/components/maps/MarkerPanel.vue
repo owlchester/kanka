@@ -191,6 +191,7 @@ async function save() {
 
     try {
         const isPolygon = props.pin.shape === "poly";
+        const isCircle = props.pin.shape === "circle";
         const res = await axios.post(props.createUrl, {
             name: name.value,
             latitude: props.pin.latitude,
@@ -205,6 +206,7 @@ async function save() {
             opacity: props.pin.opacity,
             custom_shape: isPolygon ? serializeVertices(props.pin.customShape) : undefined,
             polygon_style: isPolygon ? props.pin.polygonStyle : undefined,
+            circle_radius: isCircle ? Math.round(props.pin.circleRadius) : undefined,
         });
         emit("created", res.data);
     } catch (e) {
