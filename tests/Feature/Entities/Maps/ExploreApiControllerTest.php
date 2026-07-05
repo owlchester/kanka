@@ -34,7 +34,7 @@ it('returns the full explore payload for a simple map', function () {
     $response = $this->get(route('entities.map-api', [1, $map->entity]))
         ->assertStatus(200)
         ->assertJsonStructure([
-            'map' => ['id', 'name', 'is_real', 'is_chunked', 'has_clustering', 'image', 'width', 'height', 'min_zoom', 'max_zoom', 'initial_zoom', 'center', 'tile_url', 'chunks_url', 'create_url', 'has_distance_unit', 'distance_measure', 'distance_name'],
+            'map' => ['id', 'name', 'is_real', 'is_chunked', 'has_clustering', 'image', 'width', 'height', 'min_zoom', 'max_zoom', 'initial_zoom', 'center', 'tile_url', 'chunks_url', 'create_url', 'has_distance_unit', 'distance_measure', 'distance_name', 'settings' => ['grid', 'min_zoom', 'max_zoom', 'initial_zoom', 'distance_measure', 'distance_name', 'center_x', 'center_y', 'center_marker_id'], 'settings_url', 'show_url', 'edit_url'],
             'layers' => [['id', 'name', 'type_id', 'image', 'position']],
             'groups' => [['id', 'name', 'parent_id', 'position']],
             'pins' => [['id', 'name', 'group_id', 'latitude', 'longitude', 'shape', 'colour', 'font_colour', 'icon', 'size_id', 'pin_size', 'circle_radius', 'opacity', 'preview_url', 'destroy_url']],
@@ -127,4 +127,54 @@ it('defaults the distance unit name to Km and omits distance_measure for a map w
     expect($response->json('map.has_distance_unit'))->toBeFalse();
     expect($response->json('map.distance_measure'))->toBeNull();
     expect($response->json('map.distance_name'))->toBe('Km');
+});
+
+it('exposes a map\'s raw settings values and edit urls for the quick-settings panel', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create([
+        'campaign_id' => 1,
+        'grid' => 50,
+        'min_zoom' => 2,
+        'max_zoom' => 8,
+        'initial_zoom' => 4,
+        'center_x' => 12.5,
+        'center_y' => 34.5,
+        'config' => ['distance_measure' => 0.5, 'distance_name' => 'Leagues'],
+    ]);
+
+    $response = $this->get(route('entities.map-api', [1, $map->entity]))->assertStatus(200);
+
+    expect($response->json('map.settings'))->toBe([
+        'grid' => 50,
+        'min_zoom' => 2,
+        'max_zoom' => 8,
+        'initial_zoom' => 4,
+        'distance_measure' => 0.5,
+        'distance_name' => 'Leagues',
+        'center_x' => 12.5,
+        'center_y' => 34.5,
+        'center_marker_id' => null,
+    ]);
+    expect($response->json('map.settings_url'))->toBe(route('entities.map-settings.update', [1, $map->entity->id]));
+    expect($response->json('map.show_url'))->toBe(route('entities.show', [1, $map->entity->id]));
+    expect($response->json('map.edit_url'))->toBe(route('entities.edit', [1, $map->entity->id]));
+});
+
+it('returns null settings values for a map with none configured', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1, 'config' => []]);
+
+    $response = $this->get(route('entities.map-api', [1, $map->entity]))->assertStatus(200);
+
+    expect($response->json('map.settings'))->toBe([
+        'grid' => null,
+        'min_zoom' => null,
+        'max_zoom' => null,
+        'initial_zoom' => null,
+        'distance_measure' => null,
+        'distance_name' => null,
+        'center_x' => null,
+        'center_y' => null,
+        'center_marker_id' => null,
+    ]);
 });

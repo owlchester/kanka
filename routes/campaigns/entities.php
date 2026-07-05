@@ -18,6 +18,7 @@ use App\Http\Controllers\Entity\EntryController;
 use App\Http\Controllers\Entity\ImageController;
 use App\Http\Controllers\Entity\Maps\ApiController as EntityMapApiController;
 use App\Http\Controllers\Entity\Maps\MarkerController as EntityMapMarkerController;
+use App\Http\Controllers\Entity\Maps\SettingsController as EntityMapSettingsController;
 use App\Http\Controllers\Entity\Maps\ShowController as EntityMapShowController;
 use App\Http\Controllers\Entity\Posts\LayoutController;
 use App\Http\Controllers\Entity\Posts\VisibilityController;
@@ -57,6 +58,7 @@ Route::get('/w/{campaign}/entities/{entity}/children', [ChildrenController::clas
 
 Route::get('/w/{campaign}/entities/{entity}/map-api', [EntityMapApiController::class, 'index'])->name('entities.map-api');
 Route::get('/w/{campaign}/entities/{entity}/map', [EntityMapShowController::class, 'index'])->name('entities.map');
+Route::patch('/w/{campaign}/entities/{entity}/map/settings', [EntityMapSettingsController::class, 'update'])->name('entities.map-settings.update');
 Route::get('/w/{campaign}/entities/{entity}/map/markers/{map_marker}', [EntityMapMarkerController::class, 'preview'])->name('entities.map-markers.preview');
 Route::delete('/w/{campaign}/entities/{entity}/map/markers/{map_marker}', [EntityMapMarkerController::class, 'destroy'])->name('entities.map-markers.destroy');
 Route::post('/w/{campaign}/entities/{entity}/map/markers', [EntityMapMarkerController::class, 'store'])->name('entities.map-markers.store');
