@@ -34,7 +34,7 @@ it('returns the full explore payload for a simple map', function () {
     $response = $this->get(route('entities.map-api', [1, $map->entity]))
         ->assertStatus(200)
         ->assertJsonStructure([
-            'map' => ['id', 'name', 'is_real', 'is_chunked', 'has_clustering', 'image', 'width', 'height', 'min_zoom', 'max_zoom', 'initial_zoom', 'center', 'tile_url', 'chunks_url', 'create_url'],
+            'map' => ['id', 'name', 'is_real', 'is_chunked', 'has_clustering', 'image', 'width', 'height', 'min_zoom', 'max_zoom', 'initial_zoom', 'center', 'tile_url', 'chunks_url', 'create_url', 'has_distance_unit', 'distance_measure', 'distance_name'],
             'layers' => [['id', 'name', 'type_id', 'image', 'position']],
             'groups' => [['id', 'name', 'parent_id', 'position']],
             'pins' => [['id', 'name', 'group_id', 'latitude', 'longitude', 'shape', 'colour', 'font_colour', 'icon', 'size_id', 'pin_size', 'circle_radius', 'opacity', 'preview_url', 'destroy_url']],
@@ -100,4 +100,31 @@ it('excludes pins whose linked entity has no child (mirrors MapMarker::visible()
     $response = $this->get(route('entities.map-api', [1, $map->entity]))->assertStatus(200);
 
     expect($response->json('pins'))->toHaveCount(0);
+});
+
+it('exposes the configured distance unit for a map with one set', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create([
+        'campaign_id' => 1,
+        'config' => ['distance_measure' => 0.5, 'distance_name' => 'Leagues'],
+    ]);
+
+    $response = $this->get(route('entities.map-api', [1, $map->entity]))
+        ->assertStatus(200);
+
+    expect($response->json('map.has_distance_unit'))->toBeTrue();
+    expect($response->json('map.distance_measure'))->toBe(0.5);
+    expect($response->json('map.distance_name'))->toBe('Leagues');
+});
+
+it('defaults the distance unit name to Km and omits distance_measure for a map with none set', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1, 'config' => []]);
+
+    $response = $this->get(route('entities.map-api', [1, $map->entity]))
+        ->assertStatus(200);
+
+    expect($response->json('map.has_distance_unit'))->toBeFalse();
+    expect($response->json('map.distance_measure'))->toBeNull();
+    expect($response->json('map.distance_name'))->toBe('Km');
 });

@@ -39,6 +39,9 @@ class MapResource extends JsonResource
                 : null,
             'create_url' => route('entities.map-markers.store', [$this->campaign->id, $map->entity->id]),
             'search_url' => route('search.entities-with-relations', $this->campaign->id),
+            'has_distance_unit' => $map->hasDistanceUnit(),
+            'distance_measure' => $map->config['distance_measure'] ?? null,
+            'distance_name' => $map->config['distance_name'] ?? 'Km',
         ];
     }
 }
