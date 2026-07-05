@@ -36,6 +36,31 @@ let circleEditing = false
 let draftPath = null
 let pathEditing = false
 let rulerControl = null
+let gridLayer = null
+
+function buildGrid() {
+    if (gridLayer) {
+        leafletMap.removeLayer(gridLayer)
+        gridLayer = null
+    }
+
+    const grid = props.map.settings?.grid
+    if (! grid) {
+        return
+    }
+
+    gridLayer = L.layerGroup()
+
+    for (let i = grid; i <= props.map.height; i += grid) {
+        L.polyline([[i, 0], [i, props.map.width]], { color: 'grey', opacity: 0.5 }).addTo(gridLayer)
+    }
+
+    for (let i = grid; i <= props.map.width; i += grid) {
+        L.polyline([[0, i], [props.map.height, i]], { color: 'grey', opacity: 0.5 }).addTo(gridLayer)
+    }
+
+    gridLayer.addTo(leafletMap)
+}
 
 function bounds() {
     return [[0, 0], [props.map.height, props.map.width]]
@@ -395,6 +420,12 @@ watch(() => props.pins, () => {
     }
 })
 
+watch(() => props.map.settings?.grid, () => {
+    if (leafletMap) {
+        buildGrid()
+    }
+})
+
 watch(() => props.draftPin, (pin) => {
     if (! leafletMap) {
         return
@@ -520,6 +551,7 @@ onMounted(() => {
     buildLayers()
     buildPins()
     buildDraftMarker()
+    buildGrid()
 
     if (props.map.has_distance_unit) {
         rulerControl = L.control.ruler({
