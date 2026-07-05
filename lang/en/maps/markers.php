@@ -71,6 +71,9 @@ return [
         'polygon'                   => [
             'edit'  => 'Edit the polygon by dragging its edges and nodes.',
         ],
+        'path'                      => [
+            'edit'  => 'Edit the path by dragging its points.',
+        ],
     ],
     'hints'         => [
         'entry' => 'Edit the marker to write a custom description for it.',
