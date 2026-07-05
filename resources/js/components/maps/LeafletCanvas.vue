@@ -216,7 +216,7 @@ function startPolygonDraft() {
 
     leafletMap.doubleClickZoom.disable()
 
-    draftPolygon.on('editable:vertex:new editable:vertex:dragend editable:dragend', () => {
+    draftPolygon.on('editable:vertex:new editable:vertex:dragend editable:dragend editable:vertex:deleted', () => {
         emit('polygon-change', polygonLatLngs())
     })
 
@@ -236,6 +236,26 @@ function stopPolygonDraft() {
     draftPolygon = null
     polygonEditing = false
     leafletMap.doubleClickZoom.enable()
+}
+
+function handlePolygonKeydown(e) {
+    if (props.activeMode !== 'area' || ! draftPolygon || polygonEditing) {
+        return
+    }
+
+    if (e.key === 'Escape') {
+        e.preventDefault()
+        stopPolygonDraft()
+        startPolygonDraft()
+
+        return
+    }
+
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z') {
+        e.preventDefault()
+        draftPolygon.editor.pop()
+        emit('polygon-change', polygonLatLngs())
+    }
 }
 
 watch(() => props.centerNonce, () => {
@@ -315,9 +335,12 @@ onMounted(() => {
     buildLayers()
     buildPins()
     buildDraftMarker()
+
+    document.addEventListener('keydown', handlePolygonKeydown)
 })
 
 onBeforeUnmount(() => {
+    document.removeEventListener('keydown', handlePolygonKeydown)
     leafletMap?.remove()
 })
 </script>
