@@ -225,3 +225,38 @@ it('422s create when polygon_style has an out-of-range stroke-width', function (
         'polygon_style' => ['stroke' => '#123456', 'stroke-width' => 999],
     ])->assertStatus(422);
 });
+
+it('creates a circle marker with a positive circle_radius and returns it in PinResource shape', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $response = $this->postJson(route('entities.map-markers.store', [1, $map->entity]), [
+        'name' => 'New circle',
+        'latitude' => 12.5,
+        'longitude' => 34.5,
+        'colour' => '#f2c14e',
+        'opacity' => 50,
+        'shape_id' => 3,
+        'icon' => 1,
+        'circle_radius' => 750,
+    ])->assertStatus(201);
+
+    $marker = MapMarker::where('name', 'New circle')->firstOrFail();
+
+    expect($response->json('shape'))->toBe('circle');
+    expect($marker->circle_radius)->toBe(750);
+});
+
+it('422s create when circle_radius is zero or negative', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $this->postJson(route('entities.map-markers.store', [1, $map->entity]), [
+        'name' => 'New circle',
+        'latitude' => 12.5,
+        'longitude' => 34.5,
+        'shape_id' => 3,
+        'icon' => 1,
+        'circle_radius' => 0,
+    ])->assertStatus(422);
+});

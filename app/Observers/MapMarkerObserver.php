@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Enums\MapMarkerShape;
 use App\Models\MapMarker;
 use enshrined\svgSanitize\Sanitizer;
 use Illuminate\Support\Str;
@@ -10,12 +11,12 @@ class MapMarkerObserver
 {
     use PurifiableTrait;
 
-    public function saving(MapMarker $mapMarker)
+    public function saving(MapMarker $mapMarker): void
     {
         $mapMarker->opacity = round($mapMarker->opacity, 1);
         $mapMarker->custom_icon = $this->sanitizeCustomIcon($mapMarker);
 
-        if ($mapMarker->size_id != 6) {
+        if ($mapMarker->shape_id !== MapMarkerShape::circle && $mapMarker->size_id != 6) {
             $mapMarker->circle_radius = null;
         }
     }
