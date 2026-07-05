@@ -116,7 +116,7 @@ $sizeOptions = [
     {{-- The icon field is only shown for pin markers above, but the update request
     validates it as required for every shape, so carry the existing value through
     for non-pin shapes to avoid breaking saves. --}}
-    <input type="hidden" name="icon" value="{{ $model->icon }}" />
+    <input type="hidden" name="icon" value="{{ $model->icon ?? 1 }}" />
 @endif
 @if (isset($from))
     <input type="hidden" name="from" value="{{ $from }}" />
