@@ -129,9 +129,12 @@
         <SettingsPanel
             :open="settingsOpen"
             :map="data.map"
+            :pins="data.pins"
             :i18n="data.i18n.settings"
+            :pending-center="pendingCenter"
             @close="settingsOpen = false"
             @saved="handleSettingsSaved"
+            @pick-center="activeMode = 'center-pick'"
         />
     </template>
 </template>
@@ -165,6 +168,7 @@ const activeMode = ref(null);
 const draftPin = ref(null);
 const rapid = ref(false);
 const settingsOpen = ref(false);
+const pendingCenter = ref(null);
 const mapMenuBtnRef = ref(null);
 const mapMenuRef = ref(null);
 let mapMenuInstance = null;
@@ -219,6 +223,13 @@ function defaultColour() {
 }
 
 function handleMapClick({ lat, lng }) {
+    if (activeMode.value === "center-pick") {
+        pendingCenter.value = { lat, lng };
+        activeMode.value = null;
+
+        return;
+    }
+
     if (activeMode.value !== "pin" && activeMode.value !== "text") {
         return;
     }

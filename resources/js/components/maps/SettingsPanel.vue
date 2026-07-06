@@ -46,6 +46,48 @@
                 {{ i18n.distance_measure }}
                 <input v-model.number="form.distance_measure" type="number" min="0.001" max="100.99" step="0.0001" class="input input-bordered w-full normal-case text-sm font-normal" />
             </label>
+
+            <div class="flex flex-col gap-2">
+                <span class="text-xs font-semibold uppercase tracking-wide text-neutral-content">{{ i18n.center }}</span>
+
+                <div class="flex gap-1">
+                    <button
+                        type="button"
+                        class="btn2 btn-sm grow"
+                        :class="centerMode === 'coordinates' ? 'btn-primary' : 'btn-default'"
+                        @click="centerMode = 'coordinates'"
+                    >
+                        {{ i18n.center_coordinates }}
+                    </button>
+                    <button
+                        type="button"
+                        class="btn2 btn-sm grow"
+                        :class="centerMode === 'marker' ? 'btn-primary' : 'btn-default'"
+                        @click="centerMode = 'marker'"
+                    >
+                        {{ i18n.center_marker }}
+                    </button>
+                </div>
+
+                <button
+                    v-if="centerMode === 'coordinates'"
+                    type="button"
+                    class="btn2 btn-outline btn-sm"
+                    @click="pickOnMap"
+                >
+                    {{ i18n.pick_on_map }}
+                </button>
+
+                <select
+                    v-else
+                    v-model="form.center_marker_id"
+                    class="select select-bordered w-full"
+                    @change="selectCenterMarker(form.center_marker_id)"
+                >
+                    <option :value="null">{{ i18n.no_marker }}</option>
+                    <option v-for="pin in pins" :key="pin.id" :value="pin.id">{{ pin.name }}</option>
+                </select>
+            </div>
         </div>
 
         <div class="p-4 mt-auto flex flex-col gap-2">
@@ -67,10 +109,12 @@ import { reactive, ref, watch } from "vue";
 const props = defineProps({
     open: { type: Boolean, default: false },
     map: { type: Object, required: true },
+    pins: { type: Array, default: () => [] },
     i18n: { type: Object, required: true },
+    pendingCenter: { type: Object, default: null },
 });
 
-const emit = defineEmits(["close", "saved"]);
+const emit = defineEmits(["close", "saved", "pick-center"]);
 
 const saving = ref(false);
 const error = ref(null);
@@ -82,7 +126,12 @@ const form = reactive({
     initial_zoom: null,
     distance_name: null,
     distance_measure: null,
+    center_x: null,
+    center_y: null,
+    center_marker_id: null,
 });
+
+const centerMode = ref("coordinates");
 
 watch(
     () => props.open,
@@ -98,9 +147,36 @@ watch(
         form.initial_zoom = settings.initial_zoom;
         form.distance_name = settings.distance_name;
         form.distance_measure = settings.distance_measure;
+        form.center_x = settings.center_x;
+        form.center_y = settings.center_y;
+        form.center_marker_id = settings.center_marker_id;
+        centerMode.value = settings.center_marker_id ? "marker" : "coordinates";
         error.value = null;
     },
 );
+
+watch(
+    () => props.pendingCenter,
+    (center) => {
+        if (!center) {
+            return;
+        }
+
+        form.center_x = center.lng;
+        form.center_y = center.lat;
+        form.center_marker_id = null;
+        centerMode.value = "coordinates";
+    },
+);
+
+function pickOnMap() {
+    emit("pick-center");
+}
+
+function selectCenterMarker(markerId) {
+    form.center_marker_id = markerId;
+    centerMode.value = "marker";
+}
 
 async function save() {
     saving.value = true;
@@ -114,6 +190,9 @@ async function save() {
             initial_zoom: form.initial_zoom,
             distance_name: form.distance_name,
             distance_measure: form.distance_measure,
+            center_x: centerMode.value === "coordinates" ? form.center_x : null,
+            center_y: centerMode.value === "coordinates" ? form.center_y : null,
+            center_marker_id: centerMode.value === "marker" ? form.center_marker_id : null,
         });
         emit("saved", res.data);
         emit("close");

@@ -558,6 +558,10 @@ watch(() => props.activeMode, (mode) => {
     if (mode && rulerControl) {
         rulerControl.disable()
     }
+
+    if (leafletMap) {
+        leafletMap.getContainer().style.cursor = mode === 'center-pick' ? 'crosshair' : ''
+    }
 })
 
 onMounted(() => {
@@ -581,7 +585,7 @@ onMounted(() => {
     L.control.zoom({ position: 'bottomleft' }).addTo(leafletMap)
 
     leafletMap.on('click', (e) => {
-        if (props.activeMode === 'pin' || props.activeMode === 'text') {
+        if (props.activeMode === 'pin' || props.activeMode === 'text' || props.activeMode === 'center-pick') {
             emit('map-click', { lat: e.latlng.lat, lng: e.latlng.lng })
         }
     })
