@@ -700,7 +700,7 @@ git commit -m "feat: add a useMapPresence composable for the v4 map explorer"
 - Modify: `resources/js/components/maps/MapExplorer.vue`
 
 **Interfaces:**
-- Consumes: `useMapPresence` (Task 3), `data.map.interactive`/`data.i18n.presence` (Task 2).
+- Consumes: `useMapPresence` (Task 3), `data.interactive`/`data.i18n.presence` (Task 2). Note: `interactive` is a **top-level sibling key** of `map` in `ExploreApiService::load()`'s response (`app/Services/Maps/ExploreApiService.php:49`), not nested inside `map` — it must be read as `data.value.interactive`, not `data.value.map.interactive`. This is called out explicitly because it's easy to guess wrong by analogy with `map.settings`/`map.center`, which genuinely do live inside `map`.
 - Produces: nothing new for later tasks — `activeUsers`/`error` are consumed only within this same file's template.
 
 - [ ] **Step 1: Import and call the composable**
@@ -761,10 +761,12 @@ const {
     error: presenceError,
     sendCursor,
 } = useMapPresence(
-    () => data.value.map?.interactive,
+    () => data.value.interactive,
     () => data.value.i18n?.presence,
 );
 ```
+
+(`interactive` is a top-level key alongside `map`/`i18n` in the API response, NOT nested inside `map` — `data.value.interactive`, not `data.value.map.interactive`.)
 
 - [ ] **Step 2: Add the avatar list to the header**
 
@@ -784,7 +786,7 @@ to:
                 <p class="text-sm text-neutral-content">{{ markersCountText }}</p>
             </div>
 
-            <div class="flex gap-1 overflow-hidden" v-if="data.map.interactive?.show_presence">
+            <div class="flex gap-1 overflow-hidden" v-if="data.interactive?.show_presence">
                 <span
                     v-for="user in activeUsers"
                     :key="user.id"
