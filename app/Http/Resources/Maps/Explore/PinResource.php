@@ -46,6 +46,8 @@ class PinResource extends JsonResource
             'polygon_style' => $marker->polygon_style ?? [],
             'preview_url' => route('entities.map-markers.preview', [$this->campaign->id, $this->mapEntity->id, $marker->id]),
             'destroy_url' => route('entities.map-markers.destroy', [$this->campaign->id, $this->mapEntity->id, $marker->id]),
+            'is_draggable' => (bool) $marker->is_draggable,
+            'move_url' => route('maps.markers.move', [$this->campaign->id, $marker->map_id, $marker->id]),
         ];
     }
 

@@ -37,7 +37,7 @@ it('returns the full explore payload for a simple map', function () {
             'map' => ['id', 'name', 'is_real', 'is_chunked', 'has_clustering', 'image', 'width', 'height', 'min_zoom', 'max_zoom', 'initial_zoom', 'center', 'tile_url', 'chunks_url', 'create_url', 'has_distance_unit', 'distance_measure', 'distance_name', 'settings' => ['grid', 'min_zoom', 'max_zoom', 'initial_zoom', 'distance_measure', 'distance_name', 'center_x', 'center_y', 'center_marker_id'], 'settings_url', 'show_url', 'edit_url'],
             'layers' => [['id', 'name', 'type_id', 'image', 'position']],
             'groups' => [['id', 'name', 'parent_id', 'position']],
-            'pins' => [['id', 'name', 'group_id', 'latitude', 'longitude', 'shape', 'colour', 'font_colour', 'icon', 'size_id', 'pin_size', 'circle_radius', 'opacity', 'preview_url', 'destroy_url']],
+            'pins' => [['id', 'name', 'group_id', 'latitude', 'longitude', 'shape', 'colour', 'font_colour', 'icon', 'size_id', 'pin_size', 'circle_radius', 'opacity', 'preview_url', 'destroy_url', 'is_draggable', 'move_url']],
             'i18n' => ['legend_title', 'legend_search', 'ungrouped', 'loading', 'error_load', 'error_delete', 'error_save', 'from_entry', 'linked_entry', 'edit_details', 'center', 'duplicate', 'delete_marker', 'delete_confirm', 'new_pin', 'name_placeholder', 'save', 'details', 'less', 'premium_custom_icon', 'markers_count_one', 'markers_count_other', 'toolbar' => ['rapid', 'pin', 'text', 'area', 'circle', 'path', 'helper' => ['pin', 'text', 'area', 'circle', 'path']], 'header' => ['overview', 'settings', 'edit'], 'settings' => ['title', 'grid', 'zoom_min', 'zoom_max', 'zoom_initial', 'distance_name', 'distance_measure', 'center', 'center_coordinates', 'center_marker', 'pick_on_map', 'picking', 'no_marker', 'save', 'error_save']],
         ]);
 
@@ -258,4 +258,27 @@ it('prefers lat/lng over focus when both are present', function () {
         ->assertStatus(200);
 
     expect($response->json('map.center'))->toBe([12.5, 34.5]);
+});
+
+it('exposes is_draggable and move_url for a draggable pin', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create(['map_id' => $map->id, 'is_draggable' => true]);
+
+    $response = $this->get(route('entities.map-api', [1, $map->entity]))->assertStatus(200);
+
+    $pin = collect($response->json('pins'))->firstWhere('id', $marker->id);
+    expect($pin['is_draggable'])->toBeTrue();
+    expect($pin['move_url'])->toBe(route('maps.markers.move', [1, $map->id, $marker->id]));
+});
+
+it('reports is_draggable false for a marker without the flag', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create(['map_id' => $map->id, 'is_draggable' => false]);
+
+    $response = $this->get(route('entities.map-api', [1, $map->entity]))->assertStatus(200);
+
+    $pin = collect($response->json('pins'))->firstWhere('id', $marker->id);
+    expect($pin['is_draggable'])->toBeFalse();
 });
