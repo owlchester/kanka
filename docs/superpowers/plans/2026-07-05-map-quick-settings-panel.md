@@ -1355,7 +1355,7 @@ to:
             :pending-center="pendingCenter"
             @close="settingsOpen = false"
             @saved="handleSettingsSaved"
-            @pick-center="activeMode = 'center-pick'"
+            @pick-center="handleModeChange('center-pick')"
         />
 ```
 
