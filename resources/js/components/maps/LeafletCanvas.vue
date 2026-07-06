@@ -62,6 +62,32 @@ function buildGrid() {
     gridLayer.addTo(leafletMap)
 }
 
+function buildRuler() {
+    if (rulerControl) {
+        leafletMap.removeControl(rulerControl)
+        rulerControl = null
+    }
+
+    if (! props.map.has_distance_unit) {
+        return
+    }
+
+    rulerControl = L.control.ruler({
+        // Leaflet's control default is 'topright', which sits directly under
+        // DetailPanel/MarkerPanel (fixed top-4 right-4 bottom-4) and becomes
+        // fully hidden and unclickable whenever a pin is selected or a draft
+        // is open. 'bottomleft' keeps it reachable, stacked with the zoom
+        // control which was placed there for the same reason.
+        position: 'bottomleft',
+        lengthUnit: {
+            factor: props.map.distance_measure,
+            display: props.map.distance_name,
+            decimal: 2,
+        },
+        onToggle: (active) => emit('measure-change', active),
+    }).addTo(leafletMap)
+}
+
 function bounds() {
     return [[0, 0], [props.map.height, props.map.width]]
 }
@@ -426,6 +452,19 @@ watch(() => props.map.settings?.grid, () => {
     }
 })
 
+watch(() => [props.map.min_zoom, props.map.max_zoom], ([min, max]) => {
+    if (leafletMap) {
+        leafletMap.setMinZoom(min)
+        leafletMap.setMaxZoom(max)
+    }
+})
+
+watch(() => [props.map.has_distance_unit, props.map.distance_measure, props.map.distance_name], () => {
+    if (leafletMap) {
+        buildRuler()
+    }
+})
+
 watch(() => props.draftPin, (pin) => {
     if (! leafletMap) {
         return
@@ -552,23 +591,7 @@ onMounted(() => {
     buildPins()
     buildDraftMarker()
     buildGrid()
-
-    if (props.map.has_distance_unit) {
-        rulerControl = L.control.ruler({
-            // Leaflet's control default is 'topright', which sits directly under
-            // DetailPanel/MarkerPanel (fixed top-4 right-4 bottom-4) and becomes
-            // fully hidden and unclickable whenever a pin is selected or a draft
-            // is open. 'bottomleft' keeps it reachable, stacked with the zoom
-            // control which was placed there for the same reason.
-            position: 'bottomleft',
-            lengthUnit: {
-                factor: props.map.distance_measure,
-                display: props.map.distance_name,
-                decimal: 2,
-            },
-            onToggle: (active) => emit('measure-change', active),
-        }).addTo(leafletMap)
-    }
+    buildRuler()
 
     document.addEventListener('keydown', handlePolygonKeydown)
 })

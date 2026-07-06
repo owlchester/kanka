@@ -125,6 +125,14 @@
             @mode-change="handleModeChange"
             @rapid-change="rapid = $event"
         />
+
+        <SettingsPanel
+            :open="settingsOpen"
+            :map="data.map"
+            :i18n="data.i18n.settings"
+            @close="settingsOpen = false"
+            @saved="handleSettingsSaved"
+        />
     </template>
 </template>
 
@@ -136,6 +144,7 @@ import DetailPanel from "./DetailPanel.vue";
 import LeafletCanvas from "./LeafletCanvas.vue";
 import LegendPanel from "./LegendPanel.vue";
 import MarkerPanel from "./MarkerPanel.vue";
+import SettingsPanel from "./SettingsPanel.vue";
 import Toolbar from "./Toolbar.vue";
 
 const props = defineProps({
@@ -192,6 +201,10 @@ function handleMeasureChange(active) {
         activeMode.value = null;
         draftPin.value = null;
     }
+}
+
+function handleSettingsSaved(map) {
+    data.value.map = map;
 }
 
 function defaultColour() {
