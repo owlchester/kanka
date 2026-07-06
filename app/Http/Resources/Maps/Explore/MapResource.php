@@ -19,6 +19,16 @@ class MapResource extends JsonResource
     {
         $map = $this->resource;
         $isChunked = $map->isChunked() && $map->chunkingReady();
+        $center = array_map('floatval', explode(', ', $map->centerFocus()));
+
+        if ($request->filled('lat') && $request->filled('lng')) {
+            $center = [(float) $request->query('lat'), (float) $request->query('lng')];
+        } elseif ($request->filled('focus')) {
+            $pin = $map->markers->firstWhere('id', (int) $request->query('focus'));
+            if ($pin) {
+                $center = [(float) $pin->latitude, (float) $pin->longitude];
+            }
+        }
 
         return [
             'id' => $map->id,
@@ -32,7 +42,7 @@ class MapResource extends JsonResource
             'min_zoom' => $map->minZoom(),
             'max_zoom' => $map->maxZoom(),
             'initial_zoom' => $map->initialZoom(),
-            'center' => array_map('floatval', explode(', ', $map->centerFocus())),
+            'center' => $center,
             'tile_url' => $map->isReal() ? 'https://tile.openstreetmap.org/{z}/{x}/{y}.png' : null,
             'chunks_url' => $isChunked
                 ? route('maps.chunks', [$this->campaign->id, $map->id]) . '/?z={z}&x={x}&y={y}'
