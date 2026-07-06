@@ -232,6 +232,23 @@ it('falls back to the configured center when focus does not match any marker', f
     expect($response->json('map.center'))->toEqual([2.0, 1.0]);
 });
 
+it('falls back to the configured center when focus points at a hidden polygon marker', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1, 'center_x' => 1, 'center_y' => 2]);
+    $marker = MapMarker::factory()->create([
+        'map_id' => $map->id,
+        'shape_id' => 5,
+        'custom_shape' => '10.500,20.250 11.750,21.100 12.250,19.750',
+        'latitude' => 5.5,
+        'longitude' => 6.6,
+    ]);
+
+    $response = $this->get(route('entities.map-api', [1, $map->entity, 'focus' => $marker->id]))
+        ->assertStatus(200);
+
+    expect($response->json('map.center'))->toEqual([2.0, 1.0]);
+});
+
 it('prefers lat/lng over focus when both are present', function () {
     $this->asUser()->withCampaign();
     $map = Map::factory()->create(['campaign_id' => 1]);

@@ -24,7 +24,8 @@ class MapResource extends JsonResource
         if ($request->filled('lat') && $request->filled('lng')) {
             $center = [(float) $request->query('lat'), (float) $request->query('lng')];
         } elseif ($request->filled('focus')) {
-            $pin = $map->markers->firstWhere('id', (int) $request->query('focus'));
+            $focusId = (int) $request->query('focus');
+            $pin = $map->markers->first(fn ($marker) => $marker->id === $focusId && $marker->visible());
             if ($pin) {
                 $center = [(float) $pin->latitude, (float) $pin->longitude];
             }
