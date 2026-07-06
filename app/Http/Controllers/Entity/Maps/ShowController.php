@@ -35,6 +35,8 @@ class ShowController extends Controller
             return redirect()->route('entities.show', [$campaign, $entity]);
         }
 
-        return view('entities.pages.map.index', compact('campaign', 'entity'));
+        $query = request()->only(['focus', 'lat', 'lng']);
+
+        return view('entities.pages.map.index', compact('campaign', 'entity', 'query'));
     }
 }

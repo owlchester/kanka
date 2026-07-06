@@ -8,7 +8,7 @@
 @section('content')
     <div id="map-explorer">
         <map-explorer
-            api="{{ route('entities.map-api', [$campaign, $entity]) }}"
+            api="{{ route('entities.map-api', array_merge([$campaign, $entity], $query)) }}"
             loading-text="{{ __('maps/explorer.loading') }}"
             error-text="{{ __('maps/explorer.errors.load') }}"
             :can-edit="@can('update', $entity) true @else false @endcan"

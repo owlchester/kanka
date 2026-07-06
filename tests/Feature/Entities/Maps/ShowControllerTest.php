@@ -27,3 +27,12 @@ it('redirects to the entity page when the map cannot be explored', function () {
     $this->get(route('entities.map', [1, $map->entity]))
         ->assertRedirect(route('entities.show', [$map->entity->campaign, $map->entity]));
 });
+
+it('forwards focus/lat/lng query params onto the rendered api url', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1, 'is_real' => true]);
+
+    $this->get(route('entities.map', [1, $map->entity]) . '?lat=12.5&lng=34.5')
+        ->assertStatus(200)
+        ->assertSee(route('entities.map-api', [$map->entity->campaign, $map->entity, 'lat' => '12.5', 'lng' => '34.5']));
+});
