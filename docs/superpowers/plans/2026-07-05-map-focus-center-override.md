@@ -156,16 +156,66 @@ to:
 
 (`$map->markers->firstWhere('id', ...)` is scoped to this map's own markers relation, so a marker ID from a different map is simply not found — same fallback behavior as legacy's `$map->markers->where('id', ...)->first()`.)
 
-- [ ] **Step 4: Run the tests to verify they pass**
+- [ ] **Step 4: Scope the focus lookup to visible markers only**
+
+Deviation from legacy, decided after implementation: legacy's own `$map->markers->where('id', ...)->first()` (`resources/views/maps/_setup.blade.php`) has the same gap this step closes — it doesn't check marker visibility, so `focus=<hidden marker id>` can leak that marker's coordinates to a viewer who can see the map but not that specific marker (e.g. one in a private group). The plan originally called for exact legacy parity, including this gap; the human decided to close it in v4 rather than reproduce it. Change:
+
+```php
+        } elseif ($request->filled('focus')) {
+            $pin = $map->markers->firstWhere('id', (int) $request->query('focus'));
+            if ($pin) {
+                $center = [(float) $pin->latitude, (float) $pin->longitude];
+            }
+        }
+```
+
+to:
+
+```php
+        } elseif ($request->filled('focus')) {
+            $focusId = (int) $request->query('focus');
+            $pin = $map->markers->first(fn ($marker) => $marker->id === $focusId && $marker->visible());
+            if ($pin) {
+                $center = [(float) $pin->latitude, (float) $pin->longitude];
+            }
+        }
+```
+
+(`MapMarker::visible()` — the same method `ExploreApiService::load()` already uses to filter the `pins` list sent to the frontend — returns `false` for markers in a private group, or polygon/path markers on a non-boosted campaign.)
+
+Add one more test to `tests/Feature/Entities/Maps/ExploreApiControllerTest.php`, alongside the other focus/lat/lng tests. Note: this test exercises the `isPolygon()`/non-boosted-campaign branch of `MapMarker::visible()`, not its private-group branch — a pre-existing bug affecting this whole test file (documented in its own comment above the `'excludes pins whose linked entity has no child'` test) means `App\Models\Scopes\VisibilityIDScope` never actually filters anything under Pest (`app()->runningInConsole()` is always true in tests), so a private-group-based test would silently pass for the wrong reason. The polygon/non-boosted path has no such scope involved and reliably exercises a real `visible() === false` case:
+
+```php
+it('falls back to the configured center when focus points at a hidden polygon marker', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1, 'center_x' => 1, 'center_y' => 2]);
+    $marker = MapMarker::factory()->create([
+        'map_id' => $map->id,
+        'shape_id' => 5,
+        'custom_shape' => '10.500,20.250 11.750,21.100 12.250,19.750',
+        'latitude' => 5.5,
+        'longitude' => 6.6,
+    ]);
+
+    $response = $this->get(route('entities.map-api', [1, $map->entity, 'focus' => $marker->id]))
+        ->assertStatus(200);
+
+    expect($response->json('map.center'))->toEqual([2.0, 1.0]);
+});
+```
+
+(`shape_id = 5` is `MapMarkerShape::poly`; combined with a non-empty `custom_shape`, `MapMarker::isPolygon()` is `true`, and the test campaign from `withCampaign()` is not boosted, so `MapMarker::visible()` returns `false` — no new imports needed, `MapMarker` is already imported in this file.)
+
+- [ ] **Step 5: Run the tests to verify they pass**
 
 Run: `vendor/bin/sail artisan test --compact --filter="overrides the center|falls back to the configured center|prefers lat/lng over focus|returns the full explore payload"`
 Expected: all passing (the last filter re-confirms the no-query-param path is unaffected).
 
-- [ ] **Step 5: Commit**
+- [ ] **Step 6: Commit**
 
 ```bash
 git add app/Http/Resources/Maps/Explore/MapResource.php tests/Feature/Entities/Maps/ExploreApiControllerTest.php
-git commit -m "feat: honor focus/lat/lng query params to override the v4 map's initial center"
+git commit -m "feat: scope the focus marker lookup to visible markers only"
 ```
 
 ---
