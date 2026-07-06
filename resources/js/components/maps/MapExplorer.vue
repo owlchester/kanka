@@ -77,6 +77,7 @@
             :active-mode="activeMode"
             :draft-pin="draftPin"
             :preview-center="previewCenter"
+            :can-edit="canEdit"
             :default-polygon-style="defaultPolygonStyle()"
             @pin-click="selectPin"
             @map-click="handleMapClick"
@@ -87,6 +88,7 @@
             @path-change="handlePathChange"
             @path-finish="handlePathFinish"
             @measure-change="handleMeasureChange"
+            @pin-moved="handlePinMoved"
         />
 
         <DetailPanel
@@ -195,6 +197,12 @@ function selectPin(pin) {
 function removePin(pin) {
     data.value.pins = data.value.pins.filter((p) => p.id !== pin.id);
     selectedPin.value = null;
+}
+
+function handlePinMoved({ id, latitude, longitude }) {
+    data.value.pins = data.value.pins.map((pin) =>
+        pin.id === id ? { ...pin, latitude, longitude } : pin
+    );
 }
 
 function handleModeChange(mode) {

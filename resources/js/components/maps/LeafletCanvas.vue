@@ -7,6 +7,7 @@ import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import L from 'leaflet'
 import 'leaflet.markercluster'
 import 'leaflet-editable'
+import 'leaflet.path.drag'
 import '../../leaflet/ruler.js'
 
 const props = defineProps({
@@ -18,13 +19,14 @@ const props = defineProps({
     activeMode: { type: String, default: null },
     draftPin: { type: Object, default: null },
     previewCenter: { type: Array, default: null },
+    canEdit: { type: Boolean, default: false },
     defaultPolygonStyle: {
         type: Object,
         default: () => ({ colour: '#93c5fd', opacity: 50, stroke: '#93c5fd', 'stroke-width': 1 }),
     },
 })
 
-const emit = defineEmits(['pin-click', 'map-click', 'polygon-change', 'polygon-finish', 'circle-change', 'circle-finish', 'path-change', 'path-finish', 'measure-change'])
+const emit = defineEmits(['pin-click', 'map-click', 'polygon-change', 'polygon-finish', 'circle-change', 'circle-finish', 'path-change', 'path-finish', 'measure-change', 'pin-moved'])
 
 const mapEl = ref(null)
 let leafletMap = null
@@ -154,6 +156,18 @@ function pinIcon(pin) {
     })
 }
 
+function movePinTo(pin, layer) {
+    const { lat, lng } = layer.getLatLng()
+
+    axios.post(pin.move_url, { latitude: lat, longitude: lng })
+        .then(() => {
+            emit('pin-moved', { id: pin.id, latitude: lat, longitude: lng })
+        })
+        .catch(() => {
+            layer.setLatLng([pin.latitude, pin.longitude])
+        })
+}
+
 function buildPin(pin) {
     if (pin.shape === 'poly') {
         const latlngs = pin.custom_shape || pin.customShape || []
@@ -179,12 +193,20 @@ function buildPin(pin) {
     }
 
     if (pin.shape === 'circle') {
-        return L.circle([pin.latitude, pin.longitude], {
+        const draggable = props.canEdit && pin.is_draggable
+        const circle = L.circle([pin.latitude, pin.longitude], {
             radius: pin.circle_radius || 50,
             fillColor: pin.colour || '#ccc',
             stroke: false,
             fillOpacity: (pin.opacity || 100) / 100,
+            draggable,
         })
+
+        if (draggable) {
+            circle.on('dragend', (e) => movePinTo(pin, e.target))
+        }
+
+        return circle
     }
 
     if (pin.shape === 'label') {
@@ -208,10 +230,18 @@ function buildPin(pin) {
         return marker
     }
 
-    return L.marker([pin.latitude, pin.longitude], {
+    const draggable = props.canEdit && pin.is_draggable
+    const marker = L.marker([pin.latitude, pin.longitude], {
         icon: pinIcon(pin),
         opacity: (pin.opacity || 100) / 100,
+        draggable,
     })
+
+    if (draggable) {
+        marker.on('dragend', (e) => movePinTo(pin, e.target))
+    }
+
+    return marker
 }
 
 function buildPins() {
