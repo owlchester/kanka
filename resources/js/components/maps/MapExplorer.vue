@@ -58,6 +58,19 @@
                 </div>
                 <p class="text-sm text-neutral-content">{{ markersCountText }}</p>
             </div>
+
+            <div class="flex gap-1 overflow-hidden" v-if="data.interactive?.show_presence">
+                <span
+                    v-for="user in activeUsers"
+                    :key="user.id"
+                    :aria-label="user.name"
+                    class="bg-base-200 text-neutral-content rounded-full h-8 w-8 overflow-hidden flex items-center justify-center cursor-pointer flex-none"
+                    v-tippy="presenceTooltip(user)"
+                >
+                    <img :src="user.image" v-if="user.image" class="w-8 h-8" />
+                    <span v-else>{{ user.name.substring(0, 2).toUpperCase() }}</span>
+                </span>
+            </div>
         </div>
 
         <LegendPanel
@@ -146,6 +159,7 @@
 <script setup>
 import { ref, computed, onMounted, onBeforeUnmount, nextTick } from "vue";
 import tippy from "tippy.js";
+import { useMapPresence } from "../../composables/useMapPresence.js";
 import { centroid } from "../../maps/polygon.js";
 import DetailPanel from "./DetailPanel.vue";
 import LeafletCanvas from "./LeafletCanvas.vue";
@@ -178,12 +192,33 @@ const mapMenuBtnRef = ref(null);
 const mapMenuRef = ref(null);
 let mapMenuInstance = null;
 
+const {
+    activeUsers,
+    remoteCursors,
+    error: presenceError,
+    sendCursor,
+} = useMapPresence(
+    () => data.value.interactive,
+    () => data.value.i18n?.presence,
+);
+
 const markersCountText = computed(() => {
     const count = data.value.pins.length;
     const template = count === 1 ? data.value.i18n.markers_count_one : data.value.i18n.markers_count_other;
 
     return template.replace(':count', count);
 });
+
+function presenceTooltip(user) {
+    const i18n = data.value.i18n.presence;
+    const role = user.role === "edit" ? i18n.role_edit : i18n.role_view;
+
+    return (
+        '<div class="flex flex-col gap-1">' +
+        '<a class="text-link text-lg" href="' + user.url + '">' + user.name + "</a>" +
+        '<span class="text-neutral-content text-xs">' + role + "</span></div>"
+    );
+}
 
 function openSettings() {
     mapMenuInstance?.hide();
