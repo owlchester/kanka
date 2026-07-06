@@ -24,6 +24,10 @@ class ApiController extends Controller
             abort(404);
         }
 
+        if (auth()->check()) {
+            $this->apiService->user(auth()->user());
+        }
+
         return response()->json(
             $this->apiService
                 ->campaign($campaign)

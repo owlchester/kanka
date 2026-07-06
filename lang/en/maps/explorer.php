@@ -79,4 +79,11 @@ return [
         'save'                  => 'Save',
         'error_save'            => 'Unable to save these settings.',
     ],
+    'presence'  => [
+        'role_edit'             => 'Editor',
+        'role_view'             => 'Viewer',
+        'error_unavailable'     => 'Unable to connect to the live map service.',
+        'error_connecting'      => 'Error connecting to the live map service.',
+        'error_disconnected'    => 'Lost connection to the live map service.',
+    ],
 ];

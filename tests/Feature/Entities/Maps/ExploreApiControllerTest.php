@@ -1,10 +1,12 @@
 <?php
 
+use App\Models\CampaignUser;
 use App\Models\Character;
 use App\Models\Map;
 use App\Models\MapGroup;
 use App\Models\MapLayer;
 use App\Models\MapMarker;
+use App\Models\User;
 
 it('404s for a non-map entity', function () {
     $this->asUser()->withCampaign();
@@ -38,7 +40,7 @@ it('returns the full explore payload for a simple map', function () {
             'layers' => [['id', 'name', 'type_id', 'image', 'position']],
             'groups' => [['id', 'name', 'parent_id', 'position']],
             'pins' => [['id', 'name', 'group_id', 'latitude', 'longitude', 'shape', 'colour', 'font_colour', 'icon', 'size_id', 'pin_size', 'circle_radius', 'opacity', 'preview_url', 'destroy_url', 'is_draggable', 'move_url']],
-            'i18n' => ['legend_title', 'legend_search', 'ungrouped', 'loading', 'error_load', 'error_delete', 'error_save', 'from_entry', 'linked_entry', 'edit_details', 'center', 'duplicate', 'delete_marker', 'delete_confirm', 'new_pin', 'name_placeholder', 'save', 'details', 'less', 'premium_custom_icon', 'markers_count_one', 'markers_count_other', 'toolbar' => ['rapid', 'pin', 'text', 'area', 'circle', 'path', 'helper' => ['pin', 'text', 'area', 'circle', 'path']], 'header' => ['overview', 'settings', 'edit'], 'settings' => ['title', 'grid', 'zoom_min', 'zoom_max', 'zoom_initial', 'distance_name', 'distance_measure', 'center', 'center_coordinates', 'center_marker', 'pick_on_map', 'picking', 'no_marker', 'save', 'error_save']],
+            'i18n' => ['legend_title', 'legend_search', 'ungrouped', 'loading', 'error_load', 'error_delete', 'error_save', 'from_entry', 'linked_entry', 'edit_details', 'center', 'duplicate', 'delete_marker', 'delete_confirm', 'new_pin', 'name_placeholder', 'save', 'details', 'less', 'premium_custom_icon', 'markers_count_one', 'markers_count_other', 'toolbar' => ['rapid', 'pin', 'text', 'area', 'circle', 'path', 'helper' => ['pin', 'text', 'area', 'circle', 'path']], 'header' => ['overview', 'settings', 'edit'], 'settings' => ['title', 'grid', 'zoom_min', 'zoom_max', 'zoom_initial', 'distance_name', 'distance_measure', 'center', 'center_coordinates', 'center_marker', 'pick_on_map', 'picking', 'no_marker', 'save', 'error_save'], 'presence' => ['role_edit', 'role_view', 'error_unavailable', 'error_connecting', 'error_disconnected']],
         ]);
 
     $response->assertJsonFragment(['name' => $map->name, 'is_real' => false, 'has_clustering' => true]);
@@ -281,4 +283,67 @@ it('reports is_draggable false for a marker without the flag', function () {
 
     $pin = collect($response->json('pins'))->firstWhere('id', $marker->id);
     expect($pin['is_draggable'])->toBeFalse();
+});
+
+it('exposes interactive websocket config when reverb is configured and the user can view the map', function () {
+    config([
+        'broadcasting.connections.reverb.key' => 'test-key',
+        'broadcasting.connections.reverb.options.host' => 'localhost',
+        'broadcasting.connections.reverb.options.port' => 8080,
+        'broadcasting.connections.reverb.options.scheme' => 'http',
+    ]);
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $response = $this->get(route('entities.map-api', [1, $map->entity]))->assertStatus(200);
+
+    expect($response->json('interactive.key'))->toBe('test-key');
+    expect($response->json('interactive.host'))->toBe('localhost');
+    expect($response->json('interactive.port'))->toBe(8080);
+    expect($response->json('interactive.scheme'))->toBe('http');
+    expect($response->json('interactive.channel'))->toBe('map.' . $map->id);
+    expect($response->json('interactive.user.id'))->toBe(auth()->id());
+    expect($response->json('interactive.user.name'))->toBe(auth()->user()->name);
+});
+
+it('omits interactive config when reverb is not configured', function () {
+    config(['broadcasting.connections.reverb.key' => null]);
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $response = $this->get(route('entities.map-api', [1, $map->entity]))->assertStatus(200);
+
+    expect($response->json('interactive'))->toBeNull();
+});
+
+it('sets show_presence to false for a solo-member campaign', function () {
+    config([
+        'broadcasting.connections.reverb.key' => 'test-key',
+        'broadcasting.connections.reverb.options.host' => 'localhost',
+        'broadcasting.connections.reverb.options.port' => 8080,
+        'broadcasting.connections.reverb.options.scheme' => 'http',
+    ]);
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $response = $this->get(route('entities.map-api', [1, $map->entity]))->assertStatus(200);
+
+    expect($response->json('interactive.show_presence'))->toBeFalse();
+});
+
+it('sets show_presence to true for a campaign with more than one member', function () {
+    config([
+        'broadcasting.connections.reverb.key' => 'test-key',
+        'broadcasting.connections.reverb.options.host' => 'localhost',
+        'broadcasting.connections.reverb.options.port' => 8080,
+        'broadcasting.connections.reverb.options.scheme' => 'http',
+    ]);
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $secondUser = User::factory()->create();
+    CampaignUser::create(['campaign_id' => 1, 'user_id' => $secondUser->id]);
+
+    $response = $this->get(route('entities.map-api', [1, $map->entity]))->assertStatus(200);
+
+    expect($response->json('interactive.show_presence'))->toBeTrue();
 });

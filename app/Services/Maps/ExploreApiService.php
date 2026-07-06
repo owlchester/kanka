@@ -3,16 +3,19 @@
 namespace App\Services\Maps;
 
 use App\Enums\Visibility;
+use App\Facades\CampaignCache;
 use App\Http\Resources\Maps\Explore\GroupResource;
 use App\Http\Resources\Maps\Explore\LayerResource;
 use App\Http\Resources\Maps\Explore\MapResource;
 use App\Http\Resources\Maps\Explore\PinResource;
 use App\Models\Map;
 use App\Traits\CampaignAware;
+use App\Traits\UserAware;
 
 class ExploreApiService
 {
     use CampaignAware;
+    use UserAware;
 
     protected Map $map;
 
@@ -43,6 +46,7 @@ class ExploreApiService
             'visibilities' => $this->visibilityOptions(),
             'default_visibility_id' => $this->campaign->defaultVisibility()->value,
             'i18n' => $this->translations(),
+            'interactive' => $this->interactive(),
         ];
     }
 
@@ -66,6 +70,31 @@ class ExploreApiService
         $options[] = ['id' => Visibility::AdminSelf->value, 'name' => __('crud.visibilities.admin-self')];
 
         return $options;
+    }
+
+    protected function interactive(): ?array
+    {
+        $key = config('broadcasting.connections.reverb.key');
+        if (empty($key) || ! $this->hasUser()) {
+            return null;
+        }
+
+        if (! $this->user->can('view', $this->map->entity)) {
+            return null;
+        }
+
+        return [
+            'key' => $key,
+            'host' => config('broadcasting.connections.reverb.options.host'),
+            'port' => config('broadcasting.connections.reverb.options.port'),
+            'scheme' => config('broadcasting.connections.reverb.options.scheme'),
+            'channel' => 'map.' . $this->map->id,
+            'show_presence' => CampaignCache::campaign($this->campaign)->members()->count() > 1,
+            'user' => [
+                'id' => $this->user->id,
+                'name' => $this->user->name,
+            ],
+        ];
     }
 
     protected function translations(): array
@@ -141,6 +170,13 @@ class ExploreApiService
                 'no_marker' => __('maps/explorer.settings.no_marker'),
                 'save' => __('maps/explorer.settings.save'),
                 'error_save' => __('maps/explorer.settings.error_save'),
+            ],
+            'presence' => [
+                'role_edit' => __('maps/explorer.presence.role_edit'),
+                'role_view' => __('maps/explorer.presence.role_view'),
+                'error_unavailable' => __('maps/explorer.presence.error_unavailable'),
+                'error_connecting' => __('maps/explorer.presence.error_connecting'),
+                'error_disconnected' => __('maps/explorer.presence.error_disconnected'),
             ],
         ];
     }
