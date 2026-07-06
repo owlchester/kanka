@@ -78,15 +78,13 @@
                     {{ i18n.pick_on_map }}
                 </button>
 
-                <select
+                <MarkerPicker
                     v-else
-                    v-model="form.center_marker_id"
-                    class="select select-bordered w-full"
-                    @change="selectCenterMarker(form.center_marker_id)"
-                >
-                    <option :value="null">{{ i18n.no_marker }}</option>
-                    <option v-for="pin in pins" :key="pin.id" :value="pin.id">{{ pin.name }}</option>
-                </select>
+                    :pins="pins"
+                    :model-value="form.center_marker_id"
+                    :i18n="i18n"
+                    @change="selectCenterMarker"
+                />
             </div>
         </div>
 
@@ -105,6 +103,7 @@
 
 <script setup>
 import { reactive, ref, watch } from "vue";
+import MarkerPicker from "./MarkerPicker.vue";
 
 const props = defineProps({
     open: { type: Boolean, default: false },
