@@ -1580,9 +1580,193 @@ to:
         </div>
 ```
 
-- [ ] **Step 4: Re-center the live map when a saved center changes**
+- [ ] **Step 4: Preview the new center live, at the moment it's picked — not only after saving**
 
-Every other field in this panel (grid, zoom bounds, distance unit) already updates the live map on save via the watchers Task 5 added. Centering needs the same treatment, or it's the one field in the panel that silently requires a page reload — add a watcher next to the zoom-bounds watcher in `resources/js/components/maps/LeafletCanvas.vue`:
+Superseded design note: an earlier revision of this step recentered the live map only after a settings *save* (a `watch(() => props.map.center, ...)` in `LeafletCanvas.vue`, keyed off the server-recomputed value). Human feedback during implementation: the user should see and confirm the new center is correct *before* committing to Save, the same moment they pick it — not find out only after saving. This also incidentally fixes a flagged side effect of the save-triggered version (it fired on *every* save, even ones that never touched centering, silently discarding any panning done while the panel was open). The save-triggered watcher is removed; a pick-triggered preview replaces it entirely.
+
+In `resources/js/components/maps/SettingsPanel.vue`, add `"preview-center"` to the emits list — change:
+
+```js
+const emit = defineEmits(["close", "saved", "pick-center"]);
+```
+
+to:
+
+```js
+const emit = defineEmits(["close", "saved", "pick-center", "preview-center"]);
+```
+
+Emit a preview the moment a map click delivers a new coordinate — change:
+
+```js
+watch(
+    () => props.pendingCenter,
+    (center) => {
+        if (!center) {
+            return;
+        }
+
+        form.center_x = center.lng;
+        form.center_y = center.lat;
+        form.center_marker_id = null;
+        centerMode.value = "coordinates";
+    },
+);
+```
+
+to:
+
+```js
+watch(
+    () => props.pendingCenter,
+    (center) => {
+        if (!center) {
+            return;
+        }
+
+        form.center_x = center.lng;
+        form.center_y = center.lat;
+        form.center_marker_id = null;
+        centerMode.value = "coordinates";
+        emit("preview-center", [center.lat, center.lng]);
+    },
+);
+```
+
+Emit a preview the moment a marker is picked from the dropdown — change:
+
+```js
+function selectCenterMarker(markerId) {
+    form.center_marker_id = markerId;
+    centerMode.value = "marker";
+}
+```
+
+to:
+
+```js
+function selectCenterMarker(markerId) {
+    form.center_marker_id = markerId;
+    centerMode.value = "marker";
+
+    const marker = props.pins.find((pin) => pin.id === markerId);
+    if (marker) {
+        emit("preview-center", [marker.latitude, marker.longitude]);
+    }
+}
+```
+
+Both emit sites fire only from an explicit user action (a map click while picking, or choosing a marker) — not from the panel's own open/seed watcher, so opening Settings never itself snaps the view anywhere.
+
+In `resources/js/components/maps/MapExplorer.vue`, add a `previewCenter` ref next to `pendingCenter` — change:
+
+```js
+const pendingCenter = ref(null);
+```
+
+to:
+
+```js
+const pendingCenter = ref(null);
+const previewCenter = ref(null);
+```
+
+Wire it to `<LeafletCanvas>` and `<SettingsPanel>` — change:
+
+```html
+        <LeafletCanvas
+            :map="data.map"
+            :layers="data.layers"
+            :pins="data.pins"
+            :center-pin="selectedPin"
+            :center-nonce="centerNonce"
+            :active-mode="activeMode"
+            :draft-pin="draftPin"
+            :default-polygon-style="defaultPolygonStyle()"
+            @pin-click="selectPin"
+            @map-click="handleMapClick"
+            @polygon-change="handlePolygonChange"
+            @polygon-finish="handlePolygonFinish"
+            @circle-change="handleCircleChange"
+            @circle-finish="handleCircleFinish"
+            @path-change="handlePathChange"
+            @path-finish="handlePathFinish"
+            @measure-change="handleMeasureChange"
+        />
+```
+
+to:
+
+```html
+        <LeafletCanvas
+            :map="data.map"
+            :layers="data.layers"
+            :pins="data.pins"
+            :center-pin="selectedPin"
+            :center-nonce="centerNonce"
+            :active-mode="activeMode"
+            :draft-pin="draftPin"
+            :preview-center="previewCenter"
+            :default-polygon-style="defaultPolygonStyle()"
+            @pin-click="selectPin"
+            @map-click="handleMapClick"
+            @polygon-change="handlePolygonChange"
+            @polygon-finish="handlePolygonFinish"
+            @circle-change="handleCircleChange"
+            @circle-finish="handleCircleFinish"
+            @path-change="handlePathChange"
+            @path-finish="handlePathFinish"
+            @measure-change="handleMeasureChange"
+        />
+```
+
+and:
+
+```html
+        <SettingsPanel
+            :open="settingsOpen"
+            :map="data.map"
+            :pins="data.pins"
+            :i18n="data.i18n.settings"
+            :pending-center="pendingCenter"
+            @close="settingsOpen = false"
+            @saved="handleSettingsSaved"
+            @pick-center="handleModeChange('center-pick')"
+        />
+```
+
+to:
+
+```html
+        <SettingsPanel
+            :open="settingsOpen"
+            :map="data.map"
+            :pins="data.pins"
+            :i18n="data.i18n.settings"
+            :pending-center="pendingCenter"
+            @close="settingsOpen = false"
+            @saved="handleSettingsSaved"
+            @pick-center="handleModeChange('center-pick')"
+            @preview-center="previewCenter = $event"
+        />
+```
+
+In `resources/js/components/maps/LeafletCanvas.vue`, add the `previewCenter` prop — change:
+
+```js
+    activeMode: { type: String, default: null },
+    draftPin: { type: Object, default: null },
+```
+
+to:
+
+```js
+    activeMode: { type: String, default: null },
+    draftPin: { type: Object, default: null },
+    previewCenter: { type: Array, default: null },
+```
+
+Replace the save-triggered recenter watcher with a preview-triggered one — change:
 
 ```js
 watch(() => props.map.center, (center) => {
@@ -1592,7 +1776,15 @@ watch(() => props.map.center, (center) => {
 })
 ```
 
-This mirrors the existing `centerNonce` watcher's `setView` call, but reacts to the map's own recomputed `center` (from `MapResource::centerFocus()`) whenever `handleSettingsSaved` replaces `data.map`, rather than requiring the DetailPanel's "center on marker" button.
+to:
+
+```js
+watch(() => props.previewCenter, (center) => {
+    if (leafletMap && center) {
+        leafletMap.setView(center)
+    }
+})
+```
 
 - [ ] **Step 5: Verify the build compiles**
 
@@ -1601,7 +1793,7 @@ Expected: build succeeds with no errors.
 
 - [ ] **Step 6: Manually verify centering**
 
-Open the settings panel, choose "Coordinates", click "Pick center on map", confirm the cursor turns to a crosshair and any in-progress pin/circle/area/path draft is cancelled. Click a point on the map — confirm the click doesn't create a pin, the crosshair mode exits, and (reopening the panel if it auto-closed, or checking it's still open) the coordinates fields now reflect that point. Save — confirm the map re-centers immediately, without a reload. Then switch to "Marker", pick one of the map's existing pins from the dropdown, save, and confirm the map centers on that marker instead, again without a reload. Switch back to "Coordinates" and save again — confirm `center_marker_id` is cleared (the marker no longer determines centering) and the map re-centers back to the coordinates.
+Open the settings panel, choose "Coordinates", click "Pick center on map", confirm the cursor turns to a crosshair and any in-progress pin/circle/area/path draft is cancelled. Click a point on the map — confirm the click doesn't create a pin, the crosshair mode exits, the map immediately pans to center on that point (before Save is ever clicked), and (reopening the panel if it auto-closed, or checking it's still open) the coordinates fields now reflect that point. Save — confirm it persists without moving the view again (it's already there). Then switch to "Marker", pick one of the map's existing pins from the dropdown — confirm the map immediately pans to that marker's position, again before saving. Save, confirm it persists. Switch back to "Coordinates" and pick a new point — confirm the map previews that new position immediately; save and confirm `center_marker_id` is cleared (the marker no longer determines centering).
 
 - [ ] **Step 7: Commit**
 
