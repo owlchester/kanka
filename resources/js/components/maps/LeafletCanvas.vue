@@ -459,6 +459,12 @@ watch(() => [props.map.min_zoom, props.map.max_zoom], ([min, max]) => {
     }
 })
 
+watch(() => props.map.center, (center) => {
+    if (leafletMap && center) {
+        leafletMap.setView(center)
+    }
+})
+
 watch(() => [props.map.has_distance_unit, props.map.distance_measure, props.map.distance_name], () => {
     if (leafletMap) {
         buildRuler()
