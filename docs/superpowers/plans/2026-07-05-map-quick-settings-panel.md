@@ -1580,16 +1580,30 @@ to:
         </div>
 ```
 
-- [ ] **Step 4: Verify the build compiles**
+- [ ] **Step 4: Re-center the live map when a saved center changes**
+
+Every other field in this panel (grid, zoom bounds, distance unit) already updates the live map on save via the watchers Task 5 added. Centering needs the same treatment, or it's the one field in the panel that silently requires a page reload — add a watcher next to the zoom-bounds watcher in `resources/js/components/maps/LeafletCanvas.vue`:
+
+```js
+watch(() => props.map.center, (center) => {
+    if (leafletMap && center) {
+        leafletMap.setView(center)
+    }
+})
+```
+
+This mirrors the existing `centerNonce` watcher's `setView` call, but reacts to the map's own recomputed `center` (from `MapResource::centerFocus()`) whenever `handleSettingsSaved` replaces `data.map`, rather than requiring the DetailPanel's "center on marker" button.
+
+- [ ] **Step 5: Verify the build compiles**
 
 Run: `vendor/bin/sail yarn run build`
 Expected: build succeeds with no errors.
 
-- [ ] **Step 5: Manually verify centering**
+- [ ] **Step 6: Manually verify centering**
 
-Open the settings panel, choose "Coordinates", click "Pick center on map", confirm the cursor turns to a crosshair and any in-progress pin/circle/area/path draft is cancelled. Click a point on the map — confirm the click doesn't create a pin, the crosshair mode exits, and (reopening the panel if it auto-closed, or checking it's still open) the coordinates fields now reflect that point. Save, reload the page, and confirm the map now centers there. Then switch to "Marker", pick one of the map's existing pins from the dropdown, save, reload, and confirm the map centers on that marker instead. Switch back to "Coordinates" and save again — confirm `center_marker_id` is cleared (the marker no longer determines centering).
+Open the settings panel, choose "Coordinates", click "Pick center on map", confirm the cursor turns to a crosshair and any in-progress pin/circle/area/path draft is cancelled. Click a point on the map — confirm the click doesn't create a pin, the crosshair mode exits, and (reopening the panel if it auto-closed, or checking it's still open) the coordinates fields now reflect that point. Save — confirm the map re-centers immediately, without a reload. Then switch to "Marker", pick one of the map's existing pins from the dropdown, save, and confirm the map centers on that marker instead, again without a reload. Switch back to "Coordinates" and save again — confirm `center_marker_id` is cleared (the marker no longer determines centering) and the map re-centers back to the coordinates.
 
-- [ ] **Step 6: Commit**
+- [ ] **Step 7: Commit**
 
 ```bash
 git add resources/js/components/maps/SettingsPanel.vue resources/js/components/maps/MapExplorer.vue resources/js/components/maps/LeafletCanvas.vue
