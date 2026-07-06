@@ -17,6 +17,7 @@ const props = defineProps({
     centerNonce: { type: Number, default: 0 },
     activeMode: { type: String, default: null },
     draftPin: { type: Object, default: null },
+    previewCenter: { type: Array, default: null },
     defaultPolygonStyle: {
         type: Object,
         default: () => ({ colour: '#93c5fd', opacity: 50, stroke: '#93c5fd', 'stroke-width': 1 }),
@@ -459,7 +460,7 @@ watch(() => [props.map.min_zoom, props.map.max_zoom], ([min, max]) => {
     }
 })
 
-watch(() => props.map.center, (center) => {
+watch(() => props.previewCenter, (center) => {
     if (leafletMap && center) {
         leafletMap.setView(center)
     }

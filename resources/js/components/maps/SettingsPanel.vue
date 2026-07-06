@@ -114,7 +114,7 @@ const props = defineProps({
     pendingCenter: { type: Object, default: null },
 });
 
-const emit = defineEmits(["close", "saved", "pick-center"]);
+const emit = defineEmits(["close", "saved", "pick-center", "preview-center"]);
 
 const saving = ref(false);
 const error = ref(null);
@@ -166,6 +166,7 @@ watch(
         form.center_y = center.lat;
         form.center_marker_id = null;
         centerMode.value = "coordinates";
+        emit("preview-center", [center.lat, center.lng]);
     },
 );
 
@@ -176,6 +177,11 @@ function pickOnMap() {
 function selectCenterMarker(markerId) {
     form.center_marker_id = markerId;
     centerMode.value = "marker";
+
+    const marker = props.pins.find((pin) => pin.id === markerId);
+    if (marker) {
+        emit("preview-center", [marker.latitude, marker.longitude]);
+    }
 }
 
 async function save() {

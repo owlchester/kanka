@@ -76,6 +76,7 @@
             :center-nonce="centerNonce"
             :active-mode="activeMode"
             :draft-pin="draftPin"
+            :preview-center="previewCenter"
             :default-polygon-style="defaultPolygonStyle()"
             @pin-click="selectPin"
             @map-click="handleMapClick"
@@ -135,6 +136,7 @@
             @close="settingsOpen = false"
             @saved="handleSettingsSaved"
             @pick-center="handleModeChange('center-pick')"
+            @preview-center="previewCenter = $event"
         />
     </template>
 </template>
@@ -169,6 +171,7 @@ const draftPin = ref(null);
 const rapid = ref(false);
 const settingsOpen = ref(false);
 const pendingCenter = ref(null);
+const previewCenter = ref(null);
 const mapMenuBtnRef = ref(null);
 const mapMenuRef = ref(null);
 let mapMenuInstance = null;
