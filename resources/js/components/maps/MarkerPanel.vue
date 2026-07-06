@@ -114,7 +114,7 @@
                 </button>
                 <button
                     class="btn2 btn-primary grow"
-                    :disabled="saving || !name.trim()"
+                    :disabled="saving || (!name.trim() && !pin.entityId)"
                     @click="save"
                 >
                     {{ i18n.save }}
