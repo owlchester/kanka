@@ -8,6 +8,8 @@ return [
     ],
     'legend'    => [
         'search'    => 'Search markers',
+        'expand'    => 'Expand all groups',
+        'collapse'  => 'Collapse all groups',
     ],
     'loading'   => 'loading....',
     'marker'    => [
@@ -21,6 +23,7 @@ return [
         'new_pin'           => 'New pin',
         'name_placeholder'  => 'Name this pin...',
         'save'              => 'Save',
+        'save_continue'     => 'Save & continue',
         'details'           => 'Details',
         'less'              => 'Less',
         'shape'             => 'Shape',
@@ -43,6 +46,7 @@ return [
     ],
     'toolbar'   => [
         'rapid'     => 'Rapid',
+        'rapid_hint' => 'Enable to continuously create markers',
         'pin'       => 'Pin',
         'text'      => 'Text',
         'area'      => 'Area',

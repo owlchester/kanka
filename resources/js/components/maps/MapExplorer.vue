@@ -25,7 +25,7 @@
             </button>
             <div>
                 <button
-                    class="text-lg font-semibold leading-tight cursor-pointer"
+                    class="text-lg font-semibold leading-tight cursor-pointer text-shadow-[0_0_4px_hsl(var(--b1)),0_0_8px_hsl(var(--b1))]"
                     :ref="el => (mapMenuBtnRef = el)"
                 >
                     {{ data.map.name }}
@@ -56,7 +56,7 @@
                         </a>
                     </template>
                 </div>
-                <p class="text-sm text-neutral-content">{{ markersCountText }}</p>
+                <p class="text-sm text-neutral-content text-shadow-[0_0_4px_hsl(var(--b1)),0_0_8px_hsl(var(--b1))]">{{ markersCountText }}</p>
             </div>
 
             <div class="flex gap-1 overflow-hidden" v-if="data.interactive?.show_presence && activeUsers.length > 1">
@@ -111,6 +111,7 @@
             @path-finish="handlePathFinish"
             @measure-change="handleMeasureChange"
             @pin-moved="handlePinMoved"
+            @draft-move="handleDraftMove"
             @cursor-move="handleCursorMove"
         />
 
@@ -130,6 +131,7 @@
             :groups="data.groups"
             :search-url="data.map.search_url"
             :visibilities="data.visibilities"
+            :rapid="rapid"
             @close="draftPin = null"
             @created="onPinCreated"
             @icon-change="handleIconChange"
@@ -250,6 +252,14 @@ function handlePinMoved({ id, latitude, longitude }) {
     );
 }
 
+function handleDraftMove({ lat, lng }) {
+    if (!draftPin.value) {
+        return;
+    }
+
+    draftPin.value = { ...draftPin.value, latitude: lat, longitude: lng };
+}
+
 function handleCursorMove({ lat, lng }) {
     sendCursor(lat, lng);
 }
@@ -258,6 +268,10 @@ function handleModeChange(mode) {
     activeMode.value = mode;
     selectedPin.value = null;
     draftPin.value = null;
+
+    if (mode !== "center-pick") {
+        settingsOpen.value = false;
+    }
 }
 
 function handleMeasureChange(active) {

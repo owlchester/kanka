@@ -1,7 +1,8 @@
 <template>
     <aside
         v-if="pin"
-        class="fixed top-4 right-4 bottom-4 w-80 bg-base-100 shadow-lg z-[1150] flex flex-col rounded-2xl overflow-hidden"
+        class="fixed top-4 right-4 w-80 bg-base-100 shadow-lg z-[1150] flex flex-col rounded-2xl overflow-hidden"
+        :class="mode === 'full' ? 'bottom-4' : ''"
     >
         <div class="flex items-center justify-between gap-2 p-4">
             <div class="flex items-center gap-2">
@@ -72,7 +73,7 @@
             />
 
             <GroupPicker
-                v-if="mode === 'full'"
+                v-if="mode === 'full' && groups.length"
                 :pin="pin"
                 :groups="groups"
                 :i18n="i18n"
@@ -80,7 +81,6 @@
             />
 
             <EntityLinkSelect
-                v-if="mode === 'full'"
                 :pin="pin"
                 :search-url="searchUrl"
                 :i18n="i18n"
@@ -117,7 +117,7 @@
                     :disabled="saving || (!name.trim() && !pin.entityId)"
                     @click="save"
                 >
-                    {{ i18n.save }}
+                    {{ rapid ? i18n.save_continue : i18n.save }}
                 </button>
             </div>
             <p v-if="error" class="text-sm text-error-content">{{ error }}</p>
@@ -144,6 +144,7 @@ const props = defineProps({
     groups: { type: Array, default: () => [] },
     searchUrl: { type: String, required: true },
     visibilities: { type: Array, default: () => [] },
+    rapid: { type: Boolean, default: false },
 });
 
 const emit = defineEmits([

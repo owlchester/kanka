@@ -4,7 +4,16 @@
         class="fixed top-20 left-4 bottom-24 w-72 bg-base-100 rounded-2xl shadow-lg z-[1100] overflow-y-auto p-4 flex flex-col gap-3"
     >
         <div class="flex flex-col gap-2">
-            <p>{{ i18n.legend_title }}</p>
+            <p class="flex items-center justify-between">
+                <span>{{ i18n.legend_title }}</span>
+                <button
+                    v-tippy="allOpen ? i18n.legend_collapse : i18n.legend_expand"
+                    class="cursor-pointer"
+                    @click="toggleAll"
+                >
+                    <i class="fa-regular fa-sort" aria-hidden="true" />
+                </button>
+            </p>
             <input
                 v-model="query"
                 type="text"
@@ -55,7 +64,7 @@
 </template>
 
 <script setup>
-import { computed, reactive, ref } from "vue";
+import { computed, onMounted, reactive, ref } from "vue";
 import { buildGroupTree, filterGroupTree } from "../../maps/groupTree.js";
 import LegendGroupNode from "./LegendGroupNode.vue";
 
@@ -73,6 +82,10 @@ const tree = computed(() => buildGroupTree(props.groups, props.pins));
 const filtered = computed(() => filterGroupTree(tree.value, query.value));
 const openIds = reactive(new Set());
 
+onMounted(() => {
+    props.groups.forEach((group) => openIds.add(group.id));
+});
+
 function toggle(id) {
     if (openIds.has(id)) {
         openIds.delete(id);
@@ -87,6 +100,18 @@ function isOpen(id) {
     }
 
     return openIds.has(id);
+}
+
+const allOpen = computed(() =>
+    props.groups.every((group) => openIds.has(group.id)),
+);
+
+function toggleAll() {
+    if (allOpen.value) {
+        openIds.clear();
+    } else {
+        props.groups.forEach((group) => openIds.add(group.id));
+    }
 }
 
 function selectPin(pin) {

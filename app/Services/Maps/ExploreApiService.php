@@ -102,6 +102,8 @@ class ExploreApiService
         return [
             'legend_title' => __('maps.panels.legend'),
             'legend_search' => __('maps/explorer.legend.search'),
+            'legend_expand' => __('maps/explorer.legend.expand'),
+            'legend_collapse' => __('maps/explorer.legend.collapse'),
             'ungrouped' => __('maps/explorer.ungrouped'),
             'loading' => __('maps/explorer.loading'),
             'error_load' => __('maps/explorer.errors.load'),
@@ -117,6 +119,7 @@ class ExploreApiService
             'new_pin' => __('maps/explorer.marker.new_pin'),
             'name_placeholder' => __('maps/explorer.marker.name_placeholder'),
             'save' => __('maps/explorer.marker.save'),
+            'save_continue' => __('maps/explorer.marker.save_continue'),
             'details' => __('maps/explorer.marker.details'),
             'less' => __('maps/explorer.marker.less'),
             'shape' => __('maps/explorer.marker.shape'),
@@ -136,6 +139,7 @@ class ExploreApiService
             'markers_count_other' => __('maps/explorer.markers_count.other'),
             'toolbar' => [
                 'rapid' => __('maps/explorer.toolbar.rapid'),
+                'rapid_hint' => __('maps/explorer.toolbar.rapid_hint'),
                 'pin' => __('maps/explorer.toolbar.pin'),
                 'text' => __('maps/explorer.toolbar.text'),
                 'area' => __('maps/explorer.toolbar.area'),

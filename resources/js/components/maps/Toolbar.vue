@@ -17,6 +17,7 @@
                 type="button"
                 class="flex items-center gap-2 rounded-full px-3 py-1.5 cursor-pointer"
                 :class="props.rapid ? 'bg-accent text-accent-content' : ''"
+                v-tippy="i18n.toolbar.rapid_hint"
                 @click="emit('rapid-change', !props.rapid)"
             >
                 <span

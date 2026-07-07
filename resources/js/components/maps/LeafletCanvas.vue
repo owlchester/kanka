@@ -27,7 +27,7 @@ const props = defineProps({
     },
 })
 
-const emit = defineEmits(['pin-click', 'map-click', 'polygon-change', 'polygon-finish', 'circle-change', 'circle-finish', 'path-change', 'path-finish', 'measure-change', 'pin-moved', 'cursor-move'])
+const emit = defineEmits(['pin-click', 'map-click', 'polygon-change', 'polygon-finish', 'circle-change', 'circle-finish', 'path-change', 'path-finish', 'measure-change', 'pin-moved', 'cursor-move', 'draft-move'])
 
 const mapEl = ref(null)
 let leafletMap = null
@@ -306,6 +306,14 @@ function buildDraftMarker() {
 
     draftMarker = buildPin({ ...props.draftPin, id: 'draft' })
     draftMarker.addTo(leafletMap)
+
+    if (props.canEdit) {
+        draftMarker.dragging?.enable()
+        draftMarker.on('dragend', (e) => {
+            const { lat, lng } = e.target.getLatLng()
+            emit('draft-move', { lat, lng })
+        })
+    }
 }
 
 function polygonLatLngs() {
@@ -399,7 +407,7 @@ function startCircleDraft() {
     })
     circleEditing = false
 
-    draftCircle.on('editable:vertex:dragend', () => {
+    draftCircle.on('editable:vertex:dragend editable:dragend', () => {
         emit('circle-change', circleLatLngRadius())
     })
 
