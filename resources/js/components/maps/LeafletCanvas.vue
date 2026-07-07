@@ -20,13 +20,14 @@ const props = defineProps({
     draftPin: { type: Object, default: null },
     previewCenter: { type: Array, default: null },
     canEdit: { type: Boolean, default: false },
+    remoteCursors: { type: Object, default: () => ({}) },
     defaultPolygonStyle: {
         type: Object,
         default: () => ({ colour: '#93c5fd', opacity: 50, stroke: '#93c5fd', 'stroke-width': 1 }),
     },
 })
 
-const emit = defineEmits(['pin-click', 'map-click', 'polygon-change', 'polygon-finish', 'circle-change', 'circle-finish', 'path-change', 'path-finish', 'measure-change', 'pin-moved'])
+const emit = defineEmits(['pin-click', 'map-click', 'polygon-change', 'polygon-finish', 'circle-change', 'circle-finish', 'path-change', 'path-finish', 'measure-change', 'pin-moved', 'cursor-move'])
 
 const mapEl = ref(null)
 let leafletMap = null
@@ -63,6 +64,28 @@ function buildGrid() {
     }
 
     gridLayer.addTo(leafletMap)
+}
+
+let cursorLayer = null
+
+function buildCursors() {
+    if (cursorLayer) {
+        leafletMap.removeLayer(cursorLayer)
+    }
+
+    cursorLayer = L.layerGroup()
+
+    Object.values(props.remoteCursors).forEach((cursor) => {
+        L.circleMarker([cursor.lat, cursor.lng], {
+            radius: 6,
+            color: cursor.colour,
+            fillColor: cursor.colour,
+            fillOpacity: 0.8,
+            interactive: false,
+        }).addTo(cursorLayer)
+    })
+
+    cursorLayer.addTo(leafletMap)
 }
 
 function buildRuler() {
@@ -483,6 +506,12 @@ watch(() => props.map.settings?.grid, () => {
     }
 })
 
+watch(() => props.remoteCursors, () => {
+    if (leafletMap) {
+        buildCursors()
+    }
+})
+
 watch(() => [props.map.min_zoom, props.map.max_zoom], ([min, max]) => {
     if (leafletMap) {
         leafletMap.setMinZoom(min)
@@ -633,6 +662,17 @@ onMounted(() => {
     buildDraftMarker()
     buildGrid()
     buildRuler()
+    buildCursors()
+
+    let lastCursorSentAt = 0
+    leafletMap.on('mousemove', (e) => {
+        const now = Date.now()
+        if (now - lastCursorSentAt < 100) {
+            return
+        }
+        lastCursorSentAt = now
+        emit('cursor-move', { lat: e.latlng.lat, lng: e.latlng.lng })
+    })
 
     document.addEventListener('keydown', handlePolygonKeydown)
 })

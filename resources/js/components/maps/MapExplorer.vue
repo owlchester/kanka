@@ -91,6 +91,7 @@
             :draft-pin="draftPin"
             :preview-center="previewCenter"
             :can-edit="canEdit"
+            :remote-cursors="remoteCursors"
             :default-polygon-style="defaultPolygonStyle()"
             @pin-click="selectPin"
             @map-click="handleMapClick"
@@ -102,6 +103,7 @@
             @path-finish="handlePathFinish"
             @measure-change="handleMeasureChange"
             @pin-moved="handlePinMoved"
+            @cursor-move="handleCursorMove"
         />
 
         <DetailPanel
@@ -238,6 +240,10 @@ function handlePinMoved({ id, latitude, longitude }) {
     data.value.pins = data.value.pins.map((pin) =>
         pin.id === id ? { ...pin, latitude, longitude } : pin
     );
+}
+
+function handleCursorMove({ lat, lng }) {
+    sendCursor(lat, lng);
 }
 
 function handleModeChange(mode) {
