@@ -71,6 +71,13 @@
                     <span v-else>{{ user.name.substring(0, 2).toUpperCase() }}</span>
                 </span>
             </div>
+
+            <i
+                v-if="presenceError"
+                class="fa-regular fa-triangle-exclamation text-warning flex-none"
+                aria-hidden="true"
+                v-tippy="presenceError"
+            />
         </div>
 
         <LegendPanel
