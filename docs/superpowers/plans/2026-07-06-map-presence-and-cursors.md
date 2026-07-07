@@ -838,16 +838,63 @@ function presenceTooltip(user) {
 
 (Deliberately uses `user.url`, matching what the channel closure in `routes/channels.php` actually returns — not `user.link`, the typo present in whiteboard's own `getUserTooltip()`.)
 
-- [ ] **Step 3: Verify the build compiles**
+- [ ] **Step 3: Surface connection errors instead of failing silently**
+
+Added after implementation, from the final whole-branch review: `useMapPresence`'s `error` ref (renamed `presenceError` at the destructure site) is set on connection failure, but nothing ever displayed it — a broken websocket connection currently means no avatars, no cursors, and no visible indication anything went wrong. Add a small, unobtrusive indicator next to the avatar list. Change:
+
+```html
+            <div class="flex gap-1 overflow-hidden" v-if="data.interactive?.show_presence">
+                <span
+                    v-for="user in activeUsers"
+                    :key="user.id"
+                    :aria-label="user.name"
+                    class="bg-base-200 text-neutral-content rounded-full h-8 w-8 overflow-hidden flex items-center justify-center cursor-pointer flex-none"
+                    v-tippy="presenceTooltip(user)"
+                >
+                    <img :src="user.image" v-if="user.image" class="w-8 h-8" />
+                    <span v-else>{{ user.name.substring(0, 2).toUpperCase() }}</span>
+                </span>
+            </div>
+        </div>
+```
+
+to:
+
+```html
+            <div class="flex gap-1 overflow-hidden" v-if="data.interactive?.show_presence">
+                <span
+                    v-for="user in activeUsers"
+                    :key="user.id"
+                    :aria-label="user.name"
+                    class="bg-base-200 text-neutral-content rounded-full h-8 w-8 overflow-hidden flex items-center justify-center cursor-pointer flex-none"
+                    v-tippy="presenceTooltip(user)"
+                >
+                    <img :src="user.image" v-if="user.image" class="w-8 h-8" />
+                    <span v-else>{{ user.name.substring(0, 2).toUpperCase() }}</span>
+                </span>
+            </div>
+
+            <i
+                v-if="presenceError"
+                class="fa-regular fa-triangle-exclamation text-warning flex-none"
+                aria-hidden="true"
+                v-tippy="presenceError"
+            />
+        </div>
+```
+
+This renders regardless of `show_presence` (a solo-campaign user in a second tab, or a guest, should still learn if their websocket connection failed, even though they'd never see the avatar list). Uses the existing `v-tippy` pattern already established for the avatar tooltips right next to it — a warning icon, not a permanent text banner, to stay unobtrusive.
+
+- [ ] **Step 4: Verify the build compiles**
 
 Run: `vendor/bin/sail yarn run build`
 Expected: build succeeds with no errors.
 
-- [ ] **Step 4: Manually verify**
+- [ ] **Step 5: Manually verify**
 
-Using two authenticated sessions (e.g. two browser profiles, or one regular + one incognito window) as two different members of the same multi-member campaign: open the same map in both, confirm each session's avatar appears in the other's who's-watching list within a few seconds, confirm the tooltip shows the correct name and role (editor/viewer, matching each user's actual permission), and confirm closing one session removes its avatar from the other's list promptly. Then confirm the list never appears at all in a solo-member campaign, even across two tabs of the same account.
+Using two authenticated sessions (e.g. two browser profiles, or one regular + one incognito window) as two different members of the same multi-member campaign: open the same map in both, confirm each session's avatar appears in the other's who's-watching list within a few seconds, confirm the tooltip shows the correct name and role (editor/viewer, matching each user's actual permission), and confirm closing one session removes its avatar from the other's list promptly. Then confirm the list never appears at all in a solo-member campaign, even across two tabs of the same account. Also confirm the new warning icon appears (with `presenceError`'s message in its tooltip) if the websocket connection genuinely fails — e.g. temporarily pointing the Reverb config at an unreachable host — and stays absent otherwise.
 
-- [ ] **Step 5: Commit**
+- [ ] **Step 6: Commit**
 
 ```bash
 git add resources/js/components/maps/MapExplorer.vue
