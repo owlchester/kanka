@@ -1,5 +1,12 @@
 import { onBeforeUnmount, ref, watch } from 'vue'
 import Echo from 'laravel-echo'
+import Pusher from 'pusher-js'
+
+// laravel-echo's reverb broadcaster routes through the same Pusher-protocol
+// connector as the 'pusher' broadcaster, which requires a Pusher client to be
+// globally available (or passed via options.client) — it is never bundled
+// automatically, so it must be set here explicitly.
+window.Pusher = Pusher
 
 const CURSOR_EVENT = 'cursor'
 

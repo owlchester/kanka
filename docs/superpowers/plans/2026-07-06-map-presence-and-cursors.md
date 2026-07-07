@@ -575,6 +575,13 @@ Create `resources/js/composables/useMapPresence.js`:
 ```js
 import { onBeforeUnmount, ref, watch } from 'vue'
 import Echo from 'laravel-echo'
+import Pusher from 'pusher-js'
+
+// laravel-echo's reverb broadcaster routes through the same Pusher-protocol
+// connector as the 'pusher' broadcaster, which requires a Pusher client to be
+// globally available (or passed via options.client) — it is never bundled
+// automatically, so it must be set here explicitly.
+window.Pusher = Pusher
 
 const CURSOR_EVENT = 'cursor'
 
@@ -679,6 +686,8 @@ export function useMapPresence(getInteractive, getI18n) {
     return { activeUsers, remoteCursors, error, sendCursor }
 }
 ```
+
+(Added after the user's own first live test, since the final whole-branch review's zero-live-testing gap turned out to hide a real bug: without this `Pusher`/`window.Pusher` setup, the browser console showed `Error: Pusher client not found. Should be globally available or passed via options.client` the moment `useMapPresence` tried to connect — this is the one thing code review couldn't catch, since it's a missing runtime dependency, not a logic error. `pusher-js` was already a project dependency (`package.json`), just never wired into anything that actually ran; no new dependency was needed, only this import + global assignment.)
 
 - [ ] **Step 2: Verify the build compiles**
 
