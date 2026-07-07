@@ -707,6 +707,37 @@ git commit -m "feat: add a useMapPresence composable for the v4 map explorer"
 
 **Files:**
 - Modify: `resources/js/components/maps/MapExplorer.vue`
+- Modify: `resources/js/maps/explore.js`
+
+**Found during the user's own live testing, after the Pusher-client fix above:** this task is the first thing in the v4 map explorer's Vue app to ever use `v-tippy` (both the avatar tooltips and the connection-error icon added later in this same task). The `v-tippy` directive comes from the `vue-tippy` plugin, which every other Vue entry point in this codebase registers explicitly (e.g. `resources/js/entities/explore.js`: `app.use(VueTippy, { theme: 'kanka' })`) — but `resources/js/maps/explore.js` (the v4 map explorer's own entry point) never did, since nothing needed it before. The browser showed `[Vue warn]: Failed to resolve directive: tippy`. Fixed by adding the same registration `entities/explore.js` already uses. Change:
+
+```js
+import 'leaflet/dist/leaflet.css'
+import 'leaflet.markercluster/dist/MarkerCluster.css'
+import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
+import { createApp } from 'vue'
+import MapExplorer from '../components/maps/MapExplorer.vue'
+
+const app = createApp({})
+app.component('map-explorer', MapExplorer)
+app.mount('#map-explorer')
+```
+
+to:
+
+```js
+import 'leaflet/dist/leaflet.css'
+import 'leaflet.markercluster/dist/MarkerCluster.css'
+import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
+import { createApp } from 'vue'
+import VueTippy from 'vue-tippy'
+import MapExplorer from '../components/maps/MapExplorer.vue'
+
+const app = createApp({})
+app.use(VueTippy, { theme: 'kanka' })
+app.component('map-explorer', MapExplorer)
+app.mount('#map-explorer')
+```
 
 **Interfaces:**
 - Consumes: `useMapPresence` (Task 3), `data.interactive`/`data.i18n.presence` (Task 2). Note: `interactive` is a **top-level sibling key** of `map` in `ExploreApiService::load()`'s response (`app/Services/Maps/ExploreApiService.php:49`), not nested inside `map` — it must be read as `data.value.interactive`, not `data.value.map.interactive`. This is called out explicitly because it's easy to guess wrong by analogy with `map.settings`/`map.center`, which genuinely do live inside `map`.
