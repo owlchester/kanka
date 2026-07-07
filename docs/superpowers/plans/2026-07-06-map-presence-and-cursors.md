@@ -1218,3 +1218,14 @@ If a step above fails, return to the relevant task, fix it, re-run that task's o
 git add -A
 git commit -m "fix: address issues found in map presence/cursor end-to-end verification"
 ```
+
+---
+
+### Post-launch polish (from the user's own live two-browser testing)
+
+After the Pusher-client and vue-tippy fixes above, live testing surfaced four small UX requests, all applied directly:
+
+1. **Correlate avatars with cursor colours.** `colourForUser()` was private to `useMapPresence.js`, used only for cursor dots. Exported it and applied the same colour as a 3px border on each avatar span in `MapExplorer.vue` (`:style="{ border: '3px solid ' + colourForUser(user.id) }"`), so a viewer can match a moving cursor to the person in the who's-watching list.
+2. **Tooltips weren't rendering as HTML.** `presenceTooltip()`/the error tooltip both pass HTML strings to `v-tippy`, but the map explorer's `vue-tippy` registration (`resources/js/maps/explore.js`) never set `allowHTML`/`interactive` defaults — matching `whiteboards.js`'s own registration (`app.use(VueTippy, { defaultProps: { interactive: true, allowHTML: true } })`) fixed both the raw-HTML-as-text issue and made the tooltip's profile link actually clickable.
+3. **Hide the who's-watching list when you're the only one present**, not just for solo campaigns. Added `activeUsers.length > 1` to the avatar list's `v-if`, alongside the existing `show_presence` check — a multi-member campaign where you're currently the sole viewer no longer shows just your own bubble.
+4. **Cursor dots became SVG arrows.** Replaced `L.circleMarker(...)` in `LeafletCanvas.vue`'s `buildCursors()` with `L.marker(...)` using a small inline-SVG arrow/pointer shape via `L.divIcon` (colour-filled per user, matching `pinIcon()`'s existing divIcon pattern for regular markers), plus a `.remote-cursor-icon { background: transparent; border: none; }` CSS override to strip Leaflet's default icon chrome.

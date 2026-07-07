@@ -6,6 +6,6 @@ import VueTippy from 'vue-tippy'
 import MapExplorer from '../components/maps/MapExplorer.vue'
 
 const app = createApp({})
-app.use(VueTippy, { theme: 'kanka' })
+app.use(VueTippy, { theme: 'kanka', defaultProps: { interactive: true, allowHTML: true } })
 app.component('map-explorer', MapExplorer)
 app.mount('#map-explorer')

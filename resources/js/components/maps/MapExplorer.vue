@@ -59,12 +59,13 @@
                 <p class="text-sm text-neutral-content">{{ markersCountText }}</p>
             </div>
 
-            <div class="flex gap-1 overflow-hidden" v-if="data.interactive?.show_presence">
+            <div class="flex gap-1 overflow-hidden" v-if="data.interactive?.show_presence && activeUsers.length > 1">
                 <span
                     v-for="user in activeUsers"
                     :key="user.id"
                     :aria-label="user.name"
                     class="bg-base-200 text-neutral-content rounded-full h-8 w-8 overflow-hidden flex items-center justify-center cursor-pointer flex-none"
+                    :style="{ border: '3px solid ' + colourForUser(user.id) }"
                     v-tippy="presenceTooltip(user)"
                 >
                     <img :src="user.image" v-if="user.image" class="w-8 h-8" />
@@ -168,7 +169,7 @@
 <script setup>
 import { ref, computed, onMounted, onBeforeUnmount, nextTick } from "vue";
 import tippy from "tippy.js";
-import { useMapPresence } from "../../composables/useMapPresence.js";
+import { colourForUser, useMapPresence } from "../../composables/useMapPresence.js";
 import { centroid } from "../../maps/polygon.js";
 import DetailPanel from "./DetailPanel.vue";
 import LeafletCanvas from "./LeafletCanvas.vue";

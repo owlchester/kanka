@@ -68,6 +68,17 @@ function buildGrid() {
 
 let cursorLayer = null
 
+function cursorIcon(colour) {
+    return L.divIcon({
+        html: `<svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="1,1 1,15 5,11.5 7.5,17 10,16 7.5,10.5 13,10.5" fill="${colour}" stroke="white" stroke-width="1.5" stroke-linejoin="round" />
+        </svg>`,
+        iconSize: [18, 18],
+        iconAnchor: [1, 1],
+        className: 'remote-cursor-icon',
+    })
+}
+
 function buildCursors() {
     if (cursorLayer) {
         leafletMap.removeLayer(cursorLayer)
@@ -76,11 +87,8 @@ function buildCursors() {
     cursorLayer = L.layerGroup()
 
     Object.values(props.remoteCursors).forEach((cursor) => {
-        L.circleMarker([cursor.lat, cursor.lng], {
-            radius: 6,
-            color: cursor.colour,
-            fillColor: cursor.colour,
-            fillOpacity: 0.8,
+        L.marker([cursor.lat, cursor.lng], {
+            icon: cursorIcon(cursor.colour),
             interactive: false,
         }).addTo(cursorLayer)
     })
@@ -735,6 +743,11 @@ onBeforeUnmount(() => {
 .marker-draft .marker-pin {
     outline: 2px dashed white;
     outline-offset: 2px;
+}
+
+.remote-cursor-icon {
+    background: transparent;
+    border: none;
 }
 
 .leaflet-ruler {

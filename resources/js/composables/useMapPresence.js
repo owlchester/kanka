@@ -10,7 +10,7 @@ window.Pusher = Pusher
 
 const CURSOR_EVENT = 'cursor'
 
-function colourForUser(userId) {
+export function colourForUser(userId) {
     const hue = (Number(userId) * 137.508) % 360
 
     return `hsl(${hue}, 70%, 50%)`
