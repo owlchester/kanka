@@ -10,6 +10,7 @@ use App\Models\MapGroup;
 use App\Models\MapLayer;
 use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Support\Facades\Event;
 
 it('broadcasts on the public presence channel by default', function () {
     $this->asUser()->withCampaign();
@@ -109,4 +110,63 @@ it('excludes non-explorable layers on both channels regardless of visibility', f
 
     expect($publicLayerIds)->not->toContain($notExplorable->id);
     expect($adminLayerIds)->not->toContain($notExplorable->id);
+});
+
+it('dispatches both ContentsChanged variants when a group is created', function () {
+    Event::fake([ContentsChanged::class]);
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    MapGroup::factory()->create(['map_id' => $map->id]);
+
+    Event::assertDispatched(ContentsChanged::class, fn ($event) => $event->map->id === $map->id && ! $event->includeRestricted);
+    Event::assertDispatched(ContentsChanged::class, fn ($event) => $event->map->id === $map->id && $event->includeRestricted);
+});
+
+it('dispatches both ContentsChanged variants when a group is updated', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $group = MapGroup::factory()->create(['map_id' => $map->id]);
+
+    Event::fake([ContentsChanged::class]);
+    $group->update(['name' => 'Renamed']);
+
+    Event::assertDispatchedTimes(ContentsChanged::class, 2);
+});
+
+it('dispatches both ContentsChanged variants when a group is deleted', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $group = MapGroup::factory()->create(['map_id' => $map->id]);
+
+    Event::fake([ContentsChanged::class]);
+    $group->delete();
+
+    Event::assertDispatchedTimes(ContentsChanged::class, 2);
+});
+
+it('does not re-run reorder() when a non-position field is updated', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $group1 = MapGroup::factory()->create(['map_id' => $map->id]);
+    $group2 = MapGroup::factory()->create(['map_id' => $map->id]);
+
+    $group1->updateQuietly(['position' => 99]);
+
+    $group2->update(['name' => 'Renamed']);
+
+    expect($group1->fresh()->position)->toBe(99);
+});
+
+it('re-runs reorder() when position is updated', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $group1 = MapGroup::factory()->create(['map_id' => $map->id]);
+    $group2 = MapGroup::factory()->create(['map_id' => $map->id]);
+
+    $group1->updateQuietly(['position' => 99]);
+
+    $group2->update(['position' => 50]);
+
+    expect($group1->fresh()->position)->not->toBe(99);
 });

@@ -2,6 +2,8 @@
 
 namespace App\Observers;
 
+use App\Events\Maps\ContentsChanged;
+use App\Models\Map;
 use App\Models\MapGroup;
 
 class MapGroupObserver
@@ -22,14 +24,34 @@ class MapGroupObserver
         }
     }
 
-    public function deleted(MapGroup $mapGroup)
+    public function saved(MapGroup $mapGroup)
     {
         $mapGroup->map->touchSilently();
     }
 
-    public function saved(MapGroup $mapGroup)
+    public function created(MapGroup $mapGroup): void
     {
         $this->reorder($mapGroup);
+        $this->broadcastContents($mapGroup->map);
+    }
+
+    public function updated(MapGroup $mapGroup): void
+    {
+        if ($mapGroup->wasChanged('position')) {
+            $this->reorder($mapGroup);
+        }
+        $this->broadcastContents($mapGroup->map);
+    }
+
+    public function deleted(MapGroup $mapGroup)
+    {
         $mapGroup->map->touchSilently();
+        $this->broadcastContents($mapGroup->map);
+    }
+
+    protected function broadcastContents(Map $map): void
+    {
+        ContentsChanged::dispatch($map);
+        ContentsChanged::dispatch($map, true);
     }
 }
