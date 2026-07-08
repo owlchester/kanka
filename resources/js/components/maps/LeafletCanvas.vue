@@ -162,27 +162,59 @@ function contrastTextColour(hex) {
     return relativeLuminance(hex) > 0.179 ? '#000' : '#fff'
 }
 
-function pinIcon(pin) {
-    const size = pin.pin_size || 40
-    let inner = '<i class="fa-solid fa-map-pin"></i>'
-    let style = `--pin-size: ${size}px; background-color: ${pin.colour || '#ccc'};`
+const DEFAULT_MARKER_SIZE = 24
+const LEGACY_MARKER_SIZE = 40
+const DEFAULT_PIN_ICON = 'fa-solid fa-map-pin'
 
-    if (pin.icon?.type === 'fa') {
-        inner = `<i class="${pin.icon.value}" aria-hidden="true"></i>`
-    } else if (pin.icon?.type === 'html' || pin.icon?.type === 'svg') {
-        inner = pin.icon.value
-    } else if (pin.icon?.type === 'avatar') {
-        inner = ''
-        // The avatar image is painted on ::after (counter-rotated), not this div (rotated -45deg),
-        // so the image itself renders upright instead of tilted.
-        style = `--pin-size: ${size}px; --pin-avatar: url('${pin.icon.value}');`
+function markerSize(pin) {
+    const configured = pin.pin_size || LEGACY_MARKER_SIZE
+
+    return Math.round(configured * (DEFAULT_MARKER_SIZE / LEGACY_MARKER_SIZE))
+}
+
+function isDefaultPinIcon(icon) {
+    return !icon || (icon.type === 'fa' && icon.value === DEFAULT_PIN_ICON)
+}
+
+function pinIcon(pin) {
+    const size = markerSize(pin)
+    const colour = pin.colour || '#ccc'
+    const icon = pin.icon
+
+    if (icon?.type === 'avatar') {
+        return L.divIcon({
+            html: `<img src="${icon.value}" class="marker-avatar" style="width: ${size}px; height: ${size}px; --pin-colour: ${colour};" />`,
+            iconSize: [size, size],
+            iconAnchor: [size / 2, size / 2],
+            popupAnchor: [0, -(size / 2)],
+            className: `marker marker-${pin.id}`,
+        })
     }
 
+    if (icon?.type === 'svg') {
+        return L.divIcon({
+            html: `<img src="${icon.value}" class="marker-image" style="width: ${size}px; height: ${size}px; --pin-colour: ${colour};" />`,
+            iconSize: [size, size],
+            iconAnchor: [size / 2, size / 2],
+            popupAnchor: [0, -(size / 2)],
+            className: `marker marker-${pin.id}`,
+        })
+    }
+
+    const isPin = isDefaultPinIcon(icon)
+    const inner = icon?.type === 'html'
+        ? icon.value
+        : `<i class="${isPin ? 'fa-solid fa-location-pin' : (icon?.value || 'fa-solid fa-location-pin')}" aria-hidden="true"></i>`
+
+    // The default pin keeps its tip anchored to the point, like a map pin; every
+    // other shape/custom icon is anchored on its center, like a generic marker.
+    const anchor = isPin ? size : size / 2
+
     return L.divIcon({
-        html: `<div class="marker-pin" style="${style}"></div>${inner}`,
+        html: `<div class="marker-icon" style="--pin-colour: ${colour}; color: ${colour}; font-size: ${size}px;">${inner}</div>`,
         iconSize: [size, size],
-        iconAnchor: [size / 2, size + size / 4],
-        popupAnchor: [0, -(size + size / 4)],
+        iconAnchor: [size / 2, anchor],
+        popupAnchor: [0, -anchor],
         className: `marker marker-${pin.id}`,
     })
 }
@@ -707,39 +739,32 @@ onBeforeUnmount(() => {
     text-align: center;
 }
 
-.marker-pin {
-    width: var(--pin-size, 40px);
-    height: var(--pin-size, 40px);
-    border-radius: 50% 50% 50% 0;
+.marker-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
-    transform: rotate(-45deg);
-    left: 50%;
-    top: 50%;
-    margin: calc(var(--pin-size, 40px) / -2) 0 0 calc(var(--pin-size, 40px) / -2);
-    box-shadow: 0 6px 6px rgba(50, 50, 93, 0.31), 0 1px 3px rgba(0, 0, 0, 0.08);
-}
-
-.marker-pin::after {
-    content: '';
-    width: calc(var(--pin-size, 40px) - 4px);
-    height: calc(var(--pin-size, 40px) - 4px);
-    margin: 2px 0 0 calc((var(--pin-size, 40px) - 4px) / -2);
-    position: absolute;
-    border-radius: 50%;
-    background-image: var(--pin-avatar, none);
-    background-position: 50% 50%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    transform: rotate(45deg);
-}
-
-.marker i {
-    font-size: 1.25rem;
-    margin: 0;
-    position: absolute !important;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    line-height: 1;
+    -webkit-text-stroke: 1px hsl(var(--bc));
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
+}
+
+.marker-avatar,
+.marker-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
+}
+
+.marker-avatar {
+    border-radius: 50%;
+    border: 2px solid hsl(var(--bc));
 }
 
 .map-label {
@@ -748,9 +773,12 @@ onBeforeUnmount(() => {
     color: var(--label-text-colour, #222);
 }
 
-.marker-draft .marker-pin {
-    outline: 2px dashed white;
-    outline-offset: 2px;
+.marker-draft .marker-icon,
+.marker-draft .marker-avatar,
+.marker-draft .marker-image {
+    outline: 2px dashed var(--pin-colour, white);
+    outline-offset: 3px;
+    border-radius: 9999px;
 }
 
 .remote-cursor-icon {
