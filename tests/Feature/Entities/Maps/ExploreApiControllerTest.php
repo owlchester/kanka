@@ -156,6 +156,7 @@ it('exposes a map\'s raw settings values and edit urls for the quick-settings pa
         'center_x' => 12.5,
         'center_y' => 34.5,
         'center_marker_id' => null,
+        'legacy_pins' => false,
     ]);
     expect($response->json('map.settings_url'))->toBe(route('entities.map-settings.update', [1, $map->entity->id]));
     expect($response->json('map.show_url'))->toBe(route('entities.show', [1, $map->entity->id]));
@@ -178,6 +179,7 @@ it('returns null settings values for a map with none configured', function () {
         'center_x' => null,
         'center_y' => null,
         'center_marker_id' => null,
+        'legacy_pins' => false,
     ]);
 });
 
