@@ -142,6 +142,11 @@ class MapLayer extends Model
         return $this->image || ! empty($this->image_path);
     }
 
+    public function isExplorable(): bool
+    {
+        return $this->typeName() === 'overlay_shown' && $this->hasImage();
+    }
+
     public function getEntryForEditionAttribute()
     {
         return Mentions::parseForEdit($this);

@@ -34,7 +34,7 @@ class ExploreApiService
             'map' => new MapResource($this->map)->campaign($this->campaign),
             'layers' => LayerResource::collection(
                 $this->map->layers
-                    ->filter(fn ($layer) => $layer->typeName() === 'overlay_shown' && $layer->hasImage())
+                    ->filter(fn ($layer) => $layer->isExplorable())
                     ->values()
             ),
             'groups' => GroupResource::collection($this->map->groups),
