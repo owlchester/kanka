@@ -21,6 +21,7 @@ const props = defineProps({
     previewCenter: { type: Array, default: null },
     canEdit: { type: Boolean, default: false },
     remoteCursors: { type: Object, default: () => ({}) },
+    legacyPins: { type: Boolean, default: false },
     defaultPolygonStyle: {
         type: Object,
         default: () => ({ colour: '#93c5fd', opacity: 50, stroke: '#93c5fd', 'stroke-width': 1 }),
@@ -176,7 +177,32 @@ function isDefaultPinIcon(icon) {
     return !icon || (icon.type === 'fa' && icon.value === DEFAULT_PIN_ICON)
 }
 
-function pinIcon(pin) {
+function legacyPinIcon(pin) {
+    const size = pin.pin_size || LEGACY_MARKER_SIZE
+    let inner = `<i class="${DEFAULT_PIN_ICON}"></i>`
+    let style = `--pin-size: ${size}px; background-color: ${pin.colour || '#ccc'};`
+
+    if (pin.icon?.type === 'fa') {
+        inner = `<i class="${pin.icon.value}" aria-hidden="true"></i>`
+    } else if (pin.icon?.type === 'html' || pin.icon?.type === 'svg') {
+        inner = pin.icon.value
+    } else if (pin.icon?.type === 'avatar') {
+        inner = ''
+        // The avatar image is painted on ::after (counter-rotated), not this div (rotated -45deg),
+        // so the image itself renders upright instead of tilted.
+        style = `--pin-size: ${size}px; --pin-avatar: url('${pin.icon.value}');`
+    }
+
+    return L.divIcon({
+        html: `<div class="marker-pin" style="${style}"></div>${inner}`,
+        iconSize: [size, size],
+        iconAnchor: [size / 2, size + size / 4],
+        popupAnchor: [0, -(size + size / 4)],
+        className: `marker marker-${pin.id}`,
+    })
+}
+
+function modernPinIcon(pin) {
     const size = markerSize(pin)
     const colour = pin.colour || '#ccc'
     const icon = pin.icon
@@ -217,6 +243,10 @@ function pinIcon(pin) {
         popupAnchor: [0, -anchor],
         className: `marker marker-${pin.id}`,
     })
+}
+
+function pinIcon(pin) {
+    return props.legacyPins ? legacyPinIcon(pin) : modernPinIcon(pin)
 }
 
 function movePinTo(pin, layer) {
@@ -548,6 +578,12 @@ watch(() => props.pins, () => {
     }
 })
 
+watch(() => props.legacyPins, () => {
+    if (leafletMap) {
+        buildPins()
+    }
+})
+
 watch(() => props.map.settings?.grid, () => {
     if (leafletMap) {
         buildGrid()
@@ -739,6 +775,41 @@ onBeforeUnmount(() => {
     text-align: center;
 }
 
+.marker-pin {
+    width: var(--pin-size, 40px);
+    height: var(--pin-size, 40px);
+    border-radius: 50% 50% 50% 0;
+    position: absolute;
+    transform: rotate(-45deg);
+    left: 50%;
+    top: 50%;
+    margin: calc(var(--pin-size, 40px) / -2) 0 0 calc(var(--pin-size, 40px) / -2);
+    box-shadow: 0 6px 6px rgba(50, 50, 93, 0.31), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.marker-pin::after {
+    content: '';
+    width: calc(var(--pin-size, 40px) - 4px);
+    height: calc(var(--pin-size, 40px) - 4px);
+    margin: 2px 0 0 calc((var(--pin-size, 40px) - 4px) / -2);
+    position: absolute;
+    border-radius: 50%;
+    background-image: var(--pin-avatar, none);
+    background-position: 50% 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transform: rotate(45deg);
+}
+
+.marker-pin i {
+    font-size: 1.25rem;
+    margin: 0;
+    position: absolute !important;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .marker-icon {
     display: flex;
     align-items: center;
@@ -779,6 +850,11 @@ onBeforeUnmount(() => {
     outline: 2px dashed var(--pin-colour, white);
     outline-offset: 3px;
     border-radius: 9999px;
+}
+
+.marker-draft .marker-pin {
+    outline: 2px dashed white;
+    outline-offset: 2px;
 }
 
 .remote-cursor-icon {
