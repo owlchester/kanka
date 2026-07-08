@@ -100,6 +100,7 @@
             :preview-center="previewCenter"
             :can-edit="canEdit"
             :remote-cursors="remoteCursors"
+            :legacy-pins="data.map.settings?.legacy_pins"
             :default-polygon-style="defaultPolygonStyle()"
             @pin-click="selectPin"
             @map-click="handleMapClick"
