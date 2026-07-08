@@ -16,7 +16,7 @@ export function colourForUser(userId) {
     return `hsl(${hue}, 70%, 50%)`
 }
 
-export function useMapPresence(getInteractive, getI18n) {
+export function useMapPresence(getInteractive, getI18n, onMapUpdated) {
     const activeUsers = ref([])
     const remoteCursors = ref({})
     const error = ref(null)
@@ -79,6 +79,10 @@ export function useMapPresence(getInteractive, getI18n) {
                     colour: colourForUser(payload.userId),
                 },
             }
+        })
+
+        channel.listen('.MapUpdated', (payload) => {
+            onMapUpdated?.(payload.map)
         })
 
         channel.error(() => {

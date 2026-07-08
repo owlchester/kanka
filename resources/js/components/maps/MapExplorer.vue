@@ -213,6 +213,7 @@ const {
 } = useMapPresence(
     () => data.value.interactive,
     () => data.value.i18n?.presence,
+    handleRemoteMapUpdate,
 );
 
 const markersCountText = computed(() => {
@@ -283,6 +284,10 @@ function handleMeasureChange(active) {
 }
 
 function handleSettingsSaved(map) {
+    data.value.map = map;
+}
+
+function handleRemoteMapUpdate(map) {
     data.value.map = map;
 }
 
