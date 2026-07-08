@@ -47,6 +47,14 @@
                 <input v-model.number="form.distance_measure" type="number" min="0.001" max="100.99" step="0.0001" class="input input-bordered w-full normal-case text-sm font-normal" />
             </label>
 
+            <label class="flex items-start gap-2 text-xs font-semibold uppercase tracking-wide text-neutral-content">
+                <input v-model="form.legacy_pins" type="checkbox" class="checkbox checkbox-sm mt-0.5" />
+                <span class="flex flex-col gap-1">
+                    {{ i18n.legacy_pins }}
+                    <span class="normal-case font-normal text-neutral-content/70">{{ i18n.legacy_pins_help }}</span>
+                </span>
+            </label>
+
             <div class="flex flex-col gap-2">
                 <span class="text-xs font-semibold uppercase tracking-wide text-neutral-content">{{ i18n.center }}</span>
 
@@ -128,6 +136,7 @@ const form = reactive({
     center_x: null,
     center_y: null,
     center_marker_id: null,
+    legacy_pins: false,
 });
 
 const centerMode = ref("coordinates");
@@ -149,6 +158,7 @@ watch(
         form.center_x = settings.center_x;
         form.center_y = settings.center_y;
         form.center_marker_id = settings.center_marker_id;
+        form.legacy_pins = settings.legacy_pins ?? false;
         centerMode.value = settings.center_marker_id ? "marker" : "coordinates";
         error.value = null;
     },
@@ -198,6 +208,7 @@ async function save() {
             center_x: centerMode.value === "coordinates" ? form.center_x : null,
             center_y: centerMode.value === "coordinates" ? form.center_y : null,
             center_marker_id: centerMode.value === "marker" ? form.center_marker_id : null,
+            legacy_pins: form.legacy_pins,
         });
         emit("saved", res.data);
         emit("close");
