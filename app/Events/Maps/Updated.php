@@ -9,10 +9,11 @@ use Illuminate\Broadcasting\InteractsWithBroadcasting;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
+use Illuminate\Contracts\Broadcasting\ShouldRescue;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class Updated implements ShouldBroadcastNow
+class Updated implements ShouldBroadcastNow, ShouldRescue
 {
     use Dispatchable;
     use InteractsWithBroadcasting;
