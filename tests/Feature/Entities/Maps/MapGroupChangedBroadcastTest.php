@@ -68,6 +68,17 @@ it('dispatches GroupChanged with action updated when a visible group is updated'
     Event::assertDispatched(GroupChanged::class, fn ($event) => $event->action === 'updated' && $event->group->is($group));
 });
 
+it('dispatches GroupChanged exactly once when a visible group is updated', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $group = MapGroup::factory()->create(['map_id' => $map->id, 'visibility_id' => Visibility::All]);
+
+    Event::fake([GroupChanged::class]);
+    $group->update(['name' => 'Renamed']);
+
+    Event::assertDispatchedTimes(GroupChanged::class, 1);
+});
+
 it('dispatches GroupChanged with action deleted when a visible group is deleted', function () {
     $this->asUser()->withCampaign();
     $map = Map::factory()->create(['campaign_id' => 1]);

@@ -34,10 +34,14 @@ class MapGroupObserver
     {
         $this->reorder($mapGroup);
         $mapGroup->map->touchSilently();
-        $this->broadcastChange($mapGroup, $mapGroup->wasRecentlyCreated ? 'created' : 'updated');
     }
 
-    public function updated(MapGroup $mapGroup)
+    public function created(MapGroup $mapGroup): void
+    {
+        $this->broadcastChange($mapGroup, 'created');
+    }
+
+    public function updated(MapGroup $mapGroup): void
     {
         $this->broadcastChange($mapGroup, 'updated');
     }
