@@ -2,8 +2,6 @@
 
 namespace App\Observers;
 
-use App\Enums\Visibility;
-use App\Events\Maps\GroupChanged;
 use App\Models\MapGroup;
 
 class MapGroupObserver
@@ -27,31 +25,11 @@ class MapGroupObserver
     public function deleted(MapGroup $mapGroup)
     {
         $mapGroup->map->touchSilently();
-        $this->broadcastChange($mapGroup, 'deleted');
     }
 
     public function saved(MapGroup $mapGroup)
     {
         $this->reorder($mapGroup);
         $mapGroup->map->touchSilently();
-    }
-
-    public function created(MapGroup $mapGroup): void
-    {
-        $this->broadcastChange($mapGroup, 'created');
-    }
-
-    public function updated(MapGroup $mapGroup): void
-    {
-        $this->broadcastChange($mapGroup, 'updated');
-    }
-
-    protected function broadcastChange(MapGroup $mapGroup, string $action): void
-    {
-        if (! in_array($mapGroup->visibility_id, [Visibility::All, Visibility::Member], true)) {
-            return;
-        }
-
-        GroupChanged::dispatch($mapGroup, $action);
     }
 }

@@ -213,11 +213,7 @@ const {
 } = useMapPresence(
     () => data.value.interactive,
     () => data.value.i18n?.presence,
-    {
-        onMapUpdated: handleRemoteMapUpdate,
-        onGroupChanged: handleRemoteGroupChanged,
-        onLayerChanged: handleRemoteLayerChanged,
-    },
+    handleRemoteMapUpdate,
 );
 
 const markersCountText = computed(() => {
@@ -293,34 +289,6 @@ function handleSettingsSaved(map) {
 
 function handleRemoteMapUpdate(map) {
     data.value.map = map;
-}
-
-function handleRemoteGroupChanged({ action, group, id }) {
-    if (action === 'deleted') {
-        data.value.groups = data.value.groups.filter((g) => g.id !== id);
-        return;
-    }
-
-    const index = data.value.groups.findIndex((g) => g.id === id);
-    if (index === -1) {
-        data.value.groups = [...data.value.groups, group];
-    } else {
-        data.value.groups = data.value.groups.map((g) => (g.id === id ? group : g));
-    }
-}
-
-function handleRemoteLayerChanged({ action, layer, id }) {
-    if (action === 'deleted') {
-        data.value.layers = data.value.layers.filter((l) => l.id !== id);
-        return;
-    }
-
-    const index = data.value.layers.findIndex((l) => l.id === id);
-    if (index === -1) {
-        data.value.layers = [...data.value.layers, layer];
-    } else {
-        data.value.layers = data.value.layers.map((l) => (l.id === id ? layer : l));
-    }
 }
 
 function defaultColour() {
