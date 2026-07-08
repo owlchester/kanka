@@ -170,3 +170,62 @@ it('re-runs reorder() when position is updated', function () {
 
     expect($group1->fresh()->position)->not->toBe(99);
 });
+
+it('dispatches both ContentsChanged variants when a layer is created', function () {
+    Event::fake([ContentsChanged::class]);
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    MapLayer::factory()->create(['map_id' => $map->id]);
+
+    Event::assertDispatched(ContentsChanged::class, fn ($event) => $event->map->id === $map->id && ! $event->includeRestricted);
+    Event::assertDispatched(ContentsChanged::class, fn ($event) => $event->map->id === $map->id && $event->includeRestricted);
+});
+
+it('dispatches both ContentsChanged variants when a layer is updated', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $layer = MapLayer::factory()->create(['map_id' => $map->id]);
+
+    Event::fake([ContentsChanged::class]);
+    $layer->update(['name' => 'Renamed']);
+
+    Event::assertDispatchedTimes(ContentsChanged::class, 2);
+});
+
+it('dispatches both ContentsChanged variants when a layer is deleted', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $layer = MapLayer::factory()->create(['map_id' => $map->id]);
+
+    Event::fake([ContentsChanged::class]);
+    $layer->delete();
+
+    Event::assertDispatchedTimes(ContentsChanged::class, 2);
+});
+
+it('does not re-run reorder() when a non-position layer field is updated', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $layer1 = MapLayer::factory()->create(['map_id' => $map->id]);
+    $layer2 = MapLayer::factory()->create(['map_id' => $map->id]);
+
+    $layer1->updateQuietly(['position' => 99]);
+
+    $layer2->update(['name' => 'Renamed']);
+
+    expect($layer1->fresh()->position)->toBe(99);
+});
+
+it('re-runs reorder() when layer position is updated', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $layer1 = MapLayer::factory()->create(['map_id' => $map->id]);
+    $layer2 = MapLayer::factory()->create(['map_id' => $map->id]);
+
+    $layer1->updateQuietly(['position' => 99]);
+
+    $layer2->update(['position' => 50]);
+
+    expect($layer1->fresh()->position)->not->toBe(99);
+});
