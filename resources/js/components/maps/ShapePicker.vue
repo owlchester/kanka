@@ -4,10 +4,10 @@
 
         <input
             v-if="customMode"
+            ref="customInputRef"
             v-model="customText"
             type="text"
             class="input input-bordered w-full"
-            autofocus
             @keydown.tab="commitCustom"
             @keydown.enter="commitCustom"
             @blur="commitCustom"
@@ -40,7 +40,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
+import { nextTick, ref, watch } from "vue";
 
 const props = defineProps({
     pin: { type: Object, required: true },
@@ -63,6 +63,7 @@ const shapes = [
 const customMode = ref(false);
 const customText = ref("");
 const showPremiumError = ref(false);
+const customInputRef = ref(null);
 
 watch(() => props.pin, (newPin, oldPin) => {
     if (newPin && !oldPin) {
@@ -91,6 +92,8 @@ function clickCustom() {
     showPremiumError.value = false;
     customText.value = props.pin.customIcon || "";
     customMode.value = true;
+
+    nextTick(() => customInputRef.value?.focus());
 }
 
 function commitCustom() {
