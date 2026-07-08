@@ -213,7 +213,11 @@ const {
 } = useMapPresence(
     () => data.value.interactive,
     () => data.value.i18n?.presence,
-    handleRemoteMapUpdate,
+    {
+        canEdit: props.canEdit,
+        onMapUpdated: handleRemoteMapUpdate,
+        onContentsChanged: handleContentsChanged,
+    },
 );
 
 const markersCountText = computed(() => {
@@ -289,6 +293,11 @@ function handleSettingsSaved(map) {
 
 function handleRemoteMapUpdate(map) {
     data.value.map = map;
+}
+
+function handleContentsChanged({ groups, layers }) {
+    data.value.groups = groups;
+    data.value.layers = layers;
 }
 
 function defaultColour() {

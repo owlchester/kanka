@@ -16,7 +16,7 @@ export function colourForUser(userId) {
     return `hsl(${hue}, 70%, 50%)`
 }
 
-export function useMapPresence(getInteractive, getI18n, onMapUpdated) {
+export function useMapPresence(getInteractive, getI18n, { canEdit, onMapUpdated, onContentsChanged } = {}) {
     const activeUsers = ref([])
     const remoteCursors = ref({})
     const error = ref(null)
@@ -24,6 +24,7 @@ export function useMapPresence(getInteractive, getI18n, onMapUpdated) {
     let echo = null
     let channel = null
     let connectedChannelName = null
+    let adminChannelName = null
 
     function connect(interactive) {
         if (!interactive || channel) {
@@ -85,6 +86,18 @@ export function useMapPresence(getInteractive, getI18n, onMapUpdated) {
             onMapUpdated?.(payload.map)
         })
 
+        if (canEdit) {
+            adminChannelName = interactive.channel + '.admin'
+            const adminChannel = echo.private(adminChannelName)
+            adminChannel.listen('.MapContentsChanged', (payload) => {
+                onContentsChanged?.(payload)
+            })
+        } else {
+            channel.listen('.MapContentsChanged', (payload) => {
+                onContentsChanged?.(payload)
+            })
+        }
+
         channel.error(() => {
             error.value = i18n.error_disconnected
         })
@@ -109,6 +122,9 @@ export function useMapPresence(getInteractive, getI18n, onMapUpdated) {
     onBeforeUnmount(() => {
         if (echo && connectedChannelName) {
             echo.leave(connectedChannelName)
+        }
+        if (echo && adminChannelName) {
+            echo.leave(adminChannelName)
         }
     })
 
