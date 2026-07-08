@@ -45,3 +45,12 @@ Broadcast::channel('map.{id}', function (User $user, $id) {
 
     return false;
 });
+
+Broadcast::channel('map.{id}.admin', function (User $user, $id) {
+    $map = Map::withInvisible()->findOrFail($id);
+    $entity = $map->entity()->withInvisible()->firstOrFail();
+
+    EntityPermission::campaign($entity->campaign);
+
+    return $user->can('member', $entity->campaign) && $user->can('update', $entity);
+});

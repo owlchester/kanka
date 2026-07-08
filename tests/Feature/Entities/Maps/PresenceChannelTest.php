@@ -62,3 +62,38 @@ it('denies a user who is not a member of the map\'s campaign', function () {
         'socket_id' => '1234.1234',
     ])->assertStatus(403);
 });
+
+it('authorizes a campaign editor to join the map admin channel', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $this->postJson('/broadcasting/auth', [
+        'channel_name' => 'private-map.' . $map->id . '.admin',
+        'socket_id' => '1234.1234',
+    ])->assertStatus(200);
+});
+
+it('denies a player from joining the map admin channel', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $this->asPlayer();
+
+    $this->postJson('/broadcasting/auth', [
+        'channel_name' => 'private-map.' . $map->id . '.admin',
+        'socket_id' => '1234.1234',
+    ])->assertStatus(403);
+});
+
+it('denies a user who is not a member of the map\'s campaign from the admin channel', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $outsider = User::factory()->create();
+    $this->actingAs($outsider);
+
+    $this->postJson('/broadcasting/auth', [
+        'channel_name' => 'private-map.' . $map->id . '.admin',
+        'socket_id' => '1234.1234',
+    ])->assertStatus(403);
+});
