@@ -65,6 +65,7 @@ class MapResource extends JsonResource
                 'center_x' => $map->center_x !== null ? (float) $map->center_x : null,
                 'center_y' => $map->center_y !== null ? (float) $map->center_y : null,
                 'center_marker_id' => $map->center_marker_id,
+                'legacy_pins' => (bool) ($map->config['legacy_pins'] ?? false),
             ],
             'settings_url' => route('entities.map-settings.update', [$this->campaign->id, $map->entity->id]),
             'show_url' => route('entities.show', [$this->campaign->id, $map->entity->id]),

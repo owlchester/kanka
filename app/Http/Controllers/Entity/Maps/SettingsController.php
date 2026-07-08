@@ -38,7 +38,10 @@ class SettingsController extends Controller
         if (array_key_exists('distance_name', $data)) {
             $config['distance_name'] = $data['distance_name'];
         }
-        unset($data['distance_measure'], $data['distance_name']);
+        if (array_key_exists('legacy_pins', $data)) {
+            $config['legacy_pins'] = $data['legacy_pins'];
+        }
+        unset($data['distance_measure'], $data['distance_name'], $data['legacy_pins']);
         $data['config'] = $config;
 
         if (array_key_exists('center_marker_id', $data) && ! empty($data['center_marker_id'])) {

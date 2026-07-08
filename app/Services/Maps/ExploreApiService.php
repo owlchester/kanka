@@ -172,6 +172,8 @@ class ExploreApiService
                 'pick_on_map' => __('maps/explorer.settings.pick_on_map'),
                 'picking' => __('maps/explorer.settings.picking'),
                 'no_marker' => __('maps/explorer.settings.no_marker'),
+                'legacy_pins' => __('maps/explorer.settings.legacy_pins'),
+                'legacy_pins_help' => __('maps/explorer.settings.legacy_pins_help'),
                 'save' => __('maps/explorer.settings.save'),
                 'error_save' => __('maps/explorer.settings.error_save'),
             ],

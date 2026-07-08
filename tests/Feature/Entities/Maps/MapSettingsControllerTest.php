@@ -139,3 +139,28 @@ it('404s for a non-map entity', function () {
         'grid' => 50,
     ])->assertStatus(404);
 });
+
+it('persists and returns legacy_pins', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $response = $this->patchJson(route('entities.map-settings.update', [1, $map->entity]), [
+        'legacy_pins' => true,
+    ])->assertStatus(200);
+
+    expect($response->json('settings.legacy_pins'))->toBeTrue();
+
+    $map->refresh();
+    expect($map->config)->toBe(['legacy_pins' => true]);
+});
+
+it('defaults legacy_pins to false when never set', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $response = $this->patchJson(route('entities.map-settings.update', [1, $map->entity]), [
+        'grid' => 50,
+    ])->assertStatus(200);
+
+    expect($response->json('settings.legacy_pins'))->toBeFalse();
+});

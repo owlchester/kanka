@@ -45,6 +45,7 @@ class UpdateMapSettings extends FormRequest
                     $query->where('map_id', $entity?->child?->id);
                 }),
             ],
+            'legacy_pins' => 'sometimes|boolean',
         ];
 
         return $this->clean($rules);

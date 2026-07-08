@@ -80,6 +80,8 @@ return [
         'pick_on_map'           => 'Pick center on map',
         'picking'               => 'Click the map to set the center...',
         'no_marker'             => 'None selected',
+        'legacy_pins'           => 'Use legacy pin style',
+        'legacy_pins_help'      => 'Show pins with the older colour-teardrop look instead of the newer compact icons. Other people viewing this map will see the change after they reload the page.',
         'save'                  => 'Save',
         'error_save'            => 'Unable to save these settings.',
     ],
