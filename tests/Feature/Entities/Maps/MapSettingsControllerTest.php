@@ -1,8 +1,10 @@
 <?php
 
+use App\Events\Maps\Updated;
 use App\Models\Character;
 use App\Models\Map;
 use App\Models\MapMarker;
+use Illuminate\Support\Facades\Event;
 
 it('updates a map\'s quick settings and returns the updated MapResource', function () {
     $this->asUser()->withCampaign();
@@ -163,4 +165,16 @@ it('defaults legacy_pins to false when never set', function () {
     ])->assertStatus(200);
 
     expect($response->json('settings.legacy_pins'))->toBeFalse();
+});
+
+it('dispatches Maps\Updated when settings are saved', function () {
+    Event::fake([Updated::class]);
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $this->patchJson(route('entities.map-settings.update', [1, $map->entity]), [
+        'grid' => 77,
+    ])->assertStatus(200);
+
+    Event::assertDispatched(Updated::class, fn ($event) => $event->map->id === $map->id);
 });
