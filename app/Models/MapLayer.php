@@ -134,7 +134,7 @@ class MapLayer extends Model
      */
     public function patch(array $data): bool
     {
-        return $this->updateQuietly($data);
+        return $this->update($data);
     }
 
     public function hasImage(): bool

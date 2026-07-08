@@ -229,3 +229,27 @@ it('re-runs reorder() when layer position is updated', function () {
 
     expect($layer1->fresh()->position)->not->toBe(99);
 });
+
+it('dispatches ContentsChanged when a group is bulk-patched', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $group = MapGroup::factory()->create(['map_id' => $map->id]);
+
+    Event::fake([ContentsChanged::class]);
+    $group->patch(['name' => 'Bulk Renamed']);
+
+    Event::assertDispatchedTimes(ContentsChanged::class, 2);
+    expect($group->fresh()->name)->toBe('Bulk Renamed');
+});
+
+it('dispatches ContentsChanged when a layer is bulk-patched', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $layer = MapLayer::factory()->create(['map_id' => $map->id]);
+
+    Event::fake([ContentsChanged::class]);
+    $layer->patch(['name' => 'Bulk Renamed']);
+
+    Event::assertDispatchedTimes(ContentsChanged::class, 2);
+    expect($layer->fresh()->name)->toBe('Bulk Renamed');
+});
