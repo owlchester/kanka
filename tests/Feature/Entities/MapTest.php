@@ -1,6 +1,8 @@
 <?php
 
+use App\Events\Maps\Updated;
 use App\Models\Map;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
 
 it('POSTS an invalid map form')
@@ -134,4 +136,14 @@ it('can\'t GET a private map as a player', function () {
     $response = $this->get('/api/1.0/campaigns/1/maps/1');
     expect($response->status())
         ->toBe(403);
+});
+
+it('dispatches Maps\Updated when the API updates a map\'s name', function () {
+    Event::fake([Updated::class]);
+    $this->asUser()->withCampaign()->withMaps();
+
+    $this->putJson('/api/1.0/campaigns/1/maps/1', ['name' => 'Renamed via API'])
+        ->assertStatus(200);
+
+    Event::assertDispatched(Updated::class, fn ($event) => $event->map->id === 1);
 });
