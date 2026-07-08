@@ -801,7 +801,7 @@ onBeforeUnmount(() => {
     transform: rotate(45deg);
 }
 
-.marker-pin i {
+.marker > i {
     font-size: 1.25rem;
     margin: 0;
     position: absolute !important;
