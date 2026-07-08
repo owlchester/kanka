@@ -281,6 +281,17 @@ it('dispatches GroupChanged with action updated when a visible group is updated'
     Event::assertDispatched(GroupChanged::class, fn ($event) => $event->action === 'updated' && $event->group->is($group));
 });
 
+it('dispatches GroupChanged exactly once when a visible group is updated', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $group = MapGroup::factory()->create(['map_id' => $map->id, 'visibility_id' => Visibility::All]);
+
+    Event::fake([GroupChanged::class]);
+    $group->update(['name' => 'Renamed']);
+
+    Event::assertDispatchedTimes(GroupChanged::class, 1);
+});
+
 it('dispatches GroupChanged with action deleted when a visible group is deleted', function () {
     $this->asUser()->withCampaign();
     $map = Map::factory()->create(['campaign_id' => 1]);
@@ -322,7 +333,7 @@ it('does not dispatch GroupChanged for restricted-visibility groups', function (
 - [ ] **Step 2: Run tests to verify they fail**
 
 Run: `vendor/bin/sail artisan test --compact --filter=MapGroupChangedBroadcastTest`
-Expected: the 4 new "dispatches" tests FAIL (nothing dispatches yet); the "does not dispatch" dataset test passes trivially (nothing dispatches either way, for now).
+Expected: the 5 new "dispatches" tests FAIL (nothing dispatches yet); the "does not dispatch" dataset test passes trivially (nothing dispatches either way, for now).
 
 - [ ] **Step 3: Wire the observer**
 
@@ -365,7 +376,16 @@ class MapGroupObserver
     {
         $this->reorder($mapGroup);
         $mapGroup->map->touchSilently();
-        $this->broadcastChange($mapGroup, $mapGroup->wasRecentlyCreated ? 'created' : 'updated');
+    }
+
+    public function created(MapGroup $mapGroup): void
+    {
+        $this->broadcastChange($mapGroup, 'created');
+    }
+
+    public function updated(MapGroup $mapGroup): void
+    {
+        $this->broadcastChange($mapGroup, 'updated');
     }
 
     protected function broadcastChange(MapGroup $mapGroup, string $action): void
@@ -379,10 +399,12 @@ class MapGroupObserver
 }
 ```
 
+**Important — do NOT use `$model->wasRecentlyCreated` to distinguish create vs. update inside `saved()`.** Eloquent sets it `true` on insert and never resets it to `false` (confirmed against `vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php`) — so a test (or any code path) that creates and then updates the *same in-memory instance* would see it stay `true` on the update, mislabeling the event. Using Eloquent's own dedicated `created()`/`updated()` hooks (as above) avoids this entirely, since exactly one of them fires per save, unambiguously, regardless of the instance's history. `saved()` keeps only the pre-existing `reorder()`/`touchSilently()` logic and no longer decides or dispatches anything itself.
+
 - [ ] **Step 4: Run tests to verify they pass**
 
 Run: `vendor/bin/sail artisan test --compact --filter=MapGroupChangedBroadcastTest`
-Expected: PASS (10 tests total: 3 from Task 2, 4 dispatch tests, 3 dataset cases for the restricted-visibility test)
+Expected: PASS (11 tests total: 3 from Task 2, 5 dispatch tests, 3 dataset cases for the restricted-visibility test)
 
 Also confirm no regression in the model's own existing tests:
 
@@ -610,6 +632,23 @@ it('dispatches LayerChanged with action updated when a layer becomes explorable 
     Event::assertDispatched(LayerChanged::class, fn ($event) => $event->action === 'updated' && $event->layer->is($layer));
 });
 
+it('dispatches LayerChanged exactly once when a visible, explorable layer is updated', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    Image::factory()->create(['campaign_id' => 1, 'id' => '16598f1b-7d93-36d9-bea5-212bfa1e354b']);
+    $layer = MapLayer::factory()->create([
+        'map_id' => $map->id,
+        'visibility_id' => Visibility::All,
+        'type_id' => 2,
+        'image_uuid' => '16598f1b-7d93-36d9-bea5-212bfa1e354b',
+    ]);
+
+    Event::fake([LayerChanged::class]);
+    $layer->update(['name' => 'Renamed']);
+
+    Event::assertDispatchedTimes(LayerChanged::class, 1);
+});
+
 it('dispatches LayerChanged with action deleted when a visible, explorable layer is deleted', function () {
     $this->asUser()->withCampaign();
     $map = Map::factory()->create(['campaign_id' => 1]);
@@ -653,7 +692,7 @@ it('does not dispatch LayerChanged for restricted-visibility layers', function (
 - [ ] **Step 2: Run tests to verify they fail**
 
 Run: `vendor/bin/sail artisan test --compact --filter=MapLayerChangedBroadcastTest`
-Expected: the 5 new "dispatches"/"does not dispatch...not explorable" tests FAIL; the restricted-visibility dataset test passes trivially for now.
+Expected: the 6 new "dispatches"/"does not dispatch...not explorable" tests FAIL; the restricted-visibility dataset test passes trivially for now.
 
 - [ ] **Step 3: Wire the observer**
 
@@ -704,9 +743,20 @@ class MapLayerObserver
     {
         $this->reorder($mapLayer);
         $mapLayer->map->touchSilently();
-        $this->broadcastChange($mapLayer, $mapLayer->isExplorable()
-            ? ($mapLayer->wasRecentlyCreated ? 'created' : 'updated')
-            : 'deleted');
+    }
+
+    public function created(MapLayer $mapLayer): void
+    {
+        if (! $mapLayer->isExplorable()) {
+            return;
+        }
+
+        $this->broadcastChange($mapLayer, 'created');
+    }
+
+    public function updated(MapLayer $mapLayer): void
+    {
+        $this->broadcastChange($mapLayer, $mapLayer->isExplorable() ? 'updated' : 'deleted');
     }
 
     protected function broadcastChange(MapLayer $mapLayer, string $action): void
@@ -720,10 +770,12 @@ class MapLayerObserver
 }
 ```
 
+**Important — do NOT use `$model->wasRecentlyCreated` to distinguish create vs. update inside `saved()`.** Eloquent sets it `true` on insert and never resets it to `false` (confirmed against `vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php`) — so a test (or any code path) that creates and then updates the *same in-memory instance* would see it stay `true` on the update, mislabeling the event. Using Eloquent's own dedicated `created()`/`updated()` hooks (as above) avoids this entirely, since exactly one of them fires per save, unambiguously, regardless of the instance's history. `saved()` keeps only the pre-existing `reorder()`/`touchSilently()` logic and no longer decides or dispatches anything itself.
+
 - [ ] **Step 4: Run tests to verify they pass**
 
 Run: `vendor/bin/sail artisan test --compact --filter=MapLayerChangedBroadcastTest`
-Expected: PASS (11 tests total: 3 from Task 4, 5 dispatch/eligibility tests, 3 dataset cases)
+Expected: PASS (12 tests total: 3 from Task 4, 6 dispatch/eligibility tests, 3 dataset cases)
 
 Also confirm no regression in the model's own existing tests:
 
