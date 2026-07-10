@@ -807,6 +807,6 @@ class MapMarker extends Model
             $data['group_id'] = null;
         }
 
-        return $this->updateQuietly($data);
+        return $this->update($data);
     }
 }

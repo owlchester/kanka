@@ -4,6 +4,7 @@ use App\Enums\Visibility;
 use App\Events\Maps\MarkerChanged;
 use App\Http\Resources\Maps\Explore\PinResource;
 use App\Models\Map;
+use App\Models\MapGroup;
 use App\Models\MapMarker;
 use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -126,4 +127,27 @@ it('dispatches on a partial move-style update, matching the dedicated move endpo
 
     Event::assertDispatched(MarkerChanged::class, fn ($event) => $event->action === 'updated' && $event->marker->id === $marker->id);
     Event::assertDispatchedTimes(MarkerChanged::class, 2);
+});
+
+it('dispatches MarkerChanged when a marker is bulk-patched', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create(['map_id' => $map->id]);
+
+    Event::fake([MarkerChanged::class]);
+    $marker->patch(['name' => 'Bulk Renamed']);
+
+    Event::assertDispatchedTimes(MarkerChanged::class, 2);
+    expect($marker->fresh()->name)->toBe('Bulk Renamed');
+});
+
+it('still converts a group_id of -1 to null when bulk-patched', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $group = MapGroup::factory()->create(['map_id' => $map->id]);
+    $marker = MapMarker::factory()->create(['map_id' => $map->id, 'group_id' => $group->id]);
+
+    $marker->patch(['group_id' => -1]);
+
+    expect($marker->fresh()->group_id)->toBeNull();
 });
