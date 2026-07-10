@@ -164,7 +164,7 @@ No new imports needed: `MapMarker.php` is in the `App\Models` namespace, same as
 - [ ] **Step 4: Run tests to verify they pass**
 
 Run: `vendor/bin/sail artisan test --compact --filter=MapMarkerVisibilityTest`
-Expected: PASS (10 tests: 2+3 dataset cases, 4 single tests)
+Expected: PASS (9 tests: 2+3 dataset cases, 4 single tests)
 
 - [ ] **Step 5: Format and commit**
 
