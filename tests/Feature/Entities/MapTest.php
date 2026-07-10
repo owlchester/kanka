@@ -1,6 +1,7 @@
 <?php
 
 use App\Events\Maps\Updated;
+use App\Models\Image;
 use App\Models\Map;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
@@ -146,4 +147,53 @@ it('dispatches Maps\Updated when the API updates a map\'s name', function () {
         ->assertStatus(200);
 
     Event::assertDispatched(Updated::class, fn ($event) => $event->map->id === 1);
+});
+
+it('is not tiled when its entity has no gallery image', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    expect($map->isTiled())->toBeFalse();
+    expect($map->tilingRunning())->toBeFalse();
+    expect($map->tilingReady())->toBeTrue();
+});
+
+it('is not tiled for a legacy image_path-only map (no gallery Image row)', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $map->entity->image_path = 'maps/legacy.png';
+    $map->entity->saveQuietly();
+
+    expect($map->isTiled())->toBeFalse();
+    expect($map->tilingRunning())->toBeFalse();
+    expect($map->tilingReady())->toBeTrue();
+    expect($map->explorable())->toBeTrue();
+});
+
+it('proxies tiling state from its entity\'s gallery image', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $image = Image::factory()->create(['campaign_id' => 1, 'tiling_status' => Image::TILING_RUNNING]);
+    $map->entity->image_uuid = $image->id;
+    $map->entity->saveQuietly();
+    $map->refresh();
+
+    expect($map->isTiled())->toBeFalse();
+    expect($map->tilingRunning())->toBeTrue();
+    expect($map->tilingReady())->toBeFalse();
+    expect($map->explorable())->toBeFalse();
+});
+
+it('falls back to explorable plain rendering when tiling permanently errored', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $image = Image::factory()->create(['campaign_id' => 1, 'tiling_status' => Image::TILING_ERROR]);
+    $map->entity->image_uuid = $image->id;
+    $map->entity->saveQuietly();
+    $map->refresh();
+
+    expect($map->isTiled())->toBeFalse();
+    expect($map->tilingError())->toBeTrue();
+    expect($map->tilingReady())->toBeTrue();
+    expect($map->explorable())->toBeTrue();
 });
