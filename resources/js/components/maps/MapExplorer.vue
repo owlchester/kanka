@@ -217,6 +217,7 @@ const {
         canEdit: props.canEdit,
         onMapUpdated: handleRemoteMapUpdate,
         onContentsChanged: handleContentsChanged,
+        onMarkerChanged: handleMarkerChanged,
     },
 );
 
@@ -298,6 +299,20 @@ function handleRemoteMapUpdate(map) {
 function handleContentsChanged({ groups, layers }) {
     data.value.groups = groups;
     data.value.layers = layers;
+}
+
+function handleMarkerChanged({ action, pin, id }) {
+    if (action === 'deleted') {
+        data.value.pins = data.value.pins.filter((p) => p.id !== id);
+        return;
+    }
+
+    const index = data.value.pins.findIndex((p) => p.id === id);
+    if (index === -1) {
+        data.value.pins = [...data.value.pins, pin];
+    } else {
+        data.value.pins = data.value.pins.map((p) => (p.id === id ? pin : p));
+    }
 }
 
 function defaultColour() {
