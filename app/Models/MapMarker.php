@@ -732,6 +732,34 @@ class MapMarker extends Model
         return empty($this->entity_id) || (! empty($this->entity) && ! $this->entity->isMissingChild());
     }
 
+    public function isPubliclyVisible(): bool
+    {
+        if (! self::isVisibleToPublic($this->visibility_id)) {
+            return false;
+        }
+
+        if ($this->group_id) {
+            $group = MapGroup::withPrivate()->find($this->group_id);
+            if (! $group || ! self::isVisibleToPublic($group->visibility_id)) {
+                return false;
+            }
+        }
+
+        if ($this->entity_id) {
+            $entity = Entity::withInvisible()->find($this->entity_id);
+            if (! $entity || $entity->is_private) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    protected static function isVisibleToPublic($visibilityId): bool
+    {
+        return in_array($visibilityId, [Visibility::All, Visibility::Member], true);
+    }
+
     /**
      * Calculate the circle radius
      */
