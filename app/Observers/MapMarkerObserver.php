@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Enums\MapMarkerShape;
+use App\Events\Maps\MarkerChanged;
 use App\Models\MapMarker;
 use enshrined\svgSanitize\Sanitizer;
 use Illuminate\Support\Str;
@@ -31,9 +32,26 @@ class MapMarkerObserver
         $mapMarker->map->touchSilently();
     }
 
+    public function created(MapMarker $mapMarker): void
+    {
+        $this->broadcastChange($mapMarker, 'created');
+    }
+
+    public function updated(MapMarker $mapMarker): void
+    {
+        $this->broadcastChange($mapMarker, 'updated');
+    }
+
     public function deleted(MapMarker $mapMarker)
     {
         $mapMarker->map->touchSilently();
+        $this->broadcastChange($mapMarker, 'deleted');
+    }
+
+    protected function broadcastChange(MapMarker $mapMarker, string $action): void
+    {
+        MarkerChanged::dispatch($mapMarker, $action);
+        MarkerChanged::dispatch($mapMarker, $action, true);
     }
 
     /**
