@@ -18,7 +18,8 @@ class MapResource extends JsonResource
     public function toArray(Request $request): array
     {
         $map = $this->resource;
-        $isChunked = $map->isChunked() && $map->chunkingReady();
+        $isTiled = $map->isTiled();
+        $tiling = $map->tilingRunning() ? 'running' : ($map->tilingError() ? 'error' : null);
         $center = array_map('floatval', explode(', ', $map->centerFocus()));
 
         if ($request->filled('lat') && $request->filled('lng')) {
@@ -35,7 +36,9 @@ class MapResource extends JsonResource
             'id' => $map->id,
             'name' => $map->name,
             'is_real' => $map->isReal(),
-            'is_chunked' => $isChunked,
+            'is_tiled' => $isTiled,
+            'tiling' => $tiling,
+            'tiling_prompt_eligible' => $this->tilingPromptEligible($map),
             'has_clustering' => (bool) $map->isClustered(),
             'image' => $map->isReal() ? null : Avatar::entity($map->entity)->original(),
             'width' => (int) ($map->width ?: 1000),
@@ -45,8 +48,8 @@ class MapResource extends JsonResource
             'initial_zoom' => $map->initialZoom(),
             'center' => $center,
             'tile_url' => $map->isReal() ? 'https://tile.openstreetmap.org/{z}/{x}/{y}.png' : null,
-            'chunks_url' => $isChunked
-                ? route('maps.chunks', [$this->campaign->id, $map->id]) . '/?z={z}&x={x}&y={y}'
+            'tiles_url' => $isTiled
+                ? route('maps.tiles', [$this->campaign->id, $map->id]) . '/?z={z}&x={x}&y={y}'
                 : null,
             'create_url' => route('entities.map-markers.store', [$this->campaign->id, $map->entity->id]),
             'search_url' => route('search.entities-with-relations', $this->campaign->id),
@@ -71,5 +74,15 @@ class MapResource extends JsonResource
             'show_url' => route('entities.show', [$this->campaign->id, $map->entity->id]),
             'edit_url' => route('entities.edit', [$this->campaign->id, $map->entity->id]),
         ];
+    }
+
+    protected function tilingPromptEligible(Map $map): bool
+    {
+        $image = $map->entity->image;
+        if (! $image || $map->tiling_prompt_dismissed_at !== null || $image->tiling_status !== null) {
+            return false;
+        }
+
+        return $image->size >= config('maps.tiling_threshold_kb');
     }
 }

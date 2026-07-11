@@ -25,14 +25,10 @@ class ShowController extends Controller
         /** @var Map $map */
         $map = $entity->child;
 
-        if (! $map->explorable()) {
+        if (! $map->explorable() && ! $map->tilingRunning()) {
             return redirect()
                 ->route('entities.show', [$campaign, $entity])
                 ->withError(__('maps.errors.explore.missing'));
-        }
-
-        if ($map->isChunked() && ! $map->chunkingReady()) {
-            return redirect()->route('entities.show', [$campaign, $entity]);
         }
 
         $query = request()->only(['focus', 'lat', 'lng']);

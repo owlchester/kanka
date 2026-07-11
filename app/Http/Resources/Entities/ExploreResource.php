@@ -177,9 +177,9 @@ class ExploreResource extends JsonResource
                     $data['explore'] = ['url' => route('maps.explore', [$campaign, $child->id])];
                 } elseif (! $entity->hasImage()) {
                     $data['explore'] = null;
-                } elseif ($child->isChunked() && $child->chunkingError()) {
+                } elseif ($child->tilingError()) {
                     $data['explore'] = ['url' => null, 'status' => 'error'];
-                } elseif ($child->isChunked() && $child->chunkingRunning()) {
+                } elseif ($child->tilingRunning()) {
                     $data['explore'] = ['url' => null, 'status' => 'running'];
                 } else {
                     $data['explore'] = ['url' => route('maps.explore', [$campaign, $child->id])];

@@ -2,6 +2,7 @@
 
 use App\Models\CampaignUser;
 use App\Models\Character;
+use App\Models\Image;
 use App\Models\Map;
 use App\Models\MapGroup;
 use App\Models\MapLayer;
@@ -36,7 +37,7 @@ it('returns the full explore payload for a simple map', function () {
     $response = $this->get(route('entities.map-api', [1, $map->entity]))
         ->assertStatus(200)
         ->assertJsonStructure([
-            'map' => ['id', 'name', 'is_real', 'is_chunked', 'has_clustering', 'image', 'width', 'height', 'min_zoom', 'max_zoom', 'initial_zoom', 'center', 'tile_url', 'chunks_url', 'create_url', 'has_distance_unit', 'distance_measure', 'distance_name', 'settings' => ['grid', 'min_zoom', 'max_zoom', 'initial_zoom', 'distance_measure', 'distance_name', 'center_x', 'center_y', 'center_marker_id'], 'settings_url', 'show_url', 'edit_url'],
+            'map' => ['id', 'name', 'is_real', 'is_tiled', 'tiling', 'tiling_prompt_eligible', 'has_clustering', 'image', 'width', 'height', 'min_zoom', 'max_zoom', 'initial_zoom', 'center', 'tile_url', 'tiles_url', 'create_url', 'has_distance_unit', 'distance_measure', 'distance_name', 'settings' => ['grid', 'min_zoom', 'max_zoom', 'initial_zoom', 'distance_measure', 'distance_name', 'center_x', 'center_y', 'center_marker_id'], 'settings_url', 'show_url', 'edit_url'],
             'layers' => [['id', 'name', 'type_id', 'image', 'position']],
             'groups' => [['id', 'name', 'parent_id', 'position']],
             'pins' => [['id', 'name', 'group_id', 'latitude', 'longitude', 'shape', 'colour', 'font_colour', 'icon', 'size_id', 'pin_size', 'circle_radius', 'opacity', 'preview_url', 'destroy_url', 'is_draggable', 'move_url']],
@@ -67,19 +68,91 @@ it('marks a real map with a tile url and no image', function () {
     expect($response->json('map.tile_url'))->toBe('https://tile.openstreetmap.org/{z}/{x}/{y}.png');
 });
 
-it('marks a finished chunked map with a chunks url', function () {
+it('marks a finished tiled map with a tiles url', function () {
     $this->asUser()->withCampaign();
+    $image = Image::factory()->create(['campaign_id' => 1, 'tiling_status' => Image::TILING_FINISHED]);
     $map = Map::factory()->create(['campaign_id' => 1]);
-    // chunking_status isn't mass-assignable (not in Map::$fillable), set it directly like MapTest.php does for image_path
-    $map->chunking_status = Map::CHUNKING_FINISHED;
+    $map->entity->image_uuid = $image->id;
+    $map->entity->saveQuietly();
+
+    $response = $this->get(route('entities.map-api', [1, $map->entity]))->assertStatus(200);
+    $tilesUrl = $response->json('map.tiles_url');
+
+    expect($response->json('map.is_tiled'))->toBeTrue();
+    expect($tilesUrl)->toStartWith(route('maps.tiles', [1, $map->id]));
+    expect($tilesUrl)->toEndWith('?z={z}&x={x}&y={y}');
+    expect($response->json('map.tiling'))->toBeNull();
+});
+
+it('reports a running tiling status without a tiles url', function () {
+    $this->asUser()->withCampaign();
+    $image = Image::factory()->create(['campaign_id' => 1, 'tiling_status' => Image::TILING_RUNNING]);
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $map->entity->image_uuid = $image->id;
+    $map->entity->saveQuietly();
+
+    $response = $this->get(route('entities.map-api', [1, $map->entity]))->assertStatus(200);
+
+    expect($response->json('map.is_tiled'))->toBeFalse();
+    expect($response->json('map.tiling'))->toBe('running');
+    expect($response->json('map.tiles_url'))->toBeNull();
+});
+
+it('reports an error tiling status and still omits the tiles url (falls back to plain image)', function () {
+    $this->asUser()->withCampaign();
+    $image = Image::factory()->create(['campaign_id' => 1, 'tiling_status' => Image::TILING_ERROR]);
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $map->entity->image_uuid = $image->id;
+    $map->entity->saveQuietly();
+
+    $response = $this->get(route('entities.map-api', [1, $map->entity]))->assertStatus(200);
+
+    expect($response->json('map.is_tiled'))->toBeFalse();
+    expect($response->json('map.tiling'))->toBe('error');
+    expect($response->json('map.tiles_url'))->toBeNull();
+});
+
+it('flags tiling_prompt_eligible for an oversized untiled gallery image', function () {
+    config(['maps.tiling_threshold_kb' => 100]);
+    $this->asUser()->withCampaign();
+    $image = Image::factory()->create(['campaign_id' => 1, 'size' => 200]);
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $map->entity->image_uuid = $image->id;
+    $map->entity->saveQuietly();
+
+    $response = $this->get(route('entities.map-api', [1, $map->entity]))->assertStatus(200);
+
+    expect($response->json('map.tiling_prompt_eligible'))->toBeTrue();
+});
+
+it('does not flag tiling_prompt_eligible once dismissed', function () {
+    config(['maps.tiling_threshold_kb' => 100]);
+    $this->asUser()->withCampaign();
+    $image = Image::factory()->create(['campaign_id' => 1, 'size' => 200]);
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $map->entity->image_uuid = $image->id;
+    $map->entity->saveQuietly();
+    $map->tiling_prompt_dismissed_at = now();
     $map->saveQuietly();
 
     $response = $this->get(route('entities.map-api', [1, $map->entity]))->assertStatus(200);
-    $chunksUrl = $response->json('map.chunks_url');
 
-    expect($response->json('map.is_chunked'))->toBeTrue();
-    expect($chunksUrl)->toStartWith(route('maps.chunks', [1, $map->id]));
-    expect($chunksUrl)->toEndWith('?z={z}&x={x}&y={y}');
+    expect($response->json('map.tiling_prompt_eligible'))->toBeFalse();
+});
+
+it('excludes a layer whose image is still tiling from the layers payload', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $tilingImage = Image::factory()->create(['campaign_id' => 1, 'tiling_status' => Image::TILING_RUNNING]);
+    $readyLayer = MapLayer::factory()->create(['map_id' => $map->id, 'name' => 'Ready', 'type_id' => 2]);
+    $readyLayer->image_path = 'maps/ready.png';
+    $readyLayer->saveQuietly();
+    MapLayer::factory()->create(['map_id' => $map->id, 'name' => 'Tiling', 'type_id' => 2, 'image_uuid' => $tilingImage->id]);
+
+    $response = $this->get(route('entities.map-api', [1, $map->entity]))->assertStatus(200);
+
+    expect($response->json('layers'))->toHaveCount(1);
+    expect($response->json('layers.0.name'))->toBe('Ready');
 });
 
 // This exercises MapMarker::visible()'s entity/isMissingChild() branch, not its group_id/group
