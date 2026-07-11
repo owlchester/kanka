@@ -5,9 +5,9 @@ $minInitial = Map::MIN_ZOOM;
 $maxInitial = Map::MAX_ZOOM_REAL;
 $defaultInitial = 0;
 
-if (isset($model) && $model->isChunked()) {
-    $minInitial = Map::MIN_ZOOM_CHUNK;
-    $maxInitial = Map::MAX_ZOOM_CHUNK;
+if (isset($model) && $model->isTiled()) {
+    $minInitial = Map::MIN_ZOOM_TILE;
+    $maxInitial = Map::MAX_ZOOM_TILE;
     $defaultInitial = $minInitial;
 }
 ?>
@@ -32,9 +32,9 @@ if (isset($model) && $model->isChunked()) {
 
     <hr class="m-0 col-span-2"/>
 
-@if (isset($model) && $model->isChunked())
+@if (isset($model) && $model->isTiled())
     <x-alert type="info">
-        <p>{{ __('maps.helpers.chunked_zoom') }}</p>
+        <p>{{ __('maps.helpers.tiled_zoom') }}</p>
     </x-alert>
 @else
     <x-forms.field

@@ -197,3 +197,27 @@ it('falls back to explorable plain rendering when tiling permanently errored', f
     expect($map->tilingReady())->toBeTrue();
     expect($map->explorable())->toBeTrue();
 });
+
+it('blocks editing a map while its image is being tiled', function () {
+    $this->asUser()->withCampaign();
+    $image = Image::factory()->create(['campaign_id' => 1, 'tiling_status' => Image::TILING_RUNNING]);
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $map->entity->image_uuid = $image->id;
+    $map->entity->saveQuietly();
+
+    $this->get(route('maps.edit', [1, $map->id]))
+        ->assertRedirect(route('entities.show', [$map->entity->campaign, $map->entity]));
+});
+
+it('allows editing a map whose image permanently failed tiling (falls back, not blocked)', function () {
+    $this->asUser()->withCampaign();
+    $image = Image::factory()->create(['campaign_id' => 1, 'tiling_status' => Image::TILING_ERROR]);
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $map->entity->image_uuid = $image->id;
+    $map->entity->saveQuietly();
+
+    // Not blocked by the tiling-running guard: falls through to the normal
+    // crudEdit() flow, which redirects Map (a MiscModel) to the unified entity edit page.
+    $this->get(route('maps.edit', [1, $map->id]))
+        ->assertRedirect(route('entities.edit', [$map->entity->campaign, $map->entity]));
+});

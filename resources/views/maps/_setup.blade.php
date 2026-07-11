@@ -80,7 +80,7 @@ if (isset($single) && $single) {
 @else
     var overlayMaps{{ $map->id }} = {};
 @endif
-    @if (!$map->isReal() && !$map->isChunked())
+    @if (!$map->isReal() && !$map->isTiled())
 
     var map{{ $map->id }} = L.map('map{{ $map->id }}', {
         crs: L.CRS.Simple,
@@ -105,7 +105,7 @@ if (isset($single) && $single) {
     @else
 
     var map{{ $map->id }} = L.map('map{{ $map->id }}', {
-        @if ($map->isChunked())
+        @if ($map->isTiled())
         crs: L.CRS.Simple,
         maxBounds: maxBounds{{ $map->id }},
         maxBoundsViscosity: 0.5,
