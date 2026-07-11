@@ -31,7 +31,7 @@ class TilingTriggerService
             return false;
         }
 
-        TileImageJob::dispatch($image)->onQueue('heavy');
+        TileImageJob::dispatch($image);
 
         return true;
     }

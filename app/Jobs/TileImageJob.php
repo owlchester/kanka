@@ -18,7 +18,7 @@ class TileImageJob implements ShouldQueue
 
     public function __construct(public Image $image)
     {
-        $this->onQueue('heavy');
+        $this->onConnection('heavy');
     }
 
     public function handle(): void

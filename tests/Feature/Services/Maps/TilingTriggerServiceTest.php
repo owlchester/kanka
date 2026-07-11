@@ -18,7 +18,7 @@ it('triggers tiling for an oversized untiled image', function () {
 
     expect($triggered)->toBeTrue();
     expect($image->fresh()->tiling_status)->toBe(Image::TILING_RUNNING);
-    Queue::assertPushedOn('heavy', TileImageJob::class, fn ($job) => $job->image->id === $image->id);
+    Queue::assertPushed(TileImageJob::class, fn ($job) => $job->connection === 'heavy' && $job->image->id === $image->id);
 });
 
 it('does not trigger for an image below the threshold', function () {
@@ -49,5 +49,16 @@ it('force-triggers below the threshold when force is true (manual migrate/CLI pa
     $triggered = app(TilingTriggerService::class)->maybeTrigger($image, force: true);
 
     expect($triggered)->toBeTrue();
-    Queue::assertPushedOn('heavy', TileImageJob::class);
+    Queue::assertPushed(TileImageJob::class, fn ($job) => $job->connection === 'heavy');
+});
+
+it('does not re-trigger an already-triggered image even when force is true', function () {
+    config(['maps.tiling_threshold_kb' => 100]);
+    $image = Image::factory()->create(['campaign_id' => 1, 'size' => 200, 'tiling_status' => Image::TILING_RUNNING]);
+
+    $triggered = app(TilingTriggerService::class)->maybeTrigger($image, force: true);
+
+    expect($triggered)->toBeFalse();
+    expect($image->fresh()->tiling_status)->toBe(Image::TILING_RUNNING);
+    Queue::assertNotPushed(TileImageJob::class);
 });
