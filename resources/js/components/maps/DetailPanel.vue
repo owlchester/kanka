@@ -209,6 +209,10 @@ const markerIcon = computed(() => {
         return { kind: "fa", value: "fa-regular fa-hexagon" };
     }
 
+    if (props.pin.shape === "path") {
+        return { kind: "fa", value: "fa-regular fa-route" };
+    }
+
     if (props.pin.icon?.type === "fa") {
         return { kind: "fa", value: props.pin.icon.value };
     }
