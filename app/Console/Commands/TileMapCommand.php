@@ -28,9 +28,24 @@ class TileMapCommand extends Command
             return self::FAILURE;
         }
 
+        if ($image->tilingError()) {
+            $this->warn('This image previously failed tiling: ' . $image->tiling_error);
+
+            if (! $this->confirm('Retry tiling for this image?')) {
+                $this->info('Not retrying.');
+
+                return self::SUCCESS;
+            }
+
+            $trigger->retry($image);
+            $this->info('Tiling job dispatched for image ' . $image->id . '.');
+
+            return self::SUCCESS;
+        }
+
         $triggered = $trigger->maybeTrigger($image, force: true);
         if (! $triggered) {
-            $this->info('Tiling not triggered (already tiled, running, or errored).');
+            $this->info('Tiling not triggered (already tiled or running).');
 
             return self::SUCCESS;
         }

@@ -30,3 +30,35 @@ it('fails gracefully for an unknown map id', function () {
 
     $this->artisan('maps:tile', ['map' => 999999])->assertFailed();
 });
+
+it('confirms before retrying a permanently-failed image, and retries when confirmed', function () {
+    Queue::fake();
+    $this->asUser()->withCampaign();
+    $image = Image::factory()->create(['campaign_id' => 1, 'tiling_status' => Image::TILING_ERROR, 'tiling_error' => 'vips exploded']);
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $map->entity->image_uuid = $image->id;
+    $map->entity->saveQuietly();
+
+    $this->artisan('maps:tile', ['map' => $map->id])
+        ->expectsConfirmation('Retry tiling for this image?', 'yes')
+        ->assertSuccessful();
+
+    expect($image->fresh()->tiling_status)->toBe(Image::TILING_RUNNING);
+    Queue::assertPushed(TileImageJob::class, fn ($job) => $job->image->id === $image->id);
+});
+
+it('does not retry a permanently-failed image when the user declines', function () {
+    Queue::fake();
+    $this->asUser()->withCampaign();
+    $image = Image::factory()->create(['campaign_id' => 1, 'tiling_status' => Image::TILING_ERROR, 'tiling_error' => 'vips exploded']);
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $map->entity->image_uuid = $image->id;
+    $map->entity->saveQuietly();
+
+    $this->artisan('maps:tile', ['map' => $map->id])
+        ->expectsConfirmation('Retry tiling for this image?', 'no')
+        ->assertSuccessful();
+
+    expect($image->fresh()->tiling_status)->toBe(Image::TILING_ERROR);
+    Queue::assertNotPushed(TileImageJob::class);
+});

@@ -35,4 +35,25 @@ class TilingTriggerService
 
         return true;
     }
+
+    /**
+     * Retry tiling for an image that permanently failed (TILING_ERROR). Resets its status back
+     * to untiled and force-triggers a fresh attempt, bypassing the size threshold — this is only
+     * ever called after an explicit, already-confirmed user action (CLI confirm prompt, a future
+     * "retry" UI action), never automatically. Returns false (no-op) if the image isn't actually
+     * in the errored state, so a caller can't accidentally interrupt a running/finished image.
+     */
+    public function retry(Image $image): bool
+    {
+        if (! $image->tilingError()) {
+            return false;
+        }
+
+        Image::where('id', $image->id)->update([
+            'tiling_status' => null,
+            'tiling_error' => null,
+        ]);
+
+        return $this->maybeTrigger($image->fresh(), force: true);
+    }
 }

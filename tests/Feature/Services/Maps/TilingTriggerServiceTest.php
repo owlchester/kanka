@@ -62,3 +62,23 @@ it('does not re-trigger an already-triggered image even when force is true', fun
     expect($image->fresh()->tiling_status)->toBe(Image::TILING_RUNNING);
     Queue::assertNotPushed(TileImageJob::class);
 });
+
+it('retries a permanently-errored image, resetting status and dispatching a fresh job', function () {
+    $image = Image::factory()->create(['campaign_id' => 1, 'tiling_status' => Image::TILING_ERROR, 'tiling_error' => 'vips exploded']);
+
+    $retried = app(TilingTriggerService::class)->retry($image);
+
+    expect($retried)->toBeTrue();
+    expect($image->fresh()->tiling_status)->toBe(Image::TILING_RUNNING);
+    expect($image->fresh()->tiling_error)->toBeNull();
+    Queue::assertPushed(TileImageJob::class, fn ($job) => $job->image->id === $image->id);
+});
+
+it('does not retry an image that is not in the errored state', function () {
+    $finishedImage = Image::factory()->create(['campaign_id' => 1, 'tiling_status' => Image::TILING_FINISHED]);
+    $runningImage = Image::factory()->create(['campaign_id' => 1, 'tiling_status' => Image::TILING_RUNNING]);
+
+    expect(app(TilingTriggerService::class)->retry($finishedImage))->toBeFalse();
+    expect(app(TilingTriggerService::class)->retry($runningImage))->toBeFalse();
+    Queue::assertNotPushed(TileImageJob::class);
+});
