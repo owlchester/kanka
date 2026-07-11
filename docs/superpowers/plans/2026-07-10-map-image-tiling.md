@@ -1556,6 +1556,7 @@ git commit -m "feat: delete tile folder when an image is deleted"
 **Files:**
 - Modify: `routes/campaigns/entities.php:81-82`
 - Modify: `app/Http/Controllers/Maps/ExploreController.php`
+- Modify: `resources/views/maps/_setup.blade.php:129` (its `route('maps.chunks', ...)` call — the only other place in the codebase that builds a URL for this route; must be updated in the same commit that renames the route, or the legacy explore page and dashboard widget's base tile layer break immediately)
 - Test: `tests/Feature/Maps/ExploreControllerTilesTest.php`
 
 **Interfaces:**
@@ -1731,6 +1732,14 @@ use App\Models\MapLayer;
 
 Remove the old `chunks()` method entirely (replaced by `tiles()`/`layerTiles()`/`serveTile()` above).
 
+In `resources/views/maps/_setup.blade.php:129`, update the one other place in the codebase that builds a URL for this route:
+```blade
+    L.tileLayer('{{ route('maps.tiles', [$campaign, $map->id]) }}/?z={z}&x={x}&y={y}', {
+        attribution: '&copy; Kanka',
+    }).addTo(map{{ $map->id }});
+```
+(Only the route name changes, `maps.chunks` → `maps.tiles` — this partial is shared by the legacy explore page and the dashboard widget preview, both of which build their base tile layer through it.)
+
 - [ ] **Step 4: Run test to verify it passes**
 
 Run: `vendor/bin/sail artisan test --compact --filter=ExploreControllerTilesTest`
@@ -1740,7 +1749,7 @@ Expected: PASS
 
 ```bash
 vendor/bin/sail bin pint --dirty --format agent
-git add routes/campaigns/entities.php app/Http/Controllers/Maps/ExploreController.php tests/Feature/Maps/ExploreControllerTilesTest.php
+git add routes/campaigns/entities.php app/Http/Controllers/Maps/ExploreController.php resources/views/maps/_setup.blade.php tests/Feature/Maps/ExploreControllerTilesTest.php
 git commit -m "feat: serve tiles per-image for base maps and layers, rename chunks route to tiles"
 ```
 
@@ -1984,7 +1993,7 @@ git commit -m "feat: gate new map explorer on per-image tiling state, expose til
 - Modify: `lang/en/maps/explorer.php`
 
 **Interfaces:**
-- Produces: `maps.errors.tiling.error`, `maps.errors.tiling.running.edit`, `maps.errors.tiling.running.explore`, `maps.errors.tiling.running.time`, `maps.errors.dashboard.tiling` (new — distinguishes "being tiled" from "missing image" on the dashboard widget), `maps.tooltips.tiling.running`; `maps/explorer.tiling.*` and `maps/explorer.tiling_prompt.*` (new — inline placeholder and migration-prompt copy for the Vue explorer's i18n payload).
+- Produces: `maps.errors.tiling.error`, `maps.errors.tiling.running.edit`, `maps.errors.tiling.running.explore`, `maps.errors.tiling.running.time`, `maps.errors.dashboard.tiling` (new — distinguishes "being tiled" from "missing image" on the dashboard widget), `maps.tooltips.tiling.running`, `maps.helpers.tiled_zoom` (renamed from `maps.helpers.chunked_zoom`, referenced by `resources/views/maps/form/_settings.blade.php`); `maps/explorer.tiling.*` and `maps/explorer.tiling_prompt.*` (new — inline placeholder and migration-prompt copy for the Vue explorer's i18n payload).
 
 - [ ] **Step 1: No test — this is copy-only; verified by Task 14/15's usages (which will fail to find the keys if misnamed, since Laravel's `__()` returns the key itself untranslated rather than throwing)**
 
@@ -2021,6 +2030,12 @@ Replace lines 84-88:
         ],
     ],
 ```
+
+Also, in the `helpers` array (the same file), rename the `chunked_zoom` key to `tiled_zoom` (referenced by `resources/views/maps/form/_settings.blade.php`):
+```php
+        'tiled_zoom'            => 'Automatically cluster markers together when they are close to each other.',
+```
+(replaces the existing `'chunked_zoom' => '...'` line — same value, key renamed only.)
 
 - [ ] **Step 4: Add tiling copy to `lang/en/maps/explorer.php`**
 
