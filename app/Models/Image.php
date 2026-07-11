@@ -75,8 +75,6 @@ class Image extends Model
         'visibility_id',
         'focus_x',
         'focus_y',
-        'tiling_status',
-        'tiling_error',
     ];
 
     public $casts = [

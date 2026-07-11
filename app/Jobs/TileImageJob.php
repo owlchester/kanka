@@ -38,7 +38,7 @@ class TileImageJob implements ShouldQueue
     {
         $service->tile($this->image);
 
-        $this->image->update([
+        Image::where('id', $this->image->id)->update([
             'tiling_status' => Image::TILING_FINISHED,
             'tiling_error' => null,
         ]);
@@ -48,7 +48,7 @@ class TileImageJob implements ShouldQueue
 
     public function failed(Throwable $e): void
     {
-        $this->image->update([
+        Image::where('id', $this->image->id)->update([
             'tiling_status' => Image::TILING_ERROR,
             'tiling_error' => $e->getMessage(),
         ]);
