@@ -208,6 +208,10 @@ const markerIcon = computed(() => {
         return { kind: "fa", value: "fa-regular fa-route" };
     }
 
+    if (props.pin.shape === "circle") {
+        return { kind: "fa", value: "fa-regular fa-circle" };
+    }
+
     if (props.pin.icon?.type === "fa") {
         return { kind: "fa", value: props.pin.icon.value };
     }
