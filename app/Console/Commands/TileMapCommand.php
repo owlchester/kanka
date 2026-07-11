@@ -28,11 +28,19 @@ class TileMapCommand extends Command
             return self::FAILURE;
         }
 
-        if ($image->tilingError()) {
-            $this->warn('This image previously failed tiling: ' . $image->tiling_error);
+        if ($image->tilingRunning()) {
+            $this->info('Tiling not triggered (already running).');
 
-            if (! $this->confirm('Retry tiling for this image?')) {
-                $this->info('Not retrying.');
+            return self::SUCCESS;
+        }
+
+        if ($image->tilingError() || $image->isTiled()) {
+            $this->warn($image->tilingError()
+                ? 'This image previously failed tiling: ' . $image->tiling_error
+                : 'This image is already tiled.');
+
+            if (! $this->confirm('Re-tile this image?')) {
+                $this->info('Not retiling.');
 
                 return self::SUCCESS;
             }
@@ -45,7 +53,7 @@ class TileMapCommand extends Command
 
         $triggered = $trigger->maybeTrigger($image, force: true);
         if (! $triggered) {
-            $this->info('Tiling not triggered (already tiled or running).');
+            $this->info('Tiling not triggered.');
 
             return self::SUCCESS;
         }

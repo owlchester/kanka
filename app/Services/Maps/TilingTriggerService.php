@@ -37,15 +37,17 @@ class TilingTriggerService
     }
 
     /**
-     * Retry tiling for an image that permanently failed (TILING_ERROR). Resets its status back
-     * to untiled and force-triggers a fresh attempt, bypassing the size threshold — this is only
-     * ever called after an explicit, already-confirmed user action (CLI confirm prompt, a future
-     * "retry" UI action), never automatically. Returns false (no-op) if the image isn't actually
-     * in the errored state, so a caller can't accidentally interrupt a running/finished image.
+     * Force re-tile an image that's currently in a terminal state — either permanently failed
+     * (TILING_ERROR) or already successfully tiled (TILING_FINISHED, e.g. to pick up a fix to the
+     * tiling pipeline itself). Resets its status back to untiled and force-triggers a fresh
+     * attempt, bypassing the size threshold — this is only ever called after an explicit,
+     * already-confirmed user action (CLI confirm prompt, a future "retry"/"re-tile" UI action),
+     * never automatically. Returns false (no-op) only if the image is currently RUNNING, so a
+     * caller can't accidentally race a second job against one already in progress.
      */
     public function retry(Image $image): bool
     {
-        if (! $image->tilingError()) {
+        if ($image->tilingRunning()) {
             return false;
         }
 

@@ -74,11 +74,20 @@ it('retries a permanently-errored image, resetting status and dispatching a fres
     Queue::assertPushed(TileImageJob::class, fn ($job) => $job->image->id === $image->id);
 });
 
-it('does not retry an image that is not in the errored state', function () {
-    $finishedImage = Image::factory()->create(['campaign_id' => 1, 'tiling_status' => Image::TILING_FINISHED]);
+it('does not retry an image that is currently running (to avoid racing a second job)', function () {
     $runningImage = Image::factory()->create(['campaign_id' => 1, 'tiling_status' => Image::TILING_RUNNING]);
 
-    expect(app(TilingTriggerService::class)->retry($finishedImage))->toBeFalse();
     expect(app(TilingTriggerService::class)->retry($runningImage))->toBeFalse();
+    expect($runningImage->fresh()->tiling_status)->toBe(Image::TILING_RUNNING);
     Queue::assertNotPushed(TileImageJob::class);
+});
+
+it('retries (force re-tiles) an already-successfully-tiled image', function () {
+    $image = Image::factory()->create(['campaign_id' => 1, 'tiling_status' => Image::TILING_FINISHED]);
+
+    $retried = app(TilingTriggerService::class)->retry($image);
+
+    expect($retried)->toBeTrue();
+    expect($image->fresh()->tiling_status)->toBe(Image::TILING_RUNNING);
+    Queue::assertPushed(TileImageJob::class, fn ($job) => $job->image->id === $image->id);
 });
