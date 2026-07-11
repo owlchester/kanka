@@ -71,6 +71,7 @@ class MapResource extends JsonResource
                 'legacy_pins' => (bool) ($map->config['legacy_pins'] ?? false),
             ],
             'settings_url' => route('entities.map-settings.update', [$this->campaign->id, $map->entity->id]),
+            'tiling_prompt_url' => route('entities.map-tiling-prompt.update', [$this->campaign->id, $map->entity->id]),
             'show_url' => route('entities.show', [$this->campaign->id, $map->entity->id]),
             'edit_url' => route('entities.edit', [$this->campaign->id, $map->entity->id]),
         ];

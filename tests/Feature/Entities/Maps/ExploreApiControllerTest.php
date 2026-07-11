@@ -422,3 +422,12 @@ it('sets show_presence to true for a campaign with more than one member', functi
 
     expect($response->json('interactive.show_presence'))->toBeTrue();
 });
+
+it('exposes the tiling prompt url for the migration banner', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $response = $this->get(route('entities.map-api', [1, $map->entity]))->assertStatus(200);
+
+    expect($response->json('map.tiling_prompt_url'))->toBe(route('entities.map-tiling-prompt.update', [1, $map->entity->id]));
+});
