@@ -1,9 +1,9 @@
 <template>
     <div
         class="w-full h-screen flex items-center justify-center text-2xl"
-        v-if="loading || error"
+        v-if="loading || error || isTilingRunning"
     >
-        <div class="flex items-center gap-2" v-if="loading && !error">
+        <div class="flex items-center gap-2" v-if="loading && !error && !isTilingRunning">
             <i class="fa-solid fa-spinner fa-spin" aria-hidden="true" />
             <span>{{ loadingText }}</span>
         </div>
@@ -12,6 +12,13 @@
             v-else-if="error"
         >
             <span>{{ error }}</span>
+        </div>
+        <div
+            class="flex flex-col items-center gap-2"
+            v-else-if="isTilingRunning"
+        >
+            <i class="fa-solid fa-spinner fa-spin" aria-hidden="true" />
+            <span>{{ data.i18n.tiling.running }}</span>
         </div>
     </div>
 
@@ -79,6 +86,21 @@
                 aria-hidden="true"
                 v-tippy="presenceError"
             />
+        </div>
+
+        <div
+            v-if="canEdit && data.map.tiling_prompt_eligible && !tilingPromptDismissed"
+            class="fixed top-4 right-4 z-[1200] max-w-sm bg-base-100 border border-base-300 rounded-xl p-4 flex flex-col gap-2 shadow-lg"
+        >
+            <p class="text-sm text-base-content">{{ data.i18n.tiling_prompt.message }}</p>
+            <div class="flex gap-2 justify-end">
+                <button class="btn2 btn-default btn-sm" @click="respondToTilingPrompt('dismiss')">
+                    {{ data.i18n.tiling_prompt.dismiss }}
+                </button>
+                <button class="btn2 btn-primary btn-sm" @click="respondToTilingPrompt('migrate')">
+                    {{ data.i18n.tiling_prompt.migrate }}
+                </button>
+            </div>
         </div>
 
         <LegendPanel
@@ -218,6 +240,7 @@ const {
         onMapUpdated: handleRemoteMapUpdate,
         onContentsChanged: handleContentsChanged,
         onMarkerChanged: handleMarkerChanged,
+        onTilingChanged: handleTilingChanged,
     },
 );
 
@@ -227,6 +250,8 @@ const markersCountText = computed(() => {
 
     return template.replace(':count', count);
 });
+
+const isTilingRunning = computed(() => data.value.map.tiling === 'running');
 
 function presenceTooltip(user) {
     const i18n = data.value.i18n.presence;
@@ -242,6 +267,13 @@ function presenceTooltip(user) {
 function openSettings() {
     mapMenuInstance?.hide();
     settingsOpen.value = true;
+}
+
+const tilingPromptDismissed = ref(false);
+
+async function respondToTilingPrompt(action) {
+    tilingPromptDismissed.value = true;
+    await axios.patch(data.value.map.tiling_prompt_url, { action });
 }
 
 function selectPin(pin) {
@@ -294,6 +326,16 @@ function handleSettingsSaved(map) {
 
 function handleRemoteMapUpdate(map) {
     data.value.map = map;
+}
+
+function handleTilingChanged({ status }) {
+    data.value.map = { ...data.value.map, tiling: status === 'running' ? 'running' : null };
+
+    if (status !== 'running') {
+        axios.get(props.api).then((res) => {
+            data.value = res.data;
+        });
+    }
 }
 
 function handleContentsChanged({ groups, layers }) {

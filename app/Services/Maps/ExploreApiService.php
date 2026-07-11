@@ -109,6 +109,14 @@ class ExploreApiService
             'error_load' => __('maps/explorer.errors.load'),
             'error_delete' => __('maps/explorer.errors.delete'),
             'error_save' => __('maps/explorer.errors.save'),
+            'tiling' => [
+                'running' => __('maps/explorer.tiling.running'),
+            ],
+            'tiling_prompt' => [
+                'message' => __('maps/explorer.tiling_prompt.message'),
+                'migrate' => __('maps/explorer.tiling_prompt.migrate'),
+                'dismiss' => __('maps/explorer.tiling_prompt.dismiss'),
+            ],
             'from_entry' => __('maps/explorer.marker.from_entry'),
             'linked_entry' => __('maps/explorer.marker.linked_entry'),
             'edit_details' => __('maps/explorer.marker.edit'),
