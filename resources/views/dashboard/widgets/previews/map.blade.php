@@ -11,7 +11,7 @@ $map = $entity->child;
 @if(!$map->explorable())
     <x-alert type="warning">
         <a href="{{ $entity->url() }}" class="text-link">{!! $entity->name !!}</a>
-        <p class="">{{ __('maps.errors.dashboard.missing') }}</p>
+        <p class="">{{ $map->tilingRunning() ? __('maps.errors.dashboard.tiling') : __('maps.errors.dashboard.missing') }}</p>
     </x-alert>
     @php return @endphp
 @endif
