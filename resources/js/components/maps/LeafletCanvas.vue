@@ -136,8 +136,8 @@ function buildBaseLayer() {
         return
     }
 
-    if (props.map.is_chunked) {
-        L.tileLayer(props.map.chunks_url, { attribution: '&copy; Kanka' }).addTo(leafletMap)
+    if (props.map.is_tiled) {
+        L.tileLayer(props.map.tiles_url, { attribution: '&copy; Kanka' }).addTo(leafletMap)
 
         return
     }
@@ -145,11 +145,27 @@ function buildBaseLayer() {
     L.imageOverlay(props.map.image, bounds()).addTo(leafletMap)
 }
 
+const renderedLayerIds = new Set()
+
 function buildLayers() {
     props.layers.forEach((layer) => {
         L.imageOverlay(layer.image, bounds()).addTo(leafletMap)
+        renderedLayerIds.add(layer.id)
     })
 }
+
+watch(
+    () => props.layers,
+    (layers) => {
+        layers.forEach((layer) => {
+            if (renderedLayerIds.has(layer.id)) {
+                return
+            }
+            L.imageOverlay(layer.image, bounds()).addTo(leafletMap)
+            renderedLayerIds.add(layer.id)
+        })
+    },
+)
 
 function relativeLuminance(hex) {
     const value = hex.replace('#', '')
