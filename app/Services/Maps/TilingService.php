@@ -31,7 +31,10 @@ class TilingService
             $process->setTimeout(0);
             $process->mustRun();
 
-            $disk->deleteDirectory($image->tilesPath());
+            // deleteDirectory() silently no-ops against S3/MinIO-backed disks (the adapter has no
+            // real "directory" concept to remove) — delete each existing tile file individually
+            // instead, so a re-tile doesn't leave stale tiles from a previous pyramid mixed in.
+            $disk->delete($disk->allFiles($image->tilesPath()));
             $this->uploadTiles($disk, $localTilesDir, $image->tilesPath());
         } finally {
             @unlink($localSource);
