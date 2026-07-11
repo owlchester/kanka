@@ -137,7 +137,10 @@ function buildBaseLayer() {
     }
 
     if (props.map.is_tiled) {
-        L.tileLayer(props.map.tiles_url, { attribution: '&copy; Kanka' }).addTo(leafletMap)
+        L.tileLayer(props.map.tiles_url, {
+            attribution: '&copy; Kanka',
+            errorTileUrl: '/images/map_chunks/transparent.png',
+        }).addTo(leafletMap)
 
         return
     }

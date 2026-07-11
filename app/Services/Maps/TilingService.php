@@ -12,17 +12,18 @@ use Symfony\Component\Process\Process;
 class TilingService
 {
     /**
-     * Generate a Leaflet-servable ("google" layout: {z}/{y}/{x}.jpg or .png) tile pyramid for the
-     * given image via the `vips` CLI (libvips-tools), honoring the image's native aspect ratio (no
+     * Generate a Leaflet-servable ("google" layout: {z}/{y}/{x}.webp) tile pyramid for the given
+     * image via the `vips` CLI (libvips-tools), honoring the image's native aspect ratio (no
      * padding to square). `vips` can only read/write real local filesystem paths — the source is
      * downloaded to a local temp file and the generated tiles are uploaded back to the configured
-     * disk (which may be S3) afterward. Uses `.png` tiles (preserves transparency) when the source
-     * image has an alpha channel, `.jpg` (smaller files) otherwise. Writes to
-     * {disk}/images/{uuid}/tiles/. Returns the actual zoom range `vips` generated (['min_zoom' =>
-     * int, 'max_zoom' => int]) so the caller can persist it onto any map using this image — the old
-     * fixed zoom-range assumption bore no relationship to what a given image's pyramid actually
-     * contains. Throws on any vips failure — the caller (TileImageJob) is responsible for catching
-     * and recording it.
+     * disk (which may be S3) afterward. Always emits `.webp` tiles — it supports alpha (unlike jpg)
+     * at file sizes comparable to or smaller than png, so every source format (jpg/png/webp/gif)
+     * produces a single, fixed, predictable tile extension with no per-image tracking needed.
+     * Writes to {disk}/images/{uuid}/tiles/. Returns the actual zoom range `vips` generated
+     * (['min_zoom' => int, 'max_zoom' => int]) so the caller can persist it onto any map using this
+     * image — the old fixed zoom-range assumption bore no relationship to what a given image's
+     * pyramid actually contains. Throws on any vips failure — the caller (TileImageJob) is
+     * responsible for catching and recording it.
      */
     public function tile(Image $image): array
     {
@@ -32,9 +33,7 @@ class TilingService
         $localTilesDir = sys_get_temp_dir() . '/kanka-tiling-' . $image->id . '-' . Str::random(8);
 
         try {
-            $suffix = $this->chooseSuffix($localSource);
-
-            $process = new Process($this->command($localSource, $localTilesDir, $suffix));
+            $process = new Process($this->command($localSource, $localTilesDir));
             $process->setTimeout(0);
             $process->mustRun();
 
@@ -59,7 +58,7 @@ class TilingService
      *
      * @return string[]
      */
-    public function command(string $localSourcePath, string $localTilesDir, string $suffix = '.jpg[Q=85]'): array
+    public function command(string $localSourcePath, string $localTilesDir, string $suffix = '.webp[Q=80]'): array
     {
         return [
             'vips', 'dzsave',
@@ -69,21 +68,12 @@ class TilingService
             '--suffix=' . $suffix,
             '--tile-size=256',
             '--overlap=0',
+            // Edge tiles (the last row/col of the pyramid) are smaller than the full tile size and
+            // get padded out to 256x256 — vips's default padding is opaque white, which shows as a
+            // solid white block over what should be transparent. `0` broadcasts to every band
+            // (RGB or RGBA alike), making the padding transparent wherever alpha exists.
+            '--background=0',
         ];
-    }
-
-    /**
-     * `.png` preserves transparency (needed for images with an alpha channel); `.jpg` is smaller
-     * and used for the common fully-opaque case. `vipsheader -f bands` reports 2 (grayscale+alpha)
-     * or 4 (RGBA) for images with an alpha channel, 1 (grayscale) or 3 (RGB) without one.
-     */
-    protected function chooseSuffix(string $localSourcePath): string
-    {
-        $process = new Process(['vipsheader', '-f', 'bands', $localSourcePath]);
-        $process->mustRun();
-        $bands = (int) trim($process->getOutput());
-
-        return in_array($bands, [2, 4], true) ? '.png' : '.jpg[Q=85]';
     }
 
     /**
@@ -131,16 +121,14 @@ class TilingService
         );
 
         foreach ($files as $file) {
-            if (! in_array($file->getExtension(), ['jpg', 'png'], true)) {
+            if ($file->getExtension() !== 'webp') {
                 continue;
             }
 
             $relative = ltrim(Str::after($file->getPathname(), $localTilesDir), '/');
 
-            // `vips dzsave --layout=google` also emits a "blank.png" placeholder icon at the top
-            // level of the tiles directory (used internally as a fallback/spacer) — this is not a
-            // real tile and must never be uploaded. Real tiles always live nested two levels deep
-            // ({z}/{y}/{x}.ext), so a top-level file (no "/" in its relative path) is never a tile.
+            // Real tiles always live nested two levels deep ({z}/{y}/{x}.webp), so a top-level
+            // file (no "/" in its relative path) is never a tile.
             if (! str_contains($relative, '/')) {
                 continue;
             }

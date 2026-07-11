@@ -81,7 +81,6 @@ Route::post('/w/{campaign}/entities/{entity}/entity_abilities/reorder', [App\Htt
 // Maps
 Route::get('/w/{campaign}/maps/{map}/maps', 'Maps\MapController@index')->name('maps.maps');
 Route::get('/w/{campaign}/maps/{map}/explore', 'Maps\ExploreController@index')->name('maps.explore');
-Route::get('/w/{campaign}/maps/{map}/tiles/', 'Maps\ExploreController@tiles')->name('maps.tiles');
 Route::get('/w/{campaign}/maps/{map}/ticker', 'Maps\ExploreController@ticker')->name('maps.ticker');
 Route::get('/w/{campaign}/maps/{map}/preview', 'Maps\PreviewController@index')->name('maps.preview');
 Route::get('/w/{campaign}/maps/{map}/{map_marker}/details', 'Maps\Markers\DetailController@index')->name('maps.markers.details');

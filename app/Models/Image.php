@@ -424,4 +424,21 @@ class Image extends Model
 
         return Storage::url($path);
     }
+
+    /**
+     * Leaflet tile URL template for this image's tile pyramid, e.g. ".../tiles/{z}/{y}/{x}.webp".
+     * Tiles are always webp (see TilingService), so the extension is fixed and never needs to be
+     * tracked per-image. Points straight at storage/CDN rather than a PHP route, so tile requests
+     * skip the app entirely (no session overhead, cacheable by a CDN in front of storage).
+     */
+    public function tilesUrlTemplate(): string
+    {
+        $path = $this->tilesPath() . '/{z}/{y}/{x}.webp';
+        $cdn = config('cdn.ugc');
+        if ($cdn) {
+            return $cdn . '/' . $path;
+        }
+
+        return Storage::url($path);
+    }
 }

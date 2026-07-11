@@ -79,8 +79,8 @@ it('marks a finished tiled map with a tiles url', function () {
     $tilesUrl = $response->json('map.tiles_url');
 
     expect($response->json('map.is_tiled'))->toBeTrue();
-    expect($tilesUrl)->toStartWith(route('maps.tiles', [1, $map->id]));
-    expect($tilesUrl)->toEndWith('?z={z}&x={x}&y={y}');
+    expect($tilesUrl)->toEndWith('/{z}/{y}/{x}.webp');
+    expect($tilesUrl)->toContain($image->tilesPath());
     expect($response->json('map.tiling'))->toBeNull();
 });
 

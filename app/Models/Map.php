@@ -568,6 +568,14 @@ class Map extends MiscModel
     }
 
     /**
+     * Leaflet tile URL template for this map's base image tile pyramid, or null if not tiled.
+     */
+    public function tilesUrl(): ?string
+    {
+        return $this->isTiled() ? $this->entity->image->tilesUrlTemplate() : null;
+    }
+
+    /**
      * Determine if the map uses marker clustering or not
      */
     public function isClustered(): bool

@@ -4,14 +4,12 @@ namespace App\Http\Controllers\Maps;
 
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
-use App\Models\Image;
 use App\Models\Map;
 use App\Models\MapMarker;
 use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
 use Carbon\Carbon;
 use Exception;
-use Illuminate\Support\Facades\Storage;
 
 class ExploreController extends Controller
 {
@@ -84,36 +82,5 @@ class ExploreController extends Controller
             'ts' => Carbon::now(),
             'markers' => $data,
         ]);
-    }
-
-    /**
-     * Serve a tile from the map's base image tile pyramid
-     */
-    public function tiles(Campaign $campaign, Map $map)
-    {
-        $image = $map->entity->image;
-
-        return $this->serveTile($image);
-    }
-
-    protected function serveTile(?Image $image)
-    {
-        $headers = ['Expires', Carbon::now()->addDays(1)->toDateTimeString()];
-        if (! $image || ! request()->has(['z', 'x', 'y'])) {
-            return response()
-                ->file(public_path('/images/map_chunks/transparent.png'), $headers);
-        }
-
-        $prefix = $image->tilesPath() . '/' . request()->get('z')
-            . '/' . request()->get('y') . '/' . request()->get('x');
-
-        foreach (['.jpg', '.png'] as $extension) {
-            if (Storage::exists($prefix . $extension)) {
-                return redirect()->to(Storage::url($prefix . $extension));
-            }
-        }
-
-        return response()
-            ->file(public_path('/images/map_chunks/transparent.png'), $headers);
     }
 }

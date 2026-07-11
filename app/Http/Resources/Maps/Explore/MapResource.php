@@ -48,9 +48,7 @@ class MapResource extends JsonResource
             'initial_zoom' => $map->initialZoom(),
             'center' => $center,
             'tile_url' => $map->isReal() ? 'https://tile.openstreetmap.org/{z}/{x}/{y}.png' : null,
-            'tiles_url' => $isTiled
-                ? route('maps.tiles', [$this->campaign->id, $map->id]) . '/?z={z}&x={x}&y={y}'
-                : null,
+            'tiles_url' => $map->tilesUrl(),
             'create_url' => route('entities.map-markers.store', [$this->campaign->id, $map->entity->id]),
             'search_url' => route('search.entities-with-relations', $this->campaign->id),
             'has_distance_unit' => $map->hasDistanceUnit(),
