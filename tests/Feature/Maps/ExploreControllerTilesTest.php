@@ -11,11 +11,11 @@ it('serves a tile from the map\'s base image tiles folder', function () {
     $map = Map::factory()->create(['campaign_id' => 1]);
     $map->entity->image_uuid = $image->id;
     $map->entity->saveQuietly();
-    Storage::put($image->tilesPath() . '/3/1_2.jpg', 'fake-tile-bytes');
+    Storage::put($image->tilesPath() . '/3/1/2.jpg', 'fake-tile-bytes');
 
     $response = $this->get(route('maps.tiles', [1, $map->id]) . '?z=3&x=1&y=2');
 
-    $response->assertRedirect(Storage::url($image->tilesPath() . '/3/1_2.jpg'));
+    $response->assertRedirect(Storage::url($image->tilesPath() . '/3/1/2.jpg'));
 });
 
 it('falls back to the transparent placeholder for a missing tile', function () {

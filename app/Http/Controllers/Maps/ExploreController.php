@@ -105,7 +105,7 @@ class ExploreController extends Controller
         }
 
         $path = $image->tilesPath() . '/' . request()->get('z')
-            . '/' . request()->get('x') . '_' . request()->get('y')
+            . '/' . request()->get('x') . '/' . request()->get('y')
             . '.jpg';
 
         if (! Storage::exists($path)) {
