@@ -24,6 +24,8 @@ class ImageObserver
     {
         Storage::disk(config('images.disk'))
             ->delete($image->path);
+        Storage::disk(config('images.disk'))
+            ->deleteDirectory($image->tilesPath());
 
         CampaignCache::campaign($image->campaign)->clear();
     }
