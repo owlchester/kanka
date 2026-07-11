@@ -35,7 +35,7 @@ if ($hasImage) {
             </div>
             <div class="flex-none marker-actions flex gap-3 items-center text-2xl">
                 @if($marker->entity && $marker->entity->isMap())
-                    <a href="{{ route('maps.explore', [$campaign, $marker->entity->child]) }}" class="marker-map-link text-sidebar-content" data-tooltip data-title="{{  __('maps.actions.explore') }}">
+                    <a href="{{ route('entities.map', [$campaign, $marker->entity]) }}" class="marker-map-link text-sidebar-content" data-tooltip data-title="{{  __('maps.actions.explore') }}">
                         <x-icon class="map" />
                     </a>
                 @endif
@@ -63,7 +63,7 @@ if ($hasImage) {
     @if($marker->entity->isLocation() && !$marker->entity->child->maps->isEmpty())
         <div class="marker-explore-links text-center m-3">
             @foreach ($marker->entity->child->maps as $map)
-                <a href="{{ route('maps.explore', [$campaign, $map]) }}" class="btn2 btn-block btn-primary btn-sm">
+                <a href="{{ route('entities.map', [$campaign, $map->entity]) }}" class="btn2 btn-block btn-primary btn-sm">
                     <x-icon class="map" />
                     {{ __('maps.actions.explore') }} {!! $map->name !!}
                 </a>

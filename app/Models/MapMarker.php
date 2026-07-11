@@ -402,7 +402,7 @@ class MapMarker extends Model
             if (! empty($this->name)) { // Name is set, include link to the entity
                 $url = $this->entity->url();
                 if ($this->entity->isMap()) {
-                    $url = route('maps.explore', [$campaign, $this->entity->child]);
+                    $url = route('entities.map', [$campaign, $this->entity]);
                 }
                 $body .= "<p><a href=\"{$url}\" class=\"text-link\">" . str_replace('`', '\'', $this->entity->name) . '</a></p>';
             }
@@ -598,7 +598,7 @@ class MapMarker extends Model
             if ($link) {
                 $url = $this->entity->url();
                 if ($this->entity->isMap()) {
-                    $url = route('maps.explore', [$campaign, $this->entity->child]);
+                    $url = route('entities.map', [$campaign, $this->entity]);
                 }
 
                 return '<a href="' . $url . '" class="text-link">' . $this->entity->name . '</a>';

@@ -11,7 +11,7 @@ if ($map->tilingError()) {
     __('maps.tooltips.tiling.running') . '"></i>';
 }
 @endphp
-<a href="{{ route('maps.explore', [$campaign, $map->id]) }}" target="_blank"
+<a href="{{ route('entities.map', [$campaign, $map->entity]) }}" target="_blank"
    data-toggle="tooltip" data-title="{{ __('maps.actions.explore') }}" class="text-link">
     <x-icon class="map" />
 </a>

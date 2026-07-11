@@ -117,7 +117,7 @@ class GroupController extends Controller
                 ->withSuccess(__('maps/groups.create.success', ['name' => $new->name]));
         } elseif ($request->has('submit-explore')) {
             return redirect()
-                ->route('maps.explore', [$campaign, $map])
+                ->route('entities.map', [$campaign, $map->entity])
                 ->withSuccess(__('maps/groups.create.success', ['name' => $new->name]));
         }
 
@@ -158,7 +158,7 @@ class GroupController extends Controller
                 ->withSuccess(__('maps/groups.edit.success', ['name' => $mapGroup->name]));
         } elseif ($request->has('submit-explore')) {
             return redirect()
-                ->route('maps.explore', [$campaign, $map])
+                ->route('entities.map', [$campaign, $map->entity])
                 ->withSuccess(__('maps/groups.edit.success', ['name' => $mapGroup->name]));
         }
 

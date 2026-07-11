@@ -18,7 +18,7 @@
                     </x-alert>
                 @else
                     <p>
-                        <a href="{{ route('maps.explore', [$campaign, $entity->child]) }}" class="btn2 btn-block btn-primary" target="_blank">
+                        <a href="{{ route('entities.map', [$campaign, $entity]) }}" class="btn2 btn-block btn-primary" target="_blank">
                             <x-icon class="map" /> {{ __('maps.actions.explore') }}
                         </a>
                     </p>

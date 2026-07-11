@@ -174,7 +174,7 @@ class ExploreResource extends JsonResource
             // Map explore link
             if ($this->hasColumn('explore')) {
                 if ($child->isReal()) {
-                    $data['explore'] = ['url' => route('maps.explore', [$campaign, $child->id])];
+                    $data['explore'] = ['url' => route('entities.map', [$campaign, $child->entity])];
                 } elseif (! $entity->hasImage()) {
                     $data['explore'] = null;
                 } elseif ($child->tilingError()) {
@@ -182,7 +182,7 @@ class ExploreResource extends JsonResource
                 } elseif ($child->tilingRunning()) {
                     $data['explore'] = ['url' => null, 'status' => 'running'];
                 } else {
-                    $data['explore'] = ['url' => route('maps.explore', [$campaign, $child->id])];
+                    $data['explore'] = ['url' => route('entities.map', [$campaign, $child->entity])];
                 }
             }
 
