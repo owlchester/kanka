@@ -94,6 +94,13 @@
                     }}</span>
                 </p>
 
+                <p
+                    v-if="distanceText || surfaceText"
+                    class="text-xs text-neutral-content"
+                >
+                    {{ distanceText || surfaceText }}
+                </p>
+
                 <a
                     v-if="preview?.entity_url"
                     :href="preview.entity_url"
@@ -181,9 +188,11 @@
 
 <script setup>
 import { computed, ref, watch } from "vue";
+import { pathLength, polygonArea } from "../../maps/polygon.js";
 
 const props = defineProps({
     pin: { type: Object, default: null },
+    map: { type: Object, default: () => ({}) },
     i18n: { type: Object, required: true },
 });
 
@@ -216,6 +225,27 @@ const markerIcon = computed(() => {
     }
 
     return { kind: "fa", value: "fa-solid fa-location-dot" };
+});
+
+const distanceText = computed(() => {
+    // Saved pins come back from the Explore API (PinResource) as `custom_shape`;
+    // in-progress draft pins built client-side (see MapExplorer.vue) use `customShape`.
+    // Mirrors the same fallback LeafletCanvas.vue uses when rendering shapes.
+    const shape = props.pin?.custom_shape ?? props.pin?.customShape;
+    if (props.pin?.shape !== "path" || !props.map?.has_distance_unit || !shape?.length) {
+        return null;
+    }
+
+    return `${props.i18n.distance} ${pathLength(shape, props.map).toFixed(2)} ${props.map.distance_name}`;
+});
+
+const surfaceText = computed(() => {
+    const shape = props.pin?.custom_shape ?? props.pin?.customShape;
+    if (props.pin?.shape !== "poly" || !props.map?.has_distance_unit || !shape?.length) {
+        return null;
+    }
+
+    return `${props.i18n.surface} ${polygonArea(shape, props.map).toFixed(2)} ${props.map.distance_name}²`;
 });
 
 function duplicate() {

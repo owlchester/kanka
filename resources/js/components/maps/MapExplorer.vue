@@ -140,6 +140,7 @@
 
         <DetailPanel
             :pin="selectedPin"
+            :map="data.map"
             :i18n="data.i18n"
             @close="selectedPin = null"
             @center="centerNonce++"
