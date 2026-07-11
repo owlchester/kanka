@@ -50,11 +50,6 @@
                     aria-hidden="true"
                 ></i>
                 <span
-                    v-else-if="markerIcon.kind === 'text'"
-                    class="text-white font-semibold"
-                    >{{ markerIcon.value }}</span
-                >
-                <span
                     v-else-if="markerIcon.kind === 'html'"
                     class="text-white"
                     v-html="markerIcon.value"
@@ -202,11 +197,11 @@ const error = ref(null);
 
 const markerIcon = computed(() => {
     if (props.pin.shape === "label") {
-        return { kind: "text", value: "T" };
+        return { kind: "fa", value: "fa-regular fa-font" };
     }
 
     if (props.pin.shape === "poly") {
-        return { kind: "fa", value: "fa-regular fa-hexagon" };
+        return { kind: "fa", value: "fa-regular fa-draw-polygon" };
     }
 
     if (props.pin.shape === "path") {
