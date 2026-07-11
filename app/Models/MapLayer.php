@@ -147,6 +147,38 @@ class MapLayer extends Model
         return $this->typeName() === 'overlay_shown' && $this->hasImage();
     }
 
+    /**
+     * Check if this layer's image has a finished tile pyramid ready to serve
+     */
+    public function isTiled(): bool
+    {
+        return $this->image?->isTiled() ?? false;
+    }
+
+    /**
+     * Check if this layer's image is currently being tiled
+     */
+    public function tilingRunning(): bool
+    {
+        return $this->image?->tilingRunning() ?? false;
+    }
+
+    /**
+     * Check if this layer's image permanently failed tiling
+     */
+    public function tilingError(): bool
+    {
+        return $this->image?->tilingError() ?? false;
+    }
+
+    /**
+     * Check if this layer's image can render one way or another
+     */
+    public function tilingReady(): bool
+    {
+        return $this->image === null || $this->image->tilingReady();
+    }
+
     public function getEntryForEditionAttribute()
     {
         return Mentions::parseForEdit($this);
