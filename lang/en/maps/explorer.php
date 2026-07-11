@@ -47,8 +47,6 @@ return [
         'stroke_thin'       => 'Thin',
         'stroke_normal'     => 'Normal',
         'stroke_bold'       => 'Bold',
-        'distance'          => 'Distance',
-        'surface'           => 'Surface',
     ],
     'markers_count' => [
         'one'   => '1 marker',

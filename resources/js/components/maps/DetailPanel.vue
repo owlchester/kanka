@@ -92,13 +92,10 @@
                     <span class="marker-group">{{
                         preview.group_name || i18n.ungrouped
                     }}</span>
-                </p>
-
-                <p
-                    v-if="distanceText || surfaceText"
-                    class="text-xs text-neutral-content"
-                >
-                    {{ distanceText || surfaceText }}
+                    <template v-if="distanceText || surfaceText">
+                        <span>-</span>
+                        <span>{{ distanceText || surfaceText }}</span>
+                    </template>
                 </p>
 
                 <a
@@ -236,7 +233,7 @@ const distanceText = computed(() => {
         return null;
     }
 
-    return `${props.i18n.distance} ${pathLength(shape, props.map).toFixed(2)} ${props.map.distance_name}`;
+    return `${pathLength(shape, props.map).toFixed(2)} ${props.map.distance_name}`;
 });
 
 const surfaceText = computed(() => {
@@ -245,7 +242,7 @@ const surfaceText = computed(() => {
         return null;
     }
 
-    return `${props.i18n.surface} ${polygonArea(shape, props.map).toFixed(2)} ${props.map.distance_name}²`;
+    return `${polygonArea(shape, props.map).toFixed(2)} ${props.map.distance_name}²`;
 });
 
 function duplicate() {

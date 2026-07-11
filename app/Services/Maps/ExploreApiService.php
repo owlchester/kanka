@@ -150,8 +150,6 @@ class ExploreApiService
             'stroke_thin' => __('maps/explorer.marker.stroke_thin'),
             'stroke_normal' => __('maps/explorer.marker.stroke_normal'),
             'stroke_bold' => __('maps/explorer.marker.stroke_bold'),
-            'distance' => __('maps/explorer.marker.distance'),
-            'surface' => __('maps/explorer.marker.surface'),
             'opacity' => __('maps/explorer.marker.opacity'),
             'custom' => __('maps/explorer.marker.custom'),
             'premium_custom_icon' => __('maps/explorer.marker.premium_custom_icon'),
