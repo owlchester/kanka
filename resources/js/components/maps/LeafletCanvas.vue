@@ -97,6 +97,23 @@ function buildCursors() {
     cursorLayer.addTo(leafletMap)
 }
 
+// Leaflet's SVG renderer sets path colours via path.setAttribute('stroke', ...)
+// (a raw SVG presentation attribute), not a CSS style property — a
+// var(--custom-property) reference placed there is not reliably resolved by
+// the browser the way it would be in an actual CSS declaration. Resolve the
+// custom property to a concrete computed colour (e.g. "rgb(...)") by applying
+// it to a real CSS property on a throwaway element first, then hand Leaflet
+// that literal value instead.
+function resolveCssColor(value) {
+    const probe = document.createElement('span')
+    probe.style.color = value
+    document.body.appendChild(probe)
+    const resolved = getComputedStyle(probe).color
+    document.body.removeChild(probe)
+
+    return resolved
+}
+
 function buildRuler() {
     if (rulerControl) {
         leafletMap.removeControl(rulerControl)
@@ -107,6 +124,8 @@ function buildRuler() {
         return
     }
 
+    const rulerColor = resolveCssColor('var(--map-ruler-color)')
+
     rulerControl = L.control.ruler({
         // Leaflet's control default is 'topright', which sits directly under
         // DetailPanel/MarkerPanel (fixed top-4 right-4 bottom-4) and becomes
@@ -114,6 +133,14 @@ function buildRuler() {
         // is open. 'bottomleft' keeps it reachable, stacked with the zoom
         // control which was placed there for the same reason.
         position: 'bottomleft',
+        circleMarker: {
+            color: rulerColor,
+            radius: 2,
+        },
+        lineStyle: {
+            color: rulerColor,
+            dashArray: '1,6',
+        },
         lengthUnit: {
             factor: props.map.distance_measure,
             display: props.map.distance_name,
