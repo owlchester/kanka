@@ -18,8 +18,8 @@ function crsFor(map) {
     return map.is_real ? L.CRS.EPSG3857 : L.CRS.Simple
 }
 
-function toPoint(crs, [lat, lng]) {
-    return crs.latLngToPoint(L.latLng(lat, lng), 0)
+function toPoint(crs, maxZoom, [lat, lng]) {
+    return crs.latLngToPoint(L.latLng(lat, lng), maxZoom)
 }
 
 // Mirrors the ruler tool's own formula (resources/js/leaflet/ruler.js) so the
@@ -31,7 +31,7 @@ export function pathLength(vertices, map) {
     let total = 0
 
     for (let i = 1; i < vertices.length; i++) {
-        total += toPoint(crs, vertices[i - 1]).distanceTo(toPoint(crs, vertices[i]))
+        total += toPoint(crs, maxZoom, vertices[i - 1]).distanceTo(toPoint(crs, maxZoom, vertices[i]))
     }
 
     return total * factor / maxZoom
@@ -43,7 +43,7 @@ export function polygonArea(vertices, map) {
     const crs = crsFor(map)
     const maxZoom = map.max_zoom
     const k = (map.distance_measure || 1) / maxZoom
-    const points = vertices.map((vertex) => toPoint(crs, vertex))
+    const points = vertices.map((vertex) => toPoint(crs, maxZoom, vertex))
 
     let sum = 0
     for (let i = 0; i < points.length; i++) {
