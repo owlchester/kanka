@@ -221,3 +221,13 @@ it('allows editing a map whose image permanently failed tiling (falls back, not 
     $this->get(route('maps.edit', [1, $map->id]))
         ->assertRedirect(route('entities.edit', [$map->entity->campaign, $map->entity]));
 });
+
+it('centers a tiled map on the middle of its actual image, not (0,0)', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1, 'height' => 3000, 'width' => 4000]);
+    $image = Image::factory()->create(['campaign_id' => 1, 'tiling_status' => Image::TILING_FINISHED]);
+    $map->entity->image_uuid = $image->id;
+    $map->entity->saveQuietly();
+
+    expect($map->centerFocus())->toBe('1500, 2000');
+});

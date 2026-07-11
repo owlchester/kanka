@@ -56,7 +56,7 @@ class Map extends MiscModel
 
     public const MAX_ZOOM_REAL = 15;
 
-    public const MIN_ZOOM_REAL = 2;
+    public const MIN_ZOOM_REAL = 0;
 
     public const MIN_ZOOM_TILE = 8;
 
@@ -407,9 +407,6 @@ class Map extends MiscModel
         if ($this->isReal()) {
             $latitude = 46.205;
             $longitude = 6.147;
-        } elseif ($this->isTiled()) {
-            $latitude = 0;
-            $longitude = 0;
         } else {
             $latitude = floor($this->height / 2);
             $longitude = floor($this->width / 2);

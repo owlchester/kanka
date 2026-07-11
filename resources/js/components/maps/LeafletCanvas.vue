@@ -743,7 +743,16 @@ onMounted(() => {
 
     if (! props.map.is_real) {
         options.crs = L.CRS.Simple
-        options.maxBounds = bounds()
+
+        // Tiled maps use a Leaflet tile-layer pyramid under CRS.Simple, where zoom and world
+        // coordinates are linked (point = latlng * 2^zoom) — the raw full-resolution pixel
+        // bounds this app computes for plain image overlays don't correctly constrain a tile
+        // pyramid's viewport, and can push the visible content outside the forced bounds for
+        // large images. Skip bounds-forcing for tiled maps until that's properly reworked;
+        // plain (non-tiled) custom maps are unaffected and keep the existing behavior.
+        if (! props.map.is_tiled) {
+            options.maxBounds = bounds()
+        }
     }
 
     leafletMap = L.map(mapEl.value, options)

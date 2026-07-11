@@ -107,8 +107,6 @@ if (isset($single) && $single) {
     var map{{ $map->id }} = L.map('map{{ $map->id }}', {
         @if ($map->isTiled())
         crs: L.CRS.Simple,
-        maxBounds: maxBounds{{ $map->id }},
-        maxBoundsViscosity: 0.5,
         @endif
         noWrap: true,
         dragging: true,
