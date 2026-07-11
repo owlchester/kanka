@@ -6,6 +6,14 @@ return [
         'load'      => 'Unable to load this map.',
         'save'      => 'Unable to save this marker.',
     ],
+    'tiling'    => [
+        'running'   => 'This map\'s resources are being tiled. Please try again soon.',
+    ],
+    'tiling_prompt' => [
+        'message'   => 'This map has a large image and is using an older, slower rendering mode. Do you want to migrate to a new version? This will mean the map is unavailable for a few minutes, but in exchange the map will load much faster in the future.',
+        'migrate'   => 'Migrate',
+        'dismiss'   => 'No thanks',
+    ],
     'legend'    => [
         'search'    => 'Search markers',
         'expand'    => 'Expand all groups',
