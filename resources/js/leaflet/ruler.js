@@ -4,11 +4,11 @@ L.Control.Ruler = L.Control.extend({
     options: {
         position: 'topright',
         circleMarker: {
-            color: 'red',
+            color: 'var(--map-ruler-color)',
             radius: 2,
         },
         lineStyle: {
-            color: 'red',
+            color: 'var(--map-ruler-color)',
             dashArray: '1,6',
         },
         lengthUnit: {
@@ -27,6 +27,7 @@ L.Control.Ruler = L.Control.extend({
         this._map = map
         this._container = L.DomUtil.create('div', 'leaflet-bar')
         this._container.classList.add('leaflet-ruler')
+        L.DomUtil.create('i', 'fa-regular fa-ruler', this._container).setAttribute('aria-hidden', 'true')
         L.DomEvent.disableClickPropagation(this._container)
         L.DomEvent.on(this._container, 'click', this._toggleMeasure, this)
         this._choice = false

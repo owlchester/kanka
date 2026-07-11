@@ -4,7 +4,7 @@
 
 :root {
     --map-hero-ratio: 2/1;
-    --map-ruler-color: #de0000;
+    --map-ruler-color: hsl(var(--p)/1);
 }
 
 .map {
@@ -223,30 +223,34 @@ body.map-drawing-mode {
     color: hsl(var(--p)/1) !important;
 }
 
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+    background-color: hsl(var(--b1)/1) !important;
+    color: hsl(var(--bc)/1) !important;
+    border-bottom-color: hsl(var(--bc)/1) !important;
+}
+
 /** Used by the ruler plugin */
 .leaflet-ruler {
     height: 48px;
     width: 48px;
     background-color: hsl(var(--b1)/1);
-    background-image: url(/resources/images/leaflet/icon.png); /* <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> */
-    background-repeat: no-repeat;
-    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
 }
 
-.leaflet-ruler:hover {
-    background-image: url(/resources/images/leaflet/icon-colored.png); /* <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> */
+.leaflet-ruler i {
+    color: hsl(var(--bc)/1);
+    font-size: 20px;
 }
 
-.leaflet-ruler-clicked {
-    height: 48px;
-    width: 48px;
-    background-color: hsl(var(--b1)/1);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-image: url(/resources/images/leaflet/icon-colored.png);
-    cursor: pointer;
+.leaflet-ruler:hover i,
+.leaflet-ruler-clicked i {
+    color: hsl(var(--p)/1);
 }
+
 .leaflet-bar {
     --tw-bg-opacity: 1;
     background-color: hsl(var(--b1)/var(--tw-bg-opacity));
