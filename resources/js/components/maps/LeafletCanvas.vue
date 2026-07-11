@@ -893,9 +893,11 @@ onBeforeUnmount(() => {
 .leaflet-ruler {
     height: 48px;
     width: 48px;
+    background-color: hsl(var(--b1)/1);
     background-image: url(/resources/images/leaflet/icon.png);
     background-repeat: no-repeat;
     background-position: center;
+    cursor: pointer;
 }
 
 .leaflet-ruler:hover {
@@ -905,9 +907,11 @@ onBeforeUnmount(() => {
 .leaflet-ruler-clicked {
     height: 48px;
     width: 48px;
+    background-color: hsl(var(--b1)/1);
     background-repeat: no-repeat;
     background-position: center;
     background-image: url(/resources/images/leaflet/icon-colored.png);
+    cursor: pointer;
 }
 
 .result-tooltip {
