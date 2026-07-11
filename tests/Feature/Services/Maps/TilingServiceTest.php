@@ -7,18 +7,26 @@ use App\Services\Maps\TilingService;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 
-it('builds the vips dzsave command with native aspect ratio and no square padding', function () {
+it('builds the vips dzsave command with native aspect ratio, no square padding, and the given suffix', function () {
     $service = new TilingService;
 
-    $command = $service->command('/tmp/source.png', '/tmp/tiles-output');
+    $command = $service->command('/tmp/source.png', '/tmp/tiles-output', '.png');
 
     expect($command[0])->toBe('vips');
     expect($command[1])->toBe('dzsave');
     expect($command[2])->toBe('/tmp/source.png');
     expect($command[3])->toBe('/tmp/tiles-output');
     expect($command)->toContain('--layout=google');
-    expect($command)->toContain('--suffix=.jpg[Q=85]');
+    expect($command)->toContain('--suffix=.png');
     expect($command)->not->toContain('--square'); // no padding to square — native aspect ratio only
+});
+
+it('defaults the suffix to jpg when not specified', function () {
+    $service = new TilingService;
+
+    $command = $service->command('/tmp/source.png', '/tmp/tiles-output');
+
+    expect($command)->toContain('--suffix=.jpg[Q=85]');
 });
 
 it('uploads generated tiles to the configured disk, keyed by image, not by a local filesystem path', function () {
@@ -81,7 +89,14 @@ it('tile() downloads the source to a real local file, runs the command against i
 
         public ?string $capturedLocalTilesDir = null;
 
-        public function command(string $localSourcePath, string $localTilesDir): array
+        // Avoid shelling out to real `vipsheader` against the fake (non-image) source bytes this
+        // test writes to disk — `chooseSuffix()`'s real behavior is covered separately.
+        protected function chooseSuffix(string $localSourcePath): string
+        {
+            return '.jpg[Q=85]';
+        }
+
+        public function command(string $localSourcePath, string $localTilesDir, string $suffix = '.jpg[Q=85]'): array
         {
             $this->capturedLocalSource = $localSourcePath;
             $this->capturedLocalTilesDir = $localTilesDir;
@@ -124,7 +139,14 @@ it('cleans up the local temp source file and tiles directory when the vips proce
 
         public ?string $capturedLocalTilesDir = null;
 
-        public function command(string $localSourcePath, string $localTilesDir): array
+        // Avoid shelling out to real `vipsheader` against the fake (non-image) source bytes this
+        // test writes to disk — `chooseSuffix()`'s real behavior is covered separately.
+        protected function chooseSuffix(string $localSourcePath): string
+        {
+            return '.jpg[Q=85]';
+        }
+
+        public function command(string $localSourcePath, string $localTilesDir, string $suffix = '.jpg[Q=85]'): array
         {
             $this->capturedLocalSource = $localSourcePath;
             $this->capturedLocalTilesDir = $localTilesDir;
@@ -151,4 +173,70 @@ it('cleans up the local temp source file and tiles directory when the vips proce
 
     // The failed run's partial output was never uploaded to the disk.
     expect(Storage::disk(config('images.disk'))->exists($image->tilesPath() . '/0/0/0.jpg'))->toBeFalse();
+});
+
+it('tile() returns the real min/max zoom levels vips generated, not a hardcoded range', function () {
+    Storage::fake();
+    $user = User::factory()->create();
+    $this->actingAs($user);
+    $campaign = Campaign::factory()->create();
+    $image = Image::factory()->create(['campaign_id' => $campaign->id, 'ext' => 'png']);
+    Storage::disk(config('images.disk'))->put($image->path, 'fake-source-bytes');
+
+    $service = new class extends TilingService
+    {
+        // Avoid shelling out to real `vipsheader` against the fake (non-image) source bytes this
+        // test writes to disk — `chooseSuffix()`'s real behavior is covered separately.
+        protected function chooseSuffix(string $localSourcePath): string
+        {
+            return '.jpg[Q=85]';
+        }
+
+        public function command(string $localSourcePath, string $localTilesDir, string $suffix = '.jpg[Q=85]'): array
+        {
+            foreach ([0, 1, 2, 3] as $level) {
+                mkdir($localTilesDir . '/' . $level, recursive: true);
+                file_put_contents($localTilesDir . '/' . $level . '/0_0.jpg', 'fake-tile-bytes');
+            }
+
+            return ['true'];
+        }
+    };
+
+    $zoomRange = $service->tile($image);
+
+    expect($zoomRange)->toBe(['min_zoom' => 0, 'max_zoom' => 3]);
+});
+
+it('chooseSuffix() picks .png for a real image with an alpha channel and .jpg for one without, via real vipsheader', function () {
+    if (! shell_exec('command -v vipsheader')) {
+        $this->markTestSkipped('vipsheader is not installed in this environment.');
+    }
+
+    $service = new TilingService;
+    $reflection = new ReflectionMethod($service, 'chooseSuffix');
+    $reflection->setAccessible(true);
+
+    $transparentPath = sys_get_temp_dir() . '/tiling-service-alpha-' . uniqid() . '.png';
+    $opaquePath = sys_get_temp_dir() . '/tiling-service-opaque-' . uniqid() . '.png';
+
+    $transparent = imagecreatetruecolor(10, 10);
+    imagesavealpha($transparent, true);
+    imagealphablending($transparent, false);
+    imagefill($transparent, 0, 0, imagecolorallocatealpha($transparent, 0, 0, 0, 127));
+    imagepng($transparent, $transparentPath);
+    imagedestroy($transparent);
+
+    $opaque = imagecreatetruecolor(10, 10);
+    imagefill($opaque, 0, 0, imagecolorallocate($opaque, 255, 0, 0));
+    imagepng($opaque, $opaquePath);
+    imagedestroy($opaque);
+
+    try {
+        expect($reflection->invoke($service, $transparentPath))->toBe('.png');
+        expect($reflection->invoke($service, $opaquePath))->toBe('.jpg[Q=85]');
+    } finally {
+        @unlink($transparentPath);
+        @unlink($opaquePath);
+    }
 });

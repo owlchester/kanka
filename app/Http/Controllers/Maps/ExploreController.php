@@ -104,15 +104,16 @@ class ExploreController extends Controller
                 ->file(public_path('/images/map_chunks/transparent.png'), $headers);
         }
 
-        $path = $image->tilesPath() . '/' . request()->get('z')
-            . '/' . request()->get('x') . '/' . request()->get('y')
-            . '.jpg';
+        $prefix = $image->tilesPath() . '/' . request()->get('z')
+            . '/' . request()->get('y') . '/' . request()->get('x');
 
-        if (! Storage::exists($path)) {
-            return response()
-                ->file(public_path('/images/map_chunks/transparent.png'), $headers);
+        foreach (['.jpg', '.png'] as $extension) {
+            if (Storage::exists($prefix . $extension)) {
+                return redirect()->to(Storage::url($prefix . $extension));
+            }
         }
 
-        return redirect()->to(Storage::url($path));
+        return response()
+            ->file(public_path('/images/map_chunks/transparent.png'), $headers);
     }
 }
