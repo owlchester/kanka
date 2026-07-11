@@ -140,21 +140,6 @@ it('does not flag tiling_prompt_eligible once dismissed', function () {
     expect($response->json('map.tiling_prompt_eligible'))->toBeFalse();
 });
 
-it('excludes a layer whose image is still tiling from the layers payload', function () {
-    $this->asUser()->withCampaign();
-    $map = Map::factory()->create(['campaign_id' => 1]);
-    $tilingImage = Image::factory()->create(['campaign_id' => 1, 'tiling_status' => Image::TILING_RUNNING]);
-    $readyLayer = MapLayer::factory()->create(['map_id' => $map->id, 'name' => 'Ready', 'type_id' => 2]);
-    $readyLayer->image_path = 'maps/ready.png';
-    $readyLayer->saveQuietly();
-    MapLayer::factory()->create(['map_id' => $map->id, 'name' => 'Tiling', 'type_id' => 2, 'image_uuid' => $tilingImage->id]);
-
-    $response = $this->get(route('entities.map-api', [1, $map->entity]))->assertStatus(200);
-
-    expect($response->json('layers'))->toHaveCount(1);
-    expect($response->json('layers.0.name'))->toBe('Ready');
-});
-
 // This exercises MapMarker::visible()'s entity/isMissingChild() branch, not its group_id/group
 // branch (private group -> pin excluded), because App\Models\Scopes\VisibilityIDScope::apply()
 // returns early whenever app()->runningInConsole() is true - which is true for this entire test

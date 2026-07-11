@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Image;
 use App\Models\Map;
-use App\Models\MapLayer;
 use App\Models\MapMarker;
 use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
@@ -95,14 +94,6 @@ class ExploreController extends Controller
         $image = $map->entity->image;
 
         return $this->serveTile($image);
-    }
-
-    /**
-     * Serve a tile from a map layer's own tile pyramid
-     */
-    public function layerTiles(Campaign $campaign, Map $map, MapLayer $mapLayer)
-    {
-        return $this->serveTile($mapLayer->image);
     }
 
     protected function serveTile(?Image $image)

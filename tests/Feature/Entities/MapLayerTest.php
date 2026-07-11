@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\Image;
-use App\Models\Map;
 use App\Models\MapLayer;
 
 it('POSTS an invalid map layer form')
@@ -109,27 +108,4 @@ it('is explorable only when overlay_shown and has an image', function () {
 
     $layer->update(['type_id' => null]);
     expect($layer->fresh()->isExplorable())->toBeFalse();
-});
-
-it('proxies tiling state from its gallery image', function () {
-    $this->asUser()->withCampaign();
-    $map = Map::factory()->create(['campaign_id' => 1]);
-    $image = Image::factory()->create(['campaign_id' => 1, 'tiling_status' => Image::TILING_RUNNING]);
-    $layer = MapLayer::factory()->create(['map_id' => $map->id, 'image_uuid' => $image->id]);
-
-    expect($layer->isTiled())->toBeFalse();
-    expect($layer->tilingRunning())->toBeTrue();
-    expect($layer->tilingReady())->toBeFalse();
-});
-
-it('is not tiled for a legacy image_path-only layer', function () {
-    $this->asUser()->withCampaign();
-    $map = Map::factory()->create(['campaign_id' => 1]);
-    $layer = MapLayer::factory()->create(['map_id' => $map->id]);
-    $layer->image_path = 'maps/legacy-layer.png';
-    $layer->saveQuietly();
-
-    expect($layer->isTiled())->toBeFalse();
-    expect($layer->tilingRunning())->toBeFalse();
-    expect($layer->tilingReady())->toBeTrue();
 });
