@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Maps;
 
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
+use App\Models\Image;
 use App\Models\Map;
+use App\Models\MapLayer;
 use App\Models\MapMarker;
 use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
@@ -32,20 +34,18 @@ class ExploreController extends Controller
         }
         $this->campaign($campaign)->authEntityView($map->entity);
 
+        if ($map->tilingRunning()) {
+            return redirect()
+                ->route('entities.show', [$campaign, $map->entity])
+                ->withError(__('maps.errors.tiling.running.explore'));
+        }
+
         if (! $map->explorable()) {
             return redirect()
                 ->route('entities.show', [$campaign, $map->entity])
                 ->withError(__('maps.errors.explore.missing'));
         }
-        if ($map->isChunked()) {
-            if ($map->chunkingError()) {
-                return redirect()
-                    ->route('entities.show', [$campaign, $map->entity]);
-            } elseif (! $map->chunkingReady()) {
-                return redirect()
-                    ->route('entities.show', [$campaign, $map->entity]);
-            }
-        }
+
         // Error handling
         try {
             $map->bounds();
@@ -88,19 +88,34 @@ class ExploreController extends Controller
     }
 
     /**
-     * Load only a chunk of the map and cache it for the user
+     * Serve a tile from the map's base image tile pyramid
      */
-    public function chunks(Campaign $campaign, Map $map)
+    public function tiles(Campaign $campaign, Map $map)
+    {
+        $image = $map->entity->image;
+
+        return $this->serveTile($image);
+    }
+
+    /**
+     * Serve a tile from a map layer's own tile pyramid
+     */
+    public function layerTiles(Campaign $campaign, Map $map, MapLayer $mapLayer)
+    {
+        return $this->serveTile($mapLayer->image);
+    }
+
+    protected function serveTile(?Image $image)
     {
         $headers = ['Expires', Carbon::now()->addDays(1)->toDateTimeString()];
-        if (! request()->has(['z', 'x', 'y'])) {
+        if (! $image || ! request()->has(['z', 'x', 'y'])) {
             return response()
                 ->file(public_path('/images/map_chunks/transparent.png'), $headers);
         }
 
-        $path = 'maps/' . $map->id . '/chunks/' . request()->get('z')
+        $path = $image->tilesPath() . '/' . request()->get('z')
             . '/' . request()->get('x') . '_' . request()->get('y')
-            . '.png';
+            . '.jpg';
 
         if (! Storage::exists($path)) {
             return response()
@@ -108,7 +123,5 @@ class ExploreController extends Controller
         }
 
         return redirect()->to(Storage::url($path));
-        // return response()
-        //    ->file(Storage::path($path), $headers);
     }
 }
