@@ -99,6 +99,16 @@ class ExploreApiService
 
     protected function translations(): array
     {
+        $minInitial = Map::MIN_ZOOM;
+        $maxInitial = Map::MAX_ZOOM_REAL;
+        $defaultInitial = 0;
+
+        if ($this->map->isTiled()) {
+            $minInitial = Map::MIN_ZOOM_TILE;
+            $maxInitial = Map::MAX_ZOOM_TILE;
+            $defaultInitial = $minInitial;
+        }
+
         return [
             'legend_title' => __('maps.panels.legend'),
             'legend_search' => __('maps/explorer.legend.search'),
@@ -140,6 +150,8 @@ class ExploreApiService
             'stroke_thin' => __('maps/explorer.marker.stroke_thin'),
             'stroke_normal' => __('maps/explorer.marker.stroke_normal'),
             'stroke_bold' => __('maps/explorer.marker.stroke_bold'),
+            'distance' => __('maps/explorer.marker.distance'),
+            'surface' => __('maps/explorer.marker.surface'),
             'opacity' => __('maps/explorer.marker.opacity'),
             'custom' => __('maps/explorer.marker.custom'),
             'premium_custom_icon' => __('maps/explorer.marker.premium_custom_icon'),
@@ -169,11 +181,16 @@ class ExploreApiService
             'settings' => [
                 'title' => __('maps/explorer.settings.title'),
                 'grid' => __('maps/explorer.settings.grid'),
+                'grid_help' => __('maps/explorer.settings.grid_help'),
                 'zoom_min' => __('maps/explorer.settings.zoom_min'),
+                'zoom_min_help' => __('maps/explorer.settings.zoom_min_help', ['min' => Map::MIN_ZOOM, 'default' => -2]),
                 'zoom_max' => __('maps/explorer.settings.zoom_max'),
+                'zoom_max_help' => __('maps/explorer.settings.zoom_max_help', ['max' => Map::MAX_ZOOM, 'default' => 5]),
                 'zoom_initial' => __('maps/explorer.settings.zoom_initial'),
+                'zoom_initial_help' => __('maps/explorer.settings.zoom_initial_help', ['min' => $minInitial, 'max' => $maxInitial, 'default' => $defaultInitial]),
                 'distance_name' => __('maps/explorer.settings.distance_name'),
                 'distance_measure' => __('maps/explorer.settings.distance_measure'),
+                'distance_measure_help' => __('maps/explorer.settings.distance_measure_help'),
                 'center' => __('maps/explorer.settings.center'),
                 'center_coordinates' => __('maps/explorer.settings.center_coordinates'),
                 'center_marker' => __('maps/explorer.settings.center_marker'),
