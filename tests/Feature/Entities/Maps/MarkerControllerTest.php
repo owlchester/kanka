@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Requests\StoreMapMarker;
 use App\Models\Character;
 use App\Models\Map;
 use App\Models\MapGroup;
@@ -457,4 +458,18 @@ it('updates a marker without requiring all fields for partial patch', function (
     expect($response->json('name'))->toBe('Updated name');
     expect($marker->fresh()->latitude)->toEqual(5);
     expect($marker->fresh()->longitude)->toEqual(6);
+});
+
+it('marks latitude, longitude, shape_id, and icon as required in StoreMapMarker rules', function () {
+    // ApiRequest::clean() only strips `required` from PUT/PATCH rules when the current
+    // request is bound as a PUT/PATCH request. Instantiating the FormRequest directly,
+    // with no HTTP call made, isn't in a PUT/PATCH request context, so rules() returns
+    // the rules unstripped. This proves StoreMapMarker enforces these fields in production
+    // (POST, and PATCH outside the test/API-domain relaxation).
+    $rules = (new StoreMapMarker)->rules();
+
+    expect($rules['latitude'])->toContain('required');
+    expect($rules['longitude'])->toContain('required');
+    expect($rules['shape_id'])->toContain('required');
+    expect($rules['icon'])->toContain('required');
 });
