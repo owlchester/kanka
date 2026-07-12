@@ -908,7 +908,7 @@ onBeforeUnmount(() => {
 }
 
 .marker-draft .marker-pin {
-    outline: 2px dashed white;
+    outline: 2px dashed hsl(var(--p)/1);
     outline-offset: 2px;
 }
 
@@ -918,19 +918,47 @@ onBeforeUnmount(() => {
 }
 
 .result-tooltip {
-    background-color: white;
+    background-color: hsl(var(--b1)/1);
     border-width: medium;
-    border-color: #de0000;
+    border-color: hsl(var(--bc)/1);
+    color: hsl(var(--bc)/1);
     font-size: smaller;
 }
 
 .moving-tooltip {
-    background-color: rgba(255, 255, 255, .7);
+    background-color: hsl(var(--b1)/0.7);
     background-clip: padding-box;
     opacity: 0.5;
     border: dotted;
-    border-color: #de0000;
+    border-color: hsl(var(--bc)/1);
+    color: hsl(var(--bc)/1);
     font-size: smaller;
+}
+
+.leaflet-touch .leaflet-bar {
+    background-color: hsl(var(--b1)/1);
+    color: hsl(var(--bc)/1);
+}
+.leaflet-bar {
+    border-radius: var(--rounded-btn);
+}
+.leaflet-touch .leaflet-bar a, .leaflet-touch .leaflet-bar>i {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: unset;
+    color: hsl(var(--bc)/1);
+}
+.leaflet-bar a {
+    border-bottom: 1px solid hsl(var(--bc)/1);
+}
+.leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar {
+    border: none;
+    background-color: hsl(var(--b1)/1);
+    color: hsl(var(--bc)/1);
+    border-radius: var(--rounded-btn);
 }
 
 .plus-length {

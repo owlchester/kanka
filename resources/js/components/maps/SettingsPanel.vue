@@ -20,21 +20,25 @@
             <label class="flex flex-col gap-1 text-xs font-semibold uppercase tracking-wide text-neutral-content">
                 {{ i18n.grid }}
                 <input v-model.number="form.grid" type="number" min="1" class="input input-bordered w-full normal-case text-sm font-normal" />
+                <span class="normal-case font-normal text-neutral-content/70">{{ i18n.grid_help }}</span>
             </label>
 
             <label class="flex flex-col gap-1 text-xs font-semibold uppercase tracking-wide text-neutral-content">
                 {{ i18n.zoom_min }}
                 <input v-model.number="form.min_zoom" type="number" class="input input-bordered w-full normal-case text-sm font-normal" />
+                <span class="normal-case font-normal text-neutral-content/70">{{ i18n.zoom_min_help }}</span>
             </label>
 
             <label class="flex flex-col gap-1 text-xs font-semibold uppercase tracking-wide text-neutral-content">
                 {{ i18n.zoom_max }}
                 <input v-model.number="form.max_zoom" type="number" class="input input-bordered w-full normal-case text-sm font-normal" />
+                <span class="normal-case font-normal text-neutral-content/70">{{ i18n.zoom_max_help }}</span>
             </label>
 
             <label class="flex flex-col gap-1 text-xs font-semibold uppercase tracking-wide text-neutral-content">
                 {{ i18n.zoom_initial }}
                 <input v-model.number="form.initial_zoom" type="number" class="input input-bordered w-full normal-case text-sm font-normal" />
+                <span class="normal-case font-normal text-neutral-content/70">{{ i18n.zoom_initial_help }}</span>
             </label>
 
             <label class="flex flex-col gap-1 text-xs font-semibold uppercase tracking-wide text-neutral-content">
@@ -45,6 +49,7 @@
             <label class="flex flex-col gap-1 text-xs font-semibold uppercase tracking-wide text-neutral-content">
                 {{ i18n.distance_measure }}
                 <input v-model.number="form.distance_measure" type="number" min="0.001" max="100.99" step="0.0001" class="input input-bordered w-full normal-case text-sm font-normal" />
+                <span class="normal-case font-normal text-neutral-content/70">{{ i18n.distance_measure_help }}</span>
             </label>
 
             <label class="flex items-start gap-2 text-xs font-semibold uppercase tracking-wide text-neutral-content">
