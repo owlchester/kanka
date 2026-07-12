@@ -1,4 +1,4 @@
-const RIGHT_SLOT_KINDS = ['detail', 'marker', 'settings']
+const RIGHT_SLOT_KINDS = ['detail', 'marker', 'settings', 'edit']
 
 export function panelsToClose(openingKind, isMobile) {
     if (openingKind === 'legend') {
