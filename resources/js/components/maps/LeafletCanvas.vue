@@ -894,9 +894,9 @@ onBeforeUnmount(() => {
 }
 
 .map-label {
-    background-color: var(--label-colour, #fff);
-    border-color: var(--label-colour, #fff);
-    color: var(--label-text-colour, #222);
+    background-color: var(--label-colour, hsl(var(--b1)/1));
+    border-color: var(--label-colour, hsl(var(--b1)/1));
+    color: var(--label-text-colour, hsl(var(--bc)/1));
 }
 
 .marker-draft .marker-icon,
