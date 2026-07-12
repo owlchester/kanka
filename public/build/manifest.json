@@ -210,7 +210,7 @@
     "src": "node_modules/rpg-awesome/fonts/rpgawesome-webfont.woff"
   },
   "resources/css/app.css": {
-    "file": "assets/app-Bg96By7n.css",
+    "file": "assets/app-CYtiWucX.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -219,7 +219,7 @@
     ]
   },
   "resources/css/auth.css": {
-    "file": "assets/auth-DGtZPjpp.css",
+    "file": "assets/auth--bxiJhLJ.css",
     "src": "resources/css/auth.css",
     "isEntry": true,
     "name": "auth",
@@ -246,7 +246,7 @@
     ]
   },
   "resources/css/front.css": {
-    "file": "assets/front-dy5Sg5hV.css",
+    "file": "assets/front-CY_nUw2i.css",
     "src": "resources/css/front.css",
     "isEntry": true,
     "name": "front",
@@ -255,7 +255,7 @@
     ]
   },
   "resources/css/maps/maps.css": {
-    "file": "assets/maps-BMMuGNtp.css",
+    "file": "assets/maps-Cb5g6vds.css",
     "src": "resources/css/maps/maps.css",
     "isEntry": true,
     "name": "maps",
@@ -300,7 +300,7 @@
     ]
   },
   "resources/css/themes/light.css": {
-    "file": "assets/light-DS0OZlqb.css",
+    "file": "assets/light-CEzydExU.css",
     "src": "resources/css/themes/light.css",
     "isEntry": true,
     "name": "light",
@@ -601,7 +601,7 @@
     "isEntry": true
   },
   "resources/js/maps/explore.js": {
-    "file": "assets/explore-CU8QpuFb.js",
+    "file": "assets/explore-BajdL2Wj.js",
     "name": "explore",
     "src": "resources/js/maps/explore.js",
     "isEntry": true,
@@ -615,14 +615,12 @@
       "_coloris-CzWPJjQD.js"
     ],
     "css": [
-      "assets/explore-B4zZOCP0.css"
+      "assets/explore-Cfr4PndD.css"
     ],
     "assets": [
       "assets/layers-BWBAp2CZ.png",
       "assets/layers-2x-Bpkbi35X.png",
-      "assets/marker-icon-hN30_KVU.png",
-      "assets/icon-9ynO2yMO.png",
-      "assets/icon-colored-DWUwbOkd.png"
+      "assets/marker-icon-hN30_KVU.png"
     ]
   },
   "resources/js/profile.js": {

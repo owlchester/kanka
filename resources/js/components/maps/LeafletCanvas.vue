@@ -56,13 +56,24 @@ function buildGrid() {
 
     gridLayer = L.layerGroup()
 
+    // Same colour-resolution gotcha as buildRuler(): Leaflet's SVG renderer sets
+    // stroke via a raw attribute, so a var(--custom-property) reference isn't
+    // reliably resolved there — resolve it to a literal first.
+    const gridColor = resolveCssColor('hsl(var(--pc) / 1)')
+    const style = { color: gridColor, weight: 1, opacity: 0.2 }
+
+    const verticalLines = []
     for (let i = grid; i <= props.map.height; i += grid) {
-        L.polyline([[i, 0], [i, props.map.width]], { color: 'grey', opacity: 0.5 }).addTo(gridLayer)
+        verticalLines.push([[i, 0], [i, props.map.width]])
     }
 
+    const horizontalLines = []
     for (let i = grid; i <= props.map.width; i += grid) {
-        L.polyline([[0, i], [props.map.height, i]], { color: 'grey', opacity: 0.5 }).addTo(gridLayer)
+        horizontalLines.push([[0, i], [props.map.height, i]])
     }
+
+    L.polyline(verticalLines, style).addTo(gridLayer)
+    L.polyline(horizontalLines, style).addTo(gridLayer)
 
     gridLayer.addTo(leafletMap)
 }

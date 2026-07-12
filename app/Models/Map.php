@@ -445,7 +445,7 @@ class Map extends MiscModel
         $height = floor(($height) / 1) + $extra;
         $width = floor(($width) / 1) + $extra;
 
-        $min = $extend ? -50 : 0;
+        $min = $extend ? -100 : 0;
 
         return "[[{$min}, {$min}], [{$height}, {$width}]]";
     }
