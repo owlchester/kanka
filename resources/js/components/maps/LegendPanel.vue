@@ -1,7 +1,7 @@
 <template>
     <aside
         v-if="open"
-        class="fixed top-20 left-4 bottom-24 w-72 bg-base-100 rounded-2xl shadow-lg z-[1100] overflow-y-auto p-4 flex flex-col gap-3"
+        class="fixed inset-0 bg-base-100 shadow-lg z-[1100] overflow-y-auto p-4 flex flex-col gap-3 md:top-20 md:left-4 md:right-auto md:bottom-24 md:w-72 md:rounded-2xl"
     >
         <div class="flex flex-col gap-2">
             <p class="flex items-center justify-between gap-2">

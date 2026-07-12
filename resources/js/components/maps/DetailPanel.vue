@@ -1,7 +1,7 @@
 <template>
     <aside
         v-if="pin"
-        class="fixed top-4 right-4 bottom-4 w-80 bg-base-100 shadow-lg z-[1150] flex flex-col rounded-2xl overflow-hidden"
+        class="fixed inset-0 bg-base-100 shadow-lg z-[1150] flex flex-col overflow-hidden md:top-4 md:right-4 md:bottom-4 md:left-auto md:w-80 md:rounded-2xl"
     >
         <div
             class="flex justify-end p-4 bg-cover bg-center"
