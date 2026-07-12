@@ -2,7 +2,7 @@
     <aside
         v-if="pin"
         class="fixed inset-0 bg-base-100 shadow-lg z-[1150] flex flex-col overflow-hidden md:top-4 md:right-4 md:left-auto md:w-80 md:rounded-2xl"
-        :class="mode === 'full' ? 'md:bottom-4' : ''"
+        :class="mode === 'full' ? 'md:bottom-4' : 'md:bottom-auto'"
     >
         <div class="flex items-center justify-between gap-2 p-4">
             <div class="flex items-center gap-2">
