@@ -364,7 +364,7 @@ it('updates a marker and returns it in PinResource shape', function () {
     expect($response->json('name'))->toBe('New name');
     expect($response->json('colour'))->toBe('#123456');
     expect($response->json('group_id'))->toBe($group->id);
-    expect($response->json('opacity'))->toBe(60.0);
+    expect($response->json('opacity'))->toEqual(60.0);
     expect($response->json('update_url'))->toBe(route('entities.map-markers.update', [1, $map->entity->id, $marker->id]));
     expect($marker->fresh()->name)->toBe('New name');
     expect($marker->fresh()->latitude)->toEqual(12.5);
@@ -443,15 +443,18 @@ it('404s update for a non-map entity', function () {
     ])->assertStatus(404);
 });
 
-it('422s update when latitude is missing', function () {
+it('updates a marker without requiring all fields for partial patch', function () {
     $this->asUser()->withCampaign();
     $map = Map::factory()->create(['campaign_id' => 1]);
-    $marker = MapMarker::factory()->create(['map_id' => $map->id]);
+    $marker = MapMarker::factory()->create(['map_id' => $map->id, 'latitude' => 5, 'longitude' => 6]);
 
-    $this->patchJson(route('entities.map-markers.update', [1, $map->entity, $marker]), [
-        'name' => 'New name',
-        'longitude' => 1,
+    $response = $this->patchJson(route('entities.map-markers.update', [1, $map->entity, $marker]), [
+        'name' => 'Updated name',
         'shape_id' => 1,
         'icon' => 1,
-    ])->assertStatus(422);
+    ])->assertStatus(200);
+
+    expect($response->json('name'))->toBe('Updated name');
+    expect($marker->fresh()->latitude)->toEqual(5);
+    expect($marker->fresh()->longitude)->toEqual(6);
 });
