@@ -4,15 +4,23 @@
         class="fixed top-20 left-4 bottom-24 w-72 bg-base-100 rounded-2xl shadow-lg z-[1100] overflow-y-auto p-4 flex flex-col gap-3"
     >
         <div class="flex flex-col gap-2">
-            <p class="flex items-center justify-between">
+            <p class="flex items-center justify-between gap-2">
                 <span>{{ i18n.legend_title }}</span>
-                <button
-                    v-tippy="allOpen ? i18n.legend_collapse : i18n.legend_expand"
-                    class="cursor-pointer"
-                    @click="toggleAll"
-                >
-                    <i class="fa-regular fa-sort" aria-hidden="true" />
-                </button>
+                <span class="flex items-center gap-2">
+                    <button
+                        v-tippy="allOpen ? i18n.legend_collapse : i18n.legend_expand"
+                        class="cursor-pointer"
+                        @click="toggleAll"
+                    >
+                        <i class="fa-regular fa-sort" aria-hidden="true" />
+                    </button>
+                    <button
+                        class="btn2 btn-default btn-sm flex-none"
+                        @click="$emit('close')"
+                    >
+                        <i class="fa-solid fa-xmark" aria-hidden="true" />
+                    </button>
+                </span>
             </p>
             <input
                 v-model="query"
@@ -75,7 +83,7 @@ const props = defineProps({
     i18n: { type: Object, required: true },
 });
 
-const emit = defineEmits(["select"]);
+const emit = defineEmits(["select", "close"]);
 
 const query = ref("");
 const tree = computed(() => buildGroupTree(props.groups, props.pins));
