@@ -835,6 +835,14 @@ onBeforeUnmount(() => {
 </script>
 
 <style>
+/* This component's page (mounted via explore.js/layouts.rich) never loads
+   resources/css/maps/maps.css, where the legacy map view defines this same
+   variable — define it here too so ruler/tooltip colouring doesn't silently
+   fall back to the inherited body text colour. */
+:root {
+    --map-ruler-color: hsl(var(--p)/1);
+}
+
 .marker {
     color: white;
     background-color: unset;
@@ -931,7 +939,7 @@ onBeforeUnmount(() => {
 .result-tooltip {
     background-color: hsl(var(--b1)/1);
     border-width: medium;
-    border-color: hsl(var(--bc)/1);
+    border-color: var(--map-ruler-color);
     color: hsl(var(--bc)/1);
     font-size: smaller;
 }
@@ -941,7 +949,7 @@ onBeforeUnmount(() => {
     background-clip: padding-box;
     opacity: 0.5;
     border: dotted;
-    border-color: hsl(var(--bc)/1);
+    border-color: var(--map-ruler-color);
     color: hsl(var(--bc)/1);
     font-size: smaller;
 }

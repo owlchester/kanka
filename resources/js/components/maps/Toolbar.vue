@@ -1,7 +1,8 @@
 <template>
     <div
         v-if="canEdit"
-        class="fixed bottom-4 left-1/2 -translate-x-1/2 z-[1100] flex flex-col items-center gap-2"
+        class="fixed bottom-2.5 left-1/2 -translate-x-1/2 z-[1100] flex-col items-center gap-2"
+        :class="panelOpen ? 'hidden md:flex' : 'flex'"
     >
         <div
             v-if="props.activeMode"
@@ -18,13 +19,11 @@
                 class="flex items-center gap-2 rounded-full px-3 py-1.5 cursor-pointer"
                 :class="props.rapid ? 'bg-accent text-accent-content' : ''"
                 v-tippy="i18n.toolbar.rapid_hint"
+                :aria-label="i18n.toolbar.rapid"
                 @click="emit('rapid-change', !props.rapid)"
             >
-                <span
-                    class="inline-block w-2 h-2 rounded-full bg-current"
-                    aria-hidden="true"
-                />
-                <span>{{ i18n.toolbar.rapid }}</span>
+                <i class="fa-solid fa-bolt" aria-hidden="true" />
+                <span class="hidden sm:inline">{{ i18n.toolbar.rapid }}</span>
             </button>
 
             <div
@@ -42,10 +41,11 @@
                         ? 'bg-accent text-accent-content'
                         : ''
                 "
+                :aria-label="mode.label"
                 @click="selectMode(mode.key)"
             >
                 <i :class="mode.icon" aria-hidden="true" />
-                <span class="text-xs">{{ mode.label }}</span>
+                <span class="hidden sm:inline text-xs">{{ mode.label }}</span>
             </button>
         </div>
     </div>
@@ -59,6 +59,7 @@ const props = defineProps({
     canEdit: { type: Boolean, default: false },
     activeMode: { type: String, default: null },
     rapid: { type: Boolean, default: false },
+    panelOpen: { type: Boolean, default: false },
 });
 
 const emit = defineEmits(["mode-change", "rapid-change"]);

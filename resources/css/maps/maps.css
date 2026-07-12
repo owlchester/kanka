@@ -4,7 +4,7 @@
 
 :root {
     --map-hero-ratio: 2/1;
-    --map-ruler-color: hsl(var(--bc)/1);
+    --map-ruler-color: hsl(var(--p)/1);
 }
 
 .map {

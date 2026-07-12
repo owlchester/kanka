@@ -179,6 +179,7 @@
             :can-edit="canEdit"
             :active-mode="activeMode"
             :rapid="rapid"
+            :panel-open="anyPanelOpen"
             @mode-change="handleModeChange"
             @rapid-change="rapid = $event"
         />

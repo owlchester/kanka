@@ -28,6 +28,7 @@ onMounted(() => {
         preload: "focus",
         loadThrottle: 500,
         placeholder: props.i18n.linked_entry,
+        dropdownParent: "body",
         load(query, callback) {
             fetch(`${props.searchUrl}?q=${encodeURIComponent(query.trim())}`, {
                 headers: { "X-Requested-With": "XMLHttpRequest" },

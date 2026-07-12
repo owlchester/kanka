@@ -23,6 +23,7 @@ onMounted(() => {
         labelField: "name",
         searchField: "name",
         placeholder: props.i18n.no_marker,
+        dropdownParent: "body",
         onChange(value) {
             emit("change", value ? Number(value) : null);
         },
