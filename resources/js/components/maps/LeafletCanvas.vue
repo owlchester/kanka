@@ -18,6 +18,7 @@ const props = defineProps({
     centerNonce: { type: Number, default: 0 },
     activeMode: { type: String, default: null },
     draftPin: { type: Object, default: null },
+    editingPin: { type: Object, default: null },
     previewCenter: { type: Array, default: null },
     canEdit: { type: Boolean, default: false },
     remoteCursors: { type: Object, default: () => ({}) },
@@ -28,7 +29,7 @@ const props = defineProps({
     },
 })
 
-const emit = defineEmits(['pin-click', 'map-click', 'polygon-change', 'polygon-finish', 'circle-change', 'circle-finish', 'path-change', 'path-finish', 'measure-change', 'pin-moved', 'cursor-move', 'draft-move'])
+const emit = defineEmits(['pin-click', 'map-click', 'polygon-change', 'polygon-finish', 'circle-change', 'circle-finish', 'path-change', 'path-finish', 'measure-change', 'pin-moved', 'cursor-move', 'draft-move', 'edit-move', 'edit-polygon-change', 'edit-circle-change', 'edit-path-change'])
 
 const mapEl = ref(null)
 let leafletMap = null
@@ -42,6 +43,10 @@ let draftPath = null
 let pathEditing = false
 let rulerControl = null
 let gridLayer = null
+let editMarker = null
+let editCircle = null
+let editPolygon = null
+let editPath = null
 
 function buildGrid() {
     if (gridLayer) {
@@ -401,14 +406,16 @@ function buildPins() {
 
     pinLayer = props.map.has_clustering ? L.markerClusterGroup() : L.layerGroup()
 
-    props.pins.forEach((pin) => {
-        const marker = buildPin(pin)
-        marker.on('click', (e) => {
-            L.DomEvent.stopPropagation(e)
-            emit('pin-click', pin)
+    props.pins
+        .filter((pin) => pin.id !== props.editingPin?.id)
+        .forEach((pin) => {
+            const marker = buildPin(pin)
+            marker.on('click', (e) => {
+                L.DomEvent.stopPropagation(e)
+                emit('pin-click', pin)
+            })
+            pinLayer.addLayer(marker)
         })
-        pinLayer.addLayer(marker)
-    })
 
     pinLayer.addTo(leafletMap)
 }
@@ -433,6 +440,99 @@ function buildDraftMarker() {
             emit('draft-move', { lat, lng })
         })
     }
+}
+
+function clearEditLayer() {
+    if (editMarker) {
+        leafletMap.removeLayer(editMarker)
+        editMarker = null
+    }
+
+    if (editCircle) {
+        editCircle.disableEdit()
+        leafletMap.removeLayer(editCircle)
+        editCircle = null
+    }
+
+    if (editPolygon) {
+        editPolygon.disableEdit()
+        leafletMap.removeLayer(editPolygon)
+        editPolygon = null
+    }
+
+    if (editPath) {
+        editPath.disableEdit()
+        leafletMap.removeLayer(editPath)
+        editPath = null
+    }
+}
+
+// Rebuilds the whole live-editable layer for props.editingPin from scratch on every change
+// (a geometry drag or a plain field edit alike), mirroring how buildDraftMarker() already
+// tears down and recreates its marker on every draftPin change. Each vertex/handle drag
+// completes (dragend) before this runs, so recreating the layer — and re-attaching a fresh
+// Leaflet.Editable editor via enableEdit() — between drags is safe.
+function buildEditLayer() {
+    clearEditLayer()
+
+    const pin = props.editingPin
+    if (! pin) {
+        return
+    }
+
+    if (pin.shape === 'poly') {
+        editPolygon = L.polygon(pin.customShape || [], {
+            color: pin.polygonStyle?.stroke || pin.colour || '#ccc',
+            weight: pin.polygonStyle?.['stroke-width'] || 1,
+            fillColor: pin.colour || '#ccc',
+            fillOpacity: (pin.opacity ?? 100) / 100,
+        }).addTo(leafletMap)
+        editPolygon.enableEdit()
+        editPolygon.on('editable:vertex:new editable:vertex:dragend editable:dragend editable:vertex:deleted', () => {
+            const rings = editPolygon.getLatLngs()
+            emit('edit-polygon-change', (rings[0] || []).map((point) => [point.lat, point.lng]))
+        })
+
+        return
+    }
+
+    if (pin.shape === 'path') {
+        editPath = L.polyline(pin.customShape || [], {
+            color: pin.colour || '#ccc',
+            weight: pin.polygonStyle?.['stroke-width'] || 1,
+            opacity: (pin.opacity ?? 100) / 100,
+        }).addTo(leafletMap)
+        editPath.enableEdit()
+        editPath.on('editable:vertex:new editable:vertex:dragend editable:dragend editable:vertex:deleted', () => {
+            emit('edit-path-change', editPath.getLatLngs().map((point) => [point.lat, point.lng]))
+        })
+
+        return
+    }
+
+    if (pin.shape === 'circle') {
+        editCircle = L.circle([pin.latitude, pin.longitude], {
+            radius: pin.circleRadius || 50,
+            fillColor: pin.colour || '#ccc',
+            stroke: false,
+            fillOpacity: (pin.opacity ?? 100) / 100,
+        }).addTo(leafletMap)
+        editCircle.enableEdit()
+        editCircle.on('editable:vertex:dragend editable:dragend', () => {
+            const center = editCircle.getLatLng()
+            emit('edit-circle-change', { lat: center.lat, lng: center.lng, radius: editCircle.getRadius() })
+        })
+
+        return
+    }
+
+    editMarker = buildPin({ ...pin, id: 'editing' })
+    editMarker.addTo(leafletMap)
+    editMarker.dragging?.enable()
+    editMarker.on('dragend', (e) => {
+        const { lat, lng } = e.target.getLatLng()
+        emit('edit-move', { lat, lng })
+    })
 }
 
 function polygonLatLngs() {
@@ -692,6 +792,18 @@ watch(() => props.draftPin, (pin) => {
     }
 })
 
+watch(() => props.editingPin?.id, () => {
+    if (leafletMap) {
+        buildPins()
+    }
+})
+
+watch(() => props.editingPin, () => {
+    if (leafletMap) {
+        buildEditLayer()
+    }
+})
+
 watch(() => [props.activeMode, props.draftPin], () => {
     if (! leafletMap) {
         return
@@ -810,6 +922,7 @@ onMounted(() => {
     buildLayers()
     buildPins()
     buildDraftMarker()
+    buildEditLayer()
     buildGrid()
     buildRuler()
     buildCursors()

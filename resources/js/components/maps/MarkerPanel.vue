@@ -1,8 +1,11 @@
 <template>
     <aside
         v-if="pin"
-        class="fixed inset-0 bg-base-100 shadow-lg z-[1150] flex flex-col overflow-hidden md:top-4 md:right-4 md:left-auto md:w-80 md:rounded-2xl"
-        :class="mode === 'full' ? 'md:bottom-4' : 'md:bottom-auto'"
+        class="fixed z-[1150] bg-base-100 shadow-lg flex flex-col overflow-hidden md:top-4 md:right-4 md:left-auto md:w-80 md:rounded-2xl"
+        :class="[
+            peeked ? 'bottom-0 left-0 right-0 top-auto rounded-t-2xl' : 'inset-0',
+            detailLevel === 'full' ? 'md:bottom-4' : 'md:bottom-auto',
+        ]"
     >
         <div class="flex items-center justify-between gap-2 p-4">
             <div class="flex items-center gap-2">
@@ -23,19 +26,33 @@
                     />
                 </div>
                 <h2 class="text-sm font-semibold uppercase tracking-wide">
-                    {{ i18n.new_pin }}
+                    {{ isEdit ? (pin.name || i18n.new_pin) : i18n.new_pin }}
                 </h2>
             </div>
-            <button
-                class="btn2 btn-default btn-sm flex-none"
-                :disabled="saving"
-                @click="$emit('close')"
-            >
-                <i class="fa-solid fa-xmark" aria-hidden="true" />
-            </button>
+            <div class="flex items-center gap-2 flex-none">
+                <button
+                    type="button"
+                    class="btn2 btn-default btn-sm md:hidden"
+                    :disabled="saving || deleting"
+                    @click="peeked = !peeked"
+                >
+                    <i
+                        :class="peeked ? 'fa-solid fa-up-right-and-down-left-from-center' : 'fa-solid fa-down-left-and-up-right-to-center'"
+                        aria-hidden="true"
+                    />
+                    <span class="sr-only">{{ peeked ? i18n.peek_panel : i18n.peek_map }}</span>
+                </button>
+                <button
+                    class="btn2 btn-default btn-sm"
+                    :disabled="saving || deleting"
+                    @click="$emit('close')"
+                >
+                    <i class="fa-solid fa-xmark" aria-hidden="true" />
+                </button>
+            </div>
         </div>
 
-        <div class="px-4 flex flex-col gap-3 grow min-h-0 overflow-y-auto">
+        <div v-show="!peeked" class="px-4 flex flex-col gap-3 grow min-h-0 overflow-y-auto">
             <input
                 v-model="name"
                 type="text"
@@ -44,28 +61,28 @@
             />
 
             <ColourPicker
-                v-if="mode === 'full'"
+                v-if="detailLevel === 'full'"
                 :colour="pin.colour"
                 :label="i18n.colour"
                 @change="$emit('colour-change', $event)"
             />
 
             <ColourPicker
-                v-if="mode === 'full' && pin.shape === 'poly'"
+                v-if="detailLevel === 'full' && pin.shape === 'poly'"
                 :colour="pin.polygonStyle?.stroke"
                 :label="i18n.border_colour"
                 @change="$emit('border-colour-change', $event)"
             />
 
             <StrokeWidthPicker
-                v-if="mode === 'full' && (pin.shape === 'poly' || pin.shape === 'path')"
+                v-if="detailLevel === 'full' && (pin.shape === 'poly' || pin.shape === 'path')"
                 :width="pin.polygonStyle?.['stroke-width'] ?? 1"
                 :i18n="i18n"
                 @change="$emit('stroke-width-change', $event)"
             />
 
             <ShapePicker
-                v-if="mode === 'full' && pin.shape !== 'label'"
+                v-if="detailLevel === 'full' && pin.shape !== 'label'"
                 :pin="pin"
                 :boosted="boosted"
                 :i18n="i18n"
@@ -73,7 +90,7 @@
             />
 
             <GroupPicker
-                v-if="mode === 'full' && groups.length"
+                v-if="detailLevel === 'full' && groups.length"
                 :pin="pin"
                 :groups="groups"
                 :i18n="i18n"
@@ -88,14 +105,14 @@
             />
 
             <OpacityPicker
-                v-if="mode === 'full'"
+                v-if="detailLevel === 'full'"
                 :pin="pin"
                 :i18n="i18n"
                 @change="$emit('opacity-change', $event)"
             />
 
             <VisibilitySelect
-                v-if="mode === 'full'"
+                v-if="detailLevel === 'full'"
                 :pin="pin"
                 :options="visibilities"
                 :i18n="i18n"
@@ -107,26 +124,37 @@
             <div class="flex gap-2">
                 <button
                     class="btn2 btn-outline"
-                    :disabled="saving"
-                    @click="toggleMode"
+                    :disabled="saving || deleting"
+                    @click="toggleDetailLevel"
                 >
-                    {{ mode === "full" ? i18n.less : i18n.details }}
+                    {{ detailLevel === "full" ? i18n.less : i18n.details }}
                 </button>
                 <button
                     class="btn2 btn-primary grow"
-                    :disabled="saving || (!name.trim() && !pin.entityId)"
+                    :disabled="saving || deleting || (!name.trim() && !pin.entityId)"
                     @click="save"
                 >
-                    {{ rapid ? i18n.save_continue : i18n.save }}
+                    {{ isEdit ? i18n.save_changes : (rapid ? i18n.save_continue : i18n.save) }}
                 </button>
             </div>
+
+            <button
+                v-if="isEdit"
+                type="button"
+                class="btn2 btn-error btn-outline"
+                :disabled="saving || deleting"
+                @click="handleDelete"
+            >
+                {{ confirmingDelete ? i18n.delete_confirm : i18n.delete_marker }}
+            </button>
+
             <p v-if="error" class="text-sm text-error-content">{{ error }}</p>
         </div>
     </aside>
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
+import { computed, ref, watch } from "vue";
 import { serializeVertices } from "../../maps/polygon.js";
 import ColourPicker from "./ColourPicker.vue";
 import EntityLinkSelect from "./EntityLinkSelect.vue";
@@ -138,6 +166,7 @@ import VisibilitySelect from "./VisibilitySelect.vue";
 
 const props = defineProps({
     pin: { type: Object, default: null },
+    variant: { type: String, default: "create" },
     i18n: { type: Object, required: true },
     createUrl: { type: String, required: true },
     boosted: { type: Boolean, default: false },
@@ -150,6 +179,8 @@ const props = defineProps({
 const emit = defineEmits([
     "close",
     "created",
+    "updated",
+    "deleted",
     "icon-change",
     "group-change",
     "entity-change",
@@ -163,17 +194,25 @@ const emit = defineEmits([
 
 const name = ref("");
 const saving = ref(false);
+const deleting = ref(false);
+const confirmingDelete = ref(false);
 const error = ref(null);
-const mode = ref("light");
+const detailLevel = ref("light");
+const peeked = ref(false);
+
+const isEdit = computed(() => props.variant === "edit");
 
 watch(
     () => props.pin,
     (newPin, oldPin) => {
         if (newPin && !oldPin) {
-            name.value = "";
+            name.value = isEdit.value ? (newPin.name || "") : "";
             error.value = null;
             saving.value = false;
-            mode.value = "light";
+            deleting.value = false;
+            confirmingDelete.value = false;
+            detailLevel.value = "light";
+            peeked.value = false;
         }
     },
 );
@@ -182,8 +221,32 @@ watch(name, (value) => {
     emit("name-change", value);
 });
 
-function toggleMode() {
-    mode.value = mode.value === "light" ? "full" : "light";
+function toggleDetailLevel() {
+    detailLevel.value = detailLevel.value === "light" ? "full" : "light";
+}
+
+function buildPayload() {
+    const isPolygon = props.pin.shape === "poly";
+    const isPath = props.pin.shape === "path";
+    const isCircle = props.pin.shape === "circle";
+    const hasCustomShape = isPolygon || isPath;
+
+    return {
+        name: name.value,
+        latitude: props.pin.latitude,
+        longitude: props.pin.longitude,
+        colour: props.pin.colour,
+        shape_id: props.pin.shapeId,
+        icon: props.pin.iconId,
+        custom_icon: props.pin.customIcon,
+        group_id: props.pin.groupId,
+        entity_id: props.pin.entityId,
+        visibility_id: props.pin.visibilityId,
+        opacity: props.pin.opacity,
+        custom_shape: hasCustomShape ? serializeVertices(props.pin.customShape) : undefined,
+        polygon_style: hasCustomShape ? props.pin.polygonStyle : undefined,
+        circle_radius: isCircle ? Math.round(props.pin.circleRadius) : undefined,
+    };
 }
 
 async function save() {
@@ -191,31 +254,38 @@ async function save() {
     error.value = null;
 
     try {
-        const isPolygon = props.pin.shape === "poly";
-        const isPath = props.pin.shape === "path";
-        const isCircle = props.pin.shape === "circle";
-        const hasCustomShape = isPolygon || isPath;
-        const res = await axios.post(props.createUrl, {
-            name: name.value,
-            latitude: props.pin.latitude,
-            longitude: props.pin.longitude,
-            colour: props.pin.colour,
-            shape_id: props.pin.shapeId,
-            icon: props.pin.iconId,
-            custom_icon: props.pin.customIcon,
-            group_id: props.pin.groupId,
-            entity_id: props.pin.entityId,
-            visibility_id: props.pin.visibilityId,
-            opacity: props.pin.opacity,
-            custom_shape: hasCustomShape ? serializeVertices(props.pin.customShape) : undefined,
-            polygon_style: hasCustomShape ? props.pin.polygonStyle : undefined,
-            circle_radius: isCircle ? Math.round(props.pin.circleRadius) : undefined,
-        });
-        emit("created", res.data);
+        const payload = buildPayload();
+        const res = isEdit.value
+            ? await axios.patch(props.pin.update_url, payload)
+            : await axios.post(props.createUrl, payload);
+
+        emit(isEdit.value ? "updated" : "created", res.data);
     } catch (e) {
         error.value = props.i18n.error_save;
     } finally {
         saving.value = false;
+    }
+}
+
+async function handleDelete() {
+    if (!confirmingDelete.value) {
+        confirmingDelete.value = true;
+        error.value = null;
+
+        return;
+    }
+
+    deleting.value = true;
+    try {
+        const res = await axios.delete(props.pin.destroy_url);
+        if (res.status === 204) {
+            emit("deleted", props.pin);
+        }
+    } catch (e) {
+        confirmingDelete.value = false;
+        error.value = props.i18n.error_delete;
+    } finally {
+        deleting.value = false;
     }
 }
 </script>

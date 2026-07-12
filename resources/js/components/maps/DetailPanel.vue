@@ -138,11 +138,20 @@
             </div>
 
             <div class="p-4 flex flex-col gap-2 flex-none">
+                <button
+                    v-if="preview.can_edit"
+                    type="button"
+                    class="btn2 btn-primary btn-block"
+                    @click="$emit('edit')"
+                >
+                    {{ i18n.edit_marker }}
+                </button>
+
                 <a
                     v-if="preview.can_edit && preview.edit_url"
                     :href="preview.edit_url"
                     target="_blank"
-                    class="btn2 btn-primary btn-block"
+                    class="btn2 btn-block"
                 >
                     {{ i18n.edit_details }}
                 </a>
@@ -188,7 +197,7 @@ const props = defineProps({
     i18n: { type: Object, required: true },
 });
 
-const emit = defineEmits(["close", "center", "deleted"]);
+const emit = defineEmits(["close", "center", "deleted", "edit"]);
 
 const loading = ref(false);
 const preview = ref(null);

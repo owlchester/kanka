@@ -124,6 +124,7 @@
             :center-nonce="centerNonce"
             :active-mode="activeMode"
             :draft-pin="draftPin"
+            :editing-pin="editingPin"
             :preview-center="previewCenter"
             :can-edit="canEdit"
             :remote-cursors="remoteCursors"
@@ -141,6 +142,10 @@
             @pin-moved="handlePinMoved"
             @draft-move="handleDraftMove"
             @cursor-move="handleCursorMove"
+            @edit-move="handleEditMove"
+            @edit-polygon-change="handleEditPolygonChange"
+            @edit-circle-change="handleEditCircleChange"
+            @edit-path-change="handleEditPathChange"
         />
 
         <DetailPanel
@@ -150,10 +155,12 @@
             @close="selectedPin = null"
             @center="centerNonce++"
             @deleted="removePin"
+            @edit="openEditFromDetail"
         />
 
         <MarkerPanel
-            :pin="draftPin"
+            :pin="activePanelPin"
+            :variant="panelVariant"
             :i18n="data.i18n"
             :create-url="data.map.create_url"
             :boosted="boosted"
@@ -161,8 +168,10 @@
             :search-url="data.map.search_url"
             :visibilities="data.visibilities"
             :rapid="rapid"
-            @close="draftPin = null"
+            @close="handlePanelClose"
             @created="onPinCreated"
+            @updated="handlePinUpdated"
+            @deleted="handlePinDeletedFromPanel"
             @icon-change="handleIconChange"
             @group-change="handleGroupChange"
             @entity-change="handleEntityChange"
@@ -227,6 +236,7 @@ const selectedPin = ref(null);
 const centerNonce = ref(0);
 const activeMode = ref(null);
 const draftPin = ref(null);
+const editingPin = ref(null);
 const rapid = ref(false);
 const settingsOpen = ref(false);
 const pendingCenter = ref(null);
@@ -262,8 +272,12 @@ const markersCountText = computed(() => {
 const isTilingRunning = computed(() => data.value.map.tiling === 'running');
 
 const anyPanelOpen = computed(
-    () => legendOpen.value || !!selectedPin.value || !!draftPin.value || settingsOpen.value,
+    () => legendOpen.value || !!selectedPin.value || !!draftPin.value || !!editingPin.value || settingsOpen.value,
 );
+
+const activePanelPin = computed(() => draftPin.value || editingPin.value);
+
+const panelVariant = computed(() => (editingPin.value ? 'edit' : 'create'));
 
 function isMobileViewport() {
     return window.matchMedia("(max-width: 767px)").matches;
@@ -276,6 +290,8 @@ function closePanel(kind) {
         selectedPin.value = null;
     } else if (kind === "marker") {
         draftPin.value = null;
+    } else if (kind === "edit") {
+        editingPin.value = null;
     } else if (kind === "settings") {
         settingsOpen.value = false;
     }
@@ -341,6 +357,14 @@ function handleDraftMove({ lat, lng }) {
     draftPin.value = { ...draftPin.value, latitude: lat, longitude: lng };
 }
 
+function handleEditMove({ lat, lng }) {
+    if (!editingPin.value) {
+        return;
+    }
+
+    editingPin.value = { ...editingPin.value, latitude: lat, longitude: lng };
+}
+
 function handleCursorMove({ lat, lng }) {
     sendCursor(lat, lng);
 }
@@ -349,6 +373,7 @@ function handleModeChange(mode) {
     activeMode.value = mode;
     selectedPin.value = null;
     draftPin.value = null;
+    editingPin.value = null;
 
     if (mode !== "center-pick") {
         settingsOpen.value = false;
@@ -359,6 +384,7 @@ function handleMeasureChange(active) {
     if (active) {
         activeMode.value = null;
         draftPin.value = null;
+        editingPin.value = null;
     }
 }
 
@@ -450,65 +476,44 @@ function handleMapClick({ lat, lng }) {
     };
 }
 
-function handleNameChange(name) {
-    if (!draftPin.value) {
-        return;
+function patchActivePin(patch) {
+    if (draftPin.value) {
+        draftPin.value = { ...draftPin.value, ...patch };
+    } else if (editingPin.value) {
+        editingPin.value = { ...editingPin.value, ...patch };
     }
+}
 
-    draftPin.value = { ...draftPin.value, name };
+function handleNameChange(name) {
+    patchActivePin({ name });
 }
 
 function handleIconChange(payload) {
-    if (!draftPin.value) {
-        return;
-    }
-
-    draftPin.value = {
-        ...draftPin.value,
+    patchActivePin({
         iconId: payload.icon,
         customIcon: payload.custom_icon,
         icon: payload.render,
-    };
+    });
 }
 
 function handleGroupChange(groupId) {
-    if (!draftPin.value) {
-        return;
-    }
-
-    draftPin.value = { ...draftPin.value, groupId };
+    patchActivePin({ groupId });
 }
 
 function handleEntityChange(payload) {
-    if (!draftPin.value) {
-        return;
-    }
-
-    draftPin.value = { ...draftPin.value, entityId: payload.id, entityName: payload.text };
+    patchActivePin({ entityId: payload.id, entityName: payload.text });
 }
 
 function handleVisibilityChange(visibilityId) {
-    if (!draftPin.value) {
-        return;
-    }
-
-    draftPin.value = { ...draftPin.value, visibilityId };
+    patchActivePin({ visibilityId });
 }
 
 function handleColourChange(colour) {
-    if (!draftPin.value) {
-        return;
-    }
-
-    draftPin.value = { ...draftPin.value, colour };
+    patchActivePin({ colour });
 }
 
 function handleOpacityChange(opacity) {
-    if (!draftPin.value) {
-        return;
-    }
-
-    draftPin.value = { ...draftPin.value, opacity };
+    patchActivePin({ opacity });
 }
 
 const DEFAULT_STROKE_WIDTH = 1;
@@ -561,20 +566,32 @@ function handlePolygonChange(vertices) {
     draftPin.value = { ...draftPin.value, customShape: vertices, latitude: lat, longitude: lng };
 }
 
-function handleBorderColourChange(colour) {
-    if (!draftPin.value) {
+function handleEditPolygonChange(vertices) {
+    if (!editingPin.value || editingPin.value.shape !== "poly") {
         return;
     }
 
-    draftPin.value = { ...draftPin.value, polygonStyle: { ...draftPin.value.polygonStyle, stroke: colour } };
+    const [lat, lng] = centroid(vertices);
+
+    editingPin.value = { ...editingPin.value, customShape: vertices, latitude: lat, longitude: lng };
+}
+
+function handleBorderColourChange(colour) {
+    const target = draftPin.value || editingPin.value;
+    if (!target) {
+        return;
+    }
+
+    patchActivePin({ polygonStyle: { ...target.polygonStyle, stroke: colour } });
 }
 
 function handleStrokeWidthChange(width) {
-    if (!draftPin.value) {
+    const target = draftPin.value || editingPin.value;
+    if (!target) {
         return;
     }
 
-    draftPin.value = { ...draftPin.value, polygonStyle: { ...draftPin.value.polygonStyle, "stroke-width": width } };
+    patchActivePin({ polygonStyle: { ...target.polygonStyle, "stroke-width": width } });
 }
 
 function handleCircleFinish({ lat, lng, radius }) {
@@ -607,6 +624,14 @@ function handleCircleChange({ lat, lng, radius }) {
     }
 
     draftPin.value = { ...draftPin.value, circleRadius: radius, latitude: lat, longitude: lng };
+}
+
+function handleEditCircleChange({ lat, lng, radius }) {
+    if (!editingPin.value || editingPin.value.shape !== "circle") {
+        return;
+    }
+
+    editingPin.value = { ...editingPin.value, circleRadius: radius, latitude: lat, longitude: lng };
 }
 
 function handlePathFinish(vertices) {
@@ -645,6 +670,16 @@ function handlePathChange(vertices) {
     draftPin.value = { ...draftPin.value, customShape: vertices, latitude: lat, longitude: lng };
 }
 
+function handleEditPathChange(vertices) {
+    if (!editingPin.value || editingPin.value.shape !== "path") {
+        return;
+    }
+
+    const [lat, lng] = centroid(vertices);
+
+    editingPin.value = { ...editingPin.value, customShape: vertices, latitude: lat, longitude: lng };
+}
+
 function onPinCreated(pin) {
     data.value.pins = [...data.value.pins, pin];
     draftPin.value = null;
@@ -652,6 +687,57 @@ function onPinCreated(pin) {
     if (! rapid.value) {
         activeMode.value = null;
     }
+}
+
+function toEditingPin(pin) {
+    return {
+        id: pin.id,
+        name: pin.name,
+        colour: pin.colour,
+        shape: pin.shape,
+        shapeId: pin.shape_id,
+        icon: pin.icon,
+        iconId: pin.icon_id,
+        customIcon: pin.custom_icon,
+        customShape: pin.custom_shape,
+        polygonStyle: pin.polygon_style,
+        circleRadius: pin.circle_radius,
+        pin_size: pin.pin_size,
+        groupId: pin.group_id,
+        entityId: pin.entity_id,
+        entityName: pin.entity_name,
+        visibilityId: pin.visibility_id,
+        opacity: pin.opacity,
+        latitude: pin.latitude,
+        longitude: pin.longitude,
+        update_url: pin.update_url,
+        destroy_url: pin.destroy_url,
+    };
+}
+
+function openEditFromDetail() {
+    const pin = selectedPin.value;
+    if (! pin) {
+        return;
+    }
+
+    enforceExclusivity("edit");
+    editingPin.value = toEditingPin(pin);
+}
+
+function handlePanelClose() {
+    draftPin.value = null;
+    editingPin.value = null;
+}
+
+function handlePinUpdated(pin) {
+    data.value.pins = data.value.pins.map((p) => (p.id === pin.id ? pin : p));
+    editingPin.value = null;
+}
+
+function handlePinDeletedFromPanel(pin) {
+    removePin(pin);
+    editingPin.value = null;
 }
 
 onMounted(async () => {
