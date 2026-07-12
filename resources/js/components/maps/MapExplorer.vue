@@ -23,10 +23,13 @@
     </div>
 
     <template v-else>
-        <div class="fixed top-4 left-4 z-[1200] flex items-center gap-4">
+        <div
+            class="fixed top-4 left-4 z-[1200] items-center gap-4"
+            :class="anyPanelOpen ? 'hidden md:flex' : 'flex'"
+        >
             <button
                 class="legend-toggle btn2 btn-default"
-                @click="legendOpen = !legendOpen"
+                @click="toggleLegend"
             >
                 <i class="fa-regular fa-list" aria-hidden="true" />
             </button>
@@ -90,7 +93,8 @@
 
         <div
             v-if="canEdit && data.map.tiling_prompt_eligible && !tilingPromptDismissed"
-            class="fixed top-4 right-4 z-[1200] max-w-sm bg-base-100 border border-base-300 rounded-xl p-4 flex flex-col gap-2 shadow-lg"
+            class="fixed top-4 right-4 z-[1200] max-w-sm bg-base-100 border border-base-300 rounded-xl p-4 flex-col gap-2 shadow-lg"
+            :class="anyPanelOpen ? 'hidden md:flex' : 'flex'"
         >
             <p class="text-sm text-base-content">{{ data.i18n.tiling_prompt.message }}</p>
             <div class="flex gap-2 justify-end">
@@ -109,6 +113,7 @@
             :pins="data.pins"
             :i18n="data.i18n"
             @select="selectPin"
+            @close="legendOpen = false"
         />
 
         <LeafletCanvas
@@ -197,6 +202,7 @@ import { ref, computed, onMounted, onBeforeUnmount, nextTick } from "vue";
 import tippy from "tippy.js";
 import { colourForUser, useMapPresence } from "../../composables/useMapPresence.js";
 import { centroid } from "../../maps/polygon.js";
+import { panelsToClose } from "../../maps/panelExclusivity.js";
 import DetailPanel from "./DetailPanel.vue";
 import LeafletCanvas from "./LeafletCanvas.vue";
 import LegendPanel from "./LegendPanel.vue";
@@ -254,6 +260,38 @@ const markersCountText = computed(() => {
 
 const isTilingRunning = computed(() => data.value.map.tiling === 'running');
 
+const anyPanelOpen = computed(
+    () => legendOpen.value || !!selectedPin.value || !!draftPin.value || settingsOpen.value,
+);
+
+function isMobileViewport() {
+    return window.matchMedia("(max-width: 767px)").matches;
+}
+
+function closePanel(kind) {
+    if (kind === "legend") {
+        legendOpen.value = false;
+    } else if (kind === "detail") {
+        selectedPin.value = null;
+    } else if (kind === "marker") {
+        draftPin.value = null;
+    } else if (kind === "settings") {
+        settingsOpen.value = false;
+    }
+}
+
+function enforceExclusivity(openingKind) {
+    panelsToClose(openingKind, isMobileViewport()).forEach(closePanel);
+}
+
+function toggleLegend() {
+    if (!legendOpen.value) {
+        enforceExclusivity("legend");
+    }
+
+    legendOpen.value = !legendOpen.value;
+}
+
 function presenceTooltip(user) {
     const i18n = data.value.i18n.presence;
     const role = user.role === "edit" ? i18n.role_edit : i18n.role_view;
@@ -267,6 +305,7 @@ function presenceTooltip(user) {
 
 function openSettings() {
     mapMenuInstance?.hide();
+    enforceExclusivity("settings");
     settingsOpen.value = true;
 }
 
@@ -278,6 +317,7 @@ async function respondToTilingPrompt(action) {
 }
 
 function selectPin(pin) {
+    enforceExclusivity("detail");
     selectedPin.value = pin;
 }
 
@@ -389,6 +429,8 @@ function handleMapClick({ lat, lng }) {
 
     const isText = activeMode.value === "text";
 
+    enforceExclusivity("marker");
+
     draftPin.value = {
         name: "",
         colour: defaultColour(),
@@ -486,6 +528,8 @@ function handlePolygonFinish(vertices) {
     const [lat, lng] = centroid(vertices);
     const style = defaultPolygonStyle();
 
+    enforceExclusivity("marker");
+
     draftPin.value = {
         name: "",
         colour: style.colour,
@@ -535,6 +579,8 @@ function handleStrokeWidthChange(width) {
 function handleCircleFinish({ lat, lng, radius }) {
     const style = defaultPolygonStyle();
 
+    enforceExclusivity("marker");
+
     draftPin.value = {
         name: "",
         colour: style.colour,
@@ -565,6 +611,8 @@ function handleCircleChange({ lat, lng, radius }) {
 function handlePathFinish(vertices) {
     const [lat, lng] = centroid(vertices);
     const style = defaultPolygonStyle();
+
+    enforceExclusivity("marker");
 
     draftPin.value = {
         name: "",
