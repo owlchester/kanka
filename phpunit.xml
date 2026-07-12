@@ -26,11 +26,5 @@
         <env name="TELESCOPE_ENABLED" value="false"/>
         <env name="MAIL_MAILER" value="array"/>
         <env name="SCOUT_DRIVER" value="null"/>
-        <env name="REVERB_APP_KEY" value="test-key"/>
-        <env name="REVERB_APP_SECRET" value="test-secret"/>
-        <env name="REVERB_APP_ID" value="test-app"/>
-        <env name="REVERB_HOST" value="localhost"/>
-        <env name="REVERB_PORT" value="8080"/>
-        <env name="REVERB_SCHEME" value="http"/>
     </php>
 </phpunit>
