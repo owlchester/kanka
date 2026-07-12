@@ -46,6 +46,19 @@ class MarkerController extends Controller
         return response()->json(new PinResource($marker)->campaign($campaign)->mapEntity($entity), 201);
     }
 
+    public function update(StoreMapMarker $request, Campaign $campaign, Entity $entity, MapMarker $mapMarker)
+    {
+        $this->campaign($campaign)->authEntityView($entity);
+        $this->guardMarker($entity, $mapMarker);
+        // See the comment in preview() above.
+        EntityPermission::campaign($campaign);
+        $this->authorize('update', $entity);
+
+        $mapMarker->update($request->validated());
+
+        return response()->json(new PinResource($mapMarker)->campaign($campaign)->mapEntity($entity));
+    }
+
     public function destroy(Campaign $campaign, Entity $entity, MapMarker $mapMarker)
     {
         $this->campaign($campaign)->authEntityView($entity);

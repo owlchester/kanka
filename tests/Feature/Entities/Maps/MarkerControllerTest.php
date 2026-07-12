@@ -335,3 +335,123 @@ it('creates a path marker with custom_shape and returns it in PinResource shape'
     ]);
     expect($marker->custom_shape)->toBe('10.500,20.250 11.750,21.100 12.250,19.750');
 });
+
+it('updates a marker and returns it in PinResource shape', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $group = MapGroup::factory()->create(['map_id' => $map->id]);
+    $marker = MapMarker::factory()->create([
+        'map_id' => $map->id,
+        'name' => 'Old name',
+        'latitude' => 1,
+        'longitude' => 1,
+        'shape_id' => 1,
+        'icon' => 1,
+    ]);
+
+    $response = $this->patchJson(route('entities.map-markers.update', [1, $map->entity, $marker]), [
+        'name' => 'New name',
+        'latitude' => 12.5,
+        'longitude' => 34.5,
+        'colour' => '#123456',
+        'shape_id' => 1,
+        'icon' => 3,
+        'group_id' => $group->id,
+        'opacity' => 60,
+    ])->assertStatus(200);
+
+    expect($response->json('id'))->toBe($marker->id);
+    expect($response->json('name'))->toBe('New name');
+    expect($response->json('colour'))->toBe('#123456');
+    expect($response->json('group_id'))->toBe($group->id);
+    expect($response->json('opacity'))->toBe(60.0);
+    expect($response->json('update_url'))->toBe(route('entities.map-markers.update', [1, $map->entity->id, $marker->id]));
+    expect($marker->fresh()->name)->toBe('New name');
+    expect($marker->fresh()->latitude)->toEqual(12.5);
+});
+
+it('updates a marker\'s entity link, visibility, and custom icon and returns them in PinResource shape', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $character = Character::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create(['map_id' => $map->id, 'name' => 'Pin']);
+
+    $response = $this->patchJson(route('entities.map-markers.update', [1, $map->entity, $marker]), [
+        'name' => 'Pin',
+        'latitude' => 1,
+        'longitude' => 1,
+        'shape_id' => 1,
+        'icon' => 1,
+        'custom_icon' => 'fa-solid fa-star',
+        'entity_id' => $character->entity->id,
+        'visibility_id' => 2,
+    ])->assertStatus(200);
+
+    expect($response->json('shape_id'))->toBe(1);
+    expect($response->json('icon_id'))->toBe(1);
+    expect($response->json('custom_icon'))->toBe('fa-solid fa-star');
+    expect($response->json('entity_id'))->toBe($character->entity->id);
+    expect($response->json('entity_name'))->toBe($character->entity->name);
+    expect($response->json('visibility_id'))->toBe(2);
+});
+
+it('403s update for a player without update permission', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create(['map_id' => $map->id, 'name' => 'Old name']);
+
+    $this->asPlayer();
+
+    $this->patchJson(route('entities.map-markers.update', [1, $map->entity, $marker]), [
+        'name' => 'New name',
+        'latitude' => 1,
+        'longitude' => 1,
+        'shape_id' => 1,
+        'icon' => 1,
+    ])->assertStatus(403);
+
+    expect($marker->fresh()->name)->toBe('Old name');
+});
+
+it('404s update for a marker belonging to a different map', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $otherMap = Map::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create(['map_id' => $otherMap->id]);
+
+    $this->patchJson(route('entities.map-markers.update', [1, $map->entity, $marker]), [
+        'name' => 'New name',
+        'latitude' => 1,
+        'longitude' => 1,
+        'shape_id' => 1,
+        'icon' => 1,
+    ])->assertStatus(404);
+});
+
+it('404s update for a non-map entity', function () {
+    $this->asUser()->withCampaign();
+    $entity = Character::factory()->create(['campaign_id' => 1])->entity;
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create(['map_id' => $map->id]);
+
+    $this->patchJson(route('entities.map-markers.update', [1, $entity, $marker]), [
+        'name' => 'New name',
+        'latitude' => 1,
+        'longitude' => 1,
+        'shape_id' => 1,
+        'icon' => 1,
+    ])->assertStatus(404);
+});
+
+it('422s update when latitude is missing', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create(['map_id' => $map->id]);
+
+    $this->patchJson(route('entities.map-markers.update', [1, $map->entity, $marker]), [
+        'name' => 'New name',
+        'longitude' => 1,
+        'shape_id' => 1,
+        'icon' => 1,
+    ])->assertStatus(422);
+});

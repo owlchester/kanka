@@ -63,6 +63,7 @@ Route::patch('/w/{campaign}/entities/{entity}/map/settings', [EntityMapSettingsC
 Route::get('/w/{campaign}/entities/{entity}/map/markers/{map_marker}', [EntityMapMarkerController::class, 'preview'])->name('entities.map-markers.preview');
 Route::delete('/w/{campaign}/entities/{entity}/map/markers/{map_marker}', [EntityMapMarkerController::class, 'destroy'])->name('entities.map-markers.destroy');
 Route::post('/w/{campaign}/entities/{entity}/map/markers', [EntityMapMarkerController::class, 'store'])->name('entities.map-markers.store');
+Route::patch('/w/{campaign}/entities/{entity}/map/markers/{map_marker}', [EntityMapMarkerController::class, 'update'])->name('entities.map-markers.update');
 Route::patch('/w/{campaign}/entities/{entity}/map/tiling-prompt', [EntityMapTilingPromptController::class, 'update'])->name('entities.map-tiling-prompt.update');
 
 // Abilities
