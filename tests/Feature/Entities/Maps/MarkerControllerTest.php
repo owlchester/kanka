@@ -497,3 +497,81 @@ it('marks latitude, longitude, shape_id, and icon as required in StoreMapMarker 
     expect($rules['shape_id'])->toContain('required');
     expect($rules['icon'])->toContain('required');
 });
+
+it('wraps a multi-paragraph plain-text entry into <p> tags on create via the v4 API', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $response = $this->postJson(route('entities.map-markers.store', [1, $map->entity]), [
+        'name' => 'Wrapped entry pin',
+        'latitude' => 12.5,
+        'longitude' => 34.5,
+        'shape_id' => 1,
+        'icon' => 1,
+        'entry' => "First paragraph.\nStill first <paragraph>.\n\nSecond paragraph.",
+    ])->assertStatus(201);
+
+    $marker = MapMarker::where('name', 'Wrapped entry pin')->firstOrFail();
+    $expected = '<p>First paragraph.<br>Still first &lt;paragraph&gt;.</p><p>Second paragraph.</p>';
+
+    expect($response->json('entry'))->toBe($expected);
+    expect($marker->fresh()->entry)->toBe($expected);
+});
+
+it('wraps a multi-paragraph plain-text entry into <p> tags on update via the v4 API', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create(['map_id' => $map->id, 'shape_id' => 1, 'entry' => '<p>Old.</p>']);
+
+    $response = $this->patchJson(route('entities.map-markers.update', [1, $map->entity, $marker]), [
+        'name' => $marker->name,
+        'latitude' => 1,
+        'longitude' => 1,
+        'shape_id' => 1,
+        'icon' => 1,
+        'entry' => "New first paragraph.\n\nNew second paragraph.",
+    ])->assertStatus(200);
+
+    $expected = '<p>New first paragraph.</p><p>New second paragraph.</p>';
+
+    expect($response->json('entry'))->toBe($expected);
+    expect($marker->fresh()->entry)->toBe($expected);
+});
+
+it('leaves a null entry untouched when creating a marker with no description', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $response = $this->postJson(route('entities.map-markers.store', [1, $map->entity]), [
+        'name' => 'No entry pin',
+        'latitude' => 1,
+        'longitude' => 1,
+        'shape_id' => 1,
+        'icon' => 1,
+    ])->assertStatus(201);
+
+    expect($response->json('entry'))->toBeNull();
+    expect(MapMarker::where('name', 'No entry pin')->firstOrFail()->entry)->toBeNull();
+});
+
+it('does not paragraph-wrap entry submitted through the legacy marker edit form', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create(['map_id' => $map->id, 'shape_id' => 1]);
+
+    $this->put(route('maps.map_markers.update', [1, $map, $marker]), [
+        'name' => $marker->name,
+        'latitude' => 1,
+        'longitude' => 1,
+        'shape_id' => 1,
+        'icon' => 1,
+        'entry' => "Para one.\n\nPara two.",
+    ])->assertRedirect();
+
+    // The legacy controller reads $request->only($this->fields), which never calls
+    // StoreMapMarker::validated() — so wrapEntryParagraphs() never runs here. The single
+    // <p> wrapping the whole blank-line-separated text below is SaveService's own
+    // pre-existing DOMDocument round-trip behavior (confirmed unchanged by this task,
+    // not per-paragraph <p> splitting like the v4 API now does).
+    expect($marker->fresh()->entry)->toBe("<p>Para one.\n\nPara two.</p>");
+});

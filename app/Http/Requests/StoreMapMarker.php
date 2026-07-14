@@ -57,4 +57,48 @@ class StoreMapMarker extends FormRequest
 
         return $this->clean($rules);
     }
+
+    /**
+     * @param  string|null  $key
+     * @param  mixed  $default
+     * @return mixed
+     */
+    public function validated($key = null, $default = null)
+    {
+        $data = parent::validated($key, $default);
+
+        if ($key === null && is_array($data) && array_key_exists('entry', $data)) {
+            $data['entry'] = $this->wrapEntryParagraphs($data['entry']);
+        } elseif ($key === 'entry') {
+            $data = $this->wrapEntryParagraphs($data);
+        }
+
+        return $data;
+    }
+
+    /**
+     * The map explorer's simple description field is a plain <textarea> (no HTML, no
+     * mentions) — wrap each blank-line-separated block in its own <p> so it renders with
+     * real paragraph structure, matching every other "entry" field in the app. Escaping
+     * happens before wrapping so any literal <, >, or & the user types is treated as text,
+     * not markup; Purify::clean() (already run by EntryObserver on every save via
+     * MapMarker's HasEntry trait) is a second, redundant safety net on top.
+     *
+     * Only reached via validated() — the legacy Blade marker form's controller
+     * (App\Http\Controllers\Maps\MarkerController) reads $request->only(...) instead and
+     * never calls validated(), so its already-rich tiptap HTML is untouched by this.
+     */
+    protected function wrapEntryParagraphs(?string $text): ?string
+    {
+        if ($text === null || trim($text) === '') {
+            return $text;
+        }
+
+        $normalized = str_replace(["\r\n", "\r"], "\n", trim($text));
+        $paragraphs = preg_split('/\n{2,}/', $normalized);
+
+        return collect($paragraphs)
+            ->map(fn ($paragraph) => '<p>' . str_replace("\n", '<br>', e(trim($paragraph))) . '</p>')
+            ->implode('');
+    }
 }
