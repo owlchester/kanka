@@ -27,7 +27,7 @@
                 v-if="editing"
                 v-model="text"
                 rows="3"
-                class="w-full"
+                class="textarea w-full"
             />
 
             <template v-else>
@@ -50,7 +50,7 @@
                 </button>
             </header>
             <article class="max-w-2xl p-4 md:px-6">
-                <textarea v-model="dialogText" rows="14" class="w-full" />
+                <textarea v-model="dialogText" rows="14" class="textarea w-full" />
             </article>
             <footer class="p-4 md:px-6">
                 <menu class="flex justify-end gap-3">

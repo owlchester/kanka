@@ -65,7 +65,7 @@
                 v-if="detailLevel === 'full'"
                 :pin="pin"
                 :i18n="i18n"
-                @change="$emit('entry-change', $event)"
+                @change="handleEntryFieldChange"
             />
 
             <ColourPicker
@@ -211,6 +211,7 @@ const error = ref(null);
 const detailLevel = ref("light");
 const peeked = ref(false);
 const nameInputRef = ref(null);
+const entryTouched = ref(false);
 
 const isEdit = computed(() => props.variant === "edit");
 
@@ -225,6 +226,7 @@ watch(
             confirmingDelete.value = false;
             detailLevel.value = isEdit.value ? "full" : "light";
             peeked.value = false;
+            entryTouched.value = false;
         }
     },
 );
@@ -237,6 +239,11 @@ function toggleDetailLevel() {
     detailLevel.value = detailLevel.value === "light" ? "full" : "light";
 }
 
+function handleEntryFieldChange(value) {
+    entryTouched.value = true;
+    emit("entry-change", value);
+}
+
 function buildPayload() {
     const isPolygon = props.pin.shape === "poly";
     const isPath = props.pin.shape === "path";
@@ -245,11 +252,11 @@ function buildPayload() {
 
     return {
         name: name.value,
-        // props.pin.entry may still be the raw HTML loaded from the server (if the user
-        // never touched the description field this session) or already-plain text (if
-        // they did) — htmlToPlainText() is a no-op on plain text, so this always sends
-        // plain text to the backend regardless of which state it's currently in.
-        entry: htmlToPlainText(props.pin.entry),
+        // Only send entry when creating (nothing to lose) or when the user actually
+        // touched the field this session — an untouched entry may still be rich HTML
+        // from the legacy tiptap editor, and flattening it to plain text on an
+        // unrelated save (e.g. just moving the pin) would silently destroy it.
+        entry: (!isEdit.value || entryTouched.value) ? htmlToPlainText(props.pin.entry) : undefined,
         latitude: props.pin.latitude,
         longitude: props.pin.longitude,
         colour: props.pin.colour,
