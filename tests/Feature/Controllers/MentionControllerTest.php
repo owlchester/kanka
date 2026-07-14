@@ -5,10 +5,6 @@ use App\Models\CampaignDescription;
 use App\Models\Character;
 use App\Models\EntityMention;
 use App\Models\Post;
-use App\Models\Quest;
-use App\Models\QuestElement;
-use App\Models\Timeline;
-use App\Models\TimelineElement;
 
 test('the entity Mentions tab renders a mention for each owner type', function () {
     $this->asUser()->withCampaign()->withCharacters();

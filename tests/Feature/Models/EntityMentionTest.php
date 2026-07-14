@@ -23,6 +23,7 @@ test('exposes virtual owner-id attributes derived from mentionable_type/mentiona
     expect($postMention->isTimelineElement())->toBeFalse();
     expect($postMention->isQuestElement())->toBeFalse();
     expect($postMention->isCampaign())->toBeFalse();
+    expect($postMention->isEntity())->toBeTrue();
 
     $timelineMention = EntityMention::create([
         'mentionable_type' => TimelineElement::class,
