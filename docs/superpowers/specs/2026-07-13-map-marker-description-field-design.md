@@ -10,7 +10,7 @@ Add a "Description" field to the map explorer's marker create/edit panel (`Marke
 - `@mention` support, inline formatting, or any WYSIWYG behavior.
 - The legacy Blade marker edit page (`resources/views/maps/markers/_form.blade.php`, `App\Http\Controllers\Maps\MarkerController`). It already has its own full tiptap `entry` editor and keeps working exactly as today — see the "why `validated()`, not the controller" note below for how this is guaranteed.
 - Any database migration — `entry` already exists on `map_markers`, is `$fillable`, and already runs through `HasEntry`/`EntryObserver` (mention-parsing + `Purify::clean()`) on every save.
-- A character/length limit surfaced in the UI. The backend gets a generous safety cap; there's no client-side counter or truncation warning.
+- A character/length limit, client-side or server-side. No other `entry` field in this codebase (`StoreCharacter`, `StoreItem`, `StoreLocation`, `UpdateEntityEntry`, etc. — checked all of them) validates a `max:` length; this field stays consistent with that existing convention rather than inventing a new one. (Corrected post-implementation: an earlier draft of this section claimed a "generous safety cap" would be added — it wasn't, and per this consistency check, shouldn't be.)
 
 ## Background
 
