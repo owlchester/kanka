@@ -5,6 +5,7 @@ return [
         'delete'    => 'Unable to delete this marker.',
         'load'      => 'Unable to load this map.',
         'save'      => 'Unable to save this marker.',
+        'name_required' => 'Enter a name, or link an entity, before saving.',
     ],
     'tiling'    => [
         'running'   => 'This map\'s resources are being tiled. Please try again soon.',

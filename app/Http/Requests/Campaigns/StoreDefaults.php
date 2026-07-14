@@ -31,6 +31,7 @@ class StoreDefaults extends FormRequest
             'ui_settings' => 'array',
             'ui_settings.connections' => 'boolean',
             'ui_settings.connection_mode' => 'boolean',
+            'ui_settings.post_collapsed' => 'boolean',
             'ui_settings.descendants' => 'boolean',
         ];
     }

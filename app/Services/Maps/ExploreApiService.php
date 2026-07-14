@@ -119,6 +119,7 @@ class ExploreApiService
             'error_load' => __('maps/explorer.errors.load'),
             'error_delete' => __('maps/explorer.errors.delete'),
             'error_save' => __('maps/explorer.errors.save'),
+            'error_name_required' => __('maps/explorer.errors.name_required'),
             'tiling' => [
                 'running' => __('maps/explorer.tiling.running'),
             ],

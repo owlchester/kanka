@@ -54,6 +54,7 @@
 
         <div v-show="!peeked" class="px-4 flex flex-col gap-3 grow min-h-0 overflow-y-auto">
             <input
+                ref="nameInputRef"
                 v-model="name"
                 type="text"
                 class="input input-bordered w-full"
@@ -82,7 +83,7 @@
             />
 
             <ShapePicker
-                v-if="detailLevel === 'full' && pin.shape !== 'label'"
+                v-if="detailLevel === 'full' && pin.shape !== 'label' && pin.shape !== 'path'"
                 :pin="pin"
                 :boosted="boosted"
                 :i18n="i18n"
@@ -131,7 +132,7 @@
                 </button>
                 <button
                     class="btn2 btn-primary grow"
-                    :disabled="saving || deleting || (!name.trim() && !pin.entityId)"
+                    :disabled="saving || deleting"
                     @click="save"
                 >
                     {{ isEdit ? i18n.save_changes : (rapid ? i18n.save_continue : i18n.save) }}
@@ -199,6 +200,7 @@ const confirmingDelete = ref(false);
 const error = ref(null);
 const detailLevel = ref("light");
 const peeked = ref(false);
+const nameInputRef = ref(null);
 
 const isEdit = computed(() => props.variant === "edit");
 
@@ -211,7 +213,7 @@ watch(
             saving.value = false;
             deleting.value = false;
             confirmingDelete.value = false;
-            detailLevel.value = "light";
+            detailLevel.value = isEdit.value ? "full" : "light";
             peeked.value = false;
         }
     },
@@ -250,6 +252,14 @@ function buildPayload() {
 }
 
 async function save() {
+    if (!name.value.trim() && !props.pin.entityId) {
+        error.value = props.i18n.error_name_required;
+        peeked.value = false;
+        nameInputRef.value?.focus();
+
+        return;
+    }
+
     saving.value = true;
     error.value = null;
 

@@ -74,7 +74,7 @@ watch(() => props.pin, (newPin, oldPin) => {
 });
 
 function isSelected(shape) {
-    return !props.pin.customIcon && props.pin.iconId === shape.icon;
+    return !props.pin.customIcon && Number(props.pin.iconId) === shape.icon;
 }
 
 function selectShape(shape) {

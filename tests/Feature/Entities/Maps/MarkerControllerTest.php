@@ -310,6 +310,30 @@ it('keeps circle_radius when the legacy edit form saves size_id 6 (custom)', fun
     expect($marker->fresh()->circle_radius)->toBe(900);
 });
 
+it('keeps circle_radius when the v4 map explorer resizes a circle without sending size_id', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    // No size_id override: the row is persisted with the column's DB default (1), just like a
+    // circle created through the v4 map explorer, which never submits size_id at all.
+    $marker = MapMarker::factory()->create([
+        'map_id' => $map->id,
+        'shape_id' => 3,
+        'circle_radius' => 750,
+    ]);
+
+    $response = $this->patchJson(route('entities.map-markers.update', [1, $map->entity, $marker]), [
+        'name' => $marker->name,
+        'latitude' => 12.5,
+        'longitude' => 34.5,
+        'shape_id' => 3,
+        'icon' => 1,
+        'circle_radius' => 900,
+    ])->assertStatus(200);
+
+    expect($response->json('circle_radius'))->toBe(900);
+    expect($marker->fresh()->circle_radius)->toBe(900);
+});
+
 it('creates a path marker with custom_shape and returns it in PinResource shape', function () {
     $this->asUser()->withCampaign();
     $map = Map::factory()->create(['campaign_id' => 1]);

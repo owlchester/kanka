@@ -52,7 +52,7 @@ const emit = defineEmits(["change"]);
 const PRESETS = [25, 50, 75, 100];
 
 const customMode = ref(false);
-const customText = ref("");
+const customText = ref(null);
 
 const isCustom = computed(() => !PRESETS.includes(props.pin.opacity));
 
@@ -61,7 +61,7 @@ function selectPreset(value) {
 }
 
 function clickCustom() {
-    customText.value = String(props.pin.opacity ?? 100);
+    customText.value = props.pin.opacity ?? 100;
     customMode.value = true;
 }
 
@@ -72,9 +72,10 @@ function commitCustom() {
 
     customMode.value = false;
 
-    const trimmed = customText.value.trim();
-    const parsed = Math.round(Number(trimmed));
-    const value = trimmed === "" || Number.isNaN(parsed) ? 100 : Math.min(100, Math.max(0, parsed));
+    // <input type="number"> auto-casts v-model to a Number (or null when empty), not a string,
+    // so this must not assume a string value (e.g. calling .trim()) like a text input would allow.
+    const parsed = Math.round(Number(customText.value));
+    const value = customText.value === null || Number.isNaN(parsed) ? 100 : Math.min(100, Math.max(0, parsed));
 
     emit("change", value);
 }

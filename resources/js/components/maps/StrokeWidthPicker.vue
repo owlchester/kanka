@@ -58,7 +58,7 @@ const presets = computed(() => [
 ]);
 
 const customMode = ref(false);
-const customText = ref("");
+const customText = ref(null);
 
 const isCustom = computed(() => !PRESET_VALUES.includes(props.width));
 
@@ -67,7 +67,7 @@ function selectPreset(value) {
 }
 
 function clickCustom() {
-    customText.value = String(props.width ?? 1);
+    customText.value = props.width ?? 1;
     customMode.value = true;
 }
 
@@ -78,9 +78,10 @@ function commitCustom() {
 
     customMode.value = false;
 
-    const trimmed = customText.value.trim();
-    const parsed = Math.round(Number(trimmed));
-    const value = trimmed === "" || Number.isNaN(parsed) ? 1 : Math.min(20, Math.max(1, parsed));
+    // <input type="number"> auto-casts v-model to a Number (or null when empty), not a string,
+    // so this must not assume a string value (e.g. calling .trim()) like a text input would allow.
+    const parsed = Math.round(Number(customText.value));
+    const value = customText.value === null || Number.isNaN(parsed) ? 1 : Math.min(20, Math.max(1, parsed));
 
     emit("change", value);
 }

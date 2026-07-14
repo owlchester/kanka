@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Enums\MapMarkerShape;
 use App\Events\Maps\MarkerChanged;
 use App\Models\MapMarker;
 use enshrined\svgSanitize\Sanitizer;
@@ -17,12 +16,13 @@ class MapMarkerObserver
         $mapMarker->opacity = round($mapMarker->opacity, 1);
         $mapMarker->custom_icon = $this->sanitizeCustomIcon($mapMarker);
 
-        // v4 map explorer circles are created with shape_id = circle but no size_id at all; legacy
-        // circle markers (preset sizes 1-5, or the "custom" size 6) always set a size_id, so we only
-        // need to skip the clear when size_id is genuinely absent, not merely whenever it's a circle.
-        $isNewCircleWithoutSizeId = $mapMarker->shape_id === MapMarkerShape::circle && is_null($mapMarker->size_id);
-
-        if ($mapMarker->size_id != 6 && ! $isNewCircleWithoutSizeId) {
+        // Only the legacy marker form ever submits size_id explicitly (a preset 1-5, or "custom" 6).
+        // v4 map explorer circles never send it, so on update size_id just keeps whatever value is
+        // already persisted (the column's DB default) without ever changing — checking dirtiness,
+        // not the raw value, is what tells "no size was chosen" apart from "size_id happens to
+        // already equal the DB default", which `is_null()` cannot do once a row has round-tripped
+        // through the database.
+        if ($mapMarker->isDirty('size_id') && $mapMarker->size_id != 6) {
             $mapMarker->circle_radius = null;
         }
     }
