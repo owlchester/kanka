@@ -179,6 +179,7 @@
             @colour-change="handleColourChange"
             @opacity-change="handleOpacityChange"
             @name-change="handleNameChange"
+            @entry-change="handleEntryChange"
             @border-colour-change="handleBorderColourChange"
             @stroke-width-change="handleStrokeWidthChange"
         />
@@ -460,6 +461,7 @@ function handleMapClick({ lat, lng }) {
 
     draftPin.value = {
         name: "",
+        entry: "",
         colour: defaultColour(),
         shape: isText ? "label" : "marker",
         shapeId: isText ? 2 : 1,
@@ -486,6 +488,10 @@ function patchActivePin(patch) {
 
 function handleNameChange(name) {
     patchActivePin({ name });
+}
+
+function handleEntryChange(text) {
+    patchActivePin({ entry: text });
 }
 
 function handleIconChange(payload) {
@@ -538,6 +544,7 @@ function handlePolygonFinish(vertices) {
 
     draftPin.value = {
         name: "",
+        entry: "",
         colour: style.colour,
         shape: "poly",
         shapeId: 5,
@@ -601,6 +608,7 @@ function handleCircleFinish({ lat, lng, radius }) {
 
     draftPin.value = {
         name: "",
+        entry: "",
         colour: style.colour,
         shape: "circle",
         shapeId: 3,
@@ -642,6 +650,7 @@ function handlePathFinish(vertices) {
 
     draftPin.value = {
         name: "",
+        entry: "",
         colour: style.colour,
         shape: "path",
         shapeId: 6,
@@ -693,6 +702,7 @@ function toEditingPin(pin) {
     return {
         id: pin.id,
         name: pin.name,
+        entry: pin.entry,
         colour: pin.colour,
         shape: pin.shape,
         shapeId: pin.shape_id,

@@ -61,6 +61,13 @@
                 :placeholder="i18n.name_placeholder"
             />
 
+            <DescriptionField
+                v-if="detailLevel === 'full'"
+                :pin="pin"
+                :i18n="i18n"
+                @change="$emit('entry-change', $event)"
+            />
+
             <ColourPicker
                 v-if="detailLevel === 'full'"
                 :colour="pin.colour"
@@ -156,8 +163,10 @@
 
 <script setup>
 import { computed, ref, watch } from "vue";
+import { htmlToPlainText } from "../../maps/entryText.js";
 import { serializeVertices } from "../../maps/polygon.js";
 import ColourPicker from "./ColourPicker.vue";
+import DescriptionField from "./DescriptionField.vue";
 import EntityLinkSelect from "./EntityLinkSelect.vue";
 import GroupPicker from "./GroupPicker.vue";
 import OpacityPicker from "./OpacityPicker.vue";
@@ -189,6 +198,7 @@ const emit = defineEmits([
     "colour-change",
     "opacity-change",
     "name-change",
+    "entry-change",
     "border-colour-change",
     "stroke-width-change",
 ]);
@@ -235,6 +245,11 @@ function buildPayload() {
 
     return {
         name: name.value,
+        // props.pin.entry may still be the raw HTML loaded from the server (if the user
+        // never touched the description field this session) or already-plain text (if
+        // they did) — htmlToPlainText() is a no-op on plain text, so this always sends
+        // plain text to the backend regardless of which state it's currently in.
+        entry: htmlToPlainText(props.pin.entry),
         latitude: props.pin.latitude,
         longitude: props.pin.longitude,
         colour: props.pin.colour,
