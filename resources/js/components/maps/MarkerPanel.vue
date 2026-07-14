@@ -61,13 +61,6 @@
                 :placeholder="i18n.name_placeholder"
             />
 
-            <DescriptionField
-                v-if="detailLevel === 'full'"
-                :pin="pin"
-                :i18n="i18n"
-                @change="handleEntryFieldChange"
-            />
-
             <ColourPicker
                 v-if="detailLevel === 'full'"
                 :colour="pin.colour"
@@ -110,6 +103,13 @@
                 :search-url="searchUrl"
                 :i18n="i18n"
                 @change="$emit('entity-change', $event)"
+            />
+
+            <DescriptionField
+                v-if="detailLevel === 'full'"
+                :pin="pin"
+                :i18n="i18n"
+                @change="handleEntryFieldChange"
             />
 
             <OpacityPicker

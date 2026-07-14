@@ -14,7 +14,7 @@
                 <label class="text-xs font-semibold uppercase tracking-wide text-neutral-content">{{ i18n.description }}</label>
                 <button
                     type="button"
-                    class="btn2 btn-default btn-sm"
+                    class="btn2 btn-default btn-xs"
                     v-tippy="i18n.description_expand"
                     @click="openDialog"
                 >
@@ -35,14 +35,14 @@
                 <button
                     type="button"
                     class="btn2 btn-default btn-sm self-start"
-                    @click="startEditing"
+                    @click="openDialog"
                 >
                     {{ i18n.edit_description }}
                 </button>
             </template>
         </template>
 
-        <dialog ref="dialogRef" class="dialog rounded-2xl bg-base-100 text-base-content" aria-modal="true">
+        <dialog ref="dialogRef" class="dialog rounded-2xl bg-base-100 text-base-content md:min-w-2xl" aria-modal="true">
             <header class="flex gap-6 items-center p-4 md:p-6 justify-between">
                 <h2>{{ i18n.description }}</h2>
                 <button type="button" class="btn2 btn-default btn-sm" @click="closeDialog">
