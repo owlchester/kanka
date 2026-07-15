@@ -49,6 +49,10 @@
         fieldName: 'entry'
     })
 
+    const emit = defineEmits<{
+        'update:modelValue': [value: string]
+    }>()
+
     declare global {
         interface Window {
             showToast: (message: string, type?: string) => void
@@ -224,6 +228,7 @@
                 /<table([^>]*) data-table-class="([^"]+)"([^>]*)>/g,
                 '<table$1 class="$2"$3>'
             )
+            emit('update:modelValue', html.value)
             if (!hasReceivedInput.value && !editor.isEmpty) {
                 hasReceivedInput.value = true
             }
