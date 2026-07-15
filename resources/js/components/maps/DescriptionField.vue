@@ -26,9 +26,10 @@
 
         <dialog
             ref="dialogRef"
-            class="dialog rounded-2xl bg-base-100 text-base-content md:min-w-2xl"
+            class="dialog rounded-2xl bg-base-100 text-base-content w-full md:w-fit md:min-w-2xl"
             aria-modal="true"
             @close="dialogOpen = false"
+            @keydown="handleDialogKeydown"
         >
             <header class="flex gap-6 items-center p-4 md:p-6 justify-between">
                 <h2>{{ i18n.description }}</h2>
@@ -39,6 +40,7 @@
             <article class="max-w-2xl p-4 md:px-6 entity-content">
                 <Tiptap
                     v-if="dialogOpen"
+                    ref="tiptapRef"
                     :content="editorContent"
                     v-model="dialogHtml"
                     :mentions="mentionsUrl"
@@ -61,9 +63,9 @@
 </template>
 
 <script setup>
-import { computed, ref } from "vue";
+import { computed, nextTick, ref } from "vue";
 import Tiptap from "../../editors/tiptap/Tiptap.vue";
-import { htmlToPlainText, htmlToPreviewText } from "../../maps/entryText.js";
+import { htmlToPlainText } from "../../maps/entryText.js";
 
 const props = defineProps({
     pin: { type: Object, required: true },
@@ -76,23 +78,28 @@ const props = defineProps({
 const emit = defineEmits(["change"]);
 
 const dialogRef = ref(null);
+const tiptapRef = ref(null);
 const dialogOpen = ref(false);
 const dialogHtml = ref("");
 
-const hasContent = computed(() => htmlToPlainText(props.pin.entry).trim().length > 0);
-const preview = computed(() => htmlToPreviewText(props.pin.entry));
+const plainText = computed(() => htmlToPlainText(props.pin.entry));
+const hasContent = computed(() => plainText.value.length > 0);
+const preview = computed(() => plainText.value.replace(/\s+/g, " "));
 // The rich, edit-ready HTML for the Tiptap instance: prefer the server-hydrated
-// entry_for_edition (mentions rendered for display) when available, falling back to
-// the raw entry (e.g. a client-only draft pin, which never has entry_for_edition).
-const editorContent = computed(() => props.pin.entryForEdition ?? props.pin.entry_for_edition ?? props.pin.entry ?? "");
+// entryForEdition (mentions rendered for display) when available, falling back to
+// the raw entry (e.g. a client-only draft pin, which never has entryForEdition).
+const editorContent = computed(() => props.pin.entryForEdition ?? props.pin.entry ?? "");
 
-function openDialog() {
+async function openDialog() {
     // Seed dialogHtml with the same content shown to Tiptap so that saving without
     // making any edits round-trips the existing description instead of wiping it —
     // Tiptap only emits update:modelValue on user edits, not on initial mount.
     dialogHtml.value = editorContent.value;
     dialogOpen.value = true;
     dialogRef.value?.showModal();
+
+    await nextTick();
+    await tiptapRef.value?.focus();
 }
 
 function closeDialog() {
@@ -102,5 +109,12 @@ function closeDialog() {
 function saveDialog() {
     emit("change", dialogHtml.value);
     closeDialog();
+}
+
+function handleDialogKeydown(event) {
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "s") {
+        event.preventDefault();
+        saveDialog();
+    }
 }
 </script>

@@ -11,7 +11,7 @@
     import { ListKit } from '@tiptap/extension-list'
     import { TableKit } from "@tiptap/extension-table"
     import { CellSelection } from '@tiptap/pm/tables'
-    import { ref, computed, onMounted, onBeforeUnmount, defineAsyncComponent, getCurrentInstance } from 'vue'
+    import { ref, computed, nextTick, onMounted, onBeforeUnmount, defineAsyncComponent, getCurrentInstance } from 'vue'
     import { Mention } from './extensions/mentions/Mention'
     import suggestion from './extensions/mentions/suggestion'
     import { MentionParser } from './extensions/mentions/MentionParser'
@@ -419,6 +419,17 @@
     onBeforeUnmount(() => {
         window.removeEventListener('tiptap:source-mode', enterSourceMode)
         editor?.value.destroy()
+    })
+
+    defineExpose({
+        // EditorContent only attaches editor.view.dom to the visible DOM inside its own
+        // nextTick callback (queued once the editor is created in this component's own
+        // onMounted), so a caller focusing right after mount needs one more tick or the
+        // view isn't connected to the document yet and focus() is a silent no-op.
+        focus: async () => {
+            await nextTick()
+            editor.value?.commands.focus()
+        },
     })
 </script>
 

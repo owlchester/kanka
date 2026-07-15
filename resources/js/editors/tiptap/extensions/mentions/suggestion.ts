@@ -18,6 +18,11 @@ interface MentionItem {
     section: 'entities' | 'posts' | 'new' | 'attributes'
 }
 
+// A native <dialog> shown via showModal() renders in the browser's "top layer", above
+// all regular content regardless of z-index. A body-appended popup would render behind
+// it, so append into the open dialog instead when the editor lives inside one.
+const appendTarget = (editor): Element => editor.view.dom.closest('dialog[open]') ?? document.body
+
 const updatePosition = (editor, element) => {
     const virtualElement = {
         getBoundingClientRect: () => posToDOMRect(editor.view, editor.state.selection.from, editor.state.selection.to),
@@ -171,8 +176,9 @@ export default (mentionsUrl: string, onEntityAdded?: (entity: any) => void) => {
                     }
 
                     component.element.style.position = 'absolute'
+                    component.element.style.zIndex = '1060'
 
-                    document.body.appendChild(component.element)
+                    appendTarget(props.editor).appendChild(component.element)
 
                     updatePosition(props.editor, component.element)
                 },

@@ -12,6 +12,11 @@ export interface SlashCommandItem {
     command: (editor: Editor) => void
 }
 
+// A native <dialog> shown via showModal() renders in the browser's "top layer", above
+// all regular content regardless of z-index. A body-appended popup would render behind
+// it, so append into the open dialog instead when the editor lives inside one.
+const appendTarget = (editor: Editor): Element => editor.view.dom.closest('dialog[open]') ?? document.body
+
 const updatePosition = (editor: Editor, element: HTMLElement) => {
     const virtualElement = {
         getBoundingClientRect: () => posToDOMRect(editor.view, editor.state.selection.from, editor.state.selection.to),
@@ -191,7 +196,8 @@ export default () => {
                     }
 
                     component.element.style.position = 'absolute'
-                    document.body.appendChild(component.element)
+                    component.element.style.zIndex = '1060'
+                    appendTarget(props.editor).appendChild(component.element)
                     updatePosition(props.editor, component.element)
                 },
 

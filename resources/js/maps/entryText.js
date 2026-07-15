@@ -12,11 +12,10 @@ function decodeHtmlEntities(text) {
 }
 
 /**
- * Convert entry HTML (server-purified, currently just <p>/<br> from the simple textarea
- * editor) back into editable plain text: paragraph boundaries become blank lines, <br>
- * becomes a single newline, remaining tags are stripped. Safe/idempotent on plain text
- * (no tags match), which matters because after a local unsaved edit `pin.entry` holds
- * plain text rather than HTML until the whole marker panel is saved.
+ * Convert entry HTML (server-purified Tiptap output) into a plain-text approximation:
+ * paragraph boundaries become blank lines, <br> becomes a single newline, remaining tags
+ * are stripped. Used for the collapsed description preview and hasContent check, not for
+ * anything sent back to the server.
  */
 export function htmlToPlainText(html) {
     if (!html) {

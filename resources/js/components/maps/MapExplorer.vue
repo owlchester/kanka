@@ -494,7 +494,11 @@ function handleNameChange(name) {
 }
 
 function handleEntryChange(text) {
-    patchActivePin({ entry: text });
+    // Tiptap's emitted HTML is already edit-ready (mentions rendered the same way
+    // entry_for_edition is), so keep entryForEdition in step with entry — otherwise
+    // reopening the description dialog later in the same session would show the
+    // stale pre-edit entryForEdition instead of what was just typed.
+    patchActivePin({ entry: text, entryForEdition: text });
 }
 
 function handleIconChange(payload) {
