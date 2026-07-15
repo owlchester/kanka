@@ -56,11 +56,32 @@ return new class extends Migration
             $table->index(['mentionable_type', 'mentionable_id']);
 
             $table->dropForeign(['entity_id']);
-            $table->dropForeign(['entity_note_id']);
             $table->dropForeign(['timeline_element_id']);
             $table->dropForeign(['quest_element_id']);
             $table->dropForeign(['campaign_id']);
+        });
 
+        // post_id's FK constraint kept its original name from before the
+        // entity_note_id -> post_id rename in
+        // 2023_09_12_200523_migrate_to_posts.php (renameColumn() doesn't
+        // rename the underlying constraint), so MySQL/MariaDB installs need
+        // it dropped by the legacy column name. SQLite's grammar rebuilds
+        // the table from its own foreign key list and needs the current
+        // column name instead - passing the legacy name there fails because
+        // no such column exists to reference. Try the current name first
+        // (correct for SQLite) and fall back to the legacy name (correct for
+        // MySQL/MariaDB) if that fails.
+        try {
+            Schema::table('entity_mentions', function (Blueprint $table) {
+                $table->dropForeign(['post_id']);
+            });
+        } catch (Throwable) {
+            Schema::table('entity_mentions', function (Blueprint $table) {
+                $table->dropForeign(['entity_note_id']);
+            });
+        }
+
+        Schema::table('entity_mentions', function (Blueprint $table) {
             $table->dropColumn(['post_id', 'timeline_element_id', 'quest_element_id', 'campaign_id']);
         });
     }
