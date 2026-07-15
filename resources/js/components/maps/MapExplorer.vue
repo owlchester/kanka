@@ -166,6 +166,9 @@
             :boosted="boosted"
             :groups="data.groups"
             :search-url="data.map.search_url"
+            :mentions-url="data.map.mentions_url"
+            :gallery-url="data.map.gallery_url"
+            :gallery-upload-url="data.map.gallery_upload_url"
             :visibilities="data.visibilities"
             :rapid="rapid"
             @close="handlePanelClose"
@@ -703,6 +706,7 @@ function toEditingPin(pin) {
         id: pin.id,
         name: pin.name,
         entry: pin.entry,
+        entryForEdition: pin.entry_for_edition,
         colour: pin.colour,
         shape: pin.shape,
         shapeId: pin.shape_id,

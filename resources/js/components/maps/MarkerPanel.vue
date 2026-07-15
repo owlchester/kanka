@@ -109,6 +109,9 @@
                 v-if="detailLevel === 'full'"
                 :pin="pin"
                 :i18n="i18n"
+                :mentions-url="mentionsUrl"
+                :gallery-url="galleryUrl"
+                :gallery-upload-url="galleryUploadUrl"
                 @change="handleEntryFieldChange"
             />
 
@@ -163,7 +166,6 @@
 
 <script setup>
 import { computed, ref, watch } from "vue";
-import { htmlToPlainText } from "../../maps/entryText.js";
 import { serializeVertices } from "../../maps/polygon.js";
 import ColourPicker from "./ColourPicker.vue";
 import DescriptionField from "./DescriptionField.vue";
@@ -184,6 +186,9 @@ const props = defineProps({
     searchUrl: { type: String, required: true },
     visibilities: { type: Array, default: () => [] },
     rapid: { type: Boolean, default: false },
+    mentionsUrl: { type: String, default: null },
+    galleryUrl: { type: String, default: null },
+    galleryUploadUrl: { type: String, default: null },
 });
 
 const emit = defineEmits([
@@ -253,10 +258,9 @@ function buildPayload() {
     return {
         name: name.value,
         // Only send entry when creating (nothing to lose) or when the user actually
-        // touched the field this session — an untouched entry may still be rich HTML
-        // from the legacy tiptap editor, and flattening it to plain text on an
-        // unrelated save (e.g. just moving the pin) would silently destroy it.
-        entry: (!isEdit.value || entryTouched.value) ? htmlToPlainText(props.pin.entry) : undefined,
+        // touched the field this session — omitting it on an untouched edit (e.g. just
+        // moving the pin) avoids overwriting server-side content with a stale client copy.
+        entry: (!isEdit.value || entryTouched.value) ? props.pin.entry : undefined,
         latitude: props.pin.latitude,
         longitude: props.pin.longitude,
         colour: props.pin.colour,
