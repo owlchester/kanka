@@ -56,7 +56,7 @@ return new class extends Migration
             $table->index(['mentionable_type', 'mentionable_id']);
 
             $table->dropForeign(['entity_id']);
-            $table->dropForeign(['post_id']);
+            $table->dropForeign(['entity_note_id']);
             $table->dropForeign(['timeline_element_id']);
             $table->dropForeign(['quest_element_id']);
             $table->dropForeign(['campaign_id']);
