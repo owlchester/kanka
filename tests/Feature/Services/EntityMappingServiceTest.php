@@ -3,6 +3,7 @@
 use App\Models\Campaign;
 use App\Models\CampaignDescription;
 use App\Models\Character;
+use App\Models\Entity;
 use App\Models\EntityMention;
 use App\Models\Post;
 use App\Models\Quest;
@@ -20,7 +21,7 @@ test('mentioning a character in an entity\'s own entry creates an Entity-owned m
 
     $mention = EntityMention::where('target_id', $target->id)->first();
     expect($mention)->not->toBeNull();
-    expect($mention->mentionable_type)->toBe(\App\Models\Entity::class);
+    expect($mention->mentionable_type)->toBe(Entity::class);
     expect($mention->mentionable_id)->toBe($author->id);
     expect($mention->entity_id)->toBe($author->id);
 });

@@ -5,6 +5,9 @@ use App\Models\CampaignDescription;
 use App\Models\Character;
 use App\Models\EntityMention;
 use App\Models\Post;
+use App\Renderers\DatagridRenderer2;
+use App\Services\Campaign\LocalisationService;
+use Illuminate\Support\Facades\Facade;
 
 test('the entity Mentions tab renders a mention for each owner type', function () {
     $this->asUser()->withCampaign()->withCharacters();
@@ -31,10 +34,10 @@ test('the entity Mentions tab renders a mention for each owner type', function (
     // CLI-bootstrap request (no route), and Facade::$resolvedInstance caches it independent of the
     // container's own singleton cache, so app()->forgetInstance() alone doesn't invalidate it. Clear
     // both caches so the Datagrid-backed Mentions tab sees the real routed request/campaign below.
-    app()->forgetInstance(\App\Services\Campaign\LocalisationService::class);
-    app()->forgetInstance(\App\Renderers\DatagridRenderer2::class);
-    \Illuminate\Support\Facades\Facade::clearResolvedInstance('campaignlocalization');
-    \Illuminate\Support\Facades\Facade::clearResolvedInstance('datagrid');
+    app()->forgetInstance(LocalisationService::class);
+    app()->forgetInstance(DatagridRenderer2::class);
+    Facade::clearResolvedInstance('campaignlocalization');
+    Facade::clearResolvedInstance('datagrid');
 
     // layouts.footer unconditionally references LARAVEL_START (normally defined by public/index.php,
     // which the test HTTP kernel never executes). Define it here, same as production does.

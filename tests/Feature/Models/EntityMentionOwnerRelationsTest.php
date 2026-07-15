@@ -3,10 +3,10 @@
 use App\Models\Campaign;
 use App\Models\EntityMention;
 use App\Models\Post;
-use App\Models\QuestElement;
 use App\Models\Quest;
-use App\Models\TimelineElement;
+use App\Models\QuestElement;
 use App\Models\Timeline;
+use App\Models\TimelineElement;
 
 test('Post::mentions() returns only this post\'s owned mentions', function () {
     $this->asUser()->withCampaign()->withCharacters();
