@@ -19,6 +19,7 @@ use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
@@ -146,6 +147,14 @@ class MapMarker extends Model
     public function group(): BelongsTo
     {
         return $this->belongsTo(MapGroup::class, 'group_id');
+    }
+
+    /**
+     * @return MorphMany<EntityMention, $this>
+     */
+    public function mentions(): MorphMany
+    {
+        return $this->morphMany(EntityMention::class, 'mentionable');
     }
 
     /**

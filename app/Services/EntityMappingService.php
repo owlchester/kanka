@@ -7,6 +7,7 @@ use App\Models\Entity;
 use App\Models\EntityMention;
 use App\Models\Image;
 use App\Models\ImageMention;
+use App\Models\MapMarker;
 use App\Models\Post;
 use App\Models\QuestElement;
 use App\Models\TimelineElement;
@@ -18,7 +19,7 @@ class EntityMappingService
 {
     use MentionTrait;
 
-    protected Model|Post|Entity|QuestElement|TimelineElement|Campaign $model;
+    protected Model|Post|Entity|QuestElement|TimelineElement|Campaign|MapMarker $model;
 
     protected int $entities;
 
@@ -51,7 +52,7 @@ class EntityMappingService
         return $this;
     }
 
-    public function with(Model|Post|Entity|QuestElement|TimelineElement|Campaign $model): self
+    public function with(Model|Post|Entity|QuestElement|TimelineElement|Campaign|MapMarker $model): self
     {
         $this->model = $model;
 
@@ -82,7 +83,7 @@ class EntityMappingService
             if ($this->model->quest_id == $target) {
                 return;
             }
-        } elseif (! $this->model instanceof Campaign) {
+        } elseif (! $this->model instanceof Campaign && ! $this->model instanceof MapMarker) {
             // @phpstan-ignore-next-line
             if ($this->model->id == $target) {
                 return;
@@ -98,7 +99,7 @@ class EntityMappingService
 
     protected function resolveEntityId(): ?int
     {
-        if ($this->model instanceof Campaign) {
+        if ($this->model instanceof Campaign || $this->model instanceof MapMarker) {
             return null;
         } elseif ($this->model instanceof Post) {
             return $this->post()->entity_id;
@@ -282,6 +283,8 @@ class EntityMappingService
             return $this->model->timeline->campaign_id;
         } elseif ($this->model instanceof QuestElement) {
             return $this->model->quest->campaign_id;
+        } elseif ($this->model instanceof MapMarker) {
+            return $this->model->map->campaign_id;
         }
 
         // @phpstan-ignore-next-line
