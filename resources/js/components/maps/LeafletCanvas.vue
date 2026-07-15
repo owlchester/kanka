@@ -708,14 +708,8 @@ function handlePolygonKeydown(e) {
         return
     }
 
-    if (e.key === 'Escape') {
-        e.preventDefault()
-        stopPolygonDraft()
-        startPolygonDraft()
-
-        return
-    }
-
+    // Escape is handled by MapExplorer's global keydown handler, which cancels the whole
+    // draft (sets activeMode to null) rather than just restarting the vertex list.
     if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z') {
         e.preventDefault()
         draftPolygon.editor.pop()

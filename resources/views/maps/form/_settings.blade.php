@@ -26,7 +26,7 @@ if (isset($model) && $model->isTiled()) {
         :label="__('maps.fields.has_clustering')">
         <input type="hidden" name="has_clustering" value="0" />
         <x-checkbox :text="__('maps.helpers.has_clustering')">
-            <input type="checkbox" name="has_clustering" value="1" @if (old('has_clustering', $model->has_clustering ?? true)) checked="checked" @endif />
+            <input type="checkbox" name="has_clustering" value="1" @if (old('has_clustering', $model->has_clustering ?? false)) checked="checked" @endif />
         </x-checkbox>
     </x-forms.field>
 

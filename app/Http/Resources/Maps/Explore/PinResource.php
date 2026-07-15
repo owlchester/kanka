@@ -32,7 +32,15 @@ class PinResource extends JsonResource
             'id' => $marker->id,
             'name' => $marker->name ?: ($marker->entity->name ?? ''),
             'entry' => $marker->parsedEntry(),
-            'entry_for_edition' => $marker->getEntryForEditionAttribute(),
+            // The raw stored entry (mentions as [type:id] bracket placeholders, not resolved
+            // anchors) — this is the format Tiptap's client-side mention parsing expects, same
+            // as every other Tiptap-editable field in the app (see tiptap_editor.blade.php).
+            // getEntryForEditionAttribute()/Mentions::parseForEdit() renders mentions as <a
+            // href="#" class="mention"> anchors for a different, non-Tiptap legacy edit
+            // surface; feeding that to Tiptap makes its Link extension claim the anchor
+            // instead of the Mention node, since Mention's parseHTML only matches
+            // span[data-mention].
+            'entry_for_edition' => (string) $marker->{$marker->entryFieldName()},
             'group_id' => $marker->group_id,
             'latitude' => (float) $marker->latitude,
             'longitude' => (float) $marker->longitude,

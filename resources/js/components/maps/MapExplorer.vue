@@ -748,6 +748,30 @@ function handlePanelClose() {
     editingPin.value = null;
 }
 
+function handleGlobalKeydown(event) {
+    if (event.key !== "Escape" || event.defaultPrevented) {
+        return;
+    }
+
+    // A nested dialog (e.g. the description editor) already owns Escape while open — don't
+    // also exit the marker panel underneath it.
+    if (document.querySelector("dialog[open]")) {
+        return;
+    }
+
+    if (editingPin.value) {
+        editingPin.value = null;
+    } else if (draftPin.value) {
+        draftPin.value = null;
+        activeMode.value = null;
+    } else if (activeMode.value === "area" || activeMode.value === "path") {
+        // Still mid-draw (vertices placed but not yet finished into a draft pin) — cancel
+        // the whole thing. The activeMode watchers in LeafletCanvas tear down the in-progress
+        // polygon/path layer once activeMode stops matching.
+        activeMode.value = null;
+    }
+}
+
 function handlePinUpdated(pin) {
     data.value.pins = data.value.pins.map((p) => (p.id === pin.id ? pin : p));
     editingPin.value = null;
@@ -782,9 +806,12 @@ onMounted(async () => {
             zIndex: 890,
         });
     }
+
+    window.addEventListener("keydown", handleGlobalKeydown);
 });
 
 onBeforeUnmount(() => {
     mapMenuInstance?.destroy();
+    window.removeEventListener("keydown", handleGlobalKeydown);
 });
 </script>

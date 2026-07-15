@@ -28,14 +28,13 @@ it('returns a preview for a marker with an entity, group, and entries', function
 
     $response = $this->get(route('entities.map-markers.preview', [1, $map->entity, $marker]))
         ->assertStatus(200)
-        ->assertJsonStructure(['entity_name', 'entity_url', 'entity_image', 'marker_entry', 'entity_entry', 'type', 'group_name', 'can_edit', 'edit_url']);
+        ->assertJsonStructure(['entity_name', 'entity_url', 'entity_image', 'marker_entry', 'entity_entry', 'type', 'group_name', 'can_edit']);
 
     expect($response->json('entity_name'))->toBe($entity->name);
     expect($response->json('entity_url'))->toBe($entity->url());
     expect($response->json('type'))->toBe('Pin');
     expect($response->json('group_name'))->toBe('Towns');
     expect($response->json('can_edit'))->toBeTrue();
-    expect($response->json('edit_url'))->not->toBeNull();
     expect($response->json('marker_entry'))->toContain('Marker entry text');
     expect($response->json('entity_entry'))->toContain('Entity entry text');
 });
@@ -54,7 +53,7 @@ it('returns nulls for entity-specific fields when the marker has no linked entit
     expect($response->json('group_name'))->toBeNull();
 });
 
-it('denies edit permission and hides the edit url for a player', function () {
+it('denies edit permission for a player', function () {
     $this->asUser()->withCampaign();
     $map = Map::factory()->create(['campaign_id' => 1]);
     $marker = MapMarker::factory()->create(['map_id' => $map->id]);
@@ -64,7 +63,6 @@ it('denies edit permission and hides the edit url for a player', function () {
     $response = $this->get(route('entities.map-markers.preview', [1, $map->entity, $marker]))->assertStatus(200);
 
     expect($response->json('can_edit'))->toBeFalse();
-    expect($response->json('edit_url'))->toBeNull();
 });
 
 it('404s preview for a non-map entity', function () {

@@ -135,7 +135,6 @@ class ExploreApiService
             'edit_description' => __('maps/explorer.marker.edit_description'),
             'description_expand' => __('maps/explorer.marker.description_expand'),
             'cancel' => __('maps/explorer.marker.cancel'),
-            'edit_details' => __('maps/explorer.marker.edit'),
             'edit_marker' => __('maps/explorer.marker.edit_marker'),
             'center' => __('maps/explorer.marker.center'),
             'duplicate' => __('maps/explorer.marker.duplicate'),

@@ -28,9 +28,6 @@ class PinPreviewResource extends JsonResource
             'group_name' => $marker->group?->name,
             'group_colour' => $marker->group?->colour,
             'can_edit' => $canEdit,
-            'edit_url' => $canEdit
-                ? route('maps.map_markers.edit', [$marker->map->campaign_id, $marker->map, $marker])
-                : null,
         ];
     }
 }

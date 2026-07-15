@@ -147,15 +147,6 @@
                     {{ i18n.edit_marker }}
                 </button>
 
-                <a
-                    v-if="preview.can_edit && preview.edit_url"
-                    :href="preview.edit_url"
-                    target="_blank"
-                    class="btn2 btn-block"
-                >
-                    {{ i18n.edit_details }}
-                </a>
-
                 <div class="flex gap-2">
                     <button
                         class="btn2 btn-default grow"

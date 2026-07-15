@@ -85,9 +85,10 @@ const dialogHtml = ref("");
 const plainText = computed(() => htmlToPlainText(props.pin.entry));
 const hasContent = computed(() => plainText.value.length > 0);
 const preview = computed(() => plainText.value.replace(/\s+/g, " "));
-// The rich, edit-ready HTML for the Tiptap instance: prefer the server-hydrated
-// entryForEdition (mentions rendered for display) when available, falling back to
-// the raw entry (e.g. a client-only draft pin, which never has entryForEdition).
+// The raw HTML for the Tiptap instance: prefer the server-hydrated entryForEdition
+// (mentions as [type:id] bracket placeholders, resolved client-side by Tiptap's
+// MentionParser) when available, falling back to the raw entry (e.g. a client-only
+// draft pin, which never has entryForEdition).
 const editorContent = computed(() => props.pin.entryForEdition ?? props.pin.entry ?? "");
 
 async function openDialog() {
