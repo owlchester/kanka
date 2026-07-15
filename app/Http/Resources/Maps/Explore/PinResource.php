@@ -31,7 +31,8 @@ class PinResource extends JsonResource
         return [
             'id' => $marker->id,
             'name' => $marker->name ?: ($marker->entity->name ?? ''),
-            'entry' => $marker->entry,
+            'entry' => $marker->parsedEntry(),
+            'entry_for_edition' => $marker->getEntryForEditionAttribute(),
             'group_id' => $marker->group_id,
             'latitude' => (float) $marker->latitude,
             'longitude' => (float) $marker->longitude,
