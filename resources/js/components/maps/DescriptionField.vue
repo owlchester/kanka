@@ -36,7 +36,7 @@
                     <i class="fa-solid fa-xmark" aria-hidden="true" />
                 </button>
             </header>
-            <article class="max-w-2xl p-4 md:px-6">
+            <article class="max-w-2xl p-4 md:px-6 entity-content">
                 <Tiptap
                     v-if="dialogOpen"
                     :content="editorContent"

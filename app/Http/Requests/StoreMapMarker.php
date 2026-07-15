@@ -65,6 +65,42 @@ class StoreMapMarker extends FormRequest
      */
     public function validated($key = null, $default = null)
     {
-        return parent::validated($key, $default);
+        $data = parent::validated($key, $default);
+
+        if ($key === null && is_array($data) && array_key_exists('entry', $data)) {
+            $data['entry'] = $this->wrapEntryParagraphs($data['entry']);
+        } elseif ($key === 'entry') {
+            $data = $this->wrapEntryParagraphs($data);
+        }
+
+        return $data;
+    }
+
+    /**
+     * The Tiptap map explorer sends real HTML (always starting with a tag), which needs no
+     * help here; a bare-text submission (a direct API caller, not the editor) has no HTML
+     * structure at all, so wrap each blank-line-separated block in its own <p> and escape any
+     * literal <, >, or & the caller typed, matching every other "entry" field in the app.
+     * Purify::clean() (already run by EntryObserver on every save via MapMarker's HasEntry
+     * trait) is a second, redundant safety net on top.
+     */
+    protected function wrapEntryParagraphs(?string $text): ?string
+    {
+        if ($text === null || trim($text) === '') {
+            return $text;
+        }
+
+        $trimmed = trim($text);
+
+        if (str_starts_with($trimmed, '<')) {
+            return $text;
+        }
+
+        $normalized = str_replace(["\r\n", "\r"], "\n", $trimmed);
+        $paragraphs = preg_split('/\n{2,}/', $normalized);
+
+        return collect($paragraphs)
+            ->map(fn ($paragraph) => '<p>' . str_replace("\n", '<br>', e(trim($paragraph))) . '</p>')
+            ->implode('');
     }
 }
