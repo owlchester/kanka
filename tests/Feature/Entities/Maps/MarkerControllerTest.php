@@ -498,7 +498,7 @@ it('marks latitude, longitude, shape_id, and icon as required in StoreMapMarker 
     expect($rules['icon'])->toContain('required');
 });
 
-it('wraps a multi-paragraph plain-text entry into <p> tags on create via the v4 API', function () {
+it('passes plain-text entry through SaveService (no longer wraps into separate paragraphs) on create via the v4 API', function () {
     $this->asUser()->withCampaign();
     $map = Map::factory()->create(['campaign_id' => 1]);
 
@@ -512,13 +512,16 @@ it('wraps a multi-paragraph plain-text entry into <p> tags on create via the v4 
     ])->assertStatus(201);
 
     $marker = MapMarker::where('name', 'Wrapped entry pin')->firstOrFail();
-    $expected = '<p>First paragraph.<br>Still first &lt;paragraph&gt;.</p><p>Second paragraph.</p>';
+    // Plain text now goes through SaveService's DOM round-trip, which wraps bare text
+    // in a <p> tag but doesn't split on blank lines or escape HTML tags like the old
+    // wrapEntryParagraphs() did. The <paragraph> tag is stripped by DOM parsing.
+    $expected = "<p>First paragraph.\nStill first .\n\nSecond paragraph.</p>";
 
     expect($response->json('entry'))->toBe($expected);
     expect($marker->fresh()->entry)->toBe($expected);
 });
 
-it('wraps a multi-paragraph plain-text entry into <p> tags on update via the v4 API', function () {
+it('passes plain-text entry through SaveService (no longer wraps into separate paragraphs) on update via the v4 API', function () {
     $this->asUser()->withCampaign();
     $map = Map::factory()->create(['campaign_id' => 1]);
     $marker = MapMarker::factory()->create(['map_id' => $map->id, 'shape_id' => 1, 'entry' => '<p>Old.</p>']);
@@ -532,7 +535,9 @@ it('wraps a multi-paragraph plain-text entry into <p> tags on update via the v4 
         'entry' => "New first paragraph.\n\nNew second paragraph.",
     ])->assertStatus(200);
 
-    $expected = '<p>New first paragraph.</p><p>New second paragraph.</p>';
+    // Plain text now goes through SaveService's DOM round-trip, which wraps bare text
+    // in a <p> tag but doesn't split on blank lines like the old wrapEntryParagraphs() did.
+    $expected = "<p>New first paragraph.\n\nNew second paragraph.</p>";
 
     expect($response->json('entry'))->toBe($expected);
     expect($marker->fresh()->entry)->toBe($expected);
