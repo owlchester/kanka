@@ -472,10 +472,22 @@ function clearEditLayer() {
 // tears down and recreates its marker on every draftPin change. Each vertex/handle drag
 // completes (dragend) before this runs, so recreating the layer — and re-attaching a fresh
 // Leaflet.Editable editor via enableEdit() — between drags is safe.
+// Shape -> the toolbar activeMode that actively draws it from scratch via startPolygonDraft()
+// et al. Used by buildEditLayer() to tell a duplicated draft pin's already-complete shape
+// (render it here) apart from one still being freshly drawn (leave that to draftPolygon/etc).
+const DRAWING_MODE_FOR_SHAPE = { poly: 'area', path: 'path', circle: 'circle' }
+
 function buildEditLayer() {
     clearEditLayer()
 
-    const pin = props.editingPin
+    // Also renders a duplicated draft pin's pre-filled shape (poly/path/circle) as an
+    // immediately draggable/editable layer — buildDraftMarker() only handles point shapes,
+    // and startPolygonDraft()/etc only ever start empty, neither of which fit a duplicate
+    // that already has a complete customShape/circleRadius. Skip it while the matching
+    // toolbar mode is still actively drawing this same draft from scratch.
+    const draftShapeMode = props.draftPin && DRAWING_MODE_FOR_SHAPE[props.draftPin.shape]
+    const draftIsPrefilledShape = draftShapeMode && props.activeMode !== draftShapeMode
+    const pin = props.editingPin ?? (draftIsPrefilledShape ? props.draftPin : null)
     if (! pin) {
         return
     }
@@ -792,7 +804,7 @@ watch(() => props.editingPin?.id, () => {
     }
 })
 
-watch(() => props.editingPin, () => {
+watch(() => [props.editingPin, props.draftPin, props.activeMode], () => {
     if (leafletMap) {
         buildEditLayer()
     }
@@ -938,6 +950,24 @@ onBeforeUnmount(() => {
     document.removeEventListener('keydown', handlePolygonKeydown)
     rulerControl = null
     leafletMap?.remove()
+})
+
+defineExpose({
+    // Offsets a lat/lng by a fixed amount of screen pixels at the map's current zoom, rather
+    // than a fixed lat/lng delta — the latter would be imperceptible on a real (EPSG3857,
+    // degree-scale) map and enormous on a large image (pixel-scale) map. A pixel offset looks
+    // like the same small, sensible gap regardless of the map's CRS or current zoom level.
+    offsetLatLng(lat, lng, dx, dy) {
+        if (! leafletMap) {
+            return { lat, lng }
+        }
+
+        const point = leafletMap.latLngToContainerPoint([lat, lng])
+        const offsetPoint = L.point(point.x + dx, point.y + dy)
+        const offsetLatLng = leafletMap.containerPointToLatLng(offsetPoint)
+
+        return { lat: offsetLatLng.lat, lng: offsetLatLng.lng }
+    },
 })
 </script>
 

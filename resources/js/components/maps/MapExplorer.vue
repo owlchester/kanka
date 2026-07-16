@@ -117,6 +117,7 @@
         />
 
         <LeafletCanvas
+            ref="leafletCanvasRef"
             :map="data.map"
             :layers="data.layers"
             :pins="data.pins"
@@ -156,6 +157,7 @@
             @center="centerNonce++"
             @deleted="removePin"
             @edit="openEditFromDetail"
+            @duplicate="handleDuplicate"
         />
 
         <MarkerPanel
@@ -247,6 +249,7 @@ const pendingCenter = ref(null);
 const previewCenter = ref(null);
 const mapMenuBtnRef = ref(null);
 const mapMenuRef = ref(null);
+const leafletCanvasRef = ref(null);
 let mapMenuInstance = null;
 
 const {
@@ -581,13 +584,14 @@ function handlePolygonChange(vertices) {
 }
 
 function handleEditPolygonChange(vertices) {
-    if (!editingPin.value || editingPin.value.shape !== "poly") {
+    const pin = draftPin.value || editingPin.value;
+    if (!pin || pin.shape !== "poly") {
         return;
     }
 
     const [lat, lng] = centroid(vertices);
 
-    editingPin.value = { ...editingPin.value, customShape: vertices, latitude: lat, longitude: lng };
+    patchActivePin({ customShape: vertices, latitude: lat, longitude: lng });
 }
 
 function handleBorderColourChange(colour) {
@@ -642,11 +646,12 @@ function handleCircleChange({ lat, lng, radius }) {
 }
 
 function handleEditCircleChange({ lat, lng, radius }) {
-    if (!editingPin.value || editingPin.value.shape !== "circle") {
+    const pin = draftPin.value || editingPin.value;
+    if (!pin || pin.shape !== "circle") {
         return;
     }
 
-    editingPin.value = { ...editingPin.value, circleRadius: radius, latitude: lat, longitude: lng };
+    patchActivePin({ circleRadius: radius, latitude: lat, longitude: lng });
 }
 
 function handlePathFinish(vertices) {
@@ -687,13 +692,14 @@ function handlePathChange(vertices) {
 }
 
 function handleEditPathChange(vertices) {
-    if (!editingPin.value || editingPin.value.shape !== "path") {
+    const pin = draftPin.value || editingPin.value;
+    if (!pin || pin.shape !== "path") {
         return;
     }
 
     const [lat, lng] = centroid(vertices);
 
-    editingPin.value = { ...editingPin.value, customShape: vertices, latitude: lat, longitude: lng };
+    patchActivePin({ customShape: vertices, latitude: lat, longitude: lng });
 }
 
 function onPinCreated(pin) {
@@ -741,6 +747,39 @@ function openEditFromDetail() {
 
     enforceExclusivity("edit");
     editingPin.value = toEditingPin(pin);
+}
+
+const DUPLICATE_OFFSET_PX = 50;
+
+function handleDuplicate(pin) {
+    if (!pin) {
+        return;
+    }
+
+    // Offset in screen pixels (top-right), not a fixed lat/lng delta — a fixed delta would be
+    // imperceptible on a real (degree-scale) map and enormous on a large image (pixel-scale)
+    // one. A pixel offset reads as the same small, sensible gap regardless of the map's CRS
+    // or current zoom.
+    const offset = leafletCanvasRef.value?.offsetLatLng(pin.latitude, pin.longitude, DUPLICATE_OFFSET_PX, -DUPLICATE_OFFSET_PX)
+        ?? { lat: pin.latitude, lng: pin.longitude };
+    const dLat = offset.lat - pin.latitude;
+    const dLng = offset.lng - pin.longitude;
+
+    const duplicate = toEditingPin(pin);
+    delete duplicate.id;
+    delete duplicate.update_url;
+    delete duplicate.destroy_url;
+    duplicate.latitude = offset.lat;
+    duplicate.longitude = offset.lng;
+    // A poly/path's latitude/longitude is just its centroid — the real geometry lives in
+    // customShape, so every vertex needs the same translation or the shape stays put while
+    // only its reported center moves.
+    if (Array.isArray(duplicate.customShape)) {
+        duplicate.customShape = duplicate.customShape.map(([lat, lng]) => [lat + dLat, lng + dLng]);
+    }
+
+    enforceExclusivity("marker");
+    draftPin.value = duplicate;
 }
 
 function handlePanelClose() {

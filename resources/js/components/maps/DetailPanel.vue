@@ -188,7 +188,7 @@ const props = defineProps({
     i18n: { type: Object, required: true },
 });
 
-const emit = defineEmits(["close", "center", "deleted", "edit"]);
+const emit = defineEmits(["close", "center", "deleted", "edit", "duplicate"]);
 
 const loading = ref(false);
 const preview = ref(null);
@@ -249,7 +249,7 @@ const surfaceText = computed(() => {
 });
 
 function duplicate() {
-    // No-op for now.
+    emit("duplicate", props.pin);
 }
 
 async function handleDelete() {

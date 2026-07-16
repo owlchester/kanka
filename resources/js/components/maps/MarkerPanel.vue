@@ -224,7 +224,10 @@ watch(
     () => props.pin,
     (newPin, oldPin) => {
         if (newPin && !oldPin) {
-            name.value = isEdit.value ? (newPin.name || "") : "";
+            // Not gated on isEdit: every from-scratch draft pin (handleMapClick et al.) already
+            // sets name to "" itself, so this just needs to reflect whatever the pin actually
+            // has — which matters for a duplicated draft pin, whose name should carry over.
+            name.value = newPin.name || "";
             error.value = null;
             saving.value = false;
             deleting.value = false;
