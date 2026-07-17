@@ -28,7 +28,9 @@ class EntitySaveService
             $entity->name = $data['name'];
         }
         if (array_key_exists('is_private', $data)) {
-            $entity->is_private = $data['is_private'];
+            // Non-admin forms don't expose privacy, and request middleware can
+            // represent the missing field as null. Null means public here.
+            $entity->is_private = $data['is_private'] ?? false;
         }
         if (array_key_exists('type', $data)) {
             $entity->type = $data['type'];

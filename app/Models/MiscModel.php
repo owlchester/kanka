@@ -66,6 +66,17 @@ abstract class MiscModel extends Model
 
     protected string $defaultOrderDirection = 'asc';
 
+    protected static function booted(): void
+    {
+        static::creating(function (self $model): void {
+            // Non-admin forms don't expose the privacy field. Treat a null
+            // value as the public default rather than persisting null.
+            if ($model->is_private === null) {
+                $model->is_private = false;
+            }
+        });
+    }
+
     /**
      * Every misc model has an attached entity
      *
