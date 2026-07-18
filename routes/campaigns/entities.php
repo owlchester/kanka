@@ -18,6 +18,7 @@ use App\Http\Controllers\Entity\EntryController;
 use App\Http\Controllers\Entity\ImageController;
 use App\Http\Controllers\Entity\Maps\ApiController as EntityMapApiController;
 use App\Http\Controllers\Entity\Maps\MarkerController as EntityMapMarkerController;
+use App\Http\Controllers\Entity\Maps\PresetController as EntityMapPresetController;
 use App\Http\Controllers\Entity\Maps\SettingsController as EntityMapSettingsController;
 use App\Http\Controllers\Entity\Maps\ShowController as EntityMapShowController;
 use App\Http\Controllers\Entity\Maps\TilingPromptController as EntityMapTilingPromptController;
@@ -64,6 +65,9 @@ Route::get('/w/{campaign}/entities/{entity}/map/markers/{map_marker}', [EntityMa
 Route::delete('/w/{campaign}/entities/{entity}/map/markers/{map_marker}', [EntityMapMarkerController::class, 'destroy'])->name('entities.map-markers.destroy');
 Route::post('/w/{campaign}/entities/{entity}/map/markers', [EntityMapMarkerController::class, 'store'])->name('entities.map-markers.store');
 Route::patch('/w/{campaign}/entities/{entity}/map/markers/{map_marker}', [EntityMapMarkerController::class, 'update'])->name('entities.map-markers.update');
+Route::post('/w/{campaign}/entities/{entity}/map/presets', [EntityMapPresetController::class, 'store'])->name('entities.map-presets.store');
+Route::patch('/w/{campaign}/entities/{entity}/map/presets/{preset}', [EntityMapPresetController::class, 'update'])->name('entities.map-presets.update');
+Route::delete('/w/{campaign}/entities/{entity}/map/presets/{preset}', [EntityMapPresetController::class, 'destroy'])->name('entities.map-presets.destroy');
 Route::patch('/w/{campaign}/entities/{entity}/map/tiling-prompt', [EntityMapTilingPromptController::class, 'update'])->name('entities.map-tiling-prompt.update');
 
 // Abilities

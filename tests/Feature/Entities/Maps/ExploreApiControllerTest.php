@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\Visibility;
 use App\Models\CampaignUser;
 use App\Models\Character;
 use App\Models\Image;
@@ -7,6 +8,8 @@ use App\Models\Map;
 use App\Models\MapGroup;
 use App\Models\MapLayer;
 use App\Models\MapMarker;
+use App\Models\Preset;
+use App\Models\PresetType;
 use App\Models\User;
 
 it('404s for a non-map entity', function () {
@@ -406,6 +409,68 @@ it('sets show_presence to true for a campaign with more than one member', functi
     $response = $this->get(route('entities.map-api', [1, $map->entity]))->assertStatus(200);
 
     expect($response->json('interactive.show_presence'))->toBeTrue();
+});
+
+it('returns marker presets for a user who can edit the map', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $preset = Preset::create([
+        'name' => 'Town',
+        'type_id' => PresetType::MARKER,
+        'config' => ['icon' => 2, 'colour' => '#f2c14e', 'opacity' => 80],
+        'visibility_id' => Visibility::All->value,
+        'campaign_id' => 1,
+    ]);
+
+    $response = $this->get(route('entities.map-api', [1, $map->entity]))->assertStatus(200);
+
+    expect($response->json('presets'))->toBe([
+        [
+            'id' => $preset->id,
+            'name' => 'Town',
+            'config' => ['icon' => 2, 'colour' => '#f2c14e', 'opacity' => 80],
+            'update_url' => route('entities.map-presets.update', [1, $map->entity->id, $preset->id]),
+            'destroy_url' => route('entities.map-presets.destroy', [1, $map->entity->id, $preset->id]),
+        ],
+    ]);
+});
+
+it('omits marker presets for a player without update permission', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    Preset::create([
+        'name' => 'Town',
+        'type_id' => PresetType::MARKER,
+        'config' => ['icon' => 2],
+        'visibility_id' => Visibility::All->value,
+        'campaign_id' => 1,
+    ]);
+
+    $this->asPlayer();
+
+    $response = $this->get(route('entities.map-api', [1, $map->entity]))->assertStatus(200);
+
+    expect($response->json('presets'))->toBe([]);
+});
+
+it('sets can_manage_presets to true for a campaign admin', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $response = $this->get(route('entities.map-api', [1, $map->entity]))->assertStatus(200);
+
+    expect($response->json('can_manage_presets'))->toBeTrue();
+});
+
+it('sets can_manage_presets to false for a player', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $this->asPlayer();
+
+    $response = $this->get(route('entities.map-api', [1, $map->entity]))->assertStatus(200);
+
+    expect($response->json('can_manage_presets'))->toBeFalse();
 });
 
 it('exposes the tiling prompt url for the migration banner', function () {

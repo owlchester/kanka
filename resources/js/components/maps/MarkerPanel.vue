@@ -61,6 +61,16 @@
                 :placeholder="i18n.name_placeholder"
             />
 
+            <PresetPicker
+                v-if="detailLevel === 'full' && !isEdit"
+                :presets="presets"
+                :i18n="i18n"
+                :can-manage="canManagePresets"
+                @select="handlePresetSelect"
+                @edit="handlePresetEdit"
+                @save-current="handleSaveCurrent"
+            />
+
             <ColourPicker
                 v-if="detailLevel === 'full'"
                 :colour="pin.colour"
@@ -189,6 +199,10 @@
                 </button>
             </div>
 
+            <p v-if="!isEdit && rapid" class="text-xs text-neutral-content">
+                {{ i18n.rapid_active_hint }}
+            </p>
+
             <button
                 v-if="isEdit"
                 type="button"
@@ -201,17 +215,30 @@
 
             <p v-if="error" class="text-sm text-error-content">{{ error }}</p>
         </div>
+
+        <PresetModal
+            ref="presetModalRef"
+            :i18n="i18n"
+            :boosted="boosted"
+            :store-url="presetStoreUrl"
+            @created="handlePresetCreated"
+            @updated="handlePresetUpdated"
+            @deleted="handlePresetDeleted"
+        />
     </aside>
 </template>
 
 <script setup>
 import { computed, ref, watch } from "vue";
+import { pinIconFa } from "../../maps/markerIcons.js";
 import { serializeVertices } from "../../maps/polygon.js";
 import ColourPicker from "./ColourPicker.vue";
 import DescriptionField from "./DescriptionField.vue";
 import EntityLinkSelect from "./EntityLinkSelect.vue";
 import GroupPicker from "./GroupPicker.vue";
 import OpacityPicker from "./OpacityPicker.vue";
+import PresetModal from "./PresetModal.vue";
+import PresetPicker from "./PresetPicker.vue";
 import ShapePicker from "./ShapePicker.vue";
 import StrokeWidthPicker from "./StrokeWidthPicker.vue";
 import VisibilitySelect from "./VisibilitySelect.vue";
@@ -225,6 +252,9 @@ const props = defineProps({
     groups: { type: Array, default: () => [] },
     searchUrl: { type: String, required: true },
     visibilities: { type: Array, default: () => [] },
+    presets: { type: Array, default: () => [] },
+    presetStoreUrl: { type: String, default: null },
+    canManagePresets: { type: Boolean, default: false },
     rapid: { type: Boolean, default: false },
     mentionsUrl: { type: String, default: null },
     galleryUrl: { type: String, default: null },
@@ -246,6 +276,10 @@ const emit = defineEmits([
     "entry-change",
     "border-colour-change",
     "stroke-width-change",
+    "preset-change",
+    "preset-created",
+    "preset-updated",
+    "preset-deleted",
 ]);
 
 const name = ref("");
@@ -260,6 +294,7 @@ const entryTouched = ref(false);
 const advancedOpen = ref(false);
 const isDraggable = ref(false);
 const cssClass = ref("");
+const presetModalRef = ref(null);
 
 const isEdit = computed(() => props.variant === "edit");
 
@@ -296,6 +331,74 @@ function toggleDetailLevel() {
 function handleEntryFieldChange(value) {
     entryTouched.value = true;
     emit("entry-change", value);
+}
+
+// A preset's config only carries whatever keys the legacy preset editor happened to save
+// (today: icon, custom_icon, opacity, colour — css/is_draggable/group_id aren't authorable
+// yet, but are handled here too so nothing needs to change once they are). Keys missing from
+// config are left untouched rather than reset, so applying a partial preset never blanks out
+// fields it doesn't define.
+function handlePresetSelect(preset) {
+    const config = preset.config || {};
+
+    if ("css" in config) {
+        cssClass.value = config.css || "";
+    }
+
+    if ("is_draggable" in config) {
+        isDraggable.value = !!config.is_draggable;
+    }
+
+    const patch = {};
+
+    if ("colour" in config) {
+        patch.colour = config.colour;
+    }
+
+    if ("opacity" in config) {
+        patch.opacity = config.opacity;
+    }
+
+    if ("group_id" in config) {
+        patch.groupId = config.group_id;
+    }
+
+    if ("icon" in config || "custom_icon" in config) {
+        const customIcon = config.custom_icon || null;
+        patch.customIcon = customIcon;
+        patch.iconId = customIcon ? 1 : (Number(config.icon) || 1);
+        patch.icon = { type: "fa", value: pinIconFa(config.icon, customIcon) };
+    }
+
+    if (Object.keys(patch).length) {
+        emit("preset-change", patch);
+    }
+}
+
+// css/is_draggable live only as local refs here (see the pin watcher above), not on
+// props.pin, so the modal needs them merged in to see the marker's current values.
+function handleSaveCurrent() {
+    presetModalRef.value?.open({
+        ...props.pin,
+        css: cssClass.value,
+        isDraggable: isDraggable.value,
+    });
+}
+
+function handlePresetEdit(preset) {
+    presetModalRef.value?.openEdit(preset);
+}
+
+function handlePresetCreated(preset) {
+    emit("preset-created", preset);
+}
+
+function handlePresetUpdated(preset) {
+    emit("preset-updated", preset);
+}
+
+function handlePresetDeleted(preset) {
+    emit("preset-deleted", preset);
 }
 
 function buildPayload() {

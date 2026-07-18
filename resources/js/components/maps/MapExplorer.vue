@@ -35,7 +35,7 @@
             </button>
             <div>
                 <button
-                    class="text-lg font-semibold leading-tight cursor-pointer text-shadow-[0_0_4px_hsl(var(--b1)),0_0_8px_hsl(var(--b1))]"
+                    class="text-2xl font-semibold leading-tight cursor-pointer text-shadow-[0_0_4px_hsl(var(--b1)),0_0_8px_hsl(var(--b1))]"
                     :ref="el => (mapMenuBtnRef = el)"
                 >
                     {{ data.map.name }}
@@ -172,6 +172,9 @@
             :gallery-url="data.map.gallery_url"
             :gallery-upload-url="data.map.gallery_upload_url"
             :visibilities="data.visibilities"
+            :presets="data.presets"
+            :preset-store-url="data.map.preset_store_url"
+            :can-manage-presets="data.can_manage_presets"
             :rapid="rapid"
             @close="handlePanelClose"
             @created="onPinCreated"
@@ -187,6 +190,10 @@
             @entry-change="handleEntryChange"
             @border-colour-change="handleBorderColourChange"
             @stroke-width-change="handleStrokeWidthChange"
+            @preset-change="handlePresetChange"
+            @preset-created="onPresetCreated"
+            @preset-updated="onPresetUpdated"
+            @preset-deleted="onPresetDeleted"
         />
 
         <Toolbar
@@ -236,7 +243,7 @@ const props = defineProps({
 
 const loading = ref(true);
 const error = ref(null);
-const data = ref({ map: {}, layers: [], groups: [], pins: [], visibilities: [], i18n: {} });
+const data = ref({ map: {}, layers: [], groups: [], pins: [], visibilities: [], presets: [], i18n: {} });
 const legendOpen = ref(false);
 const selectedPin = ref(null);
 const centerNonce = ref(0);
@@ -532,6 +539,22 @@ function handleColourChange(colour) {
 
 function handleOpacityChange(opacity) {
     patchActivePin({ opacity });
+}
+
+function handlePresetChange(patch) {
+    patchActivePin(patch);
+}
+
+function onPresetCreated(preset) {
+    data.value.presets = [...data.value.presets, preset];
+}
+
+function onPresetUpdated(preset) {
+    data.value.presets = data.value.presets.map((p) => (p.id === preset.id ? preset : p));
+}
+
+function onPresetDeleted(preset) {
+    data.value.presets = data.value.presets.filter((p) => p.id !== preset.id);
 }
 
 const DEFAULT_STROKE_WIDTH = 1;

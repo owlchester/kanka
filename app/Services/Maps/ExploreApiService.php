@@ -4,11 +4,16 @@ namespace App\Services\Maps;
 
 use App\Enums\Visibility;
 use App\Facades\CampaignCache;
+use App\Facades\EntityPermission;
 use App\Http\Resources\Maps\Explore\GroupResource;
 use App\Http\Resources\Maps\Explore\LayerResource;
 use App\Http\Resources\Maps\Explore\MapResource;
 use App\Http\Resources\Maps\Explore\PinResource;
+use App\Http\Resources\Maps\Explore\PresetResource;
+use App\Models\Entity;
 use App\Models\Map;
+use App\Models\Preset;
+use App\Models\PresetType;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 
@@ -45,9 +50,47 @@ class ExploreApiService
                 ->all(),
             'visibilities' => $this->visibilityOptions(),
             'default_visibility_id' => $this->campaign->defaultVisibility()->value,
+            'presets' => $this->presets($mapEntity),
+            'can_manage_presets' => $this->canManagePresets(),
             'i18n' => $this->translations(),
             'interactive' => $this->interactive(),
         ];
+    }
+
+    /**
+     * Marker presets, only exposed to users who can edit this map — the Vue explorer only
+     * offers them from the marker create panel, which itself is edit-gated. Applying an
+     * existing preset only requires edit access; creating/managing one requires admin
+     * (see canManagePresets()).
+     */
+    protected function presets(Entity $mapEntity): array
+    {
+        if (! $this->hasUser()) {
+            return [];
+        }
+
+        // Explicitly scope EntityPermission to this campaign first (mirroring
+        // Entity/Maps/MarkerController's store/update/destroy) so `can('update', ...)` checks
+        // the user's actual role instead of falling back to EntityPermission::loadAllPermissions()'s
+        // "no campaign set" admin bypass.
+        EntityPermission::campaign($this->campaign);
+
+        if (! $this->user->can('update', $this->map->entity)) {
+            return [];
+        }
+
+        return Preset::inType(PresetType::MARKER)->orderBy('name')->get()
+            ->map(fn ($preset) => new PresetResource($preset)->campaign($this->campaign)->mapEntity($mapEntity))
+            ->all();
+    }
+
+    /**
+     * Whether the current user can create/edit/delete marker presets (campaign admins only),
+     * mirroring the legacy CampaignPolicy::mapPresets gate.
+     */
+    protected function canManagePresets(): bool
+    {
+        return $this->hasUser() && $this->user->can('mapPresets', $this->campaign);
     }
 
     /**
@@ -145,9 +188,24 @@ class ExploreApiService
             'save' => __('maps/explorer.marker.save'),
             'save_changes' => __('maps/explorer.marker.save_changes'),
             'save_continue' => __('maps/explorer.marker.save_continue'),
+            'rapid_active_hint' => __('maps/explorer.marker.rapid_active_hint'),
             'details' => __('maps/explorer.marker.details'),
             'less' => __('maps/explorer.marker.less'),
             'shape' => __('maps/explorer.marker.shape'),
+            'templates' => __('maps/explorer.marker.templates'),
+            'save_current' => __('maps/explorer.marker.save_current'),
+            'new_template' => __('maps/explorer.marker.new_template'),
+            'untitled_template' => __('maps/explorer.marker.untitled_template'),
+            'name' => __('maps/explorer.marker.name'),
+            'template_name_placeholder' => __('maps/explorer.marker.template_name_placeholder'),
+            'create_template' => __('maps/explorer.marker.create_template'),
+            'error_save_template' => __('maps/explorer.marker.error_save_template'),
+            'error_template_name_required' => __('maps/explorer.marker.error_template_name_required'),
+            'manage' => __('maps/explorer.marker.manage'),
+            'done' => __('maps/explorer.marker.done'),
+            'edit_template' => __('maps/explorer.marker.edit_template'),
+            'delete_template' => __('maps/explorer.marker.delete_template'),
+            'error_delete_template' => __('maps/explorer.marker.error_delete_template'),
             'group' => __('maps/explorer.marker.group'),
             'none' => __('maps/explorer.marker.none'),
             'visibility' => __('maps/explorer.marker.visibility'),

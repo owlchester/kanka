@@ -42,6 +42,7 @@
 
 <script setup>
 import { nextTick, ref, watch } from "vue";
+import { PIN_ICON_SHAPES } from "../../maps/markerIcons.js";
 
 const props = defineProps({
     pin: { type: Object, required: true },
@@ -51,15 +52,7 @@ const props = defineProps({
 
 const emit = defineEmits(["change"]);
 
-const shapes = [
-    { key: "pin", icon: 1, fa: "fa-solid fa-map-pin" },
-    { key: "question", icon: 2, fa: "fa-solid fa-question" },
-    { key: "exclamation", icon: 3, fa: "fa-solid fa-exclamation" },
-    { key: "square", icon: 6, fa: "fa-solid fa-square" },
-    { key: "circle", icon: 7, fa: "fa-solid fa-circle" },
-    { key: "diamond", icon: 8, fa: "fa-solid fa-diamond" },
-    { key: "triangle", icon: 9, fa: "fa-solid fa-caret-up" },
-];
+const shapes = PIN_ICON_SHAPES;
 
 const customMode = ref(false);
 const customText = ref("");
