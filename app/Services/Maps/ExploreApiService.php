@@ -164,6 +164,11 @@ class ExploreApiService
             'markers_count_other' => __('maps/explorer.markers_count.other'),
             'peek_map' => __('maps/explorer.marker.peek_map'),
             'peek_panel' => __('maps/explorer.marker.peek_panel'),
+            'advanced' => __('maps/explorer.marker.advanced'),
+            'is_draggable' => __('maps/explorer.marker.is_draggable'),
+            'is_draggable_help' => __('maps/explorer.marker.is_draggable_help'),
+            'css_class' => __('maps/explorer.marker.css_class'),
+            'css_class_help' => __('maps/explorer.marker.css_class_help'),
             'toolbar' => [
                 'rapid' => __('maps/explorer.toolbar.rapid'),
                 'rapid_hint' => __('maps/explorer.toolbar.rapid_hint'),

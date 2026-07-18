@@ -11,6 +11,7 @@
             @keydown.tab="commitCustom"
             @keydown.enter="commitCustom"
             @blur="commitCustom"
+            @paste="handleIconPaste"
         />
 
         <div v-else class="flex flex-wrap gap-1">
@@ -94,6 +95,23 @@ function clickCustom() {
     customMode.value = true;
 
     nextTick(() => customInputRef.value?.focus());
+}
+
+function handleIconPaste(e) {
+    const pasteData = (e.clipboardData || window.clipboardData).getData("text");
+
+    if (!pasteData.startsWith('<i class="fa') && !pasteData.startsWith('<i class="ra')) {
+        return;
+    }
+
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = pasteData;
+    const iconClass = tempDiv.querySelector("i")?.getAttribute("class");
+
+    if (iconClass) {
+        e.preventDefault();
+        customText.value = iconClass;
+    }
 }
 
 function commitCustom() {

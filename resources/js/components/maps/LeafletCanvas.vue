@@ -239,6 +239,10 @@ function isDefaultPinIcon(icon) {
     return !icon || (icon.type === 'fa' && icon.value === DEFAULT_PIN_ICON)
 }
 
+function pinClassName(pin) {
+    return pin.css ? `marker marker-${pin.id} ${pin.css}` : `marker marker-${pin.id}`
+}
+
 function legacyPinIcon(pin) {
     const size = pin.pin_size || LEGACY_MARKER_SIZE
     let inner = `<i class="${DEFAULT_PIN_ICON}"></i>`
@@ -260,7 +264,7 @@ function legacyPinIcon(pin) {
         iconSize: [size, size],
         iconAnchor: [size / 2, size + size / 4],
         popupAnchor: [0, -(size + size / 4)],
-        className: `marker marker-${pin.id}`,
+        className: pinClassName(pin),
     })
 }
 
@@ -275,7 +279,7 @@ function modernPinIcon(pin) {
             iconSize: [size, size],
             iconAnchor: [size / 2, size / 2],
             popupAnchor: [0, -(size / 2)],
-            className: `marker marker-${pin.id}`,
+            className: pinClassName(pin),
         })
     }
 
@@ -285,7 +289,7 @@ function modernPinIcon(pin) {
             iconSize: [size, size],
             iconAnchor: [size / 2, size / 2],
             popupAnchor: [0, -(size / 2)],
-            className: `marker marker-${pin.id}`,
+            className: pinClassName(pin),
         })
     }
 
@@ -303,7 +307,7 @@ function modernPinIcon(pin) {
         iconSize: [size, size],
         iconAnchor: [size / 2, anchor],
         popupAnchor: [0, -anchor],
-        className: `marker marker-${pin.id}`,
+        className: pinClassName(pin),
     })
 }
 
@@ -333,6 +337,7 @@ function buildPin(pin) {
             weight: style['stroke-width'] || 1,
             fillColor: pin.colour || '#ccc',
             fillOpacity: (pin.opacity || 100) / 100,
+            className: pin.css || '',
         })
     }
 
@@ -344,6 +349,7 @@ function buildPin(pin) {
             color: pin.colour || '#ccc',
             weight: style['stroke-width'] || 1,
             opacity: (pin.opacity || 100) / 100,
+            className: pin.css || '',
         })
     }
 
@@ -355,6 +361,7 @@ function buildPin(pin) {
             stroke: false,
             fillOpacity: (pin.opacity || 100) / 100,
             draggable,
+            className: pin.css || '',
         })
 
         if (draggable) {
@@ -366,7 +373,11 @@ function buildPin(pin) {
 
     if (pin.shape === 'label') {
         const marker = L.marker([pin.latitude, pin.longitude], { opacity: 0 })
-            .bindTooltip(pin.name, { permanent: true, direction: 'center', className: 'map-label' })
+            .bindTooltip(pin.name, {
+                permanent: true,
+                direction: 'center',
+                className: pin.css ? `map-label ${pin.css}` : 'map-label',
+            })
 
         marker.on('tooltipopen', () => {
             const el = marker.getTooltip()?.getElement()

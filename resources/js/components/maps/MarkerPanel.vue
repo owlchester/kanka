@@ -129,6 +129,46 @@
                 :i18n="i18n"
                 @change="$emit('visibility-change', $event)"
             />
+
+            <div v-if="detailLevel === 'full'" class="flex flex-col gap-3">
+                <button
+                    type="button"
+                    class="text-xs font-semibold uppercase tracking-wide text-neutral-content text-left flex items-center gap-1"
+                    @click="advancedOpen = !advancedOpen"
+                >
+                    <i
+                        class="fa-solid fa-chevron-right transition-transform"
+                        :class="{ 'rotate-90': advancedOpen }"
+                        aria-hidden="true"
+                    />
+                    <span>{{ i18n.advanced }}</span>
+                </button>
+
+                <div v-if="advancedOpen" class="flex flex-col gap-3">
+                    <div class="flex flex-col gap-1">
+                        <label class="flex items-start gap-2 cursor-pointer">
+                            <input
+                                v-model="isDraggable"
+                                type="checkbox"
+                                class="checkbox checkbox-sm mt-0.5"
+                            />
+                            <span class="text-sm">{{ i18n.is_draggable }}</span>
+                        </label>
+                        <p class="text-xs text-neutral-content">{{ i18n.is_draggable_help }}</p>
+                    </div>
+
+                    <div class="flex flex-col gap-1">
+                        <label class="text-xs font-semibold uppercase tracking-wide text-neutral-content">{{ i18n.css_class }}</label>
+                        <input
+                            v-model="cssClass"
+                            type="text"
+                            maxlength="45"
+                            class="input input-bordered w-full"
+                        />
+                        <p class="text-xs text-neutral-content">{{ i18n.css_class_help }}</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="p-4 mt-auto flex flex-col gap-2">
@@ -217,6 +257,9 @@ const detailLevel = ref("light");
 const peeked = ref(false);
 const nameInputRef = ref(null);
 const entryTouched = ref(false);
+const advancedOpen = ref(false);
+const isDraggable = ref(false);
+const cssClass = ref("");
 
 const isEdit = computed(() => props.variant === "edit");
 
@@ -235,6 +278,9 @@ watch(
             detailLevel.value = isEdit.value ? "full" : "light";
             peeked.value = false;
             entryTouched.value = false;
+            advancedOpen.value = false;
+            isDraggable.value = !!newPin.isDraggable;
+            cssClass.value = newPin.css || "";
         }
     },
 );
@@ -274,6 +320,8 @@ function buildPayload() {
         entity_id: props.pin.entityId,
         visibility_id: props.pin.visibilityId,
         opacity: props.pin.opacity,
+        is_draggable: isDraggable.value,
+        css: cssClass.value.trim() || null,
         custom_shape: hasCustomShape ? serializeVertices(props.pin.customShape) : undefined,
         polygon_style: hasCustomShape ? props.pin.polygonStyle : undefined,
         circle_radius: isCircle ? Math.round(props.pin.circleRadius) : undefined,

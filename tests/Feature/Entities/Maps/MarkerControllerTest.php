@@ -140,6 +140,53 @@ it('creates a marker and returns it in PinResource shape', function () {
     expect($marker->map_id)->toBe($map->id);
 });
 
+it('creates a marker with is_draggable and css and returns them in PinResource shape', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $response = $this->postJson(route('entities.map-markers.store', [1, $map->entity]), [
+        'name' => 'Draggable pin',
+        'latitude' => 12.5,
+        'longitude' => 34.5,
+        'shape_id' => 1,
+        'icon' => 1,
+        'is_draggable' => true,
+        'css' => 'my-custom-marker',
+    ])->assertStatus(201);
+
+    $marker = MapMarker::where('name', 'Draggable pin')->firstOrFail();
+
+    expect($response->json('is_draggable'))->toBeTrue();
+    expect($response->json('css'))->toBe('my-custom-marker');
+    expect((bool) $marker->is_draggable)->toBeTrue();
+    expect($marker->css)->toBe('my-custom-marker');
+});
+
+it('updates a marker\'s is_draggable and css and returns them in PinResource shape', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create([
+        'map_id' => $map->id,
+        'is_draggable' => false,
+        'css' => null,
+    ]);
+
+    $response = $this->patchJson(route('entities.map-markers.update', [1, $map->entity, $marker]), [
+        'name' => $marker->name,
+        'latitude' => 1,
+        'longitude' => 1,
+        'shape_id' => 1,
+        'icon' => 1,
+        'is_draggable' => true,
+        'css' => 'highlighted',
+    ])->assertStatus(200);
+
+    expect($response->json('is_draggable'))->toBeTrue();
+    expect($response->json('css'))->toBe('highlighted');
+    expect((bool) $marker->fresh()->is_draggable)->toBeTrue();
+    expect($marker->fresh()->css)->toBe('highlighted');
+});
+
 it('403s create for a player without update permission', function () {
     $this->asUser()->withCampaign();
     $map = Map::factory()->create(['campaign_id' => 1]);

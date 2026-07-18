@@ -57,6 +57,11 @@ return [
         'stroke_bold'       => 'Bold',
         'peek_map'          => 'Show map',
         'peek_panel'        => 'Show details',
+        'advanced'          => 'Advanced',
+        'is_draggable'      => 'Is draggable',
+        'is_draggable_help' => 'Can be moved on the map without having to edit it.',
+        'css_class'         => 'CSS class',
+        'css_class_help'    => 'Define a custom CSS class added to the marker.',
     ],
     'markers_count' => [
         'one'   => '1 marker',
