@@ -28,6 +28,21 @@ it('POSTS a new entity event')
         ],
     ]);
 
+it('sanitizes reminder comments created through the API')
+    ->asUser()
+    ->withCampaign()
+    ->withCharacters()
+    ->withCalendars()
+    ->postJson('/api/1.0/campaigns/1/entities/1/reminders', [
+        'calendar_id' => 1,
+        'day' => 2,
+        'month' => 2,
+        'year' => 2,
+        'comment' => '<script>alert(1)</script><strong>Safe</strong>',
+    ])
+    ->assertStatus(201)
+    ->assertJsonPath('data.comment', '<strong>Safe</strong>');
+
 it('GETS all reminders')
     ->asUser()
     ->withCampaign()
