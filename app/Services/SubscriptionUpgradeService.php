@@ -7,6 +7,9 @@ use App\Models\Tier;
 use App\Models\TierPrice;
 use App\Traits\UserAware;
 use Carbon\Carbon;
+use Illuminate\Support\Collection;
+use Laravel\Cashier\Invoice;
+use Laravel\Cashier\InvoiceLineItem;
 
 class SubscriptionUpgradeService
 {
@@ -61,7 +64,20 @@ class SubscriptionUpgradeService
 
         $invoice = $this->user->subscription('kanka')->previewInvoice($tierPrice->stripe_id);
 
-        return max(0, $invoice->rawTotal() / 100);
+        return max(0, $this->prorationAmount($invoice) / 100);
+    }
+
+    /**
+     * Stripe's upcoming invoice preview also includes the next full billing cycle's
+     * regular charge alongside the proration lines, since that's what the customer's
+     * actual next invoice will contain. We only want the amount due for the immediate
+     * change, so only sum the lines Stripe flagged as prorations.
+     */
+    protected function prorationAmount(Invoice $invoice): int
+    {
+        return Collection::make($invoice->invoiceLineItems())
+            ->filter(fn (InvoiceLineItem $item) => (bool) $item->proration)
+            ->sum(fn (InvoiceLineItem $item) => $item->asStripeInvoiceLineItem()->amount);
     }
 
     protected function endPeriod(): Carbon
