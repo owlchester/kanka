@@ -68,25 +68,36 @@
                 </ul>
             </li>
         </ul>
+
+        <button
+            v-if="canEdit"
+            type="button"
+            class="btn2 btn-default btn-sm"
+            @click="$emit('add-group')"
+        >
+            <i class="fa-regular fa-plus" aria-hidden="true" />
+            <span>{{ i18n.add_group }}</span>
+        </button>
     </aside>
 </template>
 
 <script setup>
 import { computed, onMounted, reactive, ref } from "vue";
-import { buildGroupTree, filterGroupTree } from "../../maps/groupTree.js";
+import { buildGroupTree, filterGroupTree, sortGroups } from "../../maps/groupTree.js";
 import LegendGroupNode from "./LegendGroupNode.vue";
 
 const props = defineProps({
     open: { type: Boolean, default: false },
     groups: { type: Array, default: () => [] },
     pins: { type: Array, default: () => [] },
+    canEdit: { type: Boolean, default: false },
     i18n: { type: Object, required: true },
 });
 
-const emit = defineEmits(["select", "close"]);
+const emit = defineEmits(["select", "close", "add-group"]);
 
 const query = ref("");
-const tree = computed(() => buildGroupTree(props.groups, props.pins));
+const tree = computed(() => buildGroupTree(sortGroups(props.groups), props.pins));
 const filtered = computed(() => filterGroupTree(tree.value, query.value));
 const openIds = reactive(new Set());
 
