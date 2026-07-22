@@ -40,7 +40,7 @@ it('returns the full explore payload for a simple map', function () {
     $response = $this->get(route('entities.map-api', [1, $map->entity]))
         ->assertStatus(200)
         ->assertJsonStructure([
-            'map' => ['id', 'name', 'is_real', 'is_tiled', 'tiling', 'tiling_prompt_eligible', 'has_clustering', 'image', 'width', 'height', 'min_zoom', 'max_zoom', 'initial_zoom', 'center', 'tile_url', 'tiles_url', 'create_url', 'has_distance_unit', 'distance_measure', 'distance_name', 'settings' => ['grid', 'min_zoom', 'max_zoom', 'initial_zoom', 'distance_measure', 'distance_name', 'center_x', 'center_y', 'center_marker_id'], 'settings_url', 'show_url', 'edit_url'],
+            'map' => ['id', 'name', 'is_real', 'is_tiled', 'tiling', 'tiling_prompt_eligible', 'has_clustering', 'image', 'width', 'height', 'min_zoom', 'max_zoom', 'initial_zoom', 'center', 'tile_url', 'tiles_url', 'create_url', 'group_store_url', 'has_distance_unit', 'distance_measure', 'distance_name', 'settings' => ['grid', 'min_zoom', 'max_zoom', 'initial_zoom', 'distance_measure', 'distance_name', 'center_x', 'center_y', 'center_marker_id'], 'settings_url', 'show_url', 'edit_url'],
             'layers' => [['id', 'name', 'type_id', 'image', 'position']],
             'groups' => [['id', 'name', 'parent_id', 'position']],
             'pins' => [['id', 'name', 'entry', 'group_id', 'latitude', 'longitude', 'shape', 'colour', 'font_colour', 'icon', 'size_id', 'pin_size', 'circle_radius', 'opacity', 'preview_url', 'destroy_url', 'is_draggable', 'move_url', 'shape_id', 'icon_id', 'custom_icon', 'entity_id', 'entity_name', 'visibility_id', 'update_url']],
@@ -513,4 +513,13 @@ it('exposes group modal translations', function () {
     expect($response->json('i18n.add_group'))->toBe('Add group');
     expect($response->json('i18n.create_group'))->toBe('Create group');
     expect($response->json('i18n.placement_after'))->toBe('After :name');
+});
+
+it('exposes the group_store_url for creating new groups', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $response = $this->get(route('entities.map-api', [1, $map->entity]))->assertStatus(200);
+
+    expect($response->json('map.group_store_url'))->toBe(route('entities.map-groups.store', [1, $map->entity->id]));
 });
