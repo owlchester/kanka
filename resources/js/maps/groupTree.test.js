@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { buildGroupTree, filterGroupTree } from './groupTree.js'
+import { buildGroupTree, filterGroupTree, sortGroups } from './groupTree.js'
 
 test('nests child groups under their parent, in root order', () => {
     const groups = [
@@ -68,4 +68,35 @@ test('filterGroupTree keeps only matching pins and prunes empty branches', () =>
     assert.ok(filtered.matchedGroupIds.has(1)) // ancestor of the match
     assert.ok(filtered.matchedGroupIds.has(2)) // the group with the direct match
     assert.ok(! filtered.matchedGroupIds.has(3)) // no match anywhere in this branch
+})
+
+test('sortGroups orders by position ascending, ties broken by name', () => {
+    const groups = [
+        { id: 1, name: 'Zebra', position: 1 },
+        { id: 2, name: 'Beta', position: 0 },
+        { id: 3, name: 'Alpha', position: 0 },
+    ]
+
+    const sorted = sortGroups(groups)
+
+    assert.deepEqual(sorted.map((g) => g.id), [3, 2, 1])
+})
+
+test('sortGroups treats a null position as 0', () => {
+    const groups = [
+        { id: 1, name: 'B', position: null },
+        { id: 2, name: 'A', position: null },
+    ]
+
+    const sorted = sortGroups(groups)
+
+    assert.deepEqual(sorted.map((g) => g.id), [2, 1])
+})
+
+test('sortGroups does not mutate the input array', () => {
+    const groups = [{ id: 1, name: 'B', position: 1 }, { id: 2, name: 'A', position: 0 }]
+
+    sortGroups(groups)
+
+    assert.deepEqual(groups.map((g) => g.id), [1, 2])
 })

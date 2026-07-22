@@ -52,3 +52,14 @@ export function filterGroupTree(tree, query) {
 
     return { groups, uncategorised, matchedGroupIds }
 }
+
+export function sortGroups(groups) {
+    return [...groups].sort((a, b) => {
+        const positionDiff = (a.position ?? 0) - (b.position ?? 0)
+        if (positionDiff !== 0) {
+            return positionDiff
+        }
+
+        return a.name.localeCompare(b.name)
+    })
+}
