@@ -237,6 +237,7 @@ import tippy from "tippy.js";
 import { colourForUser, useMapPresence } from "../../composables/useMapPresence.js";
 import { centroid } from "../../maps/polygon.js";
 import { panelsToClose } from "../../maps/panelExclusivity.js";
+import { insertGroupIntoList } from "../../maps/groupTree.js";
 import DetailPanel from "./DetailPanel.vue";
 import GroupModal from "./GroupModal.vue";
 import LeafletCanvas from "./LeafletCanvas.vue";
@@ -575,7 +576,7 @@ function openGroupModal() {
 }
 
 function onGroupCreated(group) {
-    data.value.groups = [...data.value.groups, group];
+    data.value.groups = insertGroupIntoList(data.value.groups, group);
 }
 
 const DEFAULT_STROKE_WIDTH = 1;

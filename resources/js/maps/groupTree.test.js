@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { buildGroupTree, filterGroupTree, sortGroups } from './groupTree.js'
+import { buildGroupTree, filterGroupTree, sortGroups, insertGroupIntoList } from './groupTree.js'
 
 test('nests child groups under their parent, in root order', () => {
     const groups = [
@@ -99,4 +99,37 @@ test('sortGroups does not mutate the input array', () => {
     sortGroups(groups)
 
     assert.deepEqual(groups.map((g) => g.id), [1, 2])
+})
+
+test('insertGroupIntoList shifts existing groups at or after the new position and appends the new group', () => {
+    const groups = [
+        { id: 1, name: 'Alpha', position: 1 },
+        { id: 2, name: 'Beta', position: 2 },
+    ]
+    const newGroup = { id: 3, name: 'Zulu', position: 1 }
+
+    const result = insertGroupIntoList(groups, newGroup)
+
+    assert.deepEqual(result.map((g) => [g.id, g.position]), [[1, 2], [2, 3], [3, 1]])
+})
+
+test('insertGroupIntoList leaves groups before the new position untouched', () => {
+    const groups = [
+        { id: 1, name: 'A', position: 1 },
+        { id: 2, name: 'B', position: 2 },
+    ]
+    const newGroup = { id: 3, name: 'C', position: 2 }
+
+    const result = insertGroupIntoList(groups, newGroup)
+
+    assert.deepEqual(result.map((g) => [g.id, g.position]), [[1, 1], [2, 3], [3, 2]])
+})
+
+test('insertGroupIntoList treats a null position as 0 for the shift comparison', () => {
+    const groups = [{ id: 1, name: 'A', position: null }]
+    const newGroup = { id: 2, name: 'B', position: 1 }
+
+    const result = insertGroupIntoList(groups, newGroup)
+
+    assert.deepEqual(result.map((g) => [g.id, g.position]), [[1, null], [2, 1]])
 })

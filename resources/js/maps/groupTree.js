@@ -53,6 +53,16 @@ export function filterGroupTree(tree, query) {
     return { groups, uncategorised, matchedGroupIds }
 }
 
+export function insertGroupIntoList(groups, newGroup) {
+    const shifted = groups.map((group) =>
+        (group.position ?? 0) >= newGroup.position
+            ? { ...group, position: group.position + 1 }
+            : group
+    )
+
+    return [...shifted, newGroup]
+}
+
 export function sortGroups(groups) {
     return [...groups].sort((a, b) => {
         const positionDiff = (a.position ?? 0) - (b.position ?? 0)
