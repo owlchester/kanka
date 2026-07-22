@@ -501,3 +501,16 @@ it('returns groups ordered by position ascending, then name', function () {
 
     expect(collect($response->json('groups'))->pluck('name')->all())->toBe(['Alpha', 'Beta', 'Zebra']);
 });
+
+it('exposes group modal translations', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $response = $this->get(route('entities.map-api', [1, $map->entity]))->assertStatus(200);
+
+    expect($response->json('i18n.new_group'))->toBe('New group');
+    expect($response->json('i18n.untitled_group'))->toBe('Untitled group');
+    expect($response->json('i18n.add_group'))->toBe('Add group');
+    expect($response->json('i18n.create_group'))->toBe('Create group');
+    expect($response->json('i18n.placement_after'))->toBe('After :name');
+});
