@@ -51,6 +51,7 @@
 
 <script setup>
 import { computed } from "vue";
+import { sortGroups } from "../../maps/groupTree.js";
 
 const props = defineProps({
     pin: { type: Object, required: true },
@@ -60,9 +61,7 @@ const props = defineProps({
 
 const emit = defineEmits(["change"]);
 
-const sortedGroups = computed(() =>
-    [...props.groups].sort((a, b) => b.position - a.position),
-);
+const sortedGroups = computed(() => sortGroups(props.groups));
 
 function selectGroup(groupId) {
     emit("change", groupId);
