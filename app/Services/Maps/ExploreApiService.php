@@ -42,7 +42,9 @@ class ExploreApiService
                     ->filter(fn ($layer) => $layer->isExplorable())
                     ->values()
             ),
-            'groups' => GroupResource::collection($this->map->groups),
+            'groups' => GroupResource::collection(
+                $this->map->groups()->orderBy('position')->orderBy('name')->get()
+            ),
             'pins' => $this->map->markers
                 ->filter(fn ($marker) => $marker->visible())
                 ->values()

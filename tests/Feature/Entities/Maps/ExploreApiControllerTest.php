@@ -481,3 +481,23 @@ it('exposes the tiling prompt url for the migration banner', function () {
 
     expect($response->json('map.tiling_prompt_url'))->toBe(route('entities.map-tiling-prompt.update', [1, $map->entity->id]));
 });
+
+it('returns groups ordered by position ascending, then name', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $zebra = MapGroup::factory()->create(['map_id' => $map->id, 'name' => 'Zebra']);
+    $beta = MapGroup::factory()->create(['map_id' => $map->id, 'name' => 'Beta']);
+    $alpha = MapGroup::factory()->create(['map_id' => $map->id, 'name' => 'Alpha']);
+
+    // MapGroupObserver::created()/updated() call reorder(), which resequences every sibling
+    // group's position to unique values (1..N) on every save - so two groups can never naturally
+    // end up with a tied position through normal Eloquent saves. Force the tie directly via a
+    // query-builder update, which bypasses model events/observers, so we can actually exercise
+    // the "then name" tie-break the orderBy() fix is meant to cover.
+    MapGroup::whereIn('id', [$beta->id, $alpha->id])->update(['position' => 1]);
+    MapGroup::where('id', $zebra->id)->update(['position' => 2]);
+
+    $response = $this->get(route('entities.map-api', [1, $map->entity]))->assertStatus(200);
+
+    expect(collect($response->json('groups'))->pluck('name')->all())->toBe(['Alpha', 'Beta', 'Zebra']);
+});
