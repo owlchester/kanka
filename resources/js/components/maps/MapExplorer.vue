@@ -111,9 +111,20 @@
             :open="legendOpen"
             :groups="data.groups"
             :pins="data.pins"
+            :can-edit="canEdit"
             :i18n="data.i18n"
             @select="selectPin"
             @close="legendOpen = false"
+            @add-group="openGroupModal"
+        />
+
+        <GroupModal
+            ref="groupModalRef"
+            :i18n="data.i18n"
+            :groups="data.groups"
+            :visibilities="data.visibilities"
+            :group-store-url="data.map.group_store_url"
+            @created="onGroupCreated"
         />
 
         <LeafletCanvas
@@ -227,6 +238,7 @@ import { colourForUser, useMapPresence } from "../../composables/useMapPresence.
 import { centroid } from "../../maps/polygon.js";
 import { panelsToClose } from "../../maps/panelExclusivity.js";
 import DetailPanel from "./DetailPanel.vue";
+import GroupModal from "./GroupModal.vue";
 import LeafletCanvas from "./LeafletCanvas.vue";
 import LegendPanel from "./LegendPanel.vue";
 import MarkerPanel from "./MarkerPanel.vue";
@@ -257,6 +269,7 @@ const previewCenter = ref(null);
 const mapMenuBtnRef = ref(null);
 const mapMenuRef = ref(null);
 const leafletCanvasRef = ref(null);
+const groupModalRef = ref(null);
 let mapMenuInstance = null;
 
 const {
@@ -555,6 +568,14 @@ function onPresetUpdated(preset) {
 
 function onPresetDeleted(preset) {
     data.value.presets = data.value.presets.filter((p) => p.id !== preset.id);
+}
+
+function openGroupModal() {
+    groupModalRef.value?.open(data.value.default_visibility_id);
+}
+
+function onGroupCreated(group) {
+    data.value.groups = [...data.value.groups, group];
 }
 
 const DEFAULT_STROKE_WIDTH = 1;
