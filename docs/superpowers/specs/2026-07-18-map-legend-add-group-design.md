@@ -44,11 +44,12 @@ after_id    => nullable|integer|exists:map_groups,id (scoped to same map + same 
 ```
 `after_id` absent/null means "insert first". Note this dialog only ever creates **new** groups, so there is no `position`/`update_url`/`destroy_url` concern for existing rows beyond the shift described below.
 
-**Position assignment** (in the controller, inside a transaction):
-1. Siblings = groups where `map_id` matches and `parent_id` equals the submitted `parent_id` (both null-safe), ordered `position asc, name asc` — same ordering `load()` now uses, so this matches what the user saw in the Placement dropdown.
-2. `after_id` null → `newPosition = 0`; shift every sibling with `position >= 0` (i.e. all of them) up by 1.
-3. `after_id` set → `newPosition = target.position + 1`; shift every sibling with `position > target.position` up by 1.
-4. Create the group with `position = newPosition`.
+**Position assignment** (in the controller, inside a transaction) — **corrected during implementation**: `MapGroup` already has an observer (`app/Observers/MapGroupObserver.php`, via `App\Observers\ReorderTrait`) that manages `position` as a single flat, **map-global** sequence (not scoped per `parent_id`), 1-indexed, and resequences every group on the map to a clean `1..N` after each create/update. The original 0-indexed, per-parent-scoped design below was written without knowing this existed and is superseded by the plan (`docs/superpowers/plans/2026-07-22-map-legend-add-group.md`, Task 3):
+1. `after_id` null → `position = 1`; `after_id` set → `position = target.position + 1`.
+2. Bump every group on the map (any `parent_id`) with `position >= $position` up by one, via a query-builder mass update (bypasses the observer, avoiding a reorder-per-row cascade).
+3. Create the group at `position`. The observer's own `created()` hook then renormalizes the whole map to `1..N`, confirming this ordering.
+
+A map-global (rather than per-parent) sequence still produces correct relative order within any parent-filtered subset — the only thing the legend/`sortGroups` ever compares — so this is not a behavior regression from the original per-parent design, just a different (and pre-existing) storage convention.
 
 **Resource / URL wiring** — no change to `GroupResource` (Explore): it already returns `id, name, parent_id, position, colour`, which is sufficient for the frontend to splice the new group into `data.groups` and have the legend tree re-render correctly. Add `group_store_url` to `Maps/Explore/MapResource.php`, built the same way `preset_store_url` is, and populate it from `ExploreApiService`.
 
