@@ -1103,9 +1103,10 @@ Then, in the browser, on a map you can edit:
 2. Click "Add group" — confirm the dialog opens titled "New group" / "Untitled group", switching to your typed name as you type.
 3. Create a group with no existing groups yet — confirm the Placement field is absent (no siblings), and the group appears in the legend immediately after creating.
 4. Create a second top-level group choosing "After {first group}" — confirm it appears after the first in the legend, without a page reload.
-5. Create a third group, this time picking the first group as its Parent — confirm it nests under that parent in the legend tree.
-6. Toggle "Show group markers" and pick a non-default Visibility — confirm no error and the dialog closes on Create.
-7. Trigger the group-limit 403 (e.g. via `config(['limits.campaigns.maps.groups.standard' => 1])` in tinker, or just check the error text renders) — confirm the dialog shows `i18n.error_save_group` and stays open.
+5. **Create a third top-level group choosing "After {first group}" again (i.e. inserting it *between* the first and second groups, not at the end)** — confirm the legend immediately shows `first, third, second` in that order, without a page reload and without needing a moment to "snap into place". This specifically exercises the case where an existing group (the second one) must be renumbered on the frontend, not just appended after — the earlier steps only ever inserted at the end, which doesn't exercise this.
+6. Create a fourth group, this time picking the first group as its Parent — confirm it nests under that parent in the legend tree.
+7. Toggle "Show group markers" and pick a non-default Visibility — confirm no error and the dialog closes on Create.
+8. Trigger the group-limit 403 (e.g. via `config(['limits.campaigns.maps.groups.standard' => 1])` in tinker, or just check the error text renders) — confirm the dialog shows `i18n.error_save_group` and stays open.
 
 - [ ] **Step 6: Commit**
 
