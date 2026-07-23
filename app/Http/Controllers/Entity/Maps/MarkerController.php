@@ -28,7 +28,7 @@ class MarkerController extends Controller
         // EntityPermission::loadAllPermissions()'s "no campaign set" admin bypass.
         EntityPermission::campaign($campaign);
 
-        return response()->json(new PinPreviewResource($mapMarker));
+        return response()->json(new PinPreviewResource($mapMarker)->campaign($campaign));
     }
 
     public function store(StoreMapMarker $request, Campaign $campaign, Entity $entity)

@@ -117,6 +117,16 @@
                     </div>
                 </a>
 
+                <a
+                    v-for="mapLink in preview.explore_maps"
+                    :key="mapLink.url"
+                    :href="mapLink.url"
+                    class="btn2 btn-primary btn-block"
+                >
+                    <i class="fa-regular fa-map" aria-hidden="true" />
+                    {{ i18n.explore_map.replace(':name', mapLink.name) }}
+                </a>
+
                 <div
                     class="marker-entry entity-content marker-custom-entry"
                     v-if="preview.marker_entry"

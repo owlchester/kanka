@@ -2,6 +2,7 @@
 
 use App\Http\Requests\StoreMapMarker;
 use App\Models\Character;
+use App\Models\Location;
 use App\Models\Map;
 use App\Models\MapGroup;
 use App\Models\MapMarker;
@@ -28,7 +29,7 @@ it('returns a preview for a marker with an entity, group, and entries', function
 
     $response = $this->get(route('entities.map-markers.preview', [1, $map->entity, $marker]))
         ->assertStatus(200)
-        ->assertJsonStructure(['entity_name', 'entity_url', 'entity_image', 'marker_entry', 'entity_entry', 'type', 'group_name', 'can_edit']);
+        ->assertJsonStructure(['entity_name', 'entity_url', 'entity_image', 'marker_entry', 'entity_entry', 'type', 'group_name', 'can_edit', 'explore_maps']);
 
     expect($response->json('entity_name'))->toBe($entity->name);
     expect($response->json('entity_url'))->toBe($entity->url());
@@ -63,6 +64,67 @@ it('denies edit permission for a player', function () {
     $response = $this->get(route('entities.map-markers.preview', [1, $map->entity, $marker]))->assertStatus(200);
 
     expect($response->json('can_edit'))->toBeFalse();
+});
+
+it('returns an explore_maps entry when the linked entity is a map', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $linkedMap = Map::factory()->create(['campaign_id' => 1, 'name' => 'City Map']);
+    $marker = MapMarker::factory()->create(['map_id' => $map->id, 'entity_id' => $linkedMap->entity->id]);
+
+    $response = $this->get(route('entities.map-markers.preview', [1, $map->entity, $marker]))->assertStatus(200);
+
+    expect($response->json('explore_maps'))->toBe([
+        ['name' => 'City Map', 'url' => route('entities.map', [1, $linkedMap->entity->id])],
+    ]);
+});
+
+it('returns one explore_maps entry per attached map when the linked entity is a location', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $location = Location::factory()->create(['campaign_id' => 1]);
+    $attachedMapA = Map::factory()->create(['campaign_id' => 1, 'location_id' => $location->id, 'name' => 'Overworld']);
+    $attachedMapB = Map::factory()->create(['campaign_id' => 1, 'location_id' => $location->id, 'name' => 'Dungeon']);
+    $marker = MapMarker::factory()->create(['map_id' => $map->id, 'entity_id' => $location->entity->id]);
+
+    $response = $this->get(route('entities.map-markers.preview', [1, $map->entity, $marker]))->assertStatus(200);
+
+    expect($response->json('explore_maps'))->toBe([
+        ['name' => 'Overworld', 'url' => route('entities.map', [1, $attachedMapA->entity->id])],
+        ['name' => 'Dungeon', 'url' => route('entities.map', [1, $attachedMapB->entity->id])],
+    ]);
+});
+
+it('returns an empty explore_maps for a location with no attached maps', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $location = Location::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create(['map_id' => $map->id, 'entity_id' => $location->entity->id]);
+
+    $response = $this->get(route('entities.map-markers.preview', [1, $map->entity, $marker]))->assertStatus(200);
+
+    expect($response->json('explore_maps'))->toBe([]);
+});
+
+it('returns an empty explore_maps for a linked entity that is neither a map nor a location', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $character = Character::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create(['map_id' => $map->id, 'entity_id' => $character->entity->id]);
+
+    $response = $this->get(route('entities.map-markers.preview', [1, $map->entity, $marker]))->assertStatus(200);
+
+    expect($response->json('explore_maps'))->toBe([]);
+});
+
+it('returns an empty explore_maps for a marker with no linked entity', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create(['map_id' => $map->id]);
+
+    $response = $this->get(route('entities.map-markers.preview', [1, $map->entity, $marker]))->assertStatus(200);
+
+    expect($response->json('explore_maps'))->toBe([]);
 });
 
 it('404s preview for a non-map entity', function () {

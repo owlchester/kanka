@@ -175,6 +175,7 @@ class ExploreApiService
             ],
             'from_entry' => __('maps/explorer.marker.from_entry'),
             'linked_entry' => __('maps/explorer.marker.linked_entry'),
+            'explore_map' => __('maps/explorer.marker.explore_map'),
             'description' => __('maps/explorer.marker.description'),
             'add_description' => __('maps/explorer.marker.add_description'),
             'edit_description' => __('maps/explorer.marker.edit_description'),

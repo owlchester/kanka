@@ -30,6 +30,7 @@ return [
         'edit_marker'       => 'Edit',
         'from_entry'        => 'From entry',
         'linked_entry'     => 'Linked entry',
+        'explore_map'       => 'Explore :name',
         'description'         => 'Description',
         'add_description'     => 'Add description',
         'edit_description'    => 'Edit',
