@@ -16,6 +16,13 @@ use App\Http\Controllers\Entity\Attributes\LiveApiController;
 use App\Http\Controllers\Entity\Attributes\LiveController;
 use App\Http\Controllers\Entity\EntryController;
 use App\Http\Controllers\Entity\ImageController;
+use App\Http\Controllers\Entity\Maps\ApiController as EntityMapApiController;
+use App\Http\Controllers\Entity\Maps\GroupController as EntityMapGroupController;
+use App\Http\Controllers\Entity\Maps\MarkerController as EntityMapMarkerController;
+use App\Http\Controllers\Entity\Maps\PresetController as EntityMapPresetController;
+use App\Http\Controllers\Entity\Maps\SettingsController as EntityMapSettingsController;
+use App\Http\Controllers\Entity\Maps\ShowController as EntityMapShowController;
+use App\Http\Controllers\Entity\Maps\TilingPromptController as EntityMapTilingPromptController;
 use App\Http\Controllers\Entity\Posts\LayoutController;
 use App\Http\Controllers\Entity\Posts\VisibilityController;
 use App\Http\Controllers\Entity\PrivacyController;
@@ -52,6 +59,19 @@ Route::delete('/w/{campaign}/entities/{entity}/delete', [DeleteController::class
 
 Route::get('/w/{campaign}/entities/{entity}/children', [ChildrenController::class, 'index'])->name('entities.children');
 
+Route::get('/w/{campaign}/entities/{entity}/map-api', [EntityMapApiController::class, 'index'])->name('entities.map-api');
+Route::get('/w/{campaign}/entities/{entity}/map', [EntityMapShowController::class, 'index'])->name('entities.map');
+Route::patch('/w/{campaign}/entities/{entity}/map/settings', [EntityMapSettingsController::class, 'update'])->name('entities.map-settings.update');
+Route::get('/w/{campaign}/entities/{entity}/map/markers/{map_marker}', [EntityMapMarkerController::class, 'preview'])->name('entities.map-markers.preview');
+Route::delete('/w/{campaign}/entities/{entity}/map/markers/{map_marker}', [EntityMapMarkerController::class, 'destroy'])->name('entities.map-markers.destroy');
+Route::post('/w/{campaign}/entities/{entity}/map/markers', [EntityMapMarkerController::class, 'store'])->name('entities.map-markers.store');
+Route::patch('/w/{campaign}/entities/{entity}/map/markers/{map_marker}', [EntityMapMarkerController::class, 'update'])->name('entities.map-markers.update');
+Route::post('/w/{campaign}/entities/{entity}/map/presets', [EntityMapPresetController::class, 'store'])->name('entities.map-presets.store');
+Route::patch('/w/{campaign}/entities/{entity}/map/presets/{preset}', [EntityMapPresetController::class, 'update'])->name('entities.map-presets.update');
+Route::delete('/w/{campaign}/entities/{entity}/map/presets/{preset}', [EntityMapPresetController::class, 'destroy'])->name('entities.map-presets.destroy');
+Route::post('/w/{campaign}/entities/{entity}/map/groups', [EntityMapGroupController::class, 'store'])->name('entities.map-groups.store');
+Route::patch('/w/{campaign}/entities/{entity}/map/tiling-prompt', [EntityMapTilingPromptController::class, 'update'])->name('entities.map-tiling-prompt.update');
+
 // Abilities
 Route::get('/w/{campaign}/abilities/{ability}/abilities', 'Abilities\AbilityController@index')->name('abilities.abilities');
 Route::get('/w/{campaign}/abilities/{ability}/entities', 'Abilities\EntityController@index')->name('abilities.entities');
@@ -68,7 +88,6 @@ Route::post('/w/{campaign}/entities/{entity}/entity_abilities/reorder', [App\Htt
 // Maps
 Route::get('/w/{campaign}/maps/{map}/maps', 'Maps\MapController@index')->name('maps.maps');
 Route::get('/w/{campaign}/maps/{map}/explore', 'Maps\ExploreController@index')->name('maps.explore');
-Route::get('/w/{campaign}/maps/{map}/chunks/', 'Maps\ExploreController@chunks')->name('maps.chunks');
 Route::get('/w/{campaign}/maps/{map}/ticker', 'Maps\ExploreController@ticker')->name('maps.ticker');
 Route::get('/w/{campaign}/maps/{map}/preview', 'Maps\PreviewController@index')->name('maps.preview');
 Route::get('/w/{campaign}/maps/{map}/{map_marker}/details', 'Maps\Markers\DetailController@index')->name('maps.markers.details');

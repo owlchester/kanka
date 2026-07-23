@@ -1,12 +1,24 @@
 <?php
 
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\DB;
 
 it('POSTS an invalid entity_assets form')
     ->asUser()
     ->withCampaign()
     ->withCharacters()
     ->postJson('/api/1.0/campaigns/1/entities/1/entity_assets', [])
+    ->assertStatus(422);
+
+it('does not POST an entity_asset with an invalid type')
+    ->asUser()
+    ->withCampaign()
+    ->withCharacters()
+    ->postJson('/api/1.0/campaigns/1/entities/1/entity_assets', [
+        'name' => fake()->name(),
+        'type_id' => 0,
+        'visibility_id' => 1,
+    ])
     ->assertStatus(422);
 
 it('POSTS a new Alias')
@@ -100,6 +112,29 @@ it('GETS a specific asset')
             'is_private',
         ],
     ]);
+
+it('GETS legacy entity_assets with an invalid type without crashing', function () {
+    $this->asUser()->withCampaign()->withCharacters();
+
+    DB::table('entity_assets')->insert([
+        'entity_id' => 1,
+        'type_id' => 0,
+        'name' => 'Legacy asset',
+        'metadata' => '{}',
+        'visibility_id' => 1,
+        'created_at' => now(),
+        'updated_at' => now(),
+    ]);
+
+    $this->get('/api/1.0/campaigns/1/entities/1/entity_assets')
+        ->assertStatus(200)
+        ->assertJsonFragment([
+            'type_id' => null,
+            '_file' => false,
+            '_link' => false,
+            '_alias' => false,
+        ]);
+});
 
 it('UPDATES a valid asset')
     ->asUser()

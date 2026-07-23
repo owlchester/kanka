@@ -10,7 +10,6 @@ use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
 use Carbon\Carbon;
 use Exception;
-use Illuminate\Support\Facades\Storage;
 
 class ExploreController extends Controller
 {
@@ -32,20 +31,18 @@ class ExploreController extends Controller
         }
         $this->campaign($campaign)->authEntityView($map->entity);
 
+        if ($map->tilingRunning()) {
+            return redirect()
+                ->route('entities.show', [$campaign, $map->entity])
+                ->withError(__('maps.errors.tiling.running.explore'));
+        }
+
         if (! $map->explorable()) {
             return redirect()
                 ->route('entities.show', [$campaign, $map->entity])
                 ->withError(__('maps.errors.explore.missing'));
         }
-        if ($map->isChunked()) {
-            if ($map->chunkingError()) {
-                return redirect()
-                    ->route('entities.show', [$campaign, $map->entity]);
-            } elseif (! $map->chunkingReady()) {
-                return redirect()
-                    ->route('entities.show', [$campaign, $map->entity]);
-            }
-        }
+
         // Error handling
         try {
             $map->bounds();
@@ -85,30 +82,5 @@ class ExploreController extends Controller
             'ts' => Carbon::now(),
             'markers' => $data,
         ]);
-    }
-
-    /**
-     * Load only a chunk of the map and cache it for the user
-     */
-    public function chunks(Campaign $campaign, Map $map)
-    {
-        $headers = ['Expires', Carbon::now()->addDays(1)->toDateTimeString()];
-        if (! request()->has(['z', 'x', 'y'])) {
-            return response()
-                ->file(public_path('/images/map_chunks/transparent.png'), $headers);
-        }
-
-        $path = 'maps/' . $map->id . '/chunks/' . request()->get('z')
-            . '/' . request()->get('x') . '_' . request()->get('y')
-            . '.png';
-
-        if (! Storage::exists($path)) {
-            return response()
-                ->file(public_path('/images/map_chunks/transparent.png'), $headers);
-        }
-
-        return redirect()->to(Storage::url($path));
-        // return response()
-        //    ->file(Storage::path($path), $headers);
     }
 }

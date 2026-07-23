@@ -1,6 +1,7 @@
 <?php
 
 use App\Facades\EntityPermission;
+use App\Models\Map;
 use App\Models\User;
 use App\Models\Whiteboard;
 use Illuminate\Support\Facades\Broadcast;
@@ -25,4 +26,31 @@ Broadcast::channel('whiteboard.{id}', function (User $user, $id) {
     }
 
     return false;
+});
+
+Broadcast::channel('map.{id}', function (User $user, $id) {
+    $map = Map::withInvisible()->findOrFail($id);
+    $entity = $map->entity()->withInvisible()->firstOrFail();
+
+    EntityPermission::campaign($entity->campaign);
+    if ($user->can('member', $entity->campaign) && $user->can('view', $entity)) {
+        return [
+            'id' => $user->id,
+            'name' => $user->name,
+            'image' => $user->hasAvatar() ? $user->getAvatarUrl() : null,
+            'url' => route('users.profile', [$user]),
+            'role' => $user->can('update', $entity) ? 'edit' : 'view',
+        ];
+    }
+
+    return false;
+});
+
+Broadcast::channel('map.{id}.admin', function (User $user, $id) {
+    $map = Map::withInvisible()->findOrFail($id);
+    $entity = $map->entity()->withInvisible()->firstOrFail();
+
+    EntityPermission::campaign($entity->campaign);
+
+    return $user->can('member', $entity->campaign) && $user->can('update', $entity);
 });

@@ -23,6 +23,7 @@
         <env name="SESSION_DRIVER" value="array"/>
         <env name="QUEUE_DRIVER" value="sync"/>
         <env name="DB_DATABASE" value=":memory:" />
+        <env name="DB_LOGS_DATABASE" value=""/>
         <env name="TELESCOPE_ENABLED" value="false"/>
         <env name="MAIL_MAILER" value="array"/>
         <env name="SCOUT_DRIVER" value="null"/>

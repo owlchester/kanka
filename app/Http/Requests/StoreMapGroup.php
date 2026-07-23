@@ -32,6 +32,7 @@ class StoreMapGroup extends FormRequest
             'position' => 'nullable|string|max:3',
             'visibility_id' => 'nullable|integer|exists:visibilities,id',
             'parent_id' => 'nullable|integer|exists:map_groups,id',
+            'colour' => 'nullable|string|max:7',
         ];
 
         /** @var MapGroup $self */

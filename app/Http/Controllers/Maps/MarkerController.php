@@ -125,7 +125,7 @@ class MarkerController extends Controller
                 ->withSuccess(__('maps/markers.create.success', ['name' => $new->name]));
         } elseif ($request->get('from') == 'explore') {
             return redirect()
-                ->route('maps.explore', [$campaign, $map, 'focus' => $new->id]);
+                ->route('entities.map', [$campaign, $map->entity, 'focus' => $new->id]);
         }
 
         return redirect()
@@ -179,7 +179,7 @@ class MarkerController extends Controller
 
         if ($request->has('submit-explore')) {
             return redirect()
-                ->route('maps.explore', [$campaign, $map, 'focus' => $mapMarker->id])
+                ->route('entities.map', [$campaign, $map->entity, 'focus' => $mapMarker->id])
                 ->withSuccess(__('maps/markers.edit.success', ['name' => $mapMarker->name]));
         } elseif ($request->has('submit-update')) {
             return redirect()
@@ -187,7 +187,7 @@ class MarkerController extends Controller
                 ->withSuccess(__('maps/markers.edit.success', ['name' => $mapMarker->name]));
         } elseif ($request->get('from') == 'explore') {
             return redirect()
-                ->route('maps.explore', [$campaign, $map, 'focus' => $mapMarker->id]);
+                ->route('entities.map', [$campaign, $map->entity, 'focus' => $mapMarker->id]);
         }
 
         return redirect()
@@ -211,7 +211,7 @@ class MarkerController extends Controller
 
         if (request()->get('from') == 'explore') {
             return redirect()
-                ->route('maps.explore', [$campaign, $map]);
+                ->route('entities.map', [$campaign, $map->entity]);
         }
 
         return redirect()

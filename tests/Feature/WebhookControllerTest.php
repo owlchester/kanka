@@ -38,8 +38,11 @@ function buildPayload(string $planId, string $customerId, string $status = 'acti
     ];
 }
 
-function makeTierPrice(string $stripeId, string $tierName = Pledge::OWLBEAR): TierPrice
-{
+function makeTierPrice(
+    string $stripeId,
+    string $tierName = Pledge::OWLBEAR,
+    PricingPeriod $period = PricingPeriod::Monthly,
+): TierPrice {
     $tier = Tier::factory()->create(['name' => $tierName]);
 
     return TierPrice::forceCreate([
@@ -47,7 +50,7 @@ function makeTierPrice(string $stripeId, string $tierName = Pledge::OWLBEAR): Ti
         'stripe_id' => $stripeId,
         'cost' => 4.99,
         'currency' => 'eur',
-        'period' => PricingPeriod::Monthly,
+        'period' => $period,
     ]);
 }
 
@@ -148,8 +151,10 @@ it('suppresses emails on downgrade plan confirmation (downgrade email sent on re
     );
 });
 
-it('suppresses emails on renewal (no plan change, not a new activation)', function () {
-    $tierPrice = makeTierPrice('price_renewal');
+it('suppresses emails on renewal when Stripe reports unchanged subscription items', function () {
+    Queue::fake();
+
+    $tierPrice = makeTierPrice('price_renewal', period: PricingPeriod::Yearly);
     $user = User::factory()->create(['stripe_id' => 'cus_renewal', 'pledge' => Pledge::OWLBEAR]);
 
     $service = $this->mock(SubscriptionService::class);
@@ -162,6 +167,16 @@ it('suppresses emails on renewal (no plan change, not a new activation)', functi
 
     $controller = app(WebhookController::class);
     $controller->handleCustomerSubscriptionUpdated(
-        buildPayload($tierPrice->stripe_id, $user->stripe_id, previousAttributes: [])
+        buildPayload($tierPrice->stripe_id, $user->stripe_id, previousAttributes: [
+            'items' => [
+                'data' => [
+                    [
+                        'price' => ['id' => $tierPrice->stripe_id],
+                    ],
+                ],
+            ],
+        ])
     );
+
+    Queue::assertNotPushed(WelcomeSubscriptionEmailJob::class);
 });

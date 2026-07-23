@@ -35,10 +35,10 @@ $sizeOptions = [
             </a>
         </li>
         <li role="presentation" @if($activeTab == 5) class="active" @endif>
-            <a href="#marker-poly" data-nohash="true"  data-toggle="tooltip" class="text-center" data-title="{{ __('maps/markers.tabs.polygon') }}">
+            <a href="#marker-poly" data-nohash="true"  data-toggle="tooltip" class="text-center" data-title="{{ __('maps/markers.tabs.area') }}">
                 <x-icon class="fa-regular fa-2x fa-draw-polygon" />
                 <br />
-                {{ __('maps/markers.tabs.polygon') }}
+                {{ __('maps/markers.tabs.area') }}
             </a>
         </li>
         <li role="presentation">
@@ -91,42 +91,22 @@ $sizeOptions = [
         <div class="tab-pane @if($activeTab == 5) active @endif" id="marker-poly">
             <x-grid>
                 <div class="field field-shape flex flex-col gap-2 col-span-2">
-                    <div class="flex">
-                        <div class="grow field">
-                            <label>{{ __('maps/markers.fields.custom_shape') }}</label>
-                            @if ($campaign->boosted())
-                                @if(isset($model))
-                                    <x-helper>
-                                        <p>{{ __('maps/markers.helpers.polygon.edit') }}</p>
-                                    </x-helper>
-                                </div>
-
-                                <a href="#" id="reset-polygon" class="btn2 btn-error btn-outline btn-sm" style="">
-                                    <x-icon class="fa-regular fa-eraser" />
-                                    {{ __('maps/markers.actions.reset-polygon') }}
-                                </a>
-                            </div>
-                                @else
+                    @if ($campaign->boosted())
+                        <div>
+                            <a href="#" id="start-drawing-polygon" class="btn2 btn-primary btn-sm" data-toast="{{ __('maps/explore.notifications.start-drawing') }}">
+                                <x-icon class="pencil" />
+                                {{ __('maps/markers.actions.start-drawing') }}
+                            </a>
+                            <a href="#" id="reset-polygon" class="btn2 btn-error btn-outline btn-sm hidden">
+                                <x-icon class="fa-regular fa-eraser" />
+                                {{ __('maps/markers.actions.reset-polygon') }}
+                            </a>
                         </div>
-                    </div>
-                    <div>
-                        <a href="#" id="start-drawing-polygon" class="btn2 btn-primary btn-sm" data-toast="{{ __('maps/explore.notifications.start-drawing') }}">
-                            <x-icon class="pencil" />
-                            {{ __('maps/markers.actions.start-drawing') }}
-                        </a>
-                        <a href="#" id="reset-polygon" class="btn2 btn-error btn-outline btn-sm hidden">
-                            <x-icon class="fa-regular fa-eraser" />
-                            {{ __('maps/markers.actions.reset-polygon') }}
-                        </a>
-                    </div>
-                    @endif
                         <textarea name="custom_shape" class="w-full" rows="2" placeholder="{{ __('maps/markers.placeholders.custom_shape') }}">{!! \App\Facades\FormCopy::field('custom_shape')->string() ?: old('custom_shape', $model->custom_shape ?? null) !!}</textarea>
                     @else
                         <x-premium-cta :campaign="$campaign">
                             <p>{{ __('maps/markers.pitches.poly') }}</p>
                         </x-premium-cta>
-                        </div>
-                    </div>
                     @endif
                 </div>
 
@@ -169,77 +149,9 @@ $sizeOptions = [
     </div>
 </div>
 
-<div id="marker-main-fields" class="flex flex-col gap-5 w-full">
-    <x-grid>
-        <x-forms.field field="name" :label="__('crud.fields.name')">
-            <input type="text" name="name" maxlength="191" placeholder="{{ __('maps/markers.placeholders.name') }}" value="{!! htmlspecialchars(old('name', $source->name ?? $model->name ?? null)) !!}" id="name" />
-        </x-forms.field>
-
-        @include('cruds.fields.entity')
-
-        @if (!isset($model))
-            <div class="md:col-span-2">
-                <x-alert type="info">
-                    {{ __('maps/markers.hints.entry') }}
-                </x-alert>
-            </div>
-        @else
-        <div class="md:col-span-2 {{ ($model->hasEntry() ? 'hidden' : '') }}">
-            <a href="#" class="map-marker-entry-click text-link">{{ __('maps/markers.actions.entry') }}</a>
-        </div>
-        <div class="md:col-span-2 map-marker-entry-entry {{ (!$model->hasEntry() ? 'hidden' : '') }}" style="">
-            <x-forms.field field="entry" :label=" __('fields.description.label')">
-                @include('cruds.fields.entry', ['model' => $model])
-            </x-forms.field>
-        </div>
-        @endif
-
-        <x-forms.field
-            field="css"
-            :label="__('dashboard.widgets.fields.class')"
-            :helper="__('maps/markers.helpers.css')"
-        >
-        <input type="text" name="css" value="{{ old('css', $model->css ?? $source->css ?? null) }}" class="w-full"
-                maxlength="45" id="css"/>
-        <p class="text-neutral-content md:hidden">
-            {{ __('maps/markers.helpers.css') }}
-        </p>
-
-        </x-forms.field>
-        @include('maps.markers.fields.opacity')
-
-        <div class="" id="map-marker-bg-colour" @if((isset($model) && $model->isLabel()) || (isset($source) && $source->isLabel())) style="display: none;"@endif>
-            @include('maps.markers.fields.background_colour')
-        </div>
-
-        <x-forms.field field="group" :label="__('maps/markers.fields.group')">
-            <x-forms.select name="group_id" :options="$map->groupOptions()" :selected="$source->group_id ?? $model->group_id ?? null" id="group_id" />
-        </x-forms.field>
-
-        <x-forms.field field="is_popupless" :label="__('maps/markers.fields.popupless')">
-            <input type="hidden" name="is_popupless" value="0" />
-            <x-checkbox :text="__('maps/markers.helpers.is_popupless')">
-                <input type="checkbox" name="is_popupless" value="1" @if ($source->is_popupless ?? old('is_popupless', $model->is_popupless ?? false)) checked="checked" @endif />
-            </x-checkbox>
-        </x-forms.field>
-
-        @include('cruds.fields.visibility_id')
-
-    </x-grid>
-
-    <x-grid :hidden="!$model && empty($source)">
-        <x-forms.field field="latitude" :label="__('maps/markers.fields.latitude')">
-            <input type="number" name="latitude" value="{{ \App\Facades\FormCopy::field('latitude')->string() ?: old('latitude', $model->latitude ?? null) }}" id="marker-latitude" step="0.001" />
-        </x-forms.field>
-
-        <x-forms.field field="longitude" :label="__('maps/markers.fields.longitude')">
-            <input type="number" name="longitude" value="{{ \App\Facades\FormCopy::field('longitude')->string() ?: old('longitude', $model->longitude ?? null) }}" id="marker-longitude" step="0.001" />
-        </x-forms.field>
-    </x-grid>
-</div>
+@include('maps.markers._form_common_fields')
 
 <input type="hidden" name="shape_id" value="{{ $source->shape_id ?? $model->shape_id ?? 1 }}" />
 @if (isset($from))
     <input type="hidden" name="from" value="{{ $from }}" />
 @endif
-@includeWhen(isset($model), 'editors.editor')

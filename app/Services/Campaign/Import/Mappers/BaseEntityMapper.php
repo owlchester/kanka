@@ -5,6 +5,7 @@ namespace App\Services\Campaign\Import\Mappers;
 use App\Enums\Visibility;
 use App\Facades\ImportIdMapper;
 use App\Models\Attribute;
+use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityAbility;
 use App\Models\EntityAsset;
@@ -14,8 +15,10 @@ use App\Models\Image;
 use App\Models\Inventory;
 use App\Models\Post;
 use App\Models\PostTag;
+use App\Models\QuestElement;
 use App\Models\Relation;
 use App\Models\Reminder;
+use App\Models\TimelineElement;
 use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
@@ -411,16 +414,26 @@ trait BaseEntityMapper
             }
             try {
                 $men = new EntityMention;
-                $men->entity_id = $this->entity->id;
                 $men->target_id = ImportIdMapper::getEntity($data['target_id']);
                 if (! empty($data['campaign_id'])) {
-                    $men->campaign_id = $this->campaign->id;
+                    $men->mentionable_type = Campaign::class;
+                    $men->mentionable_id = $this->campaign->id;
                 } elseif (! empty($data['post_id'])) {
-                    $men->post_id = ImportIdMapper::getPost($data['post_id']);
+                    $men->mentionable_type = Post::class;
+                    $men->mentionable_id = ImportIdMapper::getPost($data['post_id']);
+                    $men->entity_id = $this->entity->id;
                 } elseif (! empty($data['timeline_element_id'])) {
-                    $men->timeline_element_id = ImportIdMapper::getTimelineElement($data['timeline_element_id']);
+                    $men->mentionable_type = TimelineElement::class;
+                    $men->mentionable_id = ImportIdMapper::getTimelineElement($data['timeline_element_id']);
+                    $men->entity_id = $this->entity->id;
                 } elseif (! empty($data['quest_element_id'])) {
-                    $men->quest_element_id = ImportIdMapper::getQuestElement($data['quest_element_id']);
+                    $men->mentionable_type = QuestElement::class;
+                    $men->mentionable_id = ImportIdMapper::getQuestElement($data['quest_element_id']);
+                    $men->entity_id = $this->entity->id;
+                } else {
+                    $men->mentionable_type = Entity::class;
+                    $men->mentionable_id = $this->entity->id;
+                    $men->entity_id = $this->entity->id;
                 }
                 $men->save();
             } catch (Exception $e) {

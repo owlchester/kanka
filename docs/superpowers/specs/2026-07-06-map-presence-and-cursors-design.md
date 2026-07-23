@@ -1,0 +1,50 @@
+# Real-Time Presence and Cursor Sharing for v4 Map Explorer Design
+
+## Goal
+
+Add basic real-time features to the v4 (Vue/Leaflet) map explorer, mirroring the existing whiteboard implementation: show which campaign members are currently viewing a map ("who's watching"), and show where each of them is currently pointing on the map (live cursor positions). This is the first of two planned passes — a later, separate pass will extend the same real-time channel to push marker add/edit/move/delete updates to other viewers (mirroring how whiteboards already broadcast shape changes); that work is explicitly out of scope here.
+
+## Out of Scope
+
+- No marker CRUD broadcasting (add/edit/move/delete propagation to other viewers) — a deliberately separate future pass, though this design's channel/composable structure is built so that pass can extend it rather than replace it.
+- No changes to the whiteboard implementation itself. Whiteboard's real-time logic is the direct precedent this design mirrors, but nothing there is refactored, extracted into a shared cross-feature abstraction, or otherwise touched.
+- No real-time features for guests. Laravel's presence-channel authorization requires an authenticated `User` (the `Broadcast::channel` closure signature has no guest path) — this is an existing, unavoidable platform limit whiteboards already live with, not a new gap introduced here.
+- No cursor fade/expiry when a user stops moving their mouse — a cursor simply stays at its last known position until the owner moves again or leaves the channel. Keeping this simple matches the "basic" scope of this pass.
+- No behavior change when Laravel Reverb isn't configured (e.g., a local dev environment without it running) — the entire feature (connection, presence UI, cursor tracking) is skipped cleanly, exactly matching how whiteboards already degrade.
+
+## Background
+
+Whiteboards already implement real-time presence and shape-update broadcasting, which this design mirrors closely for maps:
+
+- **Presence channel authorization** (`routes/channels.php`): `Broadcast::channel('whiteboard.{id}', function (User $user, $id) { ... })` resolves the `Whiteboard` by id, derives its owning `Entity`, and authorizes via `$user->can('member', $entity->campaign) && $user->can('view', $entity)` (campaign membership *and* entity-level view permission, so private/restricted boards are still respected). Returning an array (not a boolean) from the closure is what makes Echo/Reverb treat the channel as a *presence* channel; the returned shape is `{id, name, image, url, role}` (`role` is `'edit'` or `'view'` based on `$user->can('update', $entity)`).
+- **Connection config exposure**: `App\Services\Whiteboards\ApiService::interactive()` builds a small config object (`key`/`host`/`port`/`scheme` from `config('broadcasting.connections.reverb.*')`) included in the whiteboard's API payload — but only when Reverb is actually configured (`config('broadcasting.connections.reverb.key')` set) and the current user can view the whiteboard's entity. This is what lets the frontend build its own `Echo` instance without hardcoding connection details, and lets it degrade cleanly (skip everything) when the config is absent.
+- **Frontend**: `resources/js/components/whiteboards/Whiteboard.vue` builds an ad-hoc `Echo` instance from that config (`new Echo({broadcaster: 'reverb', key, wsHost, wsPort, wssPort, forceTLS, enabledTransports: ['ws', 'wss']})`), joins the presence channel (`echo.join('whiteboard.{id}')`), and populates a reactive `activeUsers` list from the channel's `here`/`joining`/`leaving` callbacks. Avatars for `activeUsers` render inline with a tooltip built from each user's `name`/`role`. On unmount, it calls `echo.leave(...)`.
+- **No shared abstraction exists.** All of the above lives inline in `Whiteboard.vue` (a single ~2500-line file) — there's no reusable composable, Echo wrapper, or backend trait a new feature could import directly. This design creates one for maps specifically (not a shared cross-feature one, since refactoring whiteboards is out of scope), because a second real-time pass (marker sync) is already planned to extend the same map channel.
+- **Cursor sharing has zero precedent anywhere in this codebase.** Whiteboards don't do it. This part of the design is new, chosen to be Reverb-idiomatic: presence and private channels support client "whisper" events (`channel.whisper(eventName, payload)` / `channel.listenForWhisper(eventName, callback)`) that never touch the Laravel backend at all — the natural fit for something as frequent as cursor movement, avoiding both server load and the broadcast-then-fan-out latency a real Event would add.
+
+The v4 map explorer's data flow is `Entity\Maps\ApiController::index()` → `App\Services\Maps\ExploreApiService::load()` → JSON payload consumed by `resources/js/components/maps/MapExplorer.vue`, which passes pieces of that payload down to `LeafletCanvas.vue` for rendering. Unlike whiteboards (keyed by the `Whiteboard` model's own id), maps' presence channel uses the `Map` model's own id (`map.{id}`), matching the *pattern* (misc-model id, not entity id) whiteboards already establish, since `Map` and `Whiteboard` are siblings under the same misc-model/entity structure.
+
+## Architecture
+
+**1. Presence channel** (`routes/channels.php`) — a new `Broadcast::channel('map.{id}', function (User $user, $id) { ... })`, structurally identical to the whiteboard one: resolve `Map::findOrFail($id)`, derive its entity, authorize via `$user->can('member', $entity->campaign) && $user->can('view', $entity)`, return `{id, name, image, url, role}` on success or `false` otherwise.
+
+**2. Connection + presence config on the map API payload** — `App\Services\Maps\ExploreApiService::load()` gains an `interactive` key, built the same way `WhiteboardApiService::interactive()` does: `{key, host, port, scheme, channel: "map.{$map->id}"}` when `config('broadcasting.connections.reverb.key')` is set and the current user can view the map's entity; `null` otherwise (guests, or Reverb not configured). It also carries `show_presence: bool` — `true` only when the map's campaign has more than one member (computed the same way `CampaignPolicy`/`CampaignCache` already determine membership elsewhere), so a solo campaign never renders the who's-watching UI, though the channel is still joined regardless (the websocket connection itself is unconditional whenever `interactive` is non-null, in anticipation of the future marker-sync pass benefiting even a single user with two open tabs).
+
+**3. `useMapPresence.js`** (new Vue composable, `resources/js/composables/`) — encapsulates everything real-time for a single map:
+- Builds an ad-hoc `Echo` instance from `interactive`'s connection details (same options as `Whiteboard.vue`'s).
+- Joins `interactive.channel` as a presence channel; exposes reactive `activeUsers` from `here`/`joining`/`leaving`.
+- Exposes a `sendCursor(lat, lng)` function that whispers the local user's position (throttled by the caller — see below).
+- Listens for other members' cursor whispers, maintaining a reactive `remoteCursors` map (`{userId: {lat, lng, name, colour}}`), removing an entry when that user leaves (via the same `leaving` callback that updates `activeUsers`).
+- Colour per user is deterministically derived from their id (a simple hash → hue), so a given user's cursor colour is stable across reloads and consistent for every viewer.
+- Cleans up (leaves the channel) on unmount.
+- Does nothing at all (all reactive state stays empty, no `Echo` instance created) when `interactive` is `null`.
+
+**4. `MapExplorer.vue`** — calls `useMapPresence(data.map.interactive)`, renders the who's-watching avatar list (same visual treatment as whiteboard's: circular avatars, `v-tippy` tooltip with name + role) in the header next to the map name, gated on `interactive?.show_presence`. Passes `remoteCursors` down to `LeafletCanvas.vue` as a new prop, and wires a `cursor-move` emit from `LeafletCanvas.vue` to the composable's `sendCursor`.
+
+**5. `LeafletCanvas.vue`** — binds `leafletMap.on('mousemove', ...)`, throttled to roughly 10 times per second (~100ms), converts the event to map coordinates via Leaflet's own `e.latlng` (no manual pixel math needed — this is why cursor positions are shared in map lat/lng rather than screen pixels: every viewer's Leaflet instance places the dot correctly regardless of their own zoom/pan), and emits `cursor-move` with `{lat, lng}`. Renders each entry in the new `remoteCursors` prop as a small, non-interactive coloured dot marker (no click handler, no dragging) in its own lightweight layer group, rebuilt/updated whenever `remoteCursors` changes.
+
+## Testing
+
+Backend: Pest feature tests covering `routes/channels.php`'s new `map.{id}` authorizer (a member with view access is authorized and gets the correct `{id, name, image, url, role}` shape; a non-member or a member without entity-level view access is rejected) and `ExploreApiService::load()`'s new `interactive`/`show_presence` fields (present with correct shape when Reverb is configured and the user can view; `null` for a user who can't view the map; `show_presence` correctly `true`/`false` based on campaign member count).
+
+Frontend: no automated test coverage exists for Vue/Leaflet component interaction in this app (matching the established pattern for every other v4 map explorer change) — verification is manual/live, requiring two authenticated sessions (e.g. two browser profiles) in a multi-member campaign: confirm both viewers' avatars appear in each other's who's-watching list, confirm moving the mouse in one session shows a live-updating coloured dot in the other's map at the correct spot regardless of independent zoom/pan, confirm a closed tab/left channel removes that viewer's avatar and cursor promptly, and confirm a solo-member campaign never shows the who's-watching list (even across two tabs of the same account) while still establishing the websocket connection.

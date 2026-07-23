@@ -11,14 +11,14 @@ $map = $entity->child;
 @if(!$map->explorable())
     <x-alert type="warning">
         <a href="{{ $entity->url() }}" class="text-link">{!! $entity->name !!}</a>
-        <p class="">{{ __('maps.errors.dashboard.missing') }}</p>
+        <p class="">{{ $map->tilingRunning() ? __('maps.errors.dashboard.tiling') : __('maps.errors.dashboard.missing') }}</p>
     </x-alert>
     @php return @endphp
 @endif
 
 <div class="widget-map">
     <div class="map map-dashboard rounded" id="map{{ $map->id }}" style="width: 100%; height: 100%;">
-        <a href="{{ route('maps.explore', [$campaign, $map]) }}" class="btn2 btn-primary btn-xs btn-map-explore z-820 absolute bottom-3 right-3">
+        <a href="{{ route('entities.map', [$campaign, $map->entity]) }}" class="btn2 btn-primary btn-xs btn-map-explore z-820 absolute bottom-3 right-3">
             <x-icon class="map" />
             {{ __('maps.actions.explore') }}
         </a>

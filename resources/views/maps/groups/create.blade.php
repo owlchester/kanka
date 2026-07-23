@@ -22,6 +22,7 @@
             'content' => 'maps.groups._form',
             'formParams' => ['model' => null, 'map' => $map],
             'actions' => 'maps.groups._actions',
+            'dropdownParent' => request()->ajax() ? '#primary-dialog' : null,
         ])
     </x-form>
 @endsection

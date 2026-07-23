@@ -10,6 +10,8 @@ use App\Jobs\EntityUpdatedJob;
 use App\Jobs\EntityWebhookJob;
 use App\Models\CampaignPermission;
 use App\Models\Entity;
+use App\Models\Image;
+use App\Services\Maps\TilingTriggerService;
 
 class EntityObserver
 {
@@ -31,6 +33,22 @@ class EntityObserver
 
         if ($entity->campaign->premium()) {
             EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::CREATED->value);
+        }
+
+        if ($entity->isMap() && $entity->image_uuid) {
+            $this->maybeTriggerTiling($entity);
+        }
+    }
+
+    protected function maybeTriggerTiling(Entity $entity): void
+    {
+        if (! $entity->image_uuid) {
+            return;
+        }
+
+        $image = Image::find($entity->image_uuid);
+        if ($image) {
+            app(TilingTriggerService::class)->maybeTrigger($image);
         }
     }
 
@@ -55,6 +73,8 @@ class EntityObserver
             $entity->map->height = null;
             $entity->map->width = null;
             $entity->map->saveQuietly();
+
+            $this->maybeTriggerTiling($entity);
         }
     }
 

@@ -71,22 +71,30 @@ return [
         'polygon'                   => [
             'edit'  => 'Edit the polygon by dragging its edges and nodes.',
         ],
+        'path'                      => [
+            'edit'  => 'Edit the path by dragging its points.',
+        ],
     ],
     'hints'         => [
         'entry' => 'Edit the marker to write a custom description for it.',
     ],
     'icons'         => [
+        'circle'        => 'Circle icon',
         'custom'        => 'Custom icon',
+        'diamond'       => 'Diamond icon',
         'entity'        => 'Entry\'s picture',
         'exclamation'   => 'Exclamation icon',
         'marker'        => 'Marker icon',
         'question'      => 'Question icon',
+        'square'        => 'Square icon',
+        'triangle'      => 'Triangle icon',
     ],
     'index'         => [
         'title' => 'Markers of :name',
     ],
     'pitches'       => [
-        'poly'  => 'Use polygons to outline borders, territories, or uneven regions on the map. Available as part of premium campaign features.',
+        'poly'  => 'Use areas to outline borders, territories, or uneven regions on the map. Available as part of premium campaign features.',
+        'path'  => 'Use paths to draw roads, rivers, or routes on the map. Available as part of premium campaign features.',
     ],
     'placeholders'  => [
         'custom_icon'   => 'Try :example1 or :example2',
@@ -111,9 +119,10 @@ return [
     ],
     'tabs'          => [
         'circle'    => 'Circle',
-        'label'     => 'Label',
-        'marker'    => 'Marker',
-        'polygon'   => 'Polygon',
+        'label'     => 'Text',
+        'marker'    => 'Pin',
+        'area'   => 'Area',
+        'path'   => 'Path',
         'preset'    => 'Preset',
     ],
 ];

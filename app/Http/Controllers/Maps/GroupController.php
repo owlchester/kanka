@@ -100,7 +100,7 @@ class GroupController extends Controller
                 ->with('max', config('limits.campaigns.maps.groups.premium'));
         }
         $model = new MapGroup;
-        $data = $request->only('name', 'position', 'entry', 'visibility_id', 'is_shown', 'parent_id');
+        $data = $request->only('name', 'position', 'entry', 'visibility_id', 'is_shown', 'parent_id', 'colour');
         if (Arr::exists($data, 'position')) {
             $map->groups()->where('position', '>', $data['position'] - 1)->increment('position');
         }
@@ -117,7 +117,7 @@ class GroupController extends Controller
                 ->withSuccess(__('maps/groups.create.success', ['name' => $new->name]));
         } elseif ($request->has('submit-explore')) {
             return redirect()
-                ->route('maps.explore', [$campaign, $map])
+                ->route('entities.map', [$campaign, $map->entity])
                 ->withSuccess(__('maps/groups.create.success', ['name' => $new->name]));
         }
 
@@ -146,7 +146,7 @@ class GroupController extends Controller
             return response()->json(['success' => true]);
         }
 
-        $mapGroup->update($request->only('name', 'position', 'entry', 'visibility_id', 'is_shown', 'parent_id'));
+        $mapGroup->update($request->only('name', 'position', 'entry', 'visibility_id', 'is_shown', 'parent_id', 'colour'));
 
         if ($request->has('submit-update')) {
             return redirect()
@@ -158,7 +158,7 @@ class GroupController extends Controller
                 ->withSuccess(__('maps/groups.edit.success', ['name' => $mapGroup->name]));
         } elseif ($request->has('submit-explore')) {
             return redirect()
-                ->route('maps.explore', [$campaign, $map])
+                ->route('entities.map', [$campaign, $map->entity])
                 ->withSuccess(__('maps/groups.edit.success', ['name' => $mapGroup->name]));
         }
 

@@ -1,5 +1,3 @@
-@include('maps.form._markers', ['source' => null])
-
 <h3 class="text-xl">
     {{ __('maps.panels.markers') }}
 </h3>

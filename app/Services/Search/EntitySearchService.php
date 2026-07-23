@@ -13,6 +13,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Meilisearch\Client;
 use Meilisearch\Contracts\SearchQuery;
+use Meilisearch\Exceptions\ExceptionInterface;
 
 class EntitySearchService
 {
@@ -102,9 +103,6 @@ class EntitySearchService
      */
     public function searchWithSnippets(string $term, ?string $term2 = null): array
     {
-        $client = new Client(config('scout.meilisearch.host'), config('scout.meilisearch.key'));
-        $client->getKeys();
-
         $baseQuery = fn (string $q) => (new SearchQuery)
             ->setIndexUid('entities')
             ->setQuery($q)
@@ -122,7 +120,14 @@ class EntitySearchService
             $queries[] = $baseQuery($term2);
         }
 
-        $results = $client->multiSearch($queries);
+        try {
+            $client = new Client(config('scout.meilisearch.host'), config('scout.meilisearch.key'));
+            $client->getKeys();
+            $results = $client->multiSearch($queries);
+        } catch (ExceptionInterface) {
+            return [];
+        }
+
         $hits = $results['results'][0]['hits'] ?? [];
         if ($term2) {
             $hits = array_merge($hits, $results['results'][1]['hits'] ?? []);

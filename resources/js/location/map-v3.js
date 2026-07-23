@@ -39,6 +39,11 @@ const initTabs = () => {
         document.querySelector('#map-marker-bg-colour').classList.remove('hidden');
         showMainFields();
     });
+    document.querySelector('a[href="#marker-path"]')?.addEventListener('click', function () {
+        shapeField.value = 6;
+        document.querySelector('#map-marker-bg-colour').classList.remove('hidden');
+        showMainFields();
+    });
     document.querySelector('a[href="#presets"]')?.addEventListener('click', function (e) {
         let target = e.currentTarget;
         loadPresets(target.dataset.presets);
@@ -312,13 +317,14 @@ window.startNewPolygon = function () {
 };
 
 window.setPolygonPosition = function (coords) {
-    let shape = document.querySelector('textarea[name="custom_shape"]');
+    const container = document.querySelector(isPath() ? '#marker-path' : '#marker-poly');
+    const shape = container.querySelector('textarea[name="custom_shape"]');
     shape.value = coords;
 };
 
 
 window.markerUpdateHandler = function (data) {
-    if (isPolygon()) {
+    if (isPolygon() || isPath()) {
         updatePolygon(data);
     }
     else if (isLabel()) {
@@ -327,14 +333,16 @@ window.markerUpdateHandler = function (data) {
 };
 
 const updatePolygon = (data) => {
-    //console.log('polygon updated', data);
-    let points = data.target.getLatLngs();
+    // A polygon's getLatLngs() returns a nested array of rings ([[point, ...]]);
+    // a path's getLatLngs() returns a flat array of points ([point, ...]) — both are
+    // handled here since this function now serializes both shapes' vertices.
+    let points = isPath() ? data.target.getLatLngs() : (data.target.getLatLngs()[0] || []);
     if (points.length === 0) {
         return;
     }
 
     let coords = [];
-    points[0].forEach((i) => {
+    points.forEach((i) => {
         coords.push(i.lat.toFixed(3) + ',' + i.lng.toFixed(3));
     });
     window.setPolygonPosition(coords.join(' '));
@@ -352,6 +360,9 @@ const updateLabel = (data) => {
 
 const isPolygon = () => {
     return Number(shapeField.value) === 5;
+};
+const isPath = () => {
+    return Number(shapeField.value) === 6;
 };
 const isLabel = () => {
     return Number(shapeField.value) === 2;

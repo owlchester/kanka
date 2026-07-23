@@ -127,7 +127,7 @@ class LayerController extends Controller
                 ->withSuccess(__('maps/layers.create.success', ['name' => $new->name]));
         } elseif ($request->has('submit-explore')) {
             return redirect()
-                ->route('maps.explore', [$campaign, $map])
+                ->route('entities.map', [$campaign, $map->entity])
                 ->withSuccess(__('maps/layers.create.success', ['name' => $new->name]));
         }
 
@@ -186,7 +186,7 @@ class LayerController extends Controller
                 ->withSuccess(__('maps/layers.create.success', ['name' => $mapLayer->name]));
         } elseif ($request->has('submit-explore')) {
             return redirect()
-                ->route('maps.explore', [$campaign, $map])
+                ->route('entities.map', [$campaign, $map->entity])
                 ->withSuccess(__('maps/layers.create.success', ['name' => $mapLayer->name]));
         }
 

@@ -1,0 +1,622 @@
+<?php
+
+use App\Http\Requests\StoreMapMarker;
+use App\Models\Character;
+use App\Models\Map;
+use App\Models\MapGroup;
+use App\Models\MapMarker;
+
+it('returns a preview for a marker with an entity, group, and entries', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $group = MapGroup::factory()->create(['map_id' => $map->id, 'name' => 'Towns']);
+    // entry lives on the Entity itself (MapMarker::entity()->hasEntry()/parsedEntry() operate on
+    // the Entity model, not the Character), and isn't mass-assignable, so set it directly like
+    // MapTest.php does for other Entity fields
+    $character = Character::factory()->create(['campaign_id' => 1]);
+    $entity = $character->entity;
+    $entity->entry = 'Entity entry text';
+    $entity->saveQuietly();
+
+    $marker = MapMarker::factory()->create([
+        'map_id' => $map->id,
+        'group_id' => $group->id,
+        'entity_id' => $entity->id,
+        'entry' => 'Marker entry text',
+        'shape_id' => 1,
+    ]);
+
+    $response = $this->get(route('entities.map-markers.preview', [1, $map->entity, $marker]))
+        ->assertStatus(200)
+        ->assertJsonStructure(['entity_name', 'entity_url', 'entity_image', 'marker_entry', 'entity_entry', 'type', 'group_name', 'can_edit']);
+
+    expect($response->json('entity_name'))->toBe($entity->name);
+    expect($response->json('entity_url'))->toBe($entity->url());
+    expect($response->json('type'))->toBe('Pin');
+    expect($response->json('group_name'))->toBe('Towns');
+    expect($response->json('can_edit'))->toBeTrue();
+    expect($response->json('marker_entry'))->toContain('Marker entry text');
+    expect($response->json('entity_entry'))->toContain('Entity entry text');
+});
+
+it('returns nulls for entity-specific fields when the marker has no linked entity', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create(['map_id' => $map->id]);
+
+    $response = $this->get(route('entities.map-markers.preview', [1, $map->entity, $marker]))->assertStatus(200);
+
+    expect($response->json('entity_name'))->toBeNull();
+    expect($response->json('entity_url'))->toBeNull();
+    expect($response->json('entity_image'))->toBeNull();
+    expect($response->json('entity_entry'))->toBeNull();
+    expect($response->json('group_name'))->toBeNull();
+});
+
+it('denies edit permission for a player', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create(['map_id' => $map->id]);
+
+    $this->asPlayer();
+
+    $response = $this->get(route('entities.map-markers.preview', [1, $map->entity, $marker]))->assertStatus(200);
+
+    expect($response->json('can_edit'))->toBeFalse();
+});
+
+it('404s preview for a non-map entity', function () {
+    $this->asUser()->withCampaign();
+    $entity = Character::factory()->create(['campaign_id' => 1])->entity;
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create(['map_id' => $map->id]);
+
+    $this->get(route('entities.map-markers.preview', [1, $entity, $marker]))->assertStatus(404);
+});
+
+it('404s preview for a marker belonging to a different map', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $otherMap = Map::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create(['map_id' => $otherMap->id]);
+
+    $this->get(route('entities.map-markers.preview', [1, $map->entity, $marker]))->assertStatus(404);
+});
+
+it('deletes a marker and returns 204', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create(['map_id' => $map->id]);
+
+    $this->delete(route('entities.map-markers.destroy', [1, $map->entity, $marker]))
+        ->assertStatus(204);
+
+    expect(MapMarker::find($marker->id))->toBeNull();
+});
+
+it('403s delete for a player without update permission', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create(['map_id' => $map->id]);
+
+    $this->asPlayer();
+
+    $this->delete(route('entities.map-markers.destroy', [1, $map->entity, $marker]))
+        ->assertStatus(403);
+
+    expect(MapMarker::find($marker->id))->not->toBeNull();
+});
+
+it('404s delete for a marker belonging to a different map', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $otherMap = Map::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create(['map_id' => $otherMap->id]);
+
+    $this->delete(route('entities.map-markers.destroy', [1, $map->entity, $marker]))->assertStatus(404);
+});
+
+it('creates a marker and returns it in PinResource shape', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $response = $this->postJson(route('entities.map-markers.store', [1, $map->entity]), [
+        'name' => 'New pin',
+        'latitude' => 12.5,
+        'longitude' => 34.5,
+        'colour' => '#f2c14e',
+        'shape_id' => 1,
+        'icon' => 1,
+    ])->assertStatus(201);
+
+    $marker = MapMarker::where('name', 'New pin')->firstOrFail();
+
+    expect($response->json('id'))->toBe($marker->id);
+    expect($response->json('name'))->toBe('New pin');
+    expect($response->json('colour'))->toBe('#f2c14e');
+    expect($response->json('shape'))->toBe('marker');
+    expect($response->json('icon'))->toBe(['type' => 'fa', 'value' => 'fa-solid fa-map-pin']);
+    expect($response->json('preview_url'))->toBe(route('entities.map-markers.preview', [1, $map->entity->id, $marker->id]));
+    expect($marker->map_id)->toBe($map->id);
+});
+
+it('creates a marker with is_draggable and css and returns them in PinResource shape', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $response = $this->postJson(route('entities.map-markers.store', [1, $map->entity]), [
+        'name' => 'Draggable pin',
+        'latitude' => 12.5,
+        'longitude' => 34.5,
+        'shape_id' => 1,
+        'icon' => 1,
+        'is_draggable' => true,
+        'css' => 'my-custom-marker',
+    ])->assertStatus(201);
+
+    $marker = MapMarker::where('name', 'Draggable pin')->firstOrFail();
+
+    expect($response->json('is_draggable'))->toBeTrue();
+    expect($response->json('css'))->toBe('my-custom-marker');
+    expect((bool) $marker->is_draggable)->toBeTrue();
+    expect($marker->css)->toBe('my-custom-marker');
+});
+
+it('updates a marker\'s is_draggable and css and returns them in PinResource shape', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create([
+        'map_id' => $map->id,
+        'is_draggable' => false,
+        'css' => null,
+    ]);
+
+    $response = $this->patchJson(route('entities.map-markers.update', [1, $map->entity, $marker]), [
+        'name' => $marker->name,
+        'latitude' => 1,
+        'longitude' => 1,
+        'shape_id' => 1,
+        'icon' => 1,
+        'is_draggable' => true,
+        'css' => 'highlighted',
+    ])->assertStatus(200);
+
+    expect($response->json('is_draggable'))->toBeTrue();
+    expect($response->json('css'))->toBe('highlighted');
+    expect((bool) $marker->fresh()->is_draggable)->toBeTrue();
+    expect($marker->fresh()->css)->toBe('highlighted');
+});
+
+it('403s create for a player without update permission', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $this->asPlayer();
+
+    $this->postJson(route('entities.map-markers.store', [1, $map->entity]), [
+        'name' => 'New pin',
+        'latitude' => 12.5,
+        'longitude' => 34.5,
+        'shape_id' => 1,
+        'icon' => 1,
+    ])->assertStatus(403);
+
+    expect(MapMarker::where('name', 'New pin')->exists())->toBeFalse();
+});
+
+it('404s create for a non-map entity', function () {
+    $this->asUser()->withCampaign();
+    $entity = Character::factory()->create(['campaign_id' => 1])->entity;
+
+    $this->postJson(route('entities.map-markers.store', [1, $entity]), [
+        'name' => 'New pin',
+        'latitude' => 12.5,
+        'longitude' => 34.5,
+        'shape_id' => 1,
+        'icon' => 1,
+    ])->assertStatus(404);
+});
+
+it('422s create when both name and entity_id are missing', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $this->postJson(route('entities.map-markers.store', [1, $map->entity]), [
+        'latitude' => 12.5,
+        'longitude' => 34.5,
+        'shape_id' => 1,
+        'icon' => 1,
+    ])->assertStatus(422);
+});
+
+it('creates a polygon marker with custom_shape and polygon_style and returns them in PinResource shape', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $response = $this->postJson(route('entities.map-markers.store', [1, $map->entity]), [
+        'name' => 'New area',
+        'latitude' => 12.5,
+        'longitude' => 34.5,
+        'colour' => '#f2c14e',
+        'opacity' => 60,
+        'shape_id' => 5,
+        'icon' => 1,
+        'custom_shape' => '10.500,20.250 11.750,21.100 12.250,19.750',
+        'polygon_style' => ['stroke' => '#123456', 'stroke-width' => 3],
+    ])->assertStatus(201);
+
+    $marker = MapMarker::where('name', 'New area')->firstOrFail();
+
+    expect($response->json('shape'))->toBe('poly');
+    expect($response->json('custom_shape'))->toBe([
+        [10.5, 20.25],
+        [11.75, 21.1],
+        [12.25, 19.75],
+    ]);
+    expect($response->json('polygon_style'))->toBe(['stroke' => '#123456', 'stroke-width' => 3]);
+    expect($marker->custom_shape)->toBe('10.500,20.250 11.750,21.100 12.250,19.750');
+});
+
+it('422s create when polygon_style has an out-of-range stroke-width', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $this->postJson(route('entities.map-markers.store', [1, $map->entity]), [
+        'name' => 'New area',
+        'latitude' => 12.5,
+        'longitude' => 34.5,
+        'shape_id' => 5,
+        'icon' => 1,
+        'custom_shape' => '10.500,20.250 11.750,21.100 12.250,19.750',
+        'polygon_style' => ['stroke' => '#123456', 'stroke-width' => 999],
+    ])->assertStatus(422);
+});
+
+it('creates a circle marker with a positive circle_radius and returns it in PinResource shape', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $response = $this->postJson(route('entities.map-markers.store', [1, $map->entity]), [
+        'name' => 'New circle',
+        'latitude' => 12.5,
+        'longitude' => 34.5,
+        'colour' => '#f2c14e',
+        'opacity' => 50,
+        'shape_id' => 3,
+        'icon' => 1,
+        'circle_radius' => 750,
+    ])->assertStatus(201);
+
+    $marker = MapMarker::where('name', 'New circle')->firstOrFail();
+
+    expect($response->json('shape'))->toBe('circle');
+    expect($marker->circle_radius)->toBe(750);
+});
+
+it('422s create when circle_radius is zero or negative', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $this->postJson(route('entities.map-markers.store', [1, $map->entity]), [
+        'name' => 'New circle',
+        'latitude' => 12.5,
+        'longitude' => 34.5,
+        'shape_id' => 3,
+        'icon' => 1,
+        'circle_radius' => 0,
+    ])->assertStatus(422);
+});
+
+it('clears a stale circle_radius when the legacy edit form saves a preset size_id', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create([
+        'map_id' => $map->id,
+        'shape_id' => 3,
+        'size_id' => 6,
+        'circle_radius' => 750,
+    ]);
+
+    // The legacy form always submits circle_radius, even though a preset size (1-5) is chosen,
+    // pre-filled from the marker's previous (now stale) custom radius.
+    $this->put(route('maps.map_markers.update', [1, $map, $marker]), [
+        'name' => $marker->name,
+        'latitude' => 12.5,
+        'longitude' => 34.5,
+        'shape_id' => 3,
+        'icon' => 1,
+        'size_id' => 2,
+        'circle_radius' => 750,
+    ])->assertRedirect();
+
+    expect($marker->fresh()->circle_radius)->toBeNull();
+});
+
+it('keeps circle_radius when the legacy edit form saves size_id 6 (custom)', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create([
+        'map_id' => $map->id,
+        'shape_id' => 3,
+        'size_id' => 6,
+        'circle_radius' => 750,
+    ]);
+
+    $this->put(route('maps.map_markers.update', [1, $map, $marker]), [
+        'name' => $marker->name,
+        'latitude' => 12.5,
+        'longitude' => 34.5,
+        'shape_id' => 3,
+        'icon' => 1,
+        'size_id' => 6,
+        'circle_radius' => 900,
+    ])->assertRedirect();
+
+    expect($marker->fresh()->circle_radius)->toBe(900);
+});
+
+it('keeps circle_radius when the v4 map explorer resizes a circle without sending size_id', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    // No size_id override: the row is persisted with the column's DB default (1), just like a
+    // circle created through the v4 map explorer, which never submits size_id at all.
+    $marker = MapMarker::factory()->create([
+        'map_id' => $map->id,
+        'shape_id' => 3,
+        'circle_radius' => 750,
+    ]);
+
+    $response = $this->patchJson(route('entities.map-markers.update', [1, $map->entity, $marker]), [
+        'name' => $marker->name,
+        'latitude' => 12.5,
+        'longitude' => 34.5,
+        'shape_id' => 3,
+        'icon' => 1,
+        'circle_radius' => 900,
+    ])->assertStatus(200);
+
+    expect($response->json('circle_radius'))->toBe(900);
+    expect($marker->fresh()->circle_radius)->toBe(900);
+});
+
+it('creates a path marker with custom_shape and returns it in PinResource shape', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $response = $this->postJson(route('entities.map-markers.store', [1, $map->entity]), [
+        'name' => 'New path',
+        'latitude' => 12.5,
+        'longitude' => 34.5,
+        'colour' => '#f2c14e',
+        'opacity' => 75,
+        'shape_id' => 6,
+        'icon' => 1,
+        'custom_shape' => '10.500,20.250 11.750,21.100 12.250,19.750',
+        'polygon_style' => ['stroke-width' => 4],
+    ])->assertStatus(201);
+
+    $marker = MapMarker::where('name', 'New path')->firstOrFail();
+
+    expect($response->json('shape'))->toBe('path');
+    expect($response->json('custom_shape'))->toBe([
+        [10.5, 20.25],
+        [11.75, 21.1],
+        [12.25, 19.75],
+    ]);
+    expect($marker->custom_shape)->toBe('10.500,20.250 11.750,21.100 12.250,19.750');
+});
+
+it('updates a marker and returns it in PinResource shape', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $group = MapGroup::factory()->create(['map_id' => $map->id]);
+    $marker = MapMarker::factory()->create([
+        'map_id' => $map->id,
+        'name' => 'Old name',
+        'latitude' => 1,
+        'longitude' => 1,
+        'shape_id' => 1,
+        'icon' => 1,
+    ]);
+
+    $response = $this->patchJson(route('entities.map-markers.update', [1, $map->entity, $marker]), [
+        'name' => 'New name',
+        'latitude' => 12.5,
+        'longitude' => 34.5,
+        'colour' => '#123456',
+        'shape_id' => 1,
+        'icon' => 3,
+        'group_id' => $group->id,
+        'opacity' => 60,
+    ])->assertStatus(200);
+
+    expect($response->json('id'))->toBe($marker->id);
+    expect($response->json('name'))->toBe('New name');
+    expect($response->json('colour'))->toBe('#123456');
+    expect($response->json('group_id'))->toBe($group->id);
+    expect($response->json('opacity'))->toEqual(60.0);
+    expect($response->json('update_url'))->toBe(route('entities.map-markers.update', [1, $map->entity->id, $marker->id]));
+    expect($marker->fresh()->name)->toBe('New name');
+    expect($marker->fresh()->latitude)->toEqual(12.5);
+});
+
+it('updates a marker\'s entity link, visibility, and custom icon and returns them in PinResource shape', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $character = Character::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create(['map_id' => $map->id, 'name' => 'Pin']);
+
+    $response = $this->patchJson(route('entities.map-markers.update', [1, $map->entity, $marker]), [
+        'name' => 'Pin',
+        'latitude' => 1,
+        'longitude' => 1,
+        'shape_id' => 1,
+        'icon' => 1,
+        'custom_icon' => 'fa-solid fa-star',
+        'entity_id' => $character->entity->id,
+        'visibility_id' => 2,
+    ])->assertStatus(200);
+
+    expect($response->json('shape_id'))->toBe(1);
+    expect($response->json('icon_id'))->toBe(1);
+    expect($response->json('custom_icon'))->toBe('fa-solid fa-star');
+    expect($response->json('entity_id'))->toBe($character->entity->id);
+    expect($response->json('entity_name'))->toBe($character->entity->name);
+    expect($response->json('visibility_id'))->toBe(2);
+});
+
+it('403s update for a player without update permission', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create(['map_id' => $map->id, 'name' => 'Old name']);
+
+    $this->asPlayer();
+
+    $this->patchJson(route('entities.map-markers.update', [1, $map->entity, $marker]), [
+        'name' => 'New name',
+        'latitude' => 1,
+        'longitude' => 1,
+        'shape_id' => 1,
+        'icon' => 1,
+    ])->assertStatus(403);
+
+    expect($marker->fresh()->name)->toBe('Old name');
+});
+
+it('404s update for a marker belonging to a different map', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $otherMap = Map::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create(['map_id' => $otherMap->id]);
+
+    $this->patchJson(route('entities.map-markers.update', [1, $map->entity, $marker]), [
+        'name' => 'New name',
+        'latitude' => 1,
+        'longitude' => 1,
+        'shape_id' => 1,
+        'icon' => 1,
+    ])->assertStatus(404);
+});
+
+it('404s update for a non-map entity', function () {
+    $this->asUser()->withCampaign();
+    $entity = Character::factory()->create(['campaign_id' => 1])->entity;
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create(['map_id' => $map->id]);
+
+    $this->patchJson(route('entities.map-markers.update', [1, $entity, $marker]), [
+        'name' => 'New name',
+        'latitude' => 1,
+        'longitude' => 1,
+        'shape_id' => 1,
+        'icon' => 1,
+    ])->assertStatus(404);
+});
+
+it('updates a marker without requiring all fields for partial patch', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create(['map_id' => $map->id, 'latitude' => 5, 'longitude' => 6]);
+
+    $response = $this->patchJson(route('entities.map-markers.update', [1, $map->entity, $marker]), [
+        'name' => 'Updated name',
+        'shape_id' => 1,
+        'icon' => 1,
+    ])->assertStatus(200);
+
+    expect($response->json('name'))->toBe('Updated name');
+    expect($marker->fresh()->latitude)->toEqual(5);
+    expect($marker->fresh()->longitude)->toEqual(6);
+});
+
+it('marks latitude, longitude, shape_id, and icon as required in StoreMapMarker rules', function () {
+    // ApiRequest::clean() only strips `required` from PUT/PATCH rules when the current
+    // request is bound as a PUT/PATCH request. Instantiating the FormRequest directly,
+    // with no HTTP call made, isn't in a PUT/PATCH request context, so rules() returns
+    // the rules unstripped. This proves StoreMapMarker enforces these fields in production
+    // (POST, and PATCH outside the test/API-domain relaxation).
+    $rules = (new StoreMapMarker)->rules();
+
+    expect($rules['latitude'])->toContain('required');
+    expect($rules['longitude'])->toContain('required');
+    expect($rules['shape_id'])->toContain('required');
+    expect($rules['icon'])->toContain('required');
+});
+
+it('wraps a multi-paragraph plain-text entry into <p> tags on create via the v4 API', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $response = $this->postJson(route('entities.map-markers.store', [1, $map->entity]), [
+        'name' => 'Wrapped entry pin',
+        'latitude' => 12.5,
+        'longitude' => 34.5,
+        'shape_id' => 1,
+        'icon' => 1,
+        'entry' => "First paragraph.\nStill first <paragraph>.\n\nSecond paragraph.",
+    ])->assertStatus(201);
+
+    $marker = MapMarker::where('name', 'Wrapped entry pin')->firstOrFail();
+    $expected = '<p>First paragraph.<br>Still first &lt;paragraph&gt;.</p><p>Second paragraph.</p>';
+
+    expect($response->json('entry'))->toBe($expected);
+    expect($marker->fresh()->entry)->toBe($expected);
+});
+
+it('wraps a multi-paragraph plain-text entry into <p> tags on update via the v4 API', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create(['map_id' => $map->id, 'shape_id' => 1, 'entry' => '<p>Old.</p>']);
+
+    $response = $this->patchJson(route('entities.map-markers.update', [1, $map->entity, $marker]), [
+        'name' => $marker->name,
+        'latitude' => 1,
+        'longitude' => 1,
+        'shape_id' => 1,
+        'icon' => 1,
+        'entry' => "New first paragraph.\n\nNew second paragraph.",
+    ])->assertStatus(200);
+
+    $expected = '<p>New first paragraph.</p><p>New second paragraph.</p>';
+
+    expect($response->json('entry'))->toBe($expected);
+    expect($marker->fresh()->entry)->toBe($expected);
+});
+
+it('leaves a null entry untouched when creating a marker with no description', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $response = $this->postJson(route('entities.map-markers.store', [1, $map->entity]), [
+        'name' => 'No entry pin',
+        'latitude' => 1,
+        'longitude' => 1,
+        'shape_id' => 1,
+        'icon' => 1,
+    ])->assertStatus(201);
+
+    expect($response->json('entry'))->toBeNull();
+    expect(MapMarker::where('name', 'No entry pin')->firstOrFail()->entry)->toBeNull();
+});
+
+it('does not paragraph-wrap entry submitted through the legacy marker edit form', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create(['map_id' => $map->id, 'shape_id' => 1]);
+
+    $this->put(route('maps.map_markers.update', [1, $map, $marker]), [
+        'name' => $marker->name,
+        'latitude' => 1,
+        'longitude' => 1,
+        'shape_id' => 1,
+        'icon' => 1,
+        'entry' => "Para one.\n\nPara two.",
+    ])->assertRedirect();
+
+    // The legacy controller reads $request->only($this->fields), which never calls
+    // StoreMapMarker::validated() — so wrapEntryParagraphs() never runs here. The single
+    // <p> wrapping the whole blank-line-separated text below is SaveService's own
+    // pre-existing DOMDocument round-trip behavior (confirmed unchanged by this task,
+    // not per-paragraph <p> splitting like the v4 API now does).
+    expect($marker->fresh()->entry)->toBe("<p>Para one.\n\nPara two.</p>");
+});

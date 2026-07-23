@@ -10,19 +10,20 @@ return [
         'title' => 'New Map',
     ],
     'errors'        => [
-        'chunking'  => [
-            'error'     => 'There was an error while chunking the map. Please contact the team on :discord for support.',
+        'tiling'    => [
+            'error'     => 'There was an error while tiling the map. Please contact the team on :discord for support.',
             'running'   => [
-                'edit'      => 'The map cannot be edited while it\'s been chunked.',
-                'explore'   => 'The map cannot be displayed while it\'s been chunked.',
+                'edit'      => 'The map cannot be edited while it\'s being tiled.',
+                'explore'   => 'The map cannot be displayed while it\'s being tiled.',
                 'time'      => 'This can take several minutes to several hours, depending on the size of the map.',
             ],
         ],
         'dashboard' => [
             'missing'   => 'This map needs an image to be able to render on the dashboard.',
+            'tiling'    => 'This map\'s resources are being tiled. Please check back soon.',
         ],
         'explore'   => [
-            'missing'   => 'Please add an image to the map before being able to explore it.',
+            'missing'   => 'Please add an image to the map before being able to view it.',
         ],
     ],
     'fields'        => [
@@ -46,10 +47,10 @@ return [
     'helpers'       => [
         'center'                => 'Changing the following values will control which area of the map is focused on. Leaving these values empty will result in the center of the map being focued on.',
         'centering'             => 'Centering on a marker will take priority on default coordinates.',
-        'chunked_zoom'          => 'Automatically cluster markers together when they are close to each other.',
-        'distance_measure'      => 'Giving the map a distance measurement will enable the measurement tool in the exploration mode.',
+        'tiled_zoom'            => 'Automatically cluster markers together when they are close to each other.',
+        'distance_measure'      => 'Define a distance measurement to enable the measurement tool.',
         'distance_measure_2'    => 'For 100 pixels to measure 1 kilometer, input a value of 0.0041.',
-        'grid'                  => 'Define a grid size that will be displayed in the exploration mode. A value below 10 will result in a greyed out map.',
+        'grid'                  => 'Define a grid\'s size overlayed on top of the map. A value below 10 will result in a greyed out map when zoomed out.',
         'has_clustering'        => 'Automatically cluster markers together when they are close to each other.',
         'initial_zoom'          => 'The initial zoom level a map is loaded with. The default value is :default, while the highest allowed value is :max and the lowest allowed value is :min.',
         'is_real'               => 'Select this option if you want to use a real world map instead of the uploaded image. This option disable layers.',
@@ -82,8 +83,8 @@ return [
         ],
     ],
     'tooltips'      => [
-        'chunking'  => [
-            'running'   => 'Map is being chunked. This process can take several minutes to hours.',
+        'tiling'    => [
+            'running'   => 'Map is being tiled. This process can take several minutes to hours.',
         ],
     ],
 ];

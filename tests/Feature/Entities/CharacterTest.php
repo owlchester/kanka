@@ -22,6 +22,16 @@ it('POSTS a new character')
         ],
     ]);
 
+it('POSTS a public character when privacy is null')
+    ->asUser()
+    ->withCampaign()
+    ->postJson('/api/1.0/campaigns/1/characters', [
+        'name' => fake()->name(),
+        'is_private' => null,
+    ])
+    ->assertStatus(201)
+    ->assertJsonFragment(['is_private' => false]);
+
 it('GETS all characters')
     ->asUser()
     ->withCampaign()

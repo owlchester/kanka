@@ -2,7 +2,9 @@
 
 namespace App\Observers;
 
+use App\Events\Maps\ContentsChanged;
 use App\Facades\Images;
+use App\Models\Map;
 use App\Models\MapLayer;
 
 class MapLayerObserver
@@ -29,15 +31,35 @@ class MapLayerObserver
         }
     }
 
+    public function saved(MapLayer $mapLayer)
+    {
+        $mapLayer->map->touchSilently();
+    }
+
+    public function created(MapLayer $mapLayer): void
+    {
+        $this->reorder($mapLayer);
+        $this->broadcastContents($mapLayer->map);
+    }
+
+    public function updated(MapLayer $mapLayer): void
+    {
+        if ($mapLayer->wasChanged('position')) {
+            $this->reorder($mapLayer);
+        }
+        $this->broadcastContents($mapLayer->map);
+    }
+
     public function deleted(MapLayer $mapLayer)
     {
         Images::model($mapLayer)->cleanup();
         $mapLayer->map->touchSilently();
+        $this->broadcastContents($mapLayer->map);
     }
 
-    public function saved(MapLayer $mapLayer)
+    protected function broadcastContents(Map $map): void
     {
-        $this->reorder($mapLayer);
-        $mapLayer->map->touchSilently();
+        ContentsChanged::dispatch($map);
+        ContentsChanged::dispatch($map, true);
     }
 }
