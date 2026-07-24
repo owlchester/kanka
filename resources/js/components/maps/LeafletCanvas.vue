@@ -1,5 +1,5 @@
 <template>
-    <div ref="mapEl" class="w-full h-screen"></div>
+    <div ref="mapEl" :class="props.embedded ? 'w-full h-full' : 'w-full h-screen'"></div>
 </template>
 
 <script setup>
@@ -23,6 +23,7 @@ const props = defineProps({
     canEdit: { type: Boolean, default: false },
     remoteCursors: { type: Object, default: () => ({}) },
     legacyPins: { type: Boolean, default: false },
+    embedded: { type: Boolean, default: false },
     defaultPolygonStyle: {
         type: Object,
         default: () => ({ colour: '#93c5fd', opacity: 50, stroke: '#93c5fd', 'stroke-width': 1 }),
@@ -136,7 +137,7 @@ function buildRuler() {
         rulerControl = null
     }
 
-    if (! props.map.has_distance_unit) {
+    if (! props.map.has_distance_unit || props.embedded) {
         return
     }
 

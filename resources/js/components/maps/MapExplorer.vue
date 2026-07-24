@@ -880,6 +880,14 @@ onMounted(async () => {
     try {
         const res = await axios.get(props.api);
         data.value = res.data;
+
+        const focusId = data.value.map?.focus_pin_id;
+        if (focusId) {
+            const pin = data.value.pins.find((p) => p.id === focusId);
+            if (pin) {
+                selectPin(pin);
+            }
+        }
     } catch (e) {
         error.value = props.errorText;
     } finally {

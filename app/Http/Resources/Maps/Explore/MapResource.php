@@ -21,6 +21,7 @@ class MapResource extends JsonResource
         $isTiled = $map->isTiled();
         $tiling = $map->tilingRunning() ? 'running' : ($map->tilingError() ? 'error' : null);
         $center = array_map('floatval', explode(', ', $map->centerFocus()));
+        $focusPinId = null;
 
         if ($request->filled('lat') && $request->filled('lng')) {
             $center = [(float) $request->query('lat'), (float) $request->query('lng')];
@@ -29,6 +30,7 @@ class MapResource extends JsonResource
             $pin = $map->markers->first(fn ($marker) => $marker->id === $focusId && $marker->visible());
             if ($pin) {
                 $center = [(float) $pin->latitude, (float) $pin->longitude];
+                $focusPinId = $pin->id;
             }
         }
 
@@ -47,6 +49,7 @@ class MapResource extends JsonResource
             'max_zoom' => $map->maxZoom(),
             'initial_zoom' => $map->initialZoom(),
             'center' => $center,
+            'focus_pin_id' => $focusPinId,
             'tile_url' => $map->isReal() ? 'https://tile.openstreetmap.org/{z}/{x}/{y}.png' : null,
             'tiles_url' => $map->tilesUrl(),
             'create_url' => route('entities.map-markers.store', [$this->campaign->id, $map->entity->id]),
