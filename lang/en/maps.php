@@ -5,6 +5,7 @@ return [
         'back'      => 'Back to :name',
         'edit'      => 'Edit map',
         'explore'   => 'Explore',
+        'explore_named' => 'Explore :name',
     ],
     'create'        => [
         'title' => 'New Map',

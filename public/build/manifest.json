@@ -373,12 +373,13 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-DfZh_BHe.js",
+    "file": "assets/app-5rOe6kFg.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
     "imports": [
       "_coloris-CzWPJjQD.js",
+      "_preload-helper-B_nTnwcT.js",
       "_sortable.esm-DdTU3J9A.js",
       "_dialog-DkrH_pRQ.js",
       "_coloris-DsKOFKq5.js",
@@ -390,6 +391,9 @@
       "_Browser.vue_vue_type_script_setup_true_lang-CBM2FBcD.js",
       "_vue-tippy.esm-browser-D-fvLvi_.js",
       "__commonjsHelpers-Cpj98o6Y.js"
+    ],
+    "dynamicImports": [
+      "resources/js/maps/preview-runtime.js"
     ]
   },
   "resources/js/attributes-manager.js": {
@@ -621,7 +625,7 @@
     "isEntry": true
   },
   "resources/js/maps/explore.js": {
-    "file": "assets/explore-4WaqOL9Z.js",
+    "file": "assets/explore-C6NWxChy.js",
     "name": "explore",
     "src": "resources/js/maps/explore.js",
     "isEntry": true,
@@ -643,12 +647,24 @@
       "assets/explore-BNl5r04j.css"
     ]
   },
+  "resources/js/maps/preview-runtime.js": {
+    "file": "assets/preview-runtime-xODlbTcA.js",
+    "name": "preview-runtime",
+    "src": "resources/js/maps/preview-runtime.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_LeafletCanvas-CqHvFfWz.js",
+      "_vendor-tiptap-JRNDa8zr.js",
+      "__commonjsHelpers-Cpj98o6Y.js"
+    ]
+  },
   "resources/js/maps/preview.js": {
-    "file": "assets/preview-CMeu7eqZ.js",
+    "file": "assets/preview-DgeRF9WZ.js",
     "name": "preview",
     "src": "resources/js/maps/preview.js",
     "isEntry": true,
     "imports": [
+      "resources/js/maps/preview-runtime.js",
       "_LeafletCanvas-CqHvFfWz.js",
       "_vendor-tiptap-JRNDa8zr.js",
       "__commonjsHelpers-Cpj98o6Y.js"
@@ -711,7 +727,7 @@
     "isEntry": true
   },
   "resources/js/whiteboards.js": {
-    "file": "assets/whiteboards-D63zlnni.js",
+    "file": "assets/whiteboards-BlohRWvO.js",
     "name": "whiteboards",
     "src": "resources/js/whiteboards.js",
     "isEntry": true,

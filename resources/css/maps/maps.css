@@ -20,10 +20,6 @@
     min-height: calc(30vh);
 }
 
-.map-preview {
-    min-height: calc(100vh);
-}
-
 .marker {
     color: white;
     background-color: unset;

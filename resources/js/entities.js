@@ -1,4 +1,20 @@
 /**
+ * Mount the Vue map preview on any `field:map` mention rendered inline in an entity's
+ * or post's entry. Kept out of the main bundle (dynamic import) so pages without a map
+ * mention never pull in Leaflet. Re-run on the `kanka.default` pub-sub so mentions that
+ * arrive later (paginated/anchor-loaded posts) still get mounted.
+ */
+const scanAndMountMapPreviews = () => {
+    const nodes = document.querySelectorAll('.js-map-preview:not(.js-map-preview-mounted)');
+    if (!nodes.length) {
+        return;
+    }
+
+    nodes.forEach((node) => node.classList.add('js-map-preview-mounted'));
+    import('./maps/preview-runtime.js').then(({ mountMapPreviews }) => mountMapPreviews(nodes));
+};
+
+/**
  * Expand/Collapse all posts on the overview of an entity
  */
 const registerStoryActions = () => {
@@ -106,6 +122,7 @@ const registerLoadAnchorPost = () => {
     axios.get(url)
         .then(res => {
             config.insertAdjacentHTML('afterbegin', res.data);
+            window.triggerEvent();
 
             selector = document.getElementById(postId);
             window.scrollTo({
@@ -120,3 +137,5 @@ registerStoryActions();
 registerStoryLoadMore();
 registerTrustDomain();
 registerLoadAnchorPost();
+scanAndMountMapPreviews();
+window.onEvent(scanAndMountMapPreviews);

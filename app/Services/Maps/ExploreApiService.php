@@ -221,6 +221,15 @@ class ExploreApiService
             'opacity' => __('maps/explorer.marker.opacity'),
             'custom' => __('maps/explorer.marker.custom'),
             'premium_custom_icon' => __('maps/explorer.marker.premium_custom_icon'),
+            'custom_icon_helper' => __('maps/markers.helpers.custom_icon_v2', [
+                'fontawesome' => '<a href="' . config('fontawesome.search') . '" target="_blank" rel="noopener noreferrer" class="text-link">Font Awesome</a>',
+                'rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/" target="_blank" rel="noopener noreferrer" class="text-link">RPG Awesome</a>',
+                'docs' => '<a href="https://docs.kanka.io/en/latest/entries/maps/markers.html#custom-icon" target="_blank" rel="noopener noreferrer" class="text-link">' . __('footer.documentation') . '</a>',
+            ]),
+            'custom_icon_placeholder' => __('maps/markers.placeholders.custom_icon', [
+                'example1' => '"fa-solid fa-gem"',
+                'example2' => '"ra ra-aura"',
+            ]),
             'markers_count_one' => __('maps/explorer.markers_count.one'),
             'markers_count_other' => __('maps/explorer.markers_count.other'),
             'peek_map' => __('maps/explorer.marker.peek_map'),

@@ -71,6 +71,9 @@ class MentionsService
     /** @var bool When true, mentions will be mapped into links to the entities */
     protected bool $isCopying = false;
 
+    /** @var bool When true, a `field:map` mention renders an inline Vue map preview instead of an iframe */
+    protected bool $renderMapPreview = false;
+
     public function __construct(
         protected MarkupFixer $markupFixer,
         protected NewService $newService,
@@ -121,9 +124,10 @@ class MentionsService
      *
      * @return string|string[]|null
      */
-    public function mapAny(Model $model, string $field = 'entry')
+    public function mapAny(Model $model, string $field = 'entry', bool $renderMapPreview = false)
     {
         $this->text = (string) $model->{$field};
+        $this->renderMapPreview = $renderMapPreview;
 
         return $this->extractAndReplace();
     }
@@ -231,7 +235,12 @@ class MentionsService
 
     protected function replaceEntityMentions(): void
     {
-        $this->text = preg_replace_callback('`\[([a-z_-]+):(.*?)\]`i', function ($matches) {
+        // Captured by value (not read from $this inside the closure) because a nested
+        // field:entry/transclude mention re-enters this same method on $this before the
+        // outer preg_replace_callback finishes, and would otherwise clobber the flag for
+        // any field:map mention that appears later in the same outer text.
+        $renderMapPreview = $this->renderMapPreview;
+        $this->text = preg_replace_callback('`\[([a-z_-]+):(.*?)\]`i', function ($matches) use ($renderMapPreview) {
             // Icons
             $fontAwesomes = ['fa ', 'fas ', 'far ', 'fab ', 'ra ', 'fa-solid ', 'fa-regular ', 'fa-brands '];
             if ($matches[1] == 'icon' && Str::startsWith($matches[2], $fontAwesomes)) {
@@ -390,6 +399,14 @@ class MentionsService
                             class="entity-attributes-render w-full h-full"
                         ></iframe>';
                     } elseif ($field == 'map' && isset($child) && $child->explorable()) {
+                        $exploreUrl = route('entities.map', [$this->campaign, $entity]);
+
+                        if (! $renderMapPreview) {
+                            return '<a href="' . $exploreUrl . '" class="text-link">'
+                                . e(__('maps.actions.explore_named', ['name' => $child->name]))
+                                . '</a>';
+                        }
+
                         $height = 300;
                         $width = 300;
                         if (isset($routeOptions['height']) && is_numeric($routeOptions['height'])) {
@@ -399,7 +416,14 @@ class MentionsService
                             $width = $routeOptions['width'];
                         }
 
-                        return '<iframe src="' . route('maps.preview', [$this->campaign, $child]) . '" class="map-preview" data-map="{{ $entity->id }}" width="' . $width . '" height="' . $height . '"></iframe>';
+                        return '<div class="map-mention-preview rounded overflow-hidden" style="width: ' . $width . 'px; height: ' . $height . 'px; position: relative;">'
+                            . '<div class="js-map-preview absolute inset-0"'
+                            . ' data-api="' . route('entities.map-api', [$this->campaign, $entity]) . '"'
+                            . ' data-explore-url="' . $exploreUrl . '"'
+                            . ' data-loading="' . e(__('maps/explorer.loading')) . '"'
+                            . ' data-error="' . e(__('maps/explorer.errors.load')) . '"'
+                            . '></div>'
+                            . '</div>';
                     } elseif ($entity->hasChild() && ! $entity->isMissingChild() && isset($entity->child->$field)) {
                         $foreign = $entity->child->$field;
                         if ($foreign instanceof Model) {

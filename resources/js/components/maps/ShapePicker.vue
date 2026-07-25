@@ -8,11 +8,14 @@
             v-model="customText"
             type="text"
             class="input input-bordered w-full"
+            :placeholder="i18n.custom_icon_placeholder"
             @keydown.tab="commitCustom"
             @keydown.enter="commitCustom"
-            @blur="commitCustom"
+            @blur="handleCustomBlur"
             @paste="handleIconPaste"
         />
+
+        <p v-if="customMode" class="custom-icon-helper text-sm text-neutral-content" v-html="i18n.custom_icon_helper" />
 
         <div v-else class="flex flex-wrap gap-1">
             <button
@@ -105,6 +108,14 @@ function handleIconPaste(e) {
         e.preventDefault();
         customText.value = iconClass;
     }
+}
+
+function handleCustomBlur(event) {
+    if (event.relatedTarget?.closest(".custom-icon-helper")) {
+        return;
+    }
+
+    commitCustom();
 }
 
 function commitCustom() {
