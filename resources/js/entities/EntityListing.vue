@@ -571,7 +571,7 @@
                 </a>
                 <hr class="m-0" v-if="templates.length > 0" />
                 <a
-                    href="https://docs.kanka.io/en/latest/guides/templates.html"
+                    href="https://docs.kanka.io/en/latest/guides/archetypes.html"
                     class="px-2 py-2 hover:bg-base-200 rounded-xl flex items-center gap-1.5 transition-all duration-150 text-base-content text-xs"
                 >
                     <i
