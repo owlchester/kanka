@@ -32,7 +32,7 @@
             <div class="flex items-center gap-2 flex-none">
                 <button
                     type="button"
-                    class="btn2 btn-default btn-sm md:hidden"
+                    class="btn2 btn-default btn-sm md:hidden!"
                     :disabled="saving || deleting"
                     @click="peeked = !peeked"
                 >

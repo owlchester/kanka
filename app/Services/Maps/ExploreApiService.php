@@ -102,6 +102,10 @@ class ExploreApiService
      */
     protected function visibilityOptions(): array
     {
+        if (! $this->hasUser()) {
+            return [];
+        }
+        
         $options = [
             ['id' => Visibility::All->value, 'name' => __('crud.visibilities.all')],
         ];

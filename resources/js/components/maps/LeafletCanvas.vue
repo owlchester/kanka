@@ -1129,6 +1129,16 @@ defineExpose({
     border-radius: var(--rounded-btn);
 }
 
+.leaflet-bar.leaflet-ruler {
+    cursor: pointer;
+}
+.leaflet-bar.leaflet-ruler.leaflet-ruler-clicked {
+    background-color: hsl(var(--p)/1);
+}
+.leaflet-touch .leaflet-bar.leaflet-ruler-clicked a, .leaflet-touch .leaflet-bar.leaflet-ruler-clicked > i {
+    color: hsl(var(--pc)/1);
+}
+
 .plus-length {
     padding-left: 45px;
 }

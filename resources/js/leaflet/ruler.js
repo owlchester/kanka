@@ -79,6 +79,10 @@ L.Control.Ruler = L.Control.extend({
             L.DomEvent.off(this._map._container, 'keydown', this._escape, this)
             L.DomEvent.off(this._map._container, 'dblclick', this._closePath, this)
             this._container.classList.remove('leaflet-ruler-clicked')
+            if (this._tempLine) {
+                this._map.removeLayer(this._tempLine)
+                this._map.removeLayer(this._tempPoint)
+            }
             this._map.removeLayer(this._allLayers)
             this._allLayers = L.layerGroup()
             this._map._container.style.cursor = this._defaultCursor
@@ -183,7 +187,6 @@ L.Control.Ruler = L.Control.extend({
         this._map.removeLayer(this._tempLine)
         this._map.removeLayer(this._tempPoint)
         this._choice = false
-        L.DomEvent.on(this._container, 'click', this._toggleMeasure, this)
         this._toggleMeasure()
     },
 })
