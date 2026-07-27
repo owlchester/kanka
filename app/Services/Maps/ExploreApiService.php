@@ -105,7 +105,7 @@ class ExploreApiService
         if (! $this->hasUser()) {
             return [];
         }
-        
+
         $options = [
             ['id' => Visibility::All->value, 'name' => __('crud.visibilities.all')],
         ];
