@@ -1,5 +1,7 @@
 <?php
 
+use App\Enums\EntityAssetType;
+use App\Models\EntityAsset;
 use Illuminate\Http\UploadedFile;
 
 it('POSTS an invalid entity_assets form')
@@ -109,6 +111,39 @@ it('UPDATES a valid asset')
     ->putJson('/api/1.0/campaigns/1/entities/1/entity_assets/1', ['name' => 'Bob'])
     ->assertStatus(200)
     ->assertJsonFragment(['name' => 'Bob']);
+
+it('includes the asset type when editing a file', function () {
+    $this->asUser()
+        ->withCampaign()
+        ->withCharacters();
+
+    EntityAsset::factory()->create([
+        'entity_id' => 1,
+        'type_id' => EntityAssetType::file,
+    ]);
+
+    $this->get(route('entities.entity_assets.edit', [1, 1, 1]))
+        ->assertSuccessful()
+        ->assertSee('<input type="hidden" name="type_id" value="1" />', false);
+});
+
+it('updates a file without requiring a replacement upload', function () {
+    $this->asUser()
+        ->withCampaign()
+        ->withCharacters();
+
+    $asset = EntityAsset::factory()->create([
+        'entity_id' => 1,
+        'type_id' => EntityAssetType::file,
+    ]);
+
+    $this->patch(route('entities.entity_assets.update', [1, 1, $asset]), [
+        'type_id' => EntityAssetType::file->value,
+        'name' => 'Renamed file',
+    ])->assertRedirect(route('entities.entity_assets.index', [1, 1]));
+
+    expect($asset->refresh()->name)->toBe('Renamed file');
+});
 
 it('DELETES an asset')
     ->asUser()

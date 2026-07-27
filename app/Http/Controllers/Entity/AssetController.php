@@ -6,8 +6,8 @@ use App\Enums\EntityAssetType;
 use App\Exceptions\TranslatableException;
 use App\Facades\Limit;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreEntityAsset;
 use App\Http\Requests\StoreEntityAssets;
+use App\Http\Requests\UpdateEntityAsset;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityAsset;
@@ -142,7 +142,7 @@ class AssetController extends Controller
             ->with('entityAsset', $entityAsset);
     }
 
-    public function update(StoreEntityAsset $request, Campaign $campaign, Entity $entity, EntityAsset $entityAsset)
+    public function update(UpdateEntityAsset $request, Campaign $campaign, Entity $entity, EntityAsset $entityAsset)
     {
         $this->authorize('update', $entity);
         if ($request->ajax()) {
