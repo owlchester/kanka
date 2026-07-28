@@ -42,10 +42,10 @@ it('is not publicly visible when its parent group is restricted, even if its own
     expect($marker->isPubliclyVisible())->toBeFalse();
 });
 
-it('is publicly visible when its parent group is also public', function () {
+it('is publicly visible when its parent group is also public', function (Visibility $groupVisibility) {
     $this->asUser()->withCampaign();
     $map = Map::factory()->create(['campaign_id' => 1]);
-    $group = MapGroup::factory()->create(['map_id' => $map->id, 'visibility_id' => Visibility::All]);
+    $group = MapGroup::factory()->create(['map_id' => $map->id, 'visibility_id' => $groupVisibility]);
     $marker = MapMarker::factory()->create([
         'map_id' => $map->id,
         'visibility_id' => Visibility::All,
@@ -53,7 +53,10 @@ it('is publicly visible when its parent group is also public', function () {
     ]);
 
     expect($marker->isPubliclyVisible())->toBeTrue();
-});
+})->with([
+    'all' => [Visibility::All],
+    'member' => [Visibility::Member],
+]);
 
 it('is not publicly visible when its linked entity is private', function () {
     $this->asUser()->withCampaign();

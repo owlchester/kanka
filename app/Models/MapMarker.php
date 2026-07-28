@@ -731,10 +731,6 @@ class MapMarker extends Model
      */
     public function visible(): bool
     {
-        $campaign = CampaignLocalization::getCampaign();
-        if (($this->isPolygon() || $this->isPath()) && ! $campaign->boosted()) {
-            return false;
-        }
         // Part of a private group, don't show either
         if (! empty($this->group_id) && ! $this->group) {
             return false;
@@ -745,13 +741,13 @@ class MapMarker extends Model
 
     public function isPubliclyVisible(): bool
     {
-        if (! self::isVisibleToPublic($this->visibility_id)) {
+        if (! $this->isVisibleToPublic($this->visibility_id)) {
             return false;
         }
 
         if ($this->group_id) {
             $group = MapGroup::query()->withoutGlobalScope(VisibilityIDScope::class)->find($this->group_id);
-            if (! $group || ! self::isVisibleToPublic($group->visibility_id)) {
+            if (! $group || ! $this->isVisibleToPublic($group->visibility_id)) {
                 return false;
             }
         }
@@ -766,7 +762,7 @@ class MapMarker extends Model
         return true;
     }
 
-    protected static function isVisibleToPublic($visibilityId): bool
+    protected function isVisibleToPublic(Visibility $visibilityId): bool
     {
         return in_array($visibilityId, [Visibility::All, Visibility::Member], true);
     }
