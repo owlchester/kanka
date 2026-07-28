@@ -54,6 +54,10 @@ export function filterGroupTree(tree, query) {
 }
 
 export function insertGroupIntoList(groups, newGroup) {
+    if (groups.some((group) => group.id === newGroup.id)) {
+        return groups.map((group) => (group.id === newGroup.id ? newGroup : group))
+    }
+
     const shifted = groups.map((group) =>
         (group.position ?? 0) >= newGroup.position
             ? { ...group, position: group.position + 1 }

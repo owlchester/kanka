@@ -133,3 +133,18 @@ test('insertGroupIntoList treats a null position as 0 for the shift comparison',
 
     assert.deepEqual(result.map((g) => [g.id, g.position]), [[1, null], [2, 1]])
 })
+
+test('insertGroupIntoList replaces a group already received through real-time updates', () => {
+    const groups = [
+        { id: 1, name: 'Alpha', position: 1 },
+        { id: 2, name: 'Old name', position: 2 },
+    ]
+    const createdGroup = { id: 2, name: 'Beta', position: 2 }
+
+    const result = insertGroupIntoList(groups, createdGroup)
+
+    assert.deepEqual(result, [
+        { id: 1, name: 'Alpha', position: 1 },
+        { id: 2, name: 'Beta', position: 2 },
+    ])
+})
