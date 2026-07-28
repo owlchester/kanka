@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -32,6 +33,7 @@ use Illuminate\Support\Str;
  * @property bool|int $is_real
  * @property bool|int $has_clustering
  * @property array $config
+ * @property ?Carbon $tiling_prompt_dismissed_at
  * @property Collection|MapLayer[] $layers
  * @property Collection|MapMarker[] $markers
  * @property MapMarker $centerMarker

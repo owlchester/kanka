@@ -6,6 +6,7 @@ use App\Facades\EntityPermission;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Entity;
+use App\Models\Map;
 use App\Services\Maps\TilingTriggerService;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Carbon;
@@ -30,6 +31,7 @@ class TilingPromptController extends Controller
             abort(404);
         }
 
+        /** @var Map $map */
         $map = $entity->child;
         $map->tiling_prompt_dismissed_at = Carbon::now();
         $map->saveQuietly();

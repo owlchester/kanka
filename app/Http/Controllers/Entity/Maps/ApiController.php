@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Entity\Maps;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Entity;
+use App\Models\Map;
 use App\Services\Maps\ExploreApiService;
 use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
@@ -28,10 +29,13 @@ class ApiController extends Controller
             $this->apiService->user(auth()->user());
         }
 
+        /** @var Map $map */
+        $map = $entity->child;
+
         return response()->json(
             $this->apiService
                 ->campaign($campaign)
-                ->map($entity->child)
+                ->map($map)
                 ->load()
         );
     }

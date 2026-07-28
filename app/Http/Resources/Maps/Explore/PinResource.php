@@ -26,6 +26,7 @@ class PinResource extends JsonResource
 
     public function toArray(Request $request): array
     {
+        /** @var MapMarker $marker */
         $marker = $this->resource;
 
         return [
@@ -44,7 +45,7 @@ class PinResource extends JsonResource
             'group_id' => $marker->group_id,
             'latitude' => (float) $marker->latitude,
             'longitude' => (float) $marker->longitude,
-            'shape' => $marker->shape_id?->name ?? 'marker',
+            'shape' => $marker->shape_id->name ?? 'marker',
             'colour' => $marker->colour,
             'font_colour' => $marker->font_colour,
             'icon' => $marker->exploreIcon(),

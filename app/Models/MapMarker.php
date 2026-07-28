@@ -16,6 +16,8 @@ use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
+use App\Models\Scopes\AclScope;
+use App\Models\Scopes\VisibilityIDScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -37,7 +39,7 @@ use Illuminate\Support\Str;
  * @property int $latitude
  * @property string $colour
  * @property string $font_colour
- * @property ?int $shape_id
+ * @property ?MapMarkerShape $shape_id
  * @property ?int $size_id
  * @property ?int $icon
  * @property string $custom_icon
@@ -748,14 +750,14 @@ class MapMarker extends Model
         }
 
         if ($this->group_id) {
-            $group = MapGroup::withPrivate()->find($this->group_id);
+            $group = MapGroup::query()->withoutGlobalScope(VisibilityIDScope::class)->find($this->group_id);
             if (! $group || ! self::isVisibleToPublic($group->visibility_id)) {
                 return false;
             }
         }
 
         if ($this->entity_id) {
-            $entity = Entity::withInvisible()->find($this->entity_id);
+            $entity = Entity::query()->withoutGlobalScope(AclScope::class)->find($this->entity_id);
             if (! $entity || $entity->is_private) {
                 return false;
             }

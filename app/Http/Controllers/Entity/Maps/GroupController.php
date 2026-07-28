@@ -30,6 +30,7 @@ class GroupController extends Controller
         EntityPermission::campaign($campaign);
         $this->authorize('update', $entity);
 
+        /** @var Map $map */
         $map = $entity->child;
         $this->authorize('addGroup', [$map, $campaign]);
 

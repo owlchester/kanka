@@ -6,6 +6,7 @@ use App\Enums\Visibility;
 use App\Http\Resources\Maps\Explore\GroupResource;
 use App\Http\Resources\Maps\Explore\LayerResource;
 use App\Models\Map;
+use App\Models\Scopes\VisibilityIDScope;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithBroadcasting;
 use Illuminate\Broadcasting\InteractsWithSockets;
@@ -56,8 +57,8 @@ class ContentsChanged implements ShouldBroadcastNow, ShouldRescue
             // The acting user (whoever triggered the save) may not be an
             // admin — this channel must be complete regardless, so the
             // visibility scope is bypassed entirely rather than relied on.
-            $groups->withPrivate();
-            $layers->withPrivate();
+            $groups->withoutGlobalScope(VisibilityIDScope::class);
+            $layers->withoutGlobalScope(VisibilityIDScope::class);
         } else {
             $groups->whereIn('visibility_id', [Visibility::All, Visibility::Member]);
             $layers->whereIn('visibility_id', [Visibility::All, Visibility::Member]);

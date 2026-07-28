@@ -4,6 +4,7 @@ namespace App\Http\Resources\Maps\Explore;
 
 use App\Facades\Avatar;
 use App\Models\Entity;
+use App\Models\Location;
 use App\Models\MapMarker;
 use App\Traits\CampaignAware;
 use Illuminate\Http\Request;
@@ -49,12 +50,17 @@ class PinPreviewResource extends JsonResource
             return [['name' => $entity->name, 'url' => route('entities.map', [$this->campaign->id, $entity->id])]];
         }
 
-        if ($entity->isLocation() && $entity->child && ! $entity->child->maps->isEmpty()) {
-            return $entity->child->maps
-                ->map(fn ($map) => ['name' => $map->name, 'url' => route('entities.map', [$this->campaign->id, $map->entity->id])])
-                ->all();
+        if (! $entity->isLocation()) {
+            return [];
         }
 
-        return [];
+        $location = $entity->child;
+        if (! $location instanceof Location || $location->maps->isEmpty()) {
+            return [];
+        }
+
+        return $location->maps
+            ->map(fn ($map) => ['name' => $map->name, 'url' => route('entities.map', [$this->campaign->id, $map->entity->id])])
+            ->all();
     }
 }
