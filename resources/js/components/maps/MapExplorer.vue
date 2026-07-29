@@ -186,6 +186,7 @@
         />
 
         <MarkerPanel
+            v-if="canEdit && activePanelPin"
             :pin="activePanelPin"
             :variant="panelVariant"
             :i18n="data.i18n"
@@ -247,7 +248,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount, nextTick } from "vue";
+import { ref, computed, defineAsyncComponent, onMounted, onBeforeUnmount, nextTick } from "vue";
 import tippy from "tippy.js";
 import { colourForUser, useMapPresence } from "../../composables/useMapPresence.js";
 import { centroid } from "../../maps/polygon.js";
@@ -258,9 +259,10 @@ import DetailPanel from "./DetailPanel.vue";
 import GroupModal from "./GroupModal.vue";
 import LeafletCanvas from "./LeafletCanvas.vue";
 import LegendPanel from "./LegendPanel.vue";
-import MarkerPanel from "./MarkerPanel.vue";
 import SettingsPanel from "./SettingsPanel.vue";
 import Toolbar from "./Toolbar.vue";
+
+const MarkerPanel = defineAsyncComponent(() => import("./MarkerPanel.vue"));
 
 const props = defineProps({
     api: { type: String, required: true },

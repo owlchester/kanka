@@ -63,9 +63,10 @@
 </template>
 
 <script setup>
-import { computed, nextTick, ref } from "vue";
-import Tiptap from "../../editors/tiptap/Tiptap.vue";
+import { computed, defineAsyncComponent, nextTick, ref, watch } from "vue";
 import { htmlToPlainText } from "../../maps/entryText.js";
+
+const Tiptap = defineAsyncComponent(() => import("../../editors/tiptap/Tiptap.vue"));
 
 const props = defineProps({
     pin: { type: Object, required: true },
@@ -90,6 +91,12 @@ const preview = computed(() => plainText.value.replace(/\s+/g, " "));
 // MentionParser) when available, falling back to the raw entry (e.g. a client-only
 // draft pin, which never has entryForEdition).
 const editorContent = computed(() => props.pin.entryForEdition ?? props.pin.entry ?? "");
+
+watch(tiptapRef, async (editor) => {
+    if (dialogOpen.value && editor) {
+        await editor.focus();
+    }
+});
 
 async function openDialog() {
     // Seed dialogHtml with the same content shown to Tiptap so that saving without
