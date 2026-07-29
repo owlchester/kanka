@@ -1,7 +1,8 @@
 
-import { computePosition, flip, shift } from '@floating-ui/dom'
+import { computePosition, flip, shift, size } from '@floating-ui/dom'
 import { posToDOMRect, VueRenderer } from '@tiptap/vue-3'
 import MentionList from './MentionList.vue'
+import { suggestionPopupDimensions } from '../suggestionPopup.js'
 
 interface MentionItem {
     id?: string
@@ -28,12 +29,26 @@ const updatePosition = (editor, element) => {
         getBoundingClientRect: () => posToDOMRect(editor.view, editor.state.selection.from, editor.state.selection.to),
     }
 
+    element.style.position = 'fixed'
+    element.style.width = 'max-content'
+
     computePosition(virtualElement, element, {
         placement: 'bottom-start',
-        strategy: 'absolute',
-        middleware: [shift(), flip()],
+        strategy: 'fixed',
+        middleware: [
+            flip({ padding: 8 }),
+            shift({ padding: 8 }),
+            size({
+                padding: 8,
+                apply({ availableWidth, availableHeight, elements }) {
+                    const dimensions = suggestionPopupDimensions(availableWidth, availableHeight)
+
+                    elements.floating.style.maxWidth = `${dimensions.maxWidth}px`
+                    elements.floating.style.maxHeight = `${dimensions.maxHeight}px`
+                },
+            }),
+        ],
     }).then(({ x, y, strategy }) => {
-        element.style.width = 'max-content'
         element.style.position = strategy
         element.style.left = `${x}px`
         element.style.top = `${y}px`
@@ -175,7 +190,6 @@ export default (mentionsUrl: string, onEntityAdded?: (entity: any) => void) => {
                         return
                     }
 
-                    component.element.style.position = 'absolute'
                     component.element.style.zIndex = '1060'
 
                     appendTarget(props.editor).appendChild(component.element)

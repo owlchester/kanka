@@ -26,7 +26,7 @@
 
         <dialog
             ref="dialogRef"
-            class="dialog rounded-2xl bg-base-100 text-base-content w-full md:w-fit md:min-w-2xl"
+            class="dialog rounded-2xl bg-base-100 text-base-content w-full md:w-fit md:min-w-2xl overflow-visible"
             aria-modal="true"
             @close="dialogOpen = false"
             @keydown="handleDialogKeydown"

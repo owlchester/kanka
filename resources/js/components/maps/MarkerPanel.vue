@@ -230,6 +230,7 @@
 
 <script setup>
 import { computed, ref, watch } from "vue";
+import { initialMarkerPanelState } from "../../maps/markerPanelState.js";
 import { pinIconFa } from "../../maps/markerIcons.js";
 import { serializeVertices } from "../../maps/polygon.js";
 import ColourPicker from "./ColourPicker.vue";
@@ -282,18 +283,19 @@ const emit = defineEmits([
     "preset-deleted",
 ]);
 
-const name = ref("");
+const initialState = initialMarkerPanelState(props.pin, props.variant);
+const name = ref(initialState.name);
 const saving = ref(false);
 const deleting = ref(false);
 const confirmingDelete = ref(false);
 const error = ref(null);
-const detailLevel = ref("light");
+const detailLevel = ref(initialState.detailLevel);
 const peeked = ref(false);
 const nameInputRef = ref(null);
 const entryTouched = ref(false);
 const advancedOpen = ref(false);
-const isDraggable = ref(false);
-const cssClass = ref("");
+const isDraggable = ref(initialState.isDraggable);
+const cssClass = ref(initialState.cssClass);
 const presetModalRef = ref(null);
 
 const isEdit = computed(() => props.variant === "edit");
@@ -302,20 +304,22 @@ watch(
     () => props.pin,
     (newPin, oldPin) => {
         if (newPin && !oldPin) {
+            const state = initialMarkerPanelState(newPin, props.variant);
+
             // Not gated on isEdit: every from-scratch draft pin (handleMapClick et al.) already
             // sets name to "" itself, so this just needs to reflect whatever the pin actually
             // has — which matters for a duplicated draft pin, whose name should carry over.
-            name.value = newPin.name || "";
+            name.value = state.name;
             error.value = null;
             saving.value = false;
             deleting.value = false;
             confirmingDelete.value = false;
-            detailLevel.value = isEdit.value ? "full" : "light";
+            detailLevel.value = state.detailLevel;
             peeked.value = false;
             entryTouched.value = false;
             advancedOpen.value = false;
-            isDraggable.value = !!newPin.isDraggable;
-            cssClass.value = newPin.css || "";
+            isDraggable.value = state.isDraggable;
+            cssClass.value = state.cssClass;
         }
     },
 );
