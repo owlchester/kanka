@@ -33,6 +33,7 @@
                 type="button"
                 class="w-9 h-9 rounded-lg flex items-center justify-center cursor-pointer border-2"
                 :class="pin.customIcon ? 'bg-accent text-accent-content border-accent' : 'bg-base-200 border-transparent'"
+                v-tippy="i18n.custom_icon_or_svg"
                 @click="clickCustom"
             >
                 <img
@@ -43,7 +44,7 @@
                 />
                 <i
                     v-else
-                    :class="pin.icon?.type === 'fa' ? pin.icon.value : 'fa-solid fa-ellipsis'"
+                    :class="pin.customIcon && pin.icon?.type === 'fa' ? pin.icon.value : 'fa-regular fa-cog'"
                     aria-hidden="true"
                 />
             </button>

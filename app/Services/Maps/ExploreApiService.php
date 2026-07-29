@@ -225,6 +225,7 @@ class ExploreApiService
             'opacity' => __('maps/markers.fields.opacity'),
             'custom' => __('maps/markers.circle_sizes.custom'),
             'premium_custom_icon' => __('maps/explorer.marker.premium_custom_icon'),
+            'custom_icon_or_svg' => __('maps/explorer.marker.custom_icon_or_svg'),
             'custom_icon_helper' => __('maps/markers.helpers.custom_icon_v2', [
                 'fontawesome' => '<a href="' . config('fontawesome.search') . '" target="_blank" rel="noopener noreferrer" class="text-link">Font Awesome</a>',
                 'rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/" target="_blank" rel="noopener noreferrer" class="text-link">RPG Awesome</a>',

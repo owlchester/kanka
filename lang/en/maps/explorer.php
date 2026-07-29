@@ -34,6 +34,7 @@ return [
         'border_colour'                 => 'Border colour',
         'center'                        => 'Center',
         'create_template'               => 'Create template',
+        'custom_icon_or_svg'            => 'Custom Icon or SVG',
         'css_class'                     => 'CSS class',
         'delete'                        => 'Delete marker',
         'delete_confirm'                => 'Click again to confirm',

@@ -65,6 +65,7 @@
                 type="text"
                 class="input input-bordered w-full"
                 :placeholder="i18n.name_placeholder"
+                @keydown.enter.prevent="save"
             />
 
             <PresetPicker
