@@ -13,7 +13,7 @@ class MoveController extends Controller
     public function index(Request $request, Campaign $campaign, Map $map, MapMarker $mapMarker)
     {
         $this->authorize('update', $map->entity);
-        if (!$mapMarker->is_draggable || $mapMarker->map_id != $map->id) {
+        if (! $mapMarker->is_draggable || $mapMarker->map_id != $map->id) {
             abort(403, 'Marker is not draggable or does not belong to this map.');
         }
 
