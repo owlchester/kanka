@@ -50,6 +50,7 @@ class FilterService
         $this->request = $request;
         $this->data = $request->all();
         $this->hasRequest = true;
+        $this->ignored = [];
 
         return $this;
     }
@@ -161,7 +162,10 @@ class FilterService
         ) {
             $sessionKey .= '-bookmark';
         }
-        $this->filters = $this->sessionLoad($sessionKey);
+        $this->filters = Arr::except(
+            $this->sessionLoad($sessionKey),
+            $this->ignored,
+        );
 
         // If the request has _clean, we only want filters that are set in the url
         if ($this->hasRequest && $this->request->get('_clean', false)) {

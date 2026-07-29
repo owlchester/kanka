@@ -836,8 +836,14 @@ const handleGridBack = () => {
     }
     window.history.pushState({}, "", currentUrl);
 
-    // Build the fetch URL from the now-updated browser URL so sort/filters are preserved
-    entityApi.fetchEntities(entityApi.currentApiUrl()).then((response: any) => {
+    // Keep nested navigation out of the persisted listing filters while
+    // preserving sort and filter parameters from the browser URL.
+    const apiUrl = entityApi.addToUrl(
+        entityApi.currentApiUrl(),
+        "children",
+        "1",
+    );
+    entityApi.fetchEntities(apiUrl).then((response: any) => {
         entityApi.parent.value = response.parent;
     });
 };
