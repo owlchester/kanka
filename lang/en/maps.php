@@ -2,15 +2,22 @@
 
 return [
     'actions'       => [
-        'back'      => 'Back to :name',
-        'edit'      => 'Edit map',
-        'explore'   => 'Explore',
+        'back'          => 'Back to :name',
+        'edit'          => 'Edit map',
+        'explore'       => 'Explore',
         'explore_named' => 'Explore :name',
     ],
     'create'        => [
         'title' => 'New Map',
     ],
     'errors'        => [
+        'dashboard' => [
+            'missing'   => 'This map needs an image to be able to render on the dashboard.',
+            'tiling'    => 'This map\'s resources are being tiled. Please check back soon.',
+        ],
+        'explore'   => [
+            'missing'   => 'Please add an image to the map before being able to view it.',
+        ],
         'tiling'    => [
             'error'     => 'There was an error while tiling the map. Please contact the team on :discord for support.',
             'running'   => [
@@ -18,13 +25,6 @@ return [
                 'explore'   => 'The map cannot be displayed while it\'s being tiled.',
                 'time'      => 'This can take several minutes to several hours, depending on the size of the map.',
             ],
-        ],
-        'dashboard' => [
-            'missing'   => 'This map needs an image to be able to render on the dashboard.',
-            'tiling'    => 'This map\'s resources are being tiled. Please check back soon.',
-        ],
-        'explore'   => [
-            'missing'   => 'Please add an image to the map before being able to view it.',
         ],
     ],
     'fields'        => [
@@ -48,7 +48,6 @@ return [
     'helpers'       => [
         'center'                => 'Changing the following values will control which area of the map is focused on. Leaving these values empty will result in the center of the map being focued on.',
         'centering'             => 'Centering on a marker will take priority on default coordinates.',
-        'tiled_zoom'            => 'Automatically cluster markers together when they are close to each other.',
         'distance_measure'      => 'Give the map a distance measurement to enable the measurement tool.',
         'distance_measure_2'    => 'For 100 pixels to measure 1 kilometer, input a value of 0.0041.',
         'grid'                  => 'Define a grid size that will be displayed in the exploration mode. A value below 10 will result in a greyed out map.',
@@ -58,6 +57,7 @@ return [
         'max_zoom'              => 'The most a map can be zoomed in on. The default value is :default, while the highest allowed value is :max.',
         'min_zoom'              => 'The most a map can be zoomed out of. The default value is :default, while the lowest allowed value is :min.',
         'missing_image'         => 'Save the map with an image before being able to add layers and markers.',
+        'tiled_zoom'            => 'Automatically cluster markers together when they are close to each other.',
     ],
     'lists'         => [
         'empty' => 'Upload a map to visualize locations and reveal the geography of your world.',

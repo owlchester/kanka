@@ -50,6 +50,7 @@ return [
         'errors'    => [
             'email_already_taken'   => 'Un compte avec cette adresse email est déjà enregistré.',
             'general_error'         => 'Une erreur est survenue lors de la création du compte. Merci de ressayer.',
+            'unavailable'           => 'Un compte pour :email est déjà enregistré avec une autre méthode de connexion.',
         ],
         'fields'    => [
             'email'     => 'Adresse email',

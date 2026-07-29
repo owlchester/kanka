@@ -2,9 +2,10 @@
 
 return [
     'actions'       => [
-        'back'      => 'Retour à :name',
-        'edit'      => 'Modifier la carte',
-        'explore'   => 'Explorer',
+        'back'          => 'Retour à :name',
+        'edit'          => 'Modifier la carte',
+        'explore'       => 'Explorer',
+        'explore_named' => 'Explorer :name',
     ],
     'create'        => [
         'title' => 'Nouvelle carte',
@@ -20,9 +21,18 @@ return [
         ],
         'dashboard' => [
             'missing'   => 'La carte a besoin d\'une image pour être affichée sur le tableau de bord.',
+            'tiling'    => 'Les ressources de cette carte sont en cours de traitement. Reviens bientôt.',
         ],
         'explore'   => [
             'missing'   => 'Il faut ajouter une image à la carte avant de pouvoir l\'explorer.',
+        ],
+        'tiling'    => [
+            'error'     => 'Une erreur est survenue durant le traitement de la carte. Contactes l\'équipe sur :discord pour de l\'aide.',
+            'running'   => [
+                'edit'      => 'La carte ne peut pas être modifiée pendant qu\'elle est en traitement.',
+                'explore'   => 'La carte ne peut pas être affichée pendant qu\'elle est en traitement.',
+                'time'      => 'Ceci peut prendre plusieurs minutes à plusieurs heures et dépend de la taille de la carte.',
+            ],
         ],
     ],
     'fields'        => [
@@ -56,6 +66,7 @@ return [
         'max_zoom'              => 'La valeur maximale à laquelle la carte peut être agrandie. La valeur par défaut est de :default, et la valeur maximale est de :max.',
         'min_zoom'              => 'La valeur minimale à laquelle la carte peut être rétrécie. La valeur par défaut est de :default, et la valeur minimale est de :min.',
         'missing_image'         => 'Enregister la carte avec une image avant de pouvoir ajouter des couches et des marqueurs.',
+        'tiled_zoom'            => 'Regrouper automatiquement les marqueurs lorsqu\'ils sont proches les uns des autres.',
     ],
     'lists'         => [
         'empty' => 'Télécharge une carte pour visualiser les lieux et explorer la géographie de ton monde.',
@@ -84,6 +95,9 @@ return [
     'tooltips'      => [
         'chunking'  => [
             'running'   => 'La cartes est en traitement. Ce processus peut prendre plusieurs minutes à plusieurs heures.',
+        ],
+        'tiling'    => [
+            'running'   => 'La carte est en traitement. Ce processus peut prendre plusieurs minutes à plusieurs heures.',
         ],
     ],
 ];
