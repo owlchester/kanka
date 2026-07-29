@@ -222,7 +222,7 @@ class MapMarker extends Model
      */
     public function datagridMarkerIcon(): string
     {
-        if (in_array($this->shape_id, [MapMarkerShape::label, MapMarkerShape::circle, MapMarkerShape::poly], true)) {
+        if (in_array($this->shape_id, [MapMarkerShape::label, MapMarkerShape::circle, MapMarkerShape::poly, MapMarkerShape::path], true)) {
             return '';
         }
 

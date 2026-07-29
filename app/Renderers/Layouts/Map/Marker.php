@@ -20,7 +20,7 @@ class Marker extends Layout
                 'key' => 'name',
                 'label' => __('crud.fields.name'),
                 'render' => function (MapMarker $model) {
-                    return '<a href="' . route('maps.map_markers.edit', [$this->campaign, 'map' => $model->map_id, $model->id]) . '">' .
+                    return '<a href="' . route('maps.map_markers.edit', [$this->campaign, 'map' => $model->map_id, $model->id]) . '" class="text-link">' .
                         e($model->name) .
                     '</a>';
                 },
