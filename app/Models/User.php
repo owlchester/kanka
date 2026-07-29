@@ -8,6 +8,7 @@ use App\Facades\ReleaseCache;
 use App\Facades\SingleUserCache;
 use App\Models\Concerns\HasImage;
 use App\Models\Concerns\LastSync;
+use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\UserBoosters;
 use App\Models\Concerns\UserTokens;
 use App\Models\Relations\UserRelations;
@@ -57,6 +58,7 @@ class User extends \Illuminate\Foundation\Auth\User implements OAuthenticatable
     use HasImage;
     use LastSync;
     use Notifiable;
+    use Sanitizable;
     use UserBoosters;
     use UserRelations;
     use UserScope;
@@ -81,6 +83,10 @@ class User extends \Illuminate\Foundation\Auth\User implements OAuthenticatable
         'referred_by',
         'profile',
         'settings',
+    ];
+
+    protected array $sanitizable = [
+        'name',
     ];
 
     /**
