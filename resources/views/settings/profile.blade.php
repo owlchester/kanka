@@ -18,14 +18,14 @@
             <div class="flex flex-col md:flex-row gap-5">
                 <div class="grow flex flex-col gap-5">
                     <x-forms.field field="name" :label="__('profiles.fields.name')" required>
-                        <input type="text" name="name" maxlength="191" placeholder="{{ __('profiles.placeholders.name') }}" class="rounded border p-2 w-full" value="{!! old('name', $user->name ?? null) !!}" />
+                        <input type="text" name="name" maxlength="191" placeholder="{{ __('profiles.placeholders.name') }}" class="rounded border p-2 w-full" value="{{ old('name', $user->name ?? null) }}" />
                     </x-forms.field>
 
                     @php $helper =  __('profiles.helpers.profile-name', [
     'marketplace' => '<a href="' . config('marketplace.url') . '" class="text-link">' . __('footer.plugins'). '</a>',
     'profile' => '<a href="' . route('users.profile', $user) . '" class="text-link">' . __('profiles.settings.helpers.profile') . '</a>']) @endphp
                     <x-forms.field field="marketplace-name" :label="__('profiles.fields.profile-name')" :helper="$helper">
-                        <input type="text" name="settings[marketplace_name]" maxlength="32" placeholder="{{ __('profiles.fields.profile-name') }}" class="rounded border p-2 w-full" value="{!! old('settings[marketplace_name]', $user->settings['marketplace_name'] ?? null) !!}" />
+                        <input type="text" name="settings[marketplace_name]" maxlength="32" placeholder="{{ __('profiles.fields.profile-name') }}" class="rounded border p-2 w-full" value="{{ old('settings[marketplace_name]', $user->settings['marketplace_name'] ?? null) }}" />
                     </x-forms.field>
 
                     @php $helper =  __('profiles.helpers.pronouns', [
@@ -33,14 +33,14 @@
                         'profile' => '<a href="' . route('users.profile', $user) . '" class="text-link">' . __('profiles.settings.helpers.profile') . '</a>'])
                     @endphp
                     <x-forms.field field="pronouns" :label="__('profiles.fields.pronouns')" :helper="$helper">
-                        <input type="text" name="settings[pronouns]" maxlength="45" placeholder="{{ __('profiles.fields.pronouns') }}" class="rounded border p-2 w-full" value="{!! old('settings[pronouns]', $user->settings['pronouns'] ?? null) !!}" />
+                        <input type="text" name="settings[pronouns]" maxlength="45" placeholder="{{ __('profiles.fields.pronouns') }}" class="rounded border p-2 w-full" value="{{ old('settings[pronouns]', $user->settings['pronouns'] ?? null) }}" />
                     </x-forms.field>
 
                     @php $helper = __('profiles.settings.helpers.bio', [
     'link' => '<a href="' . route('users.profile', $user) . '" class="text-link">' . __('profiles.settings.helpers.profile') . '</a>'
     ]); @endphp
                     <x-forms.field field="bio" :label="__('profiles.fields.bio')" :helper="$helper">
-                        <textarea name="profile[bio]" placeholder="{{ __('profiles.placeholders.bio') }}" class="w-full rounded border p-2" rows="5" maxlength="300">{!! old('profile[bio]', \Illuminate\Support\Arr::get($user->profile, 'bio')) !!}</textarea>
+                        <textarea name="profile[bio]" placeholder="{{ __('profiles.placeholders.bio') }}" class="w-full rounded border p-2" rows="5" maxlength="300">{{ old('profile[bio]', \Illuminate\Support\Arr::get($user->profile, 'bio')) }}</textarea>
                     </x-forms.field>
 
                     @php $helper =  __('profiles.helpers.link', [
@@ -48,7 +48,7 @@
                         'profile' => '<a href="' . route('users.profile', $user) . '"  class="text-link">' . __('profiles.settings.helpers.profile') . '</a>'])
                     @endphp
                     <x-forms.field field="link" :label="__('profiles.fields.link')" :helper="$helper">
-                        <input type="text" name="settings[link]" maxlength="90" placeholder="{{ __('profiles.fields.link') }}" class="rounded border p-2 w-full" value="{!! old('settings[link]', $user->settings['link'] ?? null) !!}" />
+                        <input type="text" name="settings[link]" maxlength="90" placeholder="{{ __('profiles.fields.link') }}" class="rounded border p-2 w-full" value="{{ old('settings[link]', $user->settings['link'] ?? null) }}" />
                     </x-forms.field>
 
                     <x-forms.field field="share-login" :label="__('profiles.fields.login_sharing')">
