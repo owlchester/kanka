@@ -9,6 +9,7 @@ import 'leaflet.markercluster'
 import 'leaflet-editable'
 import 'leaflet.path.drag'
 import '../../leaflet/ruler.js'
+import { svgIconDataUrl } from '../../maps/markerIcons.js'
 
 const props = defineProps({
     map: { type: Object, required: true },
@@ -251,8 +252,13 @@ function legacyPinIcon(pin) {
 
     if (pin.icon?.type === 'fa') {
         inner = `<i class="${pin.icon.value}" aria-hidden="true"></i>`
-    } else if (pin.icon?.type === 'html' || pin.icon?.type === 'svg') {
+    } else if (pin.icon?.type === 'html') {
         inner = pin.icon.value
+    } else if (pin.icon?.type === 'svg') {
+        const source = svgIconDataUrl(pin.icon.value)
+        inner = source
+            ? `<img src="${source}" class="marker-image" style="width: ${size}px; height: ${size}px;" />`
+            : inner
     } else if (pin.icon?.type === 'avatar') {
         inner = ''
         // The avatar image is painted on ::after (counter-rotated), not this div (rotated -45deg),
@@ -285,8 +291,19 @@ function modernPinIcon(pin) {
     }
 
     if (icon?.type === 'svg') {
+        const source = svgIconDataUrl(icon.value)
+        if (! source) {
+            return L.divIcon({
+                html: `<div class="marker-icon" style="--pin-colour: ${colour}; color: ${colour}; font-size: ${size}px;"><i class="${DEFAULT_PIN_ICON}" aria-hidden="true"></i></div>`,
+                iconSize: [size, size],
+                iconAnchor: [size / 2, size],
+                popupAnchor: [0, -size],
+                className: pinClassName(pin),
+            })
+        }
+
         return L.divIcon({
-            html: `<img src="${icon.value}" class="marker-image" style="width: ${size}px; height: ${size}px; --pin-colour: ${colour};" />`,
+            html: `<img src="${source}" class="marker-image" style="width: ${size}px; height: ${size}px; --pin-colour: ${colour};" />`,
             iconSize: [size, size],
             iconAnchor: [size / 2, size / 2],
             popupAnchor: [0, -(size / 2)],

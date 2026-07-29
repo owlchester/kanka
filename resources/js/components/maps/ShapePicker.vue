@@ -35,7 +35,17 @@
                 :class="pin.customIcon ? 'bg-accent text-accent-content border-accent' : 'bg-base-200 border-transparent'"
                 @click="clickCustom"
             >
-                <i :class="pin.customIcon || 'fa-solid fa-ellipsis'" aria-hidden="true" />
+                <img
+                    v-if="customIconPreview"
+                    :src="customIconPreview"
+                    class="w-6 h-6 object-contain"
+                    alt=""
+                />
+                <i
+                    v-else
+                    :class="pin.icon?.type === 'fa' ? pin.icon.value : 'fa-solid fa-ellipsis'"
+                    aria-hidden="true"
+                />
             </button>
         </div>
 
@@ -44,8 +54,8 @@
 </template>
 
 <script setup>
-import { nextTick, ref, watch } from "vue";
-import { PIN_ICON_SHAPES } from "../../maps/markerIcons.js";
+import { computed, nextTick, ref, watch } from "vue";
+import { pinIconRender, PIN_ICON_SHAPES, svgIconDataUrl } from "../../maps/markerIcons.js";
 
 const props = defineProps({
     pin: { type: Object, required: true },
@@ -61,6 +71,9 @@ const customMode = ref(false);
 const customText = ref("");
 const showPremiumError = ref(false);
 const customInputRef = ref(null);
+const customIconPreview = computed(() =>
+    props.pin.icon?.type === "svg" ? svgIconDataUrl(props.pin.icon.value) : null,
+);
 
 watch(() => props.pin, (newPin, oldPin) => {
     if (newPin && !oldPin) {
@@ -130,6 +143,6 @@ function commitCustom() {
         return;
     }
 
-    emit("change", { icon: 1, custom_icon: value, render: { type: "fa", value } });
+    emit("change", { icon: 1, custom_icon: value, render: pinIconRender(1, value) });
 }
 </script>

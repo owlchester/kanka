@@ -18,9 +18,15 @@
                         class="text-white font-semibold"
                         >T</span
                     >
+                    <img
+                        v-else-if="headerIconImage"
+                        :src="headerIconImage"
+                        class="w-6 h-6 object-contain"
+                        alt=""
+                    />
                     <i
                         v-else
-                        :class="pin.icon?.value || 'fa-solid fa-map-pin'"
+                        :class="pin.icon?.type === 'fa' ? pin.icon.value : 'fa-solid fa-map-pin'"
                         class="text-white"
                         aria-hidden="true"
                     />
@@ -231,7 +237,7 @@
 <script setup>
 import { computed, ref, watch } from "vue";
 import { initialMarkerPanelState } from "../../maps/markerPanelState.js";
-import { pinIconFa } from "../../maps/markerIcons.js";
+import { pinIconRender, svgIconDataUrl } from "../../maps/markerIcons.js";
 import { serializeVertices } from "../../maps/polygon.js";
 import ColourPicker from "./ColourPicker.vue";
 import DescriptionField from "./DescriptionField.vue";
@@ -299,6 +305,17 @@ const cssClass = ref(initialState.cssClass);
 const presetModalRef = ref(null);
 
 const isEdit = computed(() => props.variant === "edit");
+const headerIconImage = computed(() => {
+    if (props.pin?.icon?.type === "avatar") {
+        return props.pin.icon.value;
+    }
+
+    if (props.pin?.icon?.type === "svg") {
+        return svgIconDataUrl(props.pin.icon.value);
+    }
+
+    return null;
+});
 
 watch(
     () => props.pin,
@@ -371,7 +388,7 @@ function handlePresetSelect(preset) {
         const customIcon = config.custom_icon || null;
         patch.customIcon = customIcon;
         patch.iconId = customIcon ? 1 : (Number(config.icon) || 1);
-        patch.icon = { type: "fa", value: pinIconFa(config.icon, customIcon) };
+        patch.icon = pinIconRender(config.icon, customIcon);
     }
 
     if (Object.keys(patch).length) {

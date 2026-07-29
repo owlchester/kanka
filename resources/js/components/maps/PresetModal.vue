@@ -12,7 +12,18 @@
                     class="w-10 h-10 rounded-lg flex items-center justify-center flex-none"
                     :style="{ backgroundColor: colour }"
                 >
-                    <i :class="iconState.icon?.value || 'fa-solid fa-map-pin'" class="text-white" aria-hidden="true" />
+                    <img
+                        v-if="headerIconImage"
+                        :src="headerIconImage"
+                        class="w-7 h-7 object-contain"
+                        alt=""
+                    />
+                    <i
+                        v-else
+                        :class="iconState.icon?.type === 'fa' ? iconState.icon.value : 'fa-solid fa-map-pin'"
+                        class="text-white"
+                        aria-hidden="true"
+                    />
                 </div>
                 <div class="min-w-0">
                     <p class="text-xs font-semibold uppercase tracking-wide text-neutral-content">{{ isEdit ? i18n.edit_template : i18n.new_template }}</p>
@@ -93,7 +104,7 @@
 
 <script setup>
 import { computed, nextTick, ref } from "vue";
-import { pinIconFa, SHAPE_STRING_BY_ID } from "../../maps/markerIcons.js";
+import { pinIconRender, SHAPE_STRING_BY_ID, svgIconDataUrl } from "../../maps/markerIcons.js";
 import ColourPicker from "./ColourPicker.vue";
 import OpacityPicker from "./OpacityPicker.vue";
 import ShapePicker from "./ShapePicker.vue";
@@ -124,6 +135,11 @@ const sourceShape = ref("marker");
 const iconState = ref({ iconId: 1, customIcon: null, icon: { type: "fa", value: "fa-solid fa-map-pin" } });
 
 const isEdit = computed(() => !!editingPreset.value);
+const headerIconImage = computed(() =>
+    iconState.value.icon?.type === "svg"
+        ? svgIconDataUrl(iconState.value.icon.value)
+        : null,
+);
 
 function resetState() {
     error.value = null;
@@ -174,7 +190,7 @@ async function openEdit(preset) {
     iconState.value = {
         iconId: config.icon,
         customIcon: config.custom_icon || null,
-        icon: { type: "fa", value: pinIconFa(config.icon, config.custom_icon) },
+        icon: pinIconRender(config.icon, config.custom_icon),
     };
     resetState();
     await showDialog();

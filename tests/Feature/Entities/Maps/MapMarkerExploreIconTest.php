@@ -49,6 +49,22 @@ it('resolves a custom fontawesome icon only when the campaign is boosted', funct
     expect($marker->exploreIcon())->toBe(['type' => 'fa', 'value' => 'fa-solid fa-skull']);
 });
 
+it('resolves a sanitized custom svg icon as an image data uri', function () {
+    $this->asUser()->withCampaign(['boost_count' => 1]);
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create([
+        'map_id' => $map->id,
+        'icon' => 1,
+        'custom_icon' => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4"/></svg>',
+    ]);
+
+    $icon = $marker->exploreIcon();
+
+    expect($icon['type'])->toBe('svg')
+        ->and($icon['value'])->toStartWith('data:image/svg+xml;base64,')
+        ->and(base64_decode(substr($icon['value'], strlen('data:image/svg+xml;base64,'))))->toContain('<svg');
+});
+
 it('ignores a custom icon when the campaign is not boosted', function () {
     $this->asUser()->withCampaign();
     $map = Map::factory()->create(['campaign_id' => 1]);

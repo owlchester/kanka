@@ -24,7 +24,18 @@
                     class="w-6 h-6 rounded flex items-center justify-center flex-none"
                     :style="{ backgroundColor: preset.config?.colour || '#ccc' }"
                 >
-                    <i :class="badgeIcon(preset)" class="text-white text-xs" aria-hidden="true" />
+                    <img
+                        v-if="badgeRender(preset).type === 'svg'"
+                        :src="badgeRender(preset).value"
+                        class="w-4 h-4 object-contain"
+                        alt=""
+                    />
+                    <i
+                        v-else
+                        :class="badgeRender(preset).value"
+                        class="text-white text-xs"
+                        aria-hidden="true"
+                    />
                 </span>
                 <span class="truncate">{{ preset.name }}</span>
                 <i v-if="manageMode" class="fa-solid fa-pen text-xs text-neutral-content flex-none" aria-hidden="true" />
@@ -47,7 +58,7 @@
 
 <script setup>
 import { ref } from "vue";
-import { pinIconFa, SHAPE_ICON_BY_ID } from "../../maps/markerIcons.js";
+import { pinIconRender, SHAPE_ICON_BY_ID } from "../../maps/markerIcons.js";
 
 defineProps({
     presets: { type: Array, default: () => [] },
@@ -63,13 +74,13 @@ function handleClick(preset) {
     emit(manageMode.value ? "edit" : "select", preset);
 }
 
-function badgeIcon(preset) {
+function badgeRender(preset) {
     const shapeId = preset.config?.shape_id;
 
     if (shapeId && SHAPE_ICON_BY_ID[shapeId]) {
-        return SHAPE_ICON_BY_ID[shapeId];
+        return { type: "fa", value: SHAPE_ICON_BY_ID[shapeId] };
     }
 
-    return pinIconFa(preset.config?.icon, preset.config?.custom_icon);
+    return pinIconRender(preset.config?.icon, preset.config?.custom_icon);
 }
 </script>

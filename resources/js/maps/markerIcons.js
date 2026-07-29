@@ -11,6 +11,32 @@ export const PIN_ICON_SHAPES = [
 ];
 
 export const DEFAULT_PIN_ICON_FA = "fa-solid fa-map-pin";
+const SAFE_ICON_CLASS_PATTERN = /^[a-zA-Z0-9 _-]+$/;
+
+export function isSvgIcon(value) {
+    if (typeof value !== "string") {
+        return false;
+    }
+
+    const icon = value.trim();
+
+    return icon.startsWith("<svg") ||
+        icon.startsWith("<?xml") ||
+        icon.startsWith("data:image/svg+xml");
+}
+
+export function svgIconDataUrl(value) {
+    if (!isSvgIcon(value)) {
+        return null;
+    }
+
+    const icon = value.trim();
+    if (icon.startsWith("data:image/svg+xml")) {
+        return icon;
+    }
+
+    return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(icon)}`;
+}
 
 export function pinIconFa(iconCode, customIcon) {
     if (customIcon) {
@@ -18,6 +44,19 @@ export function pinIconFa(iconCode, customIcon) {
     }
 
     return PIN_ICON_SHAPES.find((shape) => shape.icon === Number(iconCode))?.fa || DEFAULT_PIN_ICON_FA;
+}
+
+export function pinIconRender(iconCode, customIcon) {
+    const svgUrl = svgIconDataUrl(customIcon);
+    if (svgUrl) {
+        return { type: "svg", value: svgUrl };
+    }
+
+    if (customIcon && !SAFE_ICON_CLASS_PATTERN.test(customIcon)) {
+        return { type: "fa", value: DEFAULT_PIN_ICON_FA };
+    }
+
+    return { type: "fa", value: pinIconFa(iconCode, customIcon) };
 }
 
 // Maps App\Enums\MapMarkerShape ids to the same fa-regular icons Toolbar.vue uses for its

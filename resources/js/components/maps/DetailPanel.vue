@@ -54,6 +54,12 @@
                     class="text-white"
                     v-html="markerIcon.value"
                 ></span>
+                <img
+                    v-else-if="markerIcon.kind === 'image'"
+                    :src="markerIcon.value"
+                    class="w-8 h-8 object-contain"
+                    alt=""
+                />
             </div>
             <h2
                 class="text-lg font-semibold marker-title"
@@ -194,6 +200,7 @@
 
 <script setup>
 import { computed, onBeforeUnmount, ref, watch } from "vue";
+import { svgIconDataUrl } from "../../maps/markerIcons.js";
 import { pathLength, polygonArea } from "../../maps/polygon.js";
 
 const props = defineProps({
@@ -232,8 +239,15 @@ const markerIcon = computed(() => {
         return { kind: "fa", value: props.pin.icon.value };
     }
 
-    if (props.pin.icon?.type === "html" || props.pin.icon?.type === "svg") {
+    if (props.pin.icon?.type === "html") {
         return { kind: "html", value: props.pin.icon.value };
+    }
+
+    if (props.pin.icon?.type === "svg") {
+        const source = svgIconDataUrl(props.pin.icon.value);
+        if (source) {
+            return { kind: "image", value: source };
+        }
     }
 
     if (props.pin.icon?.type === "avatar") {

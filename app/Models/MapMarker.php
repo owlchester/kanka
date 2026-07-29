@@ -234,8 +234,8 @@ class MapMarker extends Model
                 $icon = $this->custom_icon;
             } elseif (Str::startsWith($this->custom_icon, ['fa-', 'ra '])) {
                 $icon = ' <i class="' . $this->custom_icon . '" aria-hidden="true"></i>';
-            } elseif (Str::startsWith($this->custom_icon, '<?xml')) {
-                $icon = '<div class="custom-icon"><img src="' . $this->resizedCustomIcon() . '" /></div>';
+            } elseif (Str::startsWith($this->custom_icon, ['<svg', '<?xml'])) {
+                $icon = '<div class="custom-icon"><img src="' . $this->customSvgDataUri() . '" /></div>';
             }
         } elseif ($this->icon == 2) {
             $icon = '<i class="fa-solid fa-question"></i>';
@@ -272,8 +272,8 @@ class MapMarker extends Model
             if (Str::startsWith($this->custom_icon, ['fa-', 'ra '])) {
                 return ['type' => 'fa', 'value' => $this->custom_icon];
             }
-            if (Str::startsWith($this->custom_icon, '<?xml')) {
-                return ['type' => 'svg', 'value' => $this->resizedCustomIcon()];
+            if (Str::startsWith($this->custom_icon, ['<svg', '<?xml'])) {
+                return ['type' => 'svg', 'value' => $this->customSvgDataUri()];
             }
         }
 
@@ -559,8 +559,8 @@ class MapMarker extends Model
                 $icon = '`' . $iconShape . $this->custom_icon . '`';
             } elseif (Str::startsWith($this->custom_icon, ['fa-', 'ra '])) {
                 $icon = '`' . $iconShape . ' <i class="' . $this->custom_icon . '" aria-hidden="true"></i>`';
-            } elseif (Str::startsWith($this->custom_icon, '<?xml')) {
-                $icon = 'L.Util.template(`<div class="custom-icon">' . $this->resizedCustomIcon() . '</div>`)';
+            } elseif (Str::startsWith($this->custom_icon, ['<svg', '<?xml'])) {
+                $icon = '`<div class="custom-icon"><img src="' . $this->customSvgDataUri() . '" /></div>`';
             }
         } elseif ($this->icon == 2) {
             $icon = '`' . $iconShape . '<i class="fa-solid fa-question"></i>`';
@@ -703,6 +703,11 @@ class MapMarker extends Model
         $resized = str_replace('height="32"', 'height="32" style="margin-top: 4px;"', $resized);
 
         return $resized;
+    }
+
+    protected function customSvgDataUri(): string
+    {
+        return 'data:image/svg+xml;base64,' . base64_encode($this->resizedCustomIcon());
     }
 
     /**
