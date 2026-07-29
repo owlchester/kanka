@@ -66,6 +66,10 @@
             <span>{{ i18n.loading }}</span>
         </div>
 
+        <div v-else-if="loadError" class="p-4 text-sm text-error-content">
+            {{ loadError }}
+        </div>
+
         <div v-else-if="preview" class="flex flex-col grow min-h-0">
             <div
                 class="p-4 pt-0 flex flex-col gap-3 overflow-y-auto grow min-h-0"
@@ -189,7 +193,7 @@
 </template>
 
 <script setup>
-import { computed, ref, watch } from "vue";
+import { computed, onBeforeUnmount, ref, watch } from "vue";
 import { pathLength, polygonArea } from "../../maps/polygon.js";
 
 const props = defineProps({
@@ -204,6 +208,8 @@ const loading = ref(false);
 const preview = ref(null);
 const confirming = ref(false);
 const error = ref(null);
+const loadError = ref(null);
+let previewRequest = null;
 
 const markerIcon = computed(() => {
     if (props.pin.shape === "label") {
@@ -282,22 +288,46 @@ async function handleDelete() {
 }
 
 async function load(pin) {
+    previewRequest?.abort();
+    previewRequest = null;
+
     confirming.value = false;
     error.value = null;
+    loadError.value = null;
     preview.value = null;
+    loading.value = false;
 
     if (!pin) {
         return;
     }
 
+    const request = new AbortController();
+    previewRequest = request;
     loading.value = true;
+
     try {
-        const res = await axios.get(pin.preview_url);
+        const res = await axios.get(pin.preview_url, { signal: request.signal });
+
+        if (previewRequest !== request) {
+            return;
+        }
+
         preview.value = res.data;
+    } catch (e) {
+        if (previewRequest === request && !request.signal.aborted) {
+            loadError.value = props.i18n.error_load;
+        }
     } finally {
-        loading.value = false;
+        if (previewRequest === request) {
+            previewRequest = null;
+            loading.value = false;
+        }
     }
 }
 
 watch(() => props.pin, load, { immediate: true });
+
+onBeforeUnmount(() => {
+    previewRequest?.abort();
+});
 </script>

@@ -107,6 +107,20 @@
             </div>
         </div>
 
+        <div
+            v-if="activeMode === 'center-pick'"
+            class="fixed top-4 left-1/2 -translate-x-1/2 z-[1200] bg-base-100 rounded-xl shadow-lg px-3 py-2 items-center gap-2 md:hidden flex"
+        >
+            <span class="text-sm">{{ data.i18n.settings.picking }}</span>
+            <button
+                type="button"
+                class="btn2 btn-default btn-sm"
+                @click="activeMode = null"
+            >
+                {{ data.i18n.cancel }}
+            </button>
+        </div>
+
         <LegendPanel
             :open="legendOpen"
             :groups="data.groups"
@@ -223,6 +237,7 @@
             :pins="data.pins"
             :i18n="data.i18n.settings"
             :pending-center="pendingCenter"
+            :picking-center="activeMode === 'center-pick'"
             @close="settingsOpen = false"
             @saved="handleSettingsSaved"
             @pick-center="handleModeChange('center-pick')"
@@ -238,6 +253,7 @@ import { colourForUser, useMapPresence } from "../../composables/useMapPresence.
 import { centroid } from "../../maps/polygon.js";
 import { panelsToClose } from "../../maps/panelExclusivity.js";
 import { insertGroupIntoList } from "../../maps/groupTree.js";
+import { upsertPin } from "../../maps/pinCollection.js";
 import DetailPanel from "./DetailPanel.vue";
 import GroupModal from "./GroupModal.vue";
 import LeafletCanvas from "./LeafletCanvas.vue";
@@ -425,13 +441,13 @@ function handleRemoteMapUpdate(map) {
 }
 
 function handleTilingChanged({ status }) {
-    data.value.map = { ...data.value.map, tiling: status === 'running' ? 'running' : null };
+    if (status === 'running') {
+        data.value.map = { ...data.value.map, tiling: 'running' };
 
-    if (status !== 'running') {
-        axios.get(props.api).then((res) => {
-            data.value = res.data;
-        });
+        return;
     }
+
+    window.location.reload();
 }
 
 function handleContentsChanged({ groups, layers }) {
@@ -445,12 +461,7 @@ function handleMarkerChanged({ action, pin, id }) {
         return;
     }
 
-    const index = data.value.pins.findIndex((p) => p.id === id);
-    if (index === -1) {
-        data.value.pins = [...data.value.pins, pin];
-    } else {
-        data.value.pins = data.value.pins.map((p) => (p.id === id ? pin : p));
-    }
+    data.value.pins = upsertPin(data.value.pins, pin);
 }
 
 function defaultColour() {
@@ -756,7 +767,7 @@ function handleEditPathChange(vertices) {
 }
 
 function onPinCreated(pin) {
-    data.value.pins = [...data.value.pins, pin];
+    data.value.pins = upsertPin(data.value.pins, pin);
     draftPin.value = null;
 
     if (! rapid.value) {
