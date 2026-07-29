@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\MapMarkerIcon;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -48,7 +49,7 @@ class StoreMapMarker extends FormRequest
             'css' => 'nullable|string|max:45',
 
             'icon' => 'required|integer',
-            'custom_icon' => 'nullable|string',
+            'custom_icon' => ['nullable', 'string', new MapMarkerIcon],
             'circle_radius' => 'nullable|integer|min:1',
             'opacity' => 'nullable|min:0|max:100|integer',
 

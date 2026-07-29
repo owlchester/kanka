@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Events\Maps\MarkerChanged;
 use App\Models\MapMarker;
+use App\Rules\FontAwesomeIcon;
 use enshrined\svgSanitize\Sanitizer;
 use Illuminate\Support\Str;
 
@@ -73,8 +74,19 @@ class MapMarkerObserver
             } else {
                 return null;
             }
-        } elseif (Str::startsWith($mapMarker->custom_icon, ['<i ', 'fa-', 'ra '])) {
+        } elseif (Str::startsWith($mapMarker->custom_icon, '<i ')) {
             return $this->purify($mapMarker->custom_icon);
+        } elseif (Str::startsWith($mapMarker->custom_icon, ['fa-', 'ra '])) {
+            // A bare class list has no markup for HTMLPurifier to act on, so a quote-breakout
+            // payload like `fa-solid fa-skull" onmousehover="alert(1)` would pass purify()
+            // untouched - it's rendered by concatenating this value straight into a
+            // class="..." attribute (LeafletCanvas.vue, markerIcon()), so only a strict
+            // charset whitelist actually protects those sinks. This is the last line of
+            // defense: it also has to catch data written outside StoreMapMarker/StoreMapPreset
+            // validation, eg. campaign import (MapMapper) writes custom_icon directly.
+            return preg_match(FontAwesomeIcon::SAFE_CLASS_PATTERN, $mapMarker->custom_icon)
+                ? $mapMarker->custom_icon
+                : null;
         }
 
         return null;

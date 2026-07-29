@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\MapMarkerIcon;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -32,7 +33,7 @@ class StoreMapPreset extends FormRequest
             'shape' => ['nullable', 'string', Rule::in(['marker', 'label', 'circle', 'poly', 'path'])],
             'colour' => 'nullable|string|max:20',
             'icon' => 'nullable|integer',
-            'custom_icon' => 'nullable|string|max:191',
+            'custom_icon' => ['nullable', 'string', 'max:191', new MapMarkerIcon],
             'opacity' => 'nullable|integer|min:0|max:100',
             'is_draggable' => 'boolean',
             'css' => 'nullable|string|max:45',

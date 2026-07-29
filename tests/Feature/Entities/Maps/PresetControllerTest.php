@@ -89,6 +89,20 @@ it('422s preset creation when name is missing', function () {
     ])->assertStatus(422);
 });
 
+it('422s preset creation when custom_icon is an attribute breakout payload', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $response = $this->postJson(route('entities.map-presets.store', [1, $map->entity]), [
+        'name' => 'Town',
+        'custom_icon' => 'fa-solid fa-skull" onmousehover="alert(1)',
+    ]);
+
+    $response->assertStatus(422);
+    $response->assertJsonValidationErrors('custom_icon');
+    expect(Preset::where('name', 'Town')->exists())->toBeFalse();
+});
+
 it('makes a newly created preset immediately available from the map setup API', function () {
     $this->asUser()->withCampaign();
     $map = Map::factory()->create(['campaign_id' => 1]);
