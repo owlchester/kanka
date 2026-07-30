@@ -110,7 +110,7 @@ class ExploreApiService
             ['id' => Visibility::All->value, 'name' => __('crud.visibilities.all')],
         ];
 
-        if (auth()->user()->can('admin', $this->campaign)) {
+        if ($this->user->can('admin', $this->campaign)) {
             $options[] = ['id' => Visibility::Admin->value, 'name' => __('crud.visibilities.admin')];
             $options[] = ['id' => Visibility::Member->value, 'name' => __('crud.visibilities.members')];
         }
