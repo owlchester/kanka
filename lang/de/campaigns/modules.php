@@ -23,7 +23,7 @@ return [
     'fields'        => [
         'icon'      => 'Modulsymbol',
         'plural'    => 'Modul Mehrzahl Name',
-        'singular'  => 'Modul Einzal Name',
+        'singular'  => 'Modul Einzahl Name',
     ],
     'helpers'       => [
         'custom'    => 'Dies ist ein benutzerdefiniertes Modul.',

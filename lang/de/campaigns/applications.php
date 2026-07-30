@@ -23,7 +23,7 @@ return [
     ],
     'helpers'       => [
         'modal'                 => 'Bei einer Kampagne, die für Bewerbungen offen und öffentlich ist, können sich Benutzer für die Teilnahme an der Kampagne bewerben.',
-        'no_applications_title' => 'Keine Anwendungen gefunden',
+        'no_applications_title' => 'Keine Beitrittsanfragen gefunden',
         'reason'                => 'Wenn dies der Fall ist, wird der Bewerber mit dieser Begründung benachrichtigt.',
         'role'                  => 'Bei Genehmigung die Rolle, welcher der Bewerber hinzugefügt wird.',
     ],
