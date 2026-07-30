@@ -2810,7 +2810,7 @@ jiti@^2.6.1:
   resolved "https://registry.yarnpkg.com/jiti/-/jiti-2.6.1.tgz#178ef2fc9a1a594248c20627cd820187a4d78d92"
   integrity sha512-ekilCSN1jwRvIbgeg/57YFh8qQDNbwDb9xT/qu2DAHbFFZUicIl4ygVaAvzveMhMVr3LnpSKTNnwt8PoOfmKhQ==
 
-"jquery@^1.4 || ^2.0 || ^3.0":
+"jquery@^1.4 || ^2.0 || ^3.0", jquery@^3.7.1:
   version "3.7.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.7.1.tgz#083ef98927c9a6a74d05a6af02806566d16274de"
   integrity sha512-m4avr8yL8kmFN8psrbFFFmB/If14iN5o9nw/NgnnM+kybDJpRsAynV2BsfpTYrTRysYUdADVD7CkUUizgkpLfg==
@@ -3650,11 +3650,6 @@ source-map@~0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
   integrity sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==
-
-spectrum-colorpicker@^1.8.1:
-  version "1.8.1"
-  resolved "https://registry.yarnpkg.com/spectrum-colorpicker/-/spectrum-colorpicker-1.8.1.tgz#34d3038dcfd0accb89597335b50a663160b170af"
-  integrity sha512-x1picQ5giVso71ESII7jZ3+ZFdit8WthNkzwJqLNdPDPzrltKUQGpTohWyPfSAID+bK1zGdO6bDbSh1S6GoLYA==
 
 stackblur-canvas@^2.0.0:
   version "2.7.0"

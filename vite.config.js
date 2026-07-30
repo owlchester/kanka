@@ -53,7 +53,6 @@ export default defineConfig({
                 'resources/js/history.js',
                 'resources/js/whiteboards.js',
                 'resources/js/connections/web.js',
-                'resources/js/editors/summernote.js',
                 'resources/js/editors/tiptap/index.js',
                 'resources/js/family-tree-vue.js',
                 'resources/js/entities/explore.js',
@@ -62,6 +61,7 @@ export default defineConfig({
                 'resources/js/attributes-manager.js',
                 'resources/js/campaigns/theme-builder.js',
                 'resources/js/campaigns/import.js',
+                'resources/js/jquery.js',
 
                 'resources/css/app.css',
                 'resources/css/vendors/tinymce.css',
@@ -78,8 +78,6 @@ export default defineConfig({
                 'resources/css/themes/midnight.css',
 
                 'resources/css/print/print.css',
-
-                'resources/js/vendor-final.js',
             ],
             refresh: true,
         }),

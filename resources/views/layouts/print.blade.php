@@ -73,7 +73,7 @@ if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'bas
     </div>
 
     @includeWhen(config('fontawesome.kit'), 'layouts.scripts.fontawesome')
-    @vite(['resources/js/vendor-final.js', 'resources/js/app.js'])
+    @vite('resources/js/app.js')
     @yield('scripts')
 </body>
 </html>

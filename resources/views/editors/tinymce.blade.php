@@ -9,8 +9,12 @@
 @endsection
 @section('scripts')
     @parent
-    <script src="{{ '/js/tinymce/tinymce.min.js' }}"></script>
+    @vite('resources/js/jquery.js')
     <script>
+    window.addEventListener('jquery:ready', function () {
+        const script = document.createElement('script');
+        script.src = '{{ '/build/js/tinymce/tinymce.min.js' }}';
+        script.onload = function () {
         var advancedRequest = false;
         var editor_config = {
             path_absolute : "/",
@@ -117,11 +121,13 @@
                 // Set the global dirty check off
                 window.entityFormHasUnsavedChanges = false;
                 tinymce.activeEditor.setDirty(false);
-                $("form[data-shortcut='1']").submit();
+                document.querySelector("form[data-shortcut='1']")?.requestSubmit();
             }
         };
 
         tinymce.init(editor_config);
+        };
+        document.head.append(script);
+    }, { once: true });
     </script>
 @endsection
-

@@ -28,20 +28,3 @@
 </x-grid>
 
 @include('editors.editor', (request()->ajax() ? ['dialogsInBody' => true] : []))
-
-@if (request()->ajax())
-    <script type="text/javascript">
-        $(document).ready(function () {
-@if(auth()->user()->editor != 'legacy')
-            window.initSummernote();
-@else
-            var editorId = 'era-entry';
-            // First we remove in case it was already loaded
-            tinyMCE.EditorManager.execCommand('mceFocus', false, editorId);
-            tinyMCE.EditorManager.execCommand('mceRemoveEditor', true, editorId);
-            // And add again
-            tinymce.EditorManager.execCommand('mceAddEditor', false, editorId);
-@endif
-        });
-    </script>
-@endif
