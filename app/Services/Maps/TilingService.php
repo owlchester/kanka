@@ -31,9 +31,12 @@ class TilingService
 
         $localSource = $this->downloadToLocalTemp($disk, $image->path);
         $localTilesDir = sys_get_temp_dir() . '/kanka-tiling-' . $image->id . '-' . Str::random(8);
+        $localTilingSource = $localSource;
 
         try {
-            $process = new Process($this->command($localSource, $localTilesDir));
+            $localTilingSource = $this->addAlphaChannelIfNecessary($localSource);
+
+            $process = new Process($this->command($localTilingSource, $localTilesDir));
             $process->setTimeout(0);
             $process->mustRun();
 
@@ -47,6 +50,10 @@ class TilingService
 
             return $zoomRange;
         } finally {
+            if ($localTilingSource !== $localSource) {
+                @unlink($localTilingSource);
+            }
+
             @unlink($localSource);
             $this->deleteLocalDirectory($localTilesDir);
         }
@@ -73,6 +80,39 @@ class TilingService
             // solid white block over what should be transparent. `0` broadcasts to every band
             // (RGB or RGBA alike), making the padding transparent wherever alpha exists.
             '--background=0',
+        ];
+    }
+
+    /**
+     * Add an opaque alpha channel to RGB images so dzsave can make padded edge pixels transparent.
+     */
+    protected function addAlphaChannelIfNecessary(string $localSourcePath): string
+    {
+        $bands = trim((new Process(['vipsheader', '-f', 'bands', $localSourcePath]))->mustRun()->getOutput());
+
+        if ($bands !== '3') {
+            return $localSourcePath;
+        }
+
+        $localAlphaSourcePath = sys_get_temp_dir() . '/' . Str::random(12) . '-alpha.png';
+
+        (new Process($this->alphaChannelCommand($localSourcePath, $localAlphaSourcePath)))->mustRun();
+
+        return $localAlphaSourcePath;
+    }
+
+    /**
+     * Pure command-argument builder for adding an opaque alpha band to an RGB source image.
+     *
+     * @return string[]
+     */
+    public function alphaChannelCommand(string $localSourcePath, string $localAlphaSourcePath): array
+    {
+        return [
+            'vips', 'bandjoin_const',
+            $localSourcePath,
+            $localAlphaSourcePath,
+            '255',
         ];
     }
 

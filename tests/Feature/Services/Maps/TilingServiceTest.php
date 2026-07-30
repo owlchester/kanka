@@ -31,6 +31,17 @@ it('defaults the suffix to webp when not specified', function () {
     expect($command)->toContain('--suffix=.webp[Q=80]');
 });
 
+it('builds the vips command that adds an opaque alpha channel to an RGB image', function () {
+    $service = new TilingService;
+
+    expect($service->alphaChannelCommand('/tmp/source.jpg', '/tmp/source-alpha.png'))->toBe([
+        'vips', 'bandjoin_const',
+        '/tmp/source.jpg',
+        '/tmp/source-alpha.png',
+        '255',
+    ]);
+});
+
 it('uploads generated tiles to the configured disk, keyed by image, not by a local filesystem path', function () {
     Storage::fake();
     $user = User::factory()->create();
@@ -91,6 +102,11 @@ it('tile() downloads the source to a real local file, runs the command against i
 
         public ?string $capturedLocalTilesDir = null;
 
+        protected function addAlphaChannelIfNecessary(string $localSourcePath): string
+        {
+            return $localSourcePath;
+        }
+
         public function command(string $localSourcePath, string $localTilesDir, string $suffix = '.webp[Q=80]'): array
         {
             $this->capturedLocalSource = $localSourcePath;
@@ -134,6 +150,11 @@ it('cleans up the local temp source file and tiles directory when the vips proce
 
         public ?string $capturedLocalTilesDir = null;
 
+        protected function addAlphaChannelIfNecessary(string $localSourcePath): string
+        {
+            return $localSourcePath;
+        }
+
         public function command(string $localSourcePath, string $localTilesDir, string $suffix = '.webp[Q=80]'): array
         {
             $this->capturedLocalSource = $localSourcePath;
@@ -173,6 +194,11 @@ it('tile() returns the real min/max zoom levels vips generated, not a hardcoded 
 
     $service = new class extends TilingService
     {
+        protected function addAlphaChannelIfNecessary(string $localSourcePath): string
+        {
+            return $localSourcePath;
+        }
+
         public function command(string $localSourcePath, string $localTilesDir, string $suffix = '.webp[Q=80]'): array
         {
             foreach ([0, 1, 2, 3] as $level) {
@@ -221,6 +247,53 @@ it('pads clipped edge tiles with a transparent background, not opaque white, via
         expect($bands)->toBe(4); // padded region keeps an alpha channel (transparent), not flattened to opaque
     } finally {
         @unlink($sourcePath);
+        if (is_dir($localTilesDir)) {
+            exec('rm -rf ' . escapeshellarg($localTilesDir));
+        }
+    }
+});
+
+it('adds an alpha channel before tiling a three-band image via real vips', function () {
+    if (! shell_exec('command -v vips')) {
+        $this->markTestSkipped('vips is not installed in this environment.');
+    }
+
+    $service = new class extends TilingService
+    {
+        public function addAlphaChannel(string $localSourcePath): string
+        {
+            return $this->addAlphaChannelIfNecessary($localSourcePath);
+        }
+    };
+
+    $sourcePath = sys_get_temp_dir() . '/tiling-service-rgb-' . uniqid() . '.jpg';
+    $source = imagecreatetruecolor(300, 300);
+    imagefill($source, 0, 0, imagecolorallocate($source, 10, 20, 30));
+    imagejpeg($source, $sourcePath);
+    imagedestroy($source);
+
+    $localTilesDir = sys_get_temp_dir() . '/tiling-service-rgb-output-' . uniqid();
+    $localAlphaSourcePath = null;
+
+    try {
+        $localAlphaSourcePath = $service->addAlphaChannel($sourcePath);
+
+        expect($localAlphaSourcePath)->not->toBe($sourcePath);
+        expect((int) trim((new Process(['vipsheader', '-f', 'bands', $localAlphaSourcePath]))->mustRun()->getOutput()))->toBe(4);
+
+        (new Process($service->command($localAlphaSourcePath, $localTilesDir)))->mustRun();
+
+        $edgeTile = $localTilesDir . '/1/1/1.webp';
+        expect(file_exists($edgeTile))->toBeTrue();
+        expect((int) trim((new Process(['vipsheader', '-f', 'bands', $edgeTile]))->mustRun()->getOutput()))->toBe(4);
+
+        $paddedPixel = preg_split('/\s+/', trim((new Process(['vips', 'getpoint', $edgeTile, '100', '100']))->mustRun()->getOutput()));
+        expect((float) $paddedPixel[3])->toBe(0.0);
+    } finally {
+        @unlink($sourcePath);
+        if ($localAlphaSourcePath) {
+            @unlink($localAlphaSourcePath);
+        }
         if (is_dir($localTilesDir)) {
             exec('rm -rf ' . escapeshellarg($localTilesDir));
         }
