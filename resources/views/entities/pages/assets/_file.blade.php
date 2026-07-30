@@ -1,7 +1,7 @@
 <?php /** @var \App\Models\EntityAsset $asset */?>
 <div class="entity-asset asset-file flex gap-2 items-center lg:w-80">
     <a href="{{ $asset->url() }}" target="_blank"
-       class="flex-none w-32 h-20 cover-background  icon rounded flex items-center align-center justify-center bg-black/10 text-3xl " @if($asset->isImage()) style="background-image: url({{ $asset->imageUrl() }})"@endif>
+       class="flex-none w-32 h-20 cover-background  icon rounded flex items-center align-center justify-center bg-black/10 text-3xl " @if($asset->isImage()) style="background-image: url('{{ $asset->imageUrl() }}')"@endif>
         @if (!$asset->isImage())
             <x-icon :class="$asset->previewIcon()" />
         @endif

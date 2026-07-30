@@ -14,7 +14,7 @@
             </audio>
         </div>
     @else
-        <a href="{{ $asset->url() }}" target="_blank" class="pinned-asset child icon" data-asset="{{ \Illuminate\Support\Str::slug($asset->name) }}" data-target="{{ $asset->id }}">
+        <a href="{{ $asset->url() }}" target="_blank" class="pinned-asset child icon text-link" data-asset="{{ \Illuminate\Support\Str::slug($asset->name) }}" data-target="{{ $asset->id }}">
             {!! $asset->name !!}
         </a>
     @endif
