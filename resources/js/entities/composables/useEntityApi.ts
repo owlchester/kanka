@@ -22,10 +22,18 @@ export function useEntityApi(options: EntityApiOptions) {
         response.entities.data.forEach((a: any) => {
             entities.value.push(a)
         })
-        csrf.value = response.csrf
-        columns.value = response.columns ?? []
-        columnPreferences.value = response.columnPreferences ?? []
-        ads.value = response.ads ?? { enabled: false, frequency: 7 }
+        if (response.csrf !== undefined) {
+            csrf.value = response.csrf
+        }
+        if (response.columns !== undefined) {
+            columns.value = response.columns
+        }
+        if (response.columnPreferences !== undefined) {
+            columnPreferences.value = response.columnPreferences
+        }
+        if (response.ads !== undefined) {
+            ads.value = response.ads
+        }
     }
 
     const fetchEntities = (url: string) => {

@@ -25,6 +25,7 @@ class MapGroupResource extends ModelResource
             'position' => (int) $model->position,
             'visibility_id' => $model->visibility_id,
             'is_shown' => (bool) $model->is_shown,
+            'colour' => $model->colour,
         ]);
     }
 }

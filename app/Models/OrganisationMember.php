@@ -114,7 +114,7 @@ class OrganisationMember extends Model
 
     public function pinned(): bool
     {
-        return ! empty($this->pin_id);
+        return $this->pin_id !== null && $this->pin_id !== OrganisationMemberPin::empty;
     }
 
     /**

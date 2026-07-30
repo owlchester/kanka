@@ -7,18 +7,18 @@
         @include('entities.components.menu_v2', ['active' => 'story'])
 
         <div class="entity-main-block grow flex flex-col gap-5 min-w-0">@if ($entity->child->explorable())
-                @if ($entity->child->isChunked() && $entity->child->chunkingError())
+                @if ($entity->child->tilingError())
                     <x-alert type="error">
-                        {!! __('maps.errors.chunking.error', ['discord' => '<a href="https://kanka.io/go/discord">Discord</a>']) !!}
+                        {!! __('maps.errors.tiling.error', ['discord' => '<a href="https://kanka.io/go/discord">Discord</a>']) !!}
                     </x-alert>
-                @elseif ($entity->child->isChunked() && !$entity->child->chunkingReady())
+                @elseif ($entity->child->tilingRunning())
                     <x-alert type="warning">
-                        {{ __('maps.errors.chunking.running.explore') }}
-                        {{ __('maps.errors.chunking.running.time') }}
+                        {{ __('maps.errors.tiling.running.explore') }}
+                        {{ __('maps.errors.tiling.running.time') }}
                     </x-alert>
                 @else
                     <p>
-                        <a href="{{ route('maps.explore', [$campaign, $entity->child]) }}" class="btn2 btn-block btn-primary" target="_blank">
+                        <a href="{{ route('entities.map', [$campaign, $entity]) }}" class="btn2 btn-block btn-primary" target="_blank">
                             <x-icon class="map" /> {{ __('maps.actions.explore') }}
                         </a>
                     </p>

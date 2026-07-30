@@ -92,6 +92,17 @@ class Entity extends Model
     use Templatable;
     use TouchSilently;
 
+    protected static function booted(): void
+    {
+        static::creating(function (self $entity): void {
+            // Privacy is only configurable by campaign admins, so regular
+            // entity creation may submit a null value.
+            if ($entity->is_private === null) {
+                $entity->is_private = false;
+            }
+        });
+    }
+
     protected $fillable = [
         'campaign_id',
         'entity_id',

@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\OrganisationMemberPin;
 use App\Models\Character;
 use App\Models\Organisation;
 use App\Models\OrganisationMember;
@@ -46,4 +47,11 @@ it('bulk patches organisation member role', function () {
         'id' => $this->member->id,
         'role' => 'Commander',
     ]);
+});
+
+it('does not treat the empty pin value as pinned', function () {
+    $this->member->pin_id = OrganisationMemberPin::empty;
+
+    expect($this->member->pinned())->toBeFalse()
+        ->and($this->member->pinnedToBoth())->toBeFalse();
 });

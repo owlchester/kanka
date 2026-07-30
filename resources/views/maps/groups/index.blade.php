@@ -14,7 +14,7 @@
                 <span class="hidden xl:inline">{{ __('crud.actions.help') }}</span>
             </a>
             @if ($model->explorable())
-                <a href="{{ route('maps.explore', [$campaign, $model]) }}" class="btn2 btn-primary btn-sm">
+                <a href="{{ route('entities.explore', [$campaign, $model->entity]) }}" class="btn2 btn-primary btn-sm">
                     <x-icon class="map" />
                     <span class="hidden xl:inline">{{ __('maps.actions.explore') }}</span>
                 </a>

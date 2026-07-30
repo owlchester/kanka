@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Laravel\Scout\Searchable;
 
 /**
@@ -170,11 +170,11 @@ class TimelineElement extends Model
     /**
      * List of entities that mention this entity
      *
-     * @return HasMany<EntityMention, $this>
+     * @return MorphMany<EntityMention, $this>
      */
-    public function mentions(): HasMany
+    public function mentions(): MorphMany
     {
-        return $this->hasMany('App\Models\EntityMention', 'timeline_element_id', 'id');
+        return $this->morphMany(EntityMention::class, 'mentionable');
     }
 
     public function visible(): bool

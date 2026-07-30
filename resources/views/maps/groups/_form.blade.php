@@ -11,7 +11,8 @@
         css="col-span-2">
         <input type="text" name="name" maxlength="191" placeholder="{{ __('maps/groups.placeholders.name') }}" required value="{!! htmlspecialchars(old('name', $model->name ?? null)) !!}" />
     </x-forms.field>
-    
+
+    @include('cruds.fields.colour_picker', ['dropdownParent' => $dropdownParent ?? null])
 
     <x-forms.foreign
         :campaign="$campaign"

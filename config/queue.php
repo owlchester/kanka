@@ -64,12 +64,15 @@ return [
             'retry_after' => 90,
         ],
 
-        // For heavy jobs (no timeout) like map chunking
+        // For heavy jobs (no timeout) like map tiling, which can legitimately run for
+        // hours on very large images — retry_after must exceed the longest realistic
+        // job runtime, or Redis's visibility timeout re-delivers an in-flight job to
+        // another worker as a spurious duplicate.
         'heavy' => [
             'driver' => 'redis',
             'connection' => 'default',
             'queue' => env('REDIS_HEAVY_QUEUE', 'heavy'),
-            'retry_after' => 300,
+            'retry_after' => env('REDIS_HEAVY_QUEUE_RETRY_AFTER', 21600),
         ],
     ],
 

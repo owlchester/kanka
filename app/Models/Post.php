@@ -131,11 +131,11 @@ class Post extends Model
     /**
      * List of entities that mention this entity
      *
-     * @return HasMany<EntityMention, $this>
+     * @return MorphMany<EntityMention, $this>
      */
-    public function mentions(): HasMany
+    public function mentions(): MorphMany
     {
-        return $this->hasMany('App\Models\EntityMention', 'post_id', 'id');
+        return $this->morphMany(EntityMention::class, 'mentionable');
     }
 
     /**

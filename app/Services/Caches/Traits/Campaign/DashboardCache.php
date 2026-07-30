@@ -11,7 +11,16 @@ trait DashboardCache
      */
     public function dashboards(): array
     {
-        return $this->primary($this->campaign->id)->get('dashboards');
+        $dashboards = $this->primary($this->campaign->id)->get('dashboards');
+        if (is_array($dashboards)) {
+            return $dashboards;
+        }
+
+        // Recover from a partial primary cache entry created by an older
+        // has()/get() race in PrimaryCache.
+        $this->clear();
+
+        return $this->primary($this->campaign->id)->get('dashboards', []);
     }
 
     protected function formatDashboards(): array

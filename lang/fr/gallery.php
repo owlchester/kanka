@@ -2,12 +2,13 @@
 
 return [
     'actions'   => [
-        'add_url'   => 'Ajouter depuis une URL',
-        'change'    => 'Changer',
-        'gallery'   => 'Depuis la galerie',
-        'upload'    => 'Télécharger depuis l\'appareil',
-        'url'       => 'Télécharger une image à partir d\'une URL',
-        'url_hint'  => 'Coller un lien d\'image',
+        'add_url'       => 'Ajouter depuis une URL',
+        'change'        => 'Changer',
+        'gallery'       => 'Depuis la galerie',
+        'paste_error'   => 'URL invalide',
+        'upload'        => 'Télécharger depuis l\'appareil',
+        'url'           => 'Télécharger une image à partir d\'une URL',
+        'url_hint'      => 'Coller un lien d\'image',
     ],
     'browse'    => [
         'folder_count'      => ':count images',

@@ -11,7 +11,7 @@
     import { ListKit } from '@tiptap/extension-list'
     import { TableKit } from "@tiptap/extension-table"
     import { CellSelection } from '@tiptap/pm/tables'
-    import { ref, computed, onMounted, onBeforeUnmount, defineAsyncComponent, getCurrentInstance } from 'vue'
+    import { ref, computed, nextTick, onMounted, onBeforeUnmount, defineAsyncComponent, getCurrentInstance } from 'vue'
     import { Mention } from './extensions/mentions/Mention'
     import suggestion from './extensions/mentions/suggestion'
     import { MentionParser } from './extensions/mentions/MentionParser'
@@ -49,6 +49,10 @@
         fieldName: 'entry'
     })
 
+    const emit = defineEmits<{
+        'update:modelValue': [value: string]
+    }>()
+
     declare global {
         interface Window {
             showToast: (message: string, type?: string) => void
@@ -62,22 +66,41 @@
     const isFocused = ref(false)
     const hasReceivedInput = ref(false)
     const sourceMode = ref(false)
+    const sourceModeCursorBlock = ref(0)
 
     const showHelperText = computed(() => {
         return isFocused.value && !hasReceivedInput.value && editor.value?.isEmpty
     })
 
     const enterSourceMode = () => {
+        // Remember which top-level block the cursor is in so source mode can scroll there
+        sourceModeCursorBlock.value = editor.value?.state.selection.$from.index(0) ?? 0
         sourceMode.value = true
     }
 
-    const exitSourceMode = () => {
+    // Converts a top-level block index back into a ProseMirror position, landing
+    // just inside that block's content (rather than always at the very start/end).
+    const positionOfBlock = (blockIndex: number): number => {
+        const doc = editor.value?.state.doc
+        if (!doc) {
+            return 0
+        }
+        const clampedIndex = Math.min(Math.max(blockIndex, 0), Math.max(doc.childCount - 1, 0))
+        let pos = 0
+        for (let i = 0; i < clampedIndex; i++) {
+            pos += doc.child(i).nodeSize
+        }
+        return pos + 1
+    }
+
+    const exitSourceMode = (cursorBlockIndex = 0) => {
         // Sync HTML back to editor when exiting source mode
         editor.value?.commands.setContent(html.value)
         sourceMode.value = false
-        // Focus the editor after a short delay to ensure it's mounted
+        // Focus the editor after a short delay to ensure it's mounted, landing
+        // back on the block the user was editing in source mode
         setTimeout(() => {
-            editor.value?.commands.focus()
+            editor.value?.commands.focus(positionOfBlock(cursorBlockIndex))
         }, 50)
     }
 
@@ -224,6 +247,7 @@
                 /<table([^>]*) data-table-class="([^"]+)"([^>]*)>/g,
                 '<table$1 class="$2"$3>'
             )
+            emit('update:modelValue', html.value)
             if (!hasReceivedInput.value && !editor.isEmpty) {
                 hasReceivedInput.value = true
             }
@@ -415,12 +439,24 @@
         window.removeEventListener('tiptap:source-mode', enterSourceMode)
         editor?.value.destroy()
     })
+
+    defineExpose({
+        // EditorContent only attaches editor.view.dom to the visible DOM inside its own
+        // nextTick callback (queued once the editor is created in this component's own
+        // onMounted), so a caller focusing right after mount needs one more tick or the
+        // view isn't connected to the document yet and focus() is a silent no-op.
+        focus: async () => {
+            await nextTick()
+            editor.value?.commands.focus()
+        },
+    })
 </script>
 
 <template>
     <SourceEditor
         v-if="sourceMode"
         v-model="html"
+        :cursor-block-index="sourceModeCursorBlock"
         @exit="exitSourceMode"
     />
 

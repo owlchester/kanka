@@ -1,5 +1,13 @@
 <?php
 
+use App\Models\TimelineEra;
+
+it('displays an era with only a negative end year', function () {
+    $era = new TimelineEra(['end_year' => -500]);
+
+    expect($era->ages())->toBe('< -500');
+});
+
 it('POSTS an invalid timeline era form')
     ->asUser()
     ->withCampaign()

@@ -18,8 +18,15 @@ trait PrimaryCache
         }
 
         $key = $this->primaryKey();
-        if ($this->has($key)) {
-            return $this->primary[$cache] = new Collection($this->get($key));
+        // Read the cache once. A separate has()/get() pair can race with cache
+        // expiry or invalidation and turn a missing value into an empty
+        // collection that then gets persisted by append().
+        $data = $this->get($key);
+        if ($data instanceof Collection) {
+            $data = $data->all();
+        }
+        if (is_array($data) && $data !== []) {
+            return $this->primary[$cache] = new Collection($data);
         }
 
         $data = $this->primaryData();
@@ -35,6 +42,7 @@ trait PrimaryCache
     public function clear(): self
     {
         $this->forget($this->primaryKey());
+        $this->primary = [];
 
         return $this;
     }
@@ -44,8 +52,9 @@ trait PrimaryCache
      */
     protected function append(int $key, string $property, mixed $data): mixed
     {
-        $this->primary[$key][$property] = $data;
-        $this->forever($this->primaryKey(), $this->primary[$key]);
+        $primary = $this->primary[$key];
+        $primary[$property] = $data;
+        $this->forever($this->primaryKey(), $primary->all());
 
         return $data;
     }

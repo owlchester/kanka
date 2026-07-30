@@ -6,16 +6,15 @@ use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Arr;
 
 /**
  * Class EntityMention
  *
- * @property int $entity_id
- * @property ?int $post_id
- * @property ?int $quest_element_id
- * @property ?int $timeline_element_id
- * @property ?int $campaign_id
+ * @property ?string $mentionable_type
+ * @property ?int $mentionable_id
+ * @property ?int $entity_id Denormalized parent-entity rollup; set for Entity/Post/TimelineElement/QuestElement owners, null for Campaign owners.
  * @property int $target_id
  * @property Entity $entity
  * @property Post|null $post
@@ -23,6 +22,10 @@ use Illuminate\Support\Arr;
  * @property TimelineElement|null $timelineElement
  * @property ?Entity $target
  * @property Campaign|null $campaign
+ * @property-read int|null $post_id Virtual, derived from mentionable_type/mentionable_id.
+ * @property-read int|null $timeline_element_id Virtual, derived from mentionable_type/mentionable_id.
+ * @property-read int|null $quest_element_id Virtual, derived from mentionable_type/mentionable_id.
+ * @property-read int|null $campaign_id Virtual, derived from mentionable_type/mentionable_id.
  *
  * @method static self|Builder filterValid()
  */
@@ -31,17 +34,23 @@ class EntityMention extends Model
     use SortableTrait;
 
     public $fillable = [
+        'mentionable_type',
+        'mentionable_id',
         'entity_id',
-        'post_id',
-        'timeline_element_id',
-        'quest_element_id',
-        'campaign_id',
         'target_id',
     ];
 
     protected array $sortable = [
         'name',
     ];
+
+    /**
+     * @return MorphTo<Model, $this>
+     */
+    public function mentionable(): MorphTo
+    {
+        return $this->morphTo();
+    }
 
     /**
      * @return BelongsTo<Entity, $this>
@@ -60,35 +69,63 @@ class EntityMention extends Model
     }
 
     /**
+     * Only meaningful when isPost() is true, matching existing call-site discipline.
+     *
      * @return BelongsTo<Post, $this>
      */
     public function post(): BelongsTo
     {
-        return $this->belongsTo('App\Models\Post', 'post_id', 'id');
+        return $this->belongsTo('App\Models\Post', 'mentionable_id', 'id');
     }
 
     /**
+     * Only meaningful when isTimelineElement() is true, matching existing call-site discipline.
+     *
      * @return BelongsTo<TimelineElement, $this>
      */
     public function timelineElement(): BelongsTo
     {
-        return $this->belongsTo('App\Models\TimelineElement', 'timeline_element_id', 'id');
+        return $this->belongsTo('App\Models\TimelineElement', 'mentionable_id', 'id');
     }
 
     /**
+     * Only meaningful when isQuestElement() is true, matching existing call-site discipline.
+     *
      * @return BelongsTo<QuestElement, $this>
      */
     public function questElement(): BelongsTo
     {
-        return $this->belongsTo('App\Models\QuestElement', 'quest_element_id', 'id');
+        return $this->belongsTo('App\Models\QuestElement', 'mentionable_id', 'id');
     }
 
     /**
+     * Only meaningful when isCampaign() is true, matching existing call-site discipline.
+     *
      * @return BelongsTo<Campaign, $this>
      */
     public function campaign(): BelongsTo
     {
-        return $this->belongsTo('App\Models\Campaign', 'campaign_id', 'id');
+        return $this->belongsTo('App\Models\Campaign', 'mentionable_id', 'id');
+    }
+
+    public function getPostIdAttribute(): ?int
+    {
+        return $this->mentionable_type === Post::class ? $this->mentionable_id : null;
+    }
+
+    public function getTimelineElementIdAttribute(): ?int
+    {
+        return $this->mentionable_type === TimelineElement::class ? $this->mentionable_id : null;
+    }
+
+    public function getQuestElementIdAttribute(): ?int
+    {
+        return $this->mentionable_type === QuestElement::class ? $this->mentionable_id : null;
+    }
+
+    public function getCampaignIdAttribute(): ?int
+    {
+        return $this->mentionable_type === Campaign::class ? $this->mentionable_id : null;
     }
 
     /**
@@ -96,11 +133,17 @@ class EntityMention extends Model
      */
     public function isPost(): bool
     {
-        return ! empty($this->post_id);
+        return $this->mentionable_type === Post::class;
     }
 
     /**
-     * Determine if the mention goes to an entity
+     * Determine if the mention goes to an entity.
+     *
+     * NOTE: intentionally checks entity_id (the rollup column), not mentionable_type.
+     * entity_id is also populated for Post/TimelineElement/QuestElement-owned mentions
+     * (it's their parent-entity rollup), so this is true for every row returned by
+     * Entity::mentions() regardless of true owner — matching pre-refactor behavior
+     * relied on by DocumentController::mentions() and the dashboard widget preview.
      */
     public function isEntity(): bool
     {
@@ -112,7 +155,7 @@ class EntityMention extends Model
      */
     public function isTimelineElement(): bool
     {
-        return ! empty($this->timeline_element_id);
+        return $this->mentionable_type === TimelineElement::class;
     }
 
     /**
@@ -120,7 +163,7 @@ class EntityMention extends Model
      */
     public function isQuestElement(): bool
     {
-        return ! empty($this->quest_element_id);
+        return $this->mentionable_type === QuestElement::class;
     }
 
     /**
@@ -128,7 +171,7 @@ class EntityMention extends Model
      */
     public function isCampaign(): bool
     {
-        return ! empty($this->campaign_id);
+        return $this->mentionable_type === Campaign::class;
     }
 
     /**
@@ -137,63 +180,44 @@ class EntityMention extends Model
      */
     public function scopeFilterValid(Builder $query): Builder
     {
-        return $query->where(function ($sub) {
-            return $sub
-                ->where(function ($subEnt) {
-                    return $subEnt
-                        ->onEntity()// @phpstan-ignore method.notFound
-                        ->has('entity');
-                })
-                ->orWhere(function ($subPost) {
-                    return $subPost
-                        ->onPost()// @phpstan-ignore method.notFound
-                        ->has('post.entity');
-                })
-                ->orWhere(function ($subQuestElement) {
-                    return $subQuestElement
-                        ->onQuestElement()// @phpstan-ignore method.notFound
-                        ->has('questElement.quest.entity');
-                })
-                ->orWhere(function ($subTimelineElement) {
-                    return $subTimelineElement
-                        ->onTimelineElement()// @phpstan-ignore method.notFound
-                        ->has('timelineElement.timeline.entity');
-                })
-                ->orWhere(function ($subCam) {
-                    // @phpstan-ignore-next-line
-                    return $subCam->onCampaign();
-                });
-        });
+        return $query->whereHasMorph(
+            'mentionable',
+            [Entity::class, Post::class, TimelineElement::class, QuestElement::class, Campaign::class],
+            function (Builder $query, string $type) {
+                if ($type === Post::class) {
+                    $query->has('entity');
+                } elseif ($type === TimelineElement::class) {
+                    $query->has('timeline.entity');
+                } elseif ($type === QuestElement::class) {
+                    $query->has('quest.entity');
+                }
+            }
+        );
     }
 
     public function scopeOnEntity(Builder $query): Builder
     {
-        return $query->where(function ($sub) {
-            $sub->whereNotNull('entity_mentions.entity_id')
-                ->whereNull('entity_mentions.post_id')
-                ->whereNull('entity_mentions.timeline_element_id')
-                ->whereNull('entity_mentions.quest_element_id');
-        });
+        return $query->where('entity_mentions.mentionable_type', Entity::class);
     }
 
     public function scopeOnPost(Builder $query): Builder
     {
-        return $query->whereNotNull('entity_mentions.post_id');
+        return $query->where('entity_mentions.mentionable_type', Post::class);
     }
 
     public function scopeOnTimelineElement(Builder $query): Builder
     {
-        return $query->whereNotNull('entity_mentions.timeline_element_id');
+        return $query->where('entity_mentions.mentionable_type', TimelineElement::class);
     }
 
     public function scopeOnQuestElement(Builder $query): Builder
     {
-        return $query->whereNotNull('entity_mentions.quest_element_id');
+        return $query->where('entity_mentions.mentionable_type', QuestElement::class);
     }
 
     public function scopeOnCampaign(Builder $query): Builder
     {
-        return $query->whereNotNull('entity_mentions.campaign_id');
+        return $query->where('entity_mentions.mentionable_type', Campaign::class);
     }
 
     public function scopeDatagridElements(Builder $query, array $options): Builder
@@ -212,7 +236,7 @@ class EntityMention extends Model
         }
 
         return $query
-            ->orderBy('campaign_id');
+            ->orderBy('entity_mentions.id');
     }
 
     /**

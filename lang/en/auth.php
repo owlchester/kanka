@@ -48,8 +48,8 @@ return [
     'register'  => [
         'already'   => 'Already have an account? :login',
         'errors'    => [
+            'general_error' => 'An error occurred while registering your account. Please try again.',
             'unavailable'   => 'An account for :email is already registered with another login method.',
-            'general_error'         => 'An error occurred while registering your account. Please try again.',
         ],
         'fields'    => [
             'email'     => 'Email',

@@ -33,6 +33,7 @@ You can get a list of all the map-groups of a map by using the following endpoin
             "map_id": 1,
             "name": "Spoon",
             "position": 1,
+            "colour": "#008000",
             "updated_at": "2020-07-25T16:24:34.000000Z",
             "updated_by": null,
             "visibility_id": 1
@@ -60,6 +61,7 @@ To create a map group, use the following endpoint.
 | `parent_id` | `int` | The parent map group, must be different than self |
 | `is_shown` | `boolean` | If the layer is shown on map load |
 | `position` | `int` | Position in the list of groups |
+| `colour` | `string` | Hex colour code with leading `#` |
 | `visibility_id` | `integer` | The visibility: 1 for `all`, 2 `self`, 3 `admin`, 4 `self-admin` or 5 `members`. |
 
 ### Results

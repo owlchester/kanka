@@ -314,7 +314,7 @@ class SearchService
                     'name' => $parsedName,
                     'type' => __('maps.actions.explore'),
                     'model_type' => $model->entityType->code,
-                    'url' => route('maps.explore', [$this->campaign, $model->child]),
+                    'url' => route('entities.map', [$this->campaign, $model]),
                     'alias_id' => $model->alias_id, // @phpstan-ignore-line
                     'advanced_mention' => Mentions::advancedMentionHelper($model->name),
                     'advanced_mention_alias' => $model->alias_name ? Mentions::advancedMentionHelper($model->alias_name) : null,
@@ -435,7 +435,7 @@ class SearchService
         $action = null;
         if ($entity->isMap()) {
             $action = [
-                'url' => route('maps.explore', [$this->campaign, $entity->entity_id]),
+                'url' => route('entities.map', [$this->campaign, $entity]),
                 'name' => __('maps.actions.explore'),
             ];
         }

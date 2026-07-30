@@ -19,7 +19,15 @@ class DefaultsController extends Controller
     {
         $this->authorize('update', $campaign);
 
-        $campaign->update($request->all());
+        $data = $request->validated();
+
+        foreach (['settings', 'ui_settings'] as $attribute) {
+            if (isset($data[$attribute])) {
+                $data[$attribute] = array_replace($campaign->{$attribute} ?? [], $data[$attribute]);
+            }
+        }
+
+        $campaign->update($data);
 
         return redirect()->route('campaign-defaults', $campaign)
             ->with('success', __('campaigns/defaults.update.success'));

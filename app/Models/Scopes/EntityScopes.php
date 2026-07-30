@@ -2,6 +2,7 @@
 
 namespace App\Models\Scopes;
 
+use App\Enums\AttributeType;
 use App\Enums\EntityAssetType;
 use App\Enums\EntityEventTypes;
 use App\Models\Campaign;
@@ -625,6 +626,19 @@ trait EntityScopes
 
         if ($attributeValue === '!') {
             $query->whereRaw('att.value <> ""');
+        } elseif ($attributeValue !== null && Str::startsWith($attributeValue, '!')) {
+            $query->where(function (Builder $query) use ($attributeValue): void {
+                $query->where('att.value', 'not like', '%' . mb_ltrim($attributeValue, '!') . '%')
+                    ->orWhereNull('att.value');
+            });
+        } elseif ($attributeValue === '0') {
+            $query->where(function (Builder $query): void {
+                $query->where('att.value', '0')
+                    ->orWhere(function (Builder $query): void {
+                        $query->where('att.type_id', AttributeType::Checkbox->value)
+                            ->whereNull('att.value');
+                    });
+            });
         } elseif ($attributeValue !== '' && $attributeValue !== null) {
             $query->where('att.value', $attributeValue);
         }

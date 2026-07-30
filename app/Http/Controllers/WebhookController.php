@@ -81,12 +81,11 @@ class WebhookController extends CashierController
         $previousStatus = Arr::get($payload, 'data.previous_attributes.status', null);
         $isNewActivation = $previousStatus === 'incomplete' && $status === 'active';
 
-        // Tier upgrade or downgrade: plan or items changed (previous_attributes only lists changed fields)
-        $isPlanChange = Arr::has($payload, 'data.previous_attributes.plan')
-            || Arr::has($payload, 'data.previous_attributes.items');
-
         // plan.id is deprecated; fall back to items for newer subscriptions
         $planId = Arr::get($data, 'plan.id') ?? Arr::get($data, 'items.data.0.price.id');
+        $previousPlanId = Arr::get($payload, 'data.previous_attributes.plan.id')
+            ?? Arr::get($payload, 'data.previous_attributes.items.data.0.price.id');
+        $isPlanChange = $previousPlanId !== null && $previousPlanId !== $planId;
 
         /** @var SubscriptionService $service */
         $service = app()->make('App\Services\SubscriptionService');

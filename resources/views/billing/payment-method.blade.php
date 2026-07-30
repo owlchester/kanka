@@ -27,9 +27,11 @@
             <x-helper>
                 <p>{{ __('settings.subscription.payment_method.helper') }}</p>
             </x-helper>
-            <a href="{{ route('billing.portal') }}" class="btn2 btn-outline flex-none">
-                {{ __('settings.subscription.payment_method.actions.manage') }}
-            </a>
+            @if ($user->hasStripeId())
+                <a href="{{ route('billing.portal') }}" class="btn2 btn-outline flex-none">
+                    {{ __('settings.subscription.payment_method.actions.manage') }}
+                </a>
+            @endif
         </div>
     </x-box>
 
@@ -94,5 +96,4 @@
         </div>
     </x-box>
 @endsection
-
 

@@ -35,6 +35,10 @@ class PaymentMethodController extends Controller
 
     public function portal(Request $request): RedirectResponse
     {
+        if (! $request->user()->hasStripeId()) {
+            return redirect()->route('billing.payment-method');
+        }
+
         return $request->user()->redirectToBillingPortal(route('settings.subscription'));
     }
 

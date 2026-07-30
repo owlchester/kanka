@@ -21,6 +21,7 @@
             'title' => __('maps/groups.edit.title', ['name' => $map->name]),
             'content' => 'maps.groups._form',
             'actions' => 'maps.groups._actions',
+            'dropdownParent' => request()->ajax() ? '#primary-dialog' : null,
         ])
     </x-form>
 @endsection

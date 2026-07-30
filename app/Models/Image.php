@@ -30,6 +30,8 @@ use Illuminate\Support\Facades\Storage;
  * @property int $size
  * @property ?int $focus_x
  * @property ?int $focus_y
+ * @property ?int $tiling_status
+ * @property ?string $tiling_error
  * @property ?string $folder_id
  * @property bool|int $is_default
  * @property bool|int $is_folder
@@ -78,6 +80,12 @@ class Image extends Model
     public $casts = [
         'visibility_id' => Visibility::class,
     ];
+
+    public const TILING_RUNNING = 1;
+
+    public const TILING_FINISHED = 2;
+
+    public const TILING_ERROR = 3;
 
     protected string $userField = 'created_by';
 
@@ -333,6 +341,47 @@ class Image extends Model
         return in_array($this->ext, ['jpg', 'png', 'jpeg', 'gif', 'webp']);
     }
 
+    /**
+     * Check if this image has a finished tile pyramid ready to serve.
+     */
+    public function isTiled(): bool
+    {
+        return $this->tiling_status === self::TILING_FINISHED;
+    }
+
+    /**
+     * Check if this image is currently being tiled.
+     */
+    public function tilingRunning(): bool
+    {
+        return $this->tiling_status === self::TILING_RUNNING;
+    }
+
+    /**
+     * Check if this image permanently failed tiling.
+     */
+    public function tilingError(): bool
+    {
+        return $this->tiling_status === self::TILING_ERROR;
+    }
+
+    /**
+     * Check if rendering can proceed (tiled, permanently errored/fallback, or never tiled) —
+     * only an in-progress tiling job blocks rendering.
+     */
+    public function tilingReady(): bool
+    {
+        return ! $this->tilingRunning();
+    }
+
+    /**
+     * Disk-relative folder this image's tile pyramid is written to and served from.
+     */
+    public function tilesPath(): string
+    {
+        return 'images/' . $this->id . '/tiles';
+    }
+
     public function getUrl(?int $sizeX = null, ?int $sizeY = null): string
     {
         if ($this->isSvg()) {
@@ -368,6 +417,23 @@ class Image extends Model
     public function url(): string
     {
         $path = $this->path;
+        $cdn = config('cdn.ugc');
+        if ($cdn) {
+            return $cdn . '/' . $path;
+        }
+
+        return Storage::url($path);
+    }
+
+    /**
+     * Leaflet tile URL template for this image's tile pyramid, e.g. ".../tiles/{z}/{y}/{x}.webp".
+     * Tiles are always webp (see TilingService), so the extension is fixed and never needs to be
+     * tracked per-image. Points straight at storage/CDN rather than a PHP route, so tile requests
+     * skip the app entirely (no session overhead, cacheable by a CDN in front of storage).
+     */
+    public function tilesUrlTemplate(): string
+    {
+        $path = $this->tilesPath() . '/{z}/{y}/{x}.webp';
         $cdn = config('cdn.ugc');
         if ($cdn) {
             return $cdn . '/' . $path;

@@ -8,6 +8,7 @@ use App\Rules\EntityFile;
 use App\Rules\FontAwesomeIcon;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Enum;
 
 class StoreEntityAsset extends FormRequest
 {
@@ -31,6 +32,7 @@ class StoreEntityAsset extends FormRequest
     public function rules()
     {
         return $this->clean([
+            'type_id' => ['required', new Enum(EntityAssetType::class)],
             'name' => 'required_unless:type_id,' . EntityAssetType::file->value . '|max:45',
             'visibility_id' => 'nullable|integer|exists:visibilities,id',
             'file' => [

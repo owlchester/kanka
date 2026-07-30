@@ -114,7 +114,7 @@ class TimelineEra extends Model
         }
 
         if ($from == 0) {
-            return '< ' . $a->format($this->start_year);
+            return '< ' . $a->format($this->end_year);
         } elseif ($to == 0) {
             return '> ' . $a->format($this->start_year);
         }

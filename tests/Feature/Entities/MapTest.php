@@ -1,6 +1,9 @@
 <?php
 
+use App\Events\Maps\Updated;
+use App\Models\Image;
 use App\Models\Map;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
 
 it('POSTS an invalid map form')
@@ -134,4 +137,97 @@ it('can\'t GET a private map as a player', function () {
     $response = $this->get('/api/1.0/campaigns/1/maps/1');
     expect($response->status())
         ->toBe(403);
+});
+
+it('dispatches Maps\Updated when the API updates a map\'s name', function () {
+    Event::fake([Updated::class]);
+    $this->asUser()->withCampaign()->withMaps();
+
+    $this->putJson('/api/1.0/campaigns/1/maps/1', ['name' => 'Renamed via API'])
+        ->assertStatus(200);
+
+    Event::assertDispatched(Updated::class, fn ($event) => $event->map->id === 1);
+});
+
+it('is not tiled when its entity has no gallery image', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    expect($map->isTiled())->toBeFalse();
+    expect($map->tilingRunning())->toBeFalse();
+    expect($map->tilingReady())->toBeTrue();
+});
+
+it('is not tiled for a legacy image_path-only map (no gallery Image row)', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $map->entity->image_path = 'maps/legacy.png';
+    $map->entity->saveQuietly();
+
+    expect($map->isTiled())->toBeFalse();
+    expect($map->tilingRunning())->toBeFalse();
+    expect($map->tilingReady())->toBeTrue();
+    expect($map->explorable())->toBeTrue();
+});
+
+it('proxies tiling state from its entity\'s gallery image', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $image = Image::factory()->create(['campaign_id' => 1, 'tiling_status' => Image::TILING_RUNNING]);
+    $map->entity->image_uuid = $image->id;
+    $map->entity->saveQuietly();
+    $map->refresh();
+
+    expect($map->isTiled())->toBeFalse();
+    expect($map->tilingRunning())->toBeTrue();
+    expect($map->tilingReady())->toBeFalse();
+    expect($map->explorable())->toBeFalse();
+});
+
+it('falls back to explorable plain rendering when tiling permanently errored', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $image = Image::factory()->create(['campaign_id' => 1, 'tiling_status' => Image::TILING_ERROR]);
+    $map->entity->image_uuid = $image->id;
+    $map->entity->saveQuietly();
+    $map->refresh();
+
+    expect($map->isTiled())->toBeFalse();
+    expect($map->tilingError())->toBeTrue();
+    expect($map->tilingReady())->toBeTrue();
+    expect($map->explorable())->toBeTrue();
+});
+
+it('blocks editing a map while its image is being tiled', function () {
+    $this->asUser()->withCampaign();
+    $image = Image::factory()->create(['campaign_id' => 1, 'tiling_status' => Image::TILING_RUNNING]);
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $map->entity->image_uuid = $image->id;
+    $map->entity->saveQuietly();
+
+    $this->get(route('maps.edit', [1, $map->id]))
+        ->assertRedirect(route('entities.show', [$map->entity->campaign, $map->entity]));
+});
+
+it('allows editing a map whose image permanently failed tiling (falls back, not blocked)', function () {
+    $this->asUser()->withCampaign();
+    $image = Image::factory()->create(['campaign_id' => 1, 'tiling_status' => Image::TILING_ERROR]);
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $map->entity->image_uuid = $image->id;
+    $map->entity->saveQuietly();
+
+    // Not blocked by the tiling-running guard: falls through to the normal
+    // crudEdit() flow, which redirects Map (a MiscModel) to the unified entity edit page.
+    $this->get(route('maps.edit', [1, $map->id]))
+        ->assertRedirect(route('entities.edit', [$map->entity->campaign, $map->entity]));
+});
+
+it('centers a tiled map on the middle of its actual image, not (0,0)', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1, 'height' => 3000, 'width' => 4000]);
+    $image = Image::factory()->create(['campaign_id' => 1, 'tiling_status' => Image::TILING_FINISHED]);
+    $map->entity->image_uuid = $image->id;
+    $map->entity->saveQuietly();
+
+    expect($map->centerFocus())->toBe('1500, 2000');
 });

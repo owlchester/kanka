@@ -3,11 +3,16 @@
 namespace App\Observers;
 
 use App\Models\Reminder;
+use Stevebauman\Purify\Facades\Purify;
 
 class ReminderObserver
 {
     public function saving(Reminder $reminder)
     {
+        if ($reminder->comment !== null) {
+            $reminder->comment = Purify::clean($reminder->comment);
+        }
+
         $reminder->is_recurring = ! empty($reminder->recurring_periodicity);
         if (! $reminder->is_recurring) {
             $reminder->recurring_until = null;
