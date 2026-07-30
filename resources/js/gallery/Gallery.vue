@@ -34,7 +34,7 @@
                         <span v-html="trans('filters')" class="hidden md:inline"></span>
                         <span v-if="showUnused">(1)</span>
                     </button>
-                    <div class="border shadow-sm rounded bg-base-100 p-4 absolute right-0 flex flex-col gap-5 w-60" v-if="showFilters"  v-click-outside="onClickOutside">
+                    <div class="border border-base-100 shadow-sm rounded-lg bg-base-100 p-4 absolute right-0 flex flex-col gap-5 w-60" v-if="showFilters"  v-click-outside="onClickOutside">
                         <div class="flex gap-2 items-center">
                             <input type="checkbox" v-model="showUnused" value="1" id="_show_unused" @change="toggleUnused" />
                             <label for="_show_unused" class="cursor-pointer" v-html="trans('filter_only_unused')">
@@ -50,7 +50,7 @@
                         <span v-if="sortAsc || sortDesc">(1)</span>
                     </button>
                     <div
-                        class="border shadow-sm rounded bg-base-100 p-4 absolute right-0 top-full mt-2 flex flex-col gap-1 w-60 z-50"
+                        class="border border-base-100 shadow-sm rounded-lg bg-base-100 p-2 absolute right-0 top-full flex flex-col gap-1 w-60 z-50"
                         v-if="showSort"
                         v-click-outside="onClickOutside"
                     >
@@ -197,7 +197,7 @@
                 </select>
             </div>
         </article>
-        <footer class="bp-4 md:px-6">
+        <footer class="p-2 md:p-4">
             <menu class="">
                 <button type="submit" class="btn2 btn-primary" @click="createFolder" v-html="trans('create')">
                 </button>
@@ -227,7 +227,7 @@
                 </select>
             </div>
         </article>
-        <footer class="bg-base-200 p-2">
+        <footer class="p-2 md:p-4">
             <menu class="">
                 <button type="submit" class="btn2 btn-primary" @click="updateFiles" v-html="trans('change')">
                 </button>
