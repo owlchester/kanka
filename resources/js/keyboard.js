@@ -102,7 +102,7 @@ const isInputField = (target) => {
         return true;
     } else if (target.getAttribute("contentEditable") === "true") {
         return true;
-    } else if (target.classList.contains("CodeMirror")) {
+    } else if (target.closest?.(".cm-editor")) {
         return true;
     }
     return false;

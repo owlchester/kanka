@@ -230,11 +230,6 @@ img.note-float-left {
     z-index: 9920;
 }
 
-/** Code mirror **/
-.CodeMirror {
-    resize: vertical;
-}
-
 .advanced-mention-name {
     text-decoration: none;
 

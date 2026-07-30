@@ -74,3 +74,11 @@ it('cant GET a campaign_style as a player')
     ->asPlayer()
     ->get('/api/1.0/campaigns/1/campaign_styles/1')
     ->assertStatus(403);
+
+it('GETS the campaign style editor without vendored CodeMirror assets')
+    ->asUser()
+    ->withCampaign(['boost_count' => 4])
+    ->get('/w/1/campaign_styles/create')
+    ->assertOk()
+    ->assertSee('data-codemirror', false)
+    ->assertDontSee('/vendor/codemirror');

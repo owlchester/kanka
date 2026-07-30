@@ -60,6 +60,7 @@ export default defineConfig({
                 'resources/js/maps/preview.js',
                 'resources/js/attributes-manager.js',
                 'resources/js/campaigns/theme-builder.js',
+                'resources/js/campaigns/style-editor.js',
                 'resources/js/campaigns/import.js',
                 'resources/js/jquery.js',
 

@@ -26,28 +26,6 @@
     "file": "assets/LeafletCanvas-DDEBphoL.css",
     "src": "_LeafletCanvas-DDEBphoL.css"
   },
-  "_Tiptap-BEOI8OgA.css": {
-    "file": "assets/Tiptap-BEOI8OgA.css",
-    "src": "_Tiptap-BEOI8OgA.css"
-  },
-  "_Tiptap-HDuuHsAy.js": {
-    "file": "assets/Tiptap-HDuuHsAy.js",
-    "name": "Tiptap",
-    "isDynamicEntry": true,
-    "imports": [
-      "_preload-helper-B_nTnwcT.js",
-      "_vue.esm-bundler-Co9B1zL-.js",
-      "__plugin-vue_export-helper-DlAUqK2U.js",
-      "_index-DNeoPP0G.js"
-    ],
-    "dynamicImports": [
-      "resources/js/editors/tiptap/extensions/gallery/GalleryDialog.vue",
-      "resources/js/editors/tiptap/SourceEditor.vue"
-    ],
-    "css": [
-      "assets/Tiptap-BEOI8OgA.css"
-    ]
-  },
   "__commonjsHelpers-Cpj98o6Y.js": {
     "file": "assets/_commonjsHelpers-Cpj98o6Y.js",
     "name": "_commonjsHelpers"
@@ -99,6 +77,17 @@
   "_index-DNeoPP0G.js": {
     "file": "assets/index-DNeoPP0G.js",
     "name": "index"
+  },
+  "_index-Vcq4gwWv.js": {
+    "file": "assets/index-Vcq4gwWv.js",
+    "name": "index"
+  },
+  "_index-r54_Fi1d.js": {
+    "file": "assets/index-r54_Fi1d.js",
+    "name": "index",
+    "imports": [
+      "_index-Vcq4gwWv.js"
+    ]
   },
   "_jquery-CEMonh9Y.js": {
     "file": "assets/jquery-CEMonh9Y.js",
@@ -269,7 +258,7 @@
     "src": "node_modules/rpg-awesome/fonts/rpgawesome-webfont.woff"
   },
   "resources/css/app.css": {
-    "file": "assets/app-hty4B8oF.css",
+    "file": "assets/app-Bzkc13E7.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -412,7 +401,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-CyLbxga3.js",
+    "file": "assets/app-CHKls1ma.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -468,6 +457,19 @@
       "_index-DNeoPP0G.js"
     ]
   },
+  "resources/js/campaigns/style-editor.js": {
+    "file": "assets/style-editor-C3m_wDrz.js",
+    "name": "style-editor",
+    "src": "resources/js/campaigns/style-editor.js",
+    "isEntry": true,
+    "imports": [
+      "_index-r54_Fi1d.js",
+      "_index-Vcq4gwWv.js"
+    ],
+    "css": [
+      "assets/style-editor-C9h7TEt4.css"
+    ]
+  },
   "resources/js/campaigns/theme-builder.js": {
     "file": "assets/theme-builder-Cvbh2cpO.js",
     "name": "theme-builder",
@@ -479,7 +481,7 @@
     ]
   },
   "resources/js/components/maps/MarkerPanel.vue": {
-    "file": "assets/MarkerPanel-DH1vFus7.js",
+    "file": "assets/MarkerPanel-BPVY55Xu.js",
     "name": "MarkerPanel",
     "src": "resources/js/components/maps/MarkerPanel.vue",
     "isDynamicEntry": true,
@@ -496,7 +498,7 @@
       "_coloris-DsKOFKq5.js"
     ],
     "dynamicImports": [
-      "_Tiptap-HDuuHsAy.js"
+      "resources/js/editors/tiptap/Tiptap.vue"
     ]
   },
   "resources/js/connections/web.js": {
@@ -560,19 +562,38 @@
     "isDynamicEntry": true
   },
   "resources/js/editors/tiptap/SourceEditor.vue": {
-    "file": "assets/SourceEditor-Cwlk_bVN.js",
+    "file": "assets/SourceEditor-HEboCaT1.js",
     "name": "SourceEditor",
     "src": "resources/js/editors/tiptap/SourceEditor.vue",
     "isDynamicEntry": true,
     "imports": [
       "_vue.esm-bundler-Co9B1zL-.js",
-      "_Tiptap-HDuuHsAy.js",
+      "_index-r54_Fi1d.js",
       "__plugin-vue_export-helper-DlAUqK2U.js",
-      "_preload-helper-B_nTnwcT.js",
-      "_index-DNeoPP0G.js"
+      "_index-Vcq4gwWv.js"
     ],
     "css": [
       "assets/SourceEditor-BiUqKqcO.css"
+    ]
+  },
+  "resources/js/editors/tiptap/Tiptap.vue": {
+    "file": "assets/Tiptap-DvD37Wet.js",
+    "name": "Tiptap",
+    "src": "resources/js/editors/tiptap/Tiptap.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "_preload-helper-B_nTnwcT.js",
+      "_vue.esm-bundler-Co9B1zL-.js",
+      "_index-Vcq4gwWv.js",
+      "__plugin-vue_export-helper-DlAUqK2U.js",
+      "_index-DNeoPP0G.js"
+    ],
+    "dynamicImports": [
+      "resources/js/editors/tiptap/extensions/gallery/GalleryDialog.vue",
+      "resources/js/editors/tiptap/SourceEditor.vue"
+    ],
+    "css": [
+      "assets/Tiptap-BEOI8OgA.css"
     ]
   },
   "resources/js/editors/tiptap/extensions/gallery/GalleryDialog.vue": {
@@ -590,7 +611,7 @@
     ]
   },
   "resources/js/editors/tiptap/index.js": {
-    "file": "assets/index-BOMLoTYA.js",
+    "file": "assets/index-G67JoNuR.js",
     "name": "index",
     "src": "resources/js/editors/tiptap/index.js",
     "isEntry": true,
@@ -599,7 +620,7 @@
       "_vue.esm-bundler-Co9B1zL-.js"
     ],
     "dynamicImports": [
-      "_Tiptap-HDuuHsAy.js"
+      "resources/js/editors/tiptap/Tiptap.vue"
     ]
   },
   "resources/js/entities/explore.js": {
@@ -687,7 +708,7 @@
     "isEntry": true
   },
   "resources/js/maps/explore.js": {
-    "file": "assets/explore-MOjRPn87.js",
+    "file": "assets/explore-B0nhS3LX.js",
     "name": "explore",
     "src": "resources/js/maps/explore.js",
     "isEntry": true,

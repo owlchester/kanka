@@ -10,7 +10,7 @@
     required
     :label="__('campaigns/styles.fields.content')"
     :helper="__('campaigns.helpers.css')">
-    <textarea name="content" id="css" class="codemirror" spellcheck="false">{!! old('content', $style->content ?? null) !!}</textarea>
+    <textarea name="content" id="css" data-codemirror aria-label="{{ __('campaigns/styles.fields.content') }}" spellcheck="false">{!! old('content', $style->content ?? null) !!}</textarea>
 </x-forms.field>
 
 <x-forms.field field="enabled" :label=" __('campaigns/styles.fields.is_enabled')">

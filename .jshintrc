@@ -9,7 +9,6 @@
         "document": false,
         "require": false,
         "jQuery": false,
-        "CodeMirror": false,
         "Stripe": false
     }
 }

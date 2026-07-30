@@ -67,21 +67,6 @@ const togglePublicRole = (e) => {
         });
 };
 
-/**
- * Initiate codemirror editor in the theming section
- */
-const registerCodeMirror = () => {
-    const editors = document.querySelectorAll('.codemirror');
-    editors.forEach(function (editor) {
-        CodeMirror.fromTextArea(document.getElementById(editor.id), {
-            extraKeys: {"Ctrl-Space": "autocomplete"},
-            lineNumbers: true,
-            lineWrapping: true,
-            theme: 'dracula',
-        });
-    });
-};
-
 const registerSidebarSetup = () => {
     let nestedSortables = [].slice.call(document.querySelectorAll('.nested-sortable'));
 
@@ -198,7 +183,6 @@ const registerPermissionToggleAll = () => {
 
 
 registerModules();
-registerCodeMirror();
 registerSidebarSetup();
 registerRoles();
 registerCampaignThemes();
