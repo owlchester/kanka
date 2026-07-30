@@ -72,7 +72,7 @@ class TilingService
             // get padded out to 256x256 — vips's default padding is opaque white, which shows as a
             // solid white block over what should be transparent. `0` broadcasts to every band
             // (RGB or RGBA alike), making the padding transparent wherever alpha exists.
-            '--background=0',
+            '--background=0,0,0,0',
         ];
     }
 
