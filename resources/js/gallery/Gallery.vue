@@ -239,8 +239,10 @@
 <script setup lang="ts">
 
 import {onMounted, onUnmounted, onBeforeUnmount, ref, nextTick} from "vue";
+import axios from "axios";
 import Preview from "./Preview.vue";
 import File from "./File.vue";
+import {createUploadRequest} from "./uploadRequest.js";
 
 const props = defineProps<{
     api: String
@@ -301,7 +303,7 @@ const uploadApi = ref()
 const fileField = ref()
 const uploading = ref(false)
 const imagePreview = ref(null)
-const cancelTokenSource = ref(null)
+let uploadAbortController: AbortController | null = null
 const progress = ref(0)
 
 // Filters
@@ -368,9 +370,11 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
-  if (observer && infiniteScrollTrigger.value) {
-    observer.unobserve(infiniteScrollTrigger.value)
-  }
+    uploadAbortController?.abort()
+
+    if (observer && infiniteScrollTrigger.value) {
+        observer.unobserve(infiniteScrollTrigger.value)
+    }
 })
 
 onUnmounted(() => {
@@ -738,7 +742,6 @@ const filesSelected = async (event) => {
 
     uploading.value = true
 
-    cancelTokenSource.value = axios.CancelToken.source()
     fileField.value.disabled = true
 
     const formData = new FormData()
@@ -749,15 +752,12 @@ const filesSelected = async (event) => {
         formData.append('files[]', f)
     })
 
-    axios.post(uploadApi.value, formData, {
-        headers: {
-            'Content-Type': 'multipart/form-data',
-        },
-        cancelToken: cancelTokenSource.value.token,
-        onUploadProgress: function (progressEvent) {
-            progress.value = Math.round((progressEvent.loaded * 100) / progressEvent.total)
-        }
+    const request = createUploadRequest(function (progressEvent) {
+        progress.value = Math.round((progressEvent.loaded * 100) / progressEvent.total)
     })
+    uploadAbortController = request.controller
+
+    axios.post(uploadApi.value, formData, request.config)
         .then(res => {
             uploading.value = false
             fileField.value.disabled = false
@@ -782,15 +782,19 @@ const filesSelected = async (event) => {
             //console.log(used.value, res.data.used)
         })
         .catch (err => {
-            console.error(err)
             uploading.value = false
             fileField.value.disabled = false
             imagePreview.value = null
-            if (axios.isCancel(err)) {
-                // User cancelled
+            if (request.controller.signal.aborted) {
                 fileField.value = null
             } else {
+                console.error(err)
                 showErrors(err)
+            }
+        })
+        .finally(() => {
+            if (uploadAbortController === request.controller) {
+                uploadAbortController = null
             }
         })
 }
@@ -829,7 +833,7 @@ const progressPercentage = () => {
 
 
 const cancelUpload = () => {
-    cancelTokenSource.value.cancel('Upload canceled by user.')
+    uploadAbortController?.abort()
 }
 
 // A file has been updated in the side panel, update our main reference?
