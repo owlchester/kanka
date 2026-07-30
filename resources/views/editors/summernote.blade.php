@@ -2,7 +2,6 @@
     @parent
     <div
         data-summernote-assets
-        data-bootstrap-source="{{ config('app.asset_url') }}/vendor/bootstrap/js/bootstrap.bundle.min.js"
         hidden
     >
         <span data-script-source="{{ config('app.asset_url') }}/vendor/summernote/0.9.1/summernote.min.js"></span>

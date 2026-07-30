@@ -16,7 +16,7 @@ const loadScript = (source) => new Promise((resolve, reject) => {
 })
 
 if (assets) {
-    await loadScript(assets.dataset.bootstrapSource)
+    await import('bootstrap/dist/js/npm.js')
 
     for (const script of assets.querySelectorAll('[data-script-source]')) {
         await loadScript(script.dataset.scriptSource)
