@@ -45,6 +45,10 @@ class LimitService
             $min = config('limits.filesize.image.wyvern');
         }
 
+        if ($this->user->hasRole('admin') && $min < config('limits.filesize.image.admin')) {
+            $min = config('limits.filesize.image.admin');
+        }
+
         $this->map = false;
 
         if (empty($min)) {

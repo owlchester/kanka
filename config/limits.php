@@ -55,6 +55,7 @@ return [
             'owlbear' => env('APP_IMAGE_SIZE_OWLBEAR_MB', 10),
             'wyvern' => env('APP_IMAGE_SIZE_WYVERN_MB', 25),
             'elemental' => env('APP_IMAGE_SIZE_ELEMENTAL_MB', 100),
+            'admin' => env('APP_IMAGE_SIZE_ADMIN_MB', 50),
         ],
         'map' => env('APP_MAP_SIZE_MB', 5),
     ],
