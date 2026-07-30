@@ -51,7 +51,7 @@ class ExploreApiService
                 ->map(fn ($marker) => new PinResource($marker)->campaign($this->campaign)->mapEntity($mapEntity))
                 ->all(),
             'visibilities' => $this->visibilityOptions(),
-            'default_visibility_id' => $this->campaign->defaultVisibility()->value,
+            'default_visibility_id' => $this->hasUser() ? $this->campaign->defaultVisibility()->value : null,
             'presets' => $this->presets($mapEntity),
             'can_manage_presets' => $this->canManagePresets(),
             'i18n' => $this->translations(),

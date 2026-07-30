@@ -353,7 +353,7 @@ class Campaign extends Model
     public function defaultVisibility(): Visibility
     {
         $visibility = $this->getDefaultVisibilityAttribute();
-        if ($visibility == 'admin' && auth()->check() && auth()->user()->can('admin', $this)) {
+        if ($visibility == 'admin' && auth()->user()->can('admin', $this)) {
             return Visibility::Admin;
         } elseif ($visibility == 'admin-self') {
             return Visibility::AdminSelf;
