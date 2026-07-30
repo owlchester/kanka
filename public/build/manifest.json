@@ -26,12 +26,12 @@
     "file": "assets/LeafletCanvas-DDEBphoL.css",
     "src": "_LeafletCanvas-DDEBphoL.css"
   },
-  "_Tiptap-DAnevjUy.css": {
-    "file": "assets/Tiptap-DAnevjUy.css",
-    "src": "_Tiptap-DAnevjUy.css"
+  "_Tiptap-BEOI8OgA.css": {
+    "file": "assets/Tiptap-BEOI8OgA.css",
+    "src": "_Tiptap-BEOI8OgA.css"
   },
-  "_Tiptap-Dq2lcvCO.js": {
-    "file": "assets/Tiptap-Dq2lcvCO.js",
+  "_Tiptap-CfU1kECR.js": {
+    "file": "assets/Tiptap-CfU1kECR.js",
     "name": "Tiptap",
     "isDynamicEntry": true,
     "imports": [
@@ -45,7 +45,7 @@
       "resources/js/editors/tiptap/SourceEditor.vue"
     ],
     "css": [
-      "assets/Tiptap-DAnevjUy.css"
+      "assets/Tiptap-BEOI8OgA.css"
     ]
   },
   "__commonjsHelpers-Cpj98o6Y.js": {
@@ -461,7 +461,7 @@
     ]
   },
   "resources/js/components/maps/MarkerPanel.vue": {
-    "file": "assets/MarkerPanel-DpMivgKj.js",
+    "file": "assets/MarkerPanel-BcDAWhhL.js",
     "name": "MarkerPanel",
     "src": "resources/js/components/maps/MarkerPanel.vue",
     "isDynamicEntry": true,
@@ -478,7 +478,7 @@
       "_coloris-DsKOFKq5.js"
     ],
     "dynamicImports": [
-      "_Tiptap-Dq2lcvCO.js"
+      "_Tiptap-CfU1kECR.js"
     ]
   },
   "resources/js/connections/web.js": {
@@ -542,19 +542,19 @@
     "isEntry": true
   },
   "resources/js/editors/tiptap/SourceEditor.vue": {
-    "file": "assets/SourceEditor-r_9N_-dh.js",
+    "file": "assets/SourceEditor-BZykFZ6S.js",
     "name": "SourceEditor",
     "src": "resources/js/editors/tiptap/SourceEditor.vue",
     "isDynamicEntry": true,
     "imports": [
       "_vue.esm-bundler-Co9B1zL-.js",
-      "_Tiptap-Dq2lcvCO.js",
+      "_Tiptap-CfU1kECR.js",
       "__plugin-vue_export-helper-DlAUqK2U.js",
       "_preload-helper-B_nTnwcT.js",
       "_index-D5GkNzM3.js"
     ],
     "css": [
-      "assets/SourceEditor-BKF0zshA.css"
+      "assets/SourceEditor-Ct4taoQl.css"
     ]
   },
   "resources/js/editors/tiptap/extensions/gallery/GalleryDialog.vue": {
@@ -572,7 +572,7 @@
     ]
   },
   "resources/js/editors/tiptap/index.js": {
-    "file": "assets/index-DI9EwgGv.js",
+    "file": "assets/index-BKs2bPoL.js",
     "name": "index",
     "src": "resources/js/editors/tiptap/index.js",
     "isEntry": true,
@@ -581,7 +581,7 @@
       "_vue.esm-bundler-Co9B1zL-.js"
     ],
     "dynamicImports": [
-      "_Tiptap-Dq2lcvCO.js"
+      "_Tiptap-CfU1kECR.js"
     ]
   },
   "resources/js/entities/explore.js": {
@@ -652,7 +652,7 @@
     "isEntry": true
   },
   "resources/js/maps/explore.js": {
-    "file": "assets/explore-B42f3pfJ.js",
+    "file": "assets/explore-nsBtYd4x.js",
     "name": "explore",
     "src": "resources/js/maps/explore.js",
     "isEntry": true,

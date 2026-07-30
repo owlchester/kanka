@@ -3,17 +3,19 @@ import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
 import { EditorView, basicSetup } from 'codemirror'
 import { html } from '@codemirror/lang-html'
 import { oneDark } from '@codemirror/theme-one-dark'
-import { EditorState } from '@codemirror/state'
+import { EditorState, Prec } from '@codemirror/state'
 import { indentWithTab } from '@codemirror/commands'
 import { keymap } from '@codemirror/view'
+import { search, searchKeymap } from '@codemirror/search'
 
 const props = defineProps<{
     modelValue: string
+    cursorBlockIndex?: number
 }>()
 
 const emit = defineEmits<{
     'update:modelValue': [value: string]
-    'exit': []
+    'exit': [cursorBlockIndex: number]
 }>()
 
 const editorContainer = ref<HTMLElement | null>(null)
@@ -93,6 +95,36 @@ const formatHtml = (html: string): string => {
     return result.trim()
 }
 
+// Top-level tags start at column 0 in the formatted output, so their line offsets
+// line up with the top-level block indexes ProseMirror reports for the cursor.
+const getTopLevelBlockOffsets = (text: string): number[] => {
+    const lines = text.split('\n')
+    const offsets: number[] = []
+    let pos = 0
+
+    for (const line of lines) {
+        if (/^<[a-zA-Z]/.test(line)) {
+            offsets.push(pos)
+        }
+        pos += line.length + 1
+    }
+
+    return offsets
+}
+
+const findBlockIndexAtOffset = (offsets: number[], cursorOffset: number): number => {
+    let index = 0
+
+    for (let i = 0; i < offsets.length; i++) {
+        if (offsets[i] > cursorOffset) {
+            break
+        }
+        index = i
+    }
+
+    return index
+}
+
 onMounted(() => {
     if (!editorContainer.value) return
 
@@ -104,6 +136,7 @@ onMounted(() => {
         basicSetup,
         html(),
         keymap.of([indentWithTab]),
+        search({ top: true }),
         EditorView.updateListener.of((update) => {
             if (update.docChanged) {
                 emit('update:modelValue', update.state.doc.toString())
@@ -126,6 +159,14 @@ onMounted(() => {
         parent: editorContainer.value,
     })
 
+    const blockOffsets = getTopLevelBlockOffsets(formattedHtml)
+    const cursorOffset = blockOffsets[props.cursorBlockIndex ?? 0] ?? 0
+    editorView.dispatch({
+        selection: { anchor: cursorOffset },
+        effects: EditorView.scrollIntoView(cursorOffset, { y: 'center' }),
+    })
+    editorView.focus()
+
     // Emit the formatted HTML so it syncs
     emit('update:modelValue', formattedHtml)
 })
@@ -147,7 +188,9 @@ onBeforeUnmount(() => {
 })
 
 const exitSourceMode = () => {
-    emit('exit')
+    const cursorOffset = editorView?.state.selection.main.head ?? 0
+    const blockOffsets = getTopLevelBlockOffsets(editorView?.state.doc.toString() ?? '')
+    emit('exit', findBlockIndexAtOffset(blockOffsets, cursorOffset))
 }
 </script>
 
