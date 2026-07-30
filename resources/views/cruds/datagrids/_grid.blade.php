@@ -33,7 +33,7 @@
                     {!! $model->name !!}
                 </a>
                 @if ($model instanceof \App\Models\Map && $model->explorable())
-                    <a href="{{ route('maps.explore', [$campaign, $model]) }}" class="block text-center h-12 p-4 text-link" target="_blank" title="{{ __('maps.actions.explore') }}">
+                        <a href="{{ route('entities.explore', [$campaign, $model->entity]) }}" class="block text-center h-12 p-4 text-link" target="_blank" title="{{ __('maps.actions.explore') }}">
                         <x-icon class="fa-regular fa-map" />
                         <span class="sr-only">{{ __('maps.actions.explore') }}</span>
                     </a>
@@ -66,7 +66,7 @@
                 {!! $model->name !!}
             </a>
             @if ($model instanceof \App\Models\Map && $model->explorable())
-                <a href="{{ route('maps.explore', [$campaign, $model]) }}" class="block text-center h-12 p-4 text-link" target="_blank" title="{{ __('maps.actions.explore') }}">
+                <a href="{{ route('entities.map', [$campaign, $model->entity]) }}" class="block text-center h-12 p-4 text-link" target="_blank" title="{{ __('maps.actions.explore') }}">
                     <x-icon class="fa-regular fa-map" />
                     <span class="sr-only">{{ __('maps.actions.explore') }}</span>
                 </a>

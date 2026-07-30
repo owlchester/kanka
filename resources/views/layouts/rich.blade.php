@@ -45,7 +45,7 @@ if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'bas
 
 <div class="toast-container fixed overflow-y-auto overflow-x-hidden bottom-4 right-4 max-h-full"></div>
 
-@vite(['resources/js/vendor-final.js', 'resources/js/app.js'])
+@vite('resources/js/app.js')
 @includeWhen(config('fontawesome.kit'), 'layouts.scripts.fontawesome')
 
 @yield('scripts')

@@ -7,6 +7,27 @@ body {
     color: var(--body-text, hsl(var(--bc)/var(--tw-text-opacity)));
 }
 
+:root {
+    /* Border radius for buttons */
+    --rounded-btn: .678rem;
+    /* Border radius for badges (tags) */
+    --rounded-badge: .25rem;
+    /* Animation duration when a button is focused */
+    --animation-btn: 0;
+    /* Scale effect on buttons when focused */
+    --btn-focus-scale: 1;
+
+    /* Button text transform */
+    --btn-text-case: inherit;
+
+    /* Border radius for tabs */
+    --tab-radius: .25rem;
+
+    /* Border thickness for tabs */
+    --tab-border: 0px;
+
+}
+
 hr {
     border-color: hsl(var(--bc)/var(--tw-border-opacity));
     --tw-border-opacity: 0.1;

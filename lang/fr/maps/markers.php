@@ -68,6 +68,9 @@ return [
         'draggable'                 => 'Cocher pour permettre au marqueur d\'être déplacé en mode exploration.',
         'is_popupless'              => 'Désactiver l\'infobulle lors du survol du marqueur.',
         'label'                     => 'Un label est affiché comme bloque de texte sur la carte. Le text affiché sera le nom du marqueur ou le nom de l\'entrée liée.',
+        'path'                      => [
+            'edit'  => 'Modifier le tracé en faisant glisser ses points.',
+        ],
         'polygon'                   => [
             'edit'  => 'Cliquer sur le carte pour ajouter des coordonnées au polygone.',
         ],
@@ -76,16 +79,21 @@ return [
         'entry' => 'Modifier le marqueur pour y écrire une entrée personnalisée.',
     ],
     'icons'         => [
+        'circle'        => 'Cercle',
         'custom'        => 'Personnalisé',
+        'diamond'       => 'Losange',
         'entity'        => 'Entrée',
         'exclamation'   => 'Point d\'exclamation',
         'marker'        => 'Marqueur',
         'question'      => 'Point d\'interrogation',
+        'square'        => 'Carré',
+        'triangle'      => 'Triangle',
     ],
     'index'         => [
         'title' => 'Marqueurs de :name',
     ],
     'pitches'       => [
+        'path'  => 'Utilise des tracés pour dessiner des routes, rivières ou itinéraires sur la carte. Disponible avec les fonctionnalités des campagnes premium.',
         'poly'  => 'Dessines des formes polygonales personnalisées pour représenter les bordures et autres formes inégales.',
     ],
     'placeholders'  => [
@@ -110,9 +118,11 @@ return [
         '4' => 'Enorme',
     ],
     'tabs'          => [
+        'area'      => 'Zone',
         'circle'    => 'Cercle',
         'label'     => 'Label',
         'marker'    => 'Marqueur',
+        'path'      => 'Tracé',
         'polygon'   => 'Polygone',
         'preset'    => 'Préréglage',
     ],

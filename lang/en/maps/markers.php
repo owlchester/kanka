@@ -68,6 +68,9 @@ return [
         'draggable'                 => 'This marker can be moved on the map\'s exploration page.',
         'is_popupless'              => 'Disable the marker\'s tooltip showing up on mouse hover.',
         'label'                     => 'A label is displayed as a block of text on the map. The content will be the marker\'s name or the entry\'s name.',
+        'path'                      => [
+            'edit'  => 'Edit the path by dragging its points.',
+        ],
         'polygon'                   => [
             'edit'  => 'Edit the polygon by dragging its edges and nodes.',
         ],
@@ -76,17 +79,22 @@ return [
         'entry' => 'Edit the marker to write a custom description for it.',
     ],
     'icons'         => [
+        'circle'        => 'Circle icon',
         'custom'        => 'Custom icon',
+        'diamond'       => 'Diamond icon',
         'entity'        => 'Entry\'s picture',
         'exclamation'   => 'Exclamation icon',
         'marker'        => 'Marker icon',
         'question'      => 'Question icon',
+        'square'        => 'Square icon',
+        'triangle'      => 'Triangle icon',
     ],
     'index'         => [
         'title' => 'Markers of :name',
     ],
     'pitches'       => [
-        'poly'  => 'Use polygons to outline borders, territories, or uneven regions on the map. Available as part of premium campaign features.',
+        'path'  => 'Use paths to draw roads, rivers, or routes on the map. Available as part of premium campaign features.',
+        'poly'  => 'Use areas to outline borders, territories, or uneven regions on the map. Available as part of premium campaign features.',
     ],
     'placeholders'  => [
         'custom_icon'   => 'Try :example1 or :example2',
@@ -110,10 +118,11 @@ return [
         '4' => 'Huge',
     ],
     'tabs'          => [
+        'area'      => 'Area',
         'circle'    => 'Circle',
-        'label'     => 'Label',
-        'marker'    => 'Marker',
-        'polygon'   => 'Polygon',
+        'label'     => 'Text',
+        'marker'    => 'Pin',
+        'path'      => 'Path',
         'preset'    => 'Preset',
     ],
 ];

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\MapMarkerShape;
 use App\Enums\Visibility;
+use App\Facades\Avatar;
 use App\Facades\CampaignLocalization;
 use App\Facades\MapMarkerCache;
 use App\Facades\Mentions;
@@ -15,9 +16,12 @@ use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
+use App\Models\Scopes\AclScope;
+use App\Models\Scopes\VisibilityIDScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
@@ -35,7 +39,7 @@ use Illuminate\Support\Str;
  * @property int $latitude
  * @property string $colour
  * @property string $font_colour
- * @property ?int $shape_id
+ * @property ?MapMarkerShape $shape_id
  * @property ?int $size_id
  * @property ?int $icon
  * @property string $custom_icon
@@ -148,6 +152,14 @@ class MapMarker extends Model
     }
 
     /**
+     * @return MorphMany<EntityMention, $this>
+     */
+    public function mentions(): MorphMany
+    {
+        return $this->morphMany(EntityMention::class, 'mentionable');
+    }
+
+    /**
      * Get the marker's size, and make it 20 times bigger for a "pixel" size equivalent
      */
     public function size(): int
@@ -180,16 +192,26 @@ class MapMarker extends Model
     }
 
     /**
+     * Determine if the marker is of the path type and has a custom shape
+     */
+    public function isPath(): bool
+    {
+        return $this->shape_id === MapMarkerShape::path && ! empty($this->custom_shape);
+    }
+
+    /**
      * Determine the type of the marker
      */
     public function typeLabel(): string
     {
         if ($this->isPolygon()) {
-            return __('maps/markers.tabs.polygon');
+            return __('maps/markers.tabs.area');
         } elseif ($this->isLabel()) {
             return __('maps/markers.tabs.label');
         } elseif ($this->isCircle()) {
             return __('maps/markers.tabs.circle');
+        } elseif ($this->isPath()) {
+            return __('maps/markers.tabs.path');
         }
 
         return __('maps/markers.tabs.marker');
@@ -200,7 +222,7 @@ class MapMarker extends Model
      */
     public function datagridMarkerIcon(): string
     {
-        if (in_array($this->shape_id, [2, 3, 5])) {
+        if (in_array($this->shape_id, [MapMarkerShape::label, MapMarkerShape::circle, MapMarkerShape::poly, MapMarkerShape::path], true)) {
             return '';
         }
 
@@ -212,16 +234,75 @@ class MapMarker extends Model
                 $icon = $this->custom_icon;
             } elseif (Str::startsWith($this->custom_icon, ['fa-', 'ra '])) {
                 $icon = ' <i class="' . $this->custom_icon . '" aria-hidden="true"></i>';
-            } elseif (Str::startsWith($this->custom_icon, '<?xml')) {
-                $icon = '<div class="custom-icon"><img src="' . $this->resizedCustomIcon() . '" /></div>';
+            } elseif (Str::startsWith($this->custom_icon, ['<svg', '<?xml'])) {
+                $icon = '<div class="custom-icon"><img src="' . $this->customSvgDataUri() . '" /></div>';
             }
         } elseif ($this->icon == 2) {
             $icon = '<i class="fa-solid fa-question"></i>';
         } elseif ($this->icon == 3) {
             $icon = '<i class="fa-solid fa-exclamation"></i>';
+        } elseif ($this->icon == 6) {
+            $icon = '<i class="fa-solid fa-square"></i>';
+        } elseif ($this->icon == 7) {
+            $icon = '<i class="fa-solid fa-circle"></i>';
+        } elseif ($this->icon == 8) {
+            $icon = '<i class="fa-solid fa-diamond"></i>';
+        } elseif ($this->icon == 9) {
+            $icon = '<i class="fa-solid fa-caret-up"></i>';
         }
 
         return $icon;
+    }
+
+    /**
+     * Resolve this marker's icon into a clean, JSON-safe shape for the Vue map explorer,
+     * mirroring the branching in markerIcon()/datagridMarkerIcon() without building JS strings.
+     */
+    public function exploreIcon(): array
+    {
+        if ($this->icon == 5 || $this->isLabel() || $this->isCircle() || $this->isPolygon() || $this->isPath()) {
+            return ['type' => 'none', 'value' => null];
+        }
+
+        $campaign = CampaignLocalization::getCampaign();
+        if (! empty($this->custom_icon) && $campaign->boosted()) {
+            if (Str::startsWith($this->custom_icon, '<i ')) {
+                return ['type' => 'html', 'value' => $this->custom_icon];
+            }
+            if (Str::startsWith($this->custom_icon, ['fa-', 'ra '])) {
+                return ['type' => 'fa', 'value' => $this->custom_icon];
+            }
+            if (Str::startsWith($this->custom_icon, ['<svg', '<?xml'])) {
+                return ['type' => 'svg', 'value' => $this->customSvgDataUri()];
+            }
+        }
+
+        if ($this->icon == 2) {
+            return ['type' => 'fa', 'value' => 'fa-solid fa-question'];
+        }
+        if ($this->icon == 3) {
+            return ['type' => 'fa', 'value' => 'fa-solid fa-exclamation'];
+        }
+        if ($this->icon == 6) {
+            return ['type' => 'fa', 'value' => 'fa-solid fa-square'];
+        }
+        if ($this->icon == 7) {
+            return ['type' => 'fa', 'value' => 'fa-solid fa-circle'];
+        }
+        if ($this->icon == 8) {
+            return ['type' => 'fa', 'value' => 'fa-solid fa-diamond'];
+        }
+        if ($this->icon == 9) {
+            return ['type' => 'fa', 'value' => 'fa-solid fa-caret-up'];
+        }
+        if ($this->icon == 4 && $this->entity) {
+            return [
+                'type' => 'avatar',
+                'value' => Avatar::entity($this->entity)->fallback()->size(276)->thumbnail(),
+            ];
+        }
+
+        return ['type' => 'fa', 'value' => 'fa-solid fa-map-pin'];
     }
 
     /**
@@ -234,16 +315,7 @@ class MapMarker extends Model
         } elseif ($this->isLabel()) {
             return $this->labelMarker();
         } elseif ($this->isPolygon()) {
-            $coords = [];
-            $segments = explode(' ', str_replace("\r\n", ' ', $this->custom_shape));
-            foreach ($segments as $segment) {
-                $coord = explode(',', $segment);
-                if (! empty($coord[0]) && ! empty($coord[1])) {
-                    $coords[] = '[' . $coord[0] . ', ' . Str::before($coord[1], ' ') . ']';
-                }
-            }
-
-            return 'L.polygon([' . implode(', ', $coords) . '], {
+            return 'L.polygon([' . implode(', ', $this->parsedShapeCoordinates()) . '], {
                 color: \'' . Arr::get($this->polygon_style, 'stroke', $this->colour) . '\',
                 weight: ' . max(1, Arr::get($this->polygon_style, 'stroke-width', 1)) . ',
                 opacity: ' . $this->strokeOpacity() . ',
@@ -254,6 +326,15 @@ class MapMarker extends Model
                 linejoin: \'round\',
             })' . $this->popup();
             // ' . ($this->editing ? 'draggable: true,' : null) . '
+        } elseif ($this->isPath()) {
+            return 'L.polyline([' . implode(', ', $this->parsedShapeCoordinates()) . '], {
+                color: \'' . e($this->colour) . '\',
+                weight: ' . max(1, Arr::get($this->polygon_style, 'stroke-width', 1)) . ',
+                opacity: ' . $this->floatOpacity() . ',
+                smoothFactor: 1,
+                linecap: \'round\',
+                linejoin: \'round\',
+            })' . $this->popup();
         }
 
         return 'L.marker([' . $this->latitude . ', ' . $this->longitude . '], {
@@ -262,6 +343,26 @@ class MapMarker extends Model
             . ($this->isDraggable() ? 'draggable: true,' : null) . '
             ' . $this->markerIcon() . '
         })' . $this->popup() . $this->draggable();
+    }
+
+    /**
+     * Parse the raw "lat,lng lat,lng ..." custom_shape string (shared by polygon and path
+     * markers) into an array of "[lat, lng]" JS coordinate literals.
+     *
+     * @return array<int, string>
+     */
+    private function parsedShapeCoordinates(): array
+    {
+        $coords = [];
+        $segments = explode(' ', str_replace("\r\n", ' ', $this->custom_shape));
+        foreach ($segments as $segment) {
+            $coord = explode(',', $segment);
+            if (! empty($coord[0]) && ! empty($coord[1])) {
+                $coords[] = '[' . $coord[0] . ', ' . Str::before($coord[1], ' ') . ']';
+            }
+        }
+
+        return $coords;
     }
 
     /**
@@ -312,7 +413,7 @@ class MapMarker extends Model
             if (! empty($this->name)) { // Name is set, include link to the entity
                 $url = $this->entity->url();
                 if ($this->entity->isMap()) {
-                    $url = route('maps.explore', [$campaign, $this->entity->child]);
+                    $url = route('entities.map', [$campaign, $this->entity]);
                 }
                 $body .= "<p><a href=\"{$url}\" class=\"text-link\">" . str_replace('`', '\'', $this->entity->name) . '</a></p>';
             }
@@ -458,8 +559,8 @@ class MapMarker extends Model
                 $icon = '`' . $iconShape . $this->custom_icon . '`';
             } elseif (Str::startsWith($this->custom_icon, ['fa-', 'ra '])) {
                 $icon = '`' . $iconShape . ' <i class="' . $this->custom_icon . '" aria-hidden="true"></i>`';
-            } elseif (Str::startsWith($this->custom_icon, '<?xml')) {
-                $icon = 'L.Util.template(`<div class="custom-icon">' . $this->resizedCustomIcon() . '</div>`)';
+            } elseif (Str::startsWith($this->custom_icon, ['<svg', '<?xml'])) {
+                $icon = '`<div class="custom-icon"><img src="' . $this->customSvgDataUri() . '" /></div>`';
             }
         } elseif ($this->icon == 2) {
             $icon = '`' . $iconShape . '<i class="fa-solid fa-question"></i>`';
@@ -467,6 +568,14 @@ class MapMarker extends Model
             $icon = '`' . $iconShape . '<i class="fa-solid fa-exclamation"></i>`';
         } elseif ($this->icon == 4) {
             $icon = '`' . $iconShape . '`';
+        } elseif ($this->icon == 6) {
+            $icon = '`' . $iconShape . '<i class="fa-solid fa-square"></i>`';
+        } elseif ($this->icon == 7) {
+            $icon = '`' . $iconShape . '<i class="fa-solid fa-circle"></i>`';
+        } elseif ($this->icon == 8) {
+            $icon = '`' . $iconShape . '<i class="fa-solid fa-diamond"></i>`';
+        } elseif ($this->icon == 9) {
+            $icon = '`' . $iconShape . '<i class="fa-solid fa-caret-up"></i>`';
         }
 
         // dd($this->pin_size ?: 40);
@@ -500,7 +609,7 @@ class MapMarker extends Model
             if ($link) {
                 $url = $this->entity->url();
                 if ($this->entity->isMap()) {
-                    $url = route('maps.explore', [$campaign, $this->entity->child]);
+                    $url = route('entities.map', [$campaign, $this->entity]);
                 }
 
                 return '<a href="' . $url . '" class="text-link">' . $this->entity->name . '</a>';
@@ -596,6 +705,11 @@ class MapMarker extends Model
         return $resized;
     }
 
+    protected function customSvgDataUri(): string
+    {
+        return 'data:image/svg+xml;base64,' . base64_encode($this->resizedCustomIcon());
+    }
+
     /**
      * Marker background colour
      */
@@ -622,16 +736,40 @@ class MapMarker extends Model
      */
     public function visible(): bool
     {
-        $campaign = CampaignLocalization::getCampaign();
-        if ($this->isPolygon() && ! $campaign->boosted()) {
-            return false;
-        }
         // Part of a private group, don't show either
         if (! empty($this->group_id) && ! $this->group) {
             return false;
         }
 
         return empty($this->entity_id) || (! empty($this->entity) && ! $this->entity->isMissingChild());
+    }
+
+    public function isPubliclyVisible(): bool
+    {
+        if (! $this->isVisibleToPublic($this->visibility_id)) {
+            return false;
+        }
+
+        if ($this->group_id) {
+            $group = MapGroup::query()->withoutGlobalScope(VisibilityIDScope::class)->find($this->group_id);
+            if (! $group || ! $this->isVisibleToPublic($group->visibility_id)) {
+                return false;
+            }
+        }
+
+        if ($this->entity_id) {
+            $entity = Entity::query()->withoutGlobalScope(AclScope::class)->find($this->entity_id);
+            if (! $entity || $entity->is_private) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    protected function isVisibleToPublic(Visibility $visibilityId): bool
+    {
+        return in_array($visibilityId, [Visibility::All, Visibility::Member], true);
     }
 
     /**
@@ -681,6 +819,6 @@ class MapMarker extends Model
             $data['group_id'] = null;
         }
 
-        return $this->updateQuietly($data);
+        return $this->update($data);
     }
 }

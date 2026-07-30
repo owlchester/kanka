@@ -43,11 +43,11 @@ class MapController extends CrudController
      */
     public function edit(Campaign $campaign, Map $map)
     {
-        // Can't edit a map being chunked
-        if ($map->isChunked() && $map->chunkingRunning()) {
+        // Can't edit a map while it's being tiled
+        if ($map->tilingRunning()) {
             return redirect()
                 ->route('entities.show', [$campaign, $map->entity])
-                ->with('error', __('maps.errors.chunking.running.edit') . ' ' . __('maps.errors.chunking.running.time'));
+                ->with('error', __('maps.errors.tiling.running.edit') . ' ' . __('maps.errors.tiling.running.time'));
         }
 
         return $this->campaign($campaign)->crudEdit($map);

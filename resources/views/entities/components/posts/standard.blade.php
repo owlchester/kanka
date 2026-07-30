@@ -71,7 +71,7 @@ $entityTags = $post->visibleTags();
                 @endif
 
                 <div class="entity-note-body post-body overflow-x-auto">
-                    {!! $post->parsedEntry() !!}
+                    {!! $post->parsedEntry(renderMapPreview: true) !!}
                 </div>
 
                 <div class="post-footer entity-note-footer text-right text-muted text-xs ">

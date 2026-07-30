@@ -11,7 +11,7 @@
                 </div>
             @endcan
         @endif
-        {!! $entity->parsedEntry() !!}
+        {!! $entity->parsedEntry(renderMapPreview: true) !!}
         <x-word-count :count="$entity->words" />
     </div>
 </article>

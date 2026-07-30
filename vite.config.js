@@ -53,13 +53,15 @@ export default defineConfig({
                 'resources/js/history.js',
                 'resources/js/whiteboards.js',
                 'resources/js/connections/web.js',
-                'resources/js/editors/summernote.js',
                 'resources/js/editors/tiptap/index.js',
                 'resources/js/family-tree-vue.js',
                 'resources/js/entities/explore.js',
+                'resources/js/maps/explore.js',
+                'resources/js/maps/preview.js',
                 'resources/js/attributes-manager.js',
                 'resources/js/campaigns/theme-builder.js',
                 'resources/js/campaigns/import.js',
+                'resources/js/jquery.js',
 
                 'resources/css/app.css',
                 'resources/css/vendors/tinymce.css',
@@ -76,8 +78,6 @@ export default defineConfig({
                 'resources/css/themes/midnight.css',
 
                 'resources/css/print/print.css',
-
-                'resources/js/vendor-final.js',
             ],
             refresh: true,
         }),
@@ -117,18 +117,13 @@ export default defineConfig({
             ],
         }),
     ],
-    build: {
-        rollupOptions: {
-            output: {
-                manualChunks(id) {
-                    if (id.includes('node_modules/@tiptap') || id.includes('node_modules/prosemirror') || id.includes('node_modules/@prosemirror')) {
-                        return 'vendor-tiptap'
-                    }
-                },
-            },
-        },
-    },
     resolve: {
+        dedupe: [
+            '@codemirror/commands',
+            '@codemirror/search',
+            '@codemirror/state',
+            '@codemirror/view',
+        ],
         alias: {
             'vue': 'vue/dist/vue.esm-bundler',
         },

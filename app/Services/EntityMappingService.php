@@ -7,6 +7,7 @@ use App\Models\Entity;
 use App\Models\EntityMention;
 use App\Models\Image;
 use App\Models\ImageMention;
+use App\Models\MapMarker;
 use App\Models\Post;
 use App\Models\QuestElement;
 use App\Models\TimelineElement;
@@ -18,7 +19,7 @@ class EntityMappingService
 {
     use MentionTrait;
 
-    protected Model|Post|Entity|QuestElement|TimelineElement|Campaign $model;
+    protected Model|Post|Entity|QuestElement|TimelineElement|Campaign|MapMarker $model;
 
     protected int $entities;
 
@@ -51,7 +52,7 @@ class EntityMappingService
         return $this;
     }
 
-    public function with(Model|Post|Entity|QuestElement|TimelineElement|Campaign $model): self
+    public function with(Model|Post|Entity|QuestElement|TimelineElement|Campaign|MapMarker $model): self
     {
         $this->model = $model;
 
@@ -70,47 +71,46 @@ class EntityMappingService
 
     protected function createNewMention(int $target): void
     {
-        $mention = new EntityMention;
-
-        // Determine what kind of entity this is
-        // Todo: should be the model that gives us this info, not for the service to figure out
-        if ($this->model instanceof Campaign) {
-            $mention->campaign_id = $this->model->id;
-        } elseif ($this->model instanceof Post) {
-            $mention->post_id = $this->post()->id;
-            $mention->entity_id = $this->post()->entity_id;
-
-            // If we are making a reference to ourselves, no need to save it
+        if ($this->model instanceof Post) {
             if ($this->model->entity_id == $target) {
                 return;
             }
         } elseif ($this->model instanceof TimelineElement) {
-            $mention->timeline_element_id = $this->model->id;
-            $mention->entity_id = $this->model->timeline->entity->id;
-
-            // If we are making a reference to ourselves, no need to save it
             if ($this->model->timeline_id == $target) {
                 return;
             }
         } elseif ($this->model instanceof QuestElement) {
-            $mention->quest_element_id = $this->model->id;
-            $mention->entity_id = $this->model->quest->entity->id;
-
-            // If we are making a reference to ourselves, no need to save it
             if ($this->model->quest_id == $target) {
                 return;
             }
-        } else {
+        } elseif (! $this->model instanceof Campaign && ! $this->model instanceof MapMarker) {
             // @phpstan-ignore-next-line
-            $mention->entity_id = $this->model->id;
-
-            // If we are making a reference to ourselves, no need to save it
-            if ($this->model->id == $target) { // @phpstan-ignore-line
+            if ($this->model->id == $target) {
                 return;
             }
         }
+
+        $mention = new EntityMention;
+        $mention->mentionable()->associate($this->model);
+        $mention->entity_id = $this->resolveEntityId();
         $mention->target_id = $target;
         $mention->save();
+    }
+
+    protected function resolveEntityId(): ?int
+    {
+        if ($this->model instanceof Campaign || $this->model instanceof MapMarker) {
+            return null;
+        } elseif ($this->model instanceof Post) {
+            return $this->post()->entity_id;
+        } elseif ($this->model instanceof TimelineElement) {
+            return $this->model->timeline->entity->id;
+        } elseif ($this->model instanceof QuestElement) {
+            return $this->model->quest->entity->id;
+        }
+
+        // @phpstan-ignore-next-line
+        return $this->model->id;
     }
 
     /**
@@ -283,6 +283,8 @@ class EntityMappingService
             return $this->model->timeline->campaign_id;
         } elseif ($this->model instanceof QuestElement) {
             return $this->model->quest->campaign_id;
+        } elseif ($this->model instanceof MapMarker) {
+            return $this->model->map->campaign_id;
         }
 
         // @phpstan-ignore-next-line

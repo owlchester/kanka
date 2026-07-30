@@ -28,7 +28,8 @@
         @include('cruds.fields.is_pinned', ['model' => $entityAsset ?? null, 'fieldName' => 'is_pinned'])
         @include('cruds.fields.visibility_id', ['model' => $entityAsset ?? null])
     </x-grid>
+@if (isset($entityAsset))
+    <input type="hidden" name="type_id" value="{{ \App\Enums\EntityAssetType::file }}" />
+@endif
 </x-grid>
-
-
 

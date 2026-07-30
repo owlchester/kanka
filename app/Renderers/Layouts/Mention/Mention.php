@@ -44,7 +44,7 @@ class Mention extends Layout
                             __('entities.quest_element') .
                             ')';
                     } elseif ($model->isPost()) {
-                        return $base . ' (' . __('entities.post') . ')';
+                        return $base . ' (' . __('entities.article') . ')';
                     }
 
                     return $base;

@@ -34,7 +34,7 @@
 
             <x-form :action="['maps.map_markers.update', $campaign, 'map' => $map, 'map_marker' => $model]" method="PATCH" id="map-marker-form">
             <x-grid type="1/1">
-                @include('maps.markers._form')
+                @include('maps.markers._form_edit')
 
                 <x-box.footer>
                     <div class="submit-group flex items-center gap-2">

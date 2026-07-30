@@ -131,7 +131,7 @@ if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'bas
     @yield('content')
 @endif
 
-@vite(['resources/js/vendor-final.js', 'resources/js/app.js'])
+@vite('resources/js/app.js')
 @includeWhen(config('fontawesome.kit'), 'layouts.scripts.fontawesome')
 <!-- Make sure you put this AFTER Leaflet's CSS -->
 <script src="{{ 'https://unpkg.com/leaflet@' . config('app.leaflet_source') . '/dist/leaflet.js' }}" integrity="{{ config('app.leaflet_js') }}" crossorigin=""></script>

@@ -79,19 +79,11 @@ use App\Enums\Widget;
     @vite('resources/js/dashboard.js')
 
     @if ($hasMap)
-    <script src="{{ 'https://unpkg.com/leaflet@' . config('app.leaflet_source') . '/dist/leaflet.js' }}" integrity="{{ config('app.leaflet_js') }}" crossorigin=""></script>
-    <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.markercluster.js"></script>
-    <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.markercluster.layersupport.js"></script>
-    <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.zoomdisplay.js"></script>
-    <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.zoomcss.js"></script>
+    @vite('resources/js/maps/preview.js')
     @endif
 @endsection
 
 @section('styles')
-    @if ($hasMap)
-    <link rel="stylesheet" href="{{ 'https://unpkg.com/leaflet@' . config('app.leaflet_source') . '/dist/leaflet.css' }}" integrity="{{ config('app.leaflet_css') }}" crossorigin="" />
-    @endif
-
     @vite([
         'resources/css/dashboard.css',
         'resources/css/maps/maps.css'

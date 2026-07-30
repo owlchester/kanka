@@ -2,7 +2,7 @@
 services:
     laravel.test:
         build:
-            context: ./vendor/laravel/sail/runtimes/8.4
+            context: ./docker/8.4
             dockerfile: Dockerfile
             args:
                 WWWGROUP: '${WWWGROUP}'
@@ -18,6 +18,8 @@ services:
             LARAVEL_SAIL: 1
             XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-off}'
             XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
+            COREPACK_ENABLE_DOWNLOAD_PROMPT: 0
+            NODE_OPTIONS: '--no-deprecation'
         volumes:
             - '.:/var/www/html'
         networks:
@@ -154,7 +156,7 @@ services:
             timeout: 5s
 #    reverb:
 #        build:
-#            context: ./vendor/laravel/sail/runtimes/8.4
+#            context: ./docker/8.4
 #            dockerfile: Dockerfile
 #            args:
 #                WWWGROUP: "${WWWGROUP}"

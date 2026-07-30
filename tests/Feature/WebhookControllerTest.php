@@ -42,8 +42,7 @@ function makeTierPrice(
     string $stripeId,
     string $tierName = Pledge::OWLBEAR,
     PricingPeriod $period = PricingPeriod::Monthly,
-): TierPrice
-{
+): TierPrice {
     $tier = Tier::factory()->create(['name' => $tierName]);
 
     return TierPrice::forceCreate([

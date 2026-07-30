@@ -60,6 +60,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Collection;
 
 /**
@@ -339,11 +340,11 @@ trait CampaignRelations
     /**
      * List of entities that are mentioned in the campaign's description
      *
-     * @return HasMany<EntityMention, $this>
+     * @return MorphMany<EntityMention, $this>
      */
-    public function mentions(): HasMany
+    public function mentions(): MorphMany
     {
-        return $this->hasMany('App\Models\EntityMention', 'campaign_id', 'id');
+        return $this->morphMany(EntityMention::class, 'mentionable');
     }
 
     /**

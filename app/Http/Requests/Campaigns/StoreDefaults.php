@@ -30,7 +30,7 @@ class StoreDefaults extends FormRequest
             'settings.private_mention_visibility' => 'boolean',
             'ui_settings' => 'array',
             'ui_settings.connections' => 'boolean',
-            'ui_settings.connection_mode' => 'boolean',
+            'ui_settings.connections_mode' => 'nullable|integer|in:0,1,2,3',
             'ui_settings.post_collapsed' => 'boolean',
             'ui_settings.descendants' => 'boolean',
         ];

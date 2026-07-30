@@ -243,7 +243,9 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, onBeforeUnmount, nextTick } from "vue";
+import axios from "axios";
 import Browser from "./Browser.vue";
+import { createUploadRequest } from "./uploadRequest.js";
 
 const props = defineProps<{
     file: string;
@@ -272,7 +274,7 @@ const galleryOpened = ref(false);
 const progress = ref(0);
 const imagePreview = ref(null);
 let lastImageUrl;
-const cancelTokenSource = ref(null);
+let uploadAbortController: AbortController | null = null;
 const hasOld = ref(false);
 const hasPremium = ref(false);
 const removedOld = ref(false);
@@ -526,23 +528,19 @@ const uploadFile = async (file: File) => {
 
     uploading.value = true;
     document.addEventListener("keydown", handleEscape);
-    cancelTokenSource.value = axios.CancelToken.source();
 
     const formData = new FormData();
     formData.append("file", file);
 
+    const request = createUploadRequest(function (progressEvent) {
+        progress.value = Math.round(
+            (progressEvent.loaded * 100) / progressEvent.total,
+        );
+    });
+    uploadAbortController = request.controller;
+
     axios
-        .post(props.file, formData, {
-            headers: {
-                "Content-Type": "multipart/form-data",
-            },
-            cancelToken: cancelTokenSource.value.token,
-            onUploadProgress: function (progressEvent) {
-                progress.value = Math.round(
-                    (progressEvent.loaded * 100) / progressEvent.total,
-                );
-            },
-        })
+        .post(props.file, formData, request.config)
         .then((res) => {
             uploading.value = false;
             currentThumbnail.value = res.data.thumbnail;
@@ -559,12 +557,15 @@ const uploadFile = async (file: File) => {
             if (fileField.value) {
                 fileField.value.value = "";
             }
-            if (axios.isCancel(err)) {
-                // User cancelled
-            } else {
+            if (!request.controller.signal.aborted) {
                 showErrors(err);
             }
             document.removeEventListener("keydown", handleEscape);
+        })
+        .finally(() => {
+            if (uploadAbortController === request.controller) {
+                uploadAbortController = null;
+            }
         });
 };
 
@@ -630,8 +631,8 @@ const handleEscape = (event) => {
     }
 };
 
-const cancelUpload = (event) => {
-    cancelTokenSource.value.cancel("Upload canceled by user.");
+const cancelUpload = () => {
+    uploadAbortController?.abort();
 };
 
 const openDialog = async (dialog) => {
@@ -660,6 +661,7 @@ const clickOutside = (event) => {
 };
 
 onBeforeUnmount(() => {
+    uploadAbortController?.abort();
     document.removeEventListener("click", closeDropdownOnOutside);
     document.removeEventListener("keydown", handleDropdownEscape);
     document.removeEventListener("keydown", handleEscape);

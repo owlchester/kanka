@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Enums\EntityAssetType;
-use App\Http\Requests\StoreEntityAsset as Request;
+use App\Http\Requests\StoreEntityAsset;
+use App\Http\Requests\UpdateEntityAsset;
 use App\Http\Resources\EntityAssetResource as Resource;
 use App\Models\Campaign;
 use App\Models\Entity;
@@ -44,7 +45,7 @@ class EntityAssetApiController extends ApiController
      *
      * @throws AuthorizationException
      */
-    public function store(Request $request, Campaign $campaign, Entity $entity)
+    public function store(StoreEntityAsset $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity);
@@ -70,7 +71,7 @@ class EntityAssetApiController extends ApiController
     /**
      * @return resource
      */
-    public function update(Request $request, Campaign $campaign, Entity $entity, EntityAsset $entityAsset)
+    public function update(UpdateEntityAsset $request, Campaign $campaign, Entity $entity, EntityAsset $entityAsset)
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity);
@@ -80,7 +81,7 @@ class EntityAssetApiController extends ApiController
     }
 
     /**
-     * @param  Request  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return JsonResponse
      *
      * @throws AuthorizationException

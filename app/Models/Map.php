@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -31,8 +32,8 @@ use Illuminate\Support\Str;
  * @property int $center_marker_id
  * @property bool|int $is_real
  * @property bool|int $has_clustering
- * @property int $chunking_status
  * @property array $config
+ * @property ?Carbon $tiling_prompt_dismissed_at
  * @property Collection|MapLayer[] $layers
  * @property Collection|MapMarker[] $markers
  * @property MapMarker $centerMarker
@@ -57,17 +58,11 @@ class Map extends MiscModel
 
     public const MAX_ZOOM_REAL = 15;
 
-    public const MIN_ZOOM_REAL = 2;
+    public const MIN_ZOOM_REAL = 0;
 
-    public const MIN_ZOOM_CHUNK = 8;
+    public const MIN_ZOOM_TILE = 8;
 
-    public const MAX_ZOOM_CHUNK = 13;
-
-    public const CHUNKING_RUNNING = 1;
-
-    public const CHUNKING_FINISHED = 2;
-
-    public const CHUNKING_ERROR = 3;
+    public const MAX_ZOOM_TILE = 13;
 
     protected $fillable = [
         'campaign_id',
@@ -340,7 +335,7 @@ class Map extends MiscModel
     public function minZoom(): int
     {
         if (! is_numeric($this->min_zoom)) {
-            if ($this->isReal() || $this->isChunked()) {
+            if ($this->isReal() || $this->isTiled()) {
                 return self::MIN_ZOOM_REAL;
             }
 
@@ -351,8 +346,8 @@ class Map extends MiscModel
         if ($this->min_zoom > $this->initial_zoom && $this->initial_zoom > self::MIN_ZOOM) {
             return $this->initial_zoom;
         }
-        // The max zoom is based on the chunked image so we trust this.
-        if ($this->isChunked()) {
+        // The max zoom is based on the tiled image so we trust this.
+        if ($this->isTiled()) {
             return $this->min_zoom;
         }
         $min = $this->isReal() ? self::MIN_ZOOM_REAL : self::MIN_ZOOM;
@@ -366,8 +361,8 @@ class Map extends MiscModel
     public function maxZoom(): float
     {
         if (! is_numeric($this->max_zoom)) {
-            if ($this->isChunked()) {
-                return 13;
+            if ($this->isTiled()) {
+                return self::MAX_ZOOM_TILE;
             }
             if ($this->isReal()) {
                 return self::MAX_ZOOM_REAL;
@@ -375,8 +370,8 @@ class Map extends MiscModel
 
             return 2.75;
         }
-        // The max zoom is based on the chunked image so we trust this.
-        if ($this->isChunked()) {
+        // The max zoom is based on the tiled image so we trust this.
+        if ($this->isTiled()) {
             return $this->max_zoom;
         }
         $max = $this->isReal() ? self::MAX_ZOOM_REAL : self::MAX_ZOOM;
@@ -390,7 +385,7 @@ class Map extends MiscModel
     public function initialZoom(): int
     {
         if (! is_numeric($this->initial_zoom)) {
-            if ($this->isReal() || $this->isChunked()) {
+            if ($this->isReal() || $this->isTiled()) {
                 return 12;
             }
 
@@ -414,9 +409,6 @@ class Map extends MiscModel
         if ($this->isReal()) {
             $latitude = 46.205;
             $longitude = 6.147;
-        } elseif ($this->isChunked()) {
-            $latitude = 0;
-            $longitude = 0;
         } else {
             $latitude = floor($this->height / 2);
             $longitude = floor($this->width / 2);
@@ -455,7 +447,7 @@ class Map extends MiscModel
         $height = floor(($height) / 1) + $extra;
         $width = floor(($width) / 1) + $extra;
 
-        $min = $extend ? -50 : 0;
+        $min = $extend ? -100 : 0;
 
         return "[[{$min}, {$min}], [{$height}, {$width}]]";
     }
@@ -517,7 +509,7 @@ class Map extends MiscModel
             return false;
         }
 
-        return ! ($this->isChunked() && ($this->chunkingError() || $this->chunkingRunning()));
+        return ! $this->tilingRunning();
     }
 
     /**
@@ -545,35 +537,44 @@ class Map extends MiscModel
     }
 
     /**
-     * Check if a map has a chunked tileset
+     * Check if a map's base image has a finished tile pyramid ready to serve
      */
-    public function isChunked(): bool
+    public function isTiled(): bool
     {
-        return ! empty($this->chunking_status);
+        return $this->entity->image?->isTiled() ?? false;
     }
 
     /**
-     * Check if a map is currently being chunked
+     * Check if a map's base image can render one way or another (tiled, errored-fallback,
+     * or never tiled) — only an in-progress tiling job blocks rendering.
      */
-    public function chunkingReady(): bool
+    public function tilingReady(): bool
     {
-        return ! $this->chunkingError() && ! $this->chunkingRunning();
+        return $this->entity->image === null || $this->entity->image->tilingReady();
     }
 
     /**
-     * Check if a map encountered a chunking error
+     * Check if a map's base image permanently failed tiling
      */
-    public function chunkingError(): bool
+    public function tilingError(): bool
     {
-        return $this->chunking_status == self::CHUNKING_ERROR;
+        return $this->entity->image?->tilingError() ?? false;
     }
 
     /**
-     * Check if a map encountered a chunking error
+     * Check if a map's base image is currently being tiled
      */
-    public function chunkingRunning(): bool
+    public function tilingRunning(): bool
     {
-        return $this->chunking_status == self::CHUNKING_RUNNING;
+        return $this->entity->image?->tilingRunning() ?? false;
+    }
+
+    /**
+     * Leaflet tile URL template for this map's base image tile pyramid, or null if not tiled.
+     */
+    public function tilesUrl(): ?string
+    {
+        return $this->isTiled() ? $this->entity->image->tilesUrlTemplate() : null;
     }
 
     /**

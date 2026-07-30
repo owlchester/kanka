@@ -34,9 +34,9 @@ trait HasEntry
     /**
      * Get the entry where mentions are parsed to html links
      */
-    public function parsedEntry(): string
+    public function parsedEntry(bool $renderMapPreview = false): string
     {
-        return Mentions::mapAny($this, $this->entryFieldName());
+        return Mentions::mapAny($this, $this->entryFieldName(), $renderMapPreview);
     }
 
     /**

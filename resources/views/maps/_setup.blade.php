@@ -80,7 +80,7 @@ if (isset($single) && $single) {
 @else
     var overlayMaps{{ $map->id }} = {};
 @endif
-    @if (!$map->isReal() && !$map->isChunked())
+    @if (!$map->isReal() && !$map->isTiled())
 
     var map{{ $map->id }} = L.map('map{{ $map->id }}', {
         crs: L.CRS.Simple,
@@ -105,10 +105,8 @@ if (isset($single) && $single) {
     @else
 
     var map{{ $map->id }} = L.map('map{{ $map->id }}', {
-        @if ($map->isChunked())
+        @if ($map->isTiled())
         crs: L.CRS.Simple,
-        maxBounds: maxBounds{{ $map->id }},
-        maxBoundsViscosity: 0.5,
         @endif
         noWrap: true,
         dragging: true,
@@ -126,8 +124,9 @@ if (isset($single) && $single) {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map{{ $map->id }});
     @else
-    L.tileLayer('{{ route('maps.chunks', [$campaign, $map->id]) }}/?z={z}&x={x}&y={y}', {
+    L.tileLayer('{{ $map->tilesUrl() }}', {
         attribution: '&copy; Kanka',
+        errorTileUrl: '/images/map_chunks/transparent.png',
     }).addTo(map{{ $map->id }});
     @endif
 

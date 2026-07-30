@@ -5,6 +5,10 @@
         2 => __('maps/markers.icons.question'),
         3 => __('maps/markers.icons.exclamation'),
         4 => __('maps/markers.icons.entity'),
+        6 => __('maps/markers.icons.square'),
+        7 => __('maps/markers.icons.circle'),
+        8 => __('maps/markers.icons.diamond'),
+        9 => __('maps/markers.icons.triangle'),
     ];
     $iconOptions = $default + $iconOptions;
 @endphp

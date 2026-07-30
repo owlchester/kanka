@@ -14,88 +14,11 @@ const isMobile = window.matchMedia("only screen and (max-width: 760px)");
 
 const shapeField = document.querySelector('input[name="shape_id"]');
 
-const initTabs = () => {
-    const pin = document.querySelector('a[href="#marker-pin"]');
-    if (!pin) {
-        return;
-    }
-    pin.addEventListener('click', function () {
-        shapeField.value = 1;
-        document.querySelector('#map-marker-bg-colour').classList.remove('hidden');
-        showMainFields();
-    });
-    document.querySelector('a[href="#marker-label"]').addEventListener('click', function () {
-        shapeField.value = 2;
-        document.querySelector('#map-marker-bg-colour').classList.add('hidden');
-        showMainFields();
-    });
-    document.querySelector('a[href="#marker-circle"]').addEventListener('click', function () {
-        shapeField.value = 3;
-        document.querySelector('#map-marker-bg-colour').classList.remove('hidden');
-        showMainFields();
-    });
-    document.querySelector('a[href="#marker-poly"]').addEventListener('click', function () {
-        shapeField.value = 5;
-        document.querySelector('#map-marker-bg-colour').classList.remove('hidden');
-        showMainFields();
-    });
-    document.querySelector('a[href="#presets"]')?.addEventListener('click', function (e) {
-        let target = e.currentTarget;
-        loadPresets(target.dataset.presets);
-    });
-    document.querySelector('a[href="#form-markers"]')?.addEventListener('click', function () {
-        window.map.invalidateSize();
-    });
-};
-
-/**
- *
- */
-const initMapExplore = () => {
-    //console.log('initMapExplore', '');
-    if (!mapPageBody) {
-        //console.log('initMapExplore', 'no explore mode');
-        return;
-    }
-
-    window.markerDetails = function(url) {
-        showSidebar();
-        if (isMobile.matches) {
-            url = url + '?mobile=1';
-            window.openDialog('map-marker-modal', url);
-            return;
-        }
-
-        fetch(url)
-            .then((response) => response.json())
-            .then((result) => {
-                sidebarMarker.innerHTML = result.body;
-                sidebarMarker.classList.remove('hidden');
-                sidebarMarker.parentNode.querySelector('.spinner').classList.add('hidden');
-
-                handleCloseMarker();
-                mapPageBody.classList.add('sidebar-open');
-
-                window.triggerEvent();
-            });
-    };
-
-    initTicker();
-    initLegend();
-    initZoom();
-
-    // When the sidebar gets triggers, we need to tell the map that its bounds have changed
-    $(document).on('expanded.pushMenu collapsed.pushMenu', function () {
-        window.map.invalidateSize();
-    });
-};
-
 /**
  * When submitting the layer or marker form from the map modal, disable the map form unsaved changed
  * alert.
  */
 const initForms = () => {
-    initTabs();
     initCircle();
     initPolygonDrawing();
 
@@ -220,29 +143,6 @@ const initMapEntryClick = () => {
     });
 };
 
-/**
- * Register switching in and out of edit mode
- */
-const registerModes = () => {
-    const enable = document.querySelector('.btn-mode-enable');
-    enable?.addEventListener('click', function (e) {
-        e.preventDefault();
-        window.exploreEditMode = true;
-        document.querySelector('body').classList.add('map-edit-mode');
-    });
-    document.querySelector('.btn-mode-disable')?.addEventListener('click', function (e) {
-        e.preventDefault();
-        window.exploreEditMode = false;
-        document.querySelector('body').classList.remove('map-edit-mode');
-        if (window.polygon) {
-            window.map.removeLayer(window.polygon);
-        }
-    });
-    document.querySelector('.btn-mode-drawing')?.addEventListener('click', function (e) {
-        e.preventDefault();
-        endDrawing();
-    });
-};
 
 const endDrawing = () => {
     window.drawingPolygon = false;
@@ -312,13 +212,14 @@ window.startNewPolygon = function () {
 };
 
 window.setPolygonPosition = function (coords) {
-    let shape = document.querySelector('textarea[name="custom_shape"]');
+    const container = document.querySelector(isPath() ? '#marker-path' : '#marker-poly');
+    const shape = container.querySelector('textarea[name="custom_shape"]');
     shape.value = coords;
 };
 
 
 window.markerUpdateHandler = function (data) {
-    if (isPolygon()) {
+    if (isPolygon() || isPath()) {
         updatePolygon(data);
     }
     else if (isLabel()) {
@@ -327,14 +228,16 @@ window.markerUpdateHandler = function (data) {
 };
 
 const updatePolygon = (data) => {
-    //console.log('polygon updated', data);
-    let points = data.target.getLatLngs();
+    // A polygon's getLatLngs() returns a nested array of rings ([[point, ...]]);
+    // a path's getLatLngs() returns a flat array of points ([point, ...]) — both are
+    // handled here since this function now serializes both shapes' vertices.
+    let points = isPath() ? data.target.getLatLngs() : (data.target.getLatLngs()[0] || []);
     if (points.length === 0) {
         return;
     }
 
     let coords = [];
-    points[0].forEach((i) => {
+    points.forEach((i) => {
         coords.push(i.lat.toFixed(3) + ',' + i.lng.toFixed(3));
     });
     window.setPolygonPosition(coords.join(' '));
@@ -352,6 +255,9 @@ const updateLabel = (data) => {
 
 const isPolygon = () => {
     return Number(shapeField.value) === 5;
+};
+const isPath = () => {
+    return Number(shapeField.value) === 6;
 };
 const isLabel = () => {
     return Number(shapeField.value) === 2;
@@ -427,67 +333,6 @@ const getPolygonStyle = () => {
     }
 };
 
-const showMainFields = () => {
-    document.querySelector('#marker-main-fields')?.classList.remove('hidden');
-    document.querySelector('#marker-footer')?.classList.remove('hidden');
-};
-
-const loadPresets = (url) => {
-    if (!url) {
-        console.log('aaa');
-        return;
-    }
-    document.querySelector('#marker-main-fields')?.classList.add('hidden');
-    document.querySelector('#marker-footer')?.classList.add('hidden');
-
-    // If presets have already been loaded, skip loading/rendering of the list
-    const list = document.querySelector('.marker-preset-list');
-    if (list.dataset.loaded === '1') {
-        return;
-    }
-    list.dataset.loaded = '1';
-
-    fetch(url)
-        .then(response => response.text())
-        .then(response => {
-            list.innerHTML = response;
-            handlePresetClick();
-        });
-};
-
-const handlePresetClick = () => {
-    document.querySelectorAll('.preset-use')?.forEach(preset => {
-        preset.addEventListener('click', function (e) {
-            e.preventDefault();
-
-            let url =   preset.dataset.url;
-            preset.classList.add('loading');
-
-            axios.get(url).then(res => {
-                // Switch stuff around
-                preset.classList.remove('loading');
-
-                Object.keys(res.data.preset).forEach(key => {
-                    let val = res.data.preset[key];
-
-                    let field = document.querySelector('[name="' + key + '"]');
-                    if (!field) {
-                        //console.info('markerPreset', 'unknown field', key);
-                        return;
-                    }
-                    if (key.endsWith('colour')) {
-                        field.value = val;
-                        document.querySelector('[name="' + key + '"]').dispatchEvent(new Event('input',));
-                    } else {
-                        field.value = val;
-                    }
-                });
-                document.querySelector('a[href="#marker-pin"]').click();
-            });
-        });
-    });
-};
-
 /**
  * Why is this here?
  */
@@ -519,7 +364,5 @@ window.map.on('popupopen', function (ev) {
     window.initDialogs();
 });
 
-initMapExplore();
 initForms();
 initMapEntryClick();
-registerModes();
