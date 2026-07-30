@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('maps', function (Blueprint $table): void {
-            $table->unsignedTinyInteger('chunking_status')->nullable();
+            if (! Schema::hasColumn('maps', 'chunking_status')) {
+                $table->unsignedTinyInteger('chunking_status')->nullable();
+            }
         });
     }
 

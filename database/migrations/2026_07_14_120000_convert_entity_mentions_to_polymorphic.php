@@ -61,24 +61,30 @@ return new class extends Migration
             $table->dropForeign(['campaign_id']);
         });
 
-        // post_id's FK constraint kept its original name from before the
-        // entity_note_id -> post_id rename in
-        // 2023_09_12_200523_migrate_to_posts.php (renameColumn() doesn't
-        // rename the underlying constraint), so MySQL/MariaDB installs need
-        // it dropped by the legacy column name. SQLite's grammar rebuilds
-        // the table from its own foreign key list and needs the current
-        // column name instead - passing the legacy name there fails because
-        // no such column exists to reference. Try the current name first
-        // (correct for SQLite) and fall back to the legacy name (correct for
-        // MySQL/MariaDB) if that fails.
+        // 2023_09_12_200523_migrate_to_posts.php renamed entity_note_id to
+        // post_id and then added a *new* foreign key on post_id without
+        // dropping the one that came along with the rename (renameColumn()
+        // doesn't rename the underlying constraint). MySQL/MariaDB installs
+        // therefore have two FK constraints on this column:
+        // entity_mentions_entity_note_id_foreign (legacy) and
+        // entity_mentions_post_id_foreign (added new). Both must be dropped.
+        // SQLite has no named constraints - its grammar matches FK clauses
+        // structurally by column, so the first drop removes everything and
+        // the second is a no-op that we swallow.
         try {
             Schema::table('entity_mentions', function (Blueprint $table) {
                 $table->dropForeign(['post_id']);
             });
         } catch (Throwable) {
+            // No FK named entity_mentions_post_id_foreign - nothing to do.
+        }
+
+        try {
             Schema::table('entity_mentions', function (Blueprint $table) {
                 $table->dropForeign(['entity_note_id']);
             });
+        } catch (Throwable) {
+            // No FK named entity_mentions_entity_note_id_foreign - nothing to do.
         }
 
         Schema::table('entity_mentions', function (Blueprint $table) {
