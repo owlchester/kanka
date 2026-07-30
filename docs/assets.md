@@ -23,9 +23,9 @@ For the api docs to work, the same needs to be done for the `public/vendor/binar
 
 > aws s3 sync public/vendor/binarytorch/ s3://kanka-user-assets/vendor/binarytorch/ --include "*" --acl public-read --delete
 
-For leaflet, summernote etc, the same needs to be done for the `public/js/` folder.
+For summernote etc, the same needs to be done for the `public/js/` folder.
 
-> aws s3 sync public/vendor/leaflet/ s3://kanka-user-assets/vendor/leaflet/ --include "*" --acl public-read --delete
+> aws s3 sync public/vendor/summernote/ s3://kanka-user-assets/vendor/summernote/ --include "*" --acl public-read --delete
 
 ## Images
 

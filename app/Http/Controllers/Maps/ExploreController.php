@@ -5,11 +5,8 @@ namespace App\Http\Controllers\Maps;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Map;
-use App\Models\MapMarker;
 use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
-use Carbon\Carbon;
-use Exception;
 
 class ExploreController extends Controller
 {
@@ -29,58 +26,6 @@ class ExploreController extends Controller
         if (empty($map->entity)) {
             abort(404);
         }
-        $this->campaign($campaign)->authEntityView($map->entity);
-
-        if ($map->tilingRunning()) {
-            return redirect()
-                ->route('entities.show', [$campaign, $map->entity])
-                ->withError(__('maps.errors.tiling.running.explore'));
-        }
-
-        if (! $map->explorable()) {
-            return redirect()
-                ->route('entities.show', [$campaign, $map->entity])
-                ->withError(__('maps.errors.explore.missing'));
-        }
-
-        // Error handling
-        try {
-            $map->bounds();
-        } catch (Exception $e) {
-            return redirect()->route('entities.show', [$campaign, $map->entity])
-                ->with('error_raw', __('Error getting bounds from the map. This sometimes happens with animated WebP files, which aren\'t supported. Please contact us on :discord or at at :email.', [
-                    'discord' => '<a href="http://kanka.io/go/discord" class="text-link">Discord</a>',
-                    'email' => '<a href="mailto:' . config('app.email') . '" class="text-link">' . config('app.email') . '</a>',
-                ]));
-        }
-
-        return view('maps.explore')
-            ->with('map', $map)
-            ->with('campaign', $campaign);
-    }
-
-    /**
-     * Map ticker for updates to pointers
-     */
-    public function ticker(Campaign $campaign, Map $map)
-    {
-        $this->campaign($campaign)->authEntityView($map->entity);
-
-        $timestamp = request()->get('ts', time());
-        /** @var MapMarker[] $markers */
-        $markers = $map->markers()->where('updated_at', '>=', $timestamp)->get();
-        $data = [];
-        foreach ($markers as $marker) {
-            $data[] = [
-                'id' => $marker->id,
-                'longitude' => $marker->longitude,
-                'latitude' => $marker->latitude,
-            ];
-        }
-
-        return response()->json([
-            'ts' => Carbon::now(),
-            'markers' => $data,
-        ]);
+        return redirect()->route('entities.map', [$campaign, $map->entity]);
     }
 }
