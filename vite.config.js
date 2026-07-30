@@ -120,6 +120,12 @@ export default defineConfig({
         }),
     ],
     resolve: {
+        dedupe: [
+            '@codemirror/commands',
+            '@codemirror/search',
+            '@codemirror/state',
+            '@codemirror/view',
+        ],
         alias: {
             'vue': 'vue/dist/vue.esm-bundler',
         },

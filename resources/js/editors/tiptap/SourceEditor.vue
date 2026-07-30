@@ -3,10 +3,10 @@ import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
 import { EditorView, basicSetup } from 'codemirror'
 import { html } from '@codemirror/lang-html'
 import { oneDark } from '@codemirror/theme-one-dark'
-import { EditorState, Prec } from '@codemirror/state'
+import { EditorState } from '@codemirror/state'
 import { indentWithTab } from '@codemirror/commands'
 import { keymap } from '@codemirror/view'
-import { search, searchKeymap } from '@codemirror/search'
+import { search } from '@codemirror/search'
 
 const props = defineProps<{
     modelValue: string

@@ -30,8 +30,8 @@
     "file": "assets/Tiptap-BEOI8OgA.css",
     "src": "_Tiptap-BEOI8OgA.css"
   },
-  "_Tiptap-CfU1kECR.js": {
-    "file": "assets/Tiptap-CfU1kECR.js",
+  "_Tiptap-CrHSI6nT.js": {
+    "file": "assets/Tiptap-CrHSI6nT.js",
     "name": "Tiptap",
     "isDynamicEntry": true,
     "imports": [
@@ -461,7 +461,7 @@
     ]
   },
   "resources/js/components/maps/MarkerPanel.vue": {
-    "file": "assets/MarkerPanel-BcDAWhhL.js",
+    "file": "assets/MarkerPanel-Dsb1UQ63.js",
     "name": "MarkerPanel",
     "src": "resources/js/components/maps/MarkerPanel.vue",
     "isDynamicEntry": true,
@@ -478,7 +478,7 @@
       "_coloris-DsKOFKq5.js"
     ],
     "dynamicImports": [
-      "_Tiptap-CfU1kECR.js"
+      "_Tiptap-CrHSI6nT.js"
     ]
   },
   "resources/js/connections/web.js": {
@@ -542,19 +542,19 @@
     "isEntry": true
   },
   "resources/js/editors/tiptap/SourceEditor.vue": {
-    "file": "assets/SourceEditor-BZykFZ6S.js",
+    "file": "assets/SourceEditor-CzOqIsc4.js",
     "name": "SourceEditor",
     "src": "resources/js/editors/tiptap/SourceEditor.vue",
     "isDynamicEntry": true,
     "imports": [
       "_vue.esm-bundler-Co9B1zL-.js",
-      "_Tiptap-CfU1kECR.js",
+      "_Tiptap-CrHSI6nT.js",
       "__plugin-vue_export-helper-DlAUqK2U.js",
       "_preload-helper-B_nTnwcT.js",
       "_index-D5GkNzM3.js"
     ],
     "css": [
-      "assets/SourceEditor-Ct4taoQl.css"
+      "assets/SourceEditor-BiUqKqcO.css"
     ]
   },
   "resources/js/editors/tiptap/extensions/gallery/GalleryDialog.vue": {
@@ -572,7 +572,7 @@
     ]
   },
   "resources/js/editors/tiptap/index.js": {
-    "file": "assets/index-BKs2bPoL.js",
+    "file": "assets/index-Be8eduAe.js",
     "name": "index",
     "src": "resources/js/editors/tiptap/index.js",
     "isEntry": true,
@@ -581,7 +581,7 @@
       "_vue.esm-bundler-Co9B1zL-.js"
     ],
     "dynamicImports": [
-      "_Tiptap-CfU1kECR.js"
+      "_Tiptap-CrHSI6nT.js"
     ]
   },
   "resources/js/entities/explore.js": {
@@ -652,7 +652,7 @@
     "isEntry": true
   },
   "resources/js/maps/explore.js": {
-    "file": "assets/explore-nsBtYd4x.js",
+    "file": "assets/explore-CTltCFnh.js",
     "name": "explore",
     "src": "resources/js/maps/explore.js",
     "isEntry": true,
