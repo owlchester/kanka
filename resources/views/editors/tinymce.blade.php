@@ -1,12 +1,3 @@
-
-@section('styles')
-    @parent
-    @if (config('app.asset_url'))
-        <link href="{{ config('app.asset_url') }}/vendor/bootstrap/bootstrap-summernote.css?v={{ config('app.version') }}" rel="stylesheet">
-    @else
-        <link href="/css/bootstrap-summernote.css?v={{ config('app.version') }}" rel="stylesheet">
-    @endif
-@endsection
 @section('scripts')
     @parent
     @vite('resources/js/jquery.js')
