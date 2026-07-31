@@ -12,6 +12,7 @@ use App\Services\AttributeService;
 use App\Services\Entity\AliasService;
 use App\Services\Entity\CopyService;
 use App\Services\Entity\EntitySaveService;
+use App\Services\Entity\Relations\LocationRelationsService;
 use Illuminate\Http\Request;
 use LogicException;
 
@@ -21,7 +22,8 @@ class CreateController extends Controller
         protected CopyService $copyService,
         protected AttributeService $attributeService,
         protected AliasService $aliasService,
-        protected EntitySaveService $entitySaveService
+        protected EntitySaveService $entitySaveService,
+        protected LocationRelationsService $locationRelationsService
     ) {}
 
     public function index(Request $request, Campaign $campaign, EntityType $entityType)
@@ -74,6 +76,7 @@ class CreateController extends Controller
             $entity->type_id = $entityType->id;
             $entity->save();
             $this->entitySaveService->campaign($campaign)->save($entity, $data);
+            $this->locationRelationsService->entity($entity)->process($data);
 
             $this->aliasService->entity($entity)->request($request)->save();
 

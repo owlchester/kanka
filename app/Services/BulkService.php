@@ -381,7 +381,7 @@ class BulkService
             if ($locationsAction === 'remove') {
                 $entity->locations()->detach($locationIds);
             } elseif (! empty($locationIds)) {
-                $this->locationRelationsService->attach($entity, $locationIds);
+                $this->locationRelationsService->entity($entity)->attach($locationIds);
             }
 
             // Handle creators (items only)

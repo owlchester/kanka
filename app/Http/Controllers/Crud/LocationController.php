@@ -79,7 +79,7 @@ class LocationController extends CrudController
 
     protected function afterModelSave(MiscModel $model, array $data): void
     {
-        $this->locationRelationsService->save($model, $data);
+        $this->locationRelationsService->entity($model->entity)->process($data);
     }
 
     protected function getEntityType(): EntityType

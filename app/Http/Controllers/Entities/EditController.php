@@ -11,6 +11,7 @@ use App\Services\AttributeService;
 use App\Services\Entity\AliasService;
 use App\Services\Entity\EntitySaveService;
 use App\Services\Entity\Relations\EntityRelationsServiceFactory;
+use App\Services\Entity\Relations\LocationRelationsService;
 use App\Services\MultiEditingService;
 use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
@@ -27,7 +28,8 @@ class EditController extends Controller
         protected AliasService $aliasService,
         protected MultiEditingService $multiEditingService,
         protected EntitySaveService $entitySaveService,
-        protected EntityRelationsServiceFactory $relationsFactory
+        protected EntityRelationsServiceFactory $relationsFactory,
+        protected LocationRelationsService $locationRelationsService
     ) {}
 
     public function index(Campaign $campaign, Entity $entity)
@@ -110,6 +112,7 @@ class EditController extends Controller
                 $preparedData = $this->fixRequestData($request, $entity);
                 $entity->update($preparedData);
                 $this->entitySaveService->campaign($campaign)->save($entity, $preparedData);
+                $this->locationRelationsService->entity($entity)->process($preparedData);
             }
 
             $this->aliasService->entity($entity)->request($request)->save();
