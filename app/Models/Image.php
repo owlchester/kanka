@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 /**
  * Class Image
@@ -32,6 +33,7 @@ use Illuminate\Support\Facades\Storage;
  * @property ?int $focus_y
  * @property ?int $tiling_status
  * @property ?string $tiling_error
+ * @property ?array $metadata
  * @property ?string $folder_id
  * @property bool|int $is_default
  * @property bool|int $is_folder
@@ -79,6 +81,7 @@ class Image extends Model
 
     public $casts = [
         'visibility_id' => Visibility::class,
+        'metadata' => 'array',
     ];
 
     public const TILING_RUNNING = 1;
@@ -339,6 +342,81 @@ class Image extends Model
     public function hasThumbnail(): bool
     {
         return in_array($this->ext, ['jpg', 'png', 'jpeg', 'gif', 'webp']);
+    }
+
+    public function width(): ?int
+    {
+        return $this->metadata['width'] ?? null;
+    }
+
+    public function height(): ?int
+    {
+        return $this->metadata['height'] ?? null;
+    }
+
+    public function hasDimensions(): bool
+    {
+        return ! empty($this->width()) && ! empty($this->height());
+    }
+
+    /**
+     * Read an image's pixel dimensions straight from its stored file, without
+     * downloading the whole thing. SVGs carry their dimensions as attributes on the
+     * root element; raster formats carry them in the first few dozen bytes to a few KB
+     * of the file header, so only the first 64KB is read from Storage.
+     *
+     * @return array{width: int, height: int}
+     */
+    public static function dimensionsForPath(string $path): array
+    {
+        if (Str::endsWith($path, '.svg')) {
+            $contents = Storage::get($path);
+            $xml = simplexml_load_string($contents);
+
+            return [
+                'width' => (int) $xml->attributes()->width,
+                'height' => (int) $xml->attributes()->height,
+            ];
+        }
+
+        $stream = Storage::readStream($path);
+        $header = fread($stream, 65536);
+        fclose($stream);
+        $size = getimagesizefromstring($header);
+
+        return [
+            'width' => $size[0] ?? 0,
+            'height' => $size[1] ?? 0,
+        ];
+    }
+
+    /**
+     * @return array{width: int, height: int}
+     */
+    public function calculateDimensions(): array
+    {
+        return static::dimensionsForPath($this->path);
+    }
+
+    /**
+     * Calculate and cache this image's dimensions if they aren't already known. Skips
+     * file types that don't have pixel dimensions (fonts). Guarded against writing from
+     * an unauthenticated read-replica request, same as Map::prepareBounds().
+     */
+    public function ensureDimensions(): void
+    {
+        if ($this->hasDimensions()) {
+            return;
+        }
+        if (! $this->hasThumbnail() && ! $this->isSvg()) {
+            return;
+        }
+
+        $this->metadata = array_merge($this->metadata ?? [], $this->calculateDimensions());
+
+        if (auth()->check()) {
+            $this->saveQuietly();
+        }
     }
 
     /**
