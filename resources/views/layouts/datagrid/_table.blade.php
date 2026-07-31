@@ -3,6 +3,10 @@
     <x-box class="text-center">
         <x-icon class="load" />
     </x-box>
+    @section('modals')
+        @parent
+        @includeWhen(Datagrid::hasBulks(), 'layouts.datagrid.bulks._delete-dialog')
+    @endsection
 <?php return; ?>
 @endif
 

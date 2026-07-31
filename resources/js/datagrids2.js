@@ -153,9 +153,10 @@ const registerBulkSubmit = (datagrid, submit) => {
         return;
     }
     submit.dataset.loaded = '1';
-    console.log('register bulk submit', submit, submit.parentNode);
+    //console.log('register bulk submit', submit, submit.parentNode);
     submit.addEventListener('click', function (e) {
         e.preventDefault();
+        datagrid.parentNode.querySelector('.datagrid-bulk-actions [data-dropdown]')?._tippy?.hide();
         form = submit.closest('form') || datagrid.closest('form');
 
         const action = form.querySelector('input[name="action"]');

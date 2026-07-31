@@ -1,6 +1,7 @@
 <?php
 
 use App\Enums\OrganisationMemberPin;
+use App\Facades\Datagrid;
 use App\Models\Character;
 use App\Models\Organisation;
 use App\Models\OrganisationMember;
@@ -26,6 +27,15 @@ it('bulk deletes organisation members', function () {
     ])->assertRedirect();
 
     $this->assertDatabaseMissing('organisation_member', ['id' => $this->member->id]);
+});
+
+it('renders the bulk delete dialog for deferred organisation members', function () {
+    Datagrid::campaign($this->organisation->campaign);
+
+    $this->get("/w/test-campaign/entities/{$this->organisation->entity->id}")
+        ->assertSuccessful()
+        ->assertSee('data-render="datagrid2-onload"', false)
+        ->assertSee('id="datagrid-bulk-delete"', false);
 });
 
 it('bulk edit returns dialog view', function () {
