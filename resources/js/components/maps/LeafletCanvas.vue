@@ -448,7 +448,7 @@ function buildPin(pin) {
             color: style.stroke || pin.colour || '#ccc',
             weight: style['stroke-width'] || 1,
             fillColor: pin.colour || '#ccc',
-            fillOpacity: (pin.opacity || 100) / 100,
+            fillOpacity: (pin.opacity ?? 100) / 100,
             className: pin.css || '',
         })
     }
@@ -460,7 +460,7 @@ function buildPin(pin) {
         return L.polyline(latlngs, {
             color: pin.colour || '#ccc',
             weight: style['stroke-width'] || 1,
-            opacity: (pin.opacity || 100) / 100,
+            opacity: (pin.opacity ?? 100) / 100,
             className: pin.css || '',
         })
     }
@@ -471,7 +471,7 @@ function buildPin(pin) {
             radius: pin.circle_radius || 50,
             fillColor: pin.colour || '#ccc',
             stroke: false,
-            fillOpacity: (pin.opacity || 100) / 100,
+            fillOpacity: (pin.opacity ?? 100) / 100,
             draggable,
             className: pin.css || '',
         })
@@ -511,7 +511,7 @@ function buildPin(pin) {
     const draggable = props.canEdit && pin.is_draggable
     const marker = L.marker([pin.latitude, pin.longitude], {
         icon: pinIcon(pin),
-        opacity: (pin.opacity || 100) / 100,
+        opacity: (pin.opacity ?? 100) / 100,
         draggable,
     })
 

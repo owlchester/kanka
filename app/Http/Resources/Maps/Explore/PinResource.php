@@ -52,7 +52,7 @@ class PinResource extends JsonResource
             'size_id' => $marker->size_id,
             'pin_size' => $marker->pin_size,
             'circle_radius' => $marker->circle_radius,
-            'opacity' => (float) ($marker->opacity ?: 100),
+            'opacity' => (float) ($marker->opacity ?? 100),
             'custom_shape' => $this->polygonPoints($marker->custom_shape),
             'polygon_style' => $marker->polygon_style ?? [],
             'shape_id' => $marker->shape_id?->value,

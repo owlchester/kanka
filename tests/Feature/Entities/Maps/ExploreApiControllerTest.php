@@ -71,6 +71,20 @@ it('returns the full explore payload for a simple map', function () {
     expect($waterdeep['destroy_url'])->toBe(route('entities.map-markers.destroy', [1, $map->entity->id, $marker->id]));
 });
 
+it('keeps a marker opacity of 0 instead of defaulting it to 100', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $invisible = MapMarker::factory()->create(['map_id' => $map->id, 'name' => 'Invisible', 'opacity' => 0]);
+    $unset = MapMarker::factory()->create(['map_id' => $map->id, 'name' => 'Unset', 'opacity' => null]);
+
+    $pins = collect(
+        $this->get(route('entities.map-api', [1, $map->entity]))->assertOk()->json('pins')
+    );
+
+    expect($pins->firstWhere('id', $invisible->id)['opacity'])->toEqual(0);
+    expect($pins->firstWhere('id', $unset->id)['opacity'])->toEqual(100);
+});
+
 it('resolves width/height from the real image instead of the 1000x1000 default, and persists it', function () {
     $this->asUser()->withCampaign();
     $map = Map::factory()->create(['campaign_id' => 1]);

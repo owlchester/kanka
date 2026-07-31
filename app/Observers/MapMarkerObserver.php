@@ -14,7 +14,9 @@ class MapMarkerObserver
 
     public function saving(MapMarker $mapMarker): void
     {
-        $mapMarker->opacity = round($mapMarker->opacity, 1);
+        if ($mapMarker->opacity !== null) {
+            $mapMarker->opacity = round($mapMarker->opacity, 1);
+        }
         $mapMarker->custom_icon = $this->sanitizeCustomIcon($mapMarker);
 
         // Only the legacy marker form ever submits size_id explicitly (a preset 1-5, or "custom" 6).
