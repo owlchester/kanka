@@ -147,7 +147,9 @@ class MapLayer extends Model
      * Resolve this layer's pixel dimensions: a gallery image (own dimensions, live, never
      * cached on this row) takes priority, then a legacy directly-uploaded image (calculated
      * once and cached on this row, same as Map's own legacy handling), then finally the
-     * parent map's own dimensions as a last-resort fallback.
+     * parent map's own resolved dimensions as a last-resort fallback (never the map's
+     * possibly-null persisted columns directly, since a gallery-image map never persists
+     * its width/height — prepareBounds() must run first to resolve them).
      *
      * @return array{width: int, height: int}
      */
@@ -155,7 +157,7 @@ class MapLayer extends Model
     {
         if ($this->image) {
             $this->image->ensureDimensions();
-            if ($this->image->hasDimensions()) {
+            if ($this->image->hasDimensions() && $this->image->width() && $this->image->height()) {
                 return ['width' => $this->image->width(), 'height' => $this->image->height()];
             }
         } elseif ($this->image_path) {
@@ -164,6 +166,8 @@ class MapLayer extends Model
                 return ['width' => $this->width, 'height' => $this->height];
             }
         }
+
+        $this->map->prepareBounds();
 
         return [
             'width' => $this->map->width ?: 1000,

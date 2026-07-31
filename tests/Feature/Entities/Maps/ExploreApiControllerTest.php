@@ -111,6 +111,28 @@ it('returns whether a map group is shown by default', function () {
     expect(collect($groups)->firstWhere('id', $group->id)['is_shown'])->toBeFalse();
 });
 
+it('exposes the gallery image real dimensions, not the map default, for an explorable layer', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $gd = imagecreatetruecolor(60, 30);
+    ob_start();
+    imagepng($gd);
+    $pngBytes = ob_get_clean();
+    imagedestroy($gd);
+
+    $image = Image::factory()->create(['campaign_id' => 1, 'ext' => 'png']);
+    Storage::put($image->path, $pngBytes);
+
+    $layer = MapLayer::factory()->create(['map_id' => $map->id, 'name' => 'Gallery layer', 'type_id' => 2, 'image_uuid' => $image->id]);
+
+    $response = $this->get(route('entities.map-api', [1, $map->entity]))->assertStatus(200);
+
+    $jsonLayer = collect($response->json('layers'))->firstWhere('id', $layer->id);
+    expect($jsonLayer['width'])->toBe(60);
+    expect($jsonLayer['height'])->toBe(30);
+});
+
 it('returns standard layers for the map layer control', function () {
     $this->asUser()->withCampaign();
     $map = Map::factory()->create(['campaign_id' => 1]);

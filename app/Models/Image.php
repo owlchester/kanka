@@ -375,7 +375,12 @@ class Image extends Model
 
         if (Str::endsWith($path, '.svg')) {
             $contents = Storage::get($path);
+            libxml_use_internal_errors(true); // Suppress warnings for malformed svg/xml
             $xml = simplexml_load_string($contents);
+
+            if ($xml === false) {
+                return ['width' => 0, 'height' => 0];
+            }
 
             return [
                 'width' => (int) $xml->attributes()->width,
@@ -387,6 +392,10 @@ class Image extends Model
         $header = fread($stream, 65536);
         fclose($stream);
         $size = getimagesizefromstring($header);
+
+        if (! is_array($size)) {
+            return ['width' => 0, 'height' => 0];
+        }
 
         return [
             'width' => $size[0] ?? 0,
@@ -406,6 +415,10 @@ class Image extends Model
      * Calculate and cache this image's dimensions if they aren't already known. Skips
      * file types that don't have pixel dimensions (fonts). Guarded against writing from
      * an unauthenticated read-replica request, same as Map::prepareBounds().
+     *
+     * A file that's missing from storage (transient: S3 blip, upload race) is left
+     * uncached so the next call retries; only a file that exists but fails to parse
+     * gets its {0,0} result permanently cached, since retrying that won't help.
      */
     public function ensureDimensions(): void
     {
@@ -413,6 +426,9 @@ class Image extends Model
             return;
         }
         if (! $this->hasThumbnail() && ! $this->isSvg()) {
+            return;
+        }
+        if (! Storage::exists($this->path)) {
             return;
         }
 
