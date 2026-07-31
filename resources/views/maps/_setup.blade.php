@@ -33,9 +33,9 @@ if (isset($single) && $single) {
         @continue
     @endif
     @if ($layer->image)
-        var layer{{ $layer->id }} = L.imageOverlay('{{ $layer->image->url() }}', bounds{{ $map->id }});
+        var layer{{ $layer->id }} = L.imageOverlay('{{ $layer->image->url() }}', {!! $layer->bounds() !!});
     @else
-        var layer{{ $layer->id }} = L.imageOverlay('{{ Storage::url($layer->image_path) }}', bounds{{ $map->id }});
+        var layer{{ $layer->id }} = L.imageOverlay('{{ Storage::url($layer->image_path) }}', {!! $layer->bounds() !!});
     @endif
 @endforeach
 

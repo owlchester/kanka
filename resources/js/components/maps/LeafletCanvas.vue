@@ -12,6 +12,7 @@ import 'leaflet.path.drag'
 import '../../leaflet/ruler.js'
 import { sortGroups } from '../../maps/groupTree.js'
 import { svgIconDataUrl } from '../../maps/markerIcons.js'
+import { layerBounds } from '../../maps/layerBounds.js'
 
 const props = defineProps({
     map: { type: Object, required: true },
@@ -215,7 +216,7 @@ function buildLayers() {
 
     const layers = [...props.layers].sort((first, second) => first.position - second.position)
     layers.forEach((layer) => {
-        const leafletLayer = L.imageOverlay(layer.image, bounds())
+        const leafletLayer = L.imageOverlay(layer.image, layerBounds(layer, props.map))
 
         if (layer.type_id < 1) {
             standardLayers.set(layer.id, { layer, leafletLayer })
