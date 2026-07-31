@@ -34,6 +34,10 @@ it('returns the full explore payload for a simple map', function () {
     $shownLayer->image_path = 'maps/winter.png';
     $shownLayer->saveQuietly();
 
+    $standardLayer = MapLayer::factory()->create(['map_id' => $map->id, 'name' => 'Summer', 'type_id' => 0]);
+    $standardLayer->image_path = 'maps/summer.png';
+    $standardLayer->saveQuietly();
+
     $marker = MapMarker::factory()->create(['map_id' => $map->id, 'group_id' => $group->id, 'name' => 'Waterdeep']);
     MapMarker::factory()->create(['map_id' => $map->id, 'name' => 'Uncategorised pin']);
 
@@ -42,7 +46,7 @@ it('returns the full explore payload for a simple map', function () {
         ->assertJsonStructure([
             'map' => ['id', 'name', 'is_real', 'is_tiled', 'tiling', 'tiling_prompt_eligible', 'has_clustering', 'image', 'width', 'height', 'min_zoom', 'max_zoom', 'initial_zoom', 'center', 'tile_url', 'tiles_url', 'create_url', 'group_store_url', 'has_distance_unit', 'distance_measure', 'distance_name', 'settings' => ['grid', 'min_zoom', 'max_zoom', 'initial_zoom', 'distance_measure', 'distance_name', 'center_x', 'center_y', 'center_marker_id'], 'settings_url', 'show_url', 'edit_url'],
             'layers' => [['id', 'name', 'type_id', 'image', 'position']],
-            'groups' => [['id', 'name', 'parent_id', 'position']],
+            'groups' => [['id', 'name', 'parent_id', 'position', 'is_shown']],
             'pins' => [['id', 'name', 'entry', 'group_id', 'latitude', 'longitude', 'shape', 'colour', 'font_colour', 'icon', 'size_id', 'pin_size', 'circle_radius', 'opacity', 'preview_url', 'destroy_url', 'is_draggable', 'move_url', 'shape_id', 'icon_id', 'custom_icon', 'entity_id', 'entity_name', 'visibility_id', 'update_url']],
             'i18n' => ['legend_title', 'legend_search', 'ungrouped', 'loading', 'error_load', 'error_delete', 'error_save', 'error_name_required', 'from_entry', 'linked_entry', 'description', 'add_description', 'edit_description', 'description_expand', 'cancel', 'edit_marker', 'center', 'duplicate', 'delete_marker', 'delete_confirm', 'new_pin', 'name_placeholder', 'save', 'save_changes', 'details', 'less', 'premium_custom_icon', 'custom_icon_or_svg', 'custom_icon_helper', 'custom_icon_placeholder', 'markers_count_one', 'markers_count_other', 'peek_map', 'peek_panel', 'toolbar' => ['rapid', 'pin', 'text', 'area', 'circle', 'path', 'helper' => ['pin', 'text', 'area', 'circle', 'path']], 'header' => ['overview', 'settings', 'grid', 'zoom_min', 'zoom_max', 'zoom_initial', 'distance_name', 'distance_measure', 'center', 'center_coordinates', 'center_marker', 'pick_on_map', 'picking', 'no_marker', 'save', 'error_save'], 'presence' => ['role_edit', 'role_view', 'error_unavailable', 'error_connecting', 'error_disconnected']],
         ]);
@@ -55,14 +59,42 @@ it('returns the full explore payload for a simple map', function () {
     ]));
     $response->assertJsonFragment(['name' => 'Waterdeep', 'group_id' => $group->id]);
     expect($response->json('map.create_url'))->toBe(route('entities.map-markers.store', [1, $map->entity->id]));
-    // The hidden (type_id=1) overlay layer must not be included, only the shown-by-default one
-    expect($response->json('layers'))->toHaveCount(1);
-    expect($response->json('layers.0.name'))->toBe('Winter');
+    // Both overlay types are available in the explorer; type_id 1 starts hidden in the map control.
+    expect($response->json('layers'))->toHaveCount(3);
+    expect(collect($response->json('layers'))->pluck('name')->all())
+        ->toContain('Hidden overlay', 'Winter', 'Summer');
 
     $pins = collect($response->json('pins'));
     $waterdeep = $pins->firstWhere('name', 'Waterdeep');
     expect($waterdeep['preview_url'])->toBe(route('entities.map-markers.preview', [1, $map->entity->id, $marker->id]));
     expect($waterdeep['destroy_url'])->toBe(route('entities.map-markers.destroy', [1, $map->entity->id, $marker->id]));
+});
+
+it('returns whether a map group is shown by default', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $group = MapGroup::factory()->create(['map_id' => $map->id, 'is_shown' => false]);
+
+    $groups = $this->get(route('entities.map-api', [1, $map->entity]))
+        ->assertOk()
+        ->json('groups');
+
+    expect(collect($groups)->firstWhere('id', $group->id)['is_shown'])->toBeFalse();
+});
+
+it('returns standard layers for the map layer control', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $standardLayer = MapLayer::factory()->create(['map_id' => $map->id, 'name' => 'Standard layer', 'type_id' => 0]);
+    $standardLayer->image_path = 'maps/standard.png';
+    $standardLayer->saveQuietly();
+
+    $layers = $this->get(route('entities.map-api', [1, $map->entity]))
+        ->assertOk()
+        ->json('layers');
+
+    expect(collect($layers)->pluck('name')->all())->toContain('Standard layer');
 });
 
 it('marks a real map with a tile url and no image', function () {

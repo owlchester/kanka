@@ -94,7 +94,7 @@ it('can GET a map layer as a player')
     ->get('/api/1.0/campaigns/1/maps/1/map_layers/1')
     ->assertStatus(200);
 
-it('is explorable only when overlay_shown and has an image', function () {
+it('is explorable only when it has an image', function () {
     $this->asUser()->withCampaign()->withMaps();
 
     $layer = MapLayer::factory()->create(['map_id' => 1, 'type_id' => 2, 'image_uuid' => null]);
@@ -106,6 +106,9 @@ it('is explorable only when overlay_shown and has an image', function () {
     Image::factory()->create(['campaign_id' => 1, 'id' => '16598f1b-7d93-36d9-bea5-212bfa1e354b']);
     expect($layer->fresh()->isExplorable())->toBeTrue();
 
+    $layer->update(['type_id' => 1]);
+    expect($layer->fresh()->isExplorable())->toBeTrue();
+
     $layer->update(['type_id' => null]);
-    expect($layer->fresh()->isExplorable())->toBeFalse();
+    expect($layer->fresh()->isExplorable())->toBeTrue();
 });

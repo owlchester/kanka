@@ -93,6 +93,25 @@ it('includes restricted-visibility groups and layers when includeRestricted is t
     expect($layerIds)->toContain($adminLayer->id);
 });
 
+it('includes standard layers in the layer control', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    Image::factory()->create(['campaign_id' => 1, 'id' => '16598f1b-7d93-36d9-bea5-212bfa1e354b']);
+
+    $standardLayer = MapLayer::factory()->create([
+        'map_id' => $map->id,
+        'visibility_id' => Visibility::All,
+        'type_id' => 0,
+        'image_uuid' => '16598f1b-7d93-36d9-bea5-212bfa1e354b',
+    ]);
+
+    $layerIds = collect(new ContentsChanged($map)->broadcastWith()['layers'])
+        ->map(fn (LayerResource $layer) => $layer->resource->id)
+        ->all();
+
+    expect($layerIds)->toContain($standardLayer->id);
+});
+
 it('excludes non-explorable layers on both channels regardless of visibility', function () {
     $this->asUser()->withCampaign();
     $map = Map::factory()->create(['campaign_id' => 1]);

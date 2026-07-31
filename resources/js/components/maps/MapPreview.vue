@@ -14,6 +14,7 @@
         embedded
         :map="data.map"
         :layers="data.layers"
+        :show-layer-control="false"
         :pins="data.pins"
         :legacy-pins="data.map.settings?.legacy_pins"
         @pin-click="goToPin"

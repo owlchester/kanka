@@ -163,6 +163,8 @@ class ExploreApiService
             'legend_search' => __('maps/explorer.legend.search'),
             'legend_expand' => __('maps/explorer.legend.expand'),
             'legend_collapse' => __('maps/explorer.legend.collapse'),
+            'layers_base' => __('maps/layers.base'),
+            'groups_label' => __('maps.panels.groups'),
             'ungrouped' => __('maps/explorer.ungrouped'),
             'loading' => __('maps/explorer.loading'),
             'error_load' => __('maps/explorer.errors.load'),

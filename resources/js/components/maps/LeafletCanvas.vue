@@ -6,14 +6,20 @@
 import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import L from 'leaflet'
 import 'leaflet.markercluster'
+import 'leaflet.markercluster.layersupport'
 import 'leaflet-editable'
 import 'leaflet.path.drag'
 import '../../leaflet/ruler.js'
+import { sortGroups } from '../../maps/groupTree.js'
 import { svgIconDataUrl } from '../../maps/markerIcons.js'
 
 const props = defineProps({
     map: { type: Object, required: true },
     layers: { type: Array, default: () => [] },
+    groups: { type: Array, default: () => [] },
+    baseLayerName: { type: String, default: '' },
+    groupsLabel: { type: String, default: '' },
+    showLayerControl: { type: Boolean, default: true },
     pins: { type: Array, default: () => [] },
     centerPin: { type: Object, default: null },
     centerNonce: { type: Number, default: 0 },
@@ -49,6 +55,7 @@ let editMarker = null
 let editCircle = null
 let editPolygon = null
 let editPath = null
+let baseMapLayer = null
 
 function buildGrid() {
     if (gridLayer) {
@@ -174,44 +181,130 @@ function bounds() {
 
 function buildBaseLayer() {
     if (props.map.is_real) {
-        L.tileLayer(props.map.tile_url, {
+        baseMapLayer = L.tileLayer(props.map.tile_url, {
             attribution: '&copy; OpenStreetMap contributors',
-        }).addTo(leafletMap)
+        })
 
-        return
-    }
-
-    if (props.map.is_tiled) {
-        L.tileLayer(props.map.tiles_url, {
+    } else if (props.map.is_tiled) {
+        baseMapLayer = L.tileLayer(props.map.tiles_url, {
             attribution: '&copy; Kanka',
             errorTileUrl: '/images/map_chunks/transparent.png',
+        })
+    } else {
+        baseMapLayer = L.imageOverlay(props.map.image, bounds())
+    }
+
+    baseMapLayer.addTo(leafletMap)
+}
+
+let layerControl = null
+const standardLayers = new Map()
+const overlayLayers = new Map()
+const groupLayers = new Map()
+
+function buildLayers() {
+    standardLayers.forEach(({ leafletLayer }) => {
+        leafletMap.removeLayer(leafletLayer)
+    })
+    standardLayers.clear()
+
+    overlayLayers.forEach(({ leafletLayer }) => {
+        leafletMap.removeLayer(leafletLayer)
+    })
+    overlayLayers.clear()
+
+    const layers = [...props.layers].sort((first, second) => first.position - second.position)
+    layers.forEach((layer) => {
+        const leafletLayer = L.imageOverlay(layer.image, bounds())
+
+        if (layer.type_id < 1) {
+            standardLayers.set(layer.id, { layer, leafletLayer })
+        } else {
+            overlayLayers.set(layer.id, { layer, leafletLayer })
+        }
+
+        if (layer.type_id === 2) {
+            leafletLayer.addTo(leafletMap)
+        }
+    })
+
+    buildLayerControl()
+}
+
+function buildLayerControl() {
+    if (! props.showLayerControl || ! leafletMap || ! baseMapLayer) {
+        return
+    }
+
+    if (layerControl) {
+        leafletMap.removeControl(layerControl)
+    }
+
+    const baseLayers = [
+        ...[...standardLayers.values()].map(({ layer, leafletLayer }) => ({
+            label: layer.name,
+            layer: leafletLayer,
+        })),
+        { label: props.baseLayerName, layer: baseMapLayer },
+    ]
+
+    if (baseLayers.length === 1 && ! overlayLayers.size && ! groupLayers.size) {
+        layerControl = null
+
+        return
+    }
+
+    const overlays = [
+        ...[...overlayLayers.values()].map(({ layer, leafletLayer }) => ({
+            label: layer.name,
+            layer: leafletLayer,
+        })),
+        ...groupLayerTree(),
+    ]
+
+    if (L.control.layers.tree) {
+        layerControl = L.control.layers.tree(baseLayers, {
+            label: props.groupsLabel,
+            selectAllCheckbox: true,
+            children: overlays,
+        }, {
+            collapsed: true,
+            position: 'topright',
         }).addTo(leafletMap)
 
         return
     }
 
-    L.imageOverlay(props.map.image, bounds()).addTo(leafletMap)
+    layerControl = L.control.layers(Object.fromEntries(baseLayers.map(({ label, layer }) => [label, layer])), null, {
+        collapsed: true,
+        position: 'topright',
+    }).addTo(leafletMap)
+
+    overlays.forEach(({ label, layer }) => {
+        layerControl.addOverlay(layer, label)
+    })
 }
 
-const renderedLayerIds = new Set()
+function groupLayerTree(parentId = null) {
+    const groupIds = new Set(props.groups.map((group) => group.id))
 
-function buildLayers() {
-    props.layers.forEach((layer) => {
-        L.imageOverlay(layer.image, bounds()).addTo(leafletMap)
-        renderedLayerIds.add(layer.id)
-    })
+    return sortGroups(props.groups.filter((group) => {
+        const resolvedParentId = groupIds.has(group.parent_id) ? group.parent_id : null
+
+        return resolvedParentId === parentId
+    })).map((group) => ({
+        label: group.name,
+        layer: groupLayers.get(group.id)?.leafletLayer,
+        children: groupLayerTree(group.id),
+    }))
 }
 
 watch(
     () => props.layers,
-    (layers) => {
-        layers.forEach((layer) => {
-            if (renderedLayerIds.has(layer.id)) {
-                return
-            }
-            L.imageOverlay(layer.image, bounds()).addTo(leafletMap)
-            renderedLayerIds.add(layer.id)
-        })
+    () => {
+        if (leafletMap) {
+            buildLayers()
+        }
     },
 )
 
@@ -433,7 +526,18 @@ function buildPins() {
         leafletMap.removeLayer(pinLayer)
     }
 
-    pinLayer = props.map.has_clustering ? L.markerClusterGroup() : L.layerGroup()
+    groupLayers.forEach(({ leafletLayer }) => {
+        leafletMap.removeLayer(leafletLayer)
+    })
+    groupLayers.clear()
+
+    pinLayer = props.map.has_clustering ? L.markerClusterGroup.layerSupport() : L.layerGroup()
+    props.groups.forEach((group) => {
+        groupLayers.set(group.id, {
+            group,
+            leafletLayer: L.layerGroup(),
+        })
+    })
 
     props.pins
         .filter((pin) => pin.id !== props.editingPin?.id)
@@ -443,10 +547,25 @@ function buildPins() {
                 L.DomEvent.stopPropagation(e)
                 emit('pin-click', pin)
             })
-            pinLayer.addLayer(marker)
+            const groupLayer = groupLayers.get(pin.group_id)?.leafletLayer
+            if (groupLayer) {
+                groupLayer.addLayer(marker)
+            } else {
+                pinLayer.addLayer(marker)
+            }
         })
 
     pinLayer.addTo(leafletMap)
+    groupLayers.forEach(({ group, leafletLayer }) => {
+        if (props.map.has_clustering) {
+            pinLayer.checkIn(leafletLayer)
+        }
+
+        if (group.is_shown) {
+            leafletLayer.addTo(leafletMap)
+        }
+    })
+    buildLayerControl()
 }
 
 function buildDraftMarker() {
@@ -770,6 +889,12 @@ watch(() => props.pins, () => {
     }
 })
 
+watch(() => props.groups, () => {
+    if (leafletMap) {
+        buildPins()
+    }
+})
+
 watch(() => props.legacyPins, () => {
     if (leafletMap) {
         buildPins()
@@ -978,6 +1103,7 @@ onMounted(() => {
 onBeforeUnmount(() => {
     document.removeEventListener('keydown', handlePolygonKeydown)
     rulerControl = null
+    layerControl = null
     leafletMap?.remove()
 })
 
@@ -1139,7 +1265,7 @@ defineExpose({
 .leaflet-bar a {
     border-bottom: 1px solid hsl(var(--bc)/1);
 }
-.leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar {
+.leaflet-control-layers, .leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar {
     border: none;
     background-color: hsl(var(--b1)/1);
     color: hsl(var(--bc)/1);

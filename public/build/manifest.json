@@ -6,25 +6,25 @@
       "_vue.esm-bundler-Co9B1zL-.js"
     ]
   },
-  "_LeafletCanvas-CJ6P2kuO.js": {
-    "file": "assets/LeafletCanvas-CJ6P2kuO.js",
+  "_LeafletCanvas-DZ-VmuAB.css": {
+    "file": "assets/LeafletCanvas-DZ-VmuAB.css",
+    "src": "_LeafletCanvas-DZ-VmuAB.css"
+  },
+  "_LeafletCanvas-DkVPcNBJ.js": {
+    "file": "assets/LeafletCanvas-DkVPcNBJ.js",
     "name": "LeafletCanvas",
     "imports": [
       "_vue.esm-bundler-Co9B1zL-.js",
       "__commonjsHelpers-Cpj98o6Y.js"
     ],
     "css": [
-      "assets/LeafletCanvas-DDEBphoL.css"
+      "assets/LeafletCanvas-DZ-VmuAB.css"
     ],
     "assets": [
       "assets/layers-BWBAp2CZ.png",
       "assets/layers-2x-Bpkbi35X.png",
       "assets/marker-icon-hN30_KVU.png"
     ]
-  },
-  "_LeafletCanvas-DDEBphoL.css": {
-    "file": "assets/LeafletCanvas-DDEBphoL.css",
-    "src": "_LeafletCanvas-DDEBphoL.css"
   },
   "__commonjsHelpers-Cpj98o6Y.js": {
     "file": "assets/_commonjsHelpers-Cpj98o6Y.js",
@@ -257,8 +257,14 @@
     "file": "assets/rpgawesome-webfont-Dqq2L5LG.woff",
     "src": "node_modules/rpg-awesome/fonts/rpgawesome-webfont.woff"
   },
+  "public/vendor/leaflet/leaflet.layerstree.js": {
+    "file": "assets/leaflet.layerstree-CQgj8lwe.js",
+    "name": "leaflet.layerstree",
+    "src": "public/vendor/leaflet/leaflet.layerstree.js",
+    "isDynamicEntry": true
+  },
   "resources/css/app.css": {
-    "file": "assets/app-mFlsFazX.css",
+    "file": "assets/app-D4w28NvZ.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -267,7 +273,7 @@
     ]
   },
   "resources/css/auth.css": {
-    "file": "assets/auth-C6bFWwCI.css",
+    "file": "assets/auth-Bl9Eu0Kg.css",
     "src": "resources/css/auth.css",
     "isEntry": true,
     "name": "auth",
@@ -294,7 +300,7 @@
     ]
   },
   "resources/css/front.css": {
-    "file": "assets/front-D4hpy8gE.css",
+    "file": "assets/front-D3ybkHPQ.css",
     "src": "resources/css/front.css",
     "isEntry": true,
     "name": "front",
@@ -401,7 +407,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-CHKls1ma.js",
+    "file": "assets/app-DS-wu-fm.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -481,13 +487,13 @@
     ]
   },
   "resources/js/components/maps/MarkerPanel.vue": {
-    "file": "assets/MarkerPanel-BPVY55Xu.js",
+    "file": "assets/MarkerPanel-D9x-I8Ep.js",
     "name": "MarkerPanel",
     "src": "resources/js/components/maps/MarkerPanel.vue",
     "isDynamicEntry": true,
     "imports": [
       "_vue.esm-bundler-Co9B1zL-.js",
-      "_LeafletCanvas-CJ6P2kuO.js",
+      "_LeafletCanvas-DkVPcNBJ.js",
       "resources/js/maps/explore.js",
       "_preload-helper-B_nTnwcT.js",
       "_coloris-CzWPJjQD.js",
@@ -708,15 +714,15 @@
     "isEntry": true
   },
   "resources/js/maps/explore.js": {
-    "file": "assets/explore-B0nhS3LX.js",
+    "file": "assets/explore-B-mpJ0XK.js",
     "name": "explore",
     "src": "resources/js/maps/explore.js",
     "isEntry": true,
     "imports": [
-      "_LeafletCanvas-CJ6P2kuO.js",
+      "_LeafletCanvas-DkVPcNBJ.js",
+      "_preload-helper-B_nTnwcT.js",
       "_vue.esm-bundler-Co9B1zL-.js",
       "_vue-tippy.esm-browser-pFPMViyo.js",
-      "_preload-helper-B_nTnwcT.js",
       "_tippy.esm-CnBRltuW.js",
       "_pusher-BcL8EwLT.js",
       "_coloris-DsKOFKq5.js",
@@ -724,31 +730,32 @@
       "__commonjsHelpers-Cpj98o6Y.js"
     ],
     "dynamicImports": [
+      "public/vendor/leaflet/leaflet.layerstree.js",
       "resources/js/components/maps/MarkerPanel.vue"
     ],
     "css": [
-      "assets/explore-BNl5r04j.css"
+      "assets/explore-D4qZBmb4.css"
     ]
   },
   "resources/js/maps/preview-runtime.js": {
-    "file": "assets/preview-runtime-nz3Zp66g.js",
+    "file": "assets/preview-runtime-BL1OoQ2W.js",
     "name": "preview-runtime",
     "src": "resources/js/maps/preview-runtime.js",
     "isDynamicEntry": true,
     "imports": [
-      "_LeafletCanvas-CJ6P2kuO.js",
+      "_LeafletCanvas-DkVPcNBJ.js",
       "_vue.esm-bundler-Co9B1zL-.js",
       "__commonjsHelpers-Cpj98o6Y.js"
     ]
   },
   "resources/js/maps/preview.js": {
-    "file": "assets/preview-e71fXKLs.js",
+    "file": "assets/preview-CI5LtFcW.js",
     "name": "preview",
     "src": "resources/js/maps/preview.js",
     "isEntry": true,
     "imports": [
       "resources/js/maps/preview-runtime.js",
-      "_LeafletCanvas-CJ6P2kuO.js",
+      "_LeafletCanvas-DkVPcNBJ.js",
       "_vue.esm-bundler-Co9B1zL-.js",
       "__commonjsHelpers-Cpj98o6Y.js"
     ]
