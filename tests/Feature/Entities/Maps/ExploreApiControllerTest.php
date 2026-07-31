@@ -152,7 +152,10 @@ it('reports an error tiling status and still omits the tiles url (falls back to 
     expect($response->json('map.tiles_url'))->toBeNull();
 });
 
-it('flags tiling_prompt_eligible for an oversized untiled gallery image', function () {
+it('never flags tiling_prompt_eligible, even for an oversized untiled gallery image', function () {
+    // The migration prompt is disabled: migrating a plain image map onto tiling moves it onto a
+    // different coordinate system, which shifts existing pins off their original positions. Keep
+    // this off until migration can preserve pin placement.
     config(['maps.tiling_threshold_kb' => 100]);
     $this->asUser()->withCampaign();
     $image = Image::factory()->create(['campaign_id' => 1, 'size' => 200]);
@@ -162,7 +165,7 @@ it('flags tiling_prompt_eligible for an oversized untiled gallery image', functi
 
     $response = $this->get(route('entities.map-api', [1, $map->entity]))->assertStatus(200);
 
-    expect($response->json('map.tiling_prompt_eligible'))->toBeTrue();
+    expect($response->json('map.tiling_prompt_eligible'))->toBeFalse();
 });
 
 it('does not flag tiling_prompt_eligible once dismissed', function () {

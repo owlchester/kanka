@@ -6,7 +6,7 @@
     <div class="entity-body flex flex-col md:flex-row gap-5">
         @include('entities.components.menu_v2', ['active' => 'story'])
 
-        <div class="entity-main-block grow flex flex-col gap-5 min-w-0">@if ($entity->child->explorable())
+        <div class="entity-main-block grow flex flex-col gap-5 min-w-0">@if ($entity->child->explorable() || $entity->child->tilingRunning())
                 @if ($entity->child->tilingError())
                     <x-alert type="error">
                         {!! __('maps.errors.tiling.error', ['discord' => '<a href="https://kanka.io/go/discord">Discord</a>']) !!}
@@ -16,13 +16,12 @@
                         {{ __('maps.errors.tiling.running.explore') }}
                         {{ __('maps.errors.tiling.running.time') }}
                     </x-alert>
-                @else
-                    <p>
-                        <a href="{{ route('entities.map', [$campaign, $entity]) }}" class="btn2 btn-block btn-primary" target="_blank">
-                            <x-icon class="map" /> {{ __('maps.actions.explore') }}
-                        </a>
-                    </p>
                 @endif
+                <p>
+                    <a href="{{ route('entities.map', [$campaign, $entity]) }}" class="btn2 btn-block btn-primary" target="_blank">
+                        <x-icon class="map" /> {{ __('maps.actions.explore') }}
+                    </a>
+                </p>
             @endif
 
             @include('entities.components.posts', ['withEntry' => true])

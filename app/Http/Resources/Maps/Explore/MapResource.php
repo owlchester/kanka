@@ -40,7 +40,7 @@ class MapResource extends JsonResource
             'is_real' => $map->isReal(),
             'is_tiled' => $isTiled,
             'tiling' => $tiling,
-            'tiling_prompt_eligible' => $this->tilingPromptEligible($map),
+            'tiling_prompt_eligible' => $this->tilingPromptEligible(),
             'has_clustering' => (bool) $map->isClustered(),
             'image' => $map->isReal() ? null : Avatar::entity($map->entity)->original(),
             'width' => (int) ($map->width ?: 1000),
@@ -83,13 +83,11 @@ class MapResource extends JsonResource
         ];
     }
 
-    protected function tilingPromptEligible(Map $map): bool
+    protected function tilingPromptEligible(): bool
     {
-        $image = $map->entity->image;
-        if (! $image || $map->tiling_prompt_dismissed_at !== null || $image->tiling_status !== null) {
-            return false;
-        }
-
-        return $image->size >= config('maps.tiling_threshold_kb');
+        // Disabled: migrating a plain image map to tiling moves it onto a different coordinate
+        // system, which shifts existing pins off their original positions. Keep this eligibility
+        // check off until migration can preserve pin placement, so the prompt never renders.
+        return false;
     }
 }
