@@ -85,6 +85,7 @@ class UploadService
         $this->image->save();
 
         $file->storePubliclyAs($this->image->folder, $this->image->file);
+        $this->image->ensureDimensions();
         $this->storage->campaign($this->campaign)->clearCache();
 
         return $this->format();
@@ -181,6 +182,7 @@ class UploadService
             $image = $manager->read($file);
             Storage::put($this->image->path, (string) $image->toJpeg(), 'public');
         }
+        $this->image->ensureDimensions();
         unlink($tempImage);
         $this->storage->clearCache();
 
