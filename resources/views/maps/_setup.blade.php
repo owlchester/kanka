@@ -2,6 +2,7 @@
 /**
  * @var \App\Models\Map $map
  */
+$map->prepareBounds();
 $focus = $map->centerFocus();
 
 if (isset($single) && $single) {

@@ -16,7 +16,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
 /**
  * Class Map
@@ -453,8 +452,10 @@ class Map extends MiscModel
     }
 
     /**
-     * Whenever a map gets updated, its height and width are reset to re-calculate them on rendering
-     * This is because the map's image is on the entity, or from the gallery
+     * Whenever a map gets updated, its height and width are reset to re-calculate them on rendering.
+     * A gallery image (entity->image) is the single source of truth for its own dimensions — they're
+     * read live off the Image and never persisted onto this row. A legacy directly-uploaded image
+     * (entity->image_path) keeps the old calculate-once-and-cache-on-the-map behavior.
      */
     public function prepareBounds(): void
     {
@@ -462,35 +463,23 @@ class Map extends MiscModel
             return;
         }
 
-        // Prioritize the gallery image, and fall back on the uploaded image
         if (! empty($this->entity->image)) {
-            $path = $this->entity->image->path;
-        } elseif ($this->entity->image_path) {
-            $path = $this->entity->image_path;
+            $this->entity->image->ensureDimensions();
+            $this->height = $this->entity->image->height() ?: 1000;
+            $this->width = $this->entity->image->width() ?: 1000;
+
+            return;
         }
+
+        $path = $this->entity->image_path;
         if (empty($path) || ! Storage::exists($path)) {
             return;
         }
 
-        if (Str::endsWith($path, '.svg')) {
-            $contents = Storage::get($path);
-            $xml = simplexml_load_string($contents);
-            $width = $xml->attributes()->width;
-            $height = $xml->attributes()->height;
-        } else {
-            // Read only the first 64KB to extract dimensions from the image header.
-            // Dimensions live in the first few dozen bytes for PNG/WebP/GIF, and within
-            // a few KB for JPEG — no need to download the entire file (could be 50MB+).
-            $stream = Storage::readStream($path);
-            $header = fread($stream, 65536);
-            fclose($stream);
-            $size = getimagesizefromstring($header);
-            $width = $size[0] ?? 0;
-            $height = $size[1] ?? 0;
-        }
+        $dimensions = Image::dimensionsForPath($path);
+        $this->height = $dimensions['height'];
+        $this->width = $dimensions['width'];
 
-        $this->height = $height;
-        $this->width = $width;
         // Don't save on the replica db
         if (auth()->check()) {
             $this->saveQuietly();

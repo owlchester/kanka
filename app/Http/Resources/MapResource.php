@@ -17,6 +17,7 @@ class MapResource extends EntityResource
     {
         /** @var Map $model */
         $model = $this->resource;
+        $model->prepareBounds();
 
         return $this->entity([
             'height' => $model->height,

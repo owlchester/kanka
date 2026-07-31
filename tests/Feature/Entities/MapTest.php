@@ -120,6 +120,32 @@ it('calculates bounds from a partial image stream without downloading the full f
     expect($map->width)->toBe(80);
 });
 
+it('uses the gallery image dimensions for bounds without caching them on the map row', function () {
+    $this->asUser()->withCampaign();
+
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $gd = imagecreatetruecolor(80, 40);
+    ob_start();
+    imagepng($gd);
+    $pngBytes = ob_get_clean();
+    imagedestroy($gd);
+
+    $image = Image::factory()->create(['campaign_id' => 1, 'ext' => 'png']);
+    Storage::put($image->path, $pngBytes);
+
+    $entity = $map->entity;
+    $entity->image_uuid = $image->id;
+    $entity->saveQuietly();
+    $map->load('entity.image');
+
+    expect($map->bounds())->toBe('[[0, 0], [40, 80]]');
+    expect($map->height)->toBe(40);
+    expect($map->width)->toBe(80);
+    expect($map->fresh()->height)->toBeNull();
+    expect($map->fresh()->width)->toBeNull();
+});
+
 /**
  * This example showcases building a custom function in the test to avoid polluting the TestCase file with lots of
  * on-off function calls.
