@@ -356,7 +356,7 @@ class Image extends Model
 
     public function hasDimensions(): bool
     {
-        return ! empty($this->width()) && ! empty($this->height());
+        return isset($this->metadata['width'], $this->metadata['height']);
     }
 
     /**
@@ -369,6 +369,10 @@ class Image extends Model
      */
     public static function dimensionsForPath(string $path): array
     {
+        if (! Storage::exists($path)) {
+            return ['width' => 0, 'height' => 0];
+        }
+
         if (Str::endsWith($path, '.svg')) {
             $contents = Storage::get($path);
             $xml = simplexml_load_string($contents);
