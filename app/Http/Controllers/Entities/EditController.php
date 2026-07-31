@@ -55,9 +55,7 @@ class EditController extends Controller
             'entityType' => $entity->entityType,
             'editingUsers' => $editingUsers,
         ];
-        if ($entity->entityType->isStandard()) {
-            $params['model'] = $entity->child;
-        }
+        $params['model'] = $entity->hasChild() ? $entity->child : $entity;
 
         return view('entities.forms.edit', $params);
     }
