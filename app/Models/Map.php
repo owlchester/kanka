@@ -456,7 +456,7 @@ class Map extends MiscModel
      * Whenever a map gets updated, its height and width are reset to re-calculate them on rendering
      * This is because the map's image is on the entity, or from the gallery
      */
-    protected function prepareBounds(): void
+    public function prepareBounds(): void
     {
         if (! empty($this->height)) {
             return;
@@ -468,7 +468,7 @@ class Map extends MiscModel
         } elseif ($this->entity->image_path) {
             $path = $this->entity->image_path;
         }
-        if (empty($path)) {
+        if (empty($path) || ! Storage::exists($path)) {
             return;
         }
 

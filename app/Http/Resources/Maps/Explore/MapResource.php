@@ -18,6 +18,11 @@ class MapResource extends JsonResource
     public function toArray(Request $request): array
     {
         $map = $this->resource;
+        // Resolves the actual image dimensions and persists them when null (e.g. after an edit
+        // reset them, per Map::afterModelSave()) - without this, width/height silently fall back
+        // to the 1000x1000 default below, which doesn't match markers placed under the map's real
+        // (usually much larger) pixel dimensions and pushes them out of the visible/pannable area.
+        $map->prepareBounds();
         $isTiled = $map->isTiled();
         $tiling = $map->tilingRunning() ? 'running' : ($map->tilingError() ? 'error' : null);
         $center = array_map('floatval', explode(', ', $map->centerFocus()));

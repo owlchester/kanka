@@ -11,6 +11,7 @@ use App\Models\MapMarker;
 use App\Models\Preset;
 use App\Models\PresetType;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 it('404s for a non-map entity', function () {
     $this->asUser()->withCampaign();
@@ -68,6 +69,34 @@ it('returns the full explore payload for a simple map', function () {
     $waterdeep = $pins->firstWhere('name', 'Waterdeep');
     expect($waterdeep['preview_url'])->toBe(route('entities.map-markers.preview', [1, $map->entity->id, $marker->id]));
     expect($waterdeep['destroy_url'])->toBe(route('entities.map-markers.destroy', [1, $map->entity->id, $marker->id]));
+});
+
+it('resolves width/height from the real image instead of the 1000x1000 default, and persists it', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    expect($map->width)->toBeNull();
+    expect($map->height)->toBeNull();
+
+    // Build a real 4600x1000 PNG in memory so getimagesizefromstring() can parse it - mirrors a
+    // map whose width/height were reset to null by MapController::afterModelSave() after an edit,
+    // with pins still placed against the image's real (much larger than 1000x1000) pixel size.
+    $gd = imagecreatetruecolor(4600, 1000);
+    ob_start();
+    imagepng($gd);
+    $pngBytes = ob_get_clean();
+    imagedestroy($gd);
+
+    $path = 'entities/test-explore-bounds.png';
+    Storage::put($path, $pngBytes);
+    $map->entity->image_path = $path;
+    $map->entity->saveQuietly();
+
+    $response = $this->get(route('entities.map-api', [1, $map->entity]))->assertStatus(200);
+
+    expect($response->json('map.width'))->toBe(4600);
+    expect($response->json('map.height'))->toBe(1000);
+    expect($map->fresh()->width)->toBe(4600);
+    expect($map->fresh()->height)->toBe(1000);
 });
 
 it('returns whether a map group is shown by default', function () {
