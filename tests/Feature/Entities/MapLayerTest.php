@@ -2,6 +2,7 @@
 
 use App\Models\Image;
 use App\Models\MapLayer;
+use Illuminate\Support\Facades\Storage;
 
 it('POSTS an invalid map layer form')
     ->asUser()
@@ -111,4 +112,44 @@ it('is explorable only when it has an image', function () {
 
     $layer->update(['type_id' => null]);
     expect($layer->fresh()->isExplorable())->toBeTrue();
+});
+
+it('uses the gallery image dimensions for a layer without caching them on the layer row', function () {
+    $this->asUser()->withCampaign()->withMaps();
+
+    $gd = imagecreatetruecolor(60, 30);
+    ob_start();
+    imagepng($gd);
+    $pngBytes = ob_get_clean();
+    imagedestroy($gd);
+
+    $image = Image::factory()->create(['campaign_id' => 1, 'ext' => 'png']);
+    Storage::put($image->path, $pngBytes);
+
+    $layer = MapLayer::factory()->create(['map_id' => 1, 'image_uuid' => $image->id]);
+
+    expect($layer->bounds())->toBe('[[0, 0], [30, 60]]');
+    expect($layer->fresh()->width)->toBeNull();
+    expect($layer->fresh()->height)->toBeNull();
+});
+
+it('calculates and caches dimensions for a legacy image_path layer', function () {
+    $this->asUser()->withCampaign()->withMaps();
+
+    $gd = imagecreatetruecolor(100, 50);
+    ob_start();
+    imagepng($gd);
+    $pngBytes = ob_get_clean();
+    imagedestroy($gd);
+
+    $path = 'maps/test-layer-bounds.png';
+    Storage::put($path, $pngBytes);
+
+    $layer = MapLayer::factory()->create(['map_id' => 1, 'image_uuid' => null]);
+    $layer->image_path = $path;
+    $layer->saveQuietly();
+
+    expect($layer->bounds())->toBe('[[0, 0], [50, 100]]');
+    expect($layer->fresh()->width)->toBe(100);
+    expect($layer->fresh()->height)->toBe(50);
 });

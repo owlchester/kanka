@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Class MapLayer
@@ -140,6 +141,68 @@ class MapLayer extends Model
     public function hasImage(): bool
     {
         return $this->image || ! empty($this->image_path);
+    }
+
+    /**
+     * Resolve this layer's pixel dimensions: a gallery image (own dimensions, live, never
+     * cached on this row) takes priority, then a legacy directly-uploaded image (calculated
+     * once and cached on this row, same as Map's own legacy handling), then finally the
+     * parent map's own dimensions as a last-resort fallback.
+     *
+     * @return array{width: int, height: int}
+     */
+    public function dimensions(): array
+    {
+        if ($this->image) {
+            $this->image->ensureDimensions();
+            if ($this->image->hasDimensions()) {
+                return ['width' => $this->image->width(), 'height' => $this->image->height()];
+            }
+        } elseif ($this->image_path) {
+            $this->prepareLegacyDimensions();
+            if (! empty($this->width) && ! empty($this->height)) {
+                return ['width' => $this->width, 'height' => $this->height];
+            }
+        }
+
+        return [
+            'width' => $this->map->width ?: 1000,
+            'height' => $this->map->height ?: 1000,
+        ];
+    }
+
+    /**
+     * Build this layer's own image bounds for leaflet, independently of the base map's.
+     */
+    public function bounds(): string
+    {
+        $dimensions = $this->dimensions();
+        $height = floor($dimensions['height'] / 1);
+        $width = floor($dimensions['width'] / 1);
+
+        return "[[0, 0], [{$height}, {$width}]]";
+    }
+
+    /**
+     * Calculate and cache this legacy (pre-gallery) layer's dimensions directly on the
+     * map_layers row, mirroring Map::prepareBounds()'s own legacy-image_path handling.
+     */
+    protected function prepareLegacyDimensions(): void
+    {
+        if (! empty($this->width)) {
+            return;
+        }
+        if (empty($this->image_path) || ! Storage::exists($this->image_path)) {
+            return;
+        }
+
+        $dimensions = Image::dimensionsForPath($this->image_path);
+        $this->width = $dimensions['width'];
+        $this->height = $dimensions['height'];
+
+        if (auth()->check()) {
+            $this->saveQuietly();
+        }
     }
 
     public function isExplorable(): bool

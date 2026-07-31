@@ -17,13 +17,14 @@ class MapLayerResource extends ModelResource
     {
         /** @var MapLayer $model */
         $model = $this->resource;
+        $dimensions = $model->dimensions();
 
         return $this->entity([
             'map_id' => (int) $model->map_id,
             'name' => $model->name,
             'position' => (int) $model->position,
-            'width' => (int) $model->width,
-            'height' => (int) $model->height,
+            'width' => $dimensions['width'],
+            'height' => $dimensions['height'],
             'visibility_id' => $model->visibility_id,
             'type_id' => (bool) $model->type_id,
             'type' => (string) $model->typeName(),
