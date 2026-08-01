@@ -26,6 +26,7 @@ class ExploreController extends Controller
         if (empty($map->entity)) {
             abort(404);
         }
+
         return redirect()->route('entities.map', [$campaign, $map->entity]);
     }
 }

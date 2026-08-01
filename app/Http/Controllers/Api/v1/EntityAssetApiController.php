@@ -12,6 +12,7 @@ use App\Models\EntityAsset;
 use App\Services\EntityFileService;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class EntityAssetApiController extends ApiController
@@ -81,13 +82,12 @@ class EntityAssetApiController extends ApiController
     }
 
     /**
-     * @param  \Illuminate\Http\Request  $request
      * @return JsonResponse
      *
      * @throws AuthorizationException
      */
     public function destroy(
-        \Illuminate\Http\Request $request,
+        Request $request,
         Campaign $campaign,
         Entity $entity,
         EntityAsset $entityAsset

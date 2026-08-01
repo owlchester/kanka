@@ -398,8 +398,8 @@ class Image extends Model
         }
 
         return [
-            'width' => $size[0] ?? 0,
-            'height' => $size[1] ?? 0,
+            'width' => $size[0],
+            'height' => $size[1],
         ];
     }
 

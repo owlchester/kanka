@@ -76,7 +76,7 @@ class SubscriptionUpgradeService
     protected function prorationAmount(Invoice $invoice): int
     {
         return Collection::make($invoice->invoiceLineItems())
-            ->filter(fn (InvoiceLineItem $item) => (bool) $item->proration)
+            ->filter(fn (InvoiceLineItem $item) => $item->asStripeInvoiceLineItem()->proration)
             ->sum(fn (InvoiceLineItem $item) => $item->asStripeInvoiceLineItem()->amount);
     }
 
