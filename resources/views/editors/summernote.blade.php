@@ -1,5 +1,15 @@
 @section('scripts')
     @parent
+    @php
+        $locale = app()->getLocale();
+        $summernoteLocale = match ($locale) {
+            'ca' => 'ca-ES',
+            'el' => 'el-GR',
+            'gl' => 'gl-ES',
+            'he' => 'he-IL',
+            default => str_contains($locale, '-') ? $locale : $locale . '-' . strtoupper($locale),
+        };
+    @endphp
     <div
         data-summernote-assets
         hidden
@@ -14,7 +24,7 @@
         <span data-script-source="{{ config('app.asset_url') }}/vendor/summernote/plugin/summernote-image-attribute.js"></span>
         <span data-script-source="{{ config('app.asset_url') }}/vendor/summernote/plugin/kanka/summernote-prettify-kanka.min.js"></span>
     @if (!in_array(app()->getLocale(), ['en-US', 'en']))
-        <span data-script-source="{{ config('app.asset_url') }}/vendor/summernote/0.9.1/lang/summernote-{{ app()->getLocale() }}-{{ strtoupper(app()->getLocale()) }}.js"></span>
+        <span data-script-source="{{ config('app.asset_url') }}/vendor/summernote/0.9.1/lang/summernote-{{ $summernoteLocale }}.js"></span>
     @endif
     </div>
     @vite('resources/js/jquery.js')

@@ -397,14 +397,18 @@ function editorLang(locale) {
         return 'en-US';
     }
 
-    if (locale == 'he') {
+    if (locale === 'he') {
         return 'he-IL';
-    } else if (locale == 'ca') {
+    } else if (locale === 'ca') {
         return 'ca-ES';
-    } else if (locale == 'el') {
+    } else if (locale === 'el') {
         return 'el-GR';
-    } else if(locale == 'en') {
+    } else if (locale === 'gl') {
+        return 'gl-ES';
+    } else if (locale === 'en') {
         return 'en-US';
+    } else if (locale.includes('-')) {
+        return locale;
     } else {
         return locale + '-' + locale.toUpperCase();
     }
