@@ -562,7 +562,7 @@
     ]
   },
   "resources/js/editors/summernote.js": {
-    "file": "assets/summernote-DpnuH_QU.js",
+    "file": "assets/summernote-BJdGYuI_.js",
     "name": "summernote",
     "src": "resources/js/editors/summernote.js",
     "isDynamicEntry": true
@@ -693,7 +693,7 @@
     "isEntry": true
   },
   "resources/js/jquery.js": {
-    "file": "assets/jquery-DXL4GUwa.js",
+    "file": "assets/jquery-DY8yeL1Y.js",
     "name": "jquery",
     "src": "resources/js/jquery.js",
     "isEntry": true,
