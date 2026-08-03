@@ -1,4 +1,5 @@
 import axios from "axios";
+import { createS3UploadClient } from "./s3UploadClient.js";
 
 const MAX_SIZE = 536870912;
 
@@ -58,10 +59,7 @@ const initExport = () => {
             return;
         }
 
-        const s3Axios = axios.create();
-        delete s3Axios.defaults.headers.common['X-Requested-With'];
-        delete s3Axios.defaults.headers.common['X-XSRF-TOKEN'];
-        delete s3Axios.defaults.headers.common['Authorization'];
+        const s3Axios = createS3UploadClient(axios);
 
         try {
             await s3Axios.put(presignData.url, file, {
