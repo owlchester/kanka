@@ -26,19 +26,19 @@
 
             <label class="flex flex-col gap-1 text-xs font-semibold uppercase tracking-wide text-neutral-content">
                 {{ i18n.zoom_min }}
-                <input v-model.number="form.min_zoom" type="number" class="input input-bordered w-full normal-case text-sm font-normal" />
+                <input v-model.number="form.min_zoom" type="number" :min="i18n.zoom_min_value" :max="i18n.zoom_max_value" class="input input-bordered w-full normal-case text-sm font-normal" />
                 <span class="normal-case font-normal text-neutral-content/70">{{ i18n.zoom_min_help }}</span>
             </label>
 
             <label class="flex flex-col gap-1 text-xs font-semibold uppercase tracking-wide text-neutral-content">
                 {{ i18n.zoom_max }}
-                <input v-model.number="form.max_zoom" type="number" class="input input-bordered w-full normal-case text-sm font-normal" />
+                <input v-model.number="form.max_zoom" type="number" min="1" :max="i18n.zoom_max_value" class="input input-bordered w-full normal-case text-sm font-normal" />
                 <span class="normal-case font-normal text-neutral-content/70">{{ i18n.zoom_max_help }}</span>
             </label>
 
             <label class="flex flex-col gap-1 text-xs font-semibold uppercase tracking-wide text-neutral-content">
                 {{ i18n.zoom_initial }}
-                <input v-model.number="form.initial_zoom" type="number" class="input input-bordered w-full normal-case text-sm font-normal" />
+                <input v-model.number="form.initial_zoom" type="number" :min="i18n.zoom_min_value" :max="i18n.zoom_max_value" class="input input-bordered w-full normal-case text-sm font-normal" />
                 <span class="normal-case font-normal text-neutral-content/70">{{ i18n.zoom_initial_help }}</span>
             </label>
 

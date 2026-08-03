@@ -39,6 +39,7 @@ class StoreMap extends FormRequest
      */
     public function rules()
     {
+        $zoomLimits = $this->zoomLimits();
         $rules = [
             'name' => 'required|max:191',
             'entry' => 'nullable|string',
@@ -52,11 +53,12 @@ class StoreMap extends FormRequest
             'template_id' => 'nullable',
             'center_x' => 'nullable|numeric',
             'center_y' => 'nullable|numeric',
-            'max_zoom' => 'nullable|numeric|min:1|max:' . Map::MAX_ZOOM,
-            'min_zoom' => 'nullable|numeric|min:' . Map::MIN_ZOOM . '|max:' . Map::MAX_ZOOM_REAL,
-            'initial_zoom' => 'nullable|numeric|min:' . Map::MIN_ZOOM . '|max:' . Map::MAX_ZOOM_REAL,
+            'max_zoom' => 'nullable|numeric|min:1|max:' . $zoomLimits['max'],
+            'min_zoom' => 'nullable|numeric|min:' . $zoomLimits['min'] . '|max:' . $zoomLimits['max'],
+            'initial_zoom' => 'nullable|numeric|min:' . $zoomLimits['min'] . '|max:' . $zoomLimits['max'],
             'attribute' => ['array', new UniqueAttributeNames],
             'is_private' => 'nullable|boolean',
+            'is_real' => 'nullable|boolean',
         ];
 
         /** @var Entity $self */
@@ -77,5 +79,27 @@ class StoreMap extends FormRequest
         ];
 
         return $this->clean($rules);
+    }
+
+    /**
+     * Resolve the zoom limits for a new map or an existing map update.
+     *
+     * @return array{min: int, max: int}
+     */
+    protected function zoomLimits(): array
+    {
+        if ($this->has('is_real')) {
+            $isReal = $this->boolean('is_real');
+        } else {
+            $map = $this->route('map');
+            if (! $map instanceof Map) {
+                $entity = $this->route('entity');
+                $map = $entity instanceof Entity ? $entity->child : null;
+            }
+
+            $isReal = $map instanceof Map && $map->isReal();
+        }
+
+        return config('limits.maps.zoom.' . ($isReal ? 'real' : 'default'));
     }
 }

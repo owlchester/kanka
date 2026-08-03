@@ -51,18 +51,6 @@ class Map extends MiscModel
     use SoftDeletes;
     use SortableTrait;
 
-    public const MAX_ZOOM = 10;
-
-    public const MIN_ZOOM = -10;
-
-    public const MAX_ZOOM_REAL = 15;
-
-    public const MIN_ZOOM_REAL = 0;
-
-    public const MIN_ZOOM_TILE = 8;
-
-    public const MAX_ZOOM_TILE = 13;
-
     protected $fillable = [
         'campaign_id',
         'name',
@@ -333,25 +321,26 @@ class Map extends MiscModel
      */
     public function minZoom(): int
     {
+        $limits = $this->zoomLimits();
+
         if (! is_numeric($this->min_zoom)) {
             if ($this->isReal() || $this->isTiled()) {
-                return self::MIN_ZOOM_REAL;
+                return config('limits.maps.zoom.real.min');
             }
 
             return -2;
         }
 
         // if the initial zoom is further away than the min zoom, adapt
-        if ($this->min_zoom > $this->initial_zoom && $this->initial_zoom > self::MIN_ZOOM) {
+        if ($this->min_zoom > $this->initial_zoom && $this->initial_zoom > $limits['min']) {
             return $this->initial_zoom;
         }
         // The max zoom is based on the tiled image so we trust this.
         if ($this->isTiled()) {
             return $this->min_zoom;
         }
-        $min = $this->isReal() ? self::MIN_ZOOM_REAL : self::MIN_ZOOM;
 
-        return (int) max($this->min_zoom, $min);
+        return (int) max($this->min_zoom, $limits['min']);
     }
 
     /**
@@ -359,12 +348,14 @@ class Map extends MiscModel
      */
     public function maxZoom(): float
     {
+        $limits = $this->zoomLimits();
+
         if (! is_numeric($this->max_zoom)) {
             if ($this->isTiled()) {
-                return self::MAX_ZOOM_TILE;
+                return config('limits.maps.zoom.tile.max');
             }
             if ($this->isReal()) {
-                return self::MAX_ZOOM_REAL;
+                return $limits['max'];
             }
 
             return 2.75;
@@ -373,9 +364,8 @@ class Map extends MiscModel
         if ($this->isTiled()) {
             return $this->max_zoom;
         }
-        $max = $this->isReal() ? self::MAX_ZOOM_REAL : self::MAX_ZOOM;
 
-        return (float) min($this->max_zoom, $max);
+        return (float) min($this->max_zoom, $limits['max']);
     }
 
     /**
@@ -383,6 +373,8 @@ class Map extends MiscModel
      */
     public function initialZoom(): int
     {
+        $limits = $this->zoomLimits();
+
         if (! is_numeric($this->initial_zoom)) {
             if ($this->isReal() || $this->isTiled()) {
                 return 12;
@@ -391,14 +383,28 @@ class Map extends MiscModel
             return 0;
         }
 
-        if ($this->initial_zoom > self::MAX_ZOOM) {
-            return self::MAX_ZOOM;
+        if ($this->initial_zoom > $limits['max']) {
+            return $limits['max'];
         }
-        if ($this->initial_zoom < self::MIN_ZOOM) {
-            return self::MIN_ZOOM;
+        if ($this->initial_zoom < $limits['min']) {
+            return $limits['min'];
         }
 
         return (int) $this->initial_zoom;
+    }
+
+    /**
+     * Zoom limits for the map's coordinate system.
+     *
+     * @return array{min: int, max: int}
+     */
+    protected function zoomLimits(): array
+    {
+        if ($this->isReal()) {
+            return config('limits.maps.zoom.real');
+        }
+
+        return config('limits.maps.zoom.default');
     }
 
     public function centerFocus(): string

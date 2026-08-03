@@ -96,13 +96,28 @@ it('422s when distance_measure is out of range', function () {
     ])->assertStatus(422);
 });
 
-it('422s when max_zoom exceeds the legacy form\'s bound', function () {
+it('422s when max_zoom exceeds the fantasy map bound', function () {
     $this->asUser()->withCampaign();
     $map = Map::factory()->create(['campaign_id' => 1]);
 
     $this->patchJson(route('entities.map-settings.update', [1, $map->entity]), [
         'max_zoom' => 12,
     ])->assertStatus(422);
+});
+
+it('allows real maps to use the real map zoom bound', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1, 'is_real' => true]);
+
+    $response = $this->patchJson(route('entities.map-settings.update', [1, $map->entity]), [
+        'min_zoom' => 0,
+        'max_zoom' => 15,
+        'initial_zoom' => 15,
+    ])->assertSuccessful();
+
+    expect($response->json('settings.min_zoom'))->toBe(0);
+    expect($response->json('settings.max_zoom'))->toBe(15);
+    expect($response->json('settings.initial_zoom'))->toBe(15);
 });
 
 it('leaves an existing center_marker_id untouched on a partial update that never mentions centering', function () {

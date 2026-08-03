@@ -1,6 +1,23 @@
 <?php
 
 return [
+    'maps' => [
+        'zoom' => [
+            'default' => [
+                'min' => -10,
+                'max' => 10,
+            ],
+            'real' => [
+                'min' => 0,
+                'max' => 18,
+            ],
+            'tile' => [
+                'min' => 8,
+                'max' => 13,
+            ],
+        ],
+    ],
+
     'campaigns' => [
         'premium' => env('APP_PREMIUM', false),
         /**

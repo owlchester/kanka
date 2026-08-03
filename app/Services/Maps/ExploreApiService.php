@@ -148,13 +148,24 @@ class ExploreApiService
 
     protected function translations(): array
     {
-        $minInitial = Map::MIN_ZOOM;
-        $maxInitial = Map::MAX_ZOOM_REAL;
+        $settingsZoomLimits = config('limits.maps.zoom.default');
+        $initialZoomLimits = $settingsZoomLimits;
+        $minInitial = $initialZoomLimits['min'];
+        $maxInitial = $initialZoomLimits['max'];
         $defaultInitial = 0;
 
+        if ($this->map->isReal()) {
+            $settingsZoomLimits = config('limits.maps.zoom.real');
+            $initialZoomLimits = $settingsZoomLimits;
+            $minInitial = $initialZoomLimits['min'];
+            $maxInitial = $initialZoomLimits['max'];
+            $defaultInitial = 12;
+        }
+
         if ($this->map->isTiled()) {
-            $minInitial = Map::MIN_ZOOM_TILE;
-            $maxInitial = Map::MAX_ZOOM_TILE;
+            $initialZoomLimits = config('limits.maps.zoom.tile');
+            $minInitial = $initialZoomLimits['min'];
+            $maxInitial = $initialZoomLimits['max'];
             $defaultInitial = $minInitial;
         }
 
@@ -286,9 +297,11 @@ class ExploreApiService
                 'grid' => __('maps.fields.grid'),
                 'grid_help' => __('maps.helpers.grid'),
                 'zoom_min' => __('maps.fields.min_zoom'),
-                'zoom_min_help' => __('maps.helpers.min_zoom', ['min' => Map::MIN_ZOOM, 'default' => -2]),
+                'zoom_min_help' => __('maps.helpers.min_zoom', ['min' => $settingsZoomLimits['min'], 'default' => -2]),
+                'zoom_min_value' => $this->map->isTiled() ? null : $settingsZoomLimits['min'],
                 'zoom_max' => __('maps.fields.max_zoom'),
-                'zoom_max_help' => __('maps.helpers.max_zoom', ['max' => Map::MAX_ZOOM, 'default' => 5]),
+                'zoom_max_help' => __('maps.helpers.max_zoom', ['max' => $settingsZoomLimits['max'], 'default' => 5]),
+                'zoom_max_value' => $this->map->isTiled() ? null : $settingsZoomLimits['max'],
                 'zoom_initial' => __('maps.fields.initial_zoom'),
                 'zoom_initial_help' => __('maps.helpers.initial_zoom', ['min' => $minInitial, 'max' => $maxInitial, 'default' => $defaultInitial]),
                 'distance_name' => __('maps.fields.distance_name'),

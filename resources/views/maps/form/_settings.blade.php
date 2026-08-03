@@ -1,13 +1,22 @@
 <?php
 /** @var Map $model */
 use App\Models\Map;
-$minInitial = Map::MIN_ZOOM;
-$maxInitial = Map::MAX_ZOOM_REAL;
+$zoomLimits = config('limits.maps.zoom.default');
+$minInitial = $zoomLimits['min'];
+$maxInitial = $zoomLimits['max'];
 $defaultInitial = 0;
 
+if (old('is_real', $model->is_real ?? false)) {
+    $zoomLimits = config('limits.maps.zoom.real');
+    $minInitial = $zoomLimits['min'];
+    $maxInitial = $zoomLimits['max'];
+    $defaultInitial = 12;
+}
+
 if (isset($model) && $model->isTiled()) {
-    $minInitial = Map::MIN_ZOOM_TILE;
-    $maxInitial = Map::MAX_ZOOM_TILE;
+    $zoomLimits = config('limits.maps.zoom.tile');
+    $minInitial = $zoomLimits['min'];
+    $maxInitial = $zoomLimits['max'];
     $defaultInitial = $minInitial;
 }
 ?>
@@ -40,16 +49,16 @@ if (isset($model) && $model->isTiled()) {
     <x-forms.field
         field="max-zoom"
         :label="__('maps.fields.max_zoom')"
-        :helper="__('maps.helpers.max_zoom', ['max' => Map::MAX_ZOOM, 'default' => 5])">
-        <input type="number" name="max_zoom" class="w-full" value="{{ FormCopy::field('max_zoom')->string() ?: old('max_zoom', $model->max_zoom ?? null) }}" maxlength="2" placeholder="5" />
+        :helper="__('maps.helpers.max_zoom', ['max' => $zoomLimits['max'], 'default' => 5])">
+        <input type="number" name="max_zoom" class="w-full" value="{{ FormCopy::field('max_zoom')->string() ?: old('max_zoom', $model->max_zoom ?? null) }}" min="1" max="{{ $zoomLimits['max'] }}" maxlength="2" placeholder="5" />
     </x-forms.field>
 
     <x-forms.field
         field="min-zoom"
         :label="__('maps.fields.min_zoom')"
-        :helper="__('maps.helpers.min_zoom', ['min' => Map::MIN_ZOOM, 'default' => -2])"
+        :helper="__('maps.helpers.min_zoom', ['min' => $zoomLimits['min'], 'default' => -2])"
     >
-        <input type="number" name="min_zoom" class="w-full" value="{{ FormCopy::field('min_zoom')->string() ?: old('min_zoom', $model->min_zoom ?? null) }}" maxlength="3" placeholder="-2" />
+        <input type="number" name="min_zoom" class="w-full" value="{{ FormCopy::field('min_zoom')->string() ?: old('min_zoom', $model->min_zoom ?? null) }}" min="{{ $zoomLimits['min'] }}" max="{{ $zoomLimits['max'] }}" maxlength="3" placeholder="-2" />
     </x-forms.field>
 @endif
 

@@ -26,6 +26,43 @@ it('POSTS a new map')
         ],
     ]);
 
+it('POSTS a real map with the real map zoom limit')
+    ->asUser()
+    ->withCampaign()
+    ->postJson('/api/1.0/campaigns/1/maps', [
+        'name' => fake()->name(),
+        'is_real' => true,
+        'min_zoom' => 0,
+        'max_zoom' => 15,
+        'initial_zoom' => 15,
+    ])
+    ->assertCreated();
+
+it('rejects a map zoom value above its configured limit', function () {
+    $this->asUser()->withCampaign();
+
+    $this->postJson('/api/1.0/campaigns/1/maps', [
+        'name' => fake()->name(),
+        'is_real' => true,
+        'max_zoom' => 16,
+    ])->assertUnprocessable();
+});
+
+it('uses the real map zoom limits when clamping zoom values', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create([
+        'campaign_id' => 1,
+        'is_real' => true,
+        'min_zoom' => -1,
+        'max_zoom' => 20,
+        'initial_zoom' => 20,
+    ]);
+
+    expect($map->minZoom())->toBe(0)
+        ->and($map->maxZoom())->toBe(15.0)
+        ->and($map->initialZoom())->toBe(15);
+});
+
 it('GETS all maps')
     ->asUser()
     ->withCampaign()
