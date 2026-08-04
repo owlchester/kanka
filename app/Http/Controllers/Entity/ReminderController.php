@@ -58,6 +58,7 @@ class ReminderController extends Controller
             ->reminders()
             ->has('calendar')
             ->has('calendar.entity')
+            // @phpstan-ignore-next-line
             ->with([
                 'calendar',
                 'calendar.entity' => fn ($sub) => $sub->grid(),

@@ -67,6 +67,7 @@ class EventController extends Controller
 
         // @phpstan-ignore-next-line
         $this->rows = $rows
+        // @phpstan-ignore-next-line
             ->with(['calendar',
                 'calendar.entity' => fn ($sub) => $sub->grid(),
                 'remindable' => function (MorphTo $morphTo) {
