@@ -352,7 +352,7 @@ class MapService
 
             $this
                 ->addParent()
-                ->addLocation()
+                ->addEntityLocations()
                 ->addQuests()
                 ->addMapMarkers()
                 ->addAuthorJournals();
@@ -489,10 +489,22 @@ class MapService
      */
     protected function addFamilies(): self
     {
-        /** @var Location $family */
-        $family = $this->entity->child;
+        /** @var Location $location */
+        $location = $this->entity->child;
 
-        foreach ($family->families()->with(['entity', 'entity.image', 'entity.entityType'])->has('entity')->get() as $subfamily) {
+        $families = Family::query()
+            ->select('families.*')
+            ->join('entities', function ($join) {
+                $join->on('entities.entity_id', '=', 'families.id')
+                    ->where('entities.type_id', '=', config('entities.ids.family'));
+            })
+            ->join('entity_locations', 'entity_locations.entity_id', '=', 'entities.id')
+            ->where('entity_locations.location_id', $location->id)
+            ->with(['entity', 'entity.image', 'entity.entityType'])
+            ->has('entity')
+            ->get();
+
+        foreach ($families as $subfamily) {
             $this->addEntity($subfamily->entity);
             $this->addRelations($subfamily->entity);
 

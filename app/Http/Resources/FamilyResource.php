@@ -20,6 +20,7 @@ class FamilyResource extends EntityResource
 
         return $this->entity([
             'members' => $model->members()->pluck('character_id')->toArray(),
+            'locations' => $model->entity->locations->pluck('id'),
         ]);
     }
 }

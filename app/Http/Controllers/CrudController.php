@@ -660,7 +660,7 @@ class CrudController extends Controller
                 // Fire an event for the Entity Observer
                 $this->afterModelSave($model, $data);
 
-                $this->entitySaveService->save($model->entity, $data);
+                $this->entitySaveService->campaign($this->campaign)->save($model->entity, $data);
 
                 if (auth()->user()->can('attributes', $model->entity)) {
                     $this->attributeService

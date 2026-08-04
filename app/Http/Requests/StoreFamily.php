@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Facades\Limit;
 use App\Models\Entity;
+use App\Models\Location;
 use App\Models\Tag;
 use App\Rules\EntityField;
 use App\Rules\Nested;
@@ -16,8 +17,6 @@ class StoreFamily extends FormRequest
 {
     use ApiRequest;
     use ResolvesNewForeignEntities;
-
-    protected array $foreignEntityFields = ['location_id'];
 
     protected bool $foreignEntityParent = true;
 
@@ -42,7 +41,7 @@ class StoreFamily extends FormRequest
             'name' => 'required|max:191',
             'entry' => 'nullable|string',
             'type' => 'nullable|string|max:191',
-            'location_id' => 'nullable|integer|exists:locations,id',
+            'locations' => ['nullable', 'array', new EntityField(config('entities.ids.location'), Location::class)],
             'parent_id' => 'nullable|integer|exists:entities,id',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',

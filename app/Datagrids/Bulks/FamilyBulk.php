@@ -8,7 +8,7 @@ class FamilyBulk extends Bulk
         'name',
         'type',
         'parent_id',
-        'location_id',
+        'locations',
         'status_id',
         'tags',
         'private_choice',

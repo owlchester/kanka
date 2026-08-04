@@ -247,7 +247,7 @@ class ColumnDefinitionService
             ['key' => 'name', 'type' => 'name', 'label' => __('crud.fields.name'), 'sortable' => true, 'alwaysVisible' => true],
             ['key' => 'type', 'type' => 'text', 'label' => __('crud.fields.type'), 'sortable' => true],
             ['key' => 'parent', 'type' => 'entity', 'label' => __('crud.fields.parent'), 'sortable' => true, 'sortKey' => 'parent.name'],
-            ['key' => 'location', 'type' => 'entity', 'label' => __('entities.location'), 'sortable' => true, 'sortKey' => 'location.name', 'moduleGate' => 'locations'],
+            ['key' => 'locations', 'type' => 'entities', 'label' => __('entities.locations'), 'sortable' => false, 'moduleGate' => 'locations'],
             ['key' => 'members_count', 'type' => 'count', 'label' => __('organisations.fields.members'), 'sortable' => false],
             ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => true],
             ['key' => 'is_private', 'type' => 'private', 'label' => __('crud.fields.is_private'), 'sortable' => true, 'adminOnly' => true],

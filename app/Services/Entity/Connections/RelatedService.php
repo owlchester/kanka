@@ -5,6 +5,7 @@ namespace App\Services\Entity\Connections;
 use App\Models\Character;
 use App\Models\Conversation;
 use App\Models\Entity;
+use App\Models\Family;
 use App\Models\Location;
 use App\Traits\EntityAware;
 
@@ -268,7 +269,17 @@ class RelatedService
     {
         /** @var Location $parent */
         $parent = $this->entity->child;
-        $elements = $parent->families()->with(['entity'])->has('entity')->get();
+        $elements = Family::query()
+            ->select('families.*')
+            ->join('entities', function ($join) {
+                $join->on('entities.entity_id', '=', 'families.id')
+                    ->where('entities.type_id', '=', config('entities.ids.family'));
+            })
+            ->join('entity_locations', 'entity_locations.entity_id', '=', 'entities.id')
+            ->where('entity_locations.location_id', $parent->id)
+            ->with(['entity'])
+            ->has('entity')
+            ->get();
         foreach ($elements as $sub) {
             $entity = $sub->entity;
             $this->ids[] = $entity->id;

@@ -48,11 +48,13 @@ The list of returned entities can be filtered. The available filters are [availa
             "created_by": 1,
             "updated_at":  "2019-08-29T13:48:54.000000Z",
             "updated_by": 1,
-            "location_id": 4,
             "status_id": 1,
             "type": "",
             "members": [
               "3"
+            ],
+            "locations": [
+                4
             ]
         }
     ]
@@ -86,11 +88,13 @@ To get the details of a single family, use the following endpoint.
         "created_by": 1,
         "updated_at":  "2019-08-29T13:48:54.000000Z",
         "updated_by": 1,
-        "location_id": 1,
         "status_id": 1,
         "type": "",
         "members": [
           "3"
+        ],
+        "locations": [
+            1
         ]
     }
 
@@ -117,7 +121,7 @@ To create a family, use the following endpoint.
 | `name` | `string` (Required) | Name of the family |
 | `entry` | `string` | The html description of the family |
 | `type` | `string` | The type of family |
-| `location_id` | `integer` | The family's location id |
+| `locations` | `array` | Array of location ids |
 | `parent_id` | `integer` | The parent family entityid |
 | `status_id` | `integer` | The id of the entity's status from `category_statuses` |
 | `tags` | `array` | Array of tag ids |

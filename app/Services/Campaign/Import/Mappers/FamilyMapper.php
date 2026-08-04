@@ -41,7 +41,7 @@ class FamilyMapper extends MiscMapper
     {
         $this
             ->loadModel()
-            ->foreign('locations', 'location_id')
+            ->entityLocations()
             ->saveModel();
 
         /*$this

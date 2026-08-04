@@ -13,7 +13,7 @@ class FamilyFilter extends DatagridFilter
             ->add('name')
             ->add('type')
             ->parent(config('entities.ids.family'))
-            ->location()
+            ->locations()
             ->character('member_id')
             ->add('status_id')
             ->isPrivate()

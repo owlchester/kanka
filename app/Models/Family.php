@@ -7,7 +7,6 @@ use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
-use App\Models\Concerns\HasLocation;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
@@ -34,7 +33,6 @@ class Family extends MiscModel
     use HasCampaign;
     use HasFactory;
     use HasFilters;
-    use HasLocation;
     use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
@@ -42,7 +40,6 @@ class Family extends MiscModel
     protected $fillable = [
         'campaign_id',
         'name',
-        'location_id',
         'is_private',
         'is_extinct',
     ];
@@ -51,13 +48,13 @@ class Family extends MiscModel
      * Fields that can be sorted on
      */
     protected array $sortableColumns = [
-        'location.name',
+        'locations',
         'is_extinct',
     ];
 
     protected array $sortable = [
         'name',
-        'location.name',
+        'locations',
         'is_extinct',
         'type',
     ];
@@ -71,7 +68,6 @@ class Family extends MiscModel
 
     protected array $exportFields = [
         'base',
-        'location_id',
         'is_extinct',
     ];
 
@@ -81,7 +77,6 @@ class Family extends MiscModel
      * @var string[]
      */
     public array $nullableForeignKeys = [
-        'location_id',
     ];
 
     protected array $sanitizable = [
@@ -208,6 +203,7 @@ class Family extends MiscModel
     public function detach(): void
     {
         $this->members()->detach();
+        $this->entity->locations()->detach();
     }
 
     /**
@@ -253,7 +249,7 @@ class Family extends MiscModel
     public function filterableColumns(): array
     {
         return [
-            'location_id',
+            'locations',
             'member_id',
         ];
     }

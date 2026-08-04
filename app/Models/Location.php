@@ -31,7 +31,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Organisation[]|Collection $organisations
  * @property Creature[]|Collection $creatures
  * @property Race[]|Collection $races
- * @property Family[]|Collection $families
  * @property Item[]|Collection $items
  */
 class Location extends MiscModel
@@ -186,14 +185,6 @@ class Location extends MiscModel
     }
 
     /**
-     * @return HasMany<Family, $this>
-     */
-    public function families(): HasMany
-    {
-        return $this->hasMany('App\Models\Family', 'location_id', 'id');
-    }
-
-    /**
      * @return HasMany<Journal, $this>
      */
     public function journals(): HasMany
@@ -214,11 +205,6 @@ class Location extends MiscModel
      */
     public function detach(): void
     {
-        foreach ($this->families as $child) {
-            $child->location_id = null;
-            $child->save();
-        }
-
         foreach ($this->items as $child) {
             $child->location_id = null;
             $child->save();
