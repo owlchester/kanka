@@ -14,6 +14,9 @@
 @if ($entity->type)
 - **{!! __('crud.fields.type') !!}:** {!! html_entity_decode($entity->type, ENT_QUOTES, 'UTF-8') !!}
 @endif
+@if (!empty($entityData['parent']))
+- **{!! __('crud.fields.parent') !!}:** {!! $entityData['parent'] !!}
+@endif
 @if ($entity->tags->count() > 0)
 - **{!! __('entities.tags') !!}:** {!! implode(', ', $entityData['tags']) !!}
 @endif
@@ -58,6 +61,7 @@
 @includeWhen($entity->isEvent(), 'entities.markdown.events')
 @includeWhen($entity->isFamily(), 'entities.markdown.families')
 @includeWhen($entity->isItem(), 'entities.markdown.items')
+@includeWhen($entity->isTag(), 'entities.markdown.tags')
 @includeWhen($entity->aliases->isNotEmpty(), 'entities.markdown.aliases')
 
 @if ($entity->hasPins())

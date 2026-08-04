@@ -263,6 +263,7 @@ class ExportService
     {
         $entityWith = [
             'entity',
+            'entity.parent.entityType',
             'entity.entityTags', 'entity.relationships',
             'entity.posts', 'entity.posts.postTags', 'entity.abilities', 'entity.abilities.ability',
             'entity.reminders',
@@ -303,6 +304,7 @@ class ExportService
     protected function customEntities(): self
     {
         $entityWith = [
+            'parent.entityType',
             'entityTags', 'relationships',
             'posts', 'posts.postTags', 'abilities', 'abilities.ability',
             'reminders',

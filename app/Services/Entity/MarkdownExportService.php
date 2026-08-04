@@ -104,6 +104,21 @@ class MarkdownExportService
         $entityData['pinnedAliases'] = [];
         $entityData['entry'] = $this->markdownEntry();
         $entityData['posts'] = [];
+        $entityData['parent'] = '';
+
+        if ($this->entity->parent) {
+            $parent = $this->entity->parent;
+            $parentName = html_entity_decode($parent->name, ENT_QUOTES, 'UTF-8');
+
+            if ($this->isSingle) {
+                $entityData['parent'] = '[' . $parentName . '](' . $parent->url() . ')';
+            } elseif ($parent->entityType->isCustom()) {
+                $moduleName = $parent->entityType->code . '_' . $parent->entityType->id;
+                $entityData['parent'] = '[' . $parentName . '](' . Str::slug($moduleName) . '/' . Str::slug($parent->name) . '_' . $parent->id . ')';
+            } else {
+                $entityData['parent'] = '[' . $parentName . '](' . str_replace(' ', '-', $parent->entityType->pluralCode()) . '/' . Str::slug($parent->name) . '_' . $parent->id . ')';
+            }
+        }
 
         if ($this->isSingle) {
             foreach ($this->entity->tags as $tag) {
