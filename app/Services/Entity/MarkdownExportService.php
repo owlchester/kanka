@@ -101,6 +101,7 @@ class MarkdownExportService
         $entityData['tags'] = [];
         $entityData['attributes'] = '';
         $entityData['relations'] = '';
+        $entityData['locations'] = [];
         $entityData['pinnedAliases'] = [];
         $entityData['entry'] = $this->markdownEntry();
         $entityData['posts'] = [];
@@ -128,6 +129,13 @@ class MarkdownExportService
             foreach ($this->entity->tags as $tag) {
                 $entityData['tags'][] = '[' . html_entity_decode($tag->name, ENT_QUOTES, 'UTF-8') . '](tags/' . Str::slug($tag->name) . '_' . $tag->entity->id . ')';
             }
+        }
+
+        foreach ($this->entity->locations as $location) {
+            $locationName = html_entity_decode($location->name, ENT_QUOTES, 'UTF-8');
+            $entityData['locations'][] = $this->isSingle
+                ? '[' . $locationName . '](' . $location->entity->url() . ')'
+                : $locationName;
         }
 
         foreach ($this->entity->pinnedAliases as $asset) {

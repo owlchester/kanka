@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Location;
 use App\Models\Organisation;
 use App\Models\Tag;
 use App\Services\Entity\MarkdownExportService;
@@ -67,6 +68,52 @@ it('omits parent metadata for top-level entities', function () {
         ->markdown();
 
     expect($markdown)->not->toContain('**' . __('crud.fields.parent') . ':**');
+});
+
+it('includes location links in standalone markdown exports', function () {
+    $this->asUser()->withCampaign();
+
+    $organisation = Organisation::factory()->create([
+        'campaign_id' => 1,
+        'name' => 'Organisation',
+    ]);
+    $location = Location::factory()->create([
+        'campaign_id' => 1,
+        'name' => 'Location',
+    ]);
+    $organisation->entity->locations()->attach($location->id);
+
+    $markdown = app(MarkdownExportService::class)
+        ->campaign($organisation->campaign)
+        ->entity($organisation->entity)
+        ->single()
+        ->markdown();
+
+    expect($markdown)->toContain('[' . $location->name . '](' . $location->entity->url() . ')');
+});
+
+it('keeps location names plain in campaign markdown exports', function () {
+    $this->asUser()->withCampaign();
+
+    $organisation = Organisation::factory()->create([
+        'campaign_id' => 1,
+        'name' => 'Organisation',
+    ]);
+    $location = Location::factory()->create([
+        'campaign_id' => 1,
+        'name' => 'Location',
+    ]);
+    $organisation->entity->locations()->attach($location->id);
+
+    $markdown = app(MarkdownExportService::class)
+        ->campaign($organisation->campaign)
+        ->module('organisations')
+        ->entity($organisation->entity)
+        ->markdown();
+
+    expect($markdown)
+        ->toContain('**' . __('entities.locations') . ':** ' . $location->name)
+        ->not->toContain('[' . $location->name . '](' . $location->entity->url() . ')');
 });
 
 it('includes tag colour and icon when exporting a tag', function () {

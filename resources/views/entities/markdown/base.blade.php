@@ -21,6 +21,7 @@
 - **{!! __('entities.tags') !!}:** {!! implode(', ', $entityData['tags']) !!}
 @endif
 - **{!! __('crud.fields.visibility') !!}:** {!! $entity->is_private ? __('campaigns/visibilities.titles.private') : __('campaigns/visibilities.titles.public') !!}
+@include('entities.markdown._locations')
 
 @if($entity->hasEntry())
 ---
