@@ -37,7 +37,8 @@ class MemberController extends Controller
             ->with([
                 'entity.locations',
                 'characterRaces',
-                'entity', 'entity.tags', 'entity.image', 'entity.tags',
+                'entity' => fn ($sub) => $sub->grid(),
+                'entity.tags', 'entity.image',
                 'entity.entityType',
             ])
             ->has('entity')

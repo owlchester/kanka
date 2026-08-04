@@ -20,6 +20,7 @@ use App\Traits\Controllers\HasSubview;
 use App\Traits\GuestAuthTrait;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Str;
 
@@ -66,11 +67,15 @@ class EventController extends Controller
 
         // @phpstan-ignore-next-line
         $this->rows = $rows
-            ->with(['calendar', 'calendar.entity',
-                'remindable' => function ($morphTo) {
-                    $morphTo->morphWith([
+            ->with(['calendar',
+                'calendar.entity' => fn ($sub) => $sub->grid(),
+                'remindable' => function (MorphTo $morphTo) {
+                    $morphTo->constrain([
+                        Entity::class => fn ($sub) => $sub->grid(),
+                        Post::class => fn ($sub) => $sub->select('id', 'entity_id', 'name', 'visibility_id'),
+                    ])->morphWith([
                         Entity::class => ['entityType', 'tags', 'image'],
-                        Post::class => ['tags', 'entity', 'entity.image', 'entity.entityType'],
+                        Post::class => ['tags', 'entity' => fn ($sub) => $sub->grid(), 'entity.image', 'entity.entityType'],
                     ]);
                 },
             ])

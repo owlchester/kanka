@@ -104,9 +104,12 @@ class Quest extends MiscModel
             ->select(['id', 'name', 'location_id', 'is_private'])
             ->sort(request()->only(['o', 'k']), ['name' => 'asc']) // @phpstan-ignore method.notFound
             ->with([
-                'location', 'location.entity',
+                'location' => fn ($sub) => $sub->select('id'),
+                'location.entity' => fn ($sub) => $sub->grid(),
                 'elements',
-                'entity', 'entity.tags', 'entity.tags.entity', 'entity.image'])
+                'entity', 'entity.tags',
+                'entity.tags.entity' => fn ($sub) => $sub->grid(),
+                'entity.image'])
             ->has('entity');
     }
 

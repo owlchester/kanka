@@ -33,12 +33,13 @@ class ChildrenController extends Controller
 
         $query = $entity
             ->descendants()
+            ->grid()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with([
                 'image', 'entityType',
                 'tags',
-                'children',
-                'parent',
+                'children' => fn ($sub) => $sub->grid(),
+                'parent' => fn ($sub) => $sub->grid(),
             ]);
 
         if ($this->filterToDirect()) {

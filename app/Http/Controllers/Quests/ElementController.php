@@ -32,7 +32,7 @@ class ElementController extends Controller
         $entity = $model->entity;
         $elements = $quest
             ->elements()
-            ->with(['entity', 'entity.image', 'entity.entityType'])
+            ->with(['entity' => fn ($sub) => $sub->grid(), 'entity.image', 'entity.entityType'])
             ->simpleSort($datagridSorter)
             ->paginate();
 

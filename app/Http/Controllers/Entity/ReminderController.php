@@ -8,12 +8,14 @@ use App\Http\Requests\AddCalendarEvent;
 use App\Models\Calendar;
 use App\Models\Campaign;
 use App\Models\Entity;
+use App\Models\Post;
 use App\Models\Reminder;
 use App\Services\CalendarService;
 use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;
 use App\Traits\Controllers\HasSubview;
 use App\Traits\GuestAuthTrait;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class ReminderController extends Controller
 {
@@ -56,7 +58,19 @@ class ReminderController extends Controller
             ->reminders()
             ->has('calendar')
             ->has('calendar.entity')
-            ->with(['calendar', 'calendar.entity', 'remindable'])
+            ->with([
+                'calendar',
+                'calendar.entity' => fn ($sub) => $sub->grid(),
+                'remindable' => function (MorphTo $morphTo) {
+                    $morphTo->constrain([
+                        Entity::class => fn ($sub) => $sub->grid(),
+                        Post::class => function ($sub) {
+                            $sub->select('id', 'entity_id', 'name', 'visibility_id')
+                                ->with(['entity' => fn ($q) => $q->grid()]);
+                        },
+                    ]);
+                },
+            ])
             ->sort(request()->only(['o', 'k']))
             ->paginate();
 

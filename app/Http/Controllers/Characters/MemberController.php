@@ -29,7 +29,8 @@ class MemberController extends Controller
         $this->rows = $character
             ->organisationMemberships()
             ->with([
-                'organisation.entity', 'organisation.entity.image',
+                'organisation.entity' => fn ($sub) => $sub->grid(),
+                'organisation.entity.image',
                 'organisation.entity.entityType' => function ($sub) {
                     $sub->select('id', 'code');
                 },

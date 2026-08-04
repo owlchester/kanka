@@ -72,8 +72,13 @@ class Event extends MiscModel
             ->select(['events.id', 'events.name', 'events.date', 'events.is_private'])
             ->sort(request()->only(['o', 'k']), ['name' => 'asc']) // @phpstan-ignore method.notFound
             ->with([
-                'entity.locations', 'entity.locations.entity',
-                'entity', 'entity.parent', 'entity.tags', 'entity.tags.entity', 'entity.image'])
+                'entity.locations',
+                'entity.locations.entity' => fn ($sub) => $sub->grid(),
+                'entity' => fn ($sub) => $sub->grid(),
+                'entity.parent' => fn ($sub) => $sub->grid(),
+                'entity.tags', 
+                'entity.tags.entity' => fn ($sub) => $sub->grid(),
+                'entity.image'])
             ->has('entity');
     }
 

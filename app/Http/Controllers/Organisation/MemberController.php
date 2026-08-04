@@ -42,12 +42,14 @@ class MemberController extends Controller
             ->{$base}()
             ->select('organisation_member.*')
             ->with([
-                'organisation', 'organisation.entity',
+                'organisation', 'organisation.entity' => fn ($sub) => $sub->grid(),
                 'organisation.entity.entityType' => function ($sub) {
                     $sub->select('id', 'code');
                 },
-                'parent', 'parent.character', 'parent.character.entity',
-                'character', 'character.entity', 'character.entity.image',
+                'parent', 'parent.character',
+                'parent.character.entity' => fn ($sub) => $sub->grid(),
+                'character', 'character.entity' => fn ($sub) => $sub->grid(),
+                'character.entity.image',
                 'character.entity.entityType' => function ($sub) {
                     $sub->select('id', 'code');
                 },

@@ -37,7 +37,8 @@ class MemberController extends Controller
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with([
                 'characterFamilies',
-                'entity', 'entity.tags', 'entity.image', 'entity.entityType',
+                'entity' => fn ($sub) => $sub->grid(),
+                'entity.tags', 'entity.image', 'entity.entityType',
                 'entity.entityLocations',
             ])
             ->has('entity')

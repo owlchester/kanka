@@ -25,7 +25,7 @@ trait HasLocations
     {
         return $this->belongsToMany('App\Models\Location', $this->getLocationPivotTableName())
             ->has('entity')
-            ->with('entity');
+            ->with(['entity' => fn ($sub) => $sub->grid()]);
     }
 
     protected function getLocationPivotTableName(): string

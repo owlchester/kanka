@@ -367,7 +367,11 @@ trait EntityRelations
             $this
                 ->relationships()
                 ->select('relations.*')
-                ->with(['target', 'target.entityType', 'owner'])
+                ->with([
+                    'target' => fn ($sub) => $sub->grid(),
+                    'target.entityType',
+                    'owner' => fn ($sub) => $sub->grid(),
+                ])
                 ->has('target')
                 ->leftJoin('entities as t', 't.id', '=', 'relations.target_id');
     }

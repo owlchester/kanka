@@ -37,6 +37,7 @@ class ChildController extends Controller
 
         $this->rows = $tag
             ->{$base}()
+            ->grid()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with(['image', 'tags', 'entityType'])
             ->paginate(config('limits.pagination'));

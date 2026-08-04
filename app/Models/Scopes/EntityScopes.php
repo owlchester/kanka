@@ -18,6 +18,7 @@ use Illuminate\Support\Str;
  * Trait EntityScopes
  *
  * @method static self|Builder recentlyModified()
+ * @method static self|Builder grid()
  * @method static self|Builder inTags(array $tags)
  * @method static self|Builder inTypes(mixed $types)
  * @method static self|Builder templates(string $entityType)
@@ -46,6 +47,31 @@ trait EntityScopes
     {
         return $query
             ->orderBy($this->getTable() . '.updated_at', 'asc');
+    }
+
+    /**
+     * Minimal column set needed to render an entity in a datagrid or list: name,
+     * privacy, type, avatar and Entity::url(). Deliberately excludes the heavy
+     * entry/tooltip columns - the tooltip is loaded lazily over ajax.
+     */
+    public function scopeGrid(Builder $query): Builder
+    {
+        return $query->select([
+            $this->getTable() . '.id',
+            $this->getTable() . '.campaign_id',
+            $this->getTable() . '.entity_id',
+            $this->getTable() . '.name',
+            $this->getTable() . '.type',
+            $this->getTable() . '.type_id',
+            $this->getTable() . '.parent_id',
+            $this->getTable() . '.status_id',
+            $this->getTable() . '.is_private',
+            $this->getTable() . '.image_uuid',
+            $this->getTable() . '.image_path',
+            $this->getTable() . '.focus_x',
+            $this->getTable() . '.focus_y',
+            $this->getTable() . '.deleted_at',
+        ]);
     }
 
     /**
