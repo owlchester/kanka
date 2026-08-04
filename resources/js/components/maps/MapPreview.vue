@@ -15,6 +15,7 @@
         :map="data.map"
         :layers="data.layers"
         :show-layer-control="false"
+        :groups="data.groups"
         :pins="data.pins"
         :legacy-pins="data.map.settings?.legacy_pins"
         @pin-click="goToPin"
@@ -34,7 +35,7 @@ const props = defineProps({
 
 const loading = ref(true);
 const error = ref(null);
-const data = ref({ map: {}, layers: [], pins: [] });
+const data = ref({ map: {}, layers: [], groups: [], pins: [] });
 
 function goToPin(pin) {
     const separator = props.exploreUrl.includes("?") ? "&" : "?";
