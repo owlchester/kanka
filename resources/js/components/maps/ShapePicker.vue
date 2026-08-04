@@ -56,7 +56,7 @@
 
 <script setup>
 import { computed, nextTick, ref, watch } from "vue";
-import { pinIconRender, PIN_ICON_SHAPES, svgIconDataUrl } from "../../maps/markerIcons.js";
+import { pinIconRender, PIN_ICON_SHAPES, restoredCustomIcon, svgIconDataUrl } from "../../maps/markerIcons.js";
 
 const props = defineProps({
     pin: { type: Object, required: true },
@@ -75,6 +75,17 @@ const customInputRef = ref(null);
 const customIconPreview = computed(() =>
     props.pin.icon?.type === "svg" ? svgIconDataUrl(props.pin.icon.value) : null,
 );
+
+// Remembers the last custom icon so a stray click on a preset shape doesn't force the user
+// to retype it — clicking the custom button again restores it even though pin.customIcon
+// itself was cleared by selectShape().
+const rememberedCustomIcon = ref(props.pin.customIcon || "");
+
+watch(() => props.pin.customIcon, (value) => {
+    if (value) {
+        rememberedCustomIcon.value = value;
+    }
+});
 
 watch(() => props.pin, (newPin, oldPin) => {
     if (newPin && !oldPin) {
@@ -101,7 +112,14 @@ function clickCustom() {
     }
 
     showPremiumError.value = false;
-    customText.value = props.pin.customIcon || "";
+
+    const restored = restoredCustomIcon(props.pin.customIcon, rememberedCustomIcon.value);
+
+    if (restored && restored !== props.pin.customIcon) {
+        emit("change", { icon: 1, custom_icon: restored, render: pinIconRender(1, restored) });
+    }
+
+    customText.value = restored || "";
     customMode.value = true;
 
     nextTick(() => customInputRef.value?.focus());

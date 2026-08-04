@@ -46,6 +46,12 @@ export function pinIconFa(iconCode, customIcon) {
     return PIN_ICON_SHAPES.find((shape) => shape.icon === Number(iconCode))?.fa || DEFAULT_PIN_ICON_FA;
 }
 
+// A stray click on a preset shape clears pin.customIcon; this decides what the custom-icon
+// button should restore so the user doesn't have to retype it.
+export function restoredCustomIcon(pinCustomIcon, rememberedCustomIcon) {
+    return pinCustomIcon || rememberedCustomIcon || null;
+}
+
 export function pinIconRender(iconCode, customIcon) {
     const svgUrl = svgIconDataUrl(customIcon);
     if (svgUrl) {
