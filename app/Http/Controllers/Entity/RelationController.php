@@ -61,7 +61,7 @@ class RelationController extends Controller
                 ->allRelationships()
                 ->sort(request()->only(['o', 'k']))
                 ->with([
-                    'target.location' => fn ($sub) => $sub->select('id', 'entity_id'),
+                    'target.location' => fn ($sub) => $sub->select('id'),
                     'target.location.entity' => fn ($sub) => $sub->grid(),
                 ])
                 ->paginate()

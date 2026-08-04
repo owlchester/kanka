@@ -74,7 +74,7 @@ class Relation extends Layout
                     }
                     $html = '<div class="flex items-center gap-1">';
                     $icon =
-                        '<div class="flex-0 inline-block p-1 rounded-2xl w-5 h-5" style="background-color: ' .
+                        '<div class="inline-block p-1 rounded-2xl w-4 h-4" style="background-color: ' .
                         $relation->colour .
                         '; "></div>';
 
