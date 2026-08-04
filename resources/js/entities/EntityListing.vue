@@ -339,6 +339,7 @@
                 :nested="nestingComposable.nested.value"
                 :i18n="i18n"
                 :ads="entityApi.ads.value"
+                :columns="columnsComposable.visibleColumns.value"
                 @navigate="handleGridNavigate"
                 @back="handleGridBack"
                 @start-selecting="handleStartSelecting"

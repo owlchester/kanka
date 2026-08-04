@@ -29,7 +29,22 @@
                     </div>
                 </div>
             </a>
-            <a :href="entity.urls.show" class="block text-center relative truncate h-12 p-4 text-link"
+            <div v-if="hasExploreOrDraw" class="flex items-center gap-1.5 h-12 px-4">
+                <a :href="entity.urls.show" class="grow truncate text-link"
+                   data-toggle="tooltip-ajax" :data-id="entity.id" :data-url="entity.urls.tooltip"
+                   v-html="entity.name" @click="handleNameClick" />
+                <a v-if="entity.explore?.url" :href="entity.explore.url" target="_blank" rel="noopener"
+                   class="text-link shrink-0" :title="exploreColumn?.label" @click="handleNameClick">
+                    <i class="fa-regular fa-map" aria-hidden="true"></i>
+                </a>
+                <i v-else-if="entity.explore?.status === 'error'" class="fa-regular fa-exclamation-triangle text-warning shrink-0" :title="exploreColumn?.label" aria-hidden="true"></i>
+                <i v-else-if="entity.explore?.status === 'running'" class="fa-solid fa-spinner fa-spin shrink-0" aria-hidden="true"></i>
+                <a v-if="entity.draw?.url" :href="entity.draw.url" target="_blank" rel="noopener"
+                   class="text-link shrink-0" :title="drawColumn?.label" @click="handleNameClick">
+                    <i class="fa-regular fa-chalkboard" aria-hidden="true"></i>
+                </a>
+            </div>
+            <a v-else :href="entity.urls.show" class="block text-center relative truncate h-12 p-4 text-link"
                data-toggle="tooltip-ajax" :data-id="entity.id" :data-url="entity.urls.tooltip"
                v-html="entity.name" @click="handleNameClick" />
         </div>
@@ -53,7 +68,22 @@
                 <i v-if="entity.selected" class="fa-regular fa-check" aria-label="selected" />
             </div>
         </a>
-        <a :href="entity.urls.show" class="block text-center relative truncate h-12 p-4 text-link"
+        <div v-if="hasExploreOrDraw" class="flex items-center gap-1.5 h-12 px-4">
+            <a :href="entity.urls.show" class="grow truncate text-link"
+               data-toggle="tooltip-ajax" :data-id="entity.id" :data-url="entity.urls.tooltip"
+               v-html="entity.name" @click="handleNameClick" />
+            <a v-if="entity.explore?.url" :href="entity.explore.url" target="_blank" rel="noopener"
+               class="text-link shrink-0" :title="exploreColumn?.label" @click="handleNameClick">
+                <i class="fa-regular fa-map" aria-hidden="true"></i>
+            </a>
+            <i v-else-if="entity.explore?.status === 'error'" class="fa-regular fa-exclamation-triangle text-warning shrink-0" :title="exploreColumn?.label" aria-hidden="true"></i>
+            <i v-else-if="entity.explore?.status === 'running'" class="fa-solid fa-spinner fa-spin shrink-0" aria-hidden="true"></i>
+            <a v-if="entity.draw?.url" :href="entity.draw.url" target="_blank" rel="noopener"
+               class="text-link shrink-0" :title="drawColumn?.label" @click="handleNameClick">
+                <i class="fa-regular fa-chalkboard" aria-hidden="true"></i>
+            </a>
+        </div>
+        <a v-else :href="entity.urls.show" class="block text-center relative truncate h-12 p-4 text-link"
            data-toggle="tooltip-ajax" :data-id="entity.id" :data-url="entity.urls.tooltip"
            v-html="entity.name" @click="handleNameClick" />
     </div>
@@ -68,6 +98,7 @@ const props = defineProps<{
     selecting: boolean
     nested: boolean
     i18n: any
+    columns?: any[]
 }>()
 
 const emit = defineEmits<{
@@ -98,6 +129,10 @@ const lpStart = (e: PointerEvent) => {
 }
 
 const stacked = computed(() => props.nested && props.entity.children > 0)
+
+const exploreColumn = computed(() => props.columns?.find(c => c.type === 'explore'))
+const drawColumn = computed(() => props.columns?.find(c => c.type === 'draw'))
+const hasExploreOrDraw = computed(() => !!(exploreColumn.value && props.entity.explore) || !!(drawColumn.value && props.entity.draw))
 
 const entityImage = computed(() => ({
     backgroundImage: `url('${props.entity.images.thumb}')`

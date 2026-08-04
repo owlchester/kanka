@@ -18,6 +18,7 @@
                 :selecting="selecting"
                 :nested="nested"
                 :i18n="i18n"
+                :columns="columns"
                 @navigate="(id, url) => $emit('navigate', id, url)"
                 @start-selecting="(id) => $emit('startSelecting', id)"
             />
@@ -40,6 +41,7 @@ defineProps<{
     nested: boolean
     i18n: any
     ads: { enabled: boolean; frequency: number }
+    columns: any[]
 }>()
 
 defineEmits<{
