@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-base-100 p-2 md:p-4 rounded flex flex-col gap-2 md:gap-4 md:sticky md:top-24">
+    <div class="bg-base-100 p-2 md:p-4 rounded-xl flex flex-col gap-2 md:gap-4 md:sticky md:top-24">
         <div
             v-if="loading"
             class="text-2xl flex items-center justify-center h-32"
@@ -21,7 +21,7 @@
                             aria-hidden="true"
                         ></i>
                     </span>
-                    <span class="text-xs font-semibold uppercase tracking-wide text-neutral-content" v-html="trans('details')"></span>
+                    <span class="text-xs font-semibold uppercase tracking-wide" v-html="trans('details')"></span>
                 </div>
                 <div class="cursor-pointer" @click="closeFile">
                     <i class="fa-solid fa-xmark" aria-label="Close" />
