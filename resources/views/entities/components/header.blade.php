@@ -111,8 +111,22 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
                         :dialog="route('gallery.file.visibility', [$campaign, $entity->image])"
                         >
                         {{ __('entities/image.actions.change_visibility') }}</x-dropdowns.item>
-                    @if ($entity->image->author)
+                    @if ($entity->image->description || $entity->image->author)
                     <x-dropdowns.divider />
+                    @if ($entity->image->description)
+                    <div
+                        role="menuitem"
+                        class="group px-2 py-2 rounded-xl flex items-center gap-1.5 text-xs text-base-content"
+                    >
+                        <div class="flex gap-1">
+                            <span class="shrink-0 w-6 text-neutral-content text-center flex-none">
+                                <x-icon class="fa-regular fa-align-left" />
+                            </span>
+                            <span>{{ $entity->image->description }}</span>
+                        </div>
+                    </div>
+                    @endif
+                    @if ($entity->image->author)
                     <div
                         role="menuitem"
                         class="group px-2 py-2 rounded-xl flex items-center gap-1.5 text-xs text-base-content"
@@ -124,6 +138,7 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
                             <span>{{ __('campaigns/gallery.fields.credit', ['author' => $entity->image->author]) }}</span>
                         </div>
                     </div>
+                    @endif
                     @endif
                     @endif
                 </div>

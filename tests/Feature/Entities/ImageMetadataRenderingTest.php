@@ -20,5 +20,6 @@ it('uses gallery image description for entity avatar alt text and shows its cred
     $this->get('/w/test-campaign/entities/' . $entity->id)
         ->assertSuccessful()
         ->assertSee('alt="Target portrait"', false)
+        ->assertSee('Target portrait')
         ->assertSee('Credit: Artist');
 });
