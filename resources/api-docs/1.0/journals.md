@@ -44,6 +44,7 @@ The list of returned entities can be filtered. The available filters are [availa
             "updated_at":  "2019-08-29T13:48:54.000000Z",
             "updated_by": 1,
             "author_id": 11,
+            "locations": [],
             "date": "2017-11-02",
             "type": "Session",
             "calendar_id": 102,
@@ -85,6 +86,7 @@ To get the details of a single journal, use the following endpoint.
         "updated_at":  "2019-08-29T13:48:54.000000Z",
         "updated_by": 1,
         "author_id": 11,
+        "locations": [],
         "date": "2017-11-02",
         "type": "Session",
         "calendar_id": 102,
@@ -117,6 +119,7 @@ To create a journal, use the following endpoint.
 | `date` | `string` | The date of the session                                                 |
 | `parent_id` | `integer` | The ID of the journal's parent journal entity, if it has one                   |
 | `author_id` | `integer` | The "author" of the journal (entity id)                                 |
+| `locations` | `array` | Array of the journal's locations                                         |
 | `tags` | `array` | Array of tag ids                                                        |
 | `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
 | `entity_header_uuid` | `string` | Gallery image UUID for the entity header (premium campaign feature) |

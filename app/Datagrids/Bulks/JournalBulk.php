@@ -10,7 +10,7 @@ class JournalBulk extends Bulk
         'parent_id',
         'author_id',
         'date',
-        'location_id',
+        'locations',
         'tags',
         'private_choice',
         'entity_image',

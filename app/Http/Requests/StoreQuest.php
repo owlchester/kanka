@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Facades\Limit;
 use App\Models\Entity;
+use App\Models\Location;
 use App\Models\Tag;
 use App\Rules\EntityField;
 use App\Rules\Nested;
@@ -16,8 +17,6 @@ class StoreQuest extends FormRequest
 {
     use ApiRequest;
     use ResolvesNewForeignEntities;
-
-    protected array $foreignEntityFields = ['location_id'];
 
     protected bool $foreignEntityParent = true;
 
@@ -49,7 +48,7 @@ class StoreQuest extends FormRequest
             'entity_header_uuid' => 'nullable|exists:images,id',
             'parent_id' => 'nullable|integer|exists:entities,id',
             'character_id' => 'nullable|integer|exists:characters,id',
-            'location_id' => 'nullable|integer|exists:locations,id',
+            'locations' => ['nullable', 'array', new EntityField(config('entities.ids.location'), Location::class)],
             'template_id' => 'nullable',
             'attribute' => ['array', new UniqueAttributeNames],
             'is_private' => 'nullable|boolean',

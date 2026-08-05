@@ -24,7 +24,7 @@ class QuestFilter extends DatagridFilter
                 'placeholder' => __('search.placeholders.entry'),
                 'model' => Entity::class,
             ])
-            ->location()
+            ->locations()
             ->parent(config('entities.ids.quest'))
             ->add([
                 'field' => 'quest_element_id',

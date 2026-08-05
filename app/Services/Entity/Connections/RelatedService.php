@@ -6,7 +6,9 @@ use App\Models\Character;
 use App\Models\Conversation;
 use App\Models\Entity;
 use App\Models\Family;
+use App\Models\Journal;
 use App\Models\Location;
+use App\Models\Quest;
 use App\Traits\EntityAware;
 
 class RelatedService
@@ -90,6 +92,7 @@ class RelatedService
             ->loadOrganisations()
             ->loadMaps()
             ->loadJournals()
+            ->loadLocationQuests()
             ->loadFamilies()
             ->loadTimelines()
             ->loadAuthoredJournals()
@@ -243,11 +246,47 @@ class RelatedService
 
     protected function loadJournals(): self
     {
-        $elements = $this->entity->children()->get();
-        /** @var Entity $entity */
-        foreach ($elements as $entity) {
+        /** @var Location $parent */
+        $parent = $this->entity->child;
+        $elements = Journal::query()
+            ->select('journals.*')
+            ->join('entities', function ($join) {
+                $join->on('entities.entity_id', '=', 'journals.id')
+                    ->where('entities.type_id', '=', config('entities.ids.journal'));
+            })
+            ->join('entity_locations', 'entity_locations.entity_id', '=', 'entities.id')
+            ->where('entity_locations.location_id', $parent->id)
+            ->with('entity')
+            ->has('entity')
+            ->get();
+        foreach ($elements as $journal) {
+            $entity = $journal->entity;
             $this->ids[] = $entity->id;
             $this->reasons[$entity->id][] = __('entities.journal');
+        }
+
+        return $this;
+    }
+
+    protected function loadLocationQuests(): self
+    {
+        /** @var Location $parent */
+        $parent = $this->entity->child;
+        $elements = Quest::query()
+            ->select('quests.*')
+            ->join('entities', function ($join) {
+                $join->on('entities.entity_id', '=', 'quests.id')
+                    ->where('entities.type_id', '=', config('entities.ids.quest'));
+            })
+            ->join('entity_locations', 'entity_locations.entity_id', '=', 'entities.id')
+            ->where('entity_locations.location_id', $parent->id)
+            ->with('entity')
+            ->has('entity')
+            ->get();
+        foreach ($elements as $quest) {
+            $entity = $quest->entity;
+            $this->ids[] = $entity->id;
+            $this->reasons[$entity->id][] = __('entities.quest');
         }
 
         return $this;
@@ -341,6 +380,15 @@ class RelatedService
     protected function loadLocation(): self
     {
         if ($this->entity->entityType->isCustom()) {
+            return $this;
+        }
+        if ($this->entity->locations->isNotEmpty()) {
+            foreach ($this->entity->locations as $location) {
+                $entity = $location->entity;
+                $this->ids[] = $entity->id;
+                $this->reasons[$entity->id][] = __('entities.location');
+            }
+
             return $this;
         }
         if (

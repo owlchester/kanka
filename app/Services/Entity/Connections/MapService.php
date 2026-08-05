@@ -17,6 +17,7 @@ use App\Models\Map;
 use App\Models\MapMarker;
 use App\Models\Organisation;
 use App\Models\OrganisationMember;
+use App\Models\Quest;
 use App\Models\QuestElement;
 use App\Models\Relation;
 use App\Traits\CampaignAware;
@@ -399,6 +400,7 @@ class MapService
                 ->addItems()
                 ->addFamilies()
                 ->addJournals()
+                ->addLocationQuests()
                 ->addOrganisations()
                 ->addParent()
                 ->addQuests()
@@ -597,8 +599,19 @@ class MapService
     {
         /** @var Location $parent */
         $parent = $this->entity->child;
+        $journals = Journal::query()
+            ->select('journals.*')
+            ->join('entities', function ($join) {
+                $join->on('entities.entity_id', '=', 'journals.id')
+                    ->where('entities.type_id', '=', config('entities.ids.journal'));
+            })
+            ->join('entity_locations', 'entity_locations.entity_id', '=', 'entities.id')
+            ->where('entity_locations.location_id', $parent->id)
+            ->with(['entity', 'entity.image', 'entity.entityType'])
+            ->has('entity')
+            ->get();
         /** @var Journal $journal */
-        foreach ($parent->journals()->with(['entity', 'entity.image', 'entity.entityType'])->has('entity')->get() as $journal) {
+        foreach ($journals as $journal) {
             $this->addEntity($journal->entity);
             $this->relations[] = [
                 'source' => $this->entity->id,
@@ -607,6 +620,37 @@ class MapService
                 'colour' => '#ccc',
                 'attitude' => null,
                 'type' => 'journal-location',
+                'shape' => 'none',
+            ];
+        }
+
+        return $this;
+    }
+
+    protected function addLocationQuests(): self
+    {
+        /** @var Location $parent */
+        $parent = $this->entity->child;
+        $quests = Quest::query()
+            ->select('quests.*')
+            ->join('entities', function ($join) {
+                $join->on('entities.entity_id', '=', 'quests.id')
+                    ->where('entities.type_id', '=', config('entities.ids.quest'));
+            })
+            ->join('entity_locations', 'entity_locations.entity_id', '=', 'entities.id')
+            ->where('entity_locations.location_id', $parent->id)
+            ->with(['entity', 'entity.image', 'entity.entityType'])
+            ->has('entity')
+            ->get();
+        foreach ($quests as $quest) {
+            $this->addEntity($quest->entity);
+            $this->relations[] = [
+                'source' => $this->entity->id,
+                'target' => $quest->entity->id,
+                'text' => Module::singular(config('entities.ids.quest'), __('entities.quest')),
+                'colour' => '#ccc',
+                'attitude' => null,
+                'type' => 'quest-location',
                 'shape' => 'none',
             ];
         }
@@ -635,6 +679,9 @@ class MapService
 
     protected function addLocation(): self
     {
+        if ($this->entity->locations->isNotEmpty()) {
+            return $this->addEntityLocations();
+        }
         if (! array_key_exists('location_id', $this->entity->child->getAttributes())) {
             return $this;
         }

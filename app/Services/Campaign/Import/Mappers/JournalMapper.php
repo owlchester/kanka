@@ -24,7 +24,7 @@ class JournalMapper extends MiscMapper
     {
         $this
             ->loadModel()
-            ->foreign('locations', 'location_id')
+            ->entityLocations()
             ->foreign('entities', 'author_id')
             ->saveModel()
             ->entitySecond();

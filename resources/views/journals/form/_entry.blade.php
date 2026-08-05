@@ -3,7 +3,7 @@
 @include('cruds.fields.parent')
 
 @include('cruds.fields.author')
-@include('cruds.fields.location')
+@include('cruds.fields.locations', ['from' => $model ?? null, 'quickCreator' => true])
 
 @include('cruds.fields.date')
 

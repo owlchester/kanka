@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Facades\Limit;
 use App\Models\Entity;
+use App\Models\Location;
 use App\Models\Tag;
 use App\Rules\EntityField;
 use App\Rules\Nested;
@@ -16,8 +17,6 @@ class StoreJournal extends FormRequest
 {
     use ApiRequest;
     use ResolvesNewForeignEntities;
-
-    protected array $foreignEntityFields = ['location_id'];
 
     protected bool $foreignEntityParent = true;
 
@@ -44,7 +43,7 @@ class StoreJournal extends FormRequest
             'type' => 'nullable|string|max:191',
             'date' => 'nullable|date',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
-            'location_id' => 'nullable|exists:locations,id',
+            'locations' => ['nullable', 'array', new EntityField(config('entities.ids.location'), Location::class)],
             'author_id' => 'nullable|exists:entities,id',
             'image_url' => 'nullable|url|active_url',
             'entity_image_uuid' => 'nullable|exists:images,id',
