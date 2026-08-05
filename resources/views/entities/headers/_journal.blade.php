@@ -1,4 +1,5 @@
 @includeWhen($entity->parent, 'entities.headers.__parent')
+@include('entities.headers.__entity-locations')
 @if($entity->child->date)
     <div class="entity-header-sub-element">
         <span data-title="{{ __('journals.fields.date') }}" data-toggle="tooltip">

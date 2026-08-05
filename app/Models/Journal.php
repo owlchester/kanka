@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
-use App\Models\Concerns\HasLocation;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
@@ -30,7 +29,6 @@ class Journal extends MiscModel
     use HasCampaign;
     use HasFactory;
     use HasFilters;
-    use HasLocation;
     use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
@@ -40,7 +38,6 @@ class Journal extends MiscModel
         'campaign_id',
         'date',
         'character_id',
-        'location_id',
         'is_private',
         'author_id',
     ];
@@ -68,7 +65,6 @@ class Journal extends MiscModel
      * @var string[]
      */
     public array $nullableForeignKeys = [
-        'location_id',
         // 'character_id',
         'calendar_id',
         'author_id',
@@ -77,12 +73,12 @@ class Journal extends MiscModel
     protected array $apiWith = [
         'author',
         'entity.calendarDate',
+        'entity.locations',
     ];
 
     public array $exportFields = [
         'base',
         'author_id',
-        'location_id',
         'date',
     ];
 
@@ -139,7 +135,7 @@ class Journal extends MiscModel
             return true;
         }
 
-        if (! empty($this->author) || ! empty($this->location)) {
+        if (! empty($this->author) || $this->entity->locations->isNotEmpty()) {
             return true;
         }
         if (! empty($this->entity->calendarReminder())) {
@@ -159,7 +155,7 @@ class Journal extends MiscModel
         return [
             'date',
             'character_id',
-            'location_id',
+            'locations',
             'author_id',
             'date_start',
             'date_end',

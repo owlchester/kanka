@@ -1,5 +1,5 @@
 <?php /** @var \App\Models\Journal $model */?>
-@include('entities.components.profile._location')
+@include('entities.pages.print.profile._locations')
 @if ($model->date)
 | {{ __('journals.fields.date') }} | <x-date :date="$model->date" string /> |
 @endif
