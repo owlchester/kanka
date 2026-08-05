@@ -24,6 +24,8 @@ class UpdateFile extends FormRequest
     {
         return [
             'name' => 'required|string|max:191',
+            'description' => 'nullable|string|max:1000',
+            'author' => 'nullable|string|max:191',
             'visibility_id' => 'nullable|integer|exists:visibilities,id',
         ];
     }

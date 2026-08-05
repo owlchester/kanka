@@ -22,13 +22,14 @@ class DocumentController extends Controller
     protected function mentions(Entity $entity): array
     {
         // @phpstan-ignore-next-line
-        return $entity->mentions()->with(['entity', 'entity.entityType', 'entity.aliases'])->get()->map(function ($mention) {
+        return $entity->mentions()->with(['entity', 'entity.image', 'entity.entityType', 'entity.aliases'])->get()->map(function ($mention) {
             if ($mention->isEntity()) {
                 return [
                     'id' => $mention->target_id,
                     'name' => $mention->target->name,
                     'type' => $mention->target->entityType->code,
                     'image' => Avatar::entity($mention->target)->fallback()->size(32)->thumbnail(),
+                    'image_alt' => $mention->target->image?->description ?: $mention->target->name,
                     'url' => $mention->target->url(),
                     'aliases' => $mention->target->aliases->map(fn ($alias) => [
                         'id' => $alias->id,

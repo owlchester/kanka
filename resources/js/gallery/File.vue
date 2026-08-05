@@ -9,8 +9,19 @@
         <div class="flex flex-col gap-4" v-else-if="!focusing">
             <div class="flex items-center gap-2">
                 <div class="flex items-center gap-1 grow">
-                    <i class="fa-regular fa-clipboard" aria-hidden="true"></i>
-                    <span class="font-extrabold" v-html="trans('details')"></span>
+                    <span class="w-4 h-4 flex items-center justify-center">
+                        <i
+                            class="fa-solid fa-spinner fa-spin"
+                            v-if="saving"
+                            aria-label="Saving"
+                        ></i>
+                        <i
+                            class="fa-regular fa-clipboard"
+                            v-else
+                            aria-hidden="true"
+                        ></i>
+                    </span>
+                    <span class="text-xs font-semibold uppercase tracking-wide text-neutral-content" v-html="trans('details')"></span>
                 </div>
                 <div class="cursor-pointer" @click="closeFile">
                     <i class="fa-solid fa-xmark" aria-label="Close" />
@@ -18,7 +29,7 @@
             </div>
 
             <div class="flex flex-col gap-1">
-                <label class="font-extrabold" v-html="trans('name')"></label>
+                <label class="text-xs font-semibold uppercase tracking-wide text-neutral-content" v-html="trans('name')"></label>
                 <input
                     type="text"
                     class=""
@@ -30,8 +41,34 @@
                 <span v-else v-html="name"></span>
             </div>
 
+            <template v-if="!props.file.is_folder">
+                <div class="flex flex-col gap-1">
+                    <label class="text-xs font-semibold uppercase tracking-wide text-neutral-content" v-html="trans('description')"></label>
+                    <textarea
+                        v-if="canManage"
+                        v-model="description"
+                        maxlength="1000"
+                        @change="updateDescription"
+                        rows="3"
+                    ></textarea>
+                    <span v-else v-html="description"></span>
+                </div>
+
+                <div class="flex flex-col gap-1">
+                    <label class="text-xs font-semibold uppercase tracking-wide text-neutral-content" v-html="trans('author')"></label>
+                    <input
+                        v-if="canManage"
+                        type="text"
+                        v-model="author"
+                        maxlength="191"
+                        @change="updateAuthor"
+                    />
+                    <span v-else v-html="author"></span>
+                </div>
+            </template>
+
             <div class="flex flex-col gap-1" v-if="canManage">
-                <label class="font-extrabold flex gap-1 items-center">
+                <label class="text-xs font-semibold uppercase tracking-wide text-neutral-content flex gap-1 items-center">
                     <i class="fa-regular fa-users" aria-hidden="true" />
                     <span  v-html="trans('visibility')"></span>
                 </label>
@@ -53,7 +90,7 @@
                     class="flex gap-2 items-center cursor-pointer"
                     @click="toggleMentions"
                 >
-                    <div class="grow font-bold flex gap-1 items-center">
+                    <div class="grow text-xs font-semibold uppercase tracking-wide text-neutral-content flex gap-1 items-center">
                         <i class="fa-regular fa-cubes" aria-hidden="true" />
                         <span v-html="trans('used_in')"></span>
                     </div>
@@ -128,13 +165,6 @@
                     <span class="truncate" v-html="trans('focus_point')"></span>
                 </button>
 
-                <div class="grow text-right text-neutral-content" v-if="saving">
-                    <i
-                        class="fa-solid fa-spinner fa-spin"
-                        aria-hidden="true"
-                    ></i>
-                    <span  v-html="trans('saving')"></span>
-                </div>
             </div>
             <div
                 class="text-right text-neutral-content flex gap-1 self-end items-center text-xs"
@@ -201,6 +231,8 @@ const emit = defineEmits(["updated", "deleted", "moved", "closed"]);
 
 const mentions = ref();
 const name = ref();
+const description = ref();
+const author = ref();
 const saving = ref(false);
 const saved = ref(false);
 const visibility = ref();
@@ -238,6 +270,8 @@ const open = () => {
     saving.value = false;
     saved.value = false;
     name.value = props.file.name;
+    description.value = props.file.description;
+    author.value = props.file.author;
     visibility.value = props.file.visibility_id;
     focusX.value = props.file.focus_x;
     focusY.value = props.file.focus_y;
@@ -263,6 +297,20 @@ const updateVisibility = () => {
     update();
 };
 
+const updateDescription = () => {
+    if (description.value === props.file.description) {
+        return;
+    }
+    update();
+};
+
+const updateAuthor = () => {
+    if (author.value === props.file.author) {
+        return;
+    }
+    update();
+};
+
 const update = () => {
     if (saving.value) {
         return;
@@ -270,12 +318,19 @@ const update = () => {
     saving.value = true;
     const data = {
         name: name.value,
+        description: description.value,
+        author: author.value,
         visibility_id: visibility.value,
     };
     axios.post(props.file.api.update, data).then((res) => {
-        props.file.name = name.value;
-        props.file.visibility_id = visibility.value;
+        props.file.name = res.data.data.name;
+        props.file.description = res.data.data.description;
+        props.file.author = res.data.data.author;
+        props.file.visibility_id = res.data.data.visibility_id;
         props.file.visibility = res.data.data.visibility;
+        name.value = props.file.name;
+        description.value = props.file.description;
+        author.value = props.file.author;
         saving.value = false;
         saved.value = true;
         emit("updated", props.file);

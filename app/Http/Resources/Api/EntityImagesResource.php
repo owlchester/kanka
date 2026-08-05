@@ -24,11 +24,15 @@ class EntityImagesResource extends JsonResource
                 'uuid' => $entity->image_uuid,
                 'full' => Avatar::entity($entity)->original(),
                 'thumbnail' => Avatar::entity($entity)->size(40)->thumbnail(),
+                'description' => $entity->image?->description,
+                'author' => $entity->image?->author,
             ],
             'header' => [
                 'uuid' => $entity->header_uuid,
                 'full' => $entity->header?->getUrl(),
                 'thumbnail' => $entity->hasHeaderImage() ? $entity->getHeaderUrl() : null,
+                'description' => $entity->header?->description,
+                'author' => $entity->header?->author,
             ],
         ];
     }

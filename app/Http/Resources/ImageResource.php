@@ -23,6 +23,8 @@ class ImageResource extends JsonResource
         return [
             'id' => $image->id,
             'name' => $image->name,
+            'description' => $image->description,
+            'author' => $image->author,
             'is_folder' => (bool) $image->is_folder,
             'folder_id' => $image->folder_id,
 

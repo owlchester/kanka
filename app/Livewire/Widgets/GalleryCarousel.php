@@ -55,6 +55,7 @@ class GalleryCarousel extends Component
                 'url' => $image->getUrl(800, 600),
                 'full' => $image->getUrl(),
                 'name' => $image->name,
+                'description' => $image->description,
             ])
             ->values()
             ->toArray();

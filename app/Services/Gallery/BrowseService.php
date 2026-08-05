@@ -60,6 +60,7 @@ class BrowseService
             $results['images'][] = [
                 'src' => $image->url(),
                 'name' => $image->name,
+                'description' => $image->description,
                 'folder' => $image->isFolder(),
                 'uuid' => $image->id,
                 'icon' => 'fa-regular fa-folder',

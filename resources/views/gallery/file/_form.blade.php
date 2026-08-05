@@ -8,7 +8,7 @@
 
                 @if ($image->hasThumbnail())
                     <div class="text-center">
-                        <img src="{{ $image->getUrl(192, 144) }}" class="max-w-full rounded" alt="{{ $image->name }}" />
+                        <img src="{{ $image->getUrl(192, 144) }}" class="max-w-full rounded" alt="{{ $image->description ?: $image->name }}" />
                     </div>
                 @else
                     <x-helper>

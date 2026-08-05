@@ -11,6 +11,7 @@ $imagePath = Avatar::entity($entity)->size(192)->thumbnail();
 $imagePathXL = Avatar::entity($entity)->size(400)->thumbnail();
 $imagePathMobile = Avatar::entity($entity)->size(192)->thumbnail();
 $imageVisibility = $entity->image ? $entity->image->visibility_id : null;
+$imageAlt = $entity->image?->description ?: $entity->name;
 $imageClass = (!empty($imageVisibility) ? 'visibility-' . strtolower($imageVisibility->name) : null);
 $entityType = $entityType ?? $entity->entityType;
 
@@ -48,12 +49,12 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
 
         @can('update', $entity)
             @if(isset($printing) && $printing)
-                <img src="{{ $imagePath }}" class="entity-print-image" alt="{{ $entity->name }}"/>
+                <img src="{{ $imagePath }}" class="entity-print-image" alt="{{ $imageAlt }}"/>
             @endif
 
             @if (!isset($printing))
             <a class="cursor-pointer relative cover-background sm:hidden" href="{{ $imageUrl }}" target="_blank" aria-label="Open original image">
-                <img src="{{ $imagePathMobile }}" loading="lazy" alt="{{ $entity->name }}" class="w-28 " />
+                <img src="{{ $imagePathMobile }}" loading="lazy" alt="{{ $imageAlt }}" class="w-28 " />
             </a>
             @endif
             <div class="dropdown">
@@ -65,7 +66,7 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
                     @endif
                     <picture class="">
                         <source media="(min-width:766px)" srcset="{{ $imagePathXL }}" class="">
-                        <img src="{{ $imagePath }}" alt="{{ $entity->name }}" class="w-auto">
+                        <img src="{{ $imagePath }}" alt="{{ $imageAlt }}" class="w-auto">
                     </picture>
                 </div>
 
@@ -110,17 +111,31 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
                         :dialog="route('gallery.file.visibility', [$campaign, $entity->image])"
                         >
                         {{ __('entities/image.actions.change_visibility') }}</x-dropdowns.item>
+                    @if ($entity->image->author)
+                    <x-dropdowns.divider />
+                    <div
+                        role="menuitem"
+                        class="group px-2 py-2 rounded-xl flex items-center gap-1.5 text-xs text-base-content"
+                    >
+                        <div class="flex gap-1">
+                            <span class="shrink-0 w-6 text-neutral-content text-center flex-none">
+                                <x-icon class="fa-regular fa-user" />
+                            </span>
+                            <span>{{ __('campaigns/gallery.fields.credit', ['author' => $entity->image->author]) }}</span>
+                        </div>
+                    </div>
+                    @endif
                     @endif
                 </div>
             </div>
         @else
             @if(isset($printing) && $printing)
-                <img src="{{ $imagePath }}" class="entity-print-image" alt="{{ $entity->name }}"/>
+                <img src="{{ $imagePath }}" class="entity-print-image" alt="{{ $imageAlt }}"/>
             @else
             <a class="entity-image block" href="{{ $imageUrl }}" target="_blank" >
                 <picture class="">
                     <source media="(min-width:766px)" srcset="{{ $imagePathXL }}" class="">
-                    <img src="{{ $imagePathMobile }}" alt="{{ $entity->name }}" loading="lazy" class="w-auto">
+                    <img src="{{ $imagePathMobile }}" alt="{{ $imageAlt }}" loading="lazy" class="w-auto">
                 </picture>
             </a>
             @endif

@@ -25,6 +25,8 @@ class GalleryFile extends JsonResource
             'id' => $file->id,
             'is_folder' => $file->isFolder(),
             'name' => $file->name,
+            'description' => $file->description,
+            'author' => $file->author,
             'thumbnail' => $file->hasThumbnail()
                 ? $file->getUrl(192, 144)
                 : null,

@@ -38,7 +38,7 @@ class UpdateController extends Controller
         $this->authorize('gallery', $campaign);
 
         $image->update(
-            $request->only(['name', 'visibility_id'])
+            $request->only(['name', 'description', 'author', 'visibility_id'])
         );
 
         return (new GalleryFile($image))->campaign($campaign);

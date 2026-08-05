@@ -29,6 +29,7 @@ return [
     ],
     'fields'        => [
         'created_by'            => 'Uploaded by',
+        'description'           => 'Description / alt text',
         'details'               => 'Details',
         'ext'                   => 'Ext',
         'file_type'             => 'File type',
@@ -37,6 +38,8 @@ return [
         'image_used_in'         => '{0} This image isn\'t used in any entry.|{1} Used as the image of one entry.|[2,*] Used as the image of :count entries.',
         'link'                  => 'Link',
         'name'                  => 'Name',
+        'author'                => 'Author / credit',
+        'credit'                => 'Credit: :author',
         'size'                  => 'Size',
         'unused'                => 'Not used anywhere',
         'used_in'               => 'Used in',

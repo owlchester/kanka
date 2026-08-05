@@ -8,6 +8,7 @@ interface MentionItem {
     id?: string
     name: string
     image?: string
+    image_alt?: string
     url?: string
     mention?: string
     type?: string
@@ -151,7 +152,7 @@ defineExpose({
                         <img
                             v-else-if="item.image"
                             :src="item.image"
-                            :alt="item.name"
+                            :alt="item.image_alt || item.name"
                             loading="lazy"
                             class="w-6 h-6 rounded-full object-cover"
                         />

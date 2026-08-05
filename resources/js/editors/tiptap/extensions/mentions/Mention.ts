@@ -155,6 +155,12 @@ export const Mention = Node.create<MentionOptions>({
                 },
             },
 
+            imageAlt: {
+                default: null,
+                parseHTML: element => element.getAttribute('data-image-alt'),
+                renderHTML: () => ({}),
+            },
+
             entity: {
                 default: null,
                 parseHTML: element => element.getAttribute('data-entity'),
@@ -218,7 +224,7 @@ export const Mention = Node.create<MentionOptions>({
                 {
                     src: node.attrs.image,
                     class: 'inline-block w-4 h-4 rounded-full object-cover mr-1 align-middle',
-                    alt: label,
+                    alt: node.attrs.imageAlt || label,
                 },
             ])
         }

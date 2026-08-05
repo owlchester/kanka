@@ -21,6 +21,8 @@ class ImageResource extends JsonResource
         return [
             'src' => $image->url(),
             'name' => $image->name,
+            'description' => $image->description,
+            'author' => $image->author,
             'folder' => $image->isFolder(),
             'uuid' => $image->id,
             'icon' => 'fa-regular fa-folder',

@@ -41,7 +41,7 @@ $source = empty($entity->image_path) && !empty($entity->image_uuid) ? $entity->i
                 <x-icon class="fa-duotone fa-arrow-up-left-from-circle fa-2x hover:text-error-content" />
             </div>
 
-            <img class="focus-image cursor-crosshair" src="{{ \App\Facades\Avatar::entity($entity)->original() }}" alt="img" />
+            <img class="focus-image cursor-crosshair" src="{{ \App\Facades\Avatar::entity($entity)->original() }}" alt="{{ $entity->image?->description ?: $entity->name }}" />
         </div>
         </x-grid>
 

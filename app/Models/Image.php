@@ -34,6 +34,8 @@ use Illuminate\Support\Str;
  * @property ?int $tiling_status
  * @property ?string $tiling_error
  * @property ?array $metadata
+ * @property ?string $description
+ * @property ?string $author
  * @property ?string $folder_id
  * @property bool|int $is_default
  * @property bool|int $is_folder
@@ -77,6 +79,8 @@ class Image extends Model
         'visibility_id',
         'focus_x',
         'focus_y',
+        'description',
+        'author',
     ];
 
     public $casts = [
@@ -94,6 +98,8 @@ class Image extends Model
 
     protected array $sanitizable = [
         'name',
+        'description',
+        'author',
     ];
 
     /**

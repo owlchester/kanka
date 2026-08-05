@@ -51,7 +51,7 @@ class MentionService
         $results = [];
 
         if ($this->request->filled('entities')) {
-            $entities = Entity::with(['entityType', 'aliases'])->whereIn('id', $this->request->get('entities'))->get();
+            $entities = Entity::with(['image', 'entityType', 'aliases'])->whereIn('id', $this->request->get('entities'))->get();
             foreach ($entities as $entity) {
                 if ($entity->entityType->isStandard() && ! $entity->child) {
                     continue;
@@ -181,6 +181,7 @@ class MentionService
             'type' => $entity->entityType->name(),
             'is_private' => $entity->is_private,
             'image' => Avatar::entity($entity)->fallback()->size(32)->thumbnail(),
+            'image_alt' => $entity->image?->description ?: $entity->name,
             'url' => $entity->url(),
             'preview' => route('entities.preview', [$this->campaign, $entity]),
             'mention' => $mention,

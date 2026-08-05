@@ -6,6 +6,7 @@ import axios from 'axios'
 interface GalleryImage {
     src: string
     name: string
+    description?: string
     folder: boolean
     uuid: string
     icon: string
@@ -186,7 +187,7 @@ const selectImage = (image: GalleryImage) => {
     // Insert image into editor with uuid
     editorRef.value?.chain().focus().setImage({
         src: image.src,
-        alt: image.name,
+        alt: image.description || image.name,
         'data-gallery-id': image.uuid,
     }).run()
     closeGallery()
@@ -292,7 +293,7 @@ onBeforeUnmount(() => {
                         <template v-else>
                             <img
                                 :src="image.thumbnail"
-                                :alt="image.name"
+                                :alt="image.description || image.name"
                                 class="absolute inset-0 w-full h-full object-cover"
                                 loading="lazy"
                             />

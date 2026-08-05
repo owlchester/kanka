@@ -58,7 +58,7 @@ class CampaignImageApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $campaign);
-        $image->update($request->only('name', 'folder_id'));
+        $image->update($request->only('name', 'description', 'author', 'folder_id'));
 
         return new Resource($image);
     }

@@ -33,7 +33,7 @@
                        class="absolute inset-0 transition-opacity duration-300"
                        :class="current === index ? 'opacity-100' : 'opacity-0 pointer-events-none'"
                     >
-                        <img :src="image.url" :alt="image.name || ''" class="w-full h-full object-cover" loading="lazy" />
+                        <img :src="image.url" :alt="image.description || image.name || ''" class="w-full h-full object-cover" loading="lazy" />
                     </a>
                 </template>
 

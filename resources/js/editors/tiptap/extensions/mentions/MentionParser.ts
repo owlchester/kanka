@@ -10,7 +10,7 @@ import type { Ref } from 'vue'
 export const MentionParserPluginKey = new PluginKey('mentionParser')
 
 export interface MentionParserOptions {
-    entities?: Array<{ id: number; name: string; type: string; image?: string, url?: string, aliases?: any[] }> | Ref<Array<{ id: number; name: string; type: string; image?: string, url?: string, aliases?: any[] }>>
+    entities?: Array<{ id: number; name: string; type: string; image?: string, image_alt?: string, url?: string, aliases?: any[] }> | Ref<Array<{ id: number; name: string; type: string; image?: string, image_alt?: string, url?: string, aliases?: any[] }>>
 }
 
 export const MentionParser = Extension.create<MentionParserOptions>({
@@ -123,6 +123,7 @@ export const MentionParser = Extension.create<MentionParserOptions>({
                                         const defaultLabel = entity ? entity.name : `${module}:${id}`
                                         const label = customLabel || ''
                                         const image = entity?.image || null
+                                        const imageAlt = entity?.image_alt || defaultLabel
                                         const url = entity?.url || null
 
                                         // If config contains alias:X, use alias name as the display name
@@ -144,6 +145,7 @@ export const MentionParser = Extension.create<MentionParserOptions>({
                                             label: label,
                                             mention: mention,
                                             image: image,
+                                            imageAlt: imageAlt,
                                             url: url,
                                             config: config || null,
                                             entity: entity

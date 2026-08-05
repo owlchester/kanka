@@ -188,6 +188,8 @@ class SetupService
             'used_in' => __('campaigns/gallery.fields.used_in'),
             'unused' => __('campaigns/gallery.fields.unused'),
             'name' => __('crud.fields.name'),
+            'description' => __('campaigns/gallery.fields.description'),
+            'author' => __('campaigns/gallery.fields.author'),
             'delete' => __('crud.remove'),
             'save' => __('crud.save'),
             'saved' => __('gallery.file.saved'),

@@ -26,6 +26,8 @@ class GalleryImageUpdate extends FormRequest
     {
         $rules = [
             'name' => 'required|max:45',
+            'description' => 'nullable|string|max:1000',
+            'author' => 'nullable|string|max:191',
             'folder_id' => [
                 'nullable',
                 Rule::exists('images', 'id')->where(function ($query) {
