@@ -24,16 +24,11 @@ class QuestController extends Controller
         $this->campaign($campaign)->authEntityView($location->entity);
 
         $options = ['campaign' => $campaign, 'location' => $location, 'm' => $this->descendantsMode()];
-        $filters = [];
-        if ($this->filterToDirect()) {
-            $filters['location_id'] = $location->id;
-        }
         Datagrid::layout(Quest::class)
             ->route('locations.quests', $options);
 
         $this->rows = $location
-            ->allQuests()
-            ->filter($filters)
+            ->allQuests($this->filterToDirect())
             ->filteredQuests()
             ->paginate(config('limits.pagination'));
 

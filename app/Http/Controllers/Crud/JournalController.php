@@ -8,6 +8,12 @@ use App\Http\Requests\StoreJournal;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Models\Journal;
+use App\Models\MiscModel;
+use App\Renderers\DatagridRenderer;
+use App\Services\AttributeService;
+use App\Services\Entity\EntitySaveService;
+use App\Services\Entity\Relations\JournalRelationsService;
+use App\Services\FilterService;
 
 class JournalController extends CrudController
 {
@@ -20,6 +26,16 @@ class JournalController extends CrudController
     protected string $model = Journal::class;
 
     protected string $filter = JournalFilter::class;
+
+    public function __construct(
+        FilterService $filterService,
+        DatagridRenderer $datagridRenderer,
+        AttributeService $attributeService,
+        EntitySaveService $entitySaveService,
+        protected JournalRelationsService $journalRelationsService,
+    ) {
+        parent::__construct($filterService, $datagridRenderer, $attributeService, $entitySaveService);
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -59,6 +75,11 @@ class JournalController extends CrudController
     public function destroy(Campaign $campaign, Journal $journal)
     {
         return $this->campaign($campaign)->crudDestroy($journal);
+    }
+
+    protected function afterModelSave(MiscModel $model, array $data): void
+    {
+        $this->journalRelationsService->save($model, $data);
     }
 
     protected function getEntityType(): EntityType

@@ -21,7 +21,7 @@ class QuestResource extends EntityResource
         return $this->entity([
             'date' => $model->date,
             'instigator_id' => $model->instigator_id,
-            'location_id' => $model->location_id,
+            'locations' => $model->entity->locations->pluck('id'),
             'calendar_id' => $model->entity->calendarDate?->calendar_id,
             'calendar_year' => $model->entity->calendarDate?->year,
             'calendar_month' => $model->entity->calendarDate?->month,

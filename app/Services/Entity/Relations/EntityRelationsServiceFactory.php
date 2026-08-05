@@ -12,8 +12,10 @@ class EntityRelationsServiceFactory
         protected EventRelationsService $eventRelationsService,
         protected FamilyRelationsService $familyRelationsService,
         protected ItemRelationsService $itemRelationsService,
+        protected JournalRelationsService $journalRelationsService,
         protected OrganisationRelationsService $organisationRelationsService,
         protected LocationRelationsService $locationRelationsService,
+        protected QuestRelationsService $questRelationsService,
         protected RaceRelationsService $raceRelationsService,
     ) {}
 
@@ -25,9 +27,11 @@ class EntityRelationsServiceFactory
             'event' => $this->eventRelationsService,
             'family' => $this->familyRelationsService,
             'item' => $this->itemRelationsService,
+            'journal' => $this->journalRelationsService,
             'organisation' => $this->organisationRelationsService,
             'location' => $this->locationRelationsService,
             'race' => $this->raceRelationsService,
+            'quest' => $this->questRelationsService,
             default => null,
         };
     }

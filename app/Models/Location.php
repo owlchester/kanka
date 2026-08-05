@@ -170,26 +170,25 @@ class Location extends MiscModel
     /**
      * Get all quests in the location and descendants
      */
-    public function allQuests(): Builder|Quest
+    public function allQuests(bool $direct = false): Builder|Quest
     {
         $locationIds = [$this->id];
-        foreach ($this->entity->descendants as $descendant) {
-            $locationIds[] = $descendant->entity_id;
+        if (! $direct) {
+            foreach ($this->entity->descendants as $descendant) {
+                $locationIds[] = $descendant->entity_id;
+            }
         }
 
-        $table = new Quest;
-
-        return Quest::whereIn($table->getTable() . '.location_id', $locationIds)
-            ->with('location')
+        return Quest::distinct()
+            ->join('entities', function ($join) {
+                $join
+                    ->on('entities.entity_id', '=', 'quests.id')
+                    ->where('entities.type_id', config('entities.ids.quest'));
+            })
+            ->join('entity_locations', 'entity_locations.entity_id', '=', 'entities.id')
+            ->whereIn('entity_locations.location_id', $locationIds)
+            ->with('entity.locations')
             ->has('entity');
-    }
-
-    /**
-     * @return HasMany<Journal, $this>
-     */
-    public function journals(): HasMany
-    {
-        return $this->hasMany('App\Models\Journal', 'location_id', 'id');
     }
 
     /**

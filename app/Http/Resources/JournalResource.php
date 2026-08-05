@@ -22,6 +22,7 @@ class JournalResource extends EntityResource
             'date' => $model->date,
             'author' => $model->author,
             'author_id' => $model->author_id,
+            'locations' => $model->entity->locations->pluck('id'),
             'calendar_id' => $model->entity->calendarDate?->calendar_id,
             'calendar_year' => $model->entity->calendarDate?->year,
             'calendar_month' => $model->entity->calendarDate?->month,

@@ -57,7 +57,7 @@ class QuestMapper extends MiscMapper
     public function second(): void
     {
         $this->loadModel()
-            ->foreign('locations', 'location_id')
+            ->entityLocations()
             ->foreign('entities', 'instigator_id')
             ->saveModel()
             // @phpstan-ignore-next-line

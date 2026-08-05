@@ -436,7 +436,7 @@ class Character extends MiscModel
                 'characterRaces',
                 'characterFamilies',
                 'entity' => fn ($sub) => $sub->grid(),
-                'entity.tags', 
+                'entity.tags',
                 'entity.tags.entity' => fn ($sub) => $sub->grid(),
                 'entity.image', 'entity.locations', 'entity.status'])
             ->has('entity');

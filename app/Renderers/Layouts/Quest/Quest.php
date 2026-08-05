@@ -48,12 +48,10 @@ class Quest extends Layout
                 },
             ],
             'location' => [
-                'key' => 'location.name',
-                'label' => Module::singular(config('entities.ids.location'), __('entities.location')),
-                'render' => Standard::LOCATION,
-                'visible' => function () {
-                    return ! request()->has('location_id');
-                },
+                'key' => 'locations',
+                'label' => Module::plural(config('entities.ids.location'), __('entities.locations')),
+                'render' => Standard::ENTITY_LOCATIONS,
+                'disableSort' => true,
             ],
             'tags' => [
                 'render' => Standard::TAGS,

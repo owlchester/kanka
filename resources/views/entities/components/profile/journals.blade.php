@@ -12,7 +12,7 @@ $child = $entity->child;
 
 <x-sidebar.profile>
     @includeWhen($entity->aliases->isNotEmpty(), 'entities.components.profile._aliases')
-    @include('entities.components.profile._location')
+    @include('entities.components.profile._locations')
     @if ($child->date)
         <div class="element profile-date">
             <div class="title text-uppercase text-xs">{{ __('journals.fields.date') }}</div>

@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Campaign;
+use App\Models\Character;
+
 it('POSTS an invalid relations form')
     ->asUser()
     ->withCampaign()
@@ -83,3 +86,26 @@ it('DELETES an invalid relation')
     ->withRelations()
     ->delete('/api/1.0/campaigns/1/entities/1/relations/100')
     ->assertStatus(404);
+
+it('renders the relations map explorer for boosted campaigns', function () {
+    $this->asUser()->withCampaign(['boost_count' => 1])->withCharacters();
+
+    $campaign = Campaign::first();
+    $entity = Character::first()->entity;
+
+    $this->get(route('entities.relations.index', [$campaign, $entity, 'mode' => 'map']))
+        ->assertOk()
+        ->assertSee('relations-map', false)
+        ->assertSee(route('entities.relations_map', [$campaign, $entity]), false);
+});
+
+it('shows the premium call to action instead of the map for non-boosted campaigns', function () {
+    $this->asUser()->withCampaign()->withCharacters();
+
+    $campaign = Campaign::first();
+    $entity = Character::first()->entity;
+
+    $this->get(route('entities.relations.index', [$campaign, $entity, 'mode' => 'map']))
+        ->assertOk()
+        ->assertDontSee('relations-map', false);
+});

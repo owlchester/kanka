@@ -6,7 +6,6 @@ use App\Enums\FilterOption;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
-use App\Models\Concerns\HasLocation;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
@@ -21,9 +20,7 @@ use Illuminate\Support\Collection;
  * Class Quest
  *
  * @property ?int $instigator_id
- * @property ?int $location_id
  * @property string $date
- * @property ?Location $location
  * @property ?Entity $instigator
  * @property QuestElement[]|Collection $elements
  */
@@ -34,7 +31,6 @@ class Quest extends MiscModel
     use HasCampaign;
     use HasFactory;
     use HasFilters;
-    use HasLocation;
     use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
@@ -44,7 +40,6 @@ class Quest extends MiscModel
         'name',
         'is_private',
         'instigator_id',
-        'location_id',
         'date',
     ];
 
@@ -66,7 +61,6 @@ class Quest extends MiscModel
         'date',
         'instigator.name',
         'calendar_date',
-        'location.name',
     ];
 
     /**
@@ -76,7 +70,6 @@ class Quest extends MiscModel
      */
     public array $nullableForeignKeys = [
         'instigator_id',
-        'location_id',
     ];
 
     /**
@@ -88,24 +81,25 @@ class Quest extends MiscModel
 
     protected array $apiWith = [
         'entity.calendarDate',
+        'entity.locations',
         'elements',
     ];
 
     protected array $exportFields = [
         'base',
         'instigator_id',
-        'location_id',
         'date',
     ];
 
     public function scopeFilteredQuests(Builder $query): Builder
     {
         return $query
-            ->select(['id', 'name', 'location_id', 'is_private'])
+            ->select(['quests.id', 'quests.name', 'quests.is_private'])
             ->sort(request()->only(['o', 'k']), ['name' => 'asc']) // @phpstan-ignore method.notFound
             ->with([
-                'location' => fn ($sub) => $sub->select('id'),
-                'location.entity' => fn ($sub) => $sub->grid(),
+                'entity.locations',
+                'entity.locations.entity' => fn ($sub) => $sub->grid(),
+                'entity' => fn ($sub) => $sub->grid(),
                 'elements',
                 'entity', 'entity.tags',
                 'entity.tags.entity' => fn ($sub) => $sub->grid(),
@@ -180,16 +174,6 @@ class Quest extends MiscModel
     }
 
     /**
-     * The Starting location
-     *
-     * @return BelongsTo<Location, $this>
-     */
-    public function location(): BelongsTo
-    {
-        return $this->belongsTo(Location::class);
-    }
-
-    /**
      * Elements of the quest
      *
      * @return HasMany<QuestElement, $this>
@@ -226,7 +210,7 @@ class Quest extends MiscModel
     {
         if (
             $this->instigator ||
-            ! empty($this->date) || ! empty($this->entity->calendarReminder()) || ! empty($this->location)
+            ! empty($this->date) || ! empty($this->entity->calendarReminder()) || $this->entity->locations->isNotEmpty()
         ) {
             return true;
         }
@@ -245,7 +229,7 @@ class Quest extends MiscModel
             'date',
             'instigator_id',
             'date_start',
-            'location_id',
+            'locations',
             'date_end',
             'quest_element_id',
             'element_role',

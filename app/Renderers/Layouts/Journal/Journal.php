@@ -48,6 +48,12 @@ class Journal extends Layout
                 'render' => Standard::ENTITYLINK,
                 'with' => 'author',
             ],
+            'locations' => [
+                'key' => 'locations',
+                'label' => Module::plural(config('entities.ids.location'), __('entities.locations')),
+                'render' => Standard::ENTITY_LOCATIONS,
+                'disableSort' => true,
+            ],
             'parent' => [
                 'key' => 'parent.name',
                 'label' => __('crud.fields.parent'),

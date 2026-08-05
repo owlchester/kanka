@@ -24,7 +24,7 @@ class JournalFilter extends DatagridFilter
                 'placeholder' => __('journals.placeholders.author'),
                 'model' => Entity::class,
             ])
-            ->location()
+            ->locations()
             ->isPrivate()
             ->template()
             ->archived()

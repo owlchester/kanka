@@ -130,7 +130,9 @@ class TransformService
         $characterID = config('entities.ids.character');
         $familyID = config('entities.ids.family');
         $eventID = config('entities.ids.event');
-        $entityLocations = [$raceID, $creatureID, $organisationID, $characterID, $familyID, $eventID];
+        $questID = config('entities.ids.quest');
+        $journalID = config('entities.ids.journal');
+        $entityLocations = [$raceID, $creatureID, $organisationID, $characterID, $familyID, $eventID, $questID, $journalID];
 
         // If moving from a multi-location to single location
         if (in_array($this->child->entityTypeId(), $entityLocations) && ! in_array($this->new->entityTypeId(), $entityLocations) && $this->entity->locations->isNotEmpty()) {
@@ -157,7 +159,9 @@ class TransformService
         $characterID = config('entities.ids.character');
         $familyID = config('entities.ids.family');
         $eventID = config('entities.ids.event');
-        $entityLocations = [$raceID, $creatureID, $organisationID, $characterID, $familyID, $eventID];
+        $questID = config('entities.ids.quest');
+        $journalID = config('entities.ids.journal');
+        $entityLocations = [$raceID, $creatureID, $organisationID, $characterID, $familyID, $eventID, $questID, $journalID];
 
         // If the entity is switched from one location to entity locations
         if (! in_array($this->child->entityTypeId(), $entityLocations) && in_array($this->new->entityTypeId(), $entityLocations)) {

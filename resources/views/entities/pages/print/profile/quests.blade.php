@@ -2,9 +2,7 @@
 @if (!empty($model->instigator))
 | {{ __('quests.fields.instigator') }} | {!! $model->instigator->name !!} |
 @endif
-@if (!empty($model->location))
-| {{ __('quests.fields.location') }} | {!! $model->location->name !!} |
-@endif
+@include('entities.pages.print.profile._locations')
 @if ($model->date)
 | {{ __('journals.fields.date') }} | <x-date :date="$model->date" string /> |
 @endif
