@@ -797,7 +797,6 @@ function toEditingPin(pin) {
         customShape: pin.custom_shape,
         polygonStyle: pin.polygon_style,
         circleRadius: pin.circle_radius,
-        pin_size: pin.pin_size,
         groupId: pin.group_id,
         entityId: pin.entity_id,
         entityName: pin.entity_name,

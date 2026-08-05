@@ -325,12 +325,6 @@ const DEFAULT_MARKER_SIZE = 24
 const LEGACY_MARKER_SIZE = 40
 const DEFAULT_PIN_ICON = 'fa-solid fa-map-pin'
 
-function markerSize(pin) {
-    const configured = pin.pin_size || LEGACY_MARKER_SIZE
-
-    return Math.round(configured * (DEFAULT_MARKER_SIZE / LEGACY_MARKER_SIZE))
-}
-
 function isDefaultPinIcon(icon) {
     return !icon || (icon.type === 'fa' && icon.value === DEFAULT_PIN_ICON)
 }
@@ -340,7 +334,7 @@ function pinClassName(pin) {
 }
 
 function legacyPinIcon(pin) {
-    const size = pin.pin_size || LEGACY_MARKER_SIZE
+    const size = LEGACY_MARKER_SIZE
     let inner = `<i class="${DEFAULT_PIN_ICON}"></i>`
     let style = `--pin-size: ${size}px; background-color: ${pin.colour || '#ccc'};`
 
@@ -370,7 +364,7 @@ function legacyPinIcon(pin) {
 }
 
 function modernPinIcon(pin) {
-    const size = markerSize(pin)
+    const size = DEFAULT_MARKER_SIZE
     const colour = pin.colour || '#ccc'
     const icon = pin.icon
 
@@ -484,7 +478,18 @@ function buildPin(pin) {
     }
 
     if (pin.shape === 'label') {
-        const marker = L.marker([pin.latitude, pin.longitude], { opacity: 0 })
+        // Do not inherit Leaflet's default marker icon: its tooltip anchor is offset
+        // for a pin-shaped icon, which makes labels drift away from their map point.
+        const marker = L.marker([pin.latitude, pin.longitude], {
+            icon: L.divIcon({
+                html: '',
+                iconSize: [0, 0],
+                iconAnchor: [0, 0],
+                tooltipAnchor: [0, 0],
+                className: 'map-label-anchor',
+            }),
+            opacity: 0,
+        })
             .bindTooltip(pin.name, {
                 permanent: true,
                 direction: 'center',
