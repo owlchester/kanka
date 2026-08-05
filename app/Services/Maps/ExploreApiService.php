@@ -237,6 +237,16 @@ class ExploreApiService
             'stroke_bold' => __('maps/explorer.marker.stroke_bold'),
             'opacity' => __('maps/markers.fields.opacity'),
             'custom' => __('maps/markers.circle_sizes.custom'),
+            'icons' => [
+                'pin' => __('maps/markers.icons.marker'),
+                'question' => __('maps/markers.icons.question'),
+                'exclamation' => __('maps/markers.icons.exclamation'),
+                'entity' => __('maps/markers.icons.entity'),
+                'square' => __('maps/markers.icons.square'),
+                'circle' => __('maps/markers.icons.circle'),
+                'diamond' => __('maps/markers.icons.diamond'),
+                'triangle' => __('maps/markers.icons.triangle'),
+            ],
             'premium_custom_icon' => __('maps/explorer.marker.premium_custom_icon'),
             'custom_icon_or_svg' => __('maps/explorer.marker.custom_icon_or_svg'),
             'custom_icon_helper' => __('maps/markers.helpers.custom_icon_v2', [

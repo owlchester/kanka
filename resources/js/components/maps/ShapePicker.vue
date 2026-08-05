@@ -24,9 +24,20 @@
                 type="button"
                 class="w-9 h-9 rounded-lg flex items-center justify-center cursor-pointer border-2"
                 :class="isSelected(shape) ? 'bg-accent text-accent-content border-accent' : 'bg-base-200 border-transparent'"
+                v-tippy="i18n.icons?.[shape.key]"
                 @click="selectShape(shape)"
             >
                 <i :class="shape.fa" aria-hidden="true" />
+            </button>
+
+            <button
+                type="button"
+                class="w-9 h-9 rounded-lg flex items-center justify-center cursor-pointer border-2"
+                :class="isEntityImageSelected ? 'bg-accent text-accent-content border-accent' : 'bg-base-200 border-transparent'"
+                v-tippy="i18n.icons?.entity"
+                @click="selectEntityImage"
+            >
+                <i class="fa-solid fa-user" aria-hidden="true" />
             </button>
 
             <button
@@ -75,6 +86,7 @@ const customInputRef = ref(null);
 const customIconPreview = computed(() =>
     props.pin.icon?.type === "svg" ? svgIconDataUrl(props.pin.icon.value) : null,
 );
+const isEntityImageSelected = computed(() => !props.pin.customIcon && Number(props.pin.iconId) === 4);
 
 // Remembers the last custom icon so a stray click on a preset shape doesn't force the user
 // to retype it — clicking the custom button again restores it even though pin.customIcon
@@ -102,6 +114,11 @@ function isSelected(shape) {
 function selectShape(shape) {
     showPremiumError.value = false;
     emit("change", { icon: shape.icon, custom_icon: null, render: { type: "fa", value: shape.fa } });
+}
+
+function selectEntityImage() {
+    showPremiumError.value = false;
+    emit("change", { icon: 4, custom_icon: null, render: { type: "fa", value: "fa-solid fa-user" } });
 }
 
 function clickCustom() {
