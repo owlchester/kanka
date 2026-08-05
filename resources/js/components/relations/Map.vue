@@ -16,7 +16,7 @@
         <div
             ref="box"
             class="relative rounded-lg p-4 shadow-xs bg-box w-full transition-all duration-150 box-entity-relations box-entity-relations-explorer"
-            :class="embedded ? 'h-80' : 'min-h-50'"
+            :class="embedded ? 'h-80' : 'min-h-80'"
         >
             <div v-show="loading" class="absolute inset-0 flex items-center justify-center text-xg bg-box z-10">
                 <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
@@ -59,10 +59,16 @@ let entity: any = null
 let relation: any = null
 
 onMounted(() => {
+    resizeMap()
+    window.addEventListener('resize', resizeMap)
+    if (document.fonts?.ready) {
+        document.fonts.ready.then(resizeMap)
+    }
     initCytoscape()
 })
 
 onBeforeUnmount(() => {
+    window.removeEventListener('resize', resizeMap)
     if (cy) {
         cy.destroy()
         cy = null
@@ -97,6 +103,16 @@ const selectOption = (value: string) => {
     }
 
     loadMap()
+}
+
+// Fill the remaining viewport height below the page header on large screens.
+const resizeMap = () => {
+    if (props.embedded || !box.value) {
+        return
+    }
+    const top = box.value.getBoundingClientRect().top
+    const height = window.innerHeight - top
+    box.value.style.height = Math.max(height, 220) + 'px'
 }
 
 const initCytoscape = async () => {
