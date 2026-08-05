@@ -42,6 +42,7 @@ return [
         'mirrored'  => 'This will also delete the mirrored relation and is permanent.',
         'success'   => 'Relation :target removed for :entity.',
     ],
+    'empty'             => 'Nothing to see here',
     'fields'            => [
         'attitude'          => 'Attitude',
         'is_pinned'         => 'Pinned',
