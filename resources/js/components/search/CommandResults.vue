@@ -151,7 +151,7 @@
                             @mouseenter="focusedIndex = i"
                         >
                             <a
-                                :href="item.link || item.url"
+                                :href="resultUrl(item)"
                                 class="cursor-pointer flex items-center gap-2 p-2 flex-1 min-w-0"
                                 @click="openItem(item)"
                             >
@@ -281,7 +281,7 @@ export default {
             if (!item) {
                 return;
             }
-            const url = item.link || item.url;
+            const url = this.resultUrl(item);
             if (!url) {
                 return;
             }
@@ -297,6 +297,21 @@ export default {
                         'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content ?? '',
                     },
                 });
+            }
+        },
+
+        resultUrl(item) {
+            const url = item.link || item.url;
+            if (!url || this.mode !== 'fulltext') {
+                return url;
+            }
+
+            try {
+                const resultUrl = new URL(url, window.location.origin);
+                resultUrl.searchParams.set('highlight', this.query.trim());
+                return resultUrl.toString();
+            } catch {
+                return url;
             }
         },
     },

@@ -48,3 +48,10 @@
         rotate: 180deg ;
     }
 }
+
+mark.kanka-search-highlight {
+    background-color: hsl(var(--wa) / 0.45);
+    color: hsl(var(--wac));
+    border-radius: 0.15rem;
+    padding-inline: 0.1rem;
+}

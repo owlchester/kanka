@@ -99,6 +99,87 @@ const registerTrustDomain = () => {
 };
 
 /**
+ * Highlight every literal occurrence of the search term passed by the command center.
+ * Text fragments only highlight one match, so this works across all rendered entity content.
+ */
+let searchHighlightScrolled = false;
+
+const highlightSearchTerm = () => {
+    const term = new URLSearchParams(window.location.search).get('highlight')?.trim();
+    if (!term) {
+        return;
+    }
+
+    const roots = document.querySelectorAll('.box-entity-entry .entity-content, .post-block .entity-content');
+    if (!roots.length) {
+        return;
+    }
+
+    const escapedTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const matcher = new RegExp(escapedTerm, 'gi');
+    const marks = [];
+    const excludedTags = new Set(['BUTTON', 'INPUT', 'OPTION', 'SCRIPT', 'SELECT', 'STYLE', 'TEXTAREA']);
+
+    roots.forEach((root) => {
+        const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        let node;
+
+        while ((node = walker.nextNode())) {
+            const parent = node.parentElement;
+            if (!parent || excludedTags.has(parent.tagName) || parent.closest('mark')) {
+                continue;
+            }
+            textNodes.push(node);
+        }
+
+        textNodes.forEach((textNode) => {
+            matcher.lastIndex = 0;
+            if (!matcher.test(textNode.nodeValue)) {
+                return;
+            }
+
+            matcher.lastIndex = 0;
+            const fragment = document.createDocumentFragment();
+            let lastIndex = 0;
+            let match;
+
+            while ((match = matcher.exec(textNode.nodeValue)) !== null) {
+                if (match.index > lastIndex) {
+                    fragment.append(document.createTextNode(textNode.nodeValue.slice(lastIndex, match.index)));
+                }
+
+                const mark = document.createElement('mark');
+                mark.className = 'kanka-search-highlight';
+                mark.textContent = match[0];
+                fragment.append(mark);
+                marks.push(mark);
+                lastIndex = match.index + match[0].length;
+            }
+
+            if (lastIndex < textNode.nodeValue.length) {
+                fragment.append(document.createTextNode(textNode.nodeValue.slice(lastIndex)));
+            }
+            textNode.replaceWith(fragment);
+        });
+    });
+
+    marks.forEach((mark) => {
+        const post = mark.closest('.post-block');
+        const content = mark.closest('.entity-content');
+        if (post && content?.classList.contains('hidden')) {
+            content.classList.remove('hidden');
+            post.querySelector('.element-toggle')?.classList.remove('animate-collapsed');
+        }
+    });
+
+    if (!searchHighlightScrolled && marks.length > 0) {
+        searchHighlightScrolled = true;
+        requestAnimationFrame(() => marks[0].scrollIntoView({ behavior: 'smooth', block: 'center' }));
+    }
+};
+
+/**
  * When loading an entity, a post anchor might be set but not visible due to pagination
  */
 const registerLoadAnchorPost = () => {
@@ -138,4 +219,6 @@ registerStoryLoadMore();
 registerTrustDomain();
 registerLoadAnchorPost();
 scanAndMountMapPreviews();
+highlightSearchTerm();
 window.onEvent(scanAndMountMapPreviews);
+window.onEvent(highlightSearchTerm);
