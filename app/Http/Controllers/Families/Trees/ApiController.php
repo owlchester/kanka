@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Families\Trees;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreFamilyTree;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Family;
@@ -10,7 +11,6 @@ use App\Services\Families\FamilyTreeService;
 use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class ApiController extends Controller
 {
@@ -63,7 +63,7 @@ class ApiController extends Controller
     /**
      * Save the new config
      */
-    public function save(Request $request, Campaign $campaign, Family $family): JsonResponse
+    public function save(StoreFamilyTree $request, Campaign $campaign, Family $family): JsonResponse
     {
         $this->authorize('update', $family->entity);
 
@@ -76,7 +76,7 @@ class ApiController extends Controller
                 ->service
                 ->family($family)
                 ->campaign($campaign)
-                ->save($request->get('data'))
+                ->save($request->validated('tree'))
                 ->api()
         );
     }

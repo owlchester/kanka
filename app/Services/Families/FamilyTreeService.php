@@ -9,12 +9,13 @@ use App\Models\Family;
 use App\Models\FamilyTree;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
-use Illuminate\Support\Str;
 
 class FamilyTreeService
 {
     use CampaignAware;
     use UserAware;
+
+    public function __construct(protected FamilyTreeGraphConverter $graphConverter) {}
 
     protected Family $family;
 
@@ -58,7 +59,8 @@ class FamilyTreeService
     public function tree(): array
     {
         return [
-            'nodes' => $this->fillNodes(),
+            'nodes' => $this->config['nodes'] ?? [],
+            'edges' => $this->config['edges'] ?? [],
             'entities' => $this->entities,
             'suggestions' => $this->characterSuggestions,
             'texts' => $this->texts(),
@@ -83,15 +85,18 @@ class FamilyTreeService
 
     protected function loadSetup(): void
     {
+        $this->entityIds = [];
+        $this->entities = [];
+        $this->missingIds = [];
+        $this->configEntityIds = [];
+        $this->characterSuggestions = [];
         $this->loadFamilyTree();
         $this->loadFamily();
+        $this->config = $this->graphConverter->convert($this->familyTree->config ?? []);
 
-        // Get all the entity ids
-        if (empty($this->familyTree->config)) {
-            return;
+        if (! empty($this->config['nodes'])) {
+            $this->prepareEntities();
         }
-        $this->prepareEntities();
-        // foreach ()
     }
 
     protected function loadFamily(): void
@@ -120,27 +125,21 @@ class FamilyTreeService
      */
     protected function prepareEntities(): void
     {
-        $data = $this->familyTree->config;
-        // Go find every unique entity id
-        array_walk_recursive($data, function ($v, $k) {
-            if ($k !== 'entity_id') {
-                return;
-            }
-            if (empty($v) || in_array($v, $this->configEntityIds)) {
-                return;
-            }
-            $this->configEntityIds[] = $v;
-        });
-        // Empty family tree
-        if (empty($this->configEntityIds)) {
+        $this->configEntityIds = collect($this->config['nodes'] ?? [])
+            ->pluck('entity_id')
+            ->filter()
+            ->unique()
+            ->values()
+            ->all();
+        $this->entityIds = $this->configEntityIds;
+
+        if (empty($this->entityIds)) {
             return;
         }
 
-        $this->entityIds = array_unique(array_values($this->configEntityIds));
-        // dump($this->entityIds);
-
         // Prepare entities
         $entities = Entity::inTypes([config('entities.ids.character')])
+            ->where('campaign_id', $this->campaign->id)
             ->with([
                 'status',
                 'entityType',
@@ -152,18 +151,9 @@ class FamilyTreeService
         foreach ($entities as $entity) {
             $this->entities[$entity->id] = $this->formatEntity($entity);
         }
-        // dump($this->entities);
-        if (! empty($this->entities)) {
-            $this->missingIds = array_diff($this->entityIds, array_keys($this->entities));
-            $this->cleanupMissingEntities();
-            $this->visibilityCheck();
-        } else {
-            $this->entities = [];
-            $this->familyTree->config = [];
-            // $this->generatePlaceholder();
-        }
-        // dd($this->characterSuggestions);
-        // dump($this->missingIds);
+        $this->missingIds = array_diff($this->entityIds, array_keys($this->entities));
+        $this->cleanupMissingEntities();
+        $this->visibilityCheck();
     }
 
     /**
@@ -213,48 +203,19 @@ class FamilyTreeService
 
     protected function visibilityCheck(): void
     {
-        $config = [];
-        foreach ($this->config as $key => $node) {
-            $config[$key] = $this->cleanInvisible($node, $key);
-        }
-        $this->config = $config;
-    }
+        $nodes = array_values(array_filter(
+            $this->config['nodes'] ?? [],
+            fn (array $node): bool => $this->isVisible($node)
+        ));
+        $nodeIds = array_column($nodes, 'id');
+        $edges = array_values(array_filter(
+            $this->config['edges'] ?? [],
+            fn (array $edge): bool => $this->isVisible($edge)
+                && in_array($edge['source'] ?? null, $nodeIds, true)
+                && in_array($edge['target'] ?? null, $nodeIds, true)
+        ));
 
-    protected function cleanInvisible($node, $key): mixed
-    {
-        if (isset($node['relations'])) {
-            foreach ($node['relations'] as $k => $rel) {
-                if (! isset($rel['children'])) {
-                    $relations[] = $rel;
-
-                    continue;
-                }
-
-                $children = [];
-                foreach ($rel['children'] as $ck => $child) {
-                    $child = $this->cleanInvisible($child, $ck);
-                    if (! $child) {
-                        continue;
-                    }
-                    if ($this->isVisible($child)) {
-                        $children[] = $child;
-                    }
-                }
-                unset($rel['children']);
-                if (! empty($children)) {
-                    $rel['children'] = $children;
-                }
-                if ($this->isVisible($rel)) {
-                    $relations[] = $rel;
-                }
-            }
-            unset($node['relations']);
-            if (! empty($relations)) {
-                $node['relations'] = $relations;
-            }
-        }
-
-        return $node;
+        $this->config = ['nodes' => $nodes, 'edges' => $edges];
     }
 
     protected function isVisible($relation): bool
@@ -270,64 +231,21 @@ class FamilyTreeService
     protected function cleanupMissingEntities(): void
     {
         if (empty($this->missingIds)) {
-            $this->config = $this->familyTree->config;
-
             return;
         }
 
-        $config = [];
-        // Loop everything and remove entities that match
-        foreach ($this->familyTree->config as $key => $node) {
-            $config[$key] = $this->cleanupNode($node, $key);
-        }
+        $nodes = array_values(array_filter(
+            $this->config['nodes'] ?? [],
+            fn (array $node): bool => empty($node['entity_id']) || ! in_array($node['entity_id'], $this->missingIds, true)
+        ));
+        $nodeIds = array_column($nodes, 'id');
+        $edges = array_values(array_filter(
+            $this->config['edges'] ?? [],
+            fn (array $edge): bool => in_array($edge['source'] ?? null, $nodeIds, true)
+                && in_array($edge['target'] ?? null, $nodeIds, true)
+        ));
 
-        // Save the config now that its clean?
-        $this->config = $config;
-    }
-
-    protected function cleanupNode($node, $key): mixed
-    {
-        if (in_array($node['entity_id'], $this->missingIds) && $node['entity_id'] != null) {
-            return null;
-        }
-        if (! isset($node['relations'])) {
-            return null;
-        }
-        $relations = [];
-        foreach ($node['relations'] as $k => $rel) {
-            if (in_array($rel['entity_id'], $this->missingIds) && $rel['entity_id'] != null) {
-                continue;
-            }
-            if (! isset($rel['children'])) {
-                continue;
-            }
-            $children = [];
-            foreach ($rel['children'] as $ck => $child) {
-                $child = $this->cleanupNode($child, $ck);
-                if (! $child) {
-                    continue;
-                }
-                $children[] = $child;
-            }
-            unset($rel['children']);
-            if (! empty($children)) {
-                $rel['children'] = $children;
-            }
-
-            $relations[] = $rel;
-        }
-        unset($node['relations']);
-        if (! empty($relations)) {
-            $node['relations'] = $relations;
-        }
-
-        /*if (!empty($node['relations'])) {
-            $parent[$key]['relations'] = $node['relations'];
-        } elseif (isset($node['relations'])) {
-            unset($parent[$key]['relations']);
-        }*/
-
-        return $node;
+        $this->config = ['nodes' => $nodes, 'edges' => $edges];
     }
 
     protected function emptyNode(): array
@@ -349,7 +267,7 @@ class FamilyTreeService
     /**
      * Save a new tree config to the database
      */
-    public function save(array $data = []): self
+    public function save(?array $data = []): self
     {
         // If the campaign is not premium dont save the tree.
         if (! $this->campaign->premium()) {
@@ -365,69 +283,12 @@ class FamilyTreeService
         }
 
         // $data = json_decode($data);
-        $data = $this->prepareForSave($data);
+        $data = $this->graphConverter->convert($data);
 
         $this->familyTree->config = $data;
         $this->familyTree->save();
 
         return $this;
-    }
-
-    /**
-     * Prepare a new config for the database by adding a uuid everywhere
-     *
-     * @return array
-     */
-    protected function prepareForSave(array $data)// : array
-    {
-        $assingUuid = function (&$value, $key) {
-            if ($key == 'uuid' && (! is_string($value) || ! Str::isUuid($value))) {
-                $value = (string) Str::uuid();
-            }
-            // echo "The key $key has the value $value <br>";
-        };
-
-        array_walk_recursive($data, $assingUuid);
-
-        // Loop on the data, adding a uuid on each element that is missing one
-        // dd('ended recursive', $data);
-        return $data;
-    }
-
-    protected function fillNodes(): array
-    {
-        $nodes = $this->config;
-        if (empty($nodes)) {
-            return [];
-        }
-        // dd($nodes);
-        if (! isset($nodes[0]['relations'])) {
-            return $nodes;
-        }
-
-        foreach ($nodes[0]['relations'] as $i => $relation) {
-            $nodes[0]['relations'][$i] = $this->informRelation($relation);
-        }
-
-        return $nodes;
-    }
-
-    protected function informRelation(array $relation): array
-    {
-        // No children, single relation
-        if (empty($relation['children'])) {
-            $relation['width'] = 1;
-
-            return $relation;
-        }
-
-        $count = 0;
-        foreach ($relation['children'] as $i => $child) {
-            $count++;
-        }
-        $relation['width'] = $count;
-
-        return $relation;
     }
 
     protected function texts(): array

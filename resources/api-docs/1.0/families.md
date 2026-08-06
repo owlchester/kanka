@@ -179,42 +179,41 @@ To get the details of a family tree, use the following endpoint.
 ### Results
 ```json
 {
-    "data": [
-        {
-            "entity_id": 76,
-            "uuid": "7d06c3b9-31d3-4131-b7a9-da4e3b62099f",
-            "relations": [
-                {
-                    "entity_id": 188,
-                    "uuid": "c1aa22cd-c2e1-47c3-ad3b-d8b09ad60dd9",
-                    "children": [
-                        {
-                            "entity_id": 185,
-                            "colour": "#af5454",
-                            "uuid": "2d42132a-f95b-41f4-9668-37f76b6f6c01"
-                        }
-                    ]
-                },
-                {
-                    "entity_id": 26,
-                    "role": "Wife",
-                    "colour": "#731515",
-                    "visibility": "1",
-                    "uuid": "d6af7644-e70d-43ef-a327-79a1f60c75d9",
-                    "children": [
-                        {
-                            "entity_id": 7,
-                            "uuid": "15119f77-559b-4b95-9db6-9839783b5358"
-                        },
-                        {
-                            "entity_id": 13,
-                            "uuid": "5df4f99c-a192-4b02-a0de-6380a0dbd99a"
-                        }
-                    ]
-                }
-            ]
-        }
-    ]
+    "data": {
+        "nodes": [
+            {
+                "id": "7d06c3b9-31d3-4131-b7a9-da4e3b62099f",
+                "entity_id": 76,
+                "isUnknown": false
+            },
+            {
+                "id": "c1aa22cd-c2e1-47c3-ad3b-d8b09ad60dd9",
+                "entity_id": 188,
+                "isUnknown": false
+            },
+            {
+                "id": "2d42132a-f95b-41f4-9668-37f76b6f6c01",
+                "entity_id": 185,
+                "isUnknown": false
+            }
+        ],
+        "edges": [
+            {
+                "id": "d6af7644-e70d-43ef-a327-79a1f60c75d9",
+                "source": "7d06c3b9-31d3-4131-b7a9-da4e3b62099f",
+                "target": "c1aa22cd-c2e1-47c3-ad3b-d8b09ad60dd9",
+                "type": "partner",
+                "role": "Former partner"
+            },
+            {
+                "id": "15119f77-559b-4b95-9db6-9839783b5358",
+                "source": "c1aa22cd-c2e1-47c3-ad3b-d8b09ad60dd9",
+                "target": "2d42132a-f95b-41f4-9668-37f76b6f6c01",
+                "type": "parent",
+                "parentage": "unspecified"
+            }
+        ]
+    }
 }
 ```
 
@@ -230,66 +229,49 @@ To create a family tree, use the following endpoint.
 
 ### Body
 
-Because of the recursive nature of the family trees, they work differently than the rest of the entities in Kanka, a tree consists of an array of nodes which in turn can contain an array of child nodes, for offsprings, and relation nodes.
-
-A family tree has to have a parent node, which in turn contains an array with with its related nodes, this nodes can have their respective relations arrays and child arrays, that also contain nodes.
-
-Its worth noting that children can only come from a relation, meaning that only relation nodes can have children arrays, and that only the founder and children can have relations, meaning that only the founder and children nodes can have relations.
+Family trees use a flat graph. Nodes represent people and edges represent relationships. A parent edge is directed from parent to child; a partner edge connects two people without implying parentage. This allows single parents, previous partners, adopted children, and other independent relationships.
 
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
-| `tree` | `array` (Required) | Array containing all the nodes for the family tree|
-| `*.entity_id` | `int` (Required) | The id of the entity represented by the node |
-| `*.uuid` | `string` (Required) | A string that identifies the node, this can be left empty or filled with a string, but the array key is required |
-| `*.role` | `string` | The relation role of the node |
-| `*.colour` | `string` | The hex value of the node's colour |
-| `*.cssClass` | `string` | The CSS class for the node |
-| `*.visibility` | `integer` | The visibility id for the node, 1 for all, 2 for admins, 3 for admins and self, 4 for self, 5 for campaign members, note that the visibility of the node also applies to all its descendant relations and children |
-| `*.isUnknown` | `bool` | If the node shows "Unknown" instead of its entity |
-| `*.relations` | `array` (Exclusive to children/founder nodes) | Array containing a node's related nodes |
-| `*.children` | `array` (Exclusive to relation nodes) | Array containing the child nodes of a relation |
+| `tree` | `object` (Required) | Object containing `nodes` and `edges` |
+| `tree.nodes` | `array` (Required) | People displayed in the tree |
+| `tree.nodes.*.id` | `string` (Required) | UUID identifying the node occurrence |
+| `tree.nodes.*.entity_id` | `int` or `null` | Character entity represented by the node |
+| `tree.nodes.*.isUnknown` | `bool` | If the node represents an unknown person |
+| `tree.nodes.*.role` | `string` | Optional node label |
+| `tree.nodes.*.colour` | `string` | Optional hex colour |
+| `tree.nodes.*.cssClass` | `string` | Optional graph class |
+| `tree.nodes.*.visibility` | `integer` | Visibility id: 1 for all, 2 for admins, or 5 for campaign members |
+| `tree.edges` | `array` (Required) | Relationships between nodes |
+| `tree.edges.*.id` | `string` (Required) | UUID identifying the relationship |
+| `tree.edges.*.source` | `string` (Required) | Source node UUID |
+| `tree.edges.*.target` | `string` (Required) | Target node UUID |
+| `tree.edges.*.type` | `string` (Required) | `partner` or directed `parent` |
+| `tree.edges.*.parentage` | `string` | Optional parentage type such as `biological`, `adoptive`, or `foster` |
+| `tree.edges.*.role` | `string` | Optional relationship label |
+| `tree.edges.*.colour` | `string` | Optional hex colour |
+| `tree.edges.*.cssClass` | `string` | Optional graph class |
+| `tree.edges.*.visibility` | `integer` | Visibility id |
 
 ### Example
 ```json
 {
-    "tree": [
-        {
-            "entity_id": 76,
-            "uuid": "1",
-            "relations": [
-                {
-                    "entity_id": 24,
-                    "role": "Partner",
-                    "uuid": "2",
-                    "cssClass": "classname",
-                    "children": [
-                        {
-                            "entity_id": 20,
-                            "uuid": "3",
-                            "role": "Husband",
-                            "relations": [
-                                {
-                                    "entity_id": 14,
-                                    "uuid": "string",
-                                    "role": "Partner",
-                                    "children": [
-                                        {
-                                            "entity_id": 26,
-                                            "uuid": ""
-                                        },
-                                        {
-                                            "entity_id": 108,
-                                            "uuid": ""
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
-        }
-    ]
+    "tree": {
+        "nodes": [
+            {"id": "00000000-0000-4000-8000-000000000001", "entity_id": 76},
+            {"id": "00000000-0000-4000-8000-000000000002", "entity_id": 24},
+            {"id": "00000000-0000-4000-8000-000000000003", "entity_id": 20},
+            {"id": "00000000-0000-4000-8000-000000000004", "entity_id": 14},
+            {"id": "00000000-0000-4000-8000-000000000005", "entity_id": null, "isUnknown": true}
+        ],
+        "edges": [
+            {"id": "00000000-0000-4000-8000-000000000006", "source": "00000000-0000-4000-8000-000000000001", "target": "00000000-0000-4000-8000-000000000002", "type": "partner", "role": "Former partner"},
+            {"id": "00000000-0000-4000-8000-000000000007", "source": "00000000-0000-4000-8000-000000000001", "target": "00000000-0000-4000-8000-000000000003", "type": "parent"},
+            {"id": "00000000-0000-4000-8000-000000000008", "source": "00000000-0000-4000-8000-000000000002", "target": "00000000-0000-4000-8000-000000000003", "type": "parent", "parentage": "adoptive"},
+            {"id": "00000000-0000-4000-8000-000000000009", "source": "00000000-0000-4000-8000-000000000003", "target": "00000000-0000-4000-8000-000000000004", "type": "partner"},
+            {"id": "00000000-0000-4000-8000-000000000010", "source": "00000000-0000-4000-8000-000000000004", "target": "00000000-0000-4000-8000-000000000005", "type": "parent", "parentage": "foster"}
+        ]
+    }
 }
 ```
 ### Results
@@ -311,16 +293,7 @@ The update endpoint for the family tree follows the same rules as the creation e
 
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
-| `tree` | `array` (Required) | Array containing all the nodes for the family tree|
-| `*.entity_id` | `int` (Required) | The id of the entity represented by the node |
-| `*.uuid` | `string` (Required) | A string that identifies the node, this can be left empty or filled with a string, but the array key is required |
-| `*.role` | `string` | The relation role of the node |
-| `*.colour` | `string` | The hex value of the node's colour |
-| `*.cssClass` | `string` | The CSS class for the node |
-| `*.visibility` | `integer` | The visibility id for the node, 1 for all, 2 for admins, 3 for admins and self, 4 for self, 5 for campaign members, note that the visibility of the node also applies to all its descendant relations and children |
-| `*.isUnknown` | `bool` | If the node shows "Unknown" instead of its entity |
-| `*.relations` | `array` (Exclusive to children/founder nodes) | Array containing a node's related nodes |
-| `*.children` | `array` (Exclusive to relation nodes) | Array containing the child nodes of a relation |
+| `tree` | `object` (Required) | Object containing `nodes` and `edges`, with the same fields as the create endpoint |
 
 ### Results
 

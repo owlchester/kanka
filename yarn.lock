@@ -2260,6 +2260,11 @@ cytoscape-cose-bilkent@^4.1.0:
   dependencies:
     cose-base "^1.0.0"
 
+cytoscape-dagre@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/cytoscape-dagre/-/cytoscape-dagre-4.0.0.tgz#8c673b6a37626c69506c3678965dec7c5359b040"
+  integrity sha512-wsDgi1hHpWfslQxe/Gd/xCCeg2YUDrzwulhHOSI7fMfll92FFVY2AWhSRulLiOVcyDE4zz0rRd/+1TBTw+ew5Q==
+
 cytoscape-dblclick@^0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/cytoscape-dblclick/-/cytoscape-dblclick-0.3.1.tgz#007c1d6b7889afebea74113bc97a2130529f43d0"

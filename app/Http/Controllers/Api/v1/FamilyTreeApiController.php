@@ -46,7 +46,7 @@ class FamilyTreeApiController extends ApiController
             return response()->json('You need to activate premium functions on the campaign to use this feature', 204);
         }
 
-        $data = $request->input('tree');
+        $data = $request->validated('tree');
 
         $model = $this
             ->treeService

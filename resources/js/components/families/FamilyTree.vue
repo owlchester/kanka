@@ -1,823 +1,403 @@
 <template>
-    <div class="flex gap-2 mb-5 justify-end items-center align-right" v-if="!isLoading && permission">
-        <button class="btn2 btn-sm btn-primary" v-if="!isEditing" v-on:click="startEditing()">
-            <i class="fa-regular fa-edit" aria-hidden="true"></i>
-            {{ this.texts.actions.edit }}
-        </button>
-        <button class="btn2 btn-sm " v-if="showEditFounder()" v-on:click="createNewFounder()">
-            <i class="fa-regular fa-user" aria-hidden="true"></i>
-            {{ this.texts.actions.founder }}
-        </button>
-        <button class="btn2 btn-sm " v-if="isEditing" v-on:click="resetTree()">
-            <i class="fa-regular fa-redo" aria-hidden="true"></i>
-            {{ this.texts.actions.reset }}
-        </button>
-        <button class="btn2 btn-sm " v-if="isEditing" v-on:click="clearTree()">
-            <i class="fa-regular fa-eraser" aria-hidden="true"></i>
-            {{ this.texts.actions.clear }}
-        </button>
-        <button class="btn2 btn-primary" v-if="isEditing && (isDirty)" v-on:click="saveTree()">
-            <i class="fa-regular fa-save" aria-hidden="true"></i>
-            {{ this.texts.actions.save }}
-        </button>
-    </div>
-    <div class="family-tree overflow-auto w-full h-full min-h-50 block relative" ref="familytree">
-        <div class="absolute top-0 right-0 z-10">
-            <button class="btn2 btn-ghost btn-sm" aria-label="Close" v-on:click="zoom()">
-                <i class="fa-regular fa-square-plus" aria-hidden="true"></i>
+    <div class="family-tree-prototype">
+        <div class="family-tree-toolbar flex flex-wrap gap-2 mb-4 items-center">
+            <button v-if="canEdit && !isEditing" class="btn2 btn-sm btn-primary" @click="isEditing = true">
+                <i class="fa-regular fa-edit" aria-hidden="true"></i>
+                Edit graph
             </button>
-            <button class="btn-sm btn2 btn-ghost" aria-label="Close" v-on:click="unzoom()">
-                <i class="fa-regular fa-square-minus" aria-hidden="true"></i>
+            <button v-if="canEdit && isEditing" class="btn2 btn-sm btn-primary" @click="saveGraph" :disabled="saving">
+                <i class="fa-regular fa-save" aria-hidden="true"></i>
+                {{ saving ? 'Saving...' : 'Save graph' }}
             </button>
+            <button v-if="canEdit && isEditing" class="btn2 btn-sm" @click="resetGraph">Reset</button>
+            <button v-if="canEdit && isEditing" class="btn2 btn-sm" @click="clearGraph">Clear</button>
+            <button v-if="canEdit && isEditing && nodes.length === 0" class="btn2 btn-sm btn-primary" @click="startAddNode">
+                <i class="fa-regular fa-user-plus" aria-hidden="true"></i>
+                Add first person
+            </button>
+            <span class="family-tree-prototype-note text-sm text-neutral-content">
+                Flat graph prototype: {{ nodes.length }} people, {{ edges.length }} relationships
+            </span>
+            <span v-if="selectedNode" class="text-sm text-neutral-content">
+                Selected: {{ selectedNodeLabel }}
+            </span>
         </div>
-        <div class="text-center px-5" v-if="isLoading">
-            <i class="fa-solid fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
-            <span class="sr-only">Loading...</span>
-        </div>
-        <div v-else class="relative" v-bind:style="{width: '100%'}">
-            <PinchScrollZoom
-                id="treeMap"
-                ref="zoomer"
-                key-actions
-                :width="pincherWidth()"
-                :height="pincherHeight()"
-                :contentWidth="dragWidth()"
-                :contentHeight="dragHeight()"
-                :scale="1"
-                :maxScale="3"
-                :within="false"
-                class="cursor-move!"
-                >
-                <div class="relative" v-bind:style="{width: dragWidth() + 'px', height: dragHeight() + 'px'}">
-                    <a class="btn2 btn-primary" v-on:click="createNode()" v-if="showCreateNode()">
-                        <i class="fa-regular fa-plus" aria-hidden="true"></i>
-                        {{ this.texts.actions.first }}
-                    </a>
 
-                    <FamilyNode v-for="node in nodes"
-                                :node="node"
-                                :entities="entities"
-                                :sourceX="0"
-                                :sourceY="0"
-                                :drawX="0"
-                                :drawY="0"
-                                :column="0"
-                                :row="0"
-                                :sourceColumn="0"
-                                :sourceRow="0"
-                                :isEditing="isEditing"
-                                :isFirst="true"
-                    >
-                    </FamilyNode>
-                </div>
-            </PinchScrollZoom>
+        <div class="family-tree-prototype-layout">
+            <div ref="cyContainer" class="family-tree-canvas" aria-label="Family tree graph"></div>
+
+            <aside v-if="isEditing" class="family-tree-editor bg-base-200 rounded-box p-4">
+                <h3 class="text-lg mb-3">Graph editor</h3>
+                <p v-if="!selectedNode && !selectedEdge" class="text-sm text-neutral-content mb-4">
+                    <span v-if="nodes.length">Select a person or relationship to edit it.</span>
+                    <span v-else>The graph is empty. Add a person to get started.</span>
+                </p>
+                <button v-if="!selectedNode && !selectedEdge && !nodes.length" class="btn2 btn-sm btn-primary" @click="startAddNode">
+                    Add first person
+                </button>
+
+                <template v-if="selectedNode">
+                    <h4 class="font-semibold mb-2">{{ selectedNodeLabel }}</h4>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <button class="btn2 btn-sm" @click="startAddEdge('partner')">Add partner</button>
+                        <button class="btn2 btn-sm" @click="startAddEdge('parent')">Add parent/child</button>
+                        <button class="btn2 btn-sm" @click="startAddNode">Add person</button>
+                    </div>
+                    <button class="btn2 btn-sm btn-error mb-4" @click="removeSelectedNode">Delete person</button>
+                </template>
+
+                <template v-if="selectedEdge">
+                    <h4 class="font-semibold mb-2">Relationship</h4>
+                    <RelationshipFields v-model="edgeForm" />
+                    <div class="flex gap-2 mt-3">
+                        <button class="btn2 btn-sm btn-primary" @click="updateSelectedEdge">Update</button>
+                        <button class="btn2 btn-sm btn-error" @click="removeSelectedEdge">Delete</button>
+                    </div>
+                </template>
+
+                <template v-if="editorMode === 'add-node'">
+                    <hr class="my-4">
+                    <h4 class="font-semibold mb-2">Add person</h4>
+                    <label class="block text-sm mb-2">
+                        Character
+                        <select
+                            ref="entitySelect"
+                            v-model="newNodeEntityId"
+                            class="select2 w-full mt-1"
+                            :data-url="search_api"
+                            data-placeholder="Search for any character"
+                            data-allow-clear="true"
+                            data-language="en"
+                        >
+                            <option value="">Search for any character</option>
+                        </select>
+                    </label>
+                    <button class="btn2 btn-sm mb-2" @click="addUnknownNode">Add unknown person</button>
+                    <button class="btn2 btn-sm btn-primary" @click="addEntityNode" :disabled="!newNodeEntityId">Add selected character</button>
+                </template>
+
+                <template v-if="editorMode === 'add-edge' && selectedNode">
+                    <hr class="my-4">
+                    <h4 class="font-semibold mb-2">Add relationship</h4>
+                    <RelationshipFields v-model="edgeForm" />
+                    <label class="block text-sm mb-2">
+                        Connect to
+                        <select v-model="targetNodeId" class="w-full mt-1">
+                            <option value="">Choose a person</option>
+                            <option v-for="node in availableTargets" :key="node.id" :value="node.id">
+                                {{ nodeLabel(node) }}
+                            </option>
+                        </select>
+                    </label>
+                    <button class="btn2 btn-sm btn-primary mt-2" @click="addEdge" :disabled="!targetNodeId">Connect people</button>
+                </template>
+            </aside>
         </div>
     </div>
-
-  <dialog class="dialog rounded-top md:rounded-2xl bg-base-100 min-w-fit shadow-md text-base-content" id="family-tree-modal" aria-modal="true" v-if="!isLoading">
-    <header class="flex gap-6 items-center p-4 md:p-6 justify-between">
-      <h4 v-if="isAddingChild" class="text-lg font-normal">{{ this.texts.modals.entity.child.title }}</h4>
-      <h4 v-else-if="isAddingCharacter" class="text-lg font-normal">{{ this.texts.modals.entity.add.title }}</h4>
-      <h4 v-else-if="isEditingEntity" class="text-lg font-normal">{{ this.texts.modals.entity.edit.title }}</h4>
-      <h4 v-else-if="isAddingRelation" class="text-lg font-normal">{{ this.texts.modals.relation.add.title }}</h4>
-      <h4 v-else-if="isEditingRelation" class="text-lg font-normal">{{ this.texts.modals.relation.edit.title }}</h4>
-      <h4 v-else-if="isAddingNewFounder" class="text-lg font-normal">{{ this.texts.modals.entity.founder.title }}</h4>
-
-      <button autofocus type="button" class="text-xl opacity-50 hover:opacity-100 focus:opacity-100 cursor-pointer text-decoration-none" aria-label="Close" v-on:click="closeModal()">
-        <i class="fa-regular fa-circle-xmark" aria-hidden="true"></i>
-        <span class="sr-only">Close</span>
-      </button>
-    </header>
-    <article class="max-w-2xl py-4 px-4 md:px-6">
-      <div class="flex flex-col gap-5 w-full">
-        <div class="field field-founder flex flex-col gap-1 w-full" v-show="isAddingNewFounder">
-          <label>{{ this.texts.modals.fields.founder }}</label>
-          <select class="select2 w-full" style="width: 100%" v-bind:data-url="this.search_api" data-placeholder="Choose a character" data-language="en" data-allow-clear="true" name="founder_id_ft" data-dropdown-parent="#family-tree-modal" tabindex="-1" aria-hidden="true"></select>
-        </div>
-        <div class="field field-character flex flex-col gap-1 w-full" v-show="isAddingRelation || isAddingChild || isEditingEntity || isAddingCharacter || isAddingNewFounder">
-          <label>{{ this.texts.modals.fields.character }}</label>
-          <select class="select2 w-full" style="width: 100%" v-bind:data-url="this.search_api" data-placeholder="Choose a character" data-language="en" data-allow-clear="true" name="character_id_ft" data-dropdown-parent="#family-tree-modal" tabindex="-1" aria-hidden="true"></select>
-        </div>
-        <div class="field field-member flex flex-col gap-1" v-show="isAddingCharacter && this.showMembers()">
-          <label>{{ this.texts.modals.fields.member }}</label>
-          <ul>
-            <li v-for="(suggestion) in this.suggestions"
-            >
-              <a class="cursor-pointer" v-on:click="this.saveSuggestion(suggestion.id)"> {{ suggestion.name }} </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="flex flex-col gap-5 w-full" v-show="isEditingRelation || isAddingRelation || isAddingChild || isEditingEntity || isAddingNewFounder">
-        <div v-if="isAddingRelation || isEditingEntity || isAddingNewFounder" class="field field-unknown checkbox flex flex-col gap-1">
-          <label>
-            <input type="checkbox" v-model="isUnknown" id="family_tree_unknown" name="isUnknown" value="isUnknown" />
-            {{ this.texts.modals.fields.unknown }}
-          </label>
-          <p class="help-block text-neutral-content">{{ this.texts.modals.entity.edit.helper }}</p>
-        </div>
-
-        <div v-if="!isAddingChild" class="field field-relation flex flex-col gap-1">
-          <label>{{ this.texts.modals.fields.relation }}</label>
-          <input v-model="relation" type="text" maxlength="70" class="w-full" id="family_tree_relation" @keyup.enter="saveModal()"/>
-        </div>
-
-        <div class="grid grid-cols-2 gap-5" v-show="isAddingRelation || isAddingNewFounder || isAddingChild || isEditingEntity">
-          <div class="field field field-colour flex flex-col gap-1">
-            <label>{{ this.texts.modals.fields.colour }}</label>
-            <div>
-              <input v-model="colour" name="colour" type="text" maxlength="7" data-append-to="#family-tree-modal" class="w-full spectrum" id="family_tree_colour" @keyup.enter="saveModal()" ref="colour" />
-            </div>
-          </div>
-
-          <div class="field field-visibility flex flex-col gap-1">
-            <label>{{ this.texts.modals.fields.visibility.title }}</label>
-            <select v-model="visibility" name="visibility" id="family_tree_visibility" class="w-full">
-              <option value="1">{{ this.texts.modals.fields.visibility.all }}</option>
-              <option value="2">{{ this.texts.modals.fields.visibility.admins }}</option>
-              <option value="5">{{ this.texts.modals.fields.visibility.members }}</option>
-            </select>
-          </div>
-
-          <div class="field field-css flex flex-col gap-1">
-            <label>{{ this.texts.modals.fields.css }}</label>
-            <input v-model="cssClass" type="text" maxlength="70" class="w-full" id="family_tree_class" @keyup.enter="saveModal()"/>
-          </div>
-        </div>
-      </div>
-    </article>
-      <footer class="flex flex-wrap gap-3 justify-end items-center p-4 md:px-6">
-          <menu class="flex flex-wrap gap-3 ps-0" >
-              <div class="submit-group">
-                  <button class="btn2 btn-primary" @click="saveModal()" v-html="texts.actions.save"></button>
-              </div>
-          </menu>
-      </footer>
-  </dialog>
-    <dialog class="dialog rounded-top md:rounded-2xl bg-base-100 min-w-fit shadow-md text-base-content" id="family-tree-pitch" aria-modal="true" v-if="!isLoading">
-      <header class="flex gap-6 items-center p-4 md:p-6 justify-between">
-          <h4 class="text-lg font-normal" v-html="texts.modals.pitch.title"></h4>
-
-          <button autofocus type="button" class="text-xl opacity-50 hover:opacity-100 focus:opacity-100 cursor-pointer text-decoration-none" aria-label="Close" v-on:click="closePitchModal()">
-              <i class="fa-regular fa-circle-xmark" aria-hidden="true"></i>
-              <span class="sr-only">Close</span>
-          </button>
-      </header>
-      <article class="max-w-2xl py-4 px-4 md:px-6">
-          <p v-html="texts.modals.pitch.content" class="text-neutral-content"></p>
-          <div class="flex flex-col sm:flex-row gap-3 flex-wrap w-full">
-              <a href="https://kanka.io/premium" class="btn2 btn-outline btn-sm" v-html="texts.modals.pitch.more"></a>
-              <a :href=this.subscribe_url class="btn2 bg-boost text-white btn-sm" v-html="texts.modals.pitch.subscription">
-              </a>
-          </div>
-      </article>
-    </dialog>
 </template>
 
-<script>
-import axios from "axios";
-import PinchScrollZoom from "@coddicat/vue-pinch-scroll-zoom";
+<style>
+@import 'cytoscape-panzoom/cytoscape.js-panzoom.css';
+</style>
 
-export default {
-    props: {
-        api: undefined,
-        save_api: undefined,
-        entity_api: undefined,
-        search_api: undefined,
-        permission: undefined,
-        subscribe_url: undefined,
-    },
-    components: {
-        PinchScrollZoom,
-    },
+<script setup>
+import axios from 'axios'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import RelationshipFields from './FamilyTreeRelationshipFields.vue'
 
-    data() {
+const props = defineProps({
+    api: String,
+    save_api: String,
+    entity_api: String,
+    search_api: String,
+    permission: [String, Boolean],
+})
+
+const cyContainer = ref(null)
+const cy = ref(null)
+const nodes = ref([])
+const edges = ref([])
+const entities = ref({})
+const suggestions = ref([])
+const texts = ref({})
+const originalGraph = ref({ nodes: [], edges: [] })
+const isEditing = ref(false)
+const saving = ref(false)
+const selectedNode = ref(null)
+const selectedEdge = ref(null)
+const editorMode = ref(null)
+const entitySelect = ref(null)
+const targetNodeId = ref('')
+const newNodeEntityId = ref('')
+const edgeForm = ref({ type: 'partner', role: '', parentage: '' })
+
+const canEdit = computed(() => props.permission === true || props.permission === '1')
+const selectedNodeLabel = computed(() => selectedNode.value ? nodeLabel(selectedNode.value) : '')
+const availableTargets = computed(() => nodes.value.filter(node => node.id !== selectedNode.value?.id))
+
+const nodeLabel = (node) => {
+    if (node.isUnknown || !node.entity_id) {
+        return node.role || 'Unknown person'
+    }
+
+    return entities.value[node.entity_id]?.name || `Character #${node.entity_id}`
+}
+
+const makeId = () => window.crypto?.randomUUID?.() || `prototype-${Date.now()}-${Math.random().toString(16).slice(2)}`
+
+const graph = () => ({ nodes: nodes.value, edges: edges.value })
+
+const applyData = (data, remember = false) => {
+    nodes.value = Array.isArray(data.nodes) ? data.nodes : []
+    edges.value = Array.isArray(data.edges) ? data.edges : []
+    entities.value = data.entities || {}
+    suggestions.value = data.suggestions || []
+    texts.value = data.texts || {}
+
+    if (remember) {
+        originalGraph.value = JSON.parse(JSON.stringify(graph()))
+    }
+}
+
+const buildElements = () => [
+    ...nodes.value.map(node => {
+        const entity = node.entity_id ? entities.value[node.entity_id] : null
+
         return {
-            nodes: [],
-            entities: [],
-            texts: undefined,
-            suggestions: [],
-            isEditing: false,
-            isLoading: true,
-            isDirty: false,
-            originalNodes: undefined,
-            originalEntities: undefined,
-
-            currentUuid: undefined,
-            isAddingRelation: false,
-            isAddingChild: false,
-            isEditingEntity: false,
-            isAddingCharacter: false,
-            isEditingRelation: false,
-            isAddingNewFounder: false,
-            isNotPremium: false,
-
-            relation: undefined,
-            entity: undefined,
-            cssClass: undefined,
-            colour: undefined,
-            visibility: undefined,
-            isUnknown: undefined,
-
-            maxX: 0,
-            maxY: 0,
-
-            modal: 'family-tree-modal',
-            pitchModal: 'family-tree-pitch',
-            founderField: 'select[name="founder_id_ft"]',
-            entityField: 'select[name="character_id_ft"]',
-            newUuid: 1,
+            group: 'nodes',
+            data: {
+                id: node.id,
+                label: nodeLabel(node),
+                image: node.isUnknown ? '' : entity?.thumb || '',
+                colour: node.colour || '#64748b',
+            },
+            classes: `${node.isUnknown ? 'unknown' : ''} ${node.cssClass || ''}`,
         }
-    },
-
-    methods: {
-
-        zoom() {
-            // create a new keyboard event and set the key to "Enter"
-            const event = new KeyboardEvent('keydown', {
-            key: '+',
-            code: 'Equal',
-            which: 187,
-            keyCode: 187,
-            });
-
-            // dispatch the event on some DOM element
-            document.getElementById('treeMap').dispatchEvent(event);
+    }),
+    ...edges.value.map(edge => ({
+        group: 'edges',
+        data: {
+            id: edge.id,
+            source: edge.source,
+            target: edge.target,
+            type: edge.type,
+            role: edge.role || edge.parentage || '',
+            colour: edge.colour || '#64748b',
         },
+        classes: edge.type,
+    })),
+]
 
-        unzoom() {
-            //zoomer.value?.manualZoom(0.5);
+const runLayout = () => {
+    if (!cy.value) return
 
-            // create a new keyboard event and set the key to "Enter"
-            const event = new KeyboardEvent('keydown', {
-            key: '-',
-            code: 'Minus',
-            which: 189,
-            keyCode: 189,
-            });
+    cy.value.elements().layout({
+        name: 'dagre',
+        rankDir: 'TB',
+        nodeSep: 70,
+        rankSep: 110,
+        edgeSep: 30,
+        fit: true,
+        padding: 45,
+        animate: false,
+        // Dagre requires a positive rank length for every edge. A zero-length
+        // partner edge can produce a route without control points.
+        minLen: 1,
+        edgeWeight: 1,
+    }).run()
+}
 
-            // dispatch the event on some DOM element
-            document.getElementById('treeMap').dispatchEvent(event);
-        },
+const renderGraph = () => {
+    if (!cy.value) return
 
-        startEditing() {
-            this.isEditing = true;
-        },
-        resetTree() {
-            if (!this.isDirty || confirm(this.texts.modals.reset.confirm)) {
-                this.isEditing = false;
-                this.isDirty = false;
+    cy.value.elements().remove()
+    cy.value.add(buildElements())
+    runLayout()
+}
 
-                this.nodes = JSON.parse(JSON.stringify(this.originalNodes));
-                this.entities = JSON.parse(JSON.stringify(this.originalEntities));
+const selectNode = (node) => {
+    selectedNode.value = nodes.value.find(item => item.id === node.id()) || null
+    selectedEdge.value = null
+    editorMode.value = null
+}
 
-                window.showToast(this.texts.toasts.reseted);
-            }
-        },
-        saveTree() {
-            axios.post(this.save_api, {data: this.nodes})
-                .then((resp) => {
-                    if (resp.status === 204) {
-                        this.showPitchDialog();
-                        return;
-                    }
-                    window.showToast(this.texts.toasts.saved);
-                    this.isDirty = false;
-                }).catch((err) => {
-                    console.log('save tree error', err);
-                this.showPitchDialog();
-            });
+const selectEdge = (edge) => {
+    selectedEdge.value = edges.value.find(item => item.id === edge.id()) || null
+    selectedNode.value = null
+    editorMode.value = null
+    if (selectedEdge.value) {
+        edgeForm.value = {
+            type: selectedEdge.value.type,
+            role: selectedEdge.value.role || '',
+            parentage: selectedEdge.value.parentage || '',
+        }
+    }
+}
 
-        },
-        clearTree() {
-            if (confirm(this.texts.modals.clear.confirm)) {
-                this.nodes = [];
-                this.entities = [];
-                this.isDirty = this.originalNodes.length > 0;
-                this.resetVariables();
-                window.showToast(this.texts.toasts.cleared);
-            }
-        },
-        deleteUuid(uuid) {
-            if (confirm(this.texts.modals.entity.remove.confirm)) {
-                this.deleteUuidFromNodes(uuid);
-                window.showToast(this.texts.toasts.entity.removed);
-                this.isDirty = true;
-            }
-        },
-        deleteUuidFromNodes(uuid) {
-            this.nodes = this.filter(this.nodes, uuid);
-        },
-        filter(array, uuid) {
-            //console.log('filter', array, uuid);
-            const getNodes = (result, object) => {
-                // If it's the uuid we're looking for, return an empty array
-                if (object.uuid === uuid) {
-                    return result;
-                }
-                if (Array.isArray(object.children)) {
-                    const children = object.children.reduce(getNodes, []);
-                    object.children = children;
-                }
-                else if (Array.isArray(object.relations)) {
-                    const relations = object.relations.reduce(getNodes, []);
-                    object.relations = relations;
-                }
-                result.push(object);
-                return result;
-            };
-            // If the first node is the uuid, delete everything
-            if (array[0].uuid === uuid) {
-                return [];
-            }
-            return array.reduce(getNodes, []);
-        },
-        closePitchModal() {
-            window.closeDialog(this.pitchModal);
-        },
-        closeModal() {
-            this.isAddingChild = false;
-            this.isAddingRelation = false;
-            this.isEditingRelation = false;
-            this.isEditingEntity = false;
-            this.isAddingCharacter = false;
-            this.isAddingNewFounder = false;
-            this.currentUuid = undefined;
-            this.relation = undefined;
-            this.cssClass = undefined;
-            this.colour = undefined;
-            this.entity = undefined;
-            this.visibility = 1;
-            this.isUnknown = undefined;
+const startAddEdge = (type) => {
+    edgeForm.value = { type, role: '', parentage: '' }
+    targetNodeId.value = ''
+    editorMode.value = 'add-edge'
+    selectedEdge.value = null
+}
 
-            window.closeDialog(this.modal);
-            document.querySelector(this.entityField)?.tomselect?.clear();
-            document.querySelector(this.founderField)?.tomselect?.clear();
-        },
-        showDialog() {
-            window.openDialog(this.modal);
-            window.initForeignSelect();
-            window.triggerEvent();
-        },
-        showPitchDialog() {
-            window.openDialog(this.pitchModal);
-        },
-        resetVariables() {
-            this.isAddingChild = false;
-            this.isAddingRelation = false;
-            this.isEditingRelation = false;
-            this.isEditingEntity = false;
-            this.isAddingCharacter = false;
-            this.isAddingNewFounder = false;
-            this.currentUuid = undefined;
-            this.relation = undefined;
-            this.cssClass = undefined;
-            this.colour = undefined;
-            this.visibility = 1;
-            this.isUnknown = undefined;
-            this.entity = undefined;
+const startAddNode = () => {
+    newNodeEntityId.value = ''
+    editorMode.value = 'add-node'
+}
 
-            window.closeDialog(this.modal);
-            document.querySelector(this.founderField)?.tomselect?.clear();
-            document.querySelector(this.entityField)?.tomselect?.clear();
-        },
-        saveSuggestion: function(character) {
-            this.emitter.emit('saveModal', [character]);
-            this.saveModal(character);
-        },
-        saveModal(character = null) {
-            if (this.isEditingRelation) {
-                this.editRelation();
-            } else if(this.isAddingRelation) {
-                this.addRelation();
-            } else if(this.isAddingChild) {
-                this.addChild();
-            } else if(this.isEditingEntity) {
-                this.editEntity();
-            } else if(this.isAddingCharacter) {
-                this.editEntity(character);
-            } else if(this.isAddingNewFounder) {
-                this.addFounder();
-            }
-        },
-        showCreateNode() {
-            return this.nodes.length === 0 && this.isEditing;
-        },
-        showEditFounder() {
-            return this.nodes.length > 0 && this.isEditing;
-        },
-        showMembers() {
-            //console.log('this', this.suggestions.length, this.suggestions)
-            return this.suggestions.length > 0;
-        },
-        createNode() {
-            this.isAddingCharacter = true;
-            this.currentUuid = 0;
-            this.showDialog();
-        },
-        createNewFounder() {
-            this.resetVariables();
-            this.isAddingNewFounder = true;
-            this.currentUuid = 0;
-            this.showDialog();
-        },
-        editRelation() {
-            this.isDirty = true;
-            //console.log('edit relation', this.currentUuid, this.relation);
-            const getRelationNodes = (result, object) => {
-                if (object.uuid === this.currentUuid) {
-                    object.role = this.relation;
-                    object.cssClass = this.cssClass;
-                    object.colour = this.colour;
-                    object.visibility = this.visibility;
-                    object.isUnknown = this.isUnknown;
-                    result.push(object);
-                    return result;
-                }
+watch(editorMode, async mode => {
+    if (mode !== 'add-node') {
+        return
+    }
 
-                if (Array.isArray(object.children)) {
-                    const children = object.children.reduce(getRelationNodes, []);
-                    object.children = children;
-                }
-                else if (Array.isArray(object.relations)) {
-                    const relations = object.relations.reduce(getRelationNodes, []);
-                    object.relations = relations;
-                }
+    await nextTick()
+    window.initForeignSelect?.()
+})
 
-                result.push(object);
-                return result;
-            };
-            this.nodes = this.nodes.reduce(getRelationNodes, []);
+const addNode = (entityId = null) => {
+    const node = {
+        id: makeId(),
+        entity_id: entityId ? Number(entityId) : null,
+        isUnknown: !entityId,
+        role: '',
+        colour: '',
+        cssClass: '',
+        visibility: 1,
+    }
+    nodes.value.push(node)
+    selectedNode.value = node
+    editorMode.value = null
+    renderGraph()
+}
 
-            window.showToast(this.texts.toasts.relations.edit);
-            this.closeModal();
-        },
-        addRelation() {
-            let entity_id = document.querySelector(this.entityField)?.tomselect?.getValue();
-            if (this.isUnknown) {
-                this.insertUnknownRelation();
-                this.isDirty = true;
-                window.showToast(this.texts.toasts.relations.add);
-                this.closeModal();
-            }
+const addUnknownNode = () => addNode()
 
-            if (entity_id && !this.isUnknown) {
-                let url = this.entity_api.replace('/0', '/' + entity_id);
-                axios.get(url).then((res) => {
-                    let entity = res.data;
-                    //console.log('add relation then', entity);
-                    this.insertRelation(entity);
-                    this.isDirty = true;
-                    window.showToast(this.texts.toasts.relations.add);
-                    this.closeModal();
-                });
-            }
-        },
-        insertUnknownRelation() {
-            let entity_id = '';
+const addEntityNode = async () => {
+    if (!newNodeEntityId.value) return
 
-            const getRelationNodes = (result, object) => {
-                if (object.uuid === this.currentUuid) {
-                    if (Array.isArray(object.relations)) {
-                        object.relations.push({entity_id: entity_id, role: this.relation, cssClass: this.cssClass, colour: this.colour, isUnknown: this.isUnknown, visibility: this.visibility, uuid: JSON.stringify(this.newUuid)});
-                    } else {
-                        object.relations = [{entity_id: entity_id, role: this.relation, cssClass: this.cssClass, colour: this.colour, isUnknown: this.isUnknown, visibility: this.visibility, uuid: JSON.stringify(this.newUuid)}];
-                    }
-                    this.newUuid++;
-                    result.push(object);
-                    return result;
-                }
-                if (Array.isArray(object.children)) {
-                    const children = object.children.reduce(getRelationNodes, []);
-                    object.children = children;
-                }
-                else if (Array.isArray(object.relations)) {
-                    const relations = object.relations.reduce(getRelationNodes, []);
-                    object.relations = relations;
-                }
-                result.push(object);
-                return result;
-            };
-            this.nodes = this.nodes.reduce(getRelationNodes, []);
-        },
-        insertRelation(entity) {
-            let entity_id = entity.id;
-            if (!this.entities[entity.id]) {
-                //console.log('adding entity', entity);
-                this.entities[entity.id] = entity;
-                //console.log('entities', this.entities);
-            }
+    const response = await axios.get(props.entity_api.replace('/0', `/${newNodeEntityId.value}`))
+    entities.value[response.data.id] = response.data
+    addNode(response.data.id)
+}
 
-            const getRelationNodes = (result, object) => {
-                if (object.uuid === this.currentUuid) {
-                    if (Array.isArray(object.relations)) {
-                        object.relations.push({entity_id: entity_id, role: this.relation, cssClass: this.cssClass, colour: this.colour, isUnknown: this.isUnknown, visibility: this.visibility, uuid: JSON.stringify(this.newUuid)});
-                    } else {
-                        object.relations = [{entity_id: entity_id, role: this.relation, cssClass: this.cssClass, colour: this.colour, isUnknown: this.isUnknown, visibility: this.visibility, uuid: JSON.stringify(this.newUuid)}];
-                    }
-                    this.newUuid++;
-                    result.push(object);
-                    return result;
-                }
-                if (Array.isArray(object.children)) {
-                    const children = object.children.reduce(getRelationNodes, []);
-                    object.children = children;
-                }
-                else if (Array.isArray(object.relations)) {
-                    const relations = object.relations.reduce(getRelationNodes, []);
-                    object.relations = relations;
-                }
-                result.push(object);
-                return result;
-            };
-            this.nodes = this.nodes.reduce(getRelationNodes, []);
-        },
-        addChild() {
-            //console.log('child');
-            let entity_id = document.querySelector(this.entityField)?.tomselect?.getValue();
-            if (!entity_id) {
-                // Nothing, ignore
-                this.closeModal();
-                return;
-            }
+const addEdge = () => {
+    if (!selectedNode.value || !targetNodeId.value) return
 
-            let url = this.entity_api.replace('/0', '/' + entity_id);
-            axios.get(url).then((res) => {
-                let entity = res.data;
-                this.insertChild(entity);
-                window.showToast(this.texts.toasts.entity.child);
-                this.isDirty = true;
-                this.closeModal();
-            });
-        },
-        insertChild(entity) {
-            var entity_id = entity.id;
-            if (!this.entities[entity.id]) {
-                this.entities[entity.id] = entity;
-            }
+    edges.value.push({
+        id: makeId(),
+        source: selectedNode.value.id,
+        target: targetNodeId.value,
+        type: edgeForm.value.type,
+        role: edgeForm.value.role,
+        parentage: edgeForm.value.type === 'parent' ? edgeForm.value.parentage : '',
+        colour: '',
+        cssClass: '',
+        visibility: 1,
+    })
+    editorMode.value = null
+    targetNodeId.value = ''
+    renderGraph()
+}
 
-            const getRelationNodes = (result, object) => {
-                if (object.uuid === this.currentUuid) {
-                    //console.log(object);
+const updateSelectedEdge = () => {
+    if (!selectedEdge.value) return
 
-                    if (Array.isArray(object.children)) {
-                        object.children.push({entity_id: entity_id, role: this.relation, cssClass: this.cssClass, colour: this.colour, visibility: this.visibility, uuid: JSON.stringify(this.newUuid)});
-                    } else {
-                        object.children = [{entity_id: entity_id, role: this.relation, cssClass: this.cssClass, colour: this.colour, visibility: this.visibility, uuid: JSON.stringify(this.newUuid)}];
-                    }
-                    this.newUuid++;
-                    result.push(object);
-                    return result;
-                }
-                if (Array.isArray(object.children)) {
-                    const children = object.children.reduce(getRelationNodes, []);
-                    object.children = children;
-                }
-                else if (Array.isArray(object.relations)) {
-                    const relations = object.relations.reduce(getRelationNodes, []);
-                    object.relations = relations;
-                }
-                result.push(object);
-                return result;
-            };
-            return this.nodes = this.nodes.reduce(getRelationNodes, []);
-        },
-        editEntity(character = null) {
-            let entity_id = document.querySelector(this.entityField)?.tomselect?.getValue();
-            if (character) {
-                entity_id = character;
-            }
-            if (!entity_id) {
-                if (!(this.currentUuid === 0)) {
-                    this.editEntityNode();
-                    window.showToast(this.texts.toasts.entity.edit);
-                    this.isDirty = true;
-                }
-                // Nothing, ignore
-                this.closeModal();
-                return;
-            }
+    selectedEdge.value.type = edgeForm.value.type
+    selectedEdge.value.role = edgeForm.value.role
+    selectedEdge.value.parentage = edgeForm.value.type === 'parent' ? edgeForm.value.parentage : ''
+    renderGraph()
+}
 
-            let url = this.entity_api.replace('/0', '/' + entity_id);
-            axios.get(url).then((res) => {
-                let entity = res.data;
-                if (this.currentUuid === 0) {
-                    this.newUuid = 1;
-                    this.addEntity(entity);
-                    window.showToast(this.texts.toasts.entity.add);
-                } else {
-                    this.replaceEntity(entity);
-                    window.showToast(this.texts.toasts.entity.edit);
-                }
-                this.isDirty = true;
-                this.closeModal();
-            });
-        },
+const removeSelectedEdge = () => {
+    if (!selectedEdge.value || !window.confirm('Delete this relationship?')) return
 
-        addFounder() {
-            let founder_id = document.querySelector(this.founderField)?.tomselect?.getValue();
-            let entity_id = document.querySelector(this.entityField)?.tomselect?.getValue();
+    edges.value = edges.value.filter(edge => edge.id !== selectedEdge.value.id)
+    selectedEdge.value = null
+    renderGraph()
+}
 
-            if (!founder_id) {
-                // Nothing, ignore
-                this.closeModal();
-                return;
-            }
+const removeSelectedNode = () => {
+    if (!selectedNode.value || !window.confirm('Delete this person and their relationships?')) return
 
-            let url2 = this.entity_api.replace('/0', '/' + founder_id);
-            axios.get(url2).then((res) => {
-                let founder = res.data;
-                if (entity_id) {
-                    let url = this.entity_api.replace('/0', '/' + entity_id);
-                    axios.get(url).then((res) => {
-                        let entity = res.data;
-                        this.addFounderEntity(founder, entity);
-                        this.isDirty = true;
-                        window.showToast(this.texts.toasts.entity.add);
-                        this.closeModal();
-                    });
-                    return;
-                }
-                this.addFounderEntity(founder);
-                this.isDirty = true;
-                window.showToast(this.texts.toasts.entity.add);
-                this.closeModal();
-            });
-        },
-        addFounderEntity(founder, entity = null) {
-            let entity_id = '';
-            this.entities[founder.id] = Object.freeze(founder);
-            if (entity) {
-                this.entities[entity.id] = Object.freeze(entity);
-                entity_id = entity.id;
-            }
+    const id = selectedNode.value.id
+    nodes.value = nodes.value.filter(node => node.id !== id)
+    edges.value = edges.value.filter(edge => edge.source !== id && edge.target !== id)
+    selectedNode.value = null
+    renderGraph()
+}
 
-            this.nodes = [{entity_id: entity_id, role: this.relation, cssClass: this.cssClass, colour: this.colour, visibility: this.visibility, uuid: JSON.stringify(this.newUuid), children: this.nodes, isUnknown: this.isUnknown}];
-            this.newUuid++;
-            this.nodes = [{entity_id: founder.id, role: this.relation, cssClass: this.cssClass, colour: this.colour, visibility: this.visibility, uuid: JSON.stringify(this.newUuid), relations: this.nodes}];
-            this.newUuid++;
-        },
-        addEntity(entity) {
-            this.entities[entity.id] = Object.freeze(entity);
-            this.nodes.push({entity_id: entity.id, role: this.relation, cssClass: this.cssClass, colour: this.colour, visibility: this.visibility, uuid: JSON.stringify(this.newUuid)});
-            this.newUuid++;
-        },
-        editEntityNode() {
-            const getRelationNodes = (result, object) => {
-                if (object.uuid === this.currentUuid) {
-                    object.role = this.relation;
-                    object.isUnknown = this.isUnknown;
-                    object.cssClass = this.cssClass;
-                    object.colour = this.colour;
-                    object.visibility = this.visibility;
-                    object.entity_id = object.entity_id;
-                    result.push(object);
-                    return result;
-                }
+const saveGraph = async () => {
+    saving.value = true
+    try {
+        const response = await axios.post(props.save_api, { data: graph() })
+        if (response.status === 204) {
+            window.openDialog?.('family-tree-pitch')
+            return
+        }
 
-                if (Array.isArray(object.children)) {
-                    const children = object.children.reduce(getRelationNodes, []);
-                    object.children = children;
-                }
-                else if (Array.isArray(object.relations)) {
-                    const relations = object.relations.reduce(getRelationNodes, []);
-                    object.relations = relations;
-                }
+        applyData(response.data, true)
+        renderGraph()
+        window.showToast?.(texts.value.toasts?.saved || 'Family graph saved')
+        isEditing.value = false
+    } finally {
+        saving.value = false
+    }
+}
 
-                result.push(object);
-                return result;
-            };
-            return this.nodes = this.nodes.reduce(getRelationNodes, []);
-        },
+const resetGraph = () => {
+    if (!window.confirm('Reset unsaved changes?')) return
 
-        replaceEntity(entity) {
-            let entity_id = entity.id;
-            if (!this.entities[entity.id]) {
-                this.entities[entity.id] = entity;
-            }
+    applyData(JSON.parse(JSON.stringify(originalGraph.value)))
+    selectedNode.value = null
+    selectedEdge.value = null
+    editorMode.value = null
+    renderGraph()
+}
 
-            const getRelationNodes = (result, object) => {
-                if (object.uuid === this.currentUuid) {
-                    if (object.uuid === 0) {
-                        object.uuid = JSON.stringify(this.newUuid);
-                        this.newUuid++;
-                    }
-                    object.role = this.relation;
-                    object.cssClass = this.cssClass;
-                    object.colour = this.colour;
-                    object.visibility = this.visibility;
-                    object.isUnknown = this.isUnknown;
-                    object.entity_id = entity_id;
-                    result.push(object);
-                    return result;
-                }
+const clearGraph = () => {
+    if (!window.confirm('Clear the family graph?')) return
 
-                if (Array.isArray(object.children)) {
-                    const children = object.children.reduce(getRelationNodes, []);
-                    object.children = children;
-                }
-                else if (Array.isArray(object.relations)) {
-                    const relations = object.relations.reduce(getRelationNodes, []);
-                    object.relations = relations;
-                }
+    nodes.value = []
+    edges.value = []
+    selectedNode.value = null
+    selectedEdge.value = null
+    editorMode.value = null
+    renderGraph()
+}
 
-                result.push(object);
-                return result;
-            };
-            return this.nodes = this.nodes.reduce(getRelationNodes, []);
-        },
-        dragHeight() {
-            return this.maxY + 80;
-        },
-        dragWidth() {
-            return this.maxX + 200;
-        },
-        pincherWidth() {
-            let drag = this.dragWidth();
-            let me = this.$refs.familytree.clientWidth;
-            return Math.max(drag, me);
-        },
-        pincherHeight() {
-            let drag = this.dragHeight();
-            let me = this.$refs.familytree.clientHeight;
-            return Math.max(drag, me);
-        },
-    },
+const initCytoscape = async () => {
+    const { default: cytoscape } = await import('cytoscape')
+    const { default: dagre } = await import('cytoscape-dagre')
+    const { default: panzoom } = await import('cytoscape-panzoom')
 
-    mounted() {
-        axios.get(this.api).then((resp) => {
-            this.nodes = resp.data.nodes;
-            this.entities = resp.data.entities;
-            this.texts = resp.data.texts;
-            this.suggestions = resp.data.suggestions;
-            window.ftTexts = this.texts;
+    cytoscape.use(dagre)
+    cytoscape.use(panzoom)
+    cy.value = cytoscape({
+        container: cyContainer.value,
+        style: [
+            { selector: 'node', style: { label: 'data(label)', width: 72, height: 72, shape: 'ellipse', 'background-color': 'data(colour)', 'background-image': 'data(image)', 'background-fit': 'cover', 'border-width': 3, 'border-color': '#ffffff', color: '#111827', 'font-size': 12, 'text-wrap': 'wrap', 'text-max-width': 140, 'text-margin-y': 12, 'text-background-opacity': 0.9, 'text-background-color': '#ffffff', 'text-background-padding': 3 } },
+            { selector: 'node.unknown', style: { label: '?', 'font-size': 28, 'text-margin-y': 0, 'background-image': 'none' } },
+            { selector: 'edge', style: { width: 2, 'line-color': 'data(colour)', 'target-arrow-color': 'data(colour)', 'curve-style': 'bezier', label: 'data(role)', color: '#374151', 'font-size': 11, 'text-background-opacity': 0.9, 'text-background-color': '#ffffff', 'text-background-padding': 2 } },
+            { selector: 'edge.parent', style: { 'target-arrow-shape': 'triangle' } },
+            { selector: 'edge.partner', style: { 'line-style': 'dashed', 'target-arrow-shape': 'none' } },
+            { selector: ':selected', style: { 'overlay-color': '#f59e0b', 'overlay-opacity': 0.2, 'overlay-padding': 8 } },
+        ],
+    })
+    cy.value.panzoom({ minZoom: 0.1, maxZoom: 2 })
+    cy.value.on('tap', 'node', event => selectNode(event.target))
+    cy.value.on('tap', 'edge', event => selectEdge(event.target))
+}
 
-            this.originalNodes = JSON.parse(JSON.stringify(resp.data.nodes));
-            this.originalEntities = JSON.parse(JSON.stringify(resp.data.entities));
-            this.isLoading = false;
-        });
+onMounted(async () => {
+    await initCytoscape()
+    const response = await axios.get(props.api)
+    applyData(response.data, true)
+    renderGraph()
+})
 
-        this.emitter.on('editEntity', (data) => {
-            this.resetVariables();
-            this.entity = data.relation.entity_id;
-            this.currentUuid = data.uuid;
-            this.relation = data.relation.role;
-            this.cssClass = data.relation.cssClass;
-            this.colour = data.relation.colour;
-            this.visibility = data.relation.visibility;
-            this.isUnknown = data.relation.isUnknown,
-            this.isEditingEntity = true;
-            if (this.entity) {
-                const ts = document.querySelector(this.entityField)?.tomselect;
-                if (ts) {
-                    ts.addOption({ id: this.entity, text: this.entities[this.entity].name });
-                    ts.setValue(this.entity);
-                }
-            }
-            this.showDialog();
-        });
-
-        this.emitter.on('deleteEntity', (uuid) => {
-            this.resetVariables();
-            this.deleteUuid(uuid);
-        });
-
-        this.emitter.on('addRelation', (uuid) => {
-            this.resetVariables();
-            this.currentUuid = uuid;
-            this.isAddingRelation = true;
-            this.showDialog();
-        });
-        this.emitter.on('editRelation', (data) => {
-            //console.log(data.relation);
-            this.resetVariables();
-            this.currentUuid = data.uuid;
-            this.relation = data.relation.role;
-            this.cssClass = data.relation.cssClass;
-            this.colour = data.relation.colour;
-            this.visibility = data.relation.visibility;
-            this.isUnknown = data.relation.isUnknown,
-            this.isEditingRelation = true;
-            this.showDialog();
-        });
-
-        this.emitter.on('addChild', (uuid) => {
-            this.resetVariables();
-            this.currentUuid = uuid;
-            this.isAddingChild = true;
-            this.showDialog();
-        });
-
-        this.emitter.on('trackX', (x) => {
-            if (x > this.maxX) {
-                this.maxX = x;
-            }
-        });
-        this.emitter.on('trackY', (y) => {
-            if (y > this.maxY) {
-                this.maxY = y;
-            }
-        });
-    },
-};
+onBeforeUnmount(() => {
+    cy.value?.destroy()
+    cy.value = null
+})
 </script>

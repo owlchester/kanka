@@ -57,6 +57,7 @@
         "colord": "^2.9.3",
         "cytoscape": "^3.27.0",
         "cytoscape-cose-bilkent": "^4.1.0",
+        "cytoscape-dagre": "^4.0.0",
         "cytoscape-dblclick": "^0.3.1",
         "cytoscape-panzoom": "^2.5.3",
         "cytoscape-popper": "^4.0.1",
