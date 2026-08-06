@@ -12,7 +12,7 @@
         "axios": "^1.18",
         "bootstrap": "3.4.1",
         "laravel-vite-plugin": "^2.0",
-        "postcss": "^8.5.18",
+        "postcss": "^8.5.23",
         "tailwindcss": "^4.1",
         "tinymce": "^4.9.11",
         "vite": "^7.3.5",
