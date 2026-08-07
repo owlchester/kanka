@@ -495,6 +495,13 @@ function buildPin(pin) {
     }
 
     if (pin.shape === 'label') {
+        const draggable = props.canEdit && (
+            pin.is_draggable
+            || pin.isDraggable
+            || pin.id === 'draft'
+            || pin.id === 'editing'
+        )
+
         // Do not inherit Leaflet's default marker icon: its tooltip anchor is offset
         // for a pin-shaped icon, which makes labels drift away from their map point.
         const marker = L.marker([pin.latitude, pin.longitude], {
@@ -506,13 +513,14 @@ function buildPin(pin) {
                 className: 'map-label-anchor',
             }),
             opacity: 0,
+            draggable,
         })
             .bindTooltip(pin.name, {
                 permanent: true,
                 direction: 'center',
                 // The label is the visible part of this marker. Make the tooltip
                 // interactive so clicks anywhere on the text propagate to the marker.
-                interactive: true,
+                interactive: !draggable,
                 className: pin.css ? `map-label ${pin.css}` : 'map-label',
             })
 
@@ -528,7 +536,23 @@ function buildPin(pin) {
                 el.style.setProperty('--label-colour', pin.colour)
                 el.style.setProperty('--label-text-colour', contrastTextColour(pin.colour))
             }
+
+            if (draggable) {
+                const icon = marker.getElement()
+                const { offsetWidth, offsetHeight } = el
+
+                // The visible tooltip sits above the marker pane, so give the
+                // transparent marker icon the same hit area for native dragging.
+                icon.style.width = `${offsetWidth}px`
+                icon.style.height = `${offsetHeight}px`
+                icon.style.marginLeft = `${-offsetWidth / 2}px`
+                icon.style.marginTop = `${-offsetHeight / 2}px`
+            }
         })
+
+        if (draggable && pin.move_url) {
+            marker.on('dragend', (e) => movePinTo(pin, e.target))
+        }
 
         return marker
     }
