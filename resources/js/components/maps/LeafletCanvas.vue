@@ -333,6 +333,10 @@ function pinClassName(pin) {
     return pin.css ? `marker marker-${pin.id} ${pin.css}` : `marker marker-${pin.id}`
 }
 
+function markerBorderColour(pin) {
+    return pin.font_colour || pin.fontColour || pin.colour || '#ccc'
+}
+
 function legacyPinIcon(pin) {
     const size = LEGACY_MARKER_SIZE
     let inner = `<i class="${DEFAULT_PIN_ICON}"></i>`
@@ -351,7 +355,7 @@ function legacyPinIcon(pin) {
         inner = ''
         // The avatar image is painted on ::after (counter-rotated), not this div (rotated -45deg),
         // so the image itself renders upright instead of tilted.
-        style = `--pin-size: ${size}px; --pin-avatar: url('${pin.icon.value}');`
+        style = `--pin-size: ${size}px; background-color: ${markerBorderColour(pin)}; --pin-avatar: url('${pin.icon.value}');`
     }
 
     return L.divIcon({
@@ -369,8 +373,10 @@ function modernPinIcon(pin) {
     const icon = pin.icon
 
     if (icon?.type === 'avatar') {
+        const borderColour = markerBorderColour(pin)
+
         return L.divIcon({
-            html: `<img src="${icon.value}" class="marker-avatar" style="width: ${size}px; height: ${size}px; --pin-colour: ${colour};" />`,
+            html: `<img src="${icon.value}" class="marker-avatar" style="width: ${size}px; height: ${size}px; --pin-colour: ${colour}; --pin-border-colour: ${borderColour};" />`,
             iconSize: [size, size],
             iconAnchor: [size / 2, size / 2],
             popupAnchor: [0, -(size / 2)],
@@ -433,14 +439,25 @@ function movePinTo(pin, layer) {
         })
 }
 
+function polygonStrokeStyle(style, fallbackColour, showWhenCleared = false) {
+    const strokeCleared = Object.prototype.hasOwnProperty.call(style, 'stroke') && ! style.stroke
+
+    return {
+        color: strokeCleared
+            ? (showWhenCleared ? '#ccc' : fallbackColour)
+            : (style.stroke || fallbackColour),
+        stroke: ! strokeCleared || showWhenCleared,
+        weight: style['stroke-width'] || 1,
+    }
+}
+
 function buildPin(pin) {
     if (pin.shape === 'poly') {
         const latlngs = pin.custom_shape || pin.customShape || []
         const style = pin.polygon_style || pin.polygonStyle || {}
 
         return L.polygon(latlngs, {
-            color: style.stroke || pin.colour || '#ccc',
-            weight: style['stroke-width'] || 1,
+            ...polygonStrokeStyle(style, pin.colour || '#ccc'),
             fillColor: pin.colour || '#ccc',
             fillOpacity: (pin.opacity ?? 100) / 100,
             className: pin.css || '',
@@ -648,8 +665,7 @@ function buildEditLayer() {
 
     if (pin.shape === 'poly') {
         editPolygon = L.polygon(pin.customShape || [], {
-            color: pin.polygonStyle?.stroke || pin.colour || '#ccc',
-            weight: pin.polygonStyle?.['stroke-width'] || 1,
+            ...polygonStrokeStyle(pin.polygonStyle || {}, pin.colour || '#ccc', true),
             fillColor: pin.colour || '#ccc',
             fillOpacity: (pin.opacity ?? 100) / 100,
         }).addTo(leafletMap)
@@ -719,8 +735,7 @@ function styleDraftPolygon() {
     const style = props.draftPin.polygonStyle || {}
 
     draftPolygon.setStyle({
-        color: style.stroke || props.draftPin.colour || '#ccc',
-        weight: style['stroke-width'] || 1,
+        ...polygonStrokeStyle(style, props.draftPin.colour || '#ccc', true),
         fillColor: props.draftPin.colour || '#ccc',
         fillOpacity: (props.draftPin.opacity ?? 100) / 100,
     })
@@ -1207,7 +1222,7 @@ defineExpose({
 
 .marker-avatar {
     border-radius: 50%;
-    border: 2px solid hsl(var(--bc));
+    border: 2px solid var(--pin-border-colour, hsl(var(--bc)));
 }
 
 .map-label {

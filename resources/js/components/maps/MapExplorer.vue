@@ -791,6 +791,7 @@ function toEditingPin(pin) {
         shapeId: pin.shape_id,
         icon: pin.icon,
         iconId: pin.icon_id,
+        fontColour: pin.font_colour,
         customIcon: pin.custom_icon,
         isDraggable: pin.is_draggable,
         css: pin.css,
