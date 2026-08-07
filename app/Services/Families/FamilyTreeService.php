@@ -2,6 +2,7 @@
 
 namespace App\Services\Families;
 
+use App\Enums\FamilyTreeChildType;
 use App\Enums\Visibility;
 use App\Facades\Avatar;
 use App\Models\Entity;
@@ -9,7 +10,7 @@ use App\Models\Family;
 use App\Models\FamilyTree;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
-use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 
 class FamilyTreeService
 {
@@ -31,6 +32,8 @@ class FamilyTreeService
     protected array $configEntityIds = [];
 
     protected array $characterSuggestions = [];
+
+    protected array $graph = [];
 
     public function family(Family $family): self
     {
@@ -58,7 +61,9 @@ class FamilyTreeService
     public function tree(): array
     {
         return [
-            'nodes' => $this->fillNodes(),
+            'version' => FamilyTreeGraph::VERSION,
+            'nodes' => $this->graph['nodes'] ?? [],
+            'edges' => $this->graph['edges'] ?? [],
             'entities' => $this->entities,
             'suggestions' => $this->characterSuggestions,
             'texts' => $this->texts(),
@@ -87,9 +92,7 @@ class FamilyTreeService
         $this->loadFamily();
 
         // Get all the entity ids
-        if (empty($this->familyTree->config)) {
-            return;
-        }
+        $this->graph = FamilyTreeGraph::normalize($this->familyTree->config);
         $this->prepareEntities();
         // foreach ()
     }
@@ -111,6 +114,7 @@ class FamilyTreeService
             if (isset($this->user)) {
                 $familyTree->save();
             }
+            $this->family->setRelation('familyTree', $familyTree);
         }
         $this->familyTree = $familyTree;
     }
@@ -120,7 +124,7 @@ class FamilyTreeService
      */
     protected function prepareEntities(): void
     {
-        $data = $this->familyTree->config;
+        $data = $this->graph;
         // Go find every unique entity id
         array_walk_recursive($data, function ($v, $k) {
             if ($k !== 'entity_id') {
@@ -133,6 +137,9 @@ class FamilyTreeService
         });
         // Empty family tree
         if (empty($this->configEntityIds)) {
+            $this->config = $this->graph;
+            $this->visibilityCheck();
+
             return;
         }
 
@@ -159,7 +166,8 @@ class FamilyTreeService
             $this->visibilityCheck();
         } else {
             $this->entities = [];
-            $this->familyTree->config = [];
+            $this->graph = FamilyTreeGraph::empty();
+            $this->config = $this->graph;
             // $this->generatePlaceholder();
         }
         // dd($this->characterSuggestions);
@@ -213,48 +221,17 @@ class FamilyTreeService
 
     protected function visibilityCheck(): void
     {
-        $config = [];
-        foreach ($this->config as $key => $node) {
-            $config[$key] = $this->cleanInvisible($node, $key);
-        }
-        $this->config = $config;
-    }
-
-    protected function cleanInvisible($node, $key): mixed
-    {
-        if (isset($node['relations'])) {
-            foreach ($node['relations'] as $k => $rel) {
-                if (! isset($rel['children'])) {
-                    $relations[] = $rel;
-
-                    continue;
-                }
-
-                $children = [];
-                foreach ($rel['children'] as $ck => $child) {
-                    $child = $this->cleanInvisible($child, $ck);
-                    if (! $child) {
-                        continue;
-                    }
-                    if ($this->isVisible($child)) {
-                        $children[] = $child;
-                    }
-                }
-                unset($rel['children']);
-                if (! empty($children)) {
-                    $rel['children'] = $children;
-                }
-                if ($this->isVisible($rel)) {
-                    $relations[] = $rel;
-                }
-            }
-            unset($node['relations']);
-            if (! empty($relations)) {
-                $node['relations'] = $relations;
-            }
-        }
-
-        return $node;
+        $visibleNodes = array_filter($this->graph['nodes'], fn (array $node) => $this->isVisible($node));
+        $visibleNodeIds = array_fill_keys(array_column($visibleNodes, 'id'), true);
+        $visibleEdges = array_filter($this->graph['edges'], function (array $edge) use ($visibleNodeIds): bool {
+            return isset($visibleNodeIds[$edge['source']], $visibleNodeIds[$edge['target']]) && $this->isVisible($edge);
+        });
+        $this->graph = [
+            'version' => FamilyTreeGraph::VERSION,
+            'nodes' => array_values($visibleNodes),
+            'edges' => array_values($visibleEdges),
+        ];
+        $this->config = $this->graph;
     }
 
     protected function isVisible($relation): bool
@@ -275,59 +252,21 @@ class FamilyTreeService
             return;
         }
 
-        $config = [];
-        // Loop everything and remove entities that match
-        foreach ($this->familyTree->config as $key => $node) {
-            $config[$key] = $this->cleanupNode($node, $key);
-        }
-
-        // Save the config now that its clean?
-        $this->config = $config;
-    }
-
-    protected function cleanupNode($node, $key): mixed
-    {
-        if (in_array($node['entity_id'], $this->missingIds) && $node['entity_id'] != null) {
-            return null;
-        }
-        if (! isset($node['relations'])) {
-            return null;
-        }
-        $relations = [];
-        foreach ($node['relations'] as $k => $rel) {
-            if (in_array($rel['entity_id'], $this->missingIds) && $rel['entity_id'] != null) {
-                continue;
+        $missingNodeIds = [];
+        foreach ($this->graph['nodes'] as $node) {
+            if (in_array($node['entity_id'] ?? null, $this->missingIds, true)) {
+                $missingNodeIds[$node['id']] = true;
             }
-            if (! isset($rel['children'])) {
-                continue;
-            }
-            $children = [];
-            foreach ($rel['children'] as $ck => $child) {
-                $child = $this->cleanupNode($child, $ck);
-                if (! $child) {
-                    continue;
-                }
-                $children[] = $child;
-            }
-            unset($rel['children']);
-            if (! empty($children)) {
-                $rel['children'] = $children;
-            }
-
-            $relations[] = $rel;
         }
-        unset($node['relations']);
-        if (! empty($relations)) {
-            $node['relations'] = $relations;
-        }
-
-        /*if (!empty($node['relations'])) {
-            $parent[$key]['relations'] = $node['relations'];
-        } elseif (isset($node['relations'])) {
-            unset($parent[$key]['relations']);
-        }*/
-
-        return $node;
+        $this->graph['nodes'] = array_values(array_filter(
+            $this->graph['nodes'],
+            fn (array $node): bool => ! isset($missingNodeIds[$node['id']])
+        ));
+        $this->graph['edges'] = array_values(array_filter(
+            $this->graph['edges'],
+            fn (array $edge): bool => ! isset($missingNodeIds[$edge['source']], $missingNodeIds[$edge['target']])
+        ));
+        $this->config = $this->graph;
     }
 
     protected function emptyNode(): array
@@ -358,76 +297,45 @@ class FamilyTreeService
 
         $this->loadFamilyTree();
         if (empty($data)) {
-            $this->familyTree->config = [];
+            $this->familyTree->config = FamilyTreeGraph::empty();
             $this->familyTree->save();
 
             return $this;
         }
 
         // $data = json_decode($data);
-        $data = $this->prepareForSave($data);
+        $data = FamilyTreeGraph::normalize($data);
+        FamilyTreeGraph::validate($data);
+        $this->validateEntities($data);
 
         $this->familyTree->config = $data;
         $this->familyTree->save();
 
+        $this->graph = $data;
+        $this->config = $data;
+
         return $this;
     }
 
-    /**
-     * Prepare a new config for the database by adding a uuid everywhere
-     *
-     * @return array
-     */
-    protected function prepareForSave(array $data)// : array
+    protected function validateEntities(array $graph): void
     {
-        $assingUuid = function (&$value, $key) {
-            if ($key == 'uuid' && (! is_string($value) || ! Str::isUuid($value))) {
-                $value = (string) Str::uuid();
-            }
-            // echo "The key $key has the value $value <br>";
-        };
-
-        array_walk_recursive($data, $assingUuid);
-
-        // Loop on the data, adding a uuid on each element that is missing one
-        // dd('ended recursive', $data);
-        return $data;
-    }
-
-    protected function fillNodes(): array
-    {
-        $nodes = $this->config;
-        if (empty($nodes)) {
-            return [];
-        }
-        // dd($nodes);
-        if (! isset($nodes[0]['relations'])) {
-            return $nodes;
+        $entityIds = collect($graph['nodes'])
+            ->pluck('entity_id')
+            ->filter()
+            ->unique()
+            ->values();
+        if ($entityIds->isEmpty()) {
+            return;
         }
 
-        foreach ($nodes[0]['relations'] as $i => $relation) {
-            $nodes[0]['relations'][$i] = $this->informRelation($relation);
+        $validIds = Entity::query()
+            ->where('campaign_id', $this->campaign->id)
+            ->inTypes([config('entities.ids.character')])
+            ->whereIn('id', $entityIds)
+            ->pluck('id');
+        if ($validIds->count() !== $entityIds->count()) {
+            throw ValidationException::withMessages(['data' => 'Family trees can only contain characters from this campaign.']);
         }
-
-        return $nodes;
-    }
-
-    protected function informRelation(array $relation): array
-    {
-        // No children, single relation
-        if (empty($relation['children'])) {
-            $relation['width'] = 1;
-
-            return $relation;
-        }
-
-        $count = 0;
-        foreach ($relation['children'] as $i => $child) {
-            $count++;
-        }
-        $relation['width'] = $count;
-
-        return $relation;
     }
 
     protected function texts(): array
@@ -463,6 +371,7 @@ class FamilyTreeService
                     ],
                     'child' => [
                         'title' => __('families/trees.modals.entity.child.title'),
+                        'custom_required' => __('families/trees.modals.entity.child.custom_required'),
                     ],
                     'founder' => [
                         'title' => __('families/trees.modals.entity.founder.title'),
@@ -489,6 +398,20 @@ class FamilyTreeService
                     'colour' => __('crud.fields.colour'),
                     'unknown' => __('families/trees.modals.relations.unknown'),
                     'founder' => __('families/trees.modals.entity.add.founder'),
+                    'partner_status' => __('families/trees.modals.fields.partner_status'),
+                    'child_type' => __('families/trees.modals.fields.child_type'),
+                    'custom_role' => __('families/trees.modals.fields.custom_role'),
+                    'types' => [
+                        'biological' => __('families/trees.modals.fields.types.biological'),
+                        'adopted' => __('families/trees.modals.fields.types.adopted'),
+                        'step' => __('families/trees.modals.fields.types.step'),
+                        'foster' => __('families/trees.modals.fields.types.foster'),
+                        'custom' => __('families/trees.modals.fields.types.custom'),
+                    ],
+                    'partners' => [
+                        'current' => __('families/trees.modals.fields.partners.current'),
+                        'former' => __('families/trees.modals.fields.partners.former'),
+                    ],
                     'visibility' => [
                         'title' => __('crud.fields.visibility'),
                         'all' => __('crud.visibilities.all'),
@@ -513,6 +436,32 @@ class FamilyTreeService
                 'reseted' => __('families/trees.success.reseted'),
             ],
             'unknown' => __('families/trees.unknown'),
+            'child_types' => [
+                0 => [
+                    'label' => __('families/trees.modals.fields.types.mixed'),
+                    'icon' => 'fa-solid fa-tags',
+                ],
+                FamilyTreeChildType::Biological->value => [
+                    'label' => __('families/trees.modals.fields.types.biological'),
+                    'icon' => 'fa-solid fa-dna',
+                ],
+                FamilyTreeChildType::Adopted->value => [
+                    'label' => __('families/trees.modals.fields.types.adopted'),
+                    'icon' => 'fa-solid fa-house-heart',
+                ],
+                FamilyTreeChildType::Step->value => [
+                    'label' => __('families/trees.modals.fields.types.step'),
+                    'icon' => 'fa-solid fa-people-arrows',
+                ],
+                FamilyTreeChildType::Foster->value => [
+                    'label' => __('families/trees.modals.fields.types.foster'),
+                    'icon' => 'fa-solid fa-hand-holding-heart',
+                ],
+                FamilyTreeChildType::Custom->value => [
+                    'label' => __('families/trees.modals.fields.types.custom'),
+                    'icon' => 'fa-solid fa-tag',
+                ],
+            ],
         ];
     }
 }

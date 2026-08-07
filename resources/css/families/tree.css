@@ -7,12 +7,46 @@
     --family-tree-row-height: 110px;
 }
 
+.family-tree {
+    cursor: grab;
+    touch-action: none;
+}
+
+.family-tree:active,
+.family-tree.is-panning {
+    cursor: grabbing;
+}
+
+.family-tree-scroll-area {
+    min-width: 100%;
+    min-height: 100%;
+    padding: 5rem 3rem 3rem;
+}
+
+.family-tree-canvas {
+    position: relative;
+    margin: 0 auto;
+}
+
+.family-tree-edges {
+    position: absolute;
+    inset: 0;
+    overflow: visible;
+    pointer-events: none;
+}
+
+.family-tree-edges marker path {
+    fill: currentColor;
+}
+
 .family-node-entity {
     border: 1px solid hsl(var(--nc)/1);
     --tw-background-opacity: 1;
     background-color: hsl(var(--b1)/var(--tw-background-opacity));
     width: var(--family-tree-entity-width, 200px);
-    height: var(--family-tree-entity-height, 60px);
+    height: var(--family-tree-entity-height, 84px);
+    z-index: 2;
+    border-top: 3px solid var(--family-tree-node-colour, hsl(var(--nc)/1));
 }
 .family-node-entity-founder {
     --tw-background-opacity: 1;
@@ -27,6 +61,34 @@
 .family-tree-line {
     background-color: var(--family-tree-line, #333);
 }
+
+.family-tree-edge {
+    fill: none;
+    stroke: var(--family-tree-edge-colour, hsl(var(--bc)/.55));
+    stroke-width: 2;
+    pointer-events: stroke;
+    cursor: pointer;
+}
+
+.family-tree-edge-child {
+    marker-end: url('#family-tree-arrow');
+}
+
+.family-tree-edge-former {
+    stroke-dasharray: 7 5;
+}
+
+.family-tree-card-child-type,
+.family-tree-card-partner-type {
+    display: block;
+    color: hsl(var(--bc)/.7);
+}
+
+.family-tree-empty {
+    display: flex;
+    justify-content: center;
+    padding-top: 4rem;
+}
 .family-tree-child-line {
     background-color: var(--family-tree-line, #333);
 }
@@ -36,4 +98,3 @@
 .family-tree-relation {
 
 }
-

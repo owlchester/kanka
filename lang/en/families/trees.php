@@ -27,6 +27,7 @@ return [
                 'title'     => 'Add an entry',
             ],
             'child'     => [
+                'custom_required' => 'Enter a custom child relationship.',
                 'success'   => 'Child added.',
                 'title'     => 'Add a child',
             ],
@@ -42,6 +43,23 @@ return [
                 'confirm'   => 'Are you sure you want to remove this entry from the family tree?',
                 'success'   => 'Entry removed.',
             ],
+        ],
+        'fields'    => [
+            'child_type'    => 'Child relationship',
+            'custom_role'   => 'Custom relationship',
+            'partner_status' => 'Partner status',
+            'partners'      => [
+                'current' => 'Current partner',
+                'former'  => 'Former partner',
+            ],
+            'types'         => [
+                'adopted'    => 'Adopted',
+                'biological' => 'Biological',
+                'custom'     => 'Custom',
+                'foster'     => 'Foster',
+                'step'       => 'Step',
+            ],
+            'mixed'         => 'Mixed relationship',
         ],
         'relations' => [
             'add'       => [

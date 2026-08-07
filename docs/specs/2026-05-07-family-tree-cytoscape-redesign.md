@@ -1,4 +1,4 @@
-# Family Tree Cytoscape Redesign
+# Family Tree Graph Redesign
 
 **Date:** 2026-05-07
 **Status:** Approved
@@ -9,7 +9,7 @@ The current family tree is implemented as 9 hand-rolled Vue components that manu
 
 ## Solution
 
-Replace the entire frontend with a Cytoscape.js-based graph renderer, following the same patterns established in `Web.vue` (the entity relations web). Replace the nested JSON config with a flat `{ nodes, edges }` graph format that Cytoscape consumes directly.
+Replace the nested JSON config with a flat, versioned `{ nodes, edges }` graph format. Keep the family-tree renderer as first-party Vue/DOM/SVG so each person remains a real HTML element and campaign CSS can target it with `data-*` attributes. Use a deterministic layout module rather than the old recursive width calculations.
 
 ---
 
@@ -30,6 +30,7 @@ The `family_trees.config` column changes from a nested array to a flat object:
       "source": "uuid-1",
       "target": "uuid-2",
       "type": "partner",
+      "partner_status": "current",
       "role": "Wife",
       "colour": "#cc0000",
       "cssClass": "",
@@ -40,7 +41,8 @@ The `family_trees.config` column changes from a nested array to a flat object:
       "source": "uuid-1",
       "target": "uuid-6",
       "type": "child",
-      "role": "",
+      "child_type": 1,
+      "role": null,
       "colour": "",
       "cssClass": "",
       "visibility": 1
@@ -51,13 +53,20 @@ The `family_trees.config` column changes from a nested array to a flat object:
 
 **Edge types:**
 - `child` — directed, drives the dagre top-down hierarchy (parent → child)
-- `partner` — undirected, encouraged to stay at the same rank via `weight: 0`
+- `partner` — displayed on the same rank; `partner_status` distinguishes current and former partners
+
+**Child types:**
+- `1` — biological
+- `2` — adopted
+- `3` — step
+- `4` — foster
+- `5` — custom, requiring a role label
 
 **Unknown people** — a node with `entity_id: null` and `isUnknown: true`, rendered as a question-mark avatar.
 
 **Node fields:** `id` (UUID), `entity_id` (int or null), `isUnknown` (bool), `cssClass` (string), `colour` (string), `visibility` (int).
 
-**Edge fields:** `id` (UUID), `source` (node UUID), `target` (node UUID), `type` (`partner|child`), `role` (string), `colour` (string), `cssClass` (string), `visibility` (int).
+**Edge fields:** `id` (UUID), `source` (node UUID), `target` (node UUID), `type` (`partner|child`), `partner_status` (`current|former`), `child_type` (1-5), `role` (string), `colour` (string), `cssClass` (string), `visibility` (int).
 
 ---
 
@@ -67,23 +76,22 @@ The `family_trees.config` column changes from a nested array to a flat object:
 
 **New files:**
 - `resources/js/components/families/FamilyTree.vue` — main component (replaces in-place)
-- `resources/js/components/families/FamilyTreeModal.vue` — single modal for all edit actions
+- `resources/js/family-tree-layout.js` — deterministic graph layout and connector geometry
 
-The 8 supporting components are deleted entirely. All layout logic moves to Cytoscape/dagre.
+The 8 supporting components are no longer registered. Layout logic moves to the pure graph layout module and connectors are rendered in SVG behind DOM cards.
 
 ### FamilyTree.vue
 
-Follows the composition API + lazy import pattern from `Web.vue`. Responsibilities:
+Responsibilities:
 
-- Init Cytoscape with `cytoscape-dagre` (new dependency) and `cytoscape-panzoom` (already installed)
-- On mount: fetch from the API, build Cytoscape elements, run layout
-- **View mode:** nodes as circle avatars + name labels; hover shows tippy tooltip with full entity card; child edges as solid downward arrows; partner edges as dashed lines; edge role shown on hover
-- **Edit mode:** activated by toolbar "Edit" button; tap node → action panel (Add Partner / Add Child / Edit / Delete); tap edge → edit/delete modal; edge-drawing mode triggered by choosing "Add partner" or "Add child" (tap source, then tap target)
+- On mount: fetch the API payload, calculate coordinates, and render DOM cards plus SVG connectors
+- **View mode:** cards show names, dates, child-type icons, labels, and former-partner styling
+- **Edit mode:** each card exposes Add Partner, Add Child, Edit, and Delete actions; connector paths edit relationship metadata
 - Save: POST flat `{ nodes, edges }` to existing save endpoint
 
-### FamilyTreeModal.vue
+### FamilyTree modal
 
-Single `<dialog>` handling all edit interactions:
+The main component owns a single `<dialog>` handling all edit interactions:
 - Add/edit a node: character picker (tomselect), unknown toggle, colour, CSS class, visibility
 - Add/edit an edge: role label, colour, visibility, type selector (partner/child)
 - Reuses existing dialog patterns (`window.openDialog`, `window.closeDialog`, tomselect)
@@ -95,16 +103,13 @@ Single `<dialog>` handling all edit interactions:
 ### FamilyTreeService
 
 **`api()` / load:**
-- Load **all** family members (not just top 10) and return them as staging nodes
-- Also load any characters referenced by `entity_id` in the saved config that are not family members (e.g. a partner from another family) — same as the current `prepareEntities()` logic
-- Merge both sets: nodes in the saved config are returned with their saved metadata; family members not yet in the config appear as unconnected staging nodes
 - Entity data format unchanged: `id, name, url, thumb, birth, death, status, tags`
-- Visibility filtering moves from nested relation traversal to flat edge iteration
+- Visibility filtering operates on flat nodes and edges
 
 **`save()`:**
-- Accepts `{ nodes: [...], edges: [...] }` instead of the old nested array
-- UUID assignment via `prepareForSave()` — same logic, just applied to both arrays
-- Visibility and missing-entity cleanup operate on `edges[]` instead of recursive `relations[]`
+- Accepts `{ version: 2, nodes: [...], edges: [...] }` instead of the old nested array
+- UUID assignment is applied to both arrays while preserving edge references
+- Visibility and missing-entity cleanup operate on nodes and edges instead of recursive `relations[]`
 
 **No new routes or controller changes** — same endpoints, same auth.
 
@@ -112,16 +117,16 @@ Single `<dialog>` handling all edit interactions:
 
 ## Layout
 
-- Library: `cytoscape-dagre` (new dependency, ~15kb gzipped)
-- `rankDir: 'TB'` (top-to-bottom)
+- Fixed-width DOM slots are calculated by `family-tree-layout.js`
 - `child` edges drive rank assignment
-- `partner` edges use `weight: 0` to encourage same-rank placement
-- Unconnected staging nodes (family members with no edges) shown as a row at the top of the canvas
+- `partner` edges are grouped on the same rank
+- SVG connectors use orthogonal child paths and horizontal partner paths
+- The layout has no recursive width adjustment or branch-specific spacing hack
 
 ---
 
 ## Out of Scope
 
-- Migration of existing saved trees — separate task / migration command
+- Migration of existing saved trees — handled by `migrate:family-trees`, with `--dry-run` support
 - Drag-repositioning of nodes (auto-layout only, positions not persisted)
 - Non-character entities in the tree (same restriction as today)
