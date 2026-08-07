@@ -1,5 +1,14 @@
 <?php
 
+use App\Enums\EntityEventTypes;
+use App\Models\Calendar;
+use App\Models\Character;
+use App\Models\Entity;
+use App\Models\Event;
+use App\Models\Journal;
+use App\Models\Quest;
+use App\Models\Reminder;
+
 it('POSTS an invalid reminders form')
     ->asUser()
     ->withCampaign()
@@ -97,3 +106,55 @@ it('DELETES an invalid entity event')
     ->withReminders()
     ->delete('/api/1.0/campaigns/1/entities/1/reminders/100')
     ->assertStatus(404);
+
+it('sets the first reminder as the calendar date for journals, quests, and events', function () {
+    $this->asUser()->withCampaign()->withCalendars();
+
+    $calendar = Calendar::firstOrFail();
+    $models = [
+        Journal::factory()->create(['campaign_id' => 1]),
+        Quest::factory()->create(['campaign_id' => 1]),
+        Event::factory()->create(['campaign_id' => 1]),
+    ];
+
+    foreach ($models as $model) {
+        $reminder = Reminder::factory()->create([
+            'remindable_id' => $model->entity->id,
+            'remindable_type' => Entity::class,
+            'calendar_id' => $calendar->id,
+        ]);
+
+        expect($reminder->fresh()->type_id)->toBe(EntityEventTypes::calendarDate);
+    }
+});
+
+it('does not replace an existing calendar date or promote other entity reminders', function () {
+    $this->asUser()->withCampaign()->withCalendars();
+
+    $calendar = Calendar::firstOrFail();
+    $journal = Journal::factory()->create(['campaign_id' => 1]);
+    $existing = Reminder::factory()->create([
+        'remindable_id' => $journal->entity->id,
+        'remindable_type' => Entity::class,
+        'calendar_id' => $calendar->id,
+        'type_id' => EntityEventTypes::calendarDate,
+    ]);
+
+    $newReminder = Reminder::factory()->create([
+        'remindable_id' => $journal->entity->id,
+        'remindable_type' => Entity::class,
+        'calendar_id' => $calendar->id,
+    ]);
+
+    expect($newReminder->fresh()->type_id)->toBeNull()
+        ->and($journal->entity->fresh()->calendarDate->is($existing))->toBeTrue();
+
+    $character = Character::factory()->create(['campaign_id' => 1]);
+    $characterReminder = Reminder::factory()->create([
+        'remindable_id' => $character->entity->id,
+        'remindable_type' => Entity::class,
+        'calendar_id' => $calendar->id,
+    ]);
+
+    expect($characterReminder->fresh()->type_id)->toBeNull();
+});

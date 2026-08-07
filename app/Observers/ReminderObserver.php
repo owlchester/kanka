@@ -2,6 +2,8 @@
 
 namespace App\Observers;
 
+use App\Enums\EntityEventTypes;
+use App\Models\Entity;
 use App\Models\Reminder;
 use Stevebauman\Purify\Facades\Purify;
 
@@ -11,6 +13,19 @@ class ReminderObserver
     {
         if ($reminder->comment !== null) {
             $reminder->comment = Purify::clean($reminder->comment);
+        }
+
+        if (! $reminder->exists && $reminder->type_id === null && $reminder->remindable instanceof Entity) {
+            $entity = $reminder->remindable;
+            $eligibleTypes = [
+                config('entities.ids.journal'),
+                config('entities.ids.quest'),
+                config('entities.ids.event'),
+            ];
+
+            if (in_array($entity->type_id, $eligibleTypes) && $entity->calendarDate === null) {
+                $reminder->type_id = EntityEventTypes::calendarDate;
+            }
         }
 
         $reminder->is_recurring = ! empty($reminder->recurring_periodicity);
