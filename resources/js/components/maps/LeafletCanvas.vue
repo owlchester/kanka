@@ -338,7 +338,7 @@ function markerBorderColour(pin) {
 }
 
 function legacyPinIcon(pin) {
-    const size = LEGACY_MARKER_SIZE
+    const size = Math.max(10, Number(pin.pin_size) || LEGACY_MARKER_SIZE)
     let inner = `<i class="${DEFAULT_PIN_ICON}"></i>`
     let style = `--pin-size: ${size}px; background-color: ${pin.colour || '#ccc'};`
 
