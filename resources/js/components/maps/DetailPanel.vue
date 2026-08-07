@@ -22,9 +22,10 @@
 
         <div
             class="px-4 flex flex-col gap-2"
-            :class="preview?.entity_image ? '-mt-6' : ''"
+            :class="preview?.entity_image && markerIcon.kind !== 'avatar' ? '-mt-6' : ''"
         >
             <div
+                v-if="markerIcon.kind !== 'avatar'"
                 class="w-10 h-10 rounded-lg flex items-center justify-center flex-none overflow-hidden"
                 :class="
                     markerIcon.kind !== 'avatar' && !pin.colour

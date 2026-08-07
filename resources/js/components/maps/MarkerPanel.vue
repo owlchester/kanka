@@ -21,7 +21,7 @@
                     <img
                         v-else-if="headerIconImage"
                         :src="headerIconImage"
-                        class="w-6 h-6 object-contain"
+                        class="w-6 h-6 rounded-md object-contain"
                         alt=""
                     />
                     <i

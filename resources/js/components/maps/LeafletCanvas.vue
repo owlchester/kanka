@@ -510,6 +510,9 @@ function buildPin(pin) {
             .bindTooltip(pin.name, {
                 permanent: true,
                 direction: 'center',
+                // The label is the visible part of this marker. Make the tooltip
+                // interactive so clicks anywhere on the text propagate to the marker.
+                interactive: true,
                 className: pin.css ? `map-label ${pin.css}` : 'map-label',
             })
 
