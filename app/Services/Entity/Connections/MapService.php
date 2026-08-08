@@ -401,14 +401,11 @@ class MapService
                 ->addFamilies()
                 ->addJournals()
                 ->addLocationQuests()
-                ->addOrganisations()
                 ->addParent()
                 ->addQuests()
                 ->addMapMarkers()
                 ->addMaps()
                 ->addAuthorJournals()
-                ->addRaces()
-                ->addLocationCreatures()
                 ->addEntities();
         }
 
@@ -545,29 +542,6 @@ class MapService
                 'attitude' => null,
                 'type' => 'family-member',
                 'shape' => 'none',
-            ];
-        }
-
-        return $this;
-    }
-
-    protected function addOrganisations(): self
-    {
-        /** @var Location $child */
-        $child = $this->entity->child;
-
-        foreach ($child->organisations()->with(['entity', 'entity.image', 'entity.entityType'])->has('entity')->get() as $sub) {
-            $this->addEntity($sub->entity);
-            $this->addRelations($sub->entity);
-
-            $this->relations[] = [
-                'source' => $sub->entity->id,
-                'target' => $this->entity->id,
-                'text' => __('entities/relations.types.organisation_member'),
-                'colour' => '#ccc',
-                'attitude' => null,
-                'type' => 'sub-org',
-                'shape' => 'triangle',
             ];
         }
 
@@ -859,58 +833,6 @@ class MapService
         return $this;
     }
 
-    /**
-     * Add a character's races
-     */
-    protected function addRaces(): self
-    {
-        /** @var Character $race */
-        $race = $this->entity->child;
-
-        foreach ($race->races()->with(['entity', 'entity.image', 'entity.entityType'])->has('entity')->get() as $subrace) {
-            $this->addEntity($subrace->entity);
-            $this->addRelations($subrace->entity);
-
-            $this->relations[] = [
-                'source' => $subrace->entity->id,
-                'target' => $this->entity->id,
-                'text' => Module::singular(config('entities.ids.race'), __('entities.race')),
-                'colour' => '#ccc',
-                'attitude' => null,
-                'type' => 'sub-race',
-                'shape' => 'triangle',
-            ];
-        }
-
-        return $this;
-    }
-
-    /**
-     * Creature locations
-     */
-    protected function addLocationCreatures(): self
-    {
-        /** @var Location $location */
-        $location = $this->entity->child;
-
-        foreach ($location->creatures()->with(['entity', 'entity.image', 'entity.entityType'])->has('entity')->get() as $loc) {
-            $this->addEntity($loc->entity);
-            $this->addRelations($loc->entity);
-
-            $this->relations[] = [
-                'source' => $loc->entity->id,
-                'target' => $this->entity->id,
-                'text' => Module::singular(config('entities.ids.location'), __('entities.location')),
-                'colour' => '#ccc',
-                'attitude' => null,
-                'type' => 'location-creature',
-                'shape' => 'triangle',
-            ];
-        }
-
-        return $this;
-    }
-
     protected function addEntityLocations(): self
     {
         $locations = $this->entity->locations()
@@ -936,7 +858,7 @@ class MapService
     }
 
     /**
-     * Location's custom entities
+     * Location's entities
      */
     protected function addEntities(): self
     {

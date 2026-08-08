@@ -28,9 +28,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Map[]|Collection $maps
  * @property Event[]|Collection $events
  * @property Character[]|Collection $characters
- * @property Organisation[]|Collection $organisations
- * @property Creature[]|Collection $creatures
- * @property Race[]|Collection $races
  * @property Item[]|Collection $items
  */
 class Location extends MiscModel
@@ -80,22 +77,6 @@ class Location extends MiscModel
     protected array $sanitizable = [
         'name',
     ];
-
-    /**
-     * @return BelongsToMany<Race, $this>
-     */
-    public function races(): BelongsToMany
-    {
-        return $this->belongsToMany('App\Models\Race', 'race_location');
-    }
-
-    /**
-     * @return BelongsToMany<Creature, $this>
-     */
-    public function creatures(): BelongsToMany
-    {
-        return $this->belongsToMany('App\Models\Creature', 'creature_location');
-    }
 
     /**
      * @return BelongsToMany<Entity, $this>
@@ -192,14 +173,6 @@ class Location extends MiscModel
     }
 
     /**
-     * @return BelongsToMany<Organisation, $this>
-     */
-    public function organisations(): BelongsToMany
-    {
-        return $this->belongsToMany('App\Models\Organisation', 'organisation_location');
-    }
-
-    /**
      * Detach children when moving this entity from one campaign to another
      */
     public function detach(): void
@@ -209,11 +182,7 @@ class Location extends MiscModel
             $child->save();
         }
 
-        // Pivot tables can be deleted directly
-        $this->races()->delete();
-        $this->creatures()->delete();
-        $this->organisations()->delete();
-        $this->entities()->delete();
+        $this->entities()->detach();
     }
 
     /**

@@ -1,6 +1,10 @@
 <?php
 
+use App\Models\Creature;
 use App\Models\Location;
+use App\Models\Organisation;
+use App\Models\Race;
+use App\Services\Entity\MoveService;
 
 it('POSTS an invalid location form')
     ->asUser()
@@ -108,4 +112,54 @@ it('can\'t GET a private location as a player', function () {
     $response = $this->get('/api/1.0/campaigns/1/locations/1');
     expect($response->status())
         ->toBe(403);
+});
+
+it('shows creatures linked through entity locations on its connections map', function () {
+    $this->asUser()->withCampaign()->withLocations()->withCreatures();
+
+    $location = Location::first();
+    $creature = Creature::first();
+    $creature->entity->locations()->attach($location->id);
+
+    $response = $this->getJson(route('entities.relations_map', [1, $location->entity, 'option' => 'related']))
+        ->assertSuccessful();
+
+    expect(collect($response->json('entities'))->pluck('id')->all())
+        ->toContain($creature->entity->id);
+});
+
+it('detaches location entities without deleting them when moving a location', function () {
+    $this->asUser()->withCampaign()->withCampaigns();
+
+    $location = Location::factory()->create(['campaign_id' => 1]);
+    $creature = Creature::factory()->create(['campaign_id' => 1]);
+    $organisation = Organisation::factory()->create(['campaign_id' => 1]);
+    $race = Race::factory()->create(['campaign_id' => 1]);
+
+    foreach ([$creature, $organisation, $race] as $model) {
+        $model->entity->locations()->attach($location->id);
+    }
+
+    app(MoveService::class)
+        ->entity($location->entity)
+        ->campaign($location->campaign)
+        ->user(auth()->user())
+        ->to(2)
+        ->copy(false)
+        ->validate()
+        ->process();
+
+    $this->assertModelExists($location->fresh());
+    $this->assertModelExists($creature->fresh());
+    $this->assertModelExists($organisation->fresh());
+    $this->assertModelExists($race->fresh());
+
+    expect($location->fresh()->campaign_id)->toBe(2)
+        ->and($creature->fresh()->campaign_id)->toBe(1)
+        ->and($organisation->fresh()->campaign_id)->toBe(1)
+        ->and($race->fresh()->campaign_id)->toBe(1);
+
+    foreach ([$creature, $organisation, $race] as $model) {
+        expect($model->fresh()->entity->locations()->whereKey($location->id)->exists())->toBeFalse();
+    }
 });
