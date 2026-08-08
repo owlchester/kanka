@@ -20,7 +20,7 @@ class GalleryMapper
 
     protected Image $image;
 
-    protected array $reset = ['created_at', 'updated_at', 'created_by', 'campaign_id', 'id', 'folder_id', 'image_folder'];
+    protected array $reset = ['created_at', 'updated_at', 'created_by', 'campaign_id', 'id', 'folder_id', 'image_folder', 'version'];
 
     public function has(string $uuid): bool
     {
@@ -101,7 +101,7 @@ class GalleryMapper
         }
         // An image needs the image saved locally
         $imagePath = $this->path . '/' . $this->data['id'] . '.' . $this->data['ext'];
-        $destination = 'campaigns/' . $this->campaign->id . '/' . $this->image->id . '.' . $this->data['ext'];
+        $destination = $this->image->path;
 
         if (! Storage::disk('local')->exists($imagePath)) {
             Log::info('image ' . $imagePath . ' doesnt exist');

@@ -31,6 +31,7 @@ class ImageResource extends JsonResource
             'path' => $image->is_folder ? null : Img::crop(300, 300)->url($image->path),
 
             'ext' => $image->ext,
+            'version' => $image->version ?? 1,
             'size' => $image->size,
 
             'created_at' => $image->created_at,

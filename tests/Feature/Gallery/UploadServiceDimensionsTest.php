@@ -19,4 +19,6 @@ it('saves the uploaded image dimensions to metadata', function () {
 
     expect($image->width())->toBe(80);
     expect($image->height())->toBe(40);
+    expect($image->version)->toBe(1);
+    expect($image->path)->toBe('campaigns/' . $campaign->id . '/' . $image->id . '/1.png');
 });

@@ -28,6 +28,7 @@ use Illuminate\Support\Str;
  * @property string $id
  * @property string $name
  * @property string $ext
+ * @property ?int $version
  * @property int $size
  * @property ?int $focus_x
  * @property ?int $focus_y
@@ -86,6 +87,11 @@ class Image extends Model
     public $casts = [
         'visibility_id' => Visibility::class,
         'metadata' => 'array',
+        'version' => 'integer',
+    ];
+
+    protected $attributes = [
+        'version' => 1,
     ];
 
     public const TILING_RUNNING = 1;
@@ -247,7 +253,11 @@ class Image extends Model
 
     public function getFileAttribute(): string
     {
-        return $this->id . '.' . $this->ext;
+        if ($this->version === null) {
+            return $this->id . '.' . $this->ext;
+        }
+
+        return $this->id . '/' . $this->version . '.' . $this->ext;
     }
 
     public function getFolderAttribute(): string

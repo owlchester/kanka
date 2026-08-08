@@ -20,9 +20,35 @@ it('POSTS a new image')
                 'id',
                 'name',
                 'path',
+                'version',
             ],
         ],
     ]);
+
+it('uses versioned paths for new images', function () {
+    $this->asUser(true)->withCampaign();
+
+    $image = Image::factory()->create(['campaign_id' => 1, 'ext' => 'jpg']);
+
+    expect($image->version)->toBe(1)
+        ->and($image->path)->toBe('campaigns/1/' . $image->id . '/1.jpg');
+});
+
+it('keeps legacy paths for images without a version', function () {
+    $this->asUser(true)->withCampaign();
+
+    $image = Image::factory()->create([
+        'campaign_id' => 1,
+        'ext' => 'jpg',
+        'version' => null,
+    ]);
+
+    expect($image->path)->toBe('campaigns/1/' . $image->id . '.jpg');
+
+    $this->get('/api/1.0/campaigns/1/images/' . $image->id)
+        ->assertSuccessful()
+        ->assertJsonPath('data.version', 1);
+});
 
 it('GETS all images')
     ->asUser(true)
