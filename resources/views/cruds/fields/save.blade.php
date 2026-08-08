@@ -16,6 +16,9 @@
                 <span class="sr-only">{{ __('crud.actions.actions') }}</span>
             </button>
             <div class="dropdown-menu hidden" role="menu">
+                @if (!empty($stealth))
+                    @include('cruds.fields._stealth-edit')
+                @endif
                 <x-dropdowns.item link="#" css="form-submit-actions" shortcut="Ctrl S">
                     <span class="grow">{{ __('crud.save') }}</span>
                 </x-dropdowns.item>

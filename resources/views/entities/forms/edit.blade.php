@@ -47,7 +47,7 @@
                 <div class="flex items-center gap-2">
                     @includeWhen(auth()->user()->can('admin', $campaign), 'cruds.fields.entity-permission')
 
-                    @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form', 'model' => $entity])
+                    @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form', 'model' => $entity, 'stealth' => true])
                 </div>
             </div>
 

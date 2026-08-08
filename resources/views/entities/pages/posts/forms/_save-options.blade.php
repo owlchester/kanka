@@ -14,6 +14,7 @@
                 <span class="sr-only">{{ __('crud.actions.actions') }}</span>
             </button>
             <div class="dropdown-menu hidden" role="menu">
+                @include('cruds.fields._stealth-edit', ['postContext' => true])
                 <x-dropdowns.item link="#" css="form-submit-actions" shortcut="Ctrl S">
                     {{ __('crud.save') }}
                 </x-dropdowns.item>
@@ -27,4 +28,3 @@
         </div>
     </div>
 </div>
-

@@ -75,6 +75,52 @@ const initTooltip = (e) => {
     });
 };
 
+const initDropdownOptions = (instance, sourceDropdown) => {
+    const options = instance.popper?.querySelectorAll("[data-dropdown-option]") ?? [];
+    const sourceCheckboxes = sourceDropdown.querySelectorAll("[data-dropdown-option-checkbox]");
+
+    options.forEach((option) => {
+        const checkbox = option.querySelector("[data-dropdown-option-checkbox]");
+        const sourceCheckbox = Array.from(sourceCheckboxes).find(
+            (source) => source.name === checkbox?.name,
+        );
+        if (checkbox && sourceCheckbox) {
+            checkbox.checked = sourceCheckbox.checked;
+            if (!option.dataset.initialized) {
+                checkbox.addEventListener("change", () => {
+                    sourceCheckbox.checked = checkbox.checked;
+                });
+            }
+        }
+
+        if (option.dataset.initialized) {
+            return;
+        }
+        option.dataset.initialized = "true";
+
+        const toggle = option.querySelector("[data-dropdown-option-help-toggle]");
+        const help = option.querySelector("[data-dropdown-option-help]");
+        if (!toggle || !help) {
+            return;
+        }
+
+        const toggleHelp = (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            const hidden = help.classList.toggle("hidden");
+            toggle.setAttribute("aria-expanded", String(!hidden));
+            requestAnimationFrame(() => instance.popperInstance?.forceUpdate());
+        };
+
+        toggle.addEventListener("click", toggleHelp);
+        toggle.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+                toggleHelp(event);
+            }
+        });
+    });
+};
+
 const initDropdowns = () => {
     const elements = document.querySelectorAll("[data-dropdown]");
 
@@ -99,6 +145,7 @@ const initDropdowns = () => {
             interactive: true,
             trigger: "click",
             onShown(instance) {
+                initDropdownOptions(instance, dropdown);
                 window.triggerEvent();
             },
         });

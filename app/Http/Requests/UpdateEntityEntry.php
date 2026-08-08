@@ -25,6 +25,7 @@ class UpdateEntityEntry extends FormRequest
     {
         return [
             'entry' => 'required|string',
+            'stealth' => 'boolean',
         ];
     }
 }
