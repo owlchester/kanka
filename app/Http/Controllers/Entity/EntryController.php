@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateEntityEntry;
 use App\Models\Campaign;
 use App\Models\Entity;
+use App\Services\Entity\PreserveLastUpdatedService;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -14,6 +15,10 @@ use Illuminate\View\View;
 
 class EntryController extends Controller
 {
+    public function __construct(
+        protected PreserveLastUpdatedService $preserveLastUpdatedService,
+    ) {}
+
     /**
      * @return Application|Factory|View
      *
@@ -39,12 +44,22 @@ class EntryController extends Controller
             return response()->json(['success' => true]);
         }
 
-        $fields = $request->only('entry');
-        $entity->update($fields);
+        $lastUpdated = $request->boolean('stealth')
+            ? $this->preserveLastUpdatedService->snapshot($entity)
+            : null;
 
-        if ($entity->wasChanged()) {
-            EntityLogger::entity($entity);
-            $entity->touch();
+        try {
+            $fields = $request->only('entry');
+            $entity->update($fields);
+
+            if ($entity->wasChanged()) {
+                EntityLogger::entity($entity);
+                $entity->touch();
+            }
+        } finally {
+            if ($lastUpdated !== null) {
+                $this->preserveLastUpdatedService->restore($entity, $lastUpdated);
+            }
         }
 
         $return = redirect()->to($entity->url());

@@ -8,6 +8,7 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Post;
 use App\Models\PostLayout;
+use App\Services\Entity\PreserveLastUpdatedService;
 use App\Services\MultiEditingService;
 use App\Services\Posts\Permissions\SavePermissionsService;
 use App\Traits\CampaignAware;
@@ -22,6 +23,7 @@ class PostController extends Controller
     public function __construct(
         protected SavePermissionsService $savePermissionsService,
         protected MultiEditingService $editingService,
+        protected PreserveLastUpdatedService $preserveLastUpdatedService,
     ) {}
 
     public function index(Campaign $campaign, Entity $entity)
@@ -98,27 +100,38 @@ class PostController extends Controller
 
         $data = $campaign->superboosted() ? $request->all() : $request->except(['layout_id']);
         $data['entity_id'] = $entity->id;
-        $post = Post::create($data);
+        unset($data['stealth']);
+        $lastUpdated = $request->boolean('stealth')
+            ? $this->preserveLastUpdatedService->snapshot($entity)
+            : null;
 
-        if (auth()->user()->can('permissions', $entity)) {
-            $this->savePermissionsService->post($post)->request($request)->save();
+        try {
+            $post = Post::create($data);
+
+            if (auth()->user()->can('permissions', $entity)) {
+                $this->savePermissionsService->post($post)->request($request)->save();
+            }
+
+            if ($request->has('submit-new')) {
+                $route = route('entities.posts.create', [$campaign, $entity]);
+
+                return response()->redirectTo($route);
+            } elseif ($request->has('submit-update')) {
+                $route = route('entities.posts.edit', [$campaign, $entity, $post]);
+
+                return response()->redirectTo($route);
+            }
+
+            return redirect()
+                ->to($entity->url())
+                ->with('success', __('entities/notes.create.success', [
+                    'name' => $post->name, 'entity' => $entity->name,
+                ]));
+        } finally {
+            if ($lastUpdated !== null) {
+                $this->preserveLastUpdatedService->restore($entity, $lastUpdated);
+            }
         }
-
-        if ($request->has('submit-new')) {
-            $route = route('entities.posts.create', [$campaign, $entity]);
-
-            return response()->redirectTo($route);
-        } elseif ($request->has('submit-update')) {
-            $route = route('entities.posts.edit', [$campaign, $entity, $post]);
-
-            return response()->redirectTo($route);
-        }
-
-        return redirect()
-            ->to($entity->url())
-            ->with('success', __('entities/notes.create.success', [
-                'name' => $post->name, 'entity' => $entity->name,
-            ]));
     }
 
     public function edit(Campaign $campaign, Entity $entity, Post $post)
@@ -164,32 +177,42 @@ class PostController extends Controller
         if ($request->isNotFilled('position')) {
             unset($data['position']);
         }
-        $post->update($data);
-        if (auth()->user()->can('permissions', $entity)) {
-            $this->savePermissionsService
-                ->post($post)
-                ->request($request)
-                ->save();
+        $stealth = $request->boolean('stealth');
+        unset($data['stealth']);
+        $lastUpdated = $stealth ? $this->preserveLastUpdatedService->snapshot($entity) : null;
+
+        try {
+            $post->update($data);
+            if (auth()->user()->can('permissions', $entity)) {
+                $this->savePermissionsService
+                    ->post($post)
+                    ->request($request)
+                    ->save();
+            }
+
+            $this->editingService->model($post)
+                ->user($request->user())
+                ->finish();
+
+            if ($request->has('submit-new')) {
+                $route = route('entities.posts.create', [$campaign, $entity]);
+
+                return response()->redirectTo($route);
+            } elseif ($request->has('submit-update')) {
+                $route = route('entities.posts.edit', [$campaign, $entity, $post]);
+
+                return response()->redirectTo($route);
+            }
+
+            return redirect()->route('entities.show', [$campaign, $entity, '#post-' . $post->id])
+                ->with('success', __('entities/notes.edit.success', [
+                    'name' => $post->name, 'entity' => $entity->name,
+                ]));
+        } finally {
+            if ($lastUpdated !== null) {
+                $this->preserveLastUpdatedService->restore($entity, $lastUpdated);
+            }
         }
-
-        $this->editingService->model($post)
-            ->user($request->user())
-            ->finish();
-
-        if ($request->has('submit-new')) {
-            $route = route('entities.posts.create', [$campaign, $entity]);
-
-            return response()->redirectTo($route);
-        } elseif ($request->has('submit-update')) {
-            $route = route('entities.posts.edit', [$campaign, $entity, $post]);
-
-            return response()->redirectTo($route);
-        }
-
-        return redirect()->route('entities.show', [$campaign, $entity, '#post-' . $post->id])
-            ->with('success', __('entities/notes.edit.success', [
-                'name' => $post->name, 'entity' => $entity->name,
-            ]));
     }
 
     public function destroy(Campaign $campaign, Entity $entity, Post $post)

@@ -10,6 +10,7 @@ use App\Models\MiscModel;
 use App\Services\AttributeService;
 use App\Services\Entity\AliasService;
 use App\Services\Entity\EntitySaveService;
+use App\Services\Entity\PreserveLastUpdatedService;
 use App\Services\Entity\Relations\EntityRelationsServiceFactory;
 use App\Services\Entity\Relations\LocationRelationsService;
 use App\Services\MultiEditingService;
@@ -28,6 +29,7 @@ class EditController extends Controller
         protected AliasService $aliasService,
         protected MultiEditingService $multiEditingService,
         protected EntitySaveService $entitySaveService,
+        protected PreserveLastUpdatedService $preserveLastUpdatedService,
         protected EntityRelationsServiceFactory $relationsFactory,
         protected LocationRelationsService $locationRelationsService
     ) {}
@@ -84,6 +86,10 @@ class EditController extends Controller
         if (request()->ajax()) {
             return response()->json(['success' => true]);
         }
+
+        $stealth = $request->boolean('stealth');
+        $request->request->remove('stealth');
+        $lastUpdated = $stealth ? $this->preserveLastUpdatedService->snapshot($entity) : null;
 
         try {
             // Sanitize the data
@@ -177,6 +183,10 @@ class EditController extends Controller
             $error = str_replace(' ', '_', mb_strtolower(mb_rtrim($exception->getMessage(), '.')));
 
             return redirect()->back()->withInput()->with('error', __('crud.errors.' . $error));
+        } finally {
+            if ($lastUpdated !== null) {
+                $this->preserveLastUpdatedService->restore($entity, $lastUpdated);
+            }
         }
     }
 
