@@ -9,6 +9,7 @@ use App\Models\Calendar;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Sanitizers\CalendarSanitizer;
+use App\Services\Calendars\RecurrenceOptionsService;
 
 class CalendarController extends CrudController
 {
@@ -64,7 +65,7 @@ class CalendarController extends CrudController
         return $this->campaign($campaign)->crudDestroy($calendar);
     }
 
-    public function monthList(Campaign $campaign, Calendar $calendar)
+    public function monthList(Campaign $campaign, Calendar $calendar, RecurrenceOptionsService $recurrenceOptions)
     {
         return response()->json([
             'months' => $calendar->months(),
@@ -73,7 +74,7 @@ class CalendarController extends CrudController
                 'month' => $calendar->currentDate('month'),
                 'day' => $calendar->currentDate('date'),
             ],
-            'recurring' => $calendar->recurringOptions(true),
+            'recurring' => $recurrenceOptions->forApi($calendar),
         ]);
     }
 

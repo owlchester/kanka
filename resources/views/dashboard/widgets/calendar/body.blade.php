@@ -1,54 +1,20 @@
-@inject ('reminderService', 'App\Services\Calendars\ReminderService')
 <?php
 /**
  * @var \App\Models\CampaignDashboardWidget $widget
  * @var \App\Models\Entity $entity
  * @var \App\Models\Calendar $calendar
- * @var \App\Models\EntityEvent $event
- * @var \App\Models\EntityEvent $reminder
- * @var \App\Models\EntityEvent $event
- * @var \App\Services\Calendars\ReminderService $reminderService
+ * @var \App\ValueObjects\Calendars\CalendarWidgetState $state
  */
 $entity = $widget->entity;
 if (empty($entity)) {
     return;
 }
 $calendar = $calendar ?? $entity->child;
-
-$upcomingEvents = $reminderService->calendar($calendar)->upcoming();
-$previousEvents = $reminderService->past();
-//$previousEvents = new \Illuminate\Support\Collection();
-
-// Get the current day's weather effect.
-$weather = $calendar->calendarWeather()
-    ->year($calendar->currentYear())
-    ->month($calendar->currentMonth())
-    ->where('day', $calendar->currentDay())
-    ->first();
-
-$daysService = new \App\Services\Calendars\DaysService();
-$totalDays = $daysService->calendar($calendar)
-    ->intercalary(true)
-    ->year($calendar->currentYear())
-    ->month($calendar->currentMonth())
-    ->daysToDate();
-
-$moonService = new \App\Services\Calendars\MoonService();
-$moonService->calendar($calendar);
-
-$moonService->build(
-    $totalDays,
-    $calendar->daysInYear()
-);
-$currentMoons = $moonService->get($calendar->currentDay());
-
-$weekdays = $calendar->weekdays();
-$weekdayCount = count($weekdays);
-$currentWeekdayName = null;
-if ($weekdayCount > 0) {
-    $weekdayIndex = (($totalDays + $calendar->start_offset + $calendar->currentDay() - 1) % $weekdayCount + $weekdayCount) % $weekdayCount;
-    $currentWeekdayName = $weekdays[$weekdayIndex] ?? null;
-}
+$upcomingEvents = $state->upcomingEvents;
+$previousEvents = $state->previousEvents;
+$currentMoons = $state->currentMoons;
+$currentWeekdayName = $state->currentWeekdayName;
+$weather = $state->weather;
 ?>
 <div class="flex flex-col gap-2">
 
@@ -71,11 +37,26 @@ if ($weekdayCount > 0) {
         @if (!empty($currentMoons))
             <div class="flex gap-1 moons">
                 @foreach ($currentMoons as $moon)
+                    @php
+                        $phaseKey = $moon->phase === 'first_quarter' ? '1first_quarter' : $moon->phase;
+                        $phaseLabel = __('calendars.show.moon_' . $phaseKey, ['moon' => $moon->name]);
+                        $moonTitle = $moon->isExact()
+                            ? $phaseLabel
+                            : trans_choice('calendars.show.moon_age', $moon->daysSincePhase, ['phase' => $phaseLabel, 'count' => $moon->daysSincePhase]);
+                        $moonClass = match ($moon->phase) {
+                            'full' => 'fa-regular fa-circle',
+                            'new' => 'fa-solid fa-circle',
+                            'last_quarter' => 'fa-solid fa-circle-half-stroke fa-flip-horizontal',
+                            'first_quarter' => 'fa-solid fa-circle-half-stroke',
+                            default => 'fa-regular fa-circle',
+                        };
+                    @endphp
                     <i
-                        class="{{ $moon['class'] }} text-{{ $moon['colour'] }}"
-                        data-id="{{ $moon['id'] }}"
+                        class="{{ $moonClass }}"
+                        style="color: {{ $moon->colour }}"
+                        data-id="{{ $moon->moonId }}"
                         data-toggle="tooltip"
-                        data-title="{{ __('calendars.show.moon_' . $moon['type'], ['moon' => $moon['name']]) }}"
+                        data-title="{{ $moonTitle }}"
                     ></i>
                 @endforeach
             </div>
@@ -109,8 +90,8 @@ if ($weekdayCount > 0) {
                     </a>
                 </div>
                 <ul class="style-none p-0">
-                    @foreach ($previousEvents->take(5) as $reminder)
-                        @includeWhen($reminder->remindable, 'dashboard.widgets.calendar._reminder')
+                    @foreach ($previousEvents as $reminderOccurrence)
+                        @includeWhen($reminderOccurrence->reminder->remindable, 'dashboard.widgets.calendar._reminder', ['reminderOccurrence' => $reminderOccurrence])
                     @endforeach
                 </ul>
             </div>
@@ -126,8 +107,8 @@ if ($weekdayCount > 0) {
                     </a>
                 </div>
                 <ul class="style-none p-0">
-                    @foreach ($upcomingEvents->take(5) as $reminder)
-                        @includeWhen($reminder->remindable, 'dashboard.widgets.calendar._reminder', ['future' => true])
+                    @foreach ($upcomingEvents as $reminderOccurrence)
+                        @includeWhen($reminderOccurrence->reminder->remindable, 'dashboard.widgets.calendar._reminder', ['reminderOccurrence' => $reminderOccurrence])
 
                     @endforeach
                 </ul>

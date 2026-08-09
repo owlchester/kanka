@@ -50,7 +50,7 @@
     <x-forms.field
         field="recurring"
         :label="__('calendars.fields.is_recurring')">
-        <x-forms.select name="recurring_periodicity" :options="isset($calendar) ? $calendar->recurringOptions() : []" :selected="$reminder->recurring_periodicity ?? null" class="w-full reminder-periodicity" />
+        <x-forms.select name="recurring_periodicity" :options="isset($calendar) ? app(\App\Services\Calendars\RecurrenceOptionsService::class)->forSelect($calendar) : []" :selected="$reminder->recurring_periodicity ?? null" class="w-full reminder-periodicity" />
     </x-forms.field>
 
     <x-forms.field field="recurring-until" :hidden="!isset($reminder) || !$reminder->is_recurring" :label="__('calendars.fields.recurring_until')"  id="add_event_recurring_until">
@@ -75,5 +75,4 @@
         </x-forms.field>
     @endif
 </x-grid>
-
 

@@ -1,10 +1,13 @@
-<?php /** @var \App\Models\Reminder $reminder */?>
 <?php
-if ($reminder->remindable instanceof \App\Models\Post && !$reminder->remindable->entity) {
+/** @var \App\ValueObjects\Calendars\ReminderOccurrence $reminderOccurrence */
+$reminder = $reminderOccurrence->reminder;
+$occurrence = $reminderOccurrence->occurrence;
+if ($reminder->remindable instanceof \App\Models\Post && ! $reminder->remindable->entity) {
     return;
 }
+$occurrenceDate = $calendar->niceDate((string) $occurrence->start);
 ?>
-<li data-ago="{{ isset($future) ? $reminder->inDays() : $reminder->daysAgo() }}" class="flex gap-2 justify-between overflow-hidden">
+<li data-ago="{{ $reminderOccurrence->distance }}" data-state="{{ $reminderOccurrence->state }}" class="flex gap-2 justify-between overflow-hidden">
     <div class="truncate">
         @if ($reminder->isPost())
             <x-entity-link :entity="$reminder->remindable->entity" :campaign="$campaign">
@@ -16,10 +19,12 @@ if ($reminder->remindable instanceof \App\Models\Post && !$reminder->remindable-
             </x-entity-link>
         @endif
         @if (config('app.debug'))
-            @if (isset($future))
-                <span class="text-xs text-neutral-content">({{ $reminder->date() }}, in {{ $reminder->inDays() }} days)</span>
+            @if ($reminderOccurrence->isActive())
+                <span class="text-xs text-neutral-content">({{ $occurrence->start->key() }}, {{ __('dashboard.widgets.calendar.happening_now') }})</span>
+            @elseif ($reminderOccurrence->state === 'upcoming')
+                <span class="text-xs text-neutral-content">({{ $occurrence->start->key() }}, {{ trans_choice('dashboard.widgets.calendar.in_days', $reminderOccurrence->distance, ['count' => $reminderOccurrence->distance]) }})</span>
             @else
-                <span class="text-xs text-neutral-content">({{ $reminder->date() }}, {{ $reminder->daysAgo() }} days ago)</span>
+                <span class="text-xs text-neutral-content">({{ $occurrence->start->key() }}, {{ trans_choice('dashboard.widgets.calendar.days_ago', $reminderOccurrence->distance, ['count' => $reminderOccurrence->distance]) }})</span>
             @endif
         @endif
     </div>
@@ -31,6 +36,6 @@ if ($reminder->remindable instanceof \App\Models\Post && !$reminder->remindable-
         @if ($reminder->is_recurring)
             <x-icon class="fa-regular fa-arrows-rotate" title="{{ __('calendars.fields.is_recurring') }}" tooltip />
         @endif
-        <x-icon class="fa-regular fa-calendar" title="{{ $reminder->readableDate() }}" tooltip />
+        <x-icon class="fa-regular fa-calendar" title="{{ $occurrenceDate }}" tooltip />
     </div>
 </li>

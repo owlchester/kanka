@@ -6,7 +6,9 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
 use App\Models\Relations\CalendarRelations;
+use App\Services\Calendars\CalendarChronology;
 use App\Traits\ExportableTrait;
+use App\ValueObjects\Calendars\CalendarDefinition;
 use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -98,6 +100,8 @@ class Calendar extends MiscModel
 
     protected array $cachedCurrentDate;
 
+    protected ?CalendarDefinition $cachedDefinition = null;
+
     /**
      * Get the months decoded from the json into a usable array
      */
@@ -147,7 +151,8 @@ class Calendar extends MiscModel
     public function moons(): array
     {
         if (! isset($this->loadedMoons)) {
-            $this->loadedMoons = json_decode(empty($this->moons) ? '[]' : strip_tags($this->moons), true);
+            $moons = $this->attributes['moons'] ?? null;
+            $this->loadedMoons = json_decode(empty($moons) ? '[]' : strip_tags($moons), true);
         }
 
         return $this->loadedMoons;
@@ -394,37 +399,6 @@ class Calendar extends MiscModel
         ];
     }
 
-    public function recurringOptions(bool $flat = false): array
-    {
-        $options = [
-            '' => __('calendars.options.events.recurring_periodicity.none'),
-            'month' => __('calendars.options.events.recurring_periodicity.month'),
-            'year' => __('calendars.options.events.recurring_periodicity.year'),
-        ];
-
-        // Add options based on moons
-        $unnamed = 0;
-        foreach ($this->moons() as $moon) {
-            if ($flat) {
-                $options[$moon['id'] . '_f'] = __('calendars.options.events.recurring_periodicity.fullmoon_name', ['moon' => $moon['name']]);
-                $options[$moon['id'] . '_n'] = __('calendars.options.events.recurring_periodicity.newmoon_name', ['moon' => $moon['name']]);
-
-                continue;
-            }
-            $name = $moon['name'];
-            if (empty($name)) {
-                $unnamed++;
-                $name = __('calendars.options.events.recurring_periodicity.unnamed_moon', ['number' => $unnamed]);
-            }
-            $options[$name] = [
-                $moon['id'] . '_f' => __('calendars.options.events.recurring_periodicity.fullmoon'),
-                $moon['id'] . '_n' => __('calendars.options.events.recurring_periodicity.newmoon'),
-            ];
-        }
-
-        return $options;
-    }
-
     /**
      * Get the number of days in a year
      */
@@ -436,6 +410,16 @@ class Calendar extends MiscModel
         }
 
         return $days;
+    }
+
+    public function definition(): CalendarDefinition
+    {
+        return $this->cachedDefinition ??= CalendarDefinition::fromCalendar($this);
+    }
+
+    public function chronology(): CalendarChronology
+    {
+        return new CalendarChronology($this->definition());
     }
 
     /**

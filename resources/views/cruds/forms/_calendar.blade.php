@@ -119,7 +119,7 @@ $opened = (isset($model) && $model->hasCalendar()) || !empty($oldCalendarID);
                     :label="__('calendars.fields.is_recurring')">
                     <x-forms.select
                         name="calendar_recurring_periodicity"
-                        :options="(!empty($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar->recurringOptions(): (!empty($calendar) ? $calendar->recurringOptions() : []))"
+                        :options="(!empty($model) && $model->hasCalendar() ? app(\App\Services\Calendars\RecurrenceOptionsService::class)->forSelect($model->calendarReminder()->calendar): (!empty($calendar) ? app(\App\Services\Calendars\RecurrenceOptionsService::class)->forSelect($calendar) : []))"
                         :selected="$source->calendar_recurring_periodicity ?? $model->calendar_recurring_periodicity ?? null"
                         class="reminder-periodicity"
                         />
