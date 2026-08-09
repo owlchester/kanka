@@ -14,6 +14,7 @@ use App\Services\Calendars\WeatherService;
 use App\Traits\CalendarAware;
 use App\Traits\CampaignAware;
 use App\Traits\RequestAware;
+use App\ValueObjects\Calendars\CalendarDate;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -879,6 +880,13 @@ class CalendarRenderer
     protected function addDay(string $date): string
     {
         [$year, $month, $day] = $this->splitDate($date);
+
+        try {
+            return (string) $this->calendar->chronology()->addDays(new CalendarDate($year, $month, $day), 1);
+        } catch (\InvalidArgumentException) {
+            // Parent-calendar events can use a month that does not exist in the displayed calendar.
+        }
+
         $day++;
 
         // Day longer than month?

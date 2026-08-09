@@ -6,7 +6,9 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
 use App\Models\Relations\CalendarRelations;
+use App\Services\Calendars\CalendarChronology;
 use App\Traits\ExportableTrait;
+use App\ValueObjects\Calendars\CalendarDefinition;
 use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -97,6 +99,8 @@ class Calendar extends MiscModel
     protected array $loadedMonthAliases;
 
     protected array $cachedCurrentDate;
+
+    protected ?CalendarDefinition $cachedDefinition = null;
 
     /**
      * Get the months decoded from the json into a usable array
@@ -436,6 +440,16 @@ class Calendar extends MiscModel
         }
 
         return $days;
+    }
+
+    public function definition(): CalendarDefinition
+    {
+        return $this->cachedDefinition ??= CalendarDefinition::fromCalendar($this);
+    }
+
+    public function chronology(): CalendarChronology
+    {
+        return new CalendarChronology($this->definition());
     }
 
     /**

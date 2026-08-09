@@ -4,6 +4,7 @@ namespace App\Services\Calendars;
 
 use App\Jobs\CalendarsClearElapsed;
 use App\Models\Calendar;
+use App\ValueObjects\Calendars\CalendarDate;
 
 class AdvancerService
 {
@@ -21,30 +22,8 @@ class AdvancerService
      */
     public function advance(): self
     {
-        [$year, $month, $day] = $this->calendar->dateArray();
-
-        // Day is longer than month max length?
-        $months = $this->calendar->months();
-        if (! empty($day)) {
-            $day = ((int) $day) + 1;
-            if ($day > $months[$month - 1]['length']) {
-                $day = 1;
-                $month++;
-            }
-        } else {
-            $month++;
-        }
-
-        // Reset month and increment year
-        if ($month > count($months)) {
-            $month = 1;
-            $year++;
-        }
-
-        if (! $this->calendar->hasYearZero() && $year == 0) {
-            $year++;
-        }
-        $this->calendar->date = $year . '-' . $month . ($day !== false ? '-' . $day : null);
+        $date = $this->currentDate();
+        $this->calendar->date = (string) $this->calendar->chronology()->addDays($date, 1);
         $this->calendar->saveQuietly();
 
         return $this;
@@ -55,26 +34,16 @@ class AdvancerService
      */
     public function retreat(): self
     {
-        [$year, $month, $day] = $this->calendar->dateArray();
-
-        $day--;
-        $months = $this->calendar->months();
-        if ($day < 1) {
-            $month--;
-            if ($month < 1) {
-                $month = count($months);
-                $year--;
-            }
-            $day = $months[$month - 1]['length'];
-        }
-
-        if (! $this->calendar->hasYearZero() && $year == 0) {
-            $year--;
-        }
-        $this->calendar->date = $year . '-' . $month . '-' . $day;
+        $date = $this->currentDate();
+        $this->calendar->date = (string) $this->calendar->chronology()->addDays($date, -1);
         $this->calendar->save();
         CalendarsClearElapsed::dispatch($this->calendar);
 
         return $this;
+    }
+
+    private function currentDate(): CalendarDate
+    {
+        return new CalendarDate(...array_map('intval', $this->calendar->dateArray()));
     }
 }
