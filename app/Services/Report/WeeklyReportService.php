@@ -2,6 +2,7 @@
 
 namespace App\Services\Report;
 
+use App\Models\UserLog;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Number;
@@ -83,11 +84,17 @@ class WeeklyReportService extends BaseReportService
             ->distinct()
             ->count('users.id');
 
-        // Engagement
-        $weeklyActiveUsers = DB::table('users')
-            ->whereBetween('last_login_at', [$start, $end])
-            ->whereRaw('last_login_at > created_at')
-            ->count();
+        // Engagement. User logs preserve activity from previous weeks, unlike last_login_at.
+        $weeklyActiveUsers = config('logging.enabled')
+            ? UserLog::query()
+                ->logins()
+                ->whereBetween('created_at', [$start, $end])
+                ->distinct('user_id')
+                ->count('user_id')
+            : DB::table('users')
+                ->whereBetween('last_login_at', [$start, $end])
+                ->whereRaw('last_login_at > created_at')
+                ->count();
 
         $activeCampaigns = DB::table('campaigns')
             ->whereBetween('updated_at', [$start, $end])
