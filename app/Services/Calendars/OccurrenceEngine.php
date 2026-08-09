@@ -9,7 +9,14 @@ use InvalidArgumentException;
 
 final class OccurrenceEngine
 {
-    public function __construct(private readonly CalendarChronology $chronology) {}
+    private readonly MoonPhaseCalculator $moonPhases;
+
+    public function __construct(
+        private readonly CalendarChronology $chronology,
+        ?MoonPhaseCalculator $moonPhases = null,
+    ) {
+        $this->moonPhases = $moonPhases ?? new MoonPhaseCalculator($chronology);
+    }
 
     /**
      * Generate occurrences intersecting an inclusive date window.
@@ -76,12 +83,10 @@ final class OccurrenceEngine
     /** @return list<Occurrence> */
     private function monthlyOccurrences(CalendarDate $anchor, int $length, RecurrenceRule $rule, CalendarDate $from, CalendarDate $to): array
     {
-        $targetSerial = $this->chronology->toOrdinal($from);
-        $monthDistance = $this->monthSerial($from) - $this->monthSerial($anchor);
+        $earliestStart = $this->chronology->fromOrdinal($this->chronology->toOrdinal($from) - ($length - 1));
+        $targetSerial = $this->chronology->toOrdinal($earliestStart);
+        $monthDistance = $this->monthSerial($earliestStart) - $this->monthSerial($anchor);
         $sequence = max(0, self::ceilDiv($monthDistance, $rule->interval));
-        if ($this->chronology->toOrdinal($anchor) + $length - 1 >= $targetSerial) {
-            $sequence = 0;
-        }
         $occurrences = [];
 
         while (true) {
@@ -97,11 +102,9 @@ final class OccurrenceEngine
             if ($this->pastUntil($candidate, $rule) || $candidate->compare($to) > 0) {
                 break;
             }
-            if ($this->chronology->toOrdinal($candidate) + $length - 1 >= $targetSerial) {
-                $occurrence = $this->makeOccurrence($candidate, $length, $sequence, $from, $to);
-                if ($occurrence !== null) {
-                    $occurrences[] = $occurrence;
-                }
+            $occurrence = $this->makeOccurrence($candidate, $length, $sequence, $from, $to);
+            if ($occurrence !== null) {
+                $occurrences[] = $occurrence;
             }
             $sequence++;
         }
@@ -112,11 +115,9 @@ final class OccurrenceEngine
     /** @return list<Occurrence> */
     private function yearlyOccurrences(CalendarDate $anchor, int $length, RecurrenceRule $rule, CalendarDate $from, CalendarDate $to): array
     {
-        $yearDistance = $this->yearSerial($from->year) - $this->yearSerial($anchor->year);
+        $earliestStart = $this->chronology->fromOrdinal($this->chronology->toOrdinal($from) - ($length - 1));
+        $yearDistance = $this->yearSerial($earliestStart->year) - $this->yearSerial($anchor->year);
         $sequence = max(0, self::ceilDiv($yearDistance, $rule->interval));
-        if ($this->chronology->toOrdinal($anchor) + $length - 1 >= $this->chronology->toOrdinal($from)) {
-            $sequence = 0;
-        }
         $occurrences = [];
 
         while (true) {
@@ -150,24 +151,16 @@ final class OccurrenceEngine
             throw new InvalidArgumentException("Unknown moon: {$rule->moonId}");
         }
 
-        $cycle = (float) $moon['fullmoon'];
-        $phaseOffset = $rule->phase === 'new' ? $cycle / 2 : 0;
-        $start = $this->chronology->toOrdinal($from) - ($length - 1);
-        $end = $this->chronology->toOrdinal($to);
         $anchorOrdinal = $this->chronology->toOrdinal($anchor);
-        $firstCycle = (int) floor(($start - (float) ($moon['offset'] ?? 0) - $phaseOffset) / $cycle) - 1;
-        $lastCycle = (int) ceil(($end - (float) ($moon['offset'] ?? 0) - $phaseOffset) / $cycle) + 1;
         $occurrences = [];
         $sequence = 0;
-        $seen = [];
 
-        for ($cycleNumber = $firstCycle; $cycleNumber <= $lastCycle; $cycleNumber++) {
-            $ordinal = (int) floor((float) ($moon['offset'] ?? 0) + $phaseOffset + ($cycleNumber * $cycle));
-            if ($ordinal < $anchorOrdinal || isset($seen[$ordinal])) {
+        $earliestStart = $this->chronology->fromOrdinal($this->chronology->toOrdinal($from) - ($length - 1));
+        foreach ($this->moonPhases->phasesBetween($earliestStart, $to) as $phase) {
+            if ($phase->moonId !== $rule->moonId || ! in_array($rule->phase, $phase->exactPhases, true) || $phase->ordinal < $anchorOrdinal) {
                 continue;
             }
-            $seen[$ordinal] = true;
-            $candidate = $this->chronology->fromOrdinal($ordinal);
+            $candidate = $phase->date;
             if ($this->pastUntil($candidate, $rule) || $candidate->compare($to) > 0) {
                 continue;
             }
@@ -182,6 +175,101 @@ final class OccurrenceEngine
         return $occurrences;
     }
 
+    public function nextOrActiveOccurrence(
+        CalendarDate $anchor,
+        int $length,
+        ?RecurrenceRule $rule,
+        CalendarDate $pivot,
+    ): ?Occurrence {
+        $this->validate($anchor, $length, $pivot);
+        $pivotOrdinal = $this->chronology->toOrdinal($pivot);
+
+        if ($rule === null) {
+            return $this->occurrenceIf($anchor, $length, static fn (Occurrence $occurrence): bool => $occurrence->end->compare($pivot) >= 0);
+        }
+
+        if ($rule->frequency === RecurrenceRule::MOON_PHASE) {
+            $earliestStart = $this->chronology->fromOrdinal($pivotOrdinal - ($length - 1));
+            foreach ($this->moonPhases->phasesBetween($earliestStart, $this->chronology->fromOrdinal($pivotOrdinal + $this->searchLimit($rule))) as $phase) {
+                if ($phase->moonId === $rule->moonId && in_array($rule->phase, $phase->exactPhases, true)) {
+                    $occurrence = $this->buildOccurrence($phase->date, $length, 0);
+                    if (! $this->pastUntil($occurrence->start, $rule) && $occurrence->end->compare($pivot) >= 0 && $occurrence->start->compare($anchor) >= 0) {
+                        return $occurrence;
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        $sequence = $this->firstSequenceAtOrAfter($anchor, $length, $rule, $pivot, false);
+        for ($attempt = 0; $attempt < 100000; $attempt++) {
+            $candidate = $this->candidateAt($anchor, $rule, $sequence);
+            if ($candidate === null) {
+                $sequence++;
+
+                continue;
+            }
+            if ($this->pastUntil($candidate, $rule)) {
+                return null;
+            }
+            $occurrence = $this->buildOccurrence($candidate, $length, $sequence);
+            if ($occurrence->end->compare($pivot) >= 0) {
+                return $occurrence;
+            }
+            $sequence++;
+        }
+
+        return null;
+    }
+
+    public function previousOccurrence(
+        CalendarDate $anchor,
+        int $length,
+        ?RecurrenceRule $rule,
+        CalendarDate $pivot,
+    ): ?Occurrence {
+        $this->validate($anchor, $length, $pivot);
+        $pivotOrdinal = $this->chronology->toOrdinal($pivot);
+
+        if ($rule === null) {
+            return $this->occurrenceIf($anchor, $length, static fn (Occurrence $occurrence): bool => $occurrence->end->compare($pivot) < 0);
+        }
+
+        if ($rule->frequency === RecurrenceRule::MOON_PHASE) {
+            $end = $this->chronology->fromOrdinal($pivotOrdinal - $length);
+            $phases = $this->moonPhases->phasesBetween($this->chronology->fromOrdinal($pivotOrdinal - $this->searchLimit($rule)), $end);
+            foreach (array_reverse($phases) as $phase) {
+                if ($phase->moonId !== $rule->moonId || ! in_array($rule->phase, $phase->exactPhases, true) || $phase->ordinal < $this->chronology->toOrdinal($anchor)) {
+                    continue;
+                }
+                $occurrence = $this->buildOccurrence($phase->date, $length, 0);
+                if (! $this->pastUntil($occurrence->start, $rule) && $occurrence->end->compare($pivot) < 0) {
+                    return $occurrence;
+                }
+            }
+
+            return null;
+        }
+
+        $sequence = $this->firstSequenceAtOrAfter($anchor, $length, $rule, $pivot, true);
+        for (; $sequence >= 0; $sequence--) {
+            $candidate = $this->candidateAt($anchor, $rule, $sequence);
+            if ($candidate === null) {
+                continue;
+            }
+            if ($this->pastUntil($candidate, $rule)) {
+                continue;
+            }
+            $occurrence = $this->buildOccurrence($candidate, $length, $sequence);
+            if ($occurrence->end->compare($pivot) < 0) {
+                return $occurrence;
+            }
+        }
+
+        return null;
+    }
+
     private function makeOccurrence(CalendarDate $start, int $length, int $sequence, CalendarDate $from, CalendarDate $to): ?Occurrence
     {
         $end = $this->chronology->addDays($start, $length - 1);
@@ -190,6 +278,64 @@ final class OccurrenceEngine
         }
 
         return new Occurrence($start, $end, $sequence);
+    }
+
+    private function buildOccurrence(CalendarDate $start, int $length, int $sequence): Occurrence
+    {
+        return new Occurrence($start, $this->chronology->addDays($start, $length - 1), $sequence);
+    }
+
+    private function occurrenceIf(CalendarDate $start, int $length, callable $predicate): ?Occurrence
+    {
+        $occurrence = $this->buildOccurrence($start, $length, 0);
+
+        return $predicate($occurrence) ? $occurrence : null;
+    }
+
+    private function validate(CalendarDate $anchor, int $length, CalendarDate $pivot): void
+    {
+        if ($length < 1 || ! $this->chronology->isValid($anchor) || ! $this->chronology->isValid($pivot)) {
+            throw new InvalidArgumentException('Occurrence dates must be valid calendar dates.');
+        }
+    }
+
+    private function firstSequenceAtOrAfter(CalendarDate $anchor, int $length, RecurrenceRule $rule, CalendarDate $pivot, bool $past): int
+    {
+        $target = $this->chronology->fromOrdinal($this->chronology->toOrdinal($pivot) + ($past ? -$length : -($length - 1)));
+
+        return match ($rule->frequency) {
+            RecurrenceRule::DAILY => max(0, self::floorDiv($this->chronology->toOrdinal($target) - $this->chronology->toOrdinal($anchor), $rule->interval)),
+            RecurrenceRule::WEEKLY => max(0, self::floorDiv($this->chronology->toOrdinal($target) - $this->chronology->toOrdinal($anchor), $rule->interval * $this->chronology->definition()->weekdayCount())),
+            RecurrenceRule::MONTHLY => max(0, self::floorDiv($this->monthSerial($target) - $this->monthSerial($anchor), $rule->interval)),
+            RecurrenceRule::YEARLY => max(0, self::floorDiv($this->yearSerial($target->year) - $this->yearSerial($anchor->year), $rule->interval)),
+            default => 0,
+        };
+    }
+
+    private function candidateAt(CalendarDate $anchor, RecurrenceRule $rule, int $sequence): ?CalendarDate
+    {
+        return match ($rule->frequency) {
+            RecurrenceRule::DAILY => $this->chronology->addDays($anchor, $sequence * $rule->interval),
+            RecurrenceRule::WEEKLY => $this->chronology->addDays($anchor, $sequence * $rule->interval * $this->chronology->definition()->weekdayCount()),
+            RecurrenceRule::MONTHLY => $this->chronology->addMonths($anchor, $sequence * $rule->interval, $rule->invalidDate),
+            RecurrenceRule::YEARLY => $this->chronology->addYears($anchor, $sequence * $rule->interval, $rule->invalidDate),
+            default => null,
+        };
+    }
+
+    private function searchLimit(RecurrenceRule $rule): int
+    {
+        if ($rule->frequency !== RecurrenceRule::MOON_PHASE) {
+            return 0;
+        }
+
+        foreach ($this->chronology->definition()->moons as $moon) {
+            if ((int) ($moon['id'] ?? 0) === $rule->moonId) {
+                return max(2, (int) ceil(((float) ($moon['fullmoon'] ?? 1)) * 2));
+            }
+        }
+
+        return 1000;
     }
 
     private function pastUntil(CalendarDate $date, RecurrenceRule $rule): bool
@@ -220,5 +366,14 @@ final class OccurrenceEngine
         }
 
         return -intdiv(-$numerator, $denominator);
+    }
+
+    private static function floorDiv(int $numerator, int $denominator): int
+    {
+        if ($numerator >= 0) {
+            return intdiv($numerator, $denominator);
+        }
+
+        return -intdiv(-$numerator + $denominator - 1, $denominator);
     }
 }

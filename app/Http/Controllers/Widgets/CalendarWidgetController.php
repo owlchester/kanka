@@ -8,18 +8,17 @@ use App\Models\Calendar;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 use App\Services\Calendars\AdvancerService;
-use App\Services\Calendars\ReminderService;
+use App\Services\Calendars\CalendarWidgetStateFactory;
 
 class CalendarWidgetController extends Controller
 {
     protected AdvancerService $service;
 
-    protected ReminderService $reminderService;
-
-    public function __construct(AdvancerService $advancerService, ReminderService $reminderService)
-    {
+    public function __construct(
+        AdvancerService $advancerService,
+        protected CalendarWidgetStateFactory $stateFactory,
+    ) {
         $this->service = $advancerService;
-        $this->reminderService = $reminderService;
     }
 
     public function add(Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
@@ -30,14 +29,13 @@ class CalendarWidgetController extends Controller
             ]);
         }
 
-        /** @var Calendar $calendar */
-        $calendar = $campaignDashboardWidget->entity->child;
+        $entity = $campaignDashboardWidget->entity;
+        $this->authorize('update', $entity);
+        abort_unless($entity->child instanceof Calendar, 404);
+        $calendar = $entity->child;
         $this->service->calendar($calendar)->advance();
 
-        return view('dashboard.widgets.calendar.body')
-            ->with('widget', $campaignDashboardWidget)
-            ->with('calendar', $calendar)
-            ->with('campaign', $campaign);
+        return $this->body($campaign, $campaignDashboardWidget, $calendar);
     }
 
     public function sub(Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
@@ -48,14 +46,13 @@ class CalendarWidgetController extends Controller
             ]);
         }
 
-        /** @var Calendar $calendar */
-        $calendar = $campaignDashboardWidget->entity->child;
+        $entity = $campaignDashboardWidget->entity;
+        $this->authorize('update', $entity);
+        abort_unless($entity->child instanceof Calendar, 404);
+        $calendar = $entity->child;
         $this->service->calendar($calendar)->retreat();
 
-        return view('dashboard.widgets.calendar.body')
-            ->with('widget', $campaignDashboardWidget)
-            ->with('calendar', $calendar)
-            ->with('campaign', $campaign);
+        return $this->body($campaign, $campaignDashboardWidget, $calendar);
     }
 
     public function render(Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
@@ -66,8 +63,19 @@ class CalendarWidgetController extends Controller
             ]);
         }
 
-        return view('dashboard.widgets.calendar.body')
-            ->with('widget', $campaignDashboardWidget)
-            ->with('campaign', $campaign);
+        $entity = $campaignDashboardWidget->entity;
+        abort_unless($entity->child instanceof Calendar, 404);
+
+        return $this->body($campaign, $campaignDashboardWidget, $entity->child);
+    }
+
+    private function body(Campaign $campaign, CampaignDashboardWidget $widget, Calendar $calendar)
+    {
+        return view('dashboard.widgets.calendar.body', [
+            'campaign' => $campaign,
+            'widget' => $widget,
+            'calendar' => $calendar,
+            'state' => $this->stateFactory->make($calendar),
+        ]);
     }
 }

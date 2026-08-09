@@ -384,8 +384,9 @@ class CalendarRenderer
                     $this->dayData['isToday'] = true;
                 }
 
-                if ($this->moonService->has($day)) {
-                    $this->dayData['moons'] = $this->moonService->get($day);
+                $ordinal = $this->calendar->chronology()->toOrdinal(new CalendarDate($this->getYear(), $this->getMonth(), $day));
+                if ($this->moonService->has($ordinal)) {
+                    $this->dayData['moons'] = $this->moonService->get($ordinal);
                 }
 
                 if ($this->weatherService->has($exact)) {
@@ -531,8 +532,9 @@ class CalendarRenderer
                     $this->dayData['isToday'] = true;
                 }
 
-                if ($this->moonService->has($totalDay)) {
-                    $this->dayData['moons'] = $this->moonService->get($totalDay);
+                $ordinal = $this->calendar->chronology()->toOrdinal(new CalendarDate($this->getYear(), $monthNumber, $day));
+                if ($this->moonService->has($ordinal)) {
+                    $this->dayData['moons'] = $this->moonService->get($ordinal);
                 }
                 if ($this->weatherService->has($exact)) {
                     $this->dayData['weather'] = $this->weatherService->get($exact);
@@ -998,20 +1000,13 @@ class CalendarRenderer
 
     protected function buildFullmoons(): void
     {
-        // dump('full moons go brr');
-        // Calculate the number of days since 0000-01-01
-        $totalDays = $this->daysToDate();
-
-        // We'll need this later to know how many full moons to add
-        $daysInAYear = 0;
-        foreach ($this->calendar->months() as $count => $month) {
-            $length = $month['length'];
-            $daysInAYear += $length;
-        }
-
+        $startMonth = $this->isYearlyLayout() ? 1 : $this->getMonth();
+        $endMonth = $this->isYearlyLayout() ? count($this->calendar->months()) : $this->getMonth();
+        $from = new CalendarDate($this->getYear(), $startMonth, 1);
+        $to = new CalendarDate($this->getYear(), $endMonth, $this->calendar->chronology()->daysInMonth($this->getYear(), $endMonth));
         $this->moonService
             ->calendar($this->calendar)
-            ->build($totalDays, $daysInAYear);
+            ->buildForRange($from, $to);
     }
 
     /**

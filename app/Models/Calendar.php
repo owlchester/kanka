@@ -151,7 +151,8 @@ class Calendar extends MiscModel
     public function moons(): array
     {
         if (! isset($this->loadedMoons)) {
-            $this->loadedMoons = json_decode(empty($this->moons) ? '[]' : strip_tags($this->moons), true);
+            $moons = $this->attributes['moons'] ?? null;
+            $this->loadedMoons = json_decode(empty($moons) ? '[]' : strip_tags($moons), true);
         }
 
         return $this->loadedMoons;
@@ -396,37 +397,6 @@ class Calendar extends MiscModel
             max($date[1], 1),
             max($date[2], 1),
         ];
-    }
-
-    public function recurringOptions(bool $flat = false): array
-    {
-        $options = [
-            '' => __('calendars.options.events.recurring_periodicity.none'),
-            'month' => __('calendars.options.events.recurring_periodicity.month'),
-            'year' => __('calendars.options.events.recurring_periodicity.year'),
-        ];
-
-        // Add options based on moons
-        $unnamed = 0;
-        foreach ($this->moons() as $moon) {
-            if ($flat) {
-                $options[$moon['id'] . '_f'] = __('calendars.options.events.recurring_periodicity.fullmoon_name', ['moon' => $moon['name']]);
-                $options[$moon['id'] . '_n'] = __('calendars.options.events.recurring_periodicity.newmoon_name', ['moon' => $moon['name']]);
-
-                continue;
-            }
-            $name = $moon['name'];
-            if (empty($name)) {
-                $unnamed++;
-                $name = __('calendars.options.events.recurring_periodicity.unnamed_moon', ['number' => $unnamed]);
-            }
-            $options[$name] = [
-                $moon['id'] . '_f' => __('calendars.options.events.recurring_periodicity.fullmoon'),
-                $moon['id'] . '_n' => __('calendars.options.events.recurring_periodicity.newmoon'),
-            ];
-        }
-
-        return $options;
     }
 
     /**

@@ -10,6 +10,10 @@ final class LegacyRecurrenceAdapter
 {
     public function fromReminder(Reminder $reminder): ?RecurrenceRule
     {
+        if (! (bool) $reminder->is_recurring) {
+            return null;
+        }
+
         $periodicity = (string) ($reminder->recurring_periodicity ?? '');
         if ($periodicity === '') {
             return null;
