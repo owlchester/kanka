@@ -25,7 +25,7 @@ $weekNumber = 1;
 
 <div class="calendar-toolbar flex gap-2 items-center flex-wrap">
     <a
-        href="{{ route('entities.show', [$campaign, 'entity' => $entity, 'month' => $renderer->currentMonthId(), 'year' => $renderer->currentYear()]) }}"
+        href="{{ route('entities.show', [$campaign, 'entity' => $entity, 'month' => $model->currentMonth(), 'year' => $model->currentYear()]) }}"
         class="btn2 btn-sm @if ($renderer->todayButtonIsDisabled()) btn-disabled" disabled="disabled @endif"
         rel="nofollow"
     >

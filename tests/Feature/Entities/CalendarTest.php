@@ -126,3 +126,30 @@ it('can\'t GET a private calendar as a player', function () {
     expect($response->status())
         ->toBe(403);
 });
+
+it('links the calendar overview today button to the calendar date', function () {
+    $this->asUser()->withCampaign();
+
+    $calendar = Calendar::factory()->create([
+        'campaign_id' => 1,
+        'date' => '3-5-10',
+    ]);
+
+    $todayUrl = route('entities.show', [
+        $calendar->campaign,
+        'entity' => $calendar->entity,
+        'month' => 5,
+        'year' => 3,
+    ]);
+
+    $viewedUrl = route('entities.show', [
+        $calendar->campaign,
+        'entity' => $calendar->entity,
+        'month' => 2,
+        'year' => 9,
+    ]);
+
+    $this->get($viewedUrl)
+        ->assertSuccessful()
+        ->assertSee('href="' . e($todayUrl) . '"', false);
+});
