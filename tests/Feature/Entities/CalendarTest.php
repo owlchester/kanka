@@ -1,6 +1,9 @@
 <?php
 
 use App\Models\Calendar;
+use App\Models\Entity;
+use App\Models\Event;
+use App\Models\Reminder;
 use Carbon\Carbon;
 
 it('POSTS an invalid calendar form')
@@ -152,4 +155,30 @@ it('links the calendar overview today button to the calendar date', function () 
     $this->get($viewedUrl)
         ->assertSuccessful()
         ->assertSee('href="' . e($todayUrl) . '"', false);
+});
+
+it('renders a recurring intermediate moon phase reminder on its phase date', function () {
+    $this->asUser()->withCampaign();
+    $calendar = Calendar::factory()->create([
+        'campaign_id' => 1,
+        'date' => '1-1-3',
+        'moons' => json_encode([
+            ['id' => 1, 'name' => 'Luna', 'fullmoon' => 16, 'offset' => 0, 'colour' => 'grey'],
+        ]),
+    ]);
+    $event = Event::factory()->create(['campaign_id' => 1]);
+    $reminder = Reminder::factory()->create([
+        'calendar_id' => $calendar->id,
+        'year' => 1,
+        'month' => 1,
+        'day' => 1,
+        'is_recurring' => true,
+        'recurring_periodicity' => '1_waning_gibbous',
+        'remindable_id' => $event->entity->id,
+        'remindable_type' => Entity::class,
+    ]);
+
+    $this->get(route('entities.show', [$calendar->campaign, $calendar->entity]))
+        ->assertSuccessful()
+        ->assertSee('Luna waning gibbous', false);
 });

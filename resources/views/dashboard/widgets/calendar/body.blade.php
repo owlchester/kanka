@@ -38,26 +38,19 @@ $weather = $state->weather;
             <div class="flex gap-1 moons">
                 @foreach ($currentMoons as $moon)
                     @php
-                        $phaseKey = $moon->phase === 'first_quarter' ? '1first_quarter' : $moon->phase;
+                        $phaseKey = \App\Services\Calendars\MoonPhase::displayKey($moon->phase);
                         $phaseLabel = __('calendars.show.moon_' . $phaseKey, ['moon' => $moon->name]);
                         $moonTitle = $moon->isExact()
                             ? $phaseLabel
                             : trans_choice('calendars.show.moon_age', $moon->daysSincePhase, ['phase' => $phaseLabel, 'count' => $moon->daysSincePhase]);
-                        $moonClass = match ($moon->phase) {
-                            'full' => 'fa-regular fa-circle',
-                            'new' => 'fa-solid fa-circle',
-                            'last_quarter' => 'fa-solid fa-circle-half-stroke fa-flip-horizontal',
-                            'first_quarter' => 'fa-solid fa-circle-half-stroke',
-                            default => 'fa-regular fa-circle',
-                        };
                     @endphp
-                    <i
-                        class="{{ $moonClass }}"
-                        style="color: {{ $moon->colour }}"
+                    <x-moon-phase
+                        :phase="$moon->phase"
+                        :colour="$moon->colour"
                         data-id="{{ $moon->moonId }}"
                         data-toggle="tooltip"
                         data-title="{{ $moonTitle }}"
-                    ></i>
+                    />
                 @endforeach
             </div>
         @endif

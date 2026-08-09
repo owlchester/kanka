@@ -19,10 +19,12 @@ final class RecurrenceOptionsService
                 $name = __('calendars.options.events.recurring_periodicity.unnamed_moon', ['number' => $unnamed]);
             }
 
-            $options[$name] = [
-                $moon['id'] . '_f' => __('calendars.options.events.recurring_periodicity.fullmoon'),
-                $moon['id'] . '_n' => __('calendars.options.events.recurring_periodicity.newmoon'),
-            ];
+            $options[$name] = [];
+            foreach (array_keys(MoonPhase::PHASES) as $phase) {
+                $suffix = MoonPhase::recurrenceSuffix($phase);
+                $label = $phase === 'full' ? 'fullmoon' : ($phase === 'new' ? 'newmoon' : $phase);
+                $options[$name][$moon['id'] . '_' . $suffix] = __('calendars.options.events.recurring_periodicity.' . $label);
+            }
         }
 
         return $options;
@@ -35,8 +37,11 @@ final class RecurrenceOptionsService
 
         foreach ($calendar->moons() as $moon) {
             $name = (string) ($moon['name'] ?? '');
-            $options[$moon['id'] . '_f'] = __('calendars.options.events.recurring_periodicity.fullmoon_name', ['moon' => $name]);
-            $options[$moon['id'] . '_n'] = __('calendars.options.events.recurring_periodicity.newmoon_name', ['moon' => $name]);
+            foreach (array_keys(MoonPhase::PHASES) as $phase) {
+                $suffix = MoonPhase::recurrenceSuffix($phase);
+                $label = $phase === 'full' ? 'fullmoon_name' : ($phase === 'new' ? 'newmoon_name' : $phase . '_name');
+                $options[$moon['id'] . '_' . $suffix] = __('calendars.options.events.recurring_periodicity.' . $label, ['moon' => $name]);
+            }
         }
 
         return $options;

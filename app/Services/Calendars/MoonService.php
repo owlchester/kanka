@@ -42,7 +42,7 @@ class MoonService
         foreach ($calculator->phasesBetween($from, $to) as $phase) {
             $this->moons[$phase->ordinal][] = [
                 'name' => $phase->name,
-                'type' => $phase->phase === 'first_quarter' ? '1first_quarter' : $phase->phase,
+                'type' => MoonPhase::displayKey($phase->phase),
                 'phase' => $phase->phase,
                 'class' => $this->phaseClass($phase->phase),
                 'colour' => $phase->colour,
@@ -53,12 +53,6 @@ class MoonService
 
     private function phaseClass(string $phase): string
     {
-        return match ($phase) {
-            'full' => 'fa-regular fa-circle',
-            'new' => 'fa-solid fa-circle',
-            'last_quarter' => 'fa-solid fa-circle-half-stroke fa-flip-horizontal',
-            'first_quarter' => 'fa-solid fa-circle-half-stroke',
-            default => 'fa-regular fa-circle',
-        };
+        return 'moon-phase moon-phase-' . $phase;
     }
 }

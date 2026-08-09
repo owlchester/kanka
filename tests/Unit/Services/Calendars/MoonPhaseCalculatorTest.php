@@ -23,13 +23,34 @@ it('returns the latest phase and its age for every date', function () {
     $calculator = moonCalculator();
 
     $state = $calculator->statesAt(new CalendarDate(0, 1, 3))[0];
-    expect($state->phase)->toBe('full')
-        ->and($state->daysSincePhase)->toBe(2)
-        ->and($state->phaseDate)->toEqual(new CalendarDate(0, 1, 1));
+    expect($state->phase)->toBe('waning_gibbous')
+        ->and($state->daysSincePhase)->toBe(0)
+        ->and($state->phaseDate)->toEqual(new CalendarDate(0, 1, 3));
 
     $exact = $calculator->statesAt(new CalendarDate(0, 1, 5))[0];
     expect($exact->phase)->toBe('last_quarter')
         ->and($exact->isExact())->toBeTrue();
+});
+
+it('calculates all eight phases in lunar order', function () {
+    $phases = moonCalculator()->phasesBetween(
+        new CalendarDate(0, 1, 1),
+        new CalendarDate(0, 1, 16),
+    );
+
+    expect(array_map(static fn ($phase): string => $phase->phase, $phases))
+        ->toBe([
+            'full',
+            'waning_gibbous',
+            'last_quarter',
+            'waning_crescent',
+            'new',
+            'waxing_crescent',
+            'first_quarter',
+            'waxing_gibbous',
+        ])
+        ->and(array_map(static fn ($phase): string => $phase->date->key(), $phases))
+        ->toBe(['0-1-1', '0-1-3', '0-1-5', '0-1-7', '0-1-9', '0-1-11', '0-1-13', '0-1-15']);
 });
 
 it('applies offsets to absolute phase ordinals', function () {

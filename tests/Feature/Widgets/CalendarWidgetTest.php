@@ -28,7 +28,7 @@ it('renders semantic moon context and preserves the widget html contract', funct
     $this->get('/w/test-campaign/dashboard/widgets/' . $widget->id . '/render')
         ->assertSuccessful()
         ->assertSee('data-id="1"', false)
-        ->assertSee('Luna full moon (2 days ago)', false)
+        ->assertSee('Luna waning gibbous', false)
         ->assertSee('widget-calendar-switch', false);
 });
 

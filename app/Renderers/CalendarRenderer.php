@@ -8,6 +8,7 @@ use App\Models\Entity;
 use App\Models\Post;
 use App\Models\Reminder;
 use App\Services\Calendars\DaysService;
+use App\Services\Calendars\MoonPhase;
 use App\Services\Calendars\MoonService;
 use App\Services\Calendars\SeasonService;
 use App\Services\Calendars\WeatherService;
@@ -1163,7 +1164,7 @@ class CalendarRenderer
             return;
         }
         foreach ($this->dayData['moons'] as $moon) {
-            $key = $moon['id'] . '_' . $moon['type'][0];
+            $key = $moon['id'] . '_' . MoonPhase::recurrenceSuffix($moon['phase']);
             if (! isset($this->recurring[$key])) {
                 continue;
             }

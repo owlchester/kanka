@@ -11,14 +11,6 @@ final class MoonPhaseCalculator
 {
     private const SCALE = 10000000000;
 
-    /** @var array<string, int> */
-    private const PHASES = [
-        'full' => 0,
-        'last_quarter' => 1,
-        'new' => 2,
-        'first_quarter' => 3,
-    ];
-
     public function __construct(private readonly CalendarChronology $chronology) {}
 
     /** @return list<MoonState> */
@@ -66,8 +58,8 @@ final class MoonPhaseCalculator
                 continue;
             }
 
-            foreach (self::PHASES as $phase => $phaseIndex) {
-                $phaseCount = count(self::PHASES);
+            foreach (MoonPhase::PHASES as $phase => $phaseIndex) {
+                $phaseCount = count(MoonPhase::PHASES);
                 $denominator = $phaseCount * self::SCALE;
                 $base = $this->decimalTicks($moon['offset'] ?? 0) * $phaseCount;
                 $step = $cycle * $phaseCount;
@@ -99,14 +91,14 @@ final class MoonPhaseCalculator
     /** @param array<string, mixed> $moon */
     private function latestPhase(array $moon, int $ordinal, int $cycle): MoonPhaseOccurrence
     {
-        $phaseCount = count(self::PHASES);
+        $phaseCount = count(MoonPhase::PHASES);
         $denominator = $phaseCount * self::SCALE;
         $offset = $this->decimalTicks($moon['offset'] ?? 0);
         $step = $cycle * $phaseCount;
         $latest = null;
         $latestBoundary = null;
 
-        foreach (self::PHASES as $phase => $phaseIndex) {
+        foreach (MoonPhase::PHASES as $phase => $phaseIndex) {
             $phaseBase = $offset * $phaseCount + ($phaseIndex * $cycle);
             $cycleNumber = self::floorDiv($ordinal * $denominator - $phaseBase, $step);
             $boundary = $phaseBase + ($cycleNumber * $step);
@@ -132,7 +124,7 @@ final class MoonPhaseCalculator
         }
 
         $exact = [];
-        foreach (self::PHASES as $phase => $phaseIndex) {
+        foreach (MoonPhase::PHASES as $phase => $phaseIndex) {
             $phaseBase = $offset * $phaseCount + ($phaseIndex * $cycle);
             $cycleNumber = self::floorDiv($ordinal * $denominator - $phaseBase, $step);
             $phaseOrdinal = self::floorDiv($phaseBase + ($cycleNumber * $step), $denominator);

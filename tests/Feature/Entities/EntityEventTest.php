@@ -27,9 +27,11 @@ it('POSTS a new entity event')
         'month' => 2,
         'year' => 2,
         'length' => 2,
+        'recurring_periodicity' => '1_waning_gibbous',
         'visibility_id' => 1,
     ])
     ->assertStatus(201)
+    ->assertJsonPath('data.recurring_periodicity', '1_waning_gibbous')
     ->assertJsonStructure([
         'data' => [
             'id',

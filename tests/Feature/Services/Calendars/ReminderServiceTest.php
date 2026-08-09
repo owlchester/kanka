@@ -69,3 +69,26 @@ it('sorts by actual occurrence instead of reminder anchor order', function () {
 
     expect($window->upcoming->first()->reminder->is($second))->toBeTrue();
 });
+
+it('renders intermediate moon phase reminders in the calendar window', function () {
+    $this->asUser()->withCampaign();
+    $calendar = Calendar::factory()->create([
+        'campaign_id' => 1,
+        'date' => '1-1-3',
+        'moons' => json_encode([
+            ['id' => 1, 'name' => 'Luna', 'fullmoon' => 16, 'offset' => 0, 'colour' => 'grey'],
+        ]),
+    ]);
+    $event = Event::factory()->create(['campaign_id' => 1]);
+    calendarReminder($calendar, $event, [
+        'year' => 1,
+        'month' => 1,
+        'day' => 1,
+        'is_recurring' => true,
+        'recurring_periodicity' => '1_waning_gibbous',
+    ]);
+
+    $window = app(ReminderService::class)->calendar($calendar)->around(5);
+
+    expect($window->upcoming->first()->occurrence->start->key())->toBe('1-1-3');
+});

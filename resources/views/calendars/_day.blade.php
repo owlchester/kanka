@@ -63,7 +63,13 @@
             </div>
             @if (!empty($day['moons']))
                 @foreach ($day['moons'] as $moon)
-                    <i class="moon {{ $moon['class'] }}"  style="color:{{ \Illuminate\Support\Arr::get($moon, 'colour', '#6B7280')}};" data-title="{{ __('calendars.show.moon_' . $moon['type'], ['moon' => $moon['name']]) }}" data-toggle="tooltip"></i>
+                    <x-moon-phase
+                        :phase="$moon['phase']"
+                        :colour="\Illuminate\Support\Arr::get($moon, 'colour', '#6B7280')"
+                        class="moon {{ $moon['class'] }}"
+                        data-title="{{ __('calendars.show.moon_' . $moon['type'], ['moon' => $moon['name']]) }}"
+                        data-toggle="tooltip"
+                    />
                 @endforeach
             @endif
             @if (!empty($day['season']))

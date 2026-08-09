@@ -101,6 +101,18 @@ it('uses the shared moon calculator for moon recurrence', function () {
     )?->start)->toEqual(new CalendarDate(0, 1, 11));
 });
 
+it('finds an intermediate moon phase recurrence', function () {
+    $engine = occurrenceEngine();
+    $rule = new RecurrenceRule(RecurrenceRule::MOON_PHASE, moonId: 1, phase: 'waxing_crescent');
+
+    expect($engine->nextOrActiveOccurrence(
+        new CalendarDate(0, 1, 1),
+        1,
+        $rule,
+        new CalendarDate(0, 1, 2),
+    )?->start)->toEqual(new CalendarDate(0, 1, 7));
+});
+
 it('adapts legacy monthly, yearly, and moon recurrence values', function () {
     $adapter = new LegacyRecurrenceAdapter;
 
@@ -113,6 +125,26 @@ it('adapts legacy monthly, yearly, and moon recurrence values', function () {
         ->and($adapter->fromReminder($yearly)->frequency)->toBe(RecurrenceRule::YEARLY)
         ->and($adapter->fromReminder($moon)->moonId)->toBe(2)
         ->and($adapter->fromReminder($moon)->phase)->toBe('full');
+});
+
+it('adapts every moon phase recurrence suffix', function () {
+    $adapter = new LegacyRecurrenceAdapter;
+    $phases = [
+        'f' => 'full',
+        'waning_gibbous' => 'waning_gibbous',
+        'last_quarter' => 'last_quarter',
+        'waning_crescent' => 'waning_crescent',
+        'n' => 'new',
+        'waxing_crescent' => 'waxing_crescent',
+        'first_quarter' => 'first_quarter',
+        'waxing_gibbous' => 'waxing_gibbous',
+    ];
+
+    foreach ($phases as $suffix => $phase) {
+        $reminder = new Reminder(['is_recurring' => true, 'recurring_periodicity' => '2_' . $suffix]);
+
+        expect($adapter->fromReminder($reminder)->phase)->toBe($phase);
+    }
 });
 
 it('rejects unsupported legacy recurrence values', function () {

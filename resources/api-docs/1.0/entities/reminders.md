@@ -103,7 +103,7 @@ To create an entity-event, use the following endpoint.
 | `month`                 | `integer` (Required) | Month (id) on which the event takes place                                              |
 | `year`                  | `integer` (Required) | Year on which the event takes place                                                    |
 | `length`                | `integer` (Required) | Duration in days of the event                                                          |
-| `recurring_periodicity` | `string` | Null if the event isn't recurring. `yearly`, `monthly` or `{moon.id}_(f                |n)` where `f` is full moon and `n` is new moon |
+| `recurring_periodicity` | `string` | Null if the event isn't recurring. `yearly`, `monthly`, or `{moon.id}_{phase}` where `phase` is `f` (full), `n` (new), `waning_gibbous`, `last_quarter`, `waning_crescent`, `waxing_crescent`, `first_quarter`, or `waxing_gibbous` |
 | `recurring_until`       | `integer` | Year until the event reoccurs                                                          |
 | `colour`                | `string` | Colour of the reminder in the calendar                                             |
 | `comment`               | `string` | Comment of the reminder                                                            |

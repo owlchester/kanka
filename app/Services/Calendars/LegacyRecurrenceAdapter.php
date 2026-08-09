@@ -34,7 +34,11 @@ final class LegacyRecurrenceAdapter
 
     private function moonRule(string $periodicity, ?int $untilYear): RecurrenceRule
     {
-        if (! preg_match('/^(\d+)_(f|n)$/', $periodicity, $parts)) {
+        $suffixes = implode('|', array_map(
+            MoonPhase::recurrenceSuffix(...),
+            array_keys(MoonPhase::PHASES),
+        ));
+        if (! preg_match('/^(\d+)_(' . $suffixes . ')$/', $periodicity, $parts)) {
             throw new InvalidArgumentException("Unsupported legacy recurrence: {$periodicity}");
         }
 
@@ -42,7 +46,7 @@ final class LegacyRecurrenceAdapter
             RecurrenceRule::MOON_PHASE,
             untilYear: $untilYear,
             moonId: (int) $parts[1],
-            phase: $parts[2] === 'f' ? 'full' : 'new',
+            phase: MoonPhase::fromRecurrenceSuffix($parts[2]),
         );
     }
 }
