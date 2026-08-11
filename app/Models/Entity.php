@@ -41,7 +41,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * Class Entity
  *
  * @property int $id
- * @property int $entity_id
+ * @property ?int $entity_id
  * @property string $name
  * @property ?string $type
  * @property ?string $entry
