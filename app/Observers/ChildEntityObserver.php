@@ -4,28 +4,17 @@ namespace App\Observers;
 
 use App\Facades\EntityLogger;
 use App\Facades\Images;
+use App\Models\Entity;
 use App\Models\MiscModel;
-use Closure;
 
 class ChildEntityObserver
 {
-    protected static bool $skipParentCreation = false;
-
-    public static function withoutParentCreation(Closure $callback): mixed
-    {
-        $previous = self::$skipParentCreation;
-        self::$skipParentCreation = true;
-
-        try {
-            return $callback();
-        } finally {
-            self::$skipParentCreation = $previous;
-        }
-    }
-
     public function created(MiscModel $model)
     {
-        if (self::$skipParentCreation) {
+        if ($model->relationLoaded('entity') && $model->entity instanceof Entity && $model->entity->entity_id === null) {
+            $model->entity->entity_id = $model->id;
+            $model->entity->save();
+
             return;
         }
 

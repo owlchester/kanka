@@ -39,6 +39,7 @@ it('links a newly created character to its entity', function () {
 
     expect($character->entity->id)->toBe($data['entity_id']);
     expect($character->entity->entity_id)->toBe($character->id);
+    expect($character->entity->created_by)->toBe(auth()->id());
 });
 
 it('rolls back an entity when its child cannot be created', function () {
@@ -46,7 +47,8 @@ it('rolls back an entity when its child cannot be created', function () {
 
     $entityType = Mockery::mock(EntityType::class)->makePartial();
     $entityType->id = config('entities.ids.character');
-    $entityType->shouldReceive('isStandard')->once()->andReturnTrue();
+    $entityType->code = 'character';
+    $entityType->shouldReceive('isStandard')->andReturnTrue();
     $entityType->shouldReceive('hasEntity')->once()->andReturnTrue();
     $entityType->shouldReceive('getMiscClass')
         ->once()

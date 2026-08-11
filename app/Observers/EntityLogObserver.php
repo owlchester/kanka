@@ -19,6 +19,10 @@ class EntityLogObserver
 
     public function updated(Entity $entity)
     {
+        if ($entity->wasChanged('entity_id') && $entity->getOriginal('entity_id') === null) {
+            return;
+        }
+
         // Don't log updates if just did one (typically when creating, restoring or bulk editing)
         if (! empty($entity->getOriginal('deleted_at'))) {
             return;

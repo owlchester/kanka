@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Enums\Permission;
 use App\Enums\WebhookAction;
+use App\Events\Entities\EntityCreationCompleted;
 use App\Events\Entities\EntityRestored;
 use App\Facades\Permissions;
 use App\Jobs\EntityUpdatedJob;
@@ -25,30 +26,8 @@ class EntityObserver
         if (! auth()->user()->can('update', $entity)) {
             $this->grant($entity, Permission::Update->value);
         }
-        // Refresh the model because adding permissions to the child means we have a new relation
-        if (Permissions::granted() && $entity->hasChild()) {
-            $entity->unsetRelation('child');
-            $entity->reloadChild();
-        }
-
-        if ($entity->campaign->premium()) {
-            EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::CREATED->value);
-        }
-
-        if ($entity->isMap() && $entity->image_uuid) {
-            $this->maybeTriggerTiling($entity);
-        }
-    }
-
-    protected function maybeTriggerTiling(Entity $entity): void
-    {
-        if (! $entity->image_uuid) {
-            return;
-        }
-
-        $image = Image::find($entity->image_uuid);
-        if ($image) {
-            app(TilingTriggerService::class)->maybeTrigger($image);
+        if (! $entity->hasChild() || $entity->entity_id !== null) {
+            EntityCreationCompleted::dispatch($entity);
         }
     }
 
@@ -67,6 +46,18 @@ class EntityObserver
         return $permission;
     }
 
+    protected function maybeTriggerTiling(Entity $entity): void
+    {
+        if (! $entity->image_uuid) {
+            return;
+        }
+
+        $image = Image::find($entity->image_uuid);
+        if ($image) {
+            app(TilingTriggerService::class)->maybeTrigger($image);
+        }
+    }
+
     public function updating(Entity $entity): void
     {
         if ($entity->isDirty('image_uuid') && $entity->isMap()) {
@@ -83,6 +74,11 @@ class EntityObserver
      */
     public function updated(Entity $entity)
     {
+        // Being assigned an entity shouldn't trigger any side effects
+        if ($entity->wasChanged('entity_id') && $entity->getOriginal('entity_id') === null) {
+            return;
+        }
+
         EntityUpdatedJob::dispatch($entity);
 
         if ($entity->campaign->premium()) {

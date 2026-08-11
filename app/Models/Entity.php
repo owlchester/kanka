@@ -92,8 +92,6 @@ class Entity extends Model
     use Templatable;
     use TouchSilently;
 
-    public bool $isEntityFirstCreation = false;
-
     protected static function booted(): void
     {
         static::creating(function (self $entity): void {
