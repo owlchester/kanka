@@ -5,11 +5,30 @@ namespace App\Observers;
 use App\Facades\EntityLogger;
 use App\Facades\Images;
 use App\Models\MiscModel;
+use Closure;
 
 class ChildEntityObserver
 {
+    protected static bool $skipParentCreation = false;
+
+    public static function withoutParentCreation(Closure $callback): mixed
+    {
+        $previous = self::$skipParentCreation;
+        self::$skipParentCreation = true;
+
+        try {
+            return $callback();
+        } finally {
+            self::$skipParentCreation = $previous;
+        }
+    }
+
     public function created(MiscModel $model)
     {
+        if (self::$skipParentCreation) {
+            return;
+        }
+
         // Created a new sub entity? Create the parent entity.
         $model->createEntity();
     }

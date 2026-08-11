@@ -5,8 +5,8 @@ namespace App\Services\Entity;
 use App\Exceptions\TranslatableException;
 use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
+use App\Models\EntityType;
 use App\Models\MiscModel;
-use App\Models\Note;
 use App\Services\Gallery\StorageService;
 use App\Services\MentionsService;
 use App\Traits\CampaignAware;
@@ -124,21 +124,24 @@ class MoveService
                         $newModel->$attribute = null;
                     }
                 }
+                $entityType = $this->entity->entityType;
             } else {
-                $newModel = new Note;
-                $newModel->name = $this->entity->name;
-                $newModel->is_private = $this->entity->is_private;
+                $newModel = null;
+                $entityType = EntityType::findOrFail(config('entities.ids.note'));
             }
 
-            $newModel->campaign_id = $this->to->id;
             $image = $this->entity->image; // Load the image before switching campaigns
             $newEntry = $this->mentionsService->campaign($this->campaign)->mapCopiedEntry($this->entity->entry);
 
             CampaignLocalization::forceCampaign($this->to);
 
-            // The model is ready to be saved.
-            $newModel->saveQuietly();
-            $newModel->createEntity();
+            $data = $newModel?->getAttributes() ?? [];
+            $data['name'] = $this->entity->name;
+            $data['is_private'] = $this->entity->is_private;
+            $newModel = app(StandardEntityCreationService::class)
+                ->campaign($this->to)
+                ->entityType($entityType)
+                ->create($data);
 
             $newModel->entity->entry = $newEntry;
             // Copy the gallery image over

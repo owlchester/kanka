@@ -1,6 +1,10 @@
 <?php
 
+use App\Models\Campaign;
 use App\Models\Character;
+use App\Models\Entity;
+use App\Models\EntityType;
+use App\Services\Entity\StandardEntityCreationService;
 
 it('POSTS an invalid character form')
     ->asUser()
@@ -21,6 +25,41 @@ it('POSTS a new character')
             'entity_id',
         ],
     ]);
+
+it('links a newly created character to its entity', function () {
+    $this->asUser()->withCampaign();
+
+    $response = $this->postJson('/api/1.0/campaigns/1/characters', [
+        'name' => 'Entity First',
+    ]);
+    $response->assertCreated();
+
+    $data = $response->json('data');
+    $character = Character::findOrFail($data['id']);
+
+    expect($character->entity->id)->toBe($data['entity_id']);
+    expect($character->entity->entity_id)->toBe($character->id);
+});
+
+it('rolls back an entity when its child cannot be created', function () {
+    $this->asUser()->withCampaign();
+
+    $entityType = Mockery::mock(EntityType::class)->makePartial();
+    $entityType->id = config('entities.ids.character');
+    $entityType->shouldReceive('isStandard')->once()->andReturnTrue();
+    $entityType->shouldReceive('hasEntity')->once()->andReturnTrue();
+    $entityType->shouldReceive('getMiscClass')
+        ->once()
+        ->andThrow(new RuntimeException('Child creation failed'));
+
+    expect(fn () => app(StandardEntityCreationService::class)
+        ->campaign(Campaign::findOrFail(1))
+        ->entityType($entityType)
+        ->create(['name' => 'Rolled Back']))
+        ->toThrow(RuntimeException::class);
+
+    expect(Entity::where('name', 'Rolled Back')->exists())->toBeFalse();
+});
 
 it('POSTS a public character when privacy is null')
     ->asUser()

@@ -47,7 +47,14 @@ class EntitySaveService
 
         $this->applyGalleryFields($entity, $data);
 
-        $entity->save();
+        // Creation services already run the parent-created lifecycle after the
+        // child is linked. Avoid emitting an update lifecycle for that same
+        // initial save.
+        if ($entity->isEntityFirstCreation) {
+            $entity->saveQuietly();
+        } else {
+            $entity->save();
+        }
 
         // Post-save: image file cleanup (safe after save — doesn't affect entity record)
         if (($data['remove-image'] ?? null) == '1') {

@@ -24,6 +24,7 @@ use App\Models\EntityType;
 use App\Models\UserLog;
 use App\Notifications\Header;
 use App\Services\Entity\EntitySaveService;
+use App\Services\Entity\StandardEntityCreationService;
 use App\Services\Entity\TagService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
@@ -42,7 +43,10 @@ class CsvImportService
     use CampaignAware;
     use UserAware;
 
-    public function __construct(protected EntitySaveService $entitySaveService) {}
+    public function __construct(
+        protected EntitySaveService $entitySaveService,
+        protected StandardEntityCreationService $entityCreationService,
+    ) {}
 
     protected int $expectedColumns = 1;
 
@@ -335,11 +339,10 @@ class CsvImportService
 
         $this->validateEntity($this->data, $validator->rules());
 
-        $new = $this->entityType->getMiscClass();
-        $new->fill($this->data);
-        $new->campaign_id = $this->campaign->id;
-        $new->save();
-        $new->createEntity();
+        $new = $this->entityCreationService
+            ->campaign($this->campaign)
+            ->entityType($this->entityType)
+            ->create($this->data);
         $entity = $new->entity;
         $entity->entry = $this->data['entry'] ?? '';
         $entity->type = $this->data['type'] ?? '';

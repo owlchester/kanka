@@ -53,7 +53,7 @@ class TagApiController extends MiscApiController
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
-        $model = Tag::create($data);
+        $model = $this->createStandardModel($campaign, $data, config('entities.ids.tag'));
         $this->crudSave($model, $request->validated());
 
         return new Resource($model);

@@ -54,7 +54,7 @@ class RaceApiController extends MiscApiController
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
-        $model = Race::create($data);
+        $model = $this->createStandardModel($campaign, $data, config('entities.ids.race'));
         $this->crudSave($model, $request->validated());
 
         return new Resource($model);

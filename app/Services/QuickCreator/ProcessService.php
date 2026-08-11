@@ -9,13 +9,13 @@ use App\Models\Entity;
 use App\Models\EntityType;
 use App\Models\Family;
 use App\Models\Location;
-use App\Models\MiscModel;
 use App\Models\Post;
 use App\Models\Race;
 use App\Models\Tag;
 use App\Services\Entity\CopyService;
 use App\Services\Entity\EntitySaveService;
 use App\Services\Entity\Relations\EntityRelationsServiceFactory;
+use App\Services\Entity\StandardEntityCreationService;
 use App\Traits\CampaignAware;
 use App\Traits\CreatesEntityFromName;
 use App\Traits\EntityTypeAware;
@@ -47,6 +47,7 @@ class ProcessService
         protected CopyService $copyService,
         protected EntitySaveService $entitySaveService,
         protected EntityRelationsServiceFactory $relationsFactory,
+        protected StandardEntityCreationService $entityCreationService,
     ) {}
 
     public function entity()
@@ -107,11 +108,10 @@ class ProcessService
                 $this->new[] = $this->entity;
                 $this->copyTemplateRelations();
             } else {
-                /** @var MiscModel $new */
-                $new = $this->entityType->getClass();
-                $new->fill($values);
-                $new->campaign_id = $this->campaign->id;
-                $new->save();
+                $new = $this->entityCreationService
+                    ->campaign($this->campaign)
+                    ->entityType($this->entityType)
+                    ->create($values);
                 $this->entitySaveService->save($new->entity, $values);
                 $this->relationsFactory->for($new->entity)?->save($new, $values);
 

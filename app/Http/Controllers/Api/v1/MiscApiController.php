@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Models\Campaign;
+use App\Models\EntityType;
 use App\Models\MiscModel;
 use App\Services\Entity\EntitySaveService;
 use App\Services\Entity\Relations\EntityRelationsServiceFactory;
+use App\Services\Entity\StandardEntityCreationService;
 use CampaignLocalization;
 
 class MiscApiController extends ApiController
@@ -12,7 +15,16 @@ class MiscApiController extends ApiController
     public function __construct(
         protected EntitySaveService $entitySaveService,
         protected EntityRelationsServiceFactory $relationsFactory,
+        protected StandardEntityCreationService $entityCreationService,
     ) {}
+
+    protected function createStandardModel(Campaign $campaign, array $data, int $entityTypeId): MiscModel
+    {
+        return $this->entityCreationService
+            ->campaign($campaign)
+            ->entityType(EntityType::findOrFail($entityTypeId))
+            ->create($data);
+    }
 
     protected function crudSave(MiscModel $model, array $data): void
     {

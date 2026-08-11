@@ -4,6 +4,7 @@ namespace App\Services\Entity;
 
 use App\Facades\EntityLogger;
 use App\Models\Entity;
+use App\Models\EntityType;
 use App\Models\MiscModel;
 use App\Models\Tag;
 use App\Traits\CampaignAware;
@@ -12,6 +13,7 @@ use App\Traits\UserAware;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use LogicException;
 use Stevebauman\Purify\Facades\Purify;
 
 class TagService
@@ -66,15 +68,19 @@ class TagService
 
     public function create(mixed $name): Tag
     {
-        $tag = new Tag([
-            'name' => Purify::clean($name),
-        ]);
+        $campaign = $this->campaign ?? $this->entity->campaign;
+        $tag = app(StandardEntityCreationService::class)
+            ->campaign($campaign)
+            ->entityType(EntityType::findOrFail(config('entities.ids.tag')))
+            ->create([
+                'name' => Purify::clean($name),
+                'slug' => Str::slug($name, ''),
+                'is_private' => false,
+            ]);
 
-        $tag->campaign_id = isset($this->campaign) ? $this->campaign->id : $this->entity->campaign_id;
-        $tag->slug = Str::slug($tag->name, '');
-        $tag->is_private = false;
-        $tag->saveQuietly();
-        $tag->createEntity();
+        if (! $tag instanceof Tag) {
+            throw new LogicException('The tag entity type did not create a tag model.');
+        }
 
         return $tag;
     }

@@ -53,7 +53,7 @@ class JournalApiController extends MiscApiController
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
-        $model = Journal::create($data);
+        $model = $this->createStandardModel($campaign, $data, config('entities.ids.journal'));
         $this->crudSave($model, $request->validated());
 
         return new Resource($model);

@@ -10,6 +10,7 @@ use App\Models\EntityType;
 use App\Services\AttributeService;
 use App\Services\Entity\EntitySaveService;
 use App\Services\Entity\Relations\EntityRelationsServiceFactory;
+use App\Services\Entity\StandardEntityCreationService;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -21,9 +22,10 @@ class AttributeTemplateApiController extends MiscApiController
     public function __construct(
         EntitySaveService $entitySaveService,
         EntityRelationsServiceFactory $relationsFactory,
+        StandardEntityCreationService $entityCreationService,
         AttributeService $attributeService,
     ) {
-        parent::__construct($entitySaveService, $relationsFactory);
+        parent::__construct($entitySaveService, $relationsFactory, $entityCreationService);
         $this->attributeService = $attributeService;
     }
 
@@ -67,7 +69,7 @@ class AttributeTemplateApiController extends MiscApiController
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
-        $model = AttributeTemplate::create($data);
+        $model = $this->createStandardModel($campaign, $data, config('entities.ids.attribute_template'));
         $this->crudSave($model, $request->validated());
 
         return new Resource($model);

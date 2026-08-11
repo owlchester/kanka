@@ -13,6 +13,7 @@ use App\Renderers\DatagridRenderer;
 use App\Services\AttributeService;
 use App\Services\Entity\EntitySaveService;
 use App\Services\Entity\Relations\QuestRelationsService;
+use App\Services\Entity\StandardEntityCreationService;
 use App\Services\FilterService;
 
 class QuestController extends CrudController
@@ -32,9 +33,10 @@ class QuestController extends CrudController
         DatagridRenderer $datagridRenderer,
         AttributeService $attributeService,
         EntitySaveService $entitySaveService,
+        StandardEntityCreationService $entityCreationService,
         protected QuestRelationsService $questRelationsService,
     ) {
-        parent::__construct($filterService, $datagridRenderer, $attributeService, $entitySaveService);
+        parent::__construct($filterService, $datagridRenderer, $attributeService, $entitySaveService, $entityCreationService);
     }
 
     public function store(StoreQuest $request, Campaign $campaign)

@@ -13,6 +13,7 @@ use App\Renderers\DatagridRenderer;
 use App\Services\AttributeService;
 use App\Services\Entity\EntitySaveService;
 use App\Services\Entity\Relations\FamilyRelationsService;
+use App\Services\Entity\StandardEntityCreationService;
 use App\Services\FilterService;
 
 class FamilyController extends CrudController
@@ -32,9 +33,10 @@ class FamilyController extends CrudController
         DatagridRenderer $datagridRenderer,
         AttributeService $attributeService,
         EntitySaveService $entitySaveService,
+        StandardEntityCreationService $entityCreationService,
         protected FamilyRelationsService $familyRelationsService,
     ) {
-        parent::__construct($filterService, $datagridRenderer, $attributeService, $entitySaveService);
+        parent::__construct($filterService, $datagridRenderer, $attributeService, $entitySaveService, $entityCreationService);
     }
 
     public function store(StoreFamily $request, Campaign $campaign)

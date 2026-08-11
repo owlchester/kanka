@@ -8,8 +8,8 @@ use App\Models\Calendar;
 use App\Models\CalendarWeather;
 use App\Models\Entity;
 use App\Models\EntityType;
-use App\Models\Event;
 use App\Models\Reminder;
+use App\Services\Entity\StandardEntityCreationService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Arr;
@@ -117,14 +117,15 @@ class CalendarService
             if (! $this->user->can('create', [$entityType, $this->campaign])) {
                 throw new TranslatableException(__('calendars.event.errors.missing_permissions'));
             }
-            // Create an event
-            $event = new Event;
-            $event->name = Str::after($data['name'], 'new:');
-            $event->date = $data['year'] . '-' . $data['month'] . '-' . $data['day'];
-            $event->campaign_id = $this->campaign->id;
-            if ($event->save()) {
-                return $event->entity;
-            }
+            $event = app(StandardEntityCreationService::class)
+                ->campaign($this->campaign)
+                ->entityType($entityType)
+                ->create([
+                    'name' => Str::after($data['name'], 'new:'),
+                    'date' => $data['year'] . '-' . $data['month'] . '-' . $data['day'],
+                ]);
+
+            return $event->entity;
         } elseif (! empty($data['entity_id'])) {
             return Entity::findOrFail($data['entity_id']);
         }

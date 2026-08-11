@@ -53,7 +53,7 @@ class NoteApiController extends MiscApiController
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
-        $model = Note::create($data);
+        $model = $this->createStandardModel($campaign, $data, config('entities.ids.note'));
         $this->crudSave($model, $request->validated());
 
         return new Resource($model);

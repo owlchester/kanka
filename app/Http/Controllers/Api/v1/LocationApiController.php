@@ -53,7 +53,7 @@ class LocationApiController extends MiscApiController
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
-        $model = Location::create($data);
+        $model = $this->createStandardModel($campaign, $data, config('entities.ids.location'));
         $this->crudSave($model, $request->validated());
 
         return new Resource($model);
