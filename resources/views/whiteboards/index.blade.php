@@ -23,7 +23,7 @@
                 <div class="flex gap-1 p-4 ">
                     <div class="flex flex-col gap-1">
                         <span class="whiteboard-name text-md">
-                            {!! $whiteboard->name !!}
+                            {!! $whiteboard->entity->name !!}
                         </span>
                         <span class="whiteboard-timestamp text-neutral-content text-xs" title="{{ $whiteboard->created_at }}">
                             {{ __('crud.timestamps.edited', ['ago' => $whiteboard->created_at->diffForHumans()]) }}

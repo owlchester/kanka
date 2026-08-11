@@ -17,7 +17,7 @@ if (!empty($previous)) {
 elseif(!empty($model)) {
     /** @var \App\Models\OrganisationMember $member */
     foreach ($model->organisations as $organisation) {
-        $selectedOption[$organisation->id] = strip_tags($organisation->name);
+        $selectedOption[$organisation->id] = strip_tags($organisation->entity->name);
     }
 }
 ?>

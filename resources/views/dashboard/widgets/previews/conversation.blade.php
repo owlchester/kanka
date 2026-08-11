@@ -31,7 +31,7 @@ $conversation = $entity->child;
                             @if ($message->user)
                                 {{ $message->user->name }}
                             @elseif ($message->character)
-                                <a href="{{ route('entities.show', [$campaign, $message->character->entity]) }}" class="text-link">{{ $message->character->name }}</a>
+                                <a href="{{ route('entities.show', [$campaign, $message->character->entity]) }}" class="text-link">{{ $message->character->entity->name }}</a>
                             @endif
                         </span>
                     @elseif (!empty($message->user_id))
@@ -41,7 +41,7 @@ $conversation = $entity->child;
                         <span class="direct-chat-timestamp">{{ $message->created_at->diffForHumans() }}</span>
                     @else
                         <span class="direct-chat-name grow">
-                            <a href="{{ route('entities.show', [$campaign, $message->character->entity]) }}" class="text-link">{{ $message->character->name }}</a>
+                            <a href="{{ route('entities.show', [$campaign, $message->character->entity]) }}" class="text-link">{{ $message->character->entity->name }}</a>
                         </span>
                         <span class="direct-chat-timestamp">{{ $message->created_at->diffForHumans() }}</span>
                     @endif
@@ -52,7 +52,7 @@ $conversation = $entity->child;
                         <x-users.avatar :user="$message->user" class="w-6 h-6" />
                     @endif
                 @elseif (!empty($message->character_id))
-                    <img class="entity-image cover-background w-6 h-6 rounded-full" src="{{ \App\Facades\Avatar::entity($message->character->entity)->fallback()->size(40)->thumbnail() }}" alt="{{ $message->character->name }}">
+                    <img class="entity-image cover-background w-6 h-6 rounded-full" src="{{ \App\Facades\Avatar::entity($message->character->entity)->fallback()->size(40)->thumbnail() }}" alt="{{ $message->character->entity->name }}">
                 @endif
                     <div class="direct-chat-text grow">
                         {{ $message->message }}

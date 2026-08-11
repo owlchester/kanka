@@ -248,7 +248,7 @@ class ExploreResource extends JsonResource
                 'urls' => [
                     'show' => route('entities.show', [$campaign, $tag->entity]),
                 ],
-                'name' => $tag->name,
+                'name' => $tag->entity->name,
                 'colour' => $tag->colourClass(),
                 'colour_style' => $tag->colourStyle(),
                 'shortname' => $tag->hasIcon()

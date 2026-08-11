@@ -1,5 +1,5 @@
 @extends('layouts.app', [
-    'title' => __('quests.elements.create.title', ['name' => $quest->name]),
+    'title' => __('quests.elements.create.title', ['name' => $quest->entity->name]),
     'breadcrumbs' => [
         Breadcrumb::campaign($campaign)->entity($quest->entity)->list(),
         Breadcrumb::show(),

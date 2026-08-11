@@ -52,7 +52,7 @@ it('returns the full explore payload for a simple map', function () {
             'i18n' => ['legend_title', 'legend_search', 'ungrouped', 'loading', 'error_load', 'error_delete', 'error_save', 'error_name_required', 'from_entry', 'linked_entry', 'description', 'add_description', 'edit_description', 'description_expand', 'cancel', 'edit_marker', 'center', 'duplicate', 'delete_marker', 'delete_confirm', 'new_pin', 'name_placeholder', 'save', 'save_changes', 'details', 'less', 'icons' => ['pin', 'question', 'exclamation', 'entity', 'square', 'circle', 'diamond', 'triangle'], 'premium_custom_icon', 'custom_icon_or_svg', 'custom_icon_helper', 'custom_icon_placeholder', 'markers_count_one', 'markers_count_other', 'peek_map', 'peek_panel', 'toolbar' => ['rapid', 'pin', 'text', 'area', 'circle', 'path', 'helper' => ['pin', 'text', 'area', 'circle', 'path']], 'header' => ['overview', 'settings', 'edit'], 'settings' => ['title', 'grid', 'zoom_min', 'zoom_max', 'zoom_initial', 'distance_name', 'distance_measure', 'center', 'center_coordinates', 'center_marker', 'pick_on_map', 'picking', 'no_marker', 'save', 'error_save'], 'presence' => ['role_edit', 'role_view', 'error_unavailable', 'error_connecting', 'error_disconnected']],
         ]);
 
-    $response->assertJsonFragment(['name' => $map->name, 'is_real' => false, 'has_clustering' => true]);
+    $response->assertJsonFragment(['name' => $map->entity->name, 'is_real' => false, 'has_clustering' => true]);
     expect($response->json('i18n.custom_icon_or_svg'))->toBe(__('maps/explorer.marker.custom_icon_or_svg'));
     expect($response->json('i18n.custom_icon_placeholder'))->toBe(__('maps/markers.placeholders.custom_icon', [
         'example1' => '"fa-solid fa-gem"',

@@ -63,6 +63,6 @@ class ManagementController extends Controller
 
         return redirect()
             ->route('entities.show', [$campaign, $character->entity])
-            ->withSuccess(__('characters.families.reorder.success', ['name' => $character->name]));
+            ->withSuccess(__('characters.families.reorder.success', ['name' => $character->entity->name]));
     }
 }

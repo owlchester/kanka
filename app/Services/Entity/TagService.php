@@ -97,7 +97,7 @@ class TagService
         /** @var Tag[]|Collection $tags */
         $tags = $model->tags()->with('entity')->has('entity')->get();
         foreach ($tags as $tag) {
-            $existing[$tag->id] = $tag->name;
+            $existing[$tag->id] = $tag->entity->name;
         }
         $new = [];
 

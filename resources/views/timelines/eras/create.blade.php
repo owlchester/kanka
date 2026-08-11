@@ -5,7 +5,7 @@
 */
 ?>
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => __('timelines/eras.create.title', ['name' => $timeline->name]),
+    'title' => __('timelines/eras.create.title', ['name' => $timeline->entity->name]),
     'description' => '',
     'breadcrumbs' => [
         Breadcrumb::campaign($campaign)->entity($timeline->entity)->list(),

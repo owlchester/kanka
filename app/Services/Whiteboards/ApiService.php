@@ -37,7 +37,7 @@ class ApiService
 
     public function load(): array
     {
-        $this->data['name'] = $this->whiteboard->name;
+        $this->data['name'] = $this->whiteboard->entity->name;
         $this->loadShapes();
         $this->loadEntities();
         $this->loadImages();

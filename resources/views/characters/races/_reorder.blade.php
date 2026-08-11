@@ -1,7 +1,7 @@
 <?php /** @var \App\Models\Race[] $races */?>
 <x-grid type="1/1">
     <x-helper>
-        <p>{!! __('characters.races.helper', ['name' => $character->name]) !!}</p>
+        <p>{!! __('characters.races.helper', ['name' => $character->entity->name]) !!}</p>
     </x-helper>
 
     @if (!$races)
@@ -20,7 +20,7 @@
                             </div>
                         @endif
                         <div class="flex flex-wrap md:flex-no-wrap gap-2 md:gap-2 member-row items-center grow">
-                            <x-entities.thumbnail :entity="$race->race->entity" :title="$race->race->name" />
+                            <x-entities.thumbnail :entity="$race->race->entity" :title="$race->race->entity->name" />
                             <x-entity-link
                                 :entity="$race->race->entity"
                                 :campaign="$campaign" />

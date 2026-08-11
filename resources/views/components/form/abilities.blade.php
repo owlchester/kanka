@@ -62,6 +62,6 @@ elseif(!empty($model) && !empty($model->entity)) {
     @if (!empty($dropdownParent)) data-dropdown-parent="{{ $dropdownParent }}" @endif
 >
     @foreach ($selectedOption as $key => $ability)
-        <option value="{{ $key }}" class="select2-ability" selected="selected">{{ $ability->name }}</option>
+        <option value="{{ $key }}" class="select2-ability" selected="selected">{{ $ability->entity->name }}</option>
     @endforeach
 </select>

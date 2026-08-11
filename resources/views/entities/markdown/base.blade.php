@@ -78,9 +78,9 @@
 @if($entity->hasChild() && method_exists($entity->child, 'pinnedMembers') && !$entity->child->pinnedMembers->isEmpty())
 @foreach ($entity->child->pinnedMembers as $member)
 @if ($member instanceof \App\Models\Character)
-| {!! $member->organisation->name !!} | {!! $member->role !!} |
+| {!! $member->organisation->entity->name !!} | {!! $member->role !!} |
 @else
-| {!! $member->character->name !!} | {!! $member->role !!} |
+| {!! $member->character->entity->name !!} | {!! $member->role !!} |
 @endif
 @endforeach
 @endif

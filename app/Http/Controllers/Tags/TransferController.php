@@ -41,11 +41,11 @@ class TransferController extends Controller
 
             return redirect()
                 ->route('entities.show', [$campaign, $tag->entity])
-                ->with('success_raw', __('tags.transfer.success', ['tag' => $tag->name, 'newTag' => $newTag->name]));
+                ->with('success_raw', __('tags.transfer.success', ['tag' => $tag->entity->name, 'newTag' => $newTag->entity->name]));
         } catch (TranslatableException $ex) {
             return redirect()
                 ->route('entities.show', [$campaign, $tag->entity])
-                ->with('error', __('tags.transfer.fail', ['tag' => $tag->name, 'newTag' => $newTag->name]));
+                ->with('error', __('tags.transfer.fail', ['tag' => $tag->entity->name, 'newTag' => $newTag->entity->name]));
         }
     }
 
@@ -58,11 +58,11 @@ class TransferController extends Controller
 
             return redirect()
                 ->route('entities.show', [$campaign, $tag->entity])
-                ->with('success_raw', __('tags.transfer.success_post', ['tag' => $tag->name, 'newTag' => $newTag->name]));
+                ->with('success_raw', __('tags.transfer.success_post', ['tag' => $tag->entity->name, 'newTag' => $newTag->entity->name]));
         } catch (TranslatableException $ex) {
             return redirect()
                 ->route('entities.show', [$campaign, $tag->entity])
-                ->with('error', __('tags.transfer.fail_post', ['tag' => $tag->name, 'newTag' => $newTag->name]));
+                ->with('error', __('tags.transfer.fail_post', ['tag' => $tag->entity->name, 'newTag' => $newTag->entity->name]));
         }
     }
 }

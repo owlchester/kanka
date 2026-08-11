@@ -8,7 +8,7 @@ if ($item->item && $item->item->entity->hasImage()) {
 }
 $itemName = '';
 if ($item->item) {
-    $itemName = $item->name ?: $item->item->name;
+    $itemName = $item->name ?: $item->item->entity->name;
 } else {
     $itemName = $item->name;
 }

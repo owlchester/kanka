@@ -80,7 +80,7 @@ class Organisation extends Layout
                                         $location->entity,
                                     ]) .
                                     '">' .
-                                    e($location->name) .
+                                    e($location->entity->name) .
                                     '</a>';
                             }
                         }

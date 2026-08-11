@@ -1,7 +1,7 @@
 <?php /**
  * @var \App\Models\TimelineEra $era */?>
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => __('timelines.reorder.title', ['name' => $timeline->name]),
+    'title' => __('timelines.reorder.title', ['name' => $timeline->entity->name]),
     'breadcrumbs' => false,
     'mainTitle' => false,
     'bodyClass' => 'timeline-eras-reorder'

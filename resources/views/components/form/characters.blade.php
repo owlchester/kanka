@@ -19,7 +19,7 @@ if (!empty($previous)) {
 elseif(!empty($model) ) {
     /** @var \App\Models\Character $character */
     foreach ($model->members() as $character) {
-        $selectedOption[$character->character->id] = strip_tags($character->character->name);
+        $selectedOption[$character->character->id] = strip_tags($character->character->entity->name);
     }
 }
 ?>

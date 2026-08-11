@@ -107,7 +107,7 @@ abstract class Renderer
 
         $tags = [];
         foreach ($this->entity->tags as $tag) {
-            $tags[$tag->slug] = $tag->name;
+            $tags[$tag->slug] = $tag->entity->name;
         }
         $data['_tags'] = $tags;
 
@@ -174,8 +174,8 @@ abstract class Renderer
             $ability = [
                 'id' => $abi->id,
                 'ability_id' => $abi->ability_id,
-                'name' => $abi->ability->name,
-                'slug' => Str::slug($abi->ability->name),
+                'name' => $abi->ability->entity->name,
+                'slug' => Str::slug($abi->ability->entity->name),
                 'type' => $abi->ability->entity->type,
                 'entry' => $abi->ability->entity->parsedEntry(),
                 'charges' => $abi->ability->charges,
@@ -183,7 +183,7 @@ abstract class Renderer
                 'note_raw' => $abi->note,
                 'used_charges' => $abi->charges,
                 'thumb' => '<img src="' . Avatar::entity($abi->ability->entity)->size(40)->thumbnail() . '" class="ability-thumb"></i>',
-                'link' => '<a href="' . route('entities.show', [$this->campaign, $abi->ability->entity]) . '" class="ability-link">' . $abi->ability->name . '</a>',
+                'link' => '<a href="' . route('entities.show', [$this->campaign, $abi->ability->entity]) . '" class="ability-link">' . $abi->ability->entity->name . '</a>',
                 'tags' => $tags,
                 'parent' => $parent,
             ];

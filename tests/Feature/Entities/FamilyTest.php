@@ -140,7 +140,7 @@ it('UPDATES a family\'s locations through the API', function () {
     $family->entity->locations()->attach($locations[0]->id);
 
     $response = $this->putJson('/api/1.0/campaigns/1/families/' . $family->id, [
-        'name' => $family->name,
+        'name' => $family->entity->name,
         'locations' => [$locations[1]->id, $locations[2]->id],
     ]);
     $response->assertStatus(200);
@@ -175,7 +175,7 @@ it('saves locations when editing a family through the web form', function () {
     $family->entity->locations()->attach($locations[0]->id);
 
     $this->patch(route('families.update', [1, $family->id]), [
-        'name' => $family->name,
+        'name' => $family->entity->name,
         'save_locations' => 1,
         'locations' => [$locations[1]->id],
     ])->assertRedirect();

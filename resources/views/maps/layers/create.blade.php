@@ -5,7 +5,7 @@
 */
 ?>
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => __('maps/layers.create.title', ['name' => $map->name]),
+    'title' => __('maps/layers.create.title', ['name' => $map->entity->name]),
     'description' => '',
     'breadcrumbs' => [
         Breadcrumb::campaign($campaign)->entity($map->entity)->list(),

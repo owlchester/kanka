@@ -60,7 +60,7 @@ class PinPreviewResource extends JsonResource
         }
 
         return $location->maps
-            ->map(fn ($map) => ['name' => $map->name, 'url' => route('entities.map', [$this->campaign->id, $map->entity->id])])
+            ->map(fn ($map) => ['name' => $map->entity->name, 'url' => route('entities.map', [$this->campaign->id, $map->entity->id])])
             ->all();
     }
 }

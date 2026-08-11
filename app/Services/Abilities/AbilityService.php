@@ -138,7 +138,7 @@ class AbilityService extends BaseAbilityService
         $data = [
             'id' => $entityAbility->id,
             'ability_id' => $entityAbility->ability_id,
-            'name' => $entityAbility->ability->name,
+            'name' => $entityAbility->ability->entity->name,
             'entry' => $this->parseEntry($entityAbility->ability),
             'type' => $entityAbility->ability->entity->type,
             'charges' => $this->parseCharges($entityAbility->ability),
@@ -201,7 +201,7 @@ class AbilityService extends BaseAbilityService
         foreach ($tags as $tag) {
             $formatted[] = [
                 'id' => $tag->id,
-                'name' => $tag->name,
+                'name' => $tag->entity->name,
                 'url' => route('entities.show', [$this->campaign, $tag->entity]),
                 'tooltip' => route('entities.tooltip', [$this->campaign, $tag->entity]),
                 'class' => $tag->colourClass(),

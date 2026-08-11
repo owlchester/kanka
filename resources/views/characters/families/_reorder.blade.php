@@ -1,7 +1,7 @@
 <?php /** @var \App\Models\CharacterFamily[] $families */?>
 <x-grid type="1/1">
     <x-helper>
-        <p>{!! __('characters.families.helper', ['name' => $character->name]) !!}</p>
+        <p>{!! __('characters.families.helper', ['name' => $character->entity->name]) !!}</p>
     </x-helper>
     @if (!$families)
         <x-alert type="warning">
@@ -19,7 +19,7 @@
                             </div>
                         @endif
                         <div class="flex flex-wrap md:flex-no-wrap gap-2 md:gap-2 member-row items-center grow">
-                            <x-entities.thumbnail :entity="$family->family->entity" :title="$family->family->name" />
+                            <x-entities.thumbnail :entity="$family->family->entity" :title="$family->family->entity->name" />
                             <x-entity-link
                                 :entity="$family->family->entity"
                                 :campaign="$campaign" />

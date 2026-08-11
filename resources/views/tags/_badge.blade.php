@@ -3,6 +3,6 @@
     @if ($tag->hasIcon())
         <i class="{{ $tag->icon }}" aria-hidden="true"></i>
     @else
-        {!! $tag->name !!}
+        {!! $tag->entity->name !!}
     @endif
 </span>

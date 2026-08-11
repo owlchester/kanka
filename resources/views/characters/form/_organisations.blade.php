@@ -37,7 +37,7 @@ $statuses = [
                         data-language="{{ LaravelLocalization::getCurrentLocale() }}"
                         data-allow-clear="false"
                     >
-                        <option value="{{ $organisation->organisation->id }}">{{ $organisation->organisation->name }}</option>
+                        <option value="{{ $organisation->organisation->id }}">{{ $organisation->organisation->entity->name }}</option>
                     </select>
                 </div>
                 <div class="grow field">

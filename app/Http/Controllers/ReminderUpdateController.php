@@ -126,7 +126,7 @@ class ReminderUpdateController extends Controller
         $this->checkPermissions($reminder);
 
         $reminder->delete();
-        $success = __('calendars.event.destroy', ['name' => $reminder->calendar->name]);
+        $success = __('calendars.event.destroy', ['name' => $reminder->calendar->entity->name]);
 
         $next = request()->post('next', '0');
         if ($next == 'calendars.events') {

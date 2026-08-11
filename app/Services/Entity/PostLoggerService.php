@@ -73,9 +73,9 @@ class PostLoggerService
 
         try {
             if ($attribute == 'location_id') {
-                $originalLocation = Location::where('id', $original)->first();
+                $originalLocation = Location::where('id', $original)->with('entity')->has('entity')->first();
                 if (! empty($originalLocation)) {
-                    return (string) $originalLocation->name;
+                    return (string) $originalLocation->entity->name;
                 }
 
                 return '';
