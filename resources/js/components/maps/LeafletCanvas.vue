@@ -325,12 +325,6 @@ const DEFAULT_MARKER_SIZE = 24
 const LEGACY_MARKER_SIZE = 40
 const DEFAULT_PIN_ICON = 'fa-solid fa-map-pin'
 
-function markerSize(pin) {
-    const configured = pin.pin_size || LEGACY_MARKER_SIZE
-
-    return Math.round(configured * (DEFAULT_MARKER_SIZE / LEGACY_MARKER_SIZE))
-}
-
 function isDefaultPinIcon(icon) {
     return !icon || (icon.type === 'fa' && icon.value === DEFAULT_PIN_ICON)
 }
@@ -339,8 +333,12 @@ function pinClassName(pin) {
     return pin.css ? `marker marker-${pin.id} ${pin.css}` : `marker marker-${pin.id}`
 }
 
+function markerBorderColour(pin) {
+    return pin.font_colour || pin.fontColour || pin.colour || '#ccc'
+}
+
 function legacyPinIcon(pin) {
-    const size = pin.pin_size || LEGACY_MARKER_SIZE
+    const size = Math.max(10, Number(pin.pin_size) || LEGACY_MARKER_SIZE)
     let inner = `<i class="${DEFAULT_PIN_ICON}"></i>`
     let style = `--pin-size: ${size}px; background-color: ${pin.colour || '#ccc'};`
 
@@ -357,7 +355,7 @@ function legacyPinIcon(pin) {
         inner = ''
         // The avatar image is painted on ::after (counter-rotated), not this div (rotated -45deg),
         // so the image itself renders upright instead of tilted.
-        style = `--pin-size: ${size}px; --pin-avatar: url('${pin.icon.value}');`
+        style = `--pin-size: ${size}px; background-color: ${markerBorderColour(pin)}; --pin-avatar: url('${pin.icon.value}');`
     }
 
     return L.divIcon({
@@ -370,13 +368,15 @@ function legacyPinIcon(pin) {
 }
 
 function modernPinIcon(pin) {
-    const size = markerSize(pin)
+    const size = DEFAULT_MARKER_SIZE
     const colour = pin.colour || '#ccc'
     const icon = pin.icon
 
     if (icon?.type === 'avatar') {
+        const borderColour = markerBorderColour(pin)
+
         return L.divIcon({
-            html: `<img src="${icon.value}" class="marker-avatar" style="width: ${size}px; height: ${size}px; --pin-colour: ${colour};" />`,
+            html: `<img src="${icon.value}" class="marker-avatar" style="width: ${size}px; height: ${size}px; --pin-colour: ${colour}; --pin-border-colour: ${borderColour};" />`,
             iconSize: [size, size],
             iconAnchor: [size / 2, size / 2],
             popupAnchor: [0, -(size / 2)],
@@ -439,14 +439,25 @@ function movePinTo(pin, layer) {
         })
 }
 
+function polygonStrokeStyle(style, fallbackColour, showWhenCleared = false) {
+    const strokeCleared = Object.prototype.hasOwnProperty.call(style, 'stroke') && ! style.stroke
+
+    return {
+        color: strokeCleared
+            ? (showWhenCleared ? '#ccc' : fallbackColour)
+            : (style.stroke || fallbackColour),
+        stroke: ! strokeCleared || showWhenCleared,
+        weight: style['stroke-width'] || 1,
+    }
+}
+
 function buildPin(pin) {
     if (pin.shape === 'poly') {
         const latlngs = pin.custom_shape || pin.customShape || []
         const style = pin.polygon_style || pin.polygonStyle || {}
 
         return L.polygon(latlngs, {
-            color: style.stroke || pin.colour || '#ccc',
-            weight: style['stroke-width'] || 1,
+            ...polygonStrokeStyle(style, pin.colour || '#ccc'),
             fillColor: pin.colour || '#ccc',
             fillOpacity: (pin.opacity ?? 100) / 100,
             className: pin.css || '',
@@ -484,10 +495,32 @@ function buildPin(pin) {
     }
 
     if (pin.shape === 'label') {
-        const marker = L.marker([pin.latitude, pin.longitude], { opacity: 0 })
+        const draggable = props.canEdit && (
+            pin.is_draggable
+            || pin.isDraggable
+            || pin.id === 'draft'
+            || pin.id === 'editing'
+        )
+
+        // Do not inherit Leaflet's default marker icon: its tooltip anchor is offset
+        // for a pin-shaped icon, which makes labels drift away from their map point.
+        const marker = L.marker([pin.latitude, pin.longitude], {
+            icon: L.divIcon({
+                html: '',
+                iconSize: [0, 0],
+                iconAnchor: [0, 0],
+                tooltipAnchor: [0, 0],
+                className: 'map-label-anchor',
+            }),
+            opacity: 0,
+            draggable,
+        })
             .bindTooltip(pin.name, {
                 permanent: true,
                 direction: 'center',
+                // The label is the visible part of this marker. Make the tooltip
+                // interactive so clicks anywhere on the text propagate to the marker.
+                interactive: !draggable,
                 className: pin.css ? `map-label ${pin.css}` : 'map-label',
             })
 
@@ -503,7 +536,23 @@ function buildPin(pin) {
                 el.style.setProperty('--label-colour', pin.colour)
                 el.style.setProperty('--label-text-colour', contrastTextColour(pin.colour))
             }
+
+            if (draggable) {
+                const icon = marker.getElement()
+                const { offsetWidth, offsetHeight } = el
+
+                // The visible tooltip sits above the marker pane, so give the
+                // transparent marker icon the same hit area for native dragging.
+                icon.style.width = `${offsetWidth}px`
+                icon.style.height = `${offsetHeight}px`
+                icon.style.marginLeft = `${-offsetWidth / 2}px`
+                icon.style.marginTop = `${-offsetHeight / 2}px`
+            }
         })
+
+        if (draggable && pin.move_url) {
+            marker.on('dragend', (e) => movePinTo(pin, e.target))
+        }
 
         return marker
     }
@@ -643,8 +692,7 @@ function buildEditLayer() {
 
     if (pin.shape === 'poly') {
         editPolygon = L.polygon(pin.customShape || [], {
-            color: pin.polygonStyle?.stroke || pin.colour || '#ccc',
-            weight: pin.polygonStyle?.['stroke-width'] || 1,
+            ...polygonStrokeStyle(pin.polygonStyle || {}, pin.colour || '#ccc', true),
             fillColor: pin.colour || '#ccc',
             fillOpacity: (pin.opacity ?? 100) / 100,
         }).addTo(leafletMap)
@@ -714,8 +762,7 @@ function styleDraftPolygon() {
     const style = props.draftPin.polygonStyle || {}
 
     draftPolygon.setStyle({
-        color: style.stroke || props.draftPin.colour || '#ccc',
-        weight: style['stroke-width'] || 1,
+        ...polygonStrokeStyle(style, props.draftPin.colour || '#ccc', true),
         fillColor: props.draftPin.colour || '#ccc',
         fillOpacity: (props.draftPin.opacity ?? 100) / 100,
     })
@@ -1202,7 +1249,7 @@ defineExpose({
 
 .marker-avatar {
     border-radius: 50%;
-    border: 2px solid hsl(var(--bc));
+    border: 2px solid var(--pin-border-colour, hsl(var(--bc)));
 }
 
 .map-label {

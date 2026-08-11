@@ -102,7 +102,7 @@ class AdminPageService
                 'group' => 'admin',
             ],
             [
-                'name' => __('campaigns.show.tabs.gallery'),
+                'name' => __('sidebar.gallery'),
                 'icon' => 'fa-regular fa-files',
                 'url' => route('gallery', $campaign),
                 'group' => 'admin',

@@ -21,7 +21,7 @@
                     <img
                         v-else-if="headerIconImage"
                         :src="headerIconImage"
-                        class="w-6 h-6 object-contain"
+                        class="w-6 h-6 rounded-md object-contain"
                         alt=""
                     />
                     <i
@@ -162,7 +162,7 @@
                 </button>
 
                 <div v-if="advancedOpen" class="flex flex-col gap-3">
-                    <div class="flex flex-col gap-1">
+                    <div v-if="pin.shape !== 'poly' && pin.shape !== 'path' && pin.shape !== 'circle'" class="flex flex-col gap-1">
                         <label class="flex items-start gap-2 cursor-pointer">
                             <input
                                 v-model="isDraggable"
@@ -445,7 +445,7 @@ function buildPayload() {
         entity_id: props.pin.entityId,
         visibility_id: props.pin.visibilityId,
         opacity: props.pin.opacity,
-        is_draggable: isDraggable.value,
+        is_draggable: !isPolygon && !isPath && !isCircle && isDraggable.value,
         css: cssClass.value.trim() || null,
         custom_shape: hasCustomShape ? serializeVertices(props.pin.customShape) : undefined,
         polygon_style: hasCustomShape ? props.pin.polygonStyle : undefined,
