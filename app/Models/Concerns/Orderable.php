@@ -39,11 +39,15 @@ trait Orderable
                 ->orderBy('cd.year', $direction)
                 ->orderBy('cd.month', $direction)
                 ->orderBy('cd.day', $direction);
-        } elseif ($field === 'type') {
+        } elseif (in_array($field, ['name', 'is_private', 'updated_at'], true) && method_exists($this, 'joinEntity')) {
+            return $query
+                ->joinEntity()
+                ->orderBy('e.' . $field, $direction);
+        } elseif ($field === 'type' && method_exists($this, 'joinEntity')) {
             return $query
                 ->joinEntity()
                 ->orderBy('e.type', $direction);
-        } elseif ($field === 'locations') {
+        } elseif ($field === 'locations' && method_exists($this, 'joinEntity')) {
             return $query
                 ->joinEntity()
                 ->leftJoin('entity_locations', 'entity_locations.entity_id', '=', 'e.id')

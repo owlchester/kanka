@@ -161,7 +161,7 @@ class CrudController extends Controller
                     ]),
                 );
         }
-        if (method_exists($this, 'getEntityType')) {
+        if ($this->model !== Relation::class && method_exists($this, 'getEntityType')) {
             /** @var EntityType $entityType */
             $entityType = $this->getEntityType();
             if ($entityType->hasEntity()) {
@@ -271,7 +271,7 @@ class CrudController extends Controller
             'parent',
             'forceMode',
         );
-        if (method_exists($this, 'getEntityType')) {
+        if ($this->model !== Relation::class && method_exists($this, 'getEntityType')) {
             $data['entityType'] = $this->getEntityType();
             $data['templates'] = $this->loadTemplates($data['entityType']);
             $this->datagrid->entityType($data['entityType']);
@@ -378,7 +378,7 @@ class CrudController extends Controller
         $params['tabPermissions'] = $this->tabPermissions;
         $params['tabCopy'] = $this->tabCopy;
         $params['tabBoosted'] = $this->tabBoosted;
-        if (method_exists($this, 'getEntityType')) {
+        if ($this->model !== Relation::class && method_exists($this, 'getEntityType')) {
             $params['entityType'] = $this->getEntityType();
             $params['tabPermissions'] =
                 $this->tabPermissions &&
