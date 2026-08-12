@@ -83,15 +83,15 @@
         <div class="footer">
             <p>
                 <a href="https://kanka.io/go/discord" class="social" target="discord" title="Discord" rel="noreferrer">
-                    <img src="https://d3a4xjr8r2ldhu.cloudfront.net/app/socials/discord-brands.png" /></a>
+                    <img src="{{ asset('/images/socials/discord-brands.png') }}" /></a>
                 <a href="https://kanka.io/go/facebook" class="social" target="facebook" title="Facebook" rel="noreferrer">
-                    <img src="https://d3a4xjr8r2ldhu.cloudfront.net/app/socials/facebook-brands.png" /></a>
+                    <img src="{{ asset('/images/socials/facebook-brands.png') }}" /></a>
                 <a href="https://kanka.io/go/instagram" class="social" target="instagram" title="Instagram" rel="noreferrer">
-                    <img src="https://d3a4xjr8r2ldhu.cloudfront.net/app/socials/instagram-brands.png" /></a>
+                    <img src="{{ asset('/images/socials/instagram-brands.png') }}" /></a>
                 <a href="https://kanka.io/go/youtube" class="social" target="youtube" title="Youtube" rel="noreferrer">
-                    <img src="https://d3a4xjr8r2ldhu.cloudfront.net/app/socials/youtube-brands.png" /></a>
+                    <img src="{{ asset('/images/socials/youtube-brands.png') }}" /></a>
                 <a href="https://kanka.io/go/twitter" class="social" target="twitter" title="Twitter" rel="noreferrer">
-                    <img src="https://d3a4xjr8r2ldhu.cloudfront.net/app/socials/twitter-brands.png" /></a>
+                    <img src="{{ asset('/images/socials/twitter-brands.png') }}" /></a>
             </p>
 
             @if (!empty($user))

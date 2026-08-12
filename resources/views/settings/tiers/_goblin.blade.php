@@ -1,6 +1,6 @@
     <div class="flex gap-2 items-center">
         <div class="flex-0">
-            <img class="w-16 h-16" src="https://d3a4xjr8r2ldhu.cloudfront.net/app/tiers/goblin-128.png" alt="Goblin">
+            <img class="w-16 h-16" src="{{ asset('/images/tiers/goblin-128.png') }}" alt="Goblin">
         </div>
         <div class="grow">
             <h3 class="text-xl">Goblin</h3>

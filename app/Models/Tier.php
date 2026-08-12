@@ -59,10 +59,10 @@ class Tier extends Model
     public function image(): string
     {
         return match ($this->name) {
-            'Owlbear' => 'https://d3a4xjr8r2ldhu.cloudfront.net/app/tiers/owlbear-128.png',
-            'Wyvern' => 'https://d3a4xjr8r2ldhu.cloudfront.net/app/tiers/wyvern-128.png',
-            'Elemental' => 'https://d3a4xjr8r2ldhu.cloudfront.net/app/tiers/elemental-128.png',
-            default => 'https://d3a4xjr8r2ldhu.cloudfront.net/app/tiers/kobold-128.png'
+            'Owlbear' => asset('/images/tiers/owlbear-128.png'),
+            'Wyvern' => asset('/images/tiers/wyvern-128.png'),
+            'Elemental' => asset('/images/tiers/elemental-128.png'),
+            default => asset('/images/tiers/kobold-128.png')
         };
     }
 
