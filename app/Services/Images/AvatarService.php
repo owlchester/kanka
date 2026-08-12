@@ -145,18 +145,20 @@ class AvatarService
             return $this->return('');
         }
 
-        $cloudfront = config('filesystems.disks.assets.url');
         if (Arr::has(CampaignCache::campaign($this->campaign)->defaultImages(), $this->entity->entityType->code)) {
             $url = Img::crop($this->width, $this->height)
                 ->url(CampaignCache::defaultImages()[$this->entity->entityType->code]);
 
             return $this->return($url);
         } elseif ($this->entity->entityType->isStandard() && ($this->campaign->premium() || (isset($this->user) && $this->user->isGoblin()))) {
-            return $this->return($cloudfront . '/images/defaults/subscribers/' . $this->entity->entityType->pluralCode() . '.jpeg');
+            $url = asset('/images/defaults/subscribers/' . $this->entity->entityType->pluralCode() . '.jpeg');
+            $this->reset();
+            return $url;
         }
 
         // Default fallback
-        return $this->return($cloudfront . '/images/defaults/thumbnail.jpg');
+        $this->reset();
+        return asset('/images/defaults/thumbnail.jpg');
     }
 
     protected function return(string $url): string
