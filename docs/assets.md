@@ -4,9 +4,9 @@ During development, when changes to vue, js or css code are made its necessary t
 
 Once you're ready for prod, stop `dev` mode and run `sail yarn build`, this takes around 5-10 seconds, builds all compiled assets and deletes old asset files that are replaced, commit those changes to git.
 
-## Deploying assets to cloudfront
+## Deploying assets to r2
 
-To deploy assets to prod, set the `ASSET_URL` env to the cloudfront URL.
+To deploy assets to prod, set the `ASSET_URL` env to the cloudflare R2 asset URL.
 
 Now rebuild the assets
 
