@@ -153,11 +153,13 @@ class AvatarService
         } elseif ($this->entity->entityType->isStandard() && ($this->campaign->premium() || (isset($this->user) && $this->user->isGoblin()))) {
             $url = asset('/images/defaults/subscribers/' . $this->entity->entityType->pluralCode() . '.jpeg');
             $this->reset();
+
             return $url;
         }
 
         // Default fallback
         $this->reset();
+
         return asset('/images/defaults/thumbnail.jpg');
     }
 

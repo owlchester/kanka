@@ -76,7 +76,7 @@ class Event extends MiscModel
                 'entity.locations.entity' => fn ($sub) => $sub->grid(),
                 'entity' => fn ($sub) => $sub->grid(),
                 'entity.parent' => fn ($sub) => $sub->grid(),
-                'entity.tags', 
+                'entity.tags',
                 'entity.tags.entity' => fn ($sub) => $sub->grid(),
                 'entity.image'])
             ->has('entity');
