@@ -310,8 +310,7 @@ class CampaignDashboardWidget extends Model
             'mentions.target.entityType:id,code,is_special',
         ];
 
-        // If an entity type is provided, we can combine that with filters. We need to get the list of the misc
-        // ids first to pass on to the entity query.
+        // Apply child-only filters through a subquery on the canonical entity query.
         if ($this->entityType && ! empty($this->config['filters']) && $this->entityType->isStandard()) {
             /** @var Character|mixed $model */
             $model = $this->entityType->getClass();
@@ -325,15 +324,13 @@ class CampaignDashboardWidget extends Model
                 ->entityType($this->entityType)
                 ->make('dashboard');
 
-            $models = $model
-                ->select($model->getTable() . '.id')
-                ->filter($filterService->filters())
-                ->get();
-
-            $entityIds = $models->pluck('id');
-
             // Add the filter to the base query
-            $base = $base->whereIn('entities.entity_id', $entityIds);
+            $base = $base->whereIn(
+                'entities.entity_id',
+                $model
+                    ->filter($filterService->filters())
+                    ->select($model->getTable() . '.id')
+            );
         }
 
         return $this->cachedEntities = $base
@@ -377,15 +374,13 @@ class CampaignDashboardWidget extends Model
                 ->model($model)
                 ->make('dashboard');
 
-            $models = $model
-                ->select($model->getTable() . '.id')
-                ->filter($filterService->filters()) // @phpstan-ignore method.notFound
-                ->get();
-
-            $entityIds = $models->pluck('id');
-
             // Add the filter to the base query
-            $base = $base->whereIn('entities.entity_id', $entityIds);
+            $base = $base->whereIn(
+                'entities.entity_id',
+                $model
+                    ->filter($filterService->filters()) // @phpstan-ignore method.notFound
+                    ->select($model->getTable() . '.id')
+            );
         }
 
         return $base
