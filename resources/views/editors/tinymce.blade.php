@@ -4,7 +4,7 @@
     <script>
     window.addEventListener('jquery:ready', function () {
         const script = document.createElement('script');
-        script.src = '{{ '/build/js/tinymce/tinymce.min.js' }}';
+        script.src = '{{ asset('/build/js/tinymce/tinymce.min.js') }}';
         script.onload = function () {
         var advancedRequest = false;
         var editor_config = {

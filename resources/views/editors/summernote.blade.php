@@ -34,11 +34,7 @@
 @parent
 <link href="{{ config('app.asset_url') }}/vendor/summernote/0.9.1/summernote.min.css" rel="stylesheet">
 
-@if (config('app.asset_url'))
-    <link href="{{ config('app.asset_url') }}/vendor/bootstrap/bootstrap-summernote.css?v={{ config('app.version') }}" rel="stylesheet">
-@else
-    <link href="/css/bootstrap-summernote.css?v={{ config('app.version') }}" rel="stylesheet">
-@endif
+<link href="{{ asset('css/bootstrap-summernote.css') }}?v={{ config('app.version') }}" rel="stylesheet">
 @endsection
 
 @section('modals')
