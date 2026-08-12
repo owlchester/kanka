@@ -122,7 +122,7 @@ return [
                 false,
             ),
         ],
-                
+
         /**
          * On production, we use cloudflare's r2 for edge assets
          */
