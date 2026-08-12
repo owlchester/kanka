@@ -145,7 +145,7 @@ class AvatarService
             return $this->return('');
         }
 
-        $cloudfront = config('filesystems.disks.cloudfront.url');
+        $cloudfront = config('filesystems.disks.assets.url');
         if (Arr::has(CampaignCache::campaign($this->campaign)->defaultImages(), $this->entity->entityType->code)) {
             $url = Img::crop($this->width, $this->height)
                 ->url(CampaignCache::defaultImages()[$this->entity->entityType->code]);

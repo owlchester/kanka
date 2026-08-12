@@ -93,22 +93,7 @@ return [
             'use_path_style_endpoint' => true,
         ],
 
-        's3-assets' => [
-            'driver' => 's3',
-            'key' => env('AWS_ACCESS_KEY_ID'),
-            'secret' => env('AWS_SECRET_ACCESS_KEY'),
-            'region' => env('AWS_DEFAULT_REGION'),
-            'bucket' => env('AWS_BUCKET_APP'),
-            'visibility' => 'public',
-            'url' => env('AWS_URL_ASSETS', env('AWS_URL')),
-            'endpoint' => env('AWS_ENDPOINT'),
-            'use_path_style_endpoint' => env(
-                'AWS_USE_PATH_STYLE_ENDPOINT',
-                false,
-            ),
-        ],
-
-        's3-marketplace' => [
+        'marketplace' => [
             'driver' => 's3',
             'key' => env('HETZNER_S3_ACCESS_KEY_ID'),
             'secret' => env('HETZNER_S3_ACCESS_KEY_SECRET'),
@@ -132,6 +117,25 @@ return [
             // Url for including the assets in the browser
             'url' => env('AWS_CLOUDFRONT'),
             'endpoint' => env('AWS_ENDPOINT'),
+            'use_path_style_endpoint' => env(
+                'AWS_USE_PATH_STYLE_ENDPOINT',
+                false,
+            ),
+        ],
+                
+        /**
+         * On production, we use cloudflare's r2 for edge assets
+         */
+        'assets' => [
+            'driver' => 's3',
+            'key' => env('CF_ACCESS_KEY_ID'),
+            'secret' => env('CF_SECRET_ACCESS_KEY'),
+            'region' => env('CF_DEFAULT_REGION'),
+            'bucket' => env('ASSETS_BUCKET'),
+            'visibility' => 'public',
+            // Url for including the assets in the browser
+            'url' => env('ASSET_URL'),
+            'endpoint' => env('CF_ENDPOINT'),
             'use_path_style_endpoint' => env(
                 'AWS_USE_PATH_STYLE_ENDPOINT',
                 false,

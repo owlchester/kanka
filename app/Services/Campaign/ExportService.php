@@ -206,7 +206,7 @@ class ExportService
 
         $this->currentElements = 0;
 
-        $cloudfront = config('filesystems.disks.cloudfront.url');
+        $cloudfront = config('filesystems.disks.assets.url');
         if ($cloudfront) {
             $this->cloudfront = true;
         }
