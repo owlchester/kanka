@@ -38,8 +38,8 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
         "url": "{{ config('app.url') }}",
         "applicationCategory": "Game, Note taking",
         "operatingSystem": "all",
-        "image": ["https://th.kanka.io/o-ZrT3jpQVW_Nd_1g5eBAGg7wpU=/1920x1024/smart/src/app/front/preview-background.png"],
-        "screenshot": "https://th.kanka.io/T35QId2XP7bbGxy0c237Qr9woSs=/600x320/smart/src/app/front/preview-background.png",
+        "image": ["{{ asset('images/share.png') }}"],
+        "screenshot": "{{ asset('images/share.png') }}",
         "creator": {
           "@@type": "Organization",
           "@@id": "#organization",
