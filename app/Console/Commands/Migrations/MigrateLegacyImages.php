@@ -4,10 +4,9 @@ namespace App\Console\Commands\Migrations;
 
 use App\Services\Images\LegacyImageMigrationService;
 use Illuminate\Console\Command;
-use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use Ramsey\Uuid\Uuid;
+use RuntimeException;
 use Throwable;
 
 class MigrateLegacyImages extends Command
@@ -15,7 +14,9 @@ class MigrateLegacyImages extends Command
     protected $signature = 'images:migrate-legacy
                             {prefix : Legacy top-level prefix, for example characters}
                             {--limit=1000 : Maximum distinct source objects to process}
-                            {--execute : Copy files, update references, and delete old objects}';
+                            {--index : Inventory sources and scan content references once}
+                            {--rebuild-index : Replace the existing reference index}
+                            {--execute : Copy files, update indexed references, and delete old objects}';
 
     protected $description = 'Move legacy entity images into their owning campaign without adding them to gallery storage';
 
@@ -26,188 +27,247 @@ class MigrateLegacyImages extends Command
 
     public function handle(): int
     {
-        $prefix = trim((string) $this->argument('prefix'), '/');
-        $limit = max(1, min(1000, (int) $this->option('limit')));
-        $execute = (bool) $this->option('execute');
+        $prefix = $this->prefix();
+        if ($prefix === null) {
+            return self::FAILURE;
+        }
 
-        if (! preg_match('/^[a-z0-9-]+$/', $prefix)) {
-            $this->error('The prefix may only contain lowercase letters, numbers, and dashes.');
+        if ($this->option('index') || $this->option('rebuild-index')) {
+            return $this->index($prefix, (bool) $this->option('rebuild-index'));
+        }
+
+        if (! $this->option('execute')) {
+            $this->report($prefix);
+
+            return self::SUCCESS;
+        }
+
+        if (! $this->migration->isIndexed($prefix)) {
+            $this->error("{$prefix} has not been indexed. Run this command with --index first.");
 
             return self::FAILURE;
         }
 
-        $prefix .= '/';
-        $this->finalizeCutovers($prefix, $execute);
+        $this->finalizeCutovers($prefix);
 
-        $owners = $this->owners($prefix, $limit)->get();
-        $this->info(($execute ? 'Migrating' : 'Dry run for') . " {$owners->count()} distinct {$prefix} objects.");
+        return $this->migrateIndexed($prefix, max(1, min(1000, (int) $this->option('limit'))));
+    }
+
+    protected function index(string $prefix, bool $rebuild): int
+    {
+        $this->info("Indexing owned images and content references for {$prefix}...");
+
+        try {
+            $result = $this->migration->index($prefix, $rebuild);
+        } catch (Throwable $e) {
+            $this->error($e->getMessage());
+
+            return self::FAILURE;
+        }
+
+        $this->table(['Metric', 'Count'], [
+            ['Owned source images', $result['sources']],
+            ['Indexed content references', $result['references']],
+            ['Blocking references', $result['blockers']],
+        ]);
+
+        return $result['blockers'] === 0 ? self::SUCCESS : self::FAILURE;
+    }
+
+    protected function migrateIndexed(string $prefix, int $limit): int
+    {
+        $migrations = DB::table('legacy_image_migrations')
+            ->where('prefix', $prefix)
+            ->where(function ($query) {
+                $query->whereIn('status', ['pending', 'copied'])
+                    ->orWhereExists(function ($references) {
+                        $references->selectRaw('1')
+                            ->from('legacy_image_migration_references')
+                            ->whereColumn('legacy_image_migration_references.legacy_image_migration_id', 'legacy_image_migrations.id')
+                            ->where('legacy_image_migration_references.status', 'pending');
+                    });
+            })
+            ->orderBy('entity_id')
+            ->limit($limit)
+            ->get();
+        $this->info("Migrating {$migrations->count()} indexed {$prefix} objects.");
 
         $migrated = 0;
         $skipped = 0;
-        $lastId = 0;
 
-        if (! $execute) {
-            foreach ($owners as $owner) {
-                $lastId = max($lastId, (int) $owner->entity_id);
-                $this->line("Would migrate {$owner->source_path} to campaign {$owner->campaign_id} (owner entity {$owner->entity_id})");
-            }
-        } else {
-            foreach ($owners as $owner) {
-                try {
-                    $this->migrate($owner);
-                    $migrated++;
-                } catch (Throwable $e) {
-                    $skipped++;
-                    $this->error("Skipped {$owner->source_path}: {$e->getMessage()}");
-                    DB::table('legacy_image_migrations')
-                        ->where('source_hash', hash('sha256', $owner->source_path))
-                        ->update(['error' => $e->getMessage(), 'updated_at' => now()]);
-                }
+        foreach ($migrations as $migration) {
+            try {
+                $this->migrate($migration);
+                $migrated++;
+            } catch (Throwable $e) {
+                $skipped++;
+                $this->error("Skipped {$migration->source_path}: {$e->getMessage()}");
+                DB::table('legacy_image_migrations')->where('id', $migration->id)->update([
+                    'error' => $e->getMessage(),
+                    'updated_at' => now(),
+                ]);
             }
         }
 
-        foreach ($owners as $owner) {
-            $lastId = max($lastId, (int) $owner->entity_id);
-        }
-
-        $remaining = $this->migration->remainingReferences($prefix);
-        $safe = $remaining['structured'] === 0 && $remaining['content'] === 0 && $skipped === 0;
-
-        $this->newLine();
         $this->table(['Metric', 'Count'], [
             ['Migrated this run', $migrated],
             ['Skipped this run', $skipped],
-            ['Remaining structured references', $remaining['structured']],
-            ['Remaining content references', $remaining['content']],
-            ['Last owner entity ID', $lastId],
+            ['Pending owned images', $this->pendingCount($prefix)],
+            ['Blocking references', $this->blockerCount($prefix)],
         ]);
-        $this->line('Database-safe to delete remaining prefix objects as orphans: ' . ($safe ? 'YES' : 'NO'));
 
         return $skipped === 0 ? self::SUCCESS : self::FAILURE;
     }
 
-    protected function owners(string $prefix, int $limit): Builder
+    protected function migrate(object $migration): void
     {
-        $owners = DB::table('entities')
-            ->selectRaw('image_path AS source_path, MIN(id) AS entity_id')
-            ->where('image_path', 'like', $prefix . '%')
-            ->groupBy('image_path');
+        if ($this->migration->hasBlockers((int) $migration->id)) {
+            throw new RuntimeException('This image has blocking indexed references.');
+        }
 
-        return DB::query()
-            ->fromSub($owners, 'owners')
-            ->join('entities', 'entities.id', '=', 'owners.entity_id')
-            ->orderBy('owners.entity_id')
-            ->limit($limit)
-            ->select(['owners.source_path', 'owners.entity_id', 'entities.campaign_id']);
-    }
+        if ($migration->status !== 'complete') {
+            $this->copy($migration);
+        }
 
-    protected function migrate(object $owner): void
-    {
-        [$source, $destination] = $this->copy($owner);
-
-        DB::transaction(function () use ($source, $destination) {
-            $this->migration->rewriteReferences($source, $destination);
+        DB::transaction(function () use ($migration) {
+            $this->migration->rewriteIndexedReferences(
+                (int) $migration->id,
+                $migration->source_path,
+                $migration->destination_path
+            );
 
             DB::table('entities')
-                ->where('image_path', $source)
-                ->update(['image_path' => $destination]);
+                ->where('image_path', $migration->source_path)
+                ->update(['image_path' => $migration->destination_path]);
 
-            DB::table('legacy_image_migrations')->where('source_hash', hash('sha256', $source))->update([
-                'status' => 'cutover',
-                'updated_at' => now(),
-            ]);
+            if ($migration->status !== 'complete') {
+                DB::table('legacy_image_migrations')->where('id', $migration->id)->update([
+                    'status' => 'cutover',
+                    'error' => null,
+                    'updated_at' => now(),
+                ]);
+            }
         });
 
-        $this->deleteSource($source, $destination);
-        $this->line("Migrated {$source} to {$destination}");
+        if ($migration->status !== 'complete') {
+            $this->deleteSource($migration->id, $migration->source_path, $migration->destination_path);
+            $this->line("Migrated {$migration->source_path} to {$migration->destination_path}");
+        } else {
+            $this->line("Repaired indexed references for {$migration->source_path}");
+        }
     }
 
-    /**
-     * @return array{string, string}
-     */
-    protected function copy(object $owner): array
+    protected function copy(object $migration): void
     {
-        $source = (string) $owner->source_path;
-        $extension = mb_strtolower(pathinfo($source, PATHINFO_EXTENSION));
-        if (! preg_match('/^[a-z0-9]{1,10}$/', $extension)) {
-            throw new \RuntimeException('The source has an invalid extension.');
-        }
-
-        $uuid = Uuid::uuid5(Uuid::NAMESPACE_URL, "kanka:legacy-image:{$owner->campaign_id}:{$source}")->toString();
-        $destination = "w/{$owner->campaign_id}/legacy/{$uuid}.{$extension}";
         $disk = Storage::disk('s3');
-
-        $sourceHash = hash('sha256', $source);
-        $createdAt = DB::table('legacy_image_migrations')
-            ->where('source_hash', $sourceHash)
-            ->value('created_at') ?? now();
-        DB::table('legacy_image_migrations')->updateOrInsert(
-            ['source_hash' => $sourceHash],
-            [
-                'source_path' => $source,
-                'destination_path' => $destination,
-                'campaign_id' => $owner->campaign_id,
-                'entity_id' => $owner->entity_id,
-                'created_at' => $createdAt,
-                'updated_at' => now(),
-            ]
-        );
-
-        if (! $disk->exists($source)) {
-            throw new \RuntimeException("Source object is missing: {$source}");
+        if (! $disk->exists($migration->source_path)) {
+            throw new RuntimeException("Source object is missing: {$migration->source_path}");
         }
 
-        $sourceSize = $disk->size($source);
-        if (! $disk->exists($destination)) {
-            if (! $disk->copy($source, $destination)) {
-                throw new \RuntimeException("Copy failed: {$source}");
-            }
+        $sourceSize = $disk->size($migration->source_path);
+        if (! $disk->exists($migration->destination_path) && ! $disk->copy($migration->source_path, $migration->destination_path)) {
+            throw new RuntimeException("Copy failed: {$migration->source_path}");
         }
 
-        if ($disk->size($destination) !== $sourceSize) {
-            throw new \RuntimeException("Destination size does not match source: {$source}");
+        if ($disk->size($migration->destination_path) !== $sourceSize) {
+            throw new RuntimeException("Destination size does not match source: {$migration->source_path}");
         }
 
-        DB::table('legacy_image_migrations')->where('source_hash', $sourceHash)->update([
+        DB::table('legacy_image_migrations')->where('id', $migration->id)->update([
             'size' => $sourceSize,
             'status' => 'copied',
             'error' => null,
             'updated_at' => now(),
         ]);
-
-        return [$source, $destination];
     }
 
-    protected function finalizeCutovers(string $prefix, bool $execute): void
+    protected function finalizeCutovers(string $prefix): void
     {
-        if (! $execute) {
-            return;
-        }
-
         DB::table('legacy_image_migrations')
+            ->where('prefix', $prefix)
             ->where('status', 'cutover')
-            ->where('source_path', 'like', $prefix . '%')
             ->orderBy('id')
             ->each(function ($migration) {
-                $this->deleteSource($migration->source_path, $migration->destination_path);
+                $this->deleteSource($migration->id, $migration->source_path, $migration->destination_path);
             });
     }
 
-    protected function deleteSource(string $source, string $destination): void
+    protected function deleteSource(mixed $id, string $source, string $destination): void
     {
         $disk = Storage::disk('s3');
         if (! $disk->exists($destination)) {
-            throw new \RuntimeException('Verified destination is missing before source deletion.');
+            throw new RuntimeException('Verified destination is missing before source deletion.');
         }
 
         if ($disk->exists($source) && ! $disk->delete($source)) {
-            throw new \RuntimeException('Could not delete the source object.');
+            throw new RuntimeException('Could not delete the source object.');
         }
 
-        DB::table('legacy_image_migrations')->where('source_hash', hash('sha256', $source))->update([
+        DB::table('legacy_image_migrations')->where('id', $id)->update([
             'status' => 'complete',
             'error' => null,
             'updated_at' => now(),
         ]);
+    }
+
+    protected function report(string $prefix): void
+    {
+        $index = DB::table('legacy_image_migration_indexes')->where('prefix', $prefix)->first();
+
+        if (! $index) {
+            $owned = DB::table('entities')
+                ->where('image_path', 'like', $prefix . '%')
+                ->distinct()
+                ->count('image_path');
+            $this->table(['Metric', 'Value'], [
+                ['Index status', 'NOT INDEXED'],
+                ['Owned source images', $owned],
+                ['Next step', 'Run with --index before --execute'],
+            ]);
+
+            return;
+        }
+
+        $this->table(['Metric', 'Value'], [
+            ['Index status', mb_strtoupper($index->status)],
+            ['Indexed source images', $index->source_count],
+            ['Indexed content references', $index->reference_count],
+            ['Blocking references', $this->blockerCount($prefix)],
+            ['Pending owned images', $this->pendingCount($prefix)],
+            ['Completed images', DB::table('legacy_image_migrations')->where('prefix', $prefix)->where('status', 'complete')->count()],
+            ['Indexed at', $index->indexed_at ?? 'never'],
+            [
+                'Index-safe to delete residual prefix objects as orphans',
+                $this->pendingCount($prefix) === 0 && $this->blockerCount($prefix) === 0 ? 'YES' : 'NO',
+            ],
+        ]);
+    }
+
+    protected function pendingCount(string $prefix): int
+    {
+        return DB::table('legacy_image_migrations')
+            ->where('prefix', $prefix)
+            ->whereIn('status', ['pending', 'copied', 'cutover'])
+            ->count();
+    }
+
+    protected function blockerCount(string $prefix): int
+    {
+        return DB::table('legacy_image_migration_references')
+            ->where('prefix', $prefix)
+            ->where('status', 'blocker')
+            ->count();
+    }
+
+    protected function prefix(): ?string
+    {
+        $prefix = trim((string) $this->argument('prefix'), '/');
+        if (! preg_match('/^[a-z0-9-]+$/', $prefix)) {
+            $this->error('The prefix may only contain lowercase letters, numbers, and dashes.');
+
+            return null;
+        }
+
+        return $prefix . '/';
     }
 }
