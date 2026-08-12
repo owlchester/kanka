@@ -22,11 +22,11 @@ You can get a list of all the default thumbnails of a campaign by using the foll
     "data": [
         {
             "entity_type": "abilities",
-            "url": "https://th.kanka.io/gR8y1nxfEhBC1nVYdQpr2pUW3lY=/48x48/smart/src/app/logos/logo.png",
+            "url": "...logo.png",
         },
         {
             "entity_type": "gods",
-            "url": "https://th.kanka.io/gR8y1nxfEhBC1nVYdQpr2pUW3lY=/48x48/smart/src/app/logos/logo.png",
+            "url": "...logo.png",
         }
     ]
 }
