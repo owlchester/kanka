@@ -14,17 +14,17 @@
         data-summernote-assets
         hidden
     >
-        <span data-script-source="{{ config('app.asset_url') }}/vendor/summernote/0.9.1/summernote.min.js"></span>
-        <span data-script-source="{{ config('app.asset_url') }}/vendor/summernote/plugin/embed/summernote-embed-plugin.js"></span>
-        <span data-script-source="{{ config('app.asset_url') }}/vendor/summernote/plugin/summernote-table-headers/summernote-table-headers.js"></span>
-        <span data-script-source="{{ config('app.asset_url') }}/vendor/summernote/plugin/kanka/summernote-gallery.min.js"></span>
-        <span data-script-source="{{ config('app.asset_url') }}/vendor/summernote/plugin/summernote-toc-kanka/summernote-toc.js"></span>
-        <span data-script-source="{{ config('app.asset_url') }}/vendor/summernote/plugin/summernote-aroba-kanka/summernote-aroba.js"></span>
-        <span data-script-source="{{ config('app.asset_url') }}/vendor/summernote/plugin/summernote-table-ext.js"></span>
-        <span data-script-source="{{ config('app.asset_url') }}/vendor/summernote/plugin/summernote-image-attribute.js"></span>
-        <span data-script-source="{{ config('app.asset_url') }}/vendor/summernote/plugin/kanka/summernote-prettify-kanka.min.js"></span>
+        <span data-script-source="{{ asset('/vendor/summernote/0.9.1/summernote.min.js') }}"></span>
+        <span data-script-source="{{ asset('/vendor/summernote/plugin/embed/summernote-embed-plugin.js') }}"></span>
+        <span data-script-source="{{ asset('/vendor/summernote/plugin/summernote-table-headers/summernote-table-headers.js') }}"></span>
+        <span data-script-source="{{ asset('/vendor/summernote/plugin/kanka/summernote-gallery.min.js') }}"></span>
+        <span data-script-source="{{ asset('/vendor/summernote/plugin/summernote-toc-kanka/summernote-toc.js') }}"></span>
+        <span data-script-source="{{ asset('/vendor/summernote/plugin/summernote-aroba-kanka/summernote-aroba.js') }}"></span>
+        <span data-script-source="{{ asset('/vendor/summernote/plugin/summernote-table-ext.js') }}"></span>
+        <span data-script-source="{{ asset('/vendor/summernote/plugin/summernote-image-attribute.js') }}"></span>
+        <span data-script-source="{{ asset('/vendor/summernote/plugin/kanka/summernote-prettify-kanka.min.js') }}"></span>
     @if (!in_array(app()->getLocale(), ['en-US', 'en']))
-        <span data-script-source="{{ config('app.asset_url') }}/vendor/summernote/0.9.1/lang/summernote-{{ $summernoteLocale }}.js"></span>
+        <span data-script-source="{{ asset('/vendor/summernote/0.9.1/lang/summernote-' . $summernoteLocale . '.js') }}"></span>
     @endif
     </div>
     @vite('resources/js/jquery.js')
@@ -32,13 +32,9 @@
 
 @section('styles')
 @parent
-<link href="{{ config('app.asset_url') }}/vendor/summernote/0.9.1/summernote.min.css" rel="stylesheet">
+<link href="{{ asset('/vendor/summernote/0.9.1/summernote.min.css') }}" rel="stylesheet">
 
-@if (config('app.asset_url'))
-    <link href="{{ config('app.asset_url') }}/vendor/bootstrap/bootstrap-summernote.css?v={{ config('app.version') }}" rel="stylesheet">
-@else
-    <link href="/css/bootstrap-summernote.css?v={{ config('app.version') }}" rel="stylesheet">
-@endif
+<link href="{{ asset('css/bootstrap-summernote.css') }}?v={{ config('app.version') }}" rel="stylesheet">
 @endsection
 
 @section('modals')

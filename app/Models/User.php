@@ -116,7 +116,7 @@ class User extends \Illuminate\Foundation\Auth\User implements OAuthenticatable
         if ($this->hasAvatar()) {
             return $this->thumbnail($size, null, 'avatar');
         } else {
-            return '/images/defaults/user.svg';
+            return asset('/images/defaults/user.svg');
         }
     }
 
