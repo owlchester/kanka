@@ -4,7 +4,9 @@ use App\Models\Campaign;
 use App\Models\CampaignDescription;
 use App\Models\Character;
 use App\Models\Post;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 use Ramsey\Uuid\Uuid;
 
@@ -244,4 +246,21 @@ it('repairs references discovered after a completed migration through reindexing
     $this->artisan('images:migrate-legacy', ['prefix' => 'characters', '--execute' => true])->assertSuccessful();
 
     expect($lateReference->fresh()->entry)->toContain(legacyDestination(1, $source));
+});
+
+it('resumes the reference index migration after partial ddl execution', function () {
+    Schema::table('legacy_image_migration_references', function (Blueprint $table) {
+        $table->dropIndex('legacy_img_ref_migration_idx');
+        $table->dropIndex('legacy_img_ref_prefix_idx');
+        $table->dropIndex('legacy_img_ref_status_idx');
+    });
+
+    $migration = require database_path('migrations/2026_08_13_000000_add_reference_index_to_legacy_image_migrations.php');
+    $migration->up();
+
+    expect(Schema::hasIndex('legacy_image_migration_references', ['legacy_image_migration_id']))->toBeTrue()
+        ->and(Schema::hasIndex('legacy_image_migration_references', ['prefix']))->toBeTrue()
+        ->and(Schema::hasIndex('legacy_image_migration_references', ['status']))->toBeTrue()
+        ->and(Schema::hasIndex('entities', ['image_path']))->toBeTrue()
+        ->and(Schema::hasColumn('legacy_image_migrations', 'prefix'))->toBeTrue();
 });
