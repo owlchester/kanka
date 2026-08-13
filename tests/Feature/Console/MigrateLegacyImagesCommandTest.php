@@ -4,6 +4,7 @@ use App\Models\Campaign;
 use App\Models\CampaignDescription;
 use App\Models\Character;
 use App\Models\Post;
+use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -296,6 +297,69 @@ it('migrates literal legacy s3 keys containing url parameters to a clean destina
         ->not->toContain('?w=851');
     Storage::disk('s3')->assertMissing($source);
     Storage::disk('s3')->assertExists($destination);
+});
+
+it('detects an extensionless query-bearing image from its bytes', function () {
+    $source = 'sections/5b2d40eb0d64_dwarfking_colorbylee?cb=123';
+    $entity = Character::factory()->create(['campaign_id' => 1])->entity;
+    $entity->forceFill(['image_path' => $source])->saveQuietly();
+    Storage::disk('s3')->put($source, "\xFF\xD8\xFF\xE0jpeg-content");
+
+    $this->artisan('images:migrate-legacy', ['prefix' => 'sections', '--index' => true])
+        ->assertSuccessful();
+
+    $migration = DB::table('legacy_image_migrations')->where('source_path', $source)->first();
+    expect($migration->detected_mime)->toBe('image/jpeg')
+        ->and($migration->resolution_status)->toBe('resolved')
+        ->and($migration->destination_path)->toEndWith('.jpg');
+
+    $this->artisan('images:migrate-legacy', ['prefix' => 'sections', '--execute' => true])
+        ->assertSuccessful();
+
+    Storage::disk('s3')->assertMissing($source);
+    Storage::disk('s3')->assertExists($migration->destination_path);
+    expect($entity->fresh()->image_path)->toBe($migration->destination_path);
+});
+
+it('blocks extensionless objects whose image format cannot be identified', function () {
+    $source = 'sections/unknown-image?cb=456';
+    $entity = Character::factory()->create(['campaign_id' => 1])->entity;
+    $entity->forceFill(['image_path' => $source])->saveQuietly();
+    Storage::disk('s3')->put($source, 'not-an-image');
+
+    $this->artisan('images:migrate-legacy', ['prefix' => 'sections', '--index' => true])
+        ->assertFailed();
+
+    $migration = DB::table('legacy_image_migrations')->where('source_path', $source)->first();
+    expect($migration->status)->toBe('blocked')
+        ->and($migration->resolution_status)->toBe('blocked')
+        ->and($migration->destination_path)->toBeNull()
+        ->and($migration->error)->toContain('Unable to identify image format');
+
+    $this->artisan('images:migrate-legacy', ['prefix' => 'sections', '--execute' => true])
+        ->assertFailed();
+
+    Storage::disk('s3')->assertExists($source);
+    expect($entity->fresh()->image_path)->toBe($source);
+});
+
+it('blocks extensionless objects when metadata conflicts with detected bytes', function () {
+    $source = 'sections/conflicting-image?cb=789';
+    $entity = Character::factory()->create(['campaign_id' => 1])->entity;
+    $entity->forceFill(['image_path' => $source])->saveQuietly();
+    $stream = fopen('data://text/plain,' . rawurlencode("\x89PNG\x0D\x0A\x1A\x0Apng-content"), 'rb');
+    $disk = Mockery::mock(Filesystem::class);
+    $disk->shouldReceive('exists')->with($source)->andReturnTrue();
+    $disk->shouldReceive('mimeType')->with($source)->andReturn('image/jpeg');
+    $disk->shouldReceive('readStream')->with($source)->andReturn($stream);
+    Storage::shouldReceive('disk')->with('s3')->andReturn($disk);
+
+    $this->artisan('images:migrate-legacy', ['prefix' => 'sections', '--index' => true])
+        ->assertFailed();
+
+    $migration = DB::table('legacy_image_migrations')->where('source_path', $source)->first();
+    expect($migration->status)->toBe('blocked')
+        ->and($migration->error)->toContain('conflicts with detected format');
 });
 
 it('resolves a clean content url to a unique query-bearing owner path', function () {

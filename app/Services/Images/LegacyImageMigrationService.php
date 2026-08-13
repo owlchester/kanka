@@ -37,7 +37,7 @@ class LegacyImageMigrationService
     /**
      * Build the source and content-reference ledgers for a complete prefix.
      *
-     * @return array{sources: int, references: int, blockers: int}
+     * @return array{sources: int, references: int, blockers: int, source_blockers: int}
      */
     public function index(string $prefix, bool $rebuild = false): array
     {
@@ -70,18 +70,27 @@ class LegacyImageMigrationService
                 ->where('prefix', $prefix)
                 ->where('status', 'blocker')
                 ->count();
+            $sourceBlockers = DB::table('legacy_image_migrations')
+                ->where('prefix', $prefix)
+                ->where('status', 'blocked')
+                ->count();
 
             DB::table('legacy_image_migration_indexes')->where('prefix', $prefix)->update([
                 'status' => 'ready',
                 'source_count' => $sources,
                 'reference_count' => $references,
-                'blocker_count' => $blockers,
+                'blocker_count' => $blockers + $sourceBlockers,
                 'indexed_at' => now(),
                 'error' => null,
                 'updated_at' => now(),
             ]);
 
-            return compact('sources', 'references', 'blockers');
+            return [
+                'sources' => $sources,
+                'references' => $references,
+                'blockers' => $blockers,
+                'source_blockers' => $sourceBlockers,
+            ];
         } catch (Throwable $e) {
             DB::table('legacy_image_migration_indexes')->where('prefix', $prefix)->update([
                 'status' => 'failed',
@@ -101,10 +110,10 @@ class LegacyImageMigrationService
             ->exists();
     }
 
-    public function destination(int $campaignId, string $source): string
+    public function destination(int $campaignId, string $source, ?string $extension = null): string
     {
         $cleanSource = preg_split('/[?#]/', $source, 2)[0];
-        $extension = mb_strtolower(pathinfo($cleanSource, PATHINFO_EXTENSION));
+        $extension ??= mb_strtolower(pathinfo($cleanSource, PATHINFO_EXTENSION));
         if (! preg_match('/^[a-z0-9]{1,10}$/', $extension)) {
             throw new RuntimeException("Invalid extension for {$source}");
         }
@@ -254,14 +263,23 @@ class LegacyImageMigrationService
 
             foreach ($owners as $owner) {
                 $source = (string) $owner->source_path;
+                $resolution = $this->resolveSource($source);
+                $destination = $resolution['extension'] === null
+                    ? null
+                    : $this->destination((int) $owner->campaign_id, $source, $resolution['extension']);
                 $rows[] = [
                     'source_hash' => hash('sha256', $source),
                     'prefix' => $prefix,
                     'source_path' => $source,
-                    'destination_path' => $this->destination((int) $owner->campaign_id, $source),
+                    'destination_path' => $destination,
+                    'detected_mime' => $resolution['detected_mime'],
+                    'source_content_type' => $resolution['source_content_type'],
+                    'resolution_status' => $resolution['status'],
+                    'resolved_at' => $resolution['status'] === 'resolved' ? $now : null,
                     'campaign_id' => $owner->campaign_id,
                     'entity_id' => $owner->entity_id,
-                    'status' => 'pending',
+                    'status' => $resolution['status'] === 'blocked' ? 'blocked' : 'pending',
+                    'error' => $resolution['error'],
                     'created_at' => $now,
                     'updated_at' => $now,
                 ];
@@ -270,9 +288,162 @@ class LegacyImageMigrationService
             DB::table('legacy_image_migrations')->upsert(
                 $rows,
                 ['source_hash'],
-                ['prefix', 'source_path', 'destination_path', 'campaign_id', 'entity_id', 'updated_at']
+                [
+                    'prefix',
+                    'source_path',
+                    'destination_path',
+                    'detected_mime',
+                    'source_content_type',
+                    'resolution_status',
+                    'resolved_at',
+                    'campaign_id',
+                    'entity_id',
+                    'status',
+                    'error',
+                    'updated_at',
+                ]
             );
         }, 'owner.entity_id', 'entity_id');
+    }
+
+    /**
+     * Resolve extensionless objects from their S3 metadata and file signature.
+     * The full source is intentionally used for every S3 operation because a
+     * query string can be part of the object key.
+     *
+     * @return array{extension: ?string, detected_mime: ?string, source_content_type: ?string, status: string, error: ?string}
+     */
+    protected function resolveSource(string $source): array
+    {
+        $cleanSource = preg_split('/[?#]/', $source, 2)[0];
+        $extension = mb_strtolower(pathinfo($cleanSource, PATHINFO_EXTENSION));
+        if (preg_match('/^[a-z0-9]{1,10}$/', $extension)) {
+            return [
+                'extension' => $extension,
+                'detected_mime' => null,
+                'source_content_type' => null,
+                'status' => 'resolved',
+                'error' => null,
+            ];
+        }
+
+        $disk = Storage::disk('s3');
+        if (! $disk->exists($source)) {
+            return [
+                'extension' => null,
+                'detected_mime' => null,
+                'source_content_type' => null,
+                'status' => 'pending',
+                'error' => null,
+            ];
+        }
+
+        $sourceContentType = null;
+        try {
+            $sourceContentType = $this->normalizeMime($disk->mimeType($source));
+            $stream = $disk->readStream($source);
+            $byteMime = $this->detectMimeFromBytes($stream);
+        } catch (Throwable $e) {
+            return [
+                'extension' => null,
+                'detected_mime' => null,
+                'source_content_type' => $sourceContentType,
+                'status' => 'blocked',
+                'error' => "Unable to read image format for {$source}: {$e->getMessage()}",
+            ];
+        }
+
+        $metadataMime = $this->supportedMime($sourceContentType);
+
+        if ($metadataMime !== null && $byteMime !== null && $metadataMime !== $byteMime) {
+            return [
+                'extension' => null,
+                'detected_mime' => $byteMime,
+                'source_content_type' => $sourceContentType,
+                'status' => 'blocked',
+                'error' => "Content-Type {$sourceContentType} conflicts with detected format {$byteMime} for {$source}",
+            ];
+        }
+
+        $mime = $byteMime ?? $metadataMime;
+        if ($mime === null) {
+            return [
+                'extension' => null,
+                'detected_mime' => null,
+                'source_content_type' => $sourceContentType,
+                'status' => 'blocked',
+                'error' => "Unable to identify image format for {$source}",
+            ];
+        }
+
+        return [
+            'extension' => $this->mimeExtension($mime),
+            'detected_mime' => $mime,
+            'source_content_type' => $sourceContentType,
+            'status' => 'resolved',
+            'error' => null,
+        ];
+    }
+
+    protected function normalizeMime(?string $mime): ?string
+    {
+        if ($mime === null || $mime === '') {
+            return null;
+        }
+
+        return mb_strtolower(trim(explode(';', $mime, 2)[0]));
+    }
+
+    protected function supportedMime(?string $mime): ?string
+    {
+        return match ($mime) {
+            'image/jpeg', 'image/jpg', 'image/pjpeg' => 'image/jpeg',
+            'image/png', 'image/x-png' => 'image/png',
+            'image/gif' => 'image/gif',
+            'image/webp' => 'image/webp',
+            'image/svg+xml' => 'image/svg+xml',
+            default => null,
+        };
+    }
+
+    protected function mimeExtension(string $mime): string
+    {
+        return match ($mime) {
+            'image/jpeg', 'image/jpg', 'image/pjpeg' => 'jpg',
+            'image/png', 'image/x-png' => 'png',
+            'image/gif' => 'gif',
+            'image/webp' => 'webp',
+            'image/svg+xml' => 'svg',
+            default => throw new RuntimeException("Unsupported image MIME type: {$mime}"),
+        };
+    }
+
+    protected function detectMimeFromBytes(mixed $stream): ?string
+    {
+        if (! is_resource($stream)) {
+            return null;
+        }
+
+        $bytes = fread($stream, 1024 * 1024) ?: '';
+        fclose($stream);
+
+        if (str_starts_with($bytes, "\xFF\xD8\xFF")) {
+            return 'image/jpeg';
+        }
+        if (str_starts_with($bytes, "\x89PNG\x0D\x0A\x1A\x0A")) {
+            return 'image/png';
+        }
+        if (str_starts_with($bytes, 'GIF87a') || str_starts_with($bytes, 'GIF89a')) {
+            return 'image/gif';
+        }
+        if (str_starts_with($bytes, 'RIFF') && mb_substr($bytes, 8, 4) === 'WEBP') {
+            return 'image/webp';
+        }
+        if (preg_match('/^(?:\xEF\xBB\xBF)?\s*(?:<\?xml[^>]*>\s*)?<svg(?:\s|>)/i', $bytes) === 1) {
+            return 'image/svg+xml';
+        }
+
+        return null;
     }
 
     protected function owners(string $prefix): Builder

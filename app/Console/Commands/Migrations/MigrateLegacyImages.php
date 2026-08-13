@@ -68,10 +68,11 @@ class MigrateLegacyImages extends Command
         $this->table(['Metric', 'Count'], [
             ['Owned source images', $result['sources']],
             ['Indexed content references', $result['references']],
+            ['Blocked source images', $result['source_blockers']],
             ['Blocking references', $result['blockers']],
         ]);
 
-        return $result['blockers'] === 0 ? self::SUCCESS : self::FAILURE;
+        return ($result['blockers'] + $result['source_blockers']) === 0 ? self::SUCCESS : self::FAILURE;
     }
 
     protected function migrateIndexed(string $prefix, int $limit): int
@@ -80,11 +81,14 @@ class MigrateLegacyImages extends Command
             ->where('prefix', $prefix)
             ->where(function ($query) {
                 $query->whereIn('status', ['pending', 'copied'])
-                    ->orWhereExists(function ($references) {
-                        $references->selectRaw('1')
-                            ->from('legacy_image_migration_references')
-                            ->whereColumn('legacy_image_migration_references.legacy_image_migration_id', 'legacy_image_migrations.id')
-                            ->where('legacy_image_migration_references.status', 'pending');
+                    ->orWhere(function ($query) {
+                        $query->where('status', 'complete')
+                            ->whereExists(function ($references) {
+                                $references->selectRaw('1')
+                                    ->from('legacy_image_migration_references')
+                                    ->whereColumn('legacy_image_migration_references.legacy_image_migration_id', 'legacy_image_migrations.id')
+                                    ->where('legacy_image_migration_references.status', 'pending');
+                            });
                     });
             })
             ->orderBy('entity_id')
@@ -116,11 +120,19 @@ class MigrateLegacyImages extends Command
             ['Blocking references', $this->blockerCount($prefix)],
         ]);
 
-        return $skipped === 0 ? self::SUCCESS : self::FAILURE;
+        return $skipped === 0 && $this->blockerCount($prefix) === 0 ? self::SUCCESS : self::FAILURE;
     }
 
     protected function migrate(object $migration): void
     {
+        if ($migration->status === 'blocked' || $migration->resolution_status === 'blocked') {
+            throw new RuntimeException($migration->error ?? 'Image format could not be resolved.');
+        }
+
+        if ($migration->destination_path === null) {
+            throw new RuntimeException('Image destination is not resolved yet.');
+        }
+
         if ($this->migration->hasBlockers((int) $migration->id)) {
             throw new RuntimeException('This image has blocking indexed references.');
         }
@@ -165,8 +177,21 @@ class MigrateLegacyImages extends Command
         }
 
         $sourceSize = $disk->size($migration->source_path);
-        if (! $disk->exists($migration->destination_path) && ! $disk->copy($migration->source_path, $migration->destination_path)) {
-            throw new RuntimeException("Copy failed: {$migration->source_path}");
+        if (! $disk->exists($migration->destination_path)) {
+            $copied = false;
+            if ($migration->detected_mime !== null && $migration->detected_mime !== $migration->source_content_type) {
+                $copied = $disk->put(
+                    $migration->destination_path,
+                    $disk->get($migration->source_path),
+                    ['ContentType' => $migration->detected_mime]
+                );
+            } else {
+                $copied = $disk->copy($migration->source_path, $migration->destination_path);
+            }
+
+            if (! $copied) {
+                throw new RuntimeException("Copy failed: {$migration->source_path}");
+            }
         }
 
         if ($disk->size($migration->destination_path) !== $sourceSize) {
@@ -233,6 +258,7 @@ class MigrateLegacyImages extends Command
             ['Indexed source images', $index->source_count],
             ['Indexed content references', $index->reference_count],
             ['Blocking references', $this->blockerCount($prefix)],
+            ['Blocked source images', DB::table('legacy_image_migrations')->where('prefix', $prefix)->where('status', 'blocked')->count()],
             ['Pending owned images', $this->pendingCount($prefix)],
             ['Completed images', DB::table('legacy_image_migrations')->where('prefix', $prefix)->where('status', 'complete')->count()],
             ['Indexed at', $index->indexed_at ?? 'never'],
@@ -256,6 +282,9 @@ class MigrateLegacyImages extends Command
         return DB::table('legacy_image_migration_references')
             ->where('prefix', $prefix)
             ->where('status', 'blocker')
+            ->count() + DB::table('legacy_image_migrations')
+            ->where('prefix', $prefix)
+            ->where('status', 'blocked')
             ->count();
     }
 
