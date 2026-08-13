@@ -30,7 +30,7 @@ class CleanupLegacyImages extends Command
             ->limit($limit)
             ->get();
 
-        foreach ($entities->chunk(self::BATCH_SIZE) as $batch) {
+        foreach ($entities->chunkById(self::BATCH_SIZE) as $batch) {
             $paths = $batch->pluck('image_path')->all();
 
             try {
