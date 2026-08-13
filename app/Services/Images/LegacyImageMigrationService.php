@@ -303,8 +303,6 @@ class LegacyImageMigrationService
 
                     $sources = $this->extractSources($value, $prefix);
                     if (empty($sources)) {
-                        $this->storeReference(null, $prefix, $table, $column, $record->id, $value, 'blocker', 'Unrecognized prefix reference');
-
                         continue;
                     }
 
@@ -350,7 +348,7 @@ class LegacyImageMigrationService
                         continue;
                     }
 
-                    $sources = $this->extractSources($value, $prefix);
+                    $sources = $this->extractPathSources($value, $prefix);
                     if (empty($sources)) {
                         $this->storeReference(null, $prefix, $table, $column, $record->id, $value, 'blocker', 'Unrecognized structured reference');
 
@@ -387,13 +385,60 @@ class LegacyImageMigrationService
             }
         }
 
-        $relativePattern = '~(?<![a-zA-Z0-9_.-])/?(' . preg_quote($prefix, '~') . '[^\s\"\'<>?#)]+)~u';
-        preg_match_all($relativePattern, $value, $relativeMatches);
-        foreach ($relativeMatches[1] as $source) {
-            $sources[$source] = true;
+        $attributePattern = '~\b(?:src|href|poster|data-src|data-original|srcset)\s*=\s*(?:([\"\'])(.*?)\1|([^\s>]+))~isu';
+        preg_match_all($attributePattern, $value, $attributes, PREG_SET_ORDER);
+        foreach ($attributes as $attribute) {
+            $attributeValue = html_entity_decode($attribute[2] ?: $attribute[3], ENT_QUOTES | ENT_HTML5);
+            foreach (preg_split('/\s*,\s*|\s+(?=\d+(?:\.\d+)?[wx](?:\s|$))/', $attributeValue) as $candidate) {
+                $candidate = preg_replace('/\s+\d+(?:\.\d+)?[wx]$/', '', mb_trim($candidate));
+                $this->addUrlSource($sources, (string) $candidate, $prefix);
+            }
+        }
+
+        $cssPattern = '~url\(\s*([\"\']?)(.*?)\1\s*\)~isu';
+        preg_match_all($cssPattern, $value, $cssUrls, PREG_SET_ORDER);
+        foreach ($cssUrls as $cssUrl) {
+            $this->addUrlSource($sources, html_entity_decode($cssUrl[2], ENT_QUOTES | ENT_HTML5), $prefix);
         }
 
         return array_keys($sources);
+    }
+
+    /** @return list<string> */
+    protected function extractPathSources(string $value, string $prefix): array
+    {
+        $sources = $this->extractSources($value, $prefix);
+        $pattern = '~(?<![a-zA-Z0-9_.-])/?(' . preg_quote($prefix, '~') . '[^\s\"\'<>?#)]+)~u';
+        preg_match_all($pattern, $value, $matches);
+
+        return array_values(array_unique(array_merge($sources, $matches[1])));
+    }
+
+    /** @param array<string, bool> $sources */
+    protected function addUrlSource(array &$sources, string $url, string $prefix): void
+    {
+        $thumborHost = parse_url((string) config('thumbor.url'), PHP_URL_HOST);
+        $host = parse_url($url, PHP_URL_HOST);
+        if (($host === 'th.kanka.io' || ($thumborHost && $host === $thumborHost)) && str_contains($url, '/src/' . $prefix)) {
+            $url = mb_substr($url, mb_strpos($url, '/src/' . $prefix) + 5);
+        }
+
+        foreach ($this->knownBases() as $base) {
+            if (str_starts_with($url, $base . '/')) {
+                $url = mb_substr($url, mb_strlen($base) + 1);
+                break;
+            }
+        }
+
+        $url = mb_ltrim($url, '/');
+        if (! str_starts_with($url, $prefix)) {
+            return;
+        }
+
+        $source = preg_split('/[?#]/', $url, 2)[0];
+        if ($source !== '') {
+            $sources[$source] = true;
+        }
     }
 
     protected function storeReference(

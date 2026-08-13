@@ -206,10 +206,36 @@ it('does not treat an external host path as an owned legacy reference', function
     $entity->forceFill(['entry' => '<img src="https://example.com/sections/external.jpg">'])->saveQuietly();
 
     $this->artisan('images:migrate-legacy', ['prefix' => 'sections', '--index' => true])
+        ->assertSuccessful();
+
+    expect(DB::table('legacy_image_migration_references')->where('status', 'blocker')->count())->toBe(0)
+        ->and(DB::table('legacy_image_migrations')->count())->toBe(0);
+});
+
+it('ignores prefix-like prose that is not an image url', function () {
+    $entity = Character::factory()->create(['campaign_id' => 1])->entity;
+    $entity->forceFill([
+        'entry' => '<p>mixings, dissections/autopsies and research of otherworld</p><p>See sections/history for details.</p>',
+    ])->saveQuietly();
+
+    $this->artisan('images:migrate-legacy', ['prefix' => 'sections', '--index' => true])
+        ->assertSuccessful();
+
+    expect(DB::table('legacy_image_migration_references')->count())->toBe(0);
+});
+
+it('recognizes relative paths only in url-bearing html attributes', function () {
+    $entity = Character::factory()->create(['campaign_id' => 1])->entity;
+    $entity->forceFill([
+        'entry' => '<p>sections/plain-text.jpg</p><img src="/sections/image.jpg">',
+    ])->saveQuietly();
+
+    $this->artisan('images:migrate-legacy', ['prefix' => 'sections', '--index' => true])
         ->assertFailed();
 
-    expect(DB::table('legacy_image_migration_references')->where('status', 'blocker')->count())->toBe(1)
-        ->and(DB::table('legacy_image_migrations')->count())->toBe(0);
+    $reference = DB::table('legacy_image_migration_references')->where('status', 'blocker')->first();
+    expect($reference)->not->toBeNull()
+        ->and($reference->error)->toBe('No owning entity for sections/image.jpg');
 });
 
 it('blocks deletion when another structured field references the source', function () {
