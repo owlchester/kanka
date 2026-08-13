@@ -71,7 +71,7 @@ class CleanupThumbnails extends Command
         }
 
         $path = mb_strtolower((string) preg_split('/[?#]/', $attributes->path(), 2)[0]);
-        $suffixes = ['_thumb.png', '_thumb.jpg', '_thumb.jpeg'];
+        $suffixes = ['_thumb.png', '_thumb.jpg', '_thumb.jpeg', '_thumb.gif'];
         $matchesSuffix = false;
         foreach ($suffixes as $suffix) {
             if (str_ends_with($path, $suffix)) {
