@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Enums\Permission;
 use App\Enums\WebhookAction;
 use App\Events\Entities\EntityRestored;
+use App\Facades\Images;
 use App\Facades\Permissions;
 use App\Jobs\EntityUpdatedJob;
 use App\Jobs\EntityWebhookJob;
@@ -75,6 +76,10 @@ class EntityObserver
             $entity->map->saveQuietly();
 
             $this->maybeTriggerTiling($entity);
+        }
+
+        if ($entity->isDirty('image_uuid') && !empty($entity->image_path)) {
+            Images::model($entity)->field('image')->cleanup();
         }
     }
 
