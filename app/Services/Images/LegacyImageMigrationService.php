@@ -559,7 +559,7 @@ class LegacyImageMigrationService
         $attributePattern = '~\b(?:src|href|poster|data-src|data-original|srcset)\s*=\s*(?:([\"\'])(.*?)\1|([^\s>]+))~isu';
         preg_match_all($attributePattern, $value, $attributes, PREG_SET_ORDER);
         foreach ($attributes as $attribute) {
-            $attributeValue = html_entity_decode($attribute[2] ?: $attribute[3], ENT_QUOTES | ENT_HTML5);
+            $attributeValue = html_entity_decode($attribute[2] ?? $attribute[3] ?? '', ENT_QUOTES | ENT_HTML5);
             foreach (preg_split('/\s*,\s*|\s+(?=\d+(?:\.\d+)?[wx](?:\s|$))/', $attributeValue) as $candidate) {
                 $candidate = preg_replace('/\s+\d+(?:\.\d+)?[wx]$/', '', mb_trim($candidate));
                 $this->addUrlSource($sources, (string) $candidate, $prefix);

@@ -239,6 +239,18 @@ it('recognizes relative paths only in url-bearing html attributes', function () 
         ->and($reference->error)->toBe('No owning entity for sections/image.jpg');
 });
 
+it('indexes html attributes without a complete value capture', function () {
+    $entity = Character::factory()->create(['campaign_id' => 1])->entity;
+    $entity->forceFill([
+        'entry' => '<img src=> <img data-src="/sections/image.jpg">',
+    ])->saveQuietly();
+
+    $this->artisan('images:migrate-legacy', ['prefix' => 'sections', '--rebuild-index' => true])
+        ->assertFailed();
+
+    expect(DB::table('legacy_image_migration_references')->where('status', 'blocker')->count())->toBe(1);
+});
+
 it('blocks deletion when another structured field references the source', function () {
     $source = 'characters/header.jpg';
     $entity = Character::factory()->create(['campaign_id' => 1])->entity;
