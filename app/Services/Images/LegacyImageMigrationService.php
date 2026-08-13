@@ -103,7 +103,8 @@ class LegacyImageMigrationService
 
     public function destination(int $campaignId, string $source): string
     {
-        $extension = mb_strtolower(pathinfo($source, PATHINFO_EXTENSION));
+        $cleanSource = preg_split('/[?#]/', $source, 2)[0];
+        $extension = mb_strtolower(pathinfo($cleanSource, PATHINFO_EXTENSION));
         if (! preg_match('/^[a-z0-9]{1,10}$/', $extension)) {
             throw new RuntimeException("Invalid extension for {$source}");
         }
@@ -129,8 +130,9 @@ class LegacyImageMigrationService
             $current = DB::table($reference->table_name)
                 ->where('id', $reference->row_id)
                 ->value($reference->column_name);
+            $referenceSource = $this->referenceSource($current, $source);
 
-            if (! is_string($current) || ! str_contains($current, $source)) {
+            if (! is_string($current) || $referenceSource === null) {
                 DB::table('legacy_image_migration_references')->where('id', $reference->id)->update([
                     'status' => 'resolved',
                     'updated_at' => now(),
@@ -139,12 +141,12 @@ class LegacyImageMigrationService
                 continue;
             }
 
-            if ($this->containsSignedThumborReference($current, $source)) {
+            if ($this->containsSignedThumborReference($current, $referenceSource)) {
                 throw new RuntimeException("Signed Thumbor reference found in {$reference->table_name}.{$reference->column_name} row {$reference->row_id}");
             }
 
-            $updated = $this->rewriteValue($current, $source, $destination);
-            if ($updated === $current || str_contains($updated, $source)) {
+            $updated = $this->rewriteValue($current, $referenceSource, $destination);
+            if ($updated === $current || str_contains($updated, $referenceSource)) {
                 throw new RuntimeException("Unresolved reference in {$reference->table_name}.{$reference->column_name} row {$reference->row_id}");
             }
 
@@ -307,9 +309,7 @@ class LegacyImageMigrationService
                     }
 
                     foreach ($sources as $source) {
-                        $migration = DB::table('legacy_image_migrations')
-                            ->where('source_hash', hash('sha256', $source))
-                            ->first(['id', 'prefix']);
+                        $migration = $this->resolveMigration($source);
                         $migrationId = $migration?->id;
                         $error = null;
                         $status = 'pending';
@@ -358,9 +358,7 @@ class LegacyImageMigrationService
                     }
 
                     foreach ($sources as $source) {
-                        $migrationId = DB::table('legacy_image_migrations')
-                            ->where('source_hash', hash('sha256', $source))
-                            ->value('id');
+                        $migrationId = $this->resolveMigration($source)?->id;
 
                         $this->storeReference(
                             $migrationId,
@@ -424,6 +422,40 @@ class LegacyImageMigrationService
                 'updated_at' => now(),
             ]
         );
+    }
+
+    protected function resolveMigration(string $source): ?object
+    {
+        $migration = DB::table('legacy_image_migrations')
+            ->where('source_hash', hash('sha256', $source))
+            ->first(['id', 'prefix']);
+        if ($migration) {
+            return $migration;
+        }
+
+        $matches = DB::table('legacy_image_migrations')
+            ->where(function ($query) use ($source) {
+                $query->where('source_path', 'like', $source . '?%')
+                    ->orWhere('source_path', 'like', $source . '#%');
+            })
+            ->limit(2)
+            ->get(['id', 'prefix']);
+
+        return $matches->count() === 1 ? $matches->first() : null;
+    }
+
+    protected function referenceSource(mixed $value, string $source): ?string
+    {
+        if (! is_string($value)) {
+            return null;
+        }
+        if (str_contains($value, $source)) {
+            return $source;
+        }
+
+        $cleanSource = preg_split('/[?#]/', $source, 2)[0];
+
+        return $cleanSource !== $source && str_contains($value, $cleanSource) ? $cleanSource : null;
     }
 
     /** @return list<string> */

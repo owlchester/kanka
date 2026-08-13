@@ -13,7 +13,8 @@ use Ramsey\Uuid\Uuid;
 function legacyDestination(int $campaignId, string $source): string
 {
     $uuid = Uuid::uuid5(Uuid::NAMESPACE_URL, "kanka:legacy-image:{$campaignId}:{$source}")->toString();
-    $extension = mb_strtolower(pathinfo($source, PATHINFO_EXTENSION));
+    $cleanSource = preg_split('/[?#]/', $source, 2)[0];
+    $extension = mb_strtolower(pathinfo($cleanSource, PATHINFO_EXTENSION));
 
     return "w/{$campaignId}/legacy/{$uuid}.{$extension}";
 }
@@ -246,6 +247,50 @@ it('repairs references discovered after a completed migration through reindexing
     $this->artisan('images:migrate-legacy', ['prefix' => 'characters', '--execute' => true])->assertSuccessful();
 
     expect($lateReference->fresh()->entry)->toContain(legacyDestination(1, $source));
+});
+
+it('migrates literal legacy s3 keys containing url parameters to a clean destination', function () {
+    $source = 'sections/5b2d40eb0d64a_dwarfking_colorbylee.jpg?w=851&h=1098&crop=1';
+    $entity = Character::factory()->create(['campaign_id' => 1])->entity;
+    $entity->forceFill([
+        'image_path' => $source,
+        'entry' => '<img src="https://cdn-ugc.kanka.io/' . $source . '">',
+    ])->saveQuietly();
+    Storage::disk('s3')->put($source, 'image-content');
+
+    $this->artisan('images:migrate-legacy', ['prefix' => 'sections', '--index' => true])
+        ->assertSuccessful();
+    $this->artisan('images:migrate-legacy', ['prefix' => 'sections', '--execute' => true])
+        ->assertSuccessful();
+
+    $destination = legacyDestination(1, $source);
+    expect($destination)->toEndWith('.jpg')->not->toContain('?')
+        ->and($entity->fresh()->image_path)->toBe($destination)
+        ->and($entity->fresh()->entry)->toContain('https://cdn-ugc.kanka.io/' . $destination)
+        ->not->toContain('?w=851');
+    Storage::disk('s3')->assertMissing($source);
+    Storage::disk('s3')->assertExists($destination);
+});
+
+it('resolves a clean content url to a unique query-bearing owner path', function () {
+    $cleanSource = 'sections/legacy-image.jpg';
+    $source = $cleanSource . '?w=800&h=600';
+    $entity = Character::factory()->create(['campaign_id' => 1])->entity;
+    $entity->forceFill([
+        'image_path' => $source,
+        'entry' => '<img src="https://cdn-ugc.kanka.io/' . $cleanSource . '">',
+    ])->saveQuietly();
+    Storage::disk('s3')->put($source, 'image-content');
+
+    $this->artisan('images:migrate-legacy', ['prefix' => 'sections', '--index' => true])
+        ->assertSuccessful();
+    $this->artisan('images:migrate-legacy', ['prefix' => 'sections', '--execute' => true])
+        ->assertSuccessful();
+
+    $destination = legacyDestination(1, $source);
+    expect($entity->fresh()->image_path)->toBe($destination)
+        ->and($entity->fresh()->entry)->toContain($destination)
+        ->not->toContain($cleanSource);
 });
 
 it('resumes the reference index migration after partial ddl execution', function () {
