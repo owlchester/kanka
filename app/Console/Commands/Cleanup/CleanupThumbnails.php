@@ -70,7 +70,7 @@ class CleanupThumbnails extends Command
             return false;
         }
 
-        $path = mb_strtolower($attributes->path());
+        $path = mb_strtolower((string) preg_split('/[?#]/', $attributes->path(), 2)[0]);
         $suffixes = ['_thumb.png', '_thumb.jpg', '_thumb.jpeg'];
         $matchesSuffix = false;
         foreach ($suffixes as $suffix) {

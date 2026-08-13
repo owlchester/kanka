@@ -47,6 +47,17 @@ it('filters matching thumbnails by maximum size', function () {
     Storage::disk('s3')->assertExists('calendars/large_thumb.png');
 });
 
+it('matches thumbnail suffixes before query parameters', function () {
+    Storage::fake('s3');
+    Storage::disk('s3')->put('calendars/5df295097efe0_DKIronDire_480x480_thumb.jpg?v=1570217049', 'thumbnail');
+
+    $this->artisan('cleanup:thumbnails', ['prefix' => 'calendars', '--execute' => true])
+        ->expectsOutputToContain('Deleted: 1 files')
+        ->assertSuccessful();
+
+    Storage::disk('s3')->assertMissing('calendars/5df295097efe0_DKIronDire_480x480_thumb.jpg?v=1570217049');
+});
+
 it('rejects an invalid maximum size', function () {
     Storage::fake('s3');
 
