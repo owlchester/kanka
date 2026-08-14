@@ -56,6 +56,13 @@ class CleanupImages extends Command
         }
         $directories = Storage::directories($folder . '/');
         $skipped = 0;
+        $folderIds = [];
+        $reachedMax = false;
+
+        if (! $this->dry) {
+            $this->output->progressStart();
+        }
+
         $chunks = array_chunk($directories, 500);
         foreach ($chunks as $chunk) {
             if ($this->count >= $this->max) {
@@ -112,16 +119,25 @@ class CleanupImages extends Command
                     Storage::deleteDirectory($campaign['path']);
                 }
                 $this->count++;
-            }
-            if ($this->dry) {
-                $this->info('Would delete ' . $this->count . ' images/folders.');
-                $this->info(implode(',', array_column($nullCampaigns, 'id')));
+                $folderIds[] = $campaign['id'];
+
+                if (! $this->dry) {
+                    $this->output->progressAdvance();
+                }
             }
             if ($this->count >= $this->max) {
-                $this->info('Reached max amount of ' . $this->max);
+                $reachedMax = true;
 
                 break;
             }
+        }
+
+        if (! $this->dry) {
+            $this->output->progressFinish();
+        }
+
+        if ($reachedMax) {
+            $this->info('Reached max amount of ' . $this->max);
         }
 
         if ($skipped > 0) {
@@ -129,6 +145,11 @@ class CleanupImages extends Command
         }
 
         if ($this->dry) {
+            if ($folderIds !== []) {
+                $this->info('Would delete ' . $this->count . ' images/folders.');
+                $this->info(implode(',', $folderIds));
+            }
+
             return self::SUCCESS;
         }
         $this->info('Deleted ' . $this->count . ' images/folders.');
