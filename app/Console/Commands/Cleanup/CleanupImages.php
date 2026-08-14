@@ -37,8 +37,7 @@ class CleanupImages extends Command
         $folder = $this->option('folder', 'w');
         $this->max = (int) $this->option('max', 500);
 
-        $dry = $this->option('execute');
-        if ($dry === '1') {
+        if (! $this->option('execute')) {
             $this->dry = false;
         }
 
