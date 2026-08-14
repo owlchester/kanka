@@ -4,6 +4,7 @@ namespace App\Console\Commands\Images;
 
 use App\Models\Campaign;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Throwable;
@@ -29,18 +30,20 @@ class FixCampaignPaths extends Command
             'failed' => 0,
         ];
         $moved = [];
+        $driver = DB::connection()->getDriverName();
 
         $campaigns = Campaign::query()
-            ->where(function ($query) {
+            ->where(function ($query) use ($driver) {
                 foreach (['image', 'header_image'] as $field) {
-                    $query->orWhere(function ($fieldQuery) use ($field) {
+                    $query->orWhere(function ($fieldQuery) use ($field, $driver) {
                         $fieldQuery
                             ->whereNotNull($field)
                             ->where(function ($pathQuery) use ($field) {
                                 $pathQuery
                                     ->where($field, 'like', 'w/%')
                                     ->orWhere($field, 'like', 'campaigns/%');
-                            });
+                            })
+                            ->whereRaw($this->notInCampaignFolder($field, $driver));
                     });
                 }
             })
@@ -115,5 +118,14 @@ class FixCampaignPaths extends Command
         ]);
 
         return $stats['failed'] === 0 ? self::SUCCESS : self::FAILURE;
+    }
+
+    protected function notInCampaignFolder(string $field, string $driver): string
+    {
+        if ($driver === 'sqlite') {
+            return "\"{$field}\" NOT LIKE 'w/' || id || '/%'";
+        }
+
+        return "`{$field}` NOT LIKE CONCAT('w/', campaigns.id, '/%')";
     }
 }

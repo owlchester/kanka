@@ -71,6 +71,26 @@ it('does not change already-correct paths or files during a dry run', function (
     Storage::disk('s3')->assertMissing("w/{$campaign->id}/header.jpg");
 });
 
+it('does not let already-correct paths consume the processing limit', function () {
+    $correct = Campaign::factory()->create();
+    $correct->updateQuietly(['image' => "w/{$correct->id}/already.jpg"]);
+    $candidate = Campaign::factory()->create(['image' => 'campaigns/logo.jpg']);
+    Storage::disk('s3')->put('campaigns/logo.jpg', 'logo');
+
+    $this->artisan('images:fix-campaign-paths', ['--execute' => true, '--limit' => 1])
+        ->expectsTable(['Metric', 'Count'], [
+            ['Candidates', 1],
+            ['Repaired', 1],
+            ['Missing sources', 0],
+            ['Destination conflicts', 0],
+            ['Failures', 0],
+        ])
+        ->assertSuccessful();
+
+    expect($candidate->fresh()->image)->toBe("w/{$candidate->id}/logo.jpg");
+    Storage::disk('s3')->assertExists("w/{$candidate->id}/logo.jpg");
+});
+
 it('reports missing sources and destination conflicts without changing campaign paths', function () {
     $missing = Campaign::factory()->create(['image' => 'w/missing/image.jpg']);
     $conflict = Campaign::factory()->create(['header_image' => 'w/old/header.jpg']);
