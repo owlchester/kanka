@@ -49,6 +49,20 @@ it('moves root campaigns paths into the campaign folder', function () {
     Storage::disk('s3')->assertExists("w/{$campaign->id}/header.jpg");
 });
 
+it('cleans query strings and long filenames while migrating', function () {
+    $source = 'campaigns/a-very-long-campaign-image-name.jpg?width=1200';
+    $campaign = Campaign::factory()->create(['image' => $source]);
+    Storage::disk('s3')->put($source, 'image');
+
+    $this->artisan('images:fix-campaign-paths', ['--execute' => true])
+        ->expectsOutputToContain("{$campaign->id}: image {$source} -> w/{$campaign->id}/a-very-long-campaign.jpg")
+        ->assertSuccessful();
+
+    expect($campaign->fresh()->image)->toBe("w/{$campaign->id}/a-very-long-campaign.jpg");
+    Storage::disk('s3')->assertMissing($source);
+    Storage::disk('s3')->assertExists("w/{$campaign->id}/a-very-long-campaign.jpg");
+});
+
 it('does not change already-correct paths or files during a dry run', function () {
     $campaign = Campaign::factory()->create(['header_image' => 'w/other/header.jpg']);
     $campaign->updateQuietly(['image' => "w/{$campaign->id}/already.jpg"]);

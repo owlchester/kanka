@@ -67,7 +67,7 @@ class FixCampaignPaths extends Command
                 }
 
                 $stats['candidates']++;
-                $destination = $campaign->imageStoragePath() . '/' . basename($source);
+                $destination = $this->destinationPath($campaign, $source);
                 $this->line("{$campaign->id}: {$field} {$source} -> {$destination}");
 
                 if (! $execute) {
@@ -118,6 +118,20 @@ class FixCampaignPaths extends Command
         ]);
 
         return $stats['failed'] === 0 ? self::SUCCESS : self::FAILURE;
+    }
+
+    protected function destinationPath(Campaign $campaign, string $source): string
+    {
+        $filename = basename($source);
+        $filename = Str::before(Str::before($filename, '%3F'), '?');
+        $extension = pathinfo($filename, PATHINFO_EXTENSION);
+        $name = Str::limit(pathinfo($filename, PATHINFO_FILENAME), 20, '');
+
+        if ($extension !== '') {
+            $name .= '.' . $extension;
+        }
+
+        return $campaign->imageStoragePath() . '/' . $name;
     }
 
     protected function notInCampaignFolder(string $field, string $driver): string
