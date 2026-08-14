@@ -14,10 +14,10 @@ class CleanupImages extends Command
      *
      * @var string
      */
-    protected $signature = 'cleanup:images 
-    {--folder=w: Folder prefix to cleanup} 
-    {--max=500: Maximum number of folders deleted} 
-    {--execute: Execute the cleanup}';
+    protected $signature = 'cleanup:images
+                            {--folder=w : Folder prefix to cleanup}
+                            {--max=500 : Maximum number of folders deleted}
+                            {--execute : Execute the cleanup}';
 
     protected bool $dry = true;
 
@@ -35,10 +35,16 @@ class CleanupImages extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): int
     {
-        $folder = $this->option('folder', 'w');
-        $this->max = (int) $this->option('max', 500);
+        $folder = trim((string) $this->option('folder'), '/');
+        $max = filter_var($this->option('max'), FILTER_VALIDATE_INT);
+        if ($max === false || $max < 1) {
+            $this->error('The --max option must be a positive integer.');
+
+            return self::INVALID;
+        }
+        $this->max = $max;
 
         if ($this->option('execute')) {
             $this->dry = false;
@@ -49,54 +55,84 @@ class CleanupImages extends Command
             $this->warn('This is a dry run. Nothing will get deleted.');
         }
         $directories = Storage::directories($folder . '/');
+        $skipped = 0;
         $chunks = array_chunk($directories, 500);
         foreach ($chunks as $chunk) {
-            $ids = [];
+            if ($this->count >= $this->max) {
+                break;
+            }
+
+            $candidates = [];
             foreach ($chunk as $path) {
-                $ids[] = Str::after($path, $folder . '/');
-            }
+                $id = Str::after($path, $folder . '/');
+                $campaignId = filter_var($id, FILTER_VALIDATE_INT, [
+                    'options' => ['min_range' => 1],
+                ]);
 
-            // Get ids where a left join on the campaigns table has no result
-            $select = 'with u(id) as (values (' . implode('), (', $ids) . ')) ' .
-                'select u.id from u ' .
-                'left join campaigns as c on c.id = u.id ' .
-                'where c.id is null';
-            $db = DB::select($select);
-            $nullCampaigns = [];
-            foreach ($db as $campaign) {
-                $nullCampaigns[] = $campaign->id;
-            }
+                if (! ctype_digit($id) || $campaignId === false) {
+                    $skipped++;
 
-            if (empty($nullCampaigns)) {
-                continue;
-            }
-            foreach ($nullCampaigns as $id) {
-                if (empty($id)) {
                     continue;
                 }
+
+                $candidates[] = [
+                    'id' => $campaignId,
+                    'path' => $path,
+                ];
+            }
+
+            if ($candidates === []) {
+                continue;
+            }
+
+            $ids = array_column($candidates, 'id');
+            $existingIds = DB::table('campaigns')
+                ->whereIn('id', $ids)
+                ->pluck('id')
+                ->map(static fn ($id): int => (int) $id)
+                ->all();
+            $existingIds = array_fill_keys($existingIds, true);
+
+            $nullCampaigns = array_values(array_filter(
+                $candidates,
+                static fn (array $candidate): bool => ! isset($existingIds[$candidate['id']]),
+            ));
+            if ($nullCampaigns === []) {
+                continue;
+            }
+
+            $remaining = $this->max - $this->count;
+            $nullCampaigns = array_slice($nullCampaigns, 0, $remaining);
+            foreach ($nullCampaigns as $campaign) {
                 if (! $this->dry) {
-                    $files = Storage::allFiles($folder . '/' . $id);
+                    $files = Storage::allFiles($campaign['path']);
                     if (! empty($files)) {
                         Storage::delete($files);
                     }
-                    Storage::deleteDirectory($folder . '/' . $id);
+                    Storage::deleteDirectory($campaign['path']);
                 }
                 $this->count++;
             }
             if ($this->dry) {
                 $this->info('Would delete ' . $this->count . ' images/folders.');
-                $this->info(implode(',', $nullCampaigns));
+                $this->info(implode(',', array_column($nullCampaigns, 'id')));
             }
-            if ($this->count > $this->max) {
+            if ($this->count >= $this->max) {
                 $this->info('Reached max amount of ' . $this->max);
 
-                return;
+                break;
             }
+        }
+
+        if ($skipped > 0) {
+            $this->warn("Skipped {$skipped} non-numeric folder(s).");
         }
 
         if ($this->dry) {
-            return;
+            return self::SUCCESS;
         }
         $this->info('Deleted ' . $this->count . ' images/folders.');
+
+        return self::SUCCESS;
     }
 }
