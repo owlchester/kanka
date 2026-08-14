@@ -54,6 +54,11 @@ class DeletedCampaignCleanupJob implements ShouldQueue
         if (Storage::has('/w/' . $this->campaignId)) {
             Storage::deleteDirectory('/w/' . $this->campaignId);
         }
+        // Todo: this can be removed once we've migrated all the legacy header images in this old folder
+        if (Storage::has('/campaign/' . $this->campaignId)) {
+            Storage::deleteDirectory('/campaign/' . $this->campaignId);
+        }
+        // This is where everything is now stored
         if (Storage::has('/campaigns/' . $this->campaignId)) {
             Storage::deleteDirectory('/campaigns/' . $this->campaignId);
         }
