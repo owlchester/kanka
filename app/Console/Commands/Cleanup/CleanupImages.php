@@ -14,7 +14,7 @@ class CleanupImages extends Command
      *
      * @var string
      */
-    protected $signature = 'cleanup:images {folder=w} {max=500} {dry=0}';
+    protected $signature = 'cleanup:images {--folder=w} {--max=500} {--execute}';
 
     protected bool $dry = true;
 
@@ -34,10 +34,10 @@ class CleanupImages extends Command
      */
     public function handle()
     {
-        $folder = $this->argument('folder');
-        $this->max = (int) $this->argument('max');
+        $folder = $this->option('folder', 'w');
+        $this->max = (int) $this->option('max', 500);
 
-        $dry = $this->argument('dry');
+        $dry = $this->option('execute');
         if ($dry === '1') {
             $this->dry = false;
         }
