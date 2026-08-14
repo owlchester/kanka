@@ -34,13 +34,13 @@ class Cleanup extends Command
         $moved = 0;
         $conflicts = 0;
 
-        foreach ($disk->getDriver()->listContents('campaigns', false) as $attributes) {
+        foreach ($disk->getDriver()->listContents('w', false) as $attributes) {
             if (! $this->isRootImage($attributes)) {
                 continue;
             }
 
             $source = $attributes->path();
-            $destination = 'campaigns/deleted/' . basename($source);
+            $destination = 'w/deleted/' . basename($source);
             $matched++;
             $this->line("{$source} -> {$destination}");
 
@@ -82,11 +82,11 @@ class Cleanup extends Command
         }
 
         $path = $attributes->path();
-        if (! str_starts_with($path, 'campaigns/')) {
+        if (! str_starts_with($path, 'w/')) {
             return false;
         }
 
-        $filename = substr($path, strlen('campaigns/'));
+        $filename = substr($path, strlen('w/'));
         if ($filename === '' || str_contains($filename, '/')) {
             return false;
         }
