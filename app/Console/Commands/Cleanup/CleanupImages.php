@@ -60,7 +60,7 @@ class CleanupImages extends Command
         $reachedMax = false;
 
         if (! $this->dry) {
-            $this->output->progressStart();
+            $this->output->progressStart($this->max);
         }
 
         $chunks = array_chunk($directories, 500);
