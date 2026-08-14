@@ -52,7 +52,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property bool|int $is_private
  * @property bool|int $is_attributes_private
  * @property string $tooltip
- * @property string $header_image
+ * @property ?string $header_image
  * @property ?string $image_uuid
  * @property ?string $header_uuid
  * @property ?string $marketplace_uuid

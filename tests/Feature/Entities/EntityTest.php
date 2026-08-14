@@ -1,5 +1,10 @@
 <?php
 
+use App\Models\Character;
+use App\Models\Entity;
+use App\Models\Image;
+use Illuminate\Support\Facades\Storage;
+
 it('GETS all entities')
     ->asUser()
     ->withCampaign()
@@ -71,3 +76,72 @@ it('Copies entities')
     ])
     ->assertStatus(200)
     ->assertJsonFragment(['success' => 'Succesfully copied 3 entities.']);
+
+it('copies the entity gallery image and header to the target campaign', function () {
+    $this->asUser()
+        ->withCampaign()
+        ->withCampaigns()
+        ->withCharacters();
+
+    config(['limits.gallery.standard' => 10]);
+    Storage::fake();
+
+    Image::factory()->create(['campaign_id' => 1, 'size' => 9]);
+    $image = Image::factory()->create(['campaign_id' => 1, 'size' => 2]);
+    $header = Image::factory()->create(['campaign_id' => 1, 'size' => 3]);
+    Storage::put($image->path, 'image');
+    Storage::put($header->path, 'header');
+
+    $source = Character::findOrFail(1)->entity;
+    $source->updateQuietly([
+        'image_uuid' => $image->id,
+        'header_uuid' => $header->id,
+    ]);
+
+    $this->postJson('/api/1.0/campaigns/1/transfer', [
+        'entities' => [$source->id],
+        'campaign_id' => 2,
+        'copy' => true,
+    ])->assertSuccessful();
+
+    $copy = Entity::withoutGlobalScopes()
+        ->where('campaign_id', 2)
+        ->where('name', $source->name)
+        ->firstOrFail();
+    $copyImage = Image::withoutGlobalScopes()->findOrFail($copy->image_uuid);
+    $copyHeader = Image::withoutGlobalScopes()->findOrFail($copy->header_uuid);
+
+    expect($copy->image_path)->toBeNull()
+        ->and($copy->header_image)->toBeNull()
+        ->and($copyImage->id)->not->toBe($image->id)
+        ->and($copyImage->campaign_id)->toBe(2)
+        ->and($copyHeader->id)->not->toBe($header->id)
+        ->and($copyHeader->campaign_id)->toBe(2);
+
+    Storage::assertExists($image->path);
+    Storage::assertExists($header->path);
+    Storage::assertExists($copyImage->path);
+    Storage::assertExists($copyHeader->path);
+});
+
+it('clears and deletes a legacy header image when moving an entity', function () {
+    $this->asUser()
+        ->withCampaign()
+        ->withCampaigns()
+        ->withCharacters();
+
+    Storage::fake();
+    $path = 'legacy/header.png';
+    Storage::put($path, 'header');
+
+    $source = Character::findOrFail(1)->entity;
+    $source->updateQuietly(['header_image' => $path]);
+
+    $this->postJson('/api/1.0/campaigns/1/transfer', [
+        'entities' => [$source->id],
+        'campaign_id' => 2,
+    ])->assertSuccessful();
+
+    expect(Entity::withoutGlobalScopes()->findOrFail($source->id)->header_image)->toBeNull();
+    Storage::assertMissing($path);
+});

@@ -5,6 +5,8 @@ namespace App\Services\Entity;
 use App\Exceptions\TranslatableException;
 use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
+use App\Models\Entity;
+use App\Models\Image;
 use App\Models\MiscModel;
 use App\Models\Note;
 use App\Services\Gallery\StorageService;
@@ -132,6 +134,7 @@ class MoveService
 
             $newModel->campaign_id = $this->to->id;
             $image = $this->entity->image; // Load the image before switching campaigns
+            $header = $this->entity->header; // Load the header before switching campaigns
             $newEntry = $this->mentionsService->campaign($this->campaign)->mapCopiedEntry($this->entity->entry);
 
             CampaignLocalization::forceCampaign($this->to);
@@ -141,20 +144,10 @@ class MoveService
             $newModel->createEntity();
 
             $newModel->entity->entry = $newEntry;
-            // Copy the gallery image over
-            if (! empty($image)) {
-                // If there is enough space in the target campaign gallery
-                $available = $this->storageService->campaign($this->campaign)->available();
-                if ($available > $image->size) {
-                    $newImage = $image->replicate(['id', 'campaign_id']);
-                    $newImage->campaign_id = $this->to->id;
-                    $newImage->save();
-
-                    Storage::copy($image->path, $newImage->path);
-
-                    $newModel->entity->image_uuid = $newImage->id;
-                }
-            }
+            $this->copyGalleryImages($newModel->entity, [
+                'image_uuid' => $image,
+                'header_uuid' => $header,
+            ]);
             $newModel->entity->saveQuietly();
 
             $this->copyService
@@ -209,6 +202,10 @@ class MoveService
             CampaignLocalization::forceCampaign($this->to);
             $this->entity->campaign_id = $this->to->id;
             $this->entity->parent_id = null;
+            if (! empty($this->entity->header_image)) {
+                Storage::delete($this->entity->header_image);
+                $this->entity->header_image = null;
+            }
             if (! empty($this->entity->image_path)) {
                 $oldImagePath = $this->entity->image_path;
                 $this->entity->image_path = Str::replace(
@@ -238,6 +235,41 @@ class MoveService
         CampaignLocalization::forceCampaign($this->campaign);
 
         return $success;
+    }
+
+    /**
+     * Copy gallery images to the target campaign and update the entity references.
+     *
+     * @param  array<string, ?Image>  $images
+     */
+    protected function copyGalleryImages(Entity $entity, array $images): void
+    {
+        $copied = [];
+
+        foreach ($images as $field => $image) {
+            if (empty($image)) {
+                continue;
+            }
+
+            if (! isset($copied[$image->id])) {
+                $available = $this->storageService
+                    ->campaign($this->to)
+                    ->available();
+                if ($available <= $image->size) {
+                    continue;
+                }
+
+                $newImage = $image->replicate(['id', 'campaign_id']);
+                $newImage->campaign_id = $this->to->id;
+                $newImage->save();
+
+                Storage::copy($image->path, $newImage->path);
+                $copied[$image->id] = $newImage;
+                $this->storageService->clearCache();
+            }
+
+            $entity->{$field} = $copied[$image->id]->id;
+        }
     }
 
     protected function cleanupChild(MiscModel $model)
