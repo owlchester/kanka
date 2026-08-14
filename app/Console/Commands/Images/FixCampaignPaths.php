@@ -109,6 +109,64 @@ class FixCampaignPaths extends Command
             }
         }
 
+        $entities = DB::table('entities')
+            ->select(['id', 'campaign_id', 'header_image'])
+            ->whereNotNull('header_image')
+            ->where('header_image', 'like', 'campaign/%')
+            ->orderBy('id')
+            ->limit($limit)
+            ->get();
+
+        foreach ($entities as $entity) {
+            $source = ltrim((string) $entity->header_image, '/');
+            if (! preg_match('#^campaign/(\d+)/(.+)$#', $source, $matches)) {
+                continue;
+            }
+
+            $destination = $this->destinationPathForId((int) $matches[1], $source);
+            $this->line("{$entity->id}: header_image {$source} -> {$destination}");
+            $stats['candidates']++;
+
+            if (! $execute) {
+                continue;
+            }
+
+            try {
+                if (isset($moved[$source])) {
+                    DB::table('entities')
+                        ->where('id', $entity->id)
+                        ->update(['header_image' => $moved[$source]]);
+                    $stats['repaired']++;
+
+                    continue;
+                }
+                if (! $disk->exists($source)) {
+                    $stats['missing']++;
+                    $this->warn("Source does not exist: {$source}");
+
+                    continue;
+                }
+                if ($disk->exists($destination)) {
+                    $stats['conflicts']++;
+                    $this->warn("Destination already exists: {$destination}");
+
+                    continue;
+                }
+                if (! $disk->move($source, $destination)) {
+                    throw new \RuntimeException('Move failed.');
+                }
+
+                DB::table('entities')
+                    ->where('id', $entity->id)
+                    ->update(['header_image' => $destination]);
+                $moved[$source] = $destination;
+                $stats['repaired']++;
+            } catch (Throwable $exception) {
+                $stats['failed']++;
+                $this->warn("Could not repair entity {$entity->id} header_image: {$exception->getMessage()}");
+            }
+        }
+
         $this->table(['Metric', 'Count'], [
             ['Candidates', $stats['candidates']],
             ['Repaired', $stats['repaired']],
@@ -122,6 +180,11 @@ class FixCampaignPaths extends Command
 
     protected function destinationPath(Campaign $campaign, string $source): string
     {
+        return $this->destinationPathForId($campaign->id, $source);
+    }
+
+    protected function destinationPathForId(int $campaignId, string $source): string
+    {
         $filename = basename($source);
         $filename = Str::before(Str::before($filename, '%3F'), '?');
         $extension = pathinfo($filename, PATHINFO_EXTENSION);
@@ -131,7 +194,7 @@ class FixCampaignPaths extends Command
             $name .= '.' . $extension;
         }
 
-        return $campaign->imageStoragePath() . '/' . $name;
+        return 'w/' . $campaignId . '/' . $name;
     }
 
     protected function notInCampaignFolder(string $field, string $driver): string
