@@ -50,7 +50,7 @@ class MigrateLegacyImages extends Command
 
         $this->finalizeCutovers($prefix);
 
-        return $this->migrateIndexed($prefix, max(1, min(10000, (int) $this->option('limit'))));
+        return $this->migrateIndexed($prefix, max(1, min(50000, (int) $this->option('limit'))));
     }
 
     protected function index(string $prefix, bool $rebuild): int
