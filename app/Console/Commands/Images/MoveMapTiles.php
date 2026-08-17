@@ -28,6 +28,7 @@ class MoveMapTiles extends Command
             $sourcePath = 'images/' . $image->id . '/tiles';
             $source = $disk->path($sourcePath);
             if (! is_dir($source)) {
+                $this->warn("Already moved: {$sourcePath}");
                 continue;
             }
 
