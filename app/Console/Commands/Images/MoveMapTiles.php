@@ -26,7 +26,7 @@ class MoveMapTiles extends Command
             }
 
             $destination = $disk->path($image->tilesPath());
-            if (is_dir($destination)) {
+            if (file_exists($destination)) {
                 $this->error("Destination already exists: {$image->tilesPath()}");
                 $failed = true;
 
