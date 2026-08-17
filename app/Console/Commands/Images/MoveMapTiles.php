@@ -19,7 +19,10 @@ class MoveMapTiles extends Command
         $disk = Storage::disk();
         $failed = false;
 
-        foreach (Image::query()->select(['id', 'campaign_id'])->cursor() as $image) {
+        foreach (Image::query()
+            ->where('tiling_status', Image::TILING_FINISHED)
+            ->select(['id', 'campaign_id'])
+            ->cursor() as $image) {
             $source = $disk->path('images/' . $image->id . '/tiles');
             if (! is_dir($source)) {
                 continue;

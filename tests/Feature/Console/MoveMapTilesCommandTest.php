@@ -9,7 +9,10 @@ beforeEach(function () {
 });
 
 it('moves the complete tile directory in one operation', function () {
-    $image = Image::factory()->create(['campaign_id' => 1]);
+    $image = Image::factory()->create([
+        'campaign_id' => 1,
+        'tiling_status' => Image::TILING_FINISHED,
+    ]);
     $source = 'images/' . $image->id . '/tiles';
     Storage::disk()->put($source . '/0/0/0.webp', 'first-tile');
     Storage::disk()->put($source . '/1/0/1.webp', 'second-tile');
@@ -24,7 +27,10 @@ it('moves the complete tile directory in one operation', function () {
 });
 
 it('leaves the source directory in place when the destination exists', function () {
-    $image = Image::factory()->create(['campaign_id' => 1]);
+    $image = Image::factory()->create([
+        'campaign_id' => 1,
+        'tiling_status' => Image::TILING_FINISHED,
+    ]);
     $source = 'images/' . $image->id . '/tiles';
     $destination = $image->tilesPath();
     Storage::disk()->put($source . '/0/0/0.webp', 'old-tile');
