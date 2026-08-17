@@ -17,13 +17,30 @@ it('moves the complete tile directory in one operation', function () {
     Storage::disk()->put($source . '/0/0/0.webp', 'first-tile');
     Storage::disk()->put($source . '/1/0/1.webp', 'second-tile');
 
-    $this->artisan('images:move-map-tiles')
+    $this->artisan('images:move-map-tiles', ['--execute' => true])
+        ->expectsOutputToContain("Migrated image {$image->id}: {$source} -> {$image->tilesPath()}")
         ->assertSuccessful();
 
     Storage::disk()->assertMissing($source . '/0/0/0.webp');
     Storage::disk()->assertMissing($source . '/1/0/1.webp');
     Storage::disk()->assertExists($image->tilesPath() . '/0/0/0.webp');
     Storage::disk()->assertExists($image->tilesPath() . '/1/0/1.webp');
+});
+
+it('reports the complete tile directory without moving it during a dry run', function () {
+    $image = Image::factory()->create([
+        'campaign_id' => 1,
+        'tiling_status' => Image::TILING_FINISHED,
+    ]);
+    $source = 'images/' . $image->id . '/tiles';
+    Storage::disk()->put($source . '/0/0/0.webp', 'tile');
+
+    $this->artisan('images:move-map-tiles')
+        ->expectsOutput("Would move {$source} -> {$image->tilesPath()}")
+        ->assertSuccessful();
+
+    Storage::disk()->assertExists($source . '/0/0/0.webp');
+    Storage::disk()->assertMissing($image->tilesPath() . '/0/0/0.webp');
 });
 
 it('leaves the source directory in place when the destination exists', function () {
@@ -36,7 +53,7 @@ it('leaves the source directory in place when the destination exists', function 
     Storage::disk()->put($source . '/0/0/0.webp', 'old-tile');
     Storage::disk()->put($destination . '/0/0/0.webp', 'new-tile');
 
-    $this->artisan('images:move-map-tiles')
+    $this->artisan('images:move-map-tiles', ['--execute' => true])
         ->assertFailed();
 
     Storage::disk()->assertExists($source . '/0/0/0.webp');

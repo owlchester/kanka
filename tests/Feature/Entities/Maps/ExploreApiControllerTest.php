@@ -210,6 +210,15 @@ it('marks a finished tiled map with a tiles url', function () {
     expect($response->json('map.tiling'))->toBeNull();
 });
 
+it('exposes a configured center of 0,0', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1, 'center_x' => 0, 'center_y' => 0]);
+
+    $response = $this->get(route('entities.map-api', [1, $map->entity]))->assertSuccessful();
+
+    expect($response->json('map.center'))->toEqual([0, 0]);
+});
+
 it('reports a running tiling status without a tiles url', function () {
     $this->asUser()->withCampaign();
     $image = Image::factory()->create(['campaign_id' => 1, 'tiling_status' => Image::TILING_RUNNING]);
