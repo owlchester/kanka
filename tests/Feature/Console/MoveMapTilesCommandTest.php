@@ -8,7 +8,7 @@ beforeEach(function () {
     $this->asUser()->withCampaign();
 });
 
-it('moves the complete tile directory in one operation', function () {
+it('moves all files in the tile directory', function () {
     $image = Image::factory()->create([
         'campaign_id' => 1,
         'tiling_status' => Image::TILING_FINISHED,
@@ -18,7 +18,7 @@ it('moves the complete tile directory in one operation', function () {
     Storage::disk()->put($source . '/1/0/1.webp', 'second-tile');
 
     $this->artisan('images:move-map-tiles', ['--execute' => true])
-        ->expectsOutputToContain("Migrated image {$image->id}: {$source} -> {$image->tilesPath()}")
+        ->expectsOutputToContain("Migrated image {$image->id} (2 files): {$source} -> {$image->tilesPath()}")
         ->assertSuccessful();
 
     Storage::disk()->assertMissing($source . '/0/0/0.webp');
