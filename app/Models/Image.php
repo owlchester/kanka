@@ -480,11 +480,6 @@ class Image extends Model
         return 'campaigns/' . $this->campaign_id . '/tiles/' . $this->id;
     }
 
-    public function legacyTilesPath(): string
-    {
-        return 'images/' . $this->id . '/tiles';
-    }
-
     public function getUrl(?int $sizeX = null, ?int $sizeY = null): string
     {
         if ($this->isSvg()) {
@@ -536,13 +531,7 @@ class Image extends Model
      */
     public function tilesUrlTemplate(): string
     {
-        $disk = Storage::disk();
-        $tilesPath = $this->tilesPath();
-        if ($disk->directoryExists($this->legacyTilesPath())) {
-            $tilesPath = $this->legacyTilesPath();
-        }
-
-        $path = $tilesPath . '/{z}/{y}/{x}.webp';
+        $path = $this->tilesPath() . '/{z}/{y}/{x}.webp';
         $cdn = config('cdn.ugc');
         if ($cdn) {
             return $cdn . '/' . $path;
