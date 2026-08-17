@@ -477,7 +477,7 @@ class Image extends Model
      */
     public function tilesPath(): string
     {
-        return 'images/' . $this->id . '/tiles';
+        return 'campaigns/' . $this->campaign_id . '/tiles/' . $this->id;
     }
 
     public function getUrl(?int $sizeX = null, ?int $sizeY = null): string

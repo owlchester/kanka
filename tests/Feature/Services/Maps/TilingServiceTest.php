@@ -42,13 +42,13 @@ it('builds the vips command that adds an opaque alpha channel to an RGB image', 
     ]);
 });
 
-it('uploads generated tiles to the configured disk, keyed by image, not by a local filesystem path', function () {
+it('uploads generated tiles to the configured campaign-scoped path', function () {
     Storage::fake();
     $user = User::factory()->create();
     $this->actingAs($user);
     $campaign = Campaign::factory()->create();
     $image = Image::factory()->create(['campaign_id' => $campaign->id, 'ext' => 'png']);
-    Storage::disk(config('images.disk'))->put($image->path, 'fake-source-bytes');
+    Storage::disk()->put($image->path, 'fake-source-bytes');
 
     // Build a fake local tile-pyramid directory the way `vips dzsave --layout=google` would,
     // simulating its output without actually shelling out to a real vips binary.
@@ -63,7 +63,7 @@ it('uploads generated tiles to the configured disk, keyed by image, not by a loc
 
         public function tileFromFakeVipsOutput(Image $image): void
         {
-            $disk = Storage::disk(config('images.disk'));
+            $disk = Storage::disk();
             $disk->delete($disk->allFiles($image->tilesPath()));
             $this->uploadTilesForTest($disk, $this->fakeLocalTilesDir, $image->tilesPath());
         }
@@ -79,10 +79,10 @@ it('uploads generated tiles to the configured disk, keyed by image, not by a loc
 
     $service->tileFromFakeVipsOutput($image);
 
-    expect(Storage::disk(config('images.disk'))->exists($image->tilesPath() . '/0/0/0.webp'))->toBeTrue();
-    expect(Storage::disk(config('images.disk'))->get($image->tilesPath() . '/0/0/0.webp'))->toBe('fake-tile-bytes');
+    expect(Storage::disk()->exists($image->tilesPath() . '/0/0/0.webp'))->toBeTrue();
+    expect(Storage::disk()->get($image->tilesPath() . '/0/0/0.webp'))->toBe('fake-tile-bytes');
     // blank.png is deliberately not uploaded — the app has its own transparent-tile fallback
-    expect(Storage::disk(config('images.disk'))->exists($image->tilesPath() . '/blank.png'))->toBeFalse();
+    expect(Storage::disk()->exists($image->tilesPath() . '/blank.png'))->toBeFalse();
 
     // Cleanup the local fixture dir this test created directly (not exercised via the real tile()/finally path)
     exec('rm -rf ' . escapeshellarg($localTilesDir));
@@ -94,7 +94,7 @@ it('tile() downloads the source to a real local file, runs the command against i
     $this->actingAs($user);
     $campaign = Campaign::factory()->create();
     $image = Image::factory()->create(['campaign_id' => $campaign->id, 'ext' => 'png']);
-    Storage::disk(config('images.disk'))->put($image->path, 'fake-source-bytes');
+    Storage::disk()->put($image->path, 'fake-source-bytes');
 
     $service = new class extends TilingService
     {
@@ -131,9 +131,9 @@ it('tile() downloads the source to a real local file, runs the command against i
     expect(file_exists($service->capturedLocalSource))->toBeFalse(); // cleaned up in the `finally` block
     expect(file_exists($service->capturedLocalTilesDir))->toBeFalse(); // cleaned up in the `finally` block
 
-    // The generated tile was uploaded back to the configured (fake) disk, image-keyed.
-    expect(Storage::disk(config('images.disk'))->exists($image->tilesPath() . '/0/0/0.webp'))->toBeTrue();
-    expect(Storage::disk(config('images.disk'))->get($image->tilesPath() . '/0/0/0.webp'))->toBe('fake-tile-bytes');
+    // The generated tile was uploaded back to the configured (fake) disk, campaign-keyed.
+    expect(Storage::disk()->exists($image->tilesPath() . '/0/0/0.webp'))->toBeTrue();
+    expect(Storage::disk()->get($image->tilesPath() . '/0/0/0.webp'))->toBe('fake-tile-bytes');
 });
 
 it('cleans up the local temp source file and tiles directory when the vips process fails, and rethrows', function () {
@@ -142,7 +142,7 @@ it('cleans up the local temp source file and tiles directory when the vips proce
     $this->actingAs($user);
     $campaign = Campaign::factory()->create();
     $image = Image::factory()->create(['campaign_id' => $campaign->id, 'ext' => 'png']);
-    Storage::disk(config('images.disk'))->put($image->path, 'fake-source-bytes');
+    Storage::disk()->put($image->path, 'fake-source-bytes');
 
     $service = new class extends TilingService
     {
@@ -181,7 +181,7 @@ it('cleans up the local temp source file and tiles directory when the vips proce
     expect(file_exists($service->capturedLocalTilesDir))->toBeFalse();
 
     // The failed run's partial output was never uploaded to the disk.
-    expect(Storage::disk(config('images.disk'))->exists($image->tilesPath() . '/0/0/0.webp'))->toBeFalse();
+    expect(Storage::disk()->exists($image->tilesPath() . '/0/0/0.webp'))->toBeFalse();
 });
 
 it('tile() returns the real min/max zoom levels vips generated, not a hardcoded range', function () {
@@ -190,7 +190,7 @@ it('tile() returns the real min/max zoom levels vips generated, not a hardcoded 
     $this->actingAs($user);
     $campaign = Campaign::factory()->create();
     $image = Image::factory()->create(['campaign_id' => $campaign->id, 'ext' => 'png']);
-    Storage::disk(config('images.disk'))->put($image->path, 'fake-source-bytes');
+    Storage::disk()->put($image->path, 'fake-source-bytes');
 
     $service = new class extends TilingService
     {

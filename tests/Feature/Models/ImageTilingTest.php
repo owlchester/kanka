@@ -48,11 +48,11 @@ it('treats a permanent tiling error as ready (fallback to plain rendering), not 
     expect($image->tilingReady())->toBeTrue();
 });
 
-it('builds the tiles storage path keyed by image uuid', function () {
+it('builds the tiles storage path inside the campaign and keyed by image uuid', function () {
     $user = User::factory()->create();
     $this->actingAs($user);
     $campaign = Campaign::factory()->create();
     $image = Image::factory()->create(['campaign_id' => $campaign->id]);
 
-    expect($image->tilesPath())->toBe('images/' . $image->id . '/tiles');
+    expect($image->tilesPath())->toBe('campaigns/1/tiles/' . $image->id);
 });
