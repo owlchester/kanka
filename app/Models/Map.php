@@ -426,11 +426,11 @@ class Map extends MiscModel
             $longitude = $this->centerMarker->longitude;
         } else {
             // Use the center positions if they exist
-            if (! empty($this->center_y)) {
+            if ($this->center_y !== null) {
                 $latitude = $this->center_y;
             }
 
-            if (! empty($this->center_x)) {
+            if ($this->center_x !== null) {
                 $longitude = $this->center_x;
             }
         }

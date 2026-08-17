@@ -294,3 +294,9 @@ it('centers a tiled map on the middle of its actual image, not (0,0)', function 
 
     expect($map->centerFocus())->toBe('1500, 2000');
 });
+
+it('honors a configured center of 0,0', function () {
+    $map = Map::factory()->create(['center_x' => 0, 'center_y' => 0]);
+
+    expect($map->centerFocus())->toBe('0, 0');
+});
