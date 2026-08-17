@@ -47,14 +47,16 @@ class LegacyImageMigrationService
             $this->inventorySources($prefix);
             DB::table('legacy_image_migration_references')->where('prefix', $prefix)->delete();
 
-            foreach (self::CONTENT_COLUMNS as $table => $columns) {
-                foreach ($columns as $column) {
-                    $this->indexColumn($prefix, $table, $column);
+            if (! $this->skipsContentReferences($prefix)) {
+                foreach (self::CONTENT_COLUMNS as $table => $columns) {
+                    foreach ($columns as $column) {
+                        $this->indexColumn($prefix, $table, $column);
+                    }
                 }
             }
             foreach (self::PATH_COLUMNS as $table => $columns) {
                 foreach ($columns as $column) {
-                    if ($table === 'entities' && $column === 'image_path') {
+                    if (($table === 'entities' || $table === 'map_layers') && $column === 'image_path') {
                         continue;
                     }
                     $this->indexStructuredColumn($prefix, $table, $column);
@@ -448,6 +450,19 @@ class LegacyImageMigrationService
 
     protected function owners(string $prefix): Builder
     {
+        if ($prefix === 'map_layers/') {
+            $owners = DB::table('map_layers')
+                ->selectRaw('image_path AS source_path, MIN(id) AS entity_id')
+                ->where('image_path', 'like', $prefix . '%')
+                ->groupBy('image_path');
+
+            return DB::query()
+                ->fromSub($owners, 'owner')
+                ->join('map_layers', 'map_layers.id', '=', 'owner.entity_id')
+                ->join('maps', 'maps.id', '=', 'map_layers.map_id')
+                ->select(['owner.source_path', 'owner.entity_id', 'maps.campaign_id']);
+        }
+
         $owners = DB::table('entities')
             ->selectRaw('image_path AS source_path, MIN(id) AS entity_id')
             ->where('image_path', 'like', $prefix . '%')
@@ -457,6 +472,11 @@ class LegacyImageMigrationService
             ->fromSub($owners, 'owner')
             ->join('entities', 'entities.id', '=', 'owner.entity_id')
             ->select(['owner.source_path', 'owner.entity_id', 'entities.campaign_id']);
+    }
+
+    protected function skipsContentReferences(string $prefix): bool
+    {
+        return $prefix === 'map_layers/';
     }
 
     protected function indexColumn(string $prefix, string $table, string $column): void
