@@ -414,7 +414,7 @@ class Map extends MiscModel
         if ($this->isReal()) {
             $latitude = 46.205;
             $longitude = 6.147;
-        } else {
+        } elseif ($this->height && $this->width) {
             $latitude = floor($this->height / 2);
             $longitude = floor($this->width / 2);
         }
@@ -470,6 +470,9 @@ class Map extends MiscModel
         }
 
         if (! empty($this->entity->image)) {
+            if ($this->entity->image->isTiled() && $this->entity->image->tilingReady()) {
+                return;
+            }
             $this->entity->image->ensureDimensions();
             $this->height = $this->entity->image->height() ?: 1000;
             $this->width = $this->entity->image->width() ?: 1000;
