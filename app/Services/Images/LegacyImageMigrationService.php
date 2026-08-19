@@ -191,10 +191,7 @@ class LegacyImageMigrationService
 
     public function rewriteValue(string $value, string $source, string $destination): string
     {
-        $destinationUrl = rtrim((string) config('cdn.ugc'), '/') . '/' . $destination;
-        if (empty(config('cdn.ugc'))) {
-            $destinationUrl = Storage::disk('s3')->url($destination);
-        }
+        $destinationUrl = $this->destinationUrl($destination);
 
         foreach ($this->knownBases() as $base) {
             $value = str_replace($base . '/' . $source, $destinationUrl, $value);
@@ -207,6 +204,90 @@ class LegacyImageMigrationService
             fn (array $matches): string => $matches['before'] . $destination,
             $value
         ) ?? $value;
+    }
+
+    public function rewriteSignedThumborReferences(int $migrationId, string $source, string $destination): int
+    {
+        $references = DB::table('legacy_image_migration_references')
+            ->where('legacy_image_migration_id', $migrationId)
+            ->where('status', 'blocker')
+            ->where('error', 'like', 'Signed Thumbor reference%')
+            ->orderBy('id')
+            ->get();
+        $updatedRows = 0;
+
+        foreach ($references as $reference) {
+            if (! isset(self::CONTENT_COLUMNS[$reference->table_name])
+                || ! in_array($reference->column_name, self::CONTENT_COLUMNS[$reference->table_name], true)) {
+                throw new RuntimeException("Refusing to rewrite signed URL in {$reference->table_name}.{$reference->column_name}");
+            }
+
+            $current = DB::table($reference->table_name)
+                ->where('id', $reference->row_id)
+                ->value($reference->column_name);
+            if (! is_string($current)) {
+                throw new RuntimeException("Missing signed URL value in {$reference->table_name}.{$reference->column_name} row {$reference->row_id}");
+            }
+
+            $updated = $this->rewriteSignedThumborValue($current, $source, $destination);
+            if ($updated === $current) {
+                throw new RuntimeException("Could not locate signed Thumbor URL in {$reference->table_name}.{$reference->column_name} row {$reference->row_id}");
+            }
+
+            $affected = DB::table($reference->table_name)
+                ->where('id', $reference->row_id)
+                ->where($reference->column_name, $current)
+                ->update([$reference->column_name => $updated]);
+            if ($affected !== 1) {
+                throw new RuntimeException("Concurrent update in {$reference->table_name}.{$reference->column_name} row {$reference->row_id}");
+            }
+
+            DB::table('legacy_image_migration_references')->where('id', $reference->id)->update([
+                'value_hash' => hash('sha256', $updated),
+                'status' => 'resolved',
+                'error' => null,
+                'updated_at' => now(),
+            ]);
+            $updatedRows++;
+        }
+
+        return $updatedRows;
+    }
+
+    public function rewriteSignedThumborValue(string $value, string $source, string $destination): string
+    {
+        $hosts = array_values(array_filter(array_unique([
+            'th.kanka.io',
+            parse_url((string) config('thumbor.url'), PHP_URL_HOST),
+        ])));
+        if (empty($hosts)) {
+            return $value;
+        }
+
+        $hostPattern = implode('|', array_map(fn (string $host): string => preg_quote($host, '~'), $hosts));
+        $pattern = '~(?:https?:)?//(?:' . $hostPattern . ')/[^\s"\'<>]+~iu';
+        $cleanSource = preg_split('/[?#]/', $source, 2)[0];
+        $destinationUrl = $this->destinationUrl($destination);
+
+        return preg_replace_callback($pattern, function (array $matches) use ($source, $cleanSource, $destinationUrl): string {
+            $url = $matches[0];
+            $candidate = rtrim($url, '),;');
+            if (! str_contains(html_entity_decode($candidate, ENT_QUOTES | ENT_HTML5), $source)
+                && ! str_contains(html_entity_decode($candidate, ENT_QUOTES | ENT_HTML5), $cleanSource)) {
+                return $url;
+            }
+
+            return $destinationUrl . mb_substr($url, mb_strlen($candidate));
+        }, $value) ?? $value;
+    }
+
+    public function destinationUrl(string $destination): string
+    {
+        if (! empty(config('cdn.ugc'))) {
+            return rtrim((string) config('cdn.ugc'), '/') . '/' . $destination;
+        }
+
+        return Storage::disk('s3')->url($destination);
     }
 
     /** @return array{structured: int, content: int, blockers: int} */
