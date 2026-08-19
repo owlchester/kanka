@@ -168,6 +168,26 @@ it('leaves the source and database untouched when an unresolved thumbor referenc
         ->and($entity->fresh()->entry)->toContain($source);
 });
 
+it('does not block a direct image url because the same field has an unrelated thumbor url', function () {
+    $source = 'characters/direct.jpg';
+    $unrelated = 'https://th.kanka.io/signature/200x200/src/locations/unrelated.jpg';
+    $entity = Character::factory()->create(['campaign_id' => 1])->entity;
+    $entity->forceFill([
+        'image_path' => $source,
+        'entry' => '<img src="https://cdn-ugc.kanka.io/' . $source . '"><img src="' . $unrelated . '">',
+    ])->saveQuietly();
+    Storage::disk('s3')->put($source, 'image-content');
+
+    $this->artisan('images:migrate-legacy', ['prefix' => 'characters', '--index' => true])
+        ->assertSuccessful();
+    $this->artisan('images:migrate-legacy', ['prefix' => 'characters', '--execute' => true])
+        ->assertSuccessful();
+
+    expect($entity->fresh()->entry)
+        ->toContain('https://cdn-ugc.kanka.io/' . legacyDestination(1, $source))
+        ->toContain($unrelated);
+});
+
 it('continues with later objects when one source is missing', function () {
     $missing = 'characters/a-missing.jpg';
     $valid = 'characters/b-valid.jpg';

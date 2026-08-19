@@ -231,7 +231,12 @@ class LegacyImageMigrationService
 
             $updated = $this->rewriteSignedThumborValue($current, $source, $destination);
             if ($updated === $current) {
-                throw new RuntimeException("Could not locate signed Thumbor URL in {$reference->table_name}.{$reference->column_name} row {$reference->row_id}");
+                // Older indexes classified the whole field as signed when it contained
+                // an unrelated Thumbor URL alongside this source's direct CDN URL.
+                $updated = $this->rewriteValue($current, $source, $destination);
+            }
+            if ($updated === $current) {
+                throw new RuntimeException("Could not locate image URL in {$reference->table_name}.{$reference->column_name} row {$reference->row_id}");
             }
 
             $affected = DB::table($reference->table_name)
@@ -256,24 +261,17 @@ class LegacyImageMigrationService
 
     public function rewriteSignedThumborValue(string $value, string $source, string $destination): string
     {
-        $hosts = array_values(array_filter(array_unique([
-            'th.kanka.io',
-            parse_url((string) config('thumbor.url'), PHP_URL_HOST),
-        ])));
-        if (empty($hosts)) {
+        $pattern = $this->thumborUrlPattern();
+        if ($pattern === null) {
             return $value;
         }
 
-        $hostPattern = implode('|', array_map(fn (string $host): string => preg_quote($host, '~'), $hosts));
-        $pattern = '~(?:https?:)?//(?:' . $hostPattern . ')/[^\s"\'<>]+~iu';
-        $cleanSource = preg_split('/[?#]/', $source, 2)[0];
         $destinationUrl = $this->destinationUrl($destination);
 
-        return preg_replace_callback($pattern, function (array $matches) use ($source, $cleanSource, $destinationUrl): string {
+        return preg_replace_callback($pattern, function (array $matches) use ($source, $destinationUrl): string {
             $url = $matches[0];
             $candidate = rtrim($url, '),;');
-            if (! str_contains(html_entity_decode($candidate, ENT_QUOTES | ENT_HTML5), $source)
-                && ! str_contains(html_entity_decode($candidate, ENT_QUOTES | ENT_HTML5), $cleanSource)) {
+            if (! $this->urlReferencesSource($candidate, $source)) {
                 return $url;
             }
 
@@ -787,12 +785,45 @@ class LegacyImageMigrationService
 
     protected function containsSignedThumborReference(string $value, string $source): bool
     {
-        if (! str_contains($value, $source)) {
+        $pattern = $this->thumborUrlPattern();
+        if ($pattern === null) {
             return false;
         }
 
-        $thumborHost = parse_url((string) config('thumbor.url'), PHP_URL_HOST);
+        preg_match_all($pattern, $value, $matches);
+        foreach ($matches[0] as $url) {
+            if ($this->urlReferencesSource(rtrim($url, '),;'), $source)) {
+                return true;
+            }
+        }
 
-        return str_contains($value, 'th.kanka.io') || ($thumborHost && str_contains($value, $thumborHost));
+        return false;
+    }
+
+    protected function thumborUrlPattern(): ?string
+    {
+        $hosts = array_values(array_filter(array_unique([
+            'th.kanka.io',
+            parse_url((string) config('thumbor.url'), PHP_URL_HOST),
+        ])));
+        if (empty($hosts)) {
+            return null;
+        }
+
+        $hostPattern = implode('|', array_map(fn (string $host): string => preg_quote($host, '~'), $hosts));
+
+        return '~(?:https?:)?//(?:' . $hostPattern . ')(?::\d+)?/[^\s"\'<>]+~iu';
+    }
+
+    protected function urlReferencesSource(string $url, string $source): bool
+    {
+        $url = html_entity_decode($url, ENT_QUOTES | ENT_HTML5);
+        if (str_contains($url, $source)) {
+            return true;
+        }
+
+        $cleanSource = preg_split('/[?#]/', $source, 2)[0];
+
+        return $cleanSource !== $source && str_contains($url, $cleanSource);
     }
 }
