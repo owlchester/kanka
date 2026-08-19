@@ -125,6 +125,17 @@ class LegacyImageMigrationService
         return "w/{$campaignId}/legacy/{$uuid}.{$extension}";
     }
 
+    public function resolveExtension(string $source): string
+    {
+        $resolved = $this->resolveSource($source);
+
+        if ($resolved['status'] !== 'resolved' || $resolved['extension'] === null) {
+            throw new RuntimeException($resolved['error'] ?? "Unable to identify image format for {$source}");
+        }
+
+        return $resolved['extension'];
+    }
+
     /**
      * Rewrite only rows recorded by the one-time prefix index.
      */
