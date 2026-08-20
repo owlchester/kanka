@@ -69,7 +69,7 @@ class EntityObserver
             $this->maybeTriggerTiling($entity);
         }
 
-        if ($entity->isDirty('image_uuid') && !empty($entity->image_path)) {
+        if ($entity->isDirty('image_uuid') && ! empty($entity->image_path)) {
             Images::model($entity)->field('image')->cleanup();
         }
     }
