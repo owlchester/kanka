@@ -28,7 +28,7 @@ class EntityObserver
             $this->grant($entity, Permission::Update->value);
         }
         if (! $entity->hasChild() || $entity->entity_id !== null) {
-            EntityCreationCompleted::dispatch($entity);
+            EntityCreationCompleted::dispatch($entity, auth()->user());
         }
     }
 
@@ -69,7 +69,7 @@ class EntityObserver
             $this->maybeTriggerTiling($entity);
         }
 
-        if ($entity->isDirty('image_uuid') && !empty($entity->image_path)) {
+        if ($entity->isDirty('image_uuid') && ! empty($entity->image_path)) {
             Images::model($entity)->field('image')->cleanup();
         }
     }

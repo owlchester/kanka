@@ -98,6 +98,14 @@ class ImportController extends Controller
     {
         $this->authorize('setting', $campaign);
 
+        if ($campaignImport->campaign_id !== $campaign->id) {
+            abort(403);
+        }
+
+        if ($campaignImport->status_id !== CampaignImportStatus::READY) {
+            abort(422);
+        }
+
         return view('campaigns.import.process-csv')
             ->with('campaign', $campaign)
             ->with('import', $campaignImport);

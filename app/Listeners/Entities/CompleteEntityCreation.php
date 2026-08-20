@@ -14,8 +14,9 @@ class CompleteEntityCreation
     {
         $entity = $event->entity;
 
-        if ($entity->campaign->premium()) {
-            EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::CREATED->value);
+        $user = $event->user ?? auth()->user();
+        if ($entity->campaign->premium() && $user) {
+            EntityWebhookJob::dispatch($entity, $user, WebhookAction::CREATED->value);
         }
 
         if (! $entity->isMap() || ! $entity->image_uuid) {

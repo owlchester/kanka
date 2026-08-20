@@ -36,6 +36,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use SplFileObject;
+use Stevebauman\Purify\Facades\Purify;
 use Throwable;
 
 class CsvImportService
@@ -203,16 +204,17 @@ class CsvImportService
             $batchSize = 50;
             $batch = [];
             $count = 0;
-            foreach ($csv as $rowIndex => $row) {
-                // Skip header if needed
-                if ($rowIndex === 0) {
-                    $this->headers = $row;
-
+            $headerRead = false;
+            foreach ($csv as $row) {
+                // Use the first non-empty row as the header, matching the validator.
+                if ($row === false || $row === [null]) {
                     continue;
                 }
 
-                // Skip empty rows
-                if ($row === [null]) {
+                if (! $headerRead) {
+                    $this->headers = $row;
+                    $headerRead = true;
+
                     continue;
                 }
 
@@ -274,11 +276,12 @@ class CsvImportService
             }
             $temp = [];
             foreach ($this->fieldMap as $field => $index) {
+                $value = $row[$index] ?? '';
                 if (Str::startsWith($field, 'is_')) {
                     // Correctly handles "true", "false", "1", "0", "on", "off"
-                    $temp[$field] = filter_var($row[$index], FILTER_VALIDATE_BOOL);
+                    $temp[$field] = filter_var($value, FILTER_VALIDATE_BOOL);
                 } else {
-                    $temp[$field] = $row[$index];
+                    $temp[$field] = $value;
                 }
             }
 
@@ -310,13 +313,14 @@ class CsvImportService
     public function create(): Entity
     {
         // Remove target as we need that for something else
-        if (! empty($this->data['entry'])) {
-            $this->data['entry'] = '<p>' . nl2br($this->data['entry'] . '</p>');
+        if (filled($this->data['entry'] ?? null)) {
+            $entry = Purify::clean((string) $this->data['entry']);
+            $this->data['entry'] = '<p>' . nl2br($entry) . '</p>';
         } elseif ($this->entityType->id == config('entities.ids.note')) {
             $this->data['entry'] = '';
         }
 
-        if (empty($this->data['is_private'])) {
+        if (! array_key_exists('is_private', $this->data) || $this->data['is_private'] === null || $this->data['is_private'] === '') {
             $this->data['is_private'] = $this->campaign->entity_visibility;
         }
 
@@ -342,6 +346,7 @@ class CsvImportService
         $new = $this->entityCreationService
             ->campaign($this->campaign)
             ->entityType($this->entityType)
+            ->user($this->user)
             ->create($this->data);
         $entity = $new->entity;
         $entity->entry = $this->data['entry'] ?? '';
@@ -373,7 +378,10 @@ class CsvImportService
         $entity->is_private = $this->data['is_private'];
         $entity->created_by = $this->user->id;
         $entity->save();
-        $this->entitySaveService->save($entity, $this->data);
+        $this->entitySaveService
+            ->campaign($this->campaign)
+            ->user($this->user)
+            ->save($entity, $this->data);
 
         return $entity;
     }
@@ -423,7 +431,7 @@ class CsvImportService
                     CharacterTrait::SECTION_PERSONALITY : CharacterTrait::SECTION_APPEARANCE;
 
                 $model->name = $name;
-                $model->entry = $entry;
+                $model->entry = Purify::clean((string) $entry);
                 $model->default_order = $traitOrder;
                 $model->save();
                 $traitOrder++;

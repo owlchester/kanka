@@ -173,8 +173,8 @@ class CsvValidatorService
                 continue;
             }
 
-            foreach ($row as $index => $value) {
-                if (trim((string) $value) === '') {
+            foreach (array_keys($hasEmpty) as $index) {
+                if (! array_key_exists($index, $row) || trim((string) ($row[$index] ?? '')) === '') {
                     $hasEmpty[$index] = true;
                 }
             }
@@ -191,7 +191,7 @@ class CsvValidatorService
 
         foreach ($headers as $index => $header) {
             if ($hasEmpty[$index] === false) {
-                $result[] = $header;
+                $result[$index] = $header;
             }
         }
 

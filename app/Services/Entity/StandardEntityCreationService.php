@@ -5,8 +5,10 @@ namespace App\Services\Entity;
 use App\Events\Entities\EntityCreationCompleted;
 use App\Models\Entity;
 use App\Models\MiscModel;
+use App\Models\User;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
+use App\Traits\UserAware;
 use Illuminate\Support\Facades\DB;
 use InvalidArgumentException;
 
@@ -14,6 +16,7 @@ class StandardEntityCreationService
 {
     use CampaignAware;
     use EntityTypeAware;
+    use UserAware;
 
     public function create(array $data): MiscModel
     {
@@ -26,6 +29,9 @@ class StandardEntityCreationService
             $entity->campaign_id = $this->campaign->id;
             $entity->type_id = $this->entityType->id;
             $entity->is_private = $data['is_private'] ?? false;
+            if ($this->user instanceof User) {
+                $entity->created_by = $this->user->id;
+            }
             $entity->setRelation('entityType', $this->entityType);
             $entity->save();
 
@@ -39,7 +45,7 @@ class StandardEntityCreationService
 
             $child->setRelation('entity', $entity);
             $entity->setRelation('child', $child);
-            EntityCreationCompleted::dispatch($entity);
+            EntityCreationCompleted::dispatch($entity, $this->user);
 
             return $child;
         });

@@ -10,11 +10,13 @@ use App\Facades\Permissions;
 use App\Models\Entity;
 use App\Services\PermissionService;
 use App\Traits\CampaignAware;
+use App\Traits\UserAware;
 use Stevebauman\Purify\Facades\Purify;
 
 class EntitySaveService
 {
     use CampaignAware;
+    use UserAware;
 
     public function __construct(
         protected TagService $tagService,
@@ -103,8 +105,13 @@ class EntitySaveService
             $ids = [];
         }
 
+        $user = $this->user ?? auth()->user();
+        if (! $user) {
+            return;
+        }
+
         $this->tagService
-            ->user(auth()->user())
+            ->user($user)
             ->entity($entity)
             ->withNew()
             ->sync($ids);
@@ -121,7 +128,8 @@ class EntitySaveService
 
     protected function savePermissions(Entity $entity, array $data): void
     {
-        if (! auth()->user()->can('permissions', $entity)) {
+        $user = $this->user ?? auth()->user();
+        if (! $user || ! $user->can('permissions', $entity)) {
             return;
         }
         if (array_key_exists('copy_permissions', $data) && ! empty($data['copy_permissions'])) {
@@ -135,7 +143,7 @@ class EntitySaveService
 
         // If the user has been granted permissions on this entity, ensure they keep read/write
         if (Permissions::granted() && ! empty($permData['user'])) {
-            $userId = auth()->user()->id;
+            $userId = $user->id;
             if (! in_array(Permission::Update->value, $permData['user'][$userId] ?? [])) {
                 $permData['user'][$userId][Permission::Update->value] = 'allow';
             }
@@ -145,7 +153,7 @@ class EntitySaveService
         }
 
         $this->permissionService
-            ->user(auth()->user())
+            ->user($user)
             ->campaign($this->campaign)
             ->entity($entity)
             ->save($permData);
