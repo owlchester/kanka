@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Services\Auth\DeviceService;
 use Illuminate\Cookie\Middleware\EncryptCookies as Middleware;
 
 class EncryptCookies extends Middleware
@@ -14,5 +15,6 @@ class EncryptCookies extends Middleware
         'kanka_locale',
         'kanka_trusted_domains', // used for the trusted domains entity links that is set in javascript
         'toggleState', // used to determine if the sidebar is collapsed or not
+        DeviceService::COOKIE_NAME,
     ];
 }

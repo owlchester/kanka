@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 
 class DeviceService
 {
-    public const COOKIE_NAME = 'kanka_device';
+    public const COOKIE_NAME = 'kanka_trusted_device';
 
     public const COOKIE_DAYS = 30;
 
@@ -68,7 +68,7 @@ class DeviceService
             $token,
             60 * 24 * self::COOKIE_DAYS,
             '/',
-            null,
+            config('trusted_device.cookie_domain'),
             config('session.secure'),
             true,
             false,
