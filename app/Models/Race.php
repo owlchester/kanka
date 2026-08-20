@@ -18,7 +18,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Race
  *
- * @property bool|int $is_extinct
  * @property Collection|CharacterRace[] $characterRaces
  */
 class Race extends MiscModel
@@ -36,18 +35,12 @@ class Race extends MiscModel
         'name',
         'campaign_id',
         'is_private',
-        'is_extinct',
     ];
 
     protected array $sortable = [
         'name',
         'type',
-        'is_extinct',
         'type',
-    ];
-
-    protected array $sortableColumns = [
-        'is_extinct',
     ];
 
     /**
@@ -60,7 +53,6 @@ class Race extends MiscModel
 
     protected array $exportFields = [
         'base',
-        'is_extinct',
     ];
 
     /**
@@ -166,14 +158,6 @@ class Race extends MiscModel
         }
 
         return parent::showProfileInfo();
-    }
-
-    /**
-     * Determine if the model is extinct.
-     */
-    public function isExtinct(): bool
-    {
-        return (bool) $this->is_extinct;
     }
 
     /**
