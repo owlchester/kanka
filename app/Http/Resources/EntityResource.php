@@ -219,7 +219,7 @@ class EntityResource extends JsonResource
                 : null,
             'tooltip' => $misc->entity->tooltip ?: null,
             'type' => $misc->entity->type ?: null,
-            'image' => $misc->entity->image_path,
+            'image' => $misc->entity->image_path, // old legacy path, no longer used or maintained
             'focus_x' => $misc->entity->focus_x,
             'focus_y' => $misc->entity->focus_y,
 

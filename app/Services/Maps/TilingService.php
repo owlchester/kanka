@@ -19,7 +19,7 @@ class TilingService
      * disk (which may be S3) afterward. Always emits `.webp` tiles — it supports alpha (unlike jpg)
      * at file sizes comparable to or smaller than png, so every source format (jpg/png/webp/gif)
      * produces a single, fixed, predictable tile extension with no per-image tracking needed.
-     * Writes to {disk}/images/{uuid}/tiles/. Returns the actual zoom range `vips` generated
+     * Writes to {disk}/campaigns/{campaign_id}/tiles/{uuid}/. Returns the actual zoom range `vips` generated
      * (['min_zoom' => int, 'max_zoom' => int]) so the caller can persist it onto any map using this
      * image — the old fixed zoom-range assumption bore no relationship to what a given image's
      * pyramid actually contains. Throws on any vips failure — the caller (TileImageJob) is
@@ -27,7 +27,7 @@ class TilingService
      */
     public function tile(Image $image): array
     {
-        $disk = Storage::disk(config('images.disk'));
+        $disk = Storage::disk();
 
         $localSource = $this->downloadToLocalTemp($disk, $image->path);
         $localTilesDir = sys_get_temp_dir() . '/kanka-tiling-' . $image->id . '-' . Str::random(8);

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Summernote Lists Extension Example</title>
+
+    <!-- include libraries(jQuery, bootstrap) -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- include summernote css/js-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
+
+    <script src="../summernote-table-styles.js"></script>
+
+</head>
+
+<body style="padding:20px;">
+    <h3>Demo of summernote-table-styles extension:</h3>
+    <p>Summernote version 0.8.12</p>
+    <p>JQuery version 3.4.1</p>
+    <p>Bootstrap version 3.3.7</p>
+    <div id="summernote">
+        <table class="table table-bordered table-hover table-striped">
+            <tbody>
+                <tr>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
+                </tr>
+                <tr>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
+                </tr>
+                <tr>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>
+        </p><br>
+        <p></p>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#summernote').summernote({
+                height: 400,
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['fontsize', ['fontsize']],
+                    ['table', ['table']],
+                    ['misc', ['codeview']]
+                ],
+                popover: {
+                    table: [
+                        ['add', ['addRowDown', 'addRowUp', 'addColLeft', 'addColRight', 'toggle']],
+                        ['delete', ['deleteRow', 'deleteCol', 'deleteTable']],
+                        ['custom', ['tableStyles']]
+                    ],
+                },
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>

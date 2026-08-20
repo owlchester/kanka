@@ -5,6 +5,7 @@ namespace App\Services\Gallery;
 use App\Facades\CampaignCache;
 use App\Models\Image;
 use App\Traits\CampaignAware;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Cache;
 
 class StorageService
@@ -25,13 +26,13 @@ class StorageService
         }
 
         return $this->used = Cache::remember($this->cacheKey(), 24 * 3600, function () {
-            return Image::sum('size');
+            return $this->campaignImages()->sum('size');
         });
     }
 
     public function uncachedUsedSpace(): int
     {
-        return Image::sum('size');
+        return $this->campaignImages()->sum('size');
     }
 
     /**
@@ -84,9 +85,15 @@ class StorageService
         return 'campaign_' . $this->campaign->id . '_gallery';
     }
 
+    protected function campaignImages(): Builder
+    {
+        return Image::withoutGlobalScopes()->where('campaign_id', $this->campaign->id);
+    }
+
     public function clearCache(): self
     {
         Cache::forget($this->cacheKey());
+        unset($this->used);
 
         return $this;
     }

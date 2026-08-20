@@ -432,11 +432,11 @@ class ImporterService
             $image->ext = $imageExt;
             $image->name = $entity->name;
             $image->visibility_id = Visibility::All;
-            $size = Storage::disk('s3-marketplace')->size($entity->image_path);
+            $size = Storage::disk('marketplace')->size($entity->image_path);
             $image->size = (int) ceil($size / 1024); // kb
             $image->save();
 
-            Storage::writeStream($image->path, Storage::disk('s3-marketplace')->readStream($entity->image_path));
+            Storage::writeStream($image->path, Storage::disk('marketplace')->readStream($entity->image_path));
             $this->model->entity->image_uuid = $image->id;
         } catch (Exception $e) {
             Log::error('Error importing image from ' . $entity->id . ': ' . $e->getMessage());

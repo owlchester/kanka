@@ -22,9 +22,9 @@ class ImageObserver
 
     public function deleted(Image $image)
     {
-        Storage::disk(config('images.disk'))
+        Storage::disk()
             ->delete($image->path);
-        Storage::disk(config('images.disk'))
+        Storage::disk()
             ->deleteDirectory($image->tilesPath());
 
         CampaignCache::campaign($image->campaign)->clear();

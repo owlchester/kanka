@@ -52,9 +52,11 @@ class EntitySaveService
         // Post-save: image file cleanup (safe after save — doesn't affect entity record)
         if (($data['remove-image'] ?? null) == '1') {
             Images::model($entity)->field('image')->cleanup();
+            $entity->saveQuietly();
         }
         if (($data['remove-header_image'] ?? null) == '1') {
             Images::model($entity)->field('header_image')->cleanup();
+            $entity->saveQuietly();
         }
 
         $this->saveTags($entity, $data);

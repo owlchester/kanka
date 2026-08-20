@@ -50,12 +50,12 @@
     @parent
     <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="{{ 'https://unpkg.com/leaflet@' . config('app.leaflet_source') . '/dist/leaflet.js' }}" integrity="{{ config('app.leaflet_js') }}" crossorigin=""></script>
-    <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.markercluster.js"></script>
-    <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.zoomdisplay.js"></script>
-    <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.zoomcss.js"></script>
-    <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.markercluster.layersupport.js"></script>
-    <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.path.drag.js"></script>
-    <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.editable.js"></script>
+    <script src="{{ asset('/vendor/leaflet/leaflet.markercluster.js') }}"></script>
+    <script src="{{ asset('/vendor/leaflet/leaflet.zoomdisplay.js') }}"></script>
+    <script src="{{ asset('/vendor/leaflet/leaflet.zoomcss.js') }}"></script>
+    <script src="{{ asset('/vendor/leaflet/leaflet.markercluster.layersupport.js') }}"></script>
+    <script src="{{ asset('/vendor/leaflet/leaflet.path.drag.js') }}"></script>
+    <script src="{{ asset('/vendor/leaflet/leaflet.editable.js') }}"></script>
     @vite([
         'resources/js/location/map-v3.js',
     ])
