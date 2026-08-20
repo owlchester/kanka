@@ -4,12 +4,20 @@ namespace App\Observers;
 
 use App\Facades\EntityLogger;
 use App\Facades\Images;
+use App\Models\Entity;
 use App\Models\MiscModel;
 
 class ChildEntityObserver
 {
     public function created(MiscModel $model)
     {
+        if ($model->relationLoaded('entity') && $model->entity instanceof Entity && $model->entity->entity_id === null) {
+            $model->entity->entity_id = $model->id;
+            $model->entity->save();
+
+            return;
+        }
+
         // Created a new sub entity? Create the parent entity.
         $model->createEntity();
     }

@@ -79,7 +79,7 @@ class AbilityController extends Controller
                         'ability_id' => $abilityId,
                         'visibility_id' => $data['visibility_id'],
                     ]);
-                    $abilities[] = $ability->name;
+                    $abilities[] = $ability->entity->name;
                 }
             }
             $success = __('entities/abilities.create.success_multiple', [
@@ -93,7 +93,7 @@ class AbilityController extends Controller
             $entityAbility = $entityAbility->create($data);
 
             $success = trans('entities/abilities.create.success', [
-                'ability' => $entityAbility->ability->name,
+                'ability' => $entityAbility->ability->entity->name,
                 'entity' => $entity->name,
             ]);
         }
@@ -143,7 +143,7 @@ class AbilityController extends Controller
 
         return redirect()
             ->route('entities.entity_abilities.index', [$campaign, $entity->id])
-            ->with('success', __('entities/abilities.update.success', ['ability' => $entityAbility->ability->name]));
+            ->with('success', __('entities/abilities.update.success', ['ability' => $entityAbility->ability->entity->name]));
     }
 
     public function destroy(Campaign $campaign, Entity $entity, EntityAbility $entityAbility)

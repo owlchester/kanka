@@ -14,12 +14,12 @@ use App\Models\Attribute;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 use App\Models\CampaignEvent;
-use App\Models\Character;
 use App\Models\CharacterTrait;
-use App\Models\Location;
+use App\Models\EntityType;
 use App\Models\Post;
 use App\Models\Relation;
 use App\Services\Campaign\CreateService;
+use App\Services\Entity\StandardEntityCreationService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 
@@ -28,7 +28,10 @@ class StarterService
     use CampaignAware;
     use UserAware;
 
-    public function __construct(protected CreateService $createService) {}
+    public function __construct(
+        protected CreateService $createService,
+        protected StandardEntityCreationService $entityCreationService,
+    ) {}
 
     /**
      * Create a new campaign for the user when they register their account
@@ -78,12 +81,13 @@ class StarterService
         CharacterCache::campaign($this->campaign);
 
         // Generate locations
-        $kingdom = new Location([
-            'name' => __('starter.kingdom.name'),
-            'campaign_id' => $this->campaign->id,
-            'is_private' => false,
-        ]);
-        $kingdom->save();
+        $kingdom = $this->entityCreationService
+            ->campaign($this->campaign)
+            ->entityType(EntityType::findOrFail(config('entities.ids.location')))
+            ->create([
+                'name' => __('starter.kingdom.name'),
+                'is_private' => false,
+            ]);
         $kingdom->entity->update([
             'type' => __('starter.kingdom.type'),
             'entry' => '<p>' . __('starter.kingdom.description') . '</p>',
@@ -119,13 +123,14 @@ class StarterService
             'type_id' => AttributeType::Standard,
         ]);
 
-        $city = new Location([
-            'name' => __('starter.city.name'),
-            'location_id' => $kingdom->id,
-            'campaign_id' => $this->campaign->id,
-            'is_private' => false,
-        ]);
-        $city->save();
+        $city = $this->entityCreationService
+            ->campaign($this->campaign)
+            ->entityType(EntityType::findOrFail(config('entities.ids.location')))
+            ->create([
+                'name' => __('starter.city.name'),
+                'location_id' => $kingdom->id,
+                'is_private' => false,
+            ]);
         $city->entity->update([
             'source' => 'onboarding',
             'type' => __('starter.city.type'),
@@ -161,15 +166,16 @@ class StarterService
         ]);
 
         // Generate characters
-        $james = new Character([
-            'name' => __('starter.character1.name'),
-            'age' => __('starter.character1.age'),
-            'campaign_id' => $this->campaign->id,
-            'is_private' => false,
-            'is_appearance_pinned' => true,
-            'is_personality_pinned' => true,
-        ]);
-        $james->save();
+        $james = $this->entityCreationService
+            ->campaign($this->campaign)
+            ->entityType(EntityType::findOrFail(config('entities.ids.character')))
+            ->create([
+                'name' => __('starter.character1.name'),
+                'age' => __('starter.character1.age'),
+                'is_private' => false,
+                'is_appearance_pinned' => true,
+                'is_personality_pinned' => true,
+            ]);
         $james->entity->locations()->sync([$city->id]);
         CharacterTrait::create([
             'character_id' => $james->id,
@@ -218,15 +224,16 @@ class StarterService
             '</ol>',
         ]);
 
-        $irwie = new Character([
-            'name' => __('starter.character2.name'),
-            'age' => __('starter.character1.age'),
-            'campaign_id' => $this->campaign->id,
-            'is_private' => false,
-            'is_appearance_pinned' => true,
-            'is_personality_pinned' => true,
-        ]);
-        $irwie->save();
+        $irwie = $this->entityCreationService
+            ->campaign($this->campaign)
+            ->entityType(EntityType::findOrFail(config('entities.ids.character')))
+            ->create([
+                'name' => __('starter.character2.name'),
+                'age' => __('starter.character1.age'),
+                'is_private' => false,
+                'is_appearance_pinned' => true,
+                'is_personality_pinned' => true,
+            ]);
         $irwie->entity->locations()->sync([$city->id]);
         $irwie->entity->update([
             'source' => 'onboarding',

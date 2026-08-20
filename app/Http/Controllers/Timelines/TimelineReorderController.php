@@ -55,6 +55,6 @@ class TimelineReorderController extends Controller
 
         return redirect()
             ->route('entities.show', [$campaign, $timeline->entity])
-            ->withSuccess(__('timelines.reorder.success', ['name' => $timeline->name]));
+            ->withSuccess(__('timelines.reorder.success', ['name' => $timeline->entity->name]));
     }
 }

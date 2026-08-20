@@ -70,6 +70,11 @@ trait SortableTrait
                 })
                 ->groupBy($this->getTable() . '.id')
                 ->orderBy('e.type', $order);
+        } elseif (in_array($key, ['name', 'is_private', 'updated_at'], true) && method_exists($this, 'joinEntity')) {
+            return $query
+                ->select($this->getTable() . '.*')
+                ->joinEntity()
+                ->orderBy('e.' . $key, $order);
         }
 
         // Custom sort method?

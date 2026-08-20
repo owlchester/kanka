@@ -2,8 +2,8 @@
 
 namespace App\Services\Entity;
 
+use App\Models\Entity;
 use App\Models\EntityLog;
-use App\Models\Location;
 use App\Models\MiscModel;
 use App\Models\Post;
 use App\Traits\CampaignAware;
@@ -73,7 +73,9 @@ class PostLoggerService
 
         try {
             if ($attribute == 'location_id') {
-                $originalLocation = Location::where('id', $original)->first();
+                $originalLocation = Entity::where('entity_id', $original)
+                    ->where('type_id', config('entities.ids.location'))
+                    ->first();
                 if (! empty($originalLocation)) {
                     return (string) $originalLocation->name;
                 }

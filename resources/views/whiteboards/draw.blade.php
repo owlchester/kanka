@@ -1,5 +1,5 @@
 @extends('layouts.rich', [
-    'title' => $whiteboard->name,
+    'title' => $whiteboard->entity->name,
     'breadcrumbs' => false,
     'mainTitle' => false,
     'pageClass' => 'whiteboard-page'

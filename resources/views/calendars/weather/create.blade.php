@@ -1,5 +1,5 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => __('calendars/weather.create.title', ['name' => $calendar->name]),
+    'title' => __('calendars/weather.create.title', ['name' => $calendar->entity->name]),
     'breadcrumbs' => [
         Breadcrumb::campaign($campaign)->entity($calendar->entity)->list(),
         Breadcrumb::show(),
@@ -13,7 +13,7 @@
     <x-form :action="['calendars.calendar_weather.store', $campaign, $calendar->id]">
 
     @include('partials.forms._dialog', [
-        'title' => __('calendars/weather.create.title', ['name' => $calendar->name]),
+        'title' => __('calendars/weather.create.title', ['name' => $calendar->entity->name]),
         'content' => 'calendars.weather._form',
     ])
 

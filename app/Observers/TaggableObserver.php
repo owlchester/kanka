@@ -30,7 +30,7 @@ class TaggableObserver
         // have tags on entities that the user doesn't know about.
         $existing = [];
         foreach ($model->tags as $tag) {
-            $existing[$tag->id] = $tag->name;
+            $existing[$tag->id] = $tag->entity->name;
         }
         $new = [];
 

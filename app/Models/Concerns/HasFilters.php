@@ -156,6 +156,8 @@ trait HasFilters
                     $this->filterHasImage($query, $value);
                 } elseif ($key == 'template') {
                     $this->filterTemplate($query, $value);
+                } elseif (in_array($key, ['name', 'is_private']) && $this->hasEntityBackedFields()) {
+                    $this->filterFallback($query, $key);
                 } elseif ($key == 'type') {
                     $this->filterType($query, $value);
                 } elseif ($key == 'has_posts') {
@@ -175,13 +177,23 @@ trait HasFilters
                 } elseif ($key == 'status_id') {
                     $this->filterStatus($query);
                 } elseif (in_array($key, ['created_by', 'updated_by'])) {
-                    $query
-                        ->joinEntity()
-                        ->where('e.' . $key, (int) $value);
+                    if ($this->hasEntityBackedFields()) {
+                        $query
+                            ->joinEntity()
+                            ->where('e.' . $key, (int) $value);
+                    } else {
+                        $query->where($this->getTable() . '.' . $key, (int) $value);
+                    }
                 } elseif ($this->filterOperator === 'IS NULL') {
+                    if ($this->hasEntityBackedFields() && in_array($key, [
+                        'name', 'is_private', 'created_by', 'updated_by', 'parent_id', 'status_id',
+                    ], true)) {
+                        $query->joinEntity();
+                    }
                     $query->where(function ($sub) use ($key) {
-                        $sub->whereNull($this->getTable() . '.' . $key)
-                            ->orWhere($this->getTable() . '.' . $key, '=', '');
+                        $column = $this->filterColumn($key);
+                        $sub->whereNull($column)
+                            ->orWhere($column, '=', '');
                     });
                 } else {
                     // If we have an exclude option filter, change the operator
@@ -190,9 +202,11 @@ trait HasFilters
             } elseif (Str::endsWith($key, '_option') && $value == 'none') {
                 $this->filterNoneOptions($query, $key, $fields);
             } elseif ($key == 'archived' && ! isset($value)) {
-                $query
-                    ->joinEntity()
-                    ->whereNull('e.archived_at');
+                if ($this->hasEntityBackedFields()) {
+                    $query
+                        ->joinEntity()
+                        ->whereNull('e.archived_at');
+                }
             }
         }
 
@@ -325,13 +339,19 @@ trait HasFilters
      */
     protected function filterFallback(Builder $query, string $key): void
     {
+        if ($this->hasEntityBackedFields() && in_array($key, [
+            'name', 'is_private', 'created_by', 'updated_by', 'parent_id', 'status_id',
+        ], true)) {
+            $query->joinEntity();
+        }
+        $column = $this->filterColumn($key);
         if ($this->filterOption('exclude')) {
-            $query->where(function ($subquery) use ($key) {
+            $query->where(function ($subquery) use ($column) {
                 return $subquery->where(
-                    $this->getTable() . '.' . $key,
+                    $column,
                     '!=',
                     $this->filterValue
-                )->orWhereNull($this->getTable() . '.' . $key);
+                )->orWhereNull($column);
             });
 
             return;
@@ -348,7 +368,7 @@ trait HasFilters
                 $searchTerm = $this->filterValue;
             }
             $query->where(
-                $this->getTable() . '.' . $key,
+                $column,
                 $this->filterOperator,
                 ($this->filterOperator == '=' ? $this->filterValue : "%{$searchTerm}%")
             );
@@ -905,7 +925,10 @@ trait HasFilters
         }
         // Left join shenanigans
         if (! in_array($key, ['race_id', 'family_id', 'tags', 'quest_element_id', 'member_id'])) {
-            $query->whereNull($this->getTable() . '.' . $key);
+            if ($this->hasEntityBackedFields()) {
+                $query->joinEntity();
+            }
+            $query->whereNull($this->filterColumn($key));
         } elseif ($key === 'tags') {
             $query
                 ->joinEntity()
@@ -949,12 +972,38 @@ trait HasFilters
 
     protected function filterParent(Builder $query): void
     {
-        $query->whereHas('entity', fn ($q) => $q->where('entities.parent_id', $this->filterValue));
+        if ($this->hasEntityBackedFields()) {
+            $query->joinEntity()->where('e.parent_id', $this->filterValue);
+
+            return;
+        }
+
+        $query->where($this->getTable() . '.parent_id', $this->filterValue);
     }
 
     protected function filterStatus(Builder $query): void
     {
-        $query->whereHas('entity', fn ($q) => $q->where('entities.status_id', $this->filterValue));
+        if ($this->hasEntityBackedFields()) {
+            $query->joinEntity()->where('e.status_id', $this->filterValue);
+
+            return;
+        }
+
+        $query->where($this->getTable() . '.status_id', $this->filterValue);
+    }
+
+    protected function hasEntityBackedFields(): bool
+    {
+        return method_exists($this, 'hasEntity') && $this->hasEntity();
+    }
+
+    protected function filterColumn(string $key): string
+    {
+        return ($this->hasEntityBackedFields() && in_array($key, [
+            'name', 'is_private', 'created_by', 'updated_by', 'archived', 'parent_id', 'status_id',
+        ], true))
+            ? 'e.' . $key
+            : $this->getTable() . '.' . $key;
     }
 
     protected function explicitFilters(): array

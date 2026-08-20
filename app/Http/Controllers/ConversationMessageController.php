@@ -84,7 +84,7 @@ class ConversationMessageController extends Controller
             ->route('entities.show', [$campaign, $conversation->entity])
             ->with('success', trans('conversations.messages.destroy.success', [
                 'name' => $conversationMessage->author(),
-                'conversation' => $conversation->name,
+                'conversation' => $conversation->entity->name,
             ]));
     }
 }

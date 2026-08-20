@@ -64,7 +64,7 @@ class Tags extends Component
             ->get()
             ->map(fn ($tag) => [
                 'id' => $tag->id,
-                'label' => $tag->name,
+                'label' => $tag->entity->name,
             ])
             ->toArray();
     }
@@ -77,7 +77,7 @@ class Tags extends Component
             ->get()
             ->map(fn ($tag) => [
                 'id' => $tag->id,
-                'label' => $tag->name,
+                'label' => $tag->entity->name,
             ])
             ->toArray();
     }

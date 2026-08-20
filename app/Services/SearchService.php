@@ -381,7 +381,7 @@ class SearchService
                 if ((! empty($this->term) && str_contains($month['name'], $this->term)) || empty($this->term)) {
                     $searchResults[] = [
                         'fullname' => $month['name'],
-                        'name' => $month['name'] . ' (' . $calendar->name . ')',
+                        'name' => $month['name'] . ' (' . $calendar->entity->name . ')',
                     ];
                 }
             }

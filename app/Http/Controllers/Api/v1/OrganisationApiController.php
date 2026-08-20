@@ -53,7 +53,7 @@ class OrganisationApiController extends MiscApiController
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
-        $model = Organisation::create($data);
+        $model = $this->createStandardModel($campaign, $data, config('entities.ids.organisation'));
         $this->crudSave($model, $request->validated());
         $model->refresh();
 

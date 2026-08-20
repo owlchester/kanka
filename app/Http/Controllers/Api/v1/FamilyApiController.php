@@ -53,7 +53,7 @@ class FamilyApiController extends MiscApiController
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
-        $model = Family::create($data);
+        $model = $this->createStandardModel($campaign, $data, config('entities.ids.family'));
         $this->crudSave($model, $request->validated());
 
         return new Resource($model);

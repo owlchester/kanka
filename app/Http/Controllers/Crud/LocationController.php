@@ -13,6 +13,7 @@ use App\Renderers\DatagridRenderer;
 use App\Services\AttributeService;
 use App\Services\Entity\EntitySaveService;
 use App\Services\Entity\Relations\LocationRelationsService;
+use App\Services\Entity\StandardEntityCreationService;
 use App\Services\FilterService;
 
 class LocationController extends CrudController
@@ -32,9 +33,10 @@ class LocationController extends CrudController
         DatagridRenderer $datagridRenderer,
         AttributeService $attributeService,
         EntitySaveService $entitySaveService,
+        StandardEntityCreationService $entityCreationService,
         protected LocationRelationsService $locationRelationsService,
     ) {
-        parent::__construct($filterService, $datagridRenderer, $attributeService, $entitySaveService);
+        parent::__construct($filterService, $datagridRenderer, $attributeService, $entitySaveService, $entityCreationService);
     }
 
     /**

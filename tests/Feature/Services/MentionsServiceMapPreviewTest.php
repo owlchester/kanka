@@ -33,7 +33,7 @@ test('a field:map mention renders a plain explore link by default', function () 
 
     $campaign = Campaign::find(1);
     expect($rendered)->toContain('<a href="' . route('entities.map', [$campaign, $map->entity->id]) . '" class="text-link">');
-    expect($rendered)->toContain(__('maps.actions.explore_named', ['name' => $map->name]));
+    expect($rendered)->toContain(__('maps.actions.explore_named', ['name' => $map->entity->name]));
     expect($rendered)->not->toContain('<iframe');
     expect($rendered)->not->toContain('js-map-preview');
 });

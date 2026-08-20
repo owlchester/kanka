@@ -10,9 +10,8 @@ use App\Models\CampaignEvent;
 use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\Models\CampaignSetting;
-use App\Models\Family;
-use App\Models\Quest;
-use App\Models\Tag;
+use App\Models\EntityType;
+use App\Services\Entity\StandardEntityCreationService;
 use App\Traits\CampaignAware;
 use App\Traits\RequestAware;
 use App\Traits\UserAware;
@@ -139,10 +138,10 @@ class InitialService
             'access' => true,
         ]);
 
-        $family = Family::create([
-            'name' => __('starter.name', ['name' => __('dashboards/onboarding.families.varren.title')]),
-            'campaign_id' => $this->campaign->id,
-        ]);
+        $family = app(StandardEntityCreationService::class)
+            ->campaign($this->campaign)
+            ->entityType(EntityType::findOrFail(config('entities.ids.family')))
+            ->create(['name' => __('starter.name', ['name' => __('dashboards/onboarding.families.varren.title')])]);
         $family->entity->update(['source' => 'onboarding']);
     }
 
@@ -154,10 +153,10 @@ class InitialService
         $settings->races = 0;
         $settings->save();
 
-        $tag = Tag::create([
-            'name' => __('onboarding/tags.npcs'),
-            'campaign_id' => $this->campaign->id,
-        ]);
+        $tag = app(StandardEntityCreationService::class)
+            ->campaign($this->campaign)
+            ->entityType(EntityType::findOrFail(config('entities.ids.tag')))
+            ->create(['name' => __('onboarding/tags.npcs')]);
         $tag->entity->update(['source' => 'onboarding']);
 
         // Give players some basic permissions to view/edit characters
@@ -208,10 +207,10 @@ class InitialService
             'entity_type_id' => config('entities.ids.quest'),
         ]);
 
-        $quest = Quest::create([
-            'name' => __('starter.name', ['name' => __('dashboards/onboarding.quests.crown.title')]),
-            'campaign_id' => $this->campaign->id,
-        ]);
+        $quest = app(StandardEntityCreationService::class)
+            ->campaign($this->campaign)
+            ->entityType(EntityType::findOrFail(config('entities.ids.quest')))
+            ->create(['name' => __('starter.name', ['name' => __('dashboards/onboarding.quests.crown.title')])]);
         $quest->entity->update(['source' => 'onboarding']);
 
     }

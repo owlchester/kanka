@@ -7,7 +7,7 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityType;
 use App\Models\MiscModel;
-use Illuminate\Support\Facades\DB;
+use App\Services\Entity\StandardEntityCreationService;
 use Illuminate\Support\Str;
 use Stevebauman\Purify\Facades\Purify;
 
@@ -31,18 +31,16 @@ trait CreatesEntityFromName
         }
 
         /** @var MiscModel $model */
-        $model = new $classname([
-            'name' => $name,
-            'campaign_id' => $campaign->id,
-            'is_private' => false,
-        ]);
+        $model = app(StandardEntityCreationService::class)
+            ->campaign($campaign)
+            ->entityType($entityType)
+            ->create([
+                'name' => $name,
+                'campaign_id' => $campaign->id,
+                'is_private' => false,
+            ]);
 
-        return DB::transaction(function () use ($model, $returnEntityId): int {
-            $model->saveQuietly();
-            $model->createEntity();
-
-            return $returnEntityId ? $model->entity->id : $model->id;
-        });
+        return $returnEntityId ? $model->entity->id : $model->id;
     }
 
     /**

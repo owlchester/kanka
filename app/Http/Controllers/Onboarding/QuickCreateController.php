@@ -5,9 +5,8 @@ namespace App\Http\Controllers\Onboarding;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Onboarding\QuickCreateRequest;
 use App\Models\Campaign;
-use App\Models\Character;
-use App\Models\Location;
-use App\Models\Organisation;
+use App\Models\EntityType;
+use App\Services\Entity\StandardEntityCreationService;
 use Illuminate\Http\JsonResponse;
 
 class QuickCreateController extends Controller
@@ -18,18 +17,20 @@ class QuickCreateController extends Controller
 
         $name = $request->validated('name');
         $type = (string) $request->validated('type');
+        $entityType = EntityType::where('code', $type)->firstOrFail();
+        $creator = app(StandardEntityCreationService::class);
 
         [$model, $routeName] = match ($type) {
             'character' => [
-                Character::create(['name' => $name, 'campaign_id' => $campaign->id]),
+                $creator->campaign($campaign)->entityType($entityType)->create(['name' => $name]),
                 'characters.show',
             ],
             'location' => [
-                Location::create(['name' => $name, 'campaign_id' => $campaign->id]),
+                $creator->campaign($campaign)->entityType($entityType)->create(['name' => $name]),
                 'locations.show',
             ],
             'organisation' => [
-                Organisation::create(['name' => $name, 'campaign_id' => $campaign->id]),
+                $creator->campaign($campaign)->entityType($entityType)->create(['name' => $name]),
                 'organisations.show',
             ],
             default => throw new \InvalidArgumentException("Unexpected type: {$type}"),

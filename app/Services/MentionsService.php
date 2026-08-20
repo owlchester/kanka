@@ -356,10 +356,10 @@ class MentionsService
                         /** @var Character|Map|Quest $child */
                         $child = $entity->child;
                         if ($field == 'family' && ! $child->families->isEmpty()) {
-                            $data['text'] = $child->characterFamilies->first()->family->name;
+                            $data['text'] = $child->characterFamilies->first()->family->entity->name;
                         }
                         if ($field == 'race' && ! $child->characterRaces->isEmpty()) {
-                            $data['text'] = $child->characterRaces->first()->race->name;
+                            $data['text'] = $child->characterRaces->first()->race->entity->name;
                         }
                         if ($field == 'calendar_date' && $child->calendar_id) {
                             $data['text'] = $entity->calendarReminder()->readableDate();

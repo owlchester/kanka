@@ -167,7 +167,7 @@ class OrganisationMember extends Model
      */
     public function deleteName(): string
     {
-        return $this->character->name;
+        return $this->character->entity->name;
     }
 
     /**
@@ -175,7 +175,7 @@ class OrganisationMember extends Model
      */
     public function getNameAttribute(): string
     {
-        return $this->character->name;
+        return $this->character->entity->name;
     }
 
     /**

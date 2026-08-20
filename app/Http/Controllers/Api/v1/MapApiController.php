@@ -53,7 +53,7 @@ class MapApiController extends MiscApiController
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
-        $model = Map::create($data);
+        $model = $this->createStandardModel($campaign, $data, config('entities.ids.map'));
         $this->crudSave($model, $request->validated());
 
         return new Resource($model);

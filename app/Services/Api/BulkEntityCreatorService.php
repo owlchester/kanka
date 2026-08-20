@@ -5,6 +5,7 @@ namespace App\Services\Api;
 use App\Models\Entity;
 use App\Models\MiscModel;
 use App\Services\Entity\EntitySaveService;
+use App\Services\Entity\StandardEntityCreationService;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
 use App\Traits\UserAware;
@@ -21,7 +22,10 @@ class BulkEntityCreatorService
 
     protected array $data;
 
-    public function __construct(protected EntitySaveService $entitySaveService) {}
+    public function __construct(
+        protected EntitySaveService $entitySaveService,
+        protected StandardEntityCreationService $entityCreationService,
+    ) {}
 
     public function data(array $data): self
     {
@@ -35,10 +39,10 @@ class BulkEntityCreatorService
         if ($this->entityType->isCustom()) {
             return $this->createEntity();
         }
-        $this->new = $this->entityType->getMiscClass();
-        $this->new->fill($this->data);
-        $this->new->campaign_id = $this->campaign->id;
-        $this->new->save();
+        $this->new = $this->entityCreationService
+            ->campaign($this->campaign)
+            ->entityType($this->entityType)
+            ->create($this->data);
         $this->entity = $this->new->entity;
         $this->entitySaveService->campaign($this->campaign)->save($this->entity, $this->data);
 

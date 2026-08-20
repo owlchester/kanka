@@ -10,6 +10,7 @@ use App\Models\EntityType;
 use App\Sanitizers\CalendarSanitizer;
 use App\Services\Entity\EntitySaveService;
 use App\Services\Entity\Relations\EntityRelationsServiceFactory;
+use App\Services\Entity\StandardEntityCreationService;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -21,9 +22,10 @@ class CalendarApiController extends MiscApiController
     public function __construct(
         EntitySaveService $entitySaveService,
         EntityRelationsServiceFactory $relationsFactory,
+        StandardEntityCreationService $entityCreationService,
         CalendarSanitizer $sanitizer,
     ) {
-        parent::__construct($entitySaveService, $relationsFactory);
+        parent::__construct($entitySaveService, $relationsFactory, $entityCreationService);
         $this->sanitizer = $sanitizer;
     }
 
@@ -69,7 +71,7 @@ class CalendarApiController extends MiscApiController
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
         /** @var Calendar $model */
-        $model = Calendar::create($data);
+        $model = $this->createStandardModel($campaign, $data, config('entities.ids.calendar'));
         $this->crudSave($model, $request->validated());
 
         return new Resource($model);

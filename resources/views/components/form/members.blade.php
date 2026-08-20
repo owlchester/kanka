@@ -19,9 +19,9 @@ elseif(!empty($model)) {
     foreach ($model->members()->has('character')->with('character')->get() as $member) {
         // If this is a copy, we need to add the member's real id. Also no copying of roles in this constellation
         if (!empty($source)) {
-            $selectedOption[$member->character_id] = strip_tags($member->character->name);
+            $selectedOption[$member->character_id] = strip_tags($member->character->entity->name);
         } else {
-            $selectedOption['m_' . $member->id] = strip_tags($member->character->name) . (!empty($member->role) ? ' (' . strip_tags($member->role) . ')' : null);
+            $selectedOption['m_' . $member->id] = strip_tags($member->character->entity->name) . (!empty($member->role) ? ' (' . strip_tags($member->role) . ')' : null);
         }
     }
 }

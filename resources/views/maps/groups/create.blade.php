@@ -5,7 +5,7 @@
 */
 ?>
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => __('maps/groups.create.title', ['name' => $map->name]),
+    'title' => __('maps/groups.create.title', ['name' => $map->entity->name]),
     'breadcrumbs' => [
         Breadcrumb::campaign($campaign)->entity($map->entity)->list(),
         Breadcrumb::show(),
@@ -18,7 +18,7 @@
 @section('content')
     <x-form :action="['maps.map_groups.store', $campaign, $map]">
         @include('partials.forms._dialog', [
-            'title' => __('maps/groups.create.title', ['name' => $map->name]),
+            'title' => __('maps/groups.create.title', ['name' => $map->entity->name]),
             'content' => 'maps.groups._form',
             'formParams' => ['model' => null, 'map' => $map],
             'actions' => 'maps.groups._actions',

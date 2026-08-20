@@ -89,7 +89,7 @@ it('includes location links in standalone markdown exports', function () {
         ->single()
         ->markdown();
 
-    expect($markdown)->toContain('[' . $location->name . '](' . $location->entity->url() . ')');
+    expect($markdown)->toContain('[' . $location->entity->name . '](' . $location->entity->url() . ')');
 });
 
 it('keeps location names plain in campaign markdown exports', function () {
@@ -112,8 +112,8 @@ it('keeps location names plain in campaign markdown exports', function () {
         ->markdown();
 
     expect($markdown)
-        ->toContain('**' . __('entities.locations') . ':** ' . $location->name)
-        ->not->toContain('[' . $location->name . '](' . $location->entity->url() . ')');
+        ->toContain('**' . __('entities.locations') . ':** ' . $location->entity->name)
+        ->not->toContain('[' . $location->entity->name . '](' . $location->entity->url() . ')');
 });
 
 it('includes tag colour and icon when exporting a tag', function () {

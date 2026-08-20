@@ -6,7 +6,7 @@
 */
 ?>
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => __('maps/markers.create.title', ['name' => $map->name]),
+    'title' => __('maps/markers.create.title', ['name' => $map->entity->name]),
     'description' => '',
     'breadcrumbs' => [
         Breadcrumb::campaign($campaign)->entity($map->entity)->list(),
@@ -23,7 +23,7 @@
             <div class="modal-header">
                 <x-dialog.close />
                 <h4 class="modal-title text-lg">
-                    {{ __('maps/markers.create.title', ['name' => $map->name]) }}
+                    {{ __('maps/markers.create.title', ['name' => $map->entity->name]) }}
                 </h4>
             </div>
         @endif

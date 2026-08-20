@@ -13,6 +13,7 @@ use App\Renderers\DatagridRenderer;
 use App\Services\AttributeService;
 use App\Services\Entity\EntitySaveService;
 use App\Services\Entity\Relations\JournalRelationsService;
+use App\Services\Entity\StandardEntityCreationService;
 use App\Services\FilterService;
 
 class JournalController extends CrudController
@@ -32,9 +33,10 @@ class JournalController extends CrudController
         DatagridRenderer $datagridRenderer,
         AttributeService $attributeService,
         EntitySaveService $entitySaveService,
+        StandardEntityCreationService $entityCreationService,
         protected JournalRelationsService $journalRelationsService,
     ) {
-        parent::__construct($filterService, $datagridRenderer, $attributeService, $entitySaveService);
+        parent::__construct($filterService, $datagridRenderer, $attributeService, $entitySaveService, $entityCreationService);
     }
 
     /**

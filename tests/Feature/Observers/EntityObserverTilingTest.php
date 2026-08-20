@@ -23,7 +23,7 @@ it('triggers tiling when a brand-new map\'s entity is created with an oversized 
 
     $entity = new Entity;
     $entity->entity_id = $map->id;
-    $entity->name = $map->name;
+    $entity->name = $map->entity->name;
     $entity->campaign_id = 1;
     $entity->type_id = config('entities.ids.map');
     $entity->is_private = false;

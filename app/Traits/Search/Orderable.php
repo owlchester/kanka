@@ -8,13 +8,15 @@ trait Orderable
 {
     protected function order(?string $term): void
     {
+        $table = $this->query->getModel()->getTable();
+
         if (empty($term)) {
-            $this->query->orderBy('updated_at', 'desc');
+            $this->query->orderBy($table . '.updated_at', 'desc');
         } else {
             if (Str::startsWith($term, '=')) {
-                $this->query->where('name', mb_ltrim($term, '='));
+                $this->query->where($table . '.name', mb_ltrim($term, '='));
             } else {
-                $this->query->where('name', 'like', "%{$term}%");
+                $this->query->where($table . '.name', 'like', "%{$term}%");
             }
         }
     }

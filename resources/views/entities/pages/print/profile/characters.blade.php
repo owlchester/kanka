@@ -7,7 +7,7 @@
 $existingFamilies = [];
 $counter = 0;
 @endphp
-| {!! \App\Facades\Module::singular(config('entities.ids.family'), __('entities.families')) !!} | @foreach ($model->characterFamilies as $family) @if(!empty($existingFamilies[$family->family_id])) @continue @endif @php $existingRaces[$family->family_id] = true; @endphp {!! $family->family->name !!}@if ($counter < $model->characterFamilies->count() - 1)@php $counter++; @endphp, @endif @endforeach |
+| {!! \App\Facades\Module::singular(config('entities.ids.family'), __('entities.families')) !!} | @foreach ($model->characterFamilies as $family) @if(!empty($existingFamilies[$family->family_id])) @continue @endif @php $existingRaces[$family->family_id] = true; @endphp {!! $family->family->entity->name !!}@if ($counter < $model->characterFamilies->count() - 1)@php $counter++; @endphp, @endif @endforeach |
 @endif
 @if (!$model->characterRaces->isEmpty() || $model->hasAge())
 @if (!$model->characterRaces->isEmpty() && !$model->hasAge())
@@ -15,7 +15,7 @@ $counter = 0;
 $existingRaces = [];
 $counter = 0;
 @endphp
-| {!! \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races')) !!} | @foreach ($model->characterRaces as $race) @if(!empty($existingRaces[$race->race_id])) @continue @endif @php $existingRaces[$race->race_id] = true; @endphp {!! $race->race->name !!}@if ($counter < $model->characterRaces->count() - 1)@php $counter++; @endphp, @endif @endforeach |
+| {!! \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races')) !!} | @foreach ($model->characterRaces as $race) @if(!empty($existingRaces[$race->race_id])) @continue @endif @php $existingRaces[$race->race_id] = true; @endphp {!! $race->race->entity->name !!}@if ($counter < $model->characterRaces->count() - 1)@php $counter++; @endphp, @endif @endforeach |
 @elseif ($model->characterRaces->isEmpty() && $model->hasAge())
 | {{ __('characters.fields.age') }} | {{ $model->age }} |
 @else
@@ -23,7 +23,7 @@ $counter = 0;
 $existingRaces = [];
 $counter = 0;
 @endphp
-| {!! \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races')) !!} | @foreach ($model->characterRaces as $race) @if(!empty($existingRaces[$race->race_id])) @continue @endif @php $existingRaces[$race->race_id] = true; @endphp {!! $race->race->name !!}@if ($counter < $model->characterRaces->count() - 1)@php $counter++; @endphp, @endif @endforeach |
+| {!! \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races')) !!} | @foreach ($model->characterRaces as $race) @if(!empty($existingRaces[$race->race_id])) @continue @endif @php $existingRaces[$race->race_id] = true; @endphp {!! $race->race->entity->name !!}@if ($counter < $model->characterRaces->count() - 1)@php $counter++; @endphp, @endif @endforeach |
 | {{ __('characters.fields.age') }} | {{ $model->age }} |
 @endif
 @endif

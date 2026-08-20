@@ -19,10 +19,10 @@
                                 <x-icon class="fa-regular fa-sort" />
                             </div>
                             <div class="overflow-hidden grow flex flex-no-wrap items-center gap-2">
-                                <span class="truncate">{!! $ability->ability->name !!}</span>
-                                @if ($ability->ability->type)
+                                <span class="truncate">{!! $ability->ability->entity->name !!}</span>
+                                @if ($ability->ability->entity->type)
                                 <span class="text-xs text-neutral-content">
-                                    ({!! $ability->ability->type!!})
+                                    ({!! $ability->ability->entity->type!!})
                                 </span>
                                 @endif
                             </div>

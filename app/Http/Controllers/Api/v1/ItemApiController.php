@@ -55,7 +55,7 @@ class ItemApiController extends MiscApiController
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
         /** @var Item $model */
-        $model = Item::create($data);
+        $model = $this->createStandardModel($campaign, $data, config('entities.ids.item'));
         $this->crudSave($model, $request->validated());
 
         return new Resource($model);

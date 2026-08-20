@@ -54,7 +54,7 @@ class ConversationApiController extends MiscApiController
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
         /** @var Conversation $model */
-        $model = Conversation::create($data);
+        $model = $this->createStandardModel($campaign, $data, config('entities.ids.conversation'));
         $this->crudSave($model, $request->validated());
 
         return new Resource($model);

@@ -296,7 +296,7 @@ class EntitySearchService
         foreach ($questElements as $questElement) {
             $output[$questElement->quest->entity->id] = [
                 'id' => $questElement->quest->entity->id,
-                'entity' => $questElement->quest->name,
+                'entity' => $questElement->quest->entity->name,
                 'url' => $questElement->quest->entity->url(),
             ];
         }

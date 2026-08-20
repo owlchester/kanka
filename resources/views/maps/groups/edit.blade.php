@@ -18,7 +18,7 @@
 @section('content')
     <x-form :action="['maps.map_groups.update', 'campaign' => $campaign, 'map' => $map, 'map_group' => $model]" method="PATCH" id="map-group-form" files>
         @include('partials.forms._dialog', [
-            'title' => __('maps/groups.edit.title', ['name' => $map->name]),
+            'title' => __('maps/groups.edit.title', ['name' => $map->entity->name]),
             'content' => 'maps.groups._form',
             'actions' => 'maps.groups._actions',
             'dropdownParent' => request()->ajax() ? '#primary-dialog' : null,

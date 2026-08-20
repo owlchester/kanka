@@ -4,7 +4,6 @@ namespace App\Services\Entity;
 
 use App\Models\Entity;
 use App\Models\EntityType;
-use App\Models\MiscModel;
 use App\Models\Tag;
 use App\Observers\PurifiableTrait;
 use App\Traits\CampaignAware;
@@ -82,14 +81,14 @@ class NewService
             $this->entity->is_private = $this->private();
             $this->entity->save();
         } else {
-            // Todo: we need a better way to handle this in the future
-            /** @var MiscModel $misc */
-            $misc = $this->entityType->getClass();
-            $misc->name = $this->purify(mb_trim(strip_tags($name)));
-            $misc->is_private = $this->private();
-            $misc->campaign_id = $this->campaign->id;
-            $misc->save();
-            $this->entity = $misc->entity;
+            $this->entity = app(StandardEntityCreationService::class)
+                ->campaign($this->campaign)
+                ->entityType($this->entityType)
+                ->create([
+                    'name' => $this->purify(mb_trim(strip_tags($name))),
+                    'is_private' => $this->private(),
+                ])
+                ->entity;
         }
 
         if ($this->entity->isTag()) {

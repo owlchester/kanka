@@ -27,7 +27,7 @@ class ConversationParticipantController extends Controller
         return redirect()
             ->route('entities.show', [$campaign, $conversation->entity])
             ->with('success', __('conversations.participants.create.success', [
-                'name' => $conversation->name,
+                'name' => $conversation->entity->name,
                 'entity' => $participant->name(),
             ]));
     }
@@ -52,7 +52,7 @@ class ConversationParticipantController extends Controller
         return redirect()
             ->route('entities.show', [$campaign, $conversation->entity])
             ->with('success', trans('crud.notes.edit.success', [
-                'name' => $conversationParticipant->entity()->name, 'entity' => $conversation->name,
+                'name' => $conversationParticipant->entity()->name, 'entity' => $conversation->entity->name,
             ]));
     }
 
@@ -67,7 +67,7 @@ class ConversationParticipantController extends Controller
         return redirect()
             ->route('entities.show', [$campaign, $conversation->entity])
             ->with('success', trans('conversations.participants.destroy.success', [
-                'name' => $conversation->name,
+                'name' => $conversation->entity->name,
                 'entity' => $conversationParticipant->entity()->name,
             ]));
     }

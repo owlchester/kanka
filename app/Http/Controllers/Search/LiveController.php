@@ -185,7 +185,7 @@ class LiveController extends Controller
             foreach ($members->get() as $member) {
                 $data[] = [
                     'id' => $member->id,
-                    'text' => $member->character->name . (! empty($member->role) ? ' (' . $member->role . ')' : null),
+                    'text' => $member->character->entity->name . (! empty($member->role) ? ' (' . $member->role . ')' : null),
                 ];
             }
         }

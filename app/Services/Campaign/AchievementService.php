@@ -4,10 +4,12 @@ namespace App\Services\Campaign;
 
 use App\Enums\SpotlightStatus;
 use App\Models\CampaignPlugin;
+use App\Models\Entity;
 use App\Models\EntityTag;
 use App\Models\EntityType;
 use App\Models\MapMarker;
 use App\Models\Relation;
+use App\Models\Scopes\AclScope;
 use App\Models\Spotlight;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Facades\Cache;
@@ -38,22 +40,14 @@ class AchievementService
             return Cache::get($cacheKey);
         }
 
-        // @phpstan-ignore-next-line
-        $characters = $this->campaign->characters()->withInvisible()->count() + $this->random();
-        // @phpstan-ignore-next-line
-        $locations = $this->campaign->locations()->withInvisible()->count() + $this->random();
-        // @phpstan-ignore-next-line
-        $creatures = $this->campaign->creatures()->withInvisible()->count() + $this->random();
-        // @phpstan-ignore-next-line
-        $families = $this->campaign->families()->withInvisible()->count() + $this->random();
-        // @phpstan-ignore-next-line
-        $organisations = $this->campaign->organisations()->withInvisible()->count() + $this->random();
-        // @phpstan-ignore-next-line
-        $dead = $this->campaign->characters()->withInvisible()->whereHas('entity', fn ($q) => $q->where('entities.status_id', 3))->count() + $this->random(10, 30);
-        // @phpstan-ignore-next-line
-        $calendars = $this->campaign->calendars()->withInvisible()->count() + $this->random(5, 15);
-        // @phpstan-ignore-next-line
-        $events = $this->campaign->events()->withInvisible()->count() + $this->random();
+        $characters = $this->entityCount(config('entities.ids.character')) + $this->random();
+        $locations = $this->entityCount(config('entities.ids.location')) + $this->random();
+        $creatures = $this->entityCount(config('entities.ids.creature')) + $this->random();
+        $families = $this->entityCount(config('entities.ids.family')) + $this->random();
+        $organisations = $this->entityCount(config('entities.ids.organisation')) + $this->random();
+        $dead = $this->entityCount(config('entities.ids.character'), 3) + $this->random(10, 30);
+        $calendars = $this->entityCount(config('entities.ids.calendar')) + $this->random(5, 15);
+        $events = $this->entityCount(config('entities.ids.event')) + $this->random();
 
         $tags = $this->taggedEntities() + $this->random();
         $plugins = $this->plugins() + $this->random(2, 9);
@@ -179,6 +173,16 @@ class AchievementService
         Cache::put($cacheKey, $stats, 86400);
 
         return $stats;
+    }
+
+    protected function entityCount(int $typeId, ?int $statusId = null): int
+    {
+        return Entity::query()
+            ->withoutGlobalScope(AclScope::class)
+            ->where('campaign_id', $this->campaign->id)
+            ->where('type_id', $typeId)
+            ->when($statusId, fn ($query) => $query->where('status_id', $statusId))
+            ->count();
     }
 
     public function target(int $amount, int $level = 1): int

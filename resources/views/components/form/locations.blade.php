@@ -22,7 +22,7 @@ elseif(!empty($model)) {
     // Get locations from entity for models using entity_locations (Character, Organisation, Race, Creature)
     $locationsSource = $model->entity?->locations ?? $model->locations ?? collect();
     foreach ($locationsSource as $location) {
-        $selectedOption[$location->id] = strip_tags($location->name);
+        $selectedOption[$location->id] = strip_tags($location->entity->name);
     }
 }
 ?>

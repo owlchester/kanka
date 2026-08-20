@@ -41,7 +41,7 @@ class MapResource extends JsonResource
 
         return [
             'id' => $map->id,
-            'name' => $map->name,
+            'name' => $map->entity->name,
             'is_real' => $map->isReal(),
             'is_tiled' => $isTiled,
             'tiling' => $tiling,

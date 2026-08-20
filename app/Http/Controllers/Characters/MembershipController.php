@@ -64,8 +64,8 @@ class MembershipController extends Controller
 
         return redirect()->route('characters.organisations', [$campaign, $character->id])
             ->with('success', __($this->view . '.create.success', [
-                'character' => $character->name,
-                'organisation' => $relation->organisation->name,
+                'character' => $character->entity->name,
+                'organisation' => $relation->organisation->entity->name,
             ]));
     }
 

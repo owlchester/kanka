@@ -54,7 +54,7 @@ class CreatureApiController extends MiscApiController
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
-        $model = Creature::create($data);
+        $model = $this->createStandardModel($campaign, $data, config('entities.ids.creature'));
         $this->crudSave($model, $request->validated());
 
         return new Resource($model);

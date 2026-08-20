@@ -42,6 +42,7 @@ use App\Events\Campaigns\Webhooks\WebhookCreated;
 use App\Events\Campaigns\Webhooks\WebhookDeleted;
 use App\Events\Campaigns\Webhooks\WebhookTested;
 use App\Events\Campaigns\Webhooks\WebhookUpdated;
+use App\Events\Entities\EntityCreationCompleted;
 use App\Events\Entities\EntityRestored;
 use App\Events\FeatureCreated;
 use App\Events\Posts\PostCreated;
@@ -77,6 +78,7 @@ use App\Listeners\Campaigns\Styles\LogStyle;
 use App\Listeners\Campaigns\Thumbnails\LogThumbnail;
 use App\Listeners\Campaigns\Thumbnails\LogThumbnails;
 use App\Listeners\Campaigns\Webhooks\LogWebhook;
+use App\Listeners\Entities\CompleteEntityCreation;
 use App\Listeners\Entities\LogEntity;
 use App\Listeners\Posts\LogPost;
 use App\Listeners\SendAdminInviteNotification;
@@ -244,6 +246,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         EntityRestored::class => [
             LogEntity::class,
+        ],
+        EntityCreationCompleted::class => [
+            CompleteEntityCreation::class,
         ],
         PostRestored::class => [
             LogPost::class,

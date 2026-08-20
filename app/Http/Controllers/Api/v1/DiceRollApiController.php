@@ -53,7 +53,7 @@ class DiceRollApiController extends MiscApiController
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
-        $model = DiceRoll::create($data);
+        $model = $this->createStandardModel($campaign, $data, config('entities.ids.dice_roll'));
         $this->crudSave($model, $request->validated());
 
         return new Resource($model);

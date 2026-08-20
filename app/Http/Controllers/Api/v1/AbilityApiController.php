@@ -53,7 +53,7 @@ class AbilityApiController extends MiscApiController
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
-        $model = Ability::create($data);
+        $model = $this->createStandardModel($campaign, $data, config('entities.ids.ability'));
         $this->crudSave($model, $request->validated());
 
         return new Resource($model);

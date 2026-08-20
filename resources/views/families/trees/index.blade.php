@@ -1,5 +1,5 @@
 @extends('layouts.app', [
-    'title' => __('families/trees.title', ['name' => $family->name]),
+    'title' => __('families/trees.title', ['name' => $family->entity->name]),
     'breadcrumbs' => false,
     'mainTitle' => false,
 ])

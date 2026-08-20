@@ -25,30 +25,30 @@ if ($firstPost && $firstPost->position >= 0) {
     <div class="element-live-reorder sortable-elements flex flex-col gap-1">
         @includeWhen($startWithStory, 'entities.pages.story.reorder._story')
 
-        @foreach($posts as $note)
-            @if (!$hasEntry && $note->position >= 0)
+        @foreach($posts as $article)
+            @if (!$hasEntry && $article->position >= 0)
                 @php $hasEntry = true @endphp
                 @include('entities.pages.story.reorder._story')
             @endif
 
 
-            <x-reorder.child :id="$note->id">
-                <input type="hidden" name="posts[{{ $note->id }}][id]" value="{{ $note->id }}" />
+            <x-reorder.child :id="$article->id">
+                <input type="hidden" name="posts[{{ $article->id }}][id]" value="{{ $article->id }}" />
                 <div class="dragger">
                     <x-icon class="fa-regular fa-sort" />
                 </div>
                 <div class="truncate grow">
-                    {!! $note->name !!}
+                    {!! $article->name !!}
                 </div>
 
                 <div class="self-end flex gap-1">
-                    <select name="posts[{{ $note->id }}][collapsed]" class="w-full md:w-fit">
+                    <select name="posts[{{ $article->id }}][collapsed]" class="w-full md:w-fit">
                         <option value="0">{{ __('entities/notes.states.expanded') }}</option>
-                        <option value="1" @if ($note->collapsed()) selected="selected" @endif>{{ __('entities/notes.states.collapsed') }}</option>
+                        <option value="1" @if ($article>collapsed()) selected="selected" @endif>{{ __('entities/notes.states.collapsed') }}</option>
                     </select>
-                    <select name="posts[{{ $note->id }}][visibility_id]" class="w-full md:w-fit">
-                        @foreach ($note->visibilityOptions() as $key => $value)
-                            <option value="{{ $key }}" @if ($key == $note->visibility_id->value) selected="selected" @endif>
+                    <select name="posts[{{ $article->id }}][visibility_id]" class="w-full md:w-fit">
+                        @foreach ($article->visibilityOptions() as $key => $value)
+                            <option value="{{ $key }}" @if ($key == $article>visibility_id->value) selected="selected" @endif>
                                 {{ $value }}
                             </option>
                         @endforeach

@@ -21,6 +21,7 @@ use App\Services\AttributeService;
 use App\Services\Entity\AliasService;
 use App\Services\Entity\CopyService;
 use App\Services\Entity\EntitySaveService;
+use App\Services\Entity\StandardEntityCreationService;
 use App\Services\FilterService;
 use App\Services\MultiEditingService;
 use App\Traits\BulkControllerTrait;
@@ -96,6 +97,8 @@ class CrudController extends Controller
 
     protected EntitySaveService $entitySaveService;
 
+    protected StandardEntityCreationService $entityCreationService;
+
     /** If the auth check was already performed on this controller */
     protected bool $alreadyAuthChecked = false;
 
@@ -112,16 +115,26 @@ class CrudController extends Controller
         DatagridRenderer $datagridRenderer,
         AttributeService $attributeService,
         EntitySaveService $entitySaveService,
+        StandardEntityCreationService $entityCreationService,
     ) {
         $this->filterService = $filterService;
         $this->datagrid = $datagridRenderer;
         $this->attributeService = $attributeService;
         $this->entitySaveService = $entitySaveService;
+        $this->entityCreationService = $entityCreationService;
 
         $this->middleware([CachedResponse::class]);
     }
 
     protected function afterModelSave(MiscModel $model, array $data): void {}
+
+    protected function getEntityType(): EntityType
+    {
+        /** @var MiscModel $model */
+        $model = new $this->model;
+
+        return EntityType::findOrFail($model->entityTypeId());
+    }
 
     public function index(Request $request, Campaign $campaign)
     {
@@ -148,7 +161,7 @@ class CrudController extends Controller
                     ]),
                 );
         }
-        if (method_exists($this, 'getEntityType')) {
+        if ($this->model !== Relation::class && method_exists($this, 'getEntityType')) {
             /** @var EntityType $entityType */
             $entityType = $this->getEntityType();
             if ($entityType->hasEntity()) {
@@ -258,7 +271,7 @@ class CrudController extends Controller
             'parent',
             'forceMode',
         );
-        if (method_exists($this, 'getEntityType')) {
+        if ($this->model !== Relation::class && method_exists($this, 'getEntityType')) {
             $data['entityType'] = $this->getEntityType();
             $data['templates'] = $this->loadTemplates($data['entityType']);
             $this->datagrid->entityType($data['entityType']);
@@ -326,7 +339,6 @@ class CrudController extends Controller
 
     public function crudCreate($params = [])
     {
-        // @phpstan-ignore-next-line
         $this->authorize('create', [$this->getEntityType(), $this->campaign]);
 
         if ($this->hasLimitCheck) {
@@ -366,7 +378,7 @@ class CrudController extends Controller
         $params['tabPermissions'] = $this->tabPermissions;
         $params['tabCopy'] = $this->tabCopy;
         $params['tabBoosted'] = $this->tabBoosted;
-        if (method_exists($this, 'getEntityType')) {
+        if ($this->model !== Relation::class && method_exists($this, 'getEntityType')) {
             $params['entityType'] = $this->getEntityType();
             $params['tabPermissions'] =
                 $this->tabPermissions &&
@@ -395,7 +407,6 @@ class CrudController extends Controller
 
     public function crudStore(Request $request, bool $redirectToCreated = false)
     {
-        // @phpstan-ignore-next-line
         $this->authorize('create', [$this->getEntityType(), $this->campaign]);
 
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
@@ -423,7 +434,12 @@ class CrudController extends Controller
             /** @var MiscModel $model */
             $model = new $this->model;
             /** @var MiscModel $new */
-            $new = $model->create($data);
+            $new = $model instanceof Bookmark
+                ? $model->create($data)
+                : $this->entityCreationService
+                    ->campaign($this->campaign)
+                    ->entityType($this->getEntityType())
+                    ->create($data);
 
             // Bookmarks have no entity attached to them.
             if (! ($new instanceof Bookmark) && $new->entity) {

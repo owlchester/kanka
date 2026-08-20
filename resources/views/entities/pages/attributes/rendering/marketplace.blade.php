@@ -67,14 +67,14 @@ if (!isset($entity)) {
             races: [@foreach ($entity->child->characterRaces as $race)
             {
                 id: {{ $race->race->id }},
-                name: `{{ $race->race->name }}`,
+                name: `{{ $race->race->entity->name }}`,
                 url: `{{ route('entities.show', [$campaign, $race->race->entity]) }}`
             },
             @endforeach ],
             families: [@foreach ($entity->child->characterFamilies as $family)
             {
                 id: {{ $family->family->id }},
-                name: `{{ $family->family->name }}`,
+                name: `{{ $family->family->entity->name }}`,
                 url: `{{ route('entities.show', [$campaign, $family->family->entity]) }}`
             },
             @endforeach ],
@@ -85,7 +85,7 @@ if (!isset($entity)) {
 @if ($entity->hasChild() && $entity->child->location)
             location: {
                 id: {{ $entity->child->location->id }},
-                name: `{{ $entity->child->location->name }}`,
+                name: `{{ $entity->child->location->entity->name }}`,
                 url: `{{ route('entities.show', [$campaign, $entity->child->location->entity]) }}`
             },
 @endif
@@ -93,7 +93,7 @@ if (!isset($entity)) {
             tags: [@foreach ($entity->tags as $tag)
             {
                 id: {{ $tag->id }},
-                name: `{{ $tag->name }}`,
+                name: `{{ $tag->entity->name }}`,
                 slug: `{{ $tag->slug }}`,
                 url: `{{ route('entities.show', [$campaign, $tag->entity]) }}`
             },

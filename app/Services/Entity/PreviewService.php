@@ -115,7 +115,7 @@ class PreviewService
         foreach ($this->entity->tags()->with('entity')->get() as $tag) {
             $tags[] = [
                 'id' => $tag->id,
-                'name' => $tag->name,
+                'name' => $tag->entity->name,
                 'icon' => $tag->icon,
                 'colour' => $tag->colour,
                 'style' => $tag->colourStyle(),
@@ -160,7 +160,7 @@ class PreviewService
         $locations = [];
         foreach ($this->entity->locations as $location) {
             $locations[] = [
-                'name' => $location->name,
+                'name' => $location->entity->name,
                 'link' => route('locations.show', [$this->campaign, $location->entity]),
             ];
         }

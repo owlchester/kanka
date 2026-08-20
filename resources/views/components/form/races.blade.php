@@ -19,7 +19,7 @@ if (!empty($previous)) {
 elseif(!empty($model)) {
     /** @var \App\Models\Race $race */
     foreach ($model->characterRaces as $race) {
-        $selectedOption[$race->race->id] = strip_tags($race->race->name);
+        $selectedOption[$race->race->id] = strip_tags($race->race->entity->name);
     }
 }
 ?>

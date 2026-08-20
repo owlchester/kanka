@@ -7,7 +7,6 @@ use App\Facades\Identity;
 use App\Models\Conversation;
 use App\Models\Entity;
 use App\Models\EntityLog;
-use App\Models\Location;
 use App\Models\MapMarker;
 use App\Models\MiscModel;
 use App\Traits\CampaignAware;
@@ -249,7 +248,9 @@ class LoggerService
 
         try {
             if ($attribute == 'location_id') {
-                $originalLocation = Location::where('id', $original)->first();
+                $originalLocation = Entity::where('entity_id', $original)
+                    ->where('type_id', config('entities.ids.location'))
+                    ->first();
                 if (! empty($originalLocation)) {
                     return (string) $originalLocation->name;
                 }

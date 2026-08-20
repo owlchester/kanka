@@ -128,7 +128,7 @@ it('creates and updates journal locations through the API', function () {
     expect($response->json('data'))->not->toHaveKey('location_id');
 
     $this->putJson('/api/1.0/campaigns/1/journals/' . $journal->id, [
-        'name' => $journal->name,
+        'name' => $journal->entity->name,
         'locations' => [$locations[2]->id],
     ])->assertSuccessful();
 
