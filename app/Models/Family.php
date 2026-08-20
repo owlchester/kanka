@@ -21,7 +21,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Family
  *
- * @property bool|int $is_extinct
  * @property Collection|Character[] $members
  * @property ?FamilyTree $familyTree
  * @property Collection|CharacterFamily[] $pitvotMembers
@@ -41,7 +40,6 @@ class Family extends MiscModel
         'campaign_id',
         'name',
         'is_private',
-        'is_extinct',
     ];
 
     /**
@@ -49,13 +47,11 @@ class Family extends MiscModel
      */
     protected array $sortableColumns = [
         'locations',
-        'is_extinct',
     ];
 
     protected array $sortable = [
         'name',
         'locations',
-        'is_extinct',
         'type',
     ];
 
@@ -68,7 +64,6 @@ class Family extends MiscModel
 
     protected array $exportFields = [
         'base',
-        'is_extinct',
     ];
 
     /**
@@ -212,14 +207,6 @@ class Family extends MiscModel
     public function entityTypeId(): int
     {
         return (int) config('entities.ids.family');
-    }
-
-    /**
-     * Determine if the model is extinct.
-     */
-    public function isExtinct(): bool
-    {
-        return (bool) $this->is_extinct;
     }
 
     /**

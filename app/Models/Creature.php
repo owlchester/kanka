@@ -13,9 +13,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Creature
- *
- * @property bool|int $is_extinct
- * @property bool|int $is_dead
  */
 class Creature extends MiscModel
 {
@@ -32,20 +29,14 @@ class Creature extends MiscModel
         'name',
         'campaign_id',
         'is_private',
-        'is_extinct',
-        'is_dead',
     ];
 
     protected array $sortableColumns = [
-        'is_extinct',
-        'is_dead',
         'locations',
     ];
 
     protected array $sortable = [
         'name',
-        'is_extinct',
-        'is_dead',
         'type',
     ];
 
@@ -64,8 +55,6 @@ class Creature extends MiscModel
 
     protected array $exportFields = [
         'base',
-        'is_extinct',
-        'is_dead',
     ];
 
     protected array $sanitizable = [

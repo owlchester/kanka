@@ -47,14 +47,16 @@ class LegacyImageMigrationService
             $this->inventorySources($prefix);
             DB::table('legacy_image_migration_references')->where('prefix', $prefix)->delete();
 
-            foreach (self::CONTENT_COLUMNS as $table => $columns) {
-                foreach ($columns as $column) {
-                    $this->indexColumn($prefix, $table, $column);
+            if (! $this->skipsContentReferences($prefix)) {
+                foreach (self::CONTENT_COLUMNS as $table => $columns) {
+                    foreach ($columns as $column) {
+                        $this->indexColumn($prefix, $table, $column);
+                    }
                 }
             }
             foreach (self::PATH_COLUMNS as $table => $columns) {
                 foreach ($columns as $column) {
-                    if ($table === 'entities' && $column === 'image_path') {
+                    if (($table === 'entities' || $table === 'map_layers') && $column === 'image_path') {
                         continue;
                     }
                     $this->indexStructuredColumn($prefix, $table, $column);
@@ -123,6 +125,17 @@ class LegacyImageMigrationService
         return "w/{$campaignId}/legacy/{$uuid}.{$extension}";
     }
 
+    public function resolveExtension(string $source): string
+    {
+        $resolved = $this->resolveSource($source);
+
+        if ($resolved['status'] !== 'resolved' || $resolved['extension'] === null) {
+            throw new RuntimeException($resolved['error'] ?? "Unable to identify image format for {$source}");
+        }
+
+        return $resolved['extension'];
+    }
+
     /**
      * Rewrite only rows recorded by the one-time prefix index.
      */
@@ -189,10 +202,7 @@ class LegacyImageMigrationService
 
     public function rewriteValue(string $value, string $source, string $destination): string
     {
-        $destinationUrl = rtrim((string) config('cdn.ugc'), '/') . '/' . $destination;
-        if (empty(config('cdn.ugc'))) {
-            $destinationUrl = Storage::disk('s3')->url($destination);
-        }
+        $destinationUrl = $this->destinationUrl($destination);
 
         foreach ($this->knownBases() as $base) {
             $value = str_replace($base . '/' . $source, $destinationUrl, $value);
@@ -205,6 +215,88 @@ class LegacyImageMigrationService
             fn (array $matches): string => $matches['before'] . $destination,
             $value
         ) ?? $value;
+    }
+
+    public function rewriteSignedThumborReferences(int $migrationId, string $source, string $destination): int
+    {
+        $references = DB::table('legacy_image_migration_references')
+            ->where('legacy_image_migration_id', $migrationId)
+            ->where('status', 'blocker')
+            ->where('error', 'like', 'Signed Thumbor reference%')
+            ->orderBy('id')
+            ->get();
+        $updatedRows = 0;
+
+        foreach ($references as $reference) {
+            if (! isset(self::CONTENT_COLUMNS[$reference->table_name])
+                || ! in_array($reference->column_name, self::CONTENT_COLUMNS[$reference->table_name], true)) {
+                throw new RuntimeException("Refusing to rewrite signed URL in {$reference->table_name}.{$reference->column_name}");
+            }
+
+            $current = DB::table($reference->table_name)
+                ->where('id', $reference->row_id)
+                ->value($reference->column_name);
+            if (! is_string($current)) {
+                throw new RuntimeException("Missing signed URL value in {$reference->table_name}.{$reference->column_name} row {$reference->row_id}");
+            }
+
+            $updated = $this->rewriteSignedThumborValue($current, $source, $destination);
+            if ($updated === $current) {
+                // Older indexes classified the whole field as signed when it contained
+                // an unrelated Thumbor URL alongside this source's direct CDN URL.
+                $updated = $this->rewriteValue($current, $source, $destination);
+            }
+            if ($updated === $current) {
+                throw new RuntimeException("Could not locate image URL in {$reference->table_name}.{$reference->column_name} row {$reference->row_id}");
+            }
+
+            $affected = DB::table($reference->table_name)
+                ->where('id', $reference->row_id)
+                ->where($reference->column_name, $current)
+                ->update([$reference->column_name => $updated]);
+            if ($affected !== 1) {
+                throw new RuntimeException("Concurrent update in {$reference->table_name}.{$reference->column_name} row {$reference->row_id}");
+            }
+
+            DB::table('legacy_image_migration_references')->where('id', $reference->id)->update([
+                'value_hash' => hash('sha256', $updated),
+                'status' => 'resolved',
+                'error' => null,
+                'updated_at' => now(),
+            ]);
+            $updatedRows++;
+        }
+
+        return $updatedRows;
+    }
+
+    public function rewriteSignedThumborValue(string $value, string $source, string $destination): string
+    {
+        $pattern = $this->thumborUrlPattern();
+        if ($pattern === null) {
+            return $value;
+        }
+
+        $destinationUrl = $this->destinationUrl($destination);
+
+        return preg_replace_callback($pattern, function (array $matches) use ($source, $destinationUrl): string {
+            $url = $matches[0];
+            $candidate = rtrim($url, '),;');
+            if (! $this->urlReferencesSource($candidate, $source)) {
+                return $url;
+            }
+
+            return $destinationUrl . mb_substr($url, mb_strlen($candidate));
+        }, $value) ?? $value;
+    }
+
+    public function destinationUrl(string $destination): string
+    {
+        if (! empty(config('cdn.ugc'))) {
+            return rtrim((string) config('cdn.ugc'), '/') . '/' . $destination;
+        }
+
+        return Storage::disk('s3')->url($destination);
     }
 
     /** @return array{structured: int, content: int, blockers: int} */
@@ -448,6 +540,19 @@ class LegacyImageMigrationService
 
     protected function owners(string $prefix): Builder
     {
+        if ($prefix === 'map_layers/') {
+            $owners = DB::table('map_layers')
+                ->selectRaw('image_path AS source_path, MIN(id) AS entity_id')
+                ->where('image_path', 'like', $prefix . '%')
+                ->groupBy('image_path');
+
+            return DB::query()
+                ->fromSub($owners, 'owner')
+                ->join('map_layers', 'map_layers.id', '=', 'owner.entity_id')
+                ->join('maps', 'maps.id', '=', 'map_layers.map_id')
+                ->select(['owner.source_path', 'owner.entity_id', 'maps.campaign_id']);
+        }
+
         $owners = DB::table('entities')
             ->selectRaw('image_path AS source_path, MIN(id) AS entity_id')
             ->where('image_path', 'like', $prefix . '%')
@@ -457,6 +562,11 @@ class LegacyImageMigrationService
             ->fromSub($owners, 'owner')
             ->join('entities', 'entities.id', '=', 'owner.entity_id')
             ->select(['owner.source_path', 'owner.entity_id', 'entities.campaign_id']);
+    }
+
+    protected function skipsContentReferences(string $prefix): bool
+    {
+        return $prefix === 'map_layers/';
     }
 
     protected function indexColumn(string $prefix, string $table, string $column): void
@@ -686,12 +796,45 @@ class LegacyImageMigrationService
 
     protected function containsSignedThumborReference(string $value, string $source): bool
     {
-        if (! str_contains($value, $source)) {
+        $pattern = $this->thumborUrlPattern();
+        if ($pattern === null) {
             return false;
         }
 
-        $thumborHost = parse_url((string) config('thumbor.url'), PHP_URL_HOST);
+        preg_match_all($pattern, $value, $matches);
+        foreach ($matches[0] as $url) {
+            if ($this->urlReferencesSource(rtrim($url, '),;'), $source)) {
+                return true;
+            }
+        }
 
-        return str_contains($value, 'th.kanka.io') || ($thumborHost && str_contains($value, $thumborHost));
+        return false;
+    }
+
+    protected function thumborUrlPattern(): ?string
+    {
+        $hosts = array_values(array_filter(array_unique([
+            'th.kanka.io',
+            parse_url((string) config('thumbor.url'), PHP_URL_HOST),
+        ])));
+        if (empty($hosts)) {
+            return null;
+        }
+
+        $hostPattern = implode('|', array_map(fn (string $host): string => preg_quote($host, '~'), $hosts));
+
+        return '~(?:https?:)?//(?:' . $hostPattern . ')(?::\d+)?/[^\s"\'<>]+~iu';
+    }
+
+    protected function urlReferencesSource(string $url, string $source): bool
+    {
+        $url = html_entity_decode($url, ENT_QUOTES | ENT_HTML5);
+        if (str_contains($url, $source)) {
+            return true;
+        }
+
+        $cleanSource = preg_split('/[?#]/', $source, 2)[0];
+
+        return $cleanSource !== $source && str_contains($url, $cleanSource);
     }
 }

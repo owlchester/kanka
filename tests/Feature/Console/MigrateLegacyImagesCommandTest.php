@@ -3,6 +3,9 @@
 use App\Models\Campaign;
 use App\Models\CampaignDescription;
 use App\Models\Character;
+use App\Models\DiceRoll;
+use App\Models\Map;
+use App\Models\MapLayer;
 use App\Models\Post;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Database\Schema\Blueprint;
@@ -61,6 +64,53 @@ it('migrates an owned legacy image and rewrites embedded references', function (
         ->and(DB::table('legacy_image_migrations')->where('source_hash', hash('sha256', $source))->value('status'))->toBe('complete');
 });
 
+it('migrates dice roll images with an underscored prefix', function () {
+    $source = 'dice_rolls/old.jpg';
+    $entity = DiceRoll::factory()->create(['campaign_id' => 1])->entity;
+    $entity->forceFill(['image_path' => $source])->saveQuietly();
+    Storage::disk('s3')->put($source, 'image-content');
+
+    $this->artisan('images:migrate-legacy', ['prefix' => 'dice_rolls', '--index' => true])
+        ->assertSuccessful();
+    $this->artisan('images:migrate-legacy', ['prefix' => 'dice_rolls', '--execute' => true])
+        ->assertSuccessful();
+
+    $destination = legacyDestination(1, $source);
+    Storage::disk('s3')->assertMissing($source);
+    expect($entity->fresh()->image_path)->toBe($destination);
+});
+
+it('migrates map layer images using the parent map campaign and skips content checks', function () {
+    $campaign = Campaign::factory()->create();
+    $map = Map::factory()->create(['campaign_id' => $campaign->id]);
+    $source = 'map_layers/overlay.png';
+    $layer = MapLayer::factory()->create([
+        'map_id' => $map->id,
+        'entry' => '<img src="' . $source . '">',
+    ]);
+    $layer->forceFill(['image_path' => $source])->saveQuietly();
+    $description = CampaignDescription::create([
+        'campaign_id' => $campaign->id,
+        'description' => '<img src="' . $source . '">',
+        'excerpt' => null,
+    ]);
+    $descriptionBefore = $description->description;
+    Storage::disk('s3')->put($source, 'image-content');
+
+    $this->artisan('images:migrate-legacy', ['prefix' => 'map_layers', '--index' => true])
+        ->assertSuccessful();
+
+    expect(DB::table('legacy_image_migration_references')->count())->toBe(0);
+
+    $this->artisan('images:migrate-legacy', ['prefix' => 'map_layers', '--execute' => true])
+        ->assertSuccessful();
+
+    $destination = legacyDestination($campaign->id, $source);
+    Storage::disk('s3')->assertMissing($source);
+    expect($layer->fresh()->image_path)->toBe($destination)
+        ->and($description->fresh()->description)->toBe($descriptionBefore);
+});
+
 it('uses the oldest entity as owner and rewrites cross-campaign consumers', function () {
     $source = 'characters/shared.png';
     $owner = Character::factory()->create(['campaign_id' => 1])->entity;
@@ -116,6 +166,26 @@ it('leaves the source and database untouched when an unresolved thumbor referenc
     Storage::disk('s3')->assertExists($source);
     expect($entity->fresh()->image_path)->toBe($source)
         ->and($entity->fresh()->entry)->toContain($source);
+});
+
+it('does not block a direct image url because the same field has an unrelated thumbor url', function () {
+    $source = 'characters/direct.jpg';
+    $unrelated = 'https://th.kanka.io/signature/200x200/src/locations/unrelated.jpg';
+    $entity = Character::factory()->create(['campaign_id' => 1])->entity;
+    $entity->forceFill([
+        'image_path' => $source,
+        'entry' => '<img src="https://cdn-ugc.kanka.io/' . $source . '"><img src="' . $unrelated . '">',
+    ])->saveQuietly();
+    Storage::disk('s3')->put($source, 'image-content');
+
+    $this->artisan('images:migrate-legacy', ['prefix' => 'characters', '--index' => true])
+        ->assertSuccessful();
+    $this->artisan('images:migrate-legacy', ['prefix' => 'characters', '--execute' => true])
+        ->assertSuccessful();
+
+    expect($entity->fresh()->entry)
+        ->toContain('https://cdn-ugc.kanka.io/' . legacyDestination(1, $source))
+        ->toContain($unrelated);
 });
 
 it('continues with later objects when one source is missing', function () {

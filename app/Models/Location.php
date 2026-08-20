@@ -23,7 +23,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $image
  * @property ?string $map
  * @property bool|int $is_private
- * @property bool|int $is_destroyed
  * @property bool|int $is_map_private
  * @property Map[]|Collection $maps
  * @property Event[]|Collection $events
@@ -45,21 +44,12 @@ class Location extends MiscModel
         'name',
         'campaign_id',
         'is_private',
-        'is_destroyed',
         'title',
     ];
 
     protected array $sortable = [
         'name',
         'type',
-        'is_destroyed',
-    ];
-
-    /**
-     * Fields that can be sorted on
-     */
-    protected array $sortableColumns = [
-        'is_destroyed',
     ];
 
     /**
@@ -71,7 +61,6 @@ class Location extends MiscModel
     protected array $exportFields = [
         'base',
         'title',
-        'is_destroyed',
     ];
 
     protected array $sanitizable = [
@@ -203,14 +192,6 @@ class Location extends MiscModel
         }
 
         return parent::showProfileInfo();
-    }
-
-    /**
-     * Get the value of the is_destroyed variable
-     */
-    public function isDestroyed(): bool
-    {
-        return (bool) $this->is_destroyed;
     }
 
     /**
