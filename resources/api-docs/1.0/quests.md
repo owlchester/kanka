@@ -120,7 +120,7 @@ To get the elements of a quest, use the following endpoint.
         "created_at":  "2019-01-30T00:01:44.000000Z",
         "created_by": null,
         "instigator_id": null,
-        "location_id": null,
+        "locations": [],
         "role": "Target",
         "description": "Lorem Ipsum",
         "description_parsed": "Lorem Ipsum",

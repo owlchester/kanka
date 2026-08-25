@@ -83,7 +83,6 @@ To get the details of a single event, use the following endpoint.
         "created_by": 1,
         "updated_at":  "2019-08-29T13:48:54.000000Z",
         "updated_by": 1,
-        "location_id": 4,
         "locations": [4, 12],
         "date": "44-3-16",
         "type": "Battle",

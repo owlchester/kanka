@@ -62,6 +62,7 @@ To get a list of available filters for the characters endpoint, call the followi
         "sex",
         "pronouns",
         "location_id",
+        "locations",
         "is_dead",
         "member_id",
         "race_id",

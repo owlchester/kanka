@@ -1,7 +1,5 @@
 # Overview
 
-API documentation for Kanka
-
 ---
 
 - [Welcome](#welcome)
@@ -10,7 +8,7 @@ API documentation for Kanka
 <a name="welcome"></a>
 ## Welcome
 
-Welcome to the Kanka's API documentation. Kanka is a free online worldbuilding and RPG campaign management tool. The primary aim of this documentation is to provide context for the Kanka REST API.
+Welcome to the Kanka's API documentation. Kanka is a free online worldbuilding and RPG campaign management tool. The primary aim of this documentation is to provide context for the Kanka REST API. All accounts have instant and free access to the API and their worlds data.
 
 <a name="key-concepts"></a>
 ## Key Concepts

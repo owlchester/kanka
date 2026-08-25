@@ -48,7 +48,6 @@ The list of returned entities can be filtered. The available filters are [availa
             "created_by": 1,
             "updated_at": "2019-08-29T13:38:46.000000Z",
             "updated_by": 1,
-            "location_id": 4,
             "title": null,
             "age": "39",
             "sex": "Male",
@@ -107,7 +106,6 @@ To get the details of a single character, use the following endpoint.
         "created_by": 1,
         "updated_at": "2019-08-29T13:38:46.000000Z",
         "updated_by": 1,
-        "location_id": 4,
         "title": null,
         "age": "39",
         "sex": "Male",
@@ -157,7 +155,7 @@ To create a character, use the following endpoint.
 | `pronouns` | `string`  | Prefered pronouns of the character |
 | `type` | `string`  | Type of the character |
 | `families` | `array` | Array of family ids |
-| `location_id` | `integer` | Location id |
+| `locations` | `array` | Array of location ids |
 | `races` | `array` | Array of race ids |
 | `tags` | `array` | Array of tag ids |
 | `status_id` | `integer` | The id of the entity's status from `category_statuses` |

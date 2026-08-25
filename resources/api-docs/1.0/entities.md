@@ -171,7 +171,6 @@ With each request to an object (ie. `character`, `location`, etc), you can inclu
             "created_by": null,
             "updated_at":  "2019-08-29T13:48:54.000000Z",
             "updated_by": null,
-            "location_id": 2,
             "attributes": [],
             "posts": [],
             "entity_events": [
