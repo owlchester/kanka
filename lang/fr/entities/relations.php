@@ -42,6 +42,7 @@ return [
         'mirrored'  => 'Ceci supprimera aussi la relation liée et est permanent.',
         'success'   => 'Relation :target supprimée pour :entity.',
     ],
+    'empty'             => 'Rien à voir ici',
     'fields'            => [
         'attitude'          => 'Attitude',
         'is_pinned'         => 'Épinglé',

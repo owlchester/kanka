@@ -35,6 +35,7 @@ return [
         'center'                        => 'Centre',
         'create_template'               => 'Créer un modèle',
         'css_class'                     => 'Classe CSS',
+        'custom_icon_or_svg'            => 'Icône personnalisée ou SVG',
         'delete'                        => 'Supprimer le marqueur',
         'delete_confirm'                => 'Cliquer à nouveau pour confirmer',
         'delete_template'               => 'Supprimer le modèle',

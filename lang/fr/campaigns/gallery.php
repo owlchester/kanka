@@ -28,7 +28,10 @@ return [
         'storage'       => 'Il n\'y a pas assez d\'espace de stockage pour télécharger les images sélectionnées. Espace de stockage disponible: :available.',
     ],
     'fields'        => [
+        'author'                => 'Auteur / crédit',
         'created_by'            => 'Téléchargé par',
+        'credit'                => 'Crédit: :author',
+        'description'           => 'Description / texte alternatif',
         'details'               => 'Détails',
         'ext'                   => 'Ext',
         'file_type'             => 'Type de fichier',

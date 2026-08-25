@@ -73,15 +73,15 @@ return [
     'title'         => 'Dashboard',
     'widgets'       => [
         'advanced_options_boosted'  => 'Enable more options like showing pins with a :boosted_campaign.',
-            'calendar'                  => [
-                'actions'           => [
-                    'next'      => 'Change date to next day',
-                    'previous'  => 'Change date to previous day',
-                ],
-                'days_ago'          => ':count day ago|:count days ago',
-                'happening_now'     => 'Happening now',
-                'in_days'           => 'in :count day|in :count days',
-                'previous_events'   => 'Previous',
+        'calendar'                  => [
+            'actions'           => [
+                'next'      => 'Change date to next day',
+                'previous'  => 'Change date to previous day',
+            ],
+            'days_ago'          => ':count day ago|:count days ago',
+            'happening_now'     => 'Happening now',
+            'in_days'           => 'in :count day|in :count days',
+            'previous_events'   => 'Previous',
             'upcoming_events'   => 'Upcoming',
         ],
         'campaign'                  => [
