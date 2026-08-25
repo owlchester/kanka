@@ -203,7 +203,7 @@ class FamilyTreeService
             'id' => $entity->id,
             'name' => $entity->name,
             'url' => $entity->url(),
-            'thumb' => Avatar::entity($entity)->size(40)->fallback()->thumbnail(),
+            'thumb' => Avatar::entity($entity)->size(80)->fallback()->thumbnail(),
             'status' => $status,
             'death' => $death,
             'birth' => $birth,
