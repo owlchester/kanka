@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'closing'   => 'Atentamente,',
-    'cta'       => 'Renueva tu suscripción',
-    'dear'      => 'Estimado/a :name',
-    'intro'     => 'Tu suscripción de Kanka por PayPal vence el **:date**. Después de esa fecha, tu cuenta volverá al nivel gratuito.',
-    'loss'      => [
+    'closing'       => 'Atentamente,',
+    'cta'           => 'Renueva tu suscripción',
+    'dear'          => 'Estimado/a :name',
+    'intro'         => 'Tu suscripción de Kanka por PayPal vence el **:date**. Después de esa fecha, tu cuenta volverá al nivel gratuito.',
+    'loss'          => [
         'ads'       => 'Experiencia sin anuncios',
         'campaign'  => 'Campaña premium **:campaign**|Campañas premium **:campaign** y :count más',
         'discord'   => 'Tu rol **:role** de Discord',
@@ -13,5 +13,6 @@ return [
         'plugins'   => ':count plugin|:count plugins',
         'title'     => 'Esto es lo que perderás:',
     ],
-    'title'     => 'Tu suscripción de Kanka vence pronto',
+    'resubscribe'   => 'Puedes volver a suscribirte en cualquier momento usando una tarjeta o PayPal desde nuestra página de suscripción.',
+    'title'         => 'Tu suscripción de Kanka vence pronto',
 ];

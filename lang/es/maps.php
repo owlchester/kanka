@@ -2,9 +2,10 @@
 
 return [
     'actions'       => [
-        'back'      => 'Volver a :name',
-        'edit'      => 'Editar mapa',
-        'explore'   => 'Explorar',
+        'back'          => 'Volver a :name',
+        'edit'          => 'Editar mapa',
+        'explore'       => 'Explorar',
+        'explore_named' => 'Explorar :name',
     ],
     'create'        => [
         'title' => 'Nuevo mapa',
@@ -22,9 +23,18 @@ return [
         ],
         'dashboard' => [
             'missing'   => 'Este mapa necesita una imagen para que se pueda mostrar en el tablero.',
+            'tiling'    => 'Los recursos de este mapa se están fragmentando. Inténtalo de nuevo pronto.',
         ],
         'explore'   => [
             'missing'   => 'Por favor, añade una imagen al mapa para poder explorarlo.',
+        ],
+        'tiling'    => [
+            'error'     => 'Se ha producido un error al fragmentar el mapa. Ponte en contacto con el equipo en :discord para obtener ayuda.',
+            'running'   => [
+                'edit'      => 'El mapa no se puede editar mientras se esté fragmentando.',
+                'explore'   => 'El mapa no puede visualizarse mientras se esté fragmentando.',
+                'time'      => 'Esto puede tardar de varios minutos a varias horas, dependiendo del tamaño del mapa.',
+            ],
         ],
     ],
     'fields'        => [
@@ -58,6 +68,7 @@ return [
         'max_zoom'              => 'El máximo que se puede acercar un mapa. El valor por defecto es :default, mientras que el valor máximo permitido es :max.',
         'min_zoom'              => 'El máximo que se puede alejar un mapa. El valor por defecto es :default, mientras que el valor máximo permitido es :min.',
         'missing_image'         => 'Guarda el mapa con una imagen antes de añadir capas y marcadores.',
+        'tiled_zoom'            => 'Agrupa automáticamente los marcadores cuando están próximos entre sí.',
     ],
     'index'         => [],
     'lists'         => [
@@ -87,6 +98,9 @@ return [
     ],
     'tooltips'      => [
         'chunking'  => [
+            'running'   => 'El mapa se está fragmentando. Este proceso puede durar de varios minutos a horas.',
+        ],
+        'tiling'    => [
             'running'   => 'El mapa se está fragmentando. Este proceso puede durar de varios minutos a horas.',
         ],
     ],

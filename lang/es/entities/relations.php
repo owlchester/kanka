@@ -42,6 +42,7 @@ return [
         'mirrored'  => 'Esto también eliminará la conexión duplicada permanentemente.',
         'success'   => 'Relación :target eliminada de :entity.',
     ],
+    'empty'             => 'No hay nada que ver aquí',
     'fields'            => [
         'attitude'          => 'Actitud',
         'is_pinned'         => 'Fijado',

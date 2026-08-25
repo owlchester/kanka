@@ -2,12 +2,13 @@
 
 return [
     'actions'   => [
-        'add_url'   => 'Añadir desde URL',
-        'change'    => 'Cambiar',
-        'gallery'   => 'De la galería',
-        'upload'    => 'Subir desde dispositivo',
-        'url'       => 'Subir una imagen desde una URL',
-        'url_hint'  => 'Pega un enlace de imagen',
+        'add_url'       => 'Añadir desde URL',
+        'change'        => 'Cambiar',
+        'gallery'       => 'De la galería',
+        'paste_error'   => 'URL no válida',
+        'upload'        => 'Subir desde dispositivo',
+        'url'           => 'Subir una imagen desde una URL',
+        'url_hint'      => 'Pega un enlace de imagen',
     ],
     'browse'    => [
         'folder_count'      => ':count imágenes',

@@ -68,6 +68,9 @@ return [
         'draggable'                 => 'Actívalo para poder mover el marcador en el modo de exploración.',
         'is_popupless'              => 'Desactiva la aparición del tooltip del marcador al pasar el ratón por encima.',
         'label'                     => 'Las etiquetas se muestran como un bloque de texto en el mapa. El contenido será el nombre del marcador.',
+        'path'                      => [
+            'edit'  => 'Edita el trazado arrastrando sus puntos.',
+        ],
         'polygon'                   => [
             'edit'  => 'Haz clic en el mapa para añadir esa posición a las coordenadas del polígono.',
         ],
@@ -76,16 +79,21 @@ return [
         'entry' => 'Edita el marcador para escribir una entrada personalizada sobre él.',
     ],
     'icons'         => [
+        'circle'        => 'Icono de círculo',
         'custom'        => 'Personalizado',
+        'diamond'       => 'Icono de rombo',
         'entity'        => 'Entidad',
         'exclamation'   => 'Exclamación',
         'marker'        => 'Marcador',
         'question'      => 'Interrogación',
+        'square'        => 'Icono de cuadrado',
+        'triangle'      => 'Icono de triángulo',
     ],
     'index'         => [
         'title' => 'Marcadores de :name',
     ],
     'pitches'       => [
+        'path'  => 'Usa trazados para dibujar carreteras, ríos o rutas en el mapa. Disponible como parte de las funciones premium de la campaña.',
         'poly'  => 'Dibuje formas poligonales personalizadas para representar fronteras y otras formas irregulares.',
     ],
     'placeholders'  => [
@@ -110,9 +118,11 @@ return [
         '4' => 'Enorme',
     ],
     'tabs'          => [
+        'area'      => 'Área',
         'circle'    => 'Círculo',
         'label'     => 'Etiqueta',
         'marker'    => 'Marcador',
+        'path'      => 'Trazado',
         'polygon'   => 'Polígono',
         'preset'    => 'Preestablecido',
     ],

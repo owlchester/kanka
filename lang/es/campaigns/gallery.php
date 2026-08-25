@@ -28,7 +28,10 @@ return [
         'storage'       => 'No hay espacio suficiente para almacenar las imágenes seleccionadas. Espacio de almacenamiento disponible: :available.',
     ],
     'fields'        => [
+        'author'                => 'Autor / crédito',
         'created_by'            => 'Subida por',
+        'credit'                => 'Crédito: :author',
+        'description'           => 'Descripción / texto alternativo',
         'details'               => 'Detalles',
         'ext'                   => 'Ext',
         'file_type'             => 'Tipo de archivo',

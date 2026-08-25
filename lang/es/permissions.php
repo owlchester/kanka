@@ -12,4 +12,5 @@ return [
     'roles'     => [
         'inherited' => 'El rol :role ya puede hacer esto en todo el módulo de :module.',
     ],
+    'switch'    => 'Ver la campaña como :name para probar sus permisos',
 ];

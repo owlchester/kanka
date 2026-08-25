@@ -220,6 +220,7 @@ return [
         'payment_method'        => [
             'actions'   => [
                 'change'    => 'Cambiar método de pago',
+                'manage'    => 'Gestionar en Stripe',
             ],
             'helper'    => 'Se usará esta tarjeta para todas tus suscripciones.',
         ],
