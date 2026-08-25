@@ -12,6 +12,7 @@ use App\Models\CampaignRole;
 use App\Models\CampaignRoleUser;
 use App\Models\CampaignUser;
 use App\Models\Entity;
+use App\Models\EntityClaim;
 use App\Models\EntityUser;
 use App\Models\FeatureVote;
 use App\Models\PasswordSecurity;
@@ -51,6 +52,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property Collection|UserFlag[] $flags
  * @property Collection|Tutorial[] $tutorials
  * @property Collection|UserDevice[] $devices
+ * @property Collection|EntityClaim[] $entityClaims
  */
 trait UserRelations
 {
@@ -109,6 +111,14 @@ trait UserRelations
             'id',
             'campaign_role_id'
         );
+    }
+
+    /**
+     * @return HasMany<EntityClaim, $this>
+     */
+    public function entityClaims(): HasMany
+    {
+        return $this->hasMany(EntityClaim::class);
     }
 
     /**

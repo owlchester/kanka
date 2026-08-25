@@ -19,6 +19,7 @@ use App\Models\DiceRoll;
 use App\Models\Entity;
 use App\Models\EntityAbility;
 use App\Models\EntityAsset;
+use App\Models\EntityClaim;
 use App\Models\EntityLocation;
 use App\Models\EntityLog;
 use App\Models\EntityTag;
@@ -87,6 +88,7 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  * @property EntityAsset[]|Collection $pinnedFiles
  * @property EntityAsset[]|Collection $pinnedAssets
  * @property EntityAsset[]|Collection $pinnedAliases
+ * @property EntityClaim[]|Collection $claims
  * @property Relation[]|Collection $relationships
  * @property Relation[]|Collection $allRelationships
  * @property Reminder[]|Collection $elapsedEvents
@@ -548,6 +550,14 @@ trait EntityRelations
         return $this->belongsToMany(User::class)
             ->using(EntityUser::class)
             ->withPivot('type_id');
+    }
+
+    /**
+     * @return HasMany<EntityClaim, $this>
+     */
+    public function claims(): HasMany
+    {
+        return $this->hasMany(EntityClaim::class);
     }
 
     /**

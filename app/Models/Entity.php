@@ -51,6 +51,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property int $deleted_by
  * @property bool|int $is_private
  * @property bool|int $is_attributes_private
+ * @property bool $is_claimable
  * @property string $tooltip
  * @property ?string $header_image
  * @property ?string $image_uuid
@@ -113,12 +114,24 @@ class Entity extends Model
         'image_uuid',
         'header_uuid',
         'is_template',
+        'is_claimable',
         'type',
         'entry',
         'parent_id',
         'status_id',
         'source',
     ];
+
+    protected $attributes = [
+        'is_claimable' => false,
+    ];
+
+    protected function casts(): array
+    {
+        return [
+            'is_claimable' => 'boolean',
+        ];
+    }
 
     protected array $sanitizable = [
         'type',
