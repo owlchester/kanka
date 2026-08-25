@@ -18,6 +18,7 @@
         "aws/aws-sdk-php": "^3.276",
         "bacon/bacon-qr-code": "^3.0",
         "binarytorch/larecipe": "^2.0",
+        "binarytorch/larecipe-dark-theme": "^0.1.5",
         "caseyamcl/toc": "^4.0",
         "chriskonnertz/string-calc": "^2.0",
         "dompdf/dompdf": "^3.0",
