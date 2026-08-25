@@ -171,11 +171,11 @@ The permission integer is set to `0` for `Read`, `1` for `Update`, and `2` for `
 <a name="deleted-posts"></a>
 ## Deleted Posts
 
-You can view the recoverable deleted posts on the `/recovery/posts` endpoint.
+You can view recoverable deleted posts on the [Recovery](/api-docs/{{version}}/entities/recovery) page.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
-| GET/HEAD | `/recovery/posts` | Default |
+| GET | `recovery/posts` | Default |
 
 ### Result
 
@@ -208,11 +208,11 @@ You can view the recoverable deleted posts on the `/recovery/posts` endpoint.
 <a name="recover-posts"></a>
 ## Recover Deleted Posts
 
-You can post an array with the ids of the posts you want to recover to the `/recover/posts` endpoint to undo the deletion (this is a premium only feature).
+You can post an array with the IDs of the posts you want to recover to the `recover/posts` endpoint. Recovery is available for eligible premium campaigns.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
-| POST | `/recover/posts` | Default |
+| POST | `recover/posts` | Default |
 
 | Parameter | Type | Description
 | :- | :- | :- |

@@ -51,7 +51,7 @@ To change the archetype status of an entity, use the following endpoint.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
-| POST | `entities/template/{entity.id}/switch` | Default |
+| POST | `entities/templates/{entity.id}/switch` | Default |
 
 ### Body
 
@@ -61,4 +61,3 @@ To change the archetype status of an entity, use the following endpoint.
 ### Results
 
 > {success} Code 200 with JSON body of the entity.
-

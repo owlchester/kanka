@@ -6,7 +6,7 @@
 
 # Categories
 
-Categories, previously known as Modules or Entity Types, are how data is stored in Kanka. Characters is a category. Locations is a category. Gods is a custom categoriy.
+Categories, previously known as Modules or Entity Types, are how data is stored in Kanka. Characters is a category. Locations is a category. Gods is a custom category.
 
 
 
@@ -121,5 +121,4 @@ To get a list of entries belongs to the category, call the entities endpoint wit
 
 | Method | URI                                   | Headers |
 | :- |:--------------------------------------|  :-  |
-| DELETE | `entities?type_id[]={entity_type.id}` | Default |
-
+| GET | `entities?type_id[]={entity_type.id}` | Default |

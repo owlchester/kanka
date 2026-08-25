@@ -102,7 +102,7 @@ To update a map, use the following endpoint.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
-| PUT/PATCH | `maps/{map.id}/map_markers/{map.id}` | Default |
+| PUT/PATCH | `maps/{map.id}/map_markers/{map_marker.id}` | Default |
 
 ### Body
 
@@ -120,7 +120,7 @@ To delete a map, use the following endpoint.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
-| DELETE | `maps/{map.id}/map_markers/{map.id}` | Default |
+| DELETE | `maps/{map.id}/map_markers/{map_marker.id}` | Default |
 
 ### Results
 

@@ -1,14 +1,21 @@
 - ## Get Started
   - [Overview](/api-docs/{{version}}/overview)
   - [Setup](/api-docs/{{version}}/setup)
+  - [Requests and Responses](/api-docs/{{version}}/misc/requests)
 
+- ## API Fundamentals
+  - [Errors](/api-docs/{{version}}/misc/errors)
+  - [Pagination](/api-docs/{{version}}/misc/pagination)
+  - [Filters](/api-docs/{{version}}/misc/filters)
+  - [Visibilities](/api-docs/{{version}}/misc/visibilities)
+  - [Permissions Test](/api-docs/{{version}}/misc/permissions-test)
+  - [Last Sync](/api-docs/{{version}}/misc/last-sync)
 
 - ## User
   - [Profile](/api-docs/{{version}}/profile)
 
 - ## Campaigns
   - [Campaigns](/api-docs/{{version}}/campaigns)
-  - [Campaign Applications](/api-docs/{{version}}/campaigns/applications)
   - [Campaign Members](/api-docs/{{version}}/campaigns/members)
   - [Campaign Roles](/api-docs/{{version}}/campaigns/roles)
   - [Default Thumbnails](/api-docs/{{version}}/campaigns/default-thumbnails)
@@ -17,6 +24,7 @@
   - [Gallery](/api-docs/{{version}}/campaigns/images)
   - [Categories](/api-docs/{{version}}/campaigns/categories)
   - [Statuses](/api-docs/{{version}}/campaigns/statuses)
+  - [Campaign Applications](/api-docs/{{version}}/campaigns/applications)
 
 - ## Core Objects
   - [Entities](/api-docs/{{version}}/entities)
@@ -57,17 +65,11 @@
   - [Reminders](/api-docs/{{version}}/entities/reminders)
   - [Tags](/api-docs/{{version}}/entities/entity-tags)
   - [Archetypes](/api-docs/{{version}}/entities/templates)
+  - [Recovery](/api-docs/{{version}}/entities/recovery)
 
 - ## Search
   - [Search](/api-docs/{{version}}/search)
   - [Archives](/api-docs/{{version}}/archives)
-
-- ## Other Concepts
-  - [Last Sync](/api-docs/{{version}}/misc/last-sync)
-  - [Filters](/api-docs/{{version}}/misc/filters)
-  - [Pagination](/api-docs/{{version}}/misc/pagination)
-  - [Visibilities](/api-docs/{{version}}/misc/visibilities)
-  - [Permissions Test](/api-docs/{{version}}/misc/permissions-test)
 
 - ## Help
   - [Troubleshooting](/api-docs/{{version}}/troubleshooting)

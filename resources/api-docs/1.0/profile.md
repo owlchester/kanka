@@ -24,7 +24,7 @@ The following endpoint provides simple data about the current user.
         "default_pagination": 15,
         "last_campaign_id": 1,
         "is_subscriber": true,
-        "rate_limit": 30
+        "rate_limit": 90
     }
 }
 ```

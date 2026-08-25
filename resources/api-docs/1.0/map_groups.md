@@ -50,7 +50,7 @@ To create a map group, use the following endpoint.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
-| POST | `maps/{map.id}/map-groups` | Default |
+| POST | `maps/{map.id}/map_groups` | Default |
 
 ### Body
 
@@ -76,7 +76,7 @@ To update a map, use the following endpoint.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
-| PUT/PATCH | `maps/{map.id}/map-groups/{map.id}` | Default |
+| PUT/PATCH | `maps/{map.id}/map_groups/{map_group.id}` | Default |
 
 ### Body
 
@@ -94,7 +94,7 @@ To delete a map, use the following endpoint.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
-| DELETE | `maps/{map.id}/map-groups/{map.id}` | Default |
+| DELETE | `maps/{map.id}/map_groups/{map_group.id}` | Default |
 
 ### Results
 

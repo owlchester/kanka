@@ -4,6 +4,9 @@
 
 - [User's Campaigns](#user-campaigns)
 - [Single Campaign](#campaign)
+- [Create a Campaign](#create-campaign)
+- [Update a Campaign](#update-campaign)
+- [Delete a Campaign](#delete-campaign)
 - [Campaign Roles](#campaign-roles)
 
 <a name="user-campaigns"></a>
@@ -57,7 +60,7 @@ You can get a list of all the campaigns the user has access to using the followi
         "current_page": 1,
         "from": 1,
         "last_page": 1,
-        "path": "http://api.kanka.io/{{version}}/campaigns",
+        "path": "https://api.kanka.io/{{version}}/campaigns",
         "per_page": 15,
         "to": 3,
         "total": 3
@@ -109,6 +112,49 @@ This endpoint also includes the `description` property with `[entity:123]` menti
     }
 }
 ```
+
+<a name="create-campaign"></a>
+## Create a Campaign
+
+Create a campaign for the authenticated user.
+
+| Method | URI | Headers |
+| :- | :- | :- |
+| POST | `{{version}}/campaigns` | Default |
+
+### Body
+
+| Parameter | Type | Description |
+| :- | :- | :- |
+| `name` | `string` (required) | Campaign name, at least 4 characters |
+| `description` | `string` | Campaign description |
+| `locale` | `string` | Campaign locale |
+| `image` | `file` | Campaign image |
+| `header_image` | `file` | Campaign header image |
+
+The response contains the new campaign resource.
+
+<a name="update-campaign"></a>
+## Update a Campaign
+
+Update a campaign that the authenticated user can manage.
+
+| Method | URI | Headers |
+| :- | :- | :- |
+| PUT/PATCH | `{{version}}/campaigns/{campaign.id}` | Default |
+
+The API updates the `name`, `locale`, `description`, and `excerpt` fields. The response contains the updated campaign resource.
+
+<a name="delete-campaign"></a>
+## Delete a Campaign
+
+Delete a campaign that the authenticated user can delete. This operation affects live data.
+
+| Method | URI | Headers |
+| :- | :- | :- |
+| DELETE | `{{version}}/campaigns/{campaign.id}` | Default |
+
+The response is `204 No Content`.
 
 
 <a name="campaign-roles"></a>

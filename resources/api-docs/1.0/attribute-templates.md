@@ -34,7 +34,7 @@ You can get a list of all the attribute templates of a campaign by using the fol
         "focus_x": null,
         "focus_y": null,
         "image_full": "",
-        "image_thumb": "http://kanka.io/example.png",
+        "image_thumb": "https://app.kanka.io/example.png",
         "has_custom_image": false,
         "image_uuid": null,
         "header_full": null,
@@ -50,7 +50,7 @@ You can get a list of all the attribute templates of a campaign by using the fol
         "updated_at": "2025-04-10T07:30:16.000000Z",
         "updated_by": 1,
         "urls": {
-            "view": "http://kanka.io/w/1/entities/1778",
+            "view": "https://app.kanka.io/w/1/entities/1778",
             "api": null
         },
         "entity_type_id": null,
@@ -83,7 +83,7 @@ To get the details of a single attribute template, use the following endpoint.
         "focus_x": null,
         "focus_y": null,
         "image_full": "",
-        "image_thumb": "http://kanka.io/example.png",
+        "image_thumb": "https://app.kanka.io/example.png",
         "has_custom_image": false,
         "image_uuid": null,
         "header_full": null,
@@ -99,7 +99,7 @@ To get the details of a single attribute template, use the following endpoint.
         "updated_at": "2025-04-10T07:30:16.000000Z",
         "updated_by": 1,
         "urls": {
-            "view": "http://kanka.io/w/1/entities/1778",
+            "view": "https://app.kanka.io/w/1/entities/1778",
             "api": null
         },
         "entity_type_id": null,

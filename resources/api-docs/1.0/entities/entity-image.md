@@ -59,7 +59,6 @@ Uploading an image to the entity will store it in the campaign's [Gallery](/api-
 ```
 curl --location --request POST 'https://api.kanka.io/1.0/campaigns/{campaign.id}/entities/{entity.id}/image' \
 --header 'accept: application/json' \
--- header 'content-type: multipart/form-data' \
 --header 'Authorization: Bearer {bearer-token}' \
 --form 'file=@"/path/to/image.png"'
 ```

@@ -2,7 +2,7 @@
 
 The various entity endpoints like `/characters`, `/locations` etc support many filters.
 
-To get a list of filters, first call `/filters` to get the endpoint for each [entity type](/api-docs/{{version}}/entity-types.md).
+To get a list of filters, first call `/filters` to get the endpoint for each [entity type](/api-docs/{{version}}/entities/entity-types).
 
 | Method | URI                   | Headers |
 | :- |:----------------------|  :-  |

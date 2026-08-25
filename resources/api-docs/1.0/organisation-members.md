@@ -59,7 +59,7 @@ To delete an organisation member, use the following endpoint.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
-| DELETE | `/{organisation.id}/organisation_members/{organisation-member.id}` | Default |
+| DELETE | `organisations/{organisation.id}/organisation_members/{organisation-member.id}` | Default |
 
 ### Results
 

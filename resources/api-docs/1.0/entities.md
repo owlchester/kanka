@@ -2,6 +2,7 @@
 
 - [Entities](#entities)
 - [Entity Types](#entity-types)
+- [IDs](#ids)
 - [Single Entity](#entity)
 - [Filtering Entities](#filtering-entities)
 - [Related Entities](#related-entities)
@@ -20,13 +21,28 @@
 Nearly all models in Kanka are based on the concept of entities. A character is an entity, but because of historical choices, there are two actual models.
 A `character` is a singular model and endpoint, and a character has both an `id` and an `entity_id` value. The `id` identifies the character against all other **characters**, while the `entity_id` identifies the character against all other **entities**. This can be confusing at first, but should not be an issue with the help of this documentation.
 
-> {warning} Please note that all endpoints documented here need to be prefixed with `{{version}}/campaigns/{id}`. For example, if an endpoint is listed as `characters`, you should use `api.kanka.io/{{version}}/campaigns/{id}/characters`.
+> {warning} Please note that all endpoints documented here need to be prefixed with `{{version}}/campaigns/{campaign.id}`. For example, if an endpoint is listed as `characters`, you should use `https://api.kanka.io/{{version}}/campaigns/{campaign.id}/characters`.
 
 Some common entities include:
 
 * [Characters](/api-docs/{{version}}/characters)
 * [Locations](/api-docs/{{version}}/locations)
 
+<a name="ids"></a>
+## IDs
+
+Kanka uses several IDs for an entity. The distinction matters when moving between generic entity endpoints and type-specific endpoints.
+
+| Field | Meaning | Example use |
+|:------|:--------|:------------|
+| `id` | The ID of the record in its resource table | `characters/{id}` |
+| `entity_id` | The shared entity record ID | `entities/{entity_id}` and entity attachments |
+| `child_id` | The type-specific record ID returned by a generic entity response | `locations/{child_id}` |
+| Campaign `id` | The campaign that contains the record | `campaigns/{campaign.id}/...` |
+
+For example, if `entities/{entity_id}` returns `entity_type: location` and `child_id: 95`, request `locations/95` to retrieve the full location.
+
+<a name="common-attributes"></a>
 ### Common Attributes
 
 Most entities have the following attributes.
@@ -36,9 +52,9 @@ Most entities have the following attributes.
 | `id`                    | `integer` | The id identifying the object against all other objects of the same type.                                                                                                             |
 | `name`                  | `string` | The name representing the object.                                                                                                                                                     |
 | `type`                  | `string` | The entity's type field.                                                                                                                                                              |
-| `type_id`               | `integer` | The type of entity as an integer.                                                                                                                                                     |
-| `entity_type_code`      | `integer` | The type of entity as a code (character, map).                                                                                                                                        |
-| `child_id`              | `integer` | The id identifying the entity against all other entities of the same type (ie unique character id).                                                                                   |
+| `type_id`               | `integer` | The campaign category/entity type ID.                                                                                                                                                  |
+| `entity_type_code`      | `string` | The entity type code, such as `character` or `map`.                                                                                                                                    |
+| `child_id`              | `integer` | The type-specific record ID used by the corresponding child endpoint.                                                                                                                 |
 | `image`                 | `string` | The local path to the picture of the object.                                                                                                                                          |
 | `image_full`            | `string` | The url to the picture of the object.                                                                                                                                                 |
 | `image_thumb`           | `string` | The url to the thumbnail of the object.                                                                                                                                               |
@@ -393,11 +409,11 @@ You can post an array with the ids of the entities you want to transfer to anoth
 <a name="deleted-entities"></a>
 ## Deleted Entities
 
-You can view the recoverable deleted entities on the `/recovery` endpoint
+You can view recoverable deleted entities on the [Recovery](/api-docs/{{version}}/entities/recovery) page.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
-| GET/HEAD | `recovery` | Default |
+| GET | `recovery` | Default |
 
 ### Result
 
@@ -424,8 +440,8 @@ You can view the recoverable deleted entities on the `/recovery` endpoint
             "updated_by": 1,
             "archived_at": null,
             "urls": {
-                "view": "http://app.kanka.test:8081/w/1/entities/2",
-                "api": "http://api.kanka.test:8081/1.0/campaigns/1/locations/2"
+                "view": "https://app.kanka.io/w/1/entities/2",
+                "api": "https://api.kanka.io/1.0/campaigns/1/locations/2"
             }
         },
         {
@@ -448,8 +464,8 @@ You can view the recoverable deleted entities on the `/recovery` endpoint
             "updated_by": null,
             "archived_at": null,
             "urls": {
-                "view": "http://app.kanka.test:8081/w/1/entities/23",
-                "api": "http://api.kanka.test:8081/1.0/campaigns/1/locations/16"
+                "view": "https://app.kanka.io/w/1/entities/23",
+                "api": "https://api.kanka.io/1.0/campaigns/1/locations/16"
             }
         }
     ],
@@ -459,7 +475,7 @@ You can view the recoverable deleted entities on the `/recovery` endpoint
 <a name="recover-entities"></a>
 ## Recover Deleted Entities
 
-You can post an array with the ids of the entities you want to recover to the `/recover` endpoint to undo the deletion (this is a premium only feature).
+You can post an array with the IDs of the entities you want to recover to the `recover` endpoint. Recovery is available for eligible premium campaigns.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |

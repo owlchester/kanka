@@ -76,7 +76,7 @@ To approve an application, use the following endpoint.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
-| POST | `{{version}}/campaigns/{id}/applications/{application.id}/approve` | Default |
+| POST | `{{version}}/campaigns/{id}/applications/{application.id}/reject` | Default |
 
 ### Body
 

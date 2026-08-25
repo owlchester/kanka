@@ -51,7 +51,7 @@ To create a map layer, use the following endpoint.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
-| POST | `maps/{map.id}/map-layers` | Default |
+| POST | `maps/{map.id}/map_layers` | Default |
 
 ### Body
 
@@ -77,7 +77,7 @@ To update a map, use the following endpoint.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
-| PUT/PATCH | `maps/{map.id}/map-layers/{map.id}` | Default |
+| PUT/PATCH | `maps/{map.id}/map_layers/{map_layer.id}` | Default |
 
 ### Body
 
@@ -95,7 +95,7 @@ To delete a map, use the following endpoint.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
-| DELETE | `maps/{map.id}/map-layers/{map.id}` | Default |
+| DELETE | `maps/{map.id}/map_layers/{map_layer.id}` | Default |
 
 ### Results
 
