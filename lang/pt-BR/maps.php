@@ -12,14 +12,6 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'errors'        => [
-        'chunking'  => [
-            'error'     => 'Ocorreu um erro ao fragmentar o mapa. Entre em contato com a equipe em :discord para obter suporte.',
-            'running'   => [
-                'edit'      => 'O mapa não pode ser editado enquanto estiver sendo fragmentado.',
-                'explore'   => 'O mapa não pode ser exibido enquanto estiver sendo fragmentado.',
-                'time'      => 'Isso pode levar de vários minutos a várias horas, dependendo do tamanho do mapa.',
-            ],
-        ],
         'dashboard' => [
             'missing'   => 'Este mapa precisa de uma imagem para poder aparecer no dashboard.',
         ],
@@ -48,7 +40,6 @@ return [
     'helpers'       => [
         'center'                => 'A alteração dos valores a seguir controlará em qual área do mapa o foco será centralizado. Deixar esses valores vazios resultará no foco sendo o centro do mapa.',
         'centering'             => 'Centralizar em um marcador terá prioridade sobre as coordenadas padrão.',
-        'chunked_zoom'          => 'Agrupe automaticamente os marcadores quando estiverem próximos uns dos outros.',
         'distance_measure'      => 'Dar ao mapa uma medida de distância habilitará a ferramenta de medição no modo de exploração.',
         'distance_measure_2'    => 'Para que 100 pixels meçam 1 quilômetro, insira um valor de 0,0041.',
         'grid'                  => 'Defina o tamanho do grid que será mostrado no modo exploração.',
@@ -85,9 +76,5 @@ return [
             'maps'  => 'Mapas',
         ],
     ],
-    'tooltips'      => [
-        'chunking'  => [
-            'running'   => 'Mapa está sendo fragmentado. Esse processo pode levar vários minutos ou horas.',
-        ],
-    ],
+    'tooltips'      => [],
 ];

@@ -112,7 +112,6 @@ return [
         'circle'    => 'Kreis',
         'label'     => 'Etikette',
         'marker'    => 'Marker',
-        'polygon'   => 'Polygon',
         'preset'    => 'Vorlage',
     ],
 ];

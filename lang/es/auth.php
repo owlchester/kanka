@@ -36,9 +36,8 @@ return [
     'register'  => [
         'already'   => '¿Ya tienes una cuenta? :login',
         'errors'    => [
-            'email_already_taken'   => 'Ya existe una cuenta asociada a este correo electrónico.',
-            'general_error'         => 'Ha ocurrido un error mientras se registraba la cuenta. Inténtalo de nuevo.',
-            'unavailable'           => 'Ya existe una cuenta para :email registrada con otro método de inicio de sesión.',
+            'general_error' => 'Ha ocurrido un error mientras se registraba la cuenta. Inténtalo de nuevo.',
+            'unavailable'   => 'Ya existe una cuenta para :email registrada con otro método de inicio de sesión.',
         ],
         'fields'    => [
             'email'     => 'Correo electrónico',

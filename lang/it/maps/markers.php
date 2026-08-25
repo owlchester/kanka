@@ -108,7 +108,6 @@ return [
         'circle'    => 'Cerchio',
         'label'     => 'Etichetta',
         'marker'    => 'Indicatore',
-        'polygon'   => 'Poligono',
         'preset'    => 'Preimpostazione',
     ],
 ];

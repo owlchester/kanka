@@ -74,6 +74,5 @@ return [
         'circle'    => 'Cirkel',
         'label'     => 'Label',
         'marker'    => 'Markering',
-        'polygon'   => 'Polygoon',
     ],
 ];

@@ -13,14 +13,6 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'errors'        => [
-        'chunking'  => [
-            'error'     => 'Se ha producido un error al fragmentar el mapa. Ponte en contacto con el equipo en :discord para obtener ayuda.',
-            'running'   => [
-                'edit'      => 'El mapa no se puede editar mientras se esté fragmentando.',
-                'explore'   => 'El mapa no puede visualizarse mientras se está fragmentando.',
-                'time'      => 'Esto puede llevar de varios minutos a varias horas, dependiendo del tamaño del mapa.',
-            ],
-        ],
         'dashboard' => [
             'missing'   => 'Este mapa necesita una imagen para que se pueda mostrar en el tablero.',
             'tiling'    => 'Los recursos de este mapa se están fragmentando. Inténtalo de nuevo pronto.',
@@ -58,7 +50,6 @@ return [
     'helpers'       => [
         'center'                => 'Cambia estos valores para controlar en qué área está focalizado el mapa. Si lo dejas en blanco, se mostrará el centro del mapa por defecto.',
         'centering'             => 'Si un marcador está centrado, tendrá prioridad sobre las coordenadas por defecto.',
-        'chunked_zoom'          => 'Agrupa automáticamente los marcadores cuando están próximos entre sí.',
         'distance_measure'      => 'Al darle al mapa una medida de distancia, se habilitará la herramienta de medidas en el modo de exploración.',
         'distance_measure_2'    => 'Para que 100 píxeles midan 1 kilómetro, introduce un valor de 0.0041.',
         'grid'                  => 'Define un tamaño para la cuadrícula que se mostrará en el modo de exploración.',
@@ -97,9 +88,6 @@ return [
         ],
     ],
     'tooltips'      => [
-        'chunking'  => [
-            'running'   => 'El mapa se está fragmentando. Este proceso puede durar de varios minutos a horas.',
-        ],
         'tiling'    => [
             'running'   => 'El mapa se está fragmentando. Este proceso puede durar de varios minutos a horas.',
         ],

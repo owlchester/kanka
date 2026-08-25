@@ -12,14 +12,6 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'errors'        => [
-        'chunking'  => [
-            'error'     => 'Beim Aufteilen der Karte ist ein Fehler aufgetreten. Bitte kontaktiere das Team auf :discord für Unterstützung.',
-            'running'   => [
-                'edit'      => 'Die Karte kann nicht bearbeitet werden, während sie aufgeteilt wird.',
-                'explore'   => 'Die Karte kann nicht angezeigt werden, während sie aufgeteilt wird.',
-                'time'      => 'Dies kann je nach Größe der Karte einige Minuten bis mehrere Stunden dauern.',
-            ],
-        ],
         'dashboard' => [
             'missing'   => 'Diese Karte benötigt ein Bild, um im Dashboard gerendert werden zu können.',
         ],
@@ -48,7 +40,6 @@ return [
     'helpers'       => [
         'center'                => 'Durch Ändern der folgenden Werte wird gesteuert, auf welchen Bereich der Karte der Fokus liegt. Wenn Sie diese Werte leer lassen, wird die Mitte der Karte fokussiert.',
         'centering'             => 'Das Zentrieren auf eine Markierung hat Vorrang vor den Standardkoordinaten.',
-        'chunked_zoom'          => 'Gruppiere Markierungen automatisch, wenn sie nahe beieinander liegen.',
         'distance_measure'      => 'Wenn Sie der Karte eine Entfernungsmessung geben, wird das Messwerkzeug im Erkundungsmodus aktiviert.',
         'distance_measure_2'    => 'Damit 100 Pixel 1 Kilometer entsprechen, gib einen Wert von 0,0041 ein.',
         'grid'                  => 'Definieren Sie eine Rastergröße, die im Erkundungsmodus angezeigt wird.',
@@ -85,9 +76,5 @@ return [
             'maps'  => 'Karten',
         ],
     ],
-    'tooltips'      => [
-        'chunking'  => [
-            'running'   => 'Die Karte wird aufgeteilt. Dieser Vorgang kann einige Minuten bis Stunden dauern.',
-        ],
-    ],
+    'tooltips'      => [],
 ];

@@ -12,14 +12,6 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'errors'        => [
-        'chunking'  => [
-            'error'     => 'Podczas przetwarzania mapy wystąpił błąd. Skontaktuj się z nami na :discord by uzyskać wsparcie.',
-            'running'   => [
-                'edit'      => 'Podczas przetwarzania nie można edytować mapy',
-                'explore'   => 'Podczas przetwarzania nie można wyświetlić mapy.',
-                'time'      => 'Przetwarzanie mapy potrwa od kilku minut do kilku godzin, zależnie od jej wielkości.',
-            ],
-        ],
         'dashboard' => [
             'missing'   => 'Aby mapa mogła pojawić się na pulpicie, potrzebuje obrazu.',
         ],
@@ -48,7 +40,6 @@ return [
     'helpers'       => [
         'center'                => 'Zmiana tych wartości wpłynie na obszar, na którym domyślnie skupia się mapa. Jeżeli zostawisz je puste, mapa skoncentruje się na środku.',
         'centering'             => 'Środkowanie na znaczniku ma pierwszeństwo wobec domyślnych współrzędnych',
-        'chunked_zoom'          => 'Automatycznie grupuje znaczniki położone blisko siebie.',
         'distance_measure'      => 'Wyposażając mapę w miary odległości uruchomisz narzędzie odmierzania dystansu w trybie eksploracji.',
         'distance_measure_2'    => 'Wpisz wartość 0.0041, by 100 pikseli oznaczało 1 kilometr',
         'grid'                  => 'Określ wielkość siatki wyświetlanej w trybie eksploracji',
@@ -85,9 +76,5 @@ return [
             'maps'  => 'Mapy',
         ],
     ],
-    'tooltips'      => [
-        'chunking'  => [
-            'running'   => 'Przetwarzamy mapę. To może potrwać od kilku minut do kilku godzin.',
-        ],
-    ],
+    'tooltips'      => [],
 ];

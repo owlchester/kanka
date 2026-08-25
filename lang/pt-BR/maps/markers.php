@@ -113,7 +113,6 @@ return [
         'circle'    => 'Círculo',
         'label'     => 'Letreiro',
         'marker'    => 'Marcador',
-        'polygon'   => 'Polígono',
         'preset'    => 'Predefinir',
     ],
 ];

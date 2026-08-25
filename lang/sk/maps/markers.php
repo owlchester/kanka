@@ -111,7 +111,6 @@ return [
         'circle'    => 'Kruh',
         'label'     => 'Menovka',
         'marker'    => 'Značka',
-        'polygon'   => 'Viacuholník',
         'preset'    => 'Prednastavenie',
     ],
 ];

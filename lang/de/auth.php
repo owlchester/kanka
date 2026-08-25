@@ -36,8 +36,7 @@ return [
     'register'  => [
         'already'   => 'Hast du schon ein Konto? :login',
         'errors'    => [
-            'email_already_taken'   => 'Ein Account mit dieser Email ist bereits registriert.',
-            'general_error'         => 'Beim erstellen des Accounts ist ein Fehler aufgetreten. Bitte erneut versuchen.',
+            'general_error' => 'Beim erstellen des Accounts ist ein Fehler aufgetreten. Bitte erneut versuchen.',
         ],
         'fields'    => [
             'email'     => 'Email',

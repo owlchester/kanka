@@ -28,8 +28,7 @@ return [
     'register'  => [
         'already'   => 'Heb je al een account? :login',
         'errors'    => [
-            'email_already_taken'   => 'Er is al een account met dit e-mailadres geregistreerd.',
-            'general_error'         => 'Er is een fout opgetreden bij het registreren van uw account. Probeer het a.u.b. opnieuw.',
+            'general_error' => 'Er is een fout opgetreden bij het registreren van uw account. Probeer het a.u.b. opnieuw.',
         ],
         'fields'    => [
             'email'     => 'E-mail',

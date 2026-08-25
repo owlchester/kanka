@@ -11,14 +11,6 @@ return [
         'title' => 'Nouvelle carte',
     ],
     'errors'        => [
-        'chunking'  => [
-            'error'     => 'Une erreur est survenue durant le traitement de la carte. Contactes l\'équipe sur :discord pour de l\'aide.',
-            'running'   => [
-                'edit'      => 'La carte ne peut pas être modifiée pendant qu\'elle est en traitement.',
-                'explore'   => 'La carte ne peut pas être affichée pendant qu\'elle est en traitement.',
-                'time'      => 'Ceci peut prendre plusieurs minutes à plusieurs heures et dépend de la taille de la carte.',
-            ],
-        ],
         'dashboard' => [
             'missing'   => 'La carte a besoin d\'une image pour être affichée sur le tableau de bord.',
             'tiling'    => 'Les ressources de cette carte sont en cours de traitement. Reviens bientôt.',
@@ -56,7 +48,6 @@ return [
     'helpers'       => [
         'center'                => 'Modifier les valeurs par défaut défini le centre de la carte lors de l\'affichage de celle-ci. Ci les champs sont vides, le centre de la carte sera utilisé.',
         'centering'             => 'Centrer la carte sur un marqueur est prioritaire sur les coordinnées.',
-        'chunked_zoom'          => 'Les cartes fragmentées ont leurs paramètres minimum et maximum définis par le processus de segmentation.',
         'distance_measure'      => 'Définir une unité de distance activera l\'outil de calcul de distance dans le mode d\'exploration.',
         'distance_measure_2'    => 'Pour que 100 pixels mesurent 1 kilomètre, choisir une valeur de 0.0041.',
         'grid'                  => 'Définir une taille de grille qui s\'affichera dans le mode d\'exploration.',
@@ -93,9 +84,6 @@ return [
         ],
     ],
     'tooltips'      => [
-        'chunking'  => [
-            'running'   => 'La cartes est en traitement. Ce processus peut prendre plusieurs minutes à plusieurs heures.',
-        ],
         'tiling'    => [
             'running'   => 'La carte est en traitement. Ce processus peut prendre plusieurs minutes à plusieurs heures.',
         ],

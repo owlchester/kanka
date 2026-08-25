@@ -36,8 +36,7 @@ return [
     'register'  => [
         'already'   => 'Já possui uma conta? :login',
         'errors'    => [
-            'email_already_taken'   => 'Já há uma conta registrada com esse email.',
-            'general_error'         => 'Um erro ocorreu enquanto sua conta era registrada. Por favor tente novamente.',
+            'general_error' => 'Um erro ocorreu enquanto sua conta era registrada. Por favor tente novamente.',
         ],
         'fields'    => [
             'email'     => 'Email',

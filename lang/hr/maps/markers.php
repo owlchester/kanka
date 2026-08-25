@@ -75,6 +75,5 @@ return [
         'circle'    => 'Krug',
         'label'     => 'Natpis',
         'marker'    => 'Marker',
-        'polygon'   => 'Poligon',
     ],
 ];

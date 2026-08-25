@@ -123,7 +123,6 @@ return [
         'label'     => 'Label',
         'marker'    => 'Marqueur',
         'path'      => 'Tracé',
-        'polygon'   => 'Polygone',
         'preset'    => 'Préréglage',
     ],
 ];

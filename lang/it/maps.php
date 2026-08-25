@@ -11,14 +11,6 @@ return [
     ],
     'edit'          => [],
     'errors'        => [
-        'chunking'  => [
-            'error'     => 'Si è verificato un errore durante il raggruppamento della mappa. Contatta il team su :discord per ricevere supporto.',
-            'running'   => [
-                'edit'      => 'La mappa non può essere modificata mentre si sta raggruppando.',
-                'explore'   => 'La mappa non può essere visualizzata mentre si sta raggruppando.',
-                'time'      => 'Questa operazione può richiedere da alcuni minuti a diverse ore, a seconda delle dimensioni della mappa.',
-            ],
-        ],
         'dashboard' => [
             'missing'   => 'Questa mappa necessita di un immagine per poterla visualizzare nella Pagina Principale.',
         ],
@@ -47,7 +39,6 @@ return [
     'helpers'       => [
         'center'                => 'Modificando i seguenti valori si controlla l\'area della mappa su cui si concentra l\'attenzione. Se questi valori vengono lasciati vuoti, verrà focalizzato il centro della mappa.',
         'centering'             => 'La centratura su un marcatore avrà la priorità sulle coordinate predefinite.',
-        'chunked_zoom'          => 'Raggruppa automaticamente gli indicatori quando sono vicini.',
         'distance_measure'      => 'Se si assegna alla mappa una misurazione della distanza, si abilita lo strumento di misurazione nella modalità di esplorazione.',
         'distance_measure_2'    => 'Per 100 pixel che misurano 1 chilometro, inserire un valore di 0,0041.',
         'grid'                  => 'Definisce la dimensione della griglia che verrà visualizzata nella modalità di esplorazione.',
@@ -81,9 +72,5 @@ return [
             'maps'  => 'Mappe',
         ],
     ],
-    'tooltips'      => [
-        'chunking'  => [
-            'running'   => 'La mappa è in fase di raggruppamento. Questo processo può richiedere da alcuni minuti a qualche ora.',
-        ],
-    ],
+    'tooltips'      => [],
 ];

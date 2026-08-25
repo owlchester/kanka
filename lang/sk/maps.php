@@ -12,14 +12,6 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'errors'        => [
-        'chunking'  => [
-            'error'     => 'Pri rozdeľovaní mapy na bloky nastala chyba. Prosím, obráť sa ohľadom pomoci na náš tím na :discord.',
-            'running'   => [
-                'edit'      => 'Mapa počas rozdeľovania na bloky nemôže byť upravovaná.',
-                'explore'   => 'Mapa počas rozdeľovania na bloky nemôže byť zobrazená.',
-                'time'      => 'Môže to teraz trvať niekoľko minút až hodín, v závislosti od veľkosti mapy.',
-            ],
-        ],
         'dashboard' => [
             'missing'   => 'Táto mapa vyžaduje obrázok, aby mohla byť zobrazená na nástenke.',
         ],
@@ -48,7 +40,6 @@ return [
     'helpers'       => [
         'center'                => 'Zmenou týchto hodnôt vieš kontrolovať, na ktorú oblasť mapy bude zameraný náhľad. Ak hodnoty ponecháš prázdne, bude zameranie na stred mapy.',
         'centering'             => 'Vystrednenie značky bude prioritou pred štandardnými koordinátmi.',
-        'chunked_zoom'          => 'Automaticky zhlukuj značky, keď sa nachádzajú blízko seba.',
         'distance_measure'      => 'Pridaním merania vzdialenosti sa aktivuje nástroj merania v Prieskumníkovi.',
         'distance_measure_2'    => 'Aby zodpovedalo 100 pixelov 1 km, zadaj hodnotu 0.0041.',
         'grid'                  => 'Definuj veľkosť mriežky, ktorá sa zobrazí v Prieskumníkovi.',
@@ -82,9 +73,5 @@ return [
             'maps'  => 'Mapy',
         ],
     ],
-    'tooltips'      => [
-        'chunking'  => [
-            'running'   => 'Mapa sa rozdeľuje na bloky. Tento proces môže trvať niekoľko minút až hodín.',
-        ],
-    ],
+    'tooltips'      => [],
 ];

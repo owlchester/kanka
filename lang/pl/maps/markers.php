@@ -112,7 +112,6 @@ return [
         'circle'    => 'Okrąg',
         'label'     => 'Podpis',
         'marker'    => 'Znacznik',
-        'polygon'   => 'Wielokąt',
         'preset'    => 'Wzór',
     ],
 ];
