@@ -22,9 +22,9 @@ class CampaignUser extends Layout
                 'label' => '',
                 'render' => function (\App\Models\CampaignUser $model) {
                     if ($model->user->hasAvatar()) {
-                        return '<div class="rounded-full h-8 w-8 cover-background" style="background-image: url(' .
+                        return '<div class="rounded-full h-8 w-8 cover-background" style="background-image: url(\'' .
                             $model->user->getAvatarUrl() .
-                            ')" data-title="' .
+                            '\')" data-title="' .
                             $model->user->name .
                             '"></div>';
                     }

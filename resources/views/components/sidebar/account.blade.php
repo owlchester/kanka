@@ -1,4 +1,4 @@
-<aside class="main-sidebar main-sidebar-placeholder absolute z-20 h-full flex flex-col background-cover" @if ($user->avatar) style="--sidebar-placeholder: url({{ Img::crop(240, 208)->url($user->avatar) }})" @endif>
+<aside class="main-sidebar main-sidebar-placeholder absolute z-20 h-full flex flex-col background-cover" @if ($user->avatar) style="--sidebar-placeholder: url('{{ Img::crop(240, 208)->url($user->avatar) }}')" @endif>
     <section class="sidebar-campaign h-52 flex-none overflow-hidden flex items-end">
         <div class="px-4 py-4">
             <div class="campaign-head">

@@ -7,7 +7,7 @@ $class = $backgroundImage = null;
 $hasImage = $marker->entity && $marker->entity->hasImage();
 if ($hasImage) {
     $class = 'with-image cover-background';
-    $backgroundImage = "background-image: url('" . \App\Facades\Avatar::entity($marker->entity)->size(400, 200)->thumbnail();
+    $backgroundImage = "background-image: url('" . \App\Facades\Avatar::entity($marker->entity)->size(400, 200)->thumbnail() . "')";
 }
 ?>
 @if (!request()->has('mobile'))

@@ -24,9 +24,9 @@ class Recovery extends Layout
                         return '';
                     }
 
-                    return '<div style="background-image: url(' .
+                    return '<div style="background-image: url(\'' .
                         Avatar::entity($entity)->size(40)->thumbnail() .
-                        ');" class="entity-image w-10 h-10"></div>';
+                        \'');" class="entity-image w-10 h-10"></div>';
                 },
             ],
             'name' => [
