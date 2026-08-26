@@ -2,7 +2,7 @@
 
 return [
     'privacy'   => [
-        'text'      => 'Ten element jest tajny. Wprawdzie można ustawiać dla niego indywidualne uprawnienia, ale póki nie zostanie ujawniony, będą ignorowane, a element będzie widoczny tylko dla administratorów kampanii.',
+        'text'      => 'Ten element jest tajny. Można ustawiać dla niego indywidualne uprawnienia, ale póki nie zostanie ujawniony, będą ignorowane, a element pozostanie widoczny tylko dla administratorów.',
         'warning'   => 'Uwaga',
     ],
     'quick'     => [
@@ -17,6 +17,7 @@ return [
         'viewable-by'       => 'Widoczny dla',
     ],
     'toggle'    => [
+        'current'   => 'Obecnie',
         'label'     => 'Tajność elementu',
         'private'   => [
             'description'   => 'Widoczny tylko dla posiadaczy roli :admin.',
@@ -24,6 +25,7 @@ return [
         ],
         'public'    => [
             'description'   => 'Widoczny dla poniższych ról i uczestników',
+            'helper'        => 'Kaźda osoba z dostępem do świata widzi ten element zgodnie ze swoją rolą.',
             'title'         => 'Jawny',
         ],
     ],

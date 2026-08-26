@@ -10,19 +10,19 @@ return [
     'campaigns'     => [],
     'dashboards'    => [
         'actions'       => [
-            'edit'  => 'Edytuj',
+            'edit'  => 'Zmień nazwę i uprawnienia',
             'new'   => 'Nowy pulpit',
         ],
         'create'        => [
-            'helper'    => 'Tworzy nowy pulpit dla :name, i pozwala określić które role mogą go zobaczyć albo dla których jest pulpitem domyślnym',
-            'success'   => 'Stworzono w kampanii nowy pulpit :name.',
-            'title'     => 'Nowy pulpit kampanii',
+            'helper'    => 'Tworzy nowy pulpit dla :name i określa role dla których jest widoczny albo domyślny.',
+            'success'   => 'Stworzono nowy pulpit :name.',
+            'title'     => 'Nowy pulpit',
         ],
         'custom'        => [
-            'text'  => 'Edytujesz obecnie pulpit :name kampanii.',
+            'text'  => 'Edytujesz obecnie pulpit :name.',
         ],
         'default'       => [
-            'text'  => 'Edytujesz podstawowy pulpit kampanii.',
+            'text'  => 'Edytujesz podstawowy pulpit :campaign.',
             'title' => 'Pulpit podstawowy',
         ],
         'delete'        => [
@@ -42,7 +42,7 @@ return [
         ],
         'update'        => [
             'success'   => 'Zaktualizowano pulpit :name.',
-            'title'     => 'Aktualizuj pulpit :name',
+            'title'     => 'Edycja pulpitu',
         ],
         'visibility'    => [
             'default'   => 'Podstawowy',
@@ -51,21 +51,21 @@ return [
         ],
     ],
     'helpers'       => [
-        'follow'    => 'Śledzenie kampanii sprawi, że pojawi się w menu przełączania kampanii (lewy górny róg), pod twoimi własnymi kampaniami.',
-        'join'      => 'Kampania jest otwarta na nowych członków. Kliknij, by do niej dołączyć.',
+        'follow'    => 'Śledzenie kampanii spowoduje pojawienie przełącznika pod twoimi kampaniami.',
+        'join'      => 'Kampania jest otwarta na nowych uczestników. Kliknij, by do niej dołączyć.',
     ],
     'notifications' => [],
     'recent'        => [],
     'settings'      => [],
     'setup'         => [
         'actions'   => [
-            'add'               => 'Dodaj widżet',
+            'add'               => 'Widżet',
             'back_to_dashboard' => 'Powrót do pulpitu',
             'edit'              => 'Edytuj widżet',
             'new'               => 'Nowy widżet :type',
         ],
         'reorder'   => [
-            'helper'    => 'Przeciągnij, by mnie przesunąć',
+            'helper'    => 'Przeciągnij, by przesunąć',
             'success'   => 'Zmieniono kolejność widżetów',
         ],
         'title'     => 'Konfiguracja pulpitu kampanii',
@@ -82,26 +82,29 @@ return [
                 'next'      => 'Zmień datę na kolejny dzień',
                 'previous'  => 'Zmień datę na poprzedni dzień',
             ],
-            'previous_events'   => 'Poprzedni',
+            'previous_events'   => 'Minione',
             'upcoming_events'   => 'Nadchodzące',
         ],
         'campaign'                  => [
             'helper'    => 'Ten widżet wyświetla nagłówek kampanii. Jest zawsze widoczny na podstawowym pulpicie.',
         ],
         'create'                    => [
-            'helper'            => 'Wybór rodzaju widżetu do umieszczenia na pulpicie :name.',
-            'helper-default'    => 'Wybór rodzaju widżetu do umieszczenia na pulpicie domyślnym.',
+            'helper'            => 'Wybór rodzaju widżetu dodawanego do :name.',
+            'helper-default'    => 'Wybór rodzaju widżetu na pulpit domyślny.',
             'success'           => 'Dodano widżet do pulpitu.',
             'title'             => 'Nowy widżet',
         ],
         'delete'                    => [
             'success'   => 'Usunięto widżet z pulpitu.',
         ],
+        'edit'                      => [
+            'title' => 'Edycja widżetu',
+        ],
         'fields'                    => [
             'class'             => 'Klasa CSS',
             'dashboard'         => 'Pulpit',
-            'name'              => 'Własna nazwa widżetu',
-            'optional-entity'   => 'Odnośnik do elementu',
+            'name'              => 'Nazwa widżetu',
+            'optional-entity'   => 'Link do elementu',
             'order'             => 'Kolejność',
             'size'              => 'Rozmiar',
             'width'             => 'Szerokość',
@@ -114,7 +117,7 @@ return [
             'name_asc'  => 'Nazwa rosnąco',
             'name_desc' => 'Nazwa malejąco',
             'oldest'    => 'Zmienione najdawniej',
-            'recent'    => 'Ostatnie zmiany',
+            'recent'    => 'Zmienione ostatnio',
         ],
         'preview'                   => [
             'displays'  => [
@@ -142,29 +145,29 @@ return [
             'all-entities'      => 'Wszystkie elementy',
             'entity-header'     => 'Używaj nagłówka elementu jako obrazu widżetu',
             'filters'           => 'Filtry',
-            'help'              => 'Pokazuj tylko ostatni zmodyfikowany element, ale publikuj cały skrót',
+            'help'              => 'Pokaż tylko pierwszy element jako podgląd',
             'helpers'           => [
                 'entity-header'     => 'Jeżeli element ma obraz w nagłówku (w doładowanej kampanii), widżet będzie wyświetlał nagłówek zamiast obrazu samego elementu.',
-                'show_attributes'   => 'Wyświetla cechy elementu pod jego opisem.',
-                'show_members'      => 'Jeżeli element jest rodziną albo organizacją, wyświetla jej członków pod opisem.',
+                'show_attributes'   => 'Wyświetla przypięte cechy elementu pod jego opisem.',
+                'show_members'      => 'Jeżeli element jest rodziną albo organizacją, wyświetla członków pod opisem.',
                 'show_relations'    => 'Wyświetla przypięte relacje pod opisem elementu',
             ],
-            'show_attributes'   => 'Pokaż cechy',
+            'show_attributes'   => 'Pokaż przypięte cechy',
             'show_members'      => 'Pokaż członków',
             'show_relations'    => 'Pokaż przypięte relacje',
-            'singular'          => 'Pojedynczy',
-            'tags'              => 'Filtruj listę niedawno zmienianych elementów według konkretnych etykiet.',
-            'title'             => 'Ostatnie zmiany',
+            'singular'          => 'Podgląd',
+            'tags'              => 'Filtruj listę elementów według konkretnych etykiet.',
+            'title'             => 'Lista elementów',
         ],
         'tabs'                      => [
             'advanced'  => 'Zaawanowane',
             'setup'     => 'Ustawienia',
         ],
         'unmentioned'               => [
-            'title' => 'Elementy bez wzmianki',
+            'title' => 'Elementy niewzmiankowane',
         ],
         'update'                    => [
-            'success'   => 'Zmodyfikowano widżet.',
+            'success'   => 'Zmieniono widżet.',
         ],
         'widths'                    => [
             '0' => 'Automatyczna',

@@ -5,8 +5,9 @@ return [
         'title' => 'Nowy komentarz',
     ],
     'fields'        => [
-        'layout'    => 'Układ komentarza',
-        'name'      => 'Tytuł',
+        'description'   => 'Ogólne',
+        'layout'        => 'Umiejscowienie komentarza',
+        'name'          => 'Tytuł',
     ],
     'helpers'       => [
         'new'           => 'Dodaj nowy komentarz do tego elementu.',
@@ -21,11 +22,11 @@ return [
     ],
     'permissions'   => [
         'actions'   => [
-            'members'   => 'Dodaj członków',
+            'members'   => 'Dodaj uczestników',
             'roles'     => 'Dodaj role',
         ],
         'helpers'   => [
-            'members'   => 'Zapewnia jednemu lub kilku członkom specjalnie uprawnienia w tym komentarzu.',
+            'members'   => 'Zapewnia jednemu lub kilku uczestnikom specjalnie uprawnienia w tym komentarzu.',
             'roles'     => 'Zapewnia jednej lub kilku rolom specjalnie uprawnienia w tym komentarzu.',
         ],
     ],

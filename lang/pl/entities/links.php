@@ -2,16 +2,16 @@
 
 return [
     'actions'           => [
-        'add'   => 'Dodaj odnośnik',
+        'add'   => 'Dodaj link',
     ],
-    'call-to-action'    => 'Dodaj odnośnik do zasobów zewnętrznych, na przykład DnDBeyond. Zostanie wyświetlony bezpośrednio w opisie elementu.',
+    'call-to-action'    => 'Dodaj link do zasobów zewnętrznych, na przykład DnDBeyond albo odnośnej strony wiki. Zostanie wyświetlony bezpośrednio w opisie elementu, dla ułatwienia dostępu.',
     'create'            => [
-        'helper'    => 'Dodaje do :name odnośnik prowadzący na zewnątrz, na przykład do DnDBeyond.',
-        'success'   => 'Dodano odnośnik :name do elementu :entity.',
-        'title'     => 'Dodaj odnośnik do :name',
+        'helper'    => 'Dodaje do :name link zewnętrzny, na przykład do DnDBeyond.',
+        'success'   => 'Dodano link :name do elementu :entity.',
+        'title'     => 'Nowy link',
     ],
     'destroy'           => [
-        'success'   => 'Usunięto odnośnik :name z elementu :entity.',
+        'success'   => 'Usunięto link :name.',
     ],
     'fields'            => [
         'icon'      => 'Ikona',
@@ -24,11 +24,11 @@ return [
             'confirm'   => 'Tak, na pewno',
             'trust'     => 'Nie pytaj ponownie',
         ],
-        'description'   => 'Ten odnośnik prowadzi do :link. Czy na pewno chcesz tam trafić?',
+        'description'   => 'Ten link prowadzi do :link. Czy na pewno chcesz tam trafić?',
         'title'         => 'Opuszczasz Kankę',
     ],
     'helpers'           => [
-        'icon'      => 'Możesz dostosować ikonę wyświetlaną przy odnośniku. Użyj dowolnej ikony z :fontawesome albo zostaw to pole puste, by wyświetlać ikonę domyślną.',
+        'icon'      => 'Dostosuj ikonę wyświetlaną przy linku porzy pomocy :fontawesome, na przykład :example. Więcej o dostępności ikon przeczytasz w :docs.',
         'parent'    => 'Wyświetla skrót po tym elemencie w menu bocznym, a nie w sekcji "Skróty".',
     ],
     'placeholders'      => [
@@ -36,12 +36,12 @@ return [
         'url'   => 'https://dndbeyond.com/character-url',
     ],
     'show'              => [
-        'helper'    => 'W doładowanych kampaniach można dodawać elementom odnośniki do stron zewnętrznych.',
-        'title'     => 'Odnośniki elementu :name',
+        'helper'    => 'W doładowanych kampaniach można dodawać elementom linki do stron zewnętrznych.',
+        'title'     => 'Linki elementu :name',
     ],
     'unboosted'         => [],
     'update'            => [
-        'success'   => 'Zaktualizowano odnośnik :name dla elementu :entity.',
-        'title'     => 'Aktualizacja odnośnika elementu :name',
+        'success'   => 'Zaktualizowano link :name dla elementu :entity.',
+        'title'     => 'Aktualizacja linku elementu :name',
     ],
 ];

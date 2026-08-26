@@ -2,6 +2,7 @@
 
 return [
     'actions'       => [
+        'builder'   => 'Kontruktor stylów',
         'current'   => 'Obecny motyw: :theme',
         'disable'   => 'Wyłącz',
         'enable'    => 'Uruchom',
@@ -20,8 +21,8 @@ return [
         'success'   => 'Usunięto styl :name',
     ],
     'errors'        => [
-        'max_content'   => 'Regułą CSS nie może być dłuższa niż :amount znaków.',
-        'max_reached'   => 'Osiągniętą maksymalną liczne (:max) stylów.',
+        'max_content'   => 'Reguła CSS nie może być dłuższa niż :amount znaków.',
+        'max_reached'   => 'Osiągniętą maksymalną liczbę (:max) stylów.',
     ],
     'fields'        => [
         'content'       => 'Reguły CSS',
@@ -34,7 +35,7 @@ return [
     'helpers'       => [
         'here'          => 'z naszego bloga',
         'is_enabled'    => 'Użyj tego motywu na każdej stronie',
-        'main'          => 'Możesz tworzyć własne style CSS w doładowanych kampaniach. Będą ładowane po załadowaniu stylów pobranych z targowiska. Więcej o tworzeniu stylów dowiesz się :here.',
+        'main'          => 'Możesz tworzyć własne style CSS w doładowanych kampaniach. Będą ładowane po stylach pobranych z biblioteki. Więcej o tworzeniu stylów dowiesz się :here.',
         'tutorial'      => 'Kontroluje estetykę kampanii. Pozwala wybrać kolory, preferencje układu treści i inne elementy wizualne. Modyfikacje dotyczą tylko tej kampanii i można je w każdej chwili zmienić.',
     ],
     'pitch'         => 'Twórz własne style CSS by nadać kampanii indywidualny charakter.',
@@ -49,13 +50,13 @@ return [
     'theme'         => [
         'none'      => 'Użyj preferencji użytkownika',
         'override'  => 'Motyw nadrzędny',
-        'success'   => 'Zmieniono motyw kampanii.',
-        'title'     => 'Zmień motyw kampanii',
+        'success'   => 'Zmieniono motyw nadrzędny.',
+        'title'     => 'Zmień motyw nadrzędy',
     ],
     'title'         => 'Motywy kampanii',
     'toggle'        => [
-        'disable'   => 'Skutecznie zastosowano styl.',
-        'enable'    => 'Skuteczne usunięto styl.',
+        'disable'   => 'Usunięto styl.',
+        'enable'    => 'Zastosowano styl.',
     ],
     'update'        => [
         'success'   => 'Zmieniono styl :name.',

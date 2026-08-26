@@ -1,6 +1,8 @@
 <?php
 
 return [
-    'description'   => 'Wyświetlna nagłówek tekstowy.',
-    'name'          => 'Nagłowek',
+    'description'   => 'Tekst dzielący nagłówek na sekcje.',
+    'name'          => 'Nagłówek',
+    'tag'           => 'Nagłówek',
+    'tagline'       => 'Podział sekcji',
 ];

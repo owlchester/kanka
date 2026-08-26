@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'links' => 'Odnośniki',
+    'links' => 'Linki',
     'title' => 'Przypięte',
 ];

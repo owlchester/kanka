@@ -2,20 +2,20 @@
 
 return [
     'actions'   => [
-        'bookmark'  => 'Zakładka',
+        'bookmark'  => 'Utwórz skrót do widoku',
     ],
     'alerts'    => [
         'copy'  => 'Filtry skopiowano do schowka',
     ],
     'bookmark'  => [
-        'helper'    => 'Tworzy zakładkę dla widoku używającego obecnych filtrów.',
+        'helper'    => 'Tworzy skrót przy pomocy obecnie używanych filtrów.',
         'name'      => ':module (z filtrem)',
-        'premium'   => 'Dodanie kolejnych zakładek wymaga kampanii premium.',
-        'success'   => 'Stworzono zakładkę',
+        'premium'   => 'Dodanie kolejnych skrótów wymaga kampanii premium.',
+        'success'   => 'Stworzono skrót',
     ],
     'helpers'   => [
         'guest'         => 'Zaloguj się by zobaczyć wyniki filtrowania.',
-        'icon'          => 'Dodaje zakładce specjalną ikonę :fontawesome, na przykład :example.',
-        'icon-premium'  => 'Dodaje zakładce specjalną ikonę :fontawesome, na przykład :example w kampanii :premium.',
+        'icon'          => 'Dodaje skrótowi specjalną ikonę :fontawesome, na przykład :example.',
+        'icon-premium'  => 'Dodaje skrótowi specjalną ikonę :fontawesome, na przykład :example w kampanii :premium.',
     ],
 ];

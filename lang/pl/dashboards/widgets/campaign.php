@@ -2,5 +2,7 @@
 
 return [
     'description'   => 'Wyświetla nagłówek kampanii.',
-    'name'          => 'Kampania',
+    'name'          => 'Nagłówek',
+    'tag'           => 'Nagłówek',
+    'tagline'       => 'Nagłówek kampanii',
 ];

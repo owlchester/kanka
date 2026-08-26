@@ -4,8 +4,8 @@ return [
     'actions'       => [
         'entry'             => 'Dodaj opis do tego znacznika.',
         'remove'            => 'Usuń znacznik',
-        'reset-polygon'     => 'Resetuj pozycje',
-        'save_and_explore'  => 'Zapisz i eksploruj',
+        'reset-polygon'     => 'Przywróć pozycje',
+        'save_and_explore'  => 'Zapisz i wyświetl',
         'start-drawing'     => 'Zacznij rysować',
         'update'            => 'Edytuj znacznik',
     ],
@@ -40,9 +40,10 @@ return [
         'circle_radius' => 'Promień okręgu',
         'copy_elements' => 'Kopiuj elementy',
         'custom_icon'   => 'Własna ikona',
-        'custom_shape'  => 'Własny kształt',
+        'custom_shape'  => 'Wielokąt',
         'font_colour'   => 'Kolor ikony',
         'group'         => 'Kategoria znaczników',
+        'has_tooltip'   => 'Posiada dymek',
         'icon'          => 'Ikona',
         'is_draggable'  => 'Można przesuwać',
         'latitude'      => 'Szerokość',
@@ -64,9 +65,12 @@ return [
         'css'                       => 'Definiuje klasę CSS dodaną do znacznika.',
         'custom_icon_v2'            => 'Używaj ikon z :fontawesome, :rpgawesome, albo własnych plików SVG. Więcej instrukcji znajdziesz tutaj: :docs.',
         'custom_radius'             => 'Wybierz opcję z rozwijanej listy by określić wielkość.',
-        'draggable'                 => 'Pozwala przeciągać znacznik po mapie w trybie eksploracji.',
+        'draggable'                 => 'Pozwala przeciągać znacznik po mapie podczas jej wyświetlania.',
         'is_popupless'              => 'Wyłącza wyświetlanie dymków z opisem po najechaniu na element kursorem.',
-        'label'                     => 'Wyświetla na mapie test zawierający nazwę tego znacznika albo elementu, z którym jest związany.',
+        'label'                     => 'Podpis to tekst wyświetlany na mapie. Może być nazwą znacznika albo związanego z nim elementu.',
+        'path'                      => [
+            'edit'  => 'Edytuj ścieżkę przeciągając jej punkty.',
+        ],
         'polygon'                   => [
             'edit'  => 'Modyfikuj wielokąt przeciągając ścianki i kąty.',
         ],
@@ -75,17 +79,22 @@ return [
         'entry' => 'Modyfikuj znacznik by stworzyć nowy opis elementu.',
     ],
     'icons'         => [
-        'custom'        => 'Własna',
-        'entity'        => 'Element',
+        'circle'        => 'Okrąg',
+        'custom'        => 'Własny znacznik',
+        'diamond'       => 'Romb',
+        'entity'        => 'Obraz elementu',
         'exclamation'   => 'Wykrzyknik',
         'marker'        => 'Znacznik',
         'question'      => 'Pytajnik',
+        'square'        => 'Kwadrat',
+        'triangle'      => 'Trójkąt',
     ],
     'index'         => [
         'title' => 'Znaczniki mapy :name',
     ],
     'pitches'       => [
-        'poly'  => 'Rysuj własne wielokąty, reprezentujące granice albo nieregularne obszary.',
+        'path'  => 'Ścieżki pozwalają rysować na mapie drogi, rzeki albo szlaki. Funkcja dostępna w kampaniach premium.',
+        'poly'  => 'Obszar pozwala oznaczyć granice, zasięg terytoriów albo nierównomierne regiony mapy. Funkcja dostępna w kampaniach premium.',
     ],
     'placeholders'  => [
         'custom_icon'   => 'Spróbuj :example1 albo :example2',
@@ -93,7 +102,7 @@ return [
         'name'          => 'Wymagana, jeżeli nie powiązano z żadnym elementem',
     ],
     'presets'       => [
-        'helper'    => 'Kliknij na przygotowany wzór znacznika by go załadować, albo zaprojektuj nowy.',
+        'helper'    => 'Kliknij na przygotowany wzór by go załadować, albo zaprojektuj nowy.',
     ],
     'shapes'        => [
         '0' => 'Okrąg',
@@ -109,9 +118,11 @@ return [
         '4' => 'Wielki',
     ],
     'tabs'          => [
+        'area'      => 'Obszar',
         'circle'    => 'Okrąg',
         'label'     => 'Podpis',
         'marker'    => 'Znacznik',
+        'path'      => 'Ścieżka',
         'preset'    => 'Wzór',
     ],
 ];

@@ -14,9 +14,10 @@ return [
     'fields'        => [
         'created'       => 'Stworzono dnia',
         'creator'       => 'Stworzono przez',
-        'from-elements' => 'Pozostałe',
-        'from-entities' => 'Elementy',
-        'from-posts'    => 'Komentarze',
+        'entries'       => 'Suma elementów',
+        'from-elements' => 'Poza tym',
+        'from-entities' => 'W opisach elementów',
+        'from-posts'    => 'W komentarzach',
         'general'       => 'Ogólne',
         'words'         => 'Liczba słów',
     ],

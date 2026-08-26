@@ -4,11 +4,11 @@ return [
     'actions'       => [
         'close'         => 'Zamknij',
         'file-link'     => 'Link do pliku',
-        'focus_point'   => 'Ustaw punkt centralny',
+        'focus_point'   => 'Punkt centralny',
         'image-link'    => 'Link do obrazu',
-        'reset_focus'   => 'Usuń punkt centralny',
+        'reset_focus'   => 'Domyślny punkt centralny',
         'save'          => 'Zapisz',
-        'upgrade'       => 'Powiększ',
+        'upgrade'       => 'Zwiększ pojemność',
     ],
     'breadcrumb'    => 'Galeria',
     'bulk'          => [
@@ -20,22 +20,22 @@ return [
     'cta'           => 'Zarządzaj obrazami w kampanii i używaj ich ponownie.',
     'destroy'       => [
         'folder'    => 'Usunięto katalog :name.',
-        'success'   => 'Usunięto obraz :name',
+        'success'   => 'Usunięto plik :name',
     ],
     'errors'        => [
         'max'           => 'Możesz wybrać do :count plików na raz.',
         'permissions'   => 'Role w kampanii nie mają uprawnienia :permission więc nie mogą dodawać ilustracji do galerii.',
-        'storage'       => 'Brak miejsca, by załadować wybrane obrazki. Dostępne miejsce: :avaliable.',
+        'storage'       => 'Brak miejsca, by załadować wybrane obrazy. Dostępne miejsce: :avaliable.',
     ],
     'fields'        => [
         'created_by'            => 'Dodane przez',
         'details'               => 'Szczegóły',
-        'ext'                   => 'Typ',
+        'ext'                   => 'Rozszerzenie',
         'file_type'             => 'Rodzaj pliku',
         'folder'                => 'Katalog',
         'image_mentioned_in'    => '{0} Ten obraz nie jest wzmiankowany przez żaden element kampanii.|{1} Wzmiankowany przez jeden element/wpis.|[2,*] Wzmiankowany przez :count elementy/wpisy.',
-        'image_used_in'         => '{1}Użyto jako obrazu jednego elementu.|[2,*]Użyto jako obrazu :count elementów.',
-        'link'                  => 'Odnośnik',
+        'image_used_in'         => '{0}Żaden element nie używa obrazu.|{1}Użyto jako obrazu jednego elementu.|[2,*]Użyto jako obrazu :count elementów.',
+        'link'                  => 'Link',
         'name'                  => 'Nazwa',
         'size'                  => 'Rozmiar',
         'unused'                => 'Nieużywany',
@@ -50,7 +50,7 @@ return [
         'title' => 'Nowy katalog',
     ],
     'no_folder'     => 'Brak katalogu',
-    'pitch'         => 'Zamieszczaj ilustracje kampanii bezpośrednio z poziomu edytora tekstu',
+    'pitch'         => 'Zamieszczaj obrazy w galerii z poziomu edytora tekstu',
     'placeholders'  => [
         'search'    => 'Wyszukaj obraz po nazwie',
     ],
@@ -61,7 +61,7 @@ return [
     'title'         => 'Galeria kampanii :campaign',
     'update'        => [
         'folder'    => 'Zmieniono katalog.',
-        'success'   => 'Zmodyfikowano obraz.',
+        'success'   => 'Zmieniono plik.',
     ],
     'uploader'      => [
         'add'           => 'Dodaj',

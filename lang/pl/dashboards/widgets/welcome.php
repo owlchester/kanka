@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'description'   => 'Wyświetla na pulpicie komunikat powitalny zawierający rady i sugestie.',
+    'description'   => 'Wyświetla powitanie i wskazówki.',
     'endings'       => [],
     'focus'         => [
-        'text'  => 'Witaj, to właśnie ja!',
+        'text'  => 'Witaj, to ja!',
         'title' => 'Cześć',
     ],
     'intros'        => [
@@ -13,12 +13,13 @@ return [
         '3' => 'Oto pięć rad, jak używać Kanki',
     ],
     'name'          => 'Witaj',
+    'tag'           => 'Powitanie',
     'title'         => 'Witaj w :kanka! 🎉',
     'tricks'        => [
         '1'         => 'Tworząc opis, nie wpisuj ręcznie nazw innych elementów kampanii. Zamiast tego wpisz :code i trzy pierwsze litery nazwy by :mention dany element. Wszystkie wzmianki automatycznie się zaktualizują, jeżeli zmienisz nazwę elementu.',
         '2'         => 'By zmienić nazwę kampanii, motyw albo ilustrację okładkową wybierz :world z menu bocznego, a potem opcję :edit.',
         '3'         => 'Tajemnice rozmaitych elementów lepiej zamieszczać jako :posts niż w głównym opisie.',
-        '4'         => 'By zaprosić przyjaciół do udziału w kampanii należy wybrać pozycję :world a potem :members. Znajdziesz tam opcję tworzenia zaproszeń.',
+        '4'         => 'Zaproś przyjaciół do udziału w kampanii wybierając :world a potem :members. Moższ tam tworzyć zaproszenia.',
         '5'         => 'Możesz usunąć wiadomość powitalną i wyświetlać na tym ekranie (to znaczy - pulpicie) inne informacje. Po prostu przewiń w dół i naciśnij :button.',
         'mention'   => 'wzmiankować',
     ],

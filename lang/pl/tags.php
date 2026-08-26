@@ -3,7 +3,7 @@
 return [
     'children'      => [
         'actions'   => [
-            'add'           => 'Dodaj nową etykietę',
+            'add'           => 'Dodaj do etykiety',
             'add_entity'    => 'Dodaj do elementu',
         ],
         'create'    => [
@@ -21,24 +21,27 @@ return [
     'edit'          => [],
     'fields'        => [
         'children'          => 'Pochodne',
+        'icon'              => 'Ikona',
         'is_auto_applied'   => 'Dodawaj automatycznie',
         'is_hidden'         => 'Ukryj w nagłówkach i dymkach',
     ],
     'helpers'       => [
-        'no_children'   => 'Obecnie nie oznaczono tą etykietą żadnych elementów.',
-        'no_posts'      => 'Obecnie nie oznaczono tą etykietą żadnych komentarzy.',
+        'icon'          => 'Użyj ikony z :fontawesome lub :rpgawesome. Będzie wyświetlana zamiast nazwy etykiety na listach.',
+        'no_children'   => 'Brak elementów oznaczonych tą etykietą.',
+        'no_posts'      => 'Brak komentarzy oznaczonych tą etykietą.',
     ],
     'hints'         => [
-        'children'          => 'Na liście znajdują się wszystkie elementy posiadające tę etykietę i etykiety pochodne.',
-        'is_auto_applied'   => 'Zaznacz by dodawać tę etykietę automatycznie do nowych elementów.',
-        'is_hidden'         => 'Po zaznaczeniu, ta etykieta nie będzie wyświetlana w nagłówku i dymkach elementu',
-        'tag'               => 'Na liście znajdują się wszystkie elementy posiadające tę etykietę.',
+        'children'          => 'Na liście znajdują się wszystkie elementy oznaczone tą etykietę i jej pochodnymi.',
+        'is_auto_applied'   => 'Automatycznie oznaczaj nowo stworzone elementy tą etykietą.',
+        'is_hidden'         => 'Nie wyświetlaj etykiety w dymkach i nagłówkach elementów.',
+        'tag'               => 'Na liście znajdują się wszystkie etykiety pochodne od tej, oraz pochodne od jej pochodnych.',
     ],
     'index'         => [],
     'lists'         => [
-        'empty' => 'Stosuj etykiety, by łączyć i grupować różne elementy, ułatwiając filtrowanie i nawigację.',
+        'empty' => 'Etykiety pozwalają grupować i filtrować elementy świata, ułatwiając nawigację.',
     ],
     'placeholders'  => [
+        'icon'  => 'Spróbuj :example1 lub :example2',
         'type'  => 'Wiedza tajemna, wojna, historia, religia, weksylologia',
     ],
     'show'          => [

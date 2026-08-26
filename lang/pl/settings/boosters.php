@@ -4,7 +4,7 @@ return [
     'actions'   => [
         'boost_name'    => 'Doładuj :name',
     ],
-    'available' => 'Dostępne doładowania :amount/:total',
+    'available' => 'Kampanie premium :amount/:total',
     'benefits'  => [
         'boosted'       => 'Użycie :one doładowania zapewnia dostęp do następujących funkcji: :marketplace, zmiana motywu, możliwość załączania większych plików, odzyskiwanie usuniętych elementów i :more.',
         'more'          => 'inne świetne opcje.',
@@ -30,7 +30,7 @@ return [
     ],
     'campaign'  => [
         'boosted'       => 'Doładowana przez :user od :time',
-        'premium'       => 'Premium dzięki :user od :time',
+        'premium'       => 'Odlokowano premium dzięki :user od :time',
         'standard'      => 'Standardowa',
         'superboosted'  => 'Turbodoładowana przez :user od :time',
         'unboosted'     => 'Niedoładowana',
@@ -43,14 +43,16 @@ return [
     'pitch'     => [
         'benefits'      => [
             'backup'        => 'Możliwość odzyskania usuniętych elementów do :days wstecz',
-            'customisable'  => 'Pełną kontrolę nad wyglądem kampanii',
+            'customisable'  => 'Własne motywy i CSS',
             'icons'         => 'Dostęp do tysięcy ikon, które można umieszczać na mapie i w historii',
+            'plugins'       => 'Dodaj do kampanii wtyczki tworzone przez społeczność',
             'title'         => 'W doładowanych kampaniach otrzymujesz',
             'upload'        => 'Możliwość dodawania większych plików (dla wszystkich)',
+            'visual'        => 'Wizualizację drzew genealogicznych i relacji między elementami',
         ],
         'description'   => 'Doładowanie kampanii zapewnia dostęp do świetnych możliwości, i to dla wszystkich uczestników. Mało ci? Spróbuj turbodoładowania.',
         'more'          => 'Pełną listę udogodnień znajdziesz na stronie :booster.',
-        'title'         => 'Wznieś kampanię na nowym poziom, zapewniając wszystkim uczestnikom dostęp do licznych udogodnień',
+        'title'         => 'Odlokuj pełen potencjał kampanii',
     ],
     'ready'     => [
         'available'         => 'Dostępne doładowania kampanii.',

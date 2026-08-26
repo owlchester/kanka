@@ -10,6 +10,7 @@ return [
         'inherited' => ':member ma już to uprawnienie dzięki roli :role.',
     ],
     'roles'     => [
-        'inherited' => 'Ta :rola ma już takie uprawnienia dla całego modułu :module.',
+        'inherited' => 'Ta :rola ma już takie uprawnienia dla całej kategorii :module.',
     ],
+    'switch'    => 'Wyświetl kampanię jako :name by zobaczyć działanie uprawnień',
 ];

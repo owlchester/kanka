@@ -6,28 +6,28 @@ return [
         'transfer'  => 'Przenieś',
     ],
     'errors'        => [
-        'permission'        => 'Nie możesz tworzyć elementów tego typu w kampanii docelowej.',
+        'permission'        => 'Nie możesz tworzyć elementów :type w kampanii docelowej.',
         'permission_update' => 'Nie masz uprawień, by przenieś ten element.',
-        'same_campaign'     => 'Musisz wybrać kampanię, do której element ma być przeniesiony.',
+        'same_campaign'     => 'Wybierz inną kampanię, do której element ma być przeniesiony.',
         'unknown_campaign'  => 'Nieznana kampania.',
     ],
     'fields'        => [
         'campaign'      => 'Kampania docelowa',
-        'copy'          => 'Skopiuj',
+        'copy'          => 'Opcje kopiowania',
         'select_one'    => 'Wybierz kampanię',
     ],
     'helpers'       => [
-        'copy'  => 'Stwórz kopię elementu ze wskazanej kampanii.',
+        'copy'  => 'Zachowaj kopię elementu w obecnej kampanii.',
     ],
     'panel'         => [
-        'description'           => 'Wybierz kampanię do której element ma zostać przeniesiony albo skopiowany.',
+        'description'           => 'Przenosi element do innej kampanii. Możesz opcjonalnie zachować tu kopię.',
         'description_bulk_copy' => 'Wybierz kampanię, do której chcesz skopiować wybrane elementy.',
-        'title'                 => 'Przenieś lub skopiuj element do innej kampanii.',
+        'title'                 => 'Przenieś element do innej kampanii.',
     ],
-    'success'       => 'Przeniesiono element :name.',
-    'success_copy'  => 'Skopiowano element :name.',
+    'success'       => 'Przeniesiono element :name do kampanii :campaign.',
+    'success_copy'  => 'Skopiowano element :name do kampanii :campaign.',
     'title'         => 'Przenoszenie elementu :name',
     'warnings'      => [
-        'custom'    => 'Ten element nie jest częścią modułu domyślnego, ale własnego, stworzonego w tej kampanii. W kampanii docelowej stanie się elementem Notatek.',
+        'custom'    => 'Ten element nie należy do kategorii podstawowej, ale dodatkowej, stworzonej na potrzeby tej kampanii. W kampanii docelowej zostanie przeniesiony do Notatek.',
     ],
 ];

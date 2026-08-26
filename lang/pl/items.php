@@ -1,12 +1,19 @@
 <?php
 
 return [
+    'bulk'          => [
+        'creators'  => [
+            'action'    => 'Akcje twórców',
+            'remove'    => 'Usuń wszystkich twórców',
+        ],
+    ],
     'create'        => [
         'title' => 'Nowy przedmiot',
     ],
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
+        'creators'      => 'Twórcy',
         'is_equipped'   => 'Na wyposażeniu',
         'price'         => 'Cena',
         'size'          => 'Rozmiar',
@@ -17,13 +24,13 @@ return [
     'index'         => [],
     'inventories'   => [],
     'lists'         => [
-        'empty' => 'Dodawaj występującą w świecie broń, artefakty oraz przedmioty o szczególnym znaczeniu.',
+        'empty' => 'Dodawaj broń, artefakty oraz przedmioty o szczególnym znaczeniu.',
     ],
     'placeholders'  => [
         'price' => 'Cena przedmiotu',
-        'size'  => 'Wielkość, ciężar, wymiary',
+        'size'  => 'Rozmiar, wymiary, pojemność',
         'type'  => 'Broń, eliksir, artefakt',
-        'weight'=> 'Waga jednego przedmiotu',
+        'weight'=> 'Waga przedmiotu',
     ],
     'show'          => [
         'tabs'  => [

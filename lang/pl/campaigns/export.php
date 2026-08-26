@@ -3,19 +3,19 @@
 return [
     'actions'   => [
         'download'  => 'Pobierz',
-        'export'    => 'Eksportuj dane kampanii',
+        'export'    => 'Eksportuj kampanię',
     ],
     'confirm'   => [
-        'notification'  => 'Uczestnicy o roli :admin zostaną powiadomieni gdy eksport będzie gotowy do pobrania.',
-        'title'         => 'Potwierdź eksport',
+        'notification'  => 'Uczestnicy w roli :admin zostaną powiadomieni, gdy eksport będzie gotowy do pobrania.',
+        'title'         => 'Eksport :name',
         'type'          => 'Typ eksportu',
-        'warning'       => 'Zaraz wyeksportujesz dane kampanii. To może potrwać dłuższą chwilę, zależnie od rozmiaru kampanii. Podczas generowania pliku możesz normalnie używać Kanki.',
+        'warning'       => 'Zaraz wyeksportujesz dane kampanii. To może potrwać dłuższą chwilę, zależnie od jej rozmiaru. Podczas generowania pliku możesz normalnie używać Kanki - otrzymasz powiadomienie, gdy będzie gotowy.',
     ],
     'errors'    => [
         'limit'     => 'Dzisiaj już eksportowano kampanię. Spróbuj ponownie jutro.',
         'premium'   => 'Eksort markdown jest dostępny wyłącznie w kampaniach premium.',
     ],
-    'expired'   => 'Odnośnik nieaktualny',
+    'expired'   => 'Link wygasł',
     'helpers'   => [
         'json'      => 'Do archiwizacji i przywracania - można użyć w celu zaimportowania kampanii',
         'markdown'  => 'Do czytania i rozpowszechniania - format zrozumiały dla ludzi',

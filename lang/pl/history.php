@@ -4,10 +4,11 @@ return [
     'actions'   => [
         'show-old'  => 'Zmiany',
     ],
-    'cta'       => 'Wyświetla listę ostatnich zmian w kampanii.',
+    'cta'       => 'Kontroluj wszystkie zmiany w kampanii dzięki dokładnej liście wszystkich ostatnich edycji, dodatków i aktualizacji.',
     'empty'     => 'Brak',
     'fields'    => [
         'action'    => 'Działanie',
+        'category'  => 'Kategoria',
         'details'   => 'Szczegóły',
         'when'      => 'Kiedy',
         'who'       => 'Kto',
@@ -18,12 +19,12 @@ return [
         'no-results'    => 'Brak rezultatów. Użyj innego filtra albo wprowadź jakieś zmiany w elementach kampanii.',
     ],
     'helpers'   => [
-        'base'      => 'Lista zawiera zmiany elementów kampanii przeprowadzone w ciągu :amount miesięcy. Najnowsze wyświetlane są jako pierwsze.',
+        'base'      => 'Lista zawiera zmiany elementów kampanii przeprowadzone w ciągu :amount dni. Najnowsze wyświetlane są jako pierwsze.',
         'changes'   => 'Poniższe pola miały poprzednio następujące wartości.',
     ],
     'log'       => [
         'create'        => ':user stworzył :entity',
-        'create_post'   => ':user napisał komentarz ":post" dotyczący :entity',
+        'create_post'   => ':user napisał komentarz dotyczący :entity',
         'delete'        => ':user usunął :entity',
         'delete_post'   => ':user usunął komentarz dotyczący :entity',
         'reorder_post'  => ':user zmienił kolejność komentarzy dotyczących :entity',

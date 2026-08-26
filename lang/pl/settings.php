@@ -13,7 +13,7 @@ return [
                 'helper'    => 'Jeżeli chcesz wyłączyć autoryzację dwuetapową, kliknij poniżej. Pamiętaj przy tym, że konto będzie od tej pory dostępne dla każdej osoby znającej hasło.',
                 'title'     => 'Wyłącz autoryzację dwuetapową',
             ],
-            'enable_instructions'   => 'By zacząć aktywację, wygeneruj autoryzacyjny kod QR i zeskanuj go w Aplikacji Autoryzacyjnej Goole (:ios, :android) albo innym programie tego rodzaju',
+            'enable_instructions'   => 'By zacząć aktywację, wygeneruj autoryzacyjny kod QR i zeskanuj go w aplikacji Google Authenticator (:ios, :android) albo innym programie tego rodzaju',
             'enabled'               => 'Twoje konto zabezpieczone jest obecnie autoryzacją dwuetapową',
             'error_enable'          => 'Niewłaściwy kod, spróbuj ponownie',
             'fields'                => [
@@ -60,13 +60,13 @@ return [
         'discord'   => [
             'confirm'   => 'Czy na pewno chcesz odłączyć Discord? Stracisz wszystkie zsynchronizowane z nim role.',
             'errors'    => [
-                'add'   => 'Podczas łączenia konta Kanki z Discordem nastąpił błąd. Spróbuj jeszcze raz.',
+                'add'   => 'Podczas łączenia konta Kanki z Discordem nastąpił błąd. Spróbuj jeszcze raz. Jeśli będzie się powtarzać, pamiętaj że Discord ma limit dołączenia do 100 przy użyciu ich API.',
             ],
             'success'   => [
                 'add'       => 'Połączono z kontem Discord.',
                 'remove'    => 'Odłączono konto Discord.',
             ],
-            'text'      => 'Automatyczny dostęp do poziomu subskrypcji.',
+            'text'      => 'Połącz kontro Discord z Kanką by zyskać dostęp do roli subskrybcyjnej oraz kanałów prywatnych.',
             'unlock'    => 'Odblokuj role na Discordzie',
         ],
         'title'     => 'Integracja z aplikacjami',
@@ -110,12 +110,13 @@ return [
         'personal_settings'     => 'Ustawienia osobiste',
         'premium'               => 'Kampanie premium',
         'profile'               => 'Profil',
+        'security'              => 'Bezpieczeństwo',
         'settings'              => 'Ustawienia',
         'subscription'          => 'Subskrypcja',
         'subscription_status'   => 'Status subskrypcji',
     ],
     'patreon'       => [
-        'deprecated'    => 'Przestarzała funkcja. Jeżeli chcesz wspierać Kankę, rozważ subskrypcję. Integracja z Patreonem jest dostępna tylko dla osób, które połączyły swoje konta Patren z Kanką zanim wycofaliśmy się z tego serwisu.',
+        'deprecated'    => 'Przestarzała funkcja. Jeżeli chcesz wspierać Kankę, rozważ :subscription. Integracja z Patreonem jest dostępna tylko dla patronów, którzy połączyli konta z Kanką zanim wycofaliśmy się z tego serwisu.',
         'pledge'        => 'Deklaracja :name',
         'remove'        => [
             'button'    => 'Odłącz konto Patreon',
@@ -153,22 +154,22 @@ return [
             ],
             'options'   => [
                 'competitor'        => 'Wybieram produkt konkurencji',
-                'financial'         => 'Moja sytuacja finansowa się zmieniła',
-                'missing_features'  => 'Nie ma opcji, których potrzebuję',
+                'financial'         => 'Subskrypcja jest za droga',
+                'missing_features'  => 'Brakuje funkcji',
                 'not_for'           => 'Subskrybuję dla kogoś innego',
                 'not_playing'       => 'Już nie gram albo kampania została zawieszona',
                 'not_using'         => 'Nie używam ostatnio Kanki',
                 'other'             => 'Inne',
                 'testing'           => 'Tylko testuję Kankę',
             ],
-            'text'      => 'Szkoda, że rezygnujesz! Po zaniechaniu subskrypcji konto pozostanie aktywne do końca okresu rozliczeniowego. Potem stracisz doładowania i inne korzyści wynikające ze wspierania Kanki. Wypełniając poniższy formularz nasz nam znać, co możemy poprawić i dlaczego rezygnujesz.',
+            'text'      => 'Szkoda, że rezygnujesz! Po zaniechaniu subskrypcji konto pozostanie aktywne do :date. Potem kampanie premium zmienią się w zwykłe i stracisz inne korzyści ze wspierania Kanki. Wypełniając poniższy formularz nasz nam znać, co możemy poprawić i dlaczego rezygnujesz.',
             'title'     => 'Anulowane subskrybcji',
         ],
-        'cancelled'             => 'Anulowano subskrypcję. Możesz ją odnowić, gdy tylko ta wygaśnie.',
+        'cancelled'             => 'Anulowano subskrypcję. Możesz ją odnowić, gdy tylko ta wygaśnie w dniu :date.',
         'change'                => [
             'text'  => [
-                'downgrade_monthly' => 'Zmniejszasz poziom subskrybcji do :tier, więc miesięczy rachunek wynosić będzie od tej pory :amount.',
-                'downgrade_yearly'  => 'Zmniejszasz poziom subskrybcji do :tier, więc roczny rachunek wynosić będzie od tej pory :amount.',
+                'downgrade_monthly' => 'Zmniejszasz poziom subskrybcji do :tier, więc miesięczy rachunek to od tej pory :amount.',
+                'downgrade_yearly'  => 'Zmniejszasz poziom subskrybcji do :tier, więc roczny rachunek to od tej pory :amount.',
                 'monthly'           => 'Subskrybujesz na poziomie :tier, płacąc miesięcznie :amount.',
                 'upgrade_monthly'   => 'Zwiększasz subskrypcję do wersji :tier za :upgrade, więc miesięczny rachunek wyniesie :amount',
                 'upgrade_yearly'    => 'Zwiększasz subskrypcję do wersji :tier za :upgrade, więc roczny rachunek wyniesie :amount',
@@ -219,8 +220,9 @@ return [
         'payment_method'        => [
             'actions'   => [
                 'change'    => 'Zmień metodę płatności',
+                'manage'    => 'Zarządzaj na Stripe',
             ],
-            'helper'    => 'Karta zostanie użyta do wszystkich twoich subskrypcji',
+            'helper'    => 'Metoda płatności jest bezpiecznie zarządzana przez Stripe. Nie przechowujemy danych kart kredytowych.',
         ],
         'periods'               => [
             'monthly'   => 'Miesięczne',
@@ -228,7 +230,7 @@ return [
         ],
         'placeholders'          => [
             'downgrade_reason'  => 'Jeśli chcesz, powiedz nam czemu zmniejszasz poziom subskrybcji',
-            'reason'            => 'Jeżeli chcesz, powiedz nam dlaczego rezygnujesz ze wspierania Kanki. Czy brakuje ci jakichś funkcji, czy też zmieniła się twoja sytuacja finansowa?',
+            'reason'            => 'Jeżeli chcesz, powiedz nam dlaczego rezygnujesz ze wspierania Kanki.',
         ],
         'plans'                 => [
             'cost_monthly'  => ':currency :amount rozliczane miesięcznie',
@@ -253,7 +255,7 @@ return [
         'tiers'                 => 'Poziomy subskrypcji',
         'trial_period'          => 'Subskrypcje roczne mają 14-dniowy okres wypowiedzenia. Jeżeli chcesz anulować subskrypcję roczną i uzyskać zwrot pieniędzy, skontaktuj się z nami przez :email.',
         'upgrade_downgrade'     => [
-            'button'    => 'Informacje o zmianie subskrypcji',
+            'button'    => 'Zwiększanie i zmniejszanie subskrypcji',
             'cancel'    => [
                 'bullets'   => [
                     'bonuses'   => 'Wszystkie korzyści subskrypcji pozostaną aktywne do końca okresu rozliczeniowego.',

@@ -1,6 +1,7 @@
 <?php
 
 return [
-    'description'   => 'Wyświetla konkretny element.',
+    'description'   => 'Przypina konkretny element do pulpitu.',
     'name'          => 'Wybierz element',
+    'tag'           => 'Element',
 ];

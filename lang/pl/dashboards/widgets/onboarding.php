@@ -3,6 +3,8 @@
 return [
     'description'   => 'Wyświetla listę zadań od których zaczyna się budowa świata.',
     'name'          => 'Zaczynamy',
+    'tag'           => 'Zaczynamy',
+    'tagline'       => 'Rozpocznij budowę świata',
     'tasks'         => [
         'campaign'  => [
             'name'  => 'Twój pierwszy świat jest gotowy.',

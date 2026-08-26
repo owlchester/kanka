@@ -2,8 +2,8 @@
 
 return [
     'actions'   => [
-        'learn' => 'Poznaj ten moduł',
-        'public'=> 'Sprawdź jak używają go inni',
+        'learn' => 'Poznaj tę kategorię',
+        'public'=> 'Sprawdź jak używają jej inni',
     ],
     'empty'     => [
         'title' => 'Na razie brak :plural.',

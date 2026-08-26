@@ -21,7 +21,7 @@ return [
         'name'                      => 'Nazwa',
         'new_password'              => 'Nowe hasło',
         'new_password_confirmation' => 'Potwierdź nowe hasło',
-        'newsletter'                => 'Chcę dostawać okazjonalne emaile',
+        'newsletter'                => 'Chcę od czasu do czasu dostać email.',
         'password'                  => 'Obecne hasło',
         'profile-name'              => 'Nazwa profilu',
         'pronouns'                  => 'Zaimki',
@@ -30,7 +30,7 @@ return [
         'theme'                     => 'Motyw',
     ],
     'helpers'                       => [
-        'link'          => 'Zmienia odnośnik do profilu społecznościowego wyświetlany w twoim :profile i na :marketplace. Jeżeli wiersz jest pusty, użyta zostanie nazwa konta.',
+        'link'          => 'Zmienia sposób wyświetlania linku do profilu społecznościowego w twoim :profile i na :marketplace. Jeżeli wiersz jest pusty, użyta zostanie nazwa konta.',
         'profile-name'  => 'Zmienia nazwę wyświetlaną w twoim :profile i na :marketplace. Jeżeli wiersz jest pusty, użyta zostanie nazwa konta.',
         'pronouns'      => 'Zmienia zaimki wyświetlane w twoim :profile i na :marketplace. Jeżeli wiersz jest pusty, nie będziemy informować o twoich zaimkach.',
     ],
@@ -39,7 +39,7 @@ return [
     ],
     'newsletter'                    => [
         'helpers'   => [
-            'header'    => 'Zasubskrybuj następujące powiadomienia e-mailem, by być na bieżąco z Kanką.',
+            'header'    => 'Zasubskrybuj następujące newslettery e-mailem, by być na bieżąco z Kanką.',
         ],
         'options'   => [
             'monthly'   => 'Newsletter Kanki',
@@ -59,13 +59,13 @@ return [
         'password'                  => 'Potwierdź zmianę wpisując hasło',
     ],
     'sections'                      => [
-        'dangerzone'    => 'Uwaga!',
+        'dangerzone'    => 'Strefa Śmierci',
         'delete'        => [
             'confirm'       => 'Usuń teraz moje konto',
             'delete'        => 'Usuń konto',
             'goodbye'       => 'Jeśli tak, przepisz :code w polu poniżej.',
-            'helper'        => 'Usunięcie konta spowoduje również usunięcie wszystkich kampanii, których jesteś jednym członkiem. To działanie nieodwracalne, którego nie można cofnąć.',
-            'subscribed'    => 'Anuluj :subscription zanim możliwe będzie usunięcie konta.',
+            'helper'        => 'Usunięcie konta spowoduje również usunięcie wszystkich kampanii, których jesteś jedynym uczestnikiem. To działanie nieodwracalne, którego nie można cofnąć.',
+            'subscribed'    => 'Należy anulować :subscription zanim możliwe będzie usunięcie konta.',
             'title'         => 'Usuwanie konta',
             'warning'       => 'Po usunięciu konta wszystkie dane zostaną wykasowane. Czy na pewno chcesz to zrobić?',
         ],

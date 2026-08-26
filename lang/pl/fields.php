@@ -1,6 +1,12 @@
 <?php
 
 return [
+    'description'       => [
+        'label' => 'Informacje podstawowe',
+    ],
+    'entry'             => [
+        'label' => 'Element',
+    ],
     'gallery'           => [
         'placeholder'   => 'Wybierz obraz z galerii kampanii',
     ],
@@ -12,8 +18,8 @@ return [
     ],
     'header-image'      => [
         'boosted-description'   => 'Wyświetlaj obraz w tle nagłówka elementu w :boosted-campaign',
-        'description'           => 'Wyświetlaj obraz w tle nagłowka elementu. Dla osiągnięcia najlepszego efektu użyj bardzo dużego obrazu.',
-        'title'                 => 'Nagłówek',
+        'description'           => 'Wyświetlaj obraz w tle nagłowka elementu. Dla osiągnięcia najlepszego efektu powinien być bardzo duży.',
+        'title'                 => 'Obraz w nagłówku',
     ],
     'tooltip'           => [],
 ];

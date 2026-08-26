@@ -38,8 +38,8 @@ return [
         ],
         'message'           => 'Wiadomość',
         'private_entities'  => [
-            'helper'    => 'Nie używaj webhooka podczas edycji elementów prywatnych.',
-            'skip'      => 'Omijaj prywatne',
+            'helper'    => 'Nie używaj webhooka podczas edycji elementów tajnych.',
+            'skip'      => 'Omijaj tajne',
         ],
         'type'              => 'Rodzaj',
         'types'             => [
@@ -49,7 +49,7 @@ return [
         'url'               => 'Adres url',
     ],
     'helper'        => [
-        'active'    => 'Jeśli webhook jest aktywny',
+        'active'    => 'Webhook jest aktywny i uruchamiany przez wybrane sytuacje.',
         'message'   => 'Dodaj własną wiadomość z możliwością mapowania',
         'status'    => 'Aktywuje i wyłącza webhook',
         'tutorial'  => 'Dzięki webhookom możesz wysyłać aktualizacje kampanii w czasie rzeczywistym do narzędzi zewnętrznych, zawsze kiedy element jest tworzony, zmieniany albo usuwany. Możesz dodać wiele webhooków i testować je za pomocą tej strony.',
@@ -58,6 +58,7 @@ return [
         'message'   => '{who} wprowadził/a zmiany w {name}, znajdziesz je tu: {url}',
         'url'       => 'Docelowy adres url webhooka',
     ],
+    'premium'       => 'Otrzymuj powiadomienia na Discordzie lub w innych aplikacjach gdy kampania się zmienia, pojawia się nowy element i tak dalej.',
     'test'          => [
         'success'   => 'Wysłano zapytanie testowe',
     ],

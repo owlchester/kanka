@@ -2,7 +2,7 @@
 
 return [
     'actions'       => [
-        'status'    => 'Status :status',
+        'status'    => 'Widoczność :status',
     ],
     'create'        => [
         'helper'    => 'Tworzy nową rolę w kampanii.',
@@ -14,17 +14,17 @@ return [
     ],
     'permissions'   => [
         'campaign-features' => 'Składniki kampanii',
-        'content-modules'   => 'Moduły zawartości',
+        'content-modules'   => 'Kategorie zawartości',
         'toggle'            => [
             'action'    => 'Przełącz wszystkie',
-            'tooltip'   => 'Przełącz upoważnienie :action dla wszystkich modułów.',
+            'tooltip'   => 'Przełącz upoważnienie :action dla wszystkich kategorii.',
         ],
     ],
     'public'        => [
         'helpers'   => [
-            'click'     => 'Wybierz dowolny moduł by przełączyć publiczną widoczność wszystkich należących do niego elementów.',
-            'intro'     => 'Kontroluje widoczność składników kampanii przez osby które w niej nie uczestniczą.',
-            'main'      => 'Wybierz które moduły będą widoczne dla wszystkich przeglądajacych kampanię, w tym osób niezalogowanych. Kategoria obejmuje zarówno publiczność z zewnątrz, jak zalogowanych użytkowników Kanki którzy nie biorą udziału w kampanii.',
+            'click'     => 'Wybierz dowolną kategorię by przełączyć widoczność wszystkich jej elementów.',
+            'intro'     => 'Kontroluje, co widzą osoby nie będące uczestnikami kampanii.',
+            'main'      => 'Wybierz które kategorie będą widoczne dla wszystkich przeglądajacych kampanię, w tym osób niezalogowanych. To znaczy: i osób z zewnątrz, i zalogowanych użytkowników Kanki którzy nie biorą udziału w kampanii.',
             'preview'   => 'Widok publiczności',
         ],
     ],
@@ -32,8 +32,8 @@ return [
         'title' => 'Uprawnienia :role - :campaign',
     ],
     'toggle'        => [
-        'disabled'  => 'Dla uczestników w roli :role działanie :action na :entities jest obecnie niedostępne.',
-        'enabled'   => 'Dla uczestników w roli :role działanie :action na :entities jest obecnie możliwe.',
+        'disabled'  => 'Dla uczestników w roli :role działanie :action na :entities jest niedostępne.',
+        'enabled'   => 'Dla uczestników w roli :role działanie :action na :entities jest możliwe.',
     ],
     'warnings'      => [
         'adding-to-admin'   => 'Uczestnicy posiadający rolę :role mają dostęp do wszystkich elementów kampanii i nie mogą zostać usunięci przez inne osoby w tej roli. Gdy minie :amount minut, mogą pozbyć się roli wyłącznie osobiście.',

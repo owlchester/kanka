@@ -2,30 +2,30 @@
 
 return [
     'actions'       => [
-        'convert'   => 'Zmień moduł',
+        'convert'   => 'Zmień kategorię',
     ],
     'bulk'          => [
         'errors'    => [
-            'unknown_type'  => 'Nieznany lub niewłaściwy rodzaj elementu.',
+            'unknown_type'  => 'Nieznana lub niewłaściwa kategoria.',
         ],
-        'success'   => '{1} zmieniono rodzaj :count elementu.|[2,*] zmieniono rodzaj :count elementów.',
+        'success'   => '{1} zmieniono kategorię :count elementu.|[2,*] zmieniono kategorię :count elementów.',
     ],
     'confirm'       => [
-        'checkbox'  => 'Rozumiem, że po przekształceniu :entity w element innego moduły stracę następujące dane:',
+        'checkbox'  => 'Rozumiem, że po zmianie kategorii elementu :entity stracę następujące dane:',
         'label'     => 'Potwierdzenie utraty danych',
     ],
-    'documentation' => 'Dokumentacja: zmiana modułu elementu',
+    'documentation' => 'Dokumentacja: zmiana kategorii elementu',
     'fields'        => [
-        'current'       => 'Obecny moduł',
-        'select_one'    => 'Wybierz',
-        'target'        => 'Nowy typ elementu',
+        'current'       => 'Obecna kategoria',
+        'select_one'    => 'Wybierz nową kategorię',
+        'target'        => 'Nowa kategoria',
     ],
     'panel'         => [
-        'bulk_description'  => 'Zmień rodzaj wielu elementów na raz. Pamiętaj, możesz utracić część danych ze względu na różnice pól opisu różnych rodzajów elementów.',
-        'bulk_title'        => 'Przekształcanie wielu elementów',
-        'title'             => 'Przekształć typ elementu',
-        'warning'           => 'Możesz utracić niektóre dane, jeżeli nowy moduł używa innych pól opisu.',
+        'bulk_description'  => 'Zmień kategorię wielu elementów na raz. Pamiętaj, możesz utracić część danych ze względu na różnice pól opisu różnych kategorii.',
+        'bulk_title'        => 'Zmiana kategorii wielu elementów',
+        'title'             => 'Możesz zmienić kategorię tego elementu.',
+        'warning'           => 'Możesz utracić niektóre dane, jeżeli nowa kategoria używa innych pól opisu.',
     ],
-    'success'       => 'Przekształcono element :name.',
-    'title'         => 'Przekształcanie elementu :name',
+    'success'       => 'Zmieniono kategorię :name.',
+    'title'         => 'Zmiana kategorii elementu :name',
 ];

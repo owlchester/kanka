@@ -48,6 +48,7 @@ return [
         'already'   => 'Masz już konto? :login',
         'errors'    => [
             'general_error' => 'Podczas rejestracji wystąpił błąd. Spróbuj jeszcze raz.',
+            'unavailable'   => 'Konto dla :email już istnieje i ma inną metodę logowania.',
         ],
         'fields'    => [
             'email'     => 'Email',

@@ -2,7 +2,8 @@
 
 return [
     'actions'   => [
-        'subscription'  => 'Dowiedz się więcej o subskrypcji',
+        'subscription'  => 'Zobacz plany i ceny',
+        'upgrade'       => 'Przejdź na premium',
     ],
     'booster'   => [
         'actions'       => [
@@ -10,7 +11,7 @@ return [
             'superboost'    => 'Turbodoładuj :campaign',
         ],
         'learn-more'    => 'Czym są doładowania?',
-        'limitation'    => 'Ta opcja dostępna jest tylko w doładowanych kampaniach',
+        'limitation'    => 'Dostęp do tej opcji wymaga doładowania kampanii.',
         'limitations'   => [
             'boosted'       => 'Dostęp do tej opcji wymaga doładowania kampanii.',
             'superboosted'  => 'Dostęp do tej opcji wymaga turbodoładowania kampanii.',
@@ -18,7 +19,7 @@ return [
         'multiple'      => 'Te opcje dostępne są tylko w doładowanych kampaniach',
         'pitches'       => [
             'element-class' => 'Nadawaj elementom własne klasy CSS po :boosted-campaign.',
-            'icon'          => 'W :boosted-campaigh używać możesz milionów ikon z FontAwesome.',
+            'icon'          => 'W :boosted-campaign używać możesz własnych ikon na przykład :example z :fontawesome',
         ],
         'titles'        => [
             'boosted'       => 'Po doładowaniu',
@@ -26,15 +27,15 @@ return [
         ],
     ],
     'premium'   => [
-        'learn-more'    => 'Czym jest kampania premium?',
-        'limitation'    => 'Opcja dostępna wyłącznie w kampaniach premium.',
-        'multiple'      => 'By używać tych funkcji należy odblokować poziom premium kampanii :campaign.',
+        'learn-more'    => 'Zobacz funkcje premium',
+        'limitation'    => 'By używać tej opcji, kampania :campaign musi mieć status premium.',
+        'multiple'      => 'By używać tych opcji, kampania :campaign musi mieć status premium.',
         'title'         => 'Opcja premium',
         'unlock'        => 'Odblokuj opcje premium dla :campaign',
     ],
     'subscribe' => [
         'pitch-image'   => 'Subskrybuj, by zwiększyć rozmiar dołączanych plików do :max MB.',
         'share-booster' => 'Doładowanie zwiększa maksymalny rozmiar dołączanych plików dla wszystkich uczestników kampanii.',
-        'share-premium' => 'Zwiększa wielkość plików zamieszczanych przez wszystkich członków kampanii premium',
+        'share-premium' => 'Zwiększa wielkość plików zamieszczanych przez wszystkich uczestników kampanii premium',
     ],
 ];

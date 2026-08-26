@@ -2,26 +2,29 @@
 
 return [
     'actions'       => [
+        'apply_kit'     => 'Zastosuj szablon cech',
         'load'          => 'Wczytaj',
         'manage'        => 'Zarządzaj',
-        'more'          => 'Więcej opcji',
+        'more'          => 'Inne',
         'remove_all'    => 'Usuń wszystko',
         'save_and_edit' => 'Zastosuj i edytuj',
         'save_and_story'=> 'Zastosuj i zobacz',
         'show_hidden'   => 'Pokaż ukryte cechy',
-        'toggle_privacy'=> 'Prywatne/Publiczne',
+        'toggle_privacy'=> 'Tajne/Jawne',
     ],
     'errors'        => [
         'api'                   => 'Niewłaściwe dane',
-        'loop'                  => 'W obliczeniu tej cechy występuje nie kończąca się pętla!',
+        'loop'                  => 'W obliczeniu tej cechy występuje nieskończona pętla!',
         'no_attribute_selected' => 'Wybierz najpierw jedną lub więcej cech.',
         'too_many_v2'           => 'Maksymalna liczba pól (:count/max). Skasuj jakieś cechy przed dodaniem nowych.',
     ],
     'fields'        => [
         'community_templates'   => 'Szablony społeczności',
-        'is_private'            => 'Szablony Tajne',
+        'is_private'            => 'Cechy tajne',
         'is_star'               => 'Przypięte',
+        'kit'                   => 'Szablon',
         'preferences'           => 'Ustawienia',
+        'property'              => 'Cecha',
         'value'                 => 'Wartość',
     ],
     'filters'       => [
@@ -29,9 +32,9 @@ return [
         'value' => 'Wartość cechy',
     ],
     'helpers'       => [
-        'delete_all'    => 'Czy na pewno chcesz usunąć cechy tego elementu?',
-        'is_private'    => 'Tylko członkowie posiadający rolę :admin-role będą widzieć cechy elementu.',
-        'setup'         => 'Element może posiadać cechy, na przykład Punkty Wytrzymałości albo Inteligencję. Cechę możesz ustalić i dodać ręcznie klikając na :manage albo zastosować szablon.',
+        'delete_all'    => 'Czy na pewno chcesz usunąć wszystkie cechy tego elementu?',
+        'is_private'    => 'Tylko uczestnicy posiadający rolę :admin-role będą widzieć cechy elementu.',
+        'setup'         => 'Element może posiadać cechy, na przykład Punkty Wytrzymałości albo Inteligencję. Cechę możesz dodać ręcznie klikając na :manage albo zastosować szablon.',
     ],
     'hints'         => [],
     'index'         => [
@@ -50,13 +53,14 @@ return [
     ],
     'placeholders'  => [
         'attribute' => 'Liczba zwycięstw, Skala Wyzwania, Inicjatywa, Populacja',
-        'block'     => 'Nazwa bloku',
+        'block'     => 'Nazwa akapitu',
         'checkbox'  => 'Nazwa pola wyboru',
         'icon'      => [
             'class' => 'Klasa FontAwesome lub RPG Awesome: fas fa-users',
             'name'  => 'Nazwa ikony',
         ],
-        'number'    => 'Rodzaj liczby',
+        'kit'       => 'Wybierz szablon',
+        'number'    => 'Wartość liczbowa',
         'random'    => [
             'name'  => 'Nazwa cechy',
             'value' => '1-100 lub lista wartości rozdzielonych przecinkiem',
@@ -72,7 +76,7 @@ return [
     ],
     'show'          => [
         'hidden'    => 'Ukryte cechy',
-        'title'     => 'Cechy elementu :name',
+        'title'     => 'Cechy :name',
     ],
     'template'      => [
         'load'      => [
@@ -85,30 +89,31 @@ return [
     ],
     'title'         => 'Cechy',
     'toasts'        => [
-        'bulk_deleted'  => 'Usunięto cechy',
+        'bulk_deleted'  => 'Usunięto cechę',
         'bulk_privacy'  => 'Zmieniono ustawienia prywatności',
-        'lock'          => 'Zablokowano',
-        'pin'           => 'Przypięto',
-        'unlock'        => 'Odblokowano',
-        'unpin'         => 'Odpięto',
+        'lock'          => 'Zablokowano cechę',
+        'pin'           => 'Przypięto cechę',
+        'unlock'        => 'Odblokowano cechę',
+        'unpin'         => 'Odpięto cechę',
     ],
     'tutorials'     => [],
     'types'         => [
-        'attribute' => 'Cecha',
+        'attribute' => 'Tekst',
         'block'     => 'Blok',
         'checkbox'  => 'Pole wyboru',
         'icon'      => 'Ikona',
+        'kits'      => 'Szablony',
         'number'    => 'Liczba',
-        'random'    => 'Losowy',
+        'random'    => 'Losowo',
         'section'   => 'Sekcja',
-        'text'      => 'Kilka wierszy',
+        'text'      => 'Akapit',
     ],
     'update'        => [
-        'success'   => 'Zaktualizowano cechy elementu :entity.',
+        'success'   => 'Zmieniono cechy elementu :entity.',
     ],
     'visibility'    => [
         'entry'     => 'Cecha wyświetlana na stronie głównej elementu.',
-        'private'   => 'Cecha widoczna wyłącznie dla posiadaczy roli "administrator".',
+        'private'   => 'Cecha widoczna tylko dla administratorów.',
         'public'    => 'Cecha widoczna dla wszystkich.',
         'tab'       => 'Cecha wyświetlana wyłącznie w zakładce Cechy.',
     ],

@@ -7,7 +7,7 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'is_defunct'    => 'Nie funkcjonuje',
+        'is_defunct'    => 'Nieaktywna',
         'members'       => 'Członkowie',
     ],
     'helpers'       => [],
@@ -22,12 +22,16 @@ return [
         'actions'       => [
             'add_multiple'  => 'Dodaj członków',
         ],
+        'bulks'         => [
+            'delete'    => '{1} Usunięto :count członka.|[2,*] Usunięto :count członków.',
+            'patch'     => '{1} Zmieniono :count członka.|[2,*] Zmieniono :count członków.',
+        ],
         'create'        => [
             'helper'            => 'Dodaje jednego lub więcej członków do :name.',
             'success_multiple'  => '{1} Dodano :count członka do :name.|[2,*] Dodano :count członków do :name.',
         ],
         'destroy'       => [
-            'success'   => 'Usunięto członka organizacji.',
+            'success'   => 'Usunięto członka organizacji :name.',
         ],
         'edit'          => [
             'helper'    => 'Zmienia status członkostwa elementu :name.',
@@ -42,11 +46,11 @@ return [
         'helpers'       => [
             'all_members'   => 'Wszystkie postaci należące do tej organizacji i organizacji pochodnych.',
             'members'       => 'Wszystkie postaci należące do tej organizacji.',
-            'pinned'        => 'Wybierz czy członkostwo ma być wyświetlane w sekcji "przypięte" wskazanych elementów.',
+            'pinned'        => 'Można wyświetlić członkowstwo w sekcji Przypięte powiązanych elementów.',
         ],
         'pinned'        => [
-            'both'  => 'Do obu',
-            'none'  => 'Do żadnego',
+            'both'  => 'Obydwa',
+            'none'  => 'Nie przypinaj',
         ],
         'placeholders'  => [
             'parent'    => 'Zwierzchnik tego członka',
@@ -55,7 +59,7 @@ return [
         'status'        => [
             'active'    => 'Aktywna działalność',
             'inactive'  => 'Była działalność',
-            'unknown'   => 'Nieznany',
+            'unknown'   => 'Status nieznany',
         ],
     ],
     'organisations' => [],

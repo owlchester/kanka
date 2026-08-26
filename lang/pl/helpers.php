@@ -10,7 +10,7 @@ return [
         'link'  => 'Opcje cech',
     ],
     'calendar-widget'   => [
-        'info'  => 'Czemu wciąż to widzę?',
+        'info'  => 'Czemu wciąż widzę te przypomnienia?',
         'title' => 'Widżet kalendarza',
     ],
     'dice'              => [],
@@ -19,7 +19,7 @@ return [
         'title' => 'Jak używać filtrów',
     ],
     'link'              => [
-        'description'   => 'Możesz z łatwością tworzyć odnośniki do innych elementów kampanii przy pomocy następującego zapisu.',
+        'description'   => 'Możesz z łatwością tworzyć linki do innych elementów kampanii przy pomocy następującego zapisu.',
     ],
     'map'               => [],
     'pins'              => [],
