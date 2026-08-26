@@ -10,6 +10,14 @@ return [
         'success'   => ':name has been archived.',
         'title'     => 'Archive',
     ],
+    'claimable'         => [
+        'set'       => 'Set as claimable',
+        'success'   => [
+            'set'   => ':name is now claimable in the player hub.',
+            'unset' => ':name is no longer claimable in the player hub.',
+        ],
+        'unset'     => 'Remove as claimable',
+    ],
     'convert'           => 'Convert category',
     'copy-campaign'     => 'Copy to campaign',
     'json-export'       => 'JSON export',

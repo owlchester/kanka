@@ -88,6 +88,17 @@ $delete = false;
                     @endif
                 </x-dropdowns.item>
             @endcan
+            @if ($entity->isCharacter() && \App\Facades\CampaignCache::campaign($campaign)->flags()->has(\App\Enums\CampaignFlags::PlayerHub->value))
+                @can('admin', $campaign)
+                    <x-dropdowns.item :link="route('entities.claimable', [$campaign, $entity])" icon="fa-regular fa-user-check">
+                        @if ($entity->is_claimable)
+                            {{ __('entities/actions.claimable.unset') }}
+                        @else
+                            {{ __('entities/actions.claimable.set') }}
+                        @endif
+                    </x-dropdowns.item>
+                @endcan
+            @endif
 
 
             @can('update', $entity)

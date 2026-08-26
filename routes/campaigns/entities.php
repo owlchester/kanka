@@ -14,6 +14,7 @@ use App\Http\Controllers\Entities\ListingPreferenceController;
 use App\Http\Controllers\Entity\AttributeController;
 use App\Http\Controllers\Entity\Attributes\LiveApiController;
 use App\Http\Controllers\Entity\Attributes\LiveController;
+use App\Http\Controllers\Entity\ClaimableController;
 use App\Http\Controllers\Entity\EntryController;
 use App\Http\Controllers\Entity\ImageController;
 use App\Http\Controllers\Entity\Maps\ApiController as EntityMapApiController;
@@ -402,6 +403,7 @@ Route::get('/w/{campaign}/entities/{entity}/share', 'Entity\ShareController@setu
 Route::post('/w/{campaign}/entities/{entity}/share', 'Entity\ShareController@save')->name('entities.share.save');
 
 Route::get('/w/{campaign}/entities/{entity}/template', 'Entity\TemplateController@update')->name('entities.template');
+Route::get('/w/{campaign}/entities/{entity}/claimable', [ClaimableController::class, 'update'])->name('entities.claimable');
 Route::get('/w/{campaign}/posts/{post}/template', 'Entity\Posts\TemplateController@update')->name('posts.template');
 
 // Archive
