@@ -44,7 +44,7 @@ if ($firstPost && $firstPost->position >= 0) {
                 <div class="self-end flex gap-1">
                     <select name="posts[{{ $article->id }}][collapsed]" class="w-full md:w-fit">
                         <option value="0">{{ __('entities/notes.states.expanded') }}</option>
-                        <option value="1" @if ($article>collapsed()) selected="selected" @endif>{{ __('entities/notes.states.collapsed') }}</option>
+                        <option value="1" @if ($article->collapsed()) selected="selected" @endif>{{ __('entities/notes.states.collapsed') }}</option>
                     </select>
                     <select name="posts[{{ $article->id }}][visibility_id]" class="w-full md:w-fit">
                         @foreach ($article->visibilityOptions() as $key => $value)
