@@ -230,6 +230,9 @@ const dataAttributes = computed(() => {
         'data-entity-id': props.entity.id,
         'data-entity-type': props.entity.entityType?.code,
     }
+    if (props.entity.status?.key) {
+        attrs['data-status'] = props.entity.status.key
+    }
     if (props.nested && props.depth > 0) {
         attrs['aria-level'] = props.depth + 1
     }
