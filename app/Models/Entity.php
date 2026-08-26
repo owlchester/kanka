@@ -567,4 +567,14 @@ class Entity extends Model
     {
         return 'entity_locations';
     }
+
+    /** Why did I make the code so god damn horrible in 2017 argh */
+    public function getQueueableRelations(): array
+    {
+        return array_values(array_filter(
+            parent::getQueueableRelations(),
+            fn (string $relation) => $relation !== 'child'
+                && ! str_starts_with($relation, 'child.')
+        ));
+    }
 }
