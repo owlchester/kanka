@@ -37,8 +37,11 @@ const convertMentionsToText = (html: string): string => {
     mentions.forEach(mention => {
         const dataMention = mention.getAttribute('data-mention')
         if (dataMention) {
+            const config = mention.getAttribute('data-config')
+            const mentionText = config ? `${dataMention.slice(0, -1)}|${config}]` : dataMention
+
             // Replace the element with the text representation
-            const textNode = doc.createTextNode(dataMention)
+            const textNode = doc.createTextNode(mentionText)
             mention.parentNode?.replaceChild(textNode, mention)
         }
     })
