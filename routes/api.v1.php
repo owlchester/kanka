@@ -177,3 +177,5 @@ Route::post('campaigns/{campaign}/applications/{application}/reject', [Applicati
 // Bulk entity attributes
 Route::put('campaigns/{campaign}/entities/{entity}/attributes', [PutController::class, 'put']);
 Route::patch('campaigns/{campaign}/entities/{entity}/attributes', [PatchController::class, 'patch']);
+
+require base_path('routes/api.player-hub.php');
