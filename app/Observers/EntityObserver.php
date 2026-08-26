@@ -84,10 +84,10 @@ class EntityObserver
             return;
         }
 
-        EntityUpdatedJob::dispatch($entity);
+        EntityUpdatedJob::dispatch($entity)->afterCommit();
 
         if ($entity->campaign->premium()) {
-            EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::EDITED->value);
+            EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::EDITED->value)->afterCommit();
         }
     }
 
@@ -97,7 +97,7 @@ class EntityObserver
         // not actually delete the entity and its image.
         if ($entity->trashed()) {
             if ($entity->campaign->premium()) {
-                EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::DELETED->value);
+                EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::DELETED->value)->afterCommit();
             }
 
             return;
