@@ -38,9 +38,9 @@ class CharacterResource extends EntityResource
             'locations' => $locationIds,
 
             'traits' => CharacterTraitResource::collection($model->characterTraits),
-            'is_personality_visible' => (bool) $model->is_personality_visible,
-            'is_personality_pinned' => (bool) $model->is_personality_pinned,
-            'is_appearance_pinned' => (bool) $model->is_appearance_pinned,
+            'is_personality_visible' => $model->is_personality_visible,
+            'is_personality_pinned' => $model->is_personality_pinned,
+            'is_appearance_pinned' => $model->is_appearance_pinned,
         ];
 
         if (request()->get('related', false)) {

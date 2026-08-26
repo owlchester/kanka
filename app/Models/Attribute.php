@@ -27,9 +27,9 @@ use Laravel\Scout\Searchable;
  * @property AttributeType $type_id
  * @property ?int $origin_attribute_id
  * @property int $default_order
- * @property int|bool $is_private
- * @property int|bool $is_hidden
- * @property int|bool $is_pinned
+ * @property bool $is_private
+ * @property bool $is_hidden
+ * @property bool $is_pinned
  * @property ?string $api_key
  * @property ?Entity $entity
  */
@@ -56,7 +56,16 @@ class Attribute extends Model
         'is_hidden',
     ];
 
+    protected $attributes = [
+        'is_private' => false,
+        'is_pinned' => false,
+        'is_hidden' => false,
+    ];
+
     public $casts = [
+        'is_private' => 'boolean',
+        'is_hidden' => 'boolean',
+        'is_pinned' => 'boolean',
         'type_id' => AttributeType::class,
     ];
 

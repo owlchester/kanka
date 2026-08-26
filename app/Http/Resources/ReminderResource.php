@@ -29,7 +29,7 @@ class ReminderResource extends EntityChild
             'year' => $model->year,
             'length' => $model->length,
             'comment' => $model->comment,
-            'is_recurring' => (bool) $model->is_recurring,
+            'is_recurring' => $model->is_recurring,
             'recurring_until' => $model->recurring_until,
             'recurring_periodicity' => $model->recurring_periodicity,
             'colour' => $model->colour,

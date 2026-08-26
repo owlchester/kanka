@@ -46,8 +46,8 @@ use Illuminate\Support\Str;
  * @property string $custom_shape
  * @property ?int $circle_radius
  * @property string $css
- * @property bool|int $is_draggable
- * @property bool|int $is_popupless
+ * @property bool $is_draggable
+ * @property bool $is_popupless
  * @property array $polygon_style
  * @property float $opacity
  * @property ?int $group_id
@@ -99,11 +99,18 @@ class MapMarker extends Model
         'group.name',
         'visibility',
     ];
+    
+    protected $attributes = [
+        'is_popupless' => false,
+        'is_draggable' => false,
+    ];
 
     public $casts = [
         'polygon_style' => 'array',
         'visibility_id' => Visibility::class,
         'shape_id' => MapMarkerShape::class,
+        'is_popupless' => 'boolean',
+        'is_draggable' => 'boolean',
     ];
 
     protected array $suggestions = [

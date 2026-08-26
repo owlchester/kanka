@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $name
  * @property string $entry
  * @property int $section_id
- * @property bool|int $is_private
+ * @property bool $is_private
  * @property int $default_order
  */
 class CharacterTrait extends Model
@@ -36,6 +36,14 @@ class CharacterTrait extends Model
         'created_by',
         'is_private',
         'default_order',
+    ];
+    
+    protected $casts = [
+        'is_private' => 'boolean',
+    ];
+    
+    protected $attributes = [
+        'is_private' => false,
     ];
 
     /**

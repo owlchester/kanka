@@ -123,12 +123,18 @@ class Entity extends Model
     ];
 
     protected $attributes = [
+        'is_private' => false,
+        'is_template' => false,
+        'is_attributes_private' => false,
         'is_claimable' => false,
     ];
 
     protected function casts(): array
     {
         return [
+            'is_private' => 'boolean',
+            'is_attributes_private' => 'boolean',
+            'is_template' => 'boolean',
             'is_claimable' => 'boolean',
         ];
     }

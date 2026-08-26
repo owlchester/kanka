@@ -26,7 +26,7 @@ use Laravel\Scout\Searchable;
  * @property string $entry
  * @property string $role
  * @property string $colour
- * @property bool|int $copy_entity_entry
+ * @property bool $copy_entity_entry
  * @property Quest|null $quest
  * @property ?Entity $entity
  */
@@ -54,6 +54,11 @@ class QuestElement extends Model
 
     public $casts = [
         'visibility_id' => Visibility::class,
+        'copy_entity_entry' => 'boolean',
+    ];
+
+    protected $attributes = [
+        'copy_entity_entry' => false,
     ];
 
     protected array $sanitizable = [

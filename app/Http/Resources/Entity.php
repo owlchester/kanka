@@ -42,7 +42,7 @@ class Entity extends EntityChild
             'url' => $model->url(),
             'is_attributes_private' => $model->is_attributes_private,
 
-            'is_private' => (bool) $model->is_private,
+            'is_private' => $model->is_private,
 
             'created_at' => $model->created_at,
             'created_by' => $model->created_by,

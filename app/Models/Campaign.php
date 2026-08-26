@@ -93,6 +93,13 @@ class Campaign extends Model
         'default_images' => 'array',
         'settings' => 'array',
         'visibility_id' => CampaignVisibility::class,
+        'is_hidden' => 'boolean',
+        'is_prioritised' => 'boolean',
+    ];
+    
+    protected $attributes = [
+        'is_hidden' => false,
+        'is_prioritised' => false,
     ];
 
     protected array $sanitizable = [

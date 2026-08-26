@@ -28,7 +28,7 @@ use Illuminate\Support\Str;
  * @property int $day
  * @property int $month
  * @property int $year
- * @property bool|int $is_recurring
+ * @property bool $is_recurring
  * @property ?int $recurring_until
  * @property string $recurring_periodicity
  * @property EntityEventTypes $type_id
@@ -74,8 +74,13 @@ class Reminder extends Model
         'comment',
     ];
 
+    protected $attributes = [
+        'is_recurring' => false,
+    ];
+
     protected $casts = [
         'type_id' => EntityEventTypes::class,
+        'is_recurring' => 'boolean',
     ];
 
     public function remindable()

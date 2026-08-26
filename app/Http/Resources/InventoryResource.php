@@ -24,8 +24,8 @@ class InventoryResource extends EntityChild
             'position' => $model->position,
             'amount' => $model->amount,
             'visibility_id' => $model->visibility_id,
-            'is_equipped' => (bool) $model->is_equipped,
-            'copy_item_entry' => (bool) $model->copy_item_entry,
+            'is_equipped' => $model->is_equipped,
+            'copy_item_entry' => $model->copy_item_entry,
             'description' => $model->description,
         ]);
     }

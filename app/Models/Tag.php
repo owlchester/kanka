@@ -24,8 +24,8 @@ use Illuminate\Support\Collection;
  * @property string $type
  * @property string $colour
  * @property ?string $icon
- * @property bool|int $is_auto_applied
- * @property bool|int $is_hidden
+ * @property bool $is_auto_applied
+ * @property bool $is_hidden
  * @property Entity[]|Collection $entities
  */
 class Tag extends MiscModel
@@ -91,6 +91,16 @@ class Tag extends MiscModel
         'icon',
         'is_auto_applied',
         'is_hidden',
+    ];
+    
+    protected $casts = [
+        'is_auto_applied' => 'boolean',
+        'is_hidden' => 'boolean',
+    ];
+    
+    protected $attributes = [
+        'is_auto_applied' => false,
+        'is_hidden' => false,
     ];
 
     /**

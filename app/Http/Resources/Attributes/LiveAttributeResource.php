@@ -24,9 +24,9 @@ class LiveAttributeResource extends JsonResource
             'is_multiline' => $attribute->isText(),
             'is_checkbox' => $attribute->isCheckbox(),
             'is_random' => $attribute->isRandom(),
-            'is_private' => (bool) $attribute->is_private,
+            'is_private' => $attribute->is_private,
             'is_pinned' => $attribute->isPinned(),
-            'is_hidden' => (bool) $attribute->is_hidden,
+            'is_hidden' => $attribute->is_hidden,
         ];
 
         if ($attribute->isList()) {

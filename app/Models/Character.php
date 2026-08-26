@@ -27,9 +27,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $age
  * @property string $sex
  * @property string $pronouns
- * @property bool|int $is_personality_visible
- * @property bool|int $is_appearance_pinned
- * @property bool|int $is_personality_pinned
+ * @property bool $is_personality_visible
+ * @property bool $is_appearance_pinned
+ * @property bool $is_personality_pinned
  * @property Collection|CharacterFamily[] $characterFamilies
  * @property Collection|Family[] $families
  * @property Collection|Race[] $races
@@ -64,6 +64,18 @@ class Character extends MiscModel
         'is_personality_visible',
         'is_appearance_pinned',
         'is_personality_pinned',
+    ];
+    
+    protected $casts = [
+        'is_personality_visible' => 'boolean',
+        'is_personality_pinned' => 'boolean',
+        'is_appearance_pinned' => 'boolean',
+    ];
+    
+    protected $attributes = [
+        'is_personality_visible' => false,
+        'is_personality_pinned' => false,
+        'is_appearance_pinned' => false,
     ];
 
     /**

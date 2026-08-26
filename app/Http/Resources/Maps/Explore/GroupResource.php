@@ -18,7 +18,7 @@ class GroupResource extends JsonResource
             'name' => $this->resource->name,
             'parent_id' => $this->resource->parent_id,
             'position' => $this->resource->position,
-            'is_shown' => (bool) $this->resource->is_shown,
+            'is_shown' => $this->resource->is_shown,
             'colour' => $this->resource->colour,
         ];
     }

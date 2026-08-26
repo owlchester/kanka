@@ -21,8 +21,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property string $position
  * @property string $description
  * @property ?string $image_uuid
- * @property bool|int $is_equipped
- * @property bool|int $copy_item_entry
+ * @property bool $is_equipped
+ * @property bool $copy_item_entry
  * @property ?Item $item
  * @property ?Entity $entity
  * @property ?Image $image
@@ -52,6 +52,13 @@ class Inventory extends Model
 
     public $casts = [
         'visibility_id' => Visibility::class,
+        'is_equipped' => 'boolean',
+        'copy_item_entry' => 'boolean',
+    ];
+    
+    protected $attributes = [
+        'is_equipped' => false,
+        'copy_item_entry' => false,
     ];
 
     protected array $sanitizable = [

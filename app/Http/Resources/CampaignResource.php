@@ -55,8 +55,8 @@ class CampaignResource extends JsonResource
             'boosted' => $campaign->boosted(),
             'superboosted' => $campaign->superboosted(),
             'premium' => $campaign->premium(),
-            'is_hidden' => (bool) $campaign->is_hidden,
-            'is_prioritised' => (bool) $campaign->is_prioritised,
+            'is_hidden' => $campaign->is_hidden,
+            'is_prioritised' => $campaign->is_prioritised,
 
             'urls' => [
                 'view' => $url,

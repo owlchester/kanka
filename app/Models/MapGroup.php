@@ -23,7 +23,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property ?int $parent_id
  * @property string $name
  * @property int $position
- * @property bool|int $is_shown
+ * @property bool $is_shown
  * @property ?string $colour
  * @property ?MapGroup $parent
  * @property Map $map
@@ -58,6 +58,11 @@ class MapGroup extends Model
 
     public $casts = [
         'visibility_id' => Visibility::class,
+        'is_shown' => 'boolean',
+    ];
+
+    protected $attributes = [
+        'is_shown' => false,
     ];
 
     protected array $sanitizable = [

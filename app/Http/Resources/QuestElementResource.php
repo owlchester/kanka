@@ -23,7 +23,7 @@ class QuestElementResource extends ModelResource
             'name' => $model->name,
             'entry' => $model->entry,
             'entry_parsed' => ! empty($model->entry) ? $model->parsedEntry() : null,
-            'copy_entity_entry' => (bool) $model->copy_entity_entry,
+            'copy_entity_entry' => $model->copy_entity_entry,
             'colour' => $model->colour,
             'role' => $model->role,
             'visibility_id' => $model->visibility_id,

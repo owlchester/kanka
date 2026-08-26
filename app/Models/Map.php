@@ -29,8 +29,8 @@ use Illuminate\Support\Facades\Storage;
  * @property float $center_x
  * @property float $center_y
  * @property int $center_marker_id
- * @property bool|int $is_real
- * @property bool|int $has_clustering
+ * @property bool $is_real
+ * @property bool $has_clustering
  * @property array $config
  * @property ?Carbon $tiling_prompt_dismissed_at
  * @property Collection|MapLayer[] $layers
@@ -70,8 +70,13 @@ class Map extends MiscModel
         'config',
     ];
 
+    protected $attributes = [
+        'is_real' => false,
+    ];
+
     public $casts = [
         'config' => 'array',
+        'is_real' => 'boolean',
     ];
 
     protected array $sortable = [
