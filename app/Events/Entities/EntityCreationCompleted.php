@@ -8,11 +8,10 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Events\ShouldDispatchAfterCommit;
 
-class EntityCreationCompleted
+class EntityCreationCompleted implements ShouldDispatchAfterCommit
 {
     use Dispatchable;
     use SerializesModels;
-    use ShouldDispatchAfterCommit;
 
     public function __construct(public Entity $entity, public ?User $user = null) {}
 }
