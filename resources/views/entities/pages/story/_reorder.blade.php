@@ -48,7 +48,7 @@ if ($firstPost && $firstPost->position >= 0) {
                     </select>
                     <select name="posts[{{ $article->id }}][visibility_id]" class="w-full md:w-fit">
                         @foreach ($article->visibilityOptions() as $key => $value)
-                            <option value="{{ $key }}" @if ($key == $article>visibility_id->value) selected="selected" @endif>
+                            <option value="{{ $key }}" @if ($key == $article->visibility_id->value) selected="selected" @endif>
                                 {{ $value }}
                             </option>
                         @endforeach
