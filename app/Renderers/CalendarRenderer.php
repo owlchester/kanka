@@ -328,17 +328,6 @@ class CalendarRenderer
             $offset = 0;
         }
 
-        // Check if this month is a leap month
-        if ($this->calendar->has_leap_year) {
-            if ($this->calendar->leap_year_month == $this->getMonth()) {
-                // Is this the starting year, or an increment of the offset?
-                $handle = $this->getYear() - $this->calendar->leap_year_start;
-                if ($handle % max(1, $this->calendar->leap_year_offset) === 0) {
-                    $month['length'] += $this->calendar->leap_year_amount;
-                }
-            }
-        }
-
         // If the offset is higher than a week, let's scale it down a week to avoid an empty week row
         if ($offset >= count($weekdays)) {
             $offset -= count($weekdays);
@@ -348,7 +337,7 @@ class CalendarRenderer
         $weekNumber = $this->startingWeekNumber();
         // dump("starting week number: " . $weekNumber);
 
-        $monthLength = $month['length'];
+        $monthLength = $this->calendar->chronology()->daysInMonth($this->getYear(), $this->getMonth());
         $weekLength = 0;
         $week = [];
         $this->remainingRecurring = [];
@@ -473,21 +462,7 @@ class CalendarRenderer
             $month = $months[$monthNumber - 1];
             $this->month = $monthNumber;
 
-            // Check if this month is a leap month
-            if ($this->calendar->has_leap_year) {
-                if ($this->calendar->leap_year_month == $monthNumber) {
-                    // Is this the starting year, or an increment of the offset?
-                    $handle = $this->getYear() - $this->calendar->leap_year_start;
-                    if ($handle % max(1, $this->calendar->leap_year_offset) === 0) {
-                        $month['length'] += $this->calendar->leap_year_amount;
-
-                        // If it also happens to add days on an intercalary day, we need to influence the number of days
-                        // added at the end of the month.
-                    }
-                }
-            }
-
-            $monthLength = $month['length'];
+            $monthLength = $this->calendar->chronology()->daysInMonth($this->getYear(), $monthNumber);
             $week = [];
             $currentPosition = 0;
 
