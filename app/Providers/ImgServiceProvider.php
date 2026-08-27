@@ -17,10 +17,10 @@ class ImgServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(ImgService::class, function () {
+        $this->app->scoped(ImgService::class, function () {
             return new ImgService;
         });
-        $this->app->singleton(ImagesService::class, function ($app) {
+        $this->app->scoped(ImagesService::class, function ($app) {
             $service = new ImagesService;
             if (CampaignLocalization::hasCampaign()) {
                 $service->campaign(CampaignLocalization::getCampaign());

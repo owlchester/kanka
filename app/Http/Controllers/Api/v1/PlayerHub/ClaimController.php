@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api\v1\PlayerHub;
 
-use App\Facades\EntityCache;
 use App\Http\Controllers\Api\v1\ApiController;
 use App\Http\Resources\PlayerHubEntityResource;
 use App\Models\Entity;
@@ -10,6 +9,7 @@ use App\Models\EntityClaim;
 use App\Models\Scopes\AclScope;
 use App\Models\Scopes\CampaignScope;
 use App\Services\PlayerHub\EntityQueryService;
+use App\Services\PlayerHub\PlayerHubContextService;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -19,6 +19,7 @@ class ClaimController extends ApiController
 {
     public function __construct(
         protected EntityQueryService $entityQueryService,
+        protected PlayerHubContextService $playerHubContextService,
     ) {}
 
     public function store(Request $request, int $entity): JsonResponse|PlayerHubEntityResource
@@ -37,8 +38,6 @@ class ClaimController extends ApiController
             if (! $model->is_claimable || $model->claims()->whereNull('unclaimed_at')->exists()) {
                 return false;
             }
-
-            EntityCache::campaign($model->campaign);
 
             $claim = EntityClaim::create([
                 'entity_id' => $model->id,
@@ -61,6 +60,10 @@ class ClaimController extends ApiController
                 'message' => $visible ? __('entities/claims.unavailable') : 'Not found.',
             ], $visible ? 409 : 404);
         }
+
+        $this->playerHubContextService->activate(
+            $this->playerHubContextService->forClaim($request->user(), $claim)
+        );
 
         /** @var Entity $model */
         $model = Entity::query()

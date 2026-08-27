@@ -15,7 +15,7 @@ class AvatarServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(AvatarService::class, function () {
+        $this->app->scoped(AvatarService::class, function () {
             $service = new AvatarService;
             if (CampaignLocalization::hasCampaign()) {
                 $service->campaign(CampaignLocalization::getCampaign());

@@ -32,7 +32,7 @@ class CampaignLocalizationServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(LocalisationService::class, function ($app) {
+        $this->app->scoped(LocalisationService::class, function ($app) {
             $service = new LocalisationService;
             $service->request($app->make(Request::class));
 

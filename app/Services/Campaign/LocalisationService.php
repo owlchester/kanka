@@ -22,9 +22,7 @@ class LocalisationService
 
     public function hasCampaign(): bool
     {
-        $campaign = $this->request->route('campaign');
-
-        return ! empty($campaign) && $campaign instanceof Campaign;
+        return $this->getCampaign() instanceof Campaign;
     }
 
     /**

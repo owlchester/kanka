@@ -54,6 +54,7 @@ use App\Observers\CampaignUserObserver;
 use App\Observers\FamilyTreeObserver;
 use App\Observers\OrganisationMemberObserver;
 use App\Observers\UserObserver;
+use App\Services\PlayerHub\PlayerHubContextService;
 use Exception;
 use Illuminate\Contracts\Encryption\Encrypter;
 use Illuminate\Database\Eloquent\Model;
@@ -127,7 +128,10 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register() {}
+    public function register()
+    {
+        $this->app->scoped(PlayerHubContextService::class);
+    }
 
     protected function registerDevelopWarning()
     {

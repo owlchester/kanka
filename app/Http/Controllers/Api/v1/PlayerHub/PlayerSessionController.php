@@ -8,6 +8,7 @@ use App\Http\Resources\PlayerSessionResource;
 use App\Models\EntityClaim;
 use App\Models\PlayerSession;
 use App\Services\PlayerHub\EntityQueryService;
+use App\Services\PlayerHub\PlayerHubContextService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
@@ -16,6 +17,7 @@ class PlayerSessionController extends ApiController
 {
     public function __construct(
         protected EntityQueryService $entityQueryService,
+        protected PlayerHubContextService $playerHubContextService,
     ) {}
 
     public function index(Request $request)
@@ -46,6 +48,9 @@ class PlayerSessionController extends ApiController
                 ->whereKey($data['entity_claim_id'])
                 ->lockForUpdate()
                 ->firstOrFail();
+            $this->playerHubContextService->activate(
+                $this->playerHubContextService->forClaim($user, $claim)
+            );
             $this->authorize('create', [PlayerSession::class, $claim]);
             $number = ((int) PlayerSession::query()
                 ->where('entity_claim_id', $claim->id)
@@ -92,11 +97,13 @@ class PlayerSessionController extends ApiController
 
     protected function findSession(Request $request, int $playerSession): PlayerSession
     {
-        $session = $this->entityQueryService
-            ->activeSessionsFor($request->user())
-            ->with('interactionLogs')
-            ->whereKey($playerSession)
-            ->firstOrFail();
+        $context = $this->playerHubContextService->forSession($request->user(), $playerSession);
+        $this->playerHubContextService->activate($context);
+        $session = $context->session;
+        if (! $session instanceof PlayerSession) {
+            abort(404);
+        }
+        $session->load('interactionLogs');
         $this->authorize('view', $session);
 
         return $session;

@@ -27,7 +27,7 @@ class CacheServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(EntityCacheService::class, function () {
+        $this->app->scoped(EntityCacheService::class, function () {
             $service = new EntityCacheService;
             if (CampaignLocalization::hasCampaign()) {
                 $service->campaign(CampaignLocalization::getCampaign());
@@ -35,7 +35,7 @@ class CacheServiceProvider extends ServiceProvider
 
             return $service;
         });
-        $this->app->singleton(CampaignCacheService::class, function () {
+        $this->app->scoped(CampaignCacheService::class, function () {
             $service = new CampaignCacheService;
             if (CampaignLocalization::hasCampaign()) {
                 $service->campaign(CampaignLocalization::getCampaign());
@@ -43,7 +43,7 @@ class CacheServiceProvider extends ServiceProvider
 
             return $service;
         });
-        $this->app->singleton(UserCacheService::class, function () {
+        $this->app->scoped(UserCacheService::class, function () {
 
             $service = new UserCacheService;
             if (CampaignLocalization::hasCampaign()) {
@@ -61,7 +61,7 @@ class CacheServiceProvider extends ServiceProvider
         $this->app->singleton(ReleaseCacheService::class, function () {
             return new ReleaseCacheService;
         });
-        $this->app->singleton(CharacterCacheService::class, function () {
+        $this->app->scoped(CharacterCacheService::class, function () {
             $service = new CharacterCacheService;
             if (CampaignLocalization::hasCampaign()) {
                 $service->campaign(CampaignLocalization::getCampaign());
@@ -69,7 +69,7 @@ class CacheServiceProvider extends ServiceProvider
 
             return $service;
         });
-        $this->app->singleton(QuestCacheService::class, function () {
+        $this->app->scoped(QuestCacheService::class, function () {
             $service = new QuestCacheService;
             if (CampaignLocalization::hasCampaign()) {
                 $service->campaign(CampaignLocalization::getCampaign());
@@ -77,7 +77,7 @@ class CacheServiceProvider extends ServiceProvider
 
             return $service;
         });
-        $this->app->singleton(MapMarkerCacheService::class, function () {
+        $this->app->scoped(MapMarkerCacheService::class, function () {
             $service = new MapMarkerCacheService;
             if (CampaignLocalization::hasCampaign()) {
                 $service->campaign(CampaignLocalization::getCampaign());
@@ -85,7 +85,7 @@ class CacheServiceProvider extends ServiceProvider
 
             return $service;
         });
-        $this->app->singleton(EntityAssetCacheService::class, function () {
+        $this->app->scoped(EntityAssetCacheService::class, function () {
             $service = new EntityAssetCacheService;
             if (CampaignLocalization::hasCampaign()) {
                 $service->campaign(CampaignLocalization::getCampaign());
@@ -93,7 +93,7 @@ class CacheServiceProvider extends ServiceProvider
 
             return $service;
         });
-        $this->app->singleton(BookmarkCacheService::class, function () {
+        $this->app->scoped(BookmarkCacheService::class, function () {
             $service = new BookmarkCacheService;
             if (CampaignLocalization::hasCampaign()) {
                 $service->campaign(CampaignLocalization::getCampaign());
@@ -101,7 +101,7 @@ class CacheServiceProvider extends ServiceProvider
 
             return $service;
         });
-        $this->app->singleton(TimelineElementCacheService::class, function () {
+        $this->app->scoped(TimelineElementCacheService::class, function () {
             $service = new TimelineElementCacheService;
             if (CampaignLocalization::hasCampaign()) {
                 $service->campaign(CampaignLocalization::getCampaign());

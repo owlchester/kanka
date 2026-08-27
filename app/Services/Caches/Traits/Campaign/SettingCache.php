@@ -2,6 +2,7 @@
 
 namespace App\Services\Caches\Traits\Campaign;
 
+use App\Models\CampaignSetting;
 use Illuminate\Support\Collection;
 
 trait SettingCache
@@ -13,7 +14,8 @@ trait SettingCache
 
     protected function formatSettings(): array
     {
-        $settings = $this->campaign->setting->toArray();
+        $settings = $this->campaign->getRelationValue('setting');
+        $settings = $settings instanceof CampaignSetting ? $settings->toArray() : [];
         unset($settings['id'], $settings['campaign_id'], $settings['created_at'], $settings['updated_at']);
 
         return $settings;

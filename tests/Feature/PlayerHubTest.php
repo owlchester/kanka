@@ -2,6 +2,7 @@
 
 use App\Enums\CampaignFlags;
 use App\Facades\CampaignCache;
+use App\Facades\CampaignLocalization;
 use App\Facades\Module;
 use App\Models\Campaign;
 use App\Models\CampaignPermission;
@@ -15,6 +16,7 @@ use App\Models\EntityClaim;
 use App\Models\InteractionLog;
 use App\Models\PlayerSession;
 use App\Services\Campaign\ModuleService;
+use App\Services\PlayerHub\PlayerHubContextService;
 
 function enablePlayerHubFor(Campaign $campaign): void
 {
@@ -245,6 +247,123 @@ it('creates and manages sessions for an active claimed character', function () {
     ])->assertCreated()->assertJsonPath('data.name', 'Session 3');
 });
 
+it('activates the campaign context for a player hub claim', function () {
+    $this->asUser()->withCampaign()->withCharacters();
+    $campaign = Campaign::findOrFail(1);
+    enablePlayerHubFor($campaign);
+    $entity = Character::findOrFail(1)->entity;
+    $claim = EntityClaim::create([
+        'entity_id' => $entity->id,
+        'user_id' => auth()->id(),
+        'claimed_at' => now(),
+    ]);
+    $contextService = app(PlayerHubContextService::class);
+    $context = $contextService->forClaim(auth()->user(), $claim->id);
+
+    $contextService->activate($context);
+
+    expect($context->campaign->id)->toBe($campaign->id)
+        ->and($context->claim->id)->toBe($claim->id)
+        ->and(CampaignLocalization::getCampaign()->id)->toBe($campaign->id)
+        ->and(Entity::findOrFail($entity->id)->id)->toBe($entity->id);
+});
+
+it('creates and manages interactions for a player session', function () {
+    $this->asUser()->withCampaign()->withCharacters();
+    $campaign = Campaign::findOrFail(1);
+    enablePlayerHubFor($campaign);
+    $claim = EntityClaim::create([
+        'entity_id' => Character::findOrFail(1)->entity->id,
+        'user_id' => auth()->id(),
+        'claimed_at' => now(),
+    ]);
+    $session = $this->postJson('/api/1.0/player-hub/player-sessions', [
+        'entity_claim_id' => $claim->id,
+    ])->assertCreated();
+    $sessionId = $session->json('data.id');
+    $target = Character::findOrFail(2)->entity;
+    $url = "/api/1.0/player-hub/player-sessions/{$sessionId}/interactions";
+
+    $interaction = $this->postJson($url, [
+        'entity_id' => $target->id,
+        'note' => 'Met at the tavern',
+        'visibility' => 'gm',
+    ])
+        ->assertCreated()
+        ->assertJsonStructure(['data' => [
+            'id',
+            'player_session_id',
+            'entity_id',
+            'entity_claim_id',
+            'note',
+            'visibility',
+            'created_by',
+            'entity' => ['name', 'image', 'urls'],
+        ]])
+        ->assertJsonPath('data.player_session_id', $sessionId)
+        ->assertJsonPath('data.entity_id', $target->id)
+        ->assertJsonPath('data.entity_claim_id', $claim->id)
+        ->assertJsonPath('data.created_by', auth()->id())
+        ->assertJsonPath('data.entity.name', $target->name)
+        ->assertJsonPath('data.entity.image', fn ($value): bool => is_string($value))
+        ->assertJsonPath('data.visibility', 'gm');
+    $interactionId = $interaction->json('data.id');
+
+    $this->getJson($url . '?per_page=1')
+        ->assertSuccessful()
+        ->assertJsonCount(1, 'data')
+        ->assertJsonPath('data.0.id', $interactionId);
+
+    $this->getJson("{$url}/{$interactionId}")
+        ->assertSuccessful()
+        ->assertJsonPath('data.note', 'Met at the tavern');
+
+    $this->patchJson("{$url}/{$interactionId}", [
+        'note' => 'Met at the busy tavern',
+        'visibility' => 'shared',
+    ])
+        ->assertSuccessful()
+        ->assertJsonPath('data.note', 'Met at the busy tavern')
+        ->assertJsonPath('data.visibility', 'shared');
+
+    $this->deleteJson("{$url}/{$interactionId}")->assertNoContent();
+
+    $this->getJson("{$url}/{$interactionId}")->assertNotFound();
+    expect(InteractionLog::find($interactionId))->toBeNull();
+});
+
+it('validates interaction fields and prevents cross-session access', function () {
+    $this->asUser()->withCampaign()->withCharacters();
+    $campaign = Campaign::findOrFail(1);
+    enablePlayerHubFor($campaign);
+    $claim = EntityClaim::create([
+        'entity_id' => Character::findOrFail(1)->entity->id,
+        'user_id' => auth()->id(),
+        'claimed_at' => now(),
+    ]);
+    $session = $this->postJson('/api/1.0/player-hub/player-sessions', [
+        'entity_claim_id' => $claim->id,
+    ])->assertCreated();
+    $sessionId = $session->json('data.id');
+    $url = "/api/1.0/player-hub/player-sessions/{$sessionId}/interactions";
+
+    $this->postJson($url, [])->assertUnprocessable();
+
+    $interaction = $this->postJson($url, [
+        'entity_id' => Character::findOrFail(2)->entity->id,
+        'note' => 'Note',
+    ])->assertCreated();
+    $interactionId = $interaction->json('data.id');
+
+    $secondSession = $this->postJson('/api/1.0/player-hub/player-sessions', [
+        'entity_claim_id' => $claim->id,
+    ])->assertCreated();
+    $secondUrl = '/api/1.0/player-hub/player-sessions/' . $secondSession->json('data.id') . '/interactions';
+
+    $this->getJson("{$secondUrl}/{$interactionId}")->assertNotFound();
+    $this->asPlayer()->getJson($url)->assertNotFound();
+});
+
 it('filters sessions by entity claim id', function () {
     $this->asUser()->withCampaign()->withCharacters();
     $campaign = Campaign::findOrFail(1);
@@ -375,5 +494,7 @@ it('requires authentication for player hub endpoints', function () {
     $this->getJson('/api/1.0/player-hub/setup')->assertUnauthorized();
     $this->getJson('/api/1.0/player-hub/player-sessions')->assertUnauthorized();
     $this->postJson('/api/1.0/player-hub/player-sessions')->assertUnauthorized();
+    $this->getJson('/api/1.0/player-hub/player-sessions/1/interactions')->assertUnauthorized();
+    $this->postJson('/api/1.0/player-hub/player-sessions/1/interactions')->assertUnauthorized();
     $this->postJson('/api/1.0/player-hub/1/claim')->assertUnauthorized();
 });

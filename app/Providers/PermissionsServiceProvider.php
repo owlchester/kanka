@@ -36,7 +36,7 @@ class PermissionsServiceProvider extends ServiceProvider
 
     protected function registerMain(): self
     {
-        $this->app->singleton(PermissionService::class, function () {
+        $this->app->scoped(PermissionService::class, function () {
             $service = new PermissionService;
             if (CampaignLocalization::hasCampaign()) {
                 $service->campaign(CampaignLocalization::getCampaign());
@@ -51,7 +51,7 @@ class PermissionsServiceProvider extends ServiceProvider
 
     protected function registerEntity(): self
     {
-        $this->app->singleton(EntityPermission::class, function () {
+        $this->app->scoped(EntityPermission::class, function () {
             /** @var EntityPermission $service */
             $service = new EntityPermission;
             if (CampaignLocalization::hasCampaign()) {
@@ -68,7 +68,7 @@ class PermissionsServiceProvider extends ServiceProvider
 
     protected function registerRole(): self
     {
-        $this->app->singleton(RolePermission::class, function () {
+        $this->app->scoped(RolePermission::class, function () {
             return new RolePermission;
         });
 

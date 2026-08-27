@@ -50,6 +50,20 @@ class EntityPermission
      */
     protected int $loadedCampaignId = 0;
 
+    public function forContext(Campaign $campaign, User $user): self
+    {
+        $campaignChanged = ! isset($this->campaign) || $this->campaign->id !== $campaign->id;
+        $userChanged = $this->user?->id !== $user->id;
+
+        $this->campaign($campaign)->user($user);
+
+        if ($campaignChanged || $userChanged) {
+            $this->resetForContext();
+        }
+
+        return $this;
+    }
+
     public function can(Permission $permission): bool
     {
         $this->loadAllPermissions();
@@ -275,6 +289,18 @@ class EntityPermission
         $this->loadedAll = true;
         $this->cached = [];
         unset($this->roleIds, $this->userIsAdmin);
+    }
+
+    public function resetForContext(): self
+    {
+        $this->cached = [];
+        $this->cachedEntityIds = [];
+        $this->roles = [];
+        $this->loadedAll = false;
+        $this->loadedCampaignId = 0;
+        unset($this->roleIds, $this->userIsAdmin);
+
+        return $this;
     }
 
     protected function userIsAdmin(): bool

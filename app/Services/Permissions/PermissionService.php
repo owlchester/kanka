@@ -5,10 +5,12 @@ namespace App\Services\Permissions;
 use App\Enums\Permission;
 use App\Facades\RolePermission;
 use App\Facades\UserCache;
+use App\Models\Campaign;
 use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\Models\Entity;
 use App\Models\PostPermission;
+use App\Models\User;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Illuminate\Database\Schema\Blueprint;
@@ -59,6 +61,20 @@ class PermissionService
     protected int $entityTypeID;
 
     protected float $start;
+
+    public function forContext(Campaign $campaign, User $user): self
+    {
+        $campaignChanged = ! isset($this->campaign) || $this->campaign->id !== $campaign->id;
+        $userChanged = $this->user?->id !== $user->id;
+
+        $this->campaign($campaign)->user($user);
+
+        if ($campaignChanged || $userChanged) {
+            $this->resetForContext();
+        }
+
+        return $this;
+    }
 
     public function isAdmin(): bool
     {
@@ -286,6 +302,29 @@ class PermissionService
         $this->loadedPermissions = false;
         unset($this->loadedRoles);
         $this->admin = false;
+
+        return $this;
+    }
+
+    public function resetForContext(): self
+    {
+        if ($this->tempPermissionCreated) {
+            Schema::dropIfExists('tmp_permissions');
+        }
+
+        $this->entityIds = [];
+        $this->entityTypes = [];
+        $this->entityTypesIds = [];
+        $this->deniedIds = [];
+        $this->allowedPostIDs = [];
+        $this->deniedPostIDs = [];
+        $this->loadedPermissions = false;
+        $this->loadedPosts = false;
+        $this->tempPermissionCreated = false;
+        $this->tempPermissionFilled = false;
+        $this->admin = false;
+        $this->granted = false;
+        unset($this->loadedRoles, $this->publicRoleId, $this->start);
 
         return $this;
     }

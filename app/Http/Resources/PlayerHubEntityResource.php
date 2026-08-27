@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use App\Facades\Avatar;
 use App\Models\Entity;
+use App\Services\PlayerHub\PlayerHubContextService;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Route;
 
@@ -15,6 +16,7 @@ class PlayerHubEntityResource extends JsonResource
     {
         /** @var Entity $entity */
         $entity = $this->resource;
+        app(PlayerHubContextService::class)->activateCampaign($entity->campaign, $request->user());
         $claim = $entity->claims->first();
         $lastPlayedSession = $claim?->lastPlayedSession;
         $entityType = $entity->entityType;
@@ -52,7 +54,11 @@ class PlayerHubEntityResource extends JsonResource
             'updated_by' => $entity->updated_by,
             'urls' => [
                 'view' => route('entities.show', [$entity->campaign, $entity]),
-                'api' => route('campaigns.entities.show', [$entity->campaign_id, $entity->entity_id]),
+                'api' => Route::has('campaigns.entities.show')
+                    ? route('campaigns.entities.show', [$entity->campaign_id, $entity->entity_id])
+                    : (Route::has('api.campaigns.entities.show')
+                        ? route('api.campaigns.entities.show', [$entity->campaign_id, $entity->entity_id])
+                        : null),
                 'claim' => $claimUrl,
             ],
             'parent_id' => $entity->parent_id,

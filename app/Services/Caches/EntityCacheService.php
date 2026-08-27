@@ -51,7 +51,7 @@ class EntityCacheService extends BaseCache
      */
     public function child(Entity $entity)
     {
-        $key = $entity->type_id . '_' . $entity->entity_id;
+        $key = $this->campaign->id . '_' . $entity->type_id . '_' . $entity->entity_id;
         if (isset($this->entities[$key])) {
             return $this->entities[$key];
         }
