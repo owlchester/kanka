@@ -15,7 +15,7 @@ class LimitServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(LimitService::class, function () {
+        $this->app->scoped(LimitService::class, function () {
             $service = new LimitService;
             if (CampaignLocalization::hasCampaign()) {
                 $service->campaign(CampaignLocalization::getCampaign());

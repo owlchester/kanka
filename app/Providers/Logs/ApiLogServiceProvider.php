@@ -15,7 +15,7 @@ class ApiLogServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(ApiLogService::class, function () {
+        $this->app->scoped(ApiLogService::class, function () {
             $service = new ApiLogService;
             if (CampaignLocalization::hasCampaign()) {
                 $service->campaign(CampaignLocalization::getCampaign());

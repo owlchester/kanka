@@ -3,7 +3,6 @@
 namespace App\Services\Campaign;
 
 use App\Models\Campaign;
-use App\Traits\RequestAware;
 
 /**
  * Use this facade to get the current campaign ID when needed.
@@ -12,10 +11,8 @@ use App\Traits\RequestAware;
  */
 class LocalisationService
 {
-    use RequestAware;
-
-    /** @var Campaign|null The current campaign contact */
-    protected ?Campaign $campaign;
+    /** @var Campaign|null The current campaign context */
+    protected ?Campaign $campaign = null;
 
     /** @var int console campaign id */
     protected int $consoleCampaignId = 0;
@@ -30,12 +27,7 @@ class LocalisationService
      */
     public function getCampaign(): ?Campaign
     {
-        if (isset($this->campaign)) {
-            return $this->campaign;
-        }
-
-        // Load the campaign from the router
-        return $this->campaign = $this->request->route('campaign');
+        return $this->campaign;
     }
 
     /**
@@ -44,6 +36,14 @@ class LocalisationService
     public function forceCampaign(Campaign $campaign): void
     {
         $this->campaign = $campaign;
+    }
+
+    public function clear(): self
+    {
+        $this->campaign = null;
+        $this->consoleCampaignId = 0;
+
+        return $this;
     }
 
     public function getConsoleCampaign(): int

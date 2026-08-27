@@ -17,7 +17,7 @@ class MentionsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(MentionsService::class, function () {
+        $this->app->scoped(MentionsService::class, function () {
             $service = new MentionsService(
                 app()->make(MarkupFixer::class),
                 app()->make(NewService::class)

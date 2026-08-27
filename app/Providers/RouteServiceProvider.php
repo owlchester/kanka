@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Facades\CampaignLocalization;
 use App\Facades\Domain;
 use App\Http\Controllers\Api\v1\HealthController;
 use App\Http\Middleware\LastCampaign;
@@ -40,6 +41,7 @@ class RouteServiceProvider extends ServiceProvider
         // This is important, ensures only campaigns the user has access get injected in the route model binding.
         Route::bind('campaign', function (string $value) {
             $campaign = Campaign::acl($value)->firstOrFail();
+            CampaignLocalization::forceCampaign($campaign);
             URL::defaults(['campaign' => $campaign->getRouteKey()]);
 
             return $campaign;

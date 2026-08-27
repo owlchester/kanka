@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use App\Services\Campaign\LocalisationService;
-use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
 
 class CampaignLocalizationServiceProvider extends ServiceProvider
@@ -32,12 +31,7 @@ class CampaignLocalizationServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->scoped(LocalisationService::class, function ($app) {
-            $service = new LocalisationService;
-            $service->request($app->make(Request::class));
-
-            return $service;
-        });
+        $this->app->scoped(LocalisationService::class);
 
         $this->app->alias(LocalisationService::class, 'campaignlocalization');
     }

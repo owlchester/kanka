@@ -71,6 +71,29 @@ class PlayerHubContextService
         );
     }
 
+    public function forTrashedSession(User $user, int $session): Context
+    {
+        $playerSession = $this->entityQueryService
+            ->activeSessionsFor($user)
+            ->onlyTrashed()
+            ->whereKey($session)
+            ->first();
+
+        if (! $playerSession instanceof PlayerSession) {
+            throw (new ModelNotFoundException)->setModel(PlayerSession::class, [$session]);
+        }
+
+        $context = $this->forClaim($user, $playerSession->entity_claim_id);
+
+        return new Context(
+            user: $context->user,
+            claim: $context->claim,
+            claimedEntity: $context->claimedEntity,
+            campaign: $context->campaign,
+            session: $playerSession,
+        );
+    }
+
     public function activate(Context $context): void
     {
         $this->activateCampaign($context->campaign, $context->user);
