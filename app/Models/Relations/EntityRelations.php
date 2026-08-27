@@ -28,6 +28,7 @@ use App\Models\EntityUser;
 use App\Models\Event;
 use App\Models\Family;
 use App\Models\Image;
+use App\Models\InteractionLog;
 use App\Models\Inventory;
 use App\Models\Item;
 use App\Models\Journal;
@@ -558,6 +559,14 @@ trait EntityRelations
     public function claims(): HasMany
     {
         return $this->hasMany(EntityClaim::class);
+    }
+
+    /**
+     * @return HasMany<InteractionLog, $this>
+     */
+    public function interactionLogs(): HasMany
+    {
+        return $this->hasMany(InteractionLog::class);
     }
 
     /**

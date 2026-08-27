@@ -5,6 +5,8 @@ namespace App\Services\PlayerHub;
 use App\Enums\CampaignFlags;
 use App\Enums\Permission;
 use App\Models\Entity;
+use App\Models\EntityClaim;
+use App\Models\PlayerSession;
 use App\Models\Scopes\AclScope;
 use App\Models\Scopes\CampaignScope;
 use App\Models\User;
@@ -15,6 +17,9 @@ class EntityQueryService
 {
     /**
      * Get entities visible to a user in their enabled Player Hub campaigns.
+     */
+    /**
+     * @return Builder<Entity>
      */
     public function visibleTo(User $user): Builder
     {
@@ -98,6 +103,31 @@ class EntityQueryService
                 });
             })
             ->orderBy('entities.id');
+    }
+
+    /**
+     * @return Builder<EntityClaim>
+     */
+    public function activeClaimsFor(User $user): Builder
+    {
+        $visibleEntities = $this->visibleTo($user)
+            ->select('entities.id')
+            ->reorder();
+
+        return EntityClaim::query()
+            ->where('entity_claims.user_id', $user->id)
+            ->whereNull('entity_claims.unclaimed_at')
+            ->whereIn('entity_claims.entity_id', $visibleEntities);
+    }
+
+    /**
+     * @return Builder<PlayerSession>
+     */
+    public function activeSessionsFor(User $user): Builder
+    {
+        return PlayerSession::query()
+            ->where('player_sessions.created_by', $user->id)
+            ->whereIn('player_sessions.entity_claim_id', $this->activeClaimsFor($user)->select('entity_claims.id'));
     }
 
     /**

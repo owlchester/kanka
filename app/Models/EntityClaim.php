@@ -6,6 +6,9 @@ use App\Models\Concerns\HasUser;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * @property int $id
@@ -43,5 +46,36 @@ class EntityClaim extends Model
     public function entity(): BelongsTo
     {
         return $this->belongsTo(Entity::class);
+    }
+
+    /**
+     * @return HasMany<PlayerSession, $this>
+     */
+    public function playerSessions(): HasMany
+    {
+        return $this->hasMany(PlayerSession::class);
+    }
+
+    /**
+     * @return HasOne<PlayerSession, $this>
+     */
+    public function lastPlayedSession(): HasOne
+    {
+        return $this->hasOne(PlayerSession::class)->latestOfMany('started_at');
+    }
+
+    /**
+     * @return HasManyThrough<InteractionLog, PlayerSession, $this>
+     */
+    public function interactionLogs(): HasManyThrough
+    {
+        return $this->hasManyThrough(
+            InteractionLog::class,
+            PlayerSession::class,
+            'entity_claim_id',
+            'player_session_id',
+            'id',
+            'id',
+        );
     }
 }

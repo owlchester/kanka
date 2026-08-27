@@ -16,6 +16,7 @@ class PlayerHubEntityResource extends JsonResource
         /** @var Entity $entity */
         $entity = $this->resource;
         $claim = $entity->claims->first();
+        $lastPlayedSession = $claim?->lastPlayedSession;
         $entityType = $entity->entityType;
         $claimUrl = null;
         if ($claim === null && $entity->is_claimable) {
@@ -60,7 +61,11 @@ class PlayerHubEntityResource extends JsonResource
         return $data + [
             'is_claimed' => $claim !== null,
             'claim' => $claim === null ? null : [
+                'id' => $claim->id,
                 'claimed_at' => $claim->claimed_at,
+                'player_sessions_count' => (int) ($claim->player_sessions_count ?? 0),
+                'interaction_entities_count' => (int) ($claim->interaction_entities_count ?? 0),
+                'last_played_at' => $lastPlayedSession?->started_at,
             ],
         ];
     }

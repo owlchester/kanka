@@ -16,6 +16,7 @@ use App\Models\EntityClaim;
 use App\Models\EntityUser;
 use App\Models\FeatureVote;
 use App\Models\PasswordSecurity;
+use App\Models\PlayerSession;
 use App\Models\Plugin;
 use App\Models\Role;
 use App\Models\SubscriptionCancellation;
@@ -119,6 +120,21 @@ trait UserRelations
     public function entityClaims(): HasMany
     {
         return $this->hasMany(EntityClaim::class);
+    }
+
+    /**
+     * @return HasManyThrough<PlayerSession, EntityClaim, $this>
+     */
+    public function playerSessions(): HasManyThrough
+    {
+        return $this->hasManyThrough(
+            PlayerSession::class,
+            EntityClaim::class,
+            'user_id',
+            'entity_claim_id',
+            'id',
+            'id',
+        );
     }
 
     /**

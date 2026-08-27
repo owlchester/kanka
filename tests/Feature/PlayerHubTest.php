@@ -12,6 +12,8 @@ use App\Models\Character;
 use App\Models\Creature;
 use App\Models\Entity;
 use App\Models\EntityClaim;
+use App\Models\InteractionLog;
+use App\Models\PlayerSession;
 use App\Services\Campaign\ModuleService;
 
 function enablePlayerHubFor(Campaign $campaign): void
@@ -34,6 +36,36 @@ it('lists visible claimable entities from all enabled member campaigns', functio
         'user_id' => $user->id,
         'claimed_at' => now(),
     ]);
+    $claim = EntityClaim::where('entity_id', $claimed->id)->firstOrFail();
+    $session = new PlayerSession([
+        'entity_claim_id' => $claim->id,
+        'created_by' => $user->id,
+        'name' => 'Session 1',
+        'started_at' => now(),
+    ]);
+    $session->number = 1;
+    $session->save();
+    InteractionLog::create([
+        'player_session_id' => $session->id,
+        'entity_id' => $character->id,
+        'entity_claim_id' => $claim->id,
+        'created_by' => $user->id,
+        'note' => 'First note',
+    ]);
+    InteractionLog::create([
+        'player_session_id' => $session->id,
+        'entity_id' => $character->id,
+        'entity_claim_id' => $claim->id,
+        'created_by' => $user->id,
+        'note' => 'Second note',
+    ]);
+    InteractionLog::create([
+        'player_session_id' => $session->id,
+        'entity_id' => $claimed->id,
+        'entity_claim_id' => $claim->id,
+        'created_by' => $user->id,
+        'note' => 'Third note',
+    ]);
     Creature::findOrFail(1)->entity->update(['is_claimable' => true]);
 
     $response = $this->getJson('/api/1.0/player-hub/setup')
@@ -46,6 +78,10 @@ it('lists visible claimable entities from all enabled member campaigns', functio
 
     expect($response->json('claimed'))->toHaveCount(1)
         ->and($response->json('claimed.0.id'))->toBe($claimed->id)
+        ->and($response->json('claimed.0.claim.id'))->toBe($claim->id)
+        ->and($response->json('claimed.0.claim.player_sessions_count'))->toBe(1)
+        ->and($response->json('claimed.0.claim.interaction_entities_count'))->toBe(2)
+        ->and($response->json('claimed.0.claim.last_played_at'))->toBe($session->started_at->toJSON())
         ->and($response->json('claimable'))->toHaveCount(1)
         ->and($response->json('claimable.0.id'))->toBe($character->id)
         ->and($response->json('claimable.0.urls.claim'))->toBeString();
@@ -153,6 +189,115 @@ it('does not expose entities denied directly to a player', function () {
         ->assertJsonCount(0, 'claimable');
 });
 
+it('creates and manages sessions for an active claimed character', function () {
+    $this->asUser()->withCampaign()->withCharacters();
+    $campaign = Campaign::findOrFail(1);
+    enablePlayerHubFor($campaign);
+    $entity = Character::findOrFail(1)->entity;
+    $claim = EntityClaim::create([
+        'entity_id' => $entity->id,
+        'user_id' => auth()->id(),
+        'claimed_at' => now(),
+    ]);
+
+    $first = $this->postJson('/api/1.0/player-hub/player-sessions', [
+        'entity_claim_id' => $claim->id,
+    ])
+        ->assertCreated()
+        ->assertJsonPath('data.name', 'Session 1');
+    $firstId = $first->json('data.id');
+
+    $this->postJson('/api/1.0/player-hub/player-sessions', [
+        'entity_claim_id' => $claim->id,
+        'name' => 'Opening Session',
+    ])->assertCreated()->assertJsonPath('data.name', 'Opening Session');
+
+    $this->getJson('/api/1.0/player-hub/player-sessions')
+        ->assertSuccessful()
+        ->assertJsonCount(2, 'data');
+
+    $this->patchJson("/api/1.0/player-hub/player-sessions/{$firstId}", [
+        'summary' => 'Updated summary',
+    ])
+        ->assertSuccessful()
+        ->assertJsonPath('data.summary', 'Updated summary');
+
+    $this->deleteJson("/api/1.0/player-hub/player-sessions/{$firstId}")
+        ->assertNoContent();
+
+    $this->postJson('/api/1.0/player-hub/player-sessions', [
+        'entity_claim_id' => $claim->id,
+    ])->assertCreated()->assertJsonPath('data.name', 'Session 3');
+});
+
+it('derives interaction log claim ownership and cascades logs', function () {
+    $this->asUser()->withCampaign()->withCharacters();
+    $entity = Character::findOrFail(1)->entity;
+    $claim = EntityClaim::create([
+        'entity_id' => $entity->id,
+        'user_id' => auth()->id(),
+        'claimed_at' => now(),
+    ]);
+    $session = new PlayerSession([
+        'entity_claim_id' => $claim->id,
+        'created_by' => auth()->id(),
+        'name' => 'Session 1',
+        'started_at' => now(),
+    ]);
+    $session->number = 1;
+    $session->save();
+
+    $log = InteractionLog::create([
+        'player_session_id' => $session->id,
+        'entity_id' => $entity->id,
+        'entity_claim_id' => 999999,
+        'created_by' => auth()->id(),
+        'note' => 'Note',
+        'visibility' => 'gm',
+    ]);
+
+    expect($log->refresh()->entity_claim_id)->toBe($claim->id)
+        ->and($log->visibility->value)->toBe('gm')
+        ->and($log->effectiveVisibility()->value)->toBe('gm');
+
+    $inherited = InteractionLog::create([
+        'player_session_id' => $session->id,
+        'entity_id' => $entity->id,
+        'created_by' => auth()->id(),
+        'note' => 'Inherited note',
+    ]);
+
+    expect($inherited->effectiveVisibility()->value)->toBe('shared');
+
+    $session->delete();
+
+    expect(InteractionLog::find($log->id))->toBeNull();
+});
+
+it('does not expose a player session to another player', function () {
+    $this->asUser()->withCampaign()->withCharacters();
+    $campaign = Campaign::findOrFail(1);
+    enablePlayerHubFor($campaign);
+    $entity = Character::findOrFail(1)->entity;
+    $claim = EntityClaim::create([
+        'entity_id' => $entity->id,
+        'user_id' => auth()->id(),
+        'claimed_at' => now(),
+    ]);
+    $session = new PlayerSession([
+        'entity_claim_id' => $claim->id,
+        'created_by' => auth()->id(),
+        'name' => 'Session 1',
+        'started_at' => now(),
+    ]);
+    $session->number = 1;
+    $session->save();
+
+    $this->asPlayer()
+        ->getJson("/api/1.0/player-hub/player-sessions/{$session->id}")
+        ->assertNotFound();
+});
+
 it('claims an entity atomically and removes its claimable status', function () {
     $this->asUser()->withCampaign()->withCharacters();
     $campaign = Campaign::findOrFail(1);
@@ -184,5 +329,7 @@ it('returns conflict when an entity is no longer claimable', function () {
 
 it('requires authentication for player hub endpoints', function () {
     $this->getJson('/api/1.0/player-hub/setup')->assertUnauthorized();
+    $this->getJson('/api/1.0/player-hub/player-sessions')->assertUnauthorized();
+    $this->postJson('/api/1.0/player-hub/player-sessions')->assertUnauthorized();
     $this->postJson('/api/1.0/player-hub/1/claim')->assertUnauthorized();
 });

@@ -7,6 +7,7 @@ use App\Http\Resources\PlayerHubEntityResource;
 use App\Services\PlayerHub\EntityQueryService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SetupController extends ApiController
 {
@@ -30,7 +31,14 @@ class SetupController extends ApiController
             ->with(['claims' => function ($query) use ($user): void {
                 $query
                     ->where('user_id', $user->id)
-                    ->whereNull('unclaimed_at');
+                    ->whereNull('unclaimed_at')
+                    ->withCount('playerSessions')
+                    ->with('lastPlayedSession')
+                    ->addSelect([
+                        'interaction_entities_count' => DB::table('interaction_logs')
+                            ->selectRaw('COUNT(DISTINCT interaction_logs.entity_id)')
+                            ->whereColumn('interaction_logs.entity_claim_id', 'entity_claims.id'),
+                    ]);
             }])
             ->get();
 

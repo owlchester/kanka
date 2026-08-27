@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\CampaignFilterType;
 use App\Enums\CampaignVisibility;
 use App\Enums\Descendants;
+use App\Enums\InteractionLogVisibility;
 use App\Enums\Permission;
 use App\Enums\Visibility;
 use App\Facades\CampaignCache;
@@ -96,7 +97,7 @@ class Campaign extends Model
         'is_hidden' => 'boolean',
         'is_prioritised' => 'boolean',
     ];
-    
+
     protected $attributes = [
         'is_hidden' => false,
         'is_prioritised' => false,
@@ -342,6 +343,18 @@ class Campaign extends Model
     public function getDefaultVisibilityAttribute(): mixed
     {
         return Arr::get($this->settings, 'default_visibility', 'all');
+    }
+
+    public function playerHubInteractionLogVisibility(): InteractionLogVisibility
+    {
+        $visibility = Arr::get(
+            $this->settings,
+            'player_hub.interaction_log_visibility',
+            InteractionLogVisibility::Shared->value,
+        );
+
+        return InteractionLogVisibility::tryFrom((string) $visibility)
+            ?? InteractionLogVisibility::Shared;
     }
 
     public function getDefaultGalleryVisibilityAttribute(): mixed
