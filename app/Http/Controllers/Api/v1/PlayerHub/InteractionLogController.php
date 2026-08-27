@@ -81,6 +81,16 @@ class InteractionLogController extends ApiController
         return response()->json(null, 204);
     }
 
+    public function recover(Request $request, int $playerSession, int $interaction)
+    {
+        $session = $this->findSession($request, $playerSession);
+        $this->authorize('restore', $session);
+        $log = $this->findInteraction($session, $interaction, true);
+        $log->restore();
+
+        return new InteractionLogResource($log->refresh());
+    }
+
     protected function findSession(Request $request, int $playerSession): PlayerSession
     {
         $context = $this->playerHubContextService->forSession($request->user(), $playerSession);
@@ -94,9 +104,12 @@ class InteractionLogController extends ApiController
         return $session;
     }
 
-    protected function findInteraction(PlayerSession $session, int $interaction): InteractionLog
+    protected function findInteraction(PlayerSession $session, int $interaction, bool $withTrashed = false): InteractionLog
     {
-        return $session->interactionLogs()->whereKey($interaction)->firstOrFail();
+        return $session->interactionLogs()
+            ->when($withTrashed, fn ($query) => $query->withTrashed())
+            ->whereKey($interaction)
+            ->firstOrFail();
     }
 
     protected function findVisibleEntity(Request $request, PlayerSession $session, int $entityId): Entity

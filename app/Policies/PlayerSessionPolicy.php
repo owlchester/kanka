@@ -27,4 +27,9 @@ class PlayerSessionPolicy
     {
         return $session->created_by === $user->id;
     }
+
+    public function restore(User $user, PlayerSession $session): bool
+    {
+        return $session->created_by === $user->id;
+    }
 }

@@ -437,6 +437,106 @@ it('derives interaction log claim ownership and cascades logs', function () {
     expect(InteractionLog::find($log->id))->toBeNull();
 });
 
+it('recovers a deleted session and its interaction logs', function () {
+    $this->asUser()->withCampaign()->withCharacters();
+    $campaign = Campaign::findOrFail(1);
+    enablePlayerHubFor($campaign);
+    $entity = Character::findOrFail(1)->entity;
+    $claim = EntityClaim::create([
+        'entity_id' => $entity->id,
+        'user_id' => auth()->id(),
+        'claimed_at' => now(),
+    ]);
+    $session = $this->postJson('/api/1.0/player-hub/player-sessions', [
+        'entity_claim_id' => $claim->id,
+    ])->assertCreated();
+    $sessionId = $session->json('data.id');
+    $interaction = $this->postJson("/api/1.0/player-hub/player-sessions/{$sessionId}/interactions", [
+        'entity_id' => $entity->id,
+        'note' => 'Recovered note',
+    ])->assertCreated();
+    $interactionId = $interaction->json('data.id');
+
+    $this->deleteJson("/api/1.0/player-hub/player-sessions/{$sessionId}")->assertNoContent();
+
+    expect(PlayerSession::find($sessionId))->toBeNull()
+        ->and(PlayerSession::withTrashed()->find($sessionId)->trashed())->toBeTrue()
+        ->and(InteractionLog::find($interactionId))->toBeNull()
+        ->and(InteractionLog::withTrashed()->find($interactionId)->trashed())->toBeTrue();
+
+    $this->getJson("/api/1.0/player-hub/player-sessions/{$sessionId}")->assertNotFound();
+
+    $this->postJson("/api/1.0/player-hub/player-sessions/{$sessionId}/recover")
+        ->assertSuccessful()
+        ->assertJsonPath('data.id', $sessionId)
+        ->assertJsonPath('data.interactions.0.id', $interactionId);
+
+    expect(PlayerSession::find($sessionId)->trashed())->toBeFalse()
+        ->and(InteractionLog::find($interactionId)->trashed())->toBeFalse();
+});
+
+it('recovers a deleted interaction without exposing it across sessions', function () {
+    $this->asUser()->withCampaign()->withCharacters();
+    $campaign = Campaign::findOrFail(1);
+    enablePlayerHubFor($campaign);
+    $entity = Character::findOrFail(1)->entity;
+    $claim = EntityClaim::create([
+        'entity_id' => $entity->id,
+        'user_id' => auth()->id(),
+        'claimed_at' => now(),
+    ]);
+    $firstSession = $this->postJson('/api/1.0/player-hub/player-sessions', [
+        'entity_claim_id' => $claim->id,
+    ])->assertCreated();
+    $firstSessionId = $firstSession->json('data.id');
+    $secondSession = $this->postJson('/api/1.0/player-hub/player-sessions', [
+        'entity_claim_id' => $claim->id,
+    ])->assertCreated();
+    $secondSessionId = $secondSession->json('data.id');
+    $interaction = $this->postJson("/api/1.0/player-hub/player-sessions/{$firstSessionId}/interactions", [
+        'entity_id' => $entity->id,
+        'note' => 'Recover me',
+    ])->assertCreated();
+    $interactionId = $interaction->json('data.id');
+
+    $this->deleteJson("/api/1.0/player-hub/player-sessions/{$firstSessionId}/interactions/{$interactionId}")
+        ->assertNoContent();
+    $this->postJson("/api/1.0/player-hub/player-sessions/{$secondSessionId}/interactions/{$interactionId}/recover")
+        ->assertNotFound();
+
+    $this->postJson("/api/1.0/player-hub/player-sessions/{$firstSessionId}/interactions/{$interactionId}/recover")
+        ->assertSuccessful()
+        ->assertJsonPath('data.id', $interactionId)
+        ->assertJsonPath('data.note', 'Recover me');
+
+    expect(InteractionLog::find($interactionId)->trashed())->toBeFalse();
+});
+
+it('does not allow another player to recover a deleted session', function () {
+    $this->asUser()->withCampaign()->withCharacters();
+    $campaign = Campaign::findOrFail(1);
+    enablePlayerHubFor($campaign);
+    $entity = Character::findOrFail(1)->entity;
+    $claim = EntityClaim::create([
+        'entity_id' => $entity->id,
+        'user_id' => auth()->id(),
+        'claimed_at' => now(),
+    ]);
+    $session = new PlayerSession([
+        'entity_claim_id' => $claim->id,
+        'created_by' => auth()->id(),
+        'name' => 'Deleted session',
+        'started_at' => now(),
+    ]);
+    $session->number = 1;
+    $session->save();
+    $session->delete();
+
+    $this->asPlayer()
+        ->postJson("/api/1.0/player-hub/player-sessions/{$session->id}/recover")
+        ->assertNotFound();
+});
+
 it('does not expose a player session to another player', function () {
     $this->asUser()->withCampaign()->withCharacters();
     $campaign = Campaign::findOrFail(1);
@@ -496,5 +596,7 @@ it('requires authentication for player hub endpoints', function () {
     $this->postJson('/api/1.0/player-hub/player-sessions')->assertUnauthorized();
     $this->getJson('/api/1.0/player-hub/player-sessions/1/interactions')->assertUnauthorized();
     $this->postJson('/api/1.0/player-hub/player-sessions/1/interactions')->assertUnauthorized();
+    $this->postJson('/api/1.0/player-hub/player-sessions/1/recover')->assertUnauthorized();
+    $this->postJson('/api/1.0/player-hub/player-sessions/1/interactions/1/recover')->assertUnauthorized();
     $this->postJson('/api/1.0/player-hub/1/claim')->assertUnauthorized();
 });

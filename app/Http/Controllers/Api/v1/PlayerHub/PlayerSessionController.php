@@ -95,6 +95,19 @@ class PlayerSessionController extends ApiController
         return response()->json(null, 204);
     }
 
+    public function recover(Request $request, int $playerSession)
+    {
+        $session = $this->findTrashedSession($request, $playerSession);
+        $this->authorize('restore', $session);
+
+        DB::transaction(function () use ($session): void {
+            $session->restore();
+            $session->interactionLogs()->withTrashed()->restore();
+        });
+
+        return new PlayerSessionResource($session->refresh()->load('interactionLogs'));
+    }
+
     protected function findSession(Request $request, int $playerSession): PlayerSession
     {
         $context = $this->playerHubContextService->forSession($request->user(), $playerSession);
@@ -104,6 +117,19 @@ class PlayerSessionController extends ApiController
             abort(404);
         }
         $session->load('interactionLogs');
+        $this->authorize('view', $session);
+
+        return $session;
+    }
+
+    protected function findTrashedSession(Request $request, int $playerSession): PlayerSession
+    {
+        $context = $this->playerHubContextService->forTrashedSession($request->user(), $playerSession);
+        $this->playerHubContextService->activate($context);
+        $session = $context->session;
+        if (! $session instanceof PlayerSession) {
+            abort(404);
+        }
         $this->authorize('view', $session);
 
         return $session;
