@@ -18,6 +18,7 @@ class PlayerSessionResource extends ModelResource
             'started_at' => $session->started_at,
             'ended_at' => $session->ended_at,
             'summary' => $session->summary,
+            'interactions' => InteractionLogResource::collection($session->interactionLogs),
             'created_at' => $session->created_at,
             'updated_at' => $session->updated_at,
             'created_by' => $session->created_by,

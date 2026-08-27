@@ -113,7 +113,7 @@ Route::post('campaigns/{campaign}/entities/{entity}/archive', [EntityArchiveApiC
 Route::get('campaigns/{campaign}/entities', [EntityApiController::class, 'index']);
 Route::get('campaigns/{campaign}/entities/recent', [RecentEntityApiController::class, 'index']);
 Route::post('campaigns/{campaign}/entities/{entity_type}', [EntityApiController::class, 'put']);
-Route::get('campaigns/{campaign}/entities/{entity}', [EntityApiController::class, 'show']);
+Route::get('campaigns/{campaign}/entities/{entity}', [EntityApiController::class, 'show'])->name('campaigns.entities.show');
 Route::put('campaigns/{campaign}/entities/{entity}', [EntityApiController::class, 'edit']);
 Route::patch('campaigns/{campaign}/entities/{entity}', [EntityApiController::class, 'patch']);
 Route::delete('campaigns/{campaign}/entities/{entity}', [EntityApiController::class, 'destroy']);

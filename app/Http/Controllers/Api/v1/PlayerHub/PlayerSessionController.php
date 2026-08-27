@@ -23,6 +23,11 @@ class PlayerSessionController extends ApiController
         return PlayerSessionResource::collection(
             $this->entityQueryService
                 ->activeSessionsFor($request->user())
+                ->with('interactionLogs')
+                ->when($request->filled('entity_claim_id'), fn ($query) => $query->where(
+                    'player_sessions.entity_claim_id',
+                    $request->integer('entity_claim_id'),
+                ))
                 ->orderByDesc('started_at')
                 ->orderByDesc('id')
                 ->paginate()
@@ -59,7 +64,7 @@ class PlayerSessionController extends ApiController
             return $session;
         });
 
-        return new PlayerSessionResource($session);
+        return new PlayerSessionResource($session->load('interactionLogs'));
     }
 
     public function show(Request $request, int $playerSession)
@@ -73,7 +78,7 @@ class PlayerSessionController extends ApiController
         $this->authorize('update', $session);
         $session->update(Arr::except($request->validated(), ['entity_claim_id']));
 
-        return new PlayerSessionResource($session->refresh());
+        return new PlayerSessionResource($session->refresh()->load('interactionLogs'));
     }
 
     public function destroy(Request $request, int $playerSession)
@@ -89,6 +94,7 @@ class PlayerSessionController extends ApiController
     {
         $session = $this->entityQueryService
             ->activeSessionsFor($request->user())
+            ->with('interactionLogs')
             ->whereKey($playerSession)
             ->firstOrFail();
         $this->authorize('view', $session);

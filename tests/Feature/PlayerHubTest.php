@@ -212,9 +212,24 @@ it('creates and manages sessions for an active claimed character', function () {
         'name' => 'Opening Session',
     ])->assertCreated()->assertJsonPath('data.name', 'Opening Session');
 
-    $this->getJson('/api/1.0/player-hub/player-sessions')
+    InteractionLog::create([
+        'player_session_id' => $firstId,
+        'entity_id' => $entity->id,
+        'note' => 'First interaction',
+        'visibility' => 'shared',
+    ]);
+
+    $sessions = $this->getJson('/api/1.0/player-hub/player-sessions')
         ->assertSuccessful()
         ->assertJsonCount(2, 'data');
+    $firstSession = collect($sessions->json('data'))->firstWhere('id', $firstId);
+
+    expect($firstSession['interactions'])->toHaveCount(1)
+        ->and($firstSession['interactions'][0]['note'])->toBe('First interaction');
+
+    $this->getJson("/api/1.0/player-hub/player-sessions/{$firstId}")
+        ->assertSuccessful()
+        ->assertJsonPath('data.interactions.0.note', 'First interaction');
 
     $this->patchJson("/api/1.0/player-hub/player-sessions/{$firstId}", [
         'summary' => 'Updated summary',
@@ -228,6 +243,35 @@ it('creates and manages sessions for an active claimed character', function () {
     $this->postJson('/api/1.0/player-hub/player-sessions', [
         'entity_claim_id' => $claim->id,
     ])->assertCreated()->assertJsonPath('data.name', 'Session 3');
+});
+
+it('filters sessions by entity claim id', function () {
+    $this->asUser()->withCampaign()->withCharacters();
+    $campaign = Campaign::findOrFail(1);
+    enablePlayerHubFor($campaign);
+
+    $firstClaim = EntityClaim::create([
+        'entity_id' => Character::findOrFail(1)->entity->id,
+        'user_id' => auth()->id(),
+        'claimed_at' => now(),
+    ]);
+    $secondClaim = EntityClaim::create([
+        'entity_id' => Character::findOrFail(2)->entity->id,
+        'user_id' => auth()->id(),
+        'claimed_at' => now(),
+    ]);
+
+    $this->postJson('/api/1.0/player-hub/player-sessions', [
+        'entity_claim_id' => $firstClaim->id,
+    ])->assertCreated();
+    $this->postJson('/api/1.0/player-hub/player-sessions', [
+        'entity_claim_id' => $secondClaim->id,
+    ])->assertCreated();
+
+    $this->getJson('/api/1.0/player-hub/player-sessions?entity_claim_id=' . $firstClaim->id)
+        ->assertSuccessful()
+        ->assertJsonCount(1, 'data')
+        ->assertJsonPath('data.0.entity_claim_id', $firstClaim->id);
 });
 
 it('derives interaction log claim ownership and cascades logs', function () {
