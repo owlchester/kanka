@@ -1,6 +1,7 @@
 <?php
 
 use App\Enums\CampaignFlags;
+use App\Enums\InteractionLogAttitude;
 use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
 use App\Facades\Module;
@@ -383,6 +384,7 @@ it('creates and manages interactions for a player session', function () {
         'entity_id' => $target->id,
         'note' => 'Met at the tavern',
         'visibility' => 'gm',
+        'attitude' => 'tense',
     ])
         ->assertCreated()
         ->assertJsonStructure(['data' => [
@@ -392,6 +394,7 @@ it('creates and manages interactions for a player session', function () {
             'entity_claim_id',
             'note',
             'visibility',
+            'attitude',
             'created_by',
             'entity' => ['name', 'image', 'urls'],
         ]])
@@ -401,7 +404,8 @@ it('creates and manages interactions for a player session', function () {
         ->assertJsonPath('data.created_by', auth()->id())
         ->assertJsonPath('data.entity.name', $target->name)
         ->assertJsonPath('data.entity.image', fn ($value): bool => is_string($value))
-        ->assertJsonPath('data.visibility', 'gm');
+        ->assertJsonPath('data.visibility', 'gm')
+        ->assertJsonPath('data.attitude', 'tense');
     $interactionId = $interaction->json('data.id');
 
     $this->getJson($url . '?per_page=1')
@@ -416,10 +420,34 @@ it('creates and manages interactions for a player session', function () {
     $this->patchJson("{$url}/{$interactionId}", [
         'note' => 'Met at the busy tavern',
         'visibility' => 'shared',
+        'attitude' => 'warm',
     ])
         ->assertSuccessful()
         ->assertJsonPath('data.note', 'Met at the busy tavern')
-        ->assertJsonPath('data.visibility', 'shared');
+        ->assertJsonPath('data.visibility', 'shared')
+        ->assertJsonPath('data.attitude', 'warm');
+
+    $this->patchJson("{$url}/{$interactionId}", [
+        'note' => 'Met at the very busy tavern',
+    ])
+        ->assertSuccessful()
+        ->assertJsonPath('data.attitude', 'warm');
+
+    $this->patchJson("{$url}/{$interactionId}", [
+        'attitude' => null,
+    ])
+        ->assertSuccessful()
+        ->assertJsonPath('data.attitude', null);
+
+    foreach (['suspicious', 'funny', 'frightening'] as $attitude) {
+        $this->postJson($url, [
+            'entity_id' => $target->id,
+            'note' => "Attitude: {$attitude}",
+            'attitude' => $attitude,
+        ])
+            ->assertCreated()
+            ->assertJsonPath('data.attitude', $attitude);
+    }
 
     $this->deleteJson("{$url}/{$interactionId}")->assertNoContent();
 
@@ -449,6 +477,14 @@ it('validates interaction fields and prevents cross-session access', function ()
         'note' => 'Note',
     ])->assertCreated();
     $interactionId = $interaction->json('data.id');
+
+    expect($interaction->json('data.attitude'))->toBeNull();
+
+    $this->postJson($url, [
+        'entity_id' => Character::findOrFail(2)->entity->id,
+        'note' => 'Invalid attitude',
+        'attitude' => 'freightening',
+    ])->assertUnprocessable();
 
     $secondSession = $this->postJson('/api/1.0/player-hub/player-sessions', [
         'entity_claim_id' => $claim->id,
@@ -512,10 +548,12 @@ it('derives interaction log claim ownership and cascades logs', function () {
         'created_by' => auth()->id(),
         'note' => 'Note',
         'visibility' => 'gm',
+        'attitude' => 'suspicious',
     ]);
 
     expect($log->refresh()->entity_claim_id)->toBe($claim->id)
         ->and($log->visibility->value)->toBe('gm')
+        ->and($log->attitude)->toBe(InteractionLogAttitude::Suspicious)
         ->and($log->effectiveVisibility()->value)->toBe('gm');
 
     $inherited = InteractionLog::create([

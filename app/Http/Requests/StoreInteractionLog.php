@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\InteractionLogAttitude;
 use App\Enums\InteractionLogVisibility;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
@@ -26,6 +27,7 @@ class StoreInteractionLog extends FormRequest
                 ? ['required', 'string']
                 : ['sometimes', 'string'],
             'visibility' => ['sometimes', 'nullable', Rule::enum(InteractionLogVisibility::class)],
+            'attitude' => ['sometimes', 'nullable', Rule::enum(InteractionLogAttitude::class)],
         ]);
     }
 }

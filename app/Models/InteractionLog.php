@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\InteractionLogAttitude;
 use App\Enums\InteractionLogVisibility;
 use App\Models\Concerns\Blameable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -23,12 +24,14 @@ class InteractionLog extends Model
         'created_by',
         'note',
         'visibility',
+        'attitude',
     ];
 
     protected function casts(): array
     {
         return [
             'visibility' => InteractionLogVisibility::class,
+            'attitude' => InteractionLogAttitude::class,
         ];
     }
 

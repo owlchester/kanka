@@ -42,6 +42,7 @@ class InteractionLogController extends ApiController
             'entity_id' => $this->findVisibleEntity($request, $session, $data['entity_id'])->id,
             'note' => $data['note'],
             'visibility' => $data['visibility'] ?? null,
+            'attitude' => $data['attitude'] ?? null,
         ]);
         $interaction->created_by = $request->user()->id;
         $interaction->save();

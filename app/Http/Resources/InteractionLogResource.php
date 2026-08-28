@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Enums\InteractionLogAttitude;
 use App\Facades\Avatar;
 use App\Models\InteractionLog;
 use App\Services\PlayerHub\PlayerHubContextService;
@@ -17,6 +18,7 @@ class InteractionLogResource extends ModelResource
             $request->user(),
             (int) $log->entity_claim_id,
         ));
+        $attitude = $log->getAttribute('attitude');
 
         return [
             'id' => $log->id,
@@ -32,6 +34,7 @@ class InteractionLogResource extends ModelResource
             'entity_claim_id' => $log->entity_claim_id,
             'note' => $log->note,
             'visibility' => $log->effectiveVisibility()->value,
+            'attitude' => $attitude instanceof InteractionLogAttitude ? $attitude->value : null,
             'created_at' => $log->created_at,
             'updated_at' => $log->updated_at,
             'created_by' => $log->created_by,
