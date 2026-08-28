@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\InteractionLogAttitude;
 use App\Enums\InteractionLogVisibility;
 use App\Models\Concerns\Blameable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -66,6 +67,22 @@ class InteractionLog extends Model
     public function entityClaim(): BelongsTo
     {
         return $this->belongsTo(EntityClaim::class);
+    }
+
+    /**
+     * Exclude GM-only notes from the player-facing entity details.
+     */
+    public function scopeVisibleToPlayer(Builder $query, Campaign $campaign): Builder
+    {
+        $defaultVisibility = $campaign->playerHubInteractionLogVisibility();
+
+        return $query->where(function (Builder $query) use ($defaultVisibility): void {
+            $query->where('visibility', '!=', InteractionLogVisibility::Gm->value);
+
+            if ($defaultVisibility !== InteractionLogVisibility::Gm) {
+                $query->orWhereNull('visibility');
+            }
+        });
     }
 
     public function effectiveVisibility(): InteractionLogVisibility

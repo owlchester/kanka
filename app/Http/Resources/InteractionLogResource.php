@@ -32,6 +32,11 @@ class InteractionLogResource extends ModelResource
                 ],
             ],
             'entity_claim_id' => $log->entity_claim_id,
+            'session' => $log->relationLoaded('playerSession') && $log->playerSession !== null ? [
+                'id' => $log->playerSession->id,
+                'number' => $log->playerSession->number,
+                'name' => $log->playerSession->name,
+            ] : null,
             'note' => $log->note,
             'visibility' => $log->effectiveVisibility()->value,
             'attitude' => $attitude instanceof InteractionLogAttitude ? $attitude->value : null,

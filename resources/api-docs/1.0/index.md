@@ -71,5 +71,8 @@
   - [Search](/api-docs/{{version}}/search)
   - [Archives](/api-docs/{{version}}/archives)
 
+- ## Player Hub
+  - [Entity Details](/api-docs/{{version}}/player-hub)
+
 - ## Help
   - [Troubleshooting](/api-docs/{{version}}/troubleshooting)

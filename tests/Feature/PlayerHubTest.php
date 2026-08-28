@@ -15,7 +15,10 @@ use App\Models\Creature;
 use App\Models\Entity;
 use App\Models\EntityAsset;
 use App\Models\EntityClaim;
+use App\Models\Family;
 use App\Models\InteractionLog;
+use App\Models\Location;
+use App\Models\Organisation;
 use App\Models\PlayerSession;
 use App\Services\Campaign\ModuleService;
 use App\Services\PlayerHub\PlayerHubContextService;
@@ -712,6 +715,124 @@ it('claims an entity atomically and removes its claimable status', function () {
         ->and(EntityClaim::where('entity_id', $entity->id)->where('user_id', $player->id)->count())->toBe(1);
 });
 
+it('returns full player hub entity details with paginated interactions', function () {
+    $this->asUser()->withCampaign()->withCharacters();
+    $campaign = Campaign::findOrFail(1);
+    enablePlayerHubFor($campaign);
+
+    $character = Character::findOrFail(1);
+    $entity = $character->entity;
+    $entity->update([
+        'type' => 'Innkeeper',
+        'entry' => 'A trusted source of information.',
+    ]);
+
+    $locations = Location::factory()->count(2)->create(['campaign_id' => $campaign->id]);
+    $entity->locations()->attach($locations->pluck('id'));
+
+    $family = Family::factory()->create(['campaign_id' => $campaign->id, 'name' => 'The Kolvasz family']);
+    $character->families()->attach($family->id);
+
+    $organisation = Organisation::factory()->create([
+        'campaign_id' => $campaign->id,
+        'name' => 'The Gilded Crow',
+    ]);
+    $character->organisations()->attach($organisation->id, ['role' => 'Innkeeper']);
+
+    $claim = EntityClaim::create([
+        'entity_id' => Character::findOrFail(1)->entity->id,
+        'user_id' => auth()->id(),
+        'claimed_at' => now(),
+    ]);
+    $session = new PlayerSession([
+        'entity_claim_id' => $claim->id,
+        'created_by' => auth()->id(),
+        'name' => 'Session 12',
+        'started_at' => now(),
+    ]);
+    $session->number = 12;
+    $session->save();
+
+    foreach ([
+        ['note' => 'Shared note one', 'visibility' => 'shared'],
+        ['note' => 'Player note', 'visibility' => 'player'],
+        ['note' => 'Shared note two', 'visibility' => 'shared'],
+        ['note' => 'GM note', 'visibility' => 'gm'],
+    ] as $interaction) {
+        InteractionLog::create($interaction + [
+            'player_session_id' => $session->id,
+            'entity_id' => $entity->id,
+            'created_by' => auth()->id(),
+        ]);
+    }
+    foreach (range(1, 43) as $number) {
+        InteractionLog::create([
+            'player_session_id' => $session->id,
+            'entity_id' => $entity->id,
+            'created_by' => auth()->id(),
+            'note' => "Additional note {$number}",
+            'visibility' => 'shared',
+        ]);
+    }
+
+    $response = $this->getJson('/api/1.0/player-hub/entities/' . $entity->id . '?entity_claim_id=' . $claim->id);
+
+    $response
+        ->assertSuccessful()
+        ->assertJsonStructure([
+            'data' => [
+                'id',
+                'name',
+                'role',
+                'entry',
+                'image',
+                'locations' => [['id', 'name', 'url']],
+                'organisations' => [['id', 'name', 'url', 'role']],
+                'families' => [['id', 'name', 'url']],
+                'interactions' => [
+                    'data' => [['id', 'note', 'session' => ['id', 'number', 'name']]],
+                    'links',
+                    'meta',
+                ],
+            ],
+            'sync',
+        ])
+        ->assertJsonPath('data.id', $entity->id)
+        ->assertJsonPath('data.role', 'Innkeeper')
+        ->assertJsonPath('data.entry', $entity->fresh()->entry)
+        ->assertJsonPath('data.locations.0.id', $locations[0]->entity->id)
+        ->assertJsonPath('data.locations.1.id', $locations[1]->entity->id)
+        ->assertJsonPath('data.organisations.0.id', $organisation->entity->id)
+        ->assertJsonPath('data.organisations.0.role', 'Innkeeper')
+        ->assertJsonPath('data.families.0.id', $family->entity->id)
+        ->assertJsonPath('data.interactions.meta.total', 46)
+        ->assertJsonPath('data.interactions.meta.last_page', fn ($value): bool => $value > 1)
+        ->assertJsonPath('data.interactions.links.next', fn ($value): bool => $value !== null)
+        ->assertJsonMissing(['note' => 'GM note']);
+
+    expect($response->json('data.interactions.data.0.session.name'))->toBe('Session 12')
+        ->and($response->json('data.interactions.data'))->toHaveCount($response->json('data.interactions.meta.per_page'));
+});
+
+it('does not expose private player hub entity details to a player', function () {
+    $this->asUser()->withCampaign()->withCharacters();
+    $campaign = Campaign::findOrFail(1);
+    enablePlayerHubFor($campaign);
+    $claimed = Character::findOrFail(1)->entity;
+    $hidden = Character::findOrFail(2)->entity;
+    $hidden->update(['is_private' => true]);
+
+    $this->asPlayer();
+    $claim = EntityClaim::create([
+        'entity_id' => $claimed->id,
+        'user_id' => auth()->id(),
+        'claimed_at' => now(),
+    ]);
+
+    $this->getJson('/api/1.0/player-hub/entities/' . $hidden->id . '?entity_claim_id=' . $claim->id)
+        ->assertNotFound();
+});
+
 it('returns conflict when an entity is no longer claimable', function () {
     $this->asUser()->withCampaign()->withCharacters();
     $campaign = Campaign::findOrFail(1);
@@ -726,6 +847,7 @@ it('returns conflict when an entity is no longer claimable', function () {
 it('requires authentication for player hub endpoints', function () {
     $this->getJson('/api/1.0/player-hub/setup')->assertUnauthorized();
     $this->getJson('/api/1.0/player-hub/search?entity_claim_id=1&q=test')->assertUnauthorized();
+    $this->getJson('/api/1.0/player-hub/entities/1?entity_claim_id=1')->assertUnauthorized();
     $this->getJson('/api/1.0/player-hub/player-sessions')->assertUnauthorized();
     $this->postJson('/api/1.0/player-hub/player-sessions')->assertUnauthorized();
     $this->getJson('/api/1.0/player-hub/player-sessions/1/interactions')->assertUnauthorized();

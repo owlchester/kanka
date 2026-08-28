@@ -58,6 +58,7 @@ it('keeps documented API route contracts registered', function () {
         ['DELETE', 'api/1.0/campaigns/1/maps/2/map_groups/3'],
         ['DELETE', 'api/1.0/campaigns/1/maps/2/map_markers/3'],
         ['DELETE', 'api/1.0/campaigns/1/organisations/2/organisation_members/3'],
+        ['GET', 'api/1.0/player-hub/entities/1?entity_claim_id=1'],
         ['POST', 'api/1.0/campaigns/1/entities/2/image'],
         ['POST', 'api/1.0/campaigns/1/entities/templates/2/switch'],
         ['GET', 'api/1.0/filters'],
