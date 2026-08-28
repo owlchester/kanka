@@ -21,6 +21,9 @@ class PlayerHubEntityResource extends JsonResource
         $lastPlayedSession = $claim?->lastPlayedSession;
         $entityType = $entity->entityType;
         $claimUrl = null;
+        $searchRoute = Route::has('api.player-hub.search')
+            ? 'api.player-hub.search'
+            : 'player-hub.search';
         if ($claim === null && $entity->is_claimable) {
             $claimRoute = Route::has('api.player-hub.claim')
                 ? 'api.player-hub.claim'
@@ -44,6 +47,9 @@ class PlayerHubEntityResource extends JsonResource
                 'id' => $entity->campaign_id,
                 'name' => $entity->campaign->name,
                 'url' => route('dashboard', $entity->campaign),
+                'search' => route($searchRoute, [
+                    'entity_claim_id' => $claim?->id,
+                ]),
             ],
             'image' => Avatar::campaign($entity->campaign)->entity($entity)->size(250)->fallback()->thumbnail(),
             'is_claimable' => $entity->is_claimable,

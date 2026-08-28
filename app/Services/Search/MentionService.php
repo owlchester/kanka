@@ -2,7 +2,6 @@
 
 namespace App\Services\Search;
 
-use App\Enums\EntityAssetType;
 use App\Facades\Avatar;
 use App\Models\Attribute;
 use App\Models\Entity;
@@ -99,49 +98,19 @@ class MentionService
             ->pluck('id')
             ->toArray();
 
-        $query = Entity::inTypes($availableEntityTypes)->whereNull('archived_at');
-        $query
-            ->select(['entities.*', 'ea.id as alias_id', 'ea.name as alias_name'])
-            ->distinct()
-            ->leftJoin('entity_assets as ea', function ($join) {
-                $join->on('ea.entity_id', '=', 'entities.id');
-                if (Str::startsWith($this->term, '=')) {
-                    $join->where('ea.name', $this->strippedTerm);
-                } else {
-                    $join->where('ea.name', 'like', '%' . $this->term . '%');
-                }
-                $join->where('ea.type_id', EntityAssetType::alias);
-            })
+        $query = Entity::inTypes($availableEntityTypes)
+            ->where('entities.campaign_id', $this->campaign->id)
+            ->whereNull('archived_at')
             ->where(function ($sub) {
                 if (Str::startsWith($this->term, '=')) {
                     $sub->where('entities.name', $this->strippedTerm)
-                        ->orWhere('ea.name', $this->strippedTerm);
+                        ->orWhereHas('aliases', fn ($alias) => $alias->where('name', $this->strippedTerm));
                 } else {
                     $sub->where('entities.name', 'like', '%' . $this->term . '%')
-                        ->orWhere('ea.name', 'like', '%' . $this->term . '%');
+                        ->orWhereHas('aliases', fn ($alias) => $alias->where('name', 'like', '%' . $this->term . '%'));
                 }
-            });
-
-        // Exact name match comes first
-        // Only do this when the input string is utf8
-        $cleanTerm = preg_replace("/[^a-zA-Z0-9_\-\.\s]/", '', $this->strippedTerm);
-        if (mb_strlen($cleanTerm, 'UTF-8') === mb_strlen($cleanTerm)) {
-            $escapedTerm = preg_replace('/&/', '\\&', preg_quote($cleanTerm));
-            $query->orderByRaw('FIELD(entities.name, ?) DESC', [$cleanTerm]);
-            if ($this->campaign->boosted()) {
-                $query->orderByRaw('FIELD(ea.name, ?) DESC', [$cleanTerm]);
-            }
-            // Name word-start match, so when looking for 'Morley', entities named 'Momorley' appear at the end
-            $query->orderByRaw('entities.name RLIKE ? DESC', ["[[:<:]]{$escapedTerm}"]);
-            if ($this->campaign->boosted()) {
-                $query->orderByRaw('ea.name RLIKE ? DESC', ["[[:<:]]{$escapedTerm}"]);
-            }
-            // Partial name match
-            $query->orderByRaw('entities.name LIKE ? DESC', ["%{$cleanTerm}%"]);
-            if ($this->campaign->boosted()) {
-                $query->orderByRaw('ea.name LIKE ? DESC', ["%{$cleanTerm}%"]);
-            }
-        }
+            })
+            ->orderBy('entities.name');
         $with = ['image', 'entityType', 'aliases'];
 
         $query
@@ -151,6 +120,15 @@ class MentionService
         $this->data['entities'] = [];
         /** @var Entity $entity */
         foreach ($query->get() as $entity) {
+            $alias = $entity->aliases->first(function ($alias): bool {
+                if (Str::startsWith($this->term, '=')) {
+                    return $alias->name === $this->strippedTerm;
+                }
+
+                return str_contains(mb_strtolower($alias->name), mb_strtolower($this->term));
+            });
+            $entity->setAttribute('alias_id', $alias?->id);
+            $entity->setAttribute('alias_name', $alias?->name);
             $this->addEntity($entity);
         }
 

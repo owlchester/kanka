@@ -12,6 +12,7 @@ use App\Models\CampaignUser;
 use App\Models\Character;
 use App\Models\Creature;
 use App\Models\Entity;
+use App\Models\EntityAsset;
 use App\Models\EntityClaim;
 use App\Models\InteractionLog;
 use App\Models\PlayerSession;
@@ -86,7 +87,10 @@ it('lists visible claimable entities from all enabled member campaigns', functio
         ->and($response->json('claimed.0.claim.last_played_at'))->toBe($session->started_at->toJSON())
         ->and($response->json('claimable'))->toHaveCount(1)
         ->and($response->json('claimable.0.id'))->toBe($character->id)
-        ->and($response->json('claimable.0.urls.claim'))->toBeString();
+        ->and($response->json('claimable.0.urls.claim'))->toBeString()
+        ->and($response->json('claimed.0.campaign.search'))->toBe(
+            route('api.player-hub.search', ['entity_claim_id' => $claim->id])
+        );
 });
 
 it('lists claimable entities without a localized campaign service', function () {
@@ -189,6 +193,97 @@ it('does not expose entities denied directly to a player', function () {
     $this->getJson('/api/1.0/player-hub/setup')
         ->assertSuccessful()
         ->assertJsonCount(0, 'claimable');
+});
+
+it('searches entities and aliases within the active claim campaign', function () {
+    $this->asUser()->withCampaign()->withCharacters();
+    $campaign = Campaign::findOrFail(1);
+    enablePlayerHubFor($campaign);
+    $entity = Character::findOrFail(1)->entity;
+    $alias = EntityAsset::create([
+        'entity_id' => $entity->id,
+        'type_id' => 3,
+        'name' => 'Hidden in plain sight',
+        'visibility_id' => 1,
+    ]);
+    $this->asPlayer();
+    $claim = EntityClaim::create([
+        'entity_id' => $entity->id,
+        'user_id' => auth()->id(),
+        'claimed_at' => now(),
+    ]);
+
+    $response = $this
+        ->getJson('/api/1.0/player-hub/search?entity_claim_id=' . $claim->id . '&q=plain')
+        ->assertSuccessful()
+        ->assertJsonStructure([
+            'entities' => [['id', 'alias_name', 'alias_id', 'aliases']],
+        ]);
+
+    expect($response->json('entities'))->toHaveCount(1)
+        ->and($response->json('entities.0.id'))->toBe($entity->id)
+        ->and($response->json('entities.0.alias_name'))->toBe($alias->name)
+        ->and($response->json('entities.0.alias_id'))->toBe($alias->id);
+});
+
+it('does not search entities outside the active claim campaign', function () {
+    $this->asUser()->withCampaign()->withCharacters();
+    $user = auth()->user();
+    $campaign = Campaign::findOrFail(1);
+    enablePlayerHubFor($campaign);
+    $entity = Character::findOrFail(1)->entity;
+    $this->asPlayer();
+    $claim = EntityClaim::create([
+        'entity_id' => $entity->id,
+        'user_id' => auth()->id(),
+        'claimed_at' => now(),
+    ]);
+    $secondCampaign = Campaign::factory()->create();
+    CampaignUser::create([
+        'campaign_id' => $secondCampaign->id,
+        'user_id' => $user->id,
+    ]);
+    Character::factory()->create([
+        'campaign_id' => $secondCampaign->id,
+        'name' => 'Only in another campaign',
+    ]);
+
+    $this
+        ->getJson('/api/1.0/player-hub/search?entity_claim_id=' . $claim->id . '&q=another')
+        ->assertSuccessful()
+        ->assertJsonCount(0, 'entities');
+});
+
+it('does not search private or directly denied entities', function () {
+    $this->asUser()->withCampaign()->withCharacters();
+    $campaign = Campaign::findOrFail(1);
+    enablePlayerHubFor($campaign);
+    $private = Character::findOrFail(1)->entity;
+    $private->update(['name' => 'Private target', 'is_private' => true]);
+    $denied = Character::findOrFail(2)->entity;
+    $denied->update(['name' => 'Denied target']);
+    $this->asPlayer();
+    $claimEntity = Character::factory()->create([
+        'campaign_id' => $campaign->id,
+        'name' => 'Claimed character',
+    ])->entity;
+    $claim = EntityClaim::create([
+        'entity_id' => $claimEntity->id,
+        'user_id' => auth()->id(),
+        'claimed_at' => now(),
+    ]);
+
+    CampaignPermission::create([
+        'campaign_id' => $campaign->id,
+        'user_id' => auth()->id(),
+        'entity_id' => $denied->id,
+        'action' => CampaignPermission::ACTION_READ,
+        'access' => false,
+    ]);
+
+    $this->getJson('/api/1.0/player-hub/search?entity_claim_id=' . $claim->id . '&q=target')
+        ->assertSuccessful()
+        ->assertJsonCount(0, 'entities');
 });
 
 it('creates and manages sessions for an active claimed character', function () {
@@ -592,6 +687,7 @@ it('returns conflict when an entity is no longer claimable', function () {
 
 it('requires authentication for player hub endpoints', function () {
     $this->getJson('/api/1.0/player-hub/setup')->assertUnauthorized();
+    $this->getJson('/api/1.0/player-hub/search?entity_claim_id=1&q=test')->assertUnauthorized();
     $this->getJson('/api/1.0/player-hub/player-sessions')->assertUnauthorized();
     $this->postJson('/api/1.0/player-hub/player-sessions')->assertUnauthorized();
     $this->getJson('/api/1.0/player-hub/player-sessions/1/interactions')->assertUnauthorized();

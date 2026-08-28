@@ -3,10 +3,13 @@
 use App\Http\Controllers\Api\v1\PlayerHub\ClaimController;
 use App\Http\Controllers\Api\v1\PlayerHub\InteractionLogController;
 use App\Http\Controllers\Api\v1\PlayerHub\PlayerSessionController;
+use App\Http\Controllers\Api\v1\PlayerHub\SearchController;
 use App\Http\Controllers\Api\v1\PlayerHub\SetupController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('player-hub/setup', [SetupController::class, 'index']);
+Route::get('player-hub/search', [SearchController::class, 'index'])
+    ->name('player-hub.search');
 Route::apiResource('player-hub/player-sessions', PlayerSessionController::class);
 Route::apiResource('player-hub/player-sessions.interactions', InteractionLogController::class);
 Route::post('player-hub/player-sessions/{player_session}/recover', [PlayerSessionController::class, 'recover'])
