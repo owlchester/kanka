@@ -25,7 +25,7 @@ class PlayerSessionController extends ApiController
         return PlayerSessionResource::collection(
             $this->entityQueryService
                 ->activeSessionsFor($request->user())
-                ->with('interactionLogs')
+                ->with('interactionLogs.creator')
                 ->when($request->filled('entity_claim_id'), fn ($query) => $query->where(
                     'player_sessions.entity_claim_id',
                     $request->integer('entity_claim_id'),
@@ -69,7 +69,7 @@ class PlayerSessionController extends ApiController
             return $session;
         });
 
-        return new PlayerSessionResource($session->load('interactionLogs'));
+        return new PlayerSessionResource($session->load('interactionLogs.creator'));
     }
 
     public function show(Request $request, int $playerSession)
@@ -83,7 +83,7 @@ class PlayerSessionController extends ApiController
         $this->authorize('update', $session);
         $session->update(Arr::except($request->validated(), ['entity_claim_id']));
 
-        return new PlayerSessionResource($session->refresh()->load('interactionLogs'));
+        return new PlayerSessionResource($session->refresh()->load('interactionLogs.creator'));
     }
 
     public function destroy(Request $request, int $playerSession)
@@ -105,7 +105,7 @@ class PlayerSessionController extends ApiController
             $session->interactionLogs()->withTrashed()->restore();
         });
 
-        return new PlayerSessionResource($session->refresh()->load('interactionLogs'));
+        return new PlayerSessionResource($session->refresh()->load('interactionLogs.creator'));
     }
 
     protected function findSession(Request $request, int $playerSession): PlayerSession
@@ -116,7 +116,7 @@ class PlayerSessionController extends ApiController
         if (! $session instanceof PlayerSession) {
             abort(404);
         }
-        $session->load('interactionLogs');
+        $session->load('interactionLogs.creator');
         $this->authorize('view', $session);
 
         return $session;

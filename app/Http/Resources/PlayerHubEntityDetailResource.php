@@ -3,9 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Facades\Avatar;
-use App\Models\Character;
 use App\Models\Entity;
-use App\Models\OrganisationMember;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Route;
@@ -23,7 +21,7 @@ class PlayerHubEntityDetailResource extends JsonResource
             ? $entity->character
             : null;
 
-        return [
+        $data = [
             'id' => $entity->id,
             'name' => $entity->name,
             'role' => $entity->type,
@@ -42,13 +40,6 @@ class PlayerHubEntityDetailResource extends JsonResource
                 ->filter()
                 ->values()
                 ->all(),
-            'organisations' => $this->organisations($character),
-            'families' => $character?->characterFamilies
-                ->filter(fn ($membership): bool => ! (bool) $membership->is_private)
-                ->map(fn ($membership) => $this->summary($membership->family?->entity))
-                ->filter()
-                ->values()
-                ->all() ?? [],
             'urls' => [
                 'view' => route('entities.show', [$entity->campaign_id, $entity]),
                 'api' => route(Route::has('api.player-hub.entities.show')
@@ -63,30 +54,26 @@ class PlayerHubEntityDetailResource extends JsonResource
             'updated_at' => $entity->updated_at,
             'updated_by' => $entity->updated_by,
         ];
-    }
 
-    /**
-     * @return array<int, array<string, mixed>>
-     */
-    protected function organisations(?Character $character): array
-    {
-        if ($character === null) {
-            return [];
+        if ($character !== null) {
+            $data['races'] = $character->races
+                ->map(fn ($race) => $this->summary($race->entity))
+                ->filter()
+                ->values()
+                ->all();
+            $data['families'] = $character->families
+                ->map(fn ($family) => $this->summary($family->entity))
+                ->filter()
+                ->values()
+                ->all();
+            $data['organisations'] = $character->organisations
+                ->map(fn ($organisation) => $this->summary($organisation->entity))
+                ->filter()
+                ->values()
+                ->all();
         }
 
-        return $character->organisationMemberships
-            ->filter(fn (OrganisationMember $membership): bool => ! (bool) $membership->is_private)
-            ->map(function (OrganisationMember $membership): ?array {
-                $summary = $this->summary($membership->organisation?->entity);
-                if ($summary === null) {
-                    return null;
-                }
-
-                return $summary + ['role' => $membership->role];
-            })
-            ->filter()
-            ->values()
-            ->all();
+        return $data;
     }
 
     /**

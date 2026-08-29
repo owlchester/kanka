@@ -25,6 +25,7 @@ class InteractionLogController extends ApiController
 
         return InteractionLogResource::collection(
             $session->interactionLogs()
+                ->with('creator')
                 ->orderByDesc('created_at')
                 ->orderByDesc('id')
                 ->paginate()
@@ -47,7 +48,7 @@ class InteractionLogController extends ApiController
         $interaction->created_by = $request->user()->id;
         $interaction->save();
 
-        return new InteractionLogResource($interaction->refresh());
+        return new InteractionLogResource($interaction->refresh()->load('creator'));
     }
 
     public function show(Request $request, int $playerSession, int $interaction)
@@ -70,7 +71,7 @@ class InteractionLogController extends ApiController
 
         $log->update($data);
 
-        return new InteractionLogResource($log->refresh());
+        return new InteractionLogResource($log->refresh()->load('creator'));
     }
 
     public function destroy(Request $request, int $playerSession, int $interaction)
@@ -89,7 +90,7 @@ class InteractionLogController extends ApiController
         $log = $this->findInteraction($session, $interaction, true);
         $log->restore();
 
-        return new InteractionLogResource($log->refresh());
+        return new InteractionLogResource($log->refresh()->load('creator'));
     }
 
     protected function findSession(Request $request, int $playerSession): PlayerSession
@@ -109,6 +110,7 @@ class InteractionLogController extends ApiController
     {
         return $session->interactionLogs()
             ->when($withTrashed, fn ($query) => $query->withTrashed())
+            ->with('creator')
             ->whereKey($interaction)
             ->firstOrFail();
     }

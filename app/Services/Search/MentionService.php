@@ -30,6 +30,8 @@ class MentionService
 
     protected int $limit = 15;
 
+    protected bool $playerHub = false;
+
     public function __construct(
         protected EntityTypeService $entityTypeService,
         protected NewService $newService) {}
@@ -74,6 +76,13 @@ class MentionService
         return $results;
     }
 
+    public function playerHub(): self
+    {
+        $this->playerHub = true;
+
+        return $this;
+    }
+
     protected function prepare(): self
     {
         if ($this->request->has('entity')) {
@@ -112,6 +121,9 @@ class MentionService
             })
             ->orderBy('entities.name');
         $with = ['image', 'entityType', 'aliases'];
+        if ($this->playerHub) {
+            $with[] = 'locations.entity';
+        }
 
         $query
             ->with($with)
@@ -153,10 +165,10 @@ class MentionService
             $mention = '[' . $entity->entityType->code . ':' . $entity->id . '|alias:' . $entity->alias_id . ']';
         }
 
-        return [
+        $data = [
             'id' => $entity->id,
             'name' => $entity->name,
-            'type' => $entity->entityType->name(),
+            'type' => $this->playerHub ? $entity->type : $entity->entityType->name(),
             'is_private' => $entity->is_private,
             'image' => Avatar::entity($entity)->fallback()->size(32)->thumbnail(),
             'image_alt' => $entity->image?->description ?: $entity->name,
@@ -170,6 +182,20 @@ class MentionService
                 'name' => $alias->name,
             ])->toArray(),
         ];
+
+        if ($this->playerHub) {
+            $data['entity_type'] = $entity->entityType->code;
+            $data['locations'] = $entity->locations
+                ->map(fn ($location) => [
+                    'id' => $location->entity->id,
+                    'name' => $location->entity->name,
+                    'url' => route('entities.show', [$location->entity->campaign_id, $location->entity]),
+                ])
+                ->values()
+                ->all();
+        }
+
+        return $data;
     }
 
     protected function attributes(): self

@@ -32,15 +32,16 @@ class EntityController extends ApiController
             ->firstOrFail();
         $model->load([
             'locations.entity',
-            'character.characterFamilies.family.entity',
-            'character.organisationMemberships.organisation.entity',
+            'character.races.entity',
+            'character.families.entity',
+            'character.organisations.entity',
         ]);
 
         $interactions = $context->claim
             ->interactionLogs()
             ->where('interaction_logs.entity_id', $model->id)
             ->visibleToPlayer($context->campaign)
-            ->with(['entity.campaign', 'playerSession'])
+            ->with(['entity.campaign', 'playerSession', 'creator'])
             ->orderByDesc('interaction_logs.created_at')
             ->orderByDesc('interaction_logs.id')
             ->paginate()

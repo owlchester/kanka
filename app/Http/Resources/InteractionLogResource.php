@@ -43,6 +43,7 @@ class InteractionLogResource extends ModelResource
             'created_at' => $log->created_at,
             'updated_at' => $log->updated_at,
             'created_by' => $log->created_by,
+            'created_by_name' => $log->creator?->name,
         ];
     }
 }

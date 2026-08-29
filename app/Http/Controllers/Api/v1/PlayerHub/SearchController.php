@@ -30,6 +30,7 @@ class SearchController extends ApiController
                 ->user($user)
                 ->request($request)
                 ->campaign($context->campaign)
+                ->playerHub()
                 ->search()
         );
     }

@@ -20,6 +20,7 @@ use App\Models\InteractionLog;
 use App\Models\Location;
 use App\Models\Organisation;
 use App\Models\PlayerSession;
+use App\Models\Race;
 use App\Services\Campaign\ModuleService;
 use App\Services\PlayerHub\PlayerHubContextService;
 
@@ -204,6 +205,9 @@ it('searches entities and aliases within the active claim campaign', function ()
     $campaign = Campaign::findOrFail(1);
     enablePlayerHubFor($campaign);
     $entity = Character::findOrFail(1)->entity;
+    $entity->update(['type' => 'Innkeeper']);
+    $locations = Location::factory()->count(2)->create(['campaign_id' => $campaign->id]);
+    $entity->locations()->attach($locations->pluck('id'));
     $alias = EntityAsset::create([
         'entity_id' => $entity->id,
         'type_id' => 3,
@@ -221,13 +225,17 @@ it('searches entities and aliases within the active claim campaign', function ()
         ->getJson('/api/1.0/player-hub/search?entity_claim_id=' . $claim->id . '&q=plain')
         ->assertSuccessful()
         ->assertJsonStructure([
-            'entities' => [['id', 'alias_name', 'alias_id', 'aliases']],
+            'entities' => [['id', 'alias_name', 'alias_id', 'aliases', 'type', 'entity_type', 'locations']],
         ]);
 
     expect($response->json('entities'))->toHaveCount(1)
         ->and($response->json('entities.0.id'))->toBe($entity->id)
         ->and($response->json('entities.0.alias_name'))->toBe($alias->name)
-        ->and($response->json('entities.0.alias_id'))->toBe($alias->id);
+        ->and($response->json('entities.0.alias_id'))->toBe($alias->id)
+        ->and($response->json('entities.0.type'))->toBe('Innkeeper')
+        ->and($response->json('entities.0.entity_type'))->toBe('character')
+        ->and($response->json('entities.0.locations.0.id'))->toBe($locations[0]->entity->id)
+        ->and($response->json('entities.0.locations.1.id'))->toBe($locations[1]->entity->id);
 });
 
 it('does not search entities outside the active claim campaign', function () {
@@ -733,6 +741,9 @@ it('returns full player hub entity details with paginated interactions', functio
     $family = Family::factory()->create(['campaign_id' => $campaign->id, 'name' => 'The Kolvasz family']);
     $character->families()->attach($family->id);
 
+    $race = Race::factory()->create(['campaign_id' => $campaign->id, 'name' => 'Human']);
+    $character->races()->attach($race->id);
+
     $organisation = Organisation::factory()->create([
         'campaign_id' => $campaign->id,
         'name' => 'The Gilded Crow',
@@ -787,10 +798,11 @@ it('returns full player hub entity details with paginated interactions', functio
                 'entry',
                 'image',
                 'locations' => [['id', 'name', 'url']],
-                'organisations' => [['id', 'name', 'url', 'role']],
+                'races' => [['id', 'name', 'url']],
+                'organisations' => [['id', 'name', 'url']],
                 'families' => [['id', 'name', 'url']],
                 'interactions' => [
-                    'data' => [['id', 'note', 'session' => ['id', 'number', 'name']]],
+                    'data' => [['id', 'note', 'created_by_name', 'session' => ['id', 'number', 'name']]],
                     'links',
                     'meta',
                 ],
@@ -803,15 +815,23 @@ it('returns full player hub entity details with paginated interactions', functio
         ->assertJsonPath('data.locations.0.id', $locations[0]->entity->id)
         ->assertJsonPath('data.locations.1.id', $locations[1]->entity->id)
         ->assertJsonPath('data.organisations.0.id', $organisation->entity->id)
-        ->assertJsonPath('data.organisations.0.role', 'Innkeeper')
+        ->assertJsonPath('data.races.0.id', $race->entity->id)
         ->assertJsonPath('data.families.0.id', $family->entity->id)
         ->assertJsonPath('data.interactions.meta.total', 46)
         ->assertJsonPath('data.interactions.meta.last_page', fn ($value): bool => $value > 1)
         ->assertJsonPath('data.interactions.links.next', fn ($value): bool => $value !== null)
+        ->assertJsonPath('data.interactions.data.0.created_by_name', auth()->user()->name)
         ->assertJsonMissing(['note' => 'GM note']);
 
     expect($response->json('data.interactions.data.0.session.name'))->toBe('Session 12')
         ->and($response->json('data.interactions.data'))->toHaveCount($response->json('data.interactions.meta.per_page'));
+
+    $creature = Creature::factory()->create(['campaign_id' => $campaign->id]);
+    $this->getJson('/api/1.0/player-hub/entities/' . $creature->entity->id . '?entity_claim_id=' . $claim->id)
+        ->assertSuccessful()
+        ->assertJsonMissingPath('data.races')
+        ->assertJsonMissingPath('data.families')
+        ->assertJsonMissingPath('data.organisations');
 });
 
 it('does not expose private player hub entity details to a player', function () {
