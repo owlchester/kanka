@@ -10,7 +10,7 @@ return [
         'save'          => 'Speichern',
         'upgrade'       => 'Speicherplatz erweitern',
     ],
-    'breadcrumb'    => 'Gallerie',
+    'breadcrumb'    => 'Galerie',
     'bulk'          => [
         'destroy'   => [
             'confirm'   => 'Bist du sicher, dass du die ausgewählten Elemente dauerhaft entfernen möchtest? Diese Aktion kann nicht rückgängig gemacht werden.',
@@ -58,7 +58,7 @@ return [
         'of'    => 'von',
         'title' => 'Speicher',
     ],
-    'title'         => 'Kampagne :campaign Gallerie',
+    'title'         => 'Kampagne :campaign Galerie',
     'update'        => [
         'folder'    => 'Ordner geändert.',
         'success'   => 'Bild geändert',
