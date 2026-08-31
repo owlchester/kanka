@@ -21,6 +21,7 @@ use App\Models\Location;
 use App\Models\Organisation;
 use App\Models\PlayerSession;
 use App\Models\Race;
+use App\Models\Relation;
 use App\Services\Campaign\ModuleService;
 use App\Services\PlayerHub\PlayerHubContextService;
 
@@ -853,6 +854,91 @@ it('does not expose private player hub entity details to a player', function () 
         ->assertNotFound();
 });
 
+it('returns the claimed entity with relations and its latest visible observations', function () {
+    $this->asUser()->withCampaign()->withCharacters()->withRelations();
+    $campaign = Campaign::findOrFail(1);
+    enablePlayerHubFor($campaign);
+    $entity = Character::findOrFail(1)->entity;
+    $target = Character::findOrFail(2)->entity;
+    $claim = EntityClaim::create([
+        'entity_id' => $entity->id,
+        'user_id' => auth()->id(),
+        'claimed_at' => now(),
+    ]);
+    $session = new PlayerSession([
+        'entity_claim_id' => $claim->id,
+        'created_by' => auth()->id(),
+        'name' => 'Session Alpha',
+        'started_at' => now(),
+    ]);
+    $session->number = 1;
+    $session->save();
+
+    Relation::create([
+        'campaign_id' => $campaign->id,
+        'owner_id' => $entity->id,
+        'target_id' => $target->id,
+        'relation' => 'ally',
+    ]);
+    foreach (range(1, 31) as $number) {
+        InteractionLog::create([
+            'player_session_id' => $session->id,
+            'entity_id' => $entity->id,
+            'created_by' => auth()->id(),
+            'note' => "Observation {$number}",
+            'visibility' => 'shared',
+        ]);
+    }
+    InteractionLog::create([
+        'player_session_id' => $session->id,
+        'entity_id' => $entity->id,
+        'created_by' => auth()->id(),
+        'note' => 'Hidden observation',
+        'visibility' => 'gm',
+    ]);
+
+    $response = $this->getJson('/api/1.0/player-hub/me?claim_id=' . $claim->id);
+
+    $response
+        ->assertSuccessful()
+        ->assertJsonStructure([
+            'data' => [
+                'id',
+                'name',
+                'role',
+                'entry',
+                'image',
+                'locations',
+                'relations' => [['id', 'owner_id', 'target_id', 'relation']],
+                'observations' => [['id', 'note', 'session' => ['id', 'number', 'name']]],
+            ],
+            'sync',
+        ])
+        ->assertJsonPath('data.id', $entity->id)
+        ->assertJsonPath('data.relations.0.target_id', $target->id)
+        ->assertJsonPath('data.observations.0.note', 'Observation 31')
+        ->assertJsonPath('data.observations.0.session.name', 'Session Alpha')
+        ->assertJsonMissing(['note' => 'Hidden observation']);
+
+    expect($response->json('data.observations'))->toHaveCount(30);
+});
+
+it('does not expose player hub me data for another users claim', function () {
+    $this->asUser()->withCampaign()->withCharacters();
+    $campaign = Campaign::findOrFail(1);
+    enablePlayerHubFor($campaign);
+    $entity = Character::findOrFail(1)->entity;
+    $claim = EntityClaim::create([
+        'entity_id' => $entity->id,
+        'user_id' => auth()->id(),
+        'claimed_at' => now(),
+    ]);
+
+    $this->asPlayer()
+        ->getJson('/api/1.0/player-hub/me?claim_id=' . $claim->id)
+        ->assertNotFound();
+});
+
 it('returns conflict when an entity is no longer claimable', function () {
     $this->asUser()->withCampaign()->withCharacters();
     $campaign = Campaign::findOrFail(1);
@@ -867,6 +953,7 @@ it('returns conflict when an entity is no longer claimable', function () {
 it('requires authentication for player hub endpoints', function () {
     $this->getJson('/api/1.0/player-hub/setup')->assertUnauthorized();
     $this->getJson('/api/1.0/player-hub/search?entity_claim_id=1&q=test')->assertUnauthorized();
+    $this->getJson('/api/1.0/player-hub/me?claim_id=1')->assertUnauthorized();
     $this->getJson('/api/1.0/player-hub/entities/1?entity_claim_id=1')->assertUnauthorized();
     $this->getJson('/api/1.0/player-hub/player-sessions')->assertUnauthorized();
     $this->postJson('/api/1.0/player-hub/player-sessions')->assertUnauthorized();

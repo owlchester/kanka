@@ -46,7 +46,7 @@ class PlayerHubEntityDetailResource extends JsonResource
                     ? 'api.player-hub.entities.show'
                     : 'player-hub.entities.show', [
                         'entity' => $entity->id,
-                        'entity_claim_id' => $request->integer('entity_claim_id'),
+                        'entity_claim_id' => $request->integer('entity_claim_id') ?: $request->integer('claim_id'),
                     ]),
             ],
             'created_at' => $entity->created_at,

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\v1\PlayerHub\ClaimController;
 use App\Http\Controllers\Api\v1\PlayerHub\EntityController;
 use App\Http\Controllers\Api\v1\PlayerHub\InteractionLogController;
+use App\Http\Controllers\Api\v1\PlayerHub\MeController;
 use App\Http\Controllers\Api\v1\PlayerHub\PlayerSessionController;
 use App\Http\Controllers\Api\v1\PlayerHub\SearchController;
 use App\Http\Controllers\Api\v1\PlayerHub\SetupController;
@@ -11,6 +12,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('player-hub/setup', [SetupController::class, 'index']);
 Route::get('player-hub/search', [SearchController::class, 'index'])
     ->name('player-hub.search');
+Route::get('player-hub/me', [MeController::class, 'show'])
+    ->name('player-hub.me');
 Route::get('player-hub/entities/{entity}', [EntityController::class, 'show'])
     ->whereNumber('entity')
     ->name('player-hub.entities.show');
