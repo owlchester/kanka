@@ -37,82 +37,82 @@ if (!isset($entity)) {
 @section('scripts')
     @parent
     <script>
-        const entityData = {
-            name: `{{ $entity->name }}`,
-            is_private: {{ $entity->is_private ? 'true' : 'false' }},
+        const entityData = window.entityData = {
+            name: {{ \Illuminate\Support\Js::from($entity->name) }},
+            is_private: {{ \Illuminate\Support\Js::from((bool) $entity->is_private) }},
             type: {
-                id: {{ $entity->type_id }},
-                code: "{{ $entity->entityType->code }}",
-                custom: `{!! \App\Facades\Module::singular($entity->type_id) !!}`,
+                id: {{ \Illuminate\Support\Js::from($entity->type_id) }},
+                code: {{ \Illuminate\Support\Js::from($entity->entityType->code) }},
+                custom: {{ \Illuminate\Support\Js::from(\App\Facades\Module::singular($entity->type_id)) }},
             },
-            type_field: `{{ $entity->type }}`,
+            type_field: {{ \Illuminate\Support\Js::from($entity->type) }},
             attributes: {
 @foreach ($entity->allAttributes as $attr)
-"{{ $attr->exposedName() }}": `{!! $attr->value !!}`,
+                {{ \Illuminate\Support\Js::from($attr->exposedName()) }}: {{ \Illuminate\Support\Js::from($attr->value) }},
 @endforeach
             },
 @if ($entity->isCharacter() && $entity->child)
-            gender: `{{ $entity->child->sex }}`,
-            pronouns: `{{ $entity->child->pronouns }}`,
-            title: `{{ $entity->child->title }}`,
-            age: `{{ $entity->child->age }}`,
+            gender: {{ \Illuminate\Support\Js::from($entity->child->sex) }},
+            pronouns: {{ \Illuminate\Support\Js::from($entity->child->pronouns) }},
+            title: {{ \Illuminate\Support\Js::from($entity->child->title) }},
+            age: {{ \Illuminate\Support\Js::from($entity->child->age) }},
             traits: [@foreach ($entity->child->characterTraits as $trait)
             {
-                name: `{{ $trait->name }}`,
-                entry: `{{ $trait->entry }}`,
-                section_id: {{ $trait->section_id }},
-                section: '{{ $trait->section_id === 1 ? 'appearance' : 'personality' }}',
+                name: {{ \Illuminate\Support\Js::from($trait->name) }},
+                entry: {{ \Illuminate\Support\Js::from($trait->entry) }},
+                section_id: {{ \Illuminate\Support\Js::from($trait->section_id) }},
+                section: {{ \Illuminate\Support\Js::from($trait->section_id === 1 ? 'appearance' : 'personality') }},
             },
             @endforeach ],
             races: [@foreach ($entity->child->characterRaces as $race)
             {
-                id: {{ $race->race->id }},
-                name: `{{ $race->race->entity->name }}`,
-                url: `{{ route('entities.show', [$campaign, $race->race->entity]) }}`
+                id: {{ \Illuminate\Support\Js::from($race->race->id) }},
+                name: {{ \Illuminate\Support\Js::from($race->race->entity->name) }},
+                url: {{ \Illuminate\Support\Js::from(route('entities.show', [$campaign, $race->race->entity])) }}
             },
             @endforeach ],
             families: [@foreach ($entity->child->characterFamilies as $family)
             {
-                id: {{ $family->family->id }},
-                name: `{{ $family->family->entity->name }}`,
-                url: `{{ route('entities.show', [$campaign, $family->family->entity]) }}`
+                id: {{ \Illuminate\Support\Js::from($family->family->id) }},
+                name: {{ \Illuminate\Support\Js::from($family->family->entity->name) }},
+                url: {{ \Illuminate\Support\Js::from(route('entities.show', [$campaign, $family->family->entity])) }}
             },
             @endforeach ],
 @endif
 @if ($entity->status)
-            status: `{{ $entity->status->key }}`,
+            status: {{ \Illuminate\Support\Js::from($entity->status->key) }},
 @endif
 @if ($entity->hasChild() && $entity->child->location)
             location: {
-                id: {{ $entity->child->location->id }},
-                name: `{{ $entity->child->location->entity->name }}`,
-                url: `{{ route('entities.show', [$campaign, $entity->child->location->entity]) }}`
+                id: {{ \Illuminate\Support\Js::from($entity->child->location->id) }},
+                name: {{ \Illuminate\Support\Js::from($entity->child->location->entity->name) }},
+                url: {{ \Illuminate\Support\Js::from(route('entities.show', [$campaign, $entity->child->location->entity])) }}
             },
 @endif
 
             tags: [@foreach ($entity->tags as $tag)
             {
-                id: {{ $tag->id }},
-                name: `{{ $tag->entity->name }}`,
-                slug: `{{ $tag->slug }}`,
-                url: `{{ route('entities.show', [$campaign, $tag->entity]) }}`
+                id: {{ \Illuminate\Support\Js::from($tag->id) }},
+                name: {{ \Illuminate\Support\Js::from($tag->entity->name) }},
+                slug: {{ \Illuminate\Support\Js::from($tag->slug) }},
+                url: {{ \Illuminate\Support\Js::from(route('entities.show', [$campaign, $tag->entity])) }}
             },
             @endforeach ],
         }
-        const attributeApis = {
+        const attributeApis = window.attributeApis = {
             all: {
                 method: 'GET',
-                url: '{{ route('entities.attributes.live-api.index', [$campaign, $entity]) }}'
+                url: {{ \Illuminate\Support\Js::from(route('entities.attributes.live-api.index', [$campaign, $entity])) }}
             },
             create: {
                 method: 'POST',
-                url: '{{ route('entities.attributes.live-api.create', [$campaign, $entity]) }}'
+                url: {{ \Illuminate\Support\Js::from(route('entities.attributes.live-api.create', [$campaign, $entity])) }}
             },
         }
-        const abilityApis = {
+        const abilityApis = window.abilityApis = {
             all: {
                 method: 'GET',
-                url: '{{ route('entities.entity_abilities.api', [$campaign, $entity]) }}'
+                url: {{ \Illuminate\Support\Js::from(route('entities.entity_abilities.api', [$campaign, $entity])) }}
             },
         }
     </script>
