@@ -1,6 +1,6 @@
 {
-  "_Browser.vue_vue_type_script_setup_true_lang-Bv5c2Jiz.js": {
-    "file": "assets/Browser.vue_vue_type_script_setup_true_lang-Bv5c2Jiz.js",
+  "_Browser.vue_vue_type_script_setup_true_lang-BLrrr57P.js": {
+    "file": "assets/Browser.vue_vue_type_script_setup_true_lang-BLrrr57P.js",
     "name": "Browser.vue_vue_type_script_setup_true_lang",
     "imports": [
       "_vue.esm-bundler-GXfi61Lw.js"
@@ -264,7 +264,7 @@
     "isDynamicEntry": true
   },
   "resources/css/app.css": {
-    "file": "assets/app-ChFdTcEE.css",
+    "file": "assets/app-XhTVGUKF.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -273,7 +273,7 @@
     ]
   },
   "resources/css/auth.css": {
-    "file": "assets/auth-DjtfJ5Y5.css",
+    "file": "assets/auth-DbBjcM3n.css",
     "src": "resources/css/auth.css",
     "isEntry": true,
     "name": "auth",
@@ -300,7 +300,7 @@
     ]
   },
   "resources/css/front.css": {
-    "file": "assets/front-C5BqerEi.css",
+    "file": "assets/front-YSIDnxI-.css",
     "src": "resources/css/front.css",
     "isEntry": true,
     "name": "front",
@@ -407,7 +407,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-3SsyFCHx.js",
+    "file": "assets/app-DJpAuUxd.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -422,7 +422,7 @@
       "__plugin-vue_export-helper-DlAUqK2U.js",
       "_tippy.esm-CnBRltuW.js",
       "_v-click-outside.umd-Cl-Y_A58.js",
-      "_Browser.vue_vue_type_script_setup_true_lang-Bv5c2Jiz.js",
+      "_Browser.vue_vue_type_script_setup_true_lang-BLrrr57P.js",
       "_uploadRequest-BwrLJcjN.js",
       "_vue-tippy.esm-browser-Dvd-iQ8z.js",
       "__commonjsHelpers-Cpj98o6Y.js"
@@ -812,14 +812,14 @@
     "isEntry": true
   },
   "resources/js/whiteboards.js": {
-    "file": "assets/whiteboards-HNZwi9Rn.js",
+    "file": "assets/whiteboards-Dz2Ijzxq.js",
     "name": "whiteboards",
     "src": "resources/js/whiteboards.js",
     "isEntry": true,
     "imports": [
       "_vue.esm-bundler-GXfi61Lw.js",
       "_colours-Dh8441-n.js",
-      "_Browser.vue_vue_type_script_setup_true_lang-Bv5c2Jiz.js",
+      "_Browser.vue_vue_type_script_setup_true_lang-BLrrr57P.js",
       "_pusher-BcL8EwLT.js",
       "_vue-tippy.esm-browser-Dvd-iQ8z.js",
       "__commonjsHelpers-Cpj98o6Y.js"
