@@ -302,7 +302,7 @@ class CampaignDashboardWidget extends Model
             $base = $base->orderBy($field, $order);
         }
         $relations = [
-            'image:campaign_id,id,ext,focus_x,focus_y',
+            'image:campaign_id,id,ext,focus_x,focus_y,version',
             'entityType:id,code,is_special',
             'mentions',
             'mentions.target',
