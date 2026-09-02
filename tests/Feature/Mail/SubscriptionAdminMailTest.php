@@ -2,13 +2,16 @@
 
 use App\Enums\PricingPeriod;
 use App\Enums\UserAction;
+use App\Jobs\Emails\SubscriptionCreatedEmailJob;
 use App\Mail\Subscription\Admin\CancelledSubscriptionMail;
 use App\Mail\Subscription\Admin\NewSubscriptionMail;
 use App\Models\SubscriptionCancellation;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Schema;
+use Laravel\Cashier\Subscription;
 
 beforeEach(function (): void {
     DB::purge('logs');
@@ -42,6 +45,7 @@ beforeEach(function (): void {
         $table->unsignedInteger('duration');
         $table->timestamps();
     });
+
 });
 
 it('includes the latest country with a value in the cancellation email', function (): void {
@@ -90,8 +94,60 @@ it('labels a subscription as renewed after a previous cancellation', function ()
         'tier' => 'Owlbear',
         'duration' => 30,
     ]);
+    Subscription::create([
+        'user_id' => $user->id,
+        'type' => 'kanka',
+        'stripe_id' => 'sub_manual_cancellation_subject',
+        'stripe_status' => 'active',
+        'stripe_price' => 'price_owlbear',
+        'quantity' => 1,
+        'ends_at' => now()->addMonth(),
+    ]);
 
     $subject = (new NewSubscriptionMail($user, PricingPeriod::Monthly))->envelope()->subject;
 
     expect($subject)->toBe('Sub: Renewed Monthly Owlbear');
+});
+
+it('does not send the renewed email after an automatic cancellation', function (): void {
+    Mail::fake();
+    $user = User::factory()->create();
+
+    Subscription::create([
+        'user_id' => $user->id,
+        'type' => 'kanka',
+        'stripe_id' => 'sub_automatic_cancellation',
+        'stripe_status' => 'active',
+        'stripe_price' => 'price_owlbear',
+        'quantity' => 1,
+        'ends_at' => now()->addMonth(),
+    ]);
+
+    (new SubscriptionCreatedEmailJob($user, PricingPeriod::Monthly))->handle();
+
+    Mail::assertNothingSent();
+});
+
+it('sends the renewed email after a manual cancellation', function (): void {
+    Mail::fake();
+    $user = User::factory()->create();
+    SubscriptionCancellation::create([
+        'user_id' => $user->id,
+        'reason' => 'price',
+        'tier' => 'Owlbear',
+        'duration' => 30,
+    ]);
+    Subscription::create([
+        'user_id' => $user->id,
+        'type' => 'kanka',
+        'stripe_id' => 'sub_manual_cancellation',
+        'stripe_status' => 'active',
+        'stripe_price' => 'price_owlbear',
+        'quantity' => 1,
+        'ends_at' => now()->addMonth(),
+    ]);
+
+    (new SubscriptionCreatedEmailJob($user, PricingPeriod::Monthly))->handle();
+
+    Mail::assertSent(NewSubscriptionMail::class);
 });
