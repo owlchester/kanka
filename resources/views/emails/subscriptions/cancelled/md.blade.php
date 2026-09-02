@@ -3,6 +3,8 @@
 
 [{{ $user->name }}](https://admin.kanka.io/users/{{ $user->id }}) cancelled.
 
+- **User country:** {{ $country ?? 'N/A' }}
+
 **Reason:**
 
 {{ __('settings.subscription.cancel.options.' . ($cancellation->reason === 'custom' ? 'other' : $cancellation->reason)) }}

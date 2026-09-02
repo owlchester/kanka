@@ -4,6 +4,7 @@ namespace App\Mail\Subscription\Admin;
 
 use App\Models\SubscriptionCancellation;
 use App\Models\User;
+use App\Models\UserLog;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Address;
@@ -43,9 +44,12 @@ class CancelledSubscriptionMail extends Mailable
      */
     public function content(): Content
     {
+        /** @var ?UserLog $log */
+        $log = $this->user->logs()->whereNotNull('country')->latest()->first();
+
         return new Content(
             markdown: 'emails.subscriptions.cancelled.md',
-            with: ['cancellation' => $this->cancellation, 'user' => $this->user],
+            with: ['cancellation' => $this->cancellation, 'user' => $this->user, 'country' => $log?->country],
         );
     }
 }
