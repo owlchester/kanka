@@ -1,9 +1,10 @@
 <?php
 
+use App\Enums\CampaignVisibility;
+use App\Http\Middleware\ReplicationSwitcher;
 use App\Models\Entity;
 use App\Models\EntityType;
 use App\Models\Note;
-use App\Enums\CampaignVisibility;
 use Illuminate\Support\Facades\DB;
 
 it('pre-fills the privacy toggle as private when editing a private custom module entity', function () {
@@ -41,7 +42,8 @@ it('forbids unauthenticated entity saves before resolving validation rules', fun
 
     $entity = Note::firstOrFail()->entity;
     auth()->guard('api')->forgetUser();
-    auth()->shouldUse('web');
+
+    $this->withoutMiddleware(ReplicationSwitcher::class);
 
     $this->patch(route('entities.update', [1, $entity]), [
         'name' => 'Updated Note',
