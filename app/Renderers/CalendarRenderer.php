@@ -622,14 +622,14 @@ class CalendarRenderer
         $this->setMonth((int) $segments[1])
             ->setYear($segments[0]);
 
-        if ($this->request->filled('month')) {
-            $this->setMonth((int) $this->request->input('month'));
+        if (($month = $this->requestInteger('month')) !== null) {
+            $this->setMonth($month);
         }
-        if ($this->request->filled('year')) {
-            $this->setYear((int) $this->request->input('year'));
+        if (($year = $this->requestInteger('year')) !== null) {
+            $this->setYear($year);
         }
 
-        if (empty($this->getMonth())) {
+        if ($this->getMonth() < 1) {
             $this->setMonth(1);
         }
 
@@ -939,6 +939,21 @@ class CalendarRenderer
         $this->month = $month;
 
         return $this;
+    }
+
+    protected function requestInteger(string $key): ?int
+    {
+        $value = $this->request->input($key);
+        if (! is_int($value) && ! is_string($value)) {
+            return null;
+        }
+        if (! preg_match('/^-?\d+$/', (string) $value)) {
+            return null;
+        }
+
+        $integer = filter_var($value, FILTER_VALIDATE_INT);
+
+        return is_int($integer) ? $integer : null;
     }
 
     /**

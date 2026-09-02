@@ -157,6 +157,23 @@ it('links the calendar overview today button to the calendar date', function () 
         ->assertSee('href="' . e($todayUrl) . '"', false);
 });
 
+it('ignores malformed calendar navigation parameters', function (string $property) {
+    $this->asUser()->withCampaign();
+
+    $calendar = Calendar::factory()->create([
+        'campaign_id' => 1,
+        'date' => '1-1-1',
+    ]);
+    $payload = "-5' UNION ALL SELECT NULL,'hizxaulzkpzgiclivxhovahfhvgfrcwu',NULL,NULL-- th22t0";
+    $url = route('entities.show', [$calendar->campaign, $calendar->entity]) . '?' . http_build_query([
+        $property => $payload,
+    ]);
+
+    $this->get($url)
+        ->assertSuccessful()
+        ->assertSee('data-date="1-1-1"', false);
+})->with(['month', 'year']);
+
 it('renders years before the first leap year consistently', function (string $layout) {
     $this->asUser()->withCampaign();
 
