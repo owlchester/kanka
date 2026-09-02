@@ -43,8 +43,6 @@ class StoreFamily extends FormRequest
             'type' => 'nullable|string|max:191',
             'locations' => ['nullable', 'array', new EntityField(config('entities.ids.location'), Location::class)],
             'parent_id' => 'nullable|integer|exists:entities,id',
-            'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
-            'image_url' => 'nullable|url|active_url',
             'entity_image_uuid' => 'nullable|exists:images,id',
             'entity_header_uuid' => 'nullable|exists:images,id',
             'template_id' => 'nullable',

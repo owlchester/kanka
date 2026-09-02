@@ -42,8 +42,6 @@ class StoreEvent extends FormRequest
             'parent_id' => 'nullable|integer|exists:entities,id',
             'date' => 'nullable|max:191',
             'locations' => ['nullable', 'array', new EntityField(config('entities.ids.location'), Location::class)],
-            'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
-            'image_url' => 'nullable|url|active_url',
             'entity_image_uuid' => 'nullable|exists:images,id',
             'entity_header_uuid' => 'nullable|exists:images,id',
             'template_id' => 'nullable',

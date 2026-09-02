@@ -42,8 +42,6 @@ class StoreQuest extends FormRequest
             'entry' => 'nullable|string',
             'type' => 'nullable|string|max:191',
             'status_id' => ['nullable', 'exists:category_statuses,id'],
-            'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
-            'image_url' => 'nullable|url|active_url',
             'entity_image_uuid' => 'nullable|exists:images,id',
             'entity_header_uuid' => 'nullable|exists:images,id',
             'parent_id' => 'nullable|integer|exists:entities,id',
