@@ -4,6 +4,7 @@ namespace App\Renderers\CharacterSheets;
 
 use Exception;
 use Illuminate\Support\Str;
+use Illuminate\View\Factory;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
@@ -68,6 +69,7 @@ class Blade extends Renderer
         $html = \Illuminate\Support\Facades\Blade::compileString($html);
 
         [$data, $ids, $checkboxes] = $this->prepareEntityData();
+        $data['__env'] = app(Factory::class);
 
         $html = preg_replace_callback('`\@liveAttribute\(\'(.*?[^)])\'\)`i', function ($matches) use ($data, $ids, $checkboxes) {
             $attr = mb_trim((string) $matches[1]);
