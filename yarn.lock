@@ -1488,10 +1488,10 @@
     yoctocolors-cjs "^2.1.3"
     zod "^3.25.76"
 
-"@tiptap/core@^3.20.0":
-  version "3.20.0"
-  resolved "https://registry.yarnpkg.com/@tiptap/core/-/core-3.20.0.tgz#dac72894d83829f2fbbabee2e90a748d7c1479ee"
-  integrity sha512-aC9aROgia/SpJqhsXFiX9TsligL8d+oeoI8W3u00WI45s0VfsqjgeKQLDLF7Tu7hC+7F02teC84SAHuup003VQ==
+"@tiptap/core@^3.20.0", "@tiptap/core@^3.30.4":
+  version "3.30.4"
+  resolved "https://registry.yarnpkg.com/@tiptap/core/-/core-3.30.4.tgz#9e0847c5f4dd53750ae3accc6b83223e37f693b3"
+  integrity sha512-V9yKuUfV8qC9WBrnVxkFWmYLBomc3d1CwXoFSjED5DRu5q2oyxv07F+jOJSRogJAY+feHjuxvjhixwxeHm2DXQ==
 
 "@tiptap/extension-blockquote@^3.20.0":
   version "3.20.0"
