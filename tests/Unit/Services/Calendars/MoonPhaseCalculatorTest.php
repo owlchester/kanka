@@ -32,6 +32,21 @@ it('returns the latest phase and its age for every date', function () {
         ->and($exact->isExact())->toBeTrue();
 });
 
+it('uses phases occurring during the current day as the current state', function () {
+    $calculator = moonCalculator([
+        ['id' => 1, 'name' => 'Luna', 'fullmoon' => 10, 'offset' => 0],
+    ]);
+    $date = new CalendarDate(0, 1, 2);
+
+    $phase = $calculator->phasesBetween($date, $date)[0];
+    $state = $calculator->statesAt($date)[0];
+
+    expect($phase->phase)->toBe('waning_gibbous')
+        ->and($state->phase)->toBe($phase->phase)
+        ->and($state->daysSincePhase)->toBe(0)
+        ->and($state->isExact())->toBeTrue();
+});
+
 it('calculates all eight phases in lunar order', function () {
     $phases = moonCalculator()->phasesBetween(
         new CalendarDate(0, 1, 1),
@@ -88,4 +103,14 @@ it('keeps multiple moons independent', function () {
     expect($states)->toHaveCount(2)
         ->and($states[0]->moonId)->toBe(1)
         ->and($states[1]->moonId)->toBe(2);
+});
+
+it('calculates phases for ordinals whose scaled values exceed integer limits', function () {
+    $date = new CalendarDate(3_000_000, 1, 1);
+
+    $phases = moonCalculator()->phasesBetween($date, $date);
+
+    expect($phases)->toHaveCount(1)
+        ->and($phases[0]->date)->toEqual($date)
+        ->and($phases[0]->phase)->toBe('full');
 });

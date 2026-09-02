@@ -46,8 +46,6 @@ class StoreItem extends FormRequest
             'creators' => 'nullable|array',
             'creators.*' => 'integer|exists:entities,id',
             'parent_id' => 'nullable|integer|exists:entities,id',
-            'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
-            'image_url' => 'nullable|url|active_url',
             'entity_image_uuid' => 'nullable|exists:images,id',
             'entity_header_uuid' => 'nullable|exists:images,id',
             'template_id' => 'nullable',

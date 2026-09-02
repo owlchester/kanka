@@ -62,6 +62,7 @@ class MapLayer extends Model
 
     public $casts = [
         'visibility_id' => Visibility::class,
+        'type_id' => 'integer',
     ];
 
     protected array $sanitizable = [

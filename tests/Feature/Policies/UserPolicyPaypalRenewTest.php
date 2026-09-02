@@ -1,12 +1,13 @@
 <?php
 
-use App\Models\User;
-use App\Policies\UserPolicy;
+use Illuminate\Support\Facades\Route;
 
-it('blocks paypal renewal regardless of subscription state', function () {
-    $user = User::factory()->create();
-
-    $policy = new UserPolicy;
-
-    expect($policy->renewPaypalSubscription($user))->toBeFalse();
+it('does not expose the legacy PayPal routes', function () {
+    expect(Route::has('paypal.process-transaction'))->toBeFalse()
+        ->and(Route::has('paypal.transaction-success'))->toBeFalse()
+        ->and(Route::has('paypal.cancel-transaction'))->toBeFalse()
+        ->and(Route::has('paypal.renew'))->toBeFalse()
+        ->and(Route::has('paypal.renew-process'))->toBeFalse()
+        ->and(Route::has('paypal.renew-success'))->toBeFalse()
+        ->and(Route::has('paypal.renew-cancel'))->toBeFalse();
 });

@@ -132,6 +132,10 @@ class Blade extends Renderer
             ';
 
         foreach ($data as $key => $val) {
+            if (preg_match('/^[a-zA-Z_][a-zA-Z0-9_]*$/D', (string) $key) !== 1) {
+                continue;
+            }
+
             if (! is_array($val) && ! is_object($val)) {
                 $html .= '<dtk>$' . $key . '</dtk> <code>' . (empty($val) ? null : e($val)) . '</code><br />';
             } elseif (is_array($val)) {

@@ -49,14 +49,18 @@ it('redirects to subscription finish on successful setup intent', function () {
     $subscriptionServiceMock->shouldReceive('coupon')->andReturnSelf();
     $subscriptionServiceMock->shouldReceive('request')->andReturnSelf();
     $subscriptionServiceMock->shouldReceive('change')->andReturnSelf();
+    $subscriptionServiceMock->shouldReceive('downgrading')->andReturnFalse();
+    $subscriptionServiceMock->shouldReceive('webhook')->andReturnSelf();
     $subscriptionServiceMock->shouldReceive('finish')->andReturnSelf();
     $subscriptionServiceMock->shouldReceive('subscriptionValue')->andReturn(500);
     $subscriptionServiceMock->shouldReceive('tierPrice')->andReturn($tierPriceMock);
 
-    $this->actingAs($user)
+    $response = $this->actingAs($user)
         ->get(route('settings.subscription.payment-return', [
             'tier' => $tier,
             'setup_intent' => 'seti_test123',
-        ]))
+        ]));
+
+    $response
         ->assertRedirect(route('settings.subscription.finish'));
 });

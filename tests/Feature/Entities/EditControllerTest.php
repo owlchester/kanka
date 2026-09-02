@@ -1,7 +1,10 @@
 <?php
 
+use App\Enums\CampaignVisibility;
+use App\Http\Middleware\ReplicationSwitcher;
 use App\Models\Entity;
 use App\Models\EntityType;
+use App\Models\Note;
 use Illuminate\Support\Facades\DB;
 
 it('pre-fills the privacy toggle as private when editing a private custom module entity', function () {
@@ -30,6 +33,23 @@ it('pre-fills the privacy toggle as private when editing a private custom module
     $this->get(route('entities.edit', [1, $entity]))
         ->assertSuccessful()
         ->assertSee('private: true', false);
+});
+
+it('forbids unauthenticated entity saves before resolving validation rules', function () {
+    $this->asUser()->withCampaign([
+        'visibility_id' => CampaignVisibility::public->value,
+    ])->withNotes();
+
+    $entity = Note::firstOrFail()->entity;
+    auth()->guard('api')->forgetUser();
+
+    $this->withoutMiddleware(ReplicationSwitcher::class);
+
+    $this->patch(route('entities.update', [1, $entity]), [
+        'name' => 'Updated Note',
+    ])->assertForbidden();
+
+    expect($entity->fresh()->name)->not->toBe('Updated Note');
 });
 
 it('preserves an entity last modified date during a stealth edit', function () {

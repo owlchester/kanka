@@ -8,7 +8,7 @@
                 <span class="sr-only">Close</span>
             </button>
         </header>
-        <article class="max-w-4xl p-4 flex flex-col gap-4 md:min-w-2xl">
+        <article ref="galleryContent" class="max-w-4xl p-4 flex flex-col gap-4 md:min-w-2xl" @scroll.passive="handleScroll">
             <div class="flex gap-2 justify-between" v-if="!loading && !error">
                 <div class="grow">
                     <input type="text" class="w-full" :placeholder="trans.browse.search.placeholder" @input="handleInput" />
@@ -71,11 +71,17 @@
 
                 <div :class="gridClass()" v-if="!error && imageItems.length">
                     <div v-for="image in imageItems" class="cursor-pointer shadow-sm rounded-lg hover:shadow-lg overflow-hidden relative group" @click="selectImage(image)">
-                        <div :class="previewSize('cover-background')" :style="{'backgroundImage': 'url(\'' + image.thumbnail + '\')'}" />
+                        <img :class="previewSize('object-cover')" :src="image.thumbnail" :alt="image.name" loading="lazy" decoding="async" />
                         <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent text-white px-2 py-1 transition-opacity opacity-100 md:opacity-0 md:group-hover:opacity-100" :title="image.name">
                             <div class="truncate text-sm">{{ image.name }}</div>
                             <div class="truncate text-xs opacity-80" v-if="mode === 'large'">{{ image.ext }} · {{ image.size }}</div>
                         </div>
+                    </div>
+                </div>
+
+                <div ref="loadMoreTrigger" class="h-4" v-if="!error && nextPage">
+                    <div v-if="loadingMore" class="text-center p-2">
+                        <i class="fa-solid fa-spinner fa-spin" aria-label="Loading more images"></i>
                     </div>
                 </div>
             </template>
@@ -84,7 +90,7 @@
 </template>
 
 <script setup lang="ts">
-import {ref, computed, onMounted, watch, onBeforeMount} from 'vue'
+import {ref, computed, onMounted, watch, onBeforeMount, onBeforeUnmount} from 'vue'
 
 const props = defineProps<{
     api: string,
@@ -115,12 +121,19 @@ const term = ref('')
 const lastTerm = ref('')
 const typingTimeout = ref(null)
 const error = ref(null)
+const nextPage = ref(null)
+const loadingMore = ref(false)
+const galleryContent = ref<HTMLElement | null>(null)
+const loadMoreTrigger = ref<HTMLElement | null>(null)
+let observer: IntersectionObserver | null = null
 const debounceDelay = 300
 const savedMode = localStorage.getItem('gallery-mode')
 const mode = ref(savedMode === 'small' || savedMode === 'large' ? savedMode : 'large')
 
 const open = () => {
     loading.value = true
+    error.value = null
+    nextPage.value = null
     galleryDialog.value.showModal()
     galleryDialog.value.addEventListener('click', function (event) {
         let rect = this.getBoundingClientRect()
@@ -134,6 +147,7 @@ const open = () => {
     axios.get(props.api)
         .then(res => {
             images.value = res.data.images
+            nextPage.value = res.data.next ?? null
             loading.value = false
         })
         .catch(err => {
@@ -172,6 +186,7 @@ const selectImage = (image) => {
         loading.value = true
         axios.get(image.url).then(res => {
             images.value = res.data.images
+            nextPage.value = res.data.next ?? null
             loading.value = false
         })
         return;
@@ -208,6 +223,7 @@ const search = () => {
 
     axios.get(props.api + '?term=' + lastTerm.value).then(res => {
         images.value = res.data.images
+        nextPage.value = res.data.next ?? null
         searching.value = false
     }).catch(() => {
         searching.value = false
@@ -218,4 +234,62 @@ const toggle = (layout) => {
     mode.value = layout
     localStorage.setItem('gallery-mode', layout)
 }
+
+const openNextPage = () => {
+    if (!nextPage.value || loadingMore.value || loading.value || searching.value) {
+        return
+    }
+
+    loadingMore.value = true
+    axios.get(nextPage.value)
+        .then(res => {
+            images.value.push(...res.data.images)
+            nextPage.value = res.data.next ?? null
+        })
+        .catch(() => {
+            // Keep the images already loaded if fetching another page fails.
+        })
+        .finally(() => {
+            loadingMore.value = false
+        })
+}
+
+const handleScroll = () => {
+    const content = galleryContent.value
+    if (!content || content.scrollTop + content.clientHeight < content.scrollHeight - 100) {
+        return
+    }
+
+    openNextPage()
+}
+
+onMounted(() => {
+    observer = new IntersectionObserver(entries => {
+        if (entries.some(entry => entry.isIntersecting)) {
+            openNextPage()
+        }
+    }, {
+        root: galleryContent.value,
+    })
+
+    if (loadMoreTrigger.value) {
+        observer.observe(loadMoreTrigger.value)
+    }
+})
+
+watch(loadMoreTrigger, (trigger, previousTrigger) => {
+    if (!observer) {
+        return
+    }
+    if (previousTrigger) {
+        observer.unobserve(previousTrigger)
+    }
+    if (trigger) {
+        observer.observe(trigger)
+    }
+})
+
+onBeforeUnmount(() => {
+    observer?.disconnect()
+})
 </script>

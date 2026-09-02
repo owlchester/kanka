@@ -203,8 +203,9 @@ class ExploreResource extends JsonResource
             if ($status) {
                 $status->setRelation('entityType', $entity->entityType);
             }
-            $data['status'] = ($status && $status->icon) ? [
-                'icon' => $status->icon(),
+            $data['status'] = $status ? [
+                'key' => $status->key,
+                'icon' => $status->icon ? $status->icon() : null,
                 'tooltip' => $status->name(),
             ] : null;
         }

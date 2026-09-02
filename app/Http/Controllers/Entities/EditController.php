@@ -66,6 +66,8 @@ class EditController extends Controller
 
     public function save(Request $request, Campaign $campaign, Entity $entity)
     {
+        $this->campaign($campaign)->authorize('update', $entity);
+
         // We need to validate the request
         $validationClass = $entity->entityType->isStandard()
             ? 'App\Http\Requests\Store' . Str::studly($entity->entityType->code)

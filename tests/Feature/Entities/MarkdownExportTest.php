@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Item;
+use App\Models\ItemCreator;
 use App\Models\Location;
 use App\Models\Organisation;
 use App\Models\Tag;
@@ -135,4 +137,24 @@ it('includes tag colour and icon when exporting a tag', function () {
     expect($markdown)
         ->toContain('**' . __('crud.fields.colour') . ':** #123456')
         ->toContain('**' . __('tags.fields.icon') . ':** fa-solid fa-star');
+});
+
+it('skips deleted item creators in markdown exports', function () {
+    $this->asUser()->withCampaign();
+
+    $item = Item::factory()->create(['campaign_id' => 1]);
+    $creator = Organisation::factory()->create(['campaign_id' => 1]);
+    ItemCreator::create([
+        'item_id' => $item->id,
+        'creator_id' => $creator->entity->id,
+    ]);
+    $creator->entity->delete();
+
+    $markdown = app(MarkdownExportService::class)
+        ->campaign($item->campaign)
+        ->entity($item->entity)
+        ->single()
+        ->markdown();
+
+    expect($markdown)->not->toContain(__('items.fields.creators'));
 });

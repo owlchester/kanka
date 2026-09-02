@@ -136,6 +136,12 @@ class SubscriptionService
      */
     public function change(): self
     {
+        if ($this->user->hasPayPal()) {
+            throw (new TranslatableException('subscription.errors.legacy_paypal'))->setOptions([
+                'date' => $this->user->subscription('kanka')->ends_at->isoFormat('MMMM D, Y'),
+            ]);
+        }
+
         // Update the user's payment plan
         $paymentMethodID = Arr::get($this->request, 'payment_id');
         $this->user->addPaymentMethod($paymentMethodID);
@@ -375,19 +381,6 @@ class SubscriptionService
     protected function toOwlbear(): bool
     {
         return $this->tier->name == Pledge::OWLBEAR;
-    }
-
-    /**
-     * Determine if the user is only limited to paypal subscriptions
-     */
-    public function isLimited(): bool
-    {
-        $countries = ['EG'];
-
-        return $this->user->logs()
-            ->where('type_id', UserAction::login)
-            ->whereIn('country', $countries)
-            ->count() > 0;
     }
 
     protected function isYearly(): bool

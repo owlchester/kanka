@@ -1,4 +1,8 @@
-@if (!empty($entity->child->price) || !empty($entity->child->size) || !empty($entity->child->weight) || $entity->child->itemCreators->isNotEmpty())
+@php
+    $creators = $entity->child->itemCreators->filter(fn ($itemCreator) => $itemCreator->creator !== null);
+@endphp
+
+@if (!empty($entity->child->price) || !empty($entity->child->size) || !empty($entity->child->weight) || $creators->isNotEmpty())
 ## {!! __('crud.tabs.profile') !!}
 @endif
 
@@ -11,7 +15,7 @@
 @if (!empty($entity->child->weight))
 - **{!! __('items.fields.weight') !!}** {!! $entity->child->weight !!}
 @endif
-@if ($entity->child->itemCreators->isNotEmpty())
-- **{!! __('items.fields.creators') !!}** @foreach ($entity->child->itemCreators as $itemCreator){!! $itemCreator->creator->name !!}@if (!$loop->last), @endif @endforeach
+@if ($creators->isNotEmpty())
+- **{!! __('items.fields.creators') !!}** @foreach ($creators as $itemCreator){!! $itemCreator->creator->name !!}@if (!$loop->last), @endif @endforeach
 
 @endif

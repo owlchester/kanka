@@ -35,7 +35,7 @@ class BrowseService
 
         $canBrowse = $this->user->can('galleryBrowse', $this->campaign);
 
-        if (! empty($this->folder)) {
+        if (! empty($this->folder) && request()->integer('page', 1) === 1) {
             $image = Image::where('is_folder', true)->where('id', $this->folder)->firstOrFail();
             $results['images'][] = [
                 'name' => __('crud.actions.back'),
@@ -52,9 +52,8 @@ class BrowseService
             ->withCount(['images as images_count' => fn ($q) => $q->where('is_folder', false)->where('is_default', false)])
             ->orderBy('is_folder', 'desc')
             ->orderBy('updated_at', 'desc')
-            ->offset(0)
-            ->take(50)
-            ->get();
+            ->paginate(40);
+        $results['next'] = $images->nextPageUrl();
         /** @var Image $image */
         foreach ($images as $image) {
             $results['images'][] = [

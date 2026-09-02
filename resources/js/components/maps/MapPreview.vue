@@ -14,7 +14,9 @@
         embedded
         :map="data.map"
         :layers="data.layers"
-        :show-layer-control="false"
+        :show-layer-control="true"
+        :base-layer-name="data.i18n.layers_base"
+        :groups-label="data.i18n.groups_label"
         :groups="data.groups"
         :pins="data.pins"
         :legacy-pins="data.map.settings?.legacy_pins"

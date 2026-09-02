@@ -4,6 +4,7 @@ namespace App\Jobs\Emails;
 
 use App\Enums\PricingPeriod;
 use App\Mail\Subscription\Admin\NewSubscriptionMail;
+use App\Models\SubscriptionCancellation;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -11,6 +12,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
+use Laravel\Cashier\Subscription;
 
 class SubscriptionCreatedEmailJob implements ShouldQueue
 {
@@ -50,6 +52,13 @@ class SubscriptionCreatedEmailJob implements ShouldQueue
             return;
         }
         if ($this->new) {
+            $hasCancelledSubscription = Subscription::where('user_id', $user->id)->canceled()->exists();
+            $hasManualCancellation = SubscriptionCancellation::where('user_id', $user->id)->exists();
+
+            if ($hasCancelledSubscription && ! $hasManualCancellation) {
+                return;
+            }
+
             // Send an email to the admins
             Mail::to('hello@kanka.io')
                 ->send(

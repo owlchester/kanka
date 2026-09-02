@@ -95,12 +95,13 @@ final class MoonPhaseCalculator
         $denominator = $phaseCount * self::SCALE;
         $offset = $this->decimalTicks($moon['offset'] ?? 0);
         $step = $cycle * $phaseCount;
+        $endOfDay = (($ordinal + 1) * $denominator) - 1;
         $latest = null;
         $latestBoundary = null;
 
         foreach (MoonPhase::PHASES as $phase => $phaseIndex) {
             $phaseBase = $offset * $phaseCount + ($phaseIndex * $cycle);
-            $cycleNumber = self::floorDiv($ordinal * $denominator - $phaseBase, $step);
+            $cycleNumber = self::floorDiv($endOfDay - $phaseBase, $step);
             $boundary = $phaseBase + ($cycleNumber * $step);
             $phaseOrdinal = self::floorDiv($boundary, $denominator);
             if ($phaseOrdinal > $ordinal) {
@@ -126,7 +127,7 @@ final class MoonPhaseCalculator
         $exact = [];
         foreach (MoonPhase::PHASES as $phase => $phaseIndex) {
             $phaseBase = $offset * $phaseCount + ($phaseIndex * $cycle);
-            $cycleNumber = self::floorDiv($ordinal * $denominator - $phaseBase, $step);
+            $cycleNumber = self::floorDiv($endOfDay - $phaseBase, $step);
             $phaseOrdinal = self::floorDiv($phaseBase + ($cycleNumber * $step), $denominator);
             if ($phaseOrdinal === $latest->ordinal) {
                 $exact[] = $phase;
@@ -207,8 +208,12 @@ final class MoonPhaseCalculator
         };
     }
 
-    private static function floorDiv(int $numerator, int $denominator): int
+    private static function floorDiv(int|float $numerator, int $denominator): int
     {
+        if (is_float($numerator)) {
+            return (int) floor($numerator / $denominator);
+        }
+
         if ($numerator >= 0) {
             return intdiv($numerator, $denominator);
         }
@@ -216,8 +221,12 @@ final class MoonPhaseCalculator
         return -intdiv(-$numerator + $denominator - 1, $denominator);
     }
 
-    private static function ceilDiv(int $numerator, int $denominator): int
+    private static function ceilDiv(int|float $numerator, int $denominator): int
     {
+        if (is_float($numerator)) {
+            return (int) ceil($numerator / $denominator);
+        }
+
         return -self::floorDiv(-$numerator, $denominator);
     }
 }

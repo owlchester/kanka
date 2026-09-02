@@ -157,6 +157,57 @@ it('links the calendar overview today button to the calendar date', function () 
         ->assertSee('href="' . e($todayUrl) . '"', false);
 });
 
+it('ignores malformed calendar navigation parameters', function (string $property) {
+    $this->asUser()->withCampaign();
+
+    $calendar = Calendar::factory()->create([
+        'campaign_id' => 1,
+        'date' => '1-1-1',
+    ]);
+    $payload = "-5' UNION ALL SELECT NULL,'hizxaulzkpzgiclivxhovahfhvgfrcwu',NULL,NULL-- th22t0";
+    $url = route('entities.show', [$calendar->campaign, $calendar->entity]) . '?' . http_build_query([
+        $property => $payload,
+    ]);
+
+    $this->get($url)
+        ->assertSuccessful()
+        ->assertSee('data-date="1-1-1"', false);
+})->with(['month', 'year']);
+
+it('renders years before the first leap year consistently', function (string $layout) {
+    $this->asUser()->withCampaign();
+
+    $calendar = Calendar::factory()->create([
+        'campaign_id' => 1,
+        'date' => '1-1-1',
+        'months' => json_encode([
+            ['name' => 'First', 'length' => 30, 'type' => 'standard', 'alias' => ''],
+        ]),
+        'seasons' => '[]',
+        'leap_year_amount' => 1,
+        'leap_year_month' => 1,
+        'leap_year_offset' => 4,
+        'leap_year_start' => 5,
+    ]);
+
+    $route = fn (int $year): string => route('entities.show', [
+        $calendar->campaign,
+        'entity' => $calendar->entity,
+        'layout' => $layout,
+        'month' => 1,
+        'year' => $year,
+    ]);
+
+    $this->get($route(1))
+        ->assertSuccessful()
+        ->assertSee('data-date="1-1-30"', false)
+        ->assertDontSee('data-date="1-1-31"', false);
+
+    $this->get($route(5))
+        ->assertSuccessful()
+        ->assertSee('data-date="5-1-31"', false);
+})->with(['month', 'year']);
+
 it('renders a recurring intermediate moon phase reminder on its phase date', function () {
     $this->asUser()->withCampaign();
     $calendar = Calendar::factory()->create([

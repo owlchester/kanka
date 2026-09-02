@@ -65,6 +65,7 @@ it('returns the full explore payload for a simple map', function () {
     expect($response->json('layers'))->toHaveCount(3);
     expect(collect($response->json('layers'))->pluck('name')->all())
         ->toContain('Hidden overlay', 'Winter', 'Summer');
+    expect(collect($response->json('layers'))->firstWhere('name', 'Winter')['type_id'])->toBe(2);
 
     $pins = collect($response->json('pins'));
     $waterdeep = $pins->firstWhere('name', 'Waterdeep');

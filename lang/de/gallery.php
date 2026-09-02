@@ -13,7 +13,7 @@ return [
         'search'        => [
             'placeholder'   => 'Suche nach einem Bild in der Galerie',
         ],
-        'title'         => 'Bildergallerie',
+        'title'         => 'Bildergalerie',
         'unauthorized'  => 'Keine deiner Rollen hat die Berechtigung „Galerie durchsuchen“.',
     ],
     'cta'       => [

@@ -35,3 +35,22 @@ it('returns image_count for folder entries', function () {
         ->assertJsonPath('images.0.folder', true)
         ->assertJsonPath('images.0.image_count', 3);
 });
+
+it('returns the next page when browse results exceed the page size', function () {
+    $user = User::factory()->create();
+    $this->actingAs($user)->withCampaign();
+
+    Image::factory()->count(51)->create([
+        'campaign_id' => 1,
+        'is_folder' => false,
+        'is_default' => false,
+    ]);
+
+    $this->getJson('/w/test-campaign/gallery/browse')
+        ->assertOk()
+        ->assertJsonPath('next', fn ($next) => is_string($next));
+
+    $this->getJson('/w/test-campaign/gallery/browse?page=2')
+        ->assertOk()
+        ->assertJsonPath('images.0.folder', false);
+});

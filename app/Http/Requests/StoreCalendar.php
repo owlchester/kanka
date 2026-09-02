@@ -45,8 +45,6 @@ class StoreCalendar extends FormRequest
             'entry' => 'nullable|string',
             'type' => 'nullable|max:191',
             'parent_id' => 'nullable|integer|exists:entities,id',
-            'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
-            'image_url' => 'nullable|url|active_url',
             'entity_image_uuid' => 'nullable|exists:images,id',
             'month_name' => 'required|array|min:1',
             'month_length' => 'required|array|min:1',
