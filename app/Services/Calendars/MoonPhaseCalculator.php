@@ -208,8 +208,12 @@ final class MoonPhaseCalculator
         };
     }
 
-    private static function floorDiv(int $numerator, int $denominator): int
+    private static function floorDiv(int|float $numerator, int $denominator): int
     {
+        if (is_float($numerator)) {
+            return (int) floor($numerator / $denominator);
+        }
+
         if ($numerator >= 0) {
             return intdiv($numerator, $denominator);
         }
@@ -217,8 +221,12 @@ final class MoonPhaseCalculator
         return -intdiv(-$numerator + $denominator - 1, $denominator);
     }
 
-    private static function ceilDiv(int $numerator, int $denominator): int
+    private static function ceilDiv(int|float $numerator, int $denominator): int
     {
+        if (is_float($numerator)) {
+            return (int) ceil($numerator / $denominator);
+        }
+
         return -self::floorDiv(-$numerator, $denominator);
     }
 }

@@ -104,3 +104,13 @@ it('keeps multiple moons independent', function () {
         ->and($states[0]->moonId)->toBe(1)
         ->and($states[1]->moonId)->toBe(2);
 });
+
+it('calculates phases for ordinals whose scaled values exceed integer limits', function () {
+    $date = new CalendarDate(3_000_000, 1, 1);
+
+    $phases = moonCalculator()->phasesBetween($date, $date);
+
+    expect($phases)->toHaveCount(1)
+        ->and($phases[0]->date)->toEqual($date)
+        ->and($phases[0]->phase)->toBe('full');
+});
