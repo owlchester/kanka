@@ -11,10 +11,10 @@ it('does not expose a renew url', function () {
     expect(property_exists($mail, 'renewUrl'))->toBeFalse();
 });
 
-it('renders without a renew button', function () {
+it('renders a link to the subscription page', function () {
     $user = User::factory()->create();
 
     $rendered = (new PaypalExpiringMail($user))->render();
 
-    expect($rendered)->not->toContain(route('paypal.renew'));
+    expect($rendered)->toContain(route('settings.subscription'));
 });
