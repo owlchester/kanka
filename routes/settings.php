@@ -11,7 +11,6 @@ use App\Http\Controllers\CampaignBoostController;
 use App\Http\Controllers\Layout\NavigationController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PasswordSecurityController;
-use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\Settings\AccountController;
 use App\Http\Controllers\Settings\ApiController;
 use App\Http\Controllers\Settings\AppearanceController;
@@ -33,7 +32,6 @@ use App\Http\Controllers\Settings\Subscription\FinishController;
 use App\Http\Controllers\Settings\Subscription\FreeTrialController;
 use App\Http\Controllers\Settings\SubscriptionController;
 use App\Http\Controllers\Settings\TutorialController;
-use App\Http\Controllers\Subscription\PayPal\RenewalController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProfileController::class, 'index'])->name('settings');
@@ -174,31 +172,15 @@ Route::post('/security/verify2fa', function () {
 
 /*
 --------------------------------------------------------------------------
-PayPal API
+Legacy PayPal payment routes removed
 --------------------------------------------------------------------------
 */
-
-Route::post('paypal/process-transaction/{tier}', [PayPalController::class, 'processTransaction'])
-    ->name('paypal.process-transaction');
-Route::get('paypal/success-transaction', [PayPalController::class, 'successTransaction'])
-    ->name('paypal.transaction-success');
-Route::get('paypal/cancel-transaction', [PayPalController::class, 'cancelTransaction'])
-    ->name('paypal.cancel-transaction');
 
 /*
 --------------------------------------------------------------------------
-PayPal Renewal
+Legacy PayPal renewal routes removed
 --------------------------------------------------------------------------
 */
-
-Route::get('subscription/paypal/renew', [RenewalController::class, 'index'])
-    ->name('paypal.renew');
-Route::post('subscription/paypal/renew/{tier}', [RenewalController::class, 'process'])
-    ->name('paypal.renew-process');
-Route::get('subscription/paypal/renew/success', [RenewalController::class, 'success'])
-    ->name('paypal.renew-success');
-Route::get('subscription/paypal/renew/cancel', [RenewalController::class, 'cancel'])
-    ->name('paypal.renew-cancel');
 
 /*
 --------------------------------------------------------------------------

@@ -29,7 +29,6 @@ class FinishController extends Controller
 
         $tracking = session()->get('sub_tracking');
         $newSubPricingId = session()->get('sub_id');
-        $isPayPal = $user->hasPayPal();
         $gaPurchase = null;
         if (! empty($tracking)) {
             DataLayer::newSubscriber();
@@ -63,7 +62,6 @@ class FinishController extends Controller
             'current',
             'tracking',
             'gaPurchase',
-            'isPayPal',
             'isTrial',
         ));
     }

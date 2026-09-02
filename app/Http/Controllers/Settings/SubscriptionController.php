@@ -90,15 +90,20 @@ class SubscriptionController extends Controller
 
     public function change(Request $request, Tier $tier)
     {
+        /** @var User $user */
+        $user = $request->user();
+        if ($user->hasPayPal()) {
+            return view('settings.subscription.change_blocked')
+                ->with('user', $user);
+        }
+
         if ($tier->isFree()) {
             dd('Cancel instead');
         }
-        /** @var User $user */
-        $user = $request->user();
         $period = $request->get('period') === 'yearly' ? PricingPeriod::Yearly : PricingPeriod::Monthly;
 
         // If the user has a cancelled sub still ending
-        if ($user->subscribed('kanka') && $user->subscription('kanka')->onGracePeriod() && ! $user->hasPayPal()) {
+        if ($user->subscribed('kanka') && $user->subscription('kanka')->onGracePeriod()) {
             if ($tier->isCurrent($user)) {
                 return view('settings.subscription.renew')
                     ->with('user', $user);
@@ -202,6 +207,14 @@ class SubscriptionController extends Controller
      */
     public function subscribe(UserSubscribeStore $request, Tier $tier)
     {
+        if ($request->user()->hasPayPal()) {
+            return redirect()
+                ->route('settings.subscription')
+                ->with('error_raw', __('subscription.errors.legacy_paypal', [
+                    'date' => $request->user()->subscription('kanka')->ends_at->isoFormat('MMMM D, Y'),
+                ]));
+        }
+
         if ($request->user()->isFrauding()) {
             return redirect()
                 ->route('settings.subscription')
@@ -270,6 +283,14 @@ class SubscriptionController extends Controller
 
     public function paymentReturn(Request $request, Tier $tier): RedirectResponse
     {
+        if ($request->user()->hasPayPal()) {
+            return redirect()
+                ->route('settings.subscription')
+                ->with('error_raw', __('subscription.errors.legacy_paypal', [
+                    'date' => $request->user()->subscription('kanka')->ends_at->isoFormat('MMMM D, Y'),
+                ]));
+        }
+
         $setupIntentId = $request->get('setup_intent');
 
         if (empty($setupIntentId)) {
