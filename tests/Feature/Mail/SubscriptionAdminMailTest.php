@@ -1,16 +1,14 @@
 <?php
 
+use App\Enums\PricingPeriod;
 use App\Enums\UserAction;
-use App\Jobs\Emails\Subscriptions\Admin\PaypalRenewedJob;
 use App\Mail\Subscription\Admin\CancelledSubscriptionMail;
-use App\Mail\Subscription\Admin\PaypalRenewedMail;
+use App\Mail\Subscription\Admin\NewSubscriptionMail;
 use App\Models\SubscriptionCancellation;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Schema;
-use Laravel\Cashier\Subscription;
 
 beforeEach(function (): void {
     DB::purge('logs');
@@ -31,6 +29,17 @@ beforeEach(function (): void {
         $table->unsignedInteger('impersonated_by')->nullable();
         $table->string('ip', 255)->nullable();
         $table->char('country', 6)->nullable();
+        $table->timestamps();
+    });
+
+    Schema::create('subscription_cancellations', function ($table): void {
+        $table->id();
+        $table->foreignId('user_id');
+        $table->string('reason');
+        $table->string('secondary')->nullable();
+        $table->text('custom')->nullable();
+        $table->string('tier');
+        $table->unsignedInteger('duration');
         $table->timestamps();
     });
 });
@@ -65,39 +74,24 @@ it('includes the latest country with a value in the cancellation email', functio
         ->toContain('CA');
 });
 
-it('does not send the paypal renewed email without a cancelled subscription', function (): void {
-    Mail::fake();
-    $user = User::factory()->create();
+it('labels a subscription as new when the user has not cancelled before', function (): void {
+    $user = User::factory()->create(['pledge' => 'Owlbear']);
 
-    Subscription::create([
-        'user_id' => $user->id,
-        'type' => 'kanka',
-        'stripe_id' => 'sub_active',
-        'stripe_status' => 'active',
-        'stripe_price' => 'paypal_Owlbear',
-        'quantity' => 1,
-    ]);
+    $subject = (new NewSubscriptionMail($user, PricingPeriod::Monthly))->envelope()->subject;
 
-    (new PaypalRenewedJob($user->id))->handle();
-
-    Mail::assertNothingSent();
+    expect($subject)->toBe('Sub: New Monthly Owlbear');
 });
 
-it('sends the paypal renewed email after a cancelled subscription', function (): void {
-    Mail::fake();
-    $user = User::factory()->create();
-
-    Subscription::create([
+it('labels a subscription as renewed after a previous cancellation', function (): void {
+    $user = User::factory()->create(['pledge' => 'Owlbear']);
+    SubscriptionCancellation::create([
         'user_id' => $user->id,
-        'type' => 'kanka',
-        'stripe_id' => 'sub_cancelled',
-        'stripe_status' => 'active',
-        'stripe_price' => 'paypal_Owlbear',
-        'quantity' => 1,
-        'ends_at' => now()->addYear(),
+        'reason' => 'price',
+        'tier' => 'Owlbear',
+        'duration' => 30,
     ]);
 
-    (new PaypalRenewedJob($user->id))->handle();
+    $subject = (new NewSubscriptionMail($user, PricingPeriod::Monthly))->envelope()->subject;
 
-    Mail::assertSent(PaypalRenewedMail::class);
+    expect($subject)->toBe('Sub: Renewed Monthly Owlbear');
 });
