@@ -55,7 +55,7 @@ class Inventory extends Model
         'is_equipped' => 'boolean',
         'copy_item_entry' => 'boolean',
     ];
-    
+
     protected $attributes = [
         'is_equipped' => false,
         'copy_item_entry' => false,
