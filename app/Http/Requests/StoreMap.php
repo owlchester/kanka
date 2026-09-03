@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Facades\Limit;
 use App\Models\Entity;
 use App\Models\Map;
 use App\Models\Tag;

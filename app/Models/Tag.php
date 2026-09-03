@@ -92,12 +92,12 @@ class Tag extends MiscModel
         'is_auto_applied',
         'is_hidden',
     ];
-    
+
     protected $casts = [
         'is_auto_applied' => 'boolean',
         'is_hidden' => 'boolean',
     ];
-    
+
     protected $attributes = [
         'is_auto_applied' => false,
         'is_hidden' => false,

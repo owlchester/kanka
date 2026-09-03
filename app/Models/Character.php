@@ -65,13 +65,13 @@ class Character extends MiscModel
         'is_appearance_pinned',
         'is_personality_pinned',
     ];
-    
+
     protected $casts = [
         'is_personality_visible' => 'boolean',
         'is_personality_pinned' => 'boolean',
         'is_appearance_pinned' => 'boolean',
     ];
-    
+
     protected $attributes = [
         'is_personality_visible' => false,
         'is_personality_pinned' => false,

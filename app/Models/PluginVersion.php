@@ -17,6 +17,7 @@ use Illuminate\Support\Arr;
  * @property string $version
  * @property string $entry
  * @property string $content
+ * @property string $engine
  * @property string $fonts
  * @property string $css
  * @property Carbon $updated_at

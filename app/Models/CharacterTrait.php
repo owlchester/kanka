@@ -37,11 +37,11 @@ class CharacterTrait extends Model
         'is_private',
         'default_order',
     ];
-    
+
     protected $casts = [
         'is_private' => 'boolean',
     ];
-    
+
     protected $attributes = [
         'is_private' => false,
     ];

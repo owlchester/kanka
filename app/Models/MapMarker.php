@@ -99,7 +99,7 @@ class MapMarker extends Model
         'group.name',
         'visibility',
     ];
-    
+
     protected $attributes = [
         'is_popupless' => false,
         'is_draggable' => false,

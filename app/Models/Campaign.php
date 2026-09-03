@@ -96,7 +96,7 @@ class Campaign extends Model
         'is_hidden' => 'boolean',
         'is_prioritised' => 'boolean',
     ];
-    
+
     protected $attributes = [
         'is_hidden' => false,
         'is_prioritised' => false,

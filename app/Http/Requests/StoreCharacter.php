@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Facades\Limit;
 use App\Models\Family;
 use App\Models\Location;
 use App\Models\Race;
