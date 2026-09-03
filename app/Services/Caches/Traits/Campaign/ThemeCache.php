@@ -34,11 +34,13 @@ trait ThemeCache
                 if ($plugin->version->fonts) {
                     $theme .= '/** plugin: ' . e($plugin->name) . ' #' . e($plugin->version->version) . " fonts **/\n";
                     $theme .= $plugin->version->fonts . "\n\n";
+                    $theme .= '/** end plugin: ' . e($plugin->name) . ' #' . e($plugin->version->version) . " fonts **/\n";
                 }
             }
             foreach ($plugins as $plugin) {
                 $theme .= '/** plugin: ' . e($plugin->name) . ' #' . e($plugin->version->version) . " code **/\n";
-                $theme .= $plugin->version->content . "\n\n";
+                $theme .= $plugin->version->content . "\n";
+                $theme .= '/** end plugin: ' . e($plugin->name) . ' #' . e($plugin->version->version) . " code **/\n";
             }
 
             return $theme;

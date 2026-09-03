@@ -24,11 +24,11 @@ trait StyleCache
             foreach ($styles as $style) {
                 /** @var CampaignStyle $style */
                 if ($style->isTheme()) {
-                    $css .= '/** Theme builder #' . $style->id . " */\n@layer theme {\n" . $style->content() . "\n}\n";
+                    $css .= '/** Theme builder #' . $style->id . " */\n@layer theme {\n" . $style->content() . "\n}\n/** End theme builder */\n";
 
                     continue;
                 }
-                $css .= '/** Style ' . $style->name . '#' . $style->id . " */\n" . $style->content() . "\n";
+                $css .= '/** Style ' . $style->name . '#' . $style->id . " */\n" . $style->content() . "\n/** End style " . $style->name . '#' . $style->id . "\n";
             }
 
             return $css;
