@@ -2,9 +2,13 @@
 
 use App\Enums\CampaignVisibility;
 use App\Http\Middleware\ReplicationSwitcher;
+use App\Models\Character;
 use App\Models\Entity;
 use App\Models\EntityType;
+use App\Models\Item;
+use App\Models\ItemCreator;
 use App\Models\Note;
+use App\Models\Organisation;
 use Illuminate\Support\Facades\DB;
 
 it('pre-fills the privacy toggle as private when editing a private custom module entity', function () {
@@ -50,6 +54,45 @@ it('forbids unauthenticated entity saves before resolving validation rules', fun
     ])->assertForbidden();
 
     expect($entity->fresh()->name)->not->toBe('Updated Note');
+});
+
+it('renders an item edit form when a creator entity has been deleted', function () {
+    $this->asUser()->withCampaign();
+
+    $item = Item::factory()->create(['campaign_id' => 1]);
+    $creator = Organisation::factory()->create(['campaign_id' => 1]);
+    ItemCreator::create([
+        'item_id' => $item->id,
+        'creator_id' => $creator->entity->id,
+    ]);
+    $creator->entity->delete();
+
+    $this->get(route('entities.edit', [1, $item->entity]))
+        ->assertSuccessful();
+});
+
+it('renders an organisation edit form when a member entity has been deleted', function () {
+    $this->asUser()->withCampaign();
+
+    $organisation = Organisation::factory()->create(['campaign_id' => 1]);
+    $character = Character::factory()->create(['campaign_id' => 1]);
+    $organisation->members()->create(['character_id' => $character->id]);
+    $character->entity->delete();
+
+    $this->get(route('entities.edit', [1, $organisation->entity]))
+        ->assertSuccessful();
+});
+
+it('renders a character edit form when an organisation entity has been deleted', function () {
+    $this->asUser()->withCampaign();
+
+    $character = Character::factory()->create(['campaign_id' => 1]);
+    $organisation = Organisation::factory()->create(['campaign_id' => 1]);
+    $character->organisationMemberships()->create(['organisation_id' => $organisation->id]);
+    $organisation->entity->delete();
+
+    $this->get(route('entities.edit', [1, $character->entity]))
+        ->assertSuccessful();
 });
 
 it('preserves an entity last modified date during a stealth edit', function () {

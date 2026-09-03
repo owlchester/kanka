@@ -29,6 +29,9 @@ $statuses = [
 <x-grid type="1/1">
     <div class="character-organisations flex flex-col gap-2 md:gap-4">
         @foreach ($organisations as $organisation)
+            @if (!$organisation->organisation?->entity)
+                @continue
+            @endif
             <div class="flex flex-wrap md:flex-nowrap items-center gap-2 md:gap-2 member-row">
                 <div class="field">
                     <select name="organisations[{{ $organisation->id }}]" class="w-full select2" style="width: 100%"
@@ -120,4 +123,3 @@ $statuses = [
         </div>
     </template>
 @endsection
-

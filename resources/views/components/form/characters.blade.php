@@ -18,8 +18,11 @@ if (!empty($previous)) {
 // If we didn't get anything, and there is a model sent, use that
 elseif(!empty($model) ) {
     /** @var \App\Models\Character $character */
-    foreach ($model->members() as $character) {
-        $selectedOption[$character->character->id] = strip_tags($character->character->entity->name);
+    foreach ($model->members() as $member) {
+        $character = $member->character;
+        if ($character?->entity) {
+            $selectedOption[$character->id] = strip_tags($character->entity->name);
+        }
     }
 }
 ?>
@@ -36,5 +39,3 @@ elseif(!empty($model) ) {
 </select>
 
 </x-forms.field>
-
-

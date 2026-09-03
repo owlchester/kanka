@@ -9,7 +9,9 @@ if (!empty($previous)) {
     // Form validation error, reload previous
 } elseif (!empty($model)) {
     foreach ($model->itemCreators as $itemCreator) {
-        $selectedOption[$itemCreator->creator->id] = strip_tags($itemCreator->creator->name);
+        if ($itemCreator->creator) {
+            $selectedOption[$itemCreator->creator->id] = strip_tags($itemCreator->creator->name);
+        }
     }
 }
 ?>

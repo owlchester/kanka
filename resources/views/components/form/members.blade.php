@@ -17,6 +17,10 @@ if (!empty($previous)) {
 elseif(!empty($model)) {
     /** @var \App\Models\OrganisationMember $member */
     foreach ($model->members()->has('character')->with('character')->get() as $member) {
+        if (!$member->character?->entity) {
+            continue;
+        }
+
         // If this is a copy, we need to add the member's real id. Also no copying of roles in this constellation
         if (!empty($source)) {
             $selectedOption[$member->character_id] = strip_tags($member->character->entity->name);
