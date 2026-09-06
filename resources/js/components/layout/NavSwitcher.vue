@@ -69,6 +69,7 @@
                         <div class="flex flex-col gap-2">
                             <Notification
                                 v-for="notification in notifications.messages"
+                                :key="notification.id"
                                 :notification="notification"
                                 @read="readNotification">
                             </Notification>
@@ -304,7 +305,9 @@ const readRelease = (release) => {
 }
 const readNotification = (notification) => {
     let index = notifications.value.messages.findIndex(msg => msg.id == notification.id);
-    notifications.value.messages.slice(index, 1);
+    if (index !== -1) {
+        notifications.value.messages.splice(index, 1);
+    }
     updateUnread();
 }
 // Figure out if the unread notification is removed
