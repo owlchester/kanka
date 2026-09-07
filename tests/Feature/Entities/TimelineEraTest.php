@@ -21,6 +21,9 @@ it('POSTS a new timeline era')
     ->withTimelines()
     ->postJson('/api/1.0/campaigns/1/timelines/1/timeline_eras', [
         'name' => fake()->name(),
+        'start_year' => -500,
+        'end_year' => 1200,
+        'is_collapsed' => true,
     ])
     ->assertStatus(201)
     ->assertJsonStructure([
@@ -28,7 +31,49 @@ it('POSTS a new timeline era')
             'id',
             'name',
         ],
+    ])
+    ->assertJsonPath('data.start_year', -500)
+    ->assertJsonPath('data.end_year', 1200)
+    ->assertJsonPath('data.is_collapsed', true);
+
+it('validates timeline era years and collapsed state')
+    ->asUser()
+    ->withCampaign()
+    ->withTimelines()
+    ->postJson('/api/1.0/campaigns/1/timelines/1/timeline_eras', [
+        'name' => fake()->name(),
+        'start_year' => 'invalid',
+        'end_year' => 'invalid',
+        'is_collapsed' => 'invalid',
+    ])
+    ->assertUnprocessable()
+    ->assertJsonStructure([
+        'fields' => [
+            'start_year',
+            'end_year',
+            'is_collapsed',
+        ],
     ]);
+
+it('returns element display fields in a timeline era', function () {
+    $this->asUser()
+        ->withCampaign()
+        ->withTimelines()
+        ->withTimelineEras()
+        ->withTimelineElements([
+            'date' => '3rd of Appen 114',
+            'icon' => 'fa-solid fa-star',
+            'use_entity_entry' => true,
+            'use_event_date' => true,
+        ]);
+
+    $this->getJson('/api/1.0/campaigns/1/timelines/1/timeline_eras/1')
+        ->assertSuccessful()
+        ->assertJsonPath('data.elements.0.date', '3rd of Appen 114')
+        ->assertJsonPath('data.elements.0.icon', 'fa-solid fa-star')
+        ->assertJsonPath('data.elements.0.use_entity_entry', true)
+        ->assertJsonPath('data.elements.0.use_event_date', true);
+});
 
 it('GETS all timeline eras')
     ->asUser()

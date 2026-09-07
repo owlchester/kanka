@@ -34,6 +34,7 @@ class TimelineElementResource extends JsonResource
             'icon' => $model->icon,
             'is_collapsed' => $model->collapsed(),
             'use_entity_entry' => $model->use_entity_entry,
+            'use_event_date' => $model->use_event_date,
         ];
     }
 }

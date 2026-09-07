@@ -46,7 +46,7 @@ class TimelineEraApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $timeline->entity);
-        $data = $request->all();
+        $data = $request->validated();
         $data['timeline_id'] = $timeline->id;
         $model = TimelineEra::create($data);
         $model->refresh();
@@ -67,7 +67,7 @@ class TimelineEraApiController extends ApiController
     ) {
         $this->authorize('access', $campaign);
         $this->authorize('update', $timeline->entity);
-        $timelineEra->update($request->all());
+        $timelineEra->update($request->validated());
 
         return new Resource($timelineEra);
     }

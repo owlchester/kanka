@@ -11,7 +11,7 @@
 <a name="all-timeline-elements"></a>
 ## All Timeline Elements
 
-You can get a list of all the element effects of a timeline by using the following endpoint.
+You can get a list of all the elements of a timeline by using the following endpoint.
 
 > {warning} Remember that all endpoints documented here need to be prefixed with `{{version}}/campaigns/{campaign.id}/`.
 
@@ -35,10 +35,11 @@ You can get a list of all the element effects of a timeline by using the followi
             "date": "3rd of Appen 114",
             "colour": "blue",
             "position": 1,
-            "visibilility_id": 1,
-            "created_by": 1,
-            "created_at": "2020-08-05 14:32:59",
-            "updated_at": "2020-08-05 14:33:22"
+            "visibility_id": 1,
+            "icon": "fa-solid fa-star",
+            "is_collapsed": false,
+            "use_entity_entry": true,
+            "use_event_date": false
         }
     ],
     "links": {
@@ -63,7 +64,7 @@ You can get a list of all the element effects of a timeline by using the followi
 <a name="timeline-element"></a>
 ## Timeline Element
 
-To get the details of a single element effect, use the following endpoint.
+To get the details of a single element, use the following endpoint.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
@@ -83,10 +84,11 @@ To get the details of a single element effect, use the following endpoint.
         "date": "3rd of Appen 114",
         "colour": "blue",
         "position": 1,
-        "visibilility_id": 1,
-        "created_by": 1,
-        "created_at": "2020-08-05 14:32:59",
-        "updated_at": "2020-08-05 14:33:22"
+        "visibility_id": 1,
+        "icon": "fa-solid fa-star",
+        "is_collapsed": false,
+        "use_entity_entry": true,
+        "use_event_date": false
     }
 
 }
@@ -110,15 +112,21 @@ To create a timeline element, use the following endpoint.
 | `entity_id` | `int` (Required if no name) | Entity ID |
 | `era_id` | `int` (Required) | Timeline Era ID |
 | `entry` | `string` | Entry of the element |
-| `date` | `string` | Date of the element |
-| `colour` | `string` | Colour of the element |
+| `date` | `string` | Free-form date displayed for the element, up to 45 characters |
+| `colour` | `string` | Colour of the element, up to 12 characters |
 | `position` | `int` | Position in the list of elements of the era |
 | `visibility_id` | `int` | The visibility ID: 1 for `all`, 2 `self`, 3 `admin`, 4 `self-admin` or 5 `members`. |
+| `icon` | `string` | Font Awesome or RPG Awesome CSS classes, for example `fa-solid fa-star` |
+| `is_collapsed` | `boolean` | Whether the element is collapsed by default |
+| `use_entity_entry` | `boolean` | Whether to display the linked entity's entry instead of the element's entry |
+| `use_event_date` | `boolean` | Whether to display the linked event's calendar date instead of `date` |
+
+The `date` field is a free-form display value, not a structured calendar date. When `use_event_date` is `true` and the linked entity is an event, Kanka displays that event's calendar date instead.
 
 
 ### Results
 
-> {success} Code 200 with JSON body of the new timeline element.
+> {success} Code 201 with JSON body of the new timeline element.
 
 
 <a name="update-timeline-element"></a>
@@ -150,4 +158,4 @@ To delete a timeline element, use the following endpoint.
 
 ### Results
 
-> {success} Code 200 with JSON.
+> {success} Code 204 with no content.

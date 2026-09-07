@@ -16,6 +16,9 @@ it('POSTS a new timeline element')
         'name' => fake()->name(),
         'era_id' => 1,
         'entry' => '',
+        'date' => '3rd of Appen 114',
+        'icon' => 'fa-solid fa-star',
+        'use_entity_entry' => true,
         'use_event_date' => true,
     ])
     ->assertStatus(201)
@@ -23,6 +26,31 @@ it('POSTS a new timeline element')
         'data' => [
             'id',
             'name',
+        ],
+    ])
+    ->assertJsonPath('data.date', '3rd of Appen 114')
+    ->assertJsonPath('data.icon', 'fa-solid fa-star')
+    ->assertJsonPath('data.use_entity_entry', true)
+    ->assertJsonPath('data.use_event_date', true);
+
+it('validates timeline element boolean fields')
+    ->asUser()
+    ->withCampaign()
+    ->withTimelines()
+    ->withTimelineEras()
+    ->postJson('/api/1.0/campaigns/1/timelines/1/timeline_elements', [
+        'name' => fake()->name(),
+        'era_id' => 1,
+        'is_collapsed' => 'invalid',
+        'use_entity_entry' => 'invalid',
+        'use_event_date' => 'invalid',
+    ])
+    ->assertUnprocessable()
+    ->assertJsonStructure([
+        'fields' => [
+            'is_collapsed',
+            'use_entity_entry',
+            'use_event_date',
         ],
     ]);
 

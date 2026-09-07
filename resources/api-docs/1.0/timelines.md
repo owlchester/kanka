@@ -49,19 +49,45 @@ The list of returned entities can be filtered. The available filters are [availa
             "type": "Primary",
             "eras": [
               {
+                "id": 26,
                 "name": "Anno Domani",
                 "abbreviation": "AD",
                 "start_year": 0,
+                "entry": "<p>Lorem ipsum dolor sit amet</p>",
+                "entry_parsed": "<p>Lorem ipsum dolor sit amet</p>",
                 "end_year": null,
-                "elements": [],
+                "elements": [
+                  {
+                    "id": 41,
+                    "era_id": 26,
+                    "timeline_id": 1,
+                    "entity_id": 56,
+                    "name": "Kemali Uprising",
+                    "entry": "<p>An uprising begins.</p>",
+                    "entry_parsed": "<p>An uprising begins.</p>",
+                    "date": "3rd of Appen 114",
+                    "colour": "blue",
+                    "position": 1,
+                    "visibility_id": 1,
+                    "icon": "fa-solid fa-star",
+                    "is_collapsed": false,
+                    "use_entity_entry": true,
+                    "use_event_date": false
+                  }
+                ],
+                "is_collapsed": false,
                 "position": 1
               },
               {
+                "id": 27,
                 "name": "Before Christ",
                 "abbreviation": "BC",
                 "start_year": null,
+                "entry": null,
+                "entry_parsed": null,
                 "end_year": 0,
                 "elements": [],
+                "is_collapsed": false,
                 "position": 2
 
               }
@@ -116,21 +142,47 @@ To get the details of a single timeline, use the following endpoint.
         "type": "Primary",
         "eras": [
           {
+            "id": 26,
             "name": "Anno Domani",
             "abbreviation": "AD",
             "start_year": 0,
+            "entry": "<p>Lorem ipsum dolor sit amet</p>",
+            "entry_parsed": "<p>Lorem ipsum dolor sit amet</p>",
             "end_year": null,
-            "elements": [],
+            "elements": [
+              {
+                "id": 41,
+                "era_id": 26,
+                "timeline_id": 1,
+                "entity_id": 56,
+                "name": "Kemali Uprising",
+                "entry": "<p>An uprising begins.</p>",
+                "entry_parsed": "<p>An uprising begins.</p>",
+                "date": "3rd of Appen 114",
+                "colour": "blue",
+                "position": 1,
+                "visibility_id": 1,
+                "icon": "fa-solid fa-star",
+                "is_collapsed": false,
+                "use_entity_entry": true,
+                "use_event_date": false
+              }
+            ],
+            "is_collapsed": false,
             "position": 1
 
           },
           {
+            "id": 27,
             "name": "Before Christ",
             "abbreviation": "BC",
             "start_year": null,
+            "entry": null,
+            "entry_parsed": null,
             "end_year": 0,
             "elements": [],
-            "position": 1
+            "is_collapsed": false,
+            "position": 2
 
           }
         ]

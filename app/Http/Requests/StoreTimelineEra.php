@@ -27,11 +27,13 @@ class StoreTimelineEra extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required|string',
+            'timeline_id' => 'prohibited',
+            'name' => 'required|string|max:191',
             'entry' => 'nullable|string',
-            'abbreviation' => 'nullable|string',
-            'start_date' => 'nullable|integer',
-            'end_date' => 'nullable|integer',
+            'abbreviation' => 'nullable|string|max:191',
+            'start_year' => 'nullable|integer',
+            'end_year' => 'nullable|integer',
+            'is_collapsed' => 'nullable|boolean',
         ];
 
         return $this->clean($rules);

@@ -38,6 +38,8 @@ class StoreTimelineElement extends FormRequest
             'date' => 'nullable|string|max:45',
             'visibility_id' => 'nullable|integer|exists:visibilities,id',
             'icon' => ['nullable', 'string', new FontAwesomeIcon],
+            'is_collapsed' => 'nullable|boolean',
+            'use_entity_entry' => 'nullable|boolean',
             'use_event_date' => 'boolean',
         ];
 

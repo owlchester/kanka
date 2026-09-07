@@ -29,9 +29,9 @@ use Laravel\Scout\Searchable;
  * @property int $position
  * @property string $colour
  * @property string $icon
- * @property bool|int $use_entity_entry
+ * @property bool $use_entity_entry
  * @property bool|int $is_collapsed
- * @property bool|int $use_event_date
+ * @property bool $use_event_date
  * @property Timeline $timeline
  * @property TimelineEra $era
  * @property Entity $entity
@@ -66,6 +66,8 @@ class TimelineElement extends Model
 
     public $casts = [
         'visibility_id' => Visibility::class,
+        'use_entity_entry' => 'boolean',
+        'use_event_date' => 'boolean',
     ];
 
     protected array $suggestions = [

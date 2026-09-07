@@ -11,7 +11,7 @@
 <a name="all-timeline-eras"></a>
 ## All Timeline Eras
 
-You can get a list of all the era effects of a timeline by using the following endpoint.
+You can get a list of all the eras of a timeline by using the following endpoint.
 
 > {warning} Remember that all endpoints documented here need to be prefixed with `{{version}}/campaigns/{campaign.id}/`.
 
@@ -25,17 +25,34 @@ You can get a list of all the era effects of a timeline by using the following e
 {
     "data": [
         {
-            "id": 1,
-            "timeline_id": 1,
+            "id": 26,
             "name": "Anno Domani",
             "abbreviation": "AD",
             "start_year": null,
+            "entry": "<p>Lorem ipsum dolor sit amet</p>",
+            "entry_parsed": "<p>Lorem ipsum dolor sit amet</p>",
             "end_year": 0,
-            "visibility": "all",
-            "elements": [],,
-            "created_by": 1,
-            "created_at": "2020-08-05 14:32:59",
-            "updated_at": "2020-08-05 14:33:22"
+            "elements": [
+                {
+                    "id": 41,
+                    "era_id": 26,
+                    "timeline_id": 1,
+                    "entity_id": 56,
+                    "name": "Kemali Uprising",
+                    "entry": "<p>An uprising begins.</p>",
+                    "entry_parsed": "<p>An uprising begins.</p>",
+                    "date": "3rd of Appen 114",
+                    "colour": "blue",
+                    "position": 1,
+                    "visibility_id": 1,
+                    "icon": "fa-solid fa-star",
+                    "is_collapsed": false,
+                    "use_entity_entry": true,
+                    "use_event_date": false
+                }
+            ],
+            "is_collapsed": false,
+            "position": 2
         }
     ],
     "links": {
@@ -60,7 +77,7 @@ You can get a list of all the era effects of a timeline by using the following e
 <a name="timeline-era"></a>
 ## Timeline Era
 
-To get the details of a single era effect, use the following endpoint.
+To get the details of a single era, use the following endpoint.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
@@ -99,16 +116,17 @@ To create a timeline era, use the following endpoint.
 
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
-| `era` | `string` (Required) | Name of the era |
+| `name` | `string` (Required) | Name of the era |
+| `entry` | `string` | HTML description of the era |
 | `abbreviation` | `string` | Abbreviation of the era |
 | `start_year` | `integer` | Year the era starts |
 | `end_year` | `integer` | Year the era ends |
-| `visiblity` | `string` | `all`, `admin`, `self` Who can view |
+| `is_collapsed` | `boolean` | Whether the era is collapsed by default |
 
 
 ### Results
 
-> {success} Code 200 with JSON body of the new timeline era.
+> {success} Code 201 with JSON body of the new timeline era.
 
 
 <a name="update-timeline-era"></a>
@@ -140,4 +158,4 @@ To delete a timeline era, use the following endpoint.
 
 ### Results
 
-> {success} Code 200 with JSON.
+> {success} Code 204 with no content.
