@@ -178,11 +178,11 @@ return [
         'notifiable' => Notifiable::class,
 
         'mail' => [
-            'to' => 'hello@kanka.io',
+            'to' => env('APP_EMAIL'),
 
             'from' => [
-                'address' => env('MAIL_FROM_ADDRESS', 'hello@kanka.io'),
-                'name' => env('MAIL_FROM_NAME', 'Kanka Backup'),
+                'address' => env('MAIL_FROM_ADDRESS', env('APP_EMAIL')),
+                'name' => env('MAIL_FROM_NAME'),
             ],
         ],
 
