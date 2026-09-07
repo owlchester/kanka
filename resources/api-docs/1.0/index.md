@@ -38,6 +38,8 @@
   - [Events](/api-docs/{{version}}/events)
   - [Calendars](/api-docs/{{version}}/calendars)
   - [Timelines](/api-docs/{{version}}/timelines)
+      - [Timelines Eras](/api-docs/{{version}}/timeline_eras)
+      - [Timelines Elements](/api-docs/{{version}}/timeline_elements)
   - [Creatures](/api-docs/{{version}}/creatures)
   - [Races](/api-docs/{{version}}/races)
   - [Quests](/api-docs/{{version}}/quests)
