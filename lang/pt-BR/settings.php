@@ -220,8 +220,9 @@ return [
         'payment_method'        => [
             'actions'   => [
                 'change'    => 'Alterar método de pagamento',
+                'manage'    => 'Gerenciar no Stripe',
             ],
-            'helper'    => 'Este cartão será usado para todas suas assinaturas.',
+            'helper'    => 'Seus métodos de pagamento são gerenciados de forma segura pela Stripe. Não armazenamos nenhum dado de cartão.',
         ],
         'periods'               => [
             'monthly'   => 'Mensalmente',

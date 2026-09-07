@@ -22,12 +22,16 @@ return [
         'actions'       => [
             'add_multiple'  => 'Adicionar membros',
         ],
+        'bulks'         => [
+            'delete'    => '{1} Membro :count removido.|[2,*] Membros :count removidos.',
+            'patch'     => '{1} :count membro atualizado.|[2,*] :count membros atualizados.',
+        ],
         'create'        => [
             'helper'            => 'Adicionar um ou vários membros à :name.',
             'success_multiple'  => '{1} Adicionado :count membro a :name.|[2,*] Adicionados :count membros a :name.',
         ],
         'destroy'       => [
-            'success'   => 'Membro removido da organização.',
+            'success'   => 'Membro removido de :name.',
         ],
         'edit'          => [
             'helper'    => 'Alterar o status de afiliação para :name.',

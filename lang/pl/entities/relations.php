@@ -42,6 +42,7 @@ return [
         'mirrored'  => 'Usunie również relację drugiej strony. Tej akcji nie można cofnąć.',
         'success'   => 'Usunięto relację :target elementu :entity.',
     ],
+    'empty'             => 'Tu nic nie ma',
     'fields'            => [
         'attitude'          => 'Nastawienie',
         'is_pinned'         => 'Przypięta',

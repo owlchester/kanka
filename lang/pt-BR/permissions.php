@@ -12,4 +12,5 @@ return [
     'roles'     => [
         'inherited' => 'O cargo :role já pode fazer isso em todo o módulo :module.',
     ],
+    'switch'    => 'Visualize a campanha como :name para testar as permissões dele(a).',
 ];

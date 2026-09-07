@@ -8,6 +8,7 @@ return [
         ],
         'upgrade'   => [
             'limit'     => 'Você atingiu o limite de :limit arquivos para esta entidade',
+            'premium'   => 'Faça o upgrade para uma campanha premium para anexar arquivos ilimitados e desbloquear ainda mais flexibilidade criativa.',
             'upgrade'   => 'Atualize para uma campanha premium para anexar até :limit arquivos e desbloquear ainda mais flexibilidade criativa.',
         ],
     ],

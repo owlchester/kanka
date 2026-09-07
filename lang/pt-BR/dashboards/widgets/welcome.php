@@ -1,18 +1,21 @@
 <?php
 
 return [
-    'endings'   => [],
-    'focus'     => [
+    'description'   => 'Exibe uma mensagem de boas-vindas com dicas.',
+    'endings'       => [],
+    'focus'         => [
         'text'  => 'Aqui, sou eu!',
         'title' => 'Hey',
     ],
-    'intros'    => [
+    'intros'        => [
         '1' => 'Diga olá para sua nova casa de construção de mundo, :user! Configuramos sua primeira campanha e incluímos dois exemplos de :characters e :locations. Estes também são visíveis aqui no dashboard da campanha.',
         '2' => 'Para começar, clique no grande botão :new-entity (ou pressione :letter sobre o seu teclado) e clique em :characters para criar seu primeiro personagem. Isto é muito fácil! Você pode encontrar todos os seus personagens, locais e outras :entities na barra lateral à esquerda da página.',
         '3' => 'Aqui estão nossas 5 principais dicas para usar o Kanka',
     ],
-    'title'     => 'Bem-vindo ao :kanka! 🎉',
-    'tricks'    => [
+    'name'          => 'Bem-vindo',
+    'tag'           => 'Bem-vindo',
+    'title'         => 'Bem-vindo ao :kanka! 🎉',
+    'tricks'        => [
         '1'         => 'Ao escrever descrições, não reescreva os nomes dos elementos da campanha. Em vez disso, digite :code e três letras para :mencionar outras entidades da campanha. Essas menções serão atualizadas automaticamente quando você alterar seus nomes.',
         '2'         => 'Para editar o nome, tema ou imagem da campanha, clique em :world na barra lateral, seguido do botão :edit.',
         '3'         => 'Escreva informações secretas sobre entidades como :posts em vez de no campo de texto principal.',

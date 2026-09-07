@@ -2,16 +2,16 @@
 
 return [
     'actions'       => [
-        'add_epoch'         => 'Adicionar uma época',
+        'add_epoch'         => 'Época',
         'add_intercalary'   => 'Adicionar dias intercalares',
-        'add_month'         => 'Adicionar um mês',
-        'add_moon'          => 'Adicionar uma lua',
+        'add_month'         => 'Mês',
+        'add_moon'          => 'Lua',
         'add_reminder'      => 'Adicionar um lembrete',
         'add_season'        => 'Adicionar uma estação',
-        'add_weather'       => 'Definir efeitos do clima',
-        'add_week'          => 'Adicionar uma semana nomeada',
-        'add_weekday'       => 'Adicionar um dia da semana',
-        'add_year'          => 'Adicionar um ano nomeado',
+        'add_weather'       => 'Definir clima',
+        'add_week'          => 'Semana nomeada',
+        'add_weekday'       => 'Dia da semana',
+        'add_year'          => 'Ano nomeado',
         'set_today'         => 'Definir como dia atual',
         'today'             => 'Hoje',
         'update_weather'    => 'Atualizar o clima',
@@ -24,23 +24,23 @@ return [
     ],
     'destroy'       => [],
     'edit'          => [
-        'today' => 'Data do calendário atualizada.',
+        'today' => 'Data atual atualizada.',
     ],
     'event'         => [
         'create'    => [
-            'success'   => 'Evento de calendário criado.',
-            'title'     => 'Adicionar um Evento de Calendário para :name',
+            'success'   => 'Lembrete criado.',
+            'title'     => 'Novo lembrete',
         ],
-        'destroy'   => 'Lembrete removido do calendário \':name\'',
+        'destroy'   => 'Lembrete removido do \':name\'.',
         'edit'      => [
             'success'   => 'Lembrete atualizado.',
-            'title'     => 'Atualizar Lembrete para :name',
+            'title'     => 'Atualizando o lembrete de :name',
         ],
         'errors'    => [
             'invalid_entity'    => 'Seleção de entidade inválida.',
         ],
         'helpers'   => [
-            'other_calendar'    => 'Você está editando um lembrete que está no calendário :calendar.',
+            'other_calendar'    => 'Você está editando um lembrete que foi adicionado em :calendar. Modificar este lembrete irá alterá-lo em ambos os locais.',
         ],
         'success'   => 'Lembrete \':event\' adicionado ao calendário.',
     ],
@@ -124,7 +124,7 @@ return [
     ],
     'modals'        => [
         'switcher'  => [
-            'title' => 'Seletor de Ano',
+            'title' => 'Alterar ano',
         ],
     ],
     'month_types'   => [
@@ -134,14 +134,25 @@ return [
     'options'       => [
         'events'    => [
             'recurring_periodicity' => [
-                'fullmoon'      => 'Lua cheia',
-                'fullmoon_name' => ':moon lua cheia',
-                'month'         => 'Mensal',
-                'newmoon'       => 'Lua nova',
-                'newmoon_name'  => ':moon lua nova',
-                'none'          => 'Nenhum',
-                'unnamed_moon'  => 'Lua :number',
-                'year'          => 'Anual',
+                'first_quarter'         => 'Quarto crescente',
+                'first_quarter_name'    => ':moon quarto crescente',
+                'fullmoon'              => 'Lua cheia',
+                'fullmoon_name'         => ':moon lua cheia',
+                'last_quarter'          => 'Quarto minguante',
+                'last_quarter_name'     => ':moon quarto minguante',
+                'month'                 => 'Mensal',
+                'newmoon'               => 'Lua nova',
+                'newmoon_name'          => ':moon lua nova',
+                'none'                  => 'Nenhum',
+                'unnamed_moon'          => 'Lua :number',
+                'waning_crescent'       => 'Minguante',
+                'waning_crescent_name'  => ':moon minguante',
+                'waning_gibbous_name'   => ':moon gibosa minguante',
+                'waxing_crescent'       => 'Lua crescente',
+                'waxing_crescent_name'  => ':moon lua crescente',
+                'waxing_gibbous'        => 'Gibosa crescente',
+                'waxing_gibbous_name'   => ':moon gibosa crescente',
+                'year'                  => 'Anual',
             ],
         ],
         'resets'    => [
@@ -207,9 +218,15 @@ return [
     'show'          => [
         'missing_details'       => 'Este calendário não pôde ser exibido. Os calendários precisam de pelo menos 2 meses e 2 dias da semana para serem renderizados corretamente.',
         'moon_1first_quarter'   => 'Lua minguante de :moon',
+        'moon_age'              => ':phase (há :count dia)|:phase (há :count dias)',
+        'moon_first_quarter'    => 'Quarto crescente de :moon',
         'moon_full'             => 'Lua cheia de :moon',
-        'moon_last_quarter'     => 'Lua crescente de :moon',
+        'moon_last_quarter'     => 'Quarto minguante de :moon',
         'moon_new'              => 'Lua nova de :moon',
+        'moon_waning_crescent'  => 'Lua minguante de :moon',
+        'moon_waning_gibbous'   => 'Gibosa minguante de :moon',
+        'moon_waxing_crescent'  => 'Gibosa crescente de :moon',
+        'moon_waxing_gibbous'   => 'Lua crescente de :moon',
         'tabs'                  => [
             'events'    => 'Lembretes',
             'weather'   => 'Clima',

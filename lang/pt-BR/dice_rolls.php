@@ -22,6 +22,9 @@ return [
             'results'   => 'Resultados',
         ],
     ],
+    'lists'         => [
+        'empty' => 'Crie e salve rolagens para a campanha para acompanhar os resultados diretamente no Kanka.',
+    ],
     'placeholders'  => [
         'name'          => 'Nome da Rolagem de Dados',
         'parameters'    => '4d6+3',

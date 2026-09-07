@@ -28,7 +28,10 @@ return [
         'storage'       => 'Brak miejsca, by załadować wybrane obrazy. Dostępne miejsce: :avaliable.',
     ],
     'fields'        => [
+        'author'                => 'Autor / źródło',
         'created_by'            => 'Dodane przez',
+        'credit'                => 'Autorstwo: :author',
+        'description'           => 'Opis / tekst alternatywny',
         'details'               => 'Szczegóły',
         'ext'                   => 'Rozszerzenie',
         'file_type'             => 'Rodzaj pliku',

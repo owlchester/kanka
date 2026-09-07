@@ -26,8 +26,10 @@ return [
         'export_error'      => 'Ocorreu um erro enquanto sua campanha era exportada. Por favor, contate-nos se o problema persistir,',
         'hidden'            => 'A campanha :campaign agora está oculta na página de campanhas públicas.',
         'import'            => [
-            'failed'    => 'A importação da campanha :campaign falhou.',
-            'success'   => 'A campanha :campaign foi importada.',
+            'csv_ready'     => 'A importação de CSV para :campaign está pronta.',
+            'csv_success'   => ':count entidades importadas com sucesso via importação de CSV para :campaign.',
+            'failed'        => 'A importação da campanha :campaign falhou.',
+            'success'       => 'A campanha :campaign foi importada.',
         ],
         'join'              => ':user se juntou à campanha :campaign',
         'leave'             => ':user saiu da campanha :campaign',
@@ -78,6 +80,7 @@ return [
         'ended'         => 'Sua assinatura do Kanka foi encerrada. Seus cargos do Discord e impulsionamentos de campanha foram removidos. Esperamos ver você novamente!',
         'failed'        => 'Não foi possível processar seus detalhes de pagamento. Por favor, atualize-os em suas configurações de Métodos de Pagamento.',
         'started'       => 'Sua assinatura do kanka foi iniciada.',
+        'trial'         => 'Seu período de teste gratuito do Kanka terminou. Esperamos que você tenha gostado e esperamos vê-lo de volta em breve!',
     ],
     'unread'            => 'Nova notificação',
 ];

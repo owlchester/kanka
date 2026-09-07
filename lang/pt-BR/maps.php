@@ -2,9 +2,10 @@
 
 return [
     'actions'       => [
-        'back'      => 'Voltar para :name',
-        'edit'      => 'Editar mapa',
-        'explore'   => 'Explorar',
+        'back'          => 'Voltar para :name',
+        'edit'          => 'Editar mapa',
+        'explore'       => 'Explorar',
+        'explore_named' => 'Explorar :name',
     ],
     'create'        => [
         'title' => 'Novo Mapa',
@@ -14,9 +15,18 @@ return [
     'errors'        => [
         'dashboard' => [
             'missing'   => 'Este mapa precisa de uma imagem para poder aparecer no dashboard.',
+            'tiling'    => 'Os recursos deste mapa estão sendo processados ​​em blocos (tiled). Por favor, verifique novamente em breve.',
         ],
         'explore'   => [
             'missing'   => 'Por favor adicione uma imagem ao mapa para poder explorá-lo',
+        ],
+        'tiling'    => [
+            'error'     => 'Ocorreu um erro ao gerar os tiles do mapa. Entre em contato com a equipe no Discord para obter suporte.',
+            'running'   => [
+                'edit'      => 'O mapa não pode ser editado enquanto está sendo dividido em tiles.',
+                'explore'   => 'O mapa não pode ser exibido enquanto está sendo dividido em blocos.',
+                'time'      => 'Isso pode levar de alguns minutos a algumas horas, dependendo do tamanho do mapa.',
+            ],
         ],
     ],
     'fields'        => [
@@ -49,6 +59,7 @@ return [
         'max_zoom'              => 'O máximo que um mapa pode ser ampliado o zoom. O valor padrão é :default, enquanto o maior valor permitido é :max.',
         'min_zoom'              => 'O máximo que um mapa pode ser diminuído o zoom. O valor padrão é :default, enquanto o menor valor permitido é :max.',
         'missing_image'         => 'Você precisa salvar o mapa com uma imagem antes de poder adicionar camadas e marcadores.',
+        'tiled_zoom'            => 'Agrupe automaticamente os marcadores quando estiverem próximos uns dos outros.',
     ],
     'index'         => [],
     'lists'         => [
@@ -76,5 +87,9 @@ return [
             'maps'  => 'Mapas',
         ],
     ],
-    'tooltips'      => [],
+    'tooltips'      => [
+        'tiling'    => [
+            'running'   => 'O mapa está sendo dividido em tiles. Esse processo pode levar de vários minutos a algumas horas.',
+        ],
+    ],
 ];

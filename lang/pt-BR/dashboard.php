@@ -82,6 +82,9 @@ return [
                 'next'      => 'Alterar data para o dia seguinte',
                 'previous'  => 'Alterar data para o dia anterior',
             ],
+            'days_ago'          => 'há :count dia|há :count dias',
+            'happening_now'     => 'Acontecendo agora',
+            'in_days'           => 'em :count dia|em :count dias',
             'previous_events'   => 'Anterior',
             'upcoming_events'   => 'Posterior',
         ],
@@ -97,10 +100,13 @@ return [
         'delete'                    => [
             'success'   => 'Widget removido so dashboard.',
         ],
+        'edit'                      => [
+            'title' => 'Editar widget',
+        ],
         'fields'                    => [
             'class'             => 'Classe CSS',
             'dashboard'         => 'Dashboard',
-            'name'              => 'Nome personalizado do widget',
+            'name'              => 'Nome do widget',
             'optional-entity'   => 'Link para entidade',
             'order'             => 'Ordenação',
             'size'              => 'Tamanho',

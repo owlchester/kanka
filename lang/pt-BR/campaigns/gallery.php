@@ -28,7 +28,10 @@ return [
         'storage'       => 'Não há espaço de armazenamento suficiente para carregar as imagens selecionadas. Espaço de armazenamento disponível: :available.',
     ],
     'fields'        => [
+        'author'                => 'Autor / crédito',
         'created_by'            => 'Carregada por',
+        'credit'                => 'Crédito :author',
+        'description'           => 'Descrição / texto alternativo',
         'details'               => 'Detalhes',
         'ext'                   => 'Sair',
         'file_type'             => 'Tipo do arquivo',

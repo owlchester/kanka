@@ -2,15 +2,16 @@
 
 return [
     'actions'       => [
+        'builder'   => 'Construtor de Temas',
         'current'   => 'Tema atual: :theme',
-        'disable'   => 'Desabilitar',
-        'enable'    => 'Habilitar',
+        'disable'   => 'Desativar',
+        'enable'    => 'Ativar',
         'new'       => 'Novo estilo',
     ],
     'bulks'         => [
         'delete'    => '{1} Removido :count estilo.|[2,*] Removidos :count estilos.',
-        'disable'   => '{1} Desabilitado :count estilo.|[2,*] Desabilitados :count estilos.',
-        'enable'    => '{1} Habilitado :count estilo.|[2,*] Habilitados :count estilos.',
+        'disable'   => '{1} Desativado :count estilo.|[2,*] Desativados :count estilos.',
+        'enable'    => '{1} Ativado :count estilo.|[2,*] Ativados :count estilos.',
     ],
     'create'        => [
         'success'   => 'Novo estilo criado.',
@@ -35,6 +36,7 @@ return [
         'here'          => 'no nosso blog',
         'is_enabled'    => 'Habilite este tema em todas as páginas.',
         'main'          => 'Você pode criar um estilo CSS personalizado para sua campanha impulsionada. Esses estilos são carregados após quaisquer temas do mercado que estiverem habilitados para a campanha. Você pode aprender mais sobre como estilizar sua campanha :here.',
+        'tutorial'      => 'Controle o estilo visual da campanha. Escolha cores, preferências de layout e outras opções de apresentação. Essas alterações afetam apenas esta campanha e podem ser atualizadas a qualquer momento.',
     ],
     'pitch'         => 'Crie um estilo CSS personalizado para personalizar totalmente a aparência da campanha.',
     'placeholders'  => [

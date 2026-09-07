@@ -17,4 +17,12 @@ return [
     'empty'             => 'Nenhum módulo tem atualmente uma configuração de miniatura padrão.',
     'helper'            => 'Usado para todas as entidades deste módulo sem uma imagem.',
     'index'             => [],
+    'reset'             => [
+        'helper'    => 'Tem certeza de que deseja remover as imagens de espaço reservado de todas as categorias de campanha?',
+        'success'   => 'Imagens de espaço reservado de todas as categorias removidas com sucesso.',
+        'title'     => 'Redefinir imagens de espaço reservado',
+        'warning'   => 'Esta ação é permanente e não pode ser desfeita.',
+    ],
+    'title'             => 'Imagens de espaço reservado',
+    'tutorial'          => 'Defina imagens padrão para itens que não possuem imagens personalizadas. Essas miniaturas aparecem imediatamente em toda a campanha e mantêm a consistência visual das listas.',
 ];

@@ -68,6 +68,9 @@ return [
         'draggable'                 => 'Ative para permitir mover um marcador no modo de exploração.',
         'is_popupless'              => 'Desative a dica de contexto do marcador que aparece ao passar o mouse.',
         'label'                     => 'Um rótulo é exibido como um bloco de texto no mapa. O conteúdo será o nome do marcador ou o nome da entidade.',
+        'path'                      => [
+            'edit'  => 'Edite o caminho arrastando seus pontos.',
+        ],
         'polygon'                   => [
             'edit'  => 'Clique no mapa para adicionar essa posição às coordenadas do polígono.',
         ],
@@ -76,16 +79,21 @@ return [
         'entry' => 'Edite o marcador para escrever uma introdução personalizada para ele.',
     ],
     'icons'         => [
+        'circle'        => 'Ícone de círculo',
         'custom'        => 'Ícone personalizado',
+        'diamond'       => 'Ícone de diamante',
         'entity'        => 'Imagem da entidade',
         'exclamation'   => 'Ícone de exclamação',
         'marker'        => 'Ícone de marcador',
         'question'      => 'Ícone de interrogação',
+        'square'        => 'Ícone de quadrado',
+        'triangle'      => 'Ícone de triângulo',
     ],
     'index'         => [
         'title' => 'Marcadores de :name',
     ],
     'pitches'       => [
+        'path'  => 'Use caminhos para desenhar estradas, rios ou rotas no mapa. Disponível como parte dos recursos premium de campanha.',
         'poly'  => 'Desenhe formas poligonais personalizadas para representar bordas e outras formas irregulares.',
     ],
     'placeholders'  => [
@@ -110,9 +118,11 @@ return [
         '4' => 'Enorme',
     ],
     'tabs'          => [
+        'area'      => 'Aréa',
         'circle'    => 'Círculo',
         'label'     => 'Letreiro',
         'marker'    => 'Marcador',
+        'path'      => 'Caminho',
         'preset'    => 'Predefinir',
     ],
 ];
