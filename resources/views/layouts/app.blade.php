@@ -61,7 +61,7 @@ if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'bas
 {{-- Hide the sidebar if the there is no current campaign --}}
 <body class=" @if(\App\Facades\DataLayer::groupB())ab-testing-second @else ab-testing-first @endif
 @if(isset($entity)){{ $entity->bodyClasses() }}@endif
-@if(isset($dashboard))dashboard-{{ $dashboard->id }}@endif @if(isset($bodyClass)){{ $bodyClass }}@endif @if (!empty($campaign) && auth()->check() && auth()->user()->can('admin', $campaign)) is-admin @endif @if(!app()->isProduction()) env-{{ app()->environment() }} @endif @if(!$showSidebar || $sidebarCollapsed) sidebar-collapse @endif antialiased" data-theme="{{ $specificTheme }}" @if (!empty($campaign)) data-user-member="{{ auth()->check() && auth()->user()->can('member', $campaign) ? 1 : 0 }}" @endif >
+@if(isset($dashboard))dashboard-{{ $dashboard->id }}@endif @if(isset($bodyClass)){{ $bodyClass }}@endif @if (!empty($campaign) && auth()->check() && auth()->user()->can('admin', $campaign)) is-admin @endif @guest is-guest @endif @if(!app()->isProduction()) env-{{ app()->environment() }} @endif @if(!$showSidebar || $sidebarCollapsed) sidebar-collapse @endif antialiased" data-theme="{{ $specificTheme }}" @if (!empty($campaign)) data-user-member="{{ auth()->check() && auth()->user()->can('member', $campaign) ? 1 : 0 }}" @endif >
 
 <a href="#{{ isset($contentId) ? $contentId : "main-content" }}" class="skip-nav-link absolute mx-2 top-0 btn2 btn-primary btn-sm rounded-t-none" tabindex="0">
     {{ __('crud.navigation.skip_to_content') }}

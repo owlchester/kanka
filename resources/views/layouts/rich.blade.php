@@ -37,7 +37,7 @@ if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'bas
     @includeWhen(!empty($campaign), 'layouts._theme')
     @yield('styles')
 </head>
-<body id="app" class="{{ $pageClass ?? 'rich-page' }} @if (!empty($campaign) && auth()->check() && auth()->user()->can('admin', $campaign)) is-admin @endif" data-theme="{{ $specificTheme }}">
+<body id="app" class="{{ $pageClass ?? 'rich-page' }} @if (!empty($campaign) && auth()->check() && auth()->user()->can('admin', $campaign)) is-admin @endif @guest is-guest @endif" data-theme="{{ $specificTheme }}">
 
 @yield('content')
 <x-dialog id="primary-dialog" :loading="true" />
