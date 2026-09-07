@@ -6,6 +6,7 @@ use App\ValueObjects\Calendars\CalendarDate;
 use App\ValueObjects\Calendars\CalendarDefinition;
 use App\ValueObjects\Calendars\LeapRule;
 use InvalidArgumentException;
+use OverflowException;
 
 final class CalendarChronology
 {
@@ -129,7 +130,56 @@ final class CalendarChronology
 
     public function addDays(CalendarDate $date, int $days): CalendarDate
     {
-        return $this->fromOrdinal($this->toOrdinal($date) + $days);
+        if (! in_array($days, [-1, 0, 1], true)) {
+            return $this->fromOrdinal($this->toOrdinal($date) + $days);
+        }
+
+        if (! $this->isValid($date)) {
+            throw new InvalidArgumentException("Invalid date for calendar: {$date}");
+        }
+
+        if ($days === 0) {
+            return $date;
+        }
+
+        if ($days === 1) {
+            if ($date->day < $this->daysInMonth($date->year, $date->month)) {
+                return new CalendarDate($date->year, $date->month, $date->day + 1);
+            }
+            if ($date->month < $this->definition->monthCount()) {
+                return new CalendarDate($date->year, $date->month + 1, 1);
+            }
+            if ($date->year === PHP_INT_MAX) {
+                throw new OverflowException('Calendar year exceeds the supported integer range.');
+            }
+
+            $year = $date->year + 1;
+            if (! $this->definition->hasYearZero && $year === 0) {
+                $year = 1;
+            }
+
+            return new CalendarDate($year, 1, 1);
+        }
+
+        if ($date->day > 1) {
+            return new CalendarDate($date->year, $date->month, $date->day - 1);
+        }
+        if ($date->month > 1) {
+            $month = $date->month - 1;
+
+            return new CalendarDate($date->year, $month, $this->daysInMonth($date->year, $month));
+        }
+        if ($date->year === PHP_INT_MIN) {
+            throw new OverflowException('Calendar year exceeds the supported integer range.');
+        }
+
+        $year = $date->year - 1;
+        if (! $this->definition->hasYearZero && $year === 0) {
+            $year = -1;
+        }
+        $month = $this->definition->monthCount();
+
+        return new CalendarDate($year, $month, $this->daysInMonth($year, $month));
     }
 
     public function addMonths(CalendarDate $date, int $months, string $invalidDate = 'skip'): ?CalendarDate

@@ -38,6 +38,20 @@ it('skips year zero when configured to do so', function () {
         ->toEqual(new CalendarDate(-1, 2, 30));
 });
 
+it('moves one day without overflowing the ordinal range', function () {
+    $chronology = chronology();
+    $year = intdiv(PHP_INT_MAX, 60) + 1;
+
+    expect($chronology->addDays(new CalendarDate($year, 1, 1), 0))
+        ->toEqual(new CalendarDate($year, 1, 1))
+        ->and($chronology->addDays(new CalendarDate($year, 1, 1), 1))
+        ->toEqual(new CalendarDate($year, 1, 2))
+        ->and($chronology->addDays(new CalendarDate($year, 2, 30), 1))
+        ->toEqual(new CalendarDate($year + 1, 1, 1))
+        ->and($chronology->addDays(new CalendarDate(-$year, 1, 1), -1))
+        ->toEqual(new CalendarDate(-$year - 1, 2, 30));
+});
+
 it('applies multiple leap rules to month lengths and year lengths', function () {
     $chronology = chronology([
         'leap_rules' => [
