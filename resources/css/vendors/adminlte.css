@@ -13,11 +13,13 @@
 .bg-purple,
 .bg-maroon,
 .bg-gray,
+.bg-grey,
 .bg-pink,
 .bg-black {
     color:#fff !important
 }
-.bg-gray {
+.bg-gray,
+.bg-grey {
     background-color: #797676 !important
 }
 .bg-black {
