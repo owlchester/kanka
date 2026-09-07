@@ -19,8 +19,8 @@ use Illuminate\Support\Str;
  * @property ?string $singular
  * @property ?string $plural
  * @property ?string $icon
- * @property bool|int $is_special
- * @property bool|int $is_enabled
+ * @property bool $is_special
+ * @property bool $is_enabled
  * @property AttributeTemplate[]|Collection $attributeTemplates
  * @property Bookmark[]|Collection $bookmarks
  * @property Entity[]|Collection $entities
@@ -45,6 +45,11 @@ class EntityType extends Model
         'position',
         'is_enabled',
         'is_special',
+    ];
+    
+    public $casts = [
+        'is_special' => 'boolean',
+        'is_enabled' => 'boolean',
     ];
 
     public function scopeInCampaign(Builder $query, Campaign|int $campaign): Builder

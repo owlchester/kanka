@@ -135,7 +135,7 @@ class EntityTypeService
         $this->entityType->singular = $this->request->get('singular');
         $this->entityType->plural = $this->request->get('plural');
         $this->entityType->icon = $this->request->get('icon');
-        $this->entityType->is_enabled = (int) $this->request->get('is_enabled');
+        $this->entityType->is_enabled = (boolean) $this->request->get('is_enabled');
         $this->entityType->save();
 
         if ($this->entityType->wasRecentlyCreated) {

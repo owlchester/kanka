@@ -26,7 +26,7 @@ use Illuminate\Support\Collection;
  * @property int $scale_y
  * @property int $rotation
  * @property int $z_index
- * @property bool|int $is_locked
+ * @property bool $is_locked
  * @property array $shape
  * @property Whiteboard $whiteboard
  * @property ?WhiteboardShape $group
@@ -63,6 +63,7 @@ class WhiteboardShape extends Model
         'height' => 'float',
         'rotation' => 'float',
         'shape' => 'array',
+        'is_locked' => 'boolean',
     ];
 
     public function whiteboard(): BelongsTo

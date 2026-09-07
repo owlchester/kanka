@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $plugin_id
  * @property int $plugin_version_id
  * @property string $name
- * @property bool|int $is_active
+ * @property bool $is_active
  * @property Plugin $plugin
  * @property Campaign $campaign
  * @property PluginVersion $version
@@ -23,6 +23,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class CampaignPlugin extends Model
 {
+    public $casts = [
+        'is_active' => 'boolean',
+    ];
+    
     /**
      * @return BelongsTo<Plugin, $this>
      */

@@ -19,8 +19,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $image
  * @property string $type
  * @property ConversationTarget $target_id
- * @property bool|int $is_private
- * @property bool|int $is_closed
+ * @property bool $is_private
+ * @property bool $is_closed
  * @property ConversationParticipant[]|Collection $participants
  * @property ConversationMessage[]|Collection $messages
  */
@@ -43,6 +43,8 @@ class Conversation extends MiscModel
 
     public $casts = [
         'target_id' => ConversationTarget::class,
+        'is_private' => 'boolean',
+        'is_closed' => 'boolean',
     ];
 
     /**

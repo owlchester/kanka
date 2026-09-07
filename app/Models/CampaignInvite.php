@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $id
  * @property int $role_id
  * @property string $token
- * @property bool|int $is_active
+ * @property bool $is_active
  * @property int $validity
  */
 class CampaignInvite extends Model
@@ -33,6 +33,10 @@ class CampaignInvite extends Model
         'token',
         'is_active',
         'validity',
+    ];
+    
+    public $casts = [
+        'is_active' => 'boolean',
     ];
 
     /**

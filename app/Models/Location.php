@@ -22,7 +22,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $type
  * @property string $image
  * @property ?string $map
- * @property bool|int $is_private
  * @property bool|int $is_map_private
  * @property Map[]|Collection $maps
  * @property Event[]|Collection $events

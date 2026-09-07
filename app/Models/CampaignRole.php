@@ -16,8 +16,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property int $id
  * @property int $campaign_id
  * @property string $name
- * @property bool|int $is_admin
- * @property bool|int $is_public
+ * @property bool $is_admin
+ * @property bool $is_public
  * @property Campaign $campaign
  * @property Collection|CampaignPermission[] $permissions
  * @property Collection|CampaignPermission[] $rolePermissions
@@ -38,6 +38,11 @@ class CampaignRole extends Model
         'is_admin',
         'is_public',
         'name',
+    ];
+    
+    public $casts = [
+        'is_admin' => 'boolean',
+        'is_public' => 'boolean',
     ];
 
     /**

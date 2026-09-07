@@ -30,7 +30,7 @@ use Laravel\Scout\Searchable;
  * @property string $colour
  * @property string $icon
  * @property bool $use_entity_entry
- * @property bool|int $is_collapsed
+ * @property bool $is_collapsed
  * @property bool $use_event_date
  * @property Timeline $timeline
  * @property TimelineEra $era
@@ -68,6 +68,7 @@ class TimelineElement extends Model
         'visibility_id' => Visibility::class,
         'use_entity_entry' => 'boolean',
         'use_event_date' => 'boolean',
+        'is_collapsed' => 'boolean',
     ];
 
     protected array $suggestions = [
@@ -126,7 +127,6 @@ class TimelineElement extends Model
             return strip_tags(htmlentities($this->name));
         }
 
-        // @phpstan-ignore-next-line
         return strip_tags($this->entity?->name);
     }
 

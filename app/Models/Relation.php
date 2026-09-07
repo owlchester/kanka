@@ -28,7 +28,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property ?int $mirror_id
  * @property int $owner_id
  * @property int $target_id
- * @property bool|int $is_pinned
+ * @property bool $is_pinned
  * @property string $colour
  * @property string $marketplace_uuid
  * @property Relation|null $mirror
@@ -90,6 +90,7 @@ class Relation extends Model
 
     public $casts = [
         'visibility_id' => Visibility::class,
+        'is_pinned' => 'boolean',
     ];
 
     protected array $sanitizable = [

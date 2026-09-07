@@ -13,7 +13,7 @@ use Illuminate\Support\Collection;
 /**
  * @property int $character_id
  * @property int $race_id
- * @property bool|int $is_private
+ * @property bool $is_private
  * @property ?Character $character
  * @property ?Race $race
  * @property Collection|Race[] $characterRaces
@@ -31,6 +31,10 @@ class CharacterRace extends Model
         'character_id',
         'race_id',
         'is_private',
+    ];
+    
+    public $casts = [
+        'is_private' => 'boolean',
     ];
 
     protected array $sortable = [

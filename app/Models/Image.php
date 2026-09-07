@@ -38,8 +38,8 @@ use Illuminate\Support\Str;
  * @property ?string $description
  * @property ?string $author
  * @property ?string $folder_id
- * @property bool|int $is_default
- * @property bool|int $is_folder
+ * @property bool $is_default
+ * @property bool $is_folder
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Image $imageFolder
@@ -88,6 +88,8 @@ class Image extends Model
         'visibility_id' => Visibility::class,
         'metadata' => 'array',
         'version' => 'integer',
+        'is_folder' => 'boolean',
+        'is_default' => 'boolean'
     ];
 
     protected $attributes = [

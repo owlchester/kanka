@@ -8,12 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int $section
  * @property int $created_by
- * @property bool|int $is_active
+ * @property bool $is_active
  * @property string $customer
  * @property string $html
  */
 class Ad extends Model
 {
+    public $casts = [
+        'is_active' => 'boolean',
+    ];
+
     public const int SECTION_SIDEBAR = 1;
 
     public const int SECTION_BANNER = 2;

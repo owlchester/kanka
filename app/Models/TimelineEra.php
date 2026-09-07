@@ -23,7 +23,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $abbreviation
  * @property string|int $start_year
  * @property string|int $end_year
- * @property bool|int $is_collapsed
+ * @property bool $is_collapsed
  * @property ?int $position
  * @property Timeline $timeline
  * @property TimelineElement[]|Collection $elements
@@ -46,6 +46,10 @@ class TimelineEra extends Model
         'start_year',
         'end_year',
         'is_collapsed',
+    ];
+    
+    public $casts = [
+        'is_collapsed' => 'boolean',
     ];
 
     protected array $sortable = [

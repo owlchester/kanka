@@ -23,8 +23,8 @@ use Illuminate\Support\Str;
  * @property string $content
  * @property Carbon $updated_at
  * @property Carbon $created_at
- * @property bool|int $is_enabled
- * @property bool|int $is_theme
+ * @property bool $is_enabled
+ * @property bool $is_theme
  * @property int $order
  *
  * @method static self|Builder enabled($enabled = true)
@@ -38,6 +38,11 @@ class CampaignStyle extends Model
     use SoftDeletes;
     use SortableTrait;
 
+    public $casts = [
+        'is_enabled' => 'boolean',
+        'is_theme' => 'boolean',
+    ];
+    
     public $fillable = [
         'name',
         'content',

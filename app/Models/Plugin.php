@@ -21,7 +21,7 @@ use Illuminate\Support\Str;
  * @property int $status_id
  * @property ?int $created_by
  * @property string $name
- * @property bool|int $is_obsolete
+ * @property bool $is_obsolete
  * @property PluginVersion[]|Collection $versions
  * @property PluginVersion $version
  *
@@ -36,6 +36,11 @@ class Plugin extends Model
     protected string $userField = 'created_by';
 
     protected ?PluginVersion $cachedHasUpdate;
+    
+    
+    public $casts = [
+        'is_obsolete' => 'boolean',
+    ];
 
     public $sortable = [
         'name',

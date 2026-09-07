@@ -43,7 +43,7 @@ use Laravel\Scout\Searchable;
  * @property ?int $layout_id
  * @property ?string $marketplace_uuid
  * @property int $deleted_by
- * @property bool|int $is_template
+ * @property bool $is_template
  * @property int $position
  * @property array $settings
  * @property ?Entity $entity
@@ -98,6 +98,7 @@ class Post extends Model
     public $casts = [
         'settings' => 'array',
         'visibility_id' => Visibility::class,
+        'is_template' => 'boolean',
     ];
 
     protected array $sanitizable = [
