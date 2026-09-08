@@ -54,17 +54,18 @@ class CurrencyService
         }
 
         $country = $this->countryService->getCountry();
-        $europe = [
-            // EuroZone
-            'AT', 'BE', 'HR', 'CY', 'EE', 'FI', 'FR', 'DE', 'GR', 'IE',
-            'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PT', 'SI', 'SK', 'ES',
-            // Pegged to the EUR
-            'DK',
+        $euroDefaults = [
+            // Countries using the euro
+            'AD', 'AT', 'BE', 'BG', 'HR', 'CY', 'EE', 'FI', 'FR', 'DE', 'GR',
+            'IE', 'IT', 'XK', 'LV', 'LT', 'LU', 'MT', 'MC', 'ME', 'NL', 'PT',
+            'SM', 'SI', 'SK', 'ES', 'VA',
+            // Other EU, EEA, and closely aligned markets
+            'CH', 'CZ', 'DK', 'HU', 'IS', 'LI', 'NO', 'PL', 'RO', 'SE',
         ];
         $currency = null;
         if ($country === 'BR') {
             $currency = 'brl';
-        } elseif (in_array($country, $europe)) {
+        } elseif (in_array($country, $euroDefaults, true)) {
             $currency = 'eur';
         }
 
