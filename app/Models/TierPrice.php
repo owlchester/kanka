@@ -15,17 +15,28 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property PricingPeriod $period
  * @property string $currency
  * @property string $stripe_id
+ * @property bool $is_active
+ * @property string|null $pricing_version
  * @property Tier $tier
  *
  * @method static self|Builder stripe(string $id)
+ * @method static self|Builder active()
  */
 class TierPrice extends Model
 {
     use HasFactory;
 
-    public $casts = [
-        'period' => PricingPeriod::class,
+    protected $attributes = [
+        'is_active' => false,
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'is_active' => 'boolean',
+            'period' => PricingPeriod::class,
+        ];
+    }
 
     /**
      * @return BelongsTo<Tier, $this>
@@ -43,6 +54,11 @@ class TierPrice extends Model
     public function scopeYearly(Builder $query): Builder
     {
         return $query->where('period', PricingPeriod::Yearly);
+    }
+
+    public function scopeActive(Builder $query): Builder
+    {
+        return $query->where('is_active', true);
     }
 
     public function scopeStripe(Builder $query, string $id): Builder

@@ -10,6 +10,6 @@
         <x-icon class="fa-regular fa-webhook" />
     </div>
     <a href="{{ route('larecipe.index') }}" class="text-link">
-        {{ __('tiers.features.api_requests', ['amount' => config('limits.api.throttle.standard')]) }}
+        {{ __('tiers.features.api_requests', ['amount' => config('limits.api.throttle.default')]) }}
     </a>
 </div>
