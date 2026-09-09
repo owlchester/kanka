@@ -25,7 +25,6 @@
 
         <div id="premium" class="flex flex-col gap-4 bg-box p-4 rounded-2xl">
             <h2 class="text-2xl">
-                <x-icon class="premium" />
                 {{ __('subscriptions/finish.premium.title') }}
             </h2>
             <p>{!! __('subscriptions/finish.premium.helper', [
@@ -41,7 +40,7 @@
                         @endif
 
                         <div class="flex gap-4 w-full items-center justify-between">
-                            <div class="flex flex-col gap-1">
+                            <div class="flex flex-col gap-0.5">
                                 <a class="text-xl" href="{{ route('dashboard', [$availableCampaign]) }}">
                                     {!! $availableCampaign->name !!}
                                 </a>
@@ -49,7 +48,7 @@
                                     <p>{{ __('settings/boosters.campaign.standard') }}</p>
                                 </x-helper>
                             </div>
-                            <a href="#" data-toggle="dialog" data-url="{{ route('campaign_boosts.create', ['campaign' => $availableCampaign, 'next' => 'subscription.finish']) }}" class="btn2 btn-outline btn-sm">
+                            <a href="#" data-toggle="dialog" data-url="{{ route('campaign_boosts.create', ['campaign' => $availableCampaign, 'next' => 'subscription.finish']) }}" class="btn2 btn-primary">
                                 <x-icon class="premium" />
                                 {!! __('settings/premium.actions.unlock') !!}
                             </a>
@@ -62,7 +61,6 @@
 
         <div id="discord" class="flex flex-col gap-4 bg-box p-4 rounded-2xl">
             <h2 class="text-2xl">
-                <x-icon class="fa-brands fa-discord" />
                 {{ __('subscriptions/finish.discord.title') }}
             </h2>
             <p>{!! __('subscriptions/finish.discord.helper', [
@@ -82,7 +80,6 @@
 
         <div id="roadmap" class="flex flex-col gap-4 bg-box p-4 rounded-2xl">
             <h2 class="text-2xl">
-                <x-icon class="fa-regular fa-box-ballot" />
                 {{ __('subscriptions/finish.roadmap.title') }}
             </h2>
             <p>{!! __('subscriptions/finish.roadmap.helper', [
