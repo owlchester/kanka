@@ -6,6 +6,7 @@ use App\Enums\PricingPeriod;
 use App\Enums\UserAction;
 use App\Enums\UserFlags;
 use App\Exceptions\TranslatableException;
+use App\Exceptions\UnknownTierPriceException;
 use App\Facades\UserLogger;
 use App\Jobs\DiscordRoleJob;
 use App\Jobs\Emails\MailSettingsChangeJob;
@@ -119,12 +120,11 @@ class SubscriptionService
      */
     public function plan(string $plan): self
     {
-        // Some weird edge cases in prod need mapping
-        if ($plan === 'price_1IRIwTDInN4WlDnRJJU53rej') {
-            $plan = config('subscription.owlbear.usd.monthly');
-        }
         /** @var ?TierPrice $price */
-        $price = TierPrice::where('stripe_id', $plan)->first();
+        $price = TierPrice::stripe($plan)->first();
+        if ($price === null) {
+            throw UnknownTierPriceException::forStripePrice($plan);
+        }
         $this->tier = $price->tier;
         $this->period = $price->period;
 
@@ -300,7 +300,7 @@ class SubscriptionService
         }
         $price = $this->user->subscription('kanka')->stripe_price;
         /** @var TierPrice $tier */
-        $tier = TierPrice::where('stripe_id', $price)->first();
+        $tier = TierPrice::stripe($price)->first();
         if (empty($tier)) {
             return null;
         }
@@ -394,10 +394,11 @@ class SubscriptionService
             return $this->tierPrice;
         }
 
-        return $this->tierPrice = TierPrice::where('tier_id', $this->tier->id)
+        return $this->tierPrice = TierPrice::active()
+            ->where('tier_id', $this->tier->id)
             ->where('currency', $this->user->currency())
             ->where('period', $this->isYearly() ? PricingPeriod::Yearly->value : PricingPeriod::Monthly->value)
-            ->first();
+            ->sole();
     }
 
     protected function userConvertedFromFreeTrial(): bool

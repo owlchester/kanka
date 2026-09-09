@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\PricingPeriod;
 use App\Models\Concerns\HasUser;
 use Illuminate\Database\Eloquent\Model;
 
@@ -39,17 +40,14 @@ class SubscriptionSource extends Model
 
     public function plan(): string
     {
-        if ($this->tier === Pledge::ELEMENTAL) {
-            if ($this->period === 'yearly') {
-                return config('subscription.elemental.eur.yearly');
-            }
+        $tierName = $this->tier === Pledge::ELEMENTAL ? Pledge::ELEMENTAL : Pledge::OWLBEAR;
+        $period = $this->period === 'yearly' ? PricingPeriod::Yearly : PricingPeriod::Monthly;
 
-            return config('subscription.elemental.eur.monthly');
-        }
-        if ($this->period === 'yearly') {
-            return config('subscription.owlbear.eur.yearly');
-        }
-
-        return config('subscription.owlbear.eur.monthly');
+        return TierPrice::active()
+            ->whereHas('tier', fn ($query) => $query->where('name', $tierName))
+            ->where('currency', $this->currency())
+            ->where('period', $period)
+            ->sole()
+            ->stripe_id;
     }
 }

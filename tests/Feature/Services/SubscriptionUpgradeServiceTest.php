@@ -31,6 +31,7 @@ it('only charges the proration for right now, not the following billing cycle, w
     $tierPrice->cost = 8.00;
     $tierPrice->period = PricingPeriod::Monthly;
     $tierPrice->stripe_id = 'price_new';
+    $tierPrice->is_active = true;
     $tierPrice->save();
 
     $stripeSubscription = Util::convertToStripeObject([

@@ -40,20 +40,17 @@ class SubscriptionUpgradeService
             return $price;
         }
 
-        return $this->stripeUpgradePrice($price);
+        return $this->stripeUpgradePrice();
     }
 
-    protected function stripeUpgradePrice(float $fullPrice): float
+    protected function stripeUpgradePrice(): float
     {
-        /** @var ?TierPrice $tierPrice */
-        $tierPrice = TierPrice::where('tier_id', $this->tier->id)
+        /** @var TierPrice $tierPrice */
+        $tierPrice = TierPrice::active()
+            ->where('tier_id', $this->tier->id)
             ->where('currency', $this->user->currency())
             ->where('period', $this->period)
-            ->first();
-
-        if (empty($tierPrice)) {
-            return $fullPrice;
-        }
+            ->sole();
 
         $invoice = $this->user->subscription('kanka')->previewInvoice($tierPrice->stripe_id);
 

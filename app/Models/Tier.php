@@ -79,20 +79,23 @@ class Tier extends Model
 
     public function monthlyPlans(): array
     {
-        return config('subscription.' . $this->code . '.monthly');
+        return $this->prices
+            ->where('period', PricingPeriod::Monthly)
+            ->pluck('stripe_id')
+            ->all();
     }
 
     public function yearlyPlans(): array
     {
-        return config('subscription.' . $this->code . '.yearly');
+        return $this->prices
+            ->where('period', PricingPeriod::Yearly)
+            ->pluck('stripe_id')
+            ->all();
     }
 
     public function plans(): array
     {
-        return array_merge(
-            config('subscription.' . $this->code . '.monthly'),
-            config('subscription.' . $this->code . '.yearly'),
-        );
+        return $this->prices->pluck('stripe_id')->all();
     }
 
     public function price(string $currency, PricingPeriod $period): float
@@ -101,6 +104,7 @@ class Tier extends Model
         $price = $this->prices
             ->where('currency', $currency)
             ->where('period', $period)
+            ->where('is_active', true)
             ->first();
         if (empty($price)) {
             return 0.00;
