@@ -233,6 +233,9 @@ return [
         'plans'                 => [
             'cost_monthly'  => ':currency :amount billed monthly',
             'cost_yearly'   => ':currency :amount billed yearly',
+            'grandfathered' => 'Grandfathered price',
+            'standard_monthly' => 'Standard price: :currency :amount billed monthly',
+            'standard_yearly' => 'Standard price: :currency :amount billed yearly',
         ],
         'sub_status'            => 'Subscription information',
         'subscription'          => [

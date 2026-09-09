@@ -18,7 +18,7 @@ TEXT
         'question'  => 'What happens to my data if I cancel my subscription?',
     ],
     'discount'      => [
-        'answer'    => 'Yes! We reward our annual subscribers with two months for free compared to monthly billing. This is our way of thanking you for your long-term commitment to Kanka.',
+        'answer'    => 'Yes! We reward our annual subscribers with hefty discounts for free compared to monthly billing. This is our way of thanking you for your long-term commitment to Kanka.',
         'question'  => 'Are there any discounts for annual subscriptions?',
     ],
     'downgrade'     => [
@@ -46,7 +46,7 @@ TEXT
         'question'  => 'Do you offer refunds?',
     ],
     'renewal'       => [
-        'answer'    => 'Yes, for credit card subscriptions, we\'ll automatically renew your plan at the same rate when your billing period ends.',
+        'answer'    => 'Yes, we\'ll automatically renew your plan at the same rate when your billing period ends. If you subscribe on a yearly plan, you\'ll receive an email a week before your automatic renewal date.',
         'question'  => 'Will I be charged automatically when my subscription renews?',
     ],
     'security'      => [

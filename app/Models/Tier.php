@@ -100,17 +100,21 @@ class Tier extends Model
 
     public function price(string $currency, PricingPeriod $period): float
     {
-        /** @var TierPrice $price */
-        $price = $this->prices
-            ->where('currency', $currency)
-            ->where('period', $period)
-            ->where('is_active', true)
-            ->first();
+        $price = $this->activePrice($currency, $period);
         if (empty($price)) {
             return 0.00;
         }
 
         return $price->cost;
+    }
+
+    public function activePrice(string $currency, PricingPeriod $period): ?TierPrice
+    {
+        return $this->prices
+            ->where('currency', $currency)
+            ->where('period', $period)
+            ->where('is_active', true)
+            ->first();
     }
 
     public function isWyvern(): bool

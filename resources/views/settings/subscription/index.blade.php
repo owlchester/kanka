@@ -56,6 +56,22 @@
                 @if ($tier->isFree() && $user->isSubscriber())
                     @continue
                 @endif
+                @php
+                    $monthlyPeriod = \App\Enums\PricingPeriod::Monthly;
+                    $yearlyPeriod = \App\Enums\PricingPeriod::Yearly;
+                    $monthlyPrice = $tier->activePrice($user->currency(), $monthlyPeriod);
+                    $yearlyPrice = $tier->activePrice($user->currency(), $yearlyPeriod);
+                    $monthlyGrandfathered = $current?->tier_id === $tier->id
+                        && $current->currency === $user->currency()
+                        && $current->period === $monthlyPeriod
+                        && $monthlyPrice !== null
+                        && $current->id !== $monthlyPrice->id;
+                    $yearlyGrandfathered = $current?->tier_id === $tier->id
+                        && $current->currency === $user->currency()
+                        && $current->period === $yearlyPeriod
+                        && $yearlyPrice !== null
+                        && $current->id !== $yearlyPrice->id;
+                @endphp
                 <article class="rounded-2xl bg-box flex flex-col gap-4 p-4 relative max-w-2xl lg:max-w-none @if ($tier->isCurrent($user)) border-primary border  @endif shadow-xs hover:shadow-md ">
                     <div class="flex gap-2 flex-col ">
                         <div class="flex justify-between gap-2">
@@ -70,19 +86,42 @@
                                     {{ __('front.features.patreon.free') }}
                                 </div>
                             @else
-                                <div class="price price-monthly flex gap-2 w-full items-end">
-                                    <div class="text-2xl">
-                                        {{ $user->currencySymbol() }}
-                                        {{ \Illuminate\Support\Number::format($tier->price($user->currency(), \App\Enums\PricingPeriod::Monthly), 2) }}
+                                <div class="price price-monthly flex flex-col gap-1">
+                                    <div class="flex gap-2 w-full items-end">
+                                        <div class="flex flex-col gap-1">
+                                            <div class="text-2xl">
+                                                {{ $user->currencySymbol() }}
+                                                {{ \Illuminate\Support\Number::format($monthlyGrandfathered ? $current->cost : $monthlyPrice?->cost ?? 0, 2) }}
+                                            </div>
+                                        </div>
+                                        <span class="text-sm text-neutral-content ">{{ __('tiers.periods.billed_monthly') }}</span>
                                     </div>
-                                    <span class="text-sm text-neutral-content ">{{ __('tiers.periods.billed_monthly') }}</span>
+
+                                    @if ($monthlyGrandfathered)
+                                        <span class="text-xs text-primary font-semibold">{{ __('settings.subscription.plans.grandfathered') }}</span>
+                                        <span class="text-xs text-neutral-content">
+                                            {{ __('settings.subscription.plans.standard_monthly', ['currency' => \Illuminate\Support\Str::upper($monthlyPrice->currency), 'amount' => \Illuminate\Support\Number::format($monthlyPrice->cost, 2)]) }}
+                                        </span>
+                                    @endif
                                 </div>
-                                <div class="price price-yearly flex gap-2 w-full items-end">
-                                    <div class="text-2xl">
-                                        {{ $user->currencySymbol() }}
-                                        {{ \Illuminate\Support\Number::format($tier->price($user->currency(), \App\Enums\PricingPeriod::Yearly), 2) }}
+
+                                <div class="price price-yearly flex flex-col gap-1 w-full">
+                                    <div class="flex gap-2 w-full items-end">
+                                        <div class="flex flex-col gap-1">
+                                            <div class="text-2xl">
+                                                {{ $user->currencySymbol() }}
+                                                {{ \Illuminate\Support\Number::format($yearlyGrandfathered ? $current->cost : $yearlyPrice?->cost ?? 0, 2) }}
+                                            </div>
+                                        </div>
+                                        <span class="text-sm text-neutral-content ">{{ __('tiers.periods.billed_yearly') }}</span>
                                     </div>
-                                    <span class="text-sm text-neutral-content ">{{ __('tiers.periods.billed_yearly') }}</span>
+
+                                    @if ($yearlyGrandfathered)
+                                        <span class="text-xs text-primary font-semibold">{{ __('settings.subscription.plans.grandfathered') }}</span>
+                                        <span class="text-xs text-neutral-content">
+                                            {{ __('settings.subscription.plans.standard_yearly', ['currency' => \Illuminate\Support\Str::upper($yearlyPrice->currency), 'amount' => \Illuminate\Support\Number::format($yearlyPrice->cost, 2)]) }}
+                                        </span>
+                                    @endif
                                 </div>
                             @endif
 
