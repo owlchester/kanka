@@ -53,7 +53,9 @@ class SubscriptionCreatedEmailJob implements ShouldQueue
         }
         if ($this->new) {
             $hasCancelledSubscription = Subscription::where('user_id', $user->id)->canceled()->exists();
-            $hasManualCancellation = SubscriptionCancellation::where('user_id', $user->id)->exists();
+            $hasManualCancellation = SubscriptionCancellation::where('user_id', $user->id)
+                ->whereNull('new_tier')
+                ->exists();
 
             if ($hasCancelledSubscription && ! $hasManualCancellation) {
                 return;

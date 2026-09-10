@@ -88,7 +88,10 @@ class NewSubscriptionMail extends Mailable
      */
     public function content(): Content
     {
-        $lastCancel = $this->user->cancellations()->orderByDesc('id')->first();
+        $lastCancel = $this->user->cancellations()
+            ->whereNull('new_tier')
+            ->orderByDesc('id')
+            ->first();
 
         /** @var ?UserLog $log */
         $log = $this->user->logs()->whereNotNull('country')->latest()->first();

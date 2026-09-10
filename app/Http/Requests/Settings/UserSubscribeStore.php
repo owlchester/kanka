@@ -11,6 +11,7 @@ class UserSubscribeStore extends FormRequest
         return [
             'payment_id' => 'required_without:is_downgrade',
             'reason' => 'nullable',
+            'reason_custom' => 'nullable',
         ];
     }
 }

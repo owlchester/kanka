@@ -14,37 +14,48 @@ class ChurnReportService extends BaseReportService
 
     public function getStats(Carbon $start, Carbon $end): array
     {
-        $base = fn () => DB::table('subscription_cancellations')
+        $cancellations = fn () => DB::table('subscription_cancellations')
+            ->whereNull('new_tier')
+            ->whereBetween('created_at', [$start, $end]);
+        $downgrades = fn () => DB::table('subscription_cancellations')
+            ->whereNotNull('new_tier')
             ->whereBetween('created_at', [$start, $end]);
 
-        $total = $base()->count();
-
-        if ($total === 0) {
-            return [
-                'total' => 0,
-                'avg_duration' => 0,
-                'flagged' => 0,
-                'by_tier' => collect(),
-                'by_reason' => collect(),
-            ];
-        }
+        $total = $cancellations()->count();
+        $downgradeTotal = $downgrades()->count();
 
         return [
             'total' => $total,
-            'avg_duration' => (int) round($base()->avg('duration') ?? 0),
-            'flagged' => $base()->where('is_flagged', true)->count(),
-            'by_tier' => $base()
+            'avg_duration' => (int) round($cancellations()->avg('duration') ?? 0),
+            'flagged' => $cancellations()->where('is_flagged', true)->count(),
+            'by_tier' => $cancellations()
                 ->select('tier', DB::raw('count(*) as total'))
                 ->whereNotNull('tier')
                 ->groupBy('tier')
                 ->orderByDesc('total')
                 ->pluck('total', 'tier'),
-            'by_reason' => $base()
+            'by_reason' => $cancellations()
                 ->select('reason', DB::raw('count(*) as total'))
                 ->whereNotNull('reason')
                 ->groupBy('reason')
                 ->orderByDesc('total')
                 ->pluck('total', 'reason'),
+            'downgrades' => [
+                'total' => $downgradeTotal,
+                'avg_duration' => (int) round($downgrades()->avg('duration') ?? 0),
+                'by_transition' => $downgrades()
+                    ->select('tier', 'new_tier', DB::raw('count(*) as total'))
+                    ->groupBy('tier', 'new_tier')
+                    ->orderByDesc('total')
+                    ->get()
+                    ->mapWithKeys(fn (object $row): array => ["{$row->tier} -> {$row->new_tier}" => $row->total]),
+                'by_reason' => $downgrades()
+                    ->select('reason', DB::raw('count(*) as total'))
+                    ->whereNotNull('reason')
+                    ->groupBy('reason')
+                    ->orderByDesc('total')
+                    ->pluck('total', 'reason'),
+            ],
         ];
     }
 
@@ -52,8 +63,10 @@ class ChurnReportService extends BaseReportService
     {
         $lines = [
             $this->formatMetricLine('Total Cancellations', $current['total'], $previous['total']),
-            $this->formatMetricLine('Avg Duration (months)', $current['avg_duration'], $previous['avg_duration']),
+            $this->formatMetricLine('Avg Duration (days)', $current['avg_duration'], $previous['avg_duration']),
+            $this->formatMetricLine('Avg Downgrade Duration (days)', $current['downgrades']['avg_duration'], $previous['downgrades']['avg_duration']),
             $this->formatMetricLine('Flagged', $current['flagged'], $previous['flagged'], $current['total']),
+            $this->formatMetricLine('Total Downgrades', $current['downgrades']['total'], $previous['downgrades']['total']),
             '',
             '<info>By Tier:</info>',
         ];
@@ -69,6 +82,13 @@ class ChurnReportService extends BaseReportService
             $lines[] = $this->formatMetricLine("  {$reason}", $count, $previous['by_reason']->get($reason, 0), $current['total']);
         }
 
+        $lines[] = '';
+        $lines[] = '<info>By Downgrade:</info>';
+
+        foreach ($current['downgrades']['by_transition'] as $transition => $count) {
+            $lines[] = $this->formatMetricLine("  {$transition}", $count, $previous['downgrades']['by_transition']->get($transition, 0), $current['downgrades']['total']);
+        }
+
         return $lines;
     }
 
@@ -76,8 +96,10 @@ class ChurnReportService extends BaseReportService
     {
         $lines = [
             $this->formatMetricText('Total Cancellations', $current['total'], $previous['total']),
-            $this->formatMetricText('Avg Duration (months)', $current['avg_duration'], $previous['avg_duration']),
+            $this->formatMetricText('Avg Duration (days)', $current['avg_duration'], $previous['avg_duration']),
+            $this->formatMetricText('Avg Downgrade Duration (days)', $current['downgrades']['avg_duration'], $previous['downgrades']['avg_duration']),
             $this->formatMetricText('Flagged', $current['flagged'], $previous['flagged'], $current['total']),
+            $this->formatMetricText('Total Downgrades', $current['downgrades']['total'], $previous['downgrades']['total']),
             '',
             'By Tier:',
         ];
@@ -91,6 +113,13 @@ class ChurnReportService extends BaseReportService
 
         foreach ($current['by_reason'] as $reason => $count) {
             $lines[] = $this->formatMetricText("  {$reason}", $count, $previous['by_reason']->get($reason, 0), $current['total']);
+        }
+
+        $lines[] = '';
+        $lines[] = 'By Downgrade:';
+
+        foreach ($current['downgrades']['by_transition'] as $transition => $count) {
+            $lines[] = $this->formatMetricText("  {$transition}", $count, $previous['downgrades']['by_transition']->get($transition, 0), $current['downgrades']['total']);
         }
 
         return implode("\n", $lines);

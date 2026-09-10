@@ -38,10 +38,11 @@ beforeEach(function (): void {
     Schema::create('subscription_cancellations', function ($table): void {
         $table->id();
         $table->foreignId('user_id');
-        $table->string('reason');
+        $table->string('reason')->nullable();
         $table->string('secondary')->nullable();
         $table->text('custom')->nullable();
         $table->string('tier');
+        $table->string('new_tier')->nullable();
         $table->unsignedInteger('duration');
         $table->timestamps();
     });
@@ -109,6 +110,21 @@ it('labels a subscription as renewed after a previous cancellation', function ()
     expect($subject)->toBe('Sub: Renewed Monthly Owlbear');
 });
 
+it('does not use a downgrade as previous cancellation information', function (): void {
+    $user = User::factory()->create(['pledge' => 'Owlbear']);
+    SubscriptionCancellation::create([
+        'user_id' => $user->id,
+        'reason' => 'financial',
+        'tier' => 'Wyvern',
+        'new_tier' => 'Owlbear',
+        'duration' => 30,
+    ]);
+
+    $mail = new NewSubscriptionMail($user, PricingPeriod::Monthly);
+
+    expect($mail->content()->with['lastCancel'])->toBeNull();
+});
+
 it('does not send the renewed email after an automatic cancellation', function (): void {
     Mail::fake();
     $user = User::factory()->create();
@@ -150,4 +166,29 @@ it('sends the renewed email after a manual cancellation', function (): void {
     (new SubscriptionCreatedEmailJob($user, PricingPeriod::Monthly))->handle();
 
     Mail::assertSent(NewSubscriptionMail::class);
+});
+
+it('does not treat a downgrade as a manual cancellation', function (): void {
+    Mail::fake();
+    $user = User::factory()->create();
+    SubscriptionCancellation::create([
+        'user_id' => $user->id,
+        'reason' => 'financial',
+        'tier' => 'Wyvern',
+        'new_tier' => 'Owlbear',
+        'duration' => 30,
+    ]);
+    Subscription::create([
+        'user_id' => $user->id,
+        'type' => 'kanka',
+        'stripe_id' => 'sub_downgrade_only',
+        'stripe_status' => 'canceled',
+        'stripe_price' => 'price_owlbear',
+        'quantity' => 1,
+        'ends_at' => now()->addMonth(),
+    ]);
+
+    (new SubscriptionCreatedEmailJob($user, PricingPeriod::Monthly))->handle();
+
+    Mail::assertNothingSent();
 });

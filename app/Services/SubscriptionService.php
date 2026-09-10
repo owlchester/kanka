@@ -16,6 +16,7 @@ use App\Jobs\Emails\Subscriptions\Converted;
 use App\Jobs\Emails\Subscriptions\WelcomeSubscriptionEmailJob;
 use App\Models\Pledge;
 use App\Models\Role;
+use App\Models\SubscriptionCancellation;
 use App\Models\Tier;
 use App\Models\TierPrice;
 use App\Traits\UserAware;
@@ -212,6 +213,8 @@ class SubscriptionService
         // If downgrading, send admins an email, and let stripe deal with the rest. A user update hook will be thrown
         // when the user really changes. Probably?
         if (! $this->webhook && $this->downgrading()) {
+            $this->recordDowngrade();
+
             SubscriptionDowngradedEmailJob::dispatch(
                 $this->user,
                 Arr::get($this->request, 'reason'),
@@ -262,6 +265,20 @@ class SubscriptionService
         }
 
         return $this;
+    }
+
+    private function recordDowngrade(): void
+    {
+        $subscription = $this->user->subscription('kanka');
+
+        SubscriptionCancellation::create([
+            'user_id' => $this->user->id,
+            'reason' => Arr::get($this->request, 'reason'),
+            'custom' => Arr::get($this->request, 'reason_custom'),
+            'tier' => $this->user->pledge,
+            'new_tier' => $this->tier->name,
+            'duration' => (int) $subscription->created_at->diffInDays(Carbon::now()),
+        ]);
     }
 
     /**

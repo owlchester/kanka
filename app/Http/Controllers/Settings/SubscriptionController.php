@@ -319,7 +319,11 @@ class SubscriptionController extends Controller
                 ->tier($tier)
                 ->period($period)
                 ->coupon($request->get('coupon'))
-                ->request(['payment_id' => $paymentMethodId])
+                ->request([
+                    'payment_id' => $paymentMethodId,
+                    'reason' => $request->get('reason'),
+                    'reason_custom' => $request->get('reason_custom'),
+                ])
                 ->change();
 
             if (! $sub->downgrading()) {

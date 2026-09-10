@@ -114,6 +114,10 @@ const subscribe = (event) => {
     const returnUrl = new URL(document.getElementById('payment-element').dataset.returnUrl);
     if (periodInput) returnUrl.searchParams.set('period', periodInput.value);
     if (couponInput && couponInput.value) returnUrl.searchParams.set('coupon', couponInput.value);
+    const reasonInput = document.querySelector('select[name="reason"]');
+    const customReasonInput = document.querySelector('textarea[name="reason_custom"]');
+    if (reasonInput && reasonInput.value) returnUrl.searchParams.set('reason', reasonInput.value);
+    if (customReasonInput && customReasonInput.value) returnUrl.searchParams.set('reason_custom', customReasonInput.value);
 
     stripe.confirmSetup({
         elements,
