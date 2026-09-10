@@ -35,6 +35,24 @@
 
     <hr />
 
+    @if (!$campaign->boosted())
+        <x-helper>
+            <p>
+                <x-icon class="premium" />
+                {!! __('callouts.premium.multiple', ['campaign' => '<strong>' . $campaign->name . '</strong>']) !!}
+            </p>
+            @can('boost', auth()->user())
+                <a href="{{ route('settings.premium', ['campaign' => $campaign]) }}" class="btn2 btn-primary btn-sm self-start">
+                    {{ __('settings/premium.actions.unlock') }}
+                </a>
+            @else
+                <a href="{{ route('settings.subscription', ['f' => 'cta', 'w' => $campaign->id]) }}" class="btn2 btn-primary btn-sm self-start">
+                    {{ __('callouts.actions.subscription') }}
+                </a>
+            @endcan
+        </x-helper>
+    @endif
+
     <x-forms.field
         field="singular"
         :label="__('campaigns/modules.fields.singular')"
