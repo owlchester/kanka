@@ -38,7 +38,7 @@ use App\Facades\Datagrid ?>
         </p>
 
         @if (!$campaign->boosted())
-            <x-premium-cta-alert :campaign="$campaign">
+            <x-premium-cta-alert :campaign="$campaign" source="theming">
                 <x-slot name="title">
                     {!! __('campaigns/styles.cta.title') !!}
                 </x-slot>
