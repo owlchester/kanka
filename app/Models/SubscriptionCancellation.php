@@ -10,10 +10,11 @@ use Illuminate\Database\Eloquent\Model;
  * Class SubscriptionCancellation
  *
  * @property int $id
- * @property string $reason
+ * @property ?string $reason
  * @property ?string $secondary
  * @property ?string $custom
  * @property string $tier
+ * @property ?string $new_tier
  * @property string $duration
  * @property Carbon $created_at
  */
@@ -32,6 +33,7 @@ class SubscriptionCancellation extends Model
         'secondary',
         'custom',
         'tier',
+        'new_tier',
         'duration',
     ];
 }
