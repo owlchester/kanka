@@ -3,7 +3,7 @@
         @if ($campaign)
             <li class="flex items-center">
                 <a href="{{ route('dashboard', $campaign) }}" class="text-base-content">
-                    <x-icon class="fa-regular fa-globe" />
+                    <x-icon class="fa-regular fa-house" />
                     <span class="hidden md:inline">
                         {!! $campaign->name !!}
                     </span>

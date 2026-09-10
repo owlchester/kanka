@@ -15,7 +15,7 @@ class PremiumCta extends Component
     public function __construct(
         public Campaign $campaign,
         public bool $superboosted = false,
-        public bool $premium = false
+        public bool $premium = false,
     ) {
         //
     }
@@ -31,6 +31,9 @@ class PremiumCta extends Component
         if (auth()->check()) {
             if (auth()->user()->billedInBrl()) {
                 $amount = 19.99;
+                $currency = 'BRL';
+            } elseif (auth()->user()->billedInEur()) {
+                $currency = '€';
             }
         }
 

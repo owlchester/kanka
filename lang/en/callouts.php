@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'alert' => [
+        'enable' => 'Enable premium features for this world',
+        'sponsor' => 'Sponsor premium features for this world',
+    ],
     'actions'   => [
         'subscription'  => 'See plans & pricing',
         'upgrade'       => 'Upgrade to premium',
