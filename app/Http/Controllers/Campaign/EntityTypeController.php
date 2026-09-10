@@ -25,17 +25,13 @@ class EntityTypeController extends Controller
                 ->with('campaign', $campaign);
         }
 
-        $limit = config('limits.campaigns.modules.premium');
-        if ($campaign->isWyvern()) {
-            $limit = config('limits.campaigns.modules.wyvern');
-        } elseif ($campaign->isElemental()) {
-            $limit = config('limits.campaigns.modules.elemental');
-        }
+        $limit = $this->limit($campaign);
 
         if ($campaign->entityTypes->count() >= $limit) {
             return view('campaigns.entity-types.max-reached')
                 ->with('campaign', $campaign)
-                ->with('limit', $limit);
+                ->with('limit', $limit)
+                ->with('isPremiumUnlocker', $this->isPremiumUnlocker($campaign));
         }
 
         return view('campaigns.entity-types.create')
@@ -49,9 +45,14 @@ class EntityTypeController extends Controller
         if (! $campaign->premium()) {
             return redirect()->route('campaign.modules', $campaign)
                 ->with('error', __('This feature is only available on premium campaigns'));
-        } elseif ($campaign->entityTypes->count() > config('limits.campaigns.modules')) {
+        }
+
+        $limit = $this->limit($campaign);
+        if ($campaign->entityTypes->count() >= $limit) {
             return view('campaigns.entity-types.max-reached')
-                ->with('campaign', $campaign);
+                ->with('campaign', $campaign)
+                ->with('limit', $limit)
+                ->with('isPremiumUnlocker', $this->isPremiumUnlocker($campaign));
         }
         if (request()->ajax()) {
             return response()->json(['success' => true]);
@@ -163,5 +164,23 @@ class EntityTypeController extends Controller
 
         return redirect()->route('campaign.modules', $campaign)
             ->with('success', __('campaigns/modules.delete.success', ['name' => $entityType->name()]));
+    }
+
+    protected function limit(Campaign $campaign): int
+    {
+        if ($campaign->isWyvern()) {
+            return config('limits.campaigns.modules.wyvern');
+        }
+
+        if ($campaign->isElemental()) {
+            return config('limits.campaigns.modules.elemental');
+        }
+
+        return config('limits.campaigns.modules.premium');
+    }
+
+    protected function isPremiumUnlocker(Campaign $campaign): bool
+    {
+        return $campaign->boosts->first()?->user_id === auth()->id();
     }
 }

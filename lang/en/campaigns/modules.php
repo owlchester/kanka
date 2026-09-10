@@ -24,6 +24,7 @@ return [
         'limit'                 => 'Campaigns are currently limited to only :max custom categories while we iron out this new feature.',
         'limit-title'           => 'Custom category limit reached',
         'subscription-limit'    => 'The campaign has reached the maximum amount of custom categories available. The person unlocking premium features can subscribe to a higher tier to increase this limit.',
+        'subscription-upgrade'  => 'Upgrade to Wyvern to allow up to :wyvern custom categories, or Elemental for up to :elemental per premium campaign.',
     ],
     'fields'        => [
         'icon'          => 'Category icon',

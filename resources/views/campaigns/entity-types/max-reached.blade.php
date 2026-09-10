@@ -7,7 +7,17 @@
     </x-dialog.header>
     <x-dialog.article class="max-w-3xl">
         <x-helper>
-            <p>{{ __('campaigns/modules.errors.subscription-limit') }}</p>
+            @if ($isPremiumUnlocker)
+                <p>{{ __('campaigns/modules.errors.subscription-upgrade', [
+                    'wyvern' => config('limits.campaigns.modules.wyvern'),
+                    'elemental' => config('limits.campaigns.modules.elemental'),
+                ]) }}</p>
+                <a href="{{ route('settings.subscription') }}" class="text-link">
+                    {{ __('callouts.actions.subscription') }}
+                </a>
+            @else
+                <p>{{ __('campaigns/modules.errors.subscription-limit') }}</p>
+            @endif
         </x-helper>
     </x-dialog.article>
 @endif
