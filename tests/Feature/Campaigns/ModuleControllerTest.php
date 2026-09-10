@@ -17,7 +17,7 @@ it('guides users with premium access to enable it when editing a module', functi
         ->withCampaign(['name' => 'Test Campaign'])
         ->get(route('modules.edit', [1, EntityType::default()->first()]))
         ->assertOk()
-        ->assertSee(e(route('settings.premium', ['campaign' => 1])), false)
+        ->assertSee(e(route('settings.premium', ['campaign' => 'test-campaign'])), false)
         ->assertSee(__('settings/premium.actions.unlock'))
         ->assertSee('disabled="disabled"', false)
         ->assertDontSee(e(route('settings.subscription', ['f' => 'cta', 'w' => 1])), false);
