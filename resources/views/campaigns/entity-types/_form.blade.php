@@ -36,8 +36,6 @@
         </div>
     </x-forms.field>
 
-    <hr />
-
     <x-forms.field
         field="singular"
         :label="__('campaigns/modules.fields.singular')"

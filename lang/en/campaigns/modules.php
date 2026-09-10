@@ -28,17 +28,17 @@ return [
     'fields'        => [
         'icon'          => 'Category icon',
         'image'         => 'Placeholder image',
-        'plural'        => 'Category plural name',
-        'singular'      => 'Category singular name',
+        'plural'        => 'Plural name',
+        'singular'      => 'Singular name',
         'status'        => 'Category status',
         'update_name'   => 'Rename category bookmark with new name',
     ],
     'helpers'       => [
         'custom'    => 'This is a custom category.',
         'icon'      => 'Give this category a special :fontawesome icon, for example :example.',
-        'plural'    => 'Used in navigation and lists (.e.g, "view all potions")',
+        'plural'    => 'Used in navigation and lists, .e.g. "view all potions"',
         'roles'     => 'Select roles that should have permission to view entries of this new category. This can later be changed in the role permissions.',
-        'singular'  => 'Used when referring to a single item (e.g., "new potion")',
+        'singular'  => 'Used when referring to a single item, e.g. "new potion"',
         'status'    => 'Disabled categories are hidden from navigation and menus. No data is deleted.',
         'tutorial'  => 'Categories control which features are visible in the campaign. Enable the ones you use and hide the rest. Turning a category off never deletes data; it only removes it from navigation and creation menus.',
     ],
@@ -47,6 +47,11 @@ return [
     'pitch-title'   => 'Unlock custom categories',
     'rename'        => [
         'helper'    => 'Customise how this category appears throughout the campaign. Leave fields blank to use default values.',
+        'premium'   => [
+            'description' => 'Premium campaigns can rename this category, choose its plural form, and give it a custom icon to match your world.',
+            'title'       => 'Make this category feel like yours',
+            'upgrade'     => "Upgrade :campaign",
+        ],
         'success'   => 'Category customised.',
         'title'     => 'Customise :module',
     ],
