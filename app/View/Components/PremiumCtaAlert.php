@@ -12,7 +12,9 @@ class PremiumCtaAlert extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(public Campaign $campaign)
+    public function __construct(
+        public Campaign $campaign,
+        public string $source)
     {
     }
 

@@ -10,7 +10,7 @@
     </div>
     @auth
         @can('boost', auth()->user())
-            <a href="{{ route('settings.premium', ['campaign' => $campaign->id, 'f' => 'cta', 's' => 'theming']) }}" class="text-primary font-semibold">
+            <a href="{{ route('settings.premium', ['campaign' => $campaign->id, 'f' => 'cta', 's' => $source]) }}" class="text-primary font-semibold">
                 @can('admin', $campaign)
                     {!! __('callouts.alert.enable', ['campaign' => $campaign]) !!}
                 @else
@@ -19,7 +19,7 @@
                 <i class="fa-regular fa-arrow-right" aria-hidden="true"></i>
             </a>
         @else
-            <a href="{{ route('settings.subscription', ['f' => 'cta', 's' => 'theming', 'w' => $campaign->id]) }}" class="text-primary font-semibold">
+            <a href="{{ route('settings.subscription', ['f' => 'cta', 's' => $source, 'w' => $campaign->id]) }}" class="text-primary font-semibold">
                 {!! __('callouts.actions.subscription') !!}
                 <i class="fa-regular fa-arrow-right" aria-hidden="true"></i>
             </a>
