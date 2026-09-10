@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * Class CampaignBoost
  *
  * @property int $campaign_id
+ * @property bool $automatically_assigned
  * @property Campaign $campaign
  * @property Carbon $created_at
  */
@@ -25,7 +26,11 @@ class CampaignBoost extends Model
     use Prunable;
     use SoftDeletes;
 
-    protected $fillable = ['user_id', 'campaign_id'];
+    protected $fillable = ['user_id', 'campaign_id', 'automatically_assigned'];
+
+    protected $casts = [
+        'automatically_assigned' => 'boolean',
+    ];
 
     /**
      * @return BelongsTo<Campaign, $this>
@@ -37,7 +42,9 @@ class CampaignBoost extends Model
 
     public function inCooldown(): bool
     {
-        return app()->isProduction() && ! $this->created_at->isBefore(Carbon::now()->subDays(7));
+        return app()->isProduction()
+            && ! $this->automatically_assigned
+            && ! $this->created_at->isBefore(Carbon::now()->subDays(7));
     }
 
     /**

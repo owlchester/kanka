@@ -82,7 +82,7 @@ class BoostService
         $this->notify($key);
     }
 
-    public function premium(): void
+    public function premium(bool $automaticallyAssigned = false): void
     {
         if ($this->campaign->premium()) {
             throw new TranslatableException('settings/premium.exceptions.already');
@@ -97,6 +97,7 @@ class BoostService
             CampaignBoost::create([
                 'campaign_id' => $this->campaign->id,
                 'user_id' => $this->user->id,
+                'automatically_assigned' => $automaticallyAssigned,
             ]);
         }
         $this->campaign->boost_count = $this->campaign->boosts()->count();
