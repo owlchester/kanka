@@ -25,7 +25,10 @@ class StandardEntityCreationService
         }
 
         return DB::transaction(function () use ($data): MiscModel {
-            $entity = new Entity($data);
+            // Entry mentions are parsed by EntitySaveService after the child exists.
+            $entityData = $data;
+            unset($entityData['entry']);
+            $entity = new Entity($entityData);
             $entity->campaign_id = $this->campaign->id;
             $entity->type_id = $this->entityType->id;
             $entity->is_private = $data['is_private'] ?? false;

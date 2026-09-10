@@ -42,6 +42,21 @@ it('links a newly created character to its entity', function () {
     expect($character->entity->created_by)->toBe(auth()->id());
 });
 
+it('creates an inline character mention only once when creating a character', function () {
+    $this->asUser()->withCampaign();
+
+    $response = $this->postJson('/api/1.0/campaigns/1/characters', [
+        'name' => 'Parent Character',
+        'entry' => '[new:character|aaaa]',
+    ]);
+    $response->assertCreated();
+
+    $inlineCharacter = Character::where('name', 'aaaa')->firstOrFail();
+
+    expect(Character::where('name', 'aaaa')->count())->toBe(1)
+        ->and($response->json('data.entry_parsed'))->toContain((string) $inlineCharacter->entity_id);
+});
+
 it('rolls back an entity when its child cannot be created', function () {
     $this->asUser()->withCampaign();
 
