@@ -14,9 +14,7 @@ class PremiumCtaAlert extends Component
      */
     public function __construct(
         public Campaign $campaign,
-        public string $source)
-    {
-    }
+        public string $source) {}
 
     /**
      * Get the view / contents that represent the component.
