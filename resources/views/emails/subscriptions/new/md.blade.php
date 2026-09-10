@@ -1,6 +1,8 @@
 <x-mail::message layout="admin">
 @if ($trial)
 # Free trial conversion
+@elseif (!empty($upgrade))
+# Subscription upgrade
 @else
 # New subscription
 @endif

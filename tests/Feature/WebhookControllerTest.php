@@ -2,6 +2,7 @@
 
 use App\Enums\PricingPeriod;
 use App\Http\Controllers\WebhookController;
+use App\Jobs\Emails\SubscriptionCreatedEmailJob;
 use App\Jobs\Emails\Subscriptions\WelcomeSubscriptionEmailJob;
 use App\Models\Pledge;
 use App\Models\Tier;
@@ -109,7 +110,7 @@ it('sends emails when PayPal/3DS subscription activates (incomplete to active)',
     );
 });
 
-it('sends user welcome email on upgrade without notifying admin (pledge already updated by web controller)', function () {
+it('sends admin and user emails on upgrade (pledge already updated by web controller)', function () {
     Queue::fake();
 
     $tierPrice = makeTierPrice('price_upgrade', Pledge::WYVERN);
@@ -129,6 +130,9 @@ it('sends user welcome email on upgrade without notifying admin (pledge already 
         buildPayload($tierPrice->stripe_id, $user->stripe_id, previousAttributes: ['plan' => ['id' => 'price_owlbear']])
     );
 
+    Queue::assertPushed(SubscriptionCreatedEmailJob::class, function (SubscriptionCreatedEmailJob $job): bool {
+        return $job->new === false;
+    });
     Queue::assertPushed(WelcomeSubscriptionEmailJob::class);
 });
 

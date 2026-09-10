@@ -30,10 +30,11 @@ class NewSubscriptionMail extends Mailable
      *
      * @return void
      */
-    public function __construct(User $user, PricingPeriod $period)
+    public function __construct(User $user, PricingPeriod $period, bool $new = true)
     {
         $this->user = $user;
         $this->period = $period;
+        $this->new = $new;
     }
 
     /**
@@ -41,13 +42,13 @@ class NewSubscriptionMail extends Mailable
      */
     public function envelope(): Envelope
     {
-        $action = 'New';
+        $action = $this->new ? 'New' : 'Upgrade';
         // Check if user was previously subbed
 
         // Auto-cancelled subs due to credit card issues don't trigger a cancellation, so we need to check previous
         // subs instead.
         $cancelled = Subscription::where('user_id', $this->user->id)->canceled()->count();
-        if ($cancelled > 0) {
+        if ($this->new && $cancelled > 0) {
             $action = 'Renewed';
         }
 
@@ -100,7 +101,7 @@ class NewSubscriptionMail extends Mailable
 
         return new Content(
             markdown: 'emails.subscriptions.new.md',
-            with: ['lastCancel' => $lastCancel, 'user' => $this->user, 'period' => $this->period, 'trial' => false, 'country' => $log?->country, 'paymentMethod' => $paymentMethod],
+            with: ['lastCancel' => $lastCancel, 'user' => $this->user, 'period' => $this->period, 'trial' => false, 'upgrade' => ! $this->new, 'country' => $log?->country, 'paymentMethod' => $paymentMethod],
         );
     }
 }

@@ -110,6 +110,23 @@ it('labels a subscription as renewed after a previous cancellation', function ()
     expect($subject)->toBe('Sub: Renewed Monthly Owlbear');
 });
 
+it('labels an upgrade as an upgrade after a previous cancellation', function (): void {
+    $user = User::factory()->create(['pledge' => 'Wyvern']);
+    Subscription::create([
+        'user_id' => $user->id,
+        'type' => 'kanka',
+        'stripe_id' => 'sub_previous_cancellation_upgrade_subject',
+        'stripe_status' => 'canceled',
+        'stripe_price' => 'price_owlbear',
+        'quantity' => 1,
+        'ends_at' => now()->subDay(),
+    ]);
+
+    $subject = (new NewSubscriptionMail($user, PricingPeriod::Monthly, false))->envelope()->subject;
+
+    expect($subject)->toBe('Sub: Upgrade Monthly Wyvern');
+});
+
 it('does not use a downgrade as previous cancellation information', function (): void {
     $user = User::factory()->create(['pledge' => 'Owlbear']);
     SubscriptionCancellation::create([

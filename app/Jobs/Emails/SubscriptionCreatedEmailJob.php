@@ -60,12 +60,12 @@ class SubscriptionCreatedEmailJob implements ShouldQueue
             if ($hasCancelledSubscription && ! $hasManualCancellation) {
                 return;
             }
-
-            // Send an email to the admins
-            Mail::to('hello@kanka.io')
-                ->send(
-                    new NewSubscriptionMail($user, $this->period)
-                );
         }
+
+        // Send an email to the admins for new subscriptions and upgrades.
+        Mail::to('hello@kanka.io')
+            ->send(
+                new NewSubscriptionMail($user, $this->period, $this->new)
+            );
     }
 }

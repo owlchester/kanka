@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\UserAction;
 use App\Jobs\Emails\MailSettingsChangeJob;
+use App\Jobs\Emails\SubscriptionCreatedEmailJob;
 use App\Jobs\Emails\SubscriptionDeletedEmailJob;
 use App\Jobs\Emails\Subscriptions\UpcomingYearlyAlert;
 use App\Jobs\Emails\Subscriptions\WelcomeSubscriptionEmailJob;
@@ -98,10 +99,10 @@ class WebhookController extends CashierController
         } elseif ($isPlanChange && ! $serviceCall->downgrading()) {
             // Tier upgrade confirmed by Stripe. The web controller already updated pledge
             // to the new tier, so upgrading() is unreliable here. Suppress finish()'s email
-            // logic and dispatch only the user-facing welcome email (admin is not notified
-            // for upgrades, matching the original behaviour).
+            // logic and dispatch the admin and user-facing upgrade emails separately.
             $serviceCall->webhook()->finish();
             if ($tierPrice = TierPrice::where('stripe_id', $planId)->first()) {
+                SubscriptionCreatedEmailJob::dispatch($user, $tierPrice->period, false);
                 WelcomeSubscriptionEmailJob::dispatch($user, $tierPrice->tier);
             }
         } else {
