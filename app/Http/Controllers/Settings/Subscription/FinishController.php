@@ -4,15 +4,19 @@ namespace App\Http\Controllers\Settings\Subscription;
 
 use App\Facades\DataLayer;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Settings\SubscriptionController;
+use App\Models\Campaign;
 use App\Models\TierPrice;
 use App\Models\User;
+use App\Services\Campaign\BoostService;
 use App\Services\SubscriptionService;
 use Illuminate\Http\Request;
 
 class FinishController extends Controller
 {
     public function __construct(
-        protected SubscriptionService $subscriptionService
+        protected SubscriptionService $subscriptionService,
+        protected BoostService $boostService,
     ) {
         $this->middleware(['auth', 'identity', 'subscriptions']);
     }
@@ -50,6 +54,7 @@ class FinishController extends Controller
             ];
         }
 
+        $premiumCampaign = $this->assignPremiumCampaign($user);
         $availableCampaigns = $user->campaigns()->unboosted()->get();
         $isTrial = $request->get('trial') == 1;
 
@@ -63,6 +68,35 @@ class FinishController extends Controller
             'tracking',
             'gaPurchase',
             'isTrial',
+            'premiumCampaign',
         ));
+    }
+
+    private function assignPremiumCampaign(User $user): ?Campaign
+    {
+        if (! session()->pull(SubscriptionController::SUCCESS_SESSION_KEY, false)) {
+            return null;
+        }
+
+        $campaignId = session()->pull(SubscriptionController::CAMPAIGN_SESSION_KEY);
+        $campaign = $campaignId
+            ? Campaign::acl($campaignId)->first()
+            : ($user->campaigns()->count() === 1 ? $user->campaigns()->first() : null);
+
+        if (
+            ! $campaign
+            || $user->hasBoosterNomenclature()
+            || $campaign->premium()
+            || $user->availableBoosts() < 1
+        ) {
+            return null;
+        }
+
+        $this->boostService
+            ->user($user)
+            ->campaign($campaign)
+            ->premium(automaticallyAssigned: true);
+
+        return $campaign;
     }
 }

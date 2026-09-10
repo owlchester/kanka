@@ -120,3 +120,17 @@ it('preserves downgrade feedback from a setup intent return', function () {
         ]))
         ->assertRedirect(route('settings.subscription.finish'));
 });
+
+it('redirects a successful secure payment callback to the subscription finish page', function () {
+    config(['services.stripe.enabled' => true]);
+
+    $user = User::factory()->create();
+
+    $this->actingAs($user)
+        ->withSession([
+            'subscription_callback' => 'pi_test123',
+            'subscription_success' => true,
+        ])
+        ->get(route('settings.subscription.callback', ['success' => 1]))
+        ->assertRedirect(route('settings.subscription.finish'));
+});

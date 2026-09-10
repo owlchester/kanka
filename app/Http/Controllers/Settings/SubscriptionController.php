@@ -9,6 +9,7 @@ use App\Facades\UserLogger;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\UserSubscribeStore;
 use App\Jobs\Users\AbandonedCart;
+use App\Models\Campaign;
 use App\Models\Tier;
 use App\Models\User;
 use App\Services\SubscriptionService;
@@ -26,6 +27,10 @@ use Stripe\SetupIntent;
 
 class SubscriptionController extends Controller
 {
+    public const CAMPAIGN_SESSION_KEY = 'subscription_campaign_id';
+
+    public const SUCCESS_SESSION_KEY = 'subscription_success';
+
     protected SubscriptionService $subscription;
 
     protected SubscriptionUpgradeService $subscriptionUpgrade;
@@ -54,6 +59,7 @@ class SubscriptionController extends Controller
     {
         /** @var User $user */
         $user = auth()->user();
+        $this->rememberCampaignContext(request(), clearWhenMissing: true);
         $stripeApiToken = config('cashier.key');
         $this->currencyService->user($user)->setDefaultCurrency();
         $status = $this->subscription->user($user)->status();
@@ -92,6 +98,7 @@ class SubscriptionController extends Controller
     {
         /** @var User $user */
         $user = $request->user();
+        $this->rememberCampaignContext($request);
         if ($user->hasPayPal()) {
             return view('settings.subscription.change_blocked')
                 ->with('user', $user);
@@ -239,6 +246,7 @@ class SubscriptionController extends Controller
             }
 
             $sub->finish();
+            $this->markSubscriptionSuccess(! $sub->downgrading());
 
             return redirect()
                 ->route('settings.subscription.finish')
@@ -247,6 +255,7 @@ class SubscriptionController extends Controller
                 ->with('sub_coupon', $request->get('coupon'))
                 ->with('sub_id', $this->subscription->tierPrice()->id);
         } catch (IncompletePayment $exception) {
+            $this->markSubscriptionSuccess(! $this->subscription->downgrading());
             session()->put('subscription_callback', $request->get('payment_id'));
 
             return redirect()->route(
@@ -331,6 +340,7 @@ class SubscriptionController extends Controller
             }
 
             $sub->finish();
+            $this->markSubscriptionSuccess(! $sub->downgrading());
 
             return redirect()
                 ->route('settings.subscription.finish')
@@ -340,6 +350,7 @@ class SubscriptionController extends Controller
                 ->with('sub_id', $this->subscription->tierPrice()->id);
 
         } catch (IncompletePayment $exception) {
+            $this->markSubscriptionSuccess(! $this->subscription->downgrading());
             session()->put('subscription_callback', $paymentMethodId ?? null);
 
             return redirect()->route(
@@ -373,6 +384,10 @@ class SubscriptionController extends Controller
         session()->remove('subscription_callback');
 
         if ($request->get('success')) {
+            if (session()->has(self::SUCCESS_SESSION_KEY)) {
+                return redirect()->route('settings.subscription.finish');
+            }
+
             return redirect()
                 ->route('settings.subscription')
                 ->withSuccess(__('settings.subscription.success.callback'));
@@ -381,5 +396,33 @@ class SubscriptionController extends Controller
         return redirect()
             ->route('settings.subscription')
             ->withError(__('settings.subscription.errors.callback'));
+    }
+
+    private function rememberCampaignContext(Request $request, bool $clearWhenMissing = false): void
+    {
+        if ($clearWhenMissing) {
+            session()->forget(self::SUCCESS_SESSION_KEY);
+        }
+axs
+        if ($request->has('w')) {
+            Campaign::acl($request->integer('w'))->firstOrFail();
+            session()->put(self::CAMPAIGN_SESSION_KEY, $request->integer('w'));
+        } elseif ($clearWhenMissing) {
+            session()->forget(self::CAMPAIGN_SESSION_KEY);
+        }
+    }
+
+    private function markSubscriptionSuccess(bool $eligible): void
+    {
+        if ($eligible) {
+            session()->put(self::SUCCESS_SESSION_KEY, true);
+
+            return;
+        }
+
+        session()->forget([
+            self::SUCCESS_SESSION_KEY,
+            self::CAMPAIGN_SESSION_KEY,
+        ]);
     }
 }

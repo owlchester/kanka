@@ -1,6 +1,9 @@
 <?php
 
+use App\Enums\CampaignVisibility;
 use App\Enums\PricingPeriod;
+use App\Http\Controllers\Settings\SubscriptionController;
+use App\Models\Campaign;
 use App\Models\Tier;
 use App\Models\TierPrice;
 use App\Models\User;
@@ -58,4 +61,46 @@ it('shows the grandfathered price before the current standard price', function (
         ->assertSee('Grandfathered price')
         ->assertSee('Standard price: USD 5.99 billed monthly')
         ->assertSee('4.99', false);
+});
+
+it('stores a valid campaign from a premium call to action', function () {
+    config(['services.stripe.enabled' => true]);
+
+    $this->asUser()->withCampaign();
+
+    $this->get(route('settings.subscription', ['f' => 'cta', 'w' => 1]))
+        ->assertOk()
+        ->assertSessionHas(SubscriptionController::CAMPAIGN_SESSION_KEY, 1);
+});
+
+it('clears a previously selected campaign without a campaign call to action', function () {
+    config(['services.stripe.enabled' => true]);
+
+    $this->asUser()->withCampaign();
+    session()->put(SubscriptionController::CAMPAIGN_SESSION_KEY, 1);
+
+    $this->get(route('settings.subscription'))
+        ->assertOk()
+        ->assertSessionMissing(SubscriptionController::CAMPAIGN_SESSION_KEY);
+});
+
+it('allows a public campaign the user is not a member of', function () {
+    config(['services.stripe.enabled' => true]);
+
+    $this->asUser()->withCampaign();
+    $campaign = Campaign::factory()->create(['visibility_id' => CampaignVisibility::public]);
+
+    $this->get(route('settings.subscription', ['f' => 'cta', 'w' => $campaign->id]))
+        ->assertOk()
+        ->assertSessionHas(SubscriptionController::CAMPAIGN_SESSION_KEY, $campaign->id);
+});
+
+it('rejects a private campaign the user is not a member of', function () {
+    config(['services.stripe.enabled' => true]);
+
+    $this->asUser()->withCampaign();
+    $campaign = Campaign::factory()->create();
+
+    $this->get(route('settings.subscription', ['f' => 'cta', 'w' => $campaign->id]))
+        ->assertNotFound();
 });

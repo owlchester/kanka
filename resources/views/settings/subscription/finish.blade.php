@@ -25,12 +25,14 @@
 
         <div id="premium" class="flex flex-col gap-4 bg-box p-4 rounded-2xl">
             <h2 class="text-2xl">
-                {{ __('subscriptions/finish.premium.title') }}
+                {{ $premiumCampaign ? __('subscriptions/finish.premium.enabled.title') : __('subscriptions/finish.premium.title') }}
             </h2>
-            <p>{!! __('subscriptions/finish.premium.helper', [
+            <p>{!! $premiumCampaign ? __('subscriptions/finish.premium.enabled.helper', [
+                'campaign' => '<a href="' . route('dashboard', [$premiumCampaign]) . '" class="text-link">' . e($premiumCampaign->name) . '</a>',
+            ]) : __('subscriptions/finish.premium.helper', [
     'plugins' => '<a href="' . config('marketplace.url') . '" class="text-link">' . __('footer.plugins') . '</a>'
 ]) !!}</p>
-            <div class="flex flex-col gap-4">
+            <div class="flex flex-col gap-4 @if ($availableCampaigns->isEmpty()) hidden @endif">
                 @foreach ($availableCampaigns as $availableCampaign)
                     <div id="campaign-{{ $availableCampaign->id }}" class="flex gap-4 border border-base-200 shadow-xs hover:shadow-md rounded-2xl px-4 py-2 items-center">
                         @if ($availableCampaign->image)
