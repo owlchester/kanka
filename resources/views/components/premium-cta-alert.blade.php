@@ -10,7 +10,7 @@
     </div>
     @auth
         @can('boost', auth()->user())
-            <a href="{{ route('settings.premium', ['campaign' => $campaign->id, 'f' => 'cta', 's' => $source]) }}" class="text-primary font-semibold">
+            <a href="{{ route('settings.premium', ['campaign' => $campaign->id, 'f' => 'cta', 's' => $source]) }}" class="text-primary font-semibold flex-none">
                 @can('admin', $campaign)
                     {!! __('callouts.alert.enable', ['campaign' => $campaign]) !!}
                 @else
