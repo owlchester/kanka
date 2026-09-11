@@ -18,7 +18,14 @@
             :title="__('campaigns.show.tabs.sidebar')"
             learn-more-url="features/campaigns/sidebar.html"
             :lead="__('campaigns/sidebar.helpers.reordering') . ' ' . __('campaigns/sidebar.helpers.bookmarks', ['position' => '<strong>' . __('bookmarks.fields.position') . '</strong>'])"
-        />
+        >
+            <x-slot name="actions">
+                <a href="#" class="btn2 btn-sm" data-toggle="dialog" data-target="reset-confirm">
+                    <x-icon class="fa-regular fa-eraser" />
+                    {{ __('campaigns/sidebar.actions.reset') }}
+                </a>
+            </x-slot>
+        </x-campaigns.page-header>
 
         @if (!$campaign->boosted())
             <x-premium-cta-alert :campaign="$campaign" source="sidebar">
@@ -92,18 +99,14 @@
 
 
         </x-box>
-            <div class="sticky bottom-4 z-50 flex justify-between">
-                <a href="#" class="btn2 btn-error" data-toggle="dialog" data-target="reset-confirm">
-                    <x-icon class="trash" />
-                    {{ __('campaigns/sidebar.actions.reset') }}
-                </a>
-                @if ($campaign->boosted())
+            @if ($campaign->boosted())
+                <div class="sticky bottom-4 z-50 flex justify-end">
                     <button type="submit" class="btn2 btn-primary">
                         <x-icon class="save" />
                         {{ __('crud.save') }}
                     </button>
-                @endif
-            </div>
+                </div>
+            @endif
         </x-form>
     </div>
 
@@ -113,17 +116,22 @@
 
     <x-form method="DELETE" :action="['campaign-sidebar-reset', $campaign]">
     <x-dialog id="reset-confirm" :title="__('campaigns/sidebar.reset.title')">
-        <p>{{ __('campaigns/sidebar.reset.warning') }}</p>
 
-        <div class="grid grid-cols-2 gap-2 w-full">
-            <x-buttons.confirm type="ghost" full="true" dismiss="dialog">
-                {{ __('crud.cancel') }}
-            </x-buttons.confirm>
+        <x-grid type="1/1">
+            <x-helper>
+                <p>{{ __('campaigns/sidebar.reset.warning') }}</p>
+                </x-helper>
 
-                <x-buttons.confirm type="danger" full="true" outline="true">
-                    {{ __('crud.actions.confirm') }}
+            <div class="grid grid-cols-2 gap-2 w-full">
+                <x-buttons.confirm type="ghost" full="true" dismiss="dialog">
+                    {{ __('crud.cancel') }}
                 </x-buttons.confirm>
-        </div>
+
+                    <x-buttons.confirm type="danger" full="true" outline="true">
+                        {{ __('crud.actions.confirm') }}
+                    </x-buttons.confirm>
+            </div>
+        </x-grid>
     </x-dialog>
     </x-form>
 @endsection

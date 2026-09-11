@@ -9,6 +9,7 @@ it('shows the sidebar premium alert with feature tracking', function () {
         ->get(route('campaign-sidebar', 1))
         ->assertOk()
         ->assertSee(__('campaigns/sidebar.cta.title'))
+        ->assertSee('data-target="reset-confirm"', false)
         ->assertSee(e(route('settings.subscription', ['f' => 'cta', 's' => 'sidebar', 'w' => 1])), false);
 });
 
