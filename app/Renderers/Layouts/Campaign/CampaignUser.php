@@ -112,7 +112,7 @@ class CampaignUser extends Layout
                 'render' => Standard::SINCE,
             ],
             'last_login' => [
-                'key' => 'user.last_login',
+                'key' => 'last_login',
                 'label' => __('campaigns.members.fields.last_login'),
                 'render' => function (\App\Models\CampaignUser $model) {
                     if (

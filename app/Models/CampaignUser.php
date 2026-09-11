@@ -95,4 +95,15 @@ class CampaignUser extends Pivot
             ->where('campaign_id', $campaignID)
             ->where('user_id', $userID);
     }
+
+    public function scopeCustomSortLast_login(Builder $query, string $order): Builder
+    {
+        $userTable = (new User)->getTable();
+
+        return $query
+            ->select($this->getTable() . '.*')
+            ->leftJoin($userTable . ' as u', 'u.id', $this->getTable() . '.user_id')
+            ->orderByRaw('CASE WHEN u.has_last_login_sharing = 1 THEN 0 ELSE 1 END')
+            ->orderBy('u.last_login_at', $order);
+    }
 }

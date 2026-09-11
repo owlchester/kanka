@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\CampaignUser;
+use App\Models\User;
+
 it('POSTS an invalid user role form')
     ->asUser()
     ->withCampaign()
@@ -83,3 +86,49 @@ it('GETS all campaign roles')
             ],
         ],
     ]);
+
+test('sorts campaign members by shared last login and puts private logins last', function () {
+    $this->asUser()->withCampaign();
+
+    $old = User::factory()->create([
+        'name' => 'Shared old',
+        'last_login_at' => '2026-01-01 00:00:00',
+        'has_last_login_sharing' => true,
+    ]);
+    $new = User::factory()->create([
+        'name' => 'Shared new',
+        'last_login_at' => '2026-02-01 00:00:00',
+        'has_last_login_sharing' => true,
+    ]);
+    $private = User::factory()->create([
+        'name' => 'Private login',
+        'last_login_at' => '2026-03-01 00:00:00',
+        'has_last_login_sharing' => false,
+    ]);
+
+    foreach ([$old, $new, $private] as $user) {
+        CampaignUser::create(['campaign_id' => 1, 'user_id' => $user->id]);
+    }
+
+    $members = CampaignUser::whereIn('user_id', [$old->id, $new->id, $private->id])
+        ->sort(['k' => 'last_login', 'o' => 'asc'])
+        ->with('user')
+        ->get();
+
+    expect($members->pluck('user.name')->all())->toBe([
+        'Shared old',
+        'Shared new',
+        'Private login',
+    ]);
+
+    $members = CampaignUser::whereIn('user_id', [$old->id, $new->id, $private->id])
+        ->sort(['k' => 'last_login', 'o' => 'desc'])
+        ->with('user')
+        ->get();
+
+    expect($members->pluck('user.name')->all())->toBe([
+        'Shared new',
+        'Shared old',
+        'Private login',
+    ]);
+});
