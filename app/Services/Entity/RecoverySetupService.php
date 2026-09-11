@@ -127,6 +127,8 @@ class RecoverySetupService
             'order_by_type' => __('campaigns/recovery.order.type'),
             'select_all' => __('general.select_all'),
             'deselect_all' => __('general.deselect_all'),
+            'empty' => __('campaigns/recovery.empty'),
+            'empty_title' => __('campaigns/recovery.empty_title'),
             'recover' => __('campaigns/recovery.actions.recover'),
             'restore_selected' => __('campaigns/recovery.actions.recover_selected'),
             'newest' => __('campaigns/recovery.order.newest_first'),

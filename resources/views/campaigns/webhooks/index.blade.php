@@ -5,37 +5,66 @@
     <div class="flex gap-1">
     <x-learn-more url="features/campaigns/webhooks.html" />
     @can('update', $campaign)
-        <a
-            href="{{ route('webhooks.create', $campaign) }}"
-            class="btn2 btn-primary btn-sm"
-            data-toggle="dialog"
-            data-url="{{ route('webhooks.create', $campaign) }}"
-        >
-            <x-icon class="plus" />
-            {{ __('campaigns/webhooks.actions.add') }}
-        </a>
+        @if ($campaign->premium())
+            <a
+                href="{{ route('webhooks.create', $campaign) }}"
+                class="btn2 btn-primary btn-sm"
+                data-toggle="dialog"
+                data-url="{{ route('webhooks.create', $campaign) }}"
+            >
+                <x-icon class="plus" />
+                {{ __('campaigns/webhooks.actions.add') }}
+            </a>
+        @endif
     @endif
     </div>
 </div>
 
-<p>
+<p class="max-w-4xl text-lg">
     {!! __('campaigns/webhooks.helper.tutorial') !!}
 </p>
+
+@if (!$campaign->premium())
+    <x-premium-cta-alert :campaign="$campaign" source="webhooks">
+        <x-slot name="title">
+            {!! __('campaigns/webhooks.cta.title') !!}
+        </x-slot>
+        <x-slot name="lead">
+            {!! __('campaigns/webhooks.cta.lead') !!}
+        </x-slot>
+    </x-premium-cta-alert>
+@endif
 
 <?php /** @var \App\Models\Campaign $campaign
  * @var \App\Models\Webhook $webhook
  */?>
-    @if(Datagrid::hasBulks())
-        <x-form :action="['webhooks.bulk', $campaign]" direct>
-            <div id="datagrid-parent" class="table-responsive">
-                @include('layouts.datagrid._table')
-            </div>
-        </x-form>
-    @else
+@if ($rows->total() === 0)
+    <x-box class="border-dashed border-neutral-content border">
+        <div class="mx-auto max-w-2xl lg:p-4 flex flex-col items-center gap-2 text-center">
+            <div class="font-bold text-lg">{{ __('campaigns/webhooks.empty.title') }}</div>
+            <p class="text-neutral-content mb-4">{{ __('campaigns/webhooks.empty.description') }}</p>
+
+            @if ($campaign->premium())
+                <a href="{{ route('webhooks.create', $campaign) }}" class="btn2 btn-primary"
+                   data-toggle="dialog"
+                   data-url="{{ route('webhooks.create', $campaign) }}">
+                    <x-icon class="plus" />
+                    {{ __('campaigns/webhooks.actions.add') }}
+                </a>
+            @endif
+        </div>
+    </x-box>
+@elseif(Datagrid::hasBulks())
+    <x-form :action="['webhooks.bulk', $campaign]" direct>
+        <div id="datagrid-parent" class="table-responsive">
+            @include('layouts.datagrid._table')
+        </div>
+    </x-form>
+@else
     <div id="datagrid-parent" class="table-responsive">
         @include('layouts.datagrid._table')
     </div>
-    @endif
+@endif
 @section('modals')
     @parent
     @include('layouts.datagrid.delete-forms', ['models' => Datagrid::deleteForms()])

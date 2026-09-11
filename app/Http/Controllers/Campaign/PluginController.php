@@ -16,7 +16,7 @@ class PluginController extends Controller
 
     public function index(Campaign $campaign)
     {
-        Datagrid::layout(\App\Renderers\Layouts\Campaign\Plugin::class);
+        Datagrid::campaign($campaign)->layout(\App\Renderers\Layouts\Campaign\Plugin::class);
 
         $highlight = request()->get('highlight');
         if (! empty($highlight)) {

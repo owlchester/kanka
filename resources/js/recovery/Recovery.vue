@@ -3,7 +3,7 @@
         <i class="fa-solid fa-spinner fa-spin" aria-label="Loading" />
     </div>
     <div v-else class="flex flex-col gap-4 md:gap-5">
-        <div class="flex gap-4 flex-wrap sticky top-14 z-50">
+        <div v-if="models.length > 0" class="flex gap-4 flex-wrap sticky top-14 z-50">
             <div class="flex gap-2 grow">
                 <div class="flex gap-0.5">
                     <input type="text" placeholder="Search" @input="handleSearchInput" />
@@ -41,6 +41,12 @@
 
         <div class="text-center text-4xl p-4" v-if="loading">
             <i class="fa-solid fa-spinner fa-spin" aria-label="Loading" />
+        </div>
+        <div v-else-if="models.length === 0" class="border border-dashed border-neutral-content rounded-lg shadow-xs bg-box p-4 text-center">
+            <div class="mx-auto max-w-2xl lg:p-4 flex flex-col items-center gap-2">
+                <div class="font-bold text-lg" v-html="trans('empty_title')"></div>
+                <p class="text-neutral-content mb-2" v-html="trans('empty')"></p>
+            </div>
         </div>
         <div class="flex flex-col gap-4" v-else>
             <div class="flex gap-2 flex-row">

@@ -22,17 +22,21 @@
             <x-learn-more url="features/campaigns/sidebar.html" />
         </div>
 
-        @if (!$campaign->boosted())
-            <x-premium-cta :campaign="$campaign">
-                <p>
-                    {{ __('campaigns/sidebar.call-to-action') }}
-                </p>
-            </x-premium-cta>
-        @endif
-
-        <p>
+        <p class="max-w-4xl text-lg">
             {!! __('campaigns/sidebar.helpers.reordering')  !!} {!! __('campaigns/sidebar.helpers.bookmarks', ['position' => '<strong>' . __('bookmarks.fields.position') . '</strong>'])  !!}
         </p>
+
+        @if (!$campaign->boosted())
+            <x-premium-cta-alert :campaign="$campaign" source="sidebar">
+                <x-slot name="title">
+                    {!! __('campaigns/sidebar.cta.title') !!}
+                </x-slot>
+                <x-slot name="lead">
+                    {!! __('campaigns/sidebar.cta.lead') !!}
+                </x-slot>
+            </x-premium-cta-alert>
+        @endif
+
 
         <x-form :action="['campaign-sidebar-save', $campaign]" class="sidebar-setup form-inline form-mobile-inline flex flex-col gap-4">
         <x-box>

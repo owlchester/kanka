@@ -33,7 +33,7 @@ class WebhookController extends Controller
      */
     public function index(Campaign $campaign)
     {
-        Datagrid::layout(\App\Renderers\Layouts\Campaign\Webhook::class);
+        Datagrid::campaign($campaign)->layout(\App\Renderers\Layouts\Campaign\Webhook::class);
 
         $this->authorize('webhooks', $campaign);
 

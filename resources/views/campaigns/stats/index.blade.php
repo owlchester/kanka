@@ -21,9 +21,9 @@
             </h1>
         </div>
 
-            <p>
-                {{ __('campaigns/stats.tutorial', ['amount' => 24]) }}
-            </p>
+        <p class="max-w-4xl text-lg">
+            {{ __('campaigns/stats.tutorial', ['amount' => 24]) }}
+        </p>
 
         <x-grid>
 

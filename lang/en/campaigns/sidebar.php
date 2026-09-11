@@ -5,6 +5,10 @@ return [
         'reset' => 'Reset to default',
     ],
     'call-to-action'    => 'Reorganise, rename, and restyle your sidebar to match how you run your campaign.',
+    'cta'               => [
+        'lead'  => 'Reorganise, rename, and restyle your sidebar to match how you run your campaign.',
+        'title' => 'Make your campaign sidebar your own.',
+    ],
     'helpers'           => [
         'bookmarks' => 'Bookmarks are not listed here because each bookmark has its own :position setting that controls where it appears in the sidebar.',
         'image'     => 'Add an image to represent the campaign. This image will be used in the sidebar and in the campaign switcher interface. You can change this at any time by editing the campaign.',

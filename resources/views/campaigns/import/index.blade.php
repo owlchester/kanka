@@ -21,7 +21,7 @@
             <x-learn-more url="features/campaigns/import.html" />
         </div>
 
-        <p class="max-w-2xl">{{ __('campaigns/import.description_v2') }}</p>
+        <p class="max-w-4xl text-lg">{{ __('campaigns/import.description_v2') }}</p>
 
         @can('import', $campaign)
             @if (empty($token))

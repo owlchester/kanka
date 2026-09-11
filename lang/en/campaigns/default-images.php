@@ -5,6 +5,10 @@ return [
         'add'   => 'New placeholder',
     ],
     'call-to-action'    => 'Give every character, location, or other category a default thumbnail, so your lists never look empty.',
+    'cta'               => [
+        'lead'  => 'Give every character, location, or other category a default thumbnail, so your lists never look empty.',
+        'title' => 'Keep every entry looking polished.',
+    ],
     'create'            => [
         'error'     => 'Error saving the new placeholder image. Is :type already set?',
         'helper'    => 'Upload an image that will be used as the placeholder image for entries of the selected category.',
@@ -14,7 +18,10 @@ return [
     'destroy'           => [
         'success'   => 'Placeholder image for :type removed.',
     ],
-    'empty'             => 'No categories currently have a placeholder image.',
+    'empty'             => [
+        'description' => 'Add a default image for a category and entries without custom pictures will use it automatically.',
+        'title'       => 'No placeholder images yet',
+    ],
     'helper'            => 'Used for all entries of this category without an image.',
     'reset'             => [
         'helper'    => 'Are you sure you want to remove the placeholder images for all campaign categories?',

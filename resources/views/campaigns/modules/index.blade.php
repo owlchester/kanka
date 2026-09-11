@@ -31,7 +31,7 @@
             </div>
         </div>
 
-        <p>
+        <p class="max-w-4xl text-lg">
             {{ __('campaigns/modules.helpers.tutorial') }}
         </p>
 

@@ -35,24 +35,52 @@
             @endcan
         </div>
 
+        <p class="max-w-4xl text-lg">{{ __('campaigns/default-images.tutorial') }}</p>
+
         @if (!$campaign->boosted())
-            <x-premium-cta :campaign="$campaign">
-                <p>{{ __('campaigns/default-images.call-to-action') }}</p>
-            </x-premium-cta>
+            <x-premium-cta-alert :campaign="$campaign" source="placeholder-images">
+                <x-slot name="title">
+                    {!! __('campaigns/default-images.cta.title') !!}
+                </x-slot>
+                <x-slot name="lead">
+                    {!! __('campaigns/default-images.cta.lead') !!}
+                </x-slot>
+            </x-premium-cta-alert>
         @endif
 
-        <p>{{ __('campaigns/default-images.tutorial') }}</p>
         @if (empty($images))
-            <p class="italic">{{ __('campaigns/default-images.empty') }}</p>
+            <x-box class="border-dashed border-neutral-content border">
+                <div class="mx-auto max-w-2xl lg:p-4 flex flex-col items-center gap-2 text-center">
+                    <div class="font-bold text-lg">{{ __('campaigns/default-images.empty.title') }}</div>
+                    <p class="text-neutral-content mb-4">{{ __('campaigns/default-images.empty.description') }}</p>
+
+                    @can('recover', $campaign)
+                        @if ($campaign->boosted())
+                            <a href="{{ route('campaign.default-images.create', $campaign) }}" class="btn2 btn-primary"
+                               data-toggle="dialog"
+                               data-url="{{ route('campaign.default-images.create', $campaign) }}">
+                                <x-icon class="plus" />
+                                {{ __('campaigns/default-images.actions.add') }}
+                            </a>
+                        @else
+                            <a href="{{ route('settings.subscription', ['f' => 'cta', 's' => 'placeholder-images', 'w' => $campaign->id]) }}" class="btn2 btn-primary">
+                                {!! __('callouts.actions.subscription') !!}
+                                <i class="fa-regular fa-arrow-right" aria-hidden="true"></i>
+                            </a>
+                        @endif
+                    @endcan
+                </div>
+            </x-box>
+        @else
+            <div class="grid grid-cols-1 gap-2 md:gap-3 xl:grid-cols-2 xl:gap-5">
+                @foreach ($images as $image)
+                    @if (!\Illuminate\Support\Arr::has($entityTypes, $image['type']))
+                        @continue
+                    @endif
+                    @include('campaigns.default-images._thumbnail')
+                @endforeach
+            </div>
         @endif
-        <div class="grid grid-cols-1 gap-2 md:gap-3 xl:grid-cols-2 xl:gap-5">
-            @foreach ($images as $image)
-                @if (!\Illuminate\Support\Arr::has($entityTypes, $image['type']))
-                    @continue
-                @endif
-                @include('campaigns.default-images._thumbnail')
-            @endforeach
-        </div>
     </div>
 @endsection
 

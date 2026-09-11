@@ -19,7 +19,9 @@
             <x-learn-more url="features/campaigns/recovery.html" />
         </div>
 
-        <p>{!! __('campaigns/recovery.tutorial', ['amount' => '<span class="font-extrabold">' . config('entities.hard_delete') . '</span>']) !!}</p>
+
+        <p class="max-w-4xl text-lg">
+        {!! __('campaigns/recovery.tutorial', ['amount' => '<span class="font-extrabold">' . config('entities.hard_delete') . '</span>']) !!}</p>
         <div id="recovery">
             <recovery
                 api="{{ route('recovery.setup', [$campaign]) }}"

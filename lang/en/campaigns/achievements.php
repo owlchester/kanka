@@ -3,6 +3,10 @@
 return [
     'congratulations'   => 'Congratulations!',
     'connections'       => '{0} No relation created|{1} One relation created|[2,*] :amount relations created',
+    'cta'               => [
+        'lead'  => 'Track milestones, engage your players, and celebrate your worldbuilding progress with campaign achievements.',
+        'title' => 'Celebrate your campaign milestones.',
+    ],
     'created'           => '{0} No :plural created|{1} One :singular created|[2,*] :amount :plural created',
     'dead'              => '{0} No murder mysteries|{1} One muder mystery|[2,*] :amount murder mysteries',
     'goal'              => 'Goal :number',

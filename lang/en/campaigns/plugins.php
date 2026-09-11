@@ -22,6 +22,10 @@ return [
         'enable'    => '{1} Enabled :count themes.|[2,*] Enabled :count themes.',
         'update'    => '{1} Updated :count plugin.|[2,*] Updated :count plugins.',
     ],
+    'cta'           => [
+        'lead'  => 'Extend your campaign with community plugins that add new tools, themes, and ways to manage your world.',
+        'title' => 'Unlock campaign plugins.',
+    ],
     'destroy'       => [
         'success'   => 'Plugin :plugin removed.',
     ],
@@ -29,6 +33,10 @@ return [
         'success'   => 'Plugin :plugin disabled.',
     ],
     'empty_list'    => 'The campaign doesn\'t currently have any plugins. Go to the plugin library to install a few and come back to activate them.',
+    'empty'         => [
+        'description' => 'Browse the plugin library to find new tools and features for your campaign.',
+        'title'       => 'No plugins installed yet',
+    ],
     'enabled'       => [
         'success'   => 'Plugin :plugin enabled.',
     ],

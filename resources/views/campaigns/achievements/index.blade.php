@@ -23,9 +23,14 @@ use \Illuminate\Support\Arr;
             <x-learn-more url="features/campaigns/achievements.html" />
         </div>
         @if (!$campaign->superboosted())
-            <x-premium-cta :campaign="$campaign" superboost>
-                <p>{{ __('campaigns/achievements.pitch') }}</p>
-            </x-premium-cta>
+            <x-premium-cta-alert :campaign="$campaign" source="achievements">
+                <x-slot name="title">
+                    {!! __('campaigns/achievements.cta.title') !!}
+                </x-slot>
+                <x-slot name="lead">
+                    {!! __('campaigns/achievements.cta.lead') !!}
+                </x-slot>
+            </x-premium-cta-alert>
         @else
 
             <p>{!! __('campaigns/achievements.tutorial') !!}</p>
@@ -42,4 +47,3 @@ use \Illuminate\Support\Arr;
         @endif
     </div>
 @endsection
-

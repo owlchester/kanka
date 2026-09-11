@@ -6,6 +6,8 @@ return [
         'recover_selected'  => 'Recover selected',
     ],
     'error'     => 'An error occurred trying to recover entries.',
+    'empty'     => 'Deleted entries and posts will appear here while they are available for recovery.',
+    'empty_title' => 'Nothing to recover',
     'fields'    => [
         'deleted'       => 'Deleted',
         'deleted_at'    => 'Deleted :date by :user',
