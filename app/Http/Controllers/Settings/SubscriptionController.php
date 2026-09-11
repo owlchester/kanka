@@ -403,7 +403,7 @@ class SubscriptionController extends Controller
         if ($clearWhenMissing) {
             session()->forget(self::SUCCESS_SESSION_KEY);
         }
-axs
+
         if ($request->has('w')) {
             Campaign::acl($request->integer('w'))->firstOrFail();
             session()->put(self::CAMPAIGN_SESSION_KEY, $request->integer('w'));
