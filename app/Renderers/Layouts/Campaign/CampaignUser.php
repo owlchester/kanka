@@ -20,6 +20,7 @@ class CampaignUser extends Layout
         $columns = [
             'image' => [
                 'label' => '',
+                'class' => 'w-14 max-w-14',
                 'render' => function (\App\Models\CampaignUser $model) {
                     if ($model->user->hasAvatar()) {
                         return '<div class="rounded-full h-8 w-8 cover-background" style="background-image: url(\'' .
@@ -124,6 +125,12 @@ class CampaignUser extends Layout
                                 withTime: false,
                             ),
                         );
+                    }
+
+                    if (! $model->user->has_last_login_sharing) {
+                        return '<i class="fa-regular fa-user-lock" aria-hidden="true" data-toggle="tooltip" data-title="' .
+                            __('campaigns.members.fields.last_login_private') .
+                            '"></i>';
                     }
 
                     return '';

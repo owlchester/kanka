@@ -120,6 +120,7 @@ return [
             'banned'        => 'User is banned',
             'joined'        => 'Joined',
             'last_login'    => 'Last Login',
+            'last_login_private' => "This user doesn't share their last login time.",
             'name'          => 'User',
             'role'          => 'Role',
             'roles'         => 'Roles',

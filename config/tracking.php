@@ -46,7 +46,7 @@ return [
 
     ],
 
-    'consent' => env('TRACKING_CONSENT') == 'True',
+    'consent' => env('TRACKING_CONSENT', false),
 
     'ga_property_id' => env('GA4_PROPERTY_ID'),
     'ga_credential_path' => env('GA4_CREDENTIAL_PATH'),
