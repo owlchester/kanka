@@ -1,14 +1,13 @@
 <?php /** @var \App\Models\Campaign $campaign
  * @var \App\Models\Plugin $plugin
  */?>
-<div class="flex gap-2 items-center justify-between">
-    <h1 class="inline-block text-2xl">
-        {{ __('campaigns.show.tabs.plugins') }}
-    </h1>
-    <a href="{{ config('marketplace.url') }}" class="btn2 btn-primary btn-sm">
-        {{ __('campaigns/plugins.actions.find-plugins') }} <x-icon class="link" />
-    </a>
-</div>
+<x-campaigns.page-header :title="__('campaigns.show.tabs.plugins')">
+    <x-slot name="actions">
+        <a href="{{ config('marketplace.url') }}" class="btn2 btn-primary btn-sm">
+            {{ __('campaigns/plugins.actions.find-plugins') }} <x-icon class="link" />
+        </a>
+    </x-slot>
+</x-campaigns.page-header>
 
 @if(!$campaign->boosted())
     <x-premium-cta-alert :campaign="$campaign" source="plugins">

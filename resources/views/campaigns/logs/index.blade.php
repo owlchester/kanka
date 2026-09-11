@@ -17,33 +17,39 @@
     @include('partials.errors')
 
     <div class="flex gap-5 flex-col">
-        <div class="flex gap-2 items-center justify-between">
-            <h1 class="text-2xl">
-                {{ __('campaigns/logs.title') }}
-            </h1>
-            <x-learn-more url="features/campaigns/logs" />
-        </div>
+        <x-campaigns.page-header
+            :title="__('campaigns/logs.title')"
+            learn-more-url="features/campaigns/logs"
+            :lead="__('campaigns/logs.helpers.list', ['amount' => '<code>' . $premium . '</code>'])"
+        />
+
+        @if (!$campaign->premium())
+            <x-premium-cta-alert :campaign="$campaign" source="audit-log">
+                <x-slot name="title">
+                    {!! __('campaigns/logs.cta.title') !!}
+                </x-slot>
+                <x-slot name="lead">
+                    {!! __('campaigns/logs.cta.lead', ['amount' => '<code>' . $premium . '</code>']) !!}
+                </x-slot>
+            </x-premium-cta-alert>
+        @endif
 
         @includeWhen(!$logs->isEmpty(), 'campaigns.logs._list')
         @if($logs->isEmpty())
-            <div class="flex flex-col gap-2 justify-center items-center">
-                <div class="text-xl font-light">
-                    {{ __('campaigns/logs.helpers.title') }}
+            <x-box class="border-dashed border-neutral-content border">
+                <div class="mx-auto max-w-2xl lg:p-4 flex flex-col items-center gap-2 text-center">
+                    <div class="font-bold text-lg">
+                        {{ __('campaigns/logs.helpers.title') }}
+                    </div>
+                    <p class="text-neutral-content mb-2">
+                        {{ __('campaigns/logs.helpers.empty') }}
+                    </p>
                 </div>
-                <div class="text-sm text-neutral-content text-center max-w-md flex flex-col gap-4">
-                    <p>{!! __('campaigns/logs.helpers.nothing', ['amount' => '<code>' . $cutoff . '</code>']) !!}</p>
-                </div>
-            </div>
+            </x-box>
         @endif
 
-
-        @if (!$campaign->premium())
-            <x-premium-cta :campaign="$campaign" premium>
-                <p>
-                    {!! __('campaigns/logs.pitch', ['amount' => '<code>' . config('limits.campaigns.logs.premium') . '</code>']) !!}
-                </p>
-            </x-premium-cta>
-        @endif
+        <p class="text-neutral-content">
+            {!! __('campaigns/logs.helpers.history', ['amount' => '<code>' . $cutoff . '</code>']) !!}
+        </p>
     </div>
 @endsection
-

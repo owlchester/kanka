@@ -15,13 +15,10 @@ use \Illuminate\Support\Arr;
     @include('partials.errors')
 
     <div class="flex gap-5 flex-col achievements">
-        <div class="flex gap-2 items-center">
-            <h1 class="inline-block grow text-2xl">
-            {{ __('campaigns.show.tabs.achievements') }}
-            </h1>
-
-            <x-learn-more url="features/campaigns/achievements.html" />
-        </div>
+        <x-campaigns.page-header
+            :title="__('campaigns.show.tabs.achievements')"
+            learn-more-url="features/campaigns/achievements.html"
+        />
         @if (!$campaign->superboosted())
             <x-premium-cta-alert :campaign="$campaign" source="achievements">
                 <x-slot name="title">

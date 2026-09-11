@@ -13,29 +13,29 @@
 
     <div class="flex gap-5 flex-col">
         @include('partials.errors')
-        <div class="flex gap-2 items-center">
-            <h1 class="inline-block grow text-2xl">
-                {{ __('campaigns/default-images.title') }}
-            </h1>
-            <x-learn-more url="features/campaigns/default-thumbnails.html" />
-            @can('recover', $campaign)
-                @if ($campaign->boosted())
-                    <a href="{{ route('campaign.default-images.create', $campaign) }}" class="btn2 btn-primary btn-sm"
-                       data-toggle="dialog"
-                       data-url="{{ route('campaign.default-images.create', $campaign) }}">
-                        <x-icon class="plus" />
-                        {{ __('campaigns/default-images.actions.add') }}
+        <x-campaigns.page-header
+            :title="__('campaigns/default-images.title')"
+            learn-more-url="features/campaigns/default-thumbnails.html"
+            :lead="__('campaigns/default-images.tutorial')"
+        >
+            <x-slot name="actions">
+                @can('recover', $campaign)
+                    @if ($campaign->boosted())
+                        <a href="{{ route('campaign.default-images.create', $campaign) }}" class="btn2 btn-primary btn-sm"
+                           data-toggle="dialog"
+                           data-url="{{ route('campaign.default-images.create', $campaign) }}">
+                            <x-icon class="plus" />
+                            {{ __('campaigns/default-images.actions.add') }}
+                        </a>
+                    @endif
+
+                    <a href="#" class="btn2 btn-sm" data-toggle="dialog" data-target="reset-confirm">
+                        <x-icon class="fa-regular fa-eraser" />
+                        {{ __('crud.actions.reset') }}
                     </a>
-                @endif
-
-                <a href="#" class="btn2 btn-sm" data-toggle="dialog" data-target="reset-confirm">
-                    <x-icon class="fa-regular fa-eraser" />
-                    {{ __('crud.actions.reset') }}
-                </a>
-            @endcan
-        </div>
-
-        <p class="max-w-4xl text-lg">{{ __('campaigns/default-images.tutorial') }}</p>
+                @endcan
+            </x-slot>
+        </x-campaigns.page-header>
 
         @if (!$campaign->boosted())
             <x-premium-cta-alert :campaign="$campaign" source="placeholder-images">

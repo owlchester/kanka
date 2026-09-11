@@ -24,17 +24,11 @@ $visibilities = [
         <div class="flex gap-5 flex-col">
             @include('partials.errors')
 
-            <div class="flex gap-2 items-center">
-                <h1 class="inline-block grow text-2xl">
-                    {{ __('campaigns.show.tabs.defaults') }}
-                </h1>
-
-                <x-learn-more url="features/campaigns/defaults.html" />
-            </div>
-
-            <p>
-                {!! __('campaigns/defaults.tutorial') !!}
-            </p>
+            <x-campaigns.page-header
+                :title="__('campaigns.show.tabs.defaults')"
+                learn-more-url="features/campaigns/defaults.html"
+                :lead="__('campaigns/defaults.tutorial')"
+            />
 
             <div class="text-lg">{{ __('campaigns/defaults.sections.entity') }}</div>
             <x-box>

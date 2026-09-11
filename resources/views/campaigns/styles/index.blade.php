@@ -14,12 +14,12 @@ use App\Facades\Datagrid ?>
     @include('partials.errors')
 
     <div class="flex gap-5 flex-col">
-        <div class="flex gap-2 justify-between">
-            <h1 class="text-2xl">
-                {{ __('campaigns.show.tabs.styles') }}
-            </h1>
-            <div class="flex gap-2 flex-wrap items-center justify-end">
-                <x-learn-more url="features/campaigns/theming.html" />
+        <x-campaigns.page-header
+            :title="__('campaigns.show.tabs.styles')"
+            learn-more-url="features/campaigns/theming.html"
+            :lead="__('campaigns/styles.helpers.tutorial')"
+        >
+            <x-slot name="actions">
                 @if ($campaign->boosted())
                     <a href="{{ route('campaign_styles.builder', $campaign) }}" class="btn2 btn-primary btn-sm">
                         <x-icon class="fa-regular fa-palette" />
@@ -30,12 +30,8 @@ use App\Facades\Datagrid ?>
                         {{ __('campaigns/styles.actions.new') }}
                     </a>
                 @endif
-            </div>
-        </div>
-
-        <p class="max-w-4xl text-lg">
-            {!! __('campaigns/styles.helpers.tutorial') !!}
-        </p>
+            </x-slot>
+        </x-campaigns.page-header>
 
         @if (!$campaign->boosted())
             <x-premium-cta-alert :campaign="$campaign" source="theming">

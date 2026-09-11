@@ -5,8 +5,6 @@
  * @var \Illuminate\Support\Collection $users
  */
 ?>
-<p>{!! __('campaigns/logs.helpers.list', ['amount' => '<code>' . $premium . '</code>']) !!}</p>
-
 <table  class="table table-hover table-condensed bg-box rounded">
     <thead>
     <tr>

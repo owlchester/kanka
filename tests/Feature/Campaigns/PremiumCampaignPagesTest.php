@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
+
 it('shows the sidebar premium alert with feature tracking', function () {
     $this->asUser()
         ->withCampaign()
@@ -63,6 +66,35 @@ it('shows the achievements premium alert until the campaign is superboosted', fu
         ->assertOk()
         ->assertSee(__('campaigns/achievements.cta.title'))
         ->assertSee(e(route('settings.subscription', ['f' => 'cta', 's' => 'achievements', 'w' => 1])), false);
+});
+
+it('shows the audit log premium alert and empty state', function () {
+    DB::purge('logs');
+    config(['database.connections.logs' => [
+        'driver' => 'sqlite',
+        'database' => ':memory:',
+        'prefix' => '',
+        'foreign_key_constraints' => false,
+    ]]);
+    Schema::connection('logs')->create('user_logs', function ($table) {
+        $table->id();
+        $table->integer('user_id')->unsigned();
+        $table->unsignedTinyInteger('type_id')->default(1);
+        $table->unsignedBigInteger('campaign_id')->nullable();
+        $table->json('data')->nullable();
+        $table->unsignedInteger('impersonated_by')->nullable();
+        $table->string('ip', 255)->nullable();
+        $table->char('country', 6)->nullable();
+        $table->timestamps();
+    });
+
+    $this->asUser()
+        ->withCampaign()
+        ->get(route('campaign.logs', 1))
+        ->assertOk()
+        ->assertSee(__('campaigns/logs.cta.title'))
+        ->assertSee(__('campaigns/logs.helpers.title'))
+        ->assertSee(e(route('settings.subscription', ['f' => 'cta', 's' => 'audit-log', 'w' => 1])), false);
 });
 
 it('exposes recovery empty-state translations', function () {

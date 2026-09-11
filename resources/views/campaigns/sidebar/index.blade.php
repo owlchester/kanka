@@ -14,17 +14,11 @@
     <div class="flex gap-5 flex-col">
         @include('partials.errors')
 
-        <div class="flex gap-2 items-center justify-between">
-            <h1 class="inline-block text-2xl">
-                {{ __('campaigns.show.tabs.sidebar') }}
-            </h1>
-
-            <x-learn-more url="features/campaigns/sidebar.html" />
-        </div>
-
-        <p class="max-w-4xl text-lg">
-            {!! __('campaigns/sidebar.helpers.reordering')  !!} {!! __('campaigns/sidebar.helpers.bookmarks', ['position' => '<strong>' . __('bookmarks.fields.position') . '</strong>'])  !!}
-        </p>
+        <x-campaigns.page-header
+            :title="__('campaigns.show.tabs.sidebar')"
+            learn-more-url="features/campaigns/sidebar.html"
+            :lead="__('campaigns/sidebar.helpers.reordering') . ' ' . __('campaigns/sidebar.helpers.bookmarks', ['position' => '<strong>' . __('bookmarks.fields.position') . '</strong>'])"
+        />
 
         @if (!$campaign->boosted())
             <x-premium-cta-alert :campaign="$campaign" source="sidebar">

@@ -28,14 +28,11 @@
         </x-alert>
     @endif
     <div class="flex gap-5 flex-col">
-        <div class="flex gap-2 items-center justify-between">
-            <h1 class="text-2xl">
-                {{ __('campaigns/applications.title') }}
-            </h1>
-            <x-learn-more url="features/campaigns/applications.html" />
-        </div>
-
-        <p>{!! __('campaigns/applications.tutorial') !!}</p>
+        <x-campaigns.page-header
+            :title="__('campaigns/applications.title')"
+            learn-more-url="features/campaigns/applications.html"
+            :lead="__('campaigns/applications.tutorial')"
+        />
 
         @include('campaigns.applications._requirements')
 

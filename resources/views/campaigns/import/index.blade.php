@@ -14,14 +14,11 @@
         @include('ads.top')
         @include('partials.errors')
 
-        <div class="flex gap-2 items-center justify-between">
-            <h1 class="text-2xl">
-                {{ __('campaigns/import.title') }}
-            </h1>
-            <x-learn-more url="features/campaigns/import.html" />
-        </div>
-
-        <p class="max-w-4xl text-lg">{{ __('campaigns/import.description_v2') }}</p>
+        <x-campaigns.page-header
+            :title="__('campaigns/import.title')"
+            learn-more-url="features/campaigns/import.html"
+            :lead="__('campaigns/import.description_v2')"
+        />
 
         @can('import', $campaign)
             @if (empty($token))

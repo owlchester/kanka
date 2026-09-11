@@ -1,28 +1,24 @@
-<div class="flex gap-2 items-center justify-between">
-    <h1 class="inline-block text-2xl">
-        {{ __('campaigns.show.tabs.webhooks') }}
-    </h1>
-    <div class="flex gap-1">
-    <x-learn-more url="features/campaigns/webhooks.html" />
-    @can('update', $campaign)
-        @if ($campaign->premium())
-            <a
-                href="{{ route('webhooks.create', $campaign) }}"
-                class="btn2 btn-primary btn-sm"
-                data-toggle="dialog"
-                data-url="{{ route('webhooks.create', $campaign) }}"
-            >
-                <x-icon class="plus" />
-                {{ __('campaigns/webhooks.actions.add') }}
-            </a>
+<x-campaigns.page-header
+    :title="__('campaigns.show.tabs.webhooks')"
+    learn-more-url="features/campaigns/webhooks.html"
+    :lead="__('campaigns/webhooks.helper.tutorial')"
+>
+    <x-slot name="actions">
+        @can('update', $campaign)
+            @if ($campaign->premium())
+                <a
+                    href="{{ route('webhooks.create', $campaign) }}"
+                    class="btn2 btn-primary btn-sm"
+                    data-toggle="dialog"
+                    data-url="{{ route('webhooks.create', $campaign) }}"
+                >
+                    <x-icon class="plus" />
+                    {{ __('campaigns/webhooks.actions.add') }}
+                </a>
+            @endif
         @endif
-    @endif
-    </div>
-</div>
-
-<p class="max-w-4xl text-lg">
-    {!! __('campaigns/webhooks.helper.tutorial') !!}
-</p>
+    </x-slot>
+</x-campaigns.page-header>
 
 @if (!$campaign->premium())
     <x-premium-cta-alert :campaign="$campaign" source="webhooks">

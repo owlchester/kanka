@@ -11,17 +11,11 @@
 @section('content')
     <div class="flex gap-5 flex-col">
         @include('partials.errors')
-        <div class="flex gap-2 items-center justify-between">
-            <h1 class="text-2xl">
-                {{ __('campaigns/recovery.title') }}
-            </h1>
-
-            <x-learn-more url="features/campaigns/recovery.html" />
-        </div>
-
-
-        <p class="max-w-4xl text-lg">
-        {!! __('campaigns/recovery.tutorial', ['amount' => '<span class="font-extrabold">' . config('entities.hard_delete') . '</span>']) !!}</p>
+        <x-campaigns.page-header
+            :title="__('campaigns/recovery.title')"
+            learn-more-url="features/campaigns/recovery.html"
+            :lead="__('campaigns/recovery.tutorial', ['amount' => '<span class=font-extrabold>' . config('entities.hard_delete') . '</span>'])"
+        />
         <div id="recovery">
             <recovery
                 api="{{ route('recovery.setup', [$campaign]) }}"

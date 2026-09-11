@@ -14,18 +14,17 @@
         @include('ads.top')
         @include('partials.errors')
 
-        <div class="flex gap-2 items-center justify-between">
-            <h1 class="text-2xl">
-                {{ __('campaigns/export.title') }}
-            </h1>
-            <div class="flex gap-2 flex-wrap items-center">
-                <x-learn-more url="features/campaigns/export.html" />
+        <x-campaigns.page-header
+            :title="__('campaigns/export.title')"
+            learn-more-url="features/campaigns/export.html"
+        >
+            <x-slot name="actions">
                 <a href="#" class="btn2 btn-sm btn-primary" data-toggle="dialog" data-target="export-confirm">
                     <x-icon class="fa-regular fa-download" />
                     {{ __('campaigns/export.actions.export') }}
                 </a>
-            </div>
-        </div>
+            </x-slot>
+        </x-campaigns.page-header>
 
         <div id="datagrid-parent" class="table-responsive">
             <livewire:campaigns.exports-table :campaign="$campaign" />

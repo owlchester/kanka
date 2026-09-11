@@ -13,12 +13,10 @@
 @section('content')
     @include('ads.top')
 
-    <div class="flex gap-2 items-center justify-between">
-        <h1 class="text-2xl">
-            {{ __('campaigns/applications.setup.title') }}
-        </h1>
-        <x-learn-more url="features/campaigns/applications.html" />
-    </div>
+    <x-campaigns.page-header
+        :title="__('campaigns/applications.setup.title')"
+        learn-more-url="features/campaigns/applications.html"
+    />
 
 
     @include('partials.errors')

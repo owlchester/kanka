@@ -14,26 +14,22 @@
     @include('partials.errors')
     <div class="grow flex flex-col gap-5" id="campaign-modules">
 
-        <div class="flex gap-2 items-center justify-between">
-            <h1 class="inline-block text-2xl">
-                {{ __('campaigns/categories.tab') }}
-            </h1>
-            <div class="flex gap-1">
-                <x-learn-more url="features/campaigns/modules.html" />
+        <x-campaigns.page-header
+            :title="__('campaigns/categories.tab')"
+            learn-more-url="features/campaigns/modules.html"
+            :lead="__('campaigns/modules.helpers.tutorial')"
+        >
+            <x-slot name="actions">
                 @can('update', $campaign)
-                @if ($canReset)
-                    <a href="#" class="btn2 btn-sm" data-toggle="dialog" data-target="reset-confirm">
-                        <x-icon class="fa-regular fa-eraser" />
-                        {{ __('crud.actions.reset') }}
-                    </a>
-                @endif
+                    @if ($canReset)
+                        <a href="#" class="btn2 btn-sm" data-toggle="dialog" data-target="reset-confirm">
+                            <x-icon class="fa-regular fa-eraser" />
+                            {{ __('crud.actions.reset') }}
+                        </a>
+                    @endif
                 @endcan
-            </div>
-        </div>
-
-        <p class="max-w-4xl text-lg">
-            {{ __('campaigns/modules.helpers.tutorial') }}
-        </p>
+            </x-slot>
+        </x-campaigns.page-header>
 
         @includeWhen(config('entities.custom'), 'campaigns.modules._custom')
         @include('campaigns.modules._default')

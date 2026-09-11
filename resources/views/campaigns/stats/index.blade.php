@@ -15,15 +15,10 @@
     @include('ads.top')
 
     <div class="flex gap-5 flex-col">
-        <div class="flex gap-2 items-center justify-between">
-            <h1 class="text-2xl">
-                {!! __('campaigns/stats.title2') !!}
-            </h1>
-        </div>
-
-        <p class="max-w-4xl text-lg">
-            {{ __('campaigns/stats.tutorial', ['amount' => 24]) }}
-        </p>
+        <x-campaigns.page-header
+            :title="__('campaigns/stats.title2')"
+            :lead="__('campaigns/stats.tutorial', ['amount' => 24])"
+        />
 
         <x-grid>
 
