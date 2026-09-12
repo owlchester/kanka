@@ -1,7 +1,10 @@
 <?php /** @var \App\Models\Campaign $campaign
  * @var \App\Models\Plugin $plugin
  */?>
-<x-campaigns.page-header :title="__('campaigns.show.tabs.plugins')">
+<x-campaigns.page-header
+    :title="__('campaigns.show.tabs.plugins')"
+    :lead="__('campaigns/plugins.tutorial')"
+    learn-more-url="plugins/plugins.html">
     <x-slot name="actions">
         <a href="{{ config('marketplace.url') }}" class="btn2 btn-primary btn-sm">
             {{ __('campaigns/plugins.actions.find-plugins') }} <x-icon class="link" />

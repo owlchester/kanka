@@ -82,6 +82,7 @@ return [
         'name'  => ':name by :user',
     ],
     'title'         => 'Plugins - :name',
+    'tutorial'      => 'Install plugins to add character sheets, themes, and content packs to your campaign. Manage installed plugins here by enabling, disabling, updating, or importing their content.',
     'types'         => [
         'attribute' => 'Character Sheet',
         'pack'      => 'Content Pack',

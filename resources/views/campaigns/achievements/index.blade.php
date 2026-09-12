@@ -18,6 +18,7 @@ use \Illuminate\Support\Arr;
         <x-campaigns.page-header
             :title="__('campaigns.show.tabs.achievements')"
             learn-more-url="features/campaigns/achievements.html"
+            :lead="__('campaigns/achievements.tutorial')"
         />
         @if (!$campaign->superboosted())
             <x-premium-cta-alert :campaign="$campaign" source="achievements">
@@ -29,8 +30,6 @@ use \Illuminate\Support\Arr;
                 </x-slot>
             </x-premium-cta-alert>
         @else
-
-            <p>{!! __('campaigns/achievements.tutorial') !!}</p>
 
         <div class="flex flex-wrap gap-5">
         @foreach ($achievements as $key => $stat)

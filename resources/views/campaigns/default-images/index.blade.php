@@ -20,6 +20,10 @@
         >
             <x-slot name="actions">
                 @can('recover', $campaign)
+                    <a href="#" class="btn2 btn-sm" data-toggle="dialog" data-target="reset-confirm">
+                        <x-icon class="fa-regular fa-eraser" />
+                        {{ __('crud.actions.reset') }}
+                    </a>
                     @if ($campaign->boosted())
                         <a href="{{ route('campaign.default-images.create', $campaign) }}" class="btn2 btn-primary btn-sm"
                            data-toggle="dialog"
@@ -28,11 +32,6 @@
                             {{ __('campaigns/default-images.actions.add') }}
                         </a>
                     @endif
-
-                    <a href="#" class="btn2 btn-sm" data-toggle="dialog" data-target="reset-confirm">
-                        <x-icon class="fa-regular fa-eraser" />
-                        {{ __('crud.actions.reset') }}
-                    </a>
                 @endcan
             </x-slot>
         </x-campaigns.page-header>

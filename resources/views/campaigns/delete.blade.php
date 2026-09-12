@@ -14,15 +14,16 @@
         @include('ads.top')
         @include('partials.errors')
 
-        <h1 class="text-2xl">
-            {{ __('campaigns/delete.title') }}
-        </h1>
 
-        <p class="">
-            {!! __('campaigns/delete.helper', [
-    'backup' => '<a href="' . route('campaign.export', $campaign) . '" class="text-link">'. __('campaigns/delete.backup'). ' </a>'
-]) !!}
-        </p>
+        <x-campaigns.page-header
+            :title="__('campaigns/delete.title')"
+        >
+            <x-slot name="lead">
+                {!! __('campaigns/delete.helper', [
+        'backup' => '<a href="' . route('campaign.export', $campaign) . '" class="text-link">'. __('campaigns/delete.backup'). ' </a>'
+    ]) !!}
+            </x-slot>
+        </x-campaigns.page-header>
 
         <x-box>
             @cannot('delete', $campaign)
