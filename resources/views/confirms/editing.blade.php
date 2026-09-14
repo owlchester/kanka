@@ -16,7 +16,7 @@
                         {!! __('confirm/editing.user', [
                             'user' => '<strong>' . $user->name . '</strong>',
                             'since' => \Carbon\Carbon::createFromTimeString($user->pivot->created_at)->diffForHumans()
-                        ])èr; !!}
+                        ]); !!}
                     </li>
                 @endforeach
             </ul>
