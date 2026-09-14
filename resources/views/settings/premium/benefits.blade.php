@@ -1,4 +1,4 @@
-<div class="rounded-lg p-6 lg:p-8 flex flex-col gap-6 bg-base-100">
+<div class="rounded-2xl p-6 lg:p-8 flex flex-col gap-6 bg-base-100">
     <div class="flex flex-col gap-2">
         @isset($boosters)
         <h3 class="text-xl">{{ __('settings/boosters.pitch.title') }}</h3>
@@ -8,22 +8,21 @@
         <p class="text-neutral-content max-w-2xl">{{ __('settings/premium.pitch.description') }}</p>
         @endisset
     </div>
-
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-2">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-2 text-slate-900">
         <div class="bg-blue-100 rounded-2xl p-4 flex flex-col gap-1">
-            <p class="text-blue-800 text-3xl font-bold leading-tight">{{ config('limits.filesize.image.owlbear')}} MiB</p>
+            <p class="text-blue-800 text-3xl font-bold leading-tight tracking-tight">{{ config('limits.filesize.image.owlbear')}} MiB</p>
             <p class="leading-tight">Upload limit per member</p>
         </div>
         <div class="bg-amber-100 rounded-2xl p-4 flex flex-col gap-1">
-            <p class="text-amber-600 text-3xl font-bold leading-tight">{{ config('entities.hard_delete')}} days</p>
+            <p class="text-amber-600 text-3xl font-bold leading-tight tracking-tight">{{ config('entities.hard_delete')}} days</p>
             <p class="leading-tight">Window to recover deleted entries and articles</p>
         </div>
         <div class="bg-green-100 rounded-2xl p-4 flex flex-col gap-1">
-            <p class="text-green-700 text-3xl font-bold leading-tight">12,000 +</p>
+            <p class="text-green-700 text-3xl font-bold leading-tight tracking-tight">12,000 +</p>
             <p class="leading-tight">Icons for maps and timelines</p>
         </div>
         <div class="bg-red-100 rounded-2xl p-4 flex flex-col gap-1">
-            <p class="text-red-700 text-3xl font-bold leading-tight">Unlimited</p>
+            <p class="text-red-700 text-3xl font-bold leading-tight tracking-tight">Unlimited</p>
             <p class="leading-tight">Custom themes and community plugins</p>
         </div>
     </div>

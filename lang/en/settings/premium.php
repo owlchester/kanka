@@ -17,7 +17,7 @@ return [
         'recap' => [
             'control' => [
                 'title' => 'Full control',
-                'description' => 'Change the sidebar, categories, and more.',
+                'description' => 'Change the sidebar, categories, and more',
             ],
             'instant' => 'members get upgraded instantly',
             'members' => [
@@ -39,7 +39,7 @@ return [
         'out-of-stock'  => 'You don\'t have enough premium campaigns available to unlock this campaign. Either remove the premium status from another campaign, or :upgrade.',
     ],
     'pitch'         => [
-        'description'   => 'Premium features apply to the whole campaign, with every members sees the upgrade the moment you flip the switch.',
+        'description'   => 'Premium features apply to the whole campaign, where every member sees the upgrade the moment you flip the switch.',
         'title'         => 'Premium campaigns get',
     ],
     'ready'         => [
