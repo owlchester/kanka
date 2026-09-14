@@ -279,6 +279,13 @@ class ExploreApiService
             'show_group_marker_help' => __('maps/groups.hints.is_shown'),
             'create_group' => __('maps/explorer.group.create_group'),
             'add_group' => __('maps/explorer.group.add_group'),
+            'group_limit_reached' => trans_choice('maps/explorer.group.limit_reached', config('limits.campaigns.maps.groups.standard'), [
+                'count' => config('limits.campaigns.maps.groups.standard'),
+            ]),
+            'group_limit_upgrade' => __('maps/groups.pitch.upgrade.upgrade', [
+                'limit' => config('limits.campaigns.maps.groups.premium'),
+            ]),
+            'unlock_premium' => __('callouts.premium.unlock', ['campaign' => $this->campaign->name]),
             'error_save_group' => __('maps/explorer.group.error_save_group'),
             'error_group_name_required' => __('maps/explorer.group.error_group_name_required'),
             'toolbar' => [

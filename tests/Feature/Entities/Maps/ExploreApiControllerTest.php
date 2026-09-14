@@ -649,6 +649,8 @@ it('exposes group modal translations', function () {
     expect($response->json('i18n.add_group'))->toBe('Add group');
     expect($response->json('i18n.create_group'))->toBe('Create group');
     expect($response->json('i18n.placement_after'))->toBe('After :name');
+    expect($response->json('i18n.group_limit_reached'))->toBe('You\'ve reached the limit of 1 group for this map.');
+    expect($response->json('i18n.group_limit_upgrade'))->toBe('Upgrade to a premium campaign to add up to 20 groups and unlock even more creative flexibility.');
 });
 
 it('exposes the group_store_url for creating new groups', function () {
@@ -658,4 +660,20 @@ it('exposes the group_store_url for creating new groups', function () {
     $response = $this->get(route('entities.map-api', [1, $map->entity]))->assertStatus(200);
 
     expect($response->json('map.group_store_url'))->toBe(route('entities.map-groups.store', [1, $map->entity->id]));
+});
+
+it('exposes map group limits and the premium upgrade url', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $response = $this->get(route('entities.map-api', [1, $map->entity]))
+        ->assertSuccessful();
+
+    expect($response->json('map.group_limit'))->toBe(1)
+        ->and($response->json('map.group_upgrade_url'))
+        ->toBe(route('settings.premium', [
+            'campaign' => 1,
+            'f' => 'cta',
+            's' => 'map-groups',
+        ]));
 });

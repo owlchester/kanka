@@ -138,6 +138,9 @@
             :groups="data.groups"
             :visibilities="data.visibilities"
             :group-store-url="data.map.group_store_url"
+            :boosted="boosted"
+            :group-limit="data.map.group_limit"
+            :upgrade-url="data.map.group_upgrade_url"
             @created="onGroupCreated"
         />
 

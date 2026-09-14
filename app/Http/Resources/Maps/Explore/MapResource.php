@@ -60,6 +60,14 @@ class MapResource extends JsonResource
             'create_url' => route('entities.map-markers.store', [$this->campaign->id, $map->entity->id]),
             'preset_store_url' => route('entities.map-presets.store', [$this->campaign->id, $map->entity->id]),
             'group_store_url' => route('entities.map-groups.store', [$this->campaign->id, $map->entity->id]),
+            'group_limit' => $this->campaign->boosted()
+                ? config('limits.campaigns.maps.groups.premium')
+                : config('limits.campaigns.maps.groups.standard'),
+            'group_upgrade_url' => route('settings.premium', [
+                'campaign' => $this->campaign->id,
+                'f' => 'cta',
+                's' => 'map-groups',
+            ]),
             'search_url' => route('search.entities-with-relations', $this->campaign->id),
             'mentions_url' => route('search.mention', [$this->campaign->id]),
             'gallery_url' => route('gallery.tiptap', [$this->campaign->id]),

@@ -12,6 +12,7 @@ return [
         'create_group'              => 'Create group',
         'error_group_name_required' => 'Enter a name for this group.',
         'error_save_group'          => 'Unable to save this group.',
+        'limit_reached'             => '{1} You\'ve reached the limit of :count group for this map.|[2,*] You\'ve reached the limit of :count groups for this map.',
         'name_placeholder'          => 'Name this group...',
         'new_group'                 => 'New group',
         'parent_group'              => 'Parent group',

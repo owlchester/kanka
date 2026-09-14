@@ -19,7 +19,15 @@
             </button>
         </header>
 
-        <article class="p-4 md:p-6 flex flex-col gap-3 w-full overflow-x-hidden">
+        <article v-if="showPremiumCta" class="p-4 md:p-6 flex flex-col gap-3 w-full overflow-x-hidden">
+            <div class="flex flex-col items-center gap-3 text-center">
+                <i class="fa-regular fa-gem text-3xl text-primary" aria-hidden="true" />
+                <p class="font-semibold">{{ i18n.group_limit_reached }}</p>
+                <p class="text-sm text-neutral-content">{{ i18n.group_limit_upgrade }}</p>
+            </div>
+        </article>
+
+        <article v-else class="p-4 md:p-6 flex flex-col gap-3 w-full overflow-x-hidden">
             <div class="flex flex-col gap-1">
                 <label class="text-xs font-semibold uppercase tracking-wide text-neutral-content">{{ i18n.name }}</label>
                 <input
@@ -74,7 +82,14 @@
                 <button type="button" class="btn2 btn-default" :disabled="saving" @click="closeDialog">
                     {{ i18n.cancel }}
                 </button>
-                <button type="button" class="btn2 btn-primary" :disabled="saving" @click="submit">
+                <a
+                    v-if="showPremiumCta"
+                    :href="upgradeUrl"
+                    class="btn2 btn-primary"
+                >
+                    {{ i18n.unlock_premium }}
+                </a>
+                <button v-else type="button" class="btn2 btn-primary" :disabled="saving" @click="submit">
                     {{ i18n.create_group }}
                 </button>
             </menu>
@@ -92,6 +107,9 @@ const props = defineProps({
     groups: { type: Array, default: () => [] },
     visibilities: { type: Array, default: () => [] },
     groupStoreUrl: { type: String, default: null },
+    boosted: { type: Boolean, default: false },
+    groupLimit: { type: Number, default: 1 },
+    upgradeUrl: { type: String, default: null },
 });
 
 const emit = defineEmits(["created"]);
@@ -108,6 +126,11 @@ const parentId = ref(null);
 const afterId = ref(null);
 const isShown = ref(false);
 const visibilityId = ref(null);
+const groupLimitReached = ref(false);
+
+const showPremiumCta = computed(() =>
+    !props.boosted && (groupLimitReached.value || props.groups.length >= props.groupLimit),
+);
 
 const siblings = computed(() =>
     sortGroups(props.groups.filter((group) => (group.parent_id ?? null) === parentId.value)),
@@ -122,6 +145,7 @@ function resetState(defaultVisibilityId) {
     visibilityId.value = defaultVisibilityId ?? props.visibilities[0]?.id ?? null;
     error.value = null;
     saving.value = false;
+    groupLimitReached.value = false;
 }
 
 async function open(defaultVisibilityId) {
@@ -178,6 +202,12 @@ async function submit() {
         emit("created", res.data);
         closeDialog();
     } catch (e) {
+        if (!props.boosted && e.response?.status === 403) {
+            groupLimitReached.value = true;
+
+            return;
+        }
+
         error.value = props.i18n.error_save_group;
     } finally {
         saving.value = false;
