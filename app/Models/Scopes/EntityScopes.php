@@ -271,16 +271,21 @@ trait EntityScopes
             } elseif (in_array($name, ['name', 'type'])) {
                 // @phpstan-ignore-next-line
                 $query->textFilter($name, $values);
-            } elseif (in_array($name, ['has_image', 'template'])) {
-                $property = 'is_template';
-                if ($name === 'has_image') {
-                    $property = 'image_uuid';
-                }
-
+            } elseif ($name === 'has_image') {
+                $query->where(function (Builder $query) use ($values): void {
+                    if ($values) {
+                        $query->whereNotNull('entities.image_uuid')
+                            ->orWhereNotNull('entities.image_path');
+                    } else {
+                        $query->whereNull('entities.image_uuid')
+                            ->whereNull('entities.image_path');
+                    }
+                });
+            } elseif ($name === 'template') {
                 if ($values) {
-                    $query->whereNotNull($property);
+                    $query->whereNotNull('entities.is_template');
                 } else {
-                    $query->whereNull($property);
+                    $query->whereNull('entities.is_template');
                 }
             } elseif ($name === 'archived') {
                 if ($values) {
