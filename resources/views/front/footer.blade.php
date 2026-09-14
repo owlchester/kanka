@@ -29,7 +29,7 @@
                 </div>
                 <div class="text-xs">
                     <p class="text-xs">
-                        {{ __('footer.made') }}
+                        {{ __('footer.humans') }}
                     </p>
                     <p class="text-xs">
                         {!! __('footer.proof', [
