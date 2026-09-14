@@ -1,7 +1,44 @@
 <?php
 
+use App\Models\CampaignBoost;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+
+it('shows the premium unlocker for a campaign admin', function () {
+    config(['limits.campaigns.premium' => true]);
+
+    $this->asUser()
+        ->withCampaign(['boost_count' => 4]);
+
+    CampaignBoost::create([
+        'campaign_id' => 1,
+        'user_id' => auth()->id(),
+    ]);
+
+    $this->get(route('overview', 1))
+        ->assertOk()
+        ->assertSeeText('Premium features unlocked by ' . auth()->user()->name . '.')
+        ->assertDontSeeText('Premium sponsored by ' . auth()->user()->name . '.');
+});
+
+it('shows the premium sponsor for a non-admin unlocker', function () {
+    config(['limits.campaigns.premium' => true]);
+
+    $this->asUser()
+        ->withCampaign(['boost_count' => 4]);
+
+    $sponsor = User::factory()->create(['name' => 'External Sponsor']);
+    CampaignBoost::create([
+        'campaign_id' => 1,
+        'user_id' => $sponsor->id,
+    ]);
+
+    $this->get(route('overview', 1))
+        ->assertOk()
+        ->assertSeeText('Premium sponsored by External Sponsor.')
+        ->assertDontSeeText('Premium features unlocked by External Sponsor.');
+});
 
 it('shows the sidebar premium alert with feature tracking', function () {
     $this->asUser()

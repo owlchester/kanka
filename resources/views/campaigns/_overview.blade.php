@@ -21,7 +21,11 @@
             <span>{!! __('campaigns.status.title') !!}</span>
             @if ($campaign->premium())
                 <span class="text-success-content">
-                    {!! __('campaigns.status.premium', ['name' => $link]) !!}
+                    @if ($booster && !$booster->user->can('admin', $campaign))
+                        {!! __('campaigns.status.sponsored', ['user' => $link]) !!}
+                    @else
+                        {!! __('campaigns.status.premium', ['name' => $link]) !!}
+                    @endif
                 </span>
             @elseif ($campaign->boosted())
                 <span class="text-success-content">
@@ -85,4 +89,3 @@
         ></x-infoBox>
     @endif
 </div>
-
