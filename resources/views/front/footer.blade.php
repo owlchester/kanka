@@ -32,7 +32,10 @@
                         {{ __('footer.made') }}
                     </p>
                     <p class="text-xs">
-                        {{ __('footer.thanks') }}
+                        {!! __('footer.proof', [
+                            'community-funded' => '<a href="' . Domain::toFront('hall-of-fame') . '">community-funded</a>',
+                            'source' => '<a href="https://kanka.io/go/github">core code available on GitHub</a>',
+                        ]) !!}
                     </p>
                     <p class="text-xs">
                         {!! __('footer.copyright', ['copy' => '&copy;', 'year' => date('Y'), 'company' => 'Owlchester SNC'])!!}
@@ -94,6 +97,13 @@
             </div>
 
             <div class="text-center text-sm">
+                <p>{{ __('footer.humans') }}</p>
+                <p>
+                    {!! __('footer.proof', [
+                        'community-funded' => '<a href="' . Domain::toFront('hall-of-fame') . '">community-funded</a>',
+                        'source' => '<a href="https://kanka.io/go/github">core code available on GitHub</a>',
+                    ]) !!}
+                </p>
                 Kanka {!! __('footer.copyright', ['copy' => '&copy;', 'year' => date('Y'), 'company' => 'Owlchester SNC'])!!}
             </div>
         </div>
