@@ -3,19 +3,19 @@
  * @var \App\Models\CampaignBoost $boost
  */
 $boost = isset($boost) ? $boost : $campaign->boosts->first();?>
-<div class="flex rounded-2xl shadow-xs hover:shadow-md gap-3 px-3 bg-box py-3 flex-nowrap justify-between items-center">
+<div class="flex rounded-2xl shadow-xs hover:shadow-md gap-3 bg-box p-6 flex-nowrap justify-between items-center">
     <div class="flex gap-4 items-center">
         @if ($campaign->image)
-            <img src="{{ $campaign->thumbnail(320, 240) }}" alt="{{ $campaign->name }}" loading="lazy" class="rounded-full w-16 h-16" />
+            <img src="{{ $campaign->thumbnail(320, 240) }}" alt="{{ $campaign->name }}" loading="lazy" class="rounded-lg w-16 h-16" />
         @else
-            <img src="https://th.kanka.io/zzKcBpijSBvm4rPWdzRpI82pTNQ=/320x240/smart/src/app/backgrounds/mountain-background-medium.jpg" alt="{{ $campaign->name }}" loading="lazy" class="rounded-full w-16 h-16" />
+            <img src="https://th.kanka.io/zzKcBpijSBvm4rPWdzRpI82pTNQ=/320x240/smart/src/app/backgrounds/mountain-background-medium.jpg" alt="{{ $campaign->name }}" loading="lazy" class="rounded-lg w-16 h-16" />
         @endif
-        <div class="flex flex-col gap-1">
-            <a class="name text-xl" href="{{ route('dashboard', $campaign) }}">
+        <div class="flex flex-col">
+            <a class="name text-lg font-semibold" href="{{ route('dashboard', $campaign) }}">
                 {!! \Illuminate\Support\Str::limit($campaign->name, 28) !!}
             </a>
 
-            <p class="mb-0 text-neutral-content">
+            <p class="text-neutral-content text-xs">
                 @if ($campaign->premium())
                     <x-icon class="premium" />
                     {!! __('settings/boosters.campaign.premium', [
@@ -35,7 +35,7 @@ $boost = isset($boost) ? $boost : $campaign->boosts->first();?>
         'time' => $boost->created_at->format('M Y')
             ]) !!}
                 @else
-                    {{ __('settings/boosters.campaign.standard') }}
+                    {{ __('settings/boosters.campaign.standard') }} - {{ trans_choice('settings/boosters.campaign.members', $campaign->members_count, ['amount' => $campaign->members_count]) }}
                 @endif
             </p>
         </div>
@@ -86,7 +86,7 @@ $boost = isset($boost) ? $boost : $campaign->boosts->first();?>
         </div>
         @else
             @if (!$campaign->premium())
-                <a href="#" class="btn2 btn-outline btn-sm" data-toggle="dialog" data-url="{{ route('campaign_boosts.create', ['campaign' => $campaign]) }}">
+                <a href="#" class="btn2 btn-primary" data-toggle="dialog" data-url="{{ route('campaign_boosts.create', ['campaign' => $campaign]) }}">
                     <x-icon class="premium" />
                     {!! __('settings/premium.actions.unlock', ['campaign' => \Illuminate\Support\Str::limit($campaign->name, 25)]) !!}
                 </a>

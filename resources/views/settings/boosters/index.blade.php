@@ -23,84 +23,25 @@
                 <x-grid type="1/1">
                     <h3 class="m-0 text-xl">Legacy boosters</h3>
                     <p>
-                        Dear user, you are still using our legacy campaign boosters concept. Switching to premium campaigns will unboost your campaigns and give you a number of premium campaigns based on your subscription.
+                        You're currently using Kanka's legacy booster system. You can switch to premium campaigns at any time. When you switch, your existing campaigns will be unboosted, and you’ll receive premium campaign slots based on your subscription: {{ config('limits.') }} for Owlbear, 3 for Wyvern, or 7 for Elemental.
                     </p>
                     <p>
-                        As a reminder, premium campaigns are just a renamed superboosted campaign, plus a bunch of new features like <strong>family trees</strong> and <strong>custom modules</strong>. Owlbears get 1, Wyverns 3, and Elementals 7.
+                        Premium campaigns include everything previously available to superboosted campaigns, plus features such as family trees and custom modules.
                     </p>
                     <p>
-                        This action is permanent and cannot be reverted.
+                        This change is permanent and cannot be undone.
                     </p>
 
                     <button class="btn2 btn-block btn-secondary"
                             data-toggle="dialog"
                             data-target="switch-dialog">
-                        Switch to premium
+                        Switch to premium campaigns
                     </button>
                 </x-grid>
             </x-alert>
         @endif
 
-        <x-box>
-            <x-grid type="1/1">
-                <h3 class="text-xl">{{ __('settings/boosters.pitch.title') }}</h3>
-                <p class="">{{ __('settings/boosters.pitch.description') }}</p>
-
-                <h4 class="text-lg">{{ __('settings/boosters.pitch.benefits.title') }}</h4>
-                <div class="grid grid-cols-2 lg:grid-cols-3 gap-1">
-                    <div class="flex items-center">
-                        <div class="p-1 w-12 flex-none">
-                            <x-icon class="fa-solid fa-palette fa-2x" />
-                        </div>
-                        <div class="p-1">
-                            {{ __('settings/boosters.pitch.benefits.customisable') }}
-                        </div>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="p-1 w-12 flex-none">
-                            <i class="fa-solid fa-image-portrait fa-2x" aria-hidden="true"></i>
-                        </div>
-                        <div class="p-1">
-                            {{ __('settings/boosters.pitch.benefits.entities') }}
-                        </div>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="p-1 w-12 flex-none">
-                            <i class="fa-solid fa-hourglass-half fa-2x" aria-hidden="true"></i>
-                        </div>
-                        <div class="p-1">
-                            {{ __('settings/boosters.pitch.benefits.backup', ['amount' => config('entities.hard_delete')]) }}
-                        </div>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="p-1 w-12 flex-none">
-                            <i class="fa-solid fa-horse-head fa-2x" aria-hidden="true"></i>
-                        </div>
-                        <div class="p-1">
-                            {{ __('settings/boosters.pitch.benefits.icons') }}
-                        </div>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="p-1 w-12 flex-none">
-                            <i class="fa-solid fa-camera fa-2x" aria-hidden="true"></i>
-                        </div>
-                        <div class="p-1">
-                            {{ __('settings/boosters.pitch.benefits.upload') }}
-                        </div>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="p-1 w-12 flex-none">
-                            <i class="fa-solid fa-user-group fa-2x" aria-hidden="true"></i>
-                        </div>
-                        <div class="p-1">
-                            {{ __('settings/boosters.pitch.benefits.relations') }}
-                        </div>
-                    </div>
-                </div>
-                <p>{!! __('settings/boosters.pitch.more', ['boosters' => '<a href="https://kanka.io/premiumutm_source=boosters&utm_medium=referral&utm_campaign=findoutmore" class="text-link">' . __('concept.premium-campaigns') . '</a>']) !!}</p>
-            </x-grid>
-        </x-box>
-
+        @include('settings.premium.benefits', ['boosters' => true])
 
         <h2 class="">
             {{ __('settings/boosters.ready.title') }}
@@ -144,13 +85,12 @@
 @section('modals')
     @parent
 
-    <x-dialog id="switch-dialog" title="Switch to premium">
-        <div class="">
+    <x-dialog id="switch-dialog" title="Switch to premium campaigns?">
+        <x-grid type="1/1">
             <p>
-               Are you sure you want to switch to premium campaigns? This will unboost your campaigns and give you a number of premium campaigns based on your subscription.
+                Are you sure you want to switch? Your existing campaigns will be unboosted, and you’ll receive premium campaign slots based on your subscription.
             </p>
-            <p>This action cannot be reverted.</p>
-        </div>
+            <p>This change is permanent and cannot be undone.</p>
 
         <div class="grid grid-cols-2 gap-2 w-full">
             <x-buttons.confirm type="ghost" full="true" dismiss="dialog">
@@ -158,11 +98,13 @@
             </x-buttons.confirm>
             <form method="POST" action="{{ route('settings.switch-to-premium') }}" class="w-full">
             <x-buttons.confirm type="primary" full="true">
-                Yes, switch to premium
+                Yes, switch to premium campaigns
             </x-buttons.confirm>
                 @csrf
             </form>
         </div>
+
+        </x-grid>
     </x-dialog>
 @endsection
 
