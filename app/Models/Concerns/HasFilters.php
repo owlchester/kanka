@@ -2,7 +2,6 @@
 
 namespace App\Models\Concerns;
 
-use App\Enums\EntityAssetType;
 use App\Enums\FilterOption;
 use App\Facades\CampaignLocalization;
 use App\Models\Entity;
@@ -21,6 +20,8 @@ use Illuminate\Support\Str;
  */
 trait HasFilters
 {
+    use FiltersEntityFields;
+
     protected string|array|null $filterValue;
 
     /** @var string|null Some filters have a fellow _option field that can define more in detail what is needed */
@@ -139,9 +140,25 @@ trait HasFilters
                         ->leftJoin('entity_tags as et', 'et.entity_id', 'e.id')
                         ->where('et.tag_id', $value);
                 } elseif (in_array($key, ['attribute_value', 'attribute_name'])) {
-                    $this->filterAttributes($query, $key);
+                    if ($key === 'attribute_name') {
+                        $query->joinEntity();
+                        $this->applyEntityAttributeFilter(
+                            $query,
+                            'e',
+                            $value,
+                            Arr::get($this->filterParams, 'attribute_value'),
+                        );
+                    }
                 } elseif (in_array($key, ['connection_target', 'connection_name'])) {
-                    $this->filterConnections($query, $key);
+                    if ($key === 'connection_target' || ! isset($this->filterParams['connection_target'])) {
+                        $query->joinEntity();
+                        $this->applyEntityConnectionsFilter(
+                            $query,
+                            'e',
+                            Arr::get($this->filterParams, 'connection_target'),
+                            Arr::get($this->filterParams, 'connection_name'),
+                        );
+                    }
                 } elseif ($key == 'race_id') {
                     $this->filterRace($query, $value);
                 } elseif ($key == 'family_id') {
@@ -267,74 +284,6 @@ trait HasFilters
     }
 
     /**
-     * Filter on the attributes of an entity
-     */
-    protected function filterAttributes(Builder $query, string $key): void
-    {
-        if ($key == 'attribute_value') {
-            return;
-        }
-        $query->joinEntity();
-
-        // No attribute with this name
-        if ($this->filterOperator === 'not like') {
-            $query
-                ->whereRaw('(select count(*) from attributes as att where att.entity_id = e.id and att.name = \''
-                    . ($this->filterValue) . '\') = 0');
-
-            return;
-        }
-        $query
-            ->select($this->getTable() . '.*')
-            ->leftJoin('attributes as att', function ($join) {
-                $join->on('att.entity_id', '=', 'e.id');
-            })
-            ->where('att.name', $this->filterValue);
-
-        $attributeValue = Arr::get($this->filterParams, 'attribute_value');
-        if ($attributeValue === '!') {
-            $query
-                ->whereRaw('att.value <> ""');
-        } elseif ($attributeValue !== '' && $attributeValue !== null) {
-            $query
-                ->where('att.value', $attributeValue);
-        }
-    }
-
-    /**
-     * Filter on the connections of an entity
-     */
-    protected function filterConnections(Builder $query, string $key): void
-    {
-        if ($key == 'connection_target' && Arr::get($this->filterParams, 'connection_name')) {
-            return;
-        }
-
-        $query->joinEntity();
-
-        $query
-            ->leftJoin('relations as rel', function ($join) {
-                $join->on('rel.owner_id', '=', 'e.id');
-            });
-        $connectionTarget = Arr::get($this->filterParams, 'connection_target');
-        if ($connectionTarget !== '' && $connectionTarget !== null) {
-            $query
-                ->where('rel.target_id', $connectionTarget);
-        }
-
-        $connectionName = Arr::get($this->filterParams, 'connection_name');
-        if ($connectionName !== '' && $connectionName !== null) {
-            $connectionName = $this->filterValue;
-            if ($this->filterOperator != '=') {
-                $connectionName = '%' . $this->filterValue . '%';
-            }
-
-            $query
-                ->where('rel.relation', $this->filterOperator, $connectionName);
-        }
-    }
-
-    /**
      * General fallback filter for what wasn't cought in specific cases
      */
     protected function filterFallback(Builder $query, string $key): void
@@ -381,16 +330,8 @@ trait HasFilters
      */
     protected function filterHasFiles(Builder $query, ?string $value = null): void
     {
-        $query
-            ->joinEntity()
-            ->leftJoin('entity_assets', 'entity_assets.entity_id', '=', 'e.id')
-            ->where('entity_assets.type_id', EntityAssetType::file);
-
-        if ($value) {
-            $query->whereNotNull('entity_assets.id');
-        } else {
-            $query->whereNull('entity_assets.id');
-        }
+        $query->joinEntity();
+        $this->applyEntityFilesFilter($query, 'e', $value);
     }
 
     /**
@@ -399,19 +340,7 @@ trait HasFilters
     protected function filterHasImage(Builder $query, ?string $value = null): void
     {
         $query->joinEntity();
-        if ($value) {
-            $query->where(function ($sub) {
-                return $sub
-                    ->whereNotNull('e.image_path')
-                    ->orWhereNotNull('e.image_uuid');
-            });
-        } else {
-            $query->where(function ($sub) {
-                return $sub
-                    ->whereNull('e.image_path')
-                    ->whereNull('e.image_uuid');
-            });
-        }
+        $this->applyEntityImageFilter($query, 'e', $value);
     }
 
     /**
@@ -420,15 +349,7 @@ trait HasFilters
     protected function filterTemplate(Builder $query, ?string $value = null): void
     {
         $query->joinEntity();
-
-        if ($value) {
-            $query->where('e.is_template', 1);
-        } else {
-            $query->where(function ($sub) {
-                $sub->whereNull('e.is_template')
-                    ->orWhere('e.is_template', '<>', 1);
-            });
-        }
+        $this->applyEntityTemplateFilter($query, 'e', $value);
     }
 
     /**
@@ -463,15 +384,8 @@ trait HasFilters
      */
     protected function filterHasPosts(Builder $query, ?string $value = null): void
     {
-        $query
-            ->joinEntity()
-            ->leftJoin('posts', 'posts.entity_id', 'e.id');
-
-        if ($value) {
-            $query->whereNotNull('posts.id');
-        } else {
-            $query->whereNull('posts.id');
-        }
+        $query->joinEntity();
+        $this->applyEntityPostsFilter($query, 'e', $value);
     }
 
     /**
@@ -479,16 +393,8 @@ trait HasFilters
      */
     protected function filterHasEntry(Builder $query, ?string $value = null): void
     {
-        $query
-            ->joinEntity();
-
-        if ($value) {
-            $query->whereNotNull('e.entry')
-                ->where('e.entry', '!=', '');
-        } else {
-            $query->whereNull('e.entry')
-                ->orWhere('e.entry', '');
-        }
+        $query->joinEntity();
+        $this->applyEntityEntryFilter($query, 'e', $value);
     }
 
     /**
@@ -512,15 +418,8 @@ trait HasFilters
      */
     protected function filterHasAttributes(Builder $query, ?string $value = null): void
     {
-        $query
-            ->joinEntity()
-            ->leftJoin('attributes', 'attributes.entity_id', 'e.id');
-
-        if ($value) {
-            $query->whereNotNull('attributes.id');
-        } else {
-            $query->whereNull('attributes.id');
-        }
+        $query->joinEntity();
+        $this->applyEntityAttributesPresenceFilter($query, 'e', $value);
     }
 
     /**
@@ -803,54 +702,12 @@ trait HasFilters
      */
     protected function filterTags(Builder $query, null|string|array $value = null): void
     {
-        // "none" filter tags is handled later (because this won't be called if the tags field is empty)
         if ($this->filterOption('none')) {
             return;
         }
-        $query
-            ->joinEntity();
 
-        // Make sure we always have an array
-        if (! is_array($value)) {
-            $value = [$value];
-        }
-
-        if ($this->filterOption('exclude')) {
-            $tagIds = [];
-            foreach ($value as $v) {
-                $tagIds[] = (int) $v;
-            }
-            // $query->leftJoin('entity_tags as et_tags', "et_tags.entity_id", 'e.id')
-            $query->whereRaw('(
-                select count(*) from entity_tags as et
-                where et.entity_id = e.id and et.tag_id in (' . implode(', ', $tagIds) . ')
-            ) = 0');
-
-            return;
-        }
-
-        if ($this->filterOption('any')) {
-            $tagIds = [];
-            foreach ($value as $v) {
-                $tagIds[] = (int) $v;
-            }
-            // $query->leftJoin('entity_tags as et_tags', "et_tags.entity_id", 'e.id')
-            // $query
-            $query->leftJoin('entity_tags as et_tags', 'et_tags.entity_id', 'e.id')
-                ->whereIn('et_tags.tag_id', $tagIds);
-
-            return;
-        }
-
-        foreach ($value as $v) {
-            if (! is_numeric($v)) {
-                continue;
-            }
-            $v = (int) $v;
-            $query
-                ->leftJoin('entity_tags as et' . $v, "et{$v}.entity_id", 'e.id')
-                ->where("et{$v}.tag_id", $v);
-        }
+        $query->joinEntity();
+        $this->applyEntityTagsFilter($query, 'e', $value, $this->filterOption);
     }
 
     /**
@@ -858,14 +715,8 @@ trait HasFilters
      */
     protected function filterArchived(Builder $query, ?string $value = null): void
     {
-        $query
-            ->joinEntity();
-
-        if ($value) {
-            $query->whereNotNull('e.archived_at');
-
-            return;
-        }
+        $query->joinEntity();
+        $this->applyEntityArchivedFilter($query, 'e', $value);
     }
 
     /**
@@ -930,10 +781,8 @@ trait HasFilters
             }
             $query->whereNull($this->filterColumn($key));
         } elseif ($key === 'tags') {
-            $query
-                ->joinEntity()
-                ->leftJoin('entity_tags as no_tags', 'no_tags.entity_id', 'e.id')
-                ->whereNull('no_tags.tag_id');
+            $query->joinEntity();
+            $this->applyEntityTagsFilter($query, 'e', [], 'none');
         } elseif ($key === 'race_id') {
             $query
                 ->select($this->getTable() . '.*')
