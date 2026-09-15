@@ -9,7 +9,7 @@ return new class extends Migration
     public function up(): void
     {
         $typeIds = EntityType::default()
-            ->whereIn('code', [
+            ->inCodes([
                 'ability', 'attribute_template', 'calendar', 'creature', 'event',
                 'family', 'item', 'journal', 'location', 'map', 'note',
                 'organisation', 'quest', 'race', 'tag', 'timeline',
@@ -57,7 +57,7 @@ return new class extends Migration
         // The old child table columns still exist, so no data is lost.
         // Nullify entities.parent_id for standard types only.
         $standardTypeIds = EntityType::default()
-            ->whereIn('code', [
+            ->inCodes([
                 'ability', 'attribute_template', 'calendar', 'creature', 'event',
                 'family', 'item', 'journal', 'location', 'map', 'note',
                 'organisation', 'quest', 'race', 'tag', 'timeline',
