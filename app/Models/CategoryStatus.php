@@ -2,23 +2,29 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int $id
+ * @property ?int $campaign_id
  * @property int $category_id
  * @property string $key
  * @property ?string $icon
  * @property int $sort_order
  * @property bool $is_default
+ * @property ?Campaign $campaign
  * @property EntityType $entityType
+ *
+ * @method static self|Builder inCampaign(Campaign|int $campaign)
  */
 class CategoryStatus extends Model
 {
     public $timestamps = false;
 
     public $fillable = [
+        'campaign_id',
         'category_id',
         'key',
         'icon',
@@ -31,6 +37,26 @@ class CategoryStatus extends Model
         return [
             'is_default' => 'boolean',
         ];
+    }
+
+    public function scopeInCampaign(Builder $query, Campaign|int $campaign): Builder
+    {
+        if ($campaign instanceof Campaign) {
+            $campaign = $campaign->id;
+        }
+
+        return $query->where(function (Builder $query) use ($campaign) {
+            return $query->where('campaign_id', $campaign)
+                ->orWhereNull('campaign_id');
+        });
+    }
+
+    /**
+     * @return BelongsTo<Campaign, $this>
+     */
+    public function campaign(): BelongsTo
+    {
+        return $this->belongsTo(Campaign::class);
     }
 
     /**
@@ -53,6 +79,6 @@ class CategoryStatus extends Model
 
     public function isCustom(): bool
     {
-        return false;
+        return $this->campaign_id !== null;
     }
 }

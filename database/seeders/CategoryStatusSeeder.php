@@ -57,6 +57,7 @@ class CategoryStatusSeeder extends Seeder
             foreach ($categoryStatuses as $status) {
                 DB::table('category_statuses')->updateOrInsert(
                     [
+                        'campaign_id' => null,
                         'category_id' => $entityType->id,
                         'key' => $status['key'],
                     ],

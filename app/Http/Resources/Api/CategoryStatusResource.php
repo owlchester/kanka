@@ -23,6 +23,7 @@ class CategoryStatusResource extends JsonResource
             'key' => $model->key,
             'is_default' => $model->is_default,
             'category_id' => $model->category_id,
+            'campaign_id' => $model->campaign_id,
         ];
     }
 }
