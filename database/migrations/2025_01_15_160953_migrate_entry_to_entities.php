@@ -14,13 +14,8 @@ return new class extends Migration
     public function up(): void
     {
         /** @var EntityType $entityType */
-        $exclude = [
-            config('entities.ids.attribute_template'),
-            config('entities.ids.bookmark'),
-            config('entities.ids.dice_roll'),
-            config('entities.ids.conversation'),
-        ];
-        foreach (EntityType::default()->exclude($exclude)->get() as $entityType) {
+        $exclude = ['attribute_template', 'bookmark', 'dice_roll', 'conversation'];
+        foreach (EntityType::default()->whereNotIn('code', $exclude)->get() as $entityType) {
             DB::statement('UPDATE entities JOIN ' . $entityType->pluralCode() . ' as s ON entities.entity_id = s.id SET entities.entry = s.entry, entities.type = s.type WHERE entities.type_id = ' . $entityType->id);
         }
     }

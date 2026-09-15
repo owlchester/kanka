@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\EntityType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\DB;
 
@@ -7,35 +8,44 @@ return new class extends Migration
 {
     public function up(): void
     {
+        $typeIds = EntityType::default()
+            ->whereIn('code', [
+                'ability', 'attribute_template', 'calendar', 'creature', 'event',
+                'family', 'item', 'journal', 'location', 'map', 'note',
+                'organisation', 'quest', 'race', 'tag', 'timeline',
+            ])
+            ->pluck('id', 'code');
+
         $models = [
-            'abilities' => ['key' => 'ability_id',            'type_id' => config('entities.ids.ability')],
-            'attribute_templates' => ['key' => 'attribute_template_id', 'type_id' => config('entities.ids.attribute_template')],
-            'calendars' => ['key' => 'calendar_id',           'type_id' => config('entities.ids.calendar')],
-            'creatures' => ['key' => 'creature_id',           'type_id' => config('entities.ids.creature')],
-            'events' => ['key' => 'event_id',              'type_id' => config('entities.ids.event')],
-            'families' => ['key' => 'family_id',             'type_id' => config('entities.ids.family')],
-            'items' => ['key' => 'item_id',               'type_id' => config('entities.ids.item')],
-            'journals' => ['key' => 'journal_id',            'type_id' => config('entities.ids.journal')],
-            'locations' => ['key' => 'location_id',           'type_id' => config('entities.ids.location')],
-            'maps' => ['key' => 'map_id',                'type_id' => config('entities.ids.map')],
-            'notes' => ['key' => 'note_id',               'type_id' => config('entities.ids.note')],
-            'organisations' => ['key' => 'organisation_id',       'type_id' => config('entities.ids.organisation')],
-            'quests' => ['key' => 'quest_id',              'type_id' => config('entities.ids.quest')],
-            'races' => ['key' => 'race_id',               'type_id' => config('entities.ids.race')],
-            'tags' => ['key' => 'tag_id',                'type_id' => config('entities.ids.tag')],
-            'timelines' => ['key' => 'timeline_id',           'type_id' => config('entities.ids.timeline')],
+            'abilities' => ['key' => 'ability_id', 'type' => 'ability'],
+            'attribute_templates' => ['key' => 'attribute_template_id', 'type' => 'attribute_template'],
+            'calendars' => ['key' => 'calendar_id', 'type' => 'calendar'],
+            'creatures' => ['key' => 'creature_id', 'type' => 'creature'],
+            'events' => ['key' => 'event_id', 'type' => 'event'],
+            'families' => ['key' => 'family_id', 'type' => 'family'],
+            'items' => ['key' => 'item_id', 'type' => 'item'],
+            'journals' => ['key' => 'journal_id', 'type' => 'journal'],
+            'locations' => ['key' => 'location_id', 'type' => 'location'],
+            'maps' => ['key' => 'map_id', 'type' => 'map'],
+            'notes' => ['key' => 'note_id', 'type' => 'note'],
+            'organisations' => ['key' => 'organisation_id', 'type' => 'organisation'],
+            'quests' => ['key' => 'quest_id', 'type' => 'quest'],
+            'races' => ['key' => 'race_id', 'type' => 'race'],
+            'tags' => ['key' => 'tag_id', 'type' => 'tag'],
+            'timelines' => ['key' => 'timeline_id', 'type' => 'timeline'],
         ];
 
         if (DB::connection()->getDriverName() !== 'sqlite') {
-            foreach ($models as $table => $config) {
+            foreach ($models as $table => $model) {
+                $typeId = $typeIds->get($model['type'], 0);
                 DB::statement("
                     UPDATE entities e
-                    JOIN {$table} c ON e.entity_id = c.id AND e.type_id = {$config['type_id']}
-                    JOIN {$table} parent_child ON c.{$config['key']} = parent_child.id
+                    JOIN {$table} c ON e.entity_id = c.id AND e.type_id = {$typeId}
+                    JOIN {$table} parent_child ON c.{$model['key']} = parent_child.id
                     JOIN entities parent_entity ON parent_entity.entity_id = parent_child.id
-                        AND parent_entity.type_id = {$config['type_id']}
+                        AND parent_entity.type_id = {$typeId}
                     SET e.parent_id = parent_entity.id
-                    WHERE c.{$config['key']} IS NOT NULL
+                    WHERE c.{$model['key']} IS NOT NULL
                         AND e.parent_id IS NULL
                 ");
             }
@@ -46,24 +56,14 @@ return new class extends Migration
     {
         // The old child table columns still exist, so no data is lost.
         // Nullify entities.parent_id for standard types only.
-        $standardTypeIds = [
-            config('entities.ids.ability'),
-            config('entities.ids.attribute_template'),
-            config('entities.ids.calendar'),
-            config('entities.ids.creature'),
-            config('entities.ids.event'),
-            config('entities.ids.family'),
-            config('entities.ids.item'),
-            config('entities.ids.journal'),
-            config('entities.ids.location'),
-            config('entities.ids.map'),
-            config('entities.ids.note'),
-            config('entities.ids.organisation'),
-            config('entities.ids.quest'),
-            config('entities.ids.race'),
-            config('entities.ids.tag'),
-            config('entities.ids.timeline'),
-        ];
+        $standardTypeIds = EntityType::default()
+            ->whereIn('code', [
+                'ability', 'attribute_template', 'calendar', 'creature', 'event',
+                'family', 'item', 'journal', 'location', 'map', 'note',
+                'organisation', 'quest', 'race', 'tag', 'timeline',
+            ])
+            ->pluck('id')
+            ->all();
 
         DB::table('entities')
             ->whereIn('type_id', $standardTypeIds)

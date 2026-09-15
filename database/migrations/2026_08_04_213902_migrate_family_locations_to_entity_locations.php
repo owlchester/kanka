@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\EntityType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
@@ -12,19 +13,20 @@ return new class extends Migration
      */
     public function up(): void
     {
+        $familyTypeId = EntityType::default()->where('code', 'family')->value('id');
         // Clean up any partial inserts from a previous failed run
         DB::table('entity_locations')
-            ->whereIn('entity_id', function ($query) {
+            ->whereIn('entity_id', function ($query) use ($familyTypeId) {
                 $query->select('entities.id')
                     ->from('entities')
-                    ->where('entities.type_id', '=', config('entities.ids.family'));
+                    ->where('entities.type_id', '=', $familyTypeId);
             })
             ->delete();
 
         $families = DB::table('families')
-            ->join('entities', function ($join) {
+            ->join('entities', function ($join) use ($familyTypeId) {
                 $join->on('entities.entity_id', '=', 'families.id')
-                    ->where('entities.type_id', '=', config('entities.ids.family'));
+                    ->where('entities.type_id', '=', $familyTypeId);
             })
             ->join('locations', 'locations.id', '=', 'families.location_id')
             ->whereNotNull('families.location_id')

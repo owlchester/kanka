@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\EntityType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,10 +12,11 @@ return new class extends Migration
      */
     public function up(): void
     {
+        $characterTypeId = EntityType::default()->where('code', 'character')->value('id');
         $characters = DB::table('characters')
-            ->join('entities', function ($join) {
+            ->join('entities', function ($join) use ($characterTypeId) {
                 $join->on('entities.entity_id', '=', 'characters.id')
-                    ->where('entities.type_id', '=', config('entities.ids.character'));
+                    ->where('entities.type_id', '=', $characterTypeId);
             })
             ->whereNotNull('characters.location_id')
             ->select('entities.id as entity_id', 'characters.location_id', 'entities.created_by')

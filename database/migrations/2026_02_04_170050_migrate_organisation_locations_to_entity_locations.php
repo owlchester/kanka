@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\EntityType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\DB;
 
@@ -16,11 +17,12 @@ return new class extends Migration
         if (! Schema::hasTable('organisation_location')) {
             return;
         }
+        $organisationTypeId = EntityType::default()->where('code', 'organisation')->value('id');
         // Migrate organisation locations
         $organisations = DB::table('organisations')
-            ->join('entities', function ($join) {
+            ->join('entities', function ($join) use ($organisationTypeId) {
                 $join->on('entities.entity_id', '=', 'organisations.id')
-                    ->where('entities.type_id', '=', config('entities.ids.organisation'));
+                    ->where('entities.type_id', '=', $organisationTypeId);
             })
             ->join('organisation_location', 'organisation_location.organisation_id', '=', 'organisations.id')
             ->select('entities.id as entity_id', 'organisation_location.location_id', 'entities.created_by')

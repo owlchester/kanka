@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\EntityType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\DB;
 
@@ -16,11 +17,12 @@ return new class extends Migration
         if (! Schema::hasTable('race_location')) {
             return;
         }
+        $raceTypeId = EntityType::default()->where('code', 'race')->value('id');
         // Migrate race locations
         $races = DB::table('races')
-            ->join('entities', function ($join) {
+            ->join('entities', function ($join) use ($raceTypeId) {
                 $join->on('entities.entity_id', '=', 'races.id')
-                    ->where('entities.type_id', '=', config('entities.ids.race'));
+                    ->where('entities.type_id', '=', $raceTypeId);
             })
             ->join('race_location', 'race_location.race_id', '=', 'races.id')
             ->select('entities.id as entity_id', 'race_location.location_id', 'entities.created_by')
