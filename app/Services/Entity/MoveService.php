@@ -120,7 +120,7 @@ class MoveService
             if ($this->entity->hasChild()) {
                 $newModel = $this->entity->child->replicate(['campaign_id']);
                 // Remove any foreign keys that wouldn't make any sense in the new campaign
-                $keepFields = ['campaign_id', 'status_id', 'visibility_id'];
+                $keepFields = ['campaign_id', 'visibility_id'];
                 foreach ($newModel->getAttributes() as $attribute => $value) {
                     if (str_contains($attribute, '_id') && ! in_array($attribute, $keepFields)) {
                         $newModel->$attribute = null;
@@ -141,6 +141,7 @@ class MoveService
             $data = $newModel?->getAttributes() ?? [];
             $data['name'] = $this->entity->name;
             $data['is_private'] = $this->entity->is_private;
+            $data['status_id'] = $this->transferableStatusId();
             $newModel = app(StandardEntityCreationService::class)
                 ->campaign($this->to)
                 ->entityType($entityType)
@@ -203,6 +204,7 @@ class MoveService
 
             // Update Entity first, as there are no hooks on the Entity model.
             CampaignLocalization::forceCampaign($this->to);
+            $this->entity->status_id = $this->transferableStatusId();
             $this->entity->campaign_id = $this->to->id;
             $this->entity->parent_id = null;
             if (! empty($this->entity->header_image)) {
@@ -238,6 +240,16 @@ class MoveService
         CampaignLocalization::forceCampaign($this->campaign);
 
         return $success;
+    }
+
+    protected function transferableStatusId(): ?int
+    {
+        // Bulk copies can process without validate(), so preserve custom statuses when the target is the current campaign.
+        if ($this->entity->campaign_id == $this->to->id || $this->entity->status_id === null) {
+            return $this->entity->status_id;
+        }
+
+        return $this->entity->status?->isCustom() ? null : $this->entity->status_id;
     }
 
     /**

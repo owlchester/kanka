@@ -1,7 +1,7 @@
 @php
     $statusEntityType = $entityType ?? $entity->entityType ?? null;
     $categoryStatuses = $statusEntityType
-        ? \App\Models\CategoryStatus::where('category_id', $statusEntityType->id)->orderBy('sort_order')->get()
+        ? \App\Models\CategoryStatus::inCampaign($campaign)->where('category_id', $statusEntityType->id)->orderBy('sort_order')->get()
         : collect();
     $isBulk = $bulk ?? false;
 @endphp
