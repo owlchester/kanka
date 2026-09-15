@@ -32,7 +32,7 @@ class Character extends Layout
                 },
             ],
             'locations' => [
-                'key' => 'locations.name',
+                'key' => 'locations',
                 'label' => Module::plural(config('entities.ids.location'), __('entities.locations')),
                 'render' => Standard::ENTITY_LOCATIONS,
                 'visible' => function () {
@@ -40,17 +40,20 @@ class Character extends Layout
                 },
             ],
             'families' => [
+                'key' => 'families',
                 'label' => Module::plural(config('entities.ids.family'), __('entities.families')),
                 'render' => Standard::ENTITYLIST,
                 'with' => ['characterFamilies', 'family'],
             ],
             'races' => [
+                'key' => 'races',
                 'label' => Module::plural(config('entities.ids.race'), __('entities.races')),
                 'class' => self::ONLY_DESKTOP,
                 'render' => Standard::ENTITYLIST,
                 'with' => ['characterRaces', 'race'],
             ],
             'tags' => [
+                'key' => 'tags',
                 'render' => Standard::TAGS,
             ],
         ];

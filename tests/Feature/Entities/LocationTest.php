@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Character;
 use App\Models\Creature;
 use App\Models\Location;
 use App\Models\Organisation;
@@ -56,6 +57,30 @@ it('GETS a specific location')
             'is_private',
         ],
     ]);
+
+it('sorts characters in a location by name', function () {
+    $this->asUser()->withCampaign()->withLocations()->withCharacters();
+
+    $location = Location::first();
+    $characters = Character::all();
+    foreach ($characters as $index => $character) {
+        $character->update(['name' => ['Zulu', 'Alpha', 'Mike', 'Bravo', 'Echo'][$index]]);
+        $character->entity->locations()->attach($location->id);
+    }
+
+    foreach (['name', 'locations', 'families', 'races', 'tags'] as $key) {
+        request()->query->replace(['k' => $key, 'o' => 'asc']);
+
+        $rows = $location->allCharacters()->filteredCharacters()->get();
+
+        expect($rows)->toHaveCount(5);
+    }
+
+    request()->query->replace(['k' => 'name', 'o' => 'asc']);
+
+    expect($location->allCharacters()->filteredCharacters()->get()->pluck('id')->all())
+        ->toBe($characters->sortBy('name')->pluck('id')->all());
+});
 
 it('UPDATES a valid location')
     ->asUser()

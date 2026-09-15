@@ -61,6 +61,7 @@ class Member extends Layout
                 'with' => 'superior',
             ],
             'locations' => [
+                'key' => 'locations',
                 'label' => Module::plural(
                     config('entities.ids.location'),
                     __('entities.locations'),

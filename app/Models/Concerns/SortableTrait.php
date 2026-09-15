@@ -83,7 +83,7 @@ trait SortableTrait
             return $query->{'customSort' . ucfirst($key)}($order);
         }
 
-        return $query->orderBy($key, $order);
+        return $query->orderBy($this->qualifyColumn($key), $order);
     }
 
     public function scopeDefaultOrder(Builder $query): Builder

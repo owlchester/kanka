@@ -87,6 +87,9 @@ class Character extends MiscModel
         'sex',
         'pronouns',
         'locations',
+        'families',
+        'races',
+        'tags',
     ];
 
     protected array $sortable = [
@@ -94,6 +97,10 @@ class Character extends MiscModel
         'type',
         'sex',
         'pronouns',
+        'locations',
+        'families',
+        'races',
+        'tags',
     ];
 
     /**
@@ -452,5 +459,43 @@ class Character extends MiscModel
                 'entity.tags.entity' => fn ($sub) => $sub->grid(),
                 'entity.image', 'entity.locations', 'entity.status'])
             ->has('entity');
+    }
+
+    public function scopeCustomSortLocations(Builder $query, string $order): Builder
+    {
+        $name = Location::query()
+            ->selectRaw('MIN(locations.name)')
+            ->join('entity_locations', 'entity_locations.location_id', '=', 'locations.id')
+            ->join('entities as location_sort_entities', 'location_sort_entities.id', '=', 'entity_locations.entity_id')
+            ->whereColumn('location_sort_entities.entity_id', 'characters.id')
+            ->where('location_sort_entities.type_id', config('entities.ids.character'));
+
+        return $query->orderBy($name, $order);
+    }
+
+    public function scopeCustomSortFamilies(Builder $query, string $order): Builder
+    {
+        return $query
+            ->withMin('families as family_sort_name', 'name')
+            ->orderBy('family_sort_name', $order);
+    }
+
+    public function scopeCustomSortRaces(Builder $query, string $order): Builder
+    {
+        return $query
+            ->withMin('races as race_sort_name', 'name')
+            ->orderBy('race_sort_name', $order);
+    }
+
+    public function scopeCustomSortTags(Builder $query, string $order): Builder
+    {
+        $name = Tag::query()
+            ->selectRaw('MIN(tags.name)')
+            ->join('entity_tags', 'entity_tags.tag_id', '=', 'tags.id')
+            ->join('entities as tag_sort_entities', 'tag_sort_entities.id', '=', 'entity_tags.entity_id')
+            ->whereColumn('tag_sort_entities.entity_id', 'characters.id')
+            ->where('tag_sort_entities.type_id', config('entities.ids.character'));
+
+        return $query->orderBy($name, $order);
     }
 }
