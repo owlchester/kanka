@@ -1,4 +1,4 @@
-@if ($entity->status || !empty($entity->child->title) || !empty($entity->child->age) || !empty($entity->child->sex) || !empty($entity->child->pronouns))
+@if ($entity->status || !empty($entity->child->title) || !empty($entity->child->age) || !empty($entity->child->sex) || !empty($entity->child->pronouns) || !empty($entityData['characterFamilies']) || !empty($entityData['characterRaces']) || !empty($entityData['characterOrganisations']))
 ## {!! __('crud.tabs.profile') !!}
 @endif
 
@@ -16,6 +16,15 @@
 @endif
 @if ($entity->status)
 - {!! $entity->status->setRelation('entityType', $entity->entityType)->name() !!}
+@endif
+@if (!empty($entityData['characterFamilies']))
+- **{!! \App\Facades\Module::plural(config('entities.ids.family'), __('entities.families')) !!}** {!! implode(', ', $entityData['characterFamilies']) !!}
+@endif
+@if (!empty($entityData['characterRaces']))
+- **{!! \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races')) !!}** {!! implode(', ', $entityData['characterRaces']) !!}
+@endif
+@if (!empty($entityData['characterOrganisations']))
+- **{!! \App\Facades\Module::plural(config('entities.ids.organisation'), __('entities.organisations')) !!}** {!! implode(', ', $entityData['characterOrganisations']) !!}
 @endif
 @if ($entity->child->characterTraits->count() > 0)
 

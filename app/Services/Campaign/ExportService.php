@@ -8,6 +8,7 @@ use App\Facades\CampaignLocalization;
 use App\Facades\Mentions;
 use App\Facades\Module;
 use App\Models\CampaignExport;
+use App\Models\Character;
 use App\Models\Entity;
 use App\Models\EntityAsset;
 use App\Models\Image;
@@ -356,6 +357,9 @@ class ExportService
         // @phpstan-ignore-next-line
         foreach ($class->exportRelations() as $rel) {
             $with[] = $rel;
+        }
+        if ($this->isMarkdown && $class instanceof Character) {
+            $with[] = 'organisationMemberships.organisation.entity';
         }
 
         return $with;

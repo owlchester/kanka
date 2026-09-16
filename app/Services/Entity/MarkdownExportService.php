@@ -2,7 +2,9 @@
 
 namespace App\Services\Entity;
 
+use App\Models\Entity;
 use App\Models\Post;
+use App\Models\Relation;
 use App\Services\MarkdownMentionsService;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
@@ -106,6 +108,9 @@ class MarkdownExportService
         $entityData['entry'] = $this->markdownEntry();
         $entityData['posts'] = [];
         $entityData['parent'] = '';
+        $entityData['characterFamilies'] = [];
+        $entityData['characterRaces'] = [];
+        $entityData['characterOrganisations'] = [];
 
         if ($this->entity->parent) {
             $parent = $this->entity->parent;
@@ -153,26 +158,67 @@ class MarkdownExportService
 ';
         }
 
-        if ($this->isSingle) {
-            foreach ($this->entity->allRelationships as $relation) {
-                $entityData['relations'] .= '* [' . html_entity_decode($relation->target->name, ENT_QUOTES, 'UTF-8') . '](' . $relation->target->url() . ')
-';
-            }
-        } else {
-            foreach ($this->entity->allRelationships as $relation) {
-                if ($relation->target->entityType->isCustom()) {
-                    $moduleName = $relation->target->entityType->code . '_' . $relation->target->entityType->id;
+        foreach ($this->entity->allRelationships as $relation) {
+            $entityData['relations'] .= $this->markdownRelation($relation);
+        }
 
-                    $entityData['relations'] .= '* [' . $relation->target->name . '](' . Str::slug($moduleName) . '/' . Str::slug($relation->target->name) . '_' . $relation->target_id . ')
-';
-                } else {
-                    $entityData['relations'] .= '* [' . $relation->target->name . '](' . str_replace(' ', '-', $relation->target->entityType->pluralCode()) . '/' . Str::slug($relation->target->name) . '_' . $relation->target_id . ')
-';
+        if ($this->entity->isCharacter() && $this->entity->child) {
+            $character = $this->entity->child;
+
+            foreach ($character->characterFamilies->unique('family_id') as $characterFamily) {
+                if ($characterFamily->family?->entity) {
+                    $entityData['characterFamilies'][] = $this->entityLink($characterFamily->family->entity);
                 }
+            }
+
+            foreach ($character->characterRaces->unique('race_id') as $characterRace) {
+                if ($characterRace->race?->entity) {
+                    $entityData['characterRaces'][] = $this->entityLink($characterRace->race->entity);
+                }
+            }
+
+            $character->loadMissing('organisationMemberships.organisation.entity');
+            foreach ($character->organisationMemberships as $membership) {
+                if (! $membership->organisation?->entity) {
+                    continue;
+                }
+
+                $organisation = $this->entityLink($membership->organisation->entity);
+                if (! empty($membership->role)) {
+                    $organisation .= ' (' . html_entity_decode($membership->role, ENT_QUOTES, 'UTF-8') . ')';
+                }
+                $entityData['characterOrganisations'][] = $organisation;
             }
         }
 
         return $entityData;
+    }
+
+    protected function markdownRelation(Relation $relation): string
+    {
+        if (! $relation->target) {
+            return '';
+        }
+
+        $role = html_entity_decode($relation->relation, ENT_QUOTES, 'UTF-8');
+
+        return '* **' . $role . '**: ' . $this->entityLink($relation->target) . "\n";
+    }
+
+    protected function entityLink(Entity $entity): string
+    {
+        $name = html_entity_decode($entity->name, ENT_QUOTES, 'UTF-8');
+        if ($this->isSingle) {
+            return '[' . $name . '](' . $entity->url() . ')';
+        }
+
+        if ($entity->entityType->isCustom()) {
+            $moduleName = $entity->entityType->code . '_' . $entity->entityType->id;
+        } else {
+            $moduleName = $entity->entityType->pluralCode();
+        }
+
+        return '[' . $name . '](' . str_replace(' ', '-', Str::slug($moduleName)) . '/' . Str::slug($entity->name) . '_' . $entity->id . ')';
     }
 
     /**
