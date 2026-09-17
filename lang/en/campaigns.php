@@ -369,6 +369,7 @@ return [
             'title' => 'Boosted features (legacy)',
         ],
         'premium'   => 'Premium features unlocked by :name.',
+        'sponsored' => 'Premium sponsored by :user.',
         'title'     => 'Premium features',
     ],
     'themes'                            => [

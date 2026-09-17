@@ -1,7 +1,44 @@
 <?php
 
+use App\Models\CampaignBoost;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+
+it('shows the premium unlocker for a campaign admin', function () {
+    config(['limits.campaigns.premium' => true]);
+
+    $this->asUser()
+        ->withCampaign(['boost_count' => 4]);
+
+    CampaignBoost::create([
+        'campaign_id' => 1,
+        'user_id' => auth()->id(),
+    ]);
+
+    $this->get(route('overview', 1))
+        ->assertOk()
+        ->assertSeeText('Premium features unlocked by ' . auth()->user()->name . '.')
+        ->assertDontSeeText('Premium sponsored by ' . auth()->user()->name . '.');
+});
+
+it('shows the premium sponsor for a non-admin unlocker', function () {
+    config(['limits.campaigns.premium' => true]);
+
+    $this->asUser()
+        ->withCampaign(['boost_count' => 4]);
+
+    $sponsor = User::factory()->create(['name' => 'External Sponsor']);
+    CampaignBoost::create([
+        'campaign_id' => 1,
+        'user_id' => $sponsor->id,
+    ]);
+
+    $this->get(route('overview', 1))
+        ->assertOk()
+        ->assertSeeText('Premium sponsored by External Sponsor.')
+        ->assertDontSeeText('Premium features unlocked by External Sponsor.');
+});
 
 it('shows the sidebar premium alert with feature tracking', function () {
     $this->asUser()
@@ -98,12 +135,44 @@ it('shows the audit log premium alert and empty state', function () {
         ->assertSee(e(route('settings.subscription', ['f' => 'cta', 's' => 'audit-log', 'w' => 1])), false);
 });
 
-it('exposes recovery empty-state translations', function () {
+it('guides users without premium access to subscription plans when recovering content', function () {
     $this->asUser()
         ->withCampaign()
         ->get(route('recovery.setup', 1))
         ->assertOk()
         ->assertJsonPath('elements', [])
+        ->assertJsonPath('acl.premium', false)
         ->assertJsonPath('i18n.empty_title', __('campaigns/recovery.empty_title'))
-        ->assertJsonPath('i18n.empty', __('campaigns/recovery.empty'));
+        ->assertJsonPath('i18n.empty', __('campaigns/recovery.empty'))
+        ->assertJsonPath('i18n.premium_title', __('campaigns/recovery.cta.title'))
+        ->assertJsonPath('i18n.premium', __('campaigns/recovery.cta.lead'))
+        ->assertJsonPath('i18n.upgrade', __('callouts.actions.subscription'))
+        ->assertJsonPath('upgrade', route('settings.subscription', [
+            'f' => 'cta',
+            's' => 'recovery',
+            'w' => 1,
+        ]));
+});
+
+it('guides users with premium access to enable it when recovering content', function () {
+    $this->asUser(true)
+        ->withCampaign()
+        ->get(route('recovery.setup', 1))
+        ->assertOk()
+        ->assertJsonPath('acl.premium', false)
+        ->assertJsonPath('i18n.upgrade', __('callouts.alert.enable', ['campaign' => 'test-campaign']))
+        ->assertJsonPath('upgrade', route('settings.premium', [
+            'campaign' => 1,
+            'f' => 'cta',
+            's' => 'recovery',
+        ]));
+});
+
+it('does not expose an upgrade link when recovering content in a premium campaign', function () {
+    $this->asUser()
+        ->withCampaign(['boost_count' => 1])
+        ->get(route('recovery.setup', 1))
+        ->assertOk()
+        ->assertJsonPath('acl.premium', true)
+        ->assertJsonPath('upgrade', null);
 });

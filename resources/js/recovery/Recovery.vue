@@ -65,7 +65,10 @@
 
     <dialog ref="premiumDialog" class="dialog rounded-2xl text-center" v-if="initiated">
         <header class="flex gap-6 items-center p-4 md:p-6 justify-between">
-            <h4 v-html="trans('premium_title')" class="text-lg font-normal"></h4>
+            <h4 class="flex items-center gap-2 text-lg font-normal">
+                <i class="fa-regular fa-gem text-primary" aria-hidden="true"></i>
+                <span v-html="trans('premium_title')"></span>
+            </h4>
             <button type="button" class="text-base-content" @click="closeModal(premiumDialog)" title="Close">
                 <i class="fa-regular fa-circle-xmark" aria-hidden="true"></i>
                 <span class="sr-only">Close</span>
@@ -78,7 +81,10 @@
         </article>
         <footer class="p-4 md:px-6">
             <menu class="">
-                <a :href="upgradeLink" v-html="trans('upgrade')" class="btn2 btn-default"></a>
+                <a :href="upgradeLink" class="btn2 btn-primary">
+                    <span v-html="trans('upgrade')"></span>
+                    <i class="fa-regular fa-arrow-right" aria-hidden="true"></i>
+                </a>
             </menu>
         </footer>
     </dialog>

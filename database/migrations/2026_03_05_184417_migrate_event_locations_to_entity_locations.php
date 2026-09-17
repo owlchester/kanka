@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\EntityType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
@@ -12,19 +13,20 @@ return new class extends Migration
      */
     public function up(): void
     {
+        $eventTypeId = EntityType::default()->where('code', 'event')->value('id');
         // Clean up any partial inserts from a previous failed run
         DB::table('entity_locations')
-            ->whereIn('entity_id', function ($query) {
+            ->whereIn('entity_id', function ($query) use ($eventTypeId) {
                 $query->select('entities.id')
                     ->from('entities')
-                    ->where('entities.type_id', '=', config('entities.ids.event'));
+                    ->where('entities.type_id', '=', $eventTypeId);
             })
             ->delete();
 
         $events = DB::table('events')
-            ->join('entities', function ($join) {
+            ->join('entities', function ($join) use ($eventTypeId) {
                 $join->on('entities.entity_id', '=', 'events.id')
-                    ->where('entities.type_id', '=', config('entities.ids.event'));
+                    ->where('entities.type_id', '=', $eventTypeId);
             })
             ->join('locations', 'locations.id', '=', 'events.location_id')
             ->whereNotNull('events.location_id')

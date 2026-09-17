@@ -13,7 +13,7 @@ class CategoryStatusController extends ApiController
     {
         $this->authorize('access', $campaign);
 
-        $statuses = CategoryStatus::get();
+        $statuses = CategoryStatus::inCampaign($campaign)->get();
 
         return CategoryStatusResource::collection($statuses);
     }

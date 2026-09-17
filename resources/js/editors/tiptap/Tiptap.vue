@@ -535,6 +535,9 @@
             <span>
                 <kbd>/</kbd> for commands
             </span>
+            <span>
+                <kbd>/help</kbd> for help
+            </span>
         </p>
     </template>
 

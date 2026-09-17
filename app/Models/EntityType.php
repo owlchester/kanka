@@ -28,6 +28,7 @@ use Illuminate\Support\Str;
  *
  * @method static self|Builder enabled()
  * @method static self|Builder default()
+ * @method static self|Builder inCodes(array $codes)
  * @method static self|Builder exclude(array $ids)
  * @method static self|Builder inCampaign(Campaign|int $campaign)
  */
@@ -46,7 +47,7 @@ class EntityType extends Model
         'is_enabled',
         'is_special',
     ];
-    
+
     public $casts = [
         'is_special' => 'boolean',
         'is_enabled' => 'boolean',
@@ -67,6 +68,11 @@ class EntityType extends Model
     public function scopeDefault(Builder $query): Builder
     {
         return $query->whereNull('campaign_id');
+    }
+
+    public function scopeInCodes(Builder $query, array $codes): Builder
+    {
+        return $query->whereIn('code', $codes);
     }
 
     public function scopeEnabled(Builder $query): Builder
@@ -211,6 +217,11 @@ class EntityType extends Model
         return ! $this->isCustom();
     }
 
+    public function isStandardCode(string $code): bool
+    {
+        return $this->isStandard() && $this->code === $code;
+    }
+
     public function isEnabled(): bool
     {
         return (bool) $this->is_enabled;
@@ -218,27 +229,27 @@ class EntityType extends Model
 
     public function isBookmark(): bool
     {
-        return $this->id == config('entities.ids.bookmark');
+        return $this->isStandardCode('bookmark');
     }
 
     public function isAttributeTemplate(): bool
     {
-        return $this->id == config('entities.ids.attribute_template');
+        return $this->isStandardCode('attribute_template');
     }
 
     public function isCharacter(): bool
     {
-        return $this->id == config('entities.ids.character');
+        return $this->isStandardCode('character');
     }
 
     public function isLocation(): bool
     {
-        return $this->id == config('entities.ids.location');
+        return $this->isStandardCode('location');
     }
 
     public function isMap(): bool
     {
-        return $this->id == config('entities.ids.map');
+        return $this->isStandardCode('map');
     }
 
     public function createRoute(Campaign $campaign, array $params = []): string
@@ -252,7 +263,7 @@ class EntityType extends Model
 
     public function isDeprecated(): bool
     {
-        return in_array($this->id, [config('entities.ids.conversation'), config('entities.ids.dice_roll')]);
+        return $this->isStandard() && in_array($this->code, ['conversation', 'dice_roll'], true);
     }
 
     /**
@@ -265,11 +276,11 @@ class EntityType extends Model
 
     public function isNested(): bool
     {
-        return ! in_array($this->id, [
-            config('entities.ids.character'),
-            config('entities.ids.conversation'),
-            config('entities.ids.dice_roll'),
-        ]);
+        return ! $this->isStandard() || ! in_array($this->code, [
+            'character',
+            'conversation',
+            'dice_roll',
+        ], true);
     }
 
     public function hasTable(): bool

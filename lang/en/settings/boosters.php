@@ -34,6 +34,7 @@ return [
         'standard'      => 'Standard',
         'superboosted'  => 'Superboosted by :user since :time',
         'unboosted'     => 'Unboosted',
+        'members' => ':amount member will get instant upgrades|:amount members will get instant upgrades',
     ],
     'intro'     => [
         'anyone'    => 'You aren\'t limited to only boosting campaigns you\'ve created. You can boost any campaign you are a part of or can see. This includes campaigns where you are a player, or :public you enjoy.',
@@ -41,15 +42,6 @@ return [
         'first'     => 'Advanced features are unlocked by assigning your boosters to boost or superboost to a campaign. The amount of boosters you have is determined by your :subscription. This number is available to you at all time while you are a subscriber. Boosting a campaign will assign one of your boosters to it, while superboosting a campaign assigns three of them.',
     ],
     'pitch'     => [
-        'benefits'      => [
-            'backup'        => 'Recover deleted entries and posts for up to :amount days',
-            'customisable'  => 'Custom themes and CSS',
-            'icons'         => 'Thousands of icons for maps and timelines',
-            'plugins'       => 'Extend your campaign with community-built plugins',
-            'title'         => 'Boosted campaigns get',
-            'upload'        => 'Larger uploads for all members',
-            'visual'        => 'Visualise family trees and relationships between entries',
-        ],
         'description'   => 'Assign boosters to campaigns and help unlock amazing features for everyone involved. Not impressed by boosted campaigns? We\'ve got you covered with superboosted campaigns!',
         'more'          => 'Check out the full list of perks on our :boosters page.',
         'title'         => 'Unlock the full potential of your campaigns',

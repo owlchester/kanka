@@ -134,9 +134,11 @@ class RecoverySetupService
             'newest' => __('campaigns/recovery.order.newest_first'),
             'oldest' => __('campaigns/recovery.order.oldest_first'),
             'type' => __('campaigns/recovery.order.type_order'),
-            'premium_title' => __('callouts.premium.title'),
-            'premium' => __('campaigns/recovery.premium'),
-            'upgrade' => __('cookieconsent.link'),
+            'premium_title' => __('campaigns/recovery.cta.title'),
+            'premium' => __('campaigns/recovery.cta.lead'),
+            'upgrade' => $this->canEnablePremium()
+                ? __('callouts.alert.enable', ['campaign' => $this->campaign])
+                : __('callouts.actions.subscription'),
             'confirm' => __('crud.actions.confirm'),
             'deleted_at' => __('campaigns/recovery.fields.deleted_at', ['date' => 'placeholder', 'user' => 'placeholder']),
             'recovery_success' => __('campaigns/recovery.name_link', ['name' => '<a href="placeholder" class="text-link">placeholder</a>']),
@@ -161,6 +163,23 @@ class RecoverySetupService
             return null;
         }
 
-        return route('settings.premium');
+        if ($this->canEnablePremium()) {
+            return route('settings.premium', [
+                'campaign' => $this->campaign->id,
+                'f' => 'cta',
+                's' => 'recovery',
+            ]);
+        }
+
+        return route('settings.subscription', [
+            'f' => 'cta',
+            's' => 'recovery',
+            'w' => $this->campaign->id,
+        ]);
+    }
+
+    protected function canEnablePremium(): bool
+    {
+        return $this->user->can('boost', $this->user);
     }
 }

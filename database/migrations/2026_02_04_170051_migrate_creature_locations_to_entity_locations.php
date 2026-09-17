@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\EntityType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\DB;
 
@@ -16,11 +17,12 @@ return new class extends Migration
         if (! Schema::hasTable('creature_location')) {
             return;
         }
+        $creatureTypeId = EntityType::default()->where('code', 'creature')->value('id');
         // Migrate creature locations
         $creatures = DB::table('creatures')
-            ->join('entities', function ($join) {
+            ->join('entities', function ($join) use ($creatureTypeId) {
                 $join->on('entities.entity_id', '=', 'creatures.id')
-                    ->where('entities.type_id', '=', config('entities.ids.creature'));
+                    ->where('entities.type_id', '=', $creatureTypeId);
             })
             ->join('creature_location', 'creature_location.creature_id', '=', 'creatures.id')
             ->select('entities.id as entity_id', 'creature_location.location_id', 'entities.created_by')

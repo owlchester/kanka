@@ -71,6 +71,15 @@ const tableHTML = `
 
 const commands: SlashCommandItem[] = [
     {
+        title: 'Help',
+        description: 'Open the editor documentation',
+        icon: 'fa-regular fa-question-circle',
+        searchTerms: ['docs', 'documentation', 'guide'],
+        command: () => {
+            window.open('https://docs.kanka.io/en/latest/advanced/tiptap.html', '_blank', 'noopener,noreferrer')
+        },
+    },
+    {
         title: 'Source',
         description: 'Edit raw HTML source',
         icon: 'fa-regular fa-code',

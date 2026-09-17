@@ -32,10 +32,12 @@ class Character extends Layout
                 },
             ],
             'locations' => [
+                'key' => 'locations',
                 'label' => Module::plural(config('entities.ids.location'), __('entities.locations')),
                 'render' => Standard::ENTITY_LOCATIONS,
             ],
             'families' => [
+                'key' => 'families',
                 'label' => Module::plural(config('entities.ids.family'), __('entities.families')),
                 'render' => Standard::ENTITYLIST,
                 'with' => ['characterFamilies', 'family'],

@@ -10,16 +10,36 @@ return [
             'confirm'   => 'Go premium!',
         ],
         'confirm'       => 'How exciting! You\'re about to unlock premium features for :campaign. This will use one of your available premium campaigns.',
-        'duration'      => 'Premium campaigns stay that way until you manually remove them, or your subscription ends.',
-        'pitch_2026'    => 'Get unlimited roles, members, custom themes, plugins, and more for your campaigns.',
+        'more'      => 'Plus custom themes, plugins, family trees, custom category, and more. This is just a preview of everything unlocked. Premium campaigns stay that way until you manually remove them, or your subscription ends.',
+        'pitch'    => 'A preview of what :name gains the moment you upgrade, and there\'s more where this came from.',
         'success'       => 'The :campaign campaign is now premium. Enjoy all the new awesome features!',
+        'subtitle'      => 'You\'re about to unlock premium for :name. Here\'s a few highlights of what changes immediately.',
+        'recap' => [
+            'control' => [
+                'title' => 'Full control',
+                'description' => 'Change the sidebar, categories, and more',
+            ],
+            'instant' => 'members get upgraded instantly',
+            'members' => [
+                'title' => 'Unlimited',
+                'description' => 'roles & members',
+            ],
+            'size' => 'per-member upload limit',
+            'recovery' => [
+                'title' => ':amount days',
+                'description' => 'undo window for deletions',
+            ],
+            'icons' => 'icons unlocked for this world',
+            'gallery' => 'more storage space for images and assets',
+        ],
+        'no-stock' => 'Oh no, looks like you don\'t have enough premium campaigns available to unlock this campaign. You can either remove the premium status from another campaign, or :upgrade.',
     ],
     'exceptions'    => [
         'already'       => 'Premium features have already been unlocked for this campaign.',
         'out-of-stock'  => 'You don\'t have enough premium campaigns available to unlock this campaign. Either remove the premium status from another campaign, or :upgrade.',
     ],
     'pitch'         => [
-        'description'   => 'Premium features apply to the whole campaign, including all of its members.',
+        'description'   => 'Premium features apply to the whole campaign, where every member sees the upgrade the moment you flip the switch.',
         'title'         => 'Premium campaigns get',
     ],
     'ready'         => [

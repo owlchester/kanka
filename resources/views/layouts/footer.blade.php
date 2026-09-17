@@ -34,10 +34,13 @@
 
                     <div class="text-xs text-neutral-content">
                         <p>
-                            {{ __('footer.made') }}
+                            {{ __('footer.humans') }}
                         </p>
                         <p>
-                            {{ __('footer.thanks') }}
+                            {!! __('footer.proof', [
+                                'community-funded' => '<a href="' . Domain::toFront('hall-of-fame') . '" class="text-link">community-funded</a>',
+                                'source' => '<a href="https://kanka.io/go/github" class="text-link">core code available on GitHub</a>',
+                            ]) !!}
                         </p>
                         <p>
                             {!! __('footer.copyright', ['copy' => '&copy;', 'year' => date('Y'), 'company' => 'Owlchester SNC'])!!}
@@ -107,8 +110,14 @@
 
                 @include('layouts._lang-switcher')
 
-                <div class="text-center text-sm">
-
+                <div class="text-center text-xs text-neutral-content">
+                    <p>{{ __('footer.humans') }}</p>
+                    <p>
+                        {!! __('footer.proof', [
+                            'community-funded' => '<a href="' . Domain::toFront('hall-of-fame') . '" class="text-link">community-funded</a>',
+                            'source' => '<a href="https://kanka.io/go/github" class="text-link">core code available on GitHub</a>',
+                        ]) !!}
+                    </p>
                     <p>Kanka v{{ config('app.version') }} - {!! __('footer.copyright', ['copy' => '&copy;', 'year' => date('Y'), 'company' => 'Owlchester SNC'])!!}</p>
 
                     <p>{{ \Carbon\Carbon::now()->isoFormat('MMMM Do YYYY, h:mm a') }} ({{ gethostname() }})</p>

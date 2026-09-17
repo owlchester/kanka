@@ -2,7 +2,11 @@
 
 namespace App\Services\Entity;
 
+use App\Models\Character;
+use App\Models\Entity;
 use App\Models\Post;
+use App\Models\Relation;
+use App\Services\Abilities\AbilityService;
 use App\Services\MarkdownMentionsService;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
@@ -99,13 +103,22 @@ class MarkdownExportService
         // Move to service
         $entityData = [];
         $entityData['tags'] = [];
-        $entityData['attributes'] = '';
+        $entityData['attributes'] = [];
+        $entityData['abilities'] = [];
+        $entityData['inventory'] = [];
+        $entityData['assets'] = [];
         $entityData['relations'] = '';
         $entityData['locations'] = [];
         $entityData['pinnedAliases'] = [];
         $entityData['entry'] = $this->markdownEntry();
         $entityData['posts'] = [];
         $entityData['parent'] = '';
+        $entityData['characterFamilies'] = [];
+        $entityData['characterRaces'] = [];
+        $entityData['characterOrganisations'] = [];
+        $entityData['source'] = $this->isSingle
+            ? $this->entity->url()
+            : rtrim((string) config('app.url'), '/') . route('entities.show', [$this->campaign, $this->entity], false);
 
         if ($this->entity->parent) {
             $parent = $this->entity->parent;
@@ -149,30 +162,180 @@ class MarkdownExportService
         }
 
         foreach ($this->entity->attributes as $attribute) {
-            $entityData['attributes'] .= '* **' . $attribute->name . '**: ' . html_entity_decode($attribute->value, ENT_QUOTES, 'UTF-8') . '
-';
+            $entityData['attributes'][] = [
+                'name' => $attribute->name(),
+                'value' => $attribute->mappedValue(),
+            ];
         }
 
-        if ($this->isSingle) {
-            foreach ($this->entity->allRelationships as $relation) {
-                $entityData['relations'] .= '* [' . html_entity_decode($relation->target->name, ENT_QUOTES, 'UTF-8') . '](' . $relation->target->url() . ')
-';
-            }
-        } else {
-            foreach ($this->entity->allRelationships as $relation) {
-                if ($relation->target->entityType->isCustom()) {
-                    $moduleName = $relation->target->entityType->code . '_' . $relation->target->entityType->id;
+        $entityData['abilities'] = $this->markdownAbilities();
+        $entityData['inventory'] = $this->markdownInventory();
+        $entityData['assets'] = $this->markdownAssets();
 
-                    $entityData['relations'] .= '* [' . $relation->target->name . '](' . Str::slug($moduleName) . '/' . Str::slug($relation->target->name) . '_' . $relation->target_id . ')
-';
-                } else {
-                    $entityData['relations'] .= '* [' . $relation->target->name . '](' . str_replace(' ', '-', $relation->target->entityType->pluralCode()) . '/' . Str::slug($relation->target->name) . '_' . $relation->target_id . ')
-';
+        foreach ($this->entity->allRelationships as $relation) {
+            $entityData['relations'] .= $this->markdownRelation($relation);
+        }
+
+        if ($this->entity->isCharacter() && $this->entity->child instanceof Character) {
+            $character = $this->entity->child;
+
+            foreach ($character->characterFamilies->unique('family_id') as $characterFamily) {
+                if ($characterFamily->family?->entity) {
+                    $entityData['characterFamilies'][] = $this->entityLink($characterFamily->family->entity);
                 }
+            }
+
+            foreach ($character->characterRaces->unique('race_id') as $characterRace) {
+                if ($characterRace->race?->entity) {
+                    $entityData['characterRaces'][] = $this->entityLink($characterRace->race->entity);
+                }
+            }
+
+            $character->loadMissing('organisationMemberships.organisation.entity');
+            foreach ($character->organisationMemberships as $membership) {
+                if (! $membership->organisation?->entity) {
+                    continue;
+                }
+
+                $organisation = $this->entityLink($membership->organisation->entity);
+                if (! empty($membership->role)) {
+                    $organisation .= ' (' . html_entity_decode($membership->role, ENT_QUOTES, 'UTF-8') . ')';
+                }
+                $entityData['characterOrganisations'][] = $organisation;
             }
         }
 
         return $entityData;
+    }
+
+    /**
+     * Prepare attached abilities using the same charge and description mapping as the UI.
+     */
+    protected function markdownAbilities(): array
+    {
+        $service = app(AbilityService::class)
+            ->campaign($this->campaign)
+            ->entity($this->entity);
+        if ($this->user) {
+            $service->user($this->user);
+        }
+
+        $groups = [];
+        foreach ($service->get()['groups'] as $group) {
+            $abilities = [];
+            foreach ($group['abilities'] as $ability) {
+                $ability['url'] = $this->isSingle
+                    ? $ability['actions']['view']
+                    : 'abilities/' . Str::slug($ability['name']) . '_' . $ability['entity']['id'] . '.md';
+                $abilities[] = $ability;
+            }
+
+            if (! empty($abilities)) {
+                $groups[] = [
+                    'name' => $group['name'],
+                    'abilities' => $abilities,
+                ];
+            }
+        }
+
+        return $groups;
+    }
+
+    /**
+     * Prepare inventory entries in their configured position and name order.
+     */
+    protected function markdownInventory(): array
+    {
+        $items = $this->entity->relationLoaded('inventories')
+            ? $this->entity->inventories
+            : $this->entity->orderedInventory()->flatten(1);
+        $inventory = [];
+
+        foreach ($items as $item) {
+            if ($item->item_id && (! $item->item || ! $item->item->entity)) {
+                continue;
+            }
+
+            $position = $item->position ?: __('entities/inventories.default_position');
+            $inventory[$position][] = $item;
+        }
+
+        $collator = new \Collator(app()->getLocale());
+        $positions = array_keys($inventory);
+        $collator->asort($positions);
+        $data = [];
+
+        foreach ($positions as $position) {
+            $items = collect($inventory[$position])->sortBy(fn ($item) => $item->itemName());
+            foreach ($items as $item) {
+                $description = $item->description;
+                if ($item->item && $item->copy_item_entry) {
+                    $description = $item->item->entity->parsedEntry();
+                }
+
+                $data[] = [
+                    'position' => $position,
+                    'name' => $item->itemName(),
+                    'url' => $item->item?->entity ? $this->entityLink($item->item->entity) : null,
+                    'amount' => $item->amount,
+                    'equipped' => $item->isEquipped(),
+                    'description' => $description,
+                    'price' => $item->item?->price,
+                    'size' => $item->item?->size,
+                    'weight' => $item->item?->weight,
+                ];
+            }
+        }
+
+        return $data;
+    }
+
+    /**
+     * Prepare files and external links, omitting aliases and hidden gallery files.
+     */
+    protected function markdownAssets(): array
+    {
+        $assets = $this->entity->relationLoaded('assets')
+            ? $this->entity->assets
+            : $this->entity->assets()->with('image')->get();
+
+        return $assets
+            ->filter(fn ($asset) => ($asset->isFile() || $asset->isLink()) && ! $asset->hiddenImage())
+            ->map(fn ($asset) => [
+                'name' => $asset->name,
+                'type' => $asset->isFile() ? 'file' : 'link',
+                'url' => $asset->isFile() ? $asset->url() : ($asset->metadata['url'] ?? null),
+                'pinned' => (bool) $asset->is_pinned,
+            ])
+            ->values()
+            ->all();
+    }
+
+    protected function markdownRelation(Relation $relation): string
+    {
+        if (! $relation->target) {
+            return '';
+        }
+
+        $role = html_entity_decode($relation->relation, ENT_QUOTES, 'UTF-8');
+
+        return '* **' . $role . '**: ' . $this->entityLink($relation->target) . "\n";
+    }
+
+    protected function entityLink(Entity $entity): string
+    {
+        $name = html_entity_decode($entity->name, ENT_QUOTES, 'UTF-8');
+        if ($this->isSingle) {
+            return '[' . $name . '](' . $entity->url() . ')';
+        }
+
+        if ($entity->entityType->isCustom()) {
+            $moduleName = $entity->entityType->code . '_' . $entity->entityType->id;
+        } else {
+            $moduleName = $entity->entityType->pluralCode();
+        }
+
+        return '[' . $name . '](' . str_replace(' ', '-', Str::slug($moduleName)) . '/' . Str::slug($entity->name) . '_' . $entity->id . ')';
     }
 
     /**

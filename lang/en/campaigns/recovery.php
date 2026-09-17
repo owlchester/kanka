@@ -5,8 +5,12 @@ return [
         'recover'           => 'Recover',
         'recover_selected'  => 'Recover selected',
     ],
+    'cta'       => [
+        'lead'  => 'Restore deleted entries and articles before they are permanently removed.',
+        'title' => 'Recover deleted content',
+    ],
     'error'     => 'An error occurred trying to recover entries.',
-    'empty'     => 'Deleted entries and posts will appear here while they are available for recovery.',
+    'empty'     => 'Deleted entries and articles will appear here while they are available for recovery.',
     'empty_title' => 'Nothing to recover',
     'fields'    => [
         'deleted'       => 'Deleted',
@@ -21,7 +25,6 @@ return [
         'type'          => 'Order by: Type',
         'type_order'    => 'Type',
     ],
-    'premium'   => 'Recovering elements is a premium campaign feature.',
     'success_v2'=> '{1} :count element was recovered.|[2,*] :count elements were recovered.',
     'title'     => 'Recovery',
     'tutorial'  => 'View and restore recently deleted elements. Entries, articles, and other supporting data can be recovered for :amount days before they are permanently removed. Restoring a element returns it with all its data intact.',
