@@ -1,9 +1,14 @@
 <?php
 
+use App\Models\Ability;
+use App\Models\Attribute as EntityAttribute;
 use App\Models\Character;
 use App\Models\CharacterFamily;
 use App\Models\CharacterRace;
+use App\Models\EntityAbility;
+use App\Models\EntityAsset;
 use App\Models\Family;
+use App\Models\Inventory;
 use App\Models\Item;
 use App\Models\ItemCreator;
 use App\Models\Location;
@@ -193,6 +198,154 @@ it('skips deleted item creators in markdown exports', function () {
         ->markdown();
 
     expect($markdown)->not->toContain(__('items.fields.creators'));
+});
+
+it('includes abilities, attributes, inventory and media in standalone exports', function () {
+    $this->asUser()->withCampaign();
+
+    $organisation = Organisation::factory()->create([
+        'campaign_id' => 1,
+        'name' => 'Silver Guard',
+    ]);
+    $ability = Ability::factory()->create([
+        'campaign_id' => 1,
+        'name' => 'Arcane Bolt',
+        'charges' => 3,
+    ]);
+    $ability->entity->update(['entry' => '<p>A bolt of energy.</p><p>It travels in a straight line.</p>']);
+    EntityAbility::create([
+        'entity_id' => $organisation->entity->id,
+        'ability_id' => $ability->id,
+        'charges' => 1,
+        'note' => "Only use this at range.\nRequires focus.",
+    ]);
+    EntityAttribute::create([
+        'entity_id' => $organisation->entity->id,
+        'name' => 'Might',
+        'value' => '18',
+        'type_id' => 1,
+        'is_private' => false,
+        'is_hidden' => false,
+    ]);
+    Inventory::create([
+        'entity_id' => $organisation->entity->id,
+        'name' => 'Healing potion',
+        'amount' => 2,
+        'position' => 'Satchel',
+        'description' => 'Restores health.',
+    ]);
+    EntityAsset::factory()->create([
+        'entity_id' => $organisation->entity->id,
+        'type_id' => 2,
+        'name' => 'Campaign wiki',
+        'metadata' => ['url' => 'https://example.test/wiki'],
+    ]);
+    EntityAsset::factory()->create([
+        'entity_id' => $organisation->entity->id,
+        'type_id' => 1,
+        'name' => 'Campaign guide',
+        'metadata' => [
+            'path' => 'files/campaign-guide.pdf',
+            'type' => 'application/pdf',
+        ],
+    ]);
+
+    $markdown = app(MarkdownExportService::class)
+        ->campaign($organisation->campaign)
+        ->entity($organisation->entity)
+        ->single()
+        ->markdown();
+
+    expect($markdown)
+        ->toContain('## ' . __('entities.abilities'))
+        ->toContain('**[Arcane Bolt](' . $ability->entity->url() . ')**')
+        ->toContain('**' . __('abilities.fields.charges') . ':** 1 / 3')
+        ->toContain("```\nA bolt of energy.\n\nIt travels in a straight line.\n```")
+        ->toContain("```\n**Note:** Only use this at range.  \nRequires focus.\n```")
+        ->toContain('## ' . __('entries/tabs.properties'))
+        ->toContain('**Might**: 18')
+        ->toContain('## ' . __('crud.tabs.inventory'))
+        ->toContain('Healing potion')
+        ->toContain('Restores health.')
+        ->toContain('## ' . __('entities/files.fields.files'))
+        ->toContain('Campaign wiki')
+        ->toContain('https://example.test/wiki')
+        ->toContain('Campaign guide')
+        ->toContain('campaign-guide.pdf');
+});
+
+it('links abilities to their markdown files in campaign exports', function () {
+    $this->asUser()->withCampaign();
+
+    $organisation = Organisation::factory()->create([
+        'campaign_id' => 1,
+        'name' => 'Silver Guard',
+    ]);
+    $ability = Ability::factory()->create([
+        'campaign_id' => 1,
+        'name' => 'Arcane Bolt',
+    ]);
+    EntityAbility::create([
+        'entity_id' => $organisation->entity->id,
+        'ability_id' => $ability->id,
+    ]);
+
+    $markdown = app(MarkdownExportService::class)
+        ->campaign($organisation->campaign)
+        ->module('organisations')
+        ->entity($organisation->entity)
+        ->markdown();
+
+    expect($markdown)->toContain(
+        '[Arcane Bolt](abilities/' . Str::slug($ability->name) . '_' . $ability->entity->id . '.md)'
+    );
+});
+
+it('places character profile details before utility sections', function () {
+    $this->asUser()->withCampaign();
+
+    $character = Character::factory()->create([
+        'campaign_id' => 1,
+        'name' => 'Aster Vale',
+        'title' => 'Captain',
+        'age' => '42',
+    ]);
+    $ability = Ability::factory()->create([
+        'campaign_id' => 1,
+        'name' => 'Tactical Command',
+    ]);
+    EntityAbility::create([
+        'entity_id' => $character->entity->id,
+        'ability_id' => $ability->id,
+    ]);
+    Inventory::create([
+        'entity_id' => $character->entity->id,
+        'name' => 'Field journal',
+        'amount' => 1,
+    ]);
+    EntityAsset::factory()->create([
+        'entity_id' => $character->entity->id,
+        'type_id' => 2,
+        'name' => 'Character notes',
+        'metadata' => ['url' => 'https://example.test/aster'],
+    ]);
+
+    $markdown = app(MarkdownExportService::class)
+        ->campaign($character->campaign)
+        ->entity($character->entity)
+        ->single()
+        ->markdown();
+    $profile = strpos($markdown, '## ' . __('crud.tabs.profile'));
+    $abilities = strpos($markdown, '## ' . __('entities.abilities'));
+    $inventory = strpos($markdown, '## ' . __('crud.tabs.inventory'));
+    $assets = strpos($markdown, '## ' . __('entities/files.fields.files'));
+
+    expect($markdown)
+        ->toContain('**' . __('characters.fields.title') . '** Captain')
+        ->toContain('**' . __('characters.fields.age') . '** 42')
+        ->and($profile)->toBeLessThan($abilities)
+        ->and($abilities)->toBeLessThan($inventory)
+        ->and($inventory)->toBeLessThan($assets);
 });
 
 it('includes linked character families races and organisations in standalone markdown exports', function () {

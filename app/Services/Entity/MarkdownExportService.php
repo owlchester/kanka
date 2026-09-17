@@ -2,9 +2,11 @@
 
 namespace App\Services\Entity;
 
+use App\Models\Character;
 use App\Models\Entity;
 use App\Models\Post;
 use App\Models\Relation;
+use App\Services\Abilities\AbilityService;
 use App\Services\MarkdownMentionsService;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
@@ -101,7 +103,10 @@ class MarkdownExportService
         // Move to service
         $entityData = [];
         $entityData['tags'] = [];
-        $entityData['attributes'] = '';
+        $entityData['attributes'] = [];
+        $entityData['abilities'] = [];
+        $entityData['inventory'] = [];
+        $entityData['assets'] = [];
         $entityData['relations'] = '';
         $entityData['locations'] = [];
         $entityData['pinnedAliases'] = [];
@@ -157,15 +162,21 @@ class MarkdownExportService
         }
 
         foreach ($this->entity->attributes as $attribute) {
-            $entityData['attributes'] .= '* **' . $attribute->name . '**: ' . html_entity_decode($attribute->value, ENT_QUOTES, 'UTF-8') . '
-';
+            $entityData['attributes'][] = [
+                'name' => $attribute->name(),
+                'value' => $attribute->mappedValue(),
+            ];
         }
+
+        $entityData['abilities'] = $this->markdownAbilities();
+        $entityData['inventory'] = $this->markdownInventory();
+        $entityData['assets'] = $this->markdownAssets();
 
         foreach ($this->entity->allRelationships as $relation) {
             $entityData['relations'] .= $this->markdownRelation($relation);
         }
 
-        if ($this->entity->isCharacter() && $this->entity->child) {
+        if ($this->entity->isCharacter() && $this->entity->child instanceof Character) {
             $character = $this->entity->child;
 
             foreach ($character->characterFamilies->unique('family_id') as $characterFamily) {
@@ -195,6 +206,109 @@ class MarkdownExportService
         }
 
         return $entityData;
+    }
+
+    /**
+     * Prepare attached abilities using the same charge and description mapping as the UI.
+     */
+    protected function markdownAbilities(): array
+    {
+        $service = app(AbilityService::class)
+            ->campaign($this->campaign)
+            ->entity($this->entity);
+        if ($this->user) {
+            $service->user($this->user);
+        }
+
+        $groups = [];
+        foreach ($service->get()['groups'] as $group) {
+            $abilities = [];
+            foreach ($group['abilities'] as $ability) {
+                $ability['url'] = $this->isSingle
+                    ? $ability['actions']['view']
+                    : 'abilities/' . Str::slug($ability['name']) . '_' . $ability['entity']['id'] . '.md';
+                $abilities[] = $ability;
+            }
+
+            if (! empty($abilities)) {
+                $groups[] = [
+                    'name' => $group['name'],
+                    'abilities' => $abilities,
+                ];
+            }
+        }
+
+        return $groups;
+    }
+
+    /**
+     * Prepare inventory entries in their configured position and name order.
+     */
+    protected function markdownInventory(): array
+    {
+        $items = $this->entity->relationLoaded('inventories')
+            ? $this->entity->inventories
+            : $this->entity->orderedInventory()->flatten(1);
+        $inventory = [];
+
+        foreach ($items as $item) {
+            if ($item->item_id && (! $item->item || ! $item->item->entity)) {
+                continue;
+            }
+
+            $position = $item->position ?: __('entities/inventories.default_position');
+            $inventory[$position][] = $item;
+        }
+
+        $collator = new \Collator(app()->getLocale());
+        $positions = array_keys($inventory);
+        $collator->asort($positions);
+        $data = [];
+
+        foreach ($positions as $position) {
+            $items = collect($inventory[$position])->sortBy(fn ($item) => $item->itemName());
+            foreach ($items as $item) {
+                $description = $item->description;
+                if ($item->item && $item->copy_item_entry) {
+                    $description = $item->item->entity->parsedEntry();
+                }
+
+                $data[] = [
+                    'position' => $position,
+                    'name' => $item->itemName(),
+                    'url' => $item->item?->entity ? $this->entityLink($item->item->entity) : null,
+                    'amount' => $item->amount,
+                    'equipped' => $item->isEquipped(),
+                    'description' => $description,
+                    'price' => $item->item?->price,
+                    'size' => $item->item?->size,
+                    'weight' => $item->item?->weight,
+                ];
+            }
+        }
+
+        return $data;
+    }
+
+    /**
+     * Prepare files and external links, omitting aliases and hidden gallery files.
+     */
+    protected function markdownAssets(): array
+    {
+        $assets = $this->entity->relationLoaded('assets')
+            ? $this->entity->assets
+            : $this->entity->assets()->with('image')->get();
+
+        return $assets
+            ->filter(fn ($asset) => ($asset->isFile() || $asset->isLink()) && ! $asset->hiddenImage())
+            ->map(fn ($asset) => [
+                'name' => $asset->name,
+                'type' => $asset->isFile() ? 'file' : 'link',
+                'url' => $asset->isFile() ? $asset->url() : ($asset->metadata['url'] ?? null),
+                'pinned' => (bool) $asset->is_pinned,
+            ])
+            ->values()
+            ->all();
     }
 
     protected function markdownRelation(Relation $relation): string

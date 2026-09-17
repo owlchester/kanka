@@ -265,17 +265,18 @@ class ExportService
         $entityWith = [
             'entity',
             'entity.parent.entityType',
-            'entity.entityTags', 'entity.relationships',
+            'entity.entityTags', 'entity.tags', 'entity.relationships',
             'entity.posts', 'entity.posts.postTags', 'entity.abilities', 'entity.abilities.ability',
+            'entity.abilities.ability.entity.entityType', 'entity.abilities.ability.entity.parent',
             'entity.reminders',
             'entity.image',
             'entity.header',
             'entity.assets',
             'entity.files',
             'entity.mentions',
-            'entity.inventories',
-            'entity.inventories.item',
-            'entity.entityAttributes',
+            'entity.inventories', 'entity.inventories.item.entity', 'entity.inventories.image',
+            'entity.entityAttributes', 'entity.attributes',
+            'entity.assets.image',
         ];
         $entities = config('entities.classes-plural');
         foreach ($entities as $entity => $class) {
@@ -306,17 +307,18 @@ class ExportService
     {
         $entityWith = [
             'parent.entityType',
-            'entityTags', 'relationships',
+            'entityTags', 'tags', 'relationships',
             'posts', 'posts.postTags', 'abilities', 'abilities.ability',
+            'abilities.ability.entity.entityType', 'abilities.ability.entity.parent',
             'reminders',
             'image',
             'header',
             'assets',
             'files',
             'mentions',
-            'inventories',
-            'inventories.item',
-            'entityAttributes',
+            'inventories', 'inventories.item.entity', 'inventories.image',
+            'entityAttributes', 'attributes',
+            'assets.image',
         ];
 
         $entityTypes = $this->campaign->entityTypes->where('is_special', 1)->all();

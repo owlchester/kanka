@@ -42,18 +42,6 @@
 - {!! __('crud.fields.archived') !!}: Yes
 @endif
 
-@if (!empty($entityData['attributes']))
-## {!! __('entries/tabs.properties') !!}
-
-{!! $entityData['attributes'] !!}
-
-@endif
-@if (!empty($entityData['relations']))
-## {!! __('entries/tabs.relations') !!}
-
-{!! $entityData['relations'] !!}
-
-@endif
 @includeWhen($entity->isCharacter(), 'entities.markdown.characters')
 @includeWhen($entity->isQuest(), 'entities.markdown.quests')
 @includeWhen($entity->isOrganisation(), 'entities.markdown.organisations')
@@ -65,6 +53,24 @@
 @includeWhen($entity->isItem(), 'entities.markdown.items')
 @includeWhen($entity->isTag(), 'entities.markdown.tags')
 @includeWhen($entity->aliases->isNotEmpty(), 'entities.markdown.aliases')
+
+@if (!empty($entityData['attributes']))
+## {!! __('entries/tabs.properties') !!}
+
+@foreach ($entityData['attributes'] as $attribute)
+* **{!! $attribute['name'] !!}**: {!! $converter->convert((string) $attribute['value']) !!}
+@endforeach
+
+@endif
+@if (!empty($entityData['relations']))
+## {!! __('entries/tabs.relations') !!}
+
+{!! $entityData['relations'] !!}
+
+@endif
+@includeWhen(!empty($entityData['abilities']), 'entities.markdown._abilities')
+@includeWhen(!empty($entityData['inventory']), 'entities.markdown._inventory')
+@includeWhen(!empty($entityData['assets']), 'entities.markdown._assets')
 
 @if ($entity->hasPins())
 ## {!! __('entities/pins.title') !!}
