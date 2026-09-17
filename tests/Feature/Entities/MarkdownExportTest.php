@@ -13,7 +13,36 @@ use App\Models\Race;
 use App\Models\Relation;
 use App\Models\Tag;
 use App\Services\Entity\MarkdownExportService;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
+
+it('uses the request URL for standalone exports and canonical URL for campaign exports', function () {
+    $this->asUser()->withCampaign();
+    config(['app.url' => 'https://kanka.test']);
+    URL::forceRootUrl('http://localhost:1234');
+
+    $organisation = Organisation::factory()->create([
+        'campaign_id' => 1,
+        'name' => 'Organisation',
+    ]);
+    $path = '/w/' . $organisation->campaign->slug . '/entities/' . $organisation->entity->id;
+
+    $standalone = app(MarkdownExportService::class)
+        ->campaign($organisation->campaign)
+        ->entity($organisation->entity)
+        ->single()
+        ->markdown();
+    $campaign = app(MarkdownExportService::class)
+        ->campaign($organisation->campaign)
+        ->module('organisations')
+        ->entity($organisation->entity)
+        ->markdown();
+
+    expect($standalone)
+        ->toContain('**' . __('export.source') . ':** <http://localhost:1234' . $path . '>')
+        ->and($campaign)
+        ->toContain('**' . __('export.source') . ':** <https://kanka.test' . $path . '>');
+});
 
 it('includes a parent link in standalone markdown exports', function () {
     $this->asUser()->withCampaign();

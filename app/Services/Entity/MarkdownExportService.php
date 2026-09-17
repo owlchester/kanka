@@ -111,6 +111,9 @@ class MarkdownExportService
         $entityData['characterFamilies'] = [];
         $entityData['characterRaces'] = [];
         $entityData['characterOrganisations'] = [];
+        $entityData['source'] = $this->isSingle
+            ? $this->entity->url()
+            : rtrim((string) config('app.url'), '/') . route('entities.show', [$this->campaign, $this->entity], false);
 
         if ($this->entity->parent) {
             $parent = $this->entity->parent;
