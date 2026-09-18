@@ -1,10 +1,10 @@
 # Kanka
-# [![Kanka](./.github/logo.png)](https://kanka.io/en-US)
+# [![Kanka](./.github/logo.png)](https://kanka.io)
 
 [![Minimum PHP Version](http://img.shields.io/badge/php-%3E%3D%208.0-8892BF.svg)](https://php.net/)
 [![Discord](https://img.shields.io/discord/413623253366603777.svg)](https://kanka.io/go/discord)
 
-[Kanka](https://kanka.io/en-US) is a **source available** collaborative world building and campaign management tool tailored for tabletop RPG players and storytellers. This repository is the primary source for development of the Kanka platform. It's written in PHP, a mix of VueJS and jQuery, and runs with a MySQL database. A new version is released on average every a month.
+[Kanka](https://kanka.io) is a **source available** collaborative world building and campaign management tool tailored for tabletop RPG players and storytellers. This repository is the primary source for development of the Kanka platform. It's written in PHP, a mix of VueJS and jQuery, and runs with a MySQL database. A new version is released on average every a month.
 
 <img width="900" alt="kanka-hero" src="https://cdn-app.kanka.io/images/share.png">
 
@@ -32,4 +32,3 @@ Issues are inevitable. When you encounter one when using Kanka, our team and com
 🏛️ Find a solution in our [Documentation](https://docs.kanka.io)
 
 📧 Shoot us an email at [hello@kanka.io](mailto:hello@kanka.io)
-
