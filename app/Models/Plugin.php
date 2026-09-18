@@ -36,8 +36,7 @@ class Plugin extends Model
     protected string $userField = 'created_by';
 
     protected ?PluginVersion $cachedHasUpdate;
-    
-    
+
     public $casts = [
         'is_obsolete' => 'boolean',
     ];

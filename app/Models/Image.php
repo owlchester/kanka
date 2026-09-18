@@ -89,7 +89,7 @@ class Image extends Model
         'metadata' => 'array',
         'version' => 'integer',
         'is_folder' => 'boolean',
-        'is_default' => 'boolean'
+        'is_default' => 'boolean',
     ];
 
     protected $attributes = [
