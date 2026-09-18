@@ -47,7 +47,7 @@ class TimelineEra extends Model
         'end_year',
         'is_collapsed',
     ];
-    
+
     public $casts = [
         'is_collapsed' => 'boolean',
     ];

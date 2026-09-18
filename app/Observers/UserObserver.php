@@ -88,7 +88,8 @@ class UserObserver
     public function created(User $user)
     {
         if (! app()->environment('testing')) {
-            WelcomeEmailJob::dispatch($user, app()->getLocale());
+            WelcomeEmailJob::dispatch($user)
+                ->delay(now()->addMinutes(1));
         }
         session()->put('user_registered', true);
 

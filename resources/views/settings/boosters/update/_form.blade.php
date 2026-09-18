@@ -1,13 +1,13 @@
 <x-grid type="1/1">
     @if ($campaign->superboosted())
         <p>{!! __('settings/boosters.superboost.errors.boosted', ['campaign' => $campaign->name])!!}</p>
-    @elseif(auth()->user()->availableBoosts() < $cost)
+@elseif(auth()->user()->availableBenefits() < $cost)
         @can('boost', auth()->user())
             <p class="">
                 {!! __('settings/boosters.boost.errors.out-of-boosters', [
                     'upgrade' => '<a href="' . route('settings.subscription') . '" class="text-link">' . __('settings/boosters.boost.upgrade') . '</a>',
                     'cost' => '<code>' . $cost . '</code>',
-                    'available' => '<strong>' . auth()->user()->availableBoosts() . '</strong>'
+                    'available' => '<strong>' . auth()->user()->availableBenefits() . '</strong>'
                 ]) !!}
             </p>
 

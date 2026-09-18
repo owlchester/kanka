@@ -7,15 +7,20 @@ use App\Services\Emails\OnboardingEmailService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class WelcomeEmailJob implements ShouldQueue
+class SendOnboardingEmailJob implements ShouldQueue
 {
     use Dispatchable;
+    use InteractsWithQueue;
     use Queueable;
     use SerializesModels;
 
-    public function __construct(public int $userId) {}
+    public function __construct(
+        protected int $userId,
+        protected string $stage,
+    ) {}
 
     public function handle(OnboardingEmailService $service): void
     {
@@ -24,6 +29,10 @@ class WelcomeEmailJob implements ShouldQueue
             return;
         }
 
-        $service->sendWelcome($user);
+        match ($this->stage) {
+            'day_one' => $service->sendDayOne($user),
+            'day_three' => $service->sendDayThree($user),
+            default => null,
+        };
     }
 }

@@ -2,10 +2,9 @@
 
 namespace App\Models\Scopes;
 
-use App\Enums\AttributeType;
-use App\Enums\EntityAssetType;
 use App\Enums\EntityEventTypes;
 use App\Models\Campaign;
+use App\Models\Concerns\FiltersEntityFields;
 use App\Models\Entity;
 use App\Models\EntityType;
 use Illuminate\Database\Eloquent\Builder;
@@ -25,12 +24,11 @@ use Illuminate\Support\Str;
  * @method static self|Builder apiFilter(array $requests)
  * @method static self|Builder order(array $config)
  * @method static self|Builder filter(array $filter)
- * @method static self|Builder filterHasFiles(bool $filter)
- * @method static self|Builder filterHasPost(bool $filter)
- * @method static self|Builder filterTags(array $tags, string $option)
  */
 trait EntityScopes
 {
+    use FiltersEntityFields;
+
     /**
      * Order entities by recently modified
      */
@@ -272,48 +270,30 @@ trait EntityScopes
                 // @phpstan-ignore-next-line
                 $query->textFilter($name, $values);
             } elseif ($name === 'has_image') {
-                $query->where(function (Builder $query) use ($values): void {
-                    if ($values) {
-                        $query->whereNotNull('entities.image_uuid')
-                            ->orWhereNotNull('entities.image_path');
-                    } else {
-                        $query->whereNull('entities.image_uuid')
-                            ->whereNull('entities.image_path');
-                    }
-                });
+                $this->applyEntityImageFilter($query, 'entities', $values);
             } elseif ($name === 'template') {
-                if ($values) {
-                    $query->whereNotNull('entities.is_template');
-                } else {
-                    $query->whereNull('entities.is_template');
-                }
+                $this->applyEntityTemplateFilter($query, 'entities', $values);
             } elseif ($name === 'archived') {
-                if ($values) {
-                    $query->whereNotNull('archived_at');
-                }
+                $this->applyEntityArchivedFilter($query, 'entities', $values);
             } elseif ($name === 'has_entity_files') {
-                // @phpstan-ignore-next-line
-                $query->filterHasFiles($values);
+                $this->applyEntityFilesFilter($query, 'entities', $values);
             } elseif ($name === 'has_posts') {
-                // @phpstan-ignore-next-line
-                $query->filterHasPosts($values);
+                $this->applyEntityPostsFilter($query, 'entities', $values);
             } elseif ($name === 'has_entry') {
-                // @phpstan-ignore-next-line
-                $query->filterHasEntry($values);
+                $this->applyEntityEntryFilter($query, 'entities', $values);
             } elseif ($name === 'has_attributes') {
-                // @phpstan-ignore-next-line
-                $query->filterHasAttributes($values);
+                $this->applyEntityAttributesPresenceFilter($query, 'entities', $values);
             } elseif (in_array($name, ['attribute_name', 'attribute_value'])) {
                 // attribute_value is handled together with attribute_name
                 if ($name === 'attribute_name') {
-                    // @phpstan-ignore-next-line
-                    $query->filterAttributes($values, Arr::get($filters, 'attribute_value'));
+                    $this->applyEntityAttributeFilter($query, 'entities', $values, Arr::get($filters, 'attribute_value'));
                 }
             } elseif (in_array($name, ['connection_target', 'connection_name'])) {
                 // connection_name is handled together with connection_target
                 if ($name === 'connection_target' || ! isset($filters['connection_target'])) {
-                    // @phpstan-ignore-next-line
-                    $query->filterConnections(
+                    $this->applyEntityConnectionsFilter(
+                        $query,
+                        'entities',
                         Arr::get($filters, 'connection_target'),
                         Arr::get($filters, 'connection_name')
                     );
@@ -472,8 +452,12 @@ trait EntityScopes
         }
 
         if (Arr::hasAny($filters, ['tags', 'tags_option'])) {
-            // @phpstan-ignore-next-line
-            $query->filterTags(Arr::get($filters, 'tags', []), Arr::get($filters, 'tags_option'));
+            $this->applyEntityTagsFilter(
+                $query,
+                'entities',
+                Arr::get($filters, 'tags', []),
+                Arr::get($filters, 'tags_option'),
+            );
         }
 
         // Creators filter (handled outside loop so creators_option works even with empty array)
@@ -515,88 +499,6 @@ trait EntityScopes
         return $query;
     }
 
-    /**
-     * Filter on entities with files
-     */
-    protected function scopeFilterHasFiles(Builder $query, bool $value = true): void
-    {
-        $query
-            ->leftJoin('entity_assets', 'entity_assets.entity_id', '=', 'entities.id')
-            ->where('entity_assets.type_id', EntityAssetType::file);
-
-        if ($value) {
-            $query->whereNotNull('entity_assets.id');
-        } else {
-            $query->whereNull('entity_assets.id');
-        }
-    }
-
-    /**
-     * Filter on entities with posts
-     */
-    protected function scopeFilterHasPosts(Builder $query, bool $value = true): void
-    {
-        $query
-            ->leftJoin('posts', 'posts.entity_id', 'entities.id');
-
-        if ($value) {
-            $query->whereNotNull('posts.id');
-        } else {
-            $query->whereNull('posts.id');
-        }
-    }
-
-    /**
-     * Filter on entities with posts
-     */
-    protected function scopeFilterHasEntry(Builder $query, bool $value = true): void
-    {
-        if ($value) {
-            $query->whereNotNull('entities.entry')
-                ->where('entities.entry', '!=', '');
-        } else {
-            $query->whereNull('entities.entry')
-                ->orWhere('entities.entry', '');
-        }
-    }
-
-    /**
-     * Filter on entities with specific tags
-     */
-    protected function scopeFilterTags(Builder $query, array $tags = [], ?string $type = null): void
-    {
-        // Gets handled differently for some reason?
-        if ($type === 'none') {
-            $query
-                ->leftJoin('entity_tags as no_tags', 'no_tags.entity_id', 'entities.id')
-                ->whereNull('no_tags.tag_id');
-
-            return;
-        } elseif ($type === 'exclude') {
-            $tagIds = [];
-            foreach ($tags as $v) {
-                $tagIds[] = (int) $v;
-            }
-            // $query->leftJoin('entity_tags as et_tags', "et_tags.entity_id", 'e.id')
-            $query->whereRaw('(
-                select count(*) from entity_tags as et
-                where et.entity_id = entities.id and et.tag_id in (' . implode(', ', $tagIds) . ')
-            ) = 0');
-
-            return;
-        }
-
-        foreach ($tags as $v) {
-            if (! is_numeric($v)) {
-                continue;
-            }
-            $v = (int) $v;
-            $query
-                ->leftJoin('entity_tags as et' . $v, "et{$v}.entity_id", 'entities.id')
-                ->where("et{$v}.tag_id", $v);
-        }
-    }
-
     protected function scopeTextFilter(Builder $query, string $field, ?string $value = null): Builder
     {
         $searchTerms = explode(';', $value);
@@ -604,8 +506,14 @@ trait EntityScopes
             if (empty($searchTerm) && $searchTerm != '0') {
                 continue;
             }
-            [$operator, $text] = $this->extractSearchOperator($searchTerm, 'type');
+            [$operator, $text] = $this->entitySearchOperator($searchTerm, 'type');
             $searchTerm = $text;
+
+            if ($operator === 'IS NULL') {
+                $query->whereNull('entities.' . $field);
+
+                continue;
+            }
 
             $query->where(
                 'entities.' . $field,
@@ -615,105 +523,5 @@ trait EntityScopes
         }
 
         return $query;
-    }
-
-    /**
-     * Filter on entities with attributes
-     */
-    protected function scopeFilterHasAttributes(Builder $query, bool $value = true): void
-    {
-        $query
-            ->leftJoin('attributes', 'attributes.entity_id', 'entities.id');
-
-        if ($value) {
-            $query->whereNotNull('attributes.id');
-        } else {
-            $query->whereNull('attributes.id');
-        }
-    }
-
-    /**
-     * Filter on entities by attribute name and optionally value
-     */
-    protected function scopeFilterAttributes(Builder $query, ?string $name = null, ?string $attributeValue = null): void
-    {
-        if ($name === null) {
-            return;
-        }
-
-        [$operator, $filterName] = $this->extractSearchOperator($name, 'attribute_name');
-
-        // No attribute with this name (exclude)
-        if ($operator === 'not like') {
-            $query
-                ->whereRaw('(select count(*) from attributes as att where att.entity_id = entities.id and att.name = ?) = 0', [$filterName]);
-
-            return;
-        }
-
-        $query
-            ->leftJoin('attributes as att', 'att.entity_id', '=', 'entities.id')
-            ->where('att.name', $filterName);
-
-        if ($attributeValue === '!') {
-            $query->whereRaw('att.value <> ""');
-        } elseif ($attributeValue !== null && Str::startsWith($attributeValue, '!')) {
-            $query->where(function (Builder $query) use ($attributeValue): void {
-                $query->where('att.value', 'not like', '%' . mb_ltrim($attributeValue, '!') . '%')
-                    ->orWhereNull('att.value');
-            });
-        } elseif ($attributeValue === '0') {
-            $query->where(function (Builder $query): void {
-                $query->where('att.value', '0')
-                    ->orWhere(function (Builder $query): void {
-                        $query->where('att.type_id', AttributeType::Checkbox->value)
-                            ->whereNull('att.value');
-                    });
-            });
-        } elseif ($attributeValue !== '' && $attributeValue !== null) {
-            $query->where('att.value', $attributeValue);
-        }
-    }
-
-    /**
-     * Filter on entities by their connections
-     */
-    protected function scopeFilterConnections(Builder $query, ?string $targetId = null, ?string $connectionName = null): void
-    {
-        $query
-            ->leftJoin('relations as rel', 'rel.owner_id', '=', 'entities.id');
-
-        if ($targetId !== '' && $targetId !== null) {
-            $query->where('rel.target_id', $targetId);
-        }
-
-        if ($connectionName !== '' && $connectionName !== null) {
-            [$operator, $filterName] = $this->extractSearchOperator($connectionName, 'connection_name');
-            $searchValue = $operator === '=' ? $filterName : '%' . $filterName . '%';
-            $query->where('rel.relation', $operator, $searchValue);
-        }
-    }
-
-    /**
-     * @param  string|array  $value  (array for tags)
-     */
-    protected function extractSearchOperator(mixed $value, string $key): array
-    {
-        $operator = 'like';
-        $filterValue = $value;
-        if ($value == '!!') {
-            $operator = 'IS NULL';
-            $filterValue = null;
-        } elseif (Str::startsWith($value, '!')) {
-            $operator = 'not like';
-            $filterValue = mb_ltrim($value, '!');
-        } elseif (Str::endsWith($value, '!')) {
-            $operator = '=';
-            $filterValue = mb_rtrim($value, '!');
-        } elseif (Str::endsWith($key, '_id')) {
-            $operator = '=';
-        }
-
-        return [$operator, $filterValue];
     }
 }

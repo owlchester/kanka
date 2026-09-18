@@ -39,7 +39,7 @@ class CampaignRole extends Model
         'is_public',
         'name',
     ];
-    
+
     public $casts = [
         'is_admin' => 'boolean',
         'is_public' => 'boolean',

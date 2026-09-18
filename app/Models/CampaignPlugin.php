@@ -26,7 +26,7 @@ class CampaignPlugin extends Model
     public $casts = [
         'is_active' => 'boolean',
     ];
-    
+
     /**
      * @return BelongsTo<Plugin, $this>
      */
