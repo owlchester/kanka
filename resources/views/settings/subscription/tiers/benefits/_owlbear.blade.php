@@ -1,6 +1,6 @@
 <div class="flex gap-1 text-base">
     <div class="w-8 shrink-0 text-center">
-        @if (auth()->user()->hasBoosterNomenclature())
+        @if (auth()->user()->hasLegacyBoosterNomenclature())
             <x-icon class="fa-regular fa-rocket text-boost" />
         @else
             <x-icon class="fa-regular fa-gem text-boost" />
@@ -8,7 +8,7 @@
     </div>
     <div class="flex flex-col gap-0.5">
         <a href="https://kanka.io/premium?utm_source=subscription&utm_medium=referral&utm_campaign=owlbear" class="text-link">
-            @if (auth()->user()->hasBoosterNomenclature())
+            @if (auth()->user()->hasLegacyBoosterNomenclature())
                 3 {{ __('tiers.features.boosters') }}
             @else
                 1 {{ __('concept.premium-campaign') }}<br />

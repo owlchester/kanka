@@ -27,7 +27,7 @@ class PremiumController extends Controller
 
     public function index()
     {
-        if (auth()->user()->hasBoosterNomenclature()) {
+        if (auth()->user()->hasLegacyBoosterNomenclature()) {
             return redirect()->route('settings.boost');
         }
 

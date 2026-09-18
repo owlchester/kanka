@@ -36,7 +36,7 @@
             @can('boost', auth()->user())
                 <div class="flex gap-2 items-center rounded-2xl px-2 py-1 bg-primary text-primary-content font-bold" data-toggle="tooltip" data-title="{{ __('settings/premium.ready.available') }}">
                     <x-icon class="premium" />
-                    {{ auth()->user()->availableBoosts() }} / {{ auth()->user()->maxBoosts() }}
+                    {{ auth()->user()->availableBenefits() }} / {{ auth()->user()->maxBenefits() }}
                 </div>
             @endcan
         </div>

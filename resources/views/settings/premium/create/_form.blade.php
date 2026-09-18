@@ -4,7 +4,7 @@
 
     @include('settings.premium.create.recap')
 
-@if(auth()->user()->availableBoosts() < 1)
+@if(auth()->user()->availableBenefits() < 1)
     @can('boost', auth()->user())
 
         <p class="">

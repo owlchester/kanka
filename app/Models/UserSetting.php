@@ -198,9 +198,9 @@ trait UserSetting
     /**
      * Determine if a user has the old booster nomenclature
      */
-    public function hasBoosterNomenclature(): bool
+    public function hasLegacyBoosterNomenclature(): bool
     {
-        if (config('app.debug') && request()->get('_legacy') == 1) {
+        if (!app()->isProduction() && request()->get('_legacy') == 1) {
             return true;
         }
 
