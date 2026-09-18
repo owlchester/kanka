@@ -45,7 +45,7 @@ class TestEmail extends Command
 
         $template = $this->argument('template');
         if ($template === 'welcome') {
-            WelcomeEmailJob::dispatch($user, 'en');
+            WelcomeEmailJob::dispatch($user->id);
         } elseif ($template === 'cancelled') {
             SubscriptionCancelEmailJob::dispatch($user, null, 'custom text');
         } elseif ($template === 'downgrade') {
