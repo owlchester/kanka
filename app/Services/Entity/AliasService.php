@@ -25,7 +25,36 @@ class AliasService
      */
     public function save(): void
     {
-        $aliases = json_decode($this->request->input('aliases', '[]'), true) ?? [];
+        $input = $this->request->input('aliases', '[]');
+        if (! is_string($input)) {
+            return;
+        }
+
+        try {
+            $aliases = json_decode($input, true, 512, JSON_THROW_ON_ERROR);
+        } catch (\JsonException) {
+            return;
+        }
+
+        if (
+            ! is_array($aliases)
+            || ! array_is_list($aliases)
+            || ! collect($aliases)->every(function (mixed $alias): bool {
+                if (! is_array($alias) || ! array_key_exists('id', $alias) || ! array_key_exists('name', $alias)) {
+                    return false;
+                }
+
+                $validId = is_int($alias['id'])
+                    || (is_string($alias['id']) && filter_var($alias['id'], FILTER_VALIDATE_INT) !== false);
+                $validVisibility = ! array_key_exists('visibility', $alias)
+                    || $alias['visibility'] === null
+                    || is_string($alias['visibility']);
+
+                return $validId && is_string($alias['name']) && $validVisibility;
+            })
+        ) {
+            return;
+        }
 
         $this->saveAliases($aliases);
     }

@@ -1,9 +1,11 @@
 <?php
 
 use App\Enums\CampaignVisibility;
+use App\Enums\EntityAssetType;
 use App\Http\Middleware\ReplicationSwitcher;
 use App\Models\Character;
 use App\Models\Entity;
+use App\Models\EntityAsset;
 use App\Models\EntityType;
 use App\Models\Item;
 use App\Models\ItemCreator;
@@ -156,4 +158,24 @@ it('preserves an entity last modified date when stealth editing its description'
     expect($entity->entry)->toBe('<p>A corrected description.</p>')
         ->and($entity->updated_at->equalTo($originalUpdatedAt))->toBeTrue()
         ->and($entity->updated_by)->toBe(1);
+});
+
+it('ignores malformed aliases when updating an entity', function () {
+    $this->asUser()->withCampaign()->withCharacters();
+
+    $entity = Entity::findOrFail(1);
+    $alias = EntityAsset::factory()->create([
+        'entity_id' => $entity->id,
+        'type_id' => EntityAssetType::alias,
+        'name' => 'Existing alias',
+    ]);
+
+    $this->patch(route('entities.update', [1, $entity]), [
+        'name' => $entity->name,
+        'aliases' => json_encode(['not-an-alias']),
+    ])->assertRedirect();
+
+    $alias->refresh();
+
+    expect($alias->name)->toBe('Existing alias');
 });
