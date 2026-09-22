@@ -8,6 +8,24 @@ it('POSTS an invalid note form')
     ->postJson('/api/1.0/campaigns/1/notes', [])
     ->assertStatus(422);
 
+it('rejects nested tag values when creating a note', function () {
+    $this->asUser()
+        ->withCampaign();
+
+    $this->postJson('/api/1.0/campaigns/1/notes', [
+        'name' => fake()->name(),
+        'tags' => [
+            ['id' => 1],
+        ],
+    ])
+        ->assertStatus(422)
+        ->assertJsonStructure([
+            'fields' => [
+                'tags',
+            ],
+        ]);
+});
+
 it('POSTS a new note')
     ->asUser()
     ->withCampaign()
