@@ -4,6 +4,7 @@ use App\Models\Calendar;
 use App\Models\Campaign;
 use App\Models\Character;
 use App\Models\Entity;
+use App\Models\Reminder;
 use App\Renderers\DatagridRenderer2;
 use App\Services\Campaign\LocalisationService;
 use Illuminate\Support\Facades\Facade;
@@ -63,4 +64,20 @@ test('the entity reminders datagrid renders and does not load the heavy entities
         expect($hydration['attributes'])->not->toContain('entry');
         expect($hydration['attributes'])->not->toContain('tooltip');
     }
+});
+
+test('entity reminder creation uses the route entity', function () {
+    $this->asUser()->withCampaign()->withCharacters()->withCalendars();
+
+    $this->post(route('entities.reminders.store', [1, 1]), [
+        'entity_id' => 2,
+        'calendar_id' => 1,
+        'day' => 2,
+        'month' => 2,
+        'year' => 2,
+        'length' => 1,
+        'visibility_id' => 1,
+    ])->assertRedirect();
+
+    expect(Reminder::latest('id')->firstOrFail()->remindable_id)->toBe(1);
 });

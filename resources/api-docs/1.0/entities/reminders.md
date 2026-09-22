@@ -2,16 +2,16 @@
 
 ---
 
-- [All Reminders](#all-entity-events)
-- [Single Reminder](#entity-event)
-- [Create an Reminder](#create-entity-event)
-- [Update an Reminder](#update-entity-event)
-- [Delete an Reminder](#delete-entity-event)
+- [All Reminders](#all-reminders)
+- [Single Reminder](#reminder)
+- [Create a Reminder](#create-reminder)
+- [Update a Reminder](#update-reminder)
+- [Delete a Reminder](#delete-reminder)
 
-<a name="all-entity-events"></a>
+<a name="all-reminders"></a>
 ## All Reminders
 
-You can get a list of all the entity-events of an entity by using the following endpoint.
+You can get a list of all reminders for an entity by using the following endpoint.
 
 > {warning} Remember that all endpoints documented here need to be prefixed with `{{version}}/campaigns/{campaign.id}/`.
 
@@ -33,7 +33,6 @@ You can get a list of all the entity-events of an entity by using the following 
             "remindable_id": 1085,
             "remindable_type": "App/Models/Entity",
             "id": 60,
-            "is_private": false,
             "is_recurring": true,
             "recurring_periodicity": "yearly",
             "length": 1,
@@ -49,14 +48,14 @@ You can get a list of all the entity-events of an entity by using the following 
 ```
 
 
-<a name="entity-event"></a>
+<a name="reminder"></a>
 ## Reminder
 
-To get the details of a single entity-event, use the following endpoint.
+To get the details of a single reminder, use the following endpoint.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
-| GET/HEAD | `entities/{entity.id}/entity_events/{entity_event.id}` | Default |
+| GET/HEAD | `entities/{entity.id}/reminders/{reminder.id}` | Default |
 
 ### Results
 ```json
@@ -70,7 +69,6 @@ To get the details of a single entity-event, use the following endpoint.
         "remindable_id": 1085,
         "remindable_type": "App/Models/Entity",
         "id": 60,
-        "is_private": false,
         "is_recurring": true,
         "recurring_periodicity": "yearly",
         "length": 1,
@@ -85,65 +83,63 @@ To get the details of a single entity-event, use the following endpoint.
 ```
 
 
-<a name="create-entity-event"></a>
-## Create an Reminder
+<a name="create-reminder"></a>
+## Create a Reminder
 
-To create an entity-event, use the following endpoint.
+To create a reminder, use the following endpoint. The reminder is attached to the entity in the URL.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
-| POST | `entities/{entity.id}/entity_events` | Default |
+| POST | `entities/{entity.id}/reminders` | Default |
 
 ### Body
 
 | Parameter               | Type | Detail                                                                                 |
 |:------------------------|   :-   |:---------------------------------------------------------------------------------------|
-| `name`                  | `string` (Required) | Name of the reminder                                                               |
 | `day`                   | `integer` (Required) | Day on which the event takes place                                                     |
 | `month`                 | `integer` (Required) | Month (id) on which the event takes place                                              |
 | `year`                  | `integer` (Required) | Year on which the event takes place                                                    |
-| `length`                | `integer` (Required) | Duration in days of the event                                                          |
+| `length`                | `integer` | Duration in days of the event                                                          |
 | `recurring_periodicity` | `string` | Null if the event isn't recurring. `yearly`, `monthly`, or `{moon.id}_{phase}` where `phase` is `f` (full), `n` (new), `waning_gibbous`, `last_quarter`, `waning_crescent`, `waxing_crescent`, `first_quarter`, or `waxing_gibbous` |
 | `recurring_until`       | `integer` | Year until the event reoccurs                                                          |
 | `colour`                | `string` | Colour of the reminder in the calendar                                             |
 | `comment`               | `string` | Comment of the reminder                                                            |
 | `calendar_id`           | `integer` (Required) | The calendar\'s id                                                                     |
-| `is_private`            | `boolean` | If the reminder is only visible to `admin` members of the campaign                 |
 | `type_id`               | `null` or `int` | Special field for calculating the age of a character. `2` for birthday, `3` for death. |
 | `visibility_id`         | `int` | The visibility ID: 1 for `all`, 2 `self`, 3 `admin`, 4 `self-admin` or 5 `members`.    |
 
 ### Results
 
-> {success} Code 200 with JSON body of the new entity-event.
+> {success} Code 201 with JSON body of the new reminder under `data`.
 
 
-<a name="update-entity-event"></a>
-## Update an Reminder
+<a name="update-reminder"></a>
+## Update a Reminder
 
-To update an entity-event, use the following endpoint.
+To update a reminder, use the following endpoint.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
-| PUT/PATCH | `entities/{entity.id}/entity_events/{entity_event.id}` | Default |
+| PUT/PATCH | `entities/{entity.id}/reminders/{reminder.id}` | Default |
 
 ### Body
 
-The same body parameters are available as for when creating an entity-event.
+The same body parameters are available as for when creating a reminder.
 
 ### Results
 
-> {success} Code 200 with JSON body of the updated entity-event.
+> {success} Code 200 with JSON body of the updated reminder under `data`.
 
 
-<a name="delete-entity-event"></a>
-## Delete an Reminder
+<a name="delete-reminder"></a>
+## Delete a Reminder
 
-To delete an entity-event, use the following endpoint.
+To delete a reminder, use the following endpoint.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
-| DELETE | `entities/{entity.id}/entity_events/{entity_event.id}` | Default |
+| DELETE | `entities/{entity.id}/reminders/{reminder.id}` | Default |
 
 ### Results
 
-> {success} Code 200 with JSON.
+> {success} Code 204 with no body.

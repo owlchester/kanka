@@ -36,8 +36,24 @@ it('POSTS a new entity event')
         'data' => [
             'id',
             'calendar_id',
+            'remindable_id',
         ],
     ]);
+
+it('uses the route entity when creating a reminder')
+    ->asUser()
+    ->withCampaign()
+    ->withCharacters()
+    ->withCalendars()
+    ->postJson('/api/1.0/campaigns/1/entities/1/reminders', [
+        'entity_id' => 2,
+        'calendar_id' => 1,
+        'day' => 2,
+        'month' => 2,
+        'year' => 2,
+    ])
+    ->assertStatus(201)
+    ->assertJsonPath('data.remindable_id', 1);
 
 it('sanitizes reminder comments created through the API')
     ->asUser()
@@ -81,6 +97,15 @@ it('GETS a specific entity event')
         ],
     ]);
 
+it('does not expose a reminder through another entity')
+    ->asUser()
+    ->withCampaign()
+    ->withCharacters()
+    ->withCalendars()
+    ->withReminders()
+    ->get('/api/1.0/campaigns/1/entities/2/reminders/1')
+    ->assertNotFound();
+
 it('UPDATES a valid entity event')
     ->asUser()
     ->withCampaign()
@@ -89,6 +114,7 @@ it('UPDATES a valid entity event')
     ->withReminders()
     ->putJson('/api/1.0/campaigns/1/entities/1/reminders/1', ['length' => 2])
     ->assertStatus(200)
+    ->assertJsonPath('data.id', 1)
     ->assertJsonFragment(['length' => 2]);
 
 it('DELETES an entity event')

@@ -121,8 +121,6 @@ class ReminderController extends Controller
             return response()->json(['success' => true]);
         }
 
-        // Since reminders are polymorphic, we need to attach them to the proper model
-        $entity = Entity::findOrFail($request->get('entity_id'));
         $data = [
             'calendar_id' => $request->get('calendar_id'),
             'day' => $request->get('day'),
