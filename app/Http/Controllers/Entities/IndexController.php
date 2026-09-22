@@ -62,7 +62,7 @@ class IndexController extends Controller
                 ])
             );
         } elseif ($entityType->isBookmark()) {
-            return redirect()->route('dashboard', $campaign);
+            return redirect()->route('bookmarks.index', $campaign);
         }
 
         $this->entityType = $entityType;
@@ -132,6 +132,10 @@ class IndexController extends Controller
 
     public function api(Request $request, Campaign $campaign, EntityType $entityType)
     {
+        if ($entityType->isBookmark()) {
+            return redirect()->route('bookmarks.index', $campaign);
+        }
+
         $this->entityType = $entityType;
         $this->campaign = $campaign;
         $this->request = $request;
