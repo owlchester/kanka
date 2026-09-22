@@ -63,6 +63,22 @@ it('uses the real map zoom limits when clamping zoom values', function () {
         ->and($map->initialZoom())->toBe(15);
 });
 
+it('rejects a negative minimum zoom when updating a tiled map through the API', function () {
+    $this->asUser()->withCampaign()->withMaps();
+    $map = Map::findOrFail(1);
+    $image = Image::factory()->create([
+        'campaign_id' => 1,
+        'tiling_status' => Image::TILING_FINISHED,
+    ]);
+    $map->entity->image_uuid = $image->id;
+    $map->entity->saveQuietly();
+    $map->refresh();
+
+    $this->putJson('/api/1.0/campaigns/1/maps/1', [
+        'min_zoom' => -1,
+    ])->assertUnprocessable();
+});
+
 it('GETS all maps')
     ->asUser()
     ->withCampaign()

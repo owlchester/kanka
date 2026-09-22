@@ -61,7 +61,12 @@ class UpdateMapSettings extends FormRequest
         $entity = $this->route('entity');
         $map = $entity instanceof Entity ? $entity->child : null;
         $isReal = $map instanceof Map && $map->isReal();
+        $limits = config('limits.maps.zoom.' . ($isReal ? 'real' : 'default'));
 
-        return config('limits.maps.zoom.' . ($isReal ? 'real' : 'default'));
+        if ($map instanceof Map && $map->isTiled()) {
+            $limits['min'] = max(0, $limits['min']);
+        }
+
+        return $limits;
     }
 }

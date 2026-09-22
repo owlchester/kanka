@@ -57,7 +57,7 @@ return [
         'max_zoom'              => 'The most a map can be zoomed in on. The default value is :default, while the highest allowed value is :max.',
         'min_zoom'              => 'The most a map can be zoomed out of. The default value is :default, while the lowest allowed value is :min.',
         'missing_image'         => 'Save the map with an image before being able to add layers and markers.',
-        'tiled_zoom'            => 'Automatically cluster markers together when they are close to each other.',
+        'tiled_zoom'            => 'This map is tiled, meaning the min and max zoom values are automatically calculated based on the image\'s size.',
     ],
     'lists'         => [
         'empty' => 'Upload a map to visualize locations and reveal the geography of your world.',
