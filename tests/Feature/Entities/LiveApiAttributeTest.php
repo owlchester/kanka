@@ -1,8 +1,9 @@
 <?php
 
+use App\Facades\EntityPermission;
+use App\Http\Middleware\ReplicationSwitcher;
 use App\Models\Attribute;
 use App\Models\Character;
-use App\Http\Middleware\ReplicationSwitcher;
 
 it('forbids guests from mutating live attributes', function () {
     $this->asUser()->withCampaign([
@@ -40,6 +41,7 @@ it('forbids players without edit permission from mutating live attributes', func
     $originalName = $attribute->name;
 
     $this->asPlayer();
+    EntityPermission::campaign($entity->campaign)->resetPermissions();
 
     $this->postJson(route('entities.attributes.live-api.create', [$entity->campaign, $entity]), [
         'name' => 'Player attribute',
@@ -61,7 +63,7 @@ it('allows owners to mutate live attributes without changing their entity', func
     $this->asUser()->withCampaign()->withCharacters()->withAttributes();
 
     $entity = Character::findOrFail(1)->entity;
-    $otherEntity = Character::factory()->create()->entity;
+    $otherEntity = Character::factory()->create(['campaign_id' => 1])->entity;
     $attribute = Attribute::where('entity_id', $entity->id)->firstOrFail();
 
     $this->postJson(route('entities.attributes.live-api.create', [$entity->campaign, $entity]), [
@@ -92,7 +94,7 @@ it('cannot mutate an attribute through another entity route', function () {
     $this->asUser()->withCampaign()->withCharacters();
 
     $entity = Character::findOrFail(1)->entity;
-    $otherEntity = Character::factory()->create()->entity;
+    $otherEntity = Character::factory()->create(['campaign_id' => 1])->entity;
     $attribute = Attribute::factory()->create([
         'entity_id' => $otherEntity->id,
     ]);
