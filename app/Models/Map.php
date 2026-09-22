@@ -475,9 +475,6 @@ class Map extends MiscModel
         }
 
         if (! empty($this->entity->image)) {
-            if ($this->entity->image->isTiled() && $this->entity->image->tilingReady()) {
-                return;
-            }
             $this->entity->image->ensureDimensions();
             $this->height = $this->entity->image->height() ?: 1000;
             $this->width = $this->entity->image->width() ?: 1000;

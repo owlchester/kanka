@@ -197,7 +197,11 @@ it('exposes real map zoom limits in the explore payload', function () {
 
 it('marks a finished tiled map with a tiles url', function () {
     $this->asUser()->withCampaign();
-    $image = Image::factory()->create(['campaign_id' => 1, 'tiling_status' => Image::TILING_FINISHED]);
+    $image = Image::factory()->create([
+        'campaign_id' => 1,
+        'metadata' => ['width' => 2048, 'height' => 1024],
+        'tiling_status' => Image::TILING_FINISHED,
+    ]);
     $map = Map::factory()->create(['campaign_id' => 1]);
     $map->entity->image_uuid = $image->id;
     $map->entity->saveQuietly();
@@ -206,6 +210,10 @@ it('marks a finished tiled map with a tiles url', function () {
     $tilesUrl = $response->json('map.tiles_url');
 
     expect($response->json('map.is_tiled'))->toBeTrue();
+    expect($response->json('map.width'))->toBe(2048)
+        ->and($response->json('map.height'))->toBe(1024)
+        ->and($response->json('map.tile_min_zoom'))->toBe(0)
+        ->and($response->json('map.tile_max_zoom'))->toBe(3);
     expect($tilesUrl)->toEndWith('/{z}/{y}/{x}.webp');
     expect($tilesUrl)->toContain($image->tilesPath());
     expect($response->json('map.tiling'))->toBeNull();

@@ -24,6 +24,8 @@ it('marks the image finished and broadcasts on successful tiling', function () {
 
     expect($image->fresh()->tiling_status)->toBe(Image::TILING_FINISHED);
     expect($image->fresh()->tiling_error)->toBeNull();
+    expect($image->fresh()->metadata['tile_min_zoom'])->toBe(0)
+        ->and($image->fresh()->metadata['tile_max_zoom'])->toBe(7);
     Event::assertDispatched(TilingChanged::class);
 });
 

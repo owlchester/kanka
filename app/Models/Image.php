@@ -89,7 +89,7 @@ class Image extends Model
         'metadata' => 'array',
         'version' => 'integer',
         'is_folder' => 'boolean',
-        'is_default' => 'boolean'
+        'is_default' => 'boolean',
     ];
 
     protected $attributes = [
@@ -370,6 +370,22 @@ class Image extends Model
     public function height(): ?int
     {
         return $this->metadata['height'] ?? null;
+    }
+
+    public function tileMinZoom(): int
+    {
+        return (int) ($this->metadata['tile_min_zoom'] ?? 0);
+    }
+
+    public function tileMaxZoom(): int
+    {
+        if (isset($this->metadata['tile_max_zoom'])) {
+            return (int) $this->metadata['tile_max_zoom'];
+        }
+
+        $longestSide = max($this->width() ?? 0, $this->height() ?? 0);
+
+        return $longestSide > 256 ? (int) ceil(log($longestSide / 256, 2)) : 0;
     }
 
     public function hasDimensions(): bool
