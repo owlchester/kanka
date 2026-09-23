@@ -23,7 +23,7 @@ class TestEmail extends Command
      *
      * @var string
      */
-    protected $signature = 'test:email {user} {template=welcome}';
+    protected $signature = 'test:email {user?} {template?}';
 
     /**
      * The console command description.
@@ -34,15 +34,15 @@ class TestEmail extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return int
      */
-    public function handle()
+    public function handle(): int
     {
-        $userId = $this->argument('user');
-        $user = User::findOrFail($userId);
+        $user = $this->user();
+        if ($user === null) {
+            return self::FAILURE;
+        }
 
-        $template = $this->argument('template');
+        $template = $this->argument('template') ?: $this->choice('Email template', $this->templates());
         if ($template === 'welcome') {
             $this->error('Use test:onboarding-email for onboarding emails.');
 
@@ -71,9 +71,43 @@ class TestEmail extends Command
             $feature = Feature::latest()->first();
             FeatureCreated::dispatch($feature);
         } else {
-            $this->warn('Unknown template ' . $template);
+            $this->error('Unknown template ' . $template);
+
+            return self::FAILURE;
         }
 
-        return 0;
+        return self::SUCCESS;
+    }
+
+    protected function user(): ?User
+    {
+        $userId = $this->argument('user') ?: $this->ask('User ID');
+        $user = User::find((int) $userId);
+
+        if ($user === null) {
+            $this->error("User [{$userId}] not found.");
+        }
+
+        return $user;
+    }
+
+    /**
+     * @return list<string>
+     */
+    protected function templates(): array
+    {
+        return [
+            'cancelled',
+            'downgrade',
+            'elemental',
+            'wyvern',
+            'owlbear',
+            'failed',
+            'upcoming',
+            'password',
+            'first',
+            'second',
+            'feature',
+        ];
     }
 }
