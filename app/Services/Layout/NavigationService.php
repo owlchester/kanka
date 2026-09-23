@@ -65,8 +65,8 @@ class NavigationService
                 'created' => __('users/profile.fields.subscriber_since', ['date' => $this->user->subscription('kanka')->created_at->format('M d, Y')]),
                 'image' => asset('/images/tiers/' . mb_strtolower($this->user->pledge) . '-128.png'),
                 'boosters' => __('settings/boosters.available', [
-                    'amount' => $this->user->availableBoosts(),
-                    'total' => $this->user->maxBoosts(),
+                    'amount' => $this->user->availableBenefits(),
+                    'total' => $this->user->maxBenefits(),
                 ]),
             ];
         } else {
@@ -75,8 +75,8 @@ class NavigationService
                 'image' => asset('/images/tiers/kobold-128.png'),
                 // 'call_to_action' => __('Subscriptions start at USD 5.00 per month')
                 'call_to_action' => __('settings/boosters.available', [
-                    'amount' => $this->user->availableBoosts(),
-                    'total' => $this->user->maxBoosts(),
+                    'amount' => $this->user->availableBenefits(),
+                    'total' => $this->user->maxBenefits(),
                 ]),
                 'call_to_action_2' => __('header.user.upgrade'),
             ];

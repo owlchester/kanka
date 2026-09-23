@@ -18,7 +18,7 @@
             {{ __('settings/boosters.title') }}
         </h1>
 
-        @if (auth()->user()->hasBoosterNomenclature())
+        @if (auth()->user()->hasLegacyBoosterNomenclature())
             <x-alert type="warning">
                 <x-grid type="1/1">
                     <h3 class="m-0 text-xl">Legacy boosters</h3>
@@ -49,7 +49,7 @@
             @can('boost', auth()->user())
                 <div class="badge bg-boost flex gap-1 badge-lg ml-2" data-toggle="tooltip" data-title="{{ __('settings/boosters.ready.available') }}">
                     <x-icon class="premium" />
-                    {{ auth()->user()->availableBoosts() }}
+                    {{ auth()->user()->availableBenefits() }}
                 </div>
             @endif
         </h2>
@@ -67,7 +67,7 @@
                 'campaign' => $focus,
                 'superboost' => $superboost,
                 'cost' => $superboost ? 3 : 1,
-                'canSuperboost' => auth()->user()->availableBoosts() >= 3
+                'canSuperboost' => auth()->user()->availableBenefits() >= 3
             ])
         @endif
 

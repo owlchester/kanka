@@ -1,6 +1,24 @@
 <?php
 
 return [
+    'benefits' => [
+        'admin' => 3,
+        'standard' => [
+            'Kobold' => 0,
+            'Goblin' => 0,
+            'Owlbear' => 1,
+            'Wyvern' => 3,
+            'Elemental' => 7,
+        ],
+        'legacy' => [
+            'Kobold' => 0,
+            'Goblin' => 1,
+            'Owlbear' => 3,
+            'Wyvern' => 6,
+            'Elemental' => 10,
+        ],
+    ],
+
     'maps' => [
         'zoom' => [
             'default' => [

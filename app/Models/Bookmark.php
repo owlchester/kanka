@@ -110,6 +110,11 @@ class Bookmark extends Model
      */
     protected array $searchableColumns = ['name'];
 
+    protected function defaultFilterableColumns(): array
+    {
+        return ['name', 'is_private', 'created_by', 'updated_by'];
+    }
+
     /**
      * Nullable values (foreign keys)
      *

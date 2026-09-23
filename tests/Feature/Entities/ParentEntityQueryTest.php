@@ -27,18 +27,18 @@ it('filters child models using shared entity fields', function () {
         ->not->toContain($other->id);
 });
 
-it('applies dashboard filters through a child subquery', function () {
+it('applies child field filters through the canonical dashboard entity query', function () {
     $this->asUser()->withCampaign();
 
     $matching = Character::factory()->create(['campaign_id' => 1]);
     $other = Character::factory()->create(['campaign_id' => 1]);
-    $matching->entity->update(['name' => 'Dashboard match']);
-    $other->entity->update(['name' => 'Dashboard other']);
+    $matching->update(['title' => 'Dashboard match']);
+    $other->update(['title' => 'Dashboard other']);
 
     $widget = CampaignDashboardWidget::factory()->create([
         'campaign_id' => 1,
         'entity_type_id' => config('entities.ids.character'),
-        'config' => ['filters' => 'name=Dashboard match'],
+        'config' => ['filters' => 'title=Dashboard match'],
     ]);
 
     expect($widget->entities()->getCollection()->pluck('id')->all())

@@ -31,7 +31,7 @@ return [
     'title'     => 'A New Quest Awaits, Adventurer!',
     'what'      => ':amount-day free trial of the :tier tier',
     'why'       => [
-        'helper'    => 'You\'ve created, explored, and grown your campaign. Your loyalty hasn\'t gone unnoticed. Think of this as a thank-you gift from the Kanka team.',
+        'helper'    => 'You\'ve created, explored, and grown your campaign. Your loyalty hasn\'t gone unnoticed. Think of this as a thank-you gift from us.',
         'title'     => 'You\'ve earned this reward',
     ],
 ];

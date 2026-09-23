@@ -44,7 +44,7 @@ class NewElementalSubscriptionMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address(config('app.email'), 'Kanka Team'),
+            from: new Address(config('app.email'), config('mail.from.name')),
             subject: 'Thank you, and welcome!',
             tags: ['elemental']
         );

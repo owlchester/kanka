@@ -85,9 +85,9 @@ class FinishController extends Controller
 
         if (
             ! $campaign
-            || $user->hasBoosterNomenclature()
+            || $user->hasLegacyBoosterNomenclature()
             || $campaign->premium()
-            || $user->availableBoosts() < 1
+            || $user->availableBenefits() < 1
         ) {
             return null;
         }

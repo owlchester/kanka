@@ -9,6 +9,7 @@ use App\Console\Commands\Cleanup\CleanupEntityLogs;
 use App\Console\Commands\Cleanup\CleanupTrashed;
 use App\Console\Commands\Cleanup\CleanupTrashedCampaigns;
 use App\Console\Commands\Cleanup\CleanupUsers;
+use App\Console\Commands\Emails\SendOnboardingEmails;
 use App\Console\Commands\Entities\CalendarAdvancer;
 use App\Console\Commands\Report\Accounts;
 use App\Console\Commands\Report\Churn;
@@ -38,6 +39,10 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         $schedule->command('model:prune')->onOneServer()->daily();
+        $schedule->command(SendOnboardingEmails::class)
+            ->onOneServer()
+            ->withoutOverlapping(20)
+            ->everyFifteenMinutes();
         $schedule->command(CalendarAdvancer::class)->onOneServer()->daily();
         $schedule->command(AnonymiseUserLogs::class)->onOneServer()->daily();
         $schedule->command(EndSubscriptions::class)->onOneServer()->dailyAt('00:05')->sentryMonitor();
