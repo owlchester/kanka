@@ -211,7 +211,7 @@ class ProcessService
         return Validator::make(
             $data,
             $rules,
-        );
+        )->validate();
     }
 
     protected function dynamicLocation(): self
