@@ -1,6 +1,6 @@
 <?php
 
-Route::prefix('oauth')->group(function () {
+Route::prefix('oauth')->middleware('auth:web')->group(function () {
     Route::get('/tokens', [
         'uses' => '\Laravel\Passport\Http\Controllers\AuthorizedAccessTokenController@forUser',
         'as' => 'tokens.index',

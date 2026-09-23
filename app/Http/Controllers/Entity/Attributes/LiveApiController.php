@@ -28,9 +28,10 @@ class LiveApiController extends Controller
     public function store(StoreAttribute $request, Campaign $campaign, Entity $entity)
     {
         $this->campaign($campaign)->authEntityView($entity);
+        $this->authorize('update', $entity);
         $this->authorize('attributes', [$entity, $campaign]);
 
-        $data = $request->all();
+        $data = $request->validated();
         $data['entity_id'] = $entity->id;
         $attribute = Attribute::create($data);
 
@@ -40,9 +41,14 @@ class LiveApiController extends Controller
     public function update(UpdateAttribute $request, Campaign $campaign, Entity $entity, Attribute $attribute)
     {
         $this->campaign($campaign)->authEntityView($entity);
+        $this->authorize('update', $entity);
         $this->authorize('attributes', [$entity, $campaign]);
 
-        $attribute->update($request->all());
+        if ($attribute->entity_id !== $entity->id) {
+            abort(404);
+        }
+
+        $attribute->update($request->validated());
 
         return new LiveAttributeResource($attribute);
     }
@@ -50,7 +56,12 @@ class LiveApiController extends Controller
     public function destroy(Campaign $campaign, Entity $entity, Attribute $attribute)
     {
         $this->campaign($campaign)->authEntityView($entity);
+        $this->authorize('update', $entity);
         $this->authorize('attributes', [$entity, $campaign]);
+
+        if ($attribute->entity_id !== $entity->id) {
+            abort(404);
+        }
 
         $attribute->delete();
 

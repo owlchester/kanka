@@ -1,10 +1,12 @@
 <?php
 
+use App\Models\Campaign;
 use App\Models\CategoryStatus;
 use App\Models\Character;
 use App\Models\Entity;
 use App\Models\EntityType;
 use App\Models\Image;
+use App\Services\Api\BulkEntityCreatorService;
 use Illuminate\Support\Facades\Storage;
 
 it('GETS all entities')
@@ -22,6 +24,52 @@ it('GETS a specific entity')
     ->withCreatures()
     ->get('/api/1.0/campaigns/1/entities/1')
     ->assertStatus(200);
+
+it('ignores entity ids during bulk creation', function () {
+    $this->asUser()->withCampaign();
+
+    $entityType = EntityType::findOrFail(config('entities.ids.character'));
+
+    $this->postJson("/api/1.0/campaigns/1/entities/{$entityType->id}", [
+        'entities' => [
+            [
+                'name' => 'Injected Bulk Entity Link',
+                'entity_id' => ['Value' => 0],
+            ],
+        ],
+    ])
+        ->assertSuccessful();
+
+    $entity = Entity::where('name', 'Injected Bulk Entity Link')->firstOrFail();
+
+    expect($entity->entity_id)->not->toBeNull();
+});
+
+it('ignores entity ids passed directly to custom bulk creation', function () {
+    $this->asUser()->withCampaign();
+
+    $entityType = new EntityType([
+        'code' => 'gadget',
+        'is_special' => true,
+        'is_enabled' => true,
+    ]);
+    $entityType->campaign_id = 1;
+    $entityType->singular = 'Gadget';
+    $entityType->plural = 'Gadgets';
+    $entityType->icon = 'fa-solid fa-gear';
+    $entityType->save();
+
+    $entity = app(BulkEntityCreatorService::class)
+        ->campaign(Campaign::findOrFail(1))
+        ->entityType($entityType)
+        ->data([
+            'name' => 'Custom Bulk Entity',
+            'entity_id' => ['Value' => 0],
+        ])
+        ->create();
+
+    expect($entity->entity_id)->toBeNull();
+});
 
 it('GETS all creatures')
     ->asUser()

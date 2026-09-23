@@ -7,6 +7,7 @@ use App\Models\Calendar;
 use App\Services\Calendars\AdvancerService;
 use App\Traits\HasJobLog;
 use Illuminate\Console\Command;
+use InvalidArgumentException;
 use RuntimeException;
 use Throwable;
 
@@ -59,10 +60,10 @@ class CalendarAdvancer extends Command
                     // Consoles don't have observers at the moment because Jay makes terrible life choices
                     CalendarsClearElapsed::dispatch($calendar);
                     $this->count++;
+                } catch (InvalidArgumentException $e) {
+                    $this->recordError($calendar, $e);
                 } catch (Throwable $e) {
-                    $error = 'Calendar ' . $calendar->id . ': ' . $e::class . ': ' . $e->getMessage();
-                    $this->errors[$calendar->id] = $error;
-
+                    $error = $this->recordError($calendar, $e);
                     report(new RuntimeException($error, previous: $e));
                 }
             }
@@ -83,5 +84,13 @@ class CalendarAdvancer extends Command
         $this->log($log);
 
         return 0;
+    }
+
+    private function recordError(Calendar $calendar, Throwable $exception): string
+    {
+        $error = 'Calendar ' . $calendar->id . ': ' . $exception::class . ': ' . $exception->getMessage();
+        $this->errors[$calendar->id] = $error;
+
+        return $error;
     }
 }

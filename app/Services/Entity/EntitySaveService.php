@@ -72,6 +72,8 @@ class EntitySaveService
         // image_uuid is available to all (not premium-gated)
         if (array_key_exists('entity_image_uuid', $data)) {
             $entity->image_uuid = $data['entity_image_uuid'];
+        } elseif (array_key_exists('image_uuid', $data)) {
+            $entity->image_uuid = $data['image_uuid'];
         } elseif (Domain::isApp()) {
             // On the hosted app, a missing key means the user cleared it
             $entity->image_uuid = null;
@@ -88,6 +90,8 @@ class EntitySaveService
 
         if (array_key_exists('entity_header_uuid', $data)) {
             $entity->header_uuid = $data['entity_header_uuid'];
+        } elseif (array_key_exists('header_uuid', $data)) {
+            $entity->header_uuid = $data['header_uuid'];
         } elseif (Domain::isApp()) {
             $entity->header_uuid = null;
         }

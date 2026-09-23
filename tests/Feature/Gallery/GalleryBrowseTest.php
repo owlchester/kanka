@@ -54,3 +54,22 @@ it('returns the next page when browse results exceed the page size', function ()
         ->assertOk()
         ->assertJsonPath('images.0.folder', false);
 });
+
+it('includes folder ids in breadcrumbs', function () {
+    $this->asUser()->withCampaign();
+
+    $parent = Image::factory()->create([
+        'campaign_id' => 1,
+        'is_folder' => true,
+    ]);
+    $child = Image::factory()->create([
+        'campaign_id' => 1,
+        'folder_id' => $parent->id,
+        'is_folder' => true,
+    ]);
+
+    $this->getJson(route('gallery.show', ['test-campaign', $child]))
+        ->assertOk()
+        ->assertJsonPath('breadcrumbs.0.id', $parent->id)
+        ->assertJsonPath('breadcrumbs.0.name', $parent->name);
+});

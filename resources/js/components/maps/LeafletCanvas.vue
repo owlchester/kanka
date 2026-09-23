@@ -180,6 +180,25 @@ function bounds() {
     return [[0, 0], [props.map.height, props.map.width]]
 }
 
+function tiledCrs() {
+    const tileMaxZoom = props.map.tile_max_zoom
+
+    return L.extend({}, L.CRS.Simple, {
+        // Existing image-map coordinates use [0, 0] as the bottom-left corner, while Google tile
+        // rows start at the top-left. Translate the inverted Y axis by the image height so tile
+        // row zero lines up with latitude `height` instead of extending below latitude zero.
+        transformation: new L.Transformation(1, 0, -1, props.map.height),
+        // The highest generated tile level represents the source image at 1:1 scale. Lower
+        // pyramid levels must therefore scale the app's source-pixel coordinates down too.
+        scale(zoom) {
+            return 2 ** (zoom - tileMaxZoom)
+        },
+        zoom(scale) {
+            return Math.log(scale) / Math.LN2 + tileMaxZoom
+        },
+    })
+}
+
 function buildBaseLayer() {
     if (props.map.is_real) {
         baseMapLayer = L.tileLayer(props.map.tile_url, {
@@ -190,6 +209,10 @@ function buildBaseLayer() {
         baseMapLayer = L.tileLayer(props.map.tiles_url, {
             attribution: '&copy; Kanka',
             errorTileUrl: '/images/map_chunks/transparent.png',
+            bounds: bounds(),
+            minNativeZoom: props.map.tile_min_zoom,
+            maxNativeZoom: props.map.tile_max_zoom,
+            noWrap: true,
         })
     } else {
         baseMapLayer = L.imageOverlay(props.map.image, bounds())
@@ -1103,17 +1126,11 @@ onMounted(() => {
     }
 
     if (! props.map.is_real) {
-        options.crs = L.CRS.Simple
+        options.crs = props.map.is_tiled ? tiledCrs() : L.CRS.Simple
 
-        // Tiled maps use a Leaflet tile-layer pyramid under CRS.Simple, where zoom and world
-        // coordinates are linked (point = latlng * 2^zoom) — the raw full-resolution pixel
-        // bounds this app computes for plain image overlays don't correctly constrain a tile
-        // pyramid's viewport, and can push the visible content outside the forced bounds for
-        // large images. Skip bounds-forcing for tiled maps until that's properly reworked;
-        // plain (non-tiled) custom maps are unaffected and keep the existing behavior.
-        if (! props.map.is_tiled) {
-            options.maxBounds = bounds()
-        }
+        // The tiled CRS is normalized to the source image's full-resolution coordinates, so the
+        // same bounds safely constrain both plain image overlays and tiled pyramids.
+        options.maxBounds = bounds()
     }
 
     leafletMap = L.map(mapEl.value, options)

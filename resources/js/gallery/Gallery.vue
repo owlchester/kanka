@@ -611,7 +611,7 @@ const createFolder = () => {
     creating.value = true
     data.name = folderName.value
     data.visibility_id = folderVisibility.value
-    if (folder.value) {
+    if (folder.value?.id) {
         data.folder_id = folder.value.id
     }
 
@@ -745,7 +745,7 @@ const filesSelected = async (event) => {
     fileField.value.disabled = true
 
     const formData = new FormData()
-    if (folder.value) {
+    if (folder.value?.id) {
         formData.append('folder_id', folder.value.id)
     }
     Array.from(selectedFiles).forEach(f => {

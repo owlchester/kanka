@@ -23,9 +23,13 @@ class AddCalendarEvent extends FormRequest
      */
     public function rules()
     {
+        $entityRoute = $this->route('entity') !== null;
+
         return [
-            'entity_id' => 'required_without:name|integer|exists:entities,id',
-            'name' => 'required_without:entity_id|nullable',
+            'entity_id' => $entityRoute
+                ? 'nullable|integer|exists:entities,id'
+                : 'required_without:name|integer|exists:entities,id',
+            'name' => $entityRoute ? 'nullable' : 'required_without:entity_id|nullable',
             'day' => 'required',
             'month' => 'required',
             'year' => 'required',

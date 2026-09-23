@@ -32,7 +32,7 @@ class ReminderApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity);
-        $data = $request->all();
+        $data = $request->validated();
         if (! isset($data['length'])) {
             $data['length'] = 1;
         }
@@ -49,7 +49,7 @@ class ReminderApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity);
         $this->authorize('entity', [$reminder, $entity]);
-        $reminder->update($request->all());
+        $reminder->update($request->validated());
 
         return new Resource($reminder);
     }

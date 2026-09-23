@@ -51,7 +51,7 @@ class UploadController extends Controller
             $files = $this->service
                 ->campaign($campaign)
                 ->user($request->user())
-                ->folder($request->get('folder_id', ''))
+                ->folder((string) $request->validated('folder_id', ''))
                 ->files((array) $request->file('files'));
             $this->storage->campaign($campaign)->clearCache();
 

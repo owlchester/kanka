@@ -29,6 +29,7 @@ use App\Services\Entity\TagService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Exception;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
@@ -370,7 +371,7 @@ class CsvImportService
         $validator = new $requestValidator;
         $this->validateEntity($this->data, $validator->rules());
 
-        $entity = new Entity($this->data);
+        $entity = new Entity(Arr::only($this->data, Entity::CREATION_FIELDS));
         $entity->type_id = $this->entityType->id;
         $entity->campaign_id = $this->campaign->id;
         $entity->entry = $this->data['entry'] ?? '';

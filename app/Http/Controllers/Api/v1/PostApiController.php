@@ -33,6 +33,7 @@ class PostApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $entity);
+        $this->ensurePostBelongsToEntity($entity, $post);
 
         return new Resource($post);
     }
@@ -61,7 +62,11 @@ class PostApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity);
-        $post->update($request->all());
+        $this->ensurePostBelongsToEntity($entity, $post);
+
+        $data = $request->all();
+        unset($data['entity_id']);
+        $post->update($data);
 
         return new Resource($post);
     }
@@ -80,8 +85,14 @@ class PostApiController extends ApiController
     ) {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity);
+        $this->ensurePostBelongsToEntity($entity, $post);
         $post->delete();
 
         return response()->json(null, 204);
+    }
+
+    private function ensurePostBelongsToEntity(Entity $entity, Post $post): void
+    {
+        abort_unless((int) $post->entity_id === (int) $entity->id, 404);
     }
 }

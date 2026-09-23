@@ -2,6 +2,7 @@
 
 use App\Events\Maps\Updated;
 use App\Models\Character;
+use App\Models\Image;
 use App\Models\Map;
 use App\Models\MapMarker;
 use Illuminate\Support\Facades\Event;
@@ -118,6 +119,28 @@ it('allows real maps to use the real map zoom bound', function () {
     expect($response->json('settings.min_zoom'))->toBe(0);
     expect($response->json('settings.max_zoom'))->toBe(15);
     expect($response->json('settings.initial_zoom'))->toBe(15);
+});
+
+it('does not allow tiled maps to use a negative minimum zoom', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $image = Image::factory()->create([
+        'campaign_id' => 1,
+        'tiling_status' => Image::TILING_FINISHED,
+    ]);
+    $map->entity->image_uuid = $image->id;
+    $map->entity->saveQuietly();
+    $map->refresh();
+
+    $this->patchJson(route('entities.map-settings.update', [1, $map->entity]), [
+        'min_zoom' => -1,
+    ])->assertUnprocessable();
+
+    $response = $this->patchJson(route('entities.map-settings.update', [1, $map->entity]), [
+        'min_zoom' => 0,
+    ])->assertSuccessful();
+
+    expect($response->json('settings.min_zoom'))->toBe(0);
 });
 
 it('leaves an existing center_marker_id untouched on a partial update that never mentions centering', function () {

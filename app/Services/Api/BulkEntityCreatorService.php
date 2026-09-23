@@ -9,6 +9,7 @@ use App\Services\Entity\StandardEntityCreationService;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
 use App\Traits\UserAware;
+use Illuminate\Support\Arr;
 
 class BulkEntityCreatorService
 {
@@ -51,7 +52,7 @@ class BulkEntityCreatorService
 
     protected function createEntity(): Entity
     {
-        $this->entity = new Entity($this->data);
+        $this->entity = new Entity(Arr::only($this->data, Entity::CREATION_FIELDS));
         $this->entity->type_id = $this->entityType->id;
         $this->entity->campaign_id = $this->campaign->id;
         $this->entity->save();

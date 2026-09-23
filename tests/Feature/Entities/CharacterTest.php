@@ -42,6 +42,34 @@ it('links a newly created character to its entity', function () {
     expect($character->entity->created_by)->toBe(auth()->id());
 });
 
+it('ignores entity ids when creating a character', function () {
+    $this->asUser()->withCampaign();
+
+    $response = $this->postJson('/api/1.0/campaigns/1/characters', [
+        'name' => 'Injected Entity Link',
+        'entity_id' => ['Value' => 0],
+    ]);
+    $response->assertCreated();
+
+    $character = Character::where('name', 'Injected Entity Link')->firstOrFail();
+
+    expect($character->entity->entity_id)->toBe($character->id);
+});
+
+it('ignores entity ids passed directly to the standard creation service', function () {
+    $this->asUser()->withCampaign();
+
+    $character = app(StandardEntityCreationService::class)
+        ->campaign(Campaign::findOrFail(1))
+        ->entityType(EntityType::findOrFail(config('entities.ids.character')))
+        ->create([
+            'name' => 'Service Entity Link',
+            'entity_id' => ['Value' => 0],
+        ]);
+
+    expect($character->entity->entity_id)->toBe($character->id);
+});
+
 it('creates an inline character mention only once when creating a character', function () {
     $this->asUser()->withCampaign();
 
@@ -126,6 +154,21 @@ it('UPDATES a valid character')
     ->putJson('/api/1.0/campaigns/1/characters/1', ['name' => 'Bob'])
     ->assertStatus(200)
     ->assertJsonFragment(['name' => 'Bob']);
+
+it('accepts the read-only entity id when updating a character', function () {
+    $this->asUser()->withCampaign()->withCharacters();
+
+    $entityId = Character::findOrFail(1)->entity_id;
+
+    $this->putJson('/api/1.0/campaigns/1/characters/1', [
+        'name' => 'Round Trip Character',
+        'entity_id' => $entityId,
+    ])
+        ->assertSuccessful()
+        ->assertJsonFragment(['name' => 'Round Trip Character']);
+
+    expect(Character::findOrFail(1)->entity_id)->toBe($entityId);
+});
 
 it('UPDATES a valid character without a name')
     ->asUser()

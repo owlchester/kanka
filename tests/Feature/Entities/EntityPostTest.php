@@ -80,6 +80,38 @@ it('UPDATES a valid post without a name')
     ->assertStatus(200)
     ->assertJsonFragment(['position' => 2]);
 
+it('does not update a post through another entity')
+    ->asUser()
+    ->withCampaign()
+    ->withCharacters()
+    ->withPosts()
+    ->putJson('/api/1.0/campaigns/1/entities/2/posts/1', ['name' => 'Bob'])
+    ->assertNotFound();
+
+it('does not allow changing a post entity through the API', function () {
+    $this->asUser()->withCampaign()->withCharacters()->withPosts();
+
+    $this->putJson('/api/1.0/campaigns/1/entities/1/posts/1', [
+        'name' => 'Bob',
+        'entity_id' => 2,
+    ])->assertSuccessful();
+
+    expect(Post::findOrFail(1)->entity_id)->toBe(1);
+});
+
+it('saves a post when its entity has been soft deleted', function () {
+    $this->asUser()->withCampaign()->withCharacters();
+
+    $entity = Entity::findOrFail(1);
+    $post = Post::factory()->create(['entity_id' => $entity->id]);
+    $entity->delete();
+
+    $post = Post::findOrFail($post->id);
+    $post->update(['name' => 'Updated orphaned post']);
+
+    expect($post->fresh()->name)->toBe('Updated orphaned post');
+});
+
 it('creates a stealth post without changing the entity last modified date', function () {
     $this->asUser()->withCampaign()->withCharacters();
 

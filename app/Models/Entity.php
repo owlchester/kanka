@@ -60,6 +60,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property ?int $parent_id
  * @property ?int $focus_x
  * @property ?int $focus_y
+ * @property ?int $status_id
  * @property ?string $image_path
  * @property string $source
  * @property Carbon $created_at
@@ -69,6 +70,17 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  */
 class Entity extends Model
 {
+    public const CREATION_FIELDS = [
+        'name',
+        'is_private',
+        'type',
+        'parent_id',
+        'status_id',
+        'header_image',
+        'image_uuid',
+        'header_uuid',
+    ];
+
     use Acl;
     use Blameable;
     use EntityLogs;
@@ -106,7 +118,6 @@ class Entity extends Model
 
     protected $fillable = [
         'campaign_id',
-        'entity_id',
         'name',
         'is_private',
         'is_attributes_private',

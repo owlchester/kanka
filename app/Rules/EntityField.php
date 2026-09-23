@@ -39,6 +39,12 @@ class EntityField implements ValidationRule
                 return;
             }
 
+            if (! is_string($id)) {
+                $fail(__('crud.dynamic.unknown', ['module' => $module->name()]));
+
+                return;
+            }
+
             $name = Str::startsWith($id, 'new:') ? Str::substr($id, 4) : $id;
             if (empty(mb_trim($name))) {
                 continue;

@@ -3,8 +3,10 @@
 namespace App\Http\Requests\Gallery;
 
 use App\Facades\Limit;
+use App\Models\Campaign;
 use App\Rules\GallerySize;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\File;
 
 class UploadFiles extends FormRequest
@@ -22,6 +24,8 @@ class UploadFiles extends FormRequest
      */
     public function rules(): array
     {
+        /** @var Campaign $campaign */
+        $campaign = $this->route('campaign');
         $types = ['jpeg', 'jpg', 'gif', 'png', 'webp', 'woff2'];
 
         return [
@@ -31,6 +35,13 @@ class UploadFiles extends FormRequest
                 File::types($types),
                 'max:' . Limit::upload(),
                 new GallerySize,
+            ],
+            'folder_id' => [
+                'nullable',
+                'string',
+                Rule::exists('images', 'id')
+                    ->where('is_folder', true)
+                    ->where('campaign_id', $campaign->id),
             ],
         ];
     }

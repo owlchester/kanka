@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\v1\Campaigns\UserApiController;
 use App\Http\Controllers\Api\v1\DefaultThumbnailApiController;
 use App\Http\Controllers\Api\v1\Entities\Attributes\PatchController;
 use App\Http\Controllers\Api\v1\Entities\Attributes\PutController;
+use App\Http\Controllers\Api\v1\Entities\ReminderApiController;
 use App\Http\Controllers\Api\v1\EntityApiController;
 use App\Http\Controllers\Api\v1\EntityArchiveApiController;
 use App\Http\Controllers\Api\v1\EntityImageApiController;
@@ -79,7 +80,6 @@ Route::apiResources([
     // Entity elements
     'campaigns.entities.attributes' => 'EntityAttributeApiController',
     'campaigns.entities.posts' => 'PostApiController',
-    'campaigns.entities.reminders' => 'ReminderApiController',
     'campaigns.entities.relations' => 'EntityRelationApiController',
     'campaigns.entities.entity_tags' => 'EntityTagApiController',
     'campaigns.entities.inventory' => 'EntityInventoryApiController',
@@ -93,6 +93,10 @@ Route::apiResources([
     'campaigns.images' => 'CampaignImageApiController',
     'campaigns.entity_types' => 'Campaigns\EntityTypeApiController',
 ]);
+
+Route::scopeBindings()->group(function () {
+    Route::apiResource('campaigns.entities.reminders', ReminderApiController::class);
+});
 
 Route::get('campaigns/{campaign}/entities/{entity}/image', [EntityImageApiController::class, 'show']);
 Route::post('campaigns/{campaign}/entities/{entity}/image', [EntityImageApiController::class, 'put']);

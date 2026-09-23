@@ -42,6 +42,10 @@ class TileImageJob implements ShouldQueue
         Image::where('id', $this->image->id)->update([
             'tiling_status' => Image::TILING_FINISHED,
             'tiling_error' => null,
+            'metadata' => array_merge($this->image->metadata ?? [], [
+                'tile_min_zoom' => $zoomRange['min_zoom'],
+                'tile_max_zoom' => $zoomRange['max_zoom'],
+            ]),
         ]);
 
         $this->applyZoomRangeToMaps($zoomRange);

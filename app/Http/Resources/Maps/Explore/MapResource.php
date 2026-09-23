@@ -53,6 +53,8 @@ class MapResource extends JsonResource
             'min_zoom' => $map->minZoom(),
             'max_zoom' => $map->maxZoom(),
             'initial_zoom' => $map->initialZoom(),
+            'tile_min_zoom' => $isTiled ? $map->entity->image->tileMinZoom() : null,
+            'tile_max_zoom' => $isTiled ? $map->entity->image->tileMaxZoom() : null,
             'center' => $center,
             'focus_pin_id' => $focusPinId,
             'tile_url' => $map->isReal() ? 'https://tile.openstreetmap.org/{z}/{x}/{y}.png' : null,

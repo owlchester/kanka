@@ -85,18 +85,23 @@ class StoreMap extends FormRequest
      */
     protected function zoomLimits(): array
     {
+        $map = $this->route('map');
+        if (! $map instanceof Map) {
+            $entity = $this->route('entity');
+            $map = $entity instanceof Entity ? $entity->child : null;
+        }
+
         if ($this->has('is_real')) {
             $isReal = $this->boolean('is_real');
         } else {
-            $map = $this->route('map');
-            if (! $map instanceof Map) {
-                $entity = $this->route('entity');
-                $map = $entity instanceof Entity ? $entity->child : null;
-            }
-
             $isReal = $map instanceof Map && $map->isReal();
         }
 
-        return config('limits.maps.zoom.' . ($isReal ? 'real' : 'default'));
+        $limits = config('limits.maps.zoom.' . ($isReal ? 'real' : 'default'));
+        if ($map instanceof Map && $map->isTiled()) {
+            $limits['min'] = max(0, $limits['min']);
+        }
+
+        return $limits;
     }
 }

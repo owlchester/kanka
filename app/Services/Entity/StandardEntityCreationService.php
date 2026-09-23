@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
 use App\Traits\UserAware;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use InvalidArgumentException;
 
@@ -25,10 +26,7 @@ class StandardEntityCreationService
         }
 
         return DB::transaction(function () use ($data): MiscModel {
-            // Entry mentions are parsed by EntitySaveService after the child exists.
-            $entityData = $data;
-            unset($entityData['entry']);
-            $entity = new Entity($entityData);
+            $entity = new Entity(Arr::only($data, Entity::CREATION_FIELDS));
             $entity->campaign_id = $this->campaign->id;
             $entity->type_id = $this->entityType->id;
             $entity->is_private = $data['is_private'] ?? false;

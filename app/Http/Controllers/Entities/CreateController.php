@@ -14,6 +14,7 @@ use App\Services\Entity\CopyService;
 use App\Services\Entity\EntitySaveService;
 use App\Services\Entity\Relations\LocationRelationsService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use LogicException;
 
 class CreateController extends Controller
@@ -72,7 +73,8 @@ class CreateController extends Controller
 
         try {
             /** @var Entity $entity */
-            $entity = new Entity($data);
+            $entity = new Entity(Arr::only($data, Entity::CREATION_FIELDS));
+            $entity->campaign_id = $campaign->id;
             $entity->type_id = $entityType->id;
             $entity->save();
             $this->entitySaveService->campaign($campaign)->save($entity, $data);

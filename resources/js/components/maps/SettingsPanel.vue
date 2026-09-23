@@ -24,13 +24,13 @@
                 <span class="normal-case font-normal text-neutral-content/70">{{ i18n.grid_help }}</span>
             </label>
 
-            <label class="flex flex-col gap-1 text-xs font-semibold uppercase tracking-wide text-neutral-content">
+            <label v-if="!map.is_tiled" class="flex flex-col gap-1 text-xs font-semibold uppercase tracking-wide text-neutral-content">
                 {{ i18n.zoom_min }}
                 <input v-model.number="form.min_zoom" type="number" :min="i18n.zoom_min_value" :max="i18n.zoom_max_value" class="input input-bordered w-full normal-case text-sm font-normal" />
                 <span class="normal-case font-normal text-neutral-content/70">{{ i18n.zoom_min_help }}</span>
             </label>
 
-            <label class="flex flex-col gap-1 text-xs font-semibold uppercase tracking-wide text-neutral-content">
+            <label v-if="!map.is_tiled" class="flex flex-col gap-1 text-xs font-semibold uppercase tracking-wide text-neutral-content">
                 {{ i18n.zoom_max }}
                 <input v-model.number="form.max_zoom" type="number" min="1" :max="i18n.zoom_max_value" class="input input-bordered w-full normal-case text-sm font-normal" />
                 <span class="normal-case font-normal text-neutral-content/70">{{ i18n.zoom_max_help }}</span>
@@ -205,10 +205,8 @@ async function save() {
     error.value = null;
 
     try {
-        const res = await axios.patch(props.map.settings_url, {
+        const payload = {
             grid: form.grid,
-            min_zoom: form.min_zoom,
-            max_zoom: form.max_zoom,
             initial_zoom: form.initial_zoom,
             distance_name: form.distance_name,
             distance_measure: form.distance_measure,
@@ -216,7 +214,13 @@ async function save() {
             center_y: centerMode.value === "coordinates" ? form.center_y : null,
             center_marker_id: centerMode.value === "marker" ? form.center_marker_id : null,
             legacy_pins: form.legacy_pins,
-        });
+        };
+        if (!props.map.is_tiled) {
+            payload.min_zoom = form.min_zoom;
+            payload.max_zoom = form.max_zoom;
+        }
+
+        const res = await axios.patch(props.map.settings_url, payload);
         emit("saved", res.data);
         emit("close");
     } catch (e) {

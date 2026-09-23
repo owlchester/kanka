@@ -47,7 +47,7 @@ class PostObserver
         }
         // When adding or changing a post to an entity, we want to update the
         // last updated date to reflect changes in the dashboard.
-        $post->entity->touchSilently();
+        $post->entity?->touchSilently();
     }
 
     public function deleted(Post $post)
