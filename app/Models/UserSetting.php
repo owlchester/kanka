@@ -200,7 +200,7 @@ trait UserSetting
      */
     public function hasLegacyBoosterNomenclature(): bool
     {
-        if (!app()->isProduction() && request()->get('_legacy') == 1) {
+        if (! app()->isProduction() && request()->get('_legacy') == 1) {
             return true;
         }
 

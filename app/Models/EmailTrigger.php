@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use App\Enums\EmailTrigger as EmailTriggerEnum;
 use App\Enums\EmailAudience;
+use App\Enums\EmailTrigger as EmailTriggerEnum;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
