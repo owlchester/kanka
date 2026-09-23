@@ -58,8 +58,7 @@ it('reports unexpected calendar advancement failures', function () {
 
     $this->artisan('calendar:advance')->assertSuccessful();
 
-    Exceptions::assertReported(fn (RuntimeException $exception): bool =>
-        str_contains($exception->getMessage(), "Calendar {$calendar->id}")
+    Exceptions::assertReported(fn (RuntimeException $exception): bool => str_contains($exception->getMessage(), "Calendar {$calendar->id}")
         && $exception->getPrevious() instanceof RuntimeException
         && $exception->getPrevious()->getMessage() === 'Unexpected failure'
     );
