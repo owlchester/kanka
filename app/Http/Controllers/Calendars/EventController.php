@@ -66,7 +66,6 @@ class EventController extends Controller
             $rows->before($calendar);
         }
 
-        // @phpstan-ignore-next-line
         $this->rows = $rows
         // @phpstan-ignore-next-line
             ->with(['calendar',
