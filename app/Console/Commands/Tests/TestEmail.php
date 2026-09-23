@@ -10,7 +10,6 @@ use App\Jobs\Emails\SubscriptionDowngradedEmailJob;
 use App\Jobs\Emails\SubscriptionFailedEmailJob;
 use App\Jobs\Emails\Subscriptions\UpcomingYearlyAlert;
 use App\Jobs\Emails\Subscriptions\WelcomeSubscriptionEmailJob;
-use App\Jobs\Emails\WelcomeEmailJob;
 use App\Jobs\Users\NewPassword;
 use App\Models\Feature;
 use App\Models\Tier;
@@ -45,7 +44,9 @@ class TestEmail extends Command
 
         $template = $this->argument('template');
         if ($template === 'welcome') {
-            WelcomeEmailJob::dispatch($user->id);
+            $this->error('Use test:onboarding-email for onboarding emails.');
+
+            return self::FAILURE;
         } elseif ($template === 'cancelled') {
             SubscriptionCancelEmailJob::dispatch($user, null, 'custom text');
         } elseif ($template === 'downgrade') {

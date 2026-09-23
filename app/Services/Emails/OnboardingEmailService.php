@@ -36,6 +36,14 @@ class OnboardingEmailService
         );
     }
 
+    public function campaignForAudience(User $user, EmailAudience $audience): ?Campaign
+    {
+        return match ($audience) {
+            EmailAudience::Gm => $this->firstAdminCampaign($user),
+            EmailAudience::Player => $this->firstCampaign($user),
+        };
+    }
+
     public function sendDayOne(User $user): bool
     {
         $campaign = $this->firstAdminCampaign($user);

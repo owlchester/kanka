@@ -88,7 +88,7 @@ class UserObserver
     public function created(User $user)
     {
         if (! app()->environment('testing')) {
-            WelcomeEmailJob::dispatch($user)
+            WelcomeEmailJob::dispatch($user->id)
                 ->delay(now()->addMinutes(1));
         }
         session()->put('user_registered', true);
