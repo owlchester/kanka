@@ -20,6 +20,7 @@ use App\Traits\Controllers\HasSubview;
 use App\Traits\GuestAuthTrait;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Str;
@@ -80,7 +81,15 @@ class EventController extends Controller
                     ]);
                 },
             ])
-            ->whereHas('remindable')
+            ->whereHasMorph(
+                'remindable',
+                [Entity::class, Post::class],
+                function (Builder $query, string $type): void {
+                    if ($type === Post::class) {
+                        $query->whereHas('entity');
+                    }
+                },
+            )
             ->sort(request()->only(['o', 'k']))
             ->paginate();
 
