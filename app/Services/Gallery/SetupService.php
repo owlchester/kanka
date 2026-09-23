@@ -251,12 +251,14 @@ class SetupService
         $parent = $this->image->imageFolder;
         if ($parent->imageFolder) {
             $crumbs[] = [
+                'id' => $parent->imageFolder->id,
                 'name' => $parent->imageFolder->name,
                 'open' => route('gallery.show', [$this->campaign, $parent->imageFolder]),
             ];
         }
 
         $crumbs[] = [
+            'id' => $parent->id,
             'name' => $parent->name,
             'open' => route('gallery.show', [$this->campaign, $parent]),
         ];
