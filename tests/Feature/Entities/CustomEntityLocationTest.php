@@ -28,7 +28,6 @@ it('saves locations when creating a custom entity', function () {
 
     $this->post(route('entities.store', [1, $entityType]), [
         'name' => 'Widget',
-        'entity_id' => 0,
         'save_locations' => 1,
         'locations' => [$location->id],
     ])->assertRedirect();

@@ -29,7 +29,6 @@ it('pre-fills the privacy toggle as private when editing a private custom module
 
     $entity = new Entity([
         'campaign_id' => 1,
-        'entity_id' => 0,
         'name' => 'Secret Gadget',
         'is_private' => true,
     ]);
@@ -113,7 +112,6 @@ it('preserves an entity last modified date during a stealth edit', function () {
 
     $entity = new Entity([
         'campaign_id' => 1,
-        'entity_id' => 0,
         'name' => 'Secret Gadget',
     ]);
     $entity->type_id = $entityType->id;

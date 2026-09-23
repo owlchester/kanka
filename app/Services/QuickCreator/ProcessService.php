@@ -100,7 +100,7 @@ class ProcessService
             $this->validateEntity($values, $validator->rules());
 
             if ($this->entityType->isCustom()) {
-                $this->entity = new Entity($values);
+                $this->entity = new Entity(Arr::only($values, Entity::CREATION_FIELDS));
                 $this->entity->campaign_id = $this->campaign->id;
                 $this->entity->type_id = $this->entityType->id;
                 $this->entity->save();
