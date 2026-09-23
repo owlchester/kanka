@@ -17,6 +17,13 @@ it('uses the trigger name as the subject and sends template headers through Lara
     $sentMessage = mock(SentMessage::class);
     $sentMessage->shouldReceive('getMessageId')->once()->andReturn('<mailgun-id>');
 
+    expect((new MailgunTemplateMail(
+        'welcome_2026',
+        'Your campaign is ready',
+        ['username' => 'Jane', 'link' => 'https://kanka.io/w/test'],
+        'welcome',
+    ))->render())->toContain('Mailgun template');
+
     $mailer = Mockery::mock();
     $mailer->shouldReceive('send')
         ->once()
@@ -28,13 +35,12 @@ it('uses the trigger name as the subject and sends template headers through Lara
             }
 
             return $envelope->subject === 'Your campaign is ready'
-                && $message->getHeaders()->get('template')->getBodyAsString() === 'welcome_2026'
-                && $message->getHeaders()->get('t:text')->getBodyAsString() === 'yes'
-                && $message->getHeaders()->get('t:variables')->getBodyAsString() === json_encode([
+                && $message->getHeaders()->get('X-Mailgun-Template-Name')->getBodyAsString() === 'welcome_2026'
+                && $message->getHeaders()->get('X-Mailgun-Template-Variables')->getBodyAsString() === json_encode([
                     'username' => 'Jane',
                     'link' => 'https://kanka.io/w/test',
                 ])
-                && $message->getHeaders()->get('o:tag')->getBodyAsString() === 'welcome';
+                && $envelope->tags === ['welcome'];
         })
         ->andReturn($sentMessage);
 
