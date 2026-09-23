@@ -25,7 +25,7 @@ class MailgunTemplateMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address(config('app.email'), 'Kanka.io'),
+            from: new Address(config('app.email'), config('mail.from.name')),
             subject: $this->templateSubject,
             tags: [$this->tag],
             using: function (Email $message): void {
