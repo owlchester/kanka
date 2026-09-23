@@ -16,7 +16,7 @@
     <p>If the above link doesnt work, open the following URL in your web browser {{ $url }}</p>
     <p>
         {{ __('emails/subscriptions/upcoming.closing') }}<br />
-        The Kanka Team
+        {{ config('mail.from.name') }}
     </p>
 
 @endsection

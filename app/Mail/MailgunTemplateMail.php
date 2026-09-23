@@ -27,18 +27,18 @@ class MailgunTemplateMail extends Mailable
         return new Envelope(
             from: new Address(config('app.email'), 'Kanka.io'),
             subject: $this->templateSubject,
+            tags: [$this->tag],
             using: function (Email $message): void {
                 $headers = $message->getHeaders();
-                $headers->addTextHeader('template', $this->template);
-                $headers->addTextHeader('t:text', 'yes');
-                $headers->addTextHeader('t:variables', json_encode($this->variables, JSON_THROW_ON_ERROR));
-                $headers->addTextHeader('o:tag', $this->tag);
+                $headers->addTextHeader('X-Mailgun-Template-Name', $this->template);
+                $headers->addTextHeader('X-Mailgun-Template-Variables', json_encode($this->variables, JSON_THROW_ON_ERROR));
             },
         );
     }
 
     public function content(): Content
     {
-        return new Content;
+        // Laravel requires a body even though Mailgun replaces it with its template.
+        return new Content(htmlString: '<!-- Mailgun template -->');
     }
 }
