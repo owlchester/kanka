@@ -50,6 +50,7 @@ class FamilyTreeApiController extends ApiController
 
         $model = $this
             ->treeService
+            ->campaign($campaign)
             ->family($family)
             ->user($request->user())
             ->save($data)
