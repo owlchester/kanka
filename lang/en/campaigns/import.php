@@ -6,6 +6,7 @@ return [
     ],
     'csv'               => [
         'continue'          => 'Continue',
+        'encoding_error'    => 'The CSV file must be encoded in UTF-8.',
         'fields_helper'     => 'Select a column to assign to each of the fillable fields of the entry.',
         'no_preview'        => 'No preview data available',
         'preview'           => 'Preview',

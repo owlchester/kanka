@@ -1,6 +1,7 @@
 <?php
 
 use App\Enums\CampaignImportStatus;
+use App\Jobs\Campaigns\Import as ValidateImport;
 use App\Models\Campaign;
 use App\Models\CampaignImport;
 use App\Models\Character;
@@ -54,6 +55,62 @@ it('does not mark missing trailing values as fully filled', function () {
     app(CsvValidatorService::class)->job($import)->run();
 
     expect($import->fresh()->config['filled_columns'])->toBe([0 => 'optional']);
+});
+
+it('fails imports whose CSV is not UTF-8 encoded', function () {
+    $this->asUser()->withCampaign();
+    Storage::fake('export');
+    Notification::fake();
+
+    $campaign = Campaign::firstOrFail();
+    $user = User::firstOrFail();
+    $key = "campaigns/{$campaign->id}/imports/invalid-encoding.csv";
+    Storage::disk('export')->put($key, "\xFFname\nAlice\n");
+
+    $import = new CampaignImport;
+    $import->campaign_id = $campaign->id;
+    $import->user_id = $user->id;
+    $import->status_id = CampaignImportStatus::QUEUED;
+    $import->config = ['files' => [$key]];
+    $import->save();
+
+    $job = new ValidateImport($import);
+
+    try {
+        $job->handle();
+        $this->fail('Expected CSV validation to fail.');
+    } catch (RuntimeException $exception) {
+        expect($exception->getMessage())->toBe(__('campaigns/import.csv.encoding_error'));
+        $job->failed($exception);
+    }
+
+    expect($import->fresh()->status_id)->toBe(CampaignImportStatus::FAILED)
+        ->and($import->fresh()->errors)->toBe([__('campaigns/import.csv.encoding_error')])
+        ->and(Storage::disk('export')->exists($key))->toBeFalse();
+});
+
+it('cleans up a failed CSV import before downloading the file', function () {
+    $this->asUser()->withCampaign();
+    Storage::fake('export');
+    Notification::fake();
+
+    $campaign = Campaign::firstOrFail();
+    $user = User::firstOrFail();
+    $key = "campaigns/{$campaign->id}/imports/missing.csv";
+
+    $import = new CampaignImport;
+    $import->campaign_id = $campaign->id;
+    $import->user_id = $user->id;
+    $import->status_id = CampaignImportStatus::QUEUED;
+    $import->config = ['files' => [$key]];
+    $import->save();
+
+    app(CsvImportService::class)
+        ->job($import)
+        ->fail(new RuntimeException('Unable to download CSV.'));
+
+    expect($import->fresh()->status_id)->toBe(CampaignImportStatus::FAILED)
+        ->and($import->fresh()->errors)->toBe(['Unable to download CSV.']);
 });
 
 it('imports canonical entity data safely with explicit public privacy', function () {
