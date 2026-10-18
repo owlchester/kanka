@@ -22,6 +22,13 @@ final readonly class CalendarDefinition
         if ($this->months === []) {
             throw new InvalidArgumentException('A calendar must define at least one month.');
         }
+
+        foreach ($this->leapRules as $rule) {
+            if ($rule->month > count($this->months)
+                || $this->months[$rule->month - 1]['length'] + $rule->amount < 1) {
+                throw new InvalidArgumentException('Invalid calendar leap rule.');
+            }
+        }
     }
 
     public static function fromCalendar(Calendar $calendar): self

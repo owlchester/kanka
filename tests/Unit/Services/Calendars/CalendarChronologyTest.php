@@ -84,6 +84,21 @@ it('moves through leap days instead of skipping them', function () {
         ->toEqual(new CalendarDate(4, 3, 1));
 });
 
+it('moves through subtractive leap days', function () {
+    $chronology = chronology([
+        'leap_rules' => [
+            ['amount' => -1, 'month' => 1, 'interval' => 2, 'start' => 2],
+        ],
+    ]);
+
+    expect($chronology->daysInMonth(2, 1))->toBe(29)
+        ->and($chronology->daysInYear(2))->toBe(59)
+        ->and($chronology->addDays(new CalendarDate(2, 1, 29), 1))
+        ->toEqual(new CalendarDate(2, 2, 1))
+        ->and($chronology->addDays(new CalendarDate(2, 2, 1), -1))
+        ->toEqual(new CalendarDate(2, 1, 29));
+});
+
 it('uses an explicit policy for invalid monthly dates', function () {
     $chronology = chronology([
         'months' => [

@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use InvalidArgumentException;
 
 /**
  * Class Calendar
@@ -342,11 +343,21 @@ class Calendar extends MiscModel
     }
 
     /**
-     * Determine if the calendar is missing months of weekdays to be rendered successfully
+     * Determine if the calendar configuration can be rendered successfully
      */
     public function missingDetails(): bool
     {
-        return count($this->months()) < 1 || count($this->weekdays()) < 2;
+        if (count($this->months()) < 1 || count($this->weekdays()) < 2) {
+            return true;
+        }
+
+        try {
+            $this->definition();
+        } catch (InvalidArgumentException) {
+            return true;
+        }
+
+        return false;
     }
 
     /**

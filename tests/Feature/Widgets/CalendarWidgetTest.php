@@ -4,15 +4,15 @@ use App\Enums\Widget;
 use App\Models\Calendar;
 use App\Models\CampaignDashboardWidget;
 
-function calendarWidget(): CampaignDashboardWidget
+function calendarWidget(array $attributes = []): CampaignDashboardWidget
 {
-    $calendar = Calendar::factory()->create([
+    $calendar = Calendar::factory()->create(array_merge([
         'campaign_id' => 1,
         'date' => '1-1-2',
         'moons' => json_encode([
             ['id' => 1, 'name' => 'Luna', 'fullmoon' => 10, 'offset' => 0, 'colour' => 'grey'],
         ]),
-    ]);
+    ], $attributes));
 
     return CampaignDashboardWidget::create([
         'campaign_id' => 1,
@@ -42,4 +42,17 @@ it('prevents read-only users from changing the calendar widget date', function (
         ->assertNotFound();
 
     expect($widget->entity->child->fresh()->date)->toBe($date);
+});
+
+it('does not render widgets for invalid calendar configuration', function () {
+    $this->asUser()->withCampaign();
+    $widget = calendarWidget([
+        'leap_year_amount' => -28,
+        'leap_year_month' => 2,
+        'leap_year_offset' => 1,
+        'leap_year_start' => 1,
+    ]);
+
+    $this->get('/w/test-campaign/dashboard/widgets/' . $widget->id . '/render')
+        ->assertNotFound();
 });

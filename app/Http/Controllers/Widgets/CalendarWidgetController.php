@@ -33,6 +33,7 @@ class CalendarWidgetController extends Controller
         $this->authorize('update', $entity);
         abort_unless($entity->child instanceof Calendar, 404);
         $calendar = $entity->child;
+        abort_if($calendar->missingDetails(), 404);
         $this->service->calendar($calendar)->advance();
 
         return $this->body($campaign, $campaignDashboardWidget, $calendar);
@@ -50,6 +51,7 @@ class CalendarWidgetController extends Controller
         $this->authorize('update', $entity);
         abort_unless($entity->child instanceof Calendar, 404);
         $calendar = $entity->child;
+        abort_if($calendar->missingDetails(), 404);
         $this->service->calendar($calendar)->retreat();
 
         return $this->body($campaign, $campaignDashboardWidget, $calendar);
@@ -71,6 +73,8 @@ class CalendarWidgetController extends Controller
 
     private function body(Campaign $campaign, CampaignDashboardWidget $widget, Calendar $calendar)
     {
+        abort_if($calendar->missingDetails(), 404);
+
         return view('dashboard.widgets.calendar.body', [
             'campaign' => $campaign,
             'widget' => $widget,

@@ -18,7 +18,8 @@ it('does not report invalid calendar configuration', function () {
     $invalidLeapRule = Calendar::factory()->create([
         'campaign_id' => 1,
         'date' => '1-1-1',
-        'leap_year_amount' => -1,
+        'leap_year_amount' => -28,
+        'leap_year_month' => 2,
     ]);
 
     $this->artisan('calendar:advance')
@@ -58,8 +59,7 @@ it('reports unexpected calendar advancement failures', function () {
 
     $this->artisan('calendar:advance')->assertSuccessful();
 
-    Exceptions::assertReported(fn (RuntimeException $exception): bool =>
-        str_contains($exception->getMessage(), "Calendar {$calendar->id}")
+    Exceptions::assertReported(fn (RuntimeException $exception): bool => str_contains($exception->getMessage(), "Calendar {$calendar->id}")
         && $exception->getPrevious() instanceof RuntimeException
         && $exception->getPrevious()->getMessage() === 'Unexpected failure'
     );
