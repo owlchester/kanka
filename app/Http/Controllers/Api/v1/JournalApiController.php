@@ -27,6 +27,7 @@ class JournalApiController extends MiscApiController
             ->filter(request()->all())
             ->withApi()
             ->lastSync(request()->get('lastSync'))
+            ->orderBy('journals.id')
             ->paginate());
     }
 

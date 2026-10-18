@@ -30,6 +30,7 @@ class EntityApiController extends ApiController
         return Resource::collection($campaign->entities()
             ->apiFilter($campaign, request()->all())
             ->lastSync(request()->get('lastSync'))
+            ->orderBy('entities.id')
             ->paginate()
             ->appends(request()->except(['page', 'lastSync'])));
     }

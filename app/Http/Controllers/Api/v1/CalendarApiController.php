@@ -43,6 +43,7 @@ class CalendarApiController extends MiscApiController
             ->filter(request()->all())
             ->withApi()
             ->lastSync(request()->get('lastSync'))
+            ->orderBy('calendars.id')
             ->paginate());
     }
 

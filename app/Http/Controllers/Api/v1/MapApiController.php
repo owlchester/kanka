@@ -27,6 +27,7 @@ class MapApiController extends MiscApiController
             ->filter(request()->all())
             ->withApi()
             ->lastSync(request()->get('lastSync'))
+            ->orderBy('maps.id')
             ->paginate());
     }
 

@@ -5,6 +5,7 @@ use App\Models\Character;
 use App\Models\Entity;
 use App\Models\EntityType;
 use App\Services\Entity\StandardEntityCreationService;
+use Illuminate\Support\Facades\DB;
 
 it('POSTS an invalid character form')
     ->asUser()
@@ -132,6 +133,30 @@ it('GETS all characters')
             ],
         ],
     ]);
+
+it('paginates characters in ID order', function () {
+    $this->asUser()->withCampaign();
+    auth()->user()->update(['settings' => ['pagination' => 45]]);
+    Character::factory()->count(46)->create(['campaign_id' => 1]);
+
+    $queries = [];
+    DB::listen(function ($query) use (&$queries) {
+        $queries[] = $query->sql;
+    });
+
+    $firstPage = $this->getJson('/api/1.0/campaigns/1/characters?page=1')->assertSuccessful();
+    $secondPage = $this->getJson('/api/1.0/campaigns/1/characters?page=2')->assertSuccessful();
+
+    $expectedIds = Character::where('campaign_id', 1)->orderBy('id')->pluck('id')->all();
+    $firstPageIds = collect($firstPage->json('data'))->pluck('id')->all();
+    $secondPageIds = collect($secondPage->json('data'))->pluck('id')->all();
+    $characterQuery = collect($queries)->first(fn (string $sql) => str_contains($sql, 'from "characters"') && str_contains($sql, 'limit 45'));
+
+    expect($firstPageIds)->toBe(array_slice($expectedIds, 0, 45))
+        ->and($secondPageIds)->toBe(array_slice($expectedIds, 45))
+        ->and([...$firstPageIds, ...$secondPageIds])->toBe($expectedIds)
+        ->and($characterQuery)->toMatch('/order by "characters"\."id" asc/i');
+});
 
 it('GETS a specific character')
     ->asUser()

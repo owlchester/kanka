@@ -27,6 +27,7 @@ class OrganisationApiController extends MiscApiController
             ->filter(request()->all())
             ->withApi()
             ->lastSync(request()->get('lastSync'))
+            ->orderBy('organisations.id')
             ->paginate());
     }
 

@@ -27,6 +27,7 @@ class LocationApiController extends MiscApiController
             ->filter(request()->all())
             ->withApi()
             ->lastSync(request()->get('lastSync'))
+            ->orderBy('locations.id')
             ->paginate());
     }
 

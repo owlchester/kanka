@@ -27,6 +27,7 @@ class TagApiController extends MiscApiController
             ->filter(request()->all())
             ->withApi()
             ->lastSync(request()->get('lastSync'))
+            ->orderBy('tags.id')
             ->paginate());
     }
 

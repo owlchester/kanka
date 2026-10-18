@@ -28,6 +28,7 @@ class ItemApiController extends MiscApiController
             ->filter(request()->all())
             ->withApi()
             ->lastSync(request()->get('lastSync'))
+            ->orderBy('items.id')
             ->paginate());
     }
 

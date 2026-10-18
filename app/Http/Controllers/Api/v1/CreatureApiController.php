@@ -28,6 +28,7 @@ class CreatureApiController extends MiscApiController
             ->withApi()
             ->has('entity')
             ->lastSync(request()->get('lastSync'))
+            ->orderBy('creatures.id')
             ->paginate());
     }
 

@@ -27,6 +27,7 @@ class DiceRollApiController extends MiscApiController
             ->filter(request()->all())
             ->withApi()
             ->lastSync(request()->get('lastSync'))
+            ->orderBy('dice_rolls.id')
             ->paginate());
     }
 
