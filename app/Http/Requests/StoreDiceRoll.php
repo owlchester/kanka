@@ -31,8 +31,8 @@ class StoreDiceRoll extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required|max:191',
-            'parameters' => 'required|max:191',
+            'name' => 'required|string|max:191',
+            'parameters' => 'required|string|max:191',
             'character_id' => 'nullable|integer|exists:characters,id',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'attribute' => ['array', new UniqueAttributeNames],

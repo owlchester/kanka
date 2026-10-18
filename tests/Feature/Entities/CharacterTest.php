@@ -13,6 +13,30 @@ it('POSTS an invalid character form')
     ->postJson('/api/1.0/campaigns/1/characters', [])
     ->assertStatus(422);
 
+it('rejects structured character text fields', function (string $field, array $value) {
+    $this->asUser()->withCampaign();
+
+    $name = 'Invalid ' . $field;
+
+    $this->postJson('/api/1.0/campaigns/1/characters', [
+        'name' => $name,
+        $field => $value,
+    ])
+        ->assertUnprocessable()
+        ->assertJsonStructure(['fields' => [$field]]);
+
+    expect(Character::where('name', $name)->exists())->toBeFalse();
+})->with([
+    'name array' => ['name', ['Character']],
+    'name object' => ['name', ['value' => 'Character']],
+    'pronouns array' => ['pronouns', ['they', 'them']],
+    'pronouns object' => ['pronouns', ['subject' => 'they', 'object' => 'them']],
+    'age array' => ['age', ['unknown']],
+    'age object' => ['age', ['value' => 'unknown']],
+    'sex array' => ['sex', ['nonbinary']],
+    'sex object' => ['sex', ['value' => 'nonbinary']],
+]);
+
 it('POSTS a new character')
     ->asUser()
     ->withCampaign()

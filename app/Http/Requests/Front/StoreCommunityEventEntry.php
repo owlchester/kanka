@@ -25,7 +25,7 @@ class StoreCommunityEventEntry extends FormRequest
     public function rules()
     {
         return [
-            'link' => ['required', 'url', new EntityLink],
+            'link' => ['required', 'bail', 'string', 'url', new EntityLink],
             'comment' => 'nullable|string',
         ];
     }

@@ -28,12 +28,12 @@ class StoreBookmark extends FormRequest
     public function rules()
     {
         return $this->clean([
-            'name' => 'required|max:191',
+            'name' => 'required|string|max:191',
             'entity_id' => 'required_without_all:entity_type_id,random_entity_type,dashboard_id|nullable|exists:entities,id',
             'entity_type_id' => 'required_without_all:entity_id,random_entity_type,dashboard_id|nullable|exists:entity_types,id',
             'random_entity_type' => 'required_without_all:entity_id,entity_type_id,dashboard_id',
             'dashboard_id' => 'required_without_all:entity_id,entity_type_id,random_entity_type',
-            'icon' => ['nullable', new FontAwesomeIcon],
+            'icon' => ['nullable', 'bail', 'string', new FontAwesomeIcon],
             'tab' => 'nullable',
             'parent' => 'nullable|string|max:25',
             'css' => 'nullable|string|max:45',

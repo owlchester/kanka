@@ -25,7 +25,7 @@ class GalleryImageUpdate extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required|max:45',
+            'name' => 'required|string|max:45',
             'description' => 'nullable|string|max:1000',
             'author' => 'nullable|string|max:191',
             'folder_id' => [

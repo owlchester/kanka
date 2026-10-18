@@ -24,7 +24,7 @@ class StoreBillingSettings extends FormRequest
     public function rules()
     {
         $rules = [
-            'profile.billing' => 'max:1024',
+            'profile.billing' => 'nullable|string|max:1024',
         ];
 
         return $rules;

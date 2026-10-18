@@ -37,10 +37,10 @@ class StoreJournal extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required|max:191',
+            'name' => 'required|string|max:191',
             'entry' => 'nullable|string',
             'type' => 'nullable|string|max:191',
-            'date' => 'nullable|date',
+            'date' => 'nullable|string|date',
             'locations' => ['nullable', 'array', new EntityField(config('entities.ids.location'), Location::class)],
             'author_id' => 'nullable|exists:entities,id',
             'entity_image_uuid' => 'nullable|exists:images,id',

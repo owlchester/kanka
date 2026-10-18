@@ -33,7 +33,7 @@ class StoreAttributeTemplate extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required|max:191',
+            'name' => 'required|string|max:191',
             'parent_id' => 'nullable|integer|exists:entities,id',
             'entity_type_id' => 'nullable|integer|exists:entity_types,id',
         ];

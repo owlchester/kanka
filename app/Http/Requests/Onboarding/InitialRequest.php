@@ -23,8 +23,8 @@ class InitialRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'nullable|min:4|max:191',
-            'type' => 'nullable|in:worldbuilding,campaign,story,skip',
+            'name' => 'nullable|string|min:4|max:191',
+            'type' => 'nullable|string|in:worldbuilding,campaign,story,skip',
         ];
     }
 }

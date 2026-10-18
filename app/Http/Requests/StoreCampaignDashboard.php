@@ -24,7 +24,7 @@ class StoreCampaignDashboard extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required|max:100',
+            'name' => 'required|string|max:100',
             'roles' => 'required',
             'source' => 'nullable|exists:campaign_dashboards,id',
         ];

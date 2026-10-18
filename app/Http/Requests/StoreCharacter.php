@@ -33,7 +33,7 @@ class StoreCharacter extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required|max:191',
+            'name' => 'required|string|max:191',
             'entry' => 'nullable|string',
             'type' => 'nullable|string|max:191',
             'locations' => [
@@ -46,10 +46,10 @@ class StoreCharacter extends FormRequest
             ],
             'entity_image_uuid' => 'nullable|exists:images,id',
             'entity_header_uuid' => 'nullable|exists:images,id',
-            'age' => 'nullable|max:25',
-            'sex' => 'nullable|max:45',
-            'pronouns' => 'nullable|max:45',
-            'title' => 'nullable|max:191',
+            'age' => 'nullable|string|max:25',
+            'sex' => 'nullable|string|max:45',
+            'pronouns' => 'nullable|string|max:45',
+            'title' => 'nullable|string|max:191',
             'template_id' => 'nullable',
             'families' => [
                 'nullable',

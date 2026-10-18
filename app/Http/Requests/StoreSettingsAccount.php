@@ -24,7 +24,7 @@ class StoreSettingsAccount extends FormRequest
     public function rules()
     {
         $rules = [];
-        $rules['password_new'] = 'required|min:6|confirmed';
+        $rules['password_new'] = 'required|string|min:6|confirmed';
         $rules['password_new_confirmation'] = 'required';
 
         return $rules;

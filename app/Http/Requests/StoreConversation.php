@@ -32,7 +32,7 @@ class StoreConversation extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required|max:191',
+            'name' => 'required|string|max:191',
             'type' => 'nullable|string|max:45',
             'target_id' => ['required', new Enum(ConversationTarget::class)],
             'entity_image_uuid' => 'nullable|exists:images,id',

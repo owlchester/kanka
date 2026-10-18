@@ -35,11 +35,11 @@ class StoreEvent extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required|max:191',
+            'name' => 'required|string|max:191',
             'entry' => 'nullable|string',
             'type' => 'nullable|string|max:191',
             'parent_id' => 'nullable|integer|exists:entities,id',
-            'date' => 'nullable|max:191',
+            'date' => 'nullable|string|max:191',
             'locations' => ['nullable', 'array', new EntityField(config('entities.ids.location'), Location::class)],
             'entity_image_uuid' => 'nullable|exists:images,id',
             'entity_header_uuid' => 'nullable|exists:images,id',

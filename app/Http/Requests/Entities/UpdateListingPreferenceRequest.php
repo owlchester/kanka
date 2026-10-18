@@ -24,7 +24,7 @@ class UpdateListingPreferenceRequest extends FormRequest
         return [
             'columns' => ['sometimes', 'array'],
             'columns.*' => ['string'],
-            'layout' => ['sometimes', 'nullable', 'in:grid,table'],
+            'layout' => ['sometimes', 'nullable', 'string', 'in:grid,table'],
             'nested' => ['sometimes', 'nullable', 'boolean'],
             'per_page' => ['sometimes', 'nullable', 'integer', 'in:15,25,45,100'],
         ];

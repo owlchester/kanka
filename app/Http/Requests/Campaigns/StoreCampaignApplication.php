@@ -28,12 +28,12 @@ class StoreCampaignApplication extends FormRequest
             'experience' => 'required|integer|in:0,1,2',
             'availability_days' => 'nullable|array',
             'availability_days.*' => 'string|in:mon,tue,wed,thu,fri,sat,sun',
-            'time_start' => 'nullable|date_format:H:i',
-            'time_end' => 'nullable|date_format:H:i',
+            'time_start' => 'nullable|string|date_format:H:i',
+            'time_end' => 'nullable|string|date_format:H:i',
             'timezone' => 'nullable|string|max:100',
             'pref_rp_combat' => 'required|integer|between:0,2',
             'pref_tone' => 'required|integer|between:0,2',
-            'external_link' => 'nullable|url|max:255',
+            'external_link' => 'nullable|string|url|max:255',
             'additional_notes' => 'nullable|string|max:255',
         ];
 

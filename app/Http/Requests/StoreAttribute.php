@@ -27,7 +27,7 @@ class StoreAttribute extends FormRequest
     public function rules()
     {
         return $this->clean([
-            'name' => 'required|max:191',
+            'name' => 'required|string|max:191',
             'value' => 'nullable|string',
             'type' => 'nullable|string',
             'api_key' => 'nullable|string|max:20',

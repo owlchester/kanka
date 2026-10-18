@@ -38,7 +38,7 @@ class StoreTag extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required|max:191',
+            'name' => 'required|string|max:191',
             'entry' => 'nullable|string',
             'type' => 'nullable|string|max:191',
             'parent_id' => 'nullable|integer|exists:entities,id',
@@ -48,6 +48,7 @@ class StoreTag extends FormRequest
             'icon' => ['nullable', 'string', 'max:100', 'regex:/^(fa-|ra )/'],
             'colour' => [
                 'nullable',
+                'string',
                 'max:7',
             ],
             'attribute' => ['array', new UniqueAttributeNames],
