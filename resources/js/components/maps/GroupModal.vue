@@ -1,6 +1,7 @@
 <template>
     <dialog
         ref="dialogRef"
+        id="map-group-modal"
         class="dialog rounded-2xl bg-base-100 text-base-content w-full md:w-[32rem]"
         aria-modal="true"
         @close="dialogOpen = false"
@@ -39,7 +40,12 @@
                 />
             </div>
 
-            <ColourPicker :colour="colour" :label="i18n.colour" @change="colour = $event" />
+            <ColourPicker
+                :colour="colour"
+                :label="i18n.colour"
+                append-to="#map-group-modal"
+                @change="colour = $event"
+            />
 
             <div class="flex flex-col gap-1">
                 <label class="text-xs font-semibold uppercase tracking-wide text-neutral-content">{{ i18n.parent_group }}</label>
