@@ -5,6 +5,7 @@ namespace App\Services\Entity;
 use App\Models\Character;
 use App\Models\Entity;
 use App\Models\Post;
+use App\Models\QuestElement;
 use App\Models\Relation;
 use App\Services\Abilities\AbilityService;
 use App\Services\MarkdownMentionsService;
@@ -116,6 +117,8 @@ class MarkdownExportService
         $entityData['characterFamilies'] = [];
         $entityData['characterRaces'] = [];
         $entityData['characterOrganisations'] = [];
+        $entityData['questElements'] = [];
+        $entityData['timelineEras'] = [];
         $entityData['source'] = $this->isSingle
             ? $this->entity->url()
             : rtrim((string) config('app.url'), '/') . route('entities.show', [$this->campaign, $this->entity], false);
@@ -171,6 +174,57 @@ class MarkdownExportService
         $entityData['abilities'] = $this->markdownAbilities();
         $entityData['inventory'] = $this->markdownInventory();
         $entityData['assets'] = $this->markdownAssets();
+
+        if ($this->entity->isQuest() && $this->entity->child) {
+            $elements = $this->entity->child->elements;
+            foreach ($elements->sortBy(fn (QuestElement $element) => [$element->role, $element->entity?->name ?? $element->name]) as $element) {
+                if ($element->entity_id && ! $element->entity) {
+                    continue;
+                }
+
+                $entry = $element->copy_entity_entry && $element->entity
+                    ? $this->markdownMentionsService->single($this->isSingle)->parseForMarkdown($element->entity)
+                    : $this->markdownMentionsService->single($this->isSingle)->parseForMarkdown($element);
+                $entityData['questElements'][] = [
+                    'name' => $element->name(),
+                    'role' => $element->role,
+                    'entity' => $element->entity ? $this->entityLink($element->entity) : null,
+                    'entry' => $entry,
+                ];
+            }
+        }
+
+        if ($this->entity->isTimeline() && $this->entity->child) {
+            foreach ($this->entity->child->eras()->with(['orderedElements.entity.event'])->ordered()->get() as $era) {
+                $elements = [];
+                foreach ($era->orderedElements as $element) {
+                    if (! $element->visible()) {
+                        continue;
+                    }
+
+                    $entry = $this->markdownMentionsService->single($this->isSingle)->parseForMarkdown($element);
+                    if ($element->use_entity_entry && $element->entity?->hasEntry()) {
+                        $entry .= "\n\n" . $this->markdownMentionsService->single($this->isSingle)->parseForMarkdown($element->entity);
+                    }
+                    $elements[] = [
+                        'name' => $element->elementName(),
+                        'entity' => $element->entity ? $this->entityLink($element->entity) : null,
+                        'date' => $element->use_event_date && $element->entity?->event?->date
+                            ? $element->entity->event->date
+                            : $element->date,
+                        'entry' => $entry,
+                    ];
+                }
+
+                $entityData['timelineEras'][] = [
+                    'name' => $era->name,
+                    'abbreviation' => $era->abbreviation,
+                    'ages' => $era->ages(),
+                    'entry' => $this->markdownMentionsService->single($this->isSingle)->parseForMarkdown($era),
+                    'elements' => $elements,
+                ];
+            }
+        }
 
         foreach ($this->entity->allRelationships as $relation) {
             $entityData['relations'] .= $this->markdownRelation($relation);

@@ -44,6 +44,7 @@
 
 @includeWhen($entity->isCharacter(), 'entities.markdown.characters')
 @includeWhen($entity->isQuest(), 'entities.markdown.quests')
+@includeWhen($entity->isTimeline(), 'entities.markdown.timelines')
 @includeWhen($entity->isOrganisation(), 'entities.markdown.organisations')
 @includeWhen($entity->isLocation(), 'entities.markdown.locations')
 @includeWhen($entity->isCreature(), 'entities.markdown.creatures')
