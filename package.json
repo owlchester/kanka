@@ -54,7 +54,7 @@
         "@tiptap/vue-3": "^3.30.0",
         "click-outside-vue3": "^4.0.1",
         "codemirror": "6.0.2",
-        "colord": "^2.9.3",
+        "colord": "^2.9.4",
         "cytoscape": "^3.27.0",
         "cytoscape-cose-bilkent": "^4.1.0",
         "cytoscape-dblclick": "^0.3.1",
