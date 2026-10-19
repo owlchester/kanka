@@ -28,10 +28,10 @@ class UpdateRelation extends FormRequest
     {
         return $this->clean([
             'target_id' => 'integer|exists:entities,id',
-            'relation' => 'max:255',
+            'relation' => 'string|max:255',
             'visibility_id' => 'integer|exists:visibilities,id',
             'attitude' => 'min:-100|max:100',
-            'colour' => 'max:7',
+            'colour' => 'nullable|string|max:7',
             'is_pinned' => 'boolean',
         ]);
     }

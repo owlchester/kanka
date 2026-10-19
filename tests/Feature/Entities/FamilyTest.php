@@ -71,6 +71,20 @@ it('UPDATES a valid family without a name')
     ->assertStatus(200)
     ->assertJsonFragment(['type' => 'Magic']);
 
+it('saves a family tree through the API', function () {
+    $this->asUser()
+        ->withCampaign(['boost_count' => 4])
+        ->withFamilies();
+
+    $family = Family::firstOrFail();
+    $url = '/api/1.0/campaigns/1/families/' . $family->id . '/tree';
+
+    $this->postJson($url, ['tree' => []])->assertSuccessful();
+    $this->putJson($url, ['tree' => []])->assertSuccessful();
+
+    expect($family->fresh()->familyTree?->config)->toBe([]);
+});
+
 it('DELETES a family')
     ->asUser()
     ->withCampaign()

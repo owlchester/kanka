@@ -35,6 +35,7 @@ class EntityTemplateApiController extends ApiController
             ->apiFilter($campaign, request()->all())
             ->lastSync(request()->get('lastSync'))
             ->where('is_template', true)
+            ->orderBy('entities.id')
             ->paginate()
             ->appends(request()->except(['page', 'lastSync'])));
     }

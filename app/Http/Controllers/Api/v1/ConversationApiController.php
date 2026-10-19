@@ -27,6 +27,7 @@ class ConversationApiController extends MiscApiController
             ->filter(request()->all())
             ->withApi()
             ->lastSync(request()->get('lastSync'))
+            ->orderBy('conversations.id')
             ->paginate());
     }
 

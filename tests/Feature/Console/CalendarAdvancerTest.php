@@ -18,7 +18,8 @@ it('does not report invalid calendar configuration', function () {
     $invalidLeapRule = Calendar::factory()->create([
         'campaign_id' => 1,
         'date' => '1-1-1',
-        'leap_year_amount' => -1,
+        'leap_year_amount' => -28,
+        'leap_year_month' => 2,
     ]);
 
     $this->artisan('calendar:advance')

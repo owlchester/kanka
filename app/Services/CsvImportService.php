@@ -449,7 +449,9 @@ class CsvImportService
         foreach ($files as $file) {
             Storage::disk('export')->delete($file);
         }
-        File::delete($this->filePath);
+        if (isset($this->filePath)) {
+            File::delete($this->filePath);
+        }
 
         return $this;
     }

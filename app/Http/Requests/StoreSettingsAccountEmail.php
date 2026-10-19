@@ -26,7 +26,7 @@ class StoreSettingsAccountEmail extends FormRequest
     {
         $user = Auth::user();
         $rules = [
-            'email' => 'required|email|unique:users,email,' . $user->id,
+            'email' => 'required|string|email|unique:users,email,' . $user->id,
         ];
 
         return $rules;

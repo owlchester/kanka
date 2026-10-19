@@ -28,6 +28,7 @@ class CharacterApiController extends MiscApiController
                 ->withApi()
                 ->filter(request()->all())
                 ->lastSync(request()->get('lastSync'))
+                ->orderBy('characters.id')
                 ->paginate(),
         );
     }

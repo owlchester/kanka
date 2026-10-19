@@ -33,7 +33,7 @@ class StoreEntityAssets extends FormRequest
     {
         return $this->clean([
             'type_id' => ['required', new Enum(EntityAssetType::class)],
-            'name' => 'required_unless:type_id,' . EntityAssetType::file->value . '|max:45',
+            'name' => 'required_unless:type_id,' . EntityAssetType::file->value . '|string|max:45',
             'visibility_id' => 'nullable|integer|exists:visibilities,id',
             'files' => ['required_if:type_id,' . EntityAssetType::file->value],
             'files.*' => [
@@ -42,7 +42,7 @@ class StoreEntityAssets extends FormRequest
                 new EntityFile,
             ],
             'metadata.url' => 'required_if:type_id,' . EntityAssetType::link->value . '|string|url',
-            'metadata.icon' => ['max:45', new FontAwesomeIcon],
+            'metadata.icon' => ['nullable', 'bail', 'string', 'max:45', new FontAwesomeIcon],
         ]);
     }
 }

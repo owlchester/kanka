@@ -27,6 +27,7 @@ class QuestApiController extends MiscApiController
             ->filter(request()->all())
             ->withApi()
             ->lastSync(request()->get('lastSync'))
+            ->orderBy('quests.id')
             ->paginate());
     }
 

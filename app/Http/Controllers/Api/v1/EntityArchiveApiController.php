@@ -35,6 +35,7 @@ class EntityArchiveApiController extends ApiController
             ->apiFilter($campaign, request()->all())
             ->lastSync(request()->get('lastSync'))
             ->whereNotNull('archived_at')
+            ->orderBy('entities.id')
             ->paginate()
             ->appends(request()->except(['page', 'lastSync'])));
     }

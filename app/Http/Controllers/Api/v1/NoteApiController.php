@@ -27,6 +27,7 @@ class NoteApiController extends MiscApiController
             ->filter(request()->all())
             ->withApi()
             ->lastSync(request()->get('lastSync'))
+            ->orderBy('notes.id')
             ->paginate());
     }
 

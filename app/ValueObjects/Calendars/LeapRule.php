@@ -12,7 +12,7 @@ final readonly class LeapRule
         public int $interval,
         public int $startYear,
     ) {
-        if ($this->amount < 0 || $this->month < 1 || $this->interval < 1) {
+        if ($this->month < 1 || $this->interval < 1) {
             throw new InvalidArgumentException('Invalid calendar leap rule.');
         }
     }

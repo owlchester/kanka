@@ -7,6 +7,7 @@ use App\Models\Entity;
 use App\Models\EntityType;
 use App\Models\Image;
 use App\Services\Api\BulkEntityCreatorService;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 it('GETS all entities')
@@ -16,6 +17,30 @@ it('GETS all entities')
     ->withCreatures()
     ->get('/api/1.0/campaigns/1/entities')
     ->assertStatus(200);
+
+it('paginates entities in ID order', function () {
+    $this->asUser()->withCampaign();
+    auth()->user()->update(['settings' => ['pagination' => 45]]);
+    Character::factory()->count(46)->create(['campaign_id' => 1]);
+
+    $queries = [];
+    DB::listen(function ($query) use (&$queries) {
+        $queries[] = $query->sql;
+    });
+
+    $firstPage = $this->getJson('/api/1.0/campaigns/1/entities?page=1')->assertSuccessful();
+    $secondPage = $this->getJson('/api/1.0/campaigns/1/entities?page=2')->assertSuccessful();
+
+    $expectedIds = Entity::where('campaign_id', 1)->orderBy('id')->pluck('id')->all();
+    $firstPageIds = collect($firstPage->json('data'))->pluck('id')->all();
+    $secondPageIds = collect($secondPage->json('data'))->pluck('id')->all();
+    $entityQuery = collect($queries)->first(fn (string $sql) => str_contains($sql, 'from "entities"') && str_contains($sql, 'limit 45'));
+
+    expect($firstPageIds)->toBe(array_slice($expectedIds, 0, 45))
+        ->and($secondPageIds)->toBe(array_slice($expectedIds, 45))
+        ->and([...$firstPageIds, ...$secondPageIds])->toBe($expectedIds)
+        ->and($entityQuery)->toMatch('/order by "entities"\."id" asc/i');
+});
 
 it('GETS a specific entity')
     ->asUser()

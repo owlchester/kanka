@@ -39,13 +39,13 @@ class StoreTimeline extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required|max:191',
+            'name' => 'required|string|max:191',
             'entry' => 'nullable|string',
             'type' => 'nullable|string|max:191',
             'parent_id' => 'nullable|integer|exists:entities,id',
             'calendar_id' => 'nullable|integer|exists:calendars,id',
             'image' => 'mimes:jpeg,png,jpg,gif,webp,svg|max:' . Limit::upload(),
-            'image_url' => 'nullable|url|active_url',
+            'image_url' => 'nullable|string|url|active_url',
             'entity_image_uuid' => 'nullable|exists:images,id',
             'entity_header_uuid' => 'nullable|exists:images,id',
             'template_id' => 'nullable',

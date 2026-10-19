@@ -28,6 +28,7 @@ class RaceApiController extends MiscApiController
             ->withApi()
             ->has('entity')
             ->lastSync(request()->get('lastSync'))
+            ->orderBy('races.id')
             ->paginate());
     }
 

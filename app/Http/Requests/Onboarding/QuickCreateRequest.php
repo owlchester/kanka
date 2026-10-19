@@ -14,7 +14,7 @@ class QuickCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'type' => 'required|in:character,location,organisation',
+            'type' => 'required|string|in:character,location,organisation',
             'name' => 'required|string|min:1|max:191',
         ];
     }

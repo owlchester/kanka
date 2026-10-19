@@ -24,7 +24,7 @@ class GalleryImageFolderStore extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required|max:100',
+            'name' => 'required|string|max:100',
         ];
 
         return $rules;

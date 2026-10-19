@@ -37,7 +37,7 @@ class StoreQuest extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required|max:191',
+            'name' => 'required|string|max:191',
             'entry' => 'nullable|string',
             'type' => 'nullable|string|max:191',
             'status_id' => ['nullable', 'exists:category_statuses,id'],

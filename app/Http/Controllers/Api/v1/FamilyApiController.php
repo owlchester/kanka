@@ -27,6 +27,7 @@ class FamilyApiController extends MiscApiController
             ->filter(request()->all())
             ->withApi()
             ->lastSync(request()->get('lastSync'))
+            ->orderBy('families.id')
             ->paginate());
     }
 

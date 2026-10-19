@@ -40,9 +40,9 @@ class StoreCalendar extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required|max:191',
+            'name' => 'required|string|max:191',
             'entry' => 'nullable|string',
-            'type' => 'nullable|max:191',
+            'type' => 'nullable|string|max:191',
             'parent_id' => 'nullable|integer|exists:entities,id',
             'entity_image_uuid' => 'nullable|exists:images,id',
             'month_name' => 'required|array|min:1',
@@ -61,7 +61,7 @@ class StoreCalendar extends FormRequest
             'template_id' => 'nullable',
             'attribute' => ['array', new UniqueAttributeNames],
             'is_private' => 'nullable|boolean',
-            'format' => ['nullable', new CalendarFormat, 'string', 'max:20'],
+            'format' => ['nullable', 'bail', 'string', 'max:20', new CalendarFormat],
             //            'moon_offset' => [
             //                '*' => new CalendarMoonOffset()
             //            ],
@@ -69,8 +69,8 @@ class StoreCalendar extends FormRequest
 
         if (request()->has('quick-creator')) {
             $rules = [
-                'name' => 'required|max:191',
-                'type' => 'nullable|max:191',
+                'name' => 'required|string|max:191',
+                'type' => 'nullable|string|max:191',
                 'parent_id' => 'nullable|integer|exists:entities,id',
             ];
         }

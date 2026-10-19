@@ -28,7 +28,7 @@ class StoreMapLayer extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required|max:191',
+            'name' => 'required|string|max:191',
             'entry' => 'nullable',
             'visibility_id' => 'nullable|integer|exists:visibilities,id',
             'image_uuid' => 'required|exists:images,id',

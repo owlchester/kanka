@@ -38,11 +38,11 @@ class StoreAbility extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required|max:191',
+            'name' => 'required|string|max:191',
             'entry' => 'nullable|string',
             'type' => 'nullable|string|max:191',
             'parent_id' => 'nullable|integer|exists:entities,id',
-            'charges' => 'nullable|max:120',
+            'charges' => 'nullable|string|max:120',
             'entity_image_uuid' => 'nullable|exists:images,id',
             'entity_header_uuid' => 'nullable|exists:images,id',
             'template_id' => 'nullable',

@@ -17,7 +17,14 @@
                     <i class="fa-solid fa-palette" aria-hidden="true" />
                 </button>
 
-                <input ref="colorisInput" type="text" class="marker-colour-input" tabindex="-1" aria-hidden="true" />
+                <input
+                    ref="colorisInput"
+                    type="text"
+                    class="marker-colour-input"
+                    :data-append-to="appendTo"
+                    tabindex="-1"
+                    aria-hidden="true"
+                />
             </div>
         </div>
     </div>
@@ -55,6 +62,7 @@ import "@melloware/coloris/dist/coloris.css";
 const props = defineProps({
     colour: { type: String, default: null },
     label: { type: String, required: true },
+    appendTo: { type: String, default: "body" },
 });
 
 const emit = defineEmits(["change"]);
@@ -133,6 +141,7 @@ function selectColour(hex) {
 }
 
 function openPicker() {
+    Coloris({ parent: colorisInput.value.dataset.appendTo });
     colorisInput.value.click();
 }
 

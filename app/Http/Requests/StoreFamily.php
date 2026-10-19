@@ -37,7 +37,7 @@ class StoreFamily extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required|max:191',
+            'name' => 'required|string|max:191',
             'entry' => 'nullable|string',
             'type' => 'nullable|string|max:191',
             'locations' => ['nullable', 'array', new EntityField(config('entities.ids.location'), Location::class)],

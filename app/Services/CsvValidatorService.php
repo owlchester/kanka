@@ -200,35 +200,43 @@ class CsvValidatorService
 
     public function validate(): void
     {
-        $csv = new SplFileObject($this->filePath);
-        $csv->setFlags(
-            SplFileObject::READ_CSV |
-            SplFileObject::SKIP_EMPTY |
-            SplFileObject::DROP_NEW_LINE
-        );
+        try {
+            if (! mb_check_encoding(File::get($this->filePath), 'UTF-8')) {
+                throw new RuntimeException(
+                    __('campaigns/import.csv.encoding_error')
+                );
+            }
 
-        $validHeaders = $this->getFullyFilledColumnHeaders($csv);
-
-        if (empty($validHeaders)) {
-            $this->cleanup();
-            throw new RuntimeException(
-                __('campaigns/import.csv.validation_error')
+            $csv = new SplFileObject($this->filePath);
+            $csv->setFlags(
+                SplFileObject::READ_CSV |
+                SplFileObject::SKIP_EMPTY |
+                SplFileObject::DROP_NEW_LINE
             );
+
+            $validHeaders = $this->getFullyFilledColumnHeaders($csv);
+
+            if (empty($validHeaders)) {
+                throw new RuntimeException(
+                    __('campaigns/import.csv.validation_error')
+                );
+            }
+
+            $config = $this->job->config;
+            $config['filled_columns'] = $validHeaders;
+
+            $this->job->status_id = CampaignImportStatus::READY;
+            $this->job->config = $config;
+            $this->job->save();
+
+            $this->user->notify(new Header('campaign.import.csv_ready', 'upload', 'info',
+                [
+                    'campaign' => $this->campaign->name,
+                    'link' => route('campaign.import.csv', ['campaign' => $this->campaign, 'campaign_import' => $this->job]),
+                ]));
+        } finally {
+            $this->cleanup();
         }
-
-        $config = $this->job->config;
-        $config['filled_columns'] = $validHeaders;
-
-        $this->job->status_id = CampaignImportStatus::READY;
-        $this->job->config = $config;
-        $this->job->save();
-
-        $this->user->notify(new Header('campaign.import.csv_ready', 'upload', 'info',
-            [
-                'campaign' => $this->campaign->name,
-                'link' => route('campaign.import.csv', ['campaign' => $this->campaign, 'campaign_import' => $this->job]),
-            ]));
-        $this->cleanup();
 
     }
 }

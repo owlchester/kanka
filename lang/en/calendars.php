@@ -215,7 +215,7 @@ return [
         'weekdays'          => 'Number of days in a week',
     ],
     'show'          => [
-        'missing_details'       => 'This calendar couldn\'t be displayed. Calendars need at least 2 months and 2 weekdays to render properly.',
+        'missing_details'       => 'This calendar couldn\'t be displayed because its month, weekday, or leap year configuration is invalid.',
         'moon_1first_quarter'   => ':moon first quarter',
         'moon_age'              => ':phase (:count day ago)|:phase (:count days ago)',
         'moon_first_quarter'    => ':moon first quarter',

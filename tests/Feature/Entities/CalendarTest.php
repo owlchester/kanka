@@ -208,6 +208,40 @@ it('renders years before the first leap year consistently', function (string $la
         ->assertSee('data-date="5-1-31"', false);
 })->with(['month', 'year']);
 
+it('renders calendars with subtractive leap years', function () {
+    $this->asUser()->withCampaign();
+
+    $calendar = Calendar::factory()->create([
+        'campaign_id' => 1,
+        'date' => '1-2-27',
+        'leap_year_amount' => -1,
+        'leap_year_month' => 2,
+        'leap_year_offset' => 1,
+        'leap_year_start' => 1,
+    ]);
+
+    $this->get(route('entities.show', [$calendar->campaign, $calendar->entity]))
+        ->assertSuccessful()
+        ->assertSee('data-date="1-2-27"', false)
+        ->assertDontSee('data-date="1-2-28"', false);
+});
+
+it('warns about invalid leap rules instead of crashing', function () {
+    $this->asUser()->withCampaign();
+
+    $calendar = Calendar::factory()->create([
+        'campaign_id' => 1,
+        'leap_year_amount' => -28,
+        'leap_year_month' => 2,
+        'leap_year_offset' => 1,
+        'leap_year_start' => 1,
+    ]);
+
+    $this->get(route('entities.show', [$calendar->campaign, $calendar->entity]))
+        ->assertSuccessful()
+        ->assertSee(__('calendars.show.missing_details'));
+});
+
 it('renders a recurring intermediate moon phase reminder on its phase date', function () {
     $this->asUser()->withCampaign();
     $calendar = Calendar::factory()->create([

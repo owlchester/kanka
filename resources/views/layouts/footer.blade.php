@@ -68,7 +68,6 @@
                     <a href="{{ route('larecipe.index') }}" target="_blank" class="text-link">{{ __('front.features.api.link') }}</a>
                     <a href="https://blog.kanka.io" target="_blank" class="text-link">{{ __('footer.blog') }}</a>
                     <a href="https://status.kanka.io" target="_blank" class="text-link">{{ __('footer.status') }}</a>
-                    <a href="{{ Domain::toFront('newsletter') }}" class="text-link">{{ __('footer.newsletter') }}</a>
                 </div>
 
                 <div class="flex flex-col gap-3 text-sm">
