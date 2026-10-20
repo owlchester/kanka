@@ -3,7 +3,6 @@
 use App\Models\Attribute;
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Models\User;
 use App\Services\Attributes\EntitySheetService;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
@@ -94,7 +93,7 @@ it('syncs sheets submitted by the main entity edit form', function () {
         ->and($entity->sheets()->exists())->toBeFalse();
 });
 
-it('allows a non-admin to attach an installed campaign sheet to an entity', function () {
+it('saves an installed campaign sheet when creating an entity', function () {
     $this->asUser()->withCampaign()->withCharacters();
     config(['marketplace.enabled' => true]);
 
@@ -146,13 +145,23 @@ it('allows a non-admin to attach an installed campaign sheet to an entity', func
     $campaign->boost_count = 1;
     $campaign->saveQuietly();
     $entity = Entity::firstOrFail();
-    $this->actingAs(User::factory()->create());
-
-    app(EntitySheetService::class)->sync($entity, $campaign, [json_encode([
-        'id' => null,
+    $entity->sheets()->create([
         'source' => 'marketplace',
         'reference' => $versionUuid,
-    ])]);
+        'sort_order' => 0,
+    ]);
+    $this->post(route('characters.store', $campaign), [
+        'name' => 'Copied character',
+        'copy_source_id' => $entity->id,
+        'sheets_present' => '1',
+        'sheets' => [json_encode([
+            'id' => null,
+            'source' => 'marketplace',
+            'reference' => $versionUuid,
+            'sort_order' => 0,
+        ])],
+    ])->assertRedirect();
 
-    expect($entity->sheets()->where('reference', $versionUuid)->exists())->toBeTrue();
+    $createdEntity = Entity::where('name', 'Copied character')->firstOrFail();
+    expect($createdEntity->sheets()->where('reference', $versionUuid)->exists())->toBeTrue();
 });

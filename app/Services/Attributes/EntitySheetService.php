@@ -10,7 +10,7 @@ use Illuminate\Validation\ValidationException;
 
 class EntitySheetService
 {
-    public function sync(Entity $entity, Campaign $campaign, array $sheets): void
+    public function sync(Entity $entity, Campaign $campaign, array $sheets, ?Entity $copySource = null): void
     {
         $existingSheets = $entity->sheets()->get()->keyBy('id');
         $resolved = [];
@@ -30,6 +30,22 @@ class EntitySheetService
                     throw ValidationException::withMessages(['sheets' => __('The selected sheet is invalid.')]);
                 }
                 $resolved[] = ['source' => $existing->source, 'reference' => $existing->reference, 'sort_order' => $order];
+
+                continue;
+            }
+
+            $copiedSheet = $copySource?->campaign_id === $campaign->id
+                && $copySource->type_id === $entity->type_id
+                && $copySource->sheets()
+                    ->where('source', $sheet['source'])
+                    ->where('reference', $sheet['reference'])
+                    ->exists();
+            if ($copiedSheet) {
+                $resolved[] = [
+                    'source' => $sheet['source'],
+                    'reference' => $sheet['reference'],
+                    'sort_order' => $order,
+                ];
 
                 continue;
             }
