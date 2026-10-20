@@ -37,7 +37,7 @@ class ValidationEmail extends Mailable
     public function build()
     {
         return $this
-            ->from(['address' => config('app.email'), 'name' => 'Kanka Team'])
+            ->from(config('app.email'), config('mail.from.name'))
             ->subject(__('emails/subscriptions/validation.title'))
             ->view('emails.subscriptions.validation.user-html')
             ->tag('validation');

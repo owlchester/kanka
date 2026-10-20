@@ -28,7 +28,7 @@ class CampaignBoostController extends Controller
         $campaignID = request()->get('campaign');
         $campaign = Campaign::where('slug', $campaignID)->firstOrFail();
         $user = auth()->user();
-        if ($user->hasBoosterNomenclature()) {
+        if ($user->hasLegacyBoosterNomenclature()) {
             $superboost = request()->has('superboost');
             $cost = $superboost ? 3 : 1;
 
@@ -39,7 +39,7 @@ class CampaignBoostController extends Controller
                 ->with('user', $user);
         }
 
-        if (! $campaign->boosted() && $user->availableBoosts() < 1 && ! auth()->user()->can('boost', $user)) {
+        if (! $campaign->boosted() && $user->availableBenefits() < 1 && ! auth()->user()->can('boost', $user)) {
             return view('layouts.dialogs.subscription', [
                 'title' => __('settings/premium.ready.title'),
                 'campaign' => $campaign,
@@ -66,7 +66,7 @@ class CampaignBoostController extends Controller
             return response()->json();
         }
 
-        if (auth()->user()->hasBoosterNomenclature()) {
+        if (auth()->user()->hasLegacyBoosterNomenclature()) {
             try {
                 $action = $request->post('action');
                 if ($request->has('superboost')) {
@@ -117,7 +117,7 @@ class CampaignBoostController extends Controller
     {
         $this->authorize('destroy', $campaignBoost);
 
-        if (! auth()->user()->hasBoosterNomenclature()) {
+        if (! auth()->user()->hasLegacyBoosterNomenclature()) {
             return redirect()->route('settings.premium');
         }
 
@@ -132,7 +132,7 @@ class CampaignBoostController extends Controller
      */
     public function update(Request $request, CampaignBoost $campaignBoost)
     {
-        if (! auth()->user()->hasBoosterNomenclature()) {
+        if (! auth()->user()->hasLegacyBoosterNomenclature()) {
             return redirect()->route('settings.premium');
         }
         $campaign = $campaignBoost->campaign;
@@ -171,7 +171,7 @@ class CampaignBoostController extends Controller
     {
         $this->authorize('destroy', $campaignBoost);
 
-        if (auth()->user()->hasBoosterNomenclature()) {
+        if (auth()->user()->hasLegacyBoosterNomenclature()) {
             return view('settings.boosters.unboost')
                 ->with('campaign', $campaignBoost->campaign)
                 ->with('boost', $campaignBoost);
@@ -197,7 +197,7 @@ class CampaignBoostController extends Controller
             ->unboost($campaignBoost);
         CampaignCache::campaign($campaignBoost->campaign)->clearSidebar()->clear();
 
-        if (auth()->user()->hasBoosterNomenclature()) {
+        if (auth()->user()->hasLegacyBoosterNomenclature()) {
             return redirect()
                 ->route('settings.boost')
                 ->with('success_raw', __('settings/boosters.unboost.success', ['campaign' => $campaignBoost->campaign->name]));

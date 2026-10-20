@@ -15,7 +15,7 @@
     </p>
 
     <p>
-        {{ __('emails/subscriptions/upcoming.closing') }}<
-        The Kanka Team
+        {{ __('emails/subscriptions/upcoming.closing') }}<br />
+        {{ config('mail.from.name') }}
     </p>
 @endsection

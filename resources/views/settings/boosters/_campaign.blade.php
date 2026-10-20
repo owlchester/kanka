@@ -42,7 +42,7 @@ $boost = isset($boost) ? $boost : $campaign->boosts->first();?>
 
     </div>
     <div class="">
-        @if (auth()->user()->hasBoosterNomenclature())
+        @if (auth()->user()->hasLegacyBoosterNomenclature())
         <div class="dropdown">
             <a class="dropdown-toggle p-2 btn2 btn-ghost" data-dropdown aria-expanded="false" data-placement="right" data-tree="escape">
                 <i class="fa-regular fa-ellipsis-h" data-tree="escape"></i>

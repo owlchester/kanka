@@ -3,8 +3,6 @@
 
 [{{ $user->name }}](https://admin.kanka.io/users/{{ $user->id }}) cancelled.
 
-- **User country:** {{ $country ?? 'N/A' }}
-
 **Reason:**
 
 {{ __('settings.subscription.cancel.options.' . ($cancellation->reason === 'custom' ? 'other' : $cancellation->reason)) }}
@@ -24,5 +22,11 @@
 **Subscribed since:**
 
 {{ $user->subscription('kanka')?->created_at->isoFormat('MMMM D, Y') }}
+
+@if ($cancellation->reason === 'financial')
+**User country:**
+
+{{ $country ?? 'N/A' }}
+@endif
 
 </x-mail::message>

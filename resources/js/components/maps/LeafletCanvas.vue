@@ -57,6 +57,50 @@ let editCircle = null
 let editPolygon = null
 let editPath = null
 let baseMapLayer = null
+const renderedPins = new Map()
+
+function updatePinSelection(layer, id, shape) {
+    const selectedId = props.editingPin?.id ?? props.centerPin?.id
+    const selected = selectedId != null && id === selectedId
+    const element = shape === 'label' ? layer.getTooltip()?.getElement() : layer.getElement()
+
+    element?.classList.toggle('map-pin-selected', selected)
+}
+
+function trackPinSelection(layer, pin) {
+    const update = () => updatePinSelection(layer, pin.id, pin.shape)
+    // Clustered markers and hidden groups can receive a new DOM element when shown again.
+    layer.on('add tooltipopen', update)
+    update()
+}
+
+function updateSelectedPin() {
+    renderedPins.forEach(({ layer, pin }) => updatePinSelection(layer, pin.id, pin.shape))
+
+    if (props.editingPin) {
+        const layer = editMarker || editCircle || editPolygon || editPath
+        if (layer) {
+            updatePinSelection(layer, props.editingPin.id, props.editingPin.shape)
+        }
+    }
+}
+
+function bindPinName(layer, pin) {
+    if (pin.shape === 'label' || !pin.name || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        return
+    }
+
+    // Leaflet treats string tooltip content as HTML; pin names must stay plain text.
+    const content = document.createElement('span')
+    content.textContent = pin.name
+    layer.bindTooltip(content, {
+        direction: 'top',
+        className: 'map-pin-name',
+        // Point markers are anchored at their tip or center. Clear the whole icon,
+        // using the same size-aware offset as popups (including legacy pins).
+        offset: layer instanceof L.Marker ? layer.options.icon.options.popupAnchor : [0, 0],
+    })
+}
 
 function buildGrid() {
     if (gridLayer) {
@@ -595,6 +639,7 @@ function buildPin(pin) {
 }
 
 function buildPins() {
+    renderedPins.clear()
     if (pinLayer) {
         leafletMap.removeLayer(pinLayer)
     }
@@ -616,6 +661,9 @@ function buildPins() {
         .filter((pin) => pin.id !== props.editingPin?.id)
         .forEach((pin) => {
             const marker = buildPin(pin)
+            renderedPins.set(pin.id, { layer: marker, pin })
+            trackPinSelection(marker, pin)
+            bindPinName(marker, pin)
             marker.on('click', (e) => {
                 L.DomEvent.stopPropagation(e)
                 emit('pin-click', pin)
@@ -719,6 +767,7 @@ function buildEditLayer() {
             fillColor: pin.colour || '#ccc',
             fillOpacity: (pin.opacity ?? 100) / 100,
         }).addTo(leafletMap)
+        trackPinSelection(editPolygon, pin)
         editPolygon.enableEdit()
         editPolygon.on('editable:vertex:new editable:vertex:dragend editable:dragend editable:vertex:deleted', () => {
             const rings = editPolygon.getLatLngs()
@@ -734,6 +783,7 @@ function buildEditLayer() {
             weight: pin.polygonStyle?.['stroke-width'] || 1,
             opacity: (pin.opacity ?? 100) / 100,
         }).addTo(leafletMap)
+        trackPinSelection(editPath, pin)
         editPath.enableEdit()
         editPath.on('editable:vertex:new editable:vertex:dragend editable:dragend editable:vertex:deleted', () => {
             emit('edit-path-change', editPath.getLatLngs().map((point) => [point.lat, point.lng]))
@@ -749,6 +799,7 @@ function buildEditLayer() {
             stroke: false,
             fillOpacity: (pin.opacity ?? 100) / 100,
         }).addTo(leafletMap)
+        trackPinSelection(editCircle, pin)
         editCircle.enableEdit()
         editCircle.on('editable:vertex:dragend editable:dragend', () => {
             const center = editCircle.getLatLng()
@@ -759,6 +810,7 @@ function buildEditLayer() {
     }
 
     editMarker = buildPin({ ...pin, id: 'editing' })
+    trackPinSelection(editMarker, pin)
     editMarker.addTo(leafletMap)
     editMarker.dragging?.enable()
     editMarker.on('dragend', (e) => {
@@ -953,6 +1005,8 @@ watch(() => props.centerNonce, () => {
         leafletMap.setView([props.centerPin.latitude, props.centerPin.longitude])
     }
 })
+
+watch(() => [props.centerPin?.id, props.editingPin?.id], updateSelectedPin)
 
 watch(() => props.pins, () => {
     if (leafletMap) {
@@ -1166,6 +1220,7 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
+    renderedPins.clear()
     document.removeEventListener('keydown', handlePolygonKeydown)
     rulerControl = null
     layerControl = null
@@ -1273,6 +1328,37 @@ defineExpose({
     background-color: var(--label-colour, hsl(var(--b1)/1));
     border-color: var(--label-colour, hsl(var(--b1)/1));
     color: var(--label-text-colour, hsl(var(--bc)/1));
+}
+
+.map-pin-name {
+    background-color: hsl(var(--b1)/1);
+    border-color: hsl(var(--b3)/1);
+    color: hsl(var(--bc)/1);
+}
+
+.map-pin-name.leaflet-tooltip-top::before {
+    border-top-color: hsl(var(--b3)/1);
+}
+
+.marker.map-pin-selected .marker-icon,
+.marker.map-pin-selected .marker-avatar,
+.marker.map-pin-selected .marker-image,
+.marker.map-pin-selected .marker-pin,
+.map-label.map-pin-selected {
+    outline: 2px solid hsl(var(--p)/1);
+    outline-offset: 3px;
+}
+
+.marker.map-pin-selected .marker-icon,
+.marker.map-pin-selected .marker-avatar,
+.marker.map-pin-selected .marker-image {
+    border-radius: 9999px;
+}
+
+path.map-pin-selected {
+    stroke: hsl(var(--p)/1);
+    stroke-width: 3px;
+    stroke-opacity: 1;
 }
 
 .marker-draft .marker-icon,

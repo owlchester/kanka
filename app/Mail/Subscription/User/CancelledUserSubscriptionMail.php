@@ -32,7 +32,7 @@ class CancelledUserSubscriptionMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address(config('app.email'), 'Kanka Team'),
+            from: new Address(config('app.email'), config('mail.from.name')),
             subject: 'Confirmation: ' . $this->cancellation->tier . ' subscription cancellation',
             tags: ['cancelled']
         );

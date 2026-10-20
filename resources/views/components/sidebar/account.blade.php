@@ -57,7 +57,7 @@
                                 :text="__('billing/menu.overview')"
                             ></x-sidebar.element>
                         </li>
-                        @if (auth()->user()->hasBoosterNomenclature())
+                        @if (auth()->user()->hasLegacyBoosterNomenclature())
                             <li class="px-2 {{ $active('boosters') }} subsection">
                                 <x-sidebar.element
                                     :url="route('settings.boost')"

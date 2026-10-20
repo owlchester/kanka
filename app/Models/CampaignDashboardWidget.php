@@ -310,7 +310,7 @@ class CampaignDashboardWidget extends Model
             'mentions.target.entityType:id,code,is_special',
         ];
 
-        // Apply child-only filters through a subquery on the canonical entity query.
+        // Use the same canonical filter path as entity lists and saved bookmarks.
         if ($this->entityType && ! empty($this->config['filters']) && $this->entityType->isStandard()) {
             /** @var Character|mixed $model */
             $model = $this->entityType->getClass();
@@ -324,13 +324,7 @@ class CampaignDashboardWidget extends Model
                 ->entityType($this->entityType)
                 ->make('dashboard');
 
-            // Add the filter to the base query
-            $base = $base->whereIn(
-                'entities.entity_id',
-                $model
-                    ->filter($filterService->filters())
-                    ->select($model->getTable() . '.id')
-            );
+            $base = $base->filter($filterService->filters(), $this->entityType);
         }
 
         return $this->cachedEntities = $base
@@ -374,13 +368,7 @@ class CampaignDashboardWidget extends Model
                 ->model($model)
                 ->make('dashboard');
 
-            // Add the filter to the base query
-            $base = $base->whereIn(
-                'entities.entity_id',
-                $model
-                    ->filter($filterService->filters()) // @phpstan-ignore method.notFound
-                    ->select($model->getTable() . '.id')
-            );
+            $base = $base->filter($filterService->filters(), $this->entityType);
         }
 
         return $base

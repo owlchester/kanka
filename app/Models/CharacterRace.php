@@ -32,7 +32,7 @@ class CharacterRace extends Model
         'race_id',
         'is_private',
     ];
-    
+
     public $casts = [
         'is_private' => 'boolean',
     ];

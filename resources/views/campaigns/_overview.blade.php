@@ -37,7 +37,7 @@
             @endif
         </div>
         @if (!$campaign->boosted() && auth()->check())
-            @if (auth()->user()->hasBoosterNomenclature())
+            @if (auth()->user()->hasLegacyBoosterNomenclature())
                 <a class="rounded-full border border-base-300 h-12 w-12 gap-2 flex items-center justify-center cursor-pointer neutral-link hover:bg-base-200 flex-none" href="{{ route('settings.boost', ['campaign' => $campaign->id]) }}">
                     <x-icon class="fa-regular fa-angle-right" />
                 </a>

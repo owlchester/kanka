@@ -1,6 +1,6 @@
 @if ($campaign->boosted())
     <?php return; ?>
-@elseif (auth()->user()->availableBoosts() < $cost)
+@elseif (auth()->user()->availableBenefits() < $cost)
     <?php return; ?>
 @endif
 

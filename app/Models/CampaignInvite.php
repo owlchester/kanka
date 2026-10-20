@@ -34,7 +34,7 @@ class CampaignInvite extends Model
         'is_active',
         'validity',
     ];
-    
+
     public $casts = [
         'is_active' => 'boolean',
     ];

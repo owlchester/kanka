@@ -31,7 +31,7 @@ class TroubleshootingService
     }
 
     /**
-     * Generate a unique token for the kanka team to join a campaign
+     * Generate a unique token for the team to join a campaign
      *
      * @throws TranslatableException
      */

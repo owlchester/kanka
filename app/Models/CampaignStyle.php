@@ -42,7 +42,7 @@ class CampaignStyle extends Model
         'is_enabled' => 'boolean',
         'is_theme' => 'boolean',
     ];
-    
+
     public $fillable = [
         'name',
         'content',

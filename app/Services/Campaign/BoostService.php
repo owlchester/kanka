@@ -49,11 +49,11 @@ class BoostService
     {
         if ($this->campaign->boosted() && ! $this->upgrade) {
             throw new AlreadyBoostedException($this->campaign);
-        } elseif ($this->user->availableBoosts() === 0) {
+        } elseif ($this->user->availableBenefits() === 0) {
             throw new TranslatableException('settings/premium.exceptions.out-of-stock');
         }
 
-        if ($this->action == 'superboost' && $this->user->availableBoosts() < ($this->upgrade ? 2 : 3)) {
+        if ($this->action == 'superboost' && $this->user->availableBenefits() < ($this->upgrade ? 2 : 3)) {
             throw new ExhaustedSuperboostsException;
         }
 
@@ -86,7 +86,7 @@ class BoostService
     {
         if ($this->campaign->premium()) {
             throw new TranslatableException('settings/premium.exceptions.already');
-        } elseif ($this->user->availableBoosts() < 1) {
+        } elseif ($this->user->availableBenefits() < 1) {
             throw new TranslatableException('settings/premium.exceptions.out-of-stock');
         }
 
@@ -132,7 +132,7 @@ class BoostService
         $this->campaign->saveQuietly();
 
         if (isset($this->user)) {
-            $key = $this->user->hasBoosterNomenclature() ? 'boost.remove' : 'premium.remove';
+            $key = $this->user->hasLegacyBoosterNomenclature() ? 'boost.remove' : 'premium.remove';
             $this->notify($key);
         }
 

@@ -35,7 +35,7 @@ class BoostController extends Controller
      */
     public function index()
     {
-        if (! auth()->user()->hasBoosterNomenclature()) {
+        if (! auth()->user()->hasLegacyBoosterNomenclature()) {
             return redirect()->route('settings.premium');
         }
         // If a campaign was provided, make sure we have access to it

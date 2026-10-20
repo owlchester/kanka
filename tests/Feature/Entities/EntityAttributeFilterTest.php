@@ -41,10 +41,16 @@ it('filters unchecked checkbox attributes with a zero value without broadening o
     $entityIds = Entity::query()
         ->filter(['attribute_name' => 'checky', 'attribute_value' => '0'])
         ->pluck('entities.id');
+    $characterIds = Character::query()
+        ->filter(['attribute_name' => 'checky', 'attribute_value' => '0'])
+        ->pluck('characters.id');
 
     expect($entityIds->all())
         ->toContain($uncheckedCheckbox->entity->id, $zeroValue->entity->id)
         ->not->toContain($checkedCheckbox->entity->id, $otherValue->entity->id);
+    expect($characterIds->all())
+        ->toContain($uncheckedCheckbox->id, $zeroValue->id)
+        ->not->toContain($checkedCheckbox->id, $otherValue->id);
 });
 
 it('excludes attribute values prefixed with an exclamation mark', function () {
@@ -73,8 +79,14 @@ it('excludes attribute values prefixed with an exclamation mark', function () {
     $entityIds = Entity::query()
         ->filter(['attribute_name' => 'checky', 'attribute_value' => '!1'])
         ->pluck('entities.id');
+    $characterIds = Character::query()
+        ->filter(['attribute_name' => 'checky', 'attribute_value' => '!1'])
+        ->pluck('characters.id');
 
     expect($entityIds->all())
         ->toContain($otherValue->entity->id, $emptyValue->entity->id)
         ->not->toContain($matchingValue->entity->id);
+    expect($characterIds->all())
+        ->toContain($otherValue->id, $emptyValue->id)
+        ->not->toContain($matchingValue->id);
 });

@@ -14,9 +14,14 @@ use App\Models\ItemCreator;
 use App\Models\Location;
 use App\Models\Organisation;
 use App\Models\OrganisationMember;
+use App\Models\Quest;
+use App\Models\QuestElement;
 use App\Models\Race;
 use App\Models\Relation;
 use App\Models\Tag;
+use App\Models\Timeline;
+use App\Models\TimelineElement;
+use App\Models\TimelineEra;
 use App\Services\Entity\MarkdownExportService;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
@@ -485,4 +490,65 @@ it('uses each direction role for mirrored relationships', function () {
         ->and($childMarkdown)
         ->toContain('**Child of**')
         ->not->toContain('**Parent of**');
+});
+
+it('includes quest elements in markdown exports', function () {
+    $this->asUser()->withCampaign();
+
+    $quest = Quest::factory()->create(['campaign_id' => 1, 'name' => 'Find the relic']);
+    QuestElement::factory()->create([
+        'quest_id' => $quest->id,
+        'name' => 'Ancient ruin',
+        'role' => 'Destination',
+        'entry' => '<p>Buried beneath the hills.</p>',
+    ]);
+
+    $markdown = app(MarkdownExportService::class)
+        ->campaign($quest->campaign)
+        ->entity($quest->entity)
+        ->single()
+        ->markdown();
+
+    expect($markdown)
+        ->toContain('## ' . __('quests.show.tabs.elements'))
+        ->toContain('### Ancient ruin')
+        ->toContain('**' . __('quests.fields.role') . ':** Destination')
+        ->toContain('Buried beneath the hills.');
+});
+
+it('includes timeline eras and their elements in markdown exports', function () {
+    $this->asUser()->withCampaign();
+
+    $timeline = Timeline::factory()->create(['campaign_id' => 1, 'name' => 'World history']);
+    $era = TimelineEra::factory()->create([
+        'timeline_id' => $timeline->id,
+        'name' => 'First Age',
+        'abbreviation' => 'FA',
+        'start_year' => '1',
+        'end_year' => '100',
+        'entry' => '<p>The age began.</p>',
+        'position' => 1,
+    ]);
+    TimelineElement::factory()->create([
+        'timeline_id' => $timeline->id,
+        'era_id' => $era->id,
+        'name' => 'The founding',
+        'date' => 'Year 1',
+        'entry' => '<p>A city was founded.</p>',
+        'position' => 1,
+    ]);
+
+    $markdown = app(MarkdownExportService::class)
+        ->campaign($timeline->campaign)
+        ->entity($timeline->entity)
+        ->single()
+        ->markdown();
+
+    expect($markdown)
+        ->toContain('## ' . __('timelines.fields.eras'))
+        ->toContain('### First Age (FA)')
+        ->toContain('The age began.')
+        ->toContain('#### The founding')
+        ->toContain('Year 1')
+        ->toContain('A city was founded.');
 });

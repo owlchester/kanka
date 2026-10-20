@@ -9,7 +9,7 @@ use App\Facades\SingleUserCache;
 use App\Models\Concerns\HasImage;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Sanitizable;
-use App\Models\Concerns\UserBoosters;
+use App\Models\Concerns\UserBenefits;
 use App\Models\Concerns\UserTokens;
 use App\Models\Relations\UserRelations;
 use App\Models\Scopes\UserScope;
@@ -59,7 +59,7 @@ class User extends \Illuminate\Foundation\Auth\User implements OAuthenticatable
     use LastSync;
     use Notifiable;
     use Sanitizable;
-    use UserBoosters;
+    use UserBenefits;
     use UserRelations;
     use UserScope;
     use UserSetting;

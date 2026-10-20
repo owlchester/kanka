@@ -1,6 +1,6 @@
 @if ($campaign->premium() || ($campaign->superboosted() && $boost->inCooldown()))
         <?php return; ?>
-@elseif (auth()->user()->availableBoosts() < $cost)
+@elseif (auth()->user()->availableBenefits() < $cost)
         <?php return; ?>
 @endif
 <button type="submit" class="btn2 btn-primary">

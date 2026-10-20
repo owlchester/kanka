@@ -14,6 +14,8 @@ use App\Models\EntityAsset;
 use App\Models\Image;
 use App\Models\Map;
 use App\Models\MiscModel;
+use App\Models\Quest;
+use App\Models\Timeline;
 use App\Notifications\Header;
 use App\Services\Entity\MarkdownExportService;
 use App\Traits\CampaignAware;
@@ -362,6 +364,13 @@ class ExportService
         }
         if ($this->isMarkdown && $class instanceof Character) {
             $with[] = 'organisationMemberships.organisation.entity';
+        }
+        if ($this->isMarkdown && $class instanceof Timeline) {
+            $with[] = 'eras.orderedElements.entity.event';
+            $with[] = 'eras.orderedElements.entity.entityType';
+        }
+        if ($this->isMarkdown && $class instanceof Quest) {
+            $with[] = 'elements.entity.entityType';
         }
 
         return $with;
