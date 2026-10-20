@@ -32,12 +32,12 @@ if (!isset($entity)) {
         @endforeach
 }
     </style>
-@endsection
+@append
 
 @section('scripts')
     @parent
     <script>
-        const entityData = window.entityData = {
+        window.entityData = {
             name: {{ \Illuminate\Support\Js::from($entity->name) }},
             is_private: {{ \Illuminate\Support\Js::from((bool) $entity->is_private) }},
             type: {
@@ -99,7 +99,7 @@ if (!isset($entity)) {
             },
             @endforeach ],
         }
-        const attributeApis = window.attributeApis = {
+        window.attributeApis = {
             all: {
                 method: 'GET',
                 url: {{ \Illuminate\Support\Js::from(route('entities.attributes.live-api.index', [$campaign, $entity])) }}
@@ -109,7 +109,7 @@ if (!isset($entity)) {
                 url: {{ \Illuminate\Support\Js::from(route('entities.attributes.live-api.create', [$campaign, $entity])) }}
             },
         }
-        const abilityApis = window.abilityApis = {
+        window.abilityApis = {
             all: {
                 method: 'GET',
                 url: {{ \Illuminate\Support\Js::from(route('entities.entity_abilities.api', [$campaign, $entity])) }}
@@ -117,6 +117,8 @@ if (!isset($entity)) {
         }
     </script>
     <script>
+        (() => {
         {!! $plugin->version->javascript !!}
+        })();
     </script>
-@endsection
+@append

@@ -39,6 +39,23 @@
 
         <!-- Middle -->
         <div class="w-full flex flex-col gap-2 flex-1 min-h-0 overflow-hidden">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+                <div class="flex flex-wrap gap-2" :aria-label="trans('sheets.title')">
+                    <draggable v-model="sheets" handle=".sheet-handle" :disabled="sheets.length <= 1" class="flex flex-wrap gap-2" v-if="sheets.length" >
+                        <div v-for="sheet in sheets" :key="sheet.key" class="flex items-center gap-2 rounded-full border border-base-300 bg-base-200 px-3 py-1.5 text-sm">
+                            <span class="sheet-handle" :class="sheets.length > 1 ? 'cursor-grab' : 'cursor-default'" :title="sheets.length > 1 ? trans('sheets.reorder') : null">{{ sheet.name }}</span>
+                            <button type="button" class="cursor-pointer" @click="removeSheet(sheet)" :aria-label="trans('sheets.remove')" :title="trans('sheets.remove')"><i class="fa-solid fa-xmark" aria-hidden="true" /></button>
+                        </div>
+                    </draggable>
+                </div>
+                    <button type="button" class="btn2 btn-outline btn-sm" @click="openSheetDialog()">
+                    <i class="fa-regular fa-plus" aria-hidden="true" />
+                    <span v-html="trans('sheets.add')"></span>
+                </button>
+            </div>
+
+            <input type="hidden" name="sheets_present" value="1" />
+            <input v-for="(sheet, index) in sheets" :key="'sheet-input-' + sheet.key" type="hidden" name="sheets[]" :value="JSON.stringify({id: sheet.id, source: sheet.source, reference: sheet.reference, sort_order: index})" />
             <div class="flex gap-2 border-b border-base-300 text-neutral-content items-center text-xs font-light px-4 flex-none">
                 <div class="w-6 md:w-8 flex-none"></div>
                 <div class="w-6 md:w-8 flex-none">
@@ -106,9 +123,7 @@
             <p class="text-neutral-content" v-html="trans('templates.helper')"></p>
             <label for="template_id" v-html="trans('templates.template')"></label>
             <select v-model="template" class="w-full" id="template_id">
-                <optgroup v-for="(group, key) in templates" v-bind:label="key">
-                    <option v-for="(option, id) in group" v-bind:value="id" v-html="option"></option>
-                </optgroup>
+                <option v-for="kit in templates" :key="kit.id" :value="kit.id">{{ kit.name }}</option>
             </select>
         </article>
         <footer class="flex flex-wrap gap-3 justify-end items-center p-4 md:px-6">
@@ -120,10 +135,36 @@
             </menu>
         </footer>
     </dialog>
+
+    <dialog class="dialog rounded-top md:rounded-2xl bg-base-100 min-w-fit shadow-md text-base-content" id="sheets-dialog" aria-modal="true" v-if="!loading">
+        <header class="flex gap-6 items-center p-4 md:p-6 justify-between">
+            <h4 class="text-lg font-normal" v-html="trans('sheets.title')"></h4>
+            <button autofocus type="button" class="text-xl opacity-50 hover:opacity-100 focus:opacity-100 cursor-pointer" aria-label="Close" @click="closeSheetDialog()">
+                <i class="fa-regular fa-circle-xmark" aria-hidden="true"></i>
+                <span class="sr-only">Close</span>
+            </button>
+        </header>
+        <article class="flex flex-col gap-4 p-4 md:p-6">
+            <p v-if="availableSheets.length" class="text-neutral-content" v-html="trans('sheets.choose')"></p>
+            <p v-else class="text-neutral-content flex gap-1">
+                <span v-html="trans('sheets.none_installed')"></span>
+                <a :href="meta.sheet_library" target="_blank" rel="noopener" class="text-link" v-html="trans('sheets.library')"></a>
+            </p>
+            <div v-if="unattachedSheets.length" class="flex flex-col gap-2">
+                <button v-for="option in unattachedSheets" :key="option.id" type="button" class="btn2 btn-outline justify-start text-base-content" @click="addSheet(option)">
+                    <i class="fa-regular fa-file-lines" aria-hidden="true" />
+                    <span class="font-medium text-base-content">{{ option.name }}</span>
+                    <span class="ms-auto text-xs text-neutral-content" v-html="option.author"></span>
+                </button>
+            </div>
+            <p v-if="availableSheets.length && unattachedSheets.length === 0" class="text-sm text-neutral-content" v-html="trans('sheets.all_added')"></p>
+            <a v-if="availableSheets.length" :href="meta.sheet_library" target="_blank" rel="noopener" class="text-link self-start" v-html="trans('sheets.library')"></a>
+        </article>
+    </dialog>
 </template>
 
 <script setup lang="ts">
-import {ref, onMounted, onBeforeUnmount} from 'vue'
+import {ref, computed, onMounted, onBeforeUnmount} from 'vue'
 
 const props = defineProps<{
     api: string,
@@ -131,6 +172,8 @@ const props = defineProps<{
 
 
 const attributes = ref([])
+const sheets = ref([])
+const availableSheets = ref([])
 const visibleAttributes = ref([])
 let i18n = []
 let meta = []
@@ -145,6 +188,7 @@ const showTemplates = ref(false)
 const searchTerm = ref(null)
 const template = ref(null)
 const newAttributeID = ref(0)
+const unattachedSheets = computed(() => availableSheets.value.filter(option => !isSheetAdded(option)))
 
 onMounted(() => {
     fetch(props.api)
@@ -154,9 +198,11 @@ onMounted(() => {
                 attributes.value.push(a)
                 visibleAttributes.value.push(a)
             })
+            sheets.value = (response.sheets || []).map(sheet => ({...sheet, key: sheet.id, name: sheet.name || sheet.reference}))
             meta = response.meta;
             i18n = response.i18n;
-            templates = response.templates;
+            templates = Object.values(response.templates || {}).flatMap(group => Object.entries(group).map(([id, name]) => ({id, name})));
+            availableSheets.value = response.available_sheets || [];
             loading.value = false;
         });
     window.addEventListener('keydown', handleKeyDown);
@@ -293,6 +339,14 @@ const toggleTemplates = () => {
     window.openDialog('templates-dialog')
 }
 
+const openSheetDialog = () => {
+    window.openDialog('sheets-dialog')
+}
+
+const closeSheetDialog = () => {
+    window.closeDialog('sheets-dialog')
+}
+
 const closeModal = () => {
     window.closeDialog('templates-dialog')
 }
@@ -312,16 +366,66 @@ const loadTemplate = () => {
     fetch(url)
         .then(response => response.json())
         .then(response => {
-            response.forEach(attr => importAttribute(attr))
+            let marketplaceSheet = false
+            response.forEach(attr => {
+                if (attr.is_sheet) {
+                    marketplaceSheet = true
+                    if (!sheets.value.find(sheet => sheet.source === attr.source && sheet.reference === attr.reference)) {
+                        const sheet = {id: null, source: attr.source, reference: attr.reference, name: attr.name, key: 'new-' + attr.reference}
+                        sheets.value.push(sheet)
+                    }
+                    return
+                }
+                importAttribute(attr, marketplaceSheet)
+            })
             closeModal()
             window.showToast(trans('toasts.template'))
             template.value = null
         })
 }
 
-const importAttribute = (attribute) => {
-    // Don't re-import existing attributes, unless they've been deleted
+const removeSheet = (sheet) => {
+    sheets.value = sheets.value.filter(item => item.key !== sheet.key)
+}
+
+const isSheetAdded = (option) => {
+    return sheets.value.some(sheet => sheet.plugin_uuid === option.id || sheet.reference === option.reference)
+}
+
+const addSheet = (option) => {
+    if (isSheetAdded(option)) {
+        return
+    }
+
+    fetch(meta.template + '?template=' + option.id)
+        .then(response => response.json())
+        .then(response => {
+            const sheet = response.find(attribute => attribute.is_sheet)
+            if (!sheet) {
+                return
+            }
+
+            sheets.value.push({
+                id: null,
+                source: sheet.source,
+                reference: sheet.reference,
+                plugin_uuid: option.id,
+                name: option.name,
+                key: 'new-' + sheet.reference,
+            })
+            response.filter(attribute => !attribute.is_sheet).forEach(attribute => importAttribute(attribute, true))
+            window.showToast(trans('toasts.template'))
+            closeSheetDialog()
+        })
+}
+
+const importAttribute = (attribute, preserveExisting = false) => {
     let ex = attributes.value.find(attr => attr.name == attribute.name)
+    if (ex && preserveExisting) {
+        ex.is_deleted = false
+        refreshVisibleAttributes()
+        return
+    }
     if (ex && !ex.is_deleted) {
         return
     }

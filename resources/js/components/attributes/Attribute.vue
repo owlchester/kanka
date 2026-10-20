@@ -232,7 +232,7 @@ const privateToggle = (attribute) => {
 }
 
 const isDisabled = (attribute) => {
-    return attribute.is_hidden || attribute.name === '_layout'
+    return attribute.is_hidden
 }
 
 const configValue = (attribute) => {

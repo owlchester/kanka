@@ -30,6 +30,9 @@ class SaveAttributes extends FormRequest
 
         return $this->clean([
             'attribute' => ['array', new UniqueAttributeNames],
+            'sheets_present' => ['sometimes', 'accepted'],
+            'sheets' => ['sometimes', 'array'],
+            'sheets.*' => ['string'],
         ]);
     }
 }

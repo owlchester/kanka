@@ -66,6 +66,7 @@ trait HasFilters
             'has_entry',
             'has_entity_files',
             'has_attributes',
+            'has_character_sheet',
             'created_by',
             'updated_by',
             'attribute_name',
@@ -185,6 +186,9 @@ trait HasFilters
                     $this->filterIsEquipped($query, $value);
                 } elseif ($key == 'has_attributes') {
                     $this->filterHasAttributes($query, $value);
+                } elseif ($key == 'has_character_sheet') {
+                    $query->joinEntity();
+                    $this->applyEntityCharacterSheetsPresenceFilter($query, 'e', $value);
                 } elseif ($key == 'has_entity_files') {
                     $this->filterHasFiles($query, $value);
                 } elseif ($key == 'parent') {

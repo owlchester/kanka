@@ -301,6 +301,7 @@ abstract class DatagridFilter
     protected function hasAttributes(): self
     {
         $this->filters[] = 'has_attributes';
+        $this->filters[] = 'has_character_sheet';
 
         return $this;
     }

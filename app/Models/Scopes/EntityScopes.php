@@ -283,6 +283,8 @@ trait EntityScopes
                 $this->applyEntityEntryFilter($query, 'entities', $values);
             } elseif ($name === 'has_attributes') {
                 $this->applyEntityAttributesPresenceFilter($query, 'entities', $values);
+            } elseif ($name === 'has_character_sheet') {
+                $this->applyEntityCharacterSheetsPresenceFilter($query, 'entities', $values);
             } elseif (in_array($name, ['attribute_name', 'attribute_value'])) {
                 // attribute_value is handled together with attribute_name
                 if ($name === 'attribute_name') {

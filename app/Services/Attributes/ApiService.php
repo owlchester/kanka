@@ -11,6 +11,8 @@ use App\Traits\EntityAware;
 use App\Traits\EntityTypeAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Number;
 use Illuminate\Support\Str;
 
@@ -43,7 +45,40 @@ class ApiService
             'i18n' => $this->i18n(),
             'meta' => $this->meta(),
             'templates' => $this->templates(),
+            'sheets' => $this->sheets(),
+            'available_sheets' => $this->availableSheets(),
         ];
+    }
+
+    protected function sheets(): array
+    {
+        if (! isset($this->entity)) {
+            return [];
+        }
+        $sheets = $this->entity->sheets;
+        $references = $sheets->where('source', 'marketplace')->pluck('reference');
+        $plugins = $references->isEmpty() || ! Schema::hasTable('plugin_versions') ? collect() : DB::table('plugin_versions')
+            ->join('plugins', 'plugins.id', '=', 'plugin_versions.plugin_id')
+            ->whereIn('plugin_versions.uuid', $references)
+            ->get(['plugin_versions.uuid', 'plugins.uuid as plugin_uuid', 'plugins.name'])
+            ->keyBy('uuid');
+
+        return $sheets->map(function ($sheet) use ($plugins): array {
+            $plugin = $plugins->get($sheet->reference);
+            $name = $plugin?->name;
+            if ($sheet->source === 'legacy') {
+                $template = app(TemplateService::class)->communityTemplate($sheet->reference);
+                $name = $template ? $template->name() : $sheet->reference;
+            }
+
+            return [
+                'id' => $sheet->id,
+                'source' => $sheet->source,
+                'reference' => $sheet->reference,
+                'name' => $name ?: $sheet->reference,
+                'plugin_uuid' => $plugin?->plugin_uuid,
+            ];
+        })->values()->all();
     }
 
     protected function i18n(): array
@@ -98,9 +133,18 @@ class ApiService
                 'title' => __('entities/attributes.template.load.title'),
                 'template' => __('entities/attributes.fields.kit'),
                 'load' => __('entities/attributes.actions.load'),
-                'helper' => __('entities/attributes.template.pitch', [
-                    'plugin' => '<a href="' . config('marketplace.url') . '/character-sheets" class="text-link">' . __('footer.plugins') . '</a>',
-                ]),
+                'helper' => __('entities/attributes.template.pitch'),
+            ],
+            'sheets' => [
+                'title' => __('entities/attributes.sheets.title'),
+                'remove' => __('entities/attributes.sheets.remove'),
+                'reorder' => __('entities/attributes.sheets.reorder'),
+                'description' => __('entities/attributes.sheets.description'),
+                'add' => __('entities/attributes.sheets.add'),
+                'choose' => __('entities/attributes.sheets.choose'),
+                'none_installed' => __('entities/attributes.sheets.none_installed'),
+                'all_added' => __('entities/attributes.sheets.all_added'),
+                'library' => __('entities/attributes.sheets.library'),
             ],
         ];
     }
@@ -113,6 +157,7 @@ class ApiService
             'template' => route('templates.load-attributes', $this->campaign),
             'mentions' => route('search.live', $this->campaign),
             'max' => $this->maxFields(),
+            'sheet_library' => config('marketplace.url') . '/character-sheets',
         ];
     }
 
@@ -159,36 +204,32 @@ class ApiService
 
     protected function buildPlaceholders(): void
     {
-        /** @var ?Attribute $layout */
-        $layout = $this->attributes->where('name', '_layout')->first();
-        if (! $layout || ! Str::isUuid($layout['value'])) {
+        if (! isset($this->entity)) {
             return;
         }
 
-        /** @var ?CampaignPlugin $plugin */
-        $plugin = CampaignPlugin::templates($this->campaign)
-            ->select('campaign_plugins.*')
-            ->leftJoin('plugin_versions as pv', 'pv.plugin_id', 'campaign_plugins.plugin_id')
-            ->where('pv.uuid', $layout['value'])
-            ->has('plugin')
-            ->first();
-
-        // If the plugin is published, we're good. Otherwise, it's
-        if (empty($plugin) || ! $plugin->renderable()) {
-            return;
-        }
-
-        foreach ($plugin->version->attributes as $attribute) {
-            if (! isset($attribute['placeholder']) || empty($attribute['placeholder'])) {
+        foreach ($this->entity->sheets as $sheet) {
+            if ($sheet->source !== 'marketplace' || ! Str::isUuid($sheet->reference)) {
                 continue;
             }
-            $index = $this->attributes->search(function ($item) use ($attribute) {
-                return $item['name'] === $attribute['name'];
-            });
-            if ($index !== false) {
-                $ex = $this->attributes->get($index);
-                $ex['placeholder'] = $attribute['placeholder'];
-                $this->attributes->put($index, $ex);
+            $plugin = CampaignPlugin::templates($this->campaign)
+                ->whereHas('version', fn ($query) => $query->where('uuid', $sheet->reference))
+                ->first();
+            if (empty($plugin) || ! $plugin->renderable()) {
+                continue;
+            }
+            foreach ($plugin->version->attributes as $attribute) {
+                if (empty($attribute['placeholder'])) {
+                    continue;
+                }
+                $index = $this->attributes->search(fn ($item) => $item['name'] === $attribute['name']);
+                if ($index !== false) {
+                    $ex = $this->attributes->get($index);
+                    if (empty($ex['placeholder'])) {
+                        $ex['placeholder'] = $attribute['placeholder'];
+                        $this->attributes->put($index, $ex);
+                    }
+                }
             }
         }
     }
@@ -271,24 +312,29 @@ class ApiService
             $templates[$key][$id] = $name;
         }
 
-        // If the campaign isn't boosted, or the marketplace isn't enable, end here
-        if (! $this->campaign->boosted() || ! config('marketplace.enabled')) {
-            return $templates;
-        }
-
-        // Marketplace campaigns
-        $key = __('attributes/templates.list.sheets');
-        foreach (CampaignPlugin::templates($this->campaign)->with(['plugin', 'plugin.user'])->get() as $plugin) {
-            if (empty($plugin->plugin)) {
-                continue;
-            }
-            $templates[$key][$plugin->plugin->uuid] = __('campaigns/plugins.templates.name', [
-                'name' => $plugin->name,
-                'user' => $plugin->plugin->author(),
-            ]);
-        }
-
         return $templates;
+    }
+
+    protected function availableSheets(): array
+    {
+        if (! $this->campaign->boosted()
+            || ! config('marketplace.enabled')) {
+            return [];
+        }
+
+        return CampaignPlugin::templates($this->campaign)
+            ->select('campaign_plugins.*')
+            ->with(['plugin', 'plugin.user'])
+            ->get()
+            ->filter(fn (CampaignPlugin $plugin) => ! empty($plugin->plugin))
+            ->map(fn (CampaignPlugin $plugin) => [
+                'id' => $plugin->plugin->uuid,
+                'reference' => $plugin->version->uuid,
+                'name' => $plugin->plugin->name,
+                'author' => $plugin->plugin->author(),
+            ])
+            ->values()
+            ->all();
     }
 
     /**
