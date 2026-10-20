@@ -5,8 +5,10 @@ namespace App\Services\Entity;
 use App\Models\Character;
 use App\Models\Entity;
 use App\Models\Post;
+use App\Models\Quest;
 use App\Models\QuestElement;
 use App\Models\Relation;
+use App\Models\Timeline;
 use App\Services\Abilities\AbilityService;
 use App\Services\MarkdownMentionsService;
 use App\Traits\CampaignAware;
@@ -175,9 +177,9 @@ class MarkdownExportService
         $entityData['inventory'] = $this->markdownInventory();
         $entityData['assets'] = $this->markdownAssets();
 
-        if ($this->entity->isQuest() && $this->entity->child) {
+        if ($this->entity->child instanceof Quest) {
             $elements = $this->entity->child->elements;
-            foreach ($elements->sortBy(fn (QuestElement $element) => [$element->role, $element->entity?->name ?? $element->name]) as $element) {
+            foreach ($elements->sortBy(fn (QuestElement $element) => [$element->role, $element->entity->name ?? $element->name]) as $element) {
                 if ($element->entity_id && ! $element->entity) {
                     continue;
                 }
@@ -194,7 +196,7 @@ class MarkdownExportService
             }
         }
 
-        if ($this->entity->isTimeline() && $this->entity->child) {
+        if ($this->entity->child instanceof Timeline) {
             foreach ($this->entity->child->eras()->with(['orderedElements.entity.event'])->ordered()->get() as $era) {
                 $elements = [];
                 foreach ($era->orderedElements as $element) {
