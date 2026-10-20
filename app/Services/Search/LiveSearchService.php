@@ -26,6 +26,10 @@ class LiveSearchService
         $excludes = $this->request->has('exclude') ? $this->request->get('exclude') : null;
 
         $with = ['image', 'entityType'];
+        $withParent = $this->request->filled('with-parent') && $this->entityType->id === config('entities.ids.ability');
+        if ($withParent) {
+            $with[] = 'parent';
+        }
         if ($this->request->filled('with-family')) {
             $with[] = 'character';
             $with[] = 'character.families';
@@ -58,6 +62,9 @@ class LiveSearchService
                 'name' => $entity->name,
                 'text' => $entity->name,
             ];
+            if ($withParent && $entity->parent) {
+                $format['text'] .= ' (' . $entity->parent->name . ')';
+            }
             if ($entity->isTag() && $entity->tag->hasColour()) {
                 $format['colour'] = $entity->tag->colour;
                 $format['colour_style'] = $entity->tag->colourStyle();
