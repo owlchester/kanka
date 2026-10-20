@@ -36,6 +36,7 @@ if (!isset($entity)) {
 
 @section('scripts')
     @parent
+    @once
     <script>
         window.entityData = {
             name: {{ \Illuminate\Support\Js::from($entity->name) }},
@@ -116,6 +117,7 @@ if (!isset($entity)) {
             },
         }
     </script>
+    @endonce
     <script>
         (() => {
         {!! $plugin->version->javascript !!}
