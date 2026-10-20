@@ -467,12 +467,11 @@ class CrudController extends Controller
                         $copySource = $request->filled('copy_source_id')
                             ? Entity::find((int) $request->input('copy_source_id'))
                             : null;
-                        app(EntitySheetService::class)->sync(
-                            $new->entity,
-                            $this->campaign,
-                            $request->input('sheets', []),
-                            $copySource,
-                        );
+                        app(EntitySheetService::class)
+                            ->campaign($this->campaign)
+                            ->entity($new->entity)
+                            ->copySource($copySource)
+                            ->sync($request->input('sheets', []));
                     }
 
                     $this->attributeService

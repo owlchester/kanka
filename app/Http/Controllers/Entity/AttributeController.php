@@ -94,7 +94,10 @@ class AttributeController extends Controller
         $attributes = $request->get('attribute', []);
         DB::transaction(function () use ($request, $entity, $campaign, $attributes): void {
             if ($request->has('sheets_present')) {
-                $this->sheetService->sync($entity, $campaign, $request->input('sheets', []));
+                $this->sheetService
+                    ->campaign($campaign)
+                    ->entity($entity)
+                    ->sync($request->input('sheets', []));
             }
             $this->service
                 ->entity($entity)

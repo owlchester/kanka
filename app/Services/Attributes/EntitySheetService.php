@@ -2,17 +2,30 @@
 
 namespace App\Services\Attributes;
 
-use App\Models\Campaign;
 use App\Models\CampaignPlugin;
 use App\Models\Entity;
+use App\Traits\CampaignAware;
+use App\Traits\EntityAware;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
 class EntitySheetService
 {
-    public function sync(Entity $entity, Campaign $campaign, array $sheets, ?Entity $copySource = null): void
+    use CampaignAware;
+    use EntityAware;
+
+    protected ?Entity $copySource = null;
+
+    public function copySource(?Entity $entity): self
     {
-        $existingSheets = $entity->sheets()->get()->keyBy('id');
+        $this->copySource = $entity;
+
+        return $this;
+    }
+
+    public function sync(array $sheets): void
+    {
+        $existingSheets = $this->entity->sheets()->get()->keyBy('id');
         $resolved = [];
         $plugins = null;
 
@@ -34,9 +47,9 @@ class EntitySheetService
                 continue;
             }
 
-            $copiedSheet = $copySource?->campaign_id === $campaign->id
-                && $copySource->type_id === $entity->type_id
-                && $copySource->sheets()
+            $copiedSheet = $this->copySource?->campaign_id === $this->campaign->id
+                && $this->copySource->type_id === $this->entity->type_id
+                && $this->copySource->sheets()
                     ->where('source', $sheet['source'])
                     ->where('reference', $sheet['reference'])
                     ->exists();
@@ -51,12 +64,12 @@ class EntitySheetService
             }
 
             if ($sheet['source'] !== 'marketplace'
-                || ! $campaign->boosted()
+                || ! $this->campaign->boosted()
                 || ! config('marketplace.enabled')) {
                 throw ValidationException::withMessages(['sheets' => __('The selected sheet is unavailable.')]);
             }
 
-            $plugins ??= CampaignPlugin::templates($campaign)
+            $plugins ??= CampaignPlugin::templates($this->campaign)
                 ->select('campaign_plugins.*')
                 ->with(['plugin', 'version'])
                 ->get();
@@ -68,9 +81,9 @@ class EntitySheetService
         }
 
         $resolved = collect($resolved)->unique(fn (array $sheet) => $sheet['source'] . ':' . $sheet['reference'])->values();
-        $entity->sheets()->delete();
+        $this->entity->sheets()->delete();
         foreach ($resolved as $sheet) {
-            $entity->sheets()->create($sheet);
+            $this->entity->sheets()->create($sheet);
         }
     }
 }

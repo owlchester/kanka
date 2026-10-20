@@ -129,7 +129,10 @@ class EditController extends Controller
 
             if (auth()->user()->can('attributes', $entity)) {
                 if ($request->hasAny(['sheets_present', 'sheets'])) {
-                    $this->entitySheetService->sync($entity, $campaign, $request->input('sheets', []));
+                    $this->entitySheetService
+                        ->campaign($campaign)
+                        ->entity($entity)
+                        ->sync($request->input('sheets', []));
                 }
 
                 $this->attributeService

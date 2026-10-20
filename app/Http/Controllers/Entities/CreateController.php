@@ -92,12 +92,11 @@ class CreateController extends Controller
                     $copySource = $request->filled('copy_source_id')
                         ? Entity::find((int) $request->input('copy_source_id'))
                         : null;
-                    $this->entitySheetService->sync(
-                        $entity,
-                        $campaign,
-                        $request->input('sheets', []),
-                        $copySource,
-                    );
+                    $this->entitySheetService
+                        ->campaign($campaign)
+                        ->entity($entity)
+                        ->copySource($copySource)
+                        ->sync($request->input('sheets', []));
                 }
 
                 $this->attributeService

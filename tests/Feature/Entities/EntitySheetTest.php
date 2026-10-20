@@ -24,7 +24,10 @@ it('can remove a legacy sheet without removing shared entity attributes', functi
         'sort_order' => 0,
     ]);
 
-    app(EntitySheetService::class)->sync($entity, $campaign, []);
+    app(EntitySheetService::class)
+        ->campaign($campaign)
+        ->entity($entity)
+        ->sync([]);
 
     expect($entity->sheets()->exists())->toBeFalse()
         ->and($attribute->fresh()->value)->toBe('12');
