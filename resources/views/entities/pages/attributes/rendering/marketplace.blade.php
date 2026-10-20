@@ -12,7 +12,9 @@ if (!isset($entity)) {
 
 @if ($plugin->version->isDraft())
     <x-alert type="warning" class="max-w-4xl">
-        {{ __('This plugin is a draft, meaning only its authors can see it rendered.') }}
+        <p>
+        {!! __('attributes/templates.draft', ['name' => '<a href="' . e($plugin->plugin->libraryUrl()) . '" target="_blank" rel="noopener">' . e($plugin->plugin->name) . '</a>']) !!}
+        </p>
     </x-alert>
 @endif
 
