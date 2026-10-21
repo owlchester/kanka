@@ -149,7 +149,7 @@ function scalarRequestFields(): array
         [StoreTag::class, 'name'],
         [StoreTag::class, 'colour'],
         [StoreTimeline::class, 'name'],
-        [StoreTimeline::class, 'image_url'],
+        [StoreTimeline::class, 'revert_order'],
         [StoreWhiteboard::class, 'name'],
         [UpdateCalendarEvent::class, 'recurring_periodicity'],
         [UpdateCalendarEvent::class, 'comment'],
