@@ -14,6 +14,7 @@ use App\Models\Scopes\SubEntityScopes;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -45,6 +46,12 @@ abstract class MiscModel extends Model
     use Sortable;
     use SubEntityScopes;
     use TouchSilently;
+
+    public $timestamps = false;
+
+    protected $touches = ['entity'];
+
+    protected $appends = ['created_at', 'updated_at'];
 
     /**
      * Explicit fields for filtering.
@@ -95,6 +102,21 @@ abstract class MiscModel extends Model
     public function hasEntity(): bool
     {
         return method_exists($this, 'entityTypeID');
+    }
+
+    protected function createdAt(): Attribute
+    {
+        return Attribute::get(fn () => $this->entity?->created_at);
+    }
+
+    protected function updatedAt(): Attribute
+    {
+        return Attribute::get(fn () => $this->entity?->updated_at);
+    }
+
+    public function touch($attribute = null): bool
+    {
+        return $this->entity?->touch($attribute) ?? false;
     }
 
     /**
