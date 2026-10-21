@@ -382,7 +382,8 @@ class CsvImportService
         $this->entitySaveService
             ->campaign($this->campaign)
             ->user($this->user)
-            ->save($entity, $this->data);
+            ->entity($entity)
+            ->save($this->data);
 
         return $entity;
     }

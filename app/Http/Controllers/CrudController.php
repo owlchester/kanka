@@ -452,7 +452,7 @@ class CrudController extends Controller
                 // Fire an event for the Entity Observer.
                 $this->afterModelSave($new, $data);
 
-                $this->entitySaveService->campaign($this->campaign)->save($new->entity, $data);
+                $this->entitySaveService->campaign($this->campaign)->entity($new->entity)->save($data);
                 // Weird hack for prod issues
                 if (! $new->entity->child) {
                     $new->entity->child = $new;
@@ -684,7 +684,7 @@ class CrudController extends Controller
                 // Fire an event for the Entity Observer
                 $this->afterModelSave($model, $data);
 
-                $this->entitySaveService->campaign($this->campaign)->save($model->entity, $data);
+                $this->entitySaveService->campaign($this->campaign)->entity($model->entity)->save($data);
 
                 if (auth()->user()->can('attributes', $model->entity)) {
                     $this->attributeService

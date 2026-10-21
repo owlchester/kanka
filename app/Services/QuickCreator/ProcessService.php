@@ -87,9 +87,10 @@ class ProcessService
         }
 
         $this->loadTemplate();
-        $this->entitySaveService->campaign($this->campaign);
+        $this->entitySaveService->campaign($this->campaign)->skipPermissions();
 
         $values = $this->inputFields;
+        $rules = $validator->quickCreatorRules();
 
         foreach ($names as $name) {
             if ($name == '') {
@@ -97,14 +98,14 @@ class ProcessService
             }
 
             $values['name'] = $name;
-            $values = $this->validateEntity($values, $validator->rules());
+            $values = $this->validateEntity($values, $rules);
 
             if ($this->entityType->isCustom()) {
                 $this->entity = new Entity(Arr::only($values, Entity::CREATION_FIELDS));
                 $this->entity->campaign_id = $this->campaign->id;
                 $this->entity->type_id = $this->entityType->id;
                 $this->entity->save();
-                $this->entitySaveService->save($this->entity, $values);
+                $this->entitySaveService->entity($this->entity)->save($values);
                 $this->new[] = $this->entity;
                 $this->copyTemplateRelations();
             } else {
@@ -112,7 +113,7 @@ class ProcessService
                     ->campaign($this->campaign)
                     ->entityType($this->entityType)
                     ->create($values);
-                $this->entitySaveService->save($new->entity, $values);
+                $this->entitySaveService->entity($new->entity)->save($values);
                 $this->relationsFactory->for($new->entity)?->save($new, $values);
 
                 $this->new[] = $new->entity;
@@ -123,7 +124,6 @@ class ProcessService
 
         // If no entity was created, we throw the standard error
         if (empty($this->new)) {
-            $rules = $validator->rules();
             $this->validateEntity($values, $rules);
         }
     }

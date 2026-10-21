@@ -74,12 +74,6 @@ class StoreCalendar extends FormRequest
             //            ],
         ];
 
-        if (request()->has('quick-creator')) {
-            $rules = [
-                'parent_id' => 'nullable|integer|exists:entities,id',
-            ];
-        }
-
         $rules['has_leap_year'] = 'boolean';
         $rules['leap_year_amount'] = 'exclude_if:has_leap_year,0|numeric|min:-128|max:128';
         $rules['leap_year_offset'] = 'exclude_if:has_leap_year,0|numeric|min:1|max:255';
@@ -97,5 +91,12 @@ class StoreCalendar extends FormRequest
         }
 
         return $this->entityRules($rules);
+    }
+
+    public function quickCreatorRules(): array
+    {
+        return $this->entityRules([
+            'parent_id' => 'nullable|integer|exists:entities,id',
+        ]);
     }
 }

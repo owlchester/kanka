@@ -89,7 +89,6 @@ it('uses validated privacy when quick creating entities', function (bool $admin)
     $request = Request::create('/', 'POST', [
         'name' => 'Quick privacy test',
         'is_private' => true,
-        'quick-creator' => '1',
     ]);
     $route = new Route('POST', '/', fn () => null);
     $route->bind($request);

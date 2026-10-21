@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Facades\Limit;
 use App\Traits\ApiRequest;
 use App\Traits\EntityRequestRules;
 use Illuminate\Foundation\Http\FormRequest;
@@ -34,10 +33,13 @@ class StoreDiceRoll extends FormRequest
             'character_id' => 'nullable|integer|exists:characters,id',
         ];
 
-        if (request()->has('quick-creator')) {
-            unset($rules['parameters']);
-        }
-
         return $this->entityRules($rules);
+    }
+
+    public function quickCreatorRules(): array
+    {
+        return $this->entityRules([
+            'character_id' => 'nullable|integer|exists:characters,id',
+        ]);
     }
 }

@@ -95,7 +95,8 @@ class EntityApiController extends ApiController
 
         $this->entitySaveService
             ->campaign($campaign)
-            ->save($entity->fill($data), $data);
+            ->entity($entity->fill($data))
+            ->save($data);
 
         return new Resource($entity);
     }

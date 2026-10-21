@@ -10,6 +10,11 @@ use Illuminate\Validation\Rule;
 
 trait EntityRequestRules
 {
+    public function quickCreatorRules(): array
+    {
+        return $this->rules();
+    }
+
     protected function entityRules(array $rules): array
     {
         $rules += [
@@ -30,7 +35,6 @@ trait EntityRequestRules
             'remove-image' => 'nullable|boolean',
             'remove-header_image' => 'nullable|boolean',
             'copy_permissions' => 'nullable|boolean',
-            'quick-creator' => 'nullable|boolean',
             'is_attributes_private' => 'nullable|boolean',
             'permissions_too_many' => 'nullable|boolean',
             'role' => 'nullable|array',
