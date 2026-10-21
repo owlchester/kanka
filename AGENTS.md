@@ -2,7 +2,7 @@
 
 ## Runtime and Setup
 
-- This is a PHP 8.4 Laravel 13 application using Pest 4, Vue, Vite, and Yarn.
+- This is a PHP 8.5+ Laravel 13 application using Pest 4, Vue, Vite, and Yarn.
 - Local development runs in Laravel Sail. Start services with `vendor/bin/sail up -d`; run PHP, Composer, Artisan, and Node commands through `vendor/bin/sail`.
 - The Sail stack includes MariaDB, Redis, MinIO, Thumbor, Mailpit, and Meilisearch. See `docs/running.md` for the initial dependency-install command and environment setup.
 - Initial setup order is: configure `.env`, start Sail, create public MinIO buckets named `kanka` and `thumbnails`, run `vendor/bin/sail artisan kanka:install`, then run `vendor/bin/sail artisan setup:meilisearch`.
