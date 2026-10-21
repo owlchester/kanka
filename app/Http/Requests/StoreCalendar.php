@@ -2,10 +2,8 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Entity;
 use App\Rules\CalendarFormat;
 use App\Rules\CalendarMoonOffset;
-use App\Rules\Nested;
 use App\Traits\ApiRequest;
 use App\Traits\EntityRequestRules;
 use App\Traits\ResolvesNewForeignEntities;
@@ -39,7 +37,6 @@ class StoreCalendar extends FormRequest
     public function rules()
     {
         $rules = [
-            'parent_id' => 'nullable|integer|exists:entities,id',
             'month_name' => 'required|array|min:1',
             'month_length' => 'required|array|min:1',
             'weekday' => 'required|array|min:2',
@@ -79,24 +76,11 @@ class StoreCalendar extends FormRequest
         $rules['leap_year_offset'] = 'exclude_if:has_leap_year,0|numeric|min:1|max:255';
         $rules['leap_year_start'] = 'exclude_if:has_leap_year,0|numeric|min:1|max:255';
 
-        /** @var Entity $self */
-        $self = request()->route('entity');
-        if (! empty($self)) {
-            $rules['parent_id'] = [
-                'nullable',
-                'integer',
-                'exists:entities,id',
-                new Nested($self),
-            ];
-        }
-
         return $this->entityRules($rules);
     }
 
     public function quickCreatorRules(): array
     {
-        return $this->entityRules([
-            'parent_id' => 'nullable|integer|exists:entities,id',
-        ]);
+        return $this->entityRules([]);
     }
 }

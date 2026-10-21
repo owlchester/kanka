@@ -2,9 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Facades\Limit;
-use App\Models\Entity;
-use App\Rules\Nested;
 use App\Traits\ApiRequest;
 use App\Traits\EntityRequestRules;
 use App\Traits\ResolvesNewForeignEntities;
@@ -38,22 +35,9 @@ class StoreTimeline extends FormRequest
     public function rules()
     {
         $rules = [
-            'parent_id' => 'nullable|integer|exists:entities,id',
             'calendar_id' => 'nullable|integer|exists:calendars,id',
-            'image_url' => 'nullable|string|url|active_url',
-            'revert_order' => 'nullable',
+            'revert_order' => 'nullable|boolean',
         ];
-
-        /** @var Entity $self */
-        $self = request()->route('entity');
-        if (! empty($self)) {
-            $rules['parent_id'] = [
-                'nullable',
-                'integer',
-                'exists:entities,id',
-                new Nested($self),
-            ];
-        }
 
         return $this->entityRules($rules);
     }

@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Entity;
-use App\Rules\Nested;
 use App\Traits\ApiRequest;
 use App\Traits\EntityRequestRules;
 use App\Traits\ResolvesNewForeignEntities;
@@ -40,22 +38,10 @@ class StoreItem extends FormRequest
             'location_id' => 'nullable|integer|exists:locations,id',
             'creators' => 'nullable|array',
             'creators.*' => 'integer|exists:entities,id',
-            'parent_id' => 'nullable|integer|exists:entities,id',
             'price' => 'nullable|string|max:191',
             'size' => 'nullable|string|max:191',
             'weight' => 'nullable|string|max:191',
         ];
-
-        /** @var Entity $self */
-        $self = request()->route('entity');
-        if (! empty($self)) {
-            $rules['parent_id'] = [
-                'nullable',
-                'integer',
-                'exists:entities,id',
-                new Nested($self),
-            ];
-        }
 
         return $this->entityRules($rules);
     }

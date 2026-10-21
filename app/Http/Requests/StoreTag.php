@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Entity;
-use App\Rules\Nested;
 use App\Traits\ApiRequest;
 use App\Traits\EntityRequestRules;
 use App\Traits\ResolvesNewForeignEntities;
@@ -37,7 +35,6 @@ class StoreTag extends FormRequest
     public function rules()
     {
         $rules = [
-            'parent_id' => 'nullable|integer|exists:entities,id',
             'icon' => ['nullable', 'string', 'max:100', 'regex:/^(fa-|ra )/'],
             'colour' => [
                 'nullable',
@@ -47,17 +44,6 @@ class StoreTag extends FormRequest
             'is_auto_applied' => 'nullable|boolean',
             'is_hidden' => 'nullable|boolean',
         ];
-
-        /** @var Entity $self */
-        $self = request()->route('entity');
-        if (! empty($self)) {
-            $rules['parent_id'] = [
-                'nullable',
-                'integer',
-                'exists:entities,id',
-                new Nested($self),
-            ];
-        }
 
         return $this->entityRules($rules);
     }

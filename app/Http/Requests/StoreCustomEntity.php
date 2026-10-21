@@ -34,12 +34,7 @@ class StoreCustomEntity extends FormRequest
      */
     public function rules()
     {
-        $rules = [
-            'image_uuid' => 'nullable|integer|exists:images,id',
-            'parent_id' => 'nullable|integer|exists:entities,id',
-        ];
-
-        return $this->entityRules($rules);
+        return $this->entityRules([]);
     }
 
     /**

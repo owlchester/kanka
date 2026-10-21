@@ -2,9 +2,11 @@
 
 namespace App\Traits;
 
+use App\Models\Entity;
 use App\Models\Location;
 use App\Models\Tag;
 use App\Rules\EntityField;
+use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
 use Illuminate\Validation\Rule;
 
@@ -17,6 +19,12 @@ trait EntityRequestRules
 
     protected function entityRules(array $rules): array
     {
+        $parentRules = ['nullable', 'integer', 'exists:entities,id'];
+        $entity = $this->route('entity') ?? request()->route('entity');
+        if ($entity instanceof Entity) {
+            $parentRules[] = new Nested($entity);
+        }
+
         $rules += [
             'name' => 'required|string|max:191',
             'entry' => 'nullable|string',
@@ -28,6 +36,7 @@ trait EntityRequestRules
             'entity_image_uuid' => 'nullable|exists:images,id',
             'entity_header_uuid' => 'nullable|exists:images,id',
             'status_id' => 'nullable|exists:category_statuses,id',
+            'parent_id' => $parentRules,
             'locations' => ['nullable', 'array', new EntityField(config('entities.ids.location'), Location::class)],
             'tags' => ['nullable', 'array', new EntityField(config('entities.ids.tag'), Tag::class)],
             'save-tags' => 'nullable|boolean',

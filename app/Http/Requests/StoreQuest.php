@@ -2,10 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Entity;
-use App\Models\Location;
-use App\Rules\EntityField;
-use App\Rules\Nested;
 use App\Traits\ApiRequest;
 use App\Traits\EntityRequestRules;
 use App\Traits\ResolvesNewForeignEntities;
@@ -37,10 +33,7 @@ class StoreQuest extends FormRequest
     public function rules()
     {
         $rules = [
-            'status_id' => ['nullable', 'exists:category_statuses,id'],
-            'parent_id' => 'nullable|integer|exists:entities,id',
             'character_id' => 'nullable|integer|exists:characters,id',
-            'locations' => ['nullable', 'array', new EntityField(config('entities.ids.location'), Location::class)],
         ];
 
         // If the calendar is present and not null, but we aren't "skipping" it (editing but without permission)
@@ -51,17 +44,6 @@ class StoreQuest extends FormRequest
             if (request()->has('length')) {
                 $rules['length'] = 'required_with:calendar_id|min:1';
             }
-        }
-
-        /** @var Entity $self */
-        $self = request()->route('entity');
-        if (! empty($self)) {
-            $rules['parent_id'] = [
-                'nullable',
-                'integer',
-                'exists:entities,id',
-                new Nested($self),
-            ];
         }
 
         return $this->entityRules($rules);

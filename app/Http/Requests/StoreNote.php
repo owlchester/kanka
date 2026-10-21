@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Entity;
-use App\Rules\Nested;
 use App\Traits\ApiRequest;
 use App\Traits\EntityRequestRules;
 use App\Traits\ResolvesNewForeignEntities;
@@ -36,21 +34,6 @@ class StoreNote extends FormRequest
      */
     public function rules()
     {
-        $rules = [
-            'parent_id' => 'nullable|integer|exists:entities,id',
-        ];
-
-        /** @var Entity $self */
-        $self = request()->route('entity');
-        if (! empty($self)) {
-            $rules['parent_id'] = [
-                'nullable',
-                'integer',
-                'exists:entities,id',
-                new Nested($self),
-            ];
-        }
-
-        return $this->entityRules($rules);
+        return $this->entityRules([]);
     }
 }

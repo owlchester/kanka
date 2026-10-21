@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Entity;
-use App\Rules\Nested;
 use App\Traits\ApiRequest;
 use App\Traits\EntityRequestRules;
 use App\Traits\ResolvesNewForeignEntities;
@@ -38,20 +36,7 @@ class StoreLocation extends FormRequest
     {
         $rules = [
             'title' => 'nullable|string|max:191',
-            'parent_id' => 'nullable|integer|exists:entities,id',
-            'status_id' => ['nullable', 'exists:category_statuses,id'],
         ];
-
-        /** @var Entity $self */
-        $self = request()->route('entity');
-        if (! empty($self)) {
-            $rules['parent_id'] = [
-                'nullable',
-                'integer',
-                'exists:entities,id',
-                new Nested($self),
-            ];
-        }
 
         return $this->entityRules($rules);
     }

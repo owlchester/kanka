@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use App\Models\Entity;
 use App\Models\Map;
-use App\Rules\Nested;
 use App\Traits\ApiRequest;
 use App\Traits\EntityRequestRules;
 use App\Traits\ResolvesNewForeignEntities;
@@ -39,7 +38,6 @@ class StoreMap extends FormRequest
     {
         $zoomLimits = $this->zoomLimits();
         $rules = [
-            'parent_id' => 'nullable|integer|exists:entities,id',
             'location_id' => 'nullable|integer|exists:locations,id',
             'center_x' => 'nullable|numeric',
             'center_y' => 'nullable|numeric',
@@ -48,17 +46,6 @@ class StoreMap extends FormRequest
             'initial_zoom' => 'nullable|numeric|min:' . $zoomLimits['min'] . '|max:' . $zoomLimits['max'],
             'is_real' => 'nullable|boolean',
         ];
-
-        /** @var Entity $self */
-        $self = request()->route('entity');
-        if (! empty($self)) {
-            $rules['parent_id'] = [
-                'nullable',
-                'integer',
-                'exists:entities,id',
-                new Nested($self),
-            ];
-        }
 
         return $this->entityRules($rules);
     }

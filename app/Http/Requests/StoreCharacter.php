@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use App\Models\Family;
-use App\Models\Location;
 use App\Models\Race;
 use App\Rules\EntityField;
 use App\Traits\ApiRequest;
@@ -33,14 +32,7 @@ class StoreCharacter extends FormRequest
     public function rules()
     {
         $rules = [
-            'locations' => [
-                'nullable',
-                'array',
-                new EntityField(
-                    config('entities.ids.location'),
-                    Location::class,
-                ),
-            ],
+            'parent_id' => 'exclude',
             'age' => 'nullable|string|max:25',
             'sex' => 'nullable|string|max:45',
             'pronouns' => 'nullable|string|max:45',
@@ -75,7 +67,6 @@ class StoreCharacter extends FormRequest
             'organisation_pins.*' => 'nullable|integer',
             'organisation_privates' => 'nullable|array',
             'organisation_privates.*' => 'nullable|boolean',
-            'status_id' => ['nullable', 'exists:category_statuses,id'],
         ];
 
         return $this->entityRules($rules);

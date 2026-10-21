@@ -2,10 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Entity;
-use App\Models\Location;
-use App\Rules\EntityField;
-use App\Rules\Nested;
 use App\Traits\ApiRequest;
 use App\Traits\EntityRequestRules;
 use App\Traits\ResolvesNewForeignEntities;
@@ -38,23 +34,6 @@ class StoreRace extends FormRequest
      */
     public function rules()
     {
-        $rules = [
-            'parent_id' => 'nullable|integer|exists:entities,id',
-            'locations' => ['nullable', 'array', new EntityField(config('entities.ids.location'), Location::class)],
-            'status_id' => ['nullable', 'exists:category_statuses,id'],
-        ];
-
-        /** @var Entity $self */
-        $self = request()->route('entity');
-        if (! empty($self)) {
-            $rules['parent_id'] = [
-                'nullable',
-                'integer',
-                'exists:entities,id',
-                new Nested($self),
-            ];
-        }
-
-        return $this->entityRules($rules);
+        return $this->entityRules([]);
     }
 }

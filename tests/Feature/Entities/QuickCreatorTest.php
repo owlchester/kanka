@@ -4,6 +4,7 @@ use App\Models\Campaign;
 use App\Models\Character;
 use App\Models\Entity;
 use App\Models\EntityType;
+use App\Models\Tag;
 use App\Services\Entity\EntitySaveService;
 use App\Services\Entity\TagService;
 use App\Services\PermissionService;
@@ -26,22 +27,46 @@ it('does not allow the quick creator flag to bypass regular API validation', fun
 it('quick creates abbreviated entities without a client flag', function (string $type) {
     $this->asUser()->withCampaign();
     $campaign = Campaign::findOrFail(1);
-    $request = Request::create('/', 'POST', ['name' => 'Quick ' . $type]);
+    if ($type === 'custom') {
+        $entityType = new EntityType([
+            'code' => 'gadget',
+            'is_special' => true,
+            'is_enabled' => true,
+        ]);
+        $entityType->campaign_id = $campaign->id;
+        $entityType->singular = 'Gadget';
+        $entityType->plural = 'Gadgets';
+        $entityType->icon = 'fa-solid fa-gear';
+        $entityType->save();
+    } else {
+        $entityType = EntityType::findOrFail(config('entities.ids.' . $type));
+    }
+    $tag = Tag::factory()->create(['campaign_id' => $campaign->id]);
+    $request = Request::create('/', 'POST', [
+        'name' => 'Quick ' . $type,
+        'entry' => 'Shared save flow',
+        'tags' => [$tag->id],
+    ]);
     $route = new Route('POST', '/', fn () => null);
     $route->bind($request);
     $route->setParameter('campaign', $campaign);
     $request->setRouteResolver(fn () => $route);
     $request->setUserResolver(fn () => auth()->user());
 
-    app(ProcessService::class)
+    $service = app(ProcessService::class)
         ->campaign($campaign)
-        ->entityType(EntityType::findOrFail(config('entities.ids.' . $type)))
+        ->entityType($entityType)
         ->user(auth()->user())
-        ->request($request)
-        ->entity();
+        ->request($request);
+    $service->entity();
 
-    expect(Entity::where('name', 'Quick ' . $type)->exists())->toBeTrue();
-})->with(['calendar', 'dice_roll']);
+    $entity = Entity::where('name', 'Quick ' . $type)->firstOrFail();
+
+    expect($service->count())->toBe(1)
+        ->and($service->first()->id)->toBe($entity->id)
+        ->and($entity->entry)->toContain('Shared save flow')
+        ->and($entity->tags->modelKeys())->toBe([$tag->id]);
+})->with(['calendar', 'dice_roll', 'custom']);
 
 it('controls permission saving explicitly rather than through request data', function (bool $savePermissions) {
     $this->asUser()->withCampaign();

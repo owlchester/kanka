@@ -100,26 +100,26 @@ class ProcessService
             $values['name'] = $name;
             $values = $this->validateEntity($values, $rules);
 
+            $model = null;
             if ($this->entityType->isCustom()) {
                 $this->entity = new Entity(Arr::only($values, Entity::CREATION_FIELDS));
                 $this->entity->campaign_id = $this->campaign->id;
                 $this->entity->type_id = $this->entityType->id;
                 $this->entity->save();
-                $this->entitySaveService->entity($this->entity)->save($values);
-                $this->new[] = $this->entity;
-                $this->copyTemplateRelations();
             } else {
-                $new = $this->entityCreationService
+                $model = $this->entityCreationService
                     ->campaign($this->campaign)
                     ->entityType($this->entityType)
                     ->create($values);
-                $this->entitySaveService->entity($new->entity)->save($values);
-                $this->relationsFactory->for($new->entity)?->save($new, $values);
-
-                $this->new[] = $new->entity;
-                $this->entity = $new->entity;
-                $this->copyTemplateRelations();
+                $this->entity = $model->entity;
             }
+
+            $this->entitySaveService->entity($this->entity)->save($values);
+            if ($model !== null) {
+                $this->relationsFactory->for($this->entity)?->save($model, $values);
+            }
+            $this->new[] = $this->entity;
+            $this->copyTemplateRelations();
         }
 
         // If no entity was created, we throw the standard error
