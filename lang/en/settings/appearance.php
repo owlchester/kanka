@@ -31,6 +31,7 @@ return [
         'table' => 'Table',
     ],
     'fields'            => [
+        'entry-forms'           => 'Entry forms',
         'campaign-order'        => 'Campaign list order',
         'date-format'           => 'Date formatting',
         'editor'                => 'Text editor',
@@ -41,6 +42,7 @@ return [
         'theme'                 => 'Theme preference',
     ],
     'helpers'           => [
+        'entry-forms'           => 'Try the writing-first Modern layout for standard and custom entries, or keep the familiar Legacy forms. You can switch back at any time.',
         'advanced-mentions'     => 'When writing texts, control how @mentions are displayed.',
         'campaign-order'        => 'Change the order in which campaigns are listed in the campaign switcher.',
         'date-format'           => 'When available, control the format in which to display real world dates.',
@@ -50,6 +52,10 @@ return [
         'overridable'           => 'Individual campaigns can override this preference.',
         'pagination'            => 'For lists that span multiple pages, define how many are visible on each page.',
         'theme'                 => 'Choose how Kanka looks to you.',
+    ],
+    'entry-forms'       => [
+        'legacy' => 'Legacy',
+        'modern' => 'Modern (early access)',
     ],
     'mentions'          => [
         'advanced'  => 'Advanced mentions :code',

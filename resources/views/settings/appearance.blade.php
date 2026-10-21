@@ -90,6 +90,18 @@ $highlightClass = 'shadow-xs border-primary border-solid border-2';
                         ]" :selected="auth()->user()->campaignSwitcherOrderBy" class="self-end w-full border rounded p-2" />
                 </div>
 
+                <div class="{{ $boxClass }}">
+                    <div class="font-light text-xl flex items-center gap-2 mb-2">
+                        <x-icon class="fa-regular fa-pen-to-square" />
+                        {{ __('settings/appearance.fields.entry-forms') }}
+                    </div>
+                    <p class="text-sm grow">{{ __('settings/appearance.helpers.entry-forms') }}</p>
+                    <x-forms.select name="entry_form_layout" :options="[
+                        'legacy' => __('settings/appearance.entry-forms.legacy'),
+                        'modern' => __('settings/appearance.entry-forms.modern'),
+                    ]" :selected="old('entry_form_layout', auth()->user()->entry_form_layout)" class="self-end w-full border rounded p-2" />
+                </div>
+
                 @if (!empty($editorOptions))
                     <div
                         class="{{ $boxClass }}"
