@@ -324,6 +324,20 @@ trait EntityScopes
             $childModel = $entityType->getClass();
             $childTable = $childModel->getTable();
             $query->leftJoin($childTable . ' as child_filter', 'child_filter.id', '=', 'entities.entity_id');
+            if (array_key_exists('date_start', $childFilterKeys) || array_key_exists('date_end', $childFilterKeys)) {
+                $dateStart = Arr::get($childFilterKeys, 'date_start');
+                $dateEnd = Arr::get($childFilterKeys, 'date_end');
+
+                if ($dateStart && $dateEnd) {
+                    $query->whereBetween('child_filter.date', [$dateStart, $dateEnd]);
+                } elseif ($dateEnd) {
+                    $query->whereDate('child_filter.date', '=', $dateEnd);
+                } elseif ($dateStart) {
+                    $query->whereDate('child_filter.date', '=', $dateStart);
+                }
+
+                unset($childFilterKeys['date_start'], $childFilterKeys['date_end']);
+            }
             foreach ($childFilterKeys as $name => $values) {
                 $ids = collect((array) $values)->map(fn ($v) => (int) $v)->toArray();
                 $option = Arr::get($filters, $name . '_option');
