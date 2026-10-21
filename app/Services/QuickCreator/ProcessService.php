@@ -72,7 +72,7 @@ class ProcessService
         }
 
         /** @var StoreCharacter $validator */
-        $validator = new $requestValidator;
+        $validator = $requestValidator::createFrom($this->request);
 
         // Handle dynamic elements
         $this->inputFields = $values;
@@ -97,7 +97,7 @@ class ProcessService
             }
 
             $values['name'] = $name;
-            $this->validateEntity($values, $validator->rules());
+            $values = $this->validateEntity($values, $validator->rules());
 
             if ($this->entityType->isCustom()) {
                 $this->entity = new Entity(Arr::only($values, Entity::CREATION_FIELDS));

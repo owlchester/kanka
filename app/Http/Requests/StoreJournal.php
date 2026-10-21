@@ -4,17 +4,17 @@ namespace App\Http\Requests;
 
 use App\Models\Entity;
 use App\Models\Location;
-use App\Models\Tag;
 use App\Rules\EntityField;
 use App\Rules\Nested;
-use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
+use App\Traits\EntityRequestRules;
 use App\Traits\ResolvesNewForeignEntities;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreJournal extends FormRequest
 {
     use ApiRequest;
+    use EntityRequestRules;
     use ResolvesNewForeignEntities;
 
     protected bool $foreignEntityParent = true;
@@ -37,18 +37,10 @@ class StoreJournal extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required|string|max:191',
-            'entry' => 'nullable|string',
-            'type' => 'nullable|string|max:191',
             'date' => 'nullable|string|date',
             'locations' => ['nullable', 'array', new EntityField(config('entities.ids.location'), Location::class)],
             'author_id' => 'nullable|exists:entities,id',
-            'entity_image_uuid' => 'nullable|exists:images,id',
-            'entity_header_uuid' => 'nullable|exists:images,id',
-            'template_id' => 'nullable',
             'parent_id' => 'nullable|integer|exists:entities,id',
-            'attribute' => ['array', new UniqueAttributeNames],
-            'is_private' => 'nullable|boolean',
         ];
 
         if (request()->has('calendar_id') && request()->post('calendar_id') !== null && ! request()->has('calendar_skip')) {
@@ -71,12 +63,6 @@ class StoreJournal extends FormRequest
             ];
         }
 
-        $rules['tags'] = [
-            'nullable',
-            'array',
-            new EntityField(config('entities.ids.tag'), Tag::class),
-        ];
-
-        return $this->clean($rules);
+        return $this->entityRules($rules);
     }
 }

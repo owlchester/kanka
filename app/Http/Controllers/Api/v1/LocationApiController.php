@@ -52,7 +52,7 @@ class LocationApiController extends MiscApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', [EntityType::find(config('entities.ids.location')), $campaign]);
 
-        $data = $request->all();
+        $data = $request->validated();
         $data['campaign_id'] = $campaign->id;
         $model = $this->createStandardModel($campaign, $data, config('entities.ids.location'));
         $this->crudSave($model, $request->validated());
@@ -67,7 +67,7 @@ class LocationApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $location->entity);
-        $location->update($request->all());
+        $location->update($request->validated());
         $this->crudSave($location, $request->validated());
 
         return new Resource($location);

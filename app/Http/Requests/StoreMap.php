@@ -4,17 +4,16 @@ namespace App\Http\Requests;
 
 use App\Models\Entity;
 use App\Models\Map;
-use App\Models\Tag;
-use App\Rules\EntityField;
 use App\Rules\Nested;
-use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
+use App\Traits\EntityRequestRules;
 use App\Traits\ResolvesNewForeignEntities;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreMap extends FormRequest
 {
     use ApiRequest;
+    use EntityRequestRules;
     use ResolvesNewForeignEntities;
 
     protected array $foreignEntityFields = ['location_id'];
@@ -40,21 +39,13 @@ class StoreMap extends FormRequest
     {
         $zoomLimits = $this->zoomLimits();
         $rules = [
-            'name' => 'required|string|max:191',
-            'entry' => 'nullable|string',
-            'type' => 'nullable|string|max:191',
             'parent_id' => 'nullable|integer|exists:entities,id',
             'location_id' => 'nullable|integer|exists:locations,id',
-            'entity_image_uuid' => 'nullable|exists:images,id',
-            'entity_header_uuid' => 'nullable|exists:images,id',
-            'template_id' => 'nullable',
             'center_x' => 'nullable|numeric',
             'center_y' => 'nullable|numeric',
             'max_zoom' => 'nullable|numeric|min:1|max:' . $zoomLimits['max'],
             'min_zoom' => 'nullable|numeric|min:' . $zoomLimits['min'] . '|max:' . $zoomLimits['max'],
             'initial_zoom' => 'nullable|numeric|min:' . $zoomLimits['min'] . '|max:' . $zoomLimits['max'],
-            'attribute' => ['array', new UniqueAttributeNames],
-            'is_private' => 'nullable|boolean',
             'is_real' => 'nullable|boolean',
         ];
 
@@ -69,13 +60,7 @@ class StoreMap extends FormRequest
             ];
         }
 
-        $rules['tags'] = [
-            'nullable',
-            'array',
-            new EntityField(config('entities.ids.tag'), Tag::class),
-        ];
-
-        return $this->clean($rules);
+        return $this->entityRules($rules);
     }
 
     /**

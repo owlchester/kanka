@@ -73,6 +73,7 @@ class EditController extends Controller
             ? 'App\Http\Requests\Store' . Str::studly($entity->entityType->code)
             : StoreCustomEntity::class;
 
+        $validated = [];
         if (class_exists($validationClass)) {
             $validator = app()->make($validationClass);
             if (method_exists($validator, 'resolvedFields')) {
@@ -81,7 +82,7 @@ class EditController extends Controller
                     $request->merge($resolved);
                 }
             }
-            $this->validate($request, $validator->rules());
+            $validated = $this->validate($request, $validator->rules());
         }
 
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
@@ -98,11 +99,13 @@ class EditController extends Controller
             $sanitizerClassName = 'App\Sanitizers\\' . Str::studly($entity->entityType->code) . 'Sanitizer';
             if (class_exists($sanitizerClassName)) {
                 $sanitizer = app()->make($sanitizerClassName);
-                $request->merge($sanitizer->request($request)->sanitize());
+                $sanitized = $sanitizer->request($request)->sanitize();
+                $request->merge($sanitized);
+                $validated = array_replace($validated, $sanitized);
             }
 
             if ($entity->hasChild()) {
-                $data = $this->prepareData($request, $entity->child);
+                $data = $this->prepareData($request, $entity->child, $validated);
                 $entity->child->update($data);
 
                 // Fire an event for the Entity Observer
@@ -117,7 +120,7 @@ class EditController extends Controller
                     $entity->touch();
                 }
             } else {
-                $preparedData = $this->fixRequestData($request, $entity);
+                $preparedData = $this->fixRequestData($request, $entity, $validated);
                 $entity->update($preparedData);
                 $this->entitySaveService->campaign($campaign)->save($entity, $preparedData);
                 $this->locationRelationsService->entity($entity)->process($preparedData);
@@ -192,9 +195,8 @@ class EditController extends Controller
         }
     }
 
-    protected function prepareData(Request $request, MiscModel $model): array
+    protected function prepareData(Request $request, MiscModel $model, array $data): array
     {
-        $data = $request->all();
         foreach ($model->nullableForeignKeys as $field) {
             if (! $request->has($field) && ! isset($data[$field])) {
                 $data[$field] = null;
@@ -204,9 +206,8 @@ class EditController extends Controller
         return $data;
     }
 
-    protected function fixRequestData(Request $request, Entity $entity): array
+    protected function fixRequestData(Request $request, Entity $entity, array $data): array
     {
-        $data = $request->all();
         foreach (['parent_id'] as $field) {
             if (! $request->has($field) && ! isset($data[$field])) {
                 $data[$field] = null;

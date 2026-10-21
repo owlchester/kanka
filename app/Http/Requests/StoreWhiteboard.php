@@ -3,11 +3,13 @@
 namespace App\Http\Requests;
 
 use App\Traits\ApiRequest;
+use App\Traits\EntityRequestRules;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreWhiteboard extends FormRequest
 {
     use ApiRequest;
+    use EntityRequestRules;
 
     /**
      * Determine if the user is authorized to make this request.
@@ -27,13 +29,9 @@ class StoreWhiteboard extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required|string|max:191',
             'type' => 'nullable|string|max:45',
-            'entity_image_uuid' => 'nullable|exists:images,id',
-            'entity_header_uuid' => 'nullable|exists:images,id',
-            'template_id' => 'nullable',
         ];
 
-        return $this->clean($rules);
+        return $this->entityRules($rules);
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Campaign;
+use App\Models\CampaignPermission;
 use App\Models\Character;
 use App\Models\Entity;
 use App\Models\EntityType;
@@ -50,6 +51,24 @@ it('POSTS a new character')
             'entity_id',
         ],
     ]);
+
+it('ignores private visibility when a non-admin creates a character', function () {
+    $this->asUser()->withCampaign()->asPlayer();
+    CampaignPermission::create([
+        'campaign_id' => 1,
+        'campaign_role_id' => 3,
+        'entity_type_id' => config('entities.ids.character'),
+        'action' => CampaignPermission::ACTION_ADD,
+        'access' => true,
+    ]);
+
+    $this->postJson('/api/1.0/campaigns/1/characters', [
+        'name' => 'Public character',
+        'is_private' => true,
+    ])
+        ->assertCreated()
+        ->assertJsonFragment(['is_private' => false]);
+});
 
 it('links a newly created character to its entity', function () {
     $this->asUser()->withCampaign();

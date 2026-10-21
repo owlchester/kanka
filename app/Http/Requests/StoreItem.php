@@ -3,17 +3,16 @@
 namespace App\Http\Requests;
 
 use App\Models\Entity;
-use App\Models\Tag;
-use App\Rules\EntityField;
 use App\Rules\Nested;
-use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
+use App\Traits\EntityRequestRules;
 use App\Traits\ResolvesNewForeignEntities;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreItem extends FormRequest
 {
     use ApiRequest;
+    use EntityRequestRules;
     use ResolvesNewForeignEntities;
 
     protected array $foreignEntityFields = ['location_id'];
@@ -38,21 +37,13 @@ class StoreItem extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required|string|max:191',
-            'entry' => 'nullable|string',
-            'type' => 'nullable|string|max:191',
             'location_id' => 'nullable|integer|exists:locations,id',
             'creators' => 'nullable|array',
             'creators.*' => 'integer|exists:entities,id',
             'parent_id' => 'nullable|integer|exists:entities,id',
-            'entity_image_uuid' => 'nullable|exists:images,id',
-            'entity_header_uuid' => 'nullable|exists:images,id',
-            'template_id' => 'nullable',
             'price' => 'nullable|string|max:191',
             'size' => 'nullable|string|max:191',
             'weight' => 'nullable|string|max:191',
-            'attribute' => ['array', new UniqueAttributeNames],
-            'is_private' => 'nullable|boolean',
         ];
 
         /** @var Entity $self */
@@ -66,12 +57,6 @@ class StoreItem extends FormRequest
             ];
         }
 
-        $rules['tags'] = [
-            'nullable',
-            'array',
-            new EntityField(config('entities.ids.tag'), Tag::class),
-        ];
-
-        return $this->clean($rules);
+        return $this->entityRules($rules);
     }
 }

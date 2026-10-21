@@ -4,11 +4,15 @@ namespace App\Http\Requests;
 
 use App\Models\Entity;
 use App\Rules\Nested;
+use App\Traits\ApiRequest;
+use App\Traits\EntityRequestRules;
 use App\Traits\ResolvesNewForeignEntities;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreAttributeTemplate extends FormRequest
 {
+    use ApiRequest;
+    use EntityRequestRules;
     use ResolvesNewForeignEntities;
 
     protected array $foreignEntityFields = [];
@@ -33,9 +37,9 @@ class StoreAttributeTemplate extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required|string|max:191',
             'parent_id' => 'nullable|integer|exists:entities,id',
             'entity_type_id' => 'nullable|integer|exists:entity_types,id',
+            'is_enabled' => 'nullable|boolean',
         ];
 
         /** @var Entity $self */
@@ -49,6 +53,6 @@ class StoreAttributeTemplate extends FormRequest
             ];
         }
 
-        return $rules;
+        return $this->entityRules($rules);
     }
 }

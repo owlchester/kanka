@@ -52,7 +52,7 @@ class EventApiController extends MiscApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', [EntityType::find(config('entities.ids.event')), $campaign]);
 
-        $data = $request->all();
+        $data = $request->validated();
         $data['campaign_id'] = $campaign->id;
         $model = $this->createStandardModel($campaign, $data, config('entities.ids.event'));
         $this->crudSave($model, $request->validated());
@@ -67,7 +67,7 @@ class EventApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $event->entity);
-        $event->update($request->all());
+        $event->update($request->validated());
         $this->crudSave($event, $request->validated());
 
         return new Resource($event);

@@ -68,7 +68,7 @@ class CreateController extends Controller
             return response()->json(['success' => true]);
         }
 
-        $data = $request->all();
+        $data = $request->validated();
         $data['campaign_id'] = $campaign->id;
 
         try {

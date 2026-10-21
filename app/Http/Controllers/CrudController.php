@@ -33,6 +33,7 @@ use App\Traits\GuestAuthTrait;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -422,13 +423,18 @@ class CrudController extends Controller
 
         try {
             // Sanitize the data
+            $sanitized = [];
             if (isset($this->sanitizer)) {
                 /** @var MiscSanitizer $sanitizer */
                 $sanitizer = app()->make($this->sanitizer);
-                $request->merge($sanitizer->request($request)->sanitize());
+                $sanitized = $sanitizer->request($request)->sanitize();
+                $request->merge($sanitized);
             }
 
-            $data = $request->all();
+            $data = $request instanceof FormRequest
+                ? $request->validated()
+                : $request->all();
+            $data = array_replace($data, $sanitized);
             $data['campaign_id'] = $this->campaign->id;
 
             /** @var MiscModel $model */
@@ -661,14 +667,16 @@ class CrudController extends Controller
 
         try {
             // Sanitize the data
+            $sanitized = [];
             if (isset($this->sanitizer)) {
                 /** @var MiscSanitizer $sanitizer */
                 $sanitizer = app()->make($this->sanitizer);
-                $request->merge($sanitizer->request($request)->sanitize());
+                $sanitized = $sanitizer->request($request)->sanitize();
+                $request->merge($sanitized);
             }
 
             /** @var MiscModel $model */
-            $data = $this->prepareData($request, $model);
+            $data = array_replace($this->prepareData($request, $model), $sanitized);
             $model->update($data);
 
             // Bookmarks have no entity attached to them.
@@ -782,7 +790,9 @@ class CrudController extends Controller
      */
     protected function prepareData(Request $request, MiscModel $model)
     {
-        $data = $request->all();
+        $data = $request instanceof FormRequest
+            ? $request->validated()
+            : $request->all();
         foreach ($model->nullableForeignKeys as $field) {
             if (! request()->has($field) && ! isset($data[$field])) {
                 $data[$field] = null;

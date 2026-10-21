@@ -68,7 +68,7 @@ class AttributeTemplateApiController extends MiscApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', [EntityType::find(config('entities.ids.attribute_template')), $campaign]);
 
-        $data = $request->all();
+        $data = $request->validated();
         $data['campaign_id'] = $campaign->id;
         $model = $this->createStandardModel($campaign, $data, config('entities.ids.attribute_template'));
         $this->crudSave($model, $request->validated());
@@ -83,7 +83,7 @@ class AttributeTemplateApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $attributeTemplate->entity);
-        $attributeTemplate->update($request->all());
+        $attributeTemplate->update($request->validated());
         $this->crudSave($attributeTemplate, $request->validated());
 
         return new Resource($attributeTemplate);
