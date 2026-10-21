@@ -144,6 +144,8 @@ class ProcessService
 
         // Prepare the validator
         $validator = new StorePost;
+        $rules = $validator->rules();
+        $rules['entity_id'] = 'required|integer|exists:entities,id';
 
         // Handle dynamic elements
         $this->inputFields = $values;
@@ -156,10 +158,8 @@ class ProcessService
 
             $values['name'] = $name;
             // If position = 0 the post's position is last, else the post's position is first.
-            $rules = $validator->rules();
-            $rules['entity_id'] = 'required|integer|exists:entities,id';
-            $this->validateEntity($values, $rules);
-            if ($values['position'] == 0) {
+            $values = $this->validateEntity($values, $rules);
+            if (($values['position'] ?? 0) == 0) {
                 $new = Post::create($values);
             } else {
                 $entity = Entity::find($values['entity_id']);
@@ -172,7 +172,6 @@ class ProcessService
 
         // If no entity was created, we throw the standard error
         if (empty($this->new)) {
-            $rules = $validator->rules();
             $this->validateEntity($values, $rules);
         }
 
