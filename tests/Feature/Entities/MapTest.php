@@ -26,17 +26,19 @@ it('POSTS a new map')
         ],
     ]);
 
-it('POSTS a real map with the real map zoom limit')
-    ->asUser()
-    ->withCampaign()
-    ->postJson('/api/1.0/campaigns/1/maps', [
+it('POSTS a real map with the real map zoom limit', function () {
+    $this->asUser()->withCampaign();
+    $limits = config('limits.maps.zoom.real');
+
+    $this->postJson('/api/1.0/campaigns/1/maps', [
         'name' => fake()->name(),
         'is_real' => true,
-        'min_zoom' => 0,
-        'max_zoom' => 15,
-        'initial_zoom' => 15,
+        'min_zoom' => $limits['min'],
+        'max_zoom' => $limits['max'],
+        'initial_zoom' => $limits['max'],
     ])
-    ->assertCreated();
+        ->assertCreated();
+});
 
 it('rejects a map zoom value above its configured limit', function () {
     $this->asUser()->withCampaign();
@@ -44,23 +46,24 @@ it('rejects a map zoom value above its configured limit', function () {
     $this->postJson('/api/1.0/campaigns/1/maps', [
         'name' => fake()->name(),
         'is_real' => true,
-        'max_zoom' => 16,
+        'max_zoom' => config('limits.maps.zoom.real.max') + 1,
     ])->assertUnprocessable();
 });
 
 it('uses the real map zoom limits when clamping zoom values', function () {
     $this->asUser()->withCampaign();
+    $limits = config('limits.maps.zoom.real');
     $map = Map::factory()->create([
         'campaign_id' => 1,
         'is_real' => true,
-        'min_zoom' => -1,
-        'max_zoom' => 20,
-        'initial_zoom' => 20,
+        'min_zoom' => $limits['min'] - 1,
+        'max_zoom' => $limits['max'] + 1,
+        'initial_zoom' => $limits['max'] + 1,
     ]);
 
-    expect($map->minZoom())->toBe(0)
-        ->and($map->maxZoom())->toBe(15.0)
-        ->and($map->initialZoom())->toBe(15);
+    expect($map->minZoom())->toBe($limits['min'])
+        ->and($map->maxZoom())->toBe((float) $limits['max'])
+        ->and($map->initialZoom())->toBe($limits['max']);
 });
 
 it('rejects a negative minimum zoom when updating a tiled map through the API', function () {
