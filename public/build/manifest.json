@@ -6,8 +6,8 @@
       "_vue.esm-bundler-GXfi61Lw.js"
     ]
   },
-  "_LeafletCanvas-BmOt52br.js": {
-    "file": "assets/LeafletCanvas-BmOt52br.js",
+  "_LeafletCanvas-CgaF0vlH.js": {
+    "file": "assets/LeafletCanvas-CgaF0vlH.js",
     "name": "LeafletCanvas",
     "imports": [
       "_preload-helper-oofcKs94.js",
@@ -18,7 +18,7 @@
       "public/vendor/leaflet/leaflet.layerstree.js"
     ],
     "css": [
-      "assets/LeafletCanvas-jxfARmDV.css"
+      "assets/LeafletCanvas-DCB_iKEC.css"
     ],
     "assets": [
       "assets/layers-BWBAp2CZ.png",
@@ -26,9 +26,9 @@
       "assets/marker-icon-hN30_KVU.png"
     ]
   },
-  "_LeafletCanvas-jxfARmDV.css": {
-    "file": "assets/LeafletCanvas-jxfARmDV.css",
-    "src": "_LeafletCanvas-jxfARmDV.css"
+  "_LeafletCanvas-DCB_iKEC.css": {
+    "file": "assets/LeafletCanvas-DCB_iKEC.css",
+    "src": "_LeafletCanvas-DCB_iKEC.css"
   },
   "__commonjsHelpers-Cpj98o6Y.js": {
     "file": "assets/_commonjsHelpers-Cpj98o6Y.js",
@@ -78,8 +78,8 @@
     "file": "assets/dialog-DkrH_pRQ.js",
     "name": "dialog"
   },
-  "_index-DNeoPP0G.js": {
-    "file": "assets/index-DNeoPP0G.js",
+  "_index-BCn5QfZZ.js": {
+    "file": "assets/index-BCn5QfZZ.js",
     "name": "index"
   },
   "_index-Vcq4gwWv.js": {
@@ -97,8 +97,8 @@
     "file": "assets/jquery-CEMonh9Y.js",
     "name": "jquery"
   },
-  "_jspdf.es.min-BZRemR06.js": {
-    "file": "assets/jspdf.es.min-BZRemR06.js",
+  "_jspdf.es.min-3XmYsr-Z.js": {
+    "file": "assets/jspdf.es.min-3XmYsr-Z.js",
     "name": "jspdf.es.min",
     "isDynamicEntry": true,
     "imports": [
@@ -196,13 +196,13 @@
     "src": "node_modules/@fontsource-variable/roboto/files/roboto-vietnamese-wdth-normal.woff2"
   },
   "node_modules/canvg/lib/index.es.js": {
-    "file": "assets/index.es-16pWaav8.js",
+    "file": "assets/index.es-BM5dyPTH.js",
     "name": "index.es",
     "src": "node_modules/canvg/lib/index.es.js",
     "isDynamicEntry": true,
     "imports": [
       "__commonjsHelpers-Cpj98o6Y.js",
-      "_jspdf.es.min-BZRemR06.js",
+      "_jspdf.es.min-3XmYsr-Z.js",
       "_preload-helper-oofcKs94.js"
     ]
   },
@@ -222,7 +222,7 @@
     "isDynamicEntry": true
   },
   "node_modules/dompurify/dist/purify.es.mjs": {
-    "file": "assets/purify.es-Cz4mVeUR.js",
+    "file": "assets/purify.es-BPuvlvQ_.js",
     "name": "purify.es",
     "src": "node_modules/dompurify/dist/purify.es.mjs",
     "isDynamicEntry": true
@@ -268,7 +268,7 @@
     "isDynamicEntry": true
   },
   "resources/css/app.css": {
-    "file": "assets/app-COurasZ7.css",
+    "file": "assets/app-rpHTHHFp.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -277,7 +277,7 @@
     ]
   },
   "resources/css/auth.css": {
-    "file": "assets/auth-49iQJhIK.css",
+    "file": "assets/auth-DycEv7dk.css",
     "src": "resources/css/auth.css",
     "isEntry": true,
     "name": "auth",
@@ -304,7 +304,7 @@
     ]
   },
   "resources/css/front.css": {
-    "file": "assets/front-DN5tOe00.css",
+    "file": "assets/front-I6bk6VeT.css",
     "src": "resources/css/front.css",
     "isEntry": true,
     "name": "front",
@@ -411,12 +411,12 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-Cc9jI9Yd.js",
+    "file": "assets/app-BGs35S1u.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
     "imports": [
-      "_index-DNeoPP0G.js",
+      "_index-BCn5QfZZ.js",
       "_coloris-CzWPJjQD.js",
       "_preload-helper-oofcKs94.js",
       "_sortable.esm-DdTU3J9A.js",
@@ -459,12 +459,12 @@
     "isEntry": true
   },
   "resources/js/campaigns/import.js": {
-    "file": "assets/import-B-noNfOw.js",
+    "file": "assets/import-3slBR8av.js",
     "name": "import",
     "src": "resources/js/campaigns/import.js",
     "isEntry": true,
     "imports": [
-      "_index-DNeoPP0G.js"
+      "_index-BCn5QfZZ.js"
     ]
   },
   "resources/js/campaigns/style-editor.js": {
@@ -481,7 +481,7 @@
     ]
   },
   "resources/js/campaigns/theme-builder.js": {
-    "file": "assets/theme-builder-Cvbh2cpO.js",
+    "file": "assets/theme-builder-CIThvKsG.js",
     "name": "theme-builder",
     "src": "resources/js/campaigns/theme-builder.js",
     "isEntry": true,
@@ -491,13 +491,13 @@
     ]
   },
   "resources/js/components/maps/MarkerPanel.vue": {
-    "file": "assets/MarkerPanel-MbYWAgsC.js",
+    "file": "assets/MarkerPanel-CxdXr_ke.js",
     "name": "MarkerPanel",
     "src": "resources/js/components/maps/MarkerPanel.vue",
     "isDynamicEntry": true,
     "imports": [
       "_vue.esm-bundler-GXfi61Lw.js",
-      "_LeafletCanvas-BmOt52br.js",
+      "_LeafletCanvas-CgaF0vlH.js",
       "resources/js/maps/explore.js",
       "_preload-helper-oofcKs94.js",
       "_coloris-CzWPJjQD.js",
@@ -512,7 +512,7 @@
     ]
   },
   "resources/js/connections/web.js": {
-    "file": "assets/web-Cp7hGV75.js",
+    "file": "assets/web-DB0lA958.js",
     "name": "web",
     "src": "resources/js/connections/web.js",
     "isEntry": true,
@@ -528,7 +528,7 @@
       "node_modules/cytoscape/dist/cytoscape.esm.mjs",
       "_cytoscape-cose-bilkent-DRrwnnKV.js",
       "_cytoscape-panzoom-Db_DL3W9.js",
-      "_jspdf.es.min-BZRemR06.js"
+      "_jspdf.es.min-3XmYsr-Z.js"
     ],
     "css": [
       "assets/web-C9wt4HvN.css"
@@ -587,7 +587,7 @@
     ]
   },
   "resources/js/editors/tiptap/Tiptap.vue": {
-    "file": "assets/Tiptap-BOoaQrgW.js",
+    "file": "assets/Tiptap-BTLjgUsF.js",
     "name": "Tiptap",
     "src": "resources/js/editors/tiptap/Tiptap.vue",
     "isDynamicEntry": true,
@@ -596,7 +596,7 @@
       "_vue.esm-bundler-GXfi61Lw.js",
       "_index-Vcq4gwWv.js",
       "__plugin-vue_export-helper-DlAUqK2U.js",
-      "_index-DNeoPP0G.js"
+      "_index-BCn5QfZZ.js"
     ],
     "dynamicImports": [
       "resources/js/editors/tiptap/extensions/gallery/GalleryDialog.vue",
@@ -607,13 +607,13 @@
     ]
   },
   "resources/js/editors/tiptap/extensions/gallery/GalleryDialog.vue": {
-    "file": "assets/GalleryDialog-CgEC4-67.js",
+    "file": "assets/GalleryDialog-BfFzZa6y.js",
     "name": "GalleryDialog",
     "src": "resources/js/editors/tiptap/extensions/gallery/GalleryDialog.vue",
     "isDynamicEntry": true,
     "imports": [
       "_vue.esm-bundler-GXfi61Lw.js",
-      "_index-DNeoPP0G.js",
+      "_index-BCn5QfZZ.js",
       "__plugin-vue_export-helper-DlAUqK2U.js"
     ],
     "css": [
@@ -621,7 +621,7 @@
     ]
   },
   "resources/js/editors/tiptap/index.js": {
-    "file": "assets/index-CRXeLhfj.js",
+    "file": "assets/index-snN83y7t.js",
     "name": "index",
     "src": "resources/js/editors/tiptap/index.js",
     "isEntry": true,
@@ -645,13 +645,13 @@
     ]
   },
   "resources/js/family-tree-vue.js": {
-    "file": "assets/family-tree-vue-Dukri8aj.js",
+    "file": "assets/family-tree-vue-h_e6TlBP.js",
     "name": "family-tree-vue",
     "src": "resources/js/family-tree-vue.js",
     "isEntry": true,
     "imports": [
       "_vue.esm-bundler-GXfi61Lw.js",
-      "_index-DNeoPP0G.js",
+      "_index-BCn5QfZZ.js",
       "__plugin-vue_export-helper-DlAUqK2U.js"
     ]
   },
@@ -667,24 +667,33 @@
     "src": "resources/js/forms/character.js",
     "isEntry": true
   },
+  "resources/js/forms/entry-workspace.js": {
+    "file": "assets/entry-workspace-BaDNDCR2.js",
+    "name": "entry-workspace",
+    "src": "resources/js/forms/entry-workspace.js",
+    "isEntry": true,
+    "css": [
+      "assets/entry-workspace-lShdeOdQ.css"
+    ]
+  },
   "resources/js/front.js": {
-    "file": "assets/front-DVMkjO5Q.js",
+    "file": "assets/front-D--LX8JX.js",
     "name": "front",
     "src": "resources/js/front.js",
     "isEntry": true,
     "imports": [
-      "_index-DNeoPP0G.js",
+      "_index-BCn5QfZZ.js",
       "_dialog-DkrH_pRQ.js"
     ]
   },
   "resources/js/gallery/gallery.js": {
-    "file": "assets/gallery-Bdpjooao.js",
+    "file": "assets/gallery-CnU-p7VA.js",
     "name": "gallery",
     "src": "resources/js/gallery/gallery.js",
     "isEntry": true,
     "imports": [
       "_vue.esm-bundler-GXfi61Lw.js",
-      "_index-DNeoPP0G.js",
+      "_index-BCn5QfZZ.js",
       "_uploadRequest-BwrLJcjN.js",
       "_v-click-outside.umd-Cl-Y_A58.js",
       "__commonjsHelpers-Cpj98o6Y.js"
@@ -718,12 +727,12 @@
     "isEntry": true
   },
   "resources/js/maps/explore.js": {
-    "file": "assets/explore-SpM4eZ7V.js",
+    "file": "assets/explore-DjALBCzo.js",
     "name": "explore",
     "src": "resources/js/maps/explore.js",
     "isEntry": true,
     "imports": [
-      "_LeafletCanvas-BmOt52br.js",
+      "_LeafletCanvas-CgaF0vlH.js",
       "_vue.esm-bundler-GXfi61Lw.js",
       "_vue-tippy.esm-browser-Dvd-iQ8z.js",
       "_preload-helper-oofcKs94.js",
@@ -741,25 +750,25 @@
     ]
   },
   "resources/js/maps/preview-runtime.js": {
-    "file": "assets/preview-runtime-DaG1tPfL.js",
+    "file": "assets/preview-runtime-BNqUgnJC.js",
     "name": "preview-runtime",
     "src": "resources/js/maps/preview-runtime.js",
     "isDynamicEntry": true,
     "imports": [
-      "_LeafletCanvas-BmOt52br.js",
+      "_LeafletCanvas-CgaF0vlH.js",
       "_vue.esm-bundler-GXfi61Lw.js",
       "_preload-helper-oofcKs94.js",
       "__commonjsHelpers-Cpj98o6Y.js"
     ]
   },
   "resources/js/maps/preview.js": {
-    "file": "assets/preview-Br39G95Q.js",
+    "file": "assets/preview-aLxSstAI.js",
     "name": "preview",
     "src": "resources/js/maps/preview.js",
     "isEntry": true,
     "imports": [
       "resources/js/maps/preview-runtime.js",
-      "_LeafletCanvas-BmOt52br.js",
+      "_LeafletCanvas-CgaF0vlH.js",
       "_preload-helper-oofcKs94.js",
       "_vue.esm-bundler-GXfi61Lw.js",
       "__commonjsHelpers-Cpj98o6Y.js"

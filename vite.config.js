@@ -41,6 +41,7 @@ export default defineConfig({
                 'resources/js/conversation.js',
                 'resources/js/subscription.js',
                 'resources/js/forms/character.js',
+                'resources/js/forms/entry-workspace.js',
                 'resources/js/forms/calendar.js',
                 'resources/js/dashboard.js',
                 'resources/js/front.js',

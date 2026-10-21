@@ -1,3 +1,4 @@
+@unless ($workspaceFields ?? false)
 <?php
 $old = old('entry');
 ?>
@@ -19,3 +20,4 @@ $old = old('entry');
 
     @include('cruds.fields.entry', ['model' => $entity ?? null])
 </div>
+@endunless

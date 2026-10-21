@@ -3,13 +3,15 @@
         <x-forms.field
             field="appearance"
             :label="__('characters.sections.appearance')">
+            @unless ($compactTraits ?? false)
             <x-slot name="action">
 
-                <button class="text-link dynamic-row-add p-1 cursor-pointer text-center" data-template="template_appearance" data-target="character-appearance" data-toggle="tooltip" data-title="{{ __('characters.actions.add_appearance') }}">
+                <button type="button" class="btn2 btn-outline btn-xs dynamic-row-add" data-template="template_appearance" data-target="character-appearance" data-toggle="tooltip" data-title="{{ __('characters.actions.add_appearance') }}">
                     <x-icon class="plus" />
                     {{ __('crud.add') }}
                 </button>
             </x-slot>
+            @endunless
             <div class="flex flex-col gap-2 character-appearance sortable-elements" data-handle=".sortable-handler">
                 @foreach ((isset($model) ? $model->characterTraits()->appearance()->orderBy('default_order', 'asc')->get() : FormCopy::characterAppearance()) as $trait)
                     <div class="grid grid-cols-3 w-full parent-delete-row gap-1">
@@ -35,12 +37,17 @@
                     </div>
                 @endforeach
             </div>
-            <button class="text-link dynamic-row-add p-1 cursor-pointer text-center" data-template="template_appearance" data-target="character-appearance">
+            <button type="button" class="btn2 btn-outline btn-sm w-fit dynamic-row-add" data-template="template_appearance" data-target="character-appearance">
                 <x-icon class="plus" />
                 {{ __('characters.actions.add_appearance') }}
             </button>
         </x-forms.field>
 
+        @if ($compactTraits ?? false)
+            <details class="entry-workspace-trait-settings">
+                <summary class="text-xs text-neutral-content cursor-pointer">{{ __('entries/workspace.trait_settings') }}</summary>
+                <div class="flex flex-col gap-3 pt-3">
+        @endif
         <x-forms.field
             field="appearance-pinned"
             :label="__('characters.fields.is_appearance_pinned')">
@@ -50,6 +57,10 @@
                 <input type="checkbox" name="is_appearance_pinned" value="1" @if (old('is_appearance_pinned', $source->child->is_appearance_pinned ?? $model->is_appearance_pinned ?? true)) checked="checked" @endif/>
             </x-checkbox>
         </x-forms.field>
+        @if ($compactTraits ?? false)
+                </div>
+            </details>
+        @endif
     </x-grid>
 
     <x-grid type="1/1">
@@ -57,12 +68,14 @@
             field="personality"
             :label="__('characters.sections.personality')">
             @if (!isset($model) || auth()->user()->can('personality', $model))
+                @unless ($compactTraits ?? false)
                 <x-slot name="action">
-                    <button class="text-link cursor-pointer dynamic-row-add" data-template="template_personality" data-target="character-personality" data-toggle="tooltip" data-title="{{ __('characters.actions.add_personality') }}">
+                    <button type="button" class="btn2 btn-outline btn-xs dynamic-row-add" data-template="template_personality" data-target="character-personality" data-toggle="tooltip" data-title="{{ __('characters.actions.add_personality') }}">
                         <x-icon class="plus" />
                         {{ __('crud.add') }}
                     </button>
                 </x-slot>
+                @endunless
             <div class="flex flex-col gap-2 character-personality sortable-elements" data-handle=".sortable-handler">
                 @foreach ((isset($model) ? $model->characterTraits()->personality()->orderBy('default_order', 'asc')->get() : FormCopy::characterPersonality()) as $trait)
                     <div class="flex flex-col gap-2 parent-delete-row">
@@ -86,7 +99,7 @@
                     </div>
                 @endforeach
             </div>
-            <button class="text-link cursor-pointer p-1 dynamic-row-add" data-template="template_personality" data-target="character-personality">
+            <button type="button" class="btn2 btn-outline btn-sm w-fit dynamic-row-add" data-template="template_personality" data-target="character-personality">
                 <x-icon class="plus" />
                 {{ __('characters.actions.add_personality') }}
             </button>
@@ -101,6 +114,11 @@
         </x-forms.field>
 
 
+        @if (($compactTraits ?? false) && (!isset($model) || auth()->user()->can('personality', $model) || auth()->user()->can('admin', $campaign)))
+            <details class="entry-workspace-trait-settings">
+                <summary class="text-xs text-neutral-content cursor-pointer">{{ __('entries/workspace.trait_settings') }}</summary>
+                <div class="flex flex-col gap-3 pt-3">
+        @endif
         @if (!isset($model) || auth()->user()->can('personality', $model))
             <x-forms.field
                 field="personality-pinned"
@@ -114,7 +132,7 @@
         @endif
 
         @can('admin', $campaign)
-                <hr>
+                @unless ($compactTraits ?? false) <hr> @endunless
             <input type="hidden" name="is_personality_visible" value="0" />
             <x-forms.field
                 field="personality-visible"
@@ -132,6 +150,10 @@
             </x-forms.field>
         @elseif (!isset($model))
             <input type="hidden" name="is_personality_visible" value="1" />
+        @endif
+        @if (($compactTraits ?? false) && (!isset($model) || auth()->user()->can('personality', $model) || auth()->user()->can('admin', $campaign)))
+                </div>
+            </details>
         @endif
     </x-grid>
 </x-grid>

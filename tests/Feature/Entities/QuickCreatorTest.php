@@ -7,6 +7,7 @@ use App\Models\EntityType;
 use App\Models\Post;
 use App\Models\Tag;
 use App\Services\Entity\EntitySaveService;
+use App\Services\Entity\EntryDateService;
 use App\Services\Entity\TagService;
 use App\Services\PermissionService;
 use App\Services\QuickCreator\ProcessService;
@@ -76,7 +77,7 @@ it('controls permission saving explicitly rather than through request data', fun
     $permissions = Mockery::mock(PermissionService::class)->makePartial();
     $permissions->shouldReceive('save')->times($savePermissions ? 1 : 0)->andReturnSelf();
 
-    $service = new EntitySaveService(app(TagService::class), $permissions);
+    $service = new EntitySaveService(app(TagService::class), $permissions, app(EntryDateService::class));
     if (! $savePermissions) {
         expect($service->skipPermissions())->toBe($service);
     }

@@ -25,9 +25,6 @@
             <x-forms.select name="reset" :options="__('calendars.options.resets')" :selected="$source->child->reset ?? $model->reset ?? null" />
         </x-forms.field>
 
-        <input type="hidden" name="calendar_id" value="" />
-        @include('cruds.fields.calendar', ['isParent' => true, 'helper' => __('calendars.hints.parent_calendar'), 'allowNew' => false])
-
         <x-forms.field
             field="layout"
             :label="__('calendars.fields.default_layout')"

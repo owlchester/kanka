@@ -1,4 +1,4 @@
-@if ($campaign->enabled('tags'))
+@if ($campaign->enabled('tags') && !($workspaceFields ?? false))
     @if (isset($bulk) && $bulk)
         <div class="grid gap-2 md:gap-4 grid-cols-2">
     @endif

@@ -149,6 +149,11 @@ class CopyService
             if ($reminder->isCalendarDate()) {
                 continue;
             }
+            $inlineDates = $this->request->input('entry_dates', []);
+            $inlineTypes = EntryDateService::types($this->entity->type_id);
+            if (is_array($inlineDates) && collect($inlineTypes)->contains(fn ($type, $key) => (EntryDateService::hasDateInput($inlineDates[$key] ?? []) || ! empty($inlineDates[$key]['remove'])) && $type === $reminder->type_id)) {
+                continue;
+            }
             $reminder->copyTo($this->entity);
         }
 

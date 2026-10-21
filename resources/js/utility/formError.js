@@ -86,12 +86,18 @@ const jumpToError = (form, errors) => {
     }
 
     // If we can actually find the first element, switch to it and the correct tab.
-    document.querySelector('.tab-content .active').classList.remove('active');
-    document.querySelector('.nav-tabs li.active').classList.remove('active');
-    const firstPane = document.querySelector('[name="' + firstErrorName + '"').closest('.tab-pane');
+    const firstPane = firstErrorField.closest('.tab-pane');
     if (firstPane) {
+        form.querySelector('.tab-content .active')?.classList.remove('active');
+        form.querySelector('.nav-tabs li.active')?.classList.remove('active');
         firstPane.classList.add('active');
-        document.querySelector('a[href="#' + firstPane.id + '"]').closest('li').classList.add('active');
+        form.querySelector('a[href="#' + firstPane.id + '"]')?.closest('li').classList.add('active');
+    }
+
+    let details = firstErrorField.closest('details');
+    while (details) {
+        details.open = true;
+        details = details.parentElement.closest('details');
     }
 
     focusOnField(firstErrorField);

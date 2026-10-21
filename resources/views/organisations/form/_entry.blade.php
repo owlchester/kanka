@@ -6,7 +6,7 @@
 @include('cruds.fields.entry2')
 
 @if ($campaign->enabled('characters'))
-<x-forms.field field="member">
+<x-forms.field field="member" :label="__('organisations.fields.members')" id="members">
     <input type="hidden" name="sync_org_members" value="1">
     @include('components.form.members', ['options' => [
         'model' => $model ?? FormCopy::model(),
