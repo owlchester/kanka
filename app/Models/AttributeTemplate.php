@@ -7,6 +7,7 @@ use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
 use App\Services\Attributes\RandomService;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
@@ -19,10 +20,10 @@ class AttributeTemplate extends MiscModel
 {
     use Acl;
     use HasCampaign;
+    use HasFactory;
     use HasFilters;
 
     protected $fillable = [
-        'name',
         'campaign_id',
         'entity_type_id',
         'is_private',

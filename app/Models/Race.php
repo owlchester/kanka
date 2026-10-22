@@ -30,7 +30,6 @@ class Race extends MiscModel
     use SortableTrait;
 
     protected $fillable = [
-        'name',
         'campaign_id',
         'is_private',
     ];

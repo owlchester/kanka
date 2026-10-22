@@ -3,6 +3,7 @@
 namespace App\Models\Concerns;
 
 use App\Models\Entity;
+use App\Models\MiscModel;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -30,7 +31,8 @@ trait SortableTrait
 
         //        dump($this->sortable);
         //        dd($filters);
-        if (empty($this->sortable)) {
+        $sortable = $this->sortable ?? ($this instanceof MiscModel ? $this->sortableColumns() : []);
+        if (empty($sortable)) {
             return $query;
         }
 
@@ -39,7 +41,7 @@ trait SortableTrait
         }
 
         $key = Arr::get($filters, 'k');
-        if (! in_array($key, $this->sortable)) {
+        if (! in_array($key, $sortable)) {
             return $query;
         }
 
@@ -70,7 +72,7 @@ trait SortableTrait
                 })
                 ->groupBy($this->getTable() . '.id')
                 ->orderBy('e.type', $order);
-        } elseif (in_array($key, ['name', 'is_private', 'updated_at'], true) && method_exists($this, 'joinEntity')) {
+        } elseif (in_array($key, ['name', 'is_private', 'updated_at'], true) && method_exists($this, 'scopeJoinEntity')) {
             return $query
                 ->select($this->getTable() . '.*')
                 ->joinEntity()

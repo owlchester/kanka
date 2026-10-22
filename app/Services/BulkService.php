@@ -328,7 +328,10 @@ class BulkService
                 }
             }
             if ($this->entityType->hasEntity() && $this->entityType->isStandard()) {
-                $entity->child->update($entityFields);
+                $entity->child->update(Arr::except($entityFields, ['name']));
+                if (array_key_exists('name', $entityFields)) {
+                    $entity->name = $entityFields['name'];
+                }
             } else {
                 // Relations, bookmarks
                 $entity->update($entityFields);

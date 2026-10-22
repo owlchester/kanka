@@ -31,7 +31,6 @@ class Timeline extends MiscModel
 
     public $fillable = [
         'campaign_id',
-        'name',
         'calendar_id',
         'is_private',
     ];

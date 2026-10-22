@@ -4,9 +4,8 @@ namespace Database\Factories;
 
 // use Faker\Generator as Faker;
 use App\Models\Calendar;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
-class CalendarFactory extends Factory
+class CalendarFactory extends StandardEntityFactory
 {
     /**
      * The name of the factory's corresponding model.

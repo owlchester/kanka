@@ -10,7 +10,6 @@ trait HasEntity
     {
         $observer = app(ChildEntityObserver::class);
 
-        static::created([$observer, 'created']);
         static::saved([$observer, 'saved']);
     }
 }

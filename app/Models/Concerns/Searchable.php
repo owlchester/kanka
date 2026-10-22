@@ -21,6 +21,9 @@ trait Searchable
         $searchFields = $this->searchableFields();
         $entityNameSearch = method_exists($this, 'hasEntity') && $this->hasEntity() && in_array('name', $searchFields, true);
         if ($entityNameSearch) {
+            if ($query->getQuery()->columns === null) {
+                $query->select($this->getTable() . '.*');
+            }
             $query->joinEntity();
         }
 

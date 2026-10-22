@@ -52,7 +52,6 @@ class Character extends MiscModel
     use SortableTrait;
 
     protected $fillable = [
-        'name',
         'campaign_id',
         'title',
         'age',
@@ -241,7 +240,7 @@ class Character extends MiscModel
             ->has('race.entity')
             ->with([
                 'race' => function ($sub) {
-                    $sub->select('id', 'name', 'is_private');
+                    $sub->select('id', 'is_private');
                 },
                 'race.entity' => function ($sub) {
                     $sub->select('id', 'name', 'entity_id', 'type_id');
@@ -493,15 +492,26 @@ class Character extends MiscModel
 
     public function scopeCustomSortRaces(Builder $query, string $order): Builder
     {
-        return $query
-            ->withMin('races as race_sort_name', 'name')
-            ->orderBy('race_sort_name', $order);
+        $name = Race::query()
+            ->selectRaw('MIN(race_sort_entities.name)')
+            ->join('entities as race_sort_entities', function ($join) {
+                $join->on('race_sort_entities.entity_id', '=', 'races.id')
+                    ->where('race_sort_entities.type_id', config('entities.ids.race'));
+            })
+            ->join('character_race', 'character_race.race_id', '=', 'races.id')
+            ->whereColumn('character_race.character_id', 'characters.id');
+
+        return $query->orderBy($name, $order);
     }
 
     public function scopeCustomSortTags(Builder $query, string $order): Builder
     {
         $name = Tag::query()
-            ->selectRaw('MIN(tags.name)')
+            ->selectRaw('MIN(tag_name_entities.name)')
+            ->join('entities as tag_name_entities', function ($join) {
+                $join->on('tag_name_entities.entity_id', '=', 'tags.id')
+                    ->where('tag_name_entities.type_id', config('entities.ids.tag'));
+            })
             ->join('entity_tags', 'entity_tags.tag_id', '=', 'tags.id')
             ->join('entities as tag_sort_entities', 'tag_sort_entities.id', '=', 'entity_tags.entity_id')
             ->whereColumn('tag_sort_entities.entity_id', 'characters.id')

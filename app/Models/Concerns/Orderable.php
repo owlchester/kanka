@@ -4,6 +4,7 @@ namespace App\Models\Concerns;
 
 use App\Enums\EntityEventTypes;
 use App\Models\Entity;
+use App\Models\MiscModel;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\DB;
@@ -15,6 +16,10 @@ trait Orderable
 {
     public function scopeOrder(Builder $query, ?array $data)
     {
+        if ($this instanceof MiscModel && $query->getQuery()->columns === null) {
+            $query->select($this->getTable() . '.*');
+        }
+
         // Default values can be defined on the model, or default
         $field = $this->defaultOrderField ?: 'name';
         $direction = $this->defaultOrderDirection ?: 'asc';
@@ -39,15 +44,15 @@ trait Orderable
                 ->orderBy('cd.year', $direction)
                 ->orderBy('cd.month', $direction)
                 ->orderBy('cd.day', $direction);
-        } elseif (in_array($field, ['name', 'is_private', 'updated_at'], true) && method_exists($this, 'joinEntity')) {
+        } elseif (in_array($field, ['name', 'is_private', 'updated_at'], true) && method_exists($this, 'scopeJoinEntity')) {
             return $query
                 ->joinEntity()
                 ->orderBy('e.' . $field, $direction);
-        } elseif ($field === 'type' && method_exists($this, 'joinEntity')) {
+        } elseif ($field === 'type' && method_exists($this, 'scopeJoinEntity')) {
             return $query
                 ->joinEntity()
                 ->orderBy('e.type', $direction);
-        } elseif ($field === 'locations' && method_exists($this, 'joinEntity')) {
+        } elseif ($field === 'locations' && method_exists($this, 'scopeJoinEntity')) {
             return $query
                 ->joinEntity()
                 ->leftJoin('entity_locations', 'entity_locations.entity_id', '=', 'e.id')

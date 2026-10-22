@@ -305,8 +305,9 @@ class ApiService
         // Campaign templates
         $campaignTemplates = AttributeTemplate::has('entity')
             ->enabled()
-            ->orderBy('name', 'asc')
-            ->pluck('name', 'id');
+            ->joinEntity()
+            ->orderBy('e.name', 'asc')
+            ->pluck('e.name', 'attribute_templates.id');
         $key = __('entities.attribute_templates');
         foreach ($campaignTemplates as $id => $name) {
             $templates[$key][$id] = $name;

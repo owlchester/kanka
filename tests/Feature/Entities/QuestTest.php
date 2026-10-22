@@ -146,7 +146,7 @@ it('saves quest locations through the web form', function () {
         'locations' => [$locations[0]->id, $locations[1]->id],
     ])->assertRedirect();
 
-    $quest = Quest::where('name', 'Web quest')->firstOrFail();
+    $quest = Quest::whereHas('entity', fn ($query) => $query->where('name', 'Web quest'))->firstOrFail();
     expect($quest->entity->locations()->pluck('locations.id')->sort()->values()->all())
         ->toBe([$locations[0]->id, $locations[1]->id]);
 });

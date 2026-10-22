@@ -45,7 +45,6 @@ class Calendar extends MiscModel
 
     protected $fillable = [
         'campaign_id',
-        'name',
         'start_offset',
         'is_private',
         'parameters',

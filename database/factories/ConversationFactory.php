@@ -4,9 +4,8 @@ namespace Database\Factories;
 
 // use Faker\Generator as Faker;
 use App\Models\Conversation;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ConversationFactory extends Factory
+class ConversationFactory extends StandardEntityFactory
 {
     /**
      * The name of the factory's corresponding model.

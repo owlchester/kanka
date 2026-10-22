@@ -211,6 +211,9 @@ class TransformService
 
         $this->fillable = $this->new->getFillable();
         foreach ($oldAttributes as $attribute => $value) {
+            if ($attribute === 'name') {
+                continue;
+            }
             if (in_array($attribute, $this->fillable)) {
                 $this->new->{$attribute} = $value;
             }
@@ -325,9 +328,9 @@ class TransformService
 
         // Create misc without calling its observers, to not create duplicates
         $this->new = $this->entityType->getMiscClass();
-        $this->new->name = $this->entity->name;
         $this->new->is_private = $this->entity->is_private;
         $this->new->campaign_id = $this->campaign->id;
+        $this->new->setRelation('entity', $this->entity);
         if ($firstLocation && $this->new->isFillable('location_id')) {
             // @phpstan-ignore-next-line
             $this->new->location_id = $firstLocation->id;
