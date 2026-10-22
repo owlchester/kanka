@@ -103,7 +103,7 @@ class TransformService
             ->removePosts();
 
         // Finally, we can save. Should be all good.
-        $this->new->campaign_id = $this->child->campaign_id;
+        $this->new->campaign_id = $this->entity->campaign_id;
         $this->new->saveQuietly();
 
         $this
@@ -329,7 +329,7 @@ class TransformService
         // Create misc without calling its observers, to not create duplicates
         $this->new = $this->entityType->getMiscClass();
         $this->new->is_private = $this->entity->is_private;
-        $this->new->campaign_id = $this->campaign->id;
+        $this->new->campaign_id = $this->entity->campaign_id;
         $this->new->setRelation('entity', $this->entity);
         if ($firstLocation && $this->new->isFillable('location_id')) {
             // @phpstan-ignore-next-line
