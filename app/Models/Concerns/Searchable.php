@@ -19,10 +19,15 @@ trait Searchable
         }
 
         $searchFields = $this->searchableFields();
+        $entityNameSearch = method_exists($this, 'hasEntity') && $this->hasEntity() && in_array('name', $searchFields, true);
+        if ($entityNameSearch) {
+            $query->joinEntity();
+        }
 
-        return $query->where(function ($q) use ($term, $searchFields) {
+        return $query->where(function ($q) use ($term, $searchFields, $entityNameSearch) {
             foreach ($searchFields as $field) {
-                $q->orWhere($this->getTable() . '.' . $field, 'like', "%{$term}%");
+                $column = $field === 'name' && $entityNameSearch ? 'e.name' : $this->getTable() . '.' . $field;
+                $q->orWhere($column, 'like', "%{$term}%");
             }
         });
     }

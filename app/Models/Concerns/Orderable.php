@@ -52,7 +52,11 @@ trait Orderable
                 ->joinEntity()
                 ->leftJoin('entity_locations', 'entity_locations.entity_id', '=', 'e.id')
                 ->leftJoin('locations', 'locations.id', '=', 'entity_locations.location_id')
-                ->orderBy('locations.name', $direction);
+                ->leftJoin('entities as location_order_entities', function ($join) {
+                    $join->on('location_order_entities.entity_id', '=', 'locations.id')
+                        ->where('location_order_entities.type_id', config('entities.ids.location'));
+                })
+                ->orderBy('location_order_entities.name', $direction);
         }
         if (! empty($field)) {
             $segments = explode('.', $field);
@@ -62,6 +66,16 @@ trait Orderable
                 /** @var BelongsTo $relation */
                 $relation = $this->{$relationName}();
                 $foreignName = $relation->getQuery()->getQuery()->from;
+
+                if ($segments[1] === 'name' && method_exists($relation->getRelated(), 'entityTypeId')) {
+                    return $query
+                        ->leftJoin($foreignName . ' as orderable_j', 'orderable_j.id', $this->getTable() . '.' . $relation->getForeignKeyName())
+                        ->leftJoin('entities as orderable_entity', function ($join) use ($relation) {
+                            $join->on('orderable_entity.entity_id', '=', 'orderable_j.id')
+                                ->where('orderable_entity.type_id', $relation->getRelated()->entityTypeId());
+                        })
+                        ->orderBy('orderable_entity.name', $direction);
+                }
 
                 return $query
                     ->with($relationName)

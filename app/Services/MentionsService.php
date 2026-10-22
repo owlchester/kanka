@@ -403,7 +403,7 @@ class MentionsService
 
                         if (! $renderMapPreview) {
                             return '<a href="' . $exploreUrl . '" class="text-link">'
-                                . e(__('maps.actions.explore_named', ['name' => $child->name]))
+                                . e(__('maps.actions.explore_named', ['name' => $entity->name]))
                                 . '</a>';
                         }
 
@@ -427,8 +427,11 @@ class MentionsService
                     } elseif ($entity->hasChild() && ! $entity->isMissingChild() && isset($entity->child->$field)) {
                         $foreign = $entity->child->$field;
                         if ($foreign instanceof Model) {
-                            if (isset($foreign->name) && ! empty($foreign->name)) {
-                                $data['text'] = $foreign->name;
+                            $foreignName = $foreign instanceof MiscModel
+                                ? $foreign->entity?->name
+                                : $foreign->getAttribute('name');
+                            if (! empty($foreignName)) {
+                                $data['text'] = $foreignName;
                             }
                         } elseif (is_string($foreign)) {
                             $data['text'] = $foreign;

@@ -371,7 +371,6 @@ class BulkService
 
             if ($this->entityType->hasEntity() && $this->entityType->isStandard()) {
                 $entity->is_private = $entity->child->is_private;
-                $entity->name = $entity->child->name;
             }
             $entity->update();
 

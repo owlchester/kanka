@@ -121,6 +121,17 @@ trait SortableTrait
         $relation = $this->{$relationName}();
         $foreignName = $relation->getQuery()->getQuery()->from;
 
+        if ($segments[1] === 'name' && method_exists($relation->getRelated(), 'entityTypeId')) {
+            return $query
+                ->select($this->getTable() . '.*')
+                ->leftJoin($foreignName . ' as f', 'f.id', $this->getTable() . '.' . $relation->getForeignKeyName())
+                ->leftJoin('entities as f_entity', function ($join) use ($relation) {
+                    $join->on('f_entity.entity_id', '=', 'f.id')
+                        ->where('f_entity.type_id', $relation->getRelated()->entityTypeId());
+                })
+                ->orderBy('f_entity.name', $order);
+        }
+
         return $query
             ->select($this->getTable() . '.*')
             ->leftJoin(

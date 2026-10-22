@@ -160,6 +160,10 @@ class Family extends MiscModel
 
         $query = Character::select('characters.*')
             ->distinct('characters.id')
+            ->join('entities', function ($join) {
+                $join->on('entities.entity_id', '=', 'characters.id')
+                    ->where('entities.type_id', config('entities.ids.character'));
+            })
             ->leftJoin('character_family as cf', function ($join) {
                 $join->on('cf.character_id', '=', 'characters.id');
             })

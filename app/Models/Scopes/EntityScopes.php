@@ -239,6 +239,17 @@ trait EntityScopes
                     /** @var BelongsTo $relation */
                     $relation = $childModel->{$relationName}();
                     $relatedTable = $relation->getQuery()->getQuery()->from;
+                    if ($segments[1] === 'name' && method_exists($relation->getRelated(), 'entityTypeId')) {
+                        $entityAlias = 'orderable_entity_' . $relationName;
+                        $query->leftJoin($relatedTable . ' as orderable_j', 'orderable_j.id', 'child_order.' . $relation->getForeignKeyName())
+                            ->leftJoin('entities as ' . $entityAlias, function ($join) use ($entityAlias, $relation) {
+                                $join->on($entityAlias . '.entity_id', '=', 'orderable_j.id')
+                                    ->where($entityAlias . '.type_id', $relation->getRelated()->entityTypeId());
+                            })
+                            ->orderBy($entityAlias . '.name', $order);
+
+                        continue;
+                    }
                     $query->leftJoin(
                         $relatedTable . ' as orderable_j',
                         'orderable_j.id',
