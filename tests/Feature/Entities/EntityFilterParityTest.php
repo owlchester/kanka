@@ -32,6 +32,10 @@ it('keeps entity-backed filters consistent across entity and child queries', fun
         'name' => 'strength',
         'value' => '12',
     ]);
+    $matching->entity->sheets()->create([
+        'source' => 'marketplace',
+        'reference' => 'test-sheet-uuid',
+    ]);
 
     $entityType = EntityType::findOrFail(config('entities.ids.character'));
     $childIds = fn (array $filters): array => Character::query()
@@ -44,7 +48,7 @@ it('keeps entity-backed filters consistent across entity and child queries', fun
         ->pluck('entities.id')
         ->all();
 
-    foreach (['has_image', 'template', 'has_entry', 'has_entity_files', 'has_posts', 'has_attributes'] as $filter) {
+    foreach (['has_image', 'template', 'has_entry', 'has_entity_files', 'has_posts', 'has_attributes', 'has_character_sheet'] as $filter) {
         expect($childIds([$filter => '1']))
             ->toContain($matching->id)
             ->not->toContain($empty->id);

@@ -17,6 +17,7 @@ use App\Models\MiscModel;
 use App\Models\Relation;
 use App\Renderers\DatagridRenderer;
 use App\Sanitizers\MiscSanitizer;
+use App\Services\Attributes\EntitySheetService;
 use App\Services\AttributeService;
 use App\Services\Entity\AliasService;
 use App\Services\Entity\CopyService;
@@ -468,6 +469,17 @@ class CrudController extends Controller
                     ->copy();
 
                 if (auth()->user()->can('attributes', $new->entity)) {
+                    if ($request->hasAny(['sheets_present', 'sheets'])) {
+                        $copySource = $request->filled('copy_source_id')
+                            ? Entity::find((int) $request->input('copy_source_id'))
+                            : null;
+                        app(EntitySheetService::class)
+                            ->campaign($this->campaign)
+                            ->entity($new->entity)
+                            ->copySource($copySource)
+                            ->sync($request->input('sheets', []));
+                    }
+
                     $this->attributeService
                         ->campaign($this->campaign)
                         ->entity($new->entity)

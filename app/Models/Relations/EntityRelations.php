@@ -22,6 +22,7 @@ use App\Models\EntityAsset;
 use App\Models\EntityClaim;
 use App\Models\EntityLocation;
 use App\Models\EntityLog;
+use App\Models\EntitySheet;
 use App\Models\EntityTag;
 use App\Models\EntityType;
 use App\Models\EntityUser;
@@ -120,6 +121,12 @@ trait EntityRelations
     public function attributes(): HasMany
     {
         return $this->hasMany('App\Models\Attribute', 'entity_id', 'id');
+    }
+
+    /** @return HasMany<EntitySheet, $this> */
+    public function sheets(): HasMany
+    {
+        return $this->hasMany(EntitySheet::class)->orderBy('sort_order')->orderBy('id');
     }
 
     public function allAttributes()

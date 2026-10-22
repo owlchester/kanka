@@ -125,6 +125,7 @@ return [
         'date_range'                => 'Date range',
         'excerpt'                   => 'Excerpt',
         'has_attributes'            => 'Has properties',
+        'has_character_sheet'       => 'Has character sheet',
         'has_entity_files'          => 'Has media',
         'has_entry'                 => 'Has description',
         'has_image'                 => 'Has an image',
