@@ -45,7 +45,7 @@ class BulkEntityCreatorService
             ->entityType($this->entityType)
             ->create($this->data);
         $this->entity = $this->new->entity;
-        $this->entitySaveService->campaign($this->campaign)->save($this->entity, $this->data);
+        $this->entitySaveService->campaign($this->campaign)->entity($this->entity)->save($this->data);
 
         return $this->new->entity;
     }
@@ -56,7 +56,7 @@ class BulkEntityCreatorService
         $this->entity->type_id = $this->entityType->id;
         $this->entity->campaign_id = $this->campaign->id;
         $this->entity->save();
-        $this->entitySaveService->campaign($this->campaign)->save($this->entity, $this->data);
+        $this->entitySaveService->campaign($this->campaign)->entity($this->entity)->save($this->data);
 
         return $this->entity;
     }

@@ -23,8 +23,8 @@ These developer docker instances are quite different from [kanka.io](https://kan
 
 ## Docker
 
-Kanka is set up to run with Docker and [Laravel Sail](https://laravel.com/docs/11.x/sail). It comes with several machines.
-* Laravel Sail for running the Kanka PHP application
+Kanka is set up to run with Docker and [Laravel Sail](https://laravel.com/docs/11.x/sail). The application container is built from `docker/8.5` and runs PHP 8.5. It comes with several machines.
+* Laravel Sail with PHP 8.5 for running the Kanka application
 * [Mariadb](https://mariadb.org/) for the database
 * [Redis](https://redis.com/) for the cache
 * [minIO](https://min.io/) for file storage

@@ -11,7 +11,6 @@ use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
 use App\Models\Concerns\TouchSilently;
 use App\Models\Scopes\SubEntityScopes;
-use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -29,8 +28,6 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property string $header_image
  * @property bool|int $is_private
  * @property string[] $nullableForeignKeys
- * @property Carbon $created_at
- * @property Carbon $updated_at
  *
  * @method static self|Builder sort(array $filters, array $defaultOrder = [])
  */
@@ -45,6 +42,10 @@ abstract class MiscModel extends Model
     use Sortable;
     use SubEntityScopes;
     use TouchSilently;
+
+    public $timestamps = false;
+
+    protected $touches = ['entity'];
 
     /**
      * Explicit fields for filtering.

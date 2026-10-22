@@ -645,7 +645,7 @@ it('wraps a multi-paragraph plain-text entry into <p> tags on update via the v4 
     expect($marker->fresh()->entry)->toBe($expected);
 });
 
-it('leaves a null entry untouched when creating a marker with no description', function () {
+it('stores a null description and returns an empty rendered entry when creating a marker without one', function () {
     $this->asUser()->withCampaign();
     $map = Map::factory()->create(['campaign_id' => 1]);
 
@@ -657,7 +657,7 @@ it('leaves a null entry untouched when creating a marker with no description', f
         'icon' => 1,
     ])->assertStatus(201);
 
-    expect($response->json('entry'))->toBeNull();
+    expect($response->json('entry'))->toBe('');
     expect(MapMarker::where('name', 'No entry pin')->firstOrFail()->entry)->toBeNull();
 });
 

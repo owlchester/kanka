@@ -52,7 +52,7 @@ class JournalApiController extends MiscApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', [EntityType::find(config('entities.ids.journal')), $campaign]);
 
-        $data = $request->all();
+        $data = $request->validated();
         $data['campaign_id'] = $campaign->id;
         $model = $this->createStandardModel($campaign, $data, config('entities.ids.journal'));
         $this->crudSave($model, $request->validated());
@@ -67,7 +67,7 @@ class JournalApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $journal->entity);
-        $journal->update($request->all());
+        $journal->update($request->validated());
         $this->crudSave($journal, $request->validated());
 
         return new Resource($journal);

@@ -171,11 +171,13 @@ it('updates a file without requiring a replacement upload', function () {
         'entity_id' => 1,
         'type_id' => EntityAssetType::file,
     ]);
+    $entity = $asset->entity;
+    $campaign = $entity->campaign;
 
-    $this->patch(route('entities.entity_assets.update', [1, 1, $asset]), [
+    $this->patch(route('entities.entity_assets.update', [$campaign, $entity, $asset]), [
         'type_id' => EntityAssetType::file->value,
         'name' => 'Renamed file',
-    ])->assertRedirect(route('entities.entity_assets.index', [1, 1]));
+    ])->assertRedirect(route('entities.entity_assets.index', [$campaign, $entity]));
 
     expect($asset->refresh()->name)->toBe('Renamed file');
 });

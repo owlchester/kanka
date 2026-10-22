@@ -3,6 +3,7 @@
 namespace App\Http\Requests\API;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreEntities extends FormRequest
 {
@@ -28,6 +29,11 @@ class StoreEntities extends FormRequest
             'entities.*.name' => 'required|string|max:191',
             'entities.*.entry' => 'nullable|string',
             'entities.*.type' => 'nullable|string|max:191',
+            'entities.*.is_private' => [
+                Rule::excludeIf(fn () => ! $this->user()?->can('admin', $this->route('campaign'))),
+                'nullable',
+                'boolean',
+            ],
             'entities.*.tags' => 'array',
             'entities.*.tags.*' => 'distinct|exists:tags,id',
         ];

@@ -72,7 +72,7 @@ class ProcessService
         }
 
         /** @var StoreCharacter $validator */
-        $validator = new $requestValidator;
+        $validator = $requestValidator::createFrom($this->request);
 
         // Handle dynamic elements
         $this->inputFields = $values;
@@ -87,9 +87,10 @@ class ProcessService
         }
 
         $this->loadTemplate();
-        $this->entitySaveService->campaign($this->campaign);
+        $this->entitySaveService->campaign($this->campaign)->skipPermissions();
 
         $values = $this->inputFields;
+        $rules = $validator->quickCreatorRules();
 
         foreach ($names as $name) {
             if ($name == '') {
@@ -97,33 +98,32 @@ class ProcessService
             }
 
             $values['name'] = $name;
-            $this->validateEntity($values, $validator->rules());
+            $values = $this->validateEntity($values, $rules);
 
+            $model = null;
             if ($this->entityType->isCustom()) {
                 $this->entity = new Entity(Arr::only($values, Entity::CREATION_FIELDS));
                 $this->entity->campaign_id = $this->campaign->id;
                 $this->entity->type_id = $this->entityType->id;
                 $this->entity->save();
-                $this->entitySaveService->save($this->entity, $values);
-                $this->new[] = $this->entity;
-                $this->copyTemplateRelations();
             } else {
-                $new = $this->entityCreationService
+                $model = $this->entityCreationService
                     ->campaign($this->campaign)
                     ->entityType($this->entityType)
                     ->create($values);
-                $this->entitySaveService->save($new->entity, $values);
-                $this->relationsFactory->for($new->entity)?->save($new, $values);
-
-                $this->new[] = $new->entity;
-                $this->entity = $new->entity;
-                $this->copyTemplateRelations();
+                $this->entity = $model->entity;
             }
+
+            $this->entitySaveService->entity($this->entity)->save($values);
+            if ($model !== null) {
+                $this->relationsFactory->for($this->entity)?->save($model, $values);
+            }
+            $this->new[] = $this->entity;
+            $this->copyTemplateRelations();
         }
 
         // If no entity was created, we throw the standard error
         if (empty($this->new)) {
-            $rules = $validator->rules();
             $this->validateEntity($values, $rules);
         }
     }
@@ -144,6 +144,8 @@ class ProcessService
 
         // Prepare the validator
         $validator = new StorePost;
+        $rules = $validator->rules();
+        $rules['entity_id'] = 'required|integer|exists:entities,id';
 
         // Handle dynamic elements
         $this->inputFields = $values;
@@ -156,10 +158,8 @@ class ProcessService
 
             $values['name'] = $name;
             // If position = 0 the post's position is last, else the post's position is first.
-            $rules = $validator->rules();
-            $rules['entity_id'] = 'required|integer|exists:entities,id';
-            $this->validateEntity($values, $rules);
-            if ($values['position'] == 0) {
+            $values = $this->validateEntity($values, $rules);
+            if (($values['position'] ?? 0) == 0) {
                 $new = Post::create($values);
             } else {
                 $entity = Entity::find($values['entity_id']);
@@ -172,7 +172,6 @@ class ProcessService
 
         // If no entity was created, we throw the standard error
         if (empty($this->new)) {
-            $rules = $validator->rules();
             $this->validateEntity($values, $rules);
         }
 

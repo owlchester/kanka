@@ -52,7 +52,7 @@ class NoteApiController extends MiscApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', [EntityType::find(config('entities.ids.note')), $campaign]);
 
-        $data = $request->all();
+        $data = $request->validated();
         $data['campaign_id'] = $campaign->id;
         $model = $this->createStandardModel($campaign, $data, config('entities.ids.note'));
         $this->crudSave($model, $request->validated());
@@ -67,7 +67,7 @@ class NoteApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $note->entity);
-        $note->update($request->all());
+        $note->update($request->validated());
         $this->crudSave($note, $request->validated());
 
         return new Resource($note);

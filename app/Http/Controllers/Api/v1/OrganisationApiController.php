@@ -52,11 +52,10 @@ class OrganisationApiController extends MiscApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', [EntityType::find(config('entities.ids.organisation')), $campaign]);
 
-        $data = $request->all();
+        $data = $request->validated();
         $data['campaign_id'] = $campaign->id;
         $model = $this->createStandardModel($campaign, $data, config('entities.ids.organisation'));
         $this->crudSave($model, $request->validated());
-        $model->refresh();
 
         return new Resource($model);
     }
@@ -68,7 +67,7 @@ class OrganisationApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $organisation->entity);
-        $organisation->update($request->all());
+        $organisation->update($request->validated());
         $this->crudSave($organisation, $request->validated());
 
         return new Resource($organisation);

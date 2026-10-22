@@ -52,7 +52,7 @@ class QuestApiController extends MiscApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', [EntityType::find(config('entities.ids.quest')), $campaign]);
 
-        $data = $request->all();
+        $data = $request->validated();
         $data['campaign_id'] = $campaign->id;
         /** @var Quest $model */
         $model = $this->createStandardModel($campaign, $data, config('entities.ids.quest'));
@@ -68,7 +68,7 @@ class QuestApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $quest->entity);
-        $quest->update($request->all());
+        $quest->update($request->validated());
         $this->crudSave($quest, $request->validated());
 
         return new Resource($quest);

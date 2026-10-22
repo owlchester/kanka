@@ -3,17 +3,16 @@
 namespace App\Http\Requests;
 
 use App\Models\Family;
-use App\Models\Location;
 use App\Models\Race;
-use App\Models\Tag;
 use App\Rules\EntityField;
-use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
+use App\Traits\EntityRequestRules;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreCharacter extends FormRequest
 {
     use ApiRequest;
+    use EntityRequestRules;
 
     /**
      * Determine if the user is authorized to make this request.
@@ -33,24 +32,11 @@ class StoreCharacter extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required|string|max:191',
-            'entry' => 'nullable|string',
-            'type' => 'nullable|string|max:191',
-            'locations' => [
-                'nullable',
-                'array',
-                new EntityField(
-                    config('entities.ids.location'),
-                    Location::class,
-                ),
-            ],
-            'entity_image_uuid' => 'nullable|exists:images,id',
-            'entity_header_uuid' => 'nullable|exists:images,id',
+            'parent_id' => 'exclude',
             'age' => 'nullable|string|max:25',
             'sex' => 'nullable|string|max:45',
             'pronouns' => 'nullable|string|max:45',
             'title' => 'nullable|string|max:191',
-            'template_id' => 'nullable',
             'families' => [
                 'nullable',
                 'array',
@@ -65,17 +51,24 @@ class StoreCharacter extends FormRequest
             'personality_entry' => 'nullable|array',
             'appearance_name' => 'nullable|array',
             'appearance_entry' => 'nullable|array',
-            'attribute' => ['array', new UniqueAttributeNames],
-            'is_private' => 'nullable|boolean',
-            'status_id' => ['nullable', 'exists:category_statuses,id'],
+            'is_personality_visible' => 'nullable|boolean',
+            'is_appearance_pinned' => 'nullable|boolean',
+            'is_personality_pinned' => 'nullable|boolean',
+            'save_races' => 'nullable|boolean',
+            'save_families' => 'nullable|boolean',
+            'character_save_organisations' => 'nullable|boolean',
+            'organisations' => 'nullable|array',
+            'organisations.*' => 'nullable|integer|exists:organisations,id',
+            'organisation_roles' => 'nullable|array',
+            'organisation_roles.*' => 'nullable|string',
+            'organisation_statuses' => 'nullable|array',
+            'organisation_statuses.*' => 'nullable|integer',
+            'organisation_pins' => 'nullable|array',
+            'organisation_pins.*' => 'nullable|integer',
+            'organisation_privates' => 'nullable|array',
+            'organisation_privates.*' => 'nullable|boolean',
         ];
 
-        $rules['tags'] = [
-            'nullable',
-            'array',
-            new EntityField(config('entities.ids.tag'), Tag::class),
-        ];
-
-        return $this->clean($rules);
+        return $this->entityRules($rules);
     }
 }

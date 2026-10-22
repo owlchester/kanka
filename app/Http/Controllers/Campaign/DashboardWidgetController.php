@@ -109,7 +109,7 @@ class DashboardWidgetController extends Controller
     {
         $this->authorize('dashboard', $campaign);
 
-        $dashboards = [null => __('dashboard.dashboards.default.title')];
+        $dashboards = ['' => __('dashboard.dashboards.default.title')];
         foreach (CampaignDashboard::orderBy('name')->pluck('name', 'id')->toArray() as $id => $dashboard) {
             $dashboards[$id] = $dashboard;
         }

@@ -72,8 +72,7 @@ test('scalar request fields reject structured input', function () {
 });
 
 test('calendar quick creator text fields reject structured input', function () {
-    request()->query->set('quick-creator', '1');
-    $rules = (new StoreCalendar)->rules();
+    $rules = (new StoreCalendar)->quickCreatorRules();
 
     foreach (['name', 'type'] as $field) {
         $validator = validator([$field => ['value']], [$field => $rules[$field]]);
@@ -150,7 +149,7 @@ function scalarRequestFields(): array
         [StoreTag::class, 'name'],
         [StoreTag::class, 'colour'],
         [StoreTimeline::class, 'name'],
-        [StoreTimeline::class, 'image_url'],
+        [StoreTimeline::class, 'revert_order'],
         [StoreWhiteboard::class, 'name'],
         [UpdateCalendarEvent::class, 'recurring_periodicity'],
         [UpdateCalendarEvent::class, 'comment'],
