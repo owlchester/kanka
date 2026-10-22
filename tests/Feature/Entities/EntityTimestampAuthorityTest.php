@@ -37,10 +37,7 @@ it('stores timestamps only on the entity and preserves serialized dates', functi
         ->and(Schema::hasColumn($child->getTable(), 'deleted_at'))->toBeTrue()
         ->and($child->usesTimestamps())->toBeFalse()
         ->and($child->getAttributes())->not->toHaveKeys(['created_at', 'updated_at'])
-        ->and($child->created_at->equalTo($child->entity->created_at))->toBeTrue()
-        ->and($child->updated_at->equalTo($child->entity->updated_at))->toBeTrue()
-        ->and($child->toArray()['created_at'])->toBe($child->entity->toArray()['created_at'])
-        ->and($child->toArray()['updated_at'])->toBe($child->entity->toArray()['updated_at']);
+        ->and($child->toArray())->not->toHaveKeys(['created_at', 'updated_at']);
 
     expect(Schema::hasColumn((new Post)->getTable(), 'updated_at'))->toBeTrue();
 })->with('entity child types');
@@ -128,16 +125,16 @@ it('updates entity timestamps on child saves including quiet saves', function (s
     $child->refresh();
 
     expect($child->entity->updated_at->equalTo(now()))->toBeTrue()
-        ->and($child->created_at->equalTo($originalCreatedAt))->toBeTrue();
+        ->and($child->entity->created_at->equalTo($originalCreatedAt))->toBeTrue();
 })->with('entity child types')->with([true, false]);
 
 it('forwards explicit and quiet timestamp touches to the entity', function (string $type, bool $quiet) {
     $child = createTimestampAuthorityChild($type);
     $this->travel(1)->hour();
 
-    expect($quiet ? $child->touchSilently() : $child->touch())->toBeTrue();
+    expect($quiet ? $child->entity->touchSilently() : $child->entity->touch())->toBeTrue();
 
-    expect($child->fresh()->updated_at->equalTo(now()))->toBeTrue();
+    expect($child->fresh()->entity->updated_at->equalTo(now()))->toBeTrue();
 })->with('entity child types')->with([true, false]);
 
 it('uses entity timestamps for synchronization and recent ordering', function (string $type) {
@@ -152,7 +149,7 @@ it('uses entity timestamps for synchronization and recent ordering', function (s
         ->and($class::recent()->pluck($older->qualifyColumn('id'))->all())->toBe([$newer->id, $older->id]);
 })->with('entity child types');
 
-it('exports entity timestamps through the child export format', function (string $type) {
+it('does not serialize entity timestamps as child attributes', function (string $type) {
     $child = createTimestampAuthorityChild($type);
     if (! method_exists($child, 'export')) {
         $this->markTestSkipped('This entity type does not expose child exports.');
@@ -160,8 +157,7 @@ it('exports entity timestamps through the child export format', function (string
 
     $data = json_decode($child->export(), true, flags: JSON_THROW_ON_ERROR);
 
-    expect($data['created_at'])->toBe($child->entity->created_at->toJSON())
-        ->and($data['updated_at'])->toBe($child->entity->updated_at->toJSON());
+    expect($data)->not->toHaveKeys(['created_at', 'updated_at']);
 })->with('entity child types');
 
 it('keeps soft deletion and restoration working without child timestamps', function (string $type) {
