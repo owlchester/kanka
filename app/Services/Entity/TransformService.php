@@ -309,14 +309,9 @@ class TransformService
 
         EntityLogger::entity($this->entity)->dirty('entity_type', $type)->update();
 
-        // Delete old, this will take care of pictures and stuff. We detach the
-        // entity to avoid the softDelete affecting it and causing duplicate
-        // entities in the db. ForceDelete the MiscModel for img cleanup.
         if (isset($this->child)) {
             $this->child->entity = null;
-
-            // Force delete the old entity to avoid it creating weird issues in the db by being soft deleted.
-            $this->child->forceDelete();
+            $this->child->delete();
             unset($this->child);
         }
 

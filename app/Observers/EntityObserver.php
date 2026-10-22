@@ -95,7 +95,7 @@ class EntityObserver
     {
         // When an entity is soft-deleted, we just want some webhooks to trigger,
         // not actually delete the entity and its image.
-        if ($entity->trashed()) {
+        if (! $entity->isForceDeleting()) {
             if ($entity->campaign->premium()) {
                 EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::DELETED->value)->afterCommit();
             }
@@ -106,6 +106,11 @@ class EntityObserver
         // Todo: Why is this not handled by the database?
         $entity->permissions()->delete();
         $entity->widgets()->delete();
+    }
+
+    public function forceDeleted(Entity $entity): void
+    {
+        Images::cleanupEntity($entity);
     }
 
     public function restored(Entity $entity)

@@ -82,7 +82,7 @@ class TagApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $tag->entity);
-        $tag->delete();
+        $tag->entity->delete();
 
         return response()->json(null, 204);
     }

@@ -82,7 +82,7 @@ class FamilyApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $family->entity);
-        $family->delete();
+        $family->entity->delete();
 
         return response()->json(null, 204);
     }

@@ -16,11 +16,6 @@ class DeleteController extends Controller
         }
 
         $entity->delete();
-        // Todo: we really have to unify this one day. We have to delete the child to keep the withCount()
-        // to work until we migrate all parent data to the Entity model and out of the child model.
-        if ($entity->hasChild()) {
-            $entity->child->delete();
-        }
 
         $routeName = $entity->entityType->hasEntity() ? 'entities' : $entity->entityType->pluralCode();
         $params = $entity->entityType->hasEntity() ? [$campaign, $entity->entityType] : [$campaign];

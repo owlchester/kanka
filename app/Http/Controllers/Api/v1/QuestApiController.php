@@ -83,7 +83,7 @@ class QuestApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $quest->entity);
-        $quest->delete();
+        $quest->entity->delete();
 
         return response()->json(null, 204);
     }
