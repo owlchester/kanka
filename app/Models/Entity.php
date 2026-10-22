@@ -352,7 +352,7 @@ class Entity extends Model
     public function postPositionOptions(?int $position = null): array
     {
         $options = $position ? [
-            null => __('posts.position.dont_change'),
+            '' => __('posts.position.dont_change'),
         ] : [];
 
         $layers = $this->posts->sortBy('position');
