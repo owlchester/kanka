@@ -10,6 +10,7 @@ use App\Models\Entity;
 use App\Models\EntityType;
 use App\Services\Api\BulkEntityCreatorService;
 use App\Services\Entity\EntitySaveService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 

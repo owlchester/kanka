@@ -54,7 +54,6 @@ class LoggerService
 
         $this->update();
         $this->entity->touchQuietly();
-        $this->model->touchQuietly();
     }
 
     public function created(): bool

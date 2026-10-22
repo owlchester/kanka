@@ -156,7 +156,7 @@ class TimelineEra extends Model
      */
     public function positionOptions($position = null, bool $new = false): array
     {
-        $options = [null => __('posts.position.dont_change')];
+        $options = ['' => __('posts.position.dont_change')];
 
         $elements = $this->orderedElements;
         $hasFirst = false;
@@ -184,7 +184,7 @@ class TimelineEra extends Model
         }
 
         if ($new) {
-            unset($options[null]);
+            unset($options['']);
         }
 
         return $options;
