@@ -9,6 +9,7 @@ use App\Facades\Images;
 use App\Models\Entity;
 use App\Models\Location;
 use App\Models\MiscModel;
+use App\Models\Scopes\ActiveEntityScope;
 use Exception;
 
 class PurgeService
@@ -36,8 +37,7 @@ class PurgeService
 
         if ($entity->hasChild()) {
             /** @var MiscModel $child */
-            // @phpstan-ignore-next-line
-            $child = $entity->child()->onlyTrashed()->first();
+            $child = $entity->child()->withoutGlobalScope(ActiveEntityScope::class)->first();
             $this->trashChild($entity, $child);
         }
 
@@ -66,7 +66,7 @@ class PurgeService
         CampaignLocalization::setConsoleCampaign($entity->campaign_id);
 
         // Detach children of this entity via entities.parent_id
-        foreach ($entity->children as $childEntity) {
+        foreach ($entity->children()->withTrashed()->get() as $childEntity) {
             if ($childEntity->campaign_id != $entity->campaign_id) {
                 throw new Exception(
                     'Found a child entity that doesn\'t share the campaign id. '
@@ -76,7 +76,6 @@ class PurgeService
             $childEntity->parent_id = null;
             $childEntity->timestamps = false;
             $childEntity->saveQuietly();
-            dump('#' . $entity->id . ' child entity #' . $childEntity->id . ' untreed');
         }
 
         // Clean up the parent to avoid cascading deletes
@@ -94,7 +93,7 @@ class PurgeService
         }
 
         CharacterCache::campaign($entity->campaign);
-        $child->forceDelete();
+        $child->delete();
 
         // Unset the campaign id limitation again
         CampaignLocalization::setConsoleCampaign(0);

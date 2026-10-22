@@ -82,7 +82,7 @@ class OrganisationApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $organisation->entity);
-        $organisation->delete();
+        $organisation->entity->delete();
 
         return response()->json(null, 204);
     }

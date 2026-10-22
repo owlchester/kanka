@@ -82,7 +82,7 @@ class JournalApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $journal->entity);
-        $journal->delete();
+        $journal->entity->delete();
 
         return response()->json(null, 204);
     }

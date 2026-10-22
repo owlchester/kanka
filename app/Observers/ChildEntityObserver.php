@@ -24,17 +24,6 @@ class ChildEntityObserver
 
     public function deleted(MiscModel $model)
     {
-        // Soft-delete the entity
-        if ($model->entity) {
-            $model->entity->delete();
-        }
-
-        // If soft deleting, don't really delete the image
-        // @phpstan-ignore-next-line
-        if ($model->trashed()) {
-            return;
-        }
-
         Images::model($model)->cleanup();
     }
 

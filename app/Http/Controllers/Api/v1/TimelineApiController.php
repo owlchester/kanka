@@ -82,7 +82,7 @@ class TimelineApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $timeline->entity);
-        $timeline->delete();
+        $timeline->entity->delete();
 
         return response()->json(null, 204);
     }

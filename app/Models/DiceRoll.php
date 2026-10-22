@@ -9,7 +9,6 @@ use App\Models\Concerns\Sanitizable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property string $system
@@ -24,7 +23,6 @@ class DiceRoll extends MiscModel
     use HasFactory;
     use HasFilters;
     use Sanitizable;
-    use SoftDeletes;
 
     protected $fillable = [
         'name',
