@@ -137,6 +137,40 @@ it('sorts characters by canonical race and tag names', function () {
         ->and(Character::query()->customSortTags('asc')->pluck('characters.id')->all())->toBe([$first->id, $last->id]);
 });
 
+it('orders entity queries by canonical tag names', function (bool $dropLegacyName) {
+    $first = Character::factory()->create(['campaign_id' => 1, 'name' => 'Z unrelated entity']);
+    $last = Character::factory()->create(['campaign_id' => 1, 'name' => 'A unrelated entity']);
+    $untagged = Character::factory()->create(['campaign_id' => 1]);
+    $firstTag = Tag::factory()->create(['campaign_id' => 1, 'name' => 'A canonical tag']);
+    $lastTag = Tag::factory()->create(['campaign_id' => 1, 'name' => 'Z canonical tag']);
+    DB::table('tags')->where('id', $firstTag->id)->update(['name' => 'Z legacy tag']);
+    DB::table('tags')->where('id', $lastTag->id)->update(['name' => 'A legacy tag']);
+    $first->entity->tags()->attach($firstTag->id);
+    $last->entity->tags()->attach($lastTag->id);
+
+    if ($dropLegacyName) {
+        foreach (Schema::getIndexes('tags') as $index) {
+            if (in_array('name', $index['columns'], true)) {
+                Schema::table('tags', fn (Blueprint $table) => $table->dropIndex($index['name']));
+            }
+        }
+        Schema::table('tags', fn (Blueprint $table) => $table->dropColumn('name'));
+    }
+
+    $ids = [$first->entity->id, $last->entity->id, $untagged->entity->id];
+    $orderedIds = fn (string $direction) => Entity::query()
+        ->select('entities.*')
+        ->whereIn('entities.id', $ids)
+        ->order(['tags' => $direction])
+        ->pluck('entities.id')->all();
+
+    expect($orderedIds('asc'))->toBe([$untagged->entity->id, $first->entity->id, $last->entity->id])
+        ->and($orderedIds('desc'))->toBe([$last->entity->id, $first->entity->id, $untagged->entity->id]);
+})->with([
+    'with legacy names' => false,
+    'without legacy name column' => true,
+]);
+
 it('restores legacy child names from entities when the nullable-name migration rolls back', function (string $modelClass) {
     $model = $modelClass::factory()->create([
         'campaign_id' => 1,
