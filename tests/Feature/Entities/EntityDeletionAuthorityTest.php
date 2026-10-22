@@ -9,6 +9,7 @@ use App\Models\Family;
 use App\Models\MiscModel;
 use App\Models\Post;
 use App\Models\Scopes\ActiveEntityScope;
+use App\Services\Entity\ColumnDefinitionService;
 use App\Services\Entity\PurgeService;
 use App\Services\Entity\RecoveryService;
 use App\Services\Entity\StandardEntityCreationService;
@@ -100,6 +101,51 @@ it('keeps deleted children out of relationship counts and eager loading', functi
 
     expect($family->members_count)->toBe(0)
         ->and($family->members)->toBeEmpty();
+});
+
+it('excludes deleted entities from listing relationship counts', function (string $type) {
+    $child = createDeletionAuthorityChild($type);
+    $active = createDeletionAuthorityChild('character');
+    $deleted = createDeletionAuthorityChild('character');
+
+    foreach ([$active, $deleted] as $character) {
+        if ($type === 'organisation') {
+            $child->members()->create(['character_id' => $character->id]);
+        } elseif ($type === 'family') {
+            $child->members()->attach($character->id);
+        } else {
+            $child->entities()->attach($character->entity->id);
+        }
+    }
+    $deleted->entity->delete();
+
+    $counts = app(ColumnDefinitionService::class)->childCountRelations(
+        $child->entity->entityType,
+        Campaign::findOrFail(1),
+    );
+    $countColumn = in_array($type, ['organisation', 'family']) ? 'members_count' : 'entities_count';
+
+    expect($child->newQuery()->withCount($counts)->findOrFail($child->id)->{$countColumn})->toBe(1);
+
+    $this->getJson(route('entities.index-api', [1, $child->entity->entityType]))
+        ->assertSuccessful()
+        ->assertJsonPath('error', false)
+        ->assertJsonPath('entities.data.0.' . $countColumn, 1);
+})->with(['organisation', 'family', 'ability', 'tag']);
+
+it('counts standalone quest elements but not elements linked to deleted entities', function () {
+    $quest = createDeletionAuthorityChild('quest');
+    $active = createDeletionAuthorityChild('character');
+    $deleted = createDeletionAuthorityChild('character');
+    $quest->elements()->create(['entity_id' => $active->entity->id]);
+    $quest->elements()->create(['entity_id' => $deleted->entity->id]);
+    $quest->elements()->create(['name' => 'Standalone element']);
+    $deleted->entity->delete();
+
+    $this->getJson(route('entities.index-api', [1, $quest->entity->entityType]))
+        ->assertSuccessful()
+        ->assertJsonPath('error', false)
+        ->assertJsonPath('entities.data.0.elements_count', 2);
 });
 
 it('matches deletion state by entity type as well as child id', function () {
