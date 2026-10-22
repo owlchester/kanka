@@ -83,7 +83,7 @@ class CreatureApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $creature->entity);
-        $creature->delete();
+        $creature->entity->delete();
 
         return response()->json(null, 204);
     }

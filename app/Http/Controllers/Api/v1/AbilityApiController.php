@@ -82,7 +82,7 @@ class AbilityApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $ability->entity);
-        $ability->delete();
+        $ability->entity->delete();
 
         return response()->json(null, 204);
     }

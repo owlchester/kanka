@@ -82,7 +82,7 @@ class EventApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $event->entity);
-        $event->delete();
+        $event->entity->delete();
 
         return response()->json(null, 204);
     }

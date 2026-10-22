@@ -11,7 +11,6 @@ trait HasEntity
         $observer = app(ChildEntityObserver::class);
 
         static::created([$observer, 'created']);
-        static::deleted([$observer, 'deleted']);
         static::saved([$observer, 'saved']);
     }
 }

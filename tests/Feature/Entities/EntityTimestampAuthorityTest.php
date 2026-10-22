@@ -34,7 +34,7 @@ it('stores timestamps only on the entity and preserves serialized dates', functi
 
     expect(Schema::hasColumn($child->getTable(), 'created_at'))->toBeFalse()
         ->and(Schema::hasColumn($child->getTable(), 'updated_at'))->toBeFalse()
-        ->and(Schema::hasColumn($child->getTable(), 'deleted_at'))->toBeTrue()
+        ->and(Schema::hasColumn($child->getTable(), 'deleted_at'))->toBeFalse()
         ->and($child->usesTimestamps())->toBeFalse()
         ->and($child->getAttributes())->not->toHaveKeys(['created_at', 'updated_at'])
         ->and($child->toArray())->not->toHaveKeys(['created_at', 'updated_at']);
@@ -162,13 +162,12 @@ it('does not serialize entity timestamps as child attributes', function (string 
 
 it('keeps soft deletion and restoration working without child timestamps', function (string $type) {
     $child = createTimestampAuthorityChild($type);
-    $child->delete();
+    $child->entity->delete();
 
-    expect($child->trashed())->toBeTrue()
+    expect($child::find($child->id))->toBeNull()
         ->and($child->entity()->withTrashed()->firstOrFail()->trashed())->toBeTrue();
 
     $child->entity()->withTrashed()->firstOrFail()->restore();
-    $child->restoreQuietly();
 
     expect($child->fresh())->not->toBeNull()
         ->and($child->fresh()->entity)->not->toBeNull();

@@ -11,7 +11,6 @@ use App\Traits\ExportableTrait;
 use App\ValueObjects\Calendars\CalendarDefinition;
 use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
@@ -43,7 +42,6 @@ class Calendar extends MiscModel
     use HasCampaign;
     use HasFactory;
     use HasFilters;
-    use SoftDeletes;
 
     protected $fillable = [
         'campaign_id',

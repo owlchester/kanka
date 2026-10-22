@@ -82,7 +82,7 @@ class NoteApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $note->entity);
-        $note->delete();
+        $note->entity->delete();
 
         return response()->json(null, 204);
     }

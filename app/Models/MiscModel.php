@@ -10,6 +10,7 @@ use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
 use App\Models\Concerns\TouchSilently;
+use App\Models\Scopes\ActiveEntityScope;
 use App\Models\Scopes\SubEntityScopes;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
@@ -69,6 +70,8 @@ abstract class MiscModel extends Model
 
     protected static function booted(): void
     {
+        static::addGlobalScope(new ActiveEntityScope);
+
         static::creating(function (self $model): void {
             // Non-admin forms don't expose the privacy field. Treat a null
             // value as the public default rather than persisting null.

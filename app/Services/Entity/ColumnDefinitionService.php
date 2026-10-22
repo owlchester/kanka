@@ -5,6 +5,7 @@ namespace App\Services\Entity;
 use App\Models\Campaign;
 use App\Models\CategoryStatus;
 use App\Models\EntityType;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 
 class ColumnDefinitionService
@@ -74,7 +75,7 @@ class ColumnDefinitionService
     }
 
     /**
-     * @return string[] Child model relation names that need withCount (e.g. ['members', 'elements'])
+     * @return array Child model relations and constraints for withCount
      */
     public function childCountRelations(EntityType $entityType, Campaign $campaign): array
     {
@@ -88,7 +89,16 @@ class ColumnDefinitionService
         $needed = [];
         foreach ($this->columns($entityType, $campaign) as $col) {
             if (isset($countColumns[$col['key']])) {
-                $needed[] = $countColumns[$col['key']];
+                $relation = $countColumns[$col['key']];
+                if ($relation === 'members' && $entityType->code === 'organisation') {
+                    $needed[$relation] = fn (Builder $query) => $query->has('character.entity');
+                } elseif ($relation === 'elements' && $entityType->code === 'quest') {
+                    $needed[$relation] = fn (Builder $query) => $query->where(fn (Builder $element) => $element
+                        ->whereNull('entity_id')
+                        ->orHas('entity'));
+                } else {
+                    $needed[] = $relation;
+                }
             }
         }
 
