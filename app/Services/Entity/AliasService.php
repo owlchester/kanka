@@ -4,8 +4,11 @@ namespace App\Services\Entity;
 
 use App\Enums\EntityAssetType;
 use App\Enums\Visibility;
+use App\Models\Campaign;
 use App\Traits\EntityAware;
 use App\Traits\RequestAware;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 
 class AliasService
 {
@@ -56,7 +59,39 @@ class AliasService
             return;
         }
 
-        $this->saveAliases($aliases);
+        DB::transaction(function () use ($aliases): void {
+            $this->enforceCampaignLimit($aliases);
+            $this->saveAliases($aliases);
+        });
+    }
+
+    /**
+     * Enforce the campaign-wide alias limit, including aliases hidden
+     * from the current user. Locking the campaign serializes concurrent
+     * saves for the same campaign.
+     *
+     * @param  array<int, array{id: int|string, name: string, visibility?: string|null}>  $aliases
+     */
+    private function enforceCampaignLimit(array $aliases): void
+    {
+        $limit = config('limits.campaigns.aliases');
+        if (! $limit || $this->entity->campaign->boosted()) {
+            return;
+        }
+
+        $campaignAliasCount = $this->entity->campaign->entityAliases()->withPrivate()->count();
+        $visibleEntityAliasCount = $this->entity->aliases()->count();
+        $submittedCount = count($aliases);
+
+        if ($campaignAliasCount - $visibleEntityAliasCount + $submittedCount > $limit) {
+            throw ValidationException::withMessages([
+                'aliases' => __('entities/aliases.limit', [
+                    'amount' => $campaignAliasCount,
+                    'max' => $limit,
+                    'upgrade' => __('callouts.actions.upgrade'),
+                ]),
+            ]);
+        }
     }
 
     /**
