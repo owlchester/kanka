@@ -34,8 +34,6 @@ trait ExportableTrait
         $baseFields = [
             'id',
             'name',
-            'created_at',
-            'updated_at',
             'is_private',
         ];
         foreach ($this->exportFields as $field) {

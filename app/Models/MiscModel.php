@@ -12,10 +12,8 @@ use App\Models\Concerns\Sortable;
 use App\Models\Concerns\TouchSilently;
 use App\Models\Scopes\ActiveEntityScope;
 use App\Models\Scopes\SubEntityScopes;
-use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -31,8 +29,6 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property string $header_image
  * @property bool|int $is_private
  * @property string[] $nullableForeignKeys
- * @property Carbon $created_at
- * @property Carbon $updated_at
  *
  * @method static self|Builder sort(array $filters, array $defaultOrder = [])
  */
@@ -51,8 +47,6 @@ abstract class MiscModel extends Model
     public $timestamps = false;
 
     protected $touches = ['entity'];
-
-    protected $appends = ['created_at', 'updated_at'];
 
     /**
      * Explicit fields for filtering.
@@ -105,21 +99,6 @@ abstract class MiscModel extends Model
     public function hasEntity(): bool
     {
         return method_exists($this, 'entityTypeID');
-    }
-
-    protected function createdAt(): Attribute
-    {
-        return Attribute::get(fn () => $this->entity?->created_at);
-    }
-
-    protected function updatedAt(): Attribute
-    {
-        return Attribute::get(fn () => $this->entity?->updated_at);
-    }
-
-    public function touch($attribute = null): bool
-    {
-        return $this->entity?->touch($attribute) ?? false;
     }
 
     /**
