@@ -4,9 +4,8 @@ namespace Database\Factories;
 
 // use Faker\Generator as Faker;
 use App\Models\Race;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
-class RaceFactory extends Factory
+class RaceFactory extends StandardEntityFactory
 {
     /**
      * The name of the factory's corresponding model.

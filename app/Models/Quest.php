@@ -35,7 +35,6 @@ class Quest extends MiscModel
 
     protected $fillable = [
         'campaign_id',
-        'name',
         'is_private',
         'instigator_id',
         'date',
@@ -92,8 +91,8 @@ class Quest extends MiscModel
     public function scopeFilteredQuests(Builder $query): Builder
     {
         return $query
-            ->select(['quests.id', 'quests.name', 'quests.is_private'])
-            ->sort(request()->only(['o', 'k']), ['name' => 'asc']) // @phpstan-ignore method.notFound
+            ->select(['quests.id', 'quests.is_private'])
+            ->sort(request()->only(['o', 'k']), ['entities.name' => 'asc']) // @phpstan-ignore method.notFound
             ->with([
                 'entity.locations',
                 'entity.locations.entity' => fn ($sub) => $sub->grid(),

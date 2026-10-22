@@ -3,12 +3,11 @@
 namespace Database\Factories;
 
 use App\Models\Creature;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Creature>
+ * @extends StandardEntityFactory<Creature>
  */
-class CreatureFactory extends Factory
+class CreatureFactory extends StandardEntityFactory
 {
     /**
      * Define the model's default state.

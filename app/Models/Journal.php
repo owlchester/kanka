@@ -32,7 +32,6 @@ class Journal extends MiscModel
     use SortableTrait;
 
     protected $fillable = [
-        'name',
         'campaign_id',
         'date',
         'character_id',

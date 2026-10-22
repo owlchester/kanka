@@ -52,7 +52,6 @@ class Character extends MiscModel
     use SortableTrait;
 
     protected $fillable = [
-        'name',
         'campaign_id',
         'title',
         'age',
@@ -222,7 +221,7 @@ class Character extends MiscModel
             ->has('family.entity')
             ->with([
                 'family' => function ($sub) {
-                    $sub->select('id', 'name', 'is_private');
+                    $sub->select('id', 'is_private');
                 },
                 'family.entity' => function ($sub) {
                     $sub->select('id', 'name', 'entity_id', 'type_id');
@@ -241,7 +240,7 @@ class Character extends MiscModel
             ->has('race.entity')
             ->with([
                 'race' => function ($sub) {
-                    $sub->select('id', 'name', 'is_private');
+                    $sub->select('id', 'is_private');
                 },
                 'race.entity' => function ($sub) {
                     $sub->select('id', 'name', 'entity_id', 'type_id');
@@ -462,33 +461,57 @@ class Character extends MiscModel
     public function scopeCustomSortLocations(Builder $query, string $order): Builder
     {
         $name = Location::query()
-            ->selectRaw('MIN(locations.name)')
+            ->selectRaw('MIN(location_sort_entities.name)')
             ->join('entity_locations', 'entity_locations.location_id', '=', 'locations.id')
-            ->join('entities as location_sort_entities', 'location_sort_entities.id', '=', 'entity_locations.entity_id')
-            ->whereColumn('location_sort_entities.entity_id', 'characters.id')
-            ->where('location_sort_entities.type_id', config('entities.ids.character'));
+            ->join('entities as character_sort_entities', function ($join) {
+                $join->on('character_sort_entities.id', '=', 'entity_locations.entity_id')
+                    ->where('character_sort_entities.type_id', config('entities.ids.character'));
+            })
+            ->join('entities as location_sort_entities', function ($join) {
+                $join->on('location_sort_entities.entity_id', '=', 'locations.id')
+                    ->where('location_sort_entities.type_id', config('entities.ids.location'));
+            })
+            ->whereColumn('character_sort_entities.entity_id', 'characters.id');
 
         return $query->orderBy($name, $order);
     }
 
     public function scopeCustomSortFamilies(Builder $query, string $order): Builder
     {
-        return $query
-            ->withMin('families as family_sort_name', 'name')
-            ->orderBy('family_sort_name', $order);
+        $name = Family::query()
+            ->selectRaw('MIN(family_sort_entities.name)')
+            ->join('character_family', 'character_family.family_id', '=', 'families.id')
+            ->join('entities as family_sort_entities', function ($join) {
+                $join->on('family_sort_entities.entity_id', '=', 'families.id')
+                    ->where('family_sort_entities.type_id', config('entities.ids.family'));
+            })
+            ->whereColumn('character_family.character_id', 'characters.id');
+
+        return $query->orderBy($name, $order);
     }
 
     public function scopeCustomSortRaces(Builder $query, string $order): Builder
     {
-        return $query
-            ->withMin('races as race_sort_name', 'name')
-            ->orderBy('race_sort_name', $order);
+        $name = Race::query()
+            ->selectRaw('MIN(race_sort_entities.name)')
+            ->join('entities as race_sort_entities', function ($join) {
+                $join->on('race_sort_entities.entity_id', '=', 'races.id')
+                    ->where('race_sort_entities.type_id', config('entities.ids.race'));
+            })
+            ->join('character_race', 'character_race.race_id', '=', 'races.id')
+            ->whereColumn('character_race.character_id', 'characters.id');
+
+        return $query->orderBy($name, $order);
     }
 
     public function scopeCustomSortTags(Builder $query, string $order): Builder
     {
         $name = Tag::query()
-            ->selectRaw('MIN(tags.name)')
+            ->selectRaw('MIN(tag_name_entities.name)')
+            ->join('entities as tag_name_entities', function ($join) {
+                $join->on('tag_name_entities.entity_id', '=', 'tags.id')
+                    ->where('tag_name_entities.type_id', config('entities.ids.tag'));
+            })
             ->join('entity_tags', 'entity_tags.tag_id', '=', 'tags.id')
             ->join('entities as tag_sort_entities', 'tag_sort_entities.id', '=', 'entity_tags.entity_id')
             ->whereColumn('tag_sort_entities.entity_id', 'characters.id')

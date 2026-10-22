@@ -51,7 +51,6 @@ class Map extends MiscModel
 
     protected $fillable = [
         'campaign_id',
-        'name',
         'location_id',
         'grid',
         'is_private',

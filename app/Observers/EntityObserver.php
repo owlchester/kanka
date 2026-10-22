@@ -6,6 +6,7 @@ use App\Enums\Permission;
 use App\Enums\WebhookAction;
 use App\Events\Entities\EntityCreationCompleted;
 use App\Events\Entities\EntityRestored;
+use App\Events\Maps\Updated as MapUpdated;
 use App\Facades\Images;
 use App\Facades\Permissions;
 use App\Jobs\EntityUpdatedJob;
@@ -82,6 +83,12 @@ class EntityObserver
         // Being assigned an entity shouldn't trigger any side effects
         if ($entity->wasChanged('entity_id') && $entity->getOriginal('entity_id') === null) {
             return;
+        }
+
+        if ($entity->isMap() && $entity->wasChanged('name')) {
+            $map = $entity->map;
+            $map->setRelation('entity', $entity);
+            MapUpdated::dispatch($map);
         }
 
         EntityUpdatedJob::dispatch($entity)->afterCommit();

@@ -25,7 +25,6 @@ class DiceRoll extends MiscModel
     use Sanitizable;
 
     protected $fillable = [
-        'name',
         'campaign_id',
         'character_id',
         'system',

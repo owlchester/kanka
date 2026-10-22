@@ -32,7 +32,6 @@ class Conversation extends MiscModel
     use Sanitizable;
 
     protected $fillable = [
-        'name',
         'campaign_id',
         'target_id',
         'is_private',

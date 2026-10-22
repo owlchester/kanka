@@ -46,6 +46,8 @@ abstract class MiscModel extends Model
 
     public $timestamps = false;
 
+    protected $appends = ['name'];
+
     protected $touches = ['entity'];
 
     /**
@@ -101,21 +103,13 @@ abstract class MiscModel extends Model
         return method_exists($this, 'entityTypeID');
     }
 
-    /**
-     * Create the model's Entity
-     */
-    public function createEntity(): Entity
+    public function getNameAttribute(mixed $value): mixed
     {
-        $entity = new Entity;
-        $entity->entity_id = $this->id;
-        $entity->name = $this->name;
-        $entity->campaign_id = $this->campaign_id;
-        $entity->type_id = $this->entityTypeId();
-        $entity->is_private = $this->isPrivate();
-        $entity->save();
-        $this->setRelation('entity', $entity);
+        if ($this->exists) {
+            return $this->entity?->name;
+        }
 
-        return $entity;
+        return $value;
     }
 
     /**

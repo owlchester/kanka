@@ -9,6 +9,7 @@ use App\Models\Character;
 use App\Models\CharacterTrait;
 use App\Models\Entity;
 use App\Models\EntityTag;
+use App\Models\EntityType;
 use App\Models\Family;
 use App\Models\Image;
 use App\Models\MiscModel;
@@ -19,6 +20,7 @@ use App\Models\Post;
 use App\Models\QuestElement;
 use App\Models\Race;
 use App\Models\Relation;
+use App\Services\Entity\StandardEntityCreationService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Exception;
@@ -155,15 +157,12 @@ class ImporterService
                 $modifiedEntity->marketplace_uuid = null;
                 $modifiedEntity->save();
             }
-            $className = '\App\Models\\' . Str::studly($pluginEntity->type->code);
-            // dump('new ' . $className);
-
             /** @var MiscModel $model */
-            $model = new $className;
-            $model->name = $pluginEntity->name;
-            // $model->entry = $this->$pluginEntity->entry;
-            $model->campaign_id = $this->campaign->id;
-            $model->save();
+            $model = app(StandardEntityCreationService::class)
+                ->campaign($this->campaign)
+                ->entityType(EntityType::findOrFail($pluginEntity->type_id))
+                ->user($this->user)
+                ->create(['name' => $pluginEntity->name]);
 
             $entity = $model->entity;
             $entity->marketplace_uuid = $pluginEntity->uuid;
@@ -235,6 +234,8 @@ class ImporterService
             $this->importTags($value);
         } elseif ($field == 'tooltip') {
             $this->importEntityTooltip($value);
+        } elseif ($field === 'name') {
+            $this->model->entity->name = $value;
         } elseif ($field == 'type') {
             $this->importEntityType($value);
         } elseif ($field == 'is_private' && $this->forcePrivate) {

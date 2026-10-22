@@ -28,7 +28,6 @@ class Event extends MiscModel
 
     protected $fillable = [
         'campaign_id',
-        'name',
         'date',
         'is_private',
     ];
@@ -67,8 +66,8 @@ class Event extends MiscModel
     public function scopeFilteredEvents(Builder $query): Builder
     {
         return $query
-            ->select(['events.id', 'events.name', 'events.date', 'events.is_private'])
-            ->sort(request()->only(['o', 'k']), ['name' => 'asc']) // @phpstan-ignore method.notFound
+            ->select(['events.id', 'events.date', 'events.is_private'])
+            ->sort(request()->only(['o', 'k']), ['entities.name' => 'asc']) // @phpstan-ignore method.notFound
             ->with([
                 'entity.locations',
                 'entity.locations.entity' => fn ($sub) => $sub->grid(),

@@ -38,7 +38,6 @@ class Location extends MiscModel
     use SortableTrait;
 
     protected $fillable = [
-        'name',
         'campaign_id',
         'is_private',
         'title',
@@ -89,7 +88,7 @@ class Location extends MiscModel
             ->with('entity')
             ->with('entity.image')
             ->has('entity')
-            ->select(['id', 'name', 'is_real']);
+            ->select(['id', 'is_real']);
     }
 
     /**

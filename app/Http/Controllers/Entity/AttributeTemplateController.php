@@ -62,20 +62,20 @@ class AttributeTemplateController extends Controller
             return redirect()
                 ->to($entity->url())
                 ->with('success', __('entities/attributes.template.success', [
-                    'name' => $templateName, 'entity' => $entity->child->name,
+                    'name' => $templateName, 'entity' => $entity->name,
                 ]));
         } elseif ($request->has('submit-update')) {
             return redirect()
                 ->route('entities.attributes.edit', [$campaign, $entity])
                 ->with('success', __('entities/attributes.template.success', [
-                    'name' => $templateName, 'entity' => $entity->child->name,
+                    'name' => $templateName, 'entity' => $entity->name,
                 ]));
         }
 
         return redirect()
             ->route('entities.attributes', [$campaign, $entity])
             ->with('success', __('entities/attributes.template.success', [
-                'name' => $templateName, 'entity' => $entity->child->name,
+                'name' => $templateName, 'entity' => $entity->name,
             ]));
     }
 }

@@ -18,7 +18,7 @@ class ConversationMessageResource extends JsonResource
             'id' => $resource->id,
             'from_id' => $resource->user_id ?: $resource->character_id,
             'user' => $resource->user?->name,
-            'character' => $resource->character?->name,
+            'character' => $resource->character?->entity?->name,
             'message' => $resource->message,
             'created_at' => $resource->created_at->diffForHumans(),
             'updated_at' => $resource->updated_at->diffForHumans(),

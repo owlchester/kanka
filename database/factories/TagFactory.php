@@ -4,9 +4,8 @@ namespace Database\Factories;
 
 // use Faker\Generator as Faker;
 use App\Models\Tag;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
-class TagFactory extends Factory
+class TagFactory extends StandardEntityFactory
 {
     /**
      * The name of the factory's corresponding model.

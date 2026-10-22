@@ -224,7 +224,10 @@ trait EntityScopes
                     ->orderBy('cd.day', $order);
             } elseif ($field === 'tags') {
                 $query->leftJoin('entity_tags as tags_order', 'tags_order.entity_id', '=', 'entities.id')
-                    ->leftJoin('tags as tag_order', 'tag_order.id', '=', 'tags_order.tag_id')
+                    ->leftJoin('entities as tag_order', function ($join) {
+                        $join->on('tag_order.entity_id', '=', 'tags_order.tag_id')
+                            ->where('tag_order.type_id', config('entities.ids.tag'));
+                    })
                     ->orderBy('tag_order.name', $order);
             } elseif (! in_array($field, $entityFields) && $entityType?->isStandard()) {
                 // Field lives on the child model's table
@@ -239,6 +242,17 @@ trait EntityScopes
                     /** @var BelongsTo $relation */
                     $relation = $childModel->{$relationName}();
                     $relatedTable = $relation->getQuery()->getQuery()->from;
+                    if ($segments[1] === 'name' && method_exists($relation->getRelated(), 'entityTypeId')) {
+                        $entityAlias = 'orderable_entity_' . $relationName;
+                        $query->leftJoin($relatedTable . ' as orderable_j', 'orderable_j.id', 'child_order.' . $relation->getForeignKeyName())
+                            ->leftJoin('entities as ' . $entityAlias, function ($join) use ($entityAlias, $relation) {
+                                $join->on($entityAlias . '.entity_id', '=', 'orderable_j.id')
+                                    ->where($entityAlias . '.type_id', $relation->getRelated()->entityTypeId());
+                            })
+                            ->orderBy($entityAlias . '.name', $order);
+
+                        continue;
+                    }
                     $query->leftJoin(
                         $relatedTable . ' as orderable_j',
                         'orderable_j.id',

@@ -59,7 +59,6 @@ class Tag extends MiscModel
     ];
 
     protected $fillable = [
-        'name',
         'slug',
         'colour',
         'icon',
