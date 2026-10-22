@@ -7,7 +7,6 @@ use App\Facades\CharacterCache;
 use App\Facades\EntityCache;
 use App\Facades\Images;
 use App\Models\Entity;
-use App\Models\Location;
 use App\Models\MiscModel;
 use App\Models\Scopes\ActiveEntityScope;
 use Exception;
@@ -43,10 +42,7 @@ class PurgeService
 
         $this->entityIds[] = $entity->id;
         $entity->forceDelete();
-
-        if (isset($child)) {
-            Images::model($child)->field('image')->cleanup();
-        }
+        Images::cleanupEntity($entity);
 
         $this->count++;
     }
@@ -84,13 +80,6 @@ class PurgeService
         $entity->saveQuietly();
 
         $this->childIds[$entity->entityType->code][] = $child->id;
-
-        // Cleanup any images attached to the child.
-        Images::model($child)->field('image')->cleanup();
-
-        if ($child instanceof Location && ! empty($child->map)) {
-            Images::model($child)->field('map')->cleanup();
-        }
 
         CharacterCache::campaign($entity->campaign);
         $child->delete();

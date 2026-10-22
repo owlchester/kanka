@@ -3,7 +3,6 @@
 namespace App\Observers;
 
 use App\Facades\EntityLogger;
-use App\Facades\Images;
 use App\Models\Entity;
 use App\Models\MiscModel;
 
@@ -20,11 +19,6 @@ class ChildEntityObserver
 
         // Created a new sub entity? Create the parent entity.
         $model->createEntity();
-    }
-
-    public function deleted(MiscModel $model)
-    {
-        Images::model($model)->cleanup();
     }
 
     public function saved(MiscModel $model)

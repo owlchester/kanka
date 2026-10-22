@@ -149,6 +149,12 @@ class ImagesService
         }
     }
 
+    public function cleanupEntity(Entity $entity): void
+    {
+        $this->model($entity)->field('image_path')->cleanup();
+        $this->model($entity)->field('header_image')->cleanup();
+    }
+
     /**
      * Delete old image and thumb
      */
@@ -169,7 +175,7 @@ class ImagesService
                 Storage::delete($thumb);
             }
             // If it's a map, reset its height to be re-calculated
-            if ($this->model instanceof Entity && $this->model->isMap()) {
+            if ($this->model instanceof Entity && $this->model->exists && $this->field === 'image_path' && $this->model->isMap()) {
                 $this->model->map->height = null;
                 $this->model->map->width = null;
                 $this->model->map->saveQuietly();
