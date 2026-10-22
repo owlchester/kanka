@@ -43,7 +43,7 @@ class StandardEntityCreationService
 
             unset($child->name);
             $child->fill(Arr::except($data, ['name']));
-            $child->campaign_id = $this->campaign->id;
+            $child->campaign_id = $entity->campaign_id;
             $child->is_private = $entity->is_private;
             $child->setRelation('entity', $entity);
             $child->save();
