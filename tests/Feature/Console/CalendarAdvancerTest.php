@@ -12,7 +12,7 @@ it('does not report invalid calendar configuration', function () {
 
     $emptyMonths = Calendar::factory()->create([
         'campaign_id' => 1,
-        'months' => '[]',
+        'months' => [],
         'date' => '1-1-1',
     ]);
     $invalidLeapRule = Calendar::factory()->create([
@@ -36,7 +36,7 @@ it('continues advancing valid calendars after invalid configuration', function (
 
     Calendar::factory()->create([
         'campaign_id' => 1,
-        'months' => '[]',
+        'months' => [],
         'date' => '1-1-1',
     ]);
     $validCalendar = Calendar::factory()->create(['campaign_id' => 1, 'date' => '1-1-1']);

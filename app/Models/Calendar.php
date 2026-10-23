@@ -20,13 +20,14 @@ use InvalidArgumentException;
  *
  * @property string $date
  * @property int $start_offset
- * @property string $months
- * @property string $years
- * @property string $weekdays
- * @property string $week_names
- * @property string $month_aliases
- * @property string $seasons
- * @property string $moons
+ * @property array $months
+ * @property array $years
+ * @property array $eras
+ * @property array $weekdays
+ * @property array $week_names
+ * @property array $month_aliases
+ * @property array $seasons
+ * @property array $moons
  * @property string $reset
  * @property string $format
  * @property string $suffix
@@ -51,6 +52,7 @@ class Calendar extends MiscModel
         'months',
         'weekdays',
         'years',
+        'eras',
         'seasons',
         'moons',
         'date',
@@ -76,121 +78,49 @@ class Calendar extends MiscModel
     /** @var array<string, string> */
     public $casts = [
         'parameters' => 'array',
+        'months' => 'array',
+        'weekdays' => 'array',
+        'years' => 'array',
+        'eras' => 'array',
+        'seasons' => 'array',
+        'moons' => 'array',
+        'week_names' => 'array',
+        'month_aliases' => 'array',
     ];
 
     protected array $foreignExport = [
         'calendarWeather',
     ];
 
-    protected array $loadedMonths;
-
-    protected array $loadedWeekdays;
-
-    protected array $loadedYears;
-
-    protected array $loadedSeasons;
-
-    protected array $loadedMoons;
-
-    protected array $loadedWeeks;
-
-    protected array $loadedMonthAliases;
-
     protected array $cachedCurrentDate;
 
     protected ?CalendarDefinition $cachedDefinition = null;
 
-    /**
-     * Get the months decoded from the json into a usable array
-     */
-    public function months(): array
+    /** Format a year using its era when one matches. */
+    public function yearName(int|string $year): string
     {
-        if (isset($this->loadedMonths)) {
-            return $this->loadedMonths;
+        $eraYear = $this->eraYearName($year);
+        if ($eraYear !== null) {
+            return $eraYear;
         }
 
-        return (array) $this->loadedMonths = ! empty($this->months) ?
-            json_decode(strip_tags($this->months), true) : [];
+        return ($this->years ?? [])[$year] ?? ($year . ' ' . $this->suffix);
     }
 
-    /**
-     * Get the weekdays
-     */
-    public function weekdays(): array
+    /** Format a year in its era, or return null when no era matches. */
+    public function eraYearName(int|string $year): ?string
     {
-        if (! isset($this->loadedWeekdays)) {
-            $this->loadedWeekdays = [];
-            if (! empty($this->months)) {
-                $this->loadedWeekdays = json_decode(strip_tags($this->weekdays), true);
+        foreach ($this->eras ?? [] as $era) {
+            $start = $era['start_year'] ?? null;
+            $end = $era['end_year'] ?? null;
+            if (($start === null || $year >= $start) && ($end === null || $year <= $end)) {
+                $number = $start === null ? abs((int) $year) : $year - $start + 1;
+
+                return $number . ' ' . $era['suffix'];
             }
         }
 
-        return $this->loadedWeekdays;
-    }
-
-    /**
-     * Get the weekdays
-     */
-    public function years(): array
-    {
-        if (! isset($this->loadedYears)) {
-            $this->loadedYears = [];
-            if (! empty($this->years)) {
-                $this->loadedYears = json_decode(strip_tags($this->years), true);
-            }
-        }
-
-        return $this->loadedYears;
-    }
-
-    /**
-     * Get the calendar's moons
-     */
-    public function moons(): array
-    {
-        if (! isset($this->loadedMoons)) {
-            $moons = $this->attributes['moons'] ?? null;
-            $this->loadedMoons = json_decode(empty($moons) ? '[]' : strip_tags($moons), true);
-        }
-
-        return $this->loadedMoons;
-    }
-
-    /**
-     * Get the calendar's seasons
-     */
-    public function seasons(): array
-    {
-        if (! isset($this->loadedSeasons)) {
-            $this->loadedSeasons = json_decode(empty($this->seasons) ? '[]' : strip_tags($this->seasons), true);
-        }
-
-        return $this->loadedSeasons;
-    }
-
-    /**
-     * Get the calendar's weeks
-     */
-    public function weeks(): array
-    {
-        if (! isset($this->loadedWeeks)) {
-            $this->loadedWeeks = json_decode(empty($this->week_names) ? '[]' : strip_tags($this->week_names), true);
-        }
-
-        return $this->loadedWeeks;
-    }
-
-    /**
-     * Get the calendar's month aliases
-     */
-    public function monthAliases(): array
-    {
-        if (! isset($this->loadedMonthAliases)) {
-            $this->loadedMonthAliases = json_decode(empty($this->month_aliases) ? '[]' :
-                strip_tags($this->month_aliases), true);
-        }
-
-        return $this->loadedMonthAliases;
+        return null;
     }
 
     public function currentDate(?string $value = null): mixed
@@ -251,14 +181,11 @@ class Calendar extends MiscModel
         [$year, $month, $day] = $this->dateArray($date);
 
         // Replace month with real month, and year maybe
-        $months = $this->months();
-        $years = $this->years();
-
+        $months = $this->months ?? [];
         try {
             $return = $day . ' ' .
                 (isset($months[$month - 1]) ? $months[$month - 1]['name'] : $month) . ', ' .
-                ($years[$year] ?? $year) . ' ' .
-                $this->suffix;
+                $this->yearName($year);
 
             return $return;
         } catch (Exception $e) {
@@ -273,7 +200,7 @@ class Calendar extends MiscModel
     {
         $months = [];
         $i = 1;
-        foreach ($this->months() as $month) {
+        foreach ($this->months ?? [] as $month) {
             $months[$i] = $month['name'];
             $i++;
         }
@@ -288,7 +215,7 @@ class Calendar extends MiscModel
     {
         $monthData = [];
         $i = 1;
-        foreach ($this->months() as $month) {
+        foreach ($this->months ?? [] as $month) {
             $monthData[$i] = ['data-length' => $month['length']];
             $i++;
         }
@@ -306,11 +233,11 @@ class Calendar extends MiscModel
         }
         $monthId = $month - ($month > 0 ? 1 : 0);
         // if the current month no longer exists, reset it to the first month
-        if ($monthId > (count($this->months()) - 1)) {
+        if ($monthId > (count($this->months ?? []) - 1)) {
             $monthId = 0;
         }
         $days = [];
-        $currentMonth = $this->months()[$monthId];
+        $currentMonth = ($this->months ?? [])[$monthId];
         for ($i = 1; $i <= $currentMonth['length']; $i++) {
             $days[$i] = $i;
         }
@@ -344,7 +271,7 @@ class Calendar extends MiscModel
      */
     public function missingDetails(): bool
     {
-        if (count($this->months()) < 1 || count($this->weekdays()) < 2) {
+        if (count($this->months ?? []) < 1 || count($this->weekdays ?? []) < 2) {
             return true;
         }
 
@@ -413,7 +340,7 @@ class Calendar extends MiscModel
     public function daysInYear(): int
     {
         $days = 0;
-        foreach ($this->months() as $month) {
+        foreach ($this->months ?? [] as $month) {
             $days += Arr::get($month, 'length', 1);
         }
 

@@ -1,9 +1,11 @@
 <?php
 
 use App\Models\Calendar;
+use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Event;
 use App\Models\Reminder;
+use App\Services\Campaign\Import\Mappers\CalendarMapper;
 use Carbon\Carbon;
 
 it('POSTS an invalid calendar form')
@@ -17,12 +19,13 @@ it('POSTS a new calendar')
     ->withCampaign()
     ->postJson('/api/1.0/campaigns/1/calendars', [
         'name' => 'Gregorian',
-        'months' => '[{"name":"January","length":31,"type":"standard","alias":""},{"name":"February","length":28,"type":"standard","alias":""},{"name":"March","length":31,"type":"standard","alias":""},{"name":"April","length":30,"type":"standard","alias":""},{"name":"Mai","length":31,"type":"standard","alias":""},{"name":"June","length":30,"type":"standard","alias":""},{"name":"July","length":31,"type":"standard","alias":""},{"name":"August","length":31,"type":"standard","alias":""},{"name":"September","length":30,"type":"standard","alias":""},{"name":"October","length":31,"type":"standard","alias":""},{"name":"November","length":30,"type":"standard","alias":""},{"name":"December","length":31,"type":"standard","alias":""}]',
-        'weekdays' => '["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]',
-        'seasons' => '[{"name":"Spring","month":3,"day":21},{"name":"Summer","month":6,"day":21},{"name":"Autumn","month":9,"day":21},{"name":"Winter","month":12,"day":21}]',
         'month_name' => ['first', 'last'],
         'month_length' => [1, 2],
         'weekday' => ['monday', 'sunday'],
+        'eras' => [
+            ['name' => 'The First Age', 'suffix' => '1A', 'start_year' => null, 'end_year' => 1000],
+            ['name' => 'The Second Age', 'suffix' => '2A', 'start_year' => 1001, 'end_year' => null],
+        ],
         'suffix' => 'AD',
         'has_leap_year' => 1,
         'leap_year_amount' => 1,
@@ -40,7 +43,113 @@ it('POSTS a new calendar')
             'id',
             'entity_id',
         ],
+    ])
+    ->assertJsonPath('data.eras.0.name', 'The First Age')
+    ->assertJsonPath('data.eras.1.suffix', '2A');
+
+it('formats calendar years using era boundaries', function () {
+    $calendar = Calendar::factory()->make([
+        'eras' => [
+            ['name' => 'The First Age', 'suffix' => '1A', 'start_year' => null, 'end_year' => 1000],
+            ['name' => 'The Second Age', 'suffix' => '2A', 'start_year' => 1001, 'end_year' => null],
+        ],
     ]);
+
+    expect($calendar->yearName(1000))->toBe('1000 1A')
+        ->and($calendar->yearName(1001))->toBe('1 2A')
+        ->and($calendar->yearName(1005))->toBe('5 2A');
+});
+
+it('exposes eras in calendar API responses', function () {
+    $this->asUser()
+        ->withCampaign()
+        ->withCalendars()
+        ->get('/api/1.0/campaigns/1/calendars/1')
+        ->assertSuccessful()
+        ->assertJsonPath('data.eras', []);
+});
+
+it('formats negative years in an end-only era without a minus sign', function () {
+    $calendar = Calendar::factory()->make([
+        'eras' => [
+            ['name' => 'Before Common Era', 'suffix' => 'BCE', 'start_year' => null, 'end_year' => -1],
+            ['name' => 'Common Era', 'suffix' => 'CE', 'start_year' => 1, 'end_year' => null],
+        ],
+    ]);
+
+    expect($calendar->yearName(-5))->toBe('5 BCE')
+        ->and($calendar->yearName(-1))->toBe('1 BCE')
+        ->and($calendar->yearName(1))->toBe('1 CE')
+        ->and($calendar->niceDate('-5-1-1'))->toBe('1 January, 5 BCE');
+});
+
+it('round trips calendar configuration through native array casts', function (string $field, array $value) {
+    $this->asUser()->withCampaign();
+    $calendar = Calendar::factory()->create(['campaign_id' => 1, $field => $value]);
+
+    expect($calendar->fresh()->{$field})->toBe($value)
+        ->and(json_decode($calendar->getRawOriginal($field), true))->toBe($value);
+
+    $calendar->{$field} = [];
+    expect($calendar->{$field})->toBe([]);
+    $calendar->save();
+    expect($calendar->fresh()->{$field})->toBe([]);
+})->with([
+    'months' => ['months', [['name' => 'First', 'length' => 30]]],
+    'weekdays' => ['weekdays', ['First', 'Second']],
+    'years' => ['years', [0 => 'Origin', 1005 => 'Dragon']],
+    'eras' => ['eras', [['name' => 'Common Era', 'suffix' => 'CE', 'start_year' => 1, 'end_year' => null]]],
+    'seasons' => ['seasons', [['name' => 'Spring', 'month' => 1, 'day' => 1]]],
+    'moons' => ['moons', [['name' => 'Luna', 'fullmoon' => 28]]],
+    'week names' => ['week_names', [1 => 'First week']],
+    'month aliases' => ['month_aliases', ['First']],
+]);
+
+it('reads existing calendar JSON without encoding it again', function () {
+    $calendar = new Calendar;
+    $calendar->setRawAttributes([
+        'months' => '[{"name":"First","length":30}]',
+        'years' => '{"0":"Origin","1005":"Dragon"}',
+        'eras' => null,
+    ]);
+
+    expect($calendar->months)->toBe([['name' => 'First', 'length' => 30]])
+        ->and($calendar->years)->toBe([0 => 'Origin', 1005 => 'Dragon'])
+        ->and($calendar->eras)->toBeNull()
+        ->and($calendar->eraYearName(1005))->toBeNull();
+});
+
+it('preserves named year maps as objects in the calendar API', function () {
+    $this->asUser()->withCampaign();
+    $calendar = Calendar::factory()->create(['campaign_id' => 1, 'years' => [0 => 'Origin']]);
+
+    $response = $this->getJson('/api/1.0/campaigns/1/calendars/' . $calendar->id)
+        ->assertSuccessful()
+        ->assertJsonPath('data.years.0', 'Origin');
+
+    expect(json_decode($response->getContent())->data->years)->toBeInstanceOf(stdClass::class);
+});
+
+it('imports calendar configuration from legacy strings and array exports', function (bool $legacy) {
+    $this->asUser()->withCampaign();
+    $months = [['name' => 'First', 'length' => 30]];
+    $years = [0 => 'Origin', 1005 => 'Dragon'];
+
+    app(CalendarMapper::class)
+        ->campaign(Campaign::findOrFail(1))
+        ->user(auth()->user())
+        ->data([
+            'id' => 123,
+            'entity' => ['id' => 456, 'name' => 'Imported calendar'],
+            'months' => $legacy ? json_encode($months) : $months,
+            'years' => $legacy ? json_encode($years) : $years,
+        ])
+        ->first();
+
+    $calendar = Calendar::firstOrFail();
+    expect($calendar->months)->toBe($months)
+        ->and($calendar->years)->toBe($years);
+})->with(['legacy' => true, 'arrays' => false]);
 
 it('GETS all calendars')
     ->asUser()
@@ -180,10 +289,10 @@ it('renders years before the first leap year consistently', function (string $la
     $calendar = Calendar::factory()->create([
         'campaign_id' => 1,
         'date' => '1-1-1',
-        'months' => json_encode([
+        'months' => [
             ['name' => 'First', 'length' => 30, 'type' => 'standard', 'alias' => ''],
-        ]),
-        'seasons' => '[]',
+        ],
+        'seasons' => [],
         'leap_year_amount' => 1,
         'leap_year_month' => 1,
         'leap_year_offset' => 4,
@@ -247,9 +356,9 @@ it('renders a recurring intermediate moon phase reminder on its phase date', fun
     $calendar = Calendar::factory()->create([
         'campaign_id' => 1,
         'date' => '1-1-3',
-        'moons' => json_encode([
+        'moons' => [
             ['id' => 1, 'name' => 'Luna', 'fullmoon' => 16, 'offset' => 0, 'colour' => 'grey'],
-        ]),
+        ],
     ]);
     $event = Event::factory()->create(['campaign_id' => 1]);
     $reminder = Reminder::factory()->create([

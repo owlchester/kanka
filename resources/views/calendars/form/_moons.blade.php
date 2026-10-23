@@ -29,9 +29,9 @@ if (!empty($moonNames) && is_array($moonNames)) {
         $cpt++;
     }
 } elseif (isset($model)) {
-    $moons = $model->moons();
+    $moons = $model->moons ?? [];
 } elseif (isset($source)) {
-    $moons = $source->child->moons();
+    $moons = $source->child->moons ?? [];
 }?>
 <div class="flex flex-col gap-2 calendar-moons sortable-elements" data-handle=".sortable-handler">
     <div class="grid gap-2 grid-cols-2 md:grid-cols-4 md:gap-4">

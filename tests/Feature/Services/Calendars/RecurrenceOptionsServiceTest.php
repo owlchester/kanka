@@ -5,10 +5,10 @@ use App\Services\Calendars\RecurrenceOptionsService;
 
 it('builds grouped select options from calendar moon definitions', function () {
     $calendar = new Calendar([
-        'moons' => json_encode([
+        'moons' => [
             ['id' => 1, 'name' => 'Luna'],
             ['id' => 2, 'name' => ''],
-        ]),
+        ],
     ]);
 
     $options = new RecurrenceOptionsService()->forSelect($calendar);
@@ -39,9 +39,9 @@ it('builds grouped select options from calendar moon definitions', function () {
 
 it('builds flat API options without grouping moon names', function () {
     $calendar = new Calendar([
-        'moons' => json_encode([
+        'moons' => [
             ['id' => 1, 'name' => 'Luna'],
-        ]),
+        ],
     ]);
 
     $options = new RecurrenceOptionsService()->forApi($calendar);

@@ -5,6 +5,7 @@ namespace App\Services\Entity;
 use App\Enums\EntityAssetType;
 use App\Enums\Visibility;
 use App\Models\Campaign;
+use App\Models\Scopes\VisibilityIDScope;
 use App\Traits\EntityAware;
 use App\Traits\RequestAware;
 use Illuminate\Support\Facades\DB;
@@ -79,7 +80,9 @@ class AliasService
             return;
         }
 
-        $campaignAliasCount = $this->entity->campaign->entityAliases()->withPrivate()->count();
+        $campaignAliasCount = $this->entity->campaign->entityAliases()
+            ->withoutGlobalScope(VisibilityIDScope::class)
+            ->count();
         $visibleEntityAliasCount = $this->entity->aliases()->count();
         $submittedCount = count($aliases);
 

@@ -34,7 +34,7 @@ trait EntityMapper
         $columns = $this->model->getConnection()->getSchemaBuilder()->getColumnListing($this->model->getTable());
         foreach ($this->data as $field => $value) {
             // @phpstan-ignore-next-line
-            if (is_array($value) || in_array($field, $this->ignore) || ! in_array($field, $columns)) {
+            if ((is_array($value) && ! $this->model->hasCast($field, ['array'])) || in_array($field, $this->ignore) || ! in_array($field, $columns)) {
                 continue;
             }
             if ($field === 'name' && $this->model instanceof MiscModel) {
