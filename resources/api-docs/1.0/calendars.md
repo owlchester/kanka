@@ -253,6 +253,7 @@ To create a calendar, use the following endpoint.
 | `weekday` | `array` (required, min 2) | Array of weekday names |
 | `year_name` | `array` | Array of year names |
 | `year_number` | `array` | Array of year numbers |
+| `eras` | `array` | Calendar eras, each with `name`, `suffix`, and optional `start_year` / `end_year` bounds (at least one bound is required). |
 | `moon_name` | `array` | Array of moon names |
 | `moon_fullmoon` | `array` | Array of when (every how many days) a full moon occurs |
 | `moon_offset` | `array` | Array of days when the first full moon if offset |

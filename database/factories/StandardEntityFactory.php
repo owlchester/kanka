@@ -22,7 +22,7 @@ abstract class StandardEntityFactory extends Factory
             app(StandardEntityCreationService::class)
                 ->campaign(Campaign::findOrFail($model->campaign_id))
                 ->entityType(EntityType::findOrFail($model->entityTypeId()))
-                ->create($model->getAttributes(), $model);
+                ->create($model->attributesToArray(), $model);
 
             $this->createChildren($model);
         });

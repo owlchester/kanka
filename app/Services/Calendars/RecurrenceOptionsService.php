@@ -12,7 +12,7 @@ final class RecurrenceOptionsService
         $options = $this->baseOptions();
         $unnamed = 0;
 
-        foreach ($calendar->moons() as $moon) {
+        foreach ($calendar->moons ?? [] as $moon) {
             $name = (string) ($moon['name'] ?? '');
             if ($name === '') {
                 $unnamed++;
@@ -35,7 +35,7 @@ final class RecurrenceOptionsService
     {
         $options = $this->baseOptions();
 
-        foreach ($calendar->moons() as $moon) {
+        foreach ($calendar->moons ?? [] as $moon) {
             $name = (string) ($moon['name'] ?? '');
             foreach (array_keys(MoonPhase::PHASES) as $phase) {
                 $suffix = MoonPhase::recurrenceSuffix($phase);
