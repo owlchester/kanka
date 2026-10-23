@@ -19,9 +19,6 @@ it('POSTS a new calendar')
     ->withCampaign()
     ->postJson('/api/1.0/campaigns/1/calendars', [
         'name' => 'Gregorian',
-        'months' => '[{"name":"January","length":31,"type":"standard","alias":""},{"name":"February","length":28,"type":"standard","alias":""},{"name":"March","length":31,"type":"standard","alias":""},{"name":"April","length":30,"type":"standard","alias":""},{"name":"Mai","length":31,"type":"standard","alias":""},{"name":"June","length":30,"type":"standard","alias":""},{"name":"July","length":31,"type":"standard","alias":""},{"name":"August","length":31,"type":"standard","alias":""},{"name":"September","length":30,"type":"standard","alias":""},{"name":"October","length":31,"type":"standard","alias":""},{"name":"November","length":30,"type":"standard","alias":""},{"name":"December","length":31,"type":"standard","alias":""}]',
-        'weekdays' => '["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]',
-        'seasons' => '[{"name":"Spring","month":3,"day":21},{"name":"Summer","month":6,"day":21},{"name":"Autumn","month":9,"day":21},{"name":"Winter","month":12,"day":21}]',
         'month_name' => ['first', 'last'],
         'month_length' => [1, 2],
         'weekday' => ['monday', 'sunday'],
