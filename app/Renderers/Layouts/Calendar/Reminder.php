@@ -29,7 +29,7 @@ class Reminder extends Layout
                 'label' => __('campaigns/categories.tab'),
                 'render' => function ($model) {
                     return $model->remindable instanceof Post
-                        ? __('entities.post') .
+                        ? __('entities.article') .
                                 ' (' .
                                 $model->remindable->entity->entityType->name() .
                                 ')'

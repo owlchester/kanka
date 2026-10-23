@@ -121,7 +121,7 @@ class RecoverySetupService
     protected function i18n(): array
     {
         $translations = [
-            'model_0' => __('entities.post'),
+            'model_0' => __('entities.article'),
             'order_by_newest' => __('campaigns/recovery.order.newest'),
             'order_by_oldest' => __('campaigns/recovery.order.oldest'),
             'order_by_type' => __('campaigns/recovery.order.type'),
