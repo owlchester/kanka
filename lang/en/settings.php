@@ -124,11 +124,17 @@ return [
         ],
         'title'         => 'Patreon',
     ],
-    'profile'       => [
+        'profile'       => [
         'actions'   => [
             'update_profile'    => 'Update profile',
         ],
-        'avatar'    => 'Profile Picture',
+            'avatar'    => 'Profile Picture',
+            'avatar_alt' => 'Profile photo',
+            'avatar_menu' => 'Add or change profile photo',
+            'avatar_success' => 'Success',
+            'add_photo' => 'Add photo',
+            'select_image' => 'Select an image',
+            'remove_image' => 'Remove image',
         'success'   => 'Profile updated.',
         'title'     => 'Public Profile',
     ],
