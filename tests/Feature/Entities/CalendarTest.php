@@ -122,6 +122,17 @@ it('reads existing calendar JSON without encoding it again', function () {
         ->and($calendar->eraYearName(1005))->toBeNull();
 });
 
+it('preserves named year maps as objects in the calendar API', function () {
+    $this->asUser()->withCampaign();
+    $calendar = Calendar::factory()->create(['campaign_id' => 1, 'years' => [0 => 'Origin']]);
+
+    $response = $this->getJson('/api/1.0/campaigns/1/calendars/' . $calendar->id)
+        ->assertSuccessful()
+        ->assertJsonPath('data.years.0', 'Origin');
+
+    expect(json_decode($response->getContent())->data->years)->toBeInstanceOf(stdClass::class);
+});
+
 it('imports calendar configuration from legacy strings and array exports', function (bool $legacy) {
     $this->asUser()->withCampaign();
     $months = [['name' => 'First', 'length' => 30]];

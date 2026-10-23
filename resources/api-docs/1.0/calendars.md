@@ -279,6 +279,10 @@ To create a calendar, use the following endpoint.
 
 > {success} Code 200 with JSON body of the new calendar.
 
+Era boundaries are inclusive and may not overlap. Start-bounded eras count forward from year 1.
+End-only eras keep the absolute year number: an era with `end_year: -1` and `suffix: "BCE"`
+displays year `-5` as `5 BCE`. Stored years remain unchanged.
+
 
 <a name="update-calendar"></a>
 ## Update a Calendar
