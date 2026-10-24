@@ -10,7 +10,6 @@ use App\Http\Requests\Front\StoreCommunityEventEntry;
 use App\Http\Requests\Gallery\UploadUrl;
 use App\Http\Requests\Onboarding\InitialRequest;
 use App\Http\Requests\Onboarding\QuickCreateRequest;
-use App\Http\Requests\Settings\UserAltSubscribeStore;
 use App\Http\Requests\Spotlights\ApplyRequest;
 use App\Http\Requests\StoreAbility;
 use App\Http\Requests\StoreAttribute;
@@ -100,8 +99,6 @@ function scalarRequestFields(): array
         [InitialRequest::class, 'name'],
         [InitialRequest::class, 'type'],
         [QuickCreateRequest::class, 'type'],
-        [UserAltSubscribeStore::class, 'method'],
-        [UserAltSubscribeStore::class, 'period'],
         [ApplyRequest::class, 'action'],
         [StoreAbility::class, 'name'],
         [StoreAbility::class, 'charges'],
