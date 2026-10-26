@@ -128,10 +128,10 @@ it('returns character fields, attributes, and visible posts in an entity dossier
         ->assertHasNoErrors()
         ->assertStructuredContent(fn ($json) => $json
             ->where('character.age', 'approximately 40')
-            ->where('attributes.items.0.name', 'Class')
-            ->where('attributes.items.0.value', 'Wizard')
-            ->where('posts.items.0.name', 'History')
-            ->where('posts.items.0.entry', '<p>A long history.</p>')
+            ->where('properties.items.0.name', 'Class')
+            ->where('properties.items.0.value', 'Wizard')
+            ->where('articles.items.0.name', 'History')
+            ->where('articles.items.0.entry', '<p>A long history.</p>')
             ->etc());
 
     KankaServer::actingAs(auth()->user(), 'api')
@@ -164,8 +164,8 @@ it('includes visible linked locations, tags, races, and families in the dossier'
         ->assertStructuredContent(fn ($json) => $json
             ->where('locations.0.name', 'Rivermoor')
             ->where('tags.0.name', 'Royal Guard')
-            ->where('races.0.name', 'Human')
-            ->where('families.0.name', 'Morley Family')
+            ->where('character.races.0.name', 'Human')
+            ->where('character.families.0.name', 'Morley Family')
             ->etc());
 });
 

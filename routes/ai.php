@@ -13,7 +13,7 @@ Mcp::web('/mcp', KankaServer::class)
 Route::get('/mcp', fn () => response()->view('mcp.help', [
     'title' => 'Kanka MCP',
     'metaDescription' => 'Connect an AI assistant to your Kanka worlds using read-only MCP tools.',
-]))->middleware(EnsureMcpEnabled::class)->name('mcp.help');
+]))->name('mcp.help');
 
 Route::middleware(['throttle:20,1', EnsureMcpEnabled::class])->group(function () {
     Mcp::oauthRoutes();
