@@ -85,6 +85,9 @@ class TimelineMapper extends MiscMapper
             'position', 'name', 'date', 'entry', 'colour', 'visibility_id', 'icon', 'is_collapsed', 'use_entity_entry', 'use_event_date',
         ];
         foreach ($this->data['elements'] as $data) {
+            if (empty($data['era_id']) || ! isset($this->eras[$data['era_id']])) {
+                continue;
+            }
             $el = new TimelineElement;
             $el->timeline_id = $this->model->id;
             $el->era_id = $this->eras[$data['era_id']];

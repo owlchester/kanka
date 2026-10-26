@@ -6,7 +6,6 @@ use App\Facades\ImportIdMapper;
 use App\Models\Character;
 use App\Models\CharacterOrganisation;
 use App\Models\CharacterTrait;
-use Illuminate\Support\Arr;
 
 class CharacterMapper extends MiscMapper
 {
@@ -63,7 +62,7 @@ class CharacterMapper extends MiscMapper
             ->pivot('characterRaces', 'races', 'race_id')
             ->saveModel()
             ->traits() // @phpstan-ignore method.notFound
-            ->characterLocations()
+            ->entityLocations()
             ->memberships()
             ->entitySecond();
     }
@@ -96,6 +95,9 @@ class CharacterMapper extends MiscMapper
         }
         $parents = [];
         foreach ($this->data['organisationMemberships'] as $data) {
+            if (empty($data['organisation_id']) || ! ImportIdMapper::has('organisations', $data['organisation_id'])) {
+                continue;
+            }
             $member = new CharacterOrganisation;
             $member->character_id = $this->model->id;
             $member->organisation_id = ImportIdMapper::get('organisations', $data['organisation_id']);
@@ -109,34 +111,6 @@ class CharacterMapper extends MiscMapper
             $member->save();
 
             $parents[$data['id']] = $member->id;
-        }
-
-        return $this;
-    }
-
-    protected function characterLocations(): self
-    {
-        // Support old format
-        if (! empty($this->data['location_id'])) {
-            $locationID = ImportIdMapper::get('locations', $this->data['location_id']);
-            if (! empty($locationID)) {
-                $this->entity->locations()->attach($locationID);
-            }
-        }
-
-        if (! Arr::has($this->data, 'entity.entityLocations')) {
-            return $this;
-        }
-        // New 3.8 format
-        foreach ($this->data['entity']['entityLocations'] as $location) {
-            if (empty($location['location_id'])) {
-                continue;
-            }
-            $locationID = ImportIdMapper::get('locations', $location['location_id']);
-            if (empty($locationID)) {
-                continue;
-            }
-            $this->entity->locations()->attach($locationID);
         }
 
         return $this;

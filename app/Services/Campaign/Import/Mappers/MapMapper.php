@@ -90,8 +90,11 @@ class MapMapper extends MiscMapper
     protected function groupsParents(): self
     {
         foreach ($this->data['groups'] as $data) {
-            if (isset($data['parent_id'])) {
+            if (isset($data['parent_id'], $this->groups[$data['id']], $this->groups[$data['parent_id']])) {
                 $group = MapGroup::where('id', $this->groups[$data['id']])->first();
+                if (! $group) {
+                    continue;
+                }
                 $group->parent_id = $this->groups[$data['parent_id']];
                 $group->save();
             }
@@ -166,7 +169,7 @@ class MapMapper extends MiscMapper
                 }
             }
 
-            if (! empty($data['group_id'])) {
+            if (! empty($data['group_id']) && isset($this->groups[$data['group_id']])) {
                 $marker->group_id = $this->groups[$data['group_id']];
             }
 

@@ -161,12 +161,13 @@ trait EntityMapper
 
     protected function pivot(string $relation, string $model, string $field): self
     {
+        $this->data[$relation] ??= [];
         // Check if import has old location_id and migrate it to new locations pivot table system, currently only happens with organisations
         if ($relation == 'pivotLocations' && isset($this->data['location_id']) && ! in_array(['location_id' => $this->data['location_id']], $this->data[$relation])) {
             $this->data[$relation][] = ['location_id' => $this->data['location_id']];
         }
         foreach ($this->data[$relation] as $pivot) {
-            if (! ImportIdMapper::has($model, $pivot[$field])) {
+            if (empty($pivot[$field]) || ! ImportIdMapper::has($model, $pivot[$field])) {
                 continue;
             }
             $foreignID = ImportIdMapper::get($model, $pivot[$field]);
@@ -188,7 +189,9 @@ trait EntityMapper
         // Handle old location_id field from legacy exports
         if (isset($this->data['location_id']) && ImportIdMapper::has('locations', $this->data['location_id'])) {
             $foreignID = ImportIdMapper::get('locations', $this->data['location_id']);
-            $this->entity->locations()->attach($foreignID);
+            if (! $this->entity->locations()->wherePivot('location_id', $foreignID)->exists()) {
+                $this->entity->locations()->attach($foreignID);
+            }
         }
 
         // Handle pivotLocations data from exports
