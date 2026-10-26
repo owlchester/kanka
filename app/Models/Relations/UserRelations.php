@@ -10,6 +10,8 @@ use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\Models\CampaignRoleUser;
 use App\Models\CampaignUser;
+use App\Models\ConversationMessage;
+use App\Models\ConversationParticipant;
 use App\Models\Entity;
 use App\Models\EntityClaim;
 use App\Models\EntityUser;
@@ -31,6 +33,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
  * Trait UserRelations
@@ -55,6 +58,18 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  */
 trait UserRelations
 {
+    /** @return MorphMany<ConversationParticipant, $this> */
+    public function conversationParticipants(): MorphMany
+    {
+        return $this->morphMany(ConversationParticipant::class, 'participant');
+    }
+
+    /** @return MorphMany<ConversationMessage, $this> */
+    public function conversationMessages(): MorphMany
+    {
+        return $this->morphMany(ConversationMessage::class, 'participant');
+    }
+
     /**
      * Last campaign the user switched to.
      *

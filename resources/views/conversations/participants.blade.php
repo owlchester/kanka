@@ -12,7 +12,7 @@
     @include('partials.forms._dialog', [
         'title' => __('conversations.participants.modal', ['name' => $model->name]),
         'content' => 'conversations.participants._form',
-        'actions' => 'conversations.participants._actions',
+        'actions' => '',
         'skipCancel' => true,
     ])
 @endsection

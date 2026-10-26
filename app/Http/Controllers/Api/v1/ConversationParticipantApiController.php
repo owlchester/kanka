@@ -7,6 +7,8 @@ use App\Http\Resources\ConversationParticipantResource as Resource;
 use App\Models\Campaign;
 use App\Models\Conversation;
 use App\Models\ConversationParticipant;
+use App\Models\Entity;
+use App\Models\User;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -50,7 +52,10 @@ class ConversationParticipantApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $conversation->entity);
-        $model = ConversationParticipant::create($requestParticipant->all());
+        $model = new ConversationParticipant;
+        $model->conversation()->associate($conversation);
+        $model->participant()->associate($this->participantFromRequest($requestParticipant->validated()));
+        $model->save();
 
         return new Resource($model);
     }
@@ -66,9 +71,17 @@ class ConversationParticipantApiController extends ApiController
     ) {
         $this->authorize('access', $campaign);
         $this->authorize('update', $conversation->entity);
-        $conversationParticipant->update($requestParticipant->all());
+        $conversationParticipant->participant()->associate($this->participantFromRequest($requestParticipant->validated()));
+        $conversationParticipant->save();
 
         return new Resource($conversationParticipant);
+    }
+
+    private function participantFromRequest(array $data): Entity|User
+    {
+        return isset($data['entity_id'])
+            ? Entity::findOrFail($data['entity_id'])
+            : User::findOrFail($data['user_id']);
     }
 
     /**

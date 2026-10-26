@@ -3,6 +3,8 @@
 namespace App\Http\Resources;
 
 use App\Models\ConversationMessage;
+use App\Models\Entity;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ConversationMessageResource extends ModelResource
@@ -21,8 +23,9 @@ class ConversationMessageResource extends ModelResource
         return [
             'conversation_id' => $resource->conversation_id,
             'created_by' => $resource->created_by,
-            'character_id' => $resource->character_id,
-            'user_id' => $resource->user_id,
+            'entity_id' => $resource->participant instanceof Entity ? $resource->participant_id : null,
+            'character_id' => $resource->participant instanceof Entity && $resource->participant->type_id == config('entities.ids.character') ? $resource->participant->entity_id : null,
+            'user_id' => $resource->participant instanceof User ? $resource->participant_id : null,
             'message' => $resource->message,
         ];
     }

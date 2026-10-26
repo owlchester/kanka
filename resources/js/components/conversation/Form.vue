@@ -1,8 +1,8 @@
 <template>
     <div :class="boxClass()" v-if="commentable">
         <div class="flex items-center gap-2">
-            <div class="max-w-xs" v-if="targetCharacter">
-                <select class="w-full" v-model="character_id">
+            <div class="max-w-xs" v-if="targetEntity">
+                <select class="w-full" v-model="entity_id">
                     <option v-for="(name, key) in targets" :value="key" :key="key">
                         {{ name }}
                     </option>
@@ -54,7 +54,7 @@
             return {
                 body: null,
                 sending: false,
-                character_id: null,
+                entity_id: null,
                 message_id: null,
                 edit_message: null
             }
@@ -74,7 +74,7 @@
                 this.message_id = message.id;
                 this.edit_message = message;
                 this.body = message.message;
-                this.character_id = message.from_id;
+                this.entity_id = message.from_id;
                 document.getElementById("message").focus();
             },
             /**
@@ -85,7 +85,7 @@
                 if (!this.body || this.body.trim() === '') {
                     return;
                 }
-                if (this.targetCharacter && this.character_id === null) {
+                if (this.targetEntity && this.entity_id === null) {
                     return;
                 }
                 this.sending = true;
@@ -95,8 +95,8 @@
                 let data = {
                     message: this.body.trim(),
                 };
-                if (this.targetCharacter) {
-                    data.character_id = this.character_id;
+                if (this.targetEntity) {
+                    data.entity_id = this.entity_id;
                 }
                 if (this.message_id) {
                     url += '/' + this.message_id;
@@ -135,14 +135,14 @@
         },
 
         computed: {
-            targetCharacter: function() {
-                return this.target === 'character';
+            targetEntity: function() {
+                return this.target === 'entity';
             },
             inputFormDisabled: function() {
                 return this.sending;
             },
             commentable: function() {
-                if (this.targetCharacter) {
+                if (this.targetEntity) {
                     return this.targets !== null;
                 }
                 return true;

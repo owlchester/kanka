@@ -1,4 +1,6 @@
-@if (!isset($preset))
+@if (($skipPreset ?? false) && !isset($preset))
+    @php $preset = null; @endphp
+@elseif (!isset($preset))
     @php
         $preset = null;
         if (isset($model) && $model->{$relation ?? 'entity'}) {
@@ -19,6 +21,7 @@
     :label="$label ?? __('entities.entry')"
     :placeholder="$placeholder ?? __('search.placeholders.entry')"
     :allowClear="$allowClear ?? true"
+    :multiple="$multiple ?? false"
     :dynamicNew="$dynamicNew ?? false"
     :dynamicTag="$dynamicTag ?? null"
     :route="route($route ?? 'search.entities-with-relations', [$campaign] + (isset($model) ? ['exclude' => $model->id] : []))"

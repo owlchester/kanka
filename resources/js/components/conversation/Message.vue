@@ -3,8 +3,8 @@
         <div class="flex items-center gap-1" v-if="!message.group">
             <div class="message-author">
                 <strong class="user" v-if="isUser">{{ message.user }}</strong>
-                <strong class="character" v-else-if="isCharacter">
-                    <span>{{ message.character }}</span>
+                <strong class="character" v-else-if="isEntity">
+                    <span>{{ message.entity }}</span>
                 </strong>
                 <strong class="unknown" v-else>
                     {{ translate('user_unknown') }}
@@ -66,8 +66,8 @@
             isUser: function() {
                 return this.message.user !== null;
             },
-            isCharacter: function() {
-                return this.message.character !== null;
+            isEntity: function() {
+                return this.message.entity !== null;
             },
         },
       emits: [

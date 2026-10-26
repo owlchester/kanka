@@ -63,6 +63,14 @@ class User extends \Illuminate\Foundation\Auth\User implements OAuthenticatable
     use UserScope;
     use UserSetting;
 
+    protected static function booted(): void
+    {
+        static::deleting(function (self $user): void {
+            $user->conversationParticipants()->delete();
+            $user->conversationMessages()->update(['participant_type' => null, 'participant_id' => null]);
+        });
+    }
+
     protected $fillable = [
         'name',
         'email',

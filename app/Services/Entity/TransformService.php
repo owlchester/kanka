@@ -108,7 +108,6 @@ class TransformService
 
         $this
             ->members()
-            ->participants()
             ->locations();
 
         $this->finish();
@@ -273,22 +272,6 @@ class TransformService
                     }
                 }
             }
-        }
-
-        return $this;
-    }
-
-    /**
-     * Remove the old participants from a convo
-     */
-    protected function participants(): self
-    {
-        if ($this->child->entityTypeId() != config('entities.ids.character')) {
-            return $this;
-        }
-        // @phpstan-ignore-next-line
-        foreach ($this->child->conversationParticipants as $conPar) {
-            $conPar->delete();
         }
 
         return $this;

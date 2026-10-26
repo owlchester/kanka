@@ -219,9 +219,7 @@ class RelatedService
 
     protected function loadConversations(): self
     {
-        /** @var Character $parent */
-        $parent = $this->entity->child;
-        $elements = $parent->conversations()->with(['entity'])->has('entity')->get();
+        $elements = $this->entity->conversations()->with(['entity'])->has('entity')->get();
         foreach ($elements as $sub) {
             /** @var Conversation $sub */
             $entity = $sub->entity;

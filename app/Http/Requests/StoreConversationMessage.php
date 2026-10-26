@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Conversation;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreConversationMessage extends FormRequest
@@ -23,10 +24,24 @@ class StoreConversationMessage extends FormRequest
      */
     public function rules()
     {
+        $conversation = $this->route('conversation');
+        $entityConversation = $conversation instanceof Conversation && $conversation->forEntities();
+        $creating = $this->isMethod('POST');
+
+        $entityRules = ['nullable', 'integer', 'exists:entities,id'];
+        $userRules = ['nullable', 'integer', 'exists:users,id'];
+        if ($creating && $entityConversation) {
+            $entityRules[] = 'required';
+            $userRules[] = 'prohibited';
+        } elseif ($creating && $this->is('api/*')) {
+            $entityRules[] = 'prohibited';
+            $userRules[] = 'required';
+        }
+
         $rules = [
             'message' => 'required|string',
-            'character_id' => 'nullable|integer|exists:characters,id',
-            'user_id' => 'nullable|integer|exists:users,id',
+            'entity_id' => $entityRules,
+            'user_id' => $userRules,
         ];
 
         return $rules;

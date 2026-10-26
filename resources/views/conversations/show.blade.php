@@ -41,7 +41,7 @@ $translations = json_encode([
                 <conversation
                         id="{{ $entity->child->id }}"
                         api="{{ route('conversations.conversation_messages.index', [$campaign, $entity->child]) }}"
-                        target="{{ $entity->child->forCharacters() ? 'character' : 'user'}}"
+                        target="{{ $entity->child->forEntities() ? 'entity' : 'user'}}"
                         :targets="{{ $entity->child->jsonParticipants() }}"
                         :disabled="{{ ($entity->child->is_closed ? 'true' : 'false') }}"
                         send="{{ route('conversations.conversation_messages.store', [$campaign, $entity->child]) }}"

@@ -17,7 +17,6 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 /**
  * Class Character
@@ -35,7 +34,6 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @property Collection|CharacterRace[] $characterRaces
  * @property Collection|Organisation[] $organisations
  * @property Collection|OrganisationMember[] $organisationMemberships
- * @property Collection|ConversationParticipant[] $conversationParticipants
  * @property Collection|Item[] $items
  * @property Collection|DiceRoll[] $diceRolls
  * @property Collection|CharacterTrait[] $appearances
@@ -298,29 +296,6 @@ class Character extends MiscModel
     public function diceRolls(): HasMany
     {
         return $this->hasMany('App\Models\DiceRoll', 'character_id', 'id');
-    }
-
-    /**
-     * @return HasManyThrough<Conversation, ConversationParticipant, $this>
-     */
-    public function conversations(): HasManyThrough
-    {
-        return $this->hasManyThrough(
-            'App\Models\Conversation',
-            'App\Models\ConversationParticipant',
-            'character_id',
-            'id',
-            'id',
-            'conversation_id'
-        );
-    }
-
-    /**
-     * @return HasMany<ConversationParticipant, $this>
-     */
-    public function conversationParticipants(): HasMany
-    {
-        return $this->hasMany('App\Models\ConversationParticipant', 'character_id');
     }
 
     /**

@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 // use Faker\Generator as Faker;
 use App\Models\ConversationMessage;
+use App\Models\Entity;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ConversationMessageFactory extends Factory
@@ -24,6 +25,8 @@ class ConversationMessageFactory extends Factory
     {
         return [
             'message' => fake()->text(20),
+            'participant_type' => Entity::class,
+            'participant_id' => 1,
         ];
     }
 }
