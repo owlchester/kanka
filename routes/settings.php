@@ -113,9 +113,6 @@ Route::post('/subscription/free-trial/accept', [FreeTrialController::class, 'acc
 Route::get('/billing/history', [HistoryController::class, 'index'])->name('billing.history');
 Route::get('/billing/history/download/{invoice}', [HistoryController::class, 'download'])->name('billing.history.download');
 
-Route::get('/bragi', 'Settings\BragiController@index')
-    ->name('settings.bragi');
-
 Route::get('/apps', [AppsController::class, 'index'])
     ->name('settings.apps');
 Route::get('/discord-me', [DiscordController::class, 'me']);

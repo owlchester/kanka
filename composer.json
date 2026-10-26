@@ -40,7 +40,6 @@
         "mailerlite/mailerlite-php": "^1.0",
         "mcamara/laravel-localization": "^2.0",
         "meilisearch/meilisearch-php": "^1.4",
-        "orhanerday/open-ai": "^4.7",
         "owlchester/laravel-translation-manager": "^13",
         "pragmarx/google2fa-laravel": "^3.0",
         "predis/predis": "^2.0",

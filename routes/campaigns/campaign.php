@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Attributes\ApiController;
-use App\Http\Controllers\Bragi\BragiController;
 use App\Http\Controllers\Campaign\CssController;
 use App\Http\Controllers\Campaign\EntityTypeController;
 use App\Http\Controllers\Campaign\LogController;
@@ -245,9 +244,6 @@ Route::post('/w/{campaign}/presets/{preset}/load', [PresetController::class, 'lo
 Route::model('preset_type', PresetType::class);
 
 Route::get('/w/{campaign}/history', [HistoryController::class, 'index'])->name('history.index');
-
-Route::get('/w/{campaign}/bragi', [BragiController::class, 'index'])->name('bragi');
-Route::post('/w/{campaign}/bragi', [BragiController::class, 'generate'])->name('bragi.generate');
 
 Route::get('/w/{campaign}/confirm-delete', [ConfirmController::class, 'index'])->name('confirm-delete');
 Route::post('/w/{campaign}/vanity-validate', [VanityController::class, 'index'])->name('campaign.vanity-validate');

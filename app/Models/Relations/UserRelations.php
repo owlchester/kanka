@@ -3,7 +3,6 @@
 namespace App\Models\Relations;
 
 use App\Models\Application;
-use App\Models\BragiLog;
 use App\Models\Campaign;
 use App\Models\CampaignBoost;
 use App\Models\CampaignFollower;
@@ -222,16 +221,6 @@ trait UserRelations
     public function roles(): BelongsToMany
     {
         return $this->belongsToMany(Role::class, 'user_roles');
-    }
-
-    /**
-     * Logs created each time a user uses Bragi
-     *
-     * @return HasMany<BragiLog, $this>
-     */
-    public function bragiLogs(): HasMany
-    {
-        return $this->hasMany(BragiLog::class);
     }
 
     /**

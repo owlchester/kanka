@@ -14,8 +14,6 @@ if (isset($model)) {
 
 $options = $entity->postPositionOptions(!empty($model->position) ? $model->position : null);
 $last = array_key_last($options);
-
-$bragiName = $entity->isCharacter() ? $entity->name : null;
 ?>
 <div
     class="tab-pane pane-entry active"

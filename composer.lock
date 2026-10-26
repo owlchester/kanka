@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f2af1774edd0d27504f0c52e6f5e8900",
+    "content-hash": "07af7f9839dd58a854f3f726845d76cd",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -5711,65 +5711,6 @@
                 }
             ],
             "time": "2024-09-09T07:06:30+00:00"
-        },
-        {
-            "name": "orhanerday/open-ai",
-            "version": "4.9.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/orhanerday/open-ai.git",
-                "reference": "2ccdf2f6b4287b9e570a1ddcf33083b7ad9f7e9c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/orhanerday/open-ai/zipball/2ccdf2f6b4287b9e570a1ddcf33083b7ad9f7e9c",
-                "reference": "2ccdf2f6b4287b9e570a1ddcf33083b7ad9f7e9c",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "ext-json": "*",
-                "php": ">=7.4"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "^3.0",
-                "pestphp/pest": "^1.20",
-                "spatie/ray": "^1.28"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Orhanerday\\OpenAi\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Orhan Erday",
-                    "email": "orhanerday@gmail.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "OpenAI GPT-3 Api Client in PHP",
-            "homepage": "https://github.com/orhanerday/open-ai",
-            "keywords": [
-                "open-ai",
-                "orhanerday"
-            ],
-            "support": {
-                "issues": "https://github.com/orhanerday/open-ai/issues",
-                "source": "https://github.com/orhanerday/open-ai/tree/4.9.1"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/orhanerday",
-                    "type": "github"
-                }
-            ],
-            "time": "2023-11-13T04:03:05+00:00"
         },
         {
             "name": "owlchester/laravel-translation-manager",

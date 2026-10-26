@@ -10,7 +10,6 @@ use App\Models\Concerns\HasImage;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\UserBenefits;
-use App\Models\Concerns\UserTokens;
 use App\Models\Relations\UserRelations;
 use App\Models\Scopes\UserScope;
 use Carbon\Carbon;
@@ -63,7 +62,6 @@ class User extends \Illuminate\Foundation\Auth\User implements OAuthenticatable
     use UserRelations;
     use UserScope;
     use UserSetting;
-    use UserTokens;
 
     protected $fillable = [
         'name',
