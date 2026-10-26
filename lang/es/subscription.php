@@ -11,5 +11,6 @@ return [
             'brl'   => 'Lo sentimos, pero actualmente sólo aceptamos pagos en BRL para clientes con tarjetas de crédito brasileñas. Si crees que se trata de un error, ponte en contacto con nosotros en :email.',
         ],
         'invalid_currency'      => 'Anteriormente tenías una suscripción en :old, lo que te impide tener una nueva suscripción en :new. Por favor, cambia tu divisa a :old, o contacta con nosotros en :email si deseas cambiar de divisa.',
+        'legacy_paypal'         => 'Tu suscripción está gestionada por nuestro antiguo sistema de PayPal y seguirá activa hasta :date. Después de esa fecha podrás suscribirte mediante Stripe. No se perderán datos.',
     ],
 ];

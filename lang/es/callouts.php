@@ -5,6 +5,10 @@ return [
         'subscription'  => 'Aprende más sobre las suscripciones',
         'upgrade'       => 'Mejorar a premium',
     ],
+    'alert'     => [
+        'enable'    => 'Activa las funciones premium para este mundo',
+        'sponsor'   => 'Patrocina las funciones premium de este mundo',
+    ],
     'booster'   => [
         'actions'       => [
             'boost'         => 'Mejorar :campaign',
