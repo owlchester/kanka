@@ -3,6 +3,7 @@
 namespace App\Mcp\Tools;
 
 use App\Mcp\Services\CampaignContext;
+use App\Mcp\Tools\Concerns\RecordsToolUsage;
 use App\Models\Entity;
 use App\Models\User;
 use Illuminate\Contracts\JsonSchema\JsonSchema;
@@ -20,8 +21,11 @@ use Laravel\Mcp\Server\Tools\Annotations\IsReadOnly;
 #[IsIdempotent]
 class GetEntityRelationsTool extends Tool
 {
+    use RecordsToolUsage;
+
     public function handle(Request $request, CampaignContext $context): ResponseFactory
     {
+        $this->recordUsage();
         $arguments = $request->validate([
             'campaign_id' => ['required', 'integer', 'min:1'],
             'entity_id' => ['required', 'integer', 'min:1'],

@@ -81,6 +81,7 @@
         <aside class="rounded-lg border border-base-300 p-6" id="privacy">
             <h2 class="mb-3">Privacy reminder</h2>
             <p>Information returned to an MCP client is handled by that client and its configured model provider. Review their privacy policies before connecting. You can revoke Kanka access from your account's <a href="https://app.kanka.io/settings/api">API settings</a>.</p>
+            <p class="mt-3">Kanka records daily counts of MCP tool calls to understand how often each tool is used. These counts do not include account information, tool arguments, campaign or entity IDs, or returned content, and are deleted after 30 days.</p>
         </aside>
     </main>
 @endsection

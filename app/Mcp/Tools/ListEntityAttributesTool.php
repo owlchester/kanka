@@ -3,6 +3,7 @@
 namespace App\Mcp\Tools;
 
 use App\Mcp\Services\CampaignContext;
+use App\Mcp\Tools\Concerns\RecordsToolUsage;
 use App\Models\Attribute;
 use App\Models\Entity;
 use App\Models\User;
@@ -21,8 +22,11 @@ use Laravel\Mcp\Server\Tools\Annotations\IsReadOnly;
 #[IsIdempotent]
 class ListEntityAttributesTool extends Tool
 {
+    use RecordsToolUsage;
+
     public function handle(Request $request, CampaignContext $context): ResponseFactory
     {
+        $this->recordUsage();
         $args = $request->validate([
             'campaign_id' => ['required', 'integer', 'min:1'],
             'entity_id' => ['required', 'integer', 'min:1'],

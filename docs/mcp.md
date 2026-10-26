@@ -25,6 +25,10 @@ Kanka's authenticated REST API. Users can revoke MCP connections in their
 account's API settings. Data returned to an MCP client is then handled by the
 harness and its configured model provider; review those providers' privacy terms.
 
+Kanka records daily counts of calls to each MCP tool to understand usage. These
+aggregate counts do not include account information, tool arguments, campaign or
+entity IDs, or returned content, and are deleted after 30 days.
+
 ## Self-hosted setup
 
 Set the app URL to the public HTTPS origin and configure `APP_URL` and trusted

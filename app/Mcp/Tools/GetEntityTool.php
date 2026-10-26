@@ -3,6 +3,7 @@
 namespace App\Mcp\Tools;
 
 use App\Mcp\Services\CampaignContext;
+use App\Mcp\Tools\Concerns\RecordsToolUsage;
 use App\Models\Attribute;
 use App\Models\Character;
 use App\Models\CharacterTrait;
@@ -23,8 +24,11 @@ use Laravel\Mcp\Server\Tools\Annotations\IsReadOnly;
 #[IsIdempotent]
 class GetEntityTool extends Tool
 {
+    use RecordsToolUsage;
+
     public function handle(Request $request, CampaignContext $context): ResponseFactory
     {
+        $this->recordUsage();
         $arguments = $request->validate([
             'campaign_id' => ['required', 'integer', 'min:1'],
             'entity_id' => ['required', 'integer', 'min:1'],
