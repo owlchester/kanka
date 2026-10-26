@@ -58,13 +58,6 @@ class ConversationParticipantController extends Controller
             ]));
     }
 
-    private function participantFromRequest(array $data): Entity|User
-    {
-        return isset($data['entity_id'])
-            ? Entity::findOrFail($data['entity_id'])
-            : User::findOrFail($data['user_id']);
-    }
-
     public function edit(Campaign $campaign, Conversation $conversation, ConversationParticipant $conversationParticipant)
     {
         $this->authorize('update', $conversation->entity);
