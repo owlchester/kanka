@@ -28,6 +28,7 @@
         "intervention/image": "^3.10",
         "laravel/cashier": "^15.0",
         "laravel/framework": "^13.10",
+        "laravel/mcp": "^0.9",
         "laravel/pail": "^1.1",
         "laravel/passport": "^13.0",
         "laravel/reverb": "^1.0",

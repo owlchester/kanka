@@ -17,6 +17,7 @@ return [
         'title' => 'Select your language',
     ],
     'newsletter'        => 'Newsletter',
+    'mcp'               => 'MCP',
     'platform'          => 'Platform',
     'plugins'           => 'Plugins Library',
     'premium'           => 'Premium campaigns',
