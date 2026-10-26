@@ -110,7 +110,7 @@ class Inventory extends Model
     public function itemName(): string
     {
         if (empty($this->name) && ! empty($this->item)) {
-            return $this->item->name;
+            return (string) $this->item->name;
         }
 
         return (string) $this->name;
