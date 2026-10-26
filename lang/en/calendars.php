@@ -63,9 +63,9 @@ return [
         'current_month'     => 'Current Month',
         'current_year'      => 'Current Year',
         'date'              => 'Current Date',
-        'era'               => 'Era',
         'day'               => 'Day',
         'default_layout'    => 'Default layout',
+        'era'               => 'Era',
         'format'            => 'Format',
         'is_incrementing'   => 'Advancing date',
         'is_recurring'      => 'Recurring',
@@ -163,14 +163,20 @@ return [
         ],
     ],
     'panels'        => [
-        'intercalary'   => 'Intercalary Days',
         'eras'          => 'Eras',
+        'intercalary'   => 'Intercalary Days',
         'leap_year'     => 'Leap Year',
         'months'        => 'Months',
         'weeks'         => 'Weeks',
         'years'         => 'Named Years',
     ],
     'parameters'    => [
+        'era'           => [
+            'end_year'      => 'End year',
+            'name'          => 'Era name',
+            'start_year'    => 'Start year',
+            'suffix'        => 'Year suffix',
+        ],
         'intercalary'   => [
             'length'    => 'Duration in days',
             'month'     => 'At the end of which month',
@@ -199,12 +205,6 @@ return [
         'year'          => [
             'name'      => 'Year Name',
             'number'    => 'Year',
-        ],
-        'era'           => [
-            'end_year'   => 'End year',
-            'name'       => 'Era name',
-            'start_year' => 'Start year',
-            'suffix'     => 'Year suffix',
         ],
     ],
     'placeholders'  => [
@@ -245,8 +245,8 @@ return [
         'before'=> 'Today & before',
     ],
     'validators'    => [
-        'format'        => 'The date format is invalid.',
         'era_overlap'   => 'Era year ranges cannot overlap.',
+        'format'        => 'The date format is invalid.',
         'moon_offset'   => 'The moon first fullmoon offset can\'t be bigger than the length of the calendar\'s first month.',
     ],
     'warnings'      => [

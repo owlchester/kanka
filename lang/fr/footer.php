@@ -10,6 +10,7 @@ return [
     'copyright'         => 'Tous droits réservés :copy :year Owlchester SNC',
     'documentation'     => 'Documentation',
     'features'          => 'Fonctionnalités',
+    'humans'            => 'Fait avec <3 par des humains à Genève, en Suisse, depuis 2017.',
     'kb'                => 'Base de connaissance',
     'language-switcher' => [
         'other' => 'Autres langues',
@@ -23,6 +24,7 @@ return [
     'press-kit'         => 'Press kit',
     'pricing'           => 'Prix',
     'privacy'           => 'Confidentialité',
+    'proof'             => 'Indépendant, financé par :community-funded, avec notre :source.',
     'public-campaigns'  => 'Campagnes publiques',
     'resources'         => 'Ressources',
     'roadmap'           => 'Feuille de route',

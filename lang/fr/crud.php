@@ -126,6 +126,7 @@ return [
         'date_range'                => 'Plage de dates',
         'excerpt'                   => 'Extrait',
         'has_attributes'            => 'Possède des propriétés',
+        'has_character_sheet'       => 'Possède une fiche de personnage',
         'has_entity_files'          => 'Possède des fichiers',
         'has_entry'                 => 'Possède une description',
         'has_image'                 => 'Possède une image',

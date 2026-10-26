@@ -11,7 +11,29 @@ return [
         ],
         'confirm'       => 'Waouw! Tu es sur le point de débloquer des fonctionnalités premium pour :campaign. Cette campagne utilisera l\'une de tes campagnes Premium disponibles.',
         'duration'      => 'Les campagnes Premium le restent jusqu\'à ce qu\'elles soient supprimées manuellement ou que ton abonnement prenne fin.',
+        'more'          => 'Plus de thèmes personnalisés, de plugins, d’arbres généalogiques, de catégories personnalisées et bien plus encore. Ceci n’est qu’un aperçu de tout ce qui est débloqué. Les campagnes Premium le restent jusqu’à ce que tu les retires manuellement ou que ton abonnement prenne fin.',
+        'no-stock'      => 'Oh non, il semble que tu n’aies pas assez de campagnes Premium disponibles pour débloquer celle-ci. Tu peux retirer le statut Premium d’une autre campagne ou :upgrade.',
+        'pitch'         => 'Voici un aperçu de ce que :name gagne dès que tu passes à Premium, et ce n’est qu’un début.',
         'pitch_2026'    => 'Bénéficie de rôles, membres, thèmes personnalisés, plugins illimités, et bien plus pour tes campagnes.',
+        'recap'         => [
+            'control'   => [
+                'description'   => 'Modifie la barre latérale, les catégories et bien plus encore',
+                'title'         => 'Contrôle total',
+            ],
+            'gallery'   => 'Plus d’espace de stockage pour les images et les ressources',
+            'icons'     => 'Icônes débloquées pour ce monde',
+            'instant'   => 'Les membres bénéficient immédiatement des améliorations',
+            'members'   => [
+                'description'   => 'Rôles et membres',
+                'title'         => 'Illimité',
+            ],
+            'recovery'  => [
+                'description'   => 'Délai d’annulation des suppressions',
+                'title'         => ':amount jours',
+            ],
+            'size'      => 'Limite de téléversement par membre',
+        ],
+        'subtitle'      => 'Tu es sur le point de débloquer Premium pour :name. Voici quelques exemples de ce qui changera immédiatement.',
         'success'       => 'La campagne :campaign est maintenant Premium. Éclate-toi avec les chouettes fonctionnalités!',
     ],
     'exceptions'    => [

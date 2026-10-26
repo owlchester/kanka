@@ -73,16 +73,16 @@ return [
     'sections'      => [
         'unorganised'   => 'Unorganised',
     ],
-    'sheets'         => [
-        'title'          => 'Character sheets',
-        'remove'         => 'Remove character sheet',
-        'reorder'        => 'Drag to reorder character sheets',
-        'description'    => 'Choose which sheets appear for this entity. They all share the same properties.',
-        'add'            => 'Add character sheet',
-        'choose'         => 'Select an installed character sheet to add to this entity.',
-        'none_installed' => 'Installed character sheets from the plugin library to this campaign will appear here.',
-        'all_added'      => 'All installed character sheets are already added. You can find more in the plugin library.',
-        'library'        => 'Browse character sheets',
+    'sheets'        => [
+        'add'               => 'Add character sheet',
+        'all_added'         => 'All installed character sheets are already added. You can find more in the plugin library.',
+        'choose'            => 'Select an installed character sheet to add to this entity.',
+        'description'       => 'Choose which sheets appear for this entity. They all share the same properties.',
+        'library'           => 'Browse character sheets',
+        'none_installed'    => 'Installed character sheets from the plugin library to this campaign will appear here.',
+        'remove'            => 'Remove character sheet',
+        'reorder'           => 'Drag to reorder character sheets',
+        'title'             => 'Character sheets',
     ],
     'show'          => [
         'hidden'    => 'Hidden properties',

@@ -30,8 +30,8 @@ return [
         'title'     => 'Update webhook',
     ],
     'empty'         => [
-        'description' => 'Create a webhook to send campaign events to an external service when entries are created, updated, or deleted.',
-        'title'       => 'No webhooks yet',
+        'description'   => 'Create a webhook to send campaign events to an external service when entries are created, updated, or deleted.',
+        'title'         => 'No webhooks yet',
     ],
     'error'         => [
         'pitch' => 'Unlock premium features to access webhooks.',

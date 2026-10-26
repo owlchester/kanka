@@ -124,19 +124,19 @@ return [
         ],
         'title'         => 'Patreon',
     ],
-        'profile'       => [
-        'actions'   => [
+    'profile'       => [
+        'actions'           => [
             'update_profile'    => 'Update profile',
         ],
-            'avatar'    => 'Profile Picture',
-            'avatar_alt' => 'Profile photo',
-            'avatar_menu' => 'Add or change profile photo',
-            'avatar_success' => 'Success',
-            'add_photo' => 'Add photo',
-            'select_image' => 'Select an image',
-            'remove_image' => 'Remove image',
-        'success'   => 'Profile updated.',
-        'title'     => 'Public Profile',
+        'add_photo'         => 'Add photo',
+        'avatar'            => 'Profile Picture',
+        'avatar_alt'        => 'Profile photo',
+        'avatar_menu'       => 'Add or change profile photo',
+        'avatar_success'    => 'Success',
+        'remove_image'      => 'Remove image',
+        'select_image'      => 'Select an image',
+        'success'           => 'Profile updated.',
+        'title'             => 'Public Profile',
     ],
     'referrals'     => [
         'title' => 'Referrals',
@@ -237,11 +237,11 @@ return [
             'reason'            => 'Optionally tell us why you are no longer supporting Kanka.',
         ],
         'plans'                 => [
-            'cost_monthly'  => ':currency :amount billed monthly',
-            'cost_yearly'   => ':currency :amount billed yearly',
-            'grandfathered' => 'Grandfathered price',
-            'standard_monthly' => 'Standard price: :currency :amount billed monthly',
-            'standard_yearly' => 'Standard price: :currency :amount billed yearly',
+            'cost_monthly'      => ':currency :amount billed monthly',
+            'cost_yearly'       => ':currency :amount billed yearly',
+            'grandfathered'     => 'Grandfathered price',
+            'standard_monthly'  => 'Standard price: :currency :amount billed monthly',
+            'standard_yearly'   => 'Standard price: :currency :amount billed yearly',
         ],
         'sub_status'            => 'Subscription information',
         'subscription'          => [

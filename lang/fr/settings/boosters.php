@@ -30,6 +30,7 @@ return [
     ],
     'campaign'  => [
         'boosted'       => 'Boosté par :user depuis :time',
+        'members'       => ':amount membre bénéficiera immédiatement des améliorations|:amount membres bénéficieront immédiatement des améliorations',
         'premium'       => 'Premium grace à :user depuis :time',
         'standard'      => 'Standard',
         'superboosted'  => 'Superboosté par :user depuis :time',

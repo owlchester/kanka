@@ -22,11 +22,19 @@ return [
         'enable'    => '{1} :count plugin activé.|[2,*] :count plugins activés.',
         'update'    => '{1} :count plugin mis à jour.|[2,*] :count plugins mis à jour.',
     ],
+    'cta'           => [
+        'lead'  => 'Étends ta campagne avec des plugins communautaires qui ajoutent de nouveaux outils, thèmes et moyens de gérer ton monde.',
+        'title' => 'Débloque les plugins de campagne.',
+    ],
     'destroy'       => [
         'success'   => 'Le plugin :plugin a été retiré.',
     ],
     'disabled'      => [
         'success'   => 'Le plugin :plugin a été désactivé.',
+    ],
+    'empty'         => [
+        'description'   => 'Parcours la bibliothèque de plugins pour trouver de nouveaux outils et fonctionnalités pour ta campagne.',
+        'title'         => 'Aucun plugin installé pour le moment',
     ],
     'empty_list'    => 'La campagne n\'a actuellement aucun plugin. Visiter la bibliothèque de plugins pour ajouter des plugins à la campagne, et revenir ici pour les activer.',
     'enabled'       => [
@@ -74,6 +82,7 @@ return [
         'name'  => ':name de :user',
     ],
     'title'         => 'Plugins de la campagne :name',
+    'tutorial'      => 'Installe des plugins pour ajouter des fiches de personnage, des thèmes et des packs de contenu à ta campagne. Gère ici les plugins installés en les activant, désactivant, mettant à jour ou important.',
     'types'         => [
         'attribute' => 'Character Sheet',
         'pack'      => 'Content Pack',

@@ -24,6 +24,7 @@ return [
         'limit'                 => 'Il n\'est actuellement que possible de créer :max catégories personnalitées pendant qu\'on termine de construire cette nouvelle fonctionnalité.',
         'limit-title'           => 'Limite des catégories personnalisées atteinte.',
         'subscription-limit'    => 'Tu a atteint le nombre maximal de catégories personnalisées disponibles. La personne qui débloque les fonctionnalités premium peut souscrire à un abonnement supérieur pour augmenter cette limite.',
+        'subscription-upgrade'  => 'Passe à Wyvern pour autoriser jusqu’à :wyvern catégories personnalisées, ou à Elemental pour jusqu’à :elemental par campagne Premium.',
     ],
     'fields'        => [
         'icon'          => 'Icône de la catégorie',
@@ -47,6 +48,11 @@ return [
     'pitch-title'   => 'Débloque les catégories personnalisées',
     'rename'        => [
         'helper'    => 'Modifier le nom et l\'icône de la catégorie tout au long de la campagne. Laisser vide pour utiliser le nom par défaut de Kanka.',
+        'premium'   => [
+            'description'   => 'Les campagnes Premium peuvent renommer cette catégorie, choisir sa forme plurielle et lui donner une icône personnalisée adaptée à ton monde.',
+            'title'         => 'Fais de cette catégorie la tienne',
+            'upgrade'       => 'Mettre :campaign à niveau',
+        ],
         'success'   => 'Catégorie personnalisée.',
         'title'     => 'Personnaliser la catégorie :module',
     ],

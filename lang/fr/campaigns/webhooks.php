@@ -18,12 +18,20 @@ return [
         'success'   => 'Webhook créé avec succès',
         'title'     => 'Ajouter un nouveau webhook',
     ],
+    'cta'           => [
+        'lead'  => 'Envoie en temps réel les mises à jour de ta campagne à Discord, à des outils d’automatisation et à d’autres services.',
+        'title' => 'Connecte ta campagne à d’autres outils.',
+    ],
     'destroy'       => [
         'success'   => 'Webhook supprimé avec succès',
     ],
     'edit'          => [
         'success'   => 'Webhook modifié avec succès',
         'title'     => 'Modifier le webhook',
+    ],
+    'empty'         => [
+        'description'   => 'Crée un webhook pour envoyer les événements de ta campagne lorsqu’une entrée est créée, mise à jour ou supprimée.',
+        'title'         => 'Aucun webhook pour le moment',
     ],
     'error'         => [
         'pitch' => 'Débloques les fonctionalités premium pour avoir accès aux webhooks.',

@@ -17,8 +17,8 @@ return [
     'premium'   => [
         'action'    => 'Unlock',
         'enabled'   => [
-            'helper' => 'Premium features are now enabled on :campaign.',
-            'title'  => 'Premium features enabled',
+            'helper'    => 'Premium features are now enabled on :campaign.',
+            'title'     => 'Premium features enabled',
         ],
         'helper'    => 'Unlock premium features like custom categories, access to the :plugins, and more!',
         'title'     => 'Enable premium features on a campaign',

@@ -1,14 +1,15 @@
 <?php
 
 return [
-    'errors'    => [
+    'draft' => 'La fiche de personnage :name est un brouillon, ce qui signifie que seuls ses auteurs peuvent la voir rendue.',
+    'errors'=> [
         'marketplace'   => [
             'hint'      => 'Erreur',
             'rendering' => 'Une erreur est survenue lors de l\'affichage du plugin. Prière de contacter le ou la créateur/rice du plugin.',
         ],
     ],
-    'list'      => [
+    'list'  => [
         'sheets'    => 'Feuilles de personnages',
     ],
-    'pitch'     => 'Trouves et ajoutes des fiches de personnage sur le :marketplace dans une :boosted-campaign.',
+    'pitch' => 'Trouves et ajoutes des fiches de personnage sur le :marketplace dans une :boosted-campaign.',
 ];
