@@ -32,9 +32,13 @@ return new class extends Migration
     public function up(): void
     {
         foreach ($this->tables as $name) {
-            Schema::table($name, function (Blueprint $table) {
-                $table->dropIndex(['deleted_at']);
-                $table->dropSoftDeletes();
+            Schema::table($name, function (Blueprint $table) use ($name) {
+                if (Schema::hasIndex($name, $name . '_deleted_at_index')) {
+                    $table->dropIndex(['deleted_at']);
+                }
+                if (Schema::hasColumn($name, 'deleted_at')) {
+                    $table->dropSoftDeletes();
+                }
             });
         }
     }
