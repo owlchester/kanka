@@ -48,6 +48,11 @@ class LocalisationService
         $this->campaign = $campaign;
     }
 
+    public function clearCampaign(): void
+    {
+        unset($this->campaign);
+    }
+
     public function getConsoleCampaign(): int
     {
         return $this->consoleCampaignId;
