@@ -16,6 +16,17 @@ class CalendarMapper extends MiscMapper
 
     public function first(): void
     {
+        foreach (['months', 'weekdays', 'years', 'eras', 'seasons', 'moons', 'week_names', 'month_aliases'] as $field) {
+            if (! isset($this->data[$field]) || ! is_string($this->data[$field])) {
+                continue;
+            }
+
+            $decoded = json_decode($this->data[$field], true);
+            if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
+                $this->data[$field] = $decoded;
+            }
+        }
+
         $this
             ->prepareModel()
             ->trackMappings('calendar_id');

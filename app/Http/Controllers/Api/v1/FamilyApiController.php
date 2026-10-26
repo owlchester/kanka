@@ -52,7 +52,7 @@ class FamilyApiController extends MiscApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', [EntityType::find(config('entities.ids.family')), $campaign]);
 
-        $data = $request->all();
+        $data = $request->validated();
         $data['campaign_id'] = $campaign->id;
         $model = $this->createStandardModel($campaign, $data, config('entities.ids.family'));
         $this->crudSave($model, $request->validated());
@@ -67,7 +67,7 @@ class FamilyApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $family->entity);
-        $family->update($request->all());
+        $family->update($request->validated());
         $this->crudSave($family, $request->validated());
 
         return new Resource($family);
@@ -82,7 +82,7 @@ class FamilyApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $family->entity);
-        $family->delete();
+        $family->entity->delete();
 
         return response()->json(null, 204);
     }

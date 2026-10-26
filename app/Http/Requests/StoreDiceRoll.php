@@ -2,16 +2,14 @@
 
 namespace App\Http\Requests;
 
-use App\Facades\Limit;
-use App\Models\Tag;
-use App\Rules\EntityField;
-use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
+use App\Traits\EntityRequestRules;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreDiceRoll extends FormRequest
 {
     use ApiRequest;
+    use EntityRequestRules;
 
     /**
      * Determine if the user is authorized to make this request.
@@ -31,24 +29,17 @@ class StoreDiceRoll extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required|string|max:191',
             'parameters' => 'required|string|max:191',
             'character_id' => 'nullable|integer|exists:characters,id',
-            'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
-            'attribute' => ['array', new UniqueAttributeNames],
-            'is_private' => 'nullable|boolean',
         ];
 
-        if (request()->has('quick-creator')) {
-            unset($rules['parameters']);
-        }
+        return $this->entityRules($rules);
+    }
 
-        $rules['tags'] = [
-            'nullable',
-            'array',
-            new EntityField(config('entities.ids.tag'), Tag::class),
-        ];
-
-        return $this->clean($rules);
+    public function quickCreatorRules(): array
+    {
+        return $this->entityRules([
+            'character_id' => 'nullable|integer|exists:characters,id',
+        ]);
     }
 }

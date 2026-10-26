@@ -37,6 +37,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [ProfileController::class, 'index'])->name('settings');
 Route::get('/profile', [ProfileController::class, 'index'])->name('settings.profile');
 Route::patch('/profile', [ProfileController::class, 'update'])->name('settings.profile-process');
+Route::post('/profile/avatar', [ProfileController::class, 'uploadAvatar'])->name('settings.profile.avatar-upload');
+Route::delete('/profile/avatar', [ProfileController::class, 'removeAvatar'])->name('settings.profile.avatar-remove');
 
 Route::get('/account/billing/info', [InformationController::class, 'index'])->name('account.billing.info');
 Route::patch('/account/billing/info', [InformationController::class, 'save'])->name('account.billing.info-save');

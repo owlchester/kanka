@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 
 /**
@@ -32,12 +31,10 @@ class Quest extends MiscModel
     use HasFactory;
     use HasFilters;
     use Sanitizable;
-    use SoftDeletes;
     use SortableTrait;
 
     protected $fillable = [
         'campaign_id',
-        'name',
         'is_private',
         'instigator_id',
         'date',
@@ -94,8 +91,8 @@ class Quest extends MiscModel
     public function scopeFilteredQuests(Builder $query): Builder
     {
         return $query
-            ->select(['quests.id', 'quests.name', 'quests.is_private'])
-            ->sort(request()->only(['o', 'k']), ['name' => 'asc']) // @phpstan-ignore method.notFound
+            ->select(['quests.id', 'quests.is_private'])
+            ->sort(request()->only(['o', 'k']), ['entities.name' => 'asc']) // @phpstan-ignore method.notFound
             ->with([
                 'entity.locations',
                 'entity.locations.entity' => fn ($sub) => $sub->grid(),

@@ -4,6 +4,10 @@ return [
     'congratulations'   => '¡Felicidades!',
     'connections'       => '{0} Ninguna conexión creada|{1} Una conexión creada|[2,*] :amount conexiones creadas',
     'created'           => '{0} No has creado :plural|{1} Has creado :amount :singular|[2,*] Has creado :amount :plural',
+    'cta'               => [
+        'lead'  => 'Sigue los hitos, involucra a tus jugadores y celebra el progreso de tu mundo con los logros de campaña.',
+        'title' => 'Celebra los hitos de tu campaña.',
+    ],
     'dead'              => '{0} Ningún asesinato misterioso|{1} Un asesinato misterioso|[2,*] :amount asesinatos misteriosos',
     'goal'              => 'Meta :number',
     'goal_reached'      => 'Logro desbloqueado',

@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Campaign;
+use App\Models\CampaignPermission;
 use App\Models\Character;
 use App\Models\Entity;
 use App\Models\EntityType;
@@ -51,6 +52,24 @@ it('POSTS a new character')
         ],
     ]);
 
+it('ignores private visibility when a non-admin creates a character', function () {
+    $this->asUser()->withCampaign()->asPlayer();
+    CampaignPermission::create([
+        'campaign_id' => 1,
+        'campaign_role_id' => 3,
+        'entity_type_id' => config('entities.ids.character'),
+        'action' => CampaignPermission::ACTION_ADD,
+        'access' => true,
+    ]);
+
+    $this->postJson('/api/1.0/campaigns/1/characters', [
+        'name' => 'Public character',
+        'is_private' => true,
+    ])
+        ->assertCreated()
+        ->assertJsonFragment(['is_private' => false]);
+});
+
 it('links a newly created character to its entity', function () {
     $this->asUser()->withCampaign();
 
@@ -76,7 +95,7 @@ it('ignores entity ids when creating a character', function () {
     ]);
     $response->assertCreated();
 
-    $character = Character::where('name', 'Injected Entity Link')->firstOrFail();
+    $character = Character::whereHas('entity', fn ($query) => $query->where('name', 'Injected Entity Link'))->firstOrFail();
 
     expect($character->entity->entity_id)->toBe($character->id);
 });
@@ -104,9 +123,9 @@ it('creates an inline character mention only once when creating a character', fu
     ]);
     $response->assertCreated();
 
-    $inlineCharacter = Character::where('name', 'aaaa')->firstOrFail();
+    $inlineCharacter = Character::whereHas('entity', fn ($query) => $query->where('name', 'aaaa'))->firstOrFail();
 
-    expect(Character::where('name', 'aaaa')->count())->toBe(1)
+    expect(Character::whereHas('entity', fn ($query) => $query->where('name', 'aaaa'))->count())->toBe(1)
         ->and($response->json('data.entry_parsed'))->toContain((string) $inlineCharacter->entity_id);
 });
 

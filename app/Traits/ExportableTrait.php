@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use App\Models\MiscModel;
 use Exception;
 
 trait ExportableTrait
@@ -27,6 +28,9 @@ trait ExportableTrait
     {
         if (! isset($this->exportFields)) {
             $this->exportData = $this->toArray();
+            if ($this instanceof MiscModel && $this->entity) {
+                $this->exportData['name'] = $this->entity->name;
+            }
 
             return $this;
         }
@@ -34,10 +38,11 @@ trait ExportableTrait
         $baseFields = [
             'id',
             'name',
-            'created_at',
-            'updated_at',
             'is_private',
         ];
+        if ($this instanceof MiscModel && $this->entity) {
+            $this->exportData['name'] = $this->entity->name;
+        }
         foreach ($this->exportFields as $field) {
             if ($field !== 'base') {
                 $value = $this->$field;
@@ -46,6 +51,9 @@ trait ExportableTrait
                 continue;
             }
             foreach ($baseFields as $baseField) {
+                if ($baseField === 'name' && $this instanceof MiscModel && $this->entity) {
+                    continue;
+                }
                 // @phpstan-ignore-next-line
                 $this->exportData[$baseField] = $this->$baseField;
             }

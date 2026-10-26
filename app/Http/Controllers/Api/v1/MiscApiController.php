@@ -36,7 +36,7 @@ class MiscApiController extends ApiController
 
         if (! empty($model->entity)) {
             $campaign = CampaignLocalization::getCampaign();
-            $this->entitySaveService->campaign($campaign)->save($model->entity, $data);
+            $this->entitySaveService->campaign($campaign)->entity($model->entity)->save($data);
             if ($model->wasChanged() && ! $model->entity->wasChanged()) {
                 $model->entity->touch();
             }

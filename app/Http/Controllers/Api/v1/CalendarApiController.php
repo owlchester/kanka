@@ -68,8 +68,7 @@ class CalendarApiController extends MiscApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', [EntityType::find(config('entities.ids.calendar')), $campaign]);
 
-        $request->merge($this->sanitizer->request($request)->sanitize());
-        $data = $request->all();
+        $data = array_replace($request->validated(), $this->sanitizer->request($request)->sanitize());
         $data['campaign_id'] = $campaign->id;
         /** @var Calendar $model */
         $model = $this->createStandardModel($campaign, $data, config('entities.ids.calendar'));
@@ -85,8 +84,8 @@ class CalendarApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $calendar->entity);
-        $request->merge($this->sanitizer->request($request)->sanitize());
-        $calendar->update($request->all());
+        $data = array_replace($request->validated(), $this->sanitizer->request($request)->sanitize());
+        $calendar->update($data);
         $this->crudSave($calendar, $request->validated());
 
         return new Resource($calendar);
@@ -101,7 +100,7 @@ class CalendarApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $calendar->entity);
-        $calendar->delete();
+        $calendar->entity->delete();
 
         return response()->json(null, 204);
     }

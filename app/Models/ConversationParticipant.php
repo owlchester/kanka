@@ -56,7 +56,12 @@ class ConversationParticipant extends Model
 
     public function name(): string
     {
-        return $this->entity()->name ?? __('conversations.messages.author_unknown');
+        $entity = $this->entity();
+        if ($entity instanceof Character) {
+            return $entity->entity->name ?? __('conversations.messages.author_unknown');
+        }
+
+        return $entity->name ?? __('conversations.messages.author_unknown');
     }
 
     public function target(): ?int

@@ -6,6 +6,7 @@ use App\Enums\Permission;
 use App\Enums\WebhookAction;
 use App\Events\Entities\EntityCreationCompleted;
 use App\Events\Entities\EntityRestored;
+use App\Events\Maps\Updated as MapUpdated;
 use App\Facades\Images;
 use App\Facades\Permissions;
 use App\Jobs\EntityUpdatedJob;
@@ -84,6 +85,12 @@ class EntityObserver
             return;
         }
 
+        if ($entity->isMap() && $entity->wasChanged('name')) {
+            $map = $entity->map;
+            $map->setRelation('entity', $entity);
+            MapUpdated::dispatch($map);
+        }
+
         EntityUpdatedJob::dispatch($entity)->afterCommit();
 
         if ($entity->campaign->premium()) {
@@ -95,7 +102,7 @@ class EntityObserver
     {
         // When an entity is soft-deleted, we just want some webhooks to trigger,
         // not actually delete the entity and its image.
-        if ($entity->trashed()) {
+        if (! $entity->isForceDeleting()) {
             if ($entity->campaign->premium()) {
                 EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::DELETED->value)->afterCommit();
             }
@@ -106,6 +113,11 @@ class EntityObserver
         // Todo: Why is this not handled by the database?
         $entity->permissions()->delete();
         $entity->widgets()->delete();
+    }
+
+    public function forceDeleted(Entity $entity): void
+    {
+        Images::cleanupEntity($entity);
     }
 
     public function restored(Entity $entity)

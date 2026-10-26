@@ -3,6 +3,7 @@
 return [
     'actions'       => [
         'add_epoch'         => 'Añadir época',
+        'add_era'           => 'Era',
         'add_intercalary'   => 'Añadir días intercalares',
         'add_month'         => 'Añadir mes',
         'add_moon'          => 'Añadir luna',
@@ -65,6 +66,7 @@ return [
         'date'              => 'Fecha actual',
         'day'               => 'Día',
         'default_layout'    => 'Diseño predeterminado',
+        'era'               => 'Era',
         'format'            => 'Formato',
         'is_incrementing'   => 'Fecha incremental',
         'is_recurring'      => 'Recurrente',
@@ -163,6 +165,7 @@ return [
         ],
     ],
     'panels'        => [
+        'eras'          => 'Eras',
         'intercalary'   => 'Días intercalares',
         'leap_year'     => 'Año bisiesto',
         'months'        => 'Meses',
@@ -170,6 +173,12 @@ return [
         'years'         => 'Años con nombre',
     ],
     'parameters'    => [
+        'era'           => [
+            'end_year'      => 'Año final',
+            'name'          => 'Nombre de la era',
+            'start_year'    => 'Año inicial',
+            'suffix'        => 'Sufijo del año',
+        ],
         'intercalary'   => [
             'length'    => 'Días de duración',
             'month'     => 'Al final de qué mes',
@@ -238,6 +247,7 @@ return [
         'before'=> 'Hasta hoy',
     ],
     'validators'    => [
+        'era_overlap'   => 'Los rangos de años de las eras no pueden superponerse.',
         'format'        => 'El formato de la fecha es inválido.',
         'moon_offset'   => 'El desplazamiento de la primera luna llena de la luna no puede ser mayor que la duración del primer mes del calendario.',
     ],

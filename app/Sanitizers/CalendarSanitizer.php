@@ -14,6 +14,7 @@ class CalendarSanitizer extends MiscSanitizer
         $this
             ->cleanWeekdays()
             ->cleanYearNames()
+            ->cleanEras()
             ->cleanWeekNames()
             ->cleanMoons()
             ->cleanSeasons()
@@ -48,7 +49,7 @@ class CalendarSanitizer extends MiscSanitizer
             ];
             $this->monthCount++;
         }
-        $this->data['months'] = json_encode($months);
+        $this->data['months'] = $months;
 
         return $months;
     }
@@ -64,7 +65,7 @@ class CalendarSanitizer extends MiscSanitizer
 
             $weekdays[] = $this->purify($name);
         }
-        $this->data['weekdays'] = json_encode($weekdays);
+        $this->data['weekdays'] = $weekdays;
 
         return $this;
     }
@@ -85,7 +86,48 @@ class CalendarSanitizer extends MiscSanitizer
                 $yearCount++;
             }
         }
-        $this->data['years'] = json_encode($years);
+        $this->data['years'] = $years;
+
+        return $this;
+    }
+
+    protected function cleanEras(): self
+    {
+        if (! $this->request->hasAny(['eras', 'era_configured', 'era_name'])) {
+            return $this;
+        }
+
+        $eras = [];
+        if ($this->request->has('eras')) {
+            foreach ((array) $this->request->post('eras', []) as $era) {
+                if (! is_array($era)) {
+                    continue;
+                }
+                $eras[] = [
+                    'name' => $this->purify($era['name'] ?? ''),
+                    'suffix' => $this->purify($era['suffix'] ?? ''),
+                    'start_year' => ($era['start_year'] ?? '') === '' ? null : (int) $era['start_year'],
+                    'end_year' => ($era['end_year'] ?? '') === '' ? null : (int) $era['end_year'],
+                ];
+            }
+        } else {
+            $names = (array) $this->request->post('era_name', []);
+            $suffixes = (array) $this->request->post('era_suffix', []);
+            $starts = (array) $this->request->post('era_start_year', []);
+            $ends = (array) $this->request->post('era_end_year', []);
+            foreach ($names as $i => $name) {
+                if (empty($name)) {
+                    continue;
+                }
+                $eras[] = [
+                    'name' => $this->purify($name),
+                    'suffix' => $this->purify($suffixes[$i] ?? ''),
+                    'start_year' => ($starts[$i] ?? '') === '' ? null : (int) $starts[$i],
+                    'end_year' => ($ends[$i] ?? '') === '' ? null : (int) $ends[$i],
+                ];
+            }
+        }
+        $this->data['eras'] = $eras;
 
         return $this;
     }
@@ -106,7 +148,7 @@ class CalendarSanitizer extends MiscSanitizer
                 $weekCount++;
             }
         }
-        $this->data['week_names'] = json_encode($weeks);
+        $this->data['week_names'] = $weeks;
 
         return $this;
     }
@@ -152,7 +194,7 @@ class CalendarSanitizer extends MiscSanitizer
                 $moonCount++;
             }
         }
-        $this->data['moons'] = json_encode($moons);
+        $this->data['moons'] = $moons;
 
         return $this;
     }
@@ -179,7 +221,7 @@ class CalendarSanitizer extends MiscSanitizer
             ];
             $seasonCount++;
         }
-        $this->data['seasons'] = json_encode($seasons);
+        $this->data['seasons'] = $seasons;
 
         return $this;
     }

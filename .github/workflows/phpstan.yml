@@ -21,10 +21,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      APP_EMAIL: ci@example.com
+
     strategy:
       fail-fast: true
       matrix:
-        php: [8.4]
+        php: [8.4, 8.5]
         laravel: ["^11.0"]
 
     name: PHP ${{ matrix.php }}

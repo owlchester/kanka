@@ -136,5 +136,4 @@
     <input type="hidden" name="_multi" value="1" />
 @endif
     <input type="hidden" name="action" value="" />
-    <input type="hidden" name="quick-creator" value="1" />
 </form>

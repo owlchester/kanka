@@ -53,7 +53,7 @@ class RaceApiController extends MiscApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', [EntityType::find(config('entities.ids.race')), $campaign]);
 
-        $data = $request->all();
+        $data = $request->validated();
         $data['campaign_id'] = $campaign->id;
         $model = $this->createStandardModel($campaign, $data, config('entities.ids.race'));
         $this->crudSave($model, $request->validated());
@@ -68,7 +68,7 @@ class RaceApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $race->entity);
-        $race->update($request->all());
+        $race->update($request->validated());
         $this->crudSave($race, $request->validated());
 
         return new Resource($race);
@@ -83,7 +83,7 @@ class RaceApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $race->entity);
-        $race->delete();
+        $race->entity->delete();
 
         return response()->json(null, 204);
     }

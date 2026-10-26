@@ -28,7 +28,7 @@ if (!empty($previous)) {
 }
 // If we didn't get anything, and there is a model sent, use that
 elseif(!empty($model) && !empty($model->entity)) {
-    foreach ($model->entity->abilities()->with('entity')->has('entity')->get() as $ability) {
+    foreach ($model->entity->abilities()->with('entity.parent')->has('entity')->get() as $ability) {
         $selectedOption[$ability->id] = $ability;
     }
 } elseif (!empty($filterOptions)) {
@@ -54,7 +54,7 @@ elseif(!empty($model) && !empty($model->entity)) {
     id="{{ Arr::get($options, 'id', 'abilities[]') }}"
     class="w-full form-tags form-abilities"
     style="width: 100%"
-    data-url="{{ route('search-list', $searchParams) }}"
+    data-url="{{ route('search-list', $searchParams + ['with-parent' => true]) }}"
     data-allow-new="{{ $enableNew ? 'true' : 'false' }}"
     data-allow-clear="{{ Arr::get($options, 'allowClear', 'true') }}"
     data-new-tag="{{ __('abilities.new_ability') }}"
@@ -62,6 +62,6 @@ elseif(!empty($model) && !empty($model->entity)) {
     @if (!empty($dropdownParent)) data-dropdown-parent="{{ $dropdownParent }}" @endif
 >
     @foreach ($selectedOption as $key => $ability)
-        <option value="{{ $key }}" class="select2-ability" selected="selected">{{ $ability->entity->name }}</option>
+        <option value="{{ $key }}" class="select2-ability" selected="selected">{{ $ability->entity->name }}@if ($ability->entity->parent) ({{ $ability->entity->parent->name }})@endif</option>
     @endforeach
 </select>

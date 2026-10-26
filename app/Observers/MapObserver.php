@@ -14,7 +14,7 @@ class MapObserver
 
     public function updated(Map $map): void
     {
-        if (! $map->wasChanged(['name', 'grid', 'min_zoom', 'max_zoom', 'config'])) {
+        if (! $map->wasChanged(['grid', 'min_zoom', 'max_zoom', 'config'])) {
             return;
         }
 

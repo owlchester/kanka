@@ -177,22 +177,23 @@ it('marks a real map with a tile url and no image', function () {
 
 it('exposes real map zoom limits in the explore payload', function () {
     $this->asUser()->withCampaign();
+    $limits = config('limits.maps.zoom.real');
     $map = Map::factory()->create([
         'campaign_id' => 1,
         'is_real' => true,
-        'min_zoom' => 0,
-        'max_zoom' => 15,
-        'initial_zoom' => 15,
+        'min_zoom' => $limits['min'],
+        'max_zoom' => $limits['max'],
+        'initial_zoom' => $limits['max'],
     ]);
 
     $response = $this->get(route('entities.map-api', [1, $map->entity]))->assertSuccessful();
 
-    expect($response->json('map.min_zoom'))->toBe(0)
-        ->and($response->json('map.max_zoom'))->toBe(15)
-        ->and($response->json('map.initial_zoom'))->toBe(15)
-        ->and($response->json('i18n.settings.zoom_max_value'))->toBe(15)
+    expect($response->json('map.min_zoom'))->toBe($limits['min'])
+        ->and($response->json('map.max_zoom'))->toBe($limits['max'])
+        ->and($response->json('map.initial_zoom'))->toBe($limits['max'])
+        ->and($response->json('i18n.settings.zoom_max_value'))->toBe($limits['max'])
         ->and($response->json('i18n.settings.zoom_initial_help'))
-        ->toBe(__('maps.helpers.initial_zoom', ['min' => 0, 'max' => 15, 'default' => 12]));
+        ->toBe(__('maps.helpers.initial_zoom', ['min' => $limits['min'], 'max' => $limits['max'], 'default' => 12]));
 });
 
 it('marks a finished tiled map with a tiles url', function () {
@@ -444,8 +445,12 @@ it('falls back to the configured center when focus does not match any marker', f
 it('falls back to the configured center when focus points at a hidden polygon marker', function () {
     $this->asUser()->withCampaign();
     $map = Map::factory()->create(['campaign_id' => 1, 'center_x' => 1, 'center_y' => 2]);
+    $character = Character::factory()->create(['campaign_id' => 1]);
+    $hiddenEntity = $character->entity;
+    $character->delete();
     $marker = MapMarker::factory()->create([
         'map_id' => $map->id,
+        'entity_id' => $hiddenEntity->id,
         'shape_id' => 5,
         'custom_shape' => '10.500,20.250 11.750,21.100 12.250,19.750',
         'latitude' => 5.5,

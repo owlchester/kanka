@@ -52,7 +52,7 @@ class ConversationApiController extends MiscApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', [EntityType::find(config('entities.ids.conversation')), $campaign]);
 
-        $data = $request->all();
+        $data = $request->validated();
         $data['campaign_id'] = $campaign->id;
         /** @var Conversation $model */
         $model = $this->createStandardModel($campaign, $data, config('entities.ids.conversation'));
@@ -68,7 +68,7 @@ class ConversationApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $conversation->entity);
-        $conversation->update($request->all());
+        $conversation->update($request->validated());
         $this->crudSave($conversation, $request->validated());
 
         return new Resource($conversation);
@@ -83,7 +83,7 @@ class ConversationApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $conversation->entity);
-        $conversation->delete();
+        $conversation->entity->delete();
 
         return response()->json(null, 204);
     }

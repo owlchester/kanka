@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\CampaignPermission;
 use App\Models\Organisation;
 
 it('POSTS an invalid organisation form')
@@ -21,6 +22,36 @@ it('POSTS a new organisation')
             'entity_id',
         ],
     ]);
+
+it('ignores private visibility when a non-admin creates an organisation', function () {
+    $this->asUser()->withCampaign()->asPlayer();
+    CampaignPermission::create([
+        'campaign_id' => 1,
+        'campaign_role_id' => 3,
+        'entity_type_id' => config('entities.ids.organisation'),
+        'action' => CampaignPermission::ACTION_ADD,
+        'access' => true,
+    ]);
+
+    $this->postJson('/api/1.0/campaigns/1/organisations', [
+        'name' => 'Public organisation',
+        'is_private' => true,
+    ])
+        ->assertCreated()
+        ->assertJsonFragment(['is_private' => false]);
+});
+
+it('ignores private visibility when a non-admin updates an organisation', function () {
+    $this->asUser()->withCampaign()->withOrganisations()->asPlayer();
+    $originalPrivacy = Organisation::findOrFail(1)->is_private;
+
+    $this->putJson('/api/1.0/campaigns/1/organisations/1', [
+        'name' => 'Updated organisation',
+        'is_private' => true,
+    ])->assertSuccessful();
+
+    expect(Organisation::findOrFail(1)->is_private)->toBe($originalPrivacy);
+});
 
 it('GETS all organisations')
     ->asUser()

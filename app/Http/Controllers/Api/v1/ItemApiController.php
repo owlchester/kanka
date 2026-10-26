@@ -53,7 +53,7 @@ class ItemApiController extends MiscApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', [EntityType::find(config('entities.ids.item')), $campaign]);
 
-        $data = $request->all();
+        $data = $request->validated();
         $data['campaign_id'] = $campaign->id;
         /** @var Item $model */
         $model = $this->createStandardModel($campaign, $data, config('entities.ids.item'));
@@ -69,7 +69,7 @@ class ItemApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $item->entity);
-        $item->update($request->all());
+        $item->update($request->validated());
         $this->crudSave($item, $request->validated());
 
         return new Resource($item);
@@ -84,7 +84,7 @@ class ItemApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $item->entity);
-        $item->delete();
+        $item->entity->delete();
 
         return response()->json(null, 204);
     }

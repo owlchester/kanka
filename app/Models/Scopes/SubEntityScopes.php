@@ -2,6 +2,7 @@
 
 namespace App\Models\Scopes;
 
+use App\Models\Entity;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -16,7 +17,13 @@ trait SubEntityScopes
 
     public function scopeRecent(Builder $query): Builder
     {
-        return $query->orderBy('updated_at', 'desc');
+        return $query->orderBy(
+            Entity::query()
+                ->select('entities.updated_at')
+                ->whereColumn('entities.entity_id', $this->qualifyColumn('id'))
+                ->where('entities.type_id', $this->entityTypeId()),
+            'desc',
+        );
     }
 
     public function scopeWithApi(Builder $query): Builder

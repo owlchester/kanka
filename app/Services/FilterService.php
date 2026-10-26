@@ -111,6 +111,7 @@ class FilterService
             'has_entry',
             'has_entity_files',
             'has_attributes',
+            'has_character_sheet',
             'created_by',
             'updated_by',
             'attribute_name',

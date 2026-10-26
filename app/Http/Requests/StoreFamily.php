@@ -2,19 +2,15 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Entity;
-use App\Models\Location;
-use App\Models\Tag;
-use App\Rules\EntityField;
-use App\Rules\Nested;
-use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
+use App\Traits\EntityRequestRules;
 use App\Traits\ResolvesNewForeignEntities;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreFamily extends FormRequest
 {
     use ApiRequest;
+    use EntityRequestRules;
     use ResolvesNewForeignEntities;
 
     protected bool $foreignEntityParent = true;
@@ -37,36 +33,11 @@ class StoreFamily extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required|string|max:191',
-            'entry' => 'nullable|string',
-            'type' => 'nullable|string|max:191',
-            'locations' => ['nullable', 'array', new EntityField(config('entities.ids.location'), Location::class)],
-            'parent_id' => 'nullable|integer|exists:entities,id',
-            'entity_image_uuid' => 'nullable|exists:images,id',
-            'entity_header_uuid' => 'nullable|exists:images,id',
-            'template_id' => 'nullable',
-            'attribute' => ['array', new UniqueAttributeNames],
-            'is_private' => 'nullable|boolean',
-            'status_id' => ['nullable', 'exists:category_statuses,id'],
+            'sync_family_members' => 'nullable|boolean',
+            'members' => 'nullable|array',
+            'members.*' => ['nullable', 'regex:/^(m_)?[0-9]+$/'],
         ];
 
-        /** @var Entity $self */
-        $self = request()->route('entity');
-        if (! empty($self)) {
-            $rules['parent_id'] = [
-                'nullable',
-                'integer',
-                'exists:entities,id',
-                new Nested($self),
-            ];
-        }
-
-        $rules['tags'] = [
-            'nullable',
-            'array',
-            new EntityField(config('entities.ids.tag'), Tag::class),
-        ];
-
-        return $this->clean($rules);
+        return $this->entityRules($rules);
     }
 }

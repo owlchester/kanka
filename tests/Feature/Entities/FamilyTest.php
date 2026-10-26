@@ -174,7 +174,7 @@ it('saves locations when creating a family through the web form', function () {
         'locations' => [$locations[0]->id, $locations[1]->id],
     ])->assertRedirect();
 
-    $family = Family::where('name', 'Adams')->firstOrFail();
+    $family = Family::whereHas('entity', fn ($query) => $query->where('name', 'Adams'))->firstOrFail();
 
     expect($family->entity->locations()->pluck('locations.id')->sort()->values()->toArray())
         ->toBe([$locations[0]->id, $locations[1]->id]);

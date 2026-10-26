@@ -23,6 +23,7 @@ it('creates a top-level group and returns it in GroupResource shape', function (
         'name' => 'Continent',
         'parent_id' => null,
         'position' => 1,
+        'is_shown' => true,
         'colour' => '#93c5fd',
     ]);
     expect($group->map_id)->toBe($map->id);

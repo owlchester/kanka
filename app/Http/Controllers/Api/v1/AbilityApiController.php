@@ -52,7 +52,7 @@ class AbilityApiController extends MiscApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', [EntityType::find(config('entities.ids.ability')), $campaign]);
 
-        $data = $request->all();
+        $data = $request->validated();
         $data['campaign_id'] = $campaign->id;
         $model = $this->createStandardModel($campaign, $data, config('entities.ids.ability'));
         $this->crudSave($model, $request->validated());
@@ -67,7 +67,7 @@ class AbilityApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $ability->entity);
-        $ability->update($request->all());
+        $ability->update($request->validated());
         $this->crudSave($ability, $request->validated());
 
         return new Resource($ability);
@@ -82,7 +82,7 @@ class AbilityApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $ability->entity);
-        $ability->delete();
+        $ability->entity->delete();
 
         return response()->json(null, 204);
     }

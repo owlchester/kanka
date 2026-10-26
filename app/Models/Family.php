@@ -16,7 +16,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Family
@@ -33,12 +32,10 @@ class Family extends MiscModel
     use HasFactory;
     use HasFilters;
     use Sanitizable;
-    use SoftDeletes;
     use SortableTrait;
 
     protected $fillable = [
         'campaign_id',
-        'name',
         'is_private',
     ];
 
@@ -162,6 +159,10 @@ class Family extends MiscModel
 
         $query = Character::select('characters.*')
             ->distinct('characters.id')
+            ->join('entities', function ($join) {
+                $join->on('entities.entity_id', '=', 'characters.id')
+                    ->where('entities.type_id', config('entities.ids.character'));
+            })
             ->leftJoin('character_family as cf', function ($join) {
                 $join->on('cf.character_id', '=', 'characters.id');
             })

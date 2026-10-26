@@ -105,7 +105,7 @@ $weekNumber = 1;
 <table class="calendar table table-striped table-fixed">
     <thead>
     <tr>
-        @foreach ($model->weekdays() as $weekday)
+        @foreach ($model->weekdays ?? [] as $weekday)
             <th>{{ $intercalary ? '' : $weekday }}</th>
         @endforeach
     </tr>
@@ -114,12 +114,12 @@ $weekNumber = 1;
     @if ($renderer->isYearlyLayout())
         <tr>
         @foreach ($renderer->buildForYear() as $key => $day)
-            @if($key % count($model->weekdays()) == 0)
+            @if($key % count($model->weekdays ?? []) == 0)
                 </tr><tr>
                 @if (!empty($day) && !empty($day['week']))
                     @if ($renderer->isNamedWeek($day['week']))
                         <tr class="named_week italic h-4 week-nr-{{ $day['week'] }}">
-                            <td colspan="{{ count($model->weekdays()) }}" class="bg-week h-1 wrap-break-word">
+                            <td colspan="{{ count($model->weekdays ?? []) }}" class="bg-week h-1 wrap-break-word">
                                 {{ $renderer->namedWeek($day['week']) }}
                             </td>
                         </tr>
@@ -133,7 +133,7 @@ $weekNumber = 1;
         @foreach ($renderer->buildForMonth() as $week => $days)
             @if (!empty($days) && $renderer->isNamedWeek($week))
                 <tr class="named_week italic week-nr-{{ $week }}">
-                    <td colspan="{{ count($model->weekdays()) }}" class="h-4 wrap-break-word">
+                    <td colspan="{{ count($model->weekdays ?? []) }}" class="h-4 wrap-break-word">
                         {{ $renderer->namedWeek($week) }}
                     </td>
                 </tr>

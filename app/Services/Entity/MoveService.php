@@ -224,7 +224,7 @@ class MoveService
 
             // Update child second. We do this otherwise we'll have an old entity and a new one
             if ($this->entity->hasChild()) {
-                $child->campaign_id = $this->to->id;
+                $child->campaign_id = $this->entity->campaign_id;
                 $child->saveQuietly();
             }
 

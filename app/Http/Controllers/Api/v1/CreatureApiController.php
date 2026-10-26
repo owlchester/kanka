@@ -53,7 +53,7 @@ class CreatureApiController extends MiscApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', [EntityType::find(config('entities.ids.creature')), $campaign]);
 
-        $data = $request->all();
+        $data = $request->validated();
         $data['campaign_id'] = $campaign->id;
         $model = $this->createStandardModel($campaign, $data, config('entities.ids.creature'));
         $this->crudSave($model, $request->validated());
@@ -68,7 +68,7 @@ class CreatureApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $creature->entity);
-        $creature->update($request->all());
+        $creature->update($request->validated());
         $this->crudSave($creature, $request->validated());
 
         return new Resource($creature);
@@ -83,7 +83,7 @@ class CreatureApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $creature->entity);
-        $creature->delete();
+        $creature->entity->delete();
 
         return response()->json(null, 204);
     }

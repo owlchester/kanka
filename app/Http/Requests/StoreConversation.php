@@ -3,16 +3,15 @@
 namespace App\Http\Requests;
 
 use App\Enums\ConversationTarget;
-use App\Models\Tag;
-use App\Rules\EntityField;
-use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
+use App\Traits\EntityRequestRules;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Enum;
 
 class StoreConversation extends FormRequest
 {
     use ApiRequest;
+    use EntityRequestRules;
 
     /**
      * Determine if the user is authorized to make this request.
@@ -32,21 +31,11 @@ class StoreConversation extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required|string|max:191',
             'type' => 'nullable|string|max:45',
             'target_id' => ['required', new Enum(ConversationTarget::class)],
-            'entity_image_uuid' => 'nullable|exists:images,id',
-            'entity_header_uuid' => 'nullable|exists:images,id',
-            'attribute' => ['array', new UniqueAttributeNames],
-            'is_private' => 'nullable|boolean',
+            'is_closed' => 'nullable|boolean',
         ];
 
-        $rules['tags'] = [
-            'nullable',
-            'array',
-            new EntityField(config('entities.ids.tag'), Tag::class),
-        ];
-
-        return $this->clean($rules);
+        return $this->entityRules($rules);
     }
 }

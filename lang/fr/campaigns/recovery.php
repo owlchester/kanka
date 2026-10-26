@@ -1,17 +1,23 @@
 <?php
 
 return [
-    'actions'   => [
+    'actions'       => [
         'recover'           => 'Récupérer',
         'recover_selected'  => 'Récupérer la sélection',
     ],
-    'error'     => 'Une erreur est survenue lors de la récupération.',
-    'fields'    => [
+    'cta'           => [
+        'lead'  => 'Restaure les entrées et articles supprimés avant leur suppression définitive.',
+        'title' => 'Récupère le contenu supprimé',
+    ],
+    'empty'         => 'Les entrées et articles supprimés apparaîtront ici tant qu’ils pourront être récupérés.',
+    'empty_title'   => 'Rien à récupérer',
+    'error'         => 'Une erreur est survenue lors de la récupération.',
+    'fields'        => [
         'deleted'       => 'Supprimé',
         'deleted_at'    => 'Supprimé le :date par :user',
     ],
-    'name_link' => ':name récupéré',
-    'order'     => [
+    'name_link'     => ':name récupéré',
+    'order'         => [
         'newest'        => 'Ordonner par: Récent',
         'newest_first'  => 'Plus récent en premier',
         'oldest'        => 'Ordonner par: Ancienté',
@@ -19,8 +25,8 @@ return [
         'type'          => 'Ordonner par: Type',
         'type_order'    => 'Type',
     ],
-    'premium'   => 'La récupération d\'éléments est une fonctionnalité de campagne premium.',
-    'success_v2'=> '{1} :count élément a été récupéré.|[2,*] :count éléments ont été récupérés.',
-    'title'     => 'Récupération d\'éléments supprimés',
-    'tutorial'  => 'Affiche et restaure les éléments récemment supprimés de la campagne. Les entrées, article et autres données associées peuvent être récupérés pendant :amount jours avant d\'être supprimés définitivement. Restaurer un élément le remet avec toutes ses données intactes.',
+    'premium'       => 'La récupération d\'éléments est une fonctionnalité de campagne premium.',
+    'success_v2'    => '{1} :count élément a été récupéré.|[2,*] :count éléments ont été récupérés.',
+    'title'         => 'Récupération d\'éléments supprimés',
+    'tutorial'      => 'Affiche et restaure les éléments récemment supprimés de la campagne. Les entrées, article et autres données associées peuvent être récupérés pendant :amount jours avant d\'être supprimés définitivement. Restaurer un élément le remet avec toutes ses données intactes.',
 ];

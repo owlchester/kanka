@@ -14,7 +14,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 
 /**
@@ -37,7 +36,6 @@ class Tag extends MiscModel
     use HasFilters;
     use HasSlug;
     use Sanitizable;
-    use SoftDeletes;
     use SortableTrait;
     use TagScopes;
 
@@ -61,7 +59,6 @@ class Tag extends MiscModel
     ];
 
     protected $fillable = [
-        'name',
         'slug',
         'colour',
         'icon',

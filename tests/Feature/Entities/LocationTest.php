@@ -64,7 +64,7 @@ it('sorts characters in a location by name', function () {
     $location = Location::first();
     $characters = Character::all();
     foreach ($characters as $index => $character) {
-        $character->update(['name' => ['Zulu', 'Alpha', 'Mike', 'Bravo', 'Echo'][$index]]);
+        $character->entity->update(['name' => ['Zulu', 'Alpha', 'Mike', 'Bravo', 'Echo'][$index]]);
         $character->entity->locations()->attach($location->id);
     }
 

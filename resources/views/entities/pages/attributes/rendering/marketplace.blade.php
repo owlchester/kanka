@@ -12,7 +12,9 @@ if (!isset($entity)) {
 
 @if ($plugin->version->isDraft())
     <x-alert type="warning" class="max-w-4xl">
-        {{ __('This plugin is a draft, meaning only its authors can see it rendered.') }}
+        <p>
+        {!! __('attributes/templates.draft', ['name' => '<a href="' . e($plugin->plugin->libraryUrl()) . '" target="_blank" rel="noopener">' . e($plugin->plugin->name) . '</a>']) !!}
+        </p>
     </x-alert>
 @endif
 
@@ -32,12 +34,13 @@ if (!isset($entity)) {
         @endforeach
 }
     </style>
-@endsection
+@append
 
 @section('scripts')
     @parent
+    @once
     <script>
-        const entityData = window.entityData = {
+        window.entityData = {
             name: {{ \Illuminate\Support\Js::from($entity->name) }},
             is_private: {{ \Illuminate\Support\Js::from((bool) $entity->is_private) }},
             type: {
@@ -99,7 +102,7 @@ if (!isset($entity)) {
             },
             @endforeach ],
         }
-        const attributeApis = window.attributeApis = {
+        window.attributeApis = {
             all: {
                 method: 'GET',
                 url: {{ \Illuminate\Support\Js::from(route('entities.attributes.live-api.index', [$campaign, $entity])) }}
@@ -109,14 +112,17 @@ if (!isset($entity)) {
                 url: {{ \Illuminate\Support\Js::from(route('entities.attributes.live-api.create', [$campaign, $entity])) }}
             },
         }
-        const abilityApis = window.abilityApis = {
+        window.abilityApis = {
             all: {
                 method: 'GET',
                 url: {{ \Illuminate\Support\Js::from(route('entities.entity_abilities.api', [$campaign, $entity])) }}
             },
         }
     </script>
+    @endonce
     <script>
+        (() => {
         {!! $plugin->version->javascript !!}
+        })();
     </script>
-@endsection
+@append

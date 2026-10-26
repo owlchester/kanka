@@ -52,7 +52,7 @@ class TimelineApiController extends MiscApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', [EntityType::find(config('entities.ids.timeline')), $campaign]);
 
-        $data = $request->all();
+        $data = $request->validated();
         $data['campaign_id'] = $campaign->id;
         $model = $this->createStandardModel($campaign, $data, config('entities.ids.timeline'));
         $this->crudSave($model, $request->validated());
@@ -67,7 +67,7 @@ class TimelineApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $timeline->entity);
-        $timeline->update($request->all());
+        $timeline->update($request->validated());
         $this->crudSave($timeline, $request->validated());
 
         return new Resource($timeline);
@@ -82,7 +82,7 @@ class TimelineApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $timeline->entity);
-        $timeline->delete();
+        $timeline->entity->delete();
 
         return response()->json(null, 204);
     }

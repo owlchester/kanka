@@ -5,6 +5,7 @@ namespace App\Services\Campaign\Import\Mappers;
 use App\Facades\EntityLogger;
 use App\Facades\ImportIdMapper;
 use App\Models\Entity;
+use App\Models\MiscModel;
 use App\Services\EntityMappingService;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
@@ -33,7 +34,10 @@ trait EntityMapper
         $columns = $this->model->getConnection()->getSchemaBuilder()->getColumnListing($this->model->getTable());
         foreach ($this->data as $field => $value) {
             // @phpstan-ignore-next-line
-            if (is_array($value) || in_array($field, $this->ignore) || ! in_array($field, $columns)) {
+            if ((is_array($value) && ! $this->model->hasCast($field, ['array'])) || in_array($field, $this->ignore) || ! in_array($field, $columns)) {
+                continue;
+            }
+            if ($field === 'name' && $this->model instanceof MiscModel) {
                 continue;
             }
             $this->model->$field = $value;
@@ -66,12 +70,16 @@ trait EntityMapper
 
     protected function entity(): void
     {
-        $mapping = ['name', 'is_private', 'campaign_id'];
+        $mapping = ['is_private', 'campaign_id'];
         $entityMapping = ['tooltip', 'is_template', 'is_attributes_private', 'focus_x', 'focus_y', 'entry', 'type', 'type_id', 'status_id'];
         $this->entity = new Entity;
         $this->entity->entity_id = $this->model->id;
         $this->entity->created_by = $this->user->id;
         $this->entity->updated_by = $this->user->id;
+        $name = Arr::get($this->data, 'entity.name') ?? Arr::get($this->data, 'name');
+        if ($name !== null || ! ($this->model instanceof MiscModel)) {
+            $this->entity->name = $name ?? $this->model->name;
+        }
         foreach ($mapping as $field) {
             $this->entity->$field = $this->model->$field;
         }

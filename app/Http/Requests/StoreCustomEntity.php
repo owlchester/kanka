@@ -4,9 +4,9 @@ namespace App\Http\Requests;
 
 use App\Facades\CampaignLocalization;
 use App\Models\EntityType;
-use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
 use App\Traits\CreatesEntityFromName;
+use App\Traits\EntityRequestRules;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
@@ -15,6 +15,7 @@ class StoreCustomEntity extends FormRequest
 {
     use ApiRequest;
     use CreatesEntityFromName;
+    use EntityRequestRules;
 
     private bool $parentIdResolved = false;
 
@@ -33,16 +34,7 @@ class StoreCustomEntity extends FormRequest
      */
     public function rules()
     {
-        $rules = [
-            'name' => 'required|string|max:191',
-            'entry' => 'nullable|string',
-            'type' => 'nullable|string|max:191',
-            'image_uuid' => 'nullable|integer|exists:images,id',
-            'parent_id' => 'nullable|integer|exists:entities,id',
-            'attribute' => ['array', new UniqueAttributeNames],
-        ];
-
-        return $this->clean($rules);
+        return $this->entityRules([]);
     }
 
     /**

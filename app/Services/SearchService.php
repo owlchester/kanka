@@ -375,7 +375,7 @@ class SearchService
         // Todo: this can load any calendar regardless of permission
         $calendars = Calendar::get();
         foreach ($calendars as $calendar) {
-            $months = $calendar->months();
+            $months = $calendar->months ?? [];
 
             foreach ($months as $month) {
                 if ((! empty($this->term) && str_contains($month['name'], $this->term)) || empty($this->term)) {

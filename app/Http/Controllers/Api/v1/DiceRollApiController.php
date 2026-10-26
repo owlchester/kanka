@@ -52,7 +52,7 @@ class DiceRollApiController extends MiscApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', [EntityType::find(config('entities.ids.dice_roll')), $campaign]);
 
-        $data = $request->all();
+        $data = $request->validated();
         $data['campaign_id'] = $campaign->id;
         $model = $this->createStandardModel($campaign, $data, config('entities.ids.dice_roll'));
         $this->crudSave($model, $request->validated());
@@ -67,7 +67,7 @@ class DiceRollApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $diceRoll->entity);
-        $diceRoll->update($request->all());
+        $diceRoll->update($request->validated());
         $this->crudSave($diceRoll, $request->validated());
 
         return new Resource($diceRoll);
@@ -82,7 +82,7 @@ class DiceRollApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $diceRoll->entity);
-        $diceRoll->delete();
+        $diceRoll->entity->delete();
 
         return response()->json(null, 204);
     }

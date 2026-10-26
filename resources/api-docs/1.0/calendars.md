@@ -253,6 +253,7 @@ To create a calendar, use the following endpoint.
 | `weekday` | `array` (required, min 2) | Array of weekday names |
 | `year_name` | `array` | Array of year names |
 | `year_number` | `array` | Array of year numbers |
+| `eras` | `array` | Calendar eras, each with `name`, `suffix`, and optional `start_year` / `end_year` bounds (at least one bound is required). |
 | `moon_name` | `array` | Array of moon names |
 | `moon_fullmoon` | `array` | Array of when (every how many days) a full moon occurs |
 | `moon_offset` | `array` | Array of days when the first full moon if offset |
@@ -277,6 +278,10 @@ To create a calendar, use the following endpoint.
 ### Results
 
 > {success} Code 200 with JSON body of the new calendar.
+
+Era boundaries are inclusive and may not overlap. Start-bounded eras count forward from year 1.
+End-only eras keep the absolute year number: an era with `end_year: -1` and `suffix: "BCE"`
+displays year `-5` as `5 BCE`. Stored years remain unchanged.
 
 
 <a name="update-calendar"></a>

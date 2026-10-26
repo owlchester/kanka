@@ -52,7 +52,7 @@ class TagApiController extends MiscApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', [EntityType::find(config('entities.ids.tag')), $campaign]);
 
-        $data = $request->all();
+        $data = $request->validated();
         $data['campaign_id'] = $campaign->id;
         $model = $this->createStandardModel($campaign, $data, config('entities.ids.tag'));
         $this->crudSave($model, $request->validated());
@@ -67,7 +67,7 @@ class TagApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $tag->entity);
-        $tag->update($request->all());
+        $tag->update($request->validated());
         $this->crudSave($tag, $request->validated());
 
         return new Resource($tag);
@@ -82,7 +82,7 @@ class TagApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $tag->entity);
-        $tag->delete();
+        $tag->entity->delete();
 
         return response()->json(null, 204);
     }

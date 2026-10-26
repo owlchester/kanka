@@ -74,9 +74,9 @@
                 $cpt++;
             }
         } elseif (isset($model)) {
-            $years = $model->years();
+            $years = $model->years ?? [];
         } elseif (isset($source)) {
-            $years = $source->child->years();
+            $years = $source->child->years ?? [];
         } ?>
         <div class="calendar-years sortable-elements" data-handle=".sortable-handler">
             @foreach ($years as $year => $name)

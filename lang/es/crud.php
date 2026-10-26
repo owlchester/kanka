@@ -128,6 +128,7 @@ return [
         'date_range'                => 'Rango de fechas',
         'excerpt'                   => 'Extracto',
         'has_attributes'            => 'Tiene propiedades',
+        'has_character_sheet'       => 'Tiene hoja de personaje',
         'has_entity_files'          => 'Tiene archivos',
         'has_entry'                 => 'Tiene entrada',
         'has_image'                 => 'Tiene imagen',

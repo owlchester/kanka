@@ -17,10 +17,19 @@ if (isset($model)) {
     $child = $entity->child;
 }
 $members = $entity->isFamily()
-    ? $child->members()->with('entity')->orderBy('name')->get()
+    ? $child->members()->with('entity')
+        ->leftJoin('entities as member_entities', function ($join) {
+            $join->on('member_entities.entity_id', '=', 'characters.id')
+                ->where('member_entities.type_id', config('entities.ids.character'));
+        })
+        ->orderBy('member_entities.name')->get()
     : $child->members()->with(['character', 'character.entity'])
         ->leftJoin('characters', 'characters.id', '=', 'organisation_member.character_id')
-        ->orderBy('characters.name')
+        ->leftJoin('entities as member_entities', function ($join) {
+            $join->on('member_entities.entity_id', '=', 'characters.id')
+                ->where('member_entities.type_id', config('entities.ids.character'));
+        })
+        ->orderBy('member_entities.name')
         ->get();
 @endphp
 

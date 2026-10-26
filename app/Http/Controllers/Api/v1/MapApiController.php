@@ -52,7 +52,7 @@ class MapApiController extends MiscApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', [EntityType::find(config('entities.ids.map')), $campaign]);
 
-        $data = $request->all();
+        $data = $request->validated();
         $data['campaign_id'] = $campaign->id;
         $model = $this->createStandardModel($campaign, $data, config('entities.ids.map'));
         $this->crudSave($model, $request->validated());
@@ -67,7 +67,7 @@ class MapApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $map->entity);
-        $map->update($request->all());
+        $map->update($request->validated());
         $this->crudSave($map, $request->validated());
 
         return new Resource($map);
@@ -82,7 +82,7 @@ class MapApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $map->entity);
-        $map->delete();
+        $map->entity->delete();
 
         return response()->json(null, 204);
     }

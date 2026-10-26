@@ -68,7 +68,7 @@ class CalendarController extends CrudController
     public function monthList(Campaign $campaign, Calendar $calendar, RecurrenceOptionsService $recurrenceOptions)
     {
         return response()->json([
-            'months' => $calendar->months(),
+            'months' => $calendar->months ?? [],
             'current' => [
                 'year' => $calendar->currentDate('year'),
                 'month' => $calendar->currentDate('month'),

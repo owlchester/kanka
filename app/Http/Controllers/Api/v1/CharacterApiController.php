@@ -59,7 +59,7 @@ class CharacterApiController extends MiscApiController
             $campaign,
         ]);
 
-        $data = $request->all();
+        $data = $request->validated();
         $data['campaign_id'] = $campaign->id;
         /** @var Character $model */
         $model = $this->createStandardModel($campaign, $data, config('entities.ids.character'));
@@ -80,7 +80,7 @@ class CharacterApiController extends MiscApiController
     ) {
         $this->authorize('access', $campaign);
         $this->authorize('update', $character->entity);
-        $character->update($request->all());
+        $character->update($request->validated());
         $this->crudSave($character, $request->validated());
 
         return new CharacterResource($character);
@@ -95,7 +95,7 @@ class CharacterApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $character->entity);
-        $character->delete();
+        $character->entity->delete();
 
         return response()->json(null, 204);
     }

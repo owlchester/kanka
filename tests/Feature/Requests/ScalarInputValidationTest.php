@@ -10,7 +10,6 @@ use App\Http\Requests\Front\StoreCommunityEventEntry;
 use App\Http\Requests\Gallery\UploadUrl;
 use App\Http\Requests\Onboarding\InitialRequest;
 use App\Http\Requests\Onboarding\QuickCreateRequest;
-use App\Http\Requests\Settings\UserAltSubscribeStore;
 use App\Http\Requests\Spotlights\ApplyRequest;
 use App\Http\Requests\StoreAbility;
 use App\Http\Requests\StoreAttribute;
@@ -72,8 +71,7 @@ test('scalar request fields reject structured input', function () {
 });
 
 test('calendar quick creator text fields reject structured input', function () {
-    request()->query->set('quick-creator', '1');
-    $rules = (new StoreCalendar)->rules();
+    $rules = (new StoreCalendar)->quickCreatorRules();
 
     foreach (['name', 'type'] as $field) {
         $validator = validator([$field => ['value']], [$field => $rules[$field]]);
@@ -101,8 +99,6 @@ function scalarRequestFields(): array
         [InitialRequest::class, 'name'],
         [InitialRequest::class, 'type'],
         [QuickCreateRequest::class, 'type'],
-        [UserAltSubscribeStore::class, 'method'],
-        [UserAltSubscribeStore::class, 'period'],
         [ApplyRequest::class, 'action'],
         [StoreAbility::class, 'name'],
         [StoreAbility::class, 'charges'],
@@ -150,7 +146,7 @@ function scalarRequestFields(): array
         [StoreTag::class, 'name'],
         [StoreTag::class, 'colour'],
         [StoreTimeline::class, 'name'],
-        [StoreTimeline::class, 'image_url'],
+        [StoreTimeline::class, 'revert_order'],
         [StoreWhiteboard::class, 'name'],
         [UpdateCalendarEvent::class, 'recurring_periodicity'],
         [UpdateCalendarEvent::class, 'comment'],

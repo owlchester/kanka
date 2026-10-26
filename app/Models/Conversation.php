@@ -10,7 +10,6 @@ use App\Models\Concerns\Sanitizable;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Conversation
@@ -31,10 +30,8 @@ class Conversation extends MiscModel
     use HasFactory;
     use HasFilters;
     use Sanitizable;
-    use SoftDeletes;
 
     protected $fillable = [
-        'name',
         'campaign_id',
         'target_id',
         'is_private',

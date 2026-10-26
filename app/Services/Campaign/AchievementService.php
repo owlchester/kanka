@@ -284,8 +284,12 @@ class AchievementService
     protected function markers(): int
     {
         return MapMarker::leftJoin('maps as m', 'm.id', 'map_markers.map_id')
+            ->join('entities as e', function ($join) {
+                $join->on('e.entity_id', '=', 'm.id')
+                    ->where('e.type_id', config('entities.ids.map'));
+            })
             ->where('m.campaign_id', $this->campaign->id)
-            ->whereNull('m.deleted_at')
+            ->whereNull('e.deleted_at')
             ->count();
     }
 

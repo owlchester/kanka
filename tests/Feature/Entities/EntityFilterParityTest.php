@@ -7,6 +7,7 @@ use App\Models\Entity;
 use App\Models\EntityAsset;
 use App\Models\EntityTag;
 use App\Models\EntityType;
+use App\Models\Journal;
 use App\Models\Post;
 use App\Models\Tag;
 
@@ -31,6 +32,10 @@ it('keeps entity-backed filters consistent across entity and child queries', fun
         'name' => 'strength',
         'value' => '12',
     ]);
+    $matching->entity->sheets()->create([
+        'source' => 'marketplace',
+        'reference' => 'test-sheet-uuid',
+    ]);
 
     $entityType = EntityType::findOrFail(config('entities.ids.character'));
     $childIds = fn (array $filters): array => Character::query()
@@ -43,7 +48,7 @@ it('keeps entity-backed filters consistent across entity and child queries', fun
         ->pluck('entities.id')
         ->all();
 
-    foreach (['has_image', 'template', 'has_entry', 'has_entity_files', 'has_posts', 'has_attributes'] as $filter) {
+    foreach (['has_image', 'template', 'has_entry', 'has_entity_files', 'has_posts', 'has_attributes', 'has_character_sheet'] as $filter) {
         expect($childIds([$filter => '1']))
             ->toContain($matching->id)
             ->not->toContain($empty->id);
@@ -58,6 +63,33 @@ it('keeps entity-backed filters consistent across entity and child queries', fun
             ->toContain($empty->entity->id)
             ->not->toContain($matching->entity->id);
     }
+});
+
+it('applies journal date range filters to the journal date column', function () {
+    $this->asUser()->withCampaign();
+
+    $before = Journal::factory()->create(['campaign_id' => 1, 'date' => '2020-01-28']);
+    $start = Journal::factory()->create(['campaign_id' => 1, 'date' => '2020-01-29']);
+    $within = Journal::factory()->create(['campaign_id' => 1, 'date' => '2021-06-01']);
+    $end = Journal::factory()->create(['campaign_id' => 1, 'date' => '2022-07-29']);
+    $after = Journal::factory()->create(['campaign_id' => 1, 'date' => '2022-07-30']);
+    $entityType = EntityType::findOrFail(config('entities.ids.journal'));
+
+    $entityIds = fn (array $filters): array => Entity::query()
+        ->where('entities.type_id', $entityType->id)
+        ->filter($filters, $entityType)
+        ->pluck('entities.entity_id')
+        ->all();
+
+    expect($entityIds(['date_start' => '2020-01-29', 'date_end' => '2022-07-29']))
+        ->toContain($start->id, $within->id, $end->id)
+        ->not->toContain($before->id, $after->id);
+    expect($entityIds(['date_start' => '2020-01-29']))
+        ->toContain($start->id)
+        ->not->toContain($within->id, $before->id);
+    expect($entityIds(['date_end' => '2022-07-29']))
+        ->toContain($end->id)
+        ->not->toContain($within->id, $after->id);
 });
 
 it('uses the canonical image predicate in the typed API', function () {

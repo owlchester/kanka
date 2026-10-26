@@ -10,7 +10,6 @@ use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Event
@@ -25,12 +24,10 @@ class Event extends MiscModel
     use HasFactory;
     use HasFilters;
     use Sanitizable;
-    use SoftDeletes;
     use SortableTrait;
 
     protected $fillable = [
         'campaign_id',
-        'name',
         'date',
         'is_private',
     ];
@@ -69,8 +66,8 @@ class Event extends MiscModel
     public function scopeFilteredEvents(Builder $query): Builder
     {
         return $query
-            ->select(['events.id', 'events.name', 'events.date', 'events.is_private'])
-            ->sort(request()->only(['o', 'k']), ['name' => 'asc']) // @phpstan-ignore method.notFound
+            ->select(['events.id', 'events.date', 'events.is_private'])
+            ->sort(request()->only(['o', 'k']), ['entities.name' => 'asc']) // @phpstan-ignore method.notFound
             ->with([
                 'entity.locations',
                 'entity.locations.entity' => fn ($sub) => $sub->grid(),

@@ -6,6 +6,7 @@ return [
     ],
     'csv'               => [
         'continue'          => 'Continuar',
+        'encoding_error'    => 'El archivo CSV debe estar codificado en UTF-8.',
         'fields_helper'     => 'Selecciona una columna para asignar a cada uno de los campos completables de la entrada.',
         'no_preview'        => 'No hay datos de vista previa disponibles',
         'preview'           => 'Vista previa',

@@ -11,6 +11,7 @@ use App\Models\EntityType;
 use App\Services\Api\BulkEntityCreatorService;
 use App\Services\Entity\EntitySaveService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
 class EntityApiController extends ApiController
@@ -59,14 +60,16 @@ class EntityApiController extends ApiController
             ->entityType($entityType)
             ->user($request->user());
 
-        foreach ($request->get('entities', []) as $entity) {
-            $entities[] = $this->bulkEntityCreatorService->data($entity)->create();
+        foreach ($request->validated('entities', []) as $entity) {
+            $entities[] = $this->bulkEntityCreatorService
+                ->data(Arr::only($entity, ['name', 'entry', 'type', 'tags', 'is_private']))
+                ->create();
         }
 
         return Resource::collection($entities);
     }
 
-    public function edit(Request $request, Campaign $campaign, Entity $entity)
+    public function edit(PatchEntity $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity);
@@ -75,7 +78,7 @@ class EntityApiController extends ApiController
             return response()->json(['error' => 'Only entities of custom modules can be deleted here'], 401);
         }
 
-        $entity->update($request->all());
+        $entity->update($request->validated());
 
         return new Resource($entity);
     }
@@ -89,11 +92,12 @@ class EntityApiController extends ApiController
             $keys[] = 'parent_id';
         }
 
-        $data = $request->only($keys);
+        $data = $request->safe()->only($keys);
 
         $this->entitySaveService
             ->campaign($campaign)
-            ->save($entity->fill($data), $data);
+            ->entity($entity->fill($data))
+            ->save($data);
 
         return new Resource($entity);
     }

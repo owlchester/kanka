@@ -17,6 +17,7 @@ use App\Models\MiscModel;
 use App\Models\Relation;
 use App\Renderers\DatagridRenderer;
 use App\Sanitizers\MiscSanitizer;
+use App\Services\Attributes\EntitySheetService;
 use App\Services\AttributeService;
 use App\Services\Entity\AliasService;
 use App\Services\Entity\CopyService;
@@ -33,6 +34,7 @@ use App\Traits\GuestAuthTrait;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -422,13 +424,18 @@ class CrudController extends Controller
 
         try {
             // Sanitize the data
+            $sanitized = [];
             if (isset($this->sanitizer)) {
                 /** @var MiscSanitizer $sanitizer */
                 $sanitizer = app()->make($this->sanitizer);
-                $request->merge($sanitizer->request($request)->sanitize());
+                $sanitized = $sanitizer->request($request)->sanitize();
+                $request->merge($sanitized);
             }
 
-            $data = $request->all();
+            $data = $request instanceof FormRequest
+                ? $request->validated()
+                : $request->all();
+            $data = array_replace($data, $sanitized);
             $data['campaign_id'] = $this->campaign->id;
 
             /** @var MiscModel $model */
@@ -446,7 +453,7 @@ class CrudController extends Controller
                 // Fire an event for the Entity Observer.
                 $this->afterModelSave($new, $data);
 
-                $this->entitySaveService->campaign($this->campaign)->save($new->entity, $data);
+                $this->entitySaveService->campaign($this->campaign)->entity($new->entity)->save($data);
                 // Weird hack for prod issues
                 if (! $new->entity->child) {
                     $new->entity->child = $new;
@@ -462,6 +469,17 @@ class CrudController extends Controller
                     ->copy();
 
                 if (auth()->user()->can('attributes', $new->entity)) {
+                    if ($request->hasAny(['sheets_present', 'sheets'])) {
+                        $copySource = $request->filled('copy_source_id')
+                            ? Entity::find((int) $request->input('copy_source_id'))
+                            : null;
+                        app(EntitySheetService::class)
+                            ->campaign($this->campaign)
+                            ->entity($new->entity)
+                            ->copySource($copySource)
+                            ->sync($request->input('sheets', []));
+                    }
+
                     $this->attributeService
                         ->campaign($this->campaign)
                         ->entity($new->entity)
@@ -661,14 +679,16 @@ class CrudController extends Controller
 
         try {
             // Sanitize the data
+            $sanitized = [];
             if (isset($this->sanitizer)) {
                 /** @var MiscSanitizer $sanitizer */
                 $sanitizer = app()->make($this->sanitizer);
-                $request->merge($sanitizer->request($request)->sanitize());
+                $sanitized = $sanitizer->request($request)->sanitize();
+                $request->merge($sanitized);
             }
 
             /** @var MiscModel $model */
-            $data = $this->prepareData($request, $model);
+            $data = array_replace($this->prepareData($request, $model), $sanitized);
             $model->update($data);
 
             // Bookmarks have no entity attached to them.
@@ -676,7 +696,7 @@ class CrudController extends Controller
                 // Fire an event for the Entity Observer
                 $this->afterModelSave($model, $data);
 
-                $this->entitySaveService->campaign($this->campaign)->save($model->entity, $data);
+                $this->entitySaveService->campaign($this->campaign)->entity($model->entity)->save($data);
 
                 if (auth()->user()->can('attributes', $model->entity)) {
                     $this->attributeService
@@ -782,7 +802,9 @@ class CrudController extends Controller
      */
     protected function prepareData(Request $request, MiscModel $model)
     {
-        $data = $request->all();
+        $data = $request instanceof FormRequest
+            ? $request->validated()
+            : $request->all();
         foreach ($model->nullableForeignKeys as $field) {
             if (! request()->has($field) && ! isset($data[$field])) {
                 $data[$field] = null;

@@ -16,6 +16,10 @@ return [
     'next'      => 'Tu apoyo nos ayuda a crecer y a seguir mejorando Kanka para todos. Aquí tienes lo que puedes hacer a continuación para desbloquear todos los beneficios de tu suscripción:',
     'premium'   => [
         'action'    => 'Desbloquear',
+        'enabled'   => [
+            'helper'    => 'Las funciones premium ya están activadas en :campaign.',
+            'title'     => 'Funciones premium activadas',
+        ],
         'helper'    => 'Desbloquea funciones premium como módulos personalizados, acceso a los :plugins, ¡y mucho más!',
         'title'     => 'Activa las funciones premium en una campaña',
     ],

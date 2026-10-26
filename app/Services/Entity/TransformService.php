@@ -103,7 +103,7 @@ class TransformService
             ->removePosts();
 
         // Finally, we can save. Should be all good.
-        $this->new->campaign_id = $this->child->campaign_id;
+        $this->new->campaign_id = $this->entity->campaign_id;
         $this->new->saveQuietly();
 
         $this
@@ -211,6 +211,9 @@ class TransformService
 
         $this->fillable = $this->new->getFillable();
         foreach ($oldAttributes as $attribute => $value) {
+            if ($attribute === 'name') {
+                continue;
+            }
             if (in_array($attribute, $this->fillable)) {
                 $this->new->{$attribute} = $value;
             }
@@ -309,14 +312,9 @@ class TransformService
 
         EntityLogger::entity($this->entity)->dirty('entity_type', $type)->update();
 
-        // Delete old, this will take care of pictures and stuff. We detach the
-        // entity to avoid the softDelete affecting it and causing duplicate
-        // entities in the db. ForceDelete the MiscModel for img cleanup.
         if (isset($this->child)) {
             $this->child->entity = null;
-
-            // Force delete the old entity to avoid it creating weird issues in the db by being soft deleted.
-            $this->child->forceDelete();
+            $this->child->delete();
             unset($this->child);
         }
 
@@ -330,9 +328,9 @@ class TransformService
 
         // Create misc without calling its observers, to not create duplicates
         $this->new = $this->entityType->getMiscClass();
-        $this->new->name = $this->entity->name;
         $this->new->is_private = $this->entity->is_private;
-        $this->new->campaign_id = $this->campaign->id;
+        $this->new->campaign_id = $this->entity->campaign_id;
+        $this->new->setRelation('entity', $this->entity);
         if ($firstLocation && $this->new->isFillable('location_id')) {
             // @phpstan-ignore-next-line
             $this->new->location_id = $firstLocation->id;

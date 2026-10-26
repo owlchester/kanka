@@ -80,6 +80,11 @@ trait FiltersEntityFields
         $this->applyEntityRelationPresenceFilter($query, $entityTable, 'attributes', 'entity_id', $value);
     }
 
+    protected function applyEntityCharacterSheetsPresenceFilter(Builder $query, string $entityTable, mixed $value): void
+    {
+        $this->applyEntityRelationPresenceFilter($query, $entityTable, 'entity_sheets', 'entity_id', $value);
+    }
+
     protected function applyEntityAttributeFilter(
         Builder $query,
         string $entityTable,

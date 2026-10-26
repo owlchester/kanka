@@ -2,6 +2,7 @@
 
 namespace App\Models\Concerns;
 
+use App\Models\MiscModel;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -16,6 +17,9 @@ trait LastSync
     {
         if (empty($lastSync)) {
             return $query;
+        }
+        if ($this instanceof MiscModel) {
+            return $query->whereHas('entity', fn (Builder $entity) => $entity->where('entities.updated_at', '>', $lastSync));
         }
         // @phpstan-ignore-next-line
         $tableName = (with(new static))->getTable();

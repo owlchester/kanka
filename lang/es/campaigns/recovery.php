@@ -1,17 +1,23 @@
 <?php
 
 return [
-    'actions'   => [
+    'actions'       => [
         'recover'           => 'Recuperar',
         'recover_selected'  => 'Recuperar seleccionados',
     ],
-    'error'     => 'Ha habido un error tratando de recuperar entidades.',
-    'fields'    => [
+    'cta'           => [
+        'lead'  => 'Restaura las entradas y artículos eliminados antes de que se borren permanentemente.',
+        'title' => 'Recupera el contenido eliminado',
+    ],
+    'empty'         => 'Las entradas y artículos eliminados aparecerán aquí mientras estén disponibles para su recuperación.',
+    'empty_title'   => 'No hay nada que recuperar',
+    'error'         => 'Ha habido un error tratando de recuperar entidades.',
+    'fields'        => [
         'deleted'       => 'Eliminadas',
         'deleted_at'    => 'Eliminado en :date por :user',
     ],
-    'name_link' => ':name se ha recuperado correctamente',
-    'order'     => [
+    'name_link'     => ':name se ha recuperado correctamente',
+    'order'         => [
         'newest'        => 'Ordenar por: Más recientes primero',
         'newest_first'  => 'Más recientes primero',
         'oldest'        => 'Ordenar por: Más antiguo primero',
@@ -19,8 +25,8 @@ return [
         'type'          => 'Ordenar por: Tipo',
         'type_order'    => 'Tipo',
     ],
-    'premium'   => 'La recuperación de elementos es una función de las campañas premium.',
-    'success_v2'=> '{1} Se recuperó un elemento. |[2,*] Se han recuperado :count elementos.',
-    'title'     => 'Recuperación de entidades de :campaign',
-    'tutorial'  => 'Visualiza y restaura elementos eliminados recientemente de la campaña. Las entidades, publicaciones y otros datos de apoyo pueden recuperarse durante :amount días antes de eliminarse de forma permanente. Al restaurar un elemento, regresa con todos sus datos intactos.',
+    'premium'       => 'La recuperación de elementos es una función de las campañas premium.',
+    'success_v2'    => '{1} Se recuperó un elemento. |[2,*] Se han recuperado :count elementos.',
+    'title'         => 'Recuperación de entidades de :campaign',
+    'tutorial'      => 'Visualiza y restaura elementos eliminados recientemente de la campaña. Las entidades, publicaciones y otros datos de apoyo pueden recuperarse durante :amount días antes de eliminarse de forma permanente. Al restaurar un elemento, regresa con todos sus datos intactos.',
 ];

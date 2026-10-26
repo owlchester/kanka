@@ -8,6 +8,7 @@ use App\Http\Requests\StoreCustomEntity;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityType;
+use App\Services\Attributes\EntitySheetService;
 use App\Services\AttributeService;
 use App\Services\Entity\AliasService;
 use App\Services\Entity\CopyService;
@@ -22,6 +23,7 @@ class CreateController extends Controller
     public function __construct(
         protected CopyService $copyService,
         protected AttributeService $attributeService,
+        protected EntitySheetService $entitySheetService,
         protected AliasService $aliasService,
         protected EntitySaveService $entitySaveService,
         protected LocationRelationsService $locationRelationsService
@@ -68,7 +70,7 @@ class CreateController extends Controller
             return response()->json(['success' => true]);
         }
 
-        $data = $request->all();
+        $data = $request->validated();
         $data['campaign_id'] = $campaign->id;
 
         try {
@@ -77,7 +79,7 @@ class CreateController extends Controller
             $entity->campaign_id = $campaign->id;
             $entity->type_id = $entityType->id;
             $entity->save();
-            $this->entitySaveService->campaign($campaign)->save($entity, $data);
+            $this->entitySaveService->campaign($campaign)->entity($entity)->save($data);
             $this->locationRelationsService->entity($entity)->process($data);
 
             $this->aliasService->entity($entity)->request($request)->save();
@@ -86,6 +88,17 @@ class CreateController extends Controller
             $this->copyService->entity($entity)->request($request)->fromId()->copy();
 
             if (auth()->user()->can('attributes', $entity)) {
+                if ($request->hasAny(['sheets_present', 'sheets'])) {
+                    $copySource = $request->filled('copy_source_id')
+                        ? Entity::find((int) $request->input('copy_source_id'))
+                        : null;
+                    $this->entitySheetService
+                        ->campaign($campaign)
+                        ->entity($entity)
+                        ->copySource($copySource)
+                        ->sync($request->input('sheets', []));
+                }
+
                 $this->attributeService
                     ->campaign($campaign)
                     ->entity($entity)
