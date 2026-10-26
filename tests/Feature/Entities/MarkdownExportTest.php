@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\OrganisationMemberPin;
 use App\Models\Ability;
 use App\Models\Attribute as EntityAttribute;
 use App\Models\Character;
@@ -395,6 +396,71 @@ it('includes linked character families races and organisations in standalone mar
         ->and(substr_count($markdown, $race->entity->url()))->toBe(1)
         ->and(substr_count($markdown, '## ' . __('crud.tabs.profile')))->toBe(1);
 });
+
+it('exports the correct pinned member name and role', function (string $type) {
+    $this->asUser()->withCampaign();
+
+    $character = Character::factory()->create(['campaign_id' => 1, 'name' => 'Aster Vale']);
+    $organisation = Organisation::factory()->create(['campaign_id' => 1, 'name' => 'Silver Guard']);
+    OrganisationMember::create([
+        'character_id' => $character->id,
+        'organisation_id' => $organisation->id,
+        'role' => 'Captain',
+        'pin_id' => OrganisationMemberPin::both,
+    ]);
+    $owner = $type === 'character' ? $character : $organisation;
+    $target = $type === 'character' ? $organisation : $character;
+    EntityAsset::factory()->create([
+        'entity_id' => $owner->entity->id,
+        'name' => 'Pinned guide',
+        'is_pinned' => true,
+        'metadata' => ['path' => 'files/guide.pdf', 'type' => 'application/pdf'],
+    ]);
+
+    $markdown = app(MarkdownExportService::class)
+        ->campaign($owner->campaign)
+        ->entity($owner->entity)
+        ->single()
+        ->markdown();
+
+    expect($markdown)
+        ->toContain('| ' . $target->name . ' | Captain |')
+        ->not->toContain('| ' . $owner->name . ' | Captain |');
+})->with(['character', 'organisation']);
+
+it('skips pinned members with deleted entities in markdown exports', function (string $type) {
+    $this->asUser()->withCampaign();
+
+    $character = Character::factory()->create(['campaign_id' => 1, 'name' => 'Aster Vale']);
+    $organisation = Organisation::factory()->create(['campaign_id' => 1, 'name' => 'Silver Guard']);
+    OrganisationMember::create([
+        'character_id' => $character->id,
+        'organisation_id' => $organisation->id,
+        'role' => 'Unavailable pinned member',
+        'pin_id' => OrganisationMemberPin::both,
+    ]);
+    $owner = $type === 'character' ? $character : $organisation;
+    $target = $type === 'character' ? $organisation : $character;
+    $target->entity->delete();
+    EntityAsset::factory()->create([
+        'entity_id' => $owner->entity->id,
+        'name' => 'Pinned guide',
+        'is_pinned' => true,
+        'metadata' => ['path' => 'files/guide.pdf', 'type' => 'application/pdf'],
+    ]);
+
+    $markdown = app(MarkdownExportService::class)
+        ->campaign($owner->campaign)
+        ->entity($owner->entity)
+        ->single()
+        ->markdown();
+
+    expect($markdown)
+        ->toContain('# ' . $owner->name)
+        ->toContain('| Pinned guide |')
+        ->not->toContain('Unavailable pinned member')
+        ->not->toContain($target->name);
+})->with(['character', 'organisation']);
 
 it('uses relative links for character details in campaign markdown exports', function () {
     $this->asUser()->withCampaign();
