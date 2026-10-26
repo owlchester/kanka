@@ -4,7 +4,7 @@
             <div class="message-author">
                 <strong class="user" v-if="isUser">{{ message.user }}</strong>
                 <strong class="character" v-else-if="isEntity">
-                    <span>{{ message.entity }}</span>
+                    <a class="text-link" :href="message.entity_url">{{ message.entity }}</a>
                 </strong>
                 <strong class="unknown" v-else>
                     {{ translate('user_unknown') }}
@@ -27,7 +27,7 @@
                           {{ translate('edit') }}
                         </a>
                         <a class="btn2 btn-xs btn-error" v-on:click="deleteMessage(message)">
-                          {{ translate('remove') }}
+                          {{ translate(confirmingDelete ? 'confirm_delete' : 'remove') }}
                         </a>
                     </div>
                 </div>
@@ -59,7 +59,8 @@
         ],
         data() {
             return {
-                openedDropdown: false
+                openedDropdown: false,
+                confirmingDelete: false
             }
         },
         computed: {
@@ -77,8 +78,12 @@
 
         methods: {
             deleteMessage: function(message) {
+                if (!this.confirmingDelete) {
+                    this.confirmingDelete = true;
+                    return;
+                }
                 this.$emit('delete_message', message);
-              this.onClickOutside();
+                this.onClickOutside();
             },
             editMessage: function(message) {
                 this.$emit('edit_message', message);
@@ -107,6 +112,7 @@
             },
             onClickOutside (event) {
                 this.openedDropdown = false;
+                this.confirmingDelete = false;
             },
         },
     }

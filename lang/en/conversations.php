@@ -22,6 +22,8 @@ return [
         ],
         'is_updated'    => 'Updated',
         'load_previous' => 'Load previous messages',
+        'confirm_delete' => 'Delete this message?',
+        'request_failed' => 'The request failed. Please try again.',
         'placeholders'  => [
             'message'   => 'Your message',
         ],

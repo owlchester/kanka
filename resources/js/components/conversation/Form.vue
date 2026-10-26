@@ -21,6 +21,9 @@
                         :disabled="(inputFormDisabled || disabled)"
                 />
             </div>
+            <button v-if="current_message" type="button" class="btn2 btn-xs btn-default" :disabled="sending" @click="cancelEdit">
+                {{ translate('cancel') }}
+            </button>
         </div>
     </div>
 </template>
@@ -47,7 +50,9 @@
         emits: [
             'sending_message',
             'edited_message',
-            'sent_message'
+            'sent_message',
+            'request_failed',
+            'cancel_edit'
         ],
 
         data() {
@@ -106,12 +111,14 @@
                         this.messageHandler();
                     }).catch(() => {
                         this.sending = false;
+                        this.$emit('request_failed');
                     });
                 } else {
                     axios.post(url, data).then(() => {
                         this.messageHandler();
                     }).catch(() => {
                         this.sending = false;
+                        this.$emit('request_failed');
                     });
                 }
             },
@@ -121,9 +128,15 @@
                 this.message_id = null;
                 this.$emit('sent_message');
             },
+            cancelEdit() {
+                this.body = null;
+                this.message_id = null;
+                this.edit_message = null;
+                this.$emit('cancel_edit');
+            },
 
             translate(key) {
-                return this.json_trans[key] ?? 'unknown';
+                return this.trans[key] ?? 'unknown';
             },
             boxClass() {
               let bg = 'bg-base-100';

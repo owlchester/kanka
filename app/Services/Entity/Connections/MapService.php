@@ -126,6 +126,10 @@ class MapService
             }
         }
 
+        if ($this->withRelated()) {
+            $this->addConversations();
+        }
+
         $this->addMentions();
 
         $this->cleanup();
@@ -378,7 +382,6 @@ class MapService
                 ->addAuthorJournals()
                 ->addEntityLocations()
                 ->addDiceRolls()
-                ->addConversations()
                 ->addMapMarkers()
                 ->addQuests();
         }

@@ -7,6 +7,9 @@ $translations = json_encode([
 'is_closed' => __('conversations.show.is_closed'),
 'load_previous' => __('conversations.messages.load_previous'),
 'user_unknown' => __('crud.users.unknown'),
+'cancel' => __('crud.cancel'),
+'confirm_delete' => __('conversations.messages.confirm_delete'),
+'request_failed' => __('conversations.messages.request_failed'),
 ]);
 @endphp
 

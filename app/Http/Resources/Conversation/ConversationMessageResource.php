@@ -21,6 +21,7 @@ class ConversationMessageResource extends JsonResource
             'from_id' => $resource->participant_id,
             'user' => $resource->participant instanceof User ? $resource->participant->name : null,
             'entity' => $resource->participant instanceof Entity ? $resource->participant->name : null,
+            'entity_url' => $resource->participant instanceof Entity ? $resource->participant->url() : null,
             'entity_id' => $resource->participant instanceof Entity ? $resource->participant_id : null,
             'message' => $resource->message,
             'created_at' => $resource->created_at->diffForHumans(),
