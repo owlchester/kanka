@@ -1,7 +1,7 @@
 <?php
 $targets = [
     \App\Enums\ConversationTarget::users->value => __('conversations.targets.members'),
-    \App\Enums\ConversationTarget::characters->value => __('conversations.targets.characters'),
+    \App\Enums\ConversationTarget::entities->value => __('entities.entries'),
 ];
 ?>
 
@@ -16,4 +16,3 @@ $targets = [
 
 @include('cruds.fields.tags')
 @include('cruds.fields.closed')
-

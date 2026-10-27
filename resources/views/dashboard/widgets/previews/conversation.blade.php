@@ -19,8 +19,8 @@ $conversation = $entity->child;
     <div class="widget-body p-4">
         <div class="direct-chat-messages flex flex-col gap-2">
 
-        @foreach ($conversation->messages()->with(['character', 'user'])->orderByDesc('created_at')->take(5)->get() as $message)
-            @if (empty($message->user) && empty($message->character))
+        @foreach ($conversation->messages()->with('participant')->orderByDesc('created_at')->take(5)->get() as $message)
+            @if (empty($message->participant))
                 @continue
             @endif
             <div class="direct-chat-msg flex flex-3 flex-col @if ($message->isMine()) right @endif">
@@ -28,31 +28,31 @@ $conversation = $entity->child;
                     @if ($message->isMine())
                         <span class="direct-chat-timestamp text-xs grow">{{ $message->created_at->diffForHumans() }}</span>
                         <span class="direct-chat-name">
-                            @if ($message->user)
-                                {{ $message->user->name }}
-                            @elseif ($message->character)
-                                <a href="{{ route('entities.show', [$campaign, $message->character->entity]) }}" class="text-link">{{ $message->character->entity->name }}</a>
+                            @if ($message->participant instanceof \App\Models\User)
+                                {{ $message->participant->name }}
+                            @elseif ($message->participant instanceof \App\Models\Entity)
+                                <a href="{{ route('entities.show', [$campaign, $message->participant]) }}" class="text-link">{{ $message->participant->name }}</a>
                             @endif
                         </span>
-                    @elseif (!empty($message->user_id))
+                    @elseif ($message->participant instanceof \App\Models\User)
                         <span class="direct-chat-name grow">
-                            {{ $message->user ? $message->user->name : null }}
+                            {{ $message->participant->name }}
                         </span>
                         <span class="direct-chat-timestamp">{{ $message->created_at->diffForHumans() }}</span>
                     @else
                         <span class="direct-chat-name grow">
-                            <a href="{{ route('entities.show', [$campaign, $message->character->entity]) }}" class="text-link">{{ $message->character->entity->name }}</a>
+                            <a href="{{ route('entities.show', [$campaign, $message->participant]) }}" class="text-link">{{ $message->participant->name }}</a>
                         </span>
                         <span class="direct-chat-timestamp">{{ $message->created_at->diffForHumans() }}</span>
                     @endif
                 </div>
                 <div class="flex gap-2 items-center">
-                @if (!empty($message->user_id))
-                    @if ($message->user->hasAvatar())
-                        <x-users.avatar :user="$message->user" class="w-6 h-6" />
+                @if ($message->participant instanceof \App\Models\User)
+                    @if ($message->participant->hasAvatar())
+                        <x-users.avatar :user="$message->participant" class="w-6 h-6" />
                     @endif
-                @elseif (!empty($message->character_id))
-                    <img class="entity-image cover-background w-6 h-6 rounded-full" src="{{ \App\Facades\Avatar::entity($message->character->entity)->fallback()->size(40)->thumbnail() }}" alt="{{ $message->character->entity->name }}">
+                @elseif ($message->participant instanceof \App\Models\Entity)
+                    <img class="entity-image cover-background w-6 h-6 rounded-full" src="{{ \App\Facades\Avatar::entity($message->participant)->fallback()->size(40)->thumbnail() }}" alt="{{ $message->participant->name }}">
                 @endif
                     <div class="direct-chat-text grow">
                         {{ $message->message }}

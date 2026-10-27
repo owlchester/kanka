@@ -114,6 +114,11 @@ class Entity extends Model
                 $entity->is_private = false;
             }
         });
+
+        static::forceDeleting(function (self $entity): void {
+            $entity->conversationParticipants()->delete();
+            $entity->conversationMessages()->update(['participant_type' => null, 'participant_id' => null]);
+        });
     }
 
     protected $fillable = [

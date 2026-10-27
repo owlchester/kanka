@@ -126,6 +126,10 @@ class MapService
             }
         }
 
+        if ($this->withRelated()) {
+            $this->addConversations();
+        }
+
         $this->addMentions();
 
         $this->cleanup();
@@ -378,7 +382,6 @@ class MapService
                 ->addAuthorJournals()
                 ->addEntityLocations()
                 ->addDiceRolls()
-                ->addConversations()
                 ->addMapMarkers()
                 ->addQuests();
         }
@@ -755,10 +758,8 @@ class MapService
 
     protected function addConversations(): self
     {
-        /** @var Character $parent */
-        $parent = $this->entity->child;
         /** @var Conversation $related */
-        foreach ($parent->conversations()->with(['entity', 'entity.image', 'entity.entityType'])->has('entity')->get() as $related) {
+        foreach ($this->entity->conversations()->with(['entity', 'entity.image', 'entity.entityType'])->has('entity')->get() as $related) {
             $this->addEntity($related->entity);
             $this->relations[] = [
                 'source' => $this->entity->id,

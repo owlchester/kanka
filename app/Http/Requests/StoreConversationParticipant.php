@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Conversation;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreConversationParticipant extends FormRequest
@@ -23,9 +24,16 @@ class StoreConversationParticipant extends FormRequest
      */
     public function rules()
     {
+        $entityConversation = $this->route('conversation') instanceof Conversation
+            && $this->route('conversation')->forEntities();
+
         $rules = [
-            'character_id' => 'nullable|integer|exists:characters,id|required_without_all:user_id',
-            'user_id' => 'nullable|integer|exists:users,id|required_without_all:character_id',
+            'entity_ids' => ['nullable', 'array', $entityConversation ? 'required' : 'prohibited'],
+            'entity_ids.*' => ['integer', 'distinct', 'exists:entities,id'],
+            'user_ids' => ['nullable', 'array', $entityConversation ? 'prohibited' : 'required'],
+            'user_ids.*' => ['integer', 'distinct', 'exists:users,id'],
+            'entity_id' => ['nullable', 'integer', 'exists:entities,id', $entityConversation ? 'required_without:entity_ids' : 'prohibited'],
+            'user_id' => ['nullable', 'integer', 'exists:users,id', $entityConversation ? 'prohibited' : 'required_without:user_ids'],
         ];
 
         return $rules;

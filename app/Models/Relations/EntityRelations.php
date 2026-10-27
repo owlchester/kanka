@@ -14,6 +14,8 @@ use App\Models\CampaignPermission;
 use App\Models\CategoryStatus;
 use App\Models\Character;
 use App\Models\Conversation;
+use App\Models\ConversationMessage;
+use App\Models\ConversationParticipant;
 use App\Models\Creature;
 use App\Models\DiceRoll;
 use App\Models\Entity;
@@ -49,6 +51,7 @@ use App\Models\Timeline;
 use App\Models\TimelineElement;
 use App\Models\User;
 use App\Models\Whiteboard;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -336,6 +339,32 @@ trait EntityRelations
     public function conversation(): HasOne
     {
         return $this->hasOne('App\Models\Conversation', 'id', 'entity_id');
+    }
+
+    /** @return MorphMany<ConversationParticipant, $this> */
+    public function conversationParticipants(): MorphMany
+    {
+        return $this->morphMany(ConversationParticipant::class, 'participant');
+    }
+
+    /** @return MorphMany<ConversationMessage, $this> */
+    public function conversationMessages(): MorphMany
+    {
+        return $this->morphMany(ConversationMessage::class, 'participant');
+    }
+
+    /** @return Builder<Conversation> */
+    public function conversations(): Builder
+    {
+        $conversationTable = (new Conversation)->getTable();
+        $participantTable = (new ConversationParticipant)->getTable();
+
+        return Conversation::query()
+            ->join($participantTable, $participantTable . '.conversation_id', '=', $conversationTable . '.id')
+            ->where($participantTable . '.participant_id', $this->id)
+            ->where($participantTable . '.participant_type', Entity::class)
+            ->select($conversationTable . '.*')
+            ->distinct();
     }
 
     /**

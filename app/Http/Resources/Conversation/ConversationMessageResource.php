@@ -4,6 +4,8 @@ namespace App\Http\Resources\Conversation;
 
 use App\Facades\CampaignLocalization;
 use App\Models\ConversationMessage;
+use App\Models\Entity;
+use App\Models\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ConversationMessageResource extends JsonResource
@@ -16,9 +18,11 @@ class ConversationMessageResource extends JsonResource
 
         return [
             'id' => $resource->id,
-            'from_id' => $resource->user_id ?: $resource->character_id,
-            'user' => $resource->user?->name,
-            'character' => $resource->character?->entity?->name,
+            'from_id' => $resource->participant_id,
+            'user' => $resource->participant instanceof User ? $resource->participant->name : null,
+            'entity' => $resource->participant instanceof Entity ? $resource->participant->name : null,
+            'entity_url' => $resource->participant instanceof Entity ? $resource->participant->url() : null,
+            'entity_id' => $resource->participant instanceof Entity ? $resource->participant_id : null,
             'message' => $resource->message,
             'created_at' => $resource->created_at->diffForHumans(),
             'updated_at' => $resource->updated_at->diffForHumans(),

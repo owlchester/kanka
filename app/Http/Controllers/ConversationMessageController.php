@@ -8,6 +8,7 @@ use App\Http\Resources\Conversation\ConversationResource;
 use App\Models\Campaign;
 use App\Models\Conversation;
 use App\Models\ConversationMessage;
+use App\Models\Entity;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -34,14 +35,16 @@ class ConversationMessageController extends Controller
     {
         $this->authorize('update', $conversation->entity);
 
-        $participant = new ConversationMessage;
-        $data = $request->only('message', 'character_id');
-        if (! $conversation->forCharacters()) {
-            $data['user_id'] = Auth::user()->id;
+        $data = ['message' => $request->validated('message')];
+        if (! $conversation->forEntities()) {
+            $participant = Auth::user();
+        } else {
+            $participant = Entity::findOrFail($request->validated('entity_id'));
         }
-        $data['conversation_id'] = $conversation->id;
-
-        $participant = $participant->create($data);
+        $message = new ConversationMessage($data);
+        $message->conversation()->associate($conversation);
+        $message->participant()->associate($participant);
+        $message->save();
 
         return new ConversationResource(
             $conversation

@@ -108,19 +108,19 @@ To get the participants of an conversation, use the following endpoint.
         {
             "conversation_id": 1,
             "created_by": null,
-            "character_id": null,
+            "entity_id": null,
             "user_id": 1
         },
         {
             "conversation_id": 1,
             "created_by": null,
-            "character_id": null,
+            "entity_id": null,
             "user_id": 31
         },
         {
             "conversation_id": 1,
             "created_by": null,
-            "character_id": null,
+            "entity_id": null,
             "user_id": 2
         }
     ]
@@ -128,6 +128,8 @@ To get the participants of an conversation, use the following endpoint.
 ```
 
 > {info} Adding (`POST`), Updating (`PUT`, `PATCH`) and Deleting (`DELETE`) a participant from an conversation can also be done using the same patterns as for other endpoints.
+
+Entity participants use `entity_id`, which references `entities.id` and supports every built-in and custom entity type. Requests must use `entity_id`.
 
 
 <a name="conversation-messages"></a>
@@ -146,21 +148,21 @@ To get the messages of an conversation, use the following endpoint.
         {
             "conversation_id": 1,
             "created_by": null,
-            "character_id": 63,
+            "entity_id": 104,
             "user_id": null,
             "message": "Hey! I'm thirsty."
         },
         {
             "conversation_id": 1,
             "created_by": null,
-            "character_id": null,
+            "entity_id": null,
             "user_id": null,
             "message": "Wadayawant?"
         },
         {
             "conversation_id": 1,
             "created_by": null,
-            "character_id": 70,
+            "entity_id": 118,
             "user_id": null,
             "message": "Cookies!"
         },
@@ -186,7 +188,7 @@ To create a conversation, use the following endpoint.
 | :- |   :-   |  :-  |
 | `name` | `string` (Required) | Name of the conversation |
 | `type` | `string` | Type of conversation |
-| `target_id` | `int` | Available options: 1 for `users` and 2 for `characters`  |
+| `target_id` | `int` | Available options: 1 for `users` and 2 for `entities`  |
 | `tags` | `array` | Array of tag ids |
 | `is_closed` | `boolean` | If the conversation is closed |
 | `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |

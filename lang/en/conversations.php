@@ -14,7 +14,7 @@ return [
         'participants'  => 'Please add participants to the conversation by pressing on the :icon icon on the upper-right.',
     ],
     'lists'         => [
-        'empty' => 'Record dialogues, letters, or exchanges between characters and factions.',
+        'empty' => 'Record dialogues, letters, or exchanges between entities.',
     ],
     'messages'      => [
         'destroy'       => [
@@ -22,6 +22,8 @@ return [
         ],
         'is_updated'    => 'Updated',
         'load_previous' => 'Load previous messages',
+        'confirm_delete' => 'Delete this message?',
+        'request_failed' => 'The request failed. Please try again.',
         'placeholders'  => [
             'message'   => 'Your message',
         ],
@@ -48,7 +50,7 @@ return [
         'participants'  => 'Participants',
     ],
     'targets'       => [
-        'characters'    => 'Characters',
+        'entities'      => 'Entities',
         'members'       => 'Members',
     ],
 ];

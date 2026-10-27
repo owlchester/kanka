@@ -7,6 +7,9 @@ $translations = json_encode([
 'is_closed' => __('conversations.show.is_closed'),
 'load_previous' => __('conversations.messages.load_previous'),
 'user_unknown' => __('crud.users.unknown'),
+'cancel' => __('crud.cancel'),
+'confirm_delete' => __('conversations.messages.confirm_delete'),
+'request_failed' => __('conversations.messages.request_failed'),
 ]);
 @endphp
 
@@ -41,7 +44,7 @@ $translations = json_encode([
                 <conversation
                         id="{{ $entity->child->id }}"
                         api="{{ route('conversations.conversation_messages.index', [$campaign, $entity->child]) }}"
-                        target="{{ $entity->child->forCharacters() ? 'character' : 'user'}}"
+                        target="{{ $entity->child->forEntities() ? 'entity' : 'user'}}"
                         :targets="{{ $entity->child->jsonParticipants() }}"
                         :disabled="{{ ($entity->child->is_closed ? 'true' : 'false') }}"
                         send="{{ route('conversations.conversation_messages.store', [$campaign, $entity->child]) }}"

@@ -3,29 +3,26 @@
 namespace App\Models;
 
 use App\Enums\ConversationTarget;
-use App\Models\Concerns\HasUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
  * @property int $id
  * @property int $conversation_id
- * @property ?int $character_id
- * @property ?Character $character
+ * @property ?int $participant_id
+ * @property Entity|User|null $participant
+ * @property string|null $participant_type
  */
 class ConversationParticipant extends Model
 {
     use HasFactory;
-    use HasUser;
-
-    protected Character|User|null $loadedEntity;
 
     protected $fillable = [
         'conversation_id',
-        'character_id',
-        'user_id',
+        'participant_id',
+        'participant_type',
     ];
 
     /**
@@ -39,11 +36,11 @@ class ConversationParticipant extends Model
     }
 
     /**
-     * @return BelongsTo<Character, $this>
+     * @return MorphTo<Model, $this>
      */
-    public function character(): BelongsTo
+    public function participant(): MorphTo
     {
-        return $this->belongsTo('App\Models\Character', 'character_id');
+        return $this->morphTo();
     }
 
     /**
@@ -57,52 +54,32 @@ class ConversationParticipant extends Model
     public function name(): string
     {
         $entity = $this->entity();
-        if ($entity instanceof Character) {
-            return $entity->entity->name ?? __('conversations.messages.author_unknown');
-        }
 
         return $entity->name ?? __('conversations.messages.author_unknown');
     }
 
     public function target(): ?int
     {
-        return ! empty($this->character_id) ? ConversationTarget::characters->value :
-            (! empty($this->user_id) ? ConversationTarget::users->value : null);
+        return $this->participant_type === Entity::class ? ConversationTarget::entities->value : ($this->participant_type === User::class ? ConversationTarget::users->value : null);
     }
 
     public function isMember(): bool
     {
-        return ! empty($this->user_id);
+        return $this->participant instanceof User;
     }
 
     public function id()
     {
-        $entity = $this->loadEntity();
+        $entity = $this->entity();
 
         return ! empty($entity) ? $entity->id : null;
     }
 
-    /**
-     * @return Character|User|bool|HasOne|mixed
-     */
-    public function entity()
+    public function entity(): Entity|User|null
     {
-        return $this->loadEntity();
-    }
-
-    /**
-     * @return Character|User|bool|mixed
-     */
-    protected function loadEntity()
-    {
-        if (isset($this->loadedEntity)) {
-            return $this->loadedEntity;
-        }
-        if (! empty($this->user_id)) {
-            return $this->loadedEntity = $this->user;
-        }
-
-        return $this->loadedEntity = $this->character;
+        return $this->participant instanceof Entity || $this->participant instanceof User
+            ? $this->participant
+            : null;
     }
 
     /**
