@@ -33,7 +33,7 @@ class StoreQuest extends FormRequest
     public function rules()
     {
         $rules = [
-            'character_id' => 'nullable|integer|exists:characters,id',
+            'instigator_id' => 'nullable|integer|exists:entities,id',
         ];
 
         // If the calendar is present and not null, but we aren't "skipping" it (editing but without permission)
