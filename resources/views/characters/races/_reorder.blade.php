@@ -25,7 +25,7 @@
                                 :entity="$race->race->entity"
                                 :campaign="$campaign" />
                         </div>
-                        <div class="grow-0 px-2 text-lg" x-data="{ isPrivate: {{ $race->is_private }} }">
+                        <div class="grow-0 px-2 text-lg" x-data="{ isPrivate: @js($race->is_private) }">
                             <input type="hidden" name="race_privates[{{ $race->race_id }}]" :value="isPrivate ? 1 : 0" />
                             <i class="cursor-pointer hover:text-accent"
                                @click="isPrivate = !isPrivate"
@@ -38,6 +38,5 @@
         </div>
     @endif
 </x-grid>
-
 
 
