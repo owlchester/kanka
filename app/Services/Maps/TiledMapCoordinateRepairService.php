@@ -23,12 +23,24 @@ class TiledMapCoordinateRepairService
                 throw new RuntimeException('Map no longer has a finished tiled image.');
             }
 
+            // Match the renderer's dimension lookup without ensureDimensions(), which
+            // can persist metadata during an authenticated dry run.
+            if (! $image->hasDimensions()) {
+                $image->metadata = array_merge($image->metadata ?? [], $image->calculateDimensions());
+            }
             $width = (int) ($map->width ?: $image->width());
             $height = (int) ($map->height ?: $image->height());
-            $zoom = $image->metadata['tile_max_zoom'] ?? null;
-            if ($width <= 0 || $height <= 0 || ! is_numeric($zoom) || (int) $zoom != $zoom || $zoom < 0 || $zoom > 30) {
-                throw new RuntimeException('Missing or invalid image dimensions or recorded tile_max_zoom.');
+            if ($width <= 0 || $height <= 0) {
+                throw new RuntimeException("Missing or invalid image dimensions (width={$width}, height={$height}).");
             }
+            $recordedZoom = $image->metadata['tile_max_zoom'] ?? null;
+            if ($recordedZoom !== null && (! is_numeric($recordedZoom) || (int) $recordedZoom != $recordedZoom || $recordedZoom < 0 || $recordedZoom > 30)) {
+                throw new RuntimeException('Invalid recorded tile_max_zoom.');
+            }
+            if ($recordedZoom === null && (($image->width() ?? 0) <= 0 || ($image->height() ?? 0) <= 0)) {
+                throw new RuntimeException('Cannot calculate tile_max_zoom without source image dimensions.');
+            }
+            $zoom = $image->tileMaxZoom();
             $scale = 2 ** (int) $zoom;
             $changes = [];
             $markers = $map->markers()->withoutGlobalScopes()->where('latitude', '<', 0)
