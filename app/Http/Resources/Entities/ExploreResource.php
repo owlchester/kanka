@@ -6,6 +6,7 @@ use App\Facades\Avatar;
 use App\Facades\CampaignLocalization;
 use App\Http\Resources\EntityTypeResource;
 use App\Models\Entity;
+use App\Models\Map;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Str;
@@ -43,10 +44,8 @@ class ExploreResource extends JsonResource
             $attributes[] = $entity->status->key;
         }
 
-        // Use the eager-loaded relation directly (not $entity->child which goes through EntityCache and loses withCount)
-        $child = $entity->entityType->isStandard()
-            ? $entity->getRelationValue(Str::camel($entity->entityType->code))
-            : null;
+        $child = $entity->child;
+        $child?->setRelation('entity', $entity);
         $parentEntity = $entity->parent;
 
         $routeParams = [$campaign, $entity->entityType];
@@ -172,7 +171,7 @@ class ExploreResource extends JsonResource
             }
 
             // Map explore link
-            if ($this->hasColumn('explore')) {
+            if ($this->hasColumn('explore') && $child instanceof Map) {
                 if ($child->isReal()) {
                     $data['explore'] = ['url' => route('entities.map', [$campaign, $child->entity])];
                 } elseif (! $entity->hasImage()) {

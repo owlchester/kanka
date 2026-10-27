@@ -366,7 +366,7 @@ class ExportService
             $with[] = 'organisationMemberships.organisation.entity';
         }
         if ($this->isMarkdown && $class instanceof Timeline) {
-            $with[] = 'eras.orderedElements.entity.event';
+            $with[] = 'eras.orderedElements.entity.child';
             $with[] = 'eras.orderedElements.entity.entityType';
         }
         if ($this->isMarkdown && $class instanceof Quest) {

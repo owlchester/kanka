@@ -242,7 +242,7 @@ class SearchService
             $query->whereNotIn('entities.id', $this->excludeIds);
         }
 
-        $with = ['image', 'entityType'];
+        $with = ['image', 'entityType', 'child'];
         if ($this->posts) {
             $with[] = 'posts';
         }
@@ -257,6 +257,7 @@ class SearchService
             // Force having a child for "ghost" entities.
             if ($model->entityType->isStandard()) {
                 $child = $model->child;
+                $child?->setRelation('entity', $model);
                 if ($child === null || in_array($model->id, $foundEntityIds)) {
                     continue;
                 }

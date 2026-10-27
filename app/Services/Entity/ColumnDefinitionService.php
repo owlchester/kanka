@@ -6,6 +6,7 @@ use App\Models\Campaign;
 use App\Models\CategoryStatus;
 use App\Models\EntityType;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Str;
 
 class ColumnDefinitionService
@@ -93,7 +94,32 @@ class ColumnDefinitionService
             }
         }
 
-        return array_unique($map);
+        $map = array_values(array_unique($map));
+
+        if ($entityType->isStandard() && $entityType->hasEntity()) {
+            $class = $entityType->getMiscClass()::class;
+            $childRelations = [];
+            $relationsByColumn = [
+                'families' => ['characterFamilies.family.entity'],
+                'races' => ['characterRaces.race.entity'],
+                'location' => ['location.entity'],
+                'author' => ['author'],
+                'organisation' => ['organisation.entity'],
+                'character' => ['character.entity'],
+                'instigator' => ['instigator'],
+                'creators' => ['itemCreators.creator'],
+                'entity_type_name' => ['entityType'],
+            ];
+            foreach ($this->columns($entityType, $campaign) as $column) {
+                $childRelations = array_merge($childRelations, $relationsByColumn[$column['key']] ?? []);
+            }
+            $counts = $this->childCountRelations($entityType, $campaign);
+            $map['child'] = fn (MorphTo $child) => $child
+                ->morphWith([$class => array_values(array_unique($childRelations))])
+                ->morphWithCount([$class => $counts]);
+        }
+
+        return $map;
     }
 
     /**
@@ -149,17 +175,8 @@ class ColumnDefinitionService
     protected function typeRelations(): array
     {
         return [
-            'families' => ['character.characterFamilies.family.entity'],
-            'races' => ['character.characterRaces.race.entity'],
             'locations' => ['locations.entity'],
-            'location' => ['location.entity'],
             'calendar_date' => ['calendarDate.calendar.entity'],
-            'author' => ['journal.author'],
-            'organisation' => ['organisation.entity'],
-            'character' => ['character.entity'],
-            'instigator' => ['quest.instigator'],
-            'creators' => ['item.itemCreators.creator'],
-            'entity_type_name' => ['attributeTemplate.entityType'],
         ];
     }
 

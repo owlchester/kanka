@@ -5,7 +5,6 @@ namespace App\Services\Attributes;
 use App\Models\Attribute;
 use App\Models\AttributeTemplate;
 use App\Models\CampaignPlugin;
-use App\Models\Entity;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\EntityTypeAware;
@@ -180,24 +179,20 @@ class ApiService
         }
         $templates = $this->entityType
             ->attributeTemplates()
-            ->with(['entity', 'entity.attributes', 'entity.ancestors'])
+            ->with(['entity', 'entity.attributes', 'entity.ancestors.child'])
             ->enabled()
             ->has('entity')
             ->get();
         /** @var AttributeTemplate $template */
         foreach ($templates as $template) {
             $this->addTemplate($template);
-            /** @var AttributeTemplate $child */
-            foreach ($template->entity->ancestors()->with('attributeTemplate')->get() as $child) {
-                /** @var Entity $child */
-                if (! $child->attributeTemplate->isEnabled()) {
+            foreach ($template->entity->ancestors as $ancestor) {
+                $child = $ancestor->child;
+                if (! $child instanceof AttributeTemplate || ! $child->isEnabled()) {
                     continue;
                 }
-                /*if (!in_array($child->id, $ids)) {
-                    $ids[] = $child->id;
-                    $attributeTemplates[] = $child;
-                }*/
-                $this->addTemplate($child->attributeTemplate);
+                $child->setRelation('entity', $ancestor);
+                $this->addTemplate($child);
             }
         }
     }

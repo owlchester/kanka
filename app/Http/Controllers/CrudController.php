@@ -454,10 +454,6 @@ class CrudController extends Controller
                 $this->afterModelSave($new, $data);
 
                 $this->entitySaveService->campaign($this->campaign)->entity($new->entity)->save($data);
-                // Weird hack for prod issues
-                if (! $new->entity->child) {
-                    $new->entity->child = $new;
-                }
 
                 /** @var CopyService $copyService */
                 $copyService = app()->make(CopyService::class);
@@ -859,7 +855,7 @@ class CrudController extends Controller
             return new Collection;
         }
 
-        return Entity::select('id', 'name', 'entity_id')
+        return Entity::select('id', 'name', 'entity_id', 'child_type', 'type_id')
             ->templates($entityType->id)
             ->orderBy('name')
             ->get();

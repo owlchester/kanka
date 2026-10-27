@@ -45,15 +45,17 @@ trait SubEntityScopes
             $relations[] = 'ancestors';
             $relations[] = 'children';
         }
-        $with = ! empty($this->apiWith) ? $this->apiWith : [];
-        foreach ($with as $relation) {
-            $relations[] = $relation;
-        }
+        $relations = array_merge($relations, $this->apiRelations());
 
         return $query
             ->select($this->getTable() . '.*')
             ->has('entity')
             ->with($relations);
+    }
+
+    public function apiRelations(): array
+    {
+        return $this->apiWith ?? [];
     }
 
     public function scopeJoinEntity(Builder $query): Builder

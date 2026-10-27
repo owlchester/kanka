@@ -145,6 +145,21 @@ it('returns character fields, attributes, and visible posts in an entity dossier
         ->assertStructuredContent(fn ($json) => $json->where('items.0.name', 'History')->etc());
 });
 
+it('does not attach character details to another child type with the same numeric id', function () {
+    $this->asUser()->withCampaign();
+    $character = Character::factory()->create(['campaign_id' => 1, 'age' => 'Private character age']);
+    $location = Location::factory()->create(['campaign_id' => 1]);
+    expect($character->id)->toBe($location->id);
+
+    KankaServer::actingAs(auth()->user(), 'api')
+        ->tool(GetEntityTool::class, ['campaign_id' => 1, 'entity_id' => $location->entity->id])
+        ->assertHasNoErrors()
+        ->assertStructuredContent(fn ($json) => $json
+            ->where('id', $location->entity->id)
+            ->where('character', null)
+            ->etc());
+});
+
 it('includes visible linked locations, tags, races, and families in the dossier', function () {
     $this->asUser()->withCampaign();
     $character = Character::factory()->create(['campaign_id' => 1, 'name' => 'Adam Morley']);

@@ -81,7 +81,7 @@ class IndexController extends Controller
         if ($request->has('parent_id')) {
             $parent = Entity::select([
                 'entities.id', 'entities.name', 'entities.type', 'entities.is_private',
-                'entities.type_id', 'entities.parent_id', 'entities.entity_id',
+                'entities.type_id', 'entities.child_type', 'entities.parent_id', 'entities.entity_id',
                 'entities.image_uuid', 'entities.focus_x', 'entities.focus_y',
             ])
                 ->inTypes([$entityType->id])->where('id', $request->get('parent_id'))->first();
@@ -123,7 +123,7 @@ class IndexController extends Controller
             return new Collection;
         }
 
-        return Entity::select('id', 'name', 'entity_id')
+        return Entity::select('id', 'name', 'entity_id', 'child_type', 'type_id')
             ->with('entityType')
             ->templates($entityType->id)
             ->orderBy('name')
@@ -149,7 +149,6 @@ class IndexController extends Controller
         // Column definitions
         $columns = $this->columnDefinitionService->columns($entityType, $campaign);
         $relations = $this->columnDefinitionService->relationMap($entityType, $campaign);
-        $childCountRelations = $this->columnDefinitionService->childCountRelations($entityType, $campaign);
         $entityCountRelations = $this->columnDefinitionService->entityCountRelations($entityType, $campaign);
 
         // User preferences (query once, reuse in isNested/layoutMode)
@@ -173,22 +172,13 @@ class IndexController extends Controller
         $perPage = $this->perPageValue();
 
         $with = $relations;
-        // Eager load child model with withCount for count columns (e.g. organisation.members)
-        if ($entityType->isStandard()) {
-            $childRelation = Str::camel($entityType->code);
-            $with[$childRelation] = function ($query) use ($childCountRelations) {
-                if (! empty($childCountRelations)) {
-                    $query->withCount($childCountRelations);
-                }
-            };
-        }
         // All entity types: nesting uses entities.parent_id
         $with['children'] = fn ($q) => $q->whereNull('archived_at')->with('image');
 
         $base = Entity::inTypes($entityType->id)
             ->select([
                 'entities.id', 'entities.name', 'entities.type', 'entities.is_private', 'entities.entity_id',
-                'entities.type_id', 'entities.parent_id', 'entities.status_id',
+                'entities.type_id', 'entities.child_type', 'entities.campaign_id', 'entities.parent_id', 'entities.status_id',
                 'entities.image_uuid', 'entities.focus_x', 'entities.focus_y', 'entities.image_path',
             ])
             ->with($with)
@@ -198,14 +188,14 @@ class IndexController extends Controller
             ))
             ->search($this->filterService->search())
             ->order($this->filterService->order(), $entityType)
-            ->when($entityType->isStandard(), fn ($q) => $q->whereHas(Str::camel($entityType->code)))
+            ->when($entityType->isStandard(), fn ($q) => $q->whereHasMorph('child', $entityType->getMiscClass()::class))
             ->distinct();
 
         $parent = null;
         if ($request->has('parent_id')) {
             $parent = Entity::select([
                 'entities.id', 'entities.name', 'entities.type', 'entities.is_private',
-                'entities.type_id', 'entities.parent_id', 'entities.entity_id',
+                'entities.type_id', 'entities.child_type', 'entities.parent_id', 'entities.entity_id',
                 'entities.image_uuid', 'entities.focus_x', 'entities.focus_y',
             ])
                 ->inTypes([$entityType->id])->where('id', $request->get('parent_id'))->first();

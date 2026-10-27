@@ -11,7 +11,7 @@ $conversation = $entity->child;
         <span class="" data-toggle="tooltip" data-title="{{ __('conversations.tabs.participants') }}">
             <x-badge>
                 <x-icon class="fa-regular fa-users" />
-                {{ $conversation->participants()->count() }}
+                {{ $conversation->participants_count }}
             </x-badge>
         </span>
     </x-widgets.previews.head>
@@ -19,7 +19,7 @@ $conversation = $entity->child;
     <div class="widget-body p-4">
         <div class="direct-chat-messages flex flex-col gap-2">
 
-        @foreach ($conversation->messages()->with('participant')->orderByDesc('created_at')->take(5)->get() as $message)
+        @foreach ($conversation->messages as $message)
             @if (empty($message->participant))
                 @continue
             @endif

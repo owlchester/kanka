@@ -4,6 +4,7 @@ namespace App\Livewire\Widgets;
 
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Support\Collection;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
@@ -51,6 +52,8 @@ class EntityListing extends Component
 
     public function render()
     {
+        (new EloquentCollection($this->entities->all()))->loadMissing(['image', 'entityType', 'status']);
+
         return view('livewire.dashboards.entity-listing');
     }
 }

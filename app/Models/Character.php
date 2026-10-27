@@ -203,7 +203,7 @@ class Character extends MiscModel
             ->orderBy('character_family.id')
             ->with([
                 'entity' => function ($sub) {
-                    $sub->select('id', 'name', 'entity_id', 'type_id');
+                    $sub->select('id', 'name', 'entity_id', 'child_type', 'type_id');
                 },
             ]);
     }
@@ -222,7 +222,7 @@ class Character extends MiscModel
                     $sub->select('id', 'is_private');
                 },
                 'family.entity' => function ($sub) {
-                    $sub->select('id', 'name', 'entity_id', 'type_id');
+                    $sub->select('id', 'name', 'entity_id', 'child_type', 'type_id');
                 },
             ]);
     }
@@ -241,7 +241,7 @@ class Character extends MiscModel
                     $sub->select('id', 'is_private');
                 },
                 'race.entity' => function ($sub) {
-                    $sub->select('id', 'name', 'entity_id', 'type_id');
+                    $sub->select('id', 'name', 'entity_id', 'child_type', 'type_id');
                 },
             ]);
     }
@@ -255,7 +255,7 @@ class Character extends MiscModel
             ->orderBy('character_race.id')
             ->with([
                 'entity' => function ($sub) {
-                    $sub->select('id', 'name', 'entity_id', 'type_id');
+                    $sub->select('id', 'name', 'entity_id', 'child_type', 'type_id');
                 },
             ]);
     }
@@ -277,7 +277,7 @@ class Character extends MiscModel
             ->orderBy('organisation_member.id')
             ->with([
                 'entity' => function ($sub) {
-                    $sub->select('id', 'name', 'entity_id', 'type_id');
+                    $sub->select('id', 'name', 'entity_id', 'child_type', 'type_id');
                 },
             ]);
     }

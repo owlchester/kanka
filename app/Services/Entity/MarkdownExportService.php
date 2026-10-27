@@ -197,7 +197,7 @@ class MarkdownExportService
         }
 
         if ($this->entity->isTimeline() && $this->entity->child instanceof Timeline) {
-            foreach ($this->entity->child->eras()->with(['orderedElements.entity.event'])->ordered()->get() as $era) {
+            foreach ($this->entity->child->eras()->with(['orderedElements.entity.child'])->ordered()->get() as $era) {
                 $elements = [];
                 foreach ($era->orderedElements as $element) {
                     if (! $element->visible()) {
@@ -211,9 +211,7 @@ class MarkdownExportService
                     $elements[] = [
                         'name' => $element->elementName(),
                         'entity' => $element->entity ? $this->entityLink($element->entity) : null,
-                        'date' => $element->use_event_date && $element->entity?->event?->date
-                            ? $element->entity->event->date
-                            : $element->date,
+                        'date' => $element->displayDate(),
                         'entry' => $entry,
                     ];
                 }

@@ -9,7 +9,6 @@ use App\Traits\EntityTypeAware;
 use App\Traits\RequestAware;
 use App\Traits\Search\Orderable;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Str;
 
 class TemplateSearchService
 {
@@ -31,7 +30,7 @@ class TemplateSearchService
             $this->query->whereNotIn('id', [$excludes]);
         }
         if ($this->entityType->isStandard()) {
-            $with[] = Str::camel($this->entityType->code);
+            $with[] = 'child';
         }
         $this->query->with($with);
         $this->order($term);
@@ -44,7 +43,7 @@ class TemplateSearchService
         $list = [];
         /** @var Entity $entity */
         foreach ($entities as $entity) {
-            if ($this->entityType->isStandard() && empty($entity->{$this->entityType->code})) {
+            if ($this->entityType->isStandard() && $entity->child === null) {
                 continue;
             }
             $format = [

@@ -58,6 +58,7 @@ trait EntityScopes
             $this->getTable() . '.id',
             $this->getTable() . '.campaign_id',
             $this->getTable() . '.entity_id',
+            $this->getTable() . '.child_type',
             $this->getTable() . '.name',
             $this->getTable() . '.type',
             $this->getTable() . '.type_id',
@@ -110,6 +111,9 @@ trait EntityScopes
     public function scopeApiFilter(Builder $query, Campaign $campaign, array $request = []): Builder
     {
         $related = Arr::get($request, 'related', false);
+        if ($related || Arr::get($request, 'image', false)) {
+            $query->with('child');
+        }
         $types = Arr::get($request, 'types');
         if (! empty($types)) {
             $typeNames = explode(',', $types);

@@ -149,10 +149,10 @@ it('allows repeated cleanup without needing a child model', function () {
 
 it('still resets map dimensions when removing an active entity image', function () {
     $entity = createEntityWithLegacyImages('map');
-    $entity->map->forceFill(['height' => 100, 'width' => 200])->saveQuietly();
+    $entity->child->forceFill(['height' => 100, 'width' => 200])->saveQuietly();
 
     Images::model($entity)->field('image')->cleanup();
 
-    expect($entity->map->fresh()->height)->toBeNull()
-        ->and($entity->map->fresh()->width)->toBeNull();
+    expect($entity->child->fresh()->height)->toBeNull()
+        ->and($entity->child->fresh()->width)->toBeNull();
 });

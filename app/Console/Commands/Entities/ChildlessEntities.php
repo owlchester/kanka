@@ -3,8 +3,9 @@
 namespace App\Console\Commands\Entities;
 
 use App\Models\Entity;
+use App\Models\EntityType;
+use App\Models\Scopes\ActiveEntityScope;
 use Illuminate\Console\Command;
-use Illuminate\Support\Str;
 
 class ChildlessEntities extends Command
 {
@@ -43,24 +44,22 @@ class ChildlessEntities extends Command
      */
     public function handle()
     {
-        $entities = [];
-        $types = config('entities.ids');
-        foreach ($types as $type => $id) {
-            $entities[] = $type;
-        }
+        $this->total = 0;
+        $types = EntityType::default()->where('is_special', false)->where('code', '!=', 'bookmark')->get();
 
-        foreach ($entities as $type) {
-            $plural = Str::plural($type);
-            $this->info('checking ' . $plural);
+        foreach ($types as $type) {
+            $this->info('checking ' . $type->code);
+            $class = $type->getMiscClass()::class;
 
-            Entity::select('entities.*')
-                ->where('entities.type', $type)
-                ->leftJoin($plural . ' as f', 'f.id', 'entities.entity_id')
-                ->whereNull('f.id')
-                ->with(Str::camel($type))
-                ->chunk(1000, function ($models) use ($type): void {
+            Entity::withTrashed()->select('entities.id')
+                ->where('type_id', $type->id)
+                ->where(fn ($query) => $query
+                    ->whereNull('child_type')
+                    ->orWhere('child_type', '!=', $class)
+                    ->orWhereDoesntHaveMorph('child', $class, fn ($child) => $child->withoutGlobalScope(ActiveEntityScope::class)))
+                ->chunkById(1000, function ($models): void {
                     foreach ($models as $model) {
-                        $this->trace($model, $type);
+                        $this->trace($model);
                     }
 
                     if (! empty($this->traces)) {
@@ -77,14 +76,9 @@ class ChildlessEntities extends Command
         return 0;
     }
 
-    protected function trace(Entity $entity, string $type): void
+    protected function trace(Entity $entity): void
     {
         $this->traces[] = $entity->id;
         $this->total++;
-
-        /*if (count($this->traces) > 100) {
-            $this->info(implode(', ', $this->traces));
-            $this->traces = [];
-        }*/
     }
 }
