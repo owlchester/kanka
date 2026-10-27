@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\EntityEventTypes;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
@@ -35,6 +36,7 @@ class Event extends MiscModel
     protected array $sortable = [
         'name',
         'date',
+        'calendar_date',
         'type',
     ];
 
@@ -43,7 +45,26 @@ class Event extends MiscModel
      */
     protected array $sortableColumns = [
         'date',
+        'calendar_date',
     ];
+
+    public function scopeCustomSortCalendar_date(Builder $query, string $order): Builder
+    {
+        return $query
+            ->select('events.*')
+            ->leftJoin('entities as event_entity_order', function ($join) {
+                $join->on('event_entity_order.entity_id', '=', 'events.id')
+                    ->where('event_entity_order.type_id', config('entities.ids.event'));
+            })
+            ->leftJoin('reminders as event_calendar_order', function ($join) {
+                $join->on('event_calendar_order.remindable_id', '=', 'event_entity_order.id')
+                    ->where('event_calendar_order.remindable_type', Entity::class)
+                    ->where('event_calendar_order.type_id', EntityEventTypes::calendarDate);
+            })
+            ->orderBy('event_calendar_order.year', $order)
+            ->orderBy('event_calendar_order.month', $order)
+            ->orderBy('event_calendar_order.day', $order);
+    }
 
     /**
      * Nullable values (foreign keys)
@@ -70,6 +91,7 @@ class Event extends MiscModel
             ->sort(request()->only(['o', 'k']), ['entities.name' => 'asc']) // @phpstan-ignore method.notFound
             ->with([
                 'entity.locations',
+                'entity.calendarDate.calendar.entity',
                 'entity.locations.entity' => fn ($sub) => $sub->grid(),
                 'entity' => fn ($sub) => $sub->grid(),
                 'entity.parent' => fn ($sub) => $sub->grid(),

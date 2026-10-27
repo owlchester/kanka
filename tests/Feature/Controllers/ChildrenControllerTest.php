@@ -3,8 +3,10 @@
 use App\Models\Campaign;
 use App\Models\Character;
 use App\Models\Entity;
+use App\Models\EntityType;
 use App\Renderers\DatagridRenderer2;
 use App\Services\Campaign\LocalisationService;
+use App\Services\Entity\ColumnDefinitionService;
 use Illuminate\Support\Facades\Facade;
 
 test('the entity children datagrid renders and does not load the heavy entities.entry/tooltip columns', function () {
@@ -33,7 +35,6 @@ test('the entity children datagrid renders and does not load the heavy entities.
 
     $response->assertStatus(200);
     $response->assertSee($child->name, false);
-
     $rowEntityHydrations = array_filter($hydrations, fn (array $h) => $h['id'] !== $parent->id);
     expect($rowEntityHydrations)->not->toBeEmpty();
 
@@ -41,4 +42,16 @@ test('the entity children datagrid renders and does not load the heavy entities.
         expect($hydration['attributes'])->not->toContain('entry');
         expect($hydration['attributes'])->not->toContain('tooltip');
     }
+});
+
+test('children optional columns follow the parent module capabilities', function () {
+    $this->asUser()->withCampaign();
+    $campaign = Campaign::findOrFail(1);
+    $columns = app(ColumnDefinitionService::class)->childrenColumns(
+        EntityType::where('code', 'map')->firstOrFail(),
+        $campaign,
+    );
+
+    expect(array_column($columns, 'key'))->not->toContain('status')
+        ->not->toContain('calendar_date');
 });

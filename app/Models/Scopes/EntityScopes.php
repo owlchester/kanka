@@ -207,15 +207,19 @@ trait EntityScopes
 
     public function scopeOrder(Builder $query, array $config = [], ?EntityType $entityType = null): Builder
     {
+        $entityTable = $query->getQuery()->from;
         $entityFields = ['name', 'type', 'is_private', 'status_id'];
 
         foreach ($config as $field => $order) {
             if ($field === 'parent.name') {
-                $query->leftJoin('entities as parent_order', 'parent_order.id', '=', 'entities.parent_id')
+                $query->leftJoin('entities as parent_order', 'parent_order.id', '=', $entityTable . '.parent_id')
                     ->orderBy('parent_order.name', $order);
+            } elseif ($field === 'status_id') {
+                $query->leftJoin('category_statuses as status_order', 'status_order.id', '=', $entityTable . '.status_id')
+                    ->orderBy('status_order.sort_order', $order);
             } elseif ($field === 'calendar_date') {
-                $query->leftJoin('reminders as cd', function ($join) {
-                    $join->on('cd.remindable_id', '=', 'entities.id')
+                $query->leftJoin('reminders as cd', function ($join) use ($entityTable) {
+                    $join->on('cd.remindable_id', '=', $entityTable . '.id')
                         ->on('cd.remindable_type', '=', DB::raw("'" . addslashes(Entity::class) . "'"))
                         ->where('cd.type_id', EntityEventTypes::calendarDate);
                 })
@@ -223,7 +227,7 @@ trait EntityScopes
                     ->orderBy('cd.month', $order)
                     ->orderBy('cd.day', $order);
             } elseif ($field === 'tags') {
-                $query->leftJoin('entity_tags as tags_order', 'tags_order.entity_id', '=', 'entities.id')
+                $query->leftJoin('entity_tags as tags_order', 'tags_order.entity_id', '=', $entityTable . '.id')
                     ->leftJoin('entities as tag_order', function ($join) {
                         $join->on('tag_order.entity_id', '=', 'tags_order.tag_id')
                             ->where('tag_order.type_id', config('entities.ids.tag'));
@@ -233,7 +237,7 @@ trait EntityScopes
                 // Field lives on the child model's table
                 $childModel = $entityType->getClass();
                 $childTable = $childModel->getTable();
-                $query->leftJoin($childTable . ' as child_order', 'child_order.id', '=', 'entities.entity_id');
+                $query->leftJoin($childTable . ' as child_order', 'child_order.id', '=', $entityTable . '.entity_id');
 
                 $segments = explode('.', $field);
                 if (count($segments) > 1) {
@@ -262,7 +266,7 @@ trait EntityScopes
                     $query->orderBy('child_order.' . $field, $order);
                 }
             } else {
-                $query->orderBy('entities.' . $field, $order);
+                $query->orderBy($entityTable . '.' . $field, $order);
             }
         }
 

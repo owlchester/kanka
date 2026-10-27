@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 
 class ColumnDefinitionService
 {
-    /** @var array<int, array<int, CategoryStatus>> */
+    /** @var array<string, array<int, CategoryStatus>> */
     protected array $statusCache = [];
 
     public function columns(EntityType $entityType, Campaign $campaign): array
@@ -23,7 +23,7 @@ class ColumnDefinitionService
         }
 
         // Inject dynamic status column if the entity type has statuses
-        $statusColumn = $this->statusColumn($entityType);
+        $statusColumn = $this->statusColumn($entityType, $campaign);
         if ($statusColumn) {
             $tagsIndex = array_search('tags', array_column($columns, 'key'));
             if ($tagsIndex !== false) {
@@ -34,6 +34,28 @@ class ColumnDefinitionService
         }
 
         return $this->filterByModules($columns, $campaign);
+    }
+
+    /**
+     * Optional columns shown in the generic entity children datagrid.
+     * The full module column definitions remain the source of truth for availability.
+     */
+    public function childrenColumns(EntityType $entityType, Campaign $campaign): array
+    {
+        $available = array_column($this->columns($entityType, $campaign), 'key');
+        $columns = [];
+
+        if (in_array('status', $available, true)) {
+            $columns[] = ['key' => 'status', 'sortKey' => 'status_id'];
+        }
+        if (in_array('calendar_date', $available, true)) {
+            $columns[] = ['key' => 'calendar_date', 'sortKey' => 'calendar_date'];
+        }
+        if (in_array('locations', $available, true)) {
+            $columns[] = ['key' => 'locations'];
+        }
+
+        return $columns;
     }
 
     /**
@@ -141,16 +163,18 @@ class ColumnDefinitionService
         ];
     }
 
-    protected function statusColumn(EntityType $entityType): ?array
+    protected function statusColumn(EntityType $entityType, Campaign $campaign): ?array
     {
-        if (! isset($this->statusCache[$entityType->id])) {
-            $this->statusCache[$entityType->id] = CategoryStatus::where('category_id', $entityType->id)
+        $cacheKey = $entityType->id . '-' . $campaign->id;
+        if (! isset($this->statusCache[$cacheKey])) {
+            $this->statusCache[$cacheKey] = CategoryStatus::inCampaign($campaign)
+                ->where('category_id', $entityType->id)
                 ->orderBy('sort_order')
                 ->get()
                 ->all();
         }
 
-        $statuses = $this->statusCache[$entityType->id];
+        $statuses = $this->statusCache[$cacheKey];
 
         if (empty($statuses)) {
             return null;
@@ -158,17 +182,10 @@ class ColumnDefinitionService
 
         $icons = [];
         foreach ($statuses as $status) {
-            if (empty($status->icon)) {
-                continue;
-            }
             $icons[$status->id] = [
-                'icon' => $status->icon(),
+                'icon' => $status->icon ? $status->icon() : null,
                 'tooltip' => $status->setRelation('entityType', $entityType)->name(),
             ];
-        }
-
-        if (empty($icons)) {
-            return null;
         }
 
         return [
@@ -399,6 +416,7 @@ class ColumnDefinitionService
             ['key' => 'type', 'type' => 'text', 'label' => __('crud.fields.type'), 'sortable' => true],
             ['key' => 'parent', 'type' => 'entity', 'label' => __('crud.fields.parent'), 'sortable' => true, 'sortKey' => 'parent.name'],
             ['key' => 'date', 'type' => 'text', 'label' => __('events.fields.date'), 'sortable' => true],
+            ['key' => 'calendar_date', 'type' => 'calendar_date', 'label' => __('crud.fields.calendar_date'), 'sortable' => true],
             ['key' => 'locations', 'type' => 'entities', 'label' => __('entities.locations'), 'sortable' => false, 'moduleGate' => 'locations'],
             ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => true],
             ['key' => 'is_private', 'type' => 'private', 'label' => __('crud.fields.is_private'), 'sortable' => true, 'adminOnly' => true],

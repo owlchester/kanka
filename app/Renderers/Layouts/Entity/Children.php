@@ -2,6 +2,7 @@
 
 namespace App\Renderers\Layouts\Entity;
 
+use App\Models\Entity;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 use App\Traits\EntityTypeAware;
@@ -9,6 +10,15 @@ use App\Traits\EntityTypeAware;
 class Children extends Layout
 {
     use EntityTypeAware;
+
+    protected array $optionalColumns = [];
+
+    public function optionalColumns(array $columns): self
+    {
+        $this->optionalColumns = $columns;
+
+        return $this;
+    }
 
     /**
      * Available columns
@@ -44,9 +54,47 @@ class Children extends Layout
                     return $model->children->count();
                 },
             ],
-            'tags' => [
-                'render' => Standard::TAGS,
-            ],
+        ];
+
+        $statusColumn = null;
+        foreach ($this->optionalColumns as $column) {
+            if ($column['key'] === 'status') {
+                $statusColumn = [
+                    'key' => $column['sortKey'],
+                    'label' => __('entities.status'),
+                    'render' => function (Entity $model) {
+                        if (! $model->status) {
+                            return '';
+                        }
+                        $model->status->setRelation('entityType', $model->entityType);
+
+                        return $model->status->icon
+                            ? '<i class="' . $model->status->icon() . '" data-title="' . e($model->status->name()) . '" aria-hidden="true"></i>'
+                            : e($model->status->name());
+                    },
+                ];
+            } elseif ($column['key'] === 'calendar_date') {
+                $columns['calendar_date'] = [
+                    'key' => $column['sortKey'],
+                    'label' => __('crud.fields.calendar_date'),
+                    'render' => fn (Entity $model) => $model->calendarReminder()?->readableDate() ?? '',
+                ];
+            } elseif ($column['key'] === 'locations') {
+                $columns['locations'] = [
+                    'label' => __('entities.locations'),
+                    'render' => function (Entity $model) {
+                        return $model->locations
+                            ->map(fn ($location) => $this->entityLink($location->entity))->implode(', ');
+                    },
+                ];
+            }
+        }
+
+        if ($statusColumn !== null) {
+            $columns['status'] = $statusColumn;
+        }
+        $columns['tags'] = [
+            'render' => Standard::TAGS,
         ];
 
         return $columns;

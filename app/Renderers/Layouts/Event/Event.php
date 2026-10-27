@@ -35,6 +35,11 @@ class Event extends Layout
                 'key' => 'date',
                 'label' => __('events.fields.date'),
             ],
+            'calendar_date' => [
+                'key' => 'calendar_date',
+                'label' => __('crud.fields.calendar_date'),
+                'render' => fn (\App\Models\Event $model) => $model->entity->calendarReminder()?->readableDate() ?? '',
+            ],
             'event' => [
                 'key' => 'parent.name',
                 'label' => __('crud.fields.parent'),
