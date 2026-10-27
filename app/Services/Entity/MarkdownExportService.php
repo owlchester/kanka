@@ -177,7 +177,7 @@ class MarkdownExportService
         $entityData['inventory'] = $this->markdownInventory();
         $entityData['assets'] = $this->markdownAssets();
 
-        if ($this->entity->child instanceof Quest) {
+        if ($this->entity->isQuest() && $this->entity->child instanceof Quest) {
             $elements = $this->entity->child->elements;
             foreach ($elements->sortBy(fn (QuestElement $element) => [$element->role, $element->entity->name ?? $element->name]) as $element) {
                 if ($element->entity_id && ! $element->entity) {
@@ -196,7 +196,7 @@ class MarkdownExportService
             }
         }
 
-        if ($this->entity->child instanceof Timeline) {
+        if ($this->entity->isTimeline() && $this->entity->child instanceof Timeline) {
             foreach ($this->entity->child->eras()->with(['orderedElements.entity.event'])->ordered()->get() as $era) {
                 $elements = [];
                 foreach ($era->orderedElements as $element) {

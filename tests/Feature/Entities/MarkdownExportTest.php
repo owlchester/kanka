@@ -6,8 +6,10 @@ use App\Models\Attribute as EntityAttribute;
 use App\Models\Character;
 use App\Models\CharacterFamily;
 use App\Models\CharacterRace;
+use App\Models\Entity;
 use App\Models\EntityAbility;
 use App\Models\EntityAsset;
+use App\Models\EntityType;
 use App\Models\Family;
 use App\Models\Inventory;
 use App\Models\Item;
@@ -26,6 +28,43 @@ use App\Models\TimelineEra;
 use App\Services\Entity\MarkdownExportService;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
+
+it('exports custom entities to markdown without a child model', function (bool $single) {
+    $this->asUser()->withCampaign(['boost_count' => 4]);
+
+    $entityType = new EntityType([
+        'code' => 'kampagnenplan',
+        'is_special' => true,
+        'is_enabled' => true,
+    ]);
+    $entityType->campaign_id = 1;
+    $entityType->singular = 'Kampagnenplan';
+    $entityType->plural = 'Kampagnenplans';
+    $entityType->icon = 'fa-solid fa-book';
+    $entityType->save();
+
+    $entity = new Entity([
+        'campaign_id' => 1,
+        'name' => 'Custom campaign plan',
+        'entry' => '<p>Plan the next adventure.</p>',
+    ]);
+    $entity->type_id = $entityType->id;
+    $entity->save();
+
+    $markdown = app(MarkdownExportService::class)
+        ->campaign($entity->campaign)
+        ->entity($entity)
+        ->module('kampagnenplans_' . $entityType->id)
+        ->single($single)
+        ->markdown();
+
+    expect($markdown)
+        ->toContain('Custom campaign plan')
+        ->toContain('Plan the next adventure.');
+})->with([
+    'standalone' => true,
+    'campaign' => false,
+]);
 
 it('uses the request URL for standalone exports and canonical URL for campaign exports', function () {
     $this->asUser()->withCampaign();
