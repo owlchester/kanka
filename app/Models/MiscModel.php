@@ -15,7 +15,7 @@ use App\Models\Scopes\SubEntityScopes;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 /**
  * Class MiscModel
@@ -86,13 +86,11 @@ abstract class MiscModel extends Model
     /**
      * Every misc model has an attached entity
      *
-     * @return HasOne
+     * @return MorphOne<Entity, $this>
      */
-    public function entity()
+    public function entity(): MorphOne
     {
-        return $this
-            ->hasOne('App\Models\Entity', 'entity_id', 'id')
-            ->where('type_id', $this->entityTypeID());
+        return $this->morphOne(Entity::class, 'child', 'child_type', 'entity_id');
     }
 
     /**

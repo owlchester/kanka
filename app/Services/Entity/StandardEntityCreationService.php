@@ -49,6 +49,7 @@ class StandardEntityCreationService
             $child->save();
 
             $entity->entity_id = $child->id;
+            $entity->child_type = $child::class;
             $entity->saveQuietly();
             $child->setRelation('entity', $entity);
             $entity->setRelation('child', $child);

@@ -74,6 +74,9 @@ trait EntityMapper
         $entityMapping = ['tooltip', 'is_template', 'is_attributes_private', 'focus_x', 'focus_y', 'entry', 'type', 'type_id', 'status_id'];
         $this->entity = new Entity;
         $this->entity->entity_id = $this->model->id;
+        if ($this->model instanceof MiscModel) {
+            $this->entity->child_type = $this->model::class;
+        }
         $this->entity->created_by = $this->user->id;
         $this->entity->updated_by = $this->user->id;
         $name = Arr::get($this->data, 'entity.name') ?? Arr::get($this->data, 'name');
