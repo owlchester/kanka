@@ -3,13 +3,14 @@
 namespace App\Services\Search;
 
 use App\Facades\Avatar;
+use App\Models\Character;
 use App\Models\Entity;
+use App\Models\Tag;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
 use App\Traits\RequestAware;
 use App\Traits\Search\Orderable;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Str;
 
 class LiveSearchService
 {
@@ -30,16 +31,21 @@ class LiveSearchService
         if ($withParent) {
             $with[] = 'parent';
         }
-        if ($this->request->filled('with-family')) {
-            $with[] = 'character';
-            $with[] = 'character.families';
+        $withFamily = $this->request->filled('with-family') && $this->entityType->id === config('entities.ids.character');
+        $withChild = $withFamily || $this->entityType->code === 'tag';
+        if ($withFamily) {
+            $with['child'] = fn ($child) => $child->morphWith([
+                Character::class => ['families.entity'],
+            ]);
+        } elseif ($withChild) {
+            $with[] = 'child';
         }
         $this->query = Entity::inTypes($this->entityType->id);
+        if ($this->entityType->isStandard()) {
+            $this->query->whereHasMorph('child', $this->entityType->getMiscClass()::class);
+        }
         if (! empty($excludes)) {
             $this->query->whereNotIn('id', [$excludes]);
-        }
-        if ($this->entityType->isStandard()) {
-            $with[] = Str::camel($this->entityType->code);
         }
         $this->query->with($with);
         $this->order($term);
@@ -50,14 +56,11 @@ class LiveSearchService
         $onlyEntity = $this->request->filled('entity');
 
         $list = [];
-        $child = Str::camel($this->entityType->code);
         /** @var Entity $entity */
         foreach ($entities as $entity) {
-            if ($this->entityType->isStandard() && empty($entity->{$child})) {
-                continue;
-            }
+            $child = $withChild ? $entity->child : null;
             $format = [
-                'id' => $this->entityType->isCustom() || $onlyEntity ? $entity->id : $entity->{$child}->id,
+                'id' => $this->entityType->isCustom() || $onlyEntity ? $entity->id : $entity->entity_id,
                 'entity_id' => $entity->id,
                 'name' => $entity->name,
                 'text' => $entity->name,
@@ -65,15 +68,15 @@ class LiveSearchService
             if ($withParent && $entity->parent) {
                 $format['text'] .= ' (' . $entity->parent->name . ')';
             }
-            if ($entity->isTag() && $entity->tag->hasColour()) {
-                $format['colour'] = $entity->tag->colour;
-                $format['colour_style'] = $entity->tag->colourStyle();
+            if ($this->entityType->code === 'tag' && $child instanceof Tag && $child->hasColour()) {
+                $format['colour'] = $child->colour;
+                $format['colour_style'] = $child->colourStyle();
             }
             $format['image'] = Avatar::entity($entity)->fallback()->size(40)->thumbnail();
             $format['url'] = $entity->url();
 
-            if ($this->request->filled('with-family')) {
-                $families = $entity->character->families->pluck('name')->toarray();
+            if ($this->request->filled('with-family') && $child instanceof Character) {
+                $families = $child->families->pluck('name')->toArray();
                 if (! empty($families)) {
                     $format['text'] .= ' (' . implode(', ', $families) . ')';
                 }

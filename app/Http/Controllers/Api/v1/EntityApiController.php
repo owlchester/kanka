@@ -8,6 +8,7 @@ use App\Http\Resources\EntityResource as Resource;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityType;
+use App\Models\MiscModel;
 use App\Services\Api\BulkEntityCreatorService;
 use App\Services\Entity\EntitySaveService;
 use Illuminate\Http\Request;
@@ -43,6 +44,11 @@ class EntityApiController extends ApiController
         }
         $this->authorize('access', $campaign);
         $this->authorize('view', $entity);
+        $entity->loadMissing(['child', 'entityType', 'tags', 'image', 'locations']);
+        if ($entity->child instanceof MiscModel) {
+            $entity->child->setRelation('entity', $entity);
+            $entity->child->loadMissing($entity->child->apiRelations());
+        }
         $resource = new Resource($entity);
 
         return $resource->withMisc();

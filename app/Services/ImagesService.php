@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Facades\Limit;
 use App\Models\Entity;
+use App\Models\Map;
 use App\Sanitizers\SvgAllowedAttributes;
 use App\Traits\CampaignAware;
 use App\Traits\RequestAware;
@@ -175,10 +176,11 @@ class ImagesService
                 Storage::delete($thumb);
             }
             // If it's a map, reset its height to be re-calculated
-            if ($this->model instanceof Entity && $this->model->exists && $this->field === 'image_path' && $this->model->isMap()) {
-                $this->model->map->height = null;
-                $this->model->map->width = null;
-                $this->model->map->saveQuietly();
+            if ($this->model instanceof Entity && $this->model->exists && $this->field === 'image_path' && $this->model->isMap() && $this->model->child instanceof Map) {
+                $map = $this->model->child;
+                $map->height = null;
+                $map->width = null;
+                $map->saveQuietly();
             }
         } catch (Exception $e) {
             // silence exception, didn't find the image to delete.

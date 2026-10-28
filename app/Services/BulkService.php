@@ -105,7 +105,7 @@ class BulkService
      */
     public function export(): Collection
     {
-        return Entity::whereIn('id', $this->ids)->get();
+        return Entity::with('child')->whereIn('id', $this->ids)->get();
     }
 
     /**
@@ -148,7 +148,7 @@ class BulkService
             ->to($campaign);
 
         $with = [
-            'entityType', 'image', 'inventories', 'attributes',
+            'entityType', 'image', 'inventories', 'attributes', 'child',
         ];
         $entities = Entity::with($with)->whereIn('id', $this->ids)->get();
 
@@ -170,7 +170,7 @@ class BulkService
             ->entityType($entityType)
             ->campaign($this->campaign);
 
-        $entities = Entity::whereIn('id', $this->ids)->get();
+        $entities = Entity::with('child')->whereIn('id', $this->ids)->get();
 
         foreach ($entities as $entity) {
             if (! $this->can('update', $entity)) {
@@ -307,7 +307,7 @@ class BulkService
             return $this->updateRelations($filledFields, $mirrorOptions);
         }
 
-        $with = $this->entityType->hasEntity() ? ['tags'] : [];
+        $with = $this->entityType->hasEntity() ? ['tags', 'child'] : [];
         $models = $model->with($with)->whereIn('id', $this->ids)->get();
         foreach ($models as $entity) {
             $this->total++;

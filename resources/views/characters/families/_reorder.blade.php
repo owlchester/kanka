@@ -24,7 +24,7 @@
                                 :entity="$family->family->entity"
                                 :campaign="$campaign" />
                         </div>
-                        <div class="grow-0 px-2 text-lg" x-data="{ isPrivate: {{ $family->is_private }} }">
+                        <div class="grow-0 px-2 text-lg" x-data="{ isPrivate: @js($family->is_private) }">
                             <input type="hidden" name="family_privates[{{ $family->family_id }}]" :value="isPrivate ? 1 : 0" />
                             <i
                                 class="cursor-pointer hover:text-accent"
@@ -38,6 +38,3 @@
         </div>
     @endif
 </x-grid>
-
-
-

@@ -6,9 +6,12 @@ use App\Facades\EntityLogger;
 use App\Models\CategoryStatus;
 use App\Models\Character;
 use App\Models\Entity;
+use App\Models\Map;
 use App\Models\MiscModel;
 use App\Models\OrganisationMember;
 use App\Models\Post;
+use App\Models\Quest;
+use App\Models\Timeline;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\EntityTypeAware;
@@ -39,30 +42,31 @@ class TransformService
     public function confirm(): array
     {
         $confirm = [];
-        if ($this->entity->isTimeline()) {
-            $eras = $this->entity->timeline->eras()->count();
+        $child = $this->entity->child;
+        if ($child instanceof Timeline) {
+            $eras = $child->eras()->count();
             if ($eras > 0) {
                 $confirm['timelines.fields.eras'] = $eras;
             }
-            $elements = $this->entity->timeline->elements()->count();
+            $elements = $child->elements()->count();
             if ($elements > 0) {
                 $confirm['quests.show.tabs.elements'] = $elements;
             }
-        } elseif ($this->entity->isMap()) {
-            $layers = $this->entity->map->layers()->count();
+        } elseif ($child instanceof Map) {
+            $layers = $child->layers()->count();
             if ($layers > 0) {
                 $confirm['maps.fields.layers'] = $layers;
             }
-            $groups = $this->entity->map->groups()->count();
+            $groups = $child->groups()->count();
             if ($groups > 0) {
                 $confirm['maps.fields.groups'] = $groups;
             }
-            $markers = $this->entity->map->markers()->count();
+            $markers = $child->markers()->count();
             if ($markers > 0) {
                 $confirm['maps.fields.markers'] = $markers;
             }
-        } elseif ($this->entity->isQuest()) {
-            $elements = $this->entity->quest->elements()->count();
+        } elseif ($child instanceof Quest) {
+            $elements = $child->elements()->count();
             if ($elements > 0) {
                 $confirm['quests.show.tabs.elements'] = $elements;
             }
@@ -289,8 +293,11 @@ class TransformService
         $this->entity->status_id = $this->defaultStatusId();
         // If attached to a misc model, save the entity_id
         if (isset($this->new)) {
-            $this->entity->entity_id = $this->new->id;
+            $this->entity->child()->associate($this->new);
+        } else {
+            $this->entity->child()->dissociate();
         }
+        $this->entity->unsetRelation('child');
         $this->entity->saveQuietly();
 
         EntityLogger::entity($this->entity)->dirty('entity_type', $type)->update();

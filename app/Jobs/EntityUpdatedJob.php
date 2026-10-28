@@ -7,6 +7,7 @@ use App\Models\Entity;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\Attributes\WithoutRelations;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
@@ -18,6 +19,7 @@ class EntityUpdatedJob implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
+    #[WithoutRelations]
     public Entity $entity;
 
     public array $dirty;

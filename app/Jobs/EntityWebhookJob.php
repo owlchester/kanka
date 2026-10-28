@@ -37,8 +37,6 @@ class EntityWebhookJob implements ShouldQueue
      */
     public function __construct(Entity $entity, User $user, int $action)
     {
-        // Can't save the entity directly into the job because of the child() function not returning a
-        // string? Maybe something to do with the to array part of the queue.
         $this->campaign = $entity->campaign;
         $this->user = $user;
         $this->action = $action;

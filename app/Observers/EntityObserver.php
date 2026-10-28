@@ -14,6 +14,7 @@ use App\Jobs\EntityWebhookJob;
 use App\Models\CampaignPermission;
 use App\Models\Entity;
 use App\Models\Image;
+use App\Models\Map;
 use App\Services\Maps\TilingTriggerService;
 
 class EntityObserver
@@ -62,10 +63,11 @@ class EntityObserver
 
     public function updating(Entity $entity): void
     {
-        if ($entity->isDirty('image_uuid') && $entity->isMap()) {
-            $entity->map->height = null;
-            $entity->map->width = null;
-            $entity->map->saveQuietly();
+        if ($entity->isDirty('image_uuid') && $entity->isMap() && $entity->child instanceof Map) {
+            $map = $entity->child;
+            $map->height = null;
+            $map->width = null;
+            $map->saveQuietly();
 
             $this->maybeTriggerTiling($entity);
         }
@@ -85,8 +87,8 @@ class EntityObserver
             return;
         }
 
-        if ($entity->isMap() && $entity->wasChanged('name')) {
-            $map = $entity->map;
+        if ($entity->isMap() && $entity->wasChanged('name') && $entity->child instanceof Map) {
+            $map = $entity->child;
             $map->setRelation('entity', $entity);
             MapUpdated::dispatch($map);
         }

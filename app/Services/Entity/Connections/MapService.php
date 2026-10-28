@@ -22,12 +22,14 @@ use App\Models\QuestElement;
 use App\Models\Relation;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
+use App\Traits\UserAware;
 use Illuminate\Support\Arr;
 
 class MapService
 {
     use CampaignAware;
     use EntityAware;
+    use UserAware;
 
     /** Entities */
     protected array $entities = [];
@@ -117,7 +119,6 @@ class MapService
                     $this->addParent()
                         ->addLocation()
                         ->addQuests()
-                        ->addAuthorJournals()
                         ->addLocations();
                 } else {
                     $this->addCustom();
@@ -127,7 +128,8 @@ class MapService
         }
 
         if ($this->withRelated()) {
-            $this->addConversations();
+            $this->addConversations()
+                ->addAuthorJournals();
         }
 
         $this->addMentions();
@@ -257,19 +259,50 @@ class MapService
     }
 
     /**
-     * Add an individual family. This only works for characters
+     * Add the families of a character
      */
     protected function addFamily(): self
     {
-        if (empty($this->entity->child->family)) {
-            return $this;
+        /** @var Character $character */
+        $character = $this->entity->child;
+        $families = $character->families()
+            ->has('entity')
+            ->with(['entity', 'entity.image', 'entity.entityType']);
+        if (! $this->hasUser() || ! $this->user->can('admin', $this->campaign)) {
+            $families->wherePivot('is_private', false);
+        }
+        foreach ($families->get() as $family) {
+            $this->addFamilyRelations($family);
         }
 
-        $family = $this->entity->child->family;
+        return $this;
+    }
 
-        $this->addFamilyRelations($family);
+    protected function addRaces(): self
+    {
+        /** @var Character $character */
+        $character = $this->entity->child;
+        $races = $character->races()
+            ->has('entity')
+            ->with(['entity', 'entity.image', 'entity.entityType']);
+        if (! $this->hasUser() || ! $this->user->can('admin', $this->campaign)) {
+            $races->wherePivot('is_private', false);
+        }
+        foreach ($races->get() as $race) {
+            $this->addEntity($race->entity)
+                ->addRelations($race->entity);
 
-        // Add relation to the family
+            $this->relations[] = [
+                'source' => $this->entity->id,
+                'target' => $race->entity->id,
+                'text' => Module::singular(config('entities.ids.race'), __('entities.race')),
+                'colour' => '#ccc',
+                'attitude' => null,
+                'type' => 'character-race',
+                'shape' => 'none',
+            ];
+        }
+
         return $this;
     }
 
@@ -359,8 +392,7 @@ class MapService
                 ->addParent()
                 ->addEntityLocations()
                 ->addQuests()
-                ->addMapMarkers()
-                ->addAuthorJournals();
+                ->addMapMarkers();
         }
 
         return $this;
@@ -377,9 +409,9 @@ class MapService
 
         if ($this->withRelated()) {
             $this->addFamily()
+                ->addRaces()
                 ->addOrganisation()
                 ->addItems()
-                ->addAuthorJournals()
                 ->addEntityLocations()
                 ->addDiceRolls()
                 ->addMapMarkers()
@@ -408,7 +440,6 @@ class MapService
                 ->addQuests()
                 ->addMapMarkers()
                 ->addMaps()
-                ->addAuthorJournals()
                 ->addEntities();
         }
 
@@ -430,8 +461,7 @@ class MapService
                 ->addParent()
                 ->addLocations()
                 ->addQuests()
-                ->addMapMarkers()
-                ->addAuthorJournals();
+                ->addMapMarkers();
         }
 
         return $this;
@@ -453,8 +483,7 @@ class MapService
             $this->addParent()
                 ->addLocation()
                 ->addQuests()
-                ->addMapMarkers()
-                ->addAuthorJournals();
+                ->addMapMarkers();
         }
 
         return $this;

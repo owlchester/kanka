@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
-use App\Facades\EntityCache;
 use App\Facades\Img;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Blameable;
@@ -29,8 +28,7 @@ use Carbon\Carbon;
 use Collator;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -42,6 +40,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  *
  * @property int $id
  * @property ?int $entity_id
+ * @property ?string $child_type
  * @property string $name
  * @property ?string $type
  * @property ?string $entry
@@ -175,52 +174,20 @@ class Entity extends Model
     ];
 
     /**
-     * Get the child entity
+     * Get the entity's legacy child model.
      *
-     * @return HasMany|HasOne|MiscModel
+     * @return MorphTo<Model, $this>
      */
-    public function child()
+    public function child(): MorphTo
     {
-        if ($this->isAttributeTemplate()) {
-            return $this->attributeTemplate();
-        } elseif ($this->isDiceRoll()) {
-            return $this->diceRoll();
-        }
-
-        return $this->{$this->entityType->code}();
-    }
-
-    /**
-     * Child attribute
-     *
-     * @return HasMany|HasOne|MiscModel
-     */
-    public function getChildAttribute()
-    {
-        // When in console mode (queue), don't cache results as the queue won't re-validate them
-        return app()->runningInConsole() ? $this->child()->first() : EntityCache::child($this);
-    }
-
-    /**
-     * @return Entity
-     */
-    public function reloadChild()
-    {
-        if ($this->isAttributeTemplate()) {
-            return $this->load('attributeTemplate');
-        } elseif ($this->isDiceRoll()) {
-            return $this->load('diceRoll');
-        }
-
-        return $this->load($this->entityType->code);
+        return $this->morphTo('child', 'child_type', 'entity_id');
     }
 
     /**
      * Preview of the entity with mapped mentions. For map markers
      */
-    public function mappedPreview(): string
+    public function mappedPreview(Campaign $campaign): string
     {
-        $campaign = CampaignLocalization::getCampaign();
         if ($campaign->boosted()) {
             $boostedTooltip = strip_tags($this->tooltip);
             if (! empty(mb_trim($boostedTooltip))) {
@@ -582,15 +549,5 @@ class Entity extends Model
     public function getLocationPivotTableName(): string
     {
         return 'entity_locations';
-    }
-
-    /** Why did I make the code so god damn horrible in 2017 argh */
-    public function getQueueableRelations(): array
-    {
-        return array_values(array_filter(
-            parent::getQueueableRelations(),
-            fn (string $relation) => $relation !== 'child'
-                && ! str_starts_with($relation, 'child.')
-        ));
     }
 }

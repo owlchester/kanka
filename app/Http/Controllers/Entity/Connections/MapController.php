@@ -20,6 +20,10 @@ class MapController extends Controller
     {
         $this->campaign($campaign)->authEntityView($entity);
 
+        if (auth()->check()) {
+            $this->mapService->user(auth()->user());
+        }
+
         $map = $this->mapService
             ->campaign($campaign)
             ->entity($entity)

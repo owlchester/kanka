@@ -39,8 +39,11 @@ class GetEntityTool extends Tool
         abort_unless($user instanceof User, 401);
         $campaign = $context->campaign($user, (int) $arguments['campaign_id']);
         $entity = Entity::query()->with([
-            'entityType', 'status', 'character.characterFamilies.family.entity',
-            'character.characterRaces.race.entity', 'character.characterTraits', 'entityLocations.location.entity',
+            'entityType', 'status',
+            'child' => fn ($child) => $child->morphWith([
+                Character::class => ['characterFamilies.family.entity', 'characterRaces.race.entity', 'characterTraits'],
+            ]),
+            'entityLocations.location.entity',
             'entityTags.tag.entity',
         ])->where('campaign_id', $campaign->id)->findOrFail($arguments['entity_id']);
         Gate::forUser($user)->authorize('view', $entity);
@@ -74,7 +77,8 @@ class GetEntityTool extends Tool
             'entry_truncated' => mb_strlen((string) $post->entry) > 4000,
             'updated_at' => $post->updated_at?->toIso8601String(),
         ])->values()->all();
-        $character = $entity->character;
+        $character = $entity->child instanceof Character ? $entity->child : null;
+        $character?->setRelation('entity', $entity);
         $visibleEntity = fn ($linkedEntity) => $linkedEntity && Gate::forUser($user)->allows('view', $linkedEntity);
         $locations = $entity->entityLocations->filter(fn ($link) => $visibleEntity($link->location?->entity))
             ->map(fn ($link) => ['id' => $link->location->entity->id, 'name' => $link->location->entity->name, 'url' => $link->location->entity->url()])->values()->all();

@@ -719,9 +719,10 @@ class MentionsService
         }
 
         // Directly get with the mentioned entity types (provided they are valid)
-        $entities = Entity::whereIn('id', $ids)->with(['tags:id,name,slug', 'entityType:id,code,is_special'])->get();
+        $entities = Entity::whereIn('id', $ids)->with(['tags:id,name,slug', 'entityType:id,code,is_special', 'child'])->get();
         // dump(count($ids));
         foreach ($entities as $entity) {
+            $entity->child?->setRelation('entity', $entity);
             $this->entities[$entity->id] = $entity;
             $findKey = array_search($entity->id, $ids);
             unset($ids[$findKey]);
