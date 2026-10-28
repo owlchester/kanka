@@ -24,7 +24,7 @@ You can get a list of all the quests of a campaign by using the following endpoi
 
 ### URL Parameters
 
-The list of returned entities can be filtered. The available filters are [available here](/api-docs/{{version}}/misc/filters)
+The list of returned entities can be filtered. The available filters are [available here](/api-docs/{{version}}/misc/filters). To match multiple statuses, repeat the array query parameter, for example `?status_id[]=9&status_id[]=10`.
 
 ### Results
 ```json

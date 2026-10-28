@@ -286,6 +286,8 @@ trait EntityScopes
                 continue;
             } elseif (is_array($values) && empty(array_filter($values, fn ($v) => $v !== '' && $v !== null))) {
                 continue;
+            } elseif ($name === 'status_id' && is_array($values)) {
+                $query->whereIn('entities.status_id', $values);
             } elseif (in_array($name, ['is_private', 'parent_id', 'status_id'])) {
                 $query->where('entities.' . $name, $values);
             } elseif (in_array($name, ['name', 'type'])) {
