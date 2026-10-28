@@ -26,7 +26,13 @@ class MapResource extends JsonResource
         $isTiled = $map->isTiled();
         $tiling = $map->tilingRunning() ? 'running' : ($map->tilingError() ? 'error' : null);
         $center = array_map('floatval', explode(', ', $map->centerFocus()));
+        $initialZoom = $map->initialZoom();
         $focusPinId = null;
+
+        $requestedZoom = $request->query('zoom');
+        if (is_numeric($requestedZoom) && is_finite((float) $requestedZoom)) {
+            $initialZoom = min($map->maxZoom(), max($map->minZoom(), (float) $requestedZoom));
+        }
 
         if ($request->filled('lat') && $request->filled('lng')) {
             $center = [(float) $request->query('lat'), (float) $request->query('lng')];
@@ -52,7 +58,7 @@ class MapResource extends JsonResource
             'height' => (int) ($map->height ?: 1000),
             'min_zoom' => $map->minZoom(),
             'max_zoom' => $map->maxZoom(),
-            'initial_zoom' => $map->initialZoom(),
+            'initial_zoom' => $initialZoom,
             'tile_min_zoom' => $isTiled ? $map->entity->image->tileMinZoom() : null,
             'tile_max_zoom' => $isTiled ? $map->entity->image->tileMaxZoom() : null,
             'center' => $center,

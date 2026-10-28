@@ -474,6 +474,48 @@ it('prefers lat/lng over focus when both are present', function () {
     expect($response->json('map.center'))->toBe([12.5, 34.5]);
 });
 
+it('overrides the initial zoom from the zoom query parameter without changing saved settings', function (string $zoom, float|int $expectedZoom) {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create([
+        'campaign_id' => 1,
+        'min_zoom' => 2,
+        'max_zoom' => 8,
+        'initial_zoom' => 4,
+    ]);
+
+    $response = $this->get(route('entities.map-api', [1, $map->entity, 'zoom' => $zoom]))
+        ->assertSuccessful();
+
+    expect($response->json('map.initial_zoom'))->toBe($expectedZoom)
+        ->and($response->json('map.settings.initial_zoom'))->toBe(4);
+})->with([
+    'lower bound' => ['1', 2],
+    'upper bound' => ['9', 8],
+    'fractional zoom' => ['5.5', 5.5],
+]);
+
+it('ignores an invalid zoom query parameter', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1, 'initial_zoom' => 4]);
+
+    $response = $this->get(route('entities.map-api', [1, $map->entity, 'zoom' => 'invalid']))
+        ->assertSuccessful();
+
+    expect($response->json('map.initial_zoom'))->toBe(4);
+});
+
+it('applies a zoom override together with a focused marker', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1, 'min_zoom' => 2, 'max_zoom' => 8]);
+    $marker = MapMarker::factory()->create(['map_id' => $map->id, 'latitude' => 5.5, 'longitude' => 6.6]);
+
+    $response = $this->get(route('entities.map-api', [1, $map->entity, 'focus' => $marker->id, 'zoom' => 7]))
+        ->assertSuccessful();
+
+    expect($response->json('map.center'))->toBe([5.5, 6.6])
+        ->and($response->json('map.initial_zoom'))->toBe(7);
+});
+
 it('exposes is_draggable and move_url for a draggable pin', function () {
     $this->asUser()->withCampaign();
     $map = Map::factory()->create(['campaign_id' => 1]);

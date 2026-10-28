@@ -31,7 +31,7 @@ class ShowController extends Controller
                 ->withError(__('maps.errors.explore.missing'));
         }
 
-        $query = request()->only(['focus', 'lat', 'lng']);
+        $query = request()->only(['focus', 'lat', 'lng', 'zoom']);
 
         return view('entities.pages.map.index', compact('campaign', 'entity', 'query'));
     }

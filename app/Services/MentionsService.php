@@ -304,7 +304,9 @@ class MentionsService
                 if (! empty($data['page'])) {
                     // Let's validate this new url first. Maybe we need to map to entities/id (ex inventory)
                     $entityPages = ['inventory', 'abilities', 'relations', 'attributes', 'assets'];
-                    if (in_array($data['page'], $entityPages)) {
+                    if ($data['page'] === 'explore' && $entity->isMap()) {
+                        $url = route('entities.map', [$this->campaign, $entity->id] + $routeOptions);
+                    } elseif (in_array($data['page'], $entityPages)) {
                         $page = $data['page'];
                         if ($page === 'relations') {
                             $page = 'relations.index';
