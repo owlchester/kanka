@@ -539,6 +539,8 @@ it('includes relationship roles in standalone and campaign markdown exports', fu
         'owner_id' => $owner->entity->id,
         'target_id' => $target->entity->id,
         'relation' => 'Protects and guides',
+        'attitude' => 75,
+        'colour' => '#123456',
     ]);
 
     $standalone = app(MarkdownExportService::class)
@@ -553,9 +555,9 @@ it('includes relationship roles in standalone and campaign markdown exports', fu
         ->markdown();
 
     expect($standalone)
-        ->toContain('* **Protects and guides**: [' . $target->name . '](' . $target->entity->url() . ')')
+        ->toContain('* **Protects and guides**: [' . $target->name . '](' . $target->entity->url() . ') (75, #123456)')
         ->and($campaign)
-        ->toContain('* **Protects and guides**: [' . $target->name . '](characters/' . Str::slug($target->name) . '_' . $target->entity->id . ')');
+        ->toContain('* **Protects and guides**: [' . $target->name . '](characters/' . Str::slug($target->name) . '_' . $target->entity->id . ') (75, #123456)');
 });
 
 it('uses each direction role for mirrored relationships', function () {
@@ -574,6 +576,8 @@ it('uses each direction role for mirrored relationships', function () {
         'owner_id' => $child->entity->id,
         'target_id' => $parent->entity->id,
         'relation' => 'Child of',
+        'attitude' => -25,
+        'colour' => '#abcdef',
         'mirror_id' => $parentRelation->id,
     ]);
     $parentRelation->update(['mirror_id' => $childRelation->id]);
@@ -590,10 +594,10 @@ it('uses each direction role for mirrored relationships', function () {
         ->markdown();
 
     expect($parentMarkdown)
-        ->toContain('**Parent of**')
+        ->toContain('**Parent of**: [' . $child->name . '](' . $child->entity->url() . ') (0, mirrored)')
         ->not->toContain('**Child of**')
         ->and($childMarkdown)
-        ->toContain('**Child of**')
+        ->toContain('**Child of**: [' . $parent->name . '](' . $parent->entity->url() . ') (-25, #abcdef, mirrored)')
         ->not->toContain('**Parent of**');
 });
 

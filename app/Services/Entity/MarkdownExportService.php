@@ -377,8 +377,20 @@ class MarkdownExportService
         }
 
         $role = html_entity_decode($relation->relation, ENT_QUOTES, 'UTF-8');
+        $details = [];
+        if ($relation->attitude !== null && $relation->attitude !== '') {
+            $details[] = $relation->attitude;
+        }
+        if ($relation->colour !== '') {
+            $details[] = $relation->colour;
+        }
+        if ($relation->isMirrored()) {
+            $details[] = 'mirrored';
+        }
 
-        return '* **' . $role . '**: ' . $this->entityLink($relation->target) . "\n";
+        $metadata = $details === [] ? '' : ' (' . implode(', ', $details) . ')';
+
+        return '* **' . $role . '**: ' . $this->entityLink($relation->target) . $metadata . "\n";
     }
 
     protected function entityLink(Entity $entity): string
