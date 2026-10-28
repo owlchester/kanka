@@ -55,6 +55,12 @@ class ColumnDefinitionService
         if (in_array('locations', $available, true)) {
             $columns[] = ['key' => 'locations'];
         }
+        if (in_array('author', $available, true)) {
+            $columns[] = ['key' => 'author', 'sortKey' => 'author.name'];
+        }
+        if (in_array('instigator', $available, true)) {
+            $columns[] = ['key' => 'instigator', 'sortKey' => 'instigator.name'];
+        }
 
         return $columns;
     }
@@ -321,7 +327,7 @@ class ColumnDefinitionService
             ['key' => 'name', 'type' => 'name', 'label' => __('crud.fields.name'), 'sortable' => true, 'alwaysVisible' => true],
             ['key' => 'type', 'type' => 'text', 'label' => __('crud.fields.type'), 'sortable' => true],
             ['key' => 'parent', 'type' => 'entity', 'label' => __('crud.fields.parent'), 'sortable' => true, 'sortKey' => 'parent.name'],
-            ['key' => 'instigator', 'type' => 'entity', 'label' => __('quests.fields.instigator'), 'sortable' => false],
+            ['key' => 'instigator', 'type' => 'entity', 'label' => __('quests.fields.instigator'), 'sortable' => true, 'sortKey' => 'instigator.name'],
             ['key' => 'locations', 'type' => 'entities', 'label' => __('entities.locations'), 'sortable' => false, 'moduleGate' => 'locations'],
             ['key' => 'elements_count', 'type' => 'count', 'label' => __('quests.show.tabs.elements'), 'sortable' => false],
             ['key' => 'date', 'type' => 'text', 'label' => __('journals.fields.date'), 'sortable' => true],

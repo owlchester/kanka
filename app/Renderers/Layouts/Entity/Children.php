@@ -87,6 +87,18 @@ class Children extends Layout
                             ->map(fn ($location) => $this->entityLink($location->entity))->implode(', ');
                     },
                 ];
+            } elseif ($column['key'] === 'author') {
+                $columns['author'] = [
+                    'key' => $column['sortKey'],
+                    'label' => __('journals.fields.author'),
+                    'render' => fn (Entity $model) => $model->child?->author ? $this->entityLink($model->child->author) : '',
+                ];
+            } elseif ($column['key'] === 'instigator') {
+                $columns['instigator'] = [
+                    'key' => $column['sortKey'],
+                    'label' => __('quests.fields.instigator'),
+                    'render' => fn (Entity $model) => $model->child?->instigator ? $this->entityLink($model->child->instigator) : '',
+                ];
             }
         }
 

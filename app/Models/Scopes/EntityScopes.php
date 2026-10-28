@@ -215,7 +215,16 @@ trait EntityScopes
         $entityFields = ['name', 'type', 'is_private', 'status_id', 'created_at', 'updated_at'];
 
         foreach ($config as $field => $order) {
-            if ($field === 'parent.name') {
+            if (in_array($field, ['author.name', 'instigator.name'], true)) {
+                $relation = $field === 'author.name' ? 'author' : 'instigator';
+                $childType = $field === 'author.name' ? \App\Models\Journal::class : \App\Models\Quest::class;
+                $foreignKey = $field === 'author.name' ? 'author_id' : 'instigator_id';
+                $query->leftJoin((new $childType)->getTable() . ' as sortable_child', function ($join) use ($entityTable, $childType) {
+                    $join->on('sortable_child.id', '=', $entityTable . '.entity_id')
+                        ->where($entityTable . '.child_type', $childType);
+                })->leftJoin('entities as sortable_' . $relation, 'sortable_' . $relation . '.id', '=', 'sortable_child.' . $foreignKey)
+                    ->orderBy('sortable_' . $relation . '.name', $order);
+            } elseif ($field === 'parent.name') {
                 $query->leftJoin('entities as parent_order', 'parent_order.id', '=', $entityTable . '.parent_id')
                     ->orderBy('parent_order.name', $order);
             } elseif ($field === 'status_id') {
