@@ -13,7 +13,6 @@ use App\Models\Entity;
 use App\Models\EntityAsset;
 use App\Models\Image;
 use App\Models\Map;
-use App\Models\MiscModel;
 use App\Models\Quest;
 use App\Models\Timeline;
 use App\Notifications\Header;
@@ -94,7 +93,6 @@ class ExportService
                 ->campaignModules()
                 ->customCampaignModules()
                 ->entities()
-                ->customEntities()
                 ->gallery()
                 ->finish()
                 ->notify();
@@ -264,49 +262,30 @@ class ExportService
 
     protected function entities(): self
     {
-        $entityWith = [
-            'entity',
-            'entity.parent.entityType',
-            'entity.entityTags', 'entity.tags', 'entity.relationships',
-            'entity.posts', 'entity.posts.postTags', 'entity.abilities', 'entity.abilities.ability',
-            'entity.abilities.ability.entity.entityType', 'entity.abilities.ability.entity.parent',
-            'entity.reminders',
-            'entity.image',
-            'entity.header',
-            'entity.assets',
-            'entity.files',
-            'entity.mentions',
-            'entity.inventories', 'entity.inventories.item.entity', 'entity.inventories.image',
-            'entity.entityAttributes', 'entity.attributes',
-            'entity.assets.image',
-        ];
-        $entities = config('entities.classes-plural');
-        foreach ($entities as $entity => $class) {
-            if (! $this->campaign->enabled($entity) || ! method_exists($class, 'export')) {
+        $modulesByType = [];
+        $childRelations = [];
+        foreach (config('entities.classes') as $module => $class) {
+            $plural = Str::plural($module);
+            if (! $this->campaign->enabled($plural) || ! method_exists($class, 'export')) {
                 continue;
             }
-            try {
-                $property = Str::camel($entity);
-                $smartWith = $this->smartWith($entityWith, $class);
-                foreach ($this->campaign->$property()->with($smartWith)->has('entity')->get() as $model) {
-                    $this->process($entity, $model);
-                }
-            } catch (Exception $e) {
-                Log::error('Campaign export', ['err' => $e->getMessage()]);
-                // $saveFolder = storage_path($this->exportPath);
-                // $this->archive->saveTo($saveFolder);
-                throw new Exception(
-                    'Missing campaign entity relation: ' . $entity . '-' . $class . '? '
-                    . $e->getMessage()
-                );
+            $typeId = config('entities.ids.' . $module);
+            if (! $typeId) {
+                continue;
             }
+            $modulesByType[$typeId] = $plural;
+            $childRelations[$class] = $this->childExportRelations($class);
         }
 
-        return $this;
-    }
+        $customTypes = $this->campaign->entityTypes->where('is_special', 1)->filter->isEnabled();
+        foreach ($customTypes as $entityType) {
+            $modulesByType[$entityType->id] = Str::camel(Str::slug($entityType->plural)) . '_' . $entityType->id;
+        }
 
-    protected function customEntities(): self
-    {
+        if ($modulesByType === []) {
+            return $this;
+        }
+
         $entityWith = [
             'parent.entityType',
             'entityTags', 'tags', 'relationships',
@@ -319,61 +298,64 @@ class ExportService
             'files',
             'mentions',
             'inventories', 'inventories.item.entity', 'inventories.image',
-            'entityAttributes', 'attributes',
-            'assets.image',
+            'entityAttributes', 'attributes', 'entityLocations',
+            'assets.image', 'locations.entity', 'pinnedAliases', 'allRelationships',
         ];
 
-        $entityTypes = $this->campaign->entityTypes->where('is_special', 1)->all();
+        $query = Entity::query()
+            ->where('campaign_id', $this->campaign->id)
+            ->whereIn('type_id', array_keys($modulesByType))
+            ->with($entityWith)
+            ->where(function ($query) use ($customTypes) {
+                $query->whereIn('type_id', $customTypes->pluck('id'))
+                    ->orWhereHas('child');
+            });
 
-        foreach ($entityTypes as $entityType) {
-            if (! $entityType->isEnabled()) {
-                continue;
-            }
+        $query->with(['child' => function ($morphTo) use ($childRelations): void {
+            $morphTo->morphWith($childRelations);
+        }]);
 
-            try {
-                $base = Entity::inTypes($entityType->id)
+        try {
+            foreach ($query->lazyById(100, 'entities.id', 'id') as $entity) {
+                $module = $modulesByType[$entity->type_id];
+                $entityType = $this->campaign->entityTypes->firstWhere('id', $entity->type_id);
+                if ($entityType?->isCustom()) {
+                    $this->process($module, $entity);
 
-                    ->with($entityWith)
-                    ->get();
-
-                $name = Str::camel(Str::slug($entityType->plural)) . '_' . $entityType->id;
-                foreach ($base as $model) {
-                    $this->process($name, $model);
+                    continue;
                 }
-            } catch (Exception $e) {
-                Log::error('Campaign export', ['err' => $e->getMessage()]);
-                //                $saveFolder = storage_path($this->exportPath);
-                //                $this->archive->saveTo($saveFolder);
-                throw new Exception(
-                    'Missing campaign custom entity relation: ' . $entityType->singular . '? '
-                    . $e->getMessage()
-                );
+
+                $entity->child?->setRelation('entity', $entity);
+                if ($entity->child) {
+                    $this->process($module, $entity->child);
+                }
             }
+        } catch (Exception $e) {
+            Log::error('Campaign export', ['err' => $e->getMessage()]);
+            throw new Exception('Missing campaign entity relation: ' . $e->getMessage(), previous: $e);
         }
 
         return $this;
     }
 
-    protected function smartWith(array $with, string $entityClass): array
+    /** @return array<string> */
+    protected function childExportRelations(string $entityClass): array
     {
-        /** @var MiscModel $class */
         $class = app()->make($entityClass);
-        // @phpstan-ignore-next-line
-        foreach ($class->exportRelations() as $rel) {
-            $with[] = $rel;
-        }
-        if ($this->isMarkdown && $class instanceof Character) {
-            $with[] = 'organisationMemberships.organisation.entity';
-        }
-        if ($this->isMarkdown && $class instanceof Timeline) {
-            $with[] = 'eras.orderedElements.entity.child';
-            $with[] = 'eras.orderedElements.entity.entityType';
-        }
-        if ($this->isMarkdown && $class instanceof Quest) {
-            $with[] = 'elements.entity.entityType';
+        $relations = $class->exportRelations();
+
+        if ($this->isMarkdown) {
+            if ($entityClass === Character::class) {
+                $relations[] = 'organisationMemberships.organisation.entity';
+            } elseif ($entityClass === Timeline::class) {
+                $relations[] = 'eras.orderedElements.entity.child';
+                $relations[] = 'eras.orderedElements.entity.entityType';
+            } elseif ($entityClass === Quest::class) {
+                $relations[] = 'elements.entity.entityType';
+            }
         }
 
-        return $with;
+        return array_values(array_unique($relations));
     }
 
     protected function gallery(): self

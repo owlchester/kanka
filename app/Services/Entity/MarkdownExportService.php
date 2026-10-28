@@ -197,7 +197,12 @@ class MarkdownExportService
         }
 
         if ($this->entity->isTimeline() && $this->entity->child instanceof Timeline) {
-            foreach ($this->entity->child->eras()->with(['orderedElements.entity.child'])->ordered()->get() as $era) {
+            foreach ($this->entity->child->eras->sortBy(fn ($era) => [
+                $era->position,
+                $era->start_year,
+                $era->end_year,
+                $era->name,
+            ]) as $era) {
                 $elements = [];
                 foreach ($era->orderedElements as $element) {
                     if (! $element->visible()) {
