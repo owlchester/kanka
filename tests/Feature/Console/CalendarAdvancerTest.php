@@ -1,10 +1,14 @@
 <?php
 
+use App\Console\Commands\Entities\CalendarAdvancer;
 use App\Jobs\CalendarsClearElapsed;
 use App\Models\Calendar;
 use App\Services\Calendars\AdvancerService;
+use Illuminate\Console\OutputStyle;
 use Illuminate\Support\Facades\Exceptions;
 use Illuminate\Support\Facades\Queue;
+use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Output\BufferedOutput;
 
 it('does not report invalid calendar configuration', function () {
     Exceptions::fake();
@@ -50,14 +54,16 @@ it('continues advancing valid calendars after invalid configuration', function (
 it('reports unexpected calendar advancement failures', function () {
     Exceptions::fake();
     $this->asUser()->withCampaign();
-    $this->mock(AdvancerService::class, function ($mock): void {
+    $service = $this->mock(AdvancerService::class, function ($mock): void {
         $mock->shouldReceive('calendar')->once()->andReturnSelf();
         $mock->shouldReceive('advance')->once()->andThrow(new RuntimeException('Unexpected failure'));
     });
 
     $calendar = Calendar::factory()->create(['campaign_id' => 1, 'date' => '1-1-1']);
 
-    $this->artisan('calendar:advance')->assertSuccessful();
+    $command = new CalendarAdvancer($service);
+    $command->setOutput(new OutputStyle(new ArrayInput([]), new BufferedOutput));
+    app()->call([$command, 'handle']);
 
     Exceptions::assertReported(fn (RuntimeException $exception): bool => str_contains($exception->getMessage(), "Calendar {$calendar->id}")
         && $exception->getPrevious() instanceof RuntimeException
