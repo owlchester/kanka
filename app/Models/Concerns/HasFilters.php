@@ -91,8 +91,8 @@ trait HasFilters
 
         foreach ($this->filterParams as $key => $value) {
             if (isset($value) && in_array($key, $fields)) {
-                // The requested field is an array, which we don't support for anything other than tags, and locations ("or" searches)
-                if (is_array($value) && ! in_array($key, ['tags', 'locations', 'organisations', 'races', 'families'])) {
+                // The requested field is an array, which we only support for filters with "or" semantics.
+                if (is_array($value) && ! in_array($key, ['tags', 'locations', 'organisations', 'races', 'families', 'status_id'])) {
                     continue;
                 }
                 $this->filterOption = ! empty($params[$key . '_option']) ? $params[$key . '_option'] : null;
@@ -241,7 +241,7 @@ trait HasFilters
     {
         $operator = 'like';
         $filterValue = $value;
-        if (! in_array($key, ['tags', 'locations', 'organisations', 'races', 'families'])) {
+        if (! in_array($key, ['tags', 'locations', 'organisations', 'races', 'families', 'status_id'])) {
             if ($value == '!!') {
                 $operator = 'IS NULL';
                 $filterValue = null;
@@ -836,6 +836,17 @@ trait HasFilters
 
     protected function filterStatus(Builder $query): void
     {
+        if (is_array($this->filterValue)) {
+            $column = $this->hasEntityBackedFields() ? 'e.status_id' : $this->getTable() . '.status_id';
+            if ($this->hasEntityBackedFields()) {
+                $query->joinEntity();
+            }
+
+            $query->whereIn($column, $this->filterValue);
+
+            return;
+        }
+
         if ($this->hasEntityBackedFields()) {
             $query->joinEntity()->where('e.status_id', $this->filterValue);
 
