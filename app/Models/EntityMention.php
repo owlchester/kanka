@@ -233,6 +233,8 @@ class EntityMention extends Model
         } elseif ($column == 'type') {
             $query->orderByRaw('CASE WHEN e.type_id IS NULL THEN 1 ELSE 0 END');
             $query->orderBy('e.type_id', $order);
+        } elseif ($column == 'created_at') {
+            $query->orderBy('entity_mentions.created_at', $order);
         }
 
         return $query
