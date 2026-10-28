@@ -204,7 +204,10 @@ class IndexController extends Controller
             }
         }
         if (empty($parent) && $nested && $this->filterService->activeFiltersCount() === 0) {
-            $base->whereNull('entities.parent_id');
+            $base->where(function ($query) {
+                $query->whereNull('entities.parent_id')
+                    ->orWhereDoesntHave('parent');
+            });
         }
 
         $loadError = false;
