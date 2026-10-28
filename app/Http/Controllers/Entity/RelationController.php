@@ -61,8 +61,8 @@ class RelationController extends Controller
                 ->allRelationships()
                 ->sort(request()->only(['o', 'k']))
                 ->with([
-                    'target.location' => fn ($sub) => $sub->select('id'),
-                    'target.location.entity' => fn ($sub) => $sub->grid(),
+                    'target.locations' => fn ($sub) => $sub->select('locations.id'),
+                    'target.locations.entity' => fn ($sub) => $sub->grid(),
                 ])
                 ->paginate()
                 ->withPath(route('entities.relations_table', ['campaign' => $campaign, 'entity' => $entity, 'mode' => 'table']));

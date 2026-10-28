@@ -50,8 +50,6 @@ class EntityUpdatedJob implements ShouldQueue
      */
     public function handle()
     {
-        Log::info('EntityUpdateJob for entity #' . $this->entity->id);
-
         // Whenever the image is updated, clear the avatar cache
         if ($this->isDirty(['image_uuid', 'image_path'])) {
             Avatar::entity($this->entity)->forget();

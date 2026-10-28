@@ -44,7 +44,7 @@ class ExploreResource extends JsonResource
             $attributes[] = $entity->status->key;
         }
 
-        $child = $entity->child;
+        $child = $entity->entityType->isCustom() ? null : $entity->child;
         $child?->setRelation('entity', $entity);
         $parentEntity = $entity->parent;
 

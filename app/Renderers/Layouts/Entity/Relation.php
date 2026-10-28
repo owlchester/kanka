@@ -57,9 +57,9 @@ class Relation extends Layout
                 'render' => Standard::ENTITYLINK,
                 'with' => 'target',
             ],
-            'location' => [
-                'label' => __('entities.location'),
-                'render' => Standard::LOCATION,
+            'locations' => [
+                'label' => __('entities.locations'),
+                'render' => Standard::ENTITY_LOCATIONS,
                 'with' => 'target',
             ],
             'attitude' => [
