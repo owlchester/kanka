@@ -94,7 +94,7 @@ class FilterService
         $this->crud = $this->entityType->id . '-' . $this->campaign->id;
 
         $orderFields = array_unique(
-            array_merge(['name', 'type', 'is_private'], $sortableColumns),
+            array_merge(['name', 'type', 'is_private', 'created_at', 'updated_at'], $sortableColumns),
         );
 
         $baseFilters = [

@@ -761,9 +761,13 @@ const perPageComposable = usePerPage(perPageOptions);
 
 // Computed
 const sortableColumns = computed(() => {
-    return entityApi.columns.value.filter(
-        (col: any) => col.sortable && col.label,
-    );
+    return [
+        ...entityApi.columns.value.filter(
+            (col: any) => col.sortable && col.label,
+        ),
+        { key: "created_at", label: i18n.value.createdAt },
+        { key: "updated_at", label: i18n.value.updatedAt },
+    ];
 });
 
 const toggleableColumns = computed(() => {

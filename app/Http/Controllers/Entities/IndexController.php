@@ -257,6 +257,8 @@ class IndexController extends Controller
             'display' => __('datagrids.display.title'),
             'perPage' => __('datagrids.display.per_page'),
             'sortBy' => __('datagrids.display.sort_by'),
+            'createdAt' => __('crud.fields.created_at'),
+            'updatedAt' => __('crud.fields.updated_at'),
             'clearFilters' => __('datagrids.filters.clear'),
             'flatten' => __('datagrids.modes.flatten'),
             'nest' => __('datagrids.modes.nested'),

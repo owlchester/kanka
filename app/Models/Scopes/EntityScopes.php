@@ -212,7 +212,7 @@ trait EntityScopes
     public function scopeOrder(Builder $query, array $config = [], ?EntityType $entityType = null): Builder
     {
         $entityTable = $query->getQuery()->from;
-        $entityFields = ['name', 'type', 'is_private', 'status_id'];
+        $entityFields = ['name', 'type', 'is_private', 'status_id', 'created_at', 'updated_at'];
 
         foreach ($config as $field => $order) {
             if ($field === 'parent.name') {
