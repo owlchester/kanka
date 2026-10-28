@@ -1,6 +1,8 @@
 <?php
 
 use App\Enums\Widget;
+use App\Jobs\EntityUpdatedJob;
+use App\Jobs\EntityWebhookJob;
 use App\Livewire\Widgets\EntityListing;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
@@ -269,6 +271,55 @@ it('hydrates the inverse entity when a child entity is loaded', function () {
     expect($entity->relationLoaded('child'))
         ->toBeTrue()
         ->and($entity->child->is($character))->toBeTrue();
+});
+
+it('restores a loaded morph child and nested child relations from a queued entity', function () {
+    $character = Character::factory()->create(['campaign_id' => 1]);
+    $family = Family::factory()->create(['campaign_id' => 1]);
+    $character->characterFamilies()->create(['family_id' => $family->id]);
+
+    $entity = Entity::with('child.characterFamilies.family.entity')->findOrFail($character->entity->id);
+    $job = new EntityWebhookJob($entity, auth()->user(), 1);
+    $restored = unserialize(serialize($job));
+
+    expect($restored->entity->relationLoaded('child'))
+        ->toBeTrue()
+        ->and($restored->entity->child)->toBeInstanceOf(Character::class)
+        ->and($restored->entity->child->relationLoaded('characterFamilies'))->toBeTrue()
+        ->and($restored->entity->child->characterFamilies->first()->family->entity->id)->toBe($family->entity->id)
+        ->and($restored->entity->child->characterFamilies->first()->family->entity->child->is($family))->toBeTrue();
+});
+
+it('restores a missing or transformed morph child from a queued entity', function () {
+    $character = Character::factory()->create(['campaign_id' => 1]);
+    $entity = Entity::with('child')->findOrFail($character->entity->id);
+    $missingJob = new EntityWebhookJob($entity, auth()->user(), 1);
+    $queuedPayload = serialize($missingJob);
+
+    DB::table('characters')->where('id', $character->id)->delete();
+    $missing = unserialize($queuedPayload);
+    expect($missing->entity->relationLoaded('child'))->toBeTrue()
+        ->and($missing->entity->child)->toBeNull();
+
+    $replacement = Location::factory()->create(['campaign_id' => 1]);
+    DB::table('entities')->where('id', $entity->id)->update([
+        'entity_id' => $replacement->id,
+        'child_type' => Location::class,
+        'type_id' => config('entities.ids.location'),
+    ]);
+    $transformed = unserialize($queuedPayload);
+
+    expect($transformed->entity->child)->toBeInstanceOf(Location::class)
+        ->and($transformed->entity->child->is($replacement))->toBeTrue();
+});
+
+it('omits unneeded entity relations when serializing the entity update job', function () {
+    $character = Character::factory()->create(['campaign_id' => 1]);
+    $entity = Entity::with('child')->findOrFail($character->entity->id);
+    $job = new EntityUpdatedJob($entity);
+    $restored = unserialize(serialize($job));
+
+    expect($restored->entity->relationLoaded('child'))->toBeFalse();
 });
 
 it('keeps conversation previews bounded to five messages per child and preloads participant counts', function () {
