@@ -90,7 +90,7 @@ abstract class MiscModel extends Model
      */
     public function entity(): MorphOne
     {
-        return $this->morphOne(Entity::class, 'child', 'child_type', 'entity_id');
+        return $this->morphOne(Entity::class, 'child', 'child_type', 'entity_id')->chaperone('child');
     }
 
     /**

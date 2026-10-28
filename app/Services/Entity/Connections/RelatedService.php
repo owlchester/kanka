@@ -8,6 +8,7 @@ use App\Models\Entity;
 use App\Models\Family;
 use App\Models\Journal;
 use App\Models\Location;
+use App\Models\MiscModel;
 use App\Models\Quest;
 use App\Traits\EntityAware;
 
@@ -244,50 +245,12 @@ class RelatedService
 
     protected function loadJournals(): self
     {
-        /** @var Location $parent */
-        $parent = $this->entity->child;
-        $elements = Journal::query()
-            ->select('journals.*')
-            ->join('entities', function ($join) {
-                $join->on('entities.entity_id', '=', 'journals.id')
-                    ->where('entities.type_id', '=', config('entities.ids.journal'));
-            })
-            ->join('entity_locations', 'entity_locations.entity_id', '=', 'entities.id')
-            ->where('entity_locations.location_id', $parent->id)
-            ->with('entity')
-            ->has('entity')
-            ->get();
-        foreach ($elements as $journal) {
-            $entity = $journal->entity;
-            $this->ids[] = $entity->id;
-            $this->reasons[$entity->id][] = __('entities.journal');
-        }
-
-        return $this;
+        return $this->loadLocationChildren(Journal::class, __('entities.journal'));
     }
 
     protected function loadLocationQuests(): self
     {
-        /** @var Location $parent */
-        $parent = $this->entity->child;
-        $elements = Quest::query()
-            ->select('quests.*')
-            ->join('entities', function ($join) {
-                $join->on('entities.entity_id', '=', 'quests.id')
-                    ->where('entities.type_id', '=', config('entities.ids.quest'));
-            })
-            ->join('entity_locations', 'entity_locations.entity_id', '=', 'entities.id')
-            ->where('entity_locations.location_id', $parent->id)
-            ->with('entity')
-            ->has('entity')
-            ->get();
-        foreach ($elements as $quest) {
-            $entity = $quest->entity;
-            $this->ids[] = $entity->id;
-            $this->reasons[$entity->id][] = __('entities.quest');
-        }
-
-        return $this;
+        return $this->loadLocationChildren(Quest::class, __('entities.quest'));
     }
 
     protected function loadAuthoredJournals(): self
@@ -304,23 +267,36 @@ class RelatedService
 
     protected function loadFamilies(): self
     {
-        /** @var Location $parent */
-        $parent = $this->entity->child;
-        $elements = Family::query()
-            ->select('families.*')
-            ->join('entities', function ($join) {
-                $join->on('entities.entity_id', '=', 'families.id')
-                    ->where('entities.type_id', '=', config('entities.ids.family'));
-            })
-            ->join('entity_locations', 'entity_locations.entity_id', '=', 'entities.id')
-            ->where('entity_locations.location_id', $parent->id)
-            ->with(['entity'])
-            ->has('entity')
+        return $this->loadLocationChildren(Family::class, __('entities.family'));
+    }
+
+    /**
+     * Load child entities of a given model type attached to this location.
+     * Querying through the child model preserves its scopes and permissions.
+     *
+     * @param  class-string<MiscModel>  $modelClass
+     */
+    protected function loadLocationChildren(string $modelClass, string $reason): self
+    {
+        /** @var Location $location */
+        $location = $this->entity->child;
+
+        $models = $modelClass::query()
+            ->whereHas('entity', fn ($query) => $query->whereHas(
+                'entityLocations',
+                fn ($locations) => $locations->where('location_id', $location->id),
+            ))
+            ->with('entity:id,entity_id,child_type')
             ->get();
-        foreach ($elements as $sub) {
-            $entity = $sub->entity;
+
+        foreach ($models as $model) {
+            $entity = $model->entity;
+            if ($entity === null) {
+                continue;
+            }
+
             $this->ids[] = $entity->id;
-            $this->reasons[$entity->id][] = __('entities.family');
+            $this->reasons[$entity->id][] = $reason;
         }
 
         return $this;

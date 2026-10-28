@@ -15,8 +15,10 @@ use App\Models\Family;
 use App\Models\Journal;
 use App\Models\Location;
 use App\Models\Map;
+use App\Models\Quest;
 use App\Models\TimelineElement;
 use App\Services\Entity\ColumnDefinitionService;
+use App\Services\Entity\Connections\RelatedService;
 use App\Services\Entity\StandardEntityCreationService;
 use App\Services\Search\LiveSearchService;
 use App\Services\Search\TemplateSearchService;
@@ -89,6 +91,29 @@ it('loads map placement through the child rather than an unrelated entity alias'
     expect($entity->child)->toBeInstanceOf(Map::class)
         ->and($entity->child->relationLoaded('location'))->toBeTrue()
         ->and($entity->child->location->entity->id)->toBe($location->entity->id);
+});
+
+it('loads location-associated journal quest and family entities through polymorphic children', function () {
+    $location = Location::factory()->create(['campaign_id' => 1]);
+    $journal = Journal::factory()->create(['campaign_id' => 1]);
+    $quest = Quest::factory()->create(['campaign_id' => 1]);
+    $family = Family::factory()->create(['campaign_id' => 1]);
+
+    foreach ([$journal, $quest, $family] as $child) {
+        DB::table('entity_locations')->insert([
+            'entity_id' => $child->entity->id,
+            'location_id' => $location->id,
+        ]);
+    }
+
+    $service = app(RelatedService::class)->entity($location->entity);
+    foreach (['loadJournals', 'loadLocationQuests', 'loadFamilies'] as $loader) {
+        (new ReflectionMethod(RelatedService::class, $loader))->invoke($service);
+    }
+
+    expect($service->connectionsText($journal->entity->id))->toContain(__('entities.journal'))
+        ->and($service->connectionsText($quest->entity->id))->toContain(__('entities.quest'))
+        ->and($service->connectionsText($family->entity->id))->toContain(__('entities.family'));
 });
 
 it('batches API child lookups by concrete type only when the response needs them', function (bool $withImage) {
@@ -209,6 +234,41 @@ it('resolves lookup and template search through the child for underscored catego
         ->search();
     expect($templates)->toHaveCount(1)
         ->and($templates[0]['id'])->toBe($child->entity->id);
+});
+
+it('filters childless entities before limiting template search results', function () {
+    $type = EntityType::findOrFail(config('entities.ids.character'));
+    $ghosts = Character::factory()->count(12)->create(['campaign_id' => 1]);
+    foreach ($ghosts as $ghost) {
+        $ghost->entity->updateQuietly(['is_template' => true]);
+        DB::table('entities')->where('id', $ghost->entity->id)->update([
+            'entity_id' => null,
+            'child_type' => null,
+        ]);
+    }
+    $valid = app(StandardEntityCreationService::class)
+        ->campaign(Campaign::findOrFail(1))
+        ->entityType($type)
+        ->create(['name' => 'Valid template']);
+    $valid->entity->updateQuietly(['is_template' => true]);
+
+    $templates = app(TemplateSearchService::class)
+        ->campaign(Campaign::findOrFail(1))
+        ->entityType($type)
+        ->request(Request::create('/', 'GET'))
+        ->search();
+
+    expect($templates)->toHaveCount(1)
+        ->and($templates[0]['id'])->toBe($valid->entity->id);
+});
+
+it('hydrates the inverse entity when a child entity is loaded', function () {
+    $character = Character::factory()->create(['campaign_id' => 1]);
+    $entity = Character::query()->with('entity')->findOrFail($character->id)->entity;
+
+    expect($entity->relationLoaded('child'))
+        ->toBeTrue()
+        ->and($entity->child->is($character))->toBeTrue();
 });
 
 it('keeps conversation previews bounded to five messages per child and preloads participant counts', function () {

@@ -31,17 +31,21 @@ class LiveSearchService
         if ($withParent) {
             $with[] = 'parent';
         }
-        if ($this->request->filled('with-family')) {
+        $withFamily = $this->request->filled('with-family') && $this->entityType->id === config('entities.ids.character');
+        $withChild = $withFamily || $this->entityType->code === 'tag';
+        if ($withFamily) {
             $with['child'] = fn ($child) => $child->morphWith([
                 Character::class => ['families.entity'],
             ]);
+        } elseif ($withChild) {
+            $with[] = 'child';
         }
         $this->query = Entity::inTypes($this->entityType->id);
+        if ($this->entityType->isStandard()) {
+            $this->query->whereHasMorph('child', $this->entityType->getMiscClass()::class);
+        }
         if (! empty($excludes)) {
             $this->query->whereNotIn('id', [$excludes]);
-        }
-        if ($this->entityType->isStandard() && ! isset($with['child'])) {
-            $with[] = 'child';
         }
         $this->query->with($with);
         $this->order($term);
@@ -54,13 +58,9 @@ class LiveSearchService
         $list = [];
         /** @var Entity $entity */
         foreach ($entities as $entity) {
-            $child = $entity->child;
-            $child?->setRelation('entity', $entity);
-            if ($this->entityType->isStandard() && $child === null) {
-                continue;
-            }
+            $child = $withChild ? $entity->child : null;
             $format = [
-                'id' => $this->entityType->isCustom() || $onlyEntity ? $entity->id : $child->id,
+                'id' => $this->entityType->isCustom() || $onlyEntity ? $entity->id : $entity->entity_id,
                 'entity_id' => $entity->id,
                 'name' => $entity->name,
                 'text' => $entity->name,
@@ -68,7 +68,7 @@ class LiveSearchService
             if ($withParent && $entity->parent) {
                 $format['text'] .= ' (' . $entity->parent->name . ')';
             }
-            if ($child instanceof Tag && $child->hasColour()) {
+            if ($this->entityType->code === 'tag' && $child instanceof Tag && $child->hasColour()) {
                 $format['colour'] = $child->colour;
                 $format['colour_style'] = $child->colourStyle();
             }

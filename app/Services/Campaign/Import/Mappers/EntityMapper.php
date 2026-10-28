@@ -73,9 +73,10 @@ trait EntityMapper
         $mapping = ['is_private', 'campaign_id'];
         $entityMapping = ['tooltip', 'is_template', 'is_attributes_private', 'focus_x', 'focus_y', 'entry', 'type', 'type_id', 'status_id'];
         $this->entity = new Entity;
-        $this->entity->entity_id = $this->model->id;
         if ($this->model instanceof MiscModel) {
-            $this->entity->child_type = $this->model::class;
+            $this->entity->child()->associate($this->model);
+        } else {
+            $this->entity->entity_id = $this->model->id;
         }
         $this->entity->created_by = $this->user->id;
         $this->entity->updated_by = $this->user->id;

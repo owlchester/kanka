@@ -293,11 +293,9 @@ class TransformService
         $this->entity->status_id = $this->defaultStatusId();
         // If attached to a misc model, save the entity_id
         if (isset($this->new)) {
-            $this->entity->entity_id = $this->new->id;
-            $this->entity->child_type = $this->new::class;
+            $this->entity->child()->associate($this->new);
         } else {
-            $this->entity->entity_id = null;
-            $this->entity->child_type = null;
+            $this->entity->child()->dissociate();
         }
         $this->entity->unsetRelation('child');
         $this->entity->saveQuietly();

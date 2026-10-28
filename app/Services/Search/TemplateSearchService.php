@@ -29,23 +29,18 @@ class TemplateSearchService
         if (! empty($excludes)) {
             $this->query->whereNotIn('id', [$excludes]);
         }
-        if ($this->entityType->isStandard()) {
-            $with[] = 'child';
-        }
         $this->query->with($with);
         $this->order($term);
 
-        $entities = $this->query
-            ->template() // @phpstan-ignore-line
-            ->limit(10)
-            ->get();
+        $query = $this->query->template(); // @phpstan-ignore-line
+        if ($this->entityType->isStandard()) {
+            $query->whereHasMorph('child', $this->entityType->getMiscClass()::class);
+        }
+        $entities = $query->limit(10)->get();
 
         $list = [];
         /** @var Entity $entity */
         foreach ($entities as $entity) {
-            if ($this->entityType->isStandard() && $entity->child === null) {
-                continue;
-            }
             $format = [
                 'id' => $entity->id,
                 'entity_id' => $entity->id,
