@@ -7,6 +7,7 @@ use App\Http\Requests\StoreCampaignDashboardWidget as Request;
 use App\Http\Resources\CampaignDashboardWidgetResource as Resource;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
+use App\Models\Entity;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -52,6 +53,7 @@ class CampaignDashboardWidgetApiController extends ApiController
         }
 
         $data = array_merge(['campaign_id' => $campaign->id], $request->all());
+        $data = $this->prepareWidgetTarget($data);
         $model = CampaignDashboardWidget::create($data);
 
         return new Resource($model);
@@ -63,7 +65,9 @@ class CampaignDashboardWidgetApiController extends ApiController
     public function update(Request $request, Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
     {
         $this->authorize('update', $campaign);
-        $campaignDashboardWidget->update($request->all());
+        $data = $request->all();
+        $data = $this->prepareWidgetTarget($data);
+        $campaignDashboardWidget->update($data);
 
         return new Resource($campaignDashboardWidget);
     }
@@ -79,5 +83,18 @@ class CampaignDashboardWidgetApiController extends ApiController
         $campaignDashboardWidget->delete();
 
         return response()->json(null, 204);
+    }
+
+    protected function prepareWidgetTarget(array $data): array
+    {
+        if (($data['widget'] ?? null) !== Widget::Header->value) {
+            return $data;
+        }
+
+        $data['target_type'] = isset($data['entity_id']) ? Entity::class : null;
+        $data['target_id'] = $data['entity_id'] ?? null;
+        $data['entity_id'] = null;
+
+        return $data;
     }
 }

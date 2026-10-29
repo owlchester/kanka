@@ -8,6 +8,7 @@ use App\Http\Requests\StoreCampaignDashboardWidget;
 use App\Models\Campaign;
 use App\Models\CampaignDashboard;
 use App\Models\CampaignDashboardWidget;
+use App\Models\Entity;
 use App\Services\EntityTypeService;
 
 class DashboardWidgetController extends Controller
@@ -92,6 +93,7 @@ class DashboardWidgetController extends Controller
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
+        $data = $this->prepareWidgetTarget($data);
         $widget = CampaignDashboardWidget::create($data);
 
         return redirect()
@@ -140,6 +142,7 @@ class DashboardWidgetController extends Controller
         $input = $request->all();
         // force entity_id to take null if not present in data
         $input['entity_id'] = $request->input('entity_id');
+        $input = $this->prepareWidgetTarget($input);
 
         $campaignDashboardWidget->update($input);
 
@@ -158,5 +161,18 @@ class DashboardWidgetController extends Controller
             ->route('dashboard.setup', $campaignDashboardWidget->dashboard_id ?
                 [$campaign, 'dashboard' => $campaignDashboardWidget->dashboard_id] : $campaign)
             ->with('success', __('dashboard.widgets.delete.success'));
+    }
+
+    protected function prepareWidgetTarget(array $data): array
+    {
+        if (($data['widget'] ?? null) !== Widget::Header->value) {
+            return $data;
+        }
+
+        $data['target_type'] = isset($data['entity_id']) ? Entity::class : null;
+        $data['target_id'] = $data['entity_id'] ?? null;
+        $data['entity_id'] = null;
+
+        return $data;
     }
 }
