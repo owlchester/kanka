@@ -11,6 +11,12 @@
             {{ $widget->conf('text') }}
         </{{ $widget->customSize() }}>
     </a>
+@elseif ($widget->target instanceof \App\Models\CampaignDashboard)
+    <a href="{{ route('dashboard', [$campaign, 'dashboard' => $widget->target->id]) }}">
+        <{{ $widget->customSize() }} class="text-2xl widget-header-text text-center my-4 {{ $widget->customClass() }}" id="dashboard-widget-{{ $widget->id }}">
+            {{ $widget->conf('text') }}
+        </{{ $widget->customSize() }}>
+    </a>
 @else
     <{{ $widget->customSize() }} class="widget-header-text text-center my-4 {{ $widget->customClass() }} text-2xl " id="dashboard-widget-{{ $widget->id }}">
         {{ $widget->conf('text') }}

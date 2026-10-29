@@ -68,6 +68,7 @@ class DashboardWidgetController extends Controller
 
         $dashboard = request()->has('dashboard') ?
             CampaignDashboard::where('id', request()->get('dashboard'))->first() : null;
+        $dashboards = $campaign->premium() ? CampaignDashboard::where('campaign_id', $campaign->id)->orderBy('name')->pluck('name', 'id')->toArray() : [];
 
         $widgetClass = new CampaignDashboardWidget;
         $widgetClass->widget = $widget;
@@ -78,6 +79,8 @@ class DashboardWidgetController extends Controller
             'widgetClass' => $widgetClass,
             'entityTypes' => $entityTypes,
             'dashboard' => $dashboard,
+            'dashboards' => $dashboards,
+            'premium' => $campaign->premium(),
         ]);
     }
 
@@ -111,10 +114,7 @@ class DashboardWidgetController extends Controller
     {
         $this->authorize('dashboard', $campaign);
 
-        $dashboards = ['' => __('dashboard.dashboards.default.title')];
-        foreach (CampaignDashboard::orderBy('name')->pluck('name', 'id')->toArray() as $id => $dashboard) {
-            $dashboards[$id] = $dashboard;
-        }
+        $dashboards = $campaign->premium() ? CampaignDashboard::where('campaign_id', $campaign->id)->orderBy('name')->pluck('name', 'id')->toArray() : [];
 
         $entityTypes = $this->entityTypeService
             ->campaign($campaign)
@@ -128,6 +128,7 @@ class DashboardWidgetController extends Controller
             'widget' => $campaignDashboardWidget->widget->value,
             'entityTypes' => $entityTypes,
             'dashboards' => $dashboards,
+            'premium' => $campaign->premium(),
         ]);
     }
 
@@ -169,8 +170,18 @@ class DashboardWidgetController extends Controller
             return $data;
         }
 
-        $data['target_type'] = isset($data['entity_id']) ? Entity::class : null;
-        $data['target_id'] = $data['entity_id'] ?? null;
+        $targetType = $data['target_type'] ?? null;
+        if ($targetType === 'dashboard') {
+            $data['target_type'] = CampaignDashboard::class;
+            $data['target_id'] = $data['target_dashboard_id'] ?? null;
+        } elseif ($targetType === 'entity') {
+            $data['target_type'] = Entity::class;
+            $data['target_id'] = $data['entity_id'] ?? null;
+        } else {
+            $data['target_type'] = null;
+            $data['target_id'] = null;
+        }
+        unset($data['target_dashboard_id']);
         $data['entity_id'] = null;
 
         return $data;
