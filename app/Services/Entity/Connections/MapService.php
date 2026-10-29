@@ -195,64 +195,85 @@ class MapService
      */
     protected function addRelations(Entity $entity): self
     {
-        // dump('add relations for ' . $entity->name);
-        if (Arr::has($this->entityIds, (string) $entity->id)) {
+        return $this->addRelationsForEntities([$entity]);
+    }
+
+    /**
+     * Load relations for multiple owners in one query.
+     *
+     * @param  iterable<Entity>  $entities
+     */
+    protected function addRelationsForEntities(iterable $entities): self
+    {
+        $owners = [];
+        foreach ($entities as $entity) {
+            if (Arr::has($this->entityIds, (string) $entity->id)) {
+                continue;
+            }
+
+            $this->entityIds[$entity->id] = true;
+            $owners[$entity->id] = $entity;
+        }
+
+        if ($owners === []) {
             return $this;
         }
-        $this->entityIds[$entity->id] = true;
 
-        // Get the relations directly from this entity
         /** @var Relation[] $relations */
-        $relations = $entity->relationships()
+        $relations = Relation::query()
+            ->whereIn('owner_id', array_keys($owners))
             ->select('relations.*')
-            ->with(['target', 'target.entityType', 'mirror', 'target.image'])
+            ->with(['target', 'target.entityType', 'target.child', 'mirror', 'target.image'])
             ->has('target')
             ->leftJoin('entities as t', 't.id', '=', 'relations.target_id')
-            ->get();
+            ->get()
+            ->groupBy('owner_id');
 
-        foreach ($relations as $relation) {
-            if ($relation->target === null) {
-                continue;
-            }
-
-            // Don't add mirrored relations
-            if ($relation->isMirrored()) {
-                if (Arr::has($this->mirrors, $relation->mirror_id . '-' . $relation->id)) {
+        foreach ($owners as $ownerId => $owner) {
+            foreach ($relations->get($ownerId, []) as $relation) {
+                if ($relation->target === null) {
                     continue;
                 }
-            }
-            // Relation already loaded
-            if (in_array($relation->id, $this->relationIds)) {
-                continue;
-            }
 
-            if ($this->withEntity) {
-                $this->addEntity($relation->target);
-            }
+                // Don't add mirrored relations
+                if ($relation->isMirrored()) {
+                    if (Arr::has($this->mirrors, $relation->mirror_id . '-' . $relation->id)) {
+                        continue;
+                    }
+                }
+                // Relation already loaded
+                if (in_array($relation->id, $this->relationIds)) {
+                    continue;
+                }
 
-            $this->relations[] = [
-                'source' => $relation->owner_id,
-                'target' => $relation->target_id,
-                'text' => $relation->relation,
-                'colour' => $relation->colour,
-                'attitude' => $relation->attitude,
-                'type' => 'entity-relation',
-                'is_mirrored' => $relation->isMirrored(),
-                'shape' => $relation->isMirrored() && $relation->mirror && $relation->relation == $relation->mirror->relation ? 'none' : 'triangle',
-                'edit_url' => route('entities.relations.edit', [
-                    'campaign' => $this->campaign,
-                    'entity' => $relation->owner_id,
-                    'relation' => $relation,
-                    'from' => $this->entity->id,
-                    'mode' => 'map',
-                    'option' => $this->option,
-                ]),
-            ];
+                if ($this->withEntity) {
+                    $this->addEntity($relation->target);
+                }
 
-            if ($relation->isMirrored() && $relation->mirror && $relation->relation && $relation->relation == $relation->mirror->relation) {
-                $this->mirrors[$relation->id . '-' . $relation->mirror_id] = true;
+                $this->relations[] = [
+                    'source' => $relation->owner_id,
+                    'target' => $relation->target_id,
+                    'text' => $relation->relation,
+                    'colour' => $relation->colour,
+                    'attitude' => $relation->attitude,
+                    'type' => 'entity-relation',
+                    'is_mirrored' => $relation->isMirrored(),
+                    'shape' => $relation->isMirrored() && $relation->mirror && $relation->relation == $relation->mirror->relation ? 'none' : 'triangle',
+                    'edit_url' => route('entities.relations.edit', [
+                        'campaign' => $this->campaign,
+                        'entity' => $relation->owner_id,
+                        'relation' => $relation,
+                        'from' => $this->entity->id,
+                        'mode' => 'map',
+                        'option' => $this->option,
+                    ]),
+                ];
+
+                if ($relation->isMirrored() && $relation->mirror && $relation->relation && $relation->relation == $relation->mirror->relation) {
+                    $this->mirrors[$relation->id . '-' . $relation->mirror_id] = true;
+                }
+                $this->relationIds[] = $relation->id;
             }
-            $this->relationIds[] = $relation->id;
         }
 
         return $this;
@@ -895,11 +916,10 @@ class MapService
         $entities = $this->entity->child
             // @phpstan-ignore-next-line
             ->entities()
-            ->with(['image'])
+            ->with(['image', 'entityType', 'child'])
             ->get();
         foreach ($entities as $entity) {
             $this->addEntity($entity);
-            $this->addRelations($entity);
 
             $this->relations[] = [
                 'source' => $entity->id,
@@ -911,6 +931,8 @@ class MapService
                 'shape' => 'triangle',
             ];
         }
+
+        $this->addRelationsForEntities($entities);
 
         return $this;
     }
@@ -954,9 +976,7 @@ class MapService
         }
 
         $entities = Entity::whereIn('id', $relatedEntityIds)->get();
-        foreach ($entities as $entity) {
-            $this->addRelations($entity);
-        }
+        $this->addRelationsForEntities($entities);
 
         return $this;
     }
