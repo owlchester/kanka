@@ -50,22 +50,13 @@ abstract class DatagridFilter
         return $this;
     }
 
-    /**
-     * Add the location filters
-     */
-    protected function location(): self
+    protected function locations(): self
     {
-        $name = Module::singular(config('entities.ids.location'));
-        $placeholder = __('crud.placeholders.location');
-        if (! empty($name)) {
-            $placeholder = __('crud.placeholders.fallback', ['module' => $name]);
-        }
         $this->filters[] = [
-            'field' => 'location_id',
-            'label' => Module::singular(config('entities.ids.location'), __('entities.location')),
+            'field' => 'locations',
+            'label' => Module::plural(config('entities.ids.location'), __('entities.locations')),
             'type' => 'select2',
             'route' => route('search-list', [$this->campaign, config('entities.ids.location')]),
-            'placeholder' => $placeholder,
             'model' => Location::class,
             'withChildren' => true,
         ];

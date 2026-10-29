@@ -424,7 +424,7 @@ class ColumnDefinitionService
             ['key' => 'price', 'type' => 'text', 'label' => __('items.fields.price'), 'sortable' => true],
             ['key' => 'size', 'type' => 'text', 'label' => __('items.fields.size'), 'sortable' => true],
             ['key' => 'weight', 'type' => 'text', 'label' => __('items.fields.weight'), 'sortable' => true],
-            ['key' => 'location', 'type' => 'entity', 'label' => __('entities.location'), 'sortable' => true, 'sortKey' => 'location.name', 'moduleGate' => 'locations'],
+            ['key' => 'locations', 'type' => 'entities', 'label' => __('entities.locations'), 'sortable' => false, 'moduleGate' => 'locations'],
             ['key' => 'creators', 'type' => 'entities', 'label' => __('items.fields.creators'), 'sortable' => false],
             ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => true],
             ['key' => 'is_private', 'type' => 'private', 'label' => __('crud.fields.is_private'), 'sortable' => true, 'adminOnly' => true],

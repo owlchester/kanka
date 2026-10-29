@@ -8,7 +8,7 @@
 @if ($model->weight)
 | {{ __('items.fields.weight') }} | {{ $model->weight }} |
 @endif
-@include('entities.components.profile._location')
+@include('entities.components.profile._locations')
 @if ($model->itemCreators->isNotEmpty())
 | {{ __('items.fields.creators') }} | @foreach ($model->itemCreators as $itemCreator){!! $itemCreator->creator->name !!}@if (!$loop->last), @endif @endforeach |
 @endif

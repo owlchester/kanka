@@ -11,7 +11,7 @@ class ItemBulk extends Bulk
         'size',
         'weight',
         'parent_id',
-        'location_id',
+        'locations',
         'creators',
         'status_id',
         'tags',

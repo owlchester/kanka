@@ -23,6 +23,7 @@ class ItemResource extends EntityResource
             'size' => $model->size,
             'weight' => $model->weight,
             'creators' => $model->itemCreators->pluck('creator_id'),
+            'locations' => $model->entity->locations->pluck('id'),
         ]);
     }
 }

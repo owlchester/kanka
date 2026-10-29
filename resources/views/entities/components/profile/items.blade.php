@@ -31,7 +31,7 @@ $child = $entity->child;
         </div>
     @endif
 
-    @include('entities.components.profile._location')
+    @include('entities.components.profile._locations')
 
     @if ($child->itemCreators->isNotEmpty())
         <div class="element profile-creator">
