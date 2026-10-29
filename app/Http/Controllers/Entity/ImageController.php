@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Entity;
 
+use App\Facades\Avatar;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreImageFocus;
 use App\Http\Requests\UpdateEntityImage;
 use App\Models\Campaign;
 use App\Models\Entity;
+use App\Models\Image;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
 
@@ -38,16 +40,50 @@ class ImageController extends Controller
     {
         $this->authorize('update', $entity);
 
-        // Gallery image?
-        $source = empty($entity->image_path) && $entity->image ? $entity->image : $entity;
+        abort_unless($campaign->boosted(), 403);
 
-        $source->focus_x = (int) $request->post('focus_x');
-        $source->focus_y = (int) $request->post('focus_y');
+        // Gallery image?
+        $imageUuid = $request->validated('image_uuid');
+        $source = $imageUuid
+            ? Image::where('campaign_id', $campaign->id)->findOrFail($imageUuid)
+            : (empty($entity->image_path) && $entity->image ? $entity->image : $entity);
+
+        if ($source instanceof Image && $entity->image_uuid !== $source->id) {
+            $this->authorize('view', [$source, $campaign]);
+        }
+
+        $source->focus_x = $request->validated('focus_x');
+        $source->focus_y = $request->validated('focus_y');
         $source->save();
+
+        if ($request->expectsJson()) {
+            return response()->json([
+                'toast' => __('entities/image.focus.success'),
+                'thumbnail' => $source instanceof Image
+                    ? $source->getUrl(160, 160)
+                    : Avatar::entity($entity)->size(160, 160)->thumbnail(),
+            ]);
+        }
 
         return redirect()
             ->to($entity->url())
             ->with('success', __('entities/image.focus.success'));
+    }
+
+    public function focusImage(Campaign $campaign, Entity $entity, Image $image)
+    {
+        $this->authorize('update', $entity);
+        abort_unless($campaign->boosted(), 403);
+        abort_unless($image->campaign_id === $campaign->id, 404);
+        if ($entity->image_uuid !== $image->id) {
+            $this->authorize('view', [$image, $campaign]);
+        }
+
+        return response()->json([
+            'url' => $image->url(),
+            'focus_x' => $image->focus_x,
+            'focus_y' => $image->focus_y,
+        ]);
     }
 
     /**

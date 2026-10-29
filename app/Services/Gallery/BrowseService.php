@@ -65,6 +65,7 @@ class BrowseService
                 'icon' => 'fa-regular fa-folder',
                 'url' => $image->isFolder() ? route('gallery.browse', [$this->campaign, 'folder' => $image->id]) : null,
                 'thumbnail' => $image->getUrl(192, 144),
+                'selection_thumbnail' => $image->getUrl(160, 160),
                 'ext' => $image->isFolder() ? null : strtoupper($image->ext),
                 'size' => $image->isFolder() ? null : $image->niceSize(),
                 'image_count' => $image->isFolder() ? $image->images_count : null,

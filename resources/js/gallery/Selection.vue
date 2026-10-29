@@ -159,6 +159,16 @@
                 <span class="text-sm font-medium">{{ trans.gallery }}</span>
             </button>
 
+            <button
+                v-if="canFocusProp && hasImage() && currentUuid"
+                type="button"
+                class="text-left px-3 py-2 hover:bg-base-200 transition-colors duration-150 flex gap-2 items-center"
+                @click.stop="openFocusPicker"
+            >
+                <i class="fa-regular fa-crosshairs w-6 text-center text-neutral-content" aria-hidden="true"></i>
+                <span class="text-sm font-medium">{{ trans.change_focus }}</span>
+            </button>
+
             <!-- Remove image -->
             <button
                 v-if="hasImage()"
@@ -182,6 +192,33 @@
                 </span>
                 <span class="text-sm"></span>
             </button>
+
+        </div>
+
+        <div v-if="focusOpen" ref="focusPickerRef" class="absolute left-0 top-full z-[60] mt-1 w-80 rounded-xl bg-base-100 p-3 shadow-xl" @click.stop>
+            <div class="mb-2 flex items-center justify-between gap-2">
+                <span class="text-sm font-medium">{{ trans.change_focus }}</span>
+                <button type="button" class="text-neutral-content" @click="cancelFocus" :aria-label="trans.cancel">
+                    <i class="fa-regular fa-xmark" aria-hidden="true"></i>
+                </button>
+            </div>
+            <p class="mb-2 text-xs text-neutral-content">{{ trans.focus_warning }}</p>
+            <div v-if="focusLoading" class="flex h-40 items-center justify-center">
+                <i class="fa-solid fa-spin fa-spinner" aria-label="Loading"></i>
+            </div>
+            <div v-else-if="focusUrl" ref="focusFrame" class="relative mx-auto flex max-h-56 w-fit max-w-full cursor-crosshair items-center justify-center overflow-hidden" @pointerdown="startFocusDrag" @pointermove="moveFocusPoint" @pointerup="endFocusDrag" @pointercancel="endFocusDrag">
+                <img ref="focusImage" :src="focusUrl" class="max-h-56 max-w-full select-none object-contain" draggable="false" alt="" @load="setFocusFromCoordinates" />
+                <span v-if="focusPoint" class="pointer-events-none absolute -translate-x-1/2 -translate-y-1/2 text-2xl text-white drop-shadow" :style="{ left: focusPoint.x + '%', top: focusPoint.y + '%' }" aria-hidden="true">
+                    <i class="fa-duotone fa-arrow-up-left-from-circle" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div class="mt-3 grid grid-cols-2 gap-2">
+                <button v-if="focusPoint" type="button" class="btn2 btn-error w-full min-w-0 px-2 text-sm" @click="removeFocusPoint">{{ trans.remove_focus }}</button>
+                <button type="button" class="btn2 btn-primary w-full min-w-0 px-2 text-sm" :class="{ 'col-span-2': !focusPoint }" :disabled="focusSaving || focusLoading" @click="saveFocusPoint">
+                    <i v-if="focusSaving" class="fa-solid fa-spin fa-spinner" aria-hidden="true"></i>
+                    {{ trans.save_focus }}
+                </button>
+            </div>
         </div>
 
         <!-- Hidden file input (triggered programmatically) -->
@@ -261,6 +298,9 @@ const props = defineProps<{
     premium: string;
     canUpload: string;
     canBrowse: string;
+    canFocus: string;
+    focusSave: string;
+    focusData: string;
 }>();
 
 const loading = ref(true);
@@ -291,8 +331,18 @@ const urlInputValue = ref("");
 const pasteError = ref(false);
 const zoneRef = ref<HTMLElement | null>(null);
 const dropdownRef = ref<HTMLElement | null>(null);
+const focusPickerRef = ref<HTMLElement | null>(null);
 const canUploadProp = computed(() => props.canUpload === "true");
 const canBrowseProp = computed(() => props.canBrowse === "true");
+const canFocusProp = computed(() => props.canFocus === "true");
+const focusOpen = ref(false);
+const focusLoading = ref(false);
+const focusSaving = ref(false);
+const focusUrl = ref("");
+const focusPoint = ref<{ x: number; y: number } | null>(null);
+const focusCoordinates = ref<{ x: number; y: number } | null>(null);
+const focusImage = ref<HTMLImageElement | null>(null);
+const isDraggingFocus = ref(false);
 
 onMounted(() => {
     loading.value = false;
@@ -379,6 +429,7 @@ const handleDropdownEscape = (e: KeyboardEvent) => {
     if (e.key === "Escape") {
         dropdownOpen.value = false;
         deactivateUrlMode();
+        cancelFocus();
         document.removeEventListener("keydown", handleDropdownEscape);
     }
 };
@@ -403,9 +454,11 @@ const toggleDropdown = () => {
 const closeDropdownOnOutside = (e: MouseEvent) => {
     if (
         !zoneRef.value?.contains(e.target as Node) &&
-        !dropdownRef.value?.contains(e.target as Node)
+        !dropdownRef.value?.contains(e.target as Node) &&
+        !focusPickerRef.value?.contains(e.target as Node)
     ) {
         dropdownOpen.value = false;
+        cancelFocus();
         deactivateUrlMode();
         document.removeEventListener("click", closeDropdownOnOutside);
         document.removeEventListener("keydown", handleDropdownEscape);
@@ -509,7 +562,7 @@ const download = () => {
         .then((res) => {
             downloading.value = false;
             imageUrl.value = null;
-            currentThumbnail.value = res.data.thumbnail;
+            currentThumbnail.value = res.data.selection_thumbnail ?? res.data.thumbnail;
             currentUuid.value = res.data.uuid;
         })
         .catch((err) => {
@@ -543,7 +596,7 @@ const uploadFile = async (file: File) => {
         .post(props.file, formData, request.config)
         .then((res) => {
             uploading.value = false;
-            currentThumbnail.value = res.data.thumbnail;
+            currentThumbnail.value = res.data.selection_thumbnail ?? res.data.thumbnail;
             currentUuid.value = res.data.uuid;
             imagePreview.value = null;
             if (fileField.value) {
@@ -618,7 +671,109 @@ const showErrors = (err) => {
 
 const selectImage = (image) => {
     currentUuid.value = image.uuid;
-    currentThumbnail.value = image.thumbnail;
+    currentThumbnail.value = image.selection_thumbnail ?? image.thumbnail;
+    cancelFocus();
+};
+
+const openFocusPicker = async () => {
+    focusOpen.value = true;
+    dropdownOpen.value = false;
+    focusLoading.value = true;
+    try {
+        const url = props.focusData.replace("IMAGE_UUID", encodeURIComponent(currentUuid.value));
+        const response = await axios.get(url);
+        focusUrl.value = response.data.url;
+        focusCoordinates.value = response.data.focus_x != null && response.data.focus_y != null
+            ? { x: Number(response.data.focus_x), y: Number(response.data.focus_y) }
+            : null;
+        await nextTick();
+        setFocusFromCoordinates();
+    } catch (error) {
+        window.showToast(error.response?.data?.message ?? trans.value.focus_load_error, "error");
+        focusOpen.value = false;
+    } finally {
+        focusLoading.value = false;
+    }
+};
+
+const setFocusFromCoordinates = () => {
+    if (!focusImage.value?.naturalWidth || !focusCoordinates.value) {
+        focusPoint.value = null;
+        return;
+    }
+    focusPoint.value = {
+        x: focusCoordinates.value.x / focusImage.value.naturalWidth * 100,
+        y: focusCoordinates.value.y / focusImage.value.naturalHeight * 100,
+    };
+};
+
+const setFocusPoint = (event: PointerEvent) => {
+    const image = focusImage.value;
+    if (!image) return;
+    const rect = image.getBoundingClientRect();
+    const x = Math.max(0, Math.min(rect.width, event.clientX - rect.left));
+    const y = Math.max(0, Math.min(rect.height, event.clientY - rect.top));
+    const percentageX = x / rect.width;
+    const percentageY = y / rect.height;
+    focusPoint.value = { x: percentageX * 100, y: percentageY * 100 };
+    focusCoordinates.value = {
+        x: Math.round(percentageX * image.naturalWidth),
+        y: Math.round(percentageY * image.naturalHeight),
+    };
+};
+
+const startFocusDrag = (event: PointerEvent) => {
+    isDraggingFocus.value = true;
+    (event.currentTarget as HTMLElement).setPointerCapture(event.pointerId);
+    setFocusPoint(event);
+};
+
+const moveFocusPoint = (event: PointerEvent) => {
+    if (isDraggingFocus.value) setFocusPoint(event);
+};
+
+const endFocusDrag = () => {
+    isDraggingFocus.value = false;
+};
+
+const removeFocusPoint = () => {
+    focusPoint.value = null;
+    focusCoordinates.value = null;
+};
+
+const saveFocusPoint = async () => {
+    if (focusSaving.value || !currentUuid.value) return;
+    focusSaving.value = true;
+    try {
+        const response = await axios.post(props.focusSave, {
+            image_uuid: currentUuid.value,
+            focus_x: focusCoordinates.value?.x ?? null,
+            focus_y: focusCoordinates.value?.y ?? null,
+        });
+        if (response.data.thumbnail) {
+            currentThumbnail.value = response.data.thumbnail;
+        }
+        window.showToast(response.data.toast);
+        focusOpen.value = false;
+        dropdownOpen.value = false;
+        document.removeEventListener("click", closeDropdownOnOutside);
+        document.removeEventListener("keydown", handleDropdownEscape);
+    } catch (error) {
+        window.showToast(error.response?.data?.message ?? trans.value.focus_save_error, "error");
+    } finally {
+        focusSaving.value = false;
+    }
+};
+
+const cancelFocus = () => {
+    focusOpen.value = false;
+    dropdownOpen.value = false;
+    document.removeEventListener("click", closeDropdownOnOutside);
+    document.removeEventListener("keydown", handleDropdownEscape);
+    focusUrl.value = "";
+    focusCoordinates.value = null;
+    focusPoint.value = null;
+    isDraggingFocus.value = false;
 };
 
 const closedGallery = () => {

@@ -221,6 +221,7 @@ Route::get('/w/{campaign}/entities/{entity}/story-more', [StoryController::class
 // Image of entities
 Route::get('/w/{campaign}/entities/{entity}/image-focus', [ImageController::class, 'focus'])->name('entities.image.focus');
 Route::post('/w/{campaign}/entities/{entity}/image-focus', [ImageController::class, 'saveFocus'])->name('entities.image.save-focus');
+Route::get('/w/{campaign}/entities/{entity}/image-focus/{image}', [ImageController::class, 'focusImage'])->name('entities.image.focus-data');
 
 Route::get('/w/{campaign}/entities/{entity}/image-replace', [ImageController::class, 'replace'])->name('entities.image.replace');
 Route::post('/w/{campaign}/entities/{entity}/image-replace', [ImageController::class, 'update'])->name('entities.image.replace.save');
