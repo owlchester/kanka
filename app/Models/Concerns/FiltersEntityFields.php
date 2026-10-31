@@ -9,6 +9,30 @@ use Illuminate\Support\Str;
 
 trait FiltersEntityFields
 {
+    protected function applyEntityParentFilter(Builder $query, string $entityTable, mixed $value, ?string $option): void
+    {
+        if ($option === 'none') {
+            $query->whereNull($entityTable . '.parent_id');
+
+            return;
+        }
+
+        if ($value === null || $value === '') {
+            return;
+        }
+
+        if ($option === 'exclude') {
+            $query->where(function (Builder $query) use ($entityTable, $value): void {
+                $query->where($entityTable . '.parent_id', '!=', $value)
+                    ->orWhereNull($entityTable . '.parent_id');
+            });
+
+            return;
+        }
+
+        $query->where($entityTable . '.parent_id', $value);
+    }
+
     protected function applyEntityImageFilter(Builder $query, string $entityTable, mixed $value): void
     {
         $query->where(function (Builder $query) use ($entityTable, $value): void {
