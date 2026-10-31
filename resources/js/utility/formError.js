@@ -1,14 +1,11 @@
 
 window.formErrorHandler = function(err, form) {
     // Remove any existing errors from the form
-    const existingErrors = document.querySelectorAll('.input-error');
+    const existingErrors = form.querySelectorAll('.input-error');
     existingErrors.forEach(field => {
         field.classList.remove('input-error');
     });
-    const textError = document.querySelector('.text-error-content');
-    if (textError) {
-        textError.remove();
-    }
+    form.querySelectorAll('[data-form-error]').forEach(error => error.remove());
 
     // Re-enable the submit button
     const submitBtn = form.querySelector('.btn-primary');
@@ -26,7 +23,7 @@ window.formErrorHandler = function(err, form) {
 
     // If it's 403, the session is gone
     if (err.status === 403) {
-        document.querySelector('#entity-form-403-error').classList.remove('hidden');
+        form.querySelector('#entity-form-403-error')?.classList.remove('hidden');
         return;
     }
 
@@ -42,12 +39,13 @@ window.formErrorHandler = function(err, form) {
     const errorKeys = Object.keys(errors);
     let foundAllErrors = true;
     errorKeys.forEach(function (i) {
-        let errorSelector = document.querySelector('[name="' + i + '"]');
+        let errorSelector = form.querySelector('[name="' + i + '"]');
         if (errorSelector) {
             errorSelector.classList.add('input-error');
             const errorElement = document.createElement('div');
             errorElement.classList.add('text-error-content');
-            errorElement.innerHTML = errors[i][0];
+            errorElement.setAttribute('data-form-error', '');
+            errorElement.textContent = errors[i][0];
             errorSelector.parentNode.append(errorElement);
         } else {
             foundAllErrors = false;
@@ -58,13 +56,13 @@ window.formErrorHandler = function(err, form) {
     });
 
     // If not all error fields could be found, show a generic error message on top of the form.
-    const genericError = document.querySelector('#entity-form-generic-error .error-logs');
+    const genericError = form.querySelector('#entity-form-generic-error .error-logs');
     if (!foundAllErrors && genericError) {
         genericError.innerHTML = '';
         logs.forEach(function (i) {
             genericError.append(i);
         });
-        document.querySelector('#entity-form-generic-error').classList.remove('hidden');
+        form.querySelector('#entity-form-generic-error')?.classList.remove('hidden');
     }
 
     jumpToError(form, errors);
@@ -86,12 +84,14 @@ const jumpToError = (form, errors) => {
     }
 
     // If we can actually find the first element, switch to it and the correct tab.
-    document.querySelector('.tab-content .active').classList.remove('active');
-    document.querySelector('.nav-tabs li.active').classList.remove('active');
-    const firstPane = document.querySelector('[name="' + firstErrorName + '"').closest('.tab-pane');
-    if (firstPane) {
+    const firstPane = firstErrorField.closest('.tab-pane');
+    const tabs = firstPane?.closest('.nav-tabs-custom');
+    const tab = tabs?.querySelector('a[href="#' + firstPane.id + '"]')?.closest('li');
+    if (tab) {
+        tabs.querySelector('.tab-pane.active')?.classList.remove('active');
+        tabs.querySelector('.nav-tabs li.active')?.classList.remove('active');
         firstPane.classList.add('active');
-        document.querySelector('a[href="#' + firstPane.id + '"]').closest('li').classList.add('active');
+        tab.classList.add('active');
     }
 
     focusOnField(firstErrorField);
