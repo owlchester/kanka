@@ -3,6 +3,7 @@
 use App\Events\Maps\Updated;
 use App\Models\Image;
 use App\Models\Map;
+use App\Models\MapMarker;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
 
@@ -48,6 +49,157 @@ it('rejects a map zoom value above its configured limit', function () {
         'is_real' => true,
         'max_zoom' => config('limits.maps.zoom.real.max') + 1,
     ])->assertUnprocessable();
+});
+
+it('saves clustering changes from the entity form', function (bool $enabled) {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1, 'has_clustering' => ! $enabled]);
+
+    $this->patch(route('entities.update', [1, $map->entity]), [
+        'name' => $map->entity->name,
+        'has_clustering' => $enabled ? '1' : '0',
+    ])->assertRedirect()->assertSessionHasNoErrors();
+
+    expect($map->fresh()->isClustered())->toBe($enabled);
+})->with([true, false]);
+
+it('preserves clustering when the entity form omits it', function (bool $enabled) {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1, 'has_clustering' => $enabled]);
+
+    $this->patch(route('entities.update', [1, $map->entity]), [
+        'name' => $map->entity->name,
+    ])->assertRedirect()->assertSessionHasNoErrors();
+
+    expect($map->fresh()->isClustered())->toBe($enabled);
+})->with([true, false]);
+
+it('saves grid distance and center marker settings from the entity form', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1, 'config' => ['legacy_pins' => true]]);
+    $marker = MapMarker::factory()->create(['map_id' => $map->id]);
+
+    $this->patch(route('entities.update', [1, $map->entity]), [
+        'name' => $map->entity->name,
+        'grid' => '50',
+        'config' => ['distance_name' => 'Leagues', 'distance_measure' => '0.5'],
+        'center_marker_id' => (string) $marker->id,
+    ])->assertRedirect()->assertSessionHasNoErrors();
+
+    $map->refresh();
+    expect($map->grid)->toBe(50)
+        ->and($map->config['distance_name'])->toBe('Leagues')
+        ->and((float) $map->config['distance_measure'])->toBe(0.5)
+        ->and($map->config['legacy_pins'])->toBeTrue()
+        ->and($map->center_marker_id)->toBe($marker->id);
+});
+
+it('clears optional settings from the entity form', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create([
+        'campaign_id' => 1,
+        'grid' => 50,
+        'config' => ['distance_name' => 'Leagues', 'distance_measure' => 0.5],
+    ]);
+    $marker = MapMarker::factory()->create(['map_id' => $map->id]);
+    $map->update(['center_marker_id' => $marker->id]);
+
+    $this->patch(route('entities.update', [1, $map->entity]), [
+        'name' => $map->entity->name,
+        'grid' => '',
+        'config' => ['distance_name' => '', 'distance_measure' => ''],
+        'center_marker_id' => '',
+    ])->assertRedirect()->assertSessionHasNoErrors();
+
+    $map->refresh();
+    expect($map->grid)->toBe(0)
+        ->and($map->config)->toBe(['distance_name' => null, 'distance_measure' => null])
+        ->and($map->center_marker_id)->toBeNull();
+});
+
+it('rejects invalid map settings from the entity form', function (array $settings, string $field) {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+
+    $this->patch(route('entities.update', [1, $map->entity]), [
+        'name' => $map->entity->name,
+        ...$settings,
+    ])->assertSessionHasErrors($field);
+})->with([
+    'clustering' => [['has_clustering' => 'invalid'], 'has_clustering'],
+    'negative grid' => [['grid' => -1], 'grid'],
+    'fractional grid' => [['grid' => 1.5], 'grid'],
+    'long distance name' => [['config' => ['distance_name' => str_repeat('a', 21)]], 'config.distance_name'],
+    'small distance measure' => [['config' => ['distance_measure' => 0]], 'config.distance_measure'],
+    'large distance measure' => [['config' => ['distance_measure' => 101]], 'config.distance_measure'],
+    'invalid config' => [['config' => 'invalid'], 'config'],
+    'unknown config key' => [['config' => ['unknown' => true]], 'config'],
+    'missing center marker' => [['center_marker_id' => 999999], 'center_marker_id'],
+]);
+
+it('rejects a center marker from another map in the entity form', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $otherMap = Map::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create(['map_id' => $otherMap->id]);
+
+    $this->patch(route('entities.update', [1, $map->entity]), [
+        'name' => $map->entity->name,
+        'center_marker_id' => $marker->id,
+    ])->assertSessionHasErrors('center_marker_id');
+
+    expect($map->fresh()->center_marker_id)->toBeNull();
+});
+
+it('creates a map with settings through the API', function () {
+    $this->asUser()->withCampaign();
+
+    $response = $this->postJson('/api/1.0/campaigns/1/maps', [
+        'name' => 'Configured map',
+        'has_clustering' => false,
+        'grid' => 0,
+        'config' => ['distance_name' => 'Miles', 'distance_measure' => 1],
+    ])->assertCreated();
+
+    $map = Map::findOrFail($response->json('data.id'));
+    expect($map->isClustered())->toBeFalse()
+        ->and($map->grid)->toBe(0)
+        ->and($map->config)->toBe(['distance_name' => 'Miles', 'distance_measure' => 1]);
+});
+
+it('restricts API center markers to the map being updated', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1]);
+    $otherMap = Map::factory()->create(['campaign_id' => 1]);
+    $marker = MapMarker::factory()->create(['map_id' => $map->id]);
+
+    $this->putJson('/api/1.0/campaigns/1/maps/' . $map->id, [
+        'center_marker_id' => $marker->id,
+    ])->assertSuccessful();
+
+    expect($map->fresh()->center_marker_id)->toBe($marker->id);
+
+    $this->putJson('/api/1.0/campaigns/1/maps/' . $otherMap->id, [
+        'center_marker_id' => $marker->id,
+    ])->assertUnprocessable()->assertJsonValidationErrors('center_marker_id', 'fields');
+});
+
+it('preserves omitted config values when updating map settings through the API', function () {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create([
+        'campaign_id' => 1,
+        'config' => ['legacy_pins' => true, 'distance_name' => 'Miles', 'distance_measure' => 1],
+    ]);
+
+    $this->putJson('/api/1.0/campaigns/1/maps/' . $map->id, [
+        'config' => ['distance_name' => 'Leagues'],
+    ])->assertSuccessful();
+
+    expect($map->fresh()->config)->toBe([
+        'legacy_pins' => true,
+        'distance_name' => 'Leagues',
+        'distance_measure' => 1,
+    ]);
 });
 
 it('uses the real map zoom limits when clamping zoom values', function () {
