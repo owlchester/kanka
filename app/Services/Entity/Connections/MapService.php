@@ -219,7 +219,6 @@ class MapService
             return $this;
         }
 
-        /** @var Relation[] $relations */
         $relations = Relation::query()
             ->whereIn('owner_id', array_keys($owners))
             ->select('relations.*')

@@ -205,6 +205,17 @@ it('defaults legacy_pins to false when never set', function () {
     expect($response->json('settings.legacy_pins'))->toBeFalse();
 });
 
+it('preserves clustering when saving quick settings', function (bool $enabled) {
+    $this->asUser()->withCampaign();
+    $map = Map::factory()->create(['campaign_id' => 1, 'has_clustering' => $enabled]);
+
+    $this->patchJson(route('entities.map-settings.update', [1, $map->entity]), [
+        'grid' => 50,
+    ])->assertSuccessful()->assertJsonPath('has_clustering', $enabled);
+
+    expect($map->fresh()->isClustered())->toBe($enabled);
+})->with([true, false]);
+
 it('dispatches Maps\Updated when settings are saved', function () {
     Event::fake([Updated::class]);
     $this->asUser()->withCampaign();

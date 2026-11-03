@@ -3,8 +3,8 @@
 return [
     'fields'            => [
         'element'   => 'Element',
-        'type'      => 'Type',
         'mentioned' => 'Mentioned',
+        'type'      => 'Type',
     ],
     'helper'            => 'This entry is mentioned in the following other entries, articles, or campaign description.',
     'mentioned_in_v2'   => 'This entry is mentioned in :count elements. :more.',

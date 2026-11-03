@@ -20,7 +20,6 @@ return [
         'type_order'    => 'Rodzaj',
     ],
     'posts'     => [],
-    'premium'   => 'Odzyskiwanie elementów możliwe jest w kampanii premium.',
     'success_v2'=> '{1} odzyskano :count element .|[2,4] odzyskano :count elementy.|[5,*]  odzyskano :count elementów.',
     'title'     => 'Odzyskiwanie elementów kampanii :campaign',
     'toggle'    => [],

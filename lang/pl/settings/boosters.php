@@ -41,15 +41,6 @@ return [
         'first'     => 'Przydzielając kampaniom doładowania zyskujesz dostęp do funkcji zaawansowanych. Liczba dostępnych doładowań zależy od :subsription - pozostaje do twojej dyspozycji, póki subskrybujesz Kankę. By doładować kampanię wystarczy przydzielić jej jedno doładowanie. Turbodoładowanie kampanii wymaga trzech doładowań.',
     ],
     'pitch'     => [
-        'benefits'      => [
-            'backup'        => 'Możliwość odzyskania usuniętych elementów do :days wstecz',
-            'customisable'  => 'Własne motywy i CSS',
-            'icons'         => 'Dostęp do tysięcy ikon, które można umieszczać na mapie i w historii',
-            'plugins'       => 'Dodaj do kampanii wtyczki tworzone przez społeczność',
-            'title'         => 'W doładowanych kampaniach otrzymujesz',
-            'upload'        => 'Możliwość dodawania większych plików (dla wszystkich)',
-            'visual'        => 'Wizualizację drzew genealogicznych i relacji między elementami',
-        ],
         'description'   => 'Doładowanie kampanii zapewnia dostęp do świetnych możliwości, i to dla wszystkich uczestników. Mało ci? Spróbuj turbodoładowania.',
         'more'          => 'Pełną listę udogodnień znajdziesz na stronie :booster.',
         'title'         => 'Odlokuj pełen potencjał kampanii',

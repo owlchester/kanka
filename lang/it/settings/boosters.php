@@ -41,13 +41,6 @@ return [
         'first'     => 'Le funzioni avanzate si sbloccano assegnando i potenziamenti per potenziare o superpotenziare una campagna. La quantità di potenziamenti di cui disponi è determinata dal tuo :subscription. Questo numero è disponibile in ogni momento quando si è abbonati. Il potenziamento di una campagna le assegna uno dei vostri potenziamenti, mentre il superpotenziamenti di una campagna ne assegna tre.',
     ],
     'pitch'     => [
-        'benefits'      => [
-            'backup'        => 'Recupera un\'entità precedentemente cancellata per un periodo massimo di :amount giorni.',
-            'customisable'  => 'Personalizzazione completa dell\'aspetto di una campagna',
-            'icons'         => 'Accedi a migliaia di bellissime icone per mappe e linee temporali',
-            'title'         => 'Le campagne potenziate prendono',
-            'upload'        => 'Dimensioni di caricamento maggiori per tutti i membri delle campagne',
-        ],
         'description'   => 'Assegna i potenziamenti alle campagne e contribuisci a sbloccare funzioni straordinarie per tutti i partecipanti. Non sei impressionato dalle campagne potenziate? Ci pensiamo noi con le campagne superpotenziate!',
         'more'          => 'Consulta l\'elenco completo dei vantaggi sulla nostra pagina :boosters.',
         'title'         => 'Porta una campagna a un livello superiore con la personalizzazione e i vantaggi per tutti i suoi membri',

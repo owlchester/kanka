@@ -2,6 +2,7 @@
 
 namespace App\Jobs\Discord;
 
+use App\Enums\FeatureStatus;
 use App\Models\Feature;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -52,13 +53,35 @@ class UpdateFeatureUpvotes implements ShouldQueue
         }
         Log::info('Jobs/Discord/UpdateFeatureUpvotes', ['start', 'feature' => $feature->id]);
 
-        $content = 'A new idea has been approved and can be voted on! :arrow_up_small: ' . $feature->upvote_count . '.';
+        $shipped = $feature->status_id === FeatureStatus::Done;
+        $content = $shipped
+            ? 'Shipped'
+            : 'A new idea has been approved and can be voted on! :arrow_up_small: ' . $feature->upvote_count . '.';
 
         // Construct the message edit URL
         $editUrl = config('discord.webhooks.features') . "/messages/{$feature->message_id}";
 
-        Http::patch($editUrl, [
+        $payload = [
             'content' => $content,
-        ]);
+        ];
+
+        if ($shipped) {
+            $embed = [
+                'title' => $feature->name,
+                'color' => config('discord.color'),
+                'url' => route('roadmap', ['status' => 'ideas', 'idea' => $feature->id]),
+                'description' => '~~' . strip_tags($feature->description) . '~~',
+            ];
+            if ($feature->user) {
+                $embed['author'] = [
+                    'name' => $feature->user->name,
+                    'url' => route('users.profile', $feature->user->id),
+                    'icon_url' => $feature->user->hasAvatar() ? $feature->user->getAvatarUrl() : null,
+                ];
+            }
+            $payload['embeds'] = [$embed];
+        }
+
+        Http::patch($editUrl, $payload);
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Renderers\Layouts\Entity;
 
 use App\Models\Entity;
+use App\Models\Journal;
+use App\Models\Quest;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 use App\Traits\EntityTypeAware;
@@ -91,13 +93,13 @@ class Children extends Layout
                 $columns['author'] = [
                     'key' => $column['sortKey'],
                     'label' => __('journals.fields.author'),
-                    'render' => fn (Entity $model) => $model->child?->author ? $this->entityLink($model->child->author) : '',
+                    'render' => fn (Entity $model) => $model->child instanceof Journal && $model->child->author ? $this->entityLink($model->child->author) : '',
                 ];
             } elseif ($column['key'] === 'instigator') {
                 $columns['instigator'] = [
                     'key' => $column['sortKey'],
                     'label' => __('quests.fields.instigator'),
-                    'render' => fn (Entity $model) => $model->child?->instigator ? $this->entityLink($model->child->instigator) : '',
+                    'render' => fn (Entity $model) => $model->child instanceof Quest && $model->child->instigator ? $this->entityLink($model->child->instigator) : '',
                 ];
             }
         }

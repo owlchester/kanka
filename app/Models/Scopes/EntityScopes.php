@@ -300,6 +300,16 @@ trait EntityScopes
 
     public function scopeFilter(Builder $query, array $filters = [], ?EntityType $entityType = null): Builder
     {
+        // Older saved filters use the child foreign-key names. These are
+        // relationship filters, not columns on the child model.
+        foreach (['family_id' => 'families', 'race_id' => 'races'] as $legacy => $current) {
+            if (array_key_exists($legacy, $filters)) {
+                $filters[$current] ??= $filters[$legacy];
+                $filters[$current . '_option'] ??= $filters[$legacy . '_option'] ?? null;
+                unset($filters[$legacy], $filters[$legacy . '_option']);
+            }
+        }
+
         $childFilterKeys = [];
         foreach ($filters as $name => $values) {
             // Skip null or empty-string values (empty form fields)
@@ -309,7 +319,33 @@ trait EntityScopes
                 continue;
             } elseif ($name === 'status_id' && is_array($values)) {
                 $query->whereIn('entities.status_id', $values);
-            } elseif (in_array($name, ['is_private', 'parent_id', 'status_id'])) {
+            } elseif ($name === 'parent_id') {
+                continue;
+            } elseif ($name === 'locations') {
+                if (Arr::get($filters, 'locations_option') === 'none') {
+                    continue;
+                }
+                $ids = collect((array) $values)->map(fn ($id) => (int) $id)->all();
+                if (Arr::get($filters, 'locations_option') === 'children') {
+                    $ids = Entity::whereIn('entity_id', $ids)
+                        ->where('type_id', config('entities.ids.location'))
+                        ->with('descendants')
+                        ->get()
+                        ->flatMap(fn ($entity) => [$entity->entity_id, ...$entity->descendants->pluck('entity_id')->all()])
+                        ->unique()->all();
+                }
+                $locationQuery = fn ($subquery) => $subquery->selectRaw(1)
+                    ->from('entity_locations')
+                    ->whereColumn('entity_locations.entity_id', 'entities.id')
+                    ->whereIn('entity_locations.location_id', $ids);
+                if (Arr::get($filters, 'locations_option') === 'exclude') {
+                    $query->whereNotExists($locationQuery);
+                } else {
+                    $query->whereExists($locationQuery);
+                }
+
+                continue;
+            } elseif (in_array($name, ['is_private', 'status_id'])) {
                 $query->where('entities.' . $name, $values);
             } elseif (in_array($name, ['name', 'type'])) {
                 // @phpstan-ignore-next-line
@@ -433,21 +469,6 @@ trait EntityScopes
                     } else {
                         $query->whereExists(fn ($q) => $q->select(DB::raw(1))->from('organisation_member')->whereColumn('organisation_member.character_id', 'child_filter.id')->whereIn('organisation_member.organisation_id', $ids));
                     }
-                } elseif ($name === 'locations') {
-                    if ($option === 'children') {
-                        $ids = Entity::whereIn('entity_id', $ids)
-                            ->where('type_id', config('entities.ids.location'))
-                            ->with('descendants')
-                            ->get()
-                            ->flatMap(fn ($e) => [$e->entity_id, ...$e->descendants->pluck('entity_id')->toArray()])
-                            ->unique()
-                            ->toArray();
-                    }
-                    if ($option === 'exclude') {
-                        $query->whereRaw('(select count(*) from `entity_locations` where `entity_locations`.`entity_id` = `entities`.`id` and `entity_locations`.`location_id` in (' . implode(', ', $ids) . ')) = 0');
-                    } else {
-                        $query->whereExists(fn ($q) => $q->select(DB::raw(1))->from('entity_locations')->whereColumn('entity_locations.entity_id', 'entities.id')->whereIn('entity_locations.location_id', $ids));
-                    }
                 } elseif ($name === 'location_id') {
                     if ($option === 'exclude') {
                         $query->where(function ($sub) use ($values) {
@@ -473,7 +494,16 @@ trait EntityScopes
             }
         }
 
-        foreach (['created_by', 'updated_by', 'parent_id'] as $field) {
+        if (Arr::hasAny($filters, ['parent_id', 'parent_id_option'])) {
+            $this->applyEntityParentFilter(
+                $query,
+                'entities',
+                Arr::get($filters, 'parent_id'),
+                Arr::get($filters, 'parent_id_option'),
+            );
+        }
+
+        foreach (['created_by', 'updated_by'] as $field) {
             if (Arr::get($filters, $field . '_option') === 'none') {
                 $query->whereNull('entities.' . $field);
             }

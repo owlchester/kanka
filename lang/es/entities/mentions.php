@@ -3,6 +3,7 @@
 return [
     'fields'            => [
         'element'   => 'Elemento',
+        'mentioned' => 'Mencionada',
         'type'      => 'Tipo',
     ],
     'helper'            => 'La lista siguiente contiene todas las entidades que mencionan esta entidad en el campo de "Presentación".',

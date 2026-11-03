@@ -10,6 +10,7 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Image;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 
 class ImageController extends Controller
@@ -32,7 +33,7 @@ class ImageController extends Controller
     }
 
     /**
-     * @return RedirectResponse
+     * @return JsonResponse|RedirectResponse
      *
      * @throws AuthorizationException
      */

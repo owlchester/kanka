@@ -25,6 +25,12 @@ return [
         'secret'        => 'Secreto',
         'token_name'    => 'Nombre del token',
     ],
+    'mcp'               => [
+        'badge'         => 'MCP · solo lectura',
+        'description'   => 'Conecta asistentes de IA con Kanka para buscar entradas de tus mundos mediante el Model Context Protocol. Agrega esta URL como servidor MCP HTTP con streaming en tu cliente.',
+        'more'          => 'Obtén más información en tu página :mcp.',
+        'title'         => 'Servidor MCP',
+    ],
     'new'               => [
         'copy'  => 'Token copiado al portapapeles.',
         'title' => 'Tu nuevo token de acceso personal:',

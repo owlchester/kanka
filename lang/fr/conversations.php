@@ -17,14 +17,16 @@ return [
         'empty' => 'Enregistre les dialogues, les lettres ou les échanges entre les personnages et les factions.',
     ],
     'messages'      => [
-        'destroy'       => [
+        'confirm_delete'    => 'Supprimer ce message?',
+        'destroy'           => [
             'success'   => 'Message supprimé.',
         ],
-        'is_updated'    => 'Modifié',
-        'load_previous' => 'Messages précédents',
-        'placeholders'  => [
+        'is_updated'        => 'Modifié',
+        'load_previous'     => 'Messages précédents',
+        'placeholders'      => [
             'message'   => 'Ton message',
         ],
+        'request_failed'    => 'La requête a échoué. Veuillez réessayer.',
     ],
     'participants'  => [
         'create'    => [
@@ -48,7 +50,7 @@ return [
         'participants'  => 'Participants',
     ],
     'targets'       => [
-        'characters'    => 'Personnages',
-        'members'       => 'Membres',
+        'entities'  => 'Entités',
+        'members'   => 'Membres',
     ],
 ];

@@ -107,15 +107,19 @@ return [
         'fields'                    => [
             'class'             => 'Clase CSS',
             'dashboard'         => 'Tablero',
+            'dashboard-link'    => 'Enlace al tablero',
+            'link'              => 'Destino del enlace',
             'name'              => 'Nombre personalizado del widget',
+            'no-link'           => 'Sin enlace',
             'optional-entity'   => 'Link a la entidad',
             'order'             => 'Orden',
             'size'              => 'Tamaño',
             'width'             => 'Anchura',
         ],
         'helpers'                   => [
-            'class'     => 'Define una clase CSS personalizada para este widget.',
-            'filters'   => 'Haz clic para conocer las opciones de filtro disponibles.',
+            'class'                     => 'Define una clase CSS personalizada para este widget.',
+            'filters'                   => 'Haz clic para conocer las opciones de filtro disponibles.',
+            'premium-dashboard-target'  => 'Esta campaña ya no es premium. El enlace existente al tablero se conservará a menos que lo cambies o elimines.',
         ],
         'orders'                    => [
             'name_asc'  => 'Ascendente por nombre',
@@ -172,6 +176,9 @@ return [
         ],
         'update'                    => [
             'success'   => 'Widget modificado.',
+        ],
+        'validation'                => [
+            'premium-dashboard-target'  => 'Se requiere una campaña premium para enlazar a un tablero personalizado.',
         ],
         'widths'                    => [
             '0' => 'Auto',

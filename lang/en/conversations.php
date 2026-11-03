@@ -17,16 +17,16 @@ return [
         'empty' => 'Record dialogues, letters, or exchanges between entities.',
     ],
     'messages'      => [
-        'destroy'       => [
+        'confirm_delete'    => 'Delete this message?',
+        'destroy'           => [
             'success'   => 'Message removed.',
         ],
-        'is_updated'    => 'Updated',
-        'load_previous' => 'Load previous messages',
-        'confirm_delete' => 'Delete this message?',
-        'request_failed' => 'The request failed. Please try again.',
-        'placeholders'  => [
+        'is_updated'        => 'Updated',
+        'load_previous'     => 'Load previous messages',
+        'placeholders'      => [
             'message'   => 'Your message',
         ],
+        'request_failed'    => 'The request failed. Please try again.',
     ],
     'participants'  => [
         'create'    => [
@@ -50,7 +50,7 @@ return [
         'participants'  => 'Participants',
     ],
     'targets'       => [
-        'entities'      => 'Entities',
-        'members'       => 'Members',
+        'entities'  => 'Entities',
+        'members'   => 'Members',
     ],
 ];

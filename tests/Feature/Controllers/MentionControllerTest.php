@@ -7,8 +7,8 @@ use App\Models\EntityMention;
 use App\Models\Post;
 use App\Renderers\DatagridRenderer2;
 use App\Services\Campaign\LocalisationService;
-use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Facade;
 
 test('the entity Mentions tab renders a mention for each owner type', function () {
     $this->asUser()->withCampaign()->withCharacters();

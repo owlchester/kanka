@@ -41,13 +41,6 @@ return [
         'first'     => 'Rozšírené funkcie sa odomykajú priradením boostov na boostnutie alebo superboostnutie kampane. Počet boostov, ktoré máš, je dané tvojím :subscription. Toto číslo je dostupné zakaždým, kým máš predplatné. Boostnutie kampane priradí tejto jeden z tvojich boostov, zatiaľ čo superboostnutie požaduje boosty tri.',
     ],
     'pitch'     => [
-        'benefits'      => [
-            'backup'        => 'Obnov predtým odstránený objekt spred :amount dní',
-            'customisable'  => 'Úplná možnosť úpravy vizuálu kampane',
-            'icons'         => 'Prístup k tisíckam nádherných ikoniek pre mapy a časové osy',
-            'title'         => 'Boostnuté kampane získajú',
-            'upload'        => 'Väčšie veľkosti nahrávaných súborov pred všetkých členov',
-        ],
         'description'   => 'Priraď boosty ku kampaniam a pomôž im odomknúť úžasné funkcionality pred všetkých zúčastnených. Nestačí ti boostnutie kampane? Tak potom pre teba máme možnosť kampaň superboostnuť!',
         'more'          => 'Spoznaj celý zoznam benefitov na stránke :boosters.',
         'title'         => 'Posuň kampaň na vyššiu úroveň s možnosťou vlastných úprav a výhod pre všetkých jej členov.',

@@ -15,7 +15,6 @@ return [
         'other' => 'Inne języki',
         'title' => 'Wybierz język',
     ],
-    'made'              => 'Stworzono z ❤️ w Genewie, Szwajcaria',
     'newsletter'        => 'Newsletter',
     'platform'          => 'Platforma',
     'plugins'           => 'Biblioteka dodatków',

@@ -102,15 +102,19 @@ return [
         'fields'                    => [
             'class'             => 'Classe CSS',
             'dashboard'         => 'Tableau de bord',
+            'dashboard-link'    => 'Lien vers le tableau de bord',
+            'link'              => 'Cible du lien',
             'name'              => 'Nom de widget personnalisé',
+            'no-link'           => 'Aucun lien',
             'optional-entity'   => 'Liens vers une entrée',
             'order'             => 'Ordre d\'affichage',
             'size'              => 'Taille',
             'width'             => 'Largeur',
         ],
         'helpers'                   => [
-            'class'     => 'Définition d\'une classe css ajoutée au widget.',
-            'filters'   => 'Cliquer pour en savoir plus sur les options de filtrage.',
+            'class'                     => 'Définition d\'une classe css ajoutée au widget.',
+            'filters'                   => 'Cliquer pour en savoir plus sur les options de filtrage.',
+            'premium-dashboard-target'  => 'Cette campagne n\'est plus premium. Le lien existant vers le tableau de bord sera conservé, sauf si tu le modifies ou le supprimes.',
         ],
         'orders'                    => [
             'name_asc'  => 'Nom ascendant',
@@ -167,6 +171,9 @@ return [
         ],
         'update'                    => [
             'success'   => 'Widget modifié.',
+        ],
+        'validation'                => [
+            'premium-dashboard-target'  => 'Une campagne premium est nécessaire pour créer un lien vers un tableau de bord personnalisé.',
         ],
         'widths'                    => [
             '0' => 'Automatique',

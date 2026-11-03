@@ -43,7 +43,6 @@ return [
         'participants'  => 'Deelnemers',
     ],
     'targets'       => [
-        'characters'    => 'Personages',
-        'members'       => 'Leden',
+        'members'   => 'Leden',
     ],
 ];

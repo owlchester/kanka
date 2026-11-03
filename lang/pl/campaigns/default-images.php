@@ -14,7 +14,6 @@ return [
     'destroy'           => [
         'success'   => 'Usunięto miniaturę :type.',
     ],
-    'empty'             => 'Żadna kategoria nie ma obecnie domyślnej miniatury.',
     'helper'            => 'Używane dla wszystkich elementów tej kategorii nie posiadających ilustracji.',
     'index'             => [],
     'reset'             => [

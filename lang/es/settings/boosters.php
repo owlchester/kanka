@@ -42,15 +42,6 @@ return [
         'first'     => 'Las funciones avanzadas se desbloquean asignando tus potenciadores para potenciar o superpotenciar una campaña. La cantidad de potenciadores que tienes viene determinada por tu :subscription. Este número está a tu disposición en todo momento mientras seas suscriptor. Al potenciar una campaña le asignarás uno de tus potenciadores, mientras que al superpotenciar una campaña le asignarás tres.',
     ],
     'pitch'     => [
-        'benefits'      => [
-            'backup'        => 'Recupera una entidad previamente eliminada durante un máximo de :amount días',
-            'customisable'  => 'Personalización total del aspecto de una campaña',
-            'icons'         => 'Acceso a miles de hermosos iconos para mapas y líneas de tiempo',
-            'plugins'       => 'Amplía tu campaña con plugins creados por la comunidad',
-            'title'         => 'Las campañas potenciadas obtienen',
-            'upload'        => 'Mayor capacidad de carga de archivos para todos los miembros de la campaña',
-            'visual'        => 'Visualiza árboles genealógicos y relaciones entre entradas',
-        ],
         'description'   => 'Asigna potenciadores a las campañas y ayuda a desbloquear funciones increíbles para todos los participantes. ¿No te impresionan las campañas potenciadas? ¡Tenemos campañas superpotenciadas para ti!',
         'more'          => 'Consulta la lista completa de ventajas en nuestra página :boosters.',
         'title'         => 'Lleva una campaña al siguiente nivel con personalización y ventajas para todos sus miembros',

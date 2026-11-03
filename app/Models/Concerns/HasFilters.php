@@ -826,12 +826,15 @@ trait HasFilters
     protected function filterParent(Builder $query): void
     {
         if ($this->hasEntityBackedFields()) {
-            $query->joinEntity()->where('e.parent_id', $this->filterValue);
-
-            return;
+            $query->joinEntity();
         }
 
-        $query->where($this->getTable() . '.parent_id', $this->filterValue);
+        $this->applyEntityParentFilter(
+            $query,
+            $this->hasEntityBackedFields() ? 'e' : $this->getTable(),
+            $this->filterValue,
+            $this->filterOperator === 'IS NULL' ? 'none' : $this->filterOption,
+        );
     }
 
     protected function filterStatus(Builder $query): void
