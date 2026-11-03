@@ -7,6 +7,8 @@ use App\Models\Campaign;
 use App\Models\Concerns\FiltersEntityFields;
 use App\Models\Entity;
 use App\Models\EntityType;
+use App\Models\Journal;
+use App\Models\Quest;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Arr;
@@ -217,7 +219,7 @@ trait EntityScopes
         foreach ($config as $field => $order) {
             if (in_array($field, ['author.name', 'instigator.name'], true)) {
                 $relation = $field === 'author.name' ? 'author' : 'instigator';
-                $childType = $field === 'author.name' ? \App\Models\Journal::class : \App\Models\Quest::class;
+                $childType = $field === 'author.name' ? Journal::class : Quest::class;
                 $foreignKey = $field === 'author.name' ? 'author_id' : 'instigator_id';
                 $query->leftJoin((new $childType)->getTable() . ' as sortable_child', function ($join) use ($entityTable, $childType) {
                     $join->on('sortable_child.id', '=', $entityTable . '.entity_id')
@@ -288,6 +290,16 @@ trait EntityScopes
 
     public function scopeFilter(Builder $query, array $filters = [], ?EntityType $entityType = null): Builder
     {
+        // Older saved filters use the child foreign-key names. These are
+        // relationship filters, not columns on the child model.
+        foreach (['family_id' => 'families', 'race_id' => 'races'] as $legacy => $current) {
+            if (array_key_exists($legacy, $filters)) {
+                $filters[$current] ??= $filters[$legacy];
+                $filters[$current . '_option'] ??= $filters[$legacy . '_option'] ?? null;
+                unset($filters[$legacy], $filters[$legacy . '_option']);
+            }
+        }
+
         $childFilterKeys = [];
         foreach ($filters as $name => $values) {
             // Skip null or empty-string values (empty form fields)
@@ -297,7 +309,9 @@ trait EntityScopes
                 continue;
             } elseif ($name === 'status_id' && is_array($values)) {
                 $query->whereIn('entities.status_id', $values);
-            } elseif (in_array($name, ['is_private', 'parent_id', 'status_id'])) {
+            } elseif ($name === 'parent_id') {
+                continue;
+            } elseif (in_array($name, ['is_private', 'status_id'])) {
                 $query->where('entities.' . $name, $values);
             } elseif (in_array($name, ['name', 'type'])) {
                 // @phpstan-ignore-next-line
@@ -461,7 +475,16 @@ trait EntityScopes
             }
         }
 
-        foreach (['created_by', 'updated_by', 'parent_id'] as $field) {
+        if (Arr::hasAny($filters, ['parent_id', 'parent_id_option'])) {
+            $this->applyEntityParentFilter(
+                $query,
+                'entities',
+                Arr::get($filters, 'parent_id'),
+                Arr::get($filters, 'parent_id_option'),
+            );
+        }
+
+        foreach (['created_by', 'updated_by'] as $field) {
             if (Arr::get($filters, $field . '_option') === 'none') {
                 $query->whereNull('entities.' . $field);
             }

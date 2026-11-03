@@ -78,7 +78,7 @@ class IndexController extends Controller
         $title = $entityType->plural();
 
         $parent = null;
-        if ($request->has('parent_id')) {
+        if ($this->isParentNavigation()) {
             $parent = Entity::select([
                 'entities.id', 'entities.name', 'entities.type', 'entities.is_private',
                 'entities.type_id', 'entities.child_type', 'entities.parent_id', 'entities.entity_id',
@@ -192,7 +192,7 @@ class IndexController extends Controller
             ->distinct();
 
         $parent = null;
-        if ($request->has('parent_id')) {
+        if ($this->isParentNavigation()) {
             $parent = Entity::select([
                 'entities.id', 'entities.name', 'entities.type', 'entities.is_private',
                 'entities.type_id', 'entities.child_type', 'entities.parent_id', 'entities.entity_id',
@@ -358,6 +358,12 @@ class IndexController extends Controller
                 'public' => __('lists.actions.public'),
             ],
         ]);
+    }
+
+    protected function isParentNavigation(): bool
+    {
+        return $this->request->has('parent_id')
+            && ($this->request->boolean('children') || ! $this->request->has('parent_id_option'));
     }
 
     protected function showAds(Campaign $campaign): bool

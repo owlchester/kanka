@@ -1,15 +1,60 @@
 <?php
 
 use App\Enums\EntityAssetType;
+use App\Models\Ability;
 use App\Models\Attribute;
 use App\Models\Character;
 use App\Models\Entity;
 use App\Models\EntityAsset;
 use App\Models\EntityTag;
 use App\Models\EntityType;
+use App\Models\Family;
 use App\Models\Journal;
 use App\Models\Post;
 use App\Models\Tag;
+
+it('keeps parent filter options consistent across entity and child queries', function (string $option) {
+    $this->asUser()->withCampaign();
+
+    $parent = Ability::factory()->create(['campaign_id' => 1]);
+    $otherParent = Ability::factory()->create(['campaign_id' => 1]);
+    $matchingChild = Ability::factory()->create(['campaign_id' => 1]);
+    $otherChild = Ability::factory()->create(['campaign_id' => 1]);
+    $root = Ability::factory()->create(['campaign_id' => 1]);
+    $wrongType = Ability::factory()->create(['campaign_id' => 1]);
+    $matchingChild->entity->update(['type' => 'Spell', 'parent_id' => $parent->entity->id]);
+    $otherChild->entity->update(['type' => 'Spell', 'parent_id' => $otherParent->entity->id]);
+    $root->entity->update(['type' => 'Spell']);
+    $wrongType->entity->update(['type' => 'Feat']);
+
+    $entityType = EntityType::findOrFail(config('entities.ids.ability'));
+    $filters = [
+        'type' => 'Spell',
+        'parent_id' => (string) $parent->entity->id,
+        'parent_id_option' => $option,
+    ];
+    $expected = match ($option) {
+        'exclude' => [$otherChild->id, $root->id],
+        'none' => [$root->id],
+        default => [$matchingChild->id],
+    };
+
+    expect(Ability::query()->filter($filters)->pluck('abilities.id')->all())
+        ->toEqualCanonicalizing($expected);
+    expect(Entity::query()->where('type_id', $entityType->id)->filter($filters, $entityType)->pluck('entities.entity_id')->all())
+        ->toEqualCanonicalizing($expected);
+})->with(['matches' => '', 'does not match' => 'exclude', 'no parent' => 'none']);
+
+it('preserves the empty parent search operator on child queries', function () {
+    $this->asUser()->withCampaign();
+
+    $parent = Ability::factory()->create(['campaign_id' => 1]);
+    $child = Ability::factory()->create(['campaign_id' => 1]);
+    $child->entity->update(['parent_id' => $parent->entity->id]);
+
+    expect(Ability::query()->filter(['parent_id' => '!!'])->pluck('abilities.id')->all())
+        ->toBe([$parent->id]);
+});
 
 it('keeps entity-backed filters consistent across entity and child queries', function () {
     $this->asUser()->withCampaign();
@@ -159,4 +204,23 @@ it('keeps tag options consistent across entity and child queries', function () {
     $filters = ['tags' => [], 'tags_option' => 'none'];
     expect($childIds($filters))->toBe([$untagged->id]);
     expect($entityIds($filters))->toBe([$untagged->entity->id]);
+});
+
+it('supports legacy family id filters on entity queries', function () {
+    $this->asUser()->withCampaign();
+
+    $family = Family::factory()->create(['campaign_id' => 1]);
+    $matching = Character::factory()->create(['campaign_id' => 1]);
+    $other = Character::factory()->create(['campaign_id' => 1]);
+    $matching->characterFamilies()->create(['family_id' => $family->id]);
+    $entityType = EntityType::findOrFail(config('entities.ids.character'));
+
+    $results = Entity::query()
+        ->where('entities.type_id', $entityType->id)
+        ->filter(['family_id' => (string) $family->id], $entityType)
+        ->paginate(10);
+
+    expect($results->total())->toBe(1)
+        ->and($results->first()->entity_id)->toBe($matching->id)
+        ->and($results->pluck('entity_id')->all())->not->toContain($other->id);
 });
