@@ -162,8 +162,8 @@ onBeforeUnmount(() => {
                 <h2 class="text-2xl font-light">{{ l.title }}</h2>
                 <p class="text-neutral-content">{{ l.helper }}</p>
             </div>
-            <div class="flex items-center gap-3">
-                <span class="text-sm text-neutral-content" role="status" aria-live="polite">{{ moveAnnouncement || (saving ? l.saving : saved && !dirty ? l.saved : '') }}</span>
+            <div class="flex items-center justify-between gap-2 w-full">
+                <span class="text-sm text-neutral-content italic" role="status" aria-live="polite">{{ moveAnnouncement || (saving ? l.saving : saved && !dirty ? l.saved : '') }}</span>
                 <button v-if="editable" type="button" class="btn2 btn-outline btn-sm" :disabled="saving" @click="addingGroup = !addingGroup"><i class="fa-regular fa-plus" aria-hidden="true"></i> {{ l.add_group }}</button>
             </div>
         </div>
@@ -188,18 +188,17 @@ onBeforeUnmount(() => {
                 <div class="flex flex-wrap items-center justify-between gap-3">
                     <div class="flex items-center gap-3 min-w-0 grow">
                         <template v-if="editable && section.key">
-                            <div class="clr-field btn2 btn-outline btn-sm relative shrink-0 focus-within:outline-2 focus-within:outline-offset-2">
+                            <div class="clr-field event-group-colour relative h-9 w-10 shrink-0 self-center rounded-md border border-base-300 bg-base-100  flex! items-center justify-center ">
                                 <span v-if="section.colour" class="block w-4 h-4 rounded-full pointer-events-none" :style="{ backgroundColor: section.colour }" aria-hidden="true"></span>
-                                <i v-else class="fa-regular fa-palette pointer-events-none" aria-hidden="true"></i>
+                                <i v-else class="fa-regular fa-palette pointer-events-none text-base-content" aria-hidden="true"></i>
                                 <input type="text" :value="section.colour || ''" :aria-label="l.colour" :title="l.colour" class="spectrum absolute inset-0 w-full h-full opacity-0 cursor-pointer" data-append-to="body" readonly @change="editGroup(section.key, 'colour', $event.target.value || null)" />
                             </div>
                             <div class="grow min-w-0">
-                                <input type="text" :value="section.name" :aria-label="l.group_name" :aria-invalid="Boolean(fieldErrors[`groups.${sectionIndex}.name`])" class="min-w-0 w-full" maxlength="191" @change="editGroup(section.key, 'name', $event.target.value)" @keydown.enter.prevent="$event.target.blur()" />
+                                <input type="text" :value="section.name" :aria-label="l.group_name" :aria-invalid="Boolean(fieldErrors[`groups.${sectionIndex}.name`])" class="h-9 min-w-0 w-full" maxlength="191" @change="editGroup(section.key, 'name', $event.target.value)" @keydown.enter.prevent="$event.target.blur()" />
                                 <p v-if="fieldErrors[`groups.${sectionIndex}.name`]" class="text-sm text-error">{{ fieldErrors[`groups.${sectionIndex}.name`][0] }}</p>
                             </div>
                         </template>
                         <h3 v-else class="text-lg font-normal" :style="section.colour ? { color: section.colour } : {}">{{ section.name }}</h3>
-                        <span class="text-sm text-neutral-content">{{ section.members.length }}</span>
                     </div>
                     <div v-if="editable && section.key" class="flex items-center gap-1">
                         <button type="button" class="btn2 btn-ghost btn-xs" :aria-label="l.move_up" :disabled="sectionIndex === 0" @click="reorderGroup(section.key, -1)">↑</button>
@@ -209,7 +208,7 @@ onBeforeUnmount(() => {
                 </div>
 
                 <Draggable :list="section.members" item-key="entity_id" :group="{ name: 'event-participants', pull: true, put: true }" :sort="false" :disabled="!editable || saving" handle=".participant-drag-handle" :animation="150" :delay="150" :delay-on-touch-only="true" :touch-start-threshold="4" class="flex min-h-10 flex-col gap-2" @change="participantDropped(section, $event)">
-                    <div v-for="(participant, index) in section.members" :key="participant.entity_id" class="flex flex-wrap items-center gap-2 p-2 rounded hover:bg-base-200">
+                    <div v-for="(participant, index) in section.members" :key="participant.entity_id" class="flex flex-wrap items-center gap-1 p-2 rounded hover:bg-base-200">
                         <span v-if="editable" class="participant-drag-handle touch-none cursor-grab active:cursor-grabbing text-neutral-content" :title="l.drag_to_move"><i class="fa-regular fa-grip-dots-vertical" aria-hidden="true"></i></span>
                         <a :href="participant.url" class="flex items-center gap-3 min-w-0 grow basis-40 text-link">
                             <img v-if="participant.image" :src="participant.image" alt="" class="rounded-full w-9 h-9 object-cover shrink-0" />
@@ -236,3 +235,13 @@ onBeforeUnmount(() => {
         </fieldset>
     </div>
 </template>
+
+<style scoped>
+:deep(.event-group-colour button) {
+    top: 50% !important;
+    right: 0.5rem !important;
+    width: 1.25rem !important;
+    height: 1.25rem !important;
+    border-radius: 50% !important;
+}
+</style>

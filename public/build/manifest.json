@@ -418,7 +418,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-RChvdgRh.js",
+    "file": "assets/app-DcgetiK2.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -654,13 +654,17 @@
     ]
   },
   "resources/js/events/participants.js": {
-    "file": "assets/participants-DwZfRFJV.js",
+    "file": "assets/participants-C9hfQtNa.js",
     "name": "participants",
     "src": "resources/js/events/participants.js",
     "isDynamicEntry": true,
     "imports": [
       "_vue.esm-bundler-GXfi61Lw.js",
-      "_vue-draggable-next.esm-bundler-DO2H4ui-.js"
+      "_vue-draggable-next.esm-bundler-DO2H4ui-.js",
+      "__plugin-vue_export-helper-DlAUqK2U.js"
+    ],
+    "css": [
+      "assets/participants-CjWZt_dM.css"
     ]
   },
   "resources/js/family-tree-vue.js": {
