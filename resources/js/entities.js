@@ -4,6 +4,14 @@
  * mention never pull in Leaflet. Re-run on the `kanka.default` pub-sub so mentions that
  * arrive later (paginated/anchor-loaded posts) still get mounted.
  */
+const mountEventParticipants = () => {
+    if (document.querySelector('.js-event-participants')) {
+        import('./events/participants').then(({ mountParticipants }) => mountParticipants());
+    }
+};
+mountEventParticipants();
+window.onEvent(mountEventParticipants);
+
 const scanAndMountMapPreviews = () => {
     const nodes = document.querySelectorAll('.js-map-preview:not(.js-map-preview-mounted)');
     if (!nodes.length) {

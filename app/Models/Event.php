@@ -11,6 +11,7 @@ use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Event
@@ -84,6 +85,25 @@ class Event extends MiscModel
         'date',
     ];
 
+    /** @return HasMany<EventGroup, $this> */
+    public function groups(): HasMany
+    {
+        return $this->hasMany(EventGroup::class)->orderBy('position')->orderByDesc('id');
+    }
+
+    /** @return HasMany<EventParticipant, $this> */
+    public function participants(): HasMany
+    {
+        return $this->hasMany(EventParticipant::class)->orderBy('position')->orderByDesc('id');
+    }
+
+    /** Detach event-local data when the event is moved to another campaign. */
+    public function detach(): void
+    {
+        $this->groups()->delete();
+        $this->participants()->delete();
+    }
+
     public function scopeFilteredEvents(Builder $query): Builder
     {
         return $query
@@ -118,6 +138,10 @@ class Event extends MiscModel
             return true;
         }
 
+        if (($this->relationLoaded('groups') && $this->groups->isNotEmpty()) || ($this->relationLoaded('participants') && $this->participants->isNotEmpty())) {
+            return true;
+        }
+
         if ($this->entity->locations->isNotEmpty() || ! empty($this->entity->calendarReminder())) {
             return true;
         }
@@ -135,6 +159,7 @@ class Event extends MiscModel
         return [
             'date',
             'locations',
+            'participants',
         ];
     }
 }

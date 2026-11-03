@@ -160,6 +160,9 @@ class ExploreResource extends JsonResource
             if ($this->hasColumn('elements_count') && isset($child->elements_count)) {
                 $data['elements_count'] = $child->elements_count ?? 0;
             }
+            if ($this->hasColumn('participants_count') && isset($child->participants_count)) {
+                $data['participants_count'] = $child->participants_count;
+            }
             if ($this->hasColumn('eras_count') && isset($child->eras_count)) {
                 $data['eras_count'] = $child->eras_count ?? 0;
             }

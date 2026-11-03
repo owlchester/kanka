@@ -3,10 +3,12 @@
 namespace App\Models\Scopes;
 
 use App\Enums\EntityEventTypes;
+use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
 use App\Models\Concerns\FiltersEntityFields;
 use App\Models\Entity;
 use App\Models\EntityType;
+use App\Models\EventParticipant;
 use App\Models\Journal;
 use App\Models\Quest;
 use Illuminate\Database\Eloquent\Builder;
@@ -241,6 +243,15 @@ trait EntityScopes
                     ->orderBy('cd.year', $order)
                     ->orderBy('cd.month', $order)
                     ->orderBy('cd.day', $order);
+            } elseif ($field === 'participants_count' && (int) $entityType?->id === (int) config('entities.ids.event')) {
+                $participant = new EventParticipant;
+                $query->orderBy(
+                    $participant->newQuery()
+                        ->selectRaw('count(*)')
+                        ->whereColumn($participant->qualifyColumn('event_id'), $entityTable . '.entity_id')
+                        ->has('entity'),
+                    $order
+                );
             } elseif ($field === 'tags') {
                 $query->leftJoin('entity_tags as tags_order', 'tags_order.entity_id', '=', $entityTable . '.id')
                     ->leftJoin('entities as tag_order', function ($join) {
@@ -301,39 +312,84 @@ trait EntityScopes
         }
 
         $childFilterKeys = [];
+        $relationFilters = [
+            'locations' => ['entity_locations', 'entity_id', 'entities.id', 'location_id'],
+            'participants' => ['event_participants', 'event_id', 'entities.entity_id', 'entity_id'],
+            'races' => ['character_race', 'character_id', 'entities.entity_id', 'race_id'],
+            'families' => ['character_family', 'character_id', 'entities.entity_id', 'family_id'],
+            'organisations' => ['organisation_member', 'character_id', 'entities.entity_id', 'organisation_id'],
+        ];
+        foreach ($relationFilters as $field => $_) {
+            if (Arr::hasAny($filters, [$field, $field . '_option'])) {
+                $values = Arr::get($filters, $field, []);
+                $ids = is_array($values) ? $values : [$values];
+                $option = Arr::get($filters, $field . '_option');
+                if ($field === 'locations' && $option === 'children' && $ids !== []) {
+                    $ids = Entity::whereIn('entity_id', $ids)
+                        ->where('type_id', config('entities.ids.location'))
+                        ->with('descendants')->get()
+                        ->flatMap(fn ($entity) => [$entity->entity_id, ...$entity->descendants->pluck('entity_id')->all()])
+                        ->unique()->all();
+                    $option = null;
+                }
+                if (in_array($field, ['families', 'races', 'organisations'], true) && $option === 'children' && $ids !== []) {
+                    $type = ['families' => 'family', 'races' => 'race', 'organisations' => 'organisation'][$field];
+                    $ids = Entity::whereIn('entity_id', $ids)->where('type_id', config('entities.ids.' . $type))
+                        ->with('descendants')->get()
+                        ->flatMap(fn ($entity) => [$entity->entity_id, ...$entity->descendants->pluck('entity_id')->all()])
+                        ->unique()->all();
+                    $option = null;
+                }
+                $relation = $relationFilters[$field];
+                $constraint = $field === 'participants'
+                    ? function ($subquery): void {
+                        $subquery->whereIn('event_participants.entity_id', Entity::query()
+                            ->where('entities.campaign_id', CampaignLocalization::getCampaign()->id)
+                            ->select('entities.id'));
+                    }
+                : (in_array($field, ['races', 'families', 'organisations'], true)
+                    ? static function ($subquery) use ($field): void {
+                        $subquery->where('entities.type_id', config('entities.ids.character'));
+                        $campaign = CampaignLocalization::getCampaign();
+                        $relatedType = ['families' => 'family', 'races' => 'race', 'organisations' => 'organisation'][$field];
+                        $relatedTable = ['families' => 'character_family', 'races' => 'character_race', 'organisations' => 'organisation_member'][$field];
+                        $relatedKey = ['families' => 'family_id', 'races' => 'race_id', 'organisations' => 'organisation_id'][$field];
+                        $subquery->whereIn($relatedTable . '.' . $relatedKey, Entity::query()
+                            ->where('entities.type_id', config('entities.ids.' . $relatedType))
+                            ->where('entities.campaign_id', $campaign->id)
+                            ->select('entities.entity_id'));
+                        if ($field === 'races') {
+                            $subquery->where(function ($query) use ($campaign): void {
+                                $query->where('character_race.is_private', false);
+                                if (auth()->check() && auth()->user()->can('admin', $campaign)) {
+                                    $query->orWhere('character_race.is_private', true);
+                                }
+                            });
+                        } elseif (auth()->guest() || ! auth()->user()->can('admin', $campaign)) {
+                            $pivot = $field === 'families' ? 'character_family' : 'organisation_member';
+                            $subquery->where($pivot . '.is_private', false);
+                        }
+                    }
+                    : null);
+                $this->applyEntityRelationIdsFilter($query, $relation[0], $relation[1], $relation[2], $relation[3], $ids, $option, $constraint);
+            }
+        }
         foreach ($filters as $name => $values) {
-            // Skip null or empty-string values (empty form fields)
+            // Empty relationship filters still need to support the explicit Empty operator.
+            if (in_array($name, ['locations', 'participants', 'races', 'families', 'organisations'], true)
+                && Arr::get($filters, $name . '_option') === 'none') {
+                $values = [];
+            }
             if ($values === null || $values === '') {
                 continue;
-            } elseif (is_array($values) && empty(array_filter($values, fn ($v) => $v !== '' && $v !== null))) {
+            } elseif (is_array($values) && empty(array_filter($values, fn ($v) => $v !== '' && $v !== null))
+                && Arr::get($filters, $name . '_option') !== 'none') {
                 continue;
             } elseif ($name === 'status_id' && is_array($values)) {
                 $query->whereIn('entities.status_id', $values);
             } elseif ($name === 'parent_id') {
                 continue;
-            } elseif ($name === 'locations') {
-                if (Arr::get($filters, 'locations_option') === 'none') {
-                    continue;
-                }
-                $ids = collect((array) $values)->map(fn ($id) => (int) $id)->all();
-                if (Arr::get($filters, 'locations_option') === 'children') {
-                    $ids = Entity::whereIn('entity_id', $ids)
-                        ->where('type_id', config('entities.ids.location'))
-                        ->with('descendants')
-                        ->get()
-                        ->flatMap(fn ($entity) => [$entity->entity_id, ...$entity->descendants->pluck('entity_id')->all()])
-                        ->unique()->all();
-                }
-                $locationQuery = fn ($subquery) => $subquery->selectRaw(1)
-                    ->from('entity_locations')
-                    ->whereColumn('entity_locations.entity_id', 'entities.id')
-                    ->whereIn('entity_locations.location_id', $ids);
-                if (Arr::get($filters, 'locations_option') === 'exclude') {
-                    $query->whereNotExists($locationQuery);
-                } else {
-                    $query->whereExists($locationQuery);
-                }
-
+            } elseif (in_array($name, ['locations', 'participants', 'races', 'families', 'organisations'], true)) {
                 continue;
             } elseif (in_array($name, ['is_private', 'status_id'])) {
                 $query->where('entities.' . $name, $values);
@@ -414,51 +470,8 @@ trait EntityScopes
             foreach ($childFilterKeys as $name => $values) {
                 $ids = collect((array) $values)->map(fn ($v) => (int) $v)->toArray();
                 $option = Arr::get($filters, $name . '_option');
-                if ($name === 'families') {
-                    if ($option === 'children') {
-                        $ids = Entity::whereIn('entity_id', $ids)
-                            ->where('type_id', config('entities.ids.family'))
-                            ->with('descendants')
-                            ->get()
-                            ->flatMap(fn ($e) => [$e->entity_id, ...$e->descendants->pluck('entity_id')->toArray()])
-                            ->unique()
-                            ->toArray();
-                    }
-                    if ($option === 'exclude') {
-                        $query->whereRaw('(select count(*) from `character_family` where `character_family`.`character_id` = `child_filter`.`id` and `character_family`.`family_id` in (' . implode(', ', $ids) . ')) = 0');
-                    } else {
-                        $query->whereExists(fn ($q) => $q->select(DB::raw(1))->from('character_family')->whereColumn('character_family.character_id', 'child_filter.id')->whereIn('character_family.family_id', $ids));
-                    }
-                } elseif ($name === 'races') {
-                    if ($option === 'children') {
-                        $ids = Entity::whereIn('entity_id', $ids)
-                            ->where('type_id', config('entities.ids.race'))
-                            ->with('descendants')
-                            ->get()
-                            ->flatMap(fn ($e) => [$e->entity_id, ...$e->descendants->pluck('entity_id')->toArray()])
-                            ->unique()
-                            ->toArray();
-                    }
-                    if ($option === 'exclude') {
-                        $query->whereRaw('(select count(*) from `character_race` where `character_race`.`character_id` = `child_filter`.`id` and `character_race`.`race_id` in (' . implode(', ', $ids) . ')) = 0');
-                    } else {
-                        $query->whereExists(fn ($q) => $q->select(DB::raw(1))->from('character_race')->whereColumn('character_race.character_id', 'child_filter.id')->whereIn('character_race.race_id', $ids));
-                    }
-                } elseif ($name === 'organisations') {
-                    if ($option === 'children') {
-                        $ids = Entity::whereIn('entity_id', $ids)
-                            ->where('type_id', config('entities.ids.organisation'))
-                            ->with('descendants')
-                            ->get()
-                            ->flatMap(fn ($e) => [$e->entity_id, ...$e->descendants->pluck('entity_id')->toArray()])
-                            ->unique()
-                            ->toArray();
-                    }
-                    if ($option === 'exclude') {
-                        $query->whereRaw('(select count(*) from `organisation_member` where `organisation_member`.`character_id` = `child_filter`.`id` and `organisation_member`.`organisation_id` in (' . implode(', ', $ids) . ')) = 0');
-                    } else {
-                        $query->whereExists(fn ($q) => $q->select(DB::raw(1))->from('organisation_member')->whereColumn('organisation_member.character_id', 'child_filter.id')->whereIn('organisation_member.organisation_id', $ids));
-                    }
+                if (in_array($name, ['families', 'races', 'organisations'], true)) {
+                    continue;
                 } elseif ($name === 'location_id') {
                     if ($option === 'exclude') {
                         $query->where(function ($sub) use ($values) {
@@ -496,20 +509,6 @@ trait EntityScopes
         foreach (['created_by', 'updated_by'] as $field) {
             if (Arr::get($filters, $field . '_option') === 'none') {
                 $query->whereNull('entities.' . $field);
-            }
-        }
-
-        $noneJoinTables = [
-            'races' => ['table' => 'character_race', 'fk' => 'character_id', 'ref' => 'entities.entity_id'],
-            'families' => ['table' => 'character_family', 'fk' => 'character_id', 'ref' => 'entities.entity_id'],
-            'organisations' => ['table' => 'organisation_member', 'fk' => 'character_id', 'ref' => 'entities.entity_id'],
-            'locations' => ['table' => 'entity_locations', 'fk' => 'entity_id', 'ref' => 'entities.id'],
-        ];
-        foreach ($noneJoinTables as $field => $join) {
-            if (Arr::get($filters, $field . '_option') === 'none') {
-                $query->whereNotExists(
-                    fn ($q) => $q->selectRaw(1)->from($join['table'])->whereColumn($join['table'] . '.' . $join['fk'], $join['ref'])
-                );
             }
         }
 

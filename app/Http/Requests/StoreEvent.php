@@ -2,6 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Event;
+use App\Rules\EventParticipantState;
+use App\Services\Events\ParticipantService;
 use App\Traits\ApiRequest;
 use App\Traits\EntityRequestRules;
 use App\Traits\ResolvesNewForeignEntities;
@@ -33,6 +36,14 @@ class StoreEvent extends FormRequest
         $rules = [
             'date' => 'nullable|string|max:191',
         ];
+
+        $campaign = request()->route('campaign');
+        $event = request()->route('event') ?? request()->route('entity')?->child;
+        if ($campaign) {
+            $rules['event_participants'] = ['sometimes', 'string', new EventParticipantState(
+                app(ParticipantService::class), $campaign->id, $event instanceof Event ? $event : null
+            )];
+        }
 
         return $this->entityRules($rules);
     }

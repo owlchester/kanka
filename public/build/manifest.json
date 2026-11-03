@@ -148,6 +148,13 @@
       "__commonjsHelpers-Cpj98o6Y.js"
     ]
   },
+  "_vue-draggable-next.esm-bundler-DO2H4ui-.js": {
+    "file": "assets/vue-draggable-next.esm-bundler-DO2H4ui-.js",
+    "name": "vue-draggable-next.esm-bundler",
+    "imports": [
+      "_vue.esm-bundler-GXfi61Lw.js"
+    ]
+  },
   "_vue-tippy.esm-browser-Dvd-iQ8z.js": {
     "file": "assets/vue-tippy.esm-browser-Dvd-iQ8z.js",
     "name": "vue-tippy.esm-browser",
@@ -268,7 +275,7 @@
     "isDynamicEntry": true
   },
   "resources/css/app.css": {
-    "file": "assets/app-ChWXfNxT.css",
+    "file": "assets/app-D6kqLyH_.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -277,7 +284,7 @@
     ]
   },
   "resources/css/auth.css": {
-    "file": "assets/auth-m3vgPxwM.css",
+    "file": "assets/auth-CKF7hHPR.css",
     "src": "resources/css/auth.css",
     "isEntry": true,
     "name": "auth",
@@ -304,7 +311,7 @@
     ]
   },
   "resources/css/front.css": {
-    "file": "assets/front-DCA67Cnz.css",
+    "file": "assets/front-C_wv4zoH.css",
     "src": "resources/css/front.css",
     "isEntry": true,
     "name": "front",
@@ -411,7 +418,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-RChvdgRh.js",
+    "file": "assets/app-DcgetiK2.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -432,16 +439,18 @@
       "__commonjsHelpers-Cpj98o6Y.js"
     ],
     "dynamicImports": [
+      "resources/js/events/participants.js",
       "resources/js/maps/preview-runtime.js"
     ]
   },
   "resources/js/attributes-manager.js": {
-    "file": "assets/attributes-manager-CaAM37SY.js",
+    "file": "assets/attributes-manager-Cn4_Fjnd.js",
     "name": "attributes-manager",
     "src": "resources/js/attributes-manager.js",
     "isEntry": true,
     "imports": [
       "_vue.esm-bundler-GXfi61Lw.js",
+      "_vue-draggable-next.esm-bundler-DO2H4ui-.js",
       "_v-click-outside.umd-Cl-Y_A58.js",
       "__commonjsHelpers-Cpj98o6Y.js"
     ]
@@ -642,6 +651,20 @@
       "_vue.esm-bundler-GXfi61Lw.js",
       "_vue-tippy.esm-browser-Dvd-iQ8z.js",
       "_tippy.esm-CnBRltuW.js"
+    ]
+  },
+  "resources/js/events/participants.js": {
+    "file": "assets/participants-C9hfQtNa.js",
+    "name": "participants",
+    "src": "resources/js/events/participants.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_vue.esm-bundler-GXfi61Lw.js",
+      "_vue-draggable-next.esm-bundler-DO2H4ui-.js",
+      "__plugin-vue_export-helper-DlAUqK2U.js"
+    ],
+    "css": [
+      "assets/participants-CjWZt_dM.css"
     ]
   },
   "resources/js/family-tree-vue.js": {
