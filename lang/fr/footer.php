@@ -17,6 +17,7 @@ return [
         'title' => 'Choix de la langue',
     ],
     'made'              => 'Fabriqué avec ❤️ à Genève, Suisse',
+    'mcp'               => 'MCP',
     'newsletter'        => 'Newsletter',
     'platform'          => 'Platforme',
     'plugins'           => 'Bibliothèque de Plugins',

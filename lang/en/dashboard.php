@@ -112,12 +112,9 @@ return [
             'width'             => 'Width',
         ],
         'helpers'                   => [
-            'class'     => 'Define a custom CSS class added to the widget.',
-            'filters'   => 'Click to learn about the available filter options.',
-            'premium-dashboard-target' => 'This campaign is no longer premium. The existing dashboard link will be kept unless you change or remove it.',
-        ],
-        'validation'                => [
-            'premium-dashboard-target' => 'A premium campaign is required to link to a custom dashboard.',
+            'class'                     => 'Define a custom CSS class added to the widget.',
+            'filters'                   => 'Click to learn about the available filter options.',
+            'premium-dashboard-target'  => 'This campaign is no longer premium. The existing dashboard link will be kept unless you change or remove it.',
         ],
         'orders'                    => [
             'name_asc'  => 'Name ascending',
@@ -174,6 +171,9 @@ return [
         ],
         'update'                    => [
             'success'   => 'Widget modified.',
+        ],
+        'validation'                => [
+            'premium-dashboard-target'  => 'A premium campaign is required to link to a custom dashboard.',
         ],
         'widths'                    => [
             '0' => 'Auto',

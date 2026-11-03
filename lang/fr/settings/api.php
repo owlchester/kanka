@@ -25,6 +25,12 @@ return [
         'secret'        => 'Secret',
         'token_name'    => 'Nom du jeton',
     ],
+    'mcp'               => [
+        'badge'         => 'MCP · lecture seule',
+        'description'   => 'Connecte des assistants IA à Kanka pour rechercher les entrées de tes mondes via le Model Context Protocol. Ajoute cette URL comme serveur MCP HTTP diffusant des flux dans ton client.',
+        'more'          => 'En savoir plus sur ta page :mcp.',
+        'title'         => 'Serveur MCP',
+    ],
     'new'               => [
         'copy'  => 'Jeton d\'accès copié au presse-papier',
         'title' => 'Ton nouveau jeton d\'accès personnel:',
