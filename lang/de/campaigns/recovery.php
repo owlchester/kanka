@@ -20,7 +20,6 @@ return [
         'type_order'    => 'Typ',
     ],
     'posts'     => [],
-    'premium'   => 'Die Wiederherstellung von Elementen ist eine Premium-Kampagnenfunktion.',
     'success_v2'=> '{1} :count Element wurde wiedergefunden.|[2,*] :count Elmente wurden wiedergefunden.',
     'title'     => 'Objektwiederherstellung  für :campaign',
     'toggle'    => [],

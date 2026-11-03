@@ -46,7 +46,6 @@ return [
         'participants'  => 'Участники',
     ],
     'targets'       => [
-        'characters'    => 'Персонажи',
-        'members'       => 'Участники кампании',
+        'members'   => 'Участники кампании',
     ],
 ];

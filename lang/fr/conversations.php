@@ -50,8 +50,7 @@ return [
         'participants'  => 'Participants',
     ],
     'targets'       => [
-        'characters'    => 'Personnages',
-        'entities'      => 'Entités',
-        'members'       => 'Membres',
+        'entities'  => 'Entités',
+        'members'   => 'Membres',
     ],
 ];

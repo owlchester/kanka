@@ -6,16 +6,14 @@ return [
         'unlock'    => 'Débloquer Premium',
     ],
     'create'        => [
-        'actions'       => [
+        'actions'   => [
             'confirm'   => 'Débloquer Premium!',
         ],
-        'confirm'       => 'Waouw! Tu es sur le point de débloquer des fonctionnalités premium pour :campaign. Cette campagne utilisera l\'une de tes campagnes Premium disponibles.',
-        'duration'      => 'Les campagnes Premium le restent jusqu\'à ce qu\'elles soient supprimées manuellement ou que ton abonnement prenne fin.',
-        'more'          => 'Plus de thèmes personnalisés, de plugins, d’arbres généalogiques, de catégories personnalisées et bien plus encore. Ceci n’est qu’un aperçu de tout ce qui est débloqué. Les campagnes Premium le restent jusqu’à ce que tu les retires manuellement ou que ton abonnement prenne fin.',
-        'no-stock'      => 'Oh non, il semble que tu n’aies pas assez de campagnes Premium disponibles pour débloquer celle-ci. Tu peux retirer le statut Premium d’une autre campagne ou :upgrade.',
-        'pitch'         => 'Voici un aperçu de ce que :name gagne dès que tu passes à Premium, et ce n’est qu’un début.',
-        'pitch_2026'    => 'Bénéficie de rôles, membres, thèmes personnalisés, plugins illimités, et bien plus pour tes campagnes.',
-        'recap'         => [
+        'confirm'   => 'Waouw! Tu es sur le point de débloquer des fonctionnalités premium pour :campaign. Cette campagne utilisera l\'une de tes campagnes Premium disponibles.',
+        'more'      => 'Plus de thèmes personnalisés, de plugins, d’arbres généalogiques, de catégories personnalisées et bien plus encore. Ceci n’est qu’un aperçu de tout ce qui est débloqué. Les campagnes Premium le restent jusqu’à ce que tu les retires manuellement ou que ton abonnement prenne fin.',
+        'no-stock'  => 'Oh non, il semble que tu n’aies pas assez de campagnes Premium disponibles pour débloquer celle-ci. Tu peux retirer le statut Premium d’une autre campagne ou :upgrade.',
+        'pitch'     => 'Voici un aperçu de ce que :name gagne dès que tu passes à Premium, et ce n’est qu’un début.',
+        'recap'     => [
             'control'   => [
                 'description'   => 'Modifie la barre latérale, les catégories et bien plus encore',
                 'title'         => 'Contrôle total',
@@ -33,8 +31,8 @@ return [
             ],
             'size'      => 'Limite de téléversement par membre',
         ],
-        'subtitle'      => 'Tu es sur le point de débloquer Premium pour :name. Voici quelques exemples de ce qui changera immédiatement.',
-        'success'       => 'La campagne :campaign est maintenant Premium. Éclate-toi avec les chouettes fonctionnalités!',
+        'subtitle'  => 'Tu es sur le point de débloquer Premium pour :name. Voici quelques exemples de ce qui changera immédiatement.',
+        'success'   => 'La campagne :campaign est maintenant Premium. Éclate-toi avec les chouettes fonctionnalités!',
     ],
     'exceptions'    => [
         'already'       => 'Les fonctionnalités Premium ont déjà été débloquées pour cette campagne.',

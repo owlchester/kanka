@@ -15,7 +15,6 @@ return [
         'other' => 'Outros idiomas',
         'title' => 'Selecione seu idioma',
     ],
-    'made'              => 'Feito com ❤️ em Genebra, Suíça',
     'newsletter'        => 'Informativos',
     'platform'          => 'Plataforma',
     'plugins'           => 'Biblioteca de plugins',

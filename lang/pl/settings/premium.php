@@ -6,13 +6,11 @@ return [
         'unlock'    => 'Aktywuj premium',
     ],
     'create'        => [
-        'actions'       => [
+        'actions'   => [
             'confirm'   => 'Wersja premium!',
         ],
-        'confirm'       => 'Hurra! Zaraz odblokujesz wersję premium kampanii :campaign. Użyjesz w tym celu jednego z dostępnych rozszerzeń.',
-        'duration'      => 'Kampanie premium zachowują status, póki go nie usuniesz ręcznie albo do zakończenia subskrypcji.',
-        'pitch_2026'    => 'Otrzymasz nieograniczoną liczbę ról i czestników, własne motywy, dodatki i nie tylko',
-        'success'       => 'Kampania :campaign ma status premium. Korzystaj z wielu świetnych opcji!',
+        'confirm'   => 'Hurra! Zaraz odblokujesz wersję premium kampanii :campaign. Użyjesz w tym celu jednego z dostępnych rozszerzeń.',
+        'success'   => 'Kampania :campaign ma status premium. Korzystaj z wielu świetnych opcji!',
     ],
     'exceptions'    => [
         'already'       => 'W tej kampanii używasz już opcji premium.',

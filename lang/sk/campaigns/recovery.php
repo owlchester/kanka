@@ -20,7 +20,6 @@ return [
         'type_order'    => 'Typ',
     ],
     'posts'     => [],
-    'premium'   => 'Obnovenie objektov je funkcionalita prémiovej kampane.',
     'success_v2'=> '{1} :count prvok obnovený.|[2,4] :count prvky obnovené.|[5,*] :count prvkov obnovených.',
     'title'     => 'Obnovenie objektov',
     'toggle'    => [],

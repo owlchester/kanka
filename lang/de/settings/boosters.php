@@ -41,13 +41,6 @@ return [
         'first'     => 'Erweiterte Funktionen werden freigeschaltet, indem du deine Booster einer Kampagne Boosten oder Superboosten zuweist. Die Anzahl der Booster, die du hast, wird durch dein :Abonnement bestimmt. Diese Nummer steht dir als Abonnent jederzeit zur Verfügung. Das Boosten einer Kampagne weist du einen deiner Booster zu, während das Superboosten einer Kampagne drei davon zuweist.',
     ],
     'pitch'     => [
-        'benefits'      => [
-            'backup'        => 'Stelle eine zuvor gelöschtest Objekt für bis zu :amount Tage wieder her',
-            'customisable'  => 'Vollständige Anpassung des Aussehens einer Kampagne',
-            'icons'         => 'Zugriff auf Tausende schöner Symbole für Karten und Zeileisten',
-            'title'         => 'Geboostete Kampagnen erhalten',
-            'upload'        => 'Größere Upload-Größe für alle Kampagnenmitglieder',
-        ],
         'description'   => 'Weise Kampagnen Booster zu und helfe dabei, erstaunliche Funktionen für alle Beteiligten freizuschalten. Nicht beeindruckt von geboosteten Kampagnen? Wir haben Sie mit supergeboosteten Kampagnen abgedeckt!',
         'more'          => 'Sehe dir die vollständige Liste der Vergünstigungen auf unserer :Booster-Seite an.',
         'title'         => 'Bringe eine Kampagne mit Anpassungen und Vorteilen für alle Mitglieder auf die nächste Stufe',

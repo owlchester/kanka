@@ -51,7 +51,6 @@ return [
         'participants'  => 'Participantes',
     ],
     'targets'       => [
-        'characters'    => 'Personajes',
-        'members'       => 'Miembros',
+        'members'   => 'Miembros',
     ],
 ];

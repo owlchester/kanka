@@ -20,7 +20,6 @@ return [
         'type_order'    => 'Tipo',
     ],
     'posts'     => [],
-    'premium'   => 'Recuperar elementos é um recurso premium da campanha.',
     'success_v2'=> '{1} :count elemento foi recuperado.|[2,*] :count elementos foram recuperados.',
     'title'     => 'Recuperação de Entidades - :campaign',
     'toggle'    => [],
