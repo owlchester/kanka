@@ -16,6 +16,7 @@ return [
         'other' => 'Otros idiomas',
         'title' => 'Selecciona tu idioma',
     ],
+    'mcp'               => 'MCP',
     'newsletter'        => 'Boletín de noticias',
     'platform'          => 'Plataforma',
     'plugins'           => 'Biblioteca de plugins',

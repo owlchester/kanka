@@ -20,14 +20,16 @@ return [
         'empty' => 'Registra diálogos, cartas o intercambios entre personajes y facciones.',
     ],
     'messages'      => [
-        'destroy'       => [
+        'confirm_delete'    => '¿Eliminar este mensaje?',
+        'destroy'           => [
             'success'   => 'Mensaje eliminado.',
         ],
-        'is_updated'    => 'Actualizado',
-        'load_previous' => 'Cargar mensajes previos',
-        'placeholders'  => [
+        'is_updated'        => 'Actualizado',
+        'load_previous'     => 'Cargar mensajes previos',
+        'placeholders'      => [
             'message'   => 'Tu mensaje',
         ],
+        'request_failed'    => 'La solicitud falló. Inténtalo de nuevo.',
     ],
     'participants'  => [
         'create'    => [
@@ -51,6 +53,7 @@ return [
         'participants'  => 'Participantes',
     ],
     'targets'       => [
+        'entities'  => 'Entidades',
         'members'   => 'Miembros',
     ],
 ];
