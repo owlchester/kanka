@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\FeatureStatus as FeatureStatusEnum;
 use App\Models\Concerns\HasUser;
 use App\Models\Concerns\Sanitizable;
 use App\Observers\FeatureObserver;
@@ -17,7 +18,7 @@ use Illuminate\Support\Str;
  * @property int $id
  * @property string $name
  * @property string $description
- * @property \App\Enums\FeatureStatus $status_id
+ * @property FeatureStatusEnum $status_id
  * @property int $category_id
  * @property ?int $created_by
  * @property int $upvote_count
@@ -44,6 +45,7 @@ class Feature extends Model
 
     protected $casts = [
         'meta' => 'array',
+        'status_id' => FeatureStatusEnum::class,
     ];
 
     protected array $sanitizable = [
@@ -86,18 +88,18 @@ class Feature extends Model
 
     public function scopeApproved(Builder $builder): Builder
     {
-        return $builder->whereIn('status_id', [\App\Enums\FeatureStatus::Approved])
+        return $builder->whereIn('status_id', [FeatureStatusEnum::Approved])
             ->orderBy('upvote_count', 'desc');
     }
 
     public function scopeVisible(Builder $builder): Builder
     {
         $statuses = [
-            \App\Enums\FeatureStatus::Approved,
-            \App\Enums\FeatureStatus::Later,
-            \App\Enums\FeatureStatus::Next,
-            \App\Enums\FeatureStatus::Now,
-            \App\Enums\FeatureStatus::Done,
+            FeatureStatusEnum::Approved,
+            FeatureStatusEnum::Later,
+            FeatureStatusEnum::Next,
+            FeatureStatusEnum::Now,
+            FeatureStatusEnum::Done,
         ];
 
         return $builder->whereIn('status_id', $statuses)

@@ -2,6 +2,7 @@
 
 namespace App\Jobs\Discord;
 
+use App\Enums\FeatureStatus;
 use App\Models\Feature;
 use App\Services\Discord\NotificationService;
 use Illuminate\Bus\Queueable;
