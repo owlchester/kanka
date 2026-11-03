@@ -72,11 +72,13 @@ class Location extends MiscModel
     }
 
     /**
-     * @return HasMany<Item, $this>
+     * Items associated with this location through their entity locations.
+     *
+     * @return Builder<Item>
      */
-    public function items(): HasMany
+    public function items(): Builder
     {
-        return $this->hasMany('App\Models\Item', 'location_id', 'id');
+        return Item::whereHas('entity.locations', fn ($query) => $query->where('locations.id', $this->id));
     }
 
     /**
@@ -162,10 +164,6 @@ class Location extends MiscModel
      */
     public function detach(): void
     {
-        foreach ($this->items as $child) {
-            $child->location_id = null;
-            $child->save();
-        }
 
         $this->entities()->detach();
     }

@@ -17,7 +17,7 @@ class ItemFilter extends DatagridFilter
             ->add('size')
             ->add('weight')
             ->add('is_equipped')
-            ->location()
+            ->locations()
             ->character()
             ->isPrivate()
             ->template()

@@ -60,6 +60,7 @@ abstract class DatagridFilter
         if (! empty($name)) {
             $placeholder = __('crud.placeholders.fallback', ['module' => $name]);
         }
+
         $this->filters[] = [
             'field' => 'location_id',
             'label' => Module::singular(config('entities.ids.location'), __('entities.location')),

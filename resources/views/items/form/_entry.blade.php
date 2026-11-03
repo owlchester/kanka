@@ -5,7 +5,7 @@
 @include('cruds.fields.size', ['trans' => 'items'])
 @include('cruds.fields.weight', ['trans' => 'items'])
 
-@include('cruds.fields.location')
+@include('cruds.fields.locations')
 
 @include('cruds.fields.creators')
 

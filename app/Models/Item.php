@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
-use App\Models\Concerns\HasLocation;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
@@ -32,7 +31,6 @@ class Item extends MiscModel
     use HasCampaign;
     use HasFactory;
     use HasFilters;
-    use HasLocation;
     use Sanitizable;
     use SortableTrait;
 
@@ -41,7 +39,6 @@ class Item extends MiscModel
         'price',
         'size',
         'weight',
-        'location_id',
         'is_private',
     ];
 
@@ -52,7 +49,6 @@ class Item extends MiscModel
         'price',
         'size',
         'weight',
-        'location.name',
     ];
 
     protected array $sanitizable = [
@@ -76,9 +72,7 @@ class Item extends MiscModel
      *
      * @var string[]
      */
-    public array $nullableForeignKeys = [
-        'location_id',
-    ];
+    public array $nullableForeignKeys = [];
 
     /**
      * Foreign relations to add to export
@@ -92,7 +86,6 @@ class Item extends MiscModel
         'price',
         'size',
         'weight',
-        'location_id',
     ];
 
     /**
@@ -179,7 +172,7 @@ class Item extends MiscModel
         if (! empty($this->price) || ! empty($this->size) || ! empty($this->weight)) {
             return true;
         }
-        if ($this->itemCreators->isNotEmpty() || $this->location) {
+        if ($this->itemCreators->isNotEmpty() || $this->entity?->locations->isNotEmpty()) {
             return true;
         }
 
@@ -194,7 +187,6 @@ class Item extends MiscModel
     public function filterableColumns(): array
     {
         return [
-            'location_id',
             'creators',
             'price',
             'size',

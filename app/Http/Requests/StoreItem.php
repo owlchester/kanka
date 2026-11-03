@@ -13,7 +13,7 @@ class StoreItem extends FormRequest
     use EntityRequestRules;
     use ResolvesNewForeignEntities;
 
-    protected array $foreignEntityFields = ['location_id'];
+    protected array $foreignEntityFields = [];
 
     protected bool $foreignEntityParent = true;
 
@@ -35,7 +35,6 @@ class StoreItem extends FormRequest
     public function rules()
     {
         $rules = [
-            'location_id' => 'nullable|integer|exists:locations,id',
             'creators' => 'nullable|array',
             'creators.*' => 'integer|exists:entities,id',
             'price' => 'nullable|string|max:191',

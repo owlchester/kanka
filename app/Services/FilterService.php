@@ -106,6 +106,7 @@ class FilterService
             'template',
             'tag_id',
             'tags',
+            'locations',
             'has_image',
             'has_posts',
             'has_entry',

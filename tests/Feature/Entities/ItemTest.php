@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Item;
+use App\Models\Location;
 
 it('POSTS an invalid item form')
     ->asUser()
@@ -68,6 +69,18 @@ it('UPDATES a valid item without a name')
     ->putJson('/api/1.0/campaigns/1/items/1', ['type' => 'Magic'])
     ->assertStatus(200)
     ->assertJsonFragment(['type' => 'Magic']);
+
+it('assigns multiple locations to an item through the API', function () {
+    $this->asUser()->withCampaign();
+    $locations = Location::factory()->count(2)->create(['campaign_id' => 1]);
+
+    $this->postJson('/api/1.0/campaigns/1/items', [
+        'name' => 'Relic',
+        'locations' => $locations->pluck('id')->all(),
+    ])
+        ->assertCreated()
+        ->assertJsonPath('data.locations', $locations->pluck('id')->all());
+});
 
 it('DELETES a item')
     ->asUser()

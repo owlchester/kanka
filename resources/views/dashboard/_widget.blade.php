@@ -39,7 +39,15 @@ use App\Enums\Widget;
                 </div>
 
                 <div class="flex items-center overflow-hidden gap-2">
-                    @if ($widget->entity)
+                    @if ($widget->widget === Widget::Header && $widget->target instanceof \App\Models\Entity)
+                        <a href="{{ route('entities.show', [$campaign, $widget->target]) }}" class="truncate text-xs bg-base-200 px-2 py-1 rounded text-neutral-content">
+                            {!! $widget->target->name !!}
+                        </a>
+                    @elseif ($widget->widget === Widget::Header && $widget->target instanceof \App\Models\CampaignDashboard)
+                        <a href="{{ route('dashboard', [$campaign, 'dashboard' => $widget->target->id]) }}" class="truncate text-xs bg-base-200 px-2 py-1 rounded text-neutral-content">
+                            {{ $widget->target->name }}
+                        </a>
+                    @elseif ($widget->widget !== Widget::Header && $widget->entity)
                         <a href="{{  route('entities.show', [$campaign, $widget->entity]) }}" class="truncate text-xs bg-base-200 px-2 py-1 rounded text-neutral-content">
                             {!! $widget->entity->name !!}
                         </a>

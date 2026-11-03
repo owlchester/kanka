@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -51,6 +52,8 @@ class CampaignDashboardWidget extends Model
     protected $fillable = [
         'campaign_id',
         'entity_id',
+        'target_type',
+        'target_id',
         'widget',
         'config',
         'position',
@@ -72,6 +75,14 @@ class CampaignDashboardWidget extends Model
     public function entity(): BelongsTo
     {
         return $this->belongsTo(Entity::class);
+    }
+
+    /**
+     * @return MorphTo<Model, $this>
+     */
+    public function target(): MorphTo
+    {
+        return $this->morphTo();
     }
 
     /**

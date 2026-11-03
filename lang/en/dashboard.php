@@ -102,7 +102,10 @@ return [
         'fields'                    => [
             'class'             => 'CSS class',
             'dashboard'         => 'Dashboard',
+            'dashboard-link'    => 'Link to dashboard',
+            'link'              => 'Link target',
             'name'              => 'Widget name',
+            'no-link'           => 'No link',
             'optional-entity'   => 'Link to entry',
             'order'             => 'Ordering',
             'size'              => 'Size',
@@ -111,6 +114,10 @@ return [
         'helpers'                   => [
             'class'     => 'Define a custom CSS class added to the widget.',
             'filters'   => 'Click to learn about the available filter options.',
+            'premium-dashboard-target' => 'This campaign is no longer premium. The existing dashboard link will be kept unless you change or remove it.',
+        ],
+        'validation'                => [
+            'premium-dashboard-target' => 'A premium campaign is required to link to a custom dashboard.',
         ],
         'orders'                    => [
             'name_asc'  => 'Name ascending',

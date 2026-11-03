@@ -135,7 +135,8 @@ class TransformService
         $eventID = config('entities.ids.event');
         $questID = config('entities.ids.quest');
         $journalID = config('entities.ids.journal');
-        $entityLocations = [$raceID, $creatureID, $organisationID, $characterID, $familyID, $eventID, $questID, $journalID];
+        $itemID = config('entities.ids.item');
+        $entityLocations = [$raceID, $creatureID, $organisationID, $characterID, $familyID, $eventID, $questID, $journalID, $itemID];
 
         // If moving from a multi-location to single location
         if (in_array($this->child->entityTypeId(), $entityLocations) && ! in_array($this->new->entityTypeId(), $entityLocations) && $this->entity->locations->isNotEmpty()) {
@@ -164,7 +165,8 @@ class TransformService
         $eventID = config('entities.ids.event');
         $questID = config('entities.ids.quest');
         $journalID = config('entities.ids.journal');
-        $entityLocations = [$raceID, $creatureID, $organisationID, $characterID, $familyID, $eventID, $questID, $journalID];
+        $itemID = config('entities.ids.item');
+        $entityLocations = [$raceID, $creatureID, $organisationID, $characterID, $familyID, $eventID, $questID, $journalID, $itemID];
 
         // If the entity is switched from one location to entity locations
         if (! in_array($this->child->entityTypeId(), $entityLocations) && in_array($this->new->entityTypeId(), $entityLocations)) {
@@ -180,6 +182,9 @@ class TransformService
             ! in_array($this->child->entityTypeId(), $entityLocations) ||
             ! in_array($this->new->entityTypeId(), $entityLocations)
         ) {
+            if ($this->child->entityTypeId() === config('entities.ids.item') && ! in_array($this->new->entityTypeId(), $entityLocations)) {
+                $this->entity->locations()->sync([]);
+            }
             if (property_exists($this->child, 'locations')) {
                 // @phpstan-ignore-next-line
                 $this->child->locations()->sync([]);
@@ -331,8 +336,7 @@ class TransformService
         if (method_exists($this->new, 'locations')) {
             $this->new->locations()->sync($this->entity->locations()->get()->pluck('id'));
         } elseif (method_exists($this->new, 'entityLocations')) {
-            // Characters use the entity.locations table so no mess needed.
-            // todo: races, orgs, families, creatures
+            // Most models use the entity.locations table so no mess needed.
         } else {
             $this->entity->locations()->sync([]);
         }

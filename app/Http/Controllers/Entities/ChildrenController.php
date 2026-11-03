@@ -60,10 +60,13 @@ class ChildrenController extends Controller
                 'image', 'entityType',
                 'status', 'calendarDate.calendar.entity',
                 'locations.entity',
-                'child' => fn (MorphTo $child) => $child->morphWith([
-                    Journal::class => ['author'],
-                    Quest::class => ['instigator'],
-                ]),
+                'child' => function ($child) {
+                    /** @var MorphTo $child */
+                    $child->morphWith([
+                        Journal::class => ['author'],
+                        Quest::class => ['instigator'],
+                    ]);
+                },
                 'tags',
                 'children' => fn ($sub) => $sub->grid(),
                 'parent' => fn ($sub) => $sub->grid(),
