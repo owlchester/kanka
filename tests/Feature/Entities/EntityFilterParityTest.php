@@ -8,6 +8,7 @@ use App\Models\Entity;
 use App\Models\EntityAsset;
 use App\Models\EntityTag;
 use App\Models\EntityType;
+use App\Models\Family;
 use App\Models\Journal;
 use App\Models\Post;
 use App\Models\Tag;
@@ -203,4 +204,23 @@ it('keeps tag options consistent across entity and child queries', function () {
     $filters = ['tags' => [], 'tags_option' => 'none'];
     expect($childIds($filters))->toBe([$untagged->id]);
     expect($entityIds($filters))->toBe([$untagged->entity->id]);
+});
+
+it('supports legacy family id filters on entity queries', function () {
+    $this->asUser()->withCampaign();
+
+    $family = Family::factory()->create(['campaign_id' => 1]);
+    $matching = Character::factory()->create(['campaign_id' => 1]);
+    $other = Character::factory()->create(['campaign_id' => 1]);
+    $matching->characterFamilies()->create(['family_id' => $family->id]);
+    $entityType = EntityType::findOrFail(config('entities.ids.character'));
+
+    $results = Entity::query()
+        ->where('entities.type_id', $entityType->id)
+        ->filter(['family_id' => (string) $family->id], $entityType)
+        ->paginate(10);
+
+    expect($results->total())->toBe(1)
+        ->and($results->first()->entity_id)->toBe($matching->id)
+        ->and($results->pluck('entity_id')->all())->not->toContain($other->id);
 });

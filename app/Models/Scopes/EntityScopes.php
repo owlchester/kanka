@@ -290,6 +290,16 @@ trait EntityScopes
 
     public function scopeFilter(Builder $query, array $filters = [], ?EntityType $entityType = null): Builder
     {
+        // Older saved filters use the child foreign-key names. These are
+        // relationship filters, not columns on the child model.
+        foreach (['family_id' => 'families', 'race_id' => 'races'] as $legacy => $current) {
+            if (array_key_exists($legacy, $filters)) {
+                $filters[$current] ??= $filters[$legacy];
+                $filters[$current . '_option'] ??= $filters[$legacy . '_option'] ?? null;
+                unset($filters[$legacy], $filters[$legacy . '_option']);
+            }
+        }
+
         $childFilterKeys = [];
         foreach ($filters as $name => $values) {
             // Skip null or empty-string values (empty form fields)
