@@ -2,6 +2,8 @@
 
 namespace App\Datagrids\Filters;
 
+use App\Models\Entity;
+
 class EventFilter extends DatagridFilter
 {
     /**
@@ -15,6 +17,15 @@ class EventFilter extends DatagridFilter
             ->parent(config('entities.ids.event'))
             ->add('date')
             ->locations()
+            ->add([
+                'field' => 'participants',
+                'label' => __('events.participants.title'),
+                'type' => 'selectMultiple',
+                'route' => route('search.entities-with-relations', $this->campaign),
+                'placeholder' => __('crud.placeholders.search'),
+                'model' => Entity::class,
+                'multiple' => true,
+            ])
             ->isPrivate()
             ->template()
             ->archived()

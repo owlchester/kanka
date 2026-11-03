@@ -92,7 +92,7 @@ trait HasFilters
         foreach ($this->filterParams as $key => $value) {
             if (isset($value) && in_array($key, $fields)) {
                 // The requested field is an array, which we only support for filters with "or" semantics.
-                if (is_array($value) && ! in_array($key, ['tags', 'locations', 'organisations', 'races', 'families', 'status_id'])) {
+                if (is_array($value) && ! in_array($key, ['tags', 'locations', 'organisations', 'races', 'families', 'participants', 'status_id'])) {
                     continue;
                 }
                 $this->filterOption = ! empty($params[$key . '_option']) ? $params[$key . '_option'] : null;
@@ -129,6 +129,8 @@ trait HasFilters
                     $this->filterRaces($query, $value);
                 } elseif ($key == 'families') {
                     $this->filterFamilies($query, $value);
+                } elseif ($key === 'participants') {
+                    $this->filterParticipants($query, $value);
                 } elseif (in_array($key, ['date_start', 'date_end'])) {
                     $this->filterDateRange($query, $key, $params);
                 } elseif ($key == 'races') {
@@ -629,6 +631,27 @@ trait HasFilters
             ->whereIn('cf.family_id', $values);
     }
 
+    /** Filter events by participant entities without duplicating event rows. */
+    protected function filterParticipants(Builder $query, null|string|array $value = null): void
+    {
+        if ($this->filterOption('none')) {
+            return;
+        }
+
+        $ids = array_map('intval', (array) $value);
+        $participants = function ($subquery) use ($ids) {
+            $subquery->select('event_id')->from('event_participants')->whereIn('entity_id', $ids);
+        };
+
+        if ($this->filterOption('exclude')) {
+            $query->whereNotIn($this->getTable() . '.id', $participants);
+
+            return;
+        }
+
+        $query->whereIn($this->getTable() . '.id', $participants);
+    }
+
     /**
      * Filter characters on a single race
      */
@@ -779,7 +802,11 @@ trait HasFilters
             return;
         }
         // Left join shenanigans
-        if (! in_array($key, ['race_id', 'family_id', 'tags', 'quest_element_id', 'member_id'])) {
+        if ($key === 'participants' && in_array('participants', $fields)) {
+            $query->whereNotIn($this->getTable() . '.id', function ($subquery) {
+                $subquery->select('event_id')->from('event_participants');
+            });
+        } elseif (! in_array($key, ['race_id', 'family_id', 'tags', 'quest_element_id', 'member_id'])) {
             if ($this->hasEntityBackedFields()) {
                 $query->joinEntity();
             }

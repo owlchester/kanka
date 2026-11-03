@@ -49,7 +49,11 @@
                                 $value = $filterService->filterValue($field['field']);
                                 if (!empty($value)) {
                                     $modelclass = new $field['model'];
-                                    $models = $modelclass->whereIn('id', $value)->get()->pluck('name', 'id')->toArray();
+                                    $modelQuery = $modelclass->whereIn('id', $value);
+                                    if ($field['field'] === 'participants') {
+                                        $modelQuery->where('campaign_id', $campaign->id);
+                                    }
+                                    $models = $modelQuery->get()->pluck('name', 'id')->toArray();
                                 }
                             }
                             ?>

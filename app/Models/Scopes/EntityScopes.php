@@ -3,6 +3,7 @@
 namespace App\Models\Scopes;
 
 use App\Enums\EntityEventTypes;
+use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
 use App\Models\Concerns\FiltersEntityFields;
 use App\Models\Entity;
@@ -342,6 +343,27 @@ trait EntityScopes
                     $query->whereNotExists($locationQuery);
                 } else {
                     $query->whereExists($locationQuery);
+                }
+
+                continue;
+            } elseif ($name === 'participants') {
+                $ids = collect((array) $values)->filter(fn ($id) => $id !== '' && $id !== null)->map(fn ($id) => (int) $id)->unique()->values()->all();
+                $option = Arr::get($filters, 'participants_option');
+                $visibleIds = Entity::query()->where('campaign_id', CampaignLocalization::getCampaign()->id)->pluck('entity_id');
+                $visibleParticipants = fn ($subquery) => $subquery->selectRaw(1)
+                    ->from('event_participants')
+                    ->whereColumn('event_participants.event_id', 'entities.entity_id')
+                    ->whereIn('event_participants.entity_id', $visibleIds);
+
+                if ($option === 'none') {
+                    $query->whereNotExists($visibleParticipants);
+                } else {
+                    $hasSelected = fn ($subquery) => $visibleParticipants($subquery)->whereIn('event_participants.entity_id', $ids);
+                    if ($option === 'exclude') {
+                        $query->whereNotExists($hasSelected);
+                    } elseif ($ids !== []) {
+                        $query->whereExists($hasSelected);
+                    }
                 }
 
                 continue;

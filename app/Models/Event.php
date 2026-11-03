@@ -159,6 +159,7 @@ class Event extends MiscModel
         return [
             'date',
             'locations',
+            'participants',
         ];
     }
 }
