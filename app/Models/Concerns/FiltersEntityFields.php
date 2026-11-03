@@ -196,53 +196,18 @@ trait FiltersEntityFields
         null|string|array $tags,
         ?string $option,
     ): void {
-        $tagIds = collect((array) $tags)
-            ->filter(fn ($tag) => is_numeric($tag))
-            ->map(fn ($tag) => (int) $tag)
-            ->unique()
-            ->values()
-            ->all();
+        // Empty and legacy include values have always meant “match all”.
+        $option = in_array($option, [null, '', 'include'], true) ? 'all' : $option;
 
-        if ($option === 'none') {
-            $this->applyEntityRelationPresenceFilter($query, $entityTable, 'entity_tags', 'entity_id', false);
-
-            return;
-        }
-
-        if (empty($tagIds)) {
-            return;
-        }
-
-        if ($option === 'exclude') {
-            $query->whereNotExists(function ($subquery) use ($entityTable, $tagIds): void {
-                $subquery->selectRaw('1')
-                    ->from('entity_tags as entity_filter_tags')
-                    ->whereColumn('entity_filter_tags.entity_id', $entityTable . '.id')
-                    ->whereIn('entity_filter_tags.tag_id', $tagIds);
-            });
-
-            return;
-        }
-
-        if ($option === 'any') {
-            $query->whereExists(function ($subquery) use ($entityTable, $tagIds): void {
-                $subquery->selectRaw('1')
-                    ->from('entity_tags as entity_filter_tags')
-                    ->whereColumn('entity_filter_tags.entity_id', $entityTable . '.id')
-                    ->whereIn('entity_filter_tags.tag_id', $tagIds);
-            });
-
-            return;
-        }
-
-        foreach ($tagIds as $tagId) {
-            $query->whereExists(function ($subquery) use ($entityTable, $tagId): void {
-                $subquery->selectRaw('1')
-                    ->from('entity_tags as entity_filter_tags')
-                    ->whereColumn('entity_filter_tags.entity_id', $entityTable . '.id')
-                    ->where('entity_filter_tags.tag_id', $tagId);
-            });
-        }
+        $this->applyEntityRelationIdsFilter(
+            $query,
+            'entity_tags',
+            'entity_id',
+            $entityTable . '.id',
+            'tag_id',
+            (array) $tags,
+            $option,
+        );
     }
 
     protected function entitySearchOperator(string $value, string $key): array

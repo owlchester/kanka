@@ -198,6 +198,12 @@ it('keeps tag options consistent across entity and child queries', function () {
         ->toContain($first->entity->id, $second->entity->id, $both->entity->id)
         ->not->toContain($untagged->entity->id);
 
+    foreach (['' => [$both->id], 'include' => [$both->id], 'all' => [$both->id]] as $option => $expected) {
+        $filters = ['tags' => [$firstTag->id, $secondTag->id], 'tags_option' => $option];
+        expect($childIds($filters))->toBe($expected);
+        expect($entityIds($filters))->toBe([$both->entity->id]);
+    }
+
     $filters = ['tags' => [$firstTag->id], 'tags_option' => 'exclude'];
     expect($childIds($filters))
         ->toContain($second->id, $untagged->id)
@@ -206,9 +212,38 @@ it('keeps tag options consistent across entity and child queries', function () {
         ->toContain($second->entity->id, $untagged->entity->id)
         ->not->toContain($first->entity->id, $both->entity->id);
 
+    $filters = ['tags' => [$firstTag->id, $secondTag->id], 'tags_option' => 'exclude_all'];
+    expect($childIds($filters))->toContain($first->id, $second->id, $untagged->id)->not->toContain($both->id);
+    expect($entityIds($filters))->toContain($first->entity->id, $second->entity->id, $untagged->entity->id)->not->toContain($both->entity->id);
+
     $filters = ['tags' => [], 'tags_option' => 'none'];
     expect($childIds($filters))->toBe([$untagged->id]);
     expect($entityIds($filters))->toBe([$untagged->entity->id]);
+
+    $filters = ['tags' => [], 'tags_option' => 'not_empty'];
+    expect($childIds($filters))->toContain($first->id, $second->id, $both->id)->not->toContain($untagged->id);
+    expect($entityIds($filters))->toContain($first->entity->id, $second->entity->id, $both->entity->id)->not->toContain($untagged->entity->id);
+
+    foreach (['any', 'all', 'exclude', 'exclude_all'] as $option) {
+        $filters = ['tags_option' => $option];
+        expect($childIds($filters))->toContain($first->id, $second->id, $both->id, $untagged->id);
+        expect($entityIds($filters))->toContain($first->entity->id, $second->entity->id, $both->entity->id, $untagged->entity->id);
+    }
+
+    foreach (['none', 'not_empty'] as $option) {
+        $filters = ['tags_option' => $option];
+        if ($option === 'none') {
+            expect($childIds($filters))->toBe([$untagged->id]);
+            expect($entityIds($filters))->toBe([$untagged->entity->id]);
+        } else {
+            expect($childIds($filters))->toContain($first->id, $second->id, $both->id)->not->toContain($untagged->id);
+            expect($entityIds($filters))->toContain($first->entity->id, $second->entity->id, $both->entity->id)->not->toContain($untagged->entity->id);
+        }
+    }
+
+    $filters = ['tags' => ['', ' ', null, $firstTag->id, (string) $firstTag->id], 'tags_option' => 'any'];
+    expect($childIds($filters))->toContain($first->id, $both->id)->not->toContain($second->id, $untagged->id);
+    expect($entityIds($filters))->toContain($first->entity->id, $both->entity->id)->not->toContain($second->entity->id, $untagged->entity->id);
 });
 
 it('supports legacy family id filters on entity queries', function () {

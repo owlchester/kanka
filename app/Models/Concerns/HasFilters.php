@@ -89,7 +89,7 @@ trait HasFilters
 
         $this->filterParams = $params;
 
-        $multiRelationFilters = ['locations', 'races', 'organisations', 'families', 'participants'];
+        $multiRelationFilters = ['tags', 'locations', 'races', 'organisations', 'families', 'participants'];
         foreach ($multiRelationFilters as $filter) {
             if (! array_key_exists($filter, $this->filterParams)
                 && in_array($this->filterParams[$filter . '_option'] ?? null, ['none', 'not_empty'], true)) {
