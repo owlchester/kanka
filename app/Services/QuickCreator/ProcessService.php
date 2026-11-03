@@ -375,6 +375,7 @@ class ProcessService
         $this->copyService
             ->source($this->template)
             ->entity($this->entity)
+            ->request($this->request)
             ->force()
             ->copy();
 
@@ -383,6 +384,7 @@ class ProcessService
         if ($this->template->isCharacter()) {
             $this->copyService->character();
         }
+        $this->copyService->event();
 
         return $this;
     }

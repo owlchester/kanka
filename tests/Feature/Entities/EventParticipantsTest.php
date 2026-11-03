@@ -163,6 +163,56 @@ it('saves staged participants with a new event after a validation-only preflight
     expect(EventParticipant::count())->toBe(1)->and(EventGroup::first()->name)->toBe('Guests');
 });
 
+it('prefills copied event participants and persists them without changing the source', function () {
+    $this->asUser()->withCampaign();
+    $source = Event::factory()->create(['campaign_id' => 1]);
+    $group = $source->groups()->create(['name' => 'Guests', 'colour' => '#abcdef']);
+    $character = Character::factory()->create(['campaign_id' => 1]);
+    $source->participants()->create(['entity_id' => $character->entity->id, 'group_id' => $group->id, 'role' => 'Speaker']);
+
+    $type = $source->entity->entityType;
+    $response = $this->followingRedirects()->get(route('entities.create', ['test-campaign', $type, 'copy' => $source->entity->id]))->assertSuccessful();
+    preg_match('/<script type="application\/json" class="js-participant-config">(.*?)<\/script>/s', $response->getContent(), $matches);
+    $initial = json_decode($matches[1], true, flags: JSON_THROW_ON_ERROR)['initial'];
+    $emptyEvent = new Event;
+    $emptyEvent->campaign_id = 1;
+    expect($initial['groups'][0]['key'])->toBe('new-copy-0')
+        ->and($initial['participants'][0]['group'])->toBe('new-copy-0')
+        ->and($initial['revision'])->toBe(participantPayload($emptyEvent)['revision']);
+
+    $this->post(route('events.store', [1]), [
+        'name' => 'Copied event',
+        'event_participants' => json_encode($initial),
+    ])->assertRedirect();
+    $new = Event::query()->where('campaign_id', 1)->latest('id')->firstOrFail();
+
+    expect($new->groups()->first()->name)->toBe('Guests')
+        ->and($new->participants()->first()->role)->toBe('Speaker')
+        ->and($new->participants()->first()->group_id)->toBe($new->groups()->first()->id)
+        ->and($source->groups()->count())->toBe(1)
+        ->and($source->participants()->first()->group_id)->toBe($group->id);
+});
+
+it('prefers valid old staged participant input when creating an event', function () {
+    $this->asUser()->withCampaign();
+    $source = Event::factory()->create(['campaign_id' => 1]);
+    $group = $source->groups()->create(['name' => 'Source group']);
+    $character = Character::factory()->create(['campaign_id' => 1]);
+    $source->participants()->create(['entity_id' => $character->entity->id, 'group_id' => $group->id, 'role' => 'Source role']);
+    $type = $source->entity->entityType;
+    $url = route('entities.create', ['test-campaign', $type, 'copy' => $source->entity->id]);
+    $edited = participantPayload(new Event);
+    $edited['groups'] = [];
+    $edited['participants'] = [];
+
+    $response = $this->followingRedirects()->withSession(['_old_input' => ['event_participants' => json_encode($edited)]])->get($url)->assertSuccessful();
+    preg_match('/<script type="application\/json" class="js-participant-config">(.*?)<\/script>/s', $response->getContent(), $matches);
+    $initial = json_decode($matches[1], true, flags: JSON_THROW_ON_ERROR)['initial'];
+    expect($initial)->toBe($edited)
+        ->and($initial['groups'])->toBeEmpty()
+        ->and($initial['participants'])->toBeEmpty();
+});
+
 it('saves staged participant edits through the unified event editor', function () {
     $this->asUser()->withCampaign();
     $event = Event::factory()->create(['campaign_id' => 1]);
