@@ -350,17 +350,24 @@ trait EntityScopes
                 : (in_array($field, ['races', 'families', 'organisations'], true)
                     ? static function ($subquery) use ($field): void {
                         $subquery->where('entities.type_id', config('entities.ids.character'));
+                        $campaign = CampaignLocalization::getCampaign();
+                        $relatedType = ['families' => 'family', 'races' => 'race', 'organisations' => 'organisation'][$field];
+                        $relatedTable = ['families' => 'character_family', 'races' => 'character_race', 'organisations' => 'organisation_member'][$field];
+                        $relatedKey = ['families' => 'family_id', 'races' => 'race_id', 'organisations' => 'organisation_id'][$field];
+                        $subquery->whereIn($relatedTable . '.' . $relatedKey, Entity::query()
+                            ->where('entities.type_id', config('entities.ids.' . $relatedType))
+                            ->where('entities.campaign_id', $campaign->id)
+                            ->select('entities.entity_id'));
                         if ($field === 'races') {
-                            $campaign = CampaignLocalization::getCampaign();
                             $subquery->where(function ($query) use ($campaign): void {
                                 $query->where('character_race.is_private', false);
                                 if (auth()->check() && auth()->user()->can('admin', $campaign)) {
                                     $query->orWhere('character_race.is_private', true);
                                 }
-                            })->whereIn('character_race.race_id', Entity::query()
-                                ->where('entities.type_id', config('entities.ids.race'))
-                                ->where('entities.campaign_id', $campaign->id)
-                                ->select('entities.entity_id'));
+                            });
+                        } elseif (auth()->guest() || ! auth()->user()->can('admin', $campaign)) {
+                            $pivot = $field === 'families' ? 'character_family' : 'organisation_member';
+                            $subquery->where($pivot . '.is_private', false);
                         }
                     }
                     : null);

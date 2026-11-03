@@ -459,6 +459,10 @@ trait HasFilters
         }
         $campaign = CampaignLocalization::getCampaign();
         $constraint = static function ($subquery) use ($campaign): void {
+            $subquery->whereIn('character_race.race_id', Entity::query()
+                ->where('entities.campaign_id', $campaign->id)
+                ->where('entities.type_id', config('entities.ids.race'))
+                ->select('entities.entity_id'));
             if (auth()->guest() || ! auth()->user()->can('admin', $campaign)) {
                 $subquery->where('character_race.is_private', false);
             }
@@ -533,7 +537,17 @@ trait HasFilters
                 ->unique()
                 ->toArray();
         }
-        $this->applyEntityRelationIdsFilter($query, 'organisation_member', 'character_id', $this->getTable() . '.id', 'organisation_id', $ids, $this->filterOption);
+        $campaign = CampaignLocalization::getCampaign();
+        $constraint = static function ($subquery) use ($campaign): void {
+            $subquery->whereIn('organisation_member.organisation_id', Entity::query()
+                ->where('entities.campaign_id', $campaign->id)
+                ->where('entities.type_id', config('entities.ids.organisation'))
+                ->select('entities.entity_id'));
+            if (auth()->guest() || ! auth()->user()->can('admin', $campaign)) {
+                $subquery->where('organisation_member.is_private', false);
+            }
+        };
+        $this->applyEntityRelationIdsFilter($query, 'organisation_member', 'character_id', $this->getTable() . '.id', 'organisation_id', $ids, $this->filterOption, $constraint);
     }
 
     /**
@@ -556,7 +570,17 @@ trait HasFilters
                 ->unique()
                 ->toArray();
         }
-        $this->applyEntityRelationIdsFilter($query, 'character_family', 'character_id', $this->getTable() . '.id', 'family_id', $ids, $this->filterOption);
+        $campaign = CampaignLocalization::getCampaign();
+        $constraint = static function ($subquery) use ($campaign): void {
+            $subquery->whereIn('character_family.family_id', Entity::query()
+                ->where('entities.campaign_id', $campaign->id)
+                ->where('entities.type_id', config('entities.ids.family'))
+                ->select('entities.entity_id'));
+            if (auth()->guest() || ! auth()->user()->can('admin', $campaign)) {
+                $subquery->where('character_family.is_private', false);
+            }
+        };
+        $this->applyEntityRelationIdsFilter($query, 'character_family', 'character_id', $this->getTable() . '.id', 'family_id', $ids, $this->filterOption, $constraint);
     }
 
     /** Filter events by participant entities without duplicating event rows. */
@@ -629,11 +653,15 @@ trait HasFilters
      */
     protected function filterFamily(Builder $query, ?string $value = null): void
     {
+        $campaign = CampaignLocalization::getCampaign();
+        $privateConstraint = auth()->guest() || ! auth()->user()->can('admin', $campaign)
+            ? ' and cf.is_private = 0'
+            : '';
         $ids = [$value];
         if ($this->filterOption('exclude')) {
             $query->whereRaw('(select count(*) from character_family as cf where cf.character_id = ' .
                 $this->getTable() . '.id and cf.family_id = ' . ((int) $value)
-                . ' ' . /* $this->subPrivacy('and cf.is_private') . */ ') = 0');
+                . $privateConstraint . ') = 0');
 
             return;
         } elseif ($this->filterOption('children')) {
@@ -651,9 +679,9 @@ trait HasFilters
                 $join->on('cf.character_id', '=', $this->getTable() . '.id');
             })->whereIn('cf.family_id', $ids);
 
-        /*if (auth()->guest() || !auth()->user()->isAdmin()) {
+        if ($privateConstraint !== '') {
             $query->where('cf.is_private', false);
-        }*/
+        }
 
         $query->distinct();
     }

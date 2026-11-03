@@ -1,6 +1,7 @@
 <?php
 
 use App\Enums\EntityAssetType;
+use App\Facades\Permissions;
 use App\Models\Ability;
 use App\Models\Attribute;
 use App\Models\Character;
@@ -17,6 +18,7 @@ use App\Models\Organisation;
 use App\Models\Post;
 use App\Models\Race;
 use App\Models\Tag;
+use Laravel\Passport\Passport;
 
 it('keeps parent filter options consistent across entity and child queries', function (string $option) {
     $this->asUser()->withCampaign();
@@ -340,6 +342,94 @@ it('treats inaccessible race entities as absent through global ACL in both filte
             ->and(in_array($character->id, $entityIds, true))->toBe($shouldMatch);
     }
 });
+
+it('treats inaccessible family and organisation entities as absent in both filter paths', function (string $field, string $relation, string $model) {
+    $this->asUser()->withCampaign();
+    $admin = auth()->user();
+    $hidden = $model::factory()->create(['campaign_id' => 1]);
+    $visible = $model::factory()->create(['campaign_id' => 1]);
+    $hiddenCharacter = Character::factory()->create(['campaign_id' => 1]);
+    $visibleCharacter = Character::factory()->create(['campaign_id' => 1]);
+    $mixedCharacter = Character::factory()->create(['campaign_id' => 1]);
+    $unlinkedCharacter = Character::factory()->create(['campaign_id' => 1]);
+    foreach ([[$hiddenCharacter, $hidden], [$visibleCharacter, $visible], [$mixedCharacter, $hidden], [$mixedCharacter, $visible]] as [$character, $target]) {
+        $character->{$relation}()->attach($target->id);
+    }
+    $hidden->entity->update(['is_private' => true]);
+    $this->asPlayer();
+
+    $type = EntityType::findOrFail(config('entities.ids.character'));
+    $queryIds = fn (array $filters): array => Character::query()->filter($filters)->pluck('characters.id')->all();
+    $entityIds = fn (array $filters): array => Entity::query()->where('entities.type_id', $type->id)
+        ->filter($filters, $type)->pluck('entities.entity_id')->all();
+    foreach (['', 'all', 'exclude', 'exclude_all', 'none', 'not_empty'] as $option) {
+        $filters = [$field => [$hidden->id, $visible->id], $field . '_option' => $option];
+        $expected = match ($option) {
+            'all' => [],
+            'exclude' => [$hiddenCharacter->id, $unlinkedCharacter->id],
+            'none' => [$hiddenCharacter->id, $unlinkedCharacter->id],
+            'exclude_all' => [$hiddenCharacter->id, $visibleCharacter->id, $mixedCharacter->id, $unlinkedCharacter->id],
+            default => [$visibleCharacter->id, $mixedCharacter->id],
+        };
+        expect($queryIds($filters), $field . ':' . $option)->toEqualCanonicalizing($expected)
+            ->and($entityIds($filters))->toEqualCanonicalizing($expected);
+    }
+
+    foreach (['none', 'not_empty'] as $option) {
+        $filters = [$field . '_option' => $option];
+        $expected = $option === 'none'
+            ? [$hiddenCharacter->id, $unlinkedCharacter->id]
+            : [$visibleCharacter->id, $mixedCharacter->id];
+        expect($queryIds($filters), $field . ':' . $option . ':option-only')->toEqualCanonicalizing($expected);
+        expect($entityIds($filters))->toEqualCanonicalizing($expected);
+    }
+
+    Passport::actingAs($admin, ['*']);
+    Permissions::reload()->reset();
+    $adminFilters = [$field => [$hidden->id]];
+    expect($queryIds($adminFilters))->toContain($hiddenCharacter->id);
+    expect($entityIds($adminFilters))->toContain($hiddenCharacter->id);
+})->with([
+    'families' => ['families', 'families', Family::class],
+    'organisations' => ['organisations', 'organisations', Organisation::class],
+]);
+
+it('hides private family and organisation links from non-admin filters in both paths', function (string $field, string $relation, string $model) {
+    $this->asUser()->withCampaign();
+    $admin = auth()->user();
+    $target = $model::factory()->create(['campaign_id' => 1]);
+    $privateCharacter = Character::factory()->create(['campaign_id' => 1]);
+    $publicCharacter = Character::factory()->create(['campaign_id' => 1]);
+    $privateCharacter->{$relation}()->attach($target->id, ['is_private' => true]);
+    $publicCharacter->{$relation}()->attach($target->id, ['is_private' => false]);
+    $this->asPlayer();
+
+    $type = EntityType::findOrFail(config('entities.ids.character'));
+    $queryIds = fn (array $filters): array => Character::query()->filter($filters)->pluck('characters.id')->all();
+    $entityIds = fn (array $filters): array => Entity::query()->where('entities.type_id', $type->id)
+        ->filter($filters, $type)->pluck('entities.entity_id')->all();
+    foreach (['', 'all', 'exclude', 'exclude_all', 'none', 'not_empty'] as $option) {
+        $filters = [$field => [$target->id], $field . '_option' => $option];
+        $expected = match ($option) {
+            'all' => [$publicCharacter->id],
+            'exclude', 'none' => [$privateCharacter->id],
+            'exclude_all' => [$privateCharacter->id],
+            'not_empty' => [$publicCharacter->id],
+            default => [$publicCharacter->id],
+        };
+        expect($queryIds($filters), $field . ':' . $option)->toEqualCanonicalizing($expected)
+            ->and($entityIds($filters))->toEqualCanonicalizing($expected);
+    }
+
+    Passport::actingAs($admin, ['*']);
+    Permissions::reload()->reset();
+    $adminFilters = [$field => [$target->id]];
+    expect($queryIds($adminFilters))->toContain($privateCharacter->id)
+        ->and($entityIds($adminFilters))->toContain($privateCharacter->id);
+})->with([
+    'families' => ['families', 'families', Family::class],
+    'organisations' => ['organisations', 'organisations', Organisation::class],
+]);
 
 it('treats inaccessible participant entities as absent through global ACL in both filter paths', function () {
     $this->asUser()->withCampaign();
