@@ -311,6 +311,30 @@ trait EntityScopes
                 $query->whereIn('entities.status_id', $values);
             } elseif ($name === 'parent_id') {
                 continue;
+            } elseif ($name === 'locations') {
+                if (Arr::get($filters, 'locations_option') === 'none') {
+                    continue;
+                }
+                $ids = collect((array) $values)->map(fn ($id) => (int) $id)->all();
+                if (Arr::get($filters, 'locations_option') === 'children') {
+                    $ids = Entity::whereIn('entity_id', $ids)
+                        ->where('type_id', config('entities.ids.location'))
+                        ->with('descendants')
+                        ->get()
+                        ->flatMap(fn ($entity) => [$entity->entity_id, ...$entity->descendants->pluck('entity_id')->all()])
+                        ->unique()->all();
+                }
+                $locationQuery = fn ($subquery) => $subquery->selectRaw(1)
+                    ->from('entity_locations')
+                    ->whereColumn('entity_locations.entity_id', 'entities.id')
+                    ->whereIn('entity_locations.location_id', $ids);
+                if (Arr::get($filters, 'locations_option') === 'exclude') {
+                    $query->whereNotExists($locationQuery);
+                } else {
+                    $query->whereExists($locationQuery);
+                }
+
+                continue;
             } elseif (in_array($name, ['is_private', 'status_id'])) {
                 $query->where('entities.' . $name, $values);
             } elseif (in_array($name, ['name', 'type'])) {
@@ -434,21 +458,6 @@ trait EntityScopes
                         $query->whereRaw('(select count(*) from `organisation_member` where `organisation_member`.`character_id` = `child_filter`.`id` and `organisation_member`.`organisation_id` in (' . implode(', ', $ids) . ')) = 0');
                     } else {
                         $query->whereExists(fn ($q) => $q->select(DB::raw(1))->from('organisation_member')->whereColumn('organisation_member.character_id', 'child_filter.id')->whereIn('organisation_member.organisation_id', $ids));
-                    }
-                } elseif ($name === 'locations') {
-                    if ($option === 'children') {
-                        $ids = Entity::whereIn('entity_id', $ids)
-                            ->where('type_id', config('entities.ids.location'))
-                            ->with('descendants')
-                            ->get()
-                            ->flatMap(fn ($e) => [$e->entity_id, ...$e->descendants->pluck('entity_id')->toArray()])
-                            ->unique()
-                            ->toArray();
-                    }
-                    if ($option === 'exclude') {
-                        $query->whereRaw('(select count(*) from `entity_locations` where `entity_locations`.`entity_id` = `entities`.`id` and `entity_locations`.`location_id` in (' . implode(', ', $ids) . ')) = 0');
-                    } else {
-                        $query->whereExists(fn ($q) => $q->select(DB::raw(1))->from('entity_locations')->whereColumn('entity_locations.entity_id', 'entities.id')->whereIn('entity_locations.location_id', $ids));
                     }
                 } elseif ($name === 'location_id') {
                     if ($option === 'exclude') {
