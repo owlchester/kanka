@@ -89,6 +89,14 @@ trait HasFilters
 
         $this->filterParams = $params;
 
+        $multiRelationFilters = ['locations', 'races', 'organisations', 'families', 'participants'];
+        foreach ($multiRelationFilters as $filter) {
+            if (! array_key_exists($filter, $this->filterParams)
+                && in_array($this->filterParams[$filter . '_option'] ?? null, ['none', 'not_empty'], true)) {
+                $this->filterParams[$filter] = [];
+            }
+        }
+
         foreach ($this->filterParams as $key => $value) {
             if (isset($value) && in_array($key, $fields)) {
                 // The requested field is an array, which we only support for filters with "or" semantics.
@@ -222,7 +230,8 @@ trait HasFilters
                     // If we have an exclude option filter, change the operator
                     $this->filterFallback($query, $key);
                 }
-            } elseif (Str::endsWith($key, '_option') && $value == 'none') {
+            } elseif (Str::endsWith($key, '_option') && $value == 'none'
+                && ! in_array(Str::beforeLast($key, '_option'), ['locations', 'races', 'organisations', 'families', 'participants'], true)) {
                 $this->filterNoneOptions($query, $key, $fields);
             } elseif ($key == 'archived' && ! isset($value)) {
                 if ($this->hasEntityBackedFields()) {
@@ -243,7 +252,7 @@ trait HasFilters
     {
         $operator = 'like';
         $filterValue = $value;
-        if (! in_array($key, ['tags', 'locations', 'organisations', 'races', 'families', 'status_id'])) {
+        if (! in_array($key, ['tags', 'locations', 'organisations', 'races', 'families', 'participants', 'status_id'])) {
             if ($value == '!!') {
                 $operator = 'IS NULL';
                 $filterValue = null;
@@ -433,31 +442,14 @@ trait HasFilters
      */
     protected function filterRaces(Builder $query, null|string|array $value = null): void
     {
-        // "none" filter keys is handled later
-        if ($this->filterOption('none')) {
-            return;
-        }
         $query
             ->joinEntity();
-
-        // Make sure we always have an array
-        if (! is_array($value)) {
-            $value = [$value];
-        }
-        $raceIds = [];
-        foreach ($value as $v) {
-            $raceIds[] = (int) $v;
-        }
-
-        if ($this->filterOption('exclude')) {
-            $query->whereRaw('(select count(*) from character_race as cr where cr.character_id = ' .
-                $this->getTable() . '.id and cr.race_id in (' . implode(', ', $raceIds) . ')) = 0');
-
+        $ids = $this->relationFilterIds($value);
+        if ($ids === [] && ! in_array($this->filterOption, ['none', 'not_empty'], true)) {
             return;
         }
-
-        if ($this->filterOption('children')) {
-            $value = Entity::whereIn('entity_id', $raceIds)
+        if ($this->filterOption('children') && $ids !== []) {
+            $ids = Entity::whereIn('entity_id', $ids)
                 ->where('type_id', config('entities.ids.race'))
                 ->with('descendants')
                 ->get()
@@ -465,11 +457,13 @@ trait HasFilters
                 ->unique()
                 ->toArray();
         }
-
-        $values = collect($value)->map(fn ($v) => (int) $v)->toArray(); // Ensure values are integers
-        $query
-            ->leftJoin('character_race as cr', 'cr.character_id', '=', $this->getTable() . '.id')
-            ->whereIn('cr.race_id', $values);
+        $campaign = CampaignLocalization::getCampaign();
+        $constraint = static function ($subquery) use ($campaign): void {
+            if (auth()->guest() || ! auth()->user()->can('admin', $campaign)) {
+                $subquery->where('character_race.is_private', false);
+            }
+        };
+        $this->applyEntityRelationIdsFilter($query, 'character_race', 'character_id', $this->getTable() . '.id', 'race_id', $ids, $this->filterOption, $constraint);
     }
 
     /**
@@ -502,33 +496,12 @@ trait HasFilters
      */
     protected function filterLocations(Builder $query, null|string|array $value = null, ?string $key = null): void
     {
-        // "none" filter keys is handled later
-        if ($this->filterOption('none')) {
+        $ids = $this->relationFilterIds($value);
+        if ($ids === [] && ! in_array($this->filterOption, ['none', 'not_empty'], true)) {
             return;
         }
-
-        $query
-            ->joinEntity();
-        // Make sure we always have an array
-        if (! is_array($value)) {
-            $value = [$value];
-        }
-        $locationIds = [];
-        foreach ($value as $v) {
-            $locationIds[] = (int) $v;
-        }
-
-        if ($this->filterOption('exclude')) {
-            $query->whereRaw('(
-                select count(*) from entity_locations as el
-                where el.entity_id = e.id and el.location_id in (' . implode(', ', $locationIds) . ')
-            ) = 0');
-
-            return;
-        }
-
-        if ($this->filterOption('children')) {
-            $locationIds = Entity::whereIn('entity_id', $locationIds)
+        if ($this->filterOption('children') && $ids !== []) {
+            $ids = Entity::whereIn('entity_id', $ids)
                 ->where('type_id', config('entities.ids.location'))
                 ->with('descendants')
                 ->get()
@@ -536,10 +509,8 @@ trait HasFilters
                 ->unique()
                 ->toArray();
         }
-
-        $query
-            ->join('entity_locations', 'entity_locations.entity_id', '=', 'e.id')
-            ->whereIn('entity_locations.location_id', $locationIds)->distinct();
+        $query->joinEntity();
+        $this->applyEntityRelationIdsFilter($query, 'entity_locations', 'entity_id', 'e.id', 'location_id', $ids, $this->filterOption);
     }
 
     /**
@@ -547,31 +518,14 @@ trait HasFilters
      */
     protected function filterOrganisations(Builder $query, null|string|array $value = null, ?string $key = null): void
     {
-        // "none" filter keys is handled later
-        if ($this->filterOption('none')) {
-            return;
-        }
         $query
             ->joinEntity();
-
-        // Make sure we always have an array
-        if (! is_array($value)) {
-            $value = [$value];
-        }
-        $orgIds = [];
-        foreach ($value as $v) {
-            $orgIds[] = (int) $v;
-        }
-
-        if ($this->filterOption('exclude')) {
-            $query->whereRaw('(select count(*) from organisation_member as cr where cr.character_id = ' .
-                $this->getTable() . '.id and cr.organisation_id in (' . implode(', ', $orgIds) . ')) = 0');
-
+        $ids = $this->relationFilterIds($value);
+        if ($ids === [] && ! in_array($this->filterOption, ['none', 'not_empty'], true)) {
             return;
         }
-
-        if ($this->filterOption('children')) {
-            $value = Entity::whereIn('entity_id', $orgIds)
+        if ($this->filterOption('children') && $ids !== []) {
+            $ids = Entity::whereIn('entity_id', $ids)
                 ->where('type_id', config('entities.ids.organisation'))
                 ->with('descendants')
                 ->get()
@@ -579,11 +533,7 @@ trait HasFilters
                 ->unique()
                 ->toArray();
         }
-
-        $values = collect($value)->map(fn ($v) => (int) $v)->toArray(); // Ensure values are integers
-        $query
-            ->leftJoin('organisation_member as om', 'om.character_id', '=', $this->getTable() . '.id')
-            ->whereIn('om.organisation_id', $values);
+        $this->applyEntityRelationIdsFilter($query, 'organisation_member', 'character_id', $this->getTable() . '.id', 'organisation_id', $ids, $this->filterOption);
     }
 
     /**
@@ -591,32 +541,14 @@ trait HasFilters
      */
     protected function filterFamilies(Builder $query, null|string|array $value = null, ?string $key = null): void
     {
-        // "none" filter keys is handled later
-        if ($this->filterOption('none')) {
-            return;
-        }
         $query
             ->joinEntity();
-
-        // Make sure we always have an array
-        if (! is_array($value)) {
-            $value = [$value];
-        }
-
-        $familyIds = [];
-        foreach ($value as $v) {
-            $familyIds[] = (int) $v;
-        }
-
-        if ($this->filterOption('exclude')) {
-            $query->whereRaw('(select count(*) from character_family as cr where cr.character_id = ' .
-                $this->getTable() . '.id and cr.family_id in (' . implode(', ', $familyIds) . ')) = 0');
-
+        $ids = $this->relationFilterIds($value);
+        if ($ids === [] && ! in_array($this->filterOption, ['none', 'not_empty'], true)) {
             return;
         }
-
-        if ($this->filterOption('children')) {
-            $value = Entity::whereIn('entity_id', $familyIds)
+        if ($this->filterOption('children') && $ids !== []) {
+            $ids = Entity::whereIn('entity_id', $ids)
                 ->where('type_id', config('entities.ids.family'))
                 ->with('descendants')
                 ->get()
@@ -624,32 +556,34 @@ trait HasFilters
                 ->unique()
                 ->toArray();
         }
-
-        $values = collect($value)->map(fn ($v) => (int) $v)->toArray(); // Ensure values are integers
-        $query
-            ->leftJoin('character_family as cf', 'cf.character_id', '=', $this->getTable() . '.id')
-            ->whereIn('cf.family_id', $values);
+        $this->applyEntityRelationIdsFilter($query, 'character_family', 'character_id', $this->getTable() . '.id', 'family_id', $ids, $this->filterOption);
     }
 
     /** Filter events by participant entities without duplicating event rows. */
     protected function filterParticipants(Builder $query, null|string|array $value = null): void
     {
-        if ($this->filterOption('none')) {
+        $ids = $this->relationFilterIds($value);
+        if ($ids === [] && ! in_array($this->filterOption, ['none', 'not_empty'], true)) {
             return;
         }
-
-        $ids = array_map('intval', (array) $value);
-        $participants = function ($subquery) use ($ids) {
-            $subquery->select('event_id')->from('event_participants')->whereIn('entity_id', $ids);
+        $campaignId = CampaignLocalization::getCampaign()->id;
+        $constraint = static function ($subquery) use ($campaignId): void {
+            $subquery->join('entities as participant_entities', 'participant_entities.id', '=', 'event_participants.entity_id')
+                ->where('participant_entities.campaign_id', $campaignId)
+                ->whereIn('participant_entities.id', Entity::query()->select('entities.id'));
         };
+        $this->applyEntityRelationIdsFilter($query, 'event_participants', 'event_id', $this->getTable() . '.id', 'entity_id', $ids, $this->filterOption, $constraint);
+    }
 
-        if ($this->filterOption('exclude')) {
-            $query->whereNotIn($this->getTable() . '.id', $participants);
-
-            return;
-        }
-
-        $query->whereIn($this->getTable() . '.id', $participants);
+    /** @return array<int, int> */
+    protected function relationFilterIds(null|string|array $value): array
+    {
+        return collect((array) $value)
+            ->filter(static fn ($id): bool => $id !== null && trim((string) $id) !== '' && ctype_digit((string) $id) && (int) $id > 0)
+            ->map(static fn ($id): int => (int) $id)
+            ->unique()
+            ->values()
+            ->all();
     }
 
     /**
@@ -804,7 +738,9 @@ trait HasFilters
         // Left join shenanigans
         if ($key === 'participants' && in_array('participants', $fields)) {
             $query->whereNotIn($this->getTable() . '.id', function ($subquery) {
-                $subquery->select('event_id')->from('event_participants');
+                $subquery->select('event_participants.event_id')->from('event_participants')
+                    ->join('entities as participant_entities', 'participant_entities.id', '=', 'event_participants.entity_id')
+                    ->where('participant_entities.campaign_id', CampaignLocalization::getCampaign()->id);
             });
         } elseif (! in_array($key, ['race_id', 'family_id', 'tags', 'quest_element_id', 'member_id'])) {
             if ($this->hasEntityBackedFields()) {

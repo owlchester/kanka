@@ -5,6 +5,7 @@ namespace App\Models\Concerns;
 use App\Enums\AttributeType;
 use App\Enums\EntityAssetType;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Support\Str;
 
 trait FiltersEntityFields
@@ -285,5 +286,99 @@ trait FiltersEntityFields
         } else {
             $query->whereNotExists($callback);
         }
+    }
+
+    /**
+     * Apply a selected-ID filter against a correlated relation table.
+     *
+     * @param  array<mixed>  $selectedIds
+     */
+    protected function applyEntityRelationIdsFilter(
+        Builder $query,
+        string $relationTable,
+        string $ownerForeignKey,
+        string $outerColumn,
+        string $valueForeignKey,
+        array $selectedIds,
+        ?string $option = null,
+        ?callable $constraint = null,
+    ): void {
+        $ids = collect($selectedIds)
+            ->filter(static fn ($id): bool => $id !== null && trim((string) $id) !== '' && ctype_digit((string) $id) && (int) $id > 0)
+            ->map(static fn ($id): int => (int) $id)
+            ->unique()
+            ->values()
+            ->all();
+
+        $exists = function (QueryBuilder $subquery, ?int $id = null) use ($relationTable, $ownerForeignKey, $outerColumn, $valueForeignKey): void {
+            $subquery->selectRaw('1')
+                ->from($relationTable)
+                ->whereColumn($relationTable . '.' . $ownerForeignKey, $outerColumn);
+
+            if ($id !== null) {
+                $subquery->where($relationTable . '.' . $valueForeignKey, $id);
+            }
+
+        };
+
+        $applyConstraint = static function (QueryBuilder $subquery) use ($constraint): void {
+            if ($constraint !== null) {
+                $constraint($subquery);
+            }
+        };
+
+        if ($option === 'none' || $option === 'not_empty') {
+            $presence = function (QueryBuilder $subquery) use ($exists, $applyConstraint): void {
+                $exists($subquery);
+                $applyConstraint($subquery);
+            };
+            $option === 'none' ? $query->whereNotExists($presence) : $query->whereExists($presence);
+
+            return;
+        }
+
+        if ($ids === []) {
+            return;
+        }
+
+        if ($option === 'exclude') {
+            $query->whereNotExists(function (QueryBuilder $subquery) use ($exists, $applyConstraint, $ids, $relationTable, $valueForeignKey): void {
+                $exists($subquery);
+                $applyConstraint($subquery);
+                $subquery->whereIn($relationTable . '.' . $valueForeignKey, $ids);
+            });
+
+            return;
+        }
+
+        if ($option === 'exclude_all') {
+            $query->where(function (Builder $group) use ($ids, $exists, $applyConstraint): void {
+                foreach ($ids as $id) {
+                    $group->orWhereNotExists(function (QueryBuilder $subquery) use ($exists, $applyConstraint, $id): void {
+                        $exists($subquery, $id);
+                        $applyConstraint($subquery);
+                    });
+                }
+            });
+
+            return;
+        }
+
+        if ($option === 'all') {
+            foreach ($ids as $id) {
+                $query->whereExists(function (QueryBuilder $subquery) use ($exists, $applyConstraint, $id): void {
+                    $exists($subquery, $id);
+                    $applyConstraint($subquery);
+                });
+            }
+
+            return;
+        }
+
+        $query->whereExists(function (QueryBuilder $subquery) use ($exists, $applyConstraint, $ids, $relationTable, $valueForeignKey): void {
+            $exists($subquery);
+            $applyConstraint($subquery);
+            $subquery->whereIn($relationTable . '.' . $valueForeignKey, $ids);
+        });
     }
 }
