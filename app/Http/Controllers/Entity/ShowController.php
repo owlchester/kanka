@@ -7,6 +7,7 @@ use App\Http\Middleware\CachedResponse;
 use App\Models\Bookmark;
 use App\Models\Campaign;
 use App\Models\Entity;
+use App\Models\Event;
 use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Http\Request;
@@ -32,6 +33,18 @@ class ShowController extends Controller
         // Perf trick
         if ($entity->hasChild()) {
             $entity->child->setRelation('entity', $entity);
+            if ($entity->child instanceof Event) {
+                $entity->child->load([
+                    'groups' => fn ($query) => $query
+                        ->whereHas('participants.entity')
+                        ->with([
+                            'participants' => fn ($participants) => $participants->whereHas('entity'),
+                            'participants.entity',
+                        ]),
+                    'participants' => fn ($query) => $query->whereNull('group_id')->whereHas('entity'),
+                    'participants.entity',
+                ]);
+            }
         }
 
         $bookmark = null;

@@ -7,6 +7,9 @@ use App\Models\Campaign;
 use App\Models\Concerns\FiltersEntityFields;
 use App\Models\Entity;
 use App\Models\EntityType;
+use App\Models\EventParticipant;
+use App\Models\Journal;
+use App\Models\Quest;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Arr;
@@ -217,7 +220,7 @@ trait EntityScopes
         foreach ($config as $field => $order) {
             if (in_array($field, ['author.name', 'instigator.name'], true)) {
                 $relation = $field === 'author.name' ? 'author' : 'instigator';
-                $childType = $field === 'author.name' ? \App\Models\Journal::class : \App\Models\Quest::class;
+                $childType = $field === 'author.name' ? Journal::class : Quest::class;
                 $foreignKey = $field === 'author.name' ? 'author_id' : 'instigator_id';
                 $query->leftJoin((new $childType)->getTable() . ' as sortable_child', function ($join) use ($entityTable, $childType) {
                     $join->on('sortable_child.id', '=', $entityTable . '.entity_id')
@@ -239,6 +242,15 @@ trait EntityScopes
                     ->orderBy('cd.year', $order)
                     ->orderBy('cd.month', $order)
                     ->orderBy('cd.day', $order);
+            } elseif ($field === 'participants_count' && (int) $entityType?->id === (int) config('entities.ids.event')) {
+                $participant = new EventParticipant;
+                $query->orderBy(
+                    $participant->newQuery()
+                        ->selectRaw('count(*)')
+                        ->whereColumn($participant->qualifyColumn('event_id'), $entityTable . '.entity_id')
+                        ->has('entity'),
+                    $order
+                );
             } elseif ($field === 'tags') {
                 $query->leftJoin('entity_tags as tags_order', 'tags_order.entity_id', '=', $entityTable . '.id')
                     ->leftJoin('entities as tag_order', function ($join) {

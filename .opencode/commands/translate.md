@@ -1,7 +1,7 @@
 ---
 description: Translate missing strings
 agent: build
-model: openai/gpt-5.6-luna
+model: openai/gpt-6-luna
 ---
 
 Translate missing translations for the given locale.
