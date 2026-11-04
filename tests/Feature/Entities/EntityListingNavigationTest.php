@@ -83,3 +83,20 @@ it('keeps nested sibling navigation separate from persisted filters', function (
     $backToTopLevel->assertSuccessful();
     expect($entityIds($backToTopLevel))->toBe([$root->entity->id]);
 });
+
+it('lists accessible nested entities when their parent is not visible', function () {
+    $this->asUser()->withCampaign();
+
+    $visibleChild = Organisation::factory()->create([
+        'campaign_id' => 1,
+        'name' => 'Visible child',
+    ]);
+    $visibleChild->entity->update(['parent_id' => 999999]);
+
+    $entityType = EntityType::findOrFail(config('entities.ids.organisation'));
+    $response = $this->getJson(route('entities.index-api', [1, $entityType]));
+
+    $response->assertSuccessful();
+    expect(Arr::pluck($response->json('entities.data'), 'id'))
+        ->toContain($visibleChild->entity->id);
+});

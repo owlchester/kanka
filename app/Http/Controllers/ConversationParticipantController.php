@@ -6,6 +6,8 @@ use App\Http\Requests\StoreConversationParticipant;
 use App\Models\Campaign;
 use App\Models\Conversation;
 use App\Models\ConversationParticipant;
+use App\Models\Entity;
+use App\Models\User;
 
 class ConversationParticipantController extends Controller
 {
@@ -21,14 +23,38 @@ class ConversationParticipantController extends Controller
             return response()->json(['success' => true]);
         }
 
-        $participant = new ConversationParticipant;
-        $participant = $participant->create($request->all());
+        $data = $request->validated();
+        $participantClass = isset($data['entity_ids']) || isset($data['entity_id']) ? Entity::class : User::class;
+        $participants = collect($data['entity_ids'] ?? $data['user_ids'] ?? [$data['entity_id'] ?? $data['user_id']])
+            ->filter()
+            ->unique()
+            ->map(function ($id) use ($conversation, $participantClass) {
+                if ($conversation->participants()
+                    ->where('participant_type', $participantClass)
+                    ->where('participant_id', $id)
+                    ->exists()) {
+                    return null;
+                }
+
+                $participant = new ConversationParticipant;
+                $participant->conversation()->associate($conversation);
+                $participant->participant()->associate($participantClass::findOrFail($id));
+                $participant->save();
+
+                return $participant;
+            })
+            ->filter();
+        $participant = $participants->first();
+
+        if (! $participant) {
+            return back();
+        }
 
         return redirect()
             ->route('entities.show', [$campaign, $conversation->entity])
             ->with('success', __('conversations.participants.create.success', [
                 'name' => $conversation->entity->name,
-                'entity' => $participant->name(),
+                'entity' => $participants->map(fn (ConversationParticipant $participant) => $participant->name())->join(', '),
             ]));
     }
 

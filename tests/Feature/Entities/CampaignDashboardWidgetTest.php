@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\CampaignDashboardWidget;
+use App\Models\Quest;
+
 it('POSTS an invalid widget form')
     ->asUser()
     ->withCampaign()
@@ -64,3 +67,25 @@ it('UPDATES a valid dashboard widget')
     ->putJson('/api/1.0/campaigns/1/campaign_dashboard_widgets/1', ['position' => 2, 'widget' => 'header'])
     ->assertStatus(200)
     ->assertJsonFragment(['position' => 2]);
+
+it('filters dashboard quest widgets by multiple statuses', function () {
+    $this->asUser()->withCampaign();
+
+    $quests = collect([9, 10, 11])->map(function (int $statusId) {
+        $quest = Quest::factory()->create(['campaign_id' => 1]);
+        $quest->entity->update(['status_id' => $statusId]);
+
+        return $quest;
+    });
+
+    $widget = CampaignDashboardWidget::factory()->create([
+        'campaign_id' => 1,
+        'widget' => 'recent',
+        'entity_type_id' => config('entities.ids.quest'),
+        'config' => ['filters' => 'status_id[]=9&status_id[]=10'],
+    ]);
+
+    expect($widget->filterOptions()['status_id'])->toBe(['9', '10']);
+    expect($widget->entities()->getCollection()->pluck('id')->sort()->values()->all())
+        ->toBe($quests->take(2)->map(fn (Quest $quest) => $quest->entity->id)->sort()->values()->all());
+});

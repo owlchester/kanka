@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -51,6 +52,8 @@ class CampaignDashboardWidget extends Model
     protected $fillable = [
         'campaign_id',
         'entity_id',
+        'target_type',
+        'target_id',
         'widget',
         'config',
         'position',
@@ -72,6 +75,14 @@ class CampaignDashboardWidget extends Model
     public function entity(): BelongsTo
     {
         return $this->belongsTo(Entity::class);
+    }
+
+    /**
+     * @return MorphTo<Model, $this>
+     */
+    public function target(): MorphTo
+    {
+        return $this->morphTo();
     }
 
     /**
@@ -155,6 +166,9 @@ class CampaignDashboardWidget extends Model
     {
         return $query->with([
             'entity', 'entity.image', 'entity.entityType', 'entity.header',
+            'entity.child' => fn ($child) => $child
+                ->morphWith($this->previewChildRelations())
+                ->morphWithCount([Conversation::class => ['participants']]),
             //            'tags',
             'entity.mentions', 'entity.mentions.target', 'entity.mentions.target.tags:id,name,slug',
             'entity.mentions.target.entityType:id,code,is_special',
@@ -262,7 +276,7 @@ class CampaignDashboardWidget extends Model
      */
     public function entities(int $page = 1)
     {
-        if (isset($this->cachedEntities)) {
+        if (isset($this->cachedEntities) && $this->cachedEntities->currentPage() === $page) {
             return $this->cachedEntities;
         }
         $base = new Entity;
@@ -280,6 +294,9 @@ class CampaignDashboardWidget extends Model
         $base = $base->whereNull('entities.archived_at');
         $base = $base->select([
             'entities.id',
+            'entities.campaign_id',
+            'entities.child_type',
+            'entities.status_id',
             'entities.name',
             'entities.is_private',
             'entities.type_id',
@@ -290,6 +307,9 @@ class CampaignDashboardWidget extends Model
             'entities.updated_at',
             'entities.image_uuid',
         ]);
+        if ($this->conf('singular')) {
+            $base->select('entities.*');
+        }
 
         // Ordering
         $order = Arr::get($this->config, 'order', null);
@@ -304,6 +324,7 @@ class CampaignDashboardWidget extends Model
         $relations = [
             'image:campaign_id,id,ext,focus_x,focus_y,version',
             'entityType:id,code,is_special',
+            'status',
             'mentions',
             'mentions.target',
             'mentions.target.tags',
@@ -327,11 +348,21 @@ class CampaignDashboardWidget extends Model
             $base = $base->filter($filterService->filters(), $this->entityType);
         }
 
-        return $this->cachedEntities = $base
+        $this->cachedEntities = $base
             ->inTags($this->tags->pluck('id')->toArray())
             ->inTypes($this->entityType?->id)
             ->with($relations)
             ->paginate(10, ['*'], 'page', $page);
+
+        if ($this->conf('singular')) {
+            $this->cachedEntities->getCollection()->take(1)->loadMissing([
+                'child' => fn ($child) => $child
+                    ->morphWith($this->previewChildRelations())
+                    ->morphWithCount([Conversation::class => ['participants']]),
+            ]);
+        }
+
+        return $this->cachedEntities;
     }
 
     /**
@@ -376,9 +407,24 @@ class CampaignDashboardWidget extends Model
             ->whereNotIn('type_id', [config('entities.ids.attribute_template'), config('entities.ids.conversation'), config('entities.ids.tag')])
             ->whereNotIn('entities.id', Dashboard::excluding())
             ->inTypes($this->entityType?->id)
-            ->with(['image', 'entityType', 'header', 'tags'])
+            ->with(['image', 'entityType', 'header', 'tags',
+                'child' => fn ($child) => $child
+                    ->morphWith($this->previewChildRelations())
+                    ->morphWithCount([Conversation::class => ['participants']]),
+            ])
             ->orderByRaw('RAND()')
             ->first();
+    }
+
+    protected function previewChildRelations(): array
+    {
+        return [
+            Quest::class => ['instigator'],
+            Map::class => ['location.entity'],
+            Conversation::class => [
+                'messages' => fn ($query) => $query->with('participant')->orderByDesc('created_at')->limit(5),
+            ],
+        ];
     }
 
     /**

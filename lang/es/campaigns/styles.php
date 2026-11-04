@@ -7,6 +7,7 @@ return [
         'disable'   => 'Desactivar',
         'enable'    => 'Activar',
         'new'       => 'Nuevo estilo',
+        'new_first' => 'Crea tu primer estilo',
     ],
     'bulks'         => [
         'delete'    => '{1} :count estilo eliminados.|[2,*] :count estilos eliminados .',
@@ -16,6 +17,11 @@ return [
     'create'        => [
         'success'   => 'Se ha creado el nuevo estilo.',
         'title'     => 'Nuevo estilo',
+    ],
+    'cta'           => [
+        'helper'    => 'Pásate a premium para escribir CSS personalizado y diseñar esta campaña a tu manera.',
+        'lead'      => 'Pásate a premium para escribir CSS personalizado y rediseñar por completo esta campaña.',
+        'title'     => 'El CSS personalizado es una función premium.',
     ],
     'delete'        => [
         'success'   => 'Se ha eliminado el estilo :name.',
@@ -33,10 +39,12 @@ return [
         'order'         => 'Orden',
     ],
     'helpers'       => [
+        'empty'         => 'Aún no hay estilos personalizados',
         'here'          => 'en nuestro blog',
         'is_enabled'    => 'Habilita este tema en todas las páginas.',
         'main'          => 'Puedes crear estilos CSS personalizados para tu campaña mejorada. Estos estilos se cargan después de los temas del marketplace que hayas habilitado para la campaña. Puedes saber más sobre cómo aplicar estilos a tu campaña :here.',
         'tutorial'      => 'Controla el estilo visual de la campaña. Elige colores, preferencias de diseño y otras opciones de presentación. Estos cambios afectan solo a esta campaña y pueden actualizarse en cualquier momento.',
+        'what'          => 'Usa el creador de temas para aplicar estilos guiados o escribe tu propio CSS desde cero.',
     ],
     'pitch'         => 'Crea estilos CSS personalizados para cambiar por completo el aspecto de la campaña.',
     'placeholders'  => [

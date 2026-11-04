@@ -4,9 +4,8 @@ namespace Database\Factories;
 
 // use Faker\Generator as Faker;
 use App\Models\Map;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
-class MapFactory extends Factory
+class MapFactory extends StandardEntityFactory
 {
     /**
      * The name of the factory's corresponding model.

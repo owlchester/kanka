@@ -13,7 +13,7 @@ class LanguageService
     {
         $languages = [];
         if ($emptyOption) {
-            $languages = [null => ''];
+            $languages = ['' => ''];
         }
         foreach (LaravelLocalization::getSupportedLocales() as $langKey => $langData) {
             $languages[$langKey] = trans('languages.codes.' . $langKey);

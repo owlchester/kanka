@@ -14,7 +14,6 @@ return [
     'destroy'           => [
         'success'   => 'Imagem em miniatura padrão para :type removida.',
     ],
-    'empty'             => 'Nenhum módulo tem atualmente uma configuração de miniatura padrão.',
     'helper'            => 'Usado para todas as entidades deste módulo sem uma imagem.',
     'index'             => [],
     'reset'             => [

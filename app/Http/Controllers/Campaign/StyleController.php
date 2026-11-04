@@ -157,7 +157,7 @@ class StyleController extends Controller
     {
         $this->authorize('update', $campaign);
 
-        $themes = [null => __('campaigns.themes.none')];
+        $themes = ['' => __('campaigns.themes.none')];
         foreach (Theme::all() as $theme) {
             $themes[$theme->id] = $theme->__toString();
         }

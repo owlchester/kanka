@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Middleware\RejectMcpTokens;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,7 +22,7 @@
 });*/
 
 Route::group([
-    'middleware' => ['auth:api', 'throttle:rate_limit,1'],
+    'middleware' => ['auth:api', RejectMcpTokens::class, 'throttle:rate_limit,1'],
     'namespace' => 'Api\v1',
     'prefix' => '1.0',
 ], function () {

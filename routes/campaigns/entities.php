@@ -29,6 +29,8 @@ use App\Http\Controllers\Entity\PrivacyController;
 use App\Http\Controllers\Entity\ShowController;
 use App\Http\Controllers\Entity\StoryController;
 use App\Http\Controllers\EntityCreatorController;
+use App\Http\Controllers\Events\ParticipantController;
+use App\Http\Controllers\Events\ParticipantManagerController;
 use App\Http\Controllers\Families\TreeController;
 use App\Http\Controllers\Filters\FormController;
 use App\Http\Controllers\Filters\SaveController;
@@ -155,6 +157,12 @@ Route::get('/w/{campaign}/creatures/{creature}/creatures', 'Creatures\CreatureCo
 Route::get('/w/{campaign}/journals/{journal}/journals', 'Journals\JournalController@index')->name('journals.journals');
 
 Route::get('/w/{campaign}/events/{event}/events', 'Events\EventController@index')->name('events.events');
+Route::get('/w/{campaign}/events/{event}/participants', [ParticipantController::class, 'index'])->name('events.participants.index');
+Route::put('/w/{campaign}/events/{event}/participants', [ParticipantManagerController::class, 'update'])->name('events.participants.update');
+Route::post('/w/{campaign}/events/{event}/participants', [ParticipantController::class, 'store'])->name('events.participants.store');
+Route::delete('/w/{campaign}/events/{event}/participants/{participant}', [ParticipantController::class, 'destroy'])->name('events.participants.destroy');
+Route::post('/w/{campaign}/events/{event}/groups', [ParticipantController::class, 'storeGroup'])->name('events.groups.store');
+Route::delete('/w/{campaign}/events/{event}/groups/{group}', [ParticipantController::class, 'destroyGroup'])->name('events.groups.destroy');
 
 Route::get('/w/{campaign}/timelines/{timeline}/timelines', 'Timelines\TimelineController@index')->name('timelines.timelines');
 
@@ -221,6 +229,7 @@ Route::get('/w/{campaign}/entities/{entity}/story-more', [StoryController::class
 // Image of entities
 Route::get('/w/{campaign}/entities/{entity}/image-focus', [ImageController::class, 'focus'])->name('entities.image.focus');
 Route::post('/w/{campaign}/entities/{entity}/image-focus', [ImageController::class, 'saveFocus'])->name('entities.image.save-focus');
+Route::get('/w/{campaign}/entities/{entity}/image-focus/{image}', [ImageController::class, 'focusImage'])->name('entities.image.focus-data');
 
 Route::get('/w/{campaign}/entities/{entity}/image-replace', [ImageController::class, 'replace'])->name('entities.image.replace');
 Route::post('/w/{campaign}/entities/{entity}/image-replace', [ImageController::class, 'update'])->name('entities.image.replace.save');

@@ -38,8 +38,12 @@ class ApiController extends Controller
             ->get();
 
         // Retrieving all the user's connections to third-party OAuth app clients.
+        $mcpConnections = $tokens
+            ->filter(fn (Token $token): bool => ! $token->client->revoked && in_array('mcp:use', $token->scopes ?? [], true))
+            ->values();
+
         $applications = $tokens
-            ->reject(fn (Token $token): bool => $token->client->revoked || $token->client->firstParty())
+            ->reject(fn (Token $token): bool => $token->client->revoked || $token->client->firstParty() || in_array('mcp:use', $token->scopes ?? [], true))
             ->values();
 
         $clients = Client::where('user_id', auth()->user()->id)
@@ -54,7 +58,7 @@ class ApiController extends Controller
             ->orderByDesc('created_at')
             ->paginate(config('limits.pagination'), ['*'], 'tokensPage');
 
-        return view('settings.api', compact('tokens', 'clients', 'applications'));
+        return view('settings.api', compact('tokens', 'clients', 'applications', 'mcpConnections'));
     }
 
     /**

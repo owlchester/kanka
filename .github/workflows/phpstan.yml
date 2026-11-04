@@ -21,6 +21,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      APP_EMAIL: ci@example.com
+
     strategy:
       fail-fast: true
       matrix:

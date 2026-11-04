@@ -7,6 +7,8 @@ use App\Http\Resources\ConversationMessageResource as Resource;
 use App\Models\Campaign;
 use App\Models\Conversation;
 use App\Models\ConversationMessage;
+use App\Models\Entity;
+use App\Models\User;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -55,7 +57,13 @@ class ConversationMessageApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $conversation->entity);
-        $model = ConversationMessage::create($requestMessage->all());
+        $data = $requestMessage->validated();
+        $model = new ConversationMessage(['message' => $data['message']]);
+        $model->conversation()->associate($conversation);
+        $model->participant()->associate(isset($data['entity_id'])
+            ? Entity::findOrFail($data['entity_id'])
+            : User::findOrFail($data['user_id']));
+        $model->save();
 
         return new Resource($model);
     }

@@ -11,10 +11,17 @@ return [
         'success'   => 'Imagen por defecto para :type creada.',
         'title'     => 'Nueva imagen por defecto',
     ],
+    'cta'               => [
+        'lead'  => 'Asigna una miniatura predeterminada a cada personaje, ubicación u otra categoría para que tus listas nunca se vean vacías.',
+        'title' => 'Mantén impecable el aspecto de cada entrada.',
+    ],
     'destroy'           => [
         'success'   => 'Imagen por defecto para :type eliminada.',
     ],
-    'empty'             => 'Actualmente, ningún módulo tiene una miniatura predeterminada configurada.',
+    'empty'             => [
+        'description'   => 'Añade una imagen predeterminada a una categoría y las entradas sin imágenes personalizadas la usarán automáticamente.',
+        'title'         => 'Aún no hay imágenes de marcador de posición',
+    ],
     'helper'            => 'Se usa para todas las entidades de este módulo que no tengan imagen.',
     'index'             => [],
     'reset'             => [

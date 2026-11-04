@@ -9,7 +9,6 @@ use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Creature
@@ -22,11 +21,9 @@ class Creature extends MiscModel
     use HasFactory;
     use HasFilters;
     use Sanitizable;
-    use SoftDeletes;
     use SortableTrait;
 
     protected $fillable = [
-        'name',
         'campaign_id',
         'is_private',
     ];

@@ -16,6 +16,10 @@ return [
     'next'      => 'Ton soutien nous aide à grandir et à améliorer Kanka pour tout le monde. Voici ce que tu peux faire ensuite pour débloquer tous les avantages de ton abonnement :',
     'premium'   => [
         'action'    => 'Activer',
+        'enabled'   => [
+            'helper'    => 'Les fonctionnalités Premium sont maintenant activées pour :campaign.',
+            'title'     => 'Fonctionnalités Premium activées',
+        ],
         'helper'    => 'Active des fonctionnalités premium comme les catégories personnalisées, l\'accès aux :plugins, et bien plus encore!',
         'title'     => 'Active les options premium sur une campagne',
     ],

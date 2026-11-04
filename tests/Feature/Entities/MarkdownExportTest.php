@@ -1,12 +1,15 @@
 <?php
 
+use App\Enums\OrganisationMemberPin;
 use App\Models\Ability;
 use App\Models\Attribute as EntityAttribute;
 use App\Models\Character;
 use App\Models\CharacterFamily;
 use App\Models\CharacterRace;
+use App\Models\Entity;
 use App\Models\EntityAbility;
 use App\Models\EntityAsset;
+use App\Models\EntityType;
 use App\Models\Family;
 use App\Models\Inventory;
 use App\Models\Item;
@@ -25,6 +28,43 @@ use App\Models\TimelineEra;
 use App\Services\Entity\MarkdownExportService;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
+
+it('exports custom entities to markdown without a child model', function (bool $single) {
+    $this->asUser()->withCampaign(['boost_count' => 4]);
+
+    $entityType = new EntityType([
+        'code' => 'kampagnenplan',
+        'is_special' => true,
+        'is_enabled' => true,
+    ]);
+    $entityType->campaign_id = 1;
+    $entityType->singular = 'Kampagnenplan';
+    $entityType->plural = 'Kampagnenplans';
+    $entityType->icon = 'fa-solid fa-book';
+    $entityType->save();
+
+    $entity = new Entity([
+        'campaign_id' => 1,
+        'name' => 'Custom campaign plan',
+        'entry' => '<p>Plan the next adventure.</p>',
+    ]);
+    $entity->type_id = $entityType->id;
+    $entity->save();
+
+    $markdown = app(MarkdownExportService::class)
+        ->campaign($entity->campaign)
+        ->entity($entity)
+        ->module('kampagnenplans_' . $entityType->id)
+        ->single($single)
+        ->markdown();
+
+    expect($markdown)
+        ->toContain('Custom campaign plan')
+        ->toContain('Plan the next adventure.');
+})->with([
+    'standalone' => true,
+    'campaign' => false,
+]);
 
 it('uses the request URL for standalone exports and canonical URL for campaign exports', function () {
     $this->asUser()->withCampaign();
@@ -396,6 +436,71 @@ it('includes linked character families races and organisations in standalone mar
         ->and(substr_count($markdown, '## ' . __('crud.tabs.profile')))->toBe(1);
 });
 
+it('exports the correct pinned member name and role', function (string $type) {
+    $this->asUser()->withCampaign();
+
+    $character = Character::factory()->create(['campaign_id' => 1, 'name' => 'Aster Vale']);
+    $organisation = Organisation::factory()->create(['campaign_id' => 1, 'name' => 'Silver Guard']);
+    OrganisationMember::create([
+        'character_id' => $character->id,
+        'organisation_id' => $organisation->id,
+        'role' => 'Captain',
+        'pin_id' => OrganisationMemberPin::both,
+    ]);
+    $owner = $type === 'character' ? $character : $organisation;
+    $target = $type === 'character' ? $organisation : $character;
+    EntityAsset::factory()->create([
+        'entity_id' => $owner->entity->id,
+        'name' => 'Pinned guide',
+        'is_pinned' => true,
+        'metadata' => ['path' => 'files/guide.pdf', 'type' => 'application/pdf'],
+    ]);
+
+    $markdown = app(MarkdownExportService::class)
+        ->campaign($owner->campaign)
+        ->entity($owner->entity)
+        ->single()
+        ->markdown();
+
+    expect($markdown)
+        ->toContain('| ' . $target->name . ' | Captain |')
+        ->not->toContain('| ' . $owner->name . ' | Captain |');
+})->with(['character', 'organisation']);
+
+it('skips pinned members with deleted entities in markdown exports', function (string $type) {
+    $this->asUser()->withCampaign();
+
+    $character = Character::factory()->create(['campaign_id' => 1, 'name' => 'Aster Vale']);
+    $organisation = Organisation::factory()->create(['campaign_id' => 1, 'name' => 'Silver Guard']);
+    OrganisationMember::create([
+        'character_id' => $character->id,
+        'organisation_id' => $organisation->id,
+        'role' => 'Unavailable pinned member',
+        'pin_id' => OrganisationMemberPin::both,
+    ]);
+    $owner = $type === 'character' ? $character : $organisation;
+    $target = $type === 'character' ? $organisation : $character;
+    $target->entity->delete();
+    EntityAsset::factory()->create([
+        'entity_id' => $owner->entity->id,
+        'name' => 'Pinned guide',
+        'is_pinned' => true,
+        'metadata' => ['path' => 'files/guide.pdf', 'type' => 'application/pdf'],
+    ]);
+
+    $markdown = app(MarkdownExportService::class)
+        ->campaign($owner->campaign)
+        ->entity($owner->entity)
+        ->single()
+        ->markdown();
+
+    expect($markdown)
+        ->toContain('# ' . $owner->name)
+        ->toContain('| Pinned guide |')
+        ->not->toContain('Unavailable pinned member')
+        ->not->toContain($target->name);
+})->with(['character', 'organisation']);
+
 it('uses relative links for character details in campaign markdown exports', function () {
     $this->asUser()->withCampaign();
 
@@ -434,6 +539,8 @@ it('includes relationship roles in standalone and campaign markdown exports', fu
         'owner_id' => $owner->entity->id,
         'target_id' => $target->entity->id,
         'relation' => 'Protects and guides',
+        'attitude' => 75,
+        'colour' => '#123456',
     ]);
 
     $standalone = app(MarkdownExportService::class)
@@ -448,9 +555,9 @@ it('includes relationship roles in standalone and campaign markdown exports', fu
         ->markdown();
 
     expect($standalone)
-        ->toContain('* **Protects and guides**: [' . $target->name . '](' . $target->entity->url() . ')')
+        ->toContain('* **Protects and guides**: [' . $target->name . '](' . $target->entity->url() . ') (75, #123456)')
         ->and($campaign)
-        ->toContain('* **Protects and guides**: [' . $target->name . '](characters/' . Str::slug($target->name) . '_' . $target->entity->id . ')');
+        ->toContain('* **Protects and guides**: [' . $target->name . '](characters/' . Str::slug($target->name) . '_' . $target->entity->id . ') (75, #123456)');
 });
 
 it('uses each direction role for mirrored relationships', function () {
@@ -469,6 +576,8 @@ it('uses each direction role for mirrored relationships', function () {
         'owner_id' => $child->entity->id,
         'target_id' => $parent->entity->id,
         'relation' => 'Child of',
+        'attitude' => -25,
+        'colour' => '#abcdef',
         'mirror_id' => $parentRelation->id,
     ]);
     $parentRelation->update(['mirror_id' => $childRelation->id]);
@@ -485,10 +594,10 @@ it('uses each direction role for mirrored relationships', function () {
         ->markdown();
 
     expect($parentMarkdown)
-        ->toContain('**Parent of**')
+        ->toContain('**Parent of**: [' . $child->name . '](' . $child->entity->url() . ') (0, mirrored)')
         ->not->toContain('**Child of**')
         ->and($childMarkdown)
-        ->toContain('**Child of**')
+        ->toContain('**Child of**: [' . $parent->name . '](' . $parent->entity->url() . ') (-25, #abcdef, mirrored)')
         ->not->toContain('**Parent of**');
 });
 

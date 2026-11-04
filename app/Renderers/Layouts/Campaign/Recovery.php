@@ -3,6 +3,7 @@
 namespace App\Renderers\Layouts\Campaign;
 
 use App\Facades\Avatar;
+use App\Models\Scopes\ActiveEntityScope;
 use App\Renderers\Layouts\Layout;
 
 class Recovery extends Layout
@@ -19,7 +20,7 @@ class Recovery extends Layout
                 'class' => 'avatar w-14',
                 'label' => '',
                 'render' => function ($entity) {
-                    $child = $entity->child()->withTrashed()->first();
+                    $child = $entity->child()->withoutGlobalScope(ActiveEntityScope::class)->first();
                     if (empty($child)) {
                         return '';
                     }

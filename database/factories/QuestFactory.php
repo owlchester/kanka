@@ -4,9 +4,8 @@ namespace Database\Factories;
 
 // use Faker\Generator as Faker;
 use App\Models\Quest;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
-class QuestFactory extends Factory
+class QuestFactory extends StandardEntityFactory
 {
     /**
      * The name of the factory's corresponding model.

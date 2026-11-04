@@ -10,7 +10,6 @@ return [
             'confirm'   => 'Diventa Premium!',
         ],
         'confirm'   => 'Che emozione! Stai per sbloccare le funzioni premium per :campaign. Questa operazione utilizzerà una delle campagne premium disponibili.',
-        'duration'  => 'Le campagne premium rimangono tali fino a quando non vengono rimosse manualmente o fino alla scadenza dell\'abbonamento.',
         'success'   => 'La campagna :campaign è ora premium. Goditi tutte le nuove fantastiche funzionalità!',
     ],
     'exceptions'    => [

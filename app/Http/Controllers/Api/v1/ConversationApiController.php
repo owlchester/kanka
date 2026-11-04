@@ -83,7 +83,7 @@ class ConversationApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $conversation->entity);
-        $conversation->delete();
+        $conversation->entity->delete();
 
         return response()->json(null, 204);
     }

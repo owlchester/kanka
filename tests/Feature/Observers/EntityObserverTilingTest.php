@@ -1,10 +1,12 @@
 <?php
 
 use App\Jobs\TileImageJob;
+use App\Models\Campaign;
 use App\Models\Character;
-use App\Models\Entity;
+use App\Models\EntityType;
 use App\Models\Image;
 use App\Models\Map;
+use App\Services\Entity\StandardEntityCreationService;
 use Illuminate\Support\Facades\Queue;
 
 beforeEach(function () {
@@ -14,21 +16,13 @@ beforeEach(function () {
 });
 
 it('triggers tiling when a brand-new map\'s entity is created with an oversized gallery image already set', function () {
-    // Build the Map row without firing its `created` event, so `ChildEntityObserver` doesn't
-    // auto-create a bare Entity for it first. This mirrors what BaseEntityMapper/MoveService/
-    // BulkService do: they set `image_uuid` on a not-yet-persisted `Entity` before its first save.
-    $map = Map::factory()->make(['campaign_id' => 1]);
-    $map->saveQuietly();
     $image = Image::factory()->create(['campaign_id' => 1, 'size' => 200]);
 
-    $entity = new Entity;
-    $entity->entity_id = $map->id;
-    $entity->name = $map->entity->name;
-    $entity->campaign_id = 1;
-    $entity->type_id = config('entities.ids.map');
-    $entity->is_private = false;
-    $entity->image_uuid = $image->id;
-    $entity->save();
+    $map = app(StandardEntityCreationService::class)
+        ->campaign(Campaign::findOrFail(1))
+        ->entityType(EntityType::findOrFail(config('entities.ids.map')))
+        ->create(['name' => 'Oversized map', 'image_uuid' => $image->id]);
+    $entity = $map->entity;
 
     expect($entity->wasRecentlyCreated)->toBeTrue();
 

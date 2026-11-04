@@ -4,7 +4,6 @@ namespace App\Services\Caches;
 
 use App\Models\Entity;
 use App\Models\EntityType;
-use App\Models\MiscModel;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -15,11 +14,6 @@ use Illuminate\Support\Facades\DB;
 class EntityCacheService extends BaseCache
 {
     use CampaignAware;
-
-    /**
-     * In-memory entity cache
-     */
-    protected array $entities = [];
 
     public function typeSuggestion(EntityType $entityType): array
     {
@@ -44,22 +38,6 @@ class EntityCacheService extends BaseCache
         );
 
         return $this;
-    }
-
-    /**
-     * @return MiscModel|mixed
-     */
-    public function child(Entity $entity)
-    {
-        $key = $entity->type_id . '_' . $entity->entity_id;
-        if (isset($this->entities[$key])) {
-            return $this->entities[$key];
-        }
-
-        // Why are we doing ->first? because child is a loop to this function.
-        $child = $entity->child()->first();
-
-        return $this->entities[$key] = $child;
     }
 
     /**

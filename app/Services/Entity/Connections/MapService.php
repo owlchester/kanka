@@ -22,12 +22,14 @@ use App\Models\QuestElement;
 use App\Models\Relation;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
+use App\Traits\UserAware;
 use Illuminate\Support\Arr;
 
 class MapService
 {
     use CampaignAware;
     use EntityAware;
+    use UserAware;
 
     /** Entities */
     protected array $entities = [];
@@ -117,13 +119,17 @@ class MapService
                     $this->addParent()
                         ->addLocation()
                         ->addQuests()
-                        ->addAuthorJournals()
                         ->addLocations();
                 } else {
                     $this->addCustom();
                 }
                 $this->addMapMarkers();
             }
+        }
+
+        if ($this->withRelated()) {
+            $this->addConversations()
+                ->addAuthorJournals();
         }
 
         $this->addMentions();
@@ -189,83 +195,134 @@ class MapService
      */
     protected function addRelations(Entity $entity): self
     {
-        // dump('add relations for ' . $entity->name);
-        if (Arr::has($this->entityIds, (string) $entity->id)) {
+        return $this->addRelationsForEntities([$entity]);
+    }
+
+    /**
+     * Load relations for multiple owners in one query.
+     *
+     * @param  iterable<Entity>  $entities
+     */
+    protected function addRelationsForEntities(iterable $entities): self
+    {
+        $owners = [];
+        foreach ($entities as $entity) {
+            if (Arr::has($this->entityIds, (string) $entity->id)) {
+                continue;
+            }
+
+            $this->entityIds[$entity->id] = true;
+            $owners[$entity->id] = $entity;
+        }
+
+        if ($owners === []) {
             return $this;
         }
-        $this->entityIds[$entity->id] = true;
 
-        // Get the relations directly from this entity
-        /** @var Relation[] $relations */
-        $relations = $entity->relationships()
+        $relations = Relation::query()
+            ->whereIn('owner_id', array_keys($owners))
             ->select('relations.*')
-            ->with(['target', 'target.entityType', 'mirror', 'target.image'])
+            ->with(['target', 'target.entityType', 'target.child', 'mirror', 'target.image'])
             ->has('target')
             ->leftJoin('entities as t', 't.id', '=', 'relations.target_id')
-            ->get();
+            ->get()
+            ->groupBy('owner_id');
 
-        foreach ($relations as $relation) {
-            if ($relation->target === null) {
-                continue;
-            }
-
-            // Don't add mirrored relations
-            if ($relation->isMirrored()) {
-                if (Arr::has($this->mirrors, $relation->mirror_id . '-' . $relation->id)) {
+        foreach ($owners as $ownerId => $owner) {
+            foreach ($relations->get($ownerId, []) as $relation) {
+                if ($relation->target === null) {
                     continue;
                 }
-            }
-            // Relation already loaded
-            if (in_array($relation->id, $this->relationIds)) {
-                continue;
-            }
 
-            if ($this->withEntity) {
-                $this->addEntity($relation->target);
-            }
+                // Don't add mirrored relations
+                if ($relation->isMirrored()) {
+                    if (Arr::has($this->mirrors, $relation->mirror_id . '-' . $relation->id)) {
+                        continue;
+                    }
+                }
+                // Relation already loaded
+                if (in_array($relation->id, $this->relationIds)) {
+                    continue;
+                }
 
-            $this->relations[] = [
-                'source' => $relation->owner_id,
-                'target' => $relation->target_id,
-                'text' => $relation->relation,
-                'colour' => $relation->colour,
-                'attitude' => $relation->attitude,
-                'type' => 'entity-relation',
-                'is_mirrored' => $relation->isMirrored(),
-                'shape' => $relation->isMirrored() && $relation->mirror && $relation->relation == $relation->mirror->relation ? 'none' : 'triangle',
-                'edit_url' => route('entities.relations.edit', [
-                    'campaign' => $this->campaign,
-                    'entity' => $relation->owner_id,
-                    'relation' => $relation,
-                    'from' => $this->entity->id,
-                    'mode' => 'map',
-                    'option' => $this->option,
-                ]),
-            ];
+                if ($this->withEntity) {
+                    $this->addEntity($relation->target);
+                }
 
-            if ($relation->isMirrored() && $relation->mirror && $relation->relation && $relation->relation == $relation->mirror->relation) {
-                $this->mirrors[$relation->id . '-' . $relation->mirror_id] = true;
+                $this->relations[] = [
+                    'source' => $relation->owner_id,
+                    'target' => $relation->target_id,
+                    'text' => $relation->relation,
+                    'colour' => $relation->colour,
+                    'attitude' => $relation->attitude,
+                    'type' => 'entity-relation',
+                    'is_mirrored' => $relation->isMirrored(),
+                    'shape' => $relation->isMirrored() && $relation->mirror && $relation->relation == $relation->mirror->relation ? 'none' : 'triangle',
+                    'edit_url' => route('entities.relations.edit', [
+                        'campaign' => $this->campaign,
+                        'entity' => $relation->owner_id,
+                        'relation' => $relation,
+                        'from' => $this->entity->id,
+                        'mode' => 'map',
+                        'option' => $this->option,
+                    ]),
+                ];
+
+                if ($relation->isMirrored() && $relation->mirror && $relation->relation && $relation->relation == $relation->mirror->relation) {
+                    $this->mirrors[$relation->id . '-' . $relation->mirror_id] = true;
+                }
+                $this->relationIds[] = $relation->id;
             }
-            $this->relationIds[] = $relation->id;
         }
 
         return $this;
     }
 
     /**
-     * Add an individual family. This only works for characters
+     * Add the families of a character
      */
     protected function addFamily(): self
     {
-        if (empty($this->entity->child->family)) {
-            return $this;
+        /** @var Character $character */
+        $character = $this->entity->child;
+        $families = $character->families()
+            ->has('entity')
+            ->with(['entity', 'entity.image', 'entity.entityType']);
+        if (! $this->hasUser() || ! $this->user->can('admin', $this->campaign)) {
+            $families->wherePivot('is_private', false);
+        }
+        foreach ($families->get() as $family) {
+            $this->addFamilyRelations($family);
         }
 
-        $family = $this->entity->child->family;
+        return $this;
+    }
 
-        $this->addFamilyRelations($family);
+    protected function addRaces(): self
+    {
+        /** @var Character $character */
+        $character = $this->entity->child;
+        $races = $character->races()
+            ->has('entity')
+            ->with(['entity', 'entity.image', 'entity.entityType']);
+        if (! $this->hasUser() || ! $this->user->can('admin', $this->campaign)) {
+            $races->wherePivot('is_private', false);
+        }
+        foreach ($races->get() as $race) {
+            $this->addEntity($race->entity)
+                ->addRelations($race->entity);
 
-        // Add relation to the family
+            $this->relations[] = [
+                'source' => $this->entity->id,
+                'target' => $race->entity->id,
+                'text' => Module::singular(config('entities.ids.race'), __('entities.race')),
+                'colour' => '#ccc',
+                'attitude' => null,
+                'type' => 'character-race',
+                'shape' => 'none',
+            ];
+        }
+
         return $this;
     }
 
@@ -355,8 +412,7 @@ class MapService
                 ->addParent()
                 ->addEntityLocations()
                 ->addQuests()
-                ->addMapMarkers()
-                ->addAuthorJournals();
+                ->addMapMarkers();
         }
 
         return $this;
@@ -373,12 +429,11 @@ class MapService
 
         if ($this->withRelated()) {
             $this->addFamily()
+                ->addRaces()
                 ->addOrganisation()
                 ->addItems()
-                ->addAuthorJournals()
                 ->addEntityLocations()
                 ->addDiceRolls()
-                ->addConversations()
                 ->addMapMarkers()
                 ->addQuests();
         }
@@ -405,7 +460,6 @@ class MapService
                 ->addQuests()
                 ->addMapMarkers()
                 ->addMaps()
-                ->addAuthorJournals()
                 ->addEntities();
         }
 
@@ -427,8 +481,7 @@ class MapService
                 ->addParent()
                 ->addLocations()
                 ->addQuests()
-                ->addMapMarkers()
-                ->addAuthorJournals();
+                ->addMapMarkers();
         }
 
         return $this;
@@ -450,8 +503,7 @@ class MapService
             $this->addParent()
                 ->addLocation()
                 ->addQuests()
-                ->addMapMarkers()
-                ->addAuthorJournals();
+                ->addMapMarkers();
         }
 
         return $this;
@@ -755,10 +807,8 @@ class MapService
 
     protected function addConversations(): self
     {
-        /** @var Character $parent */
-        $parent = $this->entity->child;
         /** @var Conversation $related */
-        foreach ($parent->conversations()->with(['entity', 'entity.image', 'entity.entityType'])->has('entity')->get() as $related) {
+        foreach ($this->entity->conversations()->with(['entity', 'entity.image', 'entity.entityType'])->has('entity')->get() as $related) {
             $this->addEntity($related->entity);
             $this->relations[] = [
                 'source' => $this->entity->id,
@@ -865,11 +915,10 @@ class MapService
         $entities = $this->entity->child
             // @phpstan-ignore-next-line
             ->entities()
-            ->with(['image'])
+            ->with(['image', 'entityType', 'child'])
             ->get();
         foreach ($entities as $entity) {
             $this->addEntity($entity);
-            $this->addRelations($entity);
 
             $this->relations[] = [
                 'source' => $entity->id,
@@ -881,6 +930,8 @@ class MapService
                 'shape' => 'triangle',
             ];
         }
+
+        $this->addRelationsForEntities($entities);
 
         return $this;
     }
@@ -924,9 +975,7 @@ class MapService
         }
 
         $entities = Entity::whereIn('id', $relatedEntityIds)->get();
-        foreach ($entities as $entity) {
-            $this->addRelations($entity);
-        }
+        $this->addRelationsForEntities($entities);
 
         return $this;
     }

@@ -82,7 +82,7 @@ class LocationApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $location->entity);
-        $location->delete();
+        $location->entity->delete();
 
         return response()->json(null, 204);
     }

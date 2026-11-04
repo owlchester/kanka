@@ -4,13 +4,13 @@ namespace App\Models;
 
 use App\Enums\ConversationTarget;
 use App\Models\Concerns\Blameable;
-use App\Models\Concerns\HasUser;
 use App\Models\Concerns\LastSync;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -18,10 +18,10 @@ use Illuminate\Support\Facades\Auth;
  *
  * @property int $id
  * @property int $conversation_id
- * @property int $character_id
- * @property int $user_id
+ * @property int $participant_id
  * @property string $message
- * @property ?Character $character
+ * @property Entity|User|null $participant
+ * @property string|null $participant_type
  * @property Conversation $conversation
  * @property Carbon $created_at
  */
@@ -29,7 +29,6 @@ class ConversationMessage extends Model
 {
     use Blameable;
     use HasFactory;
-    use HasUser;
     use LastSync;
 
     public bool $isGroupped = false;
@@ -37,8 +36,8 @@ class ConversationMessage extends Model
     protected $fillable = [
         'conversation_id',
         'created_by',
-        'character_id',
-        'user_id',
+        'participant_id',
+        'participant_type',
         'message',
     ];
 
@@ -53,12 +52,10 @@ class ConversationMessage extends Model
         'created_by',
     ];
 
-    /**
-     * @return BelongsTo<Character, $this>
-     */
-    public function character(): BelongsTo
+    /** @return MorphTo<Model, $this> */
+    public function participant(): MorphTo
     {
-        return $this->belongsTo('App\Models\Character', 'character_id');
+        return $this->morphTo();
     }
 
     /**
@@ -74,8 +71,7 @@ class ConversationMessage extends Model
      */
     public function target()
     {
-        return ! empty($this->character_id) ? ConversationTarget::characters->value :
-            (! empty($this->user_id) ? ConversationTarget::users->value : null);
+        return $this->participant_type === Entity::class ? ConversationTarget::entities->value : ($this->participant_type === User::class ? ConversationTarget::users->value : null);
     }
 
     /**
@@ -83,29 +79,17 @@ class ConversationMessage extends Model
      */
     public function author()
     {
-        if (! empty($this->user_id)) {
-            return $this->user;
-        } elseif (! empty($this->character_id)) {
-            return $this->character;
-        }
-
-        return null;
+        return $this->participant;
     }
 
     public function authorID(): ?int
     {
-        if (! empty($this->user_id)) {
-            return $this->user_id;
-        } elseif (! empty($this->character_id)) {
-            return $this->character_id;
-        }
-
-        return null;
+        return $this->participant_id;
     }
 
     public function scopeDefault(Builder $query, ?int $oldestId = null, ?int $newestId = null)
     {
-        $query->with(['user', 'character'])
+        $query->with('participant')
             ->latest()
             ->take(20);
 
@@ -126,7 +110,7 @@ class ConversationMessage extends Model
         if (empty($previous)) {
             return $this;
         }
-        if ($previous->authorID() != $this->authorID()) {
+        if ($previous->participant_type !== $this->participant_type || $previous->authorID() != $this->authorID()) {
             return $this;
         }
         // Same 60 seconds

@@ -30,11 +30,11 @@ return [
     ],
     'campaign'  => [
         'boosted'       => 'Boosted by :user since :time',
+        'members'       => ':amount member will get instant upgrades|:amount members will get instant upgrades',
         'premium'       => 'Premium features unlocked thanks to :user since :time',
         'standard'      => 'Standard',
         'superboosted'  => 'Superboosted by :user since :time',
         'unboosted'     => 'Unboosted',
-        'members' => ':amount member will get instant upgrades|:amount members will get instant upgrades',
     ],
     'intro'     => [
         'anyone'    => 'You aren\'t limited to only boosting campaigns you\'ve created. You can boost any campaign you are a part of or can see. This includes campaigns where you are a player, or :public you enjoy.',

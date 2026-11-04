@@ -7,6 +7,7 @@
       <div class="load-more text-center text-2xl" v-if="loadingPrevious || initializing">
         <i class="fa-solid fa-spin fa-spinner" aria-label="Loading"></i>
       </div>
+      <div v-if="error" class="text-error-content text-center" role="alert">{{ error }}</div>
       <Message
           v-for="message in messages"
           :key="message.id"
@@ -33,6 +34,8 @@
         @sending_message="sendingMessage"
         @edited_message="editedMessage"
         @sent_message="sentMessage"
+        @request_failed="showError"
+        @cancel_edit="currentMessage = null"
     >
     </Form>
   </div>
@@ -41,7 +44,7 @@
 <script setup lang="ts">
 import Message from './Message.vue';
 import Form from './Form.vue';
-import {onMounted, ref} from "vue";
+import {nextTick, onMounted, ref} from "vue";
 /**
  * This is just a placeholder that builds the convo module.
  * All the juicy stuff is in Messages
@@ -73,15 +76,21 @@ const initializing = ref(true)
 
 const messageBox = ref(null)
 const currentMessage = ref(null)
+const error = ref('')
 
 
 const getMessages = () => {
+  error.value = '';
   axios.get(props.api, {params: {newest: newest.value}}).then(response => {
     sending.value = false;
     messages.value.push(...response.data.data.messages);
     previous.value = response.data.data.previous;
     initializing.value = false;
     scrollToBottom();
+  }).catch(() => {
+    sending.value = false;
+    initializing.value = false;
+    error.value = translate('request_failed');
   });
 }
 /**
@@ -102,10 +111,18 @@ const scrollToBottom = () => {
  * This might need some optimizing in the future for large datasets.
  */
 const getPrevious = () => {
+  if (loadingPrevious.value || messages.value.length === 0) return;
   loadingPrevious.value = true;
+  const oldHeight = messageBox.value.scrollHeight;
   axios.get(props.api, {params: {oldest: messages.value[0].id}}).then(response => {
     messages.value.unshift(...response.data.data.messages);
     previous.value = response.data.data.previous;
+    nextTick(() => {
+      messageBox.value.scrollTop += messageBox.value.scrollHeight - oldHeight;
+    });
+  }).catch(() => {
+    error.value = translate('request_failed');
+  }).finally(() => {
     loadingPrevious.value = false;
   });
 }
@@ -115,11 +132,12 @@ const getPrevious = () => {
  * @param message
  */
 const deleteMessage = (message) => {
+  error.value = '';
   axios.delete(message.delete_url)
       .then(() => {
         const index = messages.value.findIndex(msg => msg.id === message.id);
-        messages.value.splice(index, 1);
-      });
+        if (index !== -1) messages.value.splice(index, 1);
+      }).catch(() => { error.value = translate('request_failed'); });
 }
 const translate = (key) => {
   return json_trans.value[key] ?? 'unknown'
@@ -142,6 +160,7 @@ const sentMessage = (message) => {
 const deletedMessage = (message) => {
     deleteMessage(message)
 }
+const showError = () => { error.value = translate('request_failed'); }
 
 
 onMounted(() => {

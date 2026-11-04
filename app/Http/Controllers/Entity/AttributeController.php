@@ -6,10 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SaveAttributes;
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Services\Attributes\TemplateService;
+use App\Services\Attributes\EntitySheetService;
 use App\Services\AttributeService;
 use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Attribute Controller
@@ -19,7 +20,7 @@ class AttributeController extends Controller
     use CampaignAware;
     use GuestAuthTrait;
 
-    public function __construct(protected AttributeService $service, protected TemplateService $templateService) {}
+    public function __construct(protected AttributeService $service, protected EntitySheetService $sheetService) {}
 
     public function index(Campaign $campaign, Entity $entity)
     {
@@ -35,21 +36,7 @@ class AttributeController extends Controller
         $this->campaign($campaign)->authEntityView($entity);
         $this->authorize('view-attributes', [$entity, $campaign]);
 
-        $template = null;
-        $marketplaceTemplate = null;
-
-        $layout = $entity->attributes()->where(['name' => '_layout'])->first();
-        if (! empty($layout)) {
-            $template = $this->templateService->communityTemplate($layout->value);
-            $marketplaceTemplate = $this->templateService->campaign($campaign)->marketplaceTemplate($layout->value);
-        }
-
-        return view('entities.pages.attributes.index', compact(
-            'entity',
-            'marketplaceTemplate',
-            'template',
-            'campaign'
-        ));
+        return view('entities.pages.attributes.index', compact('entity', 'campaign'));
     }
 
     public function dashboard(Campaign $campaign, Entity $entity)
@@ -65,20 +52,10 @@ class AttributeController extends Controller
         $this->campaign($campaign)->authEntityView($entity);
         $this->authorize('view-attributes', [$entity, $campaign]);
 
-        $template = null;
-        $marketplaceTemplate = null;
         $fromDashboard = true;
-
-        $layout = $entity->attributes()->where(['name' => '_layout'])->first();
-        if ($layout) {
-            $template = $this->templateService->communityTemplate($layout->value);
-            $marketplaceTemplate = $this->templateService->campaign($campaign)->marketplaceTemplate($layout->value);
-        }
 
         return view('entities.pages.attributes.dashboard', compact(
             'entity',
-            'marketplaceTemplate',
-            'template',
             'campaign',
             'fromDashboard'
         ));
@@ -115,13 +92,21 @@ class AttributeController extends Controller
         $this->authorize('attributes', $entity);
 
         $attributes = $request->get('attribute', []);
-        $this->service
-            ->entity($entity)
-            ->campaign($campaign)
-            ->user($request->user())
-            ->updateVisibility(request()->get('is_attributes_private') === '1')
-            ->save($attributes)
-            ->touch();
+        DB::transaction(function () use ($request, $entity, $campaign, $attributes): void {
+            if ($request->has('sheets_present')) {
+                $this->sheetService
+                    ->campaign($campaign)
+                    ->entity($entity)
+                    ->sync($request->input('sheets', []));
+            }
+            $this->service
+                ->entity($entity)
+                ->campaign($campaign)
+                ->user($request->user())
+                ->updateVisibility(request()->get('is_attributes_private') === '1')
+                ->save($attributes)
+                ->touch();
+        });
 
         return redirect()->route('entities.attributes', [$campaign, $entity->id])
             ->with('success', __('entities/attributes.update.success', ['entity' => $entity->name]));

@@ -304,7 +304,9 @@ class MentionsService
                 if (! empty($data['page'])) {
                     // Let's validate this new url first. Maybe we need to map to entities/id (ex inventory)
                     $entityPages = ['inventory', 'abilities', 'relations', 'attributes', 'assets'];
-                    if (in_array($data['page'], $entityPages)) {
+                    if ($data['page'] === 'explore' && $entity->isMap()) {
+                        $url = route('entities.map', [$this->campaign, $entity->id] + $routeOptions);
+                    } elseif (in_array($data['page'], $entityPages)) {
                         $page = $data['page'];
                         if ($page === 'relations') {
                             $page = 'relations.index';
@@ -403,7 +405,7 @@ class MentionsService
 
                         if (! $renderMapPreview) {
                             return '<a href="' . $exploreUrl . '" class="text-link">'
-                                . e(__('maps.actions.explore_named', ['name' => $child->name]))
+                                . e(__('maps.actions.explore_named', ['name' => $entity->name]))
                                 . '</a>';
                         }
 
@@ -427,8 +429,11 @@ class MentionsService
                     } elseif ($entity->hasChild() && ! $entity->isMissingChild() && isset($entity->child->$field)) {
                         $foreign = $entity->child->$field;
                         if ($foreign instanceof Model) {
-                            if (isset($foreign->name) && ! empty($foreign->name)) {
-                                $data['text'] = $foreign->name;
+                            $foreignName = $foreign instanceof MiscModel
+                                ? $foreign->entity?->name
+                                : $foreign->getAttribute('name');
+                            if (! empty($foreignName)) {
+                                $data['text'] = $foreignName;
                             }
                         } elseif (is_string($foreign)) {
                             $data['text'] = $foreign;
@@ -716,9 +721,10 @@ class MentionsService
         }
 
         // Directly get with the mentioned entity types (provided they are valid)
-        $entities = Entity::whereIn('id', $ids)->with(['tags:id,name,slug', 'entityType:id,code,is_special'])->get();
+        $entities = Entity::whereIn('id', $ids)->with(['tags:id,name,slug', 'entityType:id,code,is_special', 'child'])->get();
         // dump(count($ids));
         foreach ($entities as $entity) {
+            $entity->child?->setRelation('entity', $entity);
             $this->entities[$entity->id] = $entity;
             $findKey = array_search($entity->id, $ids);
             unset($ids[$findKey]);

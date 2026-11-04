@@ -44,6 +44,12 @@ return [
         'title'     => 'Newsletter',
         'updated'   => 'Préférence de la newsletter modifiée.',
     ],
+    'options'       => [
+        'dont_share_last_login' => 'Masquer l’heure de ma dernière connexion',
+        'hide_subscription'     => 'Masquer mon nom du Hall of Fame',
+        'share_last_login'      => 'Partager l’heure de ma dernière connexion avec les autres membres de la campagne',
+        'show_subscription'     => 'Afficher mon nom dans le Hall of Fame',
+    ],
     'password'      => [
         'success'   => 'Mot de passe modifié.',
     ],

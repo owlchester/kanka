@@ -100,7 +100,7 @@ class CalendarApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $calendar->entity);
-        $calendar->delete();
+        $calendar->entity->delete();
 
         return response()->json(null, 204);
     }

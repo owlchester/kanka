@@ -8,6 +8,7 @@ use App\Traits\ApiRequest;
 use App\Traits\EntityRequestRules;
 use App\Traits\ResolvesNewForeignEntities;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreMap extends FormRequest
 {
@@ -41,6 +42,18 @@ class StoreMap extends FormRequest
             'location_id' => 'nullable|integer|exists:locations,id',
             'center_x' => 'nullable|numeric',
             'center_y' => 'nullable|numeric',
+            'center_marker_id' => [
+                'nullable',
+                'integer',
+                Rule::exists('map_markers', 'id')->where(function ($query) {
+                    $query->where('map_id', $this->map()?->id);
+                }),
+            ],
+            'grid' => 'nullable|integer|min:0',
+            'has_clustering' => 'sometimes|boolean',
+            'config' => 'nullable|array:distance_name,distance_measure',
+            'config.distance_name' => 'nullable|string|max:20',
+            'config.distance_measure' => 'nullable|numeric|min:0.001|max:100.99',
             'max_zoom' => 'nullable|numeric|min:1|max:' . $zoomLimits['max'],
             'min_zoom' => 'nullable|numeric|min:' . $zoomLimits['min'] . '|max:' . $zoomLimits['max'],
             'initial_zoom' => 'nullable|numeric|min:' . $zoomLimits['min'] . '|max:' . $zoomLimits['max'],
@@ -57,11 +70,7 @@ class StoreMap extends FormRequest
      */
     protected function zoomLimits(): array
     {
-        $map = $this->route('map');
-        if (! $map instanceof Map) {
-            $entity = $this->route('entity');
-            $map = $entity instanceof Entity ? $entity->child : null;
-        }
+        $map = $this->map();
 
         if ($this->has('is_real')) {
             $isReal = $this->boolean('is_real');
@@ -75,5 +84,18 @@ class StoreMap extends FormRequest
         }
 
         return $limits;
+    }
+
+    protected function map(): ?Map
+    {
+        $map = $this->route('map');
+        if ($map instanceof Map) {
+            return $map;
+        }
+
+        $entity = $this->route('entity');
+        $map = $entity instanceof Entity ? $entity->child : null;
+
+        return $map instanceof Map ? $map : null;
     }
 }

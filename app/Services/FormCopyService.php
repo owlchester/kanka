@@ -69,7 +69,7 @@ class FormCopyService
         if ($this->valid()) {
             $value = $this->getValues();
             if (! empty($value) && is_object($value)) {
-                return [$value->id => $value->name];
+                return [$value->id => $value instanceof MiscModel ? $value->entity->name : $value->name];
             }
         }
 
@@ -80,7 +80,7 @@ class FormCopyService
             /** @var ?MiscModel $parent */
             $parent = $class->find($parent);
             if ($parent) {
-                return [$parent->id => $parent->name];
+                return [$parent->id => $parent instanceof MiscModel ? $parent->entity->name : $parent->name];
             }
         }
 

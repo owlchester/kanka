@@ -1,6 +1,9 @@
 <div class="tab-pane pane-calendar {{ (request()->get('tab') == 'form-calendar' ? ' active' : '') }}" id="form-calendar">
     @include('calendars.form._calendar')
 </div>
+<div class="tab-pane pane-eras {{ (request()->get('tab') == 'form-eras' ? ' active' : '') }}" id="form-eras">
+    @include('calendars.form._eras')
+</div>
 <div class="tab-pane pane-months {{ (request()->get('tab') == 'form-months' ? ' active' : '') }}" id="form-months">
     @include('calendars.form._months')
 </div>

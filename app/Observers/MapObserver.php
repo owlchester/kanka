@@ -10,11 +10,15 @@ class MapObserver
     public function saving(Map $map)
     {
         $map->grid = (int) $map->grid;
+
+        if ($map->isDirty('config') && is_array($map->config)) {
+            $map->config = array_replace($map->getOriginal('config') ?? [], $map->config);
+        }
     }
 
     public function updated(Map $map): void
     {
-        if (! $map->wasChanged(['name', 'grid', 'min_zoom', 'max_zoom', 'config'])) {
+        if (! $map->wasChanged(['grid', 'min_zoom', 'max_zoom', 'config'])) {
             return;
         }
 

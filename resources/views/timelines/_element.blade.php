@@ -30,8 +30,8 @@
                     </span>
                 </h3>
 
-                @if (isset($element->date) || $element->use_event_date && isset($element->entity->event->date))
-                    <span class="text-neutral-content text-sm truncate">{{isset($element->entity->event->date) && $element->use_event_date ? $element->entity->event->date : $element->date}}</span>
+                @if ($element->displayDate() !== null)
+                    <span class="text-neutral-content text-sm truncate">{{ $element->displayDate() }}</span>
                 @endif
                 <div class="flex-none flex items-center gap-2">
                     @includeWhen(auth()->check(), 'icons.visibility', ['icon' => $element->visibilityIcon('')])

@@ -3,6 +3,7 @@
 namespace App\Models\Concerns;
 
 use App\Models\Entity;
+use App\Models\MiscModel;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -30,7 +31,8 @@ trait SortableTrait
 
         //        dump($this->sortable);
         //        dd($filters);
-        if (empty($this->sortable)) {
+        $sortable = $this->sortable ?? ($this instanceof MiscModel ? $this->sortableColumns() : []);
+        if (empty($sortable)) {
             return $query;
         }
 
@@ -39,7 +41,7 @@ trait SortableTrait
         }
 
         $key = Arr::get($filters, 'k');
-        if (! in_array($key, $this->sortable)) {
+        if (! in_array($key, $sortable)) {
             return $query;
         }
 
@@ -70,7 +72,7 @@ trait SortableTrait
                 })
                 ->groupBy($this->getTable() . '.id')
                 ->orderBy('e.type', $order);
-        } elseif (in_array($key, ['name', 'is_private', 'updated_at'], true) && method_exists($this, 'joinEntity')) {
+        } elseif (in_array($key, ['name', 'is_private', 'updated_at'], true) && method_exists($this, 'scopeJoinEntity')) {
             return $query
                 ->select($this->getTable() . '.*')
                 ->joinEntity()
@@ -120,6 +122,17 @@ trait SortableTrait
         }
         $relation = $this->{$relationName}();
         $foreignName = $relation->getQuery()->getQuery()->from;
+
+        if ($segments[1] === 'name' && method_exists($relation->getRelated(), 'entityTypeId')) {
+            return $query
+                ->select($this->getTable() . '.*')
+                ->leftJoin($foreignName . ' as f', 'f.id', $this->getTable() . '.' . $relation->getForeignKeyName())
+                ->leftJoin('entities as f_entity', function ($join) use ($relation) {
+                    $join->on('f_entity.entity_id', '=', 'f.id')
+                        ->where('f_entity.type_id', $relation->getRelated()->entityTypeId());
+                })
+                ->orderBy('f_entity.name', $order);
+        }
 
         return $query
             ->select($this->getTable() . '.*')

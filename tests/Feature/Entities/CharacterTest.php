@@ -95,7 +95,7 @@ it('ignores entity ids when creating a character', function () {
     ]);
     $response->assertCreated();
 
-    $character = Character::where('name', 'Injected Entity Link')->firstOrFail();
+    $character = Character::whereHas('entity', fn ($query) => $query->where('name', 'Injected Entity Link'))->firstOrFail();
 
     expect($character->entity->entity_id)->toBe($character->id);
 });
@@ -123,9 +123,9 @@ it('creates an inline character mention only once when creating a character', fu
     ]);
     $response->assertCreated();
 
-    $inlineCharacter = Character::where('name', 'aaaa')->firstOrFail();
+    $inlineCharacter = Character::whereHas('entity', fn ($query) => $query->where('name', 'aaaa'))->firstOrFail();
 
-    expect(Character::where('name', 'aaaa')->count())->toBe(1)
+    expect(Character::whereHas('entity', fn ($query) => $query->where('name', 'aaaa'))->count())->toBe(1)
         ->and($response->json('data.entry_parsed'))->toContain((string) $inlineCharacter->entity_id);
 });
 

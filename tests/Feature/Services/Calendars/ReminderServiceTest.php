@@ -75,9 +75,9 @@ it('renders intermediate moon phase reminders in the calendar window', function 
     $calendar = Calendar::factory()->create([
         'campaign_id' => 1,
         'date' => '1-1-3',
-        'moons' => json_encode([
+        'moons' => [
             ['id' => 1, 'name' => 'Luna', 'fullmoon' => 16, 'offset' => 0, 'colour' => 'grey'],
-        ]),
+        ],
     ]);
     $event = Event::factory()->create(['campaign_id' => 1]);
     calendarReminder($calendar, $event, [

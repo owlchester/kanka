@@ -94,7 +94,7 @@ class FilterService
         $this->crud = $this->entityType->id . '-' . $this->campaign->id;
 
         $orderFields = array_unique(
-            array_merge(['name', 'type', 'is_private'], $sortableColumns),
+            array_merge(['name', 'type', 'is_private', 'created_at', 'updated_at'], $sortableColumns),
         );
 
         $baseFilters = [
@@ -106,11 +106,13 @@ class FilterService
             'template',
             'tag_id',
             'tags',
+            'locations',
             'has_image',
             'has_posts',
             'has_entry',
             'has_entity_files',
             'has_attributes',
+            'has_character_sheet',
             'created_by',
             'updated_by',
             'attribute_name',
@@ -176,6 +178,7 @@ class FilterService
             [
                 'tags',
                 'locations',
+                'participants',
                 'organisations',
                 'races',
                 'families',

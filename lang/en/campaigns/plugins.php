@@ -32,11 +32,11 @@ return [
     'disabled'      => [
         'success'   => 'Plugin :plugin disabled.',
     ],
-    'empty_list'    => 'The campaign doesn\'t currently have any plugins. Go to the plugin library to install a few and come back to activate them.',
     'empty'         => [
-        'description' => 'Browse the plugin library to find new tools and features for your campaign.',
-        'title'       => 'No plugins installed yet',
+        'description'   => 'Browse the plugin library to find new tools and features for your campaign.',
+        'title'         => 'No plugins installed yet',
     ],
+    'empty_list'    => 'The campaign doesn\'t currently have any plugins. Go to the plugin library to install a few and come back to activate them.',
     'enabled'       => [
         'success'   => 'Plugin :plugin enabled.',
     ],

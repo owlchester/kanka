@@ -27,9 +27,9 @@ class EntityChild extends JsonResource
             'is_private' => (bool) $model->is_private,
             'entity_id' => $model->entity->id,
 
-            'created_at' => $model->created_at,
+            'created_at' => $model->entity->created_at,
             'created_by' => $model->entity->created_by,
-            'updated_at' => $model->updated_at,
+            'updated_at' => $model->entity->updated_at,
             'updated_by' => $model->entity->updated_by,
         ];
 

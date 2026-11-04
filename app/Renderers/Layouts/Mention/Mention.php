@@ -50,6 +50,11 @@ class Mention extends Layout
                     return $base;
                 },
             ],
+            'created_at' => [
+                'key' => 'created_at',
+                'label' => __('entities/mentions.fields.mentioned'),
+                'render' => Standard::SINCE,
+            ],
         ];
 
         return $columns;

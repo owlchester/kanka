@@ -82,7 +82,7 @@ class MapApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $map->entity);
-        $map->delete();
+        $map->entity->delete();
 
         return response()->json(null, 204);
     }

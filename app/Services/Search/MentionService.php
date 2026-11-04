@@ -51,7 +51,7 @@ class MentionService
         $results = [];
 
         if ($this->request->filled('entities')) {
-            $entities = Entity::with(['image', 'entityType', 'aliases'])->whereIn('id', $this->request->get('entities'))->get();
+            $entities = Entity::with(['image', 'entityType', 'aliases', 'child'])->whereIn('id', $this->request->get('entities'))->get();
             foreach ($entities as $entity) {
                 if ($entity->entityType->isStandard() && ! $entity->child) {
                     continue;
@@ -142,7 +142,7 @@ class MentionService
                 $query->orderByRaw('ea.name LIKE ? DESC', ["%{$cleanTerm}%"]);
             }
         }
-        $with = ['image', 'entityType', 'aliases'];
+        $with = ['image', 'entityType', 'aliases', 'child'];
 
         $query
             ->with($with)

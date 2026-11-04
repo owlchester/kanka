@@ -177,7 +177,7 @@ class MarkdownExportService
         $entityData['inventory'] = $this->markdownInventory();
         $entityData['assets'] = $this->markdownAssets();
 
-        if ($this->entity->child instanceof Quest) {
+        if ($this->entity->isQuest() && $this->entity->child instanceof Quest) {
             $elements = $this->entity->child->elements;
             foreach ($elements->sortBy(fn (QuestElement $element) => [$element->role, $element->entity->name ?? $element->name]) as $element) {
                 if ($element->entity_id && ! $element->entity) {
@@ -196,8 +196,13 @@ class MarkdownExportService
             }
         }
 
-        if ($this->entity->child instanceof Timeline) {
-            foreach ($this->entity->child->eras()->with(['orderedElements.entity.event'])->ordered()->get() as $era) {
+        if ($this->entity->isTimeline() && $this->entity->child instanceof Timeline) {
+            foreach ($this->entity->child->eras->sortBy(fn ($era) => [
+                $era->position,
+                $era->start_year,
+                $era->end_year,
+                $era->name,
+            ]) as $era) {
                 $elements = [];
                 foreach ($era->orderedElements as $element) {
                     if (! $element->visible()) {
@@ -211,9 +216,7 @@ class MarkdownExportService
                     $elements[] = [
                         'name' => $element->elementName(),
                         'entity' => $element->entity ? $this->entityLink($element->entity) : null,
-                        'date' => $element->use_event_date && $element->entity?->event?->date
-                            ? $element->entity->event->date
-                            : $element->date,
+                        'date' => $element->displayDate(),
                         'entry' => $entry,
                     ];
                 }
@@ -374,8 +377,20 @@ class MarkdownExportService
         }
 
         $role = html_entity_decode($relation->relation, ENT_QUOTES, 'UTF-8');
+        $details = [];
+        if ($relation->attitude !== null && $relation->attitude !== '') {
+            $details[] = $relation->attitude;
+        }
+        if ($relation->colour !== '') {
+            $details[] = $relation->colour;
+        }
+        if ($relation->isMirrored()) {
+            $details[] = 'mirrored';
+        }
 
-        return '* **' . $role . '**: ' . $this->entityLink($relation->target) . "\n";
+        $metadata = $details === [] ? '' : ' (' . implode(', ', $details) . ')';
+
+        return '* **' . $role . '**: ' . $this->entityLink($relation->target) . $metadata . "\n";
     }
 
     protected function entityLink(Entity $entity): string

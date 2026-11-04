@@ -9,9 +9,9 @@ function calendarWidget(array $attributes = []): CampaignDashboardWidget
     $calendar = Calendar::factory()->create(array_merge([
         'campaign_id' => 1,
         'date' => '1-1-2',
-        'moons' => json_encode([
+        'moons' => [
             ['id' => 1, 'name' => 'Luna', 'fullmoon' => 10, 'offset' => 0, 'colour' => 'grey'],
-        ]),
+        ],
     ], $attributes));
 
     return CampaignDashboardWidget::create([

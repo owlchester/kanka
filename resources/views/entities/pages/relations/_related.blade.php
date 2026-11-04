@@ -45,8 +45,8 @@
                             :entity="$connection"
                             :campaign="$campaign" />
 
-                        @if ($connection->isMap() == 'map')
-                            @includeWhen($connection->map->explorable(), 'maps._explore-link', ['map' => $connection->map])
+                        @if ($connection->isMap() && $connection->child instanceof \App\Models\Map)
+                            @includeWhen($connection->child->explorable(), 'maps._explore-link', ['map' => $connection->child])
                         @endif
                     </td>
                     <td>

@@ -46,6 +46,12 @@ return [
         'title'     => 'Newsletters',
         'updated'   => 'Actualización de las preferencias del boletín.',
     ],
+    'options'                       => [
+        'dont_share_last_login' => 'Ocultar la fecha de mi último inicio de sesión',
+        'hide_subscription'     => 'Ocultar mi nombre del Salón de la Fama',
+        'share_last_login'      => 'Compartir la fecha de mi último inicio de sesión con otros miembros de la campaña',
+        'show_subscription'     => 'Mostrar mi nombre en el Salón de la Fama',
+    ],
     'password'                      => [
         'success'   => 'Contraseña actualizada',
     ],

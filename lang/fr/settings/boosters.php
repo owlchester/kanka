@@ -30,6 +30,7 @@ return [
     ],
     'campaign'  => [
         'boosted'       => 'Boosté par :user depuis :time',
+        'members'       => ':amount membre bénéficiera immédiatement des améliorations|:amount membres bénéficieront immédiatement des améliorations',
         'premium'       => 'Premium grace à :user depuis :time',
         'standard'      => 'Standard',
         'superboosted'  => 'Superboosté par :user depuis :time',
@@ -41,15 +42,6 @@ return [
         'first'     => 'Les fonctionnalités avancées sont déverrouillées en affectant tes boosters pour booster ou superbooster une campagne. Le nombre de boosters dont tu disposes est déterminé par ton abonnement. Ce numéro est à votre disposition à tout moment tant que tu es et restes abonné. Booster une campagne assignera l\'un de tes boosters, tandis que superbooster une campagne en assignera trois.',
     ],
     'pitch'     => [
-        'benefits'      => [
-            'backup'        => 'Récupérer des entrées supprimées pendant :amount jours',
-            'customisable'  => 'Contrôle créatif complet de la campagne',
-            'icons'         => 'Accès à des milliers d\'icônes pour les cartes et chronologies.',
-            'plugins'       => 'Étends ta campagne avec des plugins créés par la communauté',
-            'title'         => 'Les campagnes boostées ont',
-            'upload'        => 'Taille de fichier plus grand pour tous les membres de la campagne',
-            'visual'        => 'Visualise des arbres généalogiques et les relations entre les entrées',
-        ],
         'description'   => 'Assignes des boosters aux campagnes et aides à débloquer des fonctionnalités incroyables pour tous les membres de la campagne. Pas impressionné par les campagnes boostées? Nous avons ce qu\'il te faut avec des campagnes superboostées!',
         'more'          => 'Jettes un coup d\'oeil sur la liste complète des fonctionnalités sur la page :boosters.',
         'title'         => 'Accèdes au niveau supérieur avec la personnalisation et des avantages pour tous les membres de la campagne.',

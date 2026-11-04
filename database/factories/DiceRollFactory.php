@@ -4,9 +4,8 @@ namespace Database\Factories;
 
 // use Faker\Generator as Faker;
 use App\Models\DiceRoll;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
-class DiceRollFactory extends Factory
+class DiceRollFactory extends StandardEntityFactory
 {
     /**
      * The name of the factory's corresponding model.

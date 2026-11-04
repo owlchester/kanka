@@ -7,6 +7,7 @@ use App\Http\Requests\StoreCustomEntity;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\MiscModel;
+use App\Services\Attributes\EntitySheetService;
 use App\Services\AttributeService;
 use App\Services\Entity\AliasService;
 use App\Services\Entity\EntitySaveService;
@@ -26,6 +27,7 @@ class EditController extends Controller
 
     public function __construct(
         protected AttributeService $attributeService,
+        protected EntitySheetService $entitySheetService,
         protected AliasService $aliasService,
         protected MultiEditingService $multiEditingService,
         protected EntitySaveService $entitySaveService,
@@ -129,6 +131,13 @@ class EditController extends Controller
             $this->aliasService->entity($entity)->request($request)->save();
 
             if (auth()->user()->can('attributes', $entity)) {
+                if ($request->hasAny(['sheets_present', 'sheets'])) {
+                    $this->entitySheetService
+                        ->campaign($campaign)
+                        ->entity($entity)
+                        ->sync($request->input('sheets', []));
+                }
+
                 $this->attributeService
                     ->campaign($campaign)
                     ->entity($entity)

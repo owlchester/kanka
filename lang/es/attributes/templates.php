@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'draft'     => 'La hoja de personaje :name es un borrador, por lo que solo sus autores pueden verla renderizada.',
     'errors'    => [
         'marketplace'   => [
             'hint'      => 'Error',

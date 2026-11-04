@@ -6,9 +6,12 @@ use App\Facades\EntityLogger;
 use App\Models\CategoryStatus;
 use App\Models\Character;
 use App\Models\Entity;
+use App\Models\Map;
 use App\Models\MiscModel;
 use App\Models\OrganisationMember;
 use App\Models\Post;
+use App\Models\Quest;
+use App\Models\Timeline;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\EntityTypeAware;
@@ -39,30 +42,31 @@ class TransformService
     public function confirm(): array
     {
         $confirm = [];
-        if ($this->entity->isTimeline()) {
-            $eras = $this->entity->timeline->eras()->count();
+        $child = $this->entity->child;
+        if ($child instanceof Timeline) {
+            $eras = $child->eras()->count();
             if ($eras > 0) {
                 $confirm['timelines.fields.eras'] = $eras;
             }
-            $elements = $this->entity->timeline->elements()->count();
+            $elements = $child->elements()->count();
             if ($elements > 0) {
                 $confirm['quests.show.tabs.elements'] = $elements;
             }
-        } elseif ($this->entity->isMap()) {
-            $layers = $this->entity->map->layers()->count();
+        } elseif ($child instanceof Map) {
+            $layers = $child->layers()->count();
             if ($layers > 0) {
                 $confirm['maps.fields.layers'] = $layers;
             }
-            $groups = $this->entity->map->groups()->count();
+            $groups = $child->groups()->count();
             if ($groups > 0) {
                 $confirm['maps.fields.groups'] = $groups;
             }
-            $markers = $this->entity->map->markers()->count();
+            $markers = $child->markers()->count();
             if ($markers > 0) {
                 $confirm['maps.fields.markers'] = $markers;
             }
-        } elseif ($this->entity->isQuest()) {
-            $elements = $this->entity->quest->elements()->count();
+        } elseif ($child instanceof Quest) {
+            $elements = $child->elements()->count();
             if ($elements > 0) {
                 $confirm['quests.show.tabs.elements'] = $elements;
             }
@@ -103,12 +107,11 @@ class TransformService
             ->removePosts();
 
         // Finally, we can save. Should be all good.
-        $this->new->campaign_id = $this->child->campaign_id;
+        $this->new->campaign_id = $this->entity->campaign_id;
         $this->new->saveQuietly();
 
         $this
             ->members()
-            ->participants()
             ->locations();
 
         $this->finish();
@@ -132,7 +135,8 @@ class TransformService
         $eventID = config('entities.ids.event');
         $questID = config('entities.ids.quest');
         $journalID = config('entities.ids.journal');
-        $entityLocations = [$raceID, $creatureID, $organisationID, $characterID, $familyID, $eventID, $questID, $journalID];
+        $itemID = config('entities.ids.item');
+        $entityLocations = [$raceID, $creatureID, $organisationID, $characterID, $familyID, $eventID, $questID, $journalID, $itemID];
 
         // If moving from a multi-location to single location
         if (in_array($this->child->entityTypeId(), $entityLocations) && ! in_array($this->new->entityTypeId(), $entityLocations) && $this->entity->locations->isNotEmpty()) {
@@ -161,7 +165,8 @@ class TransformService
         $eventID = config('entities.ids.event');
         $questID = config('entities.ids.quest');
         $journalID = config('entities.ids.journal');
-        $entityLocations = [$raceID, $creatureID, $organisationID, $characterID, $familyID, $eventID, $questID, $journalID];
+        $itemID = config('entities.ids.item');
+        $entityLocations = [$raceID, $creatureID, $organisationID, $characterID, $familyID, $eventID, $questID, $journalID, $itemID];
 
         // If the entity is switched from one location to entity locations
         if (! in_array($this->child->entityTypeId(), $entityLocations) && in_array($this->new->entityTypeId(), $entityLocations)) {
@@ -177,6 +182,9 @@ class TransformService
             ! in_array($this->child->entityTypeId(), $entityLocations) ||
             ! in_array($this->new->entityTypeId(), $entityLocations)
         ) {
+            if ($this->child->entityTypeId() === config('entities.ids.item') && ! in_array($this->new->entityTypeId(), $entityLocations)) {
+                $this->entity->locations()->sync([]);
+            }
             if (property_exists($this->child, 'locations')) {
                 // @phpstan-ignore-next-line
                 $this->child->locations()->sync([]);
@@ -211,6 +219,9 @@ class TransformService
 
         $this->fillable = $this->new->getFillable();
         foreach ($oldAttributes as $attribute => $value) {
+            if ($attribute === 'name') {
+                continue;
+            }
             if (in_array($attribute, $this->fillable)) {
                 $this->new->{$attribute} = $value;
             }
@@ -275,22 +286,6 @@ class TransformService
         return $this;
     }
 
-    /**
-     * Remove the old participants from a convo
-     */
-    protected function participants(): self
-    {
-        if ($this->child->entityTypeId() != config('entities.ids.character')) {
-            return $this;
-        }
-        // @phpstan-ignore-next-line
-        foreach ($this->child->conversationParticipants as $conPar) {
-            $conPar->delete();
-        }
-
-        return $this;
-    }
-
     protected function finish(): self
     {
         $type = $this->entity->entityType->name();
@@ -303,20 +298,18 @@ class TransformService
         $this->entity->status_id = $this->defaultStatusId();
         // If attached to a misc model, save the entity_id
         if (isset($this->new)) {
-            $this->entity->entity_id = $this->new->id;
+            $this->entity->child()->associate($this->new);
+        } else {
+            $this->entity->child()->dissociate();
         }
+        $this->entity->unsetRelation('child');
         $this->entity->saveQuietly();
 
         EntityLogger::entity($this->entity)->dirty('entity_type', $type)->update();
 
-        // Delete old, this will take care of pictures and stuff. We detach the
-        // entity to avoid the softDelete affecting it and causing duplicate
-        // entities in the db. ForceDelete the MiscModel for img cleanup.
         if (isset($this->child)) {
             $this->child->entity = null;
-
-            // Force delete the old entity to avoid it creating weird issues in the db by being soft deleted.
-            $this->child->forceDelete();
+            $this->child->delete();
             unset($this->child);
         }
 
@@ -330,9 +323,9 @@ class TransformService
 
         // Create misc without calling its observers, to not create duplicates
         $this->new = $this->entityType->getMiscClass();
-        $this->new->name = $this->entity->name;
         $this->new->is_private = $this->entity->is_private;
-        $this->new->campaign_id = $this->campaign->id;
+        $this->new->campaign_id = $this->entity->campaign_id;
+        $this->new->setRelation('entity', $this->entity);
         if ($firstLocation && $this->new->isFillable('location_id')) {
             // @phpstan-ignore-next-line
             $this->new->location_id = $firstLocation->id;
@@ -343,8 +336,7 @@ class TransformService
         if (method_exists($this->new, 'locations')) {
             $this->new->locations()->sync($this->entity->locations()->get()->pluck('id'));
         } elseif (method_exists($this->new, 'entityLocations')) {
-            // Characters use the entity.locations table so no mess needed.
-            // todo: races, orgs, families, creatures
+            // Most models use the entity.locations table so no mess needed.
         } else {
             $this->entity->locations()->sync([]);
         }

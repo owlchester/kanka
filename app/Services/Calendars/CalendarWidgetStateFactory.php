@@ -20,7 +20,7 @@ final class CalendarWidgetStateFactory
             ->month($date->month)
             ->where('day', $date->day)
             ->first();
-        $weekdays = $calendar->weekdays();
+        $weekdays = $calendar->weekdays ?? [];
 
         return new CalendarWidgetState(
             $window->past,

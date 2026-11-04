@@ -2,6 +2,7 @@
 
 namespace App\Models\Scopes;
 
+use App\Models\Entity;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -16,7 +17,13 @@ trait SubEntityScopes
 
     public function scopeRecent(Builder $query): Builder
     {
-        return $query->orderBy('updated_at', 'desc');
+        return $query->orderBy(
+            Entity::query()
+                ->select('entities.updated_at')
+                ->whereColumn('entities.entity_id', $this->qualifyColumn('id'))
+                ->where('entities.type_id', $this->entityTypeId()),
+            'desc',
+        );
     }
 
     public function scopeWithApi(Builder $query): Builder
@@ -38,15 +45,17 @@ trait SubEntityScopes
             $relations[] = 'ancestors';
             $relations[] = 'children';
         }
-        $with = ! empty($this->apiWith) ? $this->apiWith : [];
-        foreach ($with as $relation) {
-            $relations[] = $relation;
-        }
+        $relations = array_merge($relations, $this->apiRelations());
 
         return $query
             ->select($this->getTable() . '.*')
             ->has('entity')
             ->with($relations);
+    }
+
+    public function apiRelations(): array
+    {
+        return $this->apiWith ?? [];
     }
 
     public function scopeJoinEntity(Builder $query): Builder

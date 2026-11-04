@@ -74,6 +74,17 @@ return [
     'sections'      => [
         'unorganised'   => 'Sin organizar',
     ],
+    'sheets'        => [
+        'add'               => 'Añadir hoja de personaje',
+        'all_added'         => 'Todas las hojas de personaje instaladas ya están añadidas. Puedes encontrar más en la biblioteca de plugins.',
+        'choose'            => 'Selecciona una hoja de personaje instalada para añadirla a esta entidad.',
+        'description'       => 'Elige qué hojas aparecen para esta entidad. Todas comparten las mismas propiedades.',
+        'library'           => 'Explorar hojas de personaje',
+        'none_installed'    => 'Las hojas de personaje instaladas desde la biblioteca de plugins para esta campaña aparecerán aquí.',
+        'remove'            => 'Eliminar hoja de personaje',
+        'reorder'           => 'Arrastra para reordenar las hojas de personaje',
+        'title'             => 'Hojas de personaje',
+    ],
     'show'          => [
         'hidden'    => 'Atributos ocultos',
         'title'     => 'Atributos de :name',

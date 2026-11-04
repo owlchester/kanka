@@ -1,4 +1,4 @@
-<form wire:submit="save">
+<form wire:submit="save" class="xl:sticky xl:top-5 xl:self-start xl:max-h-[calc(100dvh-2.5rem)] xl:overflow-y-auto">
     <div class="bg-purple text-white rounded-2xl p-5 flex flex-col gap-5">
         <h3>Share your ideas</h3>
         <p class="text-light">Have an idea to improve Kanka? Share it with our development team.</p>

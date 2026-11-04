@@ -11,10 +11,17 @@ return [
         'success'   => 'Image par défaut pour :type créée.',
         'title'     => 'Nouvelle image par défaut',
     ],
+    'cta'               => [
+        'lead'  => 'Donne une miniature par défaut à chaque personnage, lieu ou autre catégorie afin que tes listes ne paraissent jamais vides.',
+        'title' => 'Garde toutes tes entrées impeccables.',
+    ],
     'destroy'           => [
         'success'   => 'Image par défaut pour :type retirée.',
     ],
-    'empty'             => 'Aucune catégorie ne possède actuellement une image par défaut.',
+    'empty'             => [
+        'description'   => 'Ajoute une image par défaut à une catégorie et les entrées sans image personnalisée l’utiliseront automatiquement.',
+        'title'         => 'Aucune image de remplacement pour le moment',
+    ],
     'helper'            => 'Utilisée pour toutes les entrées sans image de cette catégorie.',
     'reset'             => [
         'helper'    => 'Tu es sûr de vouloir retirer toutes les images de remplacement?',

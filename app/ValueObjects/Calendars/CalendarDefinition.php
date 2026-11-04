@@ -44,10 +44,10 @@ final readonly class CalendarDefinition
         }
 
         return new self(
-            self::normalizeMonths($calendar->months()),
-            $calendar->weekdays(),
+            self::normalizeMonths($calendar->months ?? []),
+            $calendar->weekdays ?? [],
             $rules,
-            $calendar->moons(),
+            $calendar->moons ?? [],
             $calendar->hasYearZero(),
             (int) $calendar->start_offset,
         );

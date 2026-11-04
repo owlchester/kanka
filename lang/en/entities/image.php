@@ -6,6 +6,7 @@ return [
         'change_visibility' => 'Change visibility',
         'copy_url'          => 'Copy image URL',
         'copy_url_success'  => 'Image URL copied to your clipboard.',
+        'remove_focus'      => 'Remove focus point',
         'replace_image'     => 'Replace image',
         'save-replace'      => 'Replace image',
         'save_focus'        => 'Save focus point',
@@ -15,7 +16,9 @@ return [
     'focus'                 => [
         'breadcrumb'    => 'Image focus',
         'helper'        => 'Click on the image to set the focus point. Click on the focus point to remove it.',
+        'load_error'    => 'Unable to load the image focus point.',
         'panel_title'   => 'Image focus',
+        'save_error'    => 'Unable to save the image focus point.',
         'success'       => 'Image focus updated.',
         'title'         => 'Image Focus for :name',
         'unboosted'     => 'Setting an image focus point is reserverd to :boosted-campaigns.',

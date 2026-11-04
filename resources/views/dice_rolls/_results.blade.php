@@ -44,4 +44,3 @@
         {{ $r->fragment('tab_relation')->links() }}
     </div>
 @endif
-

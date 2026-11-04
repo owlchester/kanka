@@ -44,6 +44,12 @@ return [
         'title'     => 'Newsletters',
         'updated'   => 'Newsletter preferences updated.',
     ],
+    'options'       => [
+        'dont_share_last_login' => 'Hide my last login time',
+        'hide_subscription'     => 'Hide my name from the Hall of Fame',
+        'share_last_login'      => 'Share my last login with other campaign members',
+        'show_subscription'     => 'Show my name in the Hall of Fame',
+    ],
     'password'      => [
         'success'   => 'Password updated',
     ],

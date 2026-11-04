@@ -6,33 +6,33 @@ return [
         'unlock'    => 'Go premium',
     ],
     'create'        => [
-        'actions'       => [
+        'actions'   => [
             'confirm'   => 'Go premium!',
         ],
-        'confirm'       => 'How exciting! You\'re about to unlock premium features for :campaign. This will use one of your available premium campaigns.',
+        'confirm'   => 'How exciting! You\'re about to unlock premium features for :campaign. This will use one of your available premium campaigns.',
         'more'      => 'Plus custom themes, plugins, family trees, custom category, and more. This is just a preview of everything unlocked. Premium campaigns stay that way until you manually remove them, or your subscription ends.',
-        'pitch'    => 'A preview of what :name gains the moment you upgrade, and there\'s more where this came from.',
-        'success'       => 'The :campaign campaign is now premium. Enjoy all the new awesome features!',
-        'subtitle'      => 'You\'re about to unlock premium for :name. Here\'s a few highlights of what changes immediately.',
-        'recap' => [
-            'control' => [
-                'title' => 'Full control',
-                'description' => 'Change the sidebar, categories, and more',
+        'no-stock'  => 'Oh no, looks like you don\'t have enough premium campaigns available to unlock this campaign. You can either remove the premium status from another campaign, or :upgrade.',
+        'pitch'     => 'A preview of what :name gains the moment you upgrade, and there\'s more where this came from.',
+        'recap'     => [
+            'control'   => [
+                'description'   => 'Change the sidebar, categories, and more',
+                'title'         => 'Full control',
             ],
-            'instant' => 'members get upgraded instantly',
-            'members' => [
-                'title' => 'Unlimited',
-                'description' => 'roles & members',
+            'gallery'   => 'more storage space for images and assets',
+            'icons'     => 'icons unlocked for this world',
+            'instant'   => 'members get upgraded instantly',
+            'members'   => [
+                'description'   => 'roles & members',
+                'title'         => 'Unlimited',
             ],
-            'size' => 'per-member upload limit',
-            'recovery' => [
-                'title' => ':amount days',
-                'description' => 'undo window for deletions',
+            'recovery'  => [
+                'description'   => 'undo window for deletions',
+                'title'         => ':amount days',
             ],
-            'icons' => 'icons unlocked for this world',
-            'gallery' => 'more storage space for images and assets',
+            'size'      => 'per-member upload limit',
         ],
-        'no-stock' => 'Oh no, looks like you don\'t have enough premium campaigns available to unlock this campaign. You can either remove the premium status from another campaign, or :upgrade.',
+        'subtitle'  => 'You\'re about to unlock premium for :name. Here\'s a few highlights of what changes immediately.',
+        'success'   => 'The :campaign campaign is now premium. Enjoy all the new awesome features!',
     ],
     'exceptions'    => [
         'already'       => 'Premium features have already been unlocked for this campaign.',

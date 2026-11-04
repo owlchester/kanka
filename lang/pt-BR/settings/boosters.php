@@ -41,13 +41,6 @@ return [
         'first'     => 'Os recursos avançados são desbloqueados atribuindo seus impulsos para impulsionar ou superimpulsionar uma campanha. A quantidade de impulsos que você tem é determinada pela sua :subscription. Este número está disponível para você o tempo todo enquanto você for um assinante. Impulsionar uma campanha atribuirá um de seus impulsos a ela, enquanto superimpulsionar uma campanha atribuirá três deles.',
     ],
     'pitch'     => [
-        'benefits'      => [
-            'backup'        => 'Recupere uma entidade excluída anteriormente por até :amount dias',
-            'customisable'  => 'Personalização total da aparência de uma campanha',
-            'icons'         => 'Acesso a milhares de belos ícones para mapas e linhas do tempo',
-            'title'         => 'As campanhas impulsionadas obtém',
-            'upload'        => 'Maior tamanho de upload para todos os membros da campanha',
-        ],
         'description'   => 'Atribua impulsos a campanhas e ajude a desbloquear recursos incríveis para todos os envolvidos. Não está impressionado com as campanhas impulsionadas? Nós o cobrimos com campanhas superimpulsionadas!',
         'more'          => 'Confira a lista completa de vantagens em nossa página :boosters.',
         'title'         => 'Leve uma campanha para o próximo nível com personalização e vantagens para todos os seus membros',

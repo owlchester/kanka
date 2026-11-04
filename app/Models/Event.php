@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\EntityEventTypes;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
@@ -10,7 +11,7 @@ use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Event
@@ -25,12 +26,10 @@ class Event extends MiscModel
     use HasFactory;
     use HasFilters;
     use Sanitizable;
-    use SoftDeletes;
     use SortableTrait;
 
     protected $fillable = [
         'campaign_id',
-        'name',
         'date',
         'is_private',
     ];
@@ -38,6 +37,7 @@ class Event extends MiscModel
     protected array $sortable = [
         'name',
         'date',
+        'calendar_date',
         'type',
     ];
 
@@ -46,7 +46,26 @@ class Event extends MiscModel
      */
     protected array $sortableColumns = [
         'date',
+        'calendar_date',
     ];
+
+    public function scopeCustomSortCalendar_date(Builder $query, string $order): Builder
+    {
+        return $query
+            ->select('events.*')
+            ->leftJoin('entities as event_entity_order', function ($join) {
+                $join->on('event_entity_order.entity_id', '=', 'events.id')
+                    ->where('event_entity_order.type_id', config('entities.ids.event'));
+            })
+            ->leftJoin('reminders as event_calendar_order', function ($join) {
+                $join->on('event_calendar_order.remindable_id', '=', 'event_entity_order.id')
+                    ->where('event_calendar_order.remindable_type', Entity::class)
+                    ->where('event_calendar_order.type_id', EntityEventTypes::calendarDate);
+            })
+            ->orderBy('event_calendar_order.year', $order)
+            ->orderBy('event_calendar_order.month', $order)
+            ->orderBy('event_calendar_order.day', $order);
+    }
 
     /**
      * Nullable values (foreign keys)
@@ -66,13 +85,33 @@ class Event extends MiscModel
         'date',
     ];
 
+    /** @return HasMany<EventGroup, $this> */
+    public function groups(): HasMany
+    {
+        return $this->hasMany(EventGroup::class)->orderBy('position')->orderByDesc('id');
+    }
+
+    /** @return HasMany<EventParticipant, $this> */
+    public function participants(): HasMany
+    {
+        return $this->hasMany(EventParticipant::class)->orderBy('position')->orderByDesc('id');
+    }
+
+    /** Detach event-local data when the event is moved to another campaign. */
+    public function detach(): void
+    {
+        $this->groups()->delete();
+        $this->participants()->delete();
+    }
+
     public function scopeFilteredEvents(Builder $query): Builder
     {
         return $query
-            ->select(['events.id', 'events.name', 'events.date', 'events.is_private'])
-            ->sort(request()->only(['o', 'k']), ['name' => 'asc']) // @phpstan-ignore method.notFound
+            ->select(['events.id', 'events.date', 'events.is_private'])
+            ->sort(request()->only(['o', 'k']), ['entities.name' => 'asc']) // @phpstan-ignore method.notFound
             ->with([
                 'entity.locations',
+                'entity.calendarDate.calendar.entity',
                 'entity.locations.entity' => fn ($sub) => $sub->grid(),
                 'entity' => fn ($sub) => $sub->grid(),
                 'entity.parent' => fn ($sub) => $sub->grid(),
@@ -99,6 +138,10 @@ class Event extends MiscModel
             return true;
         }
 
+        if (($this->relationLoaded('groups') && $this->groups->isNotEmpty()) || ($this->relationLoaded('participants') && $this->participants->isNotEmpty())) {
+            return true;
+        }
+
         if ($this->entity->locations->isNotEmpty() || ! empty($this->entity->calendarReminder())) {
             return true;
         }
@@ -116,6 +159,7 @@ class Event extends MiscModel
         return [
             'date',
             'locations',
+            'participants',
         ];
     }
 }

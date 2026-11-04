@@ -12,7 +12,6 @@ use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
@@ -48,12 +47,10 @@ class Map extends MiscModel
     use HasFilters;
     use HasLocation;
     use Sanitizable;
-    use SoftDeletes;
     use SortableTrait;
 
     protected $fillable = [
         'campaign_id',
-        'name',
         'location_id',
         'grid',
         'is_private',
@@ -196,7 +193,7 @@ class Map extends MiscModel
      */
     public function groupOptions(): array
     {
-        $options = [null => ''];
+        $options = ['' => ''];
         $groups = $this->groups->sortBy('name');
         foreach ($groups as $group) {
             $options[$group->id] = $group->name;

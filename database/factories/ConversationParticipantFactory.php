@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 // use Faker\Generator as Faker;
 use App\Models\ConversationParticipant;
+use App\Models\Entity;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ConversationParticipantFactory extends Factory
@@ -23,7 +24,8 @@ class ConversationParticipantFactory extends Factory
     public function definition(): array
     {
         return [
-            'character_id' => 1,
+            'participant_type' => Entity::class,
+            'participant_id' => 1,
         ];
     }
 }

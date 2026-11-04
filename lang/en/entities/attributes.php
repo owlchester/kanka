@@ -73,6 +73,17 @@ return [
     'sections'      => [
         'unorganised'   => 'Unorganised',
     ],
+    'sheets'        => [
+        'add'               => 'Add character sheet',
+        'all_added'         => 'All installed character sheets are already added. You can find more in the plugin library.',
+        'choose'            => 'Select an installed character sheet to add to this entity.',
+        'description'       => 'Choose which sheets appear for this entity. They all share the same properties.',
+        'library'           => 'Browse character sheets',
+        'none_installed'    => 'Installed character sheets from the plugin library to this campaign will appear here.',
+        'remove'            => 'Remove character sheet',
+        'reorder'           => 'Drag to reorder character sheets',
+        'title'             => 'Character sheets',
+    ],
     'show'          => [
         'hidden'    => 'Hidden properties',
         'title'     => ':name properties',
@@ -82,7 +93,7 @@ return [
             'success'   => 'Kit loaded',
             'title'     => 'Load from kit',
         ],
-        'pitch'     => 'Load properties from a property kit or plugins installed from the :plugin.',
+        'pitch'     => 'Quickly add a saved set of properties to this entity. Kits let you reuse the same setup across entities instead of recreating it each time.',
         'success'   => 'Property kit :name applied to :entity',
         'title'     => 'Apply a property kit on :name',
     ],

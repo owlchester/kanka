@@ -78,6 +78,7 @@ To get a list of available filters for the characters endpoint, call the followi
         "has_posts",
         "has_entity_files",
         "has_attributes",
+        "has_character_sheet",
         "created_by",
         "updated_by",
         "attribute_name",

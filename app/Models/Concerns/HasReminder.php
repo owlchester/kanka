@@ -40,7 +40,7 @@ trait HasReminder
     public function getDate(): string
     {
         $reminder = $this->calendarDate;
-        $months = $reminder->calendar->months();
+        $months = $reminder->calendar->months ?? [];
         $count = 0;
         $monthCount = 1;
         foreach ($months as $month) {

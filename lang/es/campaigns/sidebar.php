@@ -5,6 +5,10 @@ return [
         'reset' => 'Restablecer valores por defecto',
     ],
     'call-to-action'    => 'Personaliza el orden, los iconos y los nombres de los elementos de la barra lateral de la campaña.',
+    'cta'               => [
+        'lead'  => 'Reorganiza, cambia el nombre y personaliza tu barra lateral para adaptarla a tu forma de gestionar la campaña.',
+        'title' => 'Haz tuya la barra lateral de tu campaña.',
+    ],
     'helpers'           => [
         'bookmarks' => 'Los marcadores no aparecen aquí porque cada uno tiene su propia configuración de :position que determina dónde aparece en la barra lateral.',
         'image'     => 'Añade una imagen para representar la campaña. Esta imagen se utilizará en la barra lateral y en la interfaz del selector de campañas. Puedes cambiarla en cualquier momento editando la campaña.',

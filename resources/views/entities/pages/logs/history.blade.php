@@ -5,10 +5,10 @@
     @if ($entity)
         {!! __('crud.history.created_clean', [
             'name' => (!empty($entity->created_by) ? '<a href="' . route('users.profile', $entity->created_by) . '" class="text-link">' . e(\App\Facades\UserCache::name($entity->created_by)) . '</a>' : __('crud.history.unknown')),
-            'date' => '<span data-toggle="tooltip" data-title="' . $model->created_at . ' UTC' . '">' . $model->created_at->diffForHumans() . '</span>',
+            'date' => '<span data-toggle="tooltip" data-title="' . $entity->created_at . ' UTC' . '">' . $entity->created_at->diffForHumans() . '</span>',
         ]) !!}. {!! __('crud.history.updated_clean', [
             'name' => (!empty($entity->updated_by) ? '<a href="' . route('users.profile', $entity->updated_by) . '" class="text-link">' . e(\App\Facades\UserCache::name($entity->updated_by)) . '</a>' : __('crud.history.unknown')),
-            'date' => '<span data-toggle="tooltip" data-title="' . $model->updated_at . ' UTC' . '">' . $model->updated_at->diffForHumans() . '</span>',
+            'date' => '<span data-toggle="tooltip" data-title="' . $entity->updated_at . ' UTC' . '">' . $entity->updated_at->diffForHumans() . '</span>',
         ]) !!}
         @can('update', $entity)
             <br /><a href="{{ route('entities.logs', [$campaign, $entity]) }}" title="{{ __('crud.history.view') }}" class="text-link">

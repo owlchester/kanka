@@ -174,7 +174,9 @@ class EntityResource extends JsonResource
                 "App\Http\Resources\\" .
                 ucfirst($entity->entityType->code) .
                 'Resource';
-            if (class_exists($className)) {
+            if ($entity->child === null) {
+                $data['child'] = 'Invalid child, please contact us on Discord with the following: EntityResource for #' . $entity->id;
+            } elseif (class_exists($className)) {
                 $entity->child->setRelation('entity', $entity);
                 $obj = new $className($entity->child);
                 $data['child'] = $obj;

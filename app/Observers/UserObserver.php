@@ -47,7 +47,7 @@ class UserObserver
 
     public function updated(User $user)
     {
-        // Tell mailchimp about the user's new email
+        // Tell the newsletter provider about the user's new email
         if (! $user->wasRecentlyCreated && $user->isDirty('email') && $user->hasNewsletter()) {
             UpdateEmail::dispatch($user);
             EmailChanged::dispatch($user, $user->getOriginal('email'));

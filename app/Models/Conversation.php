@@ -10,7 +10,6 @@ use App\Models\Concerns\Sanitizable;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Conversation
@@ -31,10 +30,8 @@ class Conversation extends MiscModel
     use HasFactory;
     use HasFilters;
     use Sanitizable;
-    use SoftDeletes;
 
     protected $fillable = [
-        'name',
         'campaign_id',
         'target_id',
         'is_private',
@@ -88,7 +85,7 @@ class Conversation extends MiscModel
     public function participants(): HasMany
     {
         return $this->hasMany('App\Models\ConversationParticipant', 'conversation_id')
-            ->with('character');
+            ->with('participant');
     }
 
     /**
@@ -100,10 +97,17 @@ class Conversation extends MiscModel
     {
         $participants = [];
         foreach ($this->participants as $participant) {
-            if (! $participant->character) {
+            if ($participant->participant instanceof User) {
+                if ($users) {
+                    $participants[$participant->id()] = $participant->name();
+                }
+
                 continue;
             }
-            if (auth()->check() && auth()->user()->can('update', $participant->character->entity)) {
+            if (! ($participant->participant instanceof Entity)) {
+                continue;
+            }
+            if (auth()->check() && auth()->user()->can('update', $participant->participant)) {
                 $participants[$participant->id()] = $participant->name();
             } elseif ($users == true) {
                 $participants[$participant->id()] = $participant->name();
@@ -133,9 +137,9 @@ class Conversation extends MiscModel
         return (int) config('entities.ids.conversation');
     }
 
-    public function forCharacters(): bool
+    public function forEntities(): bool
     {
-        return $this->target_id === ConversationTarget::characters;
+        return $this->target_id === ConversationTarget::entities;
     }
 
     /**

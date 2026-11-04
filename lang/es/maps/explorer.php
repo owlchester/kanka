@@ -12,6 +12,7 @@ return [
         'create_group'              => 'Crear grupo',
         'error_group_name_required' => 'Introduce un nombre para este grupo.',
         'error_save_group'          => 'No se ha podido guardar este grupo.',
+        'limit_reached'             => '{1} Has alcanzado el límite de :count grupo para este mapa.|[2,*] Has alcanzado el límite de :count grupos para este mapa.',
         'name_placeholder'          => 'Nombre del grupo...',
         'new_group'                 => 'Nuevo grupo',
         'parent_group'              => 'Grupo padre',

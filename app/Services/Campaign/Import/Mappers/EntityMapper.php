@@ -5,6 +5,7 @@ namespace App\Services\Campaign\Import\Mappers;
 use App\Facades\EntityLogger;
 use App\Facades\ImportIdMapper;
 use App\Models\Entity;
+use App\Models\MiscModel;
 use App\Services\EntityMappingService;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
@@ -33,7 +34,10 @@ trait EntityMapper
         $columns = $this->model->getConnection()->getSchemaBuilder()->getColumnListing($this->model->getTable());
         foreach ($this->data as $field => $value) {
             // @phpstan-ignore-next-line
-            if (is_array($value) || in_array($field, $this->ignore) || ! in_array($field, $columns)) {
+            if ((is_array($value) && ! $this->model->hasCast($field, ['array'])) || in_array($field, $this->ignore) || ! in_array($field, $columns)) {
+                continue;
+            }
+            if ($field === 'name' && $this->model instanceof MiscModel) {
                 continue;
             }
             $this->model->$field = $value;
@@ -66,12 +70,20 @@ trait EntityMapper
 
     protected function entity(): void
     {
-        $mapping = ['name', 'is_private', 'campaign_id'];
+        $mapping = ['is_private', 'campaign_id'];
         $entityMapping = ['tooltip', 'is_template', 'is_attributes_private', 'focus_x', 'focus_y', 'entry', 'type', 'type_id', 'status_id'];
         $this->entity = new Entity;
-        $this->entity->entity_id = $this->model->id;
+        if ($this->model instanceof MiscModel) {
+            $this->entity->child()->associate($this->model);
+        } else {
+            $this->entity->entity_id = $this->model->id;
+        }
         $this->entity->created_by = $this->user->id;
         $this->entity->updated_by = $this->user->id;
+        $name = Arr::get($this->data, 'entity.name') ?? Arr::get($this->data, 'name');
+        if ($name !== null || ! ($this->model instanceof MiscModel)) {
+            $this->entity->name = $name ?? $this->model->name;
+        }
         foreach ($mapping as $field) {
             $this->entity->$field = $this->model->$field;
         }
@@ -153,12 +165,13 @@ trait EntityMapper
 
     protected function pivot(string $relation, string $model, string $field): self
     {
+        $this->data[$relation] ??= [];
         // Check if import has old location_id and migrate it to new locations pivot table system, currently only happens with organisations
         if ($relation == 'pivotLocations' && isset($this->data['location_id']) && ! in_array(['location_id' => $this->data['location_id']], $this->data[$relation])) {
             $this->data[$relation][] = ['location_id' => $this->data['location_id']];
         }
         foreach ($this->data[$relation] as $pivot) {
-            if (! ImportIdMapper::has($model, $pivot[$field])) {
+            if (empty($pivot[$field]) || ! ImportIdMapper::has($model, $pivot[$field])) {
                 continue;
             }
             $foreignID = ImportIdMapper::get($model, $pivot[$field]);
@@ -180,7 +193,9 @@ trait EntityMapper
         // Handle old location_id field from legacy exports
         if (isset($this->data['location_id']) && ImportIdMapper::has('locations', $this->data['location_id'])) {
             $foreignID = ImportIdMapper::get('locations', $this->data['location_id']);
-            $this->entity->locations()->attach($foreignID);
+            if (! $this->entity->locations()->wherePivot('location_id', $foreignID)->exists()) {
+                $this->entity->locations()->attach($foreignID);
+            }
         }
 
         // Handle pivotLocations data from exports

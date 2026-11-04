@@ -32,7 +32,7 @@ trait Taggable
     {
         return $this->belongsToMany(Tag::class, $this->getTagPivotTableName())
             ->with(['entity' => function ($query) {
-                $query->select('entities.id', 'entities.name', 'entities.entity_id', 'entities.type_id');
+                $query->select('entities.id', 'entities.name', 'entities.entity_id', 'entities.child_type', 'entities.type_id');
             }])
             ->has('entity');
     }

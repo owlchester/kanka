@@ -82,7 +82,7 @@ class DiceRollApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $diceRoll->entity);
-        $diceRoll->delete();
+        $diceRoll->entity->delete();
 
         return response()->json(null, 204);
     }

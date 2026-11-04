@@ -83,7 +83,7 @@ class RaceApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $race->entity);
-        $race->delete();
+        $race->entity->delete();
 
         return response()->json(null, 204);
     }

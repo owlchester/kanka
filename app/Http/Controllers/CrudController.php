@@ -17,6 +17,7 @@ use App\Models\MiscModel;
 use App\Models\Relation;
 use App\Renderers\DatagridRenderer;
 use App\Sanitizers\MiscSanitizer;
+use App\Services\Attributes\EntitySheetService;
 use App\Services\AttributeService;
 use App\Services\Entity\AliasService;
 use App\Services\Entity\CopyService;
@@ -453,10 +454,6 @@ class CrudController extends Controller
                 $this->afterModelSave($new, $data);
 
                 $this->entitySaveService->campaign($this->campaign)->entity($new->entity)->save($data);
-                // Weird hack for prod issues
-                if (! $new->entity->child) {
-                    $new->entity->child = $new;
-                }
 
                 /** @var CopyService $copyService */
                 $copyService = app()->make(CopyService::class);
@@ -468,6 +465,17 @@ class CrudController extends Controller
                     ->copy();
 
                 if (auth()->user()->can('attributes', $new->entity)) {
+                    if ($request->hasAny(['sheets_present', 'sheets'])) {
+                        $copySource = $request->filled('copy_source_id')
+                            ? Entity::find((int) $request->input('copy_source_id'))
+                            : null;
+                        app(EntitySheetService::class)
+                            ->campaign($this->campaign)
+                            ->entity($new->entity)
+                            ->copySource($copySource)
+                            ->sync($request->input('sheets', []));
+                    }
+
                     $this->attributeService
                         ->campaign($this->campaign)
                         ->entity($new->entity)
@@ -847,7 +855,7 @@ class CrudController extends Controller
             return new Collection;
         }
 
-        return Entity::select('id', 'name', 'entity_id')
+        return Entity::select('id', 'name', 'entity_id', 'child_type', 'type_id')
             ->templates($entityType->id)
             ->orderBy('name')
             ->get();

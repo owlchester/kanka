@@ -4,6 +4,7 @@ namespace App\Models\Concerns;
 
 use App\Enums\EntityEventTypes;
 use App\Models\Entity;
+use App\Models\MiscModel;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\DB;
@@ -15,6 +16,10 @@ trait Orderable
 {
     public function scopeOrder(Builder $query, ?array $data)
     {
+        if ($this instanceof MiscModel && $query->getQuery()->columns === null) {
+            $query->select($this->getTable() . '.*');
+        }
+
         // Default values can be defined on the model, or default
         $field = $this->defaultOrderField ?: 'name';
         $direction = $this->defaultOrderDirection ?: 'asc';
@@ -39,20 +44,24 @@ trait Orderable
                 ->orderBy('cd.year', $direction)
                 ->orderBy('cd.month', $direction)
                 ->orderBy('cd.day', $direction);
-        } elseif (in_array($field, ['name', 'is_private', 'updated_at'], true) && method_exists($this, 'joinEntity')) {
+        } elseif (in_array($field, ['name', 'is_private', 'updated_at'], true) && method_exists($this, 'scopeJoinEntity')) {
             return $query
                 ->joinEntity()
                 ->orderBy('e.' . $field, $direction);
-        } elseif ($field === 'type' && method_exists($this, 'joinEntity')) {
+        } elseif ($field === 'type' && method_exists($this, 'scopeJoinEntity')) {
             return $query
                 ->joinEntity()
                 ->orderBy('e.type', $direction);
-        } elseif ($field === 'locations' && method_exists($this, 'joinEntity')) {
+        } elseif ($field === 'locations' && method_exists($this, 'scopeJoinEntity')) {
             return $query
                 ->joinEntity()
                 ->leftJoin('entity_locations', 'entity_locations.entity_id', '=', 'e.id')
                 ->leftJoin('locations', 'locations.id', '=', 'entity_locations.location_id')
-                ->orderBy('locations.name', $direction);
+                ->leftJoin('entities as location_order_entities', function ($join) {
+                    $join->on('location_order_entities.entity_id', '=', 'locations.id')
+                        ->where('location_order_entities.type_id', config('entities.ids.location'));
+                })
+                ->orderBy('location_order_entities.name', $direction);
         }
         if (! empty($field)) {
             $segments = explode('.', $field);
@@ -62,6 +71,16 @@ trait Orderable
                 /** @var BelongsTo $relation */
                 $relation = $this->{$relationName}();
                 $foreignName = $relation->getQuery()->getQuery()->from;
+
+                if ($segments[1] === 'name' && method_exists($relation->getRelated(), 'entityTypeId')) {
+                    return $query
+                        ->leftJoin($foreignName . ' as orderable_j', 'orderable_j.id', $this->getTable() . '.' . $relation->getForeignKeyName())
+                        ->leftJoin('entities as orderable_entity', function ($join) use ($relation) {
+                            $join->on('orderable_entity.entity_id', '=', 'orderable_j.id')
+                                ->where('orderable_entity.type_id', $relation->getRelated()->entityTypeId());
+                        })
+                        ->orderBy('orderable_entity.name', $direction);
+                }
 
                 return $query
                     ->with($relationName)

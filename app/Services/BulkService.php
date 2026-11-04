@@ -105,7 +105,7 @@ class BulkService
      */
     public function export(): Collection
     {
-        return Entity::whereIn('id', $this->ids)->get();
+        return Entity::with('child')->whereIn('id', $this->ids)->get();
     }
 
     /**
@@ -148,7 +148,7 @@ class BulkService
             ->to($campaign);
 
         $with = [
-            'entityType', 'image', 'inventories', 'attributes',
+            'entityType', 'image', 'inventories', 'attributes', 'child',
         ];
         $entities = Entity::with($with)->whereIn('id', $this->ids)->get();
 
@@ -170,7 +170,7 @@ class BulkService
             ->entityType($entityType)
             ->campaign($this->campaign);
 
-        $entities = Entity::whereIn('id', $this->ids)->get();
+        $entities = Entity::with('child')->whereIn('id', $this->ids)->get();
 
         foreach ($entities as $entity) {
             if (! $this->can('update', $entity)) {
@@ -307,7 +307,7 @@ class BulkService
             return $this->updateRelations($filledFields, $mirrorOptions);
         }
 
-        $with = $this->entityType->hasEntity() ? ['tags'] : [];
+        $with = $this->entityType->hasEntity() ? ['tags', 'child'] : [];
         $models = $model->with($with)->whereIn('id', $this->ids)->get();
         foreach ($models as $entity) {
             $this->total++;
@@ -328,7 +328,10 @@ class BulkService
                 }
             }
             if ($this->entityType->hasEntity() && $this->entityType->isStandard()) {
-                $entity->child->update($entityFields);
+                $entity->child->update(Arr::except($entityFields, ['name']));
+                if (array_key_exists('name', $entityFields)) {
+                    $entity->name = $entityFields['name'];
+                }
             } else {
                 // Relations, bookmarks
                 $entity->update($entityFields);
@@ -371,7 +374,6 @@ class BulkService
 
             if ($this->entityType->hasEntity() && $this->entityType->isStandard()) {
                 $entity->is_private = $entity->child->is_private;
-                $entity->name = $entity->child->name;
             }
             $entity->update();
 

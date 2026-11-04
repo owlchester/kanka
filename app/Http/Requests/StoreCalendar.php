@@ -54,6 +54,20 @@ class StoreCalendar extends FormRequest
             'month_alias' => 'nullable|array',
             'month_type' => 'nullable|array',
             'year_number' => 'nullable|array',
+            'eras' => 'nullable|array',
+            'era_configured' => 'nullable|boolean',
+            'eras.*.name' => 'required_with:eras.*.suffix|string|max:191',
+            'eras.*.suffix' => 'required_with:eras.*.name|string|max:45',
+            'eras.*.start_year' => 'nullable|integer',
+            'eras.*.end_year' => 'nullable|integer',
+            'era_name' => 'nullable|array',
+            'era_name.*' => 'nullable|string|max:191',
+            'era_suffix' => 'nullable|array',
+            'era_suffix.*' => 'nullable|string|max:45',
+            'era_start_year' => 'nullable|array',
+            'era_start_year.*' => 'nullable|integer',
+            'era_end_year' => 'nullable|array',
+            'era_end_year.*' => 'nullable|integer',
             'week_number' => 'nullable|array',
             'week_name' => 'nullable|array',
             'current_year' => 'nullable|integer',
@@ -77,6 +91,61 @@ class StoreCalendar extends FormRequest
         $rules['leap_year_start'] = 'exclude_if:has_leap_year,0|numeric|min:1|max:255';
 
         return $this->entityRules($rules);
+    }
+
+    public function withValidator($validator): void
+    {
+        $validator->after(function ($validator) {
+            $eras = $this->input('eras');
+            if (! is_array($eras)) {
+                $names = (array) $this->input('era_name', []);
+                $suffixes = (array) $this->input('era_suffix', []);
+                $starts = (array) $this->input('era_start_year', []);
+                $ends = (array) $this->input('era_end_year', []);
+                $eras = [];
+                foreach ($names as $i => $name) {
+                    if (! empty($name) || ! empty($suffixes[$i]) || ($starts[$i] ?? '') !== '' || ($ends[$i] ?? '') !== '') {
+                        $eras[] = ['name' => $name, 'suffix' => $suffixes[$i] ?? '', 'start_year' => $starts[$i] ?? null, 'end_year' => $ends[$i] ?? null];
+                    }
+                }
+            }
+
+            $ranges = [];
+            foreach ($eras as $index => $era) {
+                if (! is_array($era)) {
+                    continue;
+                }
+                $start = $era['start_year'] ?? null;
+                $end = $era['end_year'] ?? null;
+                if (empty($era['name'] ?? null)) {
+                    $validator->errors()->add("eras.{$index}.name", __('validation.required', ['attribute' => 'era name']));
+                }
+                if (empty($era['suffix'] ?? null)) {
+                    $validator->errors()->add("eras.{$index}.suffix", __('validation.required', ['attribute' => 'era suffix']));
+                }
+                if (($start === null || $start === '') && ($end === null || $end === '')) {
+                    $validator->errors()->add("eras.{$index}.start_year", __('validation.required_without', ['attribute' => 'start year', 'values' => 'end year']));
+
+                    continue;
+                }
+                if ($start !== null && $start !== '' && $end !== null && $end !== '' && (int) $start > (int) $end) {
+                    $validator->errors()->add("eras.{$index}.end_year", __('validation.after_or_equal', ['attribute' => 'end year', 'date' => 'start year']));
+
+                    continue;
+                }
+                $ranges[] = [
+                    'index' => $index,
+                    'start' => $start === null || $start === '' ? PHP_INT_MIN : (int) $start,
+                    'end' => $end === null || $end === '' ? PHP_INT_MAX : (int) $end,
+                ];
+            }
+            usort($ranges, fn (array $a, array $b) => $a['start'] <=> $b['start']);
+            for ($i = 1; $i < count($ranges); $i++) {
+                if ($ranges[$i]['start'] <= $ranges[$i - 1]['end']) {
+                    $validator->errors()->add("eras.{$ranges[$i]['index']}.start_year", __('calendars.validators.era_overlap'));
+                }
+            }
+        });
     }
 
     public function quickCreatorRules(): array

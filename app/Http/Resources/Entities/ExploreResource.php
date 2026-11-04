@@ -6,6 +6,7 @@ use App\Facades\Avatar;
 use App\Facades\CampaignLocalization;
 use App\Http\Resources\EntityTypeResource;
 use App\Models\Entity;
+use App\Models\Map;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Str;
@@ -43,10 +44,8 @@ class ExploreResource extends JsonResource
             $attributes[] = $entity->status->key;
         }
 
-        // Use the eager-loaded relation directly (not $entity->child which goes through EntityCache and loses withCount)
-        $child = $entity->entityType->isStandard()
-            ? $entity->getRelationValue(Str::camel($entity->entityType->code))
-            : null;
+        $child = $entity->entityType->isCustom() ? null : $entity->child;
+        $child?->setRelation('entity', $entity);
         $parentEntity = $entity->parent;
 
         $routeParams = [$campaign, $entity->entityType];
@@ -161,6 +160,9 @@ class ExploreResource extends JsonResource
             if ($this->hasColumn('elements_count') && isset($child->elements_count)) {
                 $data['elements_count'] = $child->elements_count ?? 0;
             }
+            if ($this->hasColumn('participants_count') && isset($child->participants_count)) {
+                $data['participants_count'] = $child->participants_count;
+            }
             if ($this->hasColumn('eras_count') && isset($child->eras_count)) {
                 $data['eras_count'] = $child->eras_count ?? 0;
             }
@@ -172,7 +174,7 @@ class ExploreResource extends JsonResource
             }
 
             // Map explore link
-            if ($this->hasColumn('explore')) {
+            if ($this->hasColumn('explore') && $child instanceof Map) {
                 if ($child->isReal()) {
                     $data['explore'] = ['url' => route('entities.map', [$campaign, $child->entity])];
                 } elseif (! $entity->hasImage()) {

@@ -29,7 +29,7 @@ const onMaintenanceFormSubmit = (event) => {
     //     formData.append('action', event.submitter.value);
     // }
 
-    axios.post(form.getAttribute('action'), formData)
+    return axios.post(form.getAttribute('action'), formData)
         .then(() => {
             // The check succeeded, submit the form for real. By doing .submit, it skips any event listeners on submit
             // This doesn't include the action of who submitted the form
@@ -40,8 +40,8 @@ const onMaintenanceFormSubmit = (event) => {
             if (err.response) {
                 window.formErrorHandler(err.response, form);
             }
-            stopAnimation(form);
         })
+        .finally(() => stopAnimation(form))
     ;
 };
 

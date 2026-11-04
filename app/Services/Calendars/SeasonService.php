@@ -22,7 +22,7 @@ class SeasonService
 
     public function build(): void
     {
-        foreach ($this->calendar->seasons() as $season) {
+        foreach ($this->calendar->seasons ?? [] as $season) {
             $date = $season['month'] . '-' . $season['day'];
             $this->seasons[$date] = $season['name'];
         }

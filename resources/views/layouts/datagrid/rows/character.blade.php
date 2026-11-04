@@ -20,6 +20,9 @@
 <x-entity-link
     :entity="$model->character->entity"
     :campaign="$campaign" />
+@if ($model->character->entity->status)
+    <x-icon class="{{ $model->character->entity->status->icon() }}" title="{{ $model->character->entity->status->setRelation('entityType', $model->character->entity->entityType)->name() }}"></x-icon>
+@endif
 @if ($model->status)
     <x-icon class="{{ $model->status->icon() }}" title="{{ $model->status->setRelation('entityType', $model->entityType)->name() }}" tooltip></x-icon>
 @endif

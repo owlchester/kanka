@@ -3,6 +3,7 @@
 return [
     'actions'       => [
         'add_epoch'         => 'Ajouter une époque',
+        'add_era'           => 'Ajouter une ère',
         'add_intercalary'   => 'Ajouter des jours intercalaires',
         'add_month'         => 'Ajouter un mois',
         'add_moon'          => 'Ajouter une lune',
@@ -64,6 +65,7 @@ return [
         'date'              => 'Date actuelle',
         'day'               => 'Jour',
         'default_layout'    => 'Mise en page par défaut',
+        'era'               => 'Ère',
         'format'            => 'Format',
         'is_incrementing'   => 'Incrément de date',
         'is_recurring'      => 'Répétition',
@@ -161,6 +163,7 @@ return [
         ],
     ],
     'panels'        => [
+        'eras'          => 'Ères',
         'intercalary'   => 'Jours Intercalaires',
         'leap_year'     => 'Année bissextile',
         'months'        => 'Mois',
@@ -168,6 +171,12 @@ return [
         'years'         => 'Nom d\'années',
     ],
     'parameters'    => [
+        'era'           => [
+            'end_year'      => 'Année de fin',
+            'name'          => 'Nom de l\'ère',
+            'start_year'    => 'Année de début',
+            'suffix'        => 'Suffixe de l\'année',
+        ],
         'intercalary'   => [
             'length'    => 'Durée en jour',
             'month'     => 'A la fin de quel mois',
@@ -236,6 +245,7 @@ return [
         'before'=> 'Aujourd\'hui et avant',
     ],
     'validators'    => [
+        'era_overlap'   => 'Les périodes des ères ne peuvent pas se chevaucher.',
         'format'        => 'Le format de calendrier est invalid.',
         'moon_offset'   => 'Le décalage de début de lune ne peut pas être plus grand que la durée du premier mois du calendrier.',
     ],

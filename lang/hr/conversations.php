@@ -46,7 +46,6 @@ return [
         'participants'  => 'Sudionici',
     ],
     'targets'       => [
-        'characters'    => 'Likovi',
-        'members'       => 'Članovi',
+        'members'   => 'Članovi',
     ],
 ];

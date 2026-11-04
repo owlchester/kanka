@@ -21,11 +21,12 @@ class CalendarResource extends EntityResource
         return $this->entity([
             'date' => $calendar->date,
             'parameters' => $calendar->parameters,
-            'months' => json_decode($calendar->months),
-            'weekdays' => json_decode($calendar->weekdays),
-            'years' => json_decode($calendar->years),
-            'seasons' => json_decode($calendar->seasons),
-            'moons' => json_decode($calendar->moons),
+            'months' => $calendar->months,
+            'weekdays' => $calendar->weekdays,
+            'years' => empty($calendar->years) ? $calendar->years : (object) $calendar->years,
+            'eras' => $calendar->eras ?? [],
+            'seasons' => $calendar->seasons,
+            'moons' => $calendar->moons,
             'start_offset' => $calendar->start_offset, // X year is a leap year
             'suffix' => $calendar->suffix,
             'format' => $calendar->format,

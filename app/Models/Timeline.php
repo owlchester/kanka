@@ -11,7 +11,6 @@ use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 
 /**
@@ -28,12 +27,10 @@ class Timeline extends MiscModel
     use HasFactory;
     use HasFilters;
     use Sanitizable;
-    use SoftDeletes;
     use SortableTrait;
 
     public $fillable = [
         'campaign_id',
-        'name',
         'calendar_id',
         'is_private',
     ];

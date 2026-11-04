@@ -37,3 +37,19 @@ test('a field:map mention renders a plain explore link by default', function () 
     expect($rendered)->not->toContain('<iframe');
     expect($rendered)->not->toContain('js-map-preview');
 });
+
+test('a page:explore map mention links directly to the entity map route', function () {
+    $this->asUser()->withCampaign()->withCharacters();
+    $author = Character::find(1)->entity;
+    $map = Map::factory()->create(['campaign_id' => 1, 'is_real' => true]);
+
+    $author->entry = '[map:' . $map->entity->id . '|page:explore|params:focus=' . '123&amp;zoom=5]';
+    $author->save();
+
+    $rendered = $author->parsedEntry();
+    $campaign = Campaign::find(1);
+    $url = route('entities.map', [$campaign, $map->entity->id, 'focus' => '123', 'zoom' => '5']);
+
+    expect($rendered)->toContain('<a href="' . e($url) . '"');
+    expect($rendered)->not->toContain(route('maps.explore', [$campaign, $map->id]));
+});

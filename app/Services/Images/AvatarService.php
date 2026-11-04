@@ -4,7 +4,6 @@ namespace App\Services\Images;
 
 use App\Facades\CampaignCache;
 use App\Facades\Img;
-use App\Models\MiscModel;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\UserAware;
@@ -18,8 +17,6 @@ class AvatarService
     use EntityAware;
     use UserAware;
 
-    protected MiscModel $child;
-
     protected string $field = 'image';
 
     protected bool $fallback = false;
@@ -29,13 +26,6 @@ class AvatarService
     protected int $height;
 
     protected bool $withCache = false;
-
-    public function child(MiscModel $miscModel): self
-    {
-        $this->child = $miscModel;
-
-        return $this;
-    }
 
     public function field(string $field): self
     {
@@ -71,7 +61,7 @@ class AvatarService
         $this->field = 'image';
         $this->fallback = false;
         $this->withCache = false;
-        unset($this->entity, $this->child);
+        unset($this->entity);
 
         return $this;
     }
@@ -168,15 +158,6 @@ class AvatarService
         $this->reset();
 
         return $url;
-    }
-
-    protected function getChild(): MiscModel
-    {
-        if (isset($this->child)) {
-            return $this->child;
-        }
-
-        return $this->child = $this->entity->child;
     }
 
     protected function childThumbnailPath(): ?string

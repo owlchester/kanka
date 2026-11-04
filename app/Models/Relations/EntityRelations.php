@@ -4,50 +4,36 @@ namespace App\Models\Relations;
 
 use App\Enums\EntityAssetType;
 use App\Enums\EntityEventTypes;
-use App\Models\Ability;
 use App\Models\Attribute;
-use App\Models\AttributeTemplate;
-use App\Models\Calendar;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 use App\Models\CampaignPermission;
 use App\Models\CategoryStatus;
-use App\Models\Character;
 use App\Models\Conversation;
-use App\Models\Creature;
-use App\Models\DiceRoll;
+use App\Models\ConversationMessage;
+use App\Models\ConversationParticipant;
 use App\Models\Entity;
 use App\Models\EntityAbility;
 use App\Models\EntityAsset;
 use App\Models\EntityClaim;
 use App\Models\EntityLocation;
 use App\Models\EntityLog;
+use App\Models\EntitySheet;
 use App\Models\EntityTag;
 use App\Models\EntityType;
 use App\Models\EntityUser;
-use App\Models\Event;
-use App\Models\Family;
 use App\Models\Image;
 use App\Models\Inventory;
-use App\Models\Item;
 use App\Models\Journal;
-use App\Models\Location;
-use App\Models\Map;
 use App\Models\MapMarker;
 use App\Models\MiscModel;
-use App\Models\Note;
-use App\Models\Organisation;
 use App\Models\Post;
-use App\Models\Quest;
 use App\Models\QuestElement;
-use App\Models\Race;
 use App\Models\Relation;
 use App\Models\Reminder;
-use App\Models\Tag;
-use App\Models\Timeline;
 use App\Models\TimelineElement;
 use App\Models\User;
-use App\Models\Whiteboard;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -60,12 +46,6 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  * Trait EntityRelations
  *
  * @property EntityType $entityType
- * @property Conversation $conversation
- * @property Character $character
- * @property Creature $creature
- * @property AttributeTemplate $attributeTemplate
- * @property Tag $tag
- * @property Tag[]|Collection $tags
  * @property EntityTag[]|Collection $entityTags
  * @property Post[]|Collection $posts
  * @property Inventory[]|Collection $inventories
@@ -77,11 +57,6 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  * @property MiscModel|null $child
  * @property User $updater
  * @property Campaign $campaign
- * @property Map $map
- * @property Race $race
- * @property Timeline $timeline
- * @property Quest $quest
- * @property Organisation $organisation
  * @property Attribute[]|Collection $allAttributes
  * @property Attribute[]|Collection $starredAttributes
  * @property Relation[]|Collection $pinnedRelations
@@ -122,6 +97,12 @@ trait EntityRelations
         return $this->hasMany('App\Models\Attribute', 'entity_id', 'id');
     }
 
+    /** @return HasMany<EntitySheet, $this> */
+    public function sheets(): HasMany
+    {
+        return $this->hasMany(EntitySheet::class)->orderBy('sort_order')->orderBy('id');
+    }
+
     public function allAttributes()
     {
         return $this->attributes();
@@ -145,142 +126,6 @@ trait EntityRelations
     public function entityLocations(): HasMany
     {
         return $this->hasMany(EntityLocation::class, 'entity_id', 'id');
-    }
-
-    /**
-     * @return HasOne<AttributeTemplate, $this>
-     */
-    public function attributeTemplate(): HasOne
-    {
-        return $this->hasOne('App\Models\AttributeTemplate', 'id', 'entity_id');
-    }
-
-    /**
-     * @return HasOne<Ability, $this>
-     */
-    public function ability(): HasOne
-    {
-        return $this->hasOne('App\Models\Ability', 'id', 'entity_id');
-    }
-
-    /**
-     * @return HasOne<Character, $this>
-     */
-    public function character(): HasOne
-    {
-        return $this->hasOne('App\Models\Character', 'id', 'entity_id');
-    }
-
-    /**
-     * @return HasOne<DiceRoll, $this>
-     */
-    public function diceRoll(): HasOne
-    {
-        return $this->hasOne('App\Models\DiceRoll', 'id', 'entity_id');
-    }
-
-    /**
-     * @return HasOne<Event, $this>
-     */
-    public function event(): HasOne
-    {
-        return $this->hasOne('App\Models\Event', 'id', 'entity_id');
-    }
-
-    /**
-     * @return HasOne<Family, $this>
-     */
-    public function family(): HasOne
-    {
-        return $this->hasOne('App\Models\Family', 'id', 'entity_id');
-    }
-
-    /**
-     * @return HasOne<Item, $this>
-     */
-    public function item(): HasOne
-    {
-        return $this->hasOne('App\Models\Item', 'id', 'entity_id');
-    }
-
-    /**
-     * @return HasOne<Journal, $this>
-     */
-    public function journal(): HasOne
-    {
-        return $this->hasOne('App\Models\Journal', 'id', 'entity_id');
-    }
-
-    /**
-     * @return HasOne<Location, $this>
-     */
-    public function location(): HasOne
-    {
-        return $this->hasOne('App\Models\Location', 'id', 'entity_id');
-    }
-
-    /**
-     * @return HasOne<Map, $this>
-     */
-    public function map(): HasOne
-    {
-        return $this->hasOne('App\Models\Map', 'id', 'entity_id');
-    }
-
-    /**
-     * @return HasOne<Note, $this>
-     */
-    public function note(): HasOne
-    {
-        return $this->hasOne('App\Models\Note', 'id', 'entity_id');
-    }
-
-    /**
-     * @return HasOne<Organisation, $this>
-     */
-    public function organisation(): HasOne
-    {
-        return $this->hasOne('App\Models\Organisation', 'id', 'entity_id');
-    }
-
-    /**
-     * @return HasOne<Quest, $this>
-     */
-    public function quest(): HasOne
-    {
-        return $this->hasOne('App\Models\Quest', 'id', 'entity_id');
-    }
-
-    /**
-     * @return HasOne<Calendar, $this>
-     */
-    public function calendar(): HasOne
-    {
-        return $this->hasOne('App\Models\Calendar', 'id', 'entity_id');
-    }
-
-    /**
-     * @return HasOne<Tag, $this>
-     */
-    public function tag(): HasOne
-    {
-        return $this->hasOne('App\Models\Tag', 'id', 'entity_id');
-    }
-
-    /**
-     * @return HasOne<Timeline, $this>
-     */
-    public function timeline(): HasOne
-    {
-        return $this->hasOne('App\Models\Timeline', 'id', 'entity_id');
-    }
-
-    /**
-     * @return HasOne<Whiteboard, $this>
-     */
-    public function whiteboard(): HasOne
-    {
-        return $this->hasOne('App\Models\Whiteboard', 'id', 'entity_id');
     }
 
     /**
@@ -323,28 +168,30 @@ trait EntityRelations
         return $this->hasMany('App\Models\QuestElement', 'entity_id');
     }
 
-    /**
-     * @return HasOne<Conversation, $this>
-     */
-    public function conversation(): HasOne
+    /** @return MorphMany<ConversationParticipant, $this> */
+    public function conversationParticipants(): MorphMany
     {
-        return $this->hasOne('App\Models\Conversation', 'id', 'entity_id');
+        return $this->morphMany(ConversationParticipant::class, 'participant');
     }
 
-    /**
-     * @return HasOne<Race, $this>
-     */
-    public function race(): HasOne
+    /** @return MorphMany<ConversationMessage, $this> */
+    public function conversationMessages(): MorphMany
     {
-        return $this->hasOne('App\Models\Race', 'id', 'entity_id');
+        return $this->morphMany(ConversationMessage::class, 'participant');
     }
 
-    /**
-     * @return HasOne<Creature, $this>
-     */
-    public function creature(): HasOne
+    /** @return Builder<Conversation> */
+    public function conversations(): Builder
     {
-        return $this->hasOne('App\Models\Creature', 'id', 'entity_id');
+        $conversationTable = (new Conversation)->getTable();
+        $participantTable = (new ConversationParticipant)->getTable();
+
+        return Conversation::query()
+            ->join($participantTable, $participantTable . '.conversation_id', '=', $conversationTable . '.id')
+            ->where($participantTable . '.participant_id', $this->id)
+            ->where($participantTable . '.participant_type', Entity::class)
+            ->select($conversationTable . '.*')
+            ->distinct();
     }
 
     /**

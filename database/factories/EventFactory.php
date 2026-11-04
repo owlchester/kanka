@@ -4,9 +4,8 @@ namespace Database\Factories;
 
 // use Faker\Generator as Faker;
 use App\Models\Event;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
-class EventFactory extends Factory
+class EventFactory extends StandardEntityFactory
 {
     /**
      * The name of the factory's corresponding model.

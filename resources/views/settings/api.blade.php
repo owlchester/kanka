@@ -71,6 +71,39 @@
         @if ($tokens->hasPages())
             {!! $tokens->links() !!}
         @endif
+        @if ($mcpConnections->isNotEmpty())
+            <div class="flex justify-between items-center">
+                <span class="text-lg">{{ __('settings/api.mcp.title') }}</span>
+            </div>
+            <p>{{ __('settings/api.mcp.description') }} {!! __('settings/api.mcp.more', [ 'mcp' => '<a href="'. route('mcp.help') . '" class="link text-link">' . __('footer.mcp') . '</a>']) !!} </p>
+            <div class="table-responsive">
+                <table class="table table-default table-borderless table-hover">
+                    <thead>
+                    <tr>
+                        <th>{{ __('crud.fields.name') }}</th>
+                        <th>{{ __('settings/api.fields.scopes') }}</th>
+                        <th class="text-right">{{ __('crud.actions.actions') }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach ($mcpConnections as $connection)
+                        <tr>
+                            <td class="align-middle">
+                                {{ $connection->client->name }}
+                                <span class="badge badge-info">{{ __('settings/api.mcp.badge') }}</span>
+                            </td>
+                            <td class="align-middle">{{ implode(', ', $connection->scopes ?? []) }}</td>
+                            <td class="align-middle text-right">
+                                <form action="{{ route('settings.api.revoke', ['token' => $connection->id]) }}" method="POST" class="inline">
+                                    <x-buttons.confirm-delete :route="route('settings.api.revoke', ['token' => $connection->id])" confirm="settings/api.revoke-confirm" delete="settings/api.revoke" />
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        @endif
     @if($applications->count() > 0)
         <div class="flex justify-between items-center ">
             <span class="text-lg">

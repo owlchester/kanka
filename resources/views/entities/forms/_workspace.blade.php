@@ -15,6 +15,7 @@
     if ($entityType->isStandardCode('calendar')) {
         $workspaceTabs += [
             'calendar' => __('entries/workspace.settings'),
+            'eras' => __('calendars.panels.eras'),
             'months' => __('calendars.panels.months'),
             'weeks' => __('calendars.panels.weeks'),
             'moons' => __('calendars.fields.moons'),

@@ -113,8 +113,11 @@ class Blade extends Renderer
             // throw new FatalThrowableError($e);
         }
 
+        $pluginName = '<a href="' . e($this->campaignPlugin->plugin->libraryUrl()) . '" target="_blank" rel="noopener">'
+            . e($this->campaignPlugin->plugin->name) . '</a>';
+
         return '<div class="alert alert-danger">
-            ' . __('attributes/templates.errors.marketplace.rendering') . (! empty($errors) ?
+            ' . __('attributes/templates.errors.marketplace.rendering', ['name' => $pluginName]) . (! empty($errors) ?
                 '<br /><br />' . __('attributes/templates.errors.marketplace.hint') . ': ' . $errors . ' (line ' . $e->getLine() . ')' : null) . '
         </div>' . $this->debug($data);
     }

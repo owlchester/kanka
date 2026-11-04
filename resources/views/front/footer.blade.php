@@ -56,6 +56,7 @@
                 <a href="{{ Domain::toFront('kb') }}">{{ __('footer.kb') }}</a>
                 <a href="https://docs.kanka.io/en/latest/index.html" target="_blank">{{ __('footer.documentation') }}</a>
                 <a href="{{ route('larecipe.index') }}" target="_blank">{{ __('front.features.api.link') }}</a>
+                <a href="{{ route('mcp.help') }}">{{ __('footer.mcp') }}</a>
                 <a href="https://blog.kanka.io" target="_blank">{{ __('footer.blog') }}</a>
                 <a href="https://status.kanka.io" target="_blank">{{ __('footer.status') }}</a>
             </div>

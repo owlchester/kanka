@@ -9,21 +9,6 @@
     @php return @endphp
 @endif
 
-@php
-$child = null;
-if (isset($model)) {
-    $child = $model;
-} else {
-    $child = $entity->child;
-}
-$members = $entity->isFamily()
-    ? $child->members()->with('entity')->orderBy('name')->get()
-    : $child->members()->with(['character', 'character.entity'])
-        ->leftJoin('characters', 'characters.id', '=', 'organisation_member.character_id')
-        ->orderBy('characters.name')
-        ->get();
-@endphp
-
 <div class="widget-advanced-members mt-5">
 
 @if($entity->isFamily())

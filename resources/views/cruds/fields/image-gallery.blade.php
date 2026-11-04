@@ -19,14 +19,15 @@ $max = $max->readable()->upload();
 
 $isUnlimited = empty($from === 'map' ? config('limits.filesize.map') : config('limits.filesize.image.standard'));
 $label = $imageLabel ?? 'crud.fields.image';
+$canFocus = !empty($entity) && $campaign->boosted() && auth()->user()->can('update', $entity);
 
 $previewThumbnail = null;
 if (!empty($entity) && $entity->hasImage()) {
-    $previewThumbnail = Avatar::entity($entity)->size(192, 144)->thumbnail();
+    $previewThumbnail = Avatar::entity($entity)->size(160, 160)->thumbnail();
 } elseif (isset($model) && method_exists($model, 'thumbnail') && !empty($model->image)) {
-    $previewThumbnail = $model->thumbnail(192, 144);
+    $previewThumbnail = $model->thumbnail(160, 160);
 } elseif (isset($source) && !empty($source->entity->image_uuid) && !empty($source->entity->image)) {
-    $previewThumbnail = $source->entity->image->getUrl(192, 144);
+    $previewThumbnail = $source->entity->image->getUrl(160, 160);
 }
 
 // If the image is from the gallery and the user can't browse or upload, disable the field
@@ -50,6 +51,12 @@ $old = isset($entity) && !empty($entity->image_path) || isset($model) && !empty(
         'upload'    => __('gallery.actions.upload'),
         'add_url'   => __('gallery.actions.add_url'),
         'change'    => __('gallery.actions.change'),
+        'change_focus' => __('entities/image.actions.change_focus'),
+        'save_focus' => __('entities/image.actions.save_focus'),
+        'remove_focus' => __('entities/image.actions.remove_focus'),
+        'focus_warning' => __('entities/image.focus.warning', ['gallery' => __('sidebar.gallery')]),
+        'focus_load_error' => __('entities/image.focus.load_error'),
+        'focus_save_error' => __('entities/image.focus.save_error'),
         'url_hint'  => __('gallery.actions.url_hint'),
         'paste_error' => __('gallery.actions.paste_error'),
         'drag_hint' => __('gallery.drop.hint'),
@@ -106,6 +113,9 @@ $old = isset($entity) && !empty($entity->image_path) || isset($model) && !empty(
             cta="{{ route('settings.premium', ['campaign' => $campaign->id, $from]) }}"
             can-upload="{{ $canUpload ? 'true' : 'false' }}"
             can-browse="{{ $canBrowse ? 'true' : 'false' }}"
+            can-focus="{{ $canFocus ? 'true' : 'false' }}"
+            focus-save="{{ $canFocus ? route('entities.image.save-focus', [$campaign, $entity]) : '' }}"
+            focus-data="{{ $canFocus ? route('entities.image.focus-data', [$campaign, $entity, 'IMAGE_UUID']) : '' }}"
         >
             <x-icon class="load" />
         </gallery-selection>

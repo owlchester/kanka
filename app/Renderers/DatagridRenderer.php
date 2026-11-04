@@ -437,16 +437,16 @@ class DatagridRenderer
             if ($type == 'avatar') {
                 $who = ! empty($column['parent']) ? $model->{$column['parent']} : $model;
                 if ($who instanceof Entity) {
-                    Avatar::entity($who)->child($who->child);
-                    $who = $who->child;
+                    Avatar::entity($who);
                 } else {
-                    Avatar::entity($who->entity)->child($who);
+                    Avatar::entity($who->entity);
                 }
                 $class = ! empty($column['parent']) ? $this->hidden : $class;
                 if (! empty($who)) {
                     $bookmarkId = isset($this->bookmark) ? $this->bookmark->id : null;
-                    $route = $who->entity
-                        ? $who->entity->url('show', $bookmarkId ? ['bookmark' => $bookmarkId] : [])
+                    $entity = $who instanceof Entity ? $who : $who->entity;
+                    $route = $entity
+                        ? $entity->url('show', $bookmarkId ? ['bookmark' => $bookmarkId] : [])
                         : $who->getLink($this->campaign);
                     $content = '<a class="entity-image cover-background w-10 h-10" style="background-image: url(\'' . Avatar::size(40)->fallback()->thumbnail() .
                         '\');" title="' . e($who->name) . '" href="' . $route . '"></a>';

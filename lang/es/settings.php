@@ -127,12 +127,18 @@ return [
         'title'         => 'Patreon',
     ],
     'profile'       => [
-        'actions'   => [
+        'actions'           => [
             'update_profile'    => 'Actualizar perfil',
         ],
-        'avatar'    => 'Foto de perfil',
-        'success'   => 'Perfil actualizado.',
-        'title'     => 'Perfil personal',
+        'add_photo'         => 'Añadir foto',
+        'avatar'            => 'Foto de perfil',
+        'avatar_alt'        => 'Foto de perfil',
+        'avatar_menu'       => 'Añadir o cambiar la foto de perfil',
+        'avatar_success'    => 'Éxito',
+        'remove_image'      => 'Eliminar imagen',
+        'select_image'      => 'Seleccionar una imagen',
+        'success'           => 'Perfil actualizado.',
+        'title'             => 'Perfil personal',
     ],
     'referrals'     => [
         'title' => 'Referidos',
@@ -233,8 +239,11 @@ return [
             'reason'            => 'Opcionalmente, puedes contarnos por qué ya no apoyas a Kanka. ¿Faltaba algo? ¿Cambió tu situación financiera?',
         ],
         'plans'                 => [
-            'cost_monthly'  => ':amount :currency mensuales',
-            'cost_yearly'   => ':amount :currency anuales',
+            'cost_monthly'      => ':amount :currency mensuales',
+            'cost_yearly'       => ':amount :currency anuales',
+            'grandfathered'     => 'Precio heredado',
+            'standard_monthly'  => 'Precio estándar: :currency :amount facturado mensualmente',
+            'standard_yearly'   => 'Precio estándar: :currency :amount facturado anualmente',
         ],
         'sub_status'            => 'Información sobre la suscripción',
         'subscription'          => [

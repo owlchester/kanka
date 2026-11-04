@@ -54,7 +54,6 @@ class LoggerService
 
         $this->update();
         $this->entity->touchQuietly();
-        $this->model->touchQuietly();
     }
 
     public function created(): bool
@@ -284,7 +283,7 @@ class LoggerService
             // Silence
             if ($attribute == 'target_id' && $this->model instanceof Conversation) {
                 return __('conversations.targets.' . (
-                    $original == ConversationTarget::users ? 'members' : 'characters'
+                    $original == ConversationTarget::users ? 'members' : 'entities'
                 ));
             }
 

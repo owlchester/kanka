@@ -71,6 +71,11 @@ class UserController extends Controller
         ]);
     }
 
+    public function show(Campaign $campaign, CampaignUser $campaignUser): RedirectResponse
+    {
+        return redirect()->route('dashboard', $campaign);
+    }
+
     /**
      * @return RedirectResponse
      *

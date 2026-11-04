@@ -12,6 +12,7 @@ return [
         'create_group'              => 'Créer un groupe',
         'error_group_name_required' => 'Entre un nom pour ce groupe.',
         'error_save_group'          => 'Impossible d\'enregistrer ce groupe.',
+        'limit_reached'             => '{1} Tu as atteint la limite de :count groupe pour cette carte.|[2,*] Tu as atteint la limite de :count groupes pour cette carte.',
         'name_placeholder'          => 'Nomme ce groupe...',
         'new_group'                 => 'Nouveau groupe',
         'parent_group'              => 'Groupe parent',

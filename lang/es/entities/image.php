@@ -6,6 +6,7 @@ return [
         'change_visibility' => 'Cambiar visibilidad',
         'copy_url'          => 'Copiar URL de imagen',
         'copy_url_success'  => 'URL de imagen copiada al portapapeles.',
+        'remove_focus'      => 'Eliminar punto de enfoque',
         'replace_image'     => 'Reemplazar imagen',
         'save-replace'      => 'Reemplazar imagen',
         'save_focus'        => 'Guardar encuadre',
@@ -15,7 +16,9 @@ return [
     'focus'                 => [
         'breadcrumb'    => 'Encuadre de la imagen',
         'helper'        => 'Haz clic en la imagen para definir el encuadre. Haz clic en el encuadre para eliminarlo.',
+        'load_error'    => 'No se pudo cargar el punto de enfoque de la imagen.',
         'panel_title'   => 'Encuadre de la imagen',
+        'save_error'    => 'No se pudo guardar el punto de enfoque de la imagen.',
         'success'       => 'Encuadre de la imagen actualizado.',
         'title'         => 'Encuadre de la imagen de :name',
         'unboosted'     => 'Definir el encuadre de una imagen es una funcionalidad reservada para las :boosted-campaigns.',

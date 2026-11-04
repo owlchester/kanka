@@ -126,13 +126,28 @@ class ImportIdMapper
         return $this->posts[$old];
     }
 
+    public function hasPost(int $old): bool
+    {
+        return ! empty($this->posts[$old]);
+    }
+
     public function getTimelineElement(int $old): int
     {
         return $this->timelineElements[$old];
     }
 
+    public function hasTimelineElement(int $old): bool
+    {
+        return ! empty($this->timelineElements[$old]);
+    }
+
     public function getQuestElement(int $old): int
     {
         return $this->questElements[$old];
+    }
+
+    public function hasQuestElement(int $old): bool
+    {
+        return ! empty($this->questElements[$old]);
     }
 }

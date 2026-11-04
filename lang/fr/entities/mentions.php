@@ -3,6 +3,7 @@
 return [
     'fields'            => [
         'element'   => 'Elément',
+        'mentioned' => 'Mentionné',
         'type'      => 'Type',
     ],
     'helper'            => 'Cette liste affiche les entrées qui mentionnent cette entrée dans leur description.',

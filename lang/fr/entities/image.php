@@ -6,6 +6,7 @@ return [
         'change_visibility' => 'Changer la visibilité',
         'copy_url'          => 'Copier l\'URL de l\'image',
         'copy_url_success'  => 'URL de l\'image copiée dans ton presse-papiers.',
+        'remove_focus'      => 'Supprimer le point focal',
         'replace_image'     => 'Remplacer l\'image',
         'save-replace'      => 'Remplacer l\'image',
         'save_focus'        => 'Enregistrer le focus',
@@ -15,7 +16,9 @@ return [
     'focus'                 => [
         'breadcrumb'    => 'Focus d\'image',
         'helper'        => 'Cliquer sur l\'image pour définir le point de focus. Cliquer sur le point de focus pour le retirer.',
+        'load_error'    => 'Impossible de charger le point focal de l\'image.',
         'panel_title'   => 'Focus d\'image',
+        'save_error'    => 'Impossible d\'enregistrer le point focal de l\'image.',
         'success'       => 'Point de focus mis à jour.',
         'title'         => 'Focus d\'image pour l\'entrée :name',
         'unboosted'     => 'Définir un point de focus pour l\'image est réservé aux :boosted-campaigns.',

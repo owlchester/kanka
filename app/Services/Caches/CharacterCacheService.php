@@ -16,7 +16,11 @@ class CharacterCacheService extends BaseCache
         $key = $this->genderSuggestionKey();
 
         return Cache::remember($key, 24 * 3600, function () {
-            return Character::select(DB::raw('sex, MAX(created_at) as cmat'))
+            return Character::select(DB::raw('sex, MAX(e.created_at) as cmat'))
+                ->join('entities as e', function ($join) {
+                    $join->on('e.entity_id', '=', 'characters.id')
+                        ->where('e.type_id', config('entities.ids.character'));
+                })
                 ->groupBy('sex')
                 ->whereNotNull('sex')
                 ->orderBy('cmat', 'desc')
@@ -31,7 +35,11 @@ class CharacterCacheService extends BaseCache
         $key = $this->pronounSuggestionKey();
 
         return Cache::remember($key, 24 * 3600, function () {
-            return Character::select(DB::raw('pronouns, MAX(created_at) as cmat'))
+            return Character::select(DB::raw('pronouns, MAX(e.created_at) as cmat'))
+                ->join('entities as e', function ($join) {
+                    $join->on('e.entity_id', '=', 'characters.id')
+                        ->where('e.type_id', config('entities.ids.character'));
+                })
                 ->groupBy('pronouns')
                 ->whereNotNull('pronouns')
                 ->orderBy('cmat', 'desc')

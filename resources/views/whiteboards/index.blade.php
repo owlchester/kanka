@@ -25,8 +25,8 @@
                         <span class="whiteboard-name text-md">
                             {!! $whiteboard->entity->name !!}
                         </span>
-                        <span class="whiteboard-timestamp text-neutral-content text-xs" title="{{ $whiteboard->created_at }}">
-                            {{ __('crud.timestamps.edited', ['ago' => $whiteboard->created_at->diffForHumans()]) }}
+                        <span class="whiteboard-timestamp text-neutral-content text-xs" title="{{ $whiteboard->entity->created_at }}">
+                            {{ __('crud.timestamps.edited', ['ago' => $whiteboard->entity->created_at->diffForHumans()]) }}
                         </span>
                     </div>
                 </div>

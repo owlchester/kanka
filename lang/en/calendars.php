@@ -3,6 +3,7 @@
 return [
     'actions'       => [
         'add_epoch'         => 'Epoch',
+        'add_era'           => 'Era',
         'add_intercalary'   => 'Add intercalary days',
         'add_month'         => 'Month',
         'add_moon'          => 'Moon',
@@ -64,6 +65,7 @@ return [
         'date'              => 'Current Date',
         'day'               => 'Day',
         'default_layout'    => 'Default layout',
+        'era'               => 'Era',
         'format'            => 'Format',
         'is_incrementing'   => 'Advancing date',
         'is_recurring'      => 'Recurring',
@@ -161,6 +163,7 @@ return [
         ],
     ],
     'panels'        => [
+        'eras'          => 'Eras',
         'intercalary'   => 'Intercalary Days',
         'leap_year'     => 'Leap Year',
         'months'        => 'Months',
@@ -168,6 +171,12 @@ return [
         'years'         => 'Named Years',
     ],
     'parameters'    => [
+        'era'           => [
+            'end_year'      => 'End year',
+            'name'          => 'Era name',
+            'start_year'    => 'Start year',
+            'suffix'        => 'Year suffix',
+        ],
         'intercalary'   => [
             'length'    => 'Duration in days',
             'month'     => 'At the end of which month',
@@ -236,6 +245,7 @@ return [
         'before'=> 'Today & before',
     ],
     'validators'    => [
+        'era_overlap'   => 'Era year ranges cannot overlap.',
         'format'        => 'The date format is invalid.',
         'moon_offset'   => 'The moon first fullmoon offset can\'t be bigger than the length of the calendar\'s first month.',
     ],

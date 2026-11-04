@@ -23,7 +23,7 @@ const initField = (field) => {
             ['style', ['style']],
             ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
             ['color', ['color']],
-            ['kanka', ['aroba', (summernoteConfig.dataset.bragi !== undefined ? 'bragi' : null)]],
+            ['kanka', ['aroba']],
             ['para', ['ul', 'ol', 'kanka-indent', 'kanka-outdent', 'paragraph']],
             ['table', ['table', 'tableofcontent']],
             ['insert', ['link', 'picture', (summernoteConfig.dataset.gallery !== undefined ? 'summernoteGallery' : null), 'video', 'embed', 'hr']],
@@ -79,12 +79,6 @@ const initField = (field) => {
                 deselectAll_text: summernoteConfig.dataset.galleryDeselectAll,
                 noImageSelected_msg: summernoteConfig.dataset.galleryError,
             }
-        },
-        bragi: {
-            source: {
-                url: summernoteConfig.dataset.bragi,
-            },
-            buttonLabel: '<i class="fa-brands fa-pied-piper-hat"></i>',
         },
         hint: [
             {

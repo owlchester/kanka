@@ -15,7 +15,6 @@ return [
         'other' => 'andere Sprachen',
         'title' => 'Wähle deine Sprache',
     ],
-    'made'              => 'Hergestellt mit ❤️ in Genf, Schweiz',
     'newsletter'        => 'Newsletter',
     'platform'          => 'Plattform',
     'plugins'           => 'Plugin-Bibliothek',

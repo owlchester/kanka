@@ -5,6 +5,10 @@ return [
         'reset' => 'Réinitialiser par défaut',
     ],
     'call-to-action'    => 'Modifies l\'ordre, les icônes et les noms des éléments de la navigation de la campagne.',
+    'cta'               => [
+        'lead'  => 'Réorganise, renomme et restyle ta barre latérale pour l’adapter à ta façon de jouer.',
+        'title' => 'Fais de ta barre latérale la tienne.',
+    ],
     'helpers'           => [
         'bookmarks' => 'Les favoris ne sont pas listés ici car chacun possède son propre réglage :position qui détermine où il apparaît dans la barre latérale.',
         'image'     => 'Ajouter une image pour représenter la campagne. Cette image sera utilisée dans la barre latérale et dans l\'interface de changement de campagne. Cette image peut être modifiée à tout moment en éditant la campagne.',

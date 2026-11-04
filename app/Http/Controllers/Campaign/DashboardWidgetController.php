@@ -8,6 +8,7 @@ use App\Http\Requests\StoreCampaignDashboardWidget;
 use App\Models\Campaign;
 use App\Models\CampaignDashboard;
 use App\Models\CampaignDashboardWidget;
+use App\Models\Entity;
 use App\Services\EntityTypeService;
 
 class DashboardWidgetController extends Controller
@@ -67,6 +68,7 @@ class DashboardWidgetController extends Controller
 
         $dashboard = request()->has('dashboard') ?
             CampaignDashboard::where('id', request()->get('dashboard'))->first() : null;
+        $dashboards = $campaign->premium() ? CampaignDashboard::where('campaign_id', $campaign->id)->orderBy('name')->pluck('name', 'id')->toArray() : [];
 
         $widgetClass = new CampaignDashboardWidget;
         $widgetClass->widget = $widget;
@@ -77,6 +79,8 @@ class DashboardWidgetController extends Controller
             'widgetClass' => $widgetClass,
             'entityTypes' => $entityTypes,
             'dashboard' => $dashboard,
+            'dashboards' => $dashboards,
+            'premium' => $campaign->premium(),
         ]);
     }
 
@@ -92,6 +96,7 @@ class DashboardWidgetController extends Controller
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
+        $data = $this->prepareWidgetTarget($data);
         $widget = CampaignDashboardWidget::create($data);
 
         return redirect()
@@ -109,10 +114,7 @@ class DashboardWidgetController extends Controller
     {
         $this->authorize('dashboard', $campaign);
 
-        $dashboards = [null => __('dashboard.dashboards.default.title')];
-        foreach (CampaignDashboard::orderBy('name')->pluck('name', 'id')->toArray() as $id => $dashboard) {
-            $dashboards[$id] = $dashboard;
-        }
+        $dashboards = $campaign->premium() ? CampaignDashboard::where('campaign_id', $campaign->id)->orderBy('name')->pluck('name', 'id')->toArray() : [];
 
         $entityTypes = $this->entityTypeService
             ->campaign($campaign)
@@ -126,6 +128,7 @@ class DashboardWidgetController extends Controller
             'widget' => $campaignDashboardWidget->widget->value,
             'entityTypes' => $entityTypes,
             'dashboards' => $dashboards,
+            'premium' => $campaign->premium(),
         ]);
     }
 
@@ -140,6 +143,7 @@ class DashboardWidgetController extends Controller
         $input = $request->all();
         // force entity_id to take null if not present in data
         $input['entity_id'] = $request->input('entity_id');
+        $input = $this->prepareWidgetTarget($input);
 
         $campaignDashboardWidget->update($input);
 
@@ -158,5 +162,28 @@ class DashboardWidgetController extends Controller
             ->route('dashboard.setup', $campaignDashboardWidget->dashboard_id ?
                 [$campaign, 'dashboard' => $campaignDashboardWidget->dashboard_id] : $campaign)
             ->with('success', __('dashboard.widgets.delete.success'));
+    }
+
+    protected function prepareWidgetTarget(array $data): array
+    {
+        if (($data['widget'] ?? null) !== Widget::Header->value) {
+            return $data;
+        }
+
+        $targetType = $data['target_type'] ?? null;
+        if ($targetType === 'dashboard') {
+            $data['target_type'] = CampaignDashboard::class;
+            $data['target_id'] = $data['target_dashboard_id'] ?? null;
+        } elseif ($targetType === 'entity') {
+            $data['target_type'] = Entity::class;
+            $data['target_id'] = $data['entity_id'] ?? null;
+        } else {
+            $data['target_type'] = null;
+            $data['target_id'] = null;
+        }
+        unset($data['target_dashboard_id']);
+        $data['entity_id'] = null;
+
+        return $data;
     }
 }

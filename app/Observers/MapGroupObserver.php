@@ -26,7 +26,7 @@ class MapGroupObserver
 
     public function saved(MapGroup $mapGroup)
     {
-        $mapGroup->map->touchSilently();
+        $mapGroup->map->entity->touchSilently();
     }
 
     public function created(MapGroup $mapGroup): void
@@ -45,7 +45,7 @@ class MapGroupObserver
 
     public function deleted(MapGroup $mapGroup)
     {
-        $mapGroup->map->touchSilently();
+        $mapGroup->map->entity->touchSilently();
         $this->broadcastContents($mapGroup->map);
     }
 

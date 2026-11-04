@@ -426,7 +426,7 @@ class MapMarker extends Model
             }
             // No entry field, include the entity tooltip
             if (! $this->isLabel()) {
-                $body .= $this->entity->mappedPreview();
+                $body .= $this->entity->mappedPreview($campaign);
                 // Replace backslashes because javascript can think that things like \6e is an octogonal string
                 $body = str_replace('\\', '/', $body);
             }

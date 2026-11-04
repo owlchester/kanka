@@ -5,11 +5,13 @@ namespace App\Services\Entity;
 use App\Models\Campaign;
 use App\Models\CategoryStatus;
 use App\Models\EntityType;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Str;
 
 class ColumnDefinitionService
 {
-    /** @var array<int, array<int, CategoryStatus>> */
+    /** @var array<string, array<int, CategoryStatus>> */
     protected array $statusCache = [];
 
     public function columns(EntityType $entityType, Campaign $campaign): array
@@ -22,7 +24,7 @@ class ColumnDefinitionService
         }
 
         // Inject dynamic status column if the entity type has statuses
-        $statusColumn = $this->statusColumn($entityType);
+        $statusColumn = $this->statusColumn($entityType, $campaign);
         if ($statusColumn) {
             $tagsIndex = array_search('tags', array_column($columns, 'key'));
             if ($tagsIndex !== false) {
@@ -33,6 +35,34 @@ class ColumnDefinitionService
         }
 
         return $this->filterByModules($columns, $campaign);
+    }
+
+    /**
+     * Optional columns shown in the generic entity children datagrid.
+     * The full module column definitions remain the source of truth for availability.
+     */
+    public function childrenColumns(EntityType $entityType, Campaign $campaign): array
+    {
+        $available = array_column($this->columns($entityType, $campaign), 'key');
+        $columns = [];
+
+        if (in_array('status', $available, true)) {
+            $columns[] = ['key' => 'status', 'sortKey' => 'status_id'];
+        }
+        if (in_array('calendar_date', $available, true)) {
+            $columns[] = ['key' => 'calendar_date', 'sortKey' => 'calendar_date'];
+        }
+        if (in_array('locations', $available, true)) {
+            $columns[] = ['key' => 'locations'];
+        }
+        if (in_array('author', $available, true)) {
+            $columns[] = ['key' => 'author', 'sortKey' => 'author.name'];
+        }
+        if (in_array('instigator', $available, true)) {
+            $columns[] = ['key' => 'instigator', 'sortKey' => 'instigator.name'];
+        }
+
+        return $columns;
     }
 
     /**
@@ -70,11 +100,36 @@ class ColumnDefinitionService
             }
         }
 
-        return array_unique($map);
+        $map = array_values(array_unique($map));
+
+        if ($entityType->isStandard() && $entityType->hasEntity()) {
+            $class = $entityType->getMiscClass()::class;
+            $childRelations = [];
+            $relationsByColumn = [
+                'families' => ['characterFamilies.family.entity'],
+                'races' => ['characterRaces.race.entity'],
+                'location' => ['location.entity'],
+                'author' => ['author'],
+                'organisation' => ['organisation.entity'],
+                'character' => ['character.entity'],
+                'instigator' => ['instigator'],
+                'creators' => ['itemCreators.creator'],
+                'entity_type_name' => ['entityType'],
+            ];
+            foreach ($this->columns($entityType, $campaign) as $column) {
+                $childRelations = array_merge($childRelations, $relationsByColumn[$column['key']] ?? []);
+            }
+            $counts = $this->childCountRelations($entityType, $campaign);
+            $map['child'] = fn (MorphTo $child) => $child
+                ->morphWith([$class => array_values(array_unique($childRelations))])
+                ->morphWithCount([$class => $counts]);
+        }
+
+        return $map;
     }
 
     /**
-     * @return string[] Child model relation names that need withCount (e.g. ['members', 'elements'])
+     * @return array Child model relations and constraints for withCount
      */
     public function childCountRelations(EntityType $entityType, Campaign $campaign): array
     {
@@ -83,12 +138,24 @@ class ColumnDefinitionService
             'elements_count' => 'elements',
             'eras_count' => 'eras',
             'entities_count' => 'entities',
+            'participants_count' => 'participants',
         ];
 
         $needed = [];
         foreach ($this->columns($entityType, $campaign) as $col) {
             if (isset($countColumns[$col['key']])) {
-                $needed[] = $countColumns[$col['key']];
+                $relation = $countColumns[$col['key']];
+                if ($relation === 'members' && $entityType->code === 'organisation') {
+                    $needed[$relation] = fn (Builder $query) => $query->has('character.entity');
+                } elseif ($relation === 'elements' && $entityType->code === 'quest') {
+                    $needed[$relation] = fn (Builder $query) => $query->where(fn (Builder $element) => $element
+                        ->whereNull('entity_id')
+                        ->orHas('entity'));
+                } elseif ($relation === 'participants' && (int) $entityType->id === (int) config('entities.ids.event')) {
+                    $needed[$relation] = fn (Builder $query) => $query->has('entity');
+                } else {
+                    $needed[] = $relation;
+                }
             }
         }
 
@@ -117,30 +184,23 @@ class ColumnDefinitionService
     protected function typeRelations(): array
     {
         return [
-            'families' => ['character.characterFamilies.family.entity'],
-            'races' => ['character.characterRaces.race.entity'],
             'locations' => ['locations.entity'],
-            'location' => ['location.entity'],
             'calendar_date' => ['calendarDate.calendar.entity'],
-            'author' => ['journal.author'],
-            'organisation' => ['organisation.entity'],
-            'character' => ['character.entity'],
-            'instigator' => ['quest.instigator'],
-            'creators' => ['item.itemCreators.creator'],
-            'entity_type_name' => ['attributeTemplate.entityType'],
         ];
     }
 
-    protected function statusColumn(EntityType $entityType): ?array
+    protected function statusColumn(EntityType $entityType, Campaign $campaign): ?array
     {
-        if (! isset($this->statusCache[$entityType->id])) {
-            $this->statusCache[$entityType->id] = CategoryStatus::where('category_id', $entityType->id)
+        $cacheKey = $entityType->id . '-' . $campaign->id;
+        if (! isset($this->statusCache[$cacheKey])) {
+            $this->statusCache[$cacheKey] = CategoryStatus::inCampaign($campaign)
+                ->where('category_id', $entityType->id)
                 ->orderBy('sort_order')
                 ->get()
                 ->all();
         }
 
-        $statuses = $this->statusCache[$entityType->id];
+        $statuses = $this->statusCache[$cacheKey];
 
         if (empty($statuses)) {
             return null;
@@ -148,17 +208,10 @@ class ColumnDefinitionService
 
         $icons = [];
         foreach ($statuses as $status) {
-            if (empty($status->icon)) {
-                continue;
-            }
             $icons[$status->id] = [
-                'icon' => $status->icon(),
+                'icon' => $status->icon ? $status->icon() : null,
                 'tooltip' => $status->setRelation('entityType', $entityType)->name(),
             ];
-        }
-
-        if (empty($icons)) {
-            return null;
         }
 
         return [
@@ -191,6 +244,7 @@ class ColumnDefinitionService
             ['key' => 'name', 'type' => 'name', 'label' => __('crud.fields.name'), 'sortable' => true, 'alwaysVisible' => true],
             ['key' => 'type', 'type' => 'text', 'label' => __('crud.fields.type'), 'sortable' => true],
             ['key' => 'parent', 'type' => 'entity', 'label' => __('crud.fields.parent'), 'sortable' => true, 'sortKey' => 'parent.name'],
+            ['key' => 'locations', 'type' => 'entities', 'label' => __('entities.locations'), 'sortable' => false, 'moduleGate' => 'locations'],
             ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => true],
             ['key' => 'is_private', 'type' => 'private', 'label' => __('crud.fields.is_private'), 'sortable' => true, 'adminOnly' => true],
         ];
@@ -277,7 +331,7 @@ class ColumnDefinitionService
             ['key' => 'name', 'type' => 'name', 'label' => __('crud.fields.name'), 'sortable' => true, 'alwaysVisible' => true],
             ['key' => 'type', 'type' => 'text', 'label' => __('crud.fields.type'), 'sortable' => true],
             ['key' => 'parent', 'type' => 'entity', 'label' => __('crud.fields.parent'), 'sortable' => true, 'sortKey' => 'parent.name'],
-            ['key' => 'instigator', 'type' => 'entity', 'label' => __('quests.fields.instigator'), 'sortable' => false],
+            ['key' => 'instigator', 'type' => 'entity', 'label' => __('quests.fields.instigator'), 'sortable' => true, 'sortKey' => 'instigator.name'],
             ['key' => 'locations', 'type' => 'entities', 'label' => __('entities.locations'), 'sortable' => false, 'moduleGate' => 'locations'],
             ['key' => 'elements_count', 'type' => 'count', 'label' => __('quests.show.tabs.elements'), 'sortable' => false],
             ['key' => 'date', 'type' => 'text', 'label' => __('journals.fields.date'), 'sortable' => true],
@@ -374,7 +428,7 @@ class ColumnDefinitionService
             ['key' => 'price', 'type' => 'text', 'label' => __('items.fields.price'), 'sortable' => true],
             ['key' => 'size', 'type' => 'text', 'label' => __('items.fields.size'), 'sortable' => true],
             ['key' => 'weight', 'type' => 'text', 'label' => __('items.fields.weight'), 'sortable' => true],
-            ['key' => 'location', 'type' => 'entity', 'label' => __('entities.location'), 'sortable' => true, 'sortKey' => 'location.name', 'moduleGate' => 'locations'],
+            ['key' => 'locations', 'type' => 'entities', 'label' => __('entities.locations'), 'sortable' => false, 'moduleGate' => 'locations'],
             ['key' => 'creators', 'type' => 'entities', 'label' => __('items.fields.creators'), 'sortable' => false],
             ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => true],
             ['key' => 'is_private', 'type' => 'private', 'label' => __('crud.fields.is_private'), 'sortable' => true, 'adminOnly' => true],
@@ -389,6 +443,8 @@ class ColumnDefinitionService
             ['key' => 'type', 'type' => 'text', 'label' => __('crud.fields.type'), 'sortable' => true],
             ['key' => 'parent', 'type' => 'entity', 'label' => __('crud.fields.parent'), 'sortable' => true, 'sortKey' => 'parent.name'],
             ['key' => 'date', 'type' => 'text', 'label' => __('events.fields.date'), 'sortable' => true],
+            ['key' => 'calendar_date', 'type' => 'calendar_date', 'label' => __('crud.fields.calendar_date'), 'sortable' => true],
+            ['key' => 'participants_count', 'type' => 'count', 'label' => __('events.participants.title'), 'sortable' => true],
             ['key' => 'locations', 'type' => 'entities', 'label' => __('entities.locations'), 'sortable' => false, 'moduleGate' => 'locations'],
             ['key' => 'tags', 'type' => 'tags', 'label' => __('entities.tags'), 'sortable' => true],
             ['key' => 'is_private', 'type' => 'private', 'label' => __('crud.fields.is_private'), 'sortable' => true, 'adminOnly' => true],

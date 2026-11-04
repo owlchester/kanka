@@ -26,6 +26,10 @@ class CharacterFamily extends Model
         'is_private',
     ];
 
+    public $casts = [
+        'is_private' => 'boolean',
+    ];
+
     public $table = 'character_family';
 
     /**

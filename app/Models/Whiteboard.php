@@ -8,8 +8,8 @@ use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 
 /**
@@ -24,14 +24,13 @@ class Whiteboard extends MiscModel
     use Acl;
     use ExportableTrait;
     use HasCampaign;
+    use HasFactory;
     use HasFilters;
     use Sanitizable;
-    use SoftDeletes;
     use SortableTrait;
 
     public $fillable = [
         'campaign_id',
-        'name',
         'data',
         'is_private',
     ];

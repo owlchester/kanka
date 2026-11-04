@@ -419,14 +419,23 @@ trait BaseEntityMapper
                     $men->mentionable_type = Campaign::class;
                     $men->mentionable_id = $this->campaign->id;
                 } elseif (! empty($data['post_id'])) {
+                    if (! ImportIdMapper::hasPost($data['post_id'])) {
+                        continue;
+                    }
                     $men->mentionable_type = Post::class;
                     $men->mentionable_id = ImportIdMapper::getPost($data['post_id']);
                     $men->entity_id = $this->entity->id;
                 } elseif (! empty($data['timeline_element_id'])) {
+                    if (! ImportIdMapper::hasTimelineElement($data['timeline_element_id'])) {
+                        continue;
+                    }
                     $men->mentionable_type = TimelineElement::class;
                     $men->mentionable_id = ImportIdMapper::getTimelineElement($data['timeline_element_id']);
                     $men->entity_id = $this->entity->id;
                 } elseif (! empty($data['quest_element_id'])) {
+                    if (! ImportIdMapper::hasQuestElement($data['quest_element_id'])) {
+                        continue;
+                    }
                     $men->mentionable_type = QuestElement::class;
                     $men->mentionable_id = ImportIdMapper::getQuestElement($data['quest_element_id']);
                     $men->entity_id = $this->entity->id;

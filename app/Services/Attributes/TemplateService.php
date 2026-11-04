@@ -102,21 +102,10 @@ class TemplateService
             ]);
         }
 
-        // Layout attribute for rendering
-        $layout = '_layout';
-        if (! in_array($layout, $existing)) {
-            $order++;
-
-            Attribute::create([
-                'entity_id' => $this->entity->id,
-                'name' => '_layout',
-                'value' => $plugin->version->uuid,
-                'default_order' => $order,
-                'is_private' => false,
-                'is_pinned' => false,
-                'type_id' => AttributeType::Standard,
-            ]);
-        }
+        $this->entity->sheets()->firstOrCreate([
+            'source' => 'marketplace',
+            'reference' => $plugin->version->uuid,
+        ], ['sort_order' => $this->entity->sheets()->count()]);
 
         $this->entity->touch();
         $this->templateName = $plugin->plugin->name;
@@ -249,7 +238,12 @@ class TemplateService
             return [];
         }
 
-        $attributes = [];
+        $attributes = [[
+            'is_sheet' => true,
+            'source' => 'marketplace',
+            'reference' => $plugin->version->uuid,
+            'name' => $plugin->plugin->name,
+        ]];
         foreach ($plugin->version->attributes as $attribute) {
             // If the config is simply a name, we default to a small varchar
             if (! is_array($attribute)) {
@@ -280,17 +274,6 @@ class TemplateService
                 'placeholder' => Arr::get($attribute, 'placeholder', ''),
             ];
         }
-
-        // Layout attribute for rendering
-        $attributes[] = [
-            'name' => '_layout',
-            'value' => $plugin->version->uuid,
-            'is_private' => false,
-            'is_pinned' => false,
-            'is_hidden' => false,
-            'is_checked' => false,
-            'is_deleted' => false,
-        ];
 
         return $attributes;
     }

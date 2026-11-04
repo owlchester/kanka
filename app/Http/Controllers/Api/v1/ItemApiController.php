@@ -84,7 +84,7 @@ class ItemApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $item->entity);
-        $item->delete();
+        $item->entity->delete();
 
         return response()->json(null, 204);
     }

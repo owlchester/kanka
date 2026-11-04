@@ -41,6 +41,23 @@ it('GETS all quests')
         ],
     ]);
 
+it('filters quests by multiple statuses through the API', function () {
+    $this->asUser()->withCampaign();
+
+    $quests = collect([9, 10, 11])->map(function (int $statusId) {
+        $quest = Quest::factory()->create(['campaign_id' => 1]);
+        $quest->entity->update(['status_id' => $statusId]);
+
+        return $quest;
+    });
+
+    $response = $this->getJson('/api/1.0/campaigns/1/quests?status_id%5B%5D=9&status_id%5B%5D=10')
+        ->assertSuccessful();
+
+    expect(collect($response->json('data'))->pluck('id')->sort()->values()->all())
+        ->toBe($quests->take(2)->pluck('id')->sort()->values()->all());
+});
+
 it('GETS a specific quest')
     ->asUser()
     ->withCampaign()
@@ -146,7 +163,7 @@ it('saves quest locations through the web form', function () {
         'locations' => [$locations[0]->id, $locations[1]->id],
     ])->assertRedirect();
 
-    $quest = Quest::where('name', 'Web quest')->firstOrFail();
+    $quest = Quest::whereHas('entity', fn ($query) => $query->where('name', 'Web quest'))->firstOrFail();
     expect($quest->entity->locations()->pluck('locations.id')->sort()->values()->all())
         ->toBe([$locations[0]->id, $locations[1]->id]);
 });

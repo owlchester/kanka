@@ -59,7 +59,9 @@ class Tags extends Component
         }
 
         $this->options = Tag::query()
-            ->where('name', 'like', '%' . $this->search . '%')
+            ->search($this->search)
+            ->select('tags.*')
+            ->with('entity')
             ->limit(10)
             ->get()
             ->map(fn ($tag) => [
@@ -72,7 +74,10 @@ class Tags extends Component
     protected function loadDefaultTags(): void
     {
         $this->options = Tag::query()
-            ->orderBy('name') // or ->latest(), ->popular()
+            ->joinEntity()
+            ->select('tags.*')
+            ->orderBy('e.name')
+            ->with('entity')
             ->limit(10)
             ->get()
             ->map(fn ($tag) => [

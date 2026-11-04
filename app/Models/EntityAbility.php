@@ -82,7 +82,10 @@ class EntityAbility extends Model
         return $query
             ->select('entity_abilities.*')
             ->leftJoin('entities as default_e', 'default_e.id', '=', 'entity_abilities.entity_id')
-            ->leftJoin('abilities as default_a', 'default_a.id', '=', 'entity_abilities.ability_id')
+            ->leftJoin('entities as default_a', function ($join) {
+                $join->on('default_a.entity_id', '=', 'entity_abilities.ability_id')
+                    ->where('default_a.type_id', config('entities.ids.ability'));
+            })
             ->orderBy('position')
             ->orderBy('default_e.type')
             ->orderBy('default_a.name');

@@ -142,7 +142,7 @@ it('imports canonical entity data safely with explicit public privacy', function
         'name' => 'Alice',
         'entry' => '<script>alert(1)</script>',
         'is_private' => false,
-        'age' => 42,
+        'age' => '42',
         'traits' => ['personalities' => [], 'appearances' => []],
     ]);
     $service->create();
@@ -154,6 +154,8 @@ it('imports canonical entity data safely with explicit public privacy', function
         ->and($entity->created_by)->toBe($user->id)
         ->and($entity->entry)->not->toContain('<script')
         ->and($character->age)->toBe('42')
+        ->and($character->getRawOriginal('name'))->toBeNull()
+        ->and($entity->name)->toBe('Alice')
         ->and($entity->entity_id)->toBe($character->id);
 });
 

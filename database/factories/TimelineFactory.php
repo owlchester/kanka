@@ -4,9 +4,8 @@ namespace Database\Factories;
 
 // use Faker\Generator as Faker;
 use App\Models\Timeline;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
-class TimelineFactory extends Factory
+class TimelineFactory extends StandardEntityFactory
 {
     /**
      * The name of the factory's corresponding model.

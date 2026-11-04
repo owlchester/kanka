@@ -3,6 +3,7 @@
 return [
     'fields'            => [
         'element'   => 'Element',
+        'mentioned' => 'Mentioned',
         'type'      => 'Type',
     ],
     'helper'            => 'This entry is mentioned in the following other entries, articles, or campaign description.',

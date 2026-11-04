@@ -5,10 +5,35 @@ namespace App\Models\Concerns;
 use App\Enums\AttributeType;
 use App\Enums\EntityAssetType;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Support\Str;
 
 trait FiltersEntityFields
 {
+    protected function applyEntityParentFilter(Builder $query, string $entityTable, mixed $value, ?string $option): void
+    {
+        if ($option === 'none') {
+            $query->whereNull($entityTable . '.parent_id');
+
+            return;
+        }
+
+        if ($value === null || $value === '') {
+            return;
+        }
+
+        if ($option === 'exclude') {
+            $query->where(function (Builder $query) use ($entityTable, $value): void {
+                $query->where($entityTable . '.parent_id', '!=', $value)
+                    ->orWhereNull($entityTable . '.parent_id');
+            });
+
+            return;
+        }
+
+        $query->where($entityTable . '.parent_id', $value);
+    }
+
     protected function applyEntityImageFilter(Builder $query, string $entityTable, mixed $value): void
     {
         $query->where(function (Builder $query) use ($entityTable, $value): void {
@@ -78,6 +103,11 @@ trait FiltersEntityFields
     protected function applyEntityAttributesPresenceFilter(Builder $query, string $entityTable, mixed $value): void
     {
         $this->applyEntityRelationPresenceFilter($query, $entityTable, 'attributes', 'entity_id', $value);
+    }
+
+    protected function applyEntityCharacterSheetsPresenceFilter(Builder $query, string $entityTable, mixed $value): void
+    {
+        $this->applyEntityRelationPresenceFilter($query, $entityTable, 'entity_sheets', 'entity_id', $value);
     }
 
     protected function applyEntityAttributeFilter(
@@ -166,53 +196,18 @@ trait FiltersEntityFields
         null|string|array $tags,
         ?string $option,
     ): void {
-        $tagIds = collect((array) $tags)
-            ->filter(fn ($tag) => is_numeric($tag))
-            ->map(fn ($tag) => (int) $tag)
-            ->unique()
-            ->values()
-            ->all();
+        // Empty and legacy include values have always meant “match all”.
+        $option = in_array($option, [null, '', 'include'], true) ? 'all' : $option;
 
-        if ($option === 'none') {
-            $this->applyEntityRelationPresenceFilter($query, $entityTable, 'entity_tags', 'entity_id', false);
-
-            return;
-        }
-
-        if (empty($tagIds)) {
-            return;
-        }
-
-        if ($option === 'exclude') {
-            $query->whereNotExists(function ($subquery) use ($entityTable, $tagIds): void {
-                $subquery->selectRaw('1')
-                    ->from('entity_tags as entity_filter_tags')
-                    ->whereColumn('entity_filter_tags.entity_id', $entityTable . '.id')
-                    ->whereIn('entity_filter_tags.tag_id', $tagIds);
-            });
-
-            return;
-        }
-
-        if ($option === 'any') {
-            $query->whereExists(function ($subquery) use ($entityTable, $tagIds): void {
-                $subquery->selectRaw('1')
-                    ->from('entity_tags as entity_filter_tags')
-                    ->whereColumn('entity_filter_tags.entity_id', $entityTable . '.id')
-                    ->whereIn('entity_filter_tags.tag_id', $tagIds);
-            });
-
-            return;
-        }
-
-        foreach ($tagIds as $tagId) {
-            $query->whereExists(function ($subquery) use ($entityTable, $tagId): void {
-                $subquery->selectRaw('1')
-                    ->from('entity_tags as entity_filter_tags')
-                    ->whereColumn('entity_filter_tags.entity_id', $entityTable . '.id')
-                    ->where('entity_filter_tags.tag_id', $tagId);
-            });
-        }
+        $this->applyEntityRelationIdsFilter(
+            $query,
+            'entity_tags',
+            'entity_id',
+            $entityTable . '.id',
+            'tag_id',
+            (array) $tags,
+            $option,
+        );
     }
 
     protected function entitySearchOperator(string $value, string $key): array
@@ -256,5 +251,99 @@ trait FiltersEntityFields
         } else {
             $query->whereNotExists($callback);
         }
+    }
+
+    /**
+     * Apply a selected-ID filter against a correlated relation table.
+     *
+     * @param  array<mixed>  $selectedIds
+     */
+    protected function applyEntityRelationIdsFilter(
+        Builder $query,
+        string $relationTable,
+        string $ownerForeignKey,
+        string $outerColumn,
+        string $valueForeignKey,
+        array $selectedIds,
+        ?string $option = null,
+        ?callable $constraint = null,
+    ): void {
+        $ids = collect($selectedIds)
+            ->filter(static fn ($id): bool => $id !== null && trim((string) $id) !== '' && ctype_digit((string) $id) && (int) $id > 0)
+            ->map(static fn ($id): int => (int) $id)
+            ->unique()
+            ->values()
+            ->all();
+
+        $exists = function (QueryBuilder $subquery, ?int $id = null) use ($relationTable, $ownerForeignKey, $outerColumn, $valueForeignKey): void {
+            $subquery->selectRaw('1')
+                ->from($relationTable)
+                ->whereColumn($relationTable . '.' . $ownerForeignKey, $outerColumn);
+
+            if ($id !== null) {
+                $subquery->where($relationTable . '.' . $valueForeignKey, $id);
+            }
+
+        };
+
+        $applyConstraint = static function (QueryBuilder $subquery) use ($constraint): void {
+            if ($constraint !== null) {
+                $constraint($subquery);
+            }
+        };
+
+        if ($option === 'none' || $option === 'not_empty') {
+            $presence = function (QueryBuilder $subquery) use ($exists, $applyConstraint): void {
+                $exists($subquery);
+                $applyConstraint($subquery);
+            };
+            $option === 'none' ? $query->whereNotExists($presence) : $query->whereExists($presence);
+
+            return;
+        }
+
+        if ($ids === []) {
+            return;
+        }
+
+        if ($option === 'exclude') {
+            $query->whereNotExists(function (QueryBuilder $subquery) use ($exists, $applyConstraint, $ids, $relationTable, $valueForeignKey): void {
+                $exists($subquery);
+                $applyConstraint($subquery);
+                $subquery->whereIn($relationTable . '.' . $valueForeignKey, $ids);
+            });
+
+            return;
+        }
+
+        if ($option === 'exclude_all') {
+            $query->where(function (Builder $group) use ($ids, $exists, $applyConstraint): void {
+                foreach ($ids as $id) {
+                    $group->orWhereNotExists(function (QueryBuilder $subquery) use ($exists, $applyConstraint, $id): void {
+                        $exists($subquery, $id);
+                        $applyConstraint($subquery);
+                    });
+                }
+            });
+
+            return;
+        }
+
+        if ($option === 'all') {
+            foreach ($ids as $id) {
+                $query->whereExists(function (QueryBuilder $subquery) use ($exists, $applyConstraint, $id): void {
+                    $exists($subquery, $id);
+                    $applyConstraint($subquery);
+                });
+            }
+
+            return;
+        }
+
+        $query->whereExists(function (QueryBuilder $subquery) use ($exists, $applyConstraint, $ids, $relationTable, $valueForeignKey): void {
+            $exists($subquery);
+            $applyConstraint($subquery);
+            $subquery->whereIn($relationTable . '.' . $valueForeignKey, $ids);
+        });
     }
 }

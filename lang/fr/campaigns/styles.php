@@ -7,6 +7,7 @@ return [
         'disable'   => 'Désactiver',
         'enable'    => 'Activer',
         'new'       => 'Nouveau style',
+        'new_first' => 'Crée ton premier style',
     ],
     'bulks'         => [
         'delete'    => '{1} :count style retiré.|[2,*] :count styles retirés.',
@@ -16,6 +17,11 @@ return [
     'create'        => [
         'success'   => 'Nouveau style créé.',
         'title'     => 'Nouveau style',
+    ],
+    'cta'           => [
+        'helper'    => 'Passe à Premium pour écrire du CSS personnalisé et styliser ta campagne à ta manière.',
+        'lead'      => 'Passe à Premium pour écrire du CSS personnalisé et restyler entièrement ta campagne.',
+        'title'     => 'Le CSS personnalisé est une fonctionnalité Premium.',
     ],
     'delete'        => [
         'success'   => 'Style style :name supprimé.',
@@ -33,10 +39,12 @@ return [
         'order'         => 'Ordre',
     ],
     'helpers'       => [
+        'empty'         => 'Aucun style personnalisé pour le moment',
         'here'          => 'sur notre blog',
         'is_enabled'    => 'Activer ce style sur chaque page.',
         'main'          => 'Tu peux créer des règles CSS personnalisées pour ta campagne premium. Ces styles sont chargés après les thèmes du marketplace activés pour la campagne. Tu peux en savoir plus sur comment personnalisé ta campagne :here.',
         'tutorial'      => 'Contrôle le style visuel de la campagne. Choisis les couleurs, les préférences de mise en page et les autres options de présentation. Ces changements n\'affectent que cette campagne et peuvent être modifiés à tout moment.',
+        'what'          => 'Utilise le Theme Builder pour être guidé, ou écris ton propre CSS depuis zéro.',
     ],
     'pitch'         => 'Définis du CSS pour complètement personnalisé le look de la campagne.',
     'placeholders'  => [

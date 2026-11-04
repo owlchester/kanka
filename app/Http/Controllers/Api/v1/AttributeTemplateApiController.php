@@ -98,7 +98,7 @@ class AttributeTemplateApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $attributeTemplate->entity);
-        $attributeTemplate->delete();
+        $attributeTemplate->entity->delete();
 
         return response()->json(null, 204);
     }

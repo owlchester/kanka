@@ -152,6 +152,12 @@ class MigrateLegacyImages extends Command
                 ->where('image_path', $migration->source_path)
                 ->update(['image_path' => $migration->destination_path]);
 
+            if ($migration->prefix === 'map_layers/') {
+                DB::table('map_layers')
+                    ->where('image_path', $migration->source_path)
+                    ->update(['image_path' => $migration->destination_path]);
+            }
+
             if ($migration->status !== 'complete') {
                 DB::table('legacy_image_migrations')->where('id', $migration->id)->update([
                     'status' => 'cutover',
@@ -291,8 +297,8 @@ class MigrateLegacyImages extends Command
     protected function prefix(): ?string
     {
         $prefix = trim((string) $this->argument('prefix'), '/');
-        if (! preg_match('/^[a-z0-9-]+$/', $prefix)) {
-            $this->error('The prefix may only contain lowercase letters, numbers, and dashes.');
+        if (! preg_match('/^[a-z0-9_-]+$/', $prefix)) {
+            $this->error('The prefix may only contain lowercase letters, numbers, dashes, and underscores.');
 
             return null;
         }

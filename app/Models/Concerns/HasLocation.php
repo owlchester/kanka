@@ -18,10 +18,10 @@ trait HasLocation
     {
         return $this
             ->belongsTo('App\Models\Location', 'location_id', 'id')
-            ->select('locations.id', 'locations.name')
+            ->select('locations.id')
             ->with([
                 'entity' => function ($sub) {
-                    $sub->select('id', 'name', 'entity_id', 'type_id');
+                    $sub->select('id', 'name', 'entity_id', 'child_type', 'type_id');
                 },
             ]);
     }

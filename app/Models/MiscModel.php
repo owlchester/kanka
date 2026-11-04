@@ -10,12 +10,12 @@ use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
 use App\Models\Concerns\TouchSilently;
+use App\Models\Scopes\ActiveEntityScope;
 use App\Models\Scopes\SubEntityScopes;
-use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 /**
  * Class MiscModel
@@ -29,8 +29,6 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property string $header_image
  * @property bool|int $is_private
  * @property string[] $nullableForeignKeys
- * @property Carbon $created_at
- * @property Carbon $updated_at
  *
  * @method static self|Builder sort(array $filters, array $defaultOrder = [])
  */
@@ -45,6 +43,12 @@ abstract class MiscModel extends Model
     use Sortable;
     use SubEntityScopes;
     use TouchSilently;
+
+    public $timestamps = false;
+
+    protected $appends = ['name'];
+
+    protected $touches = ['entity'];
 
     /**
      * Explicit fields for filtering.
@@ -68,6 +72,8 @@ abstract class MiscModel extends Model
 
     protected static function booted(): void
     {
+        static::addGlobalScope(new ActiveEntityScope);
+
         static::creating(function (self $model): void {
             // Non-admin forms don't expose the privacy field. Treat a null
             // value as the public default rather than persisting null.
@@ -80,13 +86,11 @@ abstract class MiscModel extends Model
     /**
      * Every misc model has an attached entity
      *
-     * @return HasOne
+     * @return MorphOne<Entity, $this>
      */
-    public function entity()
+    public function entity(): MorphOne
     {
-        return $this
-            ->hasOne('App\Models\Entity', 'entity_id', 'id')
-            ->where('type_id', $this->entityTypeID());
+        return $this->morphOne(Entity::class, 'child', 'child_type', 'entity_id')->chaperone('child');
     }
 
     /**
@@ -97,21 +101,13 @@ abstract class MiscModel extends Model
         return method_exists($this, 'entityTypeID');
     }
 
-    /**
-     * Create the model's Entity
-     */
-    public function createEntity(): Entity
+    public function getNameAttribute(mixed $value): mixed
     {
-        $entity = new Entity;
-        $entity->entity_id = $this->id;
-        $entity->name = $this->name;
-        $entity->campaign_id = $this->campaign_id;
-        $entity->type_id = $this->entityTypeId();
-        $entity->is_private = $this->isPrivate();
-        $entity->save();
-        $this->setRelation('entity', $entity);
+        if ($this->exists) {
+            return $this->entity?->name;
+        }
 
-        return $entity;
+        return $value;
     }
 
     /**

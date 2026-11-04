@@ -54,6 +54,7 @@ return [
         'dice_roll' => 'App\Models\DiceRoll',
         'bookmark' => 'App\Models\Bookmark',
         'relation' => 'App\Models\Relation',
+        'whiteboard' => 'App\Models\Whiteboard',
     ],
 
     'classes-plural' => [
@@ -78,5 +79,6 @@ return [
         'dice_rolls' => 'App\Models\DiceRoll',
         'bookmarks' => 'App\Models\Bookmark',
         'relations' => 'App\Models\Relation',
+        'whiteboards' => 'App\Models\Whiteboard',
     ],
 ];

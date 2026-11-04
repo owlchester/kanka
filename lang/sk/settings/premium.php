@@ -10,7 +10,6 @@ return [
             'confirm'   => 'Získaj prémium!',
         ],
         'confirm'   => 'Vzrušujúce! Ideš odomknúť prémiové funkcionality pre :campaign. Bude na to použité jedno prémium.',
-        'duration'  => 'Prémiové kampane ostávajú dokiaľ ich manuálne neodstrániš alebo kým neskončí tvoje predplatné.',
         'success'   => 'Kampaň :campaign je teraz prémiová. Užívaj jej nové úžasné funkcionality!',
     ],
     'exceptions'    => [

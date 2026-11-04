@@ -146,7 +146,7 @@ it('saves journal locations through the web form', function () {
         'locations' => [$locations[0]->id, $locations[1]->id],
     ])->assertRedirect();
 
-    $journal = Journal::where('name', 'Web journal')->firstOrFail();
+    $journal = Journal::whereHas('entity', fn ($query) => $query->where('name', 'Web journal'))->firstOrFail();
     expect($journal->entity->locations()->pluck('locations.id')->sort()->values()->all())
         ->toBe([$locations[0]->id, $locations[1]->id]);
 });

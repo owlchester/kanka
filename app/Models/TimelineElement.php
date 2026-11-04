@@ -108,7 +108,7 @@ class TimelineElement extends Model
     public function scopeOrdered(Builder $query): Builder
     {
         return $query
-            ->with('entity')
+            ->with('entity.child')
             ->orderBy('position');
     }
 
@@ -119,6 +119,15 @@ class TimelineElement extends Model
         }
 
         return $this->name;
+    }
+
+    public function displayDate(): ?string
+    {
+        if ($this->use_event_date && $this->entity?->child instanceof Event) {
+            return $this->entity->child->date ?? $this->date;
+        }
+
+        return $this->date;
     }
 
     public function mentionName(): string

@@ -7,9 +7,9 @@ use App\Models\Entity;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\Attributes\WithoutRelations;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Log;
 
 class EntityUpdatedJob implements ShouldQueue
 {
@@ -18,6 +18,7 @@ class EntityUpdatedJob implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
+    #[WithoutRelations]
     public Entity $entity;
 
     public array $dirty;
@@ -48,8 +49,6 @@ class EntityUpdatedJob implements ShouldQueue
      */
     public function handle()
     {
-        Log::info('EntityUpdateJob for entity #' . $this->entity->id);
-
         // Whenever the image is updated, clear the avatar cache
         if ($this->isDirty(['image_uuid', 'image_path'])) {
             Avatar::entity($this->entity)->forget();

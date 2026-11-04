@@ -95,7 +95,7 @@ class CharacterApiController extends MiscApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $character->entity);
-        $character->delete();
+        $character->entity->delete();
 
         return response()->json(null, 204);
     }

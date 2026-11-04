@@ -24,6 +24,7 @@ return [
         'limit'                 => 'Actualmente, las campañas están limitadas a :max módulos personalizados mientras perfeccionamos esta nueva función.',
         'limit-title'           => 'Límite de módulos personalizados alcanzado',
         'subscription-limit'    => 'La campaña ha alcanzado el número máximo de módulos personalizados disponibles. La persona que desbloquea las funciones premium puede suscribirse a un nivel superior para aumentar este límite.',
+        'subscription-upgrade'  => 'Pásate a Wyvern para permitir hasta :wyvern categorías personalizadas, o a Elemental para permitir hasta :elemental por campaña premium.',
     ],
     'fields'        => [
         'icon'          => 'Icono del módulo',
@@ -47,6 +48,11 @@ return [
     'pitch-title'   => 'Desbloquear módulos personalizados',
     'rename'        => [
         'helper'    => 'Cambia el nombre y el icono del módulo a lo largo de la campaña. Déjalo en blanco para usar el predeterminado de Kanka.',
+        'premium'   => [
+            'description'   => 'Las campañas premium pueden cambiar el nombre de esta categoría, elegir su forma plural y asignarle un icono personalizado que encaje con tu mundo.',
+            'title'         => 'Haz que esta categoría sea tuya',
+            'upgrade'       => 'Mejorar :campaign',
+        ],
         'success'   => 'Módulo personalizado.',
         'title'     => 'Personalizar el módulo :module',
     ],

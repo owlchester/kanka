@@ -73,6 +73,17 @@ return [
     'sections'      => [
         'unorganised'   => 'Non organisé',
     ],
+    'sheets'        => [
+        'add'               => 'Ajouter une fiche de personnage',
+        'all_added'         => 'Toutes les fiches de personnage installées ont déjà été ajoutées. Tu peux en trouver d’autres dans la bibliothèque de plugins.',
+        'choose'            => 'Sélectionner une fiche de personnage installée à ajouter à cette entrée.',
+        'description'       => 'Choisis les fiches qui apparaissent pour cette entrée. Elles partagent toutes les mêmes propriétés.',
+        'library'           => 'Parcourir les fiches de personnage',
+        'none_installed'    => 'Les fiches de personnage installées depuis la bibliothèque de plugins de cette campagne apparaîtront ici.',
+        'remove'            => 'Retirer la fiche de personnage',
+        'reorder'           => 'Glisser pour réorganiser les fiches de personnage',
+        'title'             => 'Fiches de personnage',
+    ],
     'show'          => [
         'hidden'    => 'Propriétés cachées',
         'title'     => 'Propriétés de :name',

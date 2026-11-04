@@ -20,9 +20,9 @@
                 }
             }
         } elseif (isset($model)) {
-            $weekdays = $model->weekdays();
+            $weekdays = $model->weekdays ?? [];
         } elseif (isset($source)) {
-            $weekdays = $source->child->weekdays();
+            $weekdays = $source->child->weekdays ?? [];
         } ?>
         <div class="calendar-weekdays sortable-elements" data-handle=".sortable-handler">
             @foreach ($weekdays as $weekday)
@@ -67,9 +67,9 @@
                 $cpt++;
             }
         } elseif (isset($model)) {
-            $weeks = $model->weeks();
+            $weeks = $model->week_names ?? [];
         } elseif (isset($source)) {
-            $weeks = $source->child->weeks();
+            $weeks = $source->child->week_names ?? [];
         } ?>
         <div class="flex flex-col gap-2 calendar-weeks sortable-elements"  data-handle=".sortable-handler">
             <x-grid>
