@@ -4,6 +4,7 @@ use App\Enums\CampaignVisibility;
 use App\Enums\EntityAssetType;
 use App\Http\Middleware\ReplicationSwitcher;
 use App\Models\Character;
+use App\Models\Calendar;
 use App\Models\Entity;
 use App\Models\EntityAsset;
 use App\Models\EntityType;
@@ -82,6 +83,17 @@ it('renders an organisation edit form when a member entity has been deleted', fu
 
     $this->get(route('entities.edit', [1, $organisation->entity]))
         ->assertSuccessful();
+});
+
+it('shows the eras workspace tab and selects it from the form-eras query', function () {
+    $this->asUser()->withCampaign();
+    $calendar = Calendar::factory()->create(['campaign_id' => 1]);
+
+    $this->get(route('entities.edit', [1, $calendar->entity]) . '?tab=form-eras')
+        ->assertSuccessful()
+        ->assertSee('data-workspace-tab="eras"', false)
+        ->assertSee('tab-eras active', false)
+        ->assertSee('id="form-eras"', false);
 });
 
 it('renders a character edit form when an organisation entity has been deleted', function () {
