@@ -27,6 +27,7 @@ class StoreDefaults extends FormRequest
             'entity_personality_visibility' => 'boolean',
             'settings' => 'array',
             'settings.default_visibility' => 'nullable|string|in:admin,members,self,admin-self',
+            'settings.gallery_visibility' => 'nullable|string|in:admin,members,self,admin-self',
             'settings.private_mention_visibility' => 'boolean',
             'ui_settings' => 'array',
             'ui_settings.connections' => 'boolean',
