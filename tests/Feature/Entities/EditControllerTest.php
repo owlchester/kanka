@@ -87,6 +87,9 @@ it('renders an organisation edit form when a member entity has been deleted', fu
 
 it('shows the eras workspace tab and selects it from the form-eras query', function () {
     $this->asUser()->withCampaign();
+    $user = auth()->user();
+    $user->settings = array_merge($user->settings ?? [], ['entry_form_layout' => 'modern']);
+    $user->save();
     $calendar = Calendar::factory()->create(['campaign_id' => 1]);
 
     $this->get(route('entities.edit', [1, $calendar->entity]) . '?tab=form-eras')
