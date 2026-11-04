@@ -8,6 +8,8 @@
 
     @include('dashboard.widgets.forms._size')
 
+    @includeWhen(!empty($dashboards), 'dashboard.widgets.forms._dashboard')
+
     <x-forms.field field="target_type" :label="__('dashboard.widgets.fields.link')">
         <select name="target_type" x-model="targetType" class="w-full">
             <option value="">{{ __('dashboard.widgets.fields.no-link') }}</option>
