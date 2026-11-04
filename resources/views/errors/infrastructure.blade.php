@@ -1,8 +1,8 @@
-<html lang="{{ app()->getLocale() }}">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="{{ __('front.meta.description') }}">
+    <meta name="description" content="Kanka is currently unavailable due to an unplanned infrastructure outage.">
     <meta name="author" content="{{ config('app.name') }}">
     <meta name="title" content="Infrastructure error">
 
@@ -26,6 +26,5 @@
         </div>
     </section>
 
-    @includeWhen(Route::has('home'), 'front.footer')
 </body>
 </html>
