@@ -9,6 +9,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Broadcasting\BroadcastException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Exceptions\ThrottleRequestsException;
 use Illuminate\Http\JsonResponse;
@@ -16,11 +17,15 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Session\TokenMismatchException;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Intervention\Image\Exceptions\DecoderException;
 use Laravel\Passport\Exceptions\OAuthServerException;
 use Livewire\Features\SupportLockedProperties\CannotUpdateLockedPropertyException;
+use PDOException;
+use Predis\Connection\ConnectionException as PredisConnectionException;
+use RedisException;
 use Sentry\Laravel\Integration;
 use Symfony\Component\Console\Exception\CommandNotFoundException;
 use Symfony\Component\Console\Exception\NamespaceNotFoundException;
@@ -68,6 +73,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        if ($this->isInfrastructureConnectionFailure($exception)) {
+            if (! $this->shouldReturnJson($request, $exception) && ! $request->is('api/*') && ! Domain::isApi()) {
+                return response()->view('errors.infrastructure', [], 200);
+            }
+        }
+
         if ($exception instanceof TokenMismatchException) {
             return redirect()
                 ->back()
@@ -111,6 +122,34 @@ class Handler extends ExceptionHandler
         }
 
         return parent::render($request, $exception);
+    }
+
+    private function isInfrastructureConnectionFailure(Throwable $exception): bool
+    {
+        for ($current = $exception; $current !== null; $current = $current->getPrevious()) {
+            if (! $current instanceof QueryException && ! $current instanceof PDOException) {
+                if ($current instanceof PredisConnectionException || ($current instanceof RedisException && preg_match('/(connection refused|connection timed out|read error on connection|connection lost|went away)/i', $current->getMessage()))) {
+                    return true;
+                }
+
+                continue;
+            }
+
+            $state = $current instanceof PDOException ? ($current->errorInfo[0] ?? null) : null;
+            $code = $current instanceof PDOException ? ($current->errorInfo[1] ?? null) : null;
+            if ($current instanceof QueryException && $current->getPrevious() instanceof PDOException) {
+                $state ??= $current->getPrevious()->errorInfo[0] ?? null;
+                $code ??= $current->getPrevious()->errorInfo[1] ?? null;
+            }
+            if (in_array($state, ['08001', '08003', '08004', '08S01'], true) || ($state === 'HY000' && in_array((int) $code, [2002, 2003, 2006, 2013], true))) {
+                return true;
+            }
+            if (preg_match('/^SQLSTATE\\[(?:08001|08003|08004|08S01)\\]|^SQLSTATE\\[HY000\\](?:: General error:)?(?: \\[)?(?:2002|2003|2006|2013)(?:\\])?\\b/i', $current->getMessage())) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
