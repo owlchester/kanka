@@ -75,7 +75,7 @@ class StoreCalendar extends FormRequest
             'current_day' => 'nullable|integer|min:1',
             'suffix' => 'nullable|string|max:45',
             'skip_year_zero' => 'nullable|boolean',
-            'reset' => 'nullable|integer',
+            'reset' => 'nullable|in:month,year',
             'is_incrementing' => 'nullable|boolean',
             'leap_year_month' => 'nullable|integer|min:1',
             'show_birthdays' => 'boolean',

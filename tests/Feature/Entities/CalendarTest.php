@@ -198,6 +198,27 @@ it('UPDATES a valid calendar without a name')
     ->assertStatus(200)
     ->assertJsonFragment(['type' => 'Magic']);
 
+it('saves supported weekly reset values', function (string $reset) {
+    $this->asUser()->withCampaign();
+    $calendar = Calendar::factory()->create(['campaign_id' => 1, 'reset' => 'month']);
+
+    $this->putJson('/api/1.0/campaigns/1/calendars/' . $calendar->id, ['reset' => $reset])
+        ->assertSuccessful();
+
+    expect($calendar->fresh()->reset)->toBe($reset === '' ? null : $reset);
+})->with(['month', 'year', 'None' => '']);
+
+it('rejects an unsupported weekly reset value', function () {
+    $this->asUser()->withCampaign();
+    $calendar = Calendar::factory()->create(['campaign_id' => 1, 'reset' => 'month']);
+
+    $this->putJson('/api/1.0/campaigns/1/calendars/' . $calendar->id, ['reset' => 'week'])
+        ->assertUnprocessable()
+        ->assertJsonValidationErrors('reset');
+
+    expect($calendar->fresh()->reset)->toBe('month');
+});
+
 it('DELETES a calendar')
     ->asUser()
     ->withCampaign()
