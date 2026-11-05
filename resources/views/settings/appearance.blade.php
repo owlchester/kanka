@@ -28,8 +28,7 @@ $highlightClass = 'shadow-xs border-primary border-solid border-2';
                         </a>
                     </div>
                     <x-helper>
-                        <p>{{ __('settings/appearance.helpers.theme')}}</p>
-                        <p>{{ __('settings/appearance.helpers.overridable')}}</p>
+                        <p>{{ __('settings/appearance.helpers.theme')}} {{ __('settings/appearance.helpers.overridable')}}</p>
                     </x-helper>
                     <x-forms.select
                         name="theme"
@@ -95,7 +94,9 @@ $highlightClass = 'shadow-xs border-primary border-solid border-2';
                         <x-icon class="fa-regular fa-pen-to-square" />
                         {{ __('settings/appearance.fields.entry-forms') }}
                     </div>
-                    <p class="text-sm grow">{{ __('settings/appearance.helpers.entry-forms') }}</p>
+                    <x-helper>
+                        <p>{{ __('settings/appearance.helpers.entry-forms') }}</p>
+                    </x-helper>
                     <x-forms.select name="entry_form_layout" :options="[
                         'legacy' => __('settings/appearance.entry-forms.legacy'),
                         'modern' => __('settings/appearance.entry-forms.modern'),
