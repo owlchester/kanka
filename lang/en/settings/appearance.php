@@ -24,7 +24,7 @@ return [
             'tiptap'    => 'This is our new experimental text editor that is actively being worked on and updated regularly. It doesn\'t yet contain all the features you might be accustomed to.',
         ],
         'legacy'    => 'Legacy (:name)',
-        'tiptap'    => 'Experimental 2026',
+        'tiptap'    => 'Modern (:name)',
     ],
     'explore'           => [
         'grid'  => 'Grid (default)',

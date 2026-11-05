@@ -22,10 +22,10 @@ class AppearanceController extends Controller
         $editorOptions = [
             '' => __('settings/appearance.editors.default', ['name' => 'Summernote']),
         ];
-        if (! app()->isProduction() || auth()->user()->created_at->isBefore('2023-01-09 12:00:00')) {
+        $editorOptions['tiptap'] = __('settings/appearance.editors.tiptap', ['name' => 'TipTap']);
+        if (! app()->isProduction() || auth()->user()->created_at->isBefore('2022-12-23 00:00:00')) {
             $editorOptions['legacy'] = __('settings/appearance.editors.legacy', ['name' => 'TinyMCE 4']);
         }
-        $editorOptions['tiptap'] = __('settings/appearance.editors.tiptap');
 
         return view('settings.appearance')
             ->with('highlight', $highlight)
