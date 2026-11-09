@@ -6,6 +6,18 @@ window.onReady(() => {
         const target = workspace.dataset.workspaceTab;
         workspace.querySelectorAll('.tab-pane').forEach(pane => pane.classList.toggle('active', pane.id === `form-${target}`));
         workspace.querySelectorAll('.nav-tabs > li').forEach(tab => tab.classList.toggle('active', tab.classList.contains(`tab-${target}`)));
+
+        if (workspace.querySelector('.tiptap-editor')) {
+            // Use the document position so scrolling doesn't resize the writing panel.
+            const updateHeight = () => {
+                const top = workspace.getBoundingClientRect().top + window.scrollY;
+                workspace.style.setProperty('--workspace-top', `${top}px`);
+            };
+            updateHeight();
+            window.addEventListener('resize', updateHeight);
+            const observer = new ResizeObserver(updateHeight);
+            observer.observe(document.querySelector('.content-wrapper'));
+        }
     });
 
     document.querySelectorAll('.entry-workspace-inspector-toggle').forEach(toggle => {

@@ -130,13 +130,28 @@
     }
 
     .entry-workspace-description {
+        .note-editor.note-frame,
+        .note-editor.note-airframe {
+            border: 0 !important;
+            padding: 0;
+        }
+
+        .note-editable {
+            padding: 0;
+        }
+
         .tiptap.ProseMirror, .note-editable {
             min-height: 26rem;
         }
 
         .tiptap.ProseMirror {
             border-color: transparent;
-            padding-inline: .25rem;
+            margin-bottom: 0;
+
+            &:focus {
+                outline: none;
+                box-shadow: none;
+            }
         }
 
         .mce-edit-area iframe {
@@ -148,7 +163,114 @@
         }
     }
 
+    .entry-workspace-story:has(.tiptap-editor) {
+        padding: 0;
+
+        .tiptap.ProseMirror,
+        .source-editor-content .cm-content {
+            padding: 1rem;
+        }
+
+        .tiptap-editor > p {
+            margin-inline: 1rem;
+        }
+
+        .entry-workspace-description > a {
+            display: none;
+        }
+    }
+
+    @media (min-width: 48rem) {
+        .entry-workspace-story:has(.tiptap-editor) {
+            .tiptap.ProseMirror,
+            .source-editor-content .cm-content {
+                padding: 2rem;
+            }
+
+            .tiptap-editor > p {
+                margin-inline: 2rem;
+            }
+        }
+    }
+
     @media (min-width: 64rem) {
+        &:has(#form-entry.active .tiptap-editor) {
+            display: flex;
+            flex-direction: column;
+            height: max(32rem, calc(100dvh - var(--workspace-top, 0px) - 1rem));
+
+            > .entry-workspace-toolbar,
+            > .entry-workspace-identity,
+            > .entry-workspace-navigation {
+                flex-shrink: 0;
+            }
+
+            > .tab-content {
+                display: flex;
+                flex: 1;
+                min-height: 0;
+            }
+
+            #form-entry.active {
+                display: flex;
+                width: 100%;
+                min-height: 0;
+            }
+
+            .entry-workspace-columns {
+                flex: 1;
+                min-width: 0;
+                min-height: 0;
+                grid-template-rows: minmax(0, 1fr);
+            }
+
+            .entry-workspace-story,
+            .entry-workspace-description,
+            .field-entry,
+            .tiptap-editor,
+            .tiptap-content,
+            .source-editor,
+            .source-editor-content {
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+                min-width: 0;
+                min-height: 0;
+            }
+
+            .tiptap.ProseMirror {
+                flex: 1;
+                min-height: 0;
+                max-height: none;
+                overscroll-behavior-y: contain;
+            }
+
+            .source-editor-toolbar {
+                flex-shrink: 0;
+            }
+
+            .source-editor-content {
+                max-height: none;
+                overflow: hidden;
+
+                .cm-editor {
+                    flex: 1;
+                    min-height: 0;
+                    max-height: none;
+                }
+
+                .cm-scroller {
+                    overscroll-behavior-y: contain;
+                }
+            }
+
+            .entry-workspace-inspector {
+                min-height: 0;
+                overflow-y: auto;
+                overscroll-behavior-y: contain;
+            }
+        }
+
         &:has(.nav-tabs > .tab-entry.active) .entry-workspace-inspector-toggle {
             display: flex;
         }

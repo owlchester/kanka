@@ -543,7 +543,7 @@
             </bubble-menu>
         </template>
 
-        <editor-content :editor="editor" class="" />
+        <editor-content :editor="editor" class="tiptap-content" />
 
         <p v-if="showHelperText" class="text-neutral-content text-xs mt-2 flex items-center gap-5">
             <span>
