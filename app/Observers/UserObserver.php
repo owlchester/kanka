@@ -69,7 +69,10 @@ class UserObserver
     public function creating(User $user)
     {
         $user->locale = LaravelLocalization::getCurrentLocale();
-        $settings = [];
+        $settings = array_merge([
+            'editor' => 'tiptap',
+            'entry_form_layout' => 'modern',
+        ], $user->settings ?? []);
 
         if (session()->has('tracking')) {
             $settings['tracking'] = session()->get('tracking');
@@ -80,9 +83,7 @@ class UserObserver
             $settings['invited'] = true;
         }
 
-        if (count($settings) > 0) {
-            $user->settings = $settings;
-        }
+        $user->settings = $settings;
     }
 
     public function created(User $user)

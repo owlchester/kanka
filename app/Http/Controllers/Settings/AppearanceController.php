@@ -20,9 +20,9 @@ class AppearanceController extends Controller
         $from = request()->get('from');
 
         $editorOptions = [
-            '' => __('settings/appearance.editors.default', ['name' => 'Summernote']),
+            'tiptap' => __('settings/appearance.editors.tiptap', ['name' => 'TipTap']),
+            '' => __('settings/appearance.editors.classic', ['name' => 'Summernote']),
         ];
-        $editorOptions['tiptap'] = __('settings/appearance.editors.tiptap', ['name' => 'TipTap']);
         if (! app()->isProduction() || auth()->user()->created_at->isBefore('2022-12-23 00:00:00')) {
             $editorOptions['legacy'] = __('settings/appearance.editors.legacy', ['name' => 'TinyMCE 4']);
         }

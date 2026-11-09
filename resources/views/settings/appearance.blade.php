@@ -98,8 +98,8 @@ $highlightClass = 'shadow-xs border-primary border-solid border-2';
                         <p>{{ __('settings/appearance.helpers.entry-forms') }}</p>
                     </x-helper>
                     <x-forms.select name="entry_form_layout" :options="[
-                        'legacy' => __('settings/appearance.entry-forms.legacy'),
                         'modern' => __('settings/appearance.entry-forms.modern'),
+                        'legacy' => __('settings/appearance.entry-forms.legacy'),
                     ]" :selected="old('entry_form_layout', auth()->user()->entry_form_layout)" class="self-end w-full border rounded p-2" />
                 </div>
 
@@ -126,6 +126,10 @@ $highlightClass = 'shadow-xs border-primary border-solid border-2';
 
                         <x-helper class="text-xs" x-show="editor === 'legacy'" x-cloak>
                             <p>{{ __('settings/appearance.editors.helpers.legacy') }}</p>
+                        </x-helper>
+
+                        <x-helper class="text-xs" x-show="editor === ''" x-cloak>
+                            <p>{{ __('settings/appearance.editors.helpers.summernote') }}</p>
                         </x-helper>
 
                         <x-helper class="text-xs" x-show="editor === 'tiptap'" x-cloak>
