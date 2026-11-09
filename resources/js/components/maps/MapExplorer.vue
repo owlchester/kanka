@@ -207,6 +207,7 @@
             :presets="data.presets"
             :preset-store-url="data.map.preset_store_url"
             :can-manage-presets="data.can_manage_presets"
+            :legacy-pins="data.map.settings?.legacy_pins"
             :rapid="rapid"
             @close="handlePanelClose"
             @created="onPinCreated"
@@ -218,6 +219,7 @@
             @visibility-change="handleVisibilityChange"
             @colour-change="handleColourChange"
             @opacity-change="handleOpacityChange"
+            @pin-size-change="handlePinSizeChange"
             @name-change="handleNameChange"
             @entry-change="handleEntryChange"
             @border-colour-change="handleBorderColourChange"
@@ -574,6 +576,10 @@ function handleOpacityChange(opacity) {
     patchActivePin({ opacity });
 }
 
+function handlePinSizeChange(pinSize) {
+    patchActivePin({ pinSize, pin_size: pinSize });
+}
+
 function handlePresetChange(patch) {
     patchActivePin(patch);
 }
@@ -798,6 +804,8 @@ function toEditingPin(pin) {
         customIcon: pin.custom_icon,
         isDraggable: pin.is_draggable,
         css: pin.css,
+        pinSize: pin.pin_size,
+        pin_size: pin.pin_size,
         customShape: pin.custom_shape,
         polygonStyle: pin.polygon_style,
         circleRadius: pin.circle_radius,

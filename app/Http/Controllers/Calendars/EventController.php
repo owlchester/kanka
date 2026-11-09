@@ -32,14 +32,8 @@ class EventController extends Controller
     use HasDatagrid;
     use HasSubview;
 
-    protected CalendarService $service;
-
-    protected LengthValidatorService $lengthValidatorService;
-
-    public function __construct(CalendarService $calendarService, LengthValidatorService $lengthValidatorService)
+    public function __construct(protected CalendarService $calendarService, protected LengthValidatorService $lengthValidatorService)
     {
-        $this->service = $calendarService;
-        $this->lengthValidatorService = $lengthValidatorService;
     }
 
     public function index(Campaign $campaign, Calendar $calendar)
@@ -137,7 +131,7 @@ class EventController extends Controller
 
         // We need to handle negative year dates (start with -)
         try {
-            $link = $this->service
+            $link = $this->calendarService
                 ->user($request->user())
                 ->campaign($campaign)
                 ->calendar($calendar)

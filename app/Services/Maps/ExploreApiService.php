@@ -236,6 +236,7 @@ class ExploreApiService
             'stroke_normal' => __('maps/explorer.marker.stroke_normal'),
             'stroke_bold' => __('maps/explorer.marker.stroke_bold'),
             'opacity' => __('maps/markers.fields.opacity'),
+            'pin_size' => __('maps/markers.fields.pin_size'),
             'custom' => __('maps/markers.circle_sizes.custom'),
             'icons' => [
                 'pin' => __('maps/markers.icons.marker'),
