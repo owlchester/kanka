@@ -119,6 +119,7 @@ class CalendarService
             }
             $event = app(StandardEntityCreationService::class)
                 ->campaign($this->campaign)
+                ->user($this->user)
                 ->entityType($entityType)
                 ->create([
                     'name' => Str::after($data['name'], 'new:'),
