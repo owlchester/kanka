@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Campaigns;
 
 use App\Models\Campaign;
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -14,9 +15,10 @@ class SaveSidebarLayoutRequest extends FormRequest
     public function authorize(): bool
     {
         $campaign = $this->route('campaign');
+        $user = $this->user();
 
-        return $campaign instanceof Campaign && $campaign->boosted()
-            && $this->user()?->can('update', $campaign) && $this->user()?->can('admin', $campaign);
+        return $campaign instanceof Campaign && $campaign->boosted() && $user instanceof User
+            && $user->can('update', $campaign) && $user->can('admin', $campaign);
     }
 
     public function rules(): array

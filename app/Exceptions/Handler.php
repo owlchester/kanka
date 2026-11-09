@@ -138,8 +138,8 @@ class Handler extends ExceptionHandler
                 continue;
             }
 
-            $state = $current instanceof PDOException ? ($current->errorInfo[0] ?? null) : null;
-            $code = $current instanceof PDOException ? ($current->errorInfo[1] ?? null) : null;
+            $state = $current->errorInfo[0] ?? null;
+            $code = $current->errorInfo[1] ?? null;
             if ($current instanceof QueryException && $current->getPrevious() instanceof PDOException) {
                 $state ??= $current->getPrevious()->errorInfo[0] ?? null;
                 $code ??= $current->getPrevious()->errorInfo[1] ?? null;
