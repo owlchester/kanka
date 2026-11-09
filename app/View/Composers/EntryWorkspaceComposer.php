@@ -4,6 +4,7 @@ namespace App\View\Composers;
 
 use App\Models\Calendar;
 use App\Models\Entity;
+use App\Services\Calendars\RecurrenceOptionsService;
 use App\Services\Entity\EntryDateService;
 use Illuminate\View\View;
 
@@ -25,7 +26,8 @@ class EntryWorkspaceComposer
         }
         $calendars = collect();
         $rows = [];
-        if ($campaign->enabled('calendars') && EntryDateService::types($entityType->id)) {
+        $hasCalendarReminder = $entityType->isStandardCode('quest') || $entityType->isStandardCode('journal') || $entityType->isStandardCode('event');
+        if ($campaign->enabled('calendars') && (EntryDateService::types($entityType->id) || $hasCalendarReminder)) {
             $calendars = Calendar::where('campaign_id', $campaign->id)->with('entity')->get()
                 ->filter(fn (Calendar $calendar) => $calendar->entity && auth()->user()->can('update', $calendar->entity));
             foreach (EntryDateService::types($entityType->id) as $key => $type) {
@@ -44,6 +46,7 @@ class EntryWorkspaceComposer
         }
         $options = $calendars->mapWithKeys(fn (Calendar $calendar) => [$calendar->id => [
             'months' => array_column($calendar->months ?? [], 'name'),
+            'recurrence' => app(RecurrenceOptionsService::class)->forSelect($calendar),
             'current' => empty($calendar->date) ? null : [
                 'year' => $calendar->currentYear(),
                 'month' => $calendar->currentMonth(),
@@ -51,5 +54,9 @@ class EntryWorkspaceComposer
             ],
         ]]);
         $view->with('dateCalendars', $calendars)->with('dateRows', $rows)->with('dateCalendarOptions', $options);
+        $calendarReminder = $dateEntity?->calendarReminder();
+        $calendarLocked = (bool) ($dateEntity && ($dateEntity->hasCalendarButNoAccess() || ($calendarReminder && ! $calendars->contains('id', $calendarReminder->calendar_id))));
+        $view->with('workspaceCalendarReminder', $calendarReminder)
+            ->with('workspaceCalendarLocked', $calendarLocked);
     }
 }

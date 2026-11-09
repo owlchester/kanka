@@ -308,6 +308,63 @@ it('renders modern standard entry forms without duplicating shared fields', func
     ['timelines', Timeline::class],
 ]);
 
+it('renders the modern calendar reminder controls for quest journal and event forms', function (string $module, string $modelClass) {
+    $this->asUser()->withCampaign();
+    CampaignSetting::where('campaign_id', 1)->firstOrFail()->update(['calendars' => true]);
+    $calendar = Calendar::factory()->create(['campaign_id' => 1, 'moons' => [['id' => 4, 'name' => 'Luna']]]);
+    $model = $modelClass::factory()->create(['campaign_id' => 1]);
+
+    foreach ([route($module . '.create', [1]), route('entities.edit', [1, $model->entity])] as $url) {
+        $html = $this->get($url)->assertSuccessful()
+            ->assertSee('entry-calendar-reminder-heading', false)
+            ->assertSee('name="calendar_id"', false)
+            ->assertSee('name="calendar_year"', false)
+            ->assertSee('name="calendar_month"', false)
+            ->assertSee('name="calendar_day"', false)
+            ->assertSee('name="calendar_length"', false)
+            ->assertSee('name="calendar_colour"', false)
+            ->assertSee('name="calendar_recurring_periodicity"', false)
+            ->assertDontSee('name="calendar_is_recurring"', false)
+            ->assertSee('name="calendar_recurrence_from_periodicity"', false)
+            ->assertSee('data-calendars=', false)
+            ->assertSee('data-date-recurrence', false)
+            ->assertDontSee('entity-calendar-form-add', false)
+            ->getContent();
+        expect(substr_count($html, 'name="calendar_id"'))->toBe(1)
+            ->and($html)->toContain('value="' . $calendar->id . '"')
+            ->and($html)->toMatch('/<input[^>]*name="calendar_colour"[^>]*class="[^"]*\bspectrum\b/');
+    }
+})->with([
+    ['quests', Quest::class],
+    ['journals', Journal::class],
+    ['events', Event::class],
+]);
+
+it('derives modern reminder recurrence from the selected periodicity', function (?string $periodicity, bool $recurring) {
+    $this->asUser()->withCampaign();
+    $calendar = Calendar::factory()->create(['campaign_id' => 1, 'date' => '1200-6-15']);
+    $quest = Quest::factory()->create(['campaign_id' => 1]);
+
+    $this->patch(route('entities.update', [1, $quest->entity]), [
+        'name' => $quest->name,
+        'calendar_id' => $calendar->id,
+        'calendar_year' => 1200,
+        'calendar_month' => 6,
+        'calendar_day' => 15,
+        'calendar_recurrence_from_periodicity' => 1,
+        'calendar_recurring_periodicity' => $periodicity,
+    ])->assertRedirect()->assertSessionHasNoErrors();
+
+    $reminder = $quest->entity->calendarReminder();
+    expect($reminder)->not->toBeNull()
+        ->and($reminder->is_recurring)->toBe($recurring)
+        ->and($reminder->recurring_periodicity)->toBe($periodicity);
+})->with([
+    'none' => [null, false],
+    'yearly' => ['year', true],
+    'moon phase' => ['4_fullmoon', true],
+]);
+
 it('uses the shared modern workspace for custom modules', function () {
     $this->asUser()->withCampaign(['boost_count' => 4]);
     $type = new EntityType(['code' => 'gadget', 'is_special' => true, 'is_enabled' => true]);

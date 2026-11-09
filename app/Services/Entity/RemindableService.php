@@ -68,8 +68,10 @@ class RemindableService
         $reminder->month = (int) $this->request->post('calendar_month', '1');
         $reminder->day = (int) $this->request->post('calendar_day', '1');
         $reminder->length = $length;
-        $reminder->is_recurring = (bool) $this->request->post('calendar_is_recurring');
         $reminder->recurring_periodicity = $this->request->post('calendar_recurring_periodicity');
+        $reminder->is_recurring = $this->request->has('calendar_recurrence_from_periodicity')
+            ? ! empty($reminder->recurring_periodicity)
+            : (bool) $this->request->post('calendar_is_recurring');
         $reminder->colour = $this->request->post('calendar_colour', '#cccccc');
         $reminder->type_id = EntityEventTypes::calendarDate;
         try {

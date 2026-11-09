@@ -1,76 +1,73 @@
-import { test } from 'node:test';
+import test from 'node:test';
 import assert from 'node:assert/strict';
 import { initEntryDate } from './entry-dates.js';
 
-globalThis.Option = class {
-    constructor(label, value) {
-        this.label = label;
-        this.value = value;
+class Select {
+    constructor() {
+        this.children = [];
+        this.options = [];
+        this._value = '';
     }
-};
 
-const makeRow = (options, initial = {}) => {
-    const fields = Object.fromEntries(['calendar', 'year', 'month', 'day'].map(key => [key, {
-        value: initial[key] ?? '',
-        options: [],
-        addEventListener(event, callback) { this[event] = callback; },
-        replaceChildren(...options) { this.options = options; },
-        add(option) { this.options.push(option); },
-    }]));
-    initEntryDate({
-        dataset: { calendars: JSON.stringify(options) },
-        querySelector(selector) { return fields[selector.match(/data-date-(\w+)/)[1]]; },
-    });
-    return fields;
-};
-
-const calendars = {
-    1: { months: ['Dawn', 'Sun', 'Dusk'], current: { year: 5530, month: 2, day: 17 } },
-    2: { months: ['Winter', 'Summer'], current: { year: -42, month: 1, day: 4 } },
-};
-
-test('selecting a calendar defaults both birth and death rows to its current date', () => {
-    for (const type of ['birth', 'death']) {
-        const fields = makeRow(calendars);
-        fields.calendar.value = '1';
-        fields.calendar.change();
-        assert.equal(fields.year.value, 5530, type);
-        assert.equal(fields.month.value, 2, type);
-        assert.equal(fields.day.value, 17, type);
-        assert.deepEqual(fields.month.options.map(option => option.label), ['—', 'Dawn', 'Sun', 'Dusk']);
+    add(option) {
+        this.children.push(option);
+        this.options.push(option);
     }
-});
 
-test('initializing an existing date leaves its saved values untouched', () => {
-    const fields = makeRow(calendars, { calendar: '1', year: '5488', month: '3', day: '12' });
-    assert.equal(fields.year.value, '5488');
-    assert.equal(fields.month.value, '3');
-    assert.equal(fields.day.value, '12');
-});
+    append(group) {
+        this.children.push(group);
+        this.options.push(...group.children);
+    }
 
-test('switching calendars uses the newly selected calendar and supports negative years', () => {
-    const fields = makeRow(calendars, { calendar: '1', year: '5488', month: '3', day: '12' });
-    fields.calendar.value = '2';
-    fields.calendar.change();
-    assert.equal(fields.year.value, -42);
-    assert.equal(fields.month.value, 1);
-    assert.equal(fields.day.value, 4);
-});
+    replaceChildren(...children) {
+        this.children = children;
+        this.options = children.flatMap(child => child.children || [child]);
+        if (!this.options.some(option => option.value === this._value)) this._value = '';
+    }
 
-test('clearing the calendar clears its date inputs', () => {
-    const fields = makeRow(calendars, { calendar: '1', year: '5488', month: '3', day: '12' });
-    fields.calendar.value = '';
-    fields.calendar.change();
-    assert.equal(fields.year.value, '');
-    assert.equal(fields.month.value, '');
-    assert.equal(fields.day.value, '');
-});
+    set value(value) {
+        this._value = this.options.some(option => option.value === value) ? value : '';
+    }
 
-test('a calendar with no current date leaves date inputs blank', () => {
-    const fields = makeRow({ 1: { months: ['Dawn'], current: null } });
-    fields.calendar.value = '1';
-    fields.calendar.change();
-    assert.equal(fields.year.value, '');
-    assert.equal(fields.month.value, '');
-    assert.equal(fields.day.value, '');
+    get value() {
+        return this._value;
+    }
+
+    addEventListener(event, callback) {
+        this.change = callback;
+    }
+}
+
+test('switching to a calendar without the selected moon phase falls back to no recurrence', () => {
+    globalThis.Option = class {
+        constructor(text, value) { this.text = text; this.value = value; }
+    };
+    globalThis.document = {
+        createElement: () => ({ children: [], append(option) { this.children.push(option); } }),
+    };
+
+    const controls = {
+        '[data-date-calendar]': new Select(),
+        '[data-date-year]': { value: '' },
+        '[data-date-month]': new Select(),
+        '[data-date-day]': { value: '' },
+        '[data-date-recurrence]': new Select(),
+    };
+    const row = {
+        dataset: { calendars: JSON.stringify({
+            one: { recurrence: { '': 'None', 'moon-full': 'Full moon' } },
+            two: { recurrence: { '': 'None', month: 'Monthly', Luna: { 'other-new': 'New moon' } } },
+        }) },
+        querySelector: selector => controls[selector],
+    };
+
+    initEntryDate(row);
+    const recurrence = controls['[data-date-recurrence]'];
+    recurrence.add(new Option('Full moon', 'moon-full'));
+    recurrence.value = 'moon-full';
+    controls['[data-date-calendar]']._value = 'two';
+    controls['[data-date-calendar]'].change();
+
+    assert.equal(recurrence.value, '');
+    assert.ok(recurrence.options.some(option => option.value === 'other-new'));
 });

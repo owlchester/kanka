@@ -11,4 +11,6 @@
 
 @include('cruds.fields.tags')
 
-@include('cruds.forms._calendar', ['source' => $source])
+@unless ($workspaceFields ?? false)
+    @include('cruds.forms._calendar', ['source' => $source])
+@endunless

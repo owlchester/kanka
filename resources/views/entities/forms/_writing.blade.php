@@ -26,6 +26,9 @@
             @if (!empty($dateRows) && ($dateCalendars->isNotEmpty() || collect($dateRows)->contains('editable', false)))
                 @include('entities.forms._dates')
             @endif
+            @if ($entityType->isStandardCode('quest') || $entityType->isStandardCode('journal') || $entityType->isStandardCode('event'))
+                @include('entities.forms._calendar-reminder')
+            @endif
         </section>
         @endif
 
