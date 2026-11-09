@@ -7,6 +7,7 @@ export interface MentionOptions {
     HTMLAttributes: Record<string, any>
     renderLabel: (props: { options: MentionOptions; node: any }) => string
     suggestion: any
+    resolveEntity: (id: string) => any
 }
 
 export const MentionPluginKey = new PluginKey('mention')
@@ -17,6 +18,7 @@ export const Mention = Node.create<MentionOptions>({
     addOptions() {
         return {
             HTMLAttributes: {},
+            resolveEntity: () => null,
             renderLabel({ options, node }) {
                 // Use label if set, otherwise fall back to name (from data-name attribute)
                 return node.attrs.label || node.attrs.name || node.attrs.id
@@ -95,7 +97,6 @@ export const Mention = Node.create<MentionOptions>({
                 default: null,
                 parseHTML: element => element.getAttribute('data-label'),
                 renderHTML: attributes => {
-                    return {}
                     if (!attributes.label) {
                         return {}
                     }
@@ -142,7 +143,7 @@ export const Mention = Node.create<MentionOptions>({
 
             image: {
                 default: null,
-                parseHTML: element => element.getAttribute('data-image'),
+                parseHTML: element => this.options.resolveEntity(element.getAttribute('data-id'))?.image || element.getAttribute('data-image'),
                 renderHTML: attributes => {
                     return {}
                     if (!attributes.image) {
@@ -157,13 +158,14 @@ export const Mention = Node.create<MentionOptions>({
 
             imageAlt: {
                 default: null,
-                parseHTML: element => element.getAttribute('data-image-alt'),
+                parseHTML: element => this.options.resolveEntity(element.getAttribute('data-id'))?.image_alt || element.getAttribute('data-image-alt'),
                 renderHTML: () => ({}),
             },
 
             entity: {
                 default: null,
-                parseHTML: element => element.getAttribute('data-entity'),
+                // Resolve against the destination editor rather than trusting clipboard entity data.
+                parseHTML: element => this.options.resolveEntity(element.getAttribute('data-id')),
                 renderHTML: attributes => {
                     return {}
                 }
@@ -171,7 +173,7 @@ export const Mention = Node.create<MentionOptions>({
 
             url: {
                 default: null,
-                parseHTML: element => element.getAttribute('data-url'),
+                parseHTML: element => this.options.resolveEntity(element.getAttribute('data-id'))?.url || element.getAttribute('data-url'),
                 renderHTML: attributes => {
                     return {}
                     if (!attributes.url) {
@@ -203,6 +205,9 @@ export const Mention = Node.create<MentionOptions>({
 
     parseHTML() {
         return [
+            {
+                tag: 'a[data-mention]',
+            },
             {
                 tag: `span[data-mention]`,
             },

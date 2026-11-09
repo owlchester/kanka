@@ -15,6 +15,7 @@
     import { Mention } from './extensions/mentions/Mention'
     import suggestion from './extensions/mentions/suggestion'
     import { MentionParser } from './extensions/mentions/MentionParser'
+    import { createMentionEntityLoader } from './extensions/mentions/entityLoader.js'
     import { SlashCommand } from './extensions/slashcommand/SlashCommand'
     import slashCommandSuggestion from './extensions/slashcommand/suggestion'
     import { Gallery } from './extensions/gallery/Gallery'
@@ -114,6 +115,16 @@
         }
     }
 
+    const mentionEntityLoader = createMentionEntityLoader({
+        getEditor: () => editor.value,
+        getEntities: () => mentions.value,
+        addEntity: addEntityToMentions,
+        fetchEntities: async (ids) => {
+            const response = await axios.post(props.mentions, { entities: ids, posts: [] })
+            return response.data
+        },
+    })
+
     const extensions = [
         StarterKit.configure({
             link: false,
@@ -194,6 +205,7 @@
     if (props.mentions) {
         extensions.push(
             Mention.configure({
+                resolveEntity: id => mentions.value.find(e => e.id === parseInt(id)) || null,
                 HTMLAttributes: {
                     class: 'mention',
                 },
@@ -242,6 +254,9 @@
             isFocused.value = false
         },
         onUpdate: ({ editor }) => {
+            if (props.mentions) {
+                void mentionEntityLoader.load()
+            }
             // Convert data-table-class to class for new tables, preserve existing classes
             html.value = editor.getHTML().replace(
                 /<table([^>]*) data-table-class="([^"]+)"([^>]*)>/g,
@@ -319,7 +334,8 @@
                 }
 
                 const mentionPattern = /\[([a-zA-Z_]+):(\d+)(?:\|[^\]]+)?\]/
-                if (mentionPattern.test(plainText)) {
+                // Keep rich-text pastes on Tiptap's default path, even when they contain mentions.
+                if (!htmlText && mentionPattern.test(plainText)) {
                     editor.value?.commands.insertContent(plainText)
                     return true
                 }
@@ -365,7 +381,7 @@
     const serializeMentionToText = (node: any): string => {
         const config = node.attrs.config
         const id = node.attrs.id
-        const type = node.attrs.type
+        const type = node.attrs.mention?.match(/\[?([a-zA-Z_]+):/)?.[1]
 
         const parts = [`${type}:${id}`]
 
@@ -427,7 +443,7 @@
                     entities: entityIds,
                     posts: postIds,
                 }).then(res => {
-                    mentions.value = res.data
+                    res.data.forEach(addEntityToMentions)
                     // Re-set content to trigger MentionParser with loaded mentions
                     editor.value?.commands.setContent(props.content)
                 })
@@ -436,6 +452,7 @@
     })
 
     onBeforeUnmount(() => {
+        mentionEntityLoader.destroy()
         window.removeEventListener('tiptap:source-mode', enterSourceMode)
         editor?.value.destroy()
     })
