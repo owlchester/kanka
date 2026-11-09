@@ -7,6 +7,7 @@ use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\Models\EntityType;
 use App\Services\Campaign\DefaultImageService;
+use App\Services\Campaign\Sidebar\LayoutService;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
 use App\Traits\RequestAware;
@@ -139,7 +140,10 @@ class EntityTypeService
         $this->entityType->save();
 
         if ($this->entityType->wasRecentlyCreated) {
-            $this->permissions()->bookmark();
+            $this->permissions();
+            if (! app(LayoutService::class)->campaign($this->campaign)->enabled()) {
+                $this->bookmark();
+            }
         }
 
         if ($this->request->get('update_name')) {
