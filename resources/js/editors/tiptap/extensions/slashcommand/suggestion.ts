@@ -70,6 +70,24 @@ const tableHTML = `
   </table>`
 
 const commands: SlashCommandItem[] = [
+    ...(import.meta.env.DEV ? [{
+        title: 'Lorem',
+        description: 'Insert two paragraphs of placeholder text',
+        icon: 'fa-regular fa-file-lines',
+        searchTerms: ['lorem', 'ipsum', 'placeholder'],
+        command: (editor: Editor) => {
+            editor.chain().focus().insertContent([
+                {
+                    type: 'paragraph',
+                    content: [{ type: 'text', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque luctus quam lorem, ut iaculis nulla pellentesque eget. Sed sed ex tincidunt, interdum nisi vel, accumsan lectus. Etiam laoreet ligula ac urna pharetra blandit quis at sapien. Sed rutrum neque id tristique pulvinar. Vestibulum orci justo, imperdiet sit amet pellentesque imperdiet, feugiat at eros. Suspendisse dignissim imperdiet turpis id placerat. Sed consequat vulputate sem nec facilisis. Pellentesque arcu erat, lacinia sit amet metus id, bibendum tincidunt leo. Praesent quis ligula a neque suscipit euismod quis non justo. Suspendisse pharetra mauris non imperdiet aliquet. Sed quis erat eu sem ultrices consectetur. Fusce suscipit ornare elit eu mattis. Nullam dolor dolor, maximus sit amet urna sed, rhoncus imperdiet nulla. Aliquam tempus nisl metus, eu semper lectus semper eget.' }],
+                },
+                {
+                    type: 'paragraph',
+                    content: [{ type: 'text', text: 'Nunc a nulla tortor. Maecenas molestie cursus ligula ut molestie. Sed ultrices sem ut leo lobortis, vel ultrices ex facilisis. Duis sit amet magna non erat hendrerit ullamcorper at ac enim. Fusce eget ullamcorper nisi. Curabitur sed lorem in velit cursus efficitur. Fusce convallis egestas eros vitae eleifend. Etiam luctus interdum justo eu gravida. Nam euismod mi quam, vitae convallis magna pulvinar sed. Aenean condimentum dui vitae nibh ultricies, sed pretium ipsum ornare. Mauris ultricies ex hendrerit est porta pulvinar. Duis sagittis quis nulla ut eleifend. Duis hendrerit diam urna. Suspendisse eget sollicitudin neque. Sed porttitor sem nisi, eu sodales orci aliquam eget.' }],
+                },
+            ]).run()
+        },
+    }] : []),
     {
         title: 'Help',
         description: 'Open the editor documentation',
