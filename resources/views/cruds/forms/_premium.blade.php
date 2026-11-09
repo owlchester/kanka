@@ -11,6 +11,12 @@
         'upload'    => __('gallery.actions.upload'),
         'add_url'   => __('gallery.actions.add_url'),
         'change'    => __('gallery.actions.change'),
+        'change_focus' => __('entities/image.actions.change_focus'),
+        'save_focus' => __('entities/image.actions.save_focus'),
+        'remove_focus' => __('entities/image.actions.remove_focus'),
+        'focus_warning' => __('entities/image.focus.warning', ['gallery' => __('sidebar.gallery')]),
+        'focus_load_error' => __('entities/image.focus.load_error'),
+        'focus_save_error' => __('entities/image.focus.save_error'),
         'url_hint'  => __('gallery.actions.url_hint'),
         'drag_hint' => __('gallery.drop.hint'),
         'drop_hint' => __('gallery.drop.active'),
@@ -108,6 +114,7 @@
                 @php
                     $canUpload = isset($campaign) && auth()->user()->can('create', [\App\Models\Image::class, $campaign]);
                     $canBrowse = isset($campaign) && auth()->user()->can('browse', [\App\Models\Image::class, $campaign]);
+                    $canFocusHeader = !empty($entity) && $campaign->boosted() && auth()->user()->can('update', $entity);
 
                 @endphp
                 <div class="gallery-selection {{ ($coverLayout ?? false) ? 'w-full' : 'w-fit' }}">
@@ -122,6 +129,9 @@
                         browse="{{ route('gallery.browse', [$campaign]) }}"
                         can-upload="{{ $canUpload ? 'true' : 'false' }}"
                         can-browse="{{ $canBrowse ? 'true' : 'false' }}"
+                        can-focus="{{ $canFocusHeader ? 'true' : 'false' }}"
+                        focus-save="{{ $canFocusHeader ? route('entities.image.save-focus', [$campaign, $entity]) : '' }}"
+                        focus-data="{{ $canFocusHeader ? route('entities.image.focus-data', [$campaign, $entity, 'IMAGE_UUID']) : '' }}"
                         old="false"
                         i18n="{{ $translations }}"
                         premium="true"

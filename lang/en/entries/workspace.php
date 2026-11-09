@@ -6,8 +6,9 @@ return [
     'identity' => 'Identity',
     'connections' => 'Connections',
     'metadata' => 'Metadata',
-    'collapse' => 'Collapse sidebar',
-    'expand' => 'Expand sidebar',
+    'details' => 'Details',
+    'hide_details' => 'Hide details',
+    'show_details' => 'Show details',
     'trait_settings' => 'Display settings',
     'dates' => [
         'action' => 'Birth & death dates',

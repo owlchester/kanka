@@ -24,11 +24,34 @@
         border-bottom: 1px solid var(--workspace-divider);
     }
 
+    .entry-workspace-navigation .nav-tabs {
+        min-width: 0;
+    }
+
     .nav-tabs > li > a {
         padding: .85rem .75rem;
         white-space: nowrap;
         background: transparent;
         border-bottom: 2px solid transparent;
+    }
+
+    .entry-workspace-inspector-toggle {
+        display: none;
+        align-items: center;
+        gap: .5rem;
+        padding: .85rem .75rem;
+        white-space: nowrap;
+        background: transparent;
+        border: 0;
+        color: hsl(var(--bc) / .7);
+
+        &:hover, &:focus-visible {
+            color: hsl(var(--bc));
+        }
+
+        &[aria-expanded="true"] {
+            color: hsl(var(--bc));
+        }
     }
 
     .nav-tabs > li.active > a {
@@ -53,6 +76,7 @@
 
     .entry-workspace-inspector-section {
         border-top: 1px solid var(--workspace-divider);
+        margin-top: 1.5rem;
     }
 
     .entry-workspace-dates {
@@ -125,6 +149,10 @@
     }
 
     @media (min-width: 64rem) {
+        &:has(.nav-tabs > .tab-entry.active) .entry-workspace-inspector-toggle {
+            display: flex;
+        }
+
         .entry-workspace-columns {
             display: grid;
             grid-template-columns: minmax(0, 1fr) 20rem;
@@ -135,29 +163,14 @@
             border-left: 1px solid var(--workspace-divider);
         }
 
-        &.inspector-collapsed .entry-workspace-columns {
-            grid-template-columns: minmax(0, 1fr) 3rem;
-        }
-
         &.inspector-collapsed .entry-workspace-inspector {
-            padding-inline: .5rem;
-        }
-
-        &.inspector-collapsed .entry-workspace-inspector-content {
             display: none;
         }
 
-        &.inspector-collapsed .entry-workspace-inspector-toggle {
-            align-self: center;
+        &.inspector-collapsed .entry-workspace-columns {
+            grid-template-columns: minmax(0, 1fr);
         }
 
-        .entry-workspace-inspector-toggle .fa-angles-right {
-            transition: transform .15s ease;
-        }
-
-        &.inspector-collapsed .entry-workspace-inspector-toggle .fa-angles-right {
-            transform: rotate(180deg);
-        }
     }
 
     @media (max-width: 40rem) {

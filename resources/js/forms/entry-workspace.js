@@ -10,7 +10,7 @@ window.onReady(() => {
 
     document.querySelectorAll('.entry-workspace-inspector-toggle').forEach(toggle => {
         const workspace = toggle.closest('.entry-workspace');
-        const inspector = toggle.closest('.entry-workspace-inspector');
+        const inspector = workspace?.querySelector('.entry-workspace-inspector');
         const content = inspector?.querySelector('.entry-workspace-inspector-content');
         if (!workspace || !inspector || !content) return;
 
@@ -18,9 +18,10 @@ window.onReady(() => {
         const update = collapsed => {
             workspace.classList.toggle('inspector-collapsed', collapsed);
             toggle.setAttribute('aria-expanded', String(!collapsed));
-            toggle.querySelector('.entry-workspace-inspector-toggle-label').textContent = collapsed
-                ? toggle.dataset.expandLabel
-                : toggle.dataset.collapseLabel;
+            const label = collapsed ? toggle.dataset.collapsedLabel : toggle.dataset.expandedLabel;
+            toggle.setAttribute('aria-label', label);
+            toggle.setAttribute('data-title', label);
+            toggle._tippy?.setContent(label);
         };
 
         update(localStorage.getItem(storageKey) === 'true');

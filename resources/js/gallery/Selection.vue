@@ -284,7 +284,7 @@ import axios from "axios";
 import Browser from "./Browser.vue";
 import { createUploadRequest } from "./uploadRequest.js";
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
     file: string;
     url: string;
     accepts: string;
@@ -299,10 +299,14 @@ const props = defineProps<{
     canUpload: string;
     canBrowse: string;
     layout?: "cover";
-    canFocus: string;
-    focusSave: string;
-    focusData: string;
-}>();
+    canFocus?: string;
+    focusSave?: string;
+    focusData?: string;
+}>(), {
+    canFocus: "false",
+    focusSave: "",
+    focusData: "",
+});
 
 const loading = ref(true);
 const downloading = ref(false);
@@ -755,7 +759,7 @@ const saveFocusPoint = async () => {
             focus_x: focusCoordinates.value?.x ?? null,
             focus_y: focusCoordinates.value?.y ?? null,
         });
-        if (response.data.thumbnail) {
+        if (response.data.thumbnail && props.layout !== "cover") {
             currentThumbnail.value = response.data.thumbnail;
         }
         window.showToast(response.data.toast);

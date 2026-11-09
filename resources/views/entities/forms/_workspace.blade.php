@@ -63,14 +63,18 @@
         </div>
     </header>
 
-    <div class="px-4 md:px-8 overflow-x-auto entry-workspace-navigation">
-        <ul class="nav-tabs flex items-stretch" role="tablist">
+    <div class="px-4 md:px-8 entry-workspace-navigation flex items-center justify-between gap-3">
+        <ul class="nav-tabs flex items-stretch overflow-x-auto" role="tablist">
             @foreach ($workspaceTabs as $target => $label)
                 <li role="presentation" class="tab-{{ $target }} {{ $workspaceTab === $target ? 'active' : '' }}">
                     <a href="#form-{{ $target }}" aria-controls="form-{{ $target }}">{{ $label }}</a>
                 </li>
             @endforeach
         </ul>
+        <button type="button" class="entry-workspace-inspector-toggle shrink-0 cursor-pointer" aria-expanded="true" aria-controls="entry-workspace-inspector-content" aria-label="{{ __('entries/workspace.hide_details') }}" data-collapsed-label="{{ __('entries/workspace.show_details') }}" data-expanded-label="{{ __('entries/workspace.hide_details') }}" data-title="{{ __('entries/workspace.hide_details') }}" data-toggle="tooltip">
+            <x-icon class="fa-solid fa-table-columns" />
+            <span>{{ __('entries/workspace.details') }}</span>
+        </button>
     </div>
 
     <div class="tab-content">

@@ -4,7 +4,7 @@
     <x-forms.field field="age" :label="__('characters.fields.age')" :id="$fieldID">
         @if (!empty($dateRows) && ($dateCalendars->isNotEmpty() || collect($dateRows)->contains('editable', false)))
             <x-slot name="action">
-                <button type="button" class="text-link text-xs flex items-center gap-1" @click="showDates = !showDates" :aria-expanded="showDates" aria-controls="entry-calendar-dates">
+                <button type="button" class="text-link text-xs flex items-center gap-1 cursor-pointer" @click="showDates = !showDates; if (showDates) $nextTick(() => document.getElementById('entry-calendar-dates')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' }))" :aria-expanded="showDates" aria-controls="entry-calendar-dates">
                     <x-icon class="fa-regular fa-calendar" />
                     {{ __('entries/workspace.dates.action') }}
                 </button>
