@@ -275,7 +275,7 @@
     "isDynamicEntry": true
   },
   "resources/css/app.css": {
-    "file": "assets/app-D-v8A1s2.css",
+    "file": "assets/app-9ZqDpgAG.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -284,7 +284,7 @@
     ]
   },
   "resources/css/auth.css": {
-    "file": "assets/auth-0yqGrs65.css",
+    "file": "assets/auth-3aBG1rDh.css",
     "src": "resources/css/auth.css",
     "isEntry": true,
     "name": "auth",
@@ -311,7 +311,7 @@
     ]
   },
   "resources/css/front.css": {
-    "file": "assets/front-DQpPYRbL.css",
+    "file": "assets/front-CMhEZkg4.css",
     "src": "resources/css/front.css",
     "isEntry": true,
     "name": "front",
@@ -691,12 +691,12 @@
     "isEntry": true
   },
   "resources/js/forms/entry-workspace.js": {
-    "file": "assets/entry-workspace-BaDNDCR2.js",
+    "file": "assets/entry-workspace-D_aQ74aA.js",
     "name": "entry-workspace",
     "src": "resources/js/forms/entry-workspace.js",
     "isEntry": true,
     "css": [
-      "assets/entry-workspace-lShdeOdQ.css"
+      "assets/entry-workspace-BoqlrjKq.css"
     ]
   },
   "resources/js/front.js": {

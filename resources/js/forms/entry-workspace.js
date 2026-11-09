@@ -8,5 +8,28 @@ window.onReady(() => {
         workspace.querySelectorAll('.nav-tabs > li').forEach(tab => tab.classList.toggle('active', tab.classList.contains(`tab-${target}`)));
     });
 
+    document.querySelectorAll('.entry-workspace-inspector-toggle').forEach(toggle => {
+        const workspace = toggle.closest('.entry-workspace');
+        const inspector = toggle.closest('.entry-workspace-inspector');
+        const content = inspector?.querySelector('.entry-workspace-inspector-content');
+        if (!workspace || !inspector || !content) return;
+
+        const storageKey = 'entry-workspace-inspector-collapsed';
+        const update = collapsed => {
+            workspace.classList.toggle('inspector-collapsed', collapsed);
+            toggle.setAttribute('aria-expanded', String(!collapsed));
+            toggle.querySelector('.entry-workspace-inspector-toggle-label').textContent = collapsed
+                ? toggle.dataset.expandLabel
+                : toggle.dataset.collapseLabel;
+        };
+
+        update(localStorage.getItem(storageKey) === 'true');
+        toggle.addEventListener('click', () => {
+            const collapsed = !workspace.classList.contains('inspector-collapsed');
+            localStorage.setItem(storageKey, String(collapsed));
+            update(collapsed);
+        });
+    });
+
     document.querySelectorAll('[data-entry-date]').forEach(initEntryDate);
 });

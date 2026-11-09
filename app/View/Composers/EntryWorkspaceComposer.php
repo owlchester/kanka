@@ -43,7 +43,7 @@ class EntryWorkspaceComposer
             }
         }
         $options = $calendars->mapWithKeys(fn (Calendar $calendar) => [$calendar->id => [
-            'months' => array_column($calendar->months(), 'name'),
+            'months' => array_column($calendar->months ?? [], 'name'),
             'current' => empty($calendar->date) ? null : [
                 'year' => $calendar->currentYear(),
                 'month' => $calendar->currentMonth(),

@@ -3,8 +3,8 @@
 use App\Enums\CampaignVisibility;
 use App\Enums\EntityAssetType;
 use App\Http\Middleware\ReplicationSwitcher;
-use App\Models\Character;
 use App\Models\Calendar;
+use App\Models\Character;
 use App\Models\Entity;
 use App\Models\EntityAsset;
 use App\Models\EntityType;
@@ -97,6 +97,24 @@ it('shows the eras workspace tab and selects it from the form-eras query', funct
         ->assertSee('data-workspace-tab="eras"', false)
         ->assertSee('tab-eras active', false)
         ->assertSee('id="form-eras"', false);
+});
+
+it('renders entry date calendar options with populated and null months', function () {
+    $this->asUser()->withCampaign();
+    $user = auth()->user();
+    $user->settings = array_merge($user->settings ?? [], ['entry_form_layout' => 'modern']);
+    $user->save();
+
+    Calendar::factory()->create([
+        'campaign_id' => 1,
+        'months' => [['name' => 'First', 'length' => 30]],
+    ]);
+    Calendar::factory()->create(['campaign_id' => 1, 'months' => null]);
+    $character = Character::factory()->create(['campaign_id' => 1]);
+
+    $this->get(route('entities.edit', [1, $character->entity]))
+        ->assertSuccessful()
+        ->assertSee('First', false);
 });
 
 it('renders a character edit form when an organisation entity has been deleted', function () {

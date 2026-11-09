@@ -134,6 +134,30 @@
             border-top: 0;
             border-left: 1px solid var(--workspace-divider);
         }
+
+        &.inspector-collapsed .entry-workspace-columns {
+            grid-template-columns: minmax(0, 1fr) 3rem;
+        }
+
+        &.inspector-collapsed .entry-workspace-inspector {
+            padding-inline: .5rem;
+        }
+
+        &.inspector-collapsed .entry-workspace-inspector-content {
+            display: none;
+        }
+
+        &.inspector-collapsed .entry-workspace-inspector-toggle {
+            align-self: center;
+        }
+
+        .entry-workspace-inspector-toggle .fa-angles-right {
+            transition: transform .15s ease;
+        }
+
+        &.inspector-collapsed .entry-workspace-inspector-toggle .fa-angles-right {
+            transform: rotate(180deg);
+        }
     }
 
     @media (max-width: 40rem) {

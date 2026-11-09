@@ -12,6 +12,11 @@
     </div>
 
     <aside class="entry-workspace-inspector min-w-0 flex flex-col gap-6 p-4 md:p-6" aria-label="{{ __('entries/workspace.metadata') }}">
+        <button type="button" class="entry-workspace-inspector-toggle btn2 btn-ghost btn-sm self-end hidden lg:inline-flex" aria-expanded="true" aria-controls="entry-workspace-inspector-content" data-collapse-label="{{ __('entries/workspace.collapse') }}" data-expand-label="{{ __('entries/workspace.expand') }}">
+            <span class="entry-workspace-inspector-toggle-label">{{ __('entries/workspace.collapse') }}</span>
+            <x-icon class="fa-solid fa-angles-right" />
+        </button>
+        <div class="entry-workspace-inspector-content" id="entry-workspace-inspector-content">
         @if ($entityType->isCharacter())
             @include('characters.form._inspector')
         @else
@@ -43,5 +48,6 @@
                 </div>
             @endif
         </section>
+        </div>
     </aside>
 </div>
