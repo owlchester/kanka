@@ -9,6 +9,7 @@ use App\Models\Campaign;
 use App\Models\CampaignDashboard;
 use App\Models\CampaignDashboardWidget;
 use App\Models\Entity;
+use App\Models\Image;
 use App\Services\EntityTypeService;
 
 class DashboardWidgetController extends Controller
@@ -81,6 +82,7 @@ class DashboardWidgetController extends Controller
             'dashboard' => $dashboard,
             'dashboards' => $dashboards,
             'premium' => $campaign->premium(),
+            'cardImage' => null,
         ]);
     }
 
@@ -129,6 +131,9 @@ class DashboardWidgetController extends Controller
             'entityTypes' => $entityTypes,
             'dashboards' => $dashboards,
             'premium' => $campaign->premium(),
+            'cardImage' => $campaignDashboardWidget->conf('image_uuid')
+                ? Image::where('campaign_id', $campaign->id)->whereKey($campaignDashboardWidget->conf('image_uuid'))->first()
+                : null,
         ]);
     }
 

@@ -49,6 +49,10 @@
         > * {
             margin-bottom: 0;
         }
+
+        > p:not(:last-of-type) {
+            margin-bottom: 0.75rem;
+        }
     }
 
     th {
@@ -70,6 +74,12 @@
     th, td {
         border-color: hsl(var(--bc)/var(--tw-border-opacity));
         border-width: 1px;
+    }
+}
+
+:is(.entity-content, .tiptap-editor) table.table-borderless {
+    &, th, td {
+        border-style: none;
     }
 }
 

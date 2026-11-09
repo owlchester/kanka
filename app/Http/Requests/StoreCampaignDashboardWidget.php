@@ -43,6 +43,7 @@ class StoreCampaignDashboardWidget extends FormRequest
             'config.order' => 'nullable|string|in:name_asc,name_desc,oldest',
             'entity_type_id' => 'nullable|exists:entity_types,id',
             'config.folder_id' => ['required_if:widget,gallery', Rule::exists('images', 'id')->where('is_folder', true)],
+            'config.image_uuid' => ['nullable', Rule::exists('images', 'id')->where('campaign_id', $this->route('campaign')?->id)->where('is_folder', false)],
         ];
     }
 

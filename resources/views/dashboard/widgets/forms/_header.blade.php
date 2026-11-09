@@ -8,6 +8,19 @@
 
     @include('dashboard.widgets.forms._size')
 
+    <x-forms.field field="config[image_uuid]" :label="__('dashboards/widgets/header.image')">
+        <x-forms.foreign
+            field="header-image"
+            name="config[image_uuid]"
+            :campaign="$campaign"
+            :route="route('images.find', $campaign)"
+            :selected="$cardImage ?? null"
+            :allowClear="true"
+            :placeholder="__('dashboards/widgets/header.image_placeholder')">
+        </x-forms.foreign>
+        <x-helper><p>{{ __('dashboards/widgets/header.image_help') }}</p></x-helper>
+    </x-forms.field>
+
     @includeWhen(!empty($dashboards), 'dashboard.widgets.forms._dashboard')
 
     <x-forms.field field="target_type" :label="__('dashboard.widgets.fields.link')">
