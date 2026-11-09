@@ -1,6 +1,5 @@
 <div class="member-row min-w-0 rounded-lg border border-base-300 bg-base-100 p-4 md:p-5" data-membership-row>
-    <fieldset class="flex min-w-0 flex-col gap-4" data-membership-fields>
-        <legend class="sr-only">{{ __('characters.organisations.create.title') }}</legend>
+    <fieldset class="flex min-w-0 flex-col gap-4" aria-label="{{ __('characters.organisations.create.title') }}" data-membership-fields>
         <x-forms.field field="membership-organisation" :id="'membership-organisation-' . $key" :label="$singular">
             <select name="organisations[{{ $key }}]" id="membership-organisation-{{ $key }}" class="w-full {{ $isTemplate ? 'tmp-org' : 'select2' }}"
                 data-url="{{ route('search-list', [$campaign, config('entities.ids.organisation')]) }}"
@@ -24,7 +23,7 @@
             </x-forms.field>
         </div>
 
-        <div class="flex flex-wrap items-start justify-between gap-3 border-t border-base-300 pt-3">
+        <div class="flex flex-wrap items-start justify-between gap-3">
             <details class="min-w-0 grow" data-membership-settings>
                 <summary class="cursor-pointer text-sm text-neutral-content">
                     {{ __('characters.organisations.form.settings') }}
