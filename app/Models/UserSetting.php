@@ -28,6 +28,11 @@ trait UserSetting
         return Arr::get($this->settings, 'editor');
     }
 
+    public function getEntryFormLayoutAttribute(): string
+    {
+        return Arr::get($this->settings, 'entry_form_layout') === 'modern' ? 'modern' : 'legacy';
+    }
+
     /**
      * @param  string|null  $value
      */

@@ -418,7 +418,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-DcgetiK2.js",
+    "file": "assets/app-BYGB7lua.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -654,7 +654,7 @@
     ]
   },
   "resources/js/events/participants.js": {
-    "file": "assets/participants-C9hfQtNa.js",
+    "file": "assets/participants-DrbyDlW8.js",
     "name": "participants",
     "src": "resources/js/events/participants.js",
     "isDynamicEntry": true,
@@ -664,7 +664,7 @@
       "__plugin-vue_export-helper-DlAUqK2U.js"
     ],
     "css": [
-      "assets/participants-CjWZt_dM.css"
+      "assets/participants-B9CrurTL.css"
     ]
   },
   "resources/js/family-tree-vue.js": {
@@ -689,6 +689,15 @@
     "name": "character",
     "src": "resources/js/forms/character.js",
     "isEntry": true
+  },
+  "resources/js/forms/entry-workspace.js": {
+    "file": "assets/entry-workspace-D_aQ74aA.js",
+    "name": "entry-workspace",
+    "src": "resources/js/forms/entry-workspace.js",
+    "isEntry": true,
+    "css": [
+      "assets/entry-workspace-BoqlrjKq.css"
+    ]
   },
   "resources/js/front.js": {
     "file": "assets/front-D--LX8JX.js",

@@ -25,6 +25,7 @@ class EntitySaveService
     public function __construct(
         protected TagService $tagService,
         protected PermissionService $permissionService,
+        protected EntryDateService $entryDateService,
     ) {}
 
     public function skipPermissions(): self
@@ -36,6 +37,9 @@ class EntitySaveService
 
     public function save(array $data): Entity
     {
+        if (array_key_exists('entry_dates', $data)) {
+            $this->entryDateService->save($this->entity, $data['entry_dates'], $this->user ?? auth()->user());
+        }
         // Pre-save: scalar entity fields — must all be set before save() so HasEntry fires once
         if (array_key_exists('name', $data)) {
             $this->entity->name = $data['name'];

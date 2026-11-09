@@ -1,10 +1,10 @@
 <x-grid>
     @include('cruds.fields.parent')
 
-    <x-forms.field field="entity-type" :helper="__('attribute_templates.hints.entity_type')">
+    <x-forms.field field="entity-type" :label="__('attribute_templates.fields.auto_apply')" id="entity_type_id" :helper="__('attribute_templates.hints.entity_type')">
         @include('components.form.entity_types', ['options' => [
             'model' => (isset($model) && $model->entityType ? $model->entityType : FormCopy::field('entityType')->related())
-        ], 'label' => 'attribute_templates.fields.auto_apply'])
+        ]])
     </x-forms.field>
 
     <x-forms.field field="enabled" :label=" __('attribute_templates.fields.is_enabled')">

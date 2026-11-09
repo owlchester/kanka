@@ -11,6 +11,12 @@
         'upload'    => __('gallery.actions.upload'),
         'add_url'   => __('gallery.actions.add_url'),
         'change'    => __('gallery.actions.change'),
+        'change_focus' => __('entities/image.actions.change_focus'),
+        'save_focus' => __('entities/image.actions.save_focus'),
+        'remove_focus' => __('entities/image.actions.remove_focus'),
+        'focus_warning' => __('entities/image.focus.warning', ['gallery' => __('sidebar.gallery')]),
+        'focus_load_error' => __('entities/image.focus.load_error'),
+        'focus_save_error' => __('entities/image.focus.save_error'),
         'url_hint'  => __('gallery.actions.url_hint'),
         'drag_hint' => __('gallery.drop.hint'),
         'drop_hint' => __('gallery.drop.active'),
@@ -42,6 +48,7 @@
 @endphp
 
 <x-grid type="1/1">
+    @if (($premiumField ?? null) !== 'header')
     <x-forms.field
         field="tooltips"
         :label="__('entities/tooltips.label')">
@@ -65,11 +72,13 @@
             @include('cruds.fields.helpers.boosted', ['key' => 'entities/tooltips.premium'])
         @endif
     </x-forms.field>
+    @endif
 
 
+    @if (($premiumField ?? null) !== 'tooltip')
     <x-forms.field
         field="header"
-        :label="__('fields.header-image.title')">
+        :label="($coverLayout ?? false) ? null : __('fields.header-image.title')">
         @if ($campaign->boosted())
             @php
             $headerUrlPreset = null;
@@ -77,12 +86,14 @@
             if (!empty($source) && $source->header_image) {
                 $headerUrlPreset = Storage::url($source->header_image);
             } elseif (!empty($source) && $source->header) {
-                $headerUrlPreset = $source->header->getUrl(192, 144);
+                $headerUrlPreset = ($coverLayout ?? false) ? $source->header->getUrl(1200, 300) : $source->header->getUrl(192, 144);
             } elseif (isset($entity) && $entity->header) {
-                $headerUrlPreset = $entity->header->getUrl(192, 144);
+                $headerUrlPreset = ($coverLayout ?? false) ? $entity->header->getUrl(1200, 300) : $entity->header->getUrl(192, 144);
             }
             @endphp
-            <p class="text-neutral-content">{{ __('fields.header-image.description') }}</p>
+            @unless ($coverLayout ?? false)
+                <p class="text-neutral-content">{{ __('fields.header-image.description') }}</p>
+            @endunless
 
             @if (isset($entity) && $entity->header_image)
                 <input type="hidden" name="remove-header_image" />
@@ -91,9 +102,9 @@
 
                     </div>
 
-                    <div class="preview w-32">
+                    <div class="preview {{ ($coverLayout ?? false) ? 'w-full' : 'w-32' }}">
                     @include('cruds.fields._image_preview', [
-                        'image' => $entity->thumbnail(120),
+                        'image' => ($coverLayout ?? false) ? Storage::url($entity->header_image) : $entity->thumbnail(120),
                         'title' => $entity->name,
                         'target' => 'remove-header_image',
                     ])
@@ -103,19 +114,24 @@
                 @php
                     $canUpload = isset($campaign) && auth()->user()->can('create', [\App\Models\Image::class, $campaign]);
                     $canBrowse = isset($campaign) && auth()->user()->can('browse', [\App\Models\Image::class, $campaign]);
+                    $canFocusHeader = !empty($entity) && $campaign->boosted() && auth()->user()->can('update', $entity);
 
                 @endphp
-                <div class="gallery-selection w-fit">
+                <div class="gallery-selection {{ ($coverLayout ?? false) ? 'w-full' : 'w-fit' }}">
                     <gallery-selection
                         file="{{ route('gallery.upload.file', [$campaign]) }}"
                         url="{{ route('gallery.upload.url', [$campaign]) }}"
                         accepts=".jpg, .jpeg, .png, .gif, .webp"
                         uuid="{{ $source->header_uuid ?? $entity->header_uuid ?? null }}"
                         field="entity_header_uuid"
+                        @if ($coverLayout ?? false) layout="cover" @endif
                         thumbnail="{{ $headerUrlPreset }}"
                         browse="{{ route('gallery.browse', [$campaign]) }}"
                         can-upload="{{ $canUpload ? 'true' : 'false' }}"
                         can-browse="{{ $canBrowse ? 'true' : 'false' }}"
+                        can-focus="{{ $canFocusHeader ? 'true' : 'false' }}"
+                        focus-save="{{ $canFocusHeader ? route('entities.image.save-focus', [$campaign, $entity]) : '' }}"
+                        focus-data="{{ $canFocusHeader ? route('entities.image.focus-data', [$campaign, $entity, 'IMAGE_UUID']) : '' }}"
                         old="false"
                         i18n="{{ $translations }}"
                         premium="true"
@@ -129,4 +145,5 @@
             @include('cruds.fields.helpers.boosted', ['key' => 'fields.header-image.boosted-description'])
         @endif
     </x-forms.field>
+    @endif
 </x-grid>

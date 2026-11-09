@@ -94,6 +94,12 @@ const jumpToError = (form, errors) => {
         tab.classList.add('active');
     }
 
+    let details = firstErrorField.closest('details');
+    while (details) {
+        details.open = true;
+        details = details.parentElement?.closest('details');
+    }
+
     focusOnField(firstErrorField);
 };
 

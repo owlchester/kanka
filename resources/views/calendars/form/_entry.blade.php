@@ -1,7 +1,7 @@
 <?php /** @var \App\Models\Calendar $model */ ?>
 @include('cruds.fields.type', ['base' => \App\Models\Calendar::class, 'trans' => 'calendars'])
 
-@include('cruds.fields.parent')
+@include('cruds.fields.parent', ['parentHelper' => __('calendars.hints.parent_calendar')])
 
 <div class="current grid grid-cols-3 gap-2">
 

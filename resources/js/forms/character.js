@@ -1,67 +1,93 @@
-const organisations = document.querySelector('.character-organisations');
-const addBtn = document.querySelector('#add_organisation');
-const template = document.querySelector('#template_organisation')
-
-/**
- *
- */
 const initCharacterOrganisation = () => {
-    if (!organisations) {
+    const editor = document.querySelector('[data-character-memberships]');
+    if (!editor) {
         return;
     }
-    addBtn.addEventListener('click', function (e) {
-        e.preventDefault();
 
-        const child = document.createElement('div');
-        child.classList.add('parent-row');
-        child.innerHTML = template.innerHTML;
-        organisations.append(child);
+    const organisations = editor.querySelector('.character-organisations');
+    const template = editor.querySelector('#template_organisation');
+    const announcement = editor.querySelector('[data-membership-announcement]');
+    let nextKey = 0;
 
-        // Replace the temp class with the real class. We need this to avoid having two select2 fields
-        organisations.querySelectorAll('.tmp-org')?.forEach(child => {
-            child.classList.remove('tmp-org');
-            child.classList.add('select2');
-        });
+    const updateEmptyState = () => {
+        const hasMemberships = !!organisations.querySelector('[data-membership-fields]:not(:disabled)');
+        editor.querySelector('[data-membership-empty]').classList.toggle('hidden', hasMemberships);
+        editor.querySelector('[data-membership-bottom-add]').classList.toggle('hidden', !hasMemberships);
+    };
 
-        // Handle deleting already loaded blocks
-        characterDeleteRowHandler();
+    const updateSummary = (row) => {
+        const pin = row.querySelector('[data-membership-pin]');
+        const privacy = row.querySelector('[data-membership-private]');
+        const summary = [];
+        if (privacy?.checked) {
+            summary.push(privacy.closest('label').textContent.trim());
+        }
+        if (Number(pin.value) > 0) {
+            summary.push(pin.selectedOptions[0].textContent);
+        }
+        row.querySelector('[data-membership-summary]').textContent = summary.length ? ` · ${summary.join(' · ')}` : '';
+    };
 
-        // Fake a modal loaded to re-register the togglers
-        window.triggerEvent();
-        return false;
-    });
+    organisations.querySelectorAll('[data-membership-row]').forEach(updateSummary);
 
-    characterDeleteRowHandler();
-};
+    editor.addEventListener('click', (event) => {
+        if (event.target.closest('[data-add-organisation]')) {
+            let key;
+            do {
+                key = `new_${nextKey++}`;
+            } while (document.getElementById(`membership-organisation-${key}`));
 
-/**
- *
- */
-const characterDeleteRowHandler = () => {
-
-    const deletes = document.querySelectorAll('.member-delete');
-    deletes?.forEach((ele) => {
-        if (ele.dataset.init === '1') {
+            const fragment = template.content.cloneNode(true);
+            fragment.querySelectorAll('[name], [id], [for]').forEach((element) => {
+                ['name', 'id', 'for'].forEach((attribute) => {
+                    if (element.hasAttribute(attribute)) {
+                        element.setAttribute(attribute, element.getAttribute(attribute).replaceAll('__MEMBERSHIP__', key));
+                    }
+                });
+            });
+            const select = fragment.querySelector('.tmp-org');
+            select.classList.replace('tmp-org', 'select2');
+            organisations.append(fragment);
+            window.initForeignSelect();
+            updateEmptyState();
+            select.tomselect?.focus();
+            if (!select.tomselect) {
+                select.focus();
+            }
             return;
         }
-        ele.dataset.init = '1';
-        ele.addEventListener('click', (e) => {
-            e.preventDefault();
-            ele.closest(ele.dataset.target).remove();
-        });
-        ele.addEventListener('keydown', (e) => {
-            if (e.key !== 'Enter') {
-                return;
+
+        const remove = event.target.closest('[data-remove-membership]');
+        const undo = event.target.closest('[data-undo-membership]');
+        if (!remove && !undo) {
+            return;
+        }
+        const row = event.target.closest('[data-membership-row]');
+        const fields = row.querySelector('[data-membership-fields]');
+        const removed = row.querySelector('[data-membership-removed]');
+        fields.disabled = !!remove;
+        fields.classList.toggle('hidden', !!remove);
+        removed.classList.toggle('hidden', !remove);
+        removed.classList.toggle('flex', !!remove);
+        updateEmptyState();
+        if (remove) {
+            row.querySelector('[data-undo-membership]').focus();
+        } else {
+            const select = row.querySelector('select');
+            select.tomselect?.focus();
+            if (!select.tomselect) {
+                select.focus();
             }
-            ele.click();
-        });
+            announcement.textContent = undo.textContent;
+        }
     });
 
-    // Always re-calc the sortable traits
-    window.initSortable();
-    window.initForeignSelect();
+    editor.addEventListener('change', (event) => {
+        const row = event.target.closest('[data-membership-row]');
+        if (row) {
+            updateSummary(row);
+        }
+    });
 };
 
-window.onReady(() => {
-    initCharacterOrganisation();
-})
+window.onReady(initCharacterOrganisation);

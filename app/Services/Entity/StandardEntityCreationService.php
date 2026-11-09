@@ -19,6 +19,8 @@ class StandardEntityCreationService
     use EntityTypeAware;
     use UserAware;
 
+    public function __construct(private EntryDateService $entryDateService) {}
+
     public function create(array $data, ?MiscModel $child = null): MiscModel
     {
         if (! $this->entityType->isStandard() || ! $this->entityType->hasEntity()) {
@@ -52,6 +54,9 @@ class StandardEntityCreationService
             $entity->saveQuietly();
             $child->setRelation('entity', $entity);
             $entity->setRelation('child', $child);
+            if (array_key_exists('entry_dates', $data)) {
+                $this->entryDateService->save($entity, $data['entry_dates'], $this->user ?? auth()->user());
+            }
             EntityCreationCompleted::dispatch($entity, $this->user);
 
             return $child;

@@ -54,6 +54,7 @@ use App\Observers\CampaignUserObserver;
 use App\Observers\FamilyTreeObserver;
 use App\Observers\OrganisationMemberObserver;
 use App\Observers\UserObserver;
+use App\View\Composers\EntryWorkspaceComposer;
 use Exception;
 use Illuminate\Contracts\Encryption\Encrypter;
 use Illuminate\Database\Eloquent\Model;
@@ -63,6 +64,7 @@ use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Cashier\Cashier;
@@ -85,6 +87,7 @@ class AppServiceProvider extends ServiceProvider
     {
         // Fix setups for utf8_mb4 mysql strings (emoji support)
         Schema::defaultStringLength(191);
+        View::composer('entities.forms._workspace', EntryWorkspaceComposer::class);
 
         Passport::$clientUuids = false;
         Passport::authorizationView('vendor.passport.authorize');

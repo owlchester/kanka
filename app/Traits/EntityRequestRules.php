@@ -2,10 +2,16 @@
 
 namespace App\Traits;
 
+use App\Http\Requests\StoreCharacter;
+use App\Http\Requests\StoreFamily;
+use App\Http\Requests\StoreLocation;
+use App\Http\Requests\StoreOrganisation;
+use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Location;
 use App\Models\Tag;
 use App\Rules\EntityField;
+use App\Rules\EntryDates;
 use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
 use Illuminate\Validation\Rule;
@@ -59,6 +65,18 @@ trait EntityRequestRules
             'nullable',
             'boolean',
         ];
+
+        $campaign = $this->route('campaign') ?? request()->route('campaign');
+        if ($campaign instanceof Campaign && auth()->user()) {
+            $typeId = $entity->type_id ?? match (static::class) {
+                StoreCharacter::class => config('entities.ids.character'),
+                StoreFamily::class => config('entities.ids.family'),
+                StoreLocation::class => config('entities.ids.location'),
+                StoreOrganisation::class => config('entities.ids.organisation'),
+                default => 0,
+            };
+            $rules['entry_dates'] = ['sometimes', 'array', new EntryDates($campaign, $typeId, $entity instanceof Entity ? $entity : null, auth()->user())];
+        }
 
         return $this->clean($rules);
     }
