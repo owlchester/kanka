@@ -37,6 +37,7 @@ use Illuminate\Support\Str;
  * @property CampaignDashboard $dashboard
  * @property CampaignDashboardWidgetTag[] $dashboardWidgetTags
  * @property ?EntityType $entityType
+ * @property ?Image $cardImage
  *
  * @method static self|Builder positioned()
  * @method static self|Builder onDashboard(?CampaignDashboard $dashboard = null)

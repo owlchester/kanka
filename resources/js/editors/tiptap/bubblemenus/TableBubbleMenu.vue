@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import type { Editor } from '@tiptap/core'
 import { buttonClass } from '../utils'
+import { toggleTableClass } from '../extensions/table/tableClasses.js'
 
 const props = defineProps<{
     editor: Editor
@@ -34,7 +35,7 @@ const hasClass = (className: string) => {
 }
 
 // Computed properties for button states
-const hasBordered = computed(() => hasClass('table-bordered'))
+const hasBorderless = computed(() => hasClass('table-borderless'))
 const hasStriped = computed(() => hasClass('table-striped'))
 const hasLeft = computed(() => hasClass('table-left'))
 const hasRight = computed(() => hasClass('table-right'))
@@ -59,21 +60,10 @@ const updateTableClass = (newClassList: string[]) => {
 
 // Toggle a class on/off
 const toggleClass = (className: string, removeClasses: string[] = []) => {
-    const classList = getClassList()
-
-    // Remove any classes that should be removed
-    const filtered = classList.filter(c => !removeClasses.includes(c))
-
-    if (classList.includes(className)) {
-        // Remove the class
-        updateTableClass(filtered.filter(c => c !== className))
-    } else {
-        // Add the class
-        updateTableClass([...filtered, className])
-    }
+    updateTableClass(toggleTableClass(getClassList(), className, removeClasses))
 }
 
-const toggleBordered = () => toggleClass('table-bordered')
+const toggleBorderless = () => toggleClass('table-borderless', ['table-bordered'])
 const toggleStriped = () => toggleClass('table-striped')
 const toggleLeft = () => toggleClass('table-left', ['table-right'])
 const toggleRight = () => toggleClass('table-right', ['table-left'])
@@ -148,11 +138,12 @@ const toggleHeaderRow = () => {
         <span class="w-px h-4 bg-base-content/20 mx-1" />
 
         <button
-            @click.prevent="toggleBordered"
-            :class="buttonClass(hasBordered)"
-            title="Toggle bordered"
+            @click.prevent="toggleBorderless"
+            :class="buttonClass(hasBorderless)"
+            :aria-pressed="hasBorderless"
+            title="Toggle borderless"
         >
-            <i class="fa-regular fa-border-all" aria-hidden="true" />
+            <i class="fa-regular fa-border-none" aria-hidden="true" />
         </button>
         <button
             @click.prevent="toggleStriped"
