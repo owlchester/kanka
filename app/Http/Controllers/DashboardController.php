@@ -7,6 +7,7 @@ use App\Facades\DataLayer;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 use App\Models\Entity;
+use App\Models\Image;
 use App\Services\DashboardService;
 
 class DashboardController extends Controller
@@ -33,6 +34,15 @@ class DashboardController extends Controller
             CampaignDashboardWidget::onDashboard($dashboard)
                 ->positioned()
                 ->get();
+
+        // Images are in the json, not their own column, so we eager load them this way
+        $cardImages = Image::where('campaign_id', $campaign->id)
+            ->whereIn('id', $widgets->pluck('config')->map(fn ($config) => $config['image_uuid'] ?? null)->filter()->unique())
+            ->get()
+            ->keyBy('id');
+        foreach ($widgets as $widget) {
+            $widget->setRelation('cardImage', $cardImages->get($widget->conf('image_uuid')));
+        }
 
         // A user with campaigns doesn't need this process.
         $welcome = false;
