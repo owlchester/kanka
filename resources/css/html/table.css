@@ -77,6 +77,12 @@
     }
 }
 
+:is(.entity-content, .tiptap-editor) table.table-borderless {
+    &, th, td {
+        border-style: none;
+    }
+}
+
 .table tr.warning :is(td, th) {
     background-color: hsl(var(--a)/1);
     color: hsl(var(--ac)/1);

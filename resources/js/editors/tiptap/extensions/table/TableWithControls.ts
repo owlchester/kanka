@@ -1,8 +1,16 @@
 
 import { Table } from '@tiptap/extension-table'
 import { mergeAttributes } from '@tiptap/core'
+import { CustomTableView } from './CustomTableView'
 
 export const TableWithControls = Table.extend({
+    addOptions() {
+        return {
+            ...this.parent?.(),
+            View: CustomTableView,
+        }
+    },
+
     addAttributes() {
         return {
             ...this.parent?.(),
