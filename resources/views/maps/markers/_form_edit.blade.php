@@ -96,7 +96,9 @@ $sizeOptions = [
             @include('maps.markers.fields.icon')
             @include('maps.markers.fields.custom_icon')
 
-            @include('maps.markers.fields.pin_size')
+            @if (($map->config['legacy_pins'] ?? false))
+                @include('maps.markers.fields.pin_size')
+            @endif
             @include('maps.markers.fields.font_colour')
 
             <x-forms.field field="draggable" css="" :label="__('maps/markers.fields.is_draggable')">
