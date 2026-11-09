@@ -85,6 +85,19 @@
                 @change="$emit('colour-change', $event)"
             />
 
+            <div v-if="legacyPins && pin.shape !== 'label' && pin.shape !== 'poly' && pin.shape !== 'path' && pin.shape !== 'circle'" class="flex flex-col gap-1">
+                <label class="text-xs font-semibold uppercase tracking-wide text-neutral-content">{{ i18n.pin_size }}</label>
+                <input
+                    type="number"
+                    :value="pin.pinSize ?? pin.pin_size ?? 40"
+                    class="input input-bordered w-full"
+                    min="10"
+                    max="100"
+                    step="2"
+                    @input="$emit('pin-size-change', Number($event.target.value))"
+                />
+            </div>
+
             <ColourPicker
                 v-if="detailLevel === 'full' && pin.shape === 'poly'"
                 :colour="pin.polygonStyle?.stroke"
@@ -264,6 +277,7 @@ const props = defineProps({
     presetStoreUrl: { type: String, default: null },
     canManagePresets: { type: Boolean, default: false },
     rapid: { type: Boolean, default: false },
+    legacyPins: { type: Boolean, default: false },
     mentionsUrl: { type: String, default: null },
     galleryUrl: { type: String, default: null },
     galleryUploadUrl: { type: String, default: null },
@@ -280,6 +294,7 @@ const emit = defineEmits([
     "visibility-change",
     "colour-change",
     "opacity-change",
+    "pin-size-change",
     "name-change",
     "entry-change",
     "border-colour-change",
@@ -445,6 +460,7 @@ function buildPayload() {
         entity_id: props.pin.entityId,
         visibility_id: props.pin.visibilityId,
         opacity: props.pin.opacity,
+        pin_size: props.pin.pinSize ?? props.pin.pin_size,
         is_draggable: !isPolygon && !isPath && !isCircle && isDraggable.value,
         css: cssClass.value.trim() || null,
         custom_shape: hasCustomShape ? serializeVertices(props.pin.customShape) : undefined,

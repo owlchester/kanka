@@ -2,11 +2,11 @@
 
 namespace App\Services;
 
-use App\Enums\EntityAssetType;
 use App\Facades\Avatar;
 use App\Facades\Mentions;
 use App\Models\Calendar;
 use App\Models\Entity;
+use App\Models\EntityAsset;
 use App\Models\EntityType;
 use App\Models\MiscModel;
 use App\Services\Entity\NewService;
@@ -201,14 +201,13 @@ class SearchService
             $query
                 ->select(['entities.*', 'ea.id as alias_id', 'ea.name as alias_name'])
                 ->distinct()
-                ->leftJoin('entity_assets as ea', function ($join) use ($cleanTerm) {
+                ->leftJoinSub(EntityAsset::alias()->select(['id', 'entity_id', 'name']), 'ea', function ($join) use ($cleanTerm) {
                     $join->on('ea.entity_id', '=', 'entities.id');
                     if (Str::startsWith($this->term, '=')) {
                         $join->where('ea.name', $cleanTerm);
                     } else {
                         $join->where('ea.name', 'like', '%' . $this->term . '%');
                     }
-                    $join->where('ea.type_id', EntityAssetType::alias);
                 })
                 ->where(function ($sub) use ($cleanTerm) {
                     if (Str::startsWith($this->term, '=')) {

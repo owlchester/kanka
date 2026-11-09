@@ -2,10 +2,10 @@
 
 namespace App\Services\Search;
 
-use App\Enums\EntityAssetType;
 use App\Facades\Avatar;
 use App\Models\Attribute;
 use App\Models\Entity;
+use App\Models\EntityAsset;
 use App\Models\EntityType;
 use App\Models\Post;
 use App\Services\Entity\NewService;
@@ -103,14 +103,13 @@ class MentionService
         $query
             ->select(['entities.*', 'ea.id as alias_id', 'ea.name as alias_name'])
             ->distinct()
-            ->leftJoin('entity_assets as ea', function ($join) {
+            ->leftJoinSub(EntityAsset::alias()->select(['id', 'entity_id', 'name']), 'ea', function ($join) {
                 $join->on('ea.entity_id', '=', 'entities.id');
                 if (Str::startsWith($this->term, '=')) {
                     $join->where('ea.name', $this->strippedTerm);
                 } else {
                     $join->where('ea.name', 'like', '%' . $this->term . '%');
                 }
-                $join->where('ea.type_id', EntityAssetType::alias);
             })
             ->where(function ($sub) {
                 if (Str::startsWith($this->term, '=')) {

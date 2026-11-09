@@ -36,7 +36,7 @@ class StandardEntityCreationService
             $entity = new Entity(Arr::only($data, Entity::CREATION_FIELDS));
             $entity->campaign_id = $this->campaign->id;
             $entity->type_id = $this->entityType->id;
-            $entity->is_private = $data['is_private'] ?? false;
+            $entity->is_private = $data['is_private'] ?? $this->defaultPrivateEntity();
             if ($this->user instanceof User) {
                 $entity->created_by = $this->user->id;
             }
@@ -61,5 +61,10 @@ class StandardEntityCreationService
 
             return $child;
         });
+    }
+
+    protected function defaultPrivateEntity(): bool
+    {
+        return $this->user?->can('admin', $this->campaign) && $this->campaign->entity_visibility;
     }
 }

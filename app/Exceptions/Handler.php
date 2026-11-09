@@ -17,7 +17,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Session\TokenMismatchException;
-use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Intervention\Image\Exceptions\DecoderException;
@@ -128,6 +127,10 @@ class Handler extends ExceptionHandler
     {
         for ($current = $exception; $current !== null; $current = $current->getPrevious()) {
             if (! $current instanceof QueryException && ! $current instanceof PDOException) {
+                if ($current instanceof FatalError && preg_match('/^Uncaught PDOException: (SQLSTATE\\[(?:08001|08003|08004|08S01)\\]|SQLSTATE\\[HY000\\](?:: General error:)?(?: \\[)?(?:2002|2003|2006|2013)(?:\\])?\\b)/i', $current->getMessage())) {
+                    return true;
+                }
+
                 if ($current instanceof PredisConnectionException || ($current instanceof RedisException && preg_match('/(connection refused|connection timed out|read error on connection|connection lost|went away)/i', $current->getMessage()))) {
                     return true;
                 }
