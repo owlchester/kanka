@@ -322,6 +322,8 @@ const upgradeLink = ref()
 //Infinite Scrolling
 const infiniteScrollTrigger = ref(null)
 let observer: IntersectionObserver | null = null
+let viewRequestId = 0
+let homeNextPage = null
 
 onMounted(() => {
     axios.get(props.api)
@@ -337,6 +339,7 @@ onMounted(() => {
             createApi.value = res.data.api.create
             uploadApi.value = res.data.api.upload
             nextPage.value = res.data.next
+            homeNextPage = res.data.next
             visibilities.value = res.data.visibilities
             bulkVisibilities.value = res.data.bulkVisibilities
             canUpload.value = res.data.acl.upload
@@ -473,9 +476,14 @@ const selectFile = (file) => {
 }
 
 const openFolder = (file) => {
+    const requestId = ++viewRequestId
+    loadingMore.value = false
     loading.value = true
     axios.get(file.open)
         .then(res => {
+            if (requestId !== viewRequestId) {
+                return
+            }
             folder.value = file
             breadcrumbs.value = res.data.breadcrumbs
             files.value = res.data.files
@@ -488,8 +496,11 @@ const openFolder = (file) => {
 }
 
 const home = () => {
+    ++viewRequestId
+    loadingMore.value = false
     loading.value = true
     files.value = homeFiles.value
+    nextPage.value = homeNextPage
     currentFile.value = null
     folder.value = null
     loading.value = false
@@ -551,6 +562,8 @@ const openNextPage = () => {
         return
     }
     loadingMore.value = true
+    const requestId = viewRequestId
+    const requestedPage = nextPage.value
 
     var params = '';
 
@@ -566,12 +579,21 @@ const openNextPage = () => {
         params += apiParameters.value['toggleParam'] + '&';
     }
 
-    axios.get(nextPage.value + '&' + params).then(res => {
+    axios.get(requestedPage + '&' + params).then(res => {
+        if (requestId !== viewRequestId || requestedPage !== nextPage.value) {
+            return
+        }
         res.data.files.forEach(file => {
             files.value.push(file)
         })
         nextPage.value = res.data.next
-        loadingMore.value = false
+        if (isHome.value) {
+            homeNextPage = res.data.next
+        }
+    }).finally(() => {
+        if (requestId === viewRequestId) {
+            loadingMore.value = false
+        }
     })
 }
 
