@@ -45,7 +45,7 @@
                     @endif
                 </div>
             </details>
-            <button type="button" class="shrink-0 cursor-pointer text-sm text-neutral-content hover:text-error focus-visible:text-error" data-remove-membership>
+            <button type="button" class="shrink-0 cursor-pointer text-sm text-neutral-content hover:text-error-content focus-visible:text-error-content" data-remove-membership>
                 <x-icon class="trash" />
                 {{ __('characters.organisations.form.remove') }}
             </button>
