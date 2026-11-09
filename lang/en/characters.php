@@ -68,6 +68,22 @@ return [
         'fields'    => [
             'role'  => 'Role',
         ],
+        'form'      => [
+            'add'           => 'Add :organisation',
+            'empty'         => 'Connect this character to :organisations to record their role and membership status.',
+            'empty_title'   => 'No memberships yet',
+            'helper'        => 'Connect this character to :organisations and record their role.',
+            'pinned'        => 'Show in profile pins',
+            'private'       => 'Private membership',
+            'private_hint'  => 'Only members of the :admin role can see this membership.',
+            'profile'       => ':module profile',
+            'remove'        => 'Remove membership',
+            'removed'       => 'Membership will be removed when you save.',
+            'save_hint'     => 'Membership changes are saved with the character.',
+            'settings'      => 'Display & visibility',
+            'title'         => 'Memberships',
+            'undo'          => 'Undo',
+        ],
     ],
     'personality_visibility'    => [
         'admin' => 'Members of :admin role only',
