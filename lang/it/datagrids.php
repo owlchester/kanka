@@ -10,6 +10,12 @@ return [
         'nested'    => 'Passa a un layout annidato',
         'table'     => 'Passa alla visualizzazione a tabella',
     ],
+    'modes_short' => [
+        'flatten' => 'Piatto',
+        'grid' => 'Griglia',
+        'list' => 'Elenco',
+        'nested' => 'Annidato',
+    ],
     'tooltips'  => [
         'nested'    => 'Questa entità non ha figli. Clicca sull\'immagine per visualizzarli.',
     ],

@@ -10,6 +10,12 @@ return [
         'nested'    => 'Zu einem verschachtelten Layout wechseln',
         'table'     => 'Wechsel in die Tischansicht',
     ],
+    'modes_short' => [
+        'flatten' => 'Flach',
+        'grid' => 'Raster',
+        'list' => 'Liste',
+        'nested' => 'Verschachtelt',
+    ],
     'tooltips'  => [
         'nested'    => 'Dieses Objekt hat untergeordnete Objekte. Klicke auf das Bild, um es anzuzeigen.',
     ],

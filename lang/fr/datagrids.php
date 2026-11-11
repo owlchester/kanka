@@ -26,6 +26,12 @@ return [
         'nested'    => 'Changer à la vue imbriquée',
         'table'     => 'Changer à la vue de table',
     ],
+    'modes_short'   => [
+        'flatten'   => 'Plat',
+        'grid'      => 'Grille',
+        'list'      => 'Liste',
+        'nested'    => 'Imbriqué',
+    ],
     'subscription'  => [
         'cta'       => 'Découvrir les abonnements',
         'helper'    => 'Visualise jusqu\'à :max entrées en un coup d\'oeil avec un abonnement Kanka, plus plein d\'autres avantages pour booster ta création de monde.',
