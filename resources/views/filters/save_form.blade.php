@@ -43,6 +43,7 @@
             @endif
 
 
+            @if (!app(\App\Services\Campaign\Sidebar\LayoutService::class)->campaign($campaign)->enabled())
             <x-forms.field
                     field="position"
                     :label="__('bookmarks.fields.position')"
@@ -54,6 +55,9 @@
                     {!! __('entities/links.helpers.parent') !!}
                 </p>
             </x-forms.field>
+            @else
+                <p>{{ __('campaigns/sidebar-v2.bookmark_placement') }}</p>
+            @endif
         </x-grid>
         <br class="clear-both"/>
     </x-dialog.article>

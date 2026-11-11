@@ -4,6 +4,8 @@ namespace App\View\Components\Sidebar;
 
 use App\Models\Bookmark;
 use App\Models\Entity;
+use App\Models\EntityType;
+use App\Services\Campaign\Sidebar\LayoutService;
 use App\Services\Campaign\Sidebar\SetupService;
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -119,7 +121,6 @@ class Campaign extends Component
         $sidebar
             ->campaign($campaign)
             ->request(request());
-        $this->prepareBookmarks();
     }
 
     /**
@@ -127,6 +128,15 @@ class Campaign extends Component
      */
     public function render(): View|Closure|string
     {
+        $layouts = app(LayoutService::class)->campaign($this->campaign);
+        if ($layouts->usesV2()) {
+            $this->layout = $layouts->render(auth()->user());
+
+            return view('components.sidebar.campaign-v2', [
+                'layout' => $this->layout,
+            ]);
+        }
+        $this->prepareBookmarks();
         $this->layout = $this->sidebar
             ->campaign($this->campaign)
             ->layout();
@@ -168,6 +178,21 @@ class Campaign extends Component
         }
 
         return null;
+    }
+
+    public function activeV2(array $entry): ?string
+    {
+        if (request()->has('bookmark')) {
+            return null;
+        }
+        if (request()->url() === $entry['url']) {
+            return 'active';
+        }
+        $type = request()->route('entityType');
+        $entity = request()->route('entity') ?? $this->entity;
+        $typeId = $type instanceof EntityType ? $type->id : ($entity instanceof Entity ? $entity->type_id : null);
+
+        return $typeId && $entry['id'] === 'category:' . $typeId ? 'active' : null;
     }
 
     /**

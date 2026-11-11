@@ -231,6 +231,7 @@ Route::post('/w/{campaign}/campaign-applications', 'Campaign\ApplicationControll
 // Campaign sidebar setup
 Route::get('/w/{campaign}/sidebar-setup', 'Campaign\SidebarController@index')->name('campaign-sidebar');
 Route::post('/w/{campaign}/sidebar-setup', 'Campaign\SidebarController@save')->name('campaign-sidebar-save');
+Route::post('/w/{campaign}/sidebar-setup/v2', 'Campaign\SidebarController@saveLayout')->name('campaign-sidebar-v2-save');
 Route::delete('/w/{campaign}/sidebar-setup/reset', 'Campaign\SidebarController@reset')->name('campaign-sidebar-reset');
 
 Route::get('/w/{campaign}/campaign-defaults', 'Campaign\DefaultsController@index')->name('campaign-defaults');

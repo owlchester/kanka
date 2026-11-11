@@ -275,7 +275,7 @@
     "isDynamicEntry": true
   },
   "resources/css/app.css": {
-    "file": "assets/app-CzfvkKkn.css",
+    "file": "assets/app-BLFhlqyo.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -284,7 +284,7 @@
     ]
   },
   "resources/css/auth.css": {
-    "file": "assets/auth-C82Dy8Ya.css",
+    "file": "assets/auth-Bi9OQxQb.css",
     "src": "resources/css/auth.css",
     "isEntry": true,
     "name": "auth",
@@ -311,7 +311,7 @@
     ]
   },
   "resources/css/front.css": {
-    "file": "assets/front-DV4NIgnt.css",
+    "file": "assets/front-RBNQW1pL.css",
     "src": "resources/css/front.css",
     "isEntry": true,
     "name": "front",
@@ -418,14 +418,14 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-BYGB7lua.js",
+    "file": "assets/app-cGw2YI4S.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
     "imports": [
+      "_preload-helper-oofcKs94.js",
       "_index-BCn5QfZZ.js",
       "_coloris-CzWPJjQD.js",
-      "_preload-helper-oofcKs94.js",
       "_sortable.esm-DdTU3J9A.js",
       "_dialog-DkrH_pRQ.js",
       "_coloris-DsKOFKq5.js",
@@ -440,7 +440,8 @@
     ],
     "dynamicImports": [
       "resources/js/events/participants.js",
-      "resources/js/maps/preview-runtime.js"
+      "resources/js/maps/preview-runtime.js",
+      "resources/js/campaigns/sidebar.js"
     ]
   },
   "resources/js/attributes-manager.js": {
@@ -476,6 +477,16 @@
       "_index-BCn5QfZZ.js"
     ]
   },
+  "resources/js/campaigns/sidebar.js": {
+    "file": "assets/sidebar-CdTeuHJQ.js",
+    "name": "sidebar",
+    "src": "resources/js/campaigns/sidebar.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_vue.esm-bundler-GXfi61Lw.js",
+      "_vue-draggable-next.esm-bundler-DO2H4ui-.js"
+    ]
+  },
   "resources/js/campaigns/style-editor.js": {
     "file": "assets/style-editor-C3m_wDrz.js",
     "name": "style-editor",
@@ -500,7 +511,7 @@
     ]
   },
   "resources/js/components/maps/MarkerPanel.vue": {
-    "file": "assets/MarkerPanel-BsS2t3SO.js",
+    "file": "assets/MarkerPanel-yDAS_q5o.js",
     "name": "MarkerPanel",
     "src": "resources/js/components/maps/MarkerPanel.vue",
     "isDynamicEntry": true,
@@ -596,7 +607,7 @@
     ]
   },
   "resources/js/editors/tiptap/Tiptap.vue": {
-    "file": "assets/Tiptap-BoSo3BKS.js",
+    "file": "assets/Tiptap-BBsVWRhc.js",
     "name": "Tiptap",
     "src": "resources/js/editors/tiptap/Tiptap.vue",
     "isDynamicEntry": true,
@@ -612,7 +623,7 @@
       "resources/js/editors/tiptap/SourceEditor.vue"
     ],
     "css": [
-      "assets/Tiptap-Cng9-3FE.css"
+      "assets/Tiptap-B2necXxK.css"
     ]
   },
   "resources/js/editors/tiptap/extensions/gallery/GalleryDialog.vue": {
@@ -630,7 +641,7 @@
     ]
   },
   "resources/js/editors/tiptap/index.js": {
-    "file": "assets/index-DI-v6Ql9.js",
+    "file": "assets/index-BabhLB0r.js",
     "name": "index",
     "src": "resources/js/editors/tiptap/index.js",
     "isEntry": true,
@@ -685,18 +696,18 @@
     "isEntry": true
   },
   "resources/js/forms/character.js": {
-    "file": "assets/character-BYzNtBCs.js",
+    "file": "assets/character-BPK56NcF.js",
     "name": "character",
     "src": "resources/js/forms/character.js",
     "isEntry": true
   },
   "resources/js/forms/entry-workspace.js": {
-    "file": "assets/entry-workspace-D_aQ74aA.js",
+    "file": "assets/entry-workspace-D8pzTrAD.js",
     "name": "entry-workspace",
     "src": "resources/js/forms/entry-workspace.js",
     "isEntry": true,
     "css": [
-      "assets/entry-workspace-BoqlrjKq.css"
+      "assets/entry-workspace-Bm54M2pL.css"
     ]
   },
   "resources/js/front.js": {
@@ -750,7 +761,7 @@
     "isEntry": true
   },
   "resources/js/maps/explore.js": {
-    "file": "assets/explore-BXf4q-B8.js",
+    "file": "assets/explore-WegUNykV.js",
     "name": "explore",
     "src": "resources/js/maps/explore.js",
     "isEntry": true,

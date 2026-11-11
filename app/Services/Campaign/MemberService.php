@@ -4,6 +4,7 @@ namespace App\Services\Campaign;
 
 use App\Exceptions\TranslatableException;
 use App\Facades\CampaignCache;
+use App\Facades\UserCache;
 use App\Http\Requests\API\UpdateUserRole;
 use App\Models\CampaignRole;
 use App\Models\CampaignRoleUser;
@@ -71,13 +72,14 @@ class MemberService
             $role->delete();
         }
 
-        $rolesToCreate = array_diff_key($roles, $currentRoles);
-        foreach ($rolesToCreate as $role) {
-            CampaignRoleUser::create([
+        foreach (array_values($roles) as $position => $role) {
+            CampaignRoleUser::updateOrCreate([
                 'campaign_role_id' => $role,
                 'user_id' => $user->user_id,
-            ]);
+            ], ['position' => $position]);
         }
+
+        UserCache::user($user->user)->clear();
 
         return true;
     }
@@ -99,6 +101,9 @@ class MemberService
         $userRole = new CampaignRoleUser;
         $userRole->user_id = $this->user->id;
         $userRole->campaign_role_id = $this->campaignRole->id;
+        $userRole->position = CampaignRoleUser::where('user_id', $this->user->id)
+            ->whereHas('campaignRole', fn ($query) => $query->where('campaign_id', $this->campaign->id))
+            ->max('position') + 1;
         $userRole->save();
 
         return true;
