@@ -338,6 +338,7 @@
                 :parent="entityApi.parent.value"
                 :selecting="bulkActions.selecting.value"
                 :nested="nestingComposable.nested.value && !criteriaActive"
+                :show-children="criteriaActive"
                 :i18n="i18n"
                 :ads="entityApi.ads.value"
                 :columns="columnsComposable.visibleColumns.value"

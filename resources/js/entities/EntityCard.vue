@@ -15,7 +15,7 @@
                     <i v-if="entity.selected" class="fa-regular fa-check" aria-label="selected" />
                 </div>
                 <!-- Avatar bubbles for children -->
-                <div v-if="nested && entity.children_preview?.length" class="absolute bottom-2 right-2 flex flex-row-reverse">
+                <div v-if="entity.children_preview?.length" class="absolute bottom-2 right-2 flex flex-row-reverse">
                     <div v-if="entity.children > 3"
                          class="w-7 h-7 rounded-full bg-primary border-1 border-box flex items-center justify-center text-primary-content font-bold ml-[-8px] z-0">
                         +{{ entity.children - 3 }}
@@ -97,6 +97,7 @@ const props = defineProps<{
     entity: any
     selecting: boolean
     nested: boolean
+    showChildren?: boolean
     i18n: any
     columns?: any[]
 }>()
@@ -128,7 +129,7 @@ const lpStart = (e: PointerEvent) => {
     lpStartInner(e)
 }
 
-const stacked = computed(() => props.nested && props.entity.children > 0)
+const stacked = computed(() => (props.nested || props.showChildren) && props.entity.children > 0)
 
 const exploreColumn = computed(() => props.columns?.find(c => c.type === 'explore'))
 const drawColumn = computed(() => props.columns?.find(c => c.type === 'draw'))

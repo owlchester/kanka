@@ -17,6 +17,7 @@
                 :entity="entity"
                 :selecting="selecting"
                 :nested="nested"
+                :show-children="showChildren"
                 :i18n="i18n"
                 :columns="columns"
                 @navigate="(id, url) => $emit('navigate', id, url)"
@@ -39,6 +40,7 @@ defineProps<{
     parent: any
     selecting: boolean
     nested: boolean
+    showChildren?: boolean
     i18n: any
     ads: { enabled: boolean; frequency: number }
     columns: any[]
