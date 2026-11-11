@@ -217,7 +217,9 @@ const registerLoadAnchorPost = () => {
 registerStoryActions();
 registerStoryLoadMore();
 registerTrustDomain();
-registerLoadAnchorPost();
+// Axios is assigned on `window` by app.js after imported modules have executed.
+// Defer anchor loading until the application bundle has finished initializing.
+window.onReady(registerLoadAnchorPost);
 scanAndMountMapPreviews();
 highlightSearchTerm();
 window.onEvent(scanAndMountMapPreviews);
