@@ -1,10 +1,10 @@
 <template>
     <div class="nav-switcher flex items-center justify-center align-middle h-12 gap-2">
-        <div class="campaigns inline cursor-pointer text-center text-2xl hover:text-primary-focus" v-on:click="openCampaigns()" aria-label="Switch campaigns" tabindex="0" role="button">
+        <button type="button" class="campaigns btn2 btn-ghost btn-square inline-flex items-center justify-center text-2xl hover:text-primary-focus" v-on:click="openCampaigns()" aria-label="Switch campaigns">
             <GridSvg :size="7" />
             <span class="sr-only">Campaigns</span>
-        </div>
-        <div class="profile flex items-center cursor-pointer text-center uppercase" v-on:click="openProfile()" aria-label="Profile settings" tabindex="0" role="button">
+        </button>
+        <button type="button" class="profile btn2 btn-ghost btn-square flex items-center justify-center text-center uppercase" v-on:click="openProfile()" aria-label="Profile settings">
             <div class="indicator relative inline-flex w-max">
                 <span class="notification-badge left-auto top-auto w-fit inline-flex absolute content-center items-center z-10" v-if="show_alerts"></span>
                 <div class="profile-box rounded-lg p-2 text-center font-bold" v-if="showInitials()">
@@ -12,8 +12,15 @@
                 </div>
                 <div class="w-9 h-9 rounded-lg cover-background" v-bind:style="{backgroundImage: profilePictureUrl()}" v-else></div>
             </div>
-        </div>
+        </button>
     </div>
+    <button
+        v-if="is_expanded"
+        type="button"
+        class="fixed inset-0 z-10 cursor-default"
+        aria-label="Close navigation popout"
+        @click.stop="is_expanded = false"
+    ></button>
     <div class="navigation-drawer bg-base-100 h-full fixed top-0 right-0 rounded-l-2xl shadow-lg flex flex-col" v-if="is_expanded" v-click-outside="onClickOutside">
         <div class="temporary p-8 text-center" v-if="is_loading">
             <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>

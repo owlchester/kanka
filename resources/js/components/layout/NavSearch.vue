@@ -1,7 +1,7 @@
 <template>
     <button
         type="button"
-        class="search-trigger flex items-center gap-2 justify-between rounded-xl border border-base-300 text-neutral-content w-full py-2 px-2 cursor-pointer"
+        class="search-trigger btn2 btn-outline flex-none min-w-0 text-neutral-content"
         data-shortcut="k"
         data-shortcut-action="click"
         @click="open"
