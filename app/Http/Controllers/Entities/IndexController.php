@@ -203,7 +203,9 @@ class IndexController extends Controller
                 $base->where('entities.parent_id', $request->get('parent_id'));
             }
         }
-        if (empty($parent) && $nested && $this->filterService->activeFiltersCount() === 0) {
+        $hasListingCriteria = $this->filterService->hasFilters() || $this->filterService->search() !== '';
+
+        if (empty($parent) && $nested && ! $hasListingCriteria) {
             $base->where(function ($query) {
                 $query->whereNull('entities.parent_id')
                     ->orWhereDoesntHave('parent');
@@ -319,6 +321,7 @@ class IndexController extends Controller
             'csrf' => csrf_token(),
             'filters' => [
                 'count' => $this->filterService->activeFiltersCount(),
+                'active' => $hasListingCriteria,
                 'unfilteredCount' => $unfilteredCount,
                 'urls' => [
                     'form' => route('filters.form', array_merge(
