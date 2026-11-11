@@ -8,7 +8,7 @@ if (auth()->check() && auth()->user()->can('update', $entity)) {
     $forceShow = true;
 }
 @endphp
-<aside class="entity-sidebar relative grid grid-cols-2 md:flex md:flex-col gap-5 items-stretch md:w-48 flex-none">
+<aside class="entity-sidebar relative grid grid-cols-2 lg:flex lg:flex-col gap-5 items-stretch lg:w-48 flex-none">
     @if ($forceShow || $entity->hasPins())
         <div class="col-span-2 sidebar-section-box entity-pins overflow-hidden flex flex-col gap-2 {{ $entity->hasPins() ? '' : 'entity-empty-pin' }}">
             <div class="sidebar-section-title cursor-pointer user-select border-b element-toggle flex items-center gap-2 justify-between group" data-animate="collapse" data-target="#sidebar-pinned-elements">

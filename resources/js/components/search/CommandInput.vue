@@ -1,13 +1,13 @@
 <template>
-    <div class="flex gap-2 items-center justify-between">
-        <div class="flex gap-1 items-center w-full">
+    <div class="flex flex-col md:flex-row gap-2 items-stretch md:items-center justify-between">
+        <div class="command-search-field flex gap-1 items-center w-full min-w-0">
             <span class="cmd-icon flex-0" aria-hidden="true">
                 <i class="fa-regular fa-magnifying-glass"></i>
             </span>
             <input
                 ref="inputRef"
                 type="text"
-                class="cmd-input focus-none! border-0! border-base-100 grow"
+                class="cmd-input focus-none! border-0! border-base-100 grow min-w-0 pr-12 md:pr-0"
                 :placeholder="placeholder"
                 v-model="query"
                 @input="onInput"
@@ -18,10 +18,10 @@
                 spellcheck="false"
             />
         </div>
-        <div class="flex rounded-lg bg-base-200 p-0.5 text-xs gap-0.5 shrink-0">
+        <div class="command-mode-toggle flex w-full md:w-auto rounded-lg bg-base-200 p-0.5 text-xs gap-0.5 shrink-0 self-end md:self-auto">
             <button
                 type="button"
-                class="rounded px-2 py-1 transition-colors cursor-pointer flex gap-1 items-center"
+                class="min-h-10 flex flex-1 items-center justify-center gap-1 rounded px-2 transition-colors cursor-pointer md:flex-none"
                 :class="mode === 'name' ? 'bg-base-100' : 'bg-transparent text-neutral-content'"
                 @click="setMode('name')"
             >
@@ -30,7 +30,7 @@
             </button>
             <button
                 type="button"
-                class="rounded px-2 py-1 transition-colors cursor-pointer flex gap-1 items-center"
+                class="min-h-10 flex flex-1 items-center justify-center gap-1 rounded px-2 transition-colors cursor-pointer md:flex-none"
                 :class="mode === 'fulltext' ? 'bg-base-100' : 'bg-transparent text-neutral-content'"
                 @click="setMode('fulltext')"
             >

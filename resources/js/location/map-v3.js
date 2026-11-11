@@ -115,7 +115,7 @@ const initLegend = () => {
         });
     });
 
-    document.querySelector('a.sidebar-toggle')?.addEventListener('click', function () {
+    document.querySelector('.sidebar-toggle')?.addEventListener('click', function () {
         invalidateMapOnSidebar();
     });
 };

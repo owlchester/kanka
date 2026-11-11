@@ -1,7 +1,7 @@
 <?php
 use \Illuminate\Support\Arr;
 ?>
-<div class="hidden md:flex flex-col gap-5">
+<div class="hidden lg:flex flex-col gap-5">
     @foreach ($items as $section => $menuItems)
         <x-box class="entity-menu{{ $section }}" :padding="0">
             <x-menu>
@@ -29,7 +29,7 @@ use \Illuminate\Support\Arr;
 </div>
 
 @php $firstBlock = true @endphp
-<div class="md:hidden" id="sm-a">
+<div class="lg:hidden" id="sm-a">
     <select name="menu-switcher" class="w-full submenu-switcher">
         @foreach ($items as $section => $menuItems)
             @if (!$firstBlock)

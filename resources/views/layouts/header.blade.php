@@ -5,7 +5,7 @@
                     Kanka requires Javascript to work properly. Please enable it.
                 </span>
         </noscript>
-        <div class="flex-none flex md:w-sidebar justify-items items-center toggle-and-search gap-2">
+        <div class="flex-none flex justify-items items-center toggle-and-search gap-2">
         @if (isset($toggle) && $toggle)
             <nav-toggler
                 text="{{ __('header.toggle_navigation') }}"

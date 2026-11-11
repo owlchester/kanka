@@ -52,13 +52,9 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
                 <img src="{{ $imagePath }}" class="entity-print-image" alt="{{ $imageAlt }}"/>
             @endif
 
-            @if (!isset($printing))
-            <a class="cursor-pointer relative cover-background sm:hidden" href="{{ $imageUrl }}" target="_blank" aria-label="Open original image">
-                <img src="{{ $imagePathMobile }}" loading="lazy" alt="{{ $imageAlt }}" class="w-28 " />
-            </a>
-            @endif
             <div class="dropdown">
-                <div class="cursor-pointer hidden sm:block print-none entity-picture relative {{ $imageClass }}" data-dropdown aria-expanded="false">
+                @if (!isset($printing))
+                <button type="button" class="cursor-pointer print-none entity-picture relative w-28 md:w-auto {{ $imageClass }} bg-transparent border-0 p-0" data-dropdown aria-expanded="false" aria-label="{{ __('entities/image.actions.view') }}">
                     @if ($imageVisibility && $imageVisibility !== \App\Enums\Visibility::All)
                         <div class="absolute bottom-0 right-0 flex items-center justify-center w-6 h-6" data-toggle="tooltip" data-title="{{ __('entities/image.gallery_permissions.' . strtolower($entity->image->visibility_id->name), ['admin' => $campaign->adminRoleName(), 'creator' => $entity->image->creator?->name]) }}">
                             <x-icon :class="$entity->image->visibilityIcon()['class']" />
@@ -66,9 +62,10 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
                     @endif
                     <picture class="">
                         <source media="(min-width:766px)" srcset="{{ $imagePathXL }}" class="">
-                        <img src="{{ $imagePath }}" alt="{{ $imageAlt }}" class="w-auto">
+                        <img src="{{ $imagePathMobile }}" alt="{{ $imageAlt }}" loading="lazy" class="w-28 md:w-auto">
                     </picture>
-                </div>
+                </button>
+                @endif
 
                 <div class="dropdown-menu hidden" role="menu">
                     <x-dropdowns.item

@@ -1,4 +1,12 @@
 @media (max-width: 767px) {
+    #header {
+        height: 3.25rem;
+    }
+
+    .nav-switcher.flex {
+        gap: .25rem;
+    }
+
     .content-header {
         padding-top: 5px;
     }
@@ -10,5 +18,82 @@
     }
     .keyboard-shortcut {
         display: none;
+    }
+
+    .search-trigger > span:last-child {
+        display: none;
+    }
+
+    .search-trigger {
+        width: 2.75rem;
+        min-width: 2.75rem;
+        flex: none;
+        height: 2.75rem;
+        min-height: 2.75rem;
+        padding: .25rem;
+        justify-content: center;
+    }
+
+    .search-trigger > div {
+        justify-content: center;
+    }
+
+    .quick-creator-button {
+        width: 2.75rem;
+        min-width: 2.75rem;
+        height: 2.75rem;
+        min-height: 2.75rem;
+        padding: .25rem;
+    }
+
+    .nav-switcher .btn2.btn-square {
+        width: 2.75rem;
+        height: 2.75rem;
+        padding: .25rem;
+    }
+
+    /* Prevent iOS Safari from zooming the page when a text field receives focus. */
+    input,
+    textarea,
+    select,
+    .ts-control,
+    .ts-control input {
+        font-size: 16px;
+    }
+
+    select,
+    .dialog header button[aria-label="Close dialog"] {
+        min-height: 2.75rem;
+    }
+
+    .main-sidebar .sidebar-menu a {
+        min-height: 2.75rem;
+    }
+
+    .entity-submenu select {
+        min-height: 2.75rem;
+    }
+
+    .btn2.btn-sm {
+        min-height: 2.75rem;
+    }
+
+    .entity-listing-toolbar .btn2.btn-sm,
+    .entity-listing-toolbar .btn2.btn-disabled {
+        width: 2.75rem;
+        min-width: 2.75rem;
+        height: 2.75rem;
+        padding-inline: 0;
+    }
+
+    .command-center-dialog {
+        width: 100vw;
+        max-inline-size: 100vw;
+        max-block-size: 90dvh;
+        border-radius: 1rem 1rem 0 0;
+    }
+
+    .command-search-field .cmd-input {
+        min-height: 2.75rem;
     }
 }
