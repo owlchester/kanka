@@ -25,6 +25,9 @@
         </div>
         <div class="flex gap-1 items-center">
             @can('update', $campaign)
+                @if ($entityType->isCustom())
+                    <a href="{{ route('entity_types.edit', [$campaign, $entityType]) }}" class="btn2 btn-default btn-sm"><x-icon class="cog" />{{ __('crud.edit') }}</a>
+                @else
                 <button
                     class="btn2 btn-default btn-sm"
                     data-toggle="dialog"
@@ -38,6 +41,7 @@
                     <x-icon class="cog"></x-icon>
                     {{ __('crud.edit') }}
                 </button>
+                @endif
             @endcan
         </div>
     </div>

@@ -47,6 +47,10 @@
             <a v-else :href="entity.urls.show" class="block text-center relative truncate h-12 p-4 text-link"
                data-toggle="tooltip-ajax" :data-id="entity.id" :data-url="entity.urls.tooltip"
                v-html="entity.name" @click="handleNameClick" />
+            <div v-if="entity.status?.is_custom" class="px-4 pb-2 text-xs flex items-center justify-center gap-1">
+                <i v-if="entity.status.icon" :class="entity.status.icon" :title="entity.status.name" role="img" :aria-label="entity.status.name"></i>
+                <span v-else>{{ entity.status.name }}</span>
+            </div>
         </div>
         <div v-for="s in Math.min(entity.children, 2)" :key="s"
              class="entity entity-stack bg-base-300 w-full overflow-hidden rounded aspect-square flex flex-col shadow-xs">
@@ -86,6 +90,10 @@
         <a v-else :href="entity.urls.show" class="block text-center relative truncate h-12 p-4 text-link"
            data-toggle="tooltip-ajax" :data-id="entity.id" :data-url="entity.urls.tooltip"
            v-html="entity.name" @click="handleNameClick" />
+        <div v-if="entity.status?.is_custom" class="px-4 pb-2 text-xs flex items-center justify-center gap-1">
+            <i v-if="entity.status.icon" :class="entity.status.icon" :title="entity.status.name" role="img" :aria-label="entity.status.name"></i>
+            <span v-else>{{ entity.status.name }}</span>
+        </div>
     </div>
 </template>
 

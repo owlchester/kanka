@@ -12,11 +12,9 @@
             {!! $entityType->plural() !!}
         </span>
         @can('update', $campaign)
-            <button
+            <a
                 class="hover:shadow-sm text-xl transition-all hover:rotate-45 flex items-center"
-                data-toggle="dialog"
-                data-url="{{ route('entity_types.edit', [$campaign, $entityType]) }}"
-                data-target="rename-dialog"
+                href="{{ route('entity_types.edit', [$campaign, $entityType]) }}"
                 title="{{ __('campaigns/modules.actions.customise') }}">
                     <span class="fill-current h-6 w-6 inline-block">
                         @include('icons.svg.cog')
@@ -24,7 +22,7 @@
                     <span class="sr-only">
                     {{ __('campaigns/modules.actions.customise') }}
                 </span>
-            </button>
+            </a>
         @endcan
     </div>
     <div class="grow flex flex-wrap flex-col">

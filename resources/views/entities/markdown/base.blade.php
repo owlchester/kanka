@@ -12,6 +12,9 @@
 # {!! html_entity_decode($entity->name, ENT_QUOTES, 'UTF-8') !!}
 
 - **{!! __('export.source') !!}:** <{!! $entityData['source'] !!}>
+@if ($entity->entityType->isCustom() && $entity->status)
+- **{{ __('entities.status') }}:** {{ $entity->status->name() }}
+@endif
 @if ($entity->type)
 - **{!! __('crud.fields.type') !!}:** {!! html_entity_decode($entity->type, ENT_QUOTES, 'UTF-8') !!}
 @endif

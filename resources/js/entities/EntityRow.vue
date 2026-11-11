@@ -47,7 +47,11 @@
 
             <!-- Icon (boolean or mapped status) -->
             <template v-else-if="col.type === 'icon'">
-                <i v-if="entity[col.key]?.icon" :class="entity[col.key].icon" v-tippy="entity[col.key].tooltip" aria-hidden="true"></i>
+                <span v-if="col.key === 'status' && entity.status?.is_custom" class="inline-flex items-center gap-1">
+                    <i v-if="entity.status.icon" :class="entity.status.icon" v-tippy="entity.status.name" role="img" :aria-label="entity.status.name"></i>
+                    <span v-else>{{ entity.status.name }}</span>
+                </span>
+                <i v-else-if="entity[col.key]?.icon" :class="entity[col.key].icon" v-tippy="entity[col.key].tooltip" aria-hidden="true"></i>
                 <i v-else-if="col.icons && col.icons[entity[col.key]]" :class="col.icons[entity[col.key]].icon" v-tippy="col.icons[entity[col.key]].tooltip" aria-hidden="true"></i>
                 <i v-else-if="!col.icons && entity[col.key]" :class="col.icon" v-tippy="col.tooltip" aria-hidden="true"></i>
             </template>

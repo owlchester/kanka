@@ -1,8 +1,12 @@
-<x-form :action="['entity_types.update', $campaign, $entityType]" method="PATCH" class="w-full max-w-lg" files>
-    @include('partials.forms._dialog', [
-        'title' => __('campaigns/modules.rename.title', ['module' => $entityType->plural()]),
-        'content' => 'campaigns.entity-types._form',
-        'actions' => 'campaigns.entity-types._actions',
-    ])
-</x-form>
+@extends('layouts.app', [
+    'title' => __('campaigns/modules.rename.title', ['module' => $entityType->plural()]),
+    'breadcrumbs' => [['url' => route('campaign.modules', $campaign), 'label' => __('campaigns/categories.tab')], $entityType->plural()],
+    'mainTitle' => false,
+    'sidebar' => 'campaign',
+])
 
+@section('content')
+    <x-form :action="['entity_types.update', $campaign, $entityType]" method="PATCH" files :extra="['data-category-form' => '1']">
+        @include('campaigns.entity-types._editor')
+    </x-form>
+@endsection

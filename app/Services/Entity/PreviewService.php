@@ -221,7 +221,7 @@ class PreviewService
     protected function status(): ?array
     {
         $status = $this->entity->status;
-        if (! $status?->icon) {
+        if (! $status || (! $status->isCustom() && ! $status->icon)) {
             return null;
         }
 

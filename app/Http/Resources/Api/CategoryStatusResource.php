@@ -21,6 +21,11 @@ class CategoryStatusResource extends JsonResource
         return [
             'id' => $model->id,
             'key' => $model->key,
+            'name' => $model->name(),
+            'label' => $model->label,
+            'icon' => $model->icon(),
+            'sort_order' => $model->sort_order,
+            'is_custom' => $model->isCustom(),
             'is_default' => $model->is_default,
             'category_id' => $model->category_id,
             'campaign_id' => $model->campaign_id,

@@ -41,6 +41,7 @@ import './visibility-picker';
 import './header';
 import './gallery/selection';
 import './forms/entity-name';
+import './forms/category-statuses';
 import './utility/tippy';
 import './maintenance';
 

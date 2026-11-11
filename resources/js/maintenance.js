@@ -31,6 +31,7 @@ const onMaintenanceFormSubmit = (event) => {
 
     return axios.post(form.getAttribute('action'), formData)
         .then(() => {
+            form.dispatchEvent(new Event('maintenance:validated'));
             // The check succeeded, submit the form for real. By doing .submit, it skips any event listeners on submit
             // This doesn't include the action of who submitted the form
             form.submit();

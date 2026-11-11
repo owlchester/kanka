@@ -175,7 +175,9 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
             <h1 class="entity-name text-lg md:text-4xl break-all">
                 {!! $entity->name !!}
             </h1>
-            @if ($headerStatus && $headerStatus->icon)
+            @if ($headerStatus && $headerStatus->isCustom())
+                <x-entities.status :status="$headerStatus" />
+            @elseif ($headerStatus && $headerStatus->icon)
                 <span class="entity-name-icon md:text-2xl" data-toggle="tooltip" data-title="{{ $headerStatus->setRelation('entityType', $entity->entityType)->name() }}">
                     <x-icon class="{{ $headerStatus->icon() }} entity-icons" />
                     <span class="sr-only">{{ $headerStatus->name() }}</span>
