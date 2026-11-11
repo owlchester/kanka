@@ -23,6 +23,8 @@
 
     background-size: var(--sidebar-width) 208px;
     background-repeat: no-repeat;
+    background-position: top left;
+    background-attachment: local;
     transition: all 0.3s ease-in-out, width 0.3s ease-in-out;
 
     .campaign-updated {
@@ -52,11 +54,13 @@
     }
 }
 .main-sidebar-placeholder {
-    background-image: var(--sidebar-placeholder, url('https://th.kanka.io/kZFdGAs5iN41r9mDqNqix8BxaAA=/240x208/smart/src/app/backgrounds/mountain-background-medium.jpg'));
+    background-image:
+        linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, var(--sidebar-background, hsl(var(--si)/1)) 100%),
+        var(--sidebar-placeholder, url('https://th.kanka.io/kZFdGAs5iN41r9mDqNqix8BxaAA=/240x208/smart/src/app/backgrounds/mountain-background-medium.jpg'));
 }
 
 section.sidebar-campaign {
-    background: linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, var(--sidebar-background, hsl(var(--si)/var(--tw-bg-opacity, 1))) 100%);
+    background: transparent;
 }
 .bg-sidebar {
     background: var(--sidebar-background, hsl(var(--si)/var(--tw-bg-opacity, 1)));
@@ -84,6 +88,13 @@ body.sidebar-collapse .sidebar-toggle [data-sidebar="expand"] {
 
 /** Mobile **/
 @media (max-width: 767px) {
+    body.sidebar-open::before {
+        content: "";
+        position: fixed;
+        inset: 3rem 0 0;
+        z-index: 839;
+        background: rgb(0 0 0 / .45);
+    }
     .main-sidebar {
         margin-left: calc(0px - var(--sidebar-width));
     }
@@ -93,6 +104,12 @@ body.sidebar-collapse .sidebar-toggle [data-sidebar="expand"] {
 
     .sidebar-open .main-sidebar {
         margin-left: 0;
+        position: fixed;
+        top: 3rem;
+        bottom: 0;
+        height: calc(100dvh - 3rem);
+        overflow-y: auto;
+        z-index: 840;
     }
 }
 @media (min-width: 768px) {

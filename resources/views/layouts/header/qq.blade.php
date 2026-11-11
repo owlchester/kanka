@@ -7,9 +7,10 @@
         data-shortcut="n"
         data-title="{{ __('header.qq.tooltip') }} [ N ]"
         data-tooltip
+        aria-label="{{ __('crud.create') }}"
         tabindex="0">
         <x-icon class="flex-none fa-regular fa-plus" />
-        <span class="grow hidden sm:inline-block">
+        <span class="grow hidden md:inline-block">
             {{ __('crud.create') }}
         </span>
     </a>

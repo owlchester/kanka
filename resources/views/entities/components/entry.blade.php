@@ -1,5 +1,5 @@
 @if ($entity->hasEntry())
-    <article class="bg-box rounded-lg box-entity-entry">
+    <article class="bg-box rounded-lg box-entity-entry" id="entity-entry-{{ $entity->id }}">
     <div class="p-4 entity-content overflow-x-auto" data-word-count="{{ $entity->words }}">
         @if (auth()->check())
             @can('update', [$entity])
@@ -21,5 +21,4 @@
 
 @includeWhen($entity->isCharacter() && $entity->child->is_appearance_pinned, 'characters.panels._appearance')
 @includeWhen($entity->isCharacter() && $entity->child->is_personality_pinned, 'characters.panels._personality')
-
 

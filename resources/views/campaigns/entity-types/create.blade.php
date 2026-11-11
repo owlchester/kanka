@@ -1,8 +1,12 @@
-<x-form :action="['entity_types.store', $campaign]" method="POST" class="w-full max-w-lg" files>
-    @include('partials.forms._dialog', [
-        'title' => __('campaigns/modules.create.title'),
-        'content' => 'campaigns.entity-types._form',
-        'submit' => __('campaigns/modules.actions.create')
-    ])
-</x-form>
+@extends('layouts.app', [
+    'title' => __('campaigns/modules.create.title'),
+    'breadcrumbs' => [['url' => route('campaign.modules', $campaign), 'label' => __('campaigns/categories.tab')], __('campaigns/modules.create.title')],
+    'mainTitle' => false,
+    'sidebar' => 'campaign',
+])
 
+@section('content')
+    <x-form :action="['entity_types.store', $campaign]" method="POST" files :extra="['data-category-form' => '1']">
+        @include('campaigns.entity-types._editor')
+    </x-form>
+@endsection

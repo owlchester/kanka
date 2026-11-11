@@ -12,6 +12,7 @@ use App\Traits\EntityTypeAware;
 use App\Traits\RequestAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class EntityTypeService
@@ -125,6 +126,11 @@ class EntityTypeService
 
     public function save(): EntityType
     {
+        return DB::transaction(fn () => $this->persist());
+    }
+
+    protected function persist(): EntityType
+    {
         if (! isset($this->entityType)) {
             $this->entityType = new EntityType;
             $this->entityType->campaign_id = $this->campaign->id;
@@ -137,6 +143,10 @@ class EntityTypeService
         $this->entityType->icon = $this->request->get('icon');
         $this->entityType->is_enabled = (bool) $this->request->get('is_enabled');
         $this->entityType->save();
+
+        if ($this->request->has('statuses')) {
+            app(CategoryStatusService::class)->sync($this->campaign, $this->entityType, $this->request->input('statuses', []));
+        }
 
         if ($this->entityType->wasRecentlyCreated) {
             $this->permissions()->bookmark();

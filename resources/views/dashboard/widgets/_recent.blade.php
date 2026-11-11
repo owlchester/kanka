@@ -41,6 +41,7 @@ if (($widget->conf('singular'))) {
             </span>
         @endif
     </h4>
+    <x-entities.status-filter-warning :filters="$widget->conf('filters') ?? ''" class="px-4 pb-3" />
     @if (!empty($widget->conf('singular')))
     <div class="widget-body widget-recent-body p-4">
         <p class="italic">{{ __('search.lookup.empty') }}</p>

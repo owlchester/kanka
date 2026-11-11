@@ -45,6 +45,7 @@ class EntityResource extends JsonResource
     {
         /** @var Entity $entity */
         $entity = $this->resource;
+        $entity->status?->setRelation('entityType', $entity->entityType);
         $url = $entity->url();
         if ($entity->entityType->isCustom()) {
             $apiViewUrl = 'campaigns.entities.show';
@@ -72,6 +73,7 @@ class EntityResource extends JsonResource
             'is_claimable' => $entity->is_claimable,
             'is_attributes_private' => $entity->is_attributes_private,
             'status_id' => $entity->status_id,
+            'status' => Api\CategoryStatusResource::make($entity->status),
             'tooltip' => $entity->tooltip,
             'header_image' => $entity->header_image,
             'header_uuid' => $entity->header_uuid,
@@ -209,6 +211,7 @@ class EntityResource extends JsonResource
         }
 
         $galleryImage = $misc->entity->image;
+        $misc->entity->status?->setRelation('entityType', $misc->entity->entityType);
         $url = route('entities.show', [$misc->campaign_id, $misc->entity]);
         $apiViewUrl =
             'campaigns.' . $misc->entity->entityType->pluralCode() . '.show';

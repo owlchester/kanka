@@ -163,7 +163,10 @@ class ExportService
             return $this;
         }
 
-        $settings = $this->campaign->entityTypes->where('is_special', 1)->select('id', 'code', 'is_enabled', 'singular', 'plural', 'icon')->toArray();
+        $types = $this->campaign->entityTypes()->where('is_special', 1)->with('statuses')->get();
+        $settings = $types->map(fn ($type) => $type->only(['id', 'code', 'is_enabled', 'singular', 'plural', 'icon']) + [
+            'statuses' => $type->statuses->map(fn ($status) => $status->only(['id', 'key', 'label', 'icon', 'sort_order', 'is_default']))->values()->all(),
+        ])->values()->all();
         $this->archive->addFromString('settings/custom-modules.json', json_encode($settings));
         $this->files++;
 

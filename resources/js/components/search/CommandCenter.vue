@@ -1,12 +1,12 @@
 <template>
     <Teleport to="body">
         <dialog
-            class="dialog rounded-2xl bg-base-100 text-base-content w-full md:w-fit md:min-w-2xl overflow-hidden flex flex-col max-h-[80vh]"
+            class="dialog command-center-dialog rounded-t-2xl md:rounded-2xl bg-base-100 text-base-content w-full md:w-fit md:min-w-2xl overflow-hidden flex flex-col max-h-[85dvh]"
             ref="dialogRef"
             @cancel="close"
             aria-label="Command Center"
         >
-            <header class="p-4">
+            <header class="command-center-header p-4">
                 <CommandInput
                     :placeholder="mode === 'fulltext' ? restData.texts.hint_fulltext : restData.texts.hint_entries || placeholder"
                     :entities-label="restData.texts.entities || 'Entries'"
@@ -33,7 +33,7 @@
                     ref="resultsRef"
                 />
             </article>
-            <footer class="flex gap-4 p-4 text-xs text-base-content/50 items-center justify-between">
+            <footer class="hidden md:flex gap-4 p-4 text-xs text-base-content/50 items-center justify-between">
                 <div class="flex gap-4 items-center">
                     <div class="flex gap-1 items-center">
                         <kbd class="w-8 inline-block text-center rounded bg-base-200">↑</kbd>

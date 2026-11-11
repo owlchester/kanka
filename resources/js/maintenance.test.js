@@ -10,8 +10,10 @@ function setup(formErrorHandler = () => {}) {
     let listener
     let attempts = 0
     let submitted = false
+    const events = []
     const form = {
         addEventListener: (event, handler) => { listener = handler },
+        dispatchEvent: event => { events.push(event.type) },
         getAttribute: () => '/calendars',
         querySelectorAll: () => buttons.map(classes => ({
             classList: {
@@ -26,6 +28,7 @@ function setup(formErrorHandler = () => {}) {
         document: { querySelectorAll: () => [form] },
         window: { onEvent: () => {}, formErrorHandler },
         FormData: class {},
+        Event,
         axios: {
             post: () => ++attempts === 1
                 ? Promise.reject({ response })
@@ -37,6 +40,7 @@ function setup(formErrorHandler = () => {}) {
         buttons,
         response,
         form,
+        events,
         submit: () => listener({ target: form, preventDefault: () => {} }),
         submitted: () => submitted,
     }
@@ -54,9 +58,11 @@ test('a rejected calendar save releases all save buttons and allows a retry', as
     assert.deepEqual(reported, { response: state.response, form: state.form })
     assert.equal(state.buttons.every(button => button.size === 0), true)
     assert.equal(state.submitted(), false)
+    assert.deepEqual(state.events, [])
 
     await state.submit()
     assert.equal(state.submitted(), true)
+    assert.deepEqual(state.events, ['maintenance:validated'])
 })
 
 test('save buttons recover even when validation error rendering throws', async () => {

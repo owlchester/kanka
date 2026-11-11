@@ -15,7 +15,7 @@
 
         <div
             ref="box"
-            class="relative rounded-lg p-4 shadow-xs bg-box w-full transition-all duration-150 box-entity-relations box-entity-relations-explorer"
+            class="isolate relative rounded-lg p-4 shadow-xs bg-box w-full transition-all duration-150 box-entity-relations box-entity-relations-explorer"
             :class="embedded ? 'h-80' : 'min-h-80'"
         >
             <div v-show="loading" class="absolute inset-0 flex items-center justify-center text-xg bg-box z-10">

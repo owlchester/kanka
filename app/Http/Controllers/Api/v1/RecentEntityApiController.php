@@ -25,6 +25,7 @@ class RecentEntityApiController extends ApiController
 
         return Resource::collection(
             $campaign->entities()
+                ->with('status')
                 ->apiFilter($campaign, request()->all())
                 ->orderBy('updated_at', 'desc')
                 ->orderBy('entities.id', 'desc')

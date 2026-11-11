@@ -6,6 +6,7 @@ return [
         'more'  => 'more amazing features',
     ],
     'errors'    => [
+        'pending'               => 'A subscription payment is already being processed. Please check your subscription before trying again. If this persists, contact support.',
         'grace'                 => 'Your current subscription ends on :date, after which point you can re-subscribe.',
         'invalid_card_country'  => [
             'brl'   => 'We\'re sorry but we currently only accept BRL payments for customers with Brazilian credit cards. If you think this is a mistake, contact us at :email.',

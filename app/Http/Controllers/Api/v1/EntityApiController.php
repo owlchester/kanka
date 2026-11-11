@@ -30,6 +30,7 @@ class EntityApiController extends ApiController
         $this->authorize('access', $campaign);
 
         return Resource::collection($campaign->entities()
+            ->with('status')
             ->apiFilter($campaign, request()->all())
             ->lastSync(request()->get('lastSync'))
             ->orderBy('entities.id')
@@ -44,7 +45,7 @@ class EntityApiController extends ApiController
         }
         $this->authorize('access', $campaign);
         $this->authorize('view', $entity);
-        $entity->loadMissing(['child', 'entityType', 'tags', 'image', 'locations']);
+        $entity->loadMissing(['child', 'entityType', 'tags', 'image', 'locations', 'status']);
         if ($entity->child instanceof MiscModel) {
             $entity->child->setRelation('entity', $entity);
             $entity->child->loadMissing($entity->child->apiRelations());
@@ -57,20 +58,23 @@ class EntityApiController extends ApiController
     public function put(StoreEntities $request, Campaign $campaign, EntityType $entityType)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('create', [$campaign, $entityType]);
-
-        $entities = [];
+        $this->authorize('create', [$entityType, $campaign]);
 
         $this->bulkEntityCreatorService
             ->campaign($campaign)
             ->entityType($entityType)
             ->user($request->user());
 
-        foreach ($request->validated('entities', []) as $entity) {
-            $entities[] = $this->bulkEntityCreatorService
-                ->data(Arr::only($entity, ['name', 'entry', 'type', 'tags', 'is_private']))
-                ->create();
-        }
+        $entities = DB::transaction(function () use ($request): array {
+            $entities = [];
+            foreach ($request->validated('entities', []) as $entity) {
+                $entities[] = $this->bulkEntityCreatorService
+                    ->data(Arr::only($entity, ['name', 'entry', 'type', 'tags', 'is_private', 'status_id']))
+                    ->create();
+            }
+
+            return $entities;
+        });
 
         return Resource::collection($entities);
     }
@@ -93,7 +97,7 @@ class EntityApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity);
-        $keys = ['name', 'type', 'is_private', 'is_template', 'tooltip', 'entry', 'image_uuid', 'header_uuid'];
+        $keys = ['name', 'type', 'is_private', 'is_template', 'tooltip', 'entry', 'image_uuid', 'header_uuid', 'status_id'];
         if ($entity->entityType->isCustom()) {
             $keys[] = 'parent_id';
         }

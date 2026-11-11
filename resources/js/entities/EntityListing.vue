@@ -22,9 +22,9 @@
             </div>
         </div>
     </div>
-    <div class="flex flex-col gap-4 w-full" v-else ref="listingRef">
+    <div class="entity-listing flex flex-col gap-4 w-full" v-else ref="listingRef">
         <!-- Toolbar -->
-        <div class="flex gap-2 justify-between items-center flex-wrap">
+        <div class="entity-listing-toolbar flex gap-2 justify-between items-center flex-wrap">
             <!-- Left: title + filters -->
             <div
                 class="flex gap-2 items-center flex-wrap"
@@ -44,7 +44,7 @@
                     @click="openFilters"
                 >
                     <i class="fa-regular fa-filter" aria-hidden="true"></i>
-                    <span class="hidden sm:inline" v-html="i18n.filters"></span>
+                    <span class="hidden lg:inline" v-html="i18n.filters"></span>
                 </button>
 
                 <!-- Filter pill: active filters -->
@@ -55,7 +55,7 @@
                     <button class="btn2 btn-sm join-item" @click="openFilters">
                         <i class="fa-regular fa-filter" aria-hidden="true"></i>
                         <span
-                            class="hidden sm:inline"
+                            class="hidden lg:inline"
                             v-html="i18n.filters"
                         ></span>
                         <span
@@ -110,7 +110,7 @@
                         entityType.is_nested &&
                         !orderingComposable.ordering.value
                     "
-                    class="flex items-center rounded-xl bg-base-200 overflow-hidden p-0.5 gap-0.5"
+                    class="hidden lg:flex items-center rounded-xl bg-base-200 overflow-hidden p-0.5 gap-0.5"
                 >
                     <button
                         @click="nestingComposable.switchMode()"
@@ -150,7 +150,7 @@
                         entityType.has_table &&
                         !orderingComposable.ordering.value
                     "
-                    class="flex items-center rounded-xl bg-base-200 overflow-hidden p-0.5 gap-0.5"
+                    class="hidden lg:flex items-center rounded-xl bg-base-200 overflow-hidden p-0.5 gap-0.5"
                 >
                     <button
                         @click="
@@ -193,23 +193,24 @@
                     >
                         <i class="fa-regular fa-gear" aria-hidden="true"></i>
                         <span
-                            class="hidden sm:inline"
+                            class="hidden lg:inline"
                             v-html="i18n.display"
                         ></span>
                     </button>
                 </div>
 
-                <!-- Select button (hidden on mobile) -->
+                <!-- Keep bulk selection discoverable on touch devices; long-press remains a shortcut. -->
                 <button
                     v-if="hasPermissions()"
                     @click="bulkActions.toggleSelecting()"
-                    class="btn2 hidden btn-sm sm:flex"
+                    class="btn2 btn-sm"
+                    :aria-label="i18n.select"
                 >
                     <i
                         class="fa-regular fa-check-square"
                         aria-hidden="true"
                     ></i>
-                    <span class="hidden sm:inline" v-html="i18n.select"></span>
+                    <span class="hidden lg:inline" v-html="i18n.select"></span>
                 </button>
 
                 <!-- Create + template caret -->
@@ -220,7 +221,7 @@
                     >
                         <i class="fa-regular fa-plus" aria-hidden="true"></i>
                         <span
-                            class="hidden md:inline"
+                            class="hidden lg:inline"
                             v-html="entityType.singular"
                         ></span>
                     </a>
@@ -264,7 +265,7 @@
                     >
                         <i class="fa-regular fa-pencil" aria-hidden="true"></i>
                         <span
-                            class="hidden md:inline"
+                            class="hidden lg:inline"
                             v-html="i18n.bulkEdit"
                         ></span>
                     </button>
@@ -292,7 +293,7 @@
                     >
                         <i class="fa-regular fa-print" aria-hidden="true"></i>
                         <span
-                            class="hidden md:inline"
+                            class="hidden lg:inline"
                             v-html="i18n.bulkPrint"
                         ></span>
                     </button>
@@ -435,6 +436,34 @@
         <div ref="hiddenMenus" style="display: none">
             <!-- Display menu: sort + per page + columns -->
             <div ref="displayMenu" class="flex flex-col gap-3 p-1 min-w-56">
+                <div class="flex flex-col gap-3 lg:hidden">
+                    <div v-if="entityType.is_nested && !orderingComposable.ordering.value">
+                        <div class="flex rounded-lg bg-base-200 p-0.5 gap-0.5">
+                            <button type="button" class="flex min-h-10 flex-1 items-center justify-center gap-2 rounded-md px-2 text-sm" :class="nestingComposable.nested.value ? 'bg-base-100 text-base-content shadow-xs' : 'text-neutral-content'" :aria-pressed="nestingComposable.nested.value" @click="switchNestingMode()">
+                                <i class="fa-regular fa-layer-group" aria-hidden="true"></i>
+                                <span v-html="i18n.nestShort"></span>
+                            </button>
+                            <button type="button" class="flex min-h-10 flex-1 items-center justify-center gap-2 rounded-md px-2 text-sm" :class="!nestingComposable.nested.value ? 'bg-base-100 text-base-content shadow-xs' : 'text-neutral-content'" :aria-pressed="!nestingComposable.nested.value" @click="switchNestingMode()">
+                                <i class="fa-regular fa-boxes-stacked" aria-hidden="true"></i>
+                                <span v-html="i18n.flattenShort"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div v-if="entityType.has_table && !orderingComposable.ordering.value">
+                        <div class="flex rounded-lg bg-base-200 p-0.5 gap-0.5">
+                            <button type="button" class="flex min-h-10 flex-1 items-center justify-center gap-2 rounded-md px-2 text-sm" :class="layoutComposable.isGrid() ? 'bg-base-100 text-base-content shadow-xs' : 'text-neutral-content'" :aria-pressed="layoutComposable.isGrid()" @click="switchLayoutMode(true)">
+                                <i class="fa-regular fa-grid-2" aria-hidden="true"></i>
+                                <span v-html="i18n.gridShort"></span>
+                            </button>
+                            <button type="button" class="flex min-h-10 flex-1 items-center justify-center gap-2 rounded-md px-2 text-sm" :class="!layoutComposable.isGrid() ? 'bg-base-100 text-base-content shadow-xs' : 'text-neutral-content'" :aria-pressed="!layoutComposable.isGrid()" @click="switchLayoutMode(false)">
+                                <i class="fa-regular fa-list-ul" aria-hidden="true"></i>
+                                <span v-html="i18n.listShort"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <hr v-if="(entityType.is_nested || entityType.has_table) && !orderingComposable.ordering.value" class="border-base-300 -mx-1" />
+                </div>
+
                 <!-- Sort by -->
                 <div v-if="sortableColumns.length > 0">
                     <div
@@ -853,8 +882,43 @@ const handleGridBack = () => {
     });
 };
 
+const handlePopState = () => {
+    const params = new URLSearchParams(window.location.search);
+    layoutComposable.layout.value = params.get("m") ?? props.mode;
+    const url = entityApi.currentApiUrl();
+
+    entityApi.fetchEntities(url).then((response: any) => {
+        if (!response) return;
+        entityApi.parent.value = response.parent ?? null;
+        nestingComposable.setNested(
+            params.has("n")
+                ? params.get("n") !== "0"
+                : (response.nested ?? nestingComposable.nested.value),
+        );
+    });
+};
+
 // Tippy dropdowns
 let tippyInstances: any[] = [];
+
+const closeDisplayMenu = () => {
+    const instance = tippyInstances.find(
+        (dropdown) => dropdown.reference === displayBtn.value,
+    );
+    instance?.hide();
+};
+
+const switchNestingMode = () => {
+    nestingComposable.switchMode();
+    closeDisplayMenu();
+};
+
+const switchLayoutMode = (grid: boolean) => {
+    if (layoutComposable.isGrid() !== grid) {
+        layoutComposable.switchLayout();
+    }
+    closeDisplayMenu();
+};
 
 const destroyAllTippy = () => {
     tippyInstances.forEach((instance) => {
@@ -945,6 +1009,7 @@ onMounted(() => {
         loading.value = false;
     });
     window.addEventListener("keydown", handleKeydown);
+    window.addEventListener("popstate", handlePopState);
 });
 
 watch(loading, (val) => {
@@ -976,6 +1041,7 @@ const handleKeydown = (e: KeyboardEvent) => {
 
 onBeforeUnmount(() => {
     window.removeEventListener("keydown", handleKeydown);
+    window.removeEventListener("popstate", handlePopState);
     destroyAllTippy();
 });
 

@@ -57,17 +57,10 @@ const checkCoupon = (event) => {
     const element = event.target;
     const coupon = element.value;
     const url = element.dataset.url;
-
-    if (!coupon) {
-        formSubmitBtn.classList.remove('btn-disabled', 'loading');
-        formSubmitBtn.disabled = false;
-    }
     couponValidating.classList.remove('hidden');
-    fetch(url + '?coupon=' + coupon)
+    return fetch(url + '?coupon=' + coupon)
         .then((response) => response.json())
         .then((result) => {
-            formSubmitBtn.classList.remove('btn-disabled', 'loading');
-            formSubmitBtn.disabled = false;
             couponValidating.classList.add('hidden');
 
             if (!result.valid) {
@@ -97,6 +90,8 @@ const checkCoupon = (event) => {
 const subscribe = (event) => {
     const form = event.target;
     event.preventDefault();
+    if (form.dataset.submitting === 'true') return;
+    form.dataset.submitting = 'true';
     disableSubmit(event);
 
     const errorMessage = document.querySelector('.alert-error');
@@ -119,7 +114,7 @@ const subscribe = (event) => {
     if (reasonInput && reasonInput.value) returnUrl.searchParams.set('reason', reasonInput.value);
     if (customReasonInput && customReasonInput.value) returnUrl.searchParams.set('reason_custom', customReasonInput.value);
 
-    stripe.confirmSetup({
+    return stripe.confirmSetup({
         elements,
         confirmParams: {
             return_url: returnUrl.toString(),
@@ -127,8 +122,9 @@ const subscribe = (event) => {
         redirect: 'if_required',
     }).then((result) => {
         if (result.error) {
+            delete form.dataset.submitting;
             formSubmitBtn.classList.remove('disabled', 'loading');
-            formSubmitBtn.disabled = '';
+            formSubmitBtn.disabled = false;
             errorMessage.innerHTML = result.error.message;
             errorMessage.classList.remove('hidden');
             return;
@@ -138,6 +134,12 @@ const subscribe = (event) => {
             cardID.value = result.setupIntent.payment_method;
             form.submit();
         }
+    }).catch((error) => {
+        delete form.dataset.submitting;
+        formSubmitBtn.classList.remove('disabled', 'loading');
+        formSubmitBtn.disabled = false;
+        errorMessage.textContent = error.message;
+        errorMessage.classList.remove('hidden');
     });
 };
 

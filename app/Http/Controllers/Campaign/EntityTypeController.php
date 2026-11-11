@@ -21,14 +21,16 @@ class EntityTypeController extends Controller
         $this->authorize('setting', $campaign);
 
         if (! $campaign->premium()) {
-            return view('campaigns.entity-types.not-premium')
+            return view('campaigns.entity-types.unavailable')
+                ->with('reason', 'campaigns.entity-types.not-premium')
                 ->with('campaign', $campaign);
         }
 
         $limit = $this->limit($campaign);
 
         if ($campaign->entityTypes->count() >= $limit) {
-            return view('campaigns.entity-types.max-reached')
+            return view('campaigns.entity-types.unavailable')
+                ->with('reason', 'campaigns.entity-types.max-reached')
                 ->with('campaign', $campaign)
                 ->with('limit', $limit)
                 ->with('isPremiumUnlocker', $this->isPremiumUnlocker($campaign));
@@ -49,7 +51,8 @@ class EntityTypeController extends Controller
 
         $limit = $this->limit($campaign);
         if ($campaign->entityTypes->count() >= $limit) {
-            return view('campaigns.entity-types.max-reached')
+            return view('campaigns.entity-types.unavailable')
+                ->with('reason', 'campaigns.entity-types.max-reached')
                 ->with('campaign', $campaign)
                 ->with('limit', $limit)
                 ->with('isPremiumUnlocker', $this->isPremiumUnlocker($campaign));
@@ -72,6 +75,8 @@ class EntityTypeController extends Controller
     {
         $this->authorize('setting', $campaign);
         $this->authorize('update', [$entityType, $campaign]);
+
+        $entityType->load('statuses');
 
         $image = null;
         $thumbnails = $campaign->defaultImages();

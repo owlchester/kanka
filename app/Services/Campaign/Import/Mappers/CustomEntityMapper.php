@@ -65,6 +65,11 @@ trait CustomEntityMapper
             $this->entity->$field = $this->data['entity'][$field];
         }
 
+        $sourceStatus = $this->data['entity']['status_id'] ?? null;
+        $this->entity->status_id = $sourceStatus && ImportIdMapper::has('category_statuses', (int) $sourceStatus)
+            ? ImportIdMapper::get('category_statuses', (int) $sourceStatus)
+            : null;
+
         $this
             ->images()
             ->gallery();

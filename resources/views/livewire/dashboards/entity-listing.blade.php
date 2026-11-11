@@ -17,8 +17,8 @@
                     :entity="$entity"
                     :campaign="$campaign" />
 
-                @if ($entity->status?->icon)
-                    <x-icon class="{{ $entity->status->icon() }}" tooltip :title="$entity->status->setRelation('entityType', $entity->entityType)->name()" />
+                @if ($entity->status)
+                    <x-entities.status :status="$entity->status->setRelation('entityType', $entity->entityType)" compact />
                 @endif
                 @if ($entity->is_private)
                     <x-icon class="lock" tooltip title="{{ __('crud.is_private') }}" />
