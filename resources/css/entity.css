@@ -55,3 +55,17 @@ mark.kanka-search-highlight {
     border-radius: 0.15rem;
     padding-inline: 0.1rem;
 }
+
+.entity-mobile-more-links {
+    max-height: min(65dvh, calc(100dvh - var(--entity-reader-top, 3.25rem) - var(--entity-reader-height, 7rem) - 1rem));
+}
+
+@media screen and (width < 64rem) {
+    .entity-grid > .entity-body {
+        flex-direction: column;
+    }
+
+    .entity-sidebar > .entity-reader-details[data-reader-enhanced] {
+        display: none;
+    }
+}

@@ -194,16 +194,6 @@ const initDynamicDelete = () => {
 };
 
 
-const initSubmenuSwitcher = () => {
-    document.querySelector('.submenu-switcher')?.addEventListener('change', function (e) {
-        e.preventDefault();
-        const ele = e.target;
-        const selected = ele.options[ele.selectedIndex];
-        window.location.href = selected.dataset.route;
-    });
-};
-
-
 const initDismissible = () => {
     const elements = document.querySelectorAll('[data-dismisses]');
     elements.forEach(el => {
@@ -236,7 +226,6 @@ const initPermBtn = () => {
 
 window.initForeignSelect();
 window.initDialogs();
-initSubmenuSwitcher();
 
 manageTabs();
 
