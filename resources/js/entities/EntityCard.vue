@@ -97,7 +97,6 @@ const props = defineProps<{
     entity: any
     selecting: boolean
     nested: boolean
-    showChildren?: boolean
     i18n: any
     columns?: any[]
 }>()
@@ -129,7 +128,7 @@ const lpStart = (e: PointerEvent) => {
     lpStartInner(e)
 }
 
-const stacked = computed(() => (props.nested || props.showChildren) && props.entity.children > 0)
+const stacked = computed(() => props.nested && props.entity.children > 0)
 
 const exploreColumn = computed(() => props.columns?.find(c => c.type === 'explore'))
 const drawColumn = computed(() => props.columns?.find(c => c.type === 'draw'))
