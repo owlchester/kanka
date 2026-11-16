@@ -1,7 +1,7 @@
 <template>
     <Teleport to="body">
         <dialog
-            class="dialog command-center-dialog rounded-t-2xl md:rounded-2xl bg-base-100 text-base-content w-full md:w-fit md:min-w-2xl overflow-hidden flex flex-col max-h-[85dvh]"
+            class="dialog command-center-dialog rounded-t-2xl md:rounded-2xl bg-base-100 text-base-content w-screen max-md:max-w-screen! max-md:max-h-[90dvh]! md:w-fit md:min-w-2xl overflow-hidden flex flex-col md:max-h-[85dvh]"
             ref="dialogRef"
             @cancel="close"
             aria-label="Command Center"

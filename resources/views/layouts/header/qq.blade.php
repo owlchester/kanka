@@ -3,7 +3,7 @@
         href="#"
         data-url="{{ route('entity-creator.selection', $campaign) }}"
         data-toggle="dialog"
-        class="quick-creator-button btn2 btn-default btn-sm"
+        class="quick-creator-button btn2 btn-default btn-sm max-md:size-11! max-md:min-w-11 max-md:min-h-11! max-md:p-1!"
         data-shortcut="n"
         data-title="{{ __('header.qq.tooltip') }} [ N ]"
         data-tooltip

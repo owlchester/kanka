@@ -7,7 +7,7 @@
             <input
                 ref="inputRef"
                 type="text"
-                class="cmd-input focus-none! border-0! border-base-100 grow min-w-0 pr-12 md:pr-0"
+                class="cmd-input max-md:min-h-11 focus-none! border-0! border-base-100 grow min-w-0 pr-12 md:pr-0"
                 :placeholder="placeholder"
                 v-model="query"
                 @input="onInput"

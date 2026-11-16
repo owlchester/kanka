@@ -1,12 +1,12 @@
 <template>
-    <div class="nav-switcher flex items-center justify-center align-middle h-12 gap-2">
-        <button type="button" class="campaigns btn2 btn-ghost btn-square inline-flex items-center justify-center text-2xl hover:text-primary-focus" v-on:click="openCampaigns()" aria-label="Switch campaigns">
+    <div class="nav-switcher flex items-center justify-center align-middle h-12 gap-1 md:gap-2">
+        <button type="button" class="campaigns btn2 btn-ghost btn-square max-md:size-11! max-md:p-1! inline-flex items-center justify-center text-2xl hover:text-primary-focus" v-on:click="openCampaigns()" aria-label="Switch campaigns">
             <GridSvg :size="7" />
             <span class="sr-only">Campaigns</span>
         </button>
-        <button type="button" class="profile btn2 btn-ghost btn-square flex items-center justify-center text-center uppercase" v-on:click="openProfile()" aria-label="Profile settings">
+        <button type="button" class="profile btn2 btn-ghost btn-square max-md:size-11! max-md:p-1! flex items-center justify-center text-center uppercase" v-on:click="openProfile()" aria-label="Profile settings">
             <div class="indicator relative inline-flex w-max">
-                <span class="notification-badge left-auto top-auto w-fit inline-flex absolute content-center items-center z-10" v-if="show_alerts"></span>
+                <span class="notification-badge left-auto top-auto -right-[0.2rem] -bottom-[0.2rem] translate-x-1/2 leading-2 p-[0.3rem] w-fit inline-flex absolute content-center items-center z-10" v-if="show_alerts"></span>
                 <div class="profile-box rounded-lg p-2 text-center font-bold" v-if="showInitials()">
                     {{ initials }}
                 </div>
@@ -21,7 +21,7 @@
         aria-label="Close navigation popout"
         @click.stop="is_expanded = false"
     ></button>
-    <div class="navigation-drawer bg-base-100 h-full fixed top-0 right-0 rounded-l-2xl shadow-lg flex flex-col" v-if="is_expanded" v-click-outside="onClickOutside">
+    <div class="navigation-drawer w-[82%] md:w-95 z-20 bg-base-100 h-full fixed top-0 right-0 rounded-l-2xl shadow-lg flex flex-col" v-if="is_expanded" v-click-outside="onClickOutside">
         <div class="temporary p-8 text-center" v-if="is_loading">
             <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
         </div>

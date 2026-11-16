@@ -24,7 +24,7 @@
     </div>
     <div class="entity-listing flex flex-col gap-4 w-full" v-else ref="listingRef">
         <!-- Toolbar -->
-        <div class="entity-listing-toolbar flex gap-2 justify-between items-center flex-wrap">
+        <div class="entity-listing-toolbar flex gap-2 justify-between items-center flex-wrap max-md:[&_.btn2:is(.btn-sm,.btn-disabled)]:size-11! max-md:[&_.btn2:is(.btn-sm,.btn-disabled)]:min-w-11 max-md:[&_.btn2:is(.btn-sm,.btn-disabled)]:px-0!">
             <!-- Left: title + filters -->
             <div
                 class="flex gap-2 items-center flex-wrap"
