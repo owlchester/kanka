@@ -14,6 +14,8 @@ use App\Events\Campaigns\EntityTypes\EntityTypeDeleted;
 use App\Events\Campaigns\EntityTypes\EntityTypeToggled;
 use App\Events\Campaigns\EntityTypes\EntityTypeUpdated;
 use App\Events\Campaigns\Exports\ExportCreated;
+use App\Events\Campaigns\Followers\FollowerCreated;
+use App\Events\Campaigns\Followers\FollowerRemoved;
 use App\Events\Campaigns\Invites\InviteCreated;
 use App\Events\Campaigns\Invites\InviteDeleted;
 use App\Events\Campaigns\Members\RoleUserAdded;
@@ -99,6 +101,12 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Login::class => [
             LoginViaRemember::class,
+        ],
+        FollowerCreated::class => [
+            ClearUserCache::class,
+        ],
+        FollowerRemoved::class => [
+            ClearUserCache::class,
         ],
         AdminInviteCreated::class => [
             SendAdminInviteNotification::class,
