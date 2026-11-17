@@ -74,7 +74,8 @@ class Handler extends ExceptionHandler
     {
         if ($this->isInfrastructureConnectionFailure($exception)) {
             if (! $this->shouldReturnJson($request, $exception) && ! $request->is('api/*') && ! Domain::isApi()) {
-                return response()->view('errors.infrastructure', [], 200);
+                // We have to return 200 even if it's an error, otherwise the load balancer and cloudflare will say "backend unavailable"
+                return response()->view('errors.infrastructure', [], 200, ['Cache-Control' => 'no-store']);
             }
         }
 
