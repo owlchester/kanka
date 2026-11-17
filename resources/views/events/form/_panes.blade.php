@@ -1,4 +1,4 @@
-<div class="tab-pane flex flex-col gap-5 {{ request()->get('tab') == 'form-participants' ? 'active' : '' }}" id="form-participants">
+<div class="tab-pane flex flex-col gap-5 {{ in_array(request()->get('tab'), ['participants', 'form-participants']) ? 'active' : '' }}" id="form-participants">
     @inject('participantService', 'App\Services\Events\ParticipantService')
     @php
         $event = isset($model) && $model instanceof \App\Models\Event ? $model : new \App\Models\Event;

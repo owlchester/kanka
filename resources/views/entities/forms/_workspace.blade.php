@@ -6,22 +6,7 @@
     $workspaceTabs = [
         'entry' => __('entries/workspace.overview'),
     ];
-    if ($entityType->isCharacter() && $campaign->enabled('organisations')) {
-        $workspaceTabs['organisations'] = \App\Facades\Module::plural(config('entities.ids.organisation'), __('entities.organisations'));
-    }
-    if ($entityType->isMap()) {
-        $workspaceTabs['settings'] = __('maps.panels.settings');
-    }
-    if ($entityType->isStandardCode('calendar')) {
-        $workspaceTabs += [
-            'calendar' => __('entries/workspace.settings'),
-            'eras' => __('calendars.panels.eras'),
-            'months' => __('calendars.panels.months'),
-            'weeks' => __('calendars.panels.weeks'),
-            'moons' => __('calendars.fields.moons'),
-            'seasons' => __('calendars.fields.seasons'),
-        ];
-    }
+    $workspaceTabs += \App\View\EntryFormTabs::for($entityType, $campaign, modern: true);
     if ($tabAttributes) {
         $workspaceTabs['attributes'] = __('entries/tabs.properties');
     }
@@ -82,11 +67,11 @@
             @include('entities.forms._writing')
         </div>
         @if ($entityType->isCharacter())
-        @if ($campaign->enabled('organisations'))
-            <div class="tab-pane {{ $workspaceTab === 'organisations' ? 'active' : '' }}" id="form-organisations">
-                @include('characters.form._organisations')
-            </div>
-        @endif
+            @if (isset($workspaceTabs['organisations']))
+                <div class="tab-pane {{ $workspaceTab === 'organisations' ? 'active' : '' }}" id="form-organisations">
+                    @include('characters.form._organisations')
+                </div>
+            @endif
         @else
             @includeIf($entityType->pluralCode() . '.form._panes')
         @endif
