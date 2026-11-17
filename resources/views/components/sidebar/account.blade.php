@@ -1,4 +1,4 @@
-<aside class="main-sidebar main-sidebar-placeholder absolute z-20 h-full flex flex-col bg-size-[var(--sidebar-width)_208px] bg-no-repeat bg-top-left bg-local transition-all duration-300 ease-in-out max-md:[&_.sidebar-menu_a]:min-h-11" @if ($user->avatar) style="--sidebar-placeholder: url('{{ Img::crop(240, 208)->url($user->avatar) }}')" @endif>
+<aside class="main-sidebar main-sidebar-placeholder absolute z-20 h-full flex flex-col bg-size-[var(--sidebar-width)_208px] bg-no-repeat bg-top-left bg-local transition-all duration-300 ease-in-out" @if ($user->avatar) style="--sidebar-placeholder: url('{{ Img::crop(240, 208)->url($user->avatar) }}')" @endif>
     <section class="sidebar-campaign h-52 flex-none overflow-hidden flex items-end">
         <div class="px-4 py-4">
             <div class="campaign-head">

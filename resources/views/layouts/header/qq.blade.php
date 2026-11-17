@@ -1,4 +1,4 @@
-<div class="flex-none">
+<div class="hidden flex-none md:block">
     <a
         href="#"
         data-url="{{ route('entity-creator.selection', $campaign) }}"

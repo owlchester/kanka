@@ -89,7 +89,7 @@ class NavigationService
         $data['urls'] = [
             'settings' => ['url' => route('settings.profile'), 'name' => __('header.user.settings')],
             'profile' => ['url' => route('users.profile', $this->user->id), 'name' => __('header.user.your-profile')],
-            'help' => ['url' => 'https://docs.kanka.io/en/latest', 'name' => __('crud.actions.help')],
+            'help' => ['url' => 'https://docs.kanka.io/en/latest', 'name' => __('footer.documentation')],
             'logout' => ['url' => route('logout'), 'name' => __('header.user.sign-out')],
             'subscription' => route('settings.subscription'),
         ];

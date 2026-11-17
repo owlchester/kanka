@@ -1,9 +1,9 @@
-<x-dialog.header>
+<x-dialog.header id="primary-dialog" :mobile-back="true" :mobile-title="$newLabel" :mobile-back-url="empty($origin) && empty($target) ? route('entity-creator.selection', $campaign) : null">
     @if (isset($origin))
         <div class="sm:w-80 text-left">{{ __('entities.creator.modes.default') }}</div>
     @endif
 </x-dialog.header>
-<article class="p-4 md:px-6">
+<article class="p-4 max-md:px-5 md:px-6">
 
 <div class="entity-creator-body-{{ $entityType->code }}">
 

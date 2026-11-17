@@ -182,6 +182,7 @@ class DashboardManager {
                 .then(res => {
                     btn.classList.remove('loading');
                     updateButtonState(res.data.following);
+                    window.dispatchEvent(new Event('navigation:refresh'));
                 })
                 .catch(() => btn.classList.remove('loading'));
         });

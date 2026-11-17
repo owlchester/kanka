@@ -1,10 +1,9 @@
 <template>
-    <div class="nav-switcher flex items-center justify-center align-middle h-12 gap-1 md:gap-2">
-        <button type="button" class="campaigns btn2 btn-ghost btn-square max-md:size-11! max-md:p-1! inline-flex items-center justify-center text-2xl hover:text-primary-focus" v-on:click="openCampaigns()" aria-label="Switch campaigns">
+    <div class="nav-switcher flex min-w-0 items-center justify-center align-middle h-12 gap-1 md:gap-2">
+        <button type="button" class="campaigns btn2 btn-ghost btn-square max-md:size-11! max-md:p-1! inline-flex items-center justify-center text-2xl hover:text-primary-focus" :class="campaign_name ? 'max-md:hidden!' : ''" v-on:click="openCampaigns()" :aria-label="campaigns_label" :aria-expanded="is_expanded && view_campaigns">
             <GridSvg :size="7" />
-            <span class="sr-only">Campaigns</span>
         </button>
-        <button type="button" class="profile btn2 btn-ghost btn-square max-md:size-11! max-md:p-1! flex items-center justify-center text-center uppercase" v-on:click="openProfile()" aria-label="Profile settings">
+        <button type="button" class="profile btn2 btn-ghost btn-square max-md:size-11! max-md:p-1! shrink-0 flex items-center justify-center text-center uppercase" v-on:click="openProfile()" aria-label="Profile settings" :aria-expanded="is_expanded && view_profile">
             <div class="indicator relative inline-flex w-max">
                 <span class="notification-badge left-auto top-auto -right-[0.2rem] -bottom-[0.2rem] translate-x-1/2 leading-2 p-[0.3rem] w-fit inline-flex absolute content-center items-center z-10" v-if="show_alerts"></span>
                 <div class="profile-box rounded-lg p-2 text-center font-bold" v-if="showInitials()">
@@ -26,7 +25,10 @@
             <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
         </div>
         <template v-else>
-            <div class="header flex flex-none">
+            <div class="header flex flex-none pr-14">
+                <button type="button" class="absolute right-2 top-2 flex size-11 items-center justify-center rounded-xl bg-base-100 hover:bg-base-200" :aria-label="close_label" @click="is_expanded = false">
+                    <i class="fa-regular fa-times" aria-hidden="true"></i>
+                </button>
                 <div :class="blockClass(view_campaigns)" v-on:click="openCampaigns()" tabindex="0" role="button" aria-label="Campaign list">
                     <div class="full flex items-center gap-4" v-if="view_campaigns">
                         <div class="flex-none">
@@ -219,7 +221,8 @@ import Campaign from './Campaign.vue';
 import Notification from './Notification.vue';
 import Release from './Release.vue';
 import GridSvg from "../icons/GridSvg.vue";
-import {onMounted, ref} from "vue";
+import {onBeforeUnmount, onMounted, ref} from "vue";
+import { useNavigationAlerts } from '../../composables/useNavigationAlerts';
 
 
 const props = defineProps<{
@@ -237,6 +240,9 @@ const props = defineProps<{
     campaign_id: undefined,
     /* Bool to define if there are unread notifications */
     has_alerts: Boolean,
+    campaign_name: string,
+    campaigns_label: string,
+    close_label: string,
 }>();
 
 // Check for updates in the localstorage every minute for new alerts
@@ -256,20 +262,26 @@ const campaigns = ref( {})
 const notifications = ref( {})
 const marketplace = ref( {})
 const releases = ref( {})
-const show_alerts = ref( false)
+const { hasUnread: show_alerts } = useNavigationAlerts()
+let alertTimer: ReturnType<typeof setTimeout>;
 // Determine if data from the api has been loaded
 const is_loaded = ref( false)
 const pro = ref( false)
 
 const openCampaigns = () => {
+    document.body.classList.remove('sidebar-open');
     view_campaigns.value = true;
     view_profile.value = false;
     loadData();
 }
 const openProfile = () => {
+    document.body.classList.remove('sidebar-open');
     view_profile.value = true;
     view_campaigns.value = false;
     loadData();
+}
+const invalidateNavigation = () => {
+    has_data.value = false;
 }
 const loadData = () => {
     is_expanded.value = true;
@@ -374,7 +386,7 @@ const fetchAlerts = () => {
 }
 const queueFetch = () => {
     //console.log('queue fetch');
-    setTimeout(function () { updateAlerts() }, props.alert_delta);
+    alertTimer = setTimeout(function () { updateAlerts() }, alert_delta.value);
 }
 const showInitials = () => {
     return props.avatar.startsWith('/images/');
@@ -385,5 +397,17 @@ const profilePictureUrl = () => {
 onMounted(() => {
   show_alerts.value = props.has_alerts;
   queueFetch();
+  document.addEventListener('keydown', handleEscape);
+  window.addEventListener('navigation:worlds', openCampaigns);
+  window.addEventListener('navigation:refresh', invalidateNavigation);
+})
+const handleEscape = (event: KeyboardEvent) => {
+    if (event.key === 'Escape') is_expanded.value = false;
+}
+onBeforeUnmount(() => {
+    clearTimeout(alertTimer);
+    document.removeEventListener('keydown', handleEscape);
+    window.removeEventListener('navigation:worlds', openCampaigns);
+    window.removeEventListener('navigation:refresh', invalidateNavigation);
 })
 </script>

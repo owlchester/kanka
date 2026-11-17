@@ -285,6 +285,12 @@ class IndexController extends Controller
             'inventory' => __('crud.tabs.inventory'),
             'edit' => __('crud.edit'),
             'loadMore' => __('entities/story.actions.load_more'),
+            'add' => __('crud.add'),
+            'close' => __('crud.actions.close'),
+            'findInList' => __('search.lookup.hint_name'),
+            'filterSort' => __('mobile.lists.filter_sort'),
+            'listSettings' => __('datagrids.display.title'),
+            'fromTemplate' => __('entities.creator.modes.archetypes'),
         ];
 
         $bookmarkable = $this->filterService->activeFiltersCount() > 0 && auth()->check() && auth()->user()->can('create', [Bookmark::class, $campaign]) && ! $request->has('bookmark');
@@ -323,6 +329,7 @@ class IndexController extends Controller
             'csrf' => csrf_token(),
             'filters' => [
                 'count' => $this->filterService->activeFiltersCount(),
+                'name' => $this->filterService->single('name'),
                 'unfilteredCount' => $unfilteredCount,
                 'urls' => [
                     'form' => route('filters.form', array_merge(
