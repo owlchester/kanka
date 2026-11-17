@@ -14,6 +14,28 @@
     <div class="flex gap-5 flex-col">
         @include('partials.errors')
 
+        @if ($campaign->boosted())
+            @can('admin', $campaign)
+            <x-box>
+                <x-form :action="['campaign-sidebar-v2-save', $campaign]" class="flex flex-col gap-3">
+                    <p>{{ __('campaigns/sidebar-v2.legacy_info') }}</p>
+                    <input type="hidden" name="action" value="start" />
+                    <input type="hidden" name="target" value="default" />
+                    <input type="hidden" name="revision" value="{{ $revision }}" />
+                    <button class="btn2 btn-primary" type="submit">{{ __('campaigns/sidebar-v2.start') }}</button>
+                </x-form>
+                @if (!empty($campaign->ui_settings['sidebar_v2']['layouts']))
+                    <x-form :action="['campaign-sidebar-v2-save', $campaign]" class="mt-3">
+                        <input type="hidden" name="action" value="resume" />
+                        <input type="hidden" name="target" value="default" />
+                        <input type="hidden" name="revision" value="{{ $revision }}" />
+                        <button class="btn2" type="submit">{{ __('campaigns/sidebar-v2.resume') }}</button>
+                    </x-form>
+                @endif
+            </x-box>
+            @endcan
+        @endif
+
         <x-campaigns.page-header
             :title="__('campaigns.show.tabs.sidebar')"
             learn-more-url="features/campaigns/sidebar.html"

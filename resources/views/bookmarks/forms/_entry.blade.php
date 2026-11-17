@@ -26,6 +26,7 @@ $premiumLink = '<a href="https://kanka.io/premium" class="text-link">' . __('con
 
     <x-grid>
 
+        @if (!app(\App\Services\Campaign\Sidebar\LayoutService::class)->campaign($campaign)->enabled())
         <x-forms.field
             field="position"
             :label="__('bookmarks.fields.position')"
@@ -34,6 +35,13 @@ $premiumLink = '<a href="https://kanka.io/premium" class="text-link">' . __('con
             <x-forms.select name="parent" :options="$parents"
                             :selected="$model->parent ?? 'bookmarks'"/>
         </x-forms.field>
+        @else
+            <p>{{ __('campaigns/sidebar-v2.bookmark_placement') }}
+                @can('admin', $campaign)
+                <a class="text-link" href="{{ route('campaign-sidebar', $campaign) }}">{{ __('campaigns.show.tabs.sidebar') }}</a>
+                @endcan
+            </p>
+        @endif
 
         <x-forms.field
             field="active"

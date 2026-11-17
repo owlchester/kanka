@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *
  * @property int $id
  * @property int $campaign_role_id
+ * @property int $position
  * @property Campaign $campaign
  * @property CampaignRole $campaignRole
  * @property Carbon $created_at
@@ -20,9 +21,12 @@ class CampaignRoleUser extends Model
 {
     use HasUser;
 
+    protected $attributes = ['position' => 0];
+
     protected $fillable = [
         'campaign_role_id',
         'user_id',
+        'position',
     ];
 
     /**

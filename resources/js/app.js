@@ -37,6 +37,10 @@ import './utility/colour-picker';
 import './share';
 import './visibility-picker';
 
+if (document.getElementById('sidebar-v2-editor')) {
+    import('./campaigns/sidebar');
+}
+
 // VueJS elements
 import './header';
 import './gallery/selection';

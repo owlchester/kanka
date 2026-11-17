@@ -275,7 +275,7 @@
     "isDynamicEntry": true
   },
   "resources/css/app.css": {
-    "file": "assets/app-DQghqKbv.css",
+    "file": "assets/app-BLFhlqyo.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -284,7 +284,7 @@
     ]
   },
   "resources/css/auth.css": {
-    "file": "assets/auth-BVdRGWqG.css",
+    "file": "assets/auth-Bi9OQxQb.css",
     "src": "resources/css/auth.css",
     "isEntry": true,
     "name": "auth",
@@ -311,7 +311,7 @@
     ]
   },
   "resources/css/front.css": {
-    "file": "assets/front-CNFK3VfY.css",
+    "file": "assets/front-RBNQW1pL.css",
     "src": "resources/css/front.css",
     "isEntry": true,
     "name": "front",
@@ -418,14 +418,14 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-3r61QIKs.js",
+    "file": "assets/app-cGw2YI4S.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
     "imports": [
+      "_preload-helper-oofcKs94.js",
       "_index-BCn5QfZZ.js",
       "_coloris-CzWPJjQD.js",
-      "_preload-helper-oofcKs94.js",
       "_sortable.esm-DdTU3J9A.js",
       "_dialog-DkrH_pRQ.js",
       "_coloris-DsKOFKq5.js",
@@ -440,7 +440,8 @@
     ],
     "dynamicImports": [
       "resources/js/events/participants.js",
-      "resources/js/maps/preview-runtime.js"
+      "resources/js/maps/preview-runtime.js",
+      "resources/js/campaigns/sidebar.js"
     ]
   },
   "resources/js/attributes-manager.js": {
@@ -474,6 +475,16 @@
     "isEntry": true,
     "imports": [
       "_index-BCn5QfZZ.js"
+    ]
+  },
+  "resources/js/campaigns/sidebar.js": {
+    "file": "assets/sidebar-CdTeuHJQ.js",
+    "name": "sidebar",
+    "src": "resources/js/campaigns/sidebar.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_vue.esm-bundler-GXfi61Lw.js",
+      "_vue-draggable-next.esm-bundler-DO2H4ui-.js"
     ]
   },
   "resources/js/campaigns/style-editor.js": {

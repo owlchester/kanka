@@ -44,6 +44,7 @@ class CreateService
         $data = $this->data ?? $this->request->all();
         $entry = Arr::get($data, 'description');
         $excerpt = Arr::get($data, 'excerpt');
+        $data['ui_settings']['sidebar_v2'] = ['enabled' => true];
 
         DB::beginTransaction();
         try {

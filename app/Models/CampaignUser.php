@@ -56,7 +56,8 @@ class CampaignUser extends Pivot
             'user_id',
             'campaign_role_id'
         )
-            ->where('campaign_id', $this->campaign_id);
+            ->where('campaign_id', $this->campaign_id)
+            ->orderBy('campaign_role_users.position')->orderBy('campaign_role_users.id');
     }
 
     /**
