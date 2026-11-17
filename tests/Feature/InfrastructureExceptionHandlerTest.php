@@ -19,7 +19,8 @@ it('renders the infrastructure page for an uncaught PDO connection fatal error',
     $response = app(Handler::class)->render(Request::create('/'), $exception);
     $content = $response->getContent();
 
-    expect($response->getStatusCode())->toBe(200)
+    expect($response->getStatusCode())->toBe(503)
+        ->and($response->headers->hasCacheControlDirective('no-store'))->toBeTrue()
         ->and($response->getOriginalContent()->name())->toBe('errors.infrastructure')
         ->and($content)->toContain('Infrastructure error')
         ->and($content)->toContain('unplanned infrastructure outage')
@@ -35,7 +36,7 @@ it('does not classify arbitrary fatal errors or PDO query failures as infrastruc
 
     $response = app(Handler::class)->render(Request::create('/'), $exception);
 
-    expect($response->getStatusCode())->not->toBe(200);
+    expect($response->getStatusCode())->not->toBe(503);
 })->with([
     'an unrelated fatal mentioning the phrase' => 'Uncaught Error: Connection refused while reading a file',
     'a non-connection PDO SQLSTATE' => 'Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found',
@@ -48,7 +49,7 @@ it('still recognizes direct and wrapped PDO connection exceptions', function () 
     foreach ([$pdo, new RuntimeException('query failed', 0, $pdo)] as $exception) {
         $response = $handler->render(Request::create('/'), $exception);
 
-        expect($response->getStatusCode())->toBe(200)
+        expect($response->getStatusCode())->toBe(503)
             ->and($response->getContent())->toContain('Infrastructure error');
     }
 });
@@ -70,6 +71,6 @@ it('renders infrastructure failures when the authenticated session user lookup f
 
     $this->withSession([$guard->getName() => $user->id])
         ->get('/_test/infrastructure-outage')
-        ->assertOk()
+        ->assertServiceUnavailable()
         ->assertSee('Infrastructure error');
 })->with([false, true]);

@@ -150,7 +150,7 @@ it('keeps copied character details and copy options', function () {
         ->assertSee('id="form-copy"', false);
 });
 
-it('prefills copied birth and death dates without offering to remove source reminders', function () {
+it('leaves birth and death inputs blank on a copy so reminder copying stays opt-in', function () {
     $this->asUser()->withCampaign();
     $calendar = Calendar::factory()->create(['campaign_id' => 1]);
     $character = Character::factory()->create(['campaign_id' => 1]);
@@ -163,9 +163,9 @@ it('prefills copied birth and death dates without offering to remove source remi
 
     $this->get(route('characters.create', [1, 'copy' => $character->entity->id, 'template' => true]))
         ->assertSuccessful()
-        ->assertSee('id="entry-birth-year" type="number" value="1000"', false)
-        ->assertSee('id="entry-death-year" type="number" value="1100"', false)
-        ->assertSee('showDates: true', false)
+        ->assertSee('id="entry-birth-year" type="number" value=""', false)
+        ->assertSee('id="entry-death-year" type="number" value=""', false)
+        ->assertSee('showDates: false', false)
         ->assertDontSee('name="entry_dates[birth][remove]"', false)
         ->assertDontSee('name="entry_dates[death][remove]"', false);
 
@@ -307,6 +307,22 @@ it('renders modern standard entry forms without duplicating shared fields', func
     ['tags', Tag::class],
     ['timelines', Timeline::class],
 ]);
+
+it('renders and opens the event participants tab in the modern workspace', function () {
+    $this->asUser()->withCampaign();
+    $event = Event::factory()->create(['campaign_id' => 1]);
+
+    foreach ([route('events.create', [1]), route('entities.edit', [1, $event->entity])] as $url) {
+        $this->get($url)
+            ->assertSuccessful()
+            ->assertSee('href="#form-participants"', false)
+            ->assertSee('id="form-participants"', false);
+    }
+
+    $this->get(route('entities.edit', [1, $event->entity, 'tab' => 'participants']))
+        ->assertSuccessful()
+        ->assertSee('active" id="form-participants"', false);
+});
 
 it('renders the modern calendar reminder controls for quest journal and event forms', function (string $module, string $modelClass) {
     $this->asUser()->withCampaign();

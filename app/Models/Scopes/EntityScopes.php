@@ -3,7 +3,6 @@
 namespace App\Models\Scopes;
 
 use App\Enums\EntityEventTypes;
-use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
 use App\Models\Concerns\FiltersEntityFields;
 use App\Models\Entity;
@@ -328,65 +327,32 @@ trait EntityScopes
 
         $childFilterKeys = [];
         $relationFilters = [
-            'locations' => ['entity_locations', 'entity_id', 'entities.id', 'location_id'],
-            'participants' => ['event_participants', 'event_id', 'entities.entity_id', 'entity_id'],
-            'races' => ['character_race', 'character_id', 'entities.entity_id', 'race_id'],
-            'families' => ['character_family', 'character_id', 'entities.entity_id', 'family_id'],
-            'organisations' => ['organisation_member', 'character_id', 'entities.entity_id', 'organisation_id'],
+            'locations' => ['entity_locations', 'entity_id', 'entities.id', 'location_id', 'location'],
+            'participants' => ['event_participants', 'event_id', 'entities.entity_id', 'entity_id', null],
+            'races' => ['character_race', 'character_id', 'entities.entity_id', 'race_id', 'race'],
+            'families' => ['character_family', 'character_id', 'entities.entity_id', 'family_id', 'family'],
+            'organisations' => ['organisation_member', 'character_id', 'entities.entity_id', 'organisation_id', 'organisation'],
         ];
-        foreach ($relationFilters as $field => $_) {
+        foreach ($relationFilters as $field => [$table, $ownerKey, $outerColumn, $targetKey, $type]) {
             if (Arr::hasAny($filters, [$field, $field . '_option'])) {
                 $values = Arr::get($filters, $field, []);
-                $ids = is_array($values) ? $values : [$values];
+                $ids = $this->normalizeEntityRelationIds(is_array($values) ? $values : [$values]);
                 $option = Arr::get($filters, $field . '_option');
-                if ($field === 'locations' && $option === 'children' && $ids !== []) {
-                    $ids = Entity::whereIn('entity_id', $ids)
-                        ->where('type_id', config('entities.ids.location'))
-                        ->with('descendants')->get()
-                        ->flatMap(fn ($entity) => [$entity->entity_id, ...$entity->descendants->pluck('entity_id')->all()])
-                        ->unique()->all();
+                if ($type !== null && $option === 'children' && $ids !== []) {
+                    $ids = $this->expandEntityRelationIds($ids, $type);
                     $option = null;
                 }
-                if (in_array($field, ['families', 'races', 'organisations'], true) && $option === 'children' && $ids !== []) {
-                    $type = ['families' => 'family', 'races' => 'race', 'organisations' => 'organisation'][$field];
-                    $ids = Entity::whereIn('entity_id', $ids)->where('type_id', config('entities.ids.' . $type))
-                        ->with('descendants')->get()
-                        ->flatMap(fn ($entity) => [$entity->entity_id, ...$entity->descendants->pluck('entity_id')->all()])
-                        ->unique()->all();
-                    $option = null;
-                }
-                $relation = $relationFilters[$field];
-                $constraint = $field === 'participants'
-                    ? function ($subquery): void {
-                        $subquery->whereIn('event_participants.entity_id', Entity::query()
-                            ->where('entities.campaign_id', CampaignLocalization::getCampaign()->id)
-                            ->select('entities.id'));
-                    }
-                : (in_array($field, ['races', 'families', 'organisations'], true)
-                    ? static function ($subquery) use ($field): void {
+                $constraint = null;
+                if ($field === 'participants') {
+                    $constraint = $this->visibleRelationshipTargets($table . '.' . $targetKey);
+                } elseif ($field !== 'locations') {
+                    $visible = $this->visibleRelationshipTargets($table . '.' . $targetKey, $type, privatePivot: true);
+                    $constraint = static function ($subquery) use ($visible): void {
                         $subquery->where('entities.type_id', config('entities.ids.character'));
-                        $campaign = CampaignLocalization::getCampaign();
-                        $relatedType = ['families' => 'family', 'races' => 'race', 'organisations' => 'organisation'][$field];
-                        $relatedTable = ['families' => 'character_family', 'races' => 'character_race', 'organisations' => 'organisation_member'][$field];
-                        $relatedKey = ['families' => 'family_id', 'races' => 'race_id', 'organisations' => 'organisation_id'][$field];
-                        $subquery->whereIn($relatedTable . '.' . $relatedKey, Entity::query()
-                            ->where('entities.type_id', config('entities.ids.' . $relatedType))
-                            ->where('entities.campaign_id', $campaign->id)
-                            ->select('entities.entity_id'));
-                        if ($field === 'races') {
-                            $subquery->where(function ($query) use ($campaign): void {
-                                $query->where('character_race.is_private', false);
-                                if (auth()->check() && auth()->user()->can('admin', $campaign)) {
-                                    $query->orWhere('character_race.is_private', true);
-                                }
-                            });
-                        } elseif (auth()->guest() || ! auth()->user()->can('admin', $campaign)) {
-                            $pivot = $field === 'families' ? 'character_family' : 'organisation_member';
-                            $subquery->where($pivot . '.is_private', false);
-                        }
-                    }
-                    : null);
-                $this->applyEntityRelationIdsFilter($query, $relation[0], $relation[1], $relation[2], $relation[3], $ids, $option, $constraint);
+                        $visible($subquery);
+                    };
+                }
+                $this->applyEntityRelationIdsFilter($query, $table, $ownerKey, $outerColumn, $targetKey, $ids, $option, $constraint);
             }
         }
         foreach ($filters as $name => $values) {

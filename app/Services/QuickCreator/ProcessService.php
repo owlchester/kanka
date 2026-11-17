@@ -114,12 +114,13 @@ class ProcessService
                 $this->entity = $model->entity;
             }
 
-            $this->entitySaveService->entity($this->entity)->save($values);
+            $this->entitySaveService->entity($this->entity)->save(Arr::except($values, ['entry_dates']));
             if ($model !== null) {
                 $this->relationsFactory->for($this->entity)?->save($model, $values);
             }
             $this->new[] = $this->entity;
             $this->copyTemplateRelations();
+            $this->entitySaveService->saveEntryDates($values['entry_dates'] ?? []);
         }
 
         // If no entity was created, we throw the standard error

@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { centroid, serializeVertices } from './polygon.js'
+import { centroid, serializeVertices } from './polygonVertices.js'
 
 test('centroid averages the vertex coordinates', () => {
     const result = centroid([

@@ -4,12 +4,65 @@ namespace App\Models\Concerns;
 
 use App\Enums\AttributeType;
 use App\Enums\EntityAssetType;
+use App\Facades\CampaignLocalization;
+use App\Models\Entity;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Support\Str;
 
 trait FiltersEntityFields
 {
+    /** @return array<int, int> */
+    protected function normalizeEntityRelationIds(null|string|array $values): array
+    {
+        return collect((array) $values)
+            ->filter(static fn ($id): bool => (is_int($id) || is_string($id)) && ctype_digit((string) $id) && (int) $id > 0)
+            ->map(static fn ($id): int => (int) $id)
+            ->unique()
+            ->values()
+            ->all();
+    }
+
+    /**
+     * @param  array<int, int>  $ids
+     * @return array<int, int>
+     */
+    protected function expandEntityRelationIds(array $ids, string $type): array
+    {
+        if ($ids === []) {
+            return [];
+        }
+
+        return Entity::whereIn('entity_id', $ids)
+            ->where('type_id', config('entities.ids.' . $type))
+            ->with('descendants')
+            ->get()
+            ->flatMap(fn ($entity) => [$entity->entity_id, ...$entity->descendants->pluck('entity_id')->all()])
+            ->unique()
+            ->values()
+            ->all();
+    }
+
+    protected function visibleRelationshipTargets(string $foreignKey, ?string $type = null, bool $privatePivot = false): callable
+    {
+        return static function (QueryBuilder $query) use ($foreignKey, $type, $privatePivot): void {
+            $campaign = CampaignLocalization::getCampaign();
+            if (! $campaign) {
+                $query->whereRaw('1 = 0');
+
+                return;
+            }
+            $targets = Entity::query()->where('entities.campaign_id', $campaign->id);
+            if ($type !== null) {
+                $targets->where('entities.type_id', config('entities.ids.' . $type));
+            }
+            $query->whereIn($foreignKey, $targets->select($type === null ? 'entities.id' : 'entities.entity_id'));
+            if ($privatePivot && ! auth()->user()?->can('admin', $campaign)) {
+                $query->where(Str::beforeLast($foreignKey, '.') . '.is_private', false);
+            }
+        };
+    }
+
     protected function applyEntityParentFilter(Builder $query, string $entityTable, mixed $value, ?string $option): void
     {
         if ($option === 'none') {
@@ -268,12 +321,7 @@ trait FiltersEntityFields
         ?string $option = null,
         ?callable $constraint = null,
     ): void {
-        $ids = collect($selectedIds)
-            ->filter(static fn ($id): bool => $id !== null && trim((string) $id) !== '' && ctype_digit((string) $id) && (int) $id > 0)
-            ->map(static fn ($id): int => (int) $id)
-            ->unique()
-            ->values()
-            ->all();
+        $ids = $this->normalizeEntityRelationIds($selectedIds);
 
         $exists = function (QueryBuilder $subquery, ?int $id = null) use ($relationTable, $ownerForeignKey, $outerColumn, $valueForeignKey): void {
             $subquery->selectRaw('1')

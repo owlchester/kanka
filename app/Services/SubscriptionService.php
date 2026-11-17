@@ -153,8 +153,11 @@ class SubscriptionService
             ]);
         }
 
-        // Update the user's payment plan
-        $paymentMethodID = Arr::get($this->request, 'payment_id');
+        return $this->performSubscribe(Arr::get($this->request, 'payment_id'), updatePaymentMethod: true);
+    }
+
+    protected function updatePaymentMethod(string $paymentMethodID): void
+    {
         $this->user->addPaymentMethod($paymentMethodID);
         $this->user->updateDefaultPaymentMethod($paymentMethodID);
 
@@ -169,11 +172,6 @@ class SubscriptionService
                 throw (new TranslatableException('subscription.errors.invalid_card_country.brl'))->setOptions(['email' => '<a href="mailto:' . config('app.email') . '" class="text-link">' . config('app.email') . '</a>']);
             }
         }
-
-        // Subscribe
-        $this->performSubscribe($paymentMethodID);
-
-        return $this;
     }
 
     /**
@@ -205,7 +203,7 @@ class SubscriptionService
         return $result;
     }
 
-    protected function performSubscribe(string $paymentID): self
+    protected function performSubscribe(string $paymentID, bool $updatePaymentMethod = false): self
     {
         $this->duplicate = false;
         $existing = Subscription::where('user_id', $this->user->id)
@@ -221,6 +219,10 @@ class SubscriptionService
             $this->duplicate = true;
 
             return $this;
+        }
+
+        if ($updatePaymentMethod) {
+            $this->updatePaymentMethod($paymentID);
         }
 
         // New subscriber
@@ -244,6 +246,11 @@ class SubscriptionService
         }
 
         return $this;
+    }
+
+    public function alreadyCompleted(): bool
+    {
+        return $this->duplicate;
     }
 
     public function renew(): void

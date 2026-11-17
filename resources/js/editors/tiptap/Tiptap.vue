@@ -205,7 +205,7 @@
     if (props.mentions) {
         extensions.push(
             Mention.configure({
-                resolveEntity: id => mentions.value.find(e => e.id === parseInt(id)) || null,
+                resolveEntity: id => id === null ? null : mentions.value.find(e => e.id === Number(id)) || null,
                 HTMLAttributes: {
                     class: 'mention',
                 },
@@ -381,9 +381,10 @@
     const serializeMentionToText = (node: any): string => {
         const config = node.attrs.config
         const id = node.attrs.id
-        const type = node.attrs.mention?.match(/\[?([a-zA-Z_]+):/)?.[1]
+        const identity = node.attrs.mention?.match(/^\[?([a-zA-Z_-]+:\d+)(?=[|\]]|$)/)?.[1]
+        if (!identity) return node.attrs.label || node.attrs.name || id || ''
 
-        const parts = [`${type}:${id}`]
+        const parts = [identity]
 
         if (config) {
             parts.push(config)

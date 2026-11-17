@@ -12,7 +12,7 @@ export function createMentionEntityLoader({ getEditor, getEntities, addEntity, f
         const entities = new Map(getEntities().map(entity => [String(entity.id), entity]))
         const tr = editor.state.tr
         editor.state.doc.descendants((node, pos) => {
-            if (node.type.name !== 'mention') {
+            if (node.type.name !== 'mention' || node.attrs.mention?.startsWith('post:')) {
                 return
             }
 
@@ -50,7 +50,7 @@ export function createMentionEntityLoader({ getEditor, getEntities, addEntity, f
             const known = new Set(getEntities().map(entity => Number(entity.id)))
             const ids = new Set()
             editor.state.doc.descendants(node => {
-                if (node.type.name === 'mention') {
+                if (node.type.name === 'mention' && !node.attrs.mention?.startsWith('post:')) {
                     const id = Number(node.attrs.id)
                     if (Number.isSafeInteger(id) && id > 0 && !known.has(id) && !pending.has(id) && !unavailable.has(id)) {
                         ids.add(id)

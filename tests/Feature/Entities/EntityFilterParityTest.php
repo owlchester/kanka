@@ -508,6 +508,32 @@ it('matches character relation filters consistently for all operators', function
     'exclude all' => ['exclude_all', [0, 1, 3, 4]], 'none' => ['none', [4]], 'not empty' => ['not_empty', [0, 1, 2, 3]],
 ]);
 
+it('expands descendant relation selections consistently for legacy and unified filters', function (string $field, string $relation, string $model) {
+    $this->asUser()->withCampaign();
+
+    $parent = $model::factory()->create(['campaign_id' => 1]);
+    $child = $model::factory()->create(['campaign_id' => 1]);
+    $child->entity->update(['parent_id' => $parent->entity->id]);
+    $character = Character::factory()->create(['campaign_id' => 1]);
+    if ($field === 'locations') {
+        EntityLocation::create(['entity_id' => $character->entity->id, 'location_id' => $child->id]);
+    } else {
+        $character->{$relation}()->attach($child->id);
+    }
+
+    $filters = [$field => [(string) $parent->id, '', (string) $parent->id], $field . '_option' => 'children'];
+    $entityType = EntityType::findOrFail(config('entities.ids.character'));
+    expect(Character::query()->filter($filters)->pluck('characters.id')->all())
+        ->toBe([$character->id])
+        ->and(Entity::query()->where('entities.type_id', $entityType->id)->filter($filters, $entityType)->pluck('entities.entity_id')->all())
+        ->toBe([$character->id]);
+})->with([
+    'locations' => ['locations', 'locations', Location::class],
+    'races' => ['races', 'races', Race::class],
+    'families' => ['families', 'families', Family::class],
+    'organisations' => ['organisations', 'organisations', Organisation::class],
+]);
+
 it('supports Empty participant matching without selected values', function () {
     $this->asUser()->withCampaign();
     $empty = Event::factory()->create(['campaign_id' => 1]);

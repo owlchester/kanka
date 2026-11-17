@@ -7,6 +7,7 @@ use App\Models\Campaign;
 use App\Models\CampaignPermission;
 use App\Models\CampaignSetting;
 use App\Models\Character;
+use App\Models\Entity;
 use App\Models\Family;
 use App\Models\Location;
 use App\Models\Organisation;
@@ -23,6 +24,11 @@ function entryDatePayload(Calendar $calendar, int $year = 1000): array
     return ['calendar_id' => $calendar->id, 'year' => $year, 'month' => 2, 'day' => 15];
 }
 
+function entryDateCharacter(string $name): Character
+{
+    return Entity::where('type_id', config('entities.ids.character'))->where('name', $name)->firstOrFail()->child;
+}
+
 it('creates birth and death reminders with the character form', function () {
     $this->post(route('characters.store', [1]), [
         'name' => 'Calendar character',
@@ -30,7 +36,7 @@ it('creates birth and death reminders with the character form', function () {
         'entry_dates' => ['birth' => entryDatePayload($this->calendar), 'death' => entryDatePayload($this->calendar, 1100)],
     ])->assertRedirect()->assertSessionHasNoErrors();
 
-    $character = Character::where('name', 'Calendar character')->firstOrFail();
+    $character = entryDateCharacter('Calendar character');
     expect($character->age)->toBe('Unknown')
         ->and($character->entity->reminders()->count())->toBe(2)
         ->and($character->entity->reminders()->where('type_id', EntityEventTypes::birth)->first()->year)->toBe(1000)
@@ -117,7 +123,7 @@ it('rejects invalid calendar dates before creating a character', function (array
     $this->post(route('characters.store', [1]), [
         'name' => 'Invalid dates', 'entry_dates' => ['birth' => array_replace(entryDatePayload($this->calendar), $changes)],
     ])->assertSessionHasErrors('entry_dates');
-    expect(Character::where('name', 'Invalid dates')->exists())->toBeFalse();
+    expect(Entity::where('name', 'Invalid dates')->exists())->toBeFalse();
 })->with([
     'missing year' => [['year' => null]],
     'year zero' => [['year' => 0]],
@@ -131,7 +137,7 @@ it('supports leap days according to the selected fantasy calendar', function () 
     $this->post(route('characters.store', [1]), [
         'name' => 'Leap child', 'entry_dates' => ['birth' => ['calendar_id' => $this->calendar->id, 'year' => 1000, 'month' => 2, 'day' => 29]],
     ])->assertRedirect()->assertSessionHasNoErrors();
-    expect(Character::where('name', 'Leap child')->firstOrFail()->entity->reminders()->first()->day)->toBe(29);
+    expect(entryDateCharacter('Leap child')->entity->reminders()->first()->day)->toBe(29);
 });
 
 it('rejects a death before an existing birth', function () {
@@ -186,20 +192,58 @@ it('requires calendar editing permission even when the user can create a charact
     $this->post(route('characters.store', [1]), [
         'name' => 'No calendar permission', 'entry_dates' => ['birth' => entryDatePayload($this->calendar)],
     ])->assertSessionHasErrors('entry_dates');
-    expect(Character::where('name', 'No calendar permission')->exists())->toBeFalse();
+    expect(Entity::where('name', 'No calendar permission')->exists())->toBeFalse();
 });
 
 it('copies reminders without duplicating an explicitly edited birth date', function () {
     $source = Character::factory()->create(['campaign_id' => 1]);
-    $source->entity->reminders()->create(entryDatePayload($this->calendar) + ['type_id' => EntityEventTypes::birth, 'length' => 1]);
+    $source->entity->reminders()->create(entryDatePayload($this->calendar) + [
+        'type_id' => EntityEventTypes::birth, 'length' => 2, 'visibility_id' => Visibility::Admin, 'comment' => 'Keep private',
+    ]);
     $this->post(route('characters.store', [1]), [
         'name' => 'Copied birthday', 'copy_source_id' => $source->entity->id, 'copy_reminders' => 1,
         'entry_dates' => ['birth' => entryDatePayload($this->calendar, 1001)],
     ])->assertRedirect()->assertSessionHasNoErrors();
-    $copy = Character::where('name', 'Copied birthday')->firstOrFail();
+    $copy = entryDateCharacter('Copied birthday');
+    $reminder = $copy->entity->reminders()->firstOrFail();
     expect($copy->entity->reminders()->count())->toBe(1)
-        ->and($copy->entity->reminders()->first()->year)->toBe(1001)
+        ->and($reminder->year)->toBe(1001)
+        ->and($reminder->visibility_id)->toBe(Visibility::Admin->value)
+        ->and($reminder->length)->toBe(2)
+        ->and($reminder->comment)->toBe('Keep private')
         ->and($source->entity->reminders()->first()->year)->toBe(1000);
+});
+
+it('does not expose private source dates when preparing a copy', function () {
+    $source = Character::factory()->create(['campaign_id' => 1]);
+    $source->entity->reminders()->create(entryDatePayload($this->calendar) + [
+        'type_id' => EntityEventTypes::birth,
+        'length' => 1,
+        'visibility_id' => Visibility::Admin,
+    ]);
+    $this->asPlayer();
+    CampaignPermission::create([
+        'campaign_id' => 1, 'campaign_role_id' => 3, 'entity_type_id' => config('entities.ids.character'),
+        'action' => CampaignPermission::ACTION_ADD, 'access' => true,
+    ]);
+
+    $this->get(route('characters.create', [1, 'copy' => $source->entity->id]))
+        ->assertSuccessful()
+        ->assertDontSee('value="1000"', false);
+});
+
+it('does not create a source reminder when copy reminders is unchecked', function () {
+    $source = Character::factory()->create(['campaign_id' => 1]);
+    $source->entity->reminders()->create(entryDatePayload($this->calendar) + [
+        'type_id' => EntityEventTypes::birth, 'length' => 1, 'visibility_id' => Visibility::Admin,
+    ]);
+
+    $this->post(route('characters.store', [1]), [
+        'name' => 'Copied without dates', 'copy_source_id' => $source->entity->id, 'copy_reminders' => 0,
+        'entry_dates' => ['birth' => ['calendar_id' => '', 'year' => '', 'month' => '', 'day' => '']],
+    ])->assertRedirect()->assertSessionHasNoErrors();
+
+    expect(entryDateCharacter('Copied without dates')->entity->reminders()->exists())->toBeFalse();
 });
 
 it('preserves reminder copying when the inline date inputs are blank', function (bool $calendarSelected) {
@@ -209,7 +253,7 @@ it('preserves reminder copying when the inline date inputs are blank', function 
         'name' => 'Unchanged birthday', 'copy_source_id' => $source->entity->id, 'copy_reminders' => 1,
         'entry_dates' => ['birth' => ['calendar_id' => $calendarSelected ? $this->calendar->id : '', 'year' => '', 'month' => '', 'day' => '']],
     ])->assertRedirect()->assertSessionHasNoErrors();
-    $copy = Character::where('name', 'Unchanged birthday')->firstOrFail();
+    $copy = entryDateCharacter('Unchanged birthday');
     expect($copy->entity->reminders()->count())->toBe(1)
         ->and($copy->entity->reminders()->first()->year)->toBe(1000);
 })->with(['empty calendar' => false, 'calendar selected without a date' => true]);
@@ -219,7 +263,7 @@ it('uses the existing age calculation as world dates change and stops at death',
         'name' => 'Aging character',
         'entry_dates' => ['birth' => entryDatePayload($this->calendar), 'death' => entryDatePayload($this->calendar, 1100)],
     ])->assertRedirect()->assertSessionHasNoErrors();
-    $entity = Character::where('name', 'Aging character')->firstOrFail()->entity;
+    $entity = entryDateCharacter('Aging character')->entity;
     $birth = $entity->reminders()->where('type_id', EntityEventTypes::birth)->first();
     $death = $entity->reminders()->where('type_id', EntityEventTypes::death)->first();
 

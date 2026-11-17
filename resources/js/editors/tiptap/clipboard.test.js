@@ -62,4 +62,5 @@ test('plain-text clipboard serialization uses the mention identity rather than a
     const serialize = runInNewContext(`(${serializer.replace('(node: any): string', '(node)')})`)
 
     assert.equal(serialize({ attrs: { id: '123', mention: 'character:123', config: 'page:inventory' } }), '[character:123|page:inventory]')
+    assert.equal(serialize({ attrs: { id: null, mention: 'post:123' } }), '[post:123]')
 })

@@ -31,11 +31,11 @@ class EntryWorkspaceComposer
             $calendars = Calendar::where('campaign_id', $campaign->id)->with('entity')->get()
                 ->filter(fn (Calendar $calendar) => $calendar->entity && auth()->user()->can('update', $calendar->entity));
             foreach (EntryDateService::types($entityType->id) as $key => $type) {
-                $editable = ! $dateEntity || $this->dates->editableReminder($dateEntity, $type);
-                $reminder = $editable && $dateEntity ? $dateEntity->reminders()->where('type_id', $type)->first() : null;
+                $editable = ! $entity || $this->dates->editableReminder($entity, $type);
+                $reminder = $editable && $entity ? $entity->reminders()->where('type_id', $type)->first() : null;
                 $rows[$key] = [
                     'editable' => $editable,
-                    'existing' => ! $creating && $reminder !== null,
+                    'existing' => $reminder !== null,
                     'filled' => $reminder !== null,
                     'calendar_id' => old("entry_dates.$key.calendar_id", $reminder?->calendar_id),
                     'year' => old("entry_dates.$key.year", $reminder?->year),

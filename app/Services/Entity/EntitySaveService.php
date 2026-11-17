@@ -37,9 +37,7 @@ class EntitySaveService
 
     public function save(array $data): Entity
     {
-        if (array_key_exists('entry_dates', $data)) {
-            $this->entryDateService->save($this->entity, $data['entry_dates'], $this->user ?? auth()->user());
-        }
+        $this->saveEntryDates($data['entry_dates'] ?? []);
         // Pre-save: scalar entity fields — must all be set before save() so HasEntry fires once
         if (array_key_exists('name', $data)) {
             $this->entity->name = $data['name'];
@@ -82,6 +80,13 @@ class EntitySaveService
         }
 
         return $this->entity;
+    }
+
+    public function saveEntryDates(array $dates): void
+    {
+        if ($dates !== []) {
+            $this->entryDateService->save($this->entity, $dates, $this->user ?? auth()->user());
+        }
     }
 
     protected function applyGalleryFields(array $data): void

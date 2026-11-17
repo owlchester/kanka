@@ -7,10 +7,19 @@ export interface MentionOptions {
     HTMLAttributes: Record<string, any>
     renderLabel: (props: { options: MentionOptions; node: any }) => string
     suggestion: any
-    resolveEntity: (id: string) => any
+    resolveEntity: (id: string | null) => any
 }
 
 export const MentionPluginKey = new PluginKey('mention')
+
+const mentionIdentity = (element: HTMLElement) =>
+    element.getAttribute('data-mention')?.match(/^\[?([a-zA-Z_-]+:\d+)(?=[|\]]|$)/)?.[1]
+
+const mentionId = (element: HTMLElement) =>
+    mentionIdentity(element)?.split(':')[1] ?? element.getAttribute('data-id')
+
+const entityId = (element: HTMLElement) =>
+    mentionIdentity(element)?.startsWith('post:') ? null : mentionId(element)
 
 export const Mention = Node.create<MentionOptions>({
     name: 'mention',
@@ -81,7 +90,7 @@ export const Mention = Node.create<MentionOptions>({
         return {
             id: {
                 default: null,
-                parseHTML: element => element.getAttribute('data-id'),
+                parseHTML: mentionId,
                 renderHTML: attributes => {
                     if (!attributes.id) {
                         return {}
@@ -123,13 +132,7 @@ export const Mention = Node.create<MentionOptions>({
 
             mention: {
                 default: null,
-                parseHTML: element => {
-                    const val = element.getAttribute('data-mention')
-                    if (!val) return null
-                    // Extract just "type:id" from "[type:id]" or "[type:id|config...]"
-                    const match = val.match(/\[?([a-zA-Z_]+:\d+)/)
-                    return match ? match[1] : val
-                },
+                parseHTML: element => mentionIdentity(element) ?? element.getAttribute('data-mention'),
                 renderHTML: attributes => {
                     if (!attributes.mention) {
                         return {}
@@ -143,7 +146,7 @@ export const Mention = Node.create<MentionOptions>({
 
             image: {
                 default: null,
-                parseHTML: element => this.options.resolveEntity(element.getAttribute('data-id'))?.image || element.getAttribute('data-image'),
+                parseHTML: element => this.options.resolveEntity(entityId(element))?.image || element.getAttribute('data-image'),
                 renderHTML: attributes => {
                     return {}
                     if (!attributes.image) {
@@ -158,14 +161,14 @@ export const Mention = Node.create<MentionOptions>({
 
             imageAlt: {
                 default: null,
-                parseHTML: element => this.options.resolveEntity(element.getAttribute('data-id'))?.image_alt || element.getAttribute('data-image-alt'),
+                parseHTML: element => this.options.resolveEntity(entityId(element))?.image_alt || element.getAttribute('data-image-alt'),
                 renderHTML: () => ({}),
             },
 
             entity: {
                 default: null,
                 // Resolve against the destination editor rather than trusting clipboard entity data.
-                parseHTML: element => this.options.resolveEntity(element.getAttribute('data-id')),
+                parseHTML: element => this.options.resolveEntity(entityId(element)),
                 renderHTML: attributes => {
                     return {}
                 }
@@ -173,7 +176,7 @@ export const Mention = Node.create<MentionOptions>({
 
             url: {
                 default: null,
-                parseHTML: element => this.options.resolveEntity(element.getAttribute('data-id'))?.url || element.getAttribute('data-url'),
+                parseHTML: element => this.options.resolveEntity(entityId(element))?.url || element.getAttribute('data-url'),
                 renderHTML: attributes => {
                     return {}
                     if (!attributes.url) {

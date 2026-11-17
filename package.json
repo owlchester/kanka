@@ -3,7 +3,8 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "test": "node --test \"resources/js/**/*.test.js\" \"tests/JavaScript/**/*.test.js\""
     },
     "devDependencies": {
         "@rollup/plugin-inject": "^5.0.3",

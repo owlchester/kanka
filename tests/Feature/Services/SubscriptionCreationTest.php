@@ -2,6 +2,7 @@
 
 use App\Enums\PricingPeriod;
 use App\Exceptions\TranslatableException;
+use App\Http\Controllers\Settings\SubscriptionController;
 use App\Models\Tier;
 use App\Models\TierPrice;
 use App\Models\User;
@@ -49,6 +50,25 @@ it('reloads subscriptions and treats an already completed checkout as a no-op', 
     expect(Subscription::count())->toBe(1);
     Queue::assertNothingPushed();
     expect(Cache::store('array')->lock('subscription:user:' . $this->user->id, 600)->get(fn () => true))->toBeTrue();
+});
+
+it('redirects completed checkout retries without recording another purchase', function (): void {
+    $this->user->subscriptions()->create([
+        'type' => 'kanka',
+        'stripe_id' => 'sub_existing',
+        'stripe_status' => 'active',
+        'stripe_price' => $this->price->stripe_id,
+        'quantity' => 1,
+    ]);
+
+    $this->actingAs($this->user)
+        ->post(route('settings.subscription.subscribe', $this->tier), ['payment_id' => 'pm_test'])
+        ->assertRedirect(route('settings.subscription'))
+        ->assertSessionMissing(SubscriptionController::SUCCESS_SESSION_KEY)
+        ->assertSessionMissing('sub_tracking')
+        ->assertSessionMissing('sub_id');
+
+    Queue::assertNothingPushed();
 });
 
 it('does not create a replacement for a non-terminal subscription and releases the lock on failure', function (string $status): void {

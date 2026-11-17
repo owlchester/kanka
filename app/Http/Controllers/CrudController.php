@@ -42,6 +42,7 @@ use Illuminate\Http\Response;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use LogicException;
@@ -438,32 +439,8 @@ class CrudController extends Controller
             $data = array_replace($data, $sanitized);
             $data['campaign_id'] = $this->campaign->id;
 
-            /** @var MiscModel $model */
-            $model = new $this->model;
-            /** @var MiscModel $new */
-            $new = $model instanceof Bookmark
-                ? $model->create($data)
-                : $this->entityCreationService
-                    ->campaign($this->campaign)
-                    ->entityType($this->getEntityType())
-                    ->create($data);
-
-            // Bookmarks have no entity attached to them.
+            $new = $this->createEntry($request, $data);
             if (! ($new instanceof Bookmark) && $new->entity) {
-                // Fire an event for the Entity Observer.
-                $this->afterModelSave($new, $data);
-
-                $this->entitySaveService->campaign($this->campaign)->entity($new->entity)->save($data);
-
-                /** @var CopyService $copyService */
-                $copyService = app()->make(CopyService::class);
-                // First copy stuff like posts, since we might replace attribute mentions next
-                $copyService
-                    ->entity($new->entity)
-                    ->request($request)
-                    ->fromId()
-                    ->copy();
-
                 if (auth()->user()->can('attributes', $new->entity)) {
                     if ($request->hasAny(['sheets_present', 'sheets'])) {
                         $copySource = $request->filled('copy_source_id')
@@ -571,6 +548,27 @@ class CrudController extends Controller
                 ->withInput()
                 ->with('error', __('crud.errors.' . $error));
         }
+    }
+
+    protected function createEntry(Request $request, array $data): Bookmark|MiscModel
+    {
+        if (is_a($this->model, Bookmark::class, true)) {
+            return $this->model::create($data);
+        }
+
+        return DB::transaction(function () use ($data, $request): MiscModel {
+            $new = $this->entityCreationService
+                ->campaign($this->campaign)
+                ->entityType($this->getEntityType())
+                ->create($data);
+            $this->afterModelSave($new, $data);
+            $save = $this->entitySaveService->campaign($this->campaign)->entity($new->entity);
+            $save->save(Arr::except($data, ['entry_dates']));
+            app(CopyService::class)->entity($new->entity)->request($request)->fromId()->copy();
+            $save->saveEntryDates($data['entry_dates'] ?? []);
+
+            return $new;
+        });
     }
 
     public function crudShow(Model|MiscModel $model)

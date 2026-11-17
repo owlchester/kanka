@@ -56,6 +56,28 @@ test('legacy span mentions remain supported', () => {
     assert.equal(node.attrs.entity, entity)
 })
 
+test('recovers the entity ID from links saved by legacy editors', () => {
+    const attrs = { 'data-mention': '[character:123]', 'data-name': 'Character' }
+    const rule = mention.spec.parseDOM.find(rule => rule.tag === 'a[data-mention]')
+    const node = mention.create(rule.getAttrs({ getAttribute: name => attrs[name] ?? null }))
+    const [, output] = mention.spec.toDOM(node)
+
+    assert.equal(node.attrs.id, '123')
+    assert.equal(node.attrs.entity, entity)
+    assert.equal(output['data-mention'], '[character:123]')
+    assert.equal(output['data-id'], '123')
+})
+
+test('does not resolve a legacy post as an entity with the same ID', () => {
+    const attrs = { 'data-mention': '[post:123]', 'data-name': 'Chapter' }
+    const rule = mention.spec.parseDOM.find(rule => rule.tag === 'a[data-mention]')
+    const node = mention.create(rule.getAttrs({ getAttribute: name => attrs[name] ?? null }))
+
+    assert.equal(node.attrs.id, '123')
+    assert.equal(node.attrs.entity, null)
+    assert.equal(node.attrs.name, 'Chapter')
+})
+
 test('unknown mentions preserve their identity without trusting clipboard entity data', () => {
     const { node } = roundTrip({ id: '999', mention: 'location:999', name: 'Unknown location' })
 

@@ -444,29 +444,14 @@ trait HasFilters
     {
         $query
             ->joinEntity();
-        $ids = $this->relationFilterIds($value);
+        $ids = $this->normalizeEntityRelationIds($value);
         if ($ids === [] && ! in_array($this->filterOption, ['none', 'not_empty'], true)) {
             return;
         }
         if ($this->filterOption('children') && $ids !== []) {
-            $ids = Entity::whereIn('entity_id', $ids)
-                ->where('type_id', config('entities.ids.race'))
-                ->with('descendants')
-                ->get()
-                ->flatMap(fn ($e) => [$e->entity_id, ...$e->descendants->pluck('entity_id')->toArray()])
-                ->unique()
-                ->toArray();
+            $ids = $this->expandEntityRelationIds($ids, 'race');
         }
-        $campaign = CampaignLocalization::getCampaign();
-        $constraint = static function ($subquery) use ($campaign): void {
-            $subquery->whereIn('character_race.race_id', Entity::query()
-                ->where('entities.campaign_id', $campaign->id)
-                ->where('entities.type_id', config('entities.ids.race'))
-                ->select('entities.entity_id'));
-            if (auth()->guest() || ! auth()->user()->can('admin', $campaign)) {
-                $subquery->where('character_race.is_private', false);
-            }
-        };
+        $constraint = $this->visibleRelationshipTargets('character_race.race_id', 'race', privatePivot: true);
         $this->applyEntityRelationIdsFilter($query, 'character_race', 'character_id', $this->getTable() . '.id', 'race_id', $ids, $this->filterOption, $constraint);
     }
 
@@ -481,13 +466,7 @@ trait HasFilters
             return;
         }
         if ($this->filterOption('children')) {
-            $locationIds = Entity::where('entity_id', $value)
-                ->where('type_id', config('entities.ids.location'))
-                ->with('descendants')
-                ->get()
-                ->flatMap(fn ($e) => [$e->entity_id, ...$e->descendants->pluck('entity_id')->toArray()])
-                ->unique()
-                ->toArray();
+            $locationIds = $this->expandEntityRelationIds($this->normalizeEntityRelationIds($value), 'location');
             $query->whereIn($this->getTable() . '.location_id', $locationIds)->distinct();
 
             return;
@@ -500,18 +479,12 @@ trait HasFilters
      */
     protected function filterLocations(Builder $query, null|string|array $value = null, ?string $key = null): void
     {
-        $ids = $this->relationFilterIds($value);
+        $ids = $this->normalizeEntityRelationIds($value);
         if ($ids === [] && ! in_array($this->filterOption, ['none', 'not_empty'], true)) {
             return;
         }
         if ($this->filterOption('children') && $ids !== []) {
-            $ids = Entity::whereIn('entity_id', $ids)
-                ->where('type_id', config('entities.ids.location'))
-                ->with('descendants')
-                ->get()
-                ->flatMap(fn ($e) => [$e->entity_id, ...$e->descendants->pluck('entity_id')->toArray()])
-                ->unique()
-                ->toArray();
+            $ids = $this->expandEntityRelationIds($ids, 'location');
         }
         $query->joinEntity();
         $this->applyEntityRelationIdsFilter($query, 'entity_locations', 'entity_id', 'e.id', 'location_id', $ids, $this->filterOption);
@@ -524,29 +497,14 @@ trait HasFilters
     {
         $query
             ->joinEntity();
-        $ids = $this->relationFilterIds($value);
+        $ids = $this->normalizeEntityRelationIds($value);
         if ($ids === [] && ! in_array($this->filterOption, ['none', 'not_empty'], true)) {
             return;
         }
         if ($this->filterOption('children') && $ids !== []) {
-            $ids = Entity::whereIn('entity_id', $ids)
-                ->where('type_id', config('entities.ids.organisation'))
-                ->with('descendants')
-                ->get()
-                ->flatMap(fn ($e) => [$e->entity_id, ...$e->descendants->pluck('entity_id')->toArray()])
-                ->unique()
-                ->toArray();
+            $ids = $this->expandEntityRelationIds($ids, 'organisation');
         }
-        $campaign = CampaignLocalization::getCampaign();
-        $constraint = static function ($subquery) use ($campaign): void {
-            $subquery->whereIn('organisation_member.organisation_id', Entity::query()
-                ->where('entities.campaign_id', $campaign->id)
-                ->where('entities.type_id', config('entities.ids.organisation'))
-                ->select('entities.entity_id'));
-            if (auth()->guest() || ! auth()->user()->can('admin', $campaign)) {
-                $subquery->where('organisation_member.is_private', false);
-            }
-        };
+        $constraint = $this->visibleRelationshipTargets('organisation_member.organisation_id', 'organisation', privatePivot: true);
         $this->applyEntityRelationIdsFilter($query, 'organisation_member', 'character_id', $this->getTable() . '.id', 'organisation_id', $ids, $this->filterOption, $constraint);
     }
 
@@ -557,57 +515,26 @@ trait HasFilters
     {
         $query
             ->joinEntity();
-        $ids = $this->relationFilterIds($value);
+        $ids = $this->normalizeEntityRelationIds($value);
         if ($ids === [] && ! in_array($this->filterOption, ['none', 'not_empty'], true)) {
             return;
         }
         if ($this->filterOption('children') && $ids !== []) {
-            $ids = Entity::whereIn('entity_id', $ids)
-                ->where('type_id', config('entities.ids.family'))
-                ->with('descendants')
-                ->get()
-                ->flatMap(fn ($e) => [$e->entity_id, ...$e->descendants->pluck('entity_id')->toArray()])
-                ->unique()
-                ->toArray();
+            $ids = $this->expandEntityRelationIds($ids, 'family');
         }
-        $campaign = CampaignLocalization::getCampaign();
-        $constraint = static function ($subquery) use ($campaign): void {
-            $subquery->whereIn('character_family.family_id', Entity::query()
-                ->where('entities.campaign_id', $campaign->id)
-                ->where('entities.type_id', config('entities.ids.family'))
-                ->select('entities.entity_id'));
-            if (auth()->guest() || ! auth()->user()->can('admin', $campaign)) {
-                $subquery->where('character_family.is_private', false);
-            }
-        };
+        $constraint = $this->visibleRelationshipTargets('character_family.family_id', 'family', privatePivot: true);
         $this->applyEntityRelationIdsFilter($query, 'character_family', 'character_id', $this->getTable() . '.id', 'family_id', $ids, $this->filterOption, $constraint);
     }
 
     /** Filter events by participant entities without duplicating event rows. */
     protected function filterParticipants(Builder $query, null|string|array $value = null): void
     {
-        $ids = $this->relationFilterIds($value);
+        $ids = $this->normalizeEntityRelationIds($value);
         if ($ids === [] && ! in_array($this->filterOption, ['none', 'not_empty'], true)) {
             return;
         }
-        $campaignId = CampaignLocalization::getCampaign()->id;
-        $constraint = static function ($subquery) use ($campaignId): void {
-            $subquery->join('entities as participant_entities', 'participant_entities.id', '=', 'event_participants.entity_id')
-                ->where('participant_entities.campaign_id', $campaignId)
-                ->whereIn('participant_entities.id', Entity::query()->select('entities.id'));
-        };
+        $constraint = $this->visibleRelationshipTargets('event_participants.entity_id');
         $this->applyEntityRelationIdsFilter($query, 'event_participants', 'event_id', $this->getTable() . '.id', 'entity_id', $ids, $this->filterOption, $constraint);
-    }
-
-    /** @return array<int, int> */
-    protected function relationFilterIds(null|string|array $value): array
-    {
-        return collect((array) $value)
-            ->filter(static fn ($id): bool => $id !== null && trim((string) $id) !== '' && ctype_digit((string) $id) && (int) $id > 0)
-            ->map(static fn ($id): int => (int) $id)
-            ->unique()
-            ->values()
-            ->all();
     }
 
     /**

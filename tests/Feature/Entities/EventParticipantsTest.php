@@ -1,12 +1,15 @@
 <?php
 
 use App\Facades\EntityPermission;
+use App\Facades\ImportIdMapper;
 use App\Facades\Permissions;
 use App\Models\Campaign;
 use App\Models\Character;
 use App\Models\Event;
 use App\Models\EventGroup;
 use App\Models\EventParticipant;
+use App\Services\Campaign\Import\Mappers\CharacterMapper;
+use App\Services\Campaign\Import\Mappers\EventMapper;
 use App\Services\Events\ParticipantService;
 use App\Services\Permissions\PermissionService;
 
@@ -14,6 +17,44 @@ function participantPayload(Event $event): array
 {
     return app(ParticipantService::class)->state($event);
 }
+
+it('restores event participants and groups from a backup with new IDs and the same ordering', function () {
+    $this->asUser()->withCampaign();
+    $event = Event::factory()->create(['campaign_id' => 1]);
+    $first = Character::factory()->create(['campaign_id' => 1]);
+    $second = Character::factory()->create(['campaign_id' => 1]);
+    $third = Character::factory()->create(['campaign_id' => 1]);
+    $group = $event->groups()->create(['name' => 'Defenders', 'colour' => '#123456', 'position' => 2]);
+    $event->groups()->create(['name' => 'Observers', 'position' => 2]);
+    $event->participants()->create(['entity_id' => $first->entity->id, 'group_id' => $group->id, 'role' => 'Captain', 'position' => 5]);
+    $event->participants()->create(['entity_id' => $second->entity->id, 'group_id' => $group->id, 'role' => 'Scout', 'position' => 5]);
+    $event->participants()->create(['entity_id' => $third->entity->id, 'role' => 'Witness', 'position' => 8]);
+
+    $destination = Campaign::factory()->create();
+    $events = app(EventMapper::class)->campaign($destination)->user(auth()->user());
+    $characters = app(CharacterMapper::class)->campaign($destination)->user(auth()->user());
+    $backup = json_decode($event->export(), true, flags: JSON_THROW_ON_ERROR);
+    $events->data($backup)->first();
+    foreach ([$first, $second, $third] as $character) {
+        $characters->data(json_decode($character->export(), true, flags: JSON_THROW_ON_ERROR))->first();
+    }
+    $events->data($backup)->second();
+
+    $restored = Event::findOrFail(ImportIdMapper::get('events', $event->id));
+    $restoredGroup = $restored->groups()->where('name', 'Defenders')->firstOrFail();
+    $participants = $restored->participants()->get();
+    expect($restored->groups()->pluck('name')->all())->toBe(['Observers', 'Defenders'])
+        ->and($restoredGroup->id)->not->toBe($group->id)
+        ->and($restoredGroup->colour)->toBe('#123456')
+        ->and($restoredGroup->position)->toBe(2)
+        ->and($participants->pluck('role')->all())->toBe(['Scout', 'Captain', 'Witness'])
+        ->and($participants->pluck('position')->all())->toBe([5, 5, 8])
+        ->and($participants->pluck('group_id')->all())->toBe([$restoredGroup->id, $restoredGroup->id, null])
+        ->and($participants->pluck('entity_id')->all())->toBe(array_map(
+            fn (Character $character) => ImportIdMapper::getEntity($character->entity->id),
+            [$second, $first, $third],
+        ));
+});
 
 it('adds event participants to custom groups and preserves them when a group is deleted', function () {
     $this->asUser()->withCampaign();

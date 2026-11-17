@@ -11,11 +11,12 @@ function setup(count = 2) {
     const add = { disabled: false, hasAttribute: name => name === 'data-status-add', closest: () => null }
     const rows = {
         children: [],
+        addEventListener: (event, handler) => { listeners[`rows:${event}`] = handler },
         get lastElementChild() { return this.children.at(-1) },
         append(row) { this.children.push(row) },
         insertBefore(row, before) {
             this.children.splice(this.children.indexOf(row), 1)
-            this.children.splice(this.children.indexOf(before), 0, row)
+            this.children.splice(before ? this.children.indexOf(before) : this.children.length, 0, row)
         },
     }
     const makeRow = (id = '', isDefault = false) => {
@@ -31,6 +32,8 @@ function setup(count = 2) {
         }]))
         const row = {
             inputs, radio, preview, buttons,
+            closest: () => row,
+            getBoundingClientRect: () => ({ top: 0, height: 20 }),
             querySelectorAll: () => Object.values(inputs),
             querySelector(selector) {
                 if (selector === '[data-status-default]') return radio
@@ -84,6 +87,19 @@ test('status rows reorder by identity and serialize their new positions', () => 
     assert.equal(first.inputs.id.value, '1000')
     assert.equal(first.inputs.is_default.value, '1')
     assert.equal(first.buttons.down.disabled, true)
+    assert.equal(state.dirty(), true)
+})
+
+test('dragging a status below the last row updates its field names and marks the form dirty', () => {
+    const state = setup()
+    const [first, second] = state.rows.children
+    state.listeners['rows:dragstart']({ target: first, dataTransfer: { setData() {} } })
+    state.listeners['rows:dragover']({ target: second, clientY: 19, preventDefault() {} })
+    state.listeners['rows:drop']({ preventDefault() {} })
+    state.listeners['rows:dragend']()
+
+    assert.equal(state.rows.children[1], first)
+    assert.equal(first.inputs.id.name, 'statuses[1][id]')
     assert.equal(state.dirty(), true)
 })
 
