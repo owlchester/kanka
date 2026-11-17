@@ -33,7 +33,10 @@ it('filters abilities by type and parent without treating the filter as navigati
     $page->assertSuccessful()->assertViewHas('parent', null);
 
     $response = $this->getJson(route('entities.index-api', [1, $entityType, ...$filters]));
-    $response->assertSuccessful()->assertJsonPath('error', false)->assertJsonPath('parent', null);
+    $response->assertSuccessful()
+        ->assertJsonPath('error', false)
+        ->assertJsonPath('parent', null)
+        ->assertJsonPath('filters.active', true);
 
     $expected = match ($option) {
         'exclude' => [$otherChild->entity->id, $root->entity->id],
@@ -65,6 +68,31 @@ it('filters abilities without parents when no parent is selected', function () {
 
     $response->assertSuccessful()->assertJsonPath('error', false);
     expect(Arr::pluck($response->json('entities.data'), 'id'))->toBe([$parent->entity->id]);
+});
+
+it('includes nested entities in search results and marks the listing criteria active', function () {
+    $this->asUser()->withCampaign();
+
+    $parent = Ability::factory()->create(['campaign_id' => 1]);
+    $child = Ability::factory()->create(['campaign_id' => 1]);
+    $child->entity->update([
+        'name' => 'The Tavern',
+        'parent_id' => $parent->entity->id,
+    ]);
+
+    $entityType = EntityType::findOrFail(config('entities.ids.ability'));
+    $response = $this->getJson(route('entities.index-api', [
+        1,
+        $entityType,
+        'search' => 'The Tavern',
+        'n' => 1,
+    ]));
+
+    $response->assertSuccessful()
+        ->assertJsonPath('error', false)
+        ->assertJsonPath('filters.active', true);
+    expect(Arr::pluck($response->json('entities.data'), 'id'))
+        ->toContain($child->entity->id);
 });
 
 it('filters entity listings by gallery and legacy image fields', function () {

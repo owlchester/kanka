@@ -144,6 +144,7 @@
                 <div
                     v-if="
                         entityType.is_nested &&
+                        !criteriaActive &&
                         !orderingComposable.ordering.value
                     "
                     class="hidden lg:flex items-center rounded-xl bg-base-200 overflow-hidden p-0.5 gap-0.5"
@@ -399,7 +400,7 @@
                 :entities="entityApi.entities.value"
                 :parent="entityApi.parent.value"
                 :selecting="bulkActions.selecting.value"
-                :nested="nestingComposable.nested.value"
+                :nested="nestingComposable.nested.value || criteriaActive"
                 :i18n="i18n"
                 :ads="entityApi.ads.value"
                 :columns="columnsComposable.visibleColumns.value"
@@ -413,7 +414,7 @@
                 :visible-columns="columnsComposable.visibleColumns.value"
                 :selecting="bulkActions.selecting.value"
                 :all-selected="bulkActions.allSelected()"
-                :nested="nestingComposable.nested.value"
+                :nested="nestingComposable.nested.value && !criteriaActive"
                 :i18n="i18n"
                 :entity-type="entityType"
                 :features="features"
@@ -785,6 +786,7 @@ const entityType = ref<any>({});
 const urls = ref<any>({});
 const templates = ref<any[]>([]);
 const filters = ref(0);
+const criteriaActive = ref(false);
 const filterUrls = ref<any>({});
 const bookmarkable = ref(false);
 const features = ref<any>({});
@@ -1043,6 +1045,7 @@ onMounted(() => {
         // Import state from API response
         filters.value = response.filters?.count ?? 0;
         nameFilter.value = response.filters?.name ?? "";
+        criteriaActive.value = response.filters?.active ?? false;
         filterUrls.value = response.filters?.urls ?? {};
         i18n.value = response.i18n;
         entityApi.parent.value = response.parent;
