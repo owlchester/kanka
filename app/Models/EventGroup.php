@@ -12,6 +12,11 @@ class EventGroup extends Model
 
     protected $attributes = ['position' => 0];
 
+    public function exportFields(): array
+    {
+        return ['id', 'name', 'colour', 'position'];
+    }
+
     /** @return BelongsTo<Event, $this> */
     public function event(): BelongsTo
     {

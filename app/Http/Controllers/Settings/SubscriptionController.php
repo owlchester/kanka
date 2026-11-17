@@ -239,6 +239,10 @@ class SubscriptionController extends Controller
                 ->request($request->all())
                 ->change();
 
+            if ($sub->alreadyCompleted()) {
+                return redirect()->route('settings.subscription');
+            }
+
             // Emails are owned by the Stripe webhook. Suppress them here except for
             // downgrades, which send an immediate notification on user request.
             if (! $sub->downgrading()) {

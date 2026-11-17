@@ -80,6 +80,8 @@ class Event extends MiscModel
         'date',
     ];
 
+    protected array $foreignExport = ['groups', 'participants'];
+
     protected array $sanitizable = [
         'name',
         'date',
