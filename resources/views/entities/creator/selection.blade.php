@@ -1,9 +1,13 @@
-@if (!isset($new))
-<x-dialog.header>
-    <span class="sr-only" id="dialog-label-primary-dialog">{{ __('Quick creator dialog') }}</span>
-</x-dialog.header>
+@if (isset($new))
+<div class="shrink-0 md:hidden">
 @endif
-<article id="qq-modal-selection" class="p-4 md:px-6">
+<x-dialog.header id="primary-dialog" :mobile-back="true" :mobile-title="__('sidebar.entity-creator')">
+    <span class="sr-only">{{ __('Quick creator dialog') }}</span>
+</x-dialog.header>
+@if (isset($new))
+</div>
+@endif
+<article id="qq-modal-selection" class="p-4 max-md:px-5 md:px-6">
     <div class="quick-creator-body flex flex-col gap-5 w-full">
         @includeWhen(isset($new), 'entities.creator._created', ['success' => $new ?? null, 'dismissable' => false])
 

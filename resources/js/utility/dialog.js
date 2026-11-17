@@ -16,6 +16,12 @@ const initDialogs = () => {
 
 const dialogLoadedEvent = new Event('dialog.loaded');
 
+document.addEventListener('click', (event) => {
+    if (event.target.closest('[data-dialog-back]')) {
+        event.target.closest('dialog')?.close();
+    }
+});
+
 function openingDialog(e) {
     e.preventDefault();
     let target = this.dataset.target ?? 'primary-dialog';

@@ -21,12 +21,15 @@ use App\Models\Tier;
 use App\Models\TierPrice;
 use App\Traits\UserAware;
 use Carbon\Carbon;
+use Illuminate\Contracts\Cache\LockProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Number;
 use Laravel\Cashier\Exceptions\IncompletePayment;
 use Laravel\Cashier\PaymentMethod;
 use Laravel\Cashier\Subscription;
+use LogicException;
 use Stripe\Card;
 
 class SubscriptionService
@@ -55,6 +58,8 @@ class SubscriptionService
 
     /** @var bool if the user has cancelled */
     protected bool $cancelled = false;
+
+    protected bool $duplicate = false;
 
     /** @var string applied coupon */
     protected string $coupon;
@@ -137,6 +142,11 @@ class SubscriptionService
      */
     public function change(): self
     {
+        return $this->withSubscriptionLock(fn () => $this->changeSubscription());
+    }
+
+    protected function changeSubscription(): self
+    {
         if ($this->user->hasPayPal()) {
             throw (new TranslatableException('subscription.errors.legacy_paypal'))->setOptions([
                 'date' => $this->user->subscription('kanka')->ends_at->isoFormat('MMMM D, Y'),
@@ -161,7 +171,7 @@ class SubscriptionService
         }
 
         // Subscribe
-        $this->subscribe($paymentMethodID);
+        $this->performSubscribe($paymentMethodID);
 
         return $this;
     }
@@ -171,6 +181,48 @@ class SubscriptionService
      */
     public function subscribe(string $paymentID): self
     {
+        return $this->withSubscriptionLock(fn () => $this->performSubscribe($paymentID));
+    }
+
+    protected function withSubscriptionLock(callable $callback): self
+    {
+        $store = Cache::store(config('services.stripe.lock_store'))->getStore();
+        if (! $store instanceof LockProvider) {
+            throw new LogicException('The subscription cache store must support atomic locks.');
+        }
+
+        $result = $store->lock('subscription:user:' . $this->user->id, 600)
+            ->get(function () use ($callback): self {
+                $this->user->refresh();
+
+                return $callback();
+            });
+
+        if ($result === false) {
+            throw new TranslatableException('subscription.errors.pending');
+        }
+
+        return $result;
+    }
+
+    protected function performSubscribe(string $paymentID): self
+    {
+        $this->duplicate = false;
+        $existing = Subscription::where('user_id', $this->user->id)
+            ->where('type', 'kanka')
+            ->whereNotIn('stripe_status', ['canceled', 'incomplete_expired'])
+            ->latest('id')->first();
+
+        if ($existing && (! in_array($existing->stripe_status, ['active', 'trialing']) || ! $existing->valid())) {
+            throw new TranslatableException('subscription.errors.pending');
+        }
+
+        if ($existing && $existing->stripe_price === $this->tierPrice()->stripe_id) {
+            $this->duplicate = true;
+
+            return $this;
+        }
+
         // New subscriber
         if (! $this->user->subscribed('kanka')) {
             $this->user->newSubscription('kanka', $this->tierPrice()->stripe_id)
@@ -206,7 +258,7 @@ class SubscriptionService
     {
 
         // If the user is cancelling through the interface, don't do anything else
-        if ($this->cancelled) {
+        if ($this->cancelled || $this->duplicate) {
             return $this;
         }
 

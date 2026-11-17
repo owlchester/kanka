@@ -14,7 +14,7 @@ return [
     'calendar'              => 'Calendar',
     'calendars'             => 'Calendars',
     'campaign'              => 'Campaign',
-    'campaigns'             => 'Campaigns',
+    'campaigns'             => 'Worlds',
     'character'             => 'Character',
     'characters'            => 'Characters',
     'conversation'          => 'Conversation',

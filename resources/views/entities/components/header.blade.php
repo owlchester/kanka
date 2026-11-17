@@ -43,22 +43,18 @@ if($entity->hasHeaderImage()) {
 $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
 
 ?>
-<div class="w-full h-full entity-header flex-wrap md:flex-no-wrap flex gap-2 md:gap-5 items-end relative @if ($hasBanner) with-entity-banner p-4 text-white aspect-auto md:aspect-3/1 xl:aspect-auto @endif">
+<div class="w-full h-full entity-header flex-wrap lg:flex-nowrap flex gap-3 lg:gap-5 items-start lg:items-end print:items-end print:gap-2 md:print:gap-5 relative @if ($hasBanner) with-entity-banner p-4 text-white aspect-auto lg:aspect-3/1 xl:aspect-auto @endif">
     @if ($imageUrl)
-    <div class="entity-header-image relative w-28 flex-none md:w-48 self-start md:self-auto z-10">
+    <div class="entity-header-image relative w-16 lg:w-48 print:w-28 md:print:w-48 flex-none self-start lg:self-auto z-10">
 
         @can('update', $entity)
             @if(isset($printing) && $printing)
                 <img src="{{ $imagePath }}" class="entity-print-image" alt="{{ $imageAlt }}"/>
             @endif
 
-            @if (!isset($printing))
-            <a class="cursor-pointer relative cover-background sm:hidden" href="{{ $imageUrl }}" target="_blank" aria-label="Open original image">
-                <img src="{{ $imagePathMobile }}" loading="lazy" alt="{{ $imageAlt }}" class="w-28 " />
-            </a>
-            @endif
             <div class="dropdown">
-                <div class="cursor-pointer hidden sm:block print-none entity-picture relative {{ $imageClass }}" data-dropdown aria-expanded="false">
+                @if (!isset($printing))
+                <button type="button" class="cursor-pointer print-none entity-picture relative w-16 lg:w-auto {{ $imageClass }} bg-transparent border-0 p-0" data-dropdown aria-expanded="false" aria-label="{{ __('entities/image.actions.view') }}">
                     @if ($imageVisibility && $imageVisibility !== \App\Enums\Visibility::All)
                         <div class="absolute bottom-0 right-0 flex items-center justify-center w-6 h-6" data-toggle="tooltip" data-title="{{ __('entities/image.gallery_permissions.' . strtolower($entity->image->visibility_id->name), ['admin' => $campaign->adminRoleName(), 'creator' => $entity->image->creator?->name]) }}">
                             <x-icon :class="$entity->image->visibilityIcon()['class']" />
@@ -66,9 +62,10 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
                     @endif
                     <picture class="">
                         <source media="(min-width:766px)" srcset="{{ $imagePathXL }}" class="">
-                        <img src="{{ $imagePath }}" alt="{{ $imageAlt }}" class="w-auto">
+                        <img src="{{ $imagePathMobile }}" alt="{{ $imageAlt }}" loading="lazy" class="w-full">
                     </picture>
-                </div>
+                </button>
+                @endif
 
                 <div class="dropdown-menu hidden" role="menu">
                     <x-dropdowns.item
@@ -150,14 +147,14 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
             <a class="entity-image block" href="{{ $imageUrl }}" target="_blank" >
                 <picture class="">
                     <source media="(min-width:766px)" srcset="{{ $imagePathXL }}" class="">
-                    <img src="{{ $imagePathMobile }}" alt="{{ $imageAlt }}" loading="lazy" class="w-auto">
+                    <img src="{{ $imagePathMobile }}" alt="{{ $imageAlt }}" loading="lazy" class="w-full">
                 </picture>
             </a>
             @endif
         @endcan
     </div>
     @endif
-    <div class="entity-header-text grow flex flex-col gap-1 md:gap-2  z-10">
+    <div class="entity-header-text grow max-lg:flex-1 print:flex-auto min-w-0 flex flex-col gap-1 lg:gap-2 z-10">
         <ol class="entity-breadcrumb text-sm m-0 p-0">
             <li class="inline-block">
                 @if (!empty($bookmark))
@@ -172,10 +169,12 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
             </li>
         </ol>
         <div class="entity-name-header flex gap-3 items-center">
-            <h1 class="entity-name text-lg md:text-4xl break-all">
+            <h1 class="entity-name text-xl leading-tight lg:text-4xl lg:leading-10 break-normal wrap-anywhere print:text-lg md:print:text-4xl print:break-all">
                 {!! $entity->name !!}
             </h1>
-            @if ($headerStatus && $headerStatus->icon)
+            @if ($headerStatus && $headerStatus->isCustom())
+                <x-entities.status :status="$headerStatus" />
+            @elseif ($headerStatus && $headerStatus->icon)
                 <span class="entity-name-icon md:text-2xl" data-toggle="tooltip" data-title="{{ $headerStatus->setRelation('entityType', $entity->entityType)->name() }}">
                     <x-icon class="{{ $headerStatus->icon() }} entity-icons" />
                     <span class="sr-only">{{ $headerStatus->name() }}</span>
@@ -196,35 +195,40 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
             </div>
         @endif
 
-        <div class="entity-tags entity-header-line text-xs">
-            <div class="flex flex-wrap gap-2 items-center">
-        @if($entityTags->count() > 0)
-            @foreach ($entityTags as $tag)
-                @if (!$tag->entity) @continue @endif
-                <a href="{{ route('entities.show', [$campaign, $tag->entity]) }}" data-toggle="tooltip-ajax"
-                   data-id="{{ $tag->entity->id }}" data-url="{{ route('entities.tooltip', [$campaign, $tag->entity->id]) }}"
-                   data-tag-slug="{{ $tag->slug }}"
-                >
-                    @include ('tags._badge')
-                </a>
-            @endforeach
-        @endif
-            @can('update', $entity)
-                <span role="button" tabindex="0" class="entity-tag-icon text-xl hover:text-primary" data-toggle="dialog" data-url="{{ $addTagsUrl }}" aria-haspopup="dialog">
-                    <x-icon class="fa-regular fa-tag" tooltip="1" :title="__('entities/tags.create.title')" />
-                    <span class="sr-only">{{ __('entities/tags.create.title')  }}</span>
-                </span>
-            @endcan
-            </div>
-        </div>
+        <details class="entity-header-secondary" open>
+            <summary class="lg:hidden print:hidden cursor-pointer text-sm py-2">{{ __('Tags and information') }}</summary>
+            <div class="flex flex-col gap-1 md:gap-2">
+                <div class="entity-tags entity-header-line text-xs">
+                    <div class="flex flex-wrap gap-2 items-center">
+                        @if($entityTags->count() > 0)
+                            @foreach ($entityTags as $tag)
+                                @if (!$tag->entity) @continue @endif
+                                <a href="{{ route('entities.show', [$campaign, $tag->entity]) }}" data-toggle="tooltip-ajax"
+                                   data-id="{{ $tag->entity->id }}" data-url="{{ route('entities.tooltip', [$campaign, $tag->entity->id]) }}"
+                                   data-tag-slug="{{ $tag->slug }}"
+                                >
+                                    @include ('tags._badge')
+                                </a>
+                            @endforeach
+                        @endif
+                        @can('update', $entity)
+                            <span role="button" tabindex="0" class="entity-tag-icon text-xl hover:text-primary" data-toggle="dialog" data-url="{{ $addTagsUrl }}" aria-haspopup="dialog">
+                                <x-icon class="fa-regular fa-tag" tooltip="1" :title="__('entities/tags.create.title')" />
+                                <span class="sr-only">{{ __('entities/tags.create.title')  }}</span>
+                            </span>
+                        @endcan
+                    </div>
+                </div>
 
-        <div class="entity-header-sub flex gap-4 items-center flex-wrap">
-            @if ($entity->entityType->isCustom())
-                @includeIf('entities.headers._custom')
-            @else
-                @includeIf('entities.headers._' . $entity->entityType->code)
-            @endif
-        </div>
+                <div class="entity-header-sub flex gap-4 items-center flex-wrap">
+                    @if ($entity->entityType->isCustom())
+                        @includeIf('entities.headers._custom')
+                    @else
+                        @includeIf('entities.headers._' . $entity->entityType->code)
+                    @endif
+                </div>
+            </div>
+        </details>
 
         @yield($entityHeaderActions ?? 'entity-header-actions')
     </div>

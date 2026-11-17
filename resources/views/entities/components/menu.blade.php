@@ -4,4 +4,4 @@
  * @var \App\Models\Campaign $campaign
  */
 ?>
-<x-entities.submenu :entity="$entity" :campaign="$campaign" :active="$active" />
+<x-entities.submenu :entity="$entity" :campaign="$campaign" :active="$active" :printing="!empty($printing)" />

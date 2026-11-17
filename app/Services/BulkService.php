@@ -9,6 +9,7 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityType;
 use App\Models\Relation;
+use App\Rules\CategoryStatusAssignment;
 use App\Services\Entity\MoveService;
 use App\Services\Entity\Relations\LocationRelationsService;
 use App\Services\Entity\TagService;
@@ -22,7 +23,10 @@ use Exception;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 use Stevebauman\Purify\Facades\Purify;
 
 class BulkService
@@ -189,6 +193,28 @@ class BulkService
      * @throws Exception
      */
     public function editing(array $fields, Bulk $bulk): int
+    {
+        return DB::transaction(function () use ($fields, $bulk): int {
+            if (isset($this->entityType) && filled($fields['status_id'] ?? null)) {
+                EntityType::whereKey($this->entityType->id)->lockForUpdate()->firstOrFail();
+                $targets = Entity::whereIn('id', $this->ids)->get();
+                if ($targets->contains(fn ($entity) => $entity->campaign_id !== $this->campaign->id || $entity->type_id !== $this->entityType->id)) {
+                    throw ValidationException::withMessages(['status_id' => __('Every entry must belong to this category.')]);
+                }
+                if ($fields['status_id'] !== 'remove') {
+                    foreach ($targets as $entity) {
+                        Validator::make(['status_id' => $fields['status_id']], [
+                            'status_id' => ['integer', new CategoryStatusAssignment($this->campaign, $this->entityType, $entity)],
+                        ])->validate();
+                    }
+                }
+            }
+
+            return $this->editFields($fields, $bulk);
+        });
+    }
+
+    protected function editFields(array $fields, Bulk $bulk): int
     {
         $model = $this->getModel();
 

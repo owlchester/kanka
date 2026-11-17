@@ -95,6 +95,12 @@ class EntityType extends Model
         return $this->hasMany(Entity::class, 'type_id');
     }
 
+    /** @return HasMany<CategoryStatus, $this> */
+    public function statuses(): HasMany
+    {
+        return $this->hasMany(CategoryStatus::class, 'category_id')->orderBy('sort_order')->orderBy('id');
+    }
+
     /**
      * @return HasMany<AttributeTemplate, $this>
      */

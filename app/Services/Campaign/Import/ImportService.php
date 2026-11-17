@@ -39,12 +39,15 @@ use App\Services\Campaign\Import\Mappers\QuestMapper;
 use App\Services\Campaign\Import\Mappers\RaceMapper;
 use App\Services\Campaign\Import\Mappers\TagMapper;
 use App\Services\Campaign\Import\Mappers\TimelineMapper;
+use App\Services\CategoryStatusService;
 use App\Services\EntityMappingService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Exception;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Throwable;
 use ZipArchive;
@@ -332,6 +335,11 @@ class ImportService
 
     protected function customModules(): self
     {
+        return DB::transaction(fn () => $this->importCustomModules());
+    }
+
+    protected function importCustomModules(): self
+    {
         // Open the campaign settings file
         $data = $this->open('settings/custom-modules.json');
 
@@ -365,6 +373,26 @@ class ImportService
             $newModule->icon = $module['icon'];
             $newModule->code = $module['code'];
             $newModule->save();
+            $definitions = $module['statuses'] ?? [];
+            if ($definitions !== []) {
+                Validator::make(['statuses' => $definitions], [
+                    'statuses' => ['array', 'max:10'],
+                    'statuses.*.id' => ['required', 'integer', 'min:1', 'distinct'],
+                    'statuses.*.key' => ['required', 'string', 'max:45', 'distinct', 'regex:/^[a-z0-9_-]+$/'],
+                ])->validate();
+                $createdStatuses = app(CategoryStatusService::class)->sync($this->campaign, $newModule, array_map(fn ($definition) => [
+                    'label' => $definition['label'] ?? $definition['key'],
+                    'icon' => $definition['icon'] ?? null,
+                    'is_default' => $definition['is_default'] ?? false,
+                ], $definitions));
+                foreach ($createdStatuses as $createdStatus) {
+                    $createdStatus->update(['key' => (string) Str::uuid()]);
+                }
+                foreach (array_values($definitions) as $position => $definition) {
+                    $createdStatuses[$position]->update(['key' => $definition['key']]);
+                    ImportIdMapper::put('category_statuses', (int) $definition['id'], $createdStatuses[$position]->id);
+                }
+            }
             // Create its corresponding bookmark
             $bookmark = new Bookmark;
             $bookmark->campaign_id = $this->campaign->id;

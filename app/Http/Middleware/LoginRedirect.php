@@ -10,6 +10,11 @@ class LoginRedirect
 {
     public function handle(Request $request, Closure $next): Response
     {
+        $returnTo = $request->query('return_to');
+        if (is_string($returnTo) && str_starts_with($returnTo, '/w/') && ! str_contains($returnTo, '\\') && $request->hasValidSignature()) {
+            session(['login_redirect' => $returnTo]);
+        }
+
         $whitelist = ['roadmap', 'dashboard'];
 
         // If to check where the request is coming from and set the variable if its a valid route.

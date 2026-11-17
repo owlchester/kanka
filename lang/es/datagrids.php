@@ -26,6 +26,12 @@ return [
         'nested'    => 'Cambiar a un diseño anidado',
         'table'     => 'Cambiar a la vista de tabla',
     ],
+    'modes_short'   => [
+        'flatten'   => 'Plano',
+        'grid'      => 'Cuadrícula',
+        'list'      => 'Lista',
+        'nested'    => 'Anidado',
+    ],
     'subscription'  => [
         'cta'       => 'Explorar suscripciones',
         'helper'    => 'Visualiza hasta :max entidades de un vistazo con una suscripción de Kanka, además de muchos otros beneficios para potenciar tu construcción de mundo.',

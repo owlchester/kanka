@@ -21,8 +21,8 @@
                     @endif
                     {!! $entity->name !!}
                 </a>
-                @if ($entity->status?->icon)
-                    <x-icon class="{{ $entity->status->icon() }}" tooltip :title="$entity->status->setRelation('entityType', $entity->entityType)->name()" />
+                @if ($entity->status)
+                    <x-entities.status :status="$entity->status->setRelation('entityType', $entity->entityType)" compact />
                 @endif
             </div>
 

@@ -1,12 +1,13 @@
 <template>
     <Teleport to="body">
         <dialog
-            class="dialog rounded-2xl bg-base-100 text-base-content w-full md:w-fit md:min-w-2xl overflow-hidden flex flex-col max-h-[80vh]"
+            class="dialog command-center-dialog rounded-t-2xl md:rounded-2xl bg-base-100 text-base-content w-screen max-md:max-w-screen! max-md:max-h-[90dvh]! md:w-fit md:min-w-2xl overflow-hidden flex flex-col md:max-h-[85dvh]"
             ref="dialogRef"
             @cancel="close"
-            aria-label="Command Center"
+            :aria-label="search_text"
         >
-            <header class="p-4">
+            <MobilePanelHeader class="md:hidden" :title="search_text" :back-label="back_text" @back="close" />
+            <div class="command-center-header px-5 pb-4 md:p-4">
                 <CommandInput
                     :placeholder="mode === 'fulltext' ? restData.texts.hint_fulltext : restData.texts.hint_entries || placeholder"
                     :entities-label="restData.texts.entities || 'Entries'"
@@ -17,7 +18,7 @@
                     @submit="submit"
                     ref="inputRef"
                 />
-            </header>
+            </div>
             <article class="min-h-0 overflow-y-auto">
                 <CommandResults
                     :mode="mode"
@@ -33,7 +34,7 @@
                     ref="resultsRef"
                 />
             </article>
-            <footer class="flex gap-4 p-4 text-xs text-base-content/50 items-center justify-between">
+            <footer class="hidden md:flex gap-4 p-4 text-xs text-base-content/50 items-center justify-between">
                 <div class="flex gap-4 items-center">
                     <div class="flex gap-1 items-center">
                         <kbd class="w-8 inline-block text-center rounded bg-base-200">↑</kbd>
@@ -53,16 +54,19 @@
 import { useCommandCenter } from '../../composables/useCommandCenter.js';
 import CommandInput from './CommandInput.vue';
 import CommandResults from './CommandResults.vue';
+import MobilePanelHeader from '../layout/MobilePanelHeader.vue';
 
 export default {
     name: 'CommandCenter',
 
-    components: { CommandInput, CommandResults },
+    components: { CommandInput, CommandResults, MobilePanelHeader },
 
     props: {
         api_command: { type: String, required: true },
         api_recent: { type: String, required: true },
         placeholder: { type: String, default: 'Search…' },
+        back_text: { type: String, default: 'Back' },
+        search_text: { type: String, default: 'Search' },
     },
 
     setup() {

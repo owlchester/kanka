@@ -26,6 +26,12 @@ return [
         'nested'    => 'Switch to a nested layout',
         'table'     => 'Switch to the table view',
     ],
+    'modes_short'   => [
+        'flatten'   => 'Flat',
+        'grid'      => 'Grid',
+        'list'      => 'List',
+        'nested'    => 'Nested',
+    ],
     'subscription'  => [
         'cta'       => 'Explore subscriptions',
         'helper'    => 'See up to :max entities at a glance with a Kanka subscription, plus a ton of other perks to supercharge your worldbuilding.',

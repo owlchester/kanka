@@ -52,8 +52,10 @@
                 </x-grid>
             </x-form>
         </x-box>
+        <div>
+            <a href="{{ route('entity_types.edit', [$campaign, $entityType]) }}" class="btn2">{{ __('crud.cancel') }}</a>
+        </div>
     </div>
 
 @endsection
-
 

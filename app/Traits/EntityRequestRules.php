@@ -10,6 +10,7 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Location;
 use App\Models\Tag;
+use App\Rules\CategoryStatusAssignment;
 use App\Rules\EntityField;
 use App\Rules\EntryDates;
 use App\Rules\Nested;
@@ -41,7 +42,7 @@ trait EntityRequestRules
             'header_uuid' => 'nullable|exists:images,id',
             'entity_image_uuid' => 'nullable|exists:images,id',
             'entity_header_uuid' => 'nullable|exists:images,id',
-            'status_id' => 'nullable|exists:category_statuses,id',
+            'status_id' => ['nullable', 'integer', new CategoryStatusAssignment],
             'parent_id' => $parentRules,
             'locations' => ['nullable', 'array', new EntityField(config('entities.ids.location'), Location::class)],
             'tags' => ['nullable', 'array', new EntityField(config('entities.ids.tag'), Tag::class)],

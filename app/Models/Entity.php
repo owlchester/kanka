@@ -24,6 +24,7 @@ use App\Models\Concerns\Templatable;
 use App\Models\Concerns\TouchSilently;
 use App\Models\Relations\EntityRelations;
 use App\Models\Scopes\EntityScopes;
+use App\Rules\CategoryStatusAssignment;
 use Carbon\Carbon;
 use Collator;
 use Exception;
@@ -31,6 +32,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable as Scout;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
@@ -118,6 +121,35 @@ class Entity extends Model
             $entity->conversationParticipants()->delete();
             $entity->conversationMessages()->update(['participant_type' => null, 'participant_id' => null]);
         });
+    }
+
+    public function save(array $options = [])
+    {
+        if ((! $this->exists || $this->isDirty(['status_id', 'type_id', 'campaign_id'])) && $this->type_id && $this->campaign_id) {
+            $category = \App\Models\EntityType::findOrFail($this->type_id);
+            if ($category->isStandard()) {
+                return parent::save($options);
+            }
+
+            return DB::transaction(function () use ($options) {
+                $category = \App\Models\EntityType::whereKey($this->type_id)->lockForUpdate()->firstOrFail();
+                if ($category->isCustom()) {
+                    $campaign = Campaign::findOrFail($this->campaign_id);
+                    if (! $this->exists && ! array_key_exists('status_id', $this->getAttributes()) && $campaign->premium()) {
+                        $this->status_id = $category->statuses()->where('campaign_id', $campaign->id)->where('is_default', true)->value('id');
+                    }
+                    if ($this->status_id !== null) {
+                        Validator::make(['status_id' => $this->status_id], [
+                            'status_id' => [new CategoryStatusAssignment($campaign, $category, $this->exists ? $this->fresh() : null)],
+                        ])->validate();
+                    }
+                }
+
+                return parent::save($options);
+            });
+        }
+
+        return parent::save($options);
     }
 
     protected $fillable = [

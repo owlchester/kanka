@@ -830,13 +830,31 @@ trait HasFilters
 
     protected function filterStatus(Builder $query): void
     {
+        if (str_contains(json_encode($this->filterValue), 'deleted:')) {
+            $query->whereRaw('1 = 0');
+
+            return;
+        }
+        if ($this->filterValue === 'none') {
+            if ($this->hasEntityBackedFields()) {
+                $query->joinEntity();
+            }
+            $query->whereNull($this->hasEntityBackedFields() ? 'e.status_id' : $this->getTable() . '.status_id');
+
+            return;
+        }
         if (is_array($this->filterValue)) {
             $column = $this->hasEntityBackedFields() ? 'e.status_id' : $this->getTable() . '.status_id';
             if ($this->hasEntityBackedFields()) {
                 $query->joinEntity();
             }
 
-            $query->whereIn($column, $this->filterValue);
+            $query->where(function ($statuses) use ($column): void {
+                $statuses->whereIn($column, array_filter($this->filterValue, fn ($value) => $value !== 'none'));
+                if (in_array('none', $this->filterValue, true)) {
+                    $statuses->orWhereNull($column);
+                }
+            });
 
             return;
         }

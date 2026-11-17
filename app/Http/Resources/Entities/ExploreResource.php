@@ -206,6 +206,9 @@ class ExploreResource extends JsonResource
                 $status->setRelation('entityType', $entity->entityType);
             }
             $data['status'] = $status ? [
+                'id' => $status->id,
+                'name' => $status->name(),
+                'is_custom' => $status->isCustom(),
                 'key' => $status->key,
                 'icon' => $status->icon ? $status->icon() : null,
                 'tooltip' => $status->name(),

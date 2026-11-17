@@ -20,7 +20,7 @@ class EntityTypePolicy
         if (! $entityType->isEnabled()) {
             return false;
         }
-        if ($entityType->isCustom() && ! $campaign->premium()) {
+        if ($entityType->isCustom() && ($entityType->campaign_id !== $campaign->id || ! $campaign->premium())) {
             return false;
         }
 

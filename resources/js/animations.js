@@ -1,6 +1,10 @@
 const initAnimations = () => {
     const collapsers = document.querySelectorAll('[data-animate="collapse"]');
     collapsers.forEach((e) => {
+        if (e.dataset.collapseInitialized) {
+            return;
+        }
+        e.dataset.collapseInitialized = 'true';
         e.addEventListener('click', toggle);
     });
 
@@ -51,6 +55,9 @@ function toggle(e) {
         e.classList.toggle('hidden');
     });
     this.classList.toggle('animate-collapsed');
+    if (this.hasAttribute('aria-expanded')) {
+        this.setAttribute('aria-expanded', String(!this.classList.contains('animate-collapsed')));
+    }
 };
 
 function change (e) {

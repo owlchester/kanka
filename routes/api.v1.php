@@ -104,6 +104,11 @@ Route::delete('campaigns/{campaign}/entities/{entity}/image', [EntityImageApiCon
 Route::get('campaigns/{campaign}/roles', 'CampaignRoleApiController@index');
 
 Route::get('campaigns/{campaign}/category_statuses', [CategoryStatusController::class, 'index']);
+Route::get('campaigns/{campaign}/entity_types/{entity_type}/statuses', [CategoryStatusController::class, 'category']);
+Route::post('campaigns/{campaign}/entity_types/{entity_type}/statuses', [CategoryStatusController::class, 'store']);
+Route::put('campaigns/{campaign}/entity_types/{entity_type}/statuses/order', [CategoryStatusController::class, 'reorder']);
+Route::patch('campaigns/{campaign}/entity_types/{entity_type}/statuses/{status}', [CategoryStatusController::class, 'update']);
+Route::delete('campaigns/{campaign}/entity_types/{entity_type}/statuses/{status}', [CategoryStatusController::class, 'destroy']);
 
 Route::get('campaigns/{campaign}/relations', [RelationApiController::class, 'index']);
 Route::get('campaigns/{campaign}/search/{query}', [SearchApiController::class, 'index']);

@@ -16,6 +16,9 @@ class Header extends Component
         public ?string $title = null,
         public ?string $class = null,
         public bool $dismissible = true,
+        public bool $mobileBack = false,
+        public ?string $mobileBackUrl = null,
+        public ?string $mobileTitle = null,
     ) {}
 
     /**

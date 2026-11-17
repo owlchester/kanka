@@ -267,6 +267,10 @@ class IndexController extends Controller
             'nest' => __('datagrids.modes.nested'),
             'layout_grid' => __('datagrids.modes.grid'),
             'layout_table' => __('datagrids.modes.table'),
+            'nestShort' => __('datagrids.modes_short.nested'),
+            'flattenShort' => __('datagrids.modes_short.flatten'),
+            'gridShort' => __('datagrids.modes_short.grid'),
+            'listShort' => __('datagrids.modes_short.list'),
             'bulkEdit' => __('crud.bulk.actions.edit'),
             'bulkRemove' => __('crud.remove'),
             'bulkPermissions' => __('crud.bulk.actions.permissions'),
@@ -281,6 +285,12 @@ class IndexController extends Controller
             'inventory' => __('crud.tabs.inventory'),
             'edit' => __('crud.edit'),
             'loadMore' => __('entities/story.actions.load_more'),
+            'add' => __('crud.add'),
+            'close' => __('crud.actions.close'),
+            'findInList' => __('search.lookup.hint_name'),
+            'filterSort' => __('mobile.lists.filter_sort'),
+            'listSettings' => __('datagrids.display.title'),
+            'fromTemplate' => __('entities.creator.modes.archetypes'),
         ];
 
         $bookmarkable = $this->filterService->activeFiltersCount() > 0 && auth()->check() && auth()->user()->can('create', [Bookmark::class, $campaign]) && ! $request->has('bookmark');
@@ -319,6 +329,7 @@ class IndexController extends Controller
             'csrf' => csrf_token(),
             'filters' => [
                 'count' => $this->filterService->activeFiltersCount(),
+                'name' => $this->filterService->single('name'),
                 'unfilteredCount' => $unfilteredCount,
                 'urls' => [
                     'form' => route('filters.form', array_merge(

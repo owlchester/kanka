@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\API;
 
+use App\Rules\CategoryStatusAssignment;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -29,6 +30,7 @@ class StoreEntities extends FormRequest
             'entities.*.name' => 'required|string|max:191',
             'entities.*.entry' => 'nullable|string',
             'entities.*.type' => 'nullable|string|max:191',
+            'entities.*.status_id' => ['nullable', 'integer', new CategoryStatusAssignment],
             'entities.*.is_private' => [
                 Rule::excludeIf(fn () => ! $this->user()?->can('admin', $this->route('campaign'))),
                 'nullable',

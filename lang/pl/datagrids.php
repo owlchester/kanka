@@ -26,6 +26,12 @@ return [
         'nested'    => 'Przełącz na hierarchię',
         'table'     => 'Przełącz na tabelę',
     ],
+    'modes_short'   => [
+        'flatten'   => 'Płasko',
+        'grid'      => 'Kafelki',
+        'list'      => 'Lista',
+        'nested'    => 'Hierarchia',
+    ],
     'subscription'  => [
         'cta'       => 'Poznaj subskrybcję',
         'helper'    => 'Przeglądaj :max elementów na raz dzięki subskrybji Kanki, która zapewnia oprócz tego mnóstwo korzyści podczas tworzenia światów.',

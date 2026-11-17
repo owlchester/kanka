@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Attributes\ApiController;
+use App\Http\Controllers\Campaign\CategoryStatusController;
 use App\Http\Controllers\Campaign\CssController;
 use App\Http\Controllers\Campaign\EntityTypeController;
 use App\Http\Controllers\Campaign\LogController;
@@ -198,6 +199,8 @@ Route::post('/w/{campaign}/features/toggle/{module}', [ModuleController::class, 
 // Route::get('/w/{campaign}/entity_types/{entity_type}/edit', [\App\Http\Controllers\Campaign\EntityTypeController::class, 'edit'])->name('campaign.entity_types.edit');
 // Route::patch('/w/{campaign}/entity_types/{entity_type}/update', [\App\Http\Controllers\Campaign\EntityTypeController::class, 'update'])->name('campaign.entity_types.update');
 Route::post('/w/{campaign}/entity_types/{entity_type}/toggle', [EntityTypeController::class, 'toggle'])->name('entity_types.toggle');
+Route::get('/w/{campaign}/entity_types/{entity_type}/statuses/{status}/delete', [CategoryStatusController::class, 'confirm'])->name('entity_types.statuses.confirm');
+Route::delete('/w/{campaign}/entity_types/{entity_type}/statuses/{status}', [CategoryStatusController::class, 'destroy'])->name('entity_types.statuses.destroy');
 // Route::delete('/w/{campaign}/entity_types/{entity_type}/delete', [\App\Http\Controllers\Campaign\EntityTypeController::class, 'delete'])->name('campaign.entity_types.destroy');
 Route::get('/w/{campaign}/entity_types/{entity_type}/confirm', [EntityTypeController::class, 'confirm'])->name('entity_types.confirm');
 

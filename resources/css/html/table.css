@@ -95,6 +95,13 @@
 .table-responsive {
     overflow-x: unset;
 }
+@media (max-width: 767px) {
+    .table-responsive {
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+    }
+}
 .table-compact {
     width: auto;
 }

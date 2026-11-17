@@ -12,13 +12,19 @@
         if ($isBulk) {
             $statusOptions[''] = '';
             $statusOptions['remove'] = __('entities/statuses.remove');
-        } elseif (! $hasDefault) {
-            $statusOptions[''] = '';
+        } elseif ($statusEntityType->isCustom() || !$hasDefault) {
+            $statusOptions[''] = $statusEntityType->isCustom() ? __('No status') : '';
         }
         foreach ($categoryStatuses as $catStatus) {
-            $statusOptions[$catStatus->id] = $catStatus->setRelation('entityType', $statusEntityType)->name();
+            $statusOptions[$catStatus->id] = e($catStatus->setRelation('entityType', $statusEntityType)->name());
         }
-        $selectedStatus = $isBulk ? '' : old('status_id', $source->status_id ?? $entity->status_id ?? ($hasDefault ? $categoryStatuses->firstWhere('is_default', true)->id : ''));
+        $defaultStatus = $hasDefault ? $categoryStatuses->firstWhere('is_default', true)->id : '';
+        $selectedStatus = $isBulk ? '' : old('status_id', $statusEntityType->isCustom()
+            ? (isset($source) ? $source->status_id : (isset($entity) && $entity->exists ? $entity->status_id : ($campaign->premium() ? $defaultStatus : '')))
+            : ($source->status_id ?? $entity->status_id ?? $defaultStatus));
+        if ($statusEntityType->isCustom() && !$campaign->premium()) {
+            $statusOptions = array_intersect_key($statusOptions, array_flip($isBulk ? ['', 'remove'] : ['', (string) $selectedStatus]));
+        }
     @endphp
     <x-forms.field field="status_id" :label="__('entities.status')">
         <x-forms.select name="status_id" :options="$statusOptions" :selected="$selectedStatus" />

@@ -133,10 +133,25 @@ trait EntityScopes
         }
 
         $modules = Arr::get($request, 'type_id');
-        if (! empty($modules) && is_array($modules)) {
+        if ($modules !== null && $modules !== '') {
+            $modules = is_array($modules) ? $modules : [$modules];
             $validateModules = EntityType::inCampaign($campaign)->whereIn('id', $modules)->pluck('id')->toArray();
-            if (! empty($validateModules)) {
-                $query->whereIn('type_id', $validateModules);
+            $query->whereIn('type_id', $validateModules);
+        }
+
+        $statusFilter = Arr::get($request, 'status_id');
+        if ($statusFilter !== null && $statusFilter !== '') {
+            $statuses = is_array($statusFilter) ? $statusFilter : [$statusFilter];
+            $valid = array_filter($statuses, fn ($value) => $value === 'none' || is_int($value) || (is_string($value) && ctype_digit($value)));
+            if (count($valid) !== count($statuses)) {
+                $query->whereRaw('1 = 0');
+            } else {
+                $query->where(function ($statusQuery) use ($statuses): void {
+                    $statusQuery->whereIn('entities.status_id', array_filter($statuses, fn ($value) => $value !== 'none'));
+                    if (in_array('none', $statuses, true)) {
+                        $statusQuery->orWhereNull('entities.status_id');
+                    }
+                });
             }
         }
 
@@ -233,7 +248,7 @@ trait EntityScopes
                     ->orderBy('parent_order.name', $order);
             } elseif ($field === 'status_id') {
                 $query->leftJoin('category_statuses as status_order', 'status_order.id', '=', $entityTable . '.status_id')
-                    ->orderBy('status_order.sort_order', $order);
+                    ->orderBy('status_order.sort_order', $order)->orderBy($entityTable . '.id', $order);
             } elseif ($field === 'calendar_date') {
                 $query->leftJoin('reminders as cd', function ($join) use ($entityTable) {
                     $join->on('cd.remindable_id', '=', $entityTable . '.id')
@@ -385,8 +400,17 @@ trait EntityScopes
             } elseif (is_array($values) && empty(array_filter($values, fn ($v) => $v !== '' && $v !== null))
                 && Arr::get($filters, $name . '_option') !== 'none') {
                 continue;
+            } elseif ($name === 'status_id' && str_contains(json_encode($values), 'deleted:')) {
+                $query->whereRaw('1 = 0');
+            } elseif ($name === 'status_id' && $values === 'none') {
+                $query->whereNull('entities.status_id');
             } elseif ($name === 'status_id' && is_array($values)) {
-                $query->whereIn('entities.status_id', $values);
+                $query->where(function ($statuses) use ($values): void {
+                    $statuses->whereIn('entities.status_id', array_filter($values, fn ($value) => $value !== 'none'));
+                    if (in_array('none', $values, true)) {
+                        $statuses->orWhereNull('entities.status_id');
+                    }
+                });
             } elseif ($name === 'parent_id') {
                 continue;
             } elseif (in_array($name, ['locations', 'participants', 'races', 'families', 'organisations'], true)) {

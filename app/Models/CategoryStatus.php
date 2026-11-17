@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property ?int $campaign_id
  * @property int $category_id
  * @property string $key
+ * @property ?string $label
  * @property ?string $icon
  * @property int $sort_order
  * @property bool $is_default
@@ -27,6 +28,7 @@ class CategoryStatus extends Model
         'campaign_id',
         'category_id',
         'key',
+        'label',
         'icon',
         'sort_order',
         'is_default',
@@ -69,12 +71,20 @@ class CategoryStatus extends Model
 
     public function name(): string
     {
+        if ($this->isCustom()) {
+            return $this->label ?? $this->key;
+        }
+
         return trans('entities/statuses.' . $this->entityType->code . '.' . $this->key);
     }
 
     public function icon(): string
     {
-        return 'fa-regular ' . ($this->icon ?? '');
+        if (empty($this->icon)) {
+            return '';
+        }
+
+        return str_contains($this->icon, ' ') ? $this->icon : 'fa-regular ' . $this->icon;
     }
 
     public function isCustom(): bool

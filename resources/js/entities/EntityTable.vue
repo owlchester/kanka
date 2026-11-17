@@ -1,8 +1,8 @@
 <template>
     <div class="w-full overflow-x-auto">
-        <table class="table table-striped table-entities mb-0 w-full bg-base-100 rounded-2xl"
+        <table class="table table-striped table-entities mobile-entity-list mb-0 w-full bg-base-100 rounded-2xl"
                :role="nested ? 'treegrid' : 'grid'">
-            <thead>
+            <thead class="hidden md:table-header-group">
                 <tr>
                     <th class="w-8" :class="selecting ? '' : 'hidden sm:table-cell'">
                         <input v-if="selecting" type="checkbox" :checked="allSelected" @change="$emit('toggleAll')" />

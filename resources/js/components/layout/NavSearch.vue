@@ -1,17 +1,17 @@
 <template>
     <button
         type="button"
-        class="search-trigger flex items-center gap-2 justify-between rounded-xl border border-base-300 text-neutral-content w-full py-2 px-2 cursor-pointer"
+        class="search-trigger btn2 btn-outline flex-none w-11 min-w-11! h-11 min-h-11! p-1! md:w-36 md:min-w-0! md:h-9.5 md:min-h-9.5! md:px-3! text-neutral-content"
         data-shortcut="k"
         data-shortcut-action="click"
         @click="open"
         :title="keyboard_tooltip"
     >
-        <div class="flex items-center gap-2">
+        <div class="flex items-center justify-center md:justify-start gap-2">
             <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
             <span class="search-trigger-text hidden md:inline">{{ placeholder }}</span>
         </div>
-        <span class="" aria-hidden="true">K</span>
+        <span class="hidden md:inline" aria-hidden="true">K</span>
     </button>
 </template>
 

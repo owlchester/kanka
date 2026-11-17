@@ -4,9 +4,6 @@
 }
 
 .navigation-drawer {
-    width: 82%;
-    z-index: 20;
-
     .header {
         .inactive {
             min-width: 72px;
@@ -59,33 +56,12 @@
     }
 }
 
-
-@media (min-width: 768px) {
-    .sidebar-collapse .main-header .navbar {
-        margin-left: 0;
-    }
-    .navigation-drawer {
-        width: 380px;
-    }
-
-    .toggle-and-search .w-sidebar {
-        width: 300px;
-    }
-}
-
 .indicator {
     .notification-badge {
-        right: -0.2rem;
-        bottom: -0.2rem;
-        --tw-translate-x: 50%;
-        transform: translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-
         --tw-bg-opacity: 1;
         background-color: hsl(var(--boosted)/var(--tw-bg-opacity));
         --tw-text-opacity: 1;
         color: hsl(var(--boosted)/var(--tw-text-opacity));
-        line-height: 0.5rem;
-        padding: 0.3rem;
         border-radius: var(--rounded-badge,1.9rem);
     }
 }
