@@ -9,7 +9,6 @@ use App\Models\Relations\CalendarRelations;
 use App\Services\Calendars\CalendarChronology;
 use App\Traits\ExportableTrait;
 use App\ValueObjects\Calendars\CalendarDefinition;
-use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -104,13 +103,22 @@ class Calendar extends MiscModel
             return $eraYear;
         }
 
-        return ($this->years ?? [])[$year] ?? ($year . ' ' . $this->suffix);
+        return Arr::get($this->years, $year) ?? ($year . ' ' . $this->suffix);
     }
 
     /** Format a year in its era, or return null when no era matches. */
     public function eraYearName(int|string $year): ?string
     {
-        foreach ($this->eras ?? [] as $era) {
+        $eras = $this->eras;
+        if (! is_array($eras)) {
+            return null;
+        }
+
+        foreach ($eras as $era) {
+            if (! is_string($era['suffix'] ?? null)) {
+                continue;
+            }
+
             $start = $era['start_year'] ?? null;
             $end = $era['end_year'] ?? null;
             if (($start === null || $year >= $start) && ($end === null || $year <= $end)) {
@@ -180,17 +188,9 @@ class Calendar extends MiscModel
 
         [$year, $month, $day] = $this->dateArray($date);
 
-        // Replace month with real month, and year maybe
-        $months = $this->months ?? [];
-        try {
-            $return = $day . ' ' .
-                (isset($months[$month - 1]) ? $months[$month - 1]['name'] : $month) . ', ' .
-                $this->yearName($year);
+        $name = Arr::get($this->months, ($month - 1) . '.name');
 
-            return $return;
-        } catch (Exception $e) {
-            return $this->date;
-        }
+        return $day . ' ' . (is_string($name) ? $name : $month) . ', ' . $this->yearName($year);
     }
 
     /**
@@ -271,7 +271,9 @@ class Calendar extends MiscModel
      */
     public function missingDetails(): bool
     {
-        if (count($this->months ?? []) < 1 || count($this->weekdays ?? []) < 2) {
+        $months = $this->months;
+        $weekdays = $this->weekdays;
+        if (! is_array($months) || $months === [] || ! is_array($weekdays) || count($weekdays) < 2) {
             return true;
         }
 

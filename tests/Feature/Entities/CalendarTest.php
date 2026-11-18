@@ -6,6 +6,7 @@ use App\Models\Entity;
 use App\Models\Event;
 use App\Models\Reminder;
 use App\Services\Campaign\Import\Mappers\CalendarMapper;
+use App\Services\Entity\MoveService;
 use Carbon\Carbon;
 
 it('POSTS an invalid calendar form')
@@ -117,6 +118,51 @@ it('reads existing calendar JSON without encoding it again', function () {
         ->and($calendar->years)->toBe([0 => 'Origin', 1005 => 'Dragon'])
         ->and($calendar->eras)->toBeNull()
         ->and($calendar->eraYearName(1005))->toBeNull();
+});
+
+it('copies a calendar to another campaign without double-encoding its configuration', function () {
+    $this->asUser()->withCampaign()->withCampaigns();
+    $calendar = Calendar::factory()->create([
+        'campaign_id' => 1,
+        'date' => '2026-01-02',
+        'years' => [2026 => 'Year of the Owl'],
+    ]);
+
+    app(MoveService::class)
+        ->entity($calendar->entity)
+        ->campaign($calendar->campaign)
+        ->user(auth()->user())
+        ->to(2)
+        ->copy(true)
+        ->validate()
+        ->process();
+
+    $copy = Calendar::where('campaign_id', 2)->sole();
+    expect($copy->months)->toBe($calendar->months)
+        ->and($copy->weekdays)->toBe($calendar->weekdays)
+        ->and($copy->seasons)->toBe($calendar->seasons)
+        ->and($copy->years)->toBe($calendar->years);
+
+    $this->get(route('entities.show', [$copy->campaign, $copy->entity]))
+        ->assertSuccessful()
+        ->assertSee('2 January, Year of the Owl');
+});
+
+it('opens an existing calendar with double-encoded configuration', function () {
+    $this->asUser()->withCampaign();
+    $calendar = Calendar::factory()->create([
+        'campaign_id' => 1,
+        'date' => '2026-01-02',
+        'months' => '[{"name":"January","length":31}]',
+        'weekdays' => '["Monday","Tuesday"]',
+        'years' => '{"2026":"Named year"}',
+        'eras' => '[{"name":"Common Era","suffix":"CE","start_year":1}]',
+    ]);
+
+    $this->get(route('entities.show', [$calendar->campaign, $calendar->entity]))
+        ->assertSuccessful()
+        ->assertSee('02 01, 2026 AD')
+        ->assertSee(__('calendars.show.missing_details'));
 });
 
 it('preserves named year maps as objects in the calendar API', function () {

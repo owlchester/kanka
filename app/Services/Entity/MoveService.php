@@ -139,6 +139,12 @@ class MoveService
             CampaignLocalization::forceCampaign($this->to);
 
             $data = $newModel?->getAttributes() ?? [];
+            foreach (array_keys($data) as $attribute) {
+                if ($newModel->hasCast($attribute, ['array', 'json', 'object', 'collection'])) {
+                    // The creation service fills a new model, which applies the JSON cast again.
+                    $data[$attribute] = $newModel->getAttribute($attribute);
+                }
+            }
             $data['name'] = $this->entity->name;
             $data['is_private'] = $this->entity->is_private;
             $data['status_id'] = $this->transferableStatusId();
