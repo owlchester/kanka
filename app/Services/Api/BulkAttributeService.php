@@ -2,6 +2,7 @@
 
 namespace App\Services\Api;
 
+use App\Enums\AttributeType;
 use App\Models\Attribute;
 use App\Services\Attributes\BaseAttributesService;
 use App\Services\Attributes\RandomService;
@@ -107,17 +108,18 @@ class BulkAttributeService extends BaseAttributesService
                 $attribute = new Attribute;
             }
 
+            $type = $attr->type_id ?? $attribute->type_id ?? AttributeType::Standard;
+
             // If the linked entity isn't an attribute template, we might be dealing with a random value
             if (! $this->entity->isAttributeTemplate()) {
-                [$attr->type_id, $value] =
-                    $this->randomService->randomAttribute($attr->type_id, $value);
+                [$type, $value] = $this->randomService->randomAttribute($type, $value);
             }
 
             $attribute->name = $name;
             $attribute->setValue($value);
             $attribute->is_private = $attr->is_private ?? 0;
             $attribute->is_pinned = $attr->is_pinned ?? 0;
-            $attribute->type_id = $attr->type_id;
+            $attribute->type_id = $type;
 
             // Some fields can only be defined on creation
             if (! $attribute->exists) {
