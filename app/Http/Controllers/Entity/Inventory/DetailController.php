@@ -17,7 +17,7 @@ class DetailController extends Controller
     public function index(Campaign $campaign, Entity $entity, Inventory $inventory)
     {
         $this->campaign($campaign)->authEntityView($entity);
-        if ($inventory->item_id && ! $inventory->item) {
+        if ($inventory->item_id && (! $inventory->item || ! $inventory->item->entity)) {
             abort(403);
         }
 
