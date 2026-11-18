@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Auth\PassportTokenGuard;
 use App\Http\Validators\HashValidator;
+use App\Jobs\Search\MakeSearchable;
 use App\Models\AdminInvite;
 use App\Models\Application;
 use App\Models\Bookmark;
@@ -71,6 +72,7 @@ use Laravel\Cashier\Cashier;
 use Laravel\Passport\ClientRepository;
 use Laravel\Passport\Passport;
 use Laravel\Passport\PassportUserProvider;
+use Laravel\Scout\Scout;
 use League\OAuth2\Server\ResourceServer;
 use Livewire\Livewire;
 use Symfony\Component\Console\Exception\InvalidOptionException;
@@ -111,6 +113,7 @@ class AppServiceProvider extends ServiceProvider
 
         $this->registerWebObservers();
         Cashier::useCustomerModel(User::class);
+        Scout::makeSearchableUsing(MakeSearchable::class);
 
         if (config('app.lazy')) {
             Model::preventLazyLoading();
