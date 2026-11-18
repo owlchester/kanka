@@ -59,6 +59,12 @@ class EntitySearchService
      */
     public function search(?string $term = null, ?string $term2 = null): array
     {
+        if (config('scout.search_maintenance', false)) {
+            $this->pages = 1;
+
+            return [];
+        }
+
         // Get results from Meilisearch
         $client = new Client(config('scout.meilisearch.host'), config('scout.meilisearch.key'));
         $client->getKeys();
@@ -103,6 +109,10 @@ class EntitySearchService
      */
     public function searchWithSnippets(string $term, ?string $term2 = null): array
     {
+        if (config('scout.search_maintenance', false)) {
+            return [];
+        }
+
         $baseQuery = fn (string $q) => (new SearchQuery)
             ->setIndexUid('entities')
             ->setQuery($q)

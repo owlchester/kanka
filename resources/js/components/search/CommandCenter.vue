@@ -31,6 +31,7 @@
                     :pages="pages"
                     :results="results"
                     :texts="restData.texts"
+                    :maintenance-message="maintenanceMessage"
                     ref="resultsRef"
                 />
             </article>
@@ -55,6 +56,7 @@ import { useCommandCenter } from '../../composables/useCommandCenter.js';
 import CommandInput from './CommandInput.vue';
 import CommandResults from './CommandResults.vue';
 import MobilePanelHeader from '../layout/MobilePanelHeader.vue';
+import { applySearchAvailability } from './searchAvailability.js';
 
 export default {
     name: 'CommandCenter',
@@ -83,7 +85,12 @@ export default {
             entities: [],
             pages: [],
             results: [],
+            searchAvailability: { available: null, message: '' },
             abortController: null,
+            requestIdentity: 0,
+            recentRequestIdentity: 0,
+            maintenanceVersion: 0,
+            isOpenState: false,
             isMac: /Mac/i.test(navigator.userAgent),
             _fulltextKeyHandler: null,
         };
@@ -101,9 +108,20 @@ export default {
         });
     },
 
+    computed: {
+        maintenanceMessage() {
+            return this.mode === 'fulltext' && this.searchAvailability.available === false
+                ? this.searchAvailability.message
+                : '';
+        },
+    },
+
     watch: {
         isOpen(opened) {
             if (opened) {
+                this.isOpenState = true;
+                this.maintenanceVersion++;
+                this.searchAvailability = { available: null, message: '' };
                 this.$refs.dialogRef.showModal();
                 setTimeout(() => this.$refs.inputRef?.focus(), 50);
                 this.fetchRestData();
@@ -115,6 +133,8 @@ export default {
                 };
                 document.addEventListener('keydown', this._fulltextKeyHandler, true);
             } else {
+                this.isOpenState = false;
+                this.recentRequestIdentity++;
                 this.$refs.dialogRef.close();
                 this.reset();
                 if (this._fulltextKeyHandler) {
@@ -127,15 +147,26 @@ export default {
 
     methods: {
         async fetchRestData() {
+            const identity = ++this.recentRequestIdentity;
+            const maintenanceVersion = this.maintenanceVersion;
             try {
                 const response = await fetch(this.api_recent);
+                if (!response.ok) return;
                 const data = await response.json();
+                if (identity !== this.recentRequestIdentity || !this.isOpenState) return;
                 this.restData = {
                     recent: data.recent ?? [],
                     bookmarks: data.bookmarks ?? [],
                     indexes: data.indexes ?? [],
                     texts: data.texts ?? {},
                 };
+                if (maintenanceVersion === this.maintenanceVersion) {
+                    this.searchAvailability = applySearchAvailability(
+                        this.searchAvailability,
+                        data.texts?.fulltext_search_available,
+                        '',
+                    );
+                }
             } catch {
                 // non-critical
             }
@@ -143,44 +174,61 @@ export default {
 
         async onQueryChanged(q) {
             this.query = q;
+            const requestMode = this.mode;
+            const identity = ++this.requestIdentity;
+            this.abortController?.abort();
 
             if (q.length < 2) {
+                this.abortController = null;
+                this.loading = false;
                 this.entities = [];
                 this.pages = [];
                 this.results = [];
                 return;
             }
 
-            if (this.abortController) {
-                this.abortController.abort();
-            }
-            this.abortController = new AbortController();
+            const controller = new AbortController();
+            this.abortController = controller;
             this.loading = true;
 
             try {
                 const url = `${this.api_command}?q=${encodeURIComponent(q)}&mode=${this.mode}`;
-                const response = await fetch(url, { signal: this.abortController.signal });
+                const response = await fetch(url, { signal: controller.signal });
+                if (!response.ok) throw new Error('Search request failed');
                 const data = await response.json();
 
-                if (this.mode === 'fulltext') {
+                if (identity !== this.requestIdentity || controller !== this.abortController || this.mode !== requestMode) return;
+                if (requestMode === 'fulltext') {
+                    if (typeof data.maintenance === 'boolean') {
+                        this.maintenanceVersion++;
+                        this.searchAvailability = applySearchAvailability(
+                            this.searchAvailability,
+                            !data.maintenance,
+                            data.maintenance && typeof data.message === 'string' ? data.message : '',
+                            this.restData.texts.fulltext_maintenance || '',
+                        );
+                    }
                     this.results = data.results ?? [];
                 } else {
                     this.entities = data.entities ?? [];
                     this.pages = data.pages ?? [];
                 }
             } catch (e) {
-                if (e.name !== 'AbortError') {
+                if (e.name !== 'AbortError' && identity === this.requestIdentity && controller === this.abortController && this.mode === requestMode) {
                     this.entities = [];
                     this.pages = [];
                     this.results = [];
                 }
             } finally {
-                this.loading = false;
+                if (identity === this.requestIdentity && controller === this.abortController) this.loading = false;
             }
         },
 
         onModeChanged(newMode) {
+            this.requestIdentity++;
+            this.abortController?.abort();
             this.mode = newMode;
+            this.loading = false;
             this.entities = [];
             this.pages = [];
             this.results = [];
@@ -200,6 +248,10 @@ export default {
             this.pages = [];
             this.results = [];
             this.loading = false;
+            this.requestIdentity++;
+            this.abortController?.abort();
+            this.maintenanceVersion++;
+            this.searchAvailability = { available: null, message: '' };
             this.$refs.inputRef?.clear();
         },
     },

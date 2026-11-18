@@ -20,7 +20,11 @@ class CommandController extends Controller
         $mode = $request->get('mode', 'name');
 
         if (mb_strlen($term) < 2) {
-            return response()->json(['entities' => [], 'pages' => []]);
+            return response()->json($mode === 'fulltext' ? [
+                'results' => [],
+                'maintenance' => config('scout.search_maintenance', false),
+                'message' => config('scout.search_maintenance', false) ? __('search/fulltext.maintenance') : null,
+            ] : ['entities' => [], 'pages' => []]);
         }
 
         $this->service->campaign($campaign);

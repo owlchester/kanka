@@ -17,9 +17,13 @@
         </div>
         @include('layouts.datagrid.fulltext_search', ['route' => route('search.fulltext', $campaign), 'term' => $term])
 
+        @if ($searchMaintenance)
+            <div class="alert alert-info" role="status">{{ __('search/fulltext.maintenance') }}</div>
+        @endif
+
         @include('ads.top')
 
-        @if (!empty($term))
+        @if (!empty($term) && !$searchMaintenance)
             <p class="text-lg">{!! __('search/fulltext.searching', ['term' => '<span class="italic">' . $term . '</span>']) !!}</p>
         @endif
 
@@ -27,5 +31,4 @@
 
     </div>
 @endsection
-
 

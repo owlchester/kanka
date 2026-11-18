@@ -16,6 +16,7 @@ return [
     */
 
     'driver' => env('SCOUT_DRIVER', 'algolia'),
+    'search_maintenance' => env('SCOUT_SEARCH_MAINTENANCE', false),
 
     /*
     |--------------------------------------------------------------------------

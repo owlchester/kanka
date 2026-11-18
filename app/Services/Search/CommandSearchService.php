@@ -54,6 +54,9 @@ class CommandSearchService
      */
     public function fulltext(string $term): array
     {
+        if (config('scout.search_maintenance', false)) {
+            return ['results' => [], 'maintenance' => true, 'message' => __('search/fulltext.maintenance')];
+        }
         $term2 = null;
         $entity = Entity::with('entityType')
             ->where('campaign_id', $this->campaign->id)
@@ -67,6 +70,7 @@ class CommandSearchService
             'results' => $this->entitySearchService
                 ->campaign($this->campaign)
                 ->searchWithSnippets($term, $term2),
+            'maintenance' => false,
         ];
     }
 }
