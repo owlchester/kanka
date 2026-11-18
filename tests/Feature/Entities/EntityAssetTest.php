@@ -4,8 +4,8 @@ use App\Enums\EntityAssetType;
 use App\Models\EntityAsset;
 use App\Models\Image;
 use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 it('POSTS an invalid entity_assets form')
@@ -83,7 +83,6 @@ it('returns a translated error when the entity file limit is reached', function 
 });
 
 it('returns a translated error when gallery storage is exhausted', function (bool $premium, string $errorKey) {
-    Storage::fake('s3');
     $this->asUser()->withCampaign($premium ? ['boost_count' => 4] : [])->withCharacters();
     config([
         $premium ? 'limits.gallery.premium' : 'limits.gallery.standard' => 1,

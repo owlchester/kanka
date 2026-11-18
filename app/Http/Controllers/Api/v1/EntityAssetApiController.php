@@ -32,7 +32,7 @@ class EntityAssetApiController extends ApiController
     }
 
     /**
-     * @return Resource|JsonResponse
+     * @return resource
      */
     public function show(Campaign $campaign, Entity $entity, EntityAsset $entityAsset)
     {
@@ -43,7 +43,7 @@ class EntityAssetApiController extends ApiController
     }
 
     /**
-     * @return resource
+     * @return resource|JsonResponse
      *
      * @throws AuthorizationException
      */
