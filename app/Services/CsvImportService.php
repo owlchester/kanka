@@ -36,6 +36,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use RuntimeException;
 use SplFileObject;
 use Stevebauman\Purify\Facades\Purify;
 use Throwable;
@@ -143,11 +144,17 @@ class CsvImportService
         foreach ($files as $file) {
             // Log::info('Want to download ' . $file);
             $s3 = Storage::disk('export')->get($file);
+            if ($s3 === null) {
+                throw new RuntimeException(__('campaigns/import.csv.download_error'));
+            }
+
             $local = $path . uniqid() . '.csv';
             // Log::info('Will download from the export disk to local ' . $local);
-            Storage::disk('local')->put($local, $s3);
+            if (! Storage::disk('local')->put($local, $s3)) {
+                throw new RuntimeException(__('campaigns/import.csv.local_write_error'));
+            }
 
-            $this->filePath = storage_path('app/' . $local);
+            $this->filePath = Storage::disk('local')->path($local);
             $this->logs[] = 'Downloaded csv to ' . $local;
         }
 
