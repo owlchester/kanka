@@ -1,11 +1,11 @@
 <template>
     <div class="flex flex-col gap-3 p-1 min-w-56">
         <div class="flex flex-col gap-3 lg:hidden">
-            <div v-if="entityType.is_nested && !ordering.ordering.value" class="flex rounded-lg bg-base-200 p-0.5 gap-0.5">
-                <button type="button" class="flex min-h-11 flex-1 items-center justify-center gap-2 rounded-md px-2 text-sm" :class="nesting.nested.value ? 'bg-base-100 text-base-content shadow-xs' : 'text-neutral-content'" :aria-pressed="nesting.nested.value" @click="$emit('nest')">
+            <div v-if="entityType.is_nested && !criteriaActive && !ordering.ordering.value" class="flex rounded-lg bg-base-200 p-0.5 gap-0.5">
+                <button type="button" class="flex min-h-11 flex-1 items-center justify-center gap-2 rounded-md px-2 text-sm" :class="nesting.nested.value ? 'bg-base-100 text-base-content shadow-xs' : 'text-neutral-content'" :aria-pressed="nesting.nested.value" @click="$emit('nest', true)">
                     <i class="fa-regular fa-layer-group" aria-hidden="true"></i><span v-html="i18n.nestShort"></span>
                 </button>
-                <button type="button" class="flex min-h-11 flex-1 items-center justify-center gap-2 rounded-md px-2 text-sm" :class="!nesting.nested.value ? 'bg-base-100 text-base-content shadow-xs' : 'text-neutral-content'" :aria-pressed="!nesting.nested.value" @click="$emit('nest')">
+                <button type="button" class="flex min-h-11 flex-1 items-center justify-center gap-2 rounded-md px-2 text-sm" :class="!nesting.nested.value ? 'bg-base-100 text-base-content shadow-xs' : 'text-neutral-content'" :aria-pressed="!nesting.nested.value" @click="$emit('nest', false)">
                     <i class="fa-regular fa-boxes-stacked" aria-hidden="true"></i><span v-html="i18n.flattenShort"></span>
                 </button>
             </div>
@@ -45,6 +45,7 @@
 <script setup lang="ts">
 defineProps<{
     entityType: any
+    criteriaActive: boolean
     i18n: any
     ordering: any
     nesting: any
@@ -55,7 +56,7 @@ defineProps<{
 }>()
 
 defineEmits<{
-    nest: []
+    nest: [nested: boolean]
     layout: [grid: boolean]
     perPage: [count: number]
 }>()

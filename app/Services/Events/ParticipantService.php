@@ -9,6 +9,7 @@ use App\Http\Requests\SaveEventParticipants;
 use App\Models\Entity;
 use App\Models\Event;
 use App\Models\EventParticipant;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
@@ -18,8 +19,22 @@ class ParticipantService
 {
     public function validate(array $data, int $campaignId, ?Event $event): array
     {
+        return DB::transaction(function () use ($data, $campaignId, $event) {
+            $groups = $event?->groups()->get();
+            $participants = $event?->participants()->get();
+            $data = $this->validateWithGroups($data, $campaignId, $groups);
+            if ($event && ! hash_equals($this->revision($groups, $participants), $data['revision'])) {
+                throw ValidationException::withMessages(['participants' => __('events.participants.conflict')]);
+            }
+
+            return $data;
+        });
+    }
+
+    private function validateWithGroups(array $data, int $campaignId, ?Collection $groups): array
+    {
         $data = Validator::make($data, SaveEventParticipants::payloadRules())->validate();
-        $existingKeys = $event?->groups()->pluck('id')->map(fn ($id) => (string) $id)->all() ?? [];
+        $existingKeys = $groups?->pluck('id')->map(fn ($id) => (string) $id)->all() ?? [];
         $keys = array_column($data['groups'], 'key');
         foreach ($keys as $key) {
             if (! str_starts_with($key, 'new-') && ! in_array($key, $existingKeys, true)) {
@@ -36,20 +51,25 @@ class ParticipantService
                 throw ValidationException::withMessages(['participants' => __('events.participants.invalid_group')]);
             }
         }
-        if ($event && ! hash_equals($this->revision($event), $data['revision'])) {
-            throw ValidationException::withMessages(['participants' => __('events.participants.conflict')]);
-        }
 
         return $data;
     }
 
     public function state(Event $event): array
     {
-        $participants = $event->participants()->with(['entity.image', 'entity.entityType'])->get();
+        return DB::transaction(function () use ($event) {
+            $groups = $event->groups()->get();
+            $participants = $event->participants()->with(['entity.image', 'entity.entityType'])->get();
 
+            return $this->stateFromSnapshot($event, $groups, $participants);
+        });
+    }
+
+    private function stateFromSnapshot(Event $event, Collection $groups, Collection $participants): array
+    {
         return [
-            'revision' => $this->revision($event),
-            'groups' => $event->groups()->get()->map(fn ($group) => [
+            'revision' => $this->revision($groups, $participants),
+            'groups' => $groups->map(fn ($group) => [
                 'key' => (string) $group->id,
                 'name' => $group->name,
                 'colour' => $group->colour,
@@ -69,13 +89,15 @@ class ParticipantService
     {
         return DB::transaction(function () use ($event, $data) {
             Event::whereKey($event->id)->lockForUpdate()->firstOrFail();
-            if (! hash_equals($this->revision($event), $data['revision'])) {
+            $groups = $event->groups()->lockForUpdate()->get();
+            $participants = $event->participants()->with('entity')->lockForUpdate()->get();
+            if (! hash_equals($this->revision($groups, $participants), $data['revision'])) {
                 abort(409, __('events.participants.conflict'));
             }
-            $data = $this->validate($data, $event->campaign_id, $event);
+            $data = $this->validateWithGroups($data, $event->campaign_id, $groups);
 
-            $existing = $event->participants()->with('entity')->get();
-            $groups = $event->groups()->get()->keyBy('id');
+            $existing = $participants->keyBy('entity_id');
+            $groups = $groups->keyBy('id');
             $mapped = [];
             foreach ($data['groups'] as $position => $values) {
                 $group = $groups->get($values['key']);
@@ -84,7 +106,10 @@ class ParticipantService
                 }
                 $attributes = ['name' => $values['name'], 'colour' => $values['colour'], 'position' => $position];
                 if ($group) {
-                    $group->update($attributes);
+                    $group->fill($attributes);
+                    if ($group->isDirty()) {
+                        $group->save();
+                    }
                 } else {
                     $group = $event->groups()->create($attributes);
                 }
@@ -92,16 +117,25 @@ class ParticipantService
             }
 
             foreach ($data['participants'] as $position => $values) {
-                $event->participants()->updateOrCreate(['entity_id' => $values['entity_id']], [
+                $attributes = [
                     'group_id' => $values['group'] !== null ? $mapped[$values['group']] : null,
                     'role' => $values['role'],
                     'position' => $position,
-                ]);
+                ];
+                $participant = $existing->get($values['entity_id']);
+                if (! $participant) {
+                    $event->participants()->create($attributes + ['entity_id' => $values['entity_id']]);
+                } else {
+                    $participant->fill($attributes);
+                    if ($participant->isDirty()) {
+                        $participant->save();
+                    }
+                }
             }
 
-            $retained = array_column($data['participants'], 'entity_id');
+            $retained = array_fill_keys(array_column($data['participants'], 'entity_id'), true);
             foreach ($existing as $participant) {
-                if ($this->visible($participant) && ! in_array($participant->entity_id, $retained)) {
+                if (! isset($retained[$participant->entity_id]) && $this->visible($participant)) {
                     $participant->delete();
                 }
             }
@@ -112,7 +146,10 @@ class ParticipantService
                 }
             }
 
-            return $this->state($event);
+            $groups = $event->groups()->get();
+            $participants = $event->participants()->with(['entity.image', 'entity.entityType'])->get();
+
+            return $this->stateFromSnapshot($event, $groups, $participants);
         });
     }
 
@@ -127,11 +164,11 @@ class ParticipantService
             : (bool) EntityPermission::entity($participant->entity)->campaign($participant->entity->campaign)->can(Permission::View);
     }
 
-    private function revision(Event $event): string
+    private function revision(Collection $groups, Collection $participants): string
     {
         return hash('sha256', json_encode([
-            $event->groups()->get()->toArray(),
-            $event->participants()->get()->toArray(),
+            $groups->map(fn ($group) => $group->getAttributes())->all(),
+            $participants->map(fn ($participant) => $participant->getAttributes())->all(),
         ], JSON_THROW_ON_ERROR));
     }
 }

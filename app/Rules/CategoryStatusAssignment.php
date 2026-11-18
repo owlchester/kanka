@@ -38,7 +38,7 @@ class CategoryStatusAssignment implements ValidationRule
         $status = CategoryStatus::inCampaign($campaign)->where('category_id', $category->id)->find($value);
         if (! $status || ($category->isCustom() && ($category->campaign_id !== $campaign->id || $status->campaign_id !== $campaign->id))) {
             $fail(__('The selected status is invalid.'));
-        } elseif ($status->isCustom() && ! $campaign->premium() && (! $entity instanceof Entity || (int) $entity->status_id !== (int) $value)) {
+        } elseif ($status->isCustom() && ! $campaign->premium() && (! $entity instanceof Entity || (int) $entity->getRawOriginal('status_id') !== (int) $value)) {
             $fail(__('New status assignments require a premium campaign.'));
         }
     }

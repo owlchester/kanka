@@ -33,7 +33,7 @@ async function search() {
         if (request.signal.aborted) return;
         const rows = Array.isArray(response.data) ? response.data : response.data?.data ?? response.data?.entities ?? [];
         if (!Array.isArray(rows)) throw new TypeError('Unexpected entity search response');
-        results.value = rows.filter(row => row && !row.action).map(row => ({
+        results.value = rows.filter(Boolean).map(row => ({
             entity_id: Number(row.id ?? row.entity_id),
             name: row.name ?? row.fullname ?? row.text,
             image: typeof row.image === 'string' && !row.image.trim().startsWith('<') ? row.image : null,

@@ -12,9 +12,11 @@ use App\Services\BulkService;
 use App\Services\Campaign\ExportService;
 use App\Services\Campaign\Import\ImportService;
 use App\Services\Campaign\Import\Mappers\CustomMapper;
+use App\Services\Entity\CustomStatusAssignmentService;
 use App\Services\Entity\MoveService;
 use App\Services\Entity\TransformService;
 use Database\Seeders\CategoryStatusSeeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\ComponentAttributeBag;
@@ -103,6 +105,20 @@ it('applies creation defaults but preserves explicit empty assignments and omitt
     $this->patchJson('/api/1.0/campaigns/1/entities/' . $entity, ['status_id' => null])->assertOk()->assertJsonPath('data.status_id', null);
     $this->postJson($this->url, ['label' => 'Another default', 'is_default' => true])->assertCreated();
     expect(Entity::find($entity)->status_id)->toBeNull();
+});
+
+it('skips custom category lookup when saving standard entity types known from config', function () {
+    $queries = [];
+    DB::listen(function ($query) use (&$queries): void {
+        $queries[] = $query->sql;
+    });
+
+    $entity = new Entity;
+    $entity->type_id = config('entities.ids.character');
+    $entity->campaign_id = $this->campaign->id;
+    app(CustomStatusAssignmentService::class)->save($entity, fn () => true);
+
+    expect(collect($queries)->filter(fn ($sql) => str_contains($sql, 'entity_types'))->isEmpty())->toBeTrue();
 });
 
 it('validates assignments against the category and campaign', function () {

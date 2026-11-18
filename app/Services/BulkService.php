@@ -201,12 +201,12 @@ class BulkService
                 if ($targets->contains(fn ($entity) => $entity->campaign_id !== $this->campaign->id || $entity->type_id !== $this->entityType->id)) {
                     throw ValidationException::withMessages(['status_id' => __('Every entry must belong to this category.')]);
                 }
-                if ($fields['status_id'] !== 'remove') {
-                    foreach ($targets as $entity) {
-                        Validator::make(['status_id' => $fields['status_id']], [
-                            'status_id' => ['integer', new CategoryStatusAssignment($this->campaign, $this->entityType, $entity)],
-                        ])->validate();
-                    }
+                if ($fields['status_id'] !== 'remove' && $targets->isNotEmpty()) {
+                    // Validate an actual change if any row changes; otherwise validate a retained assignment.
+                    $target = $targets->first(fn ($entity) => (int) $entity->status_id !== (int) $fields['status_id']) ?? $targets->first();
+                    Validator::make(['status_id' => $fields['status_id']], [
+                        'status_id' => ['integer', new CategoryStatusAssignment($this->campaign, $this->entityType, $target)],
+                    ])->validate();
                 }
             }
 

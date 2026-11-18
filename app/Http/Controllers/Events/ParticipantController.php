@@ -13,6 +13,7 @@ use App\Models\EventParticipant;
 use App\Services\Events\ParticipantService;
 use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
 class ParticipantController extends Controller
@@ -50,7 +51,10 @@ class ParticipantController extends Controller
             return response()->json(['success' => true]);
         }
 
-        $event->participants()->create($data + ['position' => (int) $event->participants()->max('position') + 1]);
+        DB::transaction(function () use ($event, $data) {
+            Event::whereKey($event->id)->lockForUpdate()->firstOrFail();
+            $event->participants()->create($data + ['position' => (int) $event->participants()->max('position') + 1]);
+        });
 
         return redirect()->route('events.participants.index', [$campaign, $event]);
     }
@@ -60,7 +64,10 @@ class ParticipantController extends Controller
         abort_unless($event->campaign_id === $campaign->id, 404);
         $this->authorize('update', $event->entity);
         abort_unless($participant->event_id === $event->id, 404);
-        $participant->delete();
+        DB::transaction(function () use ($event, $participant) {
+            Event::whereKey($event->id)->lockForUpdate()->firstOrFail();
+            $participant->delete();
+        });
 
         return redirect()->route('events.participants.index', [$campaign, $event]);
     }
@@ -72,7 +79,10 @@ class ParticipantController extends Controller
         if ($request->ajax()) {
             return response()->json(['success' => true]);
         }
-        $event->groups()->create($request->validated() + ['position' => (int) $event->groups()->max('position') + 1]);
+        DB::transaction(function () use ($event, $request) {
+            Event::whereKey($event->id)->lockForUpdate()->firstOrFail();
+            $event->groups()->create($request->validated() + ['position' => (int) $event->groups()->max('position') + 1]);
+        });
 
         return redirect()->route('events.participants.index', [$campaign, $event]);
     }
@@ -82,8 +92,11 @@ class ParticipantController extends Controller
         abort_unless($event->campaign_id === $campaign->id, 404);
         $this->authorize('update', $event->entity);
         abort_unless($group->event_id === $event->id, 404);
-        $group->participants()->update(['group_id' => null]);
-        $group->delete();
+        DB::transaction(function () use ($event, $group) {
+            Event::whereKey($event->id)->lockForUpdate()->firstOrFail();
+            $group->participants()->update(['group_id' => null]);
+            $group->delete();
+        });
 
         return redirect()->route('events.participants.index', [$campaign, $event]);
     }

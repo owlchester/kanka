@@ -12,11 +12,31 @@ use App\Services\Campaign\Import\Mappers\CharacterMapper;
 use App\Services\Campaign\Import\Mappers\EventMapper;
 use App\Services\Events\ParticipantService;
 use App\Services\Permissions\PermissionService;
+use Illuminate\Database\Events\QueryExecuted;
+use Illuminate\Support\Facades\DB;
 
 function participantPayload(Event $event): array
 {
     return app(ParticipantService::class)->state($event);
 }
+
+it('does not certify a participant added after the roster was read', function () {
+    $this->asUser()->withCampaign();
+    $event = Event::factory()->create(['campaign_id' => 1]);
+    $entityId = Character::factory()->create(['campaign_id' => 1])->entity->id;
+    $inserted = false;
+    DB::listen(function (QueryExecuted $query) use ($event, $entityId, &$inserted) {
+        if (! $inserted && str_starts_with($query->sql, 'select') && str_contains($query->sql, 'event_participants')) {
+            $inserted = true;
+            $event->participants()->create(['entity_id' => $entityId]);
+        }
+    });
+
+    $payload = participantPayload($event);
+    expect($inserted)->toBeTrue()->and($payload['participants'])->toBeEmpty();
+    $this->putJson(route('events.participants.update', [1, $event]), $payload)->assertConflict();
+    expect($event->participants()->pluck('entity_id')->all())->toBe([$entityId]);
+});
 
 it('restores event participants and groups from a backup with new IDs and the same ordering', function () {
     $this->asUser()->withCampaign();
@@ -147,6 +167,19 @@ it('rejects stale saves instead of overwriting other changes or duplicating grou
     $this->putJson($url, $payload)->assertSuccessful();
     $this->putJson($url, $payload)->assertConflict();
     expect($event->groups()->count())->toBe(1);
+});
+
+it('rejects a manager save interleaved with a legacy participant deletion', function () {
+    $this->asUser()->withCampaign();
+    $event = Event::factory()->create(['campaign_id' => 1]);
+    $character = Character::factory()->create(['campaign_id' => 1]);
+    $participant = $event->participants()->create(['entity_id' => $character->entity->id, 'role' => 'Scout']);
+    $payload = participantPayload($event);
+
+    $this->delete(route('events.participants.destroy', [1, $event, $participant]))->assertRedirect();
+
+    $this->putJson(route('events.participants.update', [1, $event]), $payload)->assertConflict();
+    expect($event->participants()->exists())->toBeFalse();
 });
 
 it('rejects invalid groups, colours and duplicate participants atomically', function () {

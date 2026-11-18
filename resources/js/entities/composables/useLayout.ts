@@ -23,8 +23,9 @@ export function useLayout(options: LayoutOptions) {
         return apiUrl.toString()
     }
 
-    const switchLayout = () => {
-        layout.value = isGrid() ? 'table' : 'grid'
+    const selectLayout = (grid: boolean) => {
+        if (isGrid() === grid) return
+        layout.value = grid ? 'grid' : 'table'
 
         const url = options.addToUrl(currentApiUrl(), 'm', layout.value)
         options.fetchEntities(url)
@@ -50,6 +51,6 @@ export function useLayout(options: LayoutOptions) {
     return {
         layout,
         isGrid,
-        switchLayout,
+        selectLayout,
     }
 }

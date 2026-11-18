@@ -19,7 +19,7 @@ it('renders the infrastructure page for an uncaught PDO connection fatal error',
     $response = app(Handler::class)->render(Request::create('/'), $exception);
     $content = $response->getContent();
 
-    expect($response->getStatusCode())->toBe(503)
+    expect($response->getStatusCode())->toBe(200)
         ->and($response->headers->hasCacheControlDirective('no-store'))->toBeTrue()
         ->and($response->getOriginalContent()->name())->toBe('errors.infrastructure')
         ->and($content)->toContain('Infrastructure error')
@@ -36,7 +36,7 @@ it('does not classify arbitrary fatal errors or PDO query failures as infrastruc
 
     $response = app(Handler::class)->render(Request::create('/'), $exception);
 
-    expect($response->getStatusCode())->not->toBe(503);
+    expect($response->getStatusCode())->toBe(500);
 })->with([
     'an unrelated fatal mentioning the phrase' => 'Uncaught Error: Connection refused while reading a file',
     'a non-connection PDO SQLSTATE' => 'Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found',
@@ -49,7 +49,7 @@ it('still recognizes direct and wrapped PDO connection exceptions', function () 
     foreach ([$pdo, new RuntimeException('query failed', 0, $pdo)] as $exception) {
         $response = $handler->render(Request::create('/'), $exception);
 
-        expect($response->getStatusCode())->toBe(503)
+        expect($response->getStatusCode())->toBe(200)
             ->and($response->getContent())->toContain('Infrastructure error');
     }
 });
@@ -71,6 +71,20 @@ it('renders infrastructure failures when the authenticated session user lookup f
 
     $this->withSession([$guard->getName() => $user->id])
         ->get('/_test/infrastructure-outage')
-        ->assertServiceUnavailable()
+        ->assertOk()
         ->assertSee('Infrastructure error');
 })->with([false, true]);
+
+it('returns a retryable response for failed writes and API reads', function (string $method, string $path, string $accept) {
+    $request = Request::create($path, $method, server: ['HTTP_ACCEPT' => $accept]);
+    $response = app(Handler::class)->render($request, new PDOException('SQLSTATE[HY000] [2002] Connection refused'));
+
+    expect($response->getStatusCode())->toBe(503)
+        ->and($response->headers->hasCacheControlDirective('no-store'))->toBeTrue();
+})->with([
+    ['POST', '/stripe/webhook', '*/*'],
+    ['PATCH', '/w/example', 'text/html'],
+    ['GET', '/api/1.0/campaigns', '*/*'],
+    ['GET', '/w/example', 'application/json'],
+    ['HEAD', '/', '*/*'],
+]);

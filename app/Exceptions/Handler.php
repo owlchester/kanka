@@ -73,10 +73,13 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $exception)
     {
         if ($this->isInfrastructureConnectionFailure($exception)) {
-            if (! $this->shouldReturnJson($request, $exception) && ! $request->is('api/*') && ! Domain::isApi()) {
-                // We have to return 200 even if it's an error, otherwise the load balancer and cloudflare will say "backend unavailable"
-                return response()->view('errors.infrastructure', [], 200, ['Cache-Control' => 'no-store']);
+            $headers = ['Cache-Control' => 'no-store'];
+            if ($this->shouldReturnJson($request, $exception) || $request->is('api/*') || Domain::isApi()) {
+                return response()->json(['message' => __('Service unavailable')], 503, $headers);
             }
+
+            // Let the proxy display the outage page for navigation, but never acknowledge failed writes.
+            return response()->view('errors.infrastructure', [], $request->isMethod('GET') ? 200 : 503, $headers);
         }
 
         if ($exception instanceof TokenMismatchException) {

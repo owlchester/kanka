@@ -150,7 +150,7 @@
                     class="hidden lg:flex items-center rounded-xl bg-base-200 overflow-hidden p-0.5 gap-0.5"
                 >
                     <button
-                        @click="nestingComposable.switchMode()"
+                        @click="nestingComposable.selectMode(true)"
                         class="flex items-center justify-center rounded-lg px-2 py-2 text-sm transition-all"
                         :class="
                             nestingComposable.nested.value
@@ -165,7 +165,7 @@
                         ></i>
                     </button>
                     <button
-                        @click="nestingComposable.switchMode()"
+                        @click="nestingComposable.selectMode(false)"
                         class="flex items-center justify-center rounded-lg px-2 py-2 text-sm transition-all"
                         :class="
                             !nestingComposable.nested.value
@@ -190,10 +190,7 @@
                     class="hidden lg:flex items-center rounded-xl bg-base-200 overflow-hidden p-0.5 gap-0.5"
                 >
                     <button
-                        @click="
-                            !layoutComposable.isGrid() &&
-                            layoutComposable.switchLayout()
-                        "
+                        @click="layoutComposable.selectLayout(true)"
                         class="flex items-center justify-center rounded-lg px-2 py-2 text-sm transition-all"
                         :class="
                             layoutComposable.isGrid()
@@ -205,10 +202,7 @@
                         <i class="fa-regular fa-grid-2" aria-hidden="true"></i>
                     </button>
                     <button
-                        @click="
-                            layoutComposable.isGrid() &&
-                            layoutComposable.switchLayout()
-                        "
+                        @click="layoutComposable.selectLayout(false)"
                         class="flex items-center justify-center rounded-lg px-2 py-2 text-sm transition-all"
                         :class="
                             !layoutComposable.isGrid()
@@ -375,7 +369,7 @@
                     <i class="fa-regular fa-star text-neutral-content" aria-hidden="true"></i><span>{{ i18n.fromTemplate }}</span>
                 </button>
             </div>
-            <MobileListSettings v-else-if="mobilePanel === 'display'" :entity-type="entityType" :i18n="i18n" :ordering="orderingComposable" :nesting="nestingComposable" :layout="layoutComposable" :columns="columnsComposable" :per-page="perPageComposable" :toggleable-columns="toggleableColumns" @nest="nestingComposable.switchMode()" @layout="grid => { if (layoutComposable.isGrid() !== grid) layoutComposable.switchLayout() }" @per-page="handleSelectPerPage" />
+            <MobileListSettings v-else-if="mobilePanel === 'display'" :entity-type="entityType" :criteria-active="criteriaActive" :i18n="i18n" :ordering="orderingComposable" :nesting="nestingComposable" :layout="layoutComposable" :columns="columnsComposable" :per-page="perPageComposable" :toggleable-columns="toggleableColumns" @nest="nestingComposable.selectMode" @layout="layoutComposable.selectLayout" @per-page="handleSelectPerPage" />
             <div v-else-if="mobilePanel === 'templates'" class="flex flex-col gap-1">
                 <a v-for="template in templates" :key="template.id" :href="template.url" class="flex min-h-12 items-center gap-3 rounded-xl px-3 hover:bg-base-200">
                     <i class="fa-regular fa-star text-neutral-content" aria-hidden="true"></i><span v-html="template.name"></span>
@@ -500,13 +494,13 @@
             <!-- Display menu: sort + per page + columns -->
             <div ref="displayMenu" class="flex flex-col gap-3 p-1 min-w-56">
                 <div class="flex flex-col gap-3 lg:hidden">
-                    <div v-if="entityType.is_nested && !orderingComposable.ordering.value">
+                    <div v-if="entityType.is_nested && !criteriaActive && !orderingComposable.ordering.value">
                         <div class="flex rounded-lg bg-base-200 p-0.5 gap-0.5">
-                            <button type="button" class="flex min-h-10 flex-1 items-center justify-center gap-2 rounded-md px-2 text-sm" :class="nestingComposable.nested.value ? 'bg-base-100 text-base-content shadow-xs' : 'text-neutral-content'" :aria-pressed="nestingComposable.nested.value" @click="switchNestingMode()">
+                            <button type="button" class="flex min-h-10 flex-1 items-center justify-center gap-2 rounded-md px-2 text-sm" :class="nestingComposable.nested.value ? 'bg-base-100 text-base-content shadow-xs' : 'text-neutral-content'" :aria-pressed="nestingComposable.nested.value" @click="switchNestingMode(true)">
                                 <i class="fa-regular fa-layer-group" aria-hidden="true"></i>
                                 <span v-html="i18n.nestShort"></span>
                             </button>
-                            <button type="button" class="flex min-h-10 flex-1 items-center justify-center gap-2 rounded-md px-2 text-sm" :class="!nestingComposable.nested.value ? 'bg-base-100 text-base-content shadow-xs' : 'text-neutral-content'" :aria-pressed="!nestingComposable.nested.value" @click="switchNestingMode()">
+                            <button type="button" class="flex min-h-10 flex-1 items-center justify-center gap-2 rounded-md px-2 text-sm" :class="!nestingComposable.nested.value ? 'bg-base-100 text-base-content shadow-xs' : 'text-neutral-content'" :aria-pressed="!nestingComposable.nested.value" @click="switchNestingMode(false)">
                                 <i class="fa-regular fa-boxes-stacked" aria-hidden="true"></i>
                                 <span v-html="i18n.flattenShort"></span>
                             </button>
@@ -990,15 +984,13 @@ const closeDisplayMenu = () => {
     instance?.hide();
 };
 
-const switchNestingMode = () => {
-    nestingComposable.switchMode();
+const switchNestingMode = (nested: boolean) => {
+    nestingComposable.selectMode(nested);
     closeDisplayMenu();
 };
 
 const switchLayoutMode = (grid: boolean) => {
-    if (layoutComposable.isGrid() !== grid) {
-        layoutComposable.switchLayout();
-    }
+    layoutComposable.selectLayout(grid);
     closeDisplayMenu();
 };
 

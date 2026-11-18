@@ -1,6 +1,7 @@
 <?php
 
 use App\Enums\CampaignVisibility;
+use App\Facades\ImportIdMapper;
 use App\Http\Middleware\ReplicationSwitcher;
 use App\Http\Middleware\VerifyCsrfToken;
 use App\Models\Bookmark;
@@ -13,6 +14,8 @@ use App\Models\Character;
 use App\Models\EntityType;
 use App\Models\User;
 use App\Services\Campaign\CreateService;
+use App\Services\Campaign\ExportService;
+use App\Services\Campaign\Import\ImportService;
 use App\Services\Campaign\Sidebar\LayoutService;
 use App\Services\EntityTypeService;
 use Illuminate\Http\Request;
@@ -37,6 +40,87 @@ function sidebarV2Payload(Campaign $campaign, array $overrides = []): array
         'items' => $service->standard()['items'],
     ];
 }
+
+it('remaps imported sidebar categories and drops unmappable role and bookmark references', function () {
+    $sourceCategory = 98765;
+    $destinationCategory = 1;
+    ImportIdMapper::putCustomEntityType($sourceCategory, $destinationCategory);
+
+    $this->campaign->update(['ui_settings' => ['sidebar_v2' => [
+        'enabled' => true,
+        'layouts' => [
+            'default' => [
+                'items' => [
+                    ['id' => 'bookmarks', 'label_key' => 'entities.bookmarks', 'children' => [
+                        ['id' => 'category:' . $sourceCategory],
+                        ['id' => 'bookmark:12345'],
+                    ]],
+                    ['id' => 'system:dashboard'],
+                ],
+                'known' => ['category:' . $sourceCategory, 'bookmark:12345'],
+            ],
+            '12345' => ['items' => [], 'known' => []],
+        ],
+    ]]]);
+
+    $service = app(ImportService::class)->campaign($this->campaign);
+    (new ReflectionProperty($service, 'importedSidebar'))->setValue($service, $this->campaign->ui_settings['sidebar_v2']);
+    $method = new ReflectionMethod($service, 'remapSidebarLayouts');
+    $method->setAccessible(true);
+    $method->invoke($service);
+
+    $layouts = $this->campaign->fresh()->ui_settings['sidebar_v2']['layouts'];
+    expect($layouts)->toHaveKeys(['default'])
+        ->and($layouts['default']['items'][0]['children'])->toBe([
+            ['id' => 'category:' . $destinationCategory],
+        ])
+        ->and($layouts['default']['known'])->toContain('category:' . $destinationCategory)
+        ->and($layouts['default']['known'])->not->toContain('bookmark:12345');
+});
+
+it('leaves the destination sidebar untouched when the import has no sidebar data', function () {
+    $original = ['sidebar_v2' => ['enabled' => true, 'layouts' => ['default' => ['items' => []]]]];
+    $this->campaign->update(['ui_settings' => $original]);
+    $service = app(ImportService::class)->campaign($this->campaign);
+    $method = new ReflectionMethod($service, 'remapSidebarLayouts');
+    $method->invoke($service);
+
+    expect($this->campaign->fresh()->ui_settings)->toBe($original);
+});
+
+it('round trips role layout references without changing destination role permissions', function () {
+    $role = CampaignRole::create([
+        'campaign_id' => $this->campaign->id,
+        'name' => 'Portable sidebar role',
+        'is_admin' => false,
+        'is_public' => false,
+    ]);
+    $settings = ['sidebar_v2' => ['layouts' => [
+        'default' => ['items' => [['id' => 'system:dashboard']], 'known' => ['system:dashboard']],
+        (string) $role->id => ['items' => [['id' => 'system:dashboard']], 'known' => ['system:dashboard']],
+    ]]];
+    $exporter = app(ExportService::class);
+    $portable = new ReflectionMethod($exporter, 'portableSidebar');
+    $portable->setAccessible(true);
+    $settings = $portable->invoke($exporter->campaign($this->campaign), $settings);
+
+    $sourceRoleId = $role->id;
+    $role->delete();
+    $role = CampaignRole::create([
+        'campaign_id' => $this->campaign->id, 'name' => 'Portable sidebar role', 'is_admin' => false, 'is_public' => false,
+    ]);
+    $service = app(ImportService::class)->campaign($this->campaign);
+    (new ReflectionProperty($service, 'importedSidebar'))->setValue($service, $settings['sidebar_v2']);
+    $remap = new ReflectionMethod($service, 'remapSidebarLayouts');
+    $remap->setAccessible(true);
+    $this->campaign->update(['ui_settings' => $settings]);
+    $permissionsBefore = $role->permissions()->pluck('id')->all();
+    $remap->invoke($service);
+
+    expect($this->campaign->fresh()->ui_settings['sidebar_v2']['layouts'])->toHaveKey((string) $role->id)
+        ->not->toHaveKey((string) $sourceRoleId)
+        ->and($role->fresh()->permissions()->pluck('id')->all())->toBe($permissionsBefore);
+});
 
 it('renders the new editor and category navigation', function () {
     $this->get(route('campaign-sidebar', $this->campaign))
