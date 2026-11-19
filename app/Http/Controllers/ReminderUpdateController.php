@@ -45,7 +45,7 @@ class ReminderUpdateController extends Controller
 
     public function edit(Campaign $campaign, Reminder $reminder)
     {
-        $this->checkPermissions($reminder);
+        $this->checkPermissions($campaign, $reminder);
         $entity = $this->entity;
         $post = $this->post;
         $name = $this->view;
@@ -76,7 +76,7 @@ class ReminderUpdateController extends Controller
 
     public function update(UpdateCalendarEvent $request, Campaign $campaign, Reminder $reminder)
     {
-        $this->checkPermissions($reminder);
+        $this->checkPermissions($campaign, $reminder);
 
         if (request()->ajax()) {
             return response()->json(['success' => true]);
@@ -123,7 +123,7 @@ class ReminderUpdateController extends Controller
 
     public function destroy(Campaign $campaign, Reminder $reminder)
     {
-        $this->checkPermissions($reminder);
+        $this->checkPermissions($campaign, $reminder, 'delete');
 
         $reminder->delete();
         $success = __('calendars.event.destroy', ['name' => $reminder->calendar->entity->name]);
@@ -148,16 +148,30 @@ class ReminderUpdateController extends Controller
             ->with('success', $success);
     }
 
-    private function checkPermissions(Reminder $reminder)
+    private function checkPermissions(Campaign $campaign, Reminder $reminder, string $ability = 'update'): void
     {
         if ($reminder->remindable instanceof Post) {
-            $this->authorize('reminders', $reminder->remindable->entity);
-            $this->entity = $reminder->remindable->entity;
-            $this->post = $reminder->remindable;
+            $entity = $reminder->remindable->entity;
+            $post = $reminder->remindable;
+        } elseif ($reminder->remindable instanceof Entity) {
+            $entity = $reminder->remindable;
+            $post = null;
         } else {
-            $this->authorize('reminders', $reminder->remindable);
-            $this->entity = $reminder->remindable;
-            $this->post = null;
+            abort(403);
         }
+
+        if (! $entity || $entity->campaign_id !== $campaign->id) {
+            abort(403);
+        }
+
+        if (! $reminder->calendar || $reminder->calendar->campaign_id !== $campaign->id) {
+            abort(403);
+        }
+
+        $this->authorize('reminders', $entity);
+        $this->authorize($ability, $reminder);
+
+        $this->entity = $entity;
+        $this->post = $post;
     }
 }
