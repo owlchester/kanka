@@ -8,12 +8,12 @@ use App\Models\Campaign;
 use App\Models\Organisation;
 use App\Models\OrganisationMember;
 use App\Models\Tag;
-use App\Services\SearchService;
+use App\Services\Search\NameLookupService;
 use Illuminate\Http\Request;
 
 class LiveController extends Controller
 {
-    public function __construct(protected SearchService $searchService) {}
+    public function __construct(protected NameLookupService $searchService) {}
 
     public function index(Request $request, Campaign $campaign)
     {
@@ -138,22 +138,6 @@ class LiveController extends Controller
                 ->campaign($campaign)
                 ->exclude([config('entities.ids.tag')])
                 ->excludeIds($exclude)
-                ->find()
-        );
-    }
-
-    /**
-     * Only find calendar entities
-     */
-    public function calendars(Request $request, Campaign $campaign)
-    {
-        $term = mb_trim($request->get('q') ?? '');
-
-        return response()->json(
-            $this->searchService
-                ->term($term)
-                ->campaign($campaign)
-                ->only([config('entities.ids.calendar')])
                 ->find()
         );
     }
