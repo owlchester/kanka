@@ -7,18 +7,12 @@
         "test": "node --test \"resources/js/**/*.test.js\" \"tests/JavaScript/**/*.test.js\""
     },
     "devDependencies": {
-        "@rollup/plugin-inject": "^5.0.3",
+        "@tailwindcss/vite": "^4.1.17",
         "@vitejs/plugin-vue": "^5.0.0",
-        "autoprefixer": "^10.4.20",
-        "axios": "^1.20",
-        "bootstrap": "3.4.1",
         "laravel-vite-plugin": "^2.0",
-        "postcss": "^8.5.23",
         "tailwindcss": "^4.1",
-        "tinymce": "^4.9.11",
         "vite": "^7.3.7",
-        "vite-plugin-static-copy": "^3.2.0",
-        "vue": "^3.3"
+        "vite-plugin-static-copy": "^3.2.0"
     },
     "dependencies": {
         "@coddicat/vue-pinch-scroll-zoom": "^4.3.5",
@@ -33,16 +27,12 @@
         "@fontsource-variable/roboto": "^5.2.9",
         "@laravel/echo-vue": "^2.3.0",
         "@melloware/coloris": "^0.22.0",
-        "@syncfusion/ej2-vue-grids": "^24.2.7",
-        "@tailwindcss/vite": "^4.1.17",
-        "@tiptap/cli": "^3.11.1",
         "@tiptap/core": "^3.30.0",
         "@tiptap/extension-color": "^3.30.0",
         "@tiptap/extension-details": "^3.30.0",
         "@tiptap/extension-highlight": "^3.30.0",
         "@tiptap/extension-image": "^3.30.0",
         "@tiptap/extension-list": "^3.30.0",
-        "@tiptap/extension-mention": "^3.30.0",
         "@tiptap/extension-table": "^3.30.0",
         "@tiptap/extension-table-cell": "^3.30.0",
         "@tiptap/extension-table-header": "^3.30.0",
@@ -53,6 +43,8 @@
         "@tiptap/starter-kit": "^3.30.0",
         "@tiptap/suggestion": "^3.30.0",
         "@tiptap/vue-3": "^3.30.0",
+        "axios": "^1.20",
+        "bootstrap": "3.4.1",
         "click-outside-vue3": "^4.0.1",
         "codemirror": "6.0.2",
         "colord": "^2.9.4",
@@ -60,7 +52,6 @@
         "cytoscape-cose-bilkent": "^4.1.0",
         "cytoscape-dblclick": "^0.3.1",
         "cytoscape-panzoom": "^2.5.3",
-        "cytoscape-popper": "^4.0.1",
         "jquery": "^3.7.1",
         "jspdf": "^4.2.1",
         "konva": "^10.0.2",
@@ -75,11 +66,12 @@
         "pusher-js": "^8.4.0",
         "rpg-awesome": "^0.2.0",
         "sortablejs": "^1.15.0",
+        "tinymce": "^4.9.11",
         "tippy.js": "^6.3.7",
         "tom-select": "^2.5.2",
+        "vue": "^3.3",
         "vue-draggable-next": "^2.2.1",
         "vue-konva": "^3.2.6",
-        "vue-panzoom": "^1.1.6",
         "vue-tippy": "v6"
     }
 }
