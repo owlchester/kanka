@@ -427,8 +427,8 @@ it('renders a recurring intermediate moon phase reminder on its phase date', fun
             ['id' => 1, 'name' => 'Luna', 'fullmoon' => 16, 'offset' => 0, 'colour' => 'grey'],
         ],
     ]);
-    $event = Event::factory()->create(['campaign_id' => 1]);
-    $reminder = Reminder::factory()->create([
+    $event = Event::factory()->create(['campaign_id' => 1, 'name' => 'Lunar gathering']);
+    Reminder::factory()->create([
         'calendar_id' => $calendar->id,
         'year' => 1,
         'month' => 1,
@@ -441,5 +441,28 @@ it('renders a recurring intermediate moon phase reminder on its phase date', fun
 
     $this->get(route('entities.show', [$calendar->campaign, $calendar->entity]))
         ->assertSuccessful()
-        ->assertSee('Luna waning gibbous', false);
+        ->assertSee('Luna waning gibbous', false)
+        ->assertSee('Lunar gathering');
 });
+
+it('renders an inherited multi-day reminder spilling into the next year without a year zero', function (string $layout) {
+    $this->asUser()->withCampaign();
+    $parent = Calendar::factory()->create(['campaign_id' => 1, 'date' => '-1-12-31']);
+    $calendar = Calendar::factory()->create(['campaign_id' => 1, 'date' => '1-1-1']);
+    $calendar->entity->update(['parent_id' => $parent->entity->id]);
+    $event = Event::factory()->create(['campaign_id' => 1, 'name' => 'Year-end festival']);
+    Reminder::factory()->create([
+        'calendar_id' => $parent->id,
+        'year' => -1,
+        'month' => 12,
+        'day' => 31,
+        'length' => 2,
+        'is_recurring' => false,
+        'remindable_id' => $event->entity->id,
+        'remindable_type' => Entity::class,
+    ]);
+
+    $this->get(route('entities.show', [$calendar->campaign, $calendar->entity, 'layout' => $layout]))
+        ->assertOk()
+        ->assertSeeInOrder(['data-date="1-1-1"', 'Year-end festival', __('calendars.events.end')], false);
+})->with(['month', 'year']);

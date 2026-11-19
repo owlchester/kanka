@@ -49,7 +49,6 @@ class RecentService
 
     /**
      * Format an entity for the lookup/search/recent dropdown
-     * Todo: switch to a trait and share with SearchService
      */
     protected function formatForLookup(Entity $entity): array
     {

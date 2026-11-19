@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Search;
 
 use App\Facades\Avatar;
 use App\Facades\Mentions;
-use App\Models\Calendar;
 use App\Models\Entity;
 use App\Models\EntityAsset;
 use App\Models\EntityType;
 use App\Models\MiscModel;
 use App\Services\Entity\NewService;
+use App\Services\EntityTypeService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 /**
- * "Old" search that looks in misc models for data
+ * SQL name and alias lookup for command search and entity pickers.
  */
-class SearchService
+class NameLookupService
 {
     use CampaignAware;
     use UserAware;
@@ -40,6 +40,8 @@ class SearchService
 
     /** If true, adds more info for the nav header lookup */
     protected bool $v2 = false;
+
+    protected bool $includePages = true;
 
     /**
      * Set to true for a full result (rather than id => name)
@@ -81,9 +83,10 @@ class SearchService
     /**
      * Sets the service to return data in the "v2" format, used for the header lookup
      */
-    public function v2(): self
+    public function v2(bool $includePages = true): self
     {
         $this->v2 = true;
+        $this->includePages = $includePages;
 
         return $this;
     }
@@ -194,7 +197,9 @@ class SearchService
         }
 
         $cleanTerm = mb_ltrim(str_replace('_', ' ', $this->term), '=');
-        $query = Entity::inTypes($availableEntityTypes)->whereNull('archived_at');
+        $query = Entity::inTypes($availableEntityTypes)
+            ->where('entities.campaign_id', $this->campaign->id)
+            ->whereNull('archived_at');
         if (empty($this->term)) {
             $query->orderBy('updated_at', 'desc');
         } else {
@@ -242,6 +247,9 @@ class SearchService
         }
 
         $with = ['image', 'entityType', 'child'];
+        if ($this->v2) {
+            $with[] = 'aliases';
+        }
         if ($this->posts) {
             $with[] = 'posts';
         }
@@ -344,7 +352,7 @@ class SearchService
             if ($this->v2) {
                 return [
                     'entities' => $searchResults,
-                    'pages' => $this->pages(),
+                    'pages' => $this->includePages ? $this->pages() : [],
                 ];
             }
 
@@ -362,32 +370,6 @@ class SearchService
 
         // @phpstan-ignore-next-line
         return array_merge(array_values($searchResults), array_values($this->newOptions()));
-    }
-
-    /**
-     * List of months in the calendars
-     */
-    public function monthList(): array
-    {
-        $searchResults = [];
-
-        // Load up the calendars of a campaign to get the month names
-        // Todo: this can load any calendar regardless of permission
-        $calendars = Calendar::get();
-        foreach ($calendars as $calendar) {
-            $months = $calendar->months ?? [];
-
-            foreach ($months as $month) {
-                if ((! empty($this->term) && str_contains($month['name'], $this->term)) || empty($this->term)) {
-                    $searchResults[] = [
-                        'fullname' => $month['name'],
-                        'name' => $month['name'] . ' (' . $calendar->entity->name . ')',
-                    ];
-                }
-            }
-        }
-
-        return $searchResults;
     }
 
     /**
@@ -422,7 +404,6 @@ class SearchService
 
     /**
      * Format an entity for the lookup/search/recent dropdown
-     * Todo: switch to a trait and share with SearchService
      */
     protected function formatForLookup(Entity $entity): array
     {
