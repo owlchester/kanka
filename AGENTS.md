@@ -27,3 +27,8 @@
 
 - Use `__()` for user-facing text; translations are maintained separately from English development.
 - Prefer existing route, controller, model, factory, and test patterns before introducing new structure.
+- Prefer writing tailwind classes instead of custom css.
+- Re-use existing Kanka UI conventions (bg-base-100 for section backgrounds, no borders between headers/body/footer of elements).
+- Prefer method changing on PHP services using CampaignAware, UserAware, RequestAware traits and then calling $service->campaign($campaign)->user($user).
+- Prefer simple solutions to problems that are easy to review and don't touch large parts of the application, unless requested.
+- Avoid n+1 queries at all costs.
