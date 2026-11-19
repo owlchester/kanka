@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Facades\CampaignLocalization;
 use App\Services\Entity\NewService;
 use App\Services\MentionsService;
+use App\Services\TOC\TocSlugify;
 use Illuminate\Support\ServiceProvider;
 use TOC\MarkupFixer;
 
@@ -19,7 +20,7 @@ class MentionsServiceProvider extends ServiceProvider
     {
         $this->app->singleton(MentionsService::class, function () {
             $service = new MentionsService(
-                app()->make(MarkupFixer::class),
+                new MarkupFixer(null, new TocSlugify),
                 app()->make(NewService::class)
             );
             if (CampaignLocalization::hasCampaign()) {

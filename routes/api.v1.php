@@ -128,11 +128,6 @@ Route::patch('campaigns/{campaign}/entities/{entity}', [EntityApiController::cla
 Route::delete('campaigns/{campaign}/entities/{entity}', [EntityApiController::class, 'destroy']);
 Route::get('campaigns/{campaign}/entities/{entity}/mentions', [EntityMentionApiController::class, 'index']);
 
-Route::get('campaigns/{campaign}/users', 'Campaigns\UserApiController@index');
-Route::get('campaigns/{campaign}/users/{user}', 'Campaigns\UserApiController@show');
-Route::post('campaigns/{campaign}/users', 'Campaigns\UserApiController@add');
-Route::delete('campaigns/{campaign}/users', 'Campaigns\UserApiController@remove');
-
 Route::get('campaigns/{campaign}/users', [UserApiController::class, 'index']);
 Route::get('campaigns/{campaign}/users/{user}', [UserApiController::class, 'show']);
 Route::post('campaigns/{campaign}/users', [UserApiController::class, 'add']);

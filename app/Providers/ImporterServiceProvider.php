@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Services\Campaign\Import\ImportIdMapper;
-use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Illuminate\Support\ServiceProvider;
 
 class ImporterServiceProvider extends ServiceProvider
 {

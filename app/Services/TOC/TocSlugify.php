@@ -2,53 +2,19 @@
 
 namespace App\Services\TOC;
 
-use Symfony\Component\String\Slugger\AsciiSlugger;
-use Symfony\Component\String\Slugger\SluggerInterface as SymfonyStringSluggerInterface;
-use TOC\SluggerInterface;
+use TOC\UniqueSlugger;
 
 /**
- * This is a direct copy-paste of TOC\UniqueSlugify, because the MarkupFixer doesn't want to re-use the same slugifier
- * twice, while this is exactly what we want to not repeat heading ids between entities, posts, quest elements, etc.
+ * Keeps heading slugs unique across multiple MarkupFixer::fix() calls on the
+ * same page (entity entry, posts, quest elements, etc.).
+ *
+ * MarkupFixer::fix() calls $slugger->reset() on every invocation, so this
+ * subclass intentionally leaves reset() as a no-op for the request lifecycle.
  */
-class TocSlugify implements SluggerInterface
+class TocSlugify extends UniqueSlugger
 {
-    private SymfonyStringSluggerInterface $slugger;
-
-    /**
-     * @var array
-     */
-    private $used;
-
-    /**
-     * Constructor
-     */
-    public function __construct(?SymfonyStringSluggerInterface $slugger = null)
-    {
-        $this->used = [];
-        $this->slugger = $slugger ?: new AsciiSlugger;
-    }
-
-    /**
-     * Slugify
-     */
-    public function makeSlug(string $string): string
-    {
-        $slugged = $this->slugger->slug($string)->lower()->toString();
-
-        $count = 1;
-        $orig = $slugged;
-        while (in_array($slugged, $this->used)) {
-            $slugged = $orig . '-' . $count;
-            $count++;
-        }
-
-        $this->used[] = $slugged;
-
-        return $slugged;
-    }
-
     public function reset(): void
     {
-        $this->used = [];
+        // Intentionally preserve used slugs across fix() calls within the same request.
     }
 }

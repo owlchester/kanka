@@ -11,7 +11,6 @@ use App\Facades\Datagrid;
 use App\Facades\Domain;
 use App\Facades\EntityCache;
 use App\Facades\EntityPermission;
-use App\Facades\EntitySetup;
 use App\Facades\FormCopy;
 use App\Facades\Img;
 use App\Facades\ImportIdMapper;
@@ -92,7 +91,6 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Validation\ValidationServiceProvider;
 use Illuminate\View\ViewServiceProvider;
-use Intervention\Image\Facades\Image;
 use Laravel\Passport\PassportServiceProvider;
 use Laravel\Socialite\Facades\Socialite;
 use Laravel\Socialite\SocialiteServiceProvider;
@@ -406,7 +404,6 @@ return [
         // Third party
         'Purify' => Purify::class,
         'Socialite' => Socialite::class,
-        'Image' => Image::class,
         'LaravelLocalization' => LaravelLocalization::class,
 
         // Kanka
@@ -423,7 +420,6 @@ return [
         'Img' => Img::class,
         'Attributes' => Attributes::class,
         'Datagrid' => Datagrid::class,
-        'EntitySetup' => EntitySetup::class,
         'Google2FA' => Facade::class,
         'ApiLog' => ApiLog::class,
         'Domain' => Domain::class,

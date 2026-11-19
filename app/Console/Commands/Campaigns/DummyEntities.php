@@ -25,18 +25,8 @@ use App\Models\QuestElement;
 use App\Models\Race;
 use App\Models\Relation;
 use App\Models\Tag;
-use App\Observers\AbilityObserver;
 use App\Observers\CalendarObserver;
 use App\Observers\EntityAbilityObserver;
-use App\Observers\EventObserver;
-use App\Observers\JournalObserver;
-use App\Observers\LocationObserver;
-use App\Observers\NoteObserver;
-use App\Observers\QuestElementObserver;
-use App\Observers\QuestObserver;
-use App\Observers\RaceObserver;
-use App\Observers\RelationObserver;
-use App\Observers\TagObserver;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Factories\Sequence;
@@ -263,17 +253,7 @@ class DummyEntities extends Command
     private function loadObservers(Campaign $campaign)
     {
         CampaignLocalization::forceCampaign($campaign);
-        Ability::observe(AbilityObserver::class);
-        Location::observe(LocationObserver::class);
         Calendar::observe(CalendarObserver::class);
-        Quest::observe(QuestObserver::class);
-        QuestElement::observe(QuestElementObserver::class);
-        Relation::observe(RelationObserver::class);
-        Journal::observe(JournalObserver::class);
-        Event::observe(EventObserver::class);
-        Tag::observe(TagObserver::class);
-        Race::observe(RaceObserver::class);
-        Note::observe(NoteObserver::class);
         EntityAbility::observe(EntityAbilityObserver::class);
     }
 }

@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use App\Facades\CampaignLocalization;
 use App\Services\Campaign\ModuleService;
-use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Illuminate\Support\ServiceProvider;
 
 class ModuleServiceProvider extends ServiceProvider
 {

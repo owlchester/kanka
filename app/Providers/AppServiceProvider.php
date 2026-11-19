@@ -6,7 +6,6 @@ use App\Auth\PassportTokenGuard;
 use App\Http\Validators\HashValidator;
 use App\Jobs\Search\MakeSearchable;
 use App\Models\AdminInvite;
-use App\Models\Application;
 use App\Models\Bookmark;
 use App\Models\Calendar;
 use App\Models\Campaign;
@@ -37,10 +36,8 @@ use App\Models\Map;
 use App\Models\MapGroup;
 use App\Models\MapLayer;
 use App\Models\MapMarker;
-use App\Models\OrganisationMember;
 use App\Models\Post;
 use App\Models\Preset;
-use App\Models\QuestElement;
 use App\Models\Reminder;
 use App\Models\TimelineElement;
 use App\Models\TimelineEra;
@@ -53,7 +50,6 @@ use App\Observers\CampaignDescriptionObserver;
 use App\Observers\CampaignObserver;
 use App\Observers\CampaignUserObserver;
 use App\Observers\FamilyTreeObserver;
-use App\Observers\OrganisationMemberObserver;
 use App\Observers\UserObserver;
 use App\View\Composers\EntryWorkspaceComposer;
 use Exception;
@@ -205,7 +201,6 @@ class AppServiceProvider extends ServiceProvider
         CampaignFollower::observe('App\Observers\CampaignFollowerObserver');
         CampaignPlugin::observe('App\Observers\CampaignPluginObserver');
         CampaignSetting::observe('App\Observers\CampaignSettingObserver');
-        Application::observe('App\Observers\ApplicationObserver');
         CampaignStyle::observe('App\Observers\CampaignStyleObserver');
         Conversation::observe('App\Observers\ConversationObserver');
         ConversationMessage::observe('App\Observers\ConversationMessageObserver');
@@ -225,14 +220,12 @@ class AppServiceProvider extends ServiceProvider
         MapGroup::observe('App\Observers\MapGroupObserver');
         MapMarker::observe('App\Observers\MapMarkerObserver');
         Bookmark::observe('App\Observers\BookmarkObserver');
-        OrganisationMember::observe(OrganisationMemberObserver::class);
         Preset::observe('App\Observers\PresetObserver');
         TimelineEra::observe('App\Observers\TimelineEraObserver');
         TimelineElement::observe('App\Observers\TimelineElementObserver');
         User::observe(UserObserver::class);
         UserLog::observe('App\Observers\UserLogObserver');
         Webhook::observe('App\Observers\WebhookObserver');
-        QuestElement::observe('App\Observers\QuestElementObserver');
 
         if (request()->has('_debug_perm') && config('app.debug')) {
             // Add in boot function

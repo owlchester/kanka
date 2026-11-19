@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use App\Facades\CampaignLocalization;
 use App\Services\LimitService;
-use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Illuminate\Support\ServiceProvider;
 
 class LimitServiceProvider extends ServiceProvider
 {

@@ -10,7 +10,6 @@ use App\Services\Caches\CharacterCacheService;
 use App\Services\Caches\EntityAssetCacheService;
 use App\Services\Caches\EntityCacheService;
 use App\Services\Caches\MapMarkerCacheService;
-use App\Services\Caches\MarketplaceCacheService;
 use App\Services\Caches\QuestCacheService;
 use App\Services\Caches\ReleaseCacheService;
 use App\Services\Caches\SingleUserCacheService;
@@ -109,9 +108,6 @@ class CacheServiceProvider extends ServiceProvider
 
             return $service;
         });
-        $this->app->singleton(MarketplaceCacheService::class, function () {
-            return new MarketplaceCacheService;
-        });
 
         $this->app->alias(EntityCacheService::class, 'entitycache');
         $this->app->alias(CampaignCacheService::class, 'campaigncache');
@@ -125,6 +121,5 @@ class CacheServiceProvider extends ServiceProvider
         $this->app->alias(EntityAssetCacheService::class, 'entityassetcache');
         $this->app->alias(BookmarkCacheService::class, 'bookmarkcache');
         $this->app->alias(TimelineElementCacheService::class, 'timelineelementcache');
-        $this->app->alias(MarketplaceCacheService::class, 'marketplacecache');
     }
 }
