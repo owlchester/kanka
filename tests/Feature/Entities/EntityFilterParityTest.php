@@ -52,6 +52,14 @@ it('keeps parent filter options consistent across entity and child queries', fun
         ->toEqualCanonicalizing($expected);
 })->with(['matches' => '', 'does not match' => 'exclude', 'no parent' => 'none']);
 
+it('skips permission service setup for child model queries', function () {
+    $this->asUser()->withCampaign();
+
+    Permissions::shouldReceive('campaign')->never();
+
+    Ability::query()->toSql();
+});
+
 it('preserves the empty parent search operator on child queries', function () {
     $this->asUser()->withCampaign();
 

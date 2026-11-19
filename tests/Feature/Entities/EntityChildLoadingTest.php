@@ -1,7 +1,6 @@
 <?php
 
 use App\Enums\Widget;
-use App\Jobs\EntityUpdatedJob;
 use App\Jobs\EntityWebhookJob;
 use App\Livewire\Widgets\EntityListing;
 use App\Models\Campaign;
@@ -26,6 +25,7 @@ use App\Services\Search\LiveSearchService;
 use App\Services\Search\TemplateSearchService;
 use App\View\Components\Widgets\Previews\Body;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Livewire\Livewire;
@@ -313,13 +313,13 @@ it('restores a missing or transformed morph child from a queued entity', functio
         ->and($transformed->entity->child->is($replacement))->toBeTrue();
 });
 
-it('omits unneeded entity relations when serializing the entity update job', function () {
+it('does not dispatch the unused entity update job', function () {
     $character = Character::factory()->create(['campaign_id' => 1]);
-    $entity = Entity::with('child')->findOrFail($character->entity->id);
-    $job = new EntityUpdatedJob($entity);
-    $restored = unserialize(serialize($job));
+    Bus::fake();
 
-    expect($restored->entity->relationLoaded('child'))->toBeFalse();
+    $character->entity->update(['name' => 'Updated character']);
+
+    Bus::assertNotDispatched('App\\Jobs\\EntityUpdatedJob');
 });
 
 it('keeps conversation previews bounded to five messages per child and preloads participant counts', function () {
