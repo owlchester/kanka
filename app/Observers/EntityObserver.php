@@ -9,7 +9,6 @@ use App\Events\Entities\EntityRestored;
 use App\Events\Maps\Updated as MapUpdated;
 use App\Facades\Images;
 use App\Facades\Permissions;
-use App\Jobs\EntityUpdatedJob;
 use App\Jobs\EntityWebhookJob;
 use App\Models\CampaignPermission;
 use App\Models\Entity;
@@ -92,8 +91,6 @@ class EntityObserver
             $map->setRelation('entity', $entity);
             MapUpdated::dispatch($map);
         }
-
-        EntityUpdatedJob::dispatch($entity)->afterCommit();
 
         if ($entity->campaign->premium()) {
             EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::EDITED->value)->afterCommit();
