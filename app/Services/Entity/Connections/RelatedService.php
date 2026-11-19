@@ -3,7 +3,6 @@
 namespace App\Services\Entity\Connections;
 
 use App\Models\Character;
-use App\Models\Conversation;
 use App\Models\Entity;
 use App\Models\Family;
 use App\Models\Journal;
@@ -21,6 +20,8 @@ class RelatedService
     protected array $reasons = [];
 
     protected string $order = 'name';
+
+    public function __construct(protected LocationConnections $locationConnections) {}
 
     /**
      * @param  string|null  $order
@@ -218,19 +219,6 @@ class RelatedService
         return $this;
     }
 
-    protected function loadConversations(): self
-    {
-        $elements = $this->entity->conversations()->with(['entity'])->has('entity')->get();
-        foreach ($elements as $sub) {
-            /** @var Conversation $sub */
-            $entity = $sub->entity;
-            $this->ids[] = $entity->id;
-            $this->reasons[$entity->id][] = __('entities.conversation');
-        }
-
-        return $this;
-    }
-
     protected function loadItems(): self
     {
         $elements = $this->entity->children()->get();
@@ -281,20 +269,7 @@ class RelatedService
         /** @var Location $location */
         $location = $this->entity->child;
 
-        $models = $modelClass::query()
-            ->whereHas('entity', fn ($query) => $query->whereHas(
-                'entityLocations',
-                fn ($locations) => $locations->where('location_id', $location->id),
-            ))
-            ->with('entity:id,entity_id,child_type')
-            ->get();
-
-        foreach ($models as $model) {
-            $entity = $model->entity;
-            if ($entity === null) {
-                continue;
-            }
-
+        foreach ($this->locationConnections->entities($location, $modelClass) as $entity) {
             $this->ids[] = $entity->id;
             $this->reasons[$entity->id][] = $reason;
         }
