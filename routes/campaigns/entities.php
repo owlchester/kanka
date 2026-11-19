@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\Bookmarks\BookmarkController;
 use App\Http\Controllers\Bookmarks\ReorderController;
+use App\Http\Controllers\Calendars\DateController;
 use App\Http\Controllers\Calendars\EventController;
 use App\Http\Controllers\Characters\MemberController;
 use App\Http\Controllers\DiceRolls\ResultsController;
+use App\Http\Controllers\DiceRolls\RollController;
 use App\Http\Controllers\Entities\Apis\DocumentController;
 use App\Http\Controllers\Entities\ChildrenController;
 use App\Http\Controllers\Entities\CreateController;
@@ -11,6 +14,7 @@ use App\Http\Controllers\Entities\DeleteController;
 use App\Http\Controllers\Entities\EditController;
 use App\Http\Controllers\Entities\IndexController;
 use App\Http\Controllers\Entities\ListingPreferenceController;
+use App\Http\Controllers\Entities\StandardController;
 use App\Http\Controllers\Entity\AttributeController;
 use App\Http\Controllers\Entity\Attributes\LiveApiController;
 use App\Http\Controllers\Entity\Attributes\LiveController;
@@ -37,8 +41,8 @@ use App\Http\Controllers\Filters\SaveController;
 use App\Http\Controllers\Timelines\TimelineReorderController;
 use App\Http\Controllers\Whiteboards\ApiController;
 use App\Http\Controllers\Whiteboards\DrawController;
+use App\Http\Middleware\CachedResponse;
 use App\Models\Attribute;
-use App\Models\Campaign;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/entities/{entity}', [ShowController::class, 'index'])->name('entities.show')->where(['entity' => '[0-9]+']);
@@ -107,8 +111,8 @@ Route::post('/characters/{character}/races/save', 'Characters\Races\ManagementCo
 Route::get('/characters/{character}/families/management', 'Characters\Families\ManagementController@index')->name('characters.families.management');
 Route::post('/characters/{character}/families/save', 'Characters\Families\ManagementController@save')->name('characters.families.save');
 
-Route::get('/dice_rolls/{dice_roll}/roll', 'Crud\DiceRollController@roll')->name('dice_rolls.roll');
-Route::delete('/dice_rolls/{dice_roll}/roll/{dice_roll_result}/destroy', 'Crud\DiceRollController@destroyRoll')->name('dice_rolls.destroy_roll');
+Route::get('/dice_rolls/{dice_roll}/roll', [RollController::class, 'roll'])->name('dice_rolls.roll');
+Route::delete('/dice_rolls/{dice_roll}/roll/{dice_roll_result}/destroy', [RollController::class, 'destroyRoll'])->name('dice_rolls.destroy_roll');
 Route::get('/dice_rolls/results', [ResultsController::class, 'index'])->name('dice_rolls.results');
 
 // Locations
@@ -187,9 +191,9 @@ Route::post('/bulk/process', 'BulkController@index')->name('bulk.process');
 // Calendar
 Route::get('/calendars/{calendar}/event', 'Calendars\EventController@create')->name('calendars.event.create');
 Route::post('/calendars/{calendar}/event', 'Calendars\EventController@store')->name('calendars.event.store');
-Route::get('/calendars/{calendar}/month-list', 'Crud\CalendarController@monthList')->name('calendars.month-list');
+Route::get('/calendars/{calendar}/month-list', [DateController::class, 'monthList'])->name('calendars.month-list');
 Route::get('/calendars/{calendar}/events', 'Calendars\EventController@index')->name('calendars.events');
-Route::get('/calendars/{calendar}/today', 'Crud\CalendarController@today')->name('calendars.today');
+Route::get('/calendars/{calendar}/today', [DateController::class, 'today'])->name('calendars.today');
 Route::get('/calendars/{calendar}/validate-length', [EventController::class, 'eventLength'])->name('calendars.event-length');
 
 Route::post('/calendars/{calendar}/calendar-events/bulk', 'Calendars\Bulks\EntityEventController@index')->name('calendars.entity-events.bulk');
@@ -296,38 +300,29 @@ Route::get('/connection/filter-form', [FormController::class, 'connection'])->na
 
 Route::get('/filters/{entity_type}/save', [SaveController::class, 'save'])->name('save-filters');
 
-// Route::get('/my-campaigns', 'CampaignController@index')->name('campaign');
+// Keep the module URLs and names as adapters to the unified entity controllers.
+foreach ([
+    'abilities', 'attribute_templates', 'calendars', 'characters', 'conversations',
+    'creatures', 'dice_rolls', 'events', 'families', 'items', 'journals', 'locations',
+    'maps', 'notes', 'organisations', 'quests', 'races', 'tags', 'timelines', 'whiteboards',
+] as $resource) {
+    Route::resource($resource, StandardController::class)->middleware(CachedResponse::class);
+}
+
+Route::resource('bookmarks', BookmarkController::class)->middleware(CachedResponse::class);
+
 Route::resources([
-    '/abilities' => 'Crud\AbilityController',
-    '/calendars' => 'Crud\CalendarController',
     '/calendars.calendar_weather' => 'Calendar\CalendarWeatherController',
-    '/characters' => 'Crud\CharacterController',
     '/characters.character_organisations' => 'Characters\MembershipController',
-    '/conversations' => 'Crud\ConversationController',
     '/conversations.conversation_participants' => 'ConversationParticipantController',
     '/conversations.conversation_messages' => 'ConversationMessageController',
-    '/dice_rolls' => 'Crud\DiceRollController',
-    '/events' => 'Crud\EventController',
-    '/locations' => 'Crud\LocationController',
-    '/families' => 'Crud\FamilyController',
-    '/items' => 'Crud\ItemController',
-    '/journals' => 'Crud\JournalController',
-    '/maps' => 'Crud\MapController',
     '/maps.map_layers' => 'Maps\LayerController',
     '/maps.map_groups' => 'Maps\GroupController',
     '/maps.map_markers' => 'Maps\MarkerController',
-    '/bookmarks' => 'Crud\BookmarkController',
-    '/organisations' => 'Crud\OrganisationController',
     '/organisations.organisation_members' => 'Organisation\MemberController',
-    '/notes' => 'Crud\NoteController',
-    '/quests' => 'Crud\QuestController',
     '/quests.quest_elements' => 'Quests\ElementController',
-    '/tags' => 'Crud\TagController',
-    '/timelines' => 'Crud\TimelineController',
     '/timelines.timeline_eras' => 'Timelines\TimelineEraController',
     '/timelines.timeline_elements' => 'Timelines\TimelineElementController',
-    '/races' => 'Crud\RaceController',
-    '/creatures' => 'Crud\CreatureController',
     '/relations' => 'RelationController',
     '/reminders' => 'ReminderUpdateController',
 
@@ -340,8 +335,6 @@ Route::resources([
     '/entities.inventories' => 'Entity\InventoryController',
     '/entities.relations' => 'Entity\RelationController',
 
-    '/attribute_templates' => 'Crud\AttributeTemplateController',
-    '/whiteboards' => 'Whiteboards\CrudController',
     // 'presets' => 'PresetController',
 ]);
 

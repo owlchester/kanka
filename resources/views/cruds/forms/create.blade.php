@@ -37,7 +37,7 @@
         </div>
     @endif
     <x-form
-        :action="[$name . '.store', $campaign]"
+        :action="['entities.store', $campaign, $entityType]"
         files
         unsaved
         class="entity-form"

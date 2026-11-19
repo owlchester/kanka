@@ -9,7 +9,6 @@ use App\Http\Resources\Web\EntityResource;
 use App\Models\Campaign;
 use App\Models\Relation;
 use App\Renderers\DatagridRenderer;
-use App\Services\AttributeService;
 use App\Services\Entity\RelationService;
 use App\Services\FilterService;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -20,7 +19,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
 
-class RelationController extends CrudController
+class RelationController extends CampaignTableController
 {
     protected RelationService $relationService;
 
@@ -28,39 +27,19 @@ class RelationController extends CrudController
 
     protected string $route = 'relations';
 
-    protected $langKey = 'entities/relations';
-
-    protected bool $tabPermissions = false;
-
-    protected bool $tabAttributes = false;
-
-    protected bool $tabBoosted = false;
-
-    protected bool $tabCopy = false;
-
-    protected string $forceMode = 'table';
+    protected string $langKey = 'entities/relations';
 
     protected string $model = Relation::class;
 
     /** @var string The datagrid controlling the bulk actions */
     protected string $datagridActions = RelationDatagridActions::class;
 
-    /** @var string Disable the sanitizer, handled by the observer */
-    protected string $sanitizer = '';
-
     protected string $filter = RelationFilter::class;
 
-    public function __construct(FilterService $filterService, DatagridRenderer $datagridRenderer, AttributeService $attributeService, RelationService $relationService)
+    public function __construct(FilterService $filterService, DatagridRenderer $datagridRenderer, RelationService $relationService)
     {
-        $this->filterService = $filterService;
-        $this->datagrid = $datagridRenderer;
-        $this->attributeService = $attributeService;
+        parent::__construct($filterService, $datagridRenderer);
         $this->relationService = $relationService;
-    }
-
-    public function titleKey(): string
-    {
-        return __('sidebar.relations');
     }
 
     /**
@@ -71,8 +50,6 @@ class RelationController extends CrudController
     public function create(Campaign $campaign)
     {
         $this->authorize('relations', $campaign);
-
-        $model = new $this->model;
 
         $params['campaign'] = $campaign;
         $params['entityAttributeTemplates'] = [];

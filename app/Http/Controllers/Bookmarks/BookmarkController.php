@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Crud;
+namespace App\Http\Controllers\Bookmarks;
 
 use App\Datagrids\Actions\BookmarkDatagridActions;
-use App\Http\Controllers\CrudController;
+use App\Facades\Module;
+use App\Http\Controllers\CampaignTableController;
 use App\Http\Requests\StoreBookmark;
 use App\Models\Bookmark;
 use App\Models\Campaign;
@@ -12,28 +13,15 @@ use App\Services\Campaign\Sidebar\SetupService;
 use App\Services\DashboardService;
 use Illuminate\Http\Request;
 
-class BookmarkController extends CrudController
+class BookmarkController extends CampaignTableController
 {
-    /** @var string Config for the crudController */
     protected string $view = 'bookmarks';
 
     protected string $route = 'bookmarks';
 
-    protected bool $tabPermissions = false;
-
-    protected bool $tabAttributes = false;
-
-    protected bool $tabBoosted = false;
-
-    protected bool $tabCopy = false;
-
-    protected bool $hasLimitCheck = true;
-
     protected string $model = Bookmark::class;
 
     protected string $datagridActions = BookmarkDatagridActions::class;
-
-    protected string $forceMode = 'table';
 
     public function index(Request $request, Campaign $campaign)
     {
@@ -42,12 +30,31 @@ class BookmarkController extends CrudController
             return redirect()->route('dashboard', $campaign);
         }
 
-        return $this->campaign($campaign)->crudIndex($request);
+        return parent::index($request, $campaign);
     }
 
     public function create(Campaign $campaign)
     {
-        return $this->campaign($campaign)->crudCreate([
+        $this->campaign($campaign);
+        $type = $this->getEntityType();
+        $this->authorize('create', [$type, $campaign]);
+        if (! $campaign->canHaveMoreBookmarks()) {
+            return view('cruds.forms.limit', [
+                'campaign' => $campaign,
+                'limit' => config('limits.campaigns.bookmarks'),
+                'thing' => __('entities.bookmarks'),
+                'doc' => '/advanced/bookmarks.html',
+                'name' => $this->view,
+            ]);
+        }
+
+        $singular = Module::singular($type->id);
+
+        return view('bookmarks.forms.create', [
+            'campaign' => $campaign,
+            'name' => $this->view,
+            'title' => empty($singular) ? __('bookmarks.create.title') : __('crud.titles.new', ['module' => $singular]),
+            'plural' => Module::plural($type->id, __('entities.bookmarks')),
             'dashboards' => $this->dashboardOptions(),
             'parents' => $this->sidebarParents(),
         ]);
@@ -58,7 +65,24 @@ class BookmarkController extends CrudController
      */
     public function store(StoreBookmark $request, Campaign $campaign)
     {
-        return $this->campaign($campaign)->crudStore($request);
+        $this->authorize('create', [$this->getEntityType(), $campaign]);
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
+        if (! $campaign->canHaveMoreBookmarks()) {
+            return redirect()->back();
+        }
+
+        $bookmark = Bookmark::create($request->validated() + ['campaign_id' => $campaign->id]);
+        $link = '<a href="' . route('bookmarks.show', [$campaign, $bookmark]) . '" class="text-link">' . e($bookmark->name) . '</a>';
+        session()->flash('success_raw', __('general.success.created', ['name' => $link]));
+
+        return match (true) {
+            $request->has('submit-new') => redirect()->route('bookmarks.create', $campaign),
+            $request->has('submit-update') => redirect()->route('bookmarks.edit', [$campaign, $bookmark]),
+            $request->has('submit-copy') => redirect()->route('bookmarks.create', [$campaign, 'copy' => $bookmark->id]),
+            default => redirect()->route('bookmarks.index', $campaign),
+        };
     }
 
     /**
@@ -78,7 +102,13 @@ class BookmarkController extends CrudController
      */
     public function edit(Campaign $campaign, Bookmark $bookmark)
     {
-        return $this->campaign($campaign)->crudEdit($bookmark, [
+        $this->authorize('update', $bookmark);
+        $this->campaign($campaign);
+
+        return view('bookmarks.forms.edit', [
+            'campaign' => $campaign,
+            'model' => $bookmark,
+            'name' => $this->view,
             'dashboards' => $this->dashboardOptions(),
             'parents' => $this->sidebarParents(),
         ]);
@@ -131,19 +161,14 @@ class BookmarkController extends CrudController
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Campaign $campaign, Bookmark $bookmark)
+    public function destroy(): never
     {
-        return $this->campaign($campaign)->crudDestroy($bookmark);
-    }
-
-    protected function limitCheckReached(): bool
-    {
-        return ! $this->campaign->canHaveMoreBookmarks();
+        abort(404);
     }
 
     protected function getEntityType(): EntityType
     {
-        return EntityType::where('id', config('entities.ids.bookmark'))->first();
+        return EntityType::findOrFail(config('entities.ids.bookmark'));
     }
 
     protected function dashboardOptions(): array

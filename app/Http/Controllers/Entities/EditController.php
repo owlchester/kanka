@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCustomEntity;
 use App\Models\Campaign;
 use App\Models\Entity;
+use App\Models\Map;
 use App\Models\MiscModel;
 use App\Services\Attributes\EntitySheetService;
 use App\Services\AttributeService;
@@ -17,6 +18,7 @@ use App\Services\Entity\Relations\LocationRelationsService;
 use App\Services\MultiEditingService;
 use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -39,6 +41,12 @@ class EditController extends Controller
     public function index(Campaign $campaign, Entity $entity)
     {
         $this->campaign($campaign)->authorize('update', $entity);
+
+        if ($entity->isMap() && $entity->child instanceof Map && $entity->child->tilingRunning()) {
+            return redirect()
+                ->route('entities.show', [$campaign, $entity])
+                ->with('error', __('maps.errors.tiling.running.edit') . ' ' . __('maps.errors.tiling.running.time'));
+        }
 
         $editingUsers = null;
 
@@ -66,29 +74,21 @@ class EditController extends Controller
         return view('entities.forms.edit', $params);
     }
 
-    public function save(Request $request, Campaign $campaign, Entity $entity)
+    public function save(Request $request, Campaign $campaign, Entity $entity, bool $legacy = false)
     {
+        abort_unless($entity->campaign_id === $campaign->id, 404);
         $this->campaign($campaign)->authorize('update', $entity);
 
-        // We need to validate the request
-        $validationClass = $entity->entityType->isStandard()
-            ? 'App\Http\Requests\Store' . Str::studly($entity->entityType->code)
-            : StoreCustomEntity::class;
-
-        $validated = [];
-        if (class_exists($validationClass)) {
-            $validator = app()->make($validationClass);
-            if (method_exists($validator, 'resolvedFields')) {
-                $resolved = $validator->resolvedFields();
-                if ($resolved) {
-                    $request->merge($resolved);
-                }
-            }
-            $validated = $this->validate($request, $validator->rules());
+        if (! $request instanceof FormRequest) {
+            $validationClass = $entity->entityType->isStandard()
+                ? 'App\Http\Requests\Store' . Str::studly($entity->entityType->code)
+                : StoreCustomEntity::class;
+            $request = app($validationClass);
         }
+        $validated = $request->validated();
 
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
-        if (request()->ajax()) {
+        if ($request->ajax()) {
             return response()->json(['success' => true]);
         }
 
@@ -109,6 +109,13 @@ class EditController extends Controller
             if ($entity->hasChild()) {
                 $data = $this->prepareData($request, $entity->child, $validated);
                 $entity->child->update($data);
+
+                // The legacy map form invalidated cached dimensions on save.
+                if ($legacy && $entity->child instanceof Map) {
+                    $entity->child->height = null;
+                    $entity->child->width = null;
+                    $entity->child->save();
+                }
 
                 // Fire an event for the Entity Observer
                 $this->relationsFactory->for($entity)?->save($entity->child, $data);
