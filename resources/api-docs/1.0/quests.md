@@ -153,6 +153,7 @@ To create a quest, use the following endpoint.
 | `name` | `string` (Required) | Name of the quest |
 | `entry` | `string` | The html description of the quest |
 | `type` | `string` | Type of quest |
+| `date` | `string` | Optional real-world date in `YYYY-MM-DD` format; use `null` to clear |
 | `parent_id` | `integer` | The parent quest's entity id |
 | `instigator_id` | `integer` | The quest's instigator (entity) |
 | `locations` | `array` | Array of the quest's locations |

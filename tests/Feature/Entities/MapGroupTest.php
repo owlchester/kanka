@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\MapGroup;
+
 it('POSTS an invalid map group form')
     ->asUser()
     ->withCampaign()
@@ -22,6 +24,26 @@ it('POSTS a new map group')
             'map_id',
         ],
     ]);
+
+it('creates a group on the URL map while ignoring legacy map_id', function () {
+    $this->asUser()->withCampaign()->withMaps()
+        ->postJson('/api/1.0/campaigns/1/maps/1/map_groups', [
+            'name' => 'Map-owned group',
+            'map_id' => 999,
+            'is_shown' => true,
+        ])
+        ->assertCreated()
+        ->assertJsonPath('data.map_id', 1)
+        ->assertJsonPath('data.is_shown', true);
+});
+
+it('creates a group without a body map_id')
+    ->asUser()
+    ->withCampaign()
+    ->withMaps()
+    ->postJson('/api/1.0/campaigns/1/maps/1/map_groups', ['name' => 'No body map'])
+    ->assertCreated()
+    ->assertJsonPath('data.map_id', 1);
 
 it('GETS all maps groups')
     ->asUser()
@@ -63,6 +85,23 @@ it('UPDATES a valid map group')
     ->putJson('/api/1.0/campaigns/1/maps/1/map_groups/1', ['name' => 'Bob'])
     ->assertStatus(200)
     ->assertJsonFragment(['name' => 'Bob']);
+
+it('ignores legacy map_id on group update and returns 404 for another map group', function () {
+    $this->asUser()->withCampaign()->withMaps()->withMapGroups()
+        ->putJson('/api/1.0/campaigns/1/maps/1/map_groups/1', [
+            'name' => 'Updated group',
+            'map_id' => 999,
+            'is_shown' => true,
+        ])
+        ->assertSuccessful()
+        ->assertJsonPath('data.map_id', 1)
+        ->assertJsonPath('data.is_shown', true);
+
+    $otherGroup = MapGroup::factory()->create(['map_id' => 2]);
+    $this->getJson("/api/1.0/campaigns/1/maps/1/map_groups/{$otherGroup->id}")->assertNotFound();
+    $this->putJson("/api/1.0/campaigns/1/maps/1/map_groups/{$otherGroup->id}", ['name' => 'Nope'])->assertNotFound();
+    $this->deleteJson("/api/1.0/campaigns/1/maps/1/map_groups/{$otherGroup->id}")->assertNotFound();
+});
 
 it('DELETES a map group')
     ->asUser()

@@ -142,11 +142,13 @@ it('saves journal locations through the web form', function () {
     $locations = Location::all();
     $this->post(route('journals.store', [1]), [
         'name' => 'Web journal',
+        'date' => '2024-03-14',
         'save_locations' => 1,
         'locations' => [$locations[0]->id, $locations[1]->id],
     ])->assertRedirect();
 
     $journal = Journal::whereHas('entity', fn ($query) => $query->where('name', 'Web journal'))->firstOrFail();
+    expect($journal->date)->toBe('2024-03-14');
     expect($journal->entity->locations()->pluck('locations.id')->sort()->values()->all())
         ->toBe([$locations[0]->id, $locations[1]->id]);
 });
