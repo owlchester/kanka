@@ -34,6 +34,7 @@ class StoreQuest extends FormRequest
     {
         $rules = [
             'instigator_id' => 'nullable|integer|exists:entities,id',
+            'date' => 'nullable|string|date_format:Y-m-d',
         ];
 
         // If the calendar is present and not null, but we aren't "skipping" it (editing but without permission)
