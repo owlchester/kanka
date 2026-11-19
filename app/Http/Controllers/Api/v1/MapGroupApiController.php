@@ -33,6 +33,7 @@ class MapGroupApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $map->entity);
+        $this->ensureGroupBelongsToMap($map, $mapGroup);
 
         return new Resource($mapGroup);
     }
@@ -45,7 +46,7 @@ class MapGroupApiController extends ApiController
             return response()->json(['error' => 'Max amount of map groups reached']);
         }
 
-        $model = MapGroup::create($request->all());
+        $model = $map->groups()->create($request->validated());
 
         return new Resource($model);
     }
@@ -58,7 +59,8 @@ class MapGroupApiController extends ApiController
     ) {
         $this->authorize('access', $campaign);
         $this->authorize('update', $map->entity);
-        $mapGroup->update($request->all());
+        $this->ensureGroupBelongsToMap($map, $mapGroup);
+        $mapGroup->update($request->validated());
 
         return new Resource($mapGroup);
     }
@@ -76,8 +78,14 @@ class MapGroupApiController extends ApiController
     ) {
         $this->authorize('access', $campaign);
         $this->authorize('update', $map->entity);
+        $this->ensureGroupBelongsToMap($map, $mapGroup);
         $mapGroup->delete();
 
         return response()->json(null, 204);
+    }
+
+    private function ensureGroupBelongsToMap(Map $map, MapGroup $mapGroup): void
+    {
+        abort_unless((int) $mapGroup->map_id === (int) $map->id, 404);
     }
 }
