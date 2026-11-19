@@ -4,41 +4,47 @@ namespace App\Http\Middleware;
 
 use App\Facades\ApiLog;
 use App\Models\Campaign;
+use App\Models\User;
 use Closure;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class ApiLogMiddleware
 {
     /**
      * Handle an incoming request.
-     *
-     * @param  Request  $request
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next): Response
     {
         return $next($request);
     }
 
-    public function terminate($request, $response)
+    public function terminate(Request $request, Response $response): void
     {
-        if (! $request instanceof JsonResponse) {
+        if (! config('logging.enabled') || ! $response instanceof JsonResponse) {
+            ApiLog::reset();
+
             return;
         }
-        $startTime = LARAVEL_START;
-        $endTime = microtime(true);
-        $duration = $endTime - $startTime;
 
-        // @phpstan-ignore-next-line
-        $campaign = $request->route('campaign');
-        // @phpstan-ignore-next-line
+        $startTime = defined('LARAVEL_START') ? LARAVEL_START : microtime(true);
+        $duration = round(max(0.0, microtime(true) - $startTime), 3);
+
         $log = ApiLog::request($request)
             ->response($response)
             ->duration($duration);
 
-        if ($campaign !== null && $campaign instanceof Campaign) {
+        $user = $request->user() ?? auth()->user();
+        if ($user instanceof User) {
+            $log->user($user);
+        }
+
+        $campaign = $request->route('campaign');
+        if ($campaign instanceof Campaign) {
             $log->campaign($campaign);
         }
+
         $log->log();
     }
 }
