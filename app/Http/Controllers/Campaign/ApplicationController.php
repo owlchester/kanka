@@ -44,7 +44,8 @@ class ApplicationController extends Controller
         if (! $campaign->canHaveMoreMembers()) {
             return view('cruds.forms.limit')
                 ->with('campaign', $campaign)
-                ->with('key', 'members')
+                ->with('limit', config('limits.campaigns.members'))
+                ->with('thing', __('campaigns.show.tabs.members'))
                 ->with('name', 'campaign_roles');
         }
 
