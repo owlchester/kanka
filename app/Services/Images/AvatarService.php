@@ -8,7 +8,6 @@ use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 class AvatarService
@@ -25,18 +24,9 @@ class AvatarService
 
     protected int $height;
 
-    protected bool $withCache = false;
-
     public function field(string $field): self
     {
         $this->field = $field;
-
-        return $this;
-    }
-
-    public function cached(): self
-    {
-        $this->withCache = true;
 
         return $this;
     }
@@ -60,7 +50,6 @@ class AvatarService
     {
         $this->field = 'image';
         $this->fallback = false;
-        $this->withCache = false;
         unset($this->entity);
 
         return $this;
@@ -163,15 +152,5 @@ class AvatarService
     protected function childThumbnailPath(): ?string
     {
         return $this->entity->image_path;
-    }
-
-    public function forget(): void
-    {
-        Cache::forget($this->cacheKey());
-    }
-
-    protected function cacheKey(): string
-    {
-        return 'entity_' . $this->entity->id . '_avatar_v3';
     }
 }
