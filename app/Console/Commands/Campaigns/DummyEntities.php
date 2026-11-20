@@ -25,8 +25,6 @@ use App\Models\QuestElement;
 use App\Models\Race;
 use App\Models\Relation;
 use App\Models\Tag;
-use App\Observers\CalendarObserver;
-use App\Observers\EntityAbilityObserver;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Factories\Sequence;
@@ -72,7 +70,7 @@ class DummyEntities extends Command
         CharacterCache::campaign($campaign);
         QuestCache::campaign($campaign);
 
-        $this->loadObservers($campaign);
+        CampaignLocalization::forceCampaign($campaign);
 
         // Generate Characters Abilities and Locations
         $firstLocation = Location::factory()
@@ -245,15 +243,5 @@ class DummyEntities extends Command
         Relation::factory()->state(['relation' => 'Mortal Enemy', 'campaign_id' => $campaign->id, 'owner_id' => $thirdCharacter->entity->id, 'target_id' => $secondCharacter->entity->id])->for($secondRelation, 'mirror')->create();
 
         return 0;
-    }
-
-    /**
-     * Load observers.
-     */
-    private function loadObservers(Campaign $campaign)
-    {
-        CampaignLocalization::forceCampaign($campaign);
-        Calendar::observe(CalendarObserver::class);
-        EntityAbility::observe(EntityAbilityObserver::class);
     }
 }

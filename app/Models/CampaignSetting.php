@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Observers\CampaignSettingObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -20,6 +22,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int|bool $aliases
  * @property int|bool $assets
  */
+#[ObservedBy(CampaignSettingObserver::class)]
 class CampaignSetting extends Model
 {
     /**

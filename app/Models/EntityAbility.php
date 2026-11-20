@@ -7,7 +7,9 @@ use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
+use App\Observers\EntityAbilityObserver;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -30,6 +32,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static Builder|self defaultOrder()
  * @method static Builder|self sort(array $filters, array $defaultOrder = [])
  */
+#[ObservedBy(EntityAbilityObserver::class)]
 class EntityAbility extends Model
 {
     use Blameable;

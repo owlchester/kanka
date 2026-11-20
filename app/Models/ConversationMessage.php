@@ -5,7 +5,9 @@ namespace App\Models;
 use App\Enums\ConversationTarget;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\LastSync;
+use App\Observers\ConversationMessageObserver;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -25,6 +27,7 @@ use Illuminate\Support\Facades\Auth;
  * @property Conversation $conversation
  * @property Carbon $created_at
  */
+#[ObservedBy(ConversationMessageObserver::class)]
 class ConversationMessage extends Model
 {
     use Blameable;

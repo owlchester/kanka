@@ -6,9 +6,11 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
 use App\Models\Relations\CalendarRelations;
+use App\Observers\CalendarObserver;
 use App\Services\Calendars\CalendarChronology;
 use App\Traits\ExportableTrait;
 use App\ValueObjects\Calendars\CalendarDefinition;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -34,6 +36,7 @@ use InvalidArgumentException;
  * @property bool|int $skip_year_zero
  * @property bool|int $show_birthdays
  */
+#[ObservedBy(CalendarObserver::class)]
 class Calendar extends MiscModel
 {
     use Acl;

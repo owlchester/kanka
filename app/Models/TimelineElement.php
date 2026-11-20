@@ -9,6 +9,8 @@ use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasSuggestions;
 use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\Sanitizable;
+use App\Observers\TimelineElementObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -38,6 +40,7 @@ use Laravel\Scout\Searchable;
  *
  * @method static self|Builder ordered()
  */
+#[ObservedBy(TimelineElementObserver::class)]
 class TimelineElement extends Model
 {
     use Blameable;

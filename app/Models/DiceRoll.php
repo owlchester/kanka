@@ -6,6 +6,8 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Sanitizable;
+use App\Observers\DiceRollObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -16,6 +18,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property ?int $character_id
  * @property ?Character $character
  */
+#[ObservedBy(DiceRollObserver::class)]
 class DiceRoll extends MiscModel
 {
     use Acl;

@@ -5,7 +5,9 @@ namespace App\Models;
 use App\Models\Concerns\HasUser;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\SortableTrait;
+use App\Observers\CampaignUserObserver;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
@@ -21,6 +23,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  *
  * @method static Builder|self campaignUser(int $campaignID, int $userID)
  */
+#[ObservedBy(CampaignUserObserver::class)]
 class CampaignUser extends Pivot
 {
     use HasUser;

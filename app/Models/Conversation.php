@@ -7,6 +7,8 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Sanitizable;
+use App\Observers\ConversationObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -23,6 +25,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property ConversationParticipant[]|Collection $participants
  * @property ConversationMessage[]|Collection $messages
  */
+#[ObservedBy(ConversationObserver::class)]
 class Conversation extends MiscModel
 {
     use Acl;
