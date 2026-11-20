@@ -3,7 +3,9 @@
 namespace App\Models;
 
 use App\Models\Concerns\HasUser;
+use App\Observers\CampaignRoleUserObserver;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -17,6 +19,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property CampaignRole $campaignRole
  * @property Carbon $created_at
  */
+#[ObservedBy(CampaignRoleUserObserver::class)]
 class CampaignRoleUser extends Model
 {
     use HasUser;

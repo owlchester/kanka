@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Models\Concerns\HasUser;
+use App\Observers\AdminInviteObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -15,6 +17,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *
  * @method static self|Builder check(int $campaignId)
  */
+#[ObservedBy(AdminInviteObserver::class)]
 class AdminInvite extends Model
 {
     use HasUser;

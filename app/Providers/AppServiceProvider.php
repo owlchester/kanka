@@ -5,22 +5,13 @@ namespace App\Providers;
 use App\Auth\PassportTokenGuard;
 use App\Http\Validators\HashValidator;
 use App\Jobs\Search\MakeSearchable;
-use App\Models\AdminInvite;
 use App\Models\Bookmark;
 use App\Models\Campaign;
-use App\Models\CampaignDashboard;
-use App\Models\CampaignDashboardRole;
 use App\Models\CampaignDashboardWidget;
 use App\Models\CampaignDescription;
-use App\Models\CampaignInvite;
-use App\Models\CampaignPlugin;
-use App\Models\CampaignRole;
-use App\Models\CampaignRoleUser;
-use App\Models\CampaignStyle;
 use App\Models\DiceRollResult;
 use App\Models\Entity;
 use App\Models\EntityAsset;
-use App\Models\EntityType;
 use App\Models\FamilyTree;
 use App\Models\Image;
 use App\Models\Map;
@@ -32,8 +23,6 @@ use App\Models\Reminder;
 use App\Models\TimelineEra;
 use App\Models\User;
 use App\Models\UserLog;
-use App\Models\Webhook;
-use App\Observers\AdminInviteObserver;
 use App\Observers\CampaignDescriptionObserver;
 use App\Observers\CampaignObserver;
 use App\Observers\FamilyTreeObserver;
@@ -174,20 +163,11 @@ class AppServiceProvider extends ServiceProvider
         }
 
         // Model observers. Lots of magic.
-        AdminInvite::observe(AdminInviteObserver::class);
         Campaign::observe(CampaignObserver::class);
         CampaignDescription::observe(CampaignDescriptionObserver::class);
-        CampaignRole::observe('App\Observers\CampaignRoleObserver');
-        CampaignRoleUser::observe('App\Observers\CampaignRoleUserObserver');
-        CampaignInvite::observe('App\Observers\CampaignInviteObserver');
-        CampaignDashboard::observe('App\Observers\CampaignDashboardObserver');
-        CampaignDashboardRole::observe('App\Observers\CampaignDashboardRoleObserver');
         CampaignDashboardWidget::observe('App\Observers\CampaignDashboardWidgetObserver');
-        CampaignPlugin::observe('App\Observers\CampaignPluginObserver');
-        CampaignStyle::observe('App\Observers\CampaignStyleObserver');
         DiceRollResult::observe('App\Observers\DiceRollResultObserver');
         Entity::observe('App\Observers\EntityObserver');
-        EntityType::observe('App\Observers\EntityTypeObserver');
         EntityAsset::observe('App\Observers\EntityAssetObserver');
         Post::observe('App\Observers\PostObserver');
         Reminder::observe('App\Observers\ReminderObserver');
@@ -201,7 +181,6 @@ class AppServiceProvider extends ServiceProvider
         TimelineEra::observe('App\Observers\TimelineEraObserver');
         User::observe(UserObserver::class);
         UserLog::observe('App\Observers\UserLogObserver');
-        Webhook::observe('App\Observers\WebhookObserver');
 
         if (request()->has('_debug_perm') && config('app.debug')) {
             // Add in boot function

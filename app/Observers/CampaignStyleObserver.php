@@ -17,8 +17,10 @@ class CampaignStyleObserver
 
     public function creating(CampaignStyle $campaignStyle)
     {
-        $last = $campaignStyle->campaign->styles()->max('order');
-        $campaignStyle->order = (int) $last + 1;
+        if (empty($campaignStyle->order)) {
+            $last = $campaignStyle->campaign->styles()->max('order');
+            $campaignStyle->order = (int) $last + 1;
+        }
     }
 
     public function created(CampaignStyle $campaignStyle)
