@@ -5,7 +5,6 @@ namespace App\Services\Entity;
 use App\Facades\CampaignLocalization;
 use App\Facades\CharacterCache;
 use App\Facades\EntityCache;
-use App\Facades\Images;
 use App\Models\Entity;
 use App\Models\MiscModel;
 use App\Models\Scopes\ActiveEntityScope;
@@ -42,7 +41,6 @@ class PurgeService
 
         $this->entityIds[] = $entity->id;
         $entity->forceDelete();
-        Images::cleanupEntity($entity);
 
         $this->count++;
     }

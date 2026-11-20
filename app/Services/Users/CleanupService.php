@@ -3,7 +3,6 @@
 namespace App\Services\Users;
 
 use App\Enums\FeatureStatus;
-use App\Events\Campaigns\Deleted;
 use App\Facades\Images;
 use App\Models\CampaignFollower;
 use App\Models\CampaignUser;
@@ -48,7 +47,6 @@ class CleanupService
             if ($member->campaign->members->count() <= 1) {
                 Images::model($member->campaign)->field('image')->cleanup();
                 $member->campaign->forceDelete();
-                Deleted::dispatch($member->campaign, $this->user);
             }
         }
 

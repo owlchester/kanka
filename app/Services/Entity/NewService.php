@@ -80,6 +80,10 @@ class NewService
             $this->entity->name = $this->purify(mb_trim(strip_tags($name)));
             $this->entity->is_private = $this->private();
             $this->entity->save();
+            app(CreatorPermissionService::class)
+                ->entity($this->entity)
+                ->user($this->user ?? auth()->user())
+                ->grant();
         } else {
             $this->entity = app(StandardEntityCreationService::class)
                 ->campaign($this->campaign)

@@ -12,6 +12,7 @@ use App\Services\Attributes\EntitySheetService;
 use App\Services\AttributeService;
 use App\Services\Entity\AliasService;
 use App\Services\Entity\CopyService;
+use App\Services\Entity\CreatorPermissionService;
 use App\Services\Entity\EntitySaveService;
 use App\Services\Entity\Relations\LocationRelationsService;
 use Illuminate\Http\Request;
@@ -90,6 +91,10 @@ class CreateController extends Controller
             $entity->campaign_id = $campaign->id;
             $entity->type_id = $entityType->id;
             $entity->save();
+            app(CreatorPermissionService::class)
+                ->entity($entity)
+                ->user(auth()->user())
+                ->grant();
             $this->entitySaveService->campaign($campaign)->entity($entity)->save($data, $request);
             $this->locationRelationsService->entity($entity)->process($data);
 

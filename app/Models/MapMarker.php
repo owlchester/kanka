@@ -18,6 +18,8 @@ use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Models\Scopes\AclScope;
 use App\Models\Scopes\VisibilityIDScope;
+use App\Observers\MapMarkerObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -54,6 +56,7 @@ use Illuminate\Support\Str;
  * @property ?int $pin_size
  * @property MapGroup|null $group
  */
+#[ObservedBy(MapMarkerObserver::class)]
 class MapMarker extends Model
 {
     use Blameable;

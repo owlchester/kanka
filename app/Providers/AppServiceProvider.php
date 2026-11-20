@@ -5,22 +5,13 @@ namespace App\Providers;
 use App\Auth\PassportTokenGuard;
 use App\Http\Validators\HashValidator;
 use App\Jobs\Search\MakeSearchable;
-use App\Models\Campaign;
-use App\Models\Entity;
-use App\Models\Image;
-use App\Models\Map;
-use App\Models\MapGroup;
-use App\Models\MapLayer;
-use App\Models\MapMarker;
 use App\Models\User;
-use App\Observers\CampaignObserver;
 use App\View\Composers\EntryWorkspaceComposer;
 use Exception;
 use Illuminate\Contracts\Encryption\Encrypter;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
@@ -69,8 +60,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         $this->registerDevelopWarning();
-
-        $this->registerWebObservers();
+        $this->bootWeb();
         Cashier::useCustomerModel(User::class);
         Scout::makeSearchableUsing(MakeSearchable::class);
 
@@ -130,16 +120,8 @@ class AppServiceProvider extends ServiceProvider
         }
     }
 
-    /**
-     * Register web observers (ie not running in console)
-     * Kanka uses a lot of observers because they offer some magic, but
-     * they also make a lot of stuff break.
-     */
-    protected function registerWebObservers()
+    protected function bootWeb(): void
     {
-        // When in console (queue, commands), we don't want observers to trigger.
-        // We probably do, but we're so far down the rabbit hole that we no
-        // longer want them.
         if (app()->runningInConsole() && ! app()->runningUnitTests()) {
             return;
         }
@@ -149,17 +131,7 @@ class AppServiceProvider extends ServiceProvider
             \URL::forceScheme('https');
         }
 
-        // Model observers. Lots of magic.
-        Campaign::observe(CampaignObserver::class);
-        Entity::observe('App\Observers\EntityObserver');
-        Image::observe('App\Observers\ImageObserver');
-        Map::observe('App\Observers\MapObserver');
-        MapLayer::observe('App\Observers\MapLayerObserver');
-        MapGroup::observe('App\Observers\MapGroupObserver');
-        MapMarker::observe('App\Observers\MapMarkerObserver');
-
         if (request()->has('_debug_perm') && config('app.debug')) {
-            // Add in boot function
             DB::listen(function ($query) {
                 $sql = $query->sql;
                 foreach ($query->bindings as $key => $binding) {

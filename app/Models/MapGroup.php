@@ -8,6 +8,8 @@ use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
+use App\Observers\MapGroupObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -30,6 +32,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  *
  * @method static self|Builder ordered()
  */
+#[ObservedBy(MapGroupObserver::class)]
 class MapGroup extends Model
 {
     use Blameable;

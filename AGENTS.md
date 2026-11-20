@@ -20,7 +20,7 @@
 - Application wiring is split across `bootstrap/app.php`, `app/Http/Kernel.php`, and `app/Providers/RouteServiceProvider.php`; preserve this structure when adding middleware, providers, or routes.
 - Campaign UI routes live in `routes/campaigns/*.php` under `/w/{campaign}`. The route binding uses `Campaign::acl()`, so preserve ACL-scoped campaign resolution.
 - API v1 routes are under `/api/1.0`, use Passport authentication and rate limiting, and public API routes are separate under `/api/public`.
-- Model observers are registered for web requests and unit tests but skipped for normal console and queue commands. Do not rely on observer side effects in Artisan commands or jobs.
+- Model observers are registered directly on models via `#[ObservedBy]` and run across web requests, console commands, queues, and tests. Use `saveQuietly()` in bulk console/queue jobs when you intentionally want to bypass observer side effects.
 - Production uses MariaDB while tests use SQLite. Preserve existing driver-specific migration handling and do not assume SQLite exercises MariaDB SQL or foreign-key behavior.
 
 ## Conventions

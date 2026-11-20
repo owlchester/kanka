@@ -10,8 +10,10 @@ use App\Models\Concerns\HasUser;
 use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Sanitizable;
+use App\Observers\ImageObserver;
 use App\Traits\ExportableTrait;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -61,6 +63,7 @@ use Illuminate\Support\Str;
  * @method static Builder|self imageFolder(string|null $folder)
  * @method static Builder|self search(?string $folder, ?string $term)
  */
+#[ObservedBy(ImageObserver::class)]
 class Image extends Model
 {
     use Blameable;

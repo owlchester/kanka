@@ -32,7 +32,7 @@ class MapMarkerObserver
 
     public function saved(MapMarker $mapMarker)
     {
-        $mapMarker->map->entity->touchSilently();
+        $mapMarker->map?->entity?->touchSilently();
     }
 
     public function created(MapMarker $mapMarker): void
@@ -47,12 +47,16 @@ class MapMarkerObserver
 
     public function deleted(MapMarker $mapMarker)
     {
-        $mapMarker->map->entity->touchSilently();
+        $mapMarker->map?->entity?->touchSilently();
         $this->broadcastChange($mapMarker, 'deleted');
     }
 
     protected function broadcastChange(MapMarker $mapMarker, string $action): void
     {
+        if (app()->runningInConsole() && ! app()->runningUnitTests()) {
+            return;
+        }
+
         MarkerChanged::dispatch($mapMarker, $action);
         MarkerChanged::dispatch($mapMarker, $action, true);
     }

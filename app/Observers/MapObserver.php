@@ -18,6 +18,10 @@ class MapObserver
 
     public function updated(Map $map): void
     {
+        if (app()->runningInConsole() && ! app()->runningUnitTests()) {
+            return;
+        }
+
         if (! $map->wasChanged(['grid', 'min_zoom', 'max_zoom', 'config'])) {
             return;
         }

@@ -11,6 +11,8 @@ use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
+use App\Observers\MapLayerObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -35,6 +37,7 @@ use Illuminate\Support\Facades\Storage;
  *
  * @method static self|Builder ordered()
  */
+#[ObservedBy(MapLayerObserver::class)]
 class MapLayer extends Model
 {
     use Blameable;

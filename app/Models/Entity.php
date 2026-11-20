@@ -24,10 +24,12 @@ use App\Models\Concerns\Templatable;
 use App\Models\Concerns\TouchSilently;
 use App\Models\Relations\EntityRelations;
 use App\Models\Scopes\EntityScopes;
+use App\Observers\EntityObserver;
 use App\Services\Entity\CustomStatusAssignmentService;
 use Carbon\Carbon;
 use Collator;
 use Exception;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -68,6 +70,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property Carbon $deleted_at
  * @property ?Carbon $archived_at
  */
+#[ObservedBy(EntityObserver::class)]
 class Entity extends Model
 {
     public const CREATION_FIELDS = [

@@ -26,7 +26,7 @@ class MapGroupObserver
 
     public function saved(MapGroup $mapGroup)
     {
-        $mapGroup->map->entity->touchSilently();
+        $mapGroup->map?->entity?->touchSilently();
     }
 
     public function created(MapGroup $mapGroup): void
@@ -45,12 +45,16 @@ class MapGroupObserver
 
     public function deleted(MapGroup $mapGroup)
     {
-        $mapGroup->map->entity->touchSilently();
+        $mapGroup->map?->entity?->touchSilently();
         $this->broadcastContents($mapGroup->map);
     }
 
-    protected function broadcastContents(Map $map): void
+    protected function broadcastContents(?Map $map): void
     {
+        if (! $map || (app()->runningInConsole() && ! app()->runningUnitTests())) {
+            return;
+        }
+
         ContentsChanged::dispatch($map);
         ContentsChanged::dispatch($map, true);
     }

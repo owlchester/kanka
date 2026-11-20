@@ -13,6 +13,7 @@ use App\Models\Post;
 use App\Models\Race;
 use App\Models\Tag;
 use App\Services\Entity\CopyService;
+use App\Services\Entity\CreatorPermissionService;
 use App\Services\Entity\EntitySaveService;
 use App\Services\Entity\Relations\EntityRelationsServiceFactory;
 use App\Services\Entity\RemindableService;
@@ -110,6 +111,10 @@ class ProcessService
                 $this->entity->campaign_id = $this->campaign->id;
                 $this->entity->type_id = $this->entityType->id;
                 $this->entity->save();
+                app(CreatorPermissionService::class)
+                    ->entity($this->entity)
+                    ->user(auth()->user())
+                    ->grant();
             } else {
                 $model = $this->entityCreationService
                     ->campaign($this->campaign)
