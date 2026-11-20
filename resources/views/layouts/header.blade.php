@@ -1,3 +1,14 @@
+@php
+    $impersonation = auth()->check() && \App\Facades\Identity::isImpersonating() ? [
+        'label' => __('campaigns.members.impersonating.acting_as', ['name' => auth()->user()->name]),
+        'shortLabel' => __('campaigns.members.impersonating.acting_as_short'),
+        'returnLabel' => __('campaigns.members.actions.switch-back'),
+        'returnUrl' => route('identity.back', $campaign ?? \App\Facades\Identity::getCampaignId()),
+        'roles' => \App\Facades\Identity::campaignRoleNames(auth()->user()),
+        'rolesLabel' => __('campaigns.members.fields.roles'),
+        'noRolesLabel' => __('campaigns.members.impersonating.no_roles'),
+    ] : null;
+@endphp
 <header id="header" class="fixed top-0 h-13 md:h-12 w-full bg-navbar bg-base-100 z-900">
     <nav class="flex gap-2 justify-center items-center h-full px-3">
         <noscript>
@@ -106,6 +117,9 @@
                         campaigns_label="{{ __('entities.campaigns') }}"
                         close_label="{{ __('crud.actions.close') }}"
                         :has_alerts="{{ auth()->user()->hasUnread() ? 'true' : 'false'}}"
+                        @if ($impersonation)
+                            :impersonation="{{ \Illuminate\Support\Js::encode($impersonation) }}"
+                        @endif
                     ></nav-switcher>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
                         {{ csrf_field() }}
@@ -140,6 +154,9 @@
             create-label="{{ __('sidebar.entity-creator') }}"
             :authenticated="{{ auth()->check() ? 'true' : 'false' }}"
             :account-texts='@json($mobileAccountTexts)'
+            @if ($impersonation)
+                :impersonation="{{ \Illuminate\Support\Js::encode($impersonation) }}"
+            @endif
             world-name="{{ $campaign->name }}"
             world-url="{{ route('dashboard', $campaign) }}"
             back-label="{{ __('crud.actions.back') }}"

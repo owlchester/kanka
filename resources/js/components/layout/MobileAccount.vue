@@ -6,6 +6,20 @@
             <a v-if="registerUrl" :href="registerUrl" class="btn2 btn-outline min-h-11">{{ texts.register }}</a>
             <button type="button" class="min-h-11 text-sm text-link" @click="emit('update:modelValue', false)">{{ texts.browse }}</button>
         </div>
+        <div v-else-if="impersonation" class="flex flex-col gap-4">
+            <a :href="impersonation.returnUrl" class="flex min-h-12 items-center gap-3 rounded-xl px-3 text-link hover:bg-base-200">
+                <i class="fa-regular fa-sign-out-alt" aria-hidden="true"></i>
+                {{ impersonation.returnLabel }}
+            </a>
+            <ImpersonationRoles :impersonation="impersonation" />
+            <section class="overflow-hidden rounded-xl border border-base-300">
+                <div class="px-4 pt-3 text-xs text-neutral-content">{{ texts.current_world }}</div>
+                <a :href="worldUrl" class="flex min-h-12 items-center justify-between gap-3 px-4 pb-2 text-link">
+                    <span class="min-w-0 truncate">{{ worldName }}</span>
+                    <span class="flex shrink-0 items-center gap-2 text-xs">{{ texts.home }}<i class="fa-regular fa-angle-right" aria-hidden="true"></i></span>
+                </a>
+            </section>
+        </div>
         <div v-else-if="loading" class="flex min-h-32 items-center justify-center" role="status" :aria-label="texts.loading">
             <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
         </div>
@@ -99,9 +113,11 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
 import MobileSheet from './MobileSheet.vue'
+import ImpersonationRoles from './ImpersonationRoles.vue'
 import Notification from './Notification.vue'
 import Release from './Release.vue'
 import { useNavigationAlerts } from '../../composables/useNavigationAlerts'
+import type { Impersonation } from './impersonation'
 
 const props = defineProps<{
     modelValue: boolean
@@ -117,6 +133,7 @@ const props = defineProps<{
     registerUrl?: string
     backLabel: string
     closeLabel: string
+    impersonation?: Impersonation
 }>()
 const emit = defineEmits<{ 'update:modelValue': [value: boolean] }>()
 const { hasUnread } = useNavigationAlerts()
@@ -125,7 +142,7 @@ const data = ref<any>(null)
 const loading = ref(false)
 const error = ref(false)
 const panel = ref('home')
-const title = computed(() => !props.authenticated ? props.loginLabel : panel.value === 'worlds' ? props.texts.worlds : panel.value === 'notifications' ? data.value?.notifications.title : panel.value === 'more' ? props.texts.more : props.texts.title)
+const title = computed(() => props.impersonation?.label ?? (!props.authenticated ? props.loginLabel : panel.value === 'worlds' ? props.texts.worlds : panel.value === 'notifications' ? data.value?.notifications.title : panel.value === 'more' ? props.texts.more : props.texts.title))
 const worldGroups = computed(() => [
     { key: 'member', label: props.texts.your_worlds, worlds: data.value?.campaigns.member ?? [] },
     { key: 'following', label: props.texts.followed_worlds, worlds: data.value?.campaigns.following ?? [] },
@@ -165,6 +182,6 @@ const readRelease = (release: any) => {
 watch(() => props.modelValue, (open) => {
     if (!open) return
     panel.value = 'home'
-    if (props.authenticated) load()
+    if (props.authenticated && !props.impersonation) load()
 })
 </script>

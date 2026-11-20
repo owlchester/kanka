@@ -19,21 +19,22 @@
                 </span>
                 <span class="whitespace-nowrap text-xs font-medium tracking-normal">{{ createLabel }}</span>
             </button>
-            <button type="button" class="flex min-h-12 min-w-0 flex-1 flex-col items-center justify-center gap-1 rounded-xl text-neutral-content hover:bg-base-200" :aria-label="authenticated ? accountTexts.title : loginLabel" :aria-describedby="authenticated && hasUnread ? 'mobile-account-alert' : undefined" aria-haspopup="dialog" @click="account">
+            <button type="button" class="flex min-h-12 min-w-0 flex-1 flex-col items-center justify-center gap-1 rounded-xl text-neutral-content hover:bg-base-200" :aria-label="impersonation?.label ?? (authenticated ? accountTexts.title : loginLabel)" :aria-describedby="authenticated && !impersonation && hasUnread ? 'mobile-account-alert' : undefined" aria-haspopup="dialog" @click="account">
                 <span class="relative flex size-6 shrink-0 items-center justify-center" aria-hidden="true">
                     <template v-if="authenticated">
                         <img v-if="avatar && !avatar.startsWith('/images/')" :src="avatar" alt="" class="size-5 rounded-full object-cover" />
                         <span v-else class="flex size-5 items-center justify-center rounded-full bg-base-200 text-xs font-semibold uppercase">{{ initials }}</span>
-                        <span v-if="hasUnread" class="absolute -right-0.5 -top-0.5 size-2 rounded-full bg-boost"></span>
+                        <span v-if="!impersonation && hasUnread" class="absolute -right-0.5 -top-0.5 size-2 rounded-full bg-boost"></span>
                     </template>
                     <i v-else class="fa-regular fa-user text-xl leading-none"></i>
                 </span>
-                <span class="whitespace-nowrap text-xs font-medium tracking-normal">{{ authenticated ? accountTexts.title : loginLabel }}</span>
-                <span v-if="authenticated && hasUnread" id="mobile-account-alert" class="sr-only">{{ accountTexts.unread }}</span>
+                <span v-if="impersonation" class="max-w-full truncate rounded bg-warning px-1 text-xs font-semibold text-warning-content">{{ impersonation.shortLabel }}</span>
+                <span v-else class="whitespace-nowrap text-xs font-medium tracking-normal">{{ authenticated ? accountTexts.title : loginLabel }}</span>
+                <span v-if="authenticated && !impersonation && hasUnread" id="mobile-account-alert" class="sr-only">{{ accountTexts.unread }}</span>
             </button>
         </nav>
     </Teleport>
-    <MobileAccount v-model="accountOpen" :authenticated="authenticated" :api="accountApi" :world-name="worldName" :world-url="worldUrl" :avatar="avatar" :initials="initials" :texts="accountTexts" :login-label="loginLabel" :login-url="loginUrl" :register-url="registerUrl" :back-label="backLabel" :close-label="closeLabel" />
+    <MobileAccount v-model="accountOpen" :authenticated="authenticated" :api="accountApi" :world-name="worldName" :world-url="worldUrl" :avatar="avatar" :initials="initials" :texts="accountTexts" :login-label="loginLabel" :login-url="loginUrl" :register-url="registerUrl" :back-label="backLabel" :close-label="closeLabel" :impersonation="impersonation" />
 </template>
 
 <script setup lang="ts">
@@ -41,6 +42,7 @@ import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { useCommandCenter } from '../../composables/useCommandCenter'
 import { useNavigationAlerts } from '../../composables/useNavigationAlerts'
 import MobileAccount from './MobileAccount.vue'
+import type { Impersonation } from './impersonation'
 
 const props = defineProps<{
     navigationLabel: string
@@ -61,6 +63,7 @@ const props = defineProps<{
     registerUrl?: string
     backLabel: string
     closeLabel: string
+    impersonation?: Impersonation
 }>()
 
 const { open } = useCommandCenter()

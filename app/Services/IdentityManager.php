@@ -111,6 +111,17 @@ class IdentityManager
         return session($this->getSessionCampaignKey(), null);
     }
 
+    /** @return list<string> */
+    public function campaignRoleNames(User $user): array
+    {
+        return $user->campaignRoles()
+            ->where('campaign_roles.campaign_id', $this->getCampaignId())
+            ->orderBy('campaign_role_users.position')
+            ->orderBy('campaign_role_users.id')
+            ->pluck('campaign_roles.name')
+            ->all();
+    }
+
     /**
      * Forget the saved user identity.
      */

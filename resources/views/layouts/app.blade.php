@@ -92,7 +92,6 @@ if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'bas
             @yield('content-header')
 
             <section class="content p-4 flex flex-col gap-2 lg:flex-gap-5 @if (isset($centered) && $centered) max-w-7xl mx-auto  @endif" role="main">
-                @includeWhen (auth()->check() && \App\Facades\Identity::isImpersonating(), 'partials.impersonate')
                 @include('partials.success')
 
                 @yield('entity-header')

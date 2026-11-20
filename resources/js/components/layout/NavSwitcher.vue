@@ -1,9 +1,14 @@
 <template>
     <div class="nav-switcher flex min-w-0 items-center justify-center align-middle h-12 gap-1 md:gap-2">
-        <button type="button" class="campaigns btn2 btn-ghost btn-square max-md:size-11! max-md:p-1! inline-flex items-center justify-center text-2xl hover:text-primary-focus" :class="campaign_name ? 'max-md:hidden!' : ''" v-on:click="openCampaigns()" :aria-label="campaigns_label" :aria-expanded="is_expanded && view_campaigns">
+        <button v-if="!impersonation" type="button" class="campaigns btn2 btn-ghost btn-square max-md:size-11! max-md:p-1! inline-flex items-center justify-center text-2xl hover:text-primary-focus" :class="campaign_name ? 'max-md:hidden!' : ''" v-on:click="openCampaigns()" :aria-label="campaigns_label" :aria-expanded="is_expanded && view_campaigns">
             <GridSvg :size="7" />
         </button>
-        <button type="button" class="profile btn2 btn-ghost btn-square max-md:size-11! max-md:p-1! shrink-0 flex items-center justify-center text-center uppercase" v-on:click="openProfile()" aria-label="Profile settings" :aria-expanded="is_expanded && view_profile">
+        <button v-if="impersonation" type="button" class="flex min-h-9 max-w-52 items-center gap-2 rounded-lg bg-warning px-3 text-sm font-semibold text-warning-content hover:bg-warning/90" @click="openProfile()" :aria-label="impersonation.label" :aria-expanded="is_expanded">
+            <span class="truncate max-md:hidden">{{ impersonation.label }}</span>
+            <span class="truncate md:hidden">{{ impersonation.shortLabel }}</span>
+            <i class="fa-regular fa-angle-down shrink-0" aria-hidden="true"></i>
+        </button>
+        <button v-else type="button" class="profile btn2 btn-ghost btn-square max-md:size-11! max-md:p-1! shrink-0 flex items-center justify-center text-center uppercase" v-on:click="openProfile()" aria-label="Profile settings" :aria-expanded="is_expanded && view_profile">
             <div class="indicator relative inline-flex w-max">
                 <span class="notification-badge left-auto top-auto -right-[0.2rem] -bottom-[0.2rem] translate-x-1/2 leading-2 p-[0.3rem] w-fit inline-flex absolute content-center items-center z-10" v-if="show_alerts"></span>
                 <div class="profile-box rounded-lg p-2 text-center font-bold" v-if="showInitials()">
@@ -21,7 +26,18 @@
         @click.stop="is_expanded = false"
     ></button>
     <div class="navigation-drawer w-[82%] md:w-95 z-20 bg-base-100 h-full fixed top-0 right-0 rounded-l-2xl shadow-lg flex flex-col" v-if="is_expanded" v-click-outside="onClickOutside">
-        <div class="temporary p-8 text-center" v-if="is_loading">
+        <div v-if="impersonation" class="flex flex-col gap-4 overflow-y-auto p-5">
+            <button type="button" class="absolute right-2 top-2 flex size-11 items-center justify-center rounded-xl bg-base-100 hover:bg-base-200" :aria-label="close_label" @click="is_expanded = false">
+                <i class="fa-regular fa-times" aria-hidden="true"></i>
+            </button>
+            <div class="pr-11 font-semibold wrap-anywhere">{{ impersonation.label }}</div>
+            <a :href="impersonation.returnUrl" class="flex min-h-11 items-center gap-3 text-link">
+                <i class="fa-regular fa-sign-out-alt" aria-hidden="true"></i>
+                {{ impersonation.returnLabel }}
+            </a>
+            <ImpersonationRoles :impersonation="impersonation" />
+        </div>
+        <div class="temporary p-8 text-center" v-else-if="is_loading">
             <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
         </div>
         <template v-else>
@@ -221,8 +237,10 @@ import Campaign from './Campaign.vue';
 import Notification from './Notification.vue';
 import Release from './Release.vue';
 import GridSvg from "../icons/GridSvg.vue";
+import ImpersonationRoles from './ImpersonationRoles.vue';
 import {onBeforeUnmount, onMounted, ref} from "vue";
 import { useNavigationAlerts } from '../../composables/useNavigationAlerts';
+import type { Impersonation } from './impersonation';
 
 
 const props = defineProps<{
@@ -243,6 +261,7 @@ const props = defineProps<{
     campaign_name: string,
     campaigns_label: string,
     close_label: string,
+    impersonation?: Impersonation,
 }>();
 
 // Check for updates in the localstorage every minute for new alerts
@@ -285,7 +304,7 @@ const invalidateNavigation = () => {
 }
 const loadData = () => {
     is_expanded.value = true;
-    if (has_data.value) {
+    if (props.impersonation || has_data.value) {
         return;
     }
     is_loading.value = true;
@@ -396,7 +415,7 @@ const profilePictureUrl = () => {
 }
 onMounted(() => {
   show_alerts.value = props.has_alerts;
-  queueFetch();
+  if (!props.impersonation) queueFetch();
   document.addEventListener('keydown', handleEscape);
   window.addEventListener('navigation:worlds', openCampaigns);
   window.addEventListener('navigation:refresh', invalidateNavigation);
