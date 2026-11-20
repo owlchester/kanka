@@ -2,88 +2,37 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Http\Requests\StoreEvent as Request;
-use App\Http\Resources\EventResource as Resource;
+use App\Http\Requests\StoreEvent;
+use App\Http\Resources\EventResource;
 use App\Models\Campaign;
-use App\Models\EntityType;
 use App\Models\Event;
-use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class EventApiController extends MiscApiController
 {
-    /**
-     * @return AnonymousResourceCollection
-     *
-     * @throws AuthorizationException
-     */
-    public function index(Campaign $campaign)
+    public function index(Campaign $campaign): AnonymousResourceCollection
     {
-        $this->authorize('access', $campaign);
-
-        return Resource::collection($campaign
-            ->events()
-            ->filter(request()->all())
-            ->withApi()
-            ->lastSync(request()->get('lastSync'))
-            ->orderBy('events.id')
-            ->paginate());
+        return $this->listModels($campaign, $campaign->events(), EventResource::class);
     }
 
-    /**
-     * @return resource
-     */
-    public function show(Campaign $campaign, Event $event)
+    public function show(Campaign $campaign, Event $event): EventResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('view', $event->entity);
-
-        return new Resource($event);
+        return new EventResource($this->viewModel($campaign, $event));
     }
 
-    /**
-     * @return resource
-     *
-     * @throws AuthorizationException
-     */
-    public function store(Request $request, Campaign $campaign)
+    public function store(StoreEvent $request, Campaign $campaign): EventResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('create', [EntityType::find(config('entities.ids.event')), $campaign]);
-
-        $data = $request->validated();
-        $data['campaign_id'] = $campaign->id;
-        $model = $this->createStandardModel($campaign, $data, config('entities.ids.event'));
-        $this->crudSave($model, $request->validated());
-
-        return new Resource($model);
+        return new EventResource($this->storeModel($request, $campaign, config('entities.ids.event')));
     }
 
-    /**
-     * @return resource
-     */
-    public function update(Request $request, Campaign $campaign, Event $event)
+    public function update(StoreEvent $request, Campaign $campaign, Event $event): EventResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('update', $event->entity);
-        $event->update($request->validated());
-        $this->crudSave($event, $request->validated());
-
-        return new Resource($event);
+        return new EventResource($this->updateModel($request, $campaign, $event));
     }
 
-    /**
-     * @return JsonResponse
-     *
-     * @throws AuthorizationException
-     */
-    public function destroy(Campaign $campaign, Event $event)
+    public function destroy(Campaign $campaign, Event $event): JsonResponse
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('delete', $event->entity);
-        $event->entity->delete();
-
-        return response()->json(null, 204);
+        return $this->deleteModel($campaign, $event);
     }
 }

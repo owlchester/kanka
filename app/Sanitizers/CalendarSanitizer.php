@@ -2,9 +2,27 @@
 
 namespace App\Sanitizers;
 
-class CalendarSanitizer extends MiscSanitizer
+use App\Observers\PurifiableTrait;
+use Illuminate\Http\Request;
+
+class CalendarSanitizer
 {
+    use PurifiableTrait;
+
+    protected Request $request;
+
+    protected array $data = [];
+
     protected int $monthCount = 0;
+
+    public function request(Request $request): self
+    {
+        $this->request = $request;
+        $this->data = [];
+        $this->monthCount = 0;
+
+        return $this;
+    }
 
     public function sanitize(): array
     {

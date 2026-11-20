@@ -14,16 +14,6 @@ class MapFilter extends DatagridFilter
             ->add('type')
             ->parent(config('entities.ids.map'))
             ->location()
-            ->isPrivate()
-            ->template()
-            ->archived()
-            ->hasImage()
-            ->hasEntry()
-            ->hasPosts()
-            ->hasEntityFiles()
-            ->hasAttributes()
-            ->tags()
-            ->attributes()
-            ->connections();
+            ->standardFilters();
     }
 }

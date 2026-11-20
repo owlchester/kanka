@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
-use App\Models\Concerns\HasFilters;
 use App\Models\Relations\CalendarRelations;
 use App\Observers\CalendarObserver;
 use App\Services\Calendars\CalendarChronology;
@@ -44,7 +43,6 @@ class Calendar extends MiscModel
     use ExportableTrait;
     use HasCampaign;
     use HasFactory;
-    use HasFilters;
 
     protected $fillable = [
         'campaign_id',

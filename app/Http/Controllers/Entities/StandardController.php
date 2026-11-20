@@ -18,6 +18,8 @@ use App\Services\Entity\CopyService;
 use App\Services\Entity\EntitySaveService;
 use App\Services\Entity\Relations\EntityRelationsServiceFactory;
 use App\Services\Entity\StandardEntityCreationService;
+use App\Traits\CampaignAware;
+use App\Traits\GuestAuthTrait;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -27,6 +29,9 @@ use LogicException;
 
 class StandardController extends Controller
 {
+    use CampaignAware;
+    use GuestAuthTrait;
+
     public function __construct(
         protected StandardEntityCreationService $creationService,
         protected EntitySaveService $entitySaveService,
@@ -191,6 +196,14 @@ class StandardController extends Controller
             + Arr::except($request->query(), ['campaign', 'entity', 'slug']));
     }
 
+    public function children(Request $request, Campaign $campaign)
+    {
+        $entity = $this->child($request, $campaign, requireVisibleEntity: false)->entity;
+        $this->campaign($campaign)->authEntityView($entity);
+
+        return redirect()->route('entities.children', [$campaign, $entity]);
+    }
+
     public function edit(Request $request, Campaign $campaign)
     {
         $child = $this->child($request, $campaign);
@@ -233,13 +246,14 @@ class StandardController extends Controller
         return $type->code === 'whiteboard' && ! auth()->user()->can('whiteboards', $campaign);
     }
 
-    private function child(Request $request, Campaign $campaign): MiscModel
+    private function child(Request $request, Campaign $campaign, bool $requireVisibleEntity = true): MiscModel
     {
         $type = $this->type($request);
 
         return $type->getMiscClass()->newQuery()
             ->where('campaign_id', $campaign->id)
-            ->withWhereHas('entity')
+            ->with('entity')
+            ->when($requireVisibleEntity, fn ($query) => $query->whereHas('entity'))
             ->findOrFail($request->route($type->code));
     }
 }

@@ -35,16 +35,6 @@ class QuestFilter extends DatagridFilter
                 'model' => Entity::class,
             ])
             ->add('element_role')
-            ->isPrivate()
-            ->template()
-            ->archived()
-            ->hasImage()
-            ->hasEntry()
-            ->hasPosts()
-            ->hasEntityFiles()
-            ->hasAttributes()
-            ->tags()
-            ->attributes()
-            ->connections();
+            ->standardFilters();
     }
 }

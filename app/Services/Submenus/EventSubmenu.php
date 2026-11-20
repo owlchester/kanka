@@ -2,7 +2,7 @@
 
 namespace App\Services\Submenus;
 
-class EventSubmenu extends BaseSubmenu implements EntitySubmenu
+class EventSubmenu extends BaseSubmenu
 {
     public function extra(): array
     {

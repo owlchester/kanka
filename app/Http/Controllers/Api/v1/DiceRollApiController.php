@@ -2,88 +2,37 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Http\Requests\StoreDiceRoll as Request;
-use App\Http\Resources\DiceRollResource as Resource;
+use App\Http\Requests\StoreDiceRoll;
+use App\Http\Resources\DiceRollResource;
 use App\Models\Campaign;
 use App\Models\DiceRoll;
-use App\Models\EntityType;
-use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class DiceRollApiController extends MiscApiController
 {
-    /**
-     * @return AnonymousResourceCollection
-     *
-     * @throws AuthorizationException
-     */
-    public function index(Campaign $campaign)
+    public function index(Campaign $campaign): AnonymousResourceCollection
     {
-        $this->authorize('access', $campaign);
-
-        return Resource::collection($campaign
-            ->diceRolls()
-            ->filter(request()->all())
-            ->withApi()
-            ->lastSync(request()->get('lastSync'))
-            ->orderBy('dice_rolls.id')
-            ->paginate());
+        return $this->listModels($campaign, $campaign->diceRolls(), DiceRollResource::class);
     }
 
-    /**
-     * @return resource
-     */
-    public function show(Campaign $campaign, DiceRoll $diceRoll)
+    public function show(Campaign $campaign, DiceRoll $diceRoll): DiceRollResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('view', $diceRoll->entity);
-
-        return new Resource($diceRoll);
+        return new DiceRollResource($this->viewModel($campaign, $diceRoll));
     }
 
-    /**
-     * @return resource
-     *
-     * @throws AuthorizationException
-     */
-    public function store(Request $request, Campaign $campaign)
+    public function store(StoreDiceRoll $request, Campaign $campaign): DiceRollResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('create', [EntityType::find(config('entities.ids.dice_roll')), $campaign]);
-
-        $data = $request->validated();
-        $data['campaign_id'] = $campaign->id;
-        $model = $this->createStandardModel($campaign, $data, config('entities.ids.dice_roll'));
-        $this->crudSave($model, $request->validated());
-
-        return new Resource($model);
+        return new DiceRollResource($this->storeModel($request, $campaign, config('entities.ids.dice_roll')));
     }
 
-    /**
-     * @return resource
-     */
-    public function update(Request $request, Campaign $campaign, DiceRoll $diceRoll)
+    public function update(StoreDiceRoll $request, Campaign $campaign, DiceRoll $diceRoll): DiceRollResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('update', $diceRoll->entity);
-        $diceRoll->update($request->validated());
-        $this->crudSave($diceRoll, $request->validated());
-
-        return new Resource($diceRoll);
+        return new DiceRollResource($this->updateModel($request, $campaign, $diceRoll));
     }
 
-    /**
-     * @return JsonResponse
-     *
-     * @throws AuthorizationException
-     */
-    public function destroy(Campaign $campaign, DiceRoll $diceRoll)
+    public function destroy(Campaign $campaign, DiceRoll $diceRoll): JsonResponse
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('delete', $diceRoll->entity);
-        $diceRoll->entity->delete();
-
-        return response()->json(null, 204);
+        return $this->deleteModel($campaign, $diceRoll);
     }
 }

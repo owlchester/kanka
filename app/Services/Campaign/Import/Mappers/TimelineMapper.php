@@ -3,12 +3,11 @@
 namespace App\Services\Campaign\Import\Mappers;
 
 use App\Facades\ImportIdMapper;
-use App\Models\Entity;
 use App\Models\Timeline;
 use App\Models\TimelineElement;
 use App\Models\TimelineEra;
 
-class TimelineMapper extends MiscMapper
+class TimelineMapper extends StandardTreeMapper
 {
     protected array $ignore = ['id', 'entry', 'type', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'timeline_id', 'created_at', 'updated_at', 'calendar_id'];
 
@@ -32,28 +31,6 @@ class TimelineMapper extends MiscMapper
             ->eras()
             ->elements()
             ->entitySecond();
-    }
-
-    public function tree(): self
-    {
-        foreach ($this->parents as $parent => $entityIds) {
-            if (! isset($this->mapping[$parent])) {
-                continue;
-            }
-            $parentEntity = Entity::where('entity_id', $this->mapping[$parent])
-                ->where('type_id', config('entities.ids.timeline'))
-                ->first();
-            if (! $parentEntity) {
-                continue;
-            }
-            $entities = Entity::whereIn('id', $entityIds)->get();
-            foreach ($entities as $entity) {
-                $entity->parent_id = $parentEntity->id;
-                $entity->saveQuietly();
-            }
-        }
-
-        return $this;
     }
 
     protected function eras(): self

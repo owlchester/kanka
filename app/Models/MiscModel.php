@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Concerns\Copiable;
 use App\Models\Concerns\HasEntity;
+use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Paginatable;
@@ -36,6 +37,7 @@ abstract class MiscModel extends Model
 {
     use Copiable;
     use HasEntity;
+    use HasFilters;
     use LastSync;
     use Orderable;
     use Paginatable;

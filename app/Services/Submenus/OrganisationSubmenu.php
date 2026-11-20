@@ -4,7 +4,7 @@ namespace App\Services\Submenus;
 
 use App\Models\Organisation;
 
-class OrganisationSubmenu extends BaseSubmenu implements EntitySubmenu
+class OrganisationSubmenu extends BaseSubmenu
 {
     public function extra(): array
     {

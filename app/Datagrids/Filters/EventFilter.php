@@ -26,16 +26,6 @@ class EventFilter extends DatagridFilter
                 'model' => Entity::class,
                 'multiple' => true,
             ])
-            ->isPrivate()
-            ->template()
-            ->archived()
-            ->hasImage()
-            ->hasEntry()
-            ->hasPosts()
-            ->hasEntityFiles()
-            ->hasAttributes()
-            ->tags()
-            ->attributes()
-            ->connections();
+            ->standardFilters();
     }
 }

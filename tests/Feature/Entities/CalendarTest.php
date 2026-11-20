@@ -260,7 +260,7 @@ it('rejects an unsupported weekly reset value', function () {
 
     $this->putJson('/api/1.0/campaigns/1/calendars/' . $calendar->id, ['reset' => 'week'])
         ->assertUnprocessable()
-        ->assertJsonValidationErrors('reset');
+        ->assertJsonValidationErrors('reset', 'fields');
 
     expect($calendar->fresh()->reset)->toBe('month');
 });

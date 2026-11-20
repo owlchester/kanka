@@ -3,7 +3,7 @@
 namespace App\Traits;
 
 use App\Datagrids\Bulks\Bulk;
-use App\Datagrids\Bulks\DefaultBulk;
+use App\Datagrids\Bulks\BulkResolver;
 use App\Models\Bookmark;
 use App\Models\MiscModel;
 use App\Models\Relation;
@@ -20,18 +20,9 @@ trait BulkControllerTrait
             return new $this->bulk;
         }
 
-        if ($modelClass !== null) {
-            $bulkClass = 'App\Datagrids\Bulks\\' . Str::studly(Str::singular($modelClass->getTable())) . 'Bulk';
-        } else {
-            // @phpstan-ignore-next-line
-            $model = new $this->model;
-            $bulkClass = 'App\Datagrids\Bulks\\' . Str::studly(Str::singular($model->getTable())) . 'Bulk';
-        }
+        // @phpstan-ignore-next-line
+        $model = $modelClass ?? new $this->model;
 
-        if (class_exists($bulkClass)) {
-            return new $bulkClass;
-        }
-
-        return new DefaultBulk;
+        return app(BulkResolver::class)->for(Str::singular($model->getTable()));
     }
 }

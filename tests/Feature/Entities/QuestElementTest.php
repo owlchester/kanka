@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\QuestElement;
+
 it('POSTS an invalid quest element form')
     ->asUser()
     ->withCampaign()
@@ -103,3 +105,16 @@ it('can GET a quest element as a player')
     ->asPlayer()
     ->get('/api/1.0/campaigns/1/quests/1/quest_elements/1')
     ->assertStatus(200);
+
+it('persists the selected sort order for quest elements', function () {
+    $this->asUser()->withCampaign()->withQuests();
+    QuestElement::factory()->create(['quest_id' => 1, 'role' => 'Alpha']);
+    QuestElement::factory()->create(['quest_id' => 1, 'role' => 'Zulu']);
+    $url = route('quests.quest_elements.index', [1, 1]);
+
+    $this->get($url)->assertOk()->assertSeeInOrder(['Alpha', 'Zulu']);
+    $this->get($url . '?dg-sort=role_desc')->assertOk()
+        ->assertSeeInOrder(['Zulu', 'Alpha'])
+        ->assertSessionHas('dg-sorter-quest-element-sorter', 'role_desc');
+    $this->get($url)->assertOk()->assertSeeInOrder(['Zulu', 'Alpha']);
+});

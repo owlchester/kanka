@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
-use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
@@ -33,7 +32,6 @@ class Location extends MiscModel
     use ExportableTrait;
     use HasCampaign;
     use HasFactory;
-    use HasFilters;
     use Sanitizable;
     use SortableTrait;
 

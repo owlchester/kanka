@@ -138,35 +138,29 @@ class SubmenuService
 
     protected function custom(): self
     {
-        if ($this->entity->entityType->isCustom()) {
-            return $this->customEntityType();
-        }
-        // Get the custom one based on the model name?
-        $className = ucfirst($this->entity->entityType->code);
-        $submenuName = 'App\Services\Submenus\\' . $className . 'Submenu';
-        try {
-            /** @var CharacterSubmenu $object */
-            $object = app()->make($submenuName);
-            if (isset($this->user)) {
-                $object->user($this->user);
-            }
-            $object->entity($this->entity)->campaign($this->campaign);
-
-            foreach ($object->extra() as $section => $sectionItems) {
-                $this->items[$section] = array_merge($this->items[$section] ?? [], $sectionItems);
-            }
-        } catch (\Exception $e) {
-            // Some modules like convos have no submenu
+        $type = $this->entity->entityType;
+        $class = match ($type->code) {
+            'ability' => AbilitySubmenu::class,
+            'calendar' => CalendarSubmenu::class,
+            'character' => CharacterSubmenu::class,
+            'event' => EventSubmenu::class,
+            'family' => FamilySubmenu::class,
+            'item' => ItemSubmenu::class,
+            'location' => LocationSubmenu::class,
+            'map' => MapSubmenu::class,
+            'organisation' => OrganisationSubmenu::class,
+            'quest' => QuestSubmenu::class,
+            'timeline' => TimelineSubmenu::class,
+            default => null,
+        };
+        if ($type->isCustom() || $class === null) {
+            return $this;
         }
 
-        return $this;
-    }
-
-    protected function customEntityType(): self
-    {
-        /** @var CustomSubmenu $service */
-        $service = app()->make(CustomSubmenu::class);
-        $service->entity($this->entity)->campaign($this->campaign);
+        $service = app($class)->entity($this->entity)->campaign($this->campaign);
+        if (isset($this->user)) {
+            $service->user($this->user);
+        }
 
         foreach ($service->extra() as $section => $sectionItems) {
             $this->items[$section] = array_merge($this->items[$section] ?? [], $sectionItems);

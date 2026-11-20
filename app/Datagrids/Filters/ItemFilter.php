@@ -19,16 +19,6 @@ class ItemFilter extends DatagridFilter
             ->add('is_equipped')
             ->locations()
             ->character()
-            ->isPrivate()
-            ->template()
-            ->archived()
-            ->hasImage()
-            ->hasEntry()
-            ->hasPosts()
-            ->hasEntityFiles()
-            ->hasAttributes()
-            ->tags()
-            ->attributes()
-            ->connections();
+            ->standardFilters();
     }
 }

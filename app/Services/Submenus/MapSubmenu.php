@@ -4,7 +4,7 @@ namespace App\Services\Submenus;
 
 use App\Models\Map;
 
-class MapSubmenu extends BaseSubmenu implements EntitySubmenu
+class MapSubmenu extends BaseSubmenu
 {
     public function extra(): array
     {

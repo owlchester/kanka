@@ -8,6 +8,7 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Map;
 use App\Models\MiscModel;
+use App\Sanitizers\CalendarSanitizer;
 use App\Services\Attributes\EntitySheetService;
 use App\Services\AttributeService;
 use App\Services\Entity\AliasService;
@@ -98,10 +99,8 @@ class EditController extends Controller
 
         try {
             // Sanitize the data
-            $sanitizerClassName = 'App\Sanitizers\\' . Str::studly($entity->entityType->code) . 'Sanitizer';
-            if (class_exists($sanitizerClassName)) {
-                $sanitizer = app()->make($sanitizerClassName);
-                $sanitized = $sanitizer->request($request)->sanitize();
+            if ($entity->entityType->isStandardCode('calendar')) {
+                $sanitized = app(CalendarSanitizer::class)->request($request)->sanitize();
                 $request->merge($sanitized);
                 $validated = array_replace($validated, $sanitized);
             }

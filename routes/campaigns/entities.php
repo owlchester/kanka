@@ -78,7 +78,7 @@ Route::post('/entities/{entity}/map/groups', [EntityMapGroupController::class, '
 Route::patch('/entities/{entity}/map/tiling-prompt', [EntityMapTilingPromptController::class, 'update'])->name('entities.map-tiling-prompt.update');
 
 // Abilities
-Route::get('/abilities/{ability}/abilities', 'Abilities\AbilityController@index')->name('abilities.abilities');
+Route::get('/abilities/{ability}/abilities', [StandardController::class, 'children'])->name('abilities.abilities');
 Route::get('/abilities/{ability}/entities', 'Abilities\EntityController@index')->name('abilities.entities');
 
 Route::get('/abilities/{ability}/entity-add', 'Abilities\EntityController@create')->name('abilities.entity-add');
@@ -91,7 +91,7 @@ Route::post('/entities/{entity}/entity_abilities/reorder', [App\Http\Controllers
     ->name('entities.entity_abilities.reorder-save');
 
 // Maps
-Route::get('/maps/{map}/maps', 'Maps\MapController@index')->name('maps.maps');
+Route::get('/maps/{map}/maps', [StandardController::class, 'children'])->name('maps.maps');
 Route::get('/maps/{map}/explore', 'Maps\ExploreController@index')->name('maps.explore');
 Route::get('/maps/{map}/{map_marker}/details', 'Maps\Markers\DetailController@index')->name('maps.markers.details');
 Route::post('/maps/{map}/{map_marker}/move', 'Maps\Markers\MoveController@index')->name('maps.markers.move');
@@ -117,18 +117,18 @@ Route::get('/dice_rolls/results', [ResultsController::class, 'index'])->name('di
 
 // Locations
 Route::get('/locations/{location}/characters', 'Locations\CharacterController@index')->name('locations.characters');
-Route::get('/locations/{location}/locations', 'Locations\LocationController@index')->name('locations.locations');
+Route::get('/locations/{location}/locations', [StandardController::class, 'children'])->name('locations.locations');
 Route::get('/locations/{location}/events', 'Locations\EventController@index')->name('locations.events');
 Route::get('/locations/{location}/quests', 'Locations\QuestController@index')->name('locations.quests');
 
 // Organisation menu
 Route::get('/organisations/{organisation}/members', 'Organisation\MemberController@index')->name('organisations.members');
 Route::post('/organisations/{organisation}/organisation-members/bulk', 'Organisation\Bulks\MemberController@index')->name('organisations.organisation_members.bulk');
-Route::get('/organisations/{organisation}/organisations', 'Organisation\OrganisationController@organisations')->name('organisations.organisations');
+Route::get('/organisations/{organisation}/organisations', [StandardController::class, 'children'])->name('organisations.organisations');
 
 // Families menu
 Route::get('/families/{family}/members', 'Families\MemberController@index')->name('families.members');
-Route::get('/families/{family}/families', 'Families\FamilyController@index')->name('families.families');
+Route::get('/families/{family}/families', [StandardController::class, 'children'])->name('families.families');
 Route::get('/families/{family}/tree', [TreeController::class, 'index'])->name('families.family-tree');
 Route::get('/families/{family}/tree/api', [App\Http\Controllers\Families\Trees\ApiController::class, 'index'])->name('families.family-tree.api');
 Route::get('/families/{entity}/tree/entity-api', [App\Http\Controllers\Families\Trees\ApiController::class, 'entity'])->name('families.family-tree.entity-api');
@@ -139,27 +139,27 @@ Route::get('/families/{family}/add-member', 'Families\MemberController@create')-
 
 // Items menu
 Route::get('/items/{item}/inventories', 'Items\EntityController@index')->name('items.inventories');
-Route::get('/items/{item}/items', 'Items\ItemController@index')->name('items.items');
+Route::get('/items/{item}/items', [StandardController::class, 'children'])->name('items.items');
 
 // Quest menus
-Route::get('/quests/{quest}/quests', 'Quests\QuestController@index')->name('quests.quests');
+Route::get('/quests/{quest}/quests', [StandardController::class, 'children'])->name('quests.quests');
 
 // Notes menus
-Route::get('/notes/{note}/notes', 'Notes\NoteController@index')->name('notes.notes');
+Route::get('/notes/{note}/notes', [StandardController::class, 'children'])->name('notes.notes');
 
 // Races
 Route::get('/races/{race}/characters', 'Races\MemberController@index')->name('races.characters');
-Route::get('/races/{race}/races', 'Races\RaceController@index')->name('races.races');
+Route::get('/races/{race}/races', [StandardController::class, 'children'])->name('races.races');
 Route::get('/races/{race}/member', 'Races\MemberController@create')->name('races.members.create');
 Route::post('/races/{race}/member', 'Races\MemberController@store')->name('races.members.store');
 
 // Creatures
-Route::get('/creatures/{creature}/creatures', 'Creatures\CreatureController@index')->name('creatures.creatures');
+Route::get('/creatures/{creature}/creatures', [StandardController::class, 'children'])->name('creatures.creatures');
 
 // Journal
-Route::get('/journals/{journal}/journals', 'Journals\JournalController@index')->name('journals.journals');
+Route::get('/journals/{journal}/journals', [StandardController::class, 'children'])->name('journals.journals');
 
-Route::get('/events/{event}/events', 'Events\EventController@index')->name('events.events');
+Route::get('/events/{event}/events', [StandardController::class, 'children'])->name('events.events');
 Route::get('/events/{event}/participants', [ParticipantController::class, 'index'])->name('events.participants.index');
 Route::put('/events/{event}/participants', [ParticipantManagerController::class, 'update'])->name('events.participants.update');
 Route::post('/events/{event}/participants', [ParticipantController::class, 'store'])->name('events.participants.store');
@@ -167,10 +167,10 @@ Route::delete('/events/{event}/participants/{participant}', [ParticipantControll
 Route::post('/events/{event}/groups', [ParticipantController::class, 'storeGroup'])->name('events.groups.store');
 Route::delete('/events/{event}/groups/{group}', [ParticipantController::class, 'destroyGroup'])->name('events.groups.destroy');
 
-Route::get('/timelines/{timeline}/timelines', 'Timelines\TimelineController@index')->name('timelines.timelines');
+Route::get('/timelines/{timeline}/timelines', [StandardController::class, 'children'])->name('timelines.timelines');
 
 // Tag menus
-Route::get('/tags/{tag}/tags', 'Tags\TagController@index')->name('tags.tags');
+Route::get('/tags/{tag}/tags', [StandardController::class, 'children'])->name('tags.tags');
 Route::get('/tags/{tag}/transfer', 'Tags\TransferController@index')->name('tags.transfer');
 Route::get('/tags/{tag}/transfer-posts', 'Tags\TransferController@postIndex')->name('tags.transfer.posts');
 Route::post('/tags/{tag}/transfer', 'Tags\TransferController@process')->name('tags.transfer-process');

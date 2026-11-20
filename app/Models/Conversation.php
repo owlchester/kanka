@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Enums\ConversationTarget;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
-use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Sanitizable;
 use App\Observers\ConversationObserver;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
@@ -31,7 +30,6 @@ class Conversation extends MiscModel
     use Acl;
     use HasCampaign;
     use HasFactory;
-    use HasFilters;
     use Sanitizable;
 
     protected $fillable = [

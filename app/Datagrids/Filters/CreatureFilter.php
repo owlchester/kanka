@@ -15,16 +15,6 @@ class CreatureFilter extends DatagridFilter
             ->parent(config('entities.ids.creature'))
             ->locations()
             ->add('status_id')
-            ->isPrivate()
-            ->template()
-            ->archived()
-            ->hasImage()
-            ->hasEntry()
-            ->hasPosts()
-            ->hasEntityFiles()
-            ->hasAttributes()
-            ->tags()
-            ->attributes()
-            ->connections();
+            ->standardFilters();
     }
 }

@@ -2,88 +2,37 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Http\Requests\StoreTimeline as Request;
-use App\Http\Resources\TimelineResource as Resource;
+use App\Http\Requests\StoreTimeline;
+use App\Http\Resources\TimelineResource;
 use App\Models\Campaign;
-use App\Models\EntityType;
 use App\Models\Timeline;
-use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class TimelineApiController extends MiscApiController
 {
-    /**
-     * @return AnonymousResourceCollection
-     *
-     * @throws AuthorizationException
-     */
-    public function index(Campaign $campaign)
+    public function index(Campaign $campaign): AnonymousResourceCollection
     {
-        $this->authorize('access', $campaign);
-
-        return Resource::collection($campaign
-            ->timelines()
-            ->filter(request()->all())
-            ->withApi()
-            ->lastSync(request()->get('lastSync'))
-            ->orderBy('timelines.id')
-            ->paginate());
+        return $this->listModels($campaign, $campaign->timelines(), TimelineResource::class);
     }
 
-    /**
-     * @return resource
-     */
-    public function show(Campaign $campaign, Timeline $timeline)
+    public function show(Campaign $campaign, Timeline $timeline): TimelineResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('view', $timeline->entity);
-
-        return new Resource($timeline);
+        return new TimelineResource($this->viewModel($campaign, $timeline));
     }
 
-    /**
-     * @return resource
-     *
-     * @throws AuthorizationException
-     */
-    public function store(Request $request, Campaign $campaign)
+    public function store(StoreTimeline $request, Campaign $campaign): TimelineResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('create', [EntityType::find(config('entities.ids.timeline')), $campaign]);
-
-        $data = $request->validated();
-        $data['campaign_id'] = $campaign->id;
-        $model = $this->createStandardModel($campaign, $data, config('entities.ids.timeline'));
-        $this->crudSave($model, $request->validated());
-
-        return new Resource($model);
+        return new TimelineResource($this->storeModel($request, $campaign, config('entities.ids.timeline')));
     }
 
-    /**
-     * @return resource
-     */
-    public function update(Request $request, Campaign $campaign, Timeline $timeline)
+    public function update(StoreTimeline $request, Campaign $campaign, Timeline $timeline): TimelineResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('update', $timeline->entity);
-        $timeline->update($request->validated());
-        $this->crudSave($timeline, $request->validated());
-
-        return new Resource($timeline);
+        return new TimelineResource($this->updateModel($request, $campaign, $timeline));
     }
 
-    /**
-     * @return JsonResponse
-     *
-     * @throws AuthorizationException
-     */
-    public function destroy(Campaign $campaign, Timeline $timeline)
+    public function destroy(Campaign $campaign, Timeline $timeline): JsonResponse
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('delete', $timeline->entity);
-        $timeline->entity->delete();
-
-        return response()->json(null, 204);
+        return $this->deleteModel($campaign, $timeline);
     }
 }

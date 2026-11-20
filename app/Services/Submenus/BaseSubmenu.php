@@ -6,7 +6,7 @@ use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\UserAware;
 
-class BaseSubmenu
+abstract class BaseSubmenu implements EntitySubmenu
 {
     use CampaignAware;
     use EntityAware;

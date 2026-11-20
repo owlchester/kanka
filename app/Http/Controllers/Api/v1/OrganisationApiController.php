@@ -2,88 +2,37 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Http\Requests\StoreOrganisation as Request;
-use App\Http\Resources\OrganisationResource as Resource;
+use App\Http\Requests\StoreOrganisation;
+use App\Http\Resources\OrganisationResource;
 use App\Models\Campaign;
-use App\Models\EntityType;
 use App\Models\Organisation;
-use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class OrganisationApiController extends MiscApiController
 {
-    /**
-     * @return AnonymousResourceCollection
-     *
-     * @throws AuthorizationException
-     */
-    public function index(Campaign $campaign)
+    public function index(Campaign $campaign): AnonymousResourceCollection
     {
-        $this->authorize('access', $campaign);
-
-        return Resource::collection($campaign
-            ->organisations()
-            ->filter(request()->all())
-            ->withApi()
-            ->lastSync(request()->get('lastSync'))
-            ->orderBy('organisations.id')
-            ->paginate());
+        return $this->listModels($campaign, $campaign->organisations(), OrganisationResource::class);
     }
 
-    /**
-     * @return resource
-     */
-    public function show(Campaign $campaign, Organisation $organisation)
+    public function show(Campaign $campaign, Organisation $organisation): OrganisationResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('view', $organisation->entity);
-
-        return new Resource($organisation);
+        return new OrganisationResource($this->viewModel($campaign, $organisation));
     }
 
-    /**
-     * @return resource
-     *
-     * @throws AuthorizationException
-     */
-    public function store(Request $request, Campaign $campaign)
+    public function store(StoreOrganisation $request, Campaign $campaign): OrganisationResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('create', [EntityType::find(config('entities.ids.organisation')), $campaign]);
-
-        $data = $request->validated();
-        $data['campaign_id'] = $campaign->id;
-        $model = $this->createStandardModel($campaign, $data, config('entities.ids.organisation'));
-        $this->crudSave($model, $request->validated());
-
-        return new Resource($model);
+        return new OrganisationResource($this->storeModel($request, $campaign, config('entities.ids.organisation')));
     }
 
-    /**
-     * @return resource
-     */
-    public function update(Request $request, Campaign $campaign, Organisation $organisation)
+    public function update(StoreOrganisation $request, Campaign $campaign, Organisation $organisation): OrganisationResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('update', $organisation->entity);
-        $organisation->update($request->validated());
-        $this->crudSave($organisation, $request->validated());
-
-        return new Resource($organisation);
+        return new OrganisationResource($this->updateModel($request, $campaign, $organisation));
     }
 
-    /**
-     * @return JsonResponse
-     *
-     * @throws AuthorizationException
-     */
-    public function destroy(Campaign $campaign, Organisation $organisation)
+    public function destroy(Campaign $campaign, Organisation $organisation): JsonResponse
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('delete', $organisation->entity);
-        $organisation->entity->delete();
-
-        return response()->json(null, 204);
+        return $this->deleteModel($campaign, $organisation);
     }
 }

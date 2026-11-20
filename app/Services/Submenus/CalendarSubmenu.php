@@ -4,7 +4,7 @@ namespace App\Services\Submenus;
 
 use App\Models\Calendar;
 
-class CalendarSubmenu extends BaseSubmenu implements EntitySubmenu
+class CalendarSubmenu extends BaseSubmenu
 {
     public function extra(): array
     {

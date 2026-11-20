@@ -2,88 +2,37 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Http\Requests\StoreLocation as Request;
-use App\Http\Resources\LocationResource as Resource;
+use App\Http\Requests\StoreLocation;
+use App\Http\Resources\LocationResource;
 use App\Models\Campaign;
-use App\Models\EntityType;
 use App\Models\Location;
-use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class LocationApiController extends MiscApiController
 {
-    /**
-     * @return AnonymousResourceCollection
-     *
-     * @throws AuthorizationException
-     */
-    public function index(Campaign $campaign)
+    public function index(Campaign $campaign): AnonymousResourceCollection
     {
-        $this->authorize('access', $campaign);
-
-        return Resource::collection($campaign
-            ->locations()
-            ->filter(request()->all())
-            ->withApi()
-            ->lastSync(request()->get('lastSync'))
-            ->orderBy('locations.id')
-            ->paginate());
+        return $this->listModels($campaign, $campaign->locations(), LocationResource::class);
     }
 
-    /**
-     * @return resource
-     */
-    public function show(Campaign $campaign, Location $location)
+    public function show(Campaign $campaign, Location $location): LocationResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('view', $location->entity);
-
-        return new Resource($location);
+        return new LocationResource($this->viewModel($campaign, $location));
     }
 
-    /**
-     * @return resource
-     *
-     * @throws AuthorizationException
-     */
-    public function store(Request $request, Campaign $campaign)
+    public function store(StoreLocation $request, Campaign $campaign): LocationResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('create', [EntityType::find(config('entities.ids.location')), $campaign]);
-
-        $data = $request->validated();
-        $data['campaign_id'] = $campaign->id;
-        $model = $this->createStandardModel($campaign, $data, config('entities.ids.location'));
-        $this->crudSave($model, $request->validated());
-
-        return new Resource($model);
+        return new LocationResource($this->storeModel($request, $campaign, config('entities.ids.location')));
     }
 
-    /**
-     * @return resource
-     */
-    public function update(Request $request, Campaign $campaign, Location $location)
+    public function update(StoreLocation $request, Campaign $campaign, Location $location): LocationResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('update', $location->entity);
-        $location->update($request->validated());
-        $this->crudSave($location, $request->validated());
-
-        return new Resource($location);
+        return new LocationResource($this->updateModel($request, $campaign, $location));
     }
 
-    /**
-     * @return JsonResponse
-     *
-     * @throws AuthorizationException
-     */
-    public function destroy(Campaign $campaign, Location $location)
+    public function destroy(Campaign $campaign, Location $location): JsonResponse
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('delete', $location->entity);
-        $location->entity->delete();
-
-        return response()->json(null, 204);
+        return $this->deleteModel($campaign, $location);
     }
 }

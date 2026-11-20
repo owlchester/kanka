@@ -7,7 +7,6 @@ use App\Enums\OrganisationMemberPin;
 use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
-use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\HasSuggestions;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
@@ -45,7 +44,6 @@ class Character extends MiscModel
     use ExportableTrait;
     use HasCampaign;
     use HasFactory;
-    use HasFilters;
     use HasSuggestions;
     use Sanitizable;
     use SortableTrait;

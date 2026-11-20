@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Filters;
 
-use App\Datagrids\Filters\CharacterFilter;
 use App\Datagrids\Filters\CustomEntityFilter;
+use App\Datagrids\Filters\DatagridFilter;
+use App\Datagrids\Filters\StandardTreeFilter;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\EntityType;
@@ -15,7 +16,6 @@ use App\Traits\EntityTypeAware;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use ReflectionClass;
 
 class FormController extends Controller
 {
@@ -98,13 +98,16 @@ class FormController extends Controller
         }
         $mode = request()->get('m');
 
-        $reflect = new ReflectionClass($model);
-        $filtersClass = 'App\Datagrids\Filters\\' . $reflect->getShortName() . 'Filter';
-        /** @var CharacterFilter $filters */
+        $filtersClass = match ($this->entityType->code ?? null) {
+            'ability', 'calendar', 'note', 'timeline' => StandardTreeFilter::class,
+            default => 'App\Datagrids\Filters\\' . class_basename($model) . 'Filter',
+        };
+        /** @var DatagridFilter $filters */
         $filters = app()->make($filtersClass);
-        if ($filters) {
-            $filters->campaign($this->campaign)->build();
+        if (isset($this->entityType)) {
+            $filters->entityType($this->entityType);
         }
+        $filters->campaign($this->campaign)->build();
 
         return view('filters.form')
             ->with('campaign', $this->campaign)

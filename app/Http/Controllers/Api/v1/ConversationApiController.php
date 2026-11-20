@@ -2,89 +2,37 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Http\Requests\StoreConversation as Request;
-use App\Http\Resources\ConversationResource as Resource;
+use App\Http\Requests\StoreConversation;
+use App\Http\Resources\ConversationResource;
 use App\Models\Campaign;
 use App\Models\Conversation;
-use App\Models\EntityType;
-use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class ConversationApiController extends MiscApiController
 {
-    /**
-     * @return AnonymousResourceCollection
-     *
-     * @throws AuthorizationException
-     */
-    public function index(Campaign $campaign)
+    public function index(Campaign $campaign): AnonymousResourceCollection
     {
-        $this->authorize('access', $campaign);
-
-        return Resource::collection($campaign
-            ->conversations()
-            ->filter(request()->all())
-            ->withApi()
-            ->lastSync(request()->get('lastSync'))
-            ->orderBy('conversations.id')
-            ->paginate());
+        return $this->listModels($campaign, $campaign->conversations(), ConversationResource::class);
     }
 
-    /**
-     * @return resource
-     */
-    public function show(Campaign $campaign, Conversation $conversation)
+    public function show(Campaign $campaign, Conversation $conversation): ConversationResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('view', $conversation->entity);
-
-        return new Resource($conversation);
+        return new ConversationResource($this->viewModel($campaign, $conversation));
     }
 
-    /**
-     * @return resource
-     *
-     * @throws AuthorizationException
-     */
-    public function store(Request $request, Campaign $campaign)
+    public function store(StoreConversation $request, Campaign $campaign): ConversationResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('create', [EntityType::find(config('entities.ids.conversation')), $campaign]);
-
-        $data = $request->validated();
-        $data['campaign_id'] = $campaign->id;
-        /** @var Conversation $model */
-        $model = $this->createStandardModel($campaign, $data, config('entities.ids.conversation'));
-        $this->crudSave($model, $request->validated());
-
-        return new Resource($model);
+        return new ConversationResource($this->storeModel($request, $campaign, config('entities.ids.conversation')));
     }
 
-    /**
-     * @return resource
-     */
-    public function update(Request $request, Campaign $campaign, Conversation $conversation)
+    public function update(StoreConversation $request, Campaign $campaign, Conversation $conversation): ConversationResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('update', $conversation->entity);
-        $conversation->update($request->validated());
-        $this->crudSave($conversation, $request->validated());
-
-        return new Resource($conversation);
+        return new ConversationResource($this->updateModel($request, $campaign, $conversation));
     }
 
-    /**
-     * @return JsonResponse
-     *
-     * @throws AuthorizationException
-     */
-    public function destroy(Campaign $campaign, Conversation $conversation)
+    public function destroy(Campaign $campaign, Conversation $conversation): JsonResponse
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('delete', $conversation->entity);
-        $conversation->entity->delete();
-
-        return response()->json(null, 204);
+        return $this->deleteModel($campaign, $conversation);
     }
 }

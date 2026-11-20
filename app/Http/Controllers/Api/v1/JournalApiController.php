@@ -2,88 +2,37 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Http\Requests\StoreJournal as Request;
-use App\Http\Resources\JournalResource as Resource;
+use App\Http\Requests\StoreJournal;
+use App\Http\Resources\JournalResource;
 use App\Models\Campaign;
-use App\Models\EntityType;
 use App\Models\Journal;
-use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class JournalApiController extends MiscApiController
 {
-    /**
-     * @return AnonymousResourceCollection
-     *
-     * @throws AuthorizationException
-     */
-    public function index(Campaign $campaign)
+    public function index(Campaign $campaign): AnonymousResourceCollection
     {
-        $this->authorize('access', $campaign);
-
-        return Resource::collection($campaign
-            ->journals()
-            ->filter(request()->all())
-            ->withApi()
-            ->lastSync(request()->get('lastSync'))
-            ->orderBy('journals.id')
-            ->paginate());
+        return $this->listModels($campaign, $campaign->journals(), JournalResource::class);
     }
 
-    /**
-     * @return resource
-     */
-    public function show(Campaign $campaign, Journal $journal)
+    public function show(Campaign $campaign, Journal $journal): JournalResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('view', $journal->entity);
-
-        return new Resource($journal);
+        return new JournalResource($this->viewModel($campaign, $journal));
     }
 
-    /**
-     * @return resource
-     *
-     * @throws AuthorizationException
-     */
-    public function store(Request $request, Campaign $campaign)
+    public function store(StoreJournal $request, Campaign $campaign): JournalResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('create', [EntityType::find(config('entities.ids.journal')), $campaign]);
-
-        $data = $request->validated();
-        $data['campaign_id'] = $campaign->id;
-        $model = $this->createStandardModel($campaign, $data, config('entities.ids.journal'));
-        $this->crudSave($model, $request->validated());
-
-        return new Resource($model);
+        return new JournalResource($this->storeModel($request, $campaign, config('entities.ids.journal')));
     }
 
-    /**
-     * @return resource
-     */
-    public function update(Request $request, Campaign $campaign, Journal $journal)
+    public function update(StoreJournal $request, Campaign $campaign, Journal $journal): JournalResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('update', $journal->entity);
-        $journal->update($request->validated());
-        $this->crudSave($journal, $request->validated());
-
-        return new Resource($journal);
+        return new JournalResource($this->updateModel($request, $campaign, $journal));
     }
 
-    /**
-     * @return JsonResponse
-     *
-     * @throws AuthorizationException
-     */
-    public function destroy(Campaign $campaign, Journal $journal)
+    public function destroy(Campaign $campaign, Journal $journal): JsonResponse
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('delete', $journal->entity);
-        $journal->entity->delete();
-
-        return response()->json(null, 204);
+        return $this->deleteModel($campaign, $journal);
     }
 }

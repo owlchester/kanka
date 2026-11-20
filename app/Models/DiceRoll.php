@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
-use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Sanitizable;
 use App\Observers\DiceRollObserver;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
@@ -24,7 +23,6 @@ class DiceRoll extends MiscModel
     use Acl;
     use HasCampaign;
     use HasFactory;
-    use HasFilters;
     use Sanitizable;
 
     protected $fillable = [

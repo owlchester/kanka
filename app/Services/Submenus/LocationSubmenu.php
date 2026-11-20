@@ -5,7 +5,7 @@ namespace App\Services\Submenus;
 use App\Facades\Module;
 use App\Models\Location;
 
-class LocationSubmenu extends BaseSubmenu implements EntitySubmenu
+class LocationSubmenu extends BaseSubmenu
 {
     public function extra(): array
     {

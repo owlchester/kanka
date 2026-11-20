@@ -4,7 +4,7 @@ namespace App\Services\Submenus;
 
 use App\Facades\Module;
 
-class CharacterSubmenu extends BaseSubmenu implements EntitySubmenu
+class CharacterSubmenu extends BaseSubmenu
 {
     public function extra(): array
     {

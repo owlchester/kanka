@@ -15,16 +15,6 @@ class LocationFilter extends DatagridFilter
             ->add('type')
             ->add('status_id')
             ->parent(config('entities.ids.location'))
-            ->isPrivate()
-            ->template()
-            ->archived()
-            ->hasImage()
-            ->hasEntry()
-            ->hasPosts()
-            ->hasEntityFiles()
-            ->hasAttributes()
-            ->tags()
-            ->attributes()
-            ->connections();
+            ->standardFilters();
     }
 }

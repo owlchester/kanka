@@ -32,6 +32,21 @@ abstract class DatagridFilter
 
     public function build() {}
 
+    protected function standardFilters(): self
+    {
+        return $this->isPrivate()
+            ->template()
+            ->archived()
+            ->hasImage()
+            ->hasEntry()
+            ->hasPosts()
+            ->hasEntityFiles()
+            ->hasAttributes()
+            ->tags()
+            ->attributes()
+            ->connections();
+    }
+
     /**
      * Get the filters
      */

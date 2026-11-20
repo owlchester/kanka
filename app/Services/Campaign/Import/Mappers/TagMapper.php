@@ -2,10 +2,9 @@
 
 namespace App\Services\Campaign\Import\Mappers;
 
-use App\Models\Entity;
 use App\Models\Tag;
 
-class TagMapper extends MiscMapper
+class TagMapper extends StandardTreeMapper
 {
     /** @var array<string, string> Legacy named colour to hex mapping for old exports */
     protected const LEGACY_COLOURS = [
@@ -49,27 +48,5 @@ class TagMapper extends MiscMapper
         if (! empty($this->data['colour']) && isset(self::LEGACY_COLOURS[$this->data['colour']])) {
             $this->data['colour'] = self::LEGACY_COLOURS[$this->data['colour']];
         }
-    }
-
-    public function tree(): self
-    {
-        foreach ($this->parents as $parent => $entityIds) {
-            if (! isset($this->mapping[$parent])) {
-                continue;
-            }
-            $parentEntity = Entity::where('entity_id', $this->mapping[$parent])
-                ->where('type_id', config('entities.ids.tag'))
-                ->first();
-            if (! $parentEntity) {
-                continue;
-            }
-            $entities = Entity::whereIn('id', $entityIds)->get();
-            foreach ($entities as $entity) {
-                $entity->parent_id = $parentEntity->id;
-                $entity->saveQuietly();
-            }
-        }
-
-        return $this;
     }
 }

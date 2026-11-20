@@ -2,89 +2,37 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Http\Requests\StoreCreature as Request;
-use App\Http\Resources\CreatureResource as Resource;
+use App\Http\Requests\StoreCreature;
+use App\Http\Resources\CreatureResource;
 use App\Models\Campaign;
 use App\Models\Creature;
-use App\Models\EntityType;
-use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class CreatureApiController extends MiscApiController
 {
-    /**
-     * @return AnonymousResourceCollection
-     *
-     * @throws AuthorizationException
-     */
-    public function index(Campaign $campaign)
+    public function index(Campaign $campaign): AnonymousResourceCollection
     {
-        $this->authorize('access', $campaign);
-
-        return Resource::collection($campaign
-            ->creatures()
-            ->filter(request()->all())
-            ->withApi()
-            ->has('entity')
-            ->lastSync(request()->get('lastSync'))
-            ->orderBy('creatures.id')
-            ->paginate());
+        return $this->listModels($campaign, $campaign->creatures(), CreatureResource::class);
     }
 
-    /**
-     * @return resource
-     */
-    public function show(Campaign $campaign, Creature $creature)
+    public function show(Campaign $campaign, Creature $creature): CreatureResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('view', $creature->entity);
-
-        return new Resource($creature);
+        return new CreatureResource($this->viewModel($campaign, $creature));
     }
 
-    /**
-     * @return resource
-     *
-     * @throws AuthorizationException
-     */
-    public function store(Request $request, Campaign $campaign)
+    public function store(StoreCreature $request, Campaign $campaign): CreatureResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('create', [EntityType::find(config('entities.ids.creature')), $campaign]);
-
-        $data = $request->validated();
-        $data['campaign_id'] = $campaign->id;
-        $model = $this->createStandardModel($campaign, $data, config('entities.ids.creature'));
-        $this->crudSave($model, $request->validated());
-
-        return new Resource($model);
+        return new CreatureResource($this->storeModel($request, $campaign, config('entities.ids.creature')));
     }
 
-    /**
-     * @return resource
-     */
-    public function update(Request $request, Campaign $campaign, Creature $creature)
+    public function update(StoreCreature $request, Campaign $campaign, Creature $creature): CreatureResource
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('update', $creature->entity);
-        $creature->update($request->validated());
-        $this->crudSave($creature, $request->validated());
-
-        return new Resource($creature);
+        return new CreatureResource($this->updateModel($request, $campaign, $creature));
     }
 
-    /**
-     * @return JsonResponse
-     *
-     * @throws AuthorizationException
-     */
-    public function destroy(Campaign $campaign, Creature $creature)
+    public function destroy(Campaign $campaign, Creature $creature): JsonResponse
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('delete', $creature->entity);
-        $creature->entity->delete();
-
-        return response()->json(null, 204);
+        return $this->deleteModel($campaign, $creature);
     }
 }
