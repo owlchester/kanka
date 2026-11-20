@@ -2,6 +2,7 @@
 
 namespace App\Services\Caches;
 
+use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
 use App\Models\CampaignRole;
 use App\Models\User;
@@ -11,20 +12,48 @@ use App\Services\Caches\Traits\User\CampaignCache;
 use App\Services\Caches\Traits\User\RoleCache;
 use App\Services\Caches\Traits\User\TutorialCache;
 use App\Services\Caches\Traits\User\UserFlagCache;
-use App\Traits\CampaignAware;
-use App\Traits\UserAware;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class UserCacheService extends BaseCache
 {
-    use CampaignAware;
     use CampaignCache;
     use PrimaryCache;
     use RoleCache;
     use TutorialCache;
-    use UserAware;
     use UserFlagCache;
+
+    private ?Campaign $explicitCampaign = null;
+
+    private ?User $explicitUser = null;
+
+    public function campaign(Campaign $campaign): self
+    {
+        $this->primaryStore();
+        $scoped = clone $this;
+        $scoped->explicitCampaign = $campaign;
+
+        return $scoped;
+    }
+
+    public function user(User $user): self
+    {
+        $this->primaryStore();
+        $scoped = clone $this;
+        $scoped->explicitUser = $user;
+
+        return $scoped;
+    }
+
+    protected function activeCampaign(): Campaign
+    {
+        return $this->explicitCampaign ?? CampaignLocalization::getCampaign();
+    }
+
+    protected function activeUser(): User
+    {
+        return $this->explicitUser ?? auth()->user();
+    }
 
     /**
      * Get the username
@@ -45,7 +74,7 @@ class UserCacheService extends BaseCache
 
     public function clearName(): self
     {
-        $key = $this->nameKey($this->user->id);
+        $key = $this->nameKey($this->activeUser()->id);
         $this->forget($key);
 
         return $this;
@@ -53,10 +82,11 @@ class UserCacheService extends BaseCache
 
     public function entitiesCreatedCount(): int
     {
-        $key = 'user_' . $this->user->id . '_entities_created_count';
+        $user = $this->activeUser();
+        $key = 'user_' . $user->id . '_entities_created_count';
 
-        return Cache::remember($key, 24 * 3600, function () {
-            return DB::table('entities')->where('created_by', $this->user->id)->count();
+        return Cache::remember($key, 24 * 3600, function () use ($user) {
+            return DB::table('entities')->where('created_by', $user->id)->count();
         });
     }
 
@@ -67,6 +97,8 @@ class UserCacheService extends BaseCache
 
     protected function primaryData(): array
     {
+        $user = $this->activeUser();
+
         // Prepare the data.
         $data = [
             'campaigns' => [],
@@ -77,21 +109,21 @@ class UserCacheService extends BaseCache
         ];
 
         /** @var Campaign $campaign */
-        foreach ($this->user->campaigns()->userOrdered($this->user)->get() as $campaign) {
+        foreach ($user->campaigns()->userOrdered($user)->get() as $campaign) {
             $data['campaigns'][] = $this->formatCampaign($campaign);
         }
 
         /** @var Campaign $campaign */
-        foreach ($this->user->following()->public()->userOrdered($this->user)->get() as $campaign) {
+        foreach ($user->following()->public()->userOrdered($user)->get() as $campaign) {
             $data['follows'][] = $this->formatCampaign($campaign);
         }
 
         // Track the user's admin roles
-        foreach ($this->user->campaignRoles as $role) {
+        foreach ($user->campaignRoles as $role) {
             $data['roles'][$role->campaign_id][] = $this->formatRole($role);
         }
 
-        foreach ($this->user->flags as $flag) {
+        foreach ($user->flags as $flag) {
             $data['flags'][$flag->flag->value] = $this->formatFlag($flag);
         }
 
@@ -139,6 +171,6 @@ class UserCacheService extends BaseCache
 
     protected function primaryKey(): string
     {
-        return 'user_' . $this->user->id;
+        return 'user_' . $this->activeUser()->id;
     }
 }

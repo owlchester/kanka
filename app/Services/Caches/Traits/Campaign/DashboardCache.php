@@ -11,7 +11,7 @@ trait DashboardCache
      */
     public function dashboards(): array
     {
-        $dashboards = $this->primary($this->campaign->id)->get('dashboards');
+        $dashboards = $this->primary($this->activeCampaign()->id)->get('dashboards');
         if (is_array($dashboards)) {
             return $dashboards;
         }
@@ -20,7 +20,7 @@ trait DashboardCache
         // has()/get() race in PrimaryCache.
         $this->clear();
 
-        return $this->primary($this->campaign->id)->get('dashboards', []);
+        return $this->primary($this->activeCampaign()->id)->get('dashboards', []);
     }
 
     protected function formatDashboards(): array
@@ -31,7 +31,7 @@ trait DashboardCache
         ];
 
         /** @var CampaignRole[] $roles */
-        $roles = $this->campaign->roles()->with('dashboardRoles')->get();
+        $roles = $this->activeCampaign()->roles()->with('dashboardRoles')->get();
         foreach ($roles as $role) {
             if ($role->dashboardRoles->isEmpty()) {
                 continue;

@@ -2,11 +2,8 @@
 
 namespace Tests;
 
-use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
 use App\Facades\Mentions;
-use App\Facades\Module;
-use App\Facades\UserCache;
 use App\Models\Ability;
 use App\Models\Attribute;
 use App\Models\Bookmark;
@@ -201,10 +198,7 @@ abstract class TestCase extends BaseTestCase
         ]);
         $setting->save();
 
-        CampaignCache::campaign($campaign);
-        UserCache::campaign($campaign);
         Mentions::campaign($campaign);
-        Module::campaign($campaign);
 
         return $this;
     }

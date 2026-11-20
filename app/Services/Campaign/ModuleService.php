@@ -2,8 +2,9 @@
 
 namespace App\Services\Campaign;
 
+use App\Facades\CampaignLocalization;
+use App\Models\Campaign;
 use App\Models\EntityType;
-use App\Traits\CampaignAware;
 use Exception;
 use Illuminate\Support\Str;
 
@@ -12,24 +13,39 @@ use Illuminate\Support\Str;
  */
 class ModuleService
 {
-    use CampaignAware;
+    private ?Campaign $explicitCampaign = null;
 
     protected array $cache = [];
 
     protected bool $fallback = false;
 
+    public function campaign(Campaign $campaign): self
+    {
+        $scoped = clone $this;
+        $scoped->explicitCampaign = $campaign;
+
+        return $scoped;
+    }
+
     public function fallback(): self
     {
-        $this->fallback = true;
+        $scoped = clone $this;
+        $scoped->fallback = true;
 
-        return $this;
+        return $scoped;
+    }
+
+    protected function activeCampaign(): Campaign
+    {
+        return $this->explicitCampaign ?? CampaignLocalization::getCampaign();
     }
 
     public function singular(string|int $key, ?string $fallback = null): ?string
     {
         $id = $this->id($key);
-        if ($this->campaign->hasModuleName($id)) {
-            return $this->campaign->moduleName($id);
+        $campaign = $this->activeCampaign();
+        if ($campaign->hasModuleName($id)) {
+            return $campaign->moduleName($id);
         }
 
         return $fallback;
@@ -38,8 +54,9 @@ class ModuleService
     public function plural(string|int $key, ?string $fallback = null): ?string
     {
         $id = $this->id($key);
-        if ($this->campaign->hasModuleName($id, true)) {
-            return $this->campaign->moduleName($id, true);
+        $campaign = $this->activeCampaign();
+        if ($campaign->hasModuleName($id, true)) {
+            return $campaign->moduleName($id, true);
         }
         if (empty($fallback) && $this->fallback) {
             return $this->pluralFallback($id);
@@ -55,8 +72,9 @@ class ModuleService
     public function icon(string|int $key, ?string $fallback = null): ?string
     {
         $id = $this->id($key);
-        if ($this->campaign->hasModuleIcon($id)) {
-            return $this->campaign->moduleIcon($id);
+        $campaign = $this->activeCampaign();
+        if ($campaign->hasModuleIcon($id)) {
+            return $campaign->moduleIcon($id);
         }
 
         return $fallback;
@@ -64,8 +82,9 @@ class ModuleService
 
     public function duoIcon(EntityType $entityType): string
     {
-        if ($this->campaign->hasModuleIcon($entityType->id)) {
-            return $this->campaign->moduleIcon($entityType->id);
+        $campaign = $this->activeCampaign();
+        if ($campaign->hasModuleIcon($entityType->id)) {
+            return $campaign->moduleIcon($entityType->id);
         }
 
         return $this->defaultIcon($entityType);

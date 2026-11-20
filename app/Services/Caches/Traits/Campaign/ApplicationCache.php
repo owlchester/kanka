@@ -6,11 +6,11 @@ trait ApplicationCache
 {
     public function applicationsCount(): int
     {
-        return $this->primary($this->campaign->id)->get('applications');
+        return $this->primary($this->activeCampaign()->id)->get('applications');
     }
 
     protected function formatApplications(): int
     {
-        return $this->campaign->applications->count();
+        return $this->activeCampaign()->applications->count();
     }
 }

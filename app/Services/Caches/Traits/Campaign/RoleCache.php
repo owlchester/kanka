@@ -9,7 +9,7 @@ trait RoleCache
 
     public function publicPermissions(): array
     {
-        return $this->primary($this->campaign->id)->get('public-permissions');
+        return $this->primary($this->activeCampaign()->id)->get('public-permissions');
     }
 
     /**
@@ -19,12 +19,12 @@ trait RoleCache
      */
     public function adminRole(): array
     {
-        return $this->primary($this->campaign->id)->get('admin-role');
+        return $this->primary($this->activeCampaign()->id)->get('admin-role');
     }
 
     protected function formatAdminRole(): array
     {
-        $role = $this->campaign->roles->where('is_admin', 1)->first();
+        $role = $this->activeCampaign()->roles->where('is_admin', 1)->first();
 
         return [
             'id' => $role->id,

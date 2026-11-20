@@ -4,9 +4,7 @@ namespace App\Services;
 
 use App\Enums\AttributeType;
 use App\Enums\Widget;
-use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
-use App\Facades\UserCache;
 use App\Models\Attribute;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
@@ -47,9 +45,6 @@ class StarterService
             ->user($this->user)
             ->data($request)
             ->create();
-
-        CampaignCache::campaign($this->campaign);
-        UserCache::campaign($this->campaign);
 
         $this->entities();
         $this->dashboard();

@@ -9,7 +9,7 @@ trait UserFlagCache
     public function flags(): Collection
     {
         return new Collection(
-            $this->primary($this->user->id)->get('flags')
+            $this->primary($this->activeUser()->id)->get('flags')
         );
     }
 }

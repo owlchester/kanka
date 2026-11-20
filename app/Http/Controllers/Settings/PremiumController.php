@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Settings;
 
 use App\Exceptions\TranslatableException;
-use App\Facades\CampaignCache;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\User;
@@ -47,7 +46,6 @@ class PremiumController extends Controller
         if (! empty($campaignId)) {
             /** @var Campaign $campaign */
             $campaign = Campaign::where(['id' => (int) $campaignId])->firstOrFail();
-            CampaignCache::campaign($campaign);
             $this->authorize('access', $campaign);
 
             if ($campaign->premium()) {

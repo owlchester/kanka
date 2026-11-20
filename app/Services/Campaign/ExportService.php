@@ -3,10 +3,8 @@
 namespace App\Services\Campaign;
 
 use App\Enums\CampaignExportStatus;
-use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
 use App\Facades\Mentions;
-use App\Facades\Module;
 use App\Models\CampaignExport;
 use App\Models\Character;
 use App\Models\Entity;
@@ -188,12 +186,9 @@ class ExportService
             Str::slug($this->campaign->name) . '_' .
             date('Ymd_His') . '.zip';
         Log::debug('Campaign export', ['action' => 'preparing', 'exportPath' => $this->exportPath, 'file' => $this->file]);
-        CampaignCache::campaign($this->campaign);
         if ($this->isMarkdown) {
-            CampaignCache::user($this->user);
             Mentions::campaign($this->campaign);
             CampaignLocalization::forceCampaign($this->campaign);
-            Module::campaign($this->campaign);
             $this->markdown->user($this->user);
         }
         $this->path = $saveFolder . $this->file;

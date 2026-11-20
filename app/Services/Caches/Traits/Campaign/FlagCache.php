@@ -8,13 +8,13 @@ trait FlagCache
 {
     public function flags(): Collection
     {
-        return new Collection($this->primary($this->campaign->id)->get('flags'));
+        return new Collection($this->primary($this->activeCampaign()->id)->get('flags'));
     }
 
     protected function formatFlags(): array
     {
         $flags = [];
-        foreach ($this->campaign->flags as $flag) {
+        foreach ($this->activeCampaign()->flags as $flag) {
             $flags[$flag->flag->value] = $flag->value;
         }
 

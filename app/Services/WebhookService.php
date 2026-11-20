@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Facades\CampaignLocalization;
-use App\Facades\Module;
 use App\Http\Resources\EntityResource;
 use App\Models\Webhook;
 use App\Services\Images\Avatar;
@@ -22,7 +21,7 @@ class WebhookService
 
     public function process(int $action)
     {
-        Module::campaign($this->campaign);
+        CampaignLocalization::forceCampaign($this->campaign);
         // Todo: move all of this to a service so it can be tested
         $webhooks = Webhook::active($this->campaign->id, $action)->with('tags')->get();
         $entityTags = $this->entity->tags()->pluck('tags.id')->all();

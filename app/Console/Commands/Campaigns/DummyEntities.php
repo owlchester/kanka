@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands\Campaigns;
 
-use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
 use App\Models\Ability;
 use App\Models\Attribute;
@@ -61,8 +60,6 @@ class DummyEntities extends Command
     {
         $campaignId = (int) $this->argument('campaign');
         $campaign = Campaign::findOrFail($campaignId);
-
-        CampaignCache::campaign($campaign);
 
         CampaignLocalization::forceCampaign($campaign);
 
