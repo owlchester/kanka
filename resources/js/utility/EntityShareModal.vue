@@ -14,6 +14,10 @@
                 <i class="fa-solid fa-circle-exclamation shrink-0"></i>
                 <span>{{ errorMessage }}</span>
             </div>
+            <div v-if="!canChangeVisibility" class="alert alert-warning p-4 flex gap-2 rounded-2xl">
+                <i class="fa-solid fa-triangle-exclamation shrink-0"></i>
+                <span>{{ trans.visibility_locked }}</span>
+            </div>
 
             <div v-if="justMadeCampaignPublic" class="alert alert-info p-4 flex gap-2 rounded-2xl">
                 <i class="fa-solid fa-circle-info shrink-0 mt-0.5"></i>
@@ -117,6 +121,7 @@ export default {
         initialEntityPrivate: { type: Boolean, required: true },
         url: { type: String, required: true },
         saveEndpoint: { type: String, required: true },
+        canChangeVisibility: { type: Boolean, default: true },
         trans: { type: Object, required: true }
     },
     data() {
@@ -159,6 +164,9 @@ export default {
             return this.isCampaignUnlisted ? this.trans.helper_hidden_unlisted : this.trans.helper_hidden;
         },
         showSaveButton() {
+            if (!this.canChangeVisibility && !this.isCampaignPublic) {
+                return false;
+            }
             // Public campaign with private entity: always show (radio defaults to 'entity')
             if (this.isCampaignPublic) {
                 return this.isEntityPrivate;
@@ -178,6 +186,10 @@ export default {
                 if (this.isCampaignPublic) {
                     payload.visibility_mode = this.form.visibility_mode;
                 } else {
+                    if (!this.canChangeVisibility) {
+                        this.errorMessage = this.trans.visibility_locked;
+                        return;
+                    }
                     payload.campaign_visibility = 'public';
                 }
 

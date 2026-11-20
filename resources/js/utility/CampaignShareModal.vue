@@ -14,6 +14,10 @@
                 <i class="fa-solid fa-circle-exclamation shrink-0"></i>
                 <span>{{ errorMessage }}</span>
             </div>
+            <div v-if="!canChangeVisibility" class="alert alert-warning p-4 flex gap-2 rounded-2xl">
+                <i class="fa-solid fa-triangle-exclamation shrink-0"></i>
+                <span>{{ trans.visibility_locked }}</span>
+            </div>
 
             <!-- Private campaign -->
             <div v-if="!isCampaignPublic" class="flex flex-col gap-4">
@@ -92,7 +96,7 @@
         <footer class="p-4 md:px-6">
             <menu class="flex justify-end gap-3">
                 <button
-                    v-if="isCampaignPublic"
+                    v-if="isCampaignPublic && canChangeVisibility"
                     type="button"
                     class="btn2 btn-sm btn-outline"
                     @click="openVisibilityDialog"
@@ -100,7 +104,7 @@
                     {{ trans.btn_change_visibility }}
                 </button>
                 <button
-                    v-if="!isCampaignPublic"
+                    v-if="!isCampaignPublic && canChangeVisibility"
                     type="submit"
                     class="btn2 btn-primary"
                     :disabled="loading"
@@ -110,7 +114,7 @@
                     {{ trans.btn_make_public }}
                 </button>
                 <button
-                    v-else
+                    v-else-if="isCampaignPublic"
                     type="button"
                     class="btn2 btn-primary"
                     :data-clipboard="url"
@@ -133,6 +137,7 @@ export default {
         url: { type: String, required: true },
         saveEndpoint: { type: String, required: true },
         settingsUrl: { type: String, required: true },
+        canChangeVisibility: { type: Boolean, default: true },
         trans: { type: Object, required: true }
     },
     data() {
@@ -155,6 +160,10 @@ export default {
     },
     methods: {
         async makePublic() {
+            if (!this.canChangeVisibility) {
+                this.errorMessage = this.trans.visibility_locked;
+                return;
+            }
             this.loading = true;
             this.errorMessage = null;
 
@@ -186,6 +195,10 @@ export default {
             }
         },
         openVisibilityDialog() {
+            if (!this.canChangeVisibility) {
+                this.errorMessage = this.trans.visibility_locked;
+                return;
+            }
             window.openDialog('primary-dialog', this.settingsUrl);
         },
         closeModal() {

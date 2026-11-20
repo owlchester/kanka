@@ -24,7 +24,10 @@ class ShareController extends Controller
     {
         $this->authorize('update', $campaign);
 
-        return view('campaigns.share.setup', compact('campaign'));
+        return view('campaigns.share.setup', [
+            'campaign' => $campaign,
+            'canChangeVisibility' => auth()->user()->can('visibility', $campaign),
+        ]);
     }
 
     /**
@@ -33,6 +36,7 @@ class ShareController extends Controller
     public function save(Request $request, Campaign $campaign): JsonResponse
     {
         $this->authorize('update', $campaign);
+        $this->authorize('visibility', $campaign);
 
         $request->validate([
             'campaign_visibility' => ['required', 'string', 'in:public'],

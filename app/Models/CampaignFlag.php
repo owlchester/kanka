@@ -18,6 +18,7 @@ class CampaignFlag extends Model
 
     protected $fillable = [
         'flag',
+        'value',
     ];
 
     public $casts = [

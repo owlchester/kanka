@@ -71,6 +71,7 @@ if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'bas
         @includeWhen(isset($campaign) || (isset($sidebar) && $sidebar === 'settings'), 'layouts.sidebars.' . ($sidebar ?? 'app'))
 
         <div class="content-wrapper transition-all duration-150 grow" id="{{ isset($contentId) ? $contentId : "main-content" }}">
+            @includeWhen(isset($campaign) && auth()->check() && auth()->user()->can('member', $campaign), 'campaigns.partials.copyright-banner')
             @includeWhen(!isset($skipBanners), 'layouts.banner')
 
             @if(!view()->hasSection('content-header') && (isset($breadcrumbs) && $breadcrumbs !== false))

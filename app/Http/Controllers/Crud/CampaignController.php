@@ -70,6 +70,9 @@ class CampaignController extends Controller
     public function update(UpdateCampaign $request, Campaign $campaign)
     {
         $this->authorize('update', $campaign);
+        if ($request->exists('visibility_id')) {
+            $this->authorize('visibility', $campaign);
+        }
 
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
         if (request()->ajax()) {

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\CampaignFilterType;
+use App\Enums\CampaignFlags;
 use App\Enums\CampaignVisibility;
 use App\Enums\Descendants;
 use App\Enums\Permission;
@@ -233,6 +234,13 @@ class Campaign extends Model
     public function isHidden(): bool
     {
         return $this->is_hidden;
+    }
+
+    public function copyrightNotice(): ?string
+    {
+        return $this->flags()
+            ->where('flag', CampaignFlags::Copyright->value)
+            ->value('value');
     }
 
     public function getEntryAttribute(): ?string

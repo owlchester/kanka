@@ -2,6 +2,7 @@
 
 namespace App\Services\Campaign;
 
+use App\Enums\CampaignFlags;
 use App\Enums\CampaignVisibility;
 use App\Events\Subscriptions\Boost;
 use App\Events\Subscriptions\Disable;
@@ -125,7 +126,7 @@ class BoostService
         $boostCount = $this->campaign->boosts()->count();
         $this->campaign->boost_count = $boostCount;
         // Revert back to public visibility
-        if ($this->campaign->isUnlisted()) {
+        if ($this->campaign->isUnlisted() && ! $this->campaign->flags()->where('flag', CampaignFlags::Copyright->value)->exists()) {
             $this->campaign->visibility_id = CampaignVisibility::public;
         }
 

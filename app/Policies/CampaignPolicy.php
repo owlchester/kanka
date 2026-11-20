@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Enums\CampaignExportStatus;
 use App\Enums\CampaignFilterType;
+use App\Enums\CampaignFlags;
 use App\Facades\CampaignCache;
 use App\Facades\EntityPermission;
 use App\Facades\Identity;
@@ -67,6 +68,13 @@ class CampaignPolicy
             $this->member($user, $campaign) && (
                 $user->can('admin', $campaign) || $this->checkPermission(CampaignPermission::ACTION_MANAGE, $user, $campaign)
             );
+    }
+
+    public function visibility(User $user, Campaign $campaign): bool
+    {
+        return $this->update($user, $campaign) && ! $campaign->flags()
+            ->where('flag', CampaignFlags::Copyright->value)
+            ->exists();
     }
 
     /**

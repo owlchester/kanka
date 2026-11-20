@@ -34,7 +34,7 @@ class ShareController extends Controller
         return view('entities.pages.share.setup', compact(
             'campaign',
             'entity',
-        ));
+        ) + ['canChangeVisibility' => auth()->user()->can('visibility', $campaign)]);
     }
 
     /**
@@ -48,7 +48,7 @@ class ShareController extends Controller
         $campaignVisibility = $request->input('campaign_visibility');
 
         if ($campaignVisibility === 'public') {
-            $this->authorize('update', $campaign);
+            $this->authorize('visibility', $campaign);
         }
 
         if ($visibilityMode) {
