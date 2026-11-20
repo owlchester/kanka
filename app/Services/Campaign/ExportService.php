@@ -19,7 +19,6 @@ use App\Notifications\Header;
 use App\Services\Entity\MarkdownExportService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
-use Avatar;
 use Exception;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
@@ -193,7 +192,6 @@ class ExportService
         if ($this->isMarkdown) {
             CampaignCache::user($this->user);
             Mentions::campaign($this->campaign);
-            Avatar::campaign($this->campaign);
             CampaignLocalization::forceCampaign($this->campaign);
             Module::campaign($this->campaign);
             $this->markdown->user($this->user);

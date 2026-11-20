@@ -2,8 +2,8 @@
 
 namespace App\Http\Resources\Api;
 
-use App\Facades\Avatar;
 use App\Models\Entity;
+use App\Services\Images\Avatar;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -22,8 +22,8 @@ class EntityImagesResource extends JsonResource
         return [
             'image' => [
                 'uuid' => $entity->image_uuid,
-                'full' => Avatar::entity($entity)->original(),
-                'thumbnail' => Avatar::entity($entity)->size(40)->thumbnail(),
+                'full' => Avatar::for($entity)->original(),
+                'thumbnail' => Avatar::for($entity)->size(40)->thumbnail(),
                 'description' => $entity->image?->description,
                 'author' => $entity->image?->author,
             ],

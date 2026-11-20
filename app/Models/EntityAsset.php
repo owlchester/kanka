@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Enums\EntityAssetType;
 use App\Enums\Visibility;
-use App\Facades\EntityAssetCache;
 use App\Facades\Img;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasSuggestions;
@@ -67,10 +66,6 @@ class EntityAsset extends Model
         'name',
         'metadata.icon',
         'metadata.url',
-    ];
-
-    protected array $suggestions = [
-        EntityAssetCache::class => 'clearSuggestion',
     ];
 
     /**

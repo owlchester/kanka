@@ -5,7 +5,7 @@ use App\Models\Character;
 use App\Models\EntityType;
 use App\Models\MiscModel;
 use App\Models\Post;
-use App\Services\Caches\CharacterCacheService;
+use App\Services\Caches\SuggestionCache;
 use App\Services\Entity\StandardEntityCreationService;
 use Illuminate\Support\Facades\Schema;
 
@@ -92,10 +92,11 @@ it('orders character suggestions by entity creation dates', function () {
     $newer = createTimestampAuthorityChild('character');
     $newer->update(['sex' => 'Newer gender', 'pronouns' => 'Newer pronouns']);
 
-    $cache = app(CharacterCacheService::class)->campaign(Campaign::findOrFail(1))->clearSuggestion();
+    $cache = app(SuggestionCache::class);
+    $cache->forgetCharacter(1);
 
-    expect($cache->genderSuggestion())->toBe(['Newer gender', 'Older gender'])
-        ->and($cache->pronounSuggestion())->toBe(['Newer pronouns', 'Older pronouns']);
+    expect($cache->characterGenders(1))->toBe(['Newer gender', 'Older gender'])
+        ->and($cache->characterPronouns(1))->toBe(['Newer pronouns', 'Older pronouns']);
 });
 
 it('can roll back and reapply the timestamp schema without altering entity dates', function () {

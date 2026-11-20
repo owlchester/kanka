@@ -56,7 +56,7 @@ $premiumLink = '<a href="https://kanka.io/premium" class="text-link">' . __('con
             </x-checkbox>
         </x-forms.field>
 
-        @include('cruds.fields.icon', ['suggestions' => \App\Facades\BookmarkCache::iconSuggestion()])
+        @include('cruds.fields.icon', ['suggestions' => app(\App\Services\Caches\SuggestionCache::class)->bookmarkIcons($campaign)])
 
         <x-forms.field
             field="class"

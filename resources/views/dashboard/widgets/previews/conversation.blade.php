@@ -52,7 +52,7 @@ $conversation = $entity->child;
                         <x-users.avatar :user="$message->participant" class="w-6 h-6" />
                     @endif
                 @elseif ($message->participant instanceof \App\Models\Entity)
-                    <img class="entity-image cover-background w-6 h-6 rounded-full" src="{{ \App\Facades\Avatar::entity($message->participant)->fallback()->size(40)->thumbnail() }}" alt="{{ $message->participant->name }}">
+                    <img class="entity-image cover-background w-6 h-6 rounded-full" src="{{ Avatar::for($message->participant)->fallback()->size(40)->thumbnail() }}" alt="{{ $message->participant->name }}">
                 @endif
                     <div class="direct-chat-text grow">
                         {{ $message->message }}

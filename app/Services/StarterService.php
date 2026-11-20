@@ -6,8 +6,6 @@ use App\Enums\AttributeType;
 use App\Enums\Widget;
 use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
-use App\Facades\CharacterCache;
-use App\Facades\EntityCache;
 use App\Facades\EntityPermission;
 use App\Facades\UserCache;
 use App\Models\Attribute;
@@ -77,8 +75,6 @@ class StarterService
     {
         CampaignLocalization::forceCampaign($this->campaign);
         request()->route()->setParameter('campaign', $this->campaign);
-        EntityCache::campaign($this->campaign);
-        CharacterCache::campaign($this->campaign);
 
         // Generate locations
         $kingdom = $this->entityCreationService

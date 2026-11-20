@@ -23,7 +23,7 @@ $canFocus = !empty($entity) && $campaign->boosted() && auth()->user()->can('upda
 
 $previewThumbnail = null;
 if (!empty($entity) && $entity->hasImage()) {
-    $previewThumbnail = Avatar::entity($entity)->size(160, 160)->thumbnail();
+    $previewThumbnail = Avatar::for($entity)->size(160, 160)->thumbnail();
 } elseif (isset($model) && method_exists($model, 'thumbnail') && !empty($model->image)) {
     $previewThumbnail = $model->thumbnail(160, 160);
 } elseif (isset($source) && !empty($source->entity->image_uuid) && !empty($source->entity->image)) {

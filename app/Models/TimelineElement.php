@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Enums\Visibility;
-use App\Facades\TimelineElementCache;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasSuggestions;
@@ -72,10 +71,6 @@ class TimelineElement extends Model
         'use_entity_entry' => 'boolean',
         'use_event_date' => 'boolean',
         'is_collapsed' => 'boolean',
-    ];
-
-    protected array $suggestions = [
-        TimelineElementCache::class => 'clearSuggestion',
     ];
 
     protected array $sanitizable = [

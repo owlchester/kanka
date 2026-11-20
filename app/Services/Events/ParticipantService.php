@@ -3,12 +3,12 @@
 namespace App\Services\Events;
 
 use App\Enums\Permission;
-use App\Facades\Avatar;
 use App\Facades\EntityPermission;
 use App\Http\Requests\SaveEventParticipants;
 use App\Models\Entity;
 use App\Models\Event;
 use App\Models\EventParticipant;
+use App\Services\Images\Avatar;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
@@ -78,7 +78,7 @@ class ParticipantService
                 'entity_id' => $participant->entity_id,
                 'name' => $participant->entity->name,
                 'url' => route('entities.show', [$event->campaign, $participant->entity]),
-                'image' => Avatar::entity($participant->entity)->size(80)->fallback()->thumbnail(),
+                'image' => Avatar::for($participant->entity)->size(80)->fallback()->thumbnail(),
                 'group' => $participant->group_id ? (string) $participant->group_id : null,
                 'role' => $participant->role ?? '',
             ])->values()->all(),

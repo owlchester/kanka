@@ -2,7 +2,6 @@
 
 namespace App\Services\Search;
 
-use App\Facades\Avatar;
 use App\Facades\Mentions;
 use App\Models\Entity;
 use App\Models\EntityAsset;
@@ -10,6 +9,7 @@ use App\Models\EntityType;
 use App\Models\MiscModel;
 use App\Services\Entity\NewService;
 use App\Services\EntityTypeService;
+use App\Services\Images\Avatar;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Collection;
@@ -278,7 +278,7 @@ class NameLookupService
             $img = '';
             if ($model->hasImage()) {
                 $img = '<span class="entity-image cover-background w-8 h-8" style="background-image: url(\''
-                    . Avatar::entity($model)->size(192)->thumbnail() . '\');"></span> ';
+                    . Avatar::for($model)->size(192)->thumbnail() . '\');"></span> ';
             }
 
             $parsedName = str_replace(['&#039;', '&amp;'], ['\'', '&'], $model->name);
@@ -425,7 +425,7 @@ class NameLookupService
             'id' => $entity->id,
             'name' => $entity->name,
             'is_private' => $entity->is_private,
-            'image' => Avatar::entity($entity)->fallback()->size($this->thumbSize)->thumbnail(),
+            'image' => Avatar::for($entity)->fallback()->size($this->thumbSize)->thumbnail(),
             'link' => $entity->url(),
             'type' => $entity->entityType->name(),
             'icon' => $entity->entityType->icon(),

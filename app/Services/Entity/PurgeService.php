@@ -3,8 +3,6 @@
 namespace App\Services\Entity;
 
 use App\Facades\CampaignLocalization;
-use App\Facades\CharacterCache;
-use App\Facades\EntityCache;
 use App\Models\Entity;
 use App\Models\MiscModel;
 use App\Models\Scopes\ActiveEntityScope;
@@ -31,8 +29,6 @@ class PurgeService
      */
     public function trash(Entity $entity): void
     {
-        EntityCache::campaign($entity->campaign);
-
         if ($entity->hasChild()) {
             /** @var MiscModel $child */
             $child = $entity->child()->withoutGlobalScope(ActiveEntityScope::class)->first();
@@ -79,7 +75,6 @@ class PurgeService
 
         $this->childIds[$entity->entityType->code][] = $child->id;
 
-        CharacterCache::campaign($entity->campaign);
         $child->delete();
 
         // Unset the campaign id limitation again

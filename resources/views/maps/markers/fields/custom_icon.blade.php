@@ -26,7 +26,7 @@
 
     <div class="hidden">
         <datalist id="map-marker-icon-list">
-            @foreach (\App\Facades\MapMarkerCache::campaign($campaign)->iconSuggestion() as $icon)
+            @foreach (app(\App\Services\Caches\SuggestionCache::class)->mapMarkerIcons($campaign) as $icon)
                 <option value="{{ $icon }}">{{ $icon }}</option>
             @endforeach
         </datalist>

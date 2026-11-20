@@ -3,13 +3,11 @@
 use App\Facades\AdCache;
 use App\Facades\ApiLog;
 use App\Facades\Attributes;
-use App\Facades\Avatar;
 use App\Facades\Breadcrumb;
 use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
 use App\Facades\Datagrid;
 use App\Facades\Domain;
-use App\Facades\EntityCache;
 use App\Facades\EntityPermission;
 use App\Facades\FormCopy;
 use App\Facades\Img;
@@ -19,7 +17,6 @@ use App\Facades\Mentions;
 use App\Facades\UserCache;
 use App\Providers\AppServiceProvider;
 use App\Providers\AttributesServiceProvider;
-use App\Providers\AvatarServiceProvider;
 use App\Providers\BreadcrumbServiceProvider;
 use App\Providers\CampaignLocalizationServiceProvider;
 use App\Providers\DashboardServiceProvider;
@@ -37,6 +34,7 @@ use App\Providers\MentionsServiceProvider;
 use App\Providers\ModuleServiceProvider;
 use App\Providers\PermissionsServiceProvider;
 use App\Providers\RouteServiceProvider;
+use App\Services\Images\Avatar;
 use Illuminate\Auth\AuthServiceProvider;
 use Illuminate\Auth\Passwords\PasswordResetServiceProvider;
 use Illuminate\Broadcasting\BroadcastServiceProvider;
@@ -329,7 +327,6 @@ return [
          */
         AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        AvatarServiceProvider::class,
         App\Providers\BroadcastServiceProvider::class,
         EventServiceProvider::class,
         RouteServiceProvider::class,
@@ -413,7 +410,6 @@ return [
         'Mentions' => Mentions::class,
         'Breadcrumb' => Breadcrumb::class,
         'FormCopy' => FormCopy::class,
-        'EntityCache' => EntityCache::class,
         'CampaignCache' => CampaignCache::class,
         'AdCache' => AdCache::class,
         'UserCache' => UserCache::class,

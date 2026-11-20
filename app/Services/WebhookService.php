@@ -2,11 +2,11 @@
 
 namespace App\Services;
 
-use App\Facades\Avatar;
 use App\Facades\CampaignLocalization;
 use App\Facades\Module;
 use App\Http\Resources\EntityResource;
 use App\Models\Webhook;
+use App\Services\Images\Avatar;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\UserAware;
@@ -66,7 +66,7 @@ class WebhookService
 
                 if ($this->entity->hasImage(true)) {
                     $embeds['thumbnail'] = [
-                        'url' => Avatar::entity($this->entity)->size(192)->thumbnail(),
+                        'url' => Avatar::for($this->entity)->size(192)->thumbnail(),
                     ];
                 }
 

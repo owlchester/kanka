@@ -9,7 +9,7 @@
     <div
         class="flex gap-4 items-end tooltip-header @if ($hasImage) px-4 h-32 w-full rounded-t-xl  @else px-4 pt-4 @endif"
         @if ($hasImage)
-            style="--tooltip-background: url('{{ Avatar::entity($entity)->size(378, 256)->thumbnail() }}')"
+            style="--tooltip-background: url('{{ Avatar::for($entity)->size(378, 256)->thumbnail() }}')"
         @endif>
         <div class="grow entity-names flex flex-col gap-0.5 overflow-hidden">
             <div class="flex gap-1 overflow-hidden items-center text-xl ">

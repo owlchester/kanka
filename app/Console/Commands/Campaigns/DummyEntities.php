@@ -4,9 +4,6 @@ namespace App\Console\Commands\Campaigns;
 
 use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
-use App\Facades\CharacterCache;
-use App\Facades\EntityCache;
-use App\Facades\QuestCache;
 use App\Models\Ability;
 use App\Models\Attribute;
 use App\Models\Calendar;
@@ -66,9 +63,6 @@ class DummyEntities extends Command
         $campaign = Campaign::findOrFail($campaignId);
 
         CampaignCache::campaign($campaign);
-        EntityCache::campaign($campaign);
-        CharacterCache::campaign($campaign);
-        QuestCache::campaign($campaign);
 
         CampaignLocalization::forceCampaign($campaign);
 

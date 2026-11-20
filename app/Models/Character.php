@@ -5,10 +5,10 @@ namespace App\Models;
 use App\Enums\FilterOption;
 use App\Enums\OrganisationMemberPin;
 use App\Facades\CampaignLocalization;
-use App\Facades\CharacterCache;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\HasSuggestions;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
@@ -46,6 +46,7 @@ class Character extends MiscModel
     use HasCampaign;
     use HasFactory;
     use HasFilters;
+    use HasSuggestions;
     use Sanitizable;
     use SortableTrait;
 
@@ -102,10 +103,6 @@ class Character extends MiscModel
      * Searchable fields
      */
     protected array $searchableColumns = ['name', 'title'];
-
-    protected array $suggestions = [
-        CharacterCache::class => 'clearSuggestion',
-    ];
 
     protected array $sanitizable = [
         'name',

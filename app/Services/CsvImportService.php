@@ -4,16 +4,9 @@ namespace App\Services;
 
 use App\Enums\CampaignImportStatus;
 use App\Enums\UserAction;
-use App\Facades\BookmarkCache;
 use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
-use App\Facades\CharacterCache;
-use App\Facades\EntityAssetCache;
-use App\Facades\EntityCache;
 use App\Facades\Limit;
-use App\Facades\MapMarkerCache;
-use App\Facades\QuestCache;
-use App\Facades\TimelineElementCache;
 use App\Http\Requests\StoreCharacter;
 use App\Http\Requests\StoreCustomEntity;
 use App\Models\CampaignImport;
@@ -198,13 +191,6 @@ class CsvImportService
             // We're in the queue after all
             CampaignLocalization::forceCampaign($this->campaign);
             CampaignCache::campaign($this->campaign)->clear();
-            EntityCache::campaign($this->campaign);
-            CharacterCache::campaign($this->campaign);
-            TimelineElementCache::campaign($this->campaign);
-            QuestCache::campaign($this->campaign);
-            MapMarkerCache::campaign($this->campaign);
-            EntityAssetCache::campaign($this->campaign);
-            BookmarkCache::campaign($this->campaign);
             Limit::campaign($this->campaign);
             Limit::user($this->user);
 

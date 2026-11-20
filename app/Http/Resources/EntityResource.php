@@ -2,10 +2,10 @@
 
 namespace App\Http\Resources;
 
-use App\Facades\Avatar;
 use App\Models\Entity;
 use App\Models\Item;
 use App\Models\MiscModel;
+use App\Services\Images\Avatar;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Route;
@@ -161,8 +161,8 @@ class EntityResource extends JsonResource
                     'image' => $image
                         ? $entity->image->path
                         : $entity->image_path,
-                    'image_full' => Avatar::entity($entity)->original(),
-                    'image_thumb' => Avatar::entity($entity)
+                    'image_full' => Avatar::for($entity)->original(),
+                    'image_thumb' => Avatar::for($entity)
                         ->size(40)
                         ->thumbnail(),
                     'has_custom_image' => $image || ! empty($entity->image_path),
@@ -230,8 +230,8 @@ class EntityResource extends JsonResource
             'focus_y' => $misc->entity->focus_y,
 
             // Image
-            'image_full' => Avatar::entity($misc->entity)->original(),
-            'image_thumb' => Avatar::size(40)->fallback()->thumbnail(),
+            'image_full' => Avatar::for($misc->entity)->original(),
+            'image_thumb' => Avatar::for($misc->entity)->size(40)->fallback()->thumbnail(),
             'has_custom_image' => ! empty($misc->entity->image_path) || ! empty($galleryImage),
             'image_uuid' => $misc->entity->image
                 ? $misc->entity->image->id

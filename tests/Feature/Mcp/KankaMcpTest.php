@@ -2,7 +2,6 @@
 
 use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
-use App\Facades\EntityCache;
 use App\Facades\EntityPermission;
 use App\Facades\Module;
 use App\Facades\UserCache;
@@ -24,7 +23,6 @@ use App\Models\Relation;
 use App\Models\Tag;
 use App\Models\User;
 use App\Services\Caches\CampaignCacheService;
-use App\Services\Caches\EntityCacheService;
 use App\Services\Caches\UserCacheService;
 use App\Services\Campaign\ModuleService;
 use App\Services\Permissions\EntityPermission as EntityPermissionService;
@@ -76,10 +74,6 @@ it('searches and retrieves visible campaign entities', function () {
     app()->forgetInstance(CampaignCacheService::class);
     CampaignCache::clearResolvedInstance('campaigncache');
     app(CampaignCacheService::class);
-    app()->forgetInstance('entitycache');
-    app()->forgetInstance(EntityCacheService::class);
-    EntityCache::clearResolvedInstance('entitycache');
-    app(EntityCacheService::class);
 
     KankaServer::actingAs(auth()->user(), 'api')
         ->tool(SearchEntitiesTool::class, ['campaign_id' => 1, 'query' => 'Elara'])

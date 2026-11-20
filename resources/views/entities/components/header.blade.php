@@ -6,10 +6,10 @@
  */
 
 $imageUrl = $imagePath = $headerImageUrl = $imagePathXL = $imagePathMobile = null;
-$imageUrl = Avatar::entity($entity)->original();
-$imagePath = Avatar::entity($entity)->size(192)->thumbnail();
-$imagePathXL = Avatar::entity($entity)->size(400)->thumbnail();
-$imagePathMobile = Avatar::entity($entity)->size(192)->thumbnail();
+$imageUrl = Avatar::for($entity)->original();
+$imagePath = Avatar::for($entity)->size(192)->thumbnail();
+$imagePathXL = Avatar::for($entity)->size(400)->thumbnail();
+$imagePathMobile = Avatar::for($entity)->size(192)->thumbnail();
 $imageVisibility = $entity->image ? $entity->image->visibility_id : null;
 $imageAlt = $entity->image?->description ?: $entity->name;
 $imageClass = (!empty($imageVisibility) ? 'visibility-' . strtolower($imageVisibility->name) : null);

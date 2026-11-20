@@ -2,11 +2,11 @@
 
 namespace App\Http\Resources\Entities;
 
-use App\Facades\Avatar;
 use App\Facades\CampaignLocalization;
 use App\Http\Resources\EntityTypeResource;
 use App\Models\Entity;
 use App\Models\Map;
+use App\Services\Images\Avatar;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Str;
@@ -70,8 +70,8 @@ class ExploreResource extends JsonResource
             'selected' => false,
             'children' => $entity->children_count ?? 0,
             'images' => [
-                'thumb' => Avatar::entity($entity)->fallback()->size(192, 144)->thumbnail(),
-                'full' => Avatar::entity($entity)->original(),
+                'thumb' => Avatar::for($entity)->fallback()->size(192, 144)->thumbnail(),
+                'full' => Avatar::for($entity)->original(),
             ],
             'is_private' => $entity->is_private,
             'parent_id' => $parentEntity?->id,
@@ -234,7 +234,7 @@ class ExploreResource extends JsonResource
             $data['children_preview'] = $entity->children->take(3)->map(fn ($childEntity) => [
                 'id' => $childEntity->id,
                 'name' => $childEntity->name,
-                'image' => Avatar::entity($childEntity)->fallback()->size(40, 40)->thumbnail(),
+                'image' => Avatar::for($childEntity)->fallback()->size(40, 40)->thumbnail(),
             ])->values()->toArray();
         }
 

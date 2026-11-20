@@ -2,7 +2,6 @@
 
 namespace App\Services\Search;
 
-use App\Facades\Avatar;
 use App\Models\Attribute;
 use App\Models\Entity;
 use App\Models\EntityAsset;
@@ -10,6 +9,7 @@ use App\Models\EntityType;
 use App\Models\Post;
 use App\Services\Entity\NewService;
 use App\Services\EntityTypeService;
+use App\Services\Images\Avatar;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\RequestAware;
@@ -179,7 +179,7 @@ class MentionService
             'name' => $entity->name,
             'type' => $entity->entityType->name(),
             'is_private' => $entity->is_private,
-            'image' => Avatar::entity($entity)->fallback()->size(32)->thumbnail(),
+            'image' => Avatar::for($entity)->fallback()->size(32)->thumbnail(),
             'image_alt' => $entity->image?->description ?: $entity->name,
             'url' => $entity->url(),
             'preview' => route('entities.preview', [$this->campaign, $entity]),

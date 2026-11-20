@@ -2,7 +2,6 @@
 
 namespace App\Services\Entity\Connections;
 
-use App\Facades\Avatar;
 use App\Facades\Module;
 use App\Models\Character;
 use App\Models\Conversation;
@@ -20,6 +19,7 @@ use App\Models\OrganisationMember;
 use App\Models\Quest;
 use App\Models\QuestElement;
 use App\Models\Relation;
+use App\Services\Images\Avatar;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\UserAware;
@@ -144,7 +144,7 @@ class MapService
             return $this;
         }
 
-        $img = $image ?? Avatar::entity($entity)->size(192)->fallback()->thumbnail();
+        $img = $image ?? Avatar::for($entity)->size(192)->fallback()->thumbnail();
         if (empty($img)) {
             // Fallback?
             $img = '';
@@ -350,7 +350,7 @@ class MapService
                 continue;
             }
             $this->orgMembers[$member->id] = true;
-            $this->addEntity($member->character->entity, Avatar::entity($member->character->entity)->fallback()->size(192)->thumbnail());
+            $this->addEntity($member->character->entity, Avatar::for($member->character->entity)->fallback()->size(192)->thumbnail());
 
             // Add relation
             $this->relations[] = [
@@ -491,7 +491,7 @@ class MapService
         /** @var Character $member */
         foreach ($family->members()->with(['entity', 'entity.image', 'entity.entityType'])->has('entity')->get() as $member) {
             $this
-                ->addEntity($member->entity, Avatar::entity($member->entity)->fallback()->size(192)->thumbnail())
+                ->addEntity($member->entity, Avatar::for($member->entity)->fallback()->size(192)->thumbnail())
                 ->addRelations($member->entity);
 
             // Add relation
@@ -544,7 +544,7 @@ class MapService
         $members = $organisation->members()->with(['character', 'character.entity', 'character.entity.image', 'character.entity.entityType'])->has('character')->has('character.entity')->get();
         foreach ($members as $member) {
             $this
-                ->addEntity($member->character->entity, Avatar::entity($member->character->entity)->fallback()->size(192)->thumbnail())
+                ->addEntity($member->character->entity, Avatar::for($member->character->entity)->fallback()->size(192)->thumbnail())
                 ->addRelations($member->character->entity);
 
             // Add relation

@@ -2,13 +2,13 @@
 
 namespace App\Services\Whiteboards;
 
-use App\Facades\Avatar;
 use App\Http\Resources\Whiteboards\EntityResource;
 use App\Http\Resources\Whiteboards\ShapeResource;
 use App\Models\Entity;
 use App\Models\Image;
 use App\Models\Whiteboard;
 use App\Models\WhiteboardShape;
+use App\Services\Images\Avatar;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Arr;
@@ -161,7 +161,7 @@ class ApiService
         /** @var Entity $entity */
         foreach ($entities as $entity) {
             $this->data['entities'][$entity->id] = new EntityResource($entity)->campaign($this->campaign);
-            $this->data['images'][$entity->id] = Avatar::entity($entity)->size(256)->fallback()->thumbnail();
+            $this->data['images'][$entity->id] = Avatar::for($entity)->size(256)->fallback()->thumbnail();
         }
 
         return $this;

@@ -62,7 +62,7 @@
         <input type="text" name="icon" value="{{ old('icon', $entityType->icon ?? '') }}" maxlength="100" placeholder="fa-solid fa-car" class="w-full" list="module-icon-list" autocomplete="off" data-paste="fontawesome" />
         <div class="hidden">
             <datalist id="module-icon-list">
-                @foreach (\App\Facades\MapMarkerCache::campaign($campaign)->iconSuggestion() as $icon)
+                @foreach (app(\App\Services\Caches\SuggestionCache::class)->mapMarkerIcons($campaign) as $icon)
                     <option value="{{ $icon }}">{{ $icon }}</option>
                 @endforeach
             </datalist>

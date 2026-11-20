@@ -2,8 +2,8 @@
 
 namespace App\Http\Resources\Maps\Explore;
 
-use App\Facades\Avatar;
 use App\Models\Map;
+use App\Services\Images\Avatar;
 use App\Traits\CampaignAware;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -53,7 +53,7 @@ class MapResource extends JsonResource
             'tiling' => $tiling,
             'tiling_prompt_eligible' => $this->tilingPromptEligible(),
             'has_clustering' => (bool) $map->isClustered(),
-            'image' => $map->isReal() ? null : Avatar::entity($map->entity)->original(),
+            'image' => $map->isReal() ? null : Avatar::for($map->entity)->original(),
             'width' => (int) ($map->width ?: 1000),
             'height' => (int) ($map->height ?: 1000),
             'min_zoom' => $map->minZoom(),

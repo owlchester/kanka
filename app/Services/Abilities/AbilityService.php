@@ -2,12 +2,12 @@
 
 namespace App\Services\Abilities;
 
-use App\Facades\Avatar;
 use App\Facades\Mentions;
 use App\Models\Attribute;
 use App\Models\Entity;
 use App\Models\EntityAbility;
 use App\Models\Tag;
+use App\Services\Images\Avatar;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\UserAware;
@@ -98,7 +98,7 @@ class AbilityService extends BaseAbilityService
                     'id' => $parent->id,
                     'name' => $parent->name,
                     'type' => $type,
-                    'image' => Avatar::entity($parent)->size(192)->thumbnail(),
+                    'image' => Avatar::for($parent)->size(192)->thumbnail(),
                     'has_image' => $parent->hasImage(),
                     'entry' => $parent->parsedEntry(),
                     'url' => $parent->url(),
@@ -152,8 +152,8 @@ class AbilityService extends BaseAbilityService
             'attributes' => $this->attributes($entityAbility->ability->entity),
             'images' => [
                 'has' => ! empty($entityAbility->ability->entity->image_path) || $entityAbility->ability->entity->image,
-                'thumb' => Avatar::entity($entityAbility->ability->entity)->size(192)->thumbnail(),
-                'url' => Avatar::entity($entityAbility->ability->entity)->original(),
+                'thumb' => Avatar::for($entityAbility->ability->entity)->size(192)->thumbnail(),
+                'url' => Avatar::for($entityAbility->ability->entity)->original(),
             ],
             'actions' => [
                 'edit' => route('entities.entity_abilities.edit', [$this->campaign, $this->entity, $entityAbility]),

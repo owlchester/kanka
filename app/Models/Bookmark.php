@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\BookmarkCache;
 use App\Facades\Dashboard;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasCampaign;
@@ -130,10 +129,6 @@ class Bookmark extends Model
 
     protected array $apiWith = [
         'target',
-    ];
-
-    protected array $suggestions = [
-        BookmarkCache::class => 'clearSuggestion',
     ];
 
     /**
