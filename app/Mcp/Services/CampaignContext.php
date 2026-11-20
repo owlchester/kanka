@@ -4,9 +4,7 @@ namespace App\Mcp\Services;
 
 use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
-use App\Facades\EntityPermission;
 use App\Facades\Module;
-use App\Facades\Permissions;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\User;
@@ -36,8 +34,6 @@ class CampaignContext
         CampaignCache::campaign($campaign);
         Module::campaign($campaign);
         UserCache::campaign($campaign)->user($user);
-        EntityPermission::campaign($campaign)->user($user);
-        Permissions::campaign($campaign)->user($user)->reload()->reset();
 
         return $campaign;
     }

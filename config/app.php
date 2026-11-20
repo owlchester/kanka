@@ -8,7 +8,6 @@ use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
 use App\Facades\Datagrid;
 use App\Facades\Domain;
-use App\Facades\EntityPermission;
 use App\Facades\FormCopy;
 use App\Facades\ImportIdMapper;
 use App\Facades\Limit;
@@ -406,7 +405,6 @@ return [
         // Kanka
         'Avatar' => Avatar::class,
         'CampaignLocalization' => CampaignLocalization::class,
-        'EntityPermission' => EntityPermission::class,
         'Mentions' => Mentions::class,
         'Breadcrumb' => Breadcrumb::class,
         'FormCopy' => FormCopy::class,

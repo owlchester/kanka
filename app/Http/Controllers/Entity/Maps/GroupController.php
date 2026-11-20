@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Entity\Maps;
 
-use App\Facades\EntityPermission;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreExploreMapGroup;
 use App\Http\Resources\Maps\Explore\GroupResource;
@@ -25,9 +24,6 @@ class GroupController extends Controller
         if (! $entity->isMap()) {
             abort(404);
         }
-        // Mirrors Entity/Maps/MarkerController::store() — scope EntityPermission to this
-        // campaign so the update check below evaluates the user's actual role.
-        EntityPermission::campaign($campaign);
         $this->authorize('update', $entity);
 
         /** @var Map $map */

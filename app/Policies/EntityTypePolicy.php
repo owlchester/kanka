@@ -3,11 +3,11 @@
 namespace App\Policies;
 
 use App\Enums\Permission;
-use App\Facades\EntityPermission;
 use App\Models\Bookmark;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Models\User;
+use App\Services\Permissions\EntityPermission;
 
 class EntityTypePolicy
 {
@@ -28,7 +28,7 @@ class EntityTypePolicy
             return auth()->user()->can('create', [Bookmark::class, $campaign]);
         }
 
-        return EntityPermission::campaign($campaign)->user($user)->entityType($entityType)->can(Permission::Create);
+        return app(EntityPermission::class)->canEntityType($entityType, Permission::Create, $user, $campaign);
     }
 
     public function update(User $user, EntityType $entityType, Campaign $campaign)
@@ -43,11 +43,11 @@ class EntityTypePolicy
 
     public function deleteEntities(User $user, EntityType $entityType, Campaign $campaign)
     {
-        return EntityPermission::campaign($campaign)->user($user)->entityType($entityType)->can(Permission::Delete);
+        return app(EntityPermission::class)->canEntityType($entityType, Permission::Delete, $user, $campaign);
     }
 
     public function permissions(User $user, EntityType $entityType): bool
     {
-        return EntityPermission::entityType($entityType)->user($user)->can(Permission::Permissions);
+        return app(EntityPermission::class)->canEntityType($entityType, Permission::Permissions, $user);
     }
 }

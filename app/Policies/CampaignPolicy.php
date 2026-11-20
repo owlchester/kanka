@@ -6,11 +6,11 @@ use App\Enums\CampaignExportStatus;
 use App\Enums\CampaignFilterType;
 use App\Enums\CampaignFlags;
 use App\Facades\CampaignCache;
-use App\Facades\EntityPermission;
 use App\Facades\Identity;
 use App\Models\Campaign;
 use App\Models\CampaignPermission;
 use App\Models\User;
+use App\Services\Permissions\EntityPermission;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CampaignPolicy
@@ -292,7 +292,7 @@ class CampaignPolicy
 
     protected function checkPermission(int $action, User $user, ?Campaign $campaign = null): bool
     {
-        return EntityPermission::campaign($campaign)->user($user)->hasPermission(0, $action, null);
+        return app(EntityPermission::class)->hasPermission(0, $action, null, $user, $campaign);
     }
 
     /**

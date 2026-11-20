@@ -3,12 +3,12 @@
 namespace App\Services\Events;
 
 use App\Enums\Permission;
-use App\Facades\EntityPermission;
 use App\Http\Requests\SaveEventParticipants;
 use App\Models\Entity;
 use App\Models\Event;
 use App\Models\EventParticipant;
 use App\Services\Images\Avatar;
+use App\Services\Permissions\EntityPermission;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
@@ -161,7 +161,7 @@ class ParticipantService
 
         return auth()->check()
             ? Gate::allows('view', $participant->entity)
-            : (bool) EntityPermission::entity($participant->entity)->campaign($participant->entity->campaign)->can(Permission::View);
+            : app(EntityPermission::class)->canEntity($participant->entity, Permission::View, null, $participant->entity->campaign);
     }
 
     private function revision(Collection $groups, Collection $participants): string

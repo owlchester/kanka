@@ -187,19 +187,18 @@ class LayoutService
     {
         $catalog = $this->catalog();
         $layout = $this->campaign->boosted() ? $this->layout($this->target($user)) : $this->standard();
-        $permissions = app(EntityPermission::class)->campaign($this->campaign);
-        $user ? $permissions->user($user) : $permissions->userless();
+        $permissions = app(EntityPermission::class);
         $visible = [];
         $admin = $user && $user->can('admin', $this->campaign);
         foreach ($catalog as $id => $entry) {
             if ($entry['kind'] === 'category') {
                 $type = $this->types[$id];
-                if (! $this->categoryEnabled($type) || ! $permissions->hasPermission($type->id, Permission::View->value)) {
+                if (! $this->categoryEnabled($type) || ! $permissions->hasPermission($type->id, Permission::View->value, null, $user, $this->campaign)) {
                     continue;
                 }
             } elseif ($entry['kind'] === 'bookmark') {
                 $bookmark = $this->bookmarks[$id];
-                if (! $this->bookmarkVisible($bookmark, $permissions, $admin)) {
+                if (! $this->bookmarkVisible($bookmark, $permissions, $user, $admin)) {
                     continue;
                 }
                 $entry['bookmark'] = $bookmark;
@@ -301,7 +300,7 @@ class LayoutService
         return $type->isEnabled() && ($type->isCustom() ? $this->campaign->boosted() : $this->campaign->enabled($type));
     }
 
-    protected function bookmarkVisible(Bookmark $bookmark, EntityPermission $permissions, bool $admin): bool
+    protected function bookmarkVisible(Bookmark $bookmark, EntityPermission $permissions, ?User $user, bool $admin): bool
     {
         if (! $this->campaign->enabled('bookmarks') || ! $bookmark->is_active || ($bookmark->is_private && ! $admin)) {
             return false;
@@ -319,6 +318,6 @@ class LayoutService
         $type = $bookmark->isRandom() ? $bookmark->randomEntityType : $bookmark->entityType;
 
         return $type && (! $type->campaign_id || $type->campaign_id === $this->campaign->id)
-            && $this->categoryEnabled($type) && $permissions->hasPermission($type->id, Permission::View->value);
+            && $this->categoryEnabled($type) && $permissions->hasPermission($type->id, Permission::View->value, null, $user, $this->campaign);
     }
 }

@@ -2,7 +2,6 @@
 
 use App\Enums\EntityEventTypes;
 use App\Enums\Visibility;
-use App\Facades\EntityPermission;
 use App\Facades\Permissions;
 use App\Models\Calendar;
 use App\Models\Campaign;
@@ -12,7 +11,6 @@ use App\Models\Entity;
 use App\Models\Post;
 use App\Models\Reminder;
 use App\Services\Permissions\EntityPermission as EntityPermissionService;
-use App\Services\Permissions\PermissionService;
 use App\Services\Permissions\RolePermission as RolePermissionService;
 use Illuminate\Support\Facades\Gate;
 use Tests\TestCase;
@@ -20,9 +18,9 @@ use Tests\TestCase;
 function switchToPlayerWithFreshPermissions(TestCase $test, Campaign $campaign): void
 {
     $test->asPlayer();
-    Permissions::swap(new PermissionService);
+    Permissions::reset();
     app()->forgetInstance(RolePermissionService::class);
-    EntityPermission::swap((new EntityPermissionService)->campaign($campaign));
+    app(EntityPermissionService::class)->resetPermissions();
 }
 
 test('player cannot edit, update, or delete a post reminder whose calendar is private', function () {

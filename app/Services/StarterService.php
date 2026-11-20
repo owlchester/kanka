@@ -6,7 +6,6 @@ use App\Enums\AttributeType;
 use App\Enums\Widget;
 use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
-use App\Facades\EntityPermission;
 use App\Facades\UserCache;
 use App\Models\Attribute;
 use App\Models\Campaign;
@@ -49,7 +48,6 @@ class StarterService
             ->data($request)
             ->create();
 
-        EntityPermission::campaign($this->campaign);
         CampaignCache::campaign($this->campaign);
         UserCache::campaign($this->campaign);
 

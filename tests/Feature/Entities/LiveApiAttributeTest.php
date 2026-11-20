@@ -1,9 +1,9 @@
 <?php
 
-use App\Facades\EntityPermission;
 use App\Http\Middleware\ReplicationSwitcher;
 use App\Models\Attribute;
 use App\Models\Character;
+use App\Services\Permissions\EntityPermission;
 
 it('forbids guests from mutating live attributes', function () {
     $this->asUser()->withCampaign([
@@ -41,7 +41,7 @@ it('forbids players without edit permission from mutating live attributes', func
     $originalName = $attribute->name;
 
     $this->asPlayer();
-    EntityPermission::campaign($entity->campaign)->resetPermissions();
+    app(EntityPermission::class)->resetPermissions();
 
     $this->postJson(route('entities.attributes.live-api.create', [$entity->campaign, $entity]), [
         'name' => 'Player attribute',

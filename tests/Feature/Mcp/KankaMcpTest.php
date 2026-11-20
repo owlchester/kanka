@@ -2,7 +2,6 @@
 
 use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
-use App\Facades\EntityPermission;
 use App\Facades\Module;
 use App\Facades\UserCache;
 use App\Mcp\Servers\KankaServer;
@@ -84,9 +83,7 @@ it('searches and retrieves visible campaign entities', function () {
             ->where('pagination.page', 1));
 
     CampaignLocalization::clearCampaign();
-    app()->forgetInstance('entitypermission');
     app()->forgetInstance(EntityPermissionService::class);
-    EntityPermission::clearResolvedInstance('entitypermission');
     app(EntityPermissionService::class);
 
     KankaServer::actingAs(auth()->user(), 'api')

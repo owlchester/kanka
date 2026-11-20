@@ -1,6 +1,5 @@
 <?php
 
-use App\Facades\EntityPermission;
 use App\Facades\ImportIdMapper;
 use App\Facades\Permissions;
 use App\Models\Campaign;
@@ -11,6 +10,7 @@ use App\Models\EventParticipant;
 use App\Services\Campaign\Import\Mappers\CharacterMapper;
 use App\Services\Campaign\Import\Mappers\EventMapper;
 use App\Services\Events\ParticipantService;
+use App\Services\Permissions\EntityPermission;
 use App\Services\Permissions\PermissionService;
 use Illuminate\Database\Events\QueryExecuted;
 use Illuminate\Support\Facades\DB;
@@ -218,7 +218,7 @@ it('prevents players without event edit permission from saving participants', fu
     $event = Event::factory()->create(['campaign_id' => 1]);
     $payload = participantPayload($event);
     $this->asPlayer();
-    EntityPermission::swap((new App\Services\Permissions\EntityPermission)->campaign(Campaign::findOrFail(1)));
+    app(EntityPermission::class)->resetPermissions();
     expect(auth()->user()->can('update', $event->entity))->toBeFalse();
     $this->putJson(route('events.participants.update', [1, $event]), $payload)->assertForbidden();
 });

@@ -33,6 +33,8 @@ class PermissionService
 
     protected bool $loadedPermissions = false;
 
+    protected ?string $loadedContextKey = null;
+
     protected bool $tempPermissionCreated = false;
 
     protected bool $tempPermissionFilled = false;
@@ -45,6 +47,8 @@ class PermissionService
     protected int $publicRoleId;
 
     protected bool $loadedPosts = false;
+
+    protected ?string $loadedPostsContextKey = null;
 
     protected int $loadedRoles;
 
@@ -90,15 +94,7 @@ class PermissionService
 
     public function reload(): self
     {
-        $this->entityIds = [];
-        $this->entityTypes = [];
-        $this->entityTypesIds = [];
-        $this->deniedIds = [];
-        unset($this->loadedRoles);
-        $this->admin = false;
-        unset($this->publicRoleId);
-
-        return $this;
+        return $this->reset();
     }
 
     public function entityType(int $entityType): self
@@ -152,6 +148,8 @@ class PermissionService
             });
             $this->tempPermissionCreated = true;
             $this->tune('Temp table created');
+        } else {
+            DB::table('tmp_permissions')->delete();
         }
         $batch = [];
         foreach ($this->entityIds as $id) {
@@ -223,10 +221,14 @@ class PermissionService
      */
     protected function loadPostPermissions(): self
     {
-        if ($this->loadedPosts) {
+        $contextKey = $this->campaign->id . ':' . ($this->user->id ?? 0);
+        if ($this->loadedPosts && $this->loadedPostsContextKey === $contextKey) {
             return $this;
         }
+        $this->allowedPostIDs = [];
+        $this->deniedPostIDs = [];
         $this->loadedPosts = true;
+        $this->loadedPostsContextKey = $contextKey;
 
         // Get the user's individual and role permissions
         $roles = $this->userRoles();
@@ -256,12 +258,18 @@ class PermissionService
      */
     private function loadPermissions(): self
     {
-        if ($this->loadedPermissions) {
+        $contextKey = $this->currentContextKey();
+        if ($this->loadedPermissions && $this->loadedContextKey === $contextKey) {
             return $this;
+        }
+
+        if ($this->loadedPermissions) {
+            $this->reset();
         }
 
         $this->start = microtime(true);
         $this->loadedPermissions = true;
+        $this->loadedContextKey = $contextKey;
 
         // Valid user: load their roles
         if ($this->hasUser()) {
@@ -282,11 +290,33 @@ class PermissionService
 
     public function reset(): self
     {
+        $this->entityIds = [];
+        $this->entityTypes = [];
+        $this->entityTypesIds = [];
+        $this->deniedIds = [];
+        $this->allowedPostIDs = [];
+        $this->deniedPostIDs = [];
         $this->loadedPermissions = false;
-        unset($this->loadedRoles);
+        $this->loadedContextKey = null;
+        $this->loadedPosts = false;
+        $this->loadedPostsContextKey = null;
+        $this->tempPermissionFilled = false;
+        $this->granted = false;
+        unset($this->loadedRoles, $this->publicRoleId);
         $this->admin = false;
 
         return $this;
+    }
+
+    protected function currentContextKey(): string
+    {
+        return implode(':', [
+            $this->campaign->id,
+            $this->user->id ?? 0,
+            $this->action ?? 0,
+            $this->entityType ?? 0,
+            $this->entityTypeID ?? 0,
+        ]);
     }
 
     /**
@@ -299,7 +329,7 @@ class PermissionService
         }
         $this->loadedRoles = 0;
 
-        $roles = UserCache::user($this->user)->roles();
+        $roles = UserCache::user($this->user)->campaign($this->campaign)->roles();
 
         $roleIDs = [];
         foreach ($roles as $role) {
@@ -450,6 +480,7 @@ class PermissionService
     protected function userRoles(): array
     {
         return UserCache::user($this->user)
+            ->campaign($this->campaign)
             ->roles()
             ->pluck('id')
             ->toArray();

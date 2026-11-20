@@ -20,8 +20,7 @@ trait UserAware
 
     public function userless(): self
     {
-        // @phpstan-ignore-next-line
-        unset($this->user);
+        $this->user = null;
 
         return $this;
     }

@@ -82,6 +82,8 @@ class AclScope implements Scope
             ->action(Permission::View);
         if (auth()->check()) {
             Permissions::user(auth()->user());
+        } else {
+            Permissions::userless();
         }
 
         if (Permissions::isAdmin()) {
