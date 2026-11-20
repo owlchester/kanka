@@ -16,8 +16,10 @@ use App\Models\Concerns\SortableTrait;
 use App\Models\Concerns\Taggable;
 use App\Models\Concerns\Templatable;
 use App\Models\Concerns\TouchSilently;
+use App\Observers\PostObserver;
 use App\Services\MentionsService;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -56,6 +58,7 @@ use Laravel\Scout\Searchable;
  *
  * @method static Builder|self pinned()
  */
+#[ObservedBy(PostObserver::class)]
 class Post extends Model
 {
     use Acl;

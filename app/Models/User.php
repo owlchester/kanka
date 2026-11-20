@@ -12,7 +12,9 @@ use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\UserBenefits;
 use App\Models\Relations\UserRelations;
 use App\Models\Scopes\UserScope;
+use App\Observers\UserObserver;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Notifications\Notifiable;
@@ -49,6 +51,7 @@ use Laravel\Passport\HasApiTokens;
  * @property Campaign $campaign
  * @property ?string $stripe_id
  */
+#[ObservedBy(UserObserver::class)]
 class User extends \Illuminate\Foundation\Auth\User implements OAuthenticatable
 {
     use Billable;

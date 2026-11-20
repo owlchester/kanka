@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Enums\ReferralEventType;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Rules\AccountEmail;
 use App\Rules\AccountName;
 use App\Rules\Recaptcha;
-use App\Services\Referrals\JoinService;
+use App\Services\Users\RegistrationService;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -32,7 +31,7 @@ class RegisterController extends Controller
      *
      * @return void
      */
-    public function __construct(protected JoinService $referralService)
+    public function __construct(protected RegistrationService $registrationService)
     {
         $this->middleware('guest');
         $this->middleware('login.redirect');
@@ -64,16 +63,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $referrer = $this->referralService->referrer();
-        $user = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'referred_by' => $referrer,
-        ]);
-        $this->referralService->event($user, ReferralEventType::register);
-
-        return $user;
+        return $this->registrationService->register(
+            [
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+            ],
+            subscribeNewsletter: ! empty($data['newsletter']),
+        );
     }
 
     protected function redirectTo(): string

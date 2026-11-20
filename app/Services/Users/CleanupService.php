@@ -5,8 +5,6 @@ namespace App\Services\Users;
 use App\Enums\FeatureStatus;
 use App\Events\Campaigns\Deleted;
 use App\Facades\Images;
-use App\Facades\UserCache;
-use App\Jobs\Users\UnsubscribeUser;
 use App\Models\CampaignFollower;
 use App\Models\CampaignUser;
 use App\Models\CommunityEventEntry;
@@ -30,8 +28,6 @@ class CleanupService
             ->removeFeatureRequests()
             ->removeWorldbuilding()
             ->removeAvatar()
-            ->cleanCache()
-            ->removeNewsletter()
             ->removeStripeCustomer();
 
         return $this;
@@ -88,25 +84,6 @@ class CleanupService
     {
         if ($this->user->hasAvatar()) {
             Images::model($this->user)->field('avatar')->cleanup();
-        }
-
-        return $this;
-    }
-
-    protected function cleanCache(): self
-    {
-        UserCache::user($this->user)
-            ->clearName()
-            ->clear();
-
-        return $this;
-    }
-
-    protected function removeNewsletter(): self
-    {
-        // If the user was subscribed to the newsletter, unsubscribe them
-        if (app()->isProduction() && ! empty($this->user->hasNewsletter())) {
-            UnsubscribeUser::dispatch($this->user->email);
         }
 
         return $this;

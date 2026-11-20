@@ -223,7 +223,7 @@ class SaveService
      */
     protected function newEntityMention(string $type, string $name): string
     {
-        if (empty($type) || empty($name)) {
+        if (empty($type) || empty($name) || ! $this->hasUser()) {
             return $name;
         }
 

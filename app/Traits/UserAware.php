@@ -28,6 +28,6 @@ trait UserAware
 
     public function hasUser(): bool
     {
-        return $this->user !== null;
+        return isset($this->user);
     }
 }

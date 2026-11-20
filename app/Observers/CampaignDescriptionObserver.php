@@ -21,12 +21,13 @@ class CampaignDescriptionObserver
             if (! array_key_exists($field, $attributes)) {
                 continue;
             }
+            $service = $this->saveService->campaign($campaign);
+            $service = auth()->check()
+                ? $service->user(auth()->user())
+                : $service->userless();
+
             $description->$field = $this->purify(
-                $this->saveService
-                    ->campaign($campaign)
-                    ->user(auth()->user())
-                    ->text($description->$field)
-                    ->save()
+                $service->text($description->$field)->save()
             );
         }
     }
